@@ -47,10 +47,12 @@
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "\improper M4A3 AP magazine (9mm)"
+	icon_state = "m4a3_AP"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 
 /obj/item/ammo_magazine/pistol/incendiary
 	name = "\improper M4A3 incendiary magazine (9mm)"
+	icon_state = "m4a3_incendiary"
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
 
 /obj/item/ammo_magazine/pistol/extended
