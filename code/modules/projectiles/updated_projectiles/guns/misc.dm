@@ -158,7 +158,7 @@
 /obj/item/ammo_magazine/minigun
 	name = "rotating ammo drum (7.62x51mm)"
 	desc = "A huge ammo drum for a huge gun."
-	caliber = "7.62�51mm"
+	caliber = "7.62x51mm"
 	icon_state = "painless" //PLACEHOLDER
 	origin_tech = "combat=3;materials=3"
 	matter = list("metal" = 100000)

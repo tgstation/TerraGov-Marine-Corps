@@ -305,13 +305,13 @@
 /obj/item/ammo_magazine/revolver/upp
 	name = "\improper N-Y speed loader (7.62x38mmR)"
 	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = "7.62�38mmR"
+	caliber = "7.62x38mmR"
 	icon_state = "ny762"
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/ammo_magazine/internal/revolver/upp
 	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = "7.62�38mmR"
+	caliber = "7.62x38mmR"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/upp
 

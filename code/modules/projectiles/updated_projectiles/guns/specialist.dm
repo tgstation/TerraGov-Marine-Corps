@@ -5,7 +5,7 @@
 /obj/item/ammo_magazine/sniper
 	name = "\improper M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
-	caliber = "10�28mm"
+	caliber = "10x28mm"
 	icon_state = "m42c" //PLACEHOLDER
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
@@ -71,7 +71,7 @@
 	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
-	caliber = "10�99mm"
+	caliber = "10x99mm"
 	icon_state = "m42c"
 	max_rounds = 6
 
@@ -121,7 +121,7 @@
 /obj/item/ammo_magazine/rifle/sniper/svd
 	name = "\improper SVD magazine (7.62x54mmR)"
 	desc = "A large caliber magazine for the SVD sniper rifle."
-	caliber = "7.62�54mmR"
+	caliber = "7.62x54mmR"
 	icon_state = "svd003"
 	default_ammo = /datum/ammo/bullet/sniper
 	max_rounds = 10
@@ -129,7 +129,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
-	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62�54mmR rounds."
+	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
 	icon_state = "svd003"
 	item_state = "svd003" //NEEDS A ONE HANDED STATE
 	origin_tech = "combat=5;materials=3;syndicate=5"
@@ -167,7 +167,7 @@
 //SMARTGUN
 /obj/item/ammo_magazine/internal/smartgun
 	name = "integrated smartgun belt"
-	caliber = "10�28mm"
+	caliber = "10x28mm"
 	max_rounds = 50 //Should be 500 in total.
 	default_ammo = /datum/ammo/bullet/smartgun
 
