@@ -714,6 +714,14 @@
 	icon_state = "brig"
 
 /*
+ * Underground - Hangar
+ */
+
+/area/ice_colony/underground/hangar
+	name = "\improper Underground Hangar"
+	icon_state = "hangar"
+
+/*
  * Underground - Storage
  */
 
