@@ -3085,28 +3085,27 @@
 	package = 1
 	bitesize = 1
 	icon_state = "entree"
-	var/unpackagedstate = "boneless pork ribs"//default value
-	var/unpackagedname = "boneless pork ribs"//default value
+	var/flavor = "boneless pork ribs"//default value
 	w_class = 3
-	New(loc, newunpackagedname)
+	New(loc, newflavor)
 		..()
-		name = "\improper MRE package" + " (" + newunpackagedname + ")"
-		determinetype(newunpackagedname)
+		determinetype(newflavor)
 
 	attack_self(mob/user as mob)
 		if (package == 1)
-			name = "\improper" + unpackagedname
-			desc = "The contents of a USCM Standard issue MRE. This one is " + unpackagedname
 			user << "<span class='notice'>You pull open the package of the meal!</span>"
 			playsound(loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+
+			name = "\improper" + flavor
+			desc = "The contents of a USCM Standard issue MRE. This one is " + flavor
+			icon_state = flavor
 			package = 0
-			icon_state = unpackagedstate
 
-/obj/item/weapon/reagent_containers/food/snacks/packaged_meal/proc/determinetype(newunpackagedname)
-	unpackagedname = newunpackagedname
-	unpackagedstate = newunpackagedname
+/obj/item/weapon/reagent_containers/food/snacks/packaged_meal/proc/determinetype(newflavor)
+	name = "\improper MRE package" + " (" + newflavor + ")"
+	flavor = newflavor
 
-	switch(newunpackagedname)
+	switch(newflavor)
 		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti chunks")
 			icon_state = "entree"
 			reagents.add_reagent("nutriment", 5)
@@ -3126,6 +3125,7 @@
 			reagents.add_reagent("coco", 1)
 
 
+
 /obj/item/weapon/storage/box/MRE
 	name = "\improper USCM MRE"
 	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
@@ -3140,34 +3140,22 @@
 		..()
 		pickflavor()
 
-
 /obj/item/weapon/storage/box/MRE/proc/pickflavor()
-	var variation = rand(1,4)
+	var/variation = rand(1,4)
+	var/i
 	switch(variation)
 		if(1)
-			spawn(1)
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "boneless pork ribs")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "cracker")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "biscuit")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "spiced apples")
+			for(i in list("boneless pork ribs","cracker","biscuit","spiced apples"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
 		if(2)
-			spawn(1)
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "grilled chicken")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "cheese spread")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "meatballs")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "chocolate brownie")
+			for(i in list("grilled chicken","cheese spread","meatballs","chocolate brownie"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
 		if(3)
-			spawn(1)
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "pizza square")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "rice onigiri")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "pretzels")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "sugar cookie")
+			for(i in list("pizza square","rice onigiri","pretzels","sugar cookie"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
 		if(4)
-			spawn(1)
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "spaghetti chunks")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "mashed potatoes")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "peanuts")
-				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, "coco bar")
+			for(i in list("spaghetti chunks","mashed potatoes","peanuts","coco bar"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
 
 /obj/item/weapon/storage/box/MRE/update_icon()
 	if(!contents.len)
