@@ -324,33 +324,39 @@
 		set desc = "Extend your wrist blades. They cannot be dropped, but can be retracted."
 		set category = "Yautja"
 
-		if(!usr || usr.stat) return
-		var/mob/living/carbon/human/M = usr
-		if(!istype(M)) return
-		if(!isYautja(M))
-			usr << "<span class='warning'>You have no idea how to work these things!</span>"
+		if(!usr.loc || !usr.canmove || usr.stat) return
+		var/mob/living/carbon/human/user = usr
+		if(!istype(user)) return
+		if(!isYautja(user))
+			user << "<span class='warning'>You have no idea how to work these things!</span>"
 			return
-		var/obj/item/weapon/wristblades/R = M.get_active_hand()
+		var/obj/item/weapon/wristblades/R = user.get_active_hand()
 		if(R && istype(R)) //Turn it off.
-			M << "<span class='notice'>You retract your wrist blades.</span>"
-			playsound(M.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
+			user << "<span class='notice'>You retract your wrist blades.</span>"
+			playsound(user.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
-			M.drop_item(R)
+			user.drop_item(R)
 			return
 		else
+			if(!drain_power(user,50)) return
+
 			if(R)
-				M << "<span class='warning'>Your hand must be free to activate your wrist blade!</span>"
+				user << "<span class='warning'>Your hand must be free to activate your wrist blade!</span>"
 				return
-			if(!drain_power(usr,50)) return
+
+			var/datum/organ/external/hand = user.organs_by_name[user.hand ? "l_hand" : "r_hand"]
+			if(!istype(hand) || !hand.is_usable())
+				user << "<span class='warning'>You can't hold that!</span>"
+				return
 
 			var/obj/item/weapon/wristblades/W
-			W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, M)
+			W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, user)
 
-			M.put_in_active_hand(W)
+			user.put_in_active_hand(W)
 			blades_active = 1
-			usr << "<span class='notice'>You activate your wrist blades.</span>"
-			playsound(src,'sound/weapons/wristblades_on.ogg', 40, 1)
-			usr.update_icons()
+			user << "<span class='notice'>You activate your wrist blades.</span>"
+			playsound(user,'sound/weapons/wristblades_on.ogg', 40, 1)
+			user.update_icons()
 
 		return 1
 
@@ -403,7 +409,7 @@
 		set desc = "Activate your plasma caster. If it is dropped it will retract back into your armor."
 		set category = "Yautja"
 
-		if(!usr || usr.stat) return
+		if(!usr.loc || !usr.canmove || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
 		if(!isYautja(usr))
@@ -802,7 +808,7 @@
 
 /obj/item/device/yautja_teleporter
 	name = "relay beacon"
-	desc = "A device covered in Yautja writing. It whirrs and beeps every couple of seconds."
+	desc = "A device covered in sacred text. It whirrs and beeps every couple of seconds."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "teleporter"
 	origin_tech = "materials=7;bluespace=7;engineering=7"
@@ -813,27 +819,30 @@
 	unacidable = 1
 	var/timer = 0
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user)
+		set waitfor = 0
 		if(istype(get_area(user),/area/yautja))
 			user << "Nothing happens."
 			return
 		var/mob/living/carbon/human/H = user
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
 		if(!isYautja(H))
-			user << "<span class='notice'>The screen angrily flashes three times...</span>"
+			user << "<span class='warning'>The screen angrily flashes three times!</span>"
 			playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
-			spawn(30)
-				explosion(src.loc,-1,-1,2)
-				if(src && loc) cdel(src)
-				return
+			sleep(30)
+			explosion(loc,-1,-1,2)
+			if(loc)
+				if(ismob(loc))
+					user = loc
+					user.remove_from_mob(src)
+				cdel(src)
+			return
 
 		if(sure == "No" || !sure) return
 		playsound(src,'sound/ambience/signal.ogg', 100, 1)
 		timer = 1
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100))
-			set waitfor = 0
-
 			// Teleport self.
 			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
 			sleep(animation_teleport_quick_out(user))
@@ -842,30 +851,30 @@
 			timer = 0
 
 			// Teleport whoever you're pulling.
-			var/mob/living/holding = user.pulling
+			var/mob/living/M = user.pulling
 
-			if(holding)
-				holding.visible_message("<span class='warning'>\icon[holding][holding] disappears!</span>")
-				sleep(animation_teleport_quick_out(holding))
-				if(holding && holding.loc)
-					holding.loc = pick(pred_spawn)
-					animation_teleport_quick_in(holding)
+			if(M)
+				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
+				sleep(animation_teleport_quick_out(M))
+				if(M && M.loc)
+					M.loc = pick(pred_spawn)
+					animation_teleport_quick_in(M)
 
 			// Teleport whoever you're grabbing.
 			var/obj/item/weapon/grab/grabbing = user.get_inactive_hand()
 
 			if(istype(grabbing))
-				var/mob/living/grabTarget = grabbing.affecting
-				grabTarget.visible_message("<span class='warning'>\icon[grabTarget][grabTarget] disappears!</span>")
-				sleep(animation_teleport_quick_out(grabTarget))
+				M = grabbing.affecting
+				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
+				sleep(animation_teleport_quick_out(M))
 				if(grabbing) grabbing.dropped()
-				if(grabTarget && grabTarget.loc)
-					grabTarget.loc = pick(pred_spawn)
-					animation_teleport_quick_in(grabTarget)
+				if(M && M.loc)
+					M.loc = pick(pred_spawn)
+					animation_teleport_quick_in(M)
 
 		else
-			spawn(10)
-				timer = 0
+			sleep(10)
+			if(loc) timer = 0
 
 //Doesn't give heat or anything yet, it's just a light source.
 /obj/structure/campfire
@@ -973,14 +982,12 @@
 		var/blacklist[] = list("attack_verb")
 		. = ..() + blacklist
 
-	dropped(var/mob/living/carbon/human/mob)
-		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
-		mob << "<span class='notice'>The wrist blades retract back into your armband.</span>"
-		if(mob)
-			var/obj/item/weapon/wristblades/get_other_hand = mob.get_inactive_hand()
+	dropped(mob/living/carbon/human/M)
+		playsound(M,'sound/weapons/wristblades_off.ogg', 30, 1)
+		if(M)
+			var/obj/item/weapon/wristblades/get_other_hand = M.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
 				get_other_hand.attack_speed = initial(attack_speed)
-
 		cdel(src)
 
 	afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -1072,9 +1079,10 @@
 		user << "<span class='notice'>You begin using your knife to rip shrapnel out. Hold still. This will probably hurt...</span>"
 
 		if(do_after(user,50))
+			var/obj/item/weapon/shard/shrapnel/S
 			for(var/datum/organ/external/O in user.organs)
-				for(var/obj/S in O.implants)
-					if(istype(S)) user << "<span class='notice'>You dig shrapnel out of your [O.name].</span>"
+				for(S in O.implants)
+					user << "<span class='notice'>You dig shrapnel out of your [O.name].</span>"
 					S.loc = user.loc
 					O.implants -= S
 					pain_factor++
@@ -1315,12 +1323,10 @@
 				user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
 				ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
-	dropped(mob/user)
+	dropped(mob/living/carbon/human/M)
 		..()
-		user << "The plasma caster deactivates."
-		playsound(user,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
+		playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
 		cdel(src)
-		return
 
 	able_to_fire(mob/user)
 		if(!source)	return

@@ -276,10 +276,9 @@ var/global/list/frozen_items = list()
 			else
 				icon_state = "body_scanner_0"
 
-			//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
-			//This should guarantee that ghosts don't spawn.
-			occupant.ckey = null
+			occupant.ghostize(0) //We want to make sure they are not kicked to lobby.
+			//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
 			//Make an announcement and log the person entering storage.
 			frozen_crew += "[occupant.real_name]"
@@ -288,7 +287,8 @@ var/global/list/frozen_items = list()
 			visible_message("\blue The crypod hums and hisses as it moves [occupant.real_name] into storage.", 3)
 
 			// Delete the mob.
-			del(occupant)
+
+			cdel(occupant)
 			occupant = null
 
 

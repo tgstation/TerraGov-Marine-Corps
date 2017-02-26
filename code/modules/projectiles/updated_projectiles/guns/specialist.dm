@@ -51,7 +51,7 @@
 		..()
 		accuracy += config.low_hit_accuracy_mult
 		recoil = config.min_recoil_value
-		fire_delay = config.mhigh_fire_delay*10
+		fire_delay = config.high_fire_delay*4
 		burst_amount = config.min_burst_value
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		var/obj/item/attachable/scope/S = new(src)
@@ -92,7 +92,7 @@
 		..()
 		accuracy += config.max_hit_accuracy_mult
 		recoil = config.max_recoil_value
-		fire_delay = config.mhigh_fire_delay*15
+		fire_delay = config.high_fire_delay*5
 		burst_amount = config.min_burst_value
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 		var/obj/item/attachable/scope/S = new(src)
@@ -108,13 +108,8 @@
 		if(.)
 			var/mob/living/carbon/human/PMC_sniper = user
 			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
-				var/o_x = target.x < user.x ? -1 : 1
-				var/o_y = target.y < user.y ? -1 : 1
-				var/new_x = target.x == user.x ? user.x : user.x + o_x
-				var/new_y = target.y == user.y ? user.y : user.y + o_y
-				var/near_target = locate(new_x,new_y,target.z)
 				PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
-				step_away(PMC_sniper,near_target)
+				step(PMC_sniper,turn(PMC_sniper.dir,180))
 				PMC_sniper.Weaken(5)
 
 //SVD //Based on the actual Dragunov sniper rifle.
@@ -151,7 +146,7 @@
 		..()
 		accuracy -= config.low_hit_accuracy_mult
 		recoil = config.min_recoil_value
-		fire_delay = config.high_fire_delay*5
+		fire_delay = config.mhigh_fire_delay*2
 		burst_amount = config.low_burst_value
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 		var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
@@ -173,8 +168,8 @@
 
 //Come get some.
 /obj/item/weapon/gun/smartgun
-	name = "\improper M56 smartgun"
-	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left to reload."
+	name = "\improper M56B smartgun"
+	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left to reload.\nYou may toggle firing restrictions by using a special action."
 	icon_state = "m56"
 	item_state = "m56"
 	origin_tech = "combat=6;materials=5"
@@ -184,9 +179,10 @@
 	w_class = 5
 	force = 20
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
-	var/restriction_toggled = 1 //Begin with the safety off.
+	var/restriction_toggled = 1 //Begin with the safety on.
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	attachable_allowed = list(
 						/obj/item/attachable/heavy_barrel,
@@ -197,6 +193,7 @@
 
 	New()
 		..()
+		ammo_secondary = ammo_list[ammo_secondary]
 		accuracy += config.min_hit_accuracy_mult
 		fire_delay = config.low_fire_delay
 		burst_amount = config.med_burst_value
@@ -206,7 +203,10 @@
 	examine()
 		..()
 		usr << "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]"
-		if(istype(src, /obj/item/weapon/gun/smartgun/dirty)) usr << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
+		usr << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
+
+	unique_action(mob/user)
+		toggle_restriction(user)
 
 	able_to_fire(mob/user)
 		if(!ishuman(user)) return
@@ -223,7 +223,7 @@
 	reload_into_chamber(mob/user)
 		var/mob/living/carbon/human/smart_gunner = user
 		var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
-		if(power_pack) //I don't know how it would break, but it is possible.
+		if(istype(power_pack)) //I don't know how it would break, but it is possible.
 			if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
 				auto_reload(smart_gunner, power_pack)
 			else shells_fired_now++
@@ -236,10 +236,11 @@
 		return 1
 
 /obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	var/restriction_on = restriction_toggled
-	user << "\icon[src] You [restriction_on? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_on ? "harm anyone in your way" : "not harm marines"]."
+	user << "\icon[src] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"]."
 	playsound(loc,'sound/machines/click.ogg', 50, 1)
-	ammo = restriction_on ? ammo_list[/datum/ammo/bullet/smartgun/dirty/lethal] : ammo_list[/datum/ammo/bullet/smartgun/dirty]
+	var/A = ammo
+	ammo = ammo_secondary
+	ammo_secondary = A
 	restriction_toggled = !restriction_toggled
 
 /obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
@@ -253,21 +254,17 @@
 	gun_type = /obj/item/weapon/gun/smartgun/dirty
 
 /obj/item/weapon/gun/smartgun/dirty
-	name = "\improper M57D 'dirty' smartgun"
-	desc = "The actual firearm in the 4-piece M57D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. You may toggle firing restrictions by using a special action."
+	name = "\improper M56D 'dirty' smartgun"
+	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action."
 	origin_tech = "combat=7;materials=5"
-	restriction_toggled = 0
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
+	ammo_secondary = /datum/ammo/bullet/smartgun/lethal
 	attachable_allowed = list() //Cannot be upgraded.
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
 	New()
 		..()
 		accuracy += config.min_hit_accuracy_mult
-
-	unique_action(mob/user)
-		toggle_restriction(user)
-		return
 
 //-------------------------------------------------------
 //GRENADE LAUNCHER

@@ -8,7 +8,6 @@
 	desc = "An auto-injector loaded with Tricordrazine."
 	amount_per_transfer_from_this = 15
 	volume = 15
-	hType = "tricord"
 	icon_state = "tricord"
 
 //Auto-injector Generation Proc (to change the chemicals)
@@ -24,8 +23,7 @@
 	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every 5 seconds."
 	amount_per_transfer_from_this = 3
 	volume = 3
-	hType = "quickclot"
-	icon_state = "quickcloth"
+	icon_state = "quickclot"
 
 	New()
 		..()
@@ -39,7 +37,6 @@
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	amount_per_transfer_from_this = 1
 	volume = 1
-	hType = "dexalin"
 	icon_state = "dexalin"
 
 	New()
@@ -54,7 +51,6 @@
 	desc = "An auto-injector loaded with special chemicals to aid in recovery after cloning, to be used in conjunction with Cryo."
 	amount_per_transfer_from_this = 6
 	volume = 6
-	hType = "clonefix"
 	icon_state = "clonefix"
 
 	New()
@@ -70,7 +66,6 @@
 	desc = "An anesthetic autoinjector, to aid with surgery"
 	amount_per_transfer_from_this = 10
 	volume = 10
-	hType = "anesthetic"
 	icon_state = "anesthetic"
 
 	New()
@@ -87,7 +82,6 @@
 	desc = "An auto-injector loaded with 5u of Dylovene."
 	amount_per_transfer_from_this = 5
 	volume = 5
-	hType = "dylovene"
 	icon_state = "dylovene"
 
 	New()
@@ -103,7 +97,6 @@
 	desc = "An auto-injector loaded with 5u of Oxycodone."
 	amount_per_transfer_from_this = 5
 	volume = 5
-	hType = "oxycodine"
 	icon_state = "oxycodine"
 
 	New()
@@ -118,7 +111,6 @@
 	desc = "An auto-injector loaded with 5u of Kelotane."
 	amount_per_transfer_from_this = 5
 	volume = 5
-	hType = "kelotine"
 	icon_state = "kelotine"
 
 	New()
@@ -134,7 +126,6 @@
 	desc = "An auto-injector loaded with 5u of Bicaridine."
 	amount_per_transfer_from_this = 5
 	volume = 5
-	hType = "bicaridine"
 	icon_state = "bicaridine"
 
 	New()
@@ -149,7 +140,6 @@
 	desc = "An auto-injector loaded with Inaprovaline."
 	amount_per_transfer_from_this = 15
 	volume = 15
-	hType = "clonefix" //TEMP
 	icon_state = "clonefix" //TEMP
 
 //Auto-injector Generation Proc (to change the chemicals)

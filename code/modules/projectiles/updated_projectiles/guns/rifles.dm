@@ -120,12 +120,11 @@
 		accuracy += config.med_hit_accuracy_mult
 		recoil = config.min_recoil_value
 		fire_delay = config.high_fire_delay
-		burst_amount = config.min_burst_value
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = null //Rifle already has a nice looking scope sprite.
 		S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
 		S.Attach(src)
-		var/obj/item/attachable/stock/rifle/marksman/Q = new(src)
+		var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.
 		Q.Attach(src)
 		var/obj/item/attachable/G = under //We'll need this in a sec.
 		G.Detach(src) //This will null the attachment slot.
