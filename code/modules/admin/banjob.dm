@@ -5,11 +5,11 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 /proc/jobban_fullban(mob/M, rank, reason)
 	if (!M || !M.key) return
-	jobban_keylist["[rank]"]["[M.ckey]"] = reason
+	jobban_keylist[rank][M.ckey] = reason
 
 /proc/jobban_client_fullban(ckey, rank)
 	if (!ckey || !rank) return
-	jobban_keylist["[rank]"]["[ckey]"] = "Reason Unspecified"
+	jobban_keylist[rank][ckey] = "Reason Unspecified"
 
 //returns a reason if M is banned from rank, returns 0 otherwise
 /proc/jobban_isbanned(mob/M, rank)
@@ -24,7 +24,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 			if(config.usewhitelist && !check_whitelist(M))
 				return "Whitelisted Job"
 
-		return jobban_keylist["[rank]"]["[M.ckey]"]
+		return jobban_keylist[rank][M.ckey]
 
 	return 0
 
@@ -73,13 +73,13 @@ DEBUG
 			title = r2.group[2]
 
 		if(!banned_jobs.Find(title))
-			banned_jobs["[title]"] = list()
+			banned_jobs[title] = list()
 			world << "New job found in list [title]"
 
 		if(reason == "")
-			banned_jobs["[title]"]["[ckey]"] = "Reason Unspecified"
+			banned_jobs[title][ckey] = "Reason Unspecified"
 		else
-			banned_jobs["[title]"]["[ckey]"] = reason
+			banned_jobs[title][ckey] = reason
 
 	S2["new_bans"] << banned_jobs
 	jobban_savebanfile()
@@ -116,7 +116,7 @@ DEBUG
 			var/ckey = query.item[1]
 			var/job = query.item[2]
 
-			jobban_keylist["[job]"]["[ckey]"] = "Reason Unspecified"
+			jobban_keylist[job][ckey] = "Reason Unspecified"
 
 		//Job tempbans
 		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
@@ -126,7 +126,7 @@ DEBUG
 			var/ckey = query1.item[1]
 			var/job = query1.item[2]
 
-			jobban_keylist["[job]"]["[ckey]"] = "Reason Unspecified"
+			jobban_keylist[job][ckey] = "Reason Unspecified"
 
 /proc/jobban_savebanfile()
 	var/savefile/S=new("data/job_new.ban")
