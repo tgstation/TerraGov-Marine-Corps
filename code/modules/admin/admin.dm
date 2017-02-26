@@ -544,14 +544,21 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN))	return
-
-	var/dat = "<B>Job Bans!</B><HR><table>"
-	for(var/t in jobban_keylist)
-		var/r = t
-		if( findtext(r,"##") )
-			r = copytext( r, 1, findtext(r,"##") )//removes the description
-		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
+	if(!check_rights(R_BAN)) return
+	var/L[] //List reference.
+	var/r //rank --This will always be a string.
+	var/c //ckey --This will always be a string.
+	var/i //individual record / ban reason
+	var/t //text to show in the window
+	var/u //unban button href arg
+	var/dat = "<b>Job Bans!</b><hr><table>"
+	for(r in jobban_keylist)
+		L = jobban_keylist[r]
+		for(c in L)
+			i = jobban_keylist[r][c] //These are already strings, as you're iterating through them. Anyway, establish jobban.
+			t = "[c] - [r] ## [i]"
+			u = "[c] - [r]"
+			dat += "<tr><td>[t] (<A href='?src=\ref[src];removejobban=[u]'>unban</A>)</td></tr>"
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")
 
