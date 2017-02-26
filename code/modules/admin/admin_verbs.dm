@@ -77,7 +77,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes,
 	/datum/admins/proc/force_predator_round, //Force spawns a predator round.
-	/client/proc/force_shuttle,
+	/client/proc/force_shuttle
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
