@@ -429,7 +429,7 @@
 		damage_var_low = -config.med_proj_variance
 		damage_var_high = config.med_proj_variance
 		damage_bleed = config.buckshot_damage_bleed
-		penetration	= -config.min_armor_penetration
+		penetration	= -config.mlow_armor_penetration
 		bonus_projectiles = config.low_proj_extra
 		shell_speed = config.slow_shell_speed
 

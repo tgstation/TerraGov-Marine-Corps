@@ -728,7 +728,6 @@ Defined in setup.dm.
 
 	New()
 		..()
-		delay_mod = config.high_fire_delay*2
 		accuracy_mod = config.high_hit_accuracy_mult
 
 /obj/item/attachable/slavicbarrel

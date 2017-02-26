@@ -140,8 +140,6 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	name = "Explosives crate"
 	contains = list(
 					/obj/item/weapon/storage/box/explosive_mines,
-					/obj/item/weapon/storage/box/explosive_mines,
-					/obj/item/weapon/storage/box/explosive_mines,
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/incendiary,

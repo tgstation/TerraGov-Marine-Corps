@@ -354,10 +354,6 @@ should be alright.
 		user << "<span class='warning'>Not right now.</span>"
 		return
 
-	if(zoom)
-		user << "<span class='warning'>Your attention is occupied elsewhere!</span>"
-		return
-
 	var/obj/item/weapon/gun/G = user.equipped()
 
 	if(!istype(G))
@@ -443,7 +439,7 @@ should be alright.
 	if(!G) return
 	src = G
 
-	unload(usr)
+	unload(usr,,1) //We want to drop the mag on the ground.
 
 /obj/item/weapon/gun/verb/use_unique_action()
 	set category = "Weapons"

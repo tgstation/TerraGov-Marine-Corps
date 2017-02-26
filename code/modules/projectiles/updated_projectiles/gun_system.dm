@@ -258,14 +258,14 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
-/obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst.
+/obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && ((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))) return
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
 		cock(user)
 		return
 
-	if(current_mag.current_rounds <= 0 || !user) //If it's empty or there's no user,
+	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.loc = get_turf(src) //Drop it on the ground.
 	else user.put_in_hands(current_mag)
 
@@ -383,7 +383,7 @@ and you're good to go.
 		if(current_mag) //If there is no mag, we can't reload.
 			ready_in_chamber()
 			if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
-				unload(user,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
+				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 50, 1)
 
 	// Shouldn't be called on, but in case something that uses Fire() is added that is toggled.
