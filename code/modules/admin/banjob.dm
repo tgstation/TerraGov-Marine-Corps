@@ -5,38 +5,11 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 /proc/jobban_fullban(mob/M, rank, reason)
 	if (!M || !M.key) return
-	jobban_keylist.Add(text("[M.ckey] - [rank] ## [reason]"))
-	sort_jobbans() //This is actually pretty inefficient, but its better than alternatives
+	jobban_keylist[rank][M.ckey] = reason
 
 /proc/jobban_client_fullban(ckey, rank)
 	if (!ckey || !rank) return
-	jobban_keylist.Add(text("[ckey] - [rank]"))
-	sort_jobbans() //This is actually pretty inefficient, but its better than alternatives
-
-/proc/sort_jobbans()
-	jobban_keylist = sortList(jobban_keylist)
-	jobban_savebanfile()
-
-//Takes a list of ckeys to check and a rank
-//Returns contents of the list that are not banned
-//Does not care about reason
-/proc/jobban_isbanned_list(var/list/L, var/rank)
-	if(L.len && rank)
-
-		var/regex/r1 = new("(.*) - (.*)")
-		var/value = 1
-		L = sortList(L) //Alphabetize it
-
-		for(var/string in jobban_keylist)
-			if(!r1.Find(string)) continue //Something is broken. ABORT
-			if(text2ascii(L[value]) > text2ascii(r1.group[1])) value++ //we have passed it alphabetically, use next element
-			if(value == L.len + 1) break //We've done everything, don't waste more time on this. +1 because we increment in the previous line
-			if(L[value] == r1.group[1]) //Ckey matches
-				if(r1.group[2] == rank) L.Remove(L[value]) //Rank matches, he's b&
-
-		return L
-
-	return 0
+	jobban_keylist[rank][ckey] = "Reason Unspecified"
 
 //returns a reason if M is banned from rank, returns 0 otherwise
 /proc/jobban_isbanned(mob/M, rank)
@@ -51,14 +24,8 @@ var/jobban_keylist[0]		//to store the keys & ranks
 			if(config.usewhitelist && !check_whitelist(M))
 				return "Whitelisted Job"
 
-		for (var/s in jobban_keylist)
-			if( findtext(s,"[M.ckey] - [rank]") == 1 )
-				var/startpos = findtext(s, "## ")+3
-				if(startpos && startpos<length(s))
-					var/text = copytext(s, startpos, 0)
-					if(text)
-						return text
-				return "Reason Unspecified"
+		return jobban_keylist[rank][M.ckey]
+
 	return 0
 
 /*
@@ -75,15 +42,58 @@ DEBUG
 	jobban_loadbanfile()
 */
 
+/*
+/client/proc/loadNewBans()
+	set name = "Load New Bans"
+	set desc = "Transfer the old jobban list to the new system and file"
+	set category = "Admin"
+
+	var/list/banned_jobs = list()
+
+	var/savefile/S1 = new("data/job_full.ban")
+	var/savefile/S2 = new("data/job_new.ban")
+	var/regex/r1 = new("(.*) - (.*) ## (.*)")
+	var/regex/r2 = new("(.*) - (.*)")
+	var/ckey
+	var/title
+	var/reason
+	var/list/L = list()
+	S1["keys[0]"] >> L
+
+	for(var/s in L)
+		ckey = ""
+		title = ""
+		reason = ""
+		if(r1.Find(s))
+			ckey = r1.group[1]
+			title = r1.group[2]
+			reason = r1.group[3]
+		else if(r2.Find(s))
+			ckey = r2.group[1]
+			title = r2.group[2]
+
+		if(!banned_jobs.Find(title))
+			banned_jobs[title] = list()
+			world << "New job found in list [title]"
+
+		if(reason == "")
+			banned_jobs[title][ckey] = "Reason Unspecified"
+		else
+			banned_jobs[title][ckey] = reason
+
+	S2["new_bans"] << banned_jobs
+	jobban_savebanfile()
+	jobban_loadbanfile()
+*/
+
 /hook/startup/proc/loadJobBans()
 	jobban_loadbanfile()
-	sort_jobbans() //Just in case it got screwed with elsewhere
 	return 1
 
 /proc/jobban_loadbanfile()
 	if(config.ban_legacy_system)
-		var/savefile/S=new("data/job_full.ban")
-		S["keys[0]"] >> jobban_keylist
+		var/savefile/S=new("data/job_new.ban")
+		S["new_bans"] >> jobban_keylist
 		log_admin("Loading jobban_rank")
 		S["runonce"] >> jobban_runonce
 
@@ -106,7 +116,7 @@ DEBUG
 			var/ckey = query.item[1]
 			var/job = query.item[2]
 
-			jobban_keylist.Add("[ckey] - [job]")
+			jobban_keylist[job][ckey] = "Reason Unspecified"
 
 		//Job tempbans
 		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
@@ -116,11 +126,11 @@ DEBUG
 			var/ckey = query1.item[1]
 			var/job = query1.item[2]
 
-			jobban_keylist.Add("[ckey] - [job]")
+			jobban_keylist[job][ckey] = "Reason Unspecified"
 
 /proc/jobban_savebanfile()
-	var/savefile/S=new("data/job_full.ban")
-	S["keys[0]"] << jobban_keylist
+	var/savefile/S=new("data/job_new.ban")
+	S["new_bans"] << jobban_keylist
 
 /proc/jobban_unban(mob/M, rank)
 	jobban_remove("[M.ckey] - [rank]")
@@ -132,9 +142,10 @@ DEBUG
 
 
 /proc/jobban_remove(X)
-	for (var/i = 1; i <= length(jobban_keylist); i++)
-		if( findtext(jobban_keylist[i], "[X]") )
-			jobban_keylist.Remove(jobban_keylist[i])
-			jobban_savebanfile()
-			return 1
+	var/regex/r1 = new("(.*) - (.*)")
+	if(r1.Find(X))
+		var/list/L = jobban_keylist[r1.group[2]]
+		L.Remove(r1.group[1])
+		return 1
+
 	return 0
