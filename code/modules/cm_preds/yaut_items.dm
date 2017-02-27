@@ -324,39 +324,33 @@
 		set desc = "Extend your wrist blades. They cannot be dropped, but can be retracted."
 		set category = "Yautja"
 
-		if(!usr.loc || !usr.canmove || usr.stat) return
-		var/mob/living/carbon/human/user = usr
-		if(!istype(user)) return
-		if(!isYautja(user))
-			user << "<span class='warning'>You have no idea how to work these things!</span>"
+		if(!usr || usr.stat) return
+		var/mob/living/carbon/human/M = usr
+		if(!istype(M)) return
+		if(!isYautja(M))
+			usr << "<span class='warning'>You have no idea how to work these things!</span>"
 			return
-		var/obj/item/weapon/wristblades/R = user.get_active_hand()
+		var/obj/item/weapon/wristblades/R = M.get_active_hand()
 		if(R && istype(R)) //Turn it off.
-			user << "<span class='notice'>You retract your wrist blades.</span>"
-			playsound(user.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
+			M << "<span class='notice'>You retract your wrist blades.</span>"
+			playsound(M.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
-			user.drop_item(R)
+			M.drop_item(R)
 			return
 		else
-			if(!drain_power(user,50)) return
-
 			if(R)
-				user << "<span class='warning'>Your hand must be free to activate your wrist blade!</span>"
+				M << "<span class='warning'>Your hand must be free to activate your wrist blade!</span>"
 				return
-
-			var/datum/organ/external/hand = user.organs_by_name[user.hand ? "l_hand" : "r_hand"]
-			if(!istype(hand) || !hand.is_usable())
-				user << "<span class='warning'>You can't hold that!</span>"
-				return
+			if(!drain_power(usr,50)) return
 
 			var/obj/item/weapon/wristblades/W
-			W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, user)
+			W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, M)
 
-			user.put_in_active_hand(W)
+			M.put_in_active_hand(W)
 			blades_active = 1
-			user << "<span class='notice'>You activate your wrist blades.</span>"
-			playsound(user,'sound/weapons/wristblades_on.ogg', 40, 1)
-			user.update_icons()
+			usr << "<span class='notice'>You activate your wrist blades.</span>"
+			playsound(src,'sound/weapons/wristblades_on.ogg', 40, 1)
+			usr.update_icons()
 
 		return 1
 
@@ -409,7 +403,7 @@
 		set desc = "Activate your plasma caster. If it is dropped it will retract back into your armor."
 		set category = "Yautja"
 
-		if(!usr.loc || !usr.canmove || usr.stat) return
+		if(!usr || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
 		if(!isYautja(usr))
@@ -437,7 +431,7 @@
 				M.update_inv_l_hand()
 			if(found)
 				usr << "<span class='notice'>You deactivate your plasma caster.</span>"
-				playsound(src,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
+				playsound(src,'sound/weapons/plasmacaster_off.ogg', 40, 1)
 				caster_active = 0
 			return
 		else //Turn it on!
@@ -451,7 +445,7 @@
 			W.source = src
 			caster_active = 1
 			usr << "<span class='notice'>You activate your plasma caster.</span>"
-			playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 40, 1)
+			playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
 			usr.update_icons()
 		return 1
 
@@ -463,7 +457,7 @@
 		var/turf/T = get_turf(victim)
 		if(istype(T) && exploding)
 			victim.apply_damage(50,BRUTE,"chest")
-			explosion(T, 1, 4, 7, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby. //Not enough ~N
+			explosion(T, 2, 10, 15, 20) //This should be a very dramatic pred explosion now.
 			if(victim) victim.gib() //Adding one more safety.
 
 	verb/activate_suicide()
@@ -474,6 +468,9 @@
 		if(!usr) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
+		if(!M.stat == CONSCIOUS)
+			M << "<span class='warning'>Not while you're unconcious...</span>"
+			return
 		if(M.stat == DEAD)
 			M << "<span class='warning'>Little too late for that now!</span>"
 			return
@@ -501,6 +498,9 @@
 				if(M.stat == DEAD)
 					M << "<span class='warning'>Little too late for that now!</span>"
 					return
+				if(!M.stat == CONSCIOUS)
+					M << "<span class='warning'>Not while you're unconcious...</span>"
+					return
 				exploding = 0
 				M << "<span class='notice'>Your bracers stop beeping.</span>"
 				return
@@ -510,6 +510,9 @@
 		if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
 			if(M.stat == DEAD)
 				M << "<span class='warning'>Little too late for that now!</span>"
+				return
+			if(!M.stat == CONSCIOUS)
+				M << "<span class='warning'>Not while you're unconcious...</span>"
 				return
 			M << "<span class='userdanger'>You set the timer. May your journey to the great hunting grounds be swift.</span>"
 			explodey(M)
@@ -594,20 +597,20 @@
 	msg = sanitize(msg)
 	msg = oldreplacetext(msg, "a", "@")
 	msg = oldreplacetext(msg, "b", "8")
-	msg = oldreplacetext(msg, "c", "x")
+	msg = oldreplacetext(msg, "c", "×")
 	msg = oldreplacetext(msg, "d", ")")
-	msg = oldreplacetext(msg, "e", "x")
+	msg = oldreplacetext(msg, "e", "×")
 	msg = oldreplacetext(msg, "h", "#")
 	msg = oldreplacetext(msg, "i", "1")
 	msg = oldreplacetext(msg, "j", "]")
 	msg = oldreplacetext(msg, "k", "X")
 	msg = oldreplacetext(msg, "l", "|")
 	msg = oldreplacetext(msg, "o", "0")
-	msg = oldreplacetext(msg, "p", "x")
+	msg = oldreplacetext(msg, "p", "×")
 	msg = oldreplacetext(msg, "t", "7")
-	msg = oldreplacetext(msg, "u", "x")
+	msg = oldreplacetext(msg, "u", "×")
 	msg = oldreplacetext(msg, "x", "%")
-	msg = oldreplacetext(msg, "y", "x")
+	msg = oldreplacetext(msg, "y", "×")
 	msg = oldreplacetext(msg, "z", "2")   //Preds now speak in bastardized 1337speak BECAUSE.
 
 	spawn(10)
@@ -808,7 +811,7 @@
 
 /obj/item/device/yautja_teleporter
 	name = "relay beacon"
-	desc = "A device covered in sacred text. It whirrs and beeps every couple of seconds."
+	desc = "A device covered in Yautja writing. It whirrs and beeps every couple of seconds."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "teleporter"
 	origin_tech = "materials=7;bluespace=7;engineering=7"
@@ -819,62 +822,35 @@
 	unacidable = 1
 	var/timer = 0
 
-	attack_self(mob/user)
-		set waitfor = 0
+	attack_self(mob/user as mob)
 		if(istype(get_area(user),/area/yautja))
 			user << "Nothing happens."
 			return
 		var/mob/living/carbon/human/H = user
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
 		if(!isYautja(H))
-			user << "<span class='warning'>The screen angrily flashes three times!</span>"
+			user << "<span class='notice'>The screen angrily flashes three times...</span>"
 			playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
-			sleep(30)
-			explosion(loc,-1,-1,2)
-			if(loc)
-				if(ismob(loc))
-					user = loc
-					user.remove_from_mob(src)
-				cdel(src)
-			return
+			spawn(30)
+				explosion(src.loc,-1,-1,2)
+				if(src && loc) cdel(src)
+				return
 
 		if(sure == "No" || !sure) return
 		playsound(src,'sound/ambience/signal.ogg', 100, 1)
 		timer = 1
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100))
-			// Teleport self.
-			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
-			sleep(animation_teleport_quick_out(user))
+			var/mob/living/holding = user.pulling
+			user.visible_message("\icon[user] [user] disappears!")
 			user.loc = pick(pred_spawn)
-			animation_teleport_quick_in(user)
 			timer = 0
-
-			// Teleport whoever you're pulling.
-			var/mob/living/M = user.pulling
-
-			if(M)
-				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
-				sleep(animation_teleport_quick_out(M))
-				if(M && M.loc)
-					M.loc = pick(pred_spawn)
-					animation_teleport_quick_in(M)
-
-			// Teleport whoever you're grabbing.
-			var/obj/item/weapon/grab/grabbing = user.get_inactive_hand()
-
-			if(istype(grabbing))
-				M = grabbing.affecting
-				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
-				sleep(animation_teleport_quick_out(M))
-				if(grabbing) grabbing.dropped()
-				if(M && M.loc)
-					M.loc = pick(pred_spawn)
-					animation_teleport_quick_in(M)
-
+			if(holding)
+				holding.visible_message("\icon[holding] \The [holding] disappears!")
+				holding.loc = pick(pred_spawn)
 		else
-			sleep(10)
-			if(loc) timer = 0
+			spawn(10)
+				timer = 0
 
 //Doesn't give heat or anything yet, it's just a light source.
 /obj/structure/campfire
@@ -982,12 +958,14 @@
 		var/blacklist[] = list("attack_verb")
 		. = ..() + blacklist
 
-	dropped(mob/living/carbon/human/M)
-		playsound(M,'sound/weapons/wristblades_off.ogg', 30, 1)
-		if(M)
-			var/obj/item/weapon/wristblades/get_other_hand = M.get_inactive_hand()
+	dropped(var/mob/living/carbon/human/mob)
+		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
+		mob << "<span class='notice'>The wrist blades retract back into your armband.</span>"
+		if(mob)
+			var/obj/item/weapon/wristblades/get_other_hand = mob.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
 				get_other_hand.attack_speed = initial(attack_speed)
+
 		cdel(src)
 
 	afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -1079,10 +1057,9 @@
 		user << "<span class='notice'>You begin using your knife to rip shrapnel out. Hold still. This will probably hurt...</span>"
 
 		if(do_after(user,50))
-			var/obj/item/weapon/shard/shrapnel/S
 			for(var/datum/organ/external/O in user.organs)
-				for(S in O.implants)
-					user << "<span class='notice'>You dig shrapnel out of your [O.name].</span>"
+				for(var/obj/S in O.implants)
+					if(istype(S)) user << "<span class='notice'>You dig shrapnel out of your [O.name].</span>"
 					S.loc = user.loc
 					O.implants -= S
 					pain_factor++
@@ -1249,7 +1226,7 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 50, 1)
+	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 	add_fingerprint(user)
 
 	return
@@ -1271,7 +1248,7 @@
 	item_state = "plasma_wear"
 	name = "plasma caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
-	fire_sound = 'sound/weapons/pred_plasmacaster_fire.ogg'
+	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	ammo = /datum/ammo/energy/yautja/caster/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	canremove = 0
@@ -1319,14 +1296,16 @@
 				mode = 0
 				charge_cost = 30
 				fire_delay = config.high_fire_delay
-				fire_sound = 'sound/weapons/pred_lasercannon.ogg'
+				fire_sound = 'sound/weapons/lasercannonfire.ogg'
 				user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
 				ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
-	dropped(mob/living/carbon/human/M)
+	dropped(mob/user)
 		..()
-		playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
+		user << "The plasma caster deactivates."
+		playsound(user,'sound/weapons/plasmacaster_off.ogg', 40, 1)
 		cdel(src)
+		return
 
 	able_to_fire(mob/user)
 		if(!source)	return
@@ -1433,7 +1412,7 @@
 	item_state = "plasmarifle"
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
-	fire_sound = 'sound/weapons/pred_plasma_shot.ogg'
+	fire_sound = 'sound/weapons/plasma_shot.ogg'
 	ammo = /datum/ammo/energy/yautja/rifle/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
