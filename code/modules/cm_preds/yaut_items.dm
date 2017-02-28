@@ -463,7 +463,7 @@
 		var/turf/T = get_turf(victim)
 		if(istype(T) && exploding)
 			victim.apply_damage(50,BRUTE,"chest")
-			explosion(T, 1, 4, 7, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby. //Not enough ~N
+			explosion(T, 2, 10, 15, 20) //Dramatically BIG explosion.
 			if(victim) victim.gib() //Adding one more safety.
 
 	verb/activate_suicide()
