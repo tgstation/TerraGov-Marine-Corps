@@ -15,7 +15,7 @@
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
-	req_one_access = list(ACCESS_MARINE_ENGINEERING)
+	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	opacity = 0
 	density = 0
 	layer = DOOR_OPEN_LAYER - 0.01

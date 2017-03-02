@@ -629,14 +629,14 @@
 /obj/machinery/suit_cycler/engineering
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
-	req_access = list(ACCESS_MARINE_ENGINEERING)
+	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	departments = list("Engineering")
 	species = list("Human","Tajara","Skrell","Unathi") //Add Unathi when sprites exist for their suits.
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
-	req_access = list(ACCESS_MARINE_ENGINEERING)
+	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	departments = list("Mining")
 	species = list("Human","Tajara","Skrell","Unathi")
 
