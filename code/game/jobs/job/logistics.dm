@@ -13,8 +13,8 @@
 	flag = ROLE_CHIEF_ENGINEER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	selection_color = "#ffeeaa"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
@@ -81,8 +81,8 @@ A happy ship is a well-functioning ship."}
 	spawn_positions = 3
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 
 	generate_wearable_equipment(mob/living/carbon/human/H)

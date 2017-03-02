@@ -213,7 +213,7 @@
 	layer = 3.5
 	use_power = 0
 	flags_atom = RELAY_CLICK
-	req_one_access = list(ACCESS_MARINE_ENGINEERING,ACCESS_MARINE_LEADER)
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/dir_locked = 1
 	var/safety_off = 0
