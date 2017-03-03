@@ -1,52 +1,28 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
-var/jobban_runonce			// Updates legacy bans with new info
-var/jobban_keylist[0]		//to store the keys & ranks
-
-/proc/jobban_fullban(mob/M, rank, reason)
-	if (!M || !M.key) return
-	jobban_keylist[rank][M.ckey] = reason
-
-/proc/jobban_client_fullban(ckey, rank)
-	if (!ckey || !rank) return
-	jobban_keylist[rank][ckey] = "Reason Unspecified"
-
-//returns a reason if M is banned from rank, returns 0 otherwise
-/proc/jobban_isbanned(mob/M, rank)
-	if(M && rank)
-		/*
-		if(_jobban_isbanned(M, rank)) return "Reason Unspecified"	//for old jobban
-		*/
-
-		if (guest_jobbans(rank))
-			if(config.guest_jobban && IsGuestKey(M.key))
-				return "Guest Job-ban"
-			if(config.usewhitelist && !check_whitelist(M))
-				return "Whitelisted Job"
-
-		return jobban_keylist[rank][M.ckey]
-
-	return 0
-
 /*
-DEBUG
+Rank is stripped down with ckey() in order to remove any capitals or spaces, so those do not matter.
+If the system encounters a rank that it doesn't recognize, it will automatically add it to the list.
+As such, ranks shouldn't really change to maintain consistency. You can see some older bans list
+stuff like sulacochiefmedicalofficer, to where now they list it as chiefmedicalofficer. The system
+won't recognize the older one, as an example.
+
+//DEBUG
 /mob/verb/list_all_jobbans()
 	set name = "list all jobbans"
+	set category = "DEBUG"
 
 	for(var/s in jobban_keylist)
 		world << s
 
 /mob/verb/reload_jobbans()
 	set name = "reload jobbans"
+	set category = "DEBUG"
 
 	jobban_loadbanfile()
-*/
 
-/*
-/client/proc/loadNewBans()
+/mob/verb/loadNewBans()
 	set name = "Load New Bans"
 	set desc = "Transfer the old jobban list to the new system and file"
-	set category = "Admin"
+	set category = "DEBUG"
 
 	var/list/banned_jobs = list()
 
@@ -57,7 +33,7 @@ DEBUG
 	var/ckey
 	var/title
 	var/reason
-	var/list/L = list()
+	var/L[] = new
 	S1["keys[0]"] >> L
 
 	for(var/s in L)
@@ -65,8 +41,8 @@ DEBUG
 		title = ""
 		reason = ""
 		if(r1.Find(s))
-			ckey = r1.group[1]
-			title = r1.group[2]
+			ckey = r1.group[1] //ckey already has ckey() applied.
+			title = ckey(r1.group[2]) //Strip all capitals, spaces, etc from the title.
 			reason = r1.group[3]
 		else if(r2.Find(s))
 			ckey = r2.group[1]
@@ -76,15 +52,44 @@ DEBUG
 			banned_jobs[title] = list()
 			world << "New job found in list [title]"
 
-		if(reason == "")
-			banned_jobs[title][ckey] = "Reason Unspecified"
-		else
-			banned_jobs[title][ckey] = reason
+		if(!reason) banned_jobs[title][ckey] = "Reason Unspecified"
+		else banned_jobs[title][ckey] = reason
 
 	S2["new_bans"] << banned_jobs
 	jobban_savebanfile()
 	jobban_loadbanfile()
+
 */
+
+var/jobban_runonce			// Updates legacy bans with new info
+var/jobban_keylist[0]		//to store the keys & ranks
+
+/proc/check_jobban_path(X)
+	. = ckey(X)
+	if(!islist(jobban_keylist[.])) //If it's not a list, we're in trouble.
+		jobban_keylist[.] = list()
+		jobban_savebanfile()
+
+/proc/jobban_fullban(mob/M, rank, reason)
+	if (!M || !M.ckey) return
+	rank = check_jobban_path(rank)
+	jobban_keylist[rank][M.ckey] = reason
+
+/proc/jobban_client_fullban(ckey, rank)
+	if (!ckey || !rank) return
+	rank = check_jobban_path(rank)
+	jobban_keylist[rank][ckey] = "Reason Unspecified"
+
+//returns a reason if M is banned from rank, returns 0 otherwise
+/proc/jobban_isbanned(mob/M, rank)
+	if(M && rank)
+		rank = check_jobban_path(rank)
+		if(guest_jobbans(rank))
+			if(config.guest_jobban && IsGuestKey(M.key))
+				return "Guest Job-ban"
+			if(config.usewhitelist && !check_whitelist(M))
+				return "Whitelisted Job"
+		return jobban_keylist[rank][M.ckey]
 
 /hook/startup/proc/loadJobBans()
 	jobban_loadbanfile()
@@ -133,19 +138,15 @@ DEBUG
 	S["new_bans"] << jobban_keylist
 
 /proc/jobban_unban(mob/M, rank)
-	jobban_remove("[M.ckey] - [rank]")
+	jobban_remove("[M.ckey] - [ckey(rank)]")
 	jobban_savebanfile()
-
 
 /proc/ban_unban_log_save(var/formatted_log)
 	text2file(formatted_log,"data/ban_unban_log.txt")
 
-
 /proc/jobban_remove(X)
 	var/regex/r1 = new("(.*) - (.*)")
 	if(r1.Find(X))
-		var/list/L = jobban_keylist[r1.group[2]]
+		var/L[] = jobban_keylist[r1.group[2]]
 		L.Remove(r1.group[1])
 		return 1
-
-	return 0
