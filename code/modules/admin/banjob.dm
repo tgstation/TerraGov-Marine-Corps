@@ -68,7 +68,6 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	. = ckey(X)
 	if(!islist(jobban_keylist[.])) //If it's not a list, we're in trouble.
 		jobban_keylist[.] = list()
-		jobban_savebanfile()
 
 /proc/jobban_fullban(mob/M, rank, reason)
 	if (!M || !M.ckey) return
@@ -139,7 +138,6 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 /proc/jobban_unban(mob/M, rank)
 	jobban_remove("[M.ckey] - [ckey(rank)]")
-	jobban_savebanfile()
 
 /proc/ban_unban_log_save(var/formatted_log)
 	text2file(formatted_log,"data/ban_unban_log.txt")
