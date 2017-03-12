@@ -177,7 +177,7 @@
 "du" = (/turf/simulated/floor{dir = 4; icon_state = "whiteyellowfull"},/area/lv624/ground/caves/east1)
 "dv" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor{dir = 4; icon_state = "whiteyellowfull"},/area/lv624/ground/caves/east1)
 "dw" = (/obj/structure/mineral_door/resin,/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/sand5)
-"dx" = (/obj/machinery/door/airlock/hatch{icon_state = "door_locked"; locked = 1},/turf/space,/area/lv624/ground/sand5)
+"dx" = (/obj/machinery/door/airlock/hatch{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{icon_state = "dark"},/area/lv624/ground/sand5)
 "dy" = (/turf/simulated/floor{icon_state = "dark"},/area/lv624/ground/sand5)
 "dz" = (/obj/structure/rack,/obj/item/stack/sheet/mineral/iron{amount = 5},/obj/item/stack/sheet/mineral/platinum,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor{icon_state = "vault"; dir = 8},/area/lv624/ground/sand5)
 "dA" = (/turf/simulated/wall/mineral/sandstone,/area/lv624/ground/caves/east1)
