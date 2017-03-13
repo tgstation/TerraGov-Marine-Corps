@@ -3080,8 +3080,8 @@
 //MREs
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged_meal
-	name = "\improper MRE package"
-	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Contains a part of a meal, prepared for field consumption."
+	name = "\improper MRE component"
+	desc = "A package from a Meal Ready-to-Eat, property of the US Colonial Marines. Contains a part of a meal, prepared for field consumption."
 	package = 1
 	bitesize = 1
 	icon_state = "entree"
@@ -3097,12 +3097,12 @@
 			playsound(loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
 
 			name = "\improper" + flavor
-			desc = "The contents of a USCM Standard issue MRE. This one is " + flavor
+			desc = "The contents of a USCM Standard issue MRE. This one is " + flavor + "."
 			icon_state = flavor
 			package = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged_meal/proc/determinetype(newflavor)
-	name = "\improper MRE package" + " (" + newflavor + ")"
+	name = "\improper MRE component" + " (" + newflavor + ")"
 	flavor = newflavor
 
 	switch(newflavor)
@@ -3128,7 +3128,7 @@
 
 /obj/item/weapon/storage/box/MRE
 	name = "\improper USCM MRE"
-	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
+	desc = "Meal Ready-to-Eat, property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
 	icon_state = "mealpack"
 	w_class = 1
 	can_hold = list()
@@ -3159,10 +3159,10 @@
 
 /obj/item/weapon/storage/box/MRE/update_icon()
 	if(!contents.len)
-		name = "Crumbled USCM MRE"
+		name = "\improper crumbled USCM MRE"
 		desc = "It has done its part for the USCM. Have you?"
 		icon_state = "mealpackempty"
 		storage_slots = 0
-	else if(isopened == 0)
+	else if(!isopened)
 		isopened = 1
 		icon_state = "mealpackopened"
