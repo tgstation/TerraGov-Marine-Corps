@@ -766,61 +766,33 @@
 		if(!M.ckey)
 			usr << "\red <B>Warning: Mob ckey for [M.name] not found.</b>"
 			return
+		var/mob_key = M.ckey
+		var/mob_id = M.computer_id
+		var/mob_ip = M.lastKnownIP
+		var/client/mob_client = M.client
+		var/mins = input(usr,"How long (in minutes)? \n 720 = 12 hours \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days","Ban time",1440) as num|null
+		if(!mins)
+			return
+		if(mins >= 525600) mins = 525599
+		var/reason = input(usr,"Reason? \n\nPress 'OK' to finalize the ban.","reason","Griefer") as text|null
+		if(!reason)
+			return
+		AddBan(mob_key, mob_id, reason, usr.ckey, 1, mins, mob_ip)
+		ban_unban_log_save("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [reason]")
+		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
+		M << "\red This is a temporary ban, it will be removed in [mins] minutes."
+		feedback_inc("ban_tmp",1)
+		DB_ban_record(BANTYPE_TEMP, M, mins, reason)
+		feedback_inc("ban_tmp_mins",mins)
+		if(config.banappeals)
+			M << "\red To try to resolve this matter head to [config.banappeals]"
+		else
+			M << "\red No ban appeals URL has been set."
+		log_admin("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [reason]")
+		message_admins("\blue[usr.client.ckey] has banned [mob_key].\nReason: [reason]\nThis will be removed in [mins] minutes.")
+		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
 
-		switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
-			if("Yes")
-				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
-				if(!mins)
-					return
-				if(mins >= 525600) mins = 525599
-				var/reason = input(usr,"Reason?","reason","Griefer") as text|null
-				if(!reason)
-					return
-				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
-				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-				M << "\red This is a temporary ban, it will be removed in [mins] minutes."
-				feedback_inc("ban_tmp",1)
-				DB_ban_record(BANTYPE_TEMP, M, mins, reason)
-				feedback_inc("ban_tmp_mins",mins)
-				if(config.banappeals)
-					M << "\red To try to resolve this matter head to [config.banappeals]"
-				else
-					M << "\red No ban appeals URL has been set."
-				log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
-				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-				notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
-
-				del(M.client)
-				//del(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
-			if("No")
-				if(!check_rights(R_BAN))   return
-				var/reason = input(usr,"Reason?","reason","Griefer") as text|null
-				if(!reason)
-					return
-				switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
-					if("Cancel")	return
-					if("Yes")
-						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
-					if("No")
-						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-				M << "\red This is a permanent ban."
-				if(config.banappeals)
-					M << "\red To try to resolve this matter head to [config.banappeals]"
-				else
-					M << "\red No ban appeals URL has been set."
-				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: Permanent|Reason: [reason]")
-				log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: Permanent|Reason: [reason]")
-				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-				feedback_inc("ban_perma",1)
-				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
-				notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: Permanent|Reason: [reason]", usr)
-
-				del(M.client)
-				//del(M)
-			if("Cancel")
-				return
+		del(mob_client)
 
 	else if(href_list["lazyban"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
