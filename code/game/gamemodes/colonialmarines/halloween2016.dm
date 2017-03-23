@@ -370,6 +370,7 @@
 	anchored = 1
 	density = 1
 	opacity = 1
+	unacidable = 1
 
 	New()
 		..()
@@ -377,6 +378,9 @@
 
 	attack_hand(mob/M)
 		M << "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>"
+
+	attack_alien(M)
+		return attack_hand(M)
 
 /turf/unsimulated/floor/gm/river/poison
 	New()

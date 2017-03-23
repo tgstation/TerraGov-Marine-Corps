@@ -1,6 +1,8 @@
 //Admin perms are in global.dm.
 
 #define DEBUG 0
+#define r_TRU return TRUE //Handy shorthand.
+#define r_FAL return FALSE
 
 /*
 Trash Authority Directives
