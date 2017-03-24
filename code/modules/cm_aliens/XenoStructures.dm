@@ -459,14 +459,13 @@
 	var/id = null //For mapping
 
 	New()
-		if(id)
-			spawn(5)
-				if(other == null)
-					for(var/obj/structure/tunnel/T in world)
-						if(T.id == id && T != src && T.other == null) //Found a matching tunnel
-							T.other = src
-							src.other = T //Link them!
-							break
+		spawn(5)
+			if(id && !other)
+				for(var/obj/structure/tunnel/T in world)
+					if(T.id == id && T != src && T.other == null) //Found a matching tunnel
+						T.other = src
+						src.other = T //Link them!
+						break
 
 	examine()
 		if(!usr || !isXeno(usr))
