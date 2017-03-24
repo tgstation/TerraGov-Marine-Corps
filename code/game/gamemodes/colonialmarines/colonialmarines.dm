@@ -26,16 +26,46 @@
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
+//Temporary, until we sort this out properly.
+/obj/effect/landmark/lv624
+	icon = 'icons/misc/mark.dmi'
+
+/obj/effect/landmark/lv624/fog_blocker
+	name = "fog blocker"
+	icon_state = "spawn_event"
+
+/obj/effect/landmark/lv624/xeno_tunnel
+	name = "xeno tunnel"
+	icon_state = "spawn_event"
+
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Pre-setup */
 //We can ignore this for now, we don't want to do anything before characters are set up.
 /datum/game_mode/colonialmarines/pre_setup()
 	fog_blockers = new
+	var/xeno_tunnels[] = new
 	var/obj/effect/blocker/fog/F
-	for(F in world) fog_blockers += F
+	for(var/obj/effect/landmark/L in world)
+		switch(L.name)
+			if("fog blocker")
+				F = new(L.loc)
+				fog_blockers += F
+				cdel(L)
+			if("xeno tunnel")
+				xeno_tunnels += L.loc
+				cdel(L)
 	if(!fog_blockers.len) fog_blockers = null //No blockers?
-	return 1
+	var/obj/structure/tunnel/T
+	var/i = 0
+	var/turf/t
+	while(xeno_tunnels.len && i++ < 3)
+		t = pick(xeno_tunnels)
+		xeno_tunnels -= t
+		T = new(t)
+		T.id = "hole[i]"
+
+	r_TRU
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +105,7 @@
 			bioscan_current_interval += bioscan_ongoing_interval //Add to the interval based on our set interval time.
 
 		if(++round_checkwin >= 5) //Only check win conditions every 5 ticks.
-			if(fog_blockers && world.time >= (FOG_DELAY_INTERVAL + lobby_time))
+			if(fog_blockers && world.time >= (FOG_DELAY_INTERVAL + lobby_time + (rand(-3000,3000)))) //Some RNG thrown in.
 				world << "<span class='boldnotice'>The fog north of the colony is starting to recede.</span>"
 				var/i
 				for(i in fog_blockers)
