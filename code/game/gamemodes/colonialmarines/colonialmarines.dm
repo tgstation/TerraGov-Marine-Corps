@@ -4,8 +4,8 @@
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
 	flags_round_type = MODE_INFESTATION
-	var/fog_blockers[]
-	var/lobby_time
+	pred_round_chance 	= 100
+	pred_maximum_num 	= 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -41,31 +41,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Pre-setup */
-//We can ignore this for now, we don't want to do anything before characters are set up.
 /datum/game_mode/colonialmarines/pre_setup()
-	fog_blockers = new
-	var/xeno_tunnels[] = new
-	var/obj/effect/blocker/fog/F
-	for(var/obj/effect/landmark/L in world)
-		switch(L.name)
-			if("fog blocker")
-				F = new(L.loc)
-				fog_blockers += F
-				cdel(L)
-			if("xeno tunnel")
-				xeno_tunnels += L.loc
-				cdel(L)
-	if(!fog_blockers.len) fog_blockers = null //No blockers?
-	var/obj/structure/tunnel/T
-	var/i = 0
-	var/turf/t
-	while(xeno_tunnels.len && i++ < 3)
-		t = pick(xeno_tunnels)
-		xeno_tunnels -= t
-		T = new(t)
-		T.id = "hole[i]"
-
-	r_TRU
+	. = pre_setup_infestation()
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +57,7 @@
 	initialize_post_survivor_list()
 	initialize_post_marine_gear_list()
 
-	lobby_time = world.time
+	round_time_lobby = world.time
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
@@ -91,29 +68,7 @@
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
 /datum/game_mode/colonialmarines/process()
-
-#define FOG_DELAY_INTERVAL		27000 // 45 minutes
-	//Copy and paste for right now, until we can finalize or abort the implementation.
-	if(--round_started > 0) r_FAL //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
-
-	if(!round_finished)
-		if(xeno_queen_timer && --xeno_queen_timer <= 1) xeno_message("The Hive is ready for a new Queen to evolve.")
-
-		// Automated bioscan / Queen Mother message
-		if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
-			announce_bioscans() //Announce the results of the bioscan to both sides.
-			bioscan_current_interval += bioscan_ongoing_interval //Add to the interval based on our set interval time.
-
-		if(++round_checkwin >= 5) //Only check win conditions every 5 ticks.
-			if(fog_blockers && world.time >= (FOG_DELAY_INTERVAL + lobby_time + (rand(-3000,3000)))) //Some RNG thrown in.
-				world << "<span class='boldnotice'>The fog north of the colony is starting to recede.</span>"
-				var/i
-				for(i in fog_blockers)
-					fog_blockers -= i
-					cdel(i)
-				fog_blockers = null
-			check_win()
-			round_checkwin = 0
+	. = process_infestation()
 
 ///////////////////////////
 //Checks to see who won///
