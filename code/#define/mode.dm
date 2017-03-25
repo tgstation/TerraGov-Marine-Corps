@@ -4,6 +4,7 @@
 #define MODE_PREDATOR			2
 #define MODE_NO_LATEJOIN		4
 #define MODE_HAS_FINISHED		8
+#define MODE_FOG_ACTIVATED 		16
 
 #define BE_ALIEN      1
 #define BE_PAI		  2
