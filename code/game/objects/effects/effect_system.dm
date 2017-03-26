@@ -797,28 +797,17 @@ steam.start() -- spawns the effect
 					M.Weaken(rand(1,5))
 			return
 		else
-			var/devastation = -1
-			var/heavy = -1
 			var/light = -1
 			var/flash = -1
 
-			// Clamp all values to MAX_EXPLOSION_RANGE
-			if (round(amount/12) > 0)
-				devastation =0
-
-			if (round(amount/6) > 0)
-				heavy = 0
-
-			if (round(amount/3) > 0)
-				light = min (4, light + round(amount/3)) //Used to be max size possible. That's way too massive.
-
-			if (flash && flashing_factor)
-				flash += (round(amount/4) * flashing_factor) + 1 //+1 to compensate for the smaller blast size
+			light = max(-1, amount/8)
+			if (flash && flashing_factor) flash = light + 1
 
 			for(var/mob/M in viewers(8, location))
 				M << "\red The solution violently explodes."
 
-			explosion(location, devastation, heavy, light, flash)
+			explosion(location, -1, -1, light, flash)
+			if(light > 0) r_TRU
 
 	proc/holder_damage(var/atom/holder)
 		if(holder)

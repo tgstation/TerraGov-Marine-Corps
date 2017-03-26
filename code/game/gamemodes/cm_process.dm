@@ -35,6 +35,16 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	var/obj/effect/blocker/fog/F
 	for(var/obj/effect/landmark/L in world)
 		switch(L.name)
+			if("hunter_primary")
+				cdel(L)
+			if("hunter_secondary")
+				cdel(L)
+			if("crap_item")
+				cdel(L)
+			if("good_item")
+				cdel(L)
+			if("block_hellhound")
+				cdel(L)
 			if("fog blocker")
 				F = new(L.loc)
 				round_fog += F
