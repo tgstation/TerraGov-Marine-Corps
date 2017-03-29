@@ -94,9 +94,10 @@
 //M41A MARKSMAN VARIANT
 
 /obj/item/ammo_magazine/rifle/marksman
-	name = "\improper M4RA marksman magazine (10x24mm)"
-	desc = "This special magazine is designed for use with the M4RA battle rifle and will not fit the standard M41A MK2 rifle."
+	name = "\improper A19 high velocity magazine (10x24mm)"
+	desc = "A magazine of A19 high velocity rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
 	default_ammo = /datum/ammo/bullet/rifle/marksman
+	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
 
 /obj/item/weapon/gun/rifle/m41a/scoped
