@@ -94,17 +94,18 @@
 //M41A MARKSMAN VARIANT
 
 /obj/item/ammo_magazine/rifle/marksman
-	name = "\improper M41A marksman magazine (10x24mm)"
-	desc = "This special magazine is designed for use with the M41A/M and will not fit the standard M41A MK2 rifle."
+	name = "\improper M4RA marksman magazine (10x24mm)"
+	desc = "This special magazine is designed for use with the M4RA battle rifle and will not fit the standard M41A MK2 rifle."
 	default_ammo = /datum/ammo/bullet/rifle/marksman
 	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
 
 /obj/item/weapon/gun/rifle/m41a/scoped
-	name = "\improper M41A/M marksman rifle"
-	desc = "An advanced prototype pulse rifle based on the tried and true M41A Pulse Rifle MK2.\nIt is equipped with rail scope and can take the 10x24mm marksman magazine in addition to regular MK2 magazines."
+	name = "\improper M4RA marksman rifle"
+	desc = "The M4RA battle rifle is a designated marksman rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and can take the 10x24mm marksman magazine in addition to regular MK2 magazines."
 	icon_state = "m41b"
-	item_state = "m41a" //PLACEHOLDER
+	item_state = "m4ra" //PLACEHOLDER
 	origin_tech = "combat=5;materials=4"
+	fire_sound = list('sound/weapons/gun_m4ra.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/marksman
 	force = 16
 	attachable_allowed = list(
