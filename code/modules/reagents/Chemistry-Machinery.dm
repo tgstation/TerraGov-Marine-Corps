@@ -10,7 +10,7 @@
 	icon_state = "dispenser"
 	use_power = 0
 	idle_power_usage = 40
-	req_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH)
+	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	var/ui_title = "Chem Dispenser 5000"
 	var/energy = 100
 	var/max_energy = 100
@@ -166,6 +166,10 @@
 
 /obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
+		return
+	var/mob/living/carbon/human/H = user
+	if(!check_access(H.wear_id))
+		user << "<span class='warning'>Access denied.</span>"
 		return
 	ui_interact(user)
 
