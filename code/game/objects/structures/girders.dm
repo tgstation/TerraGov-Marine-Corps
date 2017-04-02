@@ -98,30 +98,18 @@
 			switch(S.type)
 
 				if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
-					if(!anchored)
-						if(S.get_amount() < 2) return ..()
-						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,80))
-							if(!S) return
-							if(S.use(2))
-								user << "<span class='notice'>You create a false wall. Push on it to open or close the passage.</span>"
-								new /obj/structure/falsewall (src.loc)
-								for(var/obj/structure/falsewall/F in src.loc)
-									if(F)	F.add_hiddenprint(usr)
-								del(src)
-					else
-						if(S.get_amount() < 2) return ..()
-						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,80))
-							if(!S) return
-							if (S.use(2))
-								user << "<span class='notice'>You added the plating!</span>"
-								var/turf/Tsrc = get_turf(src)
-								Tsrc.ChangeTurf(/turf/simulated/wall)
-								for(var/turf/simulated/wall/X in Tsrc.loc)
-									if(X)	X.add_hiddenprint(usr)
-								del(src)
-						return
+					if(S.get_amount() < 5) return ..()
+					user << "<span class='notice'>Now adding plating...</span>"
+					if (do_after(user,300))
+						if(!S) return
+						if (S.use(2))
+							user << "<span class='notice'>You added the plating!</span>"
+							var/turf/Tsrc = get_turf(src)
+							Tsrc.ChangeTurf(/turf/simulated/wall)
+							for(var/turf/simulated/wall/X in Tsrc.loc)
+								if(X)	X.add_hiddenprint(usr)
+							del(src)
+					return
 
 				if(/obj/item/stack/sheet/plasteel)
 					if(!anchored)
