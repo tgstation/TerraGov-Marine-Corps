@@ -19,6 +19,9 @@
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
+	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
+	var/d_sleep = 60 //The time in deciseconds it takes for each step of wall deconstruction
+
 	opacity = 1
 	density = 1
 	blocks_air = 1
@@ -62,6 +65,22 @@
 
 	if(rotting)
 		usr << "<span class='warning'>There is fungus growing on [src].</span>"
+
+	switch(d_state)
+		if(1)
+			usr << "The outer plating has been sliced open. A screwdriver should remove the support lines."
+		if(2)
+			usr << "The support lines have been removed. A welding tool should slice through the metal cover."
+		if(3)
+			usr << "The metal cover has been sliced through. A crowbar should pry it off."
+		if(4)
+			usr << "The metal cover has been removed. A wrench will remove the anchor bolts."
+		if(5)
+			usr << "The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines."
+		if(6)
+			usr << "Hydraulic lines are gone. A crowbar will pry off the inner sheath."
+		if(7)
+			usr << "The inner sheath is gone. A welding tool should finish off this wall."
 
 #define BULLETHOLE_STATES 10 //How many variations of bullethole patterns there are
 #define BULLETHOLE_MAX 8 * 3 //Maximum possible bullet holes.
@@ -337,132 +356,150 @@
 		if( istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
 			if(hull)
-				user << "This wall is much too tough for you to do anything to with [W]."
+				user << "<span class='warning'>This wall is much too tough for you to do anything to it with [W]</span>."
 				return
 			if( WT.remove_fuel(0,user) )
 				thermitemelt(user)
 				return
 
-		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-			if(hull)
-				user << "This wall is much too tough for you to do anything to with it."
-				return
-			thermitemelt(user)
+	if(hull)
+		user << "<span class='warning'>This wall is much too tough for you to do anything to it with [W]</span>."
+		return
+
+	if(damage && istype(W, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/WT = W
+		if(WT.remove_fuel(0,user))
+			user << "<span class='notice'>You start repairing the damage to [src].</span>"
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			if(do_after(user, max(5, damage / 5)) && WT && WT.isOn())
+				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
+				take_damage(-damage)
 			return
-
-		else if( istype(W, /obj/item/weapon/melee/energy/blade) )
-			var/obj/item/weapon/melee/energy/blade/EB = W
-			if(hull)
-				user << "This wall is much too tough for you to do anything to with [W]."
-				return
-
-			EB.spark_system.start()
-			user << "<span class='notice'>You slash \the [src] with \the [EB]; the thermite ignites!</span>"
-			playsound(src, "sparks", 50, 1)
-			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
-
-			thermitemelt(user)
+		else
+			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 			return
 
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//DECONSTRUCTION
-	if( istype(W, /obj/item/weapon/weldingtool) )
+	switch(d_state)
+		if(0)
+			if( istype(W, /obj/item/weapon/weldingtool) )
 
-		var/response = "Dismantle"
-		if(damage)
-			response = alert(user, "Would you like to repair or dismantle [src]?", "[src]", "Repair", "Dismantle")
-
-		var/obj/item/weapon/weldingtool/WT = W
-
-		if(WT.remove_fuel(0,user))
-			if(response == "Repair")
-				user << "<span class='notice'>You start repairing the damage to [src].</span>"
+				var/obj/item/weapon/weldingtool/WT = W
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
-				if(do_after(user, max(5, damage / 5)) && WT && WT.isOn())
-					user << "<span class='notice'>You finish repairing the damage to [src].</span>"
-					take_damage(-damage)
+				user << "<span class='notice'>You begin slicing through the outer plating...</span>"
 
-			else if(response == "Dismantle")
-				if(hull)
-					user << "This wall is much too tough for you to do anything to with [W]."
-					return
-				user << "<span class='notice'>You begin slicing through the outer plating.</span>"
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T )	return
+
+					if( !d_state && user.loc == T && user.get_active_hand() == WT )
+						d_state++
+						user << "<span class='notice'>You slice through the outer plating.</span>"
+				return
+
+		if(1)
+			if (istype(W, /obj/item/weapon/screwdriver))
+
+				user << "<span class='notice'>You begin removing the support lines...</span>"
+				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+
+					if( d_state == 1 && user.loc == T && user.get_active_hand() == W )
+						d_state++
+						user << "<span class='notice'>You remove the support lines.</span>"
+				return
+
+		if(2)
+			if( istype(W, /obj/item/weapon/weldingtool) )
+
+				var/obj/item/weapon/weldingtool/WT = W
+				user << "<span class='notice'>You begin slicing through the metal cover...</span>"
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
-				sleep(100)
-				if( !istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T )	return
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T )	return
 
-				if( user.loc == T && user.get_active_hand() == WT )
-					user << "<span class='notice'>You remove the outer plating.</span>"
-					dismantle_wall()
-			return
-		else
-			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
-			return
+					if( d_state == 2 && user.loc == T && user.get_active_hand() == WT )
+						d_state++
+						user << "<span class='notice'>You press firmly on the cover, dislodging it.</span>"
+				return
 
-	else if( istype(W, /obj/item/weapon/pickaxe/plasmacutter) )
-		if(hull)
-			user << "This wall is much too tough for you to do anything to with [W]."
-			return
-		user << "<span class='notice'>You begin slicing through the outer plating.</span>"
-		playsound(src, 'sound/items/Welder.ogg', 100, 1)
+		if(3)
+			if (istype(W, /obj/item/weapon/crowbar))
 
-		sleep(60)
-		if(mineral == "diamond")//Oh look, it's tougher
-			sleep(60)
-		if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+				user << "<span class='notice'>You struggle to pry off the cover...</span>"
+				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 
-		if( user.loc == T && user.get_active_hand() == W )
-			user << "<span class='notice'>You remove the outer plating.</span>"
-			dismantle_wall()
-			for(var/mob/O in viewers(user, 5))
-				O.show_message("<span class='warning'>The wall was sliced apart by [user]!</span>", 1, "<span class='warning'>You hear metal being sliced apart.</span>", 2)
-		return
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
 
-	//DRILLING
-	else if (istype(W, /obj/item/weapon/pickaxe/diamonddrill))
-		if(hull)
-			user << "This wall is much too tough for you to do anything to with [W]."
-			return
-		user << "<span class='notice'>You begin to drill though the wall.</span>"
+					if( d_state == 3 && user.loc == T && user.get_active_hand() == W )
+						d_state++
+						user << "<span class='notice'>You pry off the cover.</span>"
+				return
 
-		sleep(60)
-		if(mineral == "diamond")
-			sleep(60)
-		if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+		if(4)
+			if (istype(W, /obj/item/weapon/wrench))
 
-		if( user.loc == T && user.get_active_hand() == W )
-			user << "<span class='notice'>Your drill tears though the last of the reinforced plating.</span>"
-			dismantle_wall()
-			for(var/mob/O in viewers(user, 5))
-				O.show_message("<span class='warning'>The wall was drilled through by [user]!</span>", 1, "<span class='warning'>You hear the grinding of metal.</span>", 2)
-		return
+				user << "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame...</span>"
+				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 
-	else if( istype(W, /obj/item/weapon/melee/energy/blade) )
-		var/obj/item/weapon/melee/energy/blade/EB = W
-		if(hull)
-			user << "This wall is much too tough for you to do anything to with [W]."
-			return
-		EB.spark_system.start()
-		user << "<span class='notice'>You stab \the [EB] into the wall and begin to slice it apart.</span>"
-		playsound(src, "sparks", 50, 1)
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
 
-		sleep(70)
-		if(mineral == "diamond")
-			sleep(70)
-		if( !istype(src, /turf/simulated/wall) || !user || !EB || !T )	return
+					if( d_state == 4 && user.loc == T && user.get_active_hand() == W )
+						d_state++
+						user << "<span class='notice'>You remove the bolts anchoring the support rods.</span>"
+				return
 
-		if( user.loc == T && user.get_active_hand() == W )
-			EB.spark_system.start()
-			playsound(src, "sparks", 50, 1)
-			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
-			dismantle_wall(1)
-			for(var/mob/O in viewers(user, 5))
-				O.show_message("<span class='warning'>The wall was sliced apart by [user]!</span>", 1, "<span class='warning'>You hear metal being sliced apart and sparks flying.</span>", 2)
-		return
+		if(5)
+			if (istype(W, /obj/item/weapon/wirecutters))
 
-	else if(istype(W,/obj/item/apc_frame))
+				user << "<span class='notice'>You work at uncrimping the hydraulic lines...</span>"
+				playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
+
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+
+					if( d_state == 5 && user.loc == T && user.get_active_hand() == W )
+						d_state++
+						user << "<span class='notice'>You finish uncrimping the hydraulic lines.</span>"
+				return
+
+		if(6)
+			if( istype(W, /obj/item/weapon/crowbar) )
+
+				user << "<span class='notice'>You struggle to pry off the inner sheath...</span>"
+				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+
+					if( d_state == 6 && user.loc == T && user.get_active_hand() == W )
+						d_state++
+						user << "<span class='notice'>You pry off the inner sheath.</span>"
+				return
+
+		if(7)
+			if( istype(W, /obj/item/weapon/weldingtool) )
+
+				var/obj/item/weapon/weldingtool/WT = W
+				user << "<span class='notice'>You begin slicing through the final layer...</span>"
+				playsound(src, 'sound/items/Welder.ogg', 100, 1)
+
+				if (do_after(user,d_sleep))
+					if( !istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T )	return
+
+					if( d_state == 7 && user.loc == T && user.get_active_hand() == WT )
+						new /obj/item/stack/rods( src )
+						user << "<span class='notice'>The support rods drop out as you slice through the final layer.</span>"
+						dismantle_wall()
+				return
+
+	if(istype(W,/obj/item/apc_frame))
 		var/obj/item/apc_frame/AH = W
 		AH.try_build(src)
 		return
