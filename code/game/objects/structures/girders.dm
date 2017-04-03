@@ -98,9 +98,21 @@
 			switch(S.type)
 
 				if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
-					if(S.get_amount() < 5) return ..()
+					if(!anchored)
+						if(S.get_amount() < 2) return ..()
+						user << "<span class='notice'>Now adding plating...</span>"
+						if (do_after(user,80))
+							if(!S) return
+							if(S.use(2))
+								user << "<span class='notice'>You create a false wall. Push on it to open or close the passage.</span>"
+								new /obj/structure/falsewall (src.loc)
+								for(var/obj/structure/falsewall/F in src.loc)
+									if(F)	F.add_hiddenprint(usr)
+								del(src)
+					else
+						if(S.get_amount() < 2) return ..()
 					user << "<span class='notice'>Now adding plating...</span>"
-					if (do_after(user,300))
+						if (do_after(user,80))
 						if(!S) return
 						if (S.use(2))
 							user << "<span class='notice'>You added the plating!</span>"
