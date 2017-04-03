@@ -111,17 +111,17 @@
 								del(src)
 					else
 						if(S.get_amount() < 2) return ..()
-					user << "<span class='notice'>Now adding plating...</span>"
+						user << "<span class='notice'>Now adding plating...</span>"
 						if (do_after(user,80))
-						if(!S) return
-						if (S.use(2))
-							user << "<span class='notice'>You added the plating!</span>"
-							var/turf/Tsrc = get_turf(src)
-							Tsrc.ChangeTurf(/turf/simulated/wall)
-							for(var/turf/simulated/wall/X in Tsrc.loc)
-								if(X)	X.add_hiddenprint(usr)
-							del(src)
-					return
+							if(!S) return
+							if (S.use(2))
+								user << "<span class='notice'>You added the plating!</span>"
+								var/turf/Tsrc = get_turf(src)
+								Tsrc.ChangeTurf(/turf/simulated/wall)
+								for(var/turf/simulated/wall/X in Tsrc.loc)
+									if(X)	X.add_hiddenprint(usr)
+								del(src)
+						return
 
 				if(/obj/item/stack/sheet/plasteel)
 					if(!anchored)
