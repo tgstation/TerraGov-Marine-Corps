@@ -507,7 +507,7 @@
 	attack_alien(user)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(!istype(M) || M.stat || M.health < 1)
+	if(!istype(M) || M.stat)
 		return
 
 	//Prevents using tunnels by the queen to bypass the fog.

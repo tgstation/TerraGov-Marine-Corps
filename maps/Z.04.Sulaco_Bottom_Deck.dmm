@@ -456,7 +456,7 @@
 "iN" = (/obj/structure/closet/emcloset,/turf/simulated/floor{icon_state = "dark"},/area/sulaco/maintenance/lower_maint)
 "iO" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor{icon_state = "dark"},/area/sulaco/maintenance/lower_maint)
 "iP" = (/obj/structure/table,/obj/item/stack/rods{amount = 40},/obj/item/stack/sheet/mineral/phoron{amount = 25; pixel_x = 3; pixel_y = 3},/obj/item/stack/sheet/mineral/phoron{amount = 25},/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
-"iQ" = (/obj/structure/table,/obj/machinery/light/small{dir = 1},/obj/item/stack/sheet/glass{pixel_x = 3; pixel_y = 3},/obj/item/stack/sheet/metal{amount = 30},/obj/item/weapon/storage/briefcase/inflatable,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
+"iQ" = (/obj/structure/table,/obj/machinery/light/small{dir = 1},/obj/item/stack/sheet/glass{amount = 50; pixel_x = 3; pixel_y = 3},/obj/item/stack/sheet/metal{amount = 30},/obj/item/weapon/storage/briefcase/inflatable,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
 "iR" = (/obj/structure/table,/obj/item/stack/cable_coil/random,/obj/item/stack/cable_coil/random{pixel_x = 3; pixel_y = 3},/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
 "iS" = (/obj/structure/table,/obj/random/toolbox,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
 "iT" = (/turf/simulated/wall/sulaco,/area/sulaco/telecomms)

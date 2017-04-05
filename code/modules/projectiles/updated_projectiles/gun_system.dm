@@ -534,7 +534,9 @@ and you're good to go.
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(recoil+2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
+						var/t = "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> committed suicide with <b>[src]</b>" //Log it.
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
+							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage*3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp=1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
@@ -548,6 +550,7 @@ and you're good to go.
 								user.apply_damage(projectile_to_fire.damage*2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp=1)
 								user.apply_damage(100, OXY)
 								user.death()
+						user.attack_log += t //Apply the attack log.
 
 						projectile_to_fire.play_damage_effect(user)
 						if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.

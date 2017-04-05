@@ -196,14 +196,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch,)
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/device/hailer)
 	uniform_restricted = list(/obj/item/clothing/under/marine/mp)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
 	name = "\improper M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
-	uniform_restricted = list(/obj/item/clothing/under/marine/officer)
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer, /obj/item/clothing/under/rank/ro_suit)
 
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "\improper M3 pattern recon armor"
