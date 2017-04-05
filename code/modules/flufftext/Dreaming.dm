@@ -1,17 +1,17 @@
 
-var/list/dreams = list(
-"the Sulaco","a wound","a familiar face","a squadmate","a flare","an officer","the commander",
-"whispering","deep space","a medic","the engine","alarm","an ally","darkness",
-"dim light","a scientist","the squad leader","a catastrophe","desertion","a mistake","ice","freezing","warning lights",
-"a helmet","mandibles","a ruined station","a colony","bunny slippers","air","the morgue","the Sulaco bridge","blinking lights",
-"a blue light","an abandoned colony","Colonial Marines","Weyland Yutani","blood","a bandage","fear","a stiff corpse",
-"loyalty","space","a crash","loner","suffocation","a fall","heat","flames","ice","cigarettes","falling","warning light","a PDA",
-"Alpha Squad","Bravo Squad","Charlie Squad","Delta Squad","a Pulse Rifle",
-"a combat knife","a distress beacon","a Pulse Rifle","a spider","empty space","claws",
-"acid","pajamas","briefing","welding helmets","the vents","trapped","a lone survivor",
-"a power loader","cyrostasis","the logistics officers","the engineer","a severed head","a motion scanner","the dropship","a uniform",
-"a ruined station","fire","a smokey room","a voice","the cold","darkness","an operating table","teeth","Joushuu","caught",
-"a synthetic man","reinforcements","game over","the U.P.P","Weyland Yutani","alone",
+#define POSSIBLE_DREAM_TOPICS list( \
+"a military vessel","a wound","a familiar face","a friend","a flare","a military officer","a politician", \
+"whispering","deep space","a medic","an FTL engine","alarm","an ally","darkness", \
+"dim light","a scientist","a great leader","a catastrophe","desertion","a mistake","ice","freezing","warning lights", \
+"a helmet","mandibles","an abandoned station","a colony","monsters","air","a morgue","a military bridge","blinking lights", \
+"a blue light","an abandoned colony","USCM","blood","a bandage","fear","a stiff corpse","military fleet", \
+"loyalty","space","a crash","loneliness","suffocation","a fall","heat","flames","ice","cigarettes","falling","a buzzer","a PDA", \
+"snow","searing heat","calamity","the dead","a rifle", \
+"a knife","a distress beacon","a pistol","a spider","empty space","claws", \
+"acid","jaws","a meeting","welding","the vents","being trapped","a survivor", \
+"a power loader","cyrostasis","a meeting room","an engineer","a severed head","a motion scanner","a dropship","a uniform", \
+"a ruined station","fire","a smokey room","a voice","the cold","dimness","an operating table","teeth","flowers","graves", \
+"a synthetic man","meat","a planet","the U.P.P.","Weyland Yutani","tools" \
 )
 
 mob/living/carbon/proc/dream()
@@ -19,7 +19,7 @@ mob/living/carbon/proc/dream()
 
 	spawn(0)
 		for(var/i = rand(1,4),i > 0, i--)
-			src << "\blue <i>... [pick(dreams)] ...</i>"
+			src << "<span class='notice'><i>... [pick(POSSIBLE_DREAM_TOPICS)] ...</i></span>"
 			sleep(rand(40,70))
 			if(paralysis <= 0)
 				dreaming = 0

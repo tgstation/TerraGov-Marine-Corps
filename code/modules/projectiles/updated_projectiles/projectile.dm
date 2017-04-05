@@ -165,8 +165,11 @@
 			next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 			if(current_turf && next_turf)
 				path = getline2(current_turf,next_turf) //Build a new flight path.
-				if(path.len && src)
+				if(path.len && src) //TODO look into this. This should always be true, but it can fail, apparently, against DCed people who fall down. Better yet, redo this.
 					follow_flightpath(speed, change_x, change_y, range) //Onwards!
+				else
+					cdel(src)
+					return
 			else //To prevent bullets from getting stuck in maps like WO.
 				cdel(src)
 				return
