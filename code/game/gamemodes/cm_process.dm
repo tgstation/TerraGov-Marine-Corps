@@ -22,14 +22,60 @@ in to the appropriate slots, like the in the example game modes, and you're good
 This is meant for infestation type game modes for right now (marines vs. aliens, with a chance
 of predators), but can be added to include variant game modes (like humans vs. humans).
 */
+
 //===================================================\\
 
 				//PROCESS GAME MODE\\
 
 //===================================================\\
 
+/datum/game_mode/proc/pre_setup_infestation()
+	round_fog = new
+	var/xeno_tunnels[] = new
+	var/obj/effect/blocker/fog/F
+	for(var/obj/effect/landmark/L in world)
+		switch(L.name)
+			if("hunter_primary")
+				cdel(L)
+			if("hunter_secondary")
+				cdel(L)
+			if("crap_item")
+				cdel(L)
+			if("good_item")
+				cdel(L)
+			if("block_hellhound")
+				cdel(L)
+			if("fog blocker")
+				F = new(L.loc)
+				round_fog += F
+				cdel(L)
+			if("xeno tunnel")
+				xeno_tunnels += L.loc
+				cdel(L)
+	if(!round_fog.len) round_fog = null //No blockers?
+	else
+		round_time_fog = rand(-2500,2500)
+		flags_round_type |= MODE_FOG_ACTIVATED
+	var/obj/structure/tunnel/T
+	var/i = 0
+	var/turf/t
+	while(xeno_tunnels.len && i++ < 3)
+		t = pick(xeno_tunnels)
+		xeno_tunnels -= t
+		T = new(t)
+		T.id = "hole[i]"
+
+	r_TRU
+
+//===================================================\\
+
+				//PROCESS GAME MODE\\
+
+//===================================================\\
+
+#define FOG_DELAY_INTERVAL		27000 // 45 minutes
 /datum/game_mode/proc/process_infestation()
-	if(--round_started > 0) return //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
+	if(--round_started > 0) r_FAL //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 
 	if(!round_finished)
 		if(xeno_queen_timer && --xeno_queen_timer <= 1) xeno_message("The Hive is ready for a new Queen to evolve.")
@@ -40,8 +86,11 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			bioscan_current_interval += bioscan_ongoing_interval //Add to the interval based on our set interval time.
 
 		if(++round_checkwin >= 5) //Only check win conditions every 5 ticks.
+			if(flags_round_type & MODE_FOG_ACTIVATED && world.time >= (FOG_DELAY_INTERVAL + round_time_lobby + round_time_fog)) disperse_fog()//Some RNG thrown in.
 			check_win()
 			round_checkwin = 0
+
+#undef FOG_DELAY_INTERVAL
 
 //===================================================\\
 
@@ -187,6 +236,18 @@ of predators), but can be added to include variant game modes (like humans vs. h
 					//HELPER PROCS\\
 
 //===================================================\\
+
+//Disperses fog, doing so gradually.
+/datum/game_mode/proc/disperse_fog()
+	set waitfor = 0
+	//world << "<span class='boldnotice'>The fog north of the colony is starting to recede.</span>" //Let's try it without an announcement.
+	flags_round_type &= ~MODE_FOG_ACTIVATED
+	var/i
+	for(i in round_fog)
+		round_fog -= i
+		cdel(i)
+		sleep(1)
+	round_fog = null
 
 //Delta is the randomness interval, in +/-. Might not be the exact mathematical definition
 /datum/game_mode/proc/announce_bioscans(var/delta = 2)

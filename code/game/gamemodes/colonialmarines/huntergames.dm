@@ -1,166 +1,154 @@
-var/global/waiting_for_drop_votes = 0
-
-var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
-								/obj/item/device/binoculars,\
-								/obj/item/device/flash,\
-								/obj/item/weapon/flamethrower,\
-								/obj/item/weapon/shield/riot,\
-								/obj/item/weapon/storage/backpack/yautja,\
-								/obj/item/weapon/gun/rifle/m41a,\
-								/obj/item/weapon/gun/shotgun/pump,\
-								/obj/structure/largecrate/guns/merc,\
-								/obj/structure/largecrate/guns/russian,\
-								/obj/item/weapon/storage/belt/knifepouch,\
-								/obj/item/clothing/head/helmet/marine,\
-								/obj/item/stack/medical/advanced/ointment,\
-								/obj/item/stack/medical/advanced/bruise_pack,\
-								/obj/item/clothing/tie/storage/webbing,\
-								/obj/item/weapon/storage/firstaid/regular,\
-								/obj/item/clothing/head/helmet/marine/leader,\
-								/obj/item/attachable/suppressor,\
-								/obj/item/attachable/reddot,\
-								/obj/item/attachable/flashlight,\
-								/obj/item/attachable/grenade,\
-								/obj/item/attachable/flamer,\
-								/obj/item/clothing/suit/storage/marine,\
-								/obj/item/clothing/head/helmet/marine,\
-								/obj/item/clothing/gloves/marine/specialist,\
-								/obj/item/weapon/gun/pistol/vp70,\
-								/obj/item/weapon/gun/rifle/m41a/scoped,\
-								/obj/item/weapon/gun/rifle/lmg,\
-								/obj/item/weapon/gun/shotgun/combat,\
-								/obj/item/weapon/gun/rifle/sniper/M42A,\
-								/obj/item/weapon/gun/pistol/vp78
+#define HUNTER_BEST_ITEM  pick(\
+								75; list(/obj/item/clothing/glasses/night, /obj/item/weapon/storage/backpack/holding, /obj/item/weapon/storage/belt/grenade, /obj/item/weapon/gun/flamer), \
+								100; list(/obj/item/weapon/twohanded/glaive, /obj/item/clothing/mask/gas/yautja, /obj/item/clothing/suit/armor/yautja,/obj/item/clothing/shoes/yautja), \
+								50; list(/obj/item/weapon/melee/combistick, /obj/item/clothing/mask/gas/yautja, /obj/item/clothing/suit/armor/yautja/full,/obj/item/clothing/shoes/yautja), \
+								150; list(/obj/item/stack/medical/advanced/ointment, /obj/item/stack/medical/advanced/bruise_pack, /obj/item/weapon/storage/belt/medical/combatLifesaver), \
+								50; list(/obj/item/clothing/under/marine/veteran/PMC/commando, /obj/item/clothing/suit/storage/marine/veteran/PMC/commando, /obj/item/clothing/gloves/marine/veteran/PMC/commando, /obj/item/clothing/shoes/veteran/PMC/commando, /obj/item/clothing/head/helmet/marine/veteran/PMC/commando), \
+								125; list(/obj/item/weapon/melee/yautja_chain, /obj/item/weapon/melee/yautja_knife, /obj/item/weapon/melee/yautja_scythe, /obj/item/weapon/legcuffs/yautja, /obj/item/weapon/legcuffs/yautja), \
+								75; list(/obj/item/weapon/gun/revolver/mateba/admiral, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/clothing/mask/balaclava/tactical), \
+								50; list(/obj/item/weapon/shield/energy, /obj/item/weapon/melee/energy/axe, /obj/item/clothing/under/gladiator, /obj/item/clothing/head/helmet/gladiator) \
 								)
 
-var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
-								/obj/item/clothing/mask/gas/yautja,\
-								/obj/item/clothing/suit/armor/yautja,\
-								/obj/item/clothing/suit/armor/yautja/full,\
-								/obj/item/clothing/shoes/yautja,\
-								/obj/item/clothing/head/helmet/marine/veteran/PMC/commando,\
-								/obj/item/clothing/shoes/veteran/PMC/commando,\
-								/obj/item/clothing/gloves/marine/veteran/PMC/commando,\
-								/obj/item/clothing/suit/storage/marine/veteran/PMC/commando,\
-								/obj/item/weapon/melee/yautja_chain,\
-								/obj/item/weapon/melee/yautja_knife,\
-								/obj/item/weapon/melee/yautja_scythe,\
-								/obj/item/weapon/melee/combistick,\
-								/obj/item/weapon/storage/belt/medical/combatLifesaver,\
-								/obj/item/weapon/storage/pill_bottle/tramadol,\
-								/obj/item/weapon/storage/box/rocket_system,\
-								/obj/item/weapon/storage/box/grenade_system,\
-								/obj/item/weapon/storage/box/m42c_system,\
-								/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC,\
-								/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner,\
-								/obj/item/weapon/gun/minigun,\
-								/obj/item/weapon/gun/rifle/m41a/elite,\
-								/obj/item/weapon/gun/smg/m39/elite,\
-								/obj/item/weapon/gun/rifle/sniper/elite,\
-								/obj/item/weapon/gun/launcher/rocket/m57a4)
+#define HUNTER_GOOD_ITEM  pick(\
+								50; /obj/item/weapon/shield/riot, \
+								100; /obj/item/weapon/claymore, \
+								100; /obj/item/weapon/katana, \
+								100; /obj/item/weapon/harpoon/yautja, \
+								150; /obj/item/weapon/claymore/mercsword, \
+								200; /obj/item/weapon/claymore/mercsword/machete, \
+								125; /obj/item/weapon/twohanded/fireaxe, \
+\
+								100; /obj/item/device/binoculars, \
+\
+								50; /obj/item/device/flash, \
+								25; /obj/item/weapon/grenade/flashbang, \
+								25; /obj/item/weapon/legcuffs/yautja, \
+								50; /obj/item/weapon/plastique, \
+								100; /obj/item/weapon/grenade/explosive, \
+								100; /obj/item/weapon/grenade/incendiary, \
+\
+								170; /obj/item/clothing/suit/armor/vest/security, \
+								165; /obj/item/clothing/head/helmet/riot, \
+								160; /obj/item/clothing/gloves/marine/veteran/PMC, \
+\
+								50; /obj/item/weapon/storage/firstaid/regular, \
+								50; /obj/item/weapon/storage/firstaid/fire, \
+								75; /obj/item/weapon/storage/box/wy_mre, \
+\
+								100; /obj/item/weapon/storage/backpack/commando, \
+								100; /obj/item/weapon/storage/backpack/yautja, \
+								100; /obj/item/weapon/storage/belt/knifepouch, \
+								100; /obj/item/weapon/storage/belt/utility/full, \
+								100; /obj/item/clothing/tie/storage/webbing, \
+								)
 
-var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
-								/obj/item/device/multitool,\
-								/obj/item/weapon/crowbar,\
-								/obj/item/weapon/crowbar,\
-								/obj/item/device/flashlight,\
-								/obj/item/device/flashlight,\
-								/obj/item/weapon/reagent_containers/food/snacks/donkpocket,\
-								/obj/item/weapon/grenade/smokebomb,\
-								/obj/item/weapon/wirecutters,\
-								/obj/item/weapon/weldingtool,\
-								/obj/item/weapon/wrench,\
-								/obj/random/bomb_supply,\
-								/obj/random/toolbox,\
-								/obj/random/tech_supply,\
-								/obj/item/weapon/bananapeel,\
-								/obj/item/weapon/soap,\
-								/obj/item/weapon/plastique,\
-								/obj/item/weapon/twohanded/fireaxe,\
-								/obj/item/weapon/twohanded/spear,\
-								/obj/item/weapon/claymore,\
-								/obj/item/weapon/katana,\
-								/obj/item/weapon/katana/replica,\
-								/obj/item/weapon/harpoon,\
-								/obj/item/weapon/baseballbat,\
-								/obj/item/weapon/baseballbat/metal,\
-								/obj/item/weapon/butterfly,\
-								/obj/item/weapon/grenade/empgrenade,\
-								/obj/item/weapon/grenade/flashbang,\
-								/obj/item/weapon/storage/backpack,\
-								/obj/item/weapon/storage/backpack/holding,\
-								/obj/item/weapon/storage/backpack/cultpack,\
-								/obj/item/weapon/storage/backpack/satchel,\
-								/obj/item/weapon/claymore/mercsword,\
-								/obj/item/weapon/claymore/mercsword/machete,\
-								/obj/item/weapon/storage/backpack/commando,\
-								/obj/item/clothing/suit/storage/CMB,\
-								/obj/item/weapon/grenade/explosive,\
-								/obj/item/weapon/grenade/incendiary,\
-								/obj/item/device/flashlight/combat,\
-								/obj/structure/largecrate/guns/merc,\
-								/obj/item/weapon/legcuffs/yautja,\
-								/obj/item/weapon/storage/box/wy_mre,\
-								/obj/item/weapon/combat_knife,\
-								/obj/item/stack/medical/ointment,\
-								/obj/item/stack/medical/bruise_pack,\
-								/obj/item/weapon/hatchet, \
-								/obj/item/weapon/hatchet, \
-								/obj/item/weapon/hatchet, \
-								/obj/item/weapon/hatchet, \
-								/obj/item/ammo_magazine/rifle/incendiary)
+#define HUNTER_OKAY_ITEM  pick(\
+								300; /obj/item/weapon/crowbar, \
+								200; /obj/item/weapon/baseballbat, \
+								100; /obj/item/weapon/baseballbat/metal, \
+								100; /obj/item/weapon/butterfly, \
+								300; /obj/item/weapon/hatchet, \
+								100; /obj/item/weapon/scythe, \
+								100; /obj/item/weapon/butch, \
+								50; /obj/item/weapon/katana/replica, \
+								100; /obj/item/weapon/harpoon, \
+								75; /obj/item/weapon/combat_knife, \
+								200; /obj/item/weapon/throwing_knife, \
+								400; /obj/item/weapon/twohanded/spear, \
+\
+								250; /obj/item/device/flashlight/flare, \
+								75; /obj/item/device/flashlight, \
+								75; /obj/item/device/flashlight/combat, \
+\
+								25; /obj/item/weapon/bananapeel, \
+								25; /obj/item/weapon/soap, \
+\
+								75; /obj/item/stack/medical/bruise_pack, \
+								75; /obj/item/stack/medical/ointment, \
+								75; /obj/item/weapon/reagent_containers/food/snacks/donkpocket, \
+\
+								100; /obj/item/weapon/cell/high, \
+								100; /obj/item/weapon/wirecutters, \
+								100; /obj/item/weapon/weldingtool, \
+								100; /obj/item/weapon/wrench, \
+								100; /obj/item/device/multitool, \
+								75; /obj/item/weapon/storage/pill_bottle/tramadol, \
+								50; /obj/item/weapon/grenade/smokebomb, \
+								50; /obj/item/weapon/grenade/empgrenade, \
+								100; /obj/item/weapon/storage/backpack, \
+								100; /obj/item/weapon/storage/backpack/cultpack, \
+								100; /obj/item/weapon/storage/backpack/satchel, \
+								75; /obj/item/clothing/gloves/brown, \
+								100; /obj/item/clothing/suit/storage/CMB \
+								)
 
+var/waiting_for_drop_votes = 0
+
+//Digging through this is a pain. I'm leaving it mostly alone until a full rework takes place.
 
 /datum/game_mode/huntergames
 	name = "Hunter Games"
 	config_tag = "Hunter Games"
 	required_players = 1
 	flags_round_type	= MODE_NO_LATEJOIN
-	var/list/contestants = list()
+
 	var/checkwin_counter = 0
 	var/finished = 0
-	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 	var/dropoff_timer = 800 //10 minutes.
 	var/last_drop = 0
-	var/last_death = 0
-	var/death_timer = 300 // 3 minutes.
 	var/last_tally
-	var/list/turf/primary_spawns = list()
-	var/list/turf/secondary_spawns = list()
-
-	var/list/turf/crap_spawns = list()
-	var/list/turf/good_spawns = list()
-	var/list/turf/god_spawns = list()
-	var/list/supply_votes = list()
+	var/contestants[]
+	var/primary_spawns[]
+	var/secondary_spawns[]
+	var/supply_votes[]
+	var/crap_spawns[]
+	var/good_spawns[]
 
 	var/ticks_passed = 0
 	var/drops_disabled = 0
 
+/obj/effect/step_trigger/hell_hound_blocker/Trigger(mob/living/carbon/hellhound/H)
+	if(istype(H)) H.gib() //No mercy.
+
 /datum/game_mode/huntergames/announce()
-	return 1
+	r_TRU
 
 /datum/game_mode/huntergames/send_intercept()
-	return 1
+	r_TRU
 
 /datum/game_mode/huntergames/pre_setup()
-	var/obj/effect/landmark/L
 	primary_spawns = list()
 	secondary_spawns = list()
 	crap_spawns = list()
 	good_spawns = list()
-	god_spawns = list()
+	supply_votes = list()
 
-	for(L in world)
-		if(L.name == "hunter_primary")
-			primary_spawns += L.loc
-		if(L.name == "hunter_secondary")
-			secondary_spawns += L.loc
-		if(L.name == "crap_item")
-			crap_spawns += L.loc
-		if(L.name == "good_item")
-			good_spawns += L.loc
-		if(L.name == "god_item")
-			god_spawns += L.loc
+	for(var/obj/effect/landmark/L in world)
+		switch(L.name)
+			if("hunter_primary")
+				primary_spawns += L.loc
+				cdel(L)
+			if("hunter_secondary")
+				secondary_spawns += L.loc
+				cdel(L)
+			if("crap_item")
+				crap_spawns += L.loc
+				place_drop(L.loc, "crap")
+				cdel(L)
+			if("good_item")
+				good_spawns += L.loc
+				place_drop(L.loc, "good")
+				cdel(L)
+			if("block_hellhound")
+				new /obj/effect/step_trigger/hell_hound_blocker(L.loc)
+				cdel(L)
+			if("fog blocker")
+				cdel(L)
+			if("xeno tunnel")
+				cdel(L)
+
+	for(var/obj/item/weapon/gun/G in world) cdel(G) //No guns or ammo allowed.
+	for(var/obj/item/ammo_magazine/M in world) cdel(M)
 
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready)
@@ -169,9 +157,10 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			else
 				if(player.client)
 					player.mind = new(player.key)
-	return 1
+	r_TRU
 
 /datum/game_mode/huntergames/post_setup()
+	contestants = list()
 	var/mob/M
 	for(M in mob_list)
 		if(M.client && istype(M,/mob/living/carbon/human))
@@ -179,16 +168,6 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			spawn_contestant(M)
 
 	if(config) config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
-
-	for(var/turf/T in crap_spawns)
-		place_drop(T,"crap",0)
-
-	for(var/turf/T in good_spawns)
-		place_drop(T,"good",0)
-
-	for(var/turf/T in god_spawns)
-		place_drop(T,"god",0)
-
 
 	spawn(10)
 		world << "<B>The current game mode is - HUNTER GAMES!</B>"
@@ -276,9 +255,9 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			H.remove_language("English")
 			H.remove_language("Sol Common")
 			H.add_language("Russian")
-		if(7) //PMC Commando!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+		if(7) //Highlander!
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), WEAR_FEET)
 		if(8) //Assassin!
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), WEAR_FEET)
@@ -303,36 +282,31 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 /datum/game_mode/huntergames/proc/loop_package()
 	while(finished == 0)
 		if(!drops_disabled)
-			world << "<B>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</b>"
-			world << "<B>One lucky contestant should prepare for a supply drop in 60 seconds.</b>"
+			world << "<span class='round_body'>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</span>"
+			world << "<span class='round_body'>One lucky contestant should prepare for a supply drop in 60 seconds.</span>"
 			for(var/mob/dead/D in world)
-				D << "<b>--> Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</b>"
+				D << "<span class='round_body'>Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</span>"
 			world << sound('sound/effects/alert.ogg')
 			last_drop = world.time
 			waiting_for_drop_votes = 1
 			sleep(600)
 			if(!supply_votes.len)
-				world << "<b>Nobody got anything! .. weird.</b>"
+				world << "<span class='round_body'>Nobody got anything! .. weird.</span>"
 				waiting_for_drop_votes = 0
-				supply_votes = null
 				supply_votes = list()
 			else
 				var/mob/living/carbon/human/winner = pick(supply_votes) //Way it works is, more votes = more odds of winning. But not guaranteed.
 				if(istype(winner) && !winner.stat)
-					world << "The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!"
+					world << "<span class='round_body'>The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!</span>"
 					world << sound('sound/effects/alert.ogg')
-					world << "The package will shortly be dropped off at: [get_area(winner.loc)]."
+					world << "<span class='round_body'>The package will shortly be dropped off at: [get_area(winner.loc)].</span>"
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
 					if(istype(drop_zone))
 						playsound(drop_zone,'sound/effects/bamf.ogg',100,1)
-						if(prob(50))
-							place_drop(drop_zone,"good")
-						else
-							place_drop(drop_zone,"god")
+						place_drop(drop_zone,"god", 1)
 				else
-					world << "<B>The spectator and Predator votes have been talled, and the supply drop recipient is </B>dead or dying<B>. Bummer.</b>"
+					world << "<span class='round_body'>The spectator and Predator votes have been talled, and the supply drop recipient is dead or dying<B>. Bummer.</b></span>"
 					world << sound('sound/misc/sadtrombone.ogg')
-				supply_votes = null
 				supply_votes = list()
 				waiting_for_drop_votes = 0
 		sleep(5000)
@@ -343,8 +317,8 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	ticks_passed++
 	if(prob(2)) dropoff_timer += ticks_passed //Increase the timer the longer the round goes on.
 
-	if(has_started_timer > 0) //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
-		has_started_timer--
+	if(round_started > 0) //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
+		round_started--
 
 	if(checkwin_counter >= 10) //Only check win conditions every 5 ticks.
 		if(!finished)
@@ -356,13 +330,12 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/C = count_humans()
 	if(C < last_tally)
 		if(last_tally - C == 1)
-			world << "<B>A contestant has died! There are now [C] contestants remaining!</b>"
+			world << "<span class='round_body'>A contestant has died! There are now [C] contestants remaining!</span>"
 			world << sound('sound/effects/explosionfar.ogg')
 		else
 			var/diff = last_tally - C
-			world << "<B>Multiple contestants have died! [diff] in fact. [C] are left!</b>"
-			spawn(7)
-				world << sound('sound/effects/explosionfar.ogg')
+			world << "<span class='round_body'>Multiple contestants have died! [diff] in fact. [C] are left!</span>"
+			spawn(7) world << sound('sound/effects/explosionfar.ogg')
 
 	last_tally = C
 	if(last_tally == 1 || ismob(last_tally))
@@ -371,7 +344,6 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		finished = 2
 	else
 		finished = 0
-	return
 
 /datum/game_mode/huntergames/proc/count_humans()
 	var/human_count = 0
@@ -434,26 +406,37 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 /datum/game_mode/proc/auto_declare_completion_huntergames()
 	return
 
-/datum/game_mode/huntergames/proc/place_drop(var/turf/T,var/OT, var/in_crate = 0)
-	if(!istype(T)) return
-	var/objtype
+/datum/game_mode/huntergames/proc/place_drop(turf/T, OT = "crap", in_crate)
+	if(!istype(T)) r_FAL
 
-	if(in_crate == 0 && prob(15) && (OT == "good" || OT == "god")) in_crate = 1
+	if(OT == "good" && !in_crate && prob(15)) in_crate = 1 //Place some good drops in crates.
 
-	if(!OT) OT = "crap"
+	var/obj_type //Object path.
+	var/atom/location = in_crate ? new /obj/structure/closet/crate(T) : T //Where it's going to be placed.
 
 	switch(OT)
-		if("god") objtype = pick(god_items)
-		if("good") objtype = pick(good_items)
-		else objtype = pick(crap_items)
+		if("god")
+			var/L[] = HUNTER_BEST_ITEM
+			for(obj_type in L)
+				new obj_type(location)
+		if("good")
+			obj_type = HUNTER_GOOD_ITEM
+			new obj_type(location)
+		else
+			obj_type = HUNTER_OKAY_ITEM
+			new obj_type(location)
+/*
+/mob/verb/debug_item_spawn()
+	set name = "Debug Item Drops"
+	set category = "DEBUG"
 
-	var/crate
-	var/location
-	if(in_crate)
-		crate = new /obj/structure/closet/crate(T)
-		location = crate
-	else location = T
- 	//location = isnull(crate) ? T : crate
-	new objtype(location)
+	var/i = input("Pick what to spawn in","Spawning","good") as null|anything in list("god","good","crap")
+	if(i)
+		switch(i)
+			if("god") ticker.mode:place_drop(loc, i, 1)
+			else ticker.mode:place_drop(loc, i)
 
-	return
+*/
+#undef HUNTER_BEST_ITEM
+#undef HUNTER_GOOD_ITEM
+#undef HUNTER_OKAY_ITEM

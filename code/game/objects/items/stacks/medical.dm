@@ -52,7 +52,7 @@
 	M.updatehealth()
 /obj/item/stack/medical/bruise_pack
 	name = "roll of gauze"
-	singular_name = "gauze length"
+	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	origin_tech = "biotech=1"
@@ -93,7 +93,7 @@
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
-	desc = "Used to treat those nasty burns."
+	desc = "Used to treat burns, infected wounds, and relieve itching in unusual places..."
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
@@ -231,32 +231,37 @@
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.display_name
-		if(!((affecting.name == "l_arm") || (affecting.name == "r_arm") || (affecting.name == "l_leg") || (affecting.name == "r_leg") || (affecting.name == "r_hand") || (affecting.name == "l_hand") || (affecting.name == "r_foot") || (affecting.name == "l_foot") || (affecting.name == "chest") || (affecting.name == "groin") || (affecting.name == "head")))
-			user << "\red You can't apply a splint there!"
+
+		if(!(affecting.name in list("l_arm","r_arm","l_leg","r_leg","r_hand","l_hand","r_foot","l_foot","chest","groin","head")))
+			user << "<span class='warning'>You can't apply a splint there!</span>"
 			return
+
+		if(affecting.status & ORGAN_SPLINTING)
+			user << "<span class='warning'>[user == M ? "Your" : "[M]'s"] [limb] is already being splinted!</span>"
+			return
+
+		if(affecting.status & ORGAN_DESTROYED)
+			user << "<span class='warning'>[user == M ? "You don't" : "[M] doesn't"] have \a [limb]!</span>"
+			return
+
 		if(affecting.status & ORGAN_SPLINTED)
-			user << "\red [M]'s [limb] is already splinted!"
+			user << "<span class='warning'>[user == M ? "Your" : "[M]'s"] [limb] is already splinted!</span>"
 			return
+
 		if (M != user)
-			user.visible_message("\red [user] starts to apply \the [src] to [M]'s [limb].", "\red You start to apply \the [src] to [M]'s [limb].", "\red You hear something being wrapped.")
+			user.visible_message(
+			"<span class='warning'>[user] starts to apply [src] to [M]'s [limb].</span>",
+			"<span class='notice'>You start to apply [src] to [M]'s [limb], hold still...</span>")
 		else
 			if((!user.hand && affecting.name == "r_arm") || (user.hand && affecting.name == "l_arm"))
-				user << "\red You can't apply a splint to the arm you're using!"
+				user << "<span class='warning'>You can't apply a splint to the arm you're using!</span>"
 				return
-			user.visible_message("\red [user] starts to apply \the [src] to their [limb].", "\red You start to apply \the [src] to your [limb].", "\red You hear something being wrapped.")
-		if(do_after(user, 50))
-			if (M != user && !(affecting.status & ORGAN_SPLINTED))
-				user.visible_message("\red [user] finishes applying \the [src] to [M]'s [limb].", "\red You finish applying \the [src] to [M]'s [limb].", "\red You hear something being wrapped.")
-			else
-				if(prob(25) && !(affecting.status & ORGAN_SPLINTED))
-					user.visible_message("\red [user] successfully applies \the [src] to their [limb].", "\red You successfully apply \the [src] to your [limb].", "\red You hear something being wrapped.")
-				else
-					user.visible_message("\red [user] fumbles \the [src].", "\red You fumble \the [src].", "\red You hear something being wrapped.")
-					return
-			affecting.status |= ORGAN_SPLINTED
-			use(1)
-		return
+			user.visible_message(
+			"<span class='warning'>[user] starts to apply [src] to their [limb].</span>",
+			"<span class='notice'>You start to apply [src] to your [limb], hold still...</span>")
+
+		if(affecting.apply_splints(src,user,M)) use(1)//Referenced in external organ helpers.

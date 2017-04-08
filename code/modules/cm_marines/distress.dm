@@ -27,7 +27,7 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
 		/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
 		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
-		/obj/item/ammo_magazine/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
+		/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
 		/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90)
 
 	var/gunpath = sidearm? pick(merc_sidearms) : pick(merc_firearms)
@@ -681,18 +681,11 @@
 	if(!M || !istype(M)) return
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_L_EAR)
-	if(prob(50))
-		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
-	else
-		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
-		M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
-	if(prob(50))
-		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
-		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), WEAR_HEAD)
-	else
-		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), WEAR_HANDS)
-		M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), WEAR_HEAD)
-
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
+	if(prob(50)) M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
+	else M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), WEAR_HEAD)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), WEAR_FEET)

@@ -100,7 +100,7 @@
 	switch(code)
 		if(0) return get_all_accesses()
 		if(1) return list(ACCESS_MARINE_BRIG)//security
-		if(2) return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY)//medbay
+		if(2) return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)//medbay
 		if(3) return list(ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)//research
 		if(4) return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)//engineering and maintenance
 		if(5) return list(ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO)//command
@@ -133,10 +133,10 @@
 		if(ACCESS_MARINE_LOGISTICS) 	return "Sulaco Logistics"
 		if(ACCESS_MARINE_BRIDGE) 		return "Sulaco Bridge"
 		if(ACCESS_MARINE_PREP) 			return "Marine Prep"
-		if(ACCESS_MARINE_ENGPREP) 		return "Marine Engineer Prep"
-		if(ACCESS_MARINE_MEDPREP) 		return "Marine Medical Prep"
-		if(ACCESS_MARINE_SPECPREP) 		return "Marine Specialist Prep"
-		if(ACCESS_MARINE_LEADER) 		return "Marine Leader Prep"
+		if(ACCESS_MARINE_ENGPREP) 		return "Marine Squad Engineering"
+		if(ACCESS_MARINE_MEDPREP) 		return "Marine Squad Medical"
+		if(ACCESS_MARINE_SPECPREP) 		return "Marine Specialist"
+		if(ACCESS_MARINE_LEADER) 		return "Marine Leader"
 		if(ACCESS_MARINE_ALPHA) 		return "Alpha Squad"
 		if(ACCESS_MARINE_BRAVO) 		return "Bravo Squad"
 		if(ACCESS_MARINE_CHARLIE) 		return "Charlie Squad"

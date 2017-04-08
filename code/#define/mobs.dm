@@ -217,10 +217,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define ORGAN_BROKEN 32
 #define ORGAN_DESTROYED 64
 #define ORGAN_ROBOT 128
-#define ORGAN_SPLINTED 256
-#define SALVED 512
-#define ORGAN_DEAD 1024
-#define ORGAN_MUTATED 2048
+#define ORGAN_SPLINTING 256
+#define ORGAN_SPLINTED 512
+#define SALVED 1024
+#define ORGAN_DEAD 2048
+#define ORGAN_MUTATED 4096
 //=================================================
 
 //Languages!

@@ -136,6 +136,10 @@
 	if(!check_state())
 		return
 
+	if(!isturf(loc))
+		src << "<span class='warning'>You cannot regurgitate here.</span>"
+		return
+
 	if(stomach_contents.len)
 		for(var/mob/M in src)
 			if(M in stomach_contents)

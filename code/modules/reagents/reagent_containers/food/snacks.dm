@@ -3077,3 +3077,92 @@
 		reagents.add_reagent("nutriment", 3)
 	trash = /obj/item/trash/kepler
 
+//MREs
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged_meal
+	name = "\improper MRE component"
+	desc = "A package from a Meal Ready-to-Eat, property of the US Colonial Marines. Contains a part of a meal, prepared for field consumption."
+	package = 1
+	bitesize = 1
+	icon_state = "entree"
+	var/flavor = "boneless pork ribs"//default value
+	w_class = 3
+	New(loc, newflavor)
+		..()
+		determinetype(newflavor)
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			user << "<span class='notice'>You pull open the package of the meal!</span>"
+			playsound(loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+
+			name = "\improper" + flavor
+			desc = "The contents of a USCM Standard issue MRE. This one is " + flavor + "."
+			icon_state = flavor
+			package = 0
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged_meal/proc/determinetype(newflavor)
+	name = "\improper MRE component" + " (" + newflavor + ")"
+	flavor = newflavor
+
+	switch(newflavor)
+		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti chunks")
+			icon_state = "entree"
+			reagents.add_reagent("nutriment", 5)
+			reagents.add_reagent("sodiumchloride", 1)
+		if("cracker", "cheese spread", "rice onigiri", "mashed potatoes")
+			icon_state = "side"
+			reagents.add_reagent("nutriment", 3)
+			reagents.add_reagent("sodiumchloride", 1)
+		if("biscuit", "meatballs", "pretzels", "peanuts")
+			icon_state = "snack"
+			reagents.add_reagent("nutriment", 2)
+			reagents.add_reagent("sodiumchloride", 1)
+		if("spiced apples", "chocolate brownie", "sugar cookie", "coco bar")
+			icon_state = "dessert"
+			reagents.add_reagent("nutriment", 1)
+			reagents.add_reagent("sugar", 1)
+			reagents.add_reagent("coco", 1)
+
+
+
+/obj/item/weapon/storage/box/MRE
+	name = "\improper USCM MRE"
+	desc = "Meal Ready-to-Eat, property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
+	icon_state = "mealpack"
+	w_class = 1
+	can_hold = list()
+	storage_slots = 4
+	max_w_class = 0
+	foldable = 0
+	var/isopened = 0
+	New()
+		..()
+		pickflavor()
+
+/obj/item/weapon/storage/box/MRE/proc/pickflavor()
+	var/variation = rand(1,4)
+	var/i
+	switch(variation)
+		if(1)
+			for(i in list("boneless pork ribs","cracker","biscuit","spiced apples"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
+		if(2)
+			for(i in list("grilled chicken","cheese spread","meatballs","chocolate brownie"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
+		if(3)
+			for(i in list("pizza square","rice onigiri","pretzels","sugar cookie"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
+		if(4)
+			for(i in list("spaghetti chunks","mashed potatoes","peanuts","coco bar"))
+				new /obj/item/weapon/reagent_containers/food/snacks/packaged_meal(src, i)
+
+/obj/item/weapon/storage/box/MRE/update_icon()
+	if(!contents.len)
+		name = "\improper crumbled USCM MRE"
+		desc = "It has done its part for the USCM. Have you?"
+		icon_state = "mealpackempty"
+		storage_slots = 0
+	else if(!isopened)
+		isopened = 1
+		icon_state = "mealpackopened"

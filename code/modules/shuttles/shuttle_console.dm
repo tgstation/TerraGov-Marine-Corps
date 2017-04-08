@@ -122,16 +122,21 @@
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 
+			if(shuttle.locked) return
+
+
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
 			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
-				command_announcement.Announce("Unscheduled dropship departure detected from operational area. Illegal credentials detected. Hijack likely, shutting down auto-pilot.", \
-				"Dropship Alert", new_sound = 'sound/misc/queen_alarm.ogg')
-				usr << "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>"
-				shuttle.alerts_allowed--
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
 				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.launch_crash()
+					command_announcement.Announce("Unscheduled dropship departure detected from operational area. Illegal credentials detected. Hijack likely, shutting down auto-pilot.", \
+					"Dropship Alert", new_sound = 'sound/misc/queen_alarm.ogg')
+					shuttle.alerts_allowed--
+					usr << "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>"
+				else if(i == "No")
+					return
 				else
 					shuttle.launch(src)
 
@@ -140,6 +145,7 @@
 				return
 			else
 				shuttle.launch(src)
+				shuttle.locked = 1 //We are initiating transit, so don't recieve any more instructions
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
 	if(href_list["optimize"])

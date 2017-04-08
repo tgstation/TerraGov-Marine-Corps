@@ -40,7 +40,7 @@
 			<font size='2'><b>Hosts:</b> Apophis (founder), Rahlzel<br></font>
 			<font size='2'><b>Coders:</b> Apophis, Rahlzel, Abbysynth, Infernus, MadSnailDisease, forwardslashN, SnipeDragon, Dylanstrategie, Hikato, RavingManiac<br></font>
 			<font size='2'><b>Mappers:</b> Abbysynth, Apophis, Allan, Infernus, Rahlzel, Minijar, Bmc777<br></font>
-			<font size='2'><b>Spriters:</b> Secretstamos (Joshuu), Arefridgerator, Monkeysfist, Infernus, Artouris<br></font>
+			<font size='2'><b>Spriters:</b> Secretstamos (Joshuu), Arefridgerator, Monkeysfist, Infernus, Artouris, gorg<br></font>
 			<font size='2'><b>Sounds:</b> Rahlzel<br></font>
 			<font size='2'><b>Thanks to:</b> Baystation 12, /tg/station 13, and the original SpaceStation developers</font>
 		</td>
@@ -81,6 +81,308 @@ should be listed in the changelog upon commit though. Thanks. -->
  -->
 
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
+
+<div class='commit sansserif'>
+	<h2 class='date'>6 April 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes incinerator issues of being unable to be unloaded and loaded.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>5 April 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed wrong amount of glass in bottom engineering.</li>
+		<li class='bugfix'>Fixed incorrect RO cap in RO lockers.</li>
+		<li class='bugfix'>Fixed improper survivor dreams.</li>
+		<li class='bugfix'>Fixed a bug that prevented tunnel crawling in a rare circumstance.</li>
+		<li class='bugfix'>Fixed ghosting message text to be more clear.</li>
+		<li class='bugfix'>Fixed WY implant lockbox and case names.</li>
+		<li class='bugfix'>Fixed RO uniform not being able to wear officer armor.</li>
+		<li class='bugfix'>Fixed incinerator not generating light.</li>
+		<li class='bugfix'>Fixed an issue when examining the incinerator.</li>
+		<li class='bugfix'>Fixed PMC helmets not showing damage.</li>
+		<li class='bugfix'>Fixed another possible issue with bullets getting stuck.</li>
+		<li class='bugfix'>Fixed hailer not going into the MP armor.</li>
+		<li class='bugfix'>Fixed denied stamp sprite.</li>
+		<li class='bugfix'>(old) Fixed telekinetic gun safety toggle.</li>
+		<li class='bugfix'>(old) Fixed pred gibs.</li>
+		<li class='tweak'>Tweaked the incinerator along with the fixes.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>3 April 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>False walls have been restored, along with everything associated with girders - metal needed returned to 2, time to build a wall returned to 8. Thanks for the constructive criticism (http://www.colonial-marines.com/viewtopic.php?f=64&t=12048). We'll look into some good alternatives and in the future disable false walls at the same time as having a good replacement.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>2 April 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>When players come to a locked airlock, most of the time they'll just deconstruct the wall beside it since the airlock itself takes some time to hack and deconstructing the wall only takes 2 quick steps - welder and wrench. We're changing this to be more in line with realism and, as a bonus, making Squad Engineers more useful as airlock hackers. As a result several things have changed:</li>
+		<li class='tweak'>Normal (non-reinforced) walls now take 7 steps to deconstruct them instead of 2. Deconstruction starts the same way - with a lit welder - and the wall can be examined during the entire process to visually see which tool needs to be used next to continue. This will help prevent wiki-checking during normal gameplay. Also note that damaged walls must be repaired first (also with a welder) before they can be neatly deconstructed. This will all happen automagically just by hitting a wall with a lit welder - it will either start repair or start deconstruction.</li>
+		<li class='tweak'>Wall building/construction has been made a bit tougher in order to balance the realism of it now taking longer to deconstruct a wall. Walls now use 5 metal sheets on a girder instead of 2, and the time it takes to finish construction has been increased from 8 seconds to 30 seconds.</li>
+		<li class='tweak'>False walls have been removed. We debated this to some extent and ultimately came to the conclusion that an entire wall sliding in and out is not exactly canon or even realistic (it's also simply old Baycode that we just haven't dealt with yet). We are considering alternatives, however, such as a barricade "gate" that slides open and closed, or allowing marines to be more nimble by jumping over any barricade (including flipped ones) after a brief cooldown.</li>
+		<li class='tweak'>Unrelated, but noteworthy: The Chem Dispenser's access requirements are now working correctly, which means that Squad Medics no longer have access to them. The Chemist/Doctor/Researcher/CMO watching his or her Chem Dispenser getting raided each round can now feel useful again.</li>
+		<li>Thanks to forwardslashN for assistance with the above, and to Artouris for the April Fools update yesterday. The ocean-biomed "Nostromo" and "Old Sulaco" maps were quite popular, so we'll keep them and run them once in a while for fun and nostalgia. For those new to the community, they are based on our original 2 maps that were our first ones several years ago. You can read more about them here: http://www.colonial-marines.com/wiki/History#Pre-Alpha_Maps</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>28 March 2017</h2>
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Changed the M41A/M to the M4RA battle rifle.</li>
+		<li class='imageadd'>Added icons for the M4RA.</li>
+		<li class='soundadd'>Added a firing sound for the M4RA.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes to the previous update.</li>
+		<li class='tweak'>Adjusted chem explosives and their behavior.</li>
+		<li class='tweak'>Hunter Games: Changed the spawns for the various items to rebalance the mode. Guns are almost completely removed, and the focus is strictly on melee combat. Better make some friends.</li>
+		<li class='tweak'>Hunter Games: Ghost-drop rewards are now incredibly good and feature several items per drop. Some rewards are rare.
+		<li class='tweak'>Hunter Games: Hellhounds entering the nexus will be auto-gibbed.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>23 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Changes to the previous update.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>22 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Experimental change to the LV map.</li>
+		<li class='tweak'>Added a few more guns/ammo for survivors on LV.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>12 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>LV624: Added a sleeper to meddome.</li>
+		<li class='tweak'>LV624: Changed up tunnel placement and terrain.</li>
+		<li class='tweak'>LV624: Removed some extra bodies.</li>
+	</ul>
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>New flashlight sprites.</li>
+		<li class='imageadd'>New lightbulb sprites.</li>
+		<li class='imageadd'>New desk lamp sprites.</li>
+		<li class='imageadd'>New green lamp sprites.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 March 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>LV624 Additional cave networks in the NE.</li>
+		<li class='tweak'>LV624 Moved container area to east of table fort.</li>
+		<li class='tweak'>LV624 Bridge is now in a damaged state.</li>
+		<li class='tweak'>LV624 Sand temple has suffered some erosion over the years.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>2 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed issues with squad engineer access. Alarms, APCs, turrets, etc, should now be accessible.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>27 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Predator explosion adjusted.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>26 February 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed expended pred crystal sprite.</li>
+		<li class='bugfix'>Fixed Bicaridine used sprite.</li>
+		<li class='bugfix'>Fixed a predator dagger bug.</li>
+		<li class='bugfix'>Fixed issue with B18 and B12 snow variant armor names.</li>
+		<li class='bugfix'>Fixed PO helmet not having cold protection.</li>
+		<li class='bugfix'>Fixed the zoom gun toggle issue.</li>
+		<li class='bugfix'>Fixed comms working between planet and ship when inside something.</li>
+		<li class='bugfix'>Fixed predators using wristblades with no arms or hands.</li>
+		<li class='bugfix'>Fixed an internal issue with plasma caster/blades.</li>
+		<li class='bugfix'>Fixed freelancers not spawning with compression suits.</li>
+		<li class='bugfix'>Fixed cryo pods kicking people back to lobby.</li>
+		<li class='bugfix'>Fixed items still being held in hand when said hand is cut off/removed.</li>
+		<li class='bugfix'>Fixed splinting removed limbs.</li>
+		<li class='bugfix'>Fixed spamming self-splints to negate fumbling.</li>
+		<li class='bugfix'>Fixed splints breaking when quick clotting, or other minor sources of damage.</li>
+		<li class='bugfix'>Fixed broken, splinted limbs causing pain and dropping of items with no warning.</li>
+		<li class='bugfix'>Fixed missing limbs causing phantom pain messages.</li>
+		<li class='tweak'>Made wooden barricades stronger.</li>
+		<li class='tweak'>Removed engineering access from squad engineers.</li>
+		<li class='tweak'>Added safety glass to SM ejection button.</li>
+		<li class='tweak'>Adjusted rifle mag ejecting. Magazines will now hit the floor when ejecting manually unless retrieved with an active hand.</li>
+		<li class='tweak'>Enabled toggling of fire restriction on the smartgun. Use unique action to toggle the IFF tracker on or off.</li>
+		<li class='tweak'>Lowered number of mine boxes in the explosive supply crate.</li>
+		<li class='tweak'>Decreased sniper rifle fire delay.</li>
+		<li class='tweak'>Slight tweak to marksman rifle.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>24 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Last of Donation Requests are done.  If you donated in the past and did NOT receive them, Message Apophis on the forum DIRECTLY.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>23 February 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added Gorg's new sprites for m4a3, m39, and m41a magazines.</li>
+		<li class='imageadd'>Added Gorg's new multitool sprite.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>22 February 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>LZ2 on Ice Colony is now underground.</li>
+		<li class='rscadd'>Ice Colony Predator ship is closed off from underground ice caves.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>21 February 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed the Pred teleporter dumping Preds into space on Ice Colony.</li>
+                                <li class='rscadd'>Added new pred teleporting animations.</li>
+                                <li class='rscadd'>Moved Comms to northwest Cargo.</li>
+		<li class='rscadd'>Opened up LZ1 a bit and removed some barricades.</li>
+		<li class='rscadd'>Elevators are now all access.</li>
+	</ul>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='soundadd'>New sounds for: Smartgun, m41a Pulse Rifle, chestbursting, Predator facehug, some computer consoles, fax machine, and welding tool.</li>
+		<li class='wip'>Welding tool sound and code is a bit of a mess right now, so it's only working on two commonly used objects - airlocks and vent pumps. We'll work on rewriting this in the future.</li>
+		<li class='tweak'>Time to weld an airlock increased from instant to 5 seconds.</li>
+		<li class='tweak'>Time to weld a vent pump increased from 2 seconds to 5 seconds.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>19 February 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed being able to join Xenos when Xeno banned.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 February 2017</h2>
+	<h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed certain items turning into rail attach lights.</li>
+	</ul>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed .click macro abuse by disabling the function. .click no longer works as a macro function. Old macros that use .click for firearms can now be triggered through the verb menu with no issues.</li>
+		<li class='bugfix'>Fixed certain ERT spawning with only ammo but no weapon.</li>
+	</ul>
+                <h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Increased the number of shuttle crashing areas. No more trying to outsmart the crashing shuttle for marines.</li>
+		<li class='bugfix'>Fixed bug that caused a standard launch by the Queen using multiple launches.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>7 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed CMO access problem</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>6 Feb 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed old autoinjector sprite for inaprovaline</li>
+		<li class='tweak'>Marine Medics no longer have access to the Blood or WeylandMed dispensers (they should be checking with a Doctor if they need something)</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>5 February 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed SL prep.</li>
+		<li class='bugfix'>Fixed invisible Bicaridine injector.</li>
+		<li class='bugfix'>Fixed Bicaridine pills having the wrong amount of chems.</li>
+		<li class='bugfix'>Fixed some naming inconsistencies.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Added an experimental system to make most hits interrupt human speech. This might not account for every single last method of damage in the game, so this is a WIP.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>4 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed an exploit that will hopefully resolve some of our recent instability.</li>
+		<li class='tweak'>Redid contents of MarineMed, ColMarGear, and NanoMed (now WeyLandMed) vendors.</li>
+		<li class='tweak'>MarineMed now contains: Autoinjectors (expanded), Pill bottles, Basic medical tools.</li>
+		<li class='tweak'>WeylandMed contains: Minimal Autoinjectors, Syringes, Various Chemicals in bottles, Medical Tools that frequently run-out.</li>
+		<li class='tweak'>ColMar Medic Gear now contains: Basic Medic equipment (no medications, pills, or injectors).</li>
+		<li class='tweak'>Squad Leader room has shank a little bit.  Medic room has gotten bigger (and now contains a MarineMed vendor).</li>
+	</ul>
+</div>
+
 
 <div class='commit sansserif'>
 	<h2 class='date'>30 January 2017</h2>

@@ -8,43 +8,52 @@ mob/var/next_pain_time = 0
 // partname is the name of a body part
 // amount is a num from 1 to 100
 mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
-	if(stat >= 2) return
-	if(reagents.has_reagent("paracetamol"))
-		return
-	if(reagents.has_reagent("tramadol"))
-		return
-	if(reagents.has_reagent("oxycodone"))
-		return
-	if(analgesic)
-		return
-	if(world.time < next_pain_time && !force)
-		return
-	if(amount > 10 && istype(src,/mob/living/carbon/human))
-		if(src:paralysis)
-			src:paralysis = max(0, src:paralysis-round(amount/10))
-	if(amount > 50 && prob(amount / 5))
-		src:drop_item()
+	if(stat >= DEAD || (world.time < next_pain_time && !force)) return
+	if(reagents.has_reagent("paracetamol")) return
+	if(reagents.has_reagent("tramadol")) return
+	if(reagents.has_reagent("oxycodone")) return
+	if(analgesic) return
+
 	var/msg
+	if(amount > 10 && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.paralysis) H.paralysis = max(0, H.paralysis-round(amount * 0.1))
+
+		var/datum/organ/external/right_hand = H.organs_by_name["r_hand"]
+		var/datum/organ/external/left_hand = H.organs_by_name["l_hand"]
+		if(!H.stat && amount > 50 && prob(amount * 0.1))
+			msg = "You [pick("wince","shiver","grimace")] in pain"
+			var/i
+			for(var/datum/organ/external/O in list(right_hand,left_hand))
+				if(!O || !O.is_usable()) continue //Not if the organ can't possibly function.
+				if(O.name == "l_hand") 	drop_l_hand()
+				else 					drop_r_hand()
+				i++
+			if(i) msg += ", [pick("fumbling with","struggling with","losing control of")] your [i < 2 ? "hand" : "hands"]"
+
+			H.drop_item()
+			H << "<span class='warning'>[msg].</span>"
+
 	if(burning)
 		switch(amount)
 			if(1 to 10)
-				msg = "\red <b>Your [partname] burns.</b>"
+				msg = "<span class='warning'>Your [partname] burns.</span>"
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "\red <b><font size=2>Your [partname] burns badly!</font></b>"
+				msg = "<span class='danger'>Your [partname] burns badly!</span>"
 			if(91 to 10000)
 				flash_pain()
-				msg = "\red <b><font size=3>OH GOD! Your [partname] is on fire!</font></b>"
+				msg = "<span class='HIGHDANGER'>OH GOD! Your [partname] is on fire!</span>"
 	else
 		switch(amount)
 			if(1 to 10)
-				msg = "<b>Your [partname] hurts.</b>"
+				msg = "<span class='warning'>Your [partname] hurts.</span>"
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "<b><font size=2>Your [partname] hurts badly.</font></b>"
+				msg = "<span class='danger'>Your [partname] hurts badly.</span>"
 			if(91 to 10000)
 				flash_pain()
-				msg = "<b><font size=3>OH GOD! Your [partname] is hurting terribly!</font></b>"
+				msg = "<span class='HIGHDANGER'>OH GOD! Your [partname] is hurting terribly!</span>"
 	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
 		src << msg
@@ -53,20 +62,15 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 
 // message is the custom message to be displayed
 // flash_strength is 0 for weak pain flash, 1 for strong pain flash
-mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
-	if(stat >= 1) return
-
+mob/living/carbon/human/proc/custom_pain(message, flash_strength)
+	if(stat >= UNCONSCIOUS) return
 	if(species && species.flags & NO_PAIN) return
+	if(reagents.has_reagent("tramadol")) return
+	if(reagents.has_reagent("oxycodone")) return
+	if(analgesic) return
 
-	if(reagents.has_reagent("tramadol"))
-		return
-	if(reagents.has_reagent("oxycodone"))
-		return
-	if(analgesic)
-		return
-	var/msg = "\red <b>[message]</b>"
-	if(flash_strength >= 1)
-		msg = "\red <font size=3><b>[message]</b></font>"
+	var/msg = "<span class='danger'>[message]</span>"
+	if(flash_strength >= 1) msg = "<span class='highdanger'>[message]</span>"
 
 	// Anti message spam checks
 	if(msg && ((msg != last_pain_message) || (world.time >= next_pain_time)))
@@ -75,41 +79,44 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 	next_pain_time = world.time + 100
 
 mob/living/carbon/human/proc/handle_pain()
-	// not when sleeping
-
+	if(stat >= UNCONSCIOUS) return 	// not when sleeping
 	if(species && species.flags & NO_PAIN) return
+	if(reagents.has_reagent("tramadol")) return
+	if(reagents.has_reagent("oxycodone")) return
+	if(analgesic) return
 
-	if(stat >= 2) return
-	if(reagents.has_reagent("tramadol"))
-		return
-	if(reagents.has_reagent("oxycodone"))
-		return
-	if(analgesic)
-		return
 	var/maxdam = 0
+	var/dam
 	var/datum/organ/external/damaged_organ = null
 	for(var/datum/organ/external/E in organs)
-		// amputated limbs don't cause pain
-		if(E.amputated) continue
-		if(E.status & ORGAN_DEAD) continue
-		var/dam = E.get_damage()
+		/*
+		Amputated, dead, or missing limbs don't cause pain messages.
+		Broken limbs that are also splinted do not cause pain messages either.
+		*/
+		if(E.amputated || E.status & (ORGAN_DEAD|ORGAN_DESTROYED)) continue
+
+		dam = E.get_damage()
+		if(E.status & ORGAN_BROKEN)
+			if(E.status & ORGAN_SPLINTED) dam -= E.min_broken_damage //If they have a splinted body part, and it's broken, we want to subtract bone break damage.
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
 			damaged_organ = E
 			maxdam = dam
-	if(damaged_organ)
-		pain(damaged_organ.display_name, maxdam, 0)
+	if(damaged_organ) pain(damaged_organ.display_name, maxdam, 0)
+
 
 	// Damage to internal organs hurts a lot.
+	var/datum/organ/external/parent
 	for(var/datum/organ/internal/I in internal_organs)
 		if(I.damage > 2) if(prob(2))
-			var/datum/organ/external/parent = get_organ(I.parent_organ)
-			src.custom_pain("You feel a sharp pain in your [parent.display_name]", 1)
+			parent = get_organ(I.parent_organ)
+			custom_pain("You feel a sharp pain in your [parent.display_name]!", 1)
 
 	var/toxDamageMessage = null
 	var/toxMessageProb = 1
-	switch(getToxLoss())
+	var/toxin_damage = getToxLoss()
+	switch(toxin_damage)
 		if(1 to 5)
 			toxMessageProb = 1
 			toxDamageMessage = "Your body stings slightly."
@@ -124,7 +131,6 @@ mob/living/carbon/human/proc/handle_pain()
 			toxDamageMessage = "Your whole body hurts badly."
 		if(26 to INFINITY)
 			toxMessageProb = 5
-			toxDamageMessage = "Your body aches all over, it's driving you mad."
+			toxDamageMessage = "Your body aches all over, it's driving you mad!"
 
-	if(toxDamageMessage && prob(toxMessageProb))
-		src.custom_pain(toxDamageMessage, getToxLoss() >= 15)
+	if(toxDamageMessage && prob(toxMessageProb)) custom_pain(toxDamageMessage, toxin_damage >= 35)

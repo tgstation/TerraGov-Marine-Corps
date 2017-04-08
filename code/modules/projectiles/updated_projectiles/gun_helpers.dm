@@ -259,14 +259,14 @@ should be alright.
 			return
 	return 1
 
-/obj/item/weapon/gun/proc/has_attachment(var/A)
+/obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A) return
 	if(istype(muzzle,A)) return 1
 	if(istype(under,A)) return 1
 	if(istype(rail,A)) return 1
 	if(istype(stock,A)) return 1
 
-/obj/item/weapon/gun/proc/attach_to_gun(var/mob/user, var/obj/item/attachable/attachment)
+/obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
 	if( !(attachment.type in attachable_allowed) )
 		user << "<span class='warning'>[attachment] doesn't fit on [src]!</span>"
 		return
@@ -347,6 +347,23 @@ should be alright.
 		if(16 to 35) attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
 		else attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
 
+/obj/item/weapon/gun/proc/get_active_firearm(mob/user)
+	if(!ishuman(usr)) return
+
+	if(!user.canmove || user.stat || user.restrained() || !user.loc || !isturf(usr.loc))
+		user << "<span class='warning'>Not right now.</span>"
+		return
+
+	var/obj/item/weapon/gun/G = user.equipped()
+
+	if(!istype(G))
+		user << "<span class='warning'>You need a gun in your active hand to do that!</span>"
+		return
+
+	if((G.flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == G.flags_gun_features) return
+
+	return G
+
 //----------------------------------------------------------
 					//				   \\
 					// GUN VERBS PROCS \\
@@ -358,15 +375,11 @@ should be alright.
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
-	set src in usr
+	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
-
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
-		usr << "<span class='warning'>Not right now.</span>"
-		return
-
-	if(!check_both_hands(usr)) return
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G) return
+	src = G
 
 	if(!rail && !muzzle && !under && !stock)
 		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
@@ -400,23 +413,17 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Burst Fire Mode"
 	set desc = "Toggle on or off your weapon burst mode, if it has one. Greatly reduces accuracy."
-	set src in usr
+	set src = usr.contents
 
-	if(flags_gun_features & GUN_BURST_FIRING) return //We don't want to mess with this WHILE the gun is firing.
-
-	if(!ishuman(usr)) return
-
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
-		usr << "Not right now."
-		return
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G) return
+	src = G
 
 	//Burst of 1 doesn't mean anything. The weapon will only fire once regardless.
 	//Just a good safety to have all weapons that can equip a scope with 1 burst_amount.
 	if(burst_amount < 2)
 		usr << "<span class='warning'>This weapon does not have a burst fire mode!</span>"
 		return
-
-	if(!check_both_hands(usr)) return
 
 	usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode.</span>"
 	playsound(usr,'sound/machines/click.ogg', 50, 1)
@@ -426,52 +433,35 @@ should be alright.
 	set category = "Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
-	set src in usr
+	set src = usr.contents
 
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G) return
+	src = G
 
-	if(!ishuman(usr)) return
-
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "<span class='warning'>Not right now!</span>"
-		return
-
-	if(!check_both_hands(usr)) return
-
-	unload(usr)
+	unload(usr,,1) //We want to drop the mag on the ground.
 
 /obj/item/weapon/gun/verb/use_unique_action()
 	set category = "Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
-	set src in usr
+	set src = usr.contents
 
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G) return
+	src = G
 
-	if(!ishuman(usr)) return
-
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "<span class='warning'>Not right now!</span>"
-		return
-
-	if(!check_both_hands(usr)) return
 	unique_action(usr)
 
 /obj/item/weapon/gun/verb/activate_attachment()
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
-	set src in usr
+	set src = usr.contents
 
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
-
-	if(!ishuman(usr)) return
-
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "<span class='warning'>Not right now!</span>"
-		return
-
-	if(!check_both_hands(usr)) return
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G) return
+	src = G
 
 	var/usable_attachments[] = list() //Basic list of attachments to compare later.
 	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) ) usable_attachments += rail

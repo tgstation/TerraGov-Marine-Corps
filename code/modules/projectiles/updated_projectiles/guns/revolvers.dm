@@ -10,11 +10,11 @@
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 15000)
-	fire_sound = 'sound/weapons/44mag.ogg'
-	reload_sound = 'sound/weapons/revolver_cocked.ogg'
-	cocked_sound = 'sound/weapons/revolver_spun.ogg'
-	unload_sound = 'sound/weapons/revolver_unload.ogg'
-	var/hand_reload_sound = 'sound/weapons/revolver_load3.ogg'
+	fire_sound = list('sound/weapons/gun_44mag.ogg')
+	reload_sound = 'sound/weapons/gun_revolver_cocked.ogg'
+	cocked_sound = 'sound/weapons/gun_revolver_spun.ogg'
+	unload_sound = 'sound/weapons/gun_revolver_unload.ogg'
+	var/hand_reload_sound = 'sound/weapons/gun_revolver_load3.ogg'
 	var/spin_sound = 'sound/effects/spin.ogg'
 	var/thud_sound = 'sound/effects/thud.ogg'
 	var/trick_delay = 6
@@ -305,13 +305,13 @@
 /obj/item/ammo_magazine/revolver/upp
 	name = "\improper N-Y speed loader (7.62x38mmR)"
 	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = "7.62×38mmR"
+	caliber = "7.62x38mmR"
 	icon_state = "ny762"
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/ammo_magazine/internal/revolver/upp
 	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = "7.62×38mmR"
+	caliber = "7.62x38mmR"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
@@ -321,7 +321,7 @@
 	icon_state = "ny762"
 	item_state = "ny762"
 	origin_tech = "combat=3;materials=1;syndicate=3"
-	fire_sound = 'sound/weapons/pistol_medium.ogg'
+	fire_sound = list('sound/weapons/gun_pistol_medium.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(/obj/item/attachable/compensator)
@@ -356,7 +356,7 @@
 	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
 	icon_state = "sw357"
 	item_state = "ny762" //PLACEHOLDER
-	fire_sound = 'sound/weapons/pistol_medium.ogg'
+	fire_sound = list('sound/weapons/gun_pistol_medium.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS
@@ -392,7 +392,7 @@
 	icon_state = "mateba"
 	item_state = "mateba"
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/mateba.ogg'
+	fire_sound = list('sound/weapons/gun_mateba.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15
 	attachable_allowed = list(
@@ -437,7 +437,7 @@
 	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
 	icon_state = "spearhead"
 	item_state = "spearhead"
-	fire_sound = 'sound/weapons/44mag2.ogg'
+	fire_sound = list('sound/weapons/gun_44mag2.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(

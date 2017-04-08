@@ -133,17 +133,9 @@ into helmets.dm*/
 
 /obj/item/clothing/head/cmcap/req
 	name = "\improper USCM requisition cap"
-	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
-	icon_state = "cargocap"
-	item_state = "cargocap"
-	item_color = "cargocap"
-
-/obj/item/clothing/head/soft/ro_cap
-	name = "\improper requisition officer cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 	item_state = "cargocap"
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "cargocap"
 
 /obj/item/clothing/head/soft/marine

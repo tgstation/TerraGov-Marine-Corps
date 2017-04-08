@@ -107,7 +107,7 @@
 	icon_state = "syndicateranged"
 	icon_living = "syndicateranged"
 	casingtype =null
-	projectilesound = 'sound/weapons/Gunshot_smg.ogg'
+	projectilesound = 'sound/weapons/gun_smg.ogg'
 	projectiletype = /obj/item/projectile
 
 	weapon1 = /obj/item/weapon/gun/pistol

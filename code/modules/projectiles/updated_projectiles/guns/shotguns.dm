@@ -55,10 +55,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	origin_tech = "combat=4;materials=3"
 	w_class = 4
 	force = 14.0
-	fire_sound = 'sound/weapons/shotgun.ogg'
-	reload_sound = 'sound/weapons/shotgun_shell_insert.ogg'
+	fire_sound = list('sound/weapons/gun_shotgun.ogg')
+	reload_sound = 'sound/weapons/gun_shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
-	var/opened_sound = 'sound/weapons/shotgun_open2.ogg'
+	var/opened_sound = 'sound/weapons/gun_shotgun_open2.ogg'
 	type_of_casings = "shell"
 	accuracy = 1.15
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
@@ -185,7 +185,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 	origin_tech = "combat=4;materials=2"
-	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
+	fire_sound = list('sound/weapons/gun_shotgun_automatic.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
 	flags_atom = FPRINT|CONDUCT
 	attachable_allowed = list(
@@ -217,7 +217,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "mk221"
 	item_state = "mk221"
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
+	fire_sound = list('sound/weapons/gun_shotgun_automatic.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -257,7 +257,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "dshotgun"
 	origin_tech = "combat=4;materials=2"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
-	fire_sound = 'sound/weapons/shotgun_heavy.ogg'
+	fire_sound = list('sound/weapons/gun_shotgun_heavy.ogg')
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -370,8 +370,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "m37"
 	item_state = "m37"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
-	fire_sound = 'sound/weapons/shotgun.ogg'
-	var/pump_sound = 'sound/weapons/shotgunpump.ogg'
+	fire_sound = list('sound/weapons/gun_shotgun.ogg')
+	var/pump_sound = 'sound/weapons/gun_shotgun_pump.ogg'
 	var/pump_delay //Higher means longer delay.
 	var/recent_pump //world.time to see when they last pumped it.
 	attachable_allowed = list(
@@ -455,7 +455,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A four-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
 	icon_state = "hg3712"
 	item_state = "hg3712"
-	fire_sound = 'sound/weapons/shotgun_small.ogg'
+	fire_sound = list('sound/weapons/gun_shotgun_small.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,

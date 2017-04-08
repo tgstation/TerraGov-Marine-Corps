@@ -242,7 +242,7 @@
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
-				playsound(M, 'sound/weapons/shotgun_shell_insert.ogg', 40, 1)
+				playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 40, 1)
 				knife = 0
 				update_icon()
 			return
@@ -255,7 +255,7 @@
 			knife = I
 			I.loc = src
 			M << "<div class='notice'>You slide the [I] into [src].</div>"
-			playsound(M, 'sound/weapons/shotgun_shell_insert.ogg', 40, 1)
+			playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 40, 1)
 			update_icon()
 
 	update_icon()

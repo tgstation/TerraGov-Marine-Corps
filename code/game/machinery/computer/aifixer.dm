@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "ai-fixer"
 	circuit = /obj/item/weapon/circuitboard/aifixer
-	req_one_access = list(ACCESS_MARINE_ENGINEERING)
+	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0
 

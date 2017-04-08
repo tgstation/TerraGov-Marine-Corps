@@ -191,7 +191,7 @@
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
-	name = "Marine Food and Drinks Vendor"
+	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
@@ -202,63 +202,62 @@
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15,
-					/obj/item/weapon/reagent_containers/food/drinks/flask = 20,
+					/obj/item/weapon/reagent_containers/food/drinks/flask = 5)
 //Christmas inventory
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
+/*					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25)
-	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/flask/marine = 10)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/flask/marine = 10)*/
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
 	req_access_txt = ""
 
 
-//MARINE MEDICAL VENDOR -APOPHIS775 24JAN2015
+//MARINE MEDICAL VENDOR -APOPHIS775 31JAN2017
 /obj/machinery/vending/MarineMed
-	name = "MarineMed"
-	desc = "Advanced Marine Drug Dispenser"
+	name = "\improper MarineMed"
+	desc = "Marine Medical Drug Dispenser - Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY)
-	products = list(/obj/item/weapon/storage/syringe_case = 2,
-					/obj/item/bodybag/cryobag = 2,
-					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
-					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 2,
-					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 2,
-					/obj/item/weapon/reagent_containers/syringe = 2,
-					/obj/item/weapon/storage/pill_bottle/kelotane = 1,
-					/obj/item/weapon/storage/pill_bottle/spaceacillin = 1,
-					/obj/item/weapon/storage/pill_bottle/inaprovaline = 1,
-					/obj/item/weapon/storage/pill_bottle/tramadol = 2,
-					/obj/item/weapon/storage/pill_bottle/antitox = 2,
-					/obj/item/device/healthanalyzer = 2,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 5,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 5,
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard = 5,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 5,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 5,
-				//	/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 6,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Inaprovaline = 5,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 5,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 4,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
+					/obj/item/weapon/storage/pill_bottle/bicaridine = 3,
+					/obj/item/weapon/storage/pill_bottle/dexalin = 3,
+					/obj/item/weapon/storage/pill_bottle/antitox = 3,
+					/obj/item/weapon/storage/pill_bottle/kelotane = 3,
+					/obj/item/weapon/storage/pill_bottle/spaceacillin = 3,
+					/obj/item/weapon/storage/pill_bottle/inaprovaline = 3,
+					/obj/item/weapon/storage/pill_bottle/tramadol = 3,
 					/obj/item/weapon/storage/pill_bottle/russianRed = 5,
 					/obj/item/stack/medical/advanced/bruise_pack = 4,
+					/obj/item/stack/medical/bruise_pack = 8,
 					/obj/item/stack/medical/advanced/ointment = 4,
 					/obj/item/stack/medical/ointment = 8,
-					/obj/item/stack/medical/bruise_pack = 8,
-					/obj/item/stack/medical/splint = 2)
+					/obj/item/stack/medical/splint = 2,
+					/obj/item/device/healthanalyzer = 3,
+					/obj/item/bodybag/cryobag = 2)
+
 	contraband = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate =3)
 
 
 
 //NEW BLOOD VENDOR CODE - APOPHIS775 22JAN2015
 /obj/machinery/vending/MarineMed/Blood
-	name = "MM Blood Dispenser"
+	name = "\improper MM Blood Dispenser"
 	desc = "Marine Med brand Blood Pack Dispensery"
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "The best blood on the market!"
-	req_access = list(ACCESS_MARINE_MEDBAY)
+	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	products = list(/obj/item/weapon/reagent_containers/blood/APlus = 5, /obj/item/weapon/reagent_containers/blood/AMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/BPlus = 5, /obj/item/weapon/reagent_containers/blood/BMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/OPlus = 5, /obj/item/weapon/reagent_containers/blood/OMinus = 5,
@@ -280,7 +279,7 @@
 				if(!temp_list.len) break
 
 /obj/machinery/vending/marine_engi
-	name = "ColMarTech Engineer Vendor"
+	name = "\improper ColMarTech Engineer Vendor"
 	desc = "A marine engineering equipment vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
@@ -309,7 +308,7 @@
 	contraband = list(/obj/item/weapon/cell/super = 1)
 
 /obj/machinery/vending/marine_medic
-	name = "ColMarTech Medic Vendor"
+	name = "\improper ColMarTech Medic Vendor"
 	desc = "A marine medic equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
@@ -323,30 +322,11 @@
 						/obj/item/weapon/storage/backpack/marine/satchel/medic = 2,
 						/obj/item/device/encryptionkey/headset_med = 3,
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
-						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/clothing/tie/storage/webbing = 2,
 						/obj/item/weapon/melee/defibrillator = 3,
 						/obj/item/bodybag/cryobag = 4,
-						/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,
-						/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
-						/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 4,
-						/obj/item/weapon/reagent_containers/syringe = 20,
-						/obj/item/weapon/storage/pill_bottle/kelotane = 2,
-						/obj/item/weapon/storage/pill_bottle/spaceacillin = 2,
-						/obj/item/weapon/storage/pill_bottle/inaprovaline = 2,
-						/obj/item/weapon/storage/pill_bottle/tramadol = 4,
-						/obj/item/weapon/storage/pill_bottle/antitox = 4,
-						/obj/item/weapon/storage/pill_bottle/russianRed = 3,
 						/obj/item/device/healthanalyzer = 3,
-						/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 3,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 6,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 6,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 6,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard = 6,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 6,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 6,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 3,
 						/obj/item/clothing/glasses/hud/health = 3,
 						/obj/item/weapon/storage/firstaid/regular = 4,
 						/obj/item/weapon/storage/firstaid/adv = 3
@@ -355,7 +335,7 @@
 
 
 /obj/machinery/vending/marine_special
-	name = "ColMarTech Specialist Vendor"
+	name = "\improper ColMarTech Specialist Vendor"
 	desc = "A marine specialist equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
@@ -386,7 +366,7 @@
 	prices = list()
 
 /obj/machinery/vending/marine_leader
-	name = "ColMarTech Leader Vendor"
+	name = "\improper ColMarTech Leader Vendor"
 	desc = "A marine leader equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
@@ -409,7 +389,7 @@
 					)
 
 /obj/machinery/vending/attachments
-	name = "Armat Systems Attachments Vendor"
+	name = "\improper Armat Systems Attachments Vendor"
 	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"

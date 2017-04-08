@@ -90,8 +90,8 @@
 	update_icon()
 	spawn(3)
 		src.botcard = new /obj/item/weapon/card/id(src)
-		var/datum/job/detective/J = new/datum/job/detective
-		src.botcard.access = J.get_access()
+		var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/command/police] : new /datum/job/command/police
+		botcard.access = J.get_access()
 		if(radio_controller)
 			radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
 			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
@@ -99,7 +99,7 @@
 			shot_delay = 6		//Longer shot delay because JESUS CHRIST
 			check_records = 0	//Don't actively target people set to arrest
 			arrest_type = 1		//Don't even try to cuff
-			req_access = list(ACCESS_MARINE_ENGINEERING)
+			req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 			arrest_type = 1
 			if((lasercolor == "b") && (name == created_name))//Picks a name if there isn't already a custome one
 				name = pick("BLUE BALLER","SANIC","BLUE KILLDEATH MURDERBOT")

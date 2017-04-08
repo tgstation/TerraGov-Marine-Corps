@@ -18,7 +18,7 @@
 	var/list/codes		// assoc. list of transponder codes
 	var/codes_txt = ""	// codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
 
-	req_access = list(ACCESS_MARINE_ENGINEERING)
+	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 
 	New()
 		..()
@@ -238,7 +238,3 @@ Transponder Codes:<UL>"}
 					codes[newkey] = newval
 
 					updateDialog()
-
-
-
-

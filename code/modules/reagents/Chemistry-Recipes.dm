@@ -29,15 +29,29 @@ datum
 			required_reagents = list("water" = 1, "potassium" = 1)
 			result_amount = 2
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				var/datum/effect/effect/system/reagents_explosion/e = new()
-				e.set_up(round (created_volume/10, 1), holder.my_atom, 0, 0)
-				e.holder_damage(holder.my_atom)
-				if(isliving(holder.my_atom))
-					e.amount *= 0.5
-					var/mob/living/L = holder.my_atom
-					if(L.stat!=DEAD)
+				var/atom/location = holder.my_atom.loc
+				if(holder.my_atom && location) //It exists outside of null space.
+					var/datum/effect/effect/system/reagents_explosion/e = new()
+					e.set_up(round (created_volume/10, 1), holder.my_atom, 0, 0)
+					e.holder_damage(holder.my_atom)
+					if(isliving(holder.my_atom))
 						e.amount *= 0.5
-				e.start()
+						var/mob/living/L = holder.my_atom
+						if(L.stat!=DEAD)
+							e.amount *= 0.5
+					if(e.start()) //Gets rid of doubling down on explosives for gameplay purposes. Hacky, but enough for now.
+					//Should be removed when we actually balance out chemistry.
+						var/obj/item/weapon/grenade/g
+						var/obj/item/weapon/storage/s
+						for(g in location) cdel(g) //Grab anything on our turf/something.
+						if(istype(location, /obj/item/weapon/storage) || ismob(location)) //If we're in a bag or person.
+							for(s in location) //Find all other containers.
+								for(g in s) cdel(g) //Delete all the grenades.
+						if(istype(location.loc, /obj/item/weapon/storage) || ismob(location.loc)) //If the container is in another container.
+							for(g in location.loc) cdel(g) //Delete all the grenades inside.
+							for(s in location.loc) //Search for more containers.
+								if(s == location) continue //Don't search the container we're in.
+								for(g in s) cdel(g) //Delete all the grenades inside.
 				holder.clear_reagents()
 				return
 

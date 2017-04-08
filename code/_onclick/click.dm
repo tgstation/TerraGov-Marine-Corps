@@ -16,11 +16,10 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 /atom/Click(location,control,params)
-	if(src)
-		usr.ClickOn(src, params)
+	if(src && control) usr.ClickOn(src, params) //We want control, in case they are using a .click macro. We don't want that.
+
 /atom/DblClick(location,control,params)
-	if(src)
-		usr.DblClickOn(src,params)
+	if(src && control) usr.DblClickOn(src,params)
 
 /*
 	Standard mob ClickOn()
@@ -35,6 +34,7 @@
 	* item/afterattack(atom,user,adjacent,params) - used both ranged and adjacent
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
+
 /mob/proc/ClickOn( var/atom/A, var/params )
 	if(world.time <= next_click || istype(machine, /obj/structure/ladder))
 		return
@@ -63,14 +63,7 @@
 
 	if(stat || paralysis || stunned || weakened)
 		return
-//	Removed the src:turret_control bits. Every sentry or MG now relies on human/clickOn and RELAY_CLICK flag from the object.
-//		if(isYautja(src) && istype(src:get_active_hand(),/obj/item/device/yautja_holoemitter))
-//			if(istype(A,/mob/living/carbon))
-//				var/obj/item/device/yautja_holoemitter/Y = src:get_active_hand()
-//				if(istype(Y))
-//					if(Y.scan_target(A))
-//						src << "You successfully scan [A] into your holoemitter frequencies."
-//						return
+
 	face_atom(A)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))

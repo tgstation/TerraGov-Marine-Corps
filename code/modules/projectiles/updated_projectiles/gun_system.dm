@@ -258,14 +258,14 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
-/obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst.
+/obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && ((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))) return
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
 		cock(user)
 		return
 
-	if(current_mag.current_rounds <= 0 || !user) //If it's empty or there's no user,
+	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.loc = get_turf(src) //Drop it on the ground.
 	else user.put_in_hands(current_mag)
 
@@ -300,7 +300,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.
 	if(casing_type)
 		var/num_of_casings = (current_mag && current_mag.used_casings) ? current_mag.used_casings : 1
-		var/sound_to_play = casing_type == "shell" ? 'sound/weapons/shotgun_shell.ogg' : pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
+		var/sound_to_play = casing_type == "shell" ? 'sound/weapons/bulletcasing_shotgun_fall.ogg' : pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
 		var/turf/current_turf = get_turf(src)
 		var/new_casing = text2path("/obj/item/ammo_casing/[casing_type]")
 		var/obj/item/ammo_casing/casing = locate(new_casing) in current_turf
@@ -383,7 +383,7 @@ and you're good to go.
 		if(current_mag) //If there is no mag, we can't reload.
 			ready_in_chamber()
 			if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
-				unload(user,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
+				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 50, 1)
 
 	// Shouldn't be called on, but in case something that uses Fire() is added that is toggled.
@@ -534,7 +534,9 @@ and you're good to go.
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(recoil+2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
+						var/t = "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> committed suicide with <b>[src]</b>" //Log it.
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
+							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage*3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp=1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
@@ -548,6 +550,7 @@ and you're good to go.
 								user.apply_damage(projectile_to_fire.damage*2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp=1)
 								user.apply_damage(100, OXY)
 								user.death()
+						user.attack_log += t //Apply the attack log.
 
 						projectile_to_fire.play_damage_effect(user)
 						if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
@@ -625,14 +628,14 @@ and you're good to go.
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
 		user.visible_message("*click click*", "<span class='warning'><b>*click*</b></span>")
-		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+		playsound(user, 'sound/weapons/gun_empty.ogg', 100, 1)
 	else
 		visible_message("*click click*")
-		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
+		playsound(src, 'sound/weapons/gun_empty.ogg', 100, 1)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
-	var/actual_sound = fire_sound
+	var/actual_sound = pick(fire_sound)
 	var/sound_volume = flags_gun_features & GUN_SILENCED ? 20 : 50
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.
@@ -646,7 +649,7 @@ and you're good to go.
 		projectile_to_fire.firer = user
 		if(isliving(user)) projectile_to_fire.def_zone = user.zone_sel.selecting
 		projectile_to_fire.dir = user.dir
-		playsound(user, actual_sound, sound_volume, 1)
+		playsound(user, actual_sound, sound_volume)
 		if(i == 1)
 			if(!(flags_gun_features & GUN_SILENCED))
 				user.visible_message(

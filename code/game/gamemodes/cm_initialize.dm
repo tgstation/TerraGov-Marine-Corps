@@ -60,6 +60,9 @@ Additional game mode variables.
 	var/round_checkwin 		= 0
 	var/round_finished
 	var/round_started  		= 5 //This is a simple timer so we don't accidently check win conditions right in post-game
+	var/round_fog[]				//List of the fog locations.
+	var/round_time_lobby 		//Base time for the lobby, for fog dispersal.
+	var/round_time_fog 			//Variance time for fog dispersal, done during pre-setup.
 
 	//Role Authority set up.
 	var/role_instruction 	= 0 // 1 is to replace, 2 is to add, 3 is to remove.

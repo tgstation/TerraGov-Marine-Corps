@@ -24,12 +24,23 @@
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
+//Temporary, until we sort this out properly.
+/obj/effect/landmark/lv624
+	icon = 'icons/misc/mark.dmi'
+
+/obj/effect/landmark/lv624/fog_blocker
+	name = "fog blocker"
+	icon_state = "spawn_event"
+
+/obj/effect/landmark/lv624/xeno_tunnel
+	name = "xeno tunnel"
+	icon_state = "spawn_event"
+
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Pre-setup */
-//We can ignore this for now, we don't want to do anything before characters are set up.
 /datum/game_mode/colonialmarines/pre_setup()
-	return 1
+	. = pre_setup_infestation()
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -44,6 +55,7 @@
 	initialize_post_survivor_list()
 	initialize_post_marine_gear_list()
 
+	round_time_lobby = world.time
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
@@ -54,7 +66,7 @@
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
 /datum/game_mode/colonialmarines/process()
-	process_infestation()
+	. = process_infestation()
 
 ///////////////////////////
 //Checks to see who won///

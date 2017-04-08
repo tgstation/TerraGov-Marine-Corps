@@ -166,6 +166,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Rasputin dropship manually and in safety."
 	icon_state = "helmetp"
 	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	anti_hug = 2
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 	flags_marine_helmet = NOFLAGS
@@ -201,6 +202,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
 	name = "\improper PMC gunner helmet"
@@ -210,6 +212,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 	anti_hug = 4
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
@@ -222,6 +225,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ|BLOCKGASEFFECT
+	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 	anti_hug = 8
 	unacidable = 1
 

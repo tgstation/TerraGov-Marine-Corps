@@ -358,7 +358,7 @@
 		accuracy = -config.low_hit_accuracy
 
 /datum/ammo/bullet/rifle/marksman
-	name = "marksman rifle bullet"
+	name = "A19 high velocity bullet"
 	shrapnel_chance = 0
 	damage_bleed = 0
 	New()
@@ -366,7 +366,8 @@
 		damage = config.hmed_hit_damage
 		accuracy = config.hmed_hit_accuracy
 		scatter = -config.low_scatter_value
-		penetration= config.min_armor_penetration
+		penetration= config.low_armor_penetration
+		shell_speed = config.fast_shell_speed
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
@@ -429,7 +430,7 @@
 		damage_var_low = -config.med_proj_variance
 		damage_var_high = config.med_proj_variance
 		damage_bleed = config.buckshot_damage_bleed
-		penetration	= -config.min_armor_penetration
+		penetration	= -config.mlow_armor_penetration
 		bonus_projectiles = config.low_proj_extra
 		shell_speed = config.slow_shell_speed
 

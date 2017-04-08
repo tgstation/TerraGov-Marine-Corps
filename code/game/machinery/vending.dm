@@ -870,45 +870,41 @@
 					/obj/item/weapon/flame/lighter/random = 2)
 
 /obj/machinery/vending/medical
-	name = "NanoMed Plus"
-	desc = "Medical drug dispenser."
+	name = "WeylandMed Plus"
+	desc = "Medical Pharmaceutical dispenser.  Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
 	icon_state = "med"
 	icon_deny = "med-deny"
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access_txt = "8"
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
+	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
+	products = list(/obj/item/device/healthanalyzer = 5,
+					/obj/item/clothing/glasses/hud/health = 2,
+					/obj/item/weapon/storage/belt/medical = 2,
+					/obj/item/weapon/melee/defibrillator = 2,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 5,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix = 5,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 10,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 10,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 6,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate =3,
-					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 3,
-					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 3,
-					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 3,
-					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 3,
-					/obj/item/weapon/reagent_containers/syringe = 10,
-					/obj/item/weapon/storage/syringe_case = 4,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Inaprovaline = 5,
 					/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 2,
-					/obj/item/device/healthanalyzer = 5,
+					/obj/item/weapon/reagent_containers/syringe = 20,
+					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/bicaridine = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2,
+					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/peridaxon = 2,
+					/obj/item/weapon/reagent_containers/glass/bottle/kelotane = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/dexalin = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/tramadol = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/oxycodone = 4,
+					/obj/item/weapon/storage/pill_bottle/peridaxon = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 5,
 					/obj/item/stack/medical/advanced/ointment = 5,
 					/obj/item/stack/medical/ointment = 10,
 					/obj/item/stack/medical/bruise_pack = 10,
-					/obj/item/stack/medical/splint = 5,
-					/obj/item/weapon/storage/pill_bottle/kelotane = 5,
-					/obj/item/weapon/storage/pill_bottle/spaceacillin = 5,
-					/obj/item/weapon/storage/pill_bottle/inaprovaline = 5,
-					/obj/item/weapon/storage/pill_bottle/tramadol = 5,
-					/obj/item/weapon/storage/pill_bottle/antitox = 5,
-					/obj/item/weapon/storage/pill_bottle/russianRed = 5,
+					/obj/item/stack/medical/splint = 5
 					)
 
-	contraband = list(/obj/item/weapon/reagent_containers/pill/spaceacillin = 10,
-					/obj/item/weapon/reagent_containers/pill/stox = 10,
-					/obj/item/weapon/reagent_containers/pill/antitox = 10,
-					/obj/item/weapon/reagent_containers/pill/tramadol = 10)
+	contraband = list()
 
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
