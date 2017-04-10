@@ -320,7 +320,7 @@
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since the hadn't moved yet
-	turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag)
+	turfs_trg = get_shuttle_turfs(T_trg, info_datums)
 
 	open_doors_crashed(turfs_trg) //And now open the doors
 
