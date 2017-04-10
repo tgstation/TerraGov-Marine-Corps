@@ -6,6 +6,16 @@
 
 /datum/shuttle/ferry/marine
 	var/shuttle_tag
+	var/list/info_datums = list()
+
+/datum/shuttle/ferry/marine/proc/load_datums()
+	set waitfor = 0
+	delay(50) //wait 5 seconds for the controllers to exist
+	if(!(shuttle_tag in s_info))
+		message_admins("<span class=warning>Error with shuttles: Shuttle tag does not exist. Code: MSD10.\n WARNING: DROPSHIP LAUNCH WILL PROBABLY FAIL</span>")
+		log_admin("Error with shuttles: Shuttle tag does not exist. Code: MSD10.")
+
+	info_datums = s_info[shuttle_tag]
 
 /datum/shuttle/ferry/marine/proc/launch_crash(var/user)
 	if(!can_launch()) return //There's another computer trying to launch something
@@ -126,7 +136,7 @@
 
 	//START: Heavy lifting backend
 
-	var/list/turfs_src = get_shuttle_turfs(T_src, shuttle_tag) //Which turfs are we moving?
+	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
 
 	for(var/turf/A in turfs_src) //Lets play the startup sound in all of them
 		for(var/obj/structure/engine_startup_sound/B in A)
@@ -138,9 +148,9 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src) //Get the turfs we arrived at
-	var/list/turfs_int = get_shuttle_turfs(T_int, shuttle_tag) //Interim turfs
-	var/list/turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag) //Final destination turfs <insert bad jokey reference here>
+	move_shuttle_to(T_int, null, turfs_src, 0 , I.rotation) //Rotate by the angle at the destination, not the source
+	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
+	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
 	sleep(travel_time) //Wait while we fly
 
@@ -163,11 +173,17 @@
 
 	sleep(100) //Wait for it to finish
 
-	move_shuttle_to(T_trg, null, turfs_int) //Not neccesary, but a little safer. This shouldn't actually change the variable
+	move_shuttle_to(T_trg, null, turfs_int, 0, T.rotation)
+
+	//Now that we've landed, assuming some rotation including 0, we need to make sure it doesn't fuck up when we go back
+	I.rotation = -1*T.rotation
+	var/interim_deg = T.rotation
+	T.rotation = S.rotation
+	S.rotation = interim_deg
 
 	//We have to get these again so we can close the doors
-	//We didn't need to do it before since the hadn't moved yet
-	turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag)
+	//We didn't need to do it before since they hadn't moved yet
+	turfs_trg = get_shuttle_turfs(T_trg, info_datums)
 
 	open_doors(turfs_trg) //And now open the doors
 
@@ -257,7 +273,7 @@
 
 	//START: Heavy lifting backend
 
-	var/list/turfs_src = get_shuttle_turfs(T_src, shuttle_tag) //Which turfs are we moving?
+	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
 
 	for(var/turf/A in turfs_src) //Lets play the startup sound in all of them
 		for(var/obj/structure/engine_startup_sound/B in A)
@@ -270,7 +286,7 @@
 	close_doors(turfs_src) //Close the doors
 
 	move_shuttle_to(T_int, null, turfs_src)
-	var/list/turfs_int = get_shuttle_turfs(T_int, shuttle_tag) //Interim turfs
+	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
@@ -289,6 +305,8 @@
 
 	sleep(85)
 
+	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
+
 	var/turf/sploded
 	for(var/j=0; j<5; j++)
 		sploded = locate(T_trg.x + rand(-5, 10), T_trg.y + rand(-5, 10), T_trg.z)
@@ -296,9 +314,9 @@
 		explosion(sploded, 0, 0, 6, 0)
 		sleep(3)
 
-	var/list/turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag) //Final destination turfs <insert bad jokey reference here>
+	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
-	move_shuttle_to(T_trg, null, turfs_int)
+	move_shuttle_to(T_trg, null, turfs_int, 0, C.rotation)
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since the hadn't moved yet
@@ -369,7 +387,7 @@
 
 	moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 
-	var/list/turfs_src = get_shuttle_turfs(T_src, shuttle_tag)
+	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums)
 	move_shuttle_to(T_trg, null, turfs_src)
 
 	moving_status = SHUTTLE_IDLE
@@ -476,6 +494,22 @@
 			if(istype(R))
 				del(R) //This is all that it's dismantle() does so this is okay
 				break
+
+/datum/shuttle/ferry/marine/proc/shake_cameras(var/list/L)
+
+	var/i //iterator
+	var/j
+	var/turf/T
+	var/mob/M
+
+	for(i in L)
+		T = i
+		if(!istype(T)) continue
+
+		for(j in T)
+			M = j
+			if(!istype(M)) continue
+			shake_camera(M, 20, 1)
 
 /client/proc/force_shuttle()
 	set name = "Force Dropship"

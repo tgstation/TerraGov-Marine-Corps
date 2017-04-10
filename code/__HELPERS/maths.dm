@@ -34,6 +34,12 @@ var/list/sqrtTable = list(1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 
 /proc/Floor(x)
 	return round(x)
 
+//Finds nearest integer to x, above or below
+/proc/roundNearest(x)
+	var/f = Floor(x)
+	var/c = Ceiling(x)
+	return ((c - x) <= (x - f)) ? c : f //something.5 or higher, round up, else round down
+
 // Greatest Common Divisor - Euclid's algorithm
 /proc/Gcd(a, b)
 	return b ? Gcd(b, a % b) : a

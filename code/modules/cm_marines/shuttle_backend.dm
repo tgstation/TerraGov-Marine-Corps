@@ -36,6 +36,21 @@ See the documentation of /datum/shuttle_area_info for more.
 
 
 
+/proc/rotate_shuttle_turfs(var/list/L, var/deg = 0)
+--------------------------------
+L: The shuttle turfs to rotate. MUST be coord datums indexed by turf, a la get_shuttle_turfs()
+deg: In degrees, how much to rotate the shuttle (clockwise).
+
+Return: the new list on success, null on failure
+
+Notes:
+If deg % 90 != 0 then this will return 0
+When using this in-game, this will rotate treating the reference turf as the origin,
+so keep in mind that a 180 degree turn will reflect the shuttle through the turf,
+e.g. Something up to the right relative to its landmark will end up down to the left
+ONLY called when moving to either the trg landmark or a crs landmark
+
+
 /proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0)
 --------------------------------
 trg: The target reference turf, see var/turf/ref from the previous proc
@@ -49,14 +64,10 @@ TODO: Create /datum/shuttle/ferry/marine/elevator and depreciate this
 
 */
 
-/datum/shuttle_area_info
-	var/list/Rasputin
-	var/list/Droppod
-	var/list/Unknown
+var/global/list/s_info = null
 
-/datum/shuttle_controller/var/datum/shuttle_area_info/s_info = new
-
-/datum/shuttle_area_info/New()
+/hook/startup/proc/loadShuttleInfoDatums()
+	s_info = list()
 
 	//This is how we switch from using those damn areas into using relative positions
 	//These hold the RELATIVE positions to the base turf of a shuttle
@@ -81,11 +92,14 @@ TODO: Create /datum/shuttle/ferry/marine/elevator and depreciate this
 	Furthermore, there should be rar a file called ShuttleGenerator.rar on the repository
 	which has a Java program that will generate the text for you.
 	*/
-	Unknown = newlist(
+
+	/*
+	s_info["ERROR"] = newlist(
 		/datum/coords {x_pos = -1; y_pos = 1}, /datum/coords {x_pos = 0; y_pos = 1}, /datum/coords {x_pos = 1; y_pos = 1},
 		/datum/coords {x_pos = -1; y_pos = 0}, /datum/coords {x_pos = 0; y_pos = 0}, /datum/coords {x_pos = 1; y_pos = 0},
 		/datum/coords {x_pos = -1; y_pos = -1}, /datum/coords {x_pos = 0; y_pos = -1}, /datum/coords {x_pos = 1; y_pos = -1}
 	)
+	*/
 
 	//Rasputin
 	/*
@@ -110,7 +124,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		O O O X X X O O O -- y_pos = 1
 		T O O X X X O O O -- y_pos = 0
 	*/
-	Rasputin = newlist(
+	s_info["Dropship 1"] = newlist(
 		/datum/coords {x_pos = 3; y_pos = 17}, /datum/coords {x_pos = 4; y_pos = 17}, /datum/coords {x_pos = 5; y_pos = 17},
 
 		/datum/coords {x_pos = 3; y_pos = 16}, /datum/coords {x_pos = 4; y_pos = 16}, /datum/coords {x_pos = 5; y_pos = 16},
@@ -164,7 +178,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		O X X X X X X X O -- y_pos = 1
 		T O O O O O O O O -- y_pos = 0
 	*/
-	Droppod = newlist(
+	s_info["Dropship 2"] = newlist(
 		/datum/coords {x_pos = 1; y_pos = 7}, /datum/coords {x_pos = 2; y_pos = 7}, /datum/coords {x_pos = 3; y_pos = 7}, /datum/coords {x_pos = 4; y_pos = 7}, /datum/coords {x_pos = 5; y_pos = 7}, /datum/coords {x_pos = 6; y_pos = 7}, /datum/coords {x_pos = 7; y_pos = 7},
 
 		/datum/coords {x_pos = 1; y_pos = 6}, /datum/coords {x_pos = 2; y_pos = 6}, /datum/coords {x_pos = 3; y_pos = 6}, /datum/coords {x_pos = 4; y_pos = 6}, /datum/coords {x_pos = 5; y_pos = 6}, /datum/coords {x_pos = 6; y_pos = 6}, /datum/coords {x_pos = 7; y_pos = 6},
@@ -180,9 +194,12 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}, /datum/coords {x_pos = 5; y_pos = 1}, /datum/coords {x_pos = 6; y_pos = 1}, /datum/coords {x_pos = 7; y_pos = 1},
 	)
 
+	return 1
+
 /obj/effect/landmark/shuttle_loc
 	desc = "The reference landmark for shuttles"
 	icon = null
+	var/rotation = 0 //When loading to this landmark, how much to rotate the turfs. See /proc/rotate_shuttle_turfs()
 
 /obj/effect/landmark/shuttle_loc/marine_src
 
@@ -195,13 +212,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 /obj/effect/landmark/shuttle_loc/New()
 	shuttlemarks += src
 
-/proc/get_shuttle_turfs(var/turf/ref, var/shuttle)
-	var/list/L
-
-	switch(shuttle) //Figure out which shuttle we've got here
-		if("Dropship 1") L = shuttle_controller.s_info.Rasputin
-		if("Dropship 2") L = shuttle_controller.s_info.Droppod
-		else L = shuttle_controller.s_info.Unknown //youdonefuckedupnow.gif
+/proc/get_shuttle_turfs(var/turf/ref, var/list/L)
 
 	var/list/source = list()
 
@@ -216,10 +227,33 @@ x_pos = 0 1 2 3 4 5 6 7 8
 
 	return source
 
-/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0)
+/proc/rotate_shuttle_turfs(var/list/L, var/deg = 0)
 
-	var/list/update_air = list()
+	if((deg % 90) != 0) return //Not a right or straight angle, don't do anything
+	if(!istype(L) || !L.len) return null
+
 	var/i //iterator
+	var/x //Placeholder while we do math
+	var/y //Placeholder while we do math
+	var/datum/coords/C
+	for(i in L)
+		C = L[i]
+		if(!istype(C)) continue
+		x = C.x_pos
+		y = C.y_pos
+		C.x_pos = x*cos(deg) + y*sin(deg)
+		C.y_pos = y*cos(deg) - x*sin(deg)
+		C.x_pos = roundNearest(C.x_pos) //Sometimes you get very close to the right number but off by around 1e-15 and I want integers dammit
+		C.y_pos = roundNearest(C.y_pos)
+
+	return L
+
+/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0, var/deg = 0)
+
+	//var/list/turfsToUpdate = list()
+	var/i //iterator
+
+	source = rotate_shuttle_turfs(source, deg)
 
 	for(var/turf/T_src in source)
 		var/datum/coords/C = source[T_src]
@@ -261,8 +295,6 @@ x_pos = 0 1 2 3 4 5 6 7 8
 				S_trg.make_air()
 			S_trg.air.copy_from(S_src.air) //TODO: FIX THE BUG INVOLVING THIS PROC
 			S_src.zone.remove(S_src)
-			update_air += S_src
-			update_air += S_trg
 
 		for(var/obj/O in T_src)
 			if(!istype(O)) continue
@@ -288,6 +320,21 @@ x_pos = 0 1 2 3 4 5 6 7 8
 			T_src.ChangeTurf(turftoleave)
 		else
 			T_src.ChangeTurf(/turf/simulated/floor/plating)
+
+	/*
+	Commented out since it doesn't do anything with shuttle walls and the like yet.
+	It will pending smoothwall.dm rewrite
+
+	if(deg) //If we rotated, update the icons
+		i = null //reset it, cuz why not
+		var/j //iterator
+		var/turf/updating
+		for(i in turfsToUpdate)
+			updating = i
+			if(!istype(updating)) continue
+			updating.relativewall()
+	*/
+
 /* Commented out since this functionality was moved to /datum/shuttle/ferry/marine/close_doors() and open_doors()
 	if(air_master) //*sigh* if that crazy bug is gonna happen, it may as well happen on landing.
 		var/turf/T
