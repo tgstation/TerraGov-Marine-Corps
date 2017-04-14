@@ -695,6 +695,8 @@
 #include "code\modules\admin\verbs\SDQL_2.dm"
 #include "code\modules\admin\verbs\SDQL_2_parser.dm"
 #include "code\modules\admin\verbs\ticklag.dm"
+#include "code\modules\Almayer\areas.dm"
+#include "code\modules\Almayer\machinery.dm"
 #include "code\modules\animations\animation_library.dm"
 #include "code\modules\assembly\assembly.dm"
 #include "code\modules\assembly\bomb.dm"
