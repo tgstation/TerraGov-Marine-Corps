@@ -39,6 +39,9 @@
 /atom/proc/handle_icon_junction(var/junction)
 	return
 
+/obj/structure/window/structure/almayer/handle_icon_junction(var/junction)
+	icon_state = "rwindow[junction]"
+
 /turf/simulated/wall/handle_icon_junction(var/junction)
 	icon_state = "[walltype][junction]"
 
@@ -138,25 +141,3 @@
 				shroom.pixel_y = 0
 
 	..()
-
-/turf/simulated/wall/relativewall()
-	if(istype(src,/turf/simulated/wall/vault)) //HACK!!!
-		return
-
-	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
-
-	for(var/turf/simulated/wall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)//Only 'like' walls connect -Sieve
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falsewall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falserwall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	var/turf/simulated/wall/wall = src
-	wall.icon_state = "[wall.walltype][junction]"
-	return
