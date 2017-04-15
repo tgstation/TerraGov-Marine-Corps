@@ -6,6 +6,11 @@
 	var/rotting = 0
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/structure/falsewall,
+		/obj/structure/falserwall)
+
 	var/damage = 0
 	var/damage_cap = 1000 //Wall will break down to girders if damage reaches this point
 
