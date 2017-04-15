@@ -1,3 +1,13 @@
+/*
+/mob/verb/test_shuttle()
+	set name = "DEBUG EVAC SHUTTLE"
+	set category = "DEBUG"
+
+	world << "Location is [emergency_shuttle.shuttle.location]"
+	world << "Moving status is [emergency_shuttle.shuttle.moving_status]"
+	world << "Departed is [emergency_shuttle.departed]"
+
+*/
 #define QUEEN_DEATH_COUNTDOWN 			 12000 //20 minutes. Can be changed into a variable if it needs to be manipulated later.
 
 #define MODE_INFESTATION_X_MAJOR		"Xenomorph Major Victory"
@@ -132,6 +142,13 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	feedback_set_details("round_end_result",round_finished)
 
 	switch(round_finished)
+		if(	MODE_INFESTATION_X_MAJOR,
+			MODE_INFESTATION_M_MAJOR,
+			MODE_INFESTATION_X_MINOR,
+			MODE_INFESTATION_M_MINOR,
+			MODE_INFESTATION_DRAW_DEATH)
+			world << "<span class='round_body'>Thus ends the story of the brave men and women of the USS Sulaco and their struggle on [uppertext(name)].</span>"
+		/*
 		if(MODE_INFESTATION_X_MAJOR)
 			world << "<span class='round_body'>The aliens have successfully wiped out the marines and will live to spread the infestation!</span>"
 			if(prob(50)) 	world << 'sound/misc/Game_Over_Man.ogg'
@@ -147,7 +164,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 		if(MODE_INFESTATION_DRAW_DEATH)
 			world << "<span class='round_body'>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</span>"
 			world << 'sound/misc/sadtrombone.ogg'
-
+		*/
 
 		if(MODE_BATTLEFIELD_W_MAJOR)
 			world << "<span class='round_body'>The W-Y PMCs have successfully repelled the USCM assault and completed their objectives!</span>"
@@ -169,8 +186,8 @@ of predators), but can be added to include variant game modes (like humans vs. h
 
 
 		if(MODE_GENERIC_DRAW_NUKE)
-			world << "<span class='round_body'>The station has blown by a nuclear fission device... there are no winners!</span>"
-			world << 'sound/misc/sadtrombone.ogg'
+			world << "<span class='round_body'>The nuclear explosion changed everything.</span>"
+			//world << 'sound/misc/sadtrombone.ogg'
 		else world << "<span class='round_body'>Whoops, something went wrong with declare_completion(), blame the coders!</span>"
 
 	var/dat = ""
@@ -180,15 +197,90 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	if(round_stats) round_stats << "[round_finished][dat]\nRound time: [duration2text()]\nRound population: [clients.len][log_end]" // Logging to data/logs/round_stats.log
 
 	world << dat
+
+
+
+	declare_completion_announce_individual()
 	declare_completion_announce_predators()
 	if(flags_round_type & MODE_INFESTATION)
 		declare_completion_announce_xenomorphs()
 		declare_completion_announce_survivors()
 	return 1
 
-/datum/game_mode/proc/declare_completion_announce_predators()
+/datum/game_mode/proc/declare_completion_announce_individual()
 	set waitfor = 0
 	sleep(45)
+/*
+dat = "You have met your demise during the events of [upper_text(name)][m.mind.current ? " as [m.mind.current.real_name]" : ]. Rest in peace."
+
+dat = "<b>You have survived the events of [upper_text(name)]</b>"
+
+//General disposition.
+dat += ", but a sickly feeling in your chest suggests a darker fate awaits you..."
+dat += ", but you find yourself in a sticky situation. Best to find a way out..."
+//Pain/damage.
+dat += " The pain is making it difficult to see straight. You are still reeling from the experience."
+dat += " Your severe injuries will no-doubt be a topic for discussion in the future."
+//Managed to get to evac safely.
+dat += " At least you've made it to evac; it's all over now, right?"
+//Failed to catch it.
+dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
+
+
+"<b>You have survived</b>
+"<b>You have survived</b>, and you have managed to evacuate the [MAIN_SHIP_NAME]. Maybe it's finally over..."
+"<b>You have survived</b>. That is more than enough, but who knows what the future holds for you now..."
+
+
+
+
+
+
+"<span class='round_body'>You lead your hive, and you have survived. Your influence will grow in time.</span>"
+"<span class='round_body'>You have served the hive.</span>"
+
+	for(var/mob/m in player_list)
+		if(m.mind)
+			if(m.stat == DEAD) "<span class='round_body'>You met your demise during the events of [upper_text(name)].</span>"
+			else
+				if(isYautja(m))
+
+				if(ishuman(m))
+					is_mob_immobalized()
+				if(isXeno(m))
+
+
+				var/turf/T = get_turf(m)
+				if(ishuman(H))
+
+				var/turf/playerTurf = get_turf(Player)
+				if(emergency_shuttle.departed && emergency_shuttle.evac)
+					if(playerTurf.z != 2)
+						Player << "<span class='round_body'>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</span>"
+					else
+						Player << "<font color='green'><b>You managed to survive the events of [name] as [m.real_name].</b></font>"
+				else if(playerTurf.z == 2)
+					Player << "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>"
+				else if(issilicon(Player))
+					Player << "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>"
+				else
+					Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
+			else
+
+	if(xenomorphs.len)
+		var/dat = "<span class='round_body'>The xenomorph Queen(s) were:</span>"
+		var/mob/M
+		for(var/datum/mind/X in xenomorphs)
+			if(istype(X))
+				M = X.current
+				if(!M || !M.loc) M = X.original
+				if(M && M.loc && istype(M,/mob/living/carbon/Xenomorph/Queen)) dat += "<br>[X.key] was [M] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
+
+		world << dat
+*/
+/datum/game_mode/proc/declare_completion_announce_xenomorphs()
+	set waitfor = 0
+	sleep(60)
 	if(xenomorphs.len)
 		var/dat = "<span class='round_body'>The xenomorph Queen(s) were:</span>"
 		var/mob/M
@@ -200,9 +292,9 @@ of predators), but can be added to include variant game modes (like humans vs. h
 
 		world << dat
 
-/datum/game_mode/proc/declare_completion_announce_xenomorphs()
+/datum/game_mode/proc/declare_completion_announce_survivors()
 	set waitfor = 0
-	sleep(45)
+	sleep(85)
 	if(survivors.len)
 		var/dat = "<span class='round_body'>The survivors were:</span>"
 		var/mob/M
@@ -215,9 +307,9 @@ of predators), but can be added to include variant game modes (like humans vs. h
 
 		world << dat
 
-/datum/game_mode/proc/declare_completion_announce_survivors()
+/datum/game_mode/proc/declare_completion_announce_predators()
 	set waitfor = 0
-	sleep(45)
+	sleep(100)
 	if(predators.len)
 		var/dat = "<span class='round_body'>The Predators were:</span>"
 		var/mob/M

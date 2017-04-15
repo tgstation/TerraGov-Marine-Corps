@@ -118,17 +118,19 @@
 				message_cooldown = 1
 				spawn(600)//One minute cooldown
 					message_cooldown = 0
-
+/*
 		if("callshuttle")
 			src.state = STATE_DEFAULT
 			if(src.authenticated)
 				src.state = STATE_CALLSHUTTLE
+				*/
 		if("callshuttle2")
 			if(src.authenticated)
 				call_shuttle_proc(usr)
 				if(emergency_shuttle.online())
 					post_status("shuttle")
 			src.state = STATE_DEFAULT
+		/*
 		if("requestshuttle")
 			if(src.authenticated)
 				if(request_cooldown)
@@ -152,6 +154,7 @@
 			src.state = STATE_DEFAULT
 			if(src.authenticated)
 				src.state = STATE_CANCELSHUTTLE
+				*/
 		if("cancelshuttle2")
 			if(src.authenticated)
 				cancel_call_proc(usr)
@@ -277,7 +280,7 @@
 				spawn(300) //Deciseconds
 					centcomm_message_cooldown = 0
 
-
+/*
 		// OMG SYNDICATE ...LETTERHEAD
 		if("MessageSyndicate")
 			if((src.authenticated==2) && (src.emagged))
@@ -293,7 +296,7 @@
 				centcomm_message_cooldown = 1
 				spawn(300)//10 minute cooldown
 					centcomm_message_cooldown = 0
-
+*/
 		if("RestoreBackup")
 			usr << "Backup routing data restored!"
 			src.emagged = 0
@@ -399,24 +402,14 @@
 						dat += "<BR>\[ USCM communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
 
-				var/count_humans = 0
-				var/count_aliens = 0
+				if(ticker && ticker.mode && emergency_shuttle.location())
+					var/L = ticker.mode.count_humans_and_xenos()
+					var/count_humans = L[1]
+					var/count_aliens = L[2]
 
-				for(var/mob/living/M in player_list)
-					if(ishuman(M) && M.stat != DEAD)
-						count_humans++
-					if(isXeno(M) && M.stat != DEAD)
-						count_aliens++
-
-				if(emergency_shuttle.location())
-					if (emergency_shuttle.online())
-						dat += "<BR>\[ Shuttle en-route! \]"
-					else if(count_aliens >= count_humans*0.8 && admins.len > 0) // 80% of humans will disregard most non-combat marines
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=requestshuttle'>Request Emergency Shuttle</A> \]"
-					else if(count_aliens >= count_humans*0.8 && admins.len == 0)
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Call Emergency Shuttle</A> \]"
-					else
-						dat += "<BR>\[ Shuttle unavailable \]"
+					if (emergency_shuttle.online()) dat += "<BR>\[ Shuttle en-route! \]"
+					else if(count_aliens >= count_humans*0.8 && admins.len > 0) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=requestshuttle'>Initiate Protocol Omicron 7-32A</A> \]"// 80% of humans will disregard most non-combat marines
+					else dat += "<BR>\[ Shuttle unavailable \]"
 
 			else
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>Log In</A> \]"
@@ -561,7 +554,7 @@
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 
 	return
-
+/*
 /proc/init_shift_change(var/mob/user, var/force = 0)
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
@@ -601,11 +594,9 @@
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
 
 	return
-
+*/
 /proc/cancel_call_proc(var/mob/user)
 	if (!( ticker ) || !emergency_shuttle.can_recall())
-		return
-	if((ticker.mode.name == "blob")||(ticker.mode.name == "meteor"))
 		return
 
 	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to centcomm
@@ -673,9 +664,6 @@
 	for(var/mob/living/silicon/ai/shuttlecaller in player_list)
 		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
 			return ..()
-
-//	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
-//		return ..()
 
 	emergency_shuttle.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
