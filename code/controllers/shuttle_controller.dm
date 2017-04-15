@@ -131,6 +131,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.transit_direction = NORTH
 	shuttle1.move_time = DROPSHIP_TRANSIT_DURATION
 	shuttle1.shuttle_tag = "Dropship 1"
+	shuttle1.load_datums()
 	shuttles["Dropship 1"] = shuttle1
 	process_shuttles += shuttle1
 
@@ -141,6 +142,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.transit_direction = NORTH
 	shuttle1.move_time = DROPPOD_TRANSIT_DURATION
 	shuttle1.shuttle_tag = "Dropship 2"
+	shuttle1.load_datums()
 	shuttles["Dropship 2"] = shuttle1
 	process_shuttles += shuttle1
 
