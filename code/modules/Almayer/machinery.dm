@@ -41,3 +41,23 @@
 			build_inventory(products2)
 		marine_vendors.Add(src)
 
+
+
+//-----USS Almayer Props -----//
+//Put any props that don't function properly, they could function in the future but for now are for looks. This system could be expanded for other maps too. ~Art
+
+/obj/machinery/prop/almayer
+	name = "GENERIC USS ALMAYER PROP"
+	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
+
+/obj/machinery/prop/almayer/hangar/dropship_part_fabricator
+	name = "dropship part fabricator"
+	desc = "A large automated 3D printer for producing new dropship parts."
+
+	density = 1
+	anchored = 1
+	use_power = 1
+	idle_power_usage = 20
+
+	icon = 'icons/obj/machines/drone_fab.dmi'
+	icon_state = "drone_fab_idle"
