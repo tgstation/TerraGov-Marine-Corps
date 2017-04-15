@@ -265,3 +265,20 @@
 /area/almayer/squads/req
 	name = "\improper Almayer Requestions"
 	icon_state = "req"
+
+/area/almayer/evacuation
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "shuttle2"
+
+//Placeholder.
+/area/almayer/evacuation/pod1
+/area/almayer/evacuation/pod2
+/area/almayer/evacuation/pod3
+/area/almayer/evacuation/pod4
+/area/almayer/evacuation/pod5
+/area/almayer/evacuation/pod6
+/area/almayer/evacuation/pod7
+/area/almayer/evacuation/pod8
+/area/almayer/evacuation/pod9
+/area/almayer/evacuation/pod10
+/area/almayer/evacuation/pod11

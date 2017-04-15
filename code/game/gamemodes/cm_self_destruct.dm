@@ -1,3 +1,121 @@
+#define SELF_DESTRUCT_ROD_STARTUP_TIME 2000
+
+//Generic parent base for the self_destruct.
+/obj/machinery/self_destruct
+	icon = 'icons/obj/machines/self_destruct.dmi'
+	use_power = 0 //Runs unpowered, may need to change later.
+	density = 0
+	anchored = 1 //So it doesn't go anywhere.
+	unacidable = 1 //Can't and shouldn't destroy this. TODO: Add C4 protection.
+	mouse_opacity = 0 //No need to click or interact with this initially.
+	var/active_state = 0
+	//Add in process state?
+
+	New()
+		..()
+		icon_state += "_1"
+
+	Dispose()
+		. = ..()
+		machines -= src
+		operator = null
+
+//Add sounds.
+/obj/machinery/self_destruct/proc/lock_or_unlock(lock)
+	flick(initial(icon_state) + (lock? "_5" : "_2"),src)
+	icon_state = initial(icon_state) + (lock? "_1" : "_3")
+	mouse_opacity = !mouse_opacity
+
+/obj/machinery/self_destruct/proc/activate()
+
+/obj/machinery/self_destruct/console //Not an actual console. It has very basic functionality.
+	name = "self destruct control panel"
+	icon_state = "console"
+	var/list/control_rods //Slave devices to make the explosion work.
+
+	New()
+		..()
+		control_rods = new
+		for(var/obj/machinery/self_destruct/rod/I in world) control_rods += I
+		if(!control_rods.len)
+			log_debug("ERROR CODE SD1: could not find any self destruct rods")
+			world << "<span class='debuginfo'>ERROR CODE SD1: could not find any self destruct rods</span>"
+			cdel(src)
+			r_FAL
+		desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [control_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
+
+	Dispose()
+		. = ..()
+		control_rods = null
+
+	//Add sounds.
+	attack_hand(mob/user)
+		if(!..()) //This check is backward, ugh.
+			if(!active_state)
+				user << "<span class='notice'>You press a few keys on the panel.</span>"
+				user << "<span class='notice'>The system must be booting up the self-destruct sequence now.</span>"
+
+				ai_system.Announce("WARNING. WARNING. Self destruct system activated. WARNING. WARNING. Countdown initiated. WARNING. WARNING.")
+				active_state = !active_state
+
+			else
+				var/obj/machinery/self_destruct/rod/I
+				var/i
+				switch(alert(user, ,"|DANGER| OMICRON6 Nuclear Device |DANGER|", "Trigger manual detonation", "Cancel detonation sequence", "Nothing"))
+					if("Trigger manual detonation")
+						for(i in control_rods)
+							I = i
+							if(I.active_state != 2)
+								state("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
+								r_FAL
+						//destroy
+
+					if("Cancel detonation sequence")
+						for(i in control_rods)
+							I = i
+							if(I.active_state == 2)
+								state("<span class='warning'>WARNING: Unable to cancel detonation. Please disarm all control rods.</span>")
+								r_FAL
+						//cancel
+						active_state = 0
+						for(i in control_rods)
+							I = i
+							if(I.active_state == 1)
+								I.lock_or_unlock(1)
+								sleep(10)
+						lock_or_unlock(1)
+
+/obj/machinery/self_destruct/rod
+	name = "self destruct control rod"
+	desc = "It is part of a complicated self-destruct sequence, but relatively simple to operate. Twist to arm or disarm."
+	icon_state = "rod"
+
+	lock_or_unlock()
+		..()
+		density = !density
+
+	attack_hand(mob/user)
+		if(!..())
+			switch(active_state)
+				if(1)
+					user << "<span class='notice'>You twist and release the control rod, arming it.</span>"
+					icon_state = "rod_4"
+					active_state += 1
+				if(2)
+					user << "<span class='notice'>You twist and release the control rod, disarming it.</span>"
+					icon_state = "rod_3"
+					active_state -= 1
+				else
+					user << "<span class='warning'>The control rod is not ready.</span>"
+
+#undef SELF_DESTRUCT_ROD_STARTUP_TIME
+
+/obj/machinery/cryopod/evacuation //Placeholder
+
+/obj/machinery/door/unpowered/shuttle/evacuation //Placeholder
+
+/obj/machinery/door_control/evacuation //Placeholder
+
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 // Controls the emergency shuttle
