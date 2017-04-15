@@ -92,13 +92,29 @@
 */
 
 /atom/proc/relativewall_neighbours()
-	for(var/turf/simulated/wall/W in range(src,1))
-		W.relativewall()
-	for(var/obj/structure/falsewall/W in range(src,1))
-		W.relativewall()
-		W.update_icon()//Refreshes the wall to make sure the icons don't desync
-	for(var/obj/structure/falserwall/W in range(src,1))
-		W.relativewall()
+
+	var/i //iterator
+	var/turf/T //The turf we are checking
+	var/j //second iterator
+	var/atom/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
+
+	checking_tiles:
+		for(i in cardinal) //For all cardinal dir turfs
+			T = get_step(src, i)
+			if(!istype(T)) continue
+			for(j in src.tiles_with) //And for all types that we tile with
+				if(istype(T, j))
+					T.relativewall() //If we tile this type, junction it
+					continue checking_tiles
+
+				else if(istype(T, /turf)) //Should always be true, but just in case
+					for(k in T)
+						if(istype(k, j))
+							k.relativewall() //get_dir to i, since k is something inside the turf T
+							continue checking_tiles
+
+				else throw EXCEPTION("Error: Expected turfs in list things_to_check but recieved something else. Error code: MSD_SW_IWNAT")
+
 	return
 
 /turf/simulated/wall/New()
