@@ -2,6 +2,65 @@
 //Also assemblies.dm for falsewall checking for this when used.
 //I should really make the shuttle wall check run every time it's moved, but centcom uses unsimulated floors so !effort
 
+/atom
+	//A list of paths only that each turf should tile with
+	var/list/tiles_with = list()
+
+/atom/proc/relativewall() //atom because it should be useable both for walls, false walls, doors, windows, etc
+
+	var/junction = 0 //flag used for icon_state
+
+	var/i //iterator
+	var/turf/T //The turf we are checking
+	var/j //second iterator
+	var/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
+
+	checking_tiles:
+		for(i in cardinal) //For all cardinal dir turfs
+			T = get_step(src, i)
+			if(!istype(T)) continue
+			for(j in src.tiles_with) //And for all types that we tile with
+				if(istype(T, j))
+					junction |= get_dir(src, T) //If we tile this type, junction it
+					continue checking_tiles
+
+				else if(istype(T, /turf)) //Should always be true, but just in case
+					for(k in T)
+						if(istype(k, j))
+							junction |= get_dir(src, T) //get_dir to i, since k is something inside the turf T
+							continue checking_tiles
+
+				else throw EXCEPTION("Error: Expected turfs in list things_to_check but recieved something else. Error code: MSD_SW_IWNAT")
+
+	handle_icon_junction(junction)
+
+	return
+
+/atom/proc/handle_icon_junction(var/junction)
+	return
+
+/turf/simulated/wall/handle_icon_junction(var/junction)
+	icon_state = "[walltype][junction]"
+
+/obj/structure/falserwall/handle_icon_junction(var/junction)
+	icon_state = "rwall[junction]"
+
+/obj/structure/falsewall/handle_icon_junction(var/junction)
+	icon_state = "[mineral][junction]"
+
+
+/turf/simulated/floor/vault/relativewall()
+	return
+
+/turf/simulated/wall/vault/relativewall()
+	return
+
+/turf/simulated/shuttle/wall/relativewall()
+	//TODO: Make something for this and make it work with shuttle rotations
+	return
+
+/*
+
 /atom/proc/relativewall() //atom because it should be useable both for walls and false walls
 	if(istype(src,/turf/simulated/floor/vault)||istype(src,/turf/simulated/wall/vault)) //HACK!!!
 		return
@@ -19,22 +78,6 @@
 			if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
 				junction |= get_dir(src,W)
 
-/* Commenting this out for now until we figure out what to do with shuttle smooth walls, if anything.
-   As they are now, they sort of work screwy and may need further coding. Or just be scrapped.*/
-	/*else
-		for(var/turf/simulated/shuttle/wall/W in orange(src,1))
-			if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-				junction |= get_dir(src,W)
-		for(var/obj/machinery/shuttle/W in orange(src,1)) //stuff like engine and propulsion should merge with walls
-			if(abs(src.x-W.x)-abs(src.y-W.y))
-				junction |= get_dir(src,W)
-		for(var/obj/machinery/door/W in orange(src,1)) //doors should not result in diagonal walls, it just looks ugly. checking if area is shuttle so it won't merge with the station
-			if((abs(src.x-W.x)-abs(src.y-W.y)) && (istype(W.loc.loc,/area/shuttle) || istype(W.loc.loc,/area/supply)))
-				junction |= get_dir(src,W)
-		for(var/obj/structure/grille/W in orange(src,1)) //same for grilles. checking if area is shuttle so it won't merge with the station
-			if((abs(src.x-W.x)-abs(src.y-W.y)) && (istype(W.loc.loc,/area/shuttle) || istype(W.loc.loc,/area/supply)))
-				junction |= get_dir(src,W)*/
-
 	if(istype(src,/turf/simulated/wall))
 		var/turf/simulated/wall/wall = src
 		wall.icon_state = "[wall.walltype][junction]"
@@ -43,39 +86,10 @@
 	else if (istype(src,/obj/structure/falsewall))
 		var/obj/structure/falsewall/fwall = src
 		fwall.icon_state = "[fwall.mineral][junction]"
-/*	else if(istype(src,/turf/simulated/shuttle/wall))
-		var/newicon = icon;
-		var/newiconstate = icon_state;
-		if(junction!=5 && junction!=6 && junction!=9 && junction!=10) //if it's not diagonal, all is well, no additional calculations needed
-			src.icon_state = "swall[junction]"
-		else //if it's diagonal, we need to figure out if we're using the floor diagonal or the space diagonal sprite
-			var/is_floor = 0
-			for(var/turf/unsimulated/floor/F in orange(src,1))
-				if(abs(src.x-F.x)-abs(src.y-F.y))
-					if((15-junction) & get_dir(src,F)) //if there's a floor in at least one of the empty space directions, return 1
-						is_floor = 1
-						newicon = F.icon
-						newiconstate = F.icon_state //we'll save these for later
-			for(var/turf/simulated/floor/F in orange(src,1))
-				if(abs(src.x-F.x)-abs(src.y-F.y))
-					if((15-junction) & get_dir(src,F)) //if there's a floor in at least one of the empty space directions, return 1
-						is_floor = 1
-						newicon = F.icon
-						newiconstate = F.icon_state //we'll save these for later
-			for(var/turf/simulated/shuttle/floor/F in orange(src,1))
-				if(abs(src.x-F.x)-abs(src.y-F.y))
-					if((15-junction) & get_dir(src,F)) //if there's a floor in at least one of the empty space directions, return 1
-						is_floor = 1
-						newicon = F.icon
-						newiconstate = F.icon_state //we'll save these for later
-			if(is_floor) //if is_floor = 1, we use the floor diagonal sprite
-				src.icon = newicon; //we'll set the floor's icon to the floor next to it and overlay the wall segment. shuttle floor sprites have priority
-				src.icon_state = newiconstate; //
-				src.overlays += icon('icons/turf/shuttle.dmi',"swall_f[junction]")
-			else //otherwise, the space one
-				src.icon_state = "swall_s[junction]"*/
 
 	return
+
+*/
 
 /atom/proc/relativewall_neighbours()
 	for(var/turf/simulated/wall/W in range(src,1))
@@ -90,15 +104,6 @@
 /turf/simulated/wall/New()
 	relativewall_neighbours()
 	..()
-
-/*/turf/simulated/shuttle/wall/New()
-
-	spawn(20) //testing if this will make /obj/machinery/shuttle and /door count - It does, it stays.
-		if(src.icon_state in list("wall1", "wall", "diagonalWall", "wall_floor", "wall_space")) //so wizard den, syndie shuttle etc will remain black
-			for(var/turf/simulated/shuttle/wall/W in range(src,1))
-				W.relativewall()
-
-	..()*/
 
 /turf/simulated/wall/Del()
 	spawn(10)
