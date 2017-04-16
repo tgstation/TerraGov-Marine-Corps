@@ -248,6 +248,7 @@
 
 /obj/item/ammo_magazine/pistol/holdout
 	name = "tiny pistol magazine (.22)"
+	desc = "A surprisingly small magazine, holding .22 bullets. No Kolibri, but it's getting there."
 	default_ammo = /datum/ammo/bullet/pistol/tiny
 	caliber = ".22"
 	icon_state = "m4a3" //PLACEHOLDER

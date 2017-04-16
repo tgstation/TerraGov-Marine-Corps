@@ -277,7 +277,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
 	name = "metal flask"
-	desc = "A metal flask filled with somethign boring like water."
+	desc = "A metal flask with a decent liquid capacity."
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
