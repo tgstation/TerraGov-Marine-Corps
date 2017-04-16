@@ -27,7 +27,7 @@
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
 		/obj/structure/falserwall,
-		/obj/structure/window)
+		/obj/structure/window/reinforced/almayer)
 
 /turf/simulated/wall/almayer/outer
 	name = "outer hull"
@@ -64,4 +64,16 @@
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall)
+		/obj/structure/falserwall,
+		/obj/structure/window/reinforced/almayer)
+
+/obj/structure/window/reinforced/almayer/New()
+	spawn(10)
+		relativewall()
+		relativewall_neighbours()
+
+/obj/structure/window/reinforced/almayer/update_nearby_icons()
+	relativewall_neighbours()
+
+/obj/structure/window/reinforced/almayer/update_icon()
+	relativewall()
