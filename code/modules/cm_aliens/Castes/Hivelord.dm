@@ -94,8 +94,8 @@
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>")
 	if(do_after(src, 100))
 		if(!start_dig) //Let's start a new one.
-			visible_message("<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", \
-			"<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>")
+			visible_message("<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>", \
+			"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>")
 			start_dig = new /obj/structure/tunnel(T)
 		else
 			src << "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances!</span>"

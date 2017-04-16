@@ -1184,7 +1184,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
 	name = "Space Twinkie"
 	icon_state = "space_twinkie"
-	desc = "Guaranteed to survive longer then you will."
+	desc = "Guaranteed to survive longer than you will."
 	filling_color = "#FFE591"
 
 	New()

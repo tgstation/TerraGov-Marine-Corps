@@ -1,6 +1,6 @@
 /obj/structure/cargo_container
 	name = "Cargo Container"
-	desc = "A huge industrial shipping container,"
+	desc = "A huge industrial shipping container."
 	icon = 'icons/contain.dmi'
 	icon_state = "blue"
 	bound_width = 32

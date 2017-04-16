@@ -121,7 +121,7 @@
 
 /obj/item/weapon/card/id
 	name = "identification card"
-	desc = "A card used to provide ID and determine access across the station."
+	desc = "A card used to provide ID and determine access to a large array of machinery."
 	icon_state = "id"
 	item_state = "card-id"
 	var/access = list()

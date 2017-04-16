@@ -168,7 +168,7 @@
 					return
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
-				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B].")
+				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B.name].")
 				B.icon_state = "barricade_[slayer]"
 				B.health = slayer * 25
 				B.dir = user.dir

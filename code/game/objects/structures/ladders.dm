@@ -127,7 +127,7 @@
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
 		if(isXenoLarva(usr) || isobserver(usr) || usr.stat)
-			usr << "You can't do that"
+			usr << "You can't do that. Just use the ladder."
 			return
 		if(up && down)
 			switch( alert("Look up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
