@@ -7,8 +7,8 @@
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  Currently in standby mode."
 	directwired = 0     //Requires a cable directly underneath
 	unacidable = 1      //NOPE.jpg
-	power_gen_percent = 0 //200,000W at full capacity
-	power_generation_max = 200000 //Full capacity
+	power_gen_percent = 0 //100,000W at full capacity
+	power_generation_max = 100000 //Full capacity
 	powernet_connection_failed = 0 //Logic checking for powernets
 	buildstate = 0 //What state of building it are we on, 0-3, 1 is "broken", the default
 	is_on = 0  //Is this damn thing on or what?
@@ -27,6 +27,10 @@
 /obj/machinery/power/geothermal/sulaco/process()
 	if(!is_on || buildstate || !anchored) //Default logic checking
 		return 0
+
+	//FOR NOW, INFINITE FUEL
+	if (fuel_amount < 10)
+		fuel_amount = 100
 
 	if(!powernet && !powernet_connection_failed) //Powernet checking, make sure there's valid cables & powernets
 		if(!connect_to_network())
@@ -67,7 +71,7 @@
 			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell is below half")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The fuel cell is running low.</red>"
 		if (fuel_amount <= 10 && fuel_amount > 0)
-			src.visible_message("\icon[src] <b>[src]</b> displasy that hte fuel cell is critically low and needs to be replaced")
+			src.visible_message("\icon[src] <b>[src]</b> displasy that the fuel cell is critically low and needs to be replaced")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The Fuel cell is critically low.</red>"
 		if (fuel_amount == 0)
 			src.visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engie seizes.")
@@ -76,8 +80,9 @@
 			buildstate = 0
 			is_on = 0
 			fail_rate++ //Each time the engine is allowed to seize up it's fail rate for the future increases
+		verbalupdate = 1
 		spawn(600)
-			verbalupdate = 1
+			verbalupdate = 0
 
 
 
