@@ -1330,49 +1330,6 @@
 // Whiskey Outpost V2 Standard Edition //
 /////////////////////////////////////////
 
-
-//Sandbags
-/obj/structure/m_barricade/sandbags
-	name = "sandbag barricade"
-	desc = "Trusted since 1914"
-	icon = 'icons/turf/whiskeyoutpost.dmi'
-	icon_state = "sandbag"
-	health = 250 //Pretty tough. Changes sprites at 300 and 150.
-
-	New()
-		if(dir != NORTH)
-			layer = 5
-		else
-			layer = 3
-
-/obj/structure/m_barricade/sandbags/Crossed(atom/movable/O)
-	..()
-	if(istype(O,/mob/living/carbon/Xenomorph/Crusher))
-		var/mob/living/carbon/Xenomorph/M = O
-		if(!M.stat)
-			visible_message("<span class='danger'>[O] steamrolls through [src]!</span>")
- 		destroy() //This fixes the weird bug where it wouldn't compile because it would say theres a unbalanced } + defining a proc within a proc.
-
-/obj/structure/m_barricade/sandbags/update_icon()
-	if(dir == SOUTH) layer = 5
-	icon_state = initial(icon_state)
-
-/obj/structure/m_barricade/sandbags/update_health()
-	if(health < 0) destroy()
-
-/obj/structure/m_barricade/sandbags/attackby(obj/item/W as obj, mob/user as mob)
-	if(!W) return
-
-	//Otherwise, just hit it.
-	if(force > 20)
-		..()
-		health -= W.force * 0.5
-		update_health()
-
-/obj/structure/m_barricade/sandbags/destroy()
-	density = 0
-	cdel(src)
-
 //////////////////////////////////////////////////////////////
 // Laser Designator
 

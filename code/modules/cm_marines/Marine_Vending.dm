@@ -303,7 +303,8 @@
 						/obj/item/weapon/airlock_electronics = 10,
 						/obj/item/weapon/module/power_control = 10,
 						/obj/item/weapon/airalarm_electronics = 10,
-						/obj/item/weapon/cell/high = 10
+						/obj/item/weapon/cell/high = 10,
+						/obj/item/weapon/etool = 3
 					)
 	contraband = list(/obj/item/weapon/cell/super = 1)
 
