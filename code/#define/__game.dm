@@ -4,6 +4,9 @@
 #define r_TRU return TRUE //Handy shorthand.
 #define r_FAL return FALSE
 
+#define MAIN_SHIP_NAME "USS Almayer"
+#define MAIN_AI_SYSTEM "H/O.R/|U.S. AI 3.1"
+
 /*
 Trash Authority Directives
 Defines for when we need to give commands to the trash authority in how to handle trash.

@@ -396,7 +396,6 @@ var/global/datum/controller/gameticker/ticker
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
 					world << "\red The round has ended!"
 					round_end_announced = 1
-				vote.autotransfer()
 
 		return 1
 

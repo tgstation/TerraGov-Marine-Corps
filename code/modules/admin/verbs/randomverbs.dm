@@ -620,16 +620,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_create_MOTHER_report()
 	set category = "Special Verbs"
-	set name = "Create MOTHER Report"
+	set name = "Create AI Report"
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
-	var/input = input(usr, "This should be a message from the ships AI.  Check with online staff before you send this.", "What?", "") as message|null
-	var/customname = "M.O.T.H.E.R. Status Update"
-	if(!input)
-		return
-	if(!customname)
-		customname = "M.O.T.H.E.R. AI report."
+	var/input = input(usr, "This should be a message from the ship's AI.  Check with online staff before you send this.", "What?", "") as message|null
 	for (var/obj/machinery/computer/communications/C in machines)
 		if(! (C.stat & (BROKEN|NOPOWER) ) )
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
@@ -639,11 +634,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			C.messagetitle.Add("[command_name()] Update")
 			C.messagetext.Add(P.info)
 
-	command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg');
+	ai_system.Announce(input)
 
-
-	log_admin("[key_name(src)] has created a M.O.T.H.E.R. report: [input]")
-	message_admins("[key_name_admin(src)] has created a M.O.T.H.E.R. report", 1)
+	log_admin("[key_name(src)] has created an AI report: [input]")
+	message_admins("[key_name_admin(src)] has created an AI report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_xeno_report()
