@@ -131,6 +131,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.transit_direction = NORTH
 	shuttle1.move_time = DROPSHIP_TRANSIT_DURATION
 	shuttle1.shuttle_tag = "Dropship 1"
+	shuttle1.info_tag = "Dropship 1"
 	shuttle1.load_datums()
 	shuttles["Dropship 1"] = shuttle1
 	process_shuttles += shuttle1
@@ -142,9 +143,146 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.transit_direction = NORTH
 	shuttle1.move_time = DROPPOD_TRANSIT_DURATION
 	shuttle1.shuttle_tag = "Dropship 2"
+	shuttle1.info_tag = "Dropship 2"
 	shuttle1.load_datums()
 	shuttles["Dropship 2"] = shuttle1
 	process_shuttles += shuttle1
+
+	//ALMAYER DROPSHIP 1
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 10
+	shuttle1.move_time = DROPPOD_TRANSIT_DURATION
+	shuttle1.shuttle_tag = "Almayer Dropship 1"
+	shuttle1.info_tag = "Almayer Dropship"
+	shuttle1.load_datums()
+	shuttles["Almayer Dropship 1"] = shuttle1
+	process_shuttles += shuttle1
+
+	//ALMAYER DROPSHIP 2
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 10
+	shuttle1.move_time = DROPPOD_TRANSIT_DURATION
+	shuttle1.shuttle_tag = "Almayer Dropship 2"
+	shuttle1.info_tag = "Almayer Dropship"
+	shuttle1.load_datums()
+	shuttles["Almayer Dropship 2"] = shuttle1
+	process_shuttles += shuttle1
+
+	//START: ALMAYER SHUTTLES AND EVAC PODS
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 1"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 1"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 2"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 2"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 3"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 3"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 4"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 4"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 5"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 5"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 6"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 6"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 7"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 7"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 8"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 8"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 9"
+	shuttle1.info_tag = "Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 9"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 10" //Alternate for the horizontal ones. TODO: Remove the need for this and have something rotate the datums prior to launch
+	shuttle1.info_tag = "Alt Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 10"] = shuttle1
+	process_shuttles += shuttle1
+
+	//Almayer Evac Pod
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 5
+	shuttle1.shuttle_tag = "Almayer Evac 11" //Alternate for the horizontal ones. TODO: Remove the need for this and have something rotate the datums prior to launch
+	shuttle1.info_tag = "Alt Almayer Evac"
+	shuttle1.load_datums()
+	shuttles["Almayer Evac 11"] = shuttle1
+	process_shuttles += shuttle1
+
+	//END: ALMAYER SHUTTLES AND EVAC PODS
 
 	// Distress Shuttle - ERT
 	shuttle = new()

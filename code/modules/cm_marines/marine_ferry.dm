@@ -4,18 +4,37 @@
 //Front-end this should look exactly the same, save for a minor timing difference (about 1-3 deciseconds)
 //Some of this code is ported from the previous shuttle system and modified for these purposes.
 
+
+/*
+/client/verb/TestAlmayerEvac()
+	set name = "Test Almayer Evac"
+
+	for(var/datum/shuttle/ferry/marine/M in shuttle_controller.process_shuttles)
+		if(M.info_tag == "Almayer Evac" || M.info_tag == "Alt Almayer Evac")
+			spawn(1)
+				M.short_jump()
+				world << "LAUNCHED THING WITH TAG [M.shuttle_tag]"
+		else if(M.info_tag == "Almayer Dropship")
+			spawn(1)
+				M.short_jump()
+				world << "LAUNCHED THING WITH TAG [M.shuttle_tag]"
+		else world << "did not launch thing with tag [M.shuttle_tag]"
+*/
+
 /datum/shuttle/ferry/marine
-	var/shuttle_tag
+	var/shuttle_tag //Unique ID for finding which landmarks to use
+	var/info_tag //Identifies which coord datums to copy
 	var/list/info_datums = list()
 
 /datum/shuttle/ferry/marine/proc/load_datums()
 	set waitfor = 0
 	delay(50) //wait 5 seconds for the controllers to exist
-	if(!(shuttle_tag in s_info))
+	if(!(info_tag in s_info))
 		message_admins("<span class=warning>Error with shuttles: Shuttle tag does not exist. Code: MSD10.\n WARNING: DROPSHIP LAUNCH WILL PROBABLY FAIL</span>")
 		log_admin("Error with shuttles: Shuttle tag does not exist. Code: MSD10.")
 
-	info_datums = s_info[shuttle_tag]
+	var/list/L = s_info[info_tag]
+	info_datums = L.Copy()
 
 /datum/shuttle/ferry/marine/proc/launch_crash(var/user)
 	if(!can_launch()) return //There's another computer trying to launch something
@@ -352,20 +371,20 @@
 	var/obj/effect/landmark/shuttle_loc/marine_src/S
 	var/obj/effect/landmark/shuttle_loc/marine_trg/T
 
-	//Find our target turf
+	//Find our source turf
 	for(i in shuttlemarks)
 		S = i
 		if(!istype(S)) continue
 		if(S.name == shuttle_tag)
-			T_src = S.loc
+			T_src = get_turf(S)
 			break
 
-	//Find our source turf
+	//Find our target turf
 	for(i in shuttlemarks)
 		T = i
 		if(!istype(T)) continue
 		if(T.name == shuttle_tag)
-			T_trg = T.loc
+			T_trg = get_turf(T)
 			break
 
 	//Switch the landmarks so we can do this again
@@ -375,7 +394,10 @@
 	else
 		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code: MSD01.\n <font size=10>WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</font></span>")
 		log_admin("Error with shuttles: Landmarks not found. Code: MSD01.")
-		message_admins("[istype(S) ? "T" : "S"] is null")
+
+	if(!istype(T_src) || !istype(T_trg))
+		message_admins("<span class=warning>Error with shuttles: Ref turfs are null. Code: MSD15.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
+		log_admin("Error with shuttles: Ref turfs are null. Code: MSD15.")
 
 	//END: Heavy lifting backend
 
@@ -388,7 +410,7 @@
 	moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums)
-	move_shuttle_to(T_trg, null, turfs_src)
+	move_shuttle_to(T_trg, null, turfs_src, 0, T.rotation)
 
 	moving_status = SHUTTLE_IDLE
 
