@@ -62,6 +62,28 @@
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
 
+
+/obj/machinery/prop/almayer/computer
+	name = "Personal Desktop"
+	desc = "A small computer hooked up into the ship's computer network."
+
+	density = 1
+	anchored = 0
+	use_power = 1
+	idle_power_usage = 20
+
+	icon = 'icons/obj/almayer.dmi'
+	icon_state = "terminal1"
+
+//---USS Almayer Computers ---//
+
+/obj/machinery/computer/overwatch/almayer
+	density = 0
+	icon = 'icons/obj/almayer.dmi'
+	icon_state = "overwatch"
+
+
+
 //---USS Almayer Lights -----//
 
 /obj/machinery/light/almayer/New()
