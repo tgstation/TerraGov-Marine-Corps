@@ -27,7 +27,8 @@
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
 		/obj/structure/falserwall,
-		/obj/structure/window/reinforced/almayer)
+		/obj/structure/window/reinforced/almayer,
+		/obj/machinery/door/airlock)
 
 /turf/simulated/wall/almayer/outer
 	name = "outer hull"
@@ -115,7 +116,8 @@
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
 		/obj/structure/falserwall,
-		/obj/structure/window/reinforced/almayer)
+		/obj/structure/window/reinforced/almayer,
+		/obj/machinery/door/airlock)
 
 /obj/structure/window/reinforced/almayer/New()
 	spawn(10)
