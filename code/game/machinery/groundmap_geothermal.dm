@@ -3,6 +3,7 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "geo_broken"
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a welding tool, wrench, then wirecutters to repair it."
+	var/almayer = 0
 	anchored = 1
 	density = 1
 	directwired = 0     //Requires a cable directly underneath
@@ -19,6 +20,8 @@
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
 /obj/machinery/power/geothermal/update_icon()
 	..()
+	if(almayer)
+		return
 	if(!buildstate && is_on)
 		icon_state = "geo_working"
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
@@ -105,9 +108,11 @@
 		if(rand(0,3) == 0)
 			src.visible_message("\icon[src] \red <b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
 			buildstate = 2
+			if(almayer)	icon = "wire" //FOR THE SPECIAL NEW ENGINE
 		else
 			src.visible_message("\icon[src] \red <b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = 3
+			if(almayer)	icon = "wrench" //FOR THE SPECIAL NEW ENGINE
 		is_on = 0
 		power_gen_percent = 0
 		update_icon()
