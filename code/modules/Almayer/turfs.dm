@@ -52,6 +52,12 @@
 	loc.overlays += src
 	del src
 
+/turf/simulated/shuttle/wall/dropship1
+	name = "wall"
+	icon = 'icons/turf/dropship.dmi'
+	icon_state = "1"
+
+
 //Floors
 
 /turf/simulated/floor/almayer

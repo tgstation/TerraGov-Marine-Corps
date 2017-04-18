@@ -91,6 +91,20 @@
 	icon = 'icons/obj/almayer.dmi'
 	icon_state = "reinf_table"
 
+//------Dropship Cargo Doors -----//
+/obj/machinery/door/airlock/multi_tile/almayer
+	width = 3
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropship1
+	name = "Dropship Cargo door"
+	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
+	opacity = 0
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropship2
+	name = "Dropship Cargo door"
+	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
+	opacity = 0
+
 //------USS Almayer Door Section-----//
 // This is going to be fucken huge. This is where all babeh perspective doors go to grow up.
 
