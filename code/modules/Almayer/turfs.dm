@@ -37,6 +37,20 @@
 	walltype = "testwall"
 //	mineral = "testwall"
 
+/turf/simulated/wall/almayer/white
+	walltype = "wwall"
+	icon_state = "wwall0"
+
+/obj/effect/decal/wall_transition
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "transition_s"
+	layer = 2
+
+/obj/effect/decal/wall_transition/New()
+	. = ..()
+
+	loc.overlays += src
+	del src
 
 //Floors
 
@@ -102,6 +116,25 @@
 
 //Others
 
+//------ Grilles -----///
+
+/obj/structure/grille/almayer
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "grille0"
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/machinery/door/airlock)
+
+/obj/structure/grille/almayer/New()
+	spawn(10)
+		relativewall()
+		relativewall_neighbours()
+
+/obj/structure/grille/almayer/update_icon()
+	relativewall()
+
+//------ Windows -----//
+
 /obj/structure/window/reinforced/almayer
 	name = "reinforced glass"
 	desc = "A very tough looking window, probably bullet proof."
@@ -129,3 +162,7 @@
 
 /obj/structure/window/reinforced/almayer/update_icon()
 	relativewall()
+
+/obj/structure/window/reinforced/almayer/white
+	icon_state = "mwindow0"
+	basestate = "mwindow"

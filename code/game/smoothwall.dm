@@ -52,7 +52,7 @@
 	return
 
 /obj/structure/window/reinforced/almayer/handle_icon_junction(junction)
-	icon_state = "rwindow[junction]"
+	icon_state = "[basestate][junction]"
 
 /turf/simulated/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
@@ -62,6 +62,9 @@
 
 /obj/structure/falsewall/handle_icon_junction(junction)
 	icon_state = "[mineral][junction]"
+
+/obj/structure/grille/almayer/handle_icon_junction(junction)
+	icon_state = "grille[junction]"
 
 
 /turf/simulated/floor/vault/relativewall()

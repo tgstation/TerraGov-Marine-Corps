@@ -86,6 +86,11 @@
 	icon = 'icons/obj/almayer.dmi'
 	cell_type = /obj/item/weapon/cell/high
 
+//------USS Almayer Tables ------//
+/obj/structure/table/almayer
+	icon = 'icons/obj/almayer.dmi'
+	icon_state = "reinf_table"
+
 //------USS Almayer Door Section-----//
 // This is going to be fucken huge. This is where all babeh perspective doors go to grow up.
 
