@@ -1,12 +1,12 @@
-//Experimental engine for the new Sulaco
+//Experimental engine for the Almayer.  Should be fancier.  I expect I'll eventually make it totally seperate from the Geothermal as I don't like the procs... - Apop
+
 
 /obj/machinery/power/geothermal/sulaco
-	name = "Sulaco Power Generator"
+	name = "/improper S-52 Fusion Reactor"
 	icon = 'icons/Marine/almayer_eng.dmi'
 	icon_state = "off-100"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  Currently in standby mode."
-	almayer = 1
-	var/icon_track = 100
+	almayer = 1 //Yup, it's on the Almayer.
 	directwired = 0     //Requires a cable directly underneath
 	unacidable = 1      //NOPE.jpg
 	power_gen_percent = 0 //100,000W at full capacity
@@ -22,27 +22,25 @@
 	var/fusion_cell = 1 //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
 	var/produce_heat = 1 //Fusion is a VERY warm process.  The reactor room should probably be cooled... Probably...
 	var/fuel_amount = 100.00 // Amount of Fuel in the cell.
-	var/fuel_rate = 0.00
-	var/verbalupdate= 0
+	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
+	var/verbalupdate= 0 //For the verbal announcer so it doesn't shit all over the place constantly.
+	var/icon_track = 100 //This is to track the amount of fuel so it selects the proper icon.
 
 
 /obj/machinery/power/geothermal/sulaco/process()
 	if(!is_on || buildstate || !anchored) //Default logic checking
 		return 0
 
-	//FOR NOW, INFINITE FUEL
-//	if (fuel_amount < 10)
-//		fuel_amount = 100
 
 	if(!powernet && !powernet_connection_failed) //Powernet checking, make sure there's valid cables & powernets
 		if(!connect_to_network())
-			powernet_connection_failed = 1 //God damn it, where'd our network go
+			powernet_connection_failed = 1
 			is_on = 0
 			spawn(150) // Error! Check again in 15 seconds. Someone could have blown/acided or snipped a cable
 				powernet_connection_failed = 0
 
 	else if(powernet) //All good! Let's fire it up!
-		if(!check_failure()) //Wait! Check to see if it breaks during processing  //THIS STILL NEEDS A SMIDGE OF WORK, AND PROBABLY IT'S OWN PROC
+		if(!check_failure()) //THIS STILL NEEDS A SMIDGE OF WORK, AND PROBABLY IT'S OWN PROC SINCE I'M GHETTOING UP THE REGULAR ONE...
 			update_icon()
 			if(power_gen_percent < 100)
 				power_gen_percent++
@@ -57,7 +55,7 @@
 				src.visible_message("\icon[src] <b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.")
 				fuel_rate = 0.01
 			add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
-			fuel_amount-=fuel_rate //Removes some fuel from the canister
+			fuel_amount-=fuel_rate //Consumes fuel
 
 	if(is_on && powernet && !verbalupdate) //This can probably be changed in the future.  For now, when a fuel cell is ejected, it'll be "useless" no matter how much fuel remains.
 		if (fuel_amount > 75)
@@ -84,14 +82,14 @@
 			src.visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The reactor ran out of fuel and seized up"
 			fuel_rate = 0
-			buildstate = 0
+			buildstate = 0  //No fuel really fucks it.
 			is_on = 0
 			icon_track = 0
-			fail_rate++ //Each time the engine is allowed to seize up it's fail rate for the future increases
+			fail_rate++ //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
 			icon = "weld"
 			return 0
-		icon_state = "on-[icon_track]"
-		update_icon()
+		icon_state = "on-[icon_track]" //Makes sure it gets the proper icon
+		update_icon() //Gonna either make a new one of these with blackjack and hooker or just ignore it 5ever.
 		verbalupdate = 1
 		spawn(600)
 			verbalupdate = 0
@@ -116,7 +114,7 @@
 
 //FUEL CELL
 /obj/item/weapon/fuelCell
-	name = "/improper fuel cell"
+	name = "/improper WL-6 Universal Fuel Cell"
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "cell-full"
 	desc = "A single-use fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
