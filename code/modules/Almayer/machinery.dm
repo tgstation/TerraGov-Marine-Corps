@@ -93,6 +93,14 @@
 	name = "GENERIC USS ALMAYER PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 
+/obj/structure/prop/almayer/nissile_rack
+	name = "Missile Rack"
+	desc = "A rack used for missiles, often even holding them."
+	icon = 'icons/Marine/almayer_props64.dmi'
+	icon_state = "double"
+	bound_x = 64
+	bound_y = 32
+
 //---USS Almayer Computers ---//
 
 /obj/machinery/computer/overwatch/almayer
@@ -153,6 +161,15 @@
 		if(4)	pixel_x = 10
 		if(8)	pixel_x = -10
 
+/obj/machinery/camera/autoname/almayer
+	icon = 'icons/obj/almayer.dmi'
+
+	New()
+		..()
+		switch(dir)
+			if(1)	pixel_y = 23
+			if(4)	pixel_x = 10
+			if(8)	pixel_x = -10
 //------APCs ------//
 
 /obj/machinery/power/apc/almayer
