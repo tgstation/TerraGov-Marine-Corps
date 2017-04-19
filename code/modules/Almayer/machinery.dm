@@ -67,13 +67,31 @@
 	name = "Personal Desktop"
 	desc = "A small computer hooked up into the ship's computer network."
 
-	density = 1
-	anchored = 0
+	density = 0
+	anchored = 1
 	use_power = 1
 	idle_power_usage = 20
 
 	icon = 'icons/obj/almayer.dmi'
 	icon_state = "terminal1"
+
+/obj/machinery/prop/almayer/CICmap
+	name = "Map table"
+	desc = "A table that displays a map of the current target location"
+
+	density = 1
+	anchored = 1
+	use_power = 1
+	idle_power_usage = 20
+
+	icon = 'icons/obj/almayer.dmi'
+	icon_state = "maptable"
+
+//Nonpower using props
+
+/obj/structure/prop/almayer
+	name = "GENERIC USS ALMAYER PROP"
+	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 
 //---USS Almayer Computers ---//
 
@@ -82,7 +100,40 @@
 	icon = 'icons/obj/almayer.dmi'
 	icon_state = "overwatch"
 
+/obj/machinery/computer/security/almayer
+	density = 0
+	icon = 'icons/obj/almayer.dmi'
+	icon_state = "security"
 
+/obj/machinery/computer/shuttle_control/dropship1
+	name = "Dropship Console"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "shuttle"
+	shuttle_tag = "Almayer Dropship 1"
+	unacidable = 1
+	exproof = 1
+	req_one_access_txt = "22;200"
+
+/obj/machinery/computer/shuttle_control/dropship1/onboard
+	name = "Flight Controls"
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "console"
+	onboard = 1
+
+/obj/machinery/computer/shuttle_control/dropship2
+	name = "Dropship Console"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "shuttle"
+	shuttle_tag = "Almayer Dropship 2"
+	unacidable = 1
+	exproof = 1
+	req_one_access_txt = "12;22;200"
+
+/obj/machinery/computer/shuttle_control/dropship2/onboard
+	name = "Flight Controls"
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "console"
+	onboard = 1
 
 //---USS Almayer Lights -----//
 
