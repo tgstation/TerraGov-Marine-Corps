@@ -14,7 +14,7 @@
 	powernet_connection_failed = 0 //Logic checking for powernets
 	buildstate = 0 //What state of building it are we on, 0-3, 1 is "broken", the default
 	is_on = 0  //Is this damn thing on or what?
-	fail_rate = 1 //% chance of failure each fail_tick check
+	fail_rate = 5 //% chance of failure each fail_tick check
 	fail_check_ticks = 100 //Check for failure every this many ticks
 	cur_tick = 0 //Tick updater
 
@@ -44,16 +44,16 @@
 			update_icon()
 			if(power_gen_percent < 100)
 				power_gen_percent++
-				fuel_rate = 0.001
+				fuel_rate = 0.01
 			if(power_gen_percent == 10)//Flavor text!
 				src.visible_message("\icon[src] <b>[src]</b> begins to whirr as it powers up.")
-				fuel_rate = 0.0025
+				fuel_rate = 0.025
 			if(power_gen_percent == 50)//Flavor text!
 				src.visible_message("\icon[src] <b>[src]</b> begins to hum loudly as it reaches half capacity")
-				fuel_rate = 0.005
+				fuel_rate = 0.05
 			if(power_gen_percent == 99)//Flavor text!
 				src.visible_message("\icon[src] <b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.")
-				fuel_rate = 0.01
+				fuel_rate = 0.1
 			add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 			fuel_amount-=fuel_rate //Consumes fuel
 
