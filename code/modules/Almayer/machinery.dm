@@ -179,7 +179,7 @@
 //------USS Almayer Tables ------//
 /obj/structure/table/almayer
 	icon = 'icons/obj/almayer.dmi'
-	icon_state = "reinf_table"
+	icon_state = "table"
 
 //------Dropship Cargo Doors -----//
 /obj/machinery/door/airlock/multi_tile/almayer/dropship1
