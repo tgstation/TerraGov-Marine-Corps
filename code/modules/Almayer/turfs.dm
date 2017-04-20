@@ -93,25 +93,26 @@
 	..()
 	if (istype(W, /obj/item/weapon/crowbar))
 		if(covered)
-			var/obj/item/stack/tile/catwalk/R = new(usr.loc)
+			var/obj/item/stack/catwalk/R = new(usr.loc)
 			R.add_to_stacks(usr)
 			covered = 0
 			update_turf_overlay()
 			return
-	if(istype(W, /obj/item/stack/tile/catwalk))
+	if(istype(W, /obj/item/stack/catwalk))
 		if(!covered)
-			var/obj/item/stack/tile/catwalk/E = W
+			var/obj/item/stack/catwalk/E = W
 			E.use(1)
 			covered = 1
 			update_turf_overlay()
 			return
 	..()
 
-/obj/item/stack/tile/catwalk
+/obj/item/stack/catwalk
 	name = "catwalk mesh"
 	singular_name = "catwalk mesh"
 	desc = "Those could work as a pretty decent throwing weapon"
-	icon_state = "tile"
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "catwalk_tile"
 	w_class = 3.0
 	force = 6.0
 	throwforce = 8.0
