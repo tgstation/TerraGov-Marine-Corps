@@ -71,6 +71,13 @@ into helmets.dm*/
 	item_state = "beretred"
 	item_color = "beretred"
 
+/obj/item/clothing/head/cmberet/wo
+	name = "\improper WO beret"
+	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
+	icon_state = "beretwo"
+	item_state = "beretwo"
+	item_color = "beretwo"
+
 /obj/item/clothing/head/headband
 	name = "\improper USCM headband"
 	desc = "A rag typically worn by the less-orthodox weapons operators in the USCM. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
@@ -200,11 +207,6 @@ into helmets.dm*/
 	name = "logistics officer beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "hosberet"
-
-/obj/item/clothin/head/beret/marine/warrantofficer
-	name = "warrant officer beret"
-	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
-	icon_state = "beret_warrant"
 
 //==========================//PROTECTIVE\\===============================\\
 //=======================================================================\\

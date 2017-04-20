@@ -207,7 +207,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 				WEAR_WAIST = /obj/item/weapon/storage/belt/security/MP/full,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP/WO,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
-				WEAR_HEAD = /obj/item/clothin/head/beret/marine/warrantofficer,
+				WEAR_HEAD = /obj/item/clothing/head/cmberet/wo,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/security
 				)
 
