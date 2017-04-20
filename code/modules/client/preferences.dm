@@ -472,7 +472,7 @@ datum/preferences
 
 	user << browse(dat, "window=preferences;size=620x780")
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 18, list/splitJobs = list(), width = 450, height = 500)
+/datum/preferences/proc/SetChoices(mob/user, limit = 19, list/splitJobs = list(), width = 450, height = 500)
 	if(!RoleAuthority) return
 
 	//limit 	 - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
@@ -714,6 +714,7 @@ datum/preferences
 	else//job = Never
 		SetJobDepartment(job, 4)
 
+	//var/list/L = list(ROLEGROUP_MARINE_COMMAND, ROLEGROUP_MARINE_ENGINEERING, ROLEGROUP_MARINE_MED_SCIENCE, ROLEGROUP_MARINE_SQUAD_MARINES)
 	SetChoices(user)
 	return 1
 

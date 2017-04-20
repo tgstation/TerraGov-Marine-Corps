@@ -187,3 +187,32 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 Failure to do so may result in a job ban or server ban.
 Your primary job is to maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
+
+//Warrant Officer
+/datum/job/command/warrant
+	title = "Warrant Officer"
+	comm_title = "WO"
+	paygrade = "O2"
+	flag = ROLE_WARRANT_OFFICER
+	selection_color = "#ffaaaa"
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
+
+	generate_wearable_equipment()
+		. = list(
+				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_BODY = /obj/item/clothing/under/marine/officer/warrant,
+				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_WAIST = /obj/item/weapon/storage/belt/security/MP/full,
+				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP/WO,
+				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
+				WEAR_HEAD = /obj/item/clothin/head/beret/marine/warrantofficer,
+				WEAR_BACK = /obj/item/weapon/storage/backpack/security
+				)
+
+	generate_entry_message(mob/living/carbon/human/H)
+		. = {"You are held by a higher standard and are required to obey not only the server rules but the <a href='http://www.colonial-marines.com/wiki/Marine_Law'>Marine Law</a>.
+Failure to do so may result in a job ban or server ban.
+You lead the Military Police, ensure your officers maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}

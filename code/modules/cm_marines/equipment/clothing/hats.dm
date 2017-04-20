@@ -201,6 +201,11 @@ into helmets.dm*/
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "hosberet"
 
+/obj/item/clothin/head/beret/marine/warrantofficer
+	name = "warrant officer beret"
+	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
+	icon_state = "beret_warrant"
+
 //==========================//PROTECTIVE\\===============================\\
 //=======================================================================\\
 

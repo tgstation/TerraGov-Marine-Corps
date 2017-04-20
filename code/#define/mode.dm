@@ -65,6 +65,7 @@ var/list/be_special_flags = list(
 #define ROLE_CORPORATE_LIAISON			16
 #define ROLE_REQUISITION_OFFICER		32
 #define ROLE_PILOT_OFFICER				64
+#define ROLE_WARRANT_OFFICER			128
 //=================================================
 
 #define ROLEGROUP_MARINE_ENGINEERING 	2
@@ -98,8 +99,8 @@ var/list/be_special_flags = list(
 //=================================================
 
 //Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison","Requisitions Officer","Chief Engineer","Chief Medical Officer")
-#define ROLES_OFFICERS		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison")
+#define ROLES_COMMAND 		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison","Requisitions Officer","Chief Engineer","Chief Medical Officer","Warrant Officer")
+#define ROLES_OFFICERS		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Warrant Officer","Military Police","Corporate Liaison")
 #define ROLES_ENGINEERING 	list("Chief Engineer","Maintenance Tech")
 #define ROLES_REQUISITION 	list("Requisitions Officer","Cargo Technician")
 #define ROLES_MEDICAL 		list("Chief Medical Officer","Doctor","Researcher")
@@ -149,6 +150,7 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_MARINE_CARGO 		21
 #define ACCESS_MARINE_DROPSHIP 		22
 #define ACCESS_MARINE_PILOT 		23
+#define ACCESS_MARINE_WO			24
 
 //Surface access levels
 #define ACCESS_CIVILIAN_PUBLIC 		100
