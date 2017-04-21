@@ -31,7 +31,7 @@
 		if(..()) //Let's check all that other stuff first.
 			if(istype(user))
 				var/obj/item/weapon/card/id/card = user.wear_id
-				if(istype(card) && card.assignment == "Military Police") return 1//We can check for access, but only MPs have access to it.
+				if(istype(card) && (card.assignment == "Military Police" || card.assignment == "Warrant Officer")) return 1//We can check for access, but only MPs have access to it.
 				else user << "<span class='warning'>[src] is ID locked!</span>"
 
 	load_into_chamber()

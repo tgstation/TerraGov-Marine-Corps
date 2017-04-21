@@ -235,6 +235,7 @@ include jackets and regular suits, not armor.*/
 	name = "warrant officer uniform"
 	desc = "A uniform typically worn by a Warrant Officer of the USCM. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions. This uniform includes a small EMF distributor to help nullify energy-based weapon fire, along with a hazmat chemical filter woven throughout the material to ward off biological and radiation hazards."
 	icon_state = "WO_jumpsuit"
+	item_state = "WO_jumpsuit"
 	item_color = "WO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/technical
