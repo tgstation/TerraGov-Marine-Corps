@@ -226,10 +226,45 @@
 			relativewall_neighbours()
 		..()
 
+/obj/machinery/door/poddoor/almayer
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	openspeed = 4 //shorter open animation.
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/structure/falsewall,
+		/obj/structure/falserwall,
+		/obj/structure/window/reinforced/almayer,
+		/obj/machinery/door/airlock)
+
+	New()
+		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
+			relativewall_neighbours()
+		..()
+
+/obj/machinery/door/poddoor/shutters/almayer
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	openspeed = 4 //shorter open animation.
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/structure/falsewall,
+		/obj/structure/falserwall,
+		/obj/structure/window/reinforced/almayer,
+		/obj/machinery/door/airlock)
+
+	New()
+		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
+			relativewall_neighbours()
+		..()
+
 /obj/machinery/door/airlock/almayer/security
 	name = "Airlock"
-	icon = 'icons/obj/doors/almayer/comdoor.dmi'
+	icon = 'icons/obj/doors/almayer/secdoor.dmi'
 	req_access_txt = "3"
+
+/obj/machinery/door/airlock/almayer/security/glass
+	name = "Airlock"
+	icon = 'icons/obj/doors/almayer/secdoor_glass.dmi'
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/command
 	name = "Command Airlock"
@@ -273,7 +308,135 @@
 
 /obj/machinery/door/airlock/almayer/marine
 	name = "Airlock"
-	icon = 'icons/obj/doors/almayer/comdoor.dmi'
+	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
+	opacity = 0
+
+/obj/machinery/door/airlock/almayer/marine/requisitions
+	name = "Requisitions"
+	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
+	req_access_txt = "0"
+	req_one_access_txt =  "2;21"
+
+/obj/machinery/door/airlock/almayer/marine/alpha
+	name = "Alpha Squad Prep Room"
+	icon = 'icons/obj/doors/almayer/prepdoor_alpha.dmi'
+	req_access_txt = "9"
+	req_one_access_txt =  "2;15"
+
+/obj/machinery/door/airlock/almayer/marine/alpha/sl
+	name = "Alpha Squad Leader Prep"
+	req_access_txt ="12;15"
+	req_one_access_txt =  "0"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/alpha/spec
+	name = "Alpha Specialist Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "13"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/alpha/engineer
+	name = "Alpha Squad Engineer Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "11"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/alpha/medic
+	name = "Alpha Squad Medic Prep"
+	req_access_txt ="10;15"
+	req_one_access_txt =  "0"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/bravo
+	name = "Bravo Squad Prep Room"
+	icon = 'icons/obj/doors/almayer/prepdoor_bravo.dmi'
+	req_access_txt = "9"
+	req_one_access_txt =  "2;16"
+
+/obj/machinery/door/airlock/almayer/marine/bravo/sl
+	name = "Bravo Squad Leader Prep"
+	req_access_txt ="12;16"
+	req_one_access_txt =  "0"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/bravo/spec
+	name = "Bravo Specialist Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "13"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/bravo/engineer
+	name = "Bravo Squad Engineer Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "11"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/bravo/medic
+	name = "Bravo Squad Medic Prep"
+	req_access_txt ="10;16"
+	req_one_access_txt =  "0"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/charlie
+	name = "Charlie Squad Prep Room"
+	icon = 'icons/obj/doors/almayer/prepdoor_charlie.dmi'
+	req_access_txt = "9"
+	req_one_access_txt =  "2;17"
+
+/obj/machinery/door/airlock/almayer/marine/charlie/sl
+	name = "Charlie Squad Leader Prep"
+	req_access_txt ="12;17"
+	req_one_access_txt =  "0"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/charlie/spec
+	name = "Charlie Specialist Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "13"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/charlie/engineer
+	name = "Charlie Squad Engineer Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "11"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/charlie/medic
+	name = "Charlie Squad Medic Prep"
+	req_access_txt ="10;17"
+	req_one_access_txt =  "0"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/delta
+	name = "Delta Squad Prep Room"
+	icon = 'icons/obj/doors/almayer/prepdoor_delta.dmi'
+	req_access_txt = "9"
+	req_one_access_txt =  "2;18"
+
+/obj/machinery/door/airlock/almayer/marine/delta/sl
+	name = "Delta Squad Leader Prep"
+	req_access_txt ="12;18"
+	req_one_access_txt =  "0"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/delta/spec
+	name = "Delta Specialist Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "13"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/delta/engineer
+	name = "Delta Squad Engineer Prep"
+	req_access_txt ="0"
+	req_one_access_txt =  "11"
+	dir = 2
+
+/obj/machinery/door/airlock/almayer/marine/delta/medic
+	name = "Delta Squad Medic Prep"
+	req_access_txt ="10;18"
+	req_one_access_txt =  "0"
+	dir = 2
+
 
 // Double Doors
 

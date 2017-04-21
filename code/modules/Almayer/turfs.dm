@@ -36,6 +36,7 @@
 	icon_state = "testwall0"
 	walltype = "testwall"
 //	mineral = "testwall"
+//	unacidable = 1
 
 /turf/simulated/wall/almayer/white
 	walltype = "wwall"
