@@ -63,9 +63,14 @@
 	icon_state = "drone_fab_idle"
 
 
-/obj/machinery/prop/almayer/computer
+/obj/machinery/prop/almayer/computer/PC
 	name = "Personal Desktop"
 	desc = "A small computer hooked up into the ship's computer network."
+	icon_state = "terminal1"
+
+/obj/machinery/prop/almayer/computer
+	name = "Systems Computer"
+	desc = "A small computer hooked up into the ships systems."
 
 	density = 0
 	anchored = 1
@@ -73,7 +78,7 @@
 	idle_power_usage = 20
 
 	icon = 'icons/obj/almayer.dmi'
-	icon_state = "terminal1"
+	icon_state = "terminal"
 
 /obj/machinery/prop/almayer/CICmap
 	name = "Map table"
@@ -180,9 +185,11 @@
 	New()
 		..()
 		switch(dir)
-			if(1)	pixel_y = 23
-			if(4)	pixel_x = 10
-			if(8)	pixel_x = -10
+			if(1)	pixel_y = 40
+			if(2)	pixel_y = -18
+			if(4)	pixel_x = -27
+			if(8)	pixel_x = 27
+
 //------APCs ------//
 
 /obj/machinery/power/apc/almayer

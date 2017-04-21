@@ -284,13 +284,14 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
 	products = list(
+						/obj/item/weapon/coin/marine/engineer = 1,
 						/obj/item/clothing/under/marine/engineer = 3,
 						/obj/item/clothing/head/helmet/marine/tech = 2,
 						/obj/item/weapon/storage/backpack/marine/tech = 4,
 						/obj/item/weapon/storage/backpack/marine/satchel/tech = 2,
+						/obj/item/weapon/storage/backpack/marine/engineerpack = 2,
 						/obj/item/clothing/tie/storage/webbing = 3,
 						/obj/item/device/encryptionkey/headset_eng = 3,
-						/obj/item/weapon/storage/box/sentry = 1,
 						/obj/item/weapon/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
@@ -307,6 +308,11 @@
 						/obj/item/weapon/etool = 3
 					)
 	contraband = list(/obj/item/weapon/cell/super = 1)
+
+	premium = list(
+					/obj/item/weapon/storage/box/sentry = 1,
+					/obj/item/weapon/storage/box/m56d_hmg = 1
+					)
 
 /obj/machinery/vending/marine_medic
 	name = "\improper ColMarTech Medic Vendor"
