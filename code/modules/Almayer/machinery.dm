@@ -97,8 +97,10 @@
 /obj/structure/prop/almayer
 	name = "GENERIC USS ALMAYER PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
+	density = 1
+	anchored = 1
 
-/obj/structure/prop/almayer/nissile_rack
+/obj/structure/prop/almayer/missile_rack
 	name = "Missile Rack"
 	desc = "A rack used for missiles, often even holding them."
 	icon = 'icons/Marine/almayer_props64.dmi'
@@ -106,7 +108,7 @@
 	bound_x = 64
 	bound_y = 32
 
-/obj/structure/prop/almayer/nissile_tube
+/obj/structure/prop/almayer/missile_tube
 	name = "Missile Tube"
 	desc = "A cold launch missile tube."
 	icon = 'icons/Marine/almayer_props96.dmi'
