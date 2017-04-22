@@ -110,6 +110,7 @@
 */
 
 /turf/simulated/wall/New()
+	relativewall()
 	relativewall_neighbours()
 	..()
 
