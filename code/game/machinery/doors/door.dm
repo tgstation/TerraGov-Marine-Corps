@@ -41,7 +41,12 @@
 		layer = open_layer
 		explosion_resistance = 0
 
-	//Does not seem to be working correctly. We will spawn a new object inside the double door to make it opaque or not.
+	handle_multidoor()
+
+	update_nearby_tiles(need_rebuild=1)
+	return
+
+/obj/machinery/door/proc/handle_multidoor()
 	if(width > 1)
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size
@@ -53,9 +58,6 @@
 			bound_height = width * world.icon_size
 			filler = get_step(src,NORTH)
 			filler.SetOpacity(opacity)
-
-	update_nearby_tiles(need_rebuild=1)
-	return
 
 
 /obj/machinery/door/Del()

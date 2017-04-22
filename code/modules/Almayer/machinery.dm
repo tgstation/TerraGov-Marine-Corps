@@ -204,17 +204,51 @@
 	icon_state = "table"
 
 //------Dropship Cargo Doors -----//
-/obj/machinery/door/airlock/multi_tile/almayer/dropship1
+/obj/machinery/door/airlock/multi_tile/almayer
 	name = "Dropship Cargo door"
-	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
-	opacity = 0
+	opacity = 1
 	width = 3
 
+/obj/machinery/door/airlock/multi_tile/almayer/handle_multidoor()
+	if(!(width > 1)) return //Bubblewrap
+
+	for(var/i = 1, i < width, i++)
+		if(dir in list(NORTH, SOUTH))
+			var/turf/T = locate(x, y + i, z)
+			T.SetOpacity(opacity)
+		else if(dir in list(EAST, WEST))
+			var/turf/T = locate(x + i, y, z)
+			T.SetOpacity(opacity)
+
+	if(dir in list(NORTH, SOUTH))
+		bound_height = world.icon_size * width
+	else if(dir in list(EAST, WEST))
+		bound_width = world.icon_size * width
+
+//We have to find these again since these doors are used on shuttles a lot so the turfs changes
+/obj/machinery/door/airlock/multi_tile/almayer/proc/update_filler_turfs()
+
+	for(var/i = 1, i < width, i++)
+		if(dir in list(NORTH, SOUTH))
+			var/turf/T = locate(x, y + i, z)
+			T.SetOpacity(opacity)
+		else if(dir in list(EAST, WEST))
+			var/turf/T = locate(x + i, y, z)
+			T.SetOpacity(opacity)
+
+/obj/machinery/door/airlock/multi_tile/almayer/open()
+	. = ..()
+	update_filler_turfs()
+
+/obj/machinery/door/airlock/multi_tile/almayer/close()
+	. = ..()
+	update_filler_turfs()
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropship1
+	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
+
 /obj/machinery/door/airlock/multi_tile/almayer/dropship2
-	name = "Dropship Cargo door"
 	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
-	opacity = 0
-	width = 3
 
 //------USS Almayer Door Section-----//
 // This is going to be fucken huge. This is where all babeh perspective doors go to grow up.
