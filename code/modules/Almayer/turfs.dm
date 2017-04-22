@@ -74,6 +74,14 @@
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 
+/turf/simulated/shuttle/wall/escapepod
+	name = "wall"
+	icon = 'icons/turf/escapepods.dmi'
+	icon_state = "wall0"
+
+/turf/simulated/shuttle/floor/escapepod
+	icon = 'icons/turf/escapepods.dmi'
+	icon_state = "floor3"
 
 //Floors
 
