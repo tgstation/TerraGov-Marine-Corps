@@ -146,6 +146,16 @@
 	flags_atom = FPRINT|CONDUCT
 	max_amount = 60
 
+//Outerhull
+
+/turf/unsimulated/floor/almayer_hull
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "outerhull"
+	name = "hull"
+	oxygen = 0.00
+	nitrogen = 0.00
+	temperature = TCMB
+
 //Others
 
 //------ Grilles -----///

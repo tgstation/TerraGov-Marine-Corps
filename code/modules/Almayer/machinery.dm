@@ -121,6 +121,13 @@
 	desc = "The main guns of a ship. Who would have known?"
 	icon = 'icons/obj/machines/artillery.dmi'
 
+/obj/structure/prop/almayer/name_stencil
+	name = "USS Almayer"
+	desc = "The name of the ship stenciled on the hull."
+	icon = 'icons/Marine/almayer_props64.dmi'
+	icon_state = "almayer0"
+	density = 0 //dunno who would walk on it, but you know.
+
 //---USS Almayer Computers ---//
 
 /obj/machinery/computer/overwatch/almayer
@@ -197,6 +204,16 @@
 /obj/machinery/power/apc/almayer
 	icon = 'icons/obj/almayer.dmi'
 	cell_type = /obj/item/weapon/cell/high
+//------ Air Alarms -----//
+
+/obj/machinery/alarm/almayer
+	icon = 'icons/obj/almayer.dmi' // I made these really quickly because idk where they have their new air alarm ~Art
+
+	New()
+		..()
+		switch(dir)
+			if(1) pixel_y = 25
+			if(2) pixel_y = 25
 
 //------USS Almayer Tables ------//
 /obj/structure/table/almayer
@@ -348,6 +365,11 @@
 /obj/machinery/door/airlock/almayer/generic
 	name = "Airlock"
 	icon = 'icons/obj/doors/almayer/personaldoor.dmi'
+
+/obj/machinery/door/airlock/almayer/generic/corporate
+	name = "Corporate Liason's Quarters"
+	icon = 'icons/obj/doors/almayer/personaldoor.dmi'
+	req_access_txt = "200"
 
 /obj/machinery/door/airlock/almayer/marine
 	name = "Airlock"
