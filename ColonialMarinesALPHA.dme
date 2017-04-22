@@ -697,6 +697,7 @@
 #include "code\modules\admin\verbs\ticklag.dm"
 #include "code\modules\Almayer\areas.dm"
 #include "code\modules\Almayer\machinery.dm"
+#include "code\modules\Almayer\ship_ai.dm"
 #include "code\modules\Almayer\tools.dm"
 #include "code\modules\Almayer\turfs.dm"
 #include "code\modules\animations\animation_library.dm"
