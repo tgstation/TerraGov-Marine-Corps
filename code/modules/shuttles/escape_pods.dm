@@ -17,7 +17,7 @@ with the original.*/
 	shuttle_tag = "Almayer Evac "
 	info_tag = "Almayer Evac"
 	var/cryo_cells[] //List of the crypods attached to the evac pod.
-	var/staging_area //The area the shuttle starts in, used to link the various machinery.
+	var/area/staging_area //The area the shuttle starts in, used to link the various machinery.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program //The program that runs the doors.
 	//docking_controller is the program that runs doors.
 	//TODO: Make sure that the area has light once evac is in progress.
@@ -57,7 +57,8 @@ suffice.
 		r_FAL
 
 	staging_area = T.loc //Grab the area and store it on file.
-	//T.name = "\improper[shuttle_tag]"
+	staging_area.name = "\improper[shuttle_tag]"
+	//log_debug("Area type: [staging_area.type]")
 
 	var/obj/machinery/door/airlock/evacuation/D = locate() in staging_area
 	if(!D)
@@ -315,6 +316,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 		if(do_after(user, 20)) go_out() //Force the occupant out.
 
 /obj/machinery/door/airlock/evacuation //TODO: Make sure you can't c4 these.
+	name = "evacuation airlock"
 	unacidable = 1
 	//TODO Lock on start up and take off.
 

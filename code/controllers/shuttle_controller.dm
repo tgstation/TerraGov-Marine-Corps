@@ -70,6 +70,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 				shuttlemarks -= S
 				continue
 			if(S.name == P.shuttle_tag) //If the tags match, we want to link it with the area and such.
+				if(!istype(S, /obj/effect/landmark/shuttle_loc/marine_src)) continue //Has to be the source.
 				P.link_support_units(i, S.loc) //Process links.
 				break
 		process_shuttles += P
