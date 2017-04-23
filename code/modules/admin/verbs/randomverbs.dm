@@ -624,21 +624,24 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
-	var/input = input(usr, "This should be a message from the ship's AI.  Check with online staff before you send this.", "What?", "") as message|null
-	for (var/obj/machinery/computer/communications/C in machines)
-		if(! (C.stat & (BROKEN|NOPOWER) ) )
-			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
-			P.name = "'[command_name()] Update.'"
-			P.info = input
-			P.update_icon()
-			C.messagetitle.Add("[command_name()] Update")
-			C.messagetext.Add(P.info)
+	var/input = input(usr, "This should be a message from the ship's AI.  Check with online staff before you send this. Do not use html.", "What?", "") as message|null
+	if(!input) r_FAL
+	if(ai_system.Announce(input))
 
-	ai_system.Announce(input)
+		for (var/obj/machinery/computer/communications/C in machines)
+			if(! (C.stat & (BROKEN|NOPOWER) ) )
+				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
+				P.name = "'[MAIN_AI_SYSTEM] Update.'"
+				P.info = input
+				P.update_icon()
+				C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
+				C.messagetext.Add(P.info)
 
-	log_admin("[key_name(src)] has created an AI report: [input]")
-	message_admins("[key_name_admin(src)] has created an AI report", 1)
-	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		log_admin("[key_name(src)] has created an AI report: [input]")
+		message_admins("[key_name_admin(src)] has created an AI report", 1)
+		feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	else
+		usr << "<span class='warning'>[MAIN_AI_SYSTEM] is not responding. It may be offline or destroyed.</span>"
 
 /client/proc/cmd_admin_xeno_report()
 	set category = "Special Verbs"
@@ -649,8 +652,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.", "What?", "") as message|null
 	var/customname = "Queen Mother Psychic Directive"
-	if(!input)
-		return
+	if(!input) r_FAL
 
 	var/data = "<h1>[customname]</h1><br><br><br>\red[input]<br><br>"
 
