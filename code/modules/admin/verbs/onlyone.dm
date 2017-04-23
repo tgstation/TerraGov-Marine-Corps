@@ -10,12 +10,7 @@
 		ticker.mode.traitors += H.mind
 		H.mind.special_role = "traitor"
 
-		var/datum/objective/hijack/hijack_objective = new
-		hijack_objective.owner = H.mind
-		H.mind.objectives += hijack_objective
-
 		H << "<B>You are the traitor.</B>"
-		show_objectives(H.mind)
 
 		for (var/obj/item/I in H)
 			if (istype(I, /obj/item/weapon/implant))

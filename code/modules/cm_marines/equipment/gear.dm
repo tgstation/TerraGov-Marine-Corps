@@ -194,7 +194,7 @@
 
 /obj/item/device/radio/headset/msulaco
 	name = "marine radio headset"
-	desc = "A standard Sulaco radio headset"
+	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ

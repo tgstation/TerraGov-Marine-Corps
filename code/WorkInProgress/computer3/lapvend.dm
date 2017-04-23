@@ -304,8 +304,6 @@
 		newlap.spawn_files += (/datum/file/program/atmos_alert)
 	if(ACCESS_MARINE_LOGISTICS in C.access)
 		newlap.spawn_files += (/datum/file/program/card_comp)
-	if(ACCESS_MARINE_BRIDGE in C.access)
-		newlap.spawn_files += (/datum/file/program/communications)
 	if((ACCESS_MARINE_MEDBAY in C.access))
 		newlap.spawn_files += (/datum/file/program/med_data)
 		if (ACCESS_MARINE_MEDBAY in C.access)

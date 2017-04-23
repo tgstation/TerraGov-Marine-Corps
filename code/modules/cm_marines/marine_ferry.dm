@@ -27,8 +27,6 @@
 	var/list/info_datums = list()
 
 /datum/shuttle/ferry/marine/proc/load_datums()
-	set waitfor = 0
-	delay(50) //wait 5 seconds for the controllers to exist
 	if(!(info_tag in s_info))
 		message_admins("<span class=warning>Error with shuttles: Shuttle tag does not exist. Code: MSD10.\n WARNING: DROPSHIP LAUNCH WILL PROBABLY FAIL</span>")
 		log_admin("Error with shuttles: Shuttle tag does not exist. Code: MSD10.")

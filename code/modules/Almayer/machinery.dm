@@ -2,7 +2,7 @@
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
 /obj/machinery/vending/marine/uniform_supply
-	name = "ColMarTech Surplus Uniform Vender"
+	name = "\improper ColMarTech surplus uniform vender"
 	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
 	icon_state = "armory"
 	icon_vend = "armory-vend"
@@ -64,12 +64,12 @@
 
 
 /obj/machinery/prop/almayer/computer/PC
-	name = "Personal Desktop"
+	name = "personal desktop"
 	desc = "A small computer hooked up into the ship's computer network."
 	icon_state = "terminal1"
 
 /obj/machinery/prop/almayer/computer
-	name = "Systems Computer"
+	name = "systems computer"
 	desc = "A small computer hooked up into the ships systems."
 
 	density = 0
@@ -81,7 +81,7 @@
 	icon_state = "terminal"
 
 /obj/machinery/prop/almayer/CICmap
-	name = "Map table"
+	name = "map table"
 	desc = "A table that displays a map of the current target location"
 
 	density = 1
@@ -101,7 +101,7 @@
 	anchored = 1
 
 /obj/structure/prop/almayer/missile_rack
-	name = "Missile Rack"
+	name = "missile rack"
 	desc = "A rack used for missiles, often even holding them."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "double"
@@ -109,7 +109,7 @@
 	bound_y = 32
 
 /obj/structure/prop/almayer/missile_tube
-	name = "Missile Tube"
+	name = "missile tube"
 	desc = "A cold launch missile tube."
 	icon = 'icons/Marine/almayer_props96.dmi'
 	icon_state = "missiletubenorth"
@@ -117,7 +117,7 @@
 	bound_y = 96
 
 /obj/structure/prop/almayer/particle_cannon
-	name = "Phased Pulse Particle Cannon"
+	name = "phased pulse particle cannon"
 	desc = "The main guns of a ship. Who would have known?"
 	icon = 'icons/obj/machines/artillery.dmi'
 
@@ -141,7 +141,7 @@
 	icon_state = "security"
 
 /obj/machinery/computer/shuttle_control/dropship1
-	name = "Dropship Console"
+	name = "dropship console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	shuttle_tag = "Almayer Dropship 1"
@@ -150,13 +150,13 @@
 	req_one_access_txt = "22;200"
 
 /obj/machinery/computer/shuttle_control/dropship1/onboard
-	name = "Flight Controls"
+	name = "flight controls"
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
 
 /obj/machinery/computer/shuttle_control/dropship2
-	name = "Dropship Console"
+	name = "dropship console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	shuttle_tag = "Almayer Dropship 2"
@@ -165,7 +165,7 @@
 	req_one_access_txt = "12;22;200"
 
 /obj/machinery/computer/shuttle_control/dropship2/onboard
-	name = "Flight Controls"
+	name = "flight controls"
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
@@ -222,7 +222,7 @@
 
 //------Dropship Cargo Doors -----//
 /obj/machinery/door/airlock/multi_tile/almayer
-	name = "Dropship Cargo door"
+	name = "dropship cargo door"
 	opacity = 1
 	width = 3
 
@@ -271,7 +271,7 @@
 // This is going to be fucken huge. This is where all babeh perspective doors go to grow up.
 
 /obj/machinery/door/airlock/almayer
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
@@ -317,53 +317,53 @@
 		..()
 
 /obj/machinery/door/airlock/almayer/security
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/secdoor.dmi'
 	req_access_txt = "3"
 
 /obj/machinery/door/airlock/almayer/security/glass
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/secdoor_glass.dmi'
 	opacity = 0
 
 /obj/machinery/door/airlock/almayer/command
-	name = "Command Airlock"
+	name = "command airlock"
 	icon = 'icons/obj/doors/almayer/comdoor.dmi'
 	req_access_txt = "19"
 
 /obj/machinery/door/airlock/almayer/secure
-	name = "Secure Airlock"
+	name = "secure airlock"
 	icon = 'icons/obj/doors/almayer/securedoor.dmi'
 	req_access_txt = "19"
 
 /obj/machinery/door/airlock/almayer/maint
-	name = "Maintenance Hatch"
+	name = "maintenance hatch"
 	icon = 'icons/obj/doors/almayer/maintdoor.dmi'
 	req_access_txt = "0"
 	req_one_access_txt = "2;7"
 
 /obj/machinery/door/airlock/almayer/engineering
-	name = "Engineering Airlock"
+	name = "engineering airlock"
 	icon = 'icons/obj/doors/almayer/engidoor.dmi'
 	opacity = 0
 	req_access_txt = "0"
 	req_one_access_txt = "2;7"
 
 /obj/machinery/door/airlock/almayer/medical
-	name = "Medical Airlock"
+	name = "medical airlock"
 	icon = 'icons/obj/doors/almayer/medidoor.dmi'
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
 
 /obj/machinery/door/airlock/almayer/medical/glass
-	name = "Medical Airlock"
+	name = "medical airlock"
 	icon = 'icons/obj/doors/almayer/medidoor_glass.dmi'
 	opacity = 0
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
 
 /obj/machinery/door/airlock/almayer/generic
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/personaldoor.dmi'
 
 /obj/machinery/door/airlock/almayer/generic/corporate
@@ -372,132 +372,132 @@
 	req_access_txt = "200"
 
 /obj/machinery/door/airlock/almayer/marine
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/requisitions
-	name = "Requisitions"
+	name = "requisitions"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access_txt = "0"
 	req_one_access_txt =  "2;21"
 
 /obj/machinery/door/airlock/almayer/marine/alpha
-	name = "Alpha Squad Prep Room"
+	name = "alpha squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_alpha.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;15"
 
 /obj/machinery/door/airlock/almayer/marine/alpha/sl
-	name = "Alpha Squad Leader Prep"
+	name = "alpha squad leader prep"
 	req_access_txt ="12;15"
 	req_one_access_txt =  "0"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/alpha/spec
-	name = "Alpha Specialist Prep"
+	name = "alpha specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/alpha/engineer
-	name = "Alpha Squad Engineer Prep"
+	name = "alpha squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/alpha/medic
-	name = "Alpha Squad Medic Prep"
+	name = "alpha squad medic prep"
 	req_access_txt ="10;15"
 	req_one_access_txt =  "0"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/bravo
-	name = "Bravo Squad Prep Room"
+	name = "bravo squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_bravo.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;16"
 
 /obj/machinery/door/airlock/almayer/marine/bravo/sl
-	name = "Bravo Squad Leader Prep"
+	name = "bravo squad leader prep"
 	req_access_txt ="12;16"
 	req_one_access_txt =  "0"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/bravo/spec
-	name = "Bravo Specialist Prep"
+	name = "bravo specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/bravo/engineer
-	name = "Bravo Squad Engineer Prep"
+	name = "bravo squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/bravo/medic
-	name = "Bravo Squad Medic Prep"
+	name = "bravo squad medic prep"
 	req_access_txt ="10;16"
 	req_one_access_txt =  "0"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/charlie
-	name = "Charlie Squad Prep Room"
+	name = "charlie squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_charlie.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;17"
 
 /obj/machinery/door/airlock/almayer/marine/charlie/sl
-	name = "Charlie Squad Leader Prep"
+	name = "charlie squad leader prep"
 	req_access_txt ="12;17"
 	req_one_access_txt =  "0"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/charlie/spec
-	name = "Charlie Specialist Prep"
+	name = "charlie specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/charlie/engineer
-	name = "Charlie Squad Engineer Prep"
+	name = "charlie squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/charlie/medic
-	name = "Charlie Squad Medic Prep"
+	name = "charlie squad medic prep"
 	req_access_txt ="10;17"
 	req_one_access_txt =  "0"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/delta
-	name = "Delta Squad Prep Room"
+	name = "delta squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_delta.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;18"
 
 /obj/machinery/door/airlock/almayer/marine/delta/sl
-	name = "Delta Squad Leader Prep"
+	name = "delta squad leader prep"
 	req_access_txt ="12;18"
 	req_one_access_txt =  "0"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/delta/spec
-	name = "Delta Specialist Prep"
+	name = "delta specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/delta/engineer
-	name = "Delta Squad Engineer Prep"
+	name = "delta squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
 
 /obj/machinery/door/airlock/almayer/marine/delta/medic
-	name = "Delta Squad Medic Prep"
+	name = "delta squad medic prep"
 	req_access_txt ="10;18"
 	req_one_access_txt =  "0"
 	dir = 2
@@ -506,7 +506,7 @@
 // Double Doors
 
 /obj/machinery/door/airlock/multi_tile/almayer
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
@@ -522,25 +522,25 @@
 		..()
 
 /obj/machinery/door/airlock/multi_tile/almayer/generic
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/2x1generic.dmi'
 	opacity = 0
 
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/2x1medidoor.dmi'
 	opacity = 0
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
 
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor
-	name = "Airlock"
+	name = "airlock"
 	icon = 'icons/obj/doors/almayer/2x1comdoor.dmi'
 	opacity = 0
 	req_access_txt = "19"
 
 /obj/machinery/door/firedoor/border_only/almayer
-	openspeed = 4
-	name = "Emergency Shutter"
+	name = "emergency shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/almayer/purinadoor.dmi'
+	openspeed = 4

@@ -86,7 +86,8 @@ Make the USCM proud!"}
 //Bridge Officer
 /datum/job/command/bridge
 	title = "Bridge Officer"
-	comm_title = "BO"
+	disp_title = "Staff Officer"
+	comm_title = "SO"
 	paygrade = "O2"
 	flag = ROLE_BRIDGE_OFFICER
 	total_positions = 3
@@ -106,8 +107,8 @@ Make the USCM proud!"}
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
-		. = {"Your job is to monitor the marines, and ensure the ship's theirs and the ship's survival.
-You are also in charge of logistics, the overwatch system. You are also in line to take command after the executive officer."}
+		. = {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
+You are in charge of logistics and the overwatch system. You are also in line to take command after the executive officer."}
 
 //Pilot Officer
 /datum/job/command/pilot
@@ -115,6 +116,8 @@ You are also in charge of logistics, the overwatch system. You are also in line 
 	comm_title = "PO"
 	paygrade = "O1" //Technically Second Lieutenant equivalent, but 2ndLT doesn't exist in Marine pay grade, so Ensign
 	flag = ROLE_PILOT_OFFICER
+	total_positions = 2
+	spawn_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE

@@ -269,6 +269,7 @@
 /area/almayer/evacuation
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "shuttle2"
+	requires_power = 0
 
 //Placeholder.
 /area/almayer/evacuation/pod1
@@ -282,3 +283,5 @@
 /area/almayer/evacuation/pod9
 /area/almayer/evacuation/pod10
 /area/almayer/evacuation/pod11
+
+/area/almayer/evacuation/stranded

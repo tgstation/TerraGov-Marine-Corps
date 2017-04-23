@@ -163,58 +163,69 @@
 
 		edit_admin_permissions()
 
-	else if(href_list["call_shuttle"])
-		if(!check_rights(R_ADMIN))	return
+//======================================================
+//Everything that has to do with evac and self destruct.
+//The rest of this is awful.
+//======================================================
+	if(href_list["evac_authority"])
+		switch(href_list["evac_authority"])
+			if("init_evac")
+				if(!EvacuationAuthority.initiate_evacuation())
+					usr << "<span class='warning'>You are unable to initiate an evacuation right now!</span>"
+				else
+					log_admin("[key_name(usr)] called an evacuation.")
+					message_admins("\blue [key_name_admin(usr)] called an evacuation.", 1)
 
-		if( ticker.mode.name == "blob" )
-			alert("You can't call the shuttle during blob!")
-			return
+			if("cancel_evac")
+				if(!EvacuationAuthority.cancel_evacuation())
+					usr << "<span class='warning'>You are unable to cancel an evacuation right now!</span>"
+				else
+					log_admin("[key_name(usr)] canceled an evacuation.")
+					message_admins("\blue [key_name_admin(usr)] canceled an evacuation.", 1)
 
-		switch(href_list["call_shuttle"])
-			if("1")
-				if ((!( ticker ) || !emergency_shuttle.location()))
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
+			if("toggle_evac")
+				EvacuationAuthority.flags_scuttle ^= FLAGS_EVACUATION_DENY
+				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				message_admins("[key_name_admin(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
 
-			if("2")
-				if (!( ticker ) || !emergency_shuttle.location())
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
+			if("force_evac")
+				if(!EvacuationAuthority.begin_launch())
+					usr << "<span class='warning'>You are unable to launch the pods directly right now!</span>"
+				else
+					log_admin("[key_name(usr)] force-launched the escape pods.")
+					message_admins("\blue [key_name_admin(usr)] force-launched the escape pods.", 1)
 
-				else if (emergency_shuttle.can_recall())
-					emergency_shuttle.recall()
-					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
-					message_admins("\blue [key_name_admin(usr)] sent the Emergency Shuttle back", 1)
+			if("init_dest")
+				if(!EvacuationAuthority.enable_self_destruct())
+					usr << "<span class='warning'>You are unable to authorize the self-destruct right now!</span>"
+				else
+					log_admin("[key_name(usr)] force-enabled the self-destruct system.")
+					message_admins("\blue [key_name_admin(usr)] force-enabled the self-destruct system.", 1)
+
+			if("cancel_dest")
+				if(!EvacuationAuthority.cancel_self_destruct(1))
+					usr << "<span class='warning'>You are unable to cancel the self-destruct right now!</span>"
+				else
+					log_admin("[key_name(usr)] canceled the self-destruct system.")
+					message_admins("\blue [key_name_admin(usr)] canceled the self-destruct system.", 1)
+
+			if("use_dest")
+				if(!EvacuationAuthority.initiate_self_destruct(1))
+					usr << "<span class='warning'>You are unable to trigger the self-destruct right now!</span>"
+				else
+					log_admin("[key_name(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].")
+					message_admins("\blue [key_name_admin(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].", 1)
+
+			if("toggle_dest")
+				EvacuationAuthority.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
+				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				message_admins("[key_name_admin(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+
 
 		href_list["secretsadmin"] = "check_antagonist"
 
-	else if(href_list["edit_shuttle_time"])
-		if(!check_rights(R_SERVER))	return
-
-		if (emergency_shuttle.wait_for_launch)
-			var/new_time_left = input("Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", emergency_shuttle.estimate_launch_time() ) as num
-
-			emergency_shuttle.launch_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left*10]", 1)
-		else if (emergency_shuttle.shuttle.has_arrive_time())
-
-			var/new_time_left = input("Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", emergency_shuttle.estimate_arrival_time() ) as num
-			emergency_shuttle.shuttle.arrive_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's arrival time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left*10]", 1)
-		else
-			alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
-
-		href_list["secretsadmin"] = "check_antagonist"
+//======================================================
+//======================================================
 
 	else if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))	return

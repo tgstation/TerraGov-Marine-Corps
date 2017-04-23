@@ -370,52 +370,17 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 /obj/machinery/nuclearbomb/ex_act(severity)
 	return
 
-#define NUKERANGE 80
 /obj/machinery/nuclearbomb/proc/explode()
-	if (src.safety)
-		src.timing = 0
-		return
-	src.timing = -1.0
-	src.yes_code = 0
-	src.safety = 1
-	if(!src.lighthack)
-		src.icon_state = "nuclearbomb3"
-	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
-	if (ticker && ticker.mode)
-		ticker.mode.explosion_in_progress = 1
-	sleep(100)
+	if(safety)
+		timing = 0
+		r_FAL
+	timing = -1.0
+	yes_code = 0
+	safety = 1
+	if(!lighthack) icon_state = "nuclearbomb3"
 
-	enter_allowed = 0
-
-	var/off_station = 0
-	var/turf/bomb_location = get_turf(src)
-	if(bomb_location && (bomb_location.z == 1))
-		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
-			off_station = 1
-	else
-		off_station = 2
-
-	if(ticker)
-		ticker.station_explosion_cinematic(off_station, null)
-		if(ticker.mode)
-			ticker.mode.explosion_in_progress = 0
-			world << "<B>The station was destoyed by the nuclear blast!</B>"
-
-			ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
-															//kinda shit but I couldn't  get permission to do what I wanted to do.
-
-			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
-				world << "<B>Resetting in 30 seconds!</B>"
-
-				feedback_set_details("end_error","nuke - unhandled ending")
-
-				if(blackbox)
-					blackbox.save_all_data_to_sql()
-				sleep(300)
-				log_game("Rebooting due to nuclear detonation")
-				world.Reboot()
-				return
-	return
+	EvacuationAuthority.trigger_self_destruct(list(z), src) //The round ends as soon as this happens, or it should.
+	r_TRU
 
 /obj/item/weapon/disk/nuclear/Del()
 	if(blobstart.len > 0)

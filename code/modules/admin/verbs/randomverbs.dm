@@ -913,68 +913,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_call_shuttle()
-
-	set category = "Admin"
-	set name = "Call Shuttle"
-
-	if ((!( ticker ) || !emergency_shuttle.location()))
-		return
-
-	if(!check_rights(R_MOD))	return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
-
-	var/choice
-	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || ticker.mode.name == "confliction")
-		choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
-		if(choice == "Confirm")
-			emergency_shuttle.auto_recall = 1	//enable auto-recall
-		else
-			return
-
-	emergency_shuttle.call_evac()
-
-
-	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
-	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
-	return
-
-/client/proc/admin_cancel_shuttle()
-	set category = "Admin"
-	set name = "Cancel Shuttle"
-
-	if(!check_rights(R_MOD))	return
-
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
-
-	if(!ticker || !emergency_shuttle.can_recall())
-		return
-
-	emergency_shuttle.recall()
-	feedback_add_details("admin_verb","CCSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-recalled the emergency shuttle.", 1)
-
-	return
-
-/client/proc/admin_deny_shuttle()
-	set category = "Admin"
-	set name = "Toggle Deny Shuttle"
-
-	if (!ticker)
-		return
-
-	if(!check_rights(R_ADMIN))	return
-
-	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
-
-	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-
 /client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Attack Log"

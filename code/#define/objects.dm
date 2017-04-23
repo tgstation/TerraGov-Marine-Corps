@@ -34,6 +34,7 @@
 #define POWEROFF	4		// tbd
 #define MAINT		8			// under maintaince
 #define EMPED		16		// temporary broken by EMP pulse
+#define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 
 //bitflags for door switches.
 #define OPEN	1

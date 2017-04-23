@@ -206,8 +206,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	statpanel("Status")
 	if(client.statpanel == "Status")
 		stat(null, "Station Time: [worldtime2text()]")
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)
 				stat(null, eta_status)
 

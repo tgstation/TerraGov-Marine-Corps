@@ -1,5 +1,6 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+#define MAIN_SHIP_NAME "USS Almayer"
 //=================================================
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
@@ -103,7 +104,7 @@ var/diary = null
 var/diaryofmeanpeople = null
 var/round_stats = null
 var/href_logfile = null
-var/station_name = "USS Sulaco"
+var/station_name = "[MAIN_SHIP_NAME]"
 var/game_version = "Colonial Marines"
 var/changelog_hash = ""
 var/game_year = (text2num(time2text(world.realtime, "YYYY")) + 144)
