@@ -250,7 +250,7 @@
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
-	name = "sulaco medical doctor's locker"
+	name = "\improper medical doctor's locker"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	icon_state = "securemed1"
 	icon_closed = "securemed"

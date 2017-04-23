@@ -14,7 +14,6 @@
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/gun_click_time = -100 //I'm lazy.
 
-
 /obj/screen/text
 	icon = null
 	icon_state = null
@@ -23,6 +22,14 @@
 	maptext_height = 480
 	maptext_width = 480
 
+/obj/screen/cinematic
+	layer = 21
+	mouse_opacity = 0
+	screen_loc = "1,0"
+
+/obj/screen/cinematic/explosion
+	icon = 'icons/effects/station_explosion.dmi'
+	icon_state = "intro_ship"
 
 /obj/screen/inventory
 	var/slot_id	//The indentifier for the slot. It has nothing to do with ID cards.

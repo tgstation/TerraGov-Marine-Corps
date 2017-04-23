@@ -113,13 +113,10 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(!num_humans && num_xenos) 		round_finished = MODE_INFESTATION_X_MAJOR
-	else if(num_humans && !num_xenos)	round_finished = MODE_INFESTATION_M_MAJOR
-	else if(!num_humans && !num_xenos)	round_finished = MODE_INFESTATION_DRAW_DEATH
-	else if(emergency_shuttle.returned())
-		emergency_shuttle.evac = 1
-		round_finished 								   = MODE_INFESTATION_X_MINOR
-	else if(station_was_nuked)			round_finished = MODE_GENERIC_DRAW_NUKE
+	if(!num_humans && num_xenos) 										round_finished = MODE_INFESTATION_X_MAJOR
+	else if(num_humans && !num_xenos)									round_finished = MODE_INFESTATION_M_MAJOR
+	else if(!num_humans && !num_xenos)									round_finished = MODE_INFESTATION_DRAW_DEATH
+	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)	round_finished = MODE_GENERIC_DRAW_NUKE
 
 //If the queen is dead after a period of time, this will end the game.
 /datum/game_mode/proc/check_queen_status(queen_time)
@@ -147,7 +144,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			MODE_INFESTATION_X_MINOR,
 			MODE_INFESTATION_M_MINOR,
 			MODE_INFESTATION_DRAW_DEATH)
-			world << "<span class='round_body'>Thus ends the story of the brave men and women of the USS Sulaco and their struggle on [uppertext(name)].</span>"
+			world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [uppertext(name)].</span>"
 		/*
 		if(MODE_INFESTATION_X_MAJOR)
 			world << "<span class='round_body'>The aliens have successfully wiped out the marines and will live to spread the infestation!</span>"
@@ -158,7 +155,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			if(prob(50)) 	world << 'sound/misc/hardon.ogg'
 			else			world << 'sound/misc/hell_march.ogg'
 		if(MODE_INFESTATION_X_MINOR)
-			world << "<span class='round_body'>The Sulaco has been evacuated...but the infestation remains!</span>"
+			world << "<span class='round_body'>The [MAIN_SHIP_NAME] has been evacuated...but the infestation remains!</span>"
 		if(MODE_INFESTATION_M_MINOR)
 			world << "<span class='round_body'>The marines have killed the xenomorph queen but were unable to finish off the hive!</span>"
 		if(MODE_INFESTATION_DRAW_DEATH)
@@ -385,14 +382,14 @@ Count up surviving humans and aliens.
 Can't be in a locker, in space, in the thunderdome, or distress.
 Only checks living mobs with a client attached.
 */
-/datum/game_mode/proc/count_humans_and_xenos()
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = list(1,2,3,4,5))
 	var/num_humans = 0
 	var/num_xenos = 0
 	var/area/A
 
 	for(var/mob/M in player_list)
 		A = get_area(M.loc)
-		if(M.z && M.stat != DEAD && !istype(M.loc, /turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/sulaco/hub))
+		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc, /turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/sulaco/hub))
 			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST))
 				num_humans++
 			else if(isXeno(M))
@@ -400,14 +397,14 @@ Only checks living mobs with a client attached.
 
 	return list(num_humans,num_xenos)
 
-/datum/game_mode/proc/count_marines_and_pmcs()
+/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels = list(1,2,3,4,5))
 	var/num_marines = 0
 	var/num_pmcs = 0
 	var/area/A
 
 	for(var/mob/M in player_list)
 		A = get_area(M.loc)
-		if(M.z && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
+		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
 			if(ishuman(M) && !isYautja(M))
 				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
 				else if(M.mind && !M.mind.special_role)		num_marines++

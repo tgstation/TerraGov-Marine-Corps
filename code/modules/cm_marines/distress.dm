@@ -107,6 +107,7 @@
 	var/arrival_message = "" //Msg to display about when the shuttle arrives
 	var/objectives //Txt of objectives to display to joined. Todo: make this into objective notes
 	var/probability = 0 //Chance of it occuring. Total must equal 100%
+	var/hostility //For ERTs who are either hostile or friendly by random chance.
 	var/list/datum/mind/members = list() //Currently-joined members.
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
 //	var/waiting_for_candidates = 0 //Are we waiting on people to join?
@@ -118,9 +119,12 @@
 /datum/emergency_call/pmc
 	name = "Weyland-Yutani PMC"
 	mob_max = 6
-	arrival_message = "USS Sulaco, this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
-	objectives = "Secure the Corporate Liaison and the Sulaco Commander, and eliminate any hostile threats. Do not damage W-Y property."
 	probability = 30
+
+	New()
+		..()
+		arrival_message = "[MAIN_SHIP_NAME], this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
+		objectives = "Secure the Corporate Liaison and the [MAIN_SHIP_NAME] Commander, and eliminate any hostile threats. Do not damage W-Y property."
 
 //Supply drop. Just docks and has a crapload of stuff inside.
 /datum/emergency_call/supplies
@@ -129,30 +133,39 @@
 	arrival_message = "Weyland Yutani Automated Supply Drop 334-Q signal received. Docking procedures have commenced."
 	probability = 5
 
-//Randomly-equipped mercenaries. Neutral to Weyland Yutani.
+//Randomly-equipped mercenaries. May be friendly or hostile to the USCM, hostile to xenos.
 /datum/emergency_call/mercs
 	name = "Mercenaries"
 	mob_max = 5
-	arrival_message = "USS Sulaco, this is mercenary vessel MC-98 responding to your distress call. Prepare for boarding."
-	objectives = "Help the crew of the Sulaco in exchange for payment, and choose your payment well. Do what your Captain says. Ensure your survival at all costs."
-	probability = 15
+	probability = 30
 
-//Xeeenoooooossss
+	New()
+		..()
+		arrival_message = "[MAIN_SHIP_NAME], this is mercenary vessel MC-98 responding to your distress call. Prepare for boarding."
+		objectives = "Help the crew of the [MAIN_SHIP_NAME] in exchange for payment, and choose your payment well. Do what your Captain says. Ensure your survival at all costs."
+
+//Xenomorphs, hostile to everyone.
 /datum/emergency_call/xenos
 	name = "Xenomorphs"
 	mob_max = 6
-	arrival_message = "USS Sulaco, this is USS Vriess respond-- #&...*#&^#.. signal.. oh god, they're in the vent---... Priority Warning: Signal lost."
-	objectives = "Screeee! FoRr tHe HIvE!"
-	probability = 15
+	probability = 30
 	role_needed = BE_ALIEN
 
-//Russian 'iron bear' mercenaries. Hostile to everyone.
+	New()
+		..()
+		arrival_message = "[MAIN_SHIP_NAME], this is USS Vriess respond-- #&...*#&^#.. signal.. oh god, they're in the vent---... Priority Warning: Signal lost."
+		objectives = "For the Empress!"
+
+//Russian 'iron bear' mercenaries. Hostile to everyone. //TODO Replace.
 /datum/emergency_call/bears
 	name = "Iron Bears"
 	mob_max = 5
-	arrival_message = "Incoming Transmission: ' Vrageskie korabli pryamo po kursu, podgotovitcya k shturmu, ekipaj lekvidirovat!'"
-	objectives = "Kill everything that moves. Blow up everything that doesn't. Listen to your superior officers and take over the USS Sulaco at all costs."
-	probability = 15
+	probability = 0
+
+	New()
+		..()
+		arrival_message = "Incoming Transmission: ' Vrageskie korabli pryamo po kursu, podgotovitcya k shturmu, ekipaj lekvidirovat!'"
+		objectives = "Kill everything that moves. Blow up everything that doesn't. Listen to your superior officers and take over the [MAIN_SHIP_NAME] at all costs."
 
 //Terrified pizza delivery
 /datum/emergency_call/pizza
@@ -170,13 +183,13 @@
 	objectives = "Do whatever Weyland Yutani needs you to do."
 	probability = 0
 
-//Dutch's Dozen
+//Dutch's Dozen. Friendly to the USCM, but more neutral than anything. //TODO Replace.
 /datum/emergency_call/dutch
 	name = "Dutch's Team"
 	mob_max = 5
 	arrival_message = "Incoming Transmission: 'Get to the shuttle! This is Major Dutch and my team of mercenaries. Responding to your distress call.'"
 	objectives = "Follow the orders of Dutch and assist the marines. If there are any Yajuta on the field, you are to give it your full attention. If the shuttle is called, you need to get to it."
-	probability = 15
+	probability = 0
 
 //Deathsquad Commandos
 /datum/emergency_call/death
@@ -221,6 +234,7 @@
 			add_prob += E.probability
 			continue
 		chosen_call = E //Our random chance found one.
+		E.hostility = pick(0,1)
 		break
 
 	if(!istype(chosen_call))
@@ -305,7 +319,7 @@
 		ticker.mode.waiting_for_candidates = 1
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
-	command_announcement.Announce("A distress beacon has been launched from the USS Sulaco.", "Priority Alert")
+	command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert")
 	spawn(600) //If after 60 seconds we aren't full, abort
 		if(candidates.len < mob_max)
 			message_admins("Aborting distress beacon, not enough candidates: found [candidates.len].", 1)
@@ -606,7 +620,7 @@
 	if(original) //Just to be sure.
 		del(original)
 
-/datum/emergency_call/mercs/create_member(var/datum/mind/M)
+/datum/emergency_call/mercs/create_member(var/datum/mind/M, hostile)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
@@ -631,15 +645,26 @@
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
 			spawn_captain(mob)
-			mob << "<font size='3'>\red You are the Mercenary captain!</font>"
-			mob << "<B> You must lead the mercs to victory against any and all hostile threats..</b>"
-			mob << "<B> You are to help with the defense of the USS Sulaco, but you will not leave without payment.</b>"
-			mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+			if(hostility)
+				mob << "<font size='3'>\red You are the Mercenary captain!</font>"
+				mob << "<B> You must lead the mercs to victory against any and all hostile threats.</b>"
+				mob << "<B> You are a space pirate responding to a distress. You are to loot the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
+				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+			else
+				mob << "<font size='3'>\red You are the Mercenary captain!</font>"
+				mob << "<B> You must lead the mercs to victory against any and all hostile threats.</b>"
+				mob << "<B> You are to help with the defense of the [MAIN_SHIP_NAME], but you will not leave without payment.</b>"
+				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
 		else
 			spawn_mercenary(mob)
-			mob << "<font size='3'>\red You are a Space Mercenary!</font>"
-			mob << "<B> You are to help with the defense of the USS Sulaco, but you will not leave without payment.</b>"
-			mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+			if(hostility)
+				mob << "<font size='3'>\red You are a Space Mercenary!</font>"
+				mob << "<B> You are a space pirate responding to a distress. You are to loot the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
+				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+			else
+				mob << "<font size='3'>\red You are a Space Mercenary!</font>"
+				mob << "<B> You are to help with the defense of the [MAIN_SHIP_NAME], but you will not leave without payment.</b>"
+				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -731,7 +756,7 @@
 			spawn_officer(mob)
 			mob << "<font size='3'>\red You are the Iron Bears leader!</font>"
 			mob << "<B> You are a highly trained military cell and part of the Russian Spetsnaz.</b>"
-			mob << "<B> You must lead the Iron Bears mercenaries in taking the USS Sulaco by taking over the bridge.</b>"
+			mob << "<B> You must lead the Iron Bears mercenaries in taking the [MAIN_SHIP_NAME] by taking over the bridge.</b>"
 			mob << "<B> Make sure to contact the USSR and eliminate any resistance!</b>"
 			mob << "<B> You're the only one they taught any English, so make use of that.</b>"
 			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
@@ -740,7 +765,7 @@
 			mob.remove_language("Sol Common")
 			mob.remove_language("English")
 			mob << "<font size='3'>\red You are an Iron Bear mercenary!</font>"
-			mob << "<font size='3'>\red You must take over the USS Sulaco at all costs! Listen to your leader!</font>"
+			mob << "<font size='3'>\red You must take over the [MAIN_SHIP_NAME] at all costs! Listen to your leader!</font>"
 			mob << "<font size='3'>\red Make sure to contact the USSR and eliminate any resistance!</font>"
 			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
 

@@ -1,8 +1,9 @@
 /datum/job
 
 	//The name of the job
-	var/title = ""
-	var/special_role 			 // In case they have some special role on spawn.
+	var/title = ""				 //The internal title for the job, used for the job ban system and so forth. Don't change these, change the disp_title instead.
+	var/special_role 			 //In case they have some special role on spawn.
+	var/disp_title				 //Determined on new(). Usually the same as the title, but doesn't have to be. Set this to override what the player sees in the game as their title.
 	var/comm_title 			= "" //The mini-title to display over comms.
 	var/paygrade 			= 0 //Also displays a ranking when talking over the radio.
 
@@ -27,6 +28,10 @@
 	var/flags_startup_parameters 	= NOFLAGS //These flags are used to determine how to load the role, and some other parameters.
 	var/flags_whitelist 			= NOFLAGS //Only used by whitelisted roles. Can be a single whitelist flag, or a combination of them.
 
+	New()
+		..()
+		if(!disp_title) disp_title = title
+
 /datum/job/proc/get_alternative_title(mob/living/M, lowercase)
 	if(istype(M) && M.client && M.client.prefs)
 		. = M.client.prefs.GetPlayerAltTitle(src)
@@ -48,7 +53,7 @@
 		var/title_given
 		var/title_alt
 		title_alt = get_alternative_title(H,1)
-		title_given = title_alt ? title_alt : lowertext(title)
+		title_given = title_alt ? title_alt : lowertext(disp_title)
 
 		//Document syntax cannot have tabs for proper formatting.
 		var/t = {"
@@ -120,7 +125,7 @@
 	C.paygrade = paygrade
 	C.registered_name = H.real_name
 	C.rank = title
-	C.assignment = title_alt ? title_alt : title
+	C.assignment = title_alt ? title_alt : disp_title
 	C.role = src
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 

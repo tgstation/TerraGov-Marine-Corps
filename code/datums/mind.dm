@@ -226,18 +226,6 @@ datum/mind
 						//Will display as special role if the target is set as MODE. Ninjas/commandos/nuke ops.
 						new_objective.explanation_text = "[objective_type] [new_target:real_name], the [new_target:mind:assigned_role=="MODE" ? (new_target:mind:special_role) : (new_target:mind:assigned_role)]."
 
-				if ("prevent")
-					new_objective = new /datum/objective/block
-					new_objective.owner = src
-
-				if ("hijack")
-					new_objective = new /datum/objective/hijack
-					new_objective.owner = src
-
-				if ("escape")
-					new_objective = new /datum/objective/escape
-					new_objective.owner = src
-
 				if ("survive")
 					new_objective = new /datum/objective/survive
 					new_objective.owner = src

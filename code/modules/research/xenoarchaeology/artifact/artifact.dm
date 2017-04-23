@@ -14,7 +14,6 @@
 
 	artifact_find_type = pick(\
 	5;/obj/machinery/power/supermatter,\
-	5;/obj/machinery/syndicate_beacon,\
 	25;/obj/machinery/power/supermatter/shard,\
 	100;/obj/machinery/auto_cloner,\
 	100;/obj/machinery/giga_drill,\

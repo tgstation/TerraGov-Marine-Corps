@@ -506,29 +506,25 @@ datum/preferences
 			index = 0
 
 		HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
-		var/rank = job.title
 		lastJob = job
-		if(jobban_isbanned(user, rank))
-			HTML += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
+		if(jobban_isbanned(user, job.title))
+			HTML += "<del>[job.disp_title]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
-		if(!job.player_old_enough(user.client))
+		else if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
-			HTML += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			HTML += "<del>[job.disp_title]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
 //		if((job_civilian_low & ASSISTANT) && (rank != "Assistant"))
 //			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 //			continue
-		if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist))
-			HTML += "<del>[rank]</del></td><td> \[WHITELISTED]</td></tr>"
+		else if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist))
+			HTML += "<del>[job.disp_title]</del></td><td> \[WHITELISTED]</td></tr>"
 			continue
-		if((rank in ROLES_COMMAND) || (rank == "AI"))//Bold head jobs
-			HTML += "<b>[rank]</b>"
-		else
-			HTML += "[rank]"
+		else HTML += (job.title in ROLES_COMMAND) || job.title == "AI" ? "<b>[job.disp_title]</b>" : "[job.disp_title]"
 
 		HTML += "</td><td width='40%'>"
 
-		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
+		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[job.title]'>"
 
 //		if(rank == "Assistant")//Assistant is special
 //			if(job_civilian_low & ASSISTANT)
@@ -678,9 +674,7 @@ datum/preferences
 	return
 
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
-	return player_alt_titles.Find(job.title) > 0 \
-		? player_alt_titles[job.title] \
-		: job.title
+	if(player_alt_titles) . = player_alt_titles[job.title]
 
 /datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
 	// remove existing entry

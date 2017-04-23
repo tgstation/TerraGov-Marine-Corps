@@ -94,7 +94,7 @@
 	var/datum/signal/signal = new
 	signal.data["tag"] = tag_door
 	signal.data["command"] = command
-	post_signal(signal)
+	post_signal(signal, RADIO_AIRLOCK)
 
 ///datum/computer/file/embedded_program/docking/simple/proc/signal_mech_sensor(var/command)
 //	signal_door(command)

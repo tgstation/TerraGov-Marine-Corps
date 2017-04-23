@@ -51,7 +51,7 @@
 /obj/item/weapon/circuitboard/security
 	name = "Circuit board (Security Camera Monitor)"
 	build_path = /obj/machinery/computer/security
-	var/network = list("SULACO")
+	var/network = list("military")
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
 	var/emagged = 0
@@ -323,7 +323,7 @@
 			user << "\red Circuit controls are locked."
 			return
 		var/existing_networks = list2text(network,",")
-		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: SULACO,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
+		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: military,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
 		if(!input)
 			usr << "No input found please hang up and try your call again."
 			return

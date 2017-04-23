@@ -113,7 +113,7 @@
 	sleep(50)
 	switch(map_locale) //Switching it up.
 		if(0)
-			command_announcement.Announce("This is Commander Anderson speaking from the USS Alistoun. We've heard the Sulaco's distress beacon, but we need you to hold Whiskey Outpost for an hour before the marine force is equipped and ready. We're sending UD-22 Navajo gunships to assist in your defense.", "USS Alistoun")
+			command_announcement.Announce("This is Commander Anderson speaking from the USS Alistoun. We've heard the [MAIN_SHIP_NAME]'s distress beacon, but we need you to hold Whiskey Outpost for an hour before the marine force is equipped and ready. We're sending UD-22 Navajo gunships to assist in your defense.", "USS Alistoun")
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 	set waitfor = 0 //Doing this before hand.

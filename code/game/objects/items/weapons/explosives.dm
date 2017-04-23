@@ -12,7 +12,7 @@
 		return
 	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/under) || istype(target,/obj/item))
 		return
-	if (istype(target, /obj/structure/ladder) || istype(target, /turf/simulated/floor) || istype(target, /obj/machinery/telecomms) || istype(target, /obj/machinery/computer/shuttle_control) || istype(target, /obj/effect/forcefield) || istype(target, /obj/machinery/door/poddoor/four_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/four_tile_ver/secure)  || istype(target, /obj/machinery/door/poddoor/two_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/two_tile_ver/secure) || istype(target, /obj/effect/blocker/fog))
+	if (istype(target, /obj/structure/ladder) || istype(target, /turf/simulated/floor) || istype(target, /obj/machinery/telecomms) || istype(target, /obj/machinery/computer/shuttle_control) || istype(target, /obj/effect/forcefield) || istype(target, /obj/machinery/door/poddoor/four_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/four_tile_ver/secure)  || istype(target, /obj/machinery/door/poddoor/two_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/two_tile_ver/secure) || istype(target, /obj/effect/blocker/fog) || istype(target, /obj/machinery/self_destruct))
 		return
 
 	user << "Planting explosives..."

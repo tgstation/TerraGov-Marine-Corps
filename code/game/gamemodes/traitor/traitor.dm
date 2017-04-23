@@ -91,11 +91,6 @@
 		survive_objective.owner = traitor
 		traitor.objectives += survive_objective
 
-		if(prob(10))
-			var/datum/objective/block/block_objective = new
-			block_objective.owner = traitor
-			traitor.objectives += block_objective
-
 	else
 		switch(rand(1,100))
 			if(1 to 33)
@@ -118,19 +113,6 @@
 				steal_objective.owner = traitor
 				steal_objective.find_target()
 				traitor.objectives += steal_objective
-		switch(rand(1,100))
-			if(1 to 100)
-				if (!(locate(/datum/objective/escape) in traitor.objectives))
-					var/datum/objective/escape/escape_objective = new
-					escape_objective.owner = traitor
-					traitor.objectives += escape_objective
-
-			else
-				if (!(locate(/datum/objective/hijack) in traitor.objectives))
-					var/datum/objective/hijack/hijack_objective = new
-					hijack_objective.owner = traitor
-					traitor.objectives += hijack_objective
-	return
 
 
 /datum/game_mode/proc/greet_traitor(var/datum/mind/traitor)

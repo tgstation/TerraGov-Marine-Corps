@@ -54,8 +54,8 @@
 	stat(null, "Move Mode: [m_intent]")
 */
 
-	if(emergency_shuttle)
-		var/eta_status = emergency_shuttle.get_status_panel_eta()
+	if(EvacuationAuthority)
+		var/eta_status = EvacuationAuthority.get_status_panel_eta()
 		if(eta_status)
 			stat(null, eta_status)
 

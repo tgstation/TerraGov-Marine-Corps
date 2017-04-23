@@ -1,3 +1,23 @@
+//=================================================
+//Self destruct, nuke, and evacuation.
+#define EVACUATION_TIME_LOCK 36000
+#define DISTRESS_TIME_LOCK 3600
+#define EVACUATION_AUTOMATIC_DEPARTURE 6000 //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
+#define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
+#define EVACUATION_STATUS_STANDING_BY 0
+#define EVACUATION_STATUS_INITIATING 1
+#define EVACUATION_STATUS_COMPLETE 2
+
+#define NUKE_EXPLOSION_INACTIVE 0
+#define NUKE_EXPLOSION_ACTIVE	1
+#define NUKE_EXPLOSION_IN_PROGRESS 3
+#define NUKE_EXPLOSION_FINISHED 4
+
+#define FLAGS_EVACUATION_DENY 1
+#define FLAGS_SELF_DESTRUCT_DENY 2
+//=================================================
+
+
 #define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
 
 #define MODE_INFESTATION		1

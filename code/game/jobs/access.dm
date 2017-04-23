@@ -111,11 +111,11 @@
 /proc/get_region_accesses_name(code)
 	switch(code)
 		if(0) return "All"
-		if(1) return "Sulaco Security"//security
-		if(2) return "Sulaco Medbay"//medbay
-		if(3) return "Sulaco Research"//research
-		if(4) return "Sulaco Engineering"//engineering and maintenance
-		if(5) return "Sulaco Command"//command
+		if(1) return "[MAIN_SHIP_NAME] Security"//security
+		if(2) return "[MAIN_SHIP_NAME] Medbay"//medbay
+		if(3) return "[MAIN_SHIP_NAME] Research"//research
+		if(4) return "[MAIN_SHIP_NAME] Engineering"//engineering and maintenance
+		if(5) return "[MAIN_SHIP_NAME] Command"//command
 		if(6) return "Marines"//marine prep
 		if(7) return "Squads"//squads
 		if(8) return "Civilian"//Civilian
@@ -126,13 +126,13 @@
 		if(ACCESS_MARINE_WO)			return "WO's Office"
 		if(ACCESS_MARINE_BRIG) 			return "Brig"
 		if(ACCESS_MARINE_CMO) 			return "CMO's Office"
-		if(ACCESS_MARINE_MEDBAY)		return "Sulaco Medbay"
-		if(ACCESS_MARINE_RESEARCH) 		return "Sulaco Research"
+		if(ACCESS_MARINE_MEDBAY)		return "[MAIN_SHIP_NAME] Medbay"
+		if(ACCESS_MARINE_RESEARCH) 		return "[MAIN_SHIP_NAME] Research"
 		if(ACCESS_MARINE_CE)		 	return "CE's Office"
-		if(ACCESS_MARINE_ENGINEERING) 	return "Sulaco Engineering"
+		if(ACCESS_MARINE_ENGINEERING) 	return "[MAIN_SHIP_NAME] Engineering"
 		if(ACCESS_MARINE_COMMANDER) 	return "Commander's Quarters"
-		if(ACCESS_MARINE_LOGISTICS) 	return "Sulaco Logistics"
-		if(ACCESS_MARINE_BRIDGE) 		return "Sulaco Bridge"
+		if(ACCESS_MARINE_LOGISTICS) 	return "[MAIN_SHIP_NAME] Logistics"
+		if(ACCESS_MARINE_BRIDGE) 		return "[MAIN_SHIP_NAME] Bridge"
 		if(ACCESS_MARINE_PREP) 			return "Marine Prep"
 		if(ACCESS_MARINE_ENGPREP) 		return "Marine Squad Engineering"
 		if(ACCESS_MARINE_MEDPREP) 		return "Marine Squad Medical"
@@ -149,7 +149,7 @@
 		if(ACCESS_CIVILIAN_LOGISTICS) 	return "Civilian Command"
 		if(ACCESS_CIVILIAN_ENGINEERING) return "Civilian Engineering"
 		if(ACCESS_CIVILIAN_PUBLIC) 		return "Civilian"
-		if(ACCESS_IFF_MARINE) 			return "USS Sulaco Identification"
+		if(ACCESS_IFF_MARINE) 			return "[MAIN_SHIP_NAME] Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)

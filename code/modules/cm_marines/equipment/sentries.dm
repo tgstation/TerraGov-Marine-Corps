@@ -246,7 +246,7 @@
 		spark_system.attach(src)
 		cell = new (src)
 		camera = new (src)
-		camera.network = list("SULACO")
+		camera.network = list("military")
 		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0
@@ -301,7 +301,7 @@
 		SetLuminosity(7)
 		if(!camera)
 			camera = new /obj/machinery/camera(src)
-			camera.network = list("SULACO")
+			camera.network = list("military")
 			camera.c_tag = src.name
 		update_icon()
 		return
@@ -947,7 +947,7 @@
 		var/obj/item/weapon/cell/super/H = new(src) //Better cells in these ones.
 		cell = H
 		camera = new (src)
-		camera.network = list("SULACO")
+		camera.network = list("military")
 		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0

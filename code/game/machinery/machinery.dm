@@ -115,8 +115,10 @@ Class Procs:
 
 /obj/machinery/New()
 	..()
-	machines += src
-	machinery_sort_required = 1
+	if(!(stat & MACHINE_DO_NOT_PROCESS))
+		machines += src
+		machinery_sort_required = 1
+	else stat &= ~MACHINE_DO_NOT_PROCESS
 
 /obj/machinery/Del()
 	machines -= src
