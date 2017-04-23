@@ -27,24 +27,42 @@
 	var/icon_track = 100 //This is to track the amount of fuel so it selects the proper icon.
 
 
+
+/obj/machinery/power/geothermal/sulaco/New()
+	buildstate = rand(0,3)
+	if(buildstate == 1)
+		icon_state = "weld"
+	else if (buildstate ==2)
+		icon_state = "wire"
+	else if (buildstate ==3)
+		icon_state = "wrench"
+	..()
+
+
 /obj/machinery/power/geothermal/sulaco/process()
 	if(!is_on || buildstate || !anchored) //Default logic checking
 		return 0
-
-
+	if (fuel_amount <= 0)
+		src.visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
+		desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The reactor ran out of fuel and seized up"
+		fuel_rate = 0
+		buildstate = 1  //No fuel really fucks it.
+		is_on = 0
+		icon_track = 0
+		fail_rate+=2 //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
+		icon_state = "weld"
+		return 0
 	if(!powernet && !powernet_connection_failed) //Powernet checking, make sure there's valid cables & powernets
 		if(!connect_to_network())
 			powernet_connection_failed = 1
 			is_on = 0
 			spawn(150) // Error! Check again in 15 seconds. Someone could have blown/acided or snipped a cable
 				powernet_connection_failed = 0
-
 	else if(powernet) //All good! Let's fire it up!
 		if(!check_failure()) //THIS STILL NEEDS A SMIDGE OF WORK, AND PROBABLY IT'S OWN PROC SINCE I'M GHETTOING UP THE REGULAR ONE...
-			update_icon()
+//			update_icon()
 			if(power_gen_percent < 100)
 				power_gen_percent++
-				fuel_rate = 0.01
 			if(power_gen_percent == 10)//Flavor text!
 				src.visible_message("\icon[src] <b>[src]</b> begins to whirr as it powers up.")
 				fuel_rate = 0.025
@@ -78,21 +96,11 @@
 			src.visible_message("\icon[src] <b>[src]</b> displasy that the fuel cell is critically low and needs to be replaced")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The Fuel cell is critically low.</red>"
 			icon_track = 10
-		if (fuel_amount == 0)
-			src.visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
-			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The reactor ran out of fuel and seized up"
-			fuel_rate = 0
-			buildstate = 0  //No fuel really fucks it.
-			is_on = 0
-			icon_track = 0
-			fail_rate++ //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
-			icon = "weld"
-			return 0
 		icon_state = "on-[icon_track]" //Makes sure it gets the proper icon
-		update_icon() //Gonna either make a new one of these with blackjack and hooker or just ignore it 5ever.
+//		update_icon() //Gonna either make a new one of these with blackjack and hooker or just ignore it 5ever.
 		verbalupdate = 1
 		spawn(600)
-			verbalupdate = 0
+			if(verbalupdate)	verbalupdate = 0
 
 
 /obj/machinery/power/geothermal/sulaco/attackby(obj/item/W, mob/user)
@@ -140,16 +148,19 @@
 		return 0
 	if(is_on)
 		src.visible_message("\icon[src] \red <b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.")
-		icon = "off-[icon_track]"
+		icon_state = "off-[icon_track]"
 		is_on = 0
 		power_gen_percent = 0
 		cur_tick = 0
-		update_icon()
+//		update_icon()
 		return 1
 	src.visible_message("\icon[src] \red <b>[src]</b> beeps loudly as [usr] turns the generator on and beings the process of fusion...")
+	verbalupdate = 0
+	icon_state = "on-[icon_track]"
+	fuel_rate = 0.01
 	is_on = 1
 	cur_tick = 0
-	update_icon()
+//	update_icon()
 	return 1
 
 
@@ -166,7 +177,7 @@
 					buildstate = 2
 					user << "You finish welding."
 					icon_state = "wire"
-					update_icon()
+//					update_icon()
 					return
 			else
 				user << "\red You need more welding fuel to complete this task."
@@ -180,7 +191,7 @@
 				buildstate = 3
 				user << "You finish securing the wires."
 				icon_state = "wrench"
-				update_icon()
+//				update_icon()
 				return
 	if(istype(O,/obj/item/weapon/wrench))
 		if(buildstate == 3 && !is_on)
@@ -192,7 +203,7 @@
 				is_on = 0
 				user << "You finish repairing the plating. The generator looks good to go! Press it to turn it on."
 				icon_state = "off"
-				update_icon()
+//				update_icon
 				return
 	..()
 	return

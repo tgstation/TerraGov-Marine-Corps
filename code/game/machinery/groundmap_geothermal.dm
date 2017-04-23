@@ -108,11 +108,11 @@
 		if(rand(0,3) == 0)
 			src.visible_message("\icon[src] \red <b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
 			buildstate = 2
-			if(almayer)	icon = "wire" //FOR THE SPECIAL NEW ENGINE
+			if(almayer)	icon_state = "wire" //FOR THE SPECIAL NEW ENGINE
 		else
 			src.visible_message("\icon[src] \red <b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = 3
-			if(almayer)	icon = "wrench" //FOR THE SPECIAL NEW ENGINE
+			if(almayer)	icon_state = "wrench" //FOR THE SPECIAL NEW ENGINE
 		is_on = 0
 		power_gen_percent = 0
 		update_icon()
