@@ -540,6 +540,7 @@
 	req_access_txt = "19"
 
 /obj/machinery/door/firedoor/border_only/almayer
+	openspeed = 4
 	name = "Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/almayer/purinadoor.dmi'
