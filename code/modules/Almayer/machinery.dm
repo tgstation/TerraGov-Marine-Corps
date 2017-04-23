@@ -381,126 +381,147 @@
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access_txt = "0"
 	req_one_access_txt =  "2;21"
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/alpha
 	name = "alpha squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_alpha.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;15"
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/alpha/sl
 	name = "alpha squad leader prep"
 	req_access_txt ="12;15"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/alpha/spec
 	name = "alpha specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/alpha/engineer
 	name = "alpha squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/alpha/medic
 	name = "alpha squad medic prep"
 	req_access_txt ="10;15"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/bravo
 	name = "bravo squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_bravo.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;16"
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/bravo/sl
 	name = "bravo squad leader prep"
 	req_access_txt ="12;16"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/bravo/spec
 	name = "bravo specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/bravo/engineer
 	name = "bravo squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/bravo/medic
 	name = "bravo squad medic prep"
 	req_access_txt ="10;16"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/charlie
 	name = "charlie squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_charlie.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;17"
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/charlie/sl
 	name = "charlie squad leader prep"
 	req_access_txt ="12;17"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/charlie/spec
 	name = "charlie specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/charlie/engineer
 	name = "charlie squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/charlie/medic
 	name = "charlie squad medic prep"
 	req_access_txt ="10;17"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/delta
 	name = "delta squad prep room"
 	icon = 'icons/obj/doors/almayer/prepdoor_delta.dmi'
 	req_access_txt = "9"
 	req_one_access_txt =  "2;18"
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/delta/sl
 	name = "delta squad leader prep"
 	req_access_txt ="12;18"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/delta/spec
 	name = "delta specialist prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "13"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/delta/engineer
 	name = "delta squad engineer prep"
 	req_access_txt ="0"
 	req_one_access_txt =  "11"
 	dir = 2
+	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/delta/medic
 	name = "delta squad medic prep"
 	req_access_txt ="10;18"
 	req_one_access_txt =  "0"
 	dir = 2
+	opacity = 0
 
 
 // Double Doors
