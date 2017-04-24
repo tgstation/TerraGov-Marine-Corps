@@ -46,6 +46,42 @@
 //-----USS Almayer Props -----//
 //Put any props that don't function properly, they could function in the future but for now are for looks. This system could be expanded for other maps too. ~Art
 
+/obj/item/prop/almayer
+	name = "GENERIC USS ALMAYER PROP"
+	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P03' IF SEEN IN ROUND WITH LOCATION"
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "hangarbox"
+
+/obj/item/prop/almayer/box
+	name = "metal crate"
+	desc = "A metal crate used often for storing small electronics that go into dropships"
+	icon_state = "hangarbox"
+	w_class = 4
+
+/obj/item/prop/almayer/flare_launcher
+	name = "\improper MJU-77/C case"
+	desc = "A flare launcher that usually gets mounted onto dropships to help survivability against infrared tracking missiles."
+	icon_state = "flare_launcher"
+	w_class = 2
+
+/obj/item/prop/almayer/handheld1
+	name = "\improper small handheld"
+	desc = "A small piece of electronic doodads"
+	icon_state = "handheld1"
+	w_class = 2
+
+/obj/item/prop/almayer/comp_closed
+	name = "\improper dropship maintenance computer"
+	desc = "A closed dropship maintenance computer that technicans and pilots use to find out whats wrong with a dropship. It has various outlets for different systems."
+	icon_state = "hangar_comp"
+	w_class = 4
+
+/obj/item/prop/almayer/comp_open
+	name = "\improper dropship maintenance computer"
+	desc = "A opened dropship maintenance computer, it seems to be off however. Its used by technicans and pilots to find damaged or broken systems on a dropship. It has various outlets for different systems."
+	icon_state = "hangar_comp_open"
+	w_class = 4
+
 /obj/machinery/prop/almayer
 	name = "GENERIC USS ALMAYER PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
@@ -106,11 +142,50 @@
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "30mm_crate"
 
+
+/obj/structure/prop/almayer/mission_planning_system
+	name = "\improper MPS IV Computer"
+	desc = "The Mission Planning System IV (MPS IV), a enhancement in mission planning and charting for dropship pilots across the USCM. Fully capable of customizing their flight paths and loadouts to suit their combat needs."
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "mps"
+
+/obj/structure/prop/almayer/mapping_computer
+	name = "\improper CMPS II Computer"
+	desc = "The Common Mapping Production System version II allows for sensory imput from satellites and ship systems to derive planetary maps in a standardized fashion for all USCM pilots."
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "mapping_comp"
+
+/obj/structure/prop/almayer/sensor_computer1
+	name = "Sensor Computer"
+	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "sensor_comp1"
+
+/obj/structure/prop/almayer/sensor_computer2
+	name = "Sensor Computer"
+	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "sensor_comp2"
+
+/obj/structure/prop/almayer/sensor_computer3
+	name = "Sensor Computer"
+	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "sensor_comp3"
+
 /obj/structure/prop/almayer/missile_rack
 	name = "missile rack"
 	desc = "A rack used for missiles, often even holding them."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "double"
+	bound_x = 64
+	bound_y = 32
+
+/obj/structure/prop/almayer/gau_21
+	name = "\improper GAU-21 30mm cannon"
+	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."
+	icon = 'icons/Marine/almayer_props64.dmi'
+	icon_state = "30mm_cannon"
 	bound_x = 64
 	bound_y = 32
 
