@@ -130,6 +130,12 @@
 		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
+	if (locate(/obj/structure/m_barricade/sandbags/, usr.loc))
+		for(var/obj/structure/m_barricade/sandbags/S in usr.loc)
+			if(user.dir == S.dir)
+				user << "You can't place more sandbags in the same place!"
+				return
+
 	if(!in_use)
 		if(amount < 5)
 			user << "\blue You need at least five sandbags to do this"
