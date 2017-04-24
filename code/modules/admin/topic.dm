@@ -213,7 +213,7 @@
 				if(!EvacuationAuthority.initiate_self_destruct(1))
 					usr << "<span class='warning'>You are unable to trigger the self-destruct right now!</span>"
 				else
-					log_admin("[key_name(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].")
+					log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
 					message_admins("\blue [key_name_admin(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].", 1)
 
 			if("toggle_dest")

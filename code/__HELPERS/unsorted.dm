@@ -967,8 +967,6 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 
 
 					for(var/obj/O in T)
-						if(istype(O, /obj/structure/engine_landing_sound)) //Ignore the engine landing sound object
-							continue
 						// Reset the shuttle corners
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'

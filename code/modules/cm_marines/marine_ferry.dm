@@ -25,8 +25,12 @@
 	var/shuttle_tag //Unique ID for finding which landmarks to use
 	var/info_tag //Identifies which coord datums to copy
 	var/list/info_datums = list()
-	var/sound/sound_takeoff
-	var/sound/sound_landing
+	//Could be a list, but I don't see a reason considering shuttles aren't bloated with variables.
+	var/sound_target = 136//Where the sound will originate from. Must be a list index, usually the center bottom (engines).
+	var/sound/sound_takeoff	= 'sound/effects/engine_startup.ogg'//Takeoff sounds.
+	var/sound/sound_landing = 'sound/effects/engine_landing.ogg'//Landing sounds.
+	var/sound/sound_moving //Movement sounds, usually not applicable.
+	var/sound/sound_misc //Anything else, like escape pods.
 
 /datum/shuttle/ferry/marine/proc/load_datums()
 	if(!(info_tag in s_info))
@@ -157,11 +161,7 @@
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
 
-	for(var/turf/A in turfs_src) //Lets play the startup sound in all of them
-		for(var/obj/structure/engine_startup_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
-				break //One sound thing per tile, just in case
+	playsound(turfs_src[sound_target], sound_takeoff, 100, 0, 10, -100)
 
 	sleep(warmup_time*10) //Warming up
 
@@ -172,23 +172,8 @@
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
 	sleep(travel_time) //Wait while we fly
-
-	var/turf/A
-	for(i in turfs_trg) //Play the sounds on the ground
-		A = i
-		if(!istype(A)) continue
-		for(var/obj/structure/engine_landing_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-				break
-
-	for(i in turfs_int) //And in the air
-		A = i
-		if(!istype(A)) continue
-		for(var/obj/structure/engine_inside_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-				break
+	playsound(turfs_int[sound_target], sound_landing, 100, 0, 10, -100)
+	playsound(turfs_trg[sound_target], sound_landing, 100, 0, 10, -100)
 
 	sleep(100) //Wait for it to finish
 
@@ -293,12 +278,7 @@
 	//START: Heavy lifting backend
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
-
-	for(var/turf/A in turfs_src) //Lets play the startup sound in all of them
-		for(var/obj/structure/engine_startup_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
-				break //One sound thing per tile, just in case
+	playsound(turfs_src[sound_target], sound_takeoff, 100, 0, 10, -100)
 
 	sleep(warmup_time*10) //Warming up
 
@@ -313,14 +293,7 @@
 
 	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE SULACO. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
 
-	var/turf/A
-	for(i in turfs_int) //Play the landing sound in the shuttle
-		A = i
-		if(!istype(A)) continue
-		for(var/obj/structure/engine_inside_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-				break
+	playsound(turfs_int[sound_target], sound_landing, 100, 0, 10, -100)
 
 	sleep(85)
 

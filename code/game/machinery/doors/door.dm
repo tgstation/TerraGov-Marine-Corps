@@ -31,20 +31,34 @@
 	dir = EAST
 	var/width = 1
 
-/obj/machinery/door/New()
-	. = ..()
-	if(density)
-		layer = closed_layer
-		explosion_resistance = initial(explosion_resistance)
-		update_flags_heat_protection(get_turf(src))
-	else
-		layer = open_layer
-		explosion_resistance = 0
+	Dispose()
+		. = ..()
+		if(filler && width > 1)
+			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
+			filler = null
+		density = 0
+		update_nearby_tiles()
 
-	handle_multidoor()
+	New()
+		. = ..()
+		if(density)
+			layer = closed_layer
+			explosion_resistance = initial(explosion_resistance)
+			update_flags_heat_protection(get_turf(src))
+		else
+			layer = open_layer
+			explosion_resistance = 0
 
-	update_nearby_tiles(need_rebuild=1)
-	return
+		handle_multidoor()
+
+		update_nearby_tiles(need_rebuild=1)
+
+	Del()
+		if(filler && width > 1)
+			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
+		density = 0
+		if(loc) update_nearby_tiles()
+		..()
 
 /obj/machinery/door/proc/handle_multidoor()
 	if(width > 1)
@@ -58,15 +72,6 @@
 			bound_height = width * world.icon_size
 			filler = get_step(src,NORTH)
 			filler.SetOpacity(opacity)
-
-
-/obj/machinery/door/Del()
-	if(width > 1)
-		filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
-	density = 0
-	update_nearby_tiles()
-	..()
-	return
 
 //process()
 	//return

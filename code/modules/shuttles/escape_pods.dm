@@ -16,7 +16,8 @@ with the original.*/
 	warmup_time = 5
 	shuttle_tag = "Almayer Evac "
 	info_tag = "Almayer Evac"
-	sound_takeoff = 'sound/effects/escape_pod_launch.ogg'
+	sound_target = 18
+	sound_misc = 'sound/effects/escape_pod_launch.ogg'
 	var/cryo_cells[] //List of the crypods attached to the evac pod.
 	var/area/staging_area //The area the shuttle starts in, used to link the various machinery.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program //The program that runs the doors.

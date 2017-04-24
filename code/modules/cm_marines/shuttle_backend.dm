@@ -348,10 +348,12 @@ x_pos = 0 1 2 3 4 5 6
 
 	return toReturn
 
-/proc/move_shuttle_to(turf/trg, turftoleave = null, list/source, iselevator = 0, deg = 0, datum/shuttle/ferry/marine/evacuation_pod/shuttle)
+/proc/move_shuttle_to(turf/trg, turftoleave = null, list/source, iselevator = 0, deg = 0, datum/shuttle/ferry/marine/shuttle)
 
 	//var/list/turfsToUpdate = list()
 	var/i //iterator
+
+	if(shuttle.sound_misc) playsound(source[shuttle.sound_target], shuttle.sound_misc, 100, 1, 7)
 
 	source = rotate_shuttle_turfs(source, deg)
 
@@ -361,7 +363,6 @@ x_pos = 0 1 2 3 4 5 6
 		var/turf/T_trg = locate(trg.x + C.x_pos, trg.y + C.y_pos, trg.z)
 
 		for(var/obj/O in T_trg)
-			if(istype(O, /obj/structure/engine_landing_sound)) continue
 			if(istype(O, /obj/effect/effect/smoke)) continue //We land on smoke a lot and it has weird TTL systems that will generate runtimes otherwise
 			del(O)
 
@@ -398,20 +399,18 @@ x_pos = 0 1 2 3 4 5 6
 
 		for(var/obj/O in T_src)
 			if(!istype(O)) continue
-			if(istype(O, /obj/structure/engine_landing_sound)) continue
 			O.loc = T_trg
 
-		if(shuttle.sound_takeoff) playsound(shuttle.evacuation_program.master, shuttle.sound_takeoff, 100, 1, 7)
 		for(var/mob/M in T_src)
 			if(!istype(M)) continue
 			M.loc = T_trg
 
 			if(M.client)
 				if(M.buckled && !iselevator)
-					M << "\red Sudden acceleration presses you into your chair!"
+					M << "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>"
 					shake_camera(M, 3, 1)
 				else if (!M.buckled)
-					M << "\red The floor lurches beneath you!"
+					M << "<span class='warning'>The floor lurches beneath you!</span>"
 					shake_camera(M, iselevator? 2 : 10, 1)
 			if(istype(M, /mob/living/carbon) && !iselevator)
 				if(!M.buckled)
