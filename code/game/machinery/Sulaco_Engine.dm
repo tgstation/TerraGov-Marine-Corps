@@ -26,7 +26,8 @@
 	var/icon_track = 100 //This is to track the amount of fuel so it selects the proper icon.
 
 /obj/machinery/power/geothermal/sulaco/New()
-	switch(rand(0,3))
+	buildstate = rand(0,3) //This is needed to set the state for repair interactions
+	switch(buildstate)
 		if(1) icon_state = "weld"
 		if(2) icon_state = "wire"
 		if(3) icon_state = "wrench"
