@@ -65,19 +65,19 @@
 	w_class = 2
 
 /obj/item/prop/almayer/handheld1
-	name = "\improper small handheld"
+	name = "small handheld"
 	desc = "A small piece of electronic doodads"
 	icon_state = "handheld1"
 	w_class = 2
 
 /obj/item/prop/almayer/comp_closed
-	name = "\improper dropship maintenance computer"
+	name = "dropship maintenance computer"
 	desc = "A closed dropship maintenance computer that technicans and pilots use to find out whats wrong with a dropship. It has various outlets for different systems."
 	icon_state = "hangar_comp"
 	w_class = 4
 
 /obj/item/prop/almayer/comp_open
-	name = "\improper dropship maintenance computer"
+	name = "dropship maintenance computer"
 	desc = "A opened dropship maintenance computer, it seems to be off however. Its used by technicans and pilots to find damaged or broken systems on a dropship. It has various outlets for different systems."
 	icon_state = "hangar_comp_open"
 	w_class = 4
@@ -144,31 +144,31 @@
 
 
 /obj/structure/prop/almayer/mission_planning_system
-	name = "\improper MPS IV Computer"
+	name = "\improper MPS IV computer"
 	desc = "The Mission Planning System IV (MPS IV), a enhancement in mission planning and charting for dropship pilots across the USCM. Fully capable of customizing their flight paths and loadouts to suit their combat needs."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "mps"
 
 /obj/structure/prop/almayer/mapping_computer
-	name = "\improper CMPS II Computer"
+	name = "\improper CMPS II computer"
 	desc = "The Common Mapping Production System version II allows for sensory imput from satellites and ship systems to derive planetary maps in a standardized fashion for all USCM pilots."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "mapping_comp"
 
 /obj/structure/prop/almayer/sensor_computer1
-	name = "Sensor Computer"
+	name = "sensor computer"
 	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "sensor_comp1"
 
 /obj/structure/prop/almayer/sensor_computer2
-	name = "Sensor Computer"
+	name = "sensor computer"
 	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "sensor_comp2"
 
 /obj/structure/prop/almayer/sensor_computer3
-	name = "Sensor Computer"
+	name = "sensor computer"
 	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "sensor_comp3"
@@ -199,7 +199,7 @@
 
 /obj/structure/prop/almayer/ship_memorial
 	name = "slab of victory"
-	desc = "A ship memorial dedicated to the victories of the USCM and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right theres a list of famous marines who have fallen in combat servinmg the USCM"
+	desc = "A ship memorial dedicated to the victories of the USCM and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right theres a list of famous marines who have fallen in combat servinmg the USCM."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "ship_memorial"
 	bound_x = 32
@@ -211,11 +211,14 @@
 	icon = 'icons/obj/machines/artillery.dmi'
 
 /obj/structure/prop/almayer/name_stencil
-	name = "USS Almayer"
 	desc = "The name of the ship stenciled on the hull."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "almayer0"
 	density = 0 //dunno who would walk on it, but you know.
+
+	New()
+		..()
+		name = MAIN_SHIP_NAME
 
 //---USS Almayer Computers ---//
 
@@ -456,7 +459,7 @@
 	icon = 'icons/obj/doors/almayer/personaldoor.dmi'
 
 /obj/machinery/door/airlock/almayer/generic/corporate
-	name = "Corporate Liason's Quarters"
+	name = "corporate liason's quarters"
 	icon = 'icons/obj/doors/almayer/personaldoor.dmi'
 	req_access_txt = "200"
 
@@ -466,7 +469,7 @@
 	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/requisitions
-	name = "Requisitions"
+	name = "requisitions"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access_txt = "0"
 	req_one_access_txt =  "2;21"

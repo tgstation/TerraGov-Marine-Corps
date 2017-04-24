@@ -4,6 +4,8 @@ Intergrate distress into this controller.
 Finish nanoui conversion for comm console.
 Make sure the nanoui background can properly scroll.
 Fix up the pods some more.
+Lock a pod from launching manually.
+Make sure people who get nuked and wake up from SSD don't live.
 
 Make sure shuttles can't be used during evac
 TODO: Fix escape doors to work properly.
@@ -78,7 +80,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
 /datum/authority/branch/evacuation/proc/get_affected_zlevels() //This proc returns the ship's z level list (or whatever specified), when an evac/self destruct happens.
-	if(evac_status != EVACUATION_STATUS_STANDING_BY || dest_status != NUKE_EXPLOSION_INACTIVE) . = MAIN_SHIP_Z_LEVEL //Only counts the ship for now.
+	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS && evac_status == EVACUATION_STATUS_COMPLETE) . = MAIN_SHIP_Z_LEVEL//Nuke is not in progress and evacuation finished, end the round on ship only.
 
 #undef SELF_DESTRUCT_ROD_STARTUP_TIME
 //=========================================================================================

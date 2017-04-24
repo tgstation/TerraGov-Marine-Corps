@@ -115,9 +115,11 @@ of predators), but can be added to include variant game modes (like humans vs. h
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)			round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
 	else if(!num_humans && num_xenos) //No humans remain alive.
-		if(EvacuationAuthority.evac_status == EVACUATION_STATUS_COMPLETE) 	round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
+		if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
 		else																round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
-	else if(num_humans && !num_xenos)										round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+	else if(num_humans && !num_xenos)
+		if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_M_MINOR //Evacuation successfully took place.
+		else																round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
 	else if(!num_humans && !num_xenos)										round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
 //If the queen is dead after a period of time, this will end the game.
@@ -137,12 +139,13 @@ of predators), but can be added to include variant game modes (like humans vs. h
 //===================================================\\
 
 /datum/game_mode/proc/declare_completion_infestation() //TO DO: Change the file path to something better. This is not only for infestation anymore.
-	world << "<span class='round_header'>[round_finished]</span>"
+	//world << "<span class='round_header'>[round_finished]</span>"
+	world << "<span class='round_header'>|Round Complete|</span>"
 	feedback_set_details("round_end_result",round_finished)
 
 
 	if(flags_round_type & MODE_INFESTATION)
-		world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [uppertext(name)].</span>"
+		world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [name].</span>"
 		var/musical_track
 		switch(round_finished)
 			if(MODE_INFESTATION_X_MAJOR) musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
@@ -371,12 +374,11 @@ Only checks living mobs with a client attached.
 	var/area/A
 
 	for(var/mob/M in player_list)
-		A = get_area(M.loc)
-		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc, /turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
-			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST))
-				num_humans++
-			else if(isXeno(M))
-				num_xenos++
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/space)) //If they have a z var, they are on a turf.
+			A = get_area(M.loc) //Get their area.
+			if(!istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
+				if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST)) num_humans++
+				else if(isXeno(M)) num_xenos++
 
 	return list(num_humans,num_xenos)
 
@@ -386,11 +388,12 @@ Only checks living mobs with a client attached.
 	var/area/A
 
 	for(var/mob/M in player_list)
-		A = get_area(M.loc)
-		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
-			if(ishuman(M) && !isYautja(M))
-				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
-				else if(M.mind && !M.mind.special_role)		num_marines++
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/space))
+			A = get_area(M.loc)
+			if(!istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
+				if(ishuman(M) && !isYautja(M))
+					if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
+					else if(M.mind && !M.mind.special_role)		num_marines++
 
 	return list(num_marines,num_pmcs)
 

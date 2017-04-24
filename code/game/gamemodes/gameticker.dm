@@ -184,22 +184,6 @@ var/global/datum/controller/gameticker/ticker
 	if(config.sql_enabled)
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
-		/*This will track for multiple maps/modes*/
-		var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Dropship 1"]
-		var/datum/shuttle/ferry/shuttle2 = shuttle_controller.shuttles["Dropship 2"]
-		if(mode.name == "Colonial Marines Halloween")
-			shuttle.area_offsite = locate(/area/shuttle/drop1/Haunted)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/Haunted)
-		if(mode.name == "Prison rescue")
-			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
-		if(mode.type == /datum/game_mode/ice_colony)
-			shuttle.area_offsite = locate(/area/shuttle/drop1/ice_colony)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/ice_colony)
-		if(mode.type == /datum/game_mode/bigred)
-			shuttle.area_offsite = locate(/area/shuttle/drop1/BigRed)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/BigRed)
-
 		for(var/obj/structure/closet/C in world) //Set up special equipment for lockers and vendors, depending on gamemode
 			C.select_gamemode_equipment(mode.type)
 		for(var/obj/machinery/vending/V in world)
