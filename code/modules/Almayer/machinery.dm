@@ -391,7 +391,7 @@
 	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/requisitions
-	name = "requisitions"
+	name = "Requisitions"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access_txt = "0"
 	req_one_access_txt =  "2;21"
@@ -606,3 +606,18 @@
 			del(I)
 			return
 	..()
+
+/obj/structure/closet/basketball
+	name = "athletic wardrobe"
+	desc = "It's a storage unit for athletic wear."
+	icon_state = "mixed"
+	icon_closed = "mixed"
+
+/obj/structure/closet/basketball/New()
+	..()
+	sleep(2)
+	new /obj/item/clothing/under/shorts/grey(src)
+	new /obj/item/clothing/under/shorts/black(src)
+	new /obj/item/clothing/under/shorts/red(src)
+	new /obj/item/clothing/under/shorts/blue(src)
+	new /obj/item/clothing/under/shorts/green(src)
