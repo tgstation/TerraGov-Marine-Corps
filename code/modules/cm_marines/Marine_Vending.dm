@@ -193,8 +193,8 @@
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
-	icon_state = "boozeomat"
-	icon_deny = "boozeomat-deny"
+	icon_state = "generic"
+	icon_deny = "generic-deny"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
@@ -283,6 +283,8 @@
 	desc = "A marine engineering equipment vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
+	icon_state = "tool"
+	icon_deny = "tool-deny"
 	products = list(
 						/obj/item/weapon/coin/marine/engineer = 1,
 						/obj/item/clothing/under/marine/engineer = 3,
@@ -347,8 +349,8 @@
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(ACCESS_MARINE_SPECPREP)
-	icon_state = "robotics"
-	icon_deny = "robotics-deny"
+	icon_state = "boozeomat"
+	icon_deny = "boozeomat-deny"
 
 	products = list(
 						/obj/item/weapon/coin/marine = 1,

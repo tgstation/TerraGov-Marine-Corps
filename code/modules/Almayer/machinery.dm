@@ -100,6 +100,12 @@
 	density = 1
 	anchored = 1
 
+/obj/structure/prop/almayer/minigun_crate
+	name = "30mm ammo crate"
+	desc = "A crate full of 30mm bullets used on one of the weapon pod types for the dropship. Moving this will require some sort of lifer"
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "30mm_crate"
+
 /obj/structure/prop/almayer/missile_rack
 	name = "missile rack"
 	desc = "A rack used for missiles, often even holding them."
@@ -113,6 +119,14 @@
 	desc = "A cold launch missile tube."
 	icon = 'icons/Marine/almayer_props96.dmi'
 	icon_state = "missiletubenorth"
+	bound_x = 32
+	bound_y = 96
+
+/obj/structure/prop/almayer/ship_memorial
+	name = "slab of victory"
+	desc = "A ship memorial dedicated to the victories of the USCM and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right theres a list of famous marines who have fallen in combat servinmg the USCM"
+	icon = 'icons/Marine/almayer_props64.dmi'
+	icon_state = "ship_memorial"
 	bound_x = 32
 	bound_y = 96
 
@@ -377,7 +391,7 @@
 	opacity = 0
 
 /obj/machinery/door/airlock/almayer/marine/requisitions
-	name = "requisitions"
+	name = "Requisitions"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access_txt = "0"
 	req_one_access_txt =  "2;21"
@@ -565,3 +579,45 @@
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/almayer/purinadoor.dmi'
 	openspeed = 4
+
+
+//------- Cryobag Recycler -------//
+// Wanted to put this in, but since we still have extra time until tomorrow and this is really simple thing. It just recycles opened cryobags to make it nice-r for medics.
+// Also the lack of sleep makes me keep typing cyro instead of cryo. FFS ~Art
+
+/obj/machinery/cryobag_recycler
+	name = "cryogenic bag recycler"
+	desc = "A small tomb like structure. Capable of taking in used and opened cryobags and refill the liner and attach new sealants."
+	icon = 'icons/Marine/almayer_props.dmi'
+	icon_state = "recycler"
+
+	density = 1
+	anchored = 1
+	use_power = 1
+	idle_power_usage = 20
+
+/obj/machinery/cryobag_recycler/attackby(obj/item/W as obj, mob/user as mob) //Hope this works. Don't see why not.
+	..()
+	if (istype(W, /obj/item))
+		if(W.name = "used stasis bag") //possiblity for abuse, but fairly low considering its near impossible to rename something without VV
+			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag(loc) //lets give them the bag considering having it unfolded would be a pain in the ass.
+			var/obj/item/I = W
+			R.add_fingerprint(user)
+			del(I)
+			return
+	..()
+
+/obj/structure/closet/basketball
+	name = "athletic wardrobe"
+	desc = "It's a storage unit for athletic wear."
+	icon_state = "mixed"
+	icon_closed = "mixed"
+
+/obj/structure/closet/basketball/New()
+	..()
+	sleep(2)
+	new /obj/item/clothing/under/shorts/grey(src)
+	new /obj/item/clothing/under/shorts/black(src)
+	new /obj/item/clothing/under/shorts/red(src)
+	new /obj/item/clothing/under/shorts/blue(src)
+	new /obj/item/clothing/under/shorts/green(src)

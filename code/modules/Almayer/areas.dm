@@ -198,6 +198,11 @@
 	name = "\improper Almayer Office Area"
 	icon_state = "briefing"
 
+/area/almayer/living/captain_mess
+	name = "\improper Almayer Captain's Mess"
+	icon_state = "briefing"
+
+
 /area/almayer/living/pilotbunks
 	name = "\improper Almayer Pilot Bunks"
 	icon_state = "livingspace"

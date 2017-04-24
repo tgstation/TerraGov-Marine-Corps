@@ -338,6 +338,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
 /obj/machinery/door/airlock/evacuation //TODO: Make sure you can't c4 these.
 	name = "evacuation airlock"
+	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
 	heat_proof = 1
 	unacidable = 1
 
