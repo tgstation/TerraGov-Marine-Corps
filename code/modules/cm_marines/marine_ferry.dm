@@ -25,6 +25,8 @@
 	var/shuttle_tag //Unique ID for finding which landmarks to use
 	var/info_tag //Identifies which coord datums to copy
 	var/list/info_datums = list()
+	var/sound/sound_takeoff
+	var/sound/sound_landing
 
 /datum/shuttle/ferry/marine/proc/load_datums()
 	if(!(info_tag in s_info))
@@ -408,7 +410,7 @@
 	moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums)
-	move_shuttle_to(T_trg, null, turfs_src, 0, T.rotation)
+	move_shuttle_to(T_trg, null, turfs_src, 0, T.rotation, src)
 
 	moving_status = SHUTTLE_IDLE
 

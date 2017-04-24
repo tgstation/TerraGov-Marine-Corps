@@ -6,6 +6,7 @@
 
 //Game defining directives.
 #define MAIN_SHIP_Z_LEVEL list(3)
+#define GAME_PLAY_Z_LEVELS list(1,2,3)
 #define MAIN_AI_SYSTEM "H/O.R/|U.S. AI 3.1"
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11
 

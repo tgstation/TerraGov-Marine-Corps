@@ -99,7 +99,7 @@
 		if("announce")
 			if(authenticated == 2)
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
-					usr << "<span class='warning'>Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] minute\s to pass between announcements.</span>"
+					usr << "<span class='warning'>Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements.</span>"
 					r_FAL
 				var/input = stripped_input(usr, "Please write a message to announce to the station crew.", "Priority Announcement")
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE) r_FAL

@@ -1,14 +1,12 @@
 /*
 TODO
 Intergrate distress into this controller.
-Disable IBs and Dutch outside of admin spawn.
-Make mercs either hostile or friendly by spawn.
+Finish nanoui conversion for comm console.
+Make sure the nanoui background can properly scroll.
+Fix up the pods some more.
 
 Make sure shuttles can't be used during evac
-Make sure rounds counts only people on the ship during the evac stage
-Escape pods should lock their doors when launched.
-
-Change arcade machine prizes.
+TODO: Fix escape doors to work properly.
 */
 
 #define SELF_DESTRUCT_ROD_STARTUP_TIME 12000
@@ -79,6 +77,9 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / dest_rods.len
 		dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
+/datum/authority/branch/evacuation/proc/get_affected_zlevels() //This proc returns the ship's z level list (or whatever specified), when an evac/self destruct happens.
+	if(evac_status != EVACUATION_STATUS_STANDING_BY || dest_status != NUKE_EXPLOSION_INACTIVE) . = MAIN_SHIP_Z_LEVEL //Only counts the ship for now.
+
 #undef SELF_DESTRUCT_ROD_STARTUP_TIME
 //=========================================================================================
 //=========================================================================================
@@ -114,15 +115,20 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		r_TRU
 
 /datum/authority/branch/evacuation/proc/begin_launch() //Launches the pods.
-	set waitfor = 0
 	if(evac_status == EVACUATION_STATUS_INITIATING)
-		ai_system.Announce("WARNING: Evacuation order confirmed. Launching escape pods.")
-		evac_status = EVACUATION_STATUS_COMPLETE //Cannot cancel at this point. All shuttle are off.
-		var/datum/shuttle/ferry/marine/evacuation_pod/P
-		for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-			P = shuttle_controller.shuttles["Almayer Evac [i]"]
-			P.prepare_for_launch() //May or may not launch, will do everything on its own.
-			sleep(200) //Sleeps 20 seconds each launch.
+		spawn() //One of the few times spawn() is appropriate. No need for a new proc.
+			ai_system.Announce("WARNING: Evacuation order confirmed. Launching escape pods.")
+			evac_status = EVACUATION_STATUS_COMPLETE //Cannot cancel at this point. All shuttle are off.
+			var/datum/shuttle/ferry/marine/evacuation_pod/P
+			var/L[] = new
+			var/i
+			for(i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER) L += i
+			while(L.len)
+				i = pick(L)
+				P = shuttle_controller.shuttles["Almayer Evac [i]"]
+				P.prepare_for_launch() //May or may not launch, will do everything on its own.
+				L -= i
+				sleep(50) //Sleeps 5 seconds each launch.
 		r_TRU
 
 /datum/authority/branch/evacuation/proc/process_evacuation() //Process the timer.
@@ -199,6 +205,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		enter_allowed = 0 //Do not want baldies spawning in as everything is exploding.
 		dest_status = NUKE_EXPLOSION_IN_PROGRESS
 		playsound(origin,'sound/machines/Alarm.ogg',100,0,5)
+		world << pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
 		var/ship_status = 1
 		for(var/i in MAIN_SHIP_Z_LEVEL)
@@ -214,6 +221,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		var/turf/T
 		for(M in player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
 			if(to_sleep <= 0) break
+			if(!M || !M.loc) continue //In case something changes when we sleep().
 			T = get_turf(M)
 			if(T.z in z_levels)
 				if(M.stat == DEAD) 	L2 |= M
@@ -231,7 +239,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		var/obj/screen/cinematic/explosion/C = new
 
 		for(M in L1 + L2)
-			if(M.client) M.client.screen |= C //They may have disconnected in the mean time.
+			if(M && M.loc && M.client) M.client.screen |= C //They may have disconnected in the mean time.
 
 		sleep(15) //Extra 1.5 seconds to look at the ship. TODO: This is not working as intended. Need to double check into frames displayed.
 
@@ -241,7 +249,10 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		world << sound('sound/effects/explosionfar.ogg')
 		C.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
 
-		for(M in L1) M.death()
+		for(M in L1)
+			if(M && M.loc) //Who knows, maybe they escaped, or don't exist anymore.
+				T = get_turf(M)
+				if(T.z in z_levels) M.death() //No mercy.
 
 		dest_status = NUKE_EXPLOSION_FINISHED
 
@@ -283,6 +294,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		. = ..()
 		machines -= src
 		operator = null
+
+	ex_act(severity) r_FAL
 
 	attack_hand()
 		if(..() || in_progress) r_FAL //This check is backward, ugh.

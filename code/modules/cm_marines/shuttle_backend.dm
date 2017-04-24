@@ -344,7 +344,7 @@ x_pos = 0 1 2 3 4 5 6
 
 	return toReturn
 
-/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0, var/deg = 0)
+/proc/move_shuttle_to(turf/trg, turftoleave = null, list/source, iselevator = 0, deg = 0, datum/shuttle/ferry/marine/evacuation_pod/shuttle)
 
 	//var/list/turfsToUpdate = list()
 	var/i //iterator
@@ -397,6 +397,7 @@ x_pos = 0 1 2 3 4 5 6
 			if(istype(O, /obj/structure/engine_landing_sound)) continue
 			O.loc = T_trg
 
+		if(shuttle.sound_takeoff) playsound(shuttle.evacuation_program.master, shuttle.sound_takeoff, 100, 1, 7)
 		for(var/mob/M in T_src)
 			if(!istype(M)) continue
 			M.loc = T_trg
