@@ -1,9 +1,10 @@
 /obj/structure/closet/crate/secure/loot
 	name = "abandoned crate"
 	desc = "What could be inside?"
-	icon_state = "securecrate"
-	icon_opened = "securecrateopen"
-	icon_closed = "securecrate"
+	icon_state = "secure_closed_basic"
+	icon_opened = "secure_open_basic"
+	icon_locked = "secure_locked_basic"
+	icon_unlocked = "secure_unlocked_basic"
 	var/code = null
 	var/lastattempt = null
 	var/attempts = 3
@@ -71,8 +72,7 @@
 			if (input == code)
 				user << "<span class='notice'>The crate unlocks!</span>"
 				locked = 0
-				overlays.Cut()
-				overlays += greenlight
+				icon_state = icon_unlocked
 			else if (input == null || input > max || input < min)
 				user << "<span class='notice'>You leave the crate alone.</span>"
 			else
