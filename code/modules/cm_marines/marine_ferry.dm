@@ -167,7 +167,7 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src, 0 , I.rotation) //Rotate by the angle at the destination, not the source
+	move_shuttle_to(T_int, null, turfs_src, 0 , I.rotation, src) //Rotate by the angle at the destination, not the source
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
@@ -192,7 +192,7 @@
 
 	sleep(100) //Wait for it to finish
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, T.rotation)
+	move_shuttle_to(T_trg, null, turfs_int, 0, T.rotation, src)
 
 	//Now that we've landed, assuming some rotation including 0, we need to make sure it doesn't fuck up when we go back
 	I.rotation = -1*T.rotation
@@ -304,7 +304,7 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src)
+	move_shuttle_to(T_int, null, turfs_src, , , src)
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
@@ -335,7 +335,7 @@
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, C.rotation)
+	move_shuttle_to(T_trg, null, turfs_int, 0, C.rotation, src)
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since the hadn't moved yet

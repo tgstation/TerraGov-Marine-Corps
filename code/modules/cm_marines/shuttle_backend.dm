@@ -51,12 +51,16 @@ e.g. Something up to the right relative to its landmark will end up down to the 
 ONLY called when moving to either the trg landmark or a crs landmark
 
 
-/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0)
+/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0, datum/shuttle/ferry/marine/shuttle)
 --------------------------------
 trg: The target reference turf, see var/turf/ref from the previous proc
 turftoleave: Allows leaving other turfs behind as needed. Note: must be a path
 source: A list of coordinate datums indexed by turfs. See Return from the previous proc
 iselevator: Used as a simple boolean. Dictates whether or not the shuttle is in fact an elevator
+
+The shuttle variable should always be present to reference back the existing shuttle.
+Should be reworked in the future. Right now it references evac pods only, and only matters for them,
+but it should be brought up to all marine ferries.
 
 Notes:
 iselevator is admittedly a hair "hacky"
