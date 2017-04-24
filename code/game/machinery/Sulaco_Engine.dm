@@ -112,7 +112,9 @@
 		src.fuel_amount = 100
 		src.icon_track = 100
 		user << "\green The empty cell is ejected into space and a fresh one takes it's place."  //Temporarily just throw away used fuel cells, maybe eventually "pop" them out for use?
+		desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  It's got a freshly filled Fuel Cell inside it."
 		return 1
+
 	return ..()
 
 
@@ -129,6 +131,9 @@
 /obj/machinery/power/geothermal/sulaco/attack_hand(mob/user as mob)
 	if(!anchored) //Shouldn't actually be possible
 		usr << "MAKE AN AHELP RIGHT AWAY, BECAUSE SHIT IS SOMEHOW FUCKED - ERROR: ALM001."
+		return 0
+	if(fuel_amount <=0)
+		use << "\red ERROR: FUEL CELL DEPLETED.  Please replace."
 		return 0
 	if(!ishuman(user) || user.stat)
 		user << "\red You have no idea how to use that." //No ayylamos
