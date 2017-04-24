@@ -4,7 +4,7 @@
 /obj/machinery/power/geothermal/sulaco
 	name = "\improper S-52 fusion reactor"
 	icon = 'icons/Marine/almayer_eng.dmi'
-	icon_state = "off-100"
+	icon_state = "off-0"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  Currently in standby mode."
 	almayer = 1 //Yup, it's on the Almayer.
 	directwired = 0     //Requires a cable directly underneath
@@ -23,7 +23,6 @@
 	var/produce_heat = 1 //Fusion is a VERY warm process.  The reactor room should probably be cooled... Probably...
 	var/fuel_amount = 100.00 // Amount of Fuel in the cell.
 	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
-	var/verbalupdate= 0 //For the verbal announcer so it doesn't shit all over the place constantly.
 	var/icon_track = 100 //This is to track the amount of fuel so it selects the proper icon.
 
 
@@ -36,6 +35,7 @@
 		icon_state = "wire"
 	else if (buildstate ==3)
 		icon_state = "wrench"
+	fuel_amount = rand(15,100)
 	..()
 
 
@@ -75,32 +75,29 @@
 			add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 			fuel_amount-=fuel_rate //Consumes fuel
 
-	if(is_on && powernet && !verbalupdate) //This can probably be changed in the future.  For now, when a fuel cell is ejected, it'll be "useless" no matter how much fuel remains.
+	if(is_on && powernet) //This can probably be changed in the future.  For now, when a fuel cell is ejected, it'll be "useless" no matter how much fuel remains.
 		if (fuel_amount > 75)
-			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell is mostly full")
+//			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell is mostly full")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  The fuel cell is nearly full."
 			icon_track = 100
 		if (fuel_amount <= 75 && fuel_amount > 50)
-			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell is 75% full")
+//			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell is 75% full")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  The fuel cell is a little above halfway."
 			icon_track = 75
 		if (fuel_amount <= 50 && fuel_amount > 25)
-			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell at half")
+//			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell at half")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  The fuel cell is a little under halfway."
 			icon_track = 50
 		if (fuel_amount <= 25 && fuel_amount > 10)
-			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell is below half")
+//			src.visible_message("\icon[src] <b>[src]</b> displays that it's fuel cell is below half")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The fuel cell is running low.</red>"
 			icon_track = 25
 		if (fuel_amount <= 10 && fuel_amount > 0)
-			src.visible_message("\icon[src] <b>[src]</b> displasy that the fuel cell is critically low and needs to be replaced")
+//			src.visible_message("\icon[src] <b>[src]</b> displasy that the fuel cell is critically low and needs to be replaced")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The Fuel cell is critically low.</red>"
 			icon_track = 10
 		icon_state = "on-[icon_track]" //Makes sure it gets the proper icon
 //		update_icon() //Gonna either make a new one of these with blackjack and hooker or just ignore it 5ever.
-		verbalupdate = 1
-		spawn(600)
-			if(verbalupdate)	verbalupdate = 0
 
 
 /obj/machinery/power/geothermal/sulaco/attackby(obj/item/W, mob/user)
@@ -155,7 +152,6 @@
 //		update_icon()
 		return 1
 	src.visible_message("\icon[src] \red <b>[src]</b> beeps loudly as [usr] turns the generator on and beings the process of fusion...")
-	verbalupdate = 0
 	icon_state = "on-[icon_track]"
 	fuel_rate = 0.01
 	is_on = 1
