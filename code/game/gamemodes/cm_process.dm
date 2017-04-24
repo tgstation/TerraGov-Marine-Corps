@@ -109,14 +109,16 @@ of predators), but can be added to include variant game modes (like humans vs. h
 //===================================================\\
 
 /datum/game_mode/proc/check_win_infestation()
-	var/living_player_list[] = count_humans_and_xenos()
+	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(!num_humans && num_xenos) 										round_finished = MODE_INFESTATION_X_MAJOR
-	else if(num_humans && !num_xenos)									round_finished = MODE_INFESTATION_M_MAJOR
-	else if(!num_humans && !num_xenos)									round_finished = MODE_INFESTATION_DRAW_DEATH
-	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)	round_finished = MODE_GENERIC_DRAW_NUKE
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)			round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
+	else if(!num_humans && num_xenos) //No humans remain alive.
+		if(EvacuationAuthority.evac_status == EVACUATION_STATUS_COMPLETE) 	round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
+		else																round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
+	else if(num_humans && !num_xenos)										round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+	else if(!num_humans && !num_xenos)										round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
 //If the queen is dead after a period of time, this will end the game.
 /datum/game_mode/proc/check_queen_status(queen_time)
@@ -138,54 +140,40 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	world << "<span class='round_header'>[round_finished]</span>"
 	feedback_set_details("round_end_result",round_finished)
 
-	switch(round_finished)
-		if(	MODE_INFESTATION_X_MAJOR,
-			MODE_INFESTATION_M_MAJOR,
-			MODE_INFESTATION_X_MINOR,
-			MODE_INFESTATION_M_MINOR,
-			MODE_INFESTATION_DRAW_DEATH)
-			world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [uppertext(name)].</span>"
-		/*
-		if(MODE_INFESTATION_X_MAJOR)
-			world << "<span class='round_body'>The aliens have successfully wiped out the marines and will live to spread the infestation!</span>"
-			if(prob(50)) 	world << 'sound/misc/Game_Over_Man.ogg'
-			else 			world << 'sound/misc/asses_kicked.ogg'
-		if(MODE_INFESTATION_M_MAJOR)
-			world << "<span class='round_body'>The marines managed to wipe out the aliens and stop the infestation!</span>"
-			if(prob(50)) 	world << 'sound/misc/hardon.ogg'
-			else			world << 'sound/misc/hell_march.ogg'
-		if(MODE_INFESTATION_X_MINOR)
-			world << "<span class='round_body'>The [MAIN_SHIP_NAME] has been evacuated...but the infestation remains!</span>"
-		if(MODE_INFESTATION_M_MINOR)
-			world << "<span class='round_body'>The marines have killed the xenomorph queen but were unable to finish off the hive!</span>"
-		if(MODE_INFESTATION_DRAW_DEATH)
-			world << "<span class='round_body'>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</span>"
-			world << 'sound/misc/sadtrombone.ogg'
-		*/
 
-		if(MODE_BATTLEFIELD_W_MAJOR)
-			world << "<span class='round_body'>The W-Y PMCs have successfully repelled the USCM assault and completed their objectives!</span>"
-			world << 'sound/misc/good_is_dumb.ogg'
-		if(MODE_BATTLEFIELD_M_MAJOR)
-			world << "<span class='round_body'>The marines have wiped out the PMC garrison and completed their objective! Hooah!</span>"
-			world << 'sound/misc/outstanding_marines.ogg'
-		if(MODE_BATTLEFIELD_W_MINOR)
-			world << "<span class='round_body'>The W-Y PMCs wiped out the marines, but they failed to complete their objective! W-Y won't be happy!</span>"
-			world << 'sound/misc/gone_to_plaid.ogg'
-		if(MODE_BATTLEFIELD_M_MINOR)
-			world << "<span class='round_body'>The marines glassed the W-Y mercs, but they failed to complete their objective! Incompetent baldies!</span>"
-			world << 'sound/misc/apcdestroyed.ogg'
-		if(MODE_BATTLEFIELD_DRAW_STALEMATE)
-			world << "<span class='round_body'>The marines completed their objective, but they failed to destroy the PMCs! W-Y will be coming back!</span>"
-		if(MODE_BATTLEFIELD_DRAW_DEATH)
-			world << "<span class='round_body'>Both the marines and the W-Y PMCs were annihilated! The nightmare continues!</span>"
-			world << 'sound/misc/Rerun.ogg'
+	if(flags_round_type & MODE_INFESTATION)
+		world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [uppertext(name)].</span>"
+		var/musical_track
+		switch(round_finished)
+			if(MODE_INFESTATION_X_MAJOR) musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
+			if(MODE_INFESTATION_M_MAJOR) musical_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
+			if(MODE_INFESTATION_X_MINOR) musical_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
+			if(MODE_INFESTATION_M_MINOR) musical_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
+			if(MODE_INFESTATION_DRAW_DEATH) musical_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') //This one is unlikely to play.
+		world << musical_track
+	else
+		switch(round_finished)
+			if(MODE_BATTLEFIELD_W_MAJOR)
+				world << "<span class='round_body'>The W-Y PMCs have successfully repelled the USCM assault and completed their objectives!</span>"
+				world << 'sound/misc/good_is_dumb.ogg'
+			if(MODE_BATTLEFIELD_M_MAJOR)
+				world << "<span class='round_body'>The marines have wiped out the PMC garrison and completed their objective! Hooah!</span>"
+				world << 'sound/misc/outstanding_marines.ogg'
+			if(MODE_BATTLEFIELD_W_MINOR)
+				world << "<span class='round_body'>The W-Y PMCs wiped out the marines, but they failed to complete their objective! W-Y won't be happy!</span>"
+				world << 'sound/misc/gone_to_plaid.ogg'
+			if(MODE_BATTLEFIELD_M_MINOR)
+				world << "<span class='round_body'>The marines glassed the W-Y mercs, but they failed to complete their objective! Incompetent baldies!</span>"
+				world << 'sound/misc/apcdestroyed.ogg'
+			if(MODE_BATTLEFIELD_DRAW_STALEMATE)
+				world << "<span class='round_body'>The marines completed their objective, but they failed to destroy the PMCs! W-Y will be coming back!</span>"
+			if(MODE_BATTLEFIELD_DRAW_DEATH)
+				world << "<span class='round_body'>Both the marines and the W-Y PMCs were annihilated! The nightmare continues!</span>"
+				world << 'sound/misc/Rerun.ogg'
+			if(MODE_GENERIC_DRAW_NUKE)
+				world << "<span class='round_body'>The nuclear explosion changed everything.</span>"
 
-
-		if(MODE_GENERIC_DRAW_NUKE)
-			world << "<span class='round_body'>The nuclear explosion changed everything.</span>"
-			//world << 'sound/misc/sadtrombone.ogg'
-		else world << "<span class='round_body'>Whoops, something went wrong with declare_completion(), blame the coders!</span>"
+			else world << "<span class='round_body'>Whoops, something went wrong with declare_completion(), blame the coders!</span>"
 
 	var/dat = ""
 	if(flags_round_type & MODE_INFESTATION)
@@ -194,8 +182,6 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	if(round_stats) round_stats << "[round_finished][dat]\nRound time: [duration2text()]\nRound population: [clients.len][log_end]" // Logging to data/logs/round_stats.log
 
 	world << dat
-
-
 
 	declare_completion_announce_individual()
 	declare_completion_announce_predators()
@@ -208,6 +194,8 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	set waitfor = 0
 	sleep(45)
 /*
+//WIP proc to announce specific outcomes to players. Might require better tracking, but the basics wouldn't hurt.
+
 dat = "You have met your demise during the events of [upper_text(name)][m.mind.current ? " as [m.mind.current.real_name]" : ]. Rest in peace."
 
 dat = "<b>You have survived the events of [upper_text(name)]</b>"
@@ -227,11 +215,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 "<b>You have survived</b>
 "<b>You have survived</b>, and you have managed to evacuate the [MAIN_SHIP_NAME]. Maybe it's finally over..."
 "<b>You have survived</b>. That is more than enough, but who knows what the future holds for you now..."
-
-
-
-
-
 
 "<span class='round_body'>You lead your hive, and you have survived. Your influence will grow in time.</span>"
 "<span class='round_body'>You have served the hive.</span>"
@@ -382,14 +365,14 @@ Count up surviving humans and aliens.
 Can't be in a locker, in space, in the thunderdome, or distress.
 Only checks living mobs with a client attached.
 */
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = list(1,2,3,4,5))
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = GAME_PLAY_Z_LEVELS)
 	var/num_humans = 0
 	var/num_xenos = 0
 	var/area/A
 
 	for(var/mob/M in player_list)
 		A = get_area(M.loc)
-		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc, /turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/sulaco/hub))
+		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc, /turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
 			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST))
 				num_humans++
 			else if(isXeno(M))
@@ -397,14 +380,14 @@ Only checks living mobs with a client attached.
 
 	return list(num_humans,num_xenos)
 
-/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels = list(1,2,3,4,5))
+/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels = GAME_PLAY_Z_LEVELS)
 	var/num_marines = 0
 	var/num_pmcs = 0
 	var/area/A
 
 	for(var/mob/M in player_list)
 		A = get_area(M.loc)
-		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
+		if(A.z in z_levels && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
 			if(ishuman(M) && !isYautja(M))
 				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
 				else if(M.mind && !M.mind.special_role)		num_marines++

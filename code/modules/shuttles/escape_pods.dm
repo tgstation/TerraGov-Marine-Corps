@@ -16,9 +16,11 @@ with the original.*/
 	warmup_time = 5
 	shuttle_tag = "Almayer Evac "
 	info_tag = "Almayer Evac"
+	sound_takeoff = 'sound/effects/escape_pod_launch.ogg'
 	var/cryo_cells[] //List of the crypods attached to the evac pod.
 	var/area/staging_area //The area the shuttle starts in, used to link the various machinery.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program //The program that runs the doors.
+	var/obj/machinery/door/airlock/evacuation/D //TODO Get rid of this.
 	//docking_controller is the program that runs doors.
 	//TODO: Make sure that the area has light once evac is in progress.
 
@@ -26,7 +28,8 @@ with the original.*/
 	process()
 		switch(process_state)
 			if(WAIT_LAUNCH)
-				playsound(evacuation_program.master,'sound/effects/escape_pod_launch.ogg',100,1,7)
+				//To properly synch it with the launch.
+				//TODO: Properly integrate it.
 				short_jump()
 				process_state = IDLE_STATE
 
@@ -60,12 +63,13 @@ suffice.
 	staging_area.name = "\improper[shuttle_tag]"
 	//log_debug("Area type: [staging_area.type]")
 
-	var/obj/machinery/door/airlock/evacuation/D = locate() in staging_area
+	D = locate() in staging_area
 	if(!D)
 		log_debug("ERROR CODE EV1.5: could not find door in Almayer Evac [i].")
 		world << "<span class='debuginfo'>ERROR CODE EV1: could not find door in Almayer Evac [i].</span>"
 		r_FAL
 	D.id_tag = shuttle_tag //So that the door can be operated via controller later.
+
 
 	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/R = locate() in staging_area //Grab the controller.
 	if(!R)
@@ -95,25 +99,39 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 	switch(evacuation_program.dock_state)
 		if(STATE_IDLE)
 			evacuation_program.dock_state = STATE_READY
-			evacuation_program.open_door()
+			spawn()
+				D.unlock()
+				D.open()
+				D.lock()
+			//evacuation_program.open_door()
 		if(STATE_READY)
 			evacuation_program.dock_state = STATE_IDLE
 			MOVE_MOB_OUTSIDE
-			//for(var/obj/machinery/cryopod/evacuation/C in cryo_cells)
-			//	C.go_out() //Remove anyone in cryo.
+			spawn(250)
+				D.unlock()
+				D.close()
+				D.lock()
 			//TODO: Close the doors after one minute.
 
 /datum/shuttle/ferry/marine/evacuation_pod/proc/prepare_for_launch()
 	if(!can_launch()) r_FAL //Can't launch in some circumstances.
 	evacuation_program.dock_state = STATE_LAUNCHING
+	spawn()
+		D.unlock()
+		D.close()
+		D.lock()
 	evacuation_program.prepare_for_undocking()
-	sleep(50)
+	sleep(31)
 	if(!check_passengers())
 		evacuation_program.dock_state = STATE_BROKEN
 		explosion(evacuation_program.master, -1, -1, 3, 4)
 		sleep(25)
 		MOVE_MOB_OUTSIDE
-		evacuation_program.open_door()
+		//evacuation_program.open_door()
+		spawn()
+			D.unlock()
+			D.open()
+			D.lock()
 		evacuation_program.master.state("<span class='warning'>WARNING: Maximum weight limit reached, pod unable to launch. Warning: Thruster failure detected.</span>")
 		r_FAL
 	launch()
@@ -156,6 +174,8 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	//door_tag is the tag for the pod door.
 	//id_tag is the generic connection tag.
 	//TODO make sure you can't C4 this.
+
+	ex_act(severity) r_FAL
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 	var/data[] = list(
@@ -208,7 +228,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 	prepare_for_undocking()
 		playsound(master,'sound/effects/escape_pod_warmup.ogg',85,1,7)
-		close_door()
+		//close_door()
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/check_launch_status()
 	var/datum/shuttle/ferry/marine/evacuation_pod/P = shuttle_controller.shuttles[id_tag]
@@ -232,17 +252,18 @@ occupant = M; \
 add_fingerprint(M); \
 icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
-//TODO Make sure you can't enter without evac happening.
 //TODO Make sure you can't c4 this.
+//TODO Make sure they have air and atmosphere inside.
 /obj/machinery/cryopod/evacuation
 	stat = MACHINE_DO_NOT_PROCESS
 	unacidable = 1 //Make sure you can't C4 them.
-	//TODO Add better sprites.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program
 
 	Dispose()
 		. =.. ()
 		cdel(occupant)
+
+	ex_act(severity) r_FAL
 
 	attackby(obj/item/weapon/grab/G, mob/user)
 		if(istype(G))
@@ -250,7 +271,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 				user << "<span class='warning'>There is someone in there already!</span>"
 				r_FAL
 
-			if(evacuation_program.dock_state != STATE_READY)
+			if(evacuation_program.dock_state == STATE_IDLE)
 				user << "<span class='warning'>The cryo pod is not responding to commands! It must be inactive.</span>"
 				r_FAL
 
@@ -282,7 +303,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 				occupant.client.eye = occupant.client.mob
 				occupant.client.perspective = MOB_PERSPECTIVE
 
-			occupant.sleeping = 0
+			occupant.sleeping = 10 //Still groggy.
 			occupant.loc = get_turf(src)
 			occupant = null
 			icon_state = orient_right ? "body_scanner_0-r" : "body_scanner_0"
@@ -300,7 +321,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 			user << "<span class='warning'>The cryogenic pod is already in use! You will need to find another.</span>"
 			r_FAL
 
-		if(evacuation_program.dock_state != STATE_READY)
+		if(evacuation_program.dock_state == STATE_IDLE)
 			user << "<span class='warning'>The cryo pod is not responding to commands! It must be inactive.</span>"
 			r_FAL
 
@@ -317,13 +338,18 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
 /obj/machinery/door/airlock/evacuation //TODO: Make sure you can't c4 these.
 	name = "evacuation airlock"
+	heat_proof = 1
 	unacidable = 1
-	//TODO Lock on start up and take off.
+
+	New()
+		..()
+		spawn()
+			lock()
 
 	//Can't interact with them.
-	//Bumped() r_FAL
+	Bumped() r_FAL
 	attackby() r_FAL
-	//attack_hand() r_FAL
+	attack_hand() r_FAL
 	attack_alien() r_FAL //Probably a better idea that these cannot be forced open.
 	attack_ai() r_FAL
 

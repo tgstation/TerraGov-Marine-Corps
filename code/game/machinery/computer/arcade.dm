@@ -13,26 +13,15 @@
 	var/gameover = 0
 	var/blocked = 0 //Player cannot attack/heal while set
 	var/list/prizes = list(	/obj/item/weapon/storage/box/snappops			= 2,
-							/obj/item/toy/blink								= 2,
-							/obj/item/clothing/under/syndicate/tacticool	= 2,
-							/obj/item/toy/sword								= 2,
-							/obj/item/toy/gun								= 2,
-							/obj/item/toy/crossbow							= 2,
-							/obj/item/clothing/suit/syndicatefake			= 2,
-							/obj/item/weapon/storage/fancy/crayons			= 2,
-							/obj/item/toy/spinningtoy						= 2,
-							/obj/item/toy/prize/ripley						= 1,
-							/obj/item/toy/prize/fireripley					= 1,
-							/obj/item/toy/prize/deathripley					= 1,
-							/obj/item/toy/prize/gygax						= 1,
-							/obj/item/toy/prize/durand						= 1,
-							/obj/item/toy/prize/honk						= 1,
-							/obj/item/toy/prize/marauder					= 1,
-							/obj/item/toy/prize/seraph						= 1,
-							/obj/item/toy/prize/mauler						= 1,
-							/obj/item/toy/prize/odysseus					= 1,
-							/obj/item/toy/prize/phazon						= 1,
-							/obj/item/toy/waterflower						= 1
+							/obj/item/weapon/spacecash/c10					= 1,
+							/obj/item/weapon/soap/deluxe					= 1,
+							/obj/item/weapon/flame/lighter/zippo			= 1,
+							/obj/item/weapon/flame/lighter					= 2,
+							/obj/item/toy/katana							= 1,
+							/obj/item/device/flashlight/pen					= 2,
+							/obj/item/weapon/deck							= 2,
+							/obj/item/weapon/dice/d20						= 1,
+							/obj/item/weapon/pen							= 4
 							)
 
 /obj/machinery/computer/arcade

@@ -36,7 +36,7 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(bundle)
 			h_user.put_in_hands(bundle)
-		user << "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] Thalers now.</span>"
+		user << "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>"
 		del(src)
 
 /obj/item/weapon/spacecash/bundle
@@ -90,13 +90,13 @@
 		del(src)
 
 /obj/item/weapon/spacecash/c1
-	name = "/improper 1 dollar bill"
+	name = "1 dollar bill"
 	icon_state = "spacecash1"
 	desc = "A single US Government minted one dollar bill. It has a picture of George Washington printed on it. Makes most people of english origin cry, but isn't worth very much. Could probably get you half a hot-dog in some systems. "
 	worth = 1
 
 /obj/item/weapon/spacecash/c10
-	name = "/improper 10 dollar bill"
+	name = "10 dollar bill"
 	icon_state = "spacecash10"
 	desc = "A single US Government minted ten dollar bill. It has a picture of Alexander Hamilton on it, federal bank enthusiast, and victim of a terrible griefing incident. Could probably pay for a meal at a cheap restaurant, before tax and tip."
 	worth = 10
