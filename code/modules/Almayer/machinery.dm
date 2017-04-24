@@ -596,15 +596,17 @@
 	use_power = 1
 	idle_power_usage = 20
 
-/obj/machinery/cryobag_recycler/attackby(obj/item/W as obj, mob/user as mob) //Hope this works. Don't see why not.
+//What is this even doing? Why is it making a new item?
+/obj/machinery/cryobag_recycler/attackby(obj/item/W, mob/user) //Hope this works. Don't see why not.
 	..()
 	if (istype(W, /obj/item))
-		if(W.name = "used stasis bag") //possiblity for abuse, but fairly low considering its near impossible to rename something without VV
-			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag(loc) //lets give them the bag considering having it unfolded would be a pain in the ass.
-			var/obj/item/I = W
+		if(W.name == "used stasis bag") //possiblity for abuse, but fairly low considering its near impossible to rename something without VV
+			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag //lets give them the bag considering having it unfolded would be a pain in the ass.
 			R.add_fingerprint(user)
-			del(I)
-			return
+			user.remove_from_mob(W)
+			cdel(W)
+			user.put_in_hands(R)
+			r_TRU
 	..()
 
 /obj/structure/closet/basketball
