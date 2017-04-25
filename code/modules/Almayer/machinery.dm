@@ -58,11 +58,29 @@
 	icon_state = "hangarbox"
 	w_class = 4
 
+/obj/item/prop/almayer/flight_recorder
+	name = "\improper FR-112 flight recorder"
+	desc = "A small red box that contains flight data from a dropship while its on mission. Usually refered to the black box, although this one comes in bloody red."
+	icon_state = "flight_recorder"
+	w_class = 4
+
+/obj/item/prop/almayer/lantern_pod
+	name = "\improper LANTERN pod"
+	desc = "A long green box mounted into a dropship to provide various optical support for its ground targeting systems."
+	icon_state = "lantern_pod"
+	w_class = 4
+
 /obj/item/prop/almayer/flare_launcher
 	name = "\improper MJU-77/C case"
 	desc = "A flare launcher that usually gets mounted onto dropships to help survivability against infrared tracking missiles."
 	icon_state = "flare_launcher"
 	w_class = 2
+
+/obj/item/prop/almayer/chaff_launcher
+	name = "\improper RR-247 Chaff case"
+	desc = "A chaff launcher that usually gets mounted onto dropships to help survivability against radar tracking missiles."
+	icon_state = "chaff_launcher"
+	w_class = 3
 
 /obj/item/prop/almayer/handheld1
 	name = "small handheld"
@@ -174,10 +192,26 @@
 	icon_state = "sensor_comp3"
 
 /obj/structure/prop/almayer/missile_rack
-	name = "missile rack"
-	desc = "A rack used for missiles, often even holding them."
+	name = "\improper AIM-224"
+	desc = "The AIM-224 is the latest in air to air missile technology."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "double"
+	bound_x = 64
+	bound_y = 32
+
+/obj/structure/prop/almayer/paveway_bomb
+	name = "\improper GBU-67 Bomb"
+	desc = "The GBU-67 is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century."
+	icon = 'icons/Marine/almayer_props64.dmi'
+	icon_state = "paveway"
+	bound_x = 64
+	bound_y = 32
+
+/obj/structure/prop/almayer/banshee_missile
+	name = "\improper AGM-227 'Banshee'"
+	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of banshee after the wailing noise it makes right before it hits its target"
+	icon = 'icons/Marine/almayer_props64.dmi'
+	icon_state = "banshee"
 	bound_x = 64
 	bound_y = 32
 
