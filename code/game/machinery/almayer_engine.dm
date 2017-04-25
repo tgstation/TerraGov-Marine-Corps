@@ -1,7 +1,7 @@
 //Experimental engine for the Almayer.  Should be fancier.  I expect I'll eventually make it totally seperate from the Geothermal as I don't like the procs... - Apop
 
 
-/obj/machinery/power/geothermal/sulaco
+/obj/machinery/power/geothermal/almayer
 	name = "\improper S-52 fusion reactor"
 	icon = 'icons/Marine/almayer_eng.dmi'
 	icon_state = "off-0"
@@ -9,8 +9,8 @@
 	almayer = 1 //Yup, it's on the Almayer.
 	directwired = 0     //Requires a cable directly underneath
 	unacidable = 1      //NOPE.jpg
-	power_gen_percent = 0 //100,000W at full capacity
-	power_generation_max = 100000 //Full capacity
+	power_gen_percent = 0 //50,000W at full capacity
+	power_generation_max = 50000 //Full capacity
 	powernet_connection_failed = 0 //Logic checking for powernets
 	buildstate = 0 //What state of building it are we on, 0-3, 1 is "broken", the default
 	is_on = 0  //Is this damn thing on or what?
@@ -18,14 +18,14 @@
 	fail_check_ticks = 100 //Check for failure every this many ticks
 	cur_tick = 0 //Tick updater
 
-	//Sulaco Generator Unique Vars
+	//almayer Generator Unique Vars
 	var/fusion_cell = 1 //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
 	var/produce_heat = 1 //Fusion is a VERY warm process.  The reactor room should probably be cooled... Probably...
 	var/fuel_amount = 100.00 // Amount of Fuel in the cell.
 	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
 	var/icon_track = 100 //This is to track the amount of fuel so it selects the proper icon.
 
-/obj/machinery/power/geothermal/sulaco/New()
+/obj/machinery/power/geothermal/almayer/New()
 	buildstate = rand(0,3) //This is needed to set the state for repair interactions
 	switch(buildstate)
 		if(1) icon_state = "weld"
@@ -34,7 +34,7 @@
 	fuel_amount = rand(15,100)
 	..()
 
-/obj/machinery/power/geothermal/sulaco/process()
+/obj/machinery/power/geothermal/almayer/process()
 	if(!is_on || buildstate || !anchored) //Default logic checking
 		return 0
 	if (fuel_amount <= 0)
@@ -61,7 +61,7 @@
 
 			switch(power_gen_percent) //Flavor text!
 				if(10)
-					visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span")
+					visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
 					fuel_rate = 0.025
 				if(50)
 					visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
@@ -99,7 +99,7 @@
 //		update_icon() //Gonna either make a new one of these with blackjack and hooker or just ignore it 5ever.
 
 
-/obj/machinery/power/geothermal/sulaco/attackby(obj/item/W, mob/user)
+/obj/machinery/power/geothermal/almayer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/fuelCell))
 		if(is_on)
 			user << "<span class='warning'>The [src] needs to be turned off first...</span>"
@@ -124,7 +124,7 @@
 	icon_state = "cell-full"
 	desc = "A single-use fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
 
-/obj/machinery/power/geothermal/sulaco/attack_hand(mob/user as mob)
+/obj/machinery/power/geothermal/almayer/attack_hand(mob/user as mob)
 	if(!anchored) //Shouldn't actually be possible
 		usr << "MAKE AN AHELP RIGHT AWAY, BECAUSE SHIT IS SOMEHOW FUCKED - ERROR: ALM001."
 		r_FAL
@@ -161,7 +161,7 @@
 //	update_icon()
 	r_TRU
 
-/obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/power/geothermal/almayer/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/weldingtool))
 		if(buildstate == 1 && !is_on)
 			var/obj/item/weapon/weldingtool/WT = O

@@ -1,7 +1,7 @@
 /obj/machinery/power/geothermal
-	name = "geothermal power generator"
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "geo_broken"
+	name = "\improper G-11 geothermal generator"
+	icon = 'icons/turf/geothermal.dmi'
+	icon_state = "weld"
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a welding tool, wrench, then wirecutters to repair it."
 	var/almayer = 0
 	anchored = 1
@@ -23,50 +23,26 @@
 	if(almayer)
 		return
 	if(!buildstate && is_on)
-		icon_state = "geo_working"
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
-		var/image/over = image('icons/turf/ground_map.dmi', src, "turbine0")
-		var/changed = 0
-		if(power_gen_percent == 5)
-			over.icon_state = "turbine0"
-			changed = 1
-		else if (power_gen_percent == 20)
-			over.icon_state = "turbine1"
-			changed = 1
-		else if (power_gen_percent == 40)
-			over.icon_state = "turbine2"
-			changed = 1
-		else if (power_gen_percent == 60)
-			over.icon_state = "turbine3"
-			changed = 1
-		else if (power_gen_percent == 75)
-			over.icon_state = "turbine4"
-			changed = 1
-		else if (power_gen_percent == 90)
-			over.icon_state = "turbine5"
-			changed = 1
-		else if (power_gen_percent == 99) //99 better than 100, since it could stay at 100 for a long time but not 99
-			over.icon_state = "turbine6"
-			changed = 1
+		switch(power_gen_percent)
+			if(25) icon_state = "on25"
+			if(50) icon_state = "on50"
+			if(75) icon_state = "on75"
+			if(100) icon_state = "on100"
 
-		if(changed)
-			overlays.Cut()
-			overlays += over
 
 	else if (!buildstate && !is_on)
-		overlays.Cut()
-		icon_state = "geo_off"
+		icon_state = "off"
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently turned off and silent."
 	else
-		overlays.Cut()
 		if(buildstate == 1)
-			icon_state = "geo_broken"
+			icon_state = "weld"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a welding tool, wirecutters, then wrench to repair it."
 		else if(buildstate == 2)
-			icon_state = "geo_broken2"
+			icon_state = "wire"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use a wirecutters, then wrench to repair it."
 		else
-			icon_state = "geo_broken3"
+			icon_state = "wrench"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
 /obj/machinery/power/geothermal/New()
@@ -87,14 +63,11 @@
 	else if(powernet) //All good! Let's fire it up!
 		if(!check_failure()) //Wait! Check to see if it breaks during processing
 			update_icon()
-			if(power_gen_percent < 100)
-				power_gen_percent++
-			if(power_gen_percent == 10)//Flavor text!
-				src.visible_message("\icon[src] <b>[src]</b> begins to whirr as it powers up.")
-			if(power_gen_percent == 50)//Flavor text!
-				src.visible_message("\icon[src] <b>[src]</b> hums as the internal dynamos reach half speed.")
-			if(power_gen_percent == 99)//Flavor text!
-				src.visible_message("\icon[src] <b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.")
+			if(power_gen_percent < 100) power_gen_percent++
+			switch(power_gen_percent)
+				if(10) visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+				if(50) visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+				if(99) visible_message("\icon[src] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
 			add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/proc/check_failure()
@@ -106,13 +79,13 @@
 		return 0
 	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
 		if(rand(0,3) == 0)
-			src.visible_message("\icon[src] \red <b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
+			visible_message("\icon[src] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
 			buildstate = 2
-			if(almayer)	icon_state = "wire" //FOR THE SPECIAL NEW ENGINE
+			icon_state = "wire"
 		else
-			src.visible_message("\icon[src] \red <b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
+			visible_message("\icon[src] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = 3
-			if(almayer)	icon_state = "wrench" //FOR THE SPECIAL NEW ENGINE
+			icon_state = "wrench"
 		is_on = 0
 		power_gen_percent = 0
 		update_icon()
@@ -127,25 +100,24 @@
 		return 0
 	add_fingerprint(user)
 	if(buildstate == 1)
-		usr << "Use a welding tool, then wirecutters, then wrench to repair it."
+		usr << "<span class='info'>Use a welding tool, then wirecutters, then wrench to repair it."
 		return 0
 	else if (buildstate == 2)
-		usr << "Use a wirecutters, then wrench to repair it."
+		usr << "<span class='info'>Use a wirecutters, then wrench to repair it."
 		return 0
 	else if (buildstate == 3)
-		usr << "Use a wrench to repair it."
+		usr << "<span class='info'>Use a wrench to repair it."
 		return 0
 	if(is_on)
-		src.visible_message("\icon[src] \red <b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
+		visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
 		is_on = 0
 		power_gen_percent = 0
 		cur_tick = 0
-		update_icon()
 		return 1
-	src.visible_message("\icon[src] \red <b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
+	src.visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
+	icon_state = "on10"
 	is_on = 1
 	cur_tick = 0
-	update_icon()
 	return 1
 
 /obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -154,7 +126,7 @@
 			var/obj/item/weapon/weldingtool/WT = O
 			if(WT.remove_fuel(0, user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
-				user.visible_message("[user.name] starts to weld the damage to [src.name].","You start to weld the damage to [src.name]. Stand still!")
+				user.visible_message("<span class='notice'>[user] starts to weld the damage to [src].</span>","<span class='notice'>You start to weld the damage to [name]. Stand still!</span>")
 				if (do_after(user,200))
 					if(!src || !WT.isOn()) return
 					buildstate = 2
@@ -167,7 +139,7 @@
 	if(istype(O,/obj/item/weapon/wirecutters))
 		if(buildstate == 2 && !is_on)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
-			user.visible_message("[user.name] starts to secure the wiring on [src.name].","You start to secure the wiring. Stand still!")
+			user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
 			if(do_after(user,120))
 				if(!src) return
 				buildstate = 3
@@ -177,7 +149,7 @@
 	if(istype(O,/obj/item/weapon/wrench))
 		if(buildstate == 3 && !is_on)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			user.visible_message("[user.name] starts to repair the tubes and plating on [src.name].","You start to repair the plating. Stand still!")
+			user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
 			if(do_after(user,150))
 				if(!src) return
 				buildstate = 0
