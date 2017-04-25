@@ -443,23 +443,39 @@
 		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
 		dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
-		dat += "<B>Emergency shuttle</B><BR>"
-		if (!emergency_shuttle.online())
-			dat += "<a href='?src=\ref[src];call_shuttle=1'>Call Shuttle</a><br>"
-		else
-			if (emergency_shuttle.wait_for_launch)
-				var/timeleft = emergency_shuttle.estimate_launch_time()
-				dat += "ETL: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
 
-			else if (emergency_shuttle.shuttle.has_arrive_time())
-				var/timeleft = emergency_shuttle.estimate_arrival_time()
-				dat += "ETA: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
-				dat += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
+		if(check_rights(R_DEBUG))
+			dat += "<br><A HREF='?_src_=vars;Vars=\ref[EvacuationAuthority]'>VV Evacuation Controller</A><br>"
+			dat += "<A HREF='?_src_=vars;Vars=\ref[shuttle_controller]'>VV Shuttle Controller</A><br><br>"
 
-			if (emergency_shuttle.shuttle.moving_status == SHUTTLE_WARMUP)
-				dat += "Launching now..."
+		if(check_rights(R_MOD))
+			dat += "<b>Evacuation:</b> "
+			switch(EvacuationAuthority.evac_status)
+				if(EVACUATION_STATUS_STANDING_BY) dat += 	"STANDING BY"
+				if(EVACUATION_STATUS_INITIATING) dat += 	"IN PROGRESS: [EvacuationAuthority.get_status_panel_eta()]"
+				if(EVACUATION_STATUS_COMPLETE) dat += 		"COMPLETE"
+			dat += "<br>"
 
-		dat += "<a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=init_evac'>Initiate Evacuation</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=cancel_evac'>Cancel Evacuation</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=toggle_evac'>Toggle Evacuation Permission (does not affect evac in progress)</a><br>"
+			if(check_rights(R_ADMIN)) dat += "<a href='?src=\ref[src];evac_authority=force_evac'>Force Evacuation Now</a><br>"
+
+		if(check_rights(R_ADMIN))
+			dat += "<b>Self Destruct:</b> "
+			switch(EvacuationAuthority.dest_status)
+				if(NUKE_EXPLOSION_INACTIVE) dat += 		"INACTIVE"
+				if(NUKE_EXPLOSION_ACTIVE) dat += 		"ACTIVE"
+				if(NUKE_EXPLOSION_IN_PROGRESS) dat += 	"IN PROGRESS"
+				if(NUKE_EXPLOSION_FINISHED) dat += 		"FINISHED"
+			dat += "<br>"
+
+			dat += "<a href='?src=\ref[src];evac_authority=init_dest'>Unlock Self Destruct</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=cancel_dest'>Cancel Self Destruct</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=use_dest'>Self Destruct the [MAIN_SHIP_NAME]</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
+
+		dat += "<br><a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 
 		if(ticker.mode.xenomorphs.len)
 			dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"

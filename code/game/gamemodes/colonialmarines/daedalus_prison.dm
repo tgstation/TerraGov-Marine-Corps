@@ -108,7 +108,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedalus Prison Facility after  communications were lost recently. USS Sulaco has been dispatched to investigate.", "USS Sulaco")
+		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedalus Prison Facility after  communications were lost recently. [MAIN_SHIP_NAME] has been dispatched to investigate.", "[MAIN_SHIP_NAME]")
 
 
 /datum/game_mode/prison_rescue/proc/transform_xeno(var/datum/mind/ghost)
@@ -316,14 +316,14 @@
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
 		world << "\red <FONT size = 3><B>Alien minor victory.</B></FONT>"
-		world << "<FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
+		world << "<FONT size = 3><B>The [MAIN_SHIP_NAME] has been evacuated... but the infestation remains!</B></FONT>"
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 5)
-		feedback_set_details("round_end_result","draw - the Sulaco has been nuked")
+		feedback_set_details("round_end_result","draw - the [MAIN_SHIP_NAME] has been nuked")
 		world << "\red <FONT size = 3><B>Draw.</B></FONT>"
-		world << "<FONT size = 3><B>The Sulaco has blown by a nuclear fission device... there are no winners!</B></FONT>"
+		world << "<FONT size = 3><B>The [MAIN_SHIP_NAME] has blown by a nuclear fission device... there are no winners!</B></FONT>"
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"

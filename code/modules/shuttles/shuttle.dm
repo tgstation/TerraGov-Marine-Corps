@@ -38,9 +38,6 @@
 	//world << "shuttle/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
 	if(moving_status != SHUTTLE_IDLE) return
 
-	for(var/obj/structure/engine_startup_sound/S in departing)
-		playsound(S.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
-
 	moving_status = SHUTTLE_WARMUP
 	if(transit_optimized)
 		recharging = round(recharge_time*0.75) //Optimized flight plan means less recharge time
@@ -63,10 +60,6 @@
 		while (world.time < arrive_time)
 			sleep(5)
 
-		for(var/obj/structure/engine_landing_sound/L in destination)
-			playsound(L.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-		for(var/obj/structure/engine_inside_sound/L in interim)
-			playsound(L.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
 		sleep(100)
 
 		move(interim, destination, direction)
@@ -182,8 +175,6 @@
 
 	for(var/turf/T in destination)
 		for(var/obj/O in T)
-			if(istype(O, /obj/structure/engine_landing_sound))
-				continue
 			del(O)
 		if(istype(T, /turf/simulated))
 			del(T)

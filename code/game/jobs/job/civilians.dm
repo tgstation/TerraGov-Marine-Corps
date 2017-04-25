@@ -82,11 +82,12 @@ You are also an expert when it comes to medication and treatment. If you do not 
 //Researcher
 /datum/job/civilian/researcher
 	title = "Researcher"
+	disp_title = "Medical Researcher"
 	comm_title = "Rsr"
 	paygrade = "CD"
 	flag = ROLE_CIVILIAN_RESEARCHER
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
@@ -110,8 +111,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 	generate_entry_message(mob/living/carbon/human/H)
 		. = {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
-You are tasked with researching and developing new technologies, using the autopsy tool on new lifeforms, and generally learing new things.
-Your role involves a lot of roleplaying, especially if the research you can get is limited. You are held accountable for the things that you hand out to the marines."}
+You are tasked with researching and developing new medical treatments, helping your fellow doctors, and generally learning new things.
+Your role involves a lot of roleplaying, but you can perform the function of a regular doctor. Do not hand out things to marines without getting permission from your supervisor."}
 
 //Liaison
 /datum/job/civilian/liaison

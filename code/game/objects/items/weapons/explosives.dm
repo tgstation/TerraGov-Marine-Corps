@@ -9,11 +9,11 @@
 
 /obj/item/weapon/plastique/afterattack(atom/target as obj|turf, mob/user as mob, flag)
 	if (!flag)
-		return
+		r_FAL
 	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/under) || istype(target,/obj/item))
-		return
-	if (istype(target, /obj/structure/ladder) || istype(target, /turf/simulated/floor) || istype(target, /obj/machinery/telecomms) || istype(target, /obj/machinery/computer/shuttle_control) || istype(target, /obj/effect/forcefield) || istype(target, /obj/machinery/door/poddoor/four_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/four_tile_ver/secure)  || istype(target, /obj/machinery/door/poddoor/two_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/two_tile_ver/secure) || istype(target, /obj/effect/blocker/fog))
-		return
+		r_FAL
+	if (istype(target, /obj/structure/ladder) || istype(target, /turf/simulated/floor) || istype(target, /obj/machinery/telecomms) || istype(target, /obj/machinery/computer/shuttle_control) || istype(target, /obj/effect/forcefield) || istype(target, /obj/machinery/door/poddoor/four_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/four_tile_ver/secure)  || istype(target, /obj/machinery/door/poddoor/two_tile_hor/secure) || istype(target, /obj/machinery/door/poddoor/two_tile_ver/secure) || istype(target, /obj/effect/blocker/fog) || istype(target, /obj/machinery/self_destruct) || istype(target,/obj/machinery/door/airlock/evacuation)) //Straight up the dumbest thing in this game. Or at least close.
+		r_FAL
 
 	user << "Planting explosives..."
 	user.visible_message("\red [user.name] is trying to plant some kind of explosive on [target.name]!")

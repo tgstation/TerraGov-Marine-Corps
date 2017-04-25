@@ -270,3 +270,106 @@
 /area/bigred/uground/lambda_labs/maintenance2
 	name = "\improper Unknown Area"
 	icon_state = "blue"
+
+
+//Big Red V2
+
+/area/bigredv2/outside
+	name = "\improper Colony Grounds"
+	icon_state = "red"
+
+/area/bigredv2/caves
+	name = "\improper Unknown Area"
+	icon_state = "bluenew"
+
+/area/bigredv2/outside/weyland_lab/outside
+	name = "\improper Weyland Yutani Compound"
+	icon_state = "yellow"
+
+/area/bigredv2/outside/weyland_lab/inside
+	name = "\improper Weyland Yutani Research Lab"
+	icon_state = "vault"
+
+/area/bigredv2/outside/cargo
+	name = "\improper Cargo"
+	icon_state = "dark"
+
+/area/bigredv2/outside/general_store
+	name = "\improper General Store"
+	icon_state = "blueold"
+
+/area/bigredv2/outside/marshall_office
+	name = "\improper Marshall Offices"
+	icon_state = "brig"
+
+/area/bigredv2/outside/medical
+	name = "\improper Hospital"
+	icon_state = "CMO"
+
+/area/bigredv2/outside/admin_building
+	name = "\improper Administration"
+	icon_state = "bridge"
+
+/area/bigredv2/outside/filtration_plant
+	name = "\improper Filtration Plant"
+	icon_state = "atmos"
+
+/area/bigredv2/outside/virology
+	name = "\improper Virology Lab"
+	icon_state = "LP"
+
+/area/bigredv2/outside/dorms
+	name = "\improper Dormitories"
+	icon_state = "fitness"
+
+/area/bigredv2/outside/bar
+	name = "\improper Bar"
+	icon_state = "bar"
+
+/area/bigredv2/outside/chapel
+	name = "\improper Chapel"
+	icon_state = "courtroom"
+
+/area/bigredv2/outside/hydroponics
+	name = "\improper Hydroponics"
+	icon_state = "garden"
+
+/area/bigredv2/outside/library
+	name = "\improper Library"
+	icon_state = "library"
+
+/area/bigredv2/outside/office_complex
+	name = "\improper Office Complex"
+	icon_state = "explored"
+
+/area/bigredv2/outside/space_port
+	name = "\improper Space Port"
+	icon_state = "green"
+
+/area/bigredv2/outside/telecomm
+	name = "\improper Telecommunications"
+	icon_state = "ass_line"
+
+/area/bigredv2/outside/engineering
+	name = "\improper Engineering Complex"
+	icon_state = "engine"
+
+/area/bigredv2/outside/storage
+	name = "\improper Storage"
+	icon_state = "storage"
+
+/area/bigredv2/outside/solar_plant
+	name = "\improper Solar Power Plant"
+	icon_state = "substation"
+
+/area/bigredv2/outside/atmos
+	name = "\improper Atmospheric Stabilizer"
+	icon_state = "party"
+
+/area/bigredv2/caves/lambda_lab
+	name = "\improper Lambda Lab"
+	icon_state = "party"
+
+/area/bigredv2/outside/general_offices
+	name = "\improper General Offices"
+	icon_state = "storage"

@@ -193,8 +193,8 @@
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
-	icon_state = "boozeomat"
-	icon_deny = "boozeomat-deny"
+	icon_state = "generic"
+	icon_deny = "generic-deny"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
@@ -283,14 +283,17 @@
 	desc = "A marine engineering equipment vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
+	icon_state = "tool"
+	icon_deny = "tool-deny"
 	products = list(
+						/obj/item/weapon/coin/marine/engineer = 1,
 						/obj/item/clothing/under/marine/engineer = 3,
 						/obj/item/clothing/head/helmet/marine/tech = 2,
 						/obj/item/weapon/storage/backpack/marine/tech = 4,
 						/obj/item/weapon/storage/backpack/marine/satchel/tech = 2,
+						/obj/item/weapon/storage/backpack/marine/engineerpack = 2,
 						/obj/item/clothing/tie/storage/webbing = 3,
 						/obj/item/device/encryptionkey/headset_eng = 3,
-						/obj/item/weapon/storage/box/sentry = 1,
 						/obj/item/weapon/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
@@ -303,9 +306,15 @@
 						/obj/item/weapon/airlock_electronics = 10,
 						/obj/item/weapon/module/power_control = 10,
 						/obj/item/weapon/airalarm_electronics = 10,
-						/obj/item/weapon/cell/high = 10
+						/obj/item/weapon/cell/high = 10,
+						/obj/item/weapon/etool = 3
 					)
 	contraband = list(/obj/item/weapon/cell/super = 1)
+
+	premium = list(
+					/obj/item/weapon/storage/box/sentry = 1,
+					/obj/item/weapon/storage/box/m56d_hmg = 1
+					)
 
 /obj/machinery/vending/marine_medic
 	name = "\improper ColMarTech Medic Vendor"
@@ -340,8 +349,8 @@
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(ACCESS_MARINE_SPECPREP)
-	icon_state = "robotics"
-	icon_deny = "robotics-deny"
+	icon_state = "boozeomat"
+	icon_deny = "boozeomat-deny"
 
 	products = list(
 						/obj/item/weapon/coin/marine = 1,

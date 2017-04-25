@@ -228,25 +228,26 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	var/command = 0 //Is this a commander? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
 
-	if(M && istype(M,/mob/living/carbon/human))
-		var/obj/item/device/pda/I = M:wear_id
-		var/obj/item/weapon/card/id/card = null
+	if(M)
+		if(istype(M,/mob/living/carbon/human))
+			var/obj/item/device/pda/I = M:wear_id
+			var/obj/item/weapon/card/id/card = null
 
-		if(I && istype(I))
-			if(I.id)
-				card = I.id
-		else
-			card = I
+			if(I && istype(I))
+				if(I.id)
+					card = I.id
+			else
+				card = I
 
-		if(card)
-			if(card.assignment == "Commander")
-				command = 3
-			else if(card.assignment == "Pilot Officer" || card.assignment == "Bridge Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
-				command = 3
+			if(card)
+				if(card.assignment == "Commander")
+					command = 3
+				else if(card.assignment == "Pilot Officer" || card.assignment == "Bridge Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
+					command = 3
 
-		if(M.mind && M.mind.role_comm_title)
-			comm_title = M.mind.role_comm_title //Set up [CO] and stuff after frequency
-
+			if(M.mind && M.mind.role_comm_title)
+				comm_title = M.mind.role_comm_title //Set up [CO] and stuff after frequency
+		else if(istype(M,/mob/living/silicon/decoy/ship_ai)) command = 3
 
 	for (var/mob/R in receive)
 

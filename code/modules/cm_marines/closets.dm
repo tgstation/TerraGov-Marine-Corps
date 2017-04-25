@@ -152,6 +152,34 @@
 
 	select_gamemode_equipment()
 
+/obj/structure/closet/secure_closet/marine/warrant_officer
+	name = "warrant officer's locker"
+	req_access = list(ACCESS_MARINE_BRIG)
+	icon_state = "wardensecure1"
+	icon_closed = "wardensecure"
+	icon_locked = "wardensecure1"
+	icon_opened = "wardensecureopen"
+	icon_broken = "wardensecurebroken"
+	icon_off = "wardensecureoff"
+	icon = 'icons/obj/closet.dmi'
+
+	New()
+		spawn(3)
+			new /obj/item/clothing/head/cmberet/wo(src)
+			new /obj/item/clothing/tie/holster/armpit(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/under/marine/officer/warrant(src)
+			new /obj/item/clothing/suit/storage/marine/MP/WO(src)
+			new /obj/item/weapon/storage/belt/security/MP(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/clothing/glasses/sunglasses(src)
+			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/weapon/gun/energy/taser(src)
+			new /obj/item/weapon/melee/baton(src)
+			new /obj/item/weapon/storage/backpack/security (src)
+
+	select_gamemode_equipment()
+
 /obj/structure/closet/secure_closet/marine/military_officer_spare
 	name = "extra equipment locker"
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -250,7 +278,7 @@
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
-	name = "sulaco medical doctor's locker"
+	name = "\improper medical doctor's locker"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	icon_state = "securemed1"
 	icon_closed = "securemed"

@@ -51,12 +51,16 @@ e.g. Something up to the right relative to its landmark will end up down to the 
 ONLY called when moving to either the trg landmark or a crs landmark
 
 
-/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0)
+/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0, datum/shuttle/ferry/marine/shuttle)
 --------------------------------
 trg: The target reference turf, see var/turf/ref from the previous proc
 turftoleave: Allows leaving other turfs behind as needed. Note: must be a path
 source: A list of coordinate datums indexed by turfs. See Return from the previous proc
 iselevator: Used as a simple boolean. Dictates whether or not the shuttle is in fact an elevator
+
+The shuttle variable should always be present to reference back the existing shuttle.
+Should be reworked in the future. Right now it references evac pods only, and only matters for them,
+but it should be brought up to all marine ferries.
 
 Notes:
 iselevator is admittedly a hair "hacky"
@@ -194,6 +198,97 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}, /datum/coords {x_pos = 5; y_pos = 1}, /datum/coords {x_pos = 6; y_pos = 1}, /datum/coords {x_pos = 7; y_pos = 1},
 	)
 
+	//Almayer Evac Pods
+/*
+x_pos = 0 1 2 3 4 5
+		| | | | | |
+		O O O O O O -- y_pos = 6
+		O X X X X O -- y_pos = 5
+		O X X X X O -- y_pos = 4
+		O X X X X O -- y_pos = 3
+		O X X X X O -- y_pos = 2
+		O X X X X O -- y_pos = 1
+		T O O O O O -- y_pos = 0
+	*/
+	s_info["Almayer Evac"] = newlist(
+		/datum/coords {x_pos = 1; y_pos = 5}, /datum/coords {x_pos = 2; y_pos = 5}, /datum/coords {x_pos = 3; y_pos = 5}, /datum/coords {x_pos = 4; y_pos = 5},
+
+		/datum/coords {x_pos = 1; y_pos = 4}, /datum/coords {x_pos = 2; y_pos = 4}, /datum/coords {x_pos = 3; y_pos = 4}, /datum/coords {x_pos = 4; y_pos = 4},
+
+		/datum/coords {x_pos = 1; y_pos = 3}, /datum/coords {x_pos = 2; y_pos = 3}, /datum/coords {x_pos = 3; y_pos = 3}, /datum/coords {x_pos = 4; y_pos = 3},
+
+		/datum/coords {x_pos = 1; y_pos = 2}, /datum/coords {x_pos = 2; y_pos = 2}, /datum/coords {x_pos = 3; y_pos = 2}, /datum/coords {x_pos = 4; y_pos = 2},
+
+		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}
+	)
+
+	//Alternate Almayer Evac Pods
+/*
+x_pos = 0 1 2 3 4 5 6
+		| | | | | | |
+		O O O O O O O -- y_pos = 5
+		O X X X X X O -- y_pos = 4
+		O X X X X X O -- y_pos = 3
+		O X X X X X O -- y_pos = 2
+		O X X X X X O -- y_pos = 1
+		T O O O O O O -- y_pos = 0
+	*/
+	s_info["Alt Almayer Evac"] = newlist(
+		/datum/coords {x_pos = 1; y_pos = 4}, /datum/coords {x_pos = 2; y_pos = 4}, /datum/coords {x_pos = 3; y_pos = 4}, /datum/coords {x_pos = 4; y_pos = 4}, /datum/coords {x_pos = 5; y_pos = 4},
+
+		/datum/coords {x_pos = 1; y_pos = 3}, /datum/coords {x_pos = 2; y_pos = 3}, /datum/coords {x_pos = 3; y_pos = 3}, /datum/coords {x_pos = 4; y_pos = 3}, /datum/coords {x_pos = 5; y_pos = 3},
+
+		/datum/coords {x_pos = 1; y_pos = 2}, /datum/coords {x_pos = 2; y_pos = 2}, /datum/coords {x_pos = 3; y_pos = 2}, /datum/coords {x_pos = 4; y_pos = 2}, /datum/coords {x_pos = 5; y_pos = 2},
+
+		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}, /datum/coords {x_pos = 5; y_pos = 1}
+	)
+
+	//Almayer Dropship
+
+	s_info["Almayer Dropship"] = newlist(
+
+	/datum/coords{x_pos=4;y_pos=19}, /datum/coords{x_pos=5;y_pos=19}, /datum/coords{x_pos=6;y_pos=19},
+
+	/datum/coords{x_pos=4;y_pos=18}, /datum/coords{x_pos=5;y_pos=18}, /datum/coords{x_pos=6;y_pos=18},
+
+	/datum/coords{x_pos=4;y_pos=17}, /datum/coords{x_pos=5;y_pos=17}, /datum/coords{x_pos=6;y_pos=17},
+
+	/datum/coords{x_pos=1;y_pos=16}, /datum/coords{x_pos=2;y_pos=16}, /datum/coords{x_pos=3;y_pos=16}, /datum/coords{x_pos=4;y_pos=16}, /datum/coords{x_pos=5;y_pos=16}, /datum/coords{x_pos=6;y_pos=16}, /datum/coords{x_pos=7;y_pos=16}, /datum/coords{x_pos=8;y_pos=16}, /datum/coords{x_pos=9;y_pos=16},
+
+	/datum/coords{x_pos=0;y_pos=15}, /datum/coords{x_pos=1;y_pos=15}, /datum/coords{x_pos=2;y_pos=15}, /datum/coords{x_pos=3;y_pos=15}, /datum/coords{x_pos=4;y_pos=15}, /datum/coords{x_pos=5;y_pos=15}, /datum/coords{x_pos=6;y_pos=15}, /datum/coords{x_pos=7;y_pos=15}, /datum/coords{x_pos=8;y_pos=15}, /datum/coords{x_pos=9;y_pos=15}, /datum/coords{x_pos=10;y_pos=15},
+
+	/datum/coords{x_pos=0;y_pos=14}, /datum/coords{x_pos=1;y_pos=14}, /datum/coords{x_pos=2;y_pos=14}, /datum/coords{x_pos=3;y_pos=14}, /datum/coords{x_pos=4;y_pos=14}, /datum/coords{x_pos=5;y_pos=14}, /datum/coords{x_pos=6;y_pos=14}, /datum/coords{x_pos=7;y_pos=14}, /datum/coords{x_pos=8;y_pos=14}, /datum/coords{x_pos=9;y_pos=14}, /datum/coords{x_pos=10;y_pos=14},
+
+	/datum/coords{x_pos=0;y_pos=13}, /datum/coords{x_pos=1;y_pos=13}, /datum/coords{x_pos=2;y_pos=13}, /datum/coords{x_pos=3;y_pos=13}, /datum/coords{x_pos=4;y_pos=13}, /datum/coords{x_pos=5;y_pos=13}, /datum/coords{x_pos=6;y_pos=13}, /datum/coords{x_pos=7;y_pos=13}, /datum/coords{x_pos=8;y_pos=13}, /datum/coords{x_pos=9;y_pos=13}, /datum/coords{x_pos=10;y_pos=13},
+
+	/datum/coords{x_pos=1;y_pos=12}, /datum/coords{x_pos=2;y_pos=12}, /datum/coords{x_pos=3;y_pos=12}, /datum/coords{x_pos=4;y_pos=12}, /datum/coords{x_pos=5;y_pos=12}, /datum/coords{x_pos=6;y_pos=12}, /datum/coords{x_pos=7;y_pos=12}, /datum/coords{x_pos=8;y_pos=12}, /datum/coords{x_pos=9;y_pos=12},
+
+	/datum/coords{x_pos=1;y_pos=11}, /datum/coords{x_pos=2;y_pos=11}, /datum/coords{x_pos=3;y_pos=11}, /datum/coords{x_pos=4;y_pos=11}, /datum/coords{x_pos=5;y_pos=11}, /datum/coords{x_pos=6;y_pos=11}, /datum/coords{x_pos=7;y_pos=11}, /datum/coords{x_pos=8;y_pos=11}, /datum/coords{x_pos=9;y_pos=11},
+
+	/datum/coords{x_pos=1;y_pos=10}, /datum/coords{x_pos=2;y_pos=10}, /datum/coords{x_pos=3;y_pos=10}, /datum/coords{x_pos=4;y_pos=10}, /datum/coords{x_pos=5;y_pos=10}, /datum/coords{x_pos=6;y_pos=10}, /datum/coords{x_pos=7;y_pos=10}, /datum/coords{x_pos=8;y_pos=10}, /datum/coords{x_pos=9;y_pos=10},
+
+	/datum/coords{x_pos=1;y_pos=9}, /datum/coords{x_pos=2;y_pos=9}, /datum/coords{x_pos=3;y_pos=9}, /datum/coords{x_pos=4;y_pos=9}, /datum/coords{x_pos=5;y_pos=9}, /datum/coords{x_pos=6;y_pos=9}, /datum/coords{x_pos=7;y_pos=9}, /datum/coords{x_pos=8;y_pos=9}, /datum/coords{x_pos=9;y_pos=9},
+
+	/datum/coords{x_pos=1;y_pos=8}, /datum/coords{x_pos=2;y_pos=8}, /datum/coords{x_pos=3;y_pos=8}, /datum/coords{x_pos=4;y_pos=8}, /datum/coords{x_pos=5;y_pos=8}, /datum/coords{x_pos=6;y_pos=8}, /datum/coords{x_pos=7;y_pos=8}, /datum/coords{x_pos=8;y_pos=8}, /datum/coords{x_pos=9;y_pos=8},
+
+	/datum/coords{x_pos=2;y_pos=7}, /datum/coords{x_pos=3;y_pos=7}, /datum/coords{x_pos=4;y_pos=7}, /datum/coords{x_pos=5;y_pos=7}, /datum/coords{x_pos=6;y_pos=7}, /datum/coords{x_pos=7;y_pos=7}, /datum/coords{x_pos=8;y_pos=7},
+
+	/datum/coords{x_pos=0;y_pos=6}, /datum/coords{x_pos=1;y_pos=6}, /datum/coords{x_pos=2;y_pos=6}, /datum/coords{x_pos=3;y_pos=6}, /datum/coords{x_pos=4;y_pos=6}, /datum/coords{x_pos=5;y_pos=6}, /datum/coords{x_pos=6;y_pos=6}, /datum/coords{x_pos=7;y_pos=6}, /datum/coords{x_pos=8;y_pos=6}, /datum/coords{x_pos=9;y_pos=6}, /datum/coords{x_pos=10;y_pos=6},
+
+	/datum/coords{x_pos=0;y_pos=5}, /datum/coords{x_pos=1;y_pos=5}, /datum/coords{x_pos=2;y_pos=5}, /datum/coords{x_pos=3;y_pos=5}, /datum/coords{x_pos=4;y_pos=5}, /datum/coords{x_pos=5;y_pos=5}, /datum/coords{x_pos=6;y_pos=5}, /datum/coords{x_pos=7;y_pos=5}, /datum/coords{x_pos=8;y_pos=5}, /datum/coords{x_pos=9;y_pos=5}, /datum/coords{x_pos=10;y_pos=5},
+
+	/datum/coords{x_pos=0;y_pos=4}, /datum/coords{x_pos=1;y_pos=4}, /datum/coords{x_pos=2;y_pos=4}, /datum/coords{x_pos=3;y_pos=4}, /datum/coords{x_pos=4;y_pos=4}, /datum/coords{x_pos=5;y_pos=4}, /datum/coords{x_pos=6;y_pos=4}, /datum/coords{x_pos=7;y_pos=4}, /datum/coords{x_pos=8;y_pos=4}, /datum/coords{x_pos=9;y_pos=4}, /datum/coords{x_pos=10;y_pos=4},
+
+	/datum/coords{x_pos=0;y_pos=3}, /datum/coords{x_pos=1;y_pos=3}, /datum/coords{x_pos=2;y_pos=3}, /datum/coords{x_pos=3;y_pos=3}, /datum/coords{x_pos=4;y_pos=3}, /datum/coords{x_pos=5;y_pos=3}, /datum/coords{x_pos=6;y_pos=3}, /datum/coords{x_pos=7;y_pos=3}, /datum/coords{x_pos=8;y_pos=3}, /datum/coords{x_pos=9;y_pos=3}, /datum/coords{x_pos=10;y_pos=3},
+
+	/datum/coords{x_pos=2;y_pos=2}, /datum/coords{x_pos=3;y_pos=2}, /datum/coords{x_pos=4;y_pos=2}, /datum/coords{x_pos=5;y_pos=2}, /datum/coords{x_pos=6;y_pos=2}, /datum/coords{x_pos=7;y_pos=2}, /datum/coords{x_pos=8;y_pos=2},
+
+	/datum/coords{x_pos=3;y_pos=1}, /datum/coords{x_pos=4;y_pos=1}, /datum/coords{x_pos=5;y_pos=1}, /datum/coords{x_pos=6;y_pos=1}, /datum/coords{x_pos=7;y_pos=1},
+
+	/datum/coords{x_pos=1;y_pos=0}, /datum/coords{x_pos=2;y_pos=0}, /datum/coords{x_pos=3;y_pos=0}, /datum/coords{x_pos=4;y_pos=0}, /datum/coords{x_pos=5;y_pos=0}, /datum/coords{x_pos=6;y_pos=0}, /datum/coords{x_pos=7;y_pos=0}, /datum/coords{x_pos=8;y_pos=0}, /datum/coords{x_pos=9;y_pos=0},
+
+	)
+
 	return 1
 
 /obj/effect/landmark/shuttle_loc
@@ -236,22 +331,29 @@ x_pos = 0 1 2 3 4 5 6 7 8
 	var/x //Placeholder while we do math
 	var/y //Placeholder while we do math
 	var/datum/coords/C
+	var/datum/coords/C1
+	var/list/toReturn = list()
 	for(i in L)
 		C = L[i]
 		if(!istype(C)) continue
+		C1 = new
 		x = C.x_pos
 		y = C.y_pos
-		C.x_pos = x*cos(deg) + y*sin(deg)
-		C.y_pos = y*cos(deg) - x*sin(deg)
-		C.x_pos = roundNearest(C.x_pos) //Sometimes you get very close to the right number but off by around 1e-15 and I want integers dammit
-		C.y_pos = roundNearest(C.y_pos)
+		C1.x_pos = x*cos(deg) + y*sin(deg)
+		C1.y_pos = y*cos(deg) - x*sin(deg)
+		C1.x_pos = roundNearest(C.x_pos) //Sometimes you get very close to the right number but off by around 1e-15 and I want integers dammit
+		C1.y_pos = roundNearest(C.y_pos)
+		toReturn += i
+		toReturn[i] = C1
 
-	return L
+	return toReturn
 
-/proc/move_shuttle_to(var/turf/trg, var/turftoleave = null, var/list/source, var/iselevator = 0, var/deg = 0)
+/proc/move_shuttle_to(turf/trg, turftoleave = null, list/source, iselevator = 0, deg = 0, datum/shuttle/ferry/marine/shuttle)
 
 	//var/list/turfsToUpdate = list()
 	var/i //iterator
+
+	if(shuttle.sound_misc) playsound(source[shuttle.sound_target], shuttle.sound_misc, 100, 1, 7)
 
 	source = rotate_shuttle_turfs(source, deg)
 
@@ -261,7 +363,6 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		var/turf/T_trg = locate(trg.x + C.x_pos, trg.y + C.y_pos, trg.z)
 
 		for(var/obj/O in T_trg)
-			if(istype(O, /obj/structure/engine_landing_sound)) continue
 			if(istype(O, /obj/effect/effect/smoke)) continue //We land on smoke a lot and it has weird TTL systems that will generate runtimes otherwise
 			del(O)
 
@@ -298,7 +399,6 @@ x_pos = 0 1 2 3 4 5 6 7 8
 
 		for(var/obj/O in T_src)
 			if(!istype(O)) continue
-			if(istype(O, /obj/structure/engine_landing_sound)) continue
 			O.loc = T_trg
 
 		for(var/mob/M in T_src)
@@ -307,10 +407,10 @@ x_pos = 0 1 2 3 4 5 6 7 8
 
 			if(M.client)
 				if(M.buckled && !iselevator)
-					M << "\red Sudden acceleration presses you into your chair!"
+					M << "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>"
 					shake_camera(M, 3, 1)
 				else if (!M.buckled)
-					M << "\red The floor lurches beneath you!"
+					M << "<span class='warning'>The floor lurches beneath you!</span>"
 					shake_camera(M, iselevator? 2 : 10, 1)
 			if(istype(M, /mob/living/carbon) && !iselevator)
 				if(!M.buckled)

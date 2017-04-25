@@ -1,3 +1,24 @@
+//=================================================
+//Self destruct, nuke, and evacuation.
+#define EVACUATION_TIME_LOCK 36000
+#define DISTRESS_TIME_LOCK 3600
+#define EVACUATION_AUTOMATIC_DEPARTURE 1800 //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
+#define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
+#define EVACUATION_STATUS_STANDING_BY 0
+#define EVACUATION_STATUS_INITIATING 1
+#define EVACUATION_STATUS_IN_PROGRESS 2
+#define EVACUATION_STATUS_COMPLETE 3
+
+#define NUKE_EXPLOSION_INACTIVE 0
+#define NUKE_EXPLOSION_ACTIVE	1
+#define NUKE_EXPLOSION_IN_PROGRESS 2
+#define NUKE_EXPLOSION_FINISHED 3
+
+#define FLAGS_EVACUATION_DENY 1
+#define FLAGS_SELF_DESTRUCT_DENY 2
+//=================================================
+
+
 #define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
 
 #define MODE_INFESTATION		1
@@ -65,6 +86,7 @@ var/list/be_special_flags = list(
 #define ROLE_CORPORATE_LIAISON			16
 #define ROLE_REQUISITION_OFFICER		32
 #define ROLE_PILOT_OFFICER				64
+#define ROLE_WARRANT_OFFICER			128
 //=================================================
 
 #define ROLEGROUP_MARINE_ENGINEERING 	2
@@ -98,8 +120,8 @@ var/list/be_special_flags = list(
 //=================================================
 
 //Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison","Requisitions Officer","Chief Engineer","Chief Medical Officer")
-#define ROLES_OFFICERS		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison")
+#define ROLES_COMMAND 		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison","Requisitions Officer","Chief Engineer","Chief Medical Officer","Warrant Officer")
+#define ROLES_OFFICERS		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Warrant Officer","Military Police","Corporate Liaison")
 #define ROLES_ENGINEERING 	list("Chief Engineer","Maintenance Tech")
 #define ROLES_REQUISITION 	list("Requisitions Officer","Cargo Technician")
 #define ROLES_MEDICAL 		list("Chief Medical Officer","Doctor","Researcher")
@@ -149,6 +171,7 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_MARINE_CARGO 		21
 #define ACCESS_MARINE_DROPSHIP 		22
 #define ACCESS_MARINE_PILOT 		23
+#define ACCESS_MARINE_WO			24
 
 //Surface access levels
 #define ACCESS_CIVILIAN_PUBLIC 		100

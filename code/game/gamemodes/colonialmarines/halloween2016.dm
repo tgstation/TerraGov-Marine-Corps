@@ -200,7 +200,7 @@
 	defer_powernet_rebuild = 2
 
 	sleep (100)
-	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "USS Sulaco")
+	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "[MAIN_SHIP_NAME]")
 	world << 'sound/misc/eventhorizon_shiplog.ogg'
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -242,16 +242,16 @@
 	var/num_pmcs = living_player_list[2]
 
 	if(!num_marines && num_pmcs)
-		if(mcguffin && mcguffin.loc) round_finished 	= MODE_BATTLEFIELD_W_MAJOR
-		else round_finished 							= MODE_BATTLEFIELD_W_MINOR
+		if(mcguffin && mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_W_MAJOR
+		else round_finished 																	= MODE_BATTLEFIELD_W_MINOR
 	else if(num_marines && !num_pmcs)
-		if(!mcguffin || !mcguffin.loc) round_finished 	= MODE_BATTLEFIELD_M_MAJOR
-		else round_finished 							= MODE_BATTLEFIELD_M_MINOR
-	else if(!num_marines && !num_pmcs)	round_finished  = MODE_BATTLEFIELD_DRAW_DEATH
+		if(!mcguffin || !mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_M_MAJOR
+		else round_finished 																	= MODE_BATTLEFIELD_M_MINOR
+	else if(!num_marines && !num_pmcs)	round_finished  										= MODE_BATTLEFIELD_DRAW_DEATH
 	else if((world.time > BATTLEFIELD_END + lobby_time))
-		if(mcguffin && mcguffin.loc) round_finished		= MODE_BATTLEFIELD_W_MAJOR
-		else round_finished 							= MODE_BATTLEFIELD_DRAW_STALEMATE
-	else if(station_was_nuked) round_finished 			= MODE_GENERIC_DRAW_NUKE
+		if(mcguffin && mcguffin.loc) round_finished												= MODE_BATTLEFIELD_W_MAJOR
+		else round_finished 																	= MODE_BATTLEFIELD_DRAW_STALEMATE
+	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) round_finished 			= MODE_GENERIC_DRAW_NUKE
 
 ///////////////////////////////
 //Checks if the round is over//
@@ -920,7 +920,7 @@
 				H << "\red <b>You are the [H.mind.assigned_role]!<b>"
 				H << "Gear up, maggot! You have been dropped off in this God-forsaken place to complete some wetworks for Uncle Sam! Not even your mother knows that you're here!"
 				H << "Some W-Y mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!"
-				H << "Wipe them out and destroy their tech! The Sulaco will maintain radio silence for the duration of the mission!"
+				H << "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!"
 				H << "You've got an hour. And watch out... That colony ain't right, it ain't right at all. <b>DISMISSED!</b>"
 				H << "________________________"
 	//Finally, update all icons

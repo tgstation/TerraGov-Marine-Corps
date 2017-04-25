@@ -184,22 +184,6 @@ var/global/datum/controller/gameticker/ticker
 	if(config.sql_enabled)
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
-		/*This will track for multiple maps/modes*/
-		var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Dropship 1"]
-		var/datum/shuttle/ferry/shuttle2 = shuttle_controller.shuttles["Dropship 2"]
-		if(mode.name == "Colonial Marines Halloween")
-			shuttle.area_offsite = locate(/area/shuttle/drop1/Haunted)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/Haunted)
-		if(mode.name == "Prison rescue")
-			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
-		if(mode.type == /datum/game_mode/ice_colony)
-			shuttle.area_offsite = locate(/area/shuttle/drop1/ice_colony)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/ice_colony)
-		if(mode.type == /datum/game_mode/bigred)
-			shuttle.area_offsite = locate(/area/shuttle/drop1/BigRed)
-			shuttle2.area_offsite = locate(/area/shuttle/drop2/BigRed)
-
 		for(var/obj/structure/closet/C in world) //Set up special equipment for lockers and vendors, depending on gamemode
 			C.select_gamemode_equipment(mode.type)
 		for(var/obj/machinery/vending/V in world)
@@ -207,89 +191,6 @@ var/global/datum/controller/gameticker/ticker
 	return 1
 
 /datum/controller/gameticker
-	//station_explosion used to be a variable for every mob's hud. Which was a waste!
-	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
-	var/obj/screen/cinematic = null
-
-	//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-	proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
-		if( cinematic )	return	//already a cinematic in progress!
-
-		//initialise our cinematic screen object
-		cinematic = new(src)
-		cinematic.icon = 'icons/effects/station_explosion.dmi'
-		cinematic.icon_state = "station_intact"
-		cinematic.layer = 20
-		cinematic.mouse_opacity = 0
-		cinematic.screen_loc = "1,0"
-
-		flick("intro_nuke",cinematic)
-		sleep(35)
-		flick("station_explode_fade_red", cinematic)
-		world << sound('sound/effects/explosionfar.ogg')
-		cinematic.icon_state = "summary_selfdes"
-		for(var/mob/living/M in living_mob_list)
-			M.death()//No mercy
-/*
-
-		//Now animate the cinematic
-		switch(station_missed)
-			if(1)	//nuke was nearby but (mostly) missed
-				if( mode && !override )
-					override = mode.name
-				switch( override )
-					if("nuclear emergency") //Nuke wasn't on station when it blew up
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						world << sound('sound/effects/explosionfar.ogg')
-						flick("station_intact_fade_red",cinematic)
-						cinematic.icon_state = "summary_nukefail"
-					else
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						world << sound('sound/effects/explosionfar.ogg')
-						//flick("end",cinematic)
-
-
-			if(2)	//nuke was nowhere nearby	//TODO: a really distant explosion animation
-				sleep(50)
-				world << sound('sound/effects/explosionfar.ogg')
-
-
-			else	//station was destroyed
-				if( mode && !override )
-					override = mode.name
-				switch( override )
-					if("nuclear emergency") //Nuke Ops successfully bombed the station
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						flick("station_explode_fade_red",cinematic)
-						world << sound('sound/effects/explosionfar.ogg')
-						cinematic.icon_state = "summary_nukewin"
-					if("AI malfunction") //Malf (screen,explosion,summary)
-						flick("intro_malf",cinematic)
-						sleep(76)
-						flick("station_explode_fade_red",cinematic)
-						world << sound('sound/effects/explosionfar.ogg')
-						cinematic.icon_state = "summary_malf"
-					if("blob") //Station nuked (nuke,explosion,summary)
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						flick("station_explode_fade_red",cinematic)
-						world << sound('sound/effects/explosionfar.ogg')
-						cinematic.icon_state = "summary_selfdes"
-					else //Station nuked (nuke,explosion,summary)
-
-		//If its actually the end of the round, wait for it to end.
-		//Otherwise if its a verb it will continue on afterwards.
-	*/
-		sleep(300)
-
-		if(cinematic)	del(cinematic)		//end the cinematic
-//		if(temp_buckle)	del(temp_buckle)	//release everybody
-		return
-
-
 	proc/create_characters()
 		for(var/mob/new_player/player in player_list)
 			if(player && player.ready && player.mind)
@@ -337,18 +238,16 @@ var/global/datum/controller/gameticker/ticker
 
 		mode.process()
 
-		emergency_shuttle.process()
-
 		var/game_finished = 0
 		var/mode_finished = 0
 		if (config.continous_rounds)
-			game_finished = (emergency_shuttle.returned() || mode.station_was_nuked)
+			if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) game_finished = 1
 			mode_finished = (!post_game && mode.check_finished())
 		else
 			game_finished = (mode.check_finished() /* || (emergency_shuttle.returned() && emergency_shuttle.evac == 1)*/)
 			mode_finished = game_finished
 
-		if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
+		if(!EvacuationAuthority.dest_status != NUKE_EXPLOSION_IN_PROGRESS && game_finished && (mode_finished || post_game))
 			current_state = GAME_STATE_FINISHED
 
 			spawn(1)
@@ -357,14 +256,12 @@ var/global/datum/controller/gameticker/ticker
 			spawn(50)
 				callHook("roundend")
 
-				if (mode.station_was_nuked)
+				if (EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
 					feedback_set_details("end_proper","nuke")
-					if(!delay_end)
-						world << "\blue <B>Rebooting due to destruction of station in [restart_timeout/10] seconds</B>"
 				else
 					feedback_set_details("end_proper","proper completion")
-					if(!delay_end)
-						world << "\blue <B>Restarting in [restart_timeout/10] seconds</B>"
+				if(!delay_end)
+					world << "\blue <B>Restarting in [restart_timeout/10] seconds</B>"
 
 				if(config.autooocmute && !ooc_allowed)
 					world << "\red <B>The OOC channel has been globally enabled due to round end!</B>"
@@ -396,7 +293,6 @@ var/global/datum/controller/gameticker/ticker
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
 					world << "\red The round has ended!"
 					round_end_announced = 1
-				vote.autotransfer()
 
 		return 1
 

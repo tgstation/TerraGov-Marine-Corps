@@ -110,7 +110,7 @@ var/const/RUS_FREQ		= 1338
 var/const/DTH_FREQ 		= 1344
 var/const/AI_FREQ 		= 1447
 
-//Sulaco department channels
+//Ship department channels
 var/const/PUB_FREQ 		= 1461
 
 var/const/COMM_FREQ 	= 1353

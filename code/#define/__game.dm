@@ -4,6 +4,12 @@
 #define r_TRU return TRUE //Handy shorthand.
 #define r_FAL return FALSE
 
+//Game defining directives.
+#define MAIN_SHIP_Z_LEVEL list(3)
+#define GAME_PLAY_Z_LEVELS list(1,2,3)
+#define MAIN_AI_SYSTEM "H/O.R/|U.S. AI 3.1"
+#define MAIN_SHIP_ESCAPE_POD_NUMBER 11
+
 /*
 Trash Authority Directives
 Defines for when we need to give commands to the trash authority in how to handle trash.

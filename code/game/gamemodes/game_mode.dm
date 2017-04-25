@@ -18,8 +18,6 @@
 	var/intercept_hacked = 0
 	var/votable = 1
 	var/probability = 0
-	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
-	var/explosion_in_progress = 0 //sit back and relax
 	var/list/datum/mind/modePlayer = new
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
@@ -59,7 +57,6 @@
 			new/datum/uplink_item(/obj/item/weapon/aiModule/syndicate, 7, "Hacked AI Upload Module", "AI"),
 			new/datum/uplink_item(/obj/item/weapon/plastique, 2, "C-4 (Destroys walls)", "C4"),
 			new/datum/uplink_item(/obj/item/device/powersink, 5, "Powersink (DANGER!)", "PS",),
-			new/datum/uplink_item(/obj/item/device/radio/beacon/syndicate, 7, "Singularity Beacon (DANGER!)", "SB"),
 			new/datum/uplink_item(/obj/item/weapon/circuitboard/teleporter, 20, "Teleporter Circuit Board", "TP")
 			),
 		"Implants" = list(
@@ -125,9 +122,7 @@
 
 
 /datum/game_mode/proc/check_finished() //to be called by ticker
-	if(emergency_shuttle.returned() || station_was_nuked)
-		return 1
-	return 0
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_TRU
 
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return

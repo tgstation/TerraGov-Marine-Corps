@@ -47,10 +47,6 @@ datum/controller/vote
 
 				voting.Cut()
 
-	proc/autotransfer()
-		initiate_vote("crew_transfer","the server")
-		log_debug("The server has called a crew transfer vote")
-
 	proc/autogamemode()
 		initiate_vote("gamemode","the server")
 		log_debug("The server has called a gamemode vote")
@@ -96,22 +92,6 @@ datum/controller/vote
 						choices[master_mode] += non_voters
 						if(choices[master_mode] >= greatest_votes)
 							greatest_votes = choices[master_mode]
-				else if(mode == "crew_transfer")
-					var/factor = 0.5
-					switch(world.time / (10 * 60)) // minutes
-						if(0 to 60)
-							factor = 0.5
-						if(61 to 120)
-							factor = 0.8
-						if(121 to 240)
-							factor = 1
-						if(241 to 300)
-							factor = 1.2
-						else
-							factor = 1.4
-					choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-					world << "<font color='purple'>Crew Transfer Factor: [factor]</font>"
-					greatest_votes = max(choices["Initiate Crew Transfer"], choices["Continue The Round"])
 
 
 		//get all options with that many votes and return them in a list
@@ -165,9 +145,6 @@ datum/controller/vote
 							restart = 1
 						else
 							master_mode = .
-				if("crew_transfer")
-					if(. == "Initiate Crew Transfer")
-						init_shift_change(null, 1)
 
 		if(mode == "gamemode") //fire this even if the vote fails.
 			if(!going)
@@ -219,19 +196,6 @@ datum/controller/vote
 							if (M.config_tag == F)
 								additional_text.Add("<td align = 'center'>[M.required_players]</td>")
 								break
-				if("crew_transfer")
-					if(check_rights(R_ADMIN|R_MOD, 0))
-						question = "End the shift?"
-						choices.Add("Initiate Crew Transfer", "Continue The Round")
-					else
-						if (get_security_level() == "red" || get_security_level() == "delta")
-							initiator_key << "The current alert status is too high to call for a crew transfer!"
-							return 0
-						if(ticker.current_state <= 2)
-							return 0
-							initiator_key << "The crew transfer button has been disabled!"
-						question = "End the shift?"
-						choices.Add("Initiate Crew Transfer", "Continue The Round")
 				if("custom")
 					question = html_encode(input(usr,"What is the vote for?") as text|null)
 					if(!question)	return 0
@@ -250,8 +214,6 @@ datum/controller/vote
 			log_vote(text)
 			world << "<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
 			switch(vote_type)
-				if("crew_transfer")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 1)
 				if("gamemode")
 					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 1)
 				if("custom")
@@ -259,25 +221,6 @@ datum/controller/vote
 			if(mode == "gamemode" && going)
 				going = 0
 				world << "<font color='red'><b>Round start has been delayed.</b></font>"
-		/*	if(mode == "crew_transfer" && ooc_allowed)
-				auto_muted = 1
-				ooc_allowed = !( ooc_allowed )
-				world << "<b>The OOC channel has been automatically disabled due to a crew transfer vote.</b>"
-				log_admin("OOC was toggled automatically due to crew_transfer vote.")
-				message_admins("OOC has been toggled off automatically.")
-			if(mode == "gamemode" && ooc_allowed)
-				auto_muted = 1
-				ooc_allowed = !( ooc_allowed )
-				world << "<b>The OOC channel has been automatically disabled due to the gamemode vote.</b>"
-				log_admin("OOC was toggled automatically due to gamemode vote.")
-				message_admins("OOC has been toggled off automatically.")
-			if(mode == "custom" && ooc_allowed)
-				auto_muted = 1
-				ooc_allowed = !( ooc_allowed )
-				world << "<b>The OOC channel has been automatically disabled due to a custom vote.</b>"
-				log_admin("OOC was toggled automatically due to custom vote.")
-				message_admins("OOC has been toggled off automatically.")
-		*/
 
 
 
@@ -327,13 +270,6 @@ datum/controller/vote
 			else
 				. += "<font color='grey'>Restart (Disallowed)</font>"
 			. += "</li><li>"
-			if(trialmin || config.allow_vote_restart)
-				if(admins.len > 0 && !trialmin)
-					. += "Crew Transfer (Disabled - Staff online)"
-				else
-					. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
-			else
-				. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
 			if(trialmin)
 				. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config.allow_vote_restart?"Allowed":"Disallowed"]</a>)"
 			. += "</li><li>"
@@ -376,9 +312,6 @@ datum/controller/vote
 			if("gamemode")
 				if(config.allow_vote_mode || usr.client.holder)
 					initiate_vote("gamemode",usr.key)
-			if("crew_transfer")
-				if(config.allow_vote_restart || usr.client.holder)
-					initiate_vote("crew_transfer",usr.key)
 			if("custom")
 				if(usr.client.holder)
 					initiate_vote("custom",usr.key)

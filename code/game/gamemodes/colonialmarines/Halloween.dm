@@ -88,7 +88,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("An admiral at Centcom has inherited an old manor from his great uncle.  There hasn't been any contact for some time, so the marines have been deployed to investigate...", "USS Sulaco")
+		command_announcement.Announce("An admiral at Centcom has inherited an old manor from his great uncle.  There hasn't been any contact for some time, so the marines have been deployed to investigate...", "[MAIN_SHIP_NAME]")
 
 
 /datum/game_mode/Halloween/transform_xeno(var/datum/mind/ghost)
@@ -287,7 +287,7 @@
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
 		world << "\red <FONT size = 3><B>Alien minor victory.</B></FONT>"
-		world << "<FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
+		world << "<FONT size = 3><B>The [MAIN_SHIP_NAME] has been evacuated... but the infestation remains!</B></FONT>"
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 

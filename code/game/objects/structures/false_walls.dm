@@ -9,23 +9,18 @@
 	var/mineral = "metal"
 	var/opening = 0
 
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/structure/falsewall,
+		/obj/structure/falserwall)
+
 /obj/structure/falsewall/New()
 	relativewall_neighbours()
 	..()
 
 /obj/structure/falsewall/Del()
 
-	var/temploc = src.loc
-
-	spawn(10)
-		for(var/turf/simulated/wall/W in range(temploc,1))
-			W.relativewall()
-
-		for(var/obj/structure/falsewall/W in range(temploc,1))
-			W.relativewall()
-
-		for(var/obj/structure/falserwall/W in range(temploc,1))
-			W.relativewall()
+	relativewall_neighbours()
 	..()
 
 
@@ -35,22 +30,7 @@
 		icon_state = "[mineral]fwall_open"
 		return
 
-	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
-
-	for(var/turf/simulated/wall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)//Only 'like' walls connect -Sieve
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falsewall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falserwall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	icon_state = "[mineral][junction]"
-	return
+	..()
 
 /obj/structure/falsewall/attack_hand(mob/user as mob)
 	if(opening)
@@ -204,22 +184,7 @@
 		icon_state = "frwall_open"
 		return
 
-	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
-
-	for(var/turf/simulated/wall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)//Only 'like' walls connect -Sieve
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falsewall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falserwall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	icon_state = "rwall[junction]"
-	return
+	..()
 
 
 

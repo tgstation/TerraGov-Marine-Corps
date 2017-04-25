@@ -211,7 +211,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
-	desc = "A green jacket worn by crew on the Sulaco. The back has the flag of the United Americas on it."
+	desc = "A green jacket worn by USCM personnel. The back has the flag of the United Americas on it."
 	icon_state = "RO_jacket"
 	item_state = "RO_jacket"
 	blood_overlay_type = "coat"
@@ -230,6 +230,13 @@ include jackets and regular suits, not armor.*/
 	icon_state = "milohachert"
 	item_state = "milohachert"
 	item_color = "milohachert"
+
+/obj/item/clothing/under/marine/officer/warrant
+	name = "warrant officer uniform"
+	desc = "A uniform typically worn by a Warrant Officer of the USCM. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions. This uniform includes a small EMF distributor to help nullify energy-based weapon fire, along with a hazmat chemical filter woven throughout the material to ward off biological and radiation hazards."
+	icon_state = "WO_jumpsuit"
+	item_state = "WO_jumpsuit"
+	item_color = "WO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/technical
 	name = "technical officer uniform"
@@ -266,14 +273,14 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
-	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "The well-ironed uniform of a USCM commander. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
 	item_color = "CO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief engineer uniform"
-	desc = "A uniform for the engineering crew of the USS Sulaco. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform for a military engineer. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	armor = list(melee = 5, bullet = 5, laser = 25, energy = 5, bomb = 5, bio = 5, rad = 25)
 	icon_state = "EC_jumpsuit"
 	item_state = "EC_jumpsuit"
@@ -281,7 +288,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
-	desc = "A uniform for the engineering crew of the USS Sulaco. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform for a military engineer. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	armor = list(melee = 5, bullet = 5, laser = 15, energy = 5, bomb = 5, bio = 5, rad = 10)
 	icon_state = "E_jumpsuit"
 	item_state = "E_jumpsuit"

@@ -62,7 +62,7 @@
 
 	//Alert the marines that they have a job
 	spawn (50)
-		command_alert("Distress signal received from the NSS Nostromo. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
+		command_alert("Distress signal received from the NSS Nostromo. A response team from [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 	return 1
 
 
