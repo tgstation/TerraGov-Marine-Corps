@@ -329,7 +329,7 @@
 	else if(istype(O, /turf/simulated))
 		var/turf/T = O
 		//R WALL
-		if(istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable) || istype(T,/turf/simulated/wall/sulaco/unmeltable))
+		if(istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable) || istype(T,/turf/simulated/wall/sulaco/unmeltable) || istype(T, /turf/simulated/wall/almayer/outer))
 			src << "<span class='warning'>You cannot dissolve \the [T].</span>"
 			return
 		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))

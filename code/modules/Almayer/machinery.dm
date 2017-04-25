@@ -1,7 +1,7 @@
 //-----USS Almayer Machinery file -----//
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
-/obj/machinery/vending/marine/uniform_supply
+/obj/machinery/vending/uniform_supply
 	name = "\improper ColMarTech surplus uniform vender"
 	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
 	icon_state = "armory"
@@ -124,7 +124,7 @@
 
 /obj/machinery/prop/almayer/computer
 	name = "systems computer"
-	desc = "A small computer hooked up into the ships systems."
+	desc = "A small computer hooked up into the ship's systems."
 
 	density = 0
 	anchored = 1
@@ -233,7 +233,7 @@
 
 /obj/structure/prop/almayer/ship_memorial
 	name = "slab of victory"
-	desc = "A ship memorial dedicated to the victories of the USCM and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right theres a list of famous marines who have fallen in combat servinmg the USCM."
+	desc = "A ship memorial dedicated to the triumphs of the USCM and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the USCM."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "ship_memorial"
 	bound_x = 32
