@@ -113,14 +113,15 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)			round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
-	else if(!num_humans && num_xenos) //No humans remain alive.
-		if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
-		else																round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
-	else if(num_humans && !num_xenos)
-		if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_M_MINOR //Evacuation successfully took place.
-		else																round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
-	else if(!num_humans && !num_xenos)										round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)				round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
+	if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) //If the nuke ISN'T in progress. We do not want to end the round before it detonates.
+		if(!num_humans && num_xenos) //No humans remain alive.
+			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
+			else																round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
+		else if(num_humans && !num_xenos)
+			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_M_MINOR //Evacuation successfully took place.
+			else																round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+		else if(!num_humans && !num_xenos)										round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
 //If the queen is dead after a period of time, this will end the game.
 /datum/game_mode/proc/check_queen_status(queen_time)
@@ -179,9 +180,9 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			else world << "<span class='round_body'>Whoops, something went wrong with declare_completion(), blame the coders!</span>"
 
 	var/dat = ""
-	if(flags_round_type & MODE_INFESTATION)
-		var/living_player_list[] = count_humans_and_xenos()
-		dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
+	//if(flags_round_type & MODE_INFESTATION)
+		//var/living_player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
 	if(round_stats) round_stats << "[round_finished][dat]\nRound time: [duration2text()]\nRound population: [clients.len][log_end]" // Logging to data/logs/round_stats.log
 
 	world << dat

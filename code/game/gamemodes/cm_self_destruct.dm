@@ -118,9 +118,9 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /datum/authority/branch/evacuation/proc/begin_launch() //Launches the pods.
 	if(evac_status == EVACUATION_STATUS_INITIATING)
+		evac_status = EVACUATION_STATUS_IN_PROGRESS //Cannot cancel at this point. All shuttles are off.
 		spawn() //One of the few times spawn() is appropriate. No need for a new proc.
 			ai_system.Announce("WARNING: Evacuation order confirmed. Launching escape pods.")
-			evac_status = EVACUATION_STATUS_COMPLETE //Cannot cancel at this point. All shuttle are off.
 			var/datum/shuttle/ferry/marine/evacuation_pod/P
 			var/L[] = new
 			var/i
@@ -131,12 +131,13 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				P.prepare_for_launch() //May or may not launch, will do everything on its own.
 				L -= i
 				sleep(50) //Sleeps 5 seconds each launch.
+			evac_status = EVACUATION_STATUS_COMPLETE
 		r_TRU
 
 /datum/authority/branch/evacuation/proc/process_evacuation() //Process the timer.
 	set background = 1
 
-	spawn while(evac_status != EVACUATION_STATUS_INITIATING) //If it's not departing, no need to process.
+	spawn while(evac_status == EVACUATION_STATUS_INITIATING) //If it's not departing, no need to process.
 		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE)
 			begin_launch()
 		sleep(10) //Two seconds.
