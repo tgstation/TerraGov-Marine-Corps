@@ -107,7 +107,7 @@
 				if(A:lying) continue
 				src.throw_impact(A,speed)
 			if(isobj(A))
-				if(A.density && (!A.throwpass) || istype(src,/mob/living/carbon))	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
+				if(A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || istype(src,/mob/living/carbon)))
 					src.throw_impact(A,speed)
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
