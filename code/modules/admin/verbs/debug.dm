@@ -231,23 +231,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_slimeize(var/mob/M in mob_list)
-	set category = "Fun"
-	set name = "Make slime"
-
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has slimeized [M.key].")
-		spawn(10)
-			M:slimeize()
-			feedback_add_details("admin_verb","MKMET") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_admin("[key_name(usr)] made [key_name(M)] into a slime.")
-		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into a slime.", 1)
-	else
-		alert("Invalid mob")
-
 /*
 /client/proc/cmd_admin_monkeyize(var/mob/M in world)
 	set category = "Fun"

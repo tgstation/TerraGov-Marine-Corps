@@ -68,7 +68,7 @@
 		return
 
 
-	proc/attack_generic(mob/user as mob, damage = 0)	//used by attack_animal and attack_slime
+	proc/attack_generic(mob/user as mob, damage = 0)	//used by attack_animal
 		health -= damage
 		if(health <= 0)
 			user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
@@ -81,13 +81,6 @@
 		var/mob/living/simple_animal/M = user
 		if(M.melee_damage_upper <= 0) return
 		attack_generic(M, M.melee_damage_upper)
-
-
-	attack_slime(mob/user as mob)
-		var/mob/living/carbon/slime/S = user
-		if (!S.is_adult)
-			return
-		attack_generic(user, rand(10, 15))
 
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)

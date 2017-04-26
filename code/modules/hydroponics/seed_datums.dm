@@ -240,7 +240,6 @@ proc/populate_seed_list()
 			"toxin",
 			"rezadone",
 			"ethylredoxrazine",
-			"slimejelly",
 			"cyanide",
 			"mindbreaker",
 			"stoxin"

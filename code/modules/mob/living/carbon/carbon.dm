@@ -495,9 +495,6 @@
 				forceMove(tmob.loc)
 				tmob.forceMove(oldloc)
 				now_pushing = 0
-				for(var/mob/living/carbon/slime/slime in view(1,tmob))
-					if(slime.Victim == tmob)
-						slime.UpdateFeed()
 				return
 
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))

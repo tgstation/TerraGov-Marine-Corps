@@ -88,7 +88,7 @@
 					else
 						M.inertia_dir = 0
 						return
-				else if(!istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/carbon/Xenomorph) )
+				else if(!istype(M, /mob/living/carbon/Xenomorph) )
 					if (M.m_intent == "run")
 						M.stop_pulling()
 						step(M, M.dir)
@@ -101,7 +101,7 @@
 						return
 
 			if(2) //lube                //can cause infinite loops - needs work
-				if(!istype(M, /mob/living/carbon/slime) && !M.buckled && !istype(M, /mob/living/carbon/Xenomorph))
+				if(!M.buckled && !istype(M, /mob/living/carbon/Xenomorph))
 					M.stop_pulling()
 					step(M, M.dir)
 					spawn(1) step(M, M.dir)
@@ -124,7 +124,7 @@
 					else
 						M.inertia_dir = 0
 						return
-				else if(!istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/carbon/Xenomorph))
+				else if(!istype(M, /mob/living/carbon/Xenomorph))
 					if (M.m_intent == "run" && prob(30))
 						M.stop_pulling()
 						step(M, M.dir)

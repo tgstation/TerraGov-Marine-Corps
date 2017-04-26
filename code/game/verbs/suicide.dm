@@ -196,24 +196,3 @@
 		death(0)
 	else
 		src << "Aborting suicide attempt."
-
-/mob/living/carbon/slime/verb/suicide()
-	set hidden = 1
-	if (stat == 2)
-		src << "You're already dead!"
-		return
-
-	if (suiciding)
-		src << "You're already committing suicide! Be patient!"
-		return
-
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
-
-	if(confirm == "Yes")
-		suiciding = 1
-		setOxyLoss(100)
-		adjustBruteLoss(100 - getBruteLoss())
-		setToxLoss(100)
-		setCloneLoss(100)
-
-		updatehealth()

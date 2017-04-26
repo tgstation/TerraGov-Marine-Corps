@@ -218,9 +218,6 @@ datum
 							T.overlays -= T.wet_overlay
 							T.wet_overlay = null
 
-				for(var/mob/living/carbon/slime/M in T)
-					M.apply_water()
-
 				var/hotspot = (locate(/obj/fire) in T)
 				if(hotspot && !istype(T, /turf/space))
 					var/datum/gas_mixture/lowertemp = T.remove_air( T:air:total_moles )
@@ -299,61 +296,6 @@ datum
 				if(!M) M = holder.my_atom
 				// Toxins are really weak, but without being treated, last very long.
 				M.adjustToxLoss(0.2)
-
-		slimetoxin
-			name = "Mutation Toxin"
-			id = "mutationtoxin"
-			description = "A corruptive toxin produced by slimes."
-			reagent_state = LIQUID
-			color = "#13BC5E" // rgb: 19, 188, 94
-			overdose = REAGENTS_OVERDOSE
-
-			on_mob_life(mob/living/M)
-				. = ..()
-				if(!.) return
-				if(!M) M = holder.my_atom
-				if(ishuman(M))
-					var/mob/living/carbon/human/human = M
-					if(human.dna.mutantrace == null)
-						M << "\red Your flesh rapidly mutates!"
-						human.dna.mutantrace = "slime"
-						human.update_mutantrace()
-
-		aslimetoxin
-			name = "Advanced Mutation Toxin"
-			id = "amutationtoxin"
-			description = "An advanced corruptive toxin produced by slimes."
-			reagent_state = LIQUID
-			color = "#13BC5E" // rgb: 19, 188, 94
-			overdose = REAGENTS_OVERDOSE
-
-			on_mob_life(mob/living/M)
-				. = ..()
-				if(!.) return
-				if(!M) M = holder.my_atom
-				if(istype(M, /mob/living/carbon) && M.stat != DEAD)
-					M << "\red Your flesh rapidly mutates!"
-					if(M.monkeyizing)	return
-					M.monkeyizing = 1
-					M.canmove = 0
-					M.icon = null
-					M.overlays.Cut()
-					M.invisibility = 101
-					for(var/obj/item/W in M)
-						if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
-							del(W)
-							continue
-						W.layer = initial(W.layer)
-						W.loc = M.loc
-						W.dropped(M)
-					var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
-					new_mob.a_intent = "hurt"
-					new_mob.universal_speak = 1
-					if(M.mind)
-						M.mind.transfer_to(new_mob)
-					else
-						new_mob.key = M.key
-					del(M)
 
 		inaprovaline
 			name = "Inaprovaline"
@@ -941,9 +883,6 @@ datum
 					for(var/obj/effect/decal/cleanable/C in T.contents)
 						src.reaction_obj(C, volume)
 						del(C)
-
-					for(var/mob/living/carbon/slime/M in T)
-						M.adjustToxLoss(rand(5,10))
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				if(iscarbon(M))
@@ -1720,23 +1659,6 @@ datum
 				M.adjustOxyLoss(3)
 				if(prob(20)) M.emote("gasp")
 
-		toxin/slimejelly
-			name = "Slime Jelly"
-			id = "slimejelly"
-			description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
-			reagent_state = LIQUID
-			color = "#801E28" // rgb: 128, 30, 40
-			toxpwr = 0
-
-			on_mob_life(mob/living/M)
-				. = ..()
-				if(!.) return
-				if(prob(10))
-					M << "\red Your insides are burning!"
-					M.adjustToxLoss(rand(20,60)*REM)
-				else if(prob(40))
-					M.heal_organ_damage(5*REM,0)
-
 		toxin/cyanide //Fast and Lethal
 			name = "Cyanide"
 			id = "cyanide"
@@ -2197,8 +2119,6 @@ datum
 								if(prob(5))
 									H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
 									H << "\red <b>You feel like your insides are burning !</b>"
-				else if(istype(M, /mob/living/carbon/slime))
-					M.bodytemperature += rand(10,25)
 				holder.remove_reagent("frostoil", 5)
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
 				data++
@@ -2284,8 +2204,6 @@ datum
 								if(prob(5))
 									H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
 									H << "\red <b>You feel like your insides are burning !</b>"
-				else if(istype(M, /mob/living/carbon/slime))
-					M.bodytemperature += rand(15,30)
 				holder.remove_reagent("frostoil", 5)
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
 				data++
@@ -2305,14 +2223,8 @@ datum
 				M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 				if(prob(1))
 					M.emote("shiver")
-				if(istype(M, /mob/living/carbon/slime))
-					M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
 				holder.remove_reagent("capsaicin", 5)
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
-
-			reaction_turf(var/turf/simulated/T, var/volume)
-				for(var/mob/living/carbon/slime/M in T)
-					M.adjustToxLoss(rand(15,30))
 
 		sodiumchloride
 			name = "Table Salt"
@@ -2961,8 +2873,6 @@ datum
 				if(prob(1))
 					M.emote("shiver")
 				M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
-				if(istype(M, /mob/living/carbon/slime))
-					M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
 				holder.remove_reagent("capsaicin", 5)
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
 

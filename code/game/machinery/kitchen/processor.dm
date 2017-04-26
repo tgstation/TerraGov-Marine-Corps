@@ -54,10 +54,6 @@
 			..()
 
 
-		slime
-			input = /mob/living/carbon/slime
-			output = /obj/item/weapon/reagent_containers/glass/beaker/slime
-
 		monkey
 			process(loc, what)
 				var/mob/living/carbon/monkey/O = what

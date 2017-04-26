@@ -59,13 +59,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
 
-/datum/recipe/jellydonut/slime
-	reagents = list("slimejelly" = 5, "sugar" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/dough
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
-
 /datum/recipe/jellydonut/cherry
 	reagents = list("cherryjelly" = 5, "sugar" = 5)
 	items = list(
@@ -813,13 +806,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/stew
 
-/datum/recipe/slimetoast
-	reagents = list("slimejelly" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/breadslice,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/slime
-
 /datum/recipe/jelliedtoast
 	reagents = list("cherryjelly" = 5)
 	items = list(
@@ -940,13 +926,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake
 
-/datum/recipe/slimeburger
-	reagents = list("slimejelly" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/jellyburger/slime
-
 /datum/recipe/jellyburger
 	reagents = list("cherryjelly" = 5)
 	items = list(
@@ -961,14 +940,6 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/breadslice,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/twobread
-
-/datum/recipe/slimesandwich
-	reagents = list("slimejelly" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/breadslice,
-		/obj/item/weapon/reagent_containers/food/snacks/breadslice,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/slime
 
 /datum/recipe/cherrysandwich
 	reagents = list("cherryjelly" = 5)
@@ -1041,18 +1012,6 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bloodsoup
-
-/datum/recipe/slimesoup
-	reagents = list("water" = 10, "slimejelly" = 5)
-	items = list()
-	result = /obj/item/weapon/reagent_containers/food/snacks/slimesoup
-
-/datum/recipe/boiledslimeextract
-	reagents = list("water" = 5)
-	items = list(
-		/obj/item/slime_extract,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/boiledslimecore
 
 /datum/recipe/braincake
 	reagents = list("milk" = 5)

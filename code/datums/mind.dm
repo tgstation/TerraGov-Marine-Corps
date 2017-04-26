@@ -418,11 +418,6 @@ datum/mind
 /mob/living/carbon/monkey/mind_initialize()
 	..()
 
-//slime
-/mob/living/carbon/slime/mind_initialize()
-	..()
-	mind.assigned_role = "slime"
-
 //XENO
 /mob/living/carbon/Xenomorph/mind_initialize()
 	..()

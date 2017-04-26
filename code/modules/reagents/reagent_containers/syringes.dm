@@ -75,9 +75,6 @@
 					return
 
 				if(ismob(target))//Blood!
-					if(istype(target, /mob/living/carbon/slime))
-						user << "\red You are unable to locate any blood."
-						return
 					if(src.reagents.has_reagent("blood"))
 						user << "\red There is already a blood sample in this syringe"
 						return
@@ -115,7 +112,7 @@
 						user << "\red [target] is empty."
 						return
 
-					if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers) && !istype(target,/obj/item/slime_extract))
+					if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
 						user << "\red You cannot directly remove reagents from this object."
 						return
 
@@ -133,7 +130,7 @@
 				if(istype(target, /obj/item/weapon/implantcase/chem))
 					return
 
-				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/clothing/mask/cigarette) && !istype(target, /obj/item/weapon/storage/fancy/cigarettes))
+				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/cigarette) && !istype(target, /obj/item/weapon/storage/fancy/cigarettes))
 					user << "\red You cannot directly fill this object."
 					return
 				if(target.reagents.total_volume >= target.reagents.maximum_volume)

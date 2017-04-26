@@ -283,7 +283,6 @@ client
 				body += "<option value='?_src_=vars;makerobot=\ref[D]'>Make cyborg</option>"
 				body += "<option value='?_src_=vars;makemonkey=\ref[D]'>Make monkey</option>"
 				body += "<option value='?_src_=vars;makealien=\ref[D]'>Make alien</option>"
-				body += "<option value='?_src_=vars;makeslime=\ref[D]'>Make slime</option>"
 			body += "<option value>---</option>"
 			body += "<option value='?_src_=vars;gib=\ref[D]'>Gib</option>"
 		if(isobj(D))
@@ -724,20 +723,6 @@ client
 			usr << "Mob doesn't exist anymore"
 			return
 		holder.Topic(href, list("makealien"=href_list["makealien"]))
-
-	else if(href_list["makeslime"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
-		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
-			return
-
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
-		if(!H)
-			usr << "Mob doesn't exist anymore"
-			return
-		holder.Topic(href, list("makeslime"=href_list["makeslime"]))
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
