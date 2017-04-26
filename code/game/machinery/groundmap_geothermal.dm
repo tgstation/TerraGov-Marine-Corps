@@ -113,6 +113,7 @@
 		is_on = 0
 		power_gen_percent = 0
 		cur_tick = 0
+		icon_state = "off"
 		return 1
 	visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
 	icon_state = "on10"
