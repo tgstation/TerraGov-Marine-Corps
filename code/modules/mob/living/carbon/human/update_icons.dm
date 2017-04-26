@@ -62,7 +62,7 @@ There are several things that need to be remembered:
 
 	All of these are named after the variable they update from. They are defined at the mob/ level like
 	update_clothing was, so you won't cause undefined proc runtimes with usr.update_inv_wear_id() if the usr is a
-	slime etc. Instead, it'll just return without doing any work. So no harm in calling it for slimes and such.
+	corgi etc. Instead, it'll just return without doing any work. So no harm in calling it for corgis and such.
 
 
 >	There are also these special cases:

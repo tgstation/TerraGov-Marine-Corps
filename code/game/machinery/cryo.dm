@@ -160,7 +160,7 @@
 			beaker = null
 
 	if(href_list["ejectOccupant"])
-		if(!occupant || isslime(usr) || ispAI(usr))
+		if(!occupant || ispAI(usr))
 			return 0 // don't update UIs attached to this object
 		go_out()
 
@@ -180,10 +180,6 @@
 	else if(istype(G, /obj/item/weapon/grab))
 		if(!ismob(G:affecting))
 			return
-		for(var/mob/living/carbon/slime/M in range(1,G:affecting))
-			if(M.Victim == G:affecting)
-				usr << "[G:affecting:name] will not fit into the cryo because they have a slime latched onto their head."
-				return
 		var/mob/M = G:affecting
 		if(put_mob(M))
 			del(G)
@@ -320,10 +316,6 @@
 	set name = "Move Inside"
 	set category = "Object"
 	set src in oview(1)
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
-			return
 	if (usr.stat != 0)
 		return
 	put_mob(usr)

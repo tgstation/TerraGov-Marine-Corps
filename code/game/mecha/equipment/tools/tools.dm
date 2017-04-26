@@ -1183,11 +1183,6 @@
 			usr << "\red Kinda hard to climb in while handcuffed don't you think?"
 			return
 
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
-			usr << "\red You're too busy getting your life sucked out of you."
-			return
-
 	//search for a valid passenger compartment
 	var/feedback = 0 //for nicer user feedback
 	for(var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P in src)

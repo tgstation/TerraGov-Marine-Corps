@@ -15,11 +15,6 @@
 		return 1
 	return 0
 
-/proc/isslime(A)
-	if(istype(A, /mob/living/carbon/slime))
-		return 1
-	return 0
-
 /proc/isrobot(A)
 	if(istype(A, /mob/living/silicon/robot))
 		return 1

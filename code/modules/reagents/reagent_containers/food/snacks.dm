@@ -71,28 +71,24 @@
 					H << "\red They have a monitor for a head, where do you think you're going to put that?"
 					return
 
-			if(!istype(M, /mob/living/carbon/slime))		//If you're feeding it to someone else.
 
-				if (fullness <= (550 * (1 + M.overeatduration / 1000)))
-					for(var/mob/O in viewers(world.view, user))
-						O.show_message("\red [user] attempts to feed [M] [src].", 1)
-				else
-					for(var/mob/O in viewers(world.view, user))
-						O.show_message("\red [user] cannot force anymore of [src] down [M]'s throat.", 1)
-						return 0
-
-				if(!do_mob(user, M)) return
-
-				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-				msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
-
+			if (fullness <= (550 * (1 + M.overeatduration / 1000)))
 				for(var/mob/O in viewers(world.view, user))
-					O.show_message("\red [user] feeds [M] [src].", 1)
-
+					O.show_message("\red [user] attempts to feed [M] [src].", 1)
 			else
-				user << "This creature does not seem to have a mouth!"
-				return
+				for(var/mob/O in viewers(world.view, user))
+					O.show_message("\red [user] cannot force anymore of [src] down [M]'s throat.", 1)
+					return 0
+
+			if(!do_mob(user, M)) return
+
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
+			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+
+			for(var/mob/O in viewers(world.view, user))
+				O.show_message("\red [user] feeds [M] [src].", 1)
+
 
 		if(reagents)								//Handle ingestion of the reagent.
 			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -425,7 +421,7 @@
 		reagents.add_reagent("nutriment", 2)
 		reagents.add_reagent("sprinkles", 1)
 		bitesize = 10
-		var/chaosselect = pick(1,2,3,4,5,6,7,8,9,10)
+		var/chaosselect = pick(1,2,3,4,5,6,7,8,9)
 		switch(chaosselect)
 			if(1)
 				reagents.add_reagent("nutriment", 3)
@@ -440,12 +436,10 @@
 			if(6)
 				reagents.add_reagent("coco", 3)
 			if(7)
-				reagents.add_reagent("slimejelly", 3)
-			if(8)
 				reagents.add_reagent("banana", 3)
-			if(9)
+			if(8)
 				reagents.add_reagent("berryjuice", 3)
-			if(10)
+			if(9)
 				reagents.add_reagent("tricordrazine", 3)
 		if(prob(30))
 			src.icon_state = "donut2"
@@ -465,24 +459,6 @@
 		reagents.add_reagent("nutriment", 3)
 		reagents.add_reagent("sprinkles", 1)
 		reagents.add_reagent("berryjuice", 5)
-		bitesize = 5
-		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "Frosted Jelly Donut"
-			reagents.add_reagent("sprinkles", 2)
-
-/obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
-	name = "Jelly Donut"
-	desc = "You jelly?"
-	icon_state = "jdonut1"
-	filling_color = "#ED1169"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 3)
-		reagents.add_reagent("sprinkles", 1)
-		reagents.add_reagent("slimejelly", 5)
 		bitesize = 5
 		if(prob(30))
 			src.icon_state = "jdonut2"
@@ -1365,18 +1341,6 @@
 		reagents.add_reagent("water", 5)
 		bitesize = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/slimesoup
-	name = "slime soup"
-	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup"
-	filling_color = "#C4DBA0"
-
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-		reagents.add_reagent("water", 10)
-		bitesize = 5
-
 /obj/item/weapon/reagent_containers/food/snacks/bloodsoup
 	name = "Tomato soup"
 	desc = "Smells like copper"
@@ -1439,7 +1403,7 @@
 
 	New()
 		..()
-		var/mysteryselect = pick(1,2,3,4,5,6,7,8,9,10)
+		var/mysteryselect = pick(1,2,3,4,5,6,7,8,9)
 		switch(mysteryselect)
 			if(1)
 				reagents.add_reagent("nutriment", 6)
@@ -1463,15 +1427,12 @@
 				reagents.add_reagent("nutriment", 6)
 				reagents.add_reagent("blood", 10)
 			if(7)
-				reagents.add_reagent("slimejelly", 10)
-				reagents.add_reagent("water", 10)
-			if(8)
 				reagents.add_reagent("carbon", 10)
 				reagents.add_reagent("toxin", 10)
-			if(9)
+			if(8)
 				reagents.add_reagent("nutriment", 5)
 				reagents.add_reagent("tomatojuice", 10)
-			if(10)
+			if(9)
 				reagents.add_reagent("nutriment", 6)
 				reagents.add_reagent("tomatojuice", 5)
 				reagents.add_reagent("imidazoline", 5)
@@ -1810,11 +1771,6 @@
 		..()
 		reagents.add_reagent("cherryjelly", 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/slime
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-
 /obj/item/weapon/reagent_containers/food/snacks/jellyburger
 	name = "Jelly Burger"
 	desc = "Culinary delight..?"
@@ -1825,11 +1781,6 @@
 		..()
 		reagents.add_reagent("nutriment", 5)
 		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/jellyburger/slime
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/jellyburger/cherry
 	New()
@@ -2021,24 +1972,10 @@
 		reagents.add_reagent("nutriment", 2)
 		bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/jellysandwich/slime
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-
 /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/cherry
 	New()
 		..()
 		reagents.add_reagent("cherryjelly", 5)
-
-/obj/item/weapon/reagent_containers/food/snacks/boiledslimecore
-	name = "Boiled slime Core"
-	desc = "A boiled red thing."
-	icon_state = "boiledslimecore"
-	New()
-		..()
-		reagents.add_reagent("slimejelly", 5)
-		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mint
 	name = "mint"

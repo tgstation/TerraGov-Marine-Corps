@@ -93,10 +93,6 @@
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || M.pinned.len || istype(user, /mob/living/silicon/pai) )
 		return
 
-	if (istype(M, /mob/living/carbon/slime))
-		user << "The [M] is too squishy to buckle in."
-		return
-
 	if (istype(M, /mob/living/carbon/Xenomorph))
 		user << "The [M] is too big to buckle in."
 		return

@@ -37,25 +37,6 @@
 				adjustBruteLoss(rand(1, 3))
 				updatehealth()
 
-/mob/living/carbon/Xenomorph/attack_slime(mob/living/carbon/slime/M as mob)
-
-	if(M.Victim) //Can't attack while eating!
-		return 0
-
-	if(health > -100)
-
-		visible_message("<span class='danger'>\The [M] glomps \the [src].</span>", \
-		"<span class='danger'>You are glomped by \the [M].</span>")
-
-		var/damage = rand(1, 3)
-
-		if(M.is_adult)
-			damage = rand(20, 40)
-		else
-			damage = rand(5, 35)
-
-		adjustBruteLoss(damage)
-		updatehealth()
 
 /mob/living/carbon/Xenomorph/attack_hand(mob/living/carbon/human/M)
 

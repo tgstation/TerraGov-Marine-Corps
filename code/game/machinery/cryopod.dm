@@ -384,11 +384,6 @@ var/global/list/frozen_items = list()
 		usr << "\blue <B>The cryo pod is in use.</B>"
 		return
 
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
-			return
-
 	visible_message("[usr] starts climbing into the cryo pod.", 3)
 
 	if(do_after(usr, 20))
