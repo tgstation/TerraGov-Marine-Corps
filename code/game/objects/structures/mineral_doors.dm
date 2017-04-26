@@ -287,6 +287,7 @@
 			return ..()
 
 	Open()
+		if(state) return //already open
 		isSwitchingStates = 1
 		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 		flick("[mineralType]opening",src)
@@ -302,6 +303,7 @@
 				Close()
 
 	Close()
+		if(!state) return //already closed
 		//Can't close if someone is blocking it
 		for(var/turf/turf in locs)
 			if(locate(/mob/living) in turf)
@@ -317,6 +319,10 @@
 		state = 0
 		update_icon()
 		isSwitchingStates = 0
+		for(var/turf/turf in locs)
+			if(locate(/mob/living) in turf)
+				Open()
+				return
 
 	Dismantle(devastated = 0)
 		del(src)
