@@ -1,9 +1,9 @@
 //Experimental engine for the Almayer.  Should be fancier.  I expect I'll eventually make it totally seperate from the Geothermal as I don't like the procs... - Apop
 
 
-/obj/machinery/power/geothermal/almayer
+/obj/machinery/power/geothermal/fusion
 	name = "\improper S-52 fusion reactor"
-	icon = 'icons/Marine/almayer_eng.dmi'
+	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "off-0"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  Currently in standby mode."
 	almayer = 1 //Yup, it's on the Almayer.
@@ -25,7 +25,7 @@
 	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
 	var/icon_track = 100 //This is to track the amount of fuel so it selects the proper icon.
 
-/obj/machinery/power/geothermal/almayer/New()
+/obj/machinery/power/geothermal/fusion/New()
 	buildstate = rand(0,3) //This is needed to set the state for repair interactions
 	switch(buildstate)
 		if(1) icon_state = "weld"
@@ -34,7 +34,7 @@
 	fuel_amount = rand(15,100)
 	..()
 
-/obj/machinery/power/geothermal/almayer/process()
+/obj/machinery/power/geothermal/fusion/process()
 	if(!is_on || buildstate || !anchored) //Default logic checking
 		return 0
 	if (fuel_amount <= 0)
@@ -99,7 +99,7 @@
 //		update_icon() //Gonna either make a new one of these with blackjack and hooker or just ignore it 5ever.
 
 
-/obj/machinery/power/geothermal/almayer/attackby(obj/item/W, mob/user)
+/obj/machinery/power/geothermal/fusion/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/fuelCell))
 		if(is_on)
 			user << "<span class='warning'>The [src] needs to be turned off first...</span>"
@@ -124,7 +124,7 @@
 	icon_state = "cell-full"
 	desc = "A single-use fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
 
-/obj/machinery/power/geothermal/almayer/attack_hand(mob/user as mob)
+/obj/machinery/power/geothermal/fusion/attack_hand(mob/user as mob)
 	if(!anchored) //Shouldn't actually be possible
 		usr << "MAKE AN AHELP RIGHT AWAY, BECAUSE SHIT IS SOMEHOW FUCKED - ERROR: ALM001."
 		r_FAL
@@ -161,7 +161,7 @@
 //	update_icon()
 	r_TRU
 
-/obj/machinery/power/geothermal/almayer/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/power/geothermal/fusion/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/weldingtool))
 		if(buildstate == 1 && !is_on)
 			var/obj/item/weapon/weldingtool/WT = O

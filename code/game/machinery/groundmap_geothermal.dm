@@ -25,10 +25,10 @@
 	if(!buildstate && is_on)
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
 		switch(power_gen_percent)
-			if(25) icon_state = "on25"
-			if(50) icon_state = "on50"
-			if(75) icon_state = "on75"
-			if(100) icon_state = "on100"
+			if(25) icon_state = "on[power_gen_percent]"
+			if(50) icon_state = "on[power_gen_percent]"
+			if(75) icon_state = "on[power_gen_percent]"
+			if(100) icon_state = "on[power_gen_percent]"
 
 
 	else if (!buildstate && !is_on)
@@ -114,7 +114,7 @@
 		power_gen_percent = 0
 		cur_tick = 0
 		return 1
-	src.visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
+	visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
 	icon_state = "on10"
 	is_on = 1
 	cur_tick = 0
