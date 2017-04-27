@@ -74,10 +74,9 @@
 		src << "<span class='warning'>There's no way you can dig there without flooding your tunnel.</span>"
 		return
 
-	if(!istype(T, /turf/unsimulated/floor/gm))
-		if(!istype(T, /turf/unsimulated/floor/snow))
-			src << "<span class='warning'>You scrape around, but you can't seem to dig through that kind of floor.</span>"
-			return
+	if(!istype(T, /turf/unsimulated/floor/gm) && !istype(T, /turf/unsimulated/floor/snow) && !istype(T, /turf/unsimulated/floor/mars))
+		src << "<span class='warning'>You scrape around, but you can't seem to dig through that kind of floor.</span>"
+		return
 
 	if(locate(/obj/structure/tunnel) in loc)
 		src << "<span class='warning'>There already is a tunnel here.</span>"

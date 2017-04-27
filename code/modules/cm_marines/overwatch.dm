@@ -591,7 +591,7 @@
 		if(squad.sbeacon)
 			user << "Your squad already has a beacon activated."
 			return
-		if(!istype(get_turf(user),/turf/unsimulated/floor/gm) && !istype(get_turf(user),/turf/unsimulated/floor/snow))
+		if(!istype(get_turf(user),/turf/unsimulated/floor/gm) && !istype(get_turf(user),/turf/unsimulated/floor/snow) && !istype(get_turf(user),/turf/unsimulated/floor/mars))
 			user << "You have to be outside (on a ground map turf) to activate this."
 			return
 
