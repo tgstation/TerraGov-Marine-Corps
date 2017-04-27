@@ -192,52 +192,52 @@
 	icon_state = "sensor_comp3"
 
 /obj/structure/prop/almayer/missile_rack
-	name = "\improper AIM-224"
-	desc = "The AIM-224 is the latest in air to air missile technology."
+	name = "\improper AIM-224 'Widowmaker'"
+	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "double"
-	bound_x = 64
-	bound_y = 32
+	bound_width = 64
+	bound_height = 32
 
 /obj/structure/prop/almayer/paveway_bomb
-	name = "\improper GBU-67 Bomb"
-	desc = "The GBU-67 is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century."
+	name = "\improper GBU-67 'Keeper II'"
+	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "paveway"
-	bound_x = 64
-	bound_y = 32
+	bound_width = 64
+	bound_height = 32
 
 /obj/structure/prop/almayer/banshee_missile
 	name = "\improper AGM-227 'Banshee'"
-	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of banshee after the wailing noise it makes right before it hits its target"
+	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "banshee"
-	bound_x = 64
-	bound_y = 32
+	bound_width = 64
+	bound_height = 32
 
 /obj/structure/prop/almayer/gau_21
 	name = "\improper GAU-21 30mm cannon"
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "30mm_cannon"
-	bound_x = 64
-	bound_y = 32
+	bound_width = 64
+	bound_height = 32
 
 /obj/structure/prop/almayer/missile_tube
 	name = "missile tube"
 	desc = "A cold launch missile tube."
 	icon = 'icons/Marine/almayer_props96.dmi'
 	icon_state = "missiletubenorth"
-	bound_x = 32
-	bound_y = 96
+	bound_width = 32
+	bound_height = 96
 
 /obj/structure/prop/almayer/ship_memorial
 	name = "slab of victory"
 	desc = "A ship memorial dedicated to the triumphs of the USCM and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the USCM."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "ship_memorial"
-	bound_x = 32
-	bound_y = 96
+	bound_width = 64
+	bound_height = 32
 
 /obj/structure/prop/almayer/particle_cannon
 	name = "phased pulse particle cannon"

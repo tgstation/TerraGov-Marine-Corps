@@ -27,8 +27,8 @@
 			user << "<span class='warning'>You need at least four rods to reinforce the [name].</span>"
 
 /obj/item/weapon/table_parts/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
-		user << "<span class='warning'>There is already a table here.</span>"
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc)
+		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
 	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
@@ -51,8 +51,8 @@
 		del(src)
 
 /obj/item/weapon/table_parts/reinforced/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
-		user << "<span class='warning'>There is already a table here.</span>"
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc)
+		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
 	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
@@ -81,8 +81,8 @@
 			del(src)
 
 /obj/item/weapon/table_parts/wood/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
-		user << "<span class='warning'>There is already a table here.</span>"
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc)
+		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
 	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
@@ -133,6 +133,10 @@
 
 	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
 		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+		return
+
+	if (locate(/obj/structure/m_barricade/sandbags, usr.loc) || locate(/obj/structure/m_barricade, usr.loc) || locate(/obj/structure/table, usr.loc))
+		user << "<span class='warning'>You can't place racks where other structures are!</span>"
 		return
 
 	if(locate(/obj/structure/rack) in user.loc)
