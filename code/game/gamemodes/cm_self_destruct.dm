@@ -1,11 +1,15 @@
 /*
+Look into animation screen not showing on self destruct and other weirdness
+
+
 TODO
 Intergrate distress into this controller.
 Finish nanoui conversion for comm console.
-Make sure the nanoui background can properly scroll.
 Fix up the pods some more.
-Lock a pod from launching manually.
 Make sure people who get nuked and wake up from SSD don't live.
+Add flashing lights to evac.
+Finish the game mode announcement thing.
+Make sure the message for departure is displayed AFTER pod departure.
 
 Make sure shuttles can't be used during evac
 TODO: Fix escape doors to work properly.
@@ -131,6 +135,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				P.prepare_for_launch() //May or may not launch, will do everything on its own.
 				L -= i
 				sleep(50) //Sleeps 5 seconds each launch.
+			ai_system.Announce("ATTENTION: Evacuation complete. Outbound lifesigns detected: [P.passengers ? P.passengers  : "none"].")
 			evac_status = EVACUATION_STATUS_COMPLETE
 		r_TRU
 
@@ -138,11 +143,10 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	set background = 1
 
 	spawn while(evac_status == EVACUATION_STATUS_INITIATING) //If it's not departing, no need to process.
-		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE)
-			begin_launch()
+		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE) begin_launch()
 		sleep(10) //Two seconds.
 
-/datum/authority/branch/evacuation/proc/get_status_panel_eta()
+/datum/authority/branch/evacuation/proc/get_status_panel_eta() //TODO Fix this.
 	if(evac_status == EVACUATION_STATUS_INITIATING)
 		var/eta = EVACUATION_ESTIMATE_DEPARTURE
 		if(eta > 100) . = "EVAC-[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"

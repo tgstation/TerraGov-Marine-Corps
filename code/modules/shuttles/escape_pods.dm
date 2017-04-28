@@ -3,9 +3,10 @@
 //=========================================================================================
 #define STATE_IDLE			4 //Pod is idle, not ready to launch.
 #define STATE_READY			5 //Pod is armed and ready to go.
-#define STATE_BROKEN		6 //Pod failed to launch is now broken.
-#define STATE_LAUNCHED		7 //Pod has successfully launched.
-#define STATE_LAUNCHING		8 //Pod is about to launch.
+#define STATE_DELAYED		6 //Pod is being delayed from launching automatically.
+#define STATE_LAUNCHING		7 //Pod is about to launch.
+#define STATE_LAUNCHED		8 //Pod has successfully launched.
+#define STATE_BROKEN		9 //Pod failed to launch is now broken.
 /*Other states are located in docking_program.dm, but they aren't important here.
 This is built upon a weird network of different states, including docking states, moving
 states, process states, and so forth. It's disorganized, but I tried to keep it in line
@@ -18,6 +19,7 @@ with the original.*/
 	info_tag = "Almayer Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
+	var/static/passengers = 0 //How many living escape on the shuttle. Does not count simple animals.
 	var/cryo_cells[] //List of the crypods attached to the evac pod.
 	var/area/staging_area //The area the shuttle starts in, used to link the various machinery.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program //The program that runs the doors.
@@ -29,21 +31,25 @@ with the original.*/
 	process()
 		switch(process_state)
 			if(WAIT_LAUNCH)
-				//To properly synch it with the launch.
-				//TODO: Properly integrate it.
 				short_jump()
 				process_state = IDLE_STATE
-
-	can_launch()
-		if(evacuation_program.dock_state != STATE_READY) r_FAL
-		. = ..()
-
-//	can_cancel()
-//		r_FAL
 
 	//No safeties here. Everything is done through dock_state.
 	launch()
 		process_state = WAIT_LAUNCH
+
+	can_launch() //Cannot launch it early before the evacuation takes place proper, and the pod must be ready. Cannot be delayed, broken, launching, or otherwise.
+		if(..() && EvacuationAuthority.evac_status > EVACUATION_STATUS_INITIATING)
+			switch(evacuation_program.dock_state)
+				if(STATE_READY) r_TRU
+				if(STATE_DELAYED)
+					for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) //If all are occupied, the pod will launch anyway.
+						if(!C.occupant) r_FAL
+					r_TRU
+
+	//The pod can be delayed until after the automatic launch.
+	can_cancel()
+		. = (EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY && evacuation_program.dock_state < STATE_LAUNCHING) //Must be evac time and the pod can't be launching/launched.
 
 /*
 This processes tags and connections dynamically, so you do not need to modify or pregenerate linked objects.
@@ -62,7 +68,6 @@ suffice.
 
 	staging_area = T.loc //Grab the area and store it on file.
 	staging_area.name = "\improper[shuttle_tag]"
-	//log_debug("Area type: [staging_area.type]")
 
 	D = locate() in staging_area
 	if(!D)
@@ -112,7 +117,6 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 				D.unlock()
 				D.close()
 				D.lock()
-			//TODO: Close the doors after one minute.
 
 /datum/shuttle/ferry/marine/evacuation_pod/proc/prepare_for_launch()
 	if(!can_launch()) r_FAL //Can't launch in some circumstances.
@@ -137,26 +141,38 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 		r_FAL
 	launch()
 	evacuation_program.dock_state = STATE_LAUNCHED
+	. = (check_passengers("<span class='centerbold'>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</span>"))
 
 #undef MOVE_MOB_OUTSIDE
 
 //You could potentially make stuff like crypods in these, but they should generally not be allowed to build inside pods.
-/datum/shuttle/ferry/marine/evacuation_pod/proc/check_passengers()
-	var/c = 0 //Generic counter.
+/datum/shuttle/ferry/marine/evacuation_pod/proc/check_passengers(msg)
+	. = TRUE
+	var/n = 0 //Generic counter.
+	var/mob/M
 	for(var/obj/machinery/cryopod/evacuation/C in cryo_cells)
-		if(C.occupant) c++
+		if(C.occupant)
+			n++
+			if(C.occupant.stat != DEAD && msg) C.occupant << msg
 	//Hardcoded typecast, which should be changed into some weight system of some kind eventually.
 	for(var/i in staging_area)
-		if(istype(i, /obj/mecha)) r_FAL //Manned or unmanned, these are too big. It won't launch at all.
-		if(istype(i, /obj/structure/closet) && locate(/mob/living/carbon/human) in i) c++ //No hiding in closets.
-		if(istype(i, /mob/living/carbon/human) || istype(i, /mob/living/silicon/robot)) c++ //Dead or alive, counts as a thing.
-		if(istype(i, /mob/living/carbon/Xenomorph))
+		if(istype(i, /obj/mecha)) . = FALSE //Manned or unmanned, these are too big. It won't launch at all.
+		else if(istype(i, /obj/structure/closet))
+			M = locate(/mob/living/carbon/human) in i
+			if(M)
+				n++ //No hiding in closets.
+				if(M.stat != DEAD && msg) M << msg
+		else if(istype(i, /mob/living/carbon/human) || istype(i, /mob/living/silicon/robot))
+			n++ //Dead or alive, counts as a thing.
+			M = i
+			if(M.stat != DEAD && msg) M << msg
+		else if(istype(i, /mob/living/carbon/Xenomorph))
 			var/mob/living/carbon/Xenomorph/X = i
 			if(X.big_xeno) r_FAL //Huge xenomorphs will automatically fail the launch.
-			c++
-	if(c > cryo_cells.len) r_FAL //Default is 3 cryo cells and three people inside the pod.
-	r_TRU
-
+			n++
+			if(X.stat != DEAD && msg) X << msg
+	if(n > cryo_cells.len)  . = FALSE //Default is 3 cryo cells and three people inside the pod.
+	if(msg) passengers += n //Return the total number of occupants instead if it successfully launched.
 
 //=========================================================================================
 //==================================Console Object=========================================
@@ -178,29 +194,33 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 	ex_act(severity) r_FAL
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	var/data[] = list(
-		"docking_status" = evacuation_program.dock_state,
-		"door_state" = 	evacuation_program.memory["door_status"]["state"],
-		"door_lock" = 	evacuation_program.memory["door_status"]["lock"],
-		"can_force" = evacuation_program.check_launch_status()	//allow players to manually launch ahead of time if the shuttle leaves
-	)
+	ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
+		var/launch_status[] = evacuation_program.check_launch_status()
+		var/data[] = list(
+			"docking_status" = evacuation_program.dock_state,
+			"door_state" = 	evacuation_program.memory["door_status"]["state"],
+			"door_lock" = 	evacuation_program.memory["door_status"]["lock"],
+			"can_force" = launch_status[1],
+			"can_delay" = launch_status[2]
+		)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+		ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
-	if (!ui)
-		ui = new(user, src, ui_key, "escape_pod_console.tmpl", id_tag, 470, 290)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+		if (!ui)
+			ui = new(user, src, ui_key, "escape_pod_console.tmpl", id_tag, 470, 290)
+			ui.set_initial_data(data)
+			ui.open()
+			ui.set_auto_update(1)
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/Topic(href, href_list)
-	if(..()) r_TRU	//Has to return true to fail. For some reason.
+	Topic(href, href_list)
+		if(..()) r_TRU	//Has to return true to fail. For some reason.
 
-	switch(href_list["command"])
-		if("force_launch")
-			var/datum/shuttle/ferry/marine/evacuation_pod/P = shuttle_controller.shuttles[id_tag]
-			P.prepare_for_launch()
+		switch(href_list["command"])
+			if("force_launch")
+				var/datum/shuttle/ferry/marine/evacuation_pod/P = shuttle_controller.shuttles[id_tag]
+				P.prepare_for_launch()
+			if("delay_launch")
+				evacuation_program.dock_state = evacuation_program.dock_state == STATE_DELAYED ? STATE_READY : STATE_DELAYED
 
 
 //=========================================================================================
@@ -218,22 +238,13 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	//	if(dock_state == STATE_READY)
 	//		..(command)
 
-	//process()
-	//	..()
-
-	//prepare_for_docking() r_FAL
-
-	//ready_for_docking() r_TRU
-
-	//finish_docking() r_FAL //don't do anything - the doors only open when the pod is armed.
-
 	prepare_for_undocking()
-		playsound(master,'sound/effects/escape_pod_warmup.ogg',85,1,7)
+		playsound(master,'sound/effects/escape_pod_warmup.ogg', 85, 1, 7)
 		//close_door()
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/check_launch_status()
 	var/datum/shuttle/ferry/marine/evacuation_pod/P = shuttle_controller.shuttles[id_tag]
-	. = P.can_launch()
+	. = list(P.can_launch(), P.can_cancel())
 
 //=========================================================================================
 //================================Evacuation Sleeper=======================================
@@ -247,17 +258,18 @@ M.loc = src; \
 if(M.client) \
 {M.client.perspective = EYE_PERSPECTIVE; \
 M.client.eye = src}; \
-M << "<span class='notice'>You feel cool air surround you as your mind goes blank as the pod locks.</span>"; \
+M << "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>"; \
 M.sleeping = 9999999; \
 occupant = M; \
 add_fingerprint(M); \
 icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
-//TODO Make sure you can't c4 this.
 //TODO Make sure they have air and atmosphere inside.
+//TODO Make sure unborn larvae stay that way.
 /obj/machinery/cryopod/evacuation
 	stat = MACHINE_DO_NOT_PROCESS
-	unacidable = 1 //Make sure you can't C4 them.
+	unacidable = 1
+	var/being_forced = 0 //Simple variable to prevent sound spam.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program
 
 	Dispose()
@@ -268,6 +280,10 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
 	attackby(obj/item/weapon/grab/G, mob/user)
 		if(istype(G))
+			if(being_forced)
+				user << "<span class='warning'>There's something forcing it open!</span>"
+				r_FAL
+
 			if(occupant)
 				user << "<span class='warning'>There is someone in there already!</span>"
 				r_FAL
@@ -282,7 +298,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 			visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
 
 			if(do_after(user, 20))
-				if(!M || !G || !G.affecting || !G.affecting.loc || !G.affecting != M) r_FAL
+				if(!M || !G || !G.affecting || !G.affecting.loc || G.affecting != M) r_FAL
 				MOVE_MOB_INSIDE(M)
 
 	eject()
@@ -318,6 +334,10 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
 		if(!istype(user) || user.stat || user.restrained()) r_FAL
 
+		if(being_forced)
+			user << "<span class='warning'>You can't enter when it's being forced open!</span>"
+			r_FAL
+
 		if(occupant)
 			user << "<span class='warning'>The cryogenic pod is already in use! You will need to find another.</span>"
 			r_FAL
@@ -333,9 +353,19 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 			MOVE_MOB_INSIDE(user)
 
 	attack_alien(mob/living/carbon/Xenomorph/user)
+		if(being_forced)
+			user << "<span class='xenowarning'>It's being forced open already!</span>"
+			r_FAL
+
+		if(!occupant)
+			user << "<span class='xenowarning'>There is nothing of interest in there.</span>"
+			r_FAL
+
+		being_forced = !being_forced
 		visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
-		//TODO Add sound.
+		playsound(src,'sound/effects/metal_creaking.ogg', 65, 1, 3)
 		if(do_after(user, 20)) go_out() //Force the occupant out.
+		being_forced = !being_forced
 
 /obj/machinery/door/airlock/evacuation //TODO: Make sure you can't c4 these.
 	name = "evacuation airlock"
@@ -348,7 +378,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 		spawn()
 			lock()
 
-	//Can't interact with them.
+	//Can't interact with them, mostly to prevent grief and meta.
 	Bumped() r_FAL
 	attackby() r_FAL
 	attack_hand() r_FAL
