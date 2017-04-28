@@ -373,6 +373,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "squad leader armor crate"
 	group = "Armor"
 
+/* Marines don't get real food
 /datum/supply_packs/food
 	name = "Kitchen supply crate"
 	contains = list(/obj/item/weapon/reagent_containers/food/snacks/flour,
@@ -392,19 +393,21 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "food crate"
 	group = "Supplies"
+*/
 
-/datum/supply_packs/food2
+/datum/supply_packs/mre
 	name = "USCM MRE crate"
-	contains = list(/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre )
+	contains = list(/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE )
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "\improper MRE crate"
 	group = "Supplies"
 
+/* This uses old MRE's which are actually food trays
 /datum/supply_packs/food3
 	name = "Weyland-Yutani brand MRE crate"
 	contains = list(/obj/item/weapon/storage/box/wy_mre,
@@ -418,6 +421,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "\improper W-Y MRE crate"
 	group = "Supplies"
 
+// No more monkeys on the ship
 /datum/supply_packs/monkey
 	name = "Monkey crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes,
@@ -426,6 +430,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "monkey crate"
 	group = "Supplies"
+*/
 
 /datum/supply_packs/internals
 	name = "Oxygen Internals crate"
