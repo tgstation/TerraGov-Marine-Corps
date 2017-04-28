@@ -27,7 +27,7 @@
 			user << "<span class='warning'>You need at least four rods to reinforce the [name].</span>"
 
 /obj/item/weapon/table_parts/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc)
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc || locate(/obj/structure/m_barricade/sandbags) in usr.loc || locate(/obj/structure/table/reinforced) in user.loc)
 		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
@@ -51,7 +51,7 @@
 		del(src)
 
 /obj/item/weapon/table_parts/reinforced/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc)
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc || locate(/obj/structure/m_barricade/sandbags) in usr.loc)
 		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
@@ -81,7 +81,7 @@
 			del(src)
 
 /obj/item/weapon/table_parts/wood/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc)
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc || locate(/obj/structure/m_barricade/sandbags) in usr.loc)
 		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 

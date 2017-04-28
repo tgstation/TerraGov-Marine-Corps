@@ -130,7 +130,7 @@
 		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
-	if (locate(/obj/structure/m_barricade/sandbags, usr.loc) || locate(/obj/structure/m_barricade, usr.loc) || locate(/obj/structure/table, usr.loc) || locate(/obj/structure/rack, usr.loc))
+	if (locate(/obj/structure/m_barricade/sandbags, usr.loc) || locate(/obj/structure/m_barricade, usr.loc) || locate(/obj/structure/table, usr.loc) || locate(/obj/structure/rack, usr.loc) || locate(/obj/structure/table/reinforced, usr.loc))
 		for(var/obj/structure/m_barricade/sandbags/S in usr.loc)
 			if(user.dir == S.dir)
 				user << "<span class='warning'>You can't place more sandbags in the same place!</span>"
