@@ -82,11 +82,22 @@ should be listed in the changelog upon commit though. Thanks. -->
 
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
 
+
 <div class='commit sansserif'>
 	<h2 class='date'>27 April 2017</h2>
 	<h3 class='author'>Bmc777 updated:</h3>
 	<ul class='changes bgimages16'>
 		<li class='tweak'>Replaced old MRE type with new MREs.</li>
+	</ul>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed AI explosion and dead state.</li>
+		<li class='bugfix'>Fixed AI not having any sound when transmitting a message. Sounds are placeholder.</li>
+		<li class='bugfix'>Fixed not being able to call evacuation due to not activating distress with comm console.</li>
+		<li class='bugfix'>Fixed improper nanoui scrolling color and other fixes.</li>
+		<li class='tweak'>Evacuation pods can no longer be launched manually before the evacuation is in progress, generally about three minutes.</li>
+		<li class='tweak'>Evacuation pods can now be delayed from launching indefinitely, but can still be force-launched if desired. A pod with three occupants in cryo will launch regardless.</li>
+		<li class='rscadd'>The AI will now report how many people left via the escape pods after the launch sequence is finished.</li>
 	</ul>
 </div>
 

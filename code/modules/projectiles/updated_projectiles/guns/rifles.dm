@@ -101,8 +101,8 @@
 	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
 
 /obj/item/weapon/gun/rifle/m41a/scoped
-	name = "\improper M4RA marksman rifle"
-	desc = "The M4RA battle rifle is a designated marksman rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and can take the 10x24mm marksman magazine in addition to regular MK2 magazines."
+	name = "\improper M4RA battle rifle"
+	desc = "The M4RA battle rifle is a designated rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and can take the 10x24mm marksman magazine in addition to regular MK2 magazines."
 	icon_state = "m41b"
 	item_state = "m4ra" //PLACEHOLDER
 	origin_tech = "combat=5;materials=4"

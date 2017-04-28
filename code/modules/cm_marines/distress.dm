@@ -320,6 +320,7 @@
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
 	command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert")
+	ticker.mode.has_called_emergency = 1
 	spawn(600) //If after 60 seconds we aren't full, abort
 		if(candidates.len < mob_max)
 			message_admins("Aborting distress beacon, not enough candidates: found [candidates.len].", 1)

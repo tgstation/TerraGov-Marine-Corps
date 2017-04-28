@@ -5,15 +5,17 @@
 		</div>
 		<div class="itemContent">
 			{{if data.docking_status == 4}}
-				<span class="good">SYSTEMS OK</span>
+				<span class="idle">SYSTEMS OK</span>
 			{{else data.docking_status == 5}}
 				<span class="average">STANDING BY</span>
 			{{else data.docking_status == 6}}
-				<span class="idle">SYSTEMS DOWN</span>
+				<span class="idle">DELAYED</span>			
 			{{else data.docking_status == 7}}
-				<span class="average">TRAVELING</span>
+				<span class="average">LAUNCHING</span>	
 			{{else data.docking_status == 8}}
-				<span class="average">LAUNCHING</span>			
+				<span class="average">TRAVELING</span>
+			{{else data.docking_status == 9}}
+				<span class="bad">SYSTEMS DOWN</span>		
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
@@ -26,54 +28,14 @@
 			Docking Hatch:
 		</div>
 		<div class="itemContent">
-			{{if data.docking_status == 4}}
-				{{if data.door_state == "open"}}
-					<span class="good">OPEN</span>
-				{{else data.door_state == "closed"}}
-					<span class="good">CLOSED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}
-			{{else data.docking_status == 5}}
-				{{if data.door_state == "open"}}
-					<span class="good">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
+			{{if data.door_state == "open"}}
+				<span class="good">OPEN</span>
+			{{else data.door_state == "closed"}}
+				{{if data.door_lock == "locked"}}
 					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
+				{{else}}
 					<span class="good">UNSECURED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
 				{{/if}}
-			{{else data.docking_status == 6}}
-				{{if data.door_state == "open"}}
-					<span class="average">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="average">UNSECURED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}
-			{{else data.docking_status == 7}}
-				{{if data.door_state == "open"}}
-					<span class="bad">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="bad">UNSECURED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}
-			{{else data.docking_status == 8}}
-				{{if data.door_state == "open"}}
-					<span class="bad">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="bad">UNSECURED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}	
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
@@ -84,6 +46,7 @@
 	<div class="item">
 		<div class="itemContent" style="padding-top: 2px; width: 100%">
 		{{:helper.link('MANUAL EJECT', 'alert', {'command' : 'force_launch'}, data.can_force ? null : 'disabled', data.can_force ? 'redButton' : null)}}
+		{{:helper.link('DELAY LAUNCH', 'alert', {'command' : 'delay_launch'}, data.can_delay ? null : 'disabled', data.can_delay ? 'yellowButton' : null)}}
 		</div>
 	</div>
 </div>

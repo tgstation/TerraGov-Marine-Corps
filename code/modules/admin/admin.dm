@@ -1185,7 +1185,6 @@ var/global/floorIsLava = 0
 		return
 
 	ticker.mode.picked_call.activate()
-	ticker.mode.has_called_emergency = 1
 
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]")
