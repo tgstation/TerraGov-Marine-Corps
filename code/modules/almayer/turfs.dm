@@ -165,7 +165,8 @@
 	icon_state = "grille0"
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door/airlock,
+		/obj/structure/grille/almayer)
 
 /obj/structure/grille/almayer/New()
 	spawn(10)
@@ -188,16 +189,24 @@
 	dir = 5
 
 	tiles_with = list(
-		/turf/simulated/wall,
-		/obj/structure/falsewall,
-		/obj/structure/falserwall,
-		/obj/structure/window/reinforced/almayer,
-		/obj/machinery/door/airlock)
+//		/turf/simulated/wall,
+//		/obj/structure/falsewall,
+//		/obj/structure/falserwall,
+		/obj/structure/window/reinforced/almayer)
 
 /obj/structure/window/reinforced/almayer/New()
 	spawn(10)
 		relativewall()
 		relativewall_neighbours()
+		if(icon_state == "[basestate]0") //This is weird I know but it'll get us the results we need.
+			tiles_with = list(
+				/turf/simulated/wall,
+				/obj/structure/falsewall,
+				/obj/structure/falserwall,
+				/obj/structure/window/reinforced/almayer,
+				/obj/machinery/door/airlock)
+			relativewall()
+
 
 /obj/structure/window/reinforced/almayer/update_nearby_icons()
 	relativewall_neighbours()

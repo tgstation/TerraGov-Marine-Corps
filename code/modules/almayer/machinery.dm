@@ -4,9 +4,9 @@
 /obj/machinery/vending/uniform_supply
 	name = "\improper ColMarTech surplus uniform vender"
 	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
-	icon_state = "armory"
-	icon_vend = "armory-vend"
-	icon_deny = "armory"
+	icon_state = "sec"
+	icon_vend = "sec-vend"
+	icon_deny = "sec"
 	req_access = null
 	req_access_txt = "0"
 	req_one_access = null
@@ -224,8 +224,8 @@
 	bound_height = 32
 
 /obj/structure/prop/almayer/missile_tube
-	name = "missile tube"
-	desc = "A cold launch missile tube."
+	name = "\improper Mk 33 ASAT launcher system"
+	desc = "Cold launch tubes that can fire a few varieties of missiles out of them The most common being the ASAT-21 Rapier IV missile used against satellites and other spacecraft and the BGM-227 Sledgehammer missile which is used for ground attack."
 	icon = 'icons/Marine/almayer_props96.dmi'
 	icon_state = "missiletubenorth"
 	bound_width = 32
@@ -240,9 +240,10 @@
 	bound_height = 32
 
 /obj/structure/prop/almayer/particle_cannon
-	name = "phased pulse particle cannon"
-	desc = "The main guns of a ship. Who would have known?"
+	name = "\improper 0.75cm/140 Mark 74 General Atomics railgun"
+	desc = "The Mark 74 Railgun is top of the line for space based weaponry. Capable of firing a round with a diameter of 3/4ths of a meter at 24 kilometers per second. It also is capable of using a variety of round types which can be interchanged at anytime with its newly designed feed system."
 	icon = 'icons/obj/machines/artillery.dmi'
+	icon_state = "1"
 
 /obj/structure/prop/almayer/name_stencil
 	desc = "The name of the ship stenciled on the hull."
@@ -253,6 +254,14 @@
 	New()
 		..()
 		name = MAIN_SHIP_NAME
+
+/obj/structure/prop/almayer/hangar_stencil
+	name = "floor"
+	desc = "A large number stenciled on the hangar floor used to designate which dropship it is."
+	icon = 'icons/Marine/almayer_props96.dmi'
+	icon_state = "dropship1"
+	density = 0
+	layer = 2.1
 
 //---USS Almayer Computers ---//
 
@@ -347,10 +356,10 @@
 	icon_state = "table"
 
 //------Dropship Cargo Doors -----//
-/obj/machinery/door/airlock/multi_tile/almayer
+/obj/machinery/door/airlock/multi_tile/almayer //god damnit MSD, IT SHOULD BE WIDTH = 2 FOR ALL DOUBLE/BIGGER DOORS AT LEAST FOR THE BASE LINE
 	name = "dropship cargo door"
 	opacity = 1
-	width = 3
+	width = 2
 
 /obj/machinery/door/airlock/multi_tile/almayer/handle_multidoor()
 	if(!(width > 1)) return //Bubblewrap
@@ -389,9 +398,11 @@
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropship1
 	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
+	width = 3
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropship2
 	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
+	width = 3
 
 //------USS Almayer Door Section-----//
 // This is going to be fucken huge. This is where all babeh perspective doors go to grow up.
