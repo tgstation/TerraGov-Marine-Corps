@@ -62,16 +62,29 @@
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
+		if(pulledby)
+			pulledby.stop_pulling()
 		var/oldLoc
 		if(loc)
 			oldLoc = loc
 			loc.Exited(src)
 		loc = destination
 		loc.Entered(src)
+		var/area/old_area
+		if(oldLoc)
+			old_area = get_area(oldLoc)
+		var/area/new_area = get_area(destination)
+		if(old_area != new_area)
+			new_area.Entered(src)
+		for(var/atom/movable/AM in destination)
+			if(AM == src)
+				continue
+			AM.Crossed(src)
 		if(oldLoc)
 			Moved(oldLoc,dir)
 		return 1
 	return 0
+
 
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
