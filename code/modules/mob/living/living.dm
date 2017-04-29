@@ -731,3 +731,10 @@
 
 	if(pulling && !istype(pulling, /obj/structure/stool/bed/roller))	//Dragging stuff slows you down a bit.
 		tally += 3
+
+/mob/living
+	forceMove(atom/destination)
+		stop_pulling()
+		if(buckled)
+			buckled.unbuckle()
+		. = ..()

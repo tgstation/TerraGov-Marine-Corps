@@ -23,24 +23,24 @@
 /mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(isXenoLarva(M)) //Larvas have no means to attack humans
-		M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
-		"<span class='danger'>You nudge your head against \the [src].</span>")
+		M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
+		"<span class='danger'>You nudge your head against [src].</span>")
 		return 0
 
 	//Reviewing the four primary intents
 	switch(M.a_intent)
 
 		if("help")
-			M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
-			"<span class='notice'>You caress \the [src] with your scythe-like arm.</span>")
+			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
+			"<span class='notice'>You caress [src] with your scythe-like arm.</span>")
 
 		if("grab") //Defaults to ctrl-click pull. Grabs are fucked up!
 			if(M == src || anchored)
 				return 0
 
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
-				M.visible_message("<span class='danger'>\The [M]'s grab is blocked by \the [src]'s shield!</span>", \
-				"<span class='danger'>Your grab was blocked by \the [src]'s shield!</span>")
+				M.visible_message("<span class='danger'>\The [M]'s grab is blocked by [src]'s shield!</span>", \
+				"<span class='danger'>Your grab was blocked by [src]'s shield!</span>")
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1) //Feedback
 				return 0
 
@@ -48,31 +48,31 @@
 				M.start_pulling(src)
 				M.update_icons() //To immediately show the grab
 
-				M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
-				"<span class='warning'>You grab \the [src]!</span>")
+				M.visible_message("<span class='warning'>[M] grabs [src]!</span>", \
+				"<span class='warning'>You grab [src]!</span>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 		if("hurt")
 			if(!slashing_allowed && !M.is_intelligent)
-				M << "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash \the [src].</span>"
+				M << "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>"
 				return 0
 
 			if(stat == DEAD)
-				M << "<span class='warning'>\The [src] is dead, why would you want to touch it?</span>"
+				M << "<span class='warning'>[src] is dead, why would you want to touch it?</span>"
 				return 0
 
 			if(slashing_allowed == 2 && !M.is_intelligent)
 				if(src.status_flags & XENO_HOST)
-					M << "<span class='warning'>You try to slash \the [src], but find you <B>cannot</B>. There is a host inside!</span>"
+					M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
 					return 0
 
 				if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
-					M << "<span class='warning'>You try to slash \the [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
+					M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
 					return 0
 
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
-				M.visible_message("<span class='danger'>\The [M]'s slash is blocked by \the [src]'s shield!</span>", \
-				"<span class='danger'>Your slash is blocked by \the [src]'s shield!</span>")
+				M.visible_message("<span class='danger'>\The [M]'s slash is blocked by [src]'s shield!</span>", \
+				"<span class='danger'>Your slash is blocked by [src]'s shield!</span>")
 				return 0
 
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
@@ -93,8 +93,8 @@
 			//Somehow we will deal no damage on this attack
 			if(!damage)
 				playsound(M.loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
-				M.visible_message("<span class='danger'>\The [M] lunges at \the [src]!</span>", \
-				"<span class='danger'>You lunge at \the [src]!</span>")
+				M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
+				"<span class='danger'>You lunge at [src]!</span>")
 				return 0
 
 			var/datum/organ/external/affecting
@@ -116,16 +116,16 @@
 					knock_chance += min(round(damage * 0.25), 10) //Maximum of 15% chance.
 					if(prob(knock_chance))
 						playsound(loc, 'sound/effects/metalhit.ogg', 100, 1, 1)
-						M.visible_message("<span class='danger'>The [M] smashes off \the [src]'s [wear_mask.name]!</span>", \
-						"<span class='danger'>You smash off \the [src]'s [wear_mask.name]!</span>")
+						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
+						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>")
 						drop_from_inventory(wear_mask)
 						emote("roar")
 						return 1
 
 			//The normal attack proceeds
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-			M.visible_message("<span class='danger'>\The [M] slashes \the [src]!</span>", \
-			"<span class='danger'>You slash \the [src]!</span>")
+			M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
+			"<span class='danger'>You slash [src]!</span>")
 			forcesay()
 
 			//Logging, including anti-rulebreak logging
@@ -147,19 +147,19 @@
 
 		if("disarm")
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
-				M.visible_message("<span class='danger'>\The [M]'s tackle is blocked by \the [src]'s shield!</span>", \
-				"<span class='danger'>Your tackle is blocked by \the [src]'s shield!</span>")
+				M.visible_message("<span class='danger'>\The [M]'s tackle is blocked by [src]'s shield!</span>", \
+				"<span class='danger'>Your tackle is blocked by [src]'s shield!</span>")
 				return 0
 			if(weakened)
 				if(prob(20))
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 					Weaken(rand(M.tacklemin, M.tacklemax)) //Min and max tackle strenght. They are located in individual caste files.
-					M.visible_message("<span class='danger'>\The [M] tackles down \the [src]!</span>", \
-					"<span class='danger'>You tackle down \the [src]!</span>")
+					M.visible_message("<span class='danger'>\The [M] tackles down [src]!</span>", \
+					"<span class='danger'>You tackle down [src]!</span>")
 				else
 					playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
-					M.visible_message("<span class='danger'>\The [M] tries to tackle \the [src], but they are already down!</span>", \
-					"<span class='danger'>You try to tackle \the [src], but they are already down!</span>")
+					M.visible_message("<span class='danger'>\The [M] tries to tackle [src], but they are already down!</span>", \
+					"<span class='danger'>You try to tackle [src], but they are already down!</span>")
 
 			else
 				var/tackle_bonus = 0
@@ -168,26 +168,26 @@
 				if(prob(M.tackle_chance + tackle_bonus)) //Tackle_chance is now a special var for each caste.
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 					Weaken(rand(M.tacklemin, M.tacklemax))
-					M.visible_message("<span class='danger'>\The [M] tackles down \the [src]!</span>", \
-					"<span class='danger'>You tackle down \the [src]!</span>")
+					M.visible_message("<span class='danger'>\The [M] tackles down [src]!</span>", \
+					"<span class='danger'>You tackle down [src]!</span>")
 				else
 					playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
-					M.visible_message("<span class='danger'>\The [M] tries to tackle \the [src]</span>", \
-					"<span class='danger'>You try to tackle \the [src]</span>")
+					M.visible_message("<span class='danger'>\The [M] tries to tackle [src]</span>", \
+					"<span class='danger'>You try to tackle [src]</span>")
 	return 1
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(isXenoLarva(M)) //Larvas have no means to attack humans
-		M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
-		"<span class='danger'>You nudge your head against \the [src].</span>")
+		M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
+		"<span class='danger'>You nudge your head against [src].</span>")
 		return 0
 
 	switch(M.a_intent)
 		if("help")
-			M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
-			"<span class='notice'>You caress \the [src] with your scythe-like arm.</span>")
+			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
+			"<span class='notice'>You caress [src] with your scythe-like arm.</span>")
 			return 0
 
 		if("grab")
@@ -198,14 +198,14 @@
 				M.start_pulling(src)
 				M.update_icons() //To immediately show the grab
 
-				M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
-				"<span class='warning'>You grab \the [src]!</span>")
+				M.visible_message("<span class='warning'>[M] grabs [src]!</span>", \
+				"<span class='warning'>You grab [src]!</span>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 		if("hurt")
 			if(isXeno(src)) //Can't slash other xenos for now
-				M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
-				"<span class='warning'>You nibble \the [src].</span>")
+				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
+				"<span class='warning'>You nibble [src].</span>")
 				return 1
 			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
 				var/datum/effect/effect/system/spark_spread/spark_system
@@ -214,14 +214,14 @@
 				spark_system.attach(src)
 				spark_system.start()
 			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
-			M.visible_message("<span class='danger'>\The [M] bites \the [src]!</span>", \
-			"<span class='danger'>You bite \the [src]!</span>")
+			M.visible_message("<span class='danger'>\The [M] bites [src]!</span>", \
+			"<span class='danger'>You bite [src]!</span>")
 			apply_damage(damage, BRUTE)
 
 		if("disarm")
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
-			"<span class='warning'>You shove \the [src]!</span>")
+			M.visible_message("<span class='warning'>\The [M] shoves [src]!</span>", \
+			"<span class='warning'>You shove [src]!</span>")
 			if(ismonkey(src))
 				Weaken(8)
 	return 0
@@ -257,12 +257,12 @@
 		playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 		health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 		if(health <= 0)
-			M.visible_message("<span class='danger'>\The [M] slices \the [src] apart!</span>", \
-			"<span class='danger'>You slice \the [src] apart!</span>")
+			M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+			"<span class='danger'>You slice [src] apart!</span>")
 			destroy()
 		else
-			M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-			"<span class='danger'>You slash \the [src]!</span>")
+			M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+			"<span class='danger'>You slash [src]!</span>")
 
 //Breaking barricades
 /obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -271,19 +271,19 @@
 	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	if(health <= 0)
-		M.visible_message("<span class='danger'>\The [M] slices \the [src] apart!</span>", \
-		"<span class='danger'>You slice \the [src] apart!</span>")
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>")
 	else
-		M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-		"<span class='danger'>You slash \the [src]!</span>")
+		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+		"<span class='danger'>You slash [src]!</span>")
 	update_health()
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
-	M.visible_message("<span class='danger'>\The [M] slices \the [src] apart!</span>", \
-	"<span class='danger'>You slice \the [src] apart!</span>")
+	M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+	"<span class='danger'>You slice [src] apart!</span>")
 	destroy()
 
 //Default "structure" proc. This should be overwritten by sub procs.
@@ -298,8 +298,8 @@
 	if(status == 2) //Ignore if broken. Note that we can't use defines here
 		return 0
 
-	M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
-	"<span class='danger'>You smash \the [src]!</span>")
+	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
+	"<span class='danger'>You smash [src]!</span>")
 	broken() //Smashola!
 
 //Smashing windows
@@ -308,8 +308,8 @@
 		return 0
 	if(M.a_intent == "help")
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
-		M.visible_message("<span class='warning'>\The [M] creepily taps on \the [src] with its huge claw.</span>", \
-		"<span class='warning'>You creepily tap on \the [src].</span>", \
+		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
+		"<span class='warning'>You creepily tap on [src].</span>", \
 		"<span class='warning'>You hear a glass tapping sound.</span>")
 	else
 		attack_generic(M, M.melee_damage_lower)
@@ -320,11 +320,11 @@
 		return 0
 	health -= rand(15, 30)
 	if(health <= 0)
-		M.visible_message("<span class='danger'>\The [M] slices \the [src] apart!</span>", \
-		"<span class='danger'>You slice \the [src] apart!</span>")
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>")
 	else
-		M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-		"<span class='danger'>You slash \the [src]!</span>")
+		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+		"<span class='danger'>You slash [src]!</span>")
 	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -336,8 +336,8 @@
 		return 0
 	if(status)
 		status = 0
-		M.visible_message("<span class='danger'>\The [M] slices \the [src] apart!</span>", \
-		"<span class='danger'>You slice \the [src] apart!</span>")
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>")
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 		add_hiddenprint(M)
@@ -348,8 +348,8 @@
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
-	M.visible_message("<span class='danger'>[M] smashes against \the [src]!</span>", \
-	"<span class='danger'>You smash against \the [src]!</span>")
+	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
+	"<span class='danger'>You smash against [src]!</span>")
 	var/damage = 25
 	if(M.big_xeno)
 		damage = 40
@@ -365,13 +365,13 @@
 		take_damage((rand(M.melee_damage_lower, M.melee_damage_upper)/2))
 		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
-		M.visible_message("<span class='danger'>[M] slashes \the [src]'s armor!</span>", \
-		"<span class='danger'>You slash \the [src]'s armor!</span>")
+		M.visible_message("<span class='danger'>[M] slashes [src]'s armor!</span>", \
+		"<span class='danger'>You slash [src]'s armor!</span>")
 	else
 		src.log_append_to_last("Armor saved.")
 		playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
-		M.visible_message("<span class='warning'>[M] slashes \the [src]'s armor to no effect!</span>", \
-		"<span class='danger'>You slash \the [src]'s armor to no effect!</span>")
+		M.visible_message("<span class='warning'>[M] slashes [src]'s armor to no effect!</span>", \
+		"<span class='danger'>You slash [src]'s armor to no effect!</span>")
 
 //Slashing grilles
 /obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -379,8 +379,8 @@
 		return 0
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
 	var/damage_dealt = 5
-	M.visible_message("<span class='danger'>\The [M] mangles \the [src]!</span>", \
-	"<span class='danger'>You mangle \the [src]!</span>", \
+	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
+	"<span class='danger'>You mangle [src]!</span>", \
 	"<span class='danger'>You hear twisting metal!</span>")
 
 	if(shock(M, 70))
@@ -401,11 +401,11 @@
 		return 1
 
 	if(M.a_intent == "help")
-		M.visible_message("<span class='warning'>\The [M] oogles its own reflection in \the [src].</span>", \
-		"<span class='warning'>You oogle your own reflection in \the [src].</span>")
+		M.visible_message("<span class='warning'>\The [M] oogles its own reflection in [src].</span>", \
+		"<span class='warning'>You oogle your own reflection in [src].</span>")
 	else
-		M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
-		"<span class='danger'>You smash \the [src]!</span>")
+		M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
+		"<span class='danger'>You smash [src]!</span>")
 		shatter()
 
 //Foamed metal
@@ -413,13 +413,13 @@
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(prob(33))
-		M.visible_message("<span class='danger'>\The [M] slices \the [src] apart!</span>", \
-		"<span class='danger'>You slice \the [src] apart!</span>")
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>")
 		cdel(src)
 		return 1
 	else
-		M.visible_message("<span class='danger'>\The [M] tears some shreds off \the [src]!</span>", \
-		"<span class='danger'>You tear some shreds off \the [src]!</span>")
+		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
+		"<span class='danger'>You tear some shreds off [src]!</span>")
 
 //Wooden barricades
 /obj/structure/barricade/wooden/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -428,12 +428,12 @@
 	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 	playsound(src, 'sound/effects/woodhit.ogg', 100, 1)
 	if(health <= 0)
-		M.visible_message("<span class='danger'>\The [M] slices \the [src] apart!</span>", \
-		"<span class='danger'>You slice \the [src] apart!</span>")
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>")
 		destroy()
 	else
-		M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-		"<span class='danger'>You slash \the [src]!</span>")
+		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+		"<span class='danger'>You slash [src]!</span>")
 
 //Prying open doors
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -451,6 +451,10 @@
 		return 0
 
 	if(isXenoLarva(M)) //Larvae cannot pry open doors, but they CAN squeeze under them.
+		for(var/atom/movable/AM in get_turf(src))
+			if(AM != src && AM.density && !AM.CanPass(M, M.loc))
+				M << "<span class='warning'>\The [AM] prevents you from squeezing under \the [src]!</span>"
+				return 0
 		M.visible_message("<span class='warning'>\The [M] scuttles underneath \the [src]!</span>", \
 		"<span class='warning'>You squeeze and scuttle underneath \the [src].</span>")
 		if(!isnull(loc)) //Logic
