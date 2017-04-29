@@ -279,10 +279,14 @@
 	name = "dropship console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
-	shuttle_tag = "Almayer Dropship 1"
+
 	unacidable = 1
 	exproof = 1
 	req_one_access_txt = "22;200"
+
+	New()
+		..()
+		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
 
 /obj/machinery/computer/shuttle_control/dropship1/onboard
 	name = "flight controls"
@@ -294,10 +298,13 @@
 	name = "dropship console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
-	shuttle_tag = "Almayer Dropship 2"
 	unacidable = 1
 	exproof = 1
 	req_one_access_txt = "12;22;200"
+
+	New()
+		..()
+		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
 
 /obj/machinery/computer/shuttle_control/dropship2/onboard
 	name = "flight controls"

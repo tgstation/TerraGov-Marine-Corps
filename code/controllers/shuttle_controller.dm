@@ -4,6 +4,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 /datum/shuttle_controller
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	//simple list of shuttles, for processing
+	var/list/locs_crash
 
 /datum/shuttle_controller/proc/process()
 	//process ferry shuttles
@@ -15,6 +16,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 /datum/shuttle_controller/New()
 	shuttles = list()
 	process_shuttles = list()
+	locs_crash = list()
 
 	var/datum/shuttle/ferry/shuttle
 
@@ -35,10 +37,10 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.location = 0
 	shuttle1.warmup_time = 10
 	shuttle1.move_time = DROPPOD_TRANSIT_DURATION
-	shuttle1.shuttle_tag = "Almayer Dropship 1"
+	shuttle1.shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
 	shuttle1.info_tag = "Almayer Dropship"
 	shuttle1.load_datums()
-	shuttles["Almayer Dropship 1"] = shuttle1
+	shuttles[shuttle1.shuttle_tag] = shuttle1
 	process_shuttles += shuttle1
 
 	//ALMAYER DROPSHIP 2
@@ -46,33 +48,21 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.location = 0
 	shuttle1.warmup_time = 10
 	shuttle1.move_time = DROPPOD_TRANSIT_DURATION
-	shuttle1.shuttle_tag = "Almayer Dropship 2"
+	shuttle1.shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
 	shuttle1.info_tag = "Almayer Dropship"
 	shuttle1.load_datums()
-	shuttles["Almayer Dropship 2"] = shuttle1
+	shuttles[shuttle1.shuttle_tag] = shuttle1
 	process_shuttles += shuttle1
 
 	//START: ALMAYER SHUTTLES AND EVAC PODS
 	var/datum/shuttle/ferry/marine/evacuation_pod/P
-	var/obj/effect/landmark/shuttle_loc/S
-
-	var/m
 	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
 		P = new
-		P.shuttle_tag += "[i]"
+		P.shuttle_tag = MAIN_SHIP_NAME + " Evac [i]"
 		switch(i) //TODO: Do this procedurally.
 			if(10 to 11) P.info_tag = "Alt Almayer Evac"
 		P.load_datums()
-		shuttles["Almayer Evac [i]"] = P
-		for(m in shuttlemarks) //Now we need to find the shuttle mark.
-			S = m
-			if(!istype(S))
-				shuttlemarks -= S
-				continue
-			if(S.name == P.shuttle_tag) //If the tags match, we want to link it with the area and such.
-				if(!istype(S, /obj/effect/landmark/shuttle_loc/marine_src)) continue //Has to be the source.
-				P.link_support_units(i, S.loc) //Process links.
-				break
+		shuttles[P.shuttle_tag] = P
 		process_shuttles += P
 
 

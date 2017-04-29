@@ -10,6 +10,8 @@ Make sure people who get nuked and wake up from SSD don't live.
 Add flashing lights to evac.
 Finish the game mode announcement thing.
 Make sure the message for departure is displayed AFTER pod departure.
+Fix ETA time.
+Add radio channels and AI question console.
 
 Make sure shuttles can't be used during evac
 TODO: Fix escape doors to work properly.
@@ -103,7 +105,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 		var/datum/shuttle/ferry/marine/evacuation_pod/P
 		for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-			P = shuttle_controller.shuttles["Almayer Evac [i]"]
+			P = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [i]"]
 			P.toggle_ready()
 		process_evacuation()
 		r_TRU
@@ -116,7 +118,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		ai_system.Announce("CAUTION: Evacuation order has been rescinded. Please return to your stations.")
 		var/datum/shuttle/ferry/marine/evacuation_pod/P
 		for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-			P = shuttle_controller.shuttles["Almayer Evac [i]"]
+			P = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [i]"]
 			P.toggle_ready()
 		r_TRU
 
@@ -131,7 +133,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			for(i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER) L += i
 			while(L.len)
 				i = pick(L)
-				P = shuttle_controller.shuttles["Almayer Evac [i]"]
+				P = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [i]"]
 				P.prepare_for_launch() //May or may not launch, will do everything on its own.
 				L -= i
 				sleep(50) //Sleeps 5 seconds each launch.
