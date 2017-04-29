@@ -25,6 +25,10 @@
 	var/shuttle_tag //Unique ID for finding which landmarks to use
 	var/info_tag //Identifies which coord datums to copy
 	var/list/info_datums = list()
+	//For now it's just one location all around, but that can be adjusted.
+	var/locs_dock = list()
+	var/locs_move = list()
+	var/locs_land = list()
 	//Could be a list, but I don't see a reason considering shuttles aren't bloated with variables.
 	var/sound_target = 136//Where the sound will originate from. Must be a list index, usually the center bottom (engines).
 	var/sound/sound_takeoff	= 'sound/effects/engine_startup.ogg'//Takeoff sounds.
@@ -98,50 +102,27 @@
 
 	//START: Heavy lifting backend
 
-	var/i //iterator
-	var/turf/T_src
-	var/turf/T_int //int stands for interim
-	var/turf/T_trg
-	var/obj/effect/landmark/shuttle_loc/marine_src/S
-	var/obj/effect/landmark/shuttle_loc/marine_int/I
-	var/obj/effect/landmark/shuttle_loc/marine_trg/T
-
-	//Find source turf
-	for(i in shuttlemarks)
-		S = i
-		if(!istype(S)) continue
-		if(S.name == shuttle_tag)
-			T_src = S.loc
-			break
-
-	//Find interim turf
-	for(i in shuttlemarks)
-		I = i
-		if(!istype(I)) continue
-		if(I.name == shuttle_tag)
-			T_int = I.loc
-			break
-
-	//Find target turf
-	for(i in shuttlemarks)
-		T = i
-		if(!istype(T)) continue
-		if(T.name == shuttle_tag)
-			T_trg = T.loc
-			break
-
-	//Switch the landmarks so we can do this again
-	if(istype(S) || istype(T))
-		S.loc = T_trg
-		T.loc = T_src
+	//Simple pick() process for now, but this should be changed later.
+	var/turf/T_src = pick(locs_dock)
+	var/src_rot = locs_dock[T_src]
+	var/turf/T_int = pick(locs_move)//int stands for interim
+	var/int_rot = locs_move[T_int]
+	var/turf/T_trg = pick(locs_land)
+	var/trg_rot = locs_land[T_trg]
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.\n <font size=10>WARNING: DROPSHIP LAUNCH WILL FAIL</font></span>")
 		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.")
 
-	if(!istype(S) || !istype(I) || !istype(T))
-		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code MSD03.\n <font size=10>WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</font></span>")
-		log_admin("Error with shuttles: Landmarks not found. Code MSD03.")
+	//Switch the landmarks so we can do this again
+	locs_dock -= T_src
+	locs_land -= T_trg
+	locs_dock |= T_trg
+	locs_land |= T_src
+
+//	if(!istype(S) || !istype(I) || !istype(T))
+//		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code MSD03.\n <font size=10>WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</font></span>")
+//		log_admin("Error with shuttles: Landmarks not found. Code MSD03.")
 
 	//END: Heavy lifting backend
 
@@ -167,7 +148,7 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src, 0 , I.rotation, src) //Rotate by the angle at the destination, not the source
+	move_shuttle_to(T_int, null, turfs_src, 0 , int_rot, src) //Rotate by the angle at the destination, not the source
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
@@ -177,13 +158,12 @@
 
 	sleep(100) //Wait for it to finish
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, T.rotation, src)
+	move_shuttle_to(T_trg, null, turfs_int, 0, trg_rot, src)
 
 	//Now that we've landed, assuming some rotation including 0, we need to make sure it doesn't fuck up when we go back
-	I.rotation = -1*T.rotation
-	var/interim_deg = T.rotation
-	T.rotation = S.rotation
-	S.rotation = interim_deg
+	locs_move[T_int] = -1*trg_rot
+	locs_dock[T_trg] = src_rot
+	locs_land[T_src] = trg_rot
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since they hadn't moved yet
@@ -218,48 +198,16 @@
 		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
 
 	//START: Heavy lifting backend
-
-	var/i //iterator
-	var/turf/T_src
-	var/turf/T_int //int stands for interim
-	var/turf/T_trg
-	var/obj/effect/landmark/shuttle_loc/marine_src/S
-	var/obj/effect/landmark/shuttle_loc/marine_int/I
-	var/obj/effect/landmark/shuttle_loc/marine_crs/C
-
-	//Find source turf
-	for(i in shuttlemarks)
-		S = i
-		if(!istype(S)) continue
-		if(S.name == shuttle_tag)
-			T_src = S.loc
-			break
-
-	//Find interim turf
-	for(i in shuttlemarks)
-		I = i
-		if(!istype(I)) continue
-		if(I.name == shuttle_tag)
-			T_int = I.loc
-			break
-
-	var/list/crash_turfs = list()
-	//Find target turf
-	for(i in shuttlemarks)
-		C = i
-		if(!istype(C)) continue
-		if(C.name == shuttle_tag)
-			crash_turfs.Add(C.loc)
-
-	T_trg = pick(crash_turfs)
+	var/turf/T_src = pick(locs_dock)
+	var/src_rot = locs_dock[T_src]
+	var/turf/T_int = pick(locs_move)//int stands for interim
+	var/turf/T_trg = pick(shuttle_controller.locs_crash)
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.\n WARNING: DROPSHIP LAUNCH WILL FAIL</span>")
 		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.")
 
-	if(!istype(S) || !istype(I))
-		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code MSD05.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
-		log_admin("Error with shuttles: Landmarks not found. Code MSD05.")
+	shuttle_controller.locs_crash -= T_trg
 
 	//END: Heavy lifting backend
 
@@ -308,7 +256,7 @@
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, C.rotation, src)
+	move_shuttle_to(T_trg, null, turfs_int, 0, src_rot, src)
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since the hadn't moved yet
@@ -326,11 +274,8 @@
 
 	//END: Heavy lifting backend
 
-	//And now that we've crashed, we are never flying again
 	sleep(100)
-	//But first lets make sure all of our procs elsewhere are fixed
-	del(src)
-
+	moving_status = SHUTTLE_CRASHED
 
 /datum/shuttle/ferry/marine/short_jump()
 
@@ -338,39 +283,20 @@
 
 	//START: Heavy lifting backend
 
-	var/i //iterator
-	var/turf/T_src
-	var/turf/T_trg
-	var/obj/effect/landmark/shuttle_loc/marine_src/S
-	var/obj/effect/landmark/shuttle_loc/marine_trg/T
-
-	//Find our source turf
-	for(i in shuttlemarks)
-		S = i
-		if(!istype(S)) continue
-		if(S.name == shuttle_tag)
-			T_src = get_turf(S)
-			break
-
-	//Find our target turf
-	for(i in shuttlemarks)
-		T = i
-		if(!istype(T)) continue
-		if(T.name == shuttle_tag)
-			T_trg = get_turf(T)
-			break
+	var/turf/T_src = pick(locs_dock)
+	var/turf/T_trg = pick(locs_land)
+	var/trg_rot = locs_land[T_trg]
 
 	//Switch the landmarks so we can do this again
-	if(istype(S) || istype(T))
-		S.loc = T_trg
-		T.loc = T_src
-	else
-		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code: MSD01.\n <font size=10>WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</font></span>")
-		log_admin("Error with shuttles: Landmarks not found. Code: MSD01.")
-
 	if(!istype(T_src) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Ref turfs are null. Code: MSD15.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
 		log_admin("Error with shuttles: Ref turfs are null. Code: MSD15.")
+		r_FAL
+
+	locs_dock -= T_src
+	locs_land -= T_trg
+	locs_dock |= T_trg
+	locs_land |= T_src
 
 	//END: Heavy lifting backend
 
@@ -383,7 +309,7 @@
 	moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums)
-	move_shuttle_to(T_trg, null, turfs_src, 0, T.rotation, src)
+	move_shuttle_to(T_trg, null, turfs_src, 0, trg_rot, src)
 
 	moving_status = SHUTTLE_IDLE
 

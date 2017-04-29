@@ -293,19 +293,68 @@ x_pos = 0 1 2 3 4 5 6
 
 /obj/effect/landmark/shuttle_loc
 	desc = "The reference landmark for shuttles"
-	icon = null
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "spawn_shuttle"
 	var/rotation = 0 //When loading to this landmark, how much to rotate the turfs. See /proc/rotate_shuttle_turfs()
 
+	New()
+		set waitfor = 0
+		..()
+
 /obj/effect/landmark/shuttle_loc/marine_src
-
+	icon_state = "spawn_shuttle_dock"
 /obj/effect/landmark/shuttle_loc/marine_int
-
+	icon_state = "spawn_shuttle_move"
 /obj/effect/landmark/shuttle_loc/marine_trg
-
+	icon_state = "spawn_shuttle_land"
 /obj/effect/landmark/shuttle_loc/marine_crs
+	icon_state = "spawn_shuttle_crash"
 
-/obj/effect/landmark/shuttle_loc/New()
-	shuttlemarks += src
+#define SHUTTLE_LINK_LOCATIONS(T, L) \
+sleep(50); \
+..(); \
+var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] [T] [name]"]; \
+if(!S) {log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
+r_FAL}; \
+L[get_turf(src)] = rotation; \
+cdel(src)
+
+/obj/effect/landmark/shuttle_loc/marine_src/dropship //Name these "1" or "2", etc.
+	New()
+		SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_dock)
+
+/obj/effect/landmark/shuttle_loc/marine_src/evacuation
+	New()
+		sleep(50)
+		..()
+		var/datum/shuttle/ferry/marine/evacuation_pod/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [name]"]
+		if(!S)
+			log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] Evac [name]"].")
+			r_FAL
+		S.locs_dock[get_turf(src)] = rotation
+		S.link_support_units(get_turf(src)) //Process links.
+		cdel(src)
+
+/obj/effect/landmark/shuttle_loc/marine_int/dropship
+	New()
+		SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_move)
+
+/obj/effect/landmark/shuttle_loc/marine_trg/landing
+	New()
+		SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_land)
+
+/obj/effect/landmark/shuttle_loc/marine_trg/evacuation
+	New()
+		SHUTTLE_LINK_LOCATIONS("Evac", S.locs_land)
+
+/obj/effect/landmark/shuttle_loc/marine_crs/dropship
+	New()
+		sleep(50)
+		..()
+		shuttle_controller.locs_crash[get_turf(src)] = rotation
+		cdel(src)
+
+#undef SHUTTLE_LINK_LOCATIONS
 
 /proc/get_shuttle_turfs(var/turf/ref, var/list/L)
 

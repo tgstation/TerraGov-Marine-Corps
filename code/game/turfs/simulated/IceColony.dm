@@ -914,7 +914,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 /obj/machinery/computer/shuttle_control/elevator2
@@ -925,7 +924,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 /obj/machinery/computer/shuttle_control/elevator3
@@ -936,7 +934,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 /obj/machinery/computer/shuttle_control/elevator4
@@ -947,7 +944,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 //RESEARCH DECORATION-----------------------//

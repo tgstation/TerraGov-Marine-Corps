@@ -15,7 +15,7 @@ with the original.*/
 /datum/shuttle/ferry/marine/evacuation_pod
 	location = 0
 	warmup_time = 5
-	shuttle_tag = "Almayer Evac "
+	shuttle_tag = "Almayer Evac"
 	info_tag = "Almayer Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
@@ -58,12 +58,12 @@ off an existing controller that allowed more robust functinonality. But in reali
 are basically hard-linked together and do not need a go-between controller. The shuttle datum itself would
 suffice.
 */
-/datum/shuttle/ferry/marine/evacuation_pod/proc/link_support_units(i, turf/ref)
+/datum/shuttle/ferry/marine/evacuation_pod/proc/link_support_units(turf/ref)
 	var/datum/coords/C = info_datums[1] //Grab a coord for random turf.
 	var/turf/T = locate(ref.x + C.x_pos, ref.y + C.y_pos, ref.z) //Get a turf from the coordinates.
 	if(!istype(T))
-		log_debug("ERROR CODE EV0: unable to find the first turf of Almayer Evac [i].")
-		world << "<span class='debuginfo'>ERROR CODE EV0: unable to find the first turf of Almayer Evac [i].</span>"
+		log_debug("ERROR CODE EV0: unable to find the first turf of [shuttle_tag].")
+		world << "<span class='debuginfo'>ERROR CODE EV0: unable to find the first turf of [shuttle_tag].</span>"
 		r_FAL
 
 	staging_area = T.loc //Grab the area and store it on file.
@@ -71,16 +71,16 @@ suffice.
 
 	D = locate() in staging_area
 	if(!D)
-		log_debug("ERROR CODE EV1.5: could not find door in Almayer Evac [i].")
-		world << "<span class='debuginfo'>ERROR CODE EV1: could not find door in Almayer Evac [i].</span>"
+		log_debug("ERROR CODE EV1.5: could not find door in [shuttle_tag].")
+		world << "<span class='debuginfo'>ERROR CODE EV1: could not find door in [shuttle_tag].</span>"
 		r_FAL
 	D.id_tag = shuttle_tag //So that the door can be operated via controller later.
 
 
 	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/R = locate() in staging_area //Grab the controller.
 	if(!R)
-		log_debug("ERROR CODE EV1.5: could not find controller in Almayer Evac [i].")
-		world << "<span class='debuginfo'>ERROR CODE EV1: could not find controller in Almayer Evac [i].</span>"
+		log_debug("ERROR CODE EV1.5: could not find controller in [shuttle_tag].")
+		world << "<span class='debuginfo'>ERROR CODE EV1: could not find controller in [shuttle_tag].</span>"
 		r_FAL
 
 	//Set the tags.
@@ -94,8 +94,8 @@ suffice.
 		cryo_cells += E
 		E.evacuation_program = evacuation_program
 	if(!cryo_cells.len)
-		log_debug("ERROR CODE EV2: could not find cryo pods in Almayer Evac [i].")
-		world << "<span class='debuginfo'>ERROR CODE EV2: could not find cryo pods in Almayer Evac [i].</span>"
+		log_debug("ERROR CODE EV2: could not find cryo pods in [shuttle_tag].")
+		world << "<span class='debuginfo'>ERROR CODE EV2: could not find cryo pods in [shuttle_tag].</span>"
 		r_FAL
 
 #define MOVE_MOB_OUTSIDE \

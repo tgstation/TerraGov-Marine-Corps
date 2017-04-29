@@ -815,7 +815,6 @@
 #include "code\modules\cm_marines\NonLethalRestraints.dm"
 #include "code\modules\cm_marines\overwatch.dm"
 #include "code\modules\cm_marines\shuttle_backend.dm"
-#include "code\modules\cm_marines\shuttles.dm"
 #include "code\modules\cm_marines\smartgun_mount.dm"
 #include "code\modules\cm_marines\structures.dm"
 #include "code\modules\cm_marines\super_secret.dm"

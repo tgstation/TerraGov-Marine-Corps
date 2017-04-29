@@ -189,24 +189,18 @@
 	dir = 5
 
 	tiles_with = list(
-//		/turf/simulated/wall,
-//		/obj/structure/falsewall,
-//		/obj/structure/falserwall,
+		/turf/simulated/wall,
+		/obj/structure/falsewall,
+		/obj/structure/falserwall)
+
+	var/tiles_special[] = list( //Special case.
+		/obj/machinery/door/airlock,
 		/obj/structure/window/reinforced/almayer)
 
 /obj/structure/window/reinforced/almayer/New()
 	spawn(10)
 		relativewall()
 		relativewall_neighbours()
-		if(icon_state == "[basestate]0") //This is weird I know but it'll get us the results we need.
-			tiles_with = list(
-				/turf/simulated/wall,
-				/obj/structure/falsewall,
-				/obj/structure/falserwall,
-				/obj/structure/window/reinforced/almayer,
-				/obj/machinery/door/airlock)
-			relativewall()
-
 
 /obj/structure/window/reinforced/almayer/update_nearby_icons()
 	relativewall_neighbours()
