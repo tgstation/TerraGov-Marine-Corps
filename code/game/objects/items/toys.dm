@@ -218,10 +218,10 @@
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
 			if(bullets <= 4)
-				user.drop_item()
-				del(I)
-				bullets++
-				user << "\blue You load the foam dart into the crossbow."
+				if(user.drop_held_item())
+					del(I)
+					bullets++
+					user << "\blue You load the foam dart into the crossbow."
 			else
 				usr << "\red It's already fully loaded."
 

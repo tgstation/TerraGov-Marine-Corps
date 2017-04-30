@@ -154,8 +154,7 @@
 		if(isobj(obj))
 			var/mob/M = obj.loc
 			if(ismob(M))
-				M.u_equip(obj)
-				M.update_icons()	//so their overlays update
+				M.temp_drop_inv_item(obj)
 
 		if(!silent)
 			var/obj/oldobj = obj

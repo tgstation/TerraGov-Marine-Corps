@@ -122,8 +122,8 @@ Defined in setup.dm.
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/M = src.loc
-		M.drop_item(src)
-	loc = G
+		M.drop_held_item(src)
+	forceMove(G)
 
 	G.accuracy 			+= accuracy_mod
 	G.damage			+= damage_mod
@@ -318,7 +318,7 @@ Defined in setup.dm.
 		if(istype(I,/obj/item/weapon/screwdriver))
 			user << "<span class='notice'>You modify the bayonet back into a combat knife.</span>"
 			if(src.loc == user)
-				user.drop_from_inventory(src)
+				user.drop_inv_item_on_ground(src)
 			var/obj/item/weapon/combat_knife/F = new(src.loc)
 			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 			if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
@@ -393,7 +393,7 @@ Defined in setup.dm.
 		if(istype(I,/obj/item/weapon/screwdriver))
 			user << "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>"
 			if(loc == user)
-				user.remove_from_mob(src)
+				user.temp_drop_inv_item(src)
 			var/obj/item/device/flashlight/F = new(user)
 			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 			cdel(src) //Delete da old flashlight

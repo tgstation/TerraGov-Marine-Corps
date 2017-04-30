@@ -133,7 +133,7 @@
 				return
 
 			num_flares++
-			user.remove_from_mob(flare)
+			user.temp_drop_inv_item(flare)
 			sleep(-1)
 			del(flare)
 			user << "<span class='notice'>You insert the flare.</span>"

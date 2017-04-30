@@ -177,8 +177,7 @@ var/global/list/holodeck_programs = list(
 	if(isobj(obj))
 		var/mob/M = obj.loc
 		if(ismob(M))
-			M.u_equip(obj)
-			M.update_icons()	//so their overlays update
+			M.temp_drop_inv_item(obj)
 
 	if(!silent)
 		var/obj/oldobj = obj
@@ -481,7 +480,7 @@ var/global/list/holodeck_programs = list(
 		del(W)
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_item(src)
+		user.drop_inv_item_to_loc(W, src)
 		visible_message("\blue [user] dunks [W] into the [src]!", 3)
 		return
 

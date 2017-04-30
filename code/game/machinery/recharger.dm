@@ -41,10 +41,9 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			if(D.ready)
 				user << "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>"
 				return
-		user.drop_item()
-		G.loc = src
-		charging = G
-		update_icon()
+		if(user.drop_inv_item_to_loc(G, src))
+			charging = G
+			update_icon()
 	else if(istype(G, /obj/item/weapon/wrench))
 		if(charging)
 			user << "\red Remove [charging] first!"

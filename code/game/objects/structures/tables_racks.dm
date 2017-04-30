@@ -320,7 +320,7 @@
 		return ..()
 	if(isrobot(user))
 		return
-	user.drop_item()
+	user.drop_held_item()
 	if (O.loc != src.loc)
 		step(O, get_dir(O, src))
 	return
@@ -379,8 +379,8 @@
 			user << "\red You slice at the table, but only claw it up a little."
 		return
 
-	user.drop_item(src)
-	return
+	user.drop_inv_item_to_loc(W, loc)
+
 
 /obj/structure/table/proc/straight_table_check(var/direction)
 	var/obj/structure/table/T
@@ -597,7 +597,7 @@
 		return
 	if(isrobot(user))
 		return
-	user.drop_item()
+	user.drop_held_item()
 	if (O.loc != src.loc)
 		step(O, get_dir(O, src))
 	return
@@ -609,7 +609,7 @@
 		return
 	if(isrobot(user))
 		return
-	user.drop_item()
+	user.drop_held_item()
 	if(W && W.loc)	W.loc = src.loc
 	return
 

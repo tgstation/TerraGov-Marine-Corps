@@ -211,7 +211,7 @@ obj/structure/door_assembly
 
 		if(do_after(user, 40))
 			if(!src) return
-			user.drop_item()
+			user.drop_held_item()
 			W.loc = src
 			user << "\blue You installed the airlock electronics!"
 			src.state = 2
@@ -270,9 +270,9 @@ obj/structure/door_assembly
 				path = text2path("/obj/machinery/door/airlock[glass_type]")
 			else
 				path = text2path("/obj/machinery/door/airlock[airlock_type]")
-			
+
 			var/obj/machinery/door/airlock/door = new path(src.loc)
-			
+
 			door.assembly_type = type
 			door.electronics = src.electronics
 			if (istype(electronics, /obj/item/weapon/airlock_electronics/secure))

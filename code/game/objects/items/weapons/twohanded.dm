@@ -98,7 +98,7 @@
 	flags_atom = DELONDROP|TWOHANDED|WIELDED
 
 	unwield(var/mob/user)
-		user.remove_from_mob(src)
+		user.temp_drop_inv_item(src)
 		cdel(src)
 
 	wield()

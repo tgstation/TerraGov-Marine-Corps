@@ -67,12 +67,11 @@
 				// insert cell
 				var/obj/item/weapon/cell/C = usr.get_active_hand()
 				if(istype(C))
-					user.drop_item()
-					cell = C
-					C.loc = src
-					C.add_fingerprint(usr)
+					if(user.drop_inv_item_to_loc(C, src))
+						cell = C
+						C.add_fingerprint(usr)
 
-					user.visible_message("\blue [user] inserts a power cell into [src].", "\blue You insert the power cell into [src].")
+						user.visible_message("\blue [user] inserts a power cell into [src].", "\blue You insert the power cell into [src].")
 		else
 			user << "The hatch must be open to insert a power cell."
 			return
@@ -148,12 +147,12 @@
 				if(open && !cell)
 					var/obj/item/weapon/cell/C = usr.get_active_hand()
 					if(istype(C))
-						usr.drop_item()
-						cell = C
-						C.loc = src
-						C.add_fingerprint(usr)
+						if(usr.drop_held_item())
+							cell = C
+							C.forceMove(src)
+							C.add_fingerprint(usr)
 
-						usr.visible_message("\blue [usr] inserts \the [C] into \the [src].", "\blue You insert \the [C] into \the [src].")
+							usr.visible_message("\blue [usr] inserts \the [C] into \the [src].", "\blue You insert \the [C] into \the [src].")
 
 		updateDialog()
 	else

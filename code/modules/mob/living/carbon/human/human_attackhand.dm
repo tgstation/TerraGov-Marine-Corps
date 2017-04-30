@@ -206,7 +206,7 @@
 				//End BubbleWrap
 
 				if(!talked)	//BubbleWrap
-					drop_item()
+					drop_held_item()
 					visible_message("\red <B>[M] has disarmed [src]!</B>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				return

@@ -41,21 +41,9 @@
 					usr << "\red Their hands are full."
 					return
 				else
-					usr.drop_item()
-					if(src.r_hand == null)
-						src.r_hand = I
-					else
-						src.l_hand = I
-				I.dropped(usr)
-				if(I)
-					I.loc = src
-					I.layer = 20
-					I.add_fingerprint(src)
-					src.update_inv_l_hand(0)
-					src.update_inv_r_hand()
-					usr.update_inv_l_hand(0)
-					usr.update_inv_r_hand()
-					src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
+					usr.drop_held_item()
+					if(put_in_hands(I))
+						src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
 			if("No")
 				return
 	else

@@ -3,7 +3,7 @@
 
 /obj/item/weapon/grab
 	name = "grab"
-	flags_atom = NOBLUDGEON
+	flags_atom = NOBLUDGEON|DELONDROP
 	var/obj/screen/grab/hud = null
 	var/mob/affecting = null
 	var/mob/assailant = null
@@ -16,7 +16,6 @@
 	abstract = 1
 	item_state = "nothing"
 	w_class = 5.0
-	destroy_on_drop = 1
 
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)
@@ -77,12 +76,7 @@
 			if(G.affecting != affecting)
 				allow_upgrade = 0
 		if(state == GRAB_AGGRESSIVE)
-			var/h = affecting.hand
-			affecting.hand = 0
-			affecting.drop_item()
-			affecting.hand = 1
-			affecting.drop_item()
-			affecting.hand = h
+			affecting.drop_held_items()
 			for(var/obj/item/weapon/grab/G in affecting.grabbed_by)
 				if(G == src) continue
 				if(G.state == GRAB_AGGRESSIVE)
@@ -214,10 +208,6 @@
 			affecting.loc = user
 			attacker.stomach_contents.Add(affecting)
 			del(src)
-
-
-/obj/item/weapon/grab/dropped()
-	del(src)
 
 /obj/item/weapon/grab/Del()
 	del(hud)

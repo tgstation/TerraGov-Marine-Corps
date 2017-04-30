@@ -109,10 +109,9 @@
 			if(cell)
 				user << "There is a power cell already installed."
 			else
-				user.drop_item()
-				W.loc = src
-				cell = W
-				user << "You insert the power cell."
+				if(user.drop_inv_item_to_loc(W, src))
+					cell = W
+					user << "You insert the power cell."
 	updateicon()
 
 //Magical floodlight that cannot be destroyed or interacted with.

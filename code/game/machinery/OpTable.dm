@@ -75,10 +75,9 @@
 
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
-	user.drop_item()
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
+	if(user.drop_held_item())
+		if (O.loc != src.loc)
+			step(O, get_dir(O, src))
 
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, src.loc))

@@ -23,7 +23,7 @@
 		var/obj/item/weapon/spacecash/bundle/bundle
 		if(!istype(W, /obj/item/weapon/spacecash/bundle))
 			var/obj/item/weapon/spacecash/cash = W
-			user.drop_from_inventory(cash)
+			user.temp_drop_inv_item(cash)
 			bundle = new (src.loc)
 			bundle.worth += cash.worth
 			del(cash)
@@ -33,8 +33,8 @@
 		bundle.update_icon()
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/h_user = user
-			h_user.drop_from_inventory(src)
-			h_user.drop_from_inventory(bundle)
+			h_user.temp_drop_inv_item(src)
+			h_user.temp_drop_inv_item(bundle)
 			h_user.put_in_hands(bundle)
 		user << "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>"
 		del(src)
@@ -76,7 +76,7 @@
 	src.worth -= amount
 	src.update_icon()
 	if(!worth)
-		usr.drop_from_inventory(src)
+		usr.temp_drop_inv_item(src)
 	if(amount in list(1000,500,200,100,50,20,1))
 		var/cashtype = text2path("/obj/item/weapon/spacecash/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)

@@ -139,16 +139,14 @@
 		if(istype(H))
 			if(helmet && H.head == helmet)
 				helmet.canremove = 1
-				H.drop_from_inventory(helmet)
-				helmet.loc = src
+				H.drop_inv_item_to_loc(helmet, src)
 
 	if(boots)
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
 				boots.canremove = 1
-				H.drop_from_inventory(boots)
-				boots.loc = src
+				H.drop_inv_item_to_loc(boots, src)
 
 /*
 /obj/item/clothing/suit/space/rig/verb/get_mounted_device()
@@ -213,8 +211,7 @@
 
 	if(H.head == helmet)
 		helmet.canremove = 1
-		H.drop_from_inventory(helmet)
-		helmet.loc = src
+		H.drop_inv_item_to_loc(helmet, src)
 		H << "\blue You retract your hardsuit helmet."
 	else
 		if(H.head)
@@ -259,7 +256,7 @@
 					user << "\The [src] already has a helmet installed."
 				else
 					user << "You attach \the [W] to \the [src]'s helmet mount."
-					user.drop_item()
+					user.drop_held_item()
 					W.loc = src
 					src.helmet = W
 				return
@@ -286,7 +283,7 @@
 					user << "\The [src] already has magboots installed."
 				else
 					user << "You attach \the [W] to \the [src]'s boot mounts."
-					user.drop_item()
+					user.drop_held_item()
 					W.loc = src
 					boots = W
 			else

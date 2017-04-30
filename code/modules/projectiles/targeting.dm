@@ -62,7 +62,7 @@
 	var/mob/living/M = loc
 	if(M == T) return
 	if(!istype(M)) return
-	if(src != M.equipped())
+	if(src != M.get_held_item())
 		stop_aim()
 		return
 	M.last_move_intent = world.time
@@ -153,7 +153,7 @@ mob/living/proc/Targeted(var/obj/item/weapon/gun/I) //Self explanitory.
 				target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking-y")
 			else
 				target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking")
-			overlays += target_locked
+			update_targeted()
 			spawn(0)
 				sleep(20)
 				if(target_locked)

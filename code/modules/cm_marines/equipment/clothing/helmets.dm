@@ -342,8 +342,8 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 		var/allowed_items[] = return_allowed_items()
 		if(W.type in allowed_items)
 			if(helmet_garb.len < 3)
-				user.remove_from_mob(W)
-				W.loc = src
+				user.temp_drop_inv_item(W)
+				W.forceMove(src)
 				helmet_garb += W
 				user.visible_message("<span class='notice'>[user] puts [W] on [src].</span>","<span class='info'>You put [W] on [src].</span>")
 				update_icon(user)

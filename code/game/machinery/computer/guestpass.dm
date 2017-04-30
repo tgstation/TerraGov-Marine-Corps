@@ -61,10 +61,10 @@
 /obj/machinery/computer/guestpass/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/weapon/card/id))
 		if(!giver)
-			user.drop_item()
-			O.loc = src
-			giver = O
-			updateUsrDialog()
+			if(user.drop_held_item())
+				O.forceMove(src)
+				giver = O
+				updateUsrDialog()
 		else
 			user << "<span class='warning'>There is already ID card inside.</span>"
 
@@ -153,9 +153,9 @@
 				else
 					var/obj/item/I = usr.get_active_hand()
 					if (istype(I, /obj/item/weapon/card/id))
-						usr.drop_item()
-						I.loc = src
-						giver = I
+						if(usr.drop_held_item())
+							I.forceMove(src)
+							giver = I
 				updateUsrDialog()
 
 			if ("print")

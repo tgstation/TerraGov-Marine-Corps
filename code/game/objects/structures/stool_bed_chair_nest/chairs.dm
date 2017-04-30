@@ -23,7 +23,7 @@
 		if(!SK.status)
 			user << "<span class='notice'>[SK] is not ready to be attached!</span>"
 			return
-		user.drop_item()
+		user.drop_held_item()
 		var/obj/structure/stool/bed/chair/e_chair/E = new /obj/structure/stool/bed/chair/e_chair(src.loc)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		E.dir = dir

@@ -173,19 +173,17 @@
 			attack_hand(user)
 		return
 	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
-		user.drop_item()
-		W.loc = src
-		coin = W
-		user << "\blue You insert the [W] into the [src]"
+		if(user.drop_inv_item_to_loc(W, src))
+			coin = W
+			user << "\blue You insert the [W] into the [src]"
 		return
 	else if(istype(W, /obj/item/weapon/card) && currently_vending)
 		var/obj/item/weapon/card/I = W
 		scan_card(I)
 	else if (istype(W, /obj/item/weapon/spacecash/ewallet))
-		user.drop_item()
-		W.loc = src
-		ewallet = W
-		user << "\blue You insert the [W] into the [src]"
+		if(user.drop_inv_item_to_loc(W, src))
+			ewallet = W
+			user << "\blue You insert the [W] into the [src]"
 
 	else if(istype(W, /obj/item/weapon/wrench))
 
@@ -570,7 +568,7 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_atom & WIELDED)
 					item_to_stock.unwield(user)
-				user.u_equip(item_to_stock)
+				user.temp_drop_inv_item(item_to_stock)
 			del(item_to_stock)
 			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
 			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")

@@ -156,15 +156,11 @@
 				break
 
 		if(!inserted || !S.amount)
-			usr.drop_from_inventory(S)
-			usr.update_icons()	//update our overlays
-			if (usr.client && usr.s_active != src)
-				usr.client.screen -= S
-			S.dropped(usr)
+			usr.temp_drop_inv_item(S)
 			if(!S.amount)
 				del S
 			else
-				S.loc = src
+				S.forceMove(src)
 
 		orient2hud(usr)
 		if(usr.s_active)

@@ -460,7 +460,7 @@ include jackets and regular suits, not armor.*/
 		return
 
 	if(!hastie && istype(I, /obj/item/clothing/tie))
-		user.drop_item()
+		user.drop_held_item()
 		hastie = I
 		hastie.on_attached(src, user)
 
@@ -470,14 +470,13 @@ include jackets and regular suits, not armor.*/
 
 		return
 
-	if(src.loc == user && istype(I,/obj/item/clothing/under) && src != I)
-		if(istype(user,/mob/living/carbon/human))
+	if(loc == user && istype(I,/obj/item/clothing/under) && src != I)
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.w_uniform == src)
-				H.u_equip(src)
+				H.drop_inv_item_on_ground(src)
 				if(H.equip_to_appropriate_slot(I))
 					H.put_in_active_hand(src)
-					H.update_icons()
 
 	..()
 
@@ -502,10 +501,10 @@ include jackets and regular suits, not armor.*/
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
-						usr.u_equip(src)
+						usr.drop_inv_item_on_ground(src)
 						usr.put_in_r_hand(src)
 					if("l_hand")
-						usr.u_equip(src)
+						usr.drop_inv_item_on_ground(src)
 						usr.put_in_l_hand(src)
 				add_fingerprint(usr)
 

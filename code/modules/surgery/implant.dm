@@ -147,9 +147,8 @@
 		var/datum/wound/internal_bleeding/I = new (10)
 		affected.wounds += I
 		affected.owner.custom_pain("You feel something rip in your [affected.display_name]!", 1)
-	user.drop_item()
+	user.drop_inv_item_to_loc(tool, target)
 	affected.hidden = tool
-	tool.loc = target
 	affected.cavity = 0
 
 /datum/surgery_step/cavity/place_item/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

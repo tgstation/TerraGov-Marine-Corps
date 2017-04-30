@@ -88,15 +88,14 @@ var/bomb_set
 			nukehack_win(user)
 		return
 
-	if (src.extended)
+	if (extended)
 		if (istype(O, /obj/item/weapon/disk/nuclear))
-			usr.drop_item()
-			O.loc = src
-			src.auth = O
-			src.add_fingerprint(user)
+			if(user.drop_inv_item_to_loc(O, src))
+				auth = O
+				add_fingerprint(user)
 			return
 
-	if (src.anchored)
+	if (anchored)
 		switch(removal_stage)
 			if(0)
 				if(istype(O,/obj/item/weapon/weldingtool))
@@ -297,9 +296,9 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/disk/nuclear))
-					usr.drop_item()
-					I.loc = src
-					src.auth = I
+					if(usr.drop_held_item())
+						I.forceMove(src)
+						auth = I
 		if (src.auth)
 			if (href_list["type"])
 				if (href_list["type"] == "E")

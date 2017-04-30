@@ -13,8 +13,7 @@
 		var/mob/living/carbon/C = user
 		if(!container)
 			container = I
-			C.drop_item()
-			I.loc = src
+			C.drop_inv_item_to_loc(I, src)
 		return
 	if(istype(I,/obj/item/weapon/virusdish))
 		if(virusing)
@@ -32,7 +31,7 @@
 		state("The [src.name] Buzzes", "blue")
 		return
 	..()
-	return 
+	return
 
 /obj/machinery/computer/curer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)

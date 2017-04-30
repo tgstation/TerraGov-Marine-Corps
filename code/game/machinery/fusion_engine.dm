@@ -107,7 +107,7 @@
 			if(fuel_amount>50)
 				user << "<span class='warning'>The current cell is more than half full.</span>"
 				r_TRU
-			user.remove_from_mob(W)
+			user.temp_drop_inv_item(W)
 			cdel(W) //FUEL CELL IS CURRENTLY CONSUMED.  Maybe eventually dump one out.
 			fuel_amount = 100
 			icon_track = 100

@@ -154,8 +154,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else
 			user << "\red Machine cannot accept disks in that format."
 			return
-		user.drop_item()
-		D.loc = src
+		user.drop_inv_item_to_loc(D, src)
 		user << "\blue You add the disk to the machine!"
 	else if(istype(D, /obj/item/weapon/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)

@@ -83,7 +83,7 @@ Note: Must be placed within 3 tiles of the WY Research Console
 		//var/list/temp_tech = ConvertReqString2List(O.origin_tech) //This warning might just be Byond being silly.
 		busy = 1
 		loaded_item = O
-		user.drop_item()
+		user.drop_held_item()
 		O.loc = src
 		user << "\blue You add the [O.name] to the machine!"
 		flick("d_analyzer_la", src)

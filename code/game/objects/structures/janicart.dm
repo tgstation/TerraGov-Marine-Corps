@@ -28,7 +28,7 @@
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
-		user.drop_item()
+		user.drop_held_item()
 		mybag = I
 		I.loc = src
 		update_icon()
@@ -45,7 +45,7 @@
 				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 				return
 		if(!mymop)
-			user.drop_item()
+			user.drop_held_item()
 			mymop = I
 			I.loc = src
 			update_icon()
@@ -53,7 +53,7 @@
 			user << "<span class='notice'>You put [I] into [src].</span>"
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
-		user.drop_item()
+		user.drop_held_item()
 		myspray = I
 		I.loc = src
 		update_icon()
@@ -61,7 +61,7 @@
 		user << "<span class='notice'>You put [I] into [src].</span>"
 
 	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
-		user.drop_item()
+		user.drop_held_item()
 		myreplacer = I
 		I.loc = src
 		update_icon()
@@ -70,7 +70,7 @@
 
 	else if(istype(I, /obj/item/weapon/caution))
 		if(signs < 4)
-			user.drop_item()
+			user.drop_held_item()
 			I.loc = src
 			signs++
 			update_icon()
@@ -194,7 +194,7 @@
 		user << "Hold [I] in one of your hands while you drive this [callme]."
 	else if(istype(I, /obj/item/weapon/storage/bag/trash))
 		user << "<span class='notice'>You hook the trashbag onto the [callme].</span>"
-		user.drop_item()
+		user.drop_held_item()
 		I.loc = src
 		mybag = I
 

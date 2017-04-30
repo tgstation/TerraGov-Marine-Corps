@@ -52,13 +52,13 @@
 /obj/item/weapon/stool/proc/deploy(var/mob/user)
 
 	if(!origin)
-		user.drop_from_inventory(src)
+		user.temp_drop_inv_item(src)
 		del (src)
 		return
 
 	if(user)
 		origin.loc = get_turf(user)
-		user.drop_from_inventory(src)
+		user.temp_drop_inv_item(src)
 		user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
 		del(src)
 
@@ -69,7 +69,7 @@
 /obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(25) && istype(M,/mob/living))
 		user.visible_message("\red [user] breaks [src] over [M]'s back!")
-		user.drop_from_inventory(src)
+		user.temp_drop_inv_item(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)
 		var/mob/living/T = M

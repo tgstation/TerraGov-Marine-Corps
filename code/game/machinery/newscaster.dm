@@ -752,10 +752,10 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			photo.loc = src.loc
 			user.put_in_inactive_hand(photo)
 		photo = null
-	if(istype(user.get_active_hand(), /obj/item/weapon/photo))
-		photo = user.get_active_hand()
-		user.drop_item()
-		photo.loc = src
+	var/obj/item/weapon/photo/PH = user.get_active_hand()
+	if(istype(PH))
+		if(user.drop_inv_item_to_loc(photo, src))
+			photo = PH
 	else if(istype(user,/mob/living/silicon))
 		var/mob/living/silicon/tempAI = user
 		var/datum/picture/selection = tempAI.GetPicture()

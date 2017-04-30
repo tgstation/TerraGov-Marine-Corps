@@ -95,9 +95,7 @@
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
 	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
-	user.drop_item()
-	if(I && I.loc)	I.loc = src.loc
-	return
+	user.drop_inv_item_to_loc(I, loc)
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)

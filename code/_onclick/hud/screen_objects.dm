@@ -408,7 +408,7 @@
 		if("Allow Walking")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetMove()
@@ -417,7 +417,7 @@
 		if("Disallow Walking")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetMove()
@@ -426,7 +426,7 @@
 		if("Allow Running")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetRun()
@@ -435,7 +435,7 @@
 		if("Disallow Running")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetRun()
@@ -444,7 +444,7 @@
 		if("Allow Item Use")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetClick()
@@ -454,7 +454,7 @@
 		if("Disallow Item Use")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetClick()
@@ -475,26 +475,26 @@
 					usr << "Your caste lacks the ability to do this."
 
 		if("Activate weapon attachment")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.activate_attachment()
 
 		if("Toggle Rail Flashlight")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(!istype(G)) return
 			if(!G.get_active_firearm(usr)) return
 			var/obj/item/attachable/flashlight/F = G.rail
 			if(F) F.activate_attachment(G, usr)
 
 		if("Eject magazine")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.empty_mag()
 
 		if("Toggle burst fire")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.toggle_burst()
 
 		if("Use unique action")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.use_unique_action()
 
 	return 1

@@ -161,4 +161,4 @@ var/last_chew = 0
 			if(!C)	return
 			if(p_loc == user.loc && p_loc_m == C.loc)
 				C.handcuffed = new /obj/item/weapon/handcuffs(C)
-				C.update_inv_handcuffed()
+				C.handcuff_update()

@@ -24,8 +24,7 @@
 
 		if((istype(I, /obj/item/weapon/grenade)))
 			if(grenades.len < max_grenades)
-				user.drop_item()
-				I.loc = src
+				user.drop_inv_item_to_loc(I, src)
 				grenades += I
 				user << "\blue You put the grenade in the grenade launcher."
 				user << "\blue [grenades.len] / [max_grenades] Grenades."

@@ -526,12 +526,11 @@
 		if(src.SUIT)
 			user << "<font color='blue'>The unit already contains a suit.</font>"
 			return
-		user << "You load the [S.name] into the storage compartment."
-		user.drop_item()
-		S.loc = src
-		src.SUIT = S
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(S, src))
+			user << "You load the [S.name] into the storage compartment."
+			SUIT = S
+			update_icon()
+			updateUsrDialog()
 		return
 	if( istype(I,/obj/item/clothing/head/helmet) )
 		if(!src.isopen)
@@ -541,11 +540,10 @@
 			user << "<font color='blue'>The unit already contains a helmet.</font>"
 			return
 		user << "You load the [H.name] into the storage compartment."
-		user.drop_item()
-		H.loc = src
-		src.HELMET = H
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(H, src))
+			HELMET = H
+			update_icon()
+			updateUsrDialog()
 		return
 	if( istype(I,/obj/item/clothing/mask) )
 		if(!src.isopen)
@@ -555,15 +553,13 @@
 			user << "<font color='blue'>The unit already contains a mask.</font>"
 			return
 		user << "You load the [M.name] into the storage compartment."
-		user.drop_item()
-		M.loc = src
-		src.MASK = M
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(M, src))
+			MASK = M
+			update_icon()
+			updateUsrDialog()
 		return
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+	update_icon()
+	updateUsrDialog()
 
 
 /obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
@@ -747,13 +743,12 @@
 			user << "The cycler already contains a helmet."
 			return
 
-		user << "You fit \the [I] into the suit cycler."
-		user.drop_item()
-		I.loc = src
-		helmet = I
 
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(I, src))
+			user << "You fit [I] into the suit cycler."
+			helmet = I
+			update_icon()
+			updateUsrDialog()
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/rig))
@@ -776,13 +771,11 @@
 			user << "\The [S] will not fit into the cycler with boots attached."
 			return
 
-		user << "You fit \the [I] into the suit cycler."
-		user.drop_item()
-		I.loc = src
-		suit = I
-
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(I, src))
+			user << "You fit [I] into the suit cycler."
+			suit = I
+			update_icon()
+			updateUsrDialog()
 		return
 
 	..()

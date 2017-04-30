@@ -118,7 +118,7 @@
 						playsound(loc, 'sound/effects/metalhit.ogg', 100, 1, 1)
 						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
 						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>")
-						drop_from_inventory(wear_mask)
+						drop_inv_item_on_ground(wear_mask)
 						emote("roar")
 						return 1
 

@@ -223,7 +223,7 @@
 
 	//Deal with the head item properly
 
-	user.drop_item(B)
+	user.temp_drop_inv_item(B)
 	del(B)
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

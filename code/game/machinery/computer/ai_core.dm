@@ -38,12 +38,12 @@
 					anchored = 0
 					state = 0
 			if(istype(P, /obj/item/weapon/circuitboard/aicore) && !circuit)
-				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				user << "\blue You place the circuit board inside the frame."
-				icon_state = "1"
-				circuit = P
-				user.drop_item()
-				P.loc = src
+				if(user.drop_held_item())
+					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					user << "\blue You place the circuit board inside the frame."
+					icon_state = "1"
+					circuit = P
+					P.forceMove(src)
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "\blue You screw the circuit board into place."
@@ -135,11 +135,11 @@
 					user << "\red This [P] does not seem to fit."
 					return
 
-				user.drop_item()
-				P.loc = src
-				brain = P
-				usr << "Added [P]."
-				icon_state = "3b"
+				if(user.drop_held_item())
+					P.forceMove(src)
+					brain = P
+					usr << "Added [P]."
+					icon_state = "3b"
 
 			if(istype(P, /obj/item/weapon/crowbar) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)

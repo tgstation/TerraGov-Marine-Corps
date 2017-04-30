@@ -19,9 +19,6 @@ mob/proc/airflow_stun()
 mob/living/silicon/airflow_stun()
 	return
 
-mob/living/carbon/metroid/airflow_stun()
-	return
-
 mob/living/carbon/human/airflow_stun()
 	if(shoes)
 		if(shoes.flags_inventory & NOSLIPPING) return 0

@@ -201,7 +201,7 @@
 			user.visible_message("[user] catches [src] with the same hand!","\blue You catch [src] as it spins in to your hand!")
 		else
 			user.visible_message("[user] catches [src] with his other hand!","\blue You snatch [src] with your other hand! Awesome!")
-			user.remove_from_mob(src)
+			user.temp_drop_inv_item(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
 			user.update_inv_l_hand(0)

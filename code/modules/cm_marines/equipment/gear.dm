@@ -34,7 +34,7 @@
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/tarp/T = new unfolded_tarp(user.loc)
 		T.add_fingerprint(user)
-		user.remove_from_mob(src)
+		user.temp_drop_inv_item(src)
 		cdel(src)
 
 /obj/item/bodybag/tarp/snow

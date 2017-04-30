@@ -312,11 +312,10 @@
 	attackby(obj/item/I, mob/user)
 		if((istype(I, /obj/item/weapon/grenade)))
 			if(grenades.len < max_grenades)
-				user.drop_item()
-				I.loc = src
-				grenades += I
-				user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
-				user << "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>"
+				if(user.drop_inv_item_to_loc(I, src))
+					grenades += I
+					user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
+					user << "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>"
 			else
 				user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
 
@@ -392,7 +391,7 @@
 				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2
-				user.drop_item(src)
+				user.drop_held_item()
 				cdel(src)
 		else user << "Not with a missile inside!"
 
@@ -497,7 +496,7 @@
 		if(user)
 			user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
 			if(do_after(user,current_mag.reload_delay))
-				user.remove_from_mob(rocket)
+				user.drop_inv_item_on_ground(rocket)
 				replace_ammo(user,rocket)
 				current_mag.current_rounds = current_mag.max_rounds
 				rocket.current_rounds = 0

@@ -35,10 +35,10 @@
 
 /obj/machinery/computer/med_data/attackby(obj/item/O as obj, user as mob)
 	if(istype(O, /obj/item/weapon/card/id) && !scan)
-		usr.drop_item()
-		O.loc = src
-		scan = O
-		user << "You insert [O]."
+		if(usr.drop_held_item())
+			O.forceMove(src)
+			scan = O
+			user << "You insert [O]."
 	..()
 
 /obj/machinery/computer/med_data/attack_ai(user as mob)
@@ -183,9 +183,9 @@
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card/id))
-					usr.drop_item()
-					I.loc = src
-					src.scan = I
+					if(usr.drop_held_item())
+						I.forceMove(src)
+						src.scan = I
 
 		else if (href_list["logout"])
 			src.authenticated = null

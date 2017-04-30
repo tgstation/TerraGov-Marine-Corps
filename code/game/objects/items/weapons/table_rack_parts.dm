@@ -36,9 +36,8 @@
 		return
 
 	new /obj/structure/table( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
 
 
 /*
@@ -60,9 +59,8 @@
 		return
 
 	new /obj/structure/table/reinforced( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
 
 /*
  * Wooden Table Parts
@@ -90,9 +88,8 @@
 		return
 
 	new /obj/structure/table/woodentable( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
 
 /*
  * Gambling Table Parts
@@ -115,9 +112,9 @@
 		return
 
 	new /obj/structure/table/gamblingtable( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
+
 /*
  * Rack Parts
  */
@@ -145,6 +142,6 @@
 
 	var/obj/structure/rack/R = new /obj/structure/rack( user.loc )
 	R.add_fingerprint(user)
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
+

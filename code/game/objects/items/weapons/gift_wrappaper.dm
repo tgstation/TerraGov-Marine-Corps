@@ -25,10 +25,10 @@
 	return
 
 /obj/item/weapon/gift/attack_self(mob/user as mob)
-	user.drop_item()
-	if(src.gift)
+	user.drop_held_item()
+	if(gift)
 		user.put_in_active_hand(gift)
-		src.gift.add_fingerprint(user)
+		gift.add_fingerprint(user)
 	else
 		user << "\blue The gift was empty!"
 	del(src)
@@ -105,7 +105,7 @@
 	if(!ispath(gift_type,/obj/item))	return
 
 	var/obj/item/I = new gift_type(M)
-	M.u_equip(src)
+	M.temp_drop_inv_item(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
 	del(src)
@@ -135,17 +135,17 @@
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/weapon/gift)) //No gift wrapping gifts!
 					return
 
-				src.amount -= a_used
-				user.drop_item()
-				var/obj/item/weapon/gift/G = new /obj/item/weapon/gift( src.loc )
-				G.size = W.w_class
-				G.w_class = G.size + 1
-				G.icon_state = text("gift[]", G.size)
-				G.gift = W
-				W.loc = G
-				G.add_fingerprint(user)
-				W.add_fingerprint(user)
-				src.add_fingerprint(user)
+				if(user.drop_held_item())
+					amount -= a_used
+					var/obj/item/weapon/gift/G = new /obj/item/weapon/gift( src.loc )
+					G.size = W.w_class
+					G.w_class = G.size + 1
+					G.icon_state = text("gift[]", G.size)
+					G.gift = W
+					W.forceMove(G)
+					G.add_fingerprint(user)
+					W.add_fingerprint(user)
+					add_fingerprint(user)
 			if (src.amount <= 0)
 				new /obj/item/weapon/c_tube( src.loc )
 				del(src)

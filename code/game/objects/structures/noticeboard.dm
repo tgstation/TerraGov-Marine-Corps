@@ -22,7 +22,7 @@
 		if(notices < 5)
 			O.add_fingerprint(user)
 			add_fingerprint(user)
-			user.drop_item()
+			user.drop_held_item()
 			O.loc = src
 			notices++
 			icon_state = "nboard0[notices]"	//update sprite

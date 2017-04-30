@@ -42,9 +42,9 @@
 		..()
 		if(istype(C, /obj/item/weapon/implantcase))
 			if(!( src.case ))
-				user.drop_item()
-				C.loc = src
-				src.case = C
+				if(user.drop_held_item())
+					C.forceMove(src)
+					case = C
 		else
 			return
 		src.update()

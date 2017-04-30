@@ -433,14 +433,13 @@
 			if (stat & MAINT)
 				user << "\red There is no connector for your power cell."
 				return
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user.visible_message(\
-				"\red [user.name] has inserted the power cell to [src.name]!",\
-				"You insert the power cell.")
-			chargecount = 0
-			update_icon()
+			if(user.drop_inv_item_to_loc(W, src))
+				cell = W
+				user.visible_message(\
+					"\red [user.name] has inserted the power cell to [src.name]!",\
+					"You insert the power cell.")
+				chargecount = 0
+				update_icon()
 	else if	(istype(W, /obj/item/weapon/screwdriver))	// haxing
 		if(opened)
 			if (cell)

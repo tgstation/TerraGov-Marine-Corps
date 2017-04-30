@@ -981,12 +981,7 @@
 
 		//strip their stuff and stick it in the crate
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = locker
-				I.layer = initial(I.layer)
-				I.dropped(M)
-		M.update_icons()
+			M.drop_inv_item_to_loc(I, locker)
 
 		//so they black out before warping
 		M.Paralyse(5)
@@ -1042,11 +1037,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = M.loc
-				I.layer = initial(I.layer)
-				I.dropped(M)
+			M.drop_inv_item_on_ground(I)
 
 		M.Paralyse(5)
 		sleep(5)
@@ -1071,11 +1062,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = M.loc
-				I.layer = initial(I.layer)
-				I.dropped(M)
+			M.drop_inv_item_on_ground(I)
 
 		M.Paralyse(5)
 		sleep(5)
@@ -1122,11 +1109,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = M.loc
-				I.layer = initial(I.layer)
-				I.dropped(M)
+			M.drop_inv_item_on_ground(I)
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/observer = M

@@ -956,10 +956,10 @@ About the new airlock wires panel:
 				usr << "This radio can't be attached!"
 				return
 			var/mob/M = usr
-			M.drop_item()
-			R.loc = src
-			R.airlock_wire = wirenum
-			src.signalers[wirenum] = R
+			if(M.drop_held_item())
+				R.forceMove(src)
+				R.airlock_wire = wirenum
+				src.signalers[wirenum] = R
 		else if(href_list["remove-signaler"])
 			var/wirenum = text2num(href_list["remove-signaler"])
 			if(!(src.signalers[wirenum]))

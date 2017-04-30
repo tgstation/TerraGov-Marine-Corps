@@ -20,7 +20,7 @@
 		if(M == usr)
 			usr << "<span class='notice'>You finish eating \the [src].</span>"
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>")
-		usr.drop_from_inventory(src)	//so icons update :[
+		usr.drop_inv_item_on_ground(src)	//so icons update :[
 
 		if(trash)
 			if(ispath(trash,/obj/item))
@@ -37,7 +37,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		user << "\red None of [src] left, oh no!"
-		M.drop_from_inventory(src)	//so icons update :[
+		M.drop_inv_item_on_ground(src)	//so icons update :[
 		del(src)
 		return 0
 
@@ -182,13 +182,10 @@
 	else if(W.w_class <= 2 && istype(src,/obj/item/weapon/reagent_containers/food/snacks/sliceable))
 		if(!iscarbon(user))
 			return 1
-		user << "\red You slip [W] inside [src]."
-		user.u_equip(W)
-		if ((user.client && user.s_active != src))
-			user.client.screen -= W
-		W.dropped(user)
-		add_fingerprint(user)
-		contents += W
+
+		if(user.drop_inv_item_to_loc(W, src))
+			user << "\red You slip [W] inside [src]."
+			add_fingerprint(user)
 		return
 	else
 		return 1
@@ -2672,9 +2669,7 @@
 				boxestoadd += i
 
 			if( (boxes.len+1) + boxestoadd.len <= 5 )
-				user.drop_item()
-
-				box.loc = src
+				user.drop_inv_item_to_loc(box, src)
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add( boxestoadd )
 
@@ -2691,10 +2686,9 @@
 
 	if( istype(I, /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
 
-		if( src.open )
-			user.drop_item()
-			I.loc = src
-			src.pizza = I
+		if(open)
+			user.drop_inv_item_to_loc(I, src)
+			pizza = I
 
 			update_icon()
 

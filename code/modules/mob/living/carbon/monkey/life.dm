@@ -90,7 +90,7 @@
 				Paralyse(10)
 		if (disabilities & COUGHING)
 			if ((prob(5) && paralysis <= 1))
-				drop_item()
+				drop_held_item()
 				spawn( 0 )
 					emote("cough")
 					return

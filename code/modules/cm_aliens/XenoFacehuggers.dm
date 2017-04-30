@@ -31,7 +31,7 @@ var/const/MAX_ACTIVE_TIME = 200
 /obj/item/clothing/mask/facehugger/Del()
 	if(istype(src.loc,/mob/living/carbon))
 		var/mob/living/carbon/M = loc
-		M.drop_from_inventory(src)
+		M.temp_drop_inv_item(src)
 	return ..()
 
 /obj/item/clothing/mask/facehugger/dropped()
@@ -199,7 +199,7 @@ var/const/MAX_ACTIVE_TIME = 200
 
 	if(isXeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
-		X.drop_from_inventory(src)
+		X.drop_inv_item_on_ground(src)
 		X.update_icons()
 
 	if(isturf(M.loc))
@@ -220,7 +220,7 @@ var/const/MAX_ACTIVE_TIME = 200
 					return 0
 				else if(D.anti_hug == 1)
 					H.visible_message("<span class='danger'>\The [src] smashes against \the [H]'s [D.name] and rips it off!")
-					H.drop_from_inventory(D)
+					H.drop_inv_item_on_ground(D)
 					if(istype(D, /obj/item/clothing/head/helmet/marine)) //Marine helmets now get a fancy overlay.
 						var/obj/item/clothing/head/helmet/marine/m_helmet = D
 						m_helmet.add_hugger_damage()
@@ -253,7 +253,7 @@ var/const/MAX_ACTIVE_TIME = 200
 					return 0
 				else if(W.anti_hug == 1)
 					target.visible_message("<span class='danger'>\The [src] smashes against \the [target]'s [W.name] and rips it off!</span>")
-					target.drop_from_inventory(W)
+					target.drop_inv_item_on_ground(W)
 					W.anti_hug--
 					if(rand(50))
 						Die()
@@ -261,7 +261,7 @@ var/const/MAX_ACTIVE_TIME = 200
 						GoIdle()
 					target.update_icons()
 					return 0
-			target.drop_from_inventory(W)
+			target.drop_inv_item_on_ground(W)
 			target.visible_message("<span class='danger'>\The [src] tears \the [W] off of \the [target]'s face!</span>")
 		loc = target
 		icon_state = initial(icon_state)
@@ -351,7 +351,7 @@ var/const/MAX_ACTIVE_TIME = 200
 		visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 		if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 			var/mob/M = src.loc
-			M.drop_from_inventory(src)
+			M.temp_drop_inv_item(src)
 			M.update_icons()
 		spawn(0)
 			del(src)

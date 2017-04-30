@@ -255,11 +255,11 @@
 		var/mob/living/carbon/C = src
 
 		if (C.handcuffed && !initial(C.handcuffed))
-			C.drop_from_inventory(C.handcuffed)
+			C.drop_inv_item_on_ground(C.handcuffed)
 		C.handcuffed = initial(C.handcuffed)
 
 		if (C.legcuffed && !initial(C.legcuffed))
-			C.drop_from_inventory(C.legcuffed)
+			C.drop_inv_item_on_ground(C.legcuffed)
 		C.legcuffed = initial(C.legcuffed)
 	hud_updateflag |= 1 << HEALTH_HUD
 	hud_updateflag |= 1 << STATUS_HUD
@@ -448,7 +448,7 @@
 		var/mob/M = H.loc                      //Get our mob holder (if any).
 
 		if(istype(M))
-			M.drop_from_inventory(H)
+			M.drop_inv_item_on_ground(H)
 			M << "[H] wriggles out of your grip!"
 			src << "You wriggle out of [M]'s grip!"
 		else if(istype(H.loc,/obj/item))
@@ -631,7 +631,7 @@
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						del(CM.handcuffed)
 						CM.handcuffed = null
-						CM.update_inv_handcuffed()
+						CM.handcuff_update()
 			else
 				var/obj/item/weapon/handcuffs/HC = CM.handcuffed
 				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
@@ -644,7 +644,7 @@
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.handcuffed]."
-						CM.drop_from_inventory(CM.handcuffed)
+						CM.drop_inv_item_on_ground(CM.handcuffed)
 						return*/ //Commented by Apop
 
 
@@ -660,7 +660,7 @@
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.handcuffed]."
-						CM.drop_from_inventory(CM.handcuffed)
+						CM.drop_inv_item_on_ground(CM.handcuffed)
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
@@ -685,9 +685,8 @@
 							O.show_message(text("\red <B>[] manages to break the legcuffs!</B>", CM), 1)
 						CM << "\red You successfully break your legcuffs."
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+						CM.temp_drop_inv_item(CM.legcuffed)
 						del(CM.legcuffed)
-						CM.legcuffed = null
-						CM.update_inv_legcuffed()
 			else
 				var/obj/item/weapon/legcuffs/HC = CM.legcuffed
 				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
@@ -705,9 +704,7 @@
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the legcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.legcuffed]."
-						CM.drop_from_inventory(CM.legcuffed)
-						CM.legcuffed = null
-						CM.update_inv_legcuffed()
+						CM.drop_inv_item_on_ground(CM.legcuffed)
 
 /mob/living/verb/lay_down()
 	set name = "Rest"

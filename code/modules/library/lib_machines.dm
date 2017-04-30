@@ -403,7 +403,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 /obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/book))
-		user.drop_item()
+		user.drop_held_item()
 		O.loc = src
 
 /obj/machinery/libraryscanner/attack_hand(var/mob/user as mob)
@@ -453,7 +453,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper))
-		user.drop_item()
+		user.drop_held_item()
 		O.loc = src
 		user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
 		src.visible_message("[src] begins to hum as it warms up its printing drums.")

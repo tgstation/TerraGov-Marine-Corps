@@ -124,8 +124,7 @@
 			if(!C)	return
 			if(p_loc == user.loc && p_loc_m == C.loc)
 				C.handcuffed = new /obj/item/weapon/restraints(C)
-				C.update_inv_handcuffed()
-				C.update_icons()
+				C.handcuff_update()
 				C.visible_message("\red [C] has been successfully restrained by [user]!")
 				del(src)
 	return

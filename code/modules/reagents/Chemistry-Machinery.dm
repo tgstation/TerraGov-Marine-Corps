@@ -151,11 +151,10 @@
 	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
 		if(!accept_glass && istype(B,/obj/item/weapon/reagent_containers/food))
 			user << "<span class='notice'>This machine only accepts beakers</span>"
-		src.beaker =  B
-		user.drop_item()
-		B.loc = src
-		user << "You set [B] on the machine."
-		nanomanager.update_uis(src) // update all UIs attached to src
+		if(user.drop_inv_item_to_loc(B, src))
+			beaker =  B
+			user << "You set [B] on the machine."
+			nanomanager.update_uis(src) // update all UIs attached to src
 		return
 
 /obj/machinery/chem_dispenser/attack_ai(mob/user as mob)
@@ -268,11 +267,10 @@
 		if(src.beaker)
 			user << "A beaker is already loaded into the machine."
 			return
-		src.beaker = B
-		user.drop_item()
-		B.loc = src
+		beaker = B
+		user.drop_inv_item_to_loc(B, src)
 		user << "You add the beaker to the machine!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
@@ -281,11 +279,10 @@
 			user << "A pill bottle is already loaded into the machine."
 			return
 
-		src.loaded_pill_bottle = B
-		user.drop_item()
-		B.loc = src
+		loaded_pill_bottle = B
+		user.drop_inv_item_to_loc(B, src)
 		user << "You add the pill bottle into the dispenser slot!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 	return
 
 /obj/machinery/chem_master/Topic(href, href_list)
@@ -770,15 +767,14 @@
 /obj/machinery/computer/pandemic/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(stat & (NOPOWER|BROKEN)) return
-		if(src.beaker)
+		if(beaker)
 			user << "A beaker is already loaded into the machine."
 			return
 
-		src.beaker =  I
-		user.drop_item()
-		I.loc = src
+		beaker =  I
+		user.drop_inv_item_to_loc(I, src)
 		user << "You add the beaker to the machine!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else
@@ -869,11 +865,10 @@
 		if (beaker)
 			return 1
 		else
-			src.beaker =  O
-			user.drop_item()
-			O.loc = src
+			beaker =  O
+			user.drop_inv_item_to_loc(O, src)
 			update_icon()
-			src.updateUsrDialog()
+			updateUsrDialog()
 			return 0
 
 	if(holdingitems && holdingitems.len >= limit)
@@ -901,10 +896,9 @@
 		user << "Cannot refine into a reagent."
 		return 1
 
-	user.before_take_item(O)
-	O.loc = src
+	user.drop_inv_item_to_loc(O, src)
 	holdingitems += O
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return 0
 
 /obj/machinery/reagentgrinder/attack_paw(mob/user as mob)
