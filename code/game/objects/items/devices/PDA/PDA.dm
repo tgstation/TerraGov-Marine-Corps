@@ -91,18 +91,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	icon_state = "pda-tox"
 	ttone = "boom"
 
-/obj/item/device/pda/clown
-	default_cartridge = /obj/item/weapon/cartridge/clown
-	icon_state = "pda-clown"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
-	ttone = "honk"
-
-/obj/item/device/pda/mime
-	default_cartridge = /obj/item/weapon/cartridge/mime
-	icon_state = "pda-mime"
-	silent = 1
-	ttone = "silence"
-
 /obj/item/device/pda/heads
 	default_cartridge = /obj/item/weapon/cartridge/head
 	icon_state = "pda-h"
@@ -675,33 +663,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				if(P == n)
 					active_conversation=P
 					mode=21
-		if("Send Honk")//Honk virus
-			if(istype(cartridge, /obj/item/weapon/cartridge/clown))//Cartridge checks are kind of unnecessary since everything is done through switch.
-				var/obj/item/device/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
-				if(!isnull(P))
-					if (!P.toff && cartridge.charges > 0)
-						cartridge.charges--
-						U.show_message("\blue Virus sent!", 1)
-						P.honkamt = (rand(15,20))
-				else
-					U << "PDA not found."
-			else
-				ui.close()
-				return 0
-		if("Send Silence")//Silent virus
-			if(istype(cartridge, /obj/item/weapon/cartridge/mime))
-				var/obj/item/device/pda/P = locate(href_list["target"])
-				if(!isnull(P))
-					if (!P.toff && cartridge.charges > 0)
-						cartridge.charges--
-						U.show_message("\blue Virus sent!", 1)
-						P.silent = 1
-						P.ttone = "silence"
-				else
-					U << "PDA not found."
-			else
-				ui.close()
-				return 0
 
 
 //SYNDICATE FUNCTIONS===================================
@@ -1261,22 +1222,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
 	..()
-
-/obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
-	if (istype(AM, /mob/living/carbon))
-		var/mob/M =	AM
-		if ((istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inventory&NOSLIPPING)) || M.m_intent == "walk")
-			return
-
-		if ((istype(M, /mob/living/carbon/human) && (M.real_name != src.owner) && (istype(src.cartridge, /obj/item/weapon/cartridge/clown))))
-			if (src.cartridge.charges < 5)
-				src.cartridge.charges++
-
-		M.stop_pulling()
-		M << "\blue You slipped on the PDA!"
-		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-		M.Stun(8)
-		M.Weaken(5)
 
 /obj/item/device/pda/proc/available_pdas()
 	var/list/names = list()

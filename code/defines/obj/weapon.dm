@@ -298,6 +298,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "table_parts"
+	item_state = "table_parts"
 	matter = list("metal" = 3750)
 	flags_atom = FPRINT|CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")

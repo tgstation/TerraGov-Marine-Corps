@@ -82,17 +82,6 @@
 	icon_state = "cart-s"
 	access_security = 1
 
-/obj/item/weapon/cartridge/clown
-	name = "Honkworks 5.0"
-	icon_state = "cart-clown"
-	access_clown = 1
-	charges = 5
-
-/obj/item/weapon/cartridge/mime
-	name = "Gestur-O 1000"
-	icon_state = "cart-mi"
-	access_mime = 1
-	charges = 5
 /*
 /obj/item/weapon/cartridge/botanist
 	name = "Green Thumb v4.20"

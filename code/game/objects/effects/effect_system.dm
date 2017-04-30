@@ -624,17 +624,9 @@ steam.start() -- spawns the effect
 /obj/effect/effect/foam/Crossed(var/atom/movable/AM)
 	if(metal)
 		return
-
-	if (istype(AM, /mob/living/carbon))
-		var/mob/M =	AM
-		if (istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inventory&NOSLIPPING) || M.buckled)
-			return
-
-		M.stop_pulling()
-		M << "\blue You slipped on the foam!"
-		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-		M.Stun(5)
-		M.Weaken(2)
+	if (iscarbon(AM))
+		var/mob/living/carbon/C = AM
+		C.slip("foam", 5, 2)
 
 
 /datum/effect/effect/system/foam_spread

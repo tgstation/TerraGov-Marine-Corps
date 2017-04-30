@@ -285,7 +285,8 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
-	if(locate(/obj/structure/table) in get_turf(mover))
+	var/obj/structure/table/T = locate(/obj/structure/table) in get_turf(mover)
+	if(T && !T.flipped) //flipped tables don't count
 		return 1
 	if (flipped)
 		if (get_dir(loc, target) == dir)

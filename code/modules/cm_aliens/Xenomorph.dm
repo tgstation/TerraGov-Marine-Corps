@@ -213,3 +213,8 @@ var/global/hive_orders = "" //What orders should the hive have
 /mob/living/carbon/Xenomorph/Del()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	..()
+
+
+/mob/living/carbon/Xenomorph
+	slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+		return FALSE
