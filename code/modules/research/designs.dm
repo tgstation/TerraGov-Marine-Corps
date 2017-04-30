@@ -1853,24 +1853,6 @@ datum/design/cart_janitor
 	materials = list("$metal" = 50, "$glass" = 50)
 	build_path = "/obj/item/weapon/cartridge/janitor"
 
-/*
-datum/design/cart_clown
-	name = "Honkworks 5.0 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
-	id = "cart_clown"
-	req_tech = list("engineering" = 2, "powerstorage" = 3)
-	build_type = PROTOLATHE
-	materials = list("$metal" = 50, "$glass" = 50)
-	build_path = "/obj/item/weapon/cartridge/clown"
-datum/design/cart_mime
-	name = "Gestur-O 1000 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
-	id = "cart_mime"
-	req_tech = list("engineering" = 2, "powerstorage" = 3)
-	build_type = PROTOLATHE
-	materials = list("$metal" = 50, "$glass" = 50)
-	build_path = "/obj/item/weapon/cartridge/mime"
-*/
 
 datum/design/cart_science
 	name = "Signal Ace 2 Cartridge"
