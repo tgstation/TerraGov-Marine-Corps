@@ -94,10 +94,10 @@
 		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
-					M.u_equip(src)
+					M.drop_inv_item_on_ground(src)
 					M.put_in_r_hand(src)
 				if("l_hand")
-					M.u_equip(src)
+					M.drop_inv_item_on_ground(src)
 					M.put_in_l_hand(src)
 			add_fingerprint(usr)
 			return
@@ -154,9 +154,9 @@
 			user << "<span class='notice'>[src] still has some film in it!</span>"
 			return
 		user << "<span class='notice'>You insert [I] into [src].</span>"
-		user.drop_item()
-		del(I)
-		pictures_left = pictures_max
+		if(user.temp_drop_inv_item(I))
+			del(I)
+			pictures_left = pictures_max
 		return
 	..()
 

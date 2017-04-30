@@ -119,7 +119,7 @@
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
 		C.handcuffed = null
-		C.update_inv_handcuffed()
+		C.handcuff_update()
 		return
 	else
 		..()
@@ -180,29 +180,7 @@
 		src.add_fingerprint(user)
 		return
 
-/*	if((!status) && (istype(W,/obj/item/stack/rods)))
-		var/obj/item/stack/rods/R = W
-		R.use(1)
-		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
-		src.loc = F
-		F.weldtool = src
-		if (user.client)
-			user.client.screen -= src
-		if (user.r_hand == src)
-			user.u_equip(src)
-		else
-			user.u_equip(src)
-		src.master = F
-		src.layer = initial(src.layer)
-		user.u_equip(src)
-		if (user.client)
-			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
-		return
-*/
 	..()
-	return
 
 
 /obj/item/weapon/weldingtool/process()

@@ -13,9 +13,8 @@
 
 /obj/structure/ore_box/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/ore))
-		user.u_equip(W)
-		src.contents += W
-	if (istype(W, /obj/item/weapon/storage))
+		user.drop_inv_item_to_loc(W, src)
+	else if (istype(W, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = W
 		S.hide_from(usr)
 		for(var/obj/item/weapon/ore/O in S.contents)
@@ -23,8 +22,6 @@
 		user << "\blue You empty the satchel into the box."
 
 	update_ore_count()
-
-	return
 
 /obj/structure/ore_box/proc/update_ore_count()
 

@@ -168,10 +168,13 @@
 			if(isturf(src.loc))
 				var/mob/living/carbon/H = AM
 				if(H.m_intent == "run")
+					if(!H.legcuffed)
+						H.legcuffed = src
+						forceMove(H)
+						H.legcuff_update()
 					armed = 0
-					H.legcuffed = src
-					src.loc = H
-					H.update_inv_legcuffed()
+					icon_state = "beartrap0"
+					playsound(loc, 'sound/effects/snap.ogg', 50, 1)
 					H << "\red <B>You step on \the [src]!</B>"
 					feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
 					for(var/mob/O in viewers(H, null))

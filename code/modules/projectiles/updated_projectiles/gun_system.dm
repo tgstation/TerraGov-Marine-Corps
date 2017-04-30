@@ -244,9 +244,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	return 1
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.remove_from_mob(magazine) //Click!
+	user.drop_inv_item_to_loc(magazine, src) //Click!
 	current_mag = magazine
-	magazine.loc = src //Jam that sucker in there.
 	replace_ammo(user,magazine)
 	if(!in_chamber)
 		ready_in_chamber()

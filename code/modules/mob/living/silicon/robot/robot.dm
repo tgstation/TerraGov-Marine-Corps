@@ -565,15 +565,14 @@ var/list/robot_verbs_default = list(
 				C.installed = 1
 				C.wrapped = W
 				C.install()
-				user.drop_item()
-				W.loc = null
+				if(user.drop_held_item())
+					W.loc = null
+					var/obj/item/robot_parts/robot_component/WC = W
+					if(istype(WC))
+						C.brute_damage = WC.brute
+						C.electronics_damage = WC.burn
 
-				var/obj/item/robot_parts/robot_component/WC = W
-				if(istype(WC))
-					C.brute_damage = WC.brute
-					C.electronics_damage = WC.burn
-
-				usr << "\blue You install the [W.name]."
+					usr << "\blue You install the [W.name]."
 
 				return
 
@@ -670,10 +669,9 @@ var/list/robot_verbs_default = list(
 		else if(cell)
 			user << "There is a power cell already installed."
 		else
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user << "You insert the power cell."
+			if(user.drop_inv_item_to_loc(W, src))
+				cell = W
+				user << "You insert the power cell."
 
 			C.installed = 1
 			C.wrapped = W
@@ -792,8 +790,8 @@ var/list/robot_verbs_default = list(
 		else
 			if(U.action(src))
 				usr << "You apply the upgrade to [src]!"
-				usr.drop_item()
-				U.loc = src
+				if(usr.drop_held_item())
+					U.forceMove(src)
 			else
 				usr << "Upgrade error!"
 

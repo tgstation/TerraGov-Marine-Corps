@@ -560,9 +560,9 @@
 			return
 
 		if(!keyslot)
-			user.drop_item()
-			W.loc = src
-			keyslot = W
+			if(user.drop_held_item())
+				W.forceMove(src)
+				keyslot = W
 
 		recalculateChannels()
 

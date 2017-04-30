@@ -225,9 +225,9 @@ var/list/solars_list = list()
 	if(!tracker)
 		if(istype(W, /obj/item/weapon/tracker_electronics))
 			tracker = 1
-			user.drop_item()
-			del(W)
-			user.visible_message("<span class='notice'>[user] inserts the electronics into the solar assembly.</span>")
+			if(user.temp_drop_inv_item(W))
+				del(W)
+				user.visible_message("<span class='notice'>[user] inserts the electronics into the solar assembly.</span>")
 			return 1
 	else
 		if(iscrowbar(W))

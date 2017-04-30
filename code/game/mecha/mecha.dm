@@ -632,9 +632,9 @@
 		var/obj/item/mecha_parts/mecha_equipment/E = W
 		spawn()
 			if(E.can_attach(src))
-				user.drop_item()
-				E.attach(src)
-				user.visible_message("[user] attaches [W] to [src]", "You attach [W] to [src]")
+				if(user.drop_held_item())
+					E.attach(src)
+					user.visible_message("[user] attaches [W] to [src]", "You attach [W] to [src]")
 			else
 				user << "You were unable to attach [W] to [src]"
 		return
@@ -697,10 +697,10 @@
 		if(state==4)
 			if(!src.cell)
 				user << "You install the powercell"
-				user.drop_item()
-				W.forceMove(src)
-				src.cell = W
-				src.log_message("Powercell installed")
+				if(user.drop_held_item())
+					W.forceMove(src)
+					cell = W
+					log_message("Powercell installed")
 			else
 				user << "There's already a powercell installed."
 		return
@@ -721,8 +721,7 @@
 		return
 
 	else if(istype(W, /obj/item/mecha_parts/mecha_tracking))
-		user.drop_from_inventory(W)
-		W.forceMove(src)
+		user.drop_inv_item_to_loc(W, src)
 		user.visible_message("[user] attaches [W] to [src].", "You attach [W] to [src]")
 		return
 
@@ -751,7 +750,7 @@
 		src.initial_icon = P.new_icon
 		src.reset_icon()
 
-		user.drop_item()
+		user.drop_held_item()
 		del(P)
 
 	else
@@ -1074,7 +1073,7 @@
 		else if(mmi_as_oc.brainmob.stat)
 			user << "Beta-rhythm below acceptable level."
 			return 0
-		user.drop_from_inventory(mmi_as_oc)
+		user.temp_drop_inv_item(mmi_as_oc)
 		var/mob/brainmob = mmi_as_oc.brainmob
 		brainmob.reset_view(src)
 	/*
@@ -1084,7 +1083,7 @@
 		occupant = brainmob
 		brainmob.loc = src //should allow relaymove
 		brainmob.canmove = 1
-		mmi_as_oc.loc = src
+		mmi_as_oc.forceMove(src)
 		mmi_as_oc.mecha = src
 		src.verbs -= /obj/mecha/verb/eject
 		src.Entered(mmi_as_oc)

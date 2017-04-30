@@ -131,11 +131,10 @@
 		else if ((istype(W, /obj/item/weapon/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!online && !chargemode)
-					user.drop_item()
-					component_parts += W
-					W.loc = src
-					RefreshParts()
-					user << "<span class='notice'>You upgrade the [src] with [W.name].</span>"
+					if(user.drop_inv_item_to_loc(W, src))
+						component_parts += W
+						RefreshParts()
+						user << "<span class='notice'>You upgrade the [src] with [W.name].</span>"
 				else
 					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
 			else

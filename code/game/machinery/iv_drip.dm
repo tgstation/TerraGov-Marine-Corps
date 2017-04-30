@@ -57,11 +57,10 @@
 			user << "There is already a reagent container loaded!"
 			return
 
-		user.drop_item()
-		W.loc = src
-		src.beaker = W
-		user << "You attach \the [W] to \the [src]."
-		src.update_icon()
+		if(user.drop_inv_item_to_loc(W, src))
+			beaker = W
+			user << "You attach \the [W] to \the [src]."
+			update_icon()
 		return
 	else
 		return ..()

@@ -187,7 +187,7 @@
 
 	//Deal with the limb item properly
 
-	user.drop_item(tool)
+	user.temp_drop_inv_item(tool)
 	del(tool)
 
 /datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

@@ -10,7 +10,7 @@
 	power_channel = EQUIP
 	var/obj/item/weapon/cell/charging = null
 	var/chargelevel = -1
-	
+
 /obj/machinery/cell_charger/proc/updateicon()
 	icon_state = "ccharger[charging ? 1 : 0]"
 
@@ -27,7 +27,7 @@
 			chargelevel = newlevel
 	else
 		overlays.Cut()
-	
+
 /obj/machinery/cell_charger/examine()
 	set src in oview(5)
 	..()
@@ -51,11 +51,10 @@
 				user << "\red The [name] blinks red as you try to insert the cell!"
 				return
 
-			user.drop_item()
-			W.loc = src
-			charging = W
-			user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
-			chargelevel = -1
+			if(user.drop_inv_item_to_loc(W, src))
+				charging = W
+				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
+				chargelevel = -1
 		updateicon()
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(charging)
@@ -93,11 +92,11 @@
 	if((stat & (BROKEN|NOPOWER)) || !anchored)
 		update_use_power(0)
 		return
-	
+
 	if (charging && !charging.fully_charged())
 		charging.give(active_power_usage*CELLRATE)
 		update_use_power(2)
-		
+
 		updateicon()
 	else
 		update_use_power(1)

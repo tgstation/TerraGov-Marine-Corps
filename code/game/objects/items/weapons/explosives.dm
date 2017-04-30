@@ -20,7 +20,7 @@
 	bombers += "[key_name(user)] attached C4 to [target.name]."
 
 	if(do_after(user, 50) && in_range(user, target))
-		user.drop_item()
+		user.drop_held_item()
 		target = target
 		loc = null
 		var/location

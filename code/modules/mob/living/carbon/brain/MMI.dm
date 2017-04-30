@@ -43,7 +43,7 @@
 			dead_mob_list -= brainmob//Update dem lists
 			living_mob_list += brainmob
 
-			user.drop_item()
+			user.drop_held_item()
 			del(O)
 
 			name = "Man-Machine Interface: [brainmob.real_name]"

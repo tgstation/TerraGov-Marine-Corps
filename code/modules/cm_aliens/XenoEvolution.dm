@@ -217,11 +217,8 @@
 		new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
 		new_xeno.shift_mouse_toggle = src.shift_mouse_toggle //Keep our toggle state
 
-		for(var/obj/item/W in src.contents) //Drop stuff
-			drop_from_inventory(W)
-
-		drop_l_hand() //Drop dem huggies, just in case
-		drop_r_hand()
+		for(var/obj/item/W in contents) //Drop stuff
+			drop_inv_item_on_ground(W)
 
 		empty_gut()
 		new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.caste] emerges from the husk of \the [src].</span>", \

@@ -73,7 +73,7 @@
 	if(opened)
 		if(isrobot(user))
 			return
-		user.drop_item()
+		user.drop_held_item()
 		if(W)
 			W.loc = src.loc
 	else if(istype(W, /obj/item/weapon/packageWrap))
@@ -90,7 +90,7 @@
 	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
 			user  << "<span class='notice'>You attach [W] to [src].</span>"
-			user.drop_item()
+			user.drop_held_item()
 			W.loc = src
 			return
 	else if(istype(W, /obj/item/weapon/wirecutters))

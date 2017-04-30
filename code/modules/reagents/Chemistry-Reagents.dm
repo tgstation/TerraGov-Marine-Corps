@@ -2167,7 +2167,7 @@ datum
 							victim.Stun(5)
 							victim.Weaken(5)
 							//victim.Paralyse(10)
-							//victim.drop_item()
+							//victim.drop_held_item()
 							return
 						else if( mouth_covered ) // Mouth cover is better than eye cover
 							victim << "\red Your [safe_thing] protects your face from the pepperspray!"
@@ -2184,7 +2184,7 @@ datum
 							victim.Stun(5)
 							victim.Weaken(5)
 							//victim.Paralyse(10)
-							//victim.drop_item()
+							//victim.drop_held_item()
 
 			on_mob_life(mob/living/M)
 				. = ..()

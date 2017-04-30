@@ -24,6 +24,7 @@
 	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/opened = 0 //Has it been opened before?
+	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if (ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
@@ -46,10 +47,10 @@
 		if (!( usr.restrained() ) && !( usr.stat ))
 			switch(over_object.name)
 				if("r_hand")
-					usr.u_equip(src)
+					usr.drop_inv_item_on_ground(src)
 					usr.put_in_r_hand(src)
 				if("l_hand")
-					usr.u_equip(src)
+					usr.drop_inv_item_on_ground(src)
 					usr.put_in_l_hand(src)
 			src.add_fingerprint(usr)
 			return
@@ -84,6 +85,7 @@
 	user.client.screen += src.closer
 	user.client.screen += src.contents
 	user.s_active = src
+	content_watchers |= user
 	return
 
 /obj/item/weapon/storage/proc/hide_from(mob/user as mob)
@@ -95,7 +97,17 @@
 	user.client.screen -= src.contents
 	if(user.s_active == src)
 		user.s_active = null
+	content_watchers -= user
 	return
+
+/obj/item/weapon/storage/proc/can_see_content()
+	var/list/lookers = list()
+	for(var/mob/M in content_watchers)
+		if(M.s_active == src && M.client)
+			lookers |= M
+		else
+			content_watchers -= M
+	return lookers
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
 	if(!opened)
@@ -138,6 +150,7 @@
 
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
+			ND.sample_object.mouse_opacity = 2
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = 20
@@ -147,6 +160,7 @@
 				cy--
 	else
 		for(var/obj/O in contents)
+			O.mouse_opacity = 2 //So storage items that start with contents get the opacity trick.
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
 			O.layer = 20
@@ -255,14 +269,14 @@
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 	if(usr)
-		usr.u_equip(W)
-		usr.update_icons()	//update our overlays
-	W.loc = src
+		if(!usr.drop_inv_item_to_loc(W, src))
+			return
+	else
+		W.forceMove(src)
 	W.on_enter_storage(src)
 	if(usr)
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= W
-		W.dropped(usr)
 		add_fingerprint(usr)
 		if(!prevent_warning)
 			for(var/mob/M in viewers(usr, null))
@@ -273,9 +287,10 @@
 				else if (W && W.w_class >= 3.0) //Otherwise they can only see large or normal items from a distance...
 					M.show_message("<span class='notice'>[usr] puts [W] into [src].</span>")
 
-		src.orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
+		orient2hud(usr)
+		for(var/mob/M in can_see_content())
+			show_to(M)
+	mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
 	return 1
 
@@ -283,14 +298,9 @@
 /obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
 
-	if(istype(src, /obj/item/weapon/storage/fancy))
-		var/obj/item/weapon/storage/fancy/F = src
-		F.update_icon(1)
-
-	for(var/mob/M in range(1, src.loc))
-		if (M.s_active == src)
-			if (M.client)
-				M.client.screen -= W
+	for(var/mob/M in can_see_content())
+		if(M.client)
+			M.client.screen -= W
 
 	if(new_location)
 		if(ismob(new_location))
@@ -298,18 +308,18 @@
 			W.pickup(new_location)
 		else
 			W.layer = initial(W.layer)
-		W.loc = new_location
+		W.forceMove(new_location)
 	else
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
-	if(usr)
-		src.orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
+	for(var/mob/M in can_see_content())
+		orient2hud(M)
+		show_to(M)
 	if(W.maptext)
 		W.maptext = ""
 	W.on_exit_storage(src)
 	update_icon()
+	W.mouse_opacity = initial(W.mouse_opacity)
 	return 1
 
 //This proc is called when you want to place an item into the storage item.

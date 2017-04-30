@@ -255,11 +255,10 @@
 					return
 
 				usr << "You install the coil into the SMES unit!"
-				user.drop_item()
-				cur_coils ++
-				component_parts += W
-				W.loc = src
-				recalc_coils()
+				if(user.drop_inv_item_to_loc(W, src))
+					cur_coils ++
+					component_parts += W
+					recalc_coils()
 			else
 				usr << "\red You can't insert more coils to this SMES unit!"
 

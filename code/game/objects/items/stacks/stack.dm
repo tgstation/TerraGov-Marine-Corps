@@ -153,7 +153,7 @@
 		if (src.amount<=0)
 			var/oldsrc = src
 			src = null //dont kill proc after del()
-			usr.before_take_item(oldsrc)
+			usr.drop_inv_item_on_ground(oldsrc)
 			del(oldsrc)
 			if (istype(O,/obj/item) && istype(usr,/mob/living/carbon))
 				usr.put_in_hands(O)
@@ -175,7 +175,7 @@
 	amount -= used
 	if (amount <= 0)
 		if(usr)
-			usr.before_take_item(src)
+			usr.drop_inv_item_on_ground(src)
 		spawn(1) //Did they not have spawn back in the day? Pff.
 			del(src)
 	return 1

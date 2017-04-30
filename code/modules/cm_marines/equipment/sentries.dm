@@ -117,7 +117,7 @@
 				user.visible_message("\blue [user] installs [O] into place.","\blue You install [O] into place.")
 				has_top = 1
 				icon_state = "turret-nosensor"
-				user.drop_from_inventory(O)
+				user.drop_held_item()
 				del(O)
 				return
 
@@ -134,7 +134,7 @@
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user.visible_message("\blue [user] installs the control sensor on the [src].","\blue You install the control sensor.")
 				icon_state = "turret-0"
-				user.drop_from_inventory(O)
+				user.drop_held_item()
 				del(O)
 				return
 
@@ -158,7 +158,7 @@
 					user.visible_message("\blue [user] installs the plating on the [src].","\blue You install the plating.")
 					M.amount -= 10
 					if(M.amount <= 0)
-						user.drop_from_inventory(M)
+						user.drop_held_item()
 						del(M)
 					return
 				else
@@ -555,19 +555,14 @@
 	if(istype(O,/obj/item/weapon/cell))
 		user << "You begin the new power cell installation.."
 		if(do_after(user,30))
+			user.drop_inv_item_to_loc(O, src)
 			if(cell)
 				user.visible_message("[user] swaps out the power cells in the [src].","You swap out the power cells.")
-				user.drop_from_inventory(O)
-				cell.loc = src.loc
-				user.put_in_active_hand(cell)
-				user.drop_from_inventory(cell) //Put it on the ground.
+				cell.forceMove(loc)
 				cell = O
-				O.loc = src
 			else
 				user.visible_message("[user] installs a new power cell in [src].","You install the new cell.")
-				user.drop_from_inventory(O)
 				cell = O
-				O.loc = src
 		return
 	if(istype(O,/obj/item/sentry_ammo))
 		if(rounds)
@@ -577,7 +572,7 @@
 		if(do_after(user,70))
 			playsound(src.loc, 'sound/weapons/unload.ogg', 60, 1)
 			user.visible_message("\blue [user] reloads the [src].","\blue You reload the [src].")
-			user.drop_from_inventory(O)
+			user.drop_held_item()
 			rounds = rounds_max
 			del(O)
 		return

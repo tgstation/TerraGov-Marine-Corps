@@ -269,7 +269,7 @@
 			user << "You add [D] to [src]."
 			del(D)
 			user.put_in_hands(new /obj/item/weapon/bucket_sensor)
-			user.drop_from_inventory(src)
+			user.drop_inv_item_on_ground(src)
 			del(src)
 
 	update_icon()

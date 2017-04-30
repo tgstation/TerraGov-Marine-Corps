@@ -208,11 +208,10 @@
 	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
 		if(istype(G, /obj/item/weapon/reagent_containers/glass))
 			if(!beaker)
-				beaker = G
-				user.drop_item()
-				G.loc = src
-				user.visible_message("[user] adds \a [G] to \the [src]!", "You add \a [G] to \the [src]!")
-				src.updateUsrDialog()
+				if(user.drop_inv_item_to_loc(G, src))
+					beaker = G
+					user.visible_message("[user] adds \a [G] to \the [src]!", "You add \a [G] to \the [src]!")
+					updateUsrDialog()
 				return
 			else
 				user << "\red The sleeper has a beaker already."

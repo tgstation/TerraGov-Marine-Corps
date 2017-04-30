@@ -438,7 +438,7 @@
 		return
 	user.visible_message("<span class='notice'>[user] has transplanted \the [tool] into [target]'s [affected.display_name].</span>", \
 	"<span class='notice'>You have transplanted \the [tool] into [target]'s [affected.display_name].</span>")
-	user.drop_item(tool)
+	user.temp_drop_inv_item(tool)
 	var/obj/item/organ/O = tool
 
 	if(istype(O))

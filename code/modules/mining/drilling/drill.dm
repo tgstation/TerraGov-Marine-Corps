@@ -172,37 +172,33 @@
 			if(storage)
 				user << "The drill already has a matter bin installed."
 			else
-				user.drop_item()
-				W.loc = src
-				storage = W
-				user << "You install \the [W]."
+				if(user.drop_inv_item_to_loc(W, src))
+					storage = W
+					user << "You install \the [W]."
 			return
 		else if(istype(W,/obj/item/weapon/stock_parts/micro_laser))
 			if(cutter)
 				user << "The drill already has a cutting head installed."
 			else
-				user.drop_item()
-				W.loc = src
-				cutter = W
-				user << "You install \the [W]."
+				if(user.drop_inv_item_to_loc(W, src))
+					cutter = W
+					user << "You install \the [W]."
 			return
 		else if(istype(W,/obj/item/weapon/stock_parts/capacitor))
 			if(cellmount)
 				user << "The drill already has a cell capacitor installed."
 			else
-				user.drop_item()
-				W.loc = src
-				cellmount = W
-				user << "You install \the [W]."
+				if(user.drop_inv_item_to_loc(W, src))
+					cellmount = W
+					user << "You install \the [W]."
 			return
 		else if(istype(W,/obj/item/weapon/cell))
 			if(cell)
 				user << "The drill already has a cell installed."
 			else
-				user.drop_item()
-				W.loc = src
-				cell = W
-				user << "You install \the [W]."
+				if(user.drop_inv_item_to_loc(W, src))
+					cell = W
+					user << "You install \the [W]."
 			return
 	..()
 /obj/machinery/mining/drill/attack_hand(mob/user as mob)

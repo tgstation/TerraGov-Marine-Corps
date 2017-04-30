@@ -70,7 +70,7 @@
 			if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
 				M << "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>"
 				return
-			M.remove_from_mob(G) //Get rid of ye existinge gogglors
+			M.temp_drop_inv_item(G) //Get rid of ye existinge gogglors
 			cdel(G)
 		switch(current_goggles)
 			if(0)
@@ -98,7 +98,7 @@
 		var/obj/item/G = mob.glasses
 		if(G)
 			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
-				mob.remove_from_mob(G)
+				mob.temp_drop_inv_item(G)
 				cdel(G)
 				mob.update_inv_glasses()
 
@@ -335,7 +335,7 @@
 			user << "<span class='notice'>You retract your wrist blades.</span>"
 			playsound(user.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
-			user.drop_item(R)
+			user.drop_inv_item_to_loc(R, R.loc)
 			return
 		else
 			if(!drain_power(user,50)) return
@@ -425,14 +425,14 @@
 				found = 1
 				usr.r_hand = null
 				if(R)
-					M.remove_from_mob(R)
+					M.temp_drop_inv_item(R)
 					cdel(R)
 				M.update_inv_r_hand()
 			if(L && istype(L))
 				found = 1
 				usr.l_hand = null
 				if(L)
-					M.remove_from_mob(L)
+					M.temp_drop_inv_item(L)
 					cdel(L)
 				M.update_inv_l_hand()
 			if(found)
@@ -840,7 +840,7 @@
 			if(loc)
 				if(ismob(loc))
 					user = loc
-					user.remove_from_mob(src)
+					user.temp_drop_inv_item(src)
 				cdel(src)
 			return
 
@@ -1169,7 +1169,7 @@
 		if(!isYautja(user))
 			if(prob(20))
 				user.visible_message("<span class='warning'>[src] slips out of your hands!</span>")
-				user.drop_from_inventory(src)
+				user.drop_inv_item_on_ground(src)
 				return
 		..()
 		if(ishuman(target)) //Slicey dicey!

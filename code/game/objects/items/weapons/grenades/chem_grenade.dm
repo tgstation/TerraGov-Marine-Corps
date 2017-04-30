@@ -49,8 +49,8 @@
 			path = 1
 			user << "\blue You add [W] to the metal casing."
 			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
-			user.remove_from_mob(det)
-			det.loc = src
+			user.temp_drop_inv_item(det)
+			det.forceMove(src)
 			detonator = det
 			icon_state = initial(icon_state) +"_ass"
 			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
@@ -87,12 +87,12 @@
 				return
 			else
 				if(W.reagents.total_volume)
-					user << "\blue You add \the [W] to the assembly."
-					user.drop_item()
-					W.loc = src
-					beakers += W
-					stage = 1
-					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+					if(user.drop_held_item())
+						user << "\blue You add \the [W] to the assembly."
+						W.forceMove(src)
+						beakers += W
+						stage = 1
+						name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 				else
 					user << "\red \the [W] is empty."
 
@@ -155,7 +155,7 @@
 
 		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc
-			C.drop_from_inventory(src)
+			C.drop_inv_item_on_ground(src)
 			C.throw_mode_off()
 
 		invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?

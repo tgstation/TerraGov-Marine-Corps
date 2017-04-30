@@ -123,9 +123,8 @@
 		c.scanned = A
 		if(istype(A.loc,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = A.loc
-			H.u_equip(A)
+			H.drop_inv_item_on_ground(A)
 		else if(istype(A.loc,/obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = A.loc
 			S.remove_from_storage(A)
-		A.loc.contents.Remove(A)
 		update()

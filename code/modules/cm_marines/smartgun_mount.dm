@@ -168,7 +168,7 @@
 				icon_state = "M56D_e"
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
-			user.drop_from_inventory(O)
+			user.temp_drop_inv_item(O)
 			del(O)
 			return
 
@@ -296,7 +296,7 @@
 			user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
 			rounds = 700
 			update_icon()
-			user.drop_from_inventory(O)
+			user.temp_drop_inv_item(O)
 			cdel(O)
 			return
 	return ..()

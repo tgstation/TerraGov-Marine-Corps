@@ -83,7 +83,7 @@
 		if(w_items + I.w_class > 5)
 			user << "<span class='notice'>The cistern is full.</span>"
 			return
-		user.drop_item()
+		user.drop_held_item()
 		I.loc = src
 		w_items += I.w_class
 		user << "You carefully place \the [I] into the cistern."

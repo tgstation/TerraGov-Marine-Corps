@@ -147,14 +147,14 @@
 			user << "<span class='notice'>\The [src] is full.</span>"
 			return 1
 		else
-			user.before_take_item(O)
-			O.loc = src
-			if(item_quants[O.name])
-				item_quants[O.name]++
-			else
-				item_quants[O.name] = 1
-			user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].", \
-								 "<span class='notice'>You add \the [O] to \the [src].")
+			if(user.drop_held_item())
+				O.forceMove(src)
+				if(item_quants[O.name])
+					item_quants[O.name]++
+				else
+					item_quants[O.name] = 1
+				user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].", \
+									 "<span class='notice'>You add \the [O] to \the [src].")
 
 			nanomanager.update_uis(src)
 

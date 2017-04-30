@@ -154,55 +154,54 @@ cases. Override_icon_state should be a list.*/
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return
 
-	if(src.anchored && !istype(src.loc, /obj/item/lightstick)) //Hax
+	if(anchored)
 		user << "[src] is anchored to the ground."
 		return
 
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
+		S.remove_from_storage(src, user.loc)
 
-	src.throwing = 0
-	if(src.loc != user)
-		src.pickup(user)
+	throwing = 0
 
-	if (src.loc == user)
+	if(loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(!src.canremove)
+		if(!canremove)
 			return
-		else
-			user.u_equip(src)
+		else if(!user.drop_inv_item_on_ground(src))
+			return
 	else
-		if(isliving(src.loc))
-			return
 		user.next_move = max(user.next_move+2,world.time + 2)
+	pickup(user)
 	add_fingerprint(user)
-	user.put_in_active_hand(src)
+	if(!user.put_in_active_hand(src))
+		dropped(user)
 	return
 
 
 /obj/item/attack_paw(mob/user as mob)
 
+	if(anchored)
+		user << "[src] is anchored to the ground."
+		return
+
 	if (istype(src.loc, /obj/item/weapon/storage))
-		for(var/mob/M in range(1, src.loc))
-			if (M.s_active == src.loc)
-				if (M.client)
-					M.client.screen -= src
+		var/obj/item/weapon/storage/S = src.loc
+		S.remove_from_storage(src, user.loc)
+
 	src.throwing = 0
-	if (src.loc == user)
+	if (loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(istype(src, /obj/item/clothing) && !src:canremove)
+		if(!canremove)
 			return
 		else
-			user.u_equip(src)
+			if(user.drop_inv_item_on_ground(src))
+				return
 	else
-		if(istype(src.loc, /mob/living))
-			return
-		src.pickup(user)
 		user.next_move = max(user.next_move+2,world.time + 2)
-
-	user.put_in_active_hand(src)
-	return
+	pickup(user)
+	if(!user.put_in_active_hand(src))
+		dropped(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -244,14 +243,13 @@ cases. Override_icon_state should be a list.*/
 	return
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
+//the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user as mob)
-	if(layer != initial(layer))
-		layer = initial(layer) //Set it back when dropped.
-
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
 			zoom(user, 11, 12)
-	return
+	if(flags_atom & DELONDROP)
+		del(src)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -580,7 +578,7 @@ cases. Override_icon_state should be a list.*/
 			if(prob(50))
 				if(M.stat != 2)
 					M << "\red You drop what you're holding and clutch at your eyes!"
-					M.drop_item()
+					M.drop_held_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)

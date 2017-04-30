@@ -113,11 +113,11 @@
 				"\blue You add one of [O] to \the [src].")
 		else
 		//	user.before_take_item(O)	//This just causes problems so far as I can tell. -Pete
-			user.drop_item()
-			O.loc = src
-			user.visible_message( \
-				"\blue [user] has added \the [O] to \the [src].", \
-				"\blue You add \the [O] to \the [src].")
+			if(user.drop_held_item())
+				O.forceMove(src)
+				user.visible_message( \
+					"\blue [user] has added \the [O] to \the [src].", \
+					"\blue You add \the [O] to \the [src].")
 	else if(istype(O,/obj/item/weapon/reagent_containers/glass) || \
 	        istype(O,/obj/item/weapon/reagent_containers/food/drinks) || \
 	        istype(O,/obj/item/weapon/reagent_containers/food/condiment) \

@@ -136,16 +136,14 @@
 	// Usage of insert() preferred, as it also tells result to the user.
 	proc/equip_to_reader(var/obj/item/weapon/card/card, var/mob/living/L)
 		if(!reader)
-			L.drop_item()
-			card.loc = src
+			L.drop_inv_item_to_loc(card, src)
 			reader = card
 			return 1
 		return 0
 
 	proc/equip_to_writer(var/obj/item/weapon/card/card, var/mob/living/L)
 		if(!writer && dualslot)
-			L.drop_item()
-			card.loc = src
+			L.drop_inv_item_to_loc(card, src)
 			writer = card
 			return 1
 		return 0
@@ -255,8 +253,7 @@
 				usr << "There's already a card in that slot!"
 				return 0
 			var/mob/living/L = usr
-			L.drop_item()
-			card.loc = src
+			L.drop_inv_item_to_loc(card, src)
 			writer = card
 			return 1
 		else if(slot == 2)			// 2: reader
@@ -264,8 +261,7 @@
 				usr << "There's already a card in that slot!"
 				return 0
 			var/mob/living/L = usr
-			L.drop_item()
-			card.loc = src
+			L.drop_inv_item_to_loc(card, src)
 			reader = card
 			return 1
 		else						// 0: auto
@@ -273,8 +269,7 @@
 				usr << "Both slots are full!"
 				return 0
 			var/mob/living/L = usr
-			L.drop_item()
-			card.loc = src
+			L.drop_inv_item_to_loc(card, src)
 			if(reader)
 				writer = card
 				computer.updateUsrDialog()

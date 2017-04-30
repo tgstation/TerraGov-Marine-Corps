@@ -323,17 +323,8 @@
 
 	if(!item) return //Grab processing has a chance of returning null
 
-	item.layer = initial(item.layer)
-	drop_from_inventory(item)
-	update_icons()
+	drop_inv_item_on_ground(item, TRUE)
 
-/*	if (istype(usr, /mob/living/carbon)) //ALL this shit is called in u_equip 2 lines above. What the actual fuck
-		item.loc = src.loc
-		if(src.client)
-			src.client.screen -= item
-		if(istype(item, /obj/item))
-			item:dropped(src) // let it know it's been dropped
-*/
 	//actually throw it!
 	if (item)
 		src.visible_message("\red [src] has thrown [item].")
@@ -368,21 +359,6 @@
 /mob/living/carbon/restrained()
 	if (handcuffed)
 		return 1
-	return
-
-/mob/living/carbon/u_equip(obj/item/W as obj)
-	if(!W)	return 0
-
-	else if (W == handcuffed)
-		handcuffed = null
-		update_inv_handcuffed()
-
-	else if (W == legcuffed)
-		legcuffed = null
-		update_inv_legcuffed()
-	else
-	 ..()
-
 	return
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)

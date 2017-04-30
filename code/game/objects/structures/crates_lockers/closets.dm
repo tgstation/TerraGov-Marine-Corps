@@ -50,7 +50,7 @@
 
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
-		if(closet != src)
+		if(closet != src && !closet.wall_mounted)
 			return 0
 	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
 		return 0
@@ -135,11 +135,9 @@
 		if(M.buckled || M.pinned.len)
 			continue
 
+		M.forceMove(src)
 		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
-
-		M.loc = src
+			M.reset_view(src)
 		stored_units += mob_size
 	return stored_units
 
@@ -207,7 +205,7 @@
 			return
 		if(isrobot(user))
 			return
-		usr.drop_item()
+		usr.drop_held_item()
 		if(W)
 			W.loc = src.loc
 	else if(istype(W, /obj/item/weapon/packageWrap))

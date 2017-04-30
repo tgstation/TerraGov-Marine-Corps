@@ -175,7 +175,7 @@ FLOOR SAFES
 	if(open)
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
-			user.drop_item()
+			user.drop_held_item()
 			I.loc = src
 			user << "<span class='notice'>You put [I] in [src].</span>"
 			src.attack_hand(user)

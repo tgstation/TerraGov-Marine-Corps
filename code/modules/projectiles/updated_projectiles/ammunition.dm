@@ -83,9 +83,7 @@ They're all essentially identical when it comes to getting the job done.
 	target.current_rounds += S
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
-			user.remove_from_mob(source)
-			user.update_inv_l_hand(0) //In case we will get in hand icons.
-			user.update_inv_r_hand()
+			user.temp_drop_inv_item(source)
 		cdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 	else source.update_icon()
 	target.update_icon(S)

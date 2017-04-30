@@ -36,19 +36,19 @@
 		else
 			health = 10
 			nutrilevel += 10
-			user.drop_item()
-			del(O)
-			user << "\blue You carefully insert the queen into [src], she gets busy making a hive."
-			bees_in_hive = 0
+			if(user.temp_drop_inv_item(O))
+				del(O)
+				user << "\blue You carefully insert the queen into [src], she gets busy making a hive."
+				bees_in_hive = 0
 	else if(istype(O, /obj/item/beezeez))
 		beezeez += 100
 		nutrilevel += 10
-		user.drop_item()
-		if(health > 0)
-			user << "\blue You insert [O] into [src]. A relaxed humming appears to pick up."
-		else
-			user << "\blue You insert [O] into [src]. Now it just needs some bees."
-		del(O)
+		if(user.temp_drop_inv_item(O))
+			if(health > 0)
+				user << "\blue You insert [O] into [src]. A relaxed humming appears to pick up."
+			else
+				user << "\blue You insert [O] into [src]. Now it just needs some bees."
+			del(O)
 	else if(istype(O, /obj/item/weapon/minihoe))
 		if(health > 0)
 			user << "\red <b>You begin to dislodge the apiary from the tray, the bees don't like that.</b>"

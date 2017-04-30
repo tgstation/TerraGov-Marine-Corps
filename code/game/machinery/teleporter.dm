@@ -52,7 +52,7 @@
 		if(istype(L, /obj/effect/landmark/) && istype(L.loc, /turf))
 			usr << "You insert the coordinates into the machine."
 			usr << "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the station at all times."
-			user.drop_item()
+			user.drop_held_item()
 			del(I)
 
 			if(C.data == "Clown Land")

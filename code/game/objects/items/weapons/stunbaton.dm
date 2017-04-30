@@ -80,11 +80,11 @@
 
 	if(istype(W, /obj/item/weapon/cell))
 		if(!bcell)
-			user.drop_item()
-			W.loc = src
-			bcell = W
-			user << "<span class='notice'>You install a cell in [src].</span>"
-			update_icon()
+			if(user.drop_held_item())
+				W.forceMove(src)
+				bcell = W
+				user << "<span class='notice'>You install a cell in [src].</span>"
+				update_icon()
 		else
 			user << "<span class='notice'>[src] already has a cell.</span>"
 
@@ -98,7 +98,6 @@
 			update_icon()
 			return
 		..()
-	return
 
 /obj/item/weapon/melee/baton/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)

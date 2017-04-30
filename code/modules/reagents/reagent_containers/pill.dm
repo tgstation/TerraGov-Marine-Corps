@@ -28,7 +28,7 @@
 					return
 
 			M << "\blue You swallow [src]."
-			M.drop_from_inventory(src) //icon update
+			M.drop_inv_item_on_ground(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_ingest(M, reagents.total_volume)
 				del(src)
@@ -48,7 +48,7 @@
 
 			if(!do_mob(user, M)) return
 
-			user.drop_from_inventory(src) //icon update
+			user.drop_inv_item_on_ground(src) //icon update
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("\red [user] forces [M] to swallow [src].", 1)
 

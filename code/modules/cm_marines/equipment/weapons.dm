@@ -21,8 +21,8 @@
 			if (CC.use(5))
 				user << "You wrap some cable around the bayonet. It can now be attached to a gun."
 				var/obj/item/attachable/bayonet/F = new(src.loc)
-				if(src.loc == user)
-					user.drop_from_inventory(src)
+				if(loc == user)
+					user.temp_drop_inv_item(src)
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 					F.loc = get_turf(src)
@@ -604,7 +604,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		armed = 1
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 100, 1, -1)
 		icon_state += "_armed"
-		user.drop_item()
+		user.drop_held_item()
 		dir = user.dir //The direction it is planted in is the direction the user faces at that time
 		var/tripwire_loc = get_turf(get_step(loc, dir))
 		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)

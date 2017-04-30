@@ -59,24 +59,23 @@
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 						user << "\blue You add the circuit board to the frame."
 						circuit = P
-						user.drop_item()
-						P.loc = src
-						icon_state = "box_2"
-						state = 3
-						components = list()
-						req_components = circuit.req_components.Copy()
-						for(var/A in circuit.req_components)
-							req_components[A] = circuit.req_components[A]
-						req_component_names = circuit.req_components.Copy()
-						for(var/A in req_components)
-							var/cp = text2path(A)
-							var/obj/ct = new cp() // have to quickly instantiate it get name
-							req_component_names[A] = ct.name
-						if(circuit.frame_desc)
-							desc = circuit.frame_desc
-						else
-							update_desc()
-						user << desc
+						if(user.drop_inv_item_to_loc(P, src))
+							icon_state = "box_2"
+							state = 3
+							components = list()
+							req_components = circuit.req_components.Copy()
+							for(var/A in circuit.req_components)
+								req_components[A] = circuit.req_components[A]
+							req_component_names = circuit.req_components.Copy()
+							for(var/A in req_components)
+								var/cp = text2path(A)
+								var/obj/ct = new cp() // have to quickly instantiate it get name
+								req_component_names[A] = ct.name
+							if(circuit.frame_desc)
+								desc = circuit.frame_desc
+							else
+								update_desc()
+							user << desc
 					else
 						user << "\red This frame does not accept circuit boards of this type!"
 				else
@@ -145,11 +144,10 @@
 											req_components[I] -= camt
 											update_desc()
 											break
-									user.drop_item()
-									P.loc = src
-									components += P
-									req_components[I]--
-									update_desc()
+									if(user.drop_inv_item_to_loc(P, src))
+										components += P
+										req_components[I]--
+										update_desc()
 									break
 							user << desc
 							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))

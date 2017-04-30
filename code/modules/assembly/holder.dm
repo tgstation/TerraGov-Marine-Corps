@@ -36,12 +36,12 @@
 		if((!isassembly(D))||(!isassembly(D2)))	return 0
 		if((D:secured)||(D2:secured))	return 0
 		if(user)
-			user.remove_from_mob(D)
-			user.remove_from_mob(D2)
+			user.temp_drop_inv_item(D)
+			user.temp_drop_inv_item(D2)
 		D:holder = src
 		D2:holder = src
-		D.loc = src
-		D2.loc = src
+		D.forceMove(src)
+		D2.forceMove(src)
 		a_left = D
 		a_right = D2
 		name = "[D.name]-[D2.name] assembly"

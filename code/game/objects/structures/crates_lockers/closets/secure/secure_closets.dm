@@ -13,7 +13,6 @@
 	icon_opened = "secureopen"
 	var/icon_broken = "securebroken"
 	var/icon_off = "secureoff"
-	wall_mounted = 0 //never solid (You can always pass over it)
 	health = 100
 
 /obj/structure/closet/secure_closet/can_open()
@@ -72,7 +71,7 @@
 				user << "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>"
 		if(isrobot(user))
 			return
-		user.drop_item()
+		user.drop_held_item()
 		if(W)
 			W.loc = src.loc
 	else if((istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)) && !src.broken)

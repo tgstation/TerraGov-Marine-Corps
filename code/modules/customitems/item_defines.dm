@@ -560,7 +560,7 @@
 
 		kit.uses--
 		if(kit.uses<1)
-			user.drop_item()
+			user.drop_held_item()
 			del(O)
 
 /obj/item/clothing/suit/space/rig/attackby(var/obj/item/O as obj, mob/user as mob)
@@ -579,7 +579,7 @@
 
 		kit.uses--
 		if(kit.uses<1)
-			user.drop_item()
+			user.drop_held_item()
 			del(O)
 
 ///////// Salvage crew hardsuit - Cybele Petit - solaruin ///////////////
@@ -1213,7 +1213,7 @@
 			usr << "[src] already has something inside it."
 		else
 			usr << "You slip [O] into [src]."
-			user.drop_item()
+			user.drop_held_item()
 			O.loc = src
 			src.held = O
 		return

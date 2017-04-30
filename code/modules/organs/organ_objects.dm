@@ -219,7 +219,7 @@
 	blood_splatter(src,B,1)
 
 
-	user.drop_from_inventory(src)
+	user.drop_inv_item_on_ground(src)
 	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon_state = dead_icon ? dead_icon : icon_state

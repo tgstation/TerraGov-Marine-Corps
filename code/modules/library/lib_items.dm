@@ -27,7 +27,7 @@
 
 /obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/book))
-		user.drop_item()
+		user.drop_held_item()
 		O.loc = src
 		update_icon()
 	else if(istype(O, /obj/item/weapon/pen))
@@ -156,7 +156,7 @@
 	if(carved)
 		if(!store)
 			if(W.w_class < 3)
-				user.drop_item()
+				user.drop_held_item()
 				W.loc = src
 				store = W
 				user << "<span class='notice'>You put [W] in [title].</span>"

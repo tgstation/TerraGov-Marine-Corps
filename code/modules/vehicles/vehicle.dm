@@ -234,7 +234,7 @@
 	if(!istype(C))
 		return
 
-	H.drop_from_inventory(C)
+	H.drop_inv_item_on_ground(C)
 	C.forceMove(src)
 	cell = C
 	powercheck()

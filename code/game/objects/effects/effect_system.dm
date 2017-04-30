@@ -289,7 +289,7 @@ steam.start() -- spawns the effect
 		return
 	else
 		if (prob(20))
-			M.drop_item()
+			M.drop_held_item()
 		M.adjustOxyLoss(1)
 		if (M.coughedtime != 1)
 			M.coughedtime = 1
@@ -313,7 +313,7 @@ steam.start() -- spawns the effect
 	if (!..())
 		return 0
 
-	M.drop_item()
+	M.drop_held_item()
 	M:sleeping += 1
 	if (M.coughedtime != 1)
 		M.coughedtime = 1
@@ -363,7 +363,7 @@ steam.start() -- spawns the effect
 		return
 	else
 		if (prob(20))
-			M.drop_item()
+			M.drop_held_item()
 		M.adjustOxyLoss(1)
 		M.updatehealth()
 		if (M.coughedtime != 1)

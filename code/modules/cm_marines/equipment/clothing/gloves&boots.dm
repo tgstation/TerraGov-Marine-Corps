@@ -251,7 +251,7 @@
 	attackby(var/obj/item/I, var/mob/living/M)
 		if(istype(I, /obj/item/weapon/combat_knife))
 			if(knife)	return
-			M.drop_item()
+			M.drop_held_item()
 			knife = I
 			I.loc = src
 			M << "<div class='notice'>You slide the [I] into [src].</div>"

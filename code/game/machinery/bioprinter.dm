@@ -61,7 +61,7 @@
 	if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		user << "\blue \The [src] processes \the [W]."
 		stored_matter += 50
-		user.drop_item()
+		user.drop_held_item()
 		del(W)
 		return
 //Metal
@@ -69,7 +69,7 @@
 		var/obj/item/stack/sheet/metal/M = W
 		user << "\blue \The [src] processes \the [W]."
 		stored_metal += M.amount * 100
-		user.drop_item()
+		user.drop_held_item()
 		del(W)
 		return
 	else

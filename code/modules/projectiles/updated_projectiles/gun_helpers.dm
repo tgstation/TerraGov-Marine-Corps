@@ -291,7 +291,7 @@ should be alright.
 	if(do_after(user,60))
 		if(attachment && attachment.loc)
 			user << "<span class='notice'>You attach [attachment] to [src].</span>"
-			user.remove_from_mob(attachment)
+			user.temp_drop_inv_item(attachment)
 			attachment.Attach(src)
 			update_attachable(attachment.slot)
 			playsound(user,'sound/machines/click.ogg', 50, 1)
@@ -354,7 +354,7 @@ should be alright.
 		user << "<span class='warning'>Not right now.</span>"
 		return
 
-	var/obj/item/weapon/gun/G = user.equipped()
+	var/obj/item/weapon/gun/G = user.get_held_item()
 
 	if(!istype(G))
 		user << "<span class='warning'>You need a gun in your active hand to do that!</span>"

@@ -26,8 +26,7 @@
 		var/obj/item/weapon/reagent_containers/syringe/S = I
 		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
-				user.drop_item()
-				I.loc = src
+				user.drop_inv_item_to_loc(I, src)
 				syringes += I
 				user << "\blue You put the syringe in [src]."
 				user << "\blue [syringes.len] / [max_syringes] syringes."

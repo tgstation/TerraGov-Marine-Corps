@@ -301,7 +301,7 @@
 		return
 	else
 		if(prob(20))
-			M.drop_item()
+			M.drop_held_item()
 		M.adjustOxyLoss(5)
 		M.adjustFireLoss(rand(5,15))
 		M.updatehealth()

@@ -23,25 +23,13 @@
 			if (source.handcuffed)
 				var/obj/item/weapon/W = source.handcuffed
 				source.handcuffed = null
-				source.update_inv_handcuffed()
-				if (source.client)
-					source.client.screen -= W
-				if (W)
-					W.loc = source.loc
-					dropped(source)
-					if (W)
-						W.layer = initial(W.layer)
+				source.handcuff_update()
+				source.drop_inv_item_on_ground(W)
 			if (source.legcuffed)
 				var/obj/item/weapon/W = source.legcuffed
 				source.legcuffed = null
 				source.update_inv_legcuffed()
-				if (source.client)
-					source.client.screen -= W
-				if (W)
-					W.loc = source.loc
-					dropped(source)
-					if (W)
-						W.layer = initial(W.layer)
+				source.drop_inv_item_on_ground(W)
 		return
 
 

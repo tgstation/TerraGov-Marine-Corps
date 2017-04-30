@@ -498,11 +498,11 @@
 	var/random_primary = 1
 
 	I = H.wear_id
-	if(I) H.remove_from_mob(I) //Remove it for now, so it doesn't get deleted.
+	if(I) H.drop_inv_item_on_ground(I) //Remove it for now, so it doesn't get deleted.
 	if(H.contents.len) //We want to get rid of all their items. Everything is generated on the fly during the game mode.
 		for(var/i in H.contents)
 			if(istype(i,/obj/item))
-				H.remove_from_mob(i)
+				H.temp_drop_inv_item(i)
 				cdel(i)
 	if(I) H.equip_to_slot_or_del(ID, WEAR_ID) //Put it back on.
 
@@ -699,7 +699,6 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
@@ -714,13 +713,12 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 				I = H.gloves
-				H.remove_from_mob(I)
+				H.temp_drop_inv_item(I)
 				cdel(I)
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
@@ -745,7 +743,6 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), WEAR_FACE)
@@ -773,7 +770,6 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 				random_primary = !random_primary
 				switch(shuffle1)
 					if(1 to 11) //Smartgunner. Has an okay secondary and some grenades. Same as the classic specs in Aliens.
@@ -830,7 +826,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(H), WEAR_HEAD)
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(H), WEAR_JACKET)
 						I = H.gloves
-						H.remove_from_mob(I)
+						H.temp_drop_inv_item(I)
 						cdel(I)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(H), WEAR_HANDS)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_BACK)

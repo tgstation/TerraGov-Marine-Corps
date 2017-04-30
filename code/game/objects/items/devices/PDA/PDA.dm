@@ -1039,30 +1039,30 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		else
 			var/obj/item/I = user.get_active_hand()
 			if (istype(I, /obj/item/weapon/card/id))
-				user.drop_item()
-				I.loc = src
-				id = I
+				if(user.drop_held_item())
+					I.forceMove(src)
+					id = I
 	else
 		var/obj/item/weapon/card/I = user.get_active_hand()
 		if (istype(I, /obj/item/weapon/card/id) && I:registered_name)
 			var/obj/old_id = id
-			user.drop_item()
-			I.loc = src
-			id = I
-			user.put_in_hands(old_id)
+			if(user.drop_held_item())
+				I.forceMove(src)
+				id = I
+				user.put_in_hands(old_id)
 	return
 
 // access to status display signals
 /obj/item/device/pda/attackby(obj/item/C as obj, mob/user as mob)
 	..()
 	if(istype(C, /obj/item/weapon/cartridge) && !cartridge)
-		cartridge = C
-		user.drop_item()
-		cartridge.loc = src
-		user << "<span class='notice'>You insert [cartridge] into [src].</span>"
-		nanomanager.update_uis(src) // update all UIs attached to src
-		if(cartridge.radio)
-			cartridge.radio.hostpda = src
+		if(user.drop_held_item())
+			cartridge = C
+			cartridge.forceMove(src)
+			user << "<span class='notice'>You insert [cartridge] into [src].</span>"
+			nanomanager.update_uis(src) // update all UIs attached to src
+			if(cartridge.radio)
+				cartridge.radio.hostpda = src
 
 	else if(istype(C, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/idcard = C
@@ -1074,32 +1074,17 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			ownjob = idcard.assignment
 			name = "PDA-[owner] ([ownjob])"
 			user << "<span class='notice'>Card scanned.</span>"
-		/*
-		else
-			//Basic safety check. If either both objects are held by user or PDA is on ground and card is in hand.
-			if(((src in user.contents) && (C in user.contents)) || (istype(loc, /turf) && in_range(src, user) && (C in user.contents)) )
-				id_check(user, 2)
-				user << "<span class='notice'>You put the ID into \the [src]'s slot.</span>"
-				updateSelfDialog()//Update self dialog on success.
-			return	//Return in case of failed check or when successful.
-			*/
+
 		updateSelfDialog()//For the non-input related code.
-	/*
-		else if(istype(C, /obj/item/device/paicard) && !src.pai)
-		user.drop_item()
-		C.loc = src
-		pai = C
-		user << "<span class='notice'>You slot \the [C] into [src].</span>"
-		nanomanager.update_uis(src) // update all UIs attached to src
-	*/
+
 	else if(istype(C, /obj/item/weapon/pen))
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
 			user << "<span class='notice'>There is already a pen in \the [src].</span>"
 		else
-			user.drop_item()
-			C.loc = src
-			user << "<span class='notice'>You slide \the [C] into \the [src].</span>"
+			if(user.drop_held_item())
+				C.forceMove(src)
+				user << "<span class='notice'>You slide \the [C] into \the [src].</span>"
 
 /obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
 	if (istype(C, /mob/living/carbon))

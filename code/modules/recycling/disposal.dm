@@ -126,10 +126,7 @@
 	if(!I)
 		return
 
-	user.drop_item()
-	if(I)
-		I.loc = src
-
+	user.drop_inv_item_to_loc(I, src)
 	user << "You place \the [I] into the [src]."
 	for(var/mob/M in viewers(src))
 		if(M == user)

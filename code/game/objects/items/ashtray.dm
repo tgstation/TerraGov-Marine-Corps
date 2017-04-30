@@ -21,8 +21,7 @@
 		if (contents.len >= max_butts)
 			user << "This ashtray is full."
 			return
-		user.u_equip(W)
-		W.loc = src
+		user.drop_inv_item_to_loc(W, src)
 
 		if (istype(W,/obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = W

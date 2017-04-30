@@ -128,10 +128,9 @@
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	else if(istype(I,/obj/item/weapon/cell) && open && !cell)
 		var/obj/item/weapon/cell/C = I
-		user.drop_item()
-		C.loc = src
-		cell = C
-		updateDialog()
+		if(user.drop_inv_item_to_loc(C, src))
+			cell = C
+			updateDialog()
 	else if(istype(I,/obj/item/weapon/screwdriver))
 		if(locked)
 			user << "\blue The maintenance hatch cannot be opened or closed while the controls are locked."
@@ -329,13 +328,13 @@
 				if(open && !cell)
 					var/obj/item/weapon/cell/C = usr.get_active_hand()
 					if(istype(C))
-						usr.drop_item()
-						cell = C
-						C.loc = src
-						C.add_fingerprint(usr)
+						if(usr.drop_held_item())
+							cell = C
+							C.forceMove(src)
+							C.add_fingerprint(usr)
 
-						usr.visible_message("\blue [usr] inserts a power cell into [src].", "\blue You insert the power cell into [src].")
-						updateDialog()
+							usr.visible_message("\blue [usr] inserts a power cell into [src].", "\blue You insert the power cell into [src].")
+							updateDialog()
 
 
 			if("stop")

@@ -12,7 +12,7 @@
 
 	if(disabilities & COUGHING)
 		if((prob(5) && paralysis <= 1))
-			drop_item()
+			drop_held_item()
 			spawn()
 				emote("cough")
 			return
@@ -53,9 +53,9 @@
 					src << "<span class='danger'>It becomes hard to see for some reason.</span>"
 					eye_blurry = 10
 			if(7 to 9)
-				if(getBrainLoss() >= 35 && (hand && equipped()))
+				if(getBrainLoss() >= 35 && (hand && get_held_item()))
 					src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding.</span>"
-					drop_item()
+					drop_held_item()
 			if(10 to 12)
 				if(getBrainLoss() >= 50 && !lying)
 					src << "<span class='danger'>Your legs won't respond properly, you fall down.</span>"
