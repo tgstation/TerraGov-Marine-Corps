@@ -104,6 +104,7 @@
 				adjustBruteLossByPart(25,"head")
 		if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 			update_hair()	//rebuild hair
+		if(I.flags_inventory & HIDEEARS)
 			update_inv_ears()
 		if(internal)
 			if(internals)
@@ -200,8 +201,10 @@
 
 	if(W == l_hand)
 		l_hand = null
+		update_inv_l_hand()
 	else if(W == r_hand)
 		r_hand = null
+		update_inv_r_hand()
 
 	W.screen_loc = null
 	W.loc = src

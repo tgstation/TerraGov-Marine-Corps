@@ -172,8 +172,10 @@
 
 	if(W == r_hand)
 		r_hand = null
+		update_inv_r_hand()
 	else if(W == l_hand)
 		l_hand = null
+		update_inv_l_hand()
 
 	W.screen_loc = null
 
