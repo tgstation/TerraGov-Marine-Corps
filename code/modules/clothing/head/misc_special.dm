@@ -26,6 +26,7 @@
 	siemens_coefficient = 0.9
 	w_class = 3
 	anti_hug = 2
+	eye_protection = 2
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self()
@@ -41,11 +42,13 @@
 		if(up)
 			flags_inventory |= HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 			icon_state = initial(icon_state)
+			eye_protection = initial(eye_protection)
 			usr << "You flip the [src] down to protect your eyes."
 			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
 			flags_inventory &= ~(HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
 			icon_state = "[initial(icon_state)]up"
+			eye_protection = 0
 			usr << "You push the [src] up out of your face."
 			hug_memory = anti_hug
 			anti_hug = 0

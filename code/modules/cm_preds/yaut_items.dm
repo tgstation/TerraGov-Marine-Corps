@@ -25,6 +25,7 @@
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR|COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
 	filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 	gas_filter_strength = 3
+	eye_protection = 2
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 	unacidable = 1
 	anti_hug = 100
