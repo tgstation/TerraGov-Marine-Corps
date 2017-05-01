@@ -118,7 +118,7 @@ Please contact me on #coderbus IRC. ~Carn x
 #define SUIT_STORE_LAYER		14
 #define BACK_LAYER				13
 #define HAIR_LAYER				12		//TODO: make part of head layer?
-#define EARS_LAYER				12
+#define EARS_LAYER				11
 #define FACEMASK_LAYER			10
 #define HEAD_LAYER				9
 #define COLLAR_LAYER			8
@@ -435,7 +435,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
-	overlays_standing[HAIR_LAYER]	= image(face_standing)
+	overlays_standing[HAIR_LAYER]	= image("icon"= face_standing, "layer" =-HAIR_LAYER)
 
 	apply_overlay(HAIR_LAYER)
 
