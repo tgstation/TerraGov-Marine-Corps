@@ -13,6 +13,7 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	siemens_coefficient = 0.9
+	eye_protection = 2
 	species_restricted = list("exclude","Diona","Vox")
 
 /obj/item/clothing/suit/space

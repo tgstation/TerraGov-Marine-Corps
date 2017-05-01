@@ -688,22 +688,14 @@
 			return 2
 	else return 2
 
+	if(istype(head, /obj/item/clothing))
+		var/obj/item/clothing/C = head
+		number += C.eye_protection
+	if(wear_mask)
+		number += wear_mask.eye_protection
+	if(glasses)
+		number += glasses.eye_protection
 
-	if(istype(src.head, /obj/item/clothing/head/welding))
-		if(!src.head:up)
-			number += 2
-	if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
-		number += 2
-	if(istype(src.head, /obj/item/clothing/head/helmet/space))
-		number += 2
-	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud))
-		number += 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
-		number -= 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
-		var/obj/item/clothing/glasses/welding/W = src.glasses
-		if(!W.up)
-			number += 2
 	return number
 
 
