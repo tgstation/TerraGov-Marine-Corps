@@ -45,12 +45,11 @@
 
 	attackby(W as obj, mob/user as mob)
 		if (istype(W, /obj/item/weapon/pen))
-			var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
+			var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
 			if (user.get_active_hand() != W)
 				return
 			if (!in_range(src, user) && src.loc != user)
 				return
-			t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 			if (t)
 				src.name = "body bag - "
 				src.name += t
