@@ -96,6 +96,10 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 					if(!do_after(src, 45))
 						return
 
+					updatehealth()
+					if(stat || stunned || weakened || health < 0)
+						return
+
 					if(!client)
 						return
 
