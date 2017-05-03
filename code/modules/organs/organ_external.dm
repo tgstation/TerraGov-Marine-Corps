@@ -1018,7 +1018,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		. = new /icon(race_icon, "[icon_name]_[g]")
 
 /datum/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
-	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
+	. = ..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
 	if (!disfigured)
 		if (brute_dam > 40)
 			if (prob(50))
