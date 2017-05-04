@@ -301,49 +301,42 @@
 	if(target.type == /obj/screen)
 		return
 
-	var/atom/movable/item = src.get_active_hand()
+	var/atom/movable/thrown_thing
+	var/obj/item/I = get_active_hand()
 
-	if(!item) return
+	if(!I) return
 
-	if (istype(item, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = item
-		item = G.newthrow() //throw the person instead of the grab
+	if (istype(I, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
+		thrown_thing = G.newthrow() //throw the person instead of the grab
 		del(G) //Stops the user from throwing repeatedly
-		if(ismob(item))
+		if(ismob(thrown_thing))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
 			if(start_T && end_T)
-				var/mob/M = item
+				var/mob/M = thrown_thing
 				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]</font>"
 				var/end_T_descriptor = "<font color='#6b4400'>tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]</font>"
 
-				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
+				M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>"
+				usr.attack_log += "\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>"
 				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 
-	if(!item) return //Grab processing has a chance of returning null
-
-	drop_inv_item_on_ground(item, TRUE)
+	else //real item in hand, not a grab
+		thrown_thing = I
+		drop_inv_item_on_ground(I, TRUE)
 
 	//actually throw it!
-	if (item)
-		src.visible_message("\red [src] has thrown [item].")
+	if (thrown_thing)
+		visible_message("<span class='warning'>[src] has thrown [thrown_thing].</span>")
 
-		if(!src.lastarea)
-			src.lastarea = get_area(src.loc)
-		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
-			src.inertia_dir = get_dir(target, src)
+		if(!lastarea)
+			lastarea = get_area(src.loc)
+		if((istype(loc, /turf/space)) || !lastarea.has_gravity)
+			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
-
-/*
-		if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
-			src.inertia_dir = get_dir(target, src)
-			step(src, inertia_dir)
-*/
-
-
-		item.throw_at(target, item.throw_range, item.throw_speed, src)
+		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
