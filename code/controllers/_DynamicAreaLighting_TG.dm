@@ -131,7 +131,8 @@ datum/light_source
 			dist = max(abs(A.x - __x), abs(A.y - __y))
 #endif
 		if (owner.trueLuminosity > 100) // This will never happen... right?
-			return sqrt(owner.trueLuminosity) - dist
+			return (10 - dist)
+			// return sqrt(owner.trueLuminosity) - dist It won't happen now.
 		else
 			return sqrtTable[owner.trueLuminosity] - dist
 
