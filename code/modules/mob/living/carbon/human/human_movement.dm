@@ -43,12 +43,6 @@
 	if(reagents.has_reagent("hyperzine"))
 		reducible_tally -= 1.5
 
-	if(reagents.has_reagent("nuka_cola"))
-		reducible_tally -= 1
-
-	if(FAT in src.mutations)
-		reducible_tally += 1.5
-
 	if(shock_stage >= 10 && !isYautja(src))
 		reducible_tally += 3
 
