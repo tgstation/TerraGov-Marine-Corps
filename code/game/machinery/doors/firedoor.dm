@@ -288,7 +288,6 @@
 	switch(nextstate)
 		if(OPEN)
 			nextstate = null
-
 			open()
 		if(CLOSED)
 			nextstate = null
@@ -317,6 +316,7 @@
 			flick("door_opening", src)
 		if("closing")
 			flick("door_closing", src)
+	playsound(loc, 'sound/machines/emergency_shutter.ogg', 50)
 	return
 
 

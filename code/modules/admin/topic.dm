@@ -1855,7 +1855,7 @@
 				message_admins("[key_name_admin(usr)] triggered an ion storm")
 				var/show_log = alert(usr, "Show ion message?", "Message", "Yes", "No")
 				if(show_log == "Yes")
-					command_announcement.Announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
+					command_announcement.Announce("Ion storm detected in proximity. Recommendation: Check all AI-controlled equipment for data corruption.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 			if("onlyone")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","OO")
