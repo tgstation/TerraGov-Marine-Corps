@@ -84,7 +84,7 @@
 		return FALSE
 	. = ..()
 
-/mob/living/carbon/human/put_in_l_hand(obj/item/W)
+/mob/living/carbon/human/put_in_r_hand(obj/item/W)
 	if(!has_organ("r_hand"))
 		return FALSE
 	. = ..()
