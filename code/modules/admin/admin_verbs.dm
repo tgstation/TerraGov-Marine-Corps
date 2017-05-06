@@ -268,6 +268,7 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/dsay,
 	/datum/admins/proc/togglesleep,
 	/client/proc/cmd_admin_subtle_message,
+	/datum/admins/proc/viewUnheardAhelps,
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes
 )
