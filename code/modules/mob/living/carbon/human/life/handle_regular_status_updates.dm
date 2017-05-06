@@ -65,12 +65,10 @@
 			if(prob(2) && health && !hal_crit)
 				spawn()
 					emote("snore")
-		else if(in_stasis && prob(95)) //5% chance the mob wakes up for a
-			blinded = 1				//second while in stasis (so players can exit cryobags if they wish)
-			stat = UNCONSCIOUS
-		//CONSCIOUS
 		else
 			stat = CONSCIOUS
+
+		if(in_stasis) blinded = TRUE //Always blinded while in stasis.
 
 		if(has_species(src,"Yautja")) //Hurr hurr.
 			if(weakened)

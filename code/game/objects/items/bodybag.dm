@@ -166,8 +166,7 @@
 	process()
 		used++
 		if(used > last_use) //cryostasis takes a couple seconds to kick in.
-			if(!stasis_mob.in_stasis)
-				stasis_mob.in_stasis = TRUE
+			if(!stasis_mob.in_stasis) stasis_mob.in_stasis = STASIS_IN_BAG
 		if(used > max_uses)
 			open()
 

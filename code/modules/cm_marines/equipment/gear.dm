@@ -63,6 +63,10 @@
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = 1, "MP" = 1, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 1, "MedSci" = 1, "Req" = 1 )
+
+/obj/item/device/encryptionkey/mcom/ai //AI only.
+	channels = list("Command" = 1, "MP" = 1, "Alpha" = 1, "Bravo" = 1, "Charlie" = 1, "Delta" = 1, "Engi" = 1, "MedSci" = 1, "Req" = 1 )
+
 /*
 /obj/item/device/encryptionkey/mhaz
 	name = "Hazteam Echo Radio Encryption Key"
@@ -154,6 +158,10 @@
 	icon_state = "med_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mcom
+	frequency = PUB_FREQ
+
+/obj/item/device/radio/headset/mcom/ai
+	keyslot2 = new /obj/item/device/encryptionkey/mcom/ai
 	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/malphal

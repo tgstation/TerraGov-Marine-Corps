@@ -246,7 +246,7 @@
 		turbine = null
 		if(src.loc && anchored)
 			turbine = locate(/obj/machinery/atmospherics/pipeturbine) in get_step(src,dir)
-			if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
+			if(!turbine || turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 				turbine = null
 
 	process()

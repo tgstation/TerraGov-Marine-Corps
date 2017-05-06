@@ -99,3 +99,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 	"ERT",
 	"NUKE"
 	)
+
+#define STASIS_IN_BAG 		1
+#define STASIS_IN_CRYO_CELL 2

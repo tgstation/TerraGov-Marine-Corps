@@ -120,10 +120,6 @@
 	locs_dock |= T_trg
 	locs_land |= T_src
 
-//	if(!istype(S) || !istype(I) || !istype(T))
-//		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code MSD03.\n <font size=10>WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</font></span>")
-//		log_admin("Error with shuttles: Landmarks not found. Code MSD03.")
-
 	//END: Heavy lifting backend
 
 	if (moving_status == SHUTTLE_IDLE)
@@ -153,10 +149,15 @@
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
 	sleep(travel_time) //Wait while we fly
+
+	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
+
 	playsound(turfs_int[sound_target], sound_landing, 100, 0, 10, -100)
 	playsound(turfs_trg[sound_target], sound_landing, 100, 0, 10, -100)
 
-	sleep(100) //Wait for it to finish
+	sleep(100) //Wait for it to finish.
+
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
 	move_shuttle_to(T_trg, null, turfs_int, 0, trg_rot, src)
 
@@ -237,13 +238,17 @@
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
+	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
+
 	//This is where things change and shit gets real
 
-	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE SULACO. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
+	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE [uppertext(MAIN_SHIP_NAME)]. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
 
 	playsound(turfs_int[sound_target], sound_landing, 100, 0, 10, -100)
 
 	sleep(85)
+
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 

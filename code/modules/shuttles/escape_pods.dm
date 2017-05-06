@@ -2,11 +2,11 @@
 //===================================Shuttle Datum=========================================
 //=========================================================================================
 #define STATE_IDLE			4 //Pod is idle, not ready to launch.
-#define STATE_READY			5 //Pod is armed and ready to go.
-#define STATE_DELAYED		6 //Pod is being delayed from launching automatically.
-#define STATE_LAUNCHING		7 //Pod is about to launch.
-#define STATE_LAUNCHED		8 //Pod has successfully launched.
-#define STATE_BROKEN		9 //Pod failed to launch is now broken.
+#define STATE_BROKEN		5 //Pod failed to launch, is now broken.
+#define STATE_READY			6 //Pod is armed and ready to go.
+#define STATE_DELAYED		7 //Pod is being delayed from launching automatically.
+#define STATE_LAUNCHING		8 //Pod is about to launch.
+#define STATE_LAUNCHED		9 //Pod has successfully launched.
 /*Other states are located in docking_program.dm, but they aren't important here.
 This is built upon a weird network of different states, including docking states, moving
 states, process states, and so forth. It's disorganized, but I tried to keep it in line
@@ -49,7 +49,12 @@ with the original.*/
 
 	//The pod can be delayed until after the automatic launch.
 	can_cancel()
-		. = (EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY && evacuation_program.dock_state < STATE_LAUNCHING) //Must be evac time and the pod can't be launching/launched.
+		. = (EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY && (evacuation_program.dock_state in STATE_READY to STATE_DELAYED)) //Must be evac time and the pod can't be launching/launched.
+
+	short_jump()
+		. = ..()
+		evacuation_program.dock_state = STATE_LAUNCHED
+		check_passengers("<span class='centerbold'>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</span>")
 
 /*
 This processes tags and connections dynamically, so you do not need to modify or pregenerate linked objects.
@@ -87,6 +92,8 @@ suffice.
 	R.id_tag = shuttle_tag //Set tag.
 	R.tag_door = shuttle_tag //Set the door tag.
 	R.evacuation_program = new(R) //Make a new program with the right parent-child relationship. Make sure the master is specified in new().
+	//R.docking_program = R.evacuation_program //Link them all to the same program, sigh.
+	//R.program = R.evacuation_program
 	evacuation_program = R.evacuation_program //For the shuttle, to shortcut the controller program.
 
 	cryo_cells = new
@@ -131,6 +138,8 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 		evacuation_program.dock_state = STATE_BROKEN
 		explosion(evacuation_program.master, -1, -1, 3, 4)
 		sleep(25)
+		staging_area.initialize_power_and_lighting(TRUE) //We want to reinitilize power usage and turn off everything.
+
 		MOVE_MOB_OUTSIDE
 		//evacuation_program.open_door()
 		spawn()
@@ -140,12 +149,14 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 		evacuation_program.master.state("<span class='warning'>WARNING: Maximum weight limit reached, pod unable to launch. Warning: Thruster failure detected.</span>")
 		r_FAL
 	launch()
-	evacuation_program.dock_state = STATE_LAUNCHED
-	. = (check_passengers("<span class='centerbold'>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</span>"))
+	r_TRU
 
 #undef MOVE_MOB_OUTSIDE
 
-//You could potentially make stuff like crypods in these, but they should generally not be allowed to build inside pods.
+/*
+You could potentially make stuff like crypods in these, but they should generally not be allowed to build inside pods.
+This can probably be done a lot more elegantly either way, but it'll suffice for now.
+*/
 /datum/shuttle/ferry/marine/evacuation_pod/proc/check_passengers(msg)
 	. = TRUE
 	var/n = 0 //Generic counter.
@@ -155,7 +166,8 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 			n++
 			if(C.occupant.stat != DEAD && msg) C.occupant << msg
 	//Hardcoded typecast, which should be changed into some weight system of some kind eventually.
-	for(var/i in staging_area)
+	var/area/A = msg ? evacuation_program.master.loc.loc : staging_area //Before or after launch.
+	for(var/i in A)
 		if(istype(i, /obj/mecha)) . = FALSE //Manned or unmanned, these are too big. It won't launch at all.
 		else if(istype(i, /obj/structure/closet))
 			M = locate(/mob/living/carbon/human) in i
@@ -172,7 +184,9 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 			n++
 			if(X.stat != DEAD && msg) X << msg
 	if(n > cryo_cells.len)  . = FALSE //Default is 3 cryo cells and three people inside the pod.
-	if(msg) passengers += n //Return the total number of occupants instead if it successfully launched.
+	if(msg)
+		passengers += n //Return the total number of occupants instead if it successfully launched.
+		r_TRU
 
 //=========================================================================================
 //==================================Console Object=========================================
@@ -259,13 +273,11 @@ if(M.client) \
 {M.client.perspective = EYE_PERSPECTIVE; \
 M.client.eye = src}; \
 M << "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>"; \
-M.sleeping = 9999999; \
 occupant = M; \
+occupant.in_stasis = STASIS_IN_CRYO_CELL; \
 add_fingerprint(M); \
 icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
-//TODO Make sure they have air and atmosphere inside.
-//TODO Make sure unborn larvae stay that way.
 /obj/machinery/cryopod/evacuation
 	stat = MACHINE_DO_NOT_PROCESS
 	unacidable = 1
@@ -288,8 +300,8 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 				user << "<span class='warning'>There is someone in there already!</span>"
 				r_FAL
 
-			if(evacuation_program.dock_state == STATE_IDLE)
-				user << "<span class='warning'>The cryo pod is not responding to commands! It must be inactive.</span>"
+			if(evacuation_program.dock_state < STATE_READY)
+				user << "<span class='warning'>The cryo pod is not responding to commands!</span>"
 				r_FAL
 
 			var/mob/living/carbon/human/M = G.affecting
@@ -320,8 +332,8 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 				occupant.client.eye = occupant.client.mob
 				occupant.client.perspective = MOB_PERSPECTIVE
 
-			occupant.sleeping = 10 //Still groggy.
 			occupant.loc = get_turf(src)
+			occupant.in_stasis = FALSE
 			occupant = null
 			icon_state = orient_right ? "body_scanner_0-r" : "body_scanner_0"
 
@@ -342,8 +354,8 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 			user << "<span class='warning'>The cryogenic pod is already in use! You will need to find another.</span>"
 			r_FAL
 
-		if(evacuation_program.dock_state == STATE_IDLE)
-			user << "<span class='warning'>The cryo pod is not responding to commands! It must be inactive.</span>"
+		if(evacuation_program.dock_state < STATE_READY)
+			user << "<span class='warning'>The cryo pod is not responding to commands!</span>"
 			r_FAL
 
 		visible_message("<span class='warning'>[user] starts climbing into the cryo pod.</span>", 3)
@@ -367,7 +379,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 		if(do_after(user, 20)) go_out() //Force the occupant out.
 		being_forced = !being_forced
 
-/obj/machinery/door/airlock/evacuation //TODO: Make sure you can't c4 these.
+/obj/machinery/door/airlock/evacuation
 	name = "evacuation airlock"
 	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
 	heat_proof = 1

@@ -89,7 +89,10 @@
 
 	var/style = "body"
 
-	var/sound_to_play = istype(speaker, /mob/living/silicon/decoy/ship_ai) ? 'sound/misc/interference.ogg' : null //For the AI stuff. TODO: Change.
+	var/sound_to_play
+	if(istype(speaker, /mob/living/silicon/decoy/ship_ai)) //For the AI stuff. TODO: Change.
+		var/mob/living/silicon/decoy/ship_ai/AI = speaker
+		sound_to_play = AI.S
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))

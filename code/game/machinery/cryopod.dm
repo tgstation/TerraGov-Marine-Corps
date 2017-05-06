@@ -146,7 +146,7 @@ var/global/list/frozen_items = list()
 	density = 1
 	anchored = 1
 
-	var/mob/occupant = null       // Person waiting to be despawned.
+	var/mob/living/occupant = null       // Person waiting to be despawned.
 	var/orient_right = null       // Flips the sprite.
 	var/time_till_despawn = 9000 // 15 minutes-ish safe period before being despawned.
 	var/time_entered = 0          // Used to keep track of the safe period.
