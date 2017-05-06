@@ -32,9 +32,9 @@
 	title = MAIN_AI_SYSTEM
 	announcement_type = "Automated Announcement"
 
-/datum/announcement/priority/command/warning/Announce(message)
+/datum/announcement/priority/command/warning/Announce(message, new_sound)
 	var/mob/living/silicon/decoy/ship_ai/AI = locate()
-	if(AI) . = AI.say(message)
+	if(AI) . = AI.say(message, new_sound)
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)

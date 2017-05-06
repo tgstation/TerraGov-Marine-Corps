@@ -51,7 +51,7 @@
 	var/is_being_hugged = 0 //Is there a hugger humping our face?
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
 	var/acid_damage = 0 //Counter for stomach acid damage. At ~60 ticks, dissolved
-	var/in_stasis = 0 //Is the mob in stasis bag?
+	var/in_stasis = FALSE //Is the mob in stasis bag?
 
 	var/tally = 0 //Tally counter, updated every Life() proc via movement procs, reset under mob/living
 

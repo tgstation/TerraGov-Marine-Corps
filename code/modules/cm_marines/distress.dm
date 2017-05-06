@@ -175,12 +175,12 @@
 	objectives = "Make sure you get a tip!"
 	probability = 5
 
-//Emergency Response Chimps
-/datum/emergency_call/erc
-	name = "ERC"
-	mob_max = 4
-	arrival_message = "Incoming Transmission: 'Under Weyland-Yutani Contract order 34-12 clause B we have dispatched a highly trained squad from Weyland Yutani Research Division to assist you. Standby for boarding.'"
-	objectives = "Do whatever Weyland Yutani needs you to do."
+//Blank colonist ERT for admin stuff.
+/datum/emergency_call/colonist
+	name = "Colonists"
+	mob_max = 8
+	arrival_message = "Incoming Transmission: 'This is the *static*. We are *static*.'"
+	objectives = "Follow the orders given to you."
 	probability = 0
 
 //Dutch's Dozen. Friendly to the USCM, but more neutral than anything. //TODO Replace.
@@ -1064,111 +1064,35 @@
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
-	return
 
-//Chimps!
-/datum/emergency_call/erc/create_member(var/datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/colonist/create_member(datum/mind/M) //Blank ERT with only basic items.
+	var/turf/T = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+	if(!istype(T)) r_FAL
 
-	var/mob/living/carbon/monkey/mob = new(spawn_loc)
-	mob.real_name = "ERC Agent [pick(last_names)]"
-	mob.name = mob.real_name
-	mob.key = M.key
-//	M.transfer_to(mob)
-	if(!mob.mind) //Somehow
-		mob.mind = M
-	mob.mind.assigned_role = "ERC"
-	ticker.mode.traitors += mob.mind
-	spawn(0)
-		mob.mind.special_role = "MODE" //Has to be set to this
-		spawn_monkey(mob)
-		mob << "<font size='3'>\red You are an Emergency Response Chimp! Sweet!</font>"
-	spawn(10)
-		M << "<B>Objectives:</b> [objectives]"
+	var/mob/living/carbon/human/H = new(T)
+	H.gender = pick(MALE, FEMALE)
+	var/datum/preferences/A = new
+	A.randomize_appearance_for(H)
+	H.real_name = capitalize(pick(H.gender == MALE ? first_names_male : first_names_female)) + " " + capitalize(pick(last_names))
+	H.name = H.real_name
+	H.age = rand(21,45)
+	H.dna.ready_dna(H)
+	H.key = M.key
+	H.mind.assigned_role = "Colonist"
 
-	if(original)
-		del(original)
-	return
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
+	H.equip_to_slot(new /obj/item/weapon/combat_knife(H), WEAR_L_STORE)
+	H.equip_to_slot(new /obj/item/device/flashlight(H), WEAR_R_STORE)
 
-/datum/emergency_call/erc/proc/spawn_monkey(var/mob/living/carbon/monkey/M)
-	if(!M) return //What you doing to me
+	spawn(20)
+		if(H && H.loc)
+			H << "<span class='role_header'>You are a colonist!</span>"
+			H << "<span class='role_body'>You have been put into the game by a staff member. Please follow all staff instructions.</span>"
 
-	//Hyper-intelligent mankeys
-	M.universal_speak = 1
-	M.universal_understand = 1
-	M.desc = "A hyper-intelligent monkey from Weyland-Yutani's Research Division. Definitely don't want to get on its bad side."
-
-	M.maxHealth = 250
-	M.health = 250
-
-	M.equip_to_slot(new /obj/item/clothing/mask/gas/swat/monkey(M), WEAR_FACE)
-	M.equip_to_slot(new /obj/item/weapon/storage/backpack/holding(M), WEAR_BACK)
-	M.equip_to_slot(new /obj/item/weapon/shield/riot(M), WEAR_R_HAND)
-	M.equip_to_slot(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(M.back), WEAR_IN_BACK)
-	M.equip_to_slot(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
-	M.equip_to_slot(new /obj/item/weapon/grenade/incendiary(M.back), WEAR_IN_BACK)
-	M.equip_to_slot(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
-	M.equip_to_slot(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
-
-	spawn_merc_gun(M)
-	spawn_merc_gun(M,1)
-
-	var/obj/item/weapon/card/id/W = new()
-	M.equip_to_slot(W, WEAR_IN_BACK)
-	W.assignment = "W-Y Emergency Response Chimp"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_antagonist_pmc_access()
-
-/obj/item/clothing/mask/gas/swat/monkey
-	name = "\improper ERC mask"
-	desc = "A close-fitting tactical mask that can be connected to an air supply."
-	icon_state = "swat"
-	siemens_coefficient = 0.7
-	flags_armor_protection = FACE|EYES
-	anti_hug = 8
-
-/datum/emergency_call/erc/spawn_items()
-	var/turf/drop_spawn
-	var/choice
-
-	for(var/i = 1 to 8) //Spawns up to 8 random things.
-		if(prob(5)) continue
-		choice = rand(1,8) //Decreasing values, rarer stuff goes at the end.
-		drop_spawn = get_spawn_point(1)
-		if(istype(drop_spawn))
-			switch(choice)
-				if(0)
-//					new /obj/item/ammo_magazine/a762(drop_spawn)
-					continue
-				if(1)
-//					new /obj/item/weapon/gun/projectile/automatic/mar40(drop_spawn)
-//					new /obj/item/weapon/gun/projectile/automatic/mar40(drop_spawn)
-					continue
-				if(2)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					new /obj/item/weapon/tank/phoron/m240(drop_spawn)
-					continue
-				if(3)
-					new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
-					continue
-				if(4)
-					new /obj/item/weapon/shield/riot(drop_spawn)
-					continue
-				if(5)
-//					new /obj/item/weapon/gun/launcher/m92(drop_spawn)
-					continue
-				if(6)
-					new /obj/item/weapon/storage/box/grenade_system(drop_spawn)
-					continue
-				if(7)
-					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
-					continue
-	return
+	if(original && original.loc) cdel(original)
 
 /datum/emergency_call/dutch/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()

@@ -9,7 +9,9 @@
 	var/can_hellhound_enter = 1
 
 /area/New()
-	icon_state = ""
+	..()
+
+	icon_state = "" //Used to reset the icon overlay, I assume.
 	layer = 10
 	master = src //moved outside the spawn(1) to avoid runtimes in lighting.dm when it references loc.loc.master ~Carn
 	uid = ++global_uid
@@ -17,8 +19,16 @@
 	active_areas += src
 	all_areas += src
 
+	initialize_power_and_lighting()
+
+/area/proc/initialize_power_and_lighting(override_power)
 	if(requires_power)
 		luminosity = 0
+		if(override_power) //Reset everything if you want to override.
+			power_light = 1
+			power_equip = 1
+			power_environ = 1
+			SetDynamicLighting()
 	else
 		power_light = 0			//rastaf0
 		power_equip = 0			//rastaf0
@@ -26,12 +36,8 @@
 		luminosity = 1
 		lighting_use_dynamic = 0
 
-	..()
-
-//	spawn(15)
 	power_change()		// all machines set to current power level, also updates lighting icon
 	InitializeLighting()
-
 
 /area/proc/poweralert(var/state, var/obj/source as obj)
 	if (state != poweralm)
@@ -210,8 +216,6 @@
 	if ((fire || eject || party) && ((!requires_power)?(!requires_power):power_environ))//If it doesn't require power, can still activate this proc.
 		if(fire && !eject && !party)
 			icon_state = "blue"
-		/*else if(atmosalm && !fire && !eject && !party)
-			icon_state = "bluenew"*/
 		else if(!fire && eject && !party)
 			icon_state = "red"
 		else if(party && !fire && !eject)

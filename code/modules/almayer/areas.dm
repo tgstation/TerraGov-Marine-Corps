@@ -290,3 +290,16 @@
 /area/almayer/evacuation/pod11
 
 /area/almayer/evacuation/stranded
+
+//Placeholder.
+/area/almayer/evacuation/stranded/pod1
+/area/almayer/evacuation/stranded/pod2
+/area/almayer/evacuation/stranded/pod3
+/area/almayer/evacuation/stranded/pod4
+/area/almayer/evacuation/stranded/pod5
+/area/almayer/evacuation/stranded/pod6
+/area/almayer/evacuation/stranded/pod7
+/area/almayer/evacuation/stranded/pod8
+/area/almayer/evacuation/stranded/pod9
+/area/almayer/evacuation/stranded/pod10
+/area/almayer/evacuation/stranded/pod11

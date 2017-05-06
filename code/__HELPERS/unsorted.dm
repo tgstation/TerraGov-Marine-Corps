@@ -776,31 +776,24 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 	else
 		return 0
 
-/proc/do_after(var/mob/user as mob, delay as num, var/numticks = 5, var/needhand = 1)
-	if(!user || isnull(user))
-		return 0
-	if(numticks == 0)
-		return 0
+/proc/do_after(mob/user, delay, numticks = 5, needhand = TRUE)
+	if(!istype(user) || delay <= 0) r_FAL
+
 	var/mob/living/L
 	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
 
 	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
-	var/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_hand()
 
-	for(var/i = 0, i<numticks, i++)
+	for(var/i = 0 to numticks)
 		sleep(delayfraction)
+		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.weakened || user.stunned) r_FAL
+		if(L && L.health < config.health_threshold_crit) r_FAL //For some reason going into crit doesn't trigger the above things
+		if(needhand && (!holding || !holding.loc || user.get_active_hand() != holding )) r_FAL	//Sometimes you don't want the user to have to keep their active hand
 
-
-		if(!user || user.stat || user.weakened || user.stunned || user.loc != original_loc || get_turf(user) != original_turf)
-			return 0
-		if(L && L.health < config.health_threshold_crit) //For some reason going into crit doesn't trigger the above things
-			return 0
-		if(needhand && !(user.get_active_hand() == holding))	//Sometimes you don't want the user to have to keep their active hand
-			return 0
-
-	return 1
+	r_TRU
 
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.

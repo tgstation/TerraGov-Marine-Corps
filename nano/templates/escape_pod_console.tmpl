@@ -7,15 +7,15 @@
 			{{if data.docking_status == 4}}
 				<span class="idle">SYSTEMS OK</span>
 			{{else data.docking_status == 5}}
-				<span class="average">STANDING BY</span>
+				<span class="bad">SYSTEMS DOWN</span>				
 			{{else data.docking_status == 6}}
-				<span class="idle">DELAYED</span>			
+				<span class="average">STANDING BY</span>
 			{{else data.docking_status == 7}}
-				<span class="average">LAUNCHING</span>	
+				<span class="idle">DELAYED</span>			
 			{{else data.docking_status == 8}}
-				<span class="average">TRAVELING</span>
+				<span class="average">LAUNCHING</span>	
 			{{else data.docking_status == 9}}
-				<span class="bad">SYSTEMS DOWN</span>		
+				<span class="average">TRAVELING</span>		
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}

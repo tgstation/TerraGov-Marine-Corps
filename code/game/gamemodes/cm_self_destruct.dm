@@ -3,18 +3,15 @@ Look into animation screen not showing on self destruct and other weirdness
 
 
 TODO
+Force doors on pods.
 Intergrate distress into this controller.
 Finish nanoui conversion for comm console.
-Fix up the pods some more.
 Make sure people who get nuked and wake up from SSD don't live.
 Add flashing lights to evac.
 Finish the game mode announcement thing.
-Make sure the message for departure is displayed AFTER pod departure.
-Fix ETA time.
 Add radio channels and AI question console.
-
-Make sure shuttles can't be used during evac
 TODO: Fix escape doors to work properly.
+Add flashing lights.
 */
 
 #define SELF_DESTRUCT_ROD_STARTUP_TIME 12000
@@ -137,6 +134,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				P.prepare_for_launch() //May or may not launch, will do everything on its own.
 				L -= i
 				sleep(50) //Sleeps 5 seconds each launch.
+			sleep(300) //Sleep 30 more seconds to make sure everyone had a chance to leave.
 			ai_system.Announce("ATTENTION: Evacuation complete. Outbound lifesigns detected: [P.passengers ? P.passengers  : "none"].")
 			evac_status = EVACUATION_STATUS_COMPLETE
 		r_TRU
@@ -146,13 +144,14 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 	spawn while(evac_status == EVACUATION_STATUS_INITIATING) //If it's not departing, no need to process.
 		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE) begin_launch()
-		sleep(10) //Two seconds.
+		sleep(10) //One second.
 
-/datum/authority/branch/evacuation/proc/get_status_panel_eta() //TODO Fix this.
-	if(evac_status == EVACUATION_STATUS_INITIATING)
-		var/eta = EVACUATION_ESTIMATE_DEPARTURE
-		if(eta > 100) . = "EVAC-[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
-		else . = "LAUNCHING"
+/datum/authority/branch/evacuation/proc/get_status_panel_eta()
+	switch(evac_status)
+		if(EVACUATION_STATUS_INITIATING)
+			var/eta = EVACUATION_ESTIMATE_DEPARTURE
+			. = "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
+		if(EVACUATION_STATUS_IN_PROGRESS) . = "NOW"
 
 //=========================================================================================
 //=========================================================================================
@@ -170,7 +169,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		dest_master.lock_or_unlock()
 		r_TRU
 
-//Override is for admins bypassig normal player restrictions.
+//Override is for admins bypassing normal player restrictions.
 /datum/authority/branch/evacuation/proc/cancel_self_destruct(override)
 	if(dest_status == NUKE_EXPLOSION_ACTIVE)
 		var/obj/machinery/self_destruct/rod/I
