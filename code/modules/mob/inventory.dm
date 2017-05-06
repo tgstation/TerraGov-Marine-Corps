@@ -113,10 +113,10 @@
 // its new loc (e.g.triggering mousetraps)
 /mob/proc/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
 
-	if(!I) return 1
+	if(!I) return TRUE
 
 	if((I.flags_atom & NODROP) && !force)
-		return 0 //u_equip() only fails if item has NODROP
+		return FALSE //u_equip() only fails if item has NODROP
 
 	if (I == r_hand)
 		r_hand = null
@@ -135,7 +135,7 @@
 			I.loc = newloc
 	I.dropped(src)
 
-	return 1
+	return TRUE
 
 //Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
 //Used just before you want to delete the item, or moving it afterwards.

@@ -79,45 +79,13 @@
 		if(WEAR_IN_ACCESSORY)
 			return 1
 
+
 /mob/living/carbon/human/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
+	. = ..()
+	if(!. || !I)
+		return FALSE
 
-	if(!I) return 1
-
-	if((I.flags_atom & NODROP) && !force)
-		return 0 //u_equip() only fails if item has NODROP
-
-	if (I == r_hand)
-		r_hand = null
-		update_inv_r_hand()
-	else if (I == l_hand)
-		l_hand = null
-		update_inv_l_hand()
-	else if(I == back)
-		back = null
-		update_inv_back()
-	else if (I == wear_mask)
-		wear_mask = null
-		if(istype(I,/obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/F = I
-			if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
-				visible_message("\red [F] frantically claws at [src]'s face!","\red [F] frantically claws at your face! Auugh!")
-				adjustBruteLossByPart(25,"head")
-		if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
-			update_hair()	//rebuild hair
-		if(I.flags_inventory & HIDEEARS)
-			update_inv_ears()
-		if(internal)
-			if(internals)
-				internals.icon_state = "internal0"
-			internal = null
-		update_inv_wear_mask()
-	else if(I == handcuffed)
-		handcuffed = null
-		handcuff_update()
-	else if(I == legcuffed)
-		legcuffed = null
-		legcuff_update()
-	else if(I == wear_suit)
+	if(I == wear_suit)
 		if(s_store)
 			drop_inv_item_on_ground(s_store)
 		wear_suit = null
@@ -179,18 +147,25 @@
 		s_store = null
 		update_inv_s_store()
 
-	if (client)
-		client.screen -= I
-	I.layer = initial(I.layer)
-	if(newloc)
-		if(!nomoveupdate)
-			I.forceMove(newloc)
-		else
-			I.loc = newloc
 
-	I.dropped(src)
 
-	return 1
+
+/mob/living/carbon/human/wear_mask_update(obj/item/I)
+	if(istype(I,/obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/F = I
+		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
+			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
+			adjustBruteLossByPart(25,"head")
+	if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+		update_hair()	//rebuild hair
+	if(I.flags_inventory & HIDEEARS)
+		update_inv_ears()
+	if(internal)
+		if(internals)
+			internals.icon_state = "internal0"
+		internal = null
+	update_inv_wear_mask()
+
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
