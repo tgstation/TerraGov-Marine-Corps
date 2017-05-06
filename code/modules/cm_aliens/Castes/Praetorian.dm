@@ -25,6 +25,7 @@
 	evolves_to = list()
 	armor_deflection = 45
 	big_xeno = 1
+	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = 3
 	upgrade = 0
 	inherent_verbs = list(

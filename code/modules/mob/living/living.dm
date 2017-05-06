@@ -726,8 +726,8 @@
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(pulling && !istype(pulling, /obj/structure/stool/bed/roller))	//Dragging stuff slows you down a bit.
-		tally += 3
+	if(pulling && pulling.drag_delay)	//Dragging stuff can slow you down a bit.
+		tally += pulling.drag_delay
 
 /mob/living
 	forceMove(atom/destination)

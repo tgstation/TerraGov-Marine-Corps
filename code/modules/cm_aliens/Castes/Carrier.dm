@@ -20,6 +20,7 @@
 	plasma_gain = 8
 	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."
+	drag_delay = 6 //pulling a big dead xeno is hard
 	var/huggers_max = 6
 	var/huggers_cur = 0
 	var/throwspeed = 1

@@ -4,6 +4,7 @@
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
+	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
 	var/l_move_time = 1
 	var/m_flag = 1
 	var/throwing = 0
