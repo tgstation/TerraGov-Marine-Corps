@@ -150,7 +150,7 @@
 		if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
 			if(target.anchored) return
 			V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
-	if(!do_after(usr, 20))
+	if(!do_after(usr, 20, FALSE))
 		return
 	if(target_loc != target.loc)
 		return

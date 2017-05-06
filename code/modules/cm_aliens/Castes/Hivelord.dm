@@ -87,12 +87,16 @@
 		src << "<span class='warning'>You are not ready to dig a tunnel again.</span>"
 		return
 
+	if(get_active_hand())
+		src << "<span class='xenowarning'>You need an empty claw for this!</span>"
+		r_FAL
+
 	if(!check_plasma(200))
 		return
 
 	visible_message("<span class='xenonotice'>[src] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>")
-	if(do_after(src, 100))
+	if(do_after(src, 100, 1))
 		if(!start_dig) //Let's start a new one.
 			visible_message("<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>", \
 			"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>")

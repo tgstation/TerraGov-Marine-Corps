@@ -21,7 +21,7 @@
 			targets -= T
 	playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
 
-	if(do_after(usr,delay))
+	if(do_after(usr, delay, FALSE))
 		for(var/i=0,i<summon_amt,i++)
 			if(!targets.len)
 				break

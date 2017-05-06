@@ -404,7 +404,7 @@
 			return
 
 		visible_message("[usr] starts climbing into the sleeper.", 3)
-		if(do_after(usr, 20))
+		if(do_after(usr, 20, FALSE))
 			if(src.occupant)
 				usr << "\blue <B>The sleeper is already occupied!</B>"
 				return

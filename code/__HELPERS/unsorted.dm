@@ -776,7 +776,7 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 	else
 		return 0
 
-/proc/do_after(mob/user, delay, numticks = 5, needhand = TRUE)
+/proc/do_after(mob/user, delay, needhand = 2, numticks = 5) //hacky, will suffice for now.
 	if(!istype(user) || delay <= 0) r_FAL
 
 	var/mob/living/L
@@ -791,7 +791,11 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 		sleep(delayfraction)
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.weakened || user.stunned) r_FAL
 		if(L && L.health < config.health_threshold_crit) r_FAL //For some reason going into crit doesn't trigger the above things
-		if(needhand && (!holding || !holding.loc || user.get_active_hand() != holding )) r_FAL	//Sometimes you don't want the user to have to keep their active hand
+		switch(needhand)
+			if(1) //Just need an empty hand.
+				if(user.get_active_hand()) r_FAL //If there's something in the hand, fail.
+			if(2) //Need to use the same hand, holding a tool.
+				if(!holding || !holding.loc || user.get_active_hand() != holding ) r_FAL	//Sometimes you don't want the user to have to keep their active hand.
 
 	r_TRU
 

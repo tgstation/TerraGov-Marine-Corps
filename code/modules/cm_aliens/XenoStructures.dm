@@ -537,7 +537,7 @@
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
 		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src].</span>")
 
-	if(do_after(M, tunnel_time))
+	if(do_after(M, tunnel_time, FALSE))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.loc = other.loc
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \

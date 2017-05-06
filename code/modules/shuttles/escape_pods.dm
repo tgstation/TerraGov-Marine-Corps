@@ -360,7 +360,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
 		visible_message("<span class='warning'>[user] starts climbing into the cryo pod.</span>", 3)
 
-		if(do_after(user, 20))
+		if(do_after(user, 20, FALSE))
 			user.stop_pulling()
 			MOVE_MOB_INSIDE(user)
 
@@ -376,7 +376,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 		being_forced = !being_forced
 		visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
 		playsound(src,'sound/effects/metal_creaking.ogg', 65, 1, 3)
-		if(do_after(user, 20)) go_out() //Force the occupant out.
+		if(do_after(user, 20, FALSE)) go_out() //Force the occupant out.
 		being_forced = !being_forced
 
 /obj/machinery/door/airlock/evacuation

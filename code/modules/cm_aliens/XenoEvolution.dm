@@ -176,7 +176,7 @@
 
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
-	if(do_after(src, 25))
+	if(do_after(src, 25, FALSE))
 		if(castepick == "Queen") //Do another check after the tick.
 			if(is_queen_alive())
 				src << "<span class='warning'>There already is a Queen.</span>"

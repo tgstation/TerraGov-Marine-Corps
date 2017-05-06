@@ -106,7 +106,7 @@
 	visible_message("<span class='notice'>[src] starts looking off into the distance.</span>", \
 	"<span class='notice'>You start focusing your sight to look off into the distance.</span>")
 
-	if(do_after(src, 20))
+	if(do_after(src, 20, FALSE))
 		zoom_in()
 		zoom_timer = 0 //Just so they don't spam it and weird things out
 		return
@@ -155,7 +155,7 @@
 	readying_bombard = 1
 	visible_message("<span class='notice'>\The [src] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>You begin digging yourself into place.</span>")
-	if(do_after(src, 30))
+	if(do_after(src, 30, FALSE))
 		readying_bombard = 0
 		is_bombarding = 1
 		visible_message("<span class='notice'>\The [src] digs itself into the ground!</span>", \
@@ -223,7 +223,7 @@
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 	bomb_cooldown = 1
 	is_bombarding = 0
-	if(do_after(src, 50))
+	if(do_after(src, 50, FALSE))
 		bomb_turf = null
 		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
 		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>")

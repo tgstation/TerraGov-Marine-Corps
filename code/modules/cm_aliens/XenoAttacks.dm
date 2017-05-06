@@ -164,7 +164,7 @@
 						return */
 		visible_message("<span class='danger'>\The [src] starts to devour \the [pulled]!</span>", \
 		"<span class='danger'>You start to devour \the [pulled]!</span>")
-		if(do_after(src, 50))
+		if(do_after(src, 50, FALSE))
 			if(pulling == pulled) //make sure you've still got them in your claws
 				visible_message("<span class='warning'>\The [src] devours \the [pulled]!</span>", \
 				"<span class='warning'>You devour \the [pulled]!</span>")

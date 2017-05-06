@@ -687,7 +687,7 @@
 			return
 
 		user << "You start pulling out \the [src]."
-		if(!do_after(user,20))
+		if(!do_after(user,20, 1))
 			return
 
 		anchored = 0
@@ -1291,5 +1291,3 @@ obj/item/alienjar
 				pressure_alert = -1
 
 	return
-
-

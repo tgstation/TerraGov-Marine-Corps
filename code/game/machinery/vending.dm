@@ -305,7 +305,7 @@
 	if(tipped_level == 2)
 		tipped_level = 1
 		user.visible_message("\blue [user] begins to heave the vending machine back into place!","\blue You start heaving the vending machine back into place..")
-		if(do_after(user,80))
+		if(do_after(user,80, FALSE))
 			user.visible_message("\blue [user] rights the [src]!","\blue You right the [src]!")
 			flip_back()
 			return
@@ -1067,4 +1067,3 @@
 					/obj/item/weapon/scalpel = 2,/obj/item/weapon/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
-
