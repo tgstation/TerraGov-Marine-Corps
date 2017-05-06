@@ -249,7 +249,7 @@ cases. Override_icon_state should be a list.*/
 		if(zoom) //binoculars, scope, etc
 			zoom(user, 11, 12)
 	if(flags_atom & DELONDROP)
-		del(src)
+		cdel(src)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)

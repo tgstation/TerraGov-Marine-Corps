@@ -128,7 +128,7 @@
 				linked_ear = null
 				E.linked_ear = null
 				H.temp_drop_inv_item(E)
-				if(E) //the linked ear was the real one
+				if(!istype(E, /obj/item/clothing/ears/offear)) //the linked ear was the real one
 					E.forceMove(H.loc)
 		..()
 
