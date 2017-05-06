@@ -25,7 +25,7 @@
 
 	var/const/mob_size = 15
 
-/obj/structure/closet/New()
+/obj/structure/closet/initialize()
 	..()
 	spawn(1)
 		if(!opened)		// if closed, any item at the crate's loc is put in the contents
