@@ -95,7 +95,7 @@
 
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 
-	if(!do_after(user,50))
+	if(!do_after(user,50, FALSE))
 		return
 
 	if (!can_climb(user))

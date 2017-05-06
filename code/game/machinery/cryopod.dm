@@ -385,7 +385,7 @@ var/global/list/frozen_items = list()
 
 	visible_message("[usr] starts climbing into the cryo pod.", 3)
 
-	if(do_after(usr, 20))
+	if(do_after(usr, 20, FALSE))
 
 		if(!usr || !usr.client)
 			return

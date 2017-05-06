@@ -49,7 +49,7 @@
 		switch( alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
 			if("Up")
 				user << "You start climbing up the ladder.."
-				if(do_after(user,20))
+				if(do_after(user,20, FALSE))
 
 					user.visible_message("<span class='notice'>[user] climbs up \the [src]!</span>", \
 										 "<span class='notice'>You climb up \the [src]!</span>")
@@ -60,7 +60,7 @@
 
 			if("Down")
 				user << "You start climbing down the ladder.."
-				if(do_after(user,20))
+				if(do_after(user,20, FALSE))
 					user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 										 "<span class='notice'>You climb down \the [src]!</span>")
 					user.loc = get_turf(down)
@@ -73,7 +73,7 @@
 
 	else if(up)
 		user << "You start climbing up the ladder.."
-		if(do_after(user,20))
+		if(do_after(user,20, FALSE))
 			user.visible_message("<span class='notice'>[user] climbs up \the [src]!</span>", \
 								 "<span class='notice'>You climb up \the [src]!</span>")
 			user.loc = get_turf(up)
@@ -83,7 +83,7 @@
 
 	else if(down)
 		user << "You start climbing down the ladder.."
-		if(do_after(user,20))
+		if(do_after(user,20, FALSE))
 			user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 								 "<span class='notice'>You climb down \the [src]!</span>")
 			user.loc = get_turf(down)

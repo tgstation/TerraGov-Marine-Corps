@@ -242,7 +242,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_after(src, 80))
+	if(do_after(src, 80, FALSE))
 		if(!victim || isnull(victim))
 			return
 		if(victim.loc != cur_loc)

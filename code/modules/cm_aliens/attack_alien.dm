@@ -465,7 +465,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>")
 
-	if(do_after(M, 40))
+	if(do_after(M, 40, FALSE))
 		if(M.loc != cur_loc)
 			return 0 //Make sure we're still there
 		if(locked)
@@ -498,7 +498,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>")
 
-	if(do_after(M, 30))
+	if(do_after(M, 30, FALSE))
 		if(M.loc != cur_loc)
 			return 0 //Make sure we're still there
 		if(blocked)
@@ -535,7 +535,7 @@
 		return 0
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>")
-	if(do_after(M, 80))
+	if(do_after(M, 80, FALSE))
 		if(!src)
 			return 0 //Someone already destroyed it, do_after should check this but best to be safe
 		if(M.loc != cur_loc)
@@ -620,7 +620,7 @@
 		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
 		"<span class='notice'>You start clearing out \the [src].</span>")
 		playsound(M.loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
-		if(!do_after(M, 25))
+		if(!do_after(M, 25, FALSE))
 			return 0
 
 		if(!slayer)
@@ -708,7 +708,7 @@
 		shove_time = 50
 	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
 		shove_time = 15
-	if(do_after(M, shove_time))
+	if(do_after(M, shove_time, FALSE))
 		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>")
 		tip_over()

@@ -1002,11 +1002,17 @@ mob/proc/yank_out_object()
 	var/obj/item/weapon/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
+		if(get_active_hand())
+			src << "<span class='warning'>You need an empty hand for this!</span>"
+			r_FAL
 		src << "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>"
 	else
+		if(get_active_hand())
+			U << "<span class='warning'>You need an empty hand for this!</span>"
+			r_FAL
 		U << "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>"
 
-	if(!do_after(U, 80))
+	if(!do_after(U, 80, 1))
 		return
 	if(!selection || !S || !U || !istype(selection))
 		return

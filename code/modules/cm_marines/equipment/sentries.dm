@@ -308,7 +308,7 @@
 
 	if(stat)
 		user.visible_message("[user] begins to right the [src].","You begin to put the [src] upright..")
-		if(do_after(user,20))
+		if(do_after(user,20, FALSE))
 			user.visible_message("[user] rights the [src].","You put the [src] upright.")
 			stat = 0
 			update_icon()
