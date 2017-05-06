@@ -58,6 +58,7 @@
 	var/obj/item/weapon/twohanded/offhand/offhand = rnew(/obj/item/weapon/twohanded/offhand, user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
+	offhand.flags_atom |= WIELDED
 	user.put_in_inactive_hand(offhand)
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
@@ -98,8 +99,10 @@
 	flags_atom = DELONDROP|TWOHANDED|WIELDED
 
 	unwield(var/mob/user)
-		user.temp_drop_inv_item(src)
-		cdel(src)
+		if(flags_atom & WIELDED)
+			flags_atom &= ~WIELDED
+			user.temp_drop_inv_item(src)
+			cdel(src)
 
 	wield()
 		cdel(src) //This shouldn't even happen.
