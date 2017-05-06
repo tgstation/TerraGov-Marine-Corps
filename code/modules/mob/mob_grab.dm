@@ -209,6 +209,9 @@
 			attacker.stomach_contents.Add(affecting)
 			del(src)
 
-/obj/item/weapon/grab/Del()
+/obj/item/weapon/grab/Dispose()
+	if(affecting)
+		affecting.grabbed_by -= src
 	del(hud)
+	affecting = null
 	..()
