@@ -79,8 +79,8 @@
 
 	src.dump_contents()
 
-	src.icon_state = src.icon_opened
-	src.opened = 1
+	opened = 1
+	update_icon()
 	playsound(src.loc, open_sound, 15, 1, -3)
 	density = 0
 	return 1
@@ -100,8 +100,8 @@
 	if(store_mobs)
 		stored_units = store_mobs(stored_units)
 
-	src.icon_state = src.icon_closed
-	src.opened = 0
+	opened = 0
+	update_icon()
 
 	playsound(src.loc, close_sound, 15, 1, -3)
 	density = 1
@@ -215,8 +215,8 @@
 		if(!WT.remove_fuel(0,user))
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
-		src.welded = !src.welded
-		src.update_icon()
+		welded = !welded
+		update_icon()
 		for(var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
 	else

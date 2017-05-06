@@ -4,6 +4,7 @@
 	icon_state = "wheelchair"
 	anchored = 0
 	movable = 1
+	drag_delay = 0 //pulling something on wheels is easy
 
 	var/driving = 0
 	var/mob/living/pulling = null

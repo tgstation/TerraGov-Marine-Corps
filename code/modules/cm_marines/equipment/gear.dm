@@ -29,22 +29,18 @@
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
 	w_class = 3.0
-	var/unfolded_tarp = /obj/structure/closet/body_bag/tarp
+	unfolded_path = /obj/structure/closet/bodybag/tarp
 
-	attack_self(mob/user)
-		var/obj/structure/closet/body_bag/tarp/T = new unfolded_tarp(user.loc)
-		T.add_fingerprint(user)
-		user.temp_drop_inv_item(src)
-		cdel(src)
+
 
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"
-	unfolded_tarp = /obj/structure/closet/body_bag/tarp/snow
+	unfolded_path = /obj/structure/closet/bodybag/tarp/snow
 
-/obj/structure/closet/body_bag/tarp
-	name = "\improper V1 thermal-dapening tarp"
-	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+/obj/structure/closet/bodybag/tarp
+	name = "\improper V1 thermal-dampening tarp"
+	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
@@ -54,7 +50,7 @@
 	item_path = /obj/item/bodybag/tarp
 	anchored = 1
 
-/obj/structure/closet/body_bag/tarp/snow
+/obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"
 	icon_closed = "snowtarp_closed"
 	icon_opened = "snowtarp_open"

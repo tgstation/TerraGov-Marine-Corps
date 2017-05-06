@@ -122,6 +122,11 @@ cases. Override_icon_state should be a list.*/
 		item_state = icon_state
 		item_color = icon_state
 
+/obj/item/New(loc)
+	..()
+	if(w_class <= 3) //pulling small items doesn't slow you down much
+		drag_delay = 1
+
 /obj/item/examine()
 	set src in view()
 

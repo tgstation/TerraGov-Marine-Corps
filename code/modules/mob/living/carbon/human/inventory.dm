@@ -79,6 +79,15 @@
 		if(WEAR_IN_ACCESSORY)
 			return 1
 
+/mob/living/carbon/human/put_in_l_hand(obj/item/W)
+	if(!has_organ("l_hand"))
+		return FALSE
+	. = ..()
+
+/mob/living/carbon/human/put_in_l_hand(obj/item/W)
+	if(!has_organ("r_hand"))
+		return FALSE
+	. = ..()
 
 /mob/living/carbon/human/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
 	. = ..()

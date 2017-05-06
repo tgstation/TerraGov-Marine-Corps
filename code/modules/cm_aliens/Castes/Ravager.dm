@@ -30,6 +30,7 @@
 	fire_immune = 1
 	armor_deflection = 55
 	big_xeno = 1
+	drag_delay = 6 //pulling a big dead xeno is hard
 	attack_delay = -2
 	tier = 3
 	upgrade = 0

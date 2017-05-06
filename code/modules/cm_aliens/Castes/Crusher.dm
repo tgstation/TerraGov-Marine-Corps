@@ -24,6 +24,7 @@
 	armor_deflection = 65
 	tier = 3
 	upgrade = 0
+	drag_delay = 6 //pulling a big dead xeno is hard
 	var/charge_dir = 0
 	var/momentum = 0 //Builds up charge based on movement.
 	var/charge_timer = 0 //Has a small charge window. has to keep moving to build momentum.

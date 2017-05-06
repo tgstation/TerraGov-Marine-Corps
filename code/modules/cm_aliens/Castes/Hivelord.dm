@@ -20,6 +20,7 @@
 	pixel_x = -16
 	speed = 1.5
 	big_xeno = 1
+	drag_delay = 6 //pulling a big dead xeno is hard
 	var/speed_activated = 0
 	tier = 2
 	upgrade = 0

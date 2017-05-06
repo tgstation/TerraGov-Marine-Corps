@@ -29,6 +29,7 @@
 	pixel_x = -16
 	fire_immune = 1
 	big_xeno = 1
+	drag_delay = 6 //pulling a big dead xeno is hard
 	jelly = 1
 	armor_deflection = 60
 	tier = 0 //Queen doesn't count towards population limit.
