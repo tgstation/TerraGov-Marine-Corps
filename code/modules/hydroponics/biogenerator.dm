@@ -67,7 +67,7 @@
 		if(i >= 10)
 			user << "\red The biogenerator is full! Activate it."
 		else
-			if(user.drop_inv_item_to_loc(src))
+			if(user.drop_inv_item_to_loc(O, src))
 				user << "\blue You put [O.name] in [src.name]"
 	update_icon()
 
