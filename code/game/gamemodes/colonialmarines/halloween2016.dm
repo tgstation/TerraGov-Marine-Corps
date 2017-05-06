@@ -702,7 +702,7 @@
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_BACK)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(H), WEAR_WAIST)
 
 				H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_STORE)
@@ -829,7 +829,7 @@
 						H.temp_drop_inv_item(I)
 						cdel(I)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(H), WEAR_HANDS)
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_BACK)
+						H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_BACK)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/grenade(H), WEAR_WAIST)
 
 						H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_L_STORE)
@@ -880,7 +880,7 @@
 						H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), WEAR_J_STORE)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H.back), WEAR_IN_BACK)
 					else
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/m37/full(H), WEAR_BACK)
+						H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/m37/full(H), WEAR_BACK)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_R_HAND)
 				if(16 to 18)
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_J_STORE)
@@ -1121,7 +1121,7 @@
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/dutch(H), WEAR_BODY, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/gimmick/dutch(H), WEAR_JACKET, 1)
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_BACK)
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/grenade(H), WEAR_WAIST)
 
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4(H), WEAR_J_STORE)
@@ -1378,8 +1378,8 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (sidearm)")
 
 /*	supply_manifest=list(
-		/obj/item/weapon/storage/backpack/gun/m37 = 5,
-		/obj/item/weapon/storage/backpack/gun/machete = 4,
+		/obj/item/weapon/large_holster/m37 = 5,
+		/obj/item/weapon/large_holster/machete = 4,
 		/obj/item/clothing/tie/storage/webbing = 4,
 		/obj/item/weapon/storage/belt/gun/m44 = 5,
 		/obj/item/weapon/storage/belt/gun/m4a3 = 6,

@@ -45,6 +45,10 @@
 #define ATTACH_ACTIVATION	8
 #define ATTACH_PROJECTILE	16
 
+//Ammo magazine defines, for flags_magazine
+#define AMMUNITION_REFILLABLE	1
+#define AMMUNITION_HANDFUL		2
+
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 #define SLOWDOWN_UNDER_UNFITTING	0.5

@@ -25,6 +25,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/gun_type = null //Path of the gun that it fits. Mags will fit any of the parent guns as well, so make sure you want this.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
+	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 
 	New(loc, spawn_empty)
 		..()
@@ -47,26 +48,28 @@ They're all essentially identical when it comes to getting the job done.
 			usr << "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 
-	attack_hand(mob/user as mob)
-		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //If it's a box of shotgun shells or a speedloader.
-			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-			if( in_hand == src ) //Have to be holding it in the hand.
+	attack_hand(mob/user)
+		if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
+			if(src == user.get_inactive_hand()) //Have to be holding it in the hand.
 				if (current_rounds > 0)
-					create_handful(user)
-					return
+					if(create_handful(user))
+						return
 				else user << "[src] is empty. Nothing to grab."
+				return
 		return ..() //Do normal stuff.
 
 	//We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user)
-		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //Same deal.
-			if(istype(transfer_from)) // We have a handful.
-				var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-				if( in_hand == src ) //It has to be held.
-					if(default_ammo == transfer_from.default_ammo)
-						transfer_ammo(transfer_from,src,user,transfer_from.current_rounds) // This takes care of the rest.
-					else user << "Those aren't the same rounds. Better not mix them up."
-				else user << "Try holding [src] before you attempt to restock it."
+	attackby(obj/item/I, mob/user)
+		if(istype(I, /obj/item/ammo_magazine))
+			var/obj/item/ammo_magazine/MG = I
+			if(MG.flags_magazine & AMMUNITION_HANDFUL) //got a handful of bullets
+				if(flags_magazine & AMMUNITION_REFILLABLE) //and a refillable magazine
+					var/obj/item/ammo_magazine/handful/transfer_from = I
+					if(src == user.get_inactive_hand() ) //It has to be held.
+						if(default_ammo == transfer_from.default_ammo)
+							transfer_ammo(transfer_from,src,user,transfer_from.current_rounds) // This takes care of the rest.
+						else user << "Those aren't the same rounds. Better not mix them up."
+					else user << "Try holding [src] before you attempt to restock it."
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,mob/user,transfer_amount = 1)
@@ -149,6 +152,7 @@ bullets/shells. ~N
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
 	flags_atom = FPRINT|CONDUCT|DIRLOCK
+	flags_magazine = AMMUNITION_HANDFUL
 
 	Dispose()
 		..()
@@ -163,6 +167,7 @@ bullets/shells. ~N
 			var/I = current_rounds*5000 // For the metal.
 			matter = list("metal" = I)
 			dir = current_rounds + round(current_rounds/3)
+
 
 	/*
 	There aren't many ways to interact here.

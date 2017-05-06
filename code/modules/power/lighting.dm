@@ -519,10 +519,11 @@
 	switchcount = 0
 
 	L.update()
-	L.add_fingerprint(user)
 
-	user.put_in_active_hand(L)	//puts it in our active hand
-
+	if(user.put_in_active_hand(L))	//succesfully puts it in our active hand
+		L.add_fingerprint(user)
+	else
+		L.forceMove(loc) //if not, put it on the ground
 	status = LIGHT_EMPTY
 	update()
 

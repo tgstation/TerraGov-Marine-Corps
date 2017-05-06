@@ -87,7 +87,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/large_holster/machete,
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
@@ -167,7 +167,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/large_holster/machete,
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 
