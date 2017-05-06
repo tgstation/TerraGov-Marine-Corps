@@ -444,7 +444,7 @@
 		if("No") crash = 0
 		if("Cancel") return
 
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[tag]
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
 	if(!dropship)
 		src << "<span class='danger'>Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN</span>"
 		log_admin("Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN")
