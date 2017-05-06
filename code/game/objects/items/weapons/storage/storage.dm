@@ -290,7 +290,7 @@
 		orient2hud(usr)
 		for(var/mob/M in can_see_content())
 			show_to(M)
-	mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
+	W.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
 	return 1
 

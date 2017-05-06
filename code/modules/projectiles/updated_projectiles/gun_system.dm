@@ -210,35 +210,40 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features  || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG) ) return
 
 	if(!magazine || !istype(magazine))
-		user << "That's not a magazine!"
+		user << "<span class='warning'>That's not a magazine!</span>"
+		return
+
+	if(magazine.flags_magazine & AMMUNITION_HANDFUL)
+		user << "<span class='warning'>[src] needs an actual magazine.</span>"
 		return
 
 	if(magazine.current_rounds <= 0)
-		user << "That [magazine.name] is empty!"
+		user << "<span class='warning'>[magazine] is empty!</span>"
 		return
 
 	if(!istype(src, magazine.gun_type))
-		user << "That magazine doesn't fit in there!"
+		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
 		return
 
 	if(!isnull(current_mag) && current_mag.loc == src)
-		user << "It's still got something loaded."
+		user << "<span class='warning'>It's still got something loaded.</span>"
 		return
 
+
+
+	if(user)
+		if(magazine.reload_delay > 1)
+			user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
+			if(do_after(user,magazine.reload_delay)) replace_magazine(user, magazine)
+			else
+				user << "<span class='warning'>Your reload was interrupted!</span>"
+				return
+		else replace_magazine(user, magazine)
 	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
-				if(do_after(user,magazine.reload_delay)) replace_magazine(user, magazine)
-				else
-					user << "<span class='warning'>Your reload was interrupted!</span>"
-					return
-			else replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-			if(!in_chamber) load_into_chamber()
+		current_mag = magazine
+		magazine.loc = src
+		replace_ammo(,magazine)
+		if(!in_chamber) load_into_chamber()
 
 	update_icon()
 	return 1

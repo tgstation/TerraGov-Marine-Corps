@@ -383,6 +383,7 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
+	flags_magazine = NOFLAGS
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)

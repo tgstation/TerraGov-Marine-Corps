@@ -38,7 +38,7 @@
 					/obj/item/weapon/storage/belt/marine = 5,
 					/obj/item/weapon/storage/belt/knifepouch = 5,
 					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
-					/obj/item/weapon/storage/backpack/gun/m37 = 5,
+					/obj/item/weapon/large_holster/m37 = 5,
 					/obj/item/clothing/shoes/marine = 5,
 					/obj/item/clothing/under/marine = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
@@ -140,7 +140,7 @@
 	hacking_safety = 1
 	products = list(
 					///obj/item/weapon/claymore/mercsword/machete = 5,
-					/obj/item/weapon/storage/backpack/gun/machete/full = 6,
+					/obj/item/weapon/large_holster/machete/full = 6,
 					/obj/item/ammo_magazine/pistol = 10,
 					/obj/item/ammo_magazine/pistol/hp = 0,
 					/obj/item/ammo_magazine/pistol/ap = 0,

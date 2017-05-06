@@ -499,7 +499,7 @@
 
 				if(9 to 10)//B18
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/heavy_armor(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_L_HAND)
+					H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_L_HAND)
 
 		//SQUAD MARINE
 		else
