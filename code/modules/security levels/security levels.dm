@@ -21,7 +21,7 @@
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
-				ai_system.Announce("Attention! Security level lowered to green. " + config.alert_desc_green)
+				ai_system.Announce("Attention: Security level lowered to GREEN - all clear.", 'sound/AI/code_green.ogg')
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z in MAIN_SHIP_Z_LEVEL)
@@ -29,9 +29,9 @@
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
-					ai_system.Announce("Attention! Security level elevated to blue. " + config.alert_desc_blue_upto)
+					ai_system.Announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", 'sound/AI/code_blue_elevated.ogg')
 				else
-					ai_system.Announce("Attention! Security level lowered to blue. " + config.alert_desc_blue_downto)
+					ai_system.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z in MAIN_SHIP_Z_LEVEL)
@@ -39,9 +39,9 @@
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
-					ai_system.Announce("Attention! Code red! " + config.alert_desc_red_upto)
+					ai_system.Announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", 'sound/AI/code_red_elevated.ogg')
 				else
-					ai_system.Announce("Attention! Code red! " + config.alert_desc_red_downto)
+					ai_system.Announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", 'sound/AI/code_red_lowered.ogg')
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)
