@@ -595,10 +595,7 @@
 				"<span class='notice'>You hear squelching.</span>")
 				if(ishuman(buckled_mob))
 					var/mob/living/carbon/human/H = buckled_mob
-					H.recently_unbuckled = 1
-					spawn(300)
-						if(H) //Make sure the mob reference still exists.
-							H.recently_unbuckled = 0
+					H.start_nesting_cooldown()
 
 				unbuckle()
 			else
@@ -630,6 +627,12 @@
 							else
 								buckled_mob << "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>"
 			src.add_fingerprint(user)
+
+/mob/living/carbon/human/proc/start_nesting_cooldown()
+	set waitfor = 0
+	recently_unbuckled = 1
+	sleep(300)
+	recently_unbuckled = 0
 
 /obj/structure/stool/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
 
