@@ -21,7 +21,7 @@
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
-				ai_system.Announce("[config.alert_desc_green]", "Attention! Security level lowered to green.")
+				ai_system.Announce("Attention! Security level lowered to green. " + config.alert_desc_green)
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z in MAIN_SHIP_Z_LEVEL)
@@ -29,9 +29,9 @@
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
-					ai_system.Announce("[config.alert_desc_blue_upto]", "Attention! Security level elevated to blue.")
+					ai_system.Announce("Attention! Security level elevated to blue. " + config.alert_desc_blue_upto)
 				else
-					ai_system.Announce("[config.alert_desc_blue_downto]", "Attention! Security level lowered to blue.")
+					ai_system.Announce("Attention! Security level lowered to blue. " + config.alert_desc_blue_downto)
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z in MAIN_SHIP_Z_LEVEL)
@@ -39,15 +39,18 @@
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
-					ai_system.Announce("[config.alert_desc_red_upto]", "Attention! Code red!")
+					ai_system.Announce("Attention! Code red! " + config.alert_desc_red_upto)
 				else
-					ai_system.Announce("[config.alert_desc_red_downto]", "Attention! Code red!")
-				security_level = SEC_LEVEL_RED
+					ai_system.Announce("Attention! Code red! " + config.alert_desc_red_downto)
+					/*
+					var/area/A
+					for(var/obj/machinery/power/apc/O in machines)
+						if(O.z in MAIN_SHIP_Z_LEVEL)
+							A = O.loc.loc
+							A.toggle_evacuation()
+					*/
 
-				/*	- At the time of commit, setting status displays didn't work properly
-				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications,world)
-				if(CC)
-					CC.post_status("alert", "redalert")*/
+				security_level = SEC_LEVEL_RED
 
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z in MAIN_SHIP_Z_LEVEL)
@@ -55,8 +58,15 @@
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_red")
 
 			if(SEC_LEVEL_DELTA)
-				ai_system.Announce("[config.alert_desc_delta]", "Attention! Delta security level reached!")
+				ai_system.Announce("Attention! Delta security level reached! " + config.alert_desc_delta)
 				security_level = SEC_LEVEL_DELTA
+				/*
+				var/area/A
+				for(var/obj/machinery/power/apc/O in machines)
+					if(O.z in MAIN_SHIP_Z_LEVEL)
+						A = O.loc.loc
+						A.toggle_evacuation()
+				*/
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z in MAIN_SHIP_Z_LEVEL)
 						FA.overlays = list()

@@ -1,32 +1,34 @@
 <div class="item" style="padding-top: 10px">
-	<div class="item">
+	<div class="item" style="padding-top: 10px">
 		<span class='white'>MENU:</span>
 	</div>
 	{{if data.state == 1}}
-		{{if data.authentication >= 1}}
-			{{:helper.link('LOG OUT', 'alert', {'command' : 'logout'})}}
-			{{:helper.link('Change Alert Level', 'alert', {'command' : 'changeseclevel'})}}
-			{{:helper.link('Set Status Display', 'alert', {'command' : 'status'})}}
-			{{:helper.link('Message List', 'alert', {'command' : 'messagelist'})}}
-			{{if data.authentication == 2}}
-				{{:helper.link('Make an Announcement', 'alert', {'command' : 'announce'})}}
+		<div class="itemContent" style="padding-top: 2px; width: 100%">
+			{{if data.authentication >= 1}}
+				{{:helper.link('LOG OUT', 'alert', {'command' : 'logout'})}}
+				{{:helper.link('Change Alert Level', 'alert', {'command' : 'changeseclevel'})}}
+				{{:helper.link('Set Status Display', 'alert', {'command' : 'status'})}}
+				{{:helper.link('Message List', 'alert', {'command' : 'messagelist'})}}
 				{{if data.authentication == 2}}
-					{{if data.admins > 0}}
-						{{:helper.link('Message USCM', 'alert', {'command' : 'messageUSCM'})}}
-					{{else}}
-						<span class="bad">UCM Communications Offline</span>
+					{{:helper.link('Make an Announcement', 'alert', {'command' : 'announce'})}}
+					{{if data.authentication == 2}}
+						{{if data.admins > 0}}
+							{{:helper.link('Message USCM', 'alert', {'command' : 'messageUSCM'})}}
+						{{else}}
+							<span class="bad">UCM Communications Offline</span>
+						{{/if}}
+					{{/if}}
+					{{:helper.link('Launch Distress Signal', 'alert', {'command' : 'distress'})}}
+					{{if data.evac_stat == 0}}
+						{{:helper.link('Initiate Evacuation', 'alert', {'command' : 'evacuation_start'})}}
+					{{else data.evac_stat == 1}}
+						{{:helper.link('Cancel Evacuation', 'alert', {'command' : 'evacuation_cancel'})}}
 					{{/if}}
 				{{/if}}
-				{{:helper.link('Launch Distress Signal', 'alert', {'command' : 'distress'})}}
-				{{if data.evac_stat == 0}}
-					{{:helper.link('Initiate Evacuation', 'alert', {'command' : 'evacuation_start'})}}
-				{{else data.evac_stat == 1}}
-					{{:helper.link('Cancel Evacuation', 'alert', {'command' : 'evacuation_cancel'})}}
-				{{/if}}
+			{{else}}
+				{{:helper.link('LOG IN', 'alert', {'command' : 'login'})}}
 			{{/if}}
-		{{else}}
-			{{:helper.link('LOG IN', 'alert', {'command' : 'login'})}}
-		{{/if}}
+		</div>
 	{{else data.state == 2}}
 		<span class="average">Are you sure you want to evacuate {{:data.ship}}?</span>
 		{{:helper.link('CONFIRM', 'alert', {'command' : 'evacuation_start'}, null, 'redButton')}}
@@ -38,10 +40,10 @@
 		{{:helper.link('CONFIRM', 'alert', {'command' : 'distress'}, null, 'redButton')}}			
 	{{else data.state == 5}}
 		<div class="itemLabel">
-			MESSAGES:
+			<span class='white'>MESSAGES:</span>
 			<div class="itemContent">
 				{{for data.messages}}
-					{{:helper.link('{{:value.key1}}', 'alert', {'command' : 'viewmessage','message-num' : '{{:index}}'})}}<br>
+					{{:helper.link('{{:value}}', 'alert', {'command' : 'viewmessage','message-num' : '{{:index}}'}) }}<br>
 				{{empty}}
 					<span class="bad">EMPTY</span>
 				{{/for}}

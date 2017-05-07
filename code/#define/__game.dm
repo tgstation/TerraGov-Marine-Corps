@@ -126,6 +126,13 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define SEC_LEVEL_RED	2
 #define SEC_LEVEL_DELTA	3
 
+//Alarm levels.
+#define ALARM_WARNING_FIRE 	1
+#define ALARM_WARNING_ATMOS	2
+#define ALARM_WARNING_EVAC	4
+#define ALARM_WARNING_READY	8
+#define ALARM_WARNING_DOWN	16
+
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26	//Used to trigger removal from a processing list
 

@@ -2,14 +2,6 @@
 	name = "\improper Whiskey Outpost"
 	icon_state = "green"
 
-	//Nope
-	firealert()
-		return
-	readyalert()
-		return
-	partyalert()
-		return
-
 /area/whiskey_outpost/outside/north
 	name = "\improper Whiskey Outpost North"
 	icon_state = "north"

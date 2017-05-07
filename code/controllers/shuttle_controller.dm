@@ -139,22 +139,13 @@ var/global/datum/shuttle_controller/shuttle_controller
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
 /datum/shuttle_controller/proc/setup_shuttle_docks()
 	var/datum/shuttle/shuttle
-	var/datum/shuttle/ferry/multidock/multidock
 	var/list/dock_controller_map = list()	//so we only have to iterate once through each list
-
-	//multidock shuttles
-	var/list/dock_controller_map_station = list()
-	var/list/dock_controller_map_offsite = list()
 
 	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
 		if(istype(shuttle, /datum/shuttle/ferry/marine)) continue //Evac pods ignore this, as do other marine ferries.
 		if(shuttle.docking_controller_tag)
 			dock_controller_map[shuttle.docking_controller_tag] = shuttle
-		if(istype(shuttle, /datum/shuttle/ferry/multidock))
-			multidock = shuttle
-			dock_controller_map_station[multidock.docking_controller_tag_station] = multidock
-			dock_controller_map_offsite[multidock.docking_controller_tag_offsite] = multidock
 
 	//search for the controllers, if we have one.
 	if(dock_controller_map.len)
@@ -165,17 +156,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 					shuttle.docking_controller = C.program
 					dock_controller_map -= C.id_tag
 
-				if(C.id_tag in dock_controller_map_station)
-					multidock = dock_controller_map_station[C.id_tag]
-					if (istype(multidock))
-						multidock.docking_controller_station = C.program
-						dock_controller_map_station -= C.id_tag
-
-				if(C.id_tag in dock_controller_map_offsite)
-					multidock = dock_controller_map_offsite[C.id_tag]
-					if (istype(multidock))
-						multidock.docking_controller_offsite = C.program
-						dock_controller_map_offsite -= C.id_tag
 
 	//sanity check
 	//NO SANITY

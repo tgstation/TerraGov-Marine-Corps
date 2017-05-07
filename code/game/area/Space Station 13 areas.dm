@@ -16,11 +16,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 
 /area
-	var/fire = null
 	var/atmos = 1
 	var/atmosalm = 0
 	var/poweralm = 1
-	var/party = null
+
 	level = null
 	name = "Unknown"
 	icon = 'icons/turf/areas.dmi'
@@ -30,7 +29,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	invisibility = INVISIBILITY_LIGHTING
 	var/lightswitch = 1
 
-	var/eject = null
+	var/flags_alarm_state = NOFLAGS
 
 	var/debug = 0
 	var/powerupdate = 10		//We give everything 10 ticks to settle out it's power usage.
@@ -102,14 +101,6 @@ var/list/ghostteleportlocs = list()
 	power_environ = 0
 	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg')
 
-/area/space/firealert()
-	return
-
-/area/space/readyalert()
-	return
-
-/area/space/partyalert()
-	return
 /area/engine/
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 /area/turret_protected/
