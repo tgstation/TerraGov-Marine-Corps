@@ -80,6 +80,30 @@
 	..()
 	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
 
+
+/turf/simulated/floor/gm/river/Entered(atom/movable/AM)
+	..()
+	if(iscarbon(AM))
+		var/mob/living/carbon/C = AM
+		var/river_slowdown = 1.75
+
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = AM
+			cleanup(H)
+			if(H.gloves && rand(0,100) < 60)
+				if(istype(H.gloves,/obj/item/clothing/gloves/yautja))
+					var/obj/item/clothing/gloves/yautja/Y = H.gloves
+					if(Y && istype(Y) && Y.cloaked)
+						H << "<span class='warning'> Your bracers hiss and spark as they short out!</span>"
+						Y.decloak(H)
+
+		else if(isXeno(C))
+			river_slowdown = 1.3
+			if(isXenoBoiler(C))
+				river_slowdown = -0.5
+
+		C.next_move_slowdown += river_slowdown
+
 /turf/simulated/floor/gm/river/proc/cleanup(var/mob/living/carbon/human/M)
 	if(!M || !istype(M)) return
 

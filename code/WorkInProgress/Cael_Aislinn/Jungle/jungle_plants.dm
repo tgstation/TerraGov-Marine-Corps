@@ -34,6 +34,38 @@
 		var/mob/living/carbon/monkey/A = M
 		A.loc = get_turf(src)
 
+
+/obj/structure/bush/Crossed(atom/movable/AM)
+	if(!stump)
+		if(isliving(AM))
+			var/mob/living/L = AM
+			var/bush_sound_prob = 60
+			if(istype(L, /mob/living/carbon/Xenomorph))
+				var/mob/living/carbon/Xenomorph/X = L
+				bush_sound_prob = X.tier * 20
+
+			if(prob(bush_sound_prob))
+				var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
+				playsound(src.loc, sound, 50, 1)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				var/stuck = rand(0,10)
+				switch(stuck)
+					if(0 to 4)
+						H.next_move_slowdown += rand(2,3)
+						if(prob(2))
+							H << "<span class='warning'>Moving through [src] slows you down.</span>"
+					if(5 to 7)
+						H.next_move_slowdown += rand(4,7)
+						if(prob(10))
+							H << "<span class='warning'>It is very hard to move trough this [src]...</span>"
+					if(8 to 9)
+						H.next_move_slowdown += rand(8,11)
+						H << "<span class='warning'>You got tangeled in [src]!</span>"
+					if(10)
+						H.next_move_slowdown += rand(12,20)
+						H << "<span class='warning'>You got completely tangeled in [src]! Oh boy...</span>"
+
 /obj/structure/bush/attackby(var/obj/I as obj, var/mob/user as mob)
 	//hatchets and shiet can clear away undergrowth
 	if(I && (istype(I, /obj/item/weapon/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))

@@ -121,69 +121,17 @@
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
 
-	..()
-
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(stat)
-		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
+	. = ..()
 
-	tally += speed
-
-	if(locate(/obj/structure/bush) in loc) //Bushes slows you down
-		var/obj/structure/bush/B = locate(/obj/structure/bush) in loc
-		if(!B.stump)
-			if(prob(20 * tier))
-				var/sound = pick('sound/effects/vegetation_walk_0.ogg', 'sound/effects/vegetation_walk_1.ogg', 'sound/effects/vegetation_walk_2.ogg')
-				playsound(loc, sound, 50, 1)
-
-	if(istype(loc, /turf/unsimulated/floor/gm/river)) //Rivers slow you down
-		if(isXenoBoiler(src))
-			tally -= 0.5
-		else
-			tally += 1.3
-
-	if(isXenoHivelord(src))
-		var/mob/living/carbon/Xenomorph/Hivelord/H = src
-		if(H.speed_activated)
-			if(locate(/obj/effect/alien/weeds) in loc)
-				tally -= 1.5
-
-	/*
-	 * SNOW SLOWDOWN FOR ICE COLONY
-	 */
-	if(istype(loc, /turf/unsimulated/floor/snow))
-		var/turf/unsimulated/floor/snow/S = loc
-		if(S && istype(S) && S.slayer > 0)
-			tally += 0.25 * S.slayer //Was 0.5 per
-			if(S.slayer && prob(1))
-				src << "<span class='warning'>Moving through \the [S] slows you down sligthly!</span>" //This is a warning
-
-			/*
-			 * Dummied out. Xenos never get bogged down in snow that much
-			if(S.slayer == 3 && prob(5))
-				src << "<span class='warning'>You got stuck in \the [S] for a moment!</span>"
-				tally += 10
-			 */
+	. += speed
 
 	if(frenzy_aura)
-		tally = tally - (frenzy_aura * 0.1) - 0.4
+		. -= (frenzy_aura * 0.1) - 0.4
 
-	if(isXenoCrusher(src)) //Handle crusher stuff.
-		var/mob/living/carbon/Xenomorph/Crusher/X = src
-		X.charge_timer = 2
-		if(X.momentum == 0)
-			X.charge_dir = dir
-			X.handle_momentum()
-		else
-			if(X.charge_dir != dir) //Have we changed direction?
-				X.stop_momentum() //This should disallow rapid turn bumps
-			else
-				X.handle_momentum()
-		X.lastturf = get_turf(X)
 
-	return (tally)
 
 //These don't do much currently. Or anything? Only around for legacy code.
 /mob/living/carbon/Xenomorph/restrained()

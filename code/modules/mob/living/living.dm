@@ -720,14 +720,16 @@
 	return 1
 
 /mob/living/movement_delay()
-
-	tally = 0 //Reset tally from last call
-
+	. = 0
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
 	if(pulling && pulling.drag_delay)	//Dragging stuff can slow you down a bit.
-		tally += pulling.drag_delay
+		. += pulling.drag_delay
+
+	if(next_move_slowdown)
+		. += next_move_slowdown
+		next_move_slowdown = 0
 
 /mob/living
 	forceMove(atom/destination)

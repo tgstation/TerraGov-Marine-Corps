@@ -55,9 +55,6 @@
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
 
-/mob/living/carbon/Xenomorph/Queen/can_ventcrawl()
-	return
-
 /mob/living/carbon/Xenomorph/Queen/New()
 
 	..()

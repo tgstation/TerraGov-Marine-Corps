@@ -36,8 +36,17 @@
 	//	/mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
-/mob/living/carbon/Xenomorph/Hivelord/can_ventcrawl()
-	return
+/mob/living/carbon/Xenomorph/Hivelord/movement_delay()
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
+	. = ..()
+
+	if(speed_activated)
+		if(locate(/obj/effect/alien/weeds) in loc)
+			. -= 1.5
+
+
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed()
 	set name = "Resin Walker"

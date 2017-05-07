@@ -377,17 +377,17 @@
 		else //Turn it on!
 			if(cloak_timer)
 				if(prob(50))
-					usr << "<span class='warning'>Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks.</span>"
+					M << "<span class='warning'>Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks.</span>"
 				return 0
-			if(!drain_power(usr,50)) return
+			if(!drain_power(M,50)) return
 			cloaked = 1
-			usr << "<span class='notice'>You are now invisible to normal detection.</span>"
-			for(var/mob/O in oviewers(usr))
-				O.show_message("[usr.name] vanishes into thin air!",1)
-			playsound(usr.loc,'sound/effects/cloakon.ogg', 50, 1)
-			usr.update_icons()
+			M << "<span class='notice'>You are now invisible to normal detection.</span>"
+			for(var/mob/O in oviewers(M))
+				O.show_message("[M] vanishes into thin air!",1)
+			playsound(M.loc,'sound/effects/cloakon.ogg', 50, 1)
+			M.alpha = 20
 			spawn(1)
-				anim(usr.loc,usr,'icons/mob/mob.dmi',,"cloak",,usr.dir)
+				anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
 		return 1
 
@@ -398,12 +398,12 @@
 		for(var/mob/O in oviewers(user))
 			O.show_message("[user.name] shimmers into existence!",1)
 		playsound(user.loc,'sound/effects/cloakoff.ogg', 50, 1)
-		user.update_icons()
+		user.alpha = initial(user.alpha)
 		cloak_timer = 10
 		spawn(1)
 			if(user)
 				anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
-		return
+
 
 	verb/caster()
 		set name = "Use Plasma Caster"
