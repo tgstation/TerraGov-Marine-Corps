@@ -153,7 +153,6 @@
 	var/in_throw_mode = 0
 
 	var/coughedtime = null
-	var/windowknock_cooldown = 0
 
 	var/inertia_dir = 0
 

@@ -222,7 +222,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				//HOLY MOTHER OF OOP
 				if(istype(O, /obj/structure/window) && momentum > 5)
 					var/obj/structure/window/W = O
-					W.hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
+					W.health -= (momentum * 4) + 10 //Should generally smash it unless not moving very fast.
 					momentum -= 2
 					now_pushing = 0
 					return //Might be destroyed.
