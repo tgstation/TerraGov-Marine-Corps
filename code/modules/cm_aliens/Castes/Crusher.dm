@@ -48,8 +48,10 @@
 	return
 
 /mob/living/carbon/Xenomorph/Crusher/Stat()
-	..()
-	stat(null, "Momentum: [momentum]")
+	. = ..()
+
+	if (.)
+		stat(null, "Momentum: [momentum]")
 
 /mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction, var/stunned = 0)
 	if(momentum < 0) //Somehow. Could happen if you slam into multiple things

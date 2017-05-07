@@ -44,8 +44,10 @@
 	return
 
 /mob/living/carbon/Xenomorph/Carrier/Stat()
-	..()
-	stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
+	. = ..()
+
+	if(.)
+		stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
 
 
 /mob/living/carbon/Xenomorph/Carrier/ClickOn(var/atom/A, params)

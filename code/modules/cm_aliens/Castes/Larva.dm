@@ -33,8 +33,9 @@
 	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
-	..()
-	if(istype(src,/mob/living/carbon/Xenomorph/Larva))
+	. = ..()
+
+	if(.)
 		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 //Larva Progression.. Most of this stuff is obsolete.
