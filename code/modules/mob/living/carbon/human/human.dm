@@ -44,22 +44,21 @@
 	make_blood()
 
 /mob/living/carbon/human/Stat()
-	..()
-	statpanel("Status")
+	. = ..()
 
-	stat(null, "Operation Time: [worldtime2text()]")
+	if (.)
+		stat(null, "Operation Time: [worldtime2text()]")
 
 /*
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
 */
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
-	if (client.statpanel == "Status")
 		if (internal)
 			if (!internal.air_contents)
 				del(internal)
@@ -67,24 +66,24 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
-/*
-		var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
-		if(P)
-			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
-		if(mind)
-			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+	/*
+			var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
+			if(P)
+				stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
+			if(mind)
+				if(mind.changeling)
+					stat("Chemical Storage", mind.changeling.chem_charges)
+					stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
-		if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
-			stat("Energy Charge", round(wear_suit:cell:charge/100))
-*/
-	if(mind)
-		if(mind.assigned_squad)
-			if(mind.assigned_squad.primary_objective)
-				stat("Primary Objective: ", mind.assigned_squad.primary_objective)
-			if(mind.assigned_squad.secondary_objective)
-				stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
+			if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
+				stat("Energy Charge", round(wear_suit:cell:charge/100))
+	*/
+		if(mind)
+			if(mind.assigned_squad)
+				if(mind.assigned_squad.primary_objective)
+					stat("Primary Objective: ", mind.assigned_squad.primary_objective)
+				if(mind.assigned_squad.secondary_objective)
+					stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)

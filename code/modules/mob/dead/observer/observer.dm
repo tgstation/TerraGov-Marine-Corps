@@ -202,10 +202,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/is_active()		return 0
 
 /mob/dead/observer/Stat()
-	..()
-	statpanel("Status")
-	if(client.statpanel == "Status")
-		stat(null, "Station Time: [worldtime2text()]")
+	. = ..()
+
+	if(.)
+		stat(null, "Operation Time: [worldtime2text()]")
 		if(EvacuationAuthority)
 			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)

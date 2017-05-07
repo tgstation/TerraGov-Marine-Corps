@@ -30,36 +30,39 @@
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
-	..()
-	if(jelly && is_queen_alive())
-		stat(null, "Evolve Progress: [jellyGrow]/[jellyMax]")
-	else if(!is_queen_alive())
-		stat(null, "Evolve Progress (HALTED - NO QUEEN): [jellyGrow]/[jellyMax]")
-	else
-		stat(null, "Evolve Progress (FINISHED): [jellyGrow]/[jellyMax]")
+	. = ..()
 
-	if(maxplasma > 0)
-		if(is_robotic)
-			stat(null, "Charge: [storedplasma]/[maxplasma]")
+	if (.) //Only update when looking at the Status panel.
+
+		if(jelly && is_queen_alive())
+			stat(null, "Evolve Progress: [jellyGrow]/[jellyMax]")
+		else if(!is_queen_alive())
+			stat(null, "Evolve Progress (HALTED - NO QUEEN): [jellyGrow]/[jellyMax]")
 		else
-			stat(null, "Plasma: [storedplasma]/[maxplasma]")
+			stat(null, "Evolve Progress (FINISHED): [jellyGrow]/[jellyMax]")
 
-	if(slashing_allowed == 1)
-		stat(null,"Slashing of hosts is currently: PERMITTED.")
-	else if(slashing_allowed == 2)
-		stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
-	else
-		stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
+		if(maxplasma > 0)
+			if(is_robotic)
+				stat(null, "Charge: [storedplasma]/[maxplasma]")
+			else
+				stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
-	if(frenzy_aura)
-		stat(null,"You are affected by a pheromone of FRENZY.")
-	if(guard_aura)
-		stat(null,"You are affected by a pheromone of GUARDING.")
-	if(recovery_aura)
-		stat(null,"You are affected by a pheromone of RECOVERY.")
+		if(slashing_allowed == 1)
+			stat(null,"Slashing of hosts is currently: PERMITTED.")
+		else if(slashing_allowed == 2)
+			stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
+		else
+			stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
 
-	if(hive_orders && hive_orders != "")
-		stat(null,"Hive Orders: [hive_orders]")
+		if(frenzy_aura)
+			stat(null,"You are affected by a pheromone of FRENZY.")
+		if(guard_aura)
+			stat(null,"You are affected by a pheromone of GUARDING.")
+		if(recovery_aura)
+			stat(null,"You are affected by a pheromone of RECOVERY.")
+
+		if(hive_orders && hive_orders != "")
+			stat(null,"Hive Orders: [hive_orders]")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
