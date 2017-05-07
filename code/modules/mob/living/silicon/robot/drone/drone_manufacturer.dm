@@ -136,4 +136,4 @@
 			DF.create_drone(src.client)
 			return
 
-	src << "\red There are no available drone spawn points, sorry."
+	src << "\red There are no drone fabricators that can spawn you. An admin will need to create one."
