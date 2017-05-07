@@ -134,7 +134,7 @@ FLOOR SAFES
 			user << "<span class='notice'>You [open ? "close" : "open"] [src].</span>"
 			open = !open
 			update_icon()
-			src.attack_hand(user)
+			updateUsrDialog()
 			return
 		else
 			user << "<span class='notice'>You can't [open ? "close" : "open"] [src], the lock is engaged!</span>"
@@ -143,22 +143,22 @@ FLOOR SAFES
 	if(href_list["decrement"])
 		decrement()
 		check_unlocked(user, canhear)
-		src.attack_hand(user)
+		updateUsrDialog()
 		return
 	if(href_list["increment"])
 		increment()
 		check_unlocked(user, canhear)
-		src.attack_hand(user)
+		updateUsrDialog()
 		return
 	if(href_list["decrement2"])
 		decrement2()
 		check_unlocked(user, canhear)
-		src.attack_hand(user)
+		updateUsrDialog()
 		return
 	if(href_list["increment2"])
 		increment2()
 		check_unlocked(user, canhear)
-		src.attack_hand(user)
+		updateUsrDialog()
 		return
 
 	if(href_list["retrieve"])
@@ -168,17 +168,17 @@ FLOOR SAFES
 		if(open)
 			if(P && in_range(src, user))
 				user.put_in_hands(P)
-				src.attack_hand(user)
+				space -= P.w_class
+				updateUsrDialog()
 
 
 /obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
 	if(open)
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
-			user.drop_held_item()
-			I.loc = src
+			user.drop_inv_item_to_loc(I, src)
 			user << "<span class='notice'>You put [I] in [src].</span>"
-			src.attack_hand(user)
+			updateUsrDialog()
 			return
 		else
 			user << "<span class='notice'>[I] won't fit in [src].</span>"
