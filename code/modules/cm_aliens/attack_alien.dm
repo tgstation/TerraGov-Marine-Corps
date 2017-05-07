@@ -438,6 +438,9 @@
 //Prying open doors
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
 	var/turf/cur_loc = M.loc
+	if(isElectrified())
+		if(shock(M, 70))
+			return
 	if(locked)
 		M << "<span class='warning'>\The [src] is bolted down tight.</span>"
 		return 0
