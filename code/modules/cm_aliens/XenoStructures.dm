@@ -58,6 +58,11 @@
 	health = 150
 	layer = 2.9
 
+	Crossed(atom/movable/AM)
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			H.next_move_slowdown += 8
+
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <= 0)
 		density = 0
@@ -148,30 +153,22 @@
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
 
-/obj/effect/alien/weeds/node
-	icon_state = "weednode"
-	name = "purple sac"
-	desc = "A weird, pulsating node."
-	layer = 2.7
-	var/node_range = NODERANGE
-	health = 15
+	New(pos, node)
+		..()
+		if(istype(loc, /turf/space))
+			del(src)
+			return
+		linked_node = node
+		if(icon_state == "weeds")
+			icon_state = pick("weeds", "weeds1", "weeds2")
+		spawn(rand(150, 200))
+			if(src)
+				Life()
 
-
-	New()
-		..(loc, src)
-		new /obj/effect/alien/weeds(loc)
-
-/obj/effect/alien/weeds/New(pos, node)
-	..()
-	if(istype(loc, /turf/space))
-		del(src)
-		return
-	linked_node = node
-	if(icon_state == "weeds")
-		icon_state = pick("weeds", "weeds1", "weeds2")
-	spawn(rand(150, 200))
-		if(src)
-			Life()
+	Crossed(atom/movable/AM)
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			H.next_move_slowdown += 1
 
 /obj/effect/alien/weeds/proc/Life()
 	set background = 1
@@ -247,6 +244,20 @@
 		update_icon()
 		spawn(rand(100,175))
 			del(src)
+
+
+/obj/effect/alien/weeds/node
+	icon_state = "weednode"
+	name = "purple sac"
+	desc = "A weird, pulsating node."
+	layer = 2.7
+	var/node_range = NODERANGE
+	health = 15
+
+	New()
+		..(loc, src)
+		new /obj/effect/alien/weeds(loc)
+
 
 #undef NODERANGE
 

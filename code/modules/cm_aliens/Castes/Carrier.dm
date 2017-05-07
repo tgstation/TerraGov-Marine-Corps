@@ -40,9 +40,6 @@
 		///mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
-/mob/living/carbon/Xenomorph/Carrier/can_ventcrawl()
-	return
-
 /mob/living/carbon/Xenomorph/Carrier/Stat()
 	..()
 	stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")

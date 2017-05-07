@@ -53,8 +53,8 @@
 	var/acid_damage = 0 //Counter for stomach acid damage. At ~60 ticks, dissolved
 	var/in_stasis = FALSE //Is the mob in stasis bag?
 
-	var/tally = 0 //Tally counter, updated every Life() proc via movement procs, reset under mob/living
-
 	var/list/icon/pipes_shown = list()
 	var/last_played_vent
 	var/is_ventcrawling = 0
+
+	var/next_move_slowdown = 0 //amount added during the next movement_delay(), then is reset.

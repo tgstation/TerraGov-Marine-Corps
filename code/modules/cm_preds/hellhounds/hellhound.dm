@@ -333,23 +333,13 @@
 
 /mob/living/carbon/hellhound/movement_delay()
 
-	..()
-
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(stat)
-		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
+	. = ..()
 
-	tally += speed
+	. += speed
 
-	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
-		tally += 1.3
-
-	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.5
-
-	return (tally)
 
 /mob/living/carbon/hellhound/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again

@@ -305,14 +305,12 @@
 
 /mob/living/simple_animal/movement_delay()
 
-	..()
-
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	tally += speed
-
-	return tally + config.animal_delay
+	. = ..()
+	. += speed
+	. += config.animal_delay
 
 /mob/living/simple_animal/Stat()
 	..()

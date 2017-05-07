@@ -156,16 +156,8 @@ Please contact me on #coderbus IRC. ~Carn x
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
-	var/cloaked = 0
 
-	if(!isnull(gloves) && istype(gloves,/obj/item/clothing/gloves/yautja))
-		if(gloves:cloaked) cloaked = 1
-
-	if(cloaked)
-		icon = 'icons/mob/human.dmi'
-		icon_state = "body_cloaked"
-
-	else if (icon_update)
+	if (icon_update)
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
 			overlays += I

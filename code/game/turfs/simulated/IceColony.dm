@@ -182,6 +182,22 @@
 		..()
 		update_icon(1,1)
 
+	Entered(atom/movable/AM)
+		if(slayer > 0)
+			if(iscarbon(AM))
+				var/mob/living/carbon/C = AM
+				var/slow_amount = 0.75
+				var/can_stuck = 1
+				if(istype(C, /mob/living/carbon/Xenomorph))
+					slow_amount = 0.25
+					can_stuck = 0
+				C.next_move_slowdown += slow_amount * slayer
+				if(prob(2))
+					C << "<span class='warning'>Moving through [src] slows you down.</span>" //Warning only
+				else if(can_stuck && slayer == 3 && prob(2))
+					C << "<span class='warning'>You get stuck in [src] for a moment!</span>"
+					C.next_move_slowdown += 10
+
 	//Update icon
 	update_icon(var/update_full, var/skip_sides)
 		icon_state = "snow_[slayer]"

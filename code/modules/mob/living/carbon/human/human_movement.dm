@@ -1,9 +1,9 @@
 /mob/living/carbon/human/movement_delay()
-	//Abandon all hope ye who enter this code. It's noman's land.
-	..()
 
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
+
+	. = ..()
 
 	if(machine)
 		if(machine.flags_atom == RELAY_CLICK) //make sure any MGs and stuff dont fuck up
@@ -14,7 +14,7 @@
 			machine = null //If we move, we shouldn't be doing stuff anyway. Tested with overwatch consoles, still worked after i moved. Menus don't break.
 
 	if(species.slowdown)
-		tally = species.slowdown
+		. += species.slowdown
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
@@ -50,89 +50,39 @@
 		reducible_tally += (283.222 - bodytemperature) / 10 * 1.75
 
 	//Comile reducible tally and send it to total tally
-	tally += reducible_tally
+	. += reducible_tally
 
 	if(istype(get_active_hand(), /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
-		tally += G.slowdown
-
-	if(isturf(src.loc))
-		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
-			tally += 8
-
-		if(locate(/obj/structure/bush) in src.loc) //Bushes slows you down
-			var/obj/structure/bush/B = locate(/obj/structure/bush) in src.loc
-			if(!B.stump)
-				var/stuck = rand(0,10)
-				if(prob(60))
-					var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
-					playsound(src.loc, sound, 50, 1)
-				switch(stuck)
-					if(0 to 4)
-						tally += rand(2,3)
-						if(prob(2))
-							src << "\red Moving through [B] slows you down."
-					if(5 to 7)
-						tally += rand(4,7)
-						if(prob(10))
-							src << "\red It is very hard to move trough this [B]..."
-					if(8 to 9)
-						tally += rand(8,11)
-						src << "\red You got tangeled in [B]!"
-					if(10)
-						tally += rand(12,20)
-						src << "\red You got completely tangeled in [B]! Oh boy..."
-
-		if(locate(/obj/effect/alien/weeds) in src.loc) //Weeds slow you down
-			tally += 1
-
-		if(istype(src.loc,/turf/unsimulated/floor/snow)) //Snow slows you down
-			var/turf/unsimulated/floor/snow/S = src.loc
-			if(S && istype(S) && S.slayer > 0)
-				tally += 0.75 * S.slayer
-				if(S.slayer && prob(2))
-					src << "<span class='warning'>Moving through [S] slows you down.</span>" //Warning only
-				if(S.slayer == 3 && prob(2))
-					src << "<span class='warning'>You get stuck in [S] for a moment!</span>"
-					tally += 10
-
-		if(istype(src.loc,/turf/unsimulated/floor/gm/river)) //Ditto walking through a river
-			tally += 1.75
-			var/turf/unsimulated/floor/gm/river/T = src.loc
-			T.cleanup(src)
-			if(gloves && rand(0,100) < 60)
-				if(istype(src.gloves,/obj/item/clothing/gloves/yautja))
-					var/obj/item/clothing/gloves/yautja/Y = src.gloves
-					if(Y && istype(Y) && Y.cloaked)
-						src << "\red Your bracers hiss and spark as they short out!"
-						Y.decloak(src)
+		. += G.slowdown
 
 	if(istype(buckled, /obj/structure/stool/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm","chest","groin","head"))
 			var/datum/organ/external/E = get_organ(organ_name)
 			if(!E || (E.status & ORGAN_DESTROYED))
-				tally += 4
+				. += 4
 			if(E.status & ORGAN_SPLINTED)
-				tally += 0.65
+				. += 0.65
 			else if(E.status & ORGAN_BROKEN)
-				tally += 1.5
+				. += 1.5
 	else
 		if(shoes)
-			tally += shoes.slowdown
+			. += shoes.slowdown
 
 		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg","chest","groin","head"))
 			var/datum/organ/external/E = get_organ(organ_name)
 			if(!E || (E.status & ORGAN_DESTROYED))
-				tally += 4
+				. += 4
 			if(E.status & ORGAN_SPLINTED)
-				tally += 0.75
+				. += 0.75
 			else if(E.status & ORGAN_BROKEN)
-				tally += 1.5
+				. += 1.5
 
 	if(mRun in mutations)
-		tally = 0
+		. = 0
 
-	return (tally+config.human_delay)
+	. += config.human_delay
+
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act

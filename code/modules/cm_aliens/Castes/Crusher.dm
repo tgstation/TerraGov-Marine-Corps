@@ -44,9 +44,6 @@
 		/mob/living/carbon/Xenomorph/Crusher/proc/ready_charge
 		)
 
-/mob/living/carbon/Xenomorph/Crusher/can_ventcrawl()
-	return
-
 /mob/living/carbon/Xenomorph/Crusher/Stat()
 	..()
 	stat(null, "Momentum: [momentum]")
@@ -71,6 +68,24 @@
 	momentum = 0
 	speed = initial(speed)
 	update_icons()
+
+
+/mob/living/carbon/Xenomorph/Crusher/movement_delay()
+	. = ..()
+	if(istype(loc, /turf/space))
+		. = -1 //It's hard to be slowed down in space by... anything
+
+	charge_timer = 2
+	if(momentum == 0)
+		charge_dir = dir
+		handle_momentum()
+	else
+		if(charge_dir != dir) //Have we changed direction?
+			stop_momentum() //This should disallow rapid turn bumps
+		else
+			handle_momentum()
+	lastturf = get_turf(src)
+
 
 /mob/living/carbon/Xenomorph/Crusher/proc/handle_momentum()
 	if(throwing)
