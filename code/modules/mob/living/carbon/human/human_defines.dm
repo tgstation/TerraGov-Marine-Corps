@@ -87,12 +87,7 @@
 	var/image/slashed_icon = null
 
 	//Emotes
-	var/farted = 0
-	var/burped = 0
-	var/clapped = 0
-	var/golfclapped = 0
-	var/medicd = 0
-	var/screamed = 0
+	var/recent_audio_emote = 0
 
 	//Life variables
 	var/oxygen_alert = 0
