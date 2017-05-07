@@ -177,13 +177,15 @@
 			coin = W
 			user << "\blue You insert the [W] into the [src]"
 		return
-	else if(istype(W, /obj/item/weapon/card) && currently_vending)
+	else if(istype(W, /obj/item/weapon/card))
 		var/obj/item/weapon/card/I = W
 		scan_card(I)
+		return
 	else if (istype(W, /obj/item/weapon/spacecash/ewallet))
 		if(user.drop_inv_item_to_loc(W, src))
 			ewallet = W
 			user << "\blue You insert the [W] into the [src]"
+		return
 
 	else if(istype(W, /obj/item/weapon/wrench))
 
