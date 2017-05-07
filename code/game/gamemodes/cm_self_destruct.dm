@@ -1,17 +1,12 @@
 /*
-Look into animation screen not showing on self destruct and other weirdness
-
-
 TODO
-Force doors on pods.
+Look into animation screen not showing on self destruct and other weirdness
 Intergrate distress into this controller.
 Finish nanoui conversion for comm console.
 Make sure people who get nuked and wake up from SSD don't live.
-Add flashing lights to evac.
+Add flashing lights to evac. //DEFERRED TO BETTER LIGHTING
 Finish the game mode announcement thing.
-Add radio channels and AI question console.
-TODO: Fix escape doors to work properly.
-Add flashing lights.
+Fix escape doors to work properly.
 */
 
 #define SELF_DESTRUCT_ROD_STARTUP_TIME 12000

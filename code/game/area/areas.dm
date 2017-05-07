@@ -136,9 +136,9 @@
 /area/proc/firealert()
 	if(name == "Space") //no fire alarms in space
 		return
-	if( !fire )
-		fire = 1
-		master.fire = 1		//used for firedoor checks
+	if(!(flags_alarm_state & ALARM_WARNING_FIRE))
+		flags_alarm_state |= ALARM_WARNING_FIRE
+		master.flags_alarm_state |= ALARM_WARNING_FIRE		//used for firedoor checks
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -159,9 +159,9 @@
 			a.triggerAlarm("Fire", src, cameras, src)
 
 /area/proc/firereset()
-	if (fire)
-		fire = 0
-		master.fire = 0		//used for firedoor checks
+	if(flags_alarm_state & ALARM_WARNING_FIRE)
+		flags_alarm_state &= ~ALARM_WARNING_FIRE
+		master.flags_alarm_state &= ~ALARM_WARNING_FIRE		//used for firedoor checks
 		mouse_opacity = 0
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -180,52 +180,49 @@
 			a.cancelAlarm("Fire", src, src)
 
 /area/proc/readyalert()
-	if(!eject)
-		eject = 1
+	if(!(flags_alarm_state & ALARM_WARNING_READY))
+		flags_alarm_state |= ALARM_WARNING_READY
 		updateicon()
-	return
 
 /area/proc/readyreset()
-	if(eject)
-		eject = 0
+	if(flags_alarm_state & ALARM_WARNING_READY)
+		flags_alarm_state &= ~ALARM_WARNING_READY
 		updateicon()
-	return
+/*
+/area/proc/toggle_evacuation() //toggles lights and creates an overlay.
+	flags_alarm_state ^= ALARM_WARNING_EVAC
+	master.flags_alarm_state ^= ALARM_WARNING_EVAC
+	//if(flags_alarm_state & ALARM_WARNING_EVAC)
+	//	master.lightswitch = FALSE
+		//lightswitch = FALSE //Lights going off.
+//	else
+	//	master.lightswitch = TRUE
+		//lightswitch = TRUE //Coming on.
+	master.updateicon()
 
-/area/proc/partyalert()
-	if (!( party ))
-		party = 1
-		updateicon()
-		mouse_opacity = 0
-	return
+	//master.power_change()
 
-/area/proc/partyreset()
-	if (party)
-		party = 0
-		mouse_opacity = 0
-		updateicon()
-		for(var/obj/machinery/door/firedoor/D in src)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
-	return
+
+/area/proc/toggle_shut_down()
+	flags_alarm_state ^= ALARM_WARNING_DOWN
+	updateicon()
+
+/area/proc/destroy_area() //Just overlays for now to make it seem like nothing is left.
+	flags_alarm_state = NOFLAGS
+	active_areas -= src //So it doesn't process anymore.
+	icon_state = "area_destroyed"
+*/
 
 /area/proc/updateicon()
-	if ((fire || eject || party) && ((!requires_power)?(!requires_power):power_environ))//If it doesn't require power, can still activate this proc.
-		if(fire && !eject && !party)
-			icon_state = "blue"
-		else if(!fire && eject && !party)
-			icon_state = "red"
-		else if(party && !fire && !eject)
-			icon_state = "party"
-		else
-			icon_state = "blue-red"
-	else
-	//	new lighting behaviour with obj lights
-		icon_state = null
+	var/I //More important == bottom. Fire normally takes priority over everything.
+	if(flags_alarm_state && (!requires_power || power_environ)) //It either doesn't require power or the environment is powered. And there is an alarm.
+		if(flags_alarm_state & ALARM_WARNING_READY) I = "alarm_ready" //Area is ready for something.
+		if(flags_alarm_state & ALARM_WARNING_EVAC) I = "alarm_evac" //Evacuation happening.
+		if(flags_alarm_state & ALARM_WARNING_ATMOS) I = "alarm_atmos"	//Atmos breach.
+		if(flags_alarm_state & ALARM_WARNING_FIRE) I = "alarm_fire" //Fire happening.
+		if(flags_alarm_state & ALARM_WARNING_DOWN) I = "alarm_down" //Area is shut down.
 
+	if(icon_state != I) icon_state = I //If the icon state changed, change it. Otherwise do nothing.
 
 /*
 #define EQUIP 1
@@ -256,7 +253,7 @@
 	for(var/area/RA in related)
 		for(var/obj/machinery/M in RA)	// for each machine in the area
 			M.power_change()				// reverify power status (to update icons etc.)
-		if (fire || eject || party)
+		if(flags_alarm_state)
 			RA.updateicon()
 
 /area/proc/usage(var/chan)

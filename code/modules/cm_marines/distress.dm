@@ -1081,6 +1081,8 @@
 	H.dna.ready_dna(H)
 	H.key = M.key
 	H.mind.assigned_role = "Colonist"
+	H.mind.special_role = "MODE"
+	ticker.mode.traitors += H.mind
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
