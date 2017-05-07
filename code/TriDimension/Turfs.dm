@@ -28,7 +28,7 @@
 						if(A.density)
 							if(istype(A, /obj/structure/window))
 								var/obj/structure/window/W = A
-								blocked = W.is_fulltile()
+								blocked = W.is_full_window()
 								if(blocked)
 									break
 							else
