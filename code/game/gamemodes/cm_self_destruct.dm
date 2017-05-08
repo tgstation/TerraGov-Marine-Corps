@@ -93,7 +93,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		enter_allowed = 0 //No joining during evac.
 		evac_time = world.time
 		evac_status = EVACUATION_STATUS_INITIATING
-		ai_system.Announce("WARNING. WARNING. Emergency evacuation protocol has been initiated. WARNING. WARNING. All personnel, please proceed to the nearest evacuation vehicle. You have [round(EVACUATION_ESTIMATE_DEPARTURE/60,1)] minute\s until departure. THIS IS NOT A DRILL.")
+		ai_system.Announce("Attention. Emergency. All personel must evacuate immediately. You have [round(EVACUATION_ESTIMATE_DEPARTURE/60,1)] minute\s until departure.", 'sound/AI/evacuate.ogg')
 		xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 		var/datum/shuttle/ferry/marine/evacuation_pod/P
 		for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
@@ -107,7 +107,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		enter_allowed = 1
 		evac_time = null
 		evac_status = EVACUATION_STATUS_STANDING_BY
-		ai_system.Announce("CAUTION: Evacuation order has been rescinded. Please return to your stations.")
+		ai_system.Announce("Evacuation has been cancelled.", 'sound/AI/evacuate_cancelled.ogg')
 		var/datum/shuttle/ferry/marine/evacuation_pod/P
 		for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
 			P = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [i]"]
@@ -182,7 +182,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			if(I.active_state == SELF_DESTRUCT_MACHINE_ACTIVE || (I.active_state == SELF_DESTRUCT_MACHINE_ARMED && override)) I.lock_or_unlock(1)
 		dest_master.lock_or_unlock(1)
 		dest_index = 1
-		ai_system.Announce("CAUTION: Self destruct system deactivated.")
+		ai_system.Announce("The emergency destruct system has been deactivated.", 'sound/AI/selfdestruct_deactivated.ogg')
 		r_TRU
 
 /datum/authority/branch/evacuation/proc/initiate_self_destruct(override)
@@ -339,7 +339,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			if("dest_start")
 				usr << "<span class='notice'>You press a few keys on the panel.</span>"
 				usr << "<span class='notice'>The system must be booting up the self-destruct sequence now.</span>"
-				ai_system.Announce("WARNING. WARNING. Self destruct system activated. WARNING. WARNING. Countdown initiated. WARNING. WARNING.")
+				ai_system.Announce("Danger. The emergency destruct system is now activated. The ship will detonate in T-minus 20 minutes. Automatic detonation is unavailable. Manual detonation is required.", 'sound/AI/selfdestruct.ogg')
 				active_state = SELF_DESTRUCT_MACHINE_ARMED //Arm it here so the process can execute it later.
 				var/obj/machinery/self_destruct/rod/I = EvacuationAuthority.dest_rods[EvacuationAuthority.dest_index]
 				I.activate_time = world.time

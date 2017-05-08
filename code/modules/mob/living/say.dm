@@ -9,7 +9,7 @@ var/list/department_radio_keys = list(
 
 	  ":m" = "MedSci",		"#m" = "MedSci",		".m" = "MedSci",
 	  ":e" = "Engi", 		"#e" = "Engi",			".e" = "Engi",
-	  ":z" = "Sulaco",		"#z" = "Sulaco",		".z" = "Sulaco",
+	  ":z" = "Almayer",		"#z" = "Almayer",		".z" = "Almayer",
 	  ":v" = "Command",		"#v" = "Command",		".v" = "Command",
 	  ":q" = "Alpha",		"#q" = "Alpha",			".q" = "Alpha",
 	  ":b" = "Bravo",		"#b" = "Bravo",			".b" = "Bravo",
@@ -27,7 +27,7 @@ var/list/department_radio_keys = list(
 
 	  ":M" = "MedSci",		"#M" = "MedSci",		".M" = "MedSci",
 	  ":E" = "Engi", 		"#E" = "Engi",			".E" = "Engi",
-	  ":Z" = "Sulaco",		"#Z" = "Sulaco",		".Z" = "Sulaco",
+	  ":Z" = "Almayer",		"#Z" = "Almayer",		".Z" = "Almayer",
 	  ":V" = "Command",		"#V" = "Command",		".V" = "Command",
 	  ":Q" = "Alpha",		"#Q" = "Alpha",			".Q" = "Alpha",
 	  ":B" = "Bravo",		"#B" = "Bravo",			".B" = "Bravo",

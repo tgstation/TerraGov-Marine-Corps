@@ -138,7 +138,7 @@ var/list/radiochannels = list(
 	"Spetsnaz" 		= RUS_FREQ,
 	"D.Dozen"		= DUT_FREQ,
 
-	"Sulaco"		= PUB_FREQ,
+	"Almayer"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,
 	"MedSci"		= MED_FREQ,
 	"Engi"			= ENG_FREQ,
