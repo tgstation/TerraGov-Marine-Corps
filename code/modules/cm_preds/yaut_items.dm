@@ -779,7 +779,7 @@
 					icon_state = "yauttrap0"
 					H.legcuffed = src
 					src.loc = H
-					H.update_inv_legcuffed()
+					H.legcuff_update()
 					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
 					H << "\icon[src] \red <B>You step on \the [src]!</B>"
 					H.Weaken(4)
