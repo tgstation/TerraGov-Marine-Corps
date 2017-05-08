@@ -129,7 +129,7 @@
 	. += speed
 
 	if(frenzy_aura)
-		. -= (frenzy_aura * 0.1) - 0.4
+		. -= (frenzy_aura * 0.1) + 0.4
 
 
 
