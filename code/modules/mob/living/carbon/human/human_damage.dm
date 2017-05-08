@@ -163,8 +163,8 @@
 		if (prob(mut_prob))
 			var/list/datum/organ/external/candidates = list()
 			for (var/datum/organ/external/O in organs)
-				if (!(O.status & ORGAN_ROBOT) && !(O.status & ORGAN_MUTATED))
-					candidates |= O
+				if(O.status & (ORGAN_CUT_AWAY|ORGAN_ROBOT|ORGAN_DESTROYED|ORGAN_MUTATED)) continue
+				candidates |= O
 			if (candidates.len)
 				var/datum/organ/external/O = pick(candidates)
 				O.mutate()
