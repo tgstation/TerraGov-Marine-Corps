@@ -653,10 +653,8 @@
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(M.a_intent == "hurt" && !unacidable)
-		if(prob(70))
-			var/turf/T = get_turf(src)
-			for(var/obj/O in contents)
-				O.loc = T
+		if(!opened && prob(70))
+			break_open()
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \
 			"<span class='danger'>You smash \the [src] open!</span>")
 		else

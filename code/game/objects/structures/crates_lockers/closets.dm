@@ -301,3 +301,10 @@
 		if(istype(A,/obj/))
 			var/obj/O = A
 			O.hear_talk(M, text)
+
+/obj/structure/closet/proc/break_open()
+	if(!opened)
+		dump_contents()
+		opened = TRUE
+		welded = FALSE
+		update_icon()
