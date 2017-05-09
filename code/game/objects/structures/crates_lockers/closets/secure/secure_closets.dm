@@ -131,3 +131,8 @@
 			overlays += "welded"
 	else
 		icon_state = icon_opened
+
+/obj/structure/closet/secure_closet/break_open()
+	broken = TRUE
+	locked = FALSE
+	..()
