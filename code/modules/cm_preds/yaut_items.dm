@@ -302,6 +302,34 @@
 			if(cloaked)
 				decloak(usr)
 
+	equipped(mob/user, slot)
+		..()
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
+				processing_objects.Add(src)
+
+	dropped(mob/user)
+		..()
+		processing_objects.Remove(src)
+
+	process()
+		if(!ishuman(loc))
+			processing_objects.Remove(src)
+			return
+		var/mob/living/carbon/human/H = loc
+		if(cloak_timer)
+			cloak_timer--
+		if(cloaked)
+			charge = max(charge - 10, 0)
+			if(charge <= 0)
+				decloak(loc)
+		else
+			charge = min(charge + 30, charge_max)
+		var/perc_charge = (charge / charge_max * 100)
+		H.update_power_display(perc_charge)
+
+
 	//This is the main proc for checking AND draining the bracer energy. It must have M passed as an argument.
 	//It can take a negative value in amount to restore energy.
 	//Also instantly updates the yautja power HUD display.
