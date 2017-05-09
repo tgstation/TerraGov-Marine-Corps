@@ -268,12 +268,11 @@ var/list/mechtoys = list(
 				A:req_access += text2num(SP.access)
 
 			var/list/contains
-			if(istype(SP,/datum/supply_packs/randomised))
-				var/datum/supply_packs/randomised/SPR = SP
+			if(SP.randomised_num_contained)
 				contains = list()
-				if(SPR.contains.len)
-					for(var/j=1,j<=SPR.num_contained,j++)
-						contains += pick(SPR.contains)
+				if(SP.contains.len)
+					for(var/j=1,j<=SP.randomised_num_contained,j++)
+						contains += pick(SP.contains)
 			else
 				contains = SP.contains
 
