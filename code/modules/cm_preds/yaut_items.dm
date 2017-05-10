@@ -321,6 +321,7 @@
 		if(cloak_timer)
 			cloak_timer--
 		if(cloaked)
+			H.alpha = 20
 			charge = max(charge - 10, 0)
 			if(charge <= 0)
 				decloak(loc)
