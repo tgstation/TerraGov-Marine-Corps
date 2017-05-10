@@ -272,8 +272,6 @@ datum/preferences
 		dat += "<b>Armor style:</b> <a href='?_src_=prefs;preference=pred_armor_type;task=input'>([predator_armor_type])</a><br>"
 		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
 
-	dat += "-Alpha(transparency): <a href='?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br>"
-
 	dat += "<b>Name:</b> "
 	dat += "<a href='?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a><br>"
 	dat += "(<a href='?_src_=prefs;preference=name;task=random'>Random Name</A>) "
@@ -828,8 +826,8 @@ datum/preferences
 					job_marines_low |= job.flag
 	return 1
 
-/datum/preferences/proc/process_link(mob/new_player/user, list/href_list)
-	if(!istype(user)) return
+/datum/preferences/proc/process_link(mob/user, list/href_list)
+	if(!istype(user, /mob/new_player) && !istype(user, /mob/dead/observer)) return
 
 	switch(href_list["preference"])
 		if("job")
