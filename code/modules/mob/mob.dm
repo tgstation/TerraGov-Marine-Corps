@@ -757,10 +757,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 		else
 			stat(null,"MasterController-ERROR")
 
-	r_TRU
 
-	//CM Doesn't use these.
-	/*if(listed_turf && client)
+	//This displays items on on turf via ALT+Click
+	if(listed_turf && client)
 		if(!TurfAdjacent(listed_turf))
 			listed_turf = null
 		else
@@ -770,7 +769,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 					continue
 				statpanel(listed_turf.name, null, A)
 
-	if(spell_list && spell_list.len)
+	r_TRU
+
+	/*if(spell_list && spell_list.len)
 		for(var/obj/effect/proc_holder/spell/S in spell_list)
 			switch(S.charge_type)
 				if("recharge")
