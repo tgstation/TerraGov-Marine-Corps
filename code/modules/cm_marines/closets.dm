@@ -215,7 +215,7 @@
 	icon_state = "squad_alpha_locked"
 	icon_closed = "squad_alpha_unlocked"
 	icon_locked = "squad_alpha_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_alpha_open"
 	icon_broken = "squad_alpha_emmaged"
 	icon_off = "squad_alpha_off"
 
@@ -232,7 +232,7 @@
 	icon_state = "squad_bravo_locked"
 	icon_closed = "squad_bravo_unlocked"
 	icon_locked = "squad_bravo_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_bravo_open"
 	icon_broken = "squad_bravo_emmaged"
 	icon_off = "squad_bravo_off"
 
@@ -249,7 +249,7 @@
 	icon_state = "squad_charlie_locked"
 	icon_closed = "squad_charlie_unlocked"
 	icon_locked = "squad_charlie_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_charlie_open"
 	icon_broken = "squad_charlie_emmaged"
 	icon_off = "squad_charlie_off"
 
@@ -266,7 +266,7 @@
 	icon_state = "squad_delta_locked"
 	icon_closed = "squad_delta_unlocked"
 	icon_locked = "squad_delta_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_delta_open"
 	icon_broken = "squad_delta_emmaged"
 	icon_off = "squad_delta_off"
 
