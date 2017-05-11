@@ -113,3 +113,11 @@
 			loc = AM.loc
 			now_pushing = 0
 			return
+
+/mob/living/carbon/Xenomorph/Larva
+
+	start_pulling(var/atom/movable/AM)
+		return
+
+	pull_response(mob/puller)
+		return

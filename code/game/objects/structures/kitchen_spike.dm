@@ -31,7 +31,7 @@
 
 			else
 				user << "\red The spike already has something on it, finish collecting its meat first!"
-		else if(istype(G.affecting, /mob/living/carbon/alien))
+		else if(istype(G.affecting, /mob/living/carbon/Xenomorph))
 			if(src.occupied == 0)
 				src.icon_state = "spikebloodygreen"
 				src.occupied = 1

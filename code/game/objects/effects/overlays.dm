@@ -38,3 +38,28 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "danger"
 	layer = 6
+
+/obj/effect/overlay/temp
+	anchored = 1
+	layer = 5 //above mobs
+	mouse_opacity = 0 //can't click to examine it
+	var/effect_duration = 10 //in deciseconds
+
+	New()
+		..()
+		flick(icon_state, src)
+		start_countdown()
+
+/obj/effect/overlay/temp/proc/start_countdown()
+	set waitfor = 0
+	sleep(effect_duration)
+	cdel(src)
+
+/obj/effect/overlay/temp/point
+	name = "arrow"
+	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "arrow"
+	layer = 16
+	anchored = 1
+	effect_duration = 25

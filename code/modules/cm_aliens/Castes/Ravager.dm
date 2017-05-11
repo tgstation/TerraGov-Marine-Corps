@@ -43,17 +43,6 @@
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
-/mob/living/carbon/Xenomorph/Ravager/ClickOn(var/atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		charge(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		charge(A)
-		return
-	..()
-
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(var/atom/T)
 	set name = "Charge (20)"
 	set desc = "Charge towards something! Raaaugh!"
@@ -122,15 +111,6 @@
 		verbs += /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire
 		spawn(15) name = "Ravenger"
 
-	ClickOn(var/atom/A, params)
-		var/list/modifiers = params2list(params)
-		if(modifiers["middle"] && middle_mouse_toggle)
-			breathe_fire(A)
-			return
-		if(modifiers["shift"] && shift_mouse_toggle)
-			breathe_fire(A)
-			return
-		..()
 
 /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire(atom/A)
 	set waitfor = 0

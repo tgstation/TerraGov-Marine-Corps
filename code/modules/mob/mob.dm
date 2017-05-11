@@ -247,16 +247,31 @@ var/list/slot_equipment_priority = list( \
 		next_move = world.time + 2
 	return
 
-/*
-/mob/verb/dump_source()
+/mob/verb/point_to(atom/A in view())
+	set name = "Point To"
+	set category = "Object"
 
-	var/master = "<PRE>"
-	for(var/t in typesof(/area))
-		master += text("[]\n", t)
-		//Foreach goto(26)
-	src << browse(master)
-	return
-*/
+	if(!isturf(src.loc) || !(A in view(src.loc)))//target is no longer visible to us
+		return 0
+
+	if(!A.mouse_opacity)//can't click it? can't point at it.
+		return 0
+
+	if(stat || stunned || weakened || restrained() || (status_flags & FAKEDEATH)) //incapacitated, can't point
+		return 0
+
+	var/tile = get_turf(A)
+	if (!tile)
+		return 0
+
+	if(next_move > world.time)
+		return 0
+
+	next_move = world.time + 2
+
+	new /obj/effect/overlay/temp/point(tile)
+	visible_message("<b>[src]</b> points to [A]")
+	return 1
 
 /mob/verb/memory()
 	set name = "Notes"
@@ -563,17 +578,17 @@ var/list/slot_equipment_priority = list( \
 	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
-	if(isXenoLarva(src) || istype(src,/mob/living/silicon/pai)) return
-
 	if (AM.anchored)
 		return
 
-	var/mob/M = AM
+	var/mob/M
 	if(ismob(AM))
+		M = AM
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
+
 
 	if(pulling)
 		var/pulling_old = pulling
@@ -591,9 +606,13 @@ var/list/slot_equipment_priority = list( \
 			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
-	if(ismob(AM))
-		var/mob/pulled = AM
-		pulled.inertia_dir = 0
+	if(M)
+		M.inertia_dir = 0
+		M.pull_response(src)
+
+//how a mob reacts to being pulled (only used by xenos so far)
+/mob/proc/pull_response(mob/puller)
+	return
 
 /mob/proc/can_use_hands()
 	return
@@ -1118,3 +1137,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
+
+/mob/proc/TurfAdjacent(var/turf/T)
+	return T.AdjacentQuick(src)

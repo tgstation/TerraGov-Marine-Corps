@@ -63,22 +63,6 @@
 		SetLuminosity(0)
 		..()
 
-/mob/living/carbon/Xenomorph/Boiler/ClickOn(var/atom/A, params)
-	if(is_zoomed && !is_bombarding && !istype(A,/obj/screen))
-		zoom_out()
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		if(A)
-			face_atom(A)
-			acid_spray(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		if(A)
-			face_atom(A)
-			acid_spray(A)
-		return
-	..()
 
 /mob/living/carbon/Xenomorph/Boiler/proc/longrange()
 	set name = "Toggle Long Range Sight (20)"

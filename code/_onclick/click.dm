@@ -45,6 +45,9 @@
 		return
 
 	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
+		return
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return
@@ -66,23 +69,8 @@
 
 	face_atom(A)
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
-		var/mob/living/carbon/Xenomorph/Crusher/X = src
-		if(X.momentum > 1)
-			X.stop_momentum(X.charge_dir)
-
 	if(next_move > world.time) // in the year 2000...
 		return
-
-	if(istype(src,/mob/living/carbon/Xenomorph/Boiler) && !istype(A,/obj/screen))
-		if(src:is_bombarding)
-			if(isturf(A))
-				src:bomb_turf(A)
-			else if(isturf(get_turf(A)))
-				src:bomb_turf(get_turf(A))
-			if(client)
-				client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-			return
 
 	if(istype(loc,/obj/mecha))
 		if(!locate(/turf) in list(A,A.loc)) // Prevents inventory from being drilled
@@ -208,18 +196,9 @@
 
 /*
 	Middle click
-	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(var/atom/A)
 	return
-/mob/living/carbon/MiddleClickOn(var/atom/A)
-	swap_hand()
-
-// In case of use break glass
-/*
-/atom/proc/MiddleClick(var/mob/M as mob)
-	return
-*/
 
 /*
 	Shift click
@@ -229,6 +208,7 @@
 /mob/proc/ShiftClickOn(var/atom/A)
 	A.ShiftClick(src)
 	return
+
 /atom/proc/ShiftClick(var/mob/user)
 	if(user.client && user.client.eye == user)
 		examine()
@@ -242,27 +222,16 @@
 /mob/proc/CtrlClickOn(var/atom/A)
 	A.CtrlClick(src)
 	return
+
 /atom/proc/CtrlClick(var/mob/user)
 	return
 
 /atom/movable/CtrlClick(var/mob/user)
-	if(Adjacent(user) && !isXenoLarva(user))
-		if(isXeno(user) && isobj(src)) return
-		if(istype(src, /obj/item/device/flashlight) && ishuman(user)) return
-
-		if(istype(src,/mob/living/carbon/Xenomorph) && !isXenoLarva(src))
-			var/mob/living/carbon/Xenomorph/X = src
-			if(X.stat < 2 && has_species(user,"Human")) // If the Xeno is alive, fight back against a grab/pull
-				user.Weaken(rand(X.tacklemin,X.tacklemax))
-				playsound(user.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-				visible_message("<span class='warning'>[user] tried to pull [X] but instead gets a tail swipe to the head!</span>")
-				return
-
+	if(Adjacent(user))
 		user.start_pulling(src)
 
 /*
 	Alt click
-	Unused except for AI
 */
 /mob/proc/AltClickOn(var/atom/A)
 	A.AltClick(src)
@@ -278,12 +247,8 @@
 			user.client.statpanel = T.name
 	return
 
-/mob/proc/TurfAdjacent(var/turf/T)
-	return T.AdjacentQuick(src)
-
 /*
 	Control+Shift click
-	Unused except for AI
 */
 /mob/proc/CtrlShiftClickOn(var/atom/A)
 	A.CtrlShiftClick(src)
@@ -291,6 +256,13 @@
 
 /atom/proc/CtrlShiftClick(var/mob/user)
 	return
+
+/*
+	Shift+Middle click
+*/
+/mob/proc/ShiftMiddleClickOn(atom/A)
+	return
+
 
 /*
 	Misc helpers
@@ -356,18 +328,3 @@
 	if(buckled && buckled.movable)
 		buckled.dir = direction
 		buckled.handle_rotation()
-
-
-
-// This was also the next define. Didn't know if you wanted this in setup or not.
-//Made it a /obj/ thing so it can be used for more things.
-/obj/proc/handle_click(var/mob/living/carbon/human/user, var/atom/A, var/params) //Heres our handle click relay proc thing.
-	return
-
-/mob/living/carbon/human //works 100%.
-	ClickOn(var/atom/A, params)
-		if(machine && machine.flags_atom == RELAY_CLICK) //Fix works, should just normally allow you click on world objects, at worst a second click. Also no longer spams runtime errors.
-			machine.handle_click(machine.operator, A, params)
-			return
-		else
-			..()

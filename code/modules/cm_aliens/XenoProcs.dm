@@ -1,20 +1,6 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 //LAST EDIT: APOPHIS 22MAY16
 
-/*
-//First, dealing with alt-clicking vents.
-/mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
-	var/list/modifiers = params2list(params)
-
-	if(modifiers["alt"] && istype(A, /obj/machinery/atmospherics/unary/vent_pump))
-		var/verb_path = /mob/living/carbon/Xenomorph/proc/vent_crawl
-		if(verb_path in inherent_verbs)
-			if(check_state())
-				handle_ventcrawl(A)
-			return
-	else
-		..()
-*/
 
 //Send a message to all xenos. Mostly used in the deathgasp display
 /proc/xeno_message(var/message = null, var/size = 3)

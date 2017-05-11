@@ -179,7 +179,7 @@
 		var/sourcenutriment = src.occupant.nutrition / 15
 		var/sourcetotalreagents = 0
 
-		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/alien/) ) // why are you gibbing aliens? oh well
+		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/Xenomorph) ) // why are you gibbing aliens? oh well
 			totalslabs = 3
 			sourcetotalreagents = src.occupant.reagents.total_volume
 		else if( istype(src.occupant, /mob/living/simple_animal/cow) || istype(src.occupant, /mob/living/simple_animal/hostile/bear) )

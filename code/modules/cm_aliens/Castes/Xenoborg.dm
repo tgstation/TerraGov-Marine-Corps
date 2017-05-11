@@ -40,23 +40,6 @@
 		add_language("Sol Common")
 		add_language("Tradeband")
 
-/mob/living/carbon/Xenomorph/Xenoborg/ClickOn(var/atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		if(!gun_on)
-			Pounce(A)
-		else
-			fire_cannon(A)
-		return
-
-	if(modifiers["shift"] && shift_mouse_toggle)
-		if(!gun_on)
-			Pounce(A)
-		else
-			fire_cannon(A)
-		return
-	..()
 
 /mob/living/carbon/Xenomorph/Xenoborg/proc/fire_cannon(var/atom/T)
 	set name = "Fire Cannon (5)"

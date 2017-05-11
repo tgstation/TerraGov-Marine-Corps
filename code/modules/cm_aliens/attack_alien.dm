@@ -7,18 +7,6 @@
  * In that case, the first argument is always the attacker. For attack_alien, it should always be Xenomorph sub-types
  */
 
-//If we're restrained, do nothing
-/mob/living/carbon/Xenomorph/RestrainedClickOn(var/atom/A)
-	return
-
-//Generic proc for clicking things. We will move the remainder to attack_alien, a proc of our making
-/mob/living/carbon/Xenomorph/UnarmedAttack(var/atom/A)
-	A.attack_alien(src)
-	next_move = world.time + (10 + attack_delay) //Adds some lag to the 'attack'
-
-//The parent proc, will default to attack_paw behaviour unless overriden
-/atom/proc/attack_alien(mob/user as mob)
-	return ..(attack_paw(user))
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M)
 
