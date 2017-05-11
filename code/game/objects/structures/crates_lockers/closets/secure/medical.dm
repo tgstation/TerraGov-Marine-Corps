@@ -1,12 +1,12 @@
 /obj/structure/closet/secure_closet/medical1
 	name = "Medicine Closet"
 	desc = "Filled with medical junk."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
+	icon_state = "secure_locked_medical_white"
+	icon_closed = "secure_closed_medical_white"
+	icon_locked = "secure_locked_medical_white"
+	icon_opened = "secure_open_medical_white"
+	icon_broken = "secure_locked_medical_white"
+	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
 
@@ -33,12 +33,12 @@
 /obj/structure/closet/secure_closet/medical2
 	name = "Anesthetic"
 	desc = "Used to knock people out."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
+	icon_state = "secure_locked_medical_white"
+	icon_closed = "secure_closed_medical_white"
+	icon_locked = "secure_locked_medical_white"
+	icon_opened = "secure_open_medical_white"
+	icon_broken = "secure_locked_medical_white"
+	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
 
@@ -58,12 +58,12 @@
 /obj/structure/closet/secure_closet/medical3
 	name = "Medical Doctor's Locker"
 	req_access = list(ACCESS_MARINE_MEDBAY)
-	icon_state = "securemed1"
-	icon_closed = "securemed"
-	icon_locked = "securemed1"
-	icon_opened = "securemedopen"
-	icon_broken = "securemedbroken"
-	icon_off = "securemedoff"
+	icon_state = "secure_locked_medical_white"
+	icon_closed = "secure_closed_medical_white"
+	icon_locked = "secure_locked_medical_white"
+	icon_opened = "secure_open_medical_white"
+	icon_broken = "secure_locked_medical_white"
+	icon_off = "secure_closed_medical_white"
 
 	New()
 		..()
@@ -168,12 +168,12 @@
 /obj/structure/closet/secure_closet/chemical
 	name = "Chemical Closet"
 	desc = "Store dangerous chemicals in here."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
+	icon_state = "secure_locked_medical_white"
+	icon_closed = "secure_closed_medical_white"
+	icon_locked = "secure_locked_medical_white"
+	icon_opened = "secure_open_medical_white"
+	icon_broken = "secure_locked_medical_white"
+	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
 

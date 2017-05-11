@@ -25,7 +25,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	max_heat_protection_temperature = HELMET_max_heat_protection_temperature
 	siemens_coefficient = 0.7
 	w_class = 5
-	anti_hug = 1
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
@@ -42,7 +41,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "v62"
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.5
-	anti_hug = 3
 
 //===========================//MARINES\\=================================\\
 //=======================================================================\\
@@ -136,7 +134,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "helml"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
-	anti_hug = 2
 	var/obj/machinery/camera/camera
 
 	New(loc,expected_type 		= type,
@@ -153,7 +150,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 105, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
-	anti_hug = 6
 	unacidable = 1
 
 	New(loc,expected_type 		= type,
@@ -167,7 +163,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "helmetp"
 	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	anti_hug = 2
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 	flags_marine_helmet = NOFLAGS
 
@@ -192,7 +187,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_hat"
 	icon_state = "officer_hat"
-	anti_hug = 3
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	name = "\improper PMC sniper helmet"
@@ -213,7 +207,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
-	anti_hug = 4
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	name = "\improper PMC commando helmet"
@@ -226,7 +219,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
-	anti_hug = 8
 	unacidable = 1
 
 //==========================//DISTRESS\\=================================\\
@@ -267,7 +259,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "dutch_helmet"
 	armor = list(melee = 90, bullet = 65, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	anti_hug = 2
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 
 /obj/item/clothing/head/helmet/space/compression
@@ -276,7 +267,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "compression"
 	icon_state = "compression"
 	armor = list(melee = 40, bullet = 45, laser = 40, energy = 55, bomb = 40, bio = 100, rad = 50)
-	anti_hug = 3
 	unacidable = 1
 
 //==========================//HELMET PROCS\\=============================\\
