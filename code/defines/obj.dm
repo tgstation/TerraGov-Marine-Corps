@@ -265,12 +265,5 @@ var/global/list/PDA_Manifest = list()
 		user.drop_held_item()
 		throw_at(target, throw_range, throw_speed, user)
 
-/obj/effect/stop
-	var/victim = null
-	icon_state = "empty"
-	name = "Geas"
-	desc = "You can't resist."
-	// name = ""
-
 /obj/effect/spawner
 	name = "object spawner"
