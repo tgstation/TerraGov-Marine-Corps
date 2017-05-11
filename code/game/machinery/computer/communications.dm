@@ -111,7 +111,7 @@
 			if(state == STATE_EVACUATION)
 
 				if(world.time < EVACUATION_TIME_LOCK) //Cannot call it early in the round.
-					usr << "<span class='warning'>USMC protocol does not allow immedaite evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
+					usr << "<span class='warning'>USMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 					r_FAL
 
 				if(!ticker || !ticker.mode || !ticker.mode.has_called_emergency)
