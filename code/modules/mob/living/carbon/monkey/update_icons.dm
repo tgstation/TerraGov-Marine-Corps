@@ -112,7 +112,9 @@
 /mob/living/carbon/monkey/update_fire()
 	remove_overlay(M_FIRE_LAYER)
 	if(on_fire)
-		overlays_standing[M_FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"= -M_FIRE_LAYER)
+		switch(fire_stacks)
+			if(1 to 14)	overlays_standing[M_FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="monkey_weak", "layer"=-M_FIRE_LAYER)
+			if(15 to 20) overlays_standing[M_FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="monkey_medium", "layer"=-M_FIRE_LAYER)
 
 		apply_overlay(M_FIRE_LAYER)
 

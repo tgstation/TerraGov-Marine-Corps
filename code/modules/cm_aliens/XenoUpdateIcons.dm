@@ -27,24 +27,13 @@
 
 /mob/living/carbon/Xenomorph/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	update_hud()		//TODO: remove the need for this to be here
-	overlays.Cut()
-	var/image/overlay_claws = null
-	var/enh_claws = has_upgrade("eclaws")  //Rebuilding the image each time? Why not, ugh.
 	if(stat == DEAD)
 		icon_state = "[caste] Dead"
-		if(enh_claws)
-			overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
 	else if(lying)
-		if(resting)
+		if(resting || sleeping)
 			icon_state = "[caste] Sleeping"
-			if(enh_claws)
-				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Sleeping")
 		else
 			icon_state = "[caste] Knocked Down"
-			if(enh_claws)
-				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
-
 	else
 		if(m_intent == "run")
 			if(isXenoCrusher(src))
@@ -55,18 +44,10 @@
 					icon_state = "[caste] Running"
 			else
 				icon_state = "[caste] Running"
-			if(enh_claws)
-				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Running")
 		else
 			icon_state = "[caste] Walking"
-			if(enh_claws)
-				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Walking")
 
-	if(overlay_claws && enh_claws)
-		overlays += overlay_claws
-
-	for(var/image/I in overlays_standing)
-		overlays += I
+	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
 	..()
@@ -76,12 +57,6 @@
 	update_inv_r_hand()
 	update_inv_l_hand()
 	update_icons()
-	update_fire()
-
-/mob/living/carbon/Xenomorph/update_hud()
-	//TODO
-	if(client)
-		client.screen |= contents
 
 
 /mob/living/carbon/Xenomorph/update_inv_pockets()
@@ -144,11 +119,16 @@
 /mob/living/carbon/Xenomorph/update_fire()
 	remove_overlay(X_FIRE_LAYER)
 	if(on_fire)
+		var/image/I
 		if(big_xeno)
-			overlays_standing[X_FIRE_LAYER] = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+			if((!initial(pixel_y) || lying) && !resting && !sleeping)
+				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+			else
+				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire_lying", "layer"=-X_FIRE_LAYER)
 		else
-			overlays_standing[X_FIRE_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+			I = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
 
+		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
 
 
