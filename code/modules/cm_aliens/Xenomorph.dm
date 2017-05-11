@@ -27,7 +27,7 @@
 #undef DEBUG_XENO
 
 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-var/global/slashing_allowed = 0
+var/global/slashing_allowed = 1
 var/global/queen_time = 300 //5 minutes between queen deaths
 var/global/hive_orders = "" //What orders should the hive have
 
@@ -178,8 +178,8 @@ var/global/hive_orders = "" //What orders should the hive have
 			if(1) name = "\improper Elite Queen"	 //Mature
 			if(2) name = "\improper Elite Empress"	 //Elite
 			if(3) name = "\improper Ancient Empress" //Ancient
-	else
-		name = "\improper [upgrade_name] [caste] ([nicknumber])"
+	else if(caste == "Predalien") name = "\improper [caste] ([nicknumber])"
+	else name = "\improper [upgrade_name] [caste] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name

@@ -320,6 +320,7 @@
 	BURSTING = 1
 	GROWING = 2
 	GROWN = 3
+	DESTROYED = 4
 
 	MIN_GROWTH_TIME = 1800 //time it takes to grow a hugger
 	MAX_GROWTH_TIME = 3000
@@ -335,11 +336,9 @@
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
 
-/obj/effect/alien/egg/New()
-	..()
-	spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-		if(status == GROWING)
-			Grow()
+	New()
+		..()
+		Grow()
 
 /obj/effect/alien/egg/ex_act(severity)
 	switch(severity)
@@ -357,57 +356,56 @@
 		return attack_hand(M)
 
 	switch(status)
-		if(BURST)
-			M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-			"<span class='xenonotice'>You clear the hatched egg.</span>")
-			M.storedplasma++
-			if(isXenoLarva(M)) M.amount_grown++
-			del(src)
-			return
+		if(BURST, DESTROYED)
+			switch(M.caste)
+				if("Queen","Drone","Hivelord")
+					M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
+					"<span class='xenonotice'>You clear the hatched egg.</span>")
+					M.storedplasma++
+					cdel(src)
 		if(GROWING)
-			M << "<span class='warning'>The child is not developed yet.</span>"
-			return
+			M << "<span class='xenowarning'>The child is not developed yet.</span>"
 		if(GROWN)
 			if(isXenoLarva(M))
-				M << "<span class='warning'>You nudge the egg, but nothing happens.</span>"
+				M << "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>"
 				return
-			M << "<span class='warning'>You retrieve the child.</span>"
+			M << "<span class='xenonotice'>You retrieve the child.</span>"
 			Burst(0)
 
 /obj/effect/alien/egg/proc/Grow()
-	icon_state = "Egg"
-	status = GROWN
+	set waitfor = 0
+	sleep(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
+	if(status == GROWING)
+		icon_state = "Egg"
+		status = GROWN
 
-/obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
+/obj/effect/alien/egg/proc/Burst(kill = 1) //drops and kills the hugger if any is remaining
+	set waitfor = 0
 	if(status == GROWN || status == GROWING)
 		//icon_state = "Egg Opened"
 		//flick("Egg Opening", src)
 		status = BURSTING
-		spawn(10)
-			status = BURST
-			if(loc)
-				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
-				if(kill && istype(child)) //Make sure it's still there
-					icon_state = "Egg Exploded"
-					flick("Egg Exploding", src)
-					del(child)
-				else
-					icon_state = "Egg Opened"
-					flick("Egg Opening", src)
-					if(istype(child))
-						for(var/mob/living/carbon/human/F in view(2, src))
-							if(CanHug(F) && !isYautja(F) && get_dist(src, F) <= 1)
-								F.visible_message("<span class='warning'>\The scuttling [child] leaps at \the [F]!</span>", \
-								"<span class='warning'>The scuttling [child] leaps at \the [F]!</span>")
-								HasProximity(F)
-								break
+		sleep(3)
+		if(loc)
+			if(kill) //Make sure it's still there
+				status = DESTROYED
+				icon_state = "Egg Exploded"
+				flick("Egg Exploding", src)
+			else
+				icon_state = "Egg Opened"
+				flick("Egg Opening", src)
+				sleep(10)
+				if(loc)
+					status = BURST
+					var/obj/item/clothing/mask/facehugger/child = new(loc)
+					child.leap_at_nearest_target()
 
-/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
-	if(Proj.ammo.damage_type == BURN)
-		health -= round(Proj.damage * 0.3)
+/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
 	..()
+	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX)) return
+	health -= P.ammo.damage_type == BURN ? P.damage * 1.3 : P.damage
 	healthcheck()
+	P.ammo.on_hit_obj(src,P)
 	return 1
 
 /obj/effect/alien/egg/update_icon()
@@ -422,9 +420,28 @@
 		spawn(rand(125, 200))
 			del(src)
 
-/obj/effect/alien/egg/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/alien/egg/attackby(obj/item/W, mob/user)
 	if(health <= 0)
 		return
+
+	if(istype(W,/obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/F = W
+		if(F.stat != DEAD)
+			switch(status)
+				if(BURST)
+					if(user)
+						visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
+						user.temp_drop_inv_item(F)
+					else
+						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
+					status = GROWN
+					icon_state = "Egg"
+					cdel(F)
+				if(DESTROYED) user << "<span class='xenowarning'>This egg is no longer usable.</span>"
+				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
+		else user << "<span class='xenowarning'>This child is dead.</span>"
+		return
+
 	if(W.attack_verb.len)
 		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
 	else

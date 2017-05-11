@@ -46,7 +46,7 @@
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue Now securing the girder"
-				if(get_turf(user, 40))
+				if(do_after(user, 40))
 					user << "\blue You secured the girder!"
 					new/obj/structure/girder( src.loc )
 					del(src)

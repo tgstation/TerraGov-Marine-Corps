@@ -41,7 +41,7 @@
 		else
 			new /obj/item/stack/sheet/metal(loc)
 	density = 0
-	del(src)
+	cdel(src)
 
 /obj/structure/table/proc/update_adjacent()
 	for(var/direction in list(1,2,4,8,5,6,9,10))

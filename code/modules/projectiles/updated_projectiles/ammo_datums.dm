@@ -170,7 +170,7 @@
 		..()
 		damage = config.base_hit_damage
 		shrapnel_chance = config.low_shrapnel_chance
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.super_shell_speed
 
 /*
 //================================================
@@ -244,7 +244,7 @@
 		..()
 		damage = config.min_hit_damage
 		damage_var_high = config.high_proj_variance
-		shell_speed = config.slow_shell_speed
+		shell_speed = config.reg_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
@@ -432,7 +432,7 @@
 		damage_bleed = config.buckshot_damage_bleed
 		penetration	= -config.mlow_armor_penetration
 		bonus_projectiles = config.low_proj_extra
-		shell_speed = config.slow_shell_speed
+		shell_speed = config.reg_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
@@ -450,7 +450,7 @@
 		damage_var_low = -config.med_proj_variance
 		damage_var_high = config.med_proj_variance
 		damage_bleed = config.extra_damage_bleed
-		shell_speed = config.slow_shell_speed
+		shell_speed = config.reg_shell_speed
 
 
 /*
@@ -471,7 +471,7 @@
 		scatter = -config.med_scatter_value
 		damage = config.mhigh_hit_damage
 		penetration= config.mhigh_armor_penetration
-		shell_speed = config.fast_shell_speed
+		shell_speed = config.ultra_shell_speed
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -506,7 +506,7 @@
 		..()
 		accuracy = config.max_hit_accuracy
 		damage = config.super_hit_damage
-		shell_speed = config.super_shell_speed
+		shell_speed = config.ultra_shell_speed + 1
 
 /*
 //================================================
@@ -774,7 +774,7 @@
 	New()
 		..()
 		accurate_range = config.short_shell_range
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.fast_shell_speed
 
 /datum/ammo/energy/yautja/caster/bolt
 	name = "plasma bolt"
@@ -791,7 +791,7 @@
 	New()
 		..()
 		damage = config.low_hit_damage
-		shell_speed = config.fast_shell_speed
+		shell_speed = config.ultra_shell_speed
 
 /datum/ammo/energy/yautja/caster/sphere
 	name = "plasma eradication sphere"
@@ -840,7 +840,7 @@
 	icon_state = "bluespace"
 	New()
 		..()
-		shell_speed = config.fast_shell_speed
+		shell_speed = config.super_shell_speed
 
 /*
 //================================================
@@ -866,6 +866,7 @@
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	New()
 		..()
+		shell_speed = config.reg_shell_speed
 		max_range = config.close_shell_range
 
 /datum/ammo/xeno/toxin/medium //Spitter
@@ -873,7 +874,7 @@
 	debilitate = list(2,3,0,0,1,2,0,0)
 	New()
 		..()
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.fast_shell_speed
 		accuracy_var_low = config.high_proj_variance
 		accuracy_var_high = config.high_proj_variance
 
@@ -890,6 +891,7 @@
 	New()
 		..()
 		damage = config.mlow_hit_damage
+		shell_speed = config.reg_shell_speed
 
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
@@ -901,7 +903,7 @@
 		damage = config.low_hit_damage
 		damage_var_low = config.low_proj_variance
 		damage_var_high = config.med_proj_variance
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.fast_shell_speed
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"

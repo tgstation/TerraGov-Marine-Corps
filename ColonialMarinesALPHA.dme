@@ -797,6 +797,7 @@
 #include "code\modules\cm_aliens\Castes\Hunter.dm"
 #include "code\modules\cm_aliens\Castes\Larva.dm"
 #include "code\modules\cm_aliens\Castes\Praetorian.dm"
+#include "code\modules\cm_aliens\Castes\Predalien.dm"
 #include "code\modules\cm_aliens\Castes\Queen.dm"
 #include "code\modules\cm_aliens\Castes\Ravager.dm"
 #include "code\modules\cm_aliens\Castes\Runner.dm"

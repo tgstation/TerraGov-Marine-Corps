@@ -435,14 +435,14 @@
 		for(j in T)
 			M = j
 			if(!istype(M)) continue
-			shake_camera(M, 20, 1)
+			shake_camera(M, 30, 1)
 
 /client/proc/force_shuttle()
 	set name = "Force Dropship"
 	set desc = "Force a dropship to launch"
 	set category = "Admin"
 
-	var/tag = input("Which dropship should be forced?", "Select a dropship:") in list("Dropship 1", "Dropship 2")
+	var/tag = input("Which dropship should be forced?", "Select a dropship:") in list("Dropship 1", "Dropship 2", "Almayer Dropship 1", "Almayer Dropship 2")
 	var/crash = 0
 	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
 		if("Yes") crash = 1
@@ -453,6 +453,7 @@
 	if(!dropship)
 		src << "<span class='danger'>Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN</span>"
 		log_admin("Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN")
+		return
 
 	if(crash && dropship.location != 1)
 		switch(alert("Error: Shuttle is on the ground. Proceed with standard launch anyways?", , "Yes", "No"))

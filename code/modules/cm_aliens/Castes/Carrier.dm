@@ -4,7 +4,7 @@
 	caste = "Carrier"
 	name = "Carrier"
 	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
-	icon = 'icons/xeno/2x2_Xenos.dmi' //They are now like, 2x2
+	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x2
 	icon_state = "Carrier Walking"
 	melee_damage_lower = 20
 	melee_damage_upper = 30
@@ -40,9 +40,25 @@
 		///mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
+	death(gibbed)
+		if(..() && !gibbed && huggers_cur)
+			var/obj/item/clothing/mask/facehugger/F
+			var/i = 3
+			var/chance = 75
+			visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
+			while(i && huggers_cur)
+				if(prob(chance))
+					huggers_cur--
+					F = new(loc)
+					step_away(F,src,1)
+				i--
+				chance -= 30
+
+/mob/living/carbon/Xenomorph/Carrier/can_ventcrawl()
+	return
+
 /mob/living/carbon/Xenomorph/Carrier/Stat()
 	. = ..()
-
 	if(.)
 		stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
 
@@ -91,7 +107,7 @@
 			var/obj/item/clothing/mask/facehugger/newthrow = new()
 			huggers_cur--
 			newthrow.loc = loc
-			newthrow.throw_at(T, 5, throwspeed)
+			newthrow.throw_at(T, 4, throwspeed)
 			visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 			"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
 			spawn(hugger_delay)

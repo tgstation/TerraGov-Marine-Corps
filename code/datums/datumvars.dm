@@ -22,7 +22,7 @@ client
 			usr << "<span class='warning'>You need host permission to access this.</span>"
 			return
 
-		if(istype(D,/datum/ammo) && !(usr.client.holder.rights & R_DEBUG))
+		if((istype(D,/datum/ammo) || istype(D,/mob/living/carbon/Xenomorph/Predalien)) && !(usr.client.holder.rights & R_DEBUG))
 			usr << "<span class='warning'>You need debugging permission to access this.</span>"
 			return
 

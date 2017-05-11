@@ -4,7 +4,7 @@
 	caste = "Hivelord"
 	name = "Hivelord"
 	desc = "A huge ass xeno covered in weeds! Oh shit!"
-	icon = 'icons/xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Hivelord Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -18,7 +18,7 @@
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	pixel_x = -16
-	speed = 1.5
+	speed = 1.2
 	big_xeno = 1
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/speed_activated = 0
