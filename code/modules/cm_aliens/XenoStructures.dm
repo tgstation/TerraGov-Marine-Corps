@@ -333,12 +333,18 @@
 	anchored = 1
 
 	health = 80
+	var/list/egg_triggers = list()
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
 
 	New()
 		..()
+		create_egg_triggers()
 		Grow()
+
+	Dispose()
+		. = ..()
+		delete_egg_triggers()
 
 /obj/effect/alien/egg/ex_act(severity)
 	switch(severity)
@@ -378,13 +384,33 @@
 	if(status == GROWING)
 		icon_state = "Egg"
 		status = GROWN
+		deploy_egg_triggers()
+
+/obj/effect/alien/egg/proc/create_egg_triggers()
+	for(var/i=1, i<=8, i++)
+		egg_triggers += new /obj/effect/egg_trigger(src, src)
+
+/obj/effect/alien/egg/proc/deploy_egg_triggers()
+	var/i = 1
+	var/x_coords = list(-1,-1,-1,0,0,1,1,1)
+	var/y_coords = list(1,0,-1,1,-1,1,0,-1)
+	var/turf/target_turf
+	for(var/atom/trigger in egg_triggers)
+		var/obj/effect/egg_trigger/ET = trigger
+		target_turf = locate(x+x_coords[i],y+y_coords[i], z)
+		if(target_turf)
+			ET.loc = target_turf
+			i++
+
+/obj/effect/alien/egg/proc/delete_egg_triggers()
+	for(var/atom/trigger in egg_triggers)
+		cdel(trigger)
 
 /obj/effect/alien/egg/proc/Burst(kill = 1) //drops and kills the hugger if any is remaining
 	set waitfor = 0
 	if(status == GROWN || status == GROWING)
-		//icon_state = "Egg Opened"
-		//flick("Egg Opening", src)
 		status = BURSTING
+		delete_egg_triggers()
 		sleep(3)
 		if(loc)
 			if(kill) //Make sure it's still there
@@ -418,7 +444,7 @@
 	if(on_fire)
 		update_icon()
 		spawn(rand(125, 200))
-			del(src)
+			cdel(src)
 
 /obj/effect/alien/egg/attackby(obj/item/W, mob/user)
 	if(health <= 0)
@@ -470,6 +496,31 @@
 
 /obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
 	Burst(1)
+
+
+//The invisible traps around the egg to tell it there's a mob right next to it.
+/obj/effect/egg_trigger
+	name = "egg trigger"
+	icon = 'icons/effects/effects.dmi'
+	anchored = 1
+	mouse_opacity = 0
+	invisibility = INVISIBILITY_MAXIMUM
+	var/obj/effect/alien/egg/linked_egg
+
+	New(loc, obj/effect/alien/egg/source_egg)
+		..()
+		linked_egg = source_egg
+
+
+/obj/effect/egg_trigger/Crossed(atom/A)
+	if(!linked_egg) //something went very wrong
+		cdel(src)
+	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
+		loc = linked_egg
+	else if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		linked_egg.HasProximity(H)
+
 
 /obj/structure/tunnel
 	name = "tunnel"

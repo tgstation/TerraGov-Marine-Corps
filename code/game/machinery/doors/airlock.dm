@@ -1305,12 +1305,6 @@ About the new airlock wires panel:
 				M.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
 				M.SetStunned(5)
 				M.SetWeakened(5)
-				var/obj/effect/stop/S
-				S = new /obj/effect/stop
-				S.victim = M
-				S.loc = M.loc
-				spawn(20)
-					del(S)
 				if (iscarbon(M))
 					var/mob/living/carbon/C = M
 					if (!(C.species && (C.species.flags & NO_PAIN)))

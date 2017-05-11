@@ -166,7 +166,7 @@
 
 /client/Move(n, direct)
 
-	if(mob.control_object)	Move_object(direct)
+	if(mob.control_object) return Move_object(direct) //admins possessing object
 
 	if(isobserver(mob))	return mob.Move(n,direct)
 
@@ -176,12 +176,7 @@
 
 	if(!mob)	return
 
-	if(locate(/obj/effect/stop/, mob.loc))
-		for(var/obj/effect/stop/S in mob.loc)
-			if(S.victim == mob)
-				return
-
-	if(mob.stat==2)	return
+	if(mob.stat == DEAD) return
 
 	// handle possible AI movement
 	if(isAI(mob))
@@ -197,42 +192,19 @@
 		if(L.incorporeal_move)//Move though walls
 			Process_Incorpmove(direct)
 			return
+
 		if(mob.client)
 			if(mob.client.view != world.view) // If mob moves while zoomed in with device, unzoom them.
 				for(var/obj/item/item in mob.contents)
 					if(item.zoom)
 						item.zoom(mob)
 						break
-				/*
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents))		// If mob moves while zoomed in with sniper rifle, unzoom them.
-					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
-					if(s.zoom)
-						s.zoom()
-				if(locate(/obj/item/device/binoculars, mob.contents))		// If mob moves while zoomed in with binoculars, unzoom them.
-					var/obj/item/device/binoculars/b = locate() in mob
-					if(b.zoom)
-						b.zoom()
-				*/
 
-	if(Process_Grab())	return
+	if(istype(mob.machine, /obj/machinery))
+		if(mob.machine.relaymove(mob,direct))
+			return
 
-
-	if(!mob.canmove)
-		return
-
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
-	//	if(!mob.Process_Spacemove(0))	return 0
-
-	if(!mob.lastarea)
-		mob.lastarea = get_area(mob.loc)
-
-	if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
-		if(!mob.Process_Spacemove(0))	return 0
-
-
-	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
-		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
+	if(Process_Grab()) return
 
 	if(isturf(mob.loc))
 
@@ -249,6 +221,25 @@
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
 			return 0
 
+	if(mob.buckled) return mob.buckled.relaymove(mob,direct)
+
+
+	if(!mob.canmove)
+		return
+
+	if(!mob.lastarea)
+		mob.lastarea = get_area(mob.loc)
+
+	if((istype(mob.loc, /turf/space))|| (mob.lastarea.has_gravity == 0))
+		if(!mob.Process_Spacemove(0))	return 0
+
+
+	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
+		var/atom/O = mob.loc
+		return O.relaymove(mob, direct)
+
+	if(isturf(mob.loc))
+
 		move_delay = world.time//set move delay
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
@@ -263,43 +254,8 @@
 		if(config.Tickcomp)
 			move_delay -= 1.3
 			var/tickcomp = ((1/(world.tick_lag))*1.3)
-			move_delay = move_delay + tickcomp
+			move_delay += tickcomp
 
-		//New proximity code. This replaces turf/Entered:HasProximity checks.
-		//Host is checked already but we can check here for efficiency.
-		//We can use orange instead of range, since Crossed already checks their turf.
-		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD && !mob.lying)
-			for(var/obj/item/clothing/mask/facehugger/F in range(1,mob))
-				if(!F.stat && isturf(F.loc) && CanHug(mob) && F.Adjacent(mob))
-					F.visible_message("<span class='warning'>[F] leaps at [mob]!</span>","<span class='warning'>[F] leaps at [mob]!</span>")
-					F.HasProximity(mob)
-					break
-			for(var/obj/effect/alien/egg/E in range(1,mob))
-				if(isturf(E.loc) && E.status == GROWN)
-					E.HasProximity(mob)
-					break
-
-		if(istype(mob.buckled, /obj/vehicle))
-			return mob.buckled.relaymove(mob,direct)
-
-		if(istype(mob.machine, /obj/machinery))
-			if(mob.machine.relaymove(mob,direct))
-				return
-
-		if(mob.pulledby || mob.buckled) // Wheelchair driving!
-			if(istype(mob.loc, /turf/space))
-				return // No wheelchair driving in space
-			if(istype(mob.pulledby, /obj/structure/stool/bed/chair/wheelchair))
-				return mob.pulledby.relaymove(mob, direct)
-			else if(istype(mob.buckled, /obj/structure/stool/bed/chair/wheelchair))
-				if(ishuman(mob.buckled))
-					var/mob/living/carbon/human/driver = mob.buckled
-					var/datum/organ/external/l_hand = driver.get_organ("l_hand")
-					var/datum/organ/external/r_hand = driver.get_organ("r_hand")
-					if((!l_hand || (l_hand.status & ORGAN_DESTROYED)) && (!r_hand || (r_hand.status & ORGAN_DESTROYED)))
-						return // No hands to drive your chair? Tough luck!
-				move_delay += 2
-				return mob.buckled.relaymove(mob,direct)
 
 		//We are now going to move
 		moving = 1

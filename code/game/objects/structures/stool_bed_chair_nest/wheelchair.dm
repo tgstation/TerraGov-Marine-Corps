@@ -26,6 +26,14 @@
 			user.pulledby = null
 			user << "\red You lost your grip!"
 		return
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/driver = user
+		var/datum/organ/external/l_hand = driver.get_organ("l_hand")
+		var/datum/organ/external/r_hand = driver.get_organ("r_hand")
+		if((!l_hand || (l_hand.status & ORGAN_DESTROYED)) && (!r_hand || (r_hand.status & ORGAN_DESTROYED)))
+			return // No hands to drive your chair? Tough luck!
+
 	if(buckled_mob && pulling && user == buckled_mob)
 		if(pulling.stat || pulling.stunned || pulling.weakened || pulling.paralysis || pulling.lying || pulling.restrained())
 			pulling.pulledby = null
