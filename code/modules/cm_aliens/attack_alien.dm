@@ -55,25 +55,30 @@
 		if("hurt")
 			if(!slashing_allowed && !M.is_intelligent)
 				M << "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>"
-				return 0
+				r_FAL
 
 			if(stat == DEAD)
 				M << "<span class='warning'>[src] is dead, why would you want to touch it?</span>"
-				return 0
+				r_FAL
 
-			if(slashing_allowed == 2 && !M.is_intelligent)
-				if(src.status_flags & XENO_HOST)
-					M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
-					return 0
+			if(!M.is_intelligent)
+				if(slashing_allowed == 2)
+					if(status_flags & XENO_HOST)
+						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
+						r_FAL
 
-				if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
-					M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
-					return 0
+					if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
+						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
+						r_FAL
+
+				else if(istype(buckled, /obj/structure/stool/bed/nest) && status_flags & XENO_HOST)
+					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
+					r_FAL
 
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
 				M.visible_message("<span class='danger'>\The [M]'s slash is blocked by [src]'s shield!</span>", \
 				"<span class='danger'>Your slash is blocked by [src]'s shield!</span>")
-				return 0
+				r_FAL
 
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -207,6 +212,21 @@
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>")
 				return 1
+
+			if(!M.is_intelligent)
+				if(slashing_allowed == 2)
+					if(status_flags & XENO_HOST)
+						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
+						r_FAL
+
+					if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
+						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
+						r_FAL
+
+				else if(istype(buckled, /obj/structure/stool/bed/nest) && status_flags & XENO_HOST)
+					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
+					r_FAL
+
 			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
 				var/datum/effect/effect/system/spark_spread/spark_system
 				spark_system = new /datum/effect/effect/system/spark_spread()
@@ -290,6 +310,15 @@
 //If we sent it to monkey we'd get some weird shit happening.
 /obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
 	return 0
+
+//Chairs.
+/obj/structure/stool/attack_alien(mob/living/carbon/Xenomorph/M)
+	..()
+	if(isXenoLarva(M)) return//Larvae can't do shit
+	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
+	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
+	"<span class='danger'>You slice [src] apart!</span>")
+	destroy()
 
 //Smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)

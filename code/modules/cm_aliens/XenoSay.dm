@@ -60,6 +60,8 @@
 			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
 			verb = pick("beeps", "buzzes", "pings")
 			playsound(src.loc, noise, 20, 1, 1)
+		else if(caste == "Predalien")
+			playsound(loc, 'sound/voice/predalien_click.ogg', 25, 1, 1)
 		else
 			playsound(loc, "hiss", 25, 1, 1)
 		..(message, speaking, verb, null, null, message_range, null)

@@ -289,10 +289,11 @@
 			usr << "<span class='warning'>The emergency response team has already been selected.</span>"
 			return
 
-		if(isnull(usr.mind)) //How? Give them a new one anyway.
+		if(!usr.mind) //How? Give them a new one anyway.
 			usr.mind = new /datum/mind(usr.key)
 			usr.mind.active = 1
 			usr.mind.current = usr
+		if(usr.mind.key != usr.key) usr.mind.key = usr.key //Sigh. This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
 
 		if(!usr.client || !usr.mind) return //Somehow
 		if(usr.mind in distress.candidates)

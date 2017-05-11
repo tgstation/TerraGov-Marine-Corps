@@ -321,8 +321,6 @@
 
 		if(!isnull(O) && !istype(O, /obj/structure/table) && O.density && O.anchored && !istype(O, /obj/item)) // new - xeno charge ignore tables
 			O.hitby(src,speed)
-			visible_message("<span class='danger'>Bonk!</span>") //heheh. Smacking into dense objects stuns you slightly.
-			Weaken(2)
 		return
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
@@ -332,7 +330,7 @@
 				var/mob/living/carbon/human/H = V //Human shield block.
 				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
 					if(prob(45))	// If the human has riot shield in his hand,  65% chance
-						Weaken(4) //Stun the fucker instead
+						Weaken(3) //Stun the fucker instead
 						visible_message("<span class='danger'>\The [src] bounces off \the [H]'s shield!</span>", \
 						"<span class='danger'>You bounce off \the [H]'s shield!</span>")
 						throwing = 0
@@ -383,12 +381,6 @@
 				throwing = 0
 
 		return
-
-	if(isturf(hit_atom))
-		var/turf/T = hit_atom
-		if(T.density)
-			visible_message("<span class='danger'>Bonk!</span>") //ouchie
-			Weaken(2)
 
 	..() //Do the rest normally - mostly turfs.
 

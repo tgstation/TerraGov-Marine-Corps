@@ -29,8 +29,9 @@
 
 /obj/item/alien_embryo/process()
 	if(!affected_mob) //The mob we were gestating in is straight up gone, we shouldn't be here
-		del(src)
-		return 0
+		processing_objects.Remove(src)
+		cdel(src)
+		r_FAL
 
 	if(loc != affected_mob) //Our location is not the host
 		affected_mob.status_flags &= ~(XENO_HOST)
@@ -38,11 +39,19 @@
 		spawn(0)
 			RemoveInfectionImages(affected_mob)
 			affected_mob = null
-		return 0
+		r_FAL
 
-	if(affected_mob.stat == DEAD) //The mob is dead and rip
-		processing_objects.Remove(src)
-		return 0
+	if(affected_mob.stat == DEAD)
+		if(ishuman(affected_mob))
+			var/mob/living/carbon/human/H = affected_mob
+			if(world.time > H.timeofdeath + H.revive_grace_period) //Can't be defibbed.
+				processing_objects.Remove(src)
+				r_FAL
+		else
+			processing_objects.Remove(src)
+			r_FAL
+
+	if(affected_mob.in_stasis == STASIS_IN_CRYO_CELL) r_FAL //If they are in cryo, the embryo won't grow.
 
 	process_growth()
 
@@ -60,7 +69,7 @@
 		if(stage <= 4)
 			counter++
 
-	if(stage < 5 && counter >= 80)
+	if(stage < 5 && counter >= 120)
 		counter = 0
 		stage++
 		spawn()
@@ -105,28 +114,27 @@
 /obj/item/alien_embryo/proc/chest_burst()
 	set waitfor = 0
 	var/list/candidates = get_alien_candidates()
-	var/picked = null
+	var/picked
 
-	if(!affected_mob)
-		return 0
-	if(affected_mob.z == 2) //We do not allow chest bursts on the Centcomm Z-level, to prevent stranded players from admin experiments and other issues
-		return 0
+	if(!affected_mob || affected_mob.z == 2) return //We do not allow chest bursts on the Centcomm Z-level, to prevent stranded players from admin experiments and other issues
 
 	//If the bursted person themselves has xeno enabled, they get the honor of first dibs on the new larva
-	if(affected_mob.client && affected_mob.client.holder && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
-		picked = affected_mob.key
-	//Host doesn't want to be it, so we try and pull observers into the role
-	else if(candidates.len)
-		picked = pick(candidates)
+	if(isYautja(affected_mob))
+		if(affected_mob.client && !jobban_isbanned(affected_mob, "Alien")) picked = affected_mob.key//If they are in a predator body, put them into the alien. Doesn't matter if they have alien selected.
+		else if(candidates.len) picked = pick(candidates)
 	else
-		wait_for_candidate = 10 //Try again in 10 seconds
+		if(affected_mob.client && affected_mob.client.holder && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
+			picked = affected_mob.key
+		//Host doesn't want to be it, so we try and pull observers into the role
+		else if(candidates.len) picked = pick(candidates)
+		else wait_for_candidate = 10 //Try again in 10 seconds
 
 	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
 	affected_mob.update_burst()
 	sleep(6) //Sprite delay
 	if(!affected_mob || !affected_mob.loc) return//Might have died or something in that half second
 
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = isYautja(affected_mob) ? new /mob/living/carbon/Xenomorph/Larva/predalien(get_turf(affected_mob.loc)) : new(get_turf(affected_mob.loc))
 	if(picked) //If we are spawning it braindead, don't bother
 		new_xeno.key = picked
 		playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 100)

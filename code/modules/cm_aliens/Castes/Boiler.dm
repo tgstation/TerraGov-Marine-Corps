@@ -28,6 +28,7 @@
 	upgrade = 0
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
+	armor_deflection = 20
 	var/zoom_timer = 0
 	var/is_bombarding = 0
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"

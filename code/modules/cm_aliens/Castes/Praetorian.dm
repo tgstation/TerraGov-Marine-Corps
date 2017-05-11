@@ -18,12 +18,12 @@
 	maxplasma = 800
 	jellyMax = 800
 	spit_delay = 20
-	speed = 1.7
+	speed = 1
 	jelly = 1
 	pixel_x = -16
 	caste_desc = "Ptui!"
 	evolves_to = list()
-	armor_deflection = 45
+	armor_deflection = 35
 	big_xeno = 1
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = 3

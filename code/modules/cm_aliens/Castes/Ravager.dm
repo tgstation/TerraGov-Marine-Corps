@@ -28,7 +28,7 @@
 	var/CHARGECOOLDOWN = 120
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
-	armor_deflection = 55
+	armor_deflection = 40
 	big_xeno = 1
 	drag_delay = 6 //pulling a big dead xeno is hard
 	attack_delay = -2

@@ -9,17 +9,9 @@
 	src:Topic(href, href_list)
 	return null
 
-/proc/get_area(O)
-	var/atom/location = O
-	var/i
-	for(i=1, i<=20, i++)
-		if(isarea(location))
-			return location
-		else if (istype(location))
-			location = location.loc
-		else
-			return null
-	return 0
+/proc/get_area(atom/A)
+	var/turf/T = get_turf(A)
+	if(T) . = T.loc
 
 /proc/get_area_name(N) //get area by its name
 	for(var/area/A in world)

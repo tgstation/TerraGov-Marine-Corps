@@ -1222,11 +1222,6 @@ proc/get_mob_with_client_list()
 	else if (zone == "r_foot") return "right foot"
 	else return zone
 
-//gets the turf the atom is located in (or itself, if it is a turf).
-//returns null if the atom is not in a turf.
-/proc/get_turf(A)
-	return get_step(A,0)
-
 /proc/get(atom/loc, type)
 	while(loc)
 		if(istype(loc, type))

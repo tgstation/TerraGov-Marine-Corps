@@ -20,6 +20,7 @@
 	armor_deflection = 15
 	tier = 1
 	upgrade = 0
+	speed = -0.4
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

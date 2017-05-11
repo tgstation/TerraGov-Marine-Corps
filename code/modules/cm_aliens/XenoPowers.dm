@@ -114,6 +114,7 @@
 		spawn(usedPounce)
 			usedPounce = 0
 			src << "<span class='notice'>You get ready to pounce again.</span>"
+		return 1
 	else
 		storedplasma += 5 //Since we already stole 5
 		src << "<span class='notice'>You cannot pounce at nothing!</span>"
@@ -409,12 +410,13 @@
 
 	if(ticker && ticker.mode.xenomorphs.len)
 		var/mob/living/carbon/Xenomorph/X
-		var/list/list = list()
+		var/list[] = new
 		var/count = 0
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			X = L.current
+			var/area/A = get_area(X)
 			if(istype(X))
-				list += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+				list += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : "<b>(<font color=green>[A ? A.name : null])</b>"]</td></tr>"
 				if(!(X.stat & DEAD)) count++
 			else
 				list += "<tr><td>[L.name] <b><font color=red>(DESTROYED)</font></b></td></tr>"

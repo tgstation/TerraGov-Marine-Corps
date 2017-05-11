@@ -14,7 +14,7 @@
 	maxplasma = 600
 	jellyMax = 250
 	spit_delay = 25
-	speed = 0
+	speed = -0.1
 	jelly = 1
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")

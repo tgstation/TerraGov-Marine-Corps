@@ -16,6 +16,7 @@
 	plasma_gain = 12
 	tier = 1
 	upgrade = 0
+	speed = -0.8
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	inherent_verbs = list(

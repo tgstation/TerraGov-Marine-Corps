@@ -153,7 +153,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 105, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
-	anti_hug = 3
+	anti_hug = 6
 	unacidable = 1
 
 	New(loc,expected_type 		= type,
