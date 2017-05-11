@@ -321,7 +321,7 @@
 		if(cloak_timer)
 			cloak_timer--
 		if(cloaked)
-			H.alpha = 20
+			H.alpha = 10
 			charge = max(charge - 10, 0)
 			if(charge <= 0)
 				decloak(loc)
@@ -414,7 +414,7 @@
 			for(var/mob/O in oviewers(M))
 				O.show_message("[M] vanishes into thin air!",1)
 			playsound(M.loc,'sound/effects/cloakon.ogg', 50, 1)
-			M.alpha = 20
+			M.alpha = 10
 			spawn(1)
 				anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
