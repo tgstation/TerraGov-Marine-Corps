@@ -44,14 +44,9 @@
 		return 0
 
 	if(on_fire)
-		if(!fire_stacks)
-			on_fire = 0
-		else
-			if(stat != DEAD && !fire_immune)
-				adjustFireLoss(fire_stacks + 3)
-			update_fire()
+		if(stat != DEAD && !fire_immune)
+			adjustFireLoss(fire_stacks + 3)
 			updatehealth()
-			fire_stacks--
 	if(health > -100 && health < 0) //Unconscious
 		if(readying_tail)
 			readying_tail = 0

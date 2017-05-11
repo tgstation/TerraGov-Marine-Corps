@@ -73,14 +73,14 @@
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
 				buckled_mob.visible_message(\
-					"\blue [buckled_mob.name] was unbuckled by [user.name]!",\
-					"You were unbuckled from [src] by [user.name].",\
-					"You hear metal clanking")
+					"<span class='notice'>[buckled_mob.name] was unbuckled by [user.name]!</span>",\
+					"<span class='notice'>You were unbuckled from [src] by [user.name].</span>",\
+					"<span class='notice'>You hear metal clanking.</span>")
 			else
 				buckled_mob.visible_message(\
-					"\blue [buckled_mob.name] unbuckled \himself!",\
-					"You unbuckle yourself from [src].",\
-					"You hear metal clanking")
+					"<span class='notice'>[buckled_mob.name] unbuckled \himself!</span>",\
+					"<span class='notice'>You unbuckle yourself from [src].</span>",\
+					"<span class='notice'>You hear metal clanking</span>")
 			unbuckle()
 			src.add_fingerprint(user)
 			return 1
@@ -89,15 +89,15 @@
 
 /obj/structure/stool/bed/proc/buckle_mob(mob/M as mob, mob/user as mob)
 	if (!ticker)
-		user << "You can't buckle anyone in before the game starts."
+		user << "<span class='warning'>You can't buckle anyone in before the game starts.</span>"
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || M.pinned.len || istype(user, /mob/living/silicon/pai) )
 		return
 
 	if (istype(M, /mob/living/carbon/Xenomorph))
-		user << "The [M] is too big to buckle in."
+		user << "<span class='warning'>[M] is too big to buckle in.</span>"
 		return
 	if (istype(user, /mob/living/carbon/Xenomorph) && !istype(src, /obj/structure/stool/bed/nest))
-		user << "You don't have the dexterity to do that, try a nest."
+		user << "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>"
 		return
 
 
@@ -106,14 +106,14 @@
 
 	if (M == usr)
 		M.visible_message(\
-			"\blue [M.name] buckles in!",\
-			"You buckle yourself to [src].",\
-			"You hear metal clanking")
+			"<span class='notice'>[M.name] buckles in!</span>",\
+			"<span class='notice'>You buckle yourself to [src].</span>",\
+			"<span class='notice'>You hear metal clanking.</span>")
 	else
 		M.visible_message(\
-			"\blue [M.name] is buckled in to [src] by [user.name]!",\
-			"You are buckled in to [src] by [user.name].",\
-			"You hear metal clanking")
+			"<span class='notice'>[M.name] is buckled in to [src] by [user.name]!</span>",\
+			"<span class='notice'>You are buckled in to [src] by [user.name].</span>",\
+			"<span class='notice'>You hear metal clanking</span>")
 	M.buckled = src
 	M.loc = src.loc
 	M.dir = src.dir
