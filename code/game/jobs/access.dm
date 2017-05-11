@@ -13,7 +13,7 @@
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_hand()) || check_access(H.wear_id)) return 1
-	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/alien))
+	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/Xenomorph))
 		var/mob/living/carbon/C = M
 		if(check_access(C.get_active_hand())) return 1
 

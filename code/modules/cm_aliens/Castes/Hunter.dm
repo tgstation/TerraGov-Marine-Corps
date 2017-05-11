@@ -30,13 +30,3 @@
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
-/mob/living/carbon/Xenomorph/Hunter/ClickOn(var/atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		Pounce(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		Pounce(A)
-		return
-	..()

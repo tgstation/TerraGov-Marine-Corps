@@ -224,3 +224,15 @@ var/global/hive_orders = "" //What orders should the hive have
 
 	ventcrawl_carry()
 		return 1
+
+	start_pulling(var/atom/movable/AM)
+		if(isobj(AM))
+			return
+		..()
+
+	pull_response(mob/puller)
+		if(stat != DEAD && has_species(puller,"Human")) // If the Xeno is alive, fight back against a grab/pull
+			puller.Weaken(rand(tacklemin,tacklemax))
+			playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+			puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
+			puller.stop_pulling()

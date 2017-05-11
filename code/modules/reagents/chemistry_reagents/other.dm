@@ -56,7 +56,7 @@
 		else if(istype(self.data["donor"], /mob/living/carbon/monkey))
 			var/obj/effect/decal/cleanable/blood/B = blood_splatter(T,self,1)
 			if(B) B.blood_DNA["Non-Human DNA"] = "A+"
-		else if(istype(self.data["donor"], /mob/living/carbon/alien))
+		else if(istype(self.data["donor"], /mob/living/carbon/Xenomorph))
 			var/obj/effect/decal/cleanable/blood/B = blood_splatter(T,self,1)
 			if(B) B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 		return

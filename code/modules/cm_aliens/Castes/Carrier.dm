@@ -62,18 +62,6 @@
 	if(.)
 		stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
 
-
-/mob/living/carbon/Xenomorph/Carrier/ClickOn(var/atom/A, params)
-//FUCK SHIFT CLICK! FUCK YOUUUUUUUU. SHIFT CLICK IS EXAMINE!
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		throw_hugger(A) //Just try to chuck it, throw_hugger has all the required checks anyway
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		throw_hugger(A) //Just try to chuck it, throw_hugger has all the required checks anyway
-		return
-	..()
-
 /mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger(var/mob/living/carbon/T)
 	set name = "Throw Facehugger"
 	set desc = "Throw one of your facehuggers. MIDDLE MOUSE BUTTON quick-throws."

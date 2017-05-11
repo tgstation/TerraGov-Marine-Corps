@@ -291,25 +291,6 @@
 			message = "<B>[comm_paygrade][src]</B> nods."
 			m_type = 1
 
-		if ("point")
-			if (!src.restrained())
-				var/mob/M = null
-				if (param)
-					for (var/atom/A as mob|obj|turf|area in view(null, null))
-						if (param == A.name)
-							M = A
-							break
-
-				if (!M)
-					message = "<B>[comm_paygrade][src]</B> points."
-				else
-					M.point()
-
-				if (M)
-					message = "<B>[comm_paygrade][src]</B> points to [M]."
-				else
-			m_type = 1
-
 		if ("salute")
 			if (!src.buckled)
 				var/M = null
