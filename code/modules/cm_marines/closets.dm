@@ -156,11 +156,11 @@
 	name = "\improper Warrant Officer's locker"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "secure_locked_warrant"
-	icon_closed = "secure_closed_warrant"
+	icon_closed = "secure_unlocked_warrant"
 	icon_locked = "secure_locked_warrant"
 	icon_opened = "secure_open_warrant"
-	icon_broken = "secure_broken_warrant"
-	icon_off = "secure_off_warrant"
+	icon_broken = "secure_locked_warrant"
+	icon_off = "secure_closed_warrant"
 	icon = 'icons/obj/closet.dmi'
 
 	New()
