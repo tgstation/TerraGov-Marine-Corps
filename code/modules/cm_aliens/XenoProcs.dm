@@ -487,8 +487,8 @@
 	if(!tripped)
 		visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
 		"<span class='danger'>You violently impale \the [M] with your tail!</span>")
-	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [src.name] ([src.ckey])</font>")
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [M.name] ([M.ckey])</font>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
 
 	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 	M.updatehealth()
