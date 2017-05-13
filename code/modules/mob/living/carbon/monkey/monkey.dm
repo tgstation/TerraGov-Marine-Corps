@@ -127,7 +127,6 @@
 		O.s_loc = usr.loc
 		O.t_loc = loc
 		O.place = href_list["item"]
-		requests += O
 		spawn( 0 )
 			O.process()
 			return
@@ -212,20 +211,11 @@
 				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
 		else
 			if (M.a_intent == "grab")
-				if (M == src || anchored)
-					return
+				if(M == src || anchored)
+					return 0
 
-				var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src )
-
-				M.put_in_active_hand(G)
-
-				G.synch()
-
-				LAssailant = M
-
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					O.show_message(text("\red [] has grabbed [name] passively!", M), 1)
+				M.start_pulling(src)
+				return 1
 			else
 				if (!( paralysis ))
 					if (prob(25))

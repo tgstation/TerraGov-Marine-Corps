@@ -84,9 +84,9 @@
 		var/mob/M = loc
 		var/turf/T = M.loc
 		if(istype(T, /turf))
-			if(!M.moved_recently && M.last_move)
+			if(!M.moved_recently && M.last_move_dir)
 				M.moved_recently = 1
-				step(M, M.last_move)
+				step(M, M.last_move_dir)
 				sleep(50)
 				if(M)
 					M.moved_recently = 0

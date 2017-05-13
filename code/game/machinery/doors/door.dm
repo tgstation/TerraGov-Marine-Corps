@@ -82,9 +82,14 @@
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
 		M.last_bumped = world.time
-		if(!M.restrained() && !M.small)
+		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)
 			bumpopen(M)
 		return
+
+	if(istype(AM, /obj))
+		var/obj/O = AM
+		if(O.buckled_mob)
+			Bumped(O.buckled_mob)
 
 	if(istype(AM, /obj/machinery/bot))
 		var/obj/machinery/bot/bot = AM
@@ -100,16 +105,6 @@
 				open()
 			else
 				flick("door_deny", src)
-		return
-	if(istype(AM, /obj/structure/stool/bed/chair/wheelchair))
-		var/obj/structure/stool/bed/chair/wheelchair/wheel = AM
-		if(density)
-			if(wheel.pulling && (src.allowed(wheel.pulling)))
-				open()
-			else
-				flick("door_deny", src)
-		return
-	return
 
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)

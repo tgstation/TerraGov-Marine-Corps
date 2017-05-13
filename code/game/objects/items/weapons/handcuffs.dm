@@ -48,7 +48,6 @@
 		O.s_loc = user.loc
 		O.t_loc = H.loc
 		O.place = "handcuff"
-		H.requests += O
 		spawn( 0 )
 			feedback_add_details("handcuffs","H")
 			O.process()
@@ -63,7 +62,6 @@
 		O.s_loc = user.loc
 		O.t_loc = M.loc
 		O.place = "handcuff"
-		M.requests += O
 		spawn( 0 )
 			O.process()
 		return

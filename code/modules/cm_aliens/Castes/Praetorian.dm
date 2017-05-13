@@ -24,7 +24,7 @@
 	caste_desc = "Ptui!"
 	evolves_to = list()
 	armor_deflection = 35
-	big_xeno = 1
+	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = 3
 	upgrade = 0

@@ -1851,20 +1851,18 @@
 
 	proc/go_out()
 		if(!occupant) return
-		if(occupant.client)
-			occupant.client.eye = occupant.client.mob
-			occupant.client.perspective = MOB_PERSPECTIVE
-		occupant.loc = loc
+		occupant.forceMove(loc)
 		occupant = null
 		update_use_power(1)
 		icon_state = "sleeper_0"
 		return
 
-	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-		if(istype(G, /obj/item/weapon/grab))
-			if(!ismob(G:affecting))
+	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+		if(istype(W, /obj/item/weapon/grab))
+			var/obj/item/weapon/grab/G = W
+			if(!ismob(G.grabbed_thing))
 				return
-
+			var/mob/M = G.grabbed_thing
 			if(src.occupant)
 				user << "<span class='notice'>The Med-Pod is already occupied!</span>"
 				return
@@ -1873,27 +1871,21 @@
 				user << "<span class='notice'>The Med-Pod is non-functional!</span>"
 				return
 
-			visible_message("[user] starts putting [G:affecting:name] into the Med-Pod.", 3)
+			visible_message("[user] starts putting [M] into the Med-Pod.", 3)
 
 			if(do_after(user, 20, FALSE))
 				if(src.occupant)
 					user << "<span class='notice'>The Med-Pod is already occupied!</span>"
 					return
-				if(!G || !G:affecting) return
-				var/mob/M = G:affecting
-				if(M.client)
-					M.client.perspective = EYE_PERSPECTIVE
-					M.client.eye = src
-				M.loc = src
+				if(!G || !G.grabbed_thing) return
+				M.forceMove(src)
 				update_use_power(2)
 				occupant = M
 				icon_state = "sleeper_1"
 
 				add_fingerprint(user)
 				scan_occupant(occupant) // Make it scan them when they get in to set our timer.
-				del(G)
-			return
-		return
+
 
 /////////////////////////////////////////////////////////////
 

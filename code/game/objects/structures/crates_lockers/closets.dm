@@ -132,7 +132,7 @@
 			break
 		if(istype (M, /mob/dead/observer))
 			continue
-		if(M.buckled || M.pinned.len)
+		if(M.buckled)
 			continue
 
 		M.forceMove(src)
@@ -190,7 +190,10 @@
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/weapon/grab))
-			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
+			var/obj/item/weapon/grab/G = W
+			if(G.grabbed_thing)
+				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
+			return
 		if(istype(W,/obj/item/tk_grab))
 			return 0
 		if(istype(W, /obj/item/weapon/weldingtool))
@@ -205,7 +208,7 @@
 			return
 		if(isrobot(user))
 			return
-		usr.drop_held_item()
+		user.drop_held_item()
 		if(W)
 			W.loc = src.loc
 	else if(istype(W, /obj/item/weapon/packageWrap))

@@ -10,7 +10,7 @@
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 	flags_pass = PASSTABLE
-	small = 1
+	mob_size = MOB_SIZE_SMALL
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6

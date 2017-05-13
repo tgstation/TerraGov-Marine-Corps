@@ -23,7 +23,7 @@
 	pixel_x = -16
 	caste_desc = "Gross!"
 	evolves_to = list()
-	big_xeno = 1 //Toggles pushing
+	mob_size = MOB_SIZE_BIG
 	tier = 3
 	upgrade = 0
 	gib_chance = 100

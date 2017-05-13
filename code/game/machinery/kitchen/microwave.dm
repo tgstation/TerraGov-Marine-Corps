@@ -130,8 +130,6 @@
 				return 1
 		//G.reagents.trans_to(src,G.amount_per_transfer_from_this)
 	else if(istype(O,/obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = O
-		user << "\red This is ridiculous. You can not fit \the [G.affecting] in this [src]."
 		return 1
 	else
 		user << "\red You have no idea what you can cook with this [O]."

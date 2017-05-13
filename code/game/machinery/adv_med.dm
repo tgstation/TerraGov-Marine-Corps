@@ -77,19 +77,16 @@
 	return
 
 /obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if ((!( istype(G, /obj/item/weapon/grab) ) || !( ismob(G.affecting) )))
+	if (!istype(G, /obj/item/weapon/grab) || !ismob(G.grabbed_thing))
 		return
+	var/mob/M = G.grabbed_thing
 	if (src.occupant)
 		user << "\blue <B>The scanner is already occupied!</B>"
 		return
-	if (G.affecting.abiotic())
+	if (M.abiotic())
 		user << "\blue <B>Subject cannot have abiotic items on.</B>"
 		return
-	var/mob/M = G.affecting
-	if (M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.loc = src
+	M.forceMove(src)
 	src.occupant = M
 	update_use_power(2)
 	src.icon_state = "body_scanner_1"
@@ -98,8 +95,7 @@
 		//Foreach goto(154)
 	src.add_fingerprint(user)
 	//G = null
-	del(G)
-	return
+
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)

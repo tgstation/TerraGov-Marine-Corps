@@ -81,7 +81,6 @@
 			O.s_loc = M.loc
 			O.t_loc = loc
 			O.place = "CPR"
-			requests += O
 			spawn(0)
 				O.process()
 			return 1
@@ -92,19 +91,8 @@
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-			if(buckled)
-				M << "<span class='notice'>You cannot grab [src], \he is buckled in!</span>"
-				return
+			M.start_pulling(src)
 
-			if(!G)	//the grab will delete itself in New if affecting is anchored
-				return
-			M.put_in_active_hand(G)
-			G.synch()
-			LAssailant = M
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
 			return 1
 
 		if("hurt")
@@ -179,33 +167,12 @@
 				visible_message("\red <B>[M] has pushed [src]!</B>")
 				return
 
-			var/talked = 0	// BubbleWrap
-
 			if(randn <= 60)
 				//BubbleWrap: Disarming breaks a pull
 				if(pulling)
 					visible_message("\red <b>[M] has broken [src]'s grip on [pulling]!</B>")
-					talked = 1
 					stop_pulling()
-
-				//BubbleWrap: Disarming also breaks a grab - this will also stop someone being choked, won't it?
-				if(istype(l_hand, /obj/item/weapon/grab))
-					var/obj/item/weapon/grab/lgrab = l_hand
-					if(lgrab.affecting)
-						visible_message("\red <b>[M] has broken [src]'s grip on [lgrab.affecting]!</B>")
-						talked = 1
-					spawn(1)
-						del(lgrab)
-				if(istype(r_hand, /obj/item/weapon/grab))
-					var/obj/item/weapon/grab/rgrab = r_hand
-					if(rgrab.affecting)
-						visible_message("\red <b>[M] has broken [src]'s grip on [rgrab.affecting]!</B>")
-						talked = 1
-					spawn(1)
-						del(rgrab)
-				//End BubbleWrap
-
-				if(!talked)	//BubbleWrap
+				else
 					drop_held_item()
 					visible_message("\red <B>[M] has disarmed [src]!</B>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

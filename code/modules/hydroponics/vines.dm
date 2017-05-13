@@ -21,7 +21,6 @@
 	// Life vars/
 	var/energy = 0
 	var/obj/effect/plant_controller/master = null
-	var/mob/living/buckled_mob
 	var/datum/seed/seed
 
 /obj/effect/plantsegment/New()
@@ -79,16 +78,8 @@
 /obj/effect/plantsegment/attack_paw(mob/user as mob)
 	manual_unbuckle(user)
 
-/obj/effect/plantsegment/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
-		buckled_mob = null
-	return
 
-/obj/effect/plantsegment/proc/manual_unbuckle(mob/user as mob)
+/obj/effect/plantsegment/manual_unbuckle(mob/user)
 	if(buckled_mob)
 		if(prob(seed ? min(max(0,100 - seed.potency),100) : 50))
 			if(buckled_mob.buckled == src)

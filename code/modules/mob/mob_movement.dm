@@ -1,20 +1,11 @@
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
-
-	if(istype(mover,/mob/living/carbon/hellhound))
-		var/area/area = get_area(target)
-		if(area.can_hellhound_enter == 0)
-			mover << "Some kind of invisible force field prevents you from entering there."
-			return 0
-
+	if(mover.checkpass(PASSMOB)) return 1
 	if(ismob(mover))
-		var/mob/moving_mob = mover
-		if ((other_mobs && moving_mob.other_mobs))
+		if(checkpass(PASSMOB))
 			return 1
-		return (!mover.density || !density || lying)
-	else
-		return (!mover.density || !density || lying)
-	return
+	return (!mover.density || !density || lying)
+
 
 
 /client/North()
@@ -117,42 +108,6 @@
 	return
 
 
-/atom/movable/Move(NewLoc, direct)
-	if (direct & (direct - 1))
-		if (direct & 1)
-			if (direct & 4)
-				if (step(src, NORTH))
-					step(src, EAST)
-				else
-					if (step(src, EAST))
-						step(src, NORTH)
-			else
-				if (direct & 8)
-					if (step(src, NORTH))
-						step(src, WEST)
-					else
-						if (step(src, WEST))
-							step(src, NORTH)
-		else
-			if (direct & 2)
-				if (direct & 4)
-					if (step(src, SOUTH))
-						step(src, EAST)
-					else
-						if (step(src, EAST))
-							step(src, SOUTH)
-				else
-					if (direct & 8)
-						if (step(src, SOUTH))
-							step(src, WEST)
-						else
-							if (step(src, WEST))
-								step(src, SOUTH)
-	else
-		. = ..()
-	return
-
-
 /client/proc/Move_object(direct)
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
@@ -217,9 +172,6 @@
 					else
 						M.stop_pulling()
 
-		if(mob.pinned.len)
-			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
-			return 0
 
 	if(mob.buckled) return mob.buckled.relaymove(mob,direct)
 
@@ -259,40 +211,8 @@
 
 		//We are now going to move
 		moving = 1
-		//Something with pulling things
-		if(locate(/obj/item/weapon/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
-			var/list/L = mob.ret_grab()
-			if(istype(L, /list))
-				if(L.len == 2)
-					L -= mob
-					var/mob/M = L[1]
-					if(M)
-						if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
-							var/turf/T = mob.loc
-							. = ..()
-							if (isturf(M.loc))
-								var/diag = get_dir(mob, M)
-								if ((diag - 1) & diag)
-								else
-									diag = null
-								if ((get_dist(mob, M) > 1 || diag))
-									step(M, get_dir(M.loc, T))
-				else
-					for(var/mob/M in L)
-						M.other_mobs = 1
-						if(mob != M)
-							M.animate_movement = 3
-					for(var/mob/M in L)
-						spawn( 0 )
-							step(M, direct)
-							return
-						spawn( 1 )
-							M.other_mobs = null
-							M.animate_movement = 2
-							return
 
-		else if(mob.confused)
+		if(mob.confused)
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
@@ -311,27 +231,13 @@
 ///Called by client/Move()
 ///Checks to see if you are being grabbed and if so attemps to break it
 /client/proc/Process_Grab()
-	if(locate(/obj/item/weapon/grab, locate(/obj/item/weapon/grab, mob.grabbed_by.len)))
-		var/list/grabbing = list()
-		if(istype(mob.l_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = mob.l_hand
-			grabbing += G.affecting
-		if(istype(mob.r_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = mob.r_hand
-			grabbing += G.affecting
-		for(var/obj/item/weapon/grab/G in mob.grabbed_by)
-			if((G.state == 1)&&(!grabbing.Find(G.assailant)))	del(G)
-			if(G.state == 2)
-				move_delay = world.time + 10
-				if(!prob(25))	return 1
-				mob.visible_message("\red [mob] has broken free of [G.assailant]'s grip!")
-				del(G)
-			if(G.state == 3)
-				move_delay = world.time + 10
-				if(!prob(5))	return 1
-				mob.visible_message("\red [mob] has broken free of [G.assailant]'s headlock!")
-				del(G)
-	return 0
+	if(mob.pulledby)
+		if(mob.restrained())
+			move_delay = world.time + 10
+			src << "<span class='warning'>You're restrained! You can't move!</span>"
+			return 1
+		else
+			return mob.resist_grab(TRUE)
 
 
 ///Process_Incorpmove
@@ -414,7 +320,7 @@
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
 		src << "\blue <B>You slipped!</B>"
-		src.inertia_dir = src.last_move
+		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0
 	//If not then we can reset inertia and move

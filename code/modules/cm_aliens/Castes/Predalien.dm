@@ -34,7 +34,7 @@
 
 	pixel_x = -16
 
-	big_xeno = 1
+	mob_size = MOB_SIZE_BIG
 	attack_delay = -2
 	speed = -1.8
 	tier = 1

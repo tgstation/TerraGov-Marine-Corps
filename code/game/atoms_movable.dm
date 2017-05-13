@@ -1,12 +1,11 @@
 /atom/movable
 	layer = 3
-	var/last_move = null
+	var/last_move_dir = null
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
 	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
 	var/l_move_time = 1
-	var/m_flag = 1
 	var/throwing = 0
 	var/thrower = null
 	var/turf/throw_source = null
@@ -14,7 +13,8 @@
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby = null
-
+	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
+								// and if yes, are we doing the first or second move.
 
 //===========================================================================
 /atom/movable/Dispose()
@@ -27,20 +27,58 @@
 	return
 //===========================================================================
 
-/atom/movable/Move()
-	var/atom/A = loc
+
+/atom/movable/Move(NewLoc, direct)
+	var/atom/oldloc = loc
 	var/old_dir = dir
-	. = ..()
+
+	if(loc != NewLoc)
+		if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
+			moving_diagonally = FIRST_DIAG_STEP
+			if (direct & 1)
+				if (direct & 4)
+					if (step(src, NORTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if (step(src, EAST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+				else if (direct & 8)
+					if (step(src, NORTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if (step(src, WEST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+			else if (direct & 2)
+				if (direct & 4)
+					if (step(src, SOUTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if (step(src, EAST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+				else if (direct & 8)
+					if (step(src, SOUTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if (step(src, WEST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+			moving_diagonally = 0
+		else
+			. = ..()
 	if(flags_atom & DIRLOCK) dir = old_dir
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
-	m_flag = 1
-	if ((A != loc && A && A.z == z))
-		last_move = get_dir(A, loc)
-	Moved(A,dir)
-	return
+	if ((oldloc != loc && oldloc && oldloc.z == z))
+		last_move_dir = get_dir(oldloc, loc)
+	if(.)
+		Moved(oldloc,direct)
 
-/atom/movable/Bump(var/atom/A as mob|obj|turf|area, yes)
+
+
+/atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
 	if(src.throwing)
 		src.throw_impact(A)
 

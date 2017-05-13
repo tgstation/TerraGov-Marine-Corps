@@ -256,7 +256,7 @@
 	else if(isXeno(target))
 		if(ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS) r_FAL
 		var/mob/living/carbon/Xenomorph/target_xeno = target
-		if(target_xeno.big_xeno)	hit_chance += 10
+		if(target_xeno.mob_size == MOB_SIZE_BIG)	hit_chance += 10
 		else						hit_chance -= 10
 
 	if(isliving(shooter))

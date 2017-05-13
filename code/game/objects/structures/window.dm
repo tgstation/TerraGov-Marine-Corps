@@ -153,32 +153,31 @@
 	if(M.melee_damage_upper <= 0) return
 	attack_generic(M, M.melee_damage_upper)
 
-/obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
-	if(!istype(W)) return //I really wish I did not need this
+/obj/structure/window/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
 		var/obj/item/weapon/grab/G = W
-		if(istype(G.affecting,/mob/living))
-			var/mob/living/M = G.affecting
-			var/state = G.state
-			del(W) //Gotta delete it here because if window breaks, it won't get deleted
+		if(istype(G.grabbed_thing,/mob/living))
+			var/mob/living/M = G.grabbed_thing
+			var/state = user.grab_level
+			user.drop_held_item()
 			switch (state)
-				if(1)
+				if(GRAB_PASSIVE)
 					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 					M.apply_damage(7)
 					health -= 10
-				if(2)
+				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					if(prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
 					health -= 25
-				if(3)
+				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 					M.Weaken(5)
 					M.apply_damage(20)
 					health -= 50
 			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
-			return
+		return
 
 	if(W.flags_atom & NOBLUDGEON) return
 

@@ -192,39 +192,6 @@ var/list/slot_equipment_priority = list( \
 	onclose(user, "mob[name]")
 	return
 
-/mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))
-		if (!( L ))
-			return null
-		else
-			return L.container
-	else
-		if (!( L ))
-			L = new /obj/effect/list_container/mobl( null )
-			L.container += src
-			L.master = src
-		if (istype(l_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = l_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (istype(r_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = r_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (!( flag ))
-			if (L.master == src)
-				var/list/temp = list(  )
-				temp += L.container
-				//L = null
-				del(L)
-				return temp
-			else
-				return L.container
-	return
 
 /mob/verb/mode()
 	set name = "Activate Held Object"
@@ -541,15 +508,16 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/pull_damage()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.health - H.halloss <= config.health_threshold_softcrit)
-			for(var/name in H.organs_by_name)
-				var/datum/organ/external/e = H.organs_by_name[name]
-				if(H.lying)
-					if(((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
-						return 1
-						break
+	return 0
+
+/mob/living/carbon/human/pull_damage()
+	if(health - halloss <= config.health_threshold_softcrit)
+		for(var/N in organs_by_name)
+			var/datum/organ/external/e = organs_by_name[N]
+			if(lying)
+				if(((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+					return 1
+					break
 		return 0
 
 /mob/MouseDrop(mob/M as mob)
@@ -572,23 +540,24 @@ var/list/slot_equipment_priority = list( \
 	if(pulling)
 		pulling.pulledby = null
 		pulling = null
+		grab_level = 0
+		if(pullin)	pullin.icon_state = "pull0"
+		if(istype(r_hand, /obj/item/weapon/grab))
+			temp_drop_inv_item(r_hand)
+		else if(istype(l_hand, /obj/item/weapon/grab))
+			temp_drop_inv_item(l_hand)
 
-/mob/proc/start_pulling(var/atom/movable/AM)
+
+/mob/proc/start_pulling(atom/movable/AM, grab_start_level)
 
 	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
-	if (AM.anchored)
+	if (AM.anchored || AM.throwing)
 		return
 
-	var/mob/M
-	if(ismob(AM))
-		M = AM
-		if(!iscarbon(src))
-			M.LAssailant = null
-		else
-			M.LAssailant = usr
-
+	if(throwing || stat || weakened || stunned || paralysis || restrained())
+		return
 
 	if(pulling)
 		var/pulling_old = pulling
@@ -597,13 +566,33 @@ var/list/slot_equipment_priority = list( \
 		if(pulling_old == AM)
 			return
 
-	src.pulling = AM
+	var/mob/M
+	if(ismob(AM))
+		M = AM
+		if(M.pulledby)
+			M.pulledby.stop_pulling()
+			visible_message("<span class='warning'>[src] has broken [M.pulledby]'s grip on [M]!</span>")
+
+	pulling = AM
 	AM.pulledby = src
+
+	var/obj/item/weapon/grab/G = new /obj/item/weapon/grab()
+	G.grabbed_thing = AM
+	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
+		return
+
+	if(M)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
+			G.icon_state = "!reinforce"
+
+	if(pullin) pullin.icon_state = "pull1"
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
+			src << "\red <B>Pulling [H] in their current condition would probably be a bad idea.</B>"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(M)
@@ -815,39 +804,19 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
-	if(istype(buckled, /obj/vehicle))
-		var/obj/vehicle/V = buckled
-		if(stat || weakened || paralysis || resting || sleeping || (status_flags & FAKEDEATH))
-			lying = 1
-			canmove = 0
-			pixel_y = V.mob_offset_y - 5
-		else
-			lying = 0
-			canmove = 1
-			pixel_y = V.mob_offset_y
-	else if(buckled && (!buckled.movable))
-		anchored = 1
-		canmove = 0
-		if(istype(buckled,/obj/structure/stool/bed/chair) )
-			lying = 0
-		else
-			lying = 1
-	else if (buckled && (buckled.movable))
-		anchored = 0
-		canmove = 1
-		lying = 0
-	else if( stat || weakened || paralysis || resting || sleeping || (status_flags & FAKEDEATH))
+
+	var/laid_down = (stat || weakened || paralysis || resting || sleeping || (status_flags & FAKEDEATH))
+	if(laid_down)
 		lying = 1
-		canmove = 0
-	else if( stunned || frozen)
-		canmove = 0
-	else if(captured)
-		anchored = 1
-		canmove = 0
-		lying = 0
-	else if (!buckled)
+	else
 		lying = !can_stand
-		canmove = has_limbs
+	if(buckled)
+		if(buckled.buckle_lying)
+			lying = 1
+		else
+			lying = 0
+
+	canmove =  !(stunned || frozen || laid_down)
 
 	if(lying)
 		density = 0
@@ -874,7 +843,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/facedir(var/ndir)
 	if(!canface())	return 0
 	dir = ndir
-	if(buckled && buckled.movable)
+	if(buckled && !buckled.anchored)
 		buckled.dir = ndir
 		buckled.handle_rotation()
 	client.move_delay += movement_delay()
@@ -1080,12 +1049,6 @@ mob/proc/yank_out_object()
 			human_user.bloody_hands(H)
 
 	selection.loc = get_turf(src)
-
-	for(var/obj/item/weapon/O in pinned)
-		if(O == selection)
-			pinned -= O
-		if(!pinned.len)
-			anchored = 0
 	return 1
 
 /mob/living/proc/handle_statuses()

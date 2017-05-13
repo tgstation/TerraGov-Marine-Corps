@@ -512,9 +512,9 @@
 		if(!isYautja(M))
 			M << "<span class='warning'>You have no idea how to work these things!</span>"
 			return
-		var/obj/item/weapon/grab/grabbing = M.get_active_hand()
-		if(istype(grabbing))
-			var/mob/living/carbon/human/comrade = grabbing.affecting
+		var/obj/item/weapon/grab/G = M.get_active_hand()
+		if(istype(G))
+			var/mob/living/carbon/human/comrade = G.grabbed_thing
 			if(isYautja(comrade) && comrade.stat == DEAD)
 				var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
 				if(istype(bracer))
@@ -795,34 +795,37 @@
 		icon_state = "yauttrap[armed]"
 		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"].</span>"
 
-/obj/item/weapon/legcuffs/yautja/Crossed(AM as mob|obj)
+/obj/item/weapon/legcuffs/yautja/Crossed(atom/movable/AM)
 	if(armed)
-		if(iscarbon(AM))
-			if(isturf(src.loc))
-				var/mob/living/carbon/H = AM
-				if(isYautja(H))
-					H << "<span class='notice'>You carefully avoid stepping on the trap.</span>"
-					return
-				if(H.m_intent == "run")
+		if(ismob(AM))
+			var/mob/M = AM
+			if(!M.buckled)
+				if(iscarbon(AM))
+					if(isturf(src.loc))
+						var/mob/living/carbon/H = AM
+						if(isYautja(H))
+							H << "<span class='notice'>You carefully avoid stepping on the trap.</span>"
+							return
+						if(H.m_intent == "run")
+							armed = 0
+							icon_state = "yauttrap0"
+							H.legcuffed = src
+							src.loc = H
+							H.legcuff_update()
+							playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
+							H << "\icon[src] \red <B>You step on \the [src]!</B>"
+							H.Weaken(4)
+							if(ishuman(H))
+								H.emote("scream")
+							feedback_add_details("handcuffs","B")
+							for(var/mob/O in viewers(H, null))
+								if(O == H)
+									continue
+								O.show_message("<span class='warning'>\icon[src] <B>[H] steps on [src].</B></span>", 1)
+				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 					armed = 0
-					icon_state = "yauttrap0"
-					H.legcuffed = src
-					src.loc = H
-					H.legcuff_update()
-					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
-					H << "\icon[src] \red <B>You step on \the [src]!</B>"
-					H.Weaken(4)
-					if(ishuman(H))
-						H.emote("scream")
-					feedback_add_details("handcuffs","B")
-					for(var/mob/O in viewers(H, null))
-						if(O == H)
-							continue
-						O.show_message("<span class='warning'>\icon[src] <B>[H] steps on [src].</B></span>", 1)
-		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
-			armed = 0
-			var/mob/living/simple_animal/SA = AM
-			SA.health -= 20
+					var/mob/living/simple_animal/SA = AM
+					SA.health -= 20
 	..()
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
@@ -897,13 +900,13 @@
 					animation_teleport_quick_in(M)
 
 			// Teleport whoever you're grabbing.
-			var/obj/item/weapon/grab/grabbing = user.get_inactive_hand()
+			var/obj/item/weapon/grab/G = user.get_inactive_hand()
 
-			if(istype(grabbing))
-				M = grabbing.affecting
+			if(istype(G))
+				M = G.grabbed_thing
 				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
 				sleep(animation_teleport_quick_out(M))
-				if(grabbing) grabbing.dropped()
+				if(G) G.dropped()
 				if(M && M.loc)
 					M.loc = pick(pred_spawn)
 					animation_teleport_quick_in(M)
@@ -1080,7 +1083,7 @@
 		if(user.zone_sel.selecting == "r_leg" || user.zone_sel.selecting == "l_leg" || user.zone_sel.selecting == "l_foot" || user.zone_sel.selecting == "r_foot")
 			if(prob(35) && !target.lying)
 				if(isXeno(target))
-					if(target:big_xeno) //Can't trip the big ones.
+					if(target.mob_size == MOB_SIZE_BIG) //Can't trip the big ones.
 						return ..()
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 				user.visible_message("<span class = 'danger'>[src] lashes out and [target] goes down!</span>","<span class='danger'><b>You trip [target]!</b></span>")

@@ -354,23 +354,11 @@ OBSOLETE BITCH
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)
-			var/obj/item/weapon/W = O
 			var/momentum = speed/2
 			var/dir = get_dir(O.throw_source, src)
 
 			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
-
-			if(!W || !src) return
-
-			if(W.loc == src && W.sharp) //Projectile is embedded and suitable for pinning.
-				var/turf/T = near_wall(dir,2)
-
-				if(T)
-					src.loc = T
-					visible_message("<span class='warning'>[src] is <B>pinned to the wall</b> by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = 1
-					src.pinned += O
 
 
 /mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)

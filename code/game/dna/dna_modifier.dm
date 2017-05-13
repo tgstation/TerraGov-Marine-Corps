@@ -132,24 +132,21 @@
 	else if (!istype(item, /obj/item/weapon/grab))
 		return
 	var/obj/item/weapon/grab/G = item
-	if (!ismob(G.affecting))
+	if (!ismob(G.grabbed_thing))
 		return
+	var/mob/M = G.grabbed_thing
 	if (src.occupant)
 		user << "\blue <B>The scanner is already occupied!</B>"
 		return
-	if (G.affecting.abiotic())
+	if (M.abiotic())
 		user << "\blue <B>Subject cannot have abiotic items on.</B>"
 		return
-	put_in(G.affecting)
-	src.add_fingerprint(user)
-	del(G)
-	return
+	put_in(M)
+	add_fingerprint(user)
+
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.loc = src
+	M.forceMove(src)
 	src.occupant = M
 	src.icon_state = "scanner_1"
 

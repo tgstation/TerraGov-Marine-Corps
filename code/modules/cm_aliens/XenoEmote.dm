@@ -32,7 +32,7 @@
 				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 100, 1, 1)
 				else
-					if(!big_xeno)
+					if(mob_size != MOB_SIZE_BIG)
 						playsound(loc, 'sound/voice/alien_roar_small.ogg', 100, 1, 1)
 					else
 						playsound(loc, 'sound/voice/alien_roar_large.ogg', 100, 1, 1)
@@ -43,7 +43,7 @@
 				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_growl.ogg', 30, 1, 1)
 				else
-					if(!big_xeno)
+					if(mob_size != MOB_SIZE_BIG)
 						playsound(loc, 'sound/voice/alien_growl_small.ogg', 30, 1, 1)
 					else
 						playsound(loc, 'sound/voice/alien_growl_large.ogg', 30, 1, 1)
@@ -54,7 +54,7 @@
 				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 100, 1, 1)
 				else
-					if(!big_xeno)
+					if(mob_size != MOB_SIZE_BIG)
 						playsound(loc, 'sound/voice/alien_hiss_small.ogg', 100, 1, 1)
 					else
 						playsound(loc, 'sound/voice/alien_hiss_large.ogg', 100, 1, 1)

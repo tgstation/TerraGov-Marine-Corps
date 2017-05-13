@@ -489,7 +489,7 @@
 		return
 	if ( istype(I, /obj/item/weapon/grab) )
 		var/obj/item/weapon/grab/G = I
-		if( !(ismob(G.affecting)) )
+		if( !(ismob(G.grabbed_thing)) )
 			return
 		if (!src.isopen)
 			usr << "<font color='red'>The unit's doors are shut.</font>"
@@ -500,24 +500,19 @@
 		if ( (src.OCCUPANT) || (src.HELMET) || (src.SUIT) ) //Unit needs to be absolutely empty
 			user << "<font color='red'>The unit's storage area is too cluttered.</font>"
 			return
-		visible_message("[user] starts putting [G.affecting.name] into the Suit Storage Unit.", 3)
+		visible_message("[user] starts putting [G.grabbed_thing] into the Suit Storage Unit.", 3)
 		if(do_after(user, 20))
-			if(!G || !G.affecting) return //derpcheck
-			var/mob/M = G.affecting
-			if (M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
+			if(!G || !G.grabbed_thing) return //derpcheck
+			var/mob/M = G.grabbed_thing
+			M.forceMove(src)
 			src.OCCUPANT = M
 			src.isopen = 0 //close ittt
 
 			//for(var/obj/O in src)
 			//	O.loc = src.loc
-			src.add_fingerprint(user)
-			del(G)
-			src.updateUsrDialog()
-			src.update_icon()
-			return
+			add_fingerprint(user)
+			updateUsrDialog()
+			update_icon()
 		return
 	if( istype(I,/obj/item/clothing/suit/space) )
 		if(!src.isopen)
@@ -680,7 +675,7 @@
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
 
-		if(!(ismob(G.affecting)))
+		if(!(ismob(G.grabbed_thing)))
 			return
 
 		if(locked)
@@ -688,25 +683,18 @@
 			return
 
 		if(src.contents.len > 0)
-			user << "\red There is no room inside the cycler for [G.affecting.name]."
+			user << "\red There is no room inside the cycler for [G.grabbed_thing]."
 			return
 
-		visible_message("[user] starts putting [G.affecting.name] into the suit cycler.", 3)
+		visible_message("[user] starts putting [G.grabbed_thing] into the suit cycler.", 3)
 
 		if(do_after(user, 20))
-			if(!G || !G.affecting) return
-			var/mob/M = G.affecting
-			if (M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
-			src.occupant = M
-
-			src.add_fingerprint(user)
-			del(G)
-
-			src.updateUsrDialog()
-
+			if(!G || !G.grabbed_thing) return
+			var/mob/M = G.grabbed_thing
+			M.forceMove(src)
+			occupant = M
+			add_fingerprint(user)
+			updateUsrDialog()
 			return
 	else if(istype(I,/obj/item/weapon/screwdriver))
 

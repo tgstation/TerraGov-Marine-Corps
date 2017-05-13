@@ -58,8 +58,11 @@
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.opened)
-		if (istype(W, /obj/item/weapon/grab))
-			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
+		if(istype(W, /obj/item/weapon/grab))
+			var/obj/item/weapon/grab/G = W
+			if(G.grabbed_thing)
+				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
+			return
 		user.drop_held_item()
 		if (W) W.loc = src.loc
 	else if(istype(W, /obj/item/weapon/card/id))

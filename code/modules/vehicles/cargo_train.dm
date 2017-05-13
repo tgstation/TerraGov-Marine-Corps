@@ -8,10 +8,6 @@
 	locked = 0
 	charge_use = 15
 
-	load_item_visible = 1
-	load_offset_x = 0
-	mob_offset_y = 7
-
 	var/car_limit = 3		//how many cars an engine can pull before performance degrades
 	active_engines = 1
 	var/obj/item/weapon/key/cargo_train/key
@@ -28,13 +24,8 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
 	anchored = 0
-	passenger_allowed = 0
 	locked = 0
-
-	load_item_visible = 1
-	load_offset_x = 0
-	load_offset_y = 4
-	mob_offset_y = 8
+	can_buckle = FALSE
 
 //-------------------------------------------
 // Standard procs
@@ -52,20 +43,12 @@
 	if(on && cell.charge < charge_use)
 		turn_off()
 		update_stats()
-		if(load && is_train_head())
-			load << "The drive motor briefly whines, then drones to a stop."
 
 	if(is_train_head() && !on)
 		return 0
 
 	return ..()
 
-/obj/vehicle/train/cargo/trolley/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(open && istype(W, /obj/item/weapon/wirecutters))
-		passenger_allowed = !passenger_allowed
-		user.visible_message("<span class='notice'>[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src].</span>","<span class='notice'>You [passenger_allowed ? "cut" : "mend"] the load limiter cable.</span>")
-	else
-		..()
 
 /obj/vehicle/train/cargo/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/key/cargo_train))
@@ -93,13 +76,6 @@
 	..()
 	update_stats()
 
-/obj/vehicle/train/cargo/engine/Bump(atom/Obstacle)
-	var/obj/machinery/door/D = Obstacle
-	var/mob/living/carbon/human/H = load
-	if(istype(D) && istype(H))
-		D.Bumped(H)		//a little hacky, but hey, it works, and respects access rights
-
-	..()
 
 /obj/vehicle/train/cargo/trolley/Bump(atom/Obstacle)
 	if(!lead)
@@ -135,35 +111,12 @@
 	else
 		verbs += /obj/vehicle/train/cargo/engine/verb/stop_engine
 
-/obj/vehicle/train/cargo/RunOver(var/mob/living/carbon/human/H)
-	var/list/parts = list("head", "chest", "l_leg", "r_leg", "l_arm", "r_arm")
-
-	H.apply_effects(5, 5)
-	for(var/i = 0, i < rand(1,3), i++)
-		H.apply_damage(rand(1,5), BRUTE, pick(parts))
-
-/obj/vehicle/train/cargo/trolley/RunOver(var/mob/living/carbon/human/H)
-	..()
-	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
-
-/obj/vehicle/train/cargo/engine/RunOver(var/mob/living/carbon/human/H)
-	..()
-
-	if(is_train_head() && istype(load, /mob/living/carbon/human))
-		var/mob/living/carbon/human/D = load
-		D << "\red \b You ran over [H]!"
-		visible_message("<B>\red \The [src] ran over [H]!</B>")
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey]), driven by [D.name] ([D.ckey])</font>")
-		msg_admin_attack("[D.name] ([D.ckey]) ran over [H.name] ([H.ckey]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
-	else
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
-
 
 //-------------------------------------------
 // Interaction procs
 //-------------------------------------------
 /obj/vehicle/train/cargo/engine/relaymove(mob/user, direction)
-	if(user != load)
+	if(user != buckled_mob)
 		return 0
 
 	if(is_train_head())
@@ -233,7 +186,7 @@
 	if(!istype(usr, /mob/living/carbon/human))
 		return
 
-	if(!key || (load && load != usr))
+	if(!key || (buckled_mob && buckled_mob != usr))
 		return
 
 	if(on)
@@ -245,29 +198,6 @@
 	key = null
 
 	verbs -= /obj/vehicle/train/cargo/engine/verb/remove_key
-
-//-------------------------------------------
-// Loading/unloading procs
-//-------------------------------------------
-/obj/vehicle/train/cargo/trolley/load(var/atom/movable/C)
-	if(ismob(C) && !passenger_allowed)
-		return 0
-	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/carbon/human))
-		return 0
-	if(istype(C,/obj/machinery/marine_turret))
-		usr << "That won't work."
-		return 0
-
-	..()
-
-	if(load)
-		return 1
-
-/obj/vehicle/train/cargo/engine/load(var/atom/movable/C)
-	if(!istype(C, /mob/living/carbon/human))
-		return 0
-
-	return ..()
 
 
 //-------------------------------------------------------

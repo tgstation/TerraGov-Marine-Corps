@@ -162,29 +162,32 @@
 		icon_state = "beartrap[armed]"
 		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"]</span>"
 
-/obj/item/weapon/legcuffs/beartrap/Crossed(AM as mob|obj)
+/obj/item/weapon/legcuffs/beartrap/Crossed(atom/movable/AM)
 	if(armed)
-		if(ishuman(AM))
-			if(isturf(src.loc))
-				var/mob/living/carbon/H = AM
-				if(H.m_intent == "run")
-					if(!H.legcuffed)
-						H.legcuffed = src
-						forceMove(H)
-						H.legcuff_update()
+		if(ismob(AM))
+			var/mob/M = AM
+			if(!M.buckled)
+				if(ishuman(AM))
+					if(isturf(src.loc))
+						var/mob/living/carbon/H = AM
+						if(H.m_intent == "run")
+							if(!H.legcuffed)
+								H.legcuffed = src
+								forceMove(H)
+								H.legcuff_update()
+							armed = 0
+							icon_state = "beartrap0"
+							playsound(loc, 'sound/effects/snap.ogg', 50, 1)
+							H << "\red <B>You step on \the [src]!</B>"
+							feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
+							for(var/mob/O in viewers(H, null))
+								if(O == H)
+									continue
+								O.show_message("\red <B>[H] steps on \the [src].</B>", 1)
+				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 					armed = 0
-					icon_state = "beartrap0"
-					playsound(loc, 'sound/effects/snap.ogg', 50, 1)
-					H << "\red <B>You step on \the [src]!</B>"
-					feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
-					for(var/mob/O in viewers(H, null))
-						if(O == H)
-							continue
-						O.show_message("\red <B>[H] steps on \the [src].</B>", 1)
-		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
-			armed = 0
-			var/mob/living/simple_animal/SA = AM
-			SA.health -= 20
+					var/mob/living/simple_animal/SA = AM
+					SA.health -= 20
 	..()
 
 

@@ -14,6 +14,7 @@ should all be unique more or less. flags_inventory can double up.
 #define PASSGLASS	2
 #define PASSGRILLE	4
 #define PASSBLOB	8
+#define PASSMOB		16
 
 //FLAGS
 #define NOFLAGS					0		//Nothing.
@@ -27,7 +28,6 @@ should all be unique more or less. flags_inventory can double up.
 #define CONDUCT					32		// conducts electricity (metal etc.)
 #define ON_BORDER				64		// item has priority to check when entering or leaving
 #define DIRLOCK					128		// Item won't change direction when Moving()ing. Useful for items that have several dir states.
-#define NOPULLPENALTY			256		// Item will not slow down people when pulled, intended for wheeled and floating items
 //Reserved space for any general flags here.
 //==========================================================================================
 #define USEDELAY 				512		// 1 second extra delay on use (Can be used once every 2s)

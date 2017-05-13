@@ -180,7 +180,7 @@ This can probably be done a lot more elegantly either way, but it'll suffice for
 			if(M.stat != DEAD && msg) M << msg
 		else if(istype(i, /mob/living/carbon/Xenomorph))
 			var/mob/living/carbon/Xenomorph/X = i
-			if(X.big_xeno) r_FAL //Huge xenomorphs will automatically fail the launch.
+			if(X.mob_size == MOB_SIZE_BIG) r_FAL //Huge xenomorphs will automatically fail the launch.
 			n++
 			if(X.stat != DEAD && msg) X << msg
 	if(n > cryo_cells.len)  . = FALSE //Default is 3 cryo cells and three people inside the pod.
@@ -264,20 +264,6 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 //================================Evacuation Sleeper=======================================
 //=========================================================================================
 
-#define MOVE_MOB_INSIDE(M) \
-if(occupant) \
-{M << "<span class='warning'>The cryogenic pod is already in use. You will need to find another.</span>"; \
-r_FAL}; \
-M.loc = src; \
-if(M.client) \
-{M.client.perspective = EYE_PERSPECTIVE; \
-M.client.eye = src}; \
-M << "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>"; \
-occupant = M; \
-occupant.in_stasis = STASIS_IN_CRYO_CELL; \
-add_fingerprint(M); \
-icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
-
 /obj/machinery/cryopod/evacuation
 	stat = MACHINE_DO_NOT_PROCESS
 	unacidable = 1
@@ -304,14 +290,14 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 				user << "<span class='warning'>The cryo pod is not responding to commands!</span>"
 				r_FAL
 
-			var/mob/living/carbon/human/M = G.affecting
+			var/mob/living/carbon/human/M = G.grabbed_thing
 			if(!istype(M)) r_FAL
 
 			visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
 
 			if(do_after(user, 20))
-				if(!M || !G || !G.affecting || !G.affecting.loc || G.affecting != M) r_FAL
-				MOVE_MOB_INSIDE(M)
+				if(!M || !G || !G.grabbed_thing || !G.grabbed_thing.loc || G.grabbed_thing != M) r_FAL
+				move_mob_inside(M)
 
 	eject()
 		set name = "Eject Pod"
@@ -328,11 +314,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
 	go_out() //When the system ejects the occupant.
 		if(occupant)
-			if(occupant.client)
-				occupant.client.eye = occupant.client.mob
-				occupant.client.perspective = MOB_PERSPECTIVE
-
-			occupant.loc = get_turf(src)
+			forceMove(get_turf(src))
 			occupant.in_stasis = FALSE
 			occupant = null
 			icon_state = orient_right ? "body_scanner_0-r" : "body_scanner_0"
@@ -362,7 +344,7 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 
 		if(do_after(user, 20, FALSE))
 			user.stop_pulling()
-			MOVE_MOB_INSIDE(user)
+			move_mob_inside(user)
 
 	attack_alien(mob/living/carbon/Xenomorph/user)
 		if(being_forced)
@@ -378,6 +360,19 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 		playsound(src,'sound/effects/metal_creaking.ogg', 65, 1, 3)
 		if(do_after(user, 20, FALSE)) go_out() //Force the occupant out.
 		being_forced = !being_forced
+
+/obj/machinery/cryopod/evacuation/proc/move_mob_inside(mob/M)
+	if(occupant)
+		M << "<span class='warning'>The cryogenic pod is already in use. You will need to find another.</span>"
+		r_FAL
+		return
+	M.forceMove(src)
+	M << "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>"
+	occupant = M
+	occupant.in_stasis = STASIS_IN_CRYO_CELL
+	add_fingerprint(M)
+	icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"
+
 
 /obj/machinery/door/airlock/evacuation
 	name = "evacuation airlock"
@@ -397,7 +392,6 @@ icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"; \
 	attack_alien() r_FAL //Probably a better idea that these cannot be forced open.
 	attack_ai() r_FAL
 
-#undef MOVE_MOB_INSIDE
 #undef STATE_IDLE
 #undef STATE_READY
 #undef STATE_BROKEN

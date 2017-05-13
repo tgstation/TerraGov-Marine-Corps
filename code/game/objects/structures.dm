@@ -13,6 +13,7 @@
 	del(src)
 
 /obj/structure/attack_hand(mob/user)
+	..()
 	if(breakable)
 		if(HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
@@ -61,7 +62,7 @@
 	do_climb(usr)
 
 /obj/structure/MouseDrop_T(mob/target, mob/user)
-
+	. = ..()
 	var/mob/living/H = user
 	if(!istype(H) || target != user) //No making other people climb onto tables.
 		return
@@ -69,7 +70,7 @@
 	do_climb(target)
 
 /obj/structure/proc/can_climb(var/mob/living/user)
-	if(!can_touch(user) || !climbable)
+	if(!climbable || !can_touch(user))
 		return 0
 
 	var/turf/T = src.loc

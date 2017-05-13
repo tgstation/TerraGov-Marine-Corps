@@ -31,7 +31,7 @@
 	var/turf/lastturf = null
 	var/noise_timer = 0 // Makes a mech footstep, but only every 3 turfs.
 	var/has_moved = 0
-	big_xeno = 1
+	mob_size = MOB_SIZE_BIG
 	var/is_charging = 1
 
 	pixel_x = -16
