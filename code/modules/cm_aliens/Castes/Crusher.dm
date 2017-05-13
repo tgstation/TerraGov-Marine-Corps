@@ -63,21 +63,14 @@
 		stat(null, "Momentum: [momentum]")
 
 /mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(direction, stunned)
-	if(momentum < 0) momentum = 0 //Somehow. Could happen if you slam into multiple things
-
-	if(!momentum) r_FAL
-
-	if(!isturf(loc)) //Messed up
-		speed = initial(speed)
-		momentum = 0
-		r_FAL
-
+	if(!lastturf) r_FAL //Not charging.
+	momentum = 0
 	if(stunned && momentum > 24)
 		visible_message(
 		"<span class='danger'>[src] skids to a halt!</span>",
 		"<span class='xenowarning'>You skid to a halt.</span>")
+	lastturf = null
 	flags_pass = 0
-	momentum = 0
 	speed = initial(speed) //TODO This doesn't take into account other speed upgrades, reseting after evolve.
 	update_icons()
 
@@ -152,6 +145,7 @@
 				"<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>")
 				M.take_overall_damage(momentum * 2)
+				animation_flash_color(M)
 
 	lastturf = isturf(loc) && !istype(loc, /turf/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 
@@ -313,6 +307,7 @@ proc/diagonal_step(atom/movable/A, direction, probab = 75)
 			if(20 to INFINITY)
 				Weaken(8)
 				take_overall_damage(X.momentum * 2)
+		animation_flash_color(src)
 		diagonal_step(src, X.dir, 100) //Occasionally fling it diagonally.
 		step_away(src, X, round(X.momentum * 0.1))
 		X.visible_message(

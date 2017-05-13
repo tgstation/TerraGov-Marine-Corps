@@ -302,7 +302,7 @@
 //Chairs.
 /obj/structure/stool/attack_alien(mob/living/carbon/Xenomorph/M)
 	..()
-	if(isXenoLarva(M)) return//Larvae can't do shit
+	if(isXenoLarva(M)) r_FAL//Larvae can't do shit
 	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 	"<span class='danger'>You slice [src] apart!</span>")
@@ -532,9 +532,14 @@
 
 //Beds, nests and chairs - unbuckling
 /obj/structure/stool/bed/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
-		return 0
-	attack_hand(M)
+	if(!isXenoLarva(M))
+		if(M.a_intent == "hurt")
+			playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
+			M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
+			"<span class='danger'>You slice [src] apart!</span>")
+			unbuckle()
+			destroy()
+		else attack_hand(M)
 
 //Nerfing the damn Cargo Tug Train
 /obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M)
