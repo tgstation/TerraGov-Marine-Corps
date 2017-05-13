@@ -33,13 +33,13 @@
 
 /obj/machinery/artillerycontrol/Topic(href, href_list)
 	..()
-	if (usr.stat || usr.restrained())
+	if (usr.stat || usr.is_mob_restrained())
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
 		var/A
 		A = input("Area to jump bombard", "Open Fire", A) in teleportlocs
 		var/area/thearea = teleportlocs[A]
-		if (usr.stat || usr.restrained()) return
+		if (usr.stat || usr.is_mob_restrained()) return
 		if(src.reload < 180) return
 		if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
 			command_announcement.Announce("Bluespace artillery fire detected. Brace for impact.")

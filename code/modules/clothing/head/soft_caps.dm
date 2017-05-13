@@ -18,7 +18,7 @@
 		set category = "Object"
 		set name = "Flip cap"
 		set src in usr
-		if(usr.canmove && !usr.stat && !usr.restrained())
+		if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 			src.flipped = !src.flipped
 			if(src.flipped)
 				icon_state = "[item_color]soft_flipped"

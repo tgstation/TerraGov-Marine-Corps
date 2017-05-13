@@ -56,7 +56,7 @@
 		return
 	usr.next_move = world.time + 6
 
-	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
+	if(usr.stat || usr.is_mob_restrained() || usr.stunned || usr.lying)
 		return 1
 
 	if(!(owner in usr))
@@ -254,7 +254,7 @@
 		if("internal")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
-				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
+				if(!C.stat && !C.stunned && !C.paralysis && !C.is_mob_restrained())
 					if(C.internal)
 						C.internal = null
 						C << "<span class='notice'>No longer running on internals.</span>"
@@ -356,7 +356,7 @@
 		if("pull")
 			usr.stop_pulling()
 		if("throw")
-			if(!usr.stat && isturf(usr.loc) && !usr.restrained())
+			if(!usr.stat && isturf(usr.loc) && !usr.is_mob_restrained())
 				usr:toggle_throw_mode()
 		if("drop")
 			usr.drop_item_v()

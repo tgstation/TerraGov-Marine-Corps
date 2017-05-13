@@ -121,7 +121,7 @@ DEFINES in setup.dm, referenced here.
 
 	if(!ishuman(user)) return
 
-	if(!user.canmove || user.stat || user.restrained() || !user.loc || !isturf(user.loc))
+	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(user.loc))
 		user << "Not right now."
 		return
 
@@ -350,7 +350,7 @@ should be alright.
 /obj/item/weapon/gun/proc/get_active_firearm(mob/user)
 	if(!ishuman(usr)) return
 
-	if(!user.canmove || user.stat || user.restrained() || !user.loc || !isturf(usr.loc))
+	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(usr.loc))
 		user << "<span class='warning'>Not right now.</span>"
 		return
 

@@ -490,7 +490,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	set category = "Object"
 	set src in usr
 
-	if(!usr.canmove || usr.stat || usr.restrained())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	if(!injections)

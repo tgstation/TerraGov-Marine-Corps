@@ -443,7 +443,7 @@
 		return
 
 	//resisting grabs (as if it helps anyone...)
-	if(!restrained() && pulledby)
+	if(!is_mob_restrained() && pulledby)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 		resist_grab()
 		return
@@ -717,7 +717,7 @@
 				now_pushing = 0
 				return
 
-		if(L.pulledby && L.pulledby != src && L.restrained())
+		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
 			if(!(world.time % 5))
 				src << "\red [L] is restrained, you cannot push past"
 			now_pushing = 0
@@ -726,7 +726,7 @@
  		if(L.pulling)
  			if(ismob(L.pulling))
  				var/mob/P = L.pulling
- 				if(P.restrained())
+ 				if(P.is_mob_restrained())
  					if(!(world.time % 5))
  						src << "<span class='warning'>[L] is restraining [P], you cannot push past.</span>"
 					now_pushing = 0
@@ -753,7 +753,7 @@
 			if(L.pulledby == src && a_intent == "grab")
 				mob_swap = 1
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == "help") && (restrained() || a_intent == "help"))
+			else if((L.is_mob_restrained() || L.a_intent == "help") && (is_mob_restrained() || a_intent == "help"))
 				mob_swap = 1
 			if(mob_swap)
 				//switch our position with L

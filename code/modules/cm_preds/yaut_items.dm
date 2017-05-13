@@ -555,7 +555,7 @@
 		set category = "Yautja"
 		set desc = "Create a focus crystal to energize your natural healing processes."
 
-		if(!usr.canmove || usr.stat || usr.restrained())
+		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 			return 0
 
 		if(!isYautja(usr))
@@ -589,7 +589,7 @@
 		set category = "Yautja"
 		set desc = "Call back your smart-disc, if it's in range. If not you'll have to go retrieve it."
 
-		if(!usr.canmove || usr.stat || usr.restrained())
+		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 			return 0
 
 		if(!isYautja(usr))
@@ -790,7 +790,7 @@
 
 /obj/item/weapon/legcuffs/yautja/attack_self(mob/user as mob)
 	..()
-	if(ishuman(user) && !user.stat && !user.restrained())
+	if(ishuman(user) && !user.stat && !user.is_mob_restrained())
 		armed = !armed
 		icon_state = "yauttrap[armed]"
 		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"].</span>"

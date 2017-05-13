@@ -602,7 +602,7 @@
 	var/edge = 0
 
 /datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user)
-	if(user.restrained())
+	if(user.is_mob_restrained())
 		return 0
 
 	// Check if they have a functioning hand.

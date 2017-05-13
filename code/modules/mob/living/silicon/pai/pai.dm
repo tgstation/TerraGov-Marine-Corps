@@ -125,7 +125,7 @@
 	user.reset_view(src.current)
 	return 1
 
-/mob/living/silicon/pai/restrained()
+/mob/living/silicon/pai/is_mob_restrained()
 	if(istype(src.loc,/obj/item/device/paicard))
 		return 0
 	..()

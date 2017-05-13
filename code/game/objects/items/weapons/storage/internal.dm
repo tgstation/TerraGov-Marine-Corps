@@ -45,7 +45,7 @@
 		if (!(master_item.loc == user) || (master_item.loc && master_item.loc.loc == user))
 			return 0
 
-		if (!( user.restrained() ) && !( user.stat ))
+		if (!( user.is_mob_restrained() ) && !( user.stat ))
 			switch(over_object.name)
 				if("r_hand")
 					user.drop_inv_item_on_ground(master_item)

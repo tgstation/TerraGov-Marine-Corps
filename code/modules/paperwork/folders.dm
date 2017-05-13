@@ -71,7 +71,7 @@
 
 /obj/item/weapon/folder/Topic(href, href_list)
 	..()
-	if((usr.stat || usr.restrained()))
+	if((usr.stat || usr.is_mob_restrained()))
 		return
 
 	if(src.loc == usr)

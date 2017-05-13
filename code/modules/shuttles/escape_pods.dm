@@ -304,7 +304,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 		set category = "Object"
 		set src in oview(1)
 
-		if(!occupant || !usr.stat || usr.restrained()) r_FAL
+		if(!occupant || !usr.stat || usr.is_mob_restrained()) r_FAL
 
 		if(occupant) //Once you're in, you cannot exit, and outside forces cannot eject you.
 			//The occupant is actually automatically ejected once the evac is canceled.
@@ -326,7 +326,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 		var/mob/living/carbon/human/user = usr
 
-		if(!istype(user) || user.stat || user.restrained()) r_FAL
+		if(!istype(user) || user.stat || user.is_mob_restrained()) r_FAL
 
 		if(being_forced)
 			user << "<span class='warning'>You can't enter when it's being forced open!</span>"

@@ -78,7 +78,7 @@
 		var/obj/mecha/M = loc
 		return M.click_action(A,src)
 
-	if(restrained())
+	if(is_mob_restrained())
 		RestrainedClickOn(A)
 		return
 

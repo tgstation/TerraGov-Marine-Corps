@@ -71,7 +71,7 @@
   */
 /obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER)) return
-	if(user.stat || user.restrained()) return
+	if(user.stat || user.is_mob_restrained()) return
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -287,7 +287,7 @@
 
 /obj/machinery/chem_master/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER)) return
-	if(usr.stat || usr.restrained()) return
+	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 
 	src.add_fingerprint(usr)
@@ -564,7 +564,7 @@
 
 /obj/machinery/computer/pandemic/Topic(href, href_list)
 	if(stat & (NOPOWER|BROKEN)) return
-	if(usr.stat || usr.restrained()) return
+	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 
 	usr.set_machine(src)
@@ -646,7 +646,7 @@
 	else if(href_list["name_disease"])
 		var/new_name = stripped_input(usr, "Name the Disease", "New Name", "", MAX_NAME_LEN)
 		if(stat & (NOPOWER|BROKEN)) return
-		if(usr.stat || usr.restrained()) return
+		if(usr.stat || usr.is_mob_restrained()) return
 		if(!in_range(src, usr)) return
 		var/id = href_list["name_disease"]
 		if(archive_diseases[id])

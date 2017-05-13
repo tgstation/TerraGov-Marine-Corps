@@ -280,7 +280,7 @@ OBSOLETE BITCH
 		var/obj/O = AM
 
 		if(in_throw_mode && !get_active_hand() && speed <= 5)	//empty active hand and we're in throw mode
-			if(canmove && !restrained())
+			if(canmove && !is_mob_restrained())
 				if(isturf(O.loc))
 					put_in_active_hand(O)
 					visible_message("<span class='warning'>[src] catches [O]!</span>")

@@ -92,7 +92,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
+	if(!istype(src.loc, /turf) || usr.stat || usr.is_mob_restrained() )
 		return
 
 	var/turf/T = src.loc
@@ -480,12 +480,12 @@ cases. Override_icon_state should be a list.*/
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
 		return
 	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
 		usr << "\red You can't pick things up!"
 		return
-	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
+	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
 		usr << "\red You can't pick things up!"
 		return
 	if(src.anchored) //Object isn't anchored

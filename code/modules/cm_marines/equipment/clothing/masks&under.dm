@@ -497,7 +497,7 @@ include jackets and regular suits, not armor.*/
 		if (!canremove || !(loc == usr))
 			return
 
-		if (!( usr.restrained() ) && !( usr.stat ))
+		if (!( usr.is_mob_restrained() ) && !( usr.stat ))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
@@ -528,7 +528,7 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/under/proc/set_sensors(mob/usr as mob)
 	var/mob/M = usr
 	if (istype(M, /mob/dead/)) return
-	if (usr.stat || usr.restrained()) return
+	if (usr.stat || usr.is_mob_restrained()) return
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
 		return 0

@@ -284,7 +284,7 @@ What a mess.*/
 //RECORD FUNCTIONS
 			if("Search Records")
 				var/t1 = input("Search String: (Partial Name or ID or Fingerprints or Rank)", "Secure. records", null, null)  as text
-				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || !in_range(src, usr)))
+				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.is_mob_restrained() || !in_range(src, usr)))
 					return
 				Perp = new/list()
 				t1 = lowertext(t1)
@@ -326,7 +326,7 @@ What a mess.*/
 
 /*			if ("Search Fingerprints")
 				var/t1 = input("Search String: (Fingerprint)", "Secure. records", null, null)  as text
-				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || (!in_range(src, usr)) && (!istype(usr, /mob/living/silicon))))
+				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.is_mob_restrained() || (!in_range(src, usr)) && (!istype(usr, /mob/living/silicon))))
 					return
 				active1 = null
 				active2 = null
@@ -388,7 +388,7 @@ What a mess.*/
 					return
 				var/a2 = active2
 				var/t1 = copytext(trim(sanitize(input("Add Comment:", "Secure. records", null, null)  as message)),1,MAX_MESSAGE_LEN)
-				if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active2 != a2))
+				if ((!( t1 ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active2 != a2))
 					return
 				var/counter = 1
 				while(active2.fields[text("com_[]", counter)])
@@ -571,7 +571,7 @@ What a mess.*/
 	return
 
 /obj/machinery/computer/secure_data/proc/is_not_allowed(var/mob/user)
-	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
+	return !src.authenticated || user.stat || user.is_mob_restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
 	if(istype(user.get_active_hand(), /obj/item/weapon/photo))

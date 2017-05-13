@@ -204,7 +204,7 @@
 	return 0
 
 
-/mob/living/carbon/human/restrained()
+/mob/living/carbon/human/is_mob_restrained()
 	if (handcuffed)
 		return 1
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
@@ -372,7 +372,7 @@
 		unset_machine()
 		src << browse(null, t1)
 
-	if ((href_list["item"] && !( usr.stat ) && usr.canmove && !( usr.restrained() ) && in_range(src, usr) && ticker)) //if game hasn't started, can't make an equip_e
+	if ((href_list["item"] && !( usr.stat ) && usr.canmove && !( usr.is_mob_restrained() ) && in_range(src, usr) && ticker)) //if game hasn't started, can't make an equip_e
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 		O.source = usr
 		O.target = src
@@ -500,7 +500,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
+								if ( !(t1) || usr.stat || usr.is_mob_restrained() || !(hasHUD(usr,"security")) )
 									return
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
@@ -629,7 +629,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
+								if ( !(t1) || usr.stat || usr.is_mob_restrained() || !(hasHUD(usr,"medical")) )
 									return
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
@@ -1061,7 +1061,7 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat > 0 || usr.restrained() || !isliving(usr)) return
+	if(usr.stat > 0 || usr.is_mob_restrained() || !isliving(usr)) return
 
 	if(usr == src)
 		self = 1

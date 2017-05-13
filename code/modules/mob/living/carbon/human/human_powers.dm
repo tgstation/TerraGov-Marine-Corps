@@ -9,7 +9,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You cannot tackle someone in your current state."
 		return
 
@@ -28,7 +28,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You cannot tackle in your current state."
 		return
 
@@ -57,7 +57,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You cannot leap in your current state."
 		return
 
@@ -76,7 +76,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You cannot leap in your current state."
 		return
 

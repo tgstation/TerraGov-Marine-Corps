@@ -99,7 +99,7 @@
 
 /obj/item/stack/Topic(href, href_list)
 	..()
-	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
+	if ((usr.is_mob_restrained() || usr.stat || usr.get_active_hand() != src))
 		return
 
 	if (href_list["sublist"] && !href_list["make"])

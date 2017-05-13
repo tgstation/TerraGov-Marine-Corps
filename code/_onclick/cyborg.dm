@@ -49,8 +49,8 @@
 		return
 
 	/*
-	cyborg restrained() currently does nothing
-	if(restrained())
+	cyborg is_mob_restrained() currently does nothing
+	if(is_mob_restrained())
 		RestrainedClickOn(A)
 		return
 	*/

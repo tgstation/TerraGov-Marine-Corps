@@ -287,7 +287,7 @@
 /obj/item/weapon/paper/proc/burnpaper(obj/item/weapon/flame/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.lit && !user.restrained())
+	if(P.lit && !user.is_mob_restrained())
 		if(istype(P, /obj/item/weapon/flame/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -311,7 +311,7 @@
 
 /obj/item/weapon/paper/Topic(href, href_list)
 	..()
-	if(!usr || (usr.stat || usr.restrained()))
+	if(!usr || (usr.stat || usr.is_mob_restrained()))
 		return
 
 	if(href_list["write"])

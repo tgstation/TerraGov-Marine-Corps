@@ -81,7 +81,7 @@
 		away_timer = 0
 	return
 
-/mob/proc/restrained()
+/mob/proc/is_mob_restrained()
 	return
 
 //This proc is called whenever someone clicks an inventory ui slot.
@@ -224,7 +224,7 @@ var/list/slot_equipment_priority = list( \
 	if(!A.mouse_opacity)//can't click it? can't point at it.
 		return 0
 
-	if(stat || stunned || weakened || restrained() || (status_flags & FAKEDEATH)) //incapacitated, can't point
+	if(stat || stunned || weakened || is_mob_restrained() || (status_flags & FAKEDEATH)) //incapacitated, can't point
 		return 0
 
 	var/tile = get_turf(A)
@@ -556,7 +556,7 @@ var/list/slot_equipment_priority = list( \
 	if (AM.anchored || AM.throwing)
 		return
 
-	if(throwing || stat || weakened || stunned || paralysis || restrained())
+	if(throwing || stat || weakened || stunned || paralysis || is_mob_restrained())
 		return
 
 	if(pulling)
@@ -799,7 +799,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	if(stat==2)							return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
-	if(restrained())					return 0
+	if(is_mob_restrained())					return 0
 	return 1
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
@@ -973,7 +973,7 @@ mob/proc/yank_out_object()
 		usr << "You are unconcious and cannot do that!"
 		return
 
-	if(usr.restrained())
+	if(usr.is_mob_restrained())
 		usr << "You are restrained and cannot do that!"
 		return
 

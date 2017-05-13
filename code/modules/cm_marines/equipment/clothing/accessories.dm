@@ -620,7 +620,7 @@ BLIND     // can't see anything
 				return
 
 			if (loc == usr) //equipped
-				if (!usr.restrained() && !usr.stat)
+				if (!usr.is_mob_restrained() && !usr.stat)
 					switch(over_object.name)
 						if("r_hand")
 							usr.drop_inv_item_on_ground(src)

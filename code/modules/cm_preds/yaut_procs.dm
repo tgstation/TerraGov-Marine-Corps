@@ -32,7 +32,7 @@
 	set name = "Butcher"
 	set desc = "Butcher a corpse you're standing on for its tasty meats."
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You're not able to do that right now."
 		return
 
@@ -62,7 +62,7 @@
 		src << "This tiny worm is not even worth using your tools on."
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "Not right now."
 		return
 
@@ -145,7 +145,7 @@
 	set name = "Claim Equipment"
 	set desc = "When you're on the Predator ship, claim some gear. You can only do this ONCE."
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You're not able to do that right now."
 		return
 
