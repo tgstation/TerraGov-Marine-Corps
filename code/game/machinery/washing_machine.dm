@@ -206,15 +206,7 @@
 				..()
 		else
 			..()
-	else if(istype(W,/obj/item/weapon/grab))
-		if( (state == 1) && hacked)
-			var/obj/item/weapon/grab/G = W
-			if(ishuman(G.assailant) && iscorgi(G.affecting))
-				G.affecting.loc = src
-				del(G)
-				state = 3
-		else
-			..()
+
 	else if(istype(W,/obj/item/stack/sheet/hairlesshide) || \
 		istype(W,/obj/item/clothing/under) || \
 		istype(W,/obj/item/clothing/mask) || \

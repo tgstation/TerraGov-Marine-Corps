@@ -11,8 +11,20 @@
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
 	icon_state = "bed"
-	var/mob/living/buckled_mob
-	var/movable = 0 // For mobility checks
+	can_buckle = TRUE
+	buckle_lying = TRUE
+	is_stool = FALSE
+	var/buckling_y = 0 //pixel y shift to give to the buckled mob.
+
+/obj/structure/stool/bed/afterbuckle(mob/M)
+	. = ..()
+	if(. && buckled_mob == M)
+		M.pixel_y = buckling_y
+		M.old_y = buckling_y
+	else
+		M.pixel_y = initial(buckled_mob.pixel_y)
+		M.old_y = initial(buckled_mob.pixel_y)
+
 
 /obj/structure/stool/bed/psych
 	name = "psychiatrists couch"
@@ -24,105 +36,6 @@
 	desc = "This looks similar to contraptions from earth. Could aliens be stealing our technology?"
 	icon_state = "abed"
 
-/obj/structure/stool/bed/Del()
-	unbuckle()
-	..()
-	return
-
-/obj/structure/stool/bed/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/structure/stool/bed/attack_hand(mob/user as mob)
-	manual_unbuckle(user)
-	return
-
-/obj/structure/stool/bed/attack_ai(mob/user as mob)
-	manual_unbuckle(user)
-	return
-
-/obj/structure/stool/bed/proc/handle_rotation()
-	return
-
-/obj/structure/stool/bed/MouseDrop(atom/over_object)
-	return
-
-/obj/structure/stool/bed/MouseDrop_T(mob/M as mob, mob/user as mob)
-	if(!istype(M)) return
-	buckle_mob(M, user)
-	return
-
-/obj/structure/stool/bed/proc/afterbuckle(mob/M as mob) // Called after somebody buckled / unbuckled
-	return
-
-
-/obj/structure/stool/bed/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
-
-			var/M = buckled_mob
-			buckled_mob = null
-
-			afterbuckle(M)
-	return
-
-/obj/structure/stool/bed/proc/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			if(buckled_mob != user)
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] was unbuckled by [user.name]!</span>",\
-					"<span class='notice'>You were unbuckled from [src] by [user.name].</span>",\
-					"<span class='notice'>You hear metal clanking.</span>")
-			else
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] unbuckled \himself!</span>",\
-					"<span class='notice'>You unbuckle yourself from [src].</span>",\
-					"<span class='notice'>You hear metal clanking</span>")
-			unbuckle()
-			src.add_fingerprint(user)
-			return 1
-
-	return 0
-
-/obj/structure/stool/bed/proc/buckle_mob(mob/M as mob, mob/user as mob)
-	if (!ticker)
-		user << "<span class='warning'>You can't buckle anyone in before the game starts.</span>"
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || M.pinned.len || istype(user, /mob/living/silicon/pai) )
-		return
-
-	if (istype(M, /mob/living/carbon/Xenomorph))
-		user << "<span class='warning'>[M] is too big to buckle in.</span>"
-		return
-	if (istype(user, /mob/living/carbon/Xenomorph) && !istype(src, /obj/structure/stool/bed/nest))
-		user << "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>"
-		return
-
-
-
-	unbuckle()
-
-	if (M == usr)
-		M.visible_message(\
-			"<span class='notice'>[M.name] buckles in!</span>",\
-			"<span class='notice'>You buckle yourself to [src].</span>",\
-			"<span class='notice'>You hear metal clanking.</span>")
-	else
-		M.visible_message(\
-			"<span class='notice'>[M.name] is buckled in to [src] by [user.name]!</span>",\
-			"<span class='notice'>You are buckled in to [src] by [user.name].</span>",\
-			"<span class='notice'>You hear metal clanking</span>")
-	M.buckled = src
-	M.loc = src.loc
-	M.dir = src.dir
-	M.update_canmove()
-	src.buckled_mob = M
-	src.add_fingerprint(user)
-	afterbuckle(M)
-
-	return
 
 /*
  * Roller beds
@@ -132,8 +45,8 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
-	flags_atom = NOPULLPENALTY
 	drag_delay = 0 //pulling something on wheels is easy
+	buckling_y = 6
 
 /obj/structure/stool/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/roller_holder))
@@ -146,37 +59,14 @@
 		return
 	. = ..()
 
-/obj/structure/stool/bed/roller/Move()
-	..()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.loc = src.loc
-		else
-			buckled_mob = null
-
-/obj/structure/stool/bed/roller/buckle_mob(mob/M as mob, mob/user as mob)
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || istype(usr, /mob/living/silicon/pai) )
-		return
-	M.pixel_y = 6
-	M.old_y = 6
-	density = 1
-	icon_state = "up"
-	..()
-	return
-
-/obj/structure/stool/bed/roller/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.pixel_y = 0
-			buckled_mob.old_y = 0
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.buckled = null
-			buckled_mob.update_canmove()
-			buckled_mob = null
-	density = 0
-	icon_state = "down"
-	..()
-	return
+/obj/structure/stool/bed/roller/afterbuckle(mob/M)
+	. = ..()
+	if(.)
+		density = 1
+		icon_state = "up"
+	else
+		density = 0
+		icon_state = "down"
 
 /obj/structure/stool/bed/roller/MouseDrop(over_object, src_location, over_location)
 	..()

@@ -281,3 +281,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define IS_YAUTJA 6
 #define IS_HORROR 7
 //=================================================
+
+//Mob sizes
+#define MOB_SIZE_SMALL			0
+#define MOB_SIZE_HUMAN			1
+#define MOB_SIZE_XENO			2
+#define MOB_SIZE_BIG		3

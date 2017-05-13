@@ -48,6 +48,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	universal_speak = 0
 	health = 5
 	maxHealth = 5
+	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
 	see_infrared = 1
@@ -100,7 +101,6 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/spit_type = 0 //0: normal, 1: heavy
 	var/is_zoomed = 0
 	var/zoom_turf = null
-	var/big_xeno = 0 //Toggles pushing
 	var/autopsied = 0
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
@@ -220,7 +220,7 @@ var/global/hive_orders = "" //What orders should the hive have
 		return FALSE
 
 	can_ventcrawl()
-		return !big_xeno
+		return (mob_size != MOB_SIZE_BIG)
 
 	ventcrawl_carry()
 		return 1
@@ -236,3 +236,9 @@ var/global/hive_orders = "" //What orders should the hive have
 			playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 			puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 			puller.stop_pulling()
+
+	resist_grab(moving_resist)
+		if(pulledby.grab_level)
+			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
+		pulledby.stop_pulling()
+		. = 0

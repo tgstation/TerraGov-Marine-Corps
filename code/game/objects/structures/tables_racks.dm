@@ -327,27 +327,26 @@
 	return
 
 
-/obj/structure/table/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/table/attackby(obj/item/W, mob/user)
 	if (!W) return
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
+	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<=1)
 		var/obj/item/weapon/grab/G = W
-		if (istype(G.affecting, /mob/living))
-			var/mob/living/M = G.affecting
-			if (G.state < 2)
+		if (istype(G.grabbed_thing, /mob/living))
+			var/mob/living/M = G.grabbed_thing
+			if (user.grab_level < GRAB_AGGRESSIVE)
 				if(user.a_intent == "hurt")
 					if (prob(15))	M.Weaken(5)
 					M.apply_damage(8,def_zone = "head")
-					visible_message("\red [G.assailant] slams [G.affecting]'s face against \the [src]!")
+					visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>")
 					playsound(src.loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 				else
-					user << "\red You need a better grip to do that!"
+					user << "<span class='warning'>You need a better grip to do that!</span>"
 					return
 			else
-				G.affecting.loc = src.loc
-				G.affecting.Weaken(5)
-				visible_message("\red [G.assailant] puts [G.affecting] on \the [src].")
-			del(W)
-			return
+				M.forceMove(loc)
+				M.Weaken(5)
+				visible_message("<span class='danger'>[user] puts [M] on [src].</span>")
+		return
 
 	if (istype(W, /obj/item/weapon/wrench))
 		user << "\blue Now disassembling table"

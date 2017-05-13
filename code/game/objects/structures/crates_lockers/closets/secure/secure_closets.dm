@@ -65,10 +65,13 @@
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/weapon/grab))
-			if(src.large)
-				src.MouseDrop_T(W:affecting, user)	//act like they were dragged onto the closet
-			else
-				user << "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>"
+			var/obj/item/weapon/grab/G = W
+			if(G.grabbed_thing)
+				if(src.large)
+					src.MouseDrop_T(G.grabbed_thing, user)	//act like they were dragged onto the closet
+				else
+					user << "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>"
+			return
 		if(isrobot(user))
 			return
 		user.drop_held_item()

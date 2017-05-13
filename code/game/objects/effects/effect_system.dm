@@ -737,12 +737,9 @@ steam.start() -- spawns the effect
 
 		if (istype(I, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = I
-			G.affecting.loc = src.loc
-			for(var/mob/O in viewers(src))
-				if (O.client)
-					O << "\red [G.assailant] smashes [G.affecting] through the foamed metal wall."
-			del(I)
-			del(src)
+			if(ismob(G.grabbed_thing))
+				G.grabbed_thing.forceMove(loc)
+				user.visible_message("<span class='danger'>[user] smashes [G.grabbed_thing] through the foamed metal wall.</span>")
 			return
 
 		if(prob(I.force*20 - metal*25))

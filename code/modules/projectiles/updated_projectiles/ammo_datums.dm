@@ -84,7 +84,7 @@
 			if(isliving(M)) //This is pretty ugly, but what can you do.
 				if(isXeno(M))
 					var/mob/living/carbon/Xenomorph/target = M
-					if(target.big_xeno) return //Big xenos are not affected.
+					if(target.mob_size == MOB_SIZE_BIG) return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
 					target << "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
 				else

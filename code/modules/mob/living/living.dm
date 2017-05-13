@@ -336,111 +336,90 @@
 
 	return
 
-/mob/living/Move(a, b, flag)
-	if (buckled)
-		return
 
-	if (restrained())
+/mob/living/Move(NewLoc, direct)
+	if (buckled && buckled.loc != NewLoc) //not updating position
+		if (!buckled.anchored)
+			return buckled.Move(NewLoc, direct)
+		else
+			return 0
+
+	var/atom/movable/pullee = pulling
+	if(pullee && get_dist(src, pullee) > 1)
 		stop_pulling()
-
-
-	var/t7 = 1
-	if (restrained())
-		for(var/mob/living/M in range(src, 1))
-			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
-				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
-		var/turf/T = loc
-		. = ..()
-
-		if (pulling && pulling.loc)
-			if(!( isturf(pulling.loc) ))
-				stop_pulling()
-				return
-			else
-				if(Debug)
-					log_debug("Pulling disappeared at line# [__LINE__] in [__FILE__] ([src] was pulling [pulling])")
-
-		/////
-		if(pulling && pulling.anchored)
+	var/turf/T = loc
+	. = ..()
+	if(. && pulling && pulling == pullee) //we were pulling a thing and didn't lose it during our move.
+		if(pulling.anchored)
 			stop_pulling()
 			return
 
-		if (!restrained())
-			var/diag = get_dir(src, pulling)
-			if ((diag - 1) & diag)
-			else
-				diag = null
-			if ((get_dist(src, pulling) > 1 || diag))
-				if (isliving(pulling))
-					var/mob/living/M = pulling
-					var/ok = 1
-					if (locate(/obj/item/weapon/grab, M.grabbed_by))
-						if (prob(75))
-							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/weapon/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
-								del(G)
-						else
-							ok = 0
-						if (locate(/obj/item/weapon/grab, M.grabbed_by.len))
-							ok = 0
-					if (ok)
-						var/atom/movable/t = M.pulling
-						M.stop_pulling()
+		var/pull_dir = get_dir(src, pulling)
+		if(get_dist(src, pulling) > 1 || ((pull_dir - 1) & pull_dir)) //puller and pullee more than one tile away or in diagonal position
+			if(isliving(pulling))
+				var/mob/living/M = pulling
+				//this is the gay blood on floor shit -- Added back -- Skie
+				if (M.lying && (prob(M.getBruteLoss() / 6)) && M.stat != 2)
+					var/turf/location = M.loc
+					if (istype(location, /turf))
+						location.add_blood(M)
+				//pull damage with injured people
+					if(prob(25))
+						M.adjustBruteLoss(1)
+						visible_message("\red \The [M]'s wounds open more from being dragged!")
+				if(M.pull_damage())
+					if(prob(25) && M.stat != 2)
+						M.adjustBruteLoss(2)
+						visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
+						var/turf/location = M.loc
+						if (istype(location, /turf))
+							location.add_blood(M)
+							if(ishuman(M))
+								var/mob/living/carbon/human/H = M
+								var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
+								if(blood_volume > 0)
+									H.vessel.remove_reagent("blood",1)
 
-						//this is the gay blood on floor shit -- Added back -- Skie
-						if (M.lying && (prob(M.getBruteLoss() / 6)) && M.stat != 2)
-							var/turf/location = M.loc
-							if (istype(location, /turf))
-								location.add_blood(M)
-						//pull damage with injured people
-							if(prob(25))
-								M.adjustBruteLoss(1)
-								visible_message("\red \The [M]'s wounds open more from being dragged!")
-						if(M.pull_damage())
-							if(prob(25) && M.stat != 2)
-								M.adjustBruteLoss(2)
-								visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
-								var/turf/location = M.loc
-								if (istype(location, /turf))
-									location.add_blood(M)
-									if(ishuman(M))
-										var/mob/living/carbon/H = M
-										var/blood_volume = round(H:vessel.get_reagent_amount("blood"))
-										if(blood_volume > 0)
-											H:vessel.remove_reagent("blood",1)
+			pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+			if(pulling && get_dist(src, pulling) > 1) //the pullee couldn't keep up
+				stop_pulling()
 
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)//separated from our puller and not in the middle of a diagonal move.
+		pulledby.stop_pulling()
 
-						step(pulling, get_dir(pulling.loc, T))
-						M.start_pulling(t)
-				else
-					if (pulling)
-						if (istype(pulling, /obj/structure/window))
-							var/obj/structure/window/W = pulling
-							if(W.is_full_window())
-								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
-									stop_pulling()
-					if (pulling)
-						step(pulling, get_dir(pulling.loc, T))
-	else
-		stop_pulling()
-		. = ..()
 
 	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
+
+
+
+
+
+/mob/proc/resist_grab(moving_resist)
+	return 1 //returning 0 means we successfully broke free
+
+/mob/living/resist_grab(moving_resist)
+	. = 1
+	if(pulledby.grab_level)
+		if(prob(30/pulledby.grab_level))
+			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
+			pulledby.stop_pulling()
+			return 0
+		if(moving_resist && client) //we resisted by trying to move
+			client.move_delay = world.time + 20
+	else
+		pulledby.stop_pulling()
+		return 0
+
 
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
 
-	if(!isliving(usr) || usr.next_move > world.time)
+	if(!isliving(usr) || usr.next_move > world.time || usr.stat || usr.weakened || usr.stunned || usr.paralysis)
 		return
-	usr.next_move = world.time + 20
-
 	var/mob/living/L = usr
+	usr.next_move = world.time + 20
 
 	//Getting out of someone's inventory.
 	if(istype(src.loc,/obj/item/weapon/holder))
@@ -464,32 +443,10 @@
 		return
 
 	//resisting grabs (as if it helps anyone...)
-	if ((!( L.stat ) && L.canmove && !( L.restrained() )))
-		var/resisting = 0
-		for(var/obj/O in L.requests)
-			L.requests.Remove(O)
-			del(O)
-			resisting++
-		for(var/obj/item/weapon/grab/G in usr.grabbed_by)
-			resisting++
-			if (G.state == 1)
-				del(G)
-			else
-				if (G.state == 2)
-					if (prob(25))
-						for(var/mob/O in viewers(L, null))
-							O.show_message(text("\red [] has broken free of []'s grip!", L, G.assailant), 1)
-						del(G)
-				else
-					if (G.state == 3)
-						if (prob(5))
-							for(var/mob/O in viewers(usr, null))
-								O.show_message(text("\red [] has broken free of []'s headlock!", L, G.assailant), 1)
-							del(G)
-		if(resisting)
-			for(var/mob/O in viewers(usr, null))
-				O.show_message(text("\red <B>[] resists!</B>", L), 1)
-
+	if(!restrained() && pulledby)
+		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
+		resist_grab()
+		return
 
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time) )
@@ -515,14 +472,6 @@
 						C.buckled.manual_unbuckle(C)
 		else
 			L.buckled.manual_unbuckle(L)
-	else if(src.pinned.len)
-		src << "<B>You attempt to rip yourself free.. This will be painful!</b>"
-		if(do_after(src,80, FALSE))
-			if(src.anchored && src.pinned.len)
-				src.visible_message("[src] rips themself free!","<span class='warning'>You rip free from the wall!</span>")
-				src.pinned = null
-				src.anchored = 0
-				src.apply_damage(20,BRUTE)
 
 	//Breaking out of a locker?
 	else if( src.loc && (istype(src.loc, /obj/structure/closet)) )
@@ -725,7 +674,12 @@
 		return -1 //It's hard to be slowed down in space by... anything
 
 	if(pulling && pulling.drag_delay)	//Dragging stuff can slow you down a bit.
-		. += pulling.drag_delay
+		var/pull_delay = pulling.drag_delay
+		if(ismob(pulling))
+			var/mob/M = pulling
+			if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
+				pull_delay = M.buckled.drag_delay
+		. += pull_delay
 
 	if(next_move_slowdown)
 		. += next_move_slowdown
@@ -737,3 +691,122 @@
 		if(buckled)
 			buckled.unbuckle()
 		. = ..()
+		if(.)
+			reset_view(destination)
+
+
+
+
+/mob/living/Bump(atom/movable/AM, yes)
+	if(buckled || !yes || now_pushing)
+		return
+	now_pushing = 1
+	if(isliving(AM))
+		var/mob/living/L = AM
+
+		//Leaping mobs just land on the tile, no pushing, no anything.
+		if(status_flags & LEAPING)
+			loc = L.loc
+			status_flags &= ~LEAPING
+			now_pushing = 0
+			return
+
+		if(isXeno(L) && !isXenoLarva(L)) // Prevents humans from pushing any Xenos, but big Xenos and Preds can still push small Xenos
+			var/mob/living/carbon/Xenomorph/X = L
+			if(has_species(src,"Human") || X.mob_size == MOB_SIZE_BIG)
+				now_pushing = 0
+				return
+
+		if(L.pulledby && L.pulledby != src && L.restrained())
+			if(!(world.time % 5))
+				src << "\red [L] is restrained, you cannot push past"
+			now_pushing = 0
+			return
+
+ 		if(L.pulling)
+ 			if(ismob(L.pulling))
+ 				var/mob/P = L.pulling
+ 				if(P.restrained())
+ 					if(!(world.time % 5))
+ 						src << "<span class='warning'>[L] is restraining [P], you cannot push past.</span>"
+					now_pushing = 0
+					return
+
+		if(ishuman(L))
+
+			if(HULK in L.mutations)
+				if(prob(70))
+					usr << "\red <B>You fail to push [L]'s fat ass out of the way.</B>"
+					now_pushing = 0
+					return
+			if(!(L.status_flags & CANPUSH))
+				now_pushing = 0
+				return
+
+		if(moving_diagonally)//no mob swap during diagonal moves.
+			now_pushing = 0
+			return
+
+		if(!L.buckled)
+			var/mob_swap
+			//the puller can always swap with its victim if on grab intent
+			if(L.pulledby == src && a_intent == "grab")
+				mob_swap = 1
+			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
+			else if((L.restrained() || L.a_intent == "help") && (restrained() || a_intent == "help"))
+				mob_swap = 1
+			if(mob_swap)
+				//switch our position with L
+				if(loc && !loc.Adjacent(L.loc))
+					now_pushing = 0
+					return
+				var/oldloc = loc
+				var/oldLloc = L.loc
+
+
+				var/L_passmob = (L.flags_pass & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
+				var/src_passmob = (flags_pass & PASSMOB)
+				L.flags_pass |= PASSMOB
+				flags_pass |= PASSMOB
+
+				L.Move(oldloc)
+				Move(oldLloc)
+
+				if(!src_passmob)
+					flags_pass &= ~PASSMOB
+				if(!L_passmob)
+					L.flags_pass &= ~PASSMOB
+
+				now_pushing = 0
+				return
+
+
+		if(L.r_hand && istype(L.r_hand, /obj/item/weapon/shield/riot))
+			if(prob(99))
+				now_pushing = 0
+				return
+		if(L.l_hand && istype(L.l_hand, /obj/item/weapon/shield/riot))
+			if(prob(99))
+				now_pushing = 0
+				return
+		if(!(L.status_flags & CANPUSH))
+			now_pushing = 0
+			return
+
+	now_pushing = 0
+	..()
+	if (!( istype(AM, /atom/movable) ))
+		return
+	if (!( now_pushing ))
+		now_pushing = 1
+		if (!( AM.anchored ))
+			var/t = get_dir(src, AM)
+			if (istype(AM, /obj/structure/window))
+				var/obj/structure/window/W = AM
+				if(W.is_full_window())
+					for(var/obj/structure/window/win in get_step(AM,t))
+						now_pushing = 0
+						return
+			step(AM, t)
+		now_pushing = 0
+

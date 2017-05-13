@@ -239,22 +239,11 @@
 						O.show_message("\blue [M] [response_help] [src]")
 
 		if("grab")
-			if (M == src)
-				return
-			if (!(status_flags & CANPUSH))
-				return
+			if(M == src || anchored)
+				return 0
+			M.start_pulling(src)
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
-
-			M.put_in_active_hand(G)
-
-			G.synch()
-			G.affecting = src
-			LAssailant = M
-
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
+			return 1
 
 		if("hurt", "disarm")
 			adjustBruteLoss(harm_intent_damage)

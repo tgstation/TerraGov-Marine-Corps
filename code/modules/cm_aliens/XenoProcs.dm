@@ -448,7 +448,7 @@
 		return 0 //Tail attack not prepared, or not available.
 
 	var/dmg = (round(readying_tail * 2.5)) + rand(5, 10) //Ready max is 20
-	if(big_xeno)
+	if(mob_size == MOB_SIZE_BIG)
 		dmg += 10
 	var/datum/organ/external/affecting
 	var/tripped = 0

@@ -120,7 +120,7 @@
 	remove_overlay(X_FIRE_LAYER)
 	if(on_fire)
 		var/image/I
-		if(big_xeno)
+		if(mob_size == MOB_SIZE_BIG)
 			if((!initial(pixel_y) || lying) && !resting && !sleeping)
 				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
 			else

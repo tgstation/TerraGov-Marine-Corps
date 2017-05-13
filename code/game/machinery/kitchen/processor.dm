@@ -104,7 +104,7 @@
 	var/obj/what = O
 	if (istype(O, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = O
-		what = G.affecting
+		what = G.grabbed_thing
 
 	var/datum/food_processor_process/P = select_recipe(what)
 	if (!P)

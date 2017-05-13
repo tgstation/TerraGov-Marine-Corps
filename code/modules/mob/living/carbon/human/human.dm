@@ -380,7 +380,6 @@
 		O.s_loc = usr.loc
 		O.t_loc = loc
 		O.place = href_list["item"]
-		requests += O
 		spawn( 0 )
 			O.process()
 			return

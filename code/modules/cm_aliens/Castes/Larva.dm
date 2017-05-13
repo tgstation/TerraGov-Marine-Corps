@@ -16,7 +16,7 @@
 	evolves_to = list("Drone", "Runner", "Sentinel") //Add sentinel etc here
 	see_in_dark = 8
 	caste_desc = "D'awwwww, so cute!"
-	flags_pass = PASSTABLE
+	flags_pass = PASSTABLE | PASSMOB
 	speed = -1.2 //Zoom!
 	away_timer = 300
 	tier = 0  //Larva's don't count towards Pop limits

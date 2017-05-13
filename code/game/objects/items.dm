@@ -177,11 +177,11 @@ cases. Override_icon_state should be a list.*/
 			return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
-	pickup(user)
-	add_fingerprint(user)
-	if(!user.put_in_active_hand(src))
-		dropped(user)
-	return
+	if(loc) //item may have been cdel'd by the drop above.
+		pickup(user)
+		add_fingerprint(user)
+		if(!user.put_in_active_hand(src))
+			dropped(user)
 
 
 /obj/item/attack_paw(mob/user as mob)

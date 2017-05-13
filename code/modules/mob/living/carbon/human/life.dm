@@ -63,6 +63,10 @@
 			//stuff in the stomach
 			handle_stomach()
 
+			//effects of being grabbed aggressively by another mob
+			if(pulledby && pulledby.grab_level)
+				handle_grabbed()
+
 			handle_shock()
 
 			handle_pain()

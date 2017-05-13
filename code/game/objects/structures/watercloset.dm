@@ -55,10 +55,10 @@
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
 
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
+		if(isliving(G.grabbed_thing))
+			var/mob/living/GM = G.grabbed_thing
 
-			if(G.state>1)
+			if(user.grab_level > GRAB_PASSIVE)
 				if(!GM.loc == get_turf(src))
 					user << "<span class='notice'>[GM.name] needs to be on the toilet.</span>"
 					return
@@ -102,9 +102,9 @@
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-			if(G.state>1)
+		if(isliving(G.grabbed_thing))
+			var/mob/living/GM = G.grabbed_thing
+			if(user.grab_level > GRAB_PASSIVE)
 				if(!GM.loc == get_turf(src))
 					user << "<span class='notice'>[GM.name] needs to be on the urinal.</span>"
 					return

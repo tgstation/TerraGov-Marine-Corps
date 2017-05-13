@@ -104,21 +104,16 @@
 
 	var/obj/item/weapon/grab/G = I
 	if(istype(G))	// handle grabbed mob
-		if(ismob(G.affecting))
-			var/mob/GM = G.affecting
-			for (var/mob/V in viewers(usr))
-				V.show_message("[usr] starts putting [GM.name] into the disposal.", 3)
+		if(ismob(G.grabbed_thing) && user.grab_level >= GRAB_AGGRESSIVE)
+			var/mob/GM = G.grabbed_thing
+			user.visible_message("[user] starts putting [GM] into the disposal.")
 			if(do_after(usr, 20))
-				if (GM.client)
-					GM.client.perspective = EYE_PERSPECTIVE
-					GM.client.eye = src
-				GM.loc = src
-				for (var/mob/C in viewers(src))
-					C.show_message("\red [GM.name] has been placed in the [src] by [user].", 3)
-				del(G)
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [GM.name] ([GM.ckey]) in disposals.</font>")
-				GM.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [usr.name] ([usr.ckey])</font>")
-				msg_admin_attack("[usr] ([usr.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+				GM.forceMove(src)
+				user.visible_message("\red [GM.name] has been placed in the [src] by [user].", 3)
+
+				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [GM] ([GM.ckey]) in disposals.</font>")
+				GM.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user] ([user.ckey])</font>")
+				msg_admin_attack("[user] ([user.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 		return
 
 	if(isrobot(user))

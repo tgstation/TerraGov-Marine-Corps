@@ -90,7 +90,7 @@
 		visible_message("[src] growls at [X].", "You growl at [X].")
 		return
 	else if(a_intent == "disarm")
-		if (!(X.paralysis ) && !(X.big_xeno))
+		if (!(X.paralysis ) && X.mob_size != MOB_SIZE_BIG)
 			if(prob(40))
 				X.Paralyse(4)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -191,20 +191,12 @@
 				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
 		else
 			if (M.a_intent == "grab")
-				if (M == src || anchored)
-					return
 
-				var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src )
+				if(M == src || anchored)
+					return 0
+				M.start_pulling(src)
+				return 1
 
-				M.put_in_active_hand(G)
-
-				G.synch()
-
-				LAssailant = M
-
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					O.show_message(text("\red [] has grabbed [name] passively!", M), 1)
 			else
 				if (!( paralysis ))
 					if (prob(25))

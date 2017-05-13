@@ -368,7 +368,7 @@
 	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
 	"<span class='danger'>You smash against [src]!</span>")
 	var/damage = 25
-	if(M.big_xeno)
+	if(M.mob_size == MOB_SIZE_BIG)
 		damage = 40
 	take_damage(damage)
 
@@ -727,7 +727,7 @@
 	"<span class='warning'>You begin to lean against \the [src].</span>")
 	tipped_level = 1
 	var/shove_time = 100
-	if(M.big_xeno)
+	if(M.mob_size == MOB_SIZE_BIG)
 		shove_time = 50
 	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
 		shove_time = 15
