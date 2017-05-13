@@ -55,7 +55,7 @@
 	if(!isXeno(src) || isnull(src)) //Somehow
 		return 0
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return 0
 
@@ -120,7 +120,7 @@
 
 
 //These don't do much currently. Or anything? Only around for legacy code.
-/mob/living/carbon/Xenomorph/restrained()
+/mob/living/carbon/Xenomorph/is_mob_restrained()
 	return 0
 
 /mob/living/carbon/Xenomorph/proc/update_progression()

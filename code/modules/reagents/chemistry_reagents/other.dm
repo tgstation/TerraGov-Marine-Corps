@@ -210,7 +210,7 @@
 		if(!M) M = holder.my_atom
 		M.druggy = max(M.druggy, 15)
 		if(isturf(M.loc) && !istype(M.loc, /turf/space))
-			if(M.canmove && !M.restrained())
+			if(M.canmove && !M.is_mob_restrained())
 				if(prob(10)) step(M, pick(cardinal))
 		if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
 		holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
@@ -303,7 +303,7 @@
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
-		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/space))
 			step(M, pick(cardinal))
 		if(prob(5)) M.emote(pick("twitch","drool","moan"))
 		M.adjustBrainLoss(2)
@@ -394,7 +394,7 @@
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
-		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/space))
 			step(M, pick(cardinal))
 		if(prob(5)) M.emote(pick("twitch","drool","moan"))
 

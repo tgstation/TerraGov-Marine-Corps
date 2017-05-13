@@ -64,7 +64,7 @@
 				message = "<B>The [src.name]</B> lashes its tail."
 				playsound(src.loc, 'sound/voice/alien_tail.ogg', 100, 1, 1)
 		if("dance")
-			if(!src.restrained())
+			if(!src.is_mob_restrained())
 				message = "<B>The [src.name]</B> dances around!"
 				m_type = 1
 				spawn(0)

@@ -603,7 +603,7 @@ It can still be worn/put on as normal.
 	if(target.loc != t_loc) return		//target has moved
 	if(LinkBlocked(s_loc,t_loc)) return	//Use a proxi!
 	if(item && source.get_active_hand() != item) return	//Swapped hands / removed item from the active one
-	if ((source.restrained() || source.stat)) return //Source restrained or unconscious / dead
+	if ((source.is_mob_restrained() || source.stat)) return //Source restrained or unconscious / dead
 
 	var/slot_to_process
 	var/obj/item/strip_item //this will tell us which item we will be stripping - if any.

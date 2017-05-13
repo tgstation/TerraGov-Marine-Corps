@@ -904,7 +904,7 @@
 		nanomanager.close_user_uis(user, src)
 
 		return 0
-	if(user.restrained())
+	if(user.is_mob_restrained())
 		user << "\red You must have free hands to use this [src]"
 		return 0
 	if(user.lying)

@@ -72,7 +72,7 @@
 /obj/item/weapon/paper_bundle/proc/burnpaper(obj/item/weapon/flame/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.lit && !user.restrained())
+	if(P.lit && !user.is_mob_restrained())
 		if(istype(P, /obj/item/weapon/flame/lighter/zippo))
 			class = "<span class='rose'>"
 

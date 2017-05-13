@@ -185,7 +185,7 @@
 	..()
 	if(stat & BROKEN)
 		return
-	if (usr.stat || usr.restrained() )
+	if (usr.stat || usr.is_mob_restrained() )
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))

@@ -19,7 +19,7 @@
 	if(world.time <= l_move_time + move_delay)
 		return
 	// Redundant check?
-	if(user.stat || user.stunned || user.weakened || user.paralysis || user.lying || user.restrained())
+	if(user.stat || user.stunned || user.weakened || user.paralysis || user.lying || user.is_mob_restrained())
 		return
 
 	if(propelled) //can't manually move it mid-propelling.

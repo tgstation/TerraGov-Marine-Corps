@@ -126,7 +126,7 @@
 		set name = "Rotate Circulator (Clockwise)"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained() || anchored)
+		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
 		src.dir = turn(src.dir, -90)
@@ -137,7 +137,7 @@
 		set name = "Rotate Circulator (Counterclockwise)"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained() || anchored)
+		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
 		src.dir = turn(src.dir, 90)
@@ -273,7 +273,7 @@
 		set name = "Rotate Motor Clockwise"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained()  || anchored)
+		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
 		src.dir = turn(src.dir, -90)
@@ -283,7 +283,7 @@
 		set name = "Rotate Motor Counterclockwise"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained()  || anchored)
+		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
 		src.dir = turn(src.dir, 90)

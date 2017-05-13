@@ -349,7 +349,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 			if(helmet_garb.len)
 				var/obj/item/choice = input("What item would you like to remove from [src]?") as null|obj in helmet_garb
 				if(choice)
-					if((!user.canmove && !user.buckled) || user.stat || user.restrained() || !in_range(src, user) || !locate(src) in user) return
+					if((!user.canmove && !user.buckled) || user.stat || user.is_mob_restrained() || !in_range(src, user) || !locate(src) in user) return
 					user.put_in_hands(choice)
 					helmet_garb -= choice
 					user.visible_message("<span class='info'>[user] removes [choice] from [src].</span>","<span class='notice'>You remove [choice] from [src].</span>")

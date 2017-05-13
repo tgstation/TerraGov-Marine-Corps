@@ -192,7 +192,7 @@ Class Procs:
 	..()
 	if(inoperable())
 		return 1
-	if(usr.restrained() || usr.lying || usr.stat)
+	if(usr.is_mob_restrained() || usr.lying || usr.stat)
 		return 1
 	if ( ! (istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \

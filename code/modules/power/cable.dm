@@ -273,7 +273,7 @@
 	set category = "Object"
 	var/mob/M = usr
 
-	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
+	if(ishuman(M) && !M.is_mob_restrained() && !M.stat && !M.paralysis && ! M.stunned)
 		if(!istype(usr.loc,/turf)) return
 		if(src.amount <= 14)
 			usr << "<span class='warning'>You need at least 15 lengths to make restraints!</span>"

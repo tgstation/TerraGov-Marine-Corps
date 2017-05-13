@@ -94,7 +94,7 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 	set name = "Claim Trophy"
 	set desc = "Butcher a corpse to attain a trophy from your kill."
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "<span class='xenowarning'>You're not able to do that right now.</span>"
 		return
 
@@ -106,7 +106,7 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 
 	if(!H || !H.loc) return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "<span class='xenowarning'>You're not able to do that right now.<span>"
 		return
 

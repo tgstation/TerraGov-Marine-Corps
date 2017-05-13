@@ -76,7 +76,7 @@
 		set category = "Object"
 		set src in view(1)
 
-		if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
+		if(usr.stat || usr.is_mob_restrained() || usr.lying || !istype(usr, /mob/living))
 			usr << "\red You can't do that."
 			return
 

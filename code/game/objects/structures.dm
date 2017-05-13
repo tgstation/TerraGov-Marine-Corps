@@ -155,7 +155,7 @@
 		return 0
 	if(!Adjacent(user))
 		return 0
-	if (user.restrained() || user.buckled)
+	if (user.is_mob_restrained() || user.buckled)
 		user << "<span class='notice'>You need your hands and legs free for this.</span>"
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)

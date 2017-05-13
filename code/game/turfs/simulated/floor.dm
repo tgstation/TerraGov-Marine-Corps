@@ -211,7 +211,7 @@ turf/simulated/floor/update_icon()
 		var/obj/item/stack/tile/light/T = floor_tile
 		T.on = !T.on
 		update_icon()
-	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
+	if ((!( user.canmove ) || user.is_mob_restrained() || !( user.pulling )))
 		return
 	if (!isturf(user.pulling.loc))
 		return

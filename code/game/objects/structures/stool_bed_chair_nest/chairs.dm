@@ -61,7 +61,7 @@
 			return
 		if(!usr || !isturf(usr.loc))
 			return
-		if(usr.stat || usr.restrained())
+		if(usr.stat || usr.is_mob_restrained())
 			return
 
 		src.dir = turn(src.dir, 90)

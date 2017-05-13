@@ -17,7 +17,7 @@
 /obj/item/clothing/suit/storage/marine/fluff/verb/toggle_squad_markings()
 	if(!ishuman(usr)) return
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !usr.loc || !isturf(usr.loc))
 		usr << "<span class='warning'>Not right now!</span>"
 		return
 
@@ -28,7 +28,7 @@
 /obj/item/clothing/suit/storage/marine/fluff/verb/toggle_shoulder_lamp()
 	if(!ishuman(usr)) return
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !usr.loc || !isturf(usr.loc))
 		usr << "<span class='warning'>Not right now!</span>"
 		return
 
@@ -442,7 +442,7 @@
 /obj/item/clothing/head/helmet/marine/fluff/verb/toggle_squad_markings()
 	if(!ishuman(usr)) return
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !usr.loc || !isturf(usr.loc))
 		usr << "<span class='warning'>Not right now!</span>"
 		return
 
@@ -453,7 +453,7 @@
 /obj/item/clothing/head/helmet/marine/fluff/verb/toggle_garb_overlay()
 	if(!ishuman(usr)) return
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !usr.loc || !isturf(usr.loc))
 		usr << "<span class='warning'>Not right now!</span>"
 		return
 

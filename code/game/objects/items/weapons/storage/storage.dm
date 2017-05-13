@@ -44,7 +44,7 @@
 		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
 			return
 
-		if (!( usr.restrained() ) && !( usr.stat ))
+		if (!( usr.is_mob_restrained() ) && !( usr.stat ))
 			switch(over_object.name)
 				if("r_hand")
 					usr.drop_inv_item_on_ground(src)
@@ -390,7 +390,7 @@
 	set name = "Empty Contents"
 	set category = "Object"
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.is_mob_restrained())
 		return
 
 	var/turf/T = get_turf(src)

@@ -72,7 +72,7 @@
 
 		if ("clap")
 			if(!recent_audio_emote)
-				if (!restrained())
+				if (!is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> claps."
 					m_type = 2
 					if(miming)
@@ -169,7 +169,7 @@
 
 		if ("golfclap")
 			if(!recent_audio_emote)
-				if (!restrained())
+				if (!is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> claps, clearly unimpressed."
 					m_type = 2
 					if(miming)
@@ -197,7 +197,7 @@
 
 		if ("handshake")
 			m_type = 1
-			if (!src.restrained() && !src.r_hand)
+			if (!src.is_mob_restrained() && !src.r_hand)
 				var/mob/M = null
 				if (param)
 					for (var/mob/A in view(1, null))
@@ -208,14 +208,14 @@
 					M = null
 
 				if (M)
-					if (M.canmove && !M.r_hand && !M.restrained())
+					if (M.canmove && !M.r_hand && !M.is_mob_restrained())
 						message = "<B>[comm_paygrade][src]</B> shakes hands with [M]."
 					else
 						message = "<B>[comm_paygrade][src]</B> holds out \his hand to [M]."
 
 		if("hug")
 			m_type = 1
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				var/M = null
 				if (param)
 					for (var/mob/A in view(1, null))
@@ -348,7 +348,7 @@
 					m_type = 2
 
 		if ("signal")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				var/t1 = round(text2num(param))
 				if (isnum(t1))
 					if (t1 <= 5 && (!src.r_hand || !src.l_hand))

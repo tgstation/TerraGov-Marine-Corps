@@ -399,7 +399,7 @@
 /obj/machinery/vending/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if(usr.stat || usr.restrained())
+	if(usr.stat || usr.is_mob_restrained())
 		return
 
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
@@ -547,7 +547,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.restrained() || user.lying)
+	if(user.stat || user.is_mob_restrained() || user.lying)
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)

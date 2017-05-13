@@ -490,7 +490,7 @@ var/list/robot_verbs_default = list(
 		show_jetpack_pressure()
 		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
 
-/mob/living/silicon/robot/restrained()
+/mob/living/silicon/robot/is_mob_restrained()
 	return 0
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)

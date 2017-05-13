@@ -15,7 +15,7 @@
 		if ("custom")
 			return
 		if("scratch")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				message = "<B>The [src.name]</B> scratches."
 				m_type = 1
 		if("roar")
@@ -26,7 +26,7 @@
 			message = "<B>The [src.name]</B> waves its tail."
 			m_type = 1
 		if("paw")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				message = "<B>The [src.name]</B> flails its paw."
 				m_type = 1
 		if("sway")
@@ -57,7 +57,7 @@
 			message = "<B>The [src.name]</B> sniffs about."
 			m_type = 1
 		if("dance")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				message = "<B>The [src.name]</B> dances around!"
 				m_type = 1
 				spawn(0)

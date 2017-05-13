@@ -85,7 +85,7 @@
 	set hidden = 1
 	if(!istype(mob, /mob/living/carbon))
 		return
-	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
+	if (!mob.stat && isturf(mob.loc) && !mob.is_mob_restrained())
 		mob:toggle_throw_mode()
 	else
 		return
@@ -163,10 +163,10 @@
 
 	if(isturf(mob.loc))
 
-		if(mob.restrained())//Why being pulled while cuffed prevents you from moving
+		if(mob.is_mob_restrained())//Why being pulled while cuffed prevents you from moving
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
-					if(!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
+					if(!M.is_mob_restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
 						src << "\blue You're restrained! You can't move!"
 						return 0
 					else
@@ -232,7 +232,7 @@
 ///Checks to see if you are being grabbed and if so attemps to break it
 /client/proc/Process_Grab()
 	if(mob.pulledby)
-		if(mob.restrained())
+		if(mob.is_mob_restrained())
 			move_delay = world.time + 10
 			src << "<span class='warning'>You're restrained! You can't move!</span>"
 			return 1
@@ -314,7 +314,7 @@
 	else
 		make_floating(1)
 
-	if(restrained()) //Check to see if we can do things
+	if(is_mob_restrained()) //Check to see if we can do things
 		return 0
 
 	//Check to see if we slipped
