@@ -81,13 +81,13 @@
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	var/datum/organ/external/O = organs_by_name["l_hand"]
-	if(!O || (O.status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY|ORGAN_MUTATED)))
+	if(!O || !O.is_usable())
 		return FALSE
 	. = ..()
 
 /mob/living/carbon/human/put_in_r_hand(obj/item/W)
 	var/datum/organ/external/O = organs_by_name["r_hand"]
-	if(!O || (O.status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY|ORGAN_MUTATED)))
+	if(!O || !O.is_usable())
 		return FALSE
 	. = ..()
 
