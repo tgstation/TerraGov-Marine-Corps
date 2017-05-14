@@ -18,7 +18,7 @@ var/global/image/typing_indicator
 		else
 			if(state)
 				if(!typing)
-					overlays += typing_indicator
+					if(stat == CONSCIOUS) overlays += typing_indicator
 					typing = 1
 			else
 				if(typing)
