@@ -821,7 +821,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /datum/organ/external/proc/is_usable()
-	return !(status & (ORGAN_DESTROYED|ORGAN_MUTATED|ORGAN_DEAD))
+	return !(status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
 
 /datum/organ/external/proc/is_broken()
 	return ((status & ORGAN_BROKEN) && !(status & ORGAN_SPLINTED))
