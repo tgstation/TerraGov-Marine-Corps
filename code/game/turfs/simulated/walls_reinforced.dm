@@ -326,3 +326,12 @@
 /turf/simulated/wall/r_wall/unmeltable
 	icon_state = "r_wall"
 	walltype = "rwall"
+
+	ex_act(severity) //Should make it indestructable
+		return
+
+	fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+		return
+
+	attackby() //This should fix everything else. No cables, etc
+		return

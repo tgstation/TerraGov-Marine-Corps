@@ -444,3 +444,58 @@
 
 	update_icon() //icon_state has to be set manually
 		return
+
+/obj/structure/window/reinforced/pressure
+	name = "pressure window"
+	desc = "A toughened window linked to pressure shutters."
+	health = 80
+	dir = 5
+
+/obj/structure/window/reinforced/pressure/divider
+	icon_state = "twindow0"
+	update_icon()
+		return
+
+/obj/structure/window/reinforced/pressure/Del()
+	for(var/obj/machinery/door/poddoor/shutters/pressure/P in src.loc )
+		P.close(7)
+	density = 0
+	update_nearby_tiles()
+	playsound(src, "shatter", 70, 1)
+	update_nearby_icons()
+	..()
+
+/obj/structure/window/reinforced/pressure/attackby(obj/item/W as obj, mob/user as mob) //prevents being deconstructed normally
+	if(!istype(W)) return//I really wish I did not need this
+	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
+		var/obj/item/weapon/grab/G = W
+		if(istype(G.affecting,/mob/living))
+			var/mob/living/M = G.affecting
+			var/state = G.state
+			del(W)	//gotta delete it here because if window breaks, it won't get deleted
+			switch (state)
+				if(1)
+					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+					M.apply_damage(7)
+					hit(10)
+				if(2)
+					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+					if (prob(50))
+						M.Weaken(1)
+					M.apply_damage(10)
+					hit(25)
+				if(3)
+					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+					M.Weaken(5)
+					M.apply_damage(20)
+					hit(50)
+			return
+
+	if(W.flags_atom & NOBLUDGEON) return
+
+	if(W.damtype == BRUTE || W.damtype == BURN)
+		hit(W.force)
+	else
+		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+	..()
+	return

@@ -210,6 +210,26 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 
+/obj/effect/landmark/corpse/prison_security
+	name = "Prison Guard"
+	corpseuniform = /obj/item/clothing/under/rank/security
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsesuit = /obj/item/clothing/suit/armor/vest/security
+	corpsehelmet = /obj/item/clothing/head/helmet
+	corpseid = 1
+	corpseidjob = "Prison Guard"
+
+/obj/effect/landmark/corpse/pirate
+	name = "Pirate"
+	corpseuniform = /obj/item/clothing/under/syndicate
+	corpsesuit = /obj/item/clothing/suit/armor/vest
+	corpseshoes = /obj/item/clothing/shoes/swat
+	corpsegloves = /obj/item/clothing/gloves/swat
+	corpseradio = /obj/item/device/radio/headset
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/helmet/swat
+	corpseback = /obj/item/weapon/storage/backpack
+
 /////////////////Officers//////////////////////
 
 /obj/effect/landmark/corpse/bridgeofficer
@@ -249,7 +269,3 @@
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
 	corpseidaccess = "101"
-
-
-
-
