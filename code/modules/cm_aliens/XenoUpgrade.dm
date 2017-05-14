@@ -8,16 +8,16 @@
 
 	upgrade_xeno(0,upgrade)
 
-/mob/living/carbon/Xenomorph/proc/upgrade_xeno(bypass_limit,tier)
+/mob/living/carbon/Xenomorph/proc/upgrade_xeno(bypass_limit, tier)
 	upgrade = tier
 
-	if(upgrade == -2)
-		src << "<span class='warning'>Sorry, your class can't upgrade.</span>"
-		return
-
-	if(upgrade == 3)
-		src << "<span class='warning'>You are at your max upgrade and your power level is already over 9000, what more do you want?</span>"
-		return
+	switch(upgrade)
+		if(-2)
+			src << "<span class='warning'>Sorry, your class can't upgrade.</span>"
+			r_FAL
+		if(3)
+			src << "<span class='warning'>You can no longer upgrade.</span>"
+			r_FAL
 
 	if(health < maxHealth && !bypass_limit)
 		src << "<span class='warning'>You must be fully healed to upgrade.</span>"

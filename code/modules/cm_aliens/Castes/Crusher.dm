@@ -151,14 +151,11 @@
 
 	update_icons()
 
-proc/diagonal_step(atom/movable/A, direction, probab = 75)
-	if(!A) r_FAL
-
-	if(direction in list(EAST,WEST) && prob(probab))
-		step(A, pick(NORTH,SOUTH))
-
-	else if(direction in list(NORTH,SOUTH) && prob(probab))
-		step(A, pick(EAST,WEST))
+proc/diagonal_step(atom/movable/A, direction, P = 75)
+	if(!A || !prob(P)) r_FAL
+	switch(direction)
+		if(EAST, WEST) step(A, pick(NORTH,SOUTH))
+		if(NORTH,SOUTH) step(A, pick(EAST,WEST))
 
 /atom/proc/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	r_TRU
@@ -308,12 +305,12 @@ proc/diagonal_step(atom/movable/A, direction, probab = 75)
 				Weaken(8)
 				take_overall_damage(X.momentum * 2)
 		animation_flash_color(src)
-		diagonal_step(src, X.dir, 100) //Occasionally fling it diagonally.
+		diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 		step_away(src, X, round(X.momentum * 0.1))
 		X.visible_message(
 		"<span class='danger'>[X] rams [src]!</span>",
 		"<span class='xenodanger'>You ram [src]!</span>")
-		X.momentum -= 1
+		X.momentum -= 3
 		r_TRU
 
 //Special override case.
@@ -322,7 +319,7 @@ proc/diagonal_step(atom/movable/A, direction, probab = 75)
 		playsound(loc, "punch", 25, 1, -1)
 		diagonal_step(src, X.dir, 100)
 		step_away(src, X)
-		X.momentum -= 3
+		X.momentum -= 9
 		r_TRU
 
 /turf/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)

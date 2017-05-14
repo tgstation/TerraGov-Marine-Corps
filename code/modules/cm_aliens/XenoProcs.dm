@@ -283,92 +283,70 @@
 
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
-/mob/living/carbon/Xenomorph/throw_impact(atom/hit_atom, var/speed)
+/mob/living/carbon/Xenomorph/throw_impact(atom/hit_atom, speed)
+	set waitfor = 0
 
-	if(!charge_type || stat || !usedPounce) //0: No special charge. 1: pounce, 2: claw. Can add new ones here. Check if alive.
-		..()
-		return
+	if(!charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
+		..() //Do the parent instead.
+		r_FAL
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(!O.density) //Not a dense object? Doesn't matter then, pass over it.
-			..()
-			return
+		if(!O.density) r_FAL//Not a dense object? Doesn't matter then, pass over it.
+		if(!O.anchored) step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
-		if(!O.anchored)
-			step(O,src.dir) //Not anchored? Knock the object back a bit. Ie. canisters.
-
-		if(isXenoRavager(src)) //Ravagers destroy tables.
-			if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
-				var/obj/structure/S = O
-				visible_message("<span class='danger'>\The [src] plows straight through \the [S]!</span>")
-				S.destroy()
-				O = null
-
-		if(!isnull(O) && !istype(O, /obj/structure/table) && O.density && O.anchored && !istype(O, /obj/item)) // new - xeno charge ignore tables
-			O.hitby(src,speed)
-		return
+		switch(charge_type) //Determine how to handle it depending on charge type.
+			if(1 to 2)
+				if(!istype(O, /obj/structure/table) && !istype(O, /obj/structure/rack))
+					O.hitby(src, speed) //This resets throwing.
+			if(3 to 4)
+				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
+					var/obj/structure/S = O
+					visible_message("<span class='danger'>[src] plows straight through [S]!</span>")
+					S.destroy() //We want to continue moving, so we do not reset throwing.
+				else O.hitby(src, speed) //This resets throwing.
+		r_TRU
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
-		var/mob/living/carbon/V = hit_atom
-		if(istype(V) && !V.stat && !isXeno(V)) //We totally ignore other xenos. LIKE GREASED WEASELS
-			if(ishuman(V) && charge_type != 2)
-				var/mob/living/carbon/human/H = V //Human shield block.
-				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
-					if(prob(45))	// If the human has riot shield in his hand,  65% chance
-						Weaken(3) //Stun the fucker instead
-						visible_message("<span class='danger'>\The [src] bounces off \the [H]'s shield!</span>", \
-						"<span class='danger'>You bounce off \the [H]'s shield!</span>")
-						throwing = 0
-						return
+		var/mob/living/carbon/M = hit_atom
+		if(!M.stat && !isXeno(M))
+			switch(charge_type)
+				if(1 to 2)
+					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
+						var/mob/living/carbon/human/H = M
+						if(H.check_shields(15, "the pounce")) //Human shield block.
+							Weaken(3)
+							throwing = FALSE //Reset throwing manually.
+							r_FAL
 
-				if(H.species && H.species.name == "Yautja" && prob(40))
-					visible_message("<span class='danger'>\The [H] emits a roar and body slams \the [src]!</span>", \
-					"<span class='danger'>\The [H] emits a roar and body slams you!</span>")
-					Weaken(4)
-					throwing = 0
-					return
+						if(isYautja(H) && prob(40)) //Another chance for the predator to block the pounce.
+							visible_message("<span class='danger'>[H] body slams [src]!</span>",
+											"<span class='xenodanger'>[H] body slams you!</span>")
+							Weaken(4)
+							throwing = FALSE
+							r_FAL
 
-			if(charge_type == 3) //Runner
-				visible_message("<span class='danger'>\The [src] pounces on \the [V]!</span>", \
-				"<span class='danger'>You pounce on \the [V]!</span>")
-				V.Weaken(1)
-				canmove = 0
-				frozen = 1
-				loc = V.loc
-				throwing = 0 //Stop the movement
-				if(!is_robotic)
-					if(rand(0, 100) < 95)
-						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
-					else
-						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
-				spawn(1)
-					frozen = 0
+					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
+									"<span class='xenodanger'>You pounce on [M]!</span>")
+					M.Weaken(charge_type == 1 ? 1 : 3)
+					step_to(src, M)
+					canmove = FALSE
+					frozen = TRUE
+					if(!is_robotic) playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 50, 1)
+					spawn(charge_type == 1 ? 1 : 15) frozen = FALSE
 
-			if(charge_type == 1) //Hunter pounce.
-				visible_message("<span class='danger'>\The [src] pounces on \the [V]!</span>", \
-				"<span class='danger'>You pounce on \the [V]!</span>")
-				V.Weaken(3)
-				canmove = 0
-				frozen = 1
-				loc = V.loc
-				throwing = 0 //Stop the movement
-				if(!is_robotic)
-					if(rand(0, 100) < 95)
-						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
-					else
-						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
-				spawn(15)
-					frozen = 0
+				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
+					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) / (4 - upgrade)) //About 12.5 to 80 extra damage depending on upgrade level.
+					M.attack_alien(src,  extra_dam) //Ancients deal about twice as much damage on a charge as a regular slash.
+					M.Weaken(2)
 
-			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
-				V.attack_alien(src)
-				V.Weaken(2)
-				throwing = 0
+				if(4) //Predalien.
+					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 
-		return
+		throwing = FALSE //Resert throwing since something was hit.
+		r_TRU
 
-	..() //Do the rest normally - mostly turfs.
+	..() //Do the parent otherwise, for turfs.
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()

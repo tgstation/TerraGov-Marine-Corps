@@ -17,7 +17,7 @@
 	caste_desc = "A fast, powerful front line combatant."
 	speed = -1.6 //Not as fast as runners, but faster than other xenos
 	evolves_to = list("Ravager", "Crusher")
-	charge_type = 1 //Pounce - Hunter
+	charge_type = 2 //Pounce - Hunter
 	armor_deflection = 15
 	attack_delay = -2
 	tier = 2
