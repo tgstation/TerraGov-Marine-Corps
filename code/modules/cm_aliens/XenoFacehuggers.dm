@@ -18,6 +18,7 @@
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH|CANTSTRIP
 	flags_armor_protection = FACE|EYES
 	throw_range = 1
+	layer = MOB_LAYER
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
 	var/sterile = 0
@@ -366,6 +367,8 @@
 		var/mob/M = loc
 		M.drop_inv_item_on_ground(src)
 		M.update_icons()
+
+	layer = MOB_LAYER - 0.1 //so dead hugger appears below live hugger if stacked on same tile.
 
 	sleep(1800) //3 minute timer for it to decay
 	visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")

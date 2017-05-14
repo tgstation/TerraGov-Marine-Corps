@@ -514,7 +514,7 @@ var/list/slot_equipment_priority = list( \
 	if(health - halloss <= config.health_threshold_softcrit)
 		for(var/N in organs_by_name)
 			var/datum/organ/external/e = organs_by_name[N]
-			if(lying)
+			if(lying && !buckled)
 				if(((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
 					return 1
 					break
