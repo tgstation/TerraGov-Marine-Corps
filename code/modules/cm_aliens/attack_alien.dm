@@ -8,7 +8,7 @@
  */
 
 
-/mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M)
+/mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
 
 	if(isXenoLarva(M)) //Larvas have no means to attack humans
 		M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
@@ -69,7 +69,7 @@
 				r_FAL
 
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper) + dam_bonus
 
 			//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
 			if(M.frenzy_aura > 0)

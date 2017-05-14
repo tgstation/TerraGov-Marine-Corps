@@ -780,15 +780,6 @@
 				now_pushing = 0
 				return
 
-
-		if(L.r_hand && istype(L.r_hand, /obj/item/weapon/shield/riot))
-			if(prob(99))
-				now_pushing = 0
-				return
-		if(L.l_hand && istype(L.l_hand, /obj/item/weapon/shield/riot))
-			if(prob(99))
-				now_pushing = 0
-				return
 		if(!(L.status_flags & CANPUSH))
 			now_pushing = 0
 			return
@@ -809,4 +800,3 @@
 						return
 			step(AM, t)
 		now_pushing = 0
-

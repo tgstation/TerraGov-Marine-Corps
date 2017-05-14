@@ -129,10 +129,7 @@
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
 	if(istype(hit_atom,/mob/living))
 		var/mob/living/M = hit_atom
-		if(istype(src,/mob/living/carbon/Xenomorph) && istype(hit_atom,/mob/living/carbon/Xenomorph) )
-			//Do nothing.. This should stop xeno pounce/charge from bouncing them around
-		else
-			M.hitby(src,speed)
+		M.hitby(src,speed)
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom

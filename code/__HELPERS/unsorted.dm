@@ -1364,8 +1364,8 @@ proc/is_hot(obj/item/W as obj)
 	(locate(/obj/structure/stool/bed/roller, M.loc)) || \
 	(locate(/obj/structure/table/, M.loc)))//Sucess rate now handeled in surgery.dm
 
-/proc/reverse_direction(var/dir)
-	switch(dir)
+/proc/reverse_direction(direction)
+	switch(direction)
 		if(NORTH)
 			return SOUTH
 		if(NORTHEAST)
@@ -1382,6 +1382,18 @@ proc/is_hot(obj/item/W as obj)
 			return EAST
 		if(NORTHWEST)
 			return SOUTHEAST
+
+/proc/reverse_nearby_direction(direction)
+	switch(direction)
+		if(NORTH) 		. = list(SOUTH,     SOUTHEAST, SOUTHWEST)
+		if(NORTHEAST) 	. = list(SOUTHWEST, SOUTH,     WEST)
+		if(EAST) 		. = list(WEST,      SOUTHWEST, NORTHWEST)
+		if(SOUTHEAST) 	. = list(NORTHWEST, NORTH,     WEST)
+		if(SOUTH) 		. = list(NORTH,     NORTHEAST, NORTHWEST)
+		if(SOUTHWEST) 	. = list(NORTHEAST, NORTH,     EAST)
+		if(WEST) 		. = list(EAST,      NORTHEAST, SOUTHEAST)
+		if(NORTHWEST) 	. = list(SOUTHEAST, SOUTH,     EAST)
+
 
 /*
 Checks if that loc and dir has a item on the wall
