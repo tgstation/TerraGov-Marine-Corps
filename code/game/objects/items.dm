@@ -204,9 +204,10 @@ cases. Override_icon_state should be a list.*/
 				return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
-	pickup(user)
-	if(!user.put_in_active_hand(src))
-		dropped(user)
+	if(loc) //item may have been cdel'd by the drop above.
+		pickup(user)
+		if(!user.put_in_active_hand(src))
+			dropped(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
