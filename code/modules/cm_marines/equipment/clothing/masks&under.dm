@@ -457,7 +457,7 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/under/attackby(obj/item/I, mob/user)
 	if(hastie)
 		hastie.attackby(I, user)
-		return
+		return 1
 
 	if(!hastie && istype(I, /obj/item/clothing/tie))
 		user.drop_held_item()
