@@ -178,7 +178,7 @@ var/global/hive_orders = "" //What orders should the hive have
 			if(1) name = "\improper Elite Queen"	 //Mature
 			if(2) name = "\improper Elite Empress"	 //Elite
 			if(3) name = "\improper Ancient Empress" //Ancient
-	else if(caste == "Predalien") name = "\improper [caste] ([nicknumber])"
+	else if(caste == "Predalien") name = "\improper [name] ([nicknumber])"
 	else name = "\improper [upgrade_name] [caste] ([nicknumber])"
 
 	//Update linked data so they show up properly

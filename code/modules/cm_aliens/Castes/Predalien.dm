@@ -1,12 +1,11 @@
 /mob/living/carbon/Xenomorph/Predalien
 	caste = "Predalien"
-	name = "Predalien"
+	name = "Abomination"
 	desc = "A strange looking creature with fleshy strands on its head. It appears like a mixture of armor and flesh, smooth, but well carapaced."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Predalien Walking"
 	melee_damage_lower = 65
 	melee_damage_upper = 80
-	wall_smash = 1
 	health = 800 //A lot of health, but it doesn't regenerate.
 	maxHealth = 800
 	storedplasma = 300
@@ -20,16 +19,20 @@
 	tacklemin = 6
 	tacklemax = 10
 	tackle_chance = 80
-	is_intelligent = 1
 
-	middle_mouse_toggle = 1 //This toggles middle mouse clicking for certain abilities.
-	shift_mouse_toggle = 0 //The same, but for shift clicking.
+	wall_smash = TRUE
+	is_intelligent = TRUE
+	hardcore = TRUE
+
+	middle_mouse_toggle = TRUE
+	shift_mouse_toggle = FALSE
+
 	charge_type = 4
 	armor_deflection = 50
 	tunnel_delay = 0
 
 	pslash_delay = 0
-	bite_chance = 25 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
+	bite_chance = 25
 	evo_points = 0
 
 	pixel_x = -16
@@ -39,7 +42,12 @@
 	speed = -1.8
 	tier = 1
 	upgrade = -1
-	hardcore = 1
+
+	var/butchered_last //world.time to prevent spam.
+	var/butchered_sum = 0 //The number of people butchered. Lowers the health gained.
+
+	#define PREDALIEN_BUTCHER_COOLDOWN 140 //14 seconds.
+	#define PREDALIEN_BUTCHER_WAIT_TIME 120 //12 seconds.
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -53,11 +61,10 @@
 		..()
 		announce_spawn()
 
-
 /mob/living/carbon/Xenomorph/Predalien/proc/announce_spawn()
 	set waitfor = 0
 	sleep(30)
-	if(!loc) return
+	if(!loc) r_FAL
 	if(ticker && ticker.mode && ticker.mode.predators.len)
 		var/datum/mind/M
 		for(var/i in ticker.mode.predators)
@@ -83,10 +90,10 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
 		Pounce(A)
-		return
+		r_FAL
 	if(modifiers["shift"] && shift_mouse_toggle)
 		Pounce(A)
-		return
+		r_FAL
 	..()
 
 /mob/living/carbon/Xenomorph/Predalien/proc/claim_trophy()
@@ -96,40 +103,47 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 
 	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "<span class='xenowarning'>You're not able to do that right now.</span>"
-		return
+		r_FAL
 
-	var/list/choices = list()
-	for(var/mob/M in view(1,src)) //We are only interested in humans and predators.
+	var/choices[] = new
+	for(var/mob/M in view(1, src)) //We are only interested in humans and predators.
 		if(Adjacent(M) && ishuman(M) && M.stat) choices += M
 
-	var/mob/living/carbon/human/H = input(src,"From which corpse will you claim your trophy?") as null|anything in choices
+	var/mob/living/carbon/human/H = input(src, "From which corpse will you claim your trophy?") as null|anything in choices
 
-	if(!H || !H.loc) return
+	if(!H || !H.loc) r_FAL
 
 	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "<span class='xenowarning'>You're not able to do that right now.<span>"
-		return
+		r_FAL
 
 	if(!H.stat)
 		src << "<span class='xenowarning'>Your prey must be dead.</span>"
-		return
+		r_FAL
 
 	if(!Adjacent(H))
 		src << "<span class='xenowarning'>You have to be next to your target.</span>"
-		return
+		r_FAL
+
+	if(world.time <= butchered_last + PREDALIEN_BUTCHER_COOLDOWN)
+		src << "<span class='xenowarning'>You have recently attempted to butcher a carcass. Wait.</span>"
+		r_FAL
+
+	butchered_last = world.time
 
 	visible_message("<span class='danger'>[src] reaches down, angling its body toward [H], claws outstretched.</span>",
 	"<span class='xenonotice'>You stoop near the host's body, savoring the moment before you claim a trophy for your kill. You must stand still...</span>")
-	if(do_after(src, 120, FALSE) && Adjacent(H))
+	if(do_after(src, PREDALIEN_BUTCHER_WAIT_TIME, FALSE) && Adjacent(H))
 		var/datum/organ/external/head/O = H.get_organ("head")
 		if(!(O.status & ORGAN_DESTROYED))
-			H.apply_damage(150,BRUTE,"head",0,1,1)
-			if(!(O.status & ORGAN_DESTROYED)) O.droplimb(1,1) //Still not actually detached?
+			H.apply_damage(150, BRUTE, "head", FALSE, TRUE, TRUE)
+			if(!(O.status & ORGAN_DESTROYED)) O.droplimb(TRUE, TRUE) //Still not actually detached?
 			visible_message("<span class='danger'>[src] reaches down and rips off [H]'s spinal cord and skull!</span>",
 			"<span class='xenodanger'>You slice and pull on [H]'s head until it comes off in a bloody arc!</span>")
 			playsound(loc, 'sound/weapons/slice.ogg', 50)
 			emote("growl")
-			XENO_HEAL_WOUNDS(isYautja(H)? 15 : 5)
+			var/to_heal = max(1, 5 - (0.2 * (health < maxHealth ? butchered_sum++ : butchered_sum)))//So we do not heal multiple times due to the inline proc below.
+			XENO_HEAL_WOUNDS(isYautja(H)? 15 : to_heal) //Predators give far better healing.
 		else
 			visible_message("<span class='danger'>[src] slices and dices [H]'s body like a ragdoll!</span>",
 			"<span class='xenodanger'>You fly into a frenzy and butcher [H]'s body!</span>")
@@ -137,4 +151,7 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 			emote("growl")
 			var/i = 4
 			while(i--)
-				H.apply_damage(100,BRUTE,pick("r_leg","l_leg","r_arm","l_arm"),0,1,1)
+				H.apply_damage(100, BRUTE, pick("r_leg","l_leg","r_arm","l_arm"), FALSE, TRUE, TRUE)
+
+	#undef PREDALIEN_BUTCHER_COOLDOWN
+	#undef PREDALIEN_BUTCHER_WAIT_TIME
