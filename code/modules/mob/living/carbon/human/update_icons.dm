@@ -743,13 +743,12 @@ var/global/list/damage_icon_parts = list()
 				switch(squad)
 					if(1 to 4) standing.overlays += leader? helmetmarkings_sql[squad] : helmetmarkings[squad]
 
-			if(marine_helmet.overlays.len)
-				var/image/I
-				for(var/i in marine_helmet.helmet_overlays)
-					I = marine_helmet.helmet_overlays[i]
-					if(I)
-						I = image(I.icon,src,I.icon_state)
-						standing.overlays += I
+			var/image/I
+			for(var/i in marine_helmet.helmet_overlays)
+				I = marine_helmet.helmet_overlays[i]
+				if(I)
+					I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
+					standing.overlays += I
 
 		if(head.blood_DNA)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "helmetblood")
