@@ -567,11 +567,12 @@ var/list/slot_equipment_priority = list( \
 			return
 
 	var/mob/M
-	if(ismob(AM))
-		M = AM
-		if(M.pulledby)
-			M.pulledby.stop_pulling()
-			visible_message("<span class='warning'>[src] has broken [M.pulledby]'s grip on [M]!</span>")
+
+	if(AM.pulledby)
+		if(ismob(AM))
+			M = AM
+			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>")
+		AM.pulledby.stop_pulling()
 
 	pulling = AM
 	AM.pulledby = src
