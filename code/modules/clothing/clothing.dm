@@ -59,7 +59,7 @@
 	//Set species_restricted list
 	switch(target_species)
 		if("Human", "Skrell")	//humanoid bodytypes
-			species_restricted = list("exclude","Unathi","Tajara","Diona","Vox")
+			species_restricted = list("exclude","Unathi","Tajara","Vox")
 		else
 			species_restricted = list(target_species)
 
@@ -78,9 +78,9 @@
 	//Set species_restricted list
 	switch(target_species)
 		if("Skrell")
-			species_restricted = list("exclude","Unathi","Tajara","Diona","Vox")
+			species_restricted = list("exclude","Unathi","Tajara","Vox")
 		if("Human")
-			species_restricted = list("exclude","Skrell","Unathi","Tajara","Diona","Vox")
+			species_restricted = list("exclude","Skrell","Unathi","Tajara","Vox")
 		else
 			species_restricted = list(target_species)
 
@@ -196,6 +196,3 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
-
-
-

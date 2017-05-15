@@ -229,7 +229,7 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 					)
 
 /proc/get_paygrades(paygrade, size, gender)
-	if(!paygrade) return ""
+	if(!paygrade) return
 	switch(paygrade)
 		if("C") . = size ? "" : "Civilian"
 		if("CD") . = size ? "Dr. " : "Doctor"
@@ -261,7 +261,6 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 		if("O7") . = size ? "ADM " : "Admiral"
 		if("O8") . = size ? "FADM " : "Fleet Admiral"
 		if("O9") . = size ? "SMR " : "Sky Marshal"
-		else return ""
 
 #define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E6E","E7","E8","E8E","E9","E9E","O1","O2","O3","O4")
 #define PAYGRADES_OFFICER list("O1","O2","O3","O4")

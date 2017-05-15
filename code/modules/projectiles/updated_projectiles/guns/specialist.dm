@@ -36,7 +36,7 @@
 	icon_state = "m42a"
 	item_state = "m42a"
 	origin_tech = "combat=6;materials=5"
-	fire_sound = list('sound/weapons/gun_sniper.ogg')
+	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	zoomdevicename = "scope"
@@ -81,7 +81,7 @@
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
 	origin_tech = "combat=7;materials=5"
-	fire_sound = list('sound/weapons/sniper_heavy.ogg')
+	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	zoomdevicename = "scope"
@@ -128,7 +128,7 @@
 	icon_state = "svd003"
 	item_state = "svd003" //NEEDS A ONE HANDED STATE
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = list('sound/weapons/gun_kt42.ogg')
+	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -173,7 +173,7 @@
 	icon_state = "m56"
 	item_state = "m56"
 	origin_tech = "combat=6;materials=5"
-	fire_sound = list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')
+	fire_sound = "gun_smartgun"
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
 	flags_equip_slot = NOFLAGS
 	w_class = 5
@@ -280,7 +280,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	fire_sound = list('sound/weapons/armbomb.ogg')
+	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6

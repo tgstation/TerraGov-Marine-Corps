@@ -222,7 +222,6 @@
 	var/locked = 0
 	var/atom/target = null
 	var/mob/living/carbon/human/worker = null
-	var/mob/living/silicon/pai = null //Are we being controlled by a pAI?
 	var/manual_override = 0
 	var/on = 0
 	var/health = 200
@@ -265,8 +264,6 @@
 			target = null
 		if(worker)
 			worker = null
-		if(pai)
-			pai = null
 		SetLuminosity(0)
 		processing_objects.Remove(src)
 		..()
@@ -296,7 +293,6 @@
 		dir_locked = 1
 		target = null
 		worker = null
-		pai = null
 		on = 1
 		SetLuminosity(7)
 		if(!camera)

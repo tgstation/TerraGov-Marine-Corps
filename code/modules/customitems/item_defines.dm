@@ -251,14 +251,6 @@
 	icon_on = "redzippoon"
 	icon_off = "redzippo"
 
-////////////////////////////// Tudoreleuu - Emilia Scotts - Customized pAI /////////////
-
-/obj/item/device/paicard/fluff/emilia_scotts
-	name = "Customized pAI unit"
-	desc = "It seems to be a pAI Unit, albeit in a different shell. It acts exactly like the normal one. "
-	icon = 'icons/obj/custom_items.dmi'
-	icon_state = "customized_pai"
-
 ////////////////////////////// Vivallion - Isaac Jachym - Butterfly Lighter ////////////
 
 /obj/item/weapon/flame/lighter/zippo/fluff/isaac_jachym

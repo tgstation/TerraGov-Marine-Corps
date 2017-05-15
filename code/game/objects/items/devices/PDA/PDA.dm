@@ -50,8 +50,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/obj/item/weapon/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null //related to above
 
-	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
-
 /obj/item/device/pda/examine()
 	..()
 	if(get_dist(usr, src) <= 1)
@@ -185,7 +183,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	icon_state = "pda-gene"
 
 
-// Special AI/pAI PDAs that cannot explode.
+// Special AI PDAs that cannot explode.
 /obj/item/device/pda/ai
 	icon_state = "NONE"
 	ttone = "data"
@@ -263,11 +261,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		honkamt--
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
 	return
-
-
-/obj/item/device/pda/ai/pai
-	ttone = "assist"
-
 
 /*
  *	The Actual PDA
@@ -349,7 +342,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	data["mode"] = mode					// The current view
 	data["scanmode"] = scanmode				// Scanners
 	data["fon"] = fon					// Flashlight on?
-	data["pai"] = (isnull(pai) ? 0 : 1)			// pAI inserted?
 	data["note"] = note					// current pda notes
 	data["silent"] = silent					// does the pda make noise when it receives a message?
 	data["toff"] = toff					// is the messenger function turned off?
@@ -741,26 +733,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				ui.close()
 				return 0
 
-//pAI FUNCTIONS===================================
-		if("pai")
-			if(pai)
-				if(pai.loc != src)
-					pai = null
-				else
-					switch(href_list["option"])
-						if("1")		// Configure pAI device
-							pai.attack_self(U)
-						if("2")		// Eject pAI device
-							var/turf/T = get_turf_or_move(src.loc)
-							if(T)
-								pai.loc = T
-								pai = null
-
-		else
-			mode = text2num(href_list["choice"])
-			if(cartridge)
-				cartridge.mode = mode
-
 //EXTRA FUNCTIONS===================================
 
 	if (mode == 2||mode == 21)//To clear message overlays.
@@ -933,10 +905,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/mob/living/L = null
 		if(P.loc && isliving(P.loc))
 			L = P.loc
-		//Maybe they are a pAI!
-		else
-			L = get(P, /mob/living/silicon)
-
 
 		if(L)
 			L << "\icon[P] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;notap=[istype(L, /mob/living/silicon)];skiprefresh=1;target=\ref[src]'>Reply</a>)"
@@ -1275,8 +1243,3 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							/obj/item/weapon/cartridge/signal/science,
 							/obj/item/weapon/cartridge/quartermaster)
 		new newcart(src)
-
-// Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
-/obj/item/device/pda/emp_act(severity)
-	for(var/atom/A in src)
-		A.emp_act(severity)

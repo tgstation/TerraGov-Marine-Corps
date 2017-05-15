@@ -451,14 +451,7 @@
 						M:antibodies |= V.antigen
 						if(prob(50))
 							M.radiation += 50 // curing it that way may kill you instead
-							var/absorbed
-							if(istype(C,/mob/living/carbon))
-								var/mob/living/carbon/H = C
-								var/datum/organ/internal/diona/nutrients/rad_organ = locate() in H.internal_organs
-								if(rad_organ && !rad_organ.is_broken())
-									absorbed = 1
-							if(!absorbed)
-								M.adjustToxLoss(100)
+							M.adjustToxLoss(100)
 
 	reaction_turf(var/turf/T, var/volume)
 		src = null
@@ -754,4 +747,3 @@
 	description = "A secondary amine, mildly corrosive."
 	reagent_state = LIQUID
 	color = "#604030" // rgb: 96, 64, 48
-

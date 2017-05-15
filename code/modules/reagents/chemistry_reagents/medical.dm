@@ -155,7 +155,6 @@
 		if(M.stat == 2.0)
 			return
 		if(!M) M = holder.my_atom
-		//This needs a diona check but if one is added they won't be able to heal burn damage at all.
 		M.heal_organ_damage(0,2*REM)
 
 
@@ -174,7 +173,7 @@
 		if(M.stat == DEAD) //THE GUY IS **DEAD**! BEREFT OF ALL LIFE HE RESTS IN PEACE etc etc. He does NOT metabolise shit anymore, god DAMN
 			return
 		if(!M) M = holder.my_atom
-		if(!alien || alien != IS_DIONA)
+		if(!alien)
 			M.heal_organ_damage(0,3*REM)
 
 
@@ -196,7 +195,7 @@
 
 		if(alien && alien == IS_VOX)
 			M.adjustToxLoss(2*REM)
-		else if(!alien || alien != IS_DIONA)
+		else if(!alien)
 			M.adjustOxyLoss(-2*REM)
 
 		holder.remove_reagent("lexorin", 2*REM)
@@ -220,7 +219,7 @@
 
 		if(alien && alien == IS_VOX)
 			M.adjustOxyLoss()
-		else if(!alien || alien != IS_DIONA)
+		else if(!alien)
 			M.adjustOxyLoss(-M.getOxyLoss())
 
 		holder.remove_reagent("lexorin", 2*REM)
@@ -244,7 +243,7 @@
 		if(volume > overdose)
 			M.adjustBrainLoss(2)
 		if(!M) M = holder.my_atom
-		if(!alien || alien != IS_DIONA)
+		if(!alien)
 			if(M.getOxyLoss()) M.adjustOxyLoss(-1*REM)
 			if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(1*REM,0)
 			if(M.getFireLoss() && prob(80)) M.heal_organ_damage(0,1*REM)
@@ -270,7 +269,7 @@
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 				E.damage += rand(2, 4)
-		if(!alien || alien != IS_DIONA)
+		if(!alien)
 			M.reagents.remove_all_type(/datum/reagent/toxin, 1*REM, 0, 1)
 			M.drowsyness = max(M.drowsyness-2*REM, 0)
 			M.hallucination = max(0, M.hallucination - 5*REM)
@@ -515,7 +514,7 @@
 		if(M.stat == DEAD)
 			return
 		if(!M) M = holder.my_atom
-		if(alien != IS_DIONA)
+		if(alien)
 			M.heal_organ_damage(2*REM,0)
 
 /datum/reagent/quickclot

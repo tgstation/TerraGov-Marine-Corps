@@ -311,9 +311,6 @@
 	dat += text("Paralysis Summary %: [] ([] seconds left!)<br>", occ["paralysis"], round(occ["paralysis"] / 4))
 	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
 
-	if(occ["borer_present"])
-		dat += "Large growth detected in frontal lobe, possibly cancerous. Surgical removal is recommended.<br>"
-
 	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", (occ["blood_amount"] > 448 ?"<font color='blue'>" : "<font color='red'>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])
 
 	dat += text("Inaprovaline: [] units<BR>", occ["inaprovaline_amount"])

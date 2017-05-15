@@ -58,7 +58,7 @@
 	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
-	fire_sound = list('sound/weapons/gun_smg.ogg')
+	fire_sound = 'sound/weapons/gun_smg.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -164,7 +164,7 @@
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10x24mm caseless ammunition."
 	icon_state = "m41amk1" //Placeholder.
 	item_state = "m41amk1" //Placeholder.
-	fire_sound = list('sound/weapons/gun_m41a_1.ogg','sound/weapons/gun_m41a_2.ogg','sound/weapons/gun_m41a_3.ogg','sound/weapons/gun_m41a_4.ogg','sound/weapons/gun_m41a_5.ogg','sound/weapons/gun_m41a_6.ogg')
+	fire_sound = "gun_pulse"
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -206,7 +206,7 @@
 	icon_state = "mar40"
 	item_state = "mar40"
 	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = list('sound/weapons/gun_mar40.ogg')
+	fire_sound = 'sound/weapons/gun_mar40.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/mar40
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -239,7 +239,7 @@
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
-	fire_sound = list('sound/weapons/gun_ak47.ogg') //Change
+	fire_sound = 'sound/weapons/gun_ak47.ogg' //Change
 
 	New()
 		..()
@@ -264,7 +264,7 @@
 	icon_state = "m16"
 	item_state = "m16"
 	origin_tech = "combat=4;materials=3"
-	fire_sound = list('sound/weapons/gun_mar40.ogg')
+	fire_sound = 'sound/weapons/gun_mar40.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -307,7 +307,7 @@
 	icon_state = "m41ae2"
 	item_state = "m41ae2"
 	origin_tech = "combat=5;materials=4"
-	fire_sound = list('sound/weapons/gun_rifle.ogg') //Change
+	fire_sound = 'sound/weapons/gun_rifle.ogg' //Change
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,

@@ -26,9 +26,6 @@
 	h_style = "Bald"
 	..(new_loc, "Vox Armalis")
 
-/mob/living/carbon/human/diona/New(var/new_loc)
-	..(new_loc, "Diona")
-
 /mob/living/carbon/human/machine/New(var/new_loc)
 	h_style = "blue IPC screen"
 	..(new_loc, "Machine")

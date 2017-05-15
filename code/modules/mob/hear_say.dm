@@ -160,9 +160,6 @@
 		else if (isrobot(speaker))
 			jobname = "Cyborg"
 			comm_paygrade = ""
-		else if (istype(speaker, /mob/living/silicon/pai))
-			jobname = "Personal AI"
-			comm_paygrade = ""
 		else
 			jobname = "Unknown"
 			comm_paygrade = ""

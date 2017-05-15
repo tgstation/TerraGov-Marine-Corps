@@ -65,11 +65,6 @@
 		return 1
 	return 0
 
-/proc/ispAI(A)
-	if(istype(A, /mob/living/silicon/pai))
-		return 1
-	return 0
-
 /proc/iscarbon(A)
 	if(istype(A, /mob/living/carbon))
 		return 1

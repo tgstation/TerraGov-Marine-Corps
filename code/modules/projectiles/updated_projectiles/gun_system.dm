@@ -7,11 +7,11 @@
 	var/muzzle_flash 	= "muzzle_flash"
 	matter = list("metal" = 75000)
 	origin_tech = "combat=1" //Guns generally have their own unique levels.
-	w_class 	= 3.0
+	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
 	throw_range = 5
-	force 		= 5.0
+	force 		= 5
 	attack_verb = null
 	icon_action_button = null //Adds it to the quick-icon list
 
@@ -639,7 +639,7 @@ and you're good to go.
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
-	var/actual_sound = pick(fire_sound)
+	var/actual_sound = fire_sound
 	var/sound_volume = flags_gun_features & GUN_SILENCED ? 20 : 50
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.

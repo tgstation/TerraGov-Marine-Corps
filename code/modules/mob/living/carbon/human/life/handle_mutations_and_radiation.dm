@@ -21,16 +21,6 @@
 	radiation = Clamp(radiation,0,100)
 
 	if(radiation)
-		var/datum/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
-		if(rad_organ && !rad_organ.is_broken())
-			var/rads = radiation/25
-			radiation -= rads
-			nutrition += rads
-			adjustBruteLoss(-(rads))
-			adjustOxyLoss(-(rads))
-			adjustToxLoss(-(rads))
-			updatehealth()
-			return
 
 		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
@@ -69,4 +59,3 @@
 			if(organs.len)
 				var/datum/organ/external/O = pick(organs)
 				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
-

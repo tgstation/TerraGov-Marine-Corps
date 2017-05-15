@@ -14,7 +14,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 
 	//Species-specific stuff.
-	species_restricted = list("exclude","Unathi","Tajara","Skrell","Diona","Vox")
+	species_restricted = list("exclude","Unathi","Tajara","Skrell","Vox")
 	sprite_sheets_refit = list(
 		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
 		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
@@ -71,7 +71,7 @@
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 
-	species_restricted = list("exclude","Unathi","Tajara","Diona","Vox")
+	species_restricted = list("exclude","Unathi","Tajara","Vox")
 	sprite_sheets_refit = list(
 		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
 		"Tajara" = 'icons/mob/species/tajaran/suit.dmi',

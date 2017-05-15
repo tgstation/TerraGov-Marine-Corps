@@ -203,7 +203,7 @@ should be alright.
 	set waitfor = 0
 	sleep(3)
 	if(loc && user)
-		if(isnull(user.s_store) && isturf(src.loc))
+		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
 			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
 			if(user.s_store == src) user << "<span class='warning'>[src] snaps into place on [I].</span>"

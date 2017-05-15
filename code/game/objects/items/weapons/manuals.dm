@@ -253,45 +253,6 @@
 			</html>
 			"}
 
-
-/obj/item/weapon/book/manual/hydroponics_pod_people
-	name = "The Diona Harvest - From Seed to Market"
-	icon_state ="bookHydroponicsPodPeople"
-	author = "Farmer John"
-	title = "The Diona Harvest - From Seed to Market"
-
-	dat = {"<html>
-				<head>
-				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
-				body {font-size: 13px; font-family: Verdana;}
-				</style>
-				</head>
-				<body>
-				<h3>Growing a Diona</h3>
-
-				Growing a Diona is easy!
-				<p>
-				<ol>
-					<li>Take a syringe of blood from the body you wish to turn into a Diona.</li>
-					<li>Inject 5 units of blood into the pack of dionaea-replicant seeds.</li>
-					<li>Plant the seeds.</li>
-					<li>Tend to the plants water and nutrition levels until it is time to harvest the Diona.</li>
-				</ol>
-				<p>
-				Note that for a successful harvest, the body from which the blood was taken from must be dead BEFORE harvesting the pod, however the pod can be growing while they are still alive. Otherwise, the soul would not be able to migrate to the new Diona body.<br><br>
-
-				It really is that easy! Good luck!
-
-				</body>
-				</html>
-				"}
-
-
 /obj/item/weapon/book/manual/medical_cloning
 	name = "Cloning Techniques of the 26th Century"
 	icon_state ="bookCloning"

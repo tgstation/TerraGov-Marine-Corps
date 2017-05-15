@@ -158,7 +158,6 @@ var/global/list/frozen_items = list()
 		/obj/item/weapon/card/id/captains_spare,
 		/obj/item/device/aicard,
 		/obj/item/device/mmi,
-		/obj/item/device/paicard,
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,

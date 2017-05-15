@@ -40,7 +40,7 @@
 		var/far_dist = 0
 		far_dist += heavy_impact_range * 5
 		far_dist += devastation_range * 20
-		var/frequency = get_rand_frequency()
+		var/frequency = GET_RANDOM_FREQ
 		for(var/mob/M in player_list)
 			// Double check for client
 			if(M && M.client)

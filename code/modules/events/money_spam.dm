@@ -59,7 +59,7 @@
 					message = pick("Luxury watches for Blowout sale prices!",\
 					"Watches, Jewelry & Accessories, Bags & Wallets !",\
 					"Deposit 100$ and get 300$ totally free!",\
-					" 100K NT.|WOWGOLD õnly $89            <HOT>",\
+					" 100K NT.|WOWGOLD ï¿½nly $89            <HOT>",\
 					"We have been filed with a complaint from one of your customers in respect of their business relations with you.",\
 					"We kindly ask you to open the COMPLAINT REPORT (attached) to reply on this complaint..")
 				if(4)
@@ -112,7 +112,6 @@
 			var/mob/living/L = null
 			if(P.loc && isliving(P.loc))
 				L = P.loc
-			//Maybe they are a pAI!
 			else
 				L = get(P, /mob/living/silicon)
 

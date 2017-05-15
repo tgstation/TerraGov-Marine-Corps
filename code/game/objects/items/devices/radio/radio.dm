@@ -277,10 +277,6 @@
 	else if (isrobot(M))
 		jobname = "Cyborg"
 
-	// --- Personal AI (pAI) ---
-	else if (istype(M, /mob/living/silicon/pai))
-		jobname = "Personal AI"
-
 	// --- Unidentifiable mob ---
 	else
 		jobname = "Unknown"
