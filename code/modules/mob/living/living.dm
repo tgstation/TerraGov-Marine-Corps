@@ -416,7 +416,10 @@
 	set name = "Resist"
 	set category = "IC"
 
-	if(!isliving(usr) || usr.next_move > world.time || usr.stat || usr.weakened || usr.stunned || usr.paralysis)
+	if(!isliving(usr) || usr.next_move > world.time)
+		return
+	if(usr.stat || usr.weakened || usr.stunned || usr.paralysis)
+		src << "<span class='warning'>You can't resist in your current state.</span>"
 		return
 	var/mob/living/L = usr
 	usr.next_move = world.time + 20
