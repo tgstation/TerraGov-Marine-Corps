@@ -388,18 +388,21 @@
 	else if(is_bleeding["right foot"])
 		display_shoes = 1
 	if(display_chest)
-		msg += "<span class='warning'><b>[src] has blood soaking through from under [t_his] clothing!</b></span>\n"
+		msg += "<span class='warning'><b>[t_He] has blood soaking through from under [t_his] clothing!</b></span>\n"
 	if(display_shoes)
-		msg += "<span class='warning'><b>[src] has blood running from [t_his] shoes!</b></span>\n"
+		msg += "<span class='warning'><b>[t_He] has blood running from [t_his] shoes!</b></span>\n"
 	if(display_gloves)
-		msg += "<span class='warning'><b>[src] has blood running from under [t_his] gloves!</b></span>\n"
+		msg += "<span class='warning'><b>[t_He] has blood running from under [t_his] gloves!</b></span>\n"
+
+	if(chestburst)
+		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
 
 	if (stat == 2 && isXeno(usr))
 		msg += "\n<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
 
 
 	for(var/implant in get_visible_implants(0))
-		msg += "<span class='warning'><b>[src] has \a [implant] sticking out of [t_his] flesh!</span>\n"
+		msg += "<span class='warning'><b>[t_He] has \a [implant] sticking out of [t_his] flesh!</span>\n"
 	if(digitalcamo)
 		msg += "[t_He] [t_is] repulsively uncanny!\n"
 
