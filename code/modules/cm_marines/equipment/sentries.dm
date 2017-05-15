@@ -386,7 +386,13 @@
 	usr.set_machine(src)
 	switch(href_list["op"])
 		if("direction")
-			if(alert(usr,"Do you want to turn on the direction lock? This will keep the turret aimed where it's facing.","Direction Lock", "Yes", "No") == "Yes")
+			var/alert_input = alert(usr,"Do you want to turn on the direction lock? This will keep the turret aimed where it's facing.","Direction Lock", "Yes", "No")
+			if(user.stat || get_dist(src.loc, user.loc) < 1)
+				return
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+				return
+
+			if(alert_input == "Yes")
 				if(dir_locked)
 					usr << "It's already direction locked."
 				else
@@ -401,7 +407,12 @@
 					visible_message("\icon[src] The [src]'s turret begins turning side to side.")
 					usr << "\blue You deactivate the direction lock."
 		if("burst")
-			if(alert(usr,"Do you want to turn on the burst fire function? It will be much less accurate.","Burst Fire", "Yes", "No") == "Yes")
+			var/alert_input = alert(usr,"Do you want to turn on the burst fire function? It will be much less accurate.","Burst Fire", "Yes", "No")
+			if(user.stat || get_dist(src.loc, user.loc) < 1)
+				return
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+				return
+			if(alert_input == "Yes")
 				if(burst_fire)
 					usr << "It's already firing in a burst."
 				else
@@ -417,7 +428,12 @@
 					visible_message("\icon[src] A green light on [src] blinks slowly.")
 					usr << "\blue You deactivate the burst fire mode."
 		if("safety")
-			if(alert(usr,"Do you want to turn on the safety lock? It will not stop firing when a friendly is in the way.","Safety", "Yes", "No") == "Yes")
+			var/alert_input = alert(usr,"Do you want to turn on the safety lock? It will not stop firing when a friendly is in the way.","Safety", "Yes", "No")
+			if(user.stat || get_dist(src.loc, user.loc) < 1)
+				return
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+				return
+			if(alert_input == "Yes")
 				if(!safety_off)
 					usr << "It's already safety locked."
 				else

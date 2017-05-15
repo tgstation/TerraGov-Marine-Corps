@@ -22,6 +22,7 @@
 		if (R.use(4))
 			new /obj/item/weapon/table_parts/reinforced(get_turf(loc))
 			user << "<span class='notice'>You reinforce the [name].</span>"
+			user.temp_drop_inv_item(src)
 			del(src)
 		else
 			user << "<span class='warning'>You need at least four rods to reinforce the [name].</span>"
