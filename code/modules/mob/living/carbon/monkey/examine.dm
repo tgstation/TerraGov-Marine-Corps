@@ -41,6 +41,9 @@
 			msg += "It isn't responding to anything around it; it seems to be asleep.\n"
 		msg += "</span>"
 
+	if(chestburst)
+		msg += "<span class='warning'><b>It has a big hole in its chest!</b></span>\n"
+
 	if (src.digitalcamo)
 		msg += "It is repulsively uncanny!\n"
 

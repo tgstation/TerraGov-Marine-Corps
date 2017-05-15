@@ -1003,7 +1003,7 @@ var/global/list/damage_icon_parts = list()
 	var/image/face_lying_image = new /image(icon = face_lying)
 	return face_lying_image
 
-/mob/living/carbon/human/update_burst(var/update_icons=1)
+/mob/living/carbon/human/update_burst()
 	remove_overlay(BURST_LAYER)
 	var/image/standing
 	if(chestburst == 1)
