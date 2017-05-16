@@ -62,9 +62,9 @@
 
 /obj/structure/morgue/attack_hand(mob/user as mob)
 	if (src.connected)
-		for(var/atom/movable/A as mob|obj in src.connected.loc)
+		for(var/atom/movable/A in src.connected.loc)
 			if (!( A.anchored ))
-				A.loc = src
+				A.forceMove(src)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		//src.connected = null
 		del(src.connected)
@@ -77,8 +77,8 @@
 		if (T.contents.Find(src.connected))
 			src.connected.connected = src
 			src.icon_state = "morgue0"
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.connected.loc
+			for(var/atom/movable/A in src)
+				A.forceMove(connected.loc)
 			src.connected.icon_state = "morguet"
 			src.connected.dir = src.dir
 		else
@@ -160,7 +160,7 @@
 		return
 	if (!ismob(user) || user.stat || user.lying || user.stunned)
 		return
-	O.loc = src.loc
+	O.forceMove(loc)
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))

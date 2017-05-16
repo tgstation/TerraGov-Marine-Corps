@@ -358,19 +358,10 @@
 		if(get_dist(src, pulling) > 1 || ((pull_dir - 1) & pull_dir)) //puller and pullee more than one tile away or in diagonal position
 			if(isliving(pulling))
 				var/mob/living/M = pulling
-				//this is the gay blood on floor shit -- Added back -- Skie
-				if (M.lying && (prob(M.getBruteLoss() / 6)) && M.stat != DEAD)
-					var/turf/location = M.loc
-					if (istype(location, /turf))
-						location.add_blood(M)
-				//pull damage with injured people
-					if(prob(25))
-						M.adjustBruteLoss(1)
-						visible_message("\red \The [M]'s wounds open more from being dragged!")
 				if(M.pull_damage() && grab_level < GRAB_AGGRESSIVE) //aggressive grab prevent wounds worsening when being pulled.
 					if(prob(25) && M.stat != DEAD)
 						M.adjustBruteLoss(2)
-						visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
+						visible_message("<span class='danger'>[M]'s wounds worsen terribly from being dragged!</span>")
 						var/turf/location = M.loc
 						if (istype(location, /turf))
 							location.add_blood(M)
