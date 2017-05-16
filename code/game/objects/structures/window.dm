@@ -15,6 +15,7 @@
 	var/shardtype = /obj/item/weapon/shard
 	var/obj/structure/window_frame/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/windowknock_cooldown = 0
+	var/static_frame = 0 //True/false. If true, can't move the window
 
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
@@ -97,7 +98,7 @@
 		tforce = I.throwforce
 	if(reinf) tforce *= 0.25
 	health = max(0, health - tforce)
-	if(health <= 7 && !reinf)
+	if(health <= 7 && !reinf && !static_frame)
 		anchored = 0
 		update_nearby_icons()
 		step(src, get_dir(AM, src))
@@ -154,13 +155,13 @@
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/window/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
+	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)
 		var/obj/item/weapon/grab/G = W
-		if(istype(G.grabbed_thing,/mob/living))
+		if(istype(G.grabbed_thing, /mob/living))
 			var/mob/living/M = G.grabbed_thing
 			var/state = user.grab_level
 			user.drop_held_item()
-			switch (state)
+			switch(state)
 				if(GRAB_PASSIVE)
 					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 					M.apply_damage(7)
@@ -186,23 +187,30 @@
 			state = 3 - state
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			user << (state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>")
-		else if(reinf && state == 0)
+		else if(reinf && state == 0 && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>")
-		else if(!reinf)
+		else if(!reinf && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
+		else if(static_frame && state == 0)
+			var/obj/item/stack/sheet/glass/reinforced/G = new /obj/item/stack/sheet/glass/reinforced(loc)
+			G.amount = 2
+			var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
+			new_window_frame.icon_state = "[icon_state]_frame"
+			new_window_frame.dir = dir
+			del(src)
 	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
 	else
 		health -= W.force
-		if(health <= 7  && !reinf)
+		if(health <= 7  && !reinf && !static_frame)
 			anchored = 0
 			update_nearby_icons()
 			step(src, get_dir(user, src))
@@ -215,6 +223,8 @@
 	set category = "Object"
 	set src in oview(1)
 
+	if(static_frame)
+		return 0
 	if(anchored)
 		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
 		return 0
@@ -230,6 +240,8 @@
 	set category = "Object"
 	set src in oview(1)
 
+	if(static_frame)
+		return 0
 	if(anchored)
 		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
 		return 0
