@@ -85,3 +85,22 @@
 
 /obj/item/weapon/storage/internal/Adjacent(var/atom/neighbor)
 	return master_item.Adjacent(neighbor)
+
+
+/obj/item/weapon/storage/internal/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+	. = ..()
+	master_item.on_pocket_insertion()
+
+
+/obj/item/weapon/storage/internal/remove_from_storage(obj/item/W as obj, atom/new_location)
+	. = ..()
+	master_item.on_pocket_removal()
+
+
+//things to do when an item is inserted in the obj's internal pocket
+/obj/item/proc/on_pocket_insertion()
+	return
+
+//things to do when an item is removed in the obj's internal pocket
+/obj/item/proc/on_pocket_removal()
+	return
