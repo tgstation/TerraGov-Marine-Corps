@@ -299,11 +299,13 @@
 	get_squad_from_card(M)	//This normally returns a squad # but also sets unsquadded people, so we can use it.
 	M.update_inv_head(0) //Don't do a full update yet
 	M.update_inv_wear_suit()
+	M.hud_updateflag |= 1 << SQUAD_HUD
 	..(M, slot)
 
-/obj/item/weapon/card/id/dropped(mob/user as mob)
-	if(!istype(user,/mob/living/carbon/human)) return ..(user)
-
-	user.update_inv_head(0) //Don't do a full update yet
-	user.update_inv_wear_suit()
+/obj/item/weapon/card/id/dropped(mob/user)
+	if(!istype(user,/mob/living/carbon/human)) return ..()
+	var/mob/living/carbon/human/H = user
+	H.update_inv_head() //Don't do a full update yet
+	H.update_inv_wear_suit()
+	H.hud_updateflag |= 1 << SQUAD_HUD
 	..(user)

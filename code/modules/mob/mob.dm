@@ -231,10 +231,14 @@ var/list/slot_equipment_priority = list( \
 	if (!tile)
 		return 0
 
+	if(recently_pointed_to > world.time)
+		return 0
+
 	if(next_move > world.time)
 		return 0
 
 	next_move = world.time + 2
+	recently_pointed_to = world.time + 50
 
 	new /obj/effect/overlay/temp/point(tile)
 	visible_message("<b>[src]</b> points to [A]")

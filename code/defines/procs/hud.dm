@@ -12,9 +12,6 @@ proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 		if(P.Mob.see_invisible < patient.invisibility)
 			continue
 
-		if(!ishuman(patient))
-			continue
-
 		var/mob/living/carbon/human/H = patient
 		if(H.species && H.species.name == "Yautja")
 			continue
@@ -40,8 +37,6 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
 
-		if(!ishuman(perp)) continue
-
 		if(isYautja(perp)) continue
 
 		P.Client.images += perp.hud_list[ID_HUD]
@@ -50,6 +45,23 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 			P.Client.images += perp.hud_list[IMPTRACK_HUD]
 			P.Client.images += perp.hud_list[IMPLOYAL_HUD]
 			P.Client.images += perp.hud_list[IMPCHEM_HUD]
+
+
+//Medical HUD outputs. Called by the Life() proc of the mob using it, usually.
+proc/process_squad_hud(var/mob/M, var/mob/Alt)
+	if(!can_process_hud(M))
+		return
+
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, med_hud_users)
+	for(var/mob/living/carbon/human/H in P.Mob.in_view(P.Turf))
+		if(P.Mob.see_invisible < H.invisibility)
+			continue
+
+		if(H.species && H.species.name == "Yautja")
+			continue
+
+		P.Client.images += H.hud_list[SQUAD_HUD]
+
 
 datum/arranged_hud_process
 	var/client/Client

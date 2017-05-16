@@ -147,15 +147,17 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 // for secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
-#define HEALTH_HUD		1 // a simple line rounding the mob's number health
-#define STATUS_HUD		2 // alive, dead, diseased, etc.
-#define ID_HUD			3 // the job asigned to your ID
-#define WANTED_HUD		4 // wanted, released, parroled, security status
+#define HEALTH_HUD			1 // a simple line rounding the mob's number health
+#define STATUS_HUD			2 // alive, dead, diseased, etc.
+#define ID_HUD				3 // the job asigned to your ID
+#define WANTED_HUD			4 // wanted, released, parroled, security status
 #define IMPLOYAL_HUD		5 // loyality implant
-#define IMPCHEM_HUD		6 // chemical implant
+#define IMPCHEM_HUD			6 // chemical implant
 #define IMPTRACK_HUD		7 // tracking implant
 #define SPECIALROLE_HUD 	8 // AntagHUD image
 #define STATUS_HUD_OOC		9 // STATUS_HUD without virus db check for someone being ill.
+#define SQUAD_HUD			10//squad hud showing who's leader, medic, etc for each squad.
+#define TOTAL_HUD_AMOUNT	10
 //=================================================
 
 //computer3 error codes, move lower in the file when it passes dev -Sayu
