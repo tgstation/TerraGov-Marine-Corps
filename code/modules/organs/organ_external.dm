@@ -622,10 +622,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/obj/organ	//Dropped limb object
 		switch(body_part)
 			if(HEAD)
-				if(owner.species.flags & IS_SYNTHETIC)
-					organ= new /obj/item/weapon/organ/head/posi(owner.loc, owner)
-				else
-					organ= new /obj/item/weapon/organ/head(owner.loc, owner)
+				//if(owner.species.flags & IS_SYNTHETIC) //TODO New organs for synths.
+				organ= new /obj/item/weapon/organ/head(owner.loc, owner)
 				owner.drop_inv_item_on_ground(owner.glasses)
 				owner.drop_inv_item_on_ground(owner.head)
 				owner.drop_inv_item_on_ground(owner.l_ear)
@@ -1118,9 +1116,6 @@ obj/item/weapon/organ/head
 	var/mob/living/carbon/brain/brainmob
 	var/brain_op_stage = 0
 
-/obj/item/weapon/organ/head/posi
-	name = "robotic head"
-
 obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
@@ -1209,12 +1204,8 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 				msg_admin_attack("[user] ([user.ckey]) debrained [brainmob] ([brainmob.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 				//TODO: ORGAN REMOVAL UPDATE.
-				if(istype(src,/obj/item/weapon/organ/head/posi))
-					var/obj/item/device/mmi/posibrain/B = new(loc)
-					B.transfer_identity(brainmob)
-				else
-					var/obj/item/organ/brain/B = new(loc)
-					B.transfer_identity(brainmob)
+				var/obj/item/organ/brain/B = new(loc)
+				B.transfer_identity(brainmob)
 
 				brain_op_stage = 4.0
 			else

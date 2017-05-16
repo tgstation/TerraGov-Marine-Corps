@@ -190,7 +190,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Basic"] = "robot_old"
 			module_sprites["Android"] = "droid"
 			module_sprites["Default"] = "robot"
-			module_sprites["Drone"] = "drone-standard"
 
 		if("Service")
 			module = new /obj/item/weapon/robot_module/butler(src)
@@ -199,7 +198,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Bro"] = "Brobot"
 			module_sprites["Rich"] = "maximillion"
 			module_sprites["Default"] = "Service2"
-			module_sprites["Drone"] = "drone-service" // How does this even work...? Oh well.
 
 		if("Clerical")
 			module = new /obj/item/weapon/robot_module/clerical(src)
@@ -208,7 +206,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Bro"] = "Brobot"
 			module_sprites["Rich"] = "maximillion"
 			module_sprites["Default"] = "Service2"
-			module_sprites["Drone"] = "drone-service"
 
 		if("Miner")
 			module = new /obj/item/weapon/robot_module/miner(src)
@@ -218,7 +215,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Basic"] = "Miner_old"
 			module_sprites["Advanced Droid"] = "droid-miner"
 			module_sprites["Treadhead"] = "Miner"
-			module_sprites["Drone"] = "drone-medical"
 
 		if("Crisis")
 			module = new /obj/item/weapon/robot_module/crisis(src)
@@ -240,7 +236,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Standard"] = "surgeon"
 			module_sprites["Advanced Droid"] = "droid-medical"
 			module_sprites["Needles"] = "medicalrobot"
-			module_sprites["Drone"] = "drone-medical"
 
 		if("Security")
 			module = new /obj/item/weapon/robot_module/security(src)
@@ -250,7 +245,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Black Knight"] = "securityrobot"
 			module_sprites["Bloodhound"] = "bloodhound"
 			module_sprites["Bloodhound - Treaded"] = "secborg+tread"
-			module_sprites["Drone"] = "drone-sec"
 
 		if("Engineering")
 			module = new /obj/item/weapon/robot_module/engineering(src)
@@ -261,7 +255,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Antique"] = "engineerrobot"
 			module_sprites["Landmate"] = "landmate"
 			module_sprites["Landmate - Treaded"] = "engiborg+tread"
-			module_sprites["Drone"] = "drone-engineer"
 
 		if("Construction")
 			module = new /obj/item/weapon/robot_module/construction(src)
@@ -272,14 +265,12 @@ var/list/robot_verbs_default = list(
 			module_sprites["Antique"] = "engineerrobot"
 			module_sprites["Landmate"] = "landmate"
 			module_sprites["Landmate - Treaded"] = "engiborg+tread"
-			module_sprites["Drone"] = "drone-engineer"
 
 		if("Janitor")
 			module = new /obj/item/weapon/robot_module/janitor(src)
 			module_sprites["Basic"] = "JanBot2"
 			module_sprites["Mopbot"]  = "janitorrobot"
 			module_sprites["Mop Gear Rex"] = "mopgearrex"
-			module_sprites["Drone"] = "drone-janitor"
 
 		if("Combat")
 			module = new /obj/item/weapon/robot_module/combat(src)
@@ -307,10 +298,7 @@ var/list/robot_verbs_default = list(
 	if(prefix)
 		modtype = prefix
 	if(mmi)
-		if(istype(mmi, /obj/item/device/mmi/posibrain))
-			braintype = "Android"
-		else
-			braintype = "Cyborg"
+		braintype = "Cyborg"
 	else
 		braintype = "Robot"
 
@@ -595,7 +583,7 @@ var/list/robot_verbs_default = list(
 			user << "Need more welding fuel!"
 			return
 
-	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
+	else if(istype(W, /obj/item/stack/cable_coil) && wiresexposed)
 		if (!getFireLoss())
 			user << "Nothing to fix here!"
 			return

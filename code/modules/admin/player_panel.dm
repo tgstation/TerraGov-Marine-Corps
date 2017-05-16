@@ -240,8 +240,6 @@
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
 						M_job = "AI"
-					else if(ispAI(M))
-						M_job = "pAI"
 					else if(isrobot(M))
 						M_job = "Cyborg"
 					else
@@ -336,8 +334,6 @@
 			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
-		else if(istype(M, /mob/living/silicon/pai))
-			dat += "<td>pAI</td>"
 		else if(istype(M, /mob/new_player))
 			dat += "<td>New Player</td>"
 		else if(isobserver(M))
@@ -409,8 +405,6 @@
 			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
-		else if(istype(M, /mob/living/silicon/pai))
-			dat += "<td>pAI</td>"
 		else if(istype(M, /mob/new_player))
 			dat += "<td>New Player</td>"
 		else if(isobserver(M))

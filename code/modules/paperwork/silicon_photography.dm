@@ -16,9 +16,6 @@
 /obj/item/device/camera/siliconcam/robot_camera //camera cyborgs can take pictures with
 	name = "Cyborg photo camera"
 
-/obj/item/device/camera/siliconcam/drone_camera //currently doesn't offer the verbs, thus cannot be used
-	name = "Drone photo camera"
-
 /obj/item/device/camera/siliconcam/proc/injectaialbum(var/datum/picture/P, var/sufix = "") //stores image information to a list similar to that of the datacore
 	photos_taken++
 	P.fields["name"] = "Image [photos_taken][sufix]"

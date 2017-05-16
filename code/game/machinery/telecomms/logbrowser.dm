@@ -68,7 +68,7 @@
 						// -- Determine race of orator --
 
 						var/race			   // The actual race of the mob
-						var/language = "Human" // MMIs, pAIs, Cyborgs and humans all speak Human
+						var/language = "Human" // MMIs and Cyborgs and humans all speak Human
 						var/mobtype = C.parameters["mobtype"]
 						var/mob/M = new mobtype
 

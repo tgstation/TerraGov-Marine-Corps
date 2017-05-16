@@ -50,10 +50,6 @@ var/list/department_radio_keys = list(
 )
 
 /mob/living/proc/binarycheck()
-
-	if (istype(src, /mob/living/silicon/pai))
-		return
-
 	if (!ishuman(src))
 		return
 

@@ -14,7 +14,7 @@
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	siemens_coefficient = 0.9
 	eye_protection = 2
-	species_restricted = list("exclude","Diona","Vox")
+	species_restricted = list("exclude","Vox")
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
@@ -32,7 +32,7 @@
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude","Diona","Vox")
+	species_restricted = list("exclude","Vox")
 
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 

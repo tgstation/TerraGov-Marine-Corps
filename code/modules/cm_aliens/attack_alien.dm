@@ -119,7 +119,6 @@
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 			M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 			"<span class='danger'>You slash [src]!</span>")
-			forcesay()
 
 			//Logging, including anti-rulebreak logging
 			if(src.status_flags & XENO_HOST && src.stat != DEAD)
@@ -215,7 +214,7 @@
 					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
 					r_FAL
 
-			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
+			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 				var/datum/effect/effect/system/spark_spread/spark_system
 				spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src)

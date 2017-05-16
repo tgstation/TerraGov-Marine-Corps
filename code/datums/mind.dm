@@ -434,12 +434,6 @@ datum/mind
 	..()
 	mind.assigned_role = "Cyborg"
 
-//PAI
-/mob/living/silicon/pai/mind_initialize()
-	..()
-	mind.assigned_role = "pAI"
-	mind.special_role = ""
-
 //Animals
 /mob/living/simple_animal/mind_initialize()
 	..()
@@ -472,5 +466,3 @@ datum/mind
 	..()
 	mind.assigned_role = "Armalis"
 	mind.special_role = "Vox Raider"
-
-

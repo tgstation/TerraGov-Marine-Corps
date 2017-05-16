@@ -28,7 +28,6 @@
 #define MODE_FOG_ACTIVATED 		16
 
 #define BE_ALIEN      1
-#define BE_PAI		  2
 #define BE_SURVIVOR	  4
 #define BE_RESPONDER  8
 #define BE_PREDATOR   16
@@ -49,7 +48,6 @@
 
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
-	"pAI" = BE_PAI,
 	"Survivor" = BE_SURVIVOR,
 	"Responder" = BE_RESPONDER,
 	"Predator" = BE_PREDATOR
@@ -63,7 +61,6 @@ var/list/be_special_flags = list(
 	"Monkey" = BE_MONKEY,
 	"Ninja" = BE_NINJA,
 	"Raider" = BE_RAIDER,
-	"Diona" = BE_PLANT,
 	"Mutineer" = BE_MUTINEER,
 	"Changeling" = BE_CHANGELING*/
 	)

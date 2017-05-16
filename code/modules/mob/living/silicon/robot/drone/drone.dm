@@ -5,8 +5,6 @@
 	icon_state = "repairbot"
 	maxHealth = 35
 	health = 35
-	universal_speak = 0
-	universal_understand = 1
 	gender = NEUTER
 	flags_pass = PASSTABLE | PASSMOB
 	braintype = "Robot"
@@ -35,8 +33,8 @@
 
 	verbs += /mob/living/proc/hide
 	remove_language("Robot Talk")
-	add_language("Robot Talk", 0)
-	add_language("Drone Talk", 1)
+	add_language("Robot Talk", LANGUAGE_CAN_UNDERSTAND)
+	add_language("Drone Talk")
 
 	if(camera && "Robots" in camera.network)
 		camera.network.Add("Engineering")

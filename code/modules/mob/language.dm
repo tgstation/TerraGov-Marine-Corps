@@ -83,16 +83,6 @@
 	key = "9"
 	flags = RESTRICTED
 
-/datum/language/diona
-	name = "Rootspeak"
-	desc = "A creaking, subvocal language spoken instinctively by the Dionaea. Due to the unique makeup of the average Diona, a phrase of Rootspeak can be a combination of anywhere from one to twelve individual voices and notes."
-	speech_verb = "creaks and rustles"
-	ask_verb = "creaks"
-	exclaim_verb = "rustles"
-	colour = "soghun"
-	key = "8"
-	flags = RESTRICTED
-
 /datum/language/common
 	name = "English"
 	desc = "Common earth English."
@@ -187,7 +177,6 @@
 	exclaim_verb = "declares"
 	key = "6"
 	flags = RESTRICTED|HIVEMIND
-	var/drone_only
 
 /datum/language/binary/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
@@ -205,10 +194,7 @@
 			M.show_message("[message_start] [message_body]", 2)
 
 	for (var/mob/living/S in living_mob_list)
-
-		if(drone_only && !istype(S,/mob/living/silicon/robot/drone))
-			continue
-		else if(istype(S , /mob/living/silicon/ai))
+		if(istype(S , /mob/living/silicon/ai))
 			message_start = "<i><span class='game say'>[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[speaker];trackname=[html_encode(speaker.name)]'><span class='name'>[speaker.name]</span></a>"
 		else if (!S.binarycheck())
 			continue
@@ -228,17 +214,6 @@
 		var/mob/living/silicon/robot/R = speaker
 		var/datum/robot_component/C = R.components["comms"]
 		R.cell_use_power(C.active_usage)
-
-/datum/language/binary/drone
-	name = "Drone Talk"
-	desc = "A heavily encoded damage control coordination stream."
-	speech_verb = "transmits"
-	ask_verb = "transmits"
-	exclaim_verb = "transmits"
-	colour = "say_quote"
-	key = "d"
-	flags = RESTRICTED|HIVEMIND
-	drone_only = 1
 
 // Language handling.
 /mob/proc/add_language(var/language)

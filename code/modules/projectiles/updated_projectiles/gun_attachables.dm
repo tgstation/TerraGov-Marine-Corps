@@ -145,7 +145,7 @@ Defined in setup.dm.
 	if(silence_mod)
 		G.flags_gun_features |= GUN_SILENCED
 		G.muzzle_flash = null
-		G.fire_sound = pick('sound/weapons/gun_silenced_shot1.ogg','sound/weapons/gun_silenced_shot2.ogg')
+		G.fire_sound = "gun_silenced"
 
 /obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
 	if(!istype(G)) return //Guns only
@@ -567,7 +567,7 @@ Defined in setup.dm.
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
-	fire_sound = list('sound/weapons/gun_m92_attachable.ogg')
+	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	examine()
@@ -615,7 +615,7 @@ Defined in setup.dm.
 	max_rounds = 20
 	max_range = 5
 	slot = "under"
-	fire_sound = list('sound/weapons/gun_flamethrower3.ogg')
+	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	examine()
@@ -690,7 +690,7 @@ Defined in setup.dm.
 	current_rounds = 5
 	ammo = /datum/ammo/bullet/shotgun/slug
 	slot = "under"
-	fire_sound = list('sound/weapons/gun_shotgun.ogg')
+	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_CONTINUOUS|ATTACH_PROJECTILE
 

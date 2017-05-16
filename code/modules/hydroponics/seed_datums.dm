@@ -594,7 +594,6 @@ proc/populate_seed_list()
 				total_yield = yield + rand(yield_mod)
 			total_yield = max(1,total_yield)
 
-		currently_querying = list()
 		for(var/i = 0;i<total_yield;i++)
 			var/product_type = pick(products)
 			var/obj/item/product = new product_type(get_turf(user))
@@ -609,9 +608,7 @@ proc/populate_seed_list()
 
 			//Handle spawning in living, mobile products (like dionaea).
 			if(istype(product,/mob/living))
-
 				product.visible_message("\blue The pod disgorges [product]!")
-				handle_living_product(product)
 
 			// Make sure the product is inheriting the correct seed type reference.
 			else if(istype(product,/obj/item/weapon/reagent_containers/food/snacks/grown))
@@ -1575,41 +1572,6 @@ proc/populate_seed_list()
 	potency = 10
 	growth_stages = 4
 	spread = 2
-
-/datum/seed/diona
-	name = "diona"
-	seed_name = "diona"
-	seed_noun = "nodes"
-	display_name = "replicant pods"
-	packet_icon = "seed-replicapod"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod)
-	plant_icon = "replicapod"
-	product_requires_player = 1
-	immutable = 1
-
-	lifespan = 50
-	endurance = 8
-	maturation = 5
-	production = 10
-	yield = 1
-	potency = 30
-
-/datum/seed/clown
-	name = "clown"
-	seed_name = "clown"
-	seed_noun = "pods"
-	display_name = "laughing clowns"
-	packet_icon = "seed-replicapod"
-	products = list(/mob/living/simple_animal/hostile/retaliate/clown)
-	plant_icon = "replicapod"
-	product_requires_player = 1
-
-	lifespan = 100
-	endurance = 8
-	maturation = 1
-	production = 1
-	yield = 10
-	potency = 30
 
 /datum/seed/test
 	name = "test"

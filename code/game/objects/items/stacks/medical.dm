@@ -227,9 +227,8 @@
 	amount = 5
 	max_amount = 5
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
-		return 1
+/obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
+	if(..()) return 1
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

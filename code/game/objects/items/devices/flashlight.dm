@@ -139,15 +139,6 @@
 	w_class = 1
 	raillight_compatible = 0
 
-/obj/item/device/flashlight/drone
-	name = "low-power flashlight"
-	desc = "A miniature lamp, that might be used by small robots."
-	icon_state = "penlight"
-	item_state = ""
-	brightness_on = 2
-	w_class = 1
-	raillight_compatible = 0
-
 //The desk lamps are a bit special
 /obj/item/device/flashlight/lamp
 	name = "desk lamp"

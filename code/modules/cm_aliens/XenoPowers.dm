@@ -394,7 +394,7 @@
 		slashing_allowed = 1
 	else if(choice == "Restricted - Less Damage")
 		src << "<span class='xenonotice'>You restrict slashing.</span>"
-		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.", 3)
+		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will only slash when hurt.", 3)
 		slashing_allowed = 2
 	else if(choice == "Forbidden")
 		src << "<span class='xenonotice'>You forbid slashing entirely.</span>"

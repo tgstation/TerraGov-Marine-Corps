@@ -182,3 +182,4 @@ var/static/list/scarySounds = list('sound/weapons/thudswoosh.ogg','sound/weapons
 //Flags for zone sleeping
 #define ZONE_ACTIVE 1
 #define ZONE_SLEEPING 0
+#define GET_RANDOM_FREQ rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.

@@ -160,8 +160,8 @@
 			beaker = null
 
 	if(href_list["ejectOccupant"])
-		if(!occupant || ispAI(usr))
-			return 0 // don't update UIs attached to this object
+		if(!occupant)
+			return // don't update UIs attached to this object
 		go_out()
 
 	add_fingerprint(usr)

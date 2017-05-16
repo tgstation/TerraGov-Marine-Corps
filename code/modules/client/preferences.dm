@@ -4,7 +4,6 @@ var/list/preferences_datums = list()
 
 var/global/list/special_roles = list(
 	"alien" = 1,
-	"pAI" = 1,
 	"survivor" = 1,
 	"responder" = 1,
 	"predator" = 1,
@@ -19,7 +18,6 @@ var/global/list/special_roles = list(
 	// "infested monkey" = IS_MODE_COMPILED("monkey"),      // 9
 	// "ninja" = "true",                                    // 10
 	// "vox raider" = IS_MODE_COMPILED("heist"),            // 11
-	// "diona" = 1,                                         // 12
 	// "mutineer" = IS_MODE_COMPILED("mutiny"),             // 13
 	// "changeling" = IS_MODE_COMPILED("changeling"),       // 2
 )
@@ -419,7 +417,6 @@ datum/preferences
 
 	dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
 
-	dat += "<a href='byond://?src=\ref[user];preference=pAI'><b>pAI Configuration</b></a><br>"
 	dat += "<br>"
 
 	dat += "<br><b>Hair</b><br>"
@@ -453,9 +450,6 @@ datum/preferences
 			if(special_roles[i]) //if mode is available on the server
 				if(jobban_isbanned(user, i))
 					dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
-				else if(i == "pai candidate")
-					if(jobban_isbanned(user, "pAI"))
-						dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 				else
 					dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
 			n++
@@ -955,10 +949,6 @@ datum/preferences
 					flavor_texts[href_list["task"]] = msg
 			SetFlavorText(user)
 			return
-
-		if("pAI")
-			paiController.recruitWindow(user, 0)
-			return 1
 
 		if("records")
 			if(text2num(href_list["record"]) >= 1)

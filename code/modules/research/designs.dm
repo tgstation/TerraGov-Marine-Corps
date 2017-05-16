@@ -224,15 +224,6 @@ datum/design/robocontrol
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/robotics"
 
-datum/design/dronecontrol
-	name = "Circuit Design (Drone Control Console)"
-	desc = "Allows for the construction of circuit boards used to build a Drone Control console."
-	id = "dronecontrol"
-	req_tech = list("programming" = 4)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/drone_control"
-
 datum/design/arcademachine
 	name = "Circuit Design (Arcade Machine)"
 	desc = "Allows for the construction of circuit boards used to build a new arcade machine."
@@ -563,25 +554,6 @@ datum/design/intellicard
 	materials = list("$glass" = 1000, "$gold" = 200)
 	build_path = "/obj/item/device/aicard"
 
-/*datum/design/paicard
-	name = "Personal Artificial Intelligence Card"
-	desc = "Allows for the construction of a pAI Card"
-	id = "paicard"
-	req_tech = list("programming" = 2)
-	build_type = PROTOLATHE
-	materials = list("$glass" = 500, "$metal" = 500)
-	build_path = "/obj/item/device/paicard"
-
-datum/design/posibrain
-	name = "Positronic Brain"
-	desc = "Allows for the construction of a positronic brain"
-	id = "posibrain"
-	req_tech = list("engineering" = 4, "materials" = 6, "bluespace" = 2, "programming" = 4)
-
-	build_type = PROTOLATHE
-	materials = list("$metal" = 2000, "$glass" = 1000, "$silver" = 1000, "$gold" = 500, "$phoron" = 500, "$diamond" = 100)
-	build_path = "/obj/item/device/mmi/posibrain"
-*/
 ///////////////////////////////////
 //////////Mecha Module Disks///////
 ///////////////////////////////////
