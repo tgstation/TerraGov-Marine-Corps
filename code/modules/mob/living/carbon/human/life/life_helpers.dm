@@ -216,6 +216,11 @@
 	else
 		return min(1, thermal_protection)
 
+
+/mob/living/carbon/human/proc/process_suit()
+	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+		process_squad_hud(src)
+
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	if(G && G.active)
 		see_in_dark += G.darkness_view
