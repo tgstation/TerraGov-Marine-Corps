@@ -188,16 +188,17 @@
 	reinf = 1
 	dir = 5
 	window_frame = /obj/structure/window_frame/almayer
+	static_frame = 1
 
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall,
-		/obj/structure/window_frame)
+		/obj/structure/falserwall)
 
 	var/tiles_special[] = list( //Special case.
 		/obj/machinery/door/airlock,
-		/obj/structure/window/reinforced/almayer)
+		/obj/structure/window/reinforced/almayer,
+		/obj/structure/window_frame)
 
 /obj/structure/window/reinforced/almayer/New()
 	spawn(10)
@@ -222,7 +223,7 @@
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "rwindow0_frame"
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
-	climb_delay = 20 //Two seconds is enough
+	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/reinforced/almayer/window_type = /obj/structure/window/reinforced/almayer
 
