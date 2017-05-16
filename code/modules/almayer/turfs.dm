@@ -200,8 +200,9 @@
 		/obj/structure/window/reinforced/almayer)
 
 /obj/structure/window/reinforced/almayer/New()
-	relativewall()
-	relativewall_neighbours()
+	spawn(10)
+		relativewall()
+		relativewall_neighbours()
 
 /obj/structure/window/reinforced/almayer/update_nearby_icons()
 	relativewall_neighbours()
