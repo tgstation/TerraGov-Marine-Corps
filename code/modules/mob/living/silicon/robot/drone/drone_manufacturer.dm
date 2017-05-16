@@ -119,7 +119,7 @@
 		pluralcheck = " [deathtimeminutes] minutes and"
 	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 
-	if (deathtime < 6000 && !usr.client.holder.rights & R_ADMIN)
+	if (deathtime < 6000)
 		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
 		usr << "You must wait 10 minutes to respawn as a drone!"
 		return
