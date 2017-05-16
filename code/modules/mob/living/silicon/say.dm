@@ -74,6 +74,22 @@
 			speaking.broadcast(src,trim(message))
 			return
 
+	// Currently used by drones.
+	if(local_transmit)
+		var/list/listeners = hearers(5,src)
+		listeners |= src
+
+		for(var/mob/living/silicon/D in listeners)
+			if(D.client && istype(D,src.type))
+				D << "<b>[src]</b> transmits, \"[message]\""
+
+		for (var/mob/M in player_list)
+			if (istype(M, /mob/new_player))
+				continue
+			else if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""
+		return
+
 	if(message_mode && bot_type == IS_ROBOT && !R.is_component_functioning("radio"))
 		src << "\red Your radio isn't functional at this time."
 		return

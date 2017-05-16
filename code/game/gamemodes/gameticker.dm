@@ -340,6 +340,26 @@ var/global/datum/controller/gameticker/ticker
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
 			world << "[robolist]"
 
+	var/dronecount = 0
+
+	for (var/mob/living/silicon/robot/robo in mob_list)
+
+		if(istype(robo,/mob/living/silicon/robot/drone))
+			dronecount++
+			continue
+
+		if (!robo.connected_ai)
+			if (robo.stat != 2)
+				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>"
+			else
+				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>"
+
+			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
+				robo.laws.show_laws(world)
+
+	if(dronecount)
+		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round."
+
 	mode.declare_completion()//To declare normal completion.
 
 	//calls auto_declare_completion_* for all modes

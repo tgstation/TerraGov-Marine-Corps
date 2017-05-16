@@ -412,6 +412,10 @@
 	var/wrapcheck = 0
 	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
 												// travels through the pipes.
+	//Hacky test to get drones to mail themselves through disposals.
+	for(var/mob/living/silicon/robot/drone/D in src)
+		wrapcheck = 1
+
 	for(var/obj/item/smallDelivery/O in src)
 		wrapcheck = 1
 
@@ -454,11 +458,15 @@
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 	if(H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
 		for(var/atom/movable/AM in H)
-			target = get_offset_target_turf(loc, rand(5)-rand(5), rand(5)-rand(5))
-			AM.loc = loc
+			target = get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5))
+
+			AM.loc = src.loc
 			AM.pipe_eject(0)
-			spawn(1)
-				if(AM && AM.loc) AM.throw_at(target, 5, 1)
+			if(!istype(AM,/mob/living/silicon/robot/drone)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
+				spawn(1)
+					if(AM)
+						AM.throw_at(target, 5, 1)
+
 		H.vent_gas(loc)
 		del(H)
 
@@ -504,7 +512,7 @@
 		//Check for any living mobs trigger hasmob.
 		//hasmob effects whether the package goes to cargo or its tagged destination.
 		for(var/mob/living/M in D)
-			if(M && M.stat != DEAD)
+			if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
 				hasmob = 1
 
 		//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -512,7 +520,7 @@
 		for(var/obj/O in D)
 			if(O.contents)
 				for(var/mob/living/M in O.contents)
-					if(M && M.stat != DEAD)
+					if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
 						hasmob = 1
 
 		// now everything inside the disposal gets put into the holder
@@ -529,6 +537,10 @@
 			if(istype(AM, /obj/item/smallDelivery) && !hasmob)
 				var/obj/item/smallDelivery/T = AM
 				src.destinationTag = T.sortTag
+			//Drones can mail themselves through maint.
+			if(istype(AM, /mob/living/silicon/robot/drone))
+				var/mob/living/silicon/robot/drone/drone = AM
+				src.destinationTag = drone.mail_destination
 
 
 	// start the movement process
@@ -552,8 +564,9 @@
 		while(active)
 			if(hasmob && prob(3))
 				for(var/mob/living/H in src)
-					if(!istype(ticker.mode,/datum/game_mode/whiskey_outpost))
-						H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+					if(!istype(H,/mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
+						if(!istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+							H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
 
 			if(has_fat_guy && prob(2)) // chance of becoming stuck per segment if contains a fat guy
 				active = 0
@@ -1426,8 +1439,9 @@
 			for(var/atom/movable/AM in H)
 				AM.loc = src.loc
 				AM.pipe_eject(dir)
-				spawn(5)
-					AM.throw_at(target, 3, 1)
+				if(!istype(AM,/mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
+					spawn(5)
+						AM.throw_at(target, 3, 1)
 			H.vent_gas(src.loc)
 			del(H)
 
