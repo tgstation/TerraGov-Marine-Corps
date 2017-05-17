@@ -2471,7 +2471,7 @@
 "aVA" = (/obj/machinery/computer/communications,/turf/simulated/floor{dir = 6; icon_state = "darkblue2"; tag = "icon-darkblue2"},/area/bigredv2/outside/admin_building)
 "aVB" = (/obj/structure/table/woodentable,/obj/item/weapon/pinpointer,/turf/simulated/floor{icon_state = "wood"},/area/bigredv2/outside/admin_building)
 "aVC" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/landmark{name = "crap_item"},/turf/simulated/floor{tag = "icon-asteroidwarning (WEST)"; icon_state = "asteroidwarning"; dir = 8},/area/bigredv2/outside)
-"aVD" = (/obj/structure/reagent_dispensers/virusfood{density = 0; pixel_x = -30},/turf/simulated/floor{icon_state = "white"},/area/bigredv2/outside/virology)
+"aVD" = (/obj/structure/reagent_dispensers/virusfood{pixel_x = -32},/turf/simulated/floor{icon_state = "white"},/area/bigredv2/outside/virology)
 "aVE" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor{icon_state = "white"},/area/bigredv2/outside/virology)
 "aVF" = (/obj/machinery/door/airlock/glass_medical,/turf/simulated/floor{icon_state = "white"},/area/bigredv2/outside/virology)
 "aVG" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor{dir = 8; icon_state = "warnwhite"},/area/bigredv2/outside/virology)

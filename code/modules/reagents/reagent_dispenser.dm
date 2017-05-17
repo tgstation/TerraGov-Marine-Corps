@@ -1,7 +1,7 @@
 
 
 /obj/structure/reagent_dispensers
-	name = "Dispenser"
+	name = "dispenser"
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
@@ -196,7 +196,7 @@
 	explode()
 
 /obj/structure/reagent_dispensers/peppertank
-	name = "Pepper Spray Refiller"
+	name = "pepper spray refiller"
 	desc = "Refill pepper spray canisters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "peppertank"
@@ -205,7 +205,7 @@
 	amount_per_transfer_from_this = 45
 	New()
 		..()
-		reagents.add_reagent("condensedcapsaicin",1000)
+		reagents.add_reagent("condensedcapsaicin", 1000)
 
 
 /obj/structure/reagent_dispensers/water_cooler
@@ -232,12 +232,13 @@
 		reagents.add_reagent("beer",1000)
 
 /obj/structure/reagent_dispensers/virusfood
-	name = "Virus Food Dispenser"
+	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10
 	anchored = 1
+	density = 0
 
 	New()
 		..()
