@@ -252,10 +252,15 @@
 	desc = "A weird, pulsating node."
 	layer = 2.7
 	var/node_range = NODERANGE
+	var/planter_ckey //ckey of the mob who planted it.
+	var/planter_name //nameof the mob who planted it.
 	health = 15
 
-	New()
+	New(loc, mob/living/carbon/Xenomorph/X)
 		..(loc, src)
+		if(X)
+			planter_ckey = X.ckey
+			planter_name = X.real_name
 		new /obj/effect/alien/weeds(loc)
 
 

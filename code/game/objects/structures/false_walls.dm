@@ -5,17 +5,18 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	anchored = 1
+	icon_state = "0"
 	icon = 'icons/turf/walls.dmi'
 	var/mineral = "metal"
 	var/opening = 0
 
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
-		/obj/structure/falserwall)
+		/obj/structure/falsewall)
 
 /obj/structure/falsewall/New()
 	relativewall_neighbours()
+	update_icon()
 	..()
 
 /obj/structure/falsewall/Del()
@@ -35,30 +36,42 @@
 /obj/structure/falsewall/attack_hand(mob/user as mob)
 	if(opening)
 		return
+	if(density) open_wall()
+	else close_wall()
 
-	if(density)
-		opening = 1
-		icon_state = "[mineral]fwall_open"
-		flick("[mineral]fwall_opening", src)
-		sleep(15)
-		src.density = 0
-		SetOpacity(0)
-		opening = 0
-	else
-		opening = 1
-		flick("[mineral]fwall_closing", src)
-		icon_state = "[mineral]0"
-		density = 1
-		sleep(15)
-		SetOpacity(1)
-		src.relativewall()
-		opening = 0
+
+/obj/structure/falsewall/proc/open_wall()
+	opening = 1
+	icon_state = "[mineral]fwall_open"
+	flick("[mineral]fwall_opening", src)
+	sleep(15)
+	density = 0
+	SetOpacity(0)
+	opening = 0
+
+/obj/structure/falsewall/proc/close_wall()
+	for(var/atom/movable/AM in loc)
+		if(AM == src) continue
+		if(AM.density) return //something blocks the way.
+	opening = 1
+	flick("[mineral]fwall_closing", src)
+	icon_state = "[mineral]0"
+	density = 1
+	sleep(15)
+	SetOpacity(1)
+	relativewall()
+	opening = 0
+	for(var/atom/movable/AM in loc)
+		if(AM == src) continue
+		if(AM.density)
+			open_wall()//something sneaks on the tile and blocks the way, open the false wall.
+			break
 
 /obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
 	..()
 	if(density)
 		icon_state = "[mineral]0"
-		src.relativewall()
+		relativewall()
 	else
 		icon_state = "[mineral]fwall_open"
 
@@ -74,7 +87,7 @@
 			return
 		if(istype(W, /obj/item/weapon/screwdriver))
 			user.visible_message("[user] tightens some bolts on the wall.", "You tighten the bolts on the wall.")
-			if(!mineral || mineral == "metal")
+			if(!mineral || mineral == "metal" || mineral == "rwall")
 				T.ChangeTurf(/turf/simulated/wall)
 			else
 				T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
@@ -83,7 +96,7 @@
 		if( istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT:welding )
-				if(!mineral || mineral == "metal") //Mineral metal walls don't exist
+				if(!mineral || mineral == "metal" || mineral == "rwall") //Mineral metal walls don't exist
 					T.ChangeTurf(/turf/simulated/wall)
 				else
 					T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
@@ -96,7 +109,7 @@
 
 	if( istype(W, /obj/item/weapon/pickaxe/plasmacutter) )
 		var/turf/T = get_turf(src)
-		if(!mineral)
+		if(!mineral || mineral == "metal" || mineral == "rwall")
 			T.ChangeTurf(/turf/simulated/wall)
 		else
 			T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
@@ -108,7 +121,7 @@
 	//DRILLING
 	else if (istype(W, /obj/item/weapon/pickaxe/diamonddrill))
 		var/turf/T = get_turf(src)
-		if(!mineral)
+		if(!mineral || mineral == "metal" || mineral == "rwall")
 			T.ChangeTurf(/turf/simulated/wall)
 		else
 			T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
@@ -118,7 +131,7 @@
 
 	else if( istype(W, /obj/item/weapon/melee/energy/blade) )
 		var/turf/T = get_turf(src)
-		if(!mineral)
+		if(!mineral || mineral == "metal" || mineral == "rwall")
 			T.ChangeTurf(/turf/simulated/wall)
 		else
 			T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
@@ -139,97 +152,10 @@
  * False R-Walls
  */
 
-/obj/structure/falserwall
+/obj/structure/falsewall/reinforced
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "r_wall"
-	density = 1
-	opacity = 1
-	anchored = 1
-	var/mineral = "metal"
-	var/opening = 0
-
-/obj/structure/falserwall/New()
-	relativewall_neighbours()
-	..()
-
-
-/obj/structure/falserwall/attack_hand(mob/user as mob)
-	if(opening)
-		return
-
-	if(density)
-		opening = 1
-		// Open wall
-		icon_state = "frwall_open"
-		flick("frwall_opening", src)
-		sleep(15)
-		density = 0
-		SetOpacity(0)
-		opening = 0
-	else
-		opening = 1
-		icon_state = "r_wall"
-		flick("frwall_closing", src)
-		density = 1
-		sleep(15)
-		SetOpacity(1)
-		relativewall()
-		opening = 0
-
-/obj/structure/falserwall/relativewall()
-
-	if(!density)
-		icon_state = "frwall_open"
-		return
-
-	..()
-
-
-
-/obj/structure/falserwall/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opening)
-		user << "\red You must wait until the door has stopped moving."
-		return
-
-	if(istype(W, /obj/item/weapon/screwdriver))
-		var/turf/T = get_turf(src)
-		user.visible_message("[user] tightens some bolts on the r wall.", "You tighten the bolts on the wall.")
-		T.ChangeTurf(/turf/simulated/wall) //Intentionally makes a regular wall instead of an r-wall (no cheap r-walls for you).
-		del(src)
-
-	if( istype(W, /obj/item/weapon/weldingtool) )
-		var/obj/item/weapon/weldingtool/WT = W
-		if( WT.remove_fuel(0,user) )
-			var/turf/T = get_turf(src)
-			T.ChangeTurf(/turf/simulated/wall)
-			T = get_turf(src)
-			T.attackby(W,user)
-			del(src)
-
-	else if( istype(W, /obj/item/weapon/pickaxe/plasmacutter) )
-		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall)
-		T = get_turf(src)
-		T.attackby(W,user)
-		del(src)
-
-	//DRILLING
-	else if (istype(W, /obj/item/weapon/pickaxe/diamonddrill))
-		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall)
-		T = get_turf(src)
-		T.attackby(W,user)
-		del(src)
-
-	else if( istype(W, /obj/item/weapon/melee/energy/blade) )
-		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall)
-		T = get_turf(src)
-		T.attackby(W,user)
-		del(src)
-
+	mineral = "rwall"
 
 /*
  * Uranium Falsewalls
@@ -238,7 +164,6 @@
 /obj/structure/falsewall/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
-	icon_state = ""
 	mineral = "uranium"
 	var/active = null
 	var/last_event = 0
@@ -270,30 +195,25 @@
 /obj/structure/falsewall/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
-	icon_state = ""
 	mineral = "gold"
 
 /obj/structure/falsewall/silver
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny."
-	icon_state = ""
 	mineral = "silver"
 
 /obj/structure/falsewall/diamond
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
-	icon_state = ""
 	mineral = "diamond"
 
 /obj/structure/falsewall/phoron
 	name = "phoron wall"
 	desc = "A wall with phoron plating. This is definately a bad idea."
-	icon_state = ""
 	mineral = "phoron"
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating."
-	icon_state = ""
 	mineral = "sandstone"
 //------------wtf?------------end

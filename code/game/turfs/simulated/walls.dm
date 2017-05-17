@@ -8,8 +8,7 @@
 
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
-		/obj/structure/falserwall)
+		/obj/structure/falsewall)
 
 	var/damage = 0
 	var/damage_cap = 1000 //Wall will break down to girders if damage reaches this point
