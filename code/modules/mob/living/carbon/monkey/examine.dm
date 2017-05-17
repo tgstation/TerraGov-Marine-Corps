@@ -41,7 +41,7 @@
 			msg += "It isn't responding to anything around it; it seems to be asleep.\n"
 		msg += "</span>"
 
-	if(chestburst)
+	if(chestburst == 2)
 		msg += "<span class='warning'><b>It has a big hole in its chest!</b></span>\n"
 
 	if (src.digitalcamo)

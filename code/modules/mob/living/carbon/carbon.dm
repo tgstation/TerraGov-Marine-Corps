@@ -50,6 +50,9 @@
 						A.loc = loc
 						stomach_contents.Remove(A)
 					src.gib()
+	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
+		var/mob/living/carbon/Xenomorph/Larva/L = user
+		L.chest_burst(src)
 
 /mob/living/carbon/gib(anim, do_gibs, f_icon)
 	for(var/mob/M in src)
