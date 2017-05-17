@@ -3,7 +3,7 @@
 #define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
 
 /obj/machinery/door
-	name = "Door"
+	name = "\improper Door"
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
