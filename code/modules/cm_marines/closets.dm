@@ -153,7 +153,7 @@
 	select_gamemode_equipment()
 
 /obj/structure/closet/secure_closet/marine/warrant_officer
-	name = "\improper Warrant Officer's locker"
+	name = "\improper Chief MP's locker"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "secure_locked_warrant"
 	icon_closed = "secure_unlocked_warrant"

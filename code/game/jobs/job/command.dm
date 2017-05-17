@@ -191,12 +191,12 @@ Failure to do so may result in a job ban or server ban.
 Your primary job is to maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
 
-//Warrant Officer
+//Chief MP
 /datum/job/command/warrant
-	title = "Warrant Officer"
-	comm_title = "WO"
-	paygrade = "O2"
-	flag = ROLE_WARRANT_OFFICER
+	title = "Chief MP"
+	comm_title = "CMP"
+	paygrade = "WO"
+	flag = ROLE_CHIEF_MP
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)

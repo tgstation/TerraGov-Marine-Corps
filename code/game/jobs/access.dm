@@ -225,7 +225,7 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 				"Doctor",
 				"Researcher",
 				"Military Police",
-				"Warrant Officer"
+				"Chief MP"
 					)
 
 /proc/get_paygrades(paygrade, size, gender)
