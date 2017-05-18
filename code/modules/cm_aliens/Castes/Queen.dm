@@ -194,7 +194,7 @@
 		if(dist <= 4)
 			M << "<span class='danger'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
-			M.Weaken(1)
+			M.Weaken(4)
 			if(!M.ear_deaf)
 				M.ear_deaf += 8 //Deafens them temporarily
 		else if(dist >= 5 && dist < 7)

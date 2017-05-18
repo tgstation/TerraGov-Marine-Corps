@@ -799,5 +799,6 @@
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
-	if(pulling) stop_pulling() //being thrown breaks our pull.
+	if(pulling) stop_pulling() //being thrown breaks pulls.
+	if(pulledby) pulledby.stop_pulling()
 	. = ..()
