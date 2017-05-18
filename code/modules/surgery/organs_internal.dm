@@ -53,11 +53,17 @@
 	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
-	user.visible_message("<span class='warning'>[user] rips a wriggling parasite out of [target]'s ribcage!</span>",
-						 "<span class='warning'>You rip a wriggling parasite out of [target]'s ribcage!</span>")
-	for(var/obj/item/alien_embryo/A in target)
-		A.loc = A.loc.loc
+	var/obj/item/alien_embryo/A = locate() in target
+	if(A)
 		affected.implants -= A
+		user.visible_message("<span class='warning'>[user] rips a wriggling parasite out of [target]'s ribcage!</span>",
+							 "<span class='warning'>You rip a wriggling parasite out of [target]'s ribcage!</span>")
+		var/mob/living/carbon/Xenomorph/Larva/L = locate() in target //the larva was fully grown, ready to burst.
+		if(L)
+			L.forceMove(target.loc)
+			del(A)
+		else
+			A.forceMove(target.loc)
 
 	affected.createwound(CUT, rand(0,20), 1)
 	target.updatehealth()

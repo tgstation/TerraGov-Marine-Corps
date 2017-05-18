@@ -394,7 +394,7 @@
 	if(display_gloves)
 		msg += "<span class='warning'><b>[t_He] has blood running from under [t_his] gloves!</b></span>\n"
 
-	if(chestburst)
+	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
 
 	if (stat == 2 && isXeno(usr))
