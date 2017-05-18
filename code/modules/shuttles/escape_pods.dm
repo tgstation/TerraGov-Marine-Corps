@@ -314,7 +314,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 	go_out() //When the system ejects the occupant.
 		if(occupant)
-			forceMove(get_turf(src))
+			occupant.forceMove(get_turf(src))
 			occupant.in_stasis = FALSE
 			occupant = null
 			icon_state = orient_right ? "body_scanner_0-r" : "body_scanner_0"
