@@ -1182,7 +1182,12 @@ var/global/floorIsLava = 0
 	if(!istype(ticker.mode.picked_call))
 		return
 
-	ticker.mode.picked_call.activate()
+	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
+
+	if(announce == "No")
+		ticker.mode.picked_call.activate(0)
+	else
+		ticker.mode.picked_call.activate()
 
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]")
