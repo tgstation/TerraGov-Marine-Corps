@@ -219,8 +219,6 @@
 	var/universal_speak = 0 // Set to 1 to enable the mob to speak to everyone -- TLE
 	var/universal_understand = 0 // Set to 1 to enable the mob to understand everyone, not necessarily speak
 
-	var/can_stand = 1 //Whether this mob have ability to stand
-
 	var/immune_to_ssd = 0
 
 	var/turf/listed_turf = null  //the current turf being examined in the stat panel

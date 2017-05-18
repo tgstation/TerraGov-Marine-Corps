@@ -38,6 +38,8 @@
 /obj/item/weapon/grab/attack_self(mob/user)
 	if(!ismob(grabbed_thing) || world.time < (last_upgrade + UPGRADE_COOLDOWN))
 		return
+	if(!ishuman(user)) //only humans can reinforce a grab.
+		return
 	var/mob/victim = grabbed_thing
 	if(victim.mob_size > MOB_SIZE_HUMAN || !(victim.status_flags & CANPUSH))
 		return //can't tighten your grip on big mobs and mobs you can't push.

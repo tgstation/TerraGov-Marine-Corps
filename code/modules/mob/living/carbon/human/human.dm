@@ -1299,3 +1299,10 @@
 		if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
 			return FALSE
 		. = ..()
+
+	has_legs()
+		. = 0
+		if(has_organ("r_foot") && has_organ("r_leg"))
+			.++
+		if(has_organ("l_foot") && has_organ("l_leg"))
+			.++
