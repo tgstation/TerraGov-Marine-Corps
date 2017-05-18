@@ -59,22 +59,6 @@
 		src << "<span class='warning'>You must be at full plasma to evolve.</span>"
 		return
 
-	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
-	//Should count mindless as well so people don't cheat
-	for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
-		if(M.tier == 0)
-			continue
-		else if(M.tier == 1)
-		// 	tierA++
-		else if(M.tier == 2)
-			tierB++
-		else if(M.tier == 3)
-			tierC++
-		else
-			src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
-			continue
-		totalXenos++
-
 	//Debugging that should've been done
 	// world << "[tierA] Tier 1"
 	// world << "[tierB] Tier 2"
@@ -122,8 +106,21 @@
 			src << "<span class='warning'>Nuh-uhh.</span>"
 			return
 
-
-
+	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
+	//Should count mindless as well so people don't cheat
+	for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
+		if(M.tier == 0)
+			continue
+		else if(M.tier == 1)
+		// 	tierA++
+		else if(M.tier == 2)
+			tierB++
+		else if(M.tier == 3)
+			tierC++
+		else
+			src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
+			continue
+		totalXenos++
 
 	if(tier == 1 && ((tierB + tierC) / totalXenos)> 0.5 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 2, either upgrade or wait for either more aliens to be born or someone to die.</span>"
@@ -164,6 +161,8 @@
 			M = /mob/living/carbon/Xenomorph/Crusher
 		if("Boiler")
 			M = /mob/living/carbon/Xenomorph/Boiler
+		if("Predalien")
+			M = /mob/living/carbon/Xenomorph/Predalien
 
 	if(isnull(M))
 		usr << "<span class='warning'>[castepick] is not a valid caste! If you're seeing this message, tell a coder!</span>"
@@ -176,7 +175,7 @@
 
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
-	if(do_after(src, 25))
+	if(do_after(src, 25, FALSE))
 		if(castepick == "Queen") //Do another check after the tick.
 			if(is_queen_alive())
 				src << "<span class='warning'>There already is a Queen.</span>"
@@ -217,11 +216,8 @@
 		new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
 		new_xeno.shift_mouse_toggle = src.shift_mouse_toggle //Keep our toggle state
 
-		for(var/obj/item/W in src.contents) //Drop stuff
-			drop_from_inventory(W)
-
-		drop_l_hand() //Drop dem huggies, just in case
-		drop_r_hand()
+		for(var/obj/item/W in contents) //Drop stuff
+			drop_inv_item_on_ground(W)
 
 		empty_gut()
 		new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.caste] emerges from the husk of \the [src].</span>", \

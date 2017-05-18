@@ -59,7 +59,7 @@ var/list/mechtoys = list(
 
 	if(istype(A, /mob/living)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying && !istype(M, /mob/living/carbon/monkey) && !istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/silicon/robot/drone))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying && !istype(M, /mob/living/carbon/monkey) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/silicon/robot/drone))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 
@@ -268,12 +268,11 @@ var/list/mechtoys = list(
 				A:req_access += text2num(SP.access)
 
 			var/list/contains
-			if(istype(SP,/datum/supply_packs/randomised))
-				var/datum/supply_packs/randomised/SPR = SP
+			if(SP.randomised_num_contained)
 				contains = list()
-				if(SPR.contains.len)
-					for(var/j=1,j<=SPR.num_contained,j++)
-						contains += pick(SPR.contains)
+				if(SP.contains.len)
+					for(var/j=1,j<=SP.randomised_num_contained,j++)
+						contains += pick(SP.contains)
 			else
 				contains = SP.contains
 
@@ -702,7 +701,3 @@ var/list/mechtoys = list(
 	status_signal.data["command"] = command
 
 	frequency.post_signal(src, status_signal)
-
-
-
-

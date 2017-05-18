@@ -1,6 +1,7 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
 	var/climbable
+	var/climb_delay = 50
 	var/breakable
 	var/parts
 	anchored = 1
@@ -12,6 +13,7 @@
 	del(src)
 
 /obj/structure/attack_hand(mob/user)
+	..()
 	if(breakable)
 		if(HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
@@ -60,50 +62,47 @@
 	do_climb(usr)
 
 /obj/structure/MouseDrop_T(mob/target, mob/user)
-
+	. = ..()
 	var/mob/living/H = user
-	if(!istype(H) || target != user) // No making other people climb onto tables.
+	if(!istype(H) || target != user) //No making other people climb onto tables.
 		return
 
 	do_climb(target)
 
 /obj/structure/proc/can_climb(var/mob/living/user)
-	if (!can_touch(user) || !climbable)
+	if(!climbable || !can_touch(user))
 		return 0
 
 	var/turf/T = src.loc
 	if(!T || !istype(T)) return 0
-
-	if (!user.Adjacent(src))
-		user << "\red You can't climb there, the way is blocked."
-		return 0
+	if(!user.Adjacent(src))	return 0
 
 	for(var/obj/O in T.contents)
-		if(istype(O,/obj/structure))
+		if(istype(O, /obj/structure))
 			var/obj/structure/S = O
 			if(S.climbable)
 				continue
 
 		if(O && O.density && !(O.flags_atom & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
-			user << "\red There's \a [O] in the way."
+			user << "<span class='warning'>There's \a [O.name] in the way.</span>"
 			return 0
 	return 1
 
 /obj/structure/proc/do_climb(var/mob/living/user)
-	if (!can_climb(user))
+	if(!can_climb(user))
 		return
 
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 
-	if(!do_after(user,50))
+	if(!do_after(user, climb_delay, FALSE))
 		return
 
-	if (!can_climb(user))
+	if(!can_climb(user))
 		return
 
-	usr.forceMove(get_turf(src))
+	user.forceMove(get_turf(src))
 
-	if (get_turf(user) == get_turf(src))
+	if(get_turf(user) == get_turf(src))
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 
 /obj/structure/proc/structure_shaken()
@@ -156,7 +155,7 @@
 		return 0
 	if(!Adjacent(user))
 		return 0
-	if (user.restrained() || user.buckled)
+	if (user.is_mob_restrained() || user.buckled)
 		user << "<span class='notice'>You need your hands and legs free for this.</span>"
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)

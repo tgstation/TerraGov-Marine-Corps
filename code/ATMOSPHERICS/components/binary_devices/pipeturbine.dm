@@ -126,7 +126,7 @@
 		set name = "Rotate Circulator (Clockwise)"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained() || anchored)
+		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
 		src.dir = turn(src.dir, -90)
@@ -137,7 +137,7 @@
 		set name = "Rotate Circulator (Counterclockwise)"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained() || anchored)
+		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
 		src.dir = turn(src.dir, 90)
@@ -246,7 +246,7 @@
 		turbine = null
 		if(src.loc && anchored)
 			turbine = locate(/obj/machinery/atmospherics/pipeturbine) in get_step(src,dir)
-			if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
+			if(!turbine || turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 				turbine = null
 
 	process()
@@ -273,7 +273,7 @@
 		set name = "Rotate Motor Clockwise"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained()  || anchored)
+		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
 		src.dir = turn(src.dir, -90)
@@ -283,7 +283,7 @@
 		set name = "Rotate Motor Counterclockwise"
 		set src in view(1)
 
-		if (usr.stat || usr.restrained()  || anchored)
+		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
 		src.dir = turn(src.dir, 90)

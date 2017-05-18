@@ -127,7 +127,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 
 /obj/machinery/portable_atmospherics/powered/scrubber/Topic(href, href_list)
 	..()
-	if (usr.stat || usr.restrained())
+	if (usr.stat || usr.is_mob_restrained())
 		return
 
 	if (((get_dist(src, usr) <= 1) && istype(src.loc, /turf)))

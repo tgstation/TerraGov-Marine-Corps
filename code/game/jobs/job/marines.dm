@@ -137,7 +137,7 @@ You can serve a variety of roles, so choose carefully."}
 
 	generate_entry_message()
 		. = ..() + {"\nYou are a rank-and-file soldier of the USCM, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ohh Rah!"}
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"}
 
 /datum/job/marine/standard/equipped
 	flags_startup_parameters = ROLE_ADD_TO_SQUAD

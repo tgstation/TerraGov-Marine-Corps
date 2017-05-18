@@ -92,7 +92,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
+	if(!istype(src.loc, /turf) || usr.stat || usr.is_mob_restrained() )
 		return
 
 	var/turf/T = src.loc
@@ -121,6 +121,11 @@ cases. Override_icon_state should be a list.*/
 				if(new_protection) min_cold_protection_temperature = new_protection
 		item_state = icon_state
 		item_color = icon_state
+
+/obj/item/New(loc)
+	..()
+	if(w_class <= 3) //pulling small items doesn't slow you down much
+		drag_delay = 1
 
 /obj/item/examine()
 	set src in view()
@@ -154,55 +159,55 @@ cases. Override_icon_state should be a list.*/
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return
 
-	if(src.anchored && !istype(src.loc, /obj/item/lightstick)) //Hax
+	if(anchored)
 		user << "[src] is anchored to the ground."
 		return
 
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
+		S.remove_from_storage(src, user.loc)
 
-	src.throwing = 0
-	if(src.loc != user)
-		src.pickup(user)
+	throwing = 0
 
-	if (src.loc == user)
+	if(loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(!src.canremove)
+		if(!canremove)
 			return
-		else
-			user.u_equip(src)
+		else if(!user.drop_inv_item_on_ground(src))
+			return
 	else
-		if(isliving(src.loc))
-			return
 		user.next_move = max(user.next_move+2,world.time + 2)
-	add_fingerprint(user)
-	user.put_in_active_hand(src)
-	return
+	if(loc) //item may have been cdel'd by the drop above.
+		pickup(user)
+		add_fingerprint(user)
+		if(!user.put_in_active_hand(src))
+			dropped(user)
 
 
 /obj/item/attack_paw(mob/user as mob)
 
+	if(anchored)
+		user << "[src] is anchored to the ground."
+		return
+
 	if (istype(src.loc, /obj/item/weapon/storage))
-		for(var/mob/M in range(1, src.loc))
-			if (M.s_active == src.loc)
-				if (M.client)
-					M.client.screen -= src
+		var/obj/item/weapon/storage/S = src.loc
+		S.remove_from_storage(src, user.loc)
+
 	src.throwing = 0
-	if (src.loc == user)
+	if (loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(istype(src, /obj/item/clothing) && !src:canremove)
+		if(!canremove)
 			return
 		else
-			user.u_equip(src)
+			if(user.drop_inv_item_on_ground(src))
+				return
 	else
-		if(istype(src.loc, /mob/living))
-			return
-		src.pickup(user)
 		user.next_move = max(user.next_move+2,world.time + 2)
-
-	user.put_in_active_hand(src)
-	return
+	if(loc) //item may have been cdel'd by the drop above.
+		pickup(user)
+		if(!user.put_in_active_hand(src))
+			dropped(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -244,14 +249,13 @@ cases. Override_icon_state should be a list.*/
 	return
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
+//the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user as mob)
-	if(layer != initial(layer))
-		layer = initial(layer) //Set it back when dropped.
-
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
 			zoom(user, 11, 12)
-	return
+	if(flags_atom & DELONDROP)
+		cdel(src)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -477,12 +481,12 @@ cases. Override_icon_state should be a list.*/
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
 		return
 	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
 		usr << "\red You can't pick things up!"
 		return
-	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
+	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
 		usr << "\red You can't pick things up!"
 		return
 	if(src.anchored) //Object isn't anchored
@@ -580,7 +584,7 @@ cases. Override_icon_state should be a list.*/
 			if(prob(50))
 				if(M.stat != 2)
 					M << "\red You drop what you're holding and clutch at your eyes!"
-					M.drop_item()
+					M.drop_held_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)

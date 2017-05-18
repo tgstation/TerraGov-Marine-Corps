@@ -319,7 +319,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/select = null
 	var/list/borgs = list()
 	for (var/mob/living/silicon/robot/A in player_list)
-		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || istype(A,/mob/living/silicon/robot/drone))
+		if (A.stat == 2 || A.connected_ai || A.scrambledcodes)
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
 		borgs[name] = A
@@ -489,15 +489,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/sortmob = sortAtom(mob_list)
 	for(var/mob/living/silicon/ai/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/silicon/pai/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/silicon/robot/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/carbon/human/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/carbon/brain/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/alien/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/carbon/Xenomorph/M in sortmob)
 		moblist.Add(M)
@@ -507,14 +503,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/carbon/monkey/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/slime/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
-//	for(var/mob/living/silicon/hivebot/M in world)
-//		mob_list.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in world)
-//		mob_list.Add(M)
 	return moblist
 
 /proc/sortxenos()
@@ -782,31 +772,28 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 	else
 		return 0
 
-/proc/do_after(var/mob/user as mob, delay as num, var/numticks = 5, var/needhand = 1)
-	if(!user || isnull(user))
-		return 0
-	if(numticks == 0)
-		return 0
+/proc/do_after(mob/user, delay, needhand = 2, numticks = 5) //hacky, will suffice for now.
+	if(!istype(user) || delay <= 0) r_FAL
+
 	var/mob/living/L
 	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
 
 	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
-	var/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_hand()
 
-	for(var/i = 0, i<numticks, i++)
+	for(var/i = 0 to numticks)
 		sleep(delayfraction)
+		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.weakened || user.stunned) r_FAL
+		if(L && L.health < config.health_threshold_crit) r_FAL //For some reason going into crit doesn't trigger the above things
+		switch(needhand)
+			if(1) //Just need an empty hand.
+				if(user.get_active_hand()) r_FAL //If there's something in the hand, fail.
+			if(2) //Need to use the same hand, holding a tool.
+				if(!holding || !holding.loc || user.get_active_hand() != holding ) r_FAL	//Sometimes you don't want the user to have to keep their active hand.
 
-
-		if(!user || user.stat || user.weakened || user.stunned || user.loc != original_loc || get_turf(user) != original_turf)
-			return 0
-		if(L && L.health < config.health_threshold_crit) //For some reason going into crit doesn't trigger the above things
-			return 0
-		if(needhand && !(user.get_active_hand() == holding))	//Sometimes you don't want the user to have to keep their active hand
-			return 0
-
-	return 1
+	r_TRU
 
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
@@ -967,8 +954,6 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 
 
 					for(var/obj/O in T)
-						if(istype(O, /obj/structure/engine_landing_sound)) //Ignore the engine landing sound object
-							continue
 						// Reset the shuttle corners
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'
@@ -1233,11 +1218,6 @@ proc/get_mob_with_client_list()
 	else if (zone == "r_foot") return "right foot"
 	else return zone
 
-//gets the turf the atom is located in (or itself, if it is a turf).
-//returns null if the atom is not in a turf.
-/proc/get_turf(A)
-	return get_step(A,0)
-
 /proc/get(atom/loc, type)
 	while(loc)
 		if(istype(loc, type))
@@ -1382,8 +1362,8 @@ proc/is_hot(obj/item/W as obj)
 	(locate(/obj/structure/stool/bed/roller, M.loc)) || \
 	(locate(/obj/structure/table/, M.loc)))//Sucess rate now handeled in surgery.dm
 
-/proc/reverse_direction(var/dir)
-	switch(dir)
+/proc/reverse_direction(direction)
+	switch(direction)
 		if(NORTH)
 			return SOUTH
 		if(NORTHEAST)
@@ -1400,6 +1380,18 @@ proc/is_hot(obj/item/W as obj)
 			return EAST
 		if(NORTHWEST)
 			return SOUTHEAST
+
+/proc/reverse_nearby_direction(direction)
+	switch(direction)
+		if(NORTH) 		. = list(SOUTH,     SOUTHEAST, SOUTHWEST)
+		if(NORTHEAST) 	. = list(SOUTHWEST, SOUTH,     WEST)
+		if(EAST) 		. = list(WEST,      SOUTHWEST, NORTHWEST)
+		if(SOUTHEAST) 	. = list(NORTHWEST, NORTH,     WEST)
+		if(SOUTH) 		. = list(NORTH,     NORTHEAST, NORTHWEST)
+		if(SOUTHWEST) 	. = list(NORTHEAST, NORTH,     EAST)
+		if(WEST) 		. = list(EAST,      NORTHEAST, SOUTHEAST)
+		if(NORTHWEST) 	. = list(SOUTHEAST, SOUTH,     EAST)
+
 
 /*
 Checks if that loc and dir has a item on the wall

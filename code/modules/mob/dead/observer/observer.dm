@@ -202,12 +202,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/is_active()		return 0
 
 /mob/dead/observer/Stat()
-	..()
-	statpanel("Status")
-	if(client.statpanel == "Status")
-		stat(null, "Station Time: [worldtime2text()]")
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
+	. = ..()
+
+	if(.)
+		stat(null, "Operation Time: [worldtime2text()]")
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)
 				stat(null, eta_status)
 
@@ -700,3 +700,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		spawn(200)
 			voted_this_drop = 0
 		return
+
+
+
+
+/mob/dead/observer/verb/edit_characters()
+	set category = "Ghost"
+	set name = "Edit Characters"
+	set desc = "Edit your characters in your preferences."
+
+	can_reenter_corpse = FALSE //no coming back if you edit your preferences.
+	client.prefs.ShowChoices(src)
+
+/mob/dead/observer/Topic(href, href_list)
+	..()
+	if(href_list["preference"])
+		if(client)
+			client.prefs.process_link(src, href_list)

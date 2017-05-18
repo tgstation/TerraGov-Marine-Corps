@@ -178,8 +178,8 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		user.drop_item(O)
-		del(O)
+		if(user.temp_drop_inv_item(O))
+			del(O)
 
 	updateUsrDialog()
 	return
@@ -225,7 +225,6 @@
 			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate an item!")
 			return
 
-		busy = 1
 		//This needs some work.
 		use_power(max(2000, (making.power_use*multiplier)))
 
@@ -235,6 +234,8 @@
 				if(stored_material[material] < (making.resources[material]*multiplier))
 					return
 
+		busy = 1
+
 		//Consume materials.
 		for(var/material in making.resources)
 			if(!isnull(stored_material[material]))
@@ -242,6 +243,9 @@
 
 		//Fancy autolathe animation.
 		flick("autolathe_n",src)
+
+		//immediately update the autolathe window
+		updateUsrDialog()
 
 		sleep(50)
 

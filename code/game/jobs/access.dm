@@ -13,7 +13,7 @@
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_hand()) || check_access(H.wear_id)) return 1
-	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/alien))
+	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/Xenomorph))
 		var/mob/living/carbon/C = M
 		if(check_access(C.get_active_hand())) return 1
 
@@ -78,7 +78,7 @@
 	return get_all_marine_access() + list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 
 /proc/get_all_marine_access()
-	return list(ACCESS_IFF_MARINE, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
+	return list(ACCESS_IFF_MARINE, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 
 /proc/get_all_centcom_access()
 	return list(ACCESS_WY_PMC_GREEN, ACCESS_WY_PMC_ORANGE, ACCESS_WY_PMC_RED, ACCESS_WY_PMC_BLACK, ACCESS_WY_PMC_WHITE, ACCESS_WY_CORPORATE)
@@ -99,7 +99,7 @@
 /proc/get_region_accesses(var/code)
 	switch(code)
 		if(0) return get_all_accesses()
-		if(1) return list(ACCESS_MARINE_BRIG)//security
+		if(1) return list(ACCESS_MARINE_WO, ACCESS_MARINE_BRIG)//security
 		if(2) return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)//medbay
 		if(3) return list(ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)//research
 		if(4) return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)//engineering and maintenance
@@ -111,11 +111,11 @@
 /proc/get_region_accesses_name(code)
 	switch(code)
 		if(0) return "All"
-		if(1) return "Sulaco Security"//security
-		if(2) return "Sulaco Medbay"//medbay
-		if(3) return "Sulaco Research"//research
-		if(4) return "Sulaco Engineering"//engineering and maintenance
-		if(5) return "Sulaco Command"//command
+		if(1) return "[MAIN_SHIP_NAME] Security"//security
+		if(2) return "[MAIN_SHIP_NAME] Medbay"//medbay
+		if(3) return "[MAIN_SHIP_NAME] Research"//research
+		if(4) return "[MAIN_SHIP_NAME] Engineering"//engineering and maintenance
+		if(5) return "[MAIN_SHIP_NAME] Command"//command
 		if(6) return "Marines"//marine prep
 		if(7) return "Squads"//squads
 		if(8) return "Civilian"//Civilian
@@ -123,15 +123,16 @@
 
 /proc/get_access_desc(A)
 	switch(A)
+		if(ACCESS_MARINE_WO)			return "WO's Office"
 		if(ACCESS_MARINE_BRIG) 			return "Brig"
 		if(ACCESS_MARINE_CMO) 			return "CMO's Office"
-		if(ACCESS_MARINE_MEDBAY)		return "Sulaco Medbay"
-		if(ACCESS_MARINE_RESEARCH) 		return "Sulaco Research"
+		if(ACCESS_MARINE_MEDBAY)		return "[MAIN_SHIP_NAME] Medbay"
+		if(ACCESS_MARINE_RESEARCH) 		return "[MAIN_SHIP_NAME] Research"
 		if(ACCESS_MARINE_CE)		 	return "CE's Office"
-		if(ACCESS_MARINE_ENGINEERING) 	return "Sulaco Engineering"
+		if(ACCESS_MARINE_ENGINEERING) 	return "[MAIN_SHIP_NAME] Engineering"
 		if(ACCESS_MARINE_COMMANDER) 	return "Commander's Quarters"
-		if(ACCESS_MARINE_LOGISTICS) 	return "Sulaco Logistics"
-		if(ACCESS_MARINE_BRIDGE) 		return "Sulaco Bridge"
+		if(ACCESS_MARINE_LOGISTICS) 	return "[MAIN_SHIP_NAME] Logistics"
+		if(ACCESS_MARINE_BRIDGE) 		return "[MAIN_SHIP_NAME] Bridge"
 		if(ACCESS_MARINE_PREP) 			return "Marine Prep"
 		if(ACCESS_MARINE_ENGPREP) 		return "Marine Squad Engineering"
 		if(ACCESS_MARINE_MEDPREP) 		return "Marine Squad Medical"
@@ -148,7 +149,7 @@
 		if(ACCESS_CIVILIAN_LOGISTICS) 	return "Civilian Command"
 		if(ACCESS_CIVILIAN_ENGINEERING) return "Civilian Engineering"
 		if(ACCESS_CIVILIAN_PUBLIC) 		return "Civilian"
-		if(ACCESS_IFF_MARINE) 			return "USS Sulaco Identification"
+		if(ACCESS_IFF_MARINE) 			return "[MAIN_SHIP_NAME] Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
@@ -223,11 +224,12 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 				"Chief Medical Officer",
 				"Doctor",
 				"Researcher",
-				"Military Police"
+				"Military Police",
+				"Chief MP"
 					)
 
 /proc/get_paygrades(paygrade, size, gender)
-	if(!paygrade) return ""
+	if(!paygrade) return
 	switch(paygrade)
 		if("C") . = size ? "" : "Civilian"
 		if("CD") . = size ? "Dr. " : "Doctor"
@@ -259,7 +261,6 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 		if("O7") . = size ? "ADM " : "Admiral"
 		if("O8") . = size ? "FADM " : "Fleet Admiral"
 		if("O9") . = size ? "SMR " : "Sky Marshal"
-		else return ""
 
 #define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E6E","E7","E8","E8E","E9","E9E","O1","O2","O3","O4")
 #define PAYGRADES_OFFICER list("O1","O2","O3","O4")

@@ -71,7 +71,7 @@
   */
 /obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER)) return
-	if(user.stat || user.restrained()) return
+	if(user.stat || user.is_mob_restrained()) return
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -151,11 +151,10 @@
 	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
 		if(!accept_glass && istype(B,/obj/item/weapon/reagent_containers/food))
 			user << "<span class='notice'>This machine only accepts beakers</span>"
-		src.beaker =  B
-		user.drop_item()
-		B.loc = src
-		user << "You set [B] on the machine."
-		nanomanager.update_uis(src) // update all UIs attached to src
+		if(user.drop_inv_item_to_loc(B, src))
+			beaker =  B
+			user << "You set [B] on the machine."
+			nanomanager.update_uis(src) // update all UIs attached to src
 		return
 
 /obj/machinery/chem_dispenser/attack_ai(mob/user as mob)
@@ -268,11 +267,10 @@
 		if(src.beaker)
 			user << "A beaker is already loaded into the machine."
 			return
-		src.beaker = B
-		user.drop_item()
-		B.loc = src
+		beaker = B
+		user.drop_inv_item_to_loc(B, src)
 		user << "You add the beaker to the machine!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
@@ -281,16 +279,15 @@
 			user << "A pill bottle is already loaded into the machine."
 			return
 
-		src.loaded_pill_bottle = B
-		user.drop_item()
-		B.loc = src
+		loaded_pill_bottle = B
+		user.drop_inv_item_to_loc(B, src)
 		user << "You add the pill bottle into the dispenser slot!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 	return
 
 /obj/machinery/chem_master/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER)) return
-	if(usr.stat || usr.restrained()) return
+	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 
 	src.add_fingerprint(usr)
@@ -379,7 +376,7 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = Clamp(isgoodnumber(input("Select the number of pills to make.", 10, pillamount) as num),1,max_pill_count)
+				count = Clamp(isgoodnumber(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num),1,max_pill_count)
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
@@ -567,7 +564,7 @@
 
 /obj/machinery/computer/pandemic/Topic(href, href_list)
 	if(stat & (NOPOWER|BROKEN)) return
-	if(usr.stat || usr.restrained()) return
+	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 
 	usr.set_machine(src)
@@ -649,7 +646,7 @@
 	else if(href_list["name_disease"])
 		var/new_name = stripped_input(usr, "Name the Disease", "New Name", "", MAX_NAME_LEN)
 		if(stat & (NOPOWER|BROKEN)) return
-		if(usr.stat || usr.restrained()) return
+		if(usr.stat || usr.is_mob_restrained()) return
 		if(!in_range(src, usr)) return
 		var/id = href_list["name_disease"]
 		if(archive_diseases[id])
@@ -770,15 +767,14 @@
 /obj/machinery/computer/pandemic/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(stat & (NOPOWER|BROKEN)) return
-		if(src.beaker)
+		if(beaker)
 			user << "A beaker is already loaded into the machine."
 			return
 
-		src.beaker =  I
-		user.drop_item()
-		I.loc = src
+		beaker =  I
+		user.drop_inv_item_to_loc(I, src)
 		user << "You add the beaker to the machine!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else
@@ -869,11 +865,10 @@
 		if (beaker)
 			return 1
 		else
-			src.beaker =  O
-			user.drop_item()
-			O.loc = src
+			beaker =  O
+			user.drop_inv_item_to_loc(O, src)
 			update_icon()
-			src.updateUsrDialog()
+			updateUsrDialog()
 			return 0
 
 	if(holdingitems && holdingitems.len >= limit)
@@ -901,10 +896,9 @@
 		user << "Cannot refine into a reagent."
 		return 1
 
-	user.before_take_item(O)
-	O.loc = src
+	user.drop_inv_item_to_loc(O, src)
 	holdingitems += O
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return 0
 
 /obj/machinery/reagentgrinder/attack_paw(mob/user as mob)

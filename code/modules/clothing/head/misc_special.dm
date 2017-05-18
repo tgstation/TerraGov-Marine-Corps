@@ -26,6 +26,7 @@
 	siemens_coefficient = 0.9
 	w_class = 3
 	anti_hug = 2
+	eye_protection = 2
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self()
@@ -37,15 +38,17 @@
 	set name = "Adjust welding mask"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
+	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 		if(up)
 			flags_inventory |= HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 			icon_state = initial(icon_state)
+			eye_protection = initial(eye_protection)
 			usr << "You flip the [src] down to protect your eyes."
 			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
 			flags_inventory &= ~(HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
 			icon_state = "[initial(icon_state)]up"
+			eye_protection = 0
 			usr << "You push the [src] up out of your face."
 			hug_memory = anti_hug
 			anti_hug = 0
@@ -152,7 +155,7 @@
 	var/icon/mob
 	var/icon/mob2
 	siemens_coefficient = 1.5
-
+/*
 	update_icon(var/mob/living/carbon/human/user)
 		if(!istype(user)) return
 		mob = new/icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
@@ -163,4 +166,4 @@
 		var/icon/earbit = new/icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
 		var/icon/earbit2 = new/icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner2")
 		mob.Blend(earbit, ICON_OVERLAY)
-		mob2.Blend(earbit2, ICON_OVERLAY)
+		mob2.Blend(earbit2, ICON_OVERLAY)*/

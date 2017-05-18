@@ -87,7 +87,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/large_holster/machete,
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
@@ -167,7 +167,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/large_holster/machete,
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 
@@ -199,6 +199,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/sparepouch,
 		/obj/item/device/hailer)
 	uniform_restricted = list(/obj/item/clothing/under/marine/mp)
+
+/obj/item/clothing/suit/storage/marine/MP/WO
+	icon_state = "warrant_officer"
+	name = "\improper M3 pattern MP armor"
+	desc = "A well-crafted suit of M3 Pattern Armor typically distributed to Chief MPs. Useful for letting your men know who is in charge."
+	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer/warrant)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
@@ -483,7 +490,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	set category = "Object"
 	set src in usr
 
-	if(!usr.canmove || usr.stat || usr.restrained())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	if(!injections)

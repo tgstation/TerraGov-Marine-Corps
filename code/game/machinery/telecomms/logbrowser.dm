@@ -68,7 +68,7 @@
 						// -- Determine race of orator --
 
 						var/race			   // The actual race of the mob
-						var/language = "Human" // MMIs, pAIs, Cyborgs and humans all speak Human
+						var/language = "Human" // MMIs and Cyborgs and humans all speak Human
 						var/mobtype = C.parameters["mobtype"]
 						var/mob/M = new mobtype
 
@@ -83,10 +83,6 @@
 
 						else if(issilicon(M) || C.parameters["job"] == "AI") // sometimes M gets deleted prematurely for AIs... just check the job
 							race = "Artificial Life"
-
-						else if(isslime(M)) // NT knows a lot about slimes, but not aliens. Can identify slimes
-							race = "slime"
-							language = race
 
 						else if(isanimal(M))
 							race = "Domestic Animal"
@@ -196,7 +192,7 @@
 
 		if(href_list["network"])
 
-			var/newnet = input(usr, "Which network do you want to view?", "Comm Monitor", network) as null|text
+			var/newnet = stripped_input(usr, "Which network do you want to view?", "Comm Monitor", network)
 
 			if(newnet && ((usr in range(1, src) || issilicon(usr))))
 				if(length(newnet) > 15)

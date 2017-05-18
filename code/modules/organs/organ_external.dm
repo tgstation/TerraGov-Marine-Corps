@@ -622,15 +622,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/obj/organ	//Dropped limb object
 		switch(body_part)
 			if(HEAD)
-				if(owner.species.flags & IS_SYNTHETIC)
-					organ= new /obj/item/weapon/organ/head/posi(owner.loc, owner)
-				else
-					organ= new /obj/item/weapon/organ/head(owner.loc, owner)
-				owner.drop_from_inventory(owner.glasses)
-				owner.drop_from_inventory(owner.head)
-				owner.drop_from_inventory(owner.l_ear)
-				owner.drop_from_inventory(owner.r_ear)
-				owner.drop_from_inventory(owner.wear_mask)
+				//if(owner.species.flags & IS_SYNTHETIC) //TODO New organs for synths.
+				organ= new /obj/item/weapon/organ/head(owner.loc, owner)
+				owner.drop_inv_item_on_ground(owner.glasses)
+				owner.drop_inv_item_on_ground(owner.head)
+				owner.drop_inv_item_on_ground(owner.l_ear)
+				owner.drop_inv_item_on_ground(owner.r_ear)
+				owner.drop_inv_item_on_ground(owner.wear_mask)
 			if(ARM_RIGHT)
 				if(status & ORGAN_ROBOT) 	organ = new /obj/item/robot_parts/r_arm(owner.loc)
 				else 						organ = new /obj/item/weapon/organ/r_arm(owner.loc, owner)
@@ -645,18 +643,18 @@ Note that amputating the affected organ does in fact remove the infection from t
 				else 						organ = new /obj/item/weapon/organ/l_leg(owner.loc, owner)
 			if(HAND_RIGHT)
 				if(!(status & ORGAN_ROBOT)) organ= new /obj/item/weapon/organ/r_hand(owner.loc, owner)
-				owner.drop_from_inventory(owner.gloves)
-				owner.drop_from_inventory(owner.r_hand)
+				owner.drop_inv_item_on_ground(owner.gloves)
+				owner.drop_inv_item_on_ground(owner.r_hand)
 			if(HAND_LEFT)
 				if(!(status & ORGAN_ROBOT)) organ= new /obj/item/weapon/organ/l_hand(owner.loc, owner)
-				owner.drop_from_inventory(owner.gloves)
-				owner.drop_from_inventory(owner.l_hand)
+				owner.drop_inv_item_on_ground(owner.gloves)
+				owner.drop_inv_item_on_ground(owner.l_hand)
 			if(FOOT_RIGHT)
 				if(!(status & ORGAN_ROBOT)) organ= new /obj/item/weapon/organ/r_foot/(owner.loc, owner)
-				owner.drop_from_inventory(owner.shoes)
+				owner.drop_inv_item_on_ground(owner.shoes)
 			if(FOOT_LEFT)
 				if(!(status & ORGAN_ROBOT)) organ = new /obj/item/weapon/organ/l_foot(owner.loc, owner)
-				owner.drop_from_inventory(owner.shoes)
+				owner.drop_inv_item_on_ground(owner.shoes)
 
 		destspawn = 1
 		//Robotic limbs explode if sabotaged.
@@ -697,14 +695,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"\The [owner.handcuffed.name] falls off of [owner.name].",\
 			"\The [owner.handcuffed.name] falls off you.")
 
-		owner.drop_from_inventory(owner.handcuffed)
+		owner.drop_inv_item_on_ground(owner.handcuffed)
 
 	if (owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
 		owner.visible_message(\
 			"\The [owner.legcuffed.name] falls off of [owner.name].",\
 			"\The [owner.legcuffed.name] falls off you.")
 
-		owner.drop_from_inventory(owner.legcuffed)
+		owner.drop_inv_item_on_ground(owner.legcuffed)
 
 /datum/organ/external/proc/bandage()
 	var/rval = 0
@@ -821,7 +819,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /datum/organ/external/proc/is_usable()
-	return !(status & (ORGAN_DESTROYED|ORGAN_MUTATED|ORGAN_DEAD))
+	return !(status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
 
 /datum/organ/external/proc/is_broken()
 	return ((status & ORGAN_BROKEN) && !(status & ORGAN_SPLINTED))
@@ -836,12 +834,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(is_broken())
 		if(prob(15))
-			owner.drop_from_inventory(c_hand)
+			owner.drop_inv_item_on_ground(c_hand)
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
 	if(is_malfunctioning())
 		if(prob(10))
-			owner.drop_from_inventory(c_hand)
+			owner.drop_inv_item_on_ground(c_hand)
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, owner)
@@ -861,13 +859,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	W.add_blood(owner)
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc
-		H.drop_item()
+		H.drop_held_item()
 	if(W)
-		W.loc = owner
+		W.forceMove(owner)
 
 /datum/organ/external/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
 	status |= ORGAN_SPLINTING //Set the tempory status. Set on organ so we don't worry about it being improperly reset or stuck.
-	if(do_after(user, 50, 1))
+	if(do_after(user, 50))
 		if(user && user.loc && target && target.loc && !(status & ORGAN_DESTROYED) && !(status & ORGAN_SPLINTED))
 			if(target != user)
 				user.visible_message(
@@ -1018,7 +1016,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		. = new /icon(race_icon, "[icon_name]_[g]")
 
 /datum/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
-	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
+	. = ..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
 	if (!disfigured)
 		if (brute_dam > 40)
 			if (prob(50))
@@ -1118,9 +1116,6 @@ obj/item/weapon/organ/head
 	var/mob/living/carbon/brain/brainmob
 	var/brain_op_stage = 0
 
-/obj/item/weapon/organ/head/posi
-	name = "robotic head"
-
 obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
@@ -1209,12 +1204,8 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 				msg_admin_attack("[user] ([user.ckey]) debrained [brainmob] ([brainmob.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 				//TODO: ORGAN REMOVAL UPDATE.
-				if(istype(src,/obj/item/weapon/organ/head/posi))
-					var/obj/item/device/mmi/posibrain/B = new(loc)
-					B.transfer_identity(brainmob)
-				else
-					var/obj/item/organ/brain/B = new(loc)
-					B.transfer_identity(brainmob)
+				var/obj/item/organ/brain/B = new(loc)
+				B.transfer_identity(brainmob)
 
 				brain_op_stage = 4.0
 			else

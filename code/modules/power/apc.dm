@@ -433,14 +433,13 @@
 			if (stat & MAINT)
 				user << "\red There is no connector for your power cell."
 				return
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user.visible_message(\
-				"\red [user.name] has inserted the power cell to [src.name]!",\
-				"You insert the power cell.")
-			chargecount = 0
-			update_icon()
+			if(user.drop_inv_item_to_loc(W, src))
+				cell = W
+				user.visible_message(\
+					"\red [user.name] has inserted the power cell to [src.name]!",\
+					"You insert the power cell.")
+				chargecount = 0
+				update_icon()
 	else if	(istype(W, /obj/item/weapon/screwdriver))	// haxing
 		if(opened)
 			if (cell)
@@ -905,7 +904,7 @@
 		nanomanager.close_user_uis(user, src)
 
 		return 0
-	if(user.restrained())
+	if(user.is_mob_restrained())
 		user << "\red You must have free hands to use this [src]"
 		return 0
 	if(user.lying)

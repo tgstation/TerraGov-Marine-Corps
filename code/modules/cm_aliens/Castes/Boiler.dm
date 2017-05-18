@@ -23,10 +23,12 @@
 	pixel_x = -16
 	caste_desc = "Gross!"
 	evolves_to = list()
-	big_xeno = 1 //Toggles pushing
+	mob_size = MOB_SIZE_BIG
 	tier = 3
 	upgrade = 0
 	gib_chance = 100
+	drag_delay = 6 //pulling a big dead xeno is hard
+	armor_deflection = 20
 	var/zoom_timer = 0
 	var/is_bombarding = 0
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"
@@ -61,25 +63,6 @@
 		SetLuminosity(0)
 		..()
 
-/mob/living/carbon/Xenomorph/Boiler/can_ventcrawl()
-	return
-
-/mob/living/carbon/Xenomorph/Boiler/ClickOn(var/atom/A, params)
-	if(is_zoomed && !is_bombarding && !istype(A,/obj/screen))
-		zoom_out()
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		if(A)
-			face_atom(A)
-			acid_spray(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		if(A)
-			face_atom(A)
-			acid_spray(A)
-		return
-	..()
 
 /mob/living/carbon/Xenomorph/Boiler/proc/longrange()
 	set name = "Toggle Long Range Sight (20)"
@@ -105,7 +88,7 @@
 	visible_message("<span class='notice'>[src] starts looking off into the distance.</span>", \
 	"<span class='notice'>You start focusing your sight to look off into the distance.</span>")
 
-	if(do_after(src, 20))
+	if(do_after(src, 20, FALSE))
 		zoom_in()
 		zoom_timer = 0 //Just so they don't spam it and weird things out
 		return
@@ -154,7 +137,7 @@
 	readying_bombard = 1
 	visible_message("<span class='notice'>\The [src] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>You begin digging yourself into place.</span>")
-	if(do_after(src, 30))
+	if(do_after(src, 30, FALSE))
 		readying_bombard = 0
 		is_bombarding = 1
 		visible_message("<span class='notice'>\The [src] digs itself into the ground!</span>", \
@@ -222,7 +205,7 @@
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 	bomb_cooldown = 1
 	is_bombarding = 0
-	if(do_after(src, 50))
+	if(do_after(src, 50, FALSE))
 		bomb_turf = null
 		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
 		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>")
@@ -301,7 +284,7 @@
 		return
 	else
 		if(prob(20))
-			M.drop_item()
+			M.drop_held_item()
 		M.adjustOxyLoss(5)
 		M.adjustFireLoss(rand(5,15))
 		M.updatehealth()

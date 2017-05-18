@@ -53,9 +53,6 @@
 
 	update_seed()
 
-/obj/item/seeds/replicapod
-	seed_type = "diona"
-
 /obj/item/seeds/poppyseed
 	seed_type = "poppies"
 

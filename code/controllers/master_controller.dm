@@ -53,7 +53,7 @@ datum/controller/game_controller/New()
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
-	if(!emergency_shuttle)			emergency_shuttle = new /datum/emergency_shuttle_controller()
+	if(!EvacuationAuthority)		EvacuationAuthority = new
 	if(!shuttle_controller)			shuttle_controller = new /datum/shuttle_controller()
 
 datum/controller/game_controller/proc/setup()
@@ -74,8 +74,6 @@ datum/controller/game_controller/proc/setup()
 	setupfactions()
 	setup_economy()
 	// SetupXenoarch()
-
-	transfer_controller = new
 
 	for(var/i=0, i<max_secret_rooms, i++)
 		make_mining_asteroid_secret()
@@ -142,7 +140,6 @@ datum/controller/game_controller/proc/process()
 
 				TrashAuthority.EmptyTrash()
 				vote.process()
-				transfer_controller.process()
 				shuttle_controller.process()
 				process_newscaster()
 

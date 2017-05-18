@@ -126,8 +126,7 @@
 				return
 
 			usr << "You insert [O] into [src]."
-			usr.drop_item()
-			O.loc = src
+			usr.drop_inv_item_to_loc(O, src)
 			inserted = O
 			writeprotect = inserted.writeprotect
 

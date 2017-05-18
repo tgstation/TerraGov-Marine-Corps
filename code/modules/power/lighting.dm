@@ -360,15 +360,15 @@
 				on = has_power()
 				update()
 
-				user.drop_item()	//drop the item to update overlays and such
-				del(L)
+				if(user.temp_drop_inv_item(L))
+					del(L)
 
-				if(on && rigged)
+					if(on && rigged)
 
-					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+						log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+						message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
-					explode()
+						explode()
 			else
 				user << "This type of light requires a [fitting]."
 				return
@@ -519,10 +519,11 @@
 	switchcount = 0
 
 	L.update()
-	L.add_fingerprint(user)
 
-	user.put_in_active_hand(L)	//puts it in our active hand
-
+	if(user.put_in_active_hand(L))	//succesfully puts it in our active hand
+		L.add_fingerprint(user)
+	else
+		L.forceMove(loc) //if not, put it on the ground
 	status = LIGHT_EMPTY
 	update()
 

@@ -6,6 +6,7 @@
 	anchored = 1.0
 	flags_atom = FPRINT
 	pressure_resistance = 15
+	var/is_stool = TRUE
 
 /obj/structure/stool/ex_act(severity)
 	switch(severity)
@@ -30,9 +31,9 @@
 	return
 
 /obj/structure/stool/MouseDrop(atom/over_object)
-	if (istype(over_object, /mob/living/carbon/human))
+	if (is_stool && istype(over_object, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = over_object
-		if (H==usr && !H.restrained() && !H.stat && in_range(src, over_object))
+		if (H==usr && !H.is_mob_restrained() && !H.stat && in_range(src, over_object))
 			var/obj/item/weapon/stool/S = new/obj/item/weapon/stool()
 			S.origin = src
 			src.loc = S
@@ -52,13 +53,13 @@
 /obj/item/weapon/stool/proc/deploy(var/mob/user)
 
 	if(!origin)
-		user.drop_from_inventory(src)
+		user.temp_drop_inv_item(src)
 		del (src)
 		return
 
 	if(user)
 		origin.loc = get_turf(user)
-		user.drop_from_inventory(src)
+		user.temp_drop_inv_item(src)
 		user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
 		del(src)
 
@@ -69,7 +70,7 @@
 /obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(25) && istype(M,/mob/living))
 		user.visible_message("\red [user] breaks [src] over [M]'s back!")
-		user.drop_from_inventory(src)
+		user.temp_drop_inv_item(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)
 		var/mob/living/T = M

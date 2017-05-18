@@ -25,6 +25,7 @@
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR|COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
 	filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 	gas_filter_strength = 3
+	eye_protection = 2
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 	unacidable = 1
 	anti_hug = 100
@@ -70,7 +71,7 @@
 			if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
 				M << "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>"
 				return
-			M.remove_from_mob(G) //Get rid of ye existinge gogglors
+			M.temp_drop_inv_item(G) //Get rid of ye existinge gogglors
 			cdel(G)
 		switch(current_goggles)
 			if(0)
@@ -98,7 +99,7 @@
 		var/obj/item/G = mob.glasses
 		if(G)
 			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
-				mob.remove_from_mob(G)
+				mob.temp_drop_inv_item(G)
 				cdel(G)
 				mob.update_inv_glasses()
 
@@ -301,6 +302,35 @@
 			if(cloaked)
 				decloak(usr)
 
+	equipped(mob/user, slot)
+		..()
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
+				processing_objects.Add(src)
+
+	dropped(mob/user)
+		..()
+		processing_objects.Remove(src)
+
+	process()
+		if(!ishuman(loc))
+			processing_objects.Remove(src)
+			return
+		var/mob/living/carbon/human/H = loc
+		if(cloak_timer)
+			cloak_timer--
+		if(cloaked)
+			H.alpha = 10
+			charge = max(charge - 10, 0)
+			if(charge <= 0)
+				decloak(loc)
+		else
+			charge = min(charge + 30, charge_max)
+		var/perc_charge = (charge / charge_max * 100)
+		H.update_power_display(perc_charge)
+
+
 	//This is the main proc for checking AND draining the bracer energy. It must have M passed as an argument.
 	//It can take a negative value in amount to restore energy.
 	//Also instantly updates the yautja power HUD display.
@@ -335,7 +365,7 @@
 			user << "<span class='notice'>You retract your wrist blades.</span>"
 			playsound(user.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
-			user.drop_item(R)
+			user.drop_inv_item_to_loc(R, R.loc)
 			return
 		else
 			if(!drain_power(user,50)) return
@@ -376,17 +406,17 @@
 		else //Turn it on!
 			if(cloak_timer)
 				if(prob(50))
-					usr << "<span class='warning'>Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks.</span>"
+					M << "<span class='warning'>Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks.</span>"
 				return 0
-			if(!drain_power(usr,50)) return
+			if(!drain_power(M,50)) return
 			cloaked = 1
-			usr << "<span class='notice'>You are now invisible to normal detection.</span>"
-			for(var/mob/O in oviewers(usr))
-				O.show_message("[usr.name] vanishes into thin air!",1)
-			playsound(usr.loc,'sound/effects/cloakon.ogg', 50, 1)
-			usr.update_icons()
+			M << "<span class='notice'>You are now invisible to normal detection.</span>"
+			for(var/mob/O in oviewers(M))
+				O.show_message("[M] vanishes into thin air!",1)
+			playsound(M.loc,'sound/effects/cloakon.ogg', 50, 1)
+			M.alpha = 10
 			spawn(1)
-				anim(usr.loc,usr,'icons/mob/mob.dmi',,"cloak",,usr.dir)
+				anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
 		return 1
 
@@ -397,12 +427,12 @@
 		for(var/mob/O in oviewers(user))
 			O.show_message("[user.name] shimmers into existence!",1)
 		playsound(user.loc,'sound/effects/cloakoff.ogg', 50, 1)
-		user.update_icons()
+		user.alpha = initial(user.alpha)
 		cloak_timer = 10
 		spawn(1)
 			if(user)
 				anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
-		return
+
 
 	verb/caster()
 		set name = "Use Plasma Caster"
@@ -425,14 +455,14 @@
 				found = 1
 				usr.r_hand = null
 				if(R)
-					M.remove_from_mob(R)
+					M.temp_drop_inv_item(R)
 					cdel(R)
 				M.update_inv_r_hand()
 			if(L && istype(L))
 				found = 1
 				usr.l_hand = null
 				if(L)
-					M.remove_from_mob(L)
+					M.temp_drop_inv_item(L)
 					cdel(L)
 				M.update_inv_l_hand()
 			if(found)
@@ -482,9 +512,9 @@
 		if(!isYautja(M))
 			M << "<span class='warning'>You have no idea how to work these things!</span>"
 			return
-		var/obj/item/weapon/grab/grabbing = M.get_active_hand()
-		if(istype(grabbing))
-			var/mob/living/carbon/human/comrade = grabbing.affecting
+		var/obj/item/weapon/grab/G = M.get_active_hand()
+		if(istype(G))
+			var/mob/living/carbon/human/comrade = G.grabbed_thing
 			if(isYautja(comrade) && comrade.stat == DEAD)
 				var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
 				if(istype(bracer))
@@ -525,7 +555,7 @@
 		set category = "Yautja"
 		set desc = "Create a focus crystal to energize your natural healing processes."
 
-		if(!usr.canmove || usr.stat || usr.restrained())
+		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 			return 0
 
 		if(!isYautja(usr))
@@ -559,7 +589,7 @@
 		set category = "Yautja"
 		set desc = "Call back your smart-disc, if it's in range. If not you'll have to go retrieve it."
 
-		if(!usr.canmove || usr.stat || usr.restrained())
+		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 			return 0
 
 		if(!isYautja(usr))
@@ -760,39 +790,42 @@
 
 /obj/item/weapon/legcuffs/yautja/attack_self(mob/user as mob)
 	..()
-	if(ishuman(user) && !user.stat && !user.restrained())
+	if(ishuman(user) && !user.stat && !user.is_mob_restrained())
 		armed = !armed
 		icon_state = "yauttrap[armed]"
 		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"].</span>"
 
-/obj/item/weapon/legcuffs/yautja/Crossed(AM as mob|obj)
+/obj/item/weapon/legcuffs/yautja/Crossed(atom/movable/AM)
 	if(armed)
-		if(iscarbon(AM))
-			if(isturf(src.loc))
-				var/mob/living/carbon/H = AM
-				if(isYautja(H))
-					H << "<span class='notice'>You carefully avoid stepping on the trap.</span>"
-					return
-				if(H.m_intent == "run")
+		if(ismob(AM))
+			var/mob/M = AM
+			if(!M.buckled)
+				if(iscarbon(AM))
+					if(isturf(src.loc))
+						var/mob/living/carbon/H = AM
+						if(isYautja(H))
+							H << "<span class='notice'>You carefully avoid stepping on the trap.</span>"
+							return
+						if(H.m_intent == "run")
+							armed = 0
+							icon_state = "yauttrap0"
+							H.legcuffed = src
+							src.loc = H
+							H.legcuff_update()
+							playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
+							H << "\icon[src] \red <B>You step on \the [src]!</B>"
+							H.Weaken(4)
+							if(ishuman(H))
+								H.emote("scream")
+							feedback_add_details("handcuffs","B")
+							for(var/mob/O in viewers(H, null))
+								if(O == H)
+									continue
+								O.show_message("<span class='warning'>\icon[src] <B>[H] steps on [src].</B></span>", 1)
+				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 					armed = 0
-					icon_state = "yauttrap0"
-					H.legcuffed = src
-					src.loc = H
-					H.update_inv_legcuffed()
-					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
-					H << "\icon[src] \red <B>You step on \the [src]!</B>"
-					H.Weaken(4)
-					if(ishuman(H))
-						H.emote("scream")
-					feedback_add_details("handcuffs","B")
-					for(var/mob/O in viewers(H, null))
-						if(O == H)
-							continue
-						O.show_message("<span class='warning'>\icon[src] <B>[H] steps on [src].</B></span>", 1)
-		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
-			armed = 0
-			var/mob/living/simple_animal/SA = AM
-			SA.health -= 20
+					var/mob/living/simple_animal/SA = AM
+					SA.health -= 20
 	..()
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
@@ -840,7 +873,7 @@
 			if(loc)
 				if(ismob(loc))
 					user = loc
-					user.remove_from_mob(src)
+					user.temp_drop_inv_item(src)
 				cdel(src)
 			return
 
@@ -867,13 +900,13 @@
 					animation_teleport_quick_in(M)
 
 			// Teleport whoever you're grabbing.
-			var/obj/item/weapon/grab/grabbing = user.get_inactive_hand()
+			var/obj/item/weapon/grab/G = user.get_inactive_hand()
 
-			if(istype(grabbing))
-				M = grabbing.affecting
+			if(istype(G))
+				M = G.grabbed_thing
 				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
 				sleep(animation_teleport_quick_out(M))
-				if(grabbing) grabbing.dropped()
+				if(G) G.dropped()
 				if(M && M.loc)
 					M.loc = pick(pred_spawn)
 					animation_teleport_quick_in(M)
@@ -1050,7 +1083,7 @@
 		if(user.zone_sel.selecting == "r_leg" || user.zone_sel.selecting == "l_leg" || user.zone_sel.selecting == "l_foot" || user.zone_sel.selecting == "r_foot")
 			if(prob(35) && !target.lying)
 				if(isXeno(target))
-					if(target:big_xeno) //Can't trip the big ones.
+					if(target.mob_size == MOB_SIZE_BIG) //Can't trip the big ones.
 						return ..()
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 				user.visible_message("<span class = 'danger'>[src] lashes out and [target] goes down!</span>","<span class='danger'><b>You trip [target]!</b></span>")
@@ -1169,7 +1202,7 @@
 		if(!isYautja(user))
 			if(prob(20))
 				user.visible_message("<span class='warning'>[src] slips out of your hands!</span>")
-				user.drop_from_inventory(src)
+				user.drop_inv_item_on_ground(src)
 				return
 		..()
 		if(ishuman(target)) //Slicey dicey!

@@ -205,44 +205,36 @@
 		src.updateUsrDialog()
 		return
 
-	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-		if(istype(G, /obj/item/weapon/reagent_containers/glass))
+	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+		if(istype(W, /obj/item/weapon/reagent_containers/glass))
 			if(!beaker)
-				beaker = G
-				user.drop_item()
-				G.loc = src
-				user.visible_message("[user] adds \a [G] to \the [src]!", "You add \a [G] to \the [src]!")
-				src.updateUsrDialog()
+				if(user.drop_inv_item_to_loc(W, src))
+					beaker = W
+					user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
+					updateUsrDialog()
 				return
 			else
 				user << "\red The sleeper has a beaker already."
 				return
 
-		else if(istype(G, /obj/item/weapon/grab))
-			if(!ismob(G:affecting))
+		else if(istype(W, /obj/item/weapon/grab))
+			var/obj/item/weapon/grab/G = W
+			if(!ismob(G.grabbed_thing))
 				return
 
 			if(src.occupant)
 				user << "\blue <B>The sleeper is already occupied!</B>"
 				return
 
-			for(var/mob/living/carbon/slime/M in range(1,G:affecting))
-				if(M.Victim == G:affecting)
-					usr << "[G:affecting.name] will not fit into the sleeper because they have a slime latched onto their head."
-					return
-
-			visible_message("[user] starts putting [G:affecting:name] into the sleeper.", 3)
+			visible_message("[user] starts putting [G.grabbed_thing] into the sleeper.", 3)
 
 			if(do_after(user, 20))
 				if(src.occupant)
 					user << "\blue <B>The sleeper is already occupied!</B>"
 					return
-				if(!G || !G:affecting) return
-				var/mob/M = G:affecting
-				if(M.client)
-					M.client.perspective = EYE_PERSPECTIVE
-					M.client.eye = src
-				M.loc = src
+				if(!G || !G.grabbed_thing) return
+				var/mob/M = G.grabbed_thing
+				M.forceMove(src)
 				update_use_power(2)
 				src.occupant = M
 				src.icon_state = "sleeper_1"
@@ -250,9 +242,7 @@
 					icon_state = "sleeper_1-r"
 
 				src.add_fingerprint(user)
-				del(G)
-			return
-		return
+
 
 
 	ex_act(severity)
@@ -409,12 +399,8 @@
 			usr << "\blue <B>The sleeper is already occupied!</B>"
 			return
 
-		for(var/mob/living/carbon/slime/M in range(1,usr))
-			if(M.Victim == usr)
-				usr << "You're too busy getting your life sucked out of you."
-				return
 		visible_message("[usr] starts climbing into the sleeper.", 3)
-		if(do_after(usr, 20))
+		if(do_after(usr, 20, FALSE))
 			if(src.occupant)
 				usr << "\blue <B>The sleeper is already occupied!</B>"
 				return

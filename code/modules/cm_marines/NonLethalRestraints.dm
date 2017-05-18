@@ -42,7 +42,7 @@
 		user << "<span class='warning'>\The [src] is out of charge.</span>"
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/stunprod/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/melee/stunprod/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
 		user.Weaken(30)
@@ -52,7 +52,6 @@
 			update_icon()
 		return
 
-	var/mob/living/carbon/alien/H = M
 	if(isrobot(M))
 		..()
 		return
@@ -60,19 +59,19 @@
 	if(user.a_intent == "hurt")
 		return
 	else if(!status)
-		H.visible_message("<span class='warning'>[M] has been poked with [src] whilst it's turned off by [user].</span>")
+		M.visible_message("<span class='warning'>[M] has been poked with [src] whilst it's turned off by [user].</span>")
 		return
 
 	if(status)
-		H.weakened = 6
+		M.weakened = 6
 		user.lastattacked = M
-		H.lastattacker = user
+		M.lastattacker = user
 		charges -= 2
-		H.visible_message("<span class='danger'>[M] has been prodded with the [src] by [user]!</span>")
+		M.visible_message("<span class='danger'>[M] has been prodded with the [src] by [user]!</span>")
 
-		user.attack_log += "\[[time_stamp()]\]<font color='red'> Stunned [H.name] ([H.ckey]) with [src.name]</font>"
-		H.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by [user.name] ([user.ckey]) with [src.name]</font>"
-		log_attack("[user.name] ([user.ckey]) stunned [H.name] ([H.ckey]) with [src.name]")
+		user.attack_log += "\[[time_stamp()]\]<font color='red'> Stunned [M.name] ([M.ckey]) with [src.name]</font>"
+		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by [user.name] ([user.ckey]) with [src.name]</font>"
+		log_attack("[user.name] ([user.ckey]) stunned [M.name] ([M.ckey]) with [src.name]")
 
 		playsound(src.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		if(charges < 1)
@@ -111,7 +110,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 
 /obj/item/weapon/restraints/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(!istype(C, /mob/living/carbon/alien))
+	if(!istype(C, /mob/living/carbon/Xenomorph))
 		user << "\red The cuffs do not fit!"
 		return
 	if(!C.handcuffed)
@@ -124,8 +123,7 @@
 			if(!C)	return
 			if(p_loc == user.loc && p_loc_m == C.loc)
 				C.handcuffed = new /obj/item/weapon/restraints(C)
-				C.update_inv_handcuffed()
-				C.update_icons()
+				C.handcuff_update()
 				C.visible_message("\red [C] has been successfully restrained by [user]!")
 				del(src)
 	return

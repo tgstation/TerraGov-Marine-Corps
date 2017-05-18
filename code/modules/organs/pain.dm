@@ -31,8 +31,8 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 				i++
 			if(i) msg += ", [pick("fumbling with","struggling with","losing control of")] your [i < 2 ? "hand" : "hands"]"
 
-			H.drop_item()
-			H << "<span class='warning'>[msg].</span>"
+			if(H.drop_held_item())
+				H << "<span class='warning'>[msg].</span>"
 
 	if(burning)
 		switch(amount)

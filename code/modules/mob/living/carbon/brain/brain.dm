@@ -33,19 +33,12 @@
 				return 0
 			else
 				return 1
-		if (istype(other, /mob/living/silicon/pai))
-			if(!(container && istype(container, /obj/item/device/mmi)))
-				return 0
-			else
-				return 1
 		if (istype(other, /mob/living/silicon/robot))
 			if(!(container && istype(container, /obj/item/device/mmi)))
 				return 0
 			else
 				return 1
 		if (istype(other, /mob/living/carbon/human))
-			return 1
-		if (istype(other, /mob/living/carbon/slime))
 			return 1
 		return ..()
 

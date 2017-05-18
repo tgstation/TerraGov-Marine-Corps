@@ -49,7 +49,7 @@
 		switch( alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
 			if("Up")
 				user << "You start climbing up the ladder.."
-				if(do_after(user,20))
+				if(do_after(user,20, FALSE))
 
 					user.visible_message("<span class='notice'>[user] climbs up \the [src]!</span>", \
 										 "<span class='notice'>You climb up \the [src]!</span>")
@@ -60,7 +60,7 @@
 
 			if("Down")
 				user << "You start climbing down the ladder.."
-				if(do_after(user,20))
+				if(do_after(user,20, FALSE))
 					user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 										 "<span class='notice'>You climb down \the [src]!</span>")
 					user.loc = get_turf(down)
@@ -73,7 +73,7 @@
 
 	else if(up)
 		user << "You start climbing up the ladder.."
-		if(do_after(user,20))
+		if(do_after(user,20, FALSE))
 			user.visible_message("<span class='notice'>[user] climbs up \the [src]!</span>", \
 								 "<span class='notice'>You climb up \the [src]!</span>")
 			user.loc = get_turf(up)
@@ -83,7 +83,7 @@
 
 	else if(down)
 		user << "You start climbing down the ladder.."
-		if(do_after(user,20))
+		if(do_after(user,20, FALSE))
 			user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 								 "<span class='notice'>You climb down \the [src]!</span>")
 			user.loc = get_turf(down)
@@ -127,7 +127,7 @@
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
 		if(isXenoLarva(usr) || isobserver(usr) || usr.stat)
-			usr << "You can't do that"
+			usr << "You can't do that. Just use the ladder."
 			return
 		if(up && down)
 			switch( alert("Look up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
@@ -183,7 +183,7 @@
 							if(do_after(user,10))
 								user.visible_message("<span class='warning'>[user] throws \the [W] up \the [src]!</span>", \
 													 "<span class='warning'>You throw \the [W] up \the [src]</span>")
-								user.drop_item()
+								user.drop_held_item()
 								W.loc = get_turf(up)
 								W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 								step_away(W,src,rand(1,5))
@@ -194,7 +194,7 @@
 							if(do_after(user,10))
 								user.visible_message("<span class='warning'>[user] throws \the [W] down \the [src]!</span>", \
 													 "<span class='warning'>You throw \the [W] down \the [src]</span>")
-								user.drop_item()
+								user.drop_held_item()
 								W.loc = get_turf(down)
 								W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 								step_away(W,src,rand(1,5))
@@ -208,7 +208,7 @@
 					if(do_after(user,10))
 						user.visible_message("<span class='warning'>[user] throws \the [W] up \the [src]!</span>", \
 											 "<span class='warning'>You throw \the [W] up \the [src]</span>")
-						user.drop_item()
+						user.drop_held_item()
 						W.loc = get_turf(up)
 						W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 						step_away(W,src,rand(1,5))
@@ -219,7 +219,7 @@
 					if(do_after(user,10))
 						user.visible_message("<span class='warning'>[user] throws \the [W] down \the [src]!</span>", \
 											 "<span class='warning'>You throw \the [W] down \the [src]</span>")
-						user.drop_item()
+						user.drop_held_item()
 						W.loc = get_turf(down)
 						W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 						step_away(W,src,rand(1,5))
@@ -234,7 +234,7 @@
 						if(do_after(user,10))
 							user.visible_message("<span class='warning'>[user] throws \the [W] up \the [src]!</span>", \
 												 "<span class='warning'>You throw \the [W] up \the [src]</span>")
-							user.drop_item()
+							user.drop_held_item()
 							W.loc = get_turf(up)
 							W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 							step_away(W,src,rand(1,5))
@@ -247,7 +247,7 @@
 						if(do_after(user,10))
 							user.visible_message("<span class='warning'>[user] throws \the [W] down \the [src]!</span>", \
 												 "<span class='warning'>You throw \the [W] down \the [src]</span>")
-							user.drop_item()
+							user.drop_held_item()
 							W.loc = get_turf(down)
 							W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 							step_away(W,src,rand(1,5))
@@ -263,7 +263,7 @@
 				if(do_after(user,10))
 					user.visible_message("<span class='warning'>[user] throws \the [W] up \the [src]!</span>", \
 										 "<span class='warning'>You throw \the [W] up \the [src]</span>")
-					user.drop_item()
+					user.drop_held_item()
 					W.loc = get_turf(up)
 					W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 					step_away(W,src,rand(1,5))
@@ -276,7 +276,7 @@
 				if(do_after(user,10))
 					user.visible_message("<span class='warning'>[user] throws \the [W] down \the [src]!</span>", \
 										 "<span class='warning'>You throw \the [W] down \the [src]</span>")
-					user.drop_item()
+					user.drop_held_item()
 					W.loc = get_turf(down)
 					W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 					step_away(W,src,rand(1,5))

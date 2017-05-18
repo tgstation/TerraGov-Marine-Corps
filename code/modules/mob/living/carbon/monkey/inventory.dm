@@ -74,24 +74,18 @@
 	if(target.loc != t_loc)						return
 	if(LinkBlocked(s_loc,t_loc))				return
 	if(item && source.get_active_hand() != item)	return
-	if ((source.restrained() || source.stat))	return
+	if ((source.is_mob_restrained() || source.stat))	return
 	switch(place)
 		if("mask")
 			if (target.wear_mask)
 				if(istype(target.wear_mask, /obj/item/clothing)&& !target.wear_mask:canremove)
 					return
 				var/obj/item/W = target.wear_mask
-				target.u_equip(W)
-				if (target.client)
-					target.client.screen -= W
-				if (W)
-					W.loc = target.loc
-					W.dropped(target)
-					W.layer = initial(W.layer)
+				target.drop_inv_item_on_ground(W)
 				W.add_fingerprint(source)
 			else
 				if (istype(item, /obj/item/clothing/mask))
-					source.drop_item()
+					source.drop_held_item()
 					loc = target
 					item.layer = 20
 					target.wear_mask = item
@@ -99,17 +93,11 @@
 		if("l_hand")
 			if (target.l_hand)
 				var/obj/item/W = target.l_hand
-				target.u_equip(W)
-				if (target.client)
-					target.client.screen -= W
-				if (W)
-					W.loc = target.loc
-					W.layer = initial(W.layer)
-					W.dropped(target)
+				target.drop_inv_item_on_ground(W)
 				W.add_fingerprint(source)
 			else
 				if (istype(item, /obj/item))
-					source.drop_item()
+					source.drop_held_item()
 					loc = target
 					item.layer = 20
 					target.l_hand = item
@@ -119,17 +107,11 @@
 		if("r_hand")
 			if (target.r_hand)
 				var/obj/item/W = target.r_hand
-				target.u_equip(W)
-				if (target.client)
-					target.client.screen -= W
-				if (W)
-					W.loc = target.loc
-					W.layer = initial(W.layer)
-					W.dropped(target)
+				target.drop_inv_item_on_ground(W)
 				W.add_fingerprint(source)
 			else
 				if (istype(item, /obj/item))
-					source.drop_item()
+					source.drop_held_item()
 					loc = target
 					item.layer = 20
 					target.r_hand = item
@@ -139,17 +121,11 @@
 		if("back")
 			if (target.back)
 				var/obj/item/W = target.back
-				target.u_equip(W)
-				if (target.client)
-					target.client.screen -= W
-				if (W)
-					W.loc = target.loc
-					W.dropped(target)
-					W.layer = initial(W.layer)
+				target.drop_inv_item_on_ground(W)
 				W.add_fingerprint(source)
 			else
 				if ((istype(item, /obj/item) && item.flags_equip_slot & SLOT_BACK ))
-					source.drop_item()
+					source.drop_held_item()
 					loc = target
 					item.layer = 20
 					target.back = item
@@ -157,17 +133,11 @@
 		if("handcuff")
 			if (target.handcuffed)
 				var/obj/item/W = target.handcuffed
-				target.u_equip(W)
-				if (target.client)
-					target.client.screen -= W
-				if (W)
-					W.loc = target.loc
-					W.dropped(target)
-					W.layer = initial(W.layer)
+				target.drop_inv_item_on_ground(W)
 				W.add_fingerprint(source)
 			else
 				if (istype(item, /obj/item/weapon/handcuffs))
-					source.drop_item()
+					source.drop_held_item()
 					target.handcuffed = item
 					item.loc = target
 		if("internal")
@@ -196,44 +166,51 @@
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/monkey/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
+/mob/living/carbon/monkey/equip_to_slot(obj/item/W as obj, slot)
 	if(!slot) return
 	if(!istype(W)) return
 
-	if(W == get_active_hand())
-		u_equip(W)
+	if(W == r_hand)
+		r_hand = null
+		update_inv_r_hand()
+	else if(W == l_hand)
+		l_hand = null
+		update_inv_l_hand()
+
+	W.screen_loc = null
 
 	W.loc = src
 	switch(slot)
 		if(WEAR_BACK)
-			src.back = W
+			back = W
 			W.equipped(src, slot)
-			update_inv_back(redraw_mob)
+			update_inv_back()
 		if(WEAR_FACE)
-			src.wear_mask = W
+			wear_mask = W
 			W.equipped(src, slot)
-			update_inv_wear_mask(redraw_mob)
+			update_inv_wear_mask()
 		if(WEAR_HANDCUFFS)
-			src.handcuffed = W
-			update_inv_handcuffed(redraw_mob)
+			handcuffed = W
+			handcuff_update()
 		if(WEAR_LEGCUFFS)
-			src.legcuffed = W
+			legcuffed = W
 			W.equipped(src, slot)
-			update_inv_legcuffed(redraw_mob)
+			legcuff_update()
 		if(WEAR_L_HAND)
-			src.l_hand = W
+			l_hand = W
 			W.equipped(src, slot)
-			update_inv_l_hand(redraw_mob)
+			update_inv_l_hand()
 		if(WEAR_R_HAND)
-			src.r_hand = W
+			r_hand = W
 			W.equipped(src, slot)
-			update_inv_r_hand(redraw_mob)
+			update_inv_r_hand()
 		if(WEAR_IN_BACK)
-			W.loc = src.back
+			W.forceMove(back)
 		else
 			usr << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
 			return
 
 	W.layer = 20
 
-	return
+	return 1
+

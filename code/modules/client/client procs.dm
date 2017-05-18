@@ -43,8 +43,8 @@
 			var/mob/M = C
 			C = M.client
 		if(!C) return //Outdated links to logged players generate runtimes
-		cmd_admin_pm(C,null)
 		if(unansweredAhelps[C.computer_id]) unansweredAhelps.Remove(C.computer_id)
+		cmd_admin_pm(C,null)
 		return
 
 	if(href_list["irc_msg"])
@@ -269,7 +269,6 @@
 	getFiles(
 		'html/search.js',
 		'html/panels.css',
-		'html/painew.png',
 		'html/loading.gif',
 		'icons/pda_icons/pda_atmos.png',
 		'icons/pda_icons/pda_back.png',

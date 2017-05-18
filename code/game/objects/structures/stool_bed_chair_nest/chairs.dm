@@ -2,7 +2,7 @@
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
 	icon_state = "chair"
-
+	buckle_lying = FALSE
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
 /obj/structure/stool/MouseDrop(atom/over_object)
@@ -23,7 +23,7 @@
 		if(!SK.status)
 			user << "<span class='notice'>[SK] is not ready to be attached!</span>"
 			return
-		user.drop_item()
+		user.drop_held_item()
 		var/obj/structure/stool/bed/chair/e_chair/E = new /obj/structure/stool/bed/chair/e_chair(src.loc)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		E.dir = dir
@@ -61,17 +61,13 @@
 			return
 		if(!usr || !isturf(usr.loc))
 			return
-		if(usr.stat || usr.restrained())
+		if(usr.stat || usr.is_mob_restrained())
 			return
 
 		src.dir = turn(src.dir, 90)
 		handle_rotation()
 		return
 
-/obj/structure/stool/bed/chair/MouseDrop_T(mob/M as mob, mob/user as mob)
-	if(!istype(M)) return
-	buckle_mob(M, user)
-	return
 
 // Chair types
 /obj/structure/stool/bed/chair/wood/normal
@@ -122,29 +118,13 @@
 
 /obj/structure/stool/bed/chair/office
 	anchored = 0
-	movable = 1
+	drag_delay = 0 //pulling something on wheels is easy
 
 /obj/structure/stool/bed/chair/comfy/black
 	color = rgb(167,164,153)
 
 /obj/structure/stool/bed/chair/comfy/lime
 	color = rgb(255,251,0)
-
-/obj/structure/stool/bed/chair/office/Move()
-	..()
-	if(buckled_mob)
-		var/mob/living/occupant = buckled_mob
-		occupant.buckled = null
-		occupant.Move(src.loc)
-		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
-			if (propelled)
-				for (var/mob/O in src.loc)
-					if (O != occupant)
-						Bump(O)
-			else
-				unbuckle()
-	handle_rotation()
 
 /obj/structure/stool/bed/chair/office/Bump(atom/A)
 	..()

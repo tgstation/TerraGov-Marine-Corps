@@ -58,6 +58,11 @@
 	health = 150
 	layer = 2.9
 
+	Crossed(atom/movable/AM)
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			H.next_move_slowdown += 8
+
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <= 0)
 		density = 0
@@ -148,30 +153,22 @@
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
 
-/obj/effect/alien/weeds/node
-	icon_state = "weednode"
-	name = "purple sac"
-	desc = "A weird, pulsating node."
-	layer = 2.7
-	var/node_range = NODERANGE
-	health = 15
+	New(pos, node)
+		..()
+		if(istype(loc, /turf/space))
+			del(src)
+			return
+		linked_node = node
+		if(icon_state == "weeds")
+			icon_state = pick("weeds", "weeds1", "weeds2")
+		spawn(rand(150, 200))
+			if(src)
+				Life()
 
-
-	New()
-		..(loc, src)
-		new /obj/effect/alien/weeds(loc)
-
-/obj/effect/alien/weeds/New(pos, node)
-	..()
-	if(istype(loc, /turf/space))
-		del(src)
-		return
-	linked_node = node
-	if(icon_state == "weeds")
-		icon_state = pick("weeds", "weeds1", "weeds2")
-	spawn(rand(150, 200))
-		if(src)
-			Life()
+	Crossed(atom/movable/AM)
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			H.next_move_slowdown += 1
 
 /obj/effect/alien/weeds/proc/Life()
 	set background = 1
@@ -248,6 +245,20 @@
 		spawn(rand(100,175))
 			del(src)
 
+
+/obj/effect/alien/weeds/node
+	icon_state = "weednode"
+	name = "purple sac"
+	desc = "A weird, pulsating node."
+	layer = 2.7
+	var/node_range = NODERANGE
+	health = 15
+
+	New()
+		..(loc, src)
+		new /obj/effect/alien/weeds(loc)
+
+
 #undef NODERANGE
 
 /* //It turns out this is cloned in xenoprocs.dm. Wonderful.
@@ -309,6 +320,7 @@
 	BURSTING = 1
 	GROWING = 2
 	GROWN = 3
+	DESTROYED = 4
 
 	MIN_GROWTH_TIME = 1800 //time it takes to grow a hugger
 	MAX_GROWTH_TIME = 3000
@@ -321,14 +333,18 @@
 	anchored = 1
 
 	health = 80
+	var/list/egg_triggers = list()
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
 
-/obj/effect/alien/egg/New()
-	..()
-	spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-		if(status == GROWING)
-			Grow()
+	New()
+		..()
+		create_egg_triggers()
+		Grow()
+
+	Dispose()
+		. = ..()
+		delete_egg_triggers()
 
 /obj/effect/alien/egg/ex_act(severity)
 	switch(severity)
@@ -346,57 +362,76 @@
 		return attack_hand(M)
 
 	switch(status)
-		if(BURST)
-			M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-			"<span class='xenonotice'>You clear the hatched egg.</span>")
-			M.storedplasma++
-			if(isXenoLarva(M)) M.amount_grown++
-			del(src)
-			return
+		if(BURST, DESTROYED)
+			switch(M.caste)
+				if("Queen","Drone","Hivelord")
+					M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
+					"<span class='xenonotice'>You clear the hatched egg.</span>")
+					M.storedplasma++
+					cdel(src)
 		if(GROWING)
-			M << "<span class='warning'>The child is not developed yet.</span>"
-			return
+			M << "<span class='xenowarning'>The child is not developed yet.</span>"
 		if(GROWN)
 			if(isXenoLarva(M))
-				M << "<span class='warning'>You nudge the egg, but nothing happens.</span>"
+				M << "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>"
 				return
-			M << "<span class='warning'>You retrieve the child.</span>"
+			M << "<span class='xenonotice'>You retrieve the child.</span>"
 			Burst(0)
 
 /obj/effect/alien/egg/proc/Grow()
-	icon_state = "Egg"
-	status = GROWN
+	set waitfor = 0
+	sleep(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
+	if(status == GROWING)
+		icon_state = "Egg"
+		status = GROWN
+		deploy_egg_triggers()
 
-/obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
+/obj/effect/alien/egg/proc/create_egg_triggers()
+	for(var/i=1, i<=8, i++)
+		egg_triggers += new /obj/effect/egg_trigger(src, src)
+
+/obj/effect/alien/egg/proc/deploy_egg_triggers()
+	var/i = 1
+	var/x_coords = list(-1,-1,-1,0,0,1,1,1)
+	var/y_coords = list(1,0,-1,1,-1,1,0,-1)
+	var/turf/target_turf
+	for(var/atom/trigger in egg_triggers)
+		var/obj/effect/egg_trigger/ET = trigger
+		target_turf = locate(x+x_coords[i],y+y_coords[i], z)
+		if(target_turf)
+			ET.loc = target_turf
+			i++
+
+/obj/effect/alien/egg/proc/delete_egg_triggers()
+	for(var/atom/trigger in egg_triggers)
+		cdel(trigger)
+
+/obj/effect/alien/egg/proc/Burst(kill = 1) //drops and kills the hugger if any is remaining
+	set waitfor = 0
 	if(status == GROWN || status == GROWING)
-		//icon_state = "Egg Opened"
-		//flick("Egg Opening", src)
 		status = BURSTING
-		spawn(10)
-			status = BURST
-			if(loc)
-				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
-				if(kill && istype(child)) //Make sure it's still there
-					icon_state = "Egg Exploded"
-					flick("Egg Exploding", src)
-					del(child)
-				else
-					icon_state = "Egg Opened"
-					flick("Egg Opening", src)
-					if(istype(child))
-						for(var/mob/living/carbon/human/F in view(2, src))
-							if(CanHug(F) && !isYautja(F) && get_dist(src, F) <= 1)
-								F.visible_message("<span class='warning'>\The scuttling [child] leaps at \the [F]!</span>", \
-								"<span class='warning'>The scuttling [child] leaps at \the [F]!</span>")
-								HasProximity(F)
-								break
+		delete_egg_triggers()
+		sleep(3)
+		if(loc)
+			if(kill) //Make sure it's still there
+				status = DESTROYED
+				icon_state = "Egg Exploded"
+				flick("Egg Exploding", src)
+			else
+				icon_state = "Egg Opened"
+				flick("Egg Opening", src)
+				sleep(10)
+				if(loc)
+					status = BURST
+					var/obj/item/clothing/mask/facehugger/child = new(loc)
+					child.leap_at_nearest_target()
 
-/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
-	if(Proj.ammo.damage_type == BURN)
-		health -= round(Proj.damage * 0.3)
+/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
 	..()
+	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX)) return
+	health -= P.ammo.damage_type == BURN ? P.damage * 1.3 : P.damage
 	healthcheck()
+	P.ammo.on_hit_obj(src,P)
 	return 1
 
 /obj/effect/alien/egg/update_icon()
@@ -409,11 +444,30 @@
 	if(on_fire)
 		update_icon()
 		spawn(rand(125, 200))
-			del(src)
+			cdel(src)
 
-/obj/effect/alien/egg/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/alien/egg/attackby(obj/item/W, mob/user)
 	if(health <= 0)
 		return
+
+	if(istype(W,/obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/F = W
+		if(F.stat != DEAD)
+			switch(status)
+				if(BURST)
+					if(user)
+						visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
+						user.temp_drop_inv_item(F)
+					else
+						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
+					status = GROWN
+					icon_state = "Egg"
+					cdel(F)
+				if(DESTROYED) user << "<span class='xenowarning'>This egg is no longer usable.</span>"
+				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
+		else user << "<span class='xenowarning'>This child is dead.</span>"
+		return
+
 	if(W.attack_verb.len)
 		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
 	else
@@ -442,6 +496,31 @@
 
 /obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
 	Burst(1)
+
+
+//The invisible traps around the egg to tell it there's a mob right next to it.
+/obj/effect/egg_trigger
+	name = "egg trigger"
+	icon = 'icons/effects/effects.dmi'
+	anchored = 1
+	mouse_opacity = 0
+	invisibility = INVISIBILITY_MAXIMUM
+	var/obj/effect/alien/egg/linked_egg
+
+	New(loc, obj/effect/alien/egg/source_egg)
+		..()
+		linked_egg = source_egg
+
+
+/obj/effect/egg_trigger/Crossed(atom/A)
+	if(!linked_egg) //something went very wrong
+		cdel(src)
+	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
+		loc = linked_egg
+	else if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		linked_egg.HasProximity(H)
+
 
 /obj/structure/tunnel
 	name = "tunnel"
@@ -521,7 +600,7 @@
 
 	var/tunnel_time = 40
 
-	if(M.big_xeno) //Big xenos take WAY longer
+	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take WAY longer
 		tunnel_time = 120
 
 	if(isXenoLarva(M)) //Larva can zip through near-instantly, they are wormlike after all
@@ -537,7 +616,7 @@
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
 		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src].</span>")
 
-	if(do_after(M, tunnel_time))
+	if(do_after(M, tunnel_time, FALSE))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.loc = other.loc
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
@@ -554,123 +633,6 @@
 /obj/structure/tunnel/attack_paw()
 	return attack_hand()
 
-
-//Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
-/obj/structure/stool/bed/nest
-	name = "alien nest"
-	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
-	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "nest"
-	var/health = 100
-	var/on_fire = 0
-	var/resisting = 0
-	var/resisting_ready = 0
-	var/nest_resist_time = 1200
-	layer = 2.9 //Just above weeds.
-
-	New()
-		..()
-		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
-
-/obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			if(buckled_mob != user)
-				if(user.stat || user.restrained())
-					user << "<span class='warning'>Nice try.</span>"
-					return
-				buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",\
-				"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
-				"<span class='notice'>You hear squelching.</span>")
-				if(ishuman(buckled_mob))
-					var/mob/living/carbon/human/H = buckled_mob
-					H.recently_unbuckled = 1
-					spawn(300)
-						if(H) //Make sure the mob reference still exists.
-							H.recently_unbuckled = 0
-
-				unbuckle()
-			else
-				if(buckled_mob.stat)
-					buckled_mob << "<span class='warning'>You're a little too unconscious to try that.</span>"
-					return
-				if(resisting_ready && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc)
-					buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
-					"<span class='danger'>You pull yourself free from \the [src]!</span>",\
-					"<span class='notice'>You hear squelching.</span>")
-					unbuckle()
-					resisting_ready = 0
-				if(resisting)
-					buckled_mob << "<span class='warning'>You're already trying to free yourself. Give it some time.</span>"
-					return
-				if(buckled_mob && buckled_mob.name)
-					buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] struggles to break free of \the [src].</span>",\
-					"<span class='warning'>You struggle to break free from \the [src].</span>",\
-					"<span class='notice'>You hear squelching.</span>")
-				resisting = 1
-				spawn(nest_resist_time)
-					if(resisting && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
-						resisting = 0
-						resisting_ready = 1
-						if(ishuman(usr))
-							var/mob/living/carbon/human/H = usr
-							if(H.handcuffed)
-								buckled_mob << "<span class='danger'>You are ready to break free of the nest, but your limbs are still secured. Resist once more to pop up, then resist again to break your limbs free!</span>"
-							else
-								buckled_mob << "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>"
-			src.add_fingerprint(user)
-
-/obj/structure/stool/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
-
-	if(!ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || user.buckled || istype(user, /mob/living/silicon/pai))
-		return
-
-	unbuckle()
-
-	if(isXeno(M))
-		user << "<span class='warning'>\The [M] is too big to shove in the nest.</span>"
-		return
-
-	if(!isXeno(user))
-		user << "<span class='warning'>Gross! You're not touching that stuff.</span>"
-		return
-
-	if(isYautja(M))
-		user << "<span class='warning'>\The [M] seems to be wearing some kind of resin-resistant armor!</span>"
-		return
-
-	if(buckled_mob)
-		user << "<span class='warning'>There's already someone in that nest.</span>"
-		return
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.recently_unbuckled)
-			user << "<span class='warning'>\The [M] was recently recently unbuckled. Wait a bit.</span>"
-			return
-
-	if(M == usr)
-		return
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!H.lying) //Don't ask me why is has to be
-			user << "<span class='warning'>\The [M] is resisting, tackle them first.</span>"
-			return
-
-	M.visible_message("<span class='xenonotice'>\The [user] secretes a thick, vile resin, securing \the [M] into \the [src]!</span>", \
-	"<span class='xenonotice'>\The [user] drenches you in a foul-smelling resin, trapping you in \the [src]!</span>", \
-	"<span class='notice'>You hear squelching.</span>")
-
-	M.buckled = src
-	M.loc = loc
-	M.dir = dir
-	M.update_canmove()
-	M.pixel_y = 6
-	M.old_y = 6
-	resisting = 0
-	buckled_mob = M
-	add_fingerprint(user)
 
 //COMMENTED BY APOP
 /*/obj/item/weapon/handcuffs/xeno

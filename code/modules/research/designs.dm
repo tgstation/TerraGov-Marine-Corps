@@ -563,25 +563,6 @@ datum/design/intellicard
 	materials = list("$glass" = 1000, "$gold" = 200)
 	build_path = "/obj/item/device/aicard"
 
-/*datum/design/paicard
-	name = "Personal Artificial Intelligence Card"
-	desc = "Allows for the construction of a pAI Card"
-	id = "paicard"
-	req_tech = list("programming" = 2)
-	build_type = PROTOLATHE
-	materials = list("$glass" = 500, "$metal" = 500)
-	build_path = "/obj/item/device/paicard"
-
-datum/design/posibrain
-	name = "Positronic Brain"
-	desc = "Allows for the construction of a positronic brain"
-	id = "posibrain"
-	req_tech = list("engineering" = 4, "materials" = 6, "bluespace" = 2, "programming" = 4)
-
-	build_type = PROTOLATHE
-	materials = list("$metal" = 2000, "$glass" = 1000, "$silver" = 1000, "$gold" = 500, "$phoron" = 500, "$diamond" = 100)
-	build_path = "/obj/item/device/mmi/posibrain"
-*/
 ///////////////////////////////////
 //////////Mecha Module Disks///////
 ///////////////////////////////////
@@ -1853,24 +1834,6 @@ datum/design/cart_janitor
 	materials = list("$metal" = 50, "$glass" = 50)
 	build_path = "/obj/item/weapon/cartridge/janitor"
 
-/*
-datum/design/cart_clown
-	name = "Honkworks 5.0 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
-	id = "cart_clown"
-	req_tech = list("engineering" = 2, "powerstorage" = 3)
-	build_type = PROTOLATHE
-	materials = list("$metal" = 50, "$glass" = 50)
-	build_path = "/obj/item/weapon/cartridge/clown"
-datum/design/cart_mime
-	name = "Gestur-O 1000 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
-	id = "cart_mime"
-	req_tech = list("engineering" = 2, "powerstorage" = 3)
-	build_type = PROTOLATHE
-	materials = list("$metal" = 50, "$glass" = 50)
-	build_path = "/obj/item/weapon/cartridge/mime"
-*/
 
 datum/design/cart_science
 	name = "Signal Ace 2 Cartridge"

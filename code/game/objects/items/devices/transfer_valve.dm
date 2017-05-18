@@ -23,17 +23,17 @@
 			return
 
 		if(!tank_one)
-			tank_one = item
-			user.drop_item()
-			item.loc = src
-			user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
+			if(user.drop_held_item())
+				tank_one = item
+				item.forceMove(src)
+				user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
 		else if(!tank_two)
-			tank_two = item
-			user.drop_item()
-			item.loc = src
-			user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
-			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
+			if(user.drop_held_item())
+				tank_two = item
+				item.forceMove(src)
+				user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
+				message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+				log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
 		update_icon()
 		nanomanager.update_uis(src) // update all UIs attached to src
@@ -46,9 +46,9 @@
 		if(attached_device)
 			user << "<span class='warning'>There is already an device attached to the valve, remove it first.</span>"
 			return
-		user.remove_from_mob(item)
+		user.temp_drop_inv_item(A)
 		attached_device = A
-		A.loc = src
+		A.forceMove(src)
 		user << "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>"
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
@@ -69,7 +69,7 @@
 
 /obj/item/device/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
-	
+
 /obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
 	// this is the data which will be sent to the ui
@@ -80,7 +80,7 @@
 	data["valveOpen"] = valve_open ? 1 : 0
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)	
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -94,7 +94,7 @@
 
 /obj/item/device/transfer_valve/Topic(href, href_list)
 	..()
-	if ( usr.stat || usr.restrained() )
+	if ( usr.stat || usr.is_mob_restrained() )
 		return 0
 	if (src.loc != usr)
 		return 0

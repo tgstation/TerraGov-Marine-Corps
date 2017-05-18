@@ -128,10 +128,9 @@
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	else if(istype(I,/obj/item/weapon/cell) && open && !cell)
 		var/obj/item/weapon/cell/C = I
-		user.drop_item()
-		C.loc = src
-		cell = C
-		updateDialog()
+		if(user.drop_inv_item_to_loc(C, src))
+			cell = C
+			updateDialog()
 	else if(istype(I,/obj/item/weapon/screwdriver))
 		if(locked)
 			user << "\blue The maintenance hatch cannot be opened or closed while the controls are locked."
@@ -329,13 +328,13 @@
 				if(open && !cell)
 					var/obj/item/weapon/cell/C = usr.get_active_hand()
 					if(istype(C))
-						usr.drop_item()
-						cell = C
-						C.loc = src
-						C.add_fingerprint(usr)
+						if(usr.drop_held_item())
+							cell = C
+							C.forceMove(src)
+							C.add_fingerprint(usr)
 
-						usr.visible_message("\blue [usr] inserts a power cell into [src].", "\blue You insert the power cell into [src].")
-						updateDialog()
+							usr.visible_message("\blue [usr] inserts a power cell into [src].", "\blue You insert the power cell into [src].")
+							updateDialog()
 
 
 			if("stop")
@@ -363,7 +362,7 @@
 
 			if("setid")
 				refresh=0
-				var/new_id = copytext(sanitize(input("Enter new bot ID", "Mulebot [suffix ? "([suffix])" : ""]", suffix) as text|null),1,MAX_NAME_LEN)
+				var/new_id = stripped_input(usr, "Enter new bot ID", "Mulebot [suffix ? "([suffix])" : ""]", suffix)
 				refresh=1
 				if(new_id)
 					suffix = new_id
@@ -372,7 +371,7 @@
 
 			if("sethome")
 				refresh=0
-				var/new_home = input("Enter new home tag", "Mulebot [suffix ? "([suffix])" : ""]", home_destination) as text|null
+				var/new_home = stripped_input(usr, "Enter new home tag", "Mulebot [suffix ? "([suffix])" : ""]", home_destination)
 				refresh=1
 				if(new_home)
 					home_destination = new_home

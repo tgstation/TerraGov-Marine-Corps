@@ -72,74 +72,23 @@
 
 				bloodDNA = null
 
-//		var/noslip = 0
 		if(M.buckled && istype(M.buckled,/obj/structure/stool/bed/chair))
 			return
-//		for (var/obj/structure/stool/bed/chair/C in loc)
-//			if (C.buckled_mob == M)
-//				noslip = 1
-//		if (noslip)
-//			return // no slipping while sitting in a chair, plz
+
 		switch (src.wet)
 			if(1)
-				if(istype(M, /mob/living/carbon/human)) // Added check since monkeys don't have shoes
-					if ((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inventory&NOSLIPPING))
-						M.stop_pulling()
-						step(M, M.dir)
-						M << "\blue You slipped on the wet floor!"
-						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-						M.Stun(5)
-						M.Weaken(3)
-					else
-						M.inertia_dir = 0
-						return
-				else if(!istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/carbon/Xenomorph) )
-					if (M.m_intent == "run")
-						M.stop_pulling()
-						step(M, M.dir)
-						M << "\blue You slipped on the wet floor!"
-						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-						M.Stun(5)
-						M.Weaken(3)
-					else
-						M.inertia_dir = 0
-						return
+				if(!M.slip(null, 5, 3, TRUE))
+					M.inertia_dir = 0
+					return
 
-			if(2) //lube                //can cause infinite loops - needs work
-				if(!istype(M, /mob/living/carbon/slime) && !M.buckled && !istype(M, /mob/living/carbon/Xenomorph))
-					M.stop_pulling()
-					step(M, M.dir)
-					spawn(1) step(M, M.dir)
-					spawn(2) step(M, M.dir)
-					spawn(3) step(M, M.dir)
-					spawn(4) step(M, M.dir)
-					M.take_organ_damage(2) // Was 5 -- TLE
-					M << "\blue You slipped on the floor!"
-					playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-					M.Weaken(10)
+			if(2) //lube
+				if(M.slip(null, 10, 10, FALSE, TRUE, 4))
+					M.take_organ_damage(2)
+
 			if(3) // Ice
-				if(istype(M, /mob/living/carbon/human)) // Added check since monkeys don't have shoes
-					if ((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inventory&NOSLIPPING) && prob(30))
-						M.stop_pulling()
-						step(M, M.dir)
-						M << "\blue You slipped on the icy floor!"
-						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-						M.Stun(4)
-						M.Weaken(3)
-					else
-						M.inertia_dir = 0
-						return
-				else if(!istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/carbon/Xenomorph))
-					if (M.m_intent == "run" && prob(30))
-						M.stop_pulling()
-						step(M, M.dir)
-						M << "\blue You slipped on the icy floor!"
-						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-						M.Stun(4)
-						M.Weaken(3)
-					else
-						M.inertia_dir = 0
-						return
+				if(!M.slip("icy floor", 4, 3, FALSE, TRUE, 1))
+					M.inertia_dir = 0
+					return
 
 	..()
 

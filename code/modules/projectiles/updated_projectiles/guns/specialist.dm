@@ -36,7 +36,7 @@
 	icon_state = "m42a"
 	item_state = "m42a"
 	origin_tech = "combat=6;materials=5"
-	fire_sound = list('sound/weapons/gun_sniper.ogg')
+	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	zoomdevicename = "scope"
@@ -81,7 +81,7 @@
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
 	origin_tech = "combat=7;materials=5"
-	fire_sound = list('sound/weapons/sniper_heavy.ogg')
+	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	zoomdevicename = "scope"
@@ -128,7 +128,7 @@
 	icon_state = "svd003"
 	item_state = "svd003" //NEEDS A ONE HANDED STATE
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = list('sound/weapons/gun_kt42.ogg')
+	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -173,7 +173,7 @@
 	icon_state = "m56"
 	item_state = "m56"
 	origin_tech = "combat=6;materials=5"
-	fire_sound = list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')
+	fire_sound = "gun_smartgun"
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
 	flags_equip_slot = NOFLAGS
 	w_class = 5
@@ -280,7 +280,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	fire_sound = list('sound/weapons/armbomb.ogg')
+	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6
@@ -312,11 +312,10 @@
 	attackby(obj/item/I, mob/user)
 		if((istype(I, /obj/item/weapon/grenade)))
 			if(grenades.len < max_grenades)
-				user.drop_item()
-				I.loc = src
-				grenades += I
-				user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
-				user << "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>"
+				if(user.drop_inv_item_to_loc(I, src))
+					grenades += I
+					user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
+					user << "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>"
 			else
 				user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
 
@@ -384,6 +383,7 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
+	flags_magazine = NOFLAGS
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)
@@ -392,7 +392,7 @@
 				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2
-				user.drop_item(src)
+				user.drop_held_item()
 				cdel(src)
 		else user << "Not with a missile inside!"
 
@@ -497,7 +497,7 @@
 		if(user)
 			user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
 			if(do_after(user,current_mag.reload_delay))
-				user.remove_from_mob(rocket)
+				user.drop_inv_item_on_ground(rocket)
 				replace_ammo(user,rocket)
 				current_mag.current_rounds = current_mag.max_rounds
 				rocket.current_rounds = 0

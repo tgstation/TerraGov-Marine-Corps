@@ -200,7 +200,7 @@
 	defer_powernet_rebuild = 2
 
 	sleep (100)
-	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "USS Sulaco")
+	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "[MAIN_SHIP_NAME]")
 	world << 'sound/misc/eventhorizon_shiplog.ogg'
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -242,16 +242,16 @@
 	var/num_pmcs = living_player_list[2]
 
 	if(!num_marines && num_pmcs)
-		if(mcguffin && mcguffin.loc) round_finished 	= MODE_BATTLEFIELD_W_MAJOR
-		else round_finished 							= MODE_BATTLEFIELD_W_MINOR
+		if(mcguffin && mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_W_MAJOR
+		else round_finished 																	= MODE_BATTLEFIELD_W_MINOR
 	else if(num_marines && !num_pmcs)
-		if(!mcguffin || !mcguffin.loc) round_finished 	= MODE_BATTLEFIELD_M_MAJOR
-		else round_finished 							= MODE_BATTLEFIELD_M_MINOR
-	else if(!num_marines && !num_pmcs)	round_finished  = MODE_BATTLEFIELD_DRAW_DEATH
+		if(!mcguffin || !mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_M_MAJOR
+		else round_finished 																	= MODE_BATTLEFIELD_M_MINOR
+	else if(!num_marines && !num_pmcs)	round_finished  										= MODE_BATTLEFIELD_DRAW_DEATH
 	else if((world.time > BATTLEFIELD_END + lobby_time))
-		if(mcguffin && mcguffin.loc) round_finished		= MODE_BATTLEFIELD_W_MAJOR
-		else round_finished 							= MODE_BATTLEFIELD_DRAW_STALEMATE
-	else if(station_was_nuked) round_finished 			= MODE_GENERIC_DRAW_NUKE
+		if(mcguffin && mcguffin.loc) round_finished												= MODE_BATTLEFIELD_W_MAJOR
+		else round_finished 																	= MODE_BATTLEFIELD_DRAW_STALEMATE
+	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) round_finished 			= MODE_GENERIC_DRAW_NUKE
 
 ///////////////////////////////
 //Checks if the round is over//
@@ -498,11 +498,11 @@
 	var/random_primary = 1
 
 	I = H.wear_id
-	if(I) H.remove_from_mob(I) //Remove it for now, so it doesn't get deleted.
+	if(I) H.drop_inv_item_on_ground(I) //Remove it for now, so it doesn't get deleted.
 	if(H.contents.len) //We want to get rid of all their items. Everything is generated on the fly during the game mode.
 		for(var/i in H.contents)
 			if(istype(i,/obj/item))
-				H.remove_from_mob(i)
+				H.temp_drop_inv_item(i)
 				cdel(i)
 	if(I) H.equip_to_slot_or_del(ID, WEAR_ID) //Put it back on.
 
@@ -699,11 +699,10 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_BACK)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(H), WEAR_WAIST)
 
 				H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_STORE)
@@ -714,13 +713,12 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 				I = H.gloves
-				H.remove_from_mob(I)
+				H.temp_drop_inv_item(I)
 				cdel(I)
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
@@ -745,7 +743,6 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), WEAR_FACE)
@@ -773,7 +770,6 @@
 				W = new()
 				W.on_attached(U, H)
 				U.hastie = W
-				H.update_inv_w_uniform()
 				random_primary = !random_primary
 				switch(shuffle1)
 					if(1 to 11) //Smartgunner. Has an okay secondary and some grenades. Same as the classic specs in Aliens.
@@ -830,10 +826,10 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(H), WEAR_HEAD)
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(H), WEAR_JACKET)
 						I = H.gloves
-						H.remove_from_mob(I)
+						H.temp_drop_inv_item(I)
 						cdel(I)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(H), WEAR_HANDS)
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_BACK)
+						H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_BACK)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/grenade(H), WEAR_WAIST)
 
 						H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_L_STORE)
@@ -884,7 +880,7 @@
 						H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), WEAR_J_STORE)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H.back), WEAR_IN_BACK)
 					else
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/m37/full(H), WEAR_BACK)
+						H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/m37/full(H), WEAR_BACK)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_R_HAND)
 				if(16 to 18)
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_J_STORE)
@@ -920,7 +916,7 @@
 				H << "\red <b>You are the [H.mind.assigned_role]!<b>"
 				H << "Gear up, maggot! You have been dropped off in this God-forsaken place to complete some wetworks for Uncle Sam! Not even your mother knows that you're here!"
 				H << "Some W-Y mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!"
-				H << "Wipe them out and destroy their tech! The Sulaco will maintain radio silence for the duration of the mission!"
+				H << "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!"
 				H << "You've got an hour. And watch out... That colony ain't right, it ain't right at all. <b>DISMISSED!</b>"
 				H << "________________________"
 	//Finally, update all icons
@@ -1125,7 +1121,7 @@
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/dutch(H), WEAR_BODY, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/gimmick/dutch(H), WEAR_JACKET, 1)
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_BACK)
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/grenade(H), WEAR_WAIST)
 
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4(H), WEAR_J_STORE)
@@ -1382,8 +1378,8 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (sidearm)")
 
 /*	supply_manifest=list(
-		/obj/item/weapon/storage/backpack/gun/m37 = 5,
-		/obj/item/weapon/storage/backpack/gun/machete = 4,
+		/obj/item/weapon/large_holster/m37 = 5,
+		/obj/item/weapon/large_holster/machete = 4,
 		/obj/item/clothing/tie/storage/webbing = 4,
 		/obj/item/weapon/storage/belt/gun/m44 = 5,
 		/obj/item/weapon/storage/belt/gun/m4a3 = 6,

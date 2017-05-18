@@ -1,20 +1,6 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 //LAST EDIT: APOPHIS 22MAY16
 
-/*
-//First, dealing with alt-clicking vents.
-/mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
-	var/list/modifiers = params2list(params)
-
-	if(modifiers["alt"] && istype(A, /obj/machinery/atmospherics/unary/vent_pump))
-		var/verb_path = /mob/living/carbon/Xenomorph/proc/vent_crawl
-		if(verb_path in inherent_verbs)
-			if(check_state())
-				handle_ventcrawl(A)
-			return
-	else
-		..()
-*/
 
 //Send a message to all xenos. Mostly used in the deathgasp display
 /proc/xeno_message(var/message = null, var/size = 3)
@@ -30,43 +16,46 @@
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
-	..()
-	if(jelly && is_queen_alive())
-		stat(null, "Evolve Progress: [jellyGrow]/[jellyMax]")
-	else if(!is_queen_alive())
-		stat(null, "Evolve Progress (HALTED - NO QUEEN): [jellyGrow]/[jellyMax]")
-	else
-		stat(null, "Evolve Progress (FINISHED): [jellyGrow]/[jellyMax]")
+	. = ..()
 
-	if(maxplasma > 0)
-		if(is_robotic)
-			stat(null, "Charge: [storedplasma]/[maxplasma]")
+	if (.) //Only update when looking at the Status panel.
+
+		if(jelly && is_queen_alive())
+			stat(null, "Evolve Progress: [jellyGrow]/[jellyMax]")
+		else if(!is_queen_alive())
+			stat(null, "Evolve Progress (HALTED - NO QUEEN): [jellyGrow]/[jellyMax]")
 		else
-			stat(null, "Plasma: [storedplasma]/[maxplasma]")
+			stat(null, "Evolve Progress (FINISHED): [jellyGrow]/[jellyMax]")
 
-	if(slashing_allowed == 1)
-		stat(null,"Slashing of hosts is currently: PERMITTED.")
-	else if(slashing_allowed == 2)
-		stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
-	else
-		stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
+		if(maxplasma > 0)
+			if(is_robotic)
+				stat(null, "Charge: [storedplasma]/[maxplasma]")
+			else
+				stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
-	if(frenzy_aura)
-		stat(null,"You are affected by a pheromone of FRENZY.")
-	if(guard_aura)
-		stat(null,"You are affected by a pheromone of GUARDING.")
-	if(recovery_aura)
-		stat(null,"You are affected by a pheromone of RECOVERY.")
+		if(slashing_allowed == 1)
+			stat(null,"Slashing of hosts is currently: PERMITTED.")
+		else if(slashing_allowed == 2)
+			stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
+		else
+			stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
 
-	if(hive_orders && hive_orders != "")
-		stat(null,"Hive Orders: [hive_orders]")
+		if(frenzy_aura)
+			stat(null,"You are affected by a pheromone of FRENZY.")
+		if(guard_aura)
+			stat(null,"You are affected by a pheromone of GUARDING.")
+		if(recovery_aura)
+			stat(null,"You are affected by a pheromone of RECOVERY.")
+
+		if(hive_orders && hive_orders != "")
+			stat(null,"Hive Orders: [hive_orders]")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
 	if(!isXeno(src) || isnull(src)) //Somehow
 		return 0
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return 0
 
@@ -118,72 +107,20 @@
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
 
-	..()
-
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(stat)
-		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
+	. = ..()
 
-	tally += speed
-
-	if(locate(/obj/structure/bush) in loc) //Bushes slows you down
-		var/obj/structure/bush/B = locate(/obj/structure/bush) in loc
-		if(!B.stump)
-			if(prob(20 * tier))
-				var/sound = pick('sound/effects/vegetation_walk_0.ogg', 'sound/effects/vegetation_walk_1.ogg', 'sound/effects/vegetation_walk_2.ogg')
-				playsound(loc, sound, 50, 1)
-
-	if(istype(loc, /turf/unsimulated/floor/gm/river)) //Rivers slow you down
-		if(isXenoBoiler(src))
-			tally -= 0.5
-		else
-			tally += 1.3
-
-	if(isXenoHivelord(src))
-		var/mob/living/carbon/Xenomorph/Hivelord/H = src
-		if(H.speed_activated)
-			if(locate(/obj/effect/alien/weeds) in loc)
-				tally -= 1.5
-
-	/*
-	 * SNOW SLOWDOWN FOR ICE COLONY
-	 */
-	if(istype(loc, /turf/unsimulated/floor/snow))
-		var/turf/unsimulated/floor/snow/S = loc
-		if(S && istype(S) && S.slayer > 0)
-			tally += 0.25 * S.slayer //Was 0.5 per
-			if(S.slayer && prob(1))
-				src << "<span class='warning'>Moving through \the [S] slows you down sligthly!</span>" //This is a warning
-
-			/*
-			 * Dummied out. Xenos never get bogged down in snow that much
-			if(S.slayer == 3 && prob(5))
-				src << "<span class='warning'>You got stuck in \the [S] for a moment!</span>"
-				tally += 10
-			 */
+	. += speed
 
 	if(frenzy_aura)
-		tally = tally - (frenzy_aura * 0.1) - 0.4
+		. -= (frenzy_aura * 0.1) + 0.4
 
-	if(isXenoCrusher(src)) //Handle crusher stuff.
-		var/mob/living/carbon/Xenomorph/Crusher/X = src
-		X.charge_timer = 2
-		if(X.momentum == 0)
-			X.charge_dir = dir
-			X.handle_momentum()
-		else
-			if(X.charge_dir != dir) //Have we changed direction?
-				X.stop_momentum() //This should disallow rapid turn bumps
-			else
-				X.handle_momentum()
-		X.lastturf = get_turf(X)
 
-	return (tally)
 
 //These don't do much currently. Or anything? Only around for legacy code.
-/mob/living/carbon/Xenomorph/restrained()
+/mob/living/carbon/Xenomorph/is_mob_restrained()
 	return 0
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
@@ -346,100 +283,70 @@
 
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
-/mob/living/carbon/Xenomorph/throw_impact(atom/hit_atom, var/speed)
+/mob/living/carbon/Xenomorph/throw_impact(atom/hit_atom, speed)
+	set waitfor = 0
 
-	if(!charge_type || stat || !usedPounce) //0: No special charge. 1: pounce, 2: claw. Can add new ones here. Check if alive.
-		..()
-		return
+	if(!charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
+		..() //Do the parent instead.
+		r_FAL
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(!O.density) //Not a dense object? Doesn't matter then, pass over it.
-			..()
-			return
+		if(!O.density) r_FAL//Not a dense object? Doesn't matter then, pass over it.
+		if(!O.anchored) step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
-		if(!O.anchored)
-			step(O,src.dir) //Not anchored? Knock the object back a bit. Ie. canisters.
-
-		if(isXenoRavager(src)) //Ravagers destroy tables.
-			if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
-				var/obj/structure/S = O
-				visible_message("<span class='danger'>\The [src] plows straight through \the [S]!</span>")
-				S.destroy()
-				O = null
-
-		if(!isnull(O) && !istype(O, /obj/structure/table) && O.density && O.anchored && !istype(O, /obj/item)) // new - xeno charge ignore tables
-			O.hitby(src,speed)
-			visible_message("<span class='danger'>Bonk!</span>") //heheh. Smacking into dense objects stuns you slightly.
-			Weaken(2)
-		return
+		switch(charge_type) //Determine how to handle it depending on charge type.
+			if(1 to 2)
+				if(!istype(O, /obj/structure/table) && !istype(O, /obj/structure/rack))
+					O.hitby(src, speed) //This resets throwing.
+			if(3 to 4)
+				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
+					var/obj/structure/S = O
+					visible_message("<span class='danger'>[src] plows straight through [S]!</span>")
+					S.destroy() //We want to continue moving, so we do not reset throwing.
+				else O.hitby(src, speed) //This resets throwing.
+		r_TRU
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
-		var/mob/living/carbon/V = hit_atom
-		if(istype(V) && !V.stat && !isXeno(V)) //We totally ignore other xenos. LIKE GREASED WEASELS
-			if(ishuman(V) && charge_type != 2)
-				var/mob/living/carbon/human/H = V //Human shield block.
-				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
-					if(prob(45))	// If the human has riot shield in his hand,  65% chance
-						Weaken(4) //Stun the fucker instead
-						visible_message("<span class='danger'>\The [src] bounces off \the [H]'s shield!</span>", \
-						"<span class='danger'>You bounce off \the [H]'s shield!</span>")
-						throwing = 0
-						return
+		var/mob/living/carbon/M = hit_atom
+		if(!M.stat && !isXeno(M))
+			switch(charge_type)
+				if(1 to 2)
+					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
+						var/mob/living/carbon/human/H = M
+						if(H.check_shields(15, "the pounce")) //Human shield block.
+							Weaken(3)
+							throwing = FALSE //Reset throwing manually.
+							r_FAL
 
-				if(H.species && H.species.name == "Yautja" && prob(40))
-					visible_message("<span class='danger'>\The [H] emits a roar and body slams \the [src]!</span>", \
-					"<span class='danger'>\The [H] emits a roar and body slams you!</span>")
-					Weaken(4)
-					throwing = 0
-					return
+						if(isYautja(H) && prob(40)) //Another chance for the predator to block the pounce.
+							visible_message("<span class='danger'>[H] body slams [src]!</span>",
+											"<span class='xenodanger'>[H] body slams you!</span>")
+							Weaken(4)
+							throwing = FALSE
+							r_FAL
 
-			if(charge_type == 3) //Runner
-				visible_message("<span class='danger'>\The [src] pounces on \the [V]!</span>", \
-				"<span class='danger'>You pounce on \the [V]!</span>")
-				V.Weaken(1)
-				canmove = 0
-				frozen = 1
-				loc = V.loc
-				throwing = 0 //Stop the movement
-				if(!is_robotic)
-					if(rand(0, 100) < 95)
-						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
-					else
-						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
-				spawn(1)
-					frozen = 0
+					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
+									"<span class='xenodanger'>You pounce on [M]!</span>")
+					M.Weaken(charge_type == 1 ? 1 : 3)
+					step_to(src, M)
+					canmove = FALSE
+					frozen = TRUE
+					if(!is_robotic) playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 50, 1)
+					spawn(charge_type == 1 ? 1 : 15) frozen = FALSE
 
-			if(charge_type == 1) //Hunter pounce.
-				visible_message("<span class='danger'>\The [src] pounces on \the [V]!</span>", \
-				"<span class='danger'>You pounce on \the [V]!</span>")
-				V.Weaken(3)
-				canmove = 0
-				frozen = 1
-				loc = V.loc
-				throwing = 0 //Stop the movement
-				if(!is_robotic)
-					if(rand(0, 100) < 95)
-						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
-					else
-						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
-				spawn(15)
-					frozen = 0
+				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
+					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) / (4 - upgrade)) //About 12.5 to 80 extra damage depending on upgrade level.
+					M.attack_alien(src,  extra_dam) //Ancients deal about twice as much damage on a charge as a regular slash.
+					M.Weaken(2)
 
-			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
-				V.attack_alien(src)
-				V.Weaken(2)
-				throwing = 0
+				if(4) //Predalien.
+					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 
-		return
+		throwing = FALSE //Resert throwing since something was hit.
+		r_TRU
 
-	if(isturf(hit_atom))
-		var/turf/T = hit_atom
-		if(T.density)
-			visible_message("<span class='danger'>Bonk!</span>") //ouchie
-			Weaken(2)
-
-	..() //Do the rest normally - mostly turfs.
+	..() //Do the parent otherwise, for turfs.
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -519,7 +426,7 @@
 		return 0 //Tail attack not prepared, or not available.
 
 	var/dmg = (round(readying_tail * 2.5)) + rand(5, 10) //Ready max is 20
-	if(big_xeno)
+	if(mob_size == MOB_SIZE_BIG)
 		dmg += 10
 	var/datum/organ/external/affecting
 	var/tripped = 0
@@ -558,8 +465,8 @@
 	if(!tripped)
 		visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
 		"<span class='danger'>You violently impale \the [M] with your tail!</span>")
-	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [src.name] ([src.ckey])</font>")
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [M.name] ([M.ckey])</font>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
 
 	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 	M.updatehealth()
@@ -634,7 +541,7 @@
 
 	return 1
 
-/mob/living/carbon/Xenomorph/drop_item()
+/mob/living/carbon/Xenomorph/drop_held_item()
 	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
 	if(istype(F))
 		if(locate(/obj/effect/alien/resin/wall) in loc || locate(/obj/effect/alien/resin/membrane) in loc)

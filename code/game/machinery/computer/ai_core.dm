@@ -38,12 +38,12 @@
 					anchored = 0
 					state = 0
 			if(istype(P, /obj/item/weapon/circuitboard/aicore) && !circuit)
-				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				user << "\blue You place the circuit board inside the frame."
-				icon_state = "1"
-				circuit = P
-				user.drop_item()
-				P.loc = src
+				if(user.drop_held_item())
+					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					user << "\blue You place the circuit board inside the frame."
+					icon_state = "1"
+					circuit = P
+					P.forceMove(src)
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "\blue You screw the circuit board into place."
@@ -123,7 +123,7 @@
 				laws.add_inherent_law(M.newFreeFormLaw)
 				usr << "Added a freeform law."
 
-			if(istype(P, /obj/item/device/mmi) || istype(P, /obj/item/device/mmi/posibrain))
+			if(istype(P, /obj/item/device/mmi))
 				if(!P:brainmob)
 					user << "\red Sticking an empty [P] into the frame would sort of defeat the purpose."
 					return
@@ -135,11 +135,11 @@
 					user << "\red This [P] does not seem to fit."
 					return
 
-				user.drop_item()
-				P.loc = src
-				brain = P
-				usr << "Added [P]."
-				icon_state = "3b"
+				if(user.drop_held_item())
+					P.forceMove(src)
+					brain = P
+					usr << "Added [P]."
+					icon_state = "3b"
 
 			if(istype(P, /obj/item/weapon/crowbar) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
@@ -228,17 +228,6 @@ That prevents a few funky behaviors.
 							A << "You have been uploaded to a stationary terminal. Remote device connection restored."
 							U << "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed succesfully. Local copy has been removed."
 							del(T)
-					if("NINJASUIT")
-						var/obj/item/clothing/suit/space/space_ninja/C = src
-						var/mob/living/silicon/ai/A = C.AI
-						if(A)
-							A.control_disabled = 0
-							C.AI = null
-							A.loc = T.loc
-							A.cancel_camera()
-							A << "You have been uploaded to a stationary terminal. Remote device connection restored."
-							U << "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed."
-							del(T)
 			if("AIFIXER")//AI Fixer terminal.
 				var/obj/machinery/computer/aifixer/T = target
 				switch(interaction)
@@ -283,76 +272,6 @@ That prevents a few funky behaviors.
 								U << "\red <b>ERROR</b>: \black Reconstruction in progress."
 							else if (!T.occupant)
 								U << "\red <b>ERROR</b>: \black Unable to locate artificial intelligence."
-					if("NINJASUIT")
-						var/obj/item/clothing/suit/space/space_ninja/C = src
-						if(!T.contents.len)
-							if (!C.AI)
-								U << "No AI to copy over!"
-							else
-								var/mob/living/silicon/ai/A = C.AI
-								A.loc = T
-								T.occupant = A
-								C.AI = null
-								A.control_disabled = 1
-								T.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
-								T.overlays -= image('icons/obj/computer.dmi', "ai-fixer-empty")
-								A.cancel_camera()
-								A << "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here."
-								U << "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed."
-						else
-							if(!C.AI && T.occupant && !T.active)
-								if (T.occupant.stat)
-									U << "\red <b>ERROR</b>: \black [T.occupant.name] data core is corrupted. Unable to install."
-								else
-									T.overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
-									T.overlays -= image('icons/obj/computer.dmi', "ai-fixer-full")
-									T.occupant << "You have been downloaded to a mobile storage device. Still no remote access."
-									U << "\blue <b>Transfer successful</b>: \black [T.occupant.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
-									T.occupant.loc = C
-									T.occupant.cancel_camera()
-									T.occupant = null
-							else if (C.AI)
-								U << "\red <b>ERROR</b>: \black Artificial intelligence detected on terminal."
-							else if (T.active)
-								U << "\red <b>ERROR</b>: \black Reconstruction in progress."
-							else if (!T.occupant)
-								U << "\red <b>ERROR</b>: \black Unable to locate artificial intelligence."
-			if("NINJASUIT")//Ninjasuit
-				var/obj/item/clothing/suit/space/space_ninja/T = target
-				switch(interaction)
-					if("AICARD")
-						var/obj/item/device/aicard/C = src
-						if(T.s_initialized&&U==T.affecting)//If the suit is initialized and the actor is the user.
-
-							var/mob/living/silicon/ai/A_T = locate() in C//Determine if there is an AI on target card. Saves time when checking later.
-							var/mob/living/silicon/ai/A = T.AI//Deterine if there is an AI in suit.
-
-							if(A)//If the host AI card is not empty.
-								if(A_T)//If there is an AI on the target card.
-									U << "\red <b>ERROR</b>: \black [A_T.name] already installed. Remove [A_T.name] to install a new one."
-								else
-									A.loc = C//Throw them into the target card. Since they are already on a card, transfer is easy.
-									C.name = "inteliCard - [A.name]"
-									C.icon_state = "aicard-full"
-									T.AI = null
-									A.cancel_camera()
-									A << "You have been uploaded to a mobile storage device."
-									U << "\blue <b>SUCCESS</b>: \black [A.name] ([rand(1000,9999)].exe) removed from host and stored within local memory."
-							else//If host AI is empty.
-								if(C.flush)//If the other card is flushing.
-									U << "\red <b>ERROR</b>: \black AI flush is in progress, cannot execute transfer protocol."
-								else
-									if(A_T&&!A_T.stat)//If there is an AI on the target card and it's not inactive.
-										A_T.loc = T//Throw them into suit.
-										C.icon_state = "aicard"
-										C.name = "inteliCard"
-										C.overlays.Cut()
-										T.AI = A_T
-										A_T.cancel_camera()
-										A_T << "You have been uploaded to a mobile storage device."
-										U << "\blue <b>SUCCESS</b>: \black [A_T.name] ([rand(1000,9999)].exe) removed from local memory and installed to host."
-									else if(A_T)//If the target AI is dead. Else just go to return since nothing would happen if both are empty.
-										U << "\red <b>ERROR</b>: \black [A_T.name] data core is corrupted. Unable to install."
 	else
 		U << "\red <b>ERROR</b>: \black AI flush is in progress, cannot execute transfer protocol."
 	return

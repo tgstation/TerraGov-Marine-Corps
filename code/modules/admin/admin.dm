@@ -1011,8 +1011,6 @@ var/global/floorIsLava = 0
 		else if(isrobot(S))
 			var/mob/living/silicon/robot/R = S
 			usr << "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independant)"]: laws:</b>"
-		else if (ispAI(S))
-			usr << "<b>pAI [key_name(S, usr)]'s laws:</b>"
 		else
 			usr << "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>"
 
@@ -1185,7 +1183,6 @@ var/global/floorIsLava = 0
 		return
 
 	ticker.mode.picked_call.activate()
-	ticker.mode.has_called_emergency = 1
 
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]")

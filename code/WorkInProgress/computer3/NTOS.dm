@@ -169,7 +169,7 @@
 	</style>
 	</head>
 
-	<body><div style='width:640px;height:480px;	border:2px solid black;padding:8px;background-position:center;background-image:url(\ref['nano/images/uiBackground_WY.png'])'>"}
+	<body><div style='width:640px;height:480px;	border:2px solid black;padding:8px;background-position:center;background-image:url(\ref['nano/images/uiBackground.png'])'>"}
 
 
 	dat += generate_status_bar()

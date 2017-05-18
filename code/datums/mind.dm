@@ -226,18 +226,6 @@ datum/mind
 						//Will display as special role if the target is set as MODE. Ninjas/commandos/nuke ops.
 						new_objective.explanation_text = "[objective_type] [new_target:real_name], the [new_target:mind:assigned_role=="MODE" ? (new_target:mind:special_role) : (new_target:mind:assigned_role)]."
 
-				if ("prevent")
-					new_objective = new /datum/objective/block
-					new_objective.owner = src
-
-				if ("hijack")
-					new_objective = new /datum/objective/hijack
-					new_objective.owner = src
-
-				if ("escape")
-					new_objective = new /datum/objective/escape
-					new_objective.owner = src
-
 				if ("survive")
 					new_objective = new /datum/objective/survive
 					new_objective.owner = src
@@ -272,7 +260,7 @@ datum/mind
 					new_objective.target_amount = target_number
 
 				if ("custom")
-					var/expl = copytext(sanitize(input("Custom objective:", "Objective", objective ? objective.explanation_text : "") as text|null),1,MAX_MESSAGE_LEN)
+					var/expl = stripped_input(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : "",MAX_MESSAGE_LEN)
 					if (!expl) return
 					new_objective = new /datum/objective
 					new_objective.owner = src
@@ -332,7 +320,7 @@ datum/mind
 			switch(href_list["common"])
 				if("undress")
 					for(var/obj/item/W in current)
-						current.drop_from_inventory(W)
+						current.drop_inv_item_on_ground(W)
 				if("takeuplink")
 					take_uplink()
 					memory = null//Remove any memory they may have had.
@@ -430,11 +418,6 @@ datum/mind
 /mob/living/carbon/monkey/mind_initialize()
 	..()
 
-//slime
-/mob/living/carbon/slime/mind_initialize()
-	..()
-	mind.assigned_role = "slime"
-
 //XENO
 /mob/living/carbon/Xenomorph/mind_initialize()
 	..()
@@ -450,12 +433,6 @@ datum/mind
 /mob/living/silicon/robot/mind_initialize()
 	..()
 	mind.assigned_role = "Cyborg"
-
-//PAI
-/mob/living/silicon/pai/mind_initialize()
-	..()
-	mind.assigned_role = "pAI"
-	mind.special_role = ""
 
 //Animals
 /mob/living/simple_animal/mind_initialize()
@@ -489,5 +466,3 @@ datum/mind
 	..()
 	mind.assigned_role = "Armalis"
 	mind.special_role = "Vox Raider"
-
-

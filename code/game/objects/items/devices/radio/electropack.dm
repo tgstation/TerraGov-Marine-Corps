@@ -27,13 +27,11 @@
 		var/obj/item/assembly/shock_kit/A = new /obj/item/assembly/shock_kit( user )
 		A.icon = 'icons/obj/assemblies.dmi'
 
-		user.drop_from_inventory(W)
-		W.loc = A
+		user.drop_inv_item_to_loc(W, A)
 		W.master = A
 		A.part1 = W
 
-		user.drop_from_inventory(src)
-		loc = A
+		user.drop_inv_item_to_loc(src, A)
 		master = A
 		A.part2 = src
 
@@ -42,7 +40,7 @@
 
 /obj/item/device/radio/electropack/Topic(href, href_list)
 	//..()
-	if(usr.stat || usr.restrained())
+	if(usr.stat || usr.is_mob_restrained())
 		return
 	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
 		usr.set_machine(src)
@@ -86,9 +84,9 @@
 		var/mob/M = loc
 		var/turf/T = M.loc
 		if(istype(T, /turf))
-			if(!M.moved_recently && M.last_move)
+			if(!M.moved_recently && M.last_move_dir)
 				M.moved_recently = 1
-				step(M, M.last_move)
+				step(M, M.last_move_dir)
 				sleep(50)
 				if(M)
 					M.moved_recently = 0

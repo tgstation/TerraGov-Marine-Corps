@@ -1,20 +1,11 @@
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
-
-	if(istype(mover,/mob/living/carbon/hellhound))
-		var/area/area = get_area(target)
-		if(area.can_hellhound_enter == 0)
-			mover << "Some kind of invisible force field prevents you from entering there."
-			return 0
-
+	if(mover.checkpass(PASSMOB)) return 1
 	if(ismob(mover))
-		var/mob/moving_mob = mover
-		if ((other_mobs && moving_mob.other_mobs))
+		if(checkpass(PASSMOB))
 			return 1
-		return (!mover.density || !density || lying)
-	else
-		return (!mover.density || !density || lying)
-	return
+	return (!mover.density || !density || lying)
+
 
 
 /client/North()
@@ -58,7 +49,7 @@
 		if(!C.get_active_hand())
 			usr << "\red You have nothing to drop in your hand."
 			return
-		drop_item()
+		C.drop_held_item()
 	else
 		usr << "\red This mob type cannot drop items."
 	return
@@ -94,7 +85,7 @@
 	set hidden = 1
 	if(!istype(mob, /mob/living/carbon))
 		return
-	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
+	if (!mob.stat && isturf(mob.loc) && !mob.is_mob_restrained())
 		mob:toggle_throw_mode()
 	else
 		return
@@ -117,42 +108,6 @@
 	return
 
 
-/atom/movable/Move(NewLoc, direct)
-	if (direct & (direct - 1))
-		if (direct & 1)
-			if (direct & 4)
-				if (step(src, NORTH))
-					step(src, EAST)
-				else
-					if (step(src, EAST))
-						step(src, NORTH)
-			else
-				if (direct & 8)
-					if (step(src, NORTH))
-						step(src, WEST)
-					else
-						if (step(src, WEST))
-							step(src, NORTH)
-		else
-			if (direct & 2)
-				if (direct & 4)
-					if (step(src, SOUTH))
-						step(src, EAST)
-					else
-						if (step(src, EAST))
-							step(src, SOUTH)
-				else
-					if (direct & 8)
-						if (step(src, SOUTH))
-							step(src, WEST)
-						else
-							if (step(src, WEST))
-								step(src, SOUTH)
-	else
-		. = ..()
-	return
-
-
 /client/proc/Move_object(direct)
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
@@ -166,7 +121,7 @@
 
 /client/Move(n, direct)
 
-	if(mob.control_object)	Move_object(direct)
+	if(mob.control_object) return Move_object(direct) //admins possessing object
 
 	if(isobserver(mob))	return mob.Move(n,direct)
 
@@ -176,12 +131,7 @@
 
 	if(!mob)	return
 
-	if(locate(/obj/effect/stop/, mob.loc))
-		for(var/obj/effect/stop/S in mob.loc)
-			if(S.victim == mob)
-				return
-
-	if(mob.stat==2)	return
+	if(mob.stat == DEAD) return
 
 	// handle possible AI movement
 	if(isAI(mob))
@@ -197,36 +147,42 @@
 		if(L.incorporeal_move)//Move though walls
 			Process_Incorpmove(direct)
 			return
+
 		if(mob.client)
 			if(mob.client.view != world.view) // If mob moves while zoomed in with device, unzoom them.
 				for(var/obj/item/item in mob.contents)
 					if(item.zoom)
 						item.zoom(mob)
 						break
-				/*
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents))		// If mob moves while zoomed in with sniper rifle, unzoom them.
-					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
-					if(s.zoom)
-						s.zoom()
-				if(locate(/obj/item/device/binoculars, mob.contents))		// If mob moves while zoomed in with binoculars, unzoom them.
-					var/obj/item/device/binoculars/b = locate() in mob
-					if(b.zoom)
-						b.zoom()
-				*/
 
-	if(Process_Grab())	return
+	if(istype(mob.machine, /obj/machinery))
+		if(mob.machine.relaymove(mob,direct))
+			return
+
+	if(Process_Grab()) return
+
+	if(isturf(mob.loc))
+
+		if(mob.is_mob_restrained())//Why being pulled while cuffed prevents you from moving
+			for(var/mob/M in range(mob, 1))
+				if(M.pulling == mob)
+					if(!M.is_mob_restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
+						src << "\blue You're restrained! You can't move!"
+						return 0
+					else
+						M.stop_pulling()
+
+
+	if(mob.buckled) return mob.buckled.relaymove(mob,direct)
 
 
 	if(!mob.canmove)
 		return
 
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
-	//	if(!mob.Process_Spacemove(0))	return 0
-
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
 
-	if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
+	if((istype(mob.loc, /turf/space))|| (mob.lastarea.has_gravity == 0))
 		if(!mob.Process_Spacemove(0))	return 0
 
 
@@ -235,19 +191,6 @@
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-
-		if(mob.restrained())//Why being pulled while cuffed prevents you from moving
-			for(var/mob/M in range(mob, 1))
-				if(M.pulling == mob)
-					if(!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
-						src << "\blue You're restrained! You can't move!"
-						return 0
-					else
-						M.stop_pulling()
-
-		if(mob.pinned.len)
-			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
-			return 0
 
 		move_delay = world.time//set move delay
 		mob.last_move_intent = world.time + 10
@@ -263,80 +206,13 @@
 		if(config.Tickcomp)
 			move_delay -= 1.3
 			var/tickcomp = ((1/(world.tick_lag))*1.3)
-			move_delay = move_delay + tickcomp
+			move_delay += tickcomp
 
-		//New proximity code. This replaces turf/Entered:HasProximity checks.
-		//Host is checked already but we can check here for efficiency.
-		//We can use orange instead of range, since Crossed already checks their turf.
-		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD && !mob.lying)
-			for(var/obj/item/clothing/mask/facehugger/F in range(1,mob))
-				if(!F.stat && isturf(F.loc) && CanHug(mob) && F.Adjacent(mob))
-					F.visible_message("<span class='warning'>[F] leaps at [mob]!</span>","<span class='warning'>[F] leaps at [mob]!</span>")
-					F.HasProximity(mob)
-					break
-			for(var/obj/effect/alien/egg/E in range(1,mob))
-				if(isturf(E.loc) && E.status == GROWN)
-					E.HasProximity(mob)
-					break
-
-		if(istype(mob.buckled, /obj/vehicle))
-			return mob.buckled.relaymove(mob,direct)
-
-		if(istype(mob.machine, /obj/machinery))
-			if(mob.machine.relaymove(mob,direct))
-				return
-
-		if(mob.pulledby || mob.buckled) // Wheelchair driving!
-			if(istype(mob.loc, /turf/space))
-				return // No wheelchair driving in space
-			if(istype(mob.pulledby, /obj/structure/stool/bed/chair/wheelchair))
-				return mob.pulledby.relaymove(mob, direct)
-			else if(istype(mob.buckled, /obj/structure/stool/bed/chair/wheelchair))
-				if(ishuman(mob.buckled))
-					var/mob/living/carbon/human/driver = mob.buckled
-					var/datum/organ/external/l_hand = driver.get_organ("l_hand")
-					var/datum/organ/external/r_hand = driver.get_organ("r_hand")
-					if((!l_hand || (l_hand.status & ORGAN_DESTROYED)) && (!r_hand || (r_hand.status & ORGAN_DESTROYED)))
-						return // No hands to drive your chair? Tough luck!
-				move_delay += 2
-				return mob.buckled.relaymove(mob,direct)
 
 		//We are now going to move
 		moving = 1
-		//Something with pulling things
-		if(locate(/obj/item/weapon/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
-			var/list/L = mob.ret_grab()
-			if(istype(L, /list))
-				if(L.len == 2)
-					L -= mob
-					var/mob/M = L[1]
-					if(M)
-						if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
-							var/turf/T = mob.loc
-							. = ..()
-							if (isturf(M.loc))
-								var/diag = get_dir(mob, M)
-								if ((diag - 1) & diag)
-								else
-									diag = null
-								if ((get_dist(mob, M) > 1 || diag))
-									step(M, get_dir(M.loc, T))
-				else
-					for(var/mob/M in L)
-						M.other_mobs = 1
-						if(mob != M)
-							M.animate_movement = 3
-					for(var/mob/M in L)
-						spawn( 0 )
-							step(M, direct)
-							return
-						spawn( 1 )
-							M.other_mobs = null
-							M.animate_movement = 2
-							return
 
-		else if(mob.confused)
+		if(mob.confused)
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
@@ -355,27 +231,16 @@
 ///Called by client/Move()
 ///Checks to see if you are being grabbed and if so attemps to break it
 /client/proc/Process_Grab()
-	if(locate(/obj/item/weapon/grab, locate(/obj/item/weapon/grab, mob.grabbed_by.len)))
-		var/list/grabbing = list()
-		if(istype(mob.l_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = mob.l_hand
-			grabbing += G.affecting
-		if(istype(mob.r_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = mob.r_hand
-			grabbing += G.affecting
-		for(var/obj/item/weapon/grab/G in mob.grabbed_by)
-			if((G.state == 1)&&(!grabbing.Find(G.assailant)))	del(G)
-			if(G.state == 2)
-				move_delay = world.time + 10
-				if(!prob(25))	return 1
-				mob.visible_message("\red [mob] has broken free of [G.assailant]'s grip!")
-				del(G)
-			if(G.state == 3)
-				move_delay = world.time + 10
-				if(!prob(5))	return 1
-				mob.visible_message("\red [mob] has broken free of [G.assailant]'s headlock!")
-				del(G)
-	return 0
+	if(mob.pulledby)
+		if(mob.stat || mob.stunned || mob.weakened || mob.paralysis)
+			move_delay = world.time + 10
+			return 1
+		else if(mob.is_mob_restrained())
+			move_delay = world.time + 10
+			src << "<span class='warning'>You're restrained! You can't move!</span>"
+			return 1
+		else
+			return mob.resist_grab(TRUE)
 
 
 ///Process_Incorpmove
@@ -452,13 +317,13 @@
 	else
 		make_floating(1)
 
-	if(restrained()) //Check to see if we can do things
+	if(is_mob_restrained()) //Check to see if we can do things
 		return 0
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
 		src << "\blue <B>You slipped!</B>"
-		src.inertia_dir = src.last_move
+		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0
 	//If not then we can reset inertia and move

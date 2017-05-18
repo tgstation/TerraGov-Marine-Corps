@@ -11,8 +11,20 @@
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
 	icon_state = "bed"
-	var/mob/living/buckled_mob
-	var/movable = 0 // For mobility checks
+	can_buckle = TRUE
+	buckle_lying = TRUE
+	is_stool = FALSE
+	var/buckling_y = 0 //pixel y shift to give to the buckled mob.
+
+/obj/structure/stool/bed/afterbuckle(mob/M)
+	. = ..()
+	if(. && buckled_mob == M)
+		M.pixel_y = buckling_y
+		M.old_y = buckling_y
+	else
+		M.pixel_y = initial(buckled_mob.pixel_y)
+		M.old_y = initial(buckled_mob.pixel_y)
+
 
 /obj/structure/stool/bed/psych
 	name = "psychiatrists couch"
@@ -24,109 +36,6 @@
 	desc = "This looks similar to contraptions from earth. Could aliens be stealing our technology?"
 	icon_state = "abed"
 
-/obj/structure/stool/bed/Del()
-	unbuckle()
-	..()
-	return
-
-/obj/structure/stool/bed/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/structure/stool/bed/attack_hand(mob/user as mob)
-	manual_unbuckle(user)
-	return
-
-/obj/structure/stool/bed/attack_ai(mob/user as mob)
-	manual_unbuckle(user)
-	return
-
-/obj/structure/stool/bed/proc/handle_rotation()
-	return
-
-/obj/structure/stool/bed/MouseDrop(atom/over_object)
-	return
-
-/obj/structure/stool/bed/MouseDrop_T(mob/M as mob, mob/user as mob)
-	if(!istype(M)) return
-	buckle_mob(M, user)
-	return
-
-/obj/structure/stool/bed/proc/afterbuckle(mob/M as mob) // Called after somebody buckled / unbuckled
-	return
-
-
-/obj/structure/stool/bed/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
-
-			var/M = buckled_mob
-			buckled_mob = null
-
-			afterbuckle(M)
-	return
-
-/obj/structure/stool/bed/proc/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			if(buckled_mob != user)
-				buckled_mob.visible_message(\
-					"\blue [buckled_mob.name] was unbuckled by [user.name]!",\
-					"You were unbuckled from [src] by [user.name].",\
-					"You hear metal clanking")
-			else
-				buckled_mob.visible_message(\
-					"\blue [buckled_mob.name] unbuckled \himself!",\
-					"You unbuckle yourself from [src].",\
-					"You hear metal clanking")
-			unbuckle()
-			src.add_fingerprint(user)
-			return 1
-
-	return 0
-
-/obj/structure/stool/bed/proc/buckle_mob(mob/M as mob, mob/user as mob)
-	if (!ticker)
-		user << "You can't buckle anyone in before the game starts."
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || M.pinned.len || istype(user, /mob/living/silicon/pai) )
-		return
-
-	if (istype(M, /mob/living/carbon/slime))
-		user << "The [M] is too squishy to buckle in."
-		return
-
-	if (istype(M, /mob/living/carbon/Xenomorph))
-		user << "The [M] is too big to buckle in."
-		return
-	if (istype(user, /mob/living/carbon/Xenomorph) && !istype(src, /obj/structure/stool/bed/nest))
-		user << "You don't have the dexterity to do that, try a nest."
-		return
-
-
-
-	unbuckle()
-
-	if (M == usr)
-		M.visible_message(\
-			"\blue [M.name] buckles in!",\
-			"You buckle yourself to [src].",\
-			"You hear metal clanking")
-	else
-		M.visible_message(\
-			"\blue [M.name] is buckled in to [src] by [user.name]!",\
-			"You are buckled in to [src] by [user.name].",\
-			"You hear metal clanking")
-	M.buckled = src
-	M.loc = src.loc
-	M.dir = src.dir
-	M.update_canmove()
-	src.buckled_mob = M
-	src.add_fingerprint(user)
-	afterbuckle(M)
-
-	return
 
 /*
  * Roller beds
@@ -136,43 +45,75 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
-	flags_atom = NOPULLPENALTY
+	drag_delay = 0 //pulling something on wheels is easy
+	buckling_y = 6
 
 /obj/structure/stool/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/roller_holder))
 		if(buckled_mob)
 			manual_unbuckle()
 		else
-			visible_message("[user] collapses \the [src.name].")
+			visible_message("<span class='notice'>[user] collapses [name].</span>")
 			new/obj/item/roller(get_turf(src))
-			spawn(0)
-				del(src)
+			cdel(src)
 		return
+	. = ..()
+
+/obj/structure/stool/bed/roller/afterbuckle(mob/M)
+	. = ..()
+	if(.)
+		density = 1
+		icon_state = "up"
+	else
+		density = 0
+		icon_state = "down"
+
+/obj/structure/stool/bed/roller/MouseDrop(over_object, src_location, over_location)
 	..()
+	if(over_object == usr && Adjacent(usr))
+		if(!ishuman(usr))	return
+		if(buckled_mob)	return 0
+		visible_message("<span class='notice'>[usr] collapses [name].</span>")
+		var/obj/structure/stool/bed/roller/RB = new/obj/item/roller(get_turf(src))
+		usr.put_in_hands(RB)
+		cdel(src)
+
+
 
 /obj/item/roller
 	name = "roller bed"
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
-	w_class = 4.0 // Can't be put in backpacks. Oh well.
+	w_class = 3 //fits in a backpack
+	drag_delay = 0 //pulling something on wheels is easy
 
-/obj/item/roller/attack_self(mob/user)
-		var/obj/structure/stool/bed/roller/R = new /obj/structure/stool/bed/roller(user.loc)
-		R.add_fingerprint(user)
-		del(src)
+	attack_self(mob/user)
+		deploy_roller(user, user.loc)
 
-/obj/item/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	afterattack(obj/target, mob/user , proximity)
+		if(!proximity) return
+		if(isturf(target))
+			var/turf/T = target
+			if(!T.density)
+				deploy_roller(user, target)
 
-	if(istype(W,/obj/item/roller_holder))
-		var/obj/item/roller_holder/RH = W
-		if(!RH.held)
-			user << "\blue You collect the roller bed."
-			src.loc = RH
-			RH.held = src
-			return
+	attackby(obj/item/weapon/W as obj, mob/user as mob)
+		if(istype(W,/obj/item/roller_holder))
+			var/obj/item/roller_holder/RH = W
+			if(!RH.held)
+				user << "<span class='notice'>You collect the roller bed.</span>"
+				loc = RH
+				RH.held = src
+				return
+		. = ..()
 
-	..()
+/obj/item/roller/proc/deploy_roller(mob/user, atom/location)
+	var/obj/structure/stool/bed/roller/R = new /obj/structure/stool/bed/roller(location)
+	R.add_fingerprint(user)
+	user.temp_drop_inv_item(src)
+	cdel(src)
+
 
 /obj/item/roller_holder
 	name = "roller bed rack"
@@ -188,55 +129,11 @@
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
 	if(!held)
-		user << "\blue The rack is empty."
+		user << "<span class='warning'>The rack is empty.</span>"
 		return
 
-	user << "\blue You deploy the roller bed."
+	user << "<span class='notice'>You deploy the roller bed.</span>"
 	var/obj/structure/stool/bed/roller/R = new /obj/structure/stool/bed/roller(user.loc)
 	R.add_fingerprint(user)
-	del(held)
+	cdel(held)
 	held = null
-
-
-/obj/structure/stool/bed/roller/Move()
-	..()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.loc = src.loc
-		else
-			buckled_mob = null
-
-/obj/structure/stool/bed/roller/buckle_mob(mob/M as mob, mob/user as mob)
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || istype(usr, /mob/living/silicon/pai) )
-		return
-	M.pixel_y = 6
-	M.old_y = 6
-	density = 1
-	icon_state = "up"
-	..()
-	return
-
-/obj/structure/stool/bed/roller/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.pixel_y = 0
-			buckled_mob.old_y = 0
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.buckled = null
-			buckled_mob.update_canmove()
-			buckled_mob = null
-	density = 0
-	icon_state = "down"
-	..()
-	return
-
-/obj/structure/stool/bed/roller/MouseDrop(over_object, src_location, over_location)
-	..()
-	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-		if(!ishuman(usr))	return
-		if(buckled_mob)	return 0
-		visible_message("[usr] collapses \the [src.name].")
-		new/obj/item/roller(get_turf(src))
-		spawn(0)
-			del(src)
-		return

@@ -33,7 +33,7 @@
 	icon_living = "parrot_fly"
 	icon_dead = "parrot_dead"
 	flags_pass = PASSTABLE
-	small = 1
+	mob_size = MOB_SIZE_SMALL
 
 	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
 	speak_emote = list("squawks","says","yells")
@@ -128,7 +128,7 @@
 /mob/living/simple_animal/parrot/Topic(href, href_list)
 
 	//Can the usr physically do this?
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))
 		return
 
 	//Is the usr's mob type able to do this?
@@ -175,9 +175,8 @@
 
 						var/obj/item/device/radio/headset/headset_to_add = item_to_add
 
-						usr.drop_item()
-						headset_to_add.loc = src
-						src.ears = headset_to_add
+						usr.drop_inv_item_to_loc(headset_to_add, src)
+						ears = headset_to_add
 						usr << "You fit the headset onto [src]."
 
 						clearlist(available_channels)
@@ -225,7 +224,7 @@
 			parrot_state |= PARROT_ATTACK
 		else
 			parrot_state |= PARROT_FLEE		//Otherwise, fly like a bat out of hell!
-			drop_held_item(0)
+			drop_parrot_held_item(0)
 	return
 
 /mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/M as mob)
@@ -255,7 +254,7 @@
 			parrot_interest = user
 			parrot_state = PARROT_SWOOP|PARROT_FLEE
 			icon_state = "parrot_fly"
-			drop_held_item(0)
+			drop_parrot_held_item(0)
 	return
 
 //Bullets
@@ -269,7 +268,7 @@
 		parrot_state = PARROT_WANDER //OWFUCK, Been shot! RUN LIKE HELL!
 		parrot_been_shot += 5
 		icon_state = "parrot_fly"
-		drop_held_item(0)
+		drop_parrot_held_item(0)
 	return 1
 
 
@@ -437,7 +436,7 @@
 
 		if(in_range(src, parrot_perch))
 			src.loc = parrot_perch.loc
-			drop_held_item()
+			drop_parrot_held_item()
 			parrot_state = PARROT_PERCH
 			icon_state = "parrot_sit"
 			return
@@ -506,7 +505,7 @@
 		walk(src,0)
 		parrot_interest = null
 		parrot_perch = null
-		drop_held_item()
+		drop_parrot_held_item()
 		parrot_state = PARROT_WANDER
 		return
 
@@ -519,7 +518,7 @@
 	if(client && stat == CONSCIOUS && parrot_state != "parrot_fly")
 		icon_state = "parrot_fly"
 
-	..()
+	. = ..()
 
 /mob/living/simple_animal/parrot/proc/search_for_item()
 	for(var/atom/movable/AM in view(src))
@@ -621,11 +620,10 @@
 			stolen_item = C.r_hand
 
 		if(stolen_item)
-			C.u_equip(stolen_item)
-			held_item = stolen_item
-			stolen_item.loc = src
-			visible_message("[src] grabs the [held_item] out of [C]'s hand!", "\blue You snag the [held_item] out of [C]'s hand!", "You hear the sounds of wings flapping furiously.")
-			return held_item
+			if(C.drop_inv_item_to_loc(stolen_item, src))
+				held_item = stolen_item
+				visible_message("[src] grabs the [held_item] out of [C]'s hand!", "\blue You snag the [held_item] out of [C]'s hand!", "You hear the sounds of wings flapping furiously.")
+				return held_item
 
 	src << "\red There is nothing of interest to take."
 	return 0
@@ -638,11 +636,11 @@
 	if(stat)
 		return
 
-	src.drop_held_item()
+	src.drop_parrot_held_item()
 
 	return
 
-/mob/living/simple_animal/parrot/proc/drop_held_item(var/drop_gently = 1)
+/mob/living/simple_animal/parrot/proc/drop_parrot_held_item(var/drop_gently = 1)
 	set name = "Drop held item"
 	set category = "Parrot"
 	set desc = "Drop the item you're holding."

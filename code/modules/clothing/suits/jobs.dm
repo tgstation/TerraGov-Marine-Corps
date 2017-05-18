@@ -171,7 +171,7 @@
 		set category = "Object"
 		set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
+		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 			return 0
 
 		switch(icon_state)
@@ -202,7 +202,7 @@
 		set category = "Object"
 		set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
+		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 			return 0
 
 		switch(icon_state)

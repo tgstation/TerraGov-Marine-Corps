@@ -251,19 +251,19 @@
 			return
 
 		if(!keyslot1)
-			user.drop_item()
-			W.loc = src
-			keyslot1 = W
+			if(user.drop_held_item())
+				W.forceMove(src)
+				keyslot1 = W
 
 
 		if(!keyslot2)
-			user.drop_item()
-			W.loc = src
-			keyslot2 = W
+			if(user.drop_held_item())
+				W.forceMove(src)
+				keyslot2 = W
 		else
-			user.drop_item()
-			W.loc = src
-			keyslot3 = W
+			if(user.drop_held_item())
+				W.forceMove(src)
+				keyslot3 = W
 
 
 		recalculateChannels()

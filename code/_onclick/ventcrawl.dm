@@ -20,8 +20,6 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 		return 1
 	return ..()
 
-/mob/living/carbon/human/can_ventcrawl()
-	return 0
 
 /mob/proc/start_ventcrawl()
 	var/atom/pipe
@@ -39,9 +37,6 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	if(canmove && pipe)
 		return pipe
 
-/mob/living/carbon/slime/can_ventcrawl()
-	return 1
-
 /mob/living/carbon/monkey/can_ventcrawl()
 	return 1
 
@@ -49,12 +44,6 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	return 1
 
 /mob/living/simple_animal/spiderbot/can_ventcrawl()
-	return 1
-
-/mob/living/carbon/Xenomorph/can_ventcrawl()
-	return 1
-
-/mob/living/carbon/Xenomorph/ventcrawl_carry()
 	return 1
 
 /mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
@@ -96,7 +85,11 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 					visible_message("<span class='notice'>[src] begins climbing into [vent_found].</span>", \
 					"<span class='notice'>You begin climbing into [vent_found].</span>")
 
-					if(!do_after(src, 45))
+					if(!do_after(src, 45, FALSE))
+						return
+
+					updatehealth()
+					if(stat || stunned || weakened || health < 0)
 						return
 
 					if(!client)

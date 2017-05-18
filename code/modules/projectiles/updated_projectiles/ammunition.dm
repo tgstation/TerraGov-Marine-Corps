@@ -12,7 +12,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
-	matter = list("metal" = 50000)
+	matter = list("metal" = 1000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2
 	w_class = 1.0
@@ -25,6 +25,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/gun_type = null //Path of the gun that it fits. Mags will fit any of the parent guns as well, so make sure you want this.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
+	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 
 	New(loc, spawn_empty)
 		..()
@@ -47,26 +48,28 @@ They're all essentially identical when it comes to getting the job done.
 			usr << "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 
-	attack_hand(mob/user as mob)
-		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //If it's a box of shotgun shells or a speedloader.
-			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-			if( in_hand == src ) //Have to be holding it in the hand.
+	attack_hand(mob/user)
+		if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
+			if(src == user.get_inactive_hand()) //Have to be holding it in the hand.
 				if (current_rounds > 0)
-					create_handful(user)
-					return
+					if(create_handful(user))
+						return
 				else user << "[src] is empty. Nothing to grab."
+				return
 		return ..() //Do normal stuff.
 
 	//We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user)
-		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //Same deal.
-			if(istype(transfer_from)) // We have a handful.
-				var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-				if( in_hand == src ) //It has to be held.
-					if(default_ammo == transfer_from.default_ammo)
-						transfer_ammo(transfer_from,src,user,transfer_from.current_rounds) // This takes care of the rest.
-					else user << "Those aren't the same rounds. Better not mix them up."
-				else user << "Try holding [src] before you attempt to restock it."
+	attackby(obj/item/I, mob/user)
+		if(istype(I, /obj/item/ammo_magazine))
+			var/obj/item/ammo_magazine/MG = I
+			if(MG.flags_magazine & AMMUNITION_HANDFUL) //got a handful of bullets
+				if(flags_magazine & AMMUNITION_REFILLABLE) //and a refillable magazine
+					var/obj/item/ammo_magazine/handful/transfer_from = I
+					if(src == user.get_inactive_hand() ) //It has to be held.
+						if(default_ammo == transfer_from.default_ammo)
+							transfer_ammo(transfer_from,src,user,transfer_from.current_rounds) // This takes care of the rest.
+						else user << "Those aren't the same rounds. Better not mix them up."
+					else user << "Try holding [src] before you attempt to restock it."
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,mob/user,transfer_amount = 1)
@@ -83,9 +86,7 @@ They're all essentially identical when it comes to getting the job done.
 	target.current_rounds += S
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
-			user.remove_from_mob(source)
-			user.update_inv_l_hand(0) //In case we will get in hand icons.
-			user.update_inv_r_hand()
+			user.temp_drop_inv_item(source)
 		cdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 	else source.update_icon()
 	target.update_icon(S)
@@ -145,12 +146,13 @@ bullets/shells. ~N
 /obj/item/ammo_magazine/handful
 	name = "generic handful"
 	desc = "A handful of rounds to reload on the go."
-	matter = list("metal" = 5000) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
+	matter = list("metal" = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	flags_equip_slot = null // It only fits into pockets and such.
 	origin_tech = "combat=1'materials=1"
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
 	flags_atom = FPRINT|CONDUCT|DIRLOCK
+	flags_magazine = AMMUNITION_HANDFUL
 
 	Dispose()
 		..()
@@ -162,9 +164,10 @@ bullets/shells. ~N
 
 	update_icon() //Handles the icon itself as well as some bonus things.
 		if(max_rounds >= current_rounds)
-			var/I = current_rounds*5000 // For the metal.
+			var/I = current_rounds*50 // For the metal.
 			matter = list("metal" = I)
 			dir = current_rounds + round(current_rounds/3)
+
 
 	/*
 	There aren't many ways to interact here.

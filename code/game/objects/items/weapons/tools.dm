@@ -119,7 +119,7 @@
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
 		C.handcuffed = null
-		C.update_inv_handcuffed()
+		C.handcuff_update()
 		return
 	else
 		..()
@@ -149,8 +149,8 @@
 
 	//Welding tool specific stuff
 	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
-	var/status = 1 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
+	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
 
 /obj/item/weapon/weldingtool/New()
 //	var/random_fuel = min(rand(10,20),max_fuel)
@@ -163,73 +163,17 @@
 
 /obj/item/weapon/weldingtool/examine()
 	set src in usr
-	usr << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
-	return
-
-
-/obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
-		if(welding)
-			user << "\red Stop welding first!"
-			return
-		status = !status
-		if(status)
-			user << "\blue You resecure the welder."
-		else
-			user << "\blue The welder can now be attached and modified."
-		src.add_fingerprint(user)
-		return
-
-/*	if((!status) && (istype(W,/obj/item/stack/rods)))
-		var/obj/item/stack/rods/R = W
-		R.use(1)
-		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
-		src.loc = F
-		F.weldtool = src
-		if (user.client)
-			user.client.screen -= src
-		if (user.r_hand == src)
-			user.u_equip(src)
-		else
-			user.u_equip(src)
-		src.master = F
-		src.layer = initial(src.layer)
-		user.u_equip(src)
-		if (user.client)
-			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
-		return
-*/
-	..()
+	usr << "\icon[src] [name] contains [get_fuel()]/[max_fuel] units of fuel!"
 	return
 
 
 /obj/item/weapon/weldingtool/process()
-	switch(welding)
-		//If off
-		if(0)
-			if(src.icon_state != "welder") //Check that the sprite is correct, if it isnt, it means toggle() was not called
-				src.force = 3
-				src.damtype = "brute"
-				src.icon_state = "welder"
-				src.welding = 0
-			processing_objects.Remove(src)
-			return
-		//Welders left on now use up fuel, but lets not have them run out quite that fast
-		if(1)
-			if(src.icon_state != "welder1") //Check that the sprite is correct, if it isnt, it means toggle() was not called
-				src.force = 15
-				src.damtype = "fire"
-				src.icon_state = "welder1"
-			if(prob(5))
-				remove_fuel(1)
-
-		//If you're actually actively welding, use fuel faster.
-		//Is this actually used or set anywhere? - Nodrak
-		if(2)
-			if(prob(75))
-				remove_fuel(1)
+	if(welding)
+		if(++weld_tick >= 20)
+			weld_tick = 0
+			remove_fuel(1)
+	else //should never be happening, but just in case
+		toggle(TRUE)
 
 
 	//I'm not sure what this does. I assume it has to do with starting fires...
@@ -245,19 +189,20 @@
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !src.welding)
-		O.reagents.trans_to(src, max_fuel)
-		user << "\blue Welder refueled"
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
+		if(!welding)
+			O.reagents.trans_to(src, max_fuel)
+			weld_tick = 0
+			user << "<span class='notice'>Welder refueled.</span>"
+			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+		else
+			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
+			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
+			user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
+			var/obj/structure/reagent_dispensers/fueltank/tank = O
+			tank.explode()
 		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.welding)
-		message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-		log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-		user << "\red You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done."
-		var/obj/structure/reagent_dispensers/fueltank/tank = O
-		tank.explode()
-		return
-	if (src.welding)
+	if (welding)
 		remove_fuel(1)
 		var/turf/location = get_turf(user)
 		if (istype(location, /turf))
@@ -290,81 +235,64 @@
 		return 1
 	else
 		if(M)
-			M << "\blue You need more welding fuel to complete this task."
+			M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 		return 0
 
 //Returns whether or not the welding tool is currently on.
 /obj/item/weapon/weldingtool/proc/isOn()
 	return src.welding
 
-//Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
-//so that the welding tool updates accordingly
-/obj/item/weapon/weldingtool/proc/setWelding(var/temp_welding)
-	//If we're turning it on
-	if(temp_welding > 0)
-		if (remove_fuel(1))
-			usr << "\blue The [src] switches on."
-			src.force = 15
-			src.damtype = "fire"
-			src.icon_state = "welder1"
-			processing_objects.Add(src)
-		else
-			usr << "\blue Need more fuel!"
-			src.welding = 0
-			return
-	//Otherwise
-	else
-		usr << "\blue The [src] switches off."
-		src.force = 3
-		src.damtype = "brute"
-		src.icon_state = "welder"
-		src.welding = 0
-
 //Turns off the welder if there is no more fuel (does this really need to be its own proc?)
 /obj/item/weapon/weldingtool/proc/check_fuel()
 	if((get_fuel() <= 0) && welding)
-		toggle(1)
+		toggle(TRUE)
 		return 0
 	return 1
 
 
 //Toggles the welder off and on
 /obj/item/weapon/weldingtool/proc/toggle(var/message = 0)
-	if(!status)	return
-	src.welding = !( src.welding )
-	if (src.welding)
-		if (remove_fuel(1))
-			usr << "\blue You switch the [src] on."
-			playsound(src.loc, 'sound/items/weldingtool_on.ogg', 50)
-			src.force = 15
-			src.damtype = "fire"
-			src.icon_state = "welder1"
-			src.w_class = 4
+	if(!welding)
+		if(get_fuel() > 0)
+			usr << "<span class='notice'>You switch [src] on.</span>"
+			playsound(loc, 'sound/items/weldingtool_on.ogg', 50)
+			welding = 1
+			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
+			force = 15
+			damtype = "fire"
+			icon_state = "welder1"
+			w_class = 4
 			processing_objects.Add(src)
 		else
-			usr << "\blue Need more fuel!"
-			src.welding = 0
-			src.w_class = initial(src.w_class)
+			usr << "<span class='warning'>Need more fuel!</span>"
 			return
 	else
 		if(!message)
-			usr << "\blue You switch the [src] off."
+			usr << "<span class='notice'>You switch [src] off.</span>"
 		else
-			usr << "\blue The [src] shuts off!"
-		playsound(src.loc, 'sound/items/weldingtool_off.ogg', 50)
-		src.force = 3
-		src.damtype = "brute"
-		src.icon_state = "welder"
-		src.welding = 0
-		src.w_class = initial(src.w_class)
+			usr << "<span class='warning'>[src] shuts off!</span>"
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
+		force = 3
+		damtype = "brute"
+		icon_state = "welder"
+		welding = 0
+		w_class = initial(w_class)
+		if(ismob(loc))
+			var/mob/M = loc
+			if(M.r_hand == src)
+				M.update_inv_r_hand()
+			if(M.l_hand == src)
+				M.update_inv_l_hand()
+		processing_objects.Remove(src)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
 /obj/item/weapon/weldingtool/proc/eyecheck(mob/user as mob)
 	if(!iscarbon(user))	return 1
-	var/safety = user:eyecheck()
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	var/mob/living/carbon/C = user
+	var/safety = C.eyecheck()
+	if(istype(C, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = C
 		var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 		if(!E)
 			return
@@ -372,34 +300,34 @@
 			return
 		switch(safety)
 			if(1)
-				usr << "\red Your eyes sting a little."
+				usr << "<span class='danger'>Your eyes sting a little.</span>"
 				E.damage += rand(1, 2)
 				if(E.damage > 12)
-					user.eye_blurry += rand(3,6)
+					H.eye_blurry += rand(3,6)
 			if(0)
-				usr << "\red Your eyes burn."
+				usr << "<span class='warning'>Your eyes burn.</span>"
 				E.damage += rand(2, 4)
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(-1)
-				usr << "\red Your thermals intensify the welder's glow. Your eyes itch and burn severely."
-				user.eye_blurry += rand(12,20)
+				usr << "<span class='warning'>Your thermals intensify the welder's glow. Your eyes itch and burn severely.</span>"
+				H.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<2)
 
 			if(E.damage > 10)
-				user << "\red Your eyes are really starting to hurt. This can't be good for you!"
+				H << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
 
 			if (E.damage >= E.min_broken_damage)
-				user << "\red You go blind!"
-				user.sdisabilities |= BLIND
+				H << "<span class='warning'>You go blind!</span>"
+				H.sdisabilities |= BLIND
 			else if (E.damage >= E.min_bruised_damage)
-				user << "\red You go blind!"
-				user.eye_blind = 5
-				user.eye_blurry = 5
-				user.disabilities |= NEARSIGHTED
+				H << "<span class='warning'>You go blind!</span>"
+				H.eye_blind = 5
+				H.eye_blurry = 5
+				H.disabilities |= NEARSIGHTED
 				spawn(100)
-					user.disabilities &= ~NEARSIGHTED
+					H.disabilities &= ~NEARSIGHTED
 	return
 
 

@@ -39,12 +39,12 @@
 	var/obj/item/held_item = null //Storage for single item they can hold.
 	speed = -1                    //Spiderbots gotta go fast.
 	//flags_pass = PASSTABLE      //Maybe griefy?
-	small = 1
+	mob_size = MOB_SIZE_SMALL
 	speak_emote = list("beeps","clicks","chirps")
 
 /mob/living/simple_animal/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if(istype(O, /obj/item/device/mmi) || istype(O, /obj/item/device/mmi/posibrain))
+	if(istype(O, /obj/item/device/mmi))
 		var/obj/item/device/mmi/B = O
 		if(src.mmi) //There's already a brain in it.
 			user << "\red There's already a brain in [src]!"
@@ -71,14 +71,13 @@
 			user << "\red [O] does not seem to fit."
 			return
 
+
+
+		user.drop_inv_item_to_loc(O, src)
 		user << "\blue You install [O] in [src]!"
-
-		user.drop_item()
-		src.mmi = O
-		src.transfer_personality(O)
-
-		O.loc = src
-		src.update_icon()
+		mmi = O
+		transfer_personality(O)
+		update_icon()
 		return 1
 
 	if (istype(O, /obj/item/weapon/weldingtool))
@@ -169,10 +168,6 @@
 		if(istype(mmi,/obj/item/device/mmi))
 			icon_state = "spiderbot-chassis-mmi"
 			icon_living = "spiderbot-chassis-mmi"
-		if(istype(mmi, /obj/item/device/mmi/posibrain))
-			icon_state = "spiderbot-chassis-posi"
-			icon_living = "spiderbot-chassis-posi"
-
 	else
 		icon_state = "spiderbot-chassis"
 		icon_living = "spiderbot-chassis"
@@ -216,7 +211,7 @@
 	return
 
 //Cannibalized from the parrot mob. ~Zuhayr
-/mob/living/simple_animal/spiderbot/verb/drop_held_item()
+/mob/living/simple_animal/spiderbot/verb/drop_spider_held_item()
 	set name = "Drop held item"
 	set category = "Spiderbot"
 	set desc = "Drop the item you're holding."
@@ -231,18 +226,17 @@
 	if(istype(held_item, /obj/item/weapon/grenade))
 		visible_message("\red [src] launches \the [held_item]!", "\red You launch \the [held_item]!", "You hear a skittering noise and a thump!")
 		var/obj/item/weapon/grenade/G = held_item
-		G.loc = src.loc
+		G.forceMove(loc)
 		G.prime()
 		held_item = null
 		return 1
 
 	visible_message("\blue [src] drops \the [held_item]!", "\blue You drop \the [held_item]!", "You hear a skittering noise and a soft thump.")
 
-	held_item.loc = src.loc
+	held_item.forceMove(loc)
 	held_item = null
 	return 1
 
-	return
 
 /mob/living/simple_animal/spiderbot/verb/get_item()
 	set name = "Pick up item"

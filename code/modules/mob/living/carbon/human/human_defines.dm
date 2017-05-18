@@ -49,7 +49,7 @@
 	var/obj/item/shoes = null
 	var/obj/item/belt = null
 	var/obj/item/gloves = null
-	var/obj/item/glasses = null
+	var/obj/item/clothing/glasses/glasses = null
 	var/obj/item/head = null
 	var/obj/item/l_ear = null
 	var/obj/item/r_ear = null
@@ -87,12 +87,7 @@
 	var/image/slashed_icon = null
 
 	//Emotes
-	var/farted = 0
-	var/burped = 0
-	var/clapped = 0
-	var/golfclapped = 0
-	var/medicd = 0
-	var/screamed = 0
+	var/recent_audio_emote = 0
 
 	//Life variables
 	var/oxygen_alert = 0

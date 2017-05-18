@@ -4,7 +4,7 @@
 	caste = "Queen"
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
 	melee_damage_lower = 30
 	melee_damage_upper = 46
@@ -23,14 +23,15 @@
 	maxplasma = 700
 	plasma_gain = 30
 	is_intelligent = 1
-	speed = 1
+	speed = 0.8
 	jelly = 1
 	jellyMax = 800
 	pixel_x = -16
 	fire_immune = 1
-	big_xeno = 1
+	mob_size = MOB_SIZE_BIG
+	drag_delay = 6 //pulling a big dead xeno is hard
 	jelly = 1
-	armor_deflection = 60
+	armor_deflection = 45
 	tier = 0 //Queen doesn't count towards population limit.
 	upgrade = 0
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
@@ -54,9 +55,6 @@
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
 
-/mob/living/carbon/Xenomorph/Queen/can_ventcrawl()
-	return
-
 /mob/living/carbon/Xenomorph/Queen/New()
 
 	..()
@@ -76,7 +74,7 @@
 
 /mob/living/carbon/Xenomorph/Queen/proc/lay_egg()
 
-	set name = "Lay Egg (100)"
+	set name = "Lay Egg (500)"
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
 	set category = "Alien"
 
@@ -96,7 +94,7 @@
 	if(!check_alien_construction(current_turf))
 		return
 
-	if(check_plasma(100)) //New plasma check proc, removes/updates plasma automagically
+	if(check_plasma(500)) //New plasma check proc, removes/updates plasma automagically
 		visible_message("<span class='xenowarning'>\The [src] has laid an egg!</span>", \
 		"<span class='xenowarning'>You have laid an egg!</span>")
 		new /obj/effect/alien/egg(current_turf)
@@ -220,9 +218,14 @@
 		src << "<span class='warning'>You're not pulling anyone that can be gutted.</span>"
 		return
 
-	if(locate(/obj/item/alien_embryo) in victim || locate(/obj/item/alien_embryo) in victim.contents) //Maybe they ate it??
-		src << "<span class='warning'>Not with a widdle alium inside! How cruel!</span>"
-		return
+	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
+		var/mob/living/carbon/human/H = victim
+		if(victim.stat != DEAD) //Not dead yet.
+			src << "<span class='xenowarning'>The host and child are still alive!</span>"
+			return
+		else if(istype(H) && ( world.time <= H.timeofdeath + H.revive_grace_period )) //Dead, but the host can still hatch, possibly.
+			src << "<span class='xenowarning'>The child may still hatch! Not yet!</span>"
+			return
 
 	if(isXeno(victim))
 		src << "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>"
@@ -241,7 +244,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_after(src, 80))
+	if(do_after(src, 80, FALSE))
 		if(!victim || isnull(victim))
 			return
 		if(victim.loc != cur_loc)

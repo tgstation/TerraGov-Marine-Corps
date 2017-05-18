@@ -25,6 +25,7 @@
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
+		var/turf/T
 		if (moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
@@ -42,8 +43,8 @@
 
 		//If we are at the away_area then we are just pretending to move, otherwise actually do the move
 		if (origin != away_area)
-			for(var/obj/structure/engine_startup_sound/L in origin)
-				playsound(L.loc, 'sound/effects/engine_cargoshuttle_startup.ogg', 100, 0, 10, -100)
+			T = locate() in origin //Hacky, but hey. This will change to a better system anyway.
+			playsound(T, 'sound/effects/engine_cargoshuttle_startup.ogg', 100, 0, 10, -100)
 			sleep(80)
 			move(origin, away_area)
 
@@ -57,8 +58,8 @@
 			if (prob(late_chance))
 				sleep(rand(0,max_late_time))
 
-			for(var/obj/structure/engine_landing_sound/L in destination)
-				playsound(L.loc, 'sound/effects/engine_cargoshuttle_landing.ogg', 100, 0, 10, -100)
+			T = locate() in destination
+			playsound(T, 'sound/effects/engine_cargoshuttle_landing.ogg', 100, 0, 10, -100)
 			sleep(100)
 			move(away_area, destination)
 

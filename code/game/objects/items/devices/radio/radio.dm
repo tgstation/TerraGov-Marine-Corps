@@ -277,10 +277,6 @@
 	else if (isrobot(M))
 		jobname = "Cyborg"
 
-	// --- Personal AI (pAI) ---
-	else if (istype(M, /mob/living/silicon/pai))
-		jobname = "Personal AI"
-
 	// --- Unidentifiable mob ---
 	else
 		jobname = "Unknown"
@@ -560,9 +556,9 @@
 			return
 
 		if(!keyslot)
-			user.drop_item()
-			W.loc = src
-			keyslot = W
+			if(user.drop_held_item())
+				W.forceMove(src)
+				keyslot = W
 
 		recalculateChannels()
 

@@ -26,10 +26,11 @@
 	var/CHARGESTRENGTH = 2
 	var/CHARGEDISTANCE = 4
 	var/CHARGECOOLDOWN = 120
-	charge_type = 2 //Claw at end of charge
+	charge_type = 3 //Claw at end of charge
 	fire_immune = 1
-	armor_deflection = 55
-	big_xeno = 1
+	armor_deflection = 40
+	mob_size = MOB_SIZE_BIG
+	drag_delay = 6 //pulling a big dead xeno is hard
 	attack_delay = -2
 	tier = 3
 	upgrade = 0
@@ -41,20 +42,6 @@
 		/mob/living/carbon/Xenomorph/Ravager/proc/charge,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
-
-/mob/living/carbon/Xenomorph/Ravager/can_ventcrawl()
-	return
-
-/mob/living/carbon/Xenomorph/Ravager/ClickOn(var/atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		charge(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		charge(A)
-		return
-	..()
 
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(var/atom/T)
 	set name = "Charge (20)"
@@ -124,15 +111,6 @@
 		verbs += /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire
 		spawn(15) name = "Ravenger"
 
-	ClickOn(var/atom/A, params)
-		var/list/modifiers = params2list(params)
-		if(modifiers["middle"] && middle_mouse_toggle)
-			breathe_fire(A)
-			return
-		if(modifiers["shift"] && shift_mouse_toggle)
-			breathe_fire(A)
-			return
-		..()
 
 /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire(atom/A)
 	set waitfor = 0

@@ -151,6 +151,26 @@
 					holder.icon_state = "hudmutineer"
 
 			hud_list[SPECIALROLE_HUD] = holder
+
+	if(hud_updateflag & 1 << SQUAD_HUD)
+		var/image/holder = hud_list[SQUAD_HUD]
+		var/has_rank = 1
+		holder.icon_state = "hudblank"
+		holder.overlays.Cut()
+		var/squad_nbr = get_squad_from_card(src)
+		if(squad_nbr)
+			if(wear_id)
+				var/obj/item/weapon/card/id/I = wear_id.GetID()
+				if(I)
+					switch(I.rank)
+						if("Squad Engineer") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadengi")
+						if("Squad Leader") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadleader")
+						if("Squad Specialist") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadspec")
+						if("Squad Medic") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadmed")
+						else has_rank = 0
+					if(has_rank)
+						holder.icon_state = "hudmarinesquad[squad_nbr]"
+		hud_list[SQUAD_HUD] = holder
 	hud_updateflag = 0
 
 //Handle flicking the defib icon on dead mobs

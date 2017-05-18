@@ -153,107 +153,6 @@ datum/objective/protect//The opposite of killing a dude.
 			return 1
 		return 0
 
-
-datum/objective/hijack
-	explanation_text = "Hijack the emergency shuttle by escaping alone."
-
-	check_completion()
-		if(!owner.current || owner.current.stat)
-			return 0
-		if(!emergency_shuttle.returned())
-			return 0
-		if(issilicon(owner.current))
-			return 0
-		var/area/shuttle = locate(/area/shuttle/escape/centcom)
-		var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai)
-		for(var/mob/living/player in player_list)
-			if(player.type in protected_mobs)	continue
-			if (player.mind && (player.mind != owner))
-				if(player.stat != DEAD)			//they're not dead!
-					if(get_turf(player) in shuttle)
-						return 0
-		return 1
-
-
-datum/objective/block
-	explanation_text = "Do not allow any organic lifeforms to escape on the shuttle alive."
-
-
-	check_completion()
-		if(!istype(owner.current, /mob/living/silicon))
-			return 0
-		if(!emergency_shuttle.returned())
-			return 0
-		if(!owner.current)
-			return 0
-		var/area/shuttle = locate(/area/shuttle/escape/centcom)
-		var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
-		for(var/mob/living/player in player_list)
-			if(player.type in protected_mobs)	continue
-			if (player.mind)
-				if (player.stat != 2)
-					if (get_turf(player) in shuttle)
-						return 0
-		return 1
-
-datum/objective/silence
-	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
-
-	check_completion()
-		if(!emergency_shuttle.returned())
-			return 0
-
-		for(var/mob/living/player in player_list)
-			if(player == owner.current)
-				continue
-			if(player.mind)
-				if(player.stat != DEAD)
-					var/turf/T = get_turf(player)
-					if(!T)	continue
-					switch(T.loc.type)
-						if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
-							return 0
-		return 1
-
-
-datum/objective/escape
-	explanation_text = "Escape on the shuttle or an escape pod alive and free."
-
-
-	check_completion()
-		if(issilicon(owner.current))
-			return 0
-		if(isbrain(owner.current))
-			return 0
-		if(!emergency_shuttle.returned())
-			return 0
-		if(!owner.current || owner.current.stat ==2)
-			return 0
-		var/turf/location = get_turf(owner.current.loc)
-		if(!location)
-			return 0
-
-		if(istype(location, /turf/simulated/shuttle/floor4)) // Fails traitors if they are in the shuttle brig -- Polymorph
-			if(istype(owner.current, /mob/living/carbon))
-				var/mob/living/carbon/C = owner.current
-				if (!C.handcuffed)
-					return 1
-			return 0
-
-		var/area/check_area = location.loc
-		if(istype(check_area, /area/shuttle/escape/centcom))
-			return 1
-		if(istype(check_area, /area/shuttle/escape_pod1/centcom))
-			return 1
-		if(istype(check_area, /area/shuttle/escape_pod2/centcom))
-			return 1
-		if(istype(check_area, /area/shuttle/escape_pod3/centcom))
-			return 1
-		if(istype(check_area, /area/shuttle/escape_pod5/centcom))
-			return 1
-		else
-			return 0
-
 datum/objective/survive
 	explanation_text = "Stay alive until the end."
 
@@ -357,7 +256,6 @@ datum/objective/steal
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/nasavoid,
 		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
-		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
 		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
 		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
@@ -402,7 +300,7 @@ datum/objective/steal
 			var/tmp_obj = new custom_target
 			var/custom_name = tmp_obj:name
 			del(tmp_obj)
-			custom_name = copytext(sanitize(input("Enter target name:", "Objective target", custom_name) as text|null),1,MAX_MESSAGE_LEN)
+			custom_name = stripped_input("Enter target name:", "Objective target", custom_name, MAX_MESSAGE_LEN)
 			if (!custom_name) return
 			target_name = custom_name
 			steal_target = custom_target
@@ -441,9 +339,6 @@ datum/objective/steal
 						if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
 							return 1
 
-				for(var/obj/item/clothing/suit/space/space_ninja/S in all_items) //Let an AI downloaded into a space ninja suit count
-					if(S.AI && S.AI.stat != 2)
-						return 1
 				for(var/mob/living/silicon/ai/ai in world)
 					if(istype(ai.loc, /turf))
 						var/area/check_area = get_area(ai)
@@ -471,20 +366,13 @@ datum/objective/download
 		return target_amount
 
 
+	//TODO This objective does not work without the ninja suit, which was removed.
 	check_completion()
 		if(!ishuman(owner.current))
 			return 0
 		if(!owner.current || owner.current.stat == 2)
 			return 0
-		if(!(istype(owner.current:wear_suit, /obj/item/clothing/suit/space/space_ninja)&&owner.current:wear_suit:s_initialized))
-			return 0
 		var/current_amount
-		var/obj/item/clothing/suit/space/space_ninja/S = owner.current:wear_suit
-		if(!S.stored_research.len)
-			return 0
-		else
-			for(var/datum/tech/current_data in S.stored_research)
-				if(current_data.level>1)	current_amount+=(current_data.level-1)
 		if(current_amount<target_amount)	return 0
 		return 1
 

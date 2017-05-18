@@ -177,8 +177,7 @@ var/global/list/holodeck_programs = list(
 	if(isobj(obj))
 		var/mob/M = obj.loc
 		if(ismob(M))
-			M.u_equip(obj)
-			M.update_icons()	//so their overlays update
+			M.temp_drop_inv_item(obj)
 
 	if(!silent)
 		var/obj/oldobj = obj
@@ -336,16 +335,17 @@ var/global/list/holodeck_programs = list(
 	return // HOLOTABLE DOES NOT GIVE A FUCK
 
 
-/obj/structure/table/holotable/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
+/obj/structure/table/holotable/attackby(obj/item/weapon/W, mob/user)
+	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<=1)
 		var/obj/item/weapon/grab/G = W
-		if(G.state<2)
-			user << "\red You need a better grip to do that!"
-			return
-		G.affecting.loc = src.loc
-		G.affecting.Weaken(5)
-		visible_message("\red [G.assailant] puts [G.affecting] on the table.")
-		del(W)
+		if(ismob(G.grabbed_thing))
+			var/mob/M = G.grabbed_thing
+			if(user.grab_level < GRAB_AGGRESSIVE)
+				user << "<span class='warning'>You need a better grip to do that!</span>"
+				return
+			M.forceMove(loc)
+			M.Weaken(5)
+			user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
 		return
 
 	if (istype(W, /obj/item/weapon/wrench))
@@ -470,19 +470,20 @@ var/global/list/holodeck_programs = list(
 	throwpass = 1
 
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
+	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<=1)
 		var/obj/item/weapon/grab/G = W
-		if(G.state<2)
-			user << "\red You need a better grip to do that!"
-			return
-		G.affecting.loc = src.loc
-		G.affecting.Weaken(5)
-		visible_message("\red [G.assailant] dunks [G.affecting] into the [src]!", 3)
-		del(W)
+		if(ismob(G.grabbed_thing))
+			var/mob/M = G.grabbed_thing
+			if(user.grab_level < GRAB_AGGRESSIVE)
+				user << "<span class='warning'>You need a better grip to do that!</span>"
+				return
+			M.forceMove(loc)
+			M.Weaken(5)
+			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_item(src)
-		visible_message("\blue [user] dunks [W] into the [src]!", 3)
+		user.drop_inv_item_to_loc(W, src)
+		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>")
 		return
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)

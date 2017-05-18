@@ -75,10 +75,9 @@
 
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
-	user.drop_item()
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
+	if(user.drop_held_item())
+		if (O.loc != src.loc)
+			step(O, get_dir(O, src))
 
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, src.loc))
@@ -98,12 +97,9 @@
 	if (C == user)
 		user.visible_message("[user] climbs on the operating table.","You climb on the operating table.")
 	else
-		visible_message("\red [C] has been laid on the operating table by [user].", 3)
-	if (C.client)
-		C.client.perspective = EYE_PERSPECTIVE
-		C.client.eye = src
+		visible_message("\red [C] has been laid on the operating table by [user].")
 	C.resting = 1
-	C.loc = src.loc
+	C.forceMove(loc)
 	for(var/obj/O in src)
 		O.loc = src.loc
 	src.add_fingerprint(user)
@@ -119,7 +115,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat || !ishuman(usr) || usr.restrained() || !check_table(usr))
+	if(usr.stat || !ishuman(usr) || usr.is_mob_restrained() || !check_table(usr))
 		return
 
 	take_victim(usr,usr)
@@ -127,10 +123,8 @@
 /obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
 	if (istype(W, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
-		if(iscarbon(G.affecting) && check_table(G.affecting))
-			take_victim(G.affecting,usr)
-			del(W)
-			return
+		if(iscarbon(G.grabbed_thing) && check_table(G.grabbed_thing))
+			take_victim(G.grabbed_thing,user)
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(src.victim)

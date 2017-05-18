@@ -1,4 +1,5 @@
 /mob/living/carbon/Xenomorph/emote(var/act, var/m_type = 1, var/message = null)
+	if(stat) return
 	if(findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
 		act = copytext(act, 1, t1)
@@ -29,33 +30,42 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> roars!"
-				if(!big_xeno)
-					playsound(loc, 'sound/voice/alien_roar_small.ogg', 100, 1, 1)
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 100, 1, 1)
 				else
-					playsound(loc, 'sound/voice/alien_roar_large.ogg', 100, 1, 1)
+					if(mob_size != MOB_SIZE_BIG)
+						playsound(loc, 'sound/voice/alien_roar_small.ogg', 100, 1, 1)
+					else
+						playsound(loc, 'sound/voice/alien_roar_large.ogg', 100, 1, 1)
 		if("growl")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> growls."
-				if(!big_xeno)
-					playsound(loc, 'sound/voice/alien_growl_small.ogg', 30, 1, 1)
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_growl.ogg', 30, 1, 1)
 				else
-					playsound(loc, 'sound/voice/alien_growl_large.ogg', 30, 1, 1)
+					if(mob_size != MOB_SIZE_BIG)
+						playsound(loc, 'sound/voice/alien_growl_small.ogg', 30, 1, 1)
+					else
+						playsound(loc, 'sound/voice/alien_growl_large.ogg', 30, 1, 1)
 		if("hiss")
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> hisses."
-				if(!big_xeno)
-					playsound(loc, 'sound/voice/alien_hiss_small.ogg', 100, 1, 1)
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_hiss.ogg', 100, 1, 1)
 				else
-					playsound(loc, 'sound/voice/alien_hiss_large.ogg', 100, 1, 1)
+					if(mob_size != MOB_SIZE_BIG)
+						playsound(loc, 'sound/voice/alien_hiss_small.ogg', 100, 1, 1)
+					else
+						playsound(loc, 'sound/voice/alien_hiss_large.ogg', 100, 1, 1)
 		if("tail")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> lashes its tail."
 				playsound(src.loc, 'sound/voice/alien_tail.ogg', 100, 1, 1)
 		if("dance")
-			if(!src.restrained())
+			if(!src.is_mob_restrained())
 				message = "<B>The [src.name]</B> dances around!"
 				m_type = 1
 				spawn(0)

@@ -4,18 +4,18 @@
 			Escape Pod Status:
 		</div>
 		<div class="itemContent">
-			{{if data.docking_status == "docked"}}
-				{{if data.is_armed}}
-					<span class="average">ARMED</span>
-				{{else}}
-					<span class="good">SYSTEMS OK</span>
-				{{/if}}
-			{{else data.docking_status == "undocking"}}
-				<span class="average">EJECTING</span>
-			{{else data.docking_status == "undocked"}}
-				<span class="idle">POD EJECTED</span>
-			{{else data.docking_status == "docking"}}
-				<span class="average">DOCKING</span>
+			{{if data.docking_status == 4}}
+				<span class="idle">SYSTEMS OK</span>
+			{{else data.docking_status == 5}}
+				<span class="bad">SYSTEMS DOWN</span>				
+			{{else data.docking_status == 6}}
+				<span class="average">STANDING BY</span>
+			{{else data.docking_status == 7}}
+				<span class="idle">DELAYED</span>			
+			{{else data.docking_status == 8}}
+				<span class="average">LAUNCHING</span>	
+			{{else data.docking_status == 9}}
+				<span class="average">TRAVELING</span>		
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
@@ -28,43 +28,13 @@
 			Docking Hatch:
 		</div>
 		<div class="itemContent">
-			{{if data.docking_status == "docked"}}
-				{{if data.door_state == "open"}}
-					<span class="good">OPEN</span>
-				{{else data.door_state == "closed"}}
-					<span class="good">CLOSED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}
-			{{else data.docking_status == "docking"}}
-				{{if data.door_state == "open"}}
-					<span class="good">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
+			{{if data.door_state == "open"}}
+				<span class="good">OPEN</span>
+			{{else data.door_state == "closed"}}
+				{{if data.door_lock == "locked"}}
 					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
+				{{else}}
 					<span class="good">UNSECURED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}
-			{{else data.docking_status == "undocking"}}
-				{{if data.door_state == "open"}}
-					<span class="average">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="average">UNSECURED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}
-			{{else data.docking_status == "undocked"}}
-				{{if data.door_state == "open"}}
-					<span class="bad">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="bad">UNSECURED</span>
-				{{else}}
-					<span class="bad">ERROR</span>
 				{{/if}}
 			{{else}}
 				<span class="bad">ERROR</span>
@@ -75,21 +45,8 @@
 <div class="item" style="padding-top: 10px">
 	<div class="item">
 		<div class="itemContent" style="padding-top: 2px; width: 100%">
-		{{if data.docking_status == "docked"}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_door'}, data.override_enabled ? null : 'disabled', null)}}
-			{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
-		{{else}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_door'}, data.override_enabled ? null : 'disabled', data.override_enabled ? 'redButton' : null)}}
-			{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : 'yellowButton')}}
-		{{/if}}
-		</div>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-		{{:helper.link('ARM', 'alert', {'command' : 'manual_arm'}, data.is_armed ? 'disabled' : null, data.is_armed ? 'redButton' : 'yellowButton')}}
-		{{:helper.link('MANUAL EJECT', 'alert', {'command' : 'force_launch'}, data.can_force ? null : 'disabled', data.can_force ? 'yellowButton' : null)}}
+		{{:helper.link('MANUAL EJECT', 'alert', {'command' : 'force_launch'}, data.can_force ? null : 'disabled', data.can_force ? 'redButton' : null)}}
+		{{:helper.link('DELAY LAUNCH', 'alert', {'command' : 'delay_launch'}, data.can_delay ? null : 'disabled', data.can_delay ? 'yellowButton' : null)}}
 		</div>
 	</div>
 </div>

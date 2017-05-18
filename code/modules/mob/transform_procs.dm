@@ -4,7 +4,7 @@
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
-		drop_from_inventory(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -68,7 +68,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+		drop_inv_item_on_ground(W)
 	monkeyizing = 1
 	canmove = 0
 	icon = null
@@ -132,7 +132,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -164,9 +164,7 @@
 	O.loc = loc
 	O.job = "Cyborg"
 	if(O.mind.assigned_role == "Cyborg")
-		if(O.mind.role_alt_title == "Android")
-			O.mmi = new /obj/item/device/mmi/posibrain(O)
-		else if(O.mind.role_alt_title == "Robot")
+		if(O.mind.role_alt_title == "Robot")
 			O.mmi = null //Robots do not have removable brains.
 		else
 			O.mmi = new /obj/item/device/mmi(O)
@@ -187,7 +185,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -212,7 +210,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -233,46 +231,11 @@
 		del(src)
 	return
 
-/mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
-	if (monkeyizing)
-		return
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
-	regenerate_icons()
-	monkeyizing = 1
-	canmove = 0
-	icon = null
-	invisibility = 101
-	for(var/t in organs)
-		del(t)
-
-	var/mob/living/carbon/slime/new_slime
-	if(reproduce)
-		var/number = pick(14;2,3,4)	//reproduce (has a small chance of producing 3 or 4 offspring)
-		var/list/babies = list()
-		for(var/i=1,i<=number,i++)
-			var/mob/living/carbon/slime/M = new/mob/living/carbon/slime(loc)
-			M.nutrition = round(nutrition/number)
-			step_away(M,src)
-			babies += M
-		new_slime = pick(babies)
-	else
-		new_slime = new /mob/living/carbon/slime(loc)
-		if(adult)
-			new_slime.is_adult = 1
-		else
-	new_slime.key = key
-
-	new_slime << "<B>You are now a slime. Skreee!</B>"
-	spawn(0)//To prevent the proc from returning null.
-		del(src)
-	return
-
 /mob/living/carbon/human/proc/corgize()
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -302,7 +265,7 @@
 	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+		drop_inv_item_on_ground(W)
 
 	regenerate_icons()
 	monkeyizing = 1
@@ -391,6 +354,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

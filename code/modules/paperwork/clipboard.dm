@@ -20,13 +20,13 @@
 		if(!(istype(over_object, /obj/screen) ))
 			return ..()
 
-		if(!M.restrained() && !M.stat)
+		if(!M.is_mob_restrained() && !M.stat)
 			switch(over_object.name)
 				if("r_hand")
-					M.u_equip(src)
+					M.drop_inv_item_on_ground(src)
 					M.put_in_r_hand(src)
 				if("l_hand")
-					M.u_equip(src)
+					M.drop_inv_item_on_ground(src)
 					M.put_in_l_hand(src)
 
 			add_fingerprint(usr)
@@ -45,8 +45,8 @@
 /obj/item/weapon/clipboard/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo))
-		user.drop_item()
-		W.loc = src
+		user.drop_held_item()
+		W.forceMove(src)
 		if(istype(W, /obj/item/weapon/paper))
 			toppaper = W
 		user << "<span class='notice'>You clip the [W] onto \the [src].</span>"
@@ -84,7 +84,7 @@
 
 /obj/item/weapon/clipboard/Topic(href, href_list)
 	..()
-	if((usr.stat || usr.restrained()))
+	if((usr.stat || usr.is_mob_restrained()))
 		return
 
 	if(src.loc == usr)
@@ -99,10 +99,10 @@
 			if(!haspen)
 				var/obj/item/weapon/pen/W = usr.get_active_hand()
 				if(istype(W, /obj/item/weapon/pen))
-					usr.drop_item()
-					W.loc = src
-					haspen = W
-					usr << "<span class='notice'>You slot the pen into \the [src].</span>"
+					if(usr.drop_held_item())
+						W.forceMove(src)
+						haspen = W
+						usr << "<span class='notice'>You slot the pen into \the [src].</span>"
 
 		else if(href_list["write"])
 			var/obj/item/weapon/P = locate(href_list["write"])

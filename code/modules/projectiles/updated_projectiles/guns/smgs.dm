@@ -7,7 +7,7 @@
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg' //Could use a unique sound.
 	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 	origin_tech = "combat=4;materials=3"
-	fire_sound = list('sound/weapons/gun_m39.ogg')
+	fire_sound = 'sound/weapons/gun_m39.ogg'
 	type_of_casings = "bullet"
 	force = 8
 	w_class = 4
@@ -115,7 +115,7 @@
 	icon_state = "mp5"
 	item_state = "mp5"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = list('sound/weapons/smg_light.ogg')
+	fire_sound = 'sound/weapons/smg_light.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp5
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -154,7 +154,7 @@
 	icon_state = "mp7"
 	item_state = "mp7"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = list('sound/weapons/smg_light.ogg')
+	fire_sound = 'sound/weapons/smg_light.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -190,7 +190,7 @@
 	icon_state = "skorpion"
 	item_state = "skorpion"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = list('sound/weapons/gun_skorpion.ogg')
+	fire_sound = 'sound/weapons/gun_skorpion.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
@@ -222,7 +222,7 @@
 	icon_state = "ppsh17b"
 	item_state = "ppsh17b"
 	origin_tech = "combat=3;materials=2;syndicate=4"
-	fire_sound = list('sound/weapons/smg_heavy.ogg')
+	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ON_RUSSIANS
 
@@ -255,7 +255,7 @@
 	icon_state = "mac15"
 	item_state = "mac15"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = list('sound/weapons/uzi.ogg')
+	fire_sound = 'sound/weapons/uzi.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
@@ -285,7 +285,7 @@
 	icon_state = "FP9000"
 	item_state = "FP9000"
 	origin_tech = "combat=5;materials=4"
-	fire_sound = list('sound/weapons/gun_p90.ogg')
+	fire_sound = 'sound/weapons/gun_p90.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/p90
 
 	attachable_allowed = list(

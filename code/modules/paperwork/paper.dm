@@ -8,6 +8,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper"
+	item_state = "paper"
 	throwforce = 0
 	w_class = 1.0
 	throw_range = 1
@@ -130,7 +131,7 @@
 			else
 				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
 								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
-				if(do_after(user, 10) && do_after(H, 10, 5, 0))	//user needs to keep their active hand, H does not.
+				if(do_after(user, 10) && do_after(H, 10, FALSE))	//user needs to keep their active hand, H does not.
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
 										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null
@@ -286,7 +287,7 @@
 /obj/item/weapon/paper/proc/burnpaper(obj/item/weapon/flame/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.lit && !user.restrained())
+	if(P.lit && !user.is_mob_restrained())
 		if(istype(P, /obj/item/weapon/flame/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -299,7 +300,7 @@
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
 
 				if(user.get_inactive_hand() == src)
-					user.drop_from_inventory(src)
+					user.drop_inv_item_on_ground(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
 				del(src)
@@ -310,7 +311,7 @@
 
 /obj/item/weapon/paper/Topic(href, href_list)
 	..()
-	if(!usr || (usr.stat || usr.restrained()))
+	if(!usr || (usr.stat || usr.is_mob_restrained()))
 		return
 
 	if(href_list["write"])
@@ -373,29 +374,29 @@
 			B.name = name
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
-		user.drop_from_inventory(P)
+		user.drop_inv_item_on_ground(P)
 		if (istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/h_user = user
 			if (h_user.r_hand == src)
-				h_user.drop_from_inventory(src)
+				h_user.drop_inv_item_on_ground(src)
 				h_user.put_in_r_hand(B)
 			else if (h_user.l_hand == src)
-				h_user.drop_from_inventory(src)
+				h_user.drop_inv_item_on_ground(src)
 				h_user.put_in_l_hand(B)
 			else if (h_user.l_store == src)
-				h_user.drop_from_inventory(src)
+				h_user.drop_inv_item_on_ground(src)
 				B.loc = h_user
 				B.layer = 20
 				h_user.l_store = B
 				h_user.update_inv_pockets()
 			else if (h_user.r_store == src)
-				h_user.drop_from_inventory(src)
+				h_user.drop_inv_item_on_ground(src)
 				B.loc = h_user
 				B.layer = 20
 				h_user.r_store = B
 				h_user.update_inv_pockets()
 			else if (h_user.head == src)
-				h_user.u_equip(src)
+				h_user.drop_inv_item_on_ground(src)
 				h_user.put_in_hands(B)
 			else if (!istype(src.loc, /turf))
 				src.loc = get_turf(h_user)

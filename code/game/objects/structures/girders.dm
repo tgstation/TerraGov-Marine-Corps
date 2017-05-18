@@ -46,7 +46,7 @@
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue Now securing the girder"
-				if(get_turf(user, 40))
+				if(do_after(user, 40))
 					user << "\blue You secured the girder!"
 					new/obj/structure/girder( src.loc )
 					del(src)
@@ -181,7 +181,7 @@
 		else if(istype(W, /obj/item/pipe))
 			var/obj/item/pipe/P = W
 			if (P.pipe_type in list(0, 1, 5))	//simple pipes, simple bends, and simple manifolds.
-				user.drop_item()
+				user.drop_held_item()
 				P.loc = src.loc
 				user << "\blue You fit the pipe into the [src]!"
 		else

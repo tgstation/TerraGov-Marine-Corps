@@ -182,6 +182,14 @@
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
+	equipped(var/mob/user, var/slot)
+		if(slot == WEAR_JACKET && ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.drop_inv_item_on_ground(H.handcuffed)
+			H.drop_l_hand()
+			H.drop_r_hand()
+		..()
+
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
@@ -195,7 +203,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(!usr.canmove || usr.stat || usr.restrained())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	if(src.icon_state == "suitjacket_blue_open")

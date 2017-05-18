@@ -8,7 +8,7 @@
 	active_power_usage = 10
 	layer = 5
 
-	var/list/network = list("SULACO")
+	var/list/network = list("military")
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1.0

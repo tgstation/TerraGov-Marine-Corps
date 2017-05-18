@@ -13,29 +13,32 @@
  *		Cigarette Box
  */
 
-/obj/item/weapon/storage/fancy/
+/obj/item/weapon/storage/fancy
 	icon = 'icons/obj/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
 
-/obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
-	return
+	update_icon(itemremoved = 0)
+		var/total_contents = contents.len - itemremoved
+		icon_state = "[src.icon_type]box[total_contents]"
 
-/obj/item/weapon/storage/fancy/examine()
-	set src in oview(1)
+	remove_from_storage(obj/item/W, atom/new_location)
+		. = ..()
+		if(.)
+			update_icon(1)
 
-	..()
-	if(contents.len <= 0)
-		usr << "There are no [src.icon_type]s left in the box."
-	else if(contents.len == 1)
-		usr << "There is one [src.icon_type] left in the box."
-	else
-		usr << "There are [src.contents.len] [src.icon_type]s in the box."
 
-	return
+	examine()
+		set src in oview(1)
+		..()
+		if(contents.len <= 0)
+			usr << "There are no [src.icon_type]s left in the box."
+		else if(contents.len == 1)
+			usr << "There is one [src.icon_type] left in the box."
+		else
+			usr << "There are [src.contents.len] [src.icon_type]s in the box."
+
 
 /*
  * Egg Box

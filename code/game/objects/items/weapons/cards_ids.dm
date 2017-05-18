@@ -111,7 +111,7 @@
 
 	if(uses<1)
 		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
-		user.drop_item()
+		user.drop_held_item()
 		var/obj/item/weapon/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
 		del(src)
@@ -121,7 +121,7 @@
 
 /obj/item/weapon/card/id
 	name = "identification card"
-	desc = "A card used to provide ID and determine access across the station."
+	desc = "A card used to provide ID and determine access to a large array of machinery."
 	icon_state = "id"
 	item_state = "card-id"
 	var/access = list()
@@ -299,11 +299,13 @@
 	get_squad_from_card(M)	//This normally returns a squad # but also sets unsquadded people, so we can use it.
 	M.update_inv_head(0) //Don't do a full update yet
 	M.update_inv_wear_suit()
+	M.hud_updateflag |= 1 << SQUAD_HUD
 	..(M, slot)
 
-/obj/item/weapon/card/id/dropped(mob/user as mob)
-	if(!istype(user,/mob/living/carbon/human)) return ..(user)
-
-	user.update_inv_head(0) //Don't do a full update yet
-	user.update_inv_wear_suit()
+/obj/item/weapon/card/id/dropped(mob/user)
+	if(!istype(user,/mob/living/carbon/human)) return ..()
+	var/mob/living/carbon/human/H = user
+	H.update_inv_head() //Don't do a full update yet
+	H.update_inv_wear_suit()
+	H.hud_updateflag |= 1 << SQUAD_HUD
 	..(user)

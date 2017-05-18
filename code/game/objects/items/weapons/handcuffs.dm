@@ -48,7 +48,6 @@
 		O.s_loc = user.loc
 		O.t_loc = H.loc
 		O.place = "handcuff"
-		H.requests += O
 		spawn( 0 )
 			feedback_add_details("handcuffs","H")
 			O.process()
@@ -63,39 +62,10 @@
 		O.s_loc = user.loc
 		O.t_loc = M.loc
 		O.place = "handcuff"
-		M.requests += O
 		spawn( 0 )
 			O.process()
 		return
 
-var/last_chew = 0
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
-	if (A != src) return ..()
-	var/mob/living/carbon/human/H = A
-
-	if (last_chew + 75 > world.time)
-		H << "\red You can't bite your hand again yet..."
-		return
-
-
-	if (!H.handcuffed) return
-	if (H.a_intent != "hurt") return
-	if (H.zone_sel.selecting != "mouth") return
-	if (H.wear_mask) return
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
-
-	var/datum/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
-	if (!O) return
-
-	var/s = "\red [H.name] chews on \his [O.display_name]!"
-	H.visible_message(s, "\red You chew on your [O.display_name]!")
-	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
-	log_attack("[s] ([H.ckey])")
-
-	if(O.take_damage(1,0,1,1,"teeth marks"))
-		H:UpdateDamageIcon()
-
-	last_chew = world.time
 
 /obj/item/weapon/handcuffs/cable
 	name = "cable restraints"
@@ -161,4 +131,4 @@ var/last_chew = 0
 			if(!C)	return
 			if(p_loc == user.loc && p_loc_m == C.loc)
 				C.handcuffed = new /obj/item/weapon/handcuffs(C)
-				C.update_inv_handcuffed()
+				C.handcuff_update()

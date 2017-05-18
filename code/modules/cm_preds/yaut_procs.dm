@@ -32,7 +32,7 @@
 	set name = "Butcher"
 	set desc = "Butcher a corpse you're standing on for its tasty meats."
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You're not able to do that right now."
 		return
 
@@ -62,7 +62,7 @@
 		src << "This tiny worm is not even worth using your tools on."
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "Not right now."
 		return
 
@@ -78,7 +78,7 @@
 
 
 	if(T.butchery_progress == 1)
-		if(do_after(src,70) && Adjacent(T))
+		if(do_after(src,70, FALSE) && Adjacent(T))
 			visible_message("[src] makes careful slices and tears out the viscera in \the [T]'s abdominal cavity.","You carefully vivisect \the [T], ripping out the guts and useless organs. What a stench!")
 			T.butchery_progress = 2
 			playsound(loc, 'sound/weapons/slash.ogg', 50)
@@ -86,7 +86,7 @@
 			src << "You pause your butchering for later."
 
 	if(T.butchery_progress == 2)
-		if(do_after(src,65) && Adjacent(T))
+		if(do_after(src,65, FALSE) && Adjacent(T))
 			visible_message("[src] hacks away at \the [T]'s limbs and slices off strips of dripping meat.","You slice off a few of \the [T]'s limbs, making sure to get the finest cuts.")
 			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
 				new /obj/item/weapon/reagent_containers/food/snacks/xenomeat(T.loc)
@@ -99,7 +99,7 @@
 			src << "You pause your butchering for later."
 
 	if(T.butchery_progress == 3)
-		if(do_after(src,70) && Adjacent(T))
+		if(do_after(src,70, FALSE) && Adjacent(T))
 			visible_message("[src] tears apart \the [T]'s ribcage and begins chopping off bit and pieces.","You rip open \the [T]'s ribcage and start tearing the tastiest bits out.")
 			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
 				new /obj/item/weapon/reagent_containers/food/snacks/xenomeat(T.loc)
@@ -112,7 +112,7 @@
 			src << "You pause your butchering for later."
 
 	if(T.butchery_progress == 4)
-		if(do_after(src,90) && Adjacent(T))
+		if(do_after(src,90, FALSE) && Adjacent(T))
 			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
 				visible_message("<b>[src] flenses the last of [T]'s exoskeleton, revealing only bones!</b>.","<b>You flense the last of [T]'s exoskeleton clean off!</b>")
 				new /obj/effect/decal/remains/xeno(T.loc)
@@ -145,7 +145,7 @@
 	set name = "Claim Equipment"
 	set desc = "When you're on the Predator ship, claim some gear. You can only do this ONCE."
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "You're not able to do that right now."
 		return
 

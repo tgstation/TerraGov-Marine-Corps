@@ -8,13 +8,14 @@
 	universal_speak = 0
 	universal_understand = 1
 	gender = NEUTER
-	flags_pass = PASSTABLE
+	flags_pass = PASSTABLE | PASSMOB
 	braintype = "Robot"
 	lawupdate = 0
 	density = 1
 	req_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_RESEARCH)
 	integrated_light_power = 2
 	local_transmit = 1
+	layer = 3.9
 
 	// We need to keep track of a few module items so we don't need to do list operations
 	// every time we need them. These get set in New() after the module is chosen.
@@ -235,9 +236,6 @@
 	for(var/mob/dead/observer/O in player_list)
 		if(jobban_isbanned(O, "Cyborg"))
 			continue
-		if(O.client)
-			if(O.client.prefs.be_special & BE_PAI)
-				question(O.client)
 
 /mob/living/silicon/robot/drone/proc/question(var/client/C)
 	spawn(0)
@@ -245,10 +243,8 @@
 		var/response = alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", "Yes", "No", "Never for this round.")
 		if(!C || ckey)
 			return
-		if(response == "Yes")
+		else if(response == "Yes")
 			transfer_personality(C)
-		else if (response == "Never for this round")
-			C.prefs.be_special ^= BE_PAI
 
 /mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
 
@@ -265,8 +261,8 @@
 	src << "<br><b>You are a maintenance drone, a tiny-brained robotic repair machine</b>."
 	src << "You have no individual will, no personality, and no drives or urges other than your laws."
 	src << "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows."
-	src << "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>"
-	src << "<b>Don't invade their worksites, don't steal their resources, don't tell them about the changeling in the toilets.</b>"
+	src << "Remember, <b>you are lawed against interference with the crew</b>."
+	src << "<b>Don't invade their worksites and don't steal their resources.</b>"
 	src << "<b>If a crewmember has noticed you, <i>you are probably breaking your third law</i></b>."
 
 /mob/living/silicon/robot/drone/Bump(atom/movable/AM as mob|obj, yes)

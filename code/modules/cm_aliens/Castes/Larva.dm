@@ -16,7 +16,7 @@
 	evolves_to = list("Drone", "Runner", "Sentinel") //Add sentinel etc here
 	see_in_dark = 8
 	caste_desc = "D'awwwww, so cute!"
-	flags_pass = PASSTABLE
+	flags_pass = PASSTABLE | PASSMOB
 	speed = -1.2 //Zoom!
 	away_timer = 300
 	tier = 0  //Larva's don't count towards Pop limits
@@ -28,13 +28,18 @@
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
+/mob/living/carbon/Xenomorph/Larva/predalien
+	icon_state = "Predalien Larva"
+	caste = "Predalien Larva"
+	evolves_to = list("Predalien")
+
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
 	a_intent = "help" //Forces help intent for all interactions.
 	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
-	..()
-	if(istype(src,/mob/living/carbon/Xenomorph/Larva))
+	. = ..()
+	if(.)
 		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 //Larva Progression.. Most of this stuff is obsolete.
@@ -65,6 +70,8 @@
 
 	name = "\improper [progress]Larva ([nicknumber])"
 
+	if(istype(src,/mob/living/carbon/Xenomorph/Larva/predalien)) state = "Predalien " //Sort of a hack.
+
 	//Update linked data so they show up properly
 	real_name = name
 	if(mind)
@@ -85,7 +92,7 @@
 	set name = "Hide"
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
 	set category = "Alien"
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
 		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return
 	if(layer != TURF_LAYER + 0.2)
@@ -106,3 +113,11 @@
 			loc = AM.loc
 			now_pushing = 0
 			return
+
+/mob/living/carbon/Xenomorph/Larva
+
+	start_pulling(var/atom/movable/AM)
+		return
+
+	pull_response(mob/puller)
+		return

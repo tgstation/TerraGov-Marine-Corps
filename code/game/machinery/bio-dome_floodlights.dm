@@ -135,8 +135,11 @@
 			if(isXenoLarva(user))
 				user.visible_message("[user.name] starts biting the [src.name]!","In a rage, you start biting the bright light, but with no effect!")
 				return //Larvae can't do shit
+			if(user.get_active_hand())
+				user << "<span class='xenowarning'>You need your claws empty for this!</span>"
+				r_FAL
 			user.visible_message("[user.name] starts to slash away at [src.name]!","In a rage, you start to slash and claw at the bright light! <b>You only need to claw once and then stand still!</b>")
-			if(do_after(user,50) && !damaged) //Not when it's already damaged.
+			if(do_after(user, 50, 1) && !damaged) //Not when it's already damaged.
 				if(!src) return 0
 				damaged = 1
 				SetLuminosity(0)

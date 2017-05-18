@@ -36,8 +36,7 @@
 		if(beaker)
 			user << "\red The biogenerator is already loaded."
 		else
-			user.before_take_item(O)
-			O.loc = src
+			user.drop_inv_item_to_loc(O, src)
 			beaker = O
 			updateUsrDialog()
 	else if(processing)
@@ -68,11 +67,10 @@
 		if(i >= 10)
 			user << "\red The biogenerator is full! Activate it."
 		else
-			user.before_take_item(O)
-			O.loc = src
-			user << "\blue You put [O.name] in [src.name]"
+			if(user.drop_inv_item_to_loc(O, src))
+				user << "\blue You put [O.name] in [src.name]"
 	update_icon()
-	return
+
 
 /obj/machinery/biogenerator/interact(mob/user as mob)
 	if(stat & BROKEN)
@@ -206,7 +204,7 @@
 
 /obj/machinery/biogenerator/Topic(href, href_list)
 	if(stat & BROKEN) return
-	if(usr.stat || usr.restrained()) return
+	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 
 	usr.set_machine(src)

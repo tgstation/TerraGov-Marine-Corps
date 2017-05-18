@@ -19,8 +19,7 @@
 			return
 
 		sample = O
-		user.drop_item()
-		O.loc = src
+		user.drop_inv_item_to_loc(O, src)
 
 		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
 		nanomanager.update_uis(src)

@@ -1,11 +1,11 @@
 /atom/movable
 	layer = 3
-	var/last_move = null
+	var/last_move_dir = null
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
+	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
 	var/l_move_time = 1
-	var/m_flag = 1
 	var/throwing = 0
 	var/thrower = null
 	var/turf/throw_source = null
@@ -13,7 +13,8 @@
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby = null
-
+	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
+								// and if yes, are we doing the first or second move.
 
 //===========================================================================
 /atom/movable/Dispose()
@@ -26,20 +27,58 @@
 	return
 //===========================================================================
 
-/atom/movable/Move()
-	var/atom/A = loc
+
+/atom/movable/Move(NewLoc, direct)
+	var/atom/oldloc = loc
 	var/old_dir = dir
-	. = ..()
+
+	if(loc != NewLoc)
+		if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
+			moving_diagonally = FIRST_DIAG_STEP
+			if (direct & 1)
+				if (direct & 4)
+					if (step(src, NORTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if (step(src, EAST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+				else if (direct & 8)
+					if (step(src, NORTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if (step(src, WEST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+			else if (direct & 2)
+				if (direct & 4)
+					if (step(src, SOUTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if (step(src, EAST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+				else if (direct & 8)
+					if (step(src, SOUTH))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if (step(src, WEST))
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+			moving_diagonally = 0
+		else
+			. = ..()
 	if(flags_atom & DIRLOCK) dir = old_dir
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
-	m_flag = 1
-	if ((A != loc && A && A.z == z))
-		last_move = get_dir(A, loc)
-	Moved(A,dir)
-	return
+	if ((oldloc != loc && oldloc && oldloc.z == z))
+		last_move_dir = get_dir(oldloc, loc)
+	if(.)
+		Moved(oldloc,direct)
 
-/atom/movable/Bump(var/atom/A as mob|obj|turf|area, yes)
+
+
+/atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
 	if(src.throwing)
 		src.throw_impact(A)
 
@@ -62,25 +101,35 @@
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
+		if(pulledby)
+			pulledby.stop_pulling()
 		var/oldLoc
 		if(loc)
 			oldLoc = loc
 			loc.Exited(src)
 		loc = destination
 		loc.Entered(src)
+		var/area/old_area
+		if(oldLoc)
+			old_area = get_area(oldLoc)
+		var/area/new_area = get_area(destination)
+		if(old_area != new_area)
+			new_area.Entered(src)
+		for(var/atom/movable/AM in destination)
+			if(AM == src)
+				continue
+			AM.Crossed(src)
 		if(oldLoc)
 			Moved(oldLoc,dir)
 		return 1
 	return 0
 
+
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
 	if(istype(hit_atom,/mob/living))
 		var/mob/living/M = hit_atom
-		if(istype(src,/mob/living/carbon/Xenomorph) && istype(hit_atom,/mob/living/carbon/Xenomorph) )
-			//Do nothing.. This should stop xeno pounce/charge from bouncing them around
-		else
-			M.hitby(src,speed)
+		M.hitby(src,speed)
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
@@ -107,7 +156,7 @@
 				if(A:lying) continue
 				src.throw_impact(A,speed)
 			if(isobj(A))
-				if(A.density && (!A.throwpass) || istype(src,/mob/living/carbon))	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
+				if(A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || istype(src,/mob/living/carbon)))
 					src.throw_impact(A,speed)
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)

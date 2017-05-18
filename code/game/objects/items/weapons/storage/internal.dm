@@ -45,13 +45,13 @@
 		if (!(master_item.loc == user) || (master_item.loc && master_item.loc.loc == user))
 			return 0
 
-		if (!( user.restrained() ) && !( user.stat ))
+		if (!( user.is_mob_restrained() ) && !( user.stat ))
 			switch(over_object.name)
 				if("r_hand")
-					user.u_equip(master_item)
+					user.drop_inv_item_on_ground(master_item)
 					user.put_in_r_hand(master_item)
 				if("l_hand")
-					user.u_equip(master_item)
+					user.drop_inv_item_on_ground(master_item)
 					user.put_in_l_hand(master_item)
 			master_item.add_fingerprint(user)
 			return 0
@@ -85,3 +85,22 @@
 
 /obj/item/weapon/storage/internal/Adjacent(var/atom/neighbor)
 	return master_item.Adjacent(neighbor)
+
+
+/obj/item/weapon/storage/internal/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+	. = ..()
+	master_item.on_pocket_insertion()
+
+
+/obj/item/weapon/storage/internal/remove_from_storage(obj/item/W as obj, atom/new_location)
+	. = ..()
+	master_item.on_pocket_removal()
+
+
+//things to do when an item is inserted in the obj's internal pocket
+/obj/item/proc/on_pocket_insertion()
+	return
+
+//things to do when an item is removed in the obj's internal pocket
+/obj/item/proc/on_pocket_removal()
+	return

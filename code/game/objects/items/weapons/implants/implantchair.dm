@@ -74,18 +74,13 @@
 			return
 
 
-	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-		if(istype(G, /obj/item/weapon/grab))
-			if(!ismob(G:affecting))
-				return
-			for(var/mob/living/carbon/slime/M in range(1,G:affecting))
-				if(M.Victim == G:affecting)
-					usr << "[G:affecting:name] will not fit into the [src.name] because they have a slime latched onto their head."
-					return
-			var/mob/M = G:affecting
-			if(put_mob(M))
-				del(G)
-		src.updateUsrDialog()
+	attackby(var/obj/item/I, var/mob/user as mob)
+		if(istype(I, /obj/item/weapon/grab))
+			var/obj/item/weapon/grab/G = I
+			if(ismob(G.grabbed_thing))
+				put_mob(G.grabbed_thing)
+			return
+		updateUsrDialog()
 		return
 
 
@@ -106,18 +101,14 @@
 		return
 
 
-	put_mob(mob/living/carbon/M as mob)
+	put_mob(mob/living/carbon/M)
 		if(!iscarbon(M))
 			usr << "\red <B>The [src.name] cannot hold this!</B>"
 			return
 		if(src.occupant)
 			usr << "\red <B>The [src.name] is already occupied!</B>"
 			return
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
-		M.stop_pulling()
-		M.loc = src
+		M.forceMove(src)
 		src.occupant = M
 		src.add_fingerprint(usr)
 		icon_state = "implantchair_on"

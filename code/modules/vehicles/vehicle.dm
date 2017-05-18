@@ -6,11 +6,12 @@
 	anchored = 1
 	animate_movement=1
 	luminosity = 3
+	can_buckle = TRUE
 
 	var/attack_log = null
 	var/on = 0
-	var/health = 0	//do not forget to set health for your vehicle!
-	var/maxhealth = 0
+	var/health = 100
+	var/maxhealth = 100
 	var/fire_dam_coeff = 1.0
 	var/brute_dam_coeff = 1.0
 	var/open = 0	//Maint panel
@@ -19,16 +20,10 @@
 	var/emagged = 0
 	var/powered = 0		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
-	var/movable = 1
+	var/buckling_y = 0
 
 	var/obj/item/weapon/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
-
-	var/atom/movable/load		//all vehicles can take a load, since they should all be a least drivable
-	var/load_item_visible = 1	//set if the loaded item should be overlayed on the vehicle sprite
-	var/load_offset_x = 0		//pixel_x offset for item overlay
-	var/load_offset_y = 0		//pixel_y offset for item overlay
-	var/mob_offset_y = 0		//pixel_y offset for mob overlay
 
 //-------------------------------------------
 // Standard procs
@@ -37,33 +32,17 @@
 	..()
 	//spawn the cell you want in each vehicle
 
-/obj/vehicle/Move()
+/obj/vehicle/relaymove(mob/user, direction)
 	if(world.time > l_move_time + move_delay)
-		if(on && powered && cell.charge < charge_use)
+		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
+		else if(!on && powered)
+			user << "<span class='warning'>Turn on the engine first.</span>"
+		else
+			. = step(src, direction)
 
-		var/init_anc = anchored
-		anchored = 0
-		if(!..())
-			anchored = init_anc
-			return 0
+/obj/vehicle/attackby(obj/item/weapon/W, mob/user)
 
-		anchored = init_anc
-
-		if(on && powered)
-			cell.use(charge_use)
-
-		if(load)
-			load.forceMove(loc)// = loc
-			load.dir = dir
-
-		return 1
-	else
-		return 0
-
-/obj/vehicle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/hand_labeler))
-		return
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(!locked)
 			open = !open
@@ -75,27 +54,26 @@
 	else if(istype(W, /obj/item/weapon/cell) && !cell && open)
 		insert_cell(W, user)
 	else if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/T = W
-		if(T.welding)
+		var/obj/item/weapon/weldingtool/WT = W
+		if(WT.remove_fuel(1, user))
 			if(health < maxhealth)
-				if(open)
+				user.visible_message("<span class='notice'>[user] starts to repair [src].</span>","<span class='notice'>You start to repair [src]</span>")
+				if(do_after(user, 20))
+					if(!src || !WT.isOn())
+						return
 					health = min(maxhealth, health+10)
-					user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
-				else
-					user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+					user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
 			else
-				user << "<span class='notice'>[src] does not need a repair.</span>"
-		else
-			user << "<span class='notice'>Unable to repair while [src] is off.</span>"
-	else if(istype(W, /obj/item/weapon/card/emag) && !emagged)
-		Emag(user)
-	else if(hasvar(W,"force") && hasvar(W,"damtype"))
+				user << "<span class='notice'>[src] does not need repairs.</span>"
+
+	else if(W.force)
 		switch(W.damtype)
 			if("fire")
 				health -= W.force * fire_dam_coeff
 			if("brute")
 				health -= W.force * brute_dam_coeff
-		..()
+		playsound(src.loc, "smash.ogg", 25, 1, -1)
+		user.visible_message("<span class='danger'>[user] hits [src] with [W].</span>","<span class='danger'>You hit [src] with [W].</span>")
 		healthcheck()
 	else
 		..()
@@ -155,9 +133,6 @@
 /obj/vehicle/attack_ai(mob/user as mob)
 	return
 
-/obj/vehicle/proc/handle_rotation()
-	return
-
 //-------------------------------------------
 // Vehicle procs
 //-------------------------------------------
@@ -196,12 +171,9 @@
 		cell.update_icon()
 		cell = null
 
-	//stuns people who are thrown off a train that has been blown up
-	if(istype(load, /mob/living))
-		var/mob/living/M = load
-		M.apply_effects(5, 5)
-
-	unload()
+	if(buckled_mob)
+		buckled_mob.apply_effects(5, 5)
+		unbuckle()
 
 	new /obj/effect/gibspawner/robot(Tsec)
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -234,8 +206,7 @@
 	if(!istype(C))
 		return
 
-	H.drop_from_inventory(C)
-	C.forceMove(src)
+	H.drop_inv_item_to_loc(C, src)
 	cell = C
 	powercheck()
 	usr << "<span class='notice'>You install [C] in [src].</span>"
@@ -253,99 +224,15 @@
 /obj/vehicle/proc/RunOver(var/mob/living/carbon/human/H)
 	return		//write specifics for different vehicles
 
-//-------------------------------------------
-// Loading/unloading procs
-//
-// Set specific item restriction checks in
-// the vehicle load() definition before
-// calling this parent proc.
-//-------------------------------------------
-/obj/vehicle/proc/load(var/atom/movable/C)
-	//define allowed items for loading in specific vehicle definitions
 
-	if(!isturf(C.loc)) //To prevent loading things from someone's inventory, which wouldn't get handled properly.
-		return 0
-	if(load || C.anchored)
-		return 0
-
-	// if a create/closet, close before loading
-	var/obj/structure/closet/crate = C
-	if(istype(crate))
-		crate.close()
-
-	C.forceMove(loc)
-	C.dir = dir
-	C.anchored = 1
-
-	load = C
-
-	if(load_item_visible)
-		C.pixel_x += load_offset_x
-		if(ismob(C))
-			C.pixel_y += mob_offset_y
-		else
-			C.pixel_y += load_offset_y
-		C.layer = layer + 0.1		//so it sits above the vehicle
-
-	if(ismob(C))
-		var/mob/M = C
-		M.buckled = src
-		M.update_canmove()
-
-	return 1
-
-
-/obj/vehicle/proc/unload(var/mob/user, var/direction)
-	if(!load)
-		return
-
-	var/turf/dest = null
-
-	//find a turf to unload to
-	if(direction)	//if direction specified, unload in that direction
-		dest = get_step(src, direction)
-	else if(user)	//if a user has unloaded the vehicle, unload at their feet
-		dest = get_turf(user)
-
-	if(!dest)
-		dest = get_step_to(src, get_step(src, turn(dir, 90))) //try unloading to the side of the vehicle first if neither of the above are present
-
-	//if these all result in the same turf as the vehicle or nullspace, pick a new turf with open space
-	if(!dest || dest == get_turf(src))
-		var/list/options = new()
-		for(var/test_dir in alldirs)
-			var/new_dir = get_step_to(src, get_step(src, test_dir))
-			if(new_dir && load.Adjacent(new_dir))
-				options += new_dir
-		if(options.len)
-			dest = pick(options)
-		else
-			dest = get_turf(src)	//otherwise just dump it on the same turf as the vehicle
-
-	if(!isturf(dest))	//if there still is nowhere to unload, cancel out since the vehicle is probably in nullspace
-		return 0
-
-	load.forceMove(dest)
-	load.dir = get_dir(loc, dest)
-	load.anchored = initial(load.anchored)
-	load.pixel_x = initial(load.pixel_x)
-	load.pixel_y = initial(load.pixel_y)
-	load.layer = initial(load.layer)
-
-	if(ismob(load))
-		var/mob/M = load
-		M.buckled = null
-		M.anchored = initial(M.anchored)
-		if(prob(50))
-			M.weakened = 5
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message("\red <B>[M] trips and stumbles out of the [src]!</B>", 1)
-		M.update_canmove()
-
-	load = null
-
-	return 1
+/obj/vehicle/afterbuckle(mob/M)
+	. = ..()
+	if(. && buckled_mob == M)
+		M.pixel_y = buckling_y
+		M.old_y = buckling_y
+	else
+		M.pixel_y = initial(buckled_mob.pixel_y)
+		M.old_y = initial(buckled_mob.pixel_y)
 
 
 //-------------------------------------------------------

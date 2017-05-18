@@ -116,8 +116,7 @@
 	if(istype(W, /obj/item/weapon/fuel_assembly) && !cur_assembly)
 		if(emergency_insert_ready)
 			cur_assembly = W
-			user.drop_item()
-			W.loc = src
+			user.drop_inv_item_to_loc(W, src)
 			emergency_insert_ready = 0
 			return
 
@@ -292,7 +291,7 @@
 	set name = "Rotate Generator (Clockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained()  || anchored)
+	if (usr.stat || usr.is_mob_restrained()  || anchored)
 		return
 
 	src.dir = turn(src.dir, 90)
@@ -302,7 +301,7 @@
 	set name = "Rotate Generator (Counterclockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained()  || anchored)
+	if (usr.stat || usr.is_mob_restrained()  || anchored)
 		return
 
 	src.dir = turn(src.dir, -90)

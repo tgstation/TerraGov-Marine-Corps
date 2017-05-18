@@ -10,6 +10,7 @@
 		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. vox wearing jumpsuits).
 	*/
 	var/list/sprite_sheets_refit = null
+	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -58,7 +59,7 @@
 	//Set species_restricted list
 	switch(target_species)
 		if("Human", "Skrell")	//humanoid bodytypes
-			species_restricted = list("exclude","Unathi","Tajara","Diona","Vox")
+			species_restricted = list("exclude","Unathi","Tajara","Vox")
 		else
 			species_restricted = list(target_species)
 
@@ -77,9 +78,9 @@
 	//Set species_restricted list
 	switch(target_species)
 		if("Skrell")
-			species_restricted = list("exclude","Unathi","Tajara","Diona","Vox")
+			species_restricted = list("exclude","Unathi","Tajara","Vox")
 		if("Human")
-			species_restricted = list("exclude","Skrell","Unathi","Tajara","Diona","Vox")
+			species_restricted = list("exclude","Skrell","Unathi","Tajara","Vox")
 		else
 			species_restricted = list(target_species)
 
@@ -101,40 +102,35 @@
 	w_class = 1.0
 	throwforce = 2
 	flags_equip_slot = SLOT_EAR
+	var/obj/item/clothing/ears/linked_ear //used by ear pieces that cover both ears.
 
-/obj/item/clothing/ears/attack_hand(mob/user as mob)
-	if (!user) return
+	equipped(var/mob/M, var/slot)
+		if((slot == WEAR_R_EAR || slot == WEAR_L_EAR) && (flags_equip_slot & SLOT_EARS) && ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/obj/item/clothing/ears/offear/O = new(null, src)
+			if(slot == WEAR_R_EAR)
+				H.equip_to_slot(O, WEAR_L_EAR)
+			else
+				H.equip_to_slot(O, WEAR_R_EAR)
 
-	if (src.loc != user || !istype(user,/mob/living/carbon/human))
 		..()
-		return
 
-	var/mob/living/carbon/human/H = user
-	if(H.l_ear != src && H.r_ear != src)
+	Dispose()
+		. = ..()
+		if(linked_ear)
+			cdel(linked_ear)
+
+	dropped(mob/user)
+		if(linked_ear && ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(linked_ear == H.l_ear || linked_ear == H.r_ear)//is the associated earpiece still in the other ear slot?
+				var/obj/item/clothing/ears/E = linked_ear
+				linked_ear = null
+				E.linked_ear = null
+				H.temp_drop_inv_item(E)
+				if(!istype(E, /obj/item/clothing/ears/offear)) //the linked ear was the real one
+					E.forceMove(H.loc)
 		..()
-		return
-
-	if(!canremove)
-		return
-
-	var/obj/item/clothing/ears/O
-	if(flags_equip_slot & SLOT_EARS )
-		O = (H.l_ear == src ? H.r_ear : H.l_ear)
-		user.u_equip(O)
-		if(!istype(src,/obj/item/clothing/ears/offear))
-			del(O)
-			O = src
-	else
-		O = src
-
-	user.u_equip(src)
-
-	if (O)
-		user.put_in_hands(O)
-		O.add_fingerprint(user)
-
-	if(istype(src,/obj/item/clothing/ears/offear))
-		del(src)
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -146,14 +142,24 @@
 	w_class = 5.0
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
-	flags_equip_slot = SLOT_EAR|SLOT_EARS
+	flags_equip_slot = SLOT_EAR
+	flags_atom = DELONDROP
 
-	New(var/obj/O)
-		name = O.name
-		desc = O.desc
-		icon = O.icon
-		icon_state = O.icon_state
-		dir = O.dir
+	New(loc, obj/item/clothing/ears/E)
+		if(istype(E))
+			name = E.name
+			desc = E.desc
+			icon = E.icon
+			icon_state = E.icon_state
+			dir = E.dir
+			E.linked_ear = src
+			linked_ear = E
+		..()
+
+	attack_hand(mob/user) //clicking the offear makes you click the real ear.
+		if(linked_ear)
+			linked_ear.attack_hand(user)
+
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -190,6 +196,3 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
-
-
-

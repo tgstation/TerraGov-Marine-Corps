@@ -1,5 +1,7 @@
 /var/datum/announcement/priority/priority_announcement = new(do_log = 0)
 /var/datum/announcement/priority/command/command_announcement = new(do_log = 0, do_newscast = 1)
+/var/datum/announcement/priority/command/warning/ai_system = new()
+
 
 /datum/announcement
 	var/title = "Attention"
@@ -24,6 +26,15 @@
 	..(do_log, new_sound, do_newscast)
 	title = "Command Announcement"
 	announcement_type = "Command Announcement"
+
+/datum/announcement/priority/command/warning/New() //This is so stupid.
+	..(0, sound('sound/misc/notice2.ogg'), 0)
+	title = MAIN_AI_SYSTEM
+	announcement_type = "Automated Announcement"
+
+/datum/announcement/priority/command/warning/Announce(message, new_sound)
+	var/mob/living/silicon/decoy/ship_ai/AI = locate()
+	if(AI) . = AI.say(message, new_sound)
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)

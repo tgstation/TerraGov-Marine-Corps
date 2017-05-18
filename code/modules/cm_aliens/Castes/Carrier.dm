@@ -4,7 +4,7 @@
 	caste = "Carrier"
 	name = "Carrier"
 	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
-	icon = 'icons/xeno/2x2_Xenos.dmi' //They are now like, 2x2
+	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x2
 	icon_state = "Carrier Walking"
 	melee_damage_lower = 20
 	melee_damage_upper = 30
@@ -20,6 +20,7 @@
 	plasma_gain = 8
 	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."
+	drag_delay = 6 //pulling a big dead xeno is hard
 	var/huggers_max = 6
 	var/huggers_cur = 0
 	var/throwspeed = 1
@@ -39,24 +40,27 @@
 		///mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
+	death(gibbed)
+		if(..() && !gibbed && huggers_cur)
+			var/obj/item/clothing/mask/facehugger/F
+			var/i = 3
+			var/chance = 75
+			visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
+			while(i && huggers_cur)
+				if(prob(chance))
+					huggers_cur--
+					F = new(loc)
+					step_away(F,src,1)
+				i--
+				chance -= 30
+
 /mob/living/carbon/Xenomorph/Carrier/can_ventcrawl()
 	return
 
 /mob/living/carbon/Xenomorph/Carrier/Stat()
-	..()
-	stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
-
-
-/mob/living/carbon/Xenomorph/Carrier/ClickOn(var/atom/A, params)
-//FUCK SHIFT CLICK! FUCK YOUUUUUUUU. SHIFT CLICK IS EXAMINE!
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		throw_hugger(A) //Just try to chuck it, throw_hugger has all the required checks anyway
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		throw_hugger(A) //Just try to chuck it, throw_hugger has all the required checks anyway
-		return
-	..()
+	. = ..()
+	if(.)
+		stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
 
 /mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger(var/mob/living/carbon/T)
 	set name = "Throw Facehugger"
@@ -91,7 +95,7 @@
 			var/obj/item/clothing/mask/facehugger/newthrow = new()
 			huggers_cur--
 			newthrow.loc = loc
-			newthrow.throw_at(T, 5, throwspeed)
+			newthrow.throw_at(T, 4, throwspeed)
 			visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 			"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
 			spawn(hugger_delay)

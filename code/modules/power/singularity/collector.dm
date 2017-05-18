@@ -63,10 +63,9 @@ var/global/list/rad_collectors = list()
 		if(src.P)
 			user << "\red There's already a phoron tank loaded."
 			return 1
-		user.drop_item()
-		src.P = W
-		W.loc = src
-		update_icons()
+		if(user.drop_inv_item_to_loc(W, src))
+			P = W
+			update_icons()
 		return 1
 	else if(istype(W, /obj/item/weapon/crowbar))
 		if(P && !src.locked)

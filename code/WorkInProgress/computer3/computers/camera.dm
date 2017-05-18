@@ -56,7 +56,7 @@
 	name = "Security Camera Network Main Key"
 	var/title = "Station"
 	var/desc = "Connects to station security cameras."
-	var/list/networks = list("SULACO")
+	var/list/networks = list("military")
 	var/screen = "cameras"
 
 	execute(var/datum/file/source)

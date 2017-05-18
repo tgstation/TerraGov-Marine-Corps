@@ -25,7 +25,7 @@
 
 	var/const/mob_size = 15
 
-/obj/structure/closet/New()
+/obj/structure/closet/initialize()
 	..()
 	spawn(1)
 		if(!opened)		// if closed, any item at the crate's loc is put in the contents
@@ -50,7 +50,7 @@
 
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
-		if(closet != src)
+		if(closet != src && !closet.wall_mounted)
 			return 0
 	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
 		return 0
@@ -79,8 +79,8 @@
 
 	src.dump_contents()
 
-	src.icon_state = src.icon_opened
-	src.opened = 1
+	opened = 1
+	update_icon()
 	playsound(src.loc, open_sound, 15, 1, -3)
 	density = 0
 	return 1
@@ -100,8 +100,8 @@
 	if(store_mobs)
 		stored_units = store_mobs(stored_units)
 
-	src.icon_state = src.icon_closed
-	src.opened = 0
+	opened = 0
+	update_icon()
 
 	playsound(src.loc, close_sound, 15, 1, -3)
 	density = 1
@@ -132,14 +132,12 @@
 			break
 		if(istype (M, /mob/dead/observer))
 			continue
-		if(M.buckled || M.pinned.len)
+		if(M.buckled)
 			continue
 
+		M.forceMove(src)
 		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
-
-		M.loc = src
+			M.reset_view(src)
 		stored_units += mob_size
 	return stored_units
 
@@ -192,7 +190,10 @@
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/weapon/grab))
-			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
+			var/obj/item/weapon/grab/G = W
+			if(G.grabbed_thing)
+				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
+			return
 		if(istype(W,/obj/item/tk_grab))
 			return 0
 		if(istype(W, /obj/item/weapon/weldingtool))
@@ -207,7 +208,7 @@
 			return
 		if(isrobot(user))
 			return
-		usr.drop_item()
+		user.drop_held_item()
 		if(W)
 			W.loc = src.loc
 	else if(istype(W, /obj/item/weapon/packageWrap))
@@ -217,8 +218,8 @@
 		if(!WT.remove_fuel(0,user))
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
-		src.welded = !src.welded
-		src.update_icon()
+		welded = !welded
+		update_icon()
 		for(var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
 	else
@@ -230,7 +231,7 @@
 		return
 	if(O.loc == user)
 		return
-	if(user.restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
+	if(user.is_mob_restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
 		return
 	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
 		return
@@ -280,7 +281,7 @@
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(!usr.canmove || usr.stat || usr.restrained())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return
 
 	if(ishuman(usr))
@@ -303,3 +304,10 @@
 		if(istype(A,/obj/))
 			var/obj/O = A
 			O.hear_talk(M, text)
+
+/obj/structure/closet/proc/break_open()
+	if(!opened)
+		dump_contents()
+		opened = TRUE
+		welded = FALSE
+		update_icon()

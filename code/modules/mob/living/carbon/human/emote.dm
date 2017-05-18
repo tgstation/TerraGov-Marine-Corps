@@ -58,22 +58,6 @@
 					message = "<B>[comm_paygrade][src]</B> bows."
 			m_type = 1
 
-		// if ("burp")
-		// 	if(!burped)
-		// 		message = "<B>[src]</B> burps."
-		// 		m_type = 1
-		// 		if(rand(0,100) < 70)
-		// 			playsound(src.loc, 'sound/misc/burp_short.ogg', 50, 0)
-		// 		else
-		// 			playsound(src.loc, 'sound/misc/burp_long.ogg', 50, 0)
-		// 		burped = 1
-		// 		spawn(6000)
-		// 			burped = 0
-		// 	else
-		// 		src << "You strain yourself. Ouch!"
-		// 		src.halloss += 10
-		// 		return
-
 		if ("chuckle")
 			if(miming)
 				message = "<B>[comm_paygrade][src]</B> appears to chuckle."
@@ -87,18 +71,16 @@
 					m_type = 2
 
 		if ("clap")
-			if(!clapped)
-				if (!src.restrained())
+			if(!recent_audio_emote)
+				if (!is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> claps."
 					m_type = 2
 					if(miming)
 						m_type = 1
 					playsound(src.loc, 'sound/misc/clap.ogg', 50, 0)
-					clapped = 1
-					spawn(600)
-						clapped = 0
+					start_audio_emote_cooldown()
 			else
-				src << "You just did that. Wait a while."
+				src << "You just did an audible emote. Wait a while."
 				return
 
 		if ("collapse")
@@ -143,22 +125,6 @@
 			src.sleeping += 10 //Short-short nap
 			m_type = 1
 
-		// if ("fart")
-		// 	if(!farted)
-		// 		message = "<B>[src]</B> farts."
-		// 		m_type = 1
-		// 		farted = 1
-		// 		if(rand(0,100) < 50)
-		// 			playsound(src.loc, 'sound/misc/fart_short.ogg', 50, 0)
-		// 		else
-		// 			playsound(src.loc, 'sound/misc/fart_long.ogg', 50, 0)
-		// 		spawn(6000)
-		// 			farted = 0
-		// 	else
-		// 		src << "You strain yourself. Ouch!"
-		// 		src.halloss += 10
-		// 		return
-
 		if ("frown")
 			message = "<B>[comm_paygrade][src]</B> frowns."
 			m_type = 1
@@ -202,18 +168,16 @@
 				message = "<B>[comm_paygrade][src]</B> glares."
 
 		if ("golfclap")
-			if(!golfclapped)
-				if (!src.restrained())
+			if(!recent_audio_emote)
+				if (!is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> claps, clearly unimpressed."
 					m_type = 2
 					if(miming)
 						m_type = 1
 					playsound(src.loc, 'sound/misc/golfclap.ogg', 50, 0)
-					golfclapped = 1
-					spawn(600)
-						golfclapped = 0
+					start_audio_emote_cooldown()
 			else
-				src << "You just did that. Wait a while."
+				src << "You just did an audible emote. Wait a while."
 				return
 
 		if ("grin")
@@ -233,7 +197,7 @@
 
 		if ("handshake")
 			m_type = 1
-			if (!src.restrained() && !src.r_hand)
+			if (!src.is_mob_restrained() && !src.r_hand)
 				var/mob/M = null
 				if (param)
 					for (var/mob/A in view(1, null))
@@ -244,14 +208,14 @@
 					M = null
 
 				if (M)
-					if (M.canmove && !M.r_hand && !M.restrained())
+					if (M.canmove && !M.r_hand && !M.is_mob_restrained())
 						message = "<B>[comm_paygrade][src]</B> shakes hands with [M]."
 					else
 						message = "<B>[comm_paygrade][src]</B> holds out \his hand to [M]."
 
 		if("hug")
 			m_type = 1
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				var/M = null
 				if (param)
 					for (var/mob/A in view(1, null))
@@ -297,7 +261,7 @@
 			if (has_species(src,"Yautja"))
 				playsound(src.loc, 'sound/misc/medic_female.ogg', 30, 0)
 				return
-			if(!medicd)
+			if(!recent_audio_emote)
 				if (!muzzled && !stat)
 					message = "<B>[comm_paygrade][src] calls for a medic!</b>"
 					m_type = 2
@@ -308,11 +272,9 @@
 							playsound(src.loc, 'sound/misc/medic_male2.ogg', 30, 0)
 					else
 						playsound(src.loc, 'sound/misc/medic_female.ogg', 30, 0)
-					medicd = 1
-					spawn(600)
-						medicd = 0
+					start_audio_emote_cooldown()
 			else
-				src << "You just did that. Wait a while."
+				src << "You just did an audible emote. Wait a while."
 				return
 
 		if ("moan")
@@ -327,25 +289,6 @@
 
 		if ("nod")
 			message = "<B>[comm_paygrade][src]</B> nods."
-			m_type = 1
-
-		if ("point")
-			if (!src.restrained())
-				var/mob/M = null
-				if (param)
-					for (var/atom/A as mob|obj|turf|area in view(null, null))
-						if (param == A.name)
-							M = A
-							break
-
-				if (!M)
-					message = "<B>[comm_paygrade][src]</B> points."
-				else
-					M.point()
-
-				if (M)
-					message = "<B>[comm_paygrade][src]</B> points to [M]."
-				else
 			m_type = 1
 
 		if ("salute")
@@ -369,15 +312,16 @@
 		if("scream")
 			message = "<B>[comm_paygrade][src]</B> screams!"
 			m_type = 2
-			if(!screamed)
+			if(!recent_audio_emote)
 				if(has_species(src,"Human") && src.client)
 					if(gender == "male")
 						playsound(loc, "scream_male", 75)
 					else
 						playsound(loc, "scream_female", 75)
-				screamed = 1
-				spawn(600)
-					screamed = 0
+				start_audio_emote_cooldown()
+			else
+				src << "You just did an audible emote. Wait a while."
+				return
 
 		if("shakehead")
 			message = "<B>[comm_paygrade][src]</B> shakes \his head."
@@ -404,7 +348,7 @@
 					m_type = 2
 
 		if ("signal")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				var/t1 = round(text2num(param))
 				if (isnum(t1))
 					if (t1 <= 5 && (!src.r_hand || !src.l_hand))
@@ -632,3 +576,10 @@
 	HTML +="<a href='?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	src << browse(HTML, "window=flavor_changes;size=430x300")
+
+
+/mob/living/carbon/human/proc/start_audio_emote_cooldown()
+	set waitfor = 0
+	recent_audio_emote = 1
+	sleep(600)
+	recent_audio_emote = 0

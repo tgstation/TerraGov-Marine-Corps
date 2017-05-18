@@ -104,7 +104,7 @@
 		dat+= "<HEAD><TITLE>Suit storage unit: Maintenance panel</TITLE></HEAD>"
 		dat+= "<Font color ='black'><B>Maintenance panel controls</B></font><HR>"
 		dat+= "<font color ='grey'>The panel is ridden with controls, button and meters, labeled in strange signs and symbols that <BR>you cannot understand. Probably the manufactoring world's language.<BR> Among other things, a few controls catch your eye.<BR><BR>"
-		dat+= text("<font color ='black'>A small dial with a \"ë\" symbol embroidded on it. It's pointing towards a gauge that reads []</font>.<BR> <font color='blue'><A href='?src=\ref[];toggleUV=1'> Turn towards []</A><BR>",(src.issuperUV ? "15nm" : "185nm"),src,(src.issuperUV ? "185nm" : "15nm") )
+		dat+= text("<font color ='black'>A small dial with a \"ï¿½\" symbol embroidded on it. It's pointing towards a gauge that reads []</font>.<BR> <font color='blue'><A href='?src=\ref[];toggleUV=1'> Turn towards []</A><BR>",(src.issuperUV ? "15nm" : "185nm"),src,(src.issuperUV ? "185nm" : "15nm") )
 		dat+= text("<font color ='black'>A thick old-style button, with 2 grimy LED lights next to it. The [] LED is on.</font><BR><font color ='blue'><A href='?src=\ref[];togglesafeties=1'>Press button</a></font>",(src.safetieson? "<font color='green'><B>GREEN</B></font>" : "<font color='red'><B>RED</B></font>"),src)
 		dat+= text("<HR><BR><A href='?src=\ref[];mach_close=suit_storage_unit'>Close panel</A>", user)
 		//user << browse(dat, "window=ssu_m_panel;size=400x500")
@@ -334,18 +334,16 @@
 	for(i=0,i<4,i++)
 		sleep(50)
 		if(src.OCCUPANT)
-			var/datum/organ/internal/diona/nutrients/rad_organ = locate() in OCCUPANT.internal_organs
-			if (!rad_organ)
-				if(src.issuperUV)
-					var/burndamage = rand(28,35)
-					OCCUPANT.take_organ_damage(0,burndamage)
-					if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
-						OCCUPANT.emote("scream")
-				else
-					var/burndamage = rand(6,10)
-					OCCUPANT.take_organ_damage(0,burndamage)
-					if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
-						OCCUPANT.emote("scream")
+			if(src.issuperUV)
+				var/burndamage = rand(28,35)
+				OCCUPANT.take_organ_damage(0,burndamage)
+				if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
+					OCCUPANT.emote("scream")
+			else
+				var/burndamage = rand(6,10)
+				OCCUPANT.take_organ_damage(0,burndamage)
+				if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
+					OCCUPANT.emote("scream")
 		if(i==3) //End of the cycle
 			if(!src.issuperUV)
 				if(src.HELMET)
@@ -457,7 +455,7 @@
 		usr << "<font color='red'>It's too cluttered inside for you to fit in!</font>"
 		return
 	visible_message("[usr] starts squeezing into the suit storage unit!", 3)
-	if(do_after(usr, 10))
+	if(do_after(usr, 10, FALSE))
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
@@ -489,7 +487,7 @@
 		return
 	if ( istype(I, /obj/item/weapon/grab) )
 		var/obj/item/weapon/grab/G = I
-		if( !(ismob(G.affecting)) )
+		if( !(ismob(G.grabbed_thing)) )
 			return
 		if (!src.isopen)
 			usr << "<font color='red'>The unit's doors are shut.</font>"
@@ -500,24 +498,19 @@
 		if ( (src.OCCUPANT) || (src.HELMET) || (src.SUIT) ) //Unit needs to be absolutely empty
 			user << "<font color='red'>The unit's storage area is too cluttered.</font>"
 			return
-		visible_message("[user] starts putting [G.affecting.name] into the Suit Storage Unit.", 3)
+		visible_message("[user] starts putting [G.grabbed_thing] into the Suit Storage Unit.", 3)
 		if(do_after(user, 20))
-			if(!G || !G.affecting) return //derpcheck
-			var/mob/M = G.affecting
-			if (M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
+			if(!G || !G.grabbed_thing) return //derpcheck
+			var/mob/M = G.grabbed_thing
+			M.forceMove(src)
 			src.OCCUPANT = M
 			src.isopen = 0 //close ittt
 
 			//for(var/obj/O in src)
 			//	O.loc = src.loc
-			src.add_fingerprint(user)
-			del(G)
-			src.updateUsrDialog()
-			src.update_icon()
-			return
+			add_fingerprint(user)
+			updateUsrDialog()
+			update_icon()
 		return
 	if( istype(I,/obj/item/clothing/suit/space) )
 		if(!src.isopen)
@@ -526,12 +519,11 @@
 		if(src.SUIT)
 			user << "<font color='blue'>The unit already contains a suit.</font>"
 			return
-		user << "You load the [S.name] into the storage compartment."
-		user.drop_item()
-		S.loc = src
-		src.SUIT = S
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(S, src))
+			user << "You load the [S.name] into the storage compartment."
+			SUIT = S
+			update_icon()
+			updateUsrDialog()
 		return
 	if( istype(I,/obj/item/clothing/head/helmet) )
 		if(!src.isopen)
@@ -541,11 +533,10 @@
 			user << "<font color='blue'>The unit already contains a helmet.</font>"
 			return
 		user << "You load the [H.name] into the storage compartment."
-		user.drop_item()
-		H.loc = src
-		src.HELMET = H
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(H, src))
+			HELMET = H
+			update_icon()
+			updateUsrDialog()
 		return
 	if( istype(I,/obj/item/clothing/mask) )
 		if(!src.isopen)
@@ -555,15 +546,13 @@
 			user << "<font color='blue'>The unit already contains a mask.</font>"
 			return
 		user << "You load the [M.name] into the storage compartment."
-		user.drop_item()
-		M.loc = src
-		src.MASK = M
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(M, src))
+			MASK = M
+			update_icon()
+			updateUsrDialog()
 		return
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+	update_icon()
+	updateUsrDialog()
 
 
 /obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
@@ -684,7 +673,7 @@
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
 
-		if(!(ismob(G.affecting)))
+		if(!(ismob(G.grabbed_thing)))
 			return
 
 		if(locked)
@@ -692,25 +681,18 @@
 			return
 
 		if(src.contents.len > 0)
-			user << "\red There is no room inside the cycler for [G.affecting.name]."
+			user << "\red There is no room inside the cycler for [G.grabbed_thing]."
 			return
 
-		visible_message("[user] starts putting [G.affecting.name] into the suit cycler.", 3)
+		visible_message("[user] starts putting [G.grabbed_thing] into the suit cycler.", 3)
 
 		if(do_after(user, 20))
-			if(!G || !G.affecting) return
-			var/mob/M = G.affecting
-			if (M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
-			src.occupant = M
-
-			src.add_fingerprint(user)
-			del(G)
-
-			src.updateUsrDialog()
-
+			if(!G || !G.grabbed_thing) return
+			var/mob/M = G.grabbed_thing
+			M.forceMove(src)
+			occupant = M
+			add_fingerprint(user)
+			updateUsrDialog()
 			return
 	else if(istype(I,/obj/item/weapon/screwdriver))
 
@@ -747,13 +729,12 @@
 			user << "The cycler already contains a helmet."
 			return
 
-		user << "You fit \the [I] into the suit cycler."
-		user.drop_item()
-		I.loc = src
-		helmet = I
 
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(I, src))
+			user << "You fit [I] into the suit cycler."
+			helmet = I
+			update_icon()
+			updateUsrDialog()
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/rig))
@@ -776,13 +757,11 @@
 			user << "\The [S] will not fit into the cycler with boots attached."
 			return
 
-		user << "You fit \the [I] into the suit cycler."
-		user.drop_item()
-		I.loc = src
-		suit = I
-
-		src.update_icon()
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(I, src))
+			user << "You fit [I] into the suit cycler."
+			suit = I
+			update_icon()
+			updateUsrDialog()
 		return
 
 	..()

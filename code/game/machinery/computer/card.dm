@@ -58,13 +58,13 @@
 		return ..()
 
 	if(!scan && ACCESS_MARINE_LOGISTICS in id_card.access)
-		user.drop_item()
-		id_card.loc = src
-		scan = id_card
+		if(user.drop_held_item())
+			id_card.forceMove(src)
+			scan = id_card
 	else if(!modify)
-		user.drop_item()
-		id_card.loc = src
-		modify = id_card
+		if(user.drop_held_item())
+			id_card.forceMove(src)
+			modify = id_card
 
 	nanomanager.update_uis(src)
 	attack_hand(user)
@@ -161,9 +161,9 @@
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card/id))
-					usr.drop_item()
-					I.loc = src
-					modify = I
+					if(usr.drop_held_item())
+						I.forceMove(src)
+						modify = I
 
 		if ("scan")
 			if (scan)
@@ -178,9 +178,9 @@
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card/id))
-					usr.drop_item()
-					I.loc = src
-					scan = I
+					if(usr.drop_held_item())
+						I.forceMove(src)
+						scan = I
 
 		if("access")
 			if(href_list["allowed"])

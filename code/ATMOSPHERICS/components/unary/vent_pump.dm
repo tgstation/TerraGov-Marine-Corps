@@ -355,25 +355,55 @@
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
-			user.visible_message("<span class='notice'>[user] starts working on the [src] with the [WT].</span>", \
+			user.visible_message("<span class='notice'>[user] starts working on [src] with the [WT].</span>", \
 			"<span class='notice'>You start working on the [src] with the [WT].</span>", \
 			"<span class='notice'>You hear welding.</span>")
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 50)
 			if(do_after(user, 50))
 				if(!src || !WT.isOn()) return
+				playsound(get_turf(src), 'sound/items/Welder2.ogg', 50, 1)
 				if(!welded)
+					user.visible_message("<span class='notice'>[user] welds [src] shut.</span>", \
+					"<span class='notice'>You weld [src] shut.</span>", \
+					"<span class='notice'>You hear welding.</span>")
 					welded = 1
 					update_icon()
 				else
+					user.visible_message("<span class='notice'>[user] welds [src].</span>", \
+					"<span class='notice'>You weld [src].</span>", \
+					"<span class='notice'>You hear welding.</span>")
 					welded = 0
 					update_icon()
 			else
-				user << "\blue The welding tool needs to be on to start this task."
+				user << "<span class='warning'>[W] needs to be on to start this task.</span>"
 		else
-			user << "\blue You need more welding fuel to complete this task."
+			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 			return 1
-	else
-		..()
+
+	if (!istype(W, /obj/item/weapon/wrench))
+		return ..()
+	if (!(stat & NOPOWER) && on)
+		user << "<span class='warning'>You cannot unwrench this [src], turn it off first.</span>"
+		return 1
+	var/turf/T = src.loc
+	if (node && node.level==1 && isturf(T) && T.intact)
+		user << "<span class='warning'>You must remove the plating first.</span>"
+		return 1
+	var/datum/gas_mixture/int_air = return_air()
+	var/datum/gas_mixture/env_air = loc.return_air()
+	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+		user << "<span class='warning'>You cannot unwrench this [src], it too exerted due to internal pressure.</span>"
+		add_fingerprint(user)
+		return 1
+	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
+	if (do_after(user, 40))
+		user.visible_message( \
+			"<span class='notice'>[user] unfastens \the [src].</span>", \
+			"<span class='notice'>You have unfastened \the [src].</span>", \
+			"You hear ratchet.")
+		new /obj/item/pipe(loc, make_from=src)
+		del(src)
 
 /obj/machinery/atmospherics/unary/vent_pump/examine()
 	set src in oview(1)
@@ -391,32 +421,6 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
-		return ..()
-	if (!(stat & NOPOWER) && on)
-		user << "\red You cannot unwrench this [src], turn it off first."
-		return 1
-	var/turf/T = src.loc
-	if (node && node.level==1 && isturf(T) && T.intact)
-		user << "\red You must remove the plating first."
-		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
-		add_fingerprint(user)
-		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	user << "\blue You begin to unfasten \the [src]..."
-	if (do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			"\blue You have unfastened \the [src].", \
-			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		del(src)
-
 /obj/machinery/atmospherics/unary/vent_pump/Del()
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
@@ -425,7 +429,7 @@
 	return
 
 /*
-	Alt-click to vent crawl - Monkeys, aliens, slimes and mice.
+	Alt-click to vent crawl - Monkeys, aliens, and mice.
 	This is a little buggy but somehow that just seems to plague ventcrawl.
 	I am sorry, I don't know why.
 */
@@ -433,7 +437,7 @@
 // a really clumsy way of doing this. ~Z
 /*/obj/machinery/atmospherics/unary/vent_pump/AltClick(var/mob/living/ML)
 	if(istype(ML))
-		var/list/ventcrawl_verbs = list(/mob/living/carbon/monkey/verb/ventcrawl, /mob/living/carbon/alien/verb/ventcrawl, /mob/living/carbon/slime/verb/ventcrawl,/mob/living/simple_animal/mouse/verb/ventcrawl)
+		var/list/ventcrawl_verbs = list(/mob/living/carbon/monkey/verb/ventcrawl, /mob/living/carbon/alien/verb/ventcrawl,/mob/living/simple_animal/mouse/verb/ventcrawl)
 		if(length(ML.verbs & ventcrawl_verbs)) // alien queens have this removed, an istype would be complicated
 			ML.handle_ventcrawl(src)
 			return

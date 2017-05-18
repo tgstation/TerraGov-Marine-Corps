@@ -80,36 +80,31 @@
 
 /obj/machinery/gibber/attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
 	if(src.occupant)
-		user << "\red The gibber is full, empty it first!"
+		user << "<span class='warning'>The gibber is full, empty it first!</span>"
 		return
 
 	if( !(istype(G, /obj/item/weapon/grab)) )
-		user << "\red This item is not suitable for the gibber!"
+		user << "<span class='warning'>This item is not suitable for the gibber!</span>"
 		return
 
-	if( !(istype(G.affecting, /mob/living/carbon)) && !(istype(G.affecting, /mob/living/simple_animal)) )
-		user << "\red This item is not suitable for the gibber!"
+	if( !iscarbon(G.grabbed_thing) && !istype(G.grabbed_thing, /mob/living/simple_animal) )
+		user << "<span class='warning'>This item is not suitable for the gibber!</span>"
+		return
+	var/mob/living/M = G.grabbed_thing
+	if(user.grab_level < GRAB_AGGRESSIVE)
+		user << "<span class='warning'>You need a better grip to do that!</span>"
 		return
 
-	if(G.state < 2)
-		user << "\red You need a better grip to do that!"
+	if(M.abiotic(1))
+		user << "<span class='warning'>Subject may not have abiotic items on.</span>"
 		return
 
-	if(G.affecting.abiotic(1))
-		user << "\red Subject may not have abiotic items on."
-		return
-
-	user.visible_message("\red [user] starts to put [G.affecting] into the gibber!")
+	user.visible_message("<span class='danger'>[user] starts to put [M] into the gibber!</span>")
 	src.add_fingerprint(user)
-	if(do_after(user, 30) && G && G.affecting && !occupant)
-		user.visible_message("\red [user] stuffs [G.affecting] into the gibber!")
-		var/mob/M = G.affecting
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
-		M.loc = src
-		src.occupant = M
-		del(G)
+	if(do_after(user, 30) && G && G.grabbed_thing && !occupant)
+		user.visible_message("<span class='danger'>[user] stuffs [M] into the gibber!</span>")
+		M.forceMove(src)
+		occupant = M
 		update_icon()
 
 /obj/machinery/gibber/verb/eject()
@@ -179,7 +174,7 @@
 		var/sourcenutriment = src.occupant.nutrition / 15
 		var/sourcetotalreagents = 0
 
-		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/alien/) ) // why are you gibbing aliens? oh well
+		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/Xenomorph) ) // why are you gibbing aliens? oh well
 			totalslabs = 3
 			sourcetotalreagents = src.occupant.reagents.total_volume
 		else if( istype(src.occupant, /mob/living/simple_animal/cow) || istype(src.occupant, /mob/living/simple_animal/hostile/bear) )

@@ -14,7 +14,6 @@
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/gun_click_time = -100 //I'm lazy.
 
-
 /obj/screen/text
 	icon = null
 	icon_state = null
@@ -23,6 +22,14 @@
 	maptext_height = 480
 	maptext_width = 480
 
+/obj/screen/cinematic
+	layer = 21
+	mouse_opacity = 0
+	screen_loc = "1,0"
+
+/obj/screen/cinematic/explosion
+	icon = 'icons/effects/station_explosion.dmi'
+	icon_state = "intro_ship"
 
 /obj/screen/inventory
 	var/slot_id	//The indentifier for the slot. It has nothing to do with ID cards.
@@ -49,7 +56,7 @@
 		return
 	usr.next_move = world.time + 6
 
-	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
+	if(usr.stat || usr.is_mob_restrained() || usr.stunned || usr.lying)
 		return 1
 
 	if(!(owner in usr))
@@ -60,21 +67,6 @@
 
 //This is the proc used to update all the action buttons. It just returns for all mob types except humans.
 /mob/proc/update_action_buttons()
-	return
-
-
-/obj/screen/grab
-	name = "grab"
-
-/obj/screen/grab/Click()
-	var/obj/item/weapon/grab/G = master
-	G.s_click(src)
-	return 1
-
-/obj/screen/grab/attack_hand()
-	return
-
-/obj/screen/grab/attackby()
 	return
 
 
@@ -262,7 +254,7 @@
 		if("internal")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
-				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
+				if(!C.stat && !C.stunned && !C.paralysis && !C.is_mob_restrained())
 					if(C.internal)
 						C.internal = null
 						C << "<span class='notice'>No longer running on internals.</span>"
@@ -364,7 +356,7 @@
 		if("pull")
 			usr.stop_pulling()
 		if("throw")
-			if(!usr.stat && isturf(usr.loc) && !usr.restrained())
+			if(!usr.stat && isturf(usr.loc) && !usr.is_mob_restrained())
 				usr:toggle_throw_mode()
 		if("drop")
 			usr.drop_item_v()
@@ -401,7 +393,7 @@
 		if("Allow Walking")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetMove()
@@ -410,7 +402,7 @@
 		if("Disallow Walking")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetMove()
@@ -419,7 +411,7 @@
 		if("Allow Running")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetRun()
@@ -428,7 +420,7 @@
 		if("Disallow Running")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetRun()
@@ -437,7 +429,7 @@
 		if("Allow Item Use")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetClick()
@@ -447,7 +439,7 @@
 		if("Disallow Item Use")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(),/obj/item/weapon/gun))
+			if(!istype(usr.get_held_item(),/obj/item/weapon/gun))
 				usr << "You need your gun in your active hand to do that!"
 				return
 			usr.client.AllowTargetClick()
@@ -468,26 +460,26 @@
 					usr << "Your caste lacks the ability to do this."
 
 		if("Activate weapon attachment")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.activate_attachment()
 
 		if("Toggle Rail Flashlight")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(!istype(G)) return
 			if(!G.get_active_firearm(usr)) return
 			var/obj/item/attachable/flashlight/F = G.rail
 			if(F) F.activate_attachment(G, usr)
 
 		if("Eject magazine")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.empty_mag()
 
 		if("Toggle burst fire")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.toggle_burst()
 
 		if("Use unique action")
-			var/obj/item/weapon/gun/G = usr.equipped()
+			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G)) G.use_unique_action()
 
 	return 1

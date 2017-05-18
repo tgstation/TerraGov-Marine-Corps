@@ -31,7 +31,7 @@
 				if(!ishuman(user))
 					user << "\red Your body can't work the controls!"
 					return 0
-				if(user.restrained())
+				if(user.is_mob_restrained())
 					user << "\red You need a free hand!"
 					return 0
 

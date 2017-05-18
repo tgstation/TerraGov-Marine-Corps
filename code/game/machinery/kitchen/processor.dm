@@ -54,10 +54,6 @@
 			..()
 
 
-		slime
-			input = /mob/living/carbon/slime
-			output = /obj/item/weapon/reagent_containers/glass/beaker/slime
-
 		monkey
 			process(loc, what)
 				var/mob/living/carbon/monkey/O = what
@@ -105,10 +101,10 @@
 	if(src.contents.len > 0) //TODO: several items at once? several different items?
 		user << "\red Something is already in the processing chamber."
 		return 1
-	var/what = O
+	var/obj/what = O
 	if (istype(O, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = O
-		what = G.affecting
+		what = G.grabbed_thing
 
 	var/datum/food_processor_process/P = select_recipe(what)
 	if (!P)
@@ -116,9 +112,8 @@
 		return 1
 	user.visible_message("[user] put [what] into [src].", \
 		"You put the [what] into [src].")
-	user.drop_item()
-	what:loc = src
-	return
+	user.drop_held_item()
+	what.forceMove(src)
 
 /obj/machinery/processor/attack_hand(var/mob/user as mob)
 	if (src.stat != 0) //NOPOWER etc

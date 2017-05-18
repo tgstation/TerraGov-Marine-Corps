@@ -30,12 +30,12 @@
 /obj/structure/closet/secure_closet/marine/marine_commander
 	name = "\improper marine Commander's locker"
 	req_access = list(ACCESS_MARINE_COMMANDER)
-	icon_state = "capsecure1"
-	icon_closed = "capsecure"
-	icon_locked = "capsecure1"
-	icon_opened = "capsecureopen"
-	icon_broken = "capsecurebroken"
-	icon_off = "capsecureoff"
+	icon_state = "secure_locked_commander"
+	icon_closed = "secure_unlocked_commander"
+	icon_locked = "secure_locked_commander"
+	icon_opened = "secure_open_commander"
+	icon_broken = "secure_locked_commander"
+	icon_off = "secure_closed_commander"
 	icon = 'icons/obj/closet.dmi'
 
 
@@ -65,12 +65,12 @@
 /obj/structure/closet/secure_closet/marine/marine_lo
 	name = "bridge officer's locker"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
-	icon_state = "hopsecure1"
-	icon_closed = "hopsecure"
-	icon_locked = "hopsecure1"
-	icon_opened = "hopsecureopen"
-	icon_broken = "hopsecurebroken"
-	icon_off = "hopsecureoff"
+	icon_state = "secure_locked_pilot"
+	icon_closed = "secure_unlocked_pilot"
+	icon_locked = "secure_locked_pilot"
+	icon_opened = "secure_open_pilot"
+	icon_broken = "secure_locked_pilot"
+	icon_off = "secure_closed_pilot"
 	icon = 'icons/obj/closet.dmi'
 
 	New()
@@ -97,14 +97,14 @@
 	select_gamemode_equipment()
 
 /obj/structure/closet/secure_closet/marine/marine_pilot
-	name = "pilot officer's locker"
+	name = "/improper Pilot Officer's locker"
 	req_access = list(ACCESS_MARINE_PILOT)
-	icon_state = "hopsecure1"
-	icon_closed = "hopsecure"
-	icon_locked = "hopsecure1"
-	icon_opened = "hopsecureopen"
-	icon_broken = "hopsecurebroken"
-	icon_off = "hopsecureoff"
+	icon_state = "secure_locked_pilot"
+	icon_closed = "secure_unlocked_pilot"
+	icon_locked = "secure_locked_pilot"
+	icon_opened = "secure_open_pilot"
+	icon_broken = "secure_locked_pilot"
+	icon_off = "secure_closed_pilot"
 	icon = 'icons/obj/closet.dmi'
 
 	New()
@@ -125,12 +125,12 @@
 /obj/structure/closet/secure_closet/marine/military_officer
 	name = "military police's locker"
 	req_access = list(ACCESS_MARINE_BRIG)
-	icon_state = "sec1"
-	icon_closed = "sec"
-	icon_locked = "sec1"
-	icon_opened = "secopen"
-	icon_broken = "secbroken"
-	icon_off = "secoff"
+	icon_state = "secure_locked_police"
+	icon_closed = "secure_unlocked_police"
+	icon_locked = "secure_locked_police"
+	icon_opened = "secure_open_police"
+	icon_broken = "secure_broken_police"
+	icon_off = "secure_closed_police"
 	icon = 'icons/obj/closet.dmi'
 
 	New()
@@ -152,15 +152,43 @@
 
 	select_gamemode_equipment()
 
+/obj/structure/closet/secure_closet/marine/warrant_officer
+	name = "\improper Chief MP's locker"
+	req_access = list(ACCESS_MARINE_BRIG)
+	icon_state = "secure_locked_warrant"
+	icon_closed = "secure_unlocked_warrant"
+	icon_locked = "secure_locked_warrant"
+	icon_opened = "secure_open_warrant"
+	icon_broken = "secure_locked_warrant"
+	icon_off = "secure_closed_warrant"
+	icon = 'icons/obj/closet.dmi'
+
+	New()
+		spawn(3)
+			new /obj/item/clothing/head/cmberet/wo(src)
+			new /obj/item/clothing/tie/holster/armpit(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/under/marine/officer/warrant(src)
+			new /obj/item/clothing/suit/storage/marine/MP/WO(src)
+			new /obj/item/weapon/storage/belt/security/MP(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/clothing/glasses/sunglasses(src)
+			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/weapon/gun/energy/taser(src)
+			new /obj/item/weapon/melee/baton(src)
+			new /obj/item/weapon/storage/backpack/security (src)
+
+	select_gamemode_equipment()
+
 /obj/structure/closet/secure_closet/marine/military_officer_spare
 	name = "extra equipment locker"
 	req_access = list(ACCESS_MARINE_BRIG)
-	icon_state = "sec1"
-	icon_closed = "sec"
-	icon_locked = "sec1"
-	icon_opened = "secopen"
-	icon_broken = "secbroken"
-	icon_off = "secoff"
+	icon_state = "secure_locked_warrant"
+	icon_closed = "secure_unlocked_warrant"
+	icon_locked = "secure_locked_warrant"
+	icon_opened = "secure_open_warrant"
+	icon_broken = "secure_locked_warrant"
+	icon_off = "secure_closed_warrant"
 	icon = 'icons/obj/closet.dmi'
 
 	New()
@@ -187,7 +215,7 @@
 	icon_state = "squad_alpha_locked"
 	icon_closed = "squad_alpha_unlocked"
 	icon_locked = "squad_alpha_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_alpha_open"
 	icon_broken = "squad_alpha_emmaged"
 	icon_off = "squad_alpha_off"
 
@@ -204,7 +232,7 @@
 	icon_state = "squad_bravo_locked"
 	icon_closed = "squad_bravo_unlocked"
 	icon_locked = "squad_bravo_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_bravo_open"
 	icon_broken = "squad_bravo_emmaged"
 	icon_off = "squad_bravo_off"
 
@@ -221,7 +249,7 @@
 	icon_state = "squad_charlie_locked"
 	icon_closed = "squad_charlie_unlocked"
 	icon_locked = "squad_charlie_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_charlie_open"
 	icon_broken = "squad_charlie_emmaged"
 	icon_off = "squad_charlie_off"
 
@@ -238,7 +266,7 @@
 	icon_state = "squad_delta_locked"
 	icon_closed = "squad_delta_unlocked"
 	icon_locked = "squad_delta_locked"
-	icon_opened = "squad_open"
+	icon_opened = "squad_delta_open"
 	icon_broken = "squad_delta_emmaged"
 	icon_off = "squad_delta_off"
 
@@ -250,14 +278,14 @@
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
-	name = "sulaco medical doctor's locker"
+	name = "\improper medical doctor's locker"
 	req_access = list(ACCESS_MARINE_MEDBAY)
-	icon_state = "securemed1"
-	icon_closed = "securemed"
-	icon_locked = "securemed1"
-	icon_opened = "securemedopen"
-	icon_broken = "securemedbroken"
-	icon_off = "securemedoff"
+	icon_state = "secure_locked_medical"
+	icon_closed = "secure_unlocked_medical"
+	icon_locked = "secure_locked_medical"
+	icon_opened = "secure_open_medical"
+	icon_broken = "secure_broken_medical"
+	icon_off = "secure_closed_medical"
 	icon = 'icons/obj/closet.dmi'
 
 	New()

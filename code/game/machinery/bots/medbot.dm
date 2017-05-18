@@ -216,11 +216,10 @@
 			user << "<span class='notice'>There is already a beaker loaded.</span>"
 			return
 
-		user.drop_item()
-		W.loc = src
-		src.reagent_glass = W
-		user << "<span class='notice'>You insert [W].</span>"
-		src.updateUsrDialog()
+		if(user.drop_inv_item_to_loc(W, src))
+			reagent_glass = W
+			user << "<span class='notice'>You insert [W].</span>"
+			src.updateUsrDialog()
 		return
 
 	else
@@ -571,7 +570,7 @@
 	del(S)
 	user.put_in_hands(A)
 	user << "<span class='notice'>You add the robot arm to the first aid kit.</span>"
-	user.drop_from_inventory(src)
+	user.temp_drop_inv_item(src)
 	del(src)
 
 
@@ -588,7 +587,7 @@
 		switch(build_step)
 			if(0)
 				if(istype(W, /obj/item/device/healthanalyzer))
-					user.drop_item()
+					user.drop_held_item()
 					del(W)
 					src.build_step++
 					user << "<span class='notice'>You add the health sensor to [src].</span>"
@@ -597,7 +596,7 @@
 
 			if(1)
 				if(isprox(W))
-					user.drop_item()
+					user.drop_held_item()
 					del(W)
 					src.build_step++
 					user << "<span class='notice'>You complete the Medibot! Beep boop.</span>"
@@ -605,5 +604,5 @@
 					var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(T)
 					S.skin = src.skin
 					S.name = src.created_name
-					user.drop_from_inventory(src)
+					user.temp_drop_inv_item(src)
 					del(src)

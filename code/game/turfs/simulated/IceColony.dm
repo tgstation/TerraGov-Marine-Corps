@@ -35,7 +35,7 @@
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")
 			L.anchored = 1
 			L.icon_state = "lightstick_[L.s_color][L.anchored]"
-			user.drop_item()
+			user.drop_held_item()
 			L.x = x
 			L.y = y
 			L.pixel_x += rand(-5,5)
@@ -168,7 +168,7 @@
 					return
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
-				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B].")
+				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B.name].")
 				B.icon_state = "barricade_[slayer]"
 				B.health = slayer * 25
 				B.dir = user.dir
@@ -181,6 +181,22 @@
 	New()
 		..()
 		update_icon(1,1)
+
+	Entered(atom/movable/AM)
+		if(slayer > 0)
+			if(iscarbon(AM))
+				var/mob/living/carbon/C = AM
+				var/slow_amount = 0.75
+				var/can_stuck = 1
+				if(istype(C, /mob/living/carbon/Xenomorph))
+					slow_amount = 0.25
+					can_stuck = 0
+				C.next_move_slowdown += slow_amount * slayer
+				if(prob(2))
+					C << "<span class='warning'>Moving through [src] slows you down.</span>" //Warning only
+				else if(can_stuck && slayer == 3 && prob(2))
+					C << "<span class='warning'>You get stuck in [src] for a moment!</span>"
+					C.next_move_slowdown += 10
 
 	//Update icon
 	update_icon(var/update_full, var/skip_sides)
@@ -687,7 +703,7 @@
 			return
 
 		user << "You start pulling out \the [src]."
-		if(!do_after(user,20))
+		if(!do_after(user,20, 1))
 			return
 
 		anchored = 0
@@ -914,7 +930,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 /obj/machinery/computer/shuttle_control/elevator2
@@ -925,7 +940,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 /obj/machinery/computer/shuttle_control/elevator3
@@ -936,7 +950,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 /obj/machinery/computer/shuttle_control/elevator4
@@ -947,7 +960,6 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
-	alerted = 0
 	req_access = null
 
 //RESEARCH DECORATION-----------------------//
@@ -1295,5 +1307,3 @@ obj/item/alienjar
 				pressure_alert = -1
 
 	return
-
-

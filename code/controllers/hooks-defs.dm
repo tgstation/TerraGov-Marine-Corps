@@ -45,13 +45,6 @@
 /hook/borgify
 
 /**
- * Podman hook.
- * Called in podmen.dm when someone is brought back as a Diona.
- * Parameters: var/mob/living/carbon/alien/diona
- */
-/hook/harvest_podman
-
-/**
  * Payroll revoked hook.
  * Called in Accounts_DB.dm when someone's payroll is stolen at the Accounts terminal.
  * Parameters: var/datum/money_account

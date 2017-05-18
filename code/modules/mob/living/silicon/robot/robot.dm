@@ -307,10 +307,7 @@ var/list/robot_verbs_default = list(
 	if(prefix)
 		modtype = prefix
 	if(mmi)
-		if(istype(mmi, /obj/item/device/mmi/posibrain))
-			braintype = "Android"
-		else
-			braintype = "Cyborg"
+		braintype = "Cyborg"
 	else
 		braintype = "Robot"
 
@@ -490,7 +487,7 @@ var/list/robot_verbs_default = list(
 		show_jetpack_pressure()
 		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
 
-/mob/living/silicon/robot/restrained()
+/mob/living/silicon/robot/is_mob_restrained()
 	return 0
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
@@ -565,15 +562,14 @@ var/list/robot_verbs_default = list(
 				C.installed = 1
 				C.wrapped = W
 				C.install()
-				user.drop_item()
-				W.loc = null
+				if(user.drop_held_item())
+					W.loc = null
+					var/obj/item/robot_parts/robot_component/WC = W
+					if(istype(WC))
+						C.brute_damage = WC.brute
+						C.electronics_damage = WC.burn
 
-				var/obj/item/robot_parts/robot_component/WC = W
-				if(istype(WC))
-					C.brute_damage = WC.brute
-					C.electronics_damage = WC.burn
-
-				usr << "\blue You install the [W.name]."
+					usr << "\blue You install the [W.name]."
 
 				return
 
@@ -670,10 +666,9 @@ var/list/robot_verbs_default = list(
 		else if(cell)
 			user << "There is a power cell already installed."
 		else
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user << "You insert the power cell."
+			if(user.drop_inv_item_to_loc(W, src))
+				cell = W
+				user << "You insert the power cell."
 
 			C.installed = 1
 			C.wrapped = W
@@ -792,8 +787,8 @@ var/list/robot_verbs_default = list(
 		else
 			if(U.action(src))
 				usr << "You apply the upgrade to [src]!"
-				usr.drop_item()
-				U.loc = src
+				if(usr.drop_held_item())
+					U.forceMove(src)
 			else
 				usr << "Upgrade error!"
 
@@ -803,65 +798,6 @@ var/list/robot_verbs_default = list(
 			spark_system.start()
 		return ..()
 
-
-
-/mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
-		return
-
-	if(M.Victim) return // can't attack while eating!
-
-	if (health > -100)
-
-		for(var/mob/O in viewers(src, null))
-			if ((O.client && !( O.blinded )))
-				O.show_message(text("\red <B>The [M.name] glomps []!</B>", src), 1)
-
-		var/damage = rand(1, 3)
-
-		if(M.is_adult)
-			damage = rand(20, 40)
-		else
-			damage = rand(5, 35)
-
-		damage = round(damage / 2) // borgs recieve half damage
-		adjustBruteLoss(damage)
-
-
-		if(M.powerlevel > 0)
-			var/stunprob = 10
-
-			switch(M.powerlevel)
-				if(1 to 2) stunprob = 20
-				if(3 to 4) stunprob = 30
-				if(5 to 6) stunprob = 40
-				if(7 to 8) stunprob = 60
-				if(9) 	   stunprob = 70
-				if(10) 	   stunprob = 95
-
-			if(prob(stunprob))
-				M.powerlevel -= 3
-				if(M.powerlevel < 0)
-					M.powerlevel = 0
-
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>The [M.name] has electrified []!</B>", src), 1)
-
-				flick("noise", flash)
-
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
-
-				if (prob(stunprob) && M.powerlevel >= 8)
-					adjustBruteLoss(M.powerlevel * rand(6,10))
-
-
-		updatehealth()
-
-	return
 
 /mob/living/silicon/robot/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)

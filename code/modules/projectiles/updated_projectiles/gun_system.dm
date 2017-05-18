@@ -7,11 +7,11 @@
 	var/muzzle_flash 	= "muzzle_flash"
 	matter = list("metal" = 75000)
 	origin_tech = "combat=1" //Guns generally have their own unique levels.
-	w_class 	= 3.0
+	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
 	throw_range = 5
-	force 		= 5.0
+	force 		= 5
 	attack_verb = null
 	icon_action_button = null //Adds it to the quick-icon list
 
@@ -210,43 +210,47 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features  || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG) ) return
 
 	if(!magazine || !istype(magazine))
-		user << "That's not a magazine!"
+		user << "<span class='warning'>That's not a magazine!</span>"
+		return
+
+	if(magazine.flags_magazine & AMMUNITION_HANDFUL)
+		user << "<span class='warning'>[src] needs an actual magazine.</span>"
 		return
 
 	if(magazine.current_rounds <= 0)
-		user << "That [magazine.name] is empty!"
+		user << "<span class='warning'>[magazine] is empty!</span>"
 		return
 
 	if(!istype(src, magazine.gun_type))
-		user << "That magazine doesn't fit in there!"
+		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
 		return
 
 	if(!isnull(current_mag) && current_mag.loc == src)
-		user << "It's still got something loaded."
+		user << "<span class='warning'>It's still got something loaded.</span>"
 		return
 
+
+
+	if(user)
+		if(magazine.reload_delay > 1)
+			user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
+			if(do_after(user,magazine.reload_delay)) replace_magazine(user, magazine)
+			else
+				user << "<span class='warning'>Your reload was interrupted!</span>"
+				return
+		else replace_magazine(user, magazine)
 	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
-				if(do_after(user,magazine.reload_delay)) replace_magazine(user, magazine)
-				else
-					user << "<span class='warning'>Your reload was interrupted!</span>"
-					return
-			else replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-			if(!in_chamber) load_into_chamber()
+		current_mag = magazine
+		magazine.loc = src
+		replace_ammo(,magazine)
+		if(!in_chamber) load_into_chamber()
 
 	update_icon()
 	return 1
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.remove_from_mob(magazine) //Click!
+	user.drop_inv_item_to_loc(magazine, src) //Click!
 	current_mag = magazine
-	magazine.loc = src //Jam that sucker in there.
 	replace_ammo(user,magazine)
 	if(!in_chamber)
 		ready_in_chamber()
@@ -635,7 +639,7 @@ and you're good to go.
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
-	var/actual_sound = pick(fire_sound)
+	var/actual_sound = fire_sound
 	var/sound_volume = flags_gun_features & GUN_SILENCED ? 20 : 50
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.

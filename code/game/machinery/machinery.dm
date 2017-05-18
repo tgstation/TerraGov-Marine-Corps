@@ -115,8 +115,10 @@ Class Procs:
 
 /obj/machinery/New()
 	..()
-	machines += src
-	machinery_sort_required = 1
+	if(!(stat & MACHINE_DO_NOT_PROCESS))
+		machines += src
+		machinery_sort_required = 1
+	else stat &= ~MACHINE_DO_NOT_PROCESS
 
 /obj/machinery/Del()
 	machines -= src
@@ -190,7 +192,7 @@ Class Procs:
 	..()
 	if(inoperable())
 		return 1
-	if(usr.restrained() || usr.lying || usr.stat)
+	if(usr.is_mob_restrained() || usr.lying || usr.stat)
 		return 1
 	if ( ! (istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \

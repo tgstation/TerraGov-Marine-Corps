@@ -44,14 +44,9 @@
 		return 0
 
 	if(on_fire)
-		if(!fire_stacks)
-			on_fire = 0
-		else
-			if(stat != DEAD && !fire_immune)
-				adjustFireLoss(fire_stacks + 3)
-			update_fire()
+		if(stat != DEAD && !fire_immune)
+			adjustFireLoss(fire_stacks + 3)
 			updatehealth()
-			fire_stacks--
 	if(health > -100 && health < 0) //Unconscious
 		if(readying_tail)
 			readying_tail = 0
@@ -210,9 +205,6 @@
 		else
 			alien_plasma_display.icon_state = "power_display2_0"
 
-	if(pullin)
-		pullin.icon_state = "pull[pulling ? 1 : 0]"
-
 	if(client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
@@ -234,6 +226,22 @@
 				reset_view(null)
 
 	return 1
+
+/*Heal 1/70th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+Modified via m, to multiply the number of wounds healed.
+Heal from fire half as fast
+Xenos don't actually take oxyloss, oh well
+hmmmm, this is probably unnecessary
+Make sure their actual health updates immediately.*/
+
+#define XENO_HEAL_WOUNDS(m) \
+adjustBruteLoss(-((maxHealth / 70) + 1)*(m)); \
+if(recovery_aura) adjustBruteLoss(-(recovery_aura)*(m)); \
+adjustFireLoss(-(maxHealth / 60)*(m)); \
+adjustOxyLoss(-(maxHealth * 0.1)*(m)); \
+adjustToxLoss(-(maxHealth / 5)*(m)); \
+updatehealth()
+
 
 /mob/living/carbon/Xenomorph/proc/handle_environment(var/datum/gas_mixture/environment)
 	var/turf/T = loc
@@ -265,13 +273,16 @@
 					if(recovery_aura)
 						storedplasma += (recovery_aura * 2)
 			else
+				XENO_HEAL_WOUNDS(1)
+				/*
 				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 				if(recovery_aura)
 					adjustBruteLoss(-(recovery_aura))
-				adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
-				adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
-				adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
-				updatehealth() //Make sure their actual health updates immediately.
+				adjustFireLoss(-(maxHealth / 60))
+				adjustOxyLoss(-(maxHealth / 10))
+				adjustToxLoss(-(maxHealth / 5))
+				updatehealth()
+				*/
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health
 			if(prob(50))
@@ -350,22 +361,23 @@
 	remains.icon = icon
 	remains.pixel_x = pixel_x //For 2x2.
 
-	switch(type) //This will need to be changed later, when we have proper xeno pathing. Might do it on caste or something.
-		if(/mob/living/carbon/Xenomorph/Boiler)
+	switch(caste) //This will need to be changed later, when we have proper xeno pathing. Might do it on caste or something.
+		if("Boiler")
 			var/mob/living/carbon/Xenomorph/Boiler/B = src
 			visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
 			B.smoke.set_up(6, 0, get_turf(src))
 			B.smoke.start()
 			remains.icon_state = "gibbed-a-corpse"
-		if(/mob/living/carbon/Xenomorph/Runner)
+		if("Runner")
 			to_flick = "gibbed-a-corpse-runner"
 			remains.icon_state = "gibbed-a-corpse-runner"
-		if(/mob/living/carbon/Xenomorph/Larva)
+		if("Bloody Larva","Predalien Larva")
 			to_flick = "larva_gib"
 			remains.icon_state = "larva_gib_corpse"
 		else remains.icon_state = "gibbed-a-corpse"
 
 	..(to_flick, 0, icon) //We're spawning our own gibs, no need to do the human kind.
+	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
 	xgibs(get_turf(src))
 
 /mob/living/carbon/Xenomorph/death(gibbed)
@@ -375,20 +387,23 @@
 
 	if(!gibbed) icon_state = "[caste] Dead"
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-		playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
-		xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
-		xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
-		slashing_allowed = 1
-		if(ticker && ticker.mode) ticker.mode.check_queen_status(queen_time)
-	else
-		playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 50, 1, 1)
-		var/area/A = get_area(src)
-		xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
+	switch(caste)
+		if("Queen")
+			playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
+			xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
+			xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
+			slashing_allowed = 1
+			if(ticker && ticker.mode) ticker.mode.check_queen_status(queen_time)
+		else
+			if(caste == "Predalien") playsound(loc, 'sound/voice/predalien_death.ogg', 50, 1, 1)
+			else playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 50, 1, 1)
+			var/area/A = get_area(src)
+			xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A
 		A.loc = loc
+	return 1
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null

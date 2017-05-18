@@ -79,246 +79,208 @@
 		if(WEAR_IN_ACCESSORY)
 			return 1
 
-/mob/living/carbon/human/u_equip(obj/item/W as obj)
-	if(!W)	return 0
+/mob/living/carbon/human/put_in_l_hand(obj/item/W)
+	var/datum/organ/external/O = organs_by_name["l_hand"]
+	if(!O || !O.is_usable())
+		return FALSE
+	. = ..()
 
-	var/success
+/mob/living/carbon/human/put_in_r_hand(obj/item/W)
+	var/datum/organ/external/O = organs_by_name["r_hand"]
+	if(!O || !O.is_usable())
+		return FALSE
+	. = ..()
 
-	if (W == wear_suit)
+/mob/living/carbon/human/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
+	. = ..()
+	if(!. || !I)
+		return FALSE
+
+	if(I == wear_suit)
 		if(s_store)
-			drop_from_inventory(s_store)
-		if(W)
-			success = 1
+			drop_inv_item_on_ground(s_store)
 		wear_suit = null
-		if(W.flags_inventory & HIDESHOES)
-			update_inv_shoes(0)
-		if(W.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
-			update_hair(0)
-			update_inv_head()
+		if(I.flags_inventory & HIDESHOES)
+			update_inv_shoes()
+		if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
+			update_hair()
 		update_inv_wear_suit()
-	else if(W == w_uniform)
+	else if(I == w_uniform)
 		if(r_store)
-			drop_from_inventory(r_store)
+			drop_inv_item_on_ground(r_store)
 		if(l_store)
-			drop_from_inventory(l_store)
+			drop_inv_item_on_ground(l_store)
 		if(belt)
-			drop_from_inventory(belt)
+			drop_inv_item_on_ground(belt)
 		if(wear_suit) //We estimate all armors with uniform restrictions aren't okay with removing the uniform altogether
 			var/obj/item/clothing/suit/S = wear_suit
 			if(S.uniform_restricted.len)
-				drop_from_inventory(wear_suit)
+				drop_inv_item_on_ground(wear_suit)
 		w_uniform = null
-		success = 1
 		update_inv_w_uniform()
-	else if (W == gloves)
-		gloves = null
-		success = 1
-		update_inv_gloves()
-	else if (W == glasses)
-		glasses = null
-		success = 1
-		update_inv_glasses()
-	else if (W == head)
+	else if(I == head)
 		head = null
-		if( W.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDEMASK) )
-			update_hair(0)	//rebuild hair
-			update_inv_ears(0)
-			update_inv_wear_mask(0)
-		success = 1
+		if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+			update_hair()	//rebuild hair
+		if(I.flags_inventory & HIDEEARS)
+			update_inv_ears()
+		if(I.flags_inventory & HIDEMASK)
+			update_inv_wear_mask()
 		update_inv_head()
-	else if (W == l_ear)
+	else if (I == gloves)
+		gloves = null
+		update_inv_gloves()
+	else if (I == glasses)
+		glasses = null
+		update_inv_glasses()
+	else if (I == l_ear)
 		l_ear = null
-		success = 1
 		update_inv_ears()
-	else if (W == r_ear)
+	else if (I == r_ear)
 		r_ear = null
-		success = 1
 		update_inv_ears()
-	else if (W == shoes)
+	else if (I == shoes)
 		shoes = null
-		success = 1
 		update_inv_shoes()
-	else if (W == belt)
+	else if (I == belt)
 		belt = null
-		success = 1
 		update_inv_belt()
-	else if (W == wear_mask)
-		if(istype(W,/obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/F = W
-			if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
-				visible_message("\red [F] frantically claws at [src]'s face!","\red [F] frantically claws at your face! Auugh!")
-				adjustBruteLossByPart(25,"head")
-		wear_mask = null
-		success = 1
-		if(W.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
-			update_hair(0)	//rebuild hair
-			update_inv_ears(0)
-		if(internal)
-			if(internals)
-				internals.icon_state = "internal0"
-			internal = null
-		update_inv_wear_mask()
-	else if (W == wear_id)
+	else if (I == wear_id)
 		wear_id = null
-		success = 1
 		update_inv_wear_id()
-	else if (W == r_store)
+	else if (I == r_store)
 		r_store = null
-		success = 1
 		update_inv_pockets()
-	else if (W == l_store)
+	else if (I == l_store)
 		l_store = null
-		success = 1
 		update_inv_pockets()
-	else if (W == s_store)
+	else if (I == s_store)
 		s_store = null
-		success = 1
 		update_inv_s_store()
-	else if (W == back)
-		back = null
-		success = 1
-		update_inv_back()
-	else if (W == handcuffed)
-		handcuffed = null
-		success = 1
-		update_inv_handcuffed()
-	else if (W == legcuffed)
-		legcuffed = null
-		success = 1
-		update_inv_legcuffed()
-	else if (W == r_hand)
-		r_hand = null
-		success = 1
-		update_inv_r_hand()
-	else if (W == l_hand)
-		l_hand = null
-		success = 1
-		update_inv_l_hand()
-	else
-		return 0
 
-	if(success)
-		if (W)
-			if(client)
-				client.screen -= W
-			W.loc = loc
-			if(W.destroy_on_drop)
-				del(W)
-//			W.dropped(src)
-	update_action_buttons()
-	return 1
+
+
+
+/mob/living/carbon/human/wear_mask_update(obj/item/I)
+	if(istype(I,/obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/F = I
+		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
+			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
+			adjustBruteLossByPart(25,"head")
+	if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+		update_hair()	//rebuild hair
+	if(I.flags_inventory & HIDEEARS)
+		update_inv_ears()
+	if(internal)
+		if(internals)
+			internals.icon_state = "internal0"
+		internal = null
+	update_inv_wear_mask()
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
+/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
 	if(!slot) return
 	if(!istype(W)) return
 	if(!has_organ_for_slot(slot)) return
 
-	if(W == src.l_hand)
-		src.l_hand = null
-		update_inv_l_hand() //So items actually disappear from hands.
-	else if(W == src.r_hand)
-		src.r_hand = null
+	if(W == l_hand)
+		l_hand = null
+		update_inv_l_hand()
+	else if(W == r_hand)
+		r_hand = null
 		update_inv_r_hand()
 
+	W.screen_loc = null
 	W.loc = src
+	W.layer = 20
+
 	switch(slot)
 		if(WEAR_BACK)
-			src.back = W
+			back = W
 			W.equipped(src, slot)
-			update_inv_back(redraw_mob)
+			update_inv_back()
 		if(WEAR_FACE)
-			src.wear_mask = W
+			wear_mask = W
 			if( wear_mask.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
-				update_hair(redraw_mob)	//rebuild hair
-				update_inv_ears(0)
+				update_hair()	//rebuild hair
+				update_inv_ears()
 			W.equipped(src, slot)
-			update_inv_wear_mask(redraw_mob)
+			update_inv_wear_mask()
 		if(WEAR_HANDCUFFS)
-			src.handcuffed = W
-			update_inv_handcuffed(redraw_mob)
+			handcuffed = W
+			handcuff_update()
 		if(WEAR_LEGCUFFS)
-			src.legcuffed = W
+			legcuffed = W
 			W.equipped(src, slot)
-			update_inv_legcuffed(redraw_mob)
+			legcuff_update()
 		if(WEAR_L_HAND)
-			src.l_hand = W
+			l_hand = W
 			W.equipped(src, slot)
-			update_inv_l_hand(redraw_mob)
+			update_inv_l_hand()
 		if(WEAR_R_HAND)
-			src.r_hand = W
+			r_hand = W
 			W.equipped(src, slot)
-			update_inv_r_hand(redraw_mob)
+			update_inv_r_hand()
 		if(WEAR_WAIST)
-			src.belt = W
+			belt = W
 			W.equipped(src, slot)
-			update_inv_belt(redraw_mob)
+			update_inv_belt()
 		if(WEAR_ID)
-			src.wear_id = W
+			wear_id = W
 			W.equipped(src, slot)
-			update_inv_wear_id(redraw_mob)
+			update_inv_wear_id()
 		if(WEAR_L_EAR)
-			src.l_ear = W
-			if(l_ear.flags_equip_slot & SLOT_EARS)
-				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
-				src.r_ear = O
-				O.layer = 20
+			l_ear = W
 			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
+			update_inv_ears()
 		if(WEAR_R_EAR)
-			src.r_ear = W
-			if(r_ear.flags_equip_slot & SLOT_EARS)
-				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
-				src.l_ear = O
-				O.layer = 20
+			r_ear = W
 			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
+			update_inv_ears()
 		if(WEAR_EYES)
-			src.glasses = W
+			glasses = W
 			W.equipped(src, slot)
-			update_inv_glasses(redraw_mob)
+			update_inv_glasses()
 		if(WEAR_HANDS)
-			src.gloves = W
+			gloves = W
 			W.equipped(src, slot)
-			update_inv_gloves(redraw_mob)
+			update_inv_gloves()
 		if(WEAR_HEAD)
-			src.head = W
-			if( head.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDEMASK) )
-				update_hair(redraw_mob)	//rebuild hair
-				update_inv_ears(0)
-				update_inv_wear_mask(0)
-			if(istype(W,/obj/item/clothing/head/kitty))
-				W.update_icon(src)
+			head = W
+			if(head.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+				update_hair()	//rebuild hair
+			if(head.flags_inventory & HIDEEARS)
+				update_inv_ears()
+			if(head.flags_inventory & HIDEMASK)
+				update_inv_wear_mask()
 			W.equipped(src, slot)
-			update_inv_head(redraw_mob)
+			update_inv_head()
 		if(WEAR_FEET)
-			src.shoes = W
+			shoes = W
 			W.equipped(src, slot)
-			update_inv_shoes(redraw_mob)
+			update_inv_shoes()
 		if(WEAR_JACKET)
-			src.wear_suit = W
+			wear_suit = W
 			if(wear_suit.flags_inventory & HIDESHOES)
-				update_inv_shoes(0)
+				update_inv_shoes()
 			if( wear_suit.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
-				update_hair(redraw_mob)
+				update_hair()
 			W.equipped(src, slot)
-			update_inv_wear_suit(redraw_mob)
+			update_inv_wear_suit()
 		if(WEAR_BODY)
-			src.w_uniform = W
+			w_uniform = W
 			W.equipped(src, slot)
-			update_inv_w_uniform(redraw_mob)
+			update_inv_w_uniform()
 		if(WEAR_L_STORE)
-			src.l_store = W
+			l_store = W
 			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
+			update_inv_pockets()
 		if(WEAR_R_STORE)
-			src.r_store = W
+			r_store = W
 			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
+			update_inv_pockets()
 		if(WEAR_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
 			if(U && !U.hastie)
@@ -327,13 +289,13 @@
 				U.hastie = T
 				update_inv_w_uniform()
 		if(WEAR_J_STORE)
-			src.s_store = W
+			s_store = W
 			W.equipped(src, slot)
-			update_inv_s_store(redraw_mob)
+			update_inv_s_store()
 		if(WEAR_IN_BACK)
-			if(src.get_active_hand() == W)
-				src.u_equip(W)
-			W.loc = src.back
+			if(get_active_hand() == W)
+				temp_drop_inv_item(W)
+			W.forceMove(back)
 		if(WEAR_IN_JACKET)
 			var/obj/item/clothing/suit/storage/S = wear_suit
 			if(istype(S) && S.pockets.storage_slots) W.loc = S.pockets//Has to have some slots available.
@@ -348,9 +310,9 @@
 			src << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
 			return
 
-	W.layer = 20
+	return 1
 
-	return
+
 
 /obj/effect/equip_e
 	name = "equip e"
@@ -643,7 +605,7 @@ It can still be worn/put on as normal.
 	if(target.loc != t_loc) return		//target has moved
 	if(LinkBlocked(s_loc,t_loc)) return	//Use a proxi!
 	if(item && source.get_active_hand() != item) return	//Swapped hands / removed item from the active one
-	if ((source.restrained() || source.stat)) return //Source restrained or unconscious / dead
+	if ((source.is_mob_restrained() || source.stat)) return //Source restrained or unconscious / dead
 
 	var/slot_to_process
 	var/obj/item/strip_item //this will tell us which item we will be stripping - if any.
@@ -816,16 +778,16 @@ It can still be worn/put on as normal.
 				source << "<span class='warning'>You're having difficulty removing that item.</span>"
 				return
 
-			target.drop_from_inventory(strip_item)
+			target.drop_inv_item_on_ground(strip_item)
 			if(slot_to_process == WEAR_L_STORE) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
 				//Psst. You were wrong. - Abby
 				if(target.r_store)
-					target.drop_from_inventory(target.r_store)
+					target.drop_inv_item_on_ground(target.r_store)
 			target.update_icons()
 		else
 			if(item && target.has_organ_for_slot(slot_to_process)) //Placing an item on the mob
 				if(item.mob_can_equip(target, slot_to_process, 0))
-					source.drop_from_inventory(item)
+					source.drop_inv_item_on_ground(item)
 					if(item) //Might be self-deleted?
 						target.equip_to_slot_if_possible(item, slot_to_process, 0, 1, 1)
 					source.update_icons()

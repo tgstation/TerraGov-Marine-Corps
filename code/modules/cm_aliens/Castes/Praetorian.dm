@@ -18,13 +18,14 @@
 	maxplasma = 800
 	jellyMax = 800
 	spit_delay = 20
-	speed = 1.7
+	speed = 1
 	jelly = 1
 	pixel_x = -16
 	caste_desc = "Ptui!"
 	evolves_to = list()
-	armor_deflection = 45
-	big_xeno = 1
+	armor_deflection = 35
+	mob_size = MOB_SIZE_BIG
+	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = 3
 	upgrade = 0
 	inherent_verbs = list(
@@ -37,16 +38,3 @@
 		/mob/living/carbon/Xenomorph/proc/neurotoxin //Stronger version
 		)
 
-/mob/living/carbon/Xenomorph/Praetorian/can_ventcrawl()
-	return
-
-/mob/living/carbon/Xenomorph/Praetorian/ClickOn(var/atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		neurotoxin(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		neurotoxin(A)
-		return
-	..()

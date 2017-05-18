@@ -51,7 +51,7 @@
 /obj/item/weapon/circuitboard/security
 	name = "Circuit board (Security Camera Monitor)"
 	build_path = /obj/machinery/computer/security
-	var/network = list("SULACO")
+	var/network = list("military")
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
 	var/emagged = 0
@@ -323,7 +323,7 @@
 			user << "\red Circuit controls are locked."
 			return
 		var/existing_networks = list2text(network,",")
-		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: SULACO,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
+		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: military,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
 		if(!input)
 			usr << "No input found please hang up and try your call again."
 			return
@@ -378,12 +378,12 @@
 			if(istype(P, /obj/item/weapon/circuitboard) && !circuit)
 				var/obj/item/weapon/circuitboard/B = P
 				if(B.board_type == "computer")
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << "\blue You place the circuit board inside the frame."
-					src.icon_state = "1"
-					src.circuit = P
-					user.drop_item()
-					P.loc = src
+					if(user.drop_held_item())
+						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						user << "\blue You place the circuit board inside the frame."
+						icon_state = "1"
+						circuit = P
+						P.forceMove(src)
 				else
 					user << "\red This frame does not accept circuit boards of this type!"
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)

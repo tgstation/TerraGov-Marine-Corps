@@ -126,31 +126,27 @@
 			return
 
 		beaker = item
-		user.drop_item()
-		item.loc = src
+		user.drop_inv_item_to_loc(item, src)
 		user.visible_message("[user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
 		return
 	else if (!istype(item, /obj/item/weapon/grab))
 		return
 	var/obj/item/weapon/grab/G = item
-	if (!ismob(G.affecting))
+	if (!ismob(G.grabbed_thing))
 		return
+	var/mob/M = G.grabbed_thing
 	if (src.occupant)
 		user << "\blue <B>The scanner is already occupied!</B>"
 		return
-	if (G.affecting.abiotic())
+	if (M.abiotic())
 		user << "\blue <B>Subject cannot have abiotic items on.</B>"
 		return
-	put_in(G.affecting)
-	src.add_fingerprint(user)
-	del(G)
-	return
+	put_in(M)
+	add_fingerprint(user)
+
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.loc = src
+	M.forceMove(src)
 	src.occupant = M
 	src.icon_state = "scanner_1"
 
@@ -226,8 +222,7 @@
 /obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/weapon/disk/data)) //INSERT SOME diskS
 		if (!src.disk)
-			user.drop_item()
-			I.loc = src
+			user.drop_inv_item_to_loc(I, src)
 			src.disk = I
 			user << "You insert [I]."
 			nanomanager.update_uis(src) // update all UIs attached to src

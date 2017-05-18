@@ -103,64 +103,47 @@
 
 /obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/stack/sheet/metal) && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
-		var/obj/item/stack/sheet/metal/M = W
-		if (M.use(1))
-			W.loc = get_turf(src)
-			user << "<span class='notice'>You armed the robot frame.</span>"
-			if (user.get_inactive_hand()==src)
-				user.before_take_item(src)
-				user.put_in_inactive_hand(W)
-			del(src)
-		else
-			user << "<span class='warning'>You need one sheet of metal to arm the robot frame.</span>"
 	if(istype(W, /obj/item/robot_parts/l_leg))
-		if(src.l_leg)	return
-		user.drop_item()
-		W.loc = src
-		src.l_leg = W
-		src.updateicon()
+		if(l_leg)	return
+		if(user.drop_inv_item_to_loc(W, src))
+			l_leg = W
+			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
-		if(src.r_leg)	return
-		user.drop_item()
-		W.loc = src
-		src.r_leg = W
-		src.updateicon()
+		if(r_leg)	return
+		if(user.drop_inv_item_to_loc(W, src))
+			r_leg = W
+			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
-		if(src.l_arm)	return
-		user.drop_item()
-		W.loc = src
-		src.l_arm = W
-		src.updateicon()
+		if(l_arm)	return
+		if(user.drop_inv_item_to_loc(W, src))
+			l_arm = W
+			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
-		if(src.r_arm)	return
-		user.drop_item()
-		W.loc = src
-		src.r_arm = W
-		src.updateicon()
+		if(r_arm)	return
+		if(user.drop_inv_item_to_loc(W, src))
+			r_arm = W
+			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
-		if(src.chest)	return
+		if(chest)	return
 		if(W:wires && W:cell)
-			user.drop_item()
-			W.loc = src
-			src.chest = W
-			src.updateicon()
+			if(user.drop_inv_item_to_loc(W, src))
+				chest = W
+				updateicon()
 		else if(!W:wires)
 			user << "\blue You need to attach wires to it first!"
 		else
 			user << "\blue You need to attach a cell to it first!"
 
 	if(istype(W, /obj/item/robot_parts/head))
-		if(src.head)	return
+		if(head)	return
 		if(W:flash2 && W:flash1)
-			user.drop_item()
-			W.loc = src
-			src.head = W
-			src.updateicon()
+			if(user.drop_inv_item_to_loc(W, src))
+				head = W
+				updateicon()
 		else
 			user << "\blue You need to attach a flash to it first!"
 
@@ -195,7 +178,7 @@
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
 			if(!O)	return
 
-			user.drop_item()
+			user.drop_held_item()
 
 			O.mmi = W
 			O.invisibility = 0
@@ -210,8 +193,8 @@
 			O.job = "Cyborg"
 
 			O.cell = chest.cell
-			O.cell.loc = O
-			W.loc = O//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
+			O.cell.forceMove(O)
+			W.forceMove(O)//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
 
 			// Since we "magically" installed a cell, we also have to update the correct component.
 			if(O.cell)
@@ -245,10 +228,9 @@
 			user << "\blue You have already inserted a cell!"
 			return
 		else
-			user.drop_item()
-			W.loc = src
-			src.cell = W
-			user << "\blue You insert the cell!"
+			if(user.drop_inv_item_to_loc(W, src))
+				cell = W
+				user << "\blue You insert the cell!"
 	if(istype(W, /obj/item/stack/cable_coil))
 		if(src.wires)
 			user << "\blue You have already inserted wire!"
@@ -270,19 +252,17 @@
 			user << "\blue You have already inserted the eyes!"
 			return
 		else if(src.flash1)
-			user.drop_item()
-			W.loc = src
-			src.flash2 = W
-			user << "\blue You insert the flash into the eye socket!"
+			if(user.drop_inv_item_to_loc(W, src))
+				flash2 = W
+				user << "\blue You insert the flash into the eye socket!"
 		else
-			user.drop_item()
-			W.loc = src
-			src.flash1 = W
+			user.drop_inv_item_to_loc(W, src)
+			flash1 = W
 			user << "\blue You insert the flash into the eye socket!"
 	else if(istype(W, /obj/item/weapon/stock_parts/manipulator))
 		user << "\blue You install some manipulators and modify the head, creating a functional spider-bot!"
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
-		user.drop_item()
+		user.temp_drop_inv_item(W)
 		del(W)
 		del(src)
 		return

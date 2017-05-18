@@ -4,6 +4,12 @@
 #define r_TRU return TRUE //Handy shorthand.
 #define r_FAL return FALSE
 
+//Game defining directives.
+#define MAIN_SHIP_Z_LEVEL list(3)
+#define GAME_PLAY_Z_LEVELS list(1,2,3)
+#define MAIN_AI_SYSTEM "ARES v3.2"
+#define MAIN_SHIP_ESCAPE_POD_NUMBER 11
+
 /*
 Trash Authority Directives
 Defines for when we need to give commands to the trash authority in how to handle trash.
@@ -104,6 +110,7 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define SHUTTLE_IDLE		0
 #define SHUTTLE_WARMUP		1
 #define SHUTTLE_INTRANSIT	2
+#define SHUTTLE_CRASHED		3
 
 //Ferry shuttle processing status
 #define IDLE_STATE		0
@@ -119,6 +126,13 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define SEC_LEVEL_RED	2
 #define SEC_LEVEL_DELTA	3
 
+//Alarm levels.
+#define ALARM_WARNING_FIRE 	1
+#define ALARM_WARNING_ATMOS	2
+#define ALARM_WARNING_EVAC	4
+#define ALARM_WARNING_READY	8
+#define ALARM_WARNING_DOWN	16
+
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26	//Used to trigger removal from a processing list
 
@@ -133,15 +147,17 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 // for secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
-#define HEALTH_HUD		1 // a simple line rounding the mob's number health
-#define STATUS_HUD		2 // alive, dead, diseased, etc.
-#define ID_HUD			3 // the job asigned to your ID
-#define WANTED_HUD		4 // wanted, released, parroled, security status
+#define HEALTH_HUD			1 // a simple line rounding the mob's number health
+#define STATUS_HUD			2 // alive, dead, diseased, etc.
+#define ID_HUD				3 // the job asigned to your ID
+#define WANTED_HUD			4 // wanted, released, parroled, security status
 #define IMPLOYAL_HUD		5 // loyality implant
-#define IMPCHEM_HUD		6 // chemical implant
+#define IMPCHEM_HUD			6 // chemical implant
 #define IMPTRACK_HUD		7 // tracking implant
 #define SPECIALROLE_HUD 	8 // AntagHUD image
 #define STATUS_HUD_OOC		9 // STATUS_HUD without virus db check for someone being ill.
+#define SQUAD_HUD			10//squad hud showing who's leader, medic, etc for each squad.
+#define TOTAL_HUD_AMOUNT	10
 //=================================================
 
 //computer3 error codes, move lower in the file when it passes dev -Sayu
@@ -168,3 +184,4 @@ var/static/list/scarySounds = list('sound/weapons/thudswoosh.ogg','sound/weapons
 //Flags for zone sleeping
 #define ZONE_ACTIVE 1
 #define ZONE_SLEEPING 0
+#define GET_RANDOM_FREQ rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.

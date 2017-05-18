@@ -39,7 +39,7 @@
 
 	busy = 1
 	user << "\green Updating power settings.."
-	if(do_after(user, 50)) //5s for AI as AIs can manipulate electronics much faster.
+	if(do_after(user, 50, FALSE)) //5s for AI as AIs can manipulate electronics much faster.
 		set_state(!on)
 		user << "\green Update Completed. New setting:[on ? "on": "off"]"
 	busy = 0
@@ -55,7 +55,7 @@
 	for(var/mob/O in viewers(user))
 		O.show_message(text("\red [user] started reprogramming [src]!"), 1)
 
-	if(do_after(user, 300)) // 30s for non-AIs as humans have to manually reprogram it and rapid switching may cause some lag / powernet updates flood. If AIs spam it they can be easily traced.
+	if(do_after(user, 300, FALSE)) // 30s for non-AIs as humans have to manually reprogram it and rapid switching may cause some lag / powernet updates flood. If AIs spam it they can be easily traced.
 		set_state(!on)
 		user.visible_message(\
 		"<span class='notice'>[user.name] [on ? "enabled" : "disabled"] the breaker box!</span>",\

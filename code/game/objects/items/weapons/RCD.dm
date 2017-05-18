@@ -42,7 +42,7 @@ RCD
 			if((stored_matter + 10) > 30)
 				user << "<span class='notice'>The RCD cant hold any more matter-units.</span>"
 				return
-			user.drop_item()
+			user.drop_held_item()
 			del(W)
 			stored_matter += 10
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)

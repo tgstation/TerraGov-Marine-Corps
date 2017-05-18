@@ -25,7 +25,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	max_heat_protection_temperature = HELMET_max_heat_protection_temperature
 	siemens_coefficient = 0.7
 	w_class = 5
-	anti_hug = 1
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
@@ -42,7 +41,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "v62"
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.5
-	anti_hug = 3
 
 //===========================//MARINES\\=================================\\
 //=======================================================================\\
@@ -97,10 +95,30 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
-	var/helmet_garb[] //What items are stored in the helmet as garb, capped at 3.
 	var/helmet_overlays[]
 	flags_inventory = HIDEEARS|BLOCKSHARPOBJ
 	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
+	var/obj/item/weapon/storage/internal/pockets
+	var/list/allowed_helmet_items = list(
+						/obj/item/weapon/flame/lighter/random = "helmet_lighter_",
+						/obj/item/weapon/flame/lighter/zippo = "helmet_lighter_zippo",
+						/obj/item/weapon/storage/box/matches = "helmet_matches",
+						/obj/item/weapon/storage/fancy/cigarettes = "helmet_cig_kpack",
+						/obj/item/weapon/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
+						/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = "helmet_cig_ls",
+						/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
+						/obj/item/weapon/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
+						/obj/item/weapon/deck = "helmet_card_card",
+						/obj/item/weapon/hand = "helmet_card_card",
+						/obj/item/weapon/reagent_containers/food/drinks/flask = "helmet_flask",
+						/obj/item/weapon/reagent_containers/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/weapon/reagent_containers/food/snacks/eat_bar = "helmet_snack_eat",
+						/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
+						/obj/item/clothing/glasses/mgoggles = "goggles",
+						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
+						/obj/item/fluff/val_mcneil_1 = "helmet_rosary",
+						/obj/item/clothing/mask/mara_kilpatrick_1 = "helmet_rosary")
+
 
 	New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
 		new_name[] 			= list(/datum/game_mode/ice_colony =  "\improper M10 pattern marine snow helmet"),
@@ -108,8 +126,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 		var/icon_override[] = type == /obj/item/clothing/head/helmet/marine ? list(/datum/game_mode/ice_colony = "s_helmet[pick(200;1,2)]") : null
 		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 		..()
-		helmet_garb = list()
-		helmet_overlays = list("damage","band","garb1","garb2","garb3") //To make things simple.
+		helmet_overlays = list("damage","band","item") //To make things simple.
 
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
@@ -136,7 +153,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "helml"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
-	anti_hug = 2
 	var/obj/machinery/camera/camera
 
 	New(loc,expected_type 		= type,
@@ -153,7 +169,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 105, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
-	anti_hug = 3
 	unacidable = 1
 
 	New(loc,expected_type 		= type,
@@ -167,7 +182,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "helmetp"
 	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	anti_hug = 2
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 	flags_marine_helmet = NOFLAGS
 
@@ -192,7 +206,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_hat"
 	icon_state = "officer_hat"
-	anti_hug = 3
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	name = "\improper PMC sniper helmet"
@@ -213,7 +226,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
-	anti_hug = 4
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	name = "\improper PMC commando helmet"
@@ -226,7 +238,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
-	anti_hug = 8
 	unacidable = 1
 
 //==========================//DISTRESS\\=================================\\
@@ -267,7 +278,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "dutch_helmet"
 	armor = list(melee = 90, bullet = 65, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	anti_hug = 2
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 
 /obj/item/clothing/head/helmet/space/compression
@@ -276,7 +286,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "compression"
 	icon_state = "compression"
 	armor = list(melee = 40, bullet = 45, laser = 40, energy = 55, bomb = 40, bio = 100, rad = 50)
-	anti_hug = 3
 	unacidable = 1
 
 //==========================//HELMET PROCS\\=============================\\
@@ -285,109 +294,66 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
 	if(flags_marine_helmet & HELMET_DAMAGE_OVERLAY && !(flags_marine_helmet & HELMET_IS_DAMAGED))
 		helmet_overlays["damage"] = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
-		overlays += helmet_overlays["damage"]
 		flags_marine_helmet |= HELMET_IS_DAMAGED
-		if(ismob(loc)) update_icon(loc)
+		update_icon()
 		desc += "\n<b>This helmet seems to be scratched up and damaged, particularly around the face area...</b>"
 
+
 /obj/item/clothing/head/helmet/marine
-	examine()
-		if(contents.len)
-			var/dat = "<br><br>There is something attached to [src]:<br><br>"
-			for(var/obj/O in src)
-				dat += "\blue *\icon[O] - [O]<br>"
+
+	New()
 		..()
+		pockets = new/obj/item/weapon/storage/internal(src)
+		pockets.storage_slots = 1
+		pockets.max_w_class = 2
+		pockets.max_combined_w_class = 2
 
-	update_icon(mob/user, directive = 0) //Defaults to taking things from the helmet.
-		if(!(flags_marine_helmet & HELMET_GARB_OVERLAY) && directive != 2) return
-
-		var/image/reusable/I
-		switch(directive)
-			if(1,2) //We are removing an overlay/s.
-				var/c
-				var/l =  directive == 2? helmet_garb.len : 1
-				for(var/i = 1 to l)
-					c = "garb[directive == 2? i : helmet_garb.len + 1]"
-					I = helmet_overlays[c]
-					overlays -= I
-					cdel(I)
-					helmet_overlays[c] = null
-
-			else //We are adding an overlay.
-				var/allowed_items[] = return_allowed_items()
-				var/obj/O
-				 //It will either have no overlays, or it will have at least the first.
-				for(var/i = helmet_overlays["garb1"]? helmet_garb.len : 1 to helmet_garb.len)
-					O = helmet_garb[i]
-					I = rnew(/image/reusable, list('icons/mob/helmet_garb.dmi', src, "[allowed_items[O.type]][O.type == /obj/item/weapon/flame/lighter/random ? O:clr : ""]"))
-					helmet_overlays["garb[i]"] = I
-					overlays += I
-
-		//Create a band overlay.
-		I = helmet_overlays["band"]
-		overlays -= I
-		cdel(I)
-		if(helmet_garb.len && directive != 2)
-			I = rnew(/image/reusable, list('icons/mob/helmet_garb.dmi', src, "helmet_band"))
-			helmet_overlays["band"] = I
-			overlays += I
-		else helmet_overlays["band"] = null
-
-		user.update_inv_head()
-
-	attackby(obj/item/W, mob/user)
-		if(!(flags_marine_helmet & HELMET_STORE_GARB))
-			user << "<span class='warning'>[src] cannot hold any items!</span>"
-			return
-		var/allowed_items[] = return_allowed_items()
-		if(W.type in allowed_items)
-			if(helmet_garb.len < 3)
-				user.remove_from_mob(W)
-				W.loc = src
-				helmet_garb += W
-				user.visible_message("<span class='notice'>[user] puts [W] on [src].</span>","<span class='info'>You put [W] on [src].</span>")
-				update_icon(user)
-			else user << "<span class='warning'>There is no more space for [W]!</span>"
-		else if(istype(W, /obj/item/weapon/claymore/mercsword/machete))
-			user.visible_message("<span class='warning'>[user] tries to put [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b></span>","<span class='warning'>You try to put [W] on [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b></span>")
-		else user << "<span class='warning'>[W] does not fit on [src]!</span>"
+	attack_hand(mob/user)
+		if (pockets.handle_attack_hand(user))
+			..()
 
 	MouseDrop(over_object, src_location, over_location)
-		if(!ishuman(usr)) return
-		var/mob/living/carbon/human/user = usr
-		if((over_object == user && (in_range(src, user) || locate(src) in user)))
-			if(helmet_garb.len)
-				var/obj/item/choice = input("What item would you like to remove from [src]?") as null|obj in helmet_garb
-				if(choice)
-					if((!user.canmove && !user.buckled) || user.stat || user.restrained() || !in_range(src, user) || !locate(src) in user) return
-					user.put_in_hands(choice)
-					helmet_garb -= choice
-					user.visible_message("<span class='info'>[user] removes [choice] from [src].</span>","<span class='notice'>You remove [choice] from [src].</span>")
-					update_icon(user,1)
+		if(pockets.handle_mousedrop(usr, over_object))
+			..()
 
-			else user << "<span class='warning'>There is nothing attached to [src]!<span>"
+	attackby(obj/item/W, mob/user)
+		..()
+		return pockets.attackby(W, user)
 
-/obj/item/clothing/head/helmet/marine/proc/return_allowed_items()
-	var/allowed_items[] = list(
-						/obj/item/weapon/flame/lighter/random = "helmet_lighter_",
-						/obj/item/weapon/flame/lighter/zippo = "helmet_lighter_zippo",
-						/obj/item/weapon/storage/box/matches = "helmet_matches",
-						/obj/item/weapon/storage/fancy/cigarettes = "helmet_cig_kpack",
-						/obj/item/weapon/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
-						/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = "helmet_cig_ls",
-						/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
-						/obj/item/weapon/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
-						/obj/item/weapon/deck = "helmet_card_card",
-						/obj/item/weapon/hand = "helmet_card_card",
-						/obj/item/weapon/reagent_containers/food/drinks/flask = "helmet_flask",
-						/obj/item/weapon/reagent_containers/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/weapon/reagent_containers/food/snacks/eat_bar = "helmet_snack_eat",
-						/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
-						/obj/item/clothing/glasses/mgoggles = "goggles",
-						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
-						/obj/item/fluff/val_mcneil_1 = "helmet_rosary",
-						/obj/item/clothing/mask/mara_kilpatrick_1 = "helmet_rosary")
-	. = allowed_items
+	on_pocket_insertion()
+		update_icon()
+
+	on_pocket_removal()
+		update_icon()
+
+	update_icon()
+		if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
+			if(!helmet_overlays["band"])
+				var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine_armor.dmi', src, "helmet_band"))
+				helmet_overlays["band"] = I
+
+			if(!helmet_overlays["item"])
+				var/obj/O = pockets.contents[1]
+				if(O.type in allowed_helmet_items)
+					var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine_armor.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/weapon/flame/lighter/random ? O:clr : ""]"))
+					helmet_overlays["item"] = I
+
+		else
+			if(helmet_overlays["item"])
+				var/image/reusable/RI = helmet_overlays["item"]
+				helmet_overlays["item"] = null
+				cdel(RI)
+			if(helmet_overlays["band"])
+				var/image/reusable/J = helmet_overlays["band"]
+				helmet_overlays["band"] = null
+				cdel(J)
+
+		if(ismob(loc))
+			var/mob/M = loc
+			M.update_inv_head()
+
+
+
 
 /obj/item/clothing/head/helmet/marine/leader
 	equipped(var/mob/living/carbon/human/mob, slot)

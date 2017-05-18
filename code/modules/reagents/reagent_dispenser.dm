@@ -1,7 +1,7 @@
 
 
 /obj/structure/reagent_dispensers
-	name = "Dispenser"
+	name = "dispenser"
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
@@ -109,7 +109,7 @@
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
 		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]")
-		if(do_after(usr, 20))
+		if(do_after(usr, 20, 1))
 			usr.visible_message("\blue [usr] detaches [rig] from \the [src].", "\blue  You detach [rig] from \the [src]")
 			rig.loc = get_turf(usr)
 			rig = null
@@ -139,8 +139,7 @@
 				log_game("[key_name(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
 
 			rig = W
-			user.drop_item()
-			W.loc = src
+			user.drop_inv_item_to_loc(W, src)
 
 			var/icon/test = getFlatIcon(W)
 			test.Shift(NORTH,1)
@@ -197,7 +196,7 @@
 	explode()
 
 /obj/structure/reagent_dispensers/peppertank
-	name = "Pepper Spray Refiller"
+	name = "pepper spray refiller"
 	desc = "Refill pepper spray canisters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "peppertank"
@@ -206,7 +205,7 @@
 	amount_per_transfer_from_this = 45
 	New()
 		..()
-		reagents.add_reagent("condensedcapsaicin",1000)
+		reagents.add_reagent("condensedcapsaicin", 1000)
 
 
 /obj/structure/reagent_dispensers/water_cooler
@@ -233,12 +232,13 @@
 		reagents.add_reagent("beer",1000)
 
 /obj/structure/reagent_dispensers/virusfood
-	name = "Virus Food Dispenser"
+	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10
 	anchored = 1
+	density = 0
 
 	New()
 		..()

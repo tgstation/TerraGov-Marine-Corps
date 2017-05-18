@@ -48,7 +48,7 @@
 		return
 	if (src.operating)
 		return
-	if (src.density && !M.small && src.allowed(AM))
+	if (src.density && M.mob_size > MOB_SIZE_SMALL && src.allowed(AM))
 		open()
 		if(src.check_access(null))
 			sleep(50)

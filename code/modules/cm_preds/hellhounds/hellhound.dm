@@ -43,31 +43,6 @@
 		M << "\red If you need help during play, click adminhelp and ask."
 
 
-/mob/living/carbon/hellhound/ClickOn(atom/A, params)
-	if(world.time <= next_click)
-		return
-	next_click = world.time + 2
-
-	if(stat > 0)
-		return //Can't click on shit buster!
-
-	if(attack_timer)
-		return
-
-	if(get_dist(src,A) > 1) return
-
-	if(istype(A,/mob/living/carbon/human))
-		bite_human(A)
-	else if(istype(A,/mob/living/carbon/Xenomorph))
-		bite_xeno(A)
-	else if(istype(A,/mob/living))
-		bite_animal(A)
-	else
-		A.attack_animal(src)
-
-	attack_timer = 1
-	spawn(12)
-		attack_timer = 0
 
 /mob/living/carbon/hellhound/proc/bite_human(var/mob/living/carbon/human/H)
 	if(!istype(H))
@@ -115,7 +90,7 @@
 		visible_message("[src] growls at [X].", "You growl at [X].")
 		return
 	else if(a_intent == "disarm")
-		if (!(X.paralysis ) && !(X.big_xeno))
+		if (!(X.paralysis ) && X.mob_size != MOB_SIZE_BIG)
 			if(prob(40))
 				X.Paralyse(4)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -216,20 +191,12 @@
 				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
 		else
 			if (M.a_intent == "grab")
-				if (M == src || anchored)
-					return
 
-				var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src )
+				if(M == src || anchored)
+					return 0
+				M.start_pulling(src)
+				return 1
 
-				M.put_in_active_hand(G)
-
-				G.synch()
-
-				LAssailant = M
-
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					O.show_message(text("\red [] has grabbed [name] passively!", M), 1)
 			else
 				if (!( paralysis ))
 					if (prob(25))
@@ -333,23 +300,13 @@
 
 /mob/living/carbon/hellhound/movement_delay()
 
-	..()
-
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(stat)
-		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
+	. = ..()
 
-	tally += speed
+	. += speed
 
-	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
-		tally += 1.3
-
-	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.5
-
-	return (tally)
 
 /mob/living/carbon/hellhound/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again

@@ -34,6 +34,7 @@
 		if(SHUTTLE_IDLE) shuttle_state = "idle"
 		if(SHUTTLE_WARMUP) shuttle_state = "warmup"
 		if(SHUTTLE_INTRANSIT) shuttle_state = "in_transit"
+		if(SHUTTLE_CRASHED) shuttle_state = "crashed"
 
 	var/shuttle_status
 	switch (shuttle.process_state)
@@ -100,14 +101,11 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		return
-
-
 
 	if(href_list["move"])
 		if(shuttle.recharging) //Prevent the shuttle from moving again until it finishes recharging. This could be made to look better by using the shuttle computer's visual UI.
@@ -156,18 +154,6 @@
 		else
 			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
 			return
-
-//We need process to handle the ticking values
-/obj/machinery/computer/shuttle_control/process()
-	..()
-	updateUsrDialog()
-	return 1
-
-//	if(href_list["force"])
-//		if(shuttle.moving_status  == SHUTTLE_IDLE)
-//			shuttle.force_launch(src)
-//	else if(href_list["cancel"])
-//		shuttle.cancel_launch(src)
 
 /obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
 

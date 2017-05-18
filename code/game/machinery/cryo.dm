@@ -160,35 +160,31 @@
 			beaker = null
 
 	if(href_list["ejectOccupant"])
-		if(!occupant || isslime(usr) || ispAI(usr))
-			return 0 // don't update UIs attached to this object
+		if(!occupant)
+			return // don't update UIs attached to this object
 		go_out()
 
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-	if(istype(G, /obj/item/weapon/reagent_containers/glass))
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
 			user << "\red A beaker is already loaded into the machine."
 			return
 
-		beaker =  G
-		user.drop_item()
-		G.loc = src
-		user.visible_message("[user] adds \a [G] to \the [src]!", "You add \a [G] to \the [src]!")
-	else if(istype(G, /obj/item/weapon/grab))
-		if(!ismob(G:affecting))
+		beaker =  W
+		if(user.drop_inv_item_to_loc(W, src))
+			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
+	else if(istype(W, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = W
+		if(!ismob(G.grabbed_thing))
 			return
-		for(var/mob/living/carbon/slime/M in range(1,G:affecting))
-			if(M.Victim == G:affecting)
-				usr << "[G:affecting:name] will not fit into the cryo because they have a slime latched onto their head."
-				return
-		var/mob/M = G:affecting
-		if(put_mob(M))
-			del(G)
+		var/mob/M = G.grabbed_thing
+		put_mob(M)
+
 	updateUsrDialog()
-	return
+
 
 /obj/machinery/atmospherics/unary/cryo_cell/update_icon()
 	if(on)
@@ -282,11 +278,7 @@
 	if(!node)
 		usr << "\red The cell is not correctly connected to its pipe network!"
 		return
-	if (M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.stop_pulling()
-	M.loc = src
+	M.forceMove(src)
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		M << "\blue <b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"
 	occupant = M
@@ -320,10 +312,6 @@
 	set name = "Move Inside"
 	set category = "Object"
 	set src in oview(1)
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
-			return
 	if (usr.stat != 0)
 		return
 	put_mob(usr)

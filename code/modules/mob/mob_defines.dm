@@ -61,7 +61,6 @@
 	var/attack_log = list( )
 	var/already_placed = 0.0
 	var/obj/machinery/machine = null
-	var/other_mobs = null
 	var/memory = ""
 	var/poll_answer = 0.0
 	var/sdisabilities = 0	//Carbon
@@ -96,8 +95,7 @@
 	var/canmove = 1
 	var/lastpuke = 0
 	var/unacidable = 0
-	var/small = 0
-	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
+	var/mob_size = MOB_SIZE_HUMAN
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
 	var/list/languages = list()         // For speaking/listening.
 	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
@@ -145,15 +143,13 @@
 
 	var/datum/hud/hud_used = null
 
-	var/list/grabbed_by = list(  )
-	var/list/requests = list(  )
+	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 
 	var/list/mapobjs = list()
 
 	var/in_throw_mode = 0
 
 	var/coughedtime = null
-	var/windowknock_cooldown = 0
 
 	var/inertia_dir = 0
 
@@ -175,7 +171,6 @@
 	var/voice_name = "unidentifiable voice"
 
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
-	var/captured = 0 //Functionally, should give the same effect as being buckled into a chair when true.
 
 //Generic list for proc holders. Only way I can see to enable certain verbs/procs. Should be modified if needed.
 	var/proc_holder_list[] = list()//Right now unused.
@@ -189,9 +184,6 @@
 		for(var/obj/effect/proc_holder/P in proc_holder_list)
 			statpanel("[P.panel]","",P)
 	*/
-
-//The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
-	var/mob/living/carbon/LAssailant = null
 
 //Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
 	var/obj/effect/proc_holder/spell/list/spell_list = list()
@@ -227,7 +219,6 @@
 	var/universal_speak = 0 // Set to 1 to enable the mob to speak to everyone -- TLE
 	var/universal_understand = 0 // Set to 1 to enable the mob to understand everyone, not necessarily speak
 
-	var/has_limbs = 1 //Whether this mob have any limbs he can move with
 	var/can_stand = 1 //Whether this mob have ability to stand
 
 	var/immune_to_ssd = 0
@@ -237,3 +228,5 @@
 	var/list/active_genes=list()
 
 	var/away_timer = 0 //How long the player has been disconnected
+
+	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.

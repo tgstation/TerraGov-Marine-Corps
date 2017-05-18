@@ -135,5 +135,3 @@
 		if(DF.drone_progress >= 100)
 			DF.create_drone(src.client)
 			return
-
-	src << "\red There are no available drone spawn points, sorry."

@@ -57,7 +57,7 @@
 		return
 	usr << "You reinforce the Helmet..."
 	A.anti_hug++
-	user.remove_from_mob(src)
+	user.temp_drop_inv_item(src)
 	cdel(src)
 	..()
 	return
@@ -79,7 +79,7 @@
 	A.armor = list(melee = 70, bullet = 90, laser = 7, energy = 40, bomb = 50, bio = 40, rad = 20)
 	A.slowdown++
 	A.flags_marine_armor |= ARMOR_IS_REINFORCED
-	user.remove_from_mob(src)
+	user.temp_drop_inv_item(src)
 	cdel(src)
 	..()
 	return
@@ -104,7 +104,7 @@
 		return
 	usr << "You spray [A] with the Anti-Acid spray making it unacidable..."
 	A.unacidable = 1
-	user.remove_from_mob(src)
+	user.temp_drop_inv_item(src)
 	cdel(src)
 	..()
 	return

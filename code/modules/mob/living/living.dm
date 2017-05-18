@@ -255,11 +255,11 @@
 		var/mob/living/carbon/C = src
 
 		if (C.handcuffed && !initial(C.handcuffed))
-			C.drop_from_inventory(C.handcuffed)
+			C.drop_inv_item_on_ground(C.handcuffed)
 		C.handcuffed = initial(C.handcuffed)
 
 		if (C.legcuffed && !initial(C.legcuffed))
-			C.drop_from_inventory(C.legcuffed)
+			C.drop_inv_item_on_ground(C.legcuffed)
 		C.legcuffed = initial(C.legcuffed)
 	hud_updateflag |= 1 << HEALTH_HUD
 	hud_updateflag |= 1 << STATUS_HUD
@@ -336,105 +336,72 @@
 
 	return
 
-/mob/living/Move(a, b, flag)
-	if (buckled)
-		return
 
-	if (restrained())
+/mob/living/Move(NewLoc, direct)
+	if (buckled && buckled.loc != NewLoc) //not updating position
+		if (!buckled.anchored)
+			return buckled.Move(NewLoc, direct)
+		else
+			return 0
+
+	var/atom/movable/pullee = pulling
+	if(pullee && get_dist(src, pullee) > 1)
 		stop_pulling()
-
-
-	var/t7 = 1
-	if (restrained())
-		for(var/mob/living/M in range(src, 1))
-			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
-				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
-		var/turf/T = loc
-		. = ..()
-
-		if (pulling && pulling.loc)
-			if(!( isturf(pulling.loc) ))
-				stop_pulling()
-				return
-			else
-				if(Debug)
-					log_debug("Pulling disappeared at line# [__LINE__] in [__FILE__] ([src] was pulling [pulling])")
-
-		/////
-		if(pulling && pulling.anchored)
+	var/turf/T = loc
+	. = ..()
+	if(. && pulling && pulling == pullee) //we were pulling a thing and didn't lose it during our move.
+		if(pulling.anchored)
 			stop_pulling()
 			return
 
-		if (!restrained())
-			var/diag = get_dir(src, pulling)
-			if ((diag - 1) & diag)
-			else
-				diag = null
-			if ((get_dist(src, pulling) > 1 || diag))
-				if (isliving(pulling))
-					var/mob/living/M = pulling
-					var/ok = 1
-					if (locate(/obj/item/weapon/grab, M.grabbed_by))
-						if (prob(75))
-							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/weapon/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
-								del(G)
-						else
-							ok = 0
-						if (locate(/obj/item/weapon/grab, M.grabbed_by.len))
-							ok = 0
-					if (ok)
-						var/atom/movable/t = M.pulling
-						M.stop_pulling()
+		var/pull_dir = get_dir(src, pulling)
+		if(get_dist(src, pulling) > 1 || ((pull_dir - 1) & pull_dir)) //puller and pullee more than one tile away or in diagonal position
+			if(isliving(pulling))
+				var/mob/living/M = pulling
+				if(M.pull_damage() && grab_level < GRAB_AGGRESSIVE) //aggressive grab prevent wounds worsening when being pulled.
+					if(prob(25) && M.stat != DEAD)
+						M.adjustBruteLoss(2)
+						visible_message("<span class='danger'>[M]'s wounds worsen terribly from being dragged!</span>")
+						var/turf/location = M.loc
+						if (istype(location, /turf))
+							location.add_blood(M)
+							if(ishuman(M))
+								var/mob/living/carbon/human/H = M
+								var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
+								if(blood_volume > 0)
+									H.vessel.remove_reagent("blood",1)
 
-						//this is the gay blood on floor shit -- Added back -- Skie
-						if (M.lying && (prob(M.getBruteLoss() / 6)) && M.stat != 2)
-							var/turf/location = M.loc
-							if (istype(location, /turf))
-								location.add_blood(M)
-						//pull damage with injured people
-							if(prob(25))
-								M.adjustBruteLoss(1)
-								visible_message("\red \The [M]'s wounds open more from being dragged!")
-						if(M.pull_damage())
-							if(prob(25) && M.stat != 2)
-								M.adjustBruteLoss(2)
-								visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
-								var/turf/location = M.loc
-								if (istype(location, /turf))
-									location.add_blood(M)
-									if(ishuman(M))
-										var/mob/living/carbon/H = M
-										var/blood_volume = round(H:vessel.get_reagent_amount("blood"))
-										if(blood_volume > 0)
-											H:vessel.remove_reagent("blood",1)
+			pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+			if(pulling && get_dist(src, pulling) > 1) //the pullee couldn't keep up
+				stop_pulling()
 
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)//separated from our puller and not in the middle of a diagonal move.
+		pulledby.stop_pulling()
 
-						step(pulling, get_dir(pulling.loc, T))
-						M.start_pulling(t)
-				else
-					if (pulling)
-						if (istype(pulling, /obj/structure/window))
-							var/obj/structure/window/W = pulling
-							if(W.is_full_window())
-								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
-									stop_pulling()
-					if (pulling)
-						step(pulling, get_dir(pulling.loc, T))
-	else
-		stop_pulling()
-		. = ..()
 
 	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
 
-	if(update_slimes)
-		for(var/mob/living/carbon/slime/M in view(1,src))
-			M.UpdateFeed(src)
+
+
+
+
+/mob/proc/resist_grab(moving_resist)
+	return 1 //returning 0 means we successfully broke free
+
+/mob/living/resist_grab(moving_resist)
+	. = 1
+	if(pulledby.grab_level)
+		if(prob(30/pulledby.grab_level))
+			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
+			pulledby.stop_pulling()
+			return 0
+		if(moving_resist && client) //we resisted by trying to move
+			client.move_delay = world.time + 20
+	else
+		pulledby.stop_pulling()
+		return 0
+
 
 /mob/living/verb/resist()
 	set name = "Resist"
@@ -442,9 +409,11 @@
 
 	if(!isliving(usr) || usr.next_move > world.time)
 		return
-	usr.next_move = world.time + 20
-
+	if(usr.stat || usr.weakened || usr.stunned || usr.paralysis)
+		src << "<span class='warning'>You can't resist in your current state.</span>"
+		return
 	var/mob/living/L = usr
+	usr.next_move = world.time + 20
 
 	//Getting out of someone's inventory.
 	if(istype(src.loc,/obj/item/weapon/holder))
@@ -452,7 +421,7 @@
 		var/mob/M = H.loc                      //Get our mob holder (if any).
 
 		if(istype(M))
-			M.drop_from_inventory(H)
+			M.drop_inv_item_on_ground(H)
 			M << "[H] wriggles out of your grip!"
 			src << "You wriggle out of [M]'s grip!"
 		else if(istype(H.loc,/obj/item))
@@ -468,32 +437,10 @@
 		return
 
 	//resisting grabs (as if it helps anyone...)
-	if ((!( L.stat ) && L.canmove && !( L.restrained() )))
-		var/resisting = 0
-		for(var/obj/O in L.requests)
-			L.requests.Remove(O)
-			del(O)
-			resisting++
-		for(var/obj/item/weapon/grab/G in usr.grabbed_by)
-			resisting++
-			if (G.state == 1)
-				del(G)
-			else
-				if (G.state == 2)
-					if (prob(25))
-						for(var/mob/O in viewers(L, null))
-							O.show_message(text("\red [] has broken free of []'s grip!", L, G.assailant), 1)
-						del(G)
-				else
-					if (G.state == 3)
-						if (prob(5))
-							for(var/mob/O in viewers(usr, null))
-								O.show_message(text("\red [] has broken free of []'s headlock!", L, G.assailant), 1)
-							del(G)
-		if(resisting)
-			for(var/mob/O in viewers(usr, null))
-				O.show_message(text("\red <B>[] resists!</B>", L), 1)
-
+	if(!is_mob_restrained() && pulledby)
+		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
+		resist_grab()
+		return
 
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time) )
@@ -510,7 +457,7 @@
 				for(var/mob/O in viewers(L))
 					O.show_message("\red <B>[usr] attempts to unbuckle themself!</B>", 1)
 				spawn(0)
-					if(do_after(usr, 1200))
+					if(do_after(usr, 1200, FALSE))
 						if(!C.buckled)
 							return
 						for(var/mob/O in viewers(C))
@@ -519,14 +466,6 @@
 						C.buckled.manual_unbuckle(C)
 		else
 			L.buckled.manual_unbuckle(L)
-	else if(src.pinned.len)
-		src << "<B>You attempt to rip yourself free.. This will be painful!</b>"
-		if(do_after(src,80))
-			if(src.anchored && src.pinned.len)
-				src.visible_message("[src] rips themself free!","<span class='warning'>You rip free from the wall!</span>")
-				src.pinned = null
-				src.anchored = 0
-				src.apply_damage(20,BRUTE)
 
 	//Breaking out of a locker?
 	else if( src.loc && (istype(src.loc, /obj/structure/closet)) )
@@ -554,7 +493,7 @@
 
 
 		spawn(0)
-			if(do_after(usr,(breakout_time*60*10))) //minutes * 60seconds * 10deciseconds
+			if(do_after(usr,(breakout_time*60*10), FALSE)) //minutes * 60seconds * 10deciseconds
 				if(!C || !L || L.stat != CONSCIOUS || L.loc != C || C.opened) //closet/user destroyed OR user dead/unconcious OR user no longer in closet OR closet opened
 					return
 
@@ -626,7 +565,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("\red <B>[] is trying to break the handcuffs!</B>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50))
+					if(do_after(CM, 50, FALSE))
 						if(!CM.handcuffed || CM.buckled)
 							return
 						for(var/mob/O in viewers(CM))
@@ -635,7 +574,7 @@
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						del(CM.handcuffed)
 						CM.handcuffed = null
-						CM.update_inv_handcuffed()
+						CM.handcuff_update()
 			else
 				var/obj/item/weapon/handcuffs/HC = CM.handcuffed
 				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
@@ -648,7 +587,7 @@
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.handcuffed]."
-						CM.drop_from_inventory(CM.handcuffed)
+						CM.drop_inv_item_on_ground(CM.handcuffed)
 						return*/ //Commented by Apop
 
 
@@ -658,13 +597,13 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "\red <B>[usr] attempts to remove \the [HC]!</B>", 1)
 				spawn(0)
-					if(do_after(CM, breakouttime))
+					if(do_after(CM, breakouttime, FALSE))
 						if(!CM.handcuffed || CM.buckled)
 							return // time leniency for lag which also might make this whole thing pointless but the server
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.handcuffed]."
-						CM.drop_from_inventory(CM.handcuffed)
+						CM.drop_inv_item_on_ground(CM.handcuffed)
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
@@ -682,16 +621,15 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("\red <B>[] is trying to break the legcuffs!</B>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50))
+					if(do_after(CM, 50, FALSE))
 						if(!CM.legcuffed || CM.buckled)
 							return
 						for(var/mob/O in viewers(CM))
 							O.show_message(text("\red <B>[] manages to break the legcuffs!</B>", CM), 1)
 						CM << "\red You successfully break your legcuffs."
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+						CM.temp_drop_inv_item(CM.legcuffed)
 						del(CM.legcuffed)
-						CM.legcuffed = null
-						CM.update_inv_legcuffed()
 			else
 				var/obj/item/weapon/legcuffs/HC = CM.legcuffed
 				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
@@ -703,15 +641,13 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "\red <B>[usr] attempts to remove \the [HC]!</B>", 1)
 				spawn(0)
-					if(do_after(CM, breakouttime))
+					if(do_after(CM, breakouttime, FALSE))
 						if(!CM.legcuffed || CM.buckled)
 							return // time leniency for lag which also might make this whole thing pointless but the server
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the legcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.legcuffed]."
-						CM.drop_from_inventory(CM.legcuffed)
-						CM.legcuffed = null
-						CM.update_inv_legcuffed()
+						CM.drop_inv_item_on_ground(CM.legcuffed)
 
 /mob/living/verb/lay_down()
 	set name = "Rest"
@@ -727,11 +663,134 @@
 	return 1
 
 /mob/living/movement_delay()
-
-	tally = 0 //Reset tally from last call
-
+	. = 0
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(pulling && !istype(pulling, /obj/structure/stool/bed/roller))	//Dragging stuff slows you down a bit.
-		tally += 3
+	if(pulling && pulling.drag_delay)	//Dragging stuff can slow you down a bit.
+		var/pull_delay = pulling.drag_delay
+		if(ismob(pulling))
+			var/mob/M = pulling
+			if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
+				pull_delay = M.buckled.drag_delay
+		. += pull_delay + 3*grab_level //harder grab makes you slower
+
+	if(next_move_slowdown)
+		. += next_move_slowdown
+		next_move_slowdown = 0
+
+/mob/living
+	forceMove(atom/destination)
+		stop_pulling()
+		if(buckled)
+			buckled.unbuckle()
+		. = ..()
+		if(.)
+			reset_view(destination)
+
+
+
+
+/mob/living/Bump(atom/movable/AM, yes)
+	if(buckled || !yes || now_pushing)
+		return
+	now_pushing = 1
+	if(isliving(AM))
+		var/mob/living/L = AM
+
+		//Leaping mobs just land on the tile, no pushing, no anything.
+		if(status_flags & LEAPING)
+			loc = L.loc
+			status_flags &= ~LEAPING
+			now_pushing = 0
+			return
+
+		if(isXeno(L) && !isXenoLarva(L)) // Prevents humans from pushing any Xenos, but big Xenos and Preds can still push small Xenos
+			var/mob/living/carbon/Xenomorph/X = L
+			if(has_species(src,"Human") || X.mob_size == MOB_SIZE_BIG)
+				now_pushing = 0
+				return
+
+		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
+			if(!(world.time % 5))
+				src << "\red [L] is restrained, you cannot push past"
+			now_pushing = 0
+			return
+
+ 		if(L.pulling)
+ 			if(ismob(L.pulling))
+ 				var/mob/P = L.pulling
+ 				if(P.is_mob_restrained())
+ 					if(!(world.time % 5))
+ 						src << "<span class='warning'>[L] is restraining [P], you cannot push past.</span>"
+					now_pushing = 0
+					return
+
+		if(ishuman(L))
+
+			if(HULK in L.mutations)
+				if(prob(70))
+					usr << "\red <B>You fail to push [L]'s fat ass out of the way.</B>"
+					now_pushing = 0
+					return
+			if(!(L.status_flags & CANPUSH))
+				now_pushing = 0
+				return
+
+		if(moving_diagonally)//no mob swap during diagonal moves.
+			now_pushing = 0
+			return
+
+		if(!L.buckled)
+			var/mob_swap
+			//the puller can always swap with its victim if on grab intent
+			if(L.pulledby == src && a_intent == "grab")
+				mob_swap = 1
+			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
+			else if((L.is_mob_restrained() || L.a_intent == "help") && (is_mob_restrained() || a_intent == "help"))
+				mob_swap = 1
+			if(mob_swap)
+				//switch our position with L
+				if(loc && !loc.Adjacent(L.loc))
+					now_pushing = 0
+					return
+				var/oldloc = loc
+				var/oldLloc = L.loc
+
+
+				var/L_passmob = (L.flags_pass & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
+				var/src_passmob = (flags_pass & PASSMOB)
+				L.flags_pass |= PASSMOB
+				flags_pass |= PASSMOB
+
+				L.Move(oldloc)
+				Move(oldLloc)
+
+				if(!src_passmob)
+					flags_pass &= ~PASSMOB
+				if(!L_passmob)
+					L.flags_pass &= ~PASSMOB
+
+				now_pushing = 0
+				return
+
+		if(!(L.status_flags & CANPUSH))
+			now_pushing = 0
+			return
+
+	now_pushing = 0
+	..()
+	if (!( istype(AM, /atom/movable) ))
+		return
+	if (!( now_pushing ))
+		now_pushing = 1
+		if (!( AM.anchored ))
+			var/t = get_dir(src, AM)
+			if (istype(AM, /obj/structure/window))
+				var/obj/structure/window/W = AM
+				if(W.is_full_window())
+					for(var/obj/structure/window/win in get_step(AM,t))
+						now_pushing = 0
+						return
+			step(AM, t)
+		now_pushing = 0

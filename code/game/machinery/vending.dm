@@ -173,19 +173,19 @@
 			attack_hand(user)
 		return
 	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
-		user.drop_item()
-		W.loc = src
-		coin = W
-		user << "\blue You insert the [W] into the [src]"
+		if(user.drop_inv_item_to_loc(W, src))
+			coin = W
+			user << "\blue You insert the [W] into the [src]"
 		return
-	else if(istype(W, /obj/item/weapon/card) && currently_vending)
+	else if(istype(W, /obj/item/weapon/card))
 		var/obj/item/weapon/card/I = W
 		scan_card(I)
+		return
 	else if (istype(W, /obj/item/weapon/spacecash/ewallet))
-		user.drop_item()
-		W.loc = src
-		ewallet = W
-		user << "\blue You insert the [W] into the [src]"
+		if(user.drop_inv_item_to_loc(W, src))
+			ewallet = W
+			user << "\blue You insert the [W] into the [src]"
+		return
 
 	else if(istype(W, /obj/item/weapon/wrench))
 
@@ -307,7 +307,7 @@
 	if(tipped_level == 2)
 		tipped_level = 1
 		user.visible_message("\blue [user] begins to heave the vending machine back into place!","\blue You start heaving the vending machine back into place..")
-		if(do_after(user,80))
+		if(do_after(user,80, FALSE))
 			user.visible_message("\blue [user] rights the [src]!","\blue You right the [src]!")
 			flip_back()
 			return
@@ -399,7 +399,7 @@
 /obj/machinery/vending/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if(usr.stat || usr.restrained())
+	if(usr.stat || usr.is_mob_restrained())
 		return
 
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
@@ -547,7 +547,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.restrained() || user.lying)
+	if(user.stat || user.is_mob_restrained() || user.lying)
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
@@ -570,7 +570,7 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_atom & WIELDED)
 					item_to_stock.unwield(user)
-				user.u_equip(item_to_stock)
+				user.temp_drop_inv_item(item_to_stock)
 			del(item_to_stock)
 			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
 			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
@@ -981,7 +981,7 @@
 	delay_product_spawn = 1
 
 	products = list(/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3,/obj/item/seeds/carrotseed = 3,/obj/item/seeds/chantermycelium = 3,/obj/item/seeds/chiliseed = 3,
-					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3, /obj/item/seeds/replicapod = 3,/obj/item/seeds/soyaseed = 3,
+					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3,/obj/item/seeds/soyaseed = 3,
 					/obj/item/seeds/sunflowerseed = 3,/obj/item/seeds/tomatoseed = 3,/obj/item/seeds/towermycelium = 3,/obj/item/seeds/wheatseed = 3,/obj/item/seeds/appleseed = 3,
 					/obj/item/seeds/poppyseed = 3,/obj/item/seeds/sugarcaneseed = 3,/obj/item/seeds/ambrosiavulgarisseed = 3,/obj/item/seeds/peanutseed = 3,/obj/item/seeds/whitebeetseed = 3,/obj/item/seeds/watermelonseed = 3,/obj/item/seeds/limeseed = 3,
 					/obj/item/seeds/lemonseed = 3,/obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3,/obj/item/seeds/cocoapodseed = 3,/obj/item/seeds/plumpmycelium = 2,
@@ -1069,4 +1069,3 @@
 					/obj/item/weapon/scalpel = 2,/obj/item/weapon/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
-

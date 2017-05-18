@@ -289,7 +289,7 @@ steam.start() -- spawns the effect
 		return
 	else
 		if (prob(20))
-			M.drop_item()
+			M.drop_held_item()
 		M.adjustOxyLoss(1)
 		if (M.coughedtime != 1)
 			M.coughedtime = 1
@@ -313,7 +313,7 @@ steam.start() -- spawns the effect
 	if (!..())
 		return 0
 
-	M.drop_item()
+	M.drop_held_item()
 	M:sleeping += 1
 	if (M.coughedtime != 1)
 		M.coughedtime = 1
@@ -363,7 +363,7 @@ steam.start() -- spawns the effect
 		return
 	else
 		if (prob(20))
-			M.drop_item()
+			M.drop_held_item()
 		M.adjustOxyLoss(1)
 		M.updatehealth()
 		if (M.coughedtime != 1)
@@ -624,17 +624,9 @@ steam.start() -- spawns the effect
 /obj/effect/effect/foam/Crossed(var/atom/movable/AM)
 	if(metal)
 		return
-
-	if (istype(AM, /mob/living/carbon))
-		var/mob/M =	AM
-		if (istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inventory&NOSLIPPING) || M.buckled)
-			return
-
-		M.stop_pulling()
-		M << "\blue You slipped on the foam!"
-		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-		M.Stun(5)
-		M.Weaken(2)
+	if (iscarbon(AM))
+		var/mob/living/carbon/C = AM
+		C.slip("foam", 5, 2)
 
 
 /datum/effect/effect/system/foam_spread
@@ -745,12 +737,9 @@ steam.start() -- spawns the effect
 
 		if (istype(I, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = I
-			G.affecting.loc = src.loc
-			for(var/mob/O in viewers(src))
-				if (O.client)
-					O << "\red [G.assailant] smashes [G.affecting] through the foamed metal wall."
-			del(I)
-			del(src)
+			if(ismob(G.grabbed_thing))
+				G.grabbed_thing.forceMove(loc)
+				user.visible_message("<span class='danger'>[user] smashes [G.grabbed_thing] through the foamed metal wall.</span>")
 			return
 
 		if(prob(I.force*20 - metal*25))

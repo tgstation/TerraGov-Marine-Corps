@@ -251,14 +251,6 @@
 	icon_on = "redzippoon"
 	icon_off = "redzippo"
 
-////////////////////////////// Tudoreleuu - Emilia Scotts - Customized pAI /////////////
-
-/obj/item/device/paicard/fluff/emilia_scotts
-	name = "Customized pAI unit"
-	desc = "It seems to be a pAI Unit, albeit in a different shell. It acts exactly like the normal one. "
-	icon = 'icons/obj/custom_items.dmi'
-	icon_state = "customized_pai"
-
 ////////////////////////////// Vivallion - Isaac Jachym - Butterfly Lighter ////////////
 
 /obj/item/weapon/flame/lighter/zippo/fluff/isaac_jachym
@@ -560,7 +552,7 @@
 
 		kit.uses--
 		if(kit.uses<1)
-			user.drop_item()
+			user.drop_held_item()
 			del(O)
 
 /obj/item/clothing/suit/space/rig/attackby(var/obj/item/O as obj, mob/user as mob)
@@ -579,7 +571,7 @@
 
 		kit.uses--
 		if(kit.uses<1)
-			user.drop_item()
+			user.drop_held_item()
 			del(O)
 
 ///////// Salvage crew hardsuit - Cybele Petit - solaruin ///////////////
@@ -924,7 +916,7 @@
 		set category = "Object"
 		set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
+		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 			return 0
 
 		switch(icon_state)
@@ -1083,7 +1075,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(!usr.canmove || usr.stat || usr.restrained())
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
 	if(src.icon_state == "jane_sid_suit_down")
@@ -1213,7 +1205,7 @@
 			usr << "[src] already has something inside it."
 		else
 			usr << "You slip [O] into [src]."
-			user.drop_item()
+			user.drop_held_item()
 			O.loc = src
 			src.held = O
 		return

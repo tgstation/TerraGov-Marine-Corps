@@ -94,10 +94,9 @@
 		if (src.holding)
 			return
 		var/obj/item/weapon/tank/T = W
-		user.drop_item()
-		T.loc = src
-		src.holding = T
-		update_icon()
+		if(user.drop_inv_item_to_loc(T, src))
+			holding = T
+			update_icon()
 		return
 
 	else if (istype(W, /obj/item/weapon/wrench))
@@ -156,11 +155,10 @@
 
 		var/obj/item/weapon/cell/C = I
 
-		user.drop_item()
-		C.add_fingerprint(user)
-		cell = C
-		C.loc = src
-		user.visible_message("\blue [user] opens the panel on [src] and inserts [C].", "\blue You open the panel on [src] and insert [C].")
+		if(user.drop_inv_item_to_loc(C, src))
+			C.add_fingerprint(user)
+			cell = C
+			user.visible_message("\blue [user] opens the panel on [src] and inserts [C].", "\blue You open the panel on [src] and insert [C].")
 		return
 
 	if(istype(I, /obj/item/weapon/screwdriver))

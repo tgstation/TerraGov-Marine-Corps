@@ -47,7 +47,7 @@
 		return ..()
 
 	if(!held_card)
-		user.drop_item()
+		user.drop_held_item()
 		O.loc = src
 		held_card = O
 
@@ -165,7 +165,7 @@
 					var/obj/item/I = usr.get_active_hand()
 					if (istype(I, /obj/item/weapon/card/id))
 						var/obj/item/weapon/card/id/C = I
-						usr.drop_item()
+						usr.drop_held_item()
 						C.loc = src
 						held_card = C
 

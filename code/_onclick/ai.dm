@@ -1,7 +1,7 @@
 /*
 	AI ClickOn()
 
-	Note currently ai restrained() returns 0 in all cases,
+	Note currently ai is_mob_restrained() returns 0 in all cases,
 	therefore restrained code has been removed
 
 	The AI can double click to move the camera (this was already true but is cleaner),
@@ -62,8 +62,8 @@
 		return
 
 	/*
-		AI restrained() currently does nothing
-	if(restrained())
+		AI is_mob_restrained() currently does nothing
+	if(is_mob_restrained())
 		RestrainedClickOn(A)
 	else
 	*/

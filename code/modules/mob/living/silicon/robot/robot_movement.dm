@@ -13,18 +13,18 @@
 
  //No longer needed, but I'll leave it here incase we plan to re-use it.
 /mob/living/silicon/robot/movement_delay()
-
-	..()
-
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	tally += speed
+	. = ..()
+
+	. += speed
 
 	if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
-		tally -= 3
+		. -= 3
 
-	return tally + config.robot_delay
+	. += config.robot_delay
+
 
 // NEW: Use power while moving.
 /mob/living/silicon/robot/SelfMove(turf/n, direct)

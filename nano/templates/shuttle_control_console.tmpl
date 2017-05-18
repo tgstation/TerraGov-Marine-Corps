@@ -1,11 +1,13 @@
 <h3>Shuttle Status</h3>
 <div class="item" style="padding-top: 10px">
-	<div class="item">
-		{{:data.shuttle_status}}
-	</div>
-	<div class="item">
-		{{:data.shuttle_status_optimization}}
-	</div>
+	{{if data.shuttle_state != "crashed"}}
+		<div class="item">
+			{{:data.shuttle_status}}
+		</div>
+		<div class="item">
+			{{:data.shuttle_status_optimization}}
+		</div>
+	{{/if}}
 </div>
 <div class="item" style="padding-top: 10px">
 	<div class="item">
@@ -23,7 +25,7 @@
 				<span class="bad">ERROR</span>
 			{{/if}}
 		</div>
-		{{if data.recharge_time > 0}}
+		{{if data.shuttle_state != "crashed" && data.recharge_time > 0}}
 			{{if data.shuttle_state == "idle"}}
 				<div class="line">
 					<div class="statusLabel">Recharge Status:</div>
@@ -51,7 +53,7 @@
 		{{/if}}
 	</div>
 </div>
-{{if data.has_docking}}
+{{if data.has_docking && data.shuttle_state != "crashed"}}
 	<div class="item" style="padding-top: 10px">
 		<div class="item">
 			<div class="itemLabel">
@@ -83,16 +85,18 @@
 	</div>
 {{/if}}
 
-<h3>Shuttle Control</h3>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-			{{:helper.link('Launch Shuttle', 'arrowthickstop-1-e', {'move' : '1'}, data.can_launch? null : 'disabled' , null)}}
-			<!-- {{:helper.link('Cancel Launch', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
-			{{:helper.link('Force Launch', 'alert', {'force' : '1'}, data.can_force? null : 'disabled' , data.can_force ? 'redButton' : null)}} -->
-			{{if data.optimize_allowed == 1}}
-				{{:helper.link('Run Flight Optimization', 'refresh', {'optimize' : '1'}, data.can_optimize? null : 'disabled' , null)}}
-			{{/if}}
+{{if data.shuttle_state != "crashed"}}
+	<h3>Shuttle Control</h3>
+	<div class="item" style="padding-top: 10px">
+		<div class="item">
+			<div class="itemContent" style="padding-top: 2px; width: 100%">
+				{{:helper.link('Launch Shuttle', 'arrowthickstop-1-e', {'move' : '1'}, data.can_launch? null : 'disabled' , null)}}
+				<!-- {{:helper.link('Cancel Launch', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
+				{{:helper.link('Force Launch', 'alert', {'force' : '1'}, data.can_force? null : 'disabled' , data.can_force ? 'redButton' : null)}} -->
+				{{if data.optimize_allowed == 1}}
+					{{:helper.link('Run Flight Optimization', 'refresh', {'optimize' : '1'}, data.can_optimize? null : 'disabled' , null)}}
+				{{/if}}
+			</div>
 		</div>
 	</div>
-</div>
+{{/if}}

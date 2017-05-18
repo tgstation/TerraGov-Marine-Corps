@@ -113,21 +113,21 @@
 		icon_state = "[icon_state]_c"
 		name = "crumpled [name]"
 
-/obj/item/tape/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!lifted && ismob(mover))
-		var/mob/M = mover
+/obj/item/tape/Crossed(atom/movable/AM)
+	if(!lifted && ismob(AM))
+		var/mob/M = AM
 		add_fingerprint(M)
-		if (!allowed(M))	//only select few learn art of not crumpling the tape
-			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
+		if(!allowed(M))	//only select few learn art of not crumpling the tape
+			if(ishuman(M))
+				M << "<span class='warning'>You are not supposed to go past [src]...</span>"
 			crumple()
-	return ..(mover)
 
 /obj/item/tape/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	breaktape(W, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
-	if (user.a_intent == "help" && src.allowed(user))
-		user.show_viewers("\blue [user] lifts [src], allowing passage.")
+	if (user.a_intent == "help" && allowed(user))
+		user.show_viewers("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
 		lifted = 1
 		spawn(200)

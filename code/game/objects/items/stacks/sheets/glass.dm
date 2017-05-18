@@ -17,7 +17,7 @@
 	icon_state = "sheet-glass"
 	matter = list("glass" = 3750)
 	origin_tech = "materials=1"
-	var/created_window = /obj/structure/window/basic
+	var/created_window = /obj/structure/window
 	var/is_reinforced = 0
 	var/list/construction_options = list("One Direction", "Full Window")
 
@@ -27,7 +27,7 @@
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
 	matter = null
-	created_window = /obj/structure/window/basic
+	created_window = /obj/structure/window
 
 /obj/item/stack/sheet/glass/attack_self(mob/user as mob)
 

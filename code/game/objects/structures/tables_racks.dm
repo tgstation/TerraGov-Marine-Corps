@@ -41,7 +41,7 @@
 		else
 			new /obj/item/stack/sheet/metal(loc)
 	density = 0
-	del(src)
+	cdel(src)
 
 /obj/structure/table/proc/update_adjacent()
 	for(var/direction in list(1,2,4,8,5,6,9,10))
@@ -285,7 +285,8 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
-	if(locate(/obj/structure/table) in get_turf(mover))
+	var/obj/structure/table/T = locate(/obj/structure/table) in get_turf(mover)
+	if(T && !T.flipped) //flipped tables don't count
 		return 1
 	if (flipped)
 		if (get_dir(loc, target) == dir)
@@ -320,33 +321,32 @@
 		return ..()
 	if(isrobot(user))
 		return
-	user.drop_item()
+	user.drop_held_item()
 	if (O.loc != src.loc)
 		step(O, get_dir(O, src))
 	return
 
 
-/obj/structure/table/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/table/attackby(obj/item/W, mob/user)
 	if (!W) return
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
+	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<=1)
 		var/obj/item/weapon/grab/G = W
-		if (istype(G.affecting, /mob/living))
-			var/mob/living/M = G.affecting
-			if (G.state < 2)
+		if (istype(G.grabbed_thing, /mob/living))
+			var/mob/living/M = G.grabbed_thing
+			if (user.grab_level < GRAB_AGGRESSIVE)
 				if(user.a_intent == "hurt")
 					if (prob(15))	M.Weaken(5)
 					M.apply_damage(8,def_zone = "head")
-					visible_message("\red [G.assailant] slams [G.affecting]'s face against \the [src]!")
+					visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>")
 					playsound(src.loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 				else
-					user << "\red You need a better grip to do that!"
+					user << "<span class='warning'>You need a better grip to do that!</span>"
 					return
 			else
-				G.affecting.loc = src.loc
-				G.affecting.Weaken(5)
-				visible_message("\red [G.assailant] puts [G.affecting] on \the [src].")
-			del(W)
-			return
+				M.forceMove(loc)
+				M.Weaken(5)
+				visible_message("<span class='danger'>[user] puts [M] on [src].</span>")
+		return
 
 	if (istype(W, /obj/item/weapon/wrench))
 		user << "\blue Now disassembling table"
@@ -379,8 +379,8 @@
 			user << "\red You slice at the table, but only claw it up a little."
 		return
 
-	user.drop_item(src)
-	return
+	user.drop_inv_item_to_loc(W, loc)
+
 
 /obj/structure/table/proc/straight_table_check(var/direction)
 	var/obj/structure/table/T
@@ -597,7 +597,7 @@
 		return
 	if(isrobot(user))
 		return
-	user.drop_item()
+	user.drop_held_item()
 	if (O.loc != src.loc)
 		step(O, get_dir(O, src))
 	return
@@ -609,7 +609,7 @@
 		return
 	if(isrobot(user))
 		return
-	user.drop_item()
+	user.drop_held_item()
 	if(W && W.loc)	W.loc = src.loc
 	return
 

@@ -21,10 +21,10 @@
 	var/icon 		= 'icons/obj/projectiles.dmi'
 	var/icon_state 	= "bullet"
 	var/ping 		= "ping_b" //The icon that is displayed when the bullet bounces off something.
-	var/sound_hit[] //When it deals damage.
-	var/sound_armor[] //When it's blocked by human armor.
-	var/sound_miss[] //When it misses someone.
-	var/sound_bounce[] //When it bounces off something.
+	var/sound_hit //When it deals damage.
+	var/sound_armor //When it's blocked by human armor.
+	var/sound_miss //When it misses someone.
+	var/sound_bounce //When it bounces off something.
 
 	var/iff_signal			= 0 //PLACEHOLDER. Bullets that can skip friendlies will call for this.
 	var/accuracy 			= 0 //This is added to the bullet's base accuracy.
@@ -84,7 +84,7 @@
 			if(isliving(M)) //This is pretty ugly, but what can you do.
 				if(isXeno(M))
 					var/mob/living/carbon/Xenomorph/target = M
-					if(target.big_xeno) return //Big xenos are not affected.
+					if(target.mob_size == MOB_SIZE_BIG) return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
 					target << "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
 				else
@@ -147,30 +147,16 @@
 	name = "default bullet"
 	icon_state = "bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC
-	sound_hit 	 = list('sound/bullets/bullet_impact1.ogg',
-						'sound/bullets/bullet_impact2.ogg',
-						'sound/bullets/bullet_impact1.ogg')
-	sound_armor  = list('sound/bullets/bullet_armor1.ogg',
-						'sound/bullets/bullet_armor2.ogg',
-						'sound/bullets/bullet_armor3.ogg',
-						'sound/bullets/bullet_armor4.ogg')
-	sound_miss	 = list('sound/bullets/bullet_miss1.ogg',
-						'sound/bullets/bullet_miss2.ogg',
-						'sound/bullets/bullet_miss3.ogg',
-						'sound/bullets/bullet_miss3.ogg')
-	sound_bounce = list('sound/bullets/bullet_ricochet1.ogg',
-						'sound/bullets/bullet_ricochet2.ogg',
-						'sound/bullets/bullet_ricochet3.ogg',
-						'sound/bullets/bullet_ricochet4.ogg',
-						'sound/bullets/bullet_ricochet5.ogg',
-						'sound/bullets/bullet_ricochet6.ogg',
-						'sound/bullets/bullet_ricochet7.ogg',
-						'sound/bullets/bullet_ricochet8.ogg')
+	sound_hit 	 = "ballistic_hit"
+	sound_armor  = "ballistic_armor"
+	sound_miss	 = "ballistic_miss"
+	sound_bounce = "ballistic_bounce"
+
 	New()
 		..()
 		damage = config.base_hit_damage
 		shrapnel_chance = config.low_shrapnel_chance
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.super_shell_speed
 
 /*
 //================================================
@@ -244,7 +230,7 @@
 		..()
 		damage = config.min_hit_damage
 		damage_var_high = config.high_proj_variance
-		shell_speed = config.slow_shell_speed
+		shell_speed = config.reg_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
@@ -432,7 +418,7 @@
 		damage_bleed = config.buckshot_damage_bleed
 		penetration	= -config.mlow_armor_penetration
 		bonus_projectiles = config.low_proj_extra
-		shell_speed = config.slow_shell_speed
+		shell_speed = config.reg_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
@@ -450,7 +436,7 @@
 		damage_var_low = -config.med_proj_variance
 		damage_var_high = config.med_proj_variance
 		damage_bleed = config.extra_damage_bleed
-		shell_speed = config.slow_shell_speed
+		shell_speed = config.reg_shell_speed
 
 
 /*
@@ -471,7 +457,7 @@
 		scatter = -config.med_scatter_value
 		damage = config.mhigh_hit_damage
 		penetration= config.mhigh_armor_penetration
-		shell_speed = config.fast_shell_speed
+		shell_speed = config.ultra_shell_speed
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -506,7 +492,7 @@
 		..()
 		accuracy = config.max_hit_accuracy
 		damage = config.super_hit_damage
-		shell_speed = config.super_shell_speed
+		shell_speed = config.ultra_shell_speed + 1
 
 /*
 //================================================
@@ -570,7 +556,7 @@
 		..()
 		accurate_range = config.short_shell_range
 		max_range = config.norm_shell_range //Bump the range since view distance got bumped too.
-		damage = config.med_hit_damage
+		damage = config.low_hit_damage
 		penetration= config.mhigh_armor_penetration //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
 		accuracy = config.high_hit_accuracy
 
@@ -596,7 +582,7 @@
 	name = "high explosive rocket"
 	icon_state = "missile"
 	ping = null //no bounce off.
-	sound_bounce	= list('sound/bullets/rocket_ricochet1.ogg','sound/bullets/rocket_ricochet2.ogg','sound/bullets/rocket_ricochet3.ogg')
+	sound_bounce	= "rocket_bounce"
 	damage_bleed = 0
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 	New()
@@ -742,9 +728,9 @@
 
 /datum/ammo/energy
 	ping = null //no bounce off. We can have one later.
-	sound_hit 	 	= list('sound/bullets/energy_impact1.ogg')
-	sound_miss		= list('sound/bullets/energy_miss1.ogg')
-	sound_bounce	= list('sound/bullets/energy_ricochet1.ogg')
+	sound_hit 	 	= "energy_hit"
+	sound_miss		= "energy_miss"
+	sound_bounce	= "energy_bounce"
 
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_ENERGY
@@ -774,7 +760,7 @@
 	New()
 		..()
 		accurate_range = config.short_shell_range
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.fast_shell_speed
 
 /datum/ammo/energy/yautja/caster/bolt
 	name = "plasma bolt"
@@ -791,7 +777,7 @@
 	New()
 		..()
 		damage = config.low_hit_damage
-		shell_speed = config.fast_shell_speed
+		shell_speed = config.ultra_shell_speed
 
 /datum/ammo/energy/yautja/caster/sphere
 	name = "plasma eradication sphere"
@@ -840,7 +826,7 @@
 	icon_state = "bluespace"
 	New()
 		..()
-		shell_speed = config.fast_shell_speed
+		shell_speed = config.super_shell_speed
 
 /*
 //================================================
@@ -866,6 +852,7 @@
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	New()
 		..()
+		shell_speed = config.reg_shell_speed
 		max_range = config.close_shell_range
 
 /datum/ammo/xeno/toxin/medium //Spitter
@@ -873,7 +860,7 @@
 	debilitate = list(2,3,0,0,1,2,0,0)
 	New()
 		..()
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.fast_shell_speed
 		accuracy_var_low = config.high_proj_variance
 		accuracy_var_high = config.high_proj_variance
 
@@ -884,12 +871,13 @@
 /datum/ammo/xeno/acid
 	name = "acid spit"
 	icon_state = "neurotoxin"
-	sound_hit 	 = list('sound/bullets/acid_impact1.ogg')
-	sound_bounce	= list('sound/bullets/acid_impact1.ogg')
+	sound_hit 	 = "acid_hit"
+	sound_bounce	= "acid_bounce"
 	damage_type = BURN
 	New()
 		..()
 		damage = config.mlow_hit_damage
+		shell_speed = config.reg_shell_speed
 
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
@@ -901,7 +889,7 @@
 		damage = config.low_hit_damage
 		damage_var_low = config.low_proj_variance
 		damage_var_high = config.med_proj_variance
-		shell_speed = config.reg_shell_speed
+		shell_speed = config.fast_shell_speed
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
@@ -941,8 +929,8 @@
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
-	sound_hit 	 = list('sound/bullets/acid_impact1.ogg')
-	sound_bounce	= list('sound/bullets/acid_impact1.ogg')
+	sound_hit 	 = "acid_hit"
+	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR|AMMO_INCENDIARY
 	New()
@@ -969,9 +957,9 @@
 	name = "alloy spike"
 	ping = "ping_s"
 	icon_state = "MSpearFlight"
-	sound_hit 	 	= list('sound/bullets/spear_impact1.ogg')
-	sound_armor	 	= list('sound/bullets/spear_armor1.ogg')
-	sound_bounce	= list('sound/bullets/spear_ricochet1.ogg','sound/bullets/spear_ricochet2.ogg')
+	sound_hit 	 	= "alloy_hit"
+	sound_armor	 	= "alloy_armor"
+	sound_bounce	= "alloy_bounce"
 	New()
 		..()
 		accuracy = config.max_hit_accuracy

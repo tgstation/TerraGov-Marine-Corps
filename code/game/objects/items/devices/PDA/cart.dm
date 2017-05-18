@@ -82,17 +82,6 @@
 	icon_state = "cart-s"
 	access_security = 1
 
-/obj/item/weapon/cartridge/clown
-	name = "Honkworks 5.0"
-	icon_state = "cart-clown"
-	access_clown = 1
-	charges = 5
-
-/obj/item/weapon/cartridge/mime
-	name = "Gestur-O 1000"
-	icon_state = "cart-mi"
-	access_mime = 1
-	charges = 5
 /*
 /obj/item/weapon/cartridge/botanist
 	name = "Green Thumb v4.20"
@@ -528,7 +517,7 @@
 /obj/item/weapon/cartridge/Topic(href, href_list)
 	..()
 
-	if (!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+	if (!usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))
 		usr.unset_machine()
 		usr << browse(null, "window=pda")
 		return

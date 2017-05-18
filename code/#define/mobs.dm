@@ -5,17 +5,30 @@
 #define BORGTHERM 2
 #define BORGXRAY  4
 
+
+/*
+	reagents defines
+*/
+
+#define SOLID 1
+#define LIQUID 2
+#define GAS 3
+#define REAGENTS_OVERDOSE 30
+
 // How many units of reagent are consumed per tick, by default.
 #define REAGENTS_METABOLISM 0.2
 // By defining the effect multiplier this way, it'll exactly adjust
 // all effects according to how they originally were with the 0.4 metabolism
 #define REAGENTS_EFFECT_MULTIPLIER REAGENTS_METABOLISM / 0.4
+
+#define REM REAGENTS_EFFECT_MULTIPLIER
 // Reagent metabolism defines.
 #define FOOD_METABOLISM 0.4
 #define ALCOHOL_METABOLISM 0.1
 
 // Factor of how fast mob nutrition decreases
 #define HUNGER_FACTOR 0.05
+
 
 //=================================================
 /*
@@ -175,7 +188,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CANPARALYSE	4
 #define CANPUSH		8
 #define LEAPING		16
-#define PASSEMOTES	32      //Mob has a cortical borer or holders inside of it that need to see emotes.
+#define PASSEMOTES	32      //holders inside of mob that need to see emotes.
 #define GODMODE		4096
 #define FAKEDEATH	8192	//Replaces stuff like changeling.changeling_fakedeath
 #define DISFIGURED	16384	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
@@ -260,7 +273,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
-#define IS_DIONA 1
 #define IS_VOX 2
 #define IS_SKRELL 3
 #define IS_UNATHI 4
@@ -268,3 +280,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define IS_YAUTJA 6
 #define IS_HORROR 7
 //=================================================
+
+//Mob sizes
+#define MOB_SIZE_SMALL			0
+#define MOB_SIZE_HUMAN			1
+#define MOB_SIZE_XENO			2
+#define MOB_SIZE_BIG		3

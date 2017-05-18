@@ -73,6 +73,9 @@
 		if(AM && !AM in permutated)
 			scan_a_turf(get_turf(AM))
 
+
+	ex_act() r_FAL //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
+
 /obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0)
 	ammo 		= ammo_datum
 	name 		= ammo.name
@@ -228,6 +231,8 @@
 /obj/item/projectile/proc/roll_to_hit_mob(atom/shooter,mob/living/target)
 	permutated += target //Don't want to hit them again, no matter what the outcome.
 
+	if(ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) && istype(target.buckled, /obj/structure/stool/bed/nest) && target.status_flags & XENO_HOST) r_FAL
+
 	var/acc = accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
 	world << "<span class='debuginfo'>Base accuracy is <b>[acc]</b></span>"
@@ -245,13 +250,13 @@
 
 	if(ishuman(target))
 		var/mob/living/carbon/human/target_human = target
-		if( ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && target_human.get_target_lock(ammo.iff_signal) ) return
+		if( ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && target_human.get_target_lock(ammo.iff_signal) ) r_FAL
 		var/mob/living/carbon/human/shooter_human = shooter
 		if( istype(shooter_human) && (shooter_human.faction == target_human.faction || target_human.m_intent == "walk") ) hit_chance -= 15
 	else if(isXeno(target))
-		if(ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS) return
+		if(ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS) r_FAL
 		var/mob/living/carbon/Xenomorph/target_xeno = target
-		if(target_xeno.big_xeno)	hit_chance += 10
+		if(target_xeno.mob_size == MOB_SIZE_BIG)	hit_chance += 10
 		else						hit_chance -= 10
 
 	if(isliving(shooter))
@@ -272,16 +277,16 @@
 
 		switch(i)
 			if(1)
-				if(hit_chance > hit_roll) 			return 1 //Hit
+				if(hit_chance > hit_roll) 			r_TRU //Hit
 				if( hit_chance < (hit_roll - 20) ) 	break //Outright miss.
 				def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
 				hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
 			if(2)
 				if(prob(critical_miss) ) 			break //Critical miss on the second go around.
-				if(hit_chance > hit_roll) 			return 1
+				if(hit_chance > hit_roll) 			r_TRU
 	if (!target.lying)
 		animatation_displace_reset(target)
-		if(ammo.sound_miss) target << sound(pick(ammo.sound_miss))
+		if(ammo.sound_miss) target.playsound_local(get_turf(target), ammo.sound_miss, 100, 1)
 		target.visible_message("<span class='avoidharm'>[src] misses [target]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>")
 
 /obj/item/projectile/proc/roll_to_hit_obj(atom/shooter,obj/target)
@@ -295,7 +300,7 @@
 		if(prob(chance)) return 1
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
-	if(ammo.sound_hit) playsound(M, pick(ammo.sound_hit), 120, 1)
+	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 120, 1)
 	if(M.stat != DEAD) animation_flash_color(M)
 
 //----------------------------------------------------------
@@ -408,17 +413,16 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
 					i++
-			if(i || damage <= 5) src << "\blue Your armor [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]"
+			if(i || damage <= 5) src << "<span class='notice'>Your armor [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>"
 			if(damage <= 0)
 				damage = 0
-				if(P.ammo.sound_armor) playsound(src, pick(P.ammo.sound_armor), 120, 1)
+				if(P.ammo.sound_armor) playsound(src, P.ammo.sound_armor, 120, 1)
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
 		if(!isYautja(src)) apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
-	forcesay()
 
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
@@ -455,12 +459,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
 	#endif
 
-	var/armor = armor_deflection
-	var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-	armor -= penetration
-	var/armor_pass 	= 0
-	if( damage && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ) //No point in these checks if there is no damage.
-		armor += guard_aura ? (guard_aura * 5) : 0 //Bonus armor from pheroes.
+	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
+		var/armor = armor_deflection
 		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances. Crushers get a lot of armor, with a base of 95 at ancient status.
 			var/mob/living/carbon/Xenomorph/Crusher/current_crusher = src
 			armor += round(current_crusher.momentum / 3) //Some armor deflection when charging.
@@ -471,53 +471,55 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			world << "<span class='debuginfo'>Adjusted crusher armor is: <b>[armor]</b></span>"
 			#endif
 
-		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Adjusted armor is: <b>[armor]</b></span>"
-		#endif
-		var/critical_hit	 = rand(config.critical_chance_low,config.critical_chance_high)
-		armor_pass 	 	 	 = round( (armor < 0? 0 : armor) * damage * config.xeno_armor_resist_low  * 0.01 )
-		armor				-= prob(critical_hit) ? round(armor*0.5) : armor_pass //Small chance to completely ignore armor.
-		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Armor after initial soak is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b></span>"
-		#endif
-
-	armor = (armor < 0 || P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : armor //Ignore trumps all armor.
-
-	if(damage)
-		var/i = 0
-		while(armor > 0 && ++i <= 2)
-			if(prob(armor))
-				damage = 0
-				break
-			else
-				armor_pass	 = damage * config.xeno_armor_resist_high
-				armor 		-= armor_pass//One more chance, with a lower armor value.
+		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		armor -= penetration
+		armor += guard_aura ? (guard_aura * 5) : 0 //Bonus armor from pheroes, no matter what the armor was previously.
+		if(armor > 0) //Armor check. We should have some to continue.
+			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
+			 soaked. Small caliber firearms aren't really effective against combat armor.*/
+			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
+			var/critical_hit = rand(config.critical_chance_low,config.critical_chance_high)
+			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
+			armor			-= round(armor_soak * config.base_armor_resist_low) //If you still have armor left over, you generally should, we subtract the soak.
+											  		   //This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_XENO_DEFENSE
-			world << "<span class='debuginfo'>Armor after first pass is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b></span>"
+			world << "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>"
 			#endif
-
-	if(!damage)
-		bullet_ping(P)
-		visible_message("<span class='avoidharm'>[src]'s thick exoskeleton deflects \the [P]!</span>", \
-		"<span class='avoidharm'>Your thick exoskeleton deflected \the [P]!</span>")
-		return
+			var/i = 0
+			if(damage)
+				while(armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
+					if(prob(armor))
+						armor_soak 	 = round(damage * 0.5)
+						armor 		-= armor_soak * config.base_armor_resist_high
+						damage 		-= armor_soak
+						#if DEBUG_XENO_DEFENSE
+						world << "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>"
+						#endif
+					else break //If we failed to block the damage, it's time to get out of the loop.
+					i++
+			if(i || damage <= 5) src << "<span class='xenonotice'>Your exoskeleton [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>"
+			if(damage <= 3)
+				damage = 0
+				bullet_ping(P)
+				visible_message("<span class='avoidharm'>[src]'s thick exoskeleton deflects [P]!</span>")
 
 	bullet_message(P) //Message us about the bullet, since damage was inflicted.
-	P.play_damage_effect(src)
 
-	apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
-	if(!stat && prob(5 + round(damage / 4)))
-		var/pain_emote = prob(70) ? "hiss" : "roar"
-		emote(pain_emote)
-	if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-		if(fire_immune)
-			if(!stat) src << "<span class='avoidharm'>You shrug off some persistent flames.</span>"
-		else
-			adjust_fire_stacks(rand(2,6) + round(damage / 8))
-			IgniteMob()
-			visible_message("<span class='danger'>[src] bursts into flames!</span>", \
-			"<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
-	updatehealth()
+	if(damage)
+		apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
+		P.play_damage_effect(src)
+		if(!stat && prob(5 + round(damage / 4)))
+			var/pain_emote = prob(70) ? "hiss" : "roar"
+			emote(pain_emote)
+		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
+			if(fire_immune)
+				if(!stat) src << "<span class='avoidharm'>You shrug off some persistent flames.</span>"
+			else
+				adjust_fire_stacks(rand(2,6) + round(damage / 8))
+				IgniteMob()
+				visible_message("<span class='danger'>[src] bursts into flames!</span>", \
+				"<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
+		updatehealth()
 
 	return 1
 
@@ -591,7 +593,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 /atom/proc/bullet_ping(obj/item/projectile/P)
 	if(!P || !P.ammo.ping) return
 	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, pick(P.ammo.sound_bounce), 120, 1)
+		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 120, 1)
 		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,P.ammo.ping,10))
 		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
 		I.pixel_x += rand(-6,6)

@@ -47,7 +47,7 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES |COVEREYES|COVEREYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES |COVEREYES|HIDEALLHAIR|BLOCKSHARPOBJ
 	siemens_coefficient = 1
 
 /obj/item/clothing/head/helmet/tactical

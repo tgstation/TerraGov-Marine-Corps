@@ -4,8 +4,45 @@
 //Front-end this should look exactly the same, save for a minor timing difference (about 1-3 deciseconds)
 //Some of this code is ported from the previous shuttle system and modified for these purposes.
 
+
+/*
+/client/verb/TestAlmayerEvac()
+	set name = "Test Almayer Evac"
+
+	for(var/datum/shuttle/ferry/marine/M in shuttle_controller.process_shuttles)
+		if(M.info_tag == "Almayer Evac" || M.info_tag == "Alt Almayer Evac")
+			spawn(1)
+				M.short_jump()
+				world << "LAUNCHED THING WITH TAG [M.shuttle_tag]"
+		else if(M.info_tag == "Almayer Dropship")
+			spawn(1)
+				M.short_jump()
+				world << "LAUNCHED THING WITH TAG [M.shuttle_tag]"
+		else world << "did not launch thing with tag [M.shuttle_tag]"
+*/
+
 /datum/shuttle/ferry/marine
-	var/shuttle_tag
+	var/shuttle_tag //Unique ID for finding which landmarks to use
+	var/info_tag //Identifies which coord datums to copy
+	var/list/info_datums = list()
+	//For now it's just one location all around, but that can be adjusted.
+	var/locs_dock = list()
+	var/locs_move = list()
+	var/locs_land = list()
+	//Could be a list, but I don't see a reason considering shuttles aren't bloated with variables.
+	var/sound_target = 136//Where the sound will originate from. Must be a list index, usually the center bottom (engines).
+	var/sound/sound_takeoff	= 'sound/effects/engine_startup.ogg'//Takeoff sounds.
+	var/sound/sound_landing = 'sound/effects/engine_landing.ogg'//Landing sounds.
+	var/sound/sound_moving //Movement sounds, usually not applicable.
+	var/sound/sound_misc //Anything else, like escape pods.
+
+/datum/shuttle/ferry/marine/proc/load_datums()
+	if(!(info_tag in s_info))
+		message_admins("<span class=warning>Error with shuttles: Shuttle tag does not exist. Code: MSD10.\n WARNING: DROPSHIP LAUNCH WILL PROBABLY FAIL</span>")
+		log_admin("Error with shuttles: Shuttle tag does not exist. Code: MSD10.")
+
+	var/list/L = s_info[info_tag]
+	info_datums = L.Copy()
 
 /datum/shuttle/ferry/marine/proc/launch_crash(var/user)
 	if(!can_launch()) return //There's another computer trying to launch something
@@ -65,50 +102,23 @@
 
 	//START: Heavy lifting backend
 
-	var/i //iterator
-	var/turf/T_src
-	var/turf/T_int //int stands for interim
-	var/turf/T_trg
-	var/obj/effect/landmark/shuttle_loc/marine_src/S
-	var/obj/effect/landmark/shuttle_loc/marine_int/I
-	var/obj/effect/landmark/shuttle_loc/marine_trg/T
-
-	//Find source turf
-	for(i in shuttlemarks)
-		S = i
-		if(!istype(S)) continue
-		if(S.name == shuttle_tag)
-			T_src = S.loc
-			break
-
-	//Find interim turf
-	for(i in shuttlemarks)
-		I = i
-		if(!istype(I)) continue
-		if(I.name == shuttle_tag)
-			T_int = I.loc
-			break
-
-	//Find target turf
-	for(i in shuttlemarks)
-		T = i
-		if(!istype(T)) continue
-		if(T.name == shuttle_tag)
-			T_trg = T.loc
-			break
-
-	//Switch the landmarks so we can do this again
-	if(istype(S) || istype(T))
-		S.loc = T_trg
-		T.loc = T_src
+	//Simple pick() process for now, but this should be changed later.
+	var/turf/T_src = pick(locs_dock)
+	var/src_rot = locs_dock[T_src]
+	var/turf/T_int = pick(locs_move)//int stands for interim
+	var/int_rot = locs_move[T_int]
+	var/turf/T_trg = pick(locs_land)
+	var/trg_rot = locs_land[T_trg]
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.\n <font size=10>WARNING: DROPSHIP LAUNCH WILL FAIL</font></span>")
 		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.")
 
-	if(!istype(S) || !istype(I) || !istype(T))
-		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code MSD03.\n <font size=10>WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</font></span>")
-		log_admin("Error with shuttles: Landmarks not found. Code MSD03.")
+	//Switch the landmarks so we can do this again
+	locs_dock -= T_src
+	locs_land -= T_trg
+	locs_dock |= T_trg
+	locs_land |= T_src
 
 	//END: Heavy lifting backend
 
@@ -126,48 +136,39 @@
 
 	//START: Heavy lifting backend
 
-	var/list/turfs_src = get_shuttle_turfs(T_src, shuttle_tag) //Which turfs are we moving?
+	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
 
-	for(var/turf/A in turfs_src) //Lets play the startup sound in all of them
-		for(var/obj/structure/engine_startup_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
-				break //One sound thing per tile, just in case
+	playsound(turfs_src[sound_target], sound_takeoff, 100, 0, 10, -100)
 
 	sleep(warmup_time*10) //Warming up
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src) //Get the turfs we arrived at
-	var/list/turfs_int = get_shuttle_turfs(T_int, shuttle_tag) //Interim turfs
-	var/list/turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag) //Final destination turfs <insert bad jokey reference here>
+	move_shuttle_to(T_int, null, turfs_src, 0 , int_rot, src) //Rotate by the angle at the destination, not the source
+	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
+	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
 	sleep(travel_time) //Wait while we fly
 
-	var/turf/A
-	for(i in turfs_trg) //Play the sounds on the ground
-		A = i
-		if(!istype(A)) continue
-		for(var/obj/structure/engine_landing_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-				break
+	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
 
-	for(i in turfs_int) //And in the air
-		A = i
-		if(!istype(A)) continue
-		for(var/obj/structure/engine_inside_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-				break
+	playsound(turfs_int[sound_target], sound_landing, 100, 0, 10, -100)
+	playsound(turfs_trg[sound_target], sound_landing, 100, 0, 10, -100)
 
-	sleep(100) //Wait for it to finish
+	sleep(100) //Wait for it to finish.
 
-	move_shuttle_to(T_trg, null, turfs_int) //Not neccesary, but a little safer. This shouldn't actually change the variable
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
+
+	move_shuttle_to(T_trg, null, turfs_int, 0, trg_rot, src)
+
+	//Now that we've landed, assuming some rotation including 0, we need to make sure it doesn't fuck up when we go back
+	locs_move[T_int] = -1*trg_rot
+	locs_dock[T_trg] = src_rot
+	locs_land[T_src] = trg_rot
 
 	//We have to get these again so we can close the doors
-	//We didn't need to do it before since the hadn't moved yet
-	turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag)
+	//We didn't need to do it before since they hadn't moved yet
+	turfs_trg = get_shuttle_turfs(T_trg, info_datums)
 
 	open_doors(turfs_trg) //And now open the doors
 
@@ -198,48 +199,16 @@
 		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
 
 	//START: Heavy lifting backend
-
-	var/i //iterator
-	var/turf/T_src
-	var/turf/T_int //int stands for interim
-	var/turf/T_trg
-	var/obj/effect/landmark/shuttle_loc/marine_src/S
-	var/obj/effect/landmark/shuttle_loc/marine_int/I
-	var/obj/effect/landmark/shuttle_loc/marine_crs/C
-
-	//Find source turf
-	for(i in shuttlemarks)
-		S = i
-		if(!istype(S)) continue
-		if(S.name == shuttle_tag)
-			T_src = S.loc
-			break
-
-	//Find interim turf
-	for(i in shuttlemarks)
-		I = i
-		if(!istype(I)) continue
-		if(I.name == shuttle_tag)
-			T_int = I.loc
-			break
-
-	var/list/crash_turfs = list()
-	//Find target turf
-	for(i in shuttlemarks)
-		C = i
-		if(!istype(C)) continue
-		if(C.name == shuttle_tag)
-			crash_turfs.Add(C.loc)
-
-	T_trg = pick(crash_turfs)
+	var/turf/T_src = pick(locs_dock)
+	var/src_rot = locs_dock[T_src]
+	var/turf/T_int = pick(locs_move)//int stands for interim
+	var/turf/T_trg = pick(shuttle_controller.locs_crash)
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.\n WARNING: DROPSHIP LAUNCH WILL FAIL</span>")
 		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.")
 
-	if(!istype(S) || !istype(I))
-		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code MSD05.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
-		log_admin("Error with shuttles: Landmarks not found. Code MSD05.")
+	shuttle_controller.locs_crash -= T_trg
 
 	//END: Heavy lifting backend
 
@@ -257,37 +226,31 @@
 
 	//START: Heavy lifting backend
 
-	var/list/turfs_src = get_shuttle_turfs(T_src, shuttle_tag) //Which turfs are we moving?
-
-	for(var/turf/A in turfs_src) //Lets play the startup sound in all of them
-		for(var/obj/structure/engine_startup_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
-				break //One sound thing per tile, just in case
+	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
+	playsound(turfs_src[sound_target], sound_takeoff, 100, 0, 10, -100)
 
 	sleep(warmup_time*10) //Warming up
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src)
-	var/list/turfs_int = get_shuttle_turfs(T_int, shuttle_tag) //Interim turfs
+	move_shuttle_to(T_int, null, turfs_src, , , src)
+	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
+	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
+
 	//This is where things change and shit gets real
 
-	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE SULACO. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
+	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE [uppertext(MAIN_SHIP_NAME)]. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
 
-	var/turf/A
-	for(i in turfs_int) //Play the landing sound in the shuttle
-		A = i
-		if(!istype(A)) continue
-		for(var/obj/structure/engine_inside_sound/B in A)
-			if(istype(B))
-				playsound(B.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-				break
+	playsound(turfs_int[sound_target], sound_landing, 100, 0, 10, -100)
 
 	sleep(85)
+
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
+
+	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
 	var/turf/sploded
 	for(var/j=0; j<5; j++)
@@ -296,13 +259,13 @@
 		explosion(sploded, 0, 0, 6, 0)
 		sleep(3)
 
-	var/list/turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag) //Final destination turfs <insert bad jokey reference here>
+	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
-	move_shuttle_to(T_trg, null, turfs_int)
+	move_shuttle_to(T_trg, null, turfs_int, 0, src_rot, src)
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since the hadn't moved yet
-	turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag)
+	turfs_trg = get_shuttle_turfs(T_trg, info_datums)
 
 	open_doors_crashed(turfs_trg) //And now open the doors
 
@@ -316,11 +279,8 @@
 
 	//END: Heavy lifting backend
 
-	//And now that we've crashed, we are never flying again
 	sleep(100)
-	//But first lets make sure all of our procs elsewhere are fixed
-	del(src)
-
+	moving_status = SHUTTLE_CRASHED
 
 /datum/shuttle/ferry/marine/short_jump()
 
@@ -328,36 +288,20 @@
 
 	//START: Heavy lifting backend
 
-	var/i //iterator
-	var/turf/T_src
-	var/turf/T_trg
-	var/obj/effect/landmark/shuttle_loc/marine_src/S
-	var/obj/effect/landmark/shuttle_loc/marine_trg/T
-
-	//Find our target turf
-	for(i in shuttlemarks)
-		S = i
-		if(!istype(S)) continue
-		if(S.name == shuttle_tag)
-			T_src = S.loc
-			break
-
-	//Find our source turf
-	for(i in shuttlemarks)
-		T = i
-		if(!istype(T)) continue
-		if(T.name == shuttle_tag)
-			T_trg = T.loc
-			break
+	var/turf/T_src = pick(locs_dock)
+	var/turf/T_trg = pick(locs_land)
+	var/trg_rot = locs_land[T_trg]
 
 	//Switch the landmarks so we can do this again
-	if(istype(S) || istype(T))
-		S.loc = T_trg
-		T.loc = T_src
-	else
-		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code: MSD01.\n <font size=10>WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</font></span>")
-		log_admin("Error with shuttles: Landmarks not found. Code: MSD01.")
-		message_admins("[istype(S) ? "T" : "S"] is null")
+	if(!istype(T_src) || !istype(T_trg))
+		message_admins("<span class=warning>Error with shuttles: Ref turfs are null. Code: MSD15.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
+		log_admin("Error with shuttles: Ref turfs are null. Code: MSD15.")
+		r_FAL
+
+	locs_dock -= T_src
+	locs_land -= T_trg
+	locs_dock |= T_trg
+	locs_land |= T_src
 
 	//END: Heavy lifting backend
 
@@ -369,8 +313,8 @@
 
 	moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 
-	var/list/turfs_src = get_shuttle_turfs(T_src, shuttle_tag)
-	move_shuttle_to(T_trg, null, turfs_src)
+	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums)
+	move_shuttle_to(T_trg, null, turfs_src, 0, trg_rot, src)
 
 	moving_status = SHUTTLE_IDLE
 
@@ -477,22 +421,39 @@
 				del(R) //This is all that it's dismantle() does so this is okay
 				break
 
+/datum/shuttle/ferry/marine/proc/shake_cameras(var/list/L)
+
+	var/i //iterator
+	var/j
+	var/turf/T
+	var/mob/M
+
+	for(i in L)
+		T = i
+		if(!istype(T)) continue
+
+		for(j in T)
+			M = j
+			if(!istype(M)) continue
+			shake_camera(M, 30, 1)
+
 /client/proc/force_shuttle()
 	set name = "Force Dropship"
 	set desc = "Force a dropship to launch"
 	set category = "Admin"
 
-	var/tag = input("Which dropship should be forced?", "Select a dropship:") in list("Dropship 1", "Dropship 2")
+	var/tag = input("Which dropship should be forced?", "Select a dropship:") in list("Dropship 1", "Dropship 2", "Almayer Dropship 1", "Almayer Dropship 2")
 	var/crash = 0
 	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
 		if("Yes") crash = 1
 		if("No") crash = 0
 		if("Cancel") return
 
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[tag]
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
 	if(!dropship)
 		src << "<span class='danger'>Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN</span>"
 		log_admin("Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN")
+		return
 
 	if(crash && dropship.location != 1)
 		switch(alert("Error: Shuttle is on the ground. Proceed with standard launch anyways?", , "Yes", "No"))

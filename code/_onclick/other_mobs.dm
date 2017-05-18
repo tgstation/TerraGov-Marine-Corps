@@ -1,55 +1,28 @@
+
 /*
-	Humans:
-	Adds an exception for gloves, to allow special glove types like the ninja ones.
-
-	Otherwise pretty standard.
+	Carbon
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
-	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 
-	// Special glove functions:
-	// If the gloves do anything, have them return 1 to stop
-	// normal attack_hand() here.
-	if(proximity && istype(G) && G.Touch(A,1))
-		return
+/mob/living/carbon
 
-	A.attack_hand(src)
-/atom/proc/attack_hand(mob/user as mob)
-	return
+	MiddleClickOn(var/atom/A) //used for swapping hands
+		swap_hand()
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
-	return
+	ShiftMiddleClickOn(atom/A)
+		point_to(A)
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
-	if(!gloves && !mutations.len) return
-	var/obj/item/clothing/gloves/G = gloves
-	if((LASER in mutations) && a_intent == "hurt")
-		LaserEyes(A) // moved into a proc below
 
-	else if(istype(G) && G.Touch(A,0)) // for magic gloves
-		return
-
-	else if(TK in mutations)
-		switch(get_dist(src,A))
-			if(1 to 5) // not adjacent may mean blocked by window
-				next_move += 2
-			if(5 to 7)
-				next_move += 5
-			if(8 to 15)
-				next_move += 10
-			if(16 to 128)
-				return
-		A.attack_tk(src)
 
 /*
 	Animals & All Unspecified
 */
 /mob/living/UnarmedAttack(var/atom/A)
 	A.attack_animal(src)
+
 /atom/proc/attack_animal(mob/user as mob)
 	return
-/mob/living/RestrainedClickOn(var/atom/A)
-	return
+
+
 
 /*
 	Monkeys
@@ -87,27 +60,42 @@
 			O.show_message("\red <B>[src] has attempted to bite [ML]!</B>", 1)
 
 /*
-	Aliens
-	Defaults to same as monkey in most places
-*/
-
-/mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
-	return
-
-/*
-	Slimes
-	Nothing happening here
-*/
-/mob/living/carbon/slime/UnarmedAttack(var/atom/A)
-	A.attack_slime(src)
-/atom/proc/attack_slime(mob/user as mob)
-	return
-/mob/living/carbon/slime/RestrainedClickOn(var/atom/A)
-	return
-
-/*
 	New Players:
 	Have no reason to click on anything at all.
 */
 /mob/new_player/ClickOn()
 	return
+
+
+
+/*
+	Hell Hound
+*/
+
+/mob/living/carbon/hellhound/ClickOn(atom/A, params)
+	if(world.time <= next_click)
+		return
+	next_click = world.time + 2
+
+	if(stat > 0)
+		return //Can't click on shit buster!
+
+	if(attack_timer)
+		return
+
+	if(get_dist(src,A) > 1) return
+
+	if(istype(A,/mob/living/carbon/human))
+		bite_human(A)
+	else if(istype(A,/mob/living/carbon/Xenomorph))
+		bite_xeno(A)
+	else if(istype(A,/mob/living))
+		bite_animal(A)
+	else
+		A.attack_animal(src)
+
+	attack_timer = 1
+	spawn(12)
+		attack_timer = 0
+
+

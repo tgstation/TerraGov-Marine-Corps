@@ -4,7 +4,6 @@ var/list/preferences_datums = list()
 
 var/global/list/special_roles = list(
 	"alien" = 1,
-	"pAI" = 1,
 	"survivor" = 1,
 	"responder" = 1,
 	"predator" = 1,
@@ -19,7 +18,6 @@ var/global/list/special_roles = list(
 	// "infested monkey" = IS_MODE_COMPILED("monkey"),      // 9
 	// "ninja" = "true",                                    // 10
 	// "vox raider" = IS_MODE_COMPILED("heist"),            // 11
-	// "diona" = 1,                                         // 12
 	// "mutineer" = IS_MODE_COMPILED("mutiny"),             // 13
 	// "changeling" = IS_MODE_COMPILED("changeling"),       // 2
 )
@@ -272,8 +270,6 @@ datum/preferences
 		dat += "<b>Armor style:</b> <a href='?_src_=prefs;preference=pred_armor_type;task=input'>([predator_armor_type])</a><br>"
 		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
 
-	dat += "-Alpha(transparency): <a href='?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br>"
-
 	dat += "<b>Name:</b> "
 	dat += "<a href='?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a><br>"
 	dat += "(<a href='?_src_=prefs;preference=name;task=random'>Random Name</A>) "
@@ -421,7 +417,6 @@ datum/preferences
 
 	dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
 
-	dat += "<a href='byond://?src=\ref[user];preference=pAI'><b>pAI Configuration</b></a><br>"
 	dat += "<br>"
 
 	dat += "<br><b>Hair</b><br>"
@@ -455,9 +450,6 @@ datum/preferences
 			if(special_roles[i]) //if mode is available on the server
 				if(jobban_isbanned(user, i))
 					dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
-				else if(i == "pai candidate")
-					if(jobban_isbanned(user, "pAI"))
-						dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 				else
 					dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
 			n++
@@ -472,7 +464,7 @@ datum/preferences
 
 	user << browse(dat, "window=preferences;size=620x780")
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 18, list/splitJobs = list(), width = 450, height = 500)
+/datum/preferences/proc/SetChoices(mob/user, limit = 19, list/splitJobs = list(), width = 450, height = 500)
 	if(!RoleAuthority) return
 
 	//limit 	 - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
@@ -506,29 +498,25 @@ datum/preferences
 			index = 0
 
 		HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
-		var/rank = job.title
 		lastJob = job
-		if(jobban_isbanned(user, rank))
-			HTML += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
+		if(jobban_isbanned(user, job.title))
+			HTML += "<del>[job.disp_title]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
-		if(!job.player_old_enough(user.client))
+		else if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
-			HTML += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			HTML += "<del>[job.disp_title]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
 //		if((job_civilian_low & ASSISTANT) && (rank != "Assistant"))
 //			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 //			continue
-		if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist))
-			HTML += "<del>[rank]</del></td><td> \[WHITELISTED]</td></tr>"
+		else if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist))
+			HTML += "<del>[job.disp_title]</del></td><td> \[WHITELISTED]</td></tr>"
 			continue
-		if((rank in ROLES_COMMAND) || (rank == "AI"))//Bold head jobs
-			HTML += "<b>[rank]</b>"
-		else
-			HTML += "[rank]"
+		else HTML += (job.title in ROLES_COMMAND) || job.title == "AI" ? "<b>[job.disp_title]</b>" : "[job.disp_title]"
 
 		HTML += "</td><td width='40%'>"
 
-		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
+		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[job.title]'>"
 
 //		if(rank == "Assistant")//Assistant is special
 //			if(job_civilian_low & ASSISTANT)
@@ -678,9 +666,7 @@ datum/preferences
 	return
 
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
-	return player_alt_titles.Find(job.title) > 0 \
-		? player_alt_titles[job.title] \
-		: job.title
+	if(player_alt_titles) . = player_alt_titles[job.title]
 
 /datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
 	// remove existing entry
@@ -714,6 +700,7 @@ datum/preferences
 	else//job = Never
 		SetJobDepartment(job, 4)
 
+	//var/list/L = list(ROLEGROUP_MARINE_COMMAND, ROLEGROUP_MARINE_ENGINEERING, ROLEGROUP_MARINE_MED_SCIENCE, ROLEGROUP_MARINE_SQUAD_MARINES)
 	SetChoices(user)
 	return 1
 
@@ -833,8 +820,8 @@ datum/preferences
 					job_marines_low |= job.flag
 	return 1
 
-/datum/preferences/proc/process_link(mob/new_player/user, list/href_list)
-	if(!istype(user)) return
+/datum/preferences/proc/process_link(mob/user, list/href_list)
+	if(!istype(user, /mob/new_player) && !istype(user, /mob/dead/observer)) return
 
 	switch(href_list["preference"])
 		if("job")
@@ -962,10 +949,6 @@ datum/preferences
 					flavor_texts[href_list["task"]] = msg
 			SetFlavorText(user)
 			return
-
-		if("pAI")
-			paiController.recruitWindow(user, 0)
-			return 1
 
 		if("records")
 			if(text2num(href_list["record"]) >= 1)

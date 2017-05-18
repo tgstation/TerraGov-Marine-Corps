@@ -5,7 +5,7 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 
-	var/list/hud_list[9]
+	var/list/hud_list[TOTAL_HUD_AMOUNT]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
@@ -34,6 +34,7 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
+	hud_list[SQUAD_HUD]  = image('icons/mob/hud.dmi', src, "hudsquad")
 
 	..()
 
@@ -44,22 +45,21 @@
 	make_blood()
 
 /mob/living/carbon/human/Stat()
-	..()
-	statpanel("Status")
+	. = ..()
 
-	stat(null, "Operation Time: [worldtime2text()]")
+	if (.)
+		stat(null, "Operation Time: [worldtime2text()]")
 
 /*
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
 */
 
-	if(emergency_shuttle)
-		var/eta_status = emergency_shuttle.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
-	if (client.statpanel == "Status")
 		if (internal)
 			if (!internal.air_contents)
 				del(internal)
@@ -67,24 +67,24 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
-/*
-		var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
-		if(P)
-			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
-		if(mind)
-			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+	/*
+			var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
+			if(P)
+				stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
+			if(mind)
+				if(mind.changeling)
+					stat("Chemical Storage", mind.changeling.chem_charges)
+					stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
-		if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
-			stat("Energy Charge", round(wear_suit:cell:charge/100))
-*/
-	if(mind)
-		if(mind.assigned_squad)
-			if(mind.assigned_squad.primary_objective)
-				stat("Primary Objective: ", mind.assigned_squad.primary_objective)
-			if(mind.assigned_squad.secondary_objective)
-				stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
+			if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
+				stat("Energy Charge", round(wear_suit:cell:charge/100))
+	*/
+		if(mind)
+			if(mind.assigned_squad)
+				if(mind.assigned_squad.primary_objective)
+					stat("Primary Objective: ", mind.assigned_squad.primary_objective)
+				if(mind.assigned_squad.secondary_objective)
+					stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -204,70 +204,8 @@
 					return 1
 	return 0
 
-/mob/living/carbon/human/attack_slime(mob/living/carbon/slime/M as mob)
-	if(M.Victim) return // can't attack while eating!
 
-	if (health > -100)
-
-		for(var/mob/O in viewers(src, null))
-			if ((O.client && !( O.blinded )))
-				O.show_message(text("\red <B>The [M.name] glomps []!</B>", src), 1)
-
-		var/damage = rand(1, 3)
-
-		if(M.is_adult)
-			damage = rand(10, 35)
-		else
-			damage = rand(5, 25)
-
-
-		var/dam_zone = pick("head", "chest", "l_arm", "r_arm", "l_leg", "r_leg", "groin")
-
-		var/datum/organ/external/affecting = get_organ(ran_zone(dam_zone))
-		var/armor_block = run_armor_check(affecting, "melee")
-		apply_damage(damage, BRUTE, affecting, armor_block)
-
-
-		if(M.powerlevel > 0)
-			var/stunprob = 10
-			var/power = M.powerlevel + rand(0,3)
-
-			switch(M.powerlevel)
-				if(1 to 2) stunprob = 20
-				if(3 to 4) stunprob = 30
-				if(5 to 6) stunprob = 40
-				if(7 to 8) stunprob = 60
-				if(9) 	   stunprob = 70
-				if(10) 	   stunprob = 95
-
-			if(prob(stunprob))
-				M.powerlevel -= 3
-				if(M.powerlevel < 0)
-					M.powerlevel = 0
-
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>The [M.name] has shocked []!</B>", src), 1)
-
-				Weaken(power)
-				if (stuttering < power)
-					stuttering = power
-				Stun(power)
-
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
-
-				if (prob(stunprob) && M.powerlevel >= 8)
-					adjustFireLoss(M.powerlevel * rand(6,10))
-
-
-		updatehealth()
-
-	return
-
-
-/mob/living/carbon/human/restrained()
+/mob/living/carbon/human/is_mob_restrained()
 	if (handcuffed)
 		return 1
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
@@ -435,7 +373,7 @@
 		unset_machine()
 		src << browse(null, t1)
 
-	if ((href_list["item"] && !( usr.stat ) && usr.canmove && !( usr.restrained() ) && in_range(src, usr) && ticker)) //if game hasn't started, can't make an equip_e
+	if ((href_list["item"] && !( usr.stat ) && usr.canmove && !( usr.is_mob_restrained() ) && in_range(src, usr) && ticker)) //if game hasn't started, can't make an equip_e
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 		O.source = usr
 		O.target = src
@@ -443,7 +381,6 @@
 		O.s_loc = usr.loc
 		O.t_loc = loc
 		O.place = href_list["item"]
-		requests += O
 		spawn( 0 )
 			O.process()
 			return
@@ -564,7 +501,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
+								if ( !(t1) || usr.stat || usr.is_mob_restrained() || !(hasHUD(usr,"security")) )
 									return
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
@@ -693,7 +630,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
+								if ( !(t1) || usr.stat || usr.is_mob_restrained() || !(hasHUD(usr,"medical")) )
 									return
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
@@ -750,22 +687,14 @@
 			return 2
 	else return 2
 
+	if(istype(head, /obj/item/clothing))
+		var/obj/item/clothing/C = head
+		number += C.eye_protection
+	if(wear_mask)
+		number += wear_mask.eye_protection
+	if(glasses)
+		number += glasses.eye_protection
 
-	if(istype(src.head, /obj/item/clothing/head/welding))
-		if(!src.head:up)
-			number += 2
-	if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
-		number += 2
-	if(istype(src.head, /obj/item/clothing/head/helmet/space))
-		number += 2
-	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud))
-		number += 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
-		number -= 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
-		var/obj/item/clothing/glasses/welding/W = src.glasses
-		if(!W.up)
-			number += 2
 	return number
 
 
@@ -1133,7 +1062,7 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat > 0 || usr.restrained() || !isliving(usr)) return
+	if(usr.stat > 0 || usr.is_mob_restrained() || !isliving(usr)) return
 
 	if(usr == src)
 		self = 1
@@ -1363,3 +1292,10 @@
 		slashed_icon = null
 		update_icons()
 */
+
+
+/mob/living/carbon/human
+	slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+		if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
+			return FALSE
+		. = ..()

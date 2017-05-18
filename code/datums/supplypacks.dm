@@ -21,8 +21,11 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	var/hidden = 0
 	var/contraband = 0
 	var/group = null
+	var/randomised_num_contained = 0 //randomly picks X of items out of the contains list instead of using all.
 
 /datum/supply_packs/New()
+	if(randomised_num_contained)
+		manifest += "Contains any [randomised_num_contained] of:"
 	manifest += "<ul>"
 	for(var/atom/movable/path in contains)
 		if(!path)	continue
@@ -148,7 +151,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/grenade/explosive/m40
 				)
 	cost = 50
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper explosives crate (WARNING)"
 	group = "Operations"
 
@@ -163,7 +166,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/flamer_tank
 				)
 	cost = 50
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M240 Incinerator crate"
 	group = "Weapons"
 
@@ -194,7 +197,23 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/shotgun/buckshot
 				)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_box_rifle
+	name = "Large Ammo Box crate (M41A)"
+	contains = list(/obj/item/big_ammo_box)
+	cost = 50
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_box_smg
+	name = "Large Ammo Box crate (M39)"
+	contains = list(/obj/item/big_ammo_box/smg)
+	cost = 50
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
 
@@ -209,7 +228,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/smg/m39/extended
 				)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "extended ammo crate"
 	group = "Ammo"
 
@@ -224,13 +243,13 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/smg/m39/ap
 				)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "armor piercing ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/randomised/ammo_black_market
+/datum/supply_packs/ammo_black_market
 	name = "Black Market ammo crate"
-	num_contained = 6
+	randomised_num_contained = 6
 	contains = list(
 					/obj/item/ammo_magazine/revolver/upp,
 					/obj/item/ammo_magazine/revolver/small,
@@ -256,14 +275,14 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					)
 	cost = 40
 	contraband = 1
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "black market ammo crate"
 	group = "Ammo"
 
 //This crate has a little bit of everything, mostly okay stuff, but it does have some really unique picks.
-/datum/supply_packs/randomised/surplus
+/datum/supply_packs/surplus
 	name = "Surplus Ammo crate"
-	num_contained = 5
+	randomised_num_contained = 5
 	contains = list(
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
@@ -299,7 +318,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/shotgun/incendiary
 				)
 	cost = 50
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "surplus ammo crate"
 	group = "Ammo"
 
@@ -313,7 +332,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/sniper/incendiary
 				)
 	cost = 50
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "specialist ammo crate"
 	group = "Ammo"
 
@@ -328,7 +347,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/rocket/wp
 				)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/explosives
 	containername = "explosive ammo crate"
 	group = "Ammo"
 
@@ -339,7 +358,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/sentry_ammo
 					)
 	cost = 60
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
 
@@ -373,58 +392,16 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "squad leader armor crate"
 	group = "Armor"
 
-/datum/supply_packs/food
-	name = "Kitchen supply crate"
-	contains = list(/obj/item/weapon/reagent_containers/food/snacks/flour,
-					/obj/item/weapon/reagent_containers/food/snacks/flour,
-					/obj/item/weapon/reagent_containers/food/snacks/flour,
-					/obj/item/weapon/reagent_containers/food/snacks/flour,
-					/obj/item/weapon/reagent_containers/food/drinks/milk,
-					/obj/item/weapon/reagent_containers/food/drinks/milk,
-					/obj/item/weapon/storage/fancy/egg_box,
-					/obj/item/weapon/reagent_containers/food/snacks/tofu,
-					/obj/item/weapon/reagent_containers/food/snacks/tofu,
-					/obj/item/weapon/reagent_containers/food/snacks/meat,
-					/obj/item/weapon/reagent_containers/food/snacks/meat,
-					/obj/item/weapon/reagent_containers/food/snacks/grown/banana,
-					/obj/item/weapon/reagent_containers/food/snacks/grown/banana)
-	cost = 15
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "food crate"
-	group = "Supplies"
-
-/datum/supply_packs/food2
+/datum/supply_packs/mre
 	name = "USCM MRE crate"
-	contains = list(/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre,
-					/obj/item/weapon/storage/box/uscm_mre )
+	contains = list(/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE,
+					/obj/item/weapon/storage/box/MRE )
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "\improper MRE crate"
-	group = "Supplies"
-
-/datum/supply_packs/food3
-	name = "Weyland-Yutani brand MRE crate"
-	contains = list(/obj/item/weapon/storage/box/wy_mre,
-					/obj/item/weapon/storage/box/wy_mre,
-					/obj/item/weapon/storage/box/wy_mre,
-					/obj/item/weapon/storage/box/wy_mre,
-					/obj/item/weapon/storage/box/wy_mre
-					)
-	cost = 12
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper W-Y MRE crate"
-	group = "Supplies"
-
-/datum/supply_packs/monkey
-	name = "Monkey crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes,
-					/obj/item/weapon/storage/box/monkeycubes)
-	cost = 20
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "monkey crate"
 	group = "Supplies"
 
 /datum/supply_packs/internals
@@ -467,7 +444,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/storage/briefcase/inflatable,
 					/obj/item/weapon/storage/briefcase/inflatable)
 	cost = 20
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/construction
 	containername = "inflatable barrier crate"
 	group = "Engineering"
 
@@ -489,7 +466,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/structure/mopbucket,
 					/obj/item/weapon/paper/janitor)
 	cost = 15
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/supply
 	containername = "Janitorial supplies"
 	group = "Supplies"
 
@@ -499,17 +476,9 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/storage/box/lights/mixed,
 					/obj/item/weapon/storage/box/lights/mixed)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/supply
 	containername = "replacement lights"
 	group = "Engineering"
-
-/datum/supply_packs/mule
-	name = "MULEbot Crate"
-	contains = list(/obj/machinery/bot/mulebot)
-	cost = 130
-	containertype = /obj/structure/largecrate/mule
-	containername = "\improper MULEbot crate"
-	group = "Supplies"
 
 /datum/supply_packs/boxes
 	name = "Empty boxes"
@@ -524,7 +493,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	/obj/item/weapon/storage/box,
 	/obj/item/weapon/storage/box)
 	cost = 10
-	containertype = "/obj/structure/closet/crate"
+	containertype = "/obj/structure/closet/crate/supply"
 	containername = "empty box crate"
 	group = "Supplies"
 
@@ -571,7 +540,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(/obj/item/stack/sheet/metal)
 	amount = 50
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/supply
 	containername = "metal sheets crate"
 	group = "Engineering"
 
@@ -580,7 +549,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(/obj/item/stack/sheet/plasteel)
 	amount = 30
 	cost = 50
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/supply
 	containername = "plasteel sheets crate"
 	group = "Engineering"
 
@@ -589,7 +558,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(/obj/item/stack/sheet/glass)
 	amount = 50
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/supply
 	containername = "glass sheets crate"
 	group = "Engineering"
 
@@ -598,7 +567,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(/obj/item/stack/sheet/wood)
 	amount = 50
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/supply
 	containername = "wooden planks crate"
 	group = "Engineering"
 
@@ -606,7 +575,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	name = "Superconducting Magnetic Coil"
 	contains = list(/obj/item/weapon/smes_coil)
 	cost = 150
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/construction
 	containername = "superconducting magnetic coil crate"
 	group = "Engineering"
 
@@ -621,7 +590,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/cell/high,
 					/obj/item/weapon/cell/high)
 	cost = 15
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/construction
 	containername = "electrical maintenance crate"
 	group = "Engineering"
 
@@ -637,7 +606,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/clothing/head/welding,
 					/obj/item/clothing/head/hardhat)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/construction
 	containername = "mechanical maintenance crate"
 	group = "Engineering"
 
@@ -649,75 +618,6 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "fuel tank crate"
 	group = "Engineering"
 
-/datum/supply_packs/solar
-	name = "Solar Pack crate"
-	contains  = list(/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly,
-					/obj/item/solar_assembly, // 21 Solar Assemblies. 1 Extra for the controller
-					/obj/item/weapon/circuitboard/solar_control,
-					/obj/item/weapon/tracker_electronics,
-					/obj/item/weapon/paper/solar)
-	cost = 15
-	containertype = /obj/structure/closet/crate
-	containername = "solar pack crate"
-	group = "Engineering"
-
-/*/datum/supply_packs/engine
-	name = "Emitter crate"
-	contains = list(/obj/machinery/power/emitter,
-					/obj/machinery/power/emitter)
-	cost = 40
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Emitter crate"
-	access = ACCESS_MARINE_CE
-	group = "Engineering"
-
-/datum/supply_packs/engine/field_gen
-	name = "Field Generator crate"
-	contains = list(/obj/machinery/field_generator,
-					/obj/machinery/field_generator)
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Field Generator crate"
-	access = ACCESS_MARINE_CE
-	group = "Engineering"
-	cost = 30
-*/
-/datum/supply_packs/engine/collector
-	name = "Collector crate"
-	contains = list(/obj/machinery/power/rad_collector,
-					/obj/machinery/power/rad_collector,
-					/obj/machinery/power/rad_collector)
-	containertype = /obj/structure/closet/crate
-	containername = "collector crate"
-	group = "Engineering"
-	cost = 30
-/*
-/datum/supply_packs/hoverpod
-	name = "Hoverpod Shipment"
-	contains = list()
-	cost = 150
-	containertype = /obj/structure/largecrate/hoverpod
-	containername = "Hoverpod Crate"
-	group = "Operations"
-*/
 /datum/supply_packs/phoron
 	name = "Phoron assembly crate"
 	contains = list(/obj/item/weapon/tank/phoron,
@@ -738,13 +638,8 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	access = ACCESS_MARINE_ENGINEERING
 	group = "Science"
 
-
-/datum/supply_packs/randomised/New()
-	manifest += "Contains any [num_contained] of:"
-	..()
-
-/datum/supply_packs/randomised/contraband
-	num_contained = 5
+/datum/supply_packs/contraband
+	randomised_num_contained = 5
 	contains = list(/obj/item/seeds/bloodtomatoseed,
 					/obj/item/weapon/storage/pill_bottle/zoom,
 					/obj/item/weapon/storage/pill_bottle/happy,
@@ -752,7 +647,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 
 	name = "Contraband crate"
 	cost = 50
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/supply
 	containername = "unlabeled crate"
 	contraband = 1
 	group = "Operations"
@@ -771,7 +666,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/bonesetter,
 					/obj/item/weapon/circular_saw)
 	cost = 25
-	containertype = "/obj/structure/closet/crate/secure"
+	containertype = /obj/structure/closet/crate/secure/surgery
 	containername = "surgery crate"
 	access = ACCESS_MARINE_MEDBAY
 	group = "Medical"
@@ -783,45 +678,9 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/storage/box/masks,
 					/obj/item/weapon/storage/box/gloves)
 	cost = 10
-	containertype = "/obj/structure/closet/crate"
+	containertype = /obj/structure/closet/crate/medical
 	containername = "sterile equipment crate"
 	group = "Medical"
-
-//... Maybe later.
-/*
-/datum/supply_packs/randomised/pizza
-	num_contained = 5
-	contains = list(/obj/item/pizzabox/margherita,
-					/obj/item/pizzabox/mushroom,
-					/obj/item/pizzabox/meat,
-					/obj/item/pizzabox/vegetable)
-	name = "Surprise pack of five pizzas"
-	cost = 15
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "Pizza crate"
-	group = "Hospitality"
-*/
-
-/datum/supply_packs/smbig
-	name = "Supermatter Core"
-	contains = list(/obj/machinery/power/supermatter)
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "supermatter crate (CAUTION)"
-	group = "Engineering"
-
-/datum/supply_packs/radsuit
-	contains = list(/obj/item/clothing/suit/radiation,
-					/obj/item/clothing/suit/radiation,
-					/obj/item/clothing/suit/radiation,
-					/obj/item/clothing/head/radiation,
-					/obj/item/clothing/head/radiation,
-					/obj/item/clothing/head/radiation)
-	name = "Radiation suits package"
-	cost = 20
-	containertype = /obj/structure/closet/radiation
-	containername = "radiation suit locker"
-	group = "Engineering"
 
 /datum/supply_packs/pacman_parts
 	name = "P.A.C.M.A.N. portable generator parts"
@@ -844,25 +703,6 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/stock_parts/capacitor,
 					/obj/item/weapon/stock_parts/matter_bin,
 					/obj/item/weapon/circuitboard/pacman/super)
-
-/datum/supply_packs/randomised/dresses
-	name = "Womens formal dress locker"
-	containername = "pretty dress locker"
-	containertype = /obj/structure/closet
-	cost = 45
-	num_contained = 4
-	contains = list(/obj/item/clothing/under/wedding/bride_orange,
-					/obj/item/clothing/under/wedding/bride_purple,
-					/obj/item/clothing/under/wedding/bride_blue,
-					/obj/item/clothing/under/wedding/bride_red,
-					/obj/item/clothing/under/wedding/bride_white,
-					/obj/item/clothing/under/sundress,
-					/obj/item/clothing/under/dress/dress_green,
-					/obj/item/clothing/under/dress/dress_pink,
-					/obj/item/clothing/under/dress/dress_orange,
-					/obj/item/clothing/under/dress/dress_yellow,
-					/obj/item/clothing/under/dress/dress_saloon)
-	group = "Clothing"
 
 /datum/supply_packs/officer_outfits
 	contains = list(
@@ -905,56 +745,8 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "marine outfit closet"
 	group = "Clothing"
 
-/datum/supply_packs/formal_wear
-	contains = list(/obj/item/clothing/head/bowler,
-					/obj/item/clothing/head/that,
-					/obj/item/clothing/suit/storage/lawyer/bluejacket,
-					/obj/item/clothing/suit/storage/lawyer/purpjacket,
-					/obj/item/clothing/under/suit_jacket,
-					/obj/item/clothing/under/suit_jacket/female,
-					/obj/item/clothing/under/suit_jacket/really_black,
-					/obj/item/clothing/under/suit_jacket/red,
-					/obj/item/clothing/under/lawyer/bluesuit,
-					/obj/item/clothing/under/lawyer/purpsuit,
-					/obj/item/clothing/shoes/black,
-					/obj/item/clothing/shoes/black,
-					/obj/item/clothing/shoes/leather,
-					/obj/item/clothing/suit/wcoat)
-	name = "Formalwear closet"
-	cost = 40
-	containertype = /obj/structure/closet
-	containername = "formalwear for the best occasions."
-	group = "Clothing"
-
-/datum/supply_packs/randomised
-	var/num_contained = 5 //number of items picked to be contained in a randomised crate
-	contains = list(/obj/item/clothing/head/collectable/chef,
-					/obj/item/clothing/head/collectable/paper,
-					/obj/item/clothing/head/collectable/tophat,
-					/obj/item/clothing/head/collectable/captain,
-					/obj/item/clothing/head/collectable/beret,
-					/obj/item/clothing/head/collectable/welding,
-					/obj/item/clothing/head/collectable/flatcap,
-					/obj/item/clothing/head/collectable/pirate,
-					/obj/item/clothing/head/collectable/kitty,
-					/obj/item/clothing/head/collectable/rabbitears,
-					/obj/item/clothing/head/collectable/wizard,
-					/obj/item/clothing/head/collectable/hardhat,
-					/obj/item/clothing/head/collectable/HoS,
-					/obj/item/clothing/head/collectable/thunderdome,
-					/obj/item/clothing/head/collectable/swat,
-					/obj/item/clothing/head/collectable/slime,
-					/obj/item/clothing/head/collectable/police,
-					/obj/item/clothing/head/collectable/slime,
-					/obj/item/clothing/head/collectable/xenom,
-					/obj/item/clothing/head/collectable/petehat)
-	name = "Collectable hat crate!"
-	cost = 200
-	containertype = /obj/structure/closet/crate
-	containername = "collectable hats crate"
-	group = "Clothing"
-
-/datum/supply_packs/randomised/guns
+/datum/supply_packs/gun
+	randomised_num_contained = 6
 	contains = list()
 	name = "Weyland-Yutani firearms (x3)"
 	cost = 40
@@ -962,7 +754,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "\improper Weyland-Armat firearms crate"
 	group = "Weapons"
 
-/datum/supply_packs/randomised/guns/merc
+/datum/supply_packs/gun/merc
 	contains = list()
 	name = "Black Market firearm (x1)"
 	cost = 25
@@ -971,12 +763,24 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "\improper black market firearms crate"
 	group = "Weapons"
 
-/* No more Russian guns, sorry.
-/datum/supply_packs/randomised/guns/slavic
-	contains = list()
-	name = "Nagant-Yamasaki firearm (x1)"
-	cost = 80
-	containertype = /obj/structure/largecrate/guns/russian
-	containername = "Nagant-Yamasaki firearms crate"
+
+/datum/supply_packs/gun_holster
+	contains = list(/obj/item/weapon/storage/belt/gun/m39,
+					/obj/item/weapon/storage/belt/gun/m39)
+	name = "M39 Holster crate"
+	cost = 25
+	containertype = /obj/structure/closet/crate
+	containername = "holster crate"
 	group = "Weapons"
-*/
+
+/datum/supply_packs/gun_holster/m44
+	name = "M44 Holster crate"
+	cost = 15
+	contains = list(/obj/item/weapon/storage/belt/gun/m44,
+					/obj/item/weapon/storage/belt/gun/m44)
+
+/datum/supply_packs/gun_holster/m4a3
+	name = "M4A3 Holster crate"
+	cost = 15
+	contains = list(/obj/item/weapon/storage/belt/gun/m4a3,
+					/obj/item/weapon/storage/belt/gun/m4a3)

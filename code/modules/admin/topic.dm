@@ -163,58 +163,69 @@
 
 		edit_admin_permissions()
 
-	else if(href_list["call_shuttle"])
-		if(!check_rights(R_ADMIN))	return
+//======================================================
+//Everything that has to do with evac and self destruct.
+//The rest of this is awful.
+//======================================================
+	if(href_list["evac_authority"])
+		switch(href_list["evac_authority"])
+			if("init_evac")
+				if(!EvacuationAuthority.initiate_evacuation())
+					usr << "<span class='warning'>You are unable to initiate an evacuation right now!</span>"
+				else
+					log_admin("[key_name(usr)] called an evacuation.")
+					message_admins("\blue [key_name_admin(usr)] called an evacuation.", 1)
 
-		if( ticker.mode.name == "blob" )
-			alert("You can't call the shuttle during blob!")
-			return
+			if("cancel_evac")
+				if(!EvacuationAuthority.cancel_evacuation())
+					usr << "<span class='warning'>You are unable to cancel an evacuation right now!</span>"
+				else
+					log_admin("[key_name(usr)] canceled an evacuation.")
+					message_admins("\blue [key_name_admin(usr)] canceled an evacuation.", 1)
 
-		switch(href_list["call_shuttle"])
-			if("1")
-				if ((!( ticker ) || !emergency_shuttle.location()))
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
+			if("toggle_evac")
+				EvacuationAuthority.flags_scuttle ^= FLAGS_EVACUATION_DENY
+				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				message_admins("[key_name_admin(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
 
-			if("2")
-				if (!( ticker ) || !emergency_shuttle.location())
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
+			if("force_evac")
+				if(!EvacuationAuthority.begin_launch())
+					usr << "<span class='warning'>You are unable to launch the pods directly right now!</span>"
+				else
+					log_admin("[key_name(usr)] force-launched the escape pods.")
+					message_admins("\blue [key_name_admin(usr)] force-launched the escape pods.", 1)
 
-				else if (emergency_shuttle.can_recall())
-					emergency_shuttle.recall()
-					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
-					message_admins("\blue [key_name_admin(usr)] sent the Emergency Shuttle back", 1)
+			if("init_dest")
+				if(!EvacuationAuthority.enable_self_destruct())
+					usr << "<span class='warning'>You are unable to authorize the self-destruct right now!</span>"
+				else
+					log_admin("[key_name(usr)] force-enabled the self-destruct system.")
+					message_admins("\blue [key_name_admin(usr)] force-enabled the self-destruct system.", 1)
+
+			if("cancel_dest")
+				if(!EvacuationAuthority.cancel_self_destruct(1))
+					usr << "<span class='warning'>You are unable to cancel the self-destruct right now!</span>"
+				else
+					log_admin("[key_name(usr)] canceled the self-destruct system.")
+					message_admins("\blue [key_name_admin(usr)] canceled the self-destruct system.", 1)
+
+			if("use_dest")
+				if(!EvacuationAuthority.initiate_self_destruct(1))
+					usr << "<span class='warning'>You are unable to trigger the self-destruct right now!</span>"
+				else
+					log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
+					message_admins("\blue [key_name_admin(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].", 1)
+
+			if("toggle_dest")
+				EvacuationAuthority.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
+				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				message_admins("[key_name_admin(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+
 
 		href_list["secretsadmin"] = "check_antagonist"
 
-	else if(href_list["edit_shuttle_time"])
-		if(!check_rights(R_SERVER))	return
-
-		if (emergency_shuttle.wait_for_launch)
-			var/new_time_left = input("Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", emergency_shuttle.estimate_launch_time() ) as num
-
-			emergency_shuttle.launch_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left*10]", 1)
-		else if (emergency_shuttle.shuttle.has_arrive_time())
-
-			var/new_time_left = input("Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", emergency_shuttle.estimate_arrival_time() ) as num
-			emergency_shuttle.shuttle.arrive_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's arrival time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left*10]", 1)
-		else
-			alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
-
-		href_list["secretsadmin"] = "check_antagonist"
+//======================================================
+//======================================================
 
 	else if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))	return
@@ -256,9 +267,7 @@
 			if("boiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Boiler , null, null, delmob )
 			if("crusher")			M.change_mob_type( /mob/living/carbon/Xenomorph/Crusher , null, null, delmob )
 			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen , null, null, delmob )
-//			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
-			if("slime")				M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if("monkey")			M.change_mob_type( /mob/living/carbon/monkey , null, null, delmob )
 			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
 			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
@@ -473,12 +482,6 @@
 			if(counter >= 5) //So things dont get squiiiiished!
 				jobs += "</tr><tr align='center'>"
 				counter = 0
-		jobs += "</tr></table>"
-
-		if(jobban_isbanned(M, "pAI")) //pAI isn't technically a job, but it goes in here.
-			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=pAI;jobban4=\ref[M]'><font color=red>pAI</font></a></td>"
-		else
-			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=pAI;jobban4=\ref[M]'>pAI</a></td>"
 		jobs += "</tr></table>"
 
 	//Antagonist (Orange)
@@ -971,12 +974,7 @@
 
 		//strip their stuff and stick it in the crate
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = locker
-				I.layer = initial(I.layer)
-				I.dropped(M)
-		M.update_icons()
+			M.drop_inv_item_to_loc(I, locker)
 
 		//so they black out before warping
 		M.Paralyse(5)
@@ -994,7 +992,7 @@
 		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
 
 	else if(href_list["sendbacktolobby"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_MOD))
 			return
 
 		var/mob/M = locate(href_list["sendbacktolobby"])
@@ -1032,11 +1030,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = M.loc
-				I.layer = initial(I.layer)
-				I.dropped(M)
+			M.drop_inv_item_on_ground(I)
 
 		M.Paralyse(5)
 		sleep(5)
@@ -1061,11 +1055,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = M.loc
-				I.layer = initial(I.layer)
-				I.dropped(M)
+			M.drop_inv_item_on_ground(I)
 
 		M.Paralyse(5)
 		sleep(5)
@@ -1112,11 +1102,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.u_equip(I)
-			if(I)
-				I.loc = M.loc
-				I.layer = initial(I.layer)
-				I.dropped(M)
+			M.drop_inv_item_on_ground(I)
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/observer = M
@@ -1213,16 +1199,6 @@
 			if(H) del(H) //May have to clear up round-end vars and such....
 
 		return
-
-	else if(href_list["makeslime"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
-		if(!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-
-		usr.client.cmd_admin_slimeize(H)
 
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
@@ -1426,13 +1402,6 @@
 		M << "You've been hit by bluespace artillery!"
 		log_admin("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
 		message_admins("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
-
-		var/obj/effect/stop/S
-		S = new /obj/effect/stop
-		S.victim = M
-		S.loc = M.loc
-		spawn(20)
-			del(S)
 
 		var/turf/simulated/floor/T = get_turf(M)
 		if(istype(T))
@@ -1872,7 +1841,7 @@
 				message_admins("[key_name_admin(usr)] triggered an ion storm")
 				var/show_log = alert(usr, "Show ion message?", "Message", "Yes", "No")
 				if(show_log == "Yes")
-					command_announcement.Announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
+					command_announcement.Announce("Ion storm detected in proximity. Recommendation: Check all AI-controlled equipment for data corruption.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 			if("onlyone")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","OO")

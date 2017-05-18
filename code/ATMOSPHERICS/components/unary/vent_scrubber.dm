@@ -252,7 +252,8 @@
 			user.visible_message("<span class='notice'>[user] starts welding the scrubber shut.</span>", \
 			"<span class='notice'>You start welding the scrubber shut.</span>", \
 			"<span class='notice'>You hear welding.</span>")
-			if(do_after(user, 20))
+			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 50)
+			if(do_after(user, 50))
 				if(!src || !WT.isOn())
 					return
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', 50, 1)
@@ -264,7 +265,7 @@
 					update_icon()
 				else
 					user.visible_message("<span class='notice'>[user] welds the scrubber.</span>", \
-					"<span class='notice'>You weld the scrubber shut.</span>", \
+					"<span class='notice'>You weld the scrubber.</span>", \
 					"<span class='notice'>You hear welding.</span>")
 					welded = 0
 					update_icon()
@@ -272,7 +273,7 @@
 				user << "<span class='notice'>The welding tool needs to be on to start this task.</span>"
 		else
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
-			return 1
+		return
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)

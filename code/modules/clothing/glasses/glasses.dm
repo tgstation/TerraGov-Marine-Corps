@@ -130,6 +130,7 @@
 	item_state = "welding-g"
 	icon_action_button = "action_welding_g"
 	flags_inventory = COVEREYES|HIDEEYES
+	eye_protection = 2
 	var/up = 0
 
 /obj/item/clothing/glasses/welding/attack_self()
@@ -141,18 +142,20 @@
 	set name = "Adjust welding goggles"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
+	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 		if(src.up)
 			src.up = !src.up
 			flags_inventory |= (COVEREYES|HIDEEYES)
 			flags_armor_protection |= EYES
 			icon_state = initial(icon_state)
+			eye_protection = initial(eye_protection)
 			usr << "You flip \the [src] down to protect your eyes."
 		else
 			src.up = !src.up
 			flags_inventory &= ~(COVEREYES|HIDEEYES)
 			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
+			eye_protection = 0
 			usr << "You push \the [src] up out of your face."
 
 		update_clothing_icon()
@@ -184,6 +187,7 @@
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
+	eye_protection = 1
 	var/obj/item/clothing/glasses/hud/security/hud = null
 
 	New()
@@ -205,6 +209,7 @@
 	toggleable = 1
 	vision_flags = SEE_MOBS
 	invisa_view = 2
+	eye_protection = -1
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))

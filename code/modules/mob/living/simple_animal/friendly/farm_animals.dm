@@ -167,7 +167,7 @@
 	health = 1
 	var/amount_grown = 0
 	flags_pass = PASSTABLE|PASSGRILLE
-	small = 1
+	mob_size = MOB_SIZE_SMALL
 
 /mob/living/simple_animal/chick/New()
 	..()
@@ -209,7 +209,7 @@ var/global/chicken_count = 0
 	var/eggsleft = 0
 	var/body_color
 	flags_pass = PASSTABLE
-	small = 1
+	mob_size = MOB_SIZE_SMALL
 
 /mob/living/simple_animal/chicken/New()
 	..()
@@ -230,7 +230,7 @@ var/global/chicken_count = 0
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown/wheat)) //feedin' dem chickens
 		if(!stat && eggsleft < 8)
 			user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")
-			user.drop_item()
+			user.drop_held_item()
 			del(O)
 			eggsleft += rand(1, 4)
 			//world << eggsleft

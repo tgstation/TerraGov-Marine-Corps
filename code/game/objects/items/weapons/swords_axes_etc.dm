@@ -176,6 +176,7 @@
 /obj/item/weapon/melee/energy/sword/green
 	New()
 		item_color = "green"
+		..()
 
 /obj/item/weapon/melee/energy/sword/green/attack_self()
 	..()
@@ -185,20 +186,16 @@
 	New()
 		item_color = "red"
 
-/obj/item/weapon/melee/energy/blade/New()
-	spark_system = new /datum/effect/effect/system/spark_spread()
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
-	destroy_on_drop = 1
-	return
+/obj/item/weapon/melee/energy/blade
+	flags_atom = DELONDROP|FPRINT|NOBLOODY
 
-///obj/item/weapon/melee/energy/blade/dropped()
-//	del(src)
-//	return
+	New()
+		spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		..()
 
-///obj/item/weapon/melee/energy/blade/proc/throw()
-//	del(src)
-//	return
+
 
 /*
  * Energy Axe

@@ -18,18 +18,18 @@
 		var/obj/item/weapon/card/id/idcard = O
 		if(ACCESS_MARINE_LOGISTICS in idcard.access)
 			if(!scan)
-				usr.drop_item()
+				usr.drop_held_item()
 				idcard.loc = src
 				scan = idcard
 			else if(!modify)
-				usr.drop_item()
+				usr.drop_held_item()
 				idcard.loc = src
 				modify = idcard
 			else
 				user << "Both slots are full already. Remove a card first."
 		else
 			if(!modify)
-				usr.drop_item()
+				usr.drop_held_item()
 				idcard.loc = src
 				modify = idcard
 			else
@@ -240,7 +240,7 @@
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card/id))
-					usr.drop_item()
+					usr.drop_held_item()
 					I.loc = src
 					modify = I
 			authenticated = 0
@@ -257,7 +257,7 @@
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card/id))
-					usr.drop_item()
+					usr.drop_held_item()
 					I.loc = src
 					scan = I
 			authenticated = 0
@@ -375,7 +375,7 @@
 	if(istype(O, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/idcard = O
 		if(!modify)
-			usr.drop_item()
+			usr.drop_held_item()
 			idcard.loc = src
 			modify = idcard
 		else
@@ -444,7 +444,7 @@
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card/id))
-					usr.drop_item()
+					usr.drop_held_item()
 					I.loc = src
 					modify = I
 		else if(href_list["squad"])

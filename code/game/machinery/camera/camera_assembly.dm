@@ -78,7 +78,7 @@
 			if(isscrewdriver(W))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 
-				var/input = strip_html(input(usr, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: SULACO, Security,Secret ", "Set Network", "SULACO"))
+				var/input = strip_html(input(usr, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: [MAIN_SHIP_NAME], Security,Secret ", "Set Network", "[MAIN_SHIP_NAME]"))
 				if(!input)
 					usr << "No input found please hang up and try your call again."
 					return
@@ -128,8 +128,8 @@
 	if(is_type_in_list(W, possible_upgrades) && !is_type_in_list(W, upgrades)) // Is a possible upgrade and isn't in the camera already.
 		user << "You attach \the [W] into the assembly inner circuits."
 		upgrades += W
-		user.drop_item(W)
-		W.loc = src
+		user.drop_held_item()
+		W.forceMove(src)
 		return
 
 	// Taking out upgrades

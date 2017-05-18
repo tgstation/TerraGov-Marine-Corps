@@ -12,7 +12,7 @@
 	var/oxyloss = 0.0	//Oxygen depravation damage (no air in lungs)
 	var/toxloss = 0.0	//Toxic damage caused by being poisoned or radiated
 	var/fireloss = 0.0	//Burn damage caused by being way too hot, too cold or burnt.
-	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
+	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
@@ -34,7 +34,7 @@
 	var/cameraFollow = null
 
 	var/tod = null // Time of death
-	var/update_slimes = 1
+
 	var/silent = null 		//Can't talk. Value goes down every life proc.
 
 	// Putting these here for attack_animal().
@@ -51,10 +51,10 @@
 	var/is_being_hugged = 0 //Is there a hugger humping our face?
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
 	var/acid_damage = 0 //Counter for stomach acid damage. At ~60 ticks, dissolved
-	var/in_stasis = 0 //Is the mob in stasis bag?
-
-	var/tally = 0 //Tally counter, updated every Life() proc via movement procs, reset under mob/living
+	var/in_stasis = FALSE //Is the mob in stasis bag?
 
 	var/list/icon/pipes_shown = list()
 	var/last_played_vent
 	var/is_ventcrawling = 0
+
+	var/next_move_slowdown = 0 //amount added during the next movement_delay(), then is reset.

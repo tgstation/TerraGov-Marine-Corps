@@ -21,13 +21,10 @@
 	if(lying)			return 0
 	if(!istype(W))		return 0
 	if(!l_hand)
-		W.loc = src		//TODO: move to equipped?
+		W.forceMove(src)
 		l_hand = W
-		W.layer = 20	//TODO: move to equipped?
-//		l_hand.screen_loc = ui_lhand
+		W.layer = 20
 		W.equipped(src,WEAR_L_HAND)
-		if(client)	client.screen |= W
-		if(pulling == W) stop_pulling()
 		update_inv_l_hand()
 		return 1
 	return 0
@@ -37,13 +34,10 @@
 	if(lying)			return 0
 	if(!istype(W))		return 0
 	if(!r_hand)
-		W.loc = src
+		W.forceMove(src)
 		r_hand = W
 		W.layer = 20
-//		r_hand.screen_loc = ui_rhand
 		W.equipped(src,WEAR_R_HAND)
-		if(client)	client.screen |= W
-		if(pulling == W) stop_pulling()
 		update_inv_r_hand()
 		return 1
 	return 0
@@ -72,144 +66,81 @@
 		update_inv_r_hand()
 		return 1
 	else
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 		W.layer = initial(W.layer)
-		W.dropped()
+		W.dropped(src)
 		return 0
 
 
 
 /mob/proc/drop_item_v()		//this is dumb.
 	if(stat == CONSCIOUS && isturf(loc))
-		return drop_item()
-	return 0
-
-
-//Need to make this proc obsolete.
-/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W && istype(W))
-		if(!Target)
-			Target = loc
-
-		if(client)	client.screen -= W
-		u_equip(W)
-
-		if(W)
-			W.dropped(src)
-
-		if(!W || !W.loc) return 1 // self destroying objects (tk, grabs)
-
-		W.layer = initial(W.layer)
-
-		if(isturf(Target) && !isnull(Target))
-			W.loc = Target
-		else
-			W.loc = get_turf(src)
-
-//		if(isturf(T))
-//			T.Entered(W)
-
-		update_icons()
-		return 1
+		return drop_held_item()
 	return 0
 
 
 //Drops the item in our left hand
-/mob/proc/drop_l_hand(var/atom/Target)
+/mob/proc/drop_l_hand()
 	if(l_hand)
-		if(client)	client.screen -= l_hand
-		l_hand.layer = initial(l_hand.layer)
-
-		if(Target)	l_hand.loc = Target.loc
-		else		l_hand.loc = loc
-
-		var/turf/T = get_turf(loc)
-		if(isturf(T))
-			T.Entered(l_hand)
-
-		l_hand.dropped(src)
-		l_hand = null
-		update_inv_l_hand()
-		return 1
+		return drop_inv_item_on_ground(l_hand)
 	return 0
 
 //Drops the item in our right hand
-/mob/proc/drop_r_hand(var/atom/Target)
+/mob/proc/drop_r_hand()
 	if(r_hand)
-		if(client)	client.screen -= r_hand
-		r_hand.layer = initial(r_hand.layer)
-
-		if(Target)	r_hand.loc = Target.loc
-		else		r_hand.loc = loc
-
-		var/turf/T = get_turf(Target)
-		if(istype(T))
-			T.Entered(r_hand)
-
-		r_hand.dropped(src)
-		r_hand = null
-		update_inv_r_hand()
-		return 1
+		return drop_inv_item_on_ground(r_hand)
 	return 0
 
 //Drops the item in our active hand.
-/mob/proc/drop_item(var/atom/Target)
-	if(hand)	return drop_l_hand(Target)
-	else		return drop_r_hand(Target)
+/mob/proc/drop_held_item()
+	if(hand)	return drop_l_hand()
+	else		return drop_r_hand()
 
+//Drops the items in our hands.
+/mob/proc/drop_held_items()
+	drop_r_hand()
+	drop_l_hand()
 
+//drop the inventory item on a specific location
+/mob/proc/drop_inv_item_to_loc(obj/item/I, atom/newloc, nomoveupdate, force)
+	return u_equip(I, newloc, nomoveupdate, force)
 
-//TODO: phase out this proc
-/mob/proc/before_take_item(var/obj/item/W)	//TODO: what is this?
-	W.loc = null
-	W.layer = initial(W.layer)
-	u_equip(W)
-	update_icons()
-	return
+//drop the inventory item on the ground
+/mob/proc/drop_inv_item_on_ground(obj/item/I, nomoveupdate, force)
+	return u_equip(I, loc, nomoveupdate, force)
 
+//Never use this proc directly. nomoveupdate is used when we don't want the item to react to
+// its new loc (e.g.triggering mousetraps)
+/mob/proc/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
 
-/mob/proc/u_equip(var/obj/item/W)
-	var success = 0
+	if(!I) return TRUE
 
-	if(!W) return
+	if((I.flags_atom & NODROP) && !force)
+		return FALSE //u_equip() only fails if item has NODROP
 
-	if (W == r_hand)
+	if (I == r_hand)
 		r_hand = null
-		update_inv_r_hand(0)
-		success = 1
-	else if (W == l_hand)
+		update_inv_r_hand()
+	else if (I == l_hand)
 		l_hand = null
-		update_inv_l_hand(0)
-		success = 1
-	else if (W == back)
-		back = null
-		update_inv_back(0)
-		success = 1
-	else if (W == wear_mask)
-		wear_mask = null
-		update_inv_wear_mask(0)
-		success = 1
+		update_inv_l_hand()
 
-	if(W && success) //This cleans up stuff like monkeys dropping flashlights or binoculars. Weird, but better to have it.
-		if (client)
-			client.screen -= W
-		W.loc = loc
+	if (client)
+		client.screen -= I
+	I.layer = initial(I.layer)
+	if(newloc)
+		if(!nomoveupdate)
+			I.forceMove(newloc)
+		else
+			I.loc = newloc
+	I.dropped(src)
 
-		if(W.destroy_on_drop)
-			del(W)
-//		W.dropped(src)
+	return TRUE
 
-	return
-
-
-//Attemps to remove an object on a mob.  Will not move it to another area or such, just removes from the mob.
-/mob/proc/remove_from_mob(var/obj/O)
-	src.u_equip(O)
-	if (src.client)
-		src.client.screen -= O
-	O.layer = initial(O.layer)
-	O.screen_loc = null
-	return 1
+//Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
+//Used just before you want to delete the item, or moving it afterwards.
+/mob/proc/temp_drop_inv_item(obj/item/I, force)
+	return u_equip(I, null, force)
 
 
 //Outdated but still in use apparently. This should at least be a human proc.
@@ -235,8 +166,8 @@
 
 	return items
 
-/** BS12's proc to get the item in the active hand. Couldn't find the /tg/ equivalent. **/
-/mob/proc/equipped()
+//proc to get the item in the active hand.
+/mob/proc/get_held_item()
 	if(issilicon(src))
 		if(isrobot(src))
 			if(src:module_active)

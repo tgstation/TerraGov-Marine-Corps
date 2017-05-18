@@ -110,16 +110,8 @@
 			if(W.sharp) //Projectile is suitable for pinning.
 				//Handles embedding for non-humans and simple_animals.
 				O.loc = src
-				src.embedded += O
-
-				var/turf/T = near_wall(dir,2)
-
-				if(T)
-					src.loc = T
-					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = 1
-					src.pinned += O
-					src.verbs += /mob/proc/yank_out_object
+				embedded += O
+				verbs += /mob/proc/yank_out_object
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
@@ -161,20 +153,17 @@
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
 	fire_stacks = Clamp(fire_stacks + add_fire_stacks, min = -20, max = 20)
-	if(fire_stacks <= 0)
+	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
-	update_fire()
 
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)
 		fire_stacks++ //If we've doused ourselves in water to avoid fire, dry off slowly
 		fire_stacks = min(0, fire_stacks)//So we dry ourselves back to default, nonflammable.
+	else
+		adjust_fire_stacks(-1) //the fire is consumed slowly
 	if(!on_fire)
 		return 1
-/*	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
-	if(G.oxygen < 1)
-		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
-		return*/
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(700, 50, 1)
 

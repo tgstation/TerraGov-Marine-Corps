@@ -20,6 +20,7 @@
 	armor_deflection = 15
 	tier = 1
 	upgrade = 0
+	speed = -0.4
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
@@ -29,13 +30,3 @@
 		/mob/living/carbon/Xenomorph/proc/neurotoxin //Weakest version
 		)
 
-/mob/living/carbon/Xenomorph/Sentinel/ClickOn(var/atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		neurotoxin(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		neurotoxin(A)
-		return
-	..()

@@ -29,22 +29,18 @@
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
 	w_class = 3.0
-	var/unfolded_tarp = /obj/structure/closet/body_bag/tarp
+	unfolded_path = /obj/structure/closet/bodybag/tarp
 
-	attack_self(mob/user)
-		var/obj/structure/closet/body_bag/tarp/T = new unfolded_tarp(user.loc)
-		T.add_fingerprint(user)
-		user.remove_from_mob(src)
-		cdel(src)
+
 
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"
-	unfolded_tarp = /obj/structure/closet/body_bag/tarp/snow
+	unfolded_path = /obj/structure/closet/bodybag/tarp/snow
 
-/obj/structure/closet/body_bag/tarp
-	name = "\improper V1 thermal-dapening tarp"
-	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+/obj/structure/closet/bodybag/tarp
+	name = "\improper V1 thermal-dampening tarp"
+	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
@@ -54,7 +50,7 @@
 	item_path = /obj/item/bodybag/tarp
 	anchored = 1
 
-/obj/structure/closet/body_bag/tarp/snow
+/obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"
 	icon_closed = "snowtarp_closed"
 	icon_opened = "snowtarp_open"
@@ -67,6 +63,10 @@
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = 1, "MP" = 1, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 1, "MedSci" = 1, "Req" = 1 )
+
+/obj/item/device/encryptionkey/mcom/ai //AI only.
+	channels = list("Command" = 1, "MP" = 1, "Alpha" = 1, "Bravo" = 1, "Charlie" = 1, "Delta" = 1, "Engi" = 1, "MedSci" = 1, "Req" = 1 )
+
 /*
 /obj/item/device/encryptionkey/mhaz
 	name = "Hazteam Echo Radio Encryption Key"
@@ -160,6 +160,10 @@
 	keyslot2 = new /obj/item/device/encryptionkey/mcom
 	frequency = PUB_FREQ
 
+/obj/item/device/radio/headset/mcom/ai
+	keyslot2 = new /obj/item/device/encryptionkey/mcom/ai
+	frequency = PUB_FREQ
+
 /obj/item/device/radio/headset/malphal
 	name = "marine alpha leader radio headset"
 	desc = "This is used by the marine alpha squad leader. Channels are as follows: :v - marine command, :q - alpha squad."
@@ -194,7 +198,7 @@
 
 /obj/item/device/radio/headset/msulaco
 	name = "marine radio headset"
-	desc = "A standard Sulaco radio headset"
+	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ

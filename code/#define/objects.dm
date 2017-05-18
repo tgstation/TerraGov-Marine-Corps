@@ -34,6 +34,7 @@
 #define POWEROFF	4		// tbd
 #define MAINT		8			// under maintaince
 #define EMPED		16		// temporary broken by EMP pulse
+#define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 
 //bitflags for door switches.
 #define OPEN	1
@@ -98,3 +99,11 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 	"ERT",
 	"NUKE"
 	)
+
+#define STASIS_IN_BAG 		1
+#define STASIS_IN_CRYO_CELL 2
+
+
+// Diagonal movement for movable atoms
+#define FIRST_DIAG_STEP 	1
+#define SECOND_DIAG_STEP 	2

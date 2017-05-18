@@ -171,7 +171,7 @@
 /datum/species/proc/handle_post_spawn(var/mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
 	add_inherent_verbs(H)
 
-/datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
+/datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events.
 	if(flags & IS_SYNTHETIC)
 		H.h_style = ""
 		spawn(100)
@@ -430,71 +430,6 @@
 		/mob/living/carbon/human/proc/commune
 		)
 
-/datum/species/diona
-	name = "Diona"
-	name_plural = "Dionaea"
-	icobase = 'icons/mob/human_races/r_diona.dmi'
-	deform = 'icons/mob/human_races/r_def_plant.dmi'
-	language = "Rootspeak"
-	unarmed_type = /datum/unarmed_attack/diona
-//	primitive = /mob/living/carbon/alien/diona
-	slowdown = 7
-	rarity_value = 3
-
-	has_organ = list(
-		"nutrient channel" =   /datum/organ/internal/diona/nutrients,
-		"neural strata" =      /datum/organ/internal/diona/strata,
-		"response node" =      /datum/organ/internal/diona/node,
-		"gas bladder" =        /datum/organ/internal/diona/bladder,
-		"polyp segment" =      /datum/organ/internal/diona/polyp,
-		"anchoring ligament" = /datum/organ/internal/diona/ligament
-		)
-
-	warning_low_pressure = 50
-	hazard_low_pressure = -1
-
-	cold_level_1 = 50
-	cold_level_2 = -1
-	cold_level_3 = -1
-
-	heat_level_1 = 2000
-	heat_level_2 = 3000
-	heat_level_3 = 4000
-
-	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
-
-	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|IS_PLANT|NO_BLOOD|NO_PAIN|NO_SLIP
-
-	blood_color = "#004400"
-	flesh_color = "#907E4A"
-
-	reagent_tag = IS_DIONA
-
-/datum/species/diona/can_understand(var/mob/other)
-//	var/mob/living/carbon/alien/diona/D = other
-//	if(istype(D))
-//		return 1
-	return 0
-
-/datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
-	H.gender = NEUTER
-	return ..()
-
-/datum/species/diona/handle_death(var/mob/living/carbon/human/H)
-
-//	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
-
-//	if(H.mind)
-//		H.mind.transfer_to(S)
-
-//	for(var/mob/living/carbon/alien/diona/D in H.contents)
-//		if(D.client)
-//			D.loc = H.loc
-//		else
-//			del(D)
-
-	H.visible_message("\red[H] splits apart with a wet slithering noise!")
-
 /datum/species/machine
 	name = "Machine"
 	name_plural = "machines"
@@ -602,7 +537,7 @@
 	var/edge = 0
 
 /datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user)
-	if(user.restrained())
+	if(user.is_mob_restrained())
 		return 0
 
 	// Check if they have a functioning hand.
@@ -636,10 +571,6 @@
 /datum/unarmed_attack/punch/strong
 	attack_verb = list("punch","bust","jab")
 	damage = 10
-
-/datum/unarmed_attack/diona
-	attack_verb = list("lash", "bludgeon")
-	damage = 5
 
 /datum/unarmed_attack/claws
 	attack_verb = list("scratch", "claw")

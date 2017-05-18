@@ -9,7 +9,7 @@ var/list/department_radio_keys = list(
 
 	  ":m" = "MedSci",		"#m" = "MedSci",		".m" = "MedSci",
 	  ":e" = "Engi", 		"#e" = "Engi",			".e" = "Engi",
-	  ":z" = "Sulaco",		"#z" = "Sulaco",		".z" = "Sulaco",
+	  ":z" = "Almayer",		"#z" = "Almayer",		".z" = "Almayer",
 	  ":v" = "Command",		"#v" = "Command",		".v" = "Command",
 	  ":q" = "Alpha",		"#q" = "Alpha",			".q" = "Alpha",
 	  ":b" = "Bravo",		"#b" = "Bravo",			".b" = "Bravo",
@@ -27,7 +27,7 @@ var/list/department_radio_keys = list(
 
 	  ":M" = "MedSci",		"#M" = "MedSci",		".M" = "MedSci",
 	  ":E" = "Engi", 		"#E" = "Engi",			".E" = "Engi",
-	  ":Z" = "Sulaco",		"#Z" = "Sulaco",		".Z" = "Sulaco",
+	  ":Z" = "Almayer",		"#Z" = "Almayer",		".Z" = "Almayer",
 	  ":V" = "Command",		"#V" = "Command",		".V" = "Command",
 	  ":Q" = "Alpha",		"#Q" = "Alpha",			".Q" = "Alpha",
 	  ":B" = "Bravo",		"#B" = "Bravo",			".B" = "Bravo",
@@ -50,10 +50,6 @@ var/list/department_radio_keys = list(
 )
 
 /mob/living/proc/binarycheck()
-
-	if (istype(src, /mob/living/silicon/pai))
-		return
-
 	if (!ishuman(src))
 		return
 
@@ -107,12 +103,6 @@ var/list/department_radio_keys = list(
 				hearturfs += M.locs[1]
 				for(var/obj/O in M.contents)
 					listening_obj |= O
-				if (isslime(I))
-					var/mob/living/carbon/slime/S = I
-					if (src in S.Friends)
-						S.speech_buffer = list()
-						S.speech_buffer.Add(src)
-						S.speech_buffer.Add(lowertext(html_decode(message)))
 			else if(istype(I, /obj/))
 				var/obj/O = I
 				hearturfs += O.locs[1]

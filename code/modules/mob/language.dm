@@ -83,16 +83,6 @@
 	key = "9"
 	flags = RESTRICTED
 
-/datum/language/diona
-	name = "Rootspeak"
-	desc = "A creaking, subvocal language spoken instinctively by the Dionaea. Due to the unique makeup of the average Diona, a phrase of Rootspeak can be a combination of anywhere from one to twelve individual voices and notes."
-	speech_verb = "creaks and rustles"
-	ask_verb = "creaks"
-	exclaim_verb = "rustles"
-	colour = "soghun"
-	key = "8"
-	flags = RESTRICTED
-
 /datum/language/common
 	name = "English"
 	desc = "Common earth English."

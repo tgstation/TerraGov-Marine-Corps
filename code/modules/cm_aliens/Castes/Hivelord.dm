@@ -4,7 +4,7 @@
 	caste = "Hivelord"
 	name = "Hivelord"
 	desc = "A huge ass xeno covered in weeds! Oh shit!"
-	icon = 'icons/xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Hivelord Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -18,8 +18,9 @@
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	pixel_x = -16
-	speed = 1.5
-	big_xeno = 1
+	speed = 1.2
+	mob_size = MOB_SIZE_BIG
+	drag_delay = 6 //pulling a big dead xeno is hard
 	var/speed_activated = 0
 	tier = 2
 	upgrade = 0
@@ -35,8 +36,17 @@
 	//	/mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
-/mob/living/carbon/Xenomorph/Hivelord/can_ventcrawl()
-	return
+/mob/living/carbon/Xenomorph/Hivelord/movement_delay()
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
+	. = ..()
+
+	if(speed_activated)
+		if(locate(/obj/effect/alien/weeds) in loc)
+			. -= 1.5
+
+
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed()
 	set name = "Resin Walker"
@@ -74,10 +84,9 @@
 		src << "<span class='warning'>There's no way you can dig there without flooding your tunnel.</span>"
 		return
 
-	if(!istype(T, /turf/unsimulated/floor/gm))
-		if(!istype(T, /turf/unsimulated/floor/snow))
-			src << "<span class='warning'>You scrape around, but you can't seem to dig through that kind of floor.</span>"
-			return
+	if(!istype(T, /turf/unsimulated/floor/gm) && !istype(T, /turf/unsimulated/floor/snow) && !istype(T, /turf/unsimulated/floor/mars))
+		src << "<span class='warning'>You scrape around, but you can't seem to dig through that kind of floor.</span>"
+		return
 
 	if(locate(/obj/structure/tunnel) in loc)
 		src << "<span class='warning'>There already is a tunnel here.</span>"
@@ -87,15 +96,19 @@
 		src << "<span class='warning'>You are not ready to dig a tunnel again.</span>"
 		return
 
+	if(get_active_hand())
+		src << "<span class='xenowarning'>You need an empty claw for this!</span>"
+		r_FAL
+
 	if(!check_plasma(200))
 		return
 
 	visible_message("<span class='xenonotice'>[src] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>")
-	if(do_after(src, 100))
+	if(do_after(src, 100, 1))
 		if(!start_dig) //Let's start a new one.
-			visible_message("<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", \
-			"<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>")
+			visible_message("<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>", \
+			"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>")
 			start_dig = new /obj/structure/tunnel(T)
 		else
 			src << "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances!</span>"

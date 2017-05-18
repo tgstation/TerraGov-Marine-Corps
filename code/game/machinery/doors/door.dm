@@ -3,7 +3,7 @@
 #define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
 
 /obj/machinery/door
-	name = "Door"
+	name = "\improper Door"
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
@@ -31,17 +31,36 @@
 	dir = EAST
 	var/width = 1
 
-/obj/machinery/door/New()
-	. = ..()
-	if(density)
-		layer = closed_layer
-		explosion_resistance = initial(explosion_resistance)
-		update_flags_heat_protection(get_turf(src))
-	else
-		layer = open_layer
-		explosion_resistance = 0
+	Dispose()
+		. = ..()
+		if(filler && width > 1)
+			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
+			filler = null
+		density = 0
+		update_nearby_tiles()
 
-	//Does not seem to be working correctly. We will spawn a new object inside the double door to make it opaque or not.
+	New()
+		. = ..()
+		if(density)
+			layer = closed_layer
+			explosion_resistance = initial(explosion_resistance)
+			update_flags_heat_protection(get_turf(src))
+		else
+			layer = open_layer
+			explosion_resistance = 0
+
+		handle_multidoor()
+
+		update_nearby_tiles(need_rebuild=1)
+
+	Del()
+		if(filler && width > 1)
+			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
+		density = 0
+		if(loc) update_nearby_tiles()
+		..()
+
+/obj/machinery/door/proc/handle_multidoor()
 	if(width > 1)
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size
@@ -54,18 +73,6 @@
 			filler = get_step(src,NORTH)
 			filler.SetOpacity(opacity)
 
-	update_nearby_tiles(need_rebuild=1)
-	return
-
-
-/obj/machinery/door/Del()
-	if(width > 1)
-		filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
-	density = 0
-	update_nearby_tiles()
-	..()
-	return
-
 //process()
 	//return
 
@@ -75,9 +82,14 @@
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
 		M.last_bumped = world.time
-		if(!M.restrained() && !M.small)
+		if(!M.is_mob_restrained() && M.mob_size > MOB_SIZE_SMALL)
 			bumpopen(M)
 		return
+
+	if(istype(AM, /obj))
+		var/obj/O = AM
+		if(O.buckled_mob)
+			Bumped(O.buckled_mob)
 
 	if(istype(AM, /obj/machinery/bot))
 		var/obj/machinery/bot/bot = AM
@@ -93,16 +105,6 @@
 				open()
 			else
 				flick("door_deny", src)
-		return
-	if(istype(AM, /obj/structure/stool/bed/chair/wheelchair))
-		var/obj/structure/stool/bed/chair/wheelchair/wheel = AM
-		if(density)
-			if(wheel.pulling && (src.allowed(wheel.pulling)))
-				open()
-			else
-				flick("door_deny", src)
-		return
-	return
 
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)

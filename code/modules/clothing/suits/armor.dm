@@ -169,7 +169,7 @@
 				usr << "\red This gun won't fit in \the belt!"
 				return
 			holstered = usr.get_active_hand()
-			usr.drop_item()
+			usr.drop_held_item()
 			holstered.loc = src
 			usr.visible_message("\blue \The [usr] holsters \the [holstered].", "You holster \the [holstered].")
 		else

@@ -23,7 +23,7 @@
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")
 			L.anchored = 1
 			L.icon_state = "lightstick_[L.s_color][L.anchored]"
-			user.drop_item()
+			user.drop_held_item()
 			L.x = x
 			L.y = y
 			L.pixel_x += rand(-5,5)

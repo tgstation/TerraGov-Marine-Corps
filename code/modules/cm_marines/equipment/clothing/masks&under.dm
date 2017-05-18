@@ -211,7 +211,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
-	desc = "A green jacket worn by crew on the Sulaco. The back has the flag of the United Americas on it."
+	desc = "A green jacket worn by USCM personnel. The back has the flag of the United Americas on it."
 	icon_state = "RO_jacket"
 	item_state = "RO_jacket"
 	blood_overlay_type = "coat"
@@ -230,6 +230,13 @@ include jackets and regular suits, not armor.*/
 	icon_state = "milohachert"
 	item_state = "milohachert"
 	item_color = "milohachert"
+
+/obj/item/clothing/under/marine/officer/warrant
+	name = "\improper chief MP uniform"
+	desc = "A uniform typically worn by a Chief MP of the USCM. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions. This uniform includes a small EMF distributor to help nullify energy-based weapon fire, along with a hazmat chemical filter woven throughout the material to ward off biological and radiation hazards."
+	icon_state = "WO_jumpsuit"
+	item_state = "WO_jumpsuit"
+	item_color = "WO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/technical
 	name = "technical officer uniform"
@@ -266,14 +273,14 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
-	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "The well-ironed uniform of a USCM commander. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
 	item_color = "CO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief engineer uniform"
-	desc = "A uniform for the engineering crew of the USS Sulaco. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform for a military engineer. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	armor = list(melee = 5, bullet = 5, laser = 25, energy = 5, bomb = 5, bio = 5, rad = 25)
 	icon_state = "EC_jumpsuit"
 	item_state = "EC_jumpsuit"
@@ -281,7 +288,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
-	desc = "A uniform for the engineering crew of the USS Sulaco. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform for a military engineer. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	armor = list(melee = 5, bullet = 5, laser = 15, energy = 5, bomb = 5, bio = 5, rad = 10)
 	icon_state = "E_jumpsuit"
 	item_state = "E_jumpsuit"
@@ -450,10 +457,10 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/under/attackby(obj/item/I, mob/user)
 	if(hastie)
 		hastie.attackby(I, user)
-		return
+		return 1
 
 	if(!hastie && istype(I, /obj/item/clothing/tie))
-		user.drop_item()
+		user.drop_held_item()
 		hastie = I
 		hastie.on_attached(src, user)
 
@@ -463,14 +470,13 @@ include jackets and regular suits, not armor.*/
 
 		return
 
-	if(src.loc == user && istype(I,/obj/item/clothing/under) && src != I)
-		if(istype(user,/mob/living/carbon/human))
+	if(loc == user && istype(I,/obj/item/clothing/under) && src != I)
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.w_uniform == src)
-				H.u_equip(src)
+				H.drop_inv_item_on_ground(src)
 				if(H.equip_to_appropriate_slot(I))
 					H.put_in_active_hand(src)
-					H.update_icons()
 
 	..()
 
@@ -491,14 +497,14 @@ include jackets and regular suits, not armor.*/
 		if (!canremove || !(loc == usr))
 			return
 
-		if (!( usr.restrained() ) && !( usr.stat ))
+		if (!( usr.is_mob_restrained() ) && !( usr.stat ))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
-						usr.u_equip(src)
+						usr.drop_inv_item_on_ground(src)
 						usr.put_in_r_hand(src)
 					if("l_hand")
-						usr.u_equip(src)
+						usr.drop_inv_item_on_ground(src)
 						usr.put_in_l_hand(src)
 				add_fingerprint(usr)
 
@@ -522,7 +528,7 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/under/proc/set_sensors(mob/usr as mob)
 	var/mob/M = usr
 	if (istype(M, /mob/dead/)) return
-	if (usr.stat || usr.restrained()) return
+	if (usr.stat || usr.is_mob_restrained()) return
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
 		return 0

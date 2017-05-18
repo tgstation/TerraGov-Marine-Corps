@@ -117,7 +117,7 @@
 				user.visible_message("\blue [user] installs [O] into place.","\blue You install [O] into place.")
 				has_top = 1
 				icon_state = "turret-nosensor"
-				user.drop_from_inventory(O)
+				user.drop_held_item()
 				del(O)
 				return
 
@@ -134,7 +134,7 @@
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user.visible_message("\blue [user] installs the control sensor on the [src].","\blue You install the control sensor.")
 				icon_state = "turret-0"
-				user.drop_from_inventory(O)
+				user.drop_held_item()
 				del(O)
 				return
 
@@ -158,7 +158,7 @@
 					user.visible_message("\blue [user] installs the plating on the [src].","\blue You install the plating.")
 					M.amount -= 10
 					if(M.amount <= 0)
-						user.drop_from_inventory(M)
+						user.drop_held_item()
 						del(M)
 					return
 				else
@@ -222,7 +222,6 @@
 	var/locked = 0
 	var/atom/target = null
 	var/mob/living/carbon/human/worker = null
-	var/mob/living/silicon/pai = null //Are we being controlled by a pAI?
 	var/manual_override = 0
 	var/on = 0
 	var/health = 200
@@ -246,7 +245,7 @@
 		spark_system.attach(src)
 		cell = new (src)
 		camera = new (src)
-		camera.network = list("SULACO")
+		camera.network = list("military")
 		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0
@@ -265,8 +264,6 @@
 			target = null
 		if(worker)
 			worker = null
-		if(pai)
-			pai = null
 		SetLuminosity(0)
 		processing_objects.Remove(src)
 		..()
@@ -296,19 +293,18 @@
 		dir_locked = 1
 		target = null
 		worker = null
-		pai = null
 		on = 1
 		SetLuminosity(7)
 		if(!camera)
 			camera = new /obj/machinery/camera(src)
-			camera.network = list("SULACO")
+			camera.network = list("military")
 			camera.c_tag = src.name
 		update_icon()
 		return
 
 	if(stat)
 		user.visible_message("[user] begins to right the [src].","You begin to put the [src] upright..")
-		if(do_after(user,20))
+		if(do_after(user,20, FALSE))
 			user.visible_message("[user] rights the [src].","You put the [src] upright.")
 			stat = 0
 			update_icon()
@@ -386,7 +382,13 @@
 	usr.set_machine(src)
 	switch(href_list["op"])
 		if("direction")
-			if(alert(usr,"Do you want to turn on the direction lock? This will keep the turret aimed where it's facing.","Direction Lock", "Yes", "No") == "Yes")
+			var/alert_input = alert(usr,"Do you want to turn on the direction lock? This will keep the turret aimed where it's facing.","Direction Lock", "Yes", "No")
+			if(user.stat || get_dist(src.loc, user.loc) < 1)
+				return
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+				return
+
+			if(alert_input == "Yes")
 				if(dir_locked)
 					usr << "It's already direction locked."
 				else
@@ -401,7 +403,12 @@
 					visible_message("\icon[src] The [src]'s turret begins turning side to side.")
 					usr << "\blue You deactivate the direction lock."
 		if("burst")
-			if(alert(usr,"Do you want to turn on the burst fire function? It will be much less accurate.","Burst Fire", "Yes", "No") == "Yes")
+			var/alert_input = alert(usr,"Do you want to turn on the burst fire function? It will be much less accurate.","Burst Fire", "Yes", "No")
+			if(user.stat || get_dist(src.loc, user.loc) < 1)
+				return
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+				return
+			if(alert_input == "Yes")
 				if(burst_fire)
 					usr << "It's already firing in a burst."
 				else
@@ -417,7 +424,12 @@
 					visible_message("\icon[src] A green light on [src] blinks slowly.")
 					usr << "\blue You deactivate the burst fire mode."
 		if("safety")
-			if(alert(usr,"Do you want to turn on the safety lock? It will not stop firing when a friendly is in the way.","Safety", "Yes", "No") == "Yes")
+			var/alert_input = alert(usr,"Do you want to turn on the safety lock? It will not stop firing when a friendly is in the way.","Safety", "Yes", "No")
+			if(user.stat || get_dist(src.loc, user.loc) < 1)
+				return
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+				return
+			if(alert_input == "Yes")
 				if(!safety_off)
 					usr << "It's already safety locked."
 				else
@@ -555,19 +567,14 @@
 	if(istype(O,/obj/item/weapon/cell))
 		user << "You begin the new power cell installation.."
 		if(do_after(user,30))
+			user.drop_inv_item_to_loc(O, src)
 			if(cell)
 				user.visible_message("[user] swaps out the power cells in the [src].","You swap out the power cells.")
-				user.drop_from_inventory(O)
-				cell.loc = src.loc
-				user.put_in_active_hand(cell)
-				user.drop_from_inventory(cell) //Put it on the ground.
+				cell.forceMove(loc)
 				cell = O
-				O.loc = src
 			else
 				user.visible_message("[user] installs a new power cell in [src].","You install the new cell.")
-				user.drop_from_inventory(O)
 				cell = O
-				O.loc = src
 		return
 	if(istype(O,/obj/item/sentry_ammo))
 		if(rounds)
@@ -577,7 +584,7 @@
 		if(do_after(user,70))
 			playsound(src.loc, 'sound/weapons/unload.ogg', 60, 1)
 			user.visible_message("\blue [user] reloads the [src].","\blue You reload the [src].")
-			user.drop_from_inventory(O)
+			user.drop_held_item()
 			rounds = rounds_max
 			del(O)
 		return
@@ -947,7 +954,7 @@
 		var/obj/item/weapon/cell/super/H = new(src) //Better cells in these ones.
 		cell = H
 		camera = new (src)
-		camera.network = list("SULACO")
+		camera.network = list("military")
 		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0

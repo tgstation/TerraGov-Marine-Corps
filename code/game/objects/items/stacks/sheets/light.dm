@@ -18,7 +18,7 @@
 		amount--
 		new/obj/item/stack/sheet/glass(user.loc)
 		if(amount <= 0)
-			user.drop_from_inventory(src)
+			user.temp_drop_inv_item(src)
 			del(src)
 
 	if(istype(O,/obj/item/stack/sheet/metal))

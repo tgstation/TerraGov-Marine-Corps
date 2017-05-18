@@ -26,7 +26,10 @@
 /mob/living/silicon/proc/show_laws()
 	return
 
-/mob/living/silicon/drop_item()
+/mob/living/silicon/drop_held_item()
+	return
+
+/mob/living/silicon/drop_held_items()
 	return
 
 /mob/living/silicon/emp_act(severity)
@@ -78,9 +81,9 @@
 	return 0
 
 
-// this function shows the health of the pAI in the Status panel
+// this function shows health in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
-	if(!src.stat)
+	if(!stat)
 		stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
 	else
 		stat(null, text("Systems nonfunctional"))
@@ -92,8 +95,8 @@
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
-	if(emergency_shuttle)
-		var/eta_status = emergency_shuttle.get_status_panel_eta()
+	if(EvacuationAuthority)
+		var/eta_status = EvacuationAuthority.get_status_panel_eta()
 		if(eta_status)
 			stat(null, eta_status)
 

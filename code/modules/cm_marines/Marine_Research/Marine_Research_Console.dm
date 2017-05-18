@@ -146,7 +146,7 @@
 		else
 			user << "\red Machine cannot accept disks in that format."
 			return
-		user.drop_item()
+		user.drop_held_item()
 		D.loc = src
 		user << "\blue You add the disk to the machine!"
 	else if(istype(D, /obj/item/weapon/card/emag) && !emagged)

@@ -128,7 +128,7 @@
 	if(force <= 0)
 		if(user)
 			user << "All the leaves have fallen off \the [src] from violent whacking."
-			user.drop_from_inventory(src)
+			user.temp_drop_inv_item(src)
 		del(src)
 
 /obj/item/weapon/grown/nettle/death // -- Skie
@@ -166,7 +166,7 @@
 		if(prob(20))
 			M.Paralyse(force/6)
 			M.Weaken(force/15)
-		M.drop_item()
+		M.drop_held_item()
 
 /obj/item/weapon/corncob
 	name = "corn cob"

@@ -121,9 +121,9 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	if (active && !(stat & (BROKEN|NOPOWER)) && (spamfilter_limit < MESSAGE_SERVER_DEFAULT_SPAM_LIMIT*2) && \
 		istype(O,/obj/item/weapon/circuitboard/message_monitor))
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
-		user.drop_item()
+		user.temp_drop_inv_item(O)
 		del(O)
-		user << "You install additional memory and processors into message server. Its filtering capabilities been enhanced."
+		user << "You install additional memory and processors into message server. Its filtering capabilities have been enhanced."
 	else
 		..(O, user)
 

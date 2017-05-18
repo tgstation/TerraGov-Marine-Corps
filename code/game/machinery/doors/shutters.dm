@@ -1,5 +1,5 @@
 /obj/machinery/door/poddoor/shutters
-	name = "Shutters"
+	name = "\improper Shutters"
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "shutter1"
 	power_channel = ENVIRON
@@ -33,6 +33,7 @@
 		operating = 1
 	flick("shutterc0", src)
 	icon_state = "shutter0"
+	playsound(loc, 'sound/machines/blastdoor.ogg', 50)
 	sleep(10)
 	density = 0
 	SetOpacity(0)
@@ -55,6 +56,7 @@
 	if(visible)
 		SetOpacity(1)
 	update_nearby_tiles()
+	playsound(loc, 'sound/machines/blastdoor.ogg', 50)
 
 	sleep(10)
 	operating = 0
@@ -81,7 +83,7 @@
 	..()
 	layer = 2.9
 
-/obj/machinery/door/poddoor/shutters/pressure/close(var/delay = 0)
+/obj/machinery/door/poddoor/shutters/pressure/close(var/delay = 0, var/from_dir = 0)
 
 	spawn(delay)
 		if(operating)
@@ -94,11 +96,15 @@
 		update_nearby_tiles()
 
 
+		if(!from_dir)
+			playsound(loc, 'sound/machines/blastdoor.ogg', 50) //sound plays only for the initiating shutter
+
 		if(chain_reacting)
 			for(var/direction in cardinal)
+				if(direction == from_dir) continue //doesn't check backwards
 				for(var/obj/machinery/door/poddoor/shutters/pressure/P in get_step(src,direction) )
 					if(!P.density)
-						P.close()
+						P.close(0,turn(direction,180))
 
 		if(visible)
 			SetOpacity(1)

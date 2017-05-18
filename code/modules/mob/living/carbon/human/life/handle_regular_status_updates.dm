@@ -65,9 +65,10 @@
 			if(prob(2) && health && !hal_crit)
 				spawn()
 					emote("snore")
-		//CONSCIOUS
 		else
 			stat = CONSCIOUS
+
+		if(in_stasis) blinded = TRUE //Always blinded while in stasis.
 
 		if(has_species(src,"Yautja")) //Hurr hurr.
 			if(weakened)
@@ -80,35 +81,16 @@
 			if(!E.len)
 				embedded_flag = 0
 
-		//Predator bracers, plus icon updating.
-		if(gloves && species && species.name == "Yautja")
-			var/obj/item/clothing/gloves/yautja/Y = gloves
-			if(Y.cloak_timer)
-				Y.cloak_timer--
-			if(Y && istype(Y))
-				if(Y.cloaked)
-					Y.charge -= 10
-					if(Y.charge <= 0)
-						Y.decloak(src)
-					if(Y.charge < 0)
-						Y.charge = 0
-				else
-					Y.charge += 30
-					if(Y.charge > Y.charge_max)
-						Y.charge = Y.charge_max
-				if(Y.charge_max) //No runtimes!
-					var/perc_charge = (Y.charge / Y.charge_max * 100)
-					update_power_display(perc_charge)
 		if(istype(l_hand, /obj/item/clothing/mask/facehugger))
 			var/obj/item/clothing/mask/facehugger/hug = l_hand
 			if(hug.stat != DEAD)
-				src.drop_from_inventory(hug)
+				drop_inv_item_on_ground(hug)
 				hug.GoIdle()
 
 		if(istype(r_hand, /obj/item/clothing/mask/facehugger))
 			var/obj/item/clothing/mask/facehugger/hug = r_hand
 			if(hug.stat != DEAD)
-				src.drop_from_inventory(hug)
+				drop_inv_item_on_ground(hug)
 				hug.GoIdle()
 
 		//Eyes

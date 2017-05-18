@@ -239,50 +239,17 @@
 						O.show_message("\blue [M] [response_help] [src]")
 
 		if("grab")
-			if (M == src)
-				return
-			if (!(status_flags & CANPUSH))
-				return
+			if(M == src || anchored)
+				return 0
+			M.start_pulling(src)
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
-
-			M.put_in_active_hand(G)
-
-			G.synch()
-			G.affecting = src
-			LAssailant = M
-
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
+			return 1
 
 		if("hurt", "disarm")
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !( O.blinded )))
 					O.show_message("\red [M] [response_harm] [src]")
-
-	return
-
-
-/mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
-		return
-
-	if(M.Victim) return // can't attack while eating!
-
-	visible_message("\red <B>The [M.name] glomps [src]!</B>")
-
-	var/damage = rand(1, 3)
-
-	if(M.is_adult)
-		damage = rand(20, 40)
-	else
-		damage = rand(5, 35)
-
-	adjustBruteLoss(damage)
-
 
 	return
 
@@ -327,14 +294,12 @@
 
 /mob/living/simple_animal/movement_delay()
 
-	..()
-
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	tally += speed
-
-	return tally + config.animal_delay
+	. = ..()
+	. += speed
+	. += config.animal_delay
 
 /mob/living/simple_animal/Stat()
 	..()

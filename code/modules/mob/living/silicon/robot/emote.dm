@@ -60,16 +60,16 @@
 			m_type = 1
 
 		if ("clap")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				message = "<B>[src]</B> claps."
 				m_type = 2
 		if ("flap")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				message = "<B>[src]</B> flaps his wings."
 				m_type = 2
 
 		if ("aflap")
-			if (!src.restrained())
+			if (!src.is_mob_restrained())
 				message = "<B>[src]</B> flaps his wings ANGRILY!"
 				m_type = 2
 

@@ -16,9 +16,9 @@
 	jelly = 1
 	jellyMax = 200
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-	speed = -1.5
+	speed = -1.9
 	evolves_to = list("Hunter")
-	charge_type = 3 //Pounce - Runner
+	charge_type = 1 //Pounce - Runner
 	flags_pass = PASSTABLE
 	attack_delay = -4
 	tier = 1
@@ -34,13 +34,3 @@
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
-/mob/living/carbon/Xenomorph/Runner/ClickOn(var/atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		Pounce(A)
-		return
-	if(modifiers["shift"] && shift_mouse_toggle)
-		Pounce(A)
-		return
-	..()

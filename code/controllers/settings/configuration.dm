@@ -76,7 +76,7 @@
 
 	var/max_maint_drones = 5				//This many drones can spawn,
 	var/allow_drone_spawn = 1				//assuming the admin allow them to.
-	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+	var/drone_build_time = 20				//A drone will become available every X ticks since last drone spawn.
 
 	var/disable_player_mice = 0
 	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
@@ -95,11 +95,11 @@
 
 	//Alert level description
 	var/alert_desc_green = "All security alerts have passed."
-	var/alert_desc_blue_upto = "Intelligence suggests the presence of a moderate threat to the Sulaco. All personnel are to be on alert."
+	var/alert_desc_blue_upto = "Intelligence suggests the presence of a moderate threat in the quadrant. All personnel are to be on alert."
 	var/alert_desc_blue_downto = "The current emergency has passed, however all personnel should remain on alert."
-	var/alert_desc_red_upto = "Warning: There is an immediate threat to the Sulaco. Personnel should secure their departments and await further instructions from command staff."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated. All personnel should remain on high alert."
-	var/alert_desc_delta = "Warning: The Sulaco Self-Destruct-Mechanism has been activated. All personnel must obey orders from superior officers under threat of execution."
+	var/alert_desc_red_upto = "Warning: There is an immediate threat onboard. Personnel should secure their departments and await further instructions from command staff."
+	var/alert_desc_red_downto = "The self-destruct system has been deactivated. All personnel should remain on high alert."
+	var/alert_desc_delta = "Warning: The self-destruct system has been activated. All personnel must obey orders from superior officers under threat of execution."
 
 	var/forbid_singulo_possession = 0
 

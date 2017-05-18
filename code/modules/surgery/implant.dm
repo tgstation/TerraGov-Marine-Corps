@@ -147,9 +147,8 @@
 		var/datum/wound/internal_bleeding/I = new (10)
 		affected.wounds += I
 		affected.owner.custom_pain("You feel something rip in your [affected.display_name]!", 1)
-	user.drop_item()
+	user.drop_inv_item_to_loc(tool, target)
 	affected.hidden = tool
-	tool.loc = target
 	affected.cavity = 0
 
 /datum/surgery_step/cavity/place_item/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -249,11 +248,13 @@
 		var/fail_prob = 10
 		fail_prob += 100 - tool_quality(tool)
 		if(prob(fail_prob))
-			var/obj/item/weapon/implant/imp = affected.implants[1]
-			user.visible_message("<span class='warning'>Something beeps inside [target]'s [affected.display_name]!</span>")
-			playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
-			spawn(25)
-				imp.activate()
+			var/obj/item/I = affected.implants[1]
+			if(istype(I,/obj/item/weapon/implant))
+				var/obj/item/weapon/implant/imp = I
+				user.visible_message("<span class='warning'>Something beeps inside [target]'s [affected.display_name]!</span>")
+				playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
+				spawn(25)
+					imp.activate()
 	target.updatehealth()
 	affected.update_wounds()
 

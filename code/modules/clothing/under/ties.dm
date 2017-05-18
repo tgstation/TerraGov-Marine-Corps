@@ -219,8 +219,7 @@
 		return
 
 	holstered = W
-	user.drop_from_inventory(holstered)
-	holstered.loc = src
+	user.drop_inv_item_to_loc(holstered, src)
 	holstered.add_fingerprint(user)
 	user.visible_message("\blue [user] holsters the [holstered].", "You holster the [holstered].")
 
@@ -228,15 +227,15 @@
 	if(!holstered)
 		return
 
-	if(istype(user.get_active_hand(),/obj) && istype(user.get_inactive_hand(),/obj))
-		user << "\red You need an empty hand to draw the [holstered]!"
+	if(user.get_active_hand() && user.get_inactive_hand())
+		user << "<span class='warning'>You need an empty hand to draw the [holstered]!</span>"
 	else
 		if(user.a_intent == "hurt")
-			usr.visible_message("\red [user] draws the [holstered], ready to shoot!", \
-			"\red You draw the [holstered], ready to shoot!")
+			usr.visible_message("<span class='danger'>[user] draws the [holstered], ready to shoot!</span>", \
+			"<span class='danger'>You draw [holstered], ready to shoot!</span>")
 		else
-			user.visible_message("\blue [user] draws the [holstered], pointing it at the ground.", \
-			"\blue You draw the [holstered], pointing it at the ground.")
+			user.visible_message("<span class='notice'>[user] draws the [holstered], pointing it at the ground.</span>", \
+			"<span class='notice'>You draw the [holstered], pointing it at the ground.</span>")
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
 		holstered = null

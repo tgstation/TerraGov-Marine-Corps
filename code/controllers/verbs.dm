@@ -48,7 +48,7 @@
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return
 
-/client/proc/debug_controller(controller in list("Master","Failsafe","Ticker","Lighting","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data"))
+/client/proc/debug_controller(controller in list("Master","Failsafe","Ticker","Lighting","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","Cameras", "Transfer Controller", "Gas Data"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -85,21 +85,12 @@
 		if("Shuttles")
 			debug_variables(shuttle_controller)
 			feedback_add_details("admin_verb","DShuttles")
-		if("Emergency Shuttle")
-			debug_variables(emergency_shuttle)
-			feedback_add_details("admin_verb","DEmergency")
 		if("Configuration")
 			debug_variables(config)
 			feedback_add_details("admin_verb","DConf")
-		if("pAI")
-			debug_variables(paiController)
-			feedback_add_details("admin_verb","DpAI")
 		if("Cameras")
 			debug_variables(cameranet)
 			feedback_add_details("admin_verb","DCameras")
-		if("Transfer Controller")
-			debug_variables(transfer_controller)
-			feedback_add_details("admin_verb","DAutovoter")
 		if("Gas Data")
 			debug_variables(gas_data)
 			feedback_add_details("admin_verv","DGasdata")

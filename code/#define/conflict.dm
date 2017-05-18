@@ -1,9 +1,8 @@
 //Grab levels
-#define GRAB_PASSIVE	1
-#define GRAB_AGGRESSIVE	2
-#define GRAB_NECK		3
-#define GRAB_UPGRADING	4
-#define GRAB_KILL		5
+#define GRAB_PASSIVE	0
+#define GRAB_AGGRESSIVE	1
+#define GRAB_NECK		2
+#define GRAB_KILL		3
 
 //Ammo defines for gun/projectile related things.
 #define AMMO_REGULAR 		0 //Just as a reminder.
@@ -44,6 +43,10 @@
 #define ATTACH_CONTINUOUS	4
 #define ATTACH_ACTIVATION	8
 #define ATTACH_PROJECTILE	16
+
+//Ammo magazine defines, for flags_magazine
+#define AMMUNITION_REFILLABLE	1
+#define AMMUNITION_HANDFUL		2
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

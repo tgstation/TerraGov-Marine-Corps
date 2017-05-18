@@ -10,7 +10,6 @@
 
 #define IS_AI 1
 #define IS_ROBOT 2
-#define IS_PAI 3
 
 /mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
@@ -47,12 +46,9 @@
 		bot_type = IS_AI
 	else if(istype(src, /mob/living/silicon/robot))
 		bot_type = IS_ROBOT
-	else if(istype(src, /mob/living/silicon/pai))
-		bot_type = IS_PAI
 
 	var/mob/living/silicon/ai/AI = src		//and let's not declare vars over and over and over for these guys.
 	var/mob/living/silicon/robot/R = src
-	var/mob/living/silicon/pai/P = src
 
 	//Must be concious to speak
 	if (stat)
@@ -106,9 +102,6 @@
 				if(IS_ROBOT)
 					log_say("[key_name(src)] : [message]")
 					R.radio.talk_into(src,message,message_mode,verb,speaking)
-				if(IS_PAI)
-					log_say("[key_name(src)] : [message]")
-					P.radio.talk_into(src,message,message_mode,verb,speaking)
 			return 1
 
 			return 1
@@ -124,9 +117,6 @@
 				if(IS_ROBOT)
 					log_say("[key_name(src)] : [message]")
 					R.radio.talk_into(src,message,null,verb,speaking)
-				if(IS_PAI)
-					log_say("[key_name(src)] : [message]")
-					P.radio.talk_into(src,message,null,verb,speaking)
 			return 1
 
 		else
@@ -142,9 +132,6 @@
 					if(IS_ROBOT)
 						log_say("[key_name(src)] : [message]")
 						R.radio.talk_into(src,message,message_mode,verb,speaking)
-					if(IS_PAI)
-						log_say("[key_name(src)] : [message]")
-						P.radio.talk_into(src,message,message_mode,verb,speaking)
 				return 1
 
 	return ..(message,speaking,verb)
@@ -185,4 +172,3 @@
 
 #undef IS_AI
 #undef IS_ROBOT
-#undef IS_PAI

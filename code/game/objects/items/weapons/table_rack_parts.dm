@@ -22,13 +22,14 @@
 		if (R.use(4))
 			new /obj/item/weapon/table_parts/reinforced(get_turf(loc))
 			user << "<span class='notice'>You reinforce the [name].</span>"
+			user.temp_drop_inv_item(src)
 			del(src)
 		else
 			user << "<span class='warning'>You need at least four rods to reinforce the [name].</span>"
 
 /obj/item/weapon/table_parts/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
-		user << "<span class='warning'>There is already a table here.</span>"
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc || locate(/obj/structure/m_barricade/sandbags) in usr.loc || locate(/obj/structure/table/reinforced) in user.loc)
+		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
 	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
@@ -36,9 +37,8 @@
 		return
 
 	new /obj/structure/table( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
 
 
 /*
@@ -51,8 +51,8 @@
 		del(src)
 
 /obj/item/weapon/table_parts/reinforced/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
-		user << "<span class='warning'>There is already a table here.</span>"
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc || locate(/obj/structure/m_barricade/sandbags) in usr.loc)
+		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
 	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
@@ -60,9 +60,8 @@
 		return
 
 	new /obj/structure/table/reinforced( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
 
 /*
  * Wooden Table Parts
@@ -81,8 +80,8 @@
 			del(src)
 
 /obj/item/weapon/table_parts/wood/attack_self(mob/user as mob)
-	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
-		user << "<span class='warning'>There is already a table here.</span>"
+	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/rack) in usr.loc || locate(/obj/structure/m_barricade/sandbags) in usr.loc)
+		user << "<span class='warning'>There is already a structure here.</span>"
 		return
 
 	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
@@ -90,9 +89,8 @@
 		return
 
 	new /obj/structure/table/woodentable( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
 
 /*
  * Gambling Table Parts
@@ -115,9 +113,9 @@
 		return
 
 	new /obj/structure/table/gamblingtable( user.loc )
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
+
 /*
  * Rack Parts
  */
@@ -135,12 +133,16 @@
 		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
+	if (locate(/obj/structure/m_barricade/sandbags, usr.loc) || locate(/obj/structure/m_barricade, usr.loc) || locate(/obj/structure/table, usr.loc))
+		user << "<span class='warning'>You can't place racks where other structures are!</span>"
+		return
+
 	if(locate(/obj/structure/rack) in user.loc)
 		user << "<span class='warning'>There is already a rack here.</span>"
 		return
 
 	var/obj/structure/rack/R = new /obj/structure/rack( user.loc )
 	R.add_fingerprint(user)
-	user.drop_item()
+	user.drop_held_item()
 	del(src)
-	return
+

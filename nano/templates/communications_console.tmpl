@@ -1,0 +1,113 @@
+<div class="item" style="padding-top: 10px">
+	<div class="item" style="padding-top: 10px">
+		<span class='white'>MENU:</span>
+	</div>
+	{{if data.state == 1}}
+		<div class="itemContent" style="padding-top: 2px; width: 100%">
+			{{if data.authentication >= 1}}
+				{{:helper.link('LOG OUT', 'alert', {'command' : 'logout'})}}
+				{{:helper.link('Change Alert Level', 'alert', {'command' : 'changeseclevel'})}}
+				{{:helper.link('Set Status Display', 'alert', {'command' : 'status'})}}
+				{{:helper.link('Message List', 'alert', {'command' : 'messagelist'})}}
+				{{if data.authentication == 2}}
+					{{:helper.link('Make an Announcement', 'alert', {'command' : 'announce'})}}
+					{{if data.authentication == 2}}
+						{{if data.admins > 0}}
+							{{:helper.link('Message USCM', 'alert', {'command' : 'messageUSCM'})}}
+						{{else}}
+							<span class="bad">UCM Communications Offline</span>
+						{{/if}}
+					{{/if}}
+					{{:helper.link('Launch Distress Signal', 'alert', {'command' : 'distress'})}}
+					{{if data.evac_stat == 0}}
+						{{:helper.link('Initiate Evacuation', 'alert', {'command' : 'evacuation_start'})}}
+					{{else data.evac_stat == 1}}
+						{{:helper.link('Cancel Evacuation', 'alert', {'command' : 'evacuation_cancel'})}}
+					{{/if}}
+				{{/if}}
+			{{else}}
+				{{:helper.link('LOG IN', 'alert', {'command' : 'login'})}}
+			{{/if}}
+		</div>
+	{{else data.state == 2}}
+		<span class="average">Are you sure you want to evacuate {{:data.ship}}?</span>
+		{{:helper.link('CONFIRM', 'alert', {'command' : 'evacuation_start'}, null, 'redButton')}}
+	{{else data.state == 3}}
+		<span class="average">Are you sure you want to cancel the evacuation of {{:data.ship}}?</span>
+		{{:helper.link('CONFIRM', 'alert', {'command' : 'evacuation_cancel'}, null, 'redButton')}}				
+	{{else data.state == 4}}
+		<span class="average">Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not.</span>
+		{{:helper.link('CONFIRM', 'alert', {'command' : 'distress'}, null, 'redButton')}}			
+	{{else data.state == 5}}
+		<div class="itemLabel">
+			<span class='white'>MESSAGES:</span>
+			<div class="itemContent">
+				{{for data.messages}}
+					{{:helper.link('{{:value}}', 'alert', {'command' : 'viewmessage','message-num' : '{{:index}}'}) }}<br>
+				{{empty}}
+					<span class="bad">EMPTY</span>
+				{{/for}}
+			</div>
+		</div>
+	{{else data.state == 6}}
+		{{if data.message}}
+			<div class="itemLabel">
+				<span class="average">{{:data.title}}</span>
+				<div class="itemContent">
+					<span class="average">{{:data.text}}</span>
+					{{if data.authentication}}
+						{{:helper.link('DELETE', 'alert', {'command' : 'delmessage'}, null, 'yellowButton')}}
+					{{/if}}
+				</div>
+			</div>					
+		{{/if}}
+	{{else data.state == 7}}
+		{{if data.message}}
+			<span class="average">Are you sure you want to delete this message?</span>
+			{{:helper.link('CONFIRM', 'alert', {'command' : 'delmessage2'}, null, 'redButton')}}
+		{{/if}}
+	{{else data.state == 8}}
+		{{:helper.link('CLEAR', 'alert', {'command' : 'blank'})}}
+		{{:helper.link('Station Time', 'alert', {'command' : 'time'})}}
+		{{:helper.link('Evacuation ETA', 'alert', {'command' : 'shuttle'})}}
+		{{:helper.link('Message', 'alert', {'command' : 'message'})}}
+		<div class="itemContent">
+			<span class="average">Line 1</span>
+			{{:helper.link('data.stat1 ? {{:data.stat1}}: (none)', 'alert', {'command' : 'setmsg1'})}}
+			<span class="average">Line 2</span>
+			{{:helper.link('data.stat2 ? {{:data.stat2}}: (none)', 'alert', {'command' : 'setmsg2'})}}
+		</div>	
+		{{:helper.link('Red Alert', 'alert', {'command' : 'redalert'})}}
+		{{:helper.link('Lockdown', 'alert', {'command' : 'lockdown'})}}
+		{{:helper.link('Biohazard', 'alert', {'command' : 'biohazard'})}}
+	{{else data.state == 9}}
+		<div class="itemLabel">
+			<span class="average">Current alert level: {{:data.current_level}}</span>
+			<div class="itemContent">
+				{{if security_level == 3}}
+					<span class="average">The self-destruct mechanism is now active, evacuation in progress. Evacuate or rescind evacuation orders.</span>
+				{{else}}
+					{{:helper.link('Blue', 'alert', {'command' : 'securitylevel', 'newalertlevel' : '1'})}}
+					{{:helper.link('Green', 'alert', {'command' : 'securitylevel', 'newalertlevel' : '0'})}}
+				{{/if}}
+			</div>
+		</div>				
+	{{else data.state == 10}}
+		<div class="itemContent">
+			<span class="average">Current alert level: {{:data.current_level}}</span>
+			<span class="average">Confirm the change to: {{:data.change_level}}</span>
+			{{:helper.link('SWIPE ID', 'alert', {'command' : 'swipeidseclevel'})}}
+		</div>
+	{{else}}
+		<span class="bad">ERROR</span>
+	{{/if}}	
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemContent" style="padding-top: 2px; width: 100%">
+			{{if data.state != 1}}
+				{{:helper.link('MENU', 'alert', {'command' : 'main'}, null, 'yellowButton')}}
+			{{/if}}
+		</div>
+	</div>
+</div>

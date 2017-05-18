@@ -37,25 +37,6 @@
 				adjustBruteLoss(rand(1, 3))
 				updatehealth()
 
-/mob/living/carbon/Xenomorph/attack_slime(mob/living/carbon/slime/M as mob)
-
-	if(M.Victim) //Can't attack while eating!
-		return 0
-
-	if(health > -100)
-
-		visible_message("<span class='danger'>\The [M] glomps \the [src].</span>", \
-		"<span class='danger'>You are glomped by \the [M].</span>")
-
-		var/damage = rand(1, 3)
-
-		if(M.is_adult)
-			damage = rand(20, 40)
-		else
-			damage = rand(5, 35)
-
-		adjustBruteLoss(damage)
-		updatehealth()
 
 /mob/living/carbon/Xenomorph/attack_hand(mob/living/carbon/human/M)
 
@@ -75,23 +56,7 @@
 			if(M == src || anchored)
 				return 0
 
-			if(!isXenoLarva(src))
-				if(stat != DEAD && has_species(M, "Human")) //If the Xeno is alive, fight back against a grab/pull
-					M.Weaken(rand(tacklemin, tacklemax))
-					playsound(M.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-					visible_message("<span class='danger'>\The [M] receives a vicious tail swipe to the head as \he tries to grab \the [src]!</span>", \
-					"<span class='danger'>You make a vicious tail swipe at \the [M] as it tries to grab you!</span>")
-					return 1
-
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-			M.put_in_active_hand(G)
-			grabbed_by += G
-			G.synch()
-			LAssailant = M
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			M.visible_message("<span class='warning'>\The [M] has grabbed \the [src] passively!</span>", \
-			"<span class='warning'>You grab \the [src] passively!</span>")
+			M.start_pulling(src)
 
 		else
 			var/datum/unarmed_attack/attack = M.species.unarmed
@@ -162,47 +127,3 @@
 				if(ismonkey(src))
 					Weaken(8)
 		return 1
-
-	//Clicked on self.
-	if(pulling)
-		var/mob/living/carbon/pulled = pulling
-		if(!istype(pulled))
-			return
-		if(isXeno(pulled))
-			src << "<span class='warning'>That wouldn't taste very good.</span>"
-			return 0
-		if(pulled.stat == DEAD)
-			src << "<span class='warning'>Ew, \the [pulled] is already starting to rot.</span>"
-			return 0
-			/* Saving this in case we want to allow devouring of dead bodies UNLESS their client is still online somewhere
-			if(pulled.client) //The client is still inside the body
-			else // The client is observing
-				for(var/mob/dead/observer/G in player_list)
-					if(ckey(G.mind.original.ckey) == pulled.ckey)
-						src << "You start to devour [pulled] but realize \he is already dead."
-						return */
-		visible_message("<span class='danger'>\The [src] starts to devour \the [pulled]!</span>", \
-		"<span class='danger'>You start to devour \the [pulled]!</span>")
-		if(do_after(src, 50))
-			if(pulling == pulled) //make sure you've still got them in your claws
-				visible_message("<span class='warning'>\The [src] devours \the [pulled]!</span>", \
-				"<span class='warning'>You devour \the [pulled]!</span>")
-				stop_pulling()
-
-				//IMPORTANT CODER NOTE: Due to us using the old lighting engine, we need to hacky hack hard to get this working properly
-				//So we're just going to get the lights out of here by forceMoving them to a far-away place
-				//They will be recovered when regurgitating, since this also calls forceMove
-				pulled.x = 1
-				pulled.y = 1
-				pulled.z = 2 //Centcomm
-				pulled.forceMove(pulled.loc)
-
-				//Then, we place the mob where it ought to be
-				pulled.forceMove(src)
-				src.stomach_contents.Add(pulled)
-			else
-				src << "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>"
-				return 0
-		else
-			src << "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>"
-			return 0

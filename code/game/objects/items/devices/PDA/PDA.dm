@@ -50,8 +50,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/obj/item/weapon/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null //related to above
 
-	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
-
 /obj/item/device/pda/examine()
 	..()
 	if(get_dist(usr, src) <= 1)
@@ -90,18 +88,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	default_cartridge = /obj/item/weapon/cartridge/signal/science
 	icon_state = "pda-tox"
 	ttone = "boom"
-
-/obj/item/device/pda/clown
-	default_cartridge = /obj/item/weapon/cartridge/clown
-	icon_state = "pda-clown"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
-	ttone = "honk"
-
-/obj/item/device/pda/mime
-	default_cartridge = /obj/item/weapon/cartridge/mime
-	icon_state = "pda-mime"
-	silent = 1
-	ttone = "silence"
 
 /obj/item/device/pda/heads
 	default_cartridge = /obj/item/weapon/cartridge/head
@@ -197,7 +183,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	icon_state = "pda-gene"
 
 
-// Special AI/pAI PDAs that cannot explode.
+// Special AI PDAs that cannot explode.
 /obj/item/device/pda/ai
 	icon_state = "NONE"
 	ttone = "data"
@@ -276,11 +262,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
 	return
 
-
-/obj/item/device/pda/ai/pai
-	ttone = "assist"
-
-
 /*
  *	The Actual PDA
  */
@@ -316,7 +297,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		return 0
 
 	var/mob/M = loc
-	if(M.stat || M.restrained() || M.paralysis || M.stunned || M.weakened)
+	if(M.stat || M.is_mob_restrained() || M.paralysis || M.stunned || M.weakened)
 		return 0
 	if((src in M.contents) || ( istype(loc, /turf) && in_range(src, M) ))
 		return 1
@@ -361,7 +342,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	data["mode"] = mode					// The current view
 	data["scanmode"] = scanmode				// Scanners
 	data["fon"] = fon					// Flashlight on?
-	data["pai"] = (isnull(pai) ? 0 : 1)			// pAI inserted?
 	data["note"] = note					// current pda notes
 	data["silent"] = silent					// does the pda make noise when it receives a message?
 	data["toff"] = toff					// is the messenger function turned off?
@@ -675,33 +655,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				if(P == n)
 					active_conversation=P
 					mode=21
-		if("Send Honk")//Honk virus
-			if(istype(cartridge, /obj/item/weapon/cartridge/clown))//Cartridge checks are kind of unnecessary since everything is done through switch.
-				var/obj/item/device/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
-				if(!isnull(P))
-					if (!P.toff && cartridge.charges > 0)
-						cartridge.charges--
-						U.show_message("\blue Virus sent!", 1)
-						P.honkamt = (rand(15,20))
-				else
-					U << "PDA not found."
-			else
-				ui.close()
-				return 0
-		if("Send Silence")//Silent virus
-			if(istype(cartridge, /obj/item/weapon/cartridge/mime))
-				var/obj/item/device/pda/P = locate(href_list["target"])
-				if(!isnull(P))
-					if (!P.toff && cartridge.charges > 0)
-						cartridge.charges--
-						U.show_message("\blue Virus sent!", 1)
-						P.silent = 1
-						P.ttone = "silence"
-				else
-					U << "PDA not found."
-			else
-				ui.close()
-				return 0
 
 
 //SYNDICATE FUNCTIONS===================================
@@ -779,26 +732,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				U.unset_machine()
 				ui.close()
 				return 0
-
-//pAI FUNCTIONS===================================
-		if("pai")
-			if(pai)
-				if(pai.loc != src)
-					pai = null
-				else
-					switch(href_list["option"])
-						if("1")		// Configure pAI device
-							pai.attack_self(U)
-						if("2")		// Eject pAI device
-							var/turf/T = get_turf_or_move(src.loc)
-							if(T)
-								pai.loc = T
-								pai = null
-
-		else
-			mode = text2num(href_list["choice"])
-			if(cartridge)
-				cartridge.mode = mode
 
 //EXTRA FUNCTIONS===================================
 
@@ -972,10 +905,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/mob/living/L = null
 		if(P.loc && isliving(P.loc))
 			L = P.loc
-		//Maybe they are a pAI!
-		else
-			L = get(P, /mob/living/silicon)
-
 
 		if(L)
 			L << "\icon[P] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;notap=[istype(L, /mob/living/silicon)];skiprefresh=1;target=\ref[src]'>Reply</a>)"
@@ -1039,30 +968,30 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		else
 			var/obj/item/I = user.get_active_hand()
 			if (istype(I, /obj/item/weapon/card/id))
-				user.drop_item()
-				I.loc = src
-				id = I
+				if(user.drop_held_item())
+					I.forceMove(src)
+					id = I
 	else
 		var/obj/item/weapon/card/I = user.get_active_hand()
 		if (istype(I, /obj/item/weapon/card/id) && I:registered_name)
 			var/obj/old_id = id
-			user.drop_item()
-			I.loc = src
-			id = I
-			user.put_in_hands(old_id)
+			if(user.drop_held_item())
+				I.forceMove(src)
+				id = I
+				user.put_in_hands(old_id)
 	return
 
 // access to status display signals
 /obj/item/device/pda/attackby(obj/item/C as obj, mob/user as mob)
 	..()
 	if(istype(C, /obj/item/weapon/cartridge) && !cartridge)
-		cartridge = C
-		user.drop_item()
-		cartridge.loc = src
-		user << "<span class='notice'>You insert [cartridge] into [src].</span>"
-		nanomanager.update_uis(src) // update all UIs attached to src
-		if(cartridge.radio)
-			cartridge.radio.hostpda = src
+		if(user.drop_held_item())
+			cartridge = C
+			cartridge.forceMove(src)
+			user << "<span class='notice'>You insert [cartridge] into [src].</span>"
+			nanomanager.update_uis(src) // update all UIs attached to src
+			if(cartridge.radio)
+				cartridge.radio.hostpda = src
 
 	else if(istype(C, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/idcard = C
@@ -1074,32 +1003,17 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			ownjob = idcard.assignment
 			name = "PDA-[owner] ([ownjob])"
 			user << "<span class='notice'>Card scanned.</span>"
-		/*
-		else
-			//Basic safety check. If either both objects are held by user or PDA is on ground and card is in hand.
-			if(((src in user.contents) && (C in user.contents)) || (istype(loc, /turf) && in_range(src, user) && (C in user.contents)) )
-				id_check(user, 2)
-				user << "<span class='notice'>You put the ID into \the [src]'s slot.</span>"
-				updateSelfDialog()//Update self dialog on success.
-			return	//Return in case of failed check or when successful.
-			*/
+
 		updateSelfDialog()//For the non-input related code.
-	/*
-		else if(istype(C, /obj/item/device/paicard) && !src.pai)
-		user.drop_item()
-		C.loc = src
-		pai = C
-		user << "<span class='notice'>You slot \the [C] into [src].</span>"
-		nanomanager.update_uis(src) // update all UIs attached to src
-	*/
+
 	else if(istype(C, /obj/item/weapon/pen))
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
 			user << "<span class='notice'>There is already a pen in \the [src].</span>"
 		else
-			user.drop_item()
-			C.loc = src
-			user << "<span class='notice'>You slide \the [C] into \the [src].</span>"
+			if(user.drop_held_item())
+				C.forceMove(src)
+				user << "<span class='notice'>You slide \the [C] into \the [src].</span>"
 
 /obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
 	if (istype(C, /mob/living/carbon))
@@ -1277,22 +1191,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		src.id.loc = get_turf(src.loc)
 	..()
 
-/obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
-	if (istype(AM, /mob/living/carbon))
-		var/mob/M =	AM
-		if ((istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inventory&NOSLIPPING)) || M.m_intent == "walk")
-			return
-
-		if ((istype(M, /mob/living/carbon/human) && (M.real_name != src.owner) && (istype(src.cartridge, /obj/item/weapon/cartridge/clown))))
-			if (src.cartridge.charges < 5)
-				src.cartridge.charges++
-
-		M.stop_pulling()
-		M << "\blue You slipped on the PDA!"
-		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-		M.Stun(8)
-		M.Weaken(5)
-
 /obj/item/device/pda/proc/available_pdas()
 	var/list/names = list()
 	var/list/plist = list()
@@ -1345,8 +1243,3 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							/obj/item/weapon/cartridge/signal/science,
 							/obj/item/weapon/cartridge/quartermaster)
 		new newcart(src)
-
-// Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
-/obj/item/device/pda/emp_act(severity)
-	for(var/atom/A in src)
-		A.emp_act(severity)
