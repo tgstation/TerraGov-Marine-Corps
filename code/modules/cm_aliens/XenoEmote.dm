@@ -31,12 +31,12 @@
 				m_type = 2
 				message = "<B>The [src.name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 100, 1, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 75, 1, 1)
 				else
 					if(mob_size != MOB_SIZE_BIG)
-						playsound(loc, 'sound/voice/alien_roar_small.ogg', 50, 1, 1)
+						playsound(loc, 'sound/voice/alien_roar_small.ogg', 25, 1, 1)
 					else
-						playsound(loc, 'sound/voice/alien_roar_large.ogg', 75, 1, 1)
+						playsound(loc, 'sound/voice/alien_roar_large.ogg', 50, 1, 1)
 		if("growl")
 			if(!muzzled)
 				m_type = 2

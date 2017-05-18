@@ -286,7 +286,7 @@
 				if(hit_chance > hit_roll) 			r_TRU
 	if (!target.lying)
 		animatation_displace_reset(target)
-		if(ammo.sound_miss) target.playsound_local(get_turf(target), ammo.sound_miss, 100, 1)
+		if(ammo.sound_miss) target.playsound_local(get_turf(target), ammo.sound_miss, 75, 1)
 		target.visible_message("<span class='avoidharm'>[src] misses [target]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>")
 
 /obj/item/projectile/proc/roll_to_hit_obj(atom/shooter,obj/target)

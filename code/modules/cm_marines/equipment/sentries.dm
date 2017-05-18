@@ -793,7 +793,7 @@
 			in_chamber.original = target
 			in_chamber.dir = src.dir
 			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 100, 1)
+			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))

@@ -370,7 +370,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 
 	has_screeched = world.time
 
-	playsound(loc, 'sound/effects/bang.ogg', 25, 0, 100, -1)
+	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
 	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
 	"<span class='xenodanger'>You smash into the ground!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
