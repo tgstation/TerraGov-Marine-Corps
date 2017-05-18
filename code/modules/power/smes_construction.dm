@@ -227,7 +227,7 @@
 				user << "<span class='warning'>You have to disassemble the terminal first!</span>"
 				return
 
-			playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
+			playsound(get_turf(src), 'sound/items/Crowbar.ogg', 25, 1)
 			user << "<span class='warning'>You begin to disassemble the [src]!</span>"
 			if (do_after(usr, 100 * cur_coils)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
 

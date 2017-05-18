@@ -23,7 +23,7 @@
 	..()
 	if(air_contents.gas["oxygen"] < 10)
 		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-		playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+		playsound(usr, 'sound/effects/alert.ogg', 25, 1)
 
 /obj/item/weapon/tank/jetpack/verb/toggle_rockets()
 	set name = "Toggle Jetpack Stabilization"
@@ -109,5 +109,5 @@
 	..()
 	if(air_contents.gas["carbon_dioxide"] < 10)
 		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-		playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+		playsound(usr, 'sound/effects/alert.ogg', 25, 1)
 	return

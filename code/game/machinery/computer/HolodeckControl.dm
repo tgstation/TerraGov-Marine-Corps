@@ -111,7 +111,7 @@ var/global/list/holodeck_programs = list(
 
 /obj/machinery/computer/HolodeckControl/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
 		user << "\blue You vastly increase projector power and override the safety and security protocols."
 		user << "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator."
@@ -433,13 +433,13 @@ var/global/list/holodeck_programs = list(
 		force = 30
 		icon_state = "sword[item_color]"
 		w_class = 4
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		user << "\blue [src] is now active."
 	else
 		force = 3
 		icon_state = "sword0"
 		w_class = 2
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		user << "\blue [src] can now be concealed."
 
 	if(istype(user,/mob/living/carbon/human))

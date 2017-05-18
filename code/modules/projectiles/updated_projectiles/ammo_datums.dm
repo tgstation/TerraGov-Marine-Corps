@@ -805,7 +805,7 @@
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		if(P.damage > 25)
 			knockback(M,P)
-			playsound(M.loc, 'sound/weapons/pulse.ogg', 70, 1)
+			playsound(M.loc, 'sound/weapons/pulse.ogg', 25, 1)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
 		if(P.damage > 25)

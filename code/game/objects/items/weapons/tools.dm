@@ -194,7 +194,7 @@
 			O.reagents.trans_to(src, max_fuel)
 			weld_tick = 0
 			user << "<span class='notice'>Welder refueled.</span>"
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, -6)
 		else
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
@@ -255,7 +255,7 @@
 	if(!welding)
 		if(get_fuel() > 0)
 			usr << "<span class='notice'>You switch [src] on.</span>"
-			playsound(loc, 'sound/items/weldingtool_on.ogg', 50)
+			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
 			welding = 1
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
@@ -271,7 +271,7 @@
 			usr << "<span class='notice'>You switch [src] off.</span>"
 		else
 			usr << "<span class='warning'>[src] shuts off!</span>"
-		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
 		force = 3
 		damtype = "brute"
 		icon_state = "welder"

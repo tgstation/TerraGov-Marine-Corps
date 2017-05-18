@@ -247,13 +247,13 @@
 			correctly without having to rotate anything. Preloading weapon icons also makes
 			sure that we don't have to do any extra calculations.
 			*/
-			playsound(src,drawSound, 20, 1)
+			playsound(src,drawSound, 15, 1)
 			gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
 			icon_state += "_g"
 			item_state = icon_state
 			underlays += gun_underlay
 		else
-			playsound(src,sheatheSound, 20, 1)
+			playsound(src,sheatheSound, 15, 1)
 			underlays -= gun_underlay
 			icon_state = copytext(icon_state,1,-2)
 			item_state = icon_state
@@ -589,7 +589,7 @@ BLIND     // can't see anything
 					if(H.put_in_active_hand(holstered_weapon))
 						holstered_weapon = null
 						if(drawSound)
-							playsound(src,drawSound, 20, 1)
+							playsound(src,drawSound, 15, 1)
 						update_icon()
 				else H << "<span class='warning'>[src] is empty.</span>"
 		else
@@ -605,7 +605,7 @@ BLIND     // can't see anything
 						holstered_weapon = I
 						I.forceMove(src)
 						if(drawSound)
-							playsound(src,drawSound, 20, 1)
+							playsound(src,drawSound, 15, 1)
 						update_icon()
 						H << "<span class='notice'>You sheath [I] into [src].</span>"
 						return 1

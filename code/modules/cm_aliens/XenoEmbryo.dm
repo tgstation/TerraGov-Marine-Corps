@@ -161,7 +161,7 @@
 	if(isYautja(victim)) victim.emote("roar")
 	else victim.emote("scream")
 	forceMove(victim.loc)
-	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 100)
+	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 	var/obj/item/alien_embryo/AE = locate() in victim
 	if(AE)
 		del(AE)

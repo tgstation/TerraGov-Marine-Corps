@@ -21,7 +21,7 @@
 		if("roar")
 			message = "<B>The [src.name] roars!</b>"
 			m_type = 2
-			playsound(src.loc, 'sound/voice/ed209_20sec.ogg', 100, 1, 1)
+			playsound(src.loc, 'sound/voice/ed209_20sec.ogg', 25, 1, 1)
 		if("tail")
 			message = "<B>The [src.name]</B> waves its tail."
 			m_type = 1

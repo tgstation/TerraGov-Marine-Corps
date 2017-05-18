@@ -141,7 +141,7 @@
 	else
 		if ((M.a_intent == "hurt" && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
 			if ((prob(75) && health > 0))
-				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
 					O.show_message("\red <B>[M.name] has bit [name]!</B>", 1)
 				var/damage = rand(1, 5)
@@ -220,13 +220,13 @@
 				if (!( paralysis ))
 					if (prob(25))
 						Paralyse(2)
-						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !( O.blinded )))
 								O.show_message(text("\red <B>[] has pushed down [name]!</B>", M), 1)
 					else
 						drop_held_item()
-						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !( O.blinded )))
 								O.show_message(text("\red <B>[] has disarmed [name]!</B>", M), 1)
@@ -238,7 +238,7 @@
 		M.emote("[M.friendly] [src]")
 	else
 		if(M.attack_sound)
-			playsound(loc, M.attack_sound, 50, 1, 1)
+			playsound(loc, M.attack_sound, 25, 1, 1)
 		for(var/mob/O in viewers(src, null))
 			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")

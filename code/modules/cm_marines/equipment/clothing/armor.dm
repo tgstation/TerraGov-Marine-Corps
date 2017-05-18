@@ -496,7 +496,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 		flags_marine_armor ^= ARMOR_LAMP_ON
 
-		playsound(src,'sound/machines/click.ogg', 20, 1)
+		playsound(src,'sound/machines/click.ogg', 15, 1)
 		update_icon(user)
 		return 1
 
@@ -520,5 +520,5 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	var/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord/O = new(usr)
 	usr.put_in_active_hand(O)
 	injections--
-	playsound(src,'sound/machines/click.ogg', 20, 1)
+	playsound(src,'sound/machines/click.ogg', 15, 1)
 	return

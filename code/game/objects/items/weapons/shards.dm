@@ -20,7 +20,7 @@
 		return (BRUTELOSS)
 
 /obj/item/weapon/shard/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
 	return ..()
 
 /obj/item/weapon/shard/Bump()
@@ -72,7 +72,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 		M << "\red <B>You step on \the [src]!</B>"
-		playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds
+		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 

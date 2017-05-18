@@ -126,7 +126,7 @@
 			return
 		last_act = world.time
 
-		playsound(user, P.drill_sound, 20, 1)
+		playsound(user, P.drill_sound, 25, 1)
 
 		//handle any archaeological finds we might uncover
 		var/fail_message
@@ -433,7 +433,7 @@
 			return
 
 		user << "\red You start digging."
-		playsound(user.loc, 'sound/effects/rustle1.ogg', 50, 1)
+		playsound(user.loc, 'sound/effects/rustle1.ogg', 25, 1)
 
 		if(!do_after(user,40)) return
 

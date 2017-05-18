@@ -37,7 +37,7 @@
 	//callHook("death", list(src, gibbed))
 
 	if(!gibbed && species.death_sound)
-		playsound(loc, species.death_sound, 80, 1, 1)
+		playsound(loc, species.death_sound, 50, 1, 1)
 
 	return ..(gibbed,species.death_message)
 

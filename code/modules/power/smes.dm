@@ -245,7 +245,7 @@
 				user << "<span class='warning'>You must remove the floor plating first.</span>"
 			else
 				user << "<span class='notice'>You begin to cut the cables...</span>"
-				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 25, 1)
 				if(do_after(user, 50))
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread

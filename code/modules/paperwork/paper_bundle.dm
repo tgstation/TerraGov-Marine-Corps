@@ -157,7 +157,7 @@
 			else if(page == amount+1)
 				return
 			page++
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(src.loc, "pageturn", 15, 1)
 		if(href_list["prev_page"])
 			if(page == 1)
 				return
@@ -166,7 +166,7 @@
 			else if(page == amount+1)
 				screen = 1
 			page--
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(src.loc, "pageturn", 15, 1)
 		if(href_list["remove"])
 			var/obj/item/weapon/W = src[page]
 			usr.put_in_hands(W)

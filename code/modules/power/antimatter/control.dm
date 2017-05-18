@@ -85,7 +85,7 @@
 		for(var/obj/machinery/am_shielding/AMS in linked_cores)
 			AMS.stability -= core_damage
 			AMS.check_stability(1)
-		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
+		playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 	return
 
 
@@ -134,14 +134,14 @@
 	if(!istype(W) || !user) return
 	if(istype(W, /obj/item/weapon/wrench))
 		if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user.name] secures the [src.name] to the floor.", \
 				"You secure the anchor bolts to the floor.", \
 				"You hear a ratchet")
 			src.anchored = 1
 			connect_to_network()
 		else if(!linked_shielding.len > 0)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user.name] unsecures the [src.name].", \
 				"You remove the anchor bolts.", \
 				"You hear a ratchet")

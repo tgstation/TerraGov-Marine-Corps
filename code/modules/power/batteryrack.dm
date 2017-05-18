@@ -114,7 +114,7 @@
 		if(istype(W, /obj/item/weapon/crowbar))
 			if (charge < (capacity / 100))
 				if (!online && !chargemode)
-					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
+					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 25, 1)
 					var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 					M.state = 2
 					M.icon_state = "box_1"

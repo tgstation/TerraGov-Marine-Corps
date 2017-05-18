@@ -225,7 +225,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 			return
 
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user << "\blue You [anchored ? "wrench" : "unwrench"] \the [src]."
 
 		return

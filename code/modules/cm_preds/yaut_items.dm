@@ -77,18 +77,18 @@
 			if(0)
 				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), WEAR_EYES)
 				M << "<span class='notice'>Low-light vision module: activated.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 			if(1)
 				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), WEAR_EYES)
 				M << "<span class='notice'>Thermal sight module: activated.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 			if(2)
 				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), WEAR_EYES)
 				M << "<span class='notice'>Material vision module: activated.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 			if(3)
 				M << "<span class='notice'>You deactivate your visor.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		M.update_inv_glasses()
 		current_goggles++
 		if(current_goggles > 3) current_goggles = 0
@@ -363,7 +363,7 @@
 		var/obj/item/weapon/wristblades/R = user.get_active_hand()
 		if(R && istype(R)) //Turn it off.
 			user << "<span class='notice'>You retract your wrist blades.</span>"
-			playsound(user.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
+			playsound(user.loc,'sound/weapons/wristblades_off.ogg', 15, 1)
 			blades_active = 0
 			user.drop_inv_item_to_loc(R, R.loc)
 			return
@@ -385,7 +385,7 @@
 			user.put_in_active_hand(W)
 			blades_active = 1
 			user << "<span class='notice'>You activate your wrist blades.</span>"
-			playsound(user,'sound/weapons/wristblades_on.ogg', 40, 1)
+			playsound(user,'sound/weapons/wristblades_on.ogg', 15, 1)
 			user.update_icons()
 
 		return 1
@@ -413,7 +413,7 @@
 			M << "<span class='notice'>You are now invisible to normal detection.</span>"
 			for(var/mob/O in oviewers(M))
 				O.show_message("[M] vanishes into thin air!",1)
-			playsound(M.loc,'sound/effects/cloakon.ogg', 50, 1)
+			playsound(M.loc,'sound/effects/cloakon.ogg', 15, 1)
 			M.alpha = 10
 			spawn(1)
 				anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
@@ -426,7 +426,7 @@
 		cloaked = 0
 		for(var/mob/O in oviewers(user))
 			O.show_message("[user.name] shimmers into existence!",1)
-		playsound(user.loc,'sound/effects/cloakoff.ogg', 50, 1)
+		playsound(user.loc,'sound/effects/cloakoff.ogg', 15, 1)
 		user.alpha = initial(user.alpha)
 		cloak_timer = 10
 		spawn(1)
@@ -467,7 +467,7 @@
 				M.update_inv_l_hand()
 			if(found)
 				usr << "<span class='notice'>You deactivate your plasma caster.</span>"
-				playsound(src,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
+				playsound(src,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
 				caster_active = 0
 			return
 		else //Turn it on!
@@ -481,14 +481,14 @@
 			W.source = src
 			caster_active = 1
 			usr << "<span class='notice'>You activate your plasma caster.</span>"
-			playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 40, 1)
+			playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
 			usr.update_icons()
 		return 1
 
 	proc/explodey(var/mob/living/carbon/victim)
 		set waitfor = 0
 		exploding = 1
-		playsound(src.loc,'sound/effects/pred_countdown.ogg', 80, 0)
+		playsound(src.loc,'sound/effects/pred_countdown.ogg', 25, 0)
 		sleep(rand(65,85))
 		var/turf/T = get_turf(victim)
 		if(istype(T) && exploding)
@@ -581,7 +581,7 @@
 		usr << "\blue You feel a faint hiss and a crystalline injector drops into your hand."
 		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja/O = new(usr)
 		usr.put_in_active_hand(O)
-		playsound(src,'sound/machines/click.ogg', 20, 1)
+		playsound(src,'sound/machines/click.ogg', 15, 1)
 		return
 
 	verb/call_disk()
@@ -812,7 +812,7 @@
 							H.legcuffed = src
 							src.loc = H
 							H.legcuff_update()
-							playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
+							playsound(H,'sound/weapons/tablehit1.ogg', 25, 1)
 							H << "\icon[src] \red <B>You step on \the [src]!</B>"
 							H.Weaken(4)
 							if(ishuman(H))
@@ -867,7 +867,7 @@
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
 		if(!isYautja(H))
 			user << "<span class='warning'>The screen angrily flashes three times!</span>"
-			playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
+			playsound(user, 'sound/effects/EMPulse.ogg', 25, 1)
 			sleep(30)
 			explosion(loc,-1,-1,2)
 			if(loc)
@@ -878,7 +878,7 @@
 			return
 
 		if(sure == "No" || !sure) return
-		playsound(src,'sound/ambience/signal.ogg', 100, 1)
+		playsound(src,'sound/ambience/signal.ogg', 25, 1)
 		timer = 1
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100))
@@ -1022,7 +1022,7 @@
 		. = ..() + blacklist
 
 	dropped(mob/living/carbon/human/M)
-		playsound(M,'sound/weapons/wristblades_off.ogg', 30, 1)
+		playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)
 		if(M)
 			var/obj/item/weapon/wristblades/get_other_hand = M.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
@@ -1049,7 +1049,7 @@
 				return
 
 			user << "\blue You jam \the [src] into [O] and strain to rip it open."
-			playsound(user,'sound/weapons/wristblades_hit.ogg', 60, 1)
+			playsound(user,'sound/weapons/wristblades_hit.ogg', 15, 1)
 			if(do_after(user,30))
 				D.open(1)
 
@@ -1085,7 +1085,7 @@
 				if(isXeno(target))
 					if(target.mob_size == MOB_SIZE_BIG) //Can't trip the big ones.
 						return ..()
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				user.visible_message("<span class = 'danger'>[src] lashes out and [target] goes down!</span>","<span class='danger'><b>You trip [target]!</b></span>")
 				target.Weaken(5)
 		return ..()
@@ -1164,7 +1164,7 @@
 			force = initial(force)
 			if(prob(22) && !target.lying)
 				user.visible_message("<span class='danger'>[user] slashes [target] so hard, they go flying!</span>")
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				target.Weaken(3)
 				step_away(target,user,1)
 		else
@@ -1288,7 +1288,7 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 50, 1)
+	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 25, 1)
 	add_fingerprint(user)
 
 	return
@@ -1364,7 +1364,7 @@
 
 	dropped(mob/living/carbon/human/M)
 		..()
-		playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
+		playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
 		cdel(src)
 
 	able_to_fire(mob/user)

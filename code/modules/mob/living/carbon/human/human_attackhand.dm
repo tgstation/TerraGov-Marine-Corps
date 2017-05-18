@@ -163,7 +163,7 @@
 			var/randn = rand(1, 100)
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 				visible_message("\red <B>[M] has pushed [src]!</B>")
 				return
 
@@ -175,7 +175,7 @@
 				else
 					drop_held_item()
 					visible_message("\red <B>[M] has disarmed [src]!</B>")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 				return
 
 

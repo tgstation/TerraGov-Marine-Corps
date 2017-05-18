@@ -57,9 +57,9 @@ log transactions
 	for(var/obj/item/weapon/spacecash/S in src)
 		S.loc = src.loc
 		if(prob(50))
-			playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+			playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
 		else
-			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+			playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
 		break
 
 /obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
@@ -93,9 +93,9 @@ log transactions
 			//consume the money
 			authenticated_account.money += I:worth
 			if(prob(50))
-				playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+				playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
 			else
-				playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+				playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
 
 			//create a transaction log entry
 			var/datum/transaction/T = new()
@@ -265,7 +265,7 @@ log transactions
 							if(number_incorrect_tries > max_pin_attempts)
 								//lock down the atm
 								ticks_left_locked_down = 30
-								playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
+								playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
 
 								//create an entry in the account transaction log
 								var/datum/money_account/failed_account = get_account(tried_account_num)
@@ -280,12 +280,12 @@ log transactions
 							else
 								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
 								previous_account_number = tried_account_num
-								playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
+								playsound(src, 'sound/machines/buzz-sigh.ogg', 25, 1)
 						else
 							usr << "\red \icon[src] incorrect pin/account combination entered."
 							number_incorrect_tries = 0
 					else
-						playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+						playsound(src, 'sound/machines/twobeep.ogg', 25, 1)
 						ticks_left_timeout = 120
 						view_screen = NO_SCREEN
 
@@ -308,7 +308,7 @@ log transactions
 					alert("That is not a valid amount.")
 				else if(authenticated_account && amount > 0)
 					if(amount <= authenticated_account.money)
-						playsound(src, 'sound/machines/chime.ogg', 50, 1)
+						playsound(src, 'sound/machines/chime.ogg', 25, 1)
 
 						//remove the money
 						authenticated_account.money -= amount
@@ -334,7 +334,7 @@ log transactions
 					alert("That is not a valid amount.")
 				else if(authenticated_account && amount > 0)
 					if(amount <= authenticated_account.money)
-						playsound(src, 'sound/machines/chime.ogg', 50, 1)
+						playsound(src, 'sound/machines/chime.ogg', 25, 1)
 
 						//remove the money
 						authenticated_account.money -= amount
@@ -373,9 +373,9 @@ log transactions
 					R.stamps += "<HR><i>This paper has been stamped by the WY Automatic Teller Machine.</i>"
 
 				if(prob(50))
-					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+					playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
 				else
-					playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+					playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
 			if ("print_transaction")
 				if(authenticated_account)
 					var/obj/item/weapon/paper/R = new(src.loc)
@@ -415,9 +415,9 @@ log transactions
 					R.stamps += "<HR><i>This paper has been stamped by the WY Automatic Teller Machine.</i>"
 
 				if(prob(50))
-					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+					playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
 				else
-					playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+					playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
 
 			if("insert_card")
 				if(!held_card)

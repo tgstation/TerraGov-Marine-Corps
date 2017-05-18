@@ -129,7 +129,7 @@
 	if (opened)
 		if(istype(O, /obj/item/weapon/crowbar))
 			griefProtection()
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
 			M.icon_state = "box_1"
@@ -325,7 +325,7 @@
 
 /obj/machinery/computer/rdservercontrol/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
 		user << "\blue You you disable the security protocols"
 	src.updateUsrDialog()

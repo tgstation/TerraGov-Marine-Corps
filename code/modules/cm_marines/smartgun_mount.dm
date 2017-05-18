@@ -131,7 +131,7 @@
 
 	if(istype(O,/obj/item/weapon/wrench)) //lets anchor it to the ground.
 		if(anchored) //lets make it so we can turn it when we have it on the ground, a nice feature from the actual sentry
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
 			switch(dir)
 				if(NORTH)
@@ -149,7 +149,7 @@
 
 			user << "You begin wrenching [src] into place.."
 			if(do_after(user,20))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("\blue [user] anchors [src] into place.","\blue You anchor [src] into place.")
 				anchored = 1
 		return
@@ -160,7 +160,7 @@
 			return
 		user << "You begin mounting the M56D.."
 		if(do_after(user,30))
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("\blue [user] installs [O] into place.","\blue You install [O] into place.")
 			gun_mounted = 1
 			gun_rounds = MG.rounds
@@ -181,7 +181,7 @@
 			return
 		user << "You're securing the M56D into place"
 		if(do_after(user,30))
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			user.visible_message("\blue [user] screws the M56D into the mount.","\blue You finalize the M56D mounted smartgun system.")
 			var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
 			G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
@@ -261,7 +261,7 @@
 			user << "This one is anchored in place and cannot be rotated."
 			return
 		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
 			switch(dir)
 				if(NORTH)
@@ -281,7 +281,7 @@
 			user << "You begin disassembling the M56D mounted smartgun"
 			if(do_after(user,15))
 				user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				var/obj/item/device/m56d_gun/HMG = new(src.loc) //Here we generate our disassembled mg.
 				new /obj/item/device/m56d_post(src.loc)
 				HMG.rounds = src.rounds //Inherent the amount of ammo we had.
@@ -306,7 +306,7 @@
 	health -= damage
 	if(health <= 0)
 		var/destroyed = rand(0,1) //Ammo cooks off or something. Who knows.
-		playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 		if(!destroyed) new /obj/machinery/m56d_post(loc)
 		else
 			var/obj/item/device/m56d_gun/HMG = new(loc)
@@ -395,7 +395,7 @@
 			in_chamber.original = target
 			in_chamber.dir = src.dir
 			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 100, 1)
+			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 125, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
@@ -404,7 +404,7 @@
 			rounds--
 			if(!rounds)
 				visible_message("<span class='notice'> \icon[src] \The M56D beeps steadily and its ammo light blinks red. </span>")
-				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
+				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
 	return
 
@@ -512,12 +512,12 @@
 /obj/machinery/m56d_hmg/CtrlClick(var/mob/user) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
 	if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
 		visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		burst_fire = 1
 		return
 	else
 		visible_message("\icon[src] <span class='notice'> emits a audiable soft click </span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		burst_fire = 0
 		return
 

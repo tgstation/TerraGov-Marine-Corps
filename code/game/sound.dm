@@ -1,6 +1,6 @@
-#define FALLOFF_SOUNDS 0.5
+#define FALLOFF_SOUNDS 1 //Loses 100 % volume at 100 tiles
 
-/proc/playsound(atom/source, soundin, vol, vary, extrarange, falloff, is_global)
+/proc/playsound(atom/source, soundin, vol, vary, extrarange = 100, falloff, is_global)
 
 	soundin = get_sfx(soundin) // same sound for everyone
 
@@ -20,7 +20,7 @@
 			T = get_turf(M)
 			if(T && T.z == turf_source.z) M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, var/falloff, is_global)
 	if(!client || ear_deaf > 0)	r_FAL
 	soundin = get_sfx(soundin)
 
@@ -29,7 +29,7 @@
 	S.channel = 0 //Any channel
 	S.volume = vol
 	S.environment = -1
-	if(vary) S.frequency = frequency? frequency : GET_RANDOM_FREQ
+	if(vary) S.frequency = frequency ? frequency : GET_RANDOM_FREQ
 
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
@@ -38,30 +38,38 @@
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
-		S.volume -= max(distance - world.view, 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
-
 		//sound volume falloff with pressure
 		var/pressure_factor = 1.0
 
 		var/datum/gas_mixture/hearer_env = T.return_air()
 		var/datum/gas_mixture/source_env = turf_source.return_air()
 
-		if (hearer_env && source_env)
+		if(hearer_env && source_env)
 			var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
 
-			if (pressure < ONE_ATMOSPHERE)
+			if(pressure < ONE_ATMOSPHERE)
 				pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
-		else pressure_factor = 0//in space
+		else pressure_factor = 0 //in space
 		if(distance <= 1) pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
 		S.volume *= pressure_factor
-		if (S.volume <= 0) r_FAL	//no volume means no sound
 		var/dx = turf_source.x - T.x // Hearing from the right/left
 		S.x = dx
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
 		S.z = dz
-		// The y value is for above your head, but there is no ceiling in 2d spessmens.
+		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		S.y = 1
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS
+
+		S.volume -= round(max(distance - world.view, 0) * S.falloff ** 1.05) //multiplicative falloff to add on top of natural audio falloff. Power of 1.1 is a magic coefficient
+		if(S.volume <= 0) r_FAL	//No volume means no sound
+
+		//Obviously, since BYOND is great, they already fuck with volume in-house depending on position
+		//So, our only option at this point is to clamp the values so it doesn't affect the volume too much
+		S.x = Clamp(-1, S.x, 1)
+		S.y = Clamp(-1, S.y, 1)
+		S.z = Clamp(-1, S.z, 1)
+		// Old value was "2", changed it to define (0.5) times 4. For now, I guess
+
 	if(!is_global) S.environment = 2
 	src << S
 

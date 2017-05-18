@@ -123,7 +123,7 @@
 			if(!linked_account.suspended)
 				if(transaction_locked && !transaction_paid)
 					if(transaction_amount <= E.worth)
-						playsound(src, 'sound/machines/chime.ogg', 50, 1)
+						playsound(src, 'sound/machines/chime.ogg', 25, 1)
 						src.visible_message("\icon[src] The [src] chimes.")
 						transaction_paid = 1
 
@@ -241,7 +241,7 @@
 					if(D)
 						if(!D.suspended)
 							if(transaction_amount <= D.money)
-								playsound(src, 'sound/machines/chime.ogg', 50, 1)
+								playsound(src, 'sound/machines/chime.ogg', 25, 1)
 								src.visible_message("\icon[src] The [src] chimes.")
 								transaction_paid = 1
 
@@ -288,7 +288,7 @@
 				transaction_paid = 0
 			else
 				visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
-				playsound(src, 'sound/machines/chime.ogg', 50, 1)
+				playsound(src, 'sound/machines/chime.ogg', 25, 1)
 				src.visible_message("\icon[src] The [src] chimes.")
 				transaction_paid = 1
 	else

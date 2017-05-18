@@ -120,7 +120,7 @@
 
 /obj/item/weapon/grown/nettle/proc/lose_leaves(var/mob/user)
 	if(force > 0)
-		playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+		playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
 		force -= rand(1,(force/3)+1) // When you whack someone with it, leaves fall off
 
 	sleep(1)

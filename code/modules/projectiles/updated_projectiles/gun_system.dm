@@ -199,7 +199,7 @@
 	set waitfor = 0
 	if(cocked_sound)
 		sleep(3)
-		if(user && loc) playsound(user, cocked_sound, 100, 1)
+		if(user && loc) playsound(user, cocked_sound, 25, 1)
 
 /*
 Reload a gun using a magazine.
@@ -257,7 +257,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		cock_gun(user)
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>")
-	if(reload_sound) playsound(user, reload_sound, 100, 1)
+	if(reload_sound) playsound(user, reload_sound, 25, 1)
 
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
@@ -273,7 +273,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		current_mag.loc = get_turf(src) //Drop it on the ground.
 	else user.put_in_hands(current_mag)
 
-	playsound(user, unload_sound, 20, 1)
+	playsound(user, unload_sound, 25, 1)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
 	"<span class='notice'>You unload [current_mag] from [src].</span>")
 	current_mag.update_icon()
@@ -311,11 +311,11 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(!casing) //No casing on the ground?
 			casing = new new_casing(current_turf)
 			num_of_casings--
-			playsound(current_turf, sound_to_play, 20, 1) //Played again if necessary.
+			playsound(current_turf, sound_to_play, 25, 1) //Played again if necessary.
 		if(num_of_casings) //Still have some.
 			casing.current_casings += num_of_casings
 			casing.update_icon()
-			playsound(current_turf, sound_to_play, 20, 1)
+			playsound(current_turf, sound_to_play, 25, 1)
 
 //----------------------------------------------------------
 			//							    \\
@@ -388,7 +388,7 @@ and you're good to go.
 			ready_in_chamber()
 			if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
-				playsound(src, empty_sound, 50, 1)
+				playsound(src, empty_sound, 25, 1)
 
 	// Shouldn't be called on, but in case something that uses Fire() is added that is toggled.
 	else if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null // Set it to null for next activation. Again, this isn't really going to happen.
@@ -402,7 +402,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
 	flags_gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
-	delete_bullet(projectile_to_fire,1) //We're going to clear up anything inside if we need to.
+	delete_bullet(projectile_to_fire, 1) //We're going to clear up anything inside if we need to.
 	//If it's a regular bullet, we're just going to keep it chambered.
 	extra_delay = 2 + (burst_delay + extra_delay)*2 // Some extra delay before firing again.
 	user << "<span class='warning'>[src] jammed! You'll need a second to get it fixed!</span>"
@@ -526,7 +526,7 @@ and you're good to go.
 		if(M == user && user.zone_sel.selecting == "mouth")
 			if(able_to_fire(user))
 				flags_gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
-				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger...</span>")
+				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
 				if(do_after(user, 40))
 					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
 						active_attachable = null //We're not firing off a nade into our mouth.
@@ -534,24 +534,24 @@ and you're good to go.
 					if(projectile_to_fire) //We actually have a projectile, let's move on.
 						user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
 						var/actual_sound = (active_attachable && active_attachable.fire_sound) ? active_attachable.fire_sound : fire_sound
-						var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 20 : 50
+						var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 25 : 125
 						playsound(user, actual_sound, sound_volume, 1)
-						simulate_recoil(recoil+2, user)
+						simulate_recoil(recoil + 2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
 						var/t = "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> committed suicide with <b>[src]</b>" //Log it.
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
 							t += " after playing Russian Roulette"
-							user.apply_damage(projectile_to_fire.damage*3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp=1)
+							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
 							user << "<span class='highdanger'>Your life flashes before you as your spirit is torn from your body!</span>"
 							user.ghostize(0) //No return.
 						else
-							if (projectile_to_fire.ammo.damage_type == HALLOSS)
+							if(projectile_to_fire.ammo.damage_type == HALLOSS)
 								user << "<span class = 'notice'>Ow...</span>"
-								user.apply_effect(110,AGONY,0)
+								user.apply_effect(110, AGONY, 0)
 							else
-								user.apply_damage(projectile_to_fire.damage*2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp=1)
+								user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp = 1)
 								user.apply_damage(100, OXY)
 								user.death()
 						user.attack_log += t //Apply the attack log.
@@ -632,20 +632,20 @@ and you're good to go.
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
 		user.visible_message("*click click*", "<span class='warning'><b>*click*</b></span>")
-		playsound(user, 'sound/weapons/gun_empty.ogg', 100, 1)
+		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1)
 	else
 		visible_message("*click click*")
-		playsound(src, 'sound/weapons/gun_empty.ogg', 100, 1)
+		playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 	var/actual_sound = fire_sound
-	var/sound_volume = flags_gun_features & GUN_SILENCED ? 20 : 50
+	var/sound_volume = flags_gun_features & GUN_SILENCED ? 25 : 125
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.
 	projectile_to_fire.shot_from = src
 
-	if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) )
+	if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE))
 		if(active_attachable.fire_sound) actual_sound = active_attachable.fire_sound //If we're firing from an attachment, use that noise instead.
 		sound_volume = 50 //Since we're using an attachable, the silencer doesn't matter.
 

@@ -159,7 +159,7 @@
 			if(buildstate == 1 && !is_on)
 				var/obj/item/weapon/weldingtool/WT = O
 				if(WT.remove_fuel(0, user))
-					playsound(loc, 'sound/items/Welder2.ogg', 50, 1)
+					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts to weld the damage to [src].</span>","<span class='notice'>You start to weld the damage to [name]. Stand still!</span>")
 					if (do_after(user,200))
 						if(!src || !WT.isOn()) r_FAL
@@ -173,7 +173,7 @@
 					r_FAL
 		if(istype(O,/obj/item/weapon/wirecutters))
 			if(buildstate == 2 && !is_on)
-				playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
 				if(do_after(user,120))
 					if(!src) r_FAL
@@ -184,7 +184,7 @@
 					r_TRU
 		if(istype(O,/obj/item/weapon/wrench))
 			if(buildstate == 3 && !is_on)
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
 				if(do_after(user,150))
 					if(!src) r_FAL

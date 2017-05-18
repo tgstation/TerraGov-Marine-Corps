@@ -139,7 +139,7 @@
 			if (speech_sound)
 				sound_vol *= 0.5
 		if(has_species(src,"Human"))
-			playsound(src.loc, 'sound/effects/radiostatic.ogg', 30, 1)
+			playsound(src.loc, 'sound/effects/radiostatic.ogg', 15, 1)
 
 	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
 

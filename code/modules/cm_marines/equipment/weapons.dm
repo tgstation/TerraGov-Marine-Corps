@@ -92,7 +92,7 @@
 	w_class = 4.0
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
 	return ..()
 
 /obj/item/weapon/katana
@@ -121,7 +121,7 @@
 	throwforce = 7
 
 /obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
 	return ..()
 
 /obj/item/weapon/butterfly/katana
@@ -206,7 +206,7 @@
 			rounds_remaining -= rounds_to_reload
 
 			user << "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!"
-			playsound(user, 'sound/weapons/unload.ogg', 50, 1)
+			playsound(user, 'sound/weapons/unload.ogg', 25, 1)
 
 			reloading = 0
 			return 1
@@ -224,7 +224,7 @@
 			pcell.loc = get_turf(user)
 			pcell = C
 			C.loc = src
-			playsound(src,'sound/machines/click.ogg', 20, 1)
+			playsound(src,'sound/machines/click.ogg', 25, 1)
 		else
 			..()
 
@@ -487,7 +487,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		src.smoke.attach(src)
 
 	prime()
-		playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, -3)
 		src.smoke.set_up(10, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
@@ -521,7 +521,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		src.smoke.attach(src)
 
 	prime()
-		playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, -3)
 		src.smoke.set_up(10, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
@@ -602,7 +602,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		"<span class='notice'>You finish deploying [src].</span>")
 		anchored = 1
 		armed = 1
-		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 100, 1, -1)
+		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1, -1)
 		icon_state += "_armed"
 		user.drop_held_item()
 		dir = user.dir //The direction it is planted in is the direction the user faces at that time
@@ -641,7 +641,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	"<span class='danger'>You hear a click.</span>")
 
 	triggered = 1
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 100, 1, -1)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1, -1)
 	trigger_explosion()
 
 //Note : May not be actual explosion depending on linked method

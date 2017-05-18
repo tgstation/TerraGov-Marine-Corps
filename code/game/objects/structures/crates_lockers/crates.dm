@@ -94,7 +94,7 @@
 	else if(istype(W, /obj/item/weapon/wirecutters))
 		if(rigged)
 			user  << "<span class='notice'>You cut away the wiring.</span>"
-			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			rigged = 0
 			return
 	else return attack_hand(user)
@@ -295,7 +295,7 @@
 		overlays += emag
 		overlays += sparks
 		spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-		playsound(src.loc, "sparks", 60, 1)
+		playsound(src.loc, "sparks", 25, 1)
 		src.locked = 0
 		src.broken = 1
 		user << "<span class='notice'>You unlock \the [src].</span>"
@@ -317,7 +317,7 @@
 			overlays += emag
 			overlays += sparks
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-			playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 			src.locked = 0
 	if(!opened && prob(20/severity))
 		if(!locked)

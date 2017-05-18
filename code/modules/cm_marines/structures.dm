@@ -98,7 +98,7 @@
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
-			playsound(src.loc, 'sound/items/Welder2.ogg', 75, 1)
+			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			busy = 1
 			if(do_after(user, 50))
 				busy = 0
@@ -106,7 +106,7 @@
 				"<span class='notice'>You repair [src].</span>")
 				health += 150
 				update_health()
-				playsound(src.loc, 'sound/items/Welder2.ogg', 75, 1)
+				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			else busy = 0
 		return
 
@@ -118,7 +118,7 @@
 				tool_cooldown = world.time + 10
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				state = 1
 				return
 		if(1) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
@@ -128,7 +128,7 @@
 				tool_cooldown = world.time + 10
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				state = 2
 				return
 			if(iswrench(W))
@@ -137,7 +137,7 @@
 				tool_cooldown = world.time + 10
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				state = 0
 				return
 		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
@@ -147,7 +147,7 @@
 				tool_cooldown = world.time + 10
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				state = 1
 				return
 			if(iscrowbar(W))
@@ -156,13 +156,13 @@
 				tool_cooldown = world.time + 10
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				busy = 1
 				if(do_after(user, 50))
 					busy = 0
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
-					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					destroy() //Note : Handles deconstruction too !
 				else busy = 0
 				return

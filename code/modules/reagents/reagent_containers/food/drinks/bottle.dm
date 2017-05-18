@@ -26,7 +26,7 @@
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
 
-	playsound(src, "shatter", 70, 1)
+	playsound(src, "shatter", 25, 1)
 	user.put_in_active_hand(B)
 	src.transfer_fingerprints_to(B)
 
@@ -106,7 +106,7 @@
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
 	return ..()
 
 

@@ -120,7 +120,7 @@
 			spawn(2400)
 				src << "<span class='notice'>You are ready to dig a tunnel again.</span>"
 				tunnel_delay = 0
-		playsound(loc, 'sound/weapons/pierce.ogg', 30, 1)
+		playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
 	else
 		src << "<span class='warning'>Your tunnel caves in as you stop digging it.</span>"
 		storedplasma += 100 //Refund half their plasma

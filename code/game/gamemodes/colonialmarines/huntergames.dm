@@ -302,7 +302,7 @@ var/waiting_for_drop_votes = 0
 					world << "<span class='round_body'>The package will shortly be dropped off at: [get_area(winner.loc)].</span>"
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
 					if(istype(drop_zone))
-						playsound(drop_zone,'sound/effects/bamf.ogg',100,1)
+						playsound(drop_zone,'sound/effects/bamf.ogg', 50, 1)
 						place_drop(drop_zone,"god", 1)
 				else
 					world << "<span class='round_body'>The spectator and Predator votes have been talled, and the supply drop recipient is dead or dying<B>. Bummer.</b></span>"

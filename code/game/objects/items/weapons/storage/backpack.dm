@@ -15,18 +15,18 @@
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 15, 1, -5)
 	..()
 
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
 	if (slot == WEAR_BACK && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 15, 1, -5)
 	..(user, slot)
 
 /*
 /obj/item/weapon/storage/backpack/dropped(mob/user as mob)
 	if (loc == user && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 15, 1, -5)
 	..(user)
 */
 

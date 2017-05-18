@@ -59,7 +59,7 @@
 	ready = !ready
 	user.visible_message("<span class='notice'>[user] turns [src] [ready? "on and takes the paddles out" : "off and puts the paddles back in"].</span>",
 	"<span class='notice'>You turn [src] [ready? "on and take the paddles out" : "off and put the paddles back in"].</span>")
-	playsound(get_turf(src), "sparks", 75, 1, -1)
+	playsound(get_turf(src), "sparks", 25, 1, -1)
 	update_icon()
 	add_fingerprint(user)
 
@@ -86,7 +86,7 @@
 
 	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
 	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
-	playsound(get_turf(src),'sound/items/defib_charge.ogg', 50, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
+	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 	busy = 1
 
 	if(do_after(user, 70))
@@ -96,7 +96,7 @@
 		sparks.start()
 		dcell.use(charge_cost)
 		update_icon()
-		playsound(get_turf(src), 'sound/items/defib_release.ogg', 50, 1)
+		playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] shocks [H] with the paddles.</span>",
 		"<span class='notice'>You shock [H] with the paddles.</span>")
 		H.visible_message("<span class='danger'>[H]'s body convulses a bit.</span>")

@@ -12,7 +12,7 @@
 
 /obj/structure/cargo_container/attack_hand(mob/user as mob)
 
-	playsound(loc, 'sound/effects/clang.ogg', 80, 1)
+	playsound(loc, 'sound/effects/clang.ogg', 25, 1)
 
 	var/damage_dealt
 	if(istype(user,/mob/living/carbon/human))

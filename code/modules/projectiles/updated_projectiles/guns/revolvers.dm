@@ -43,7 +43,7 @@
 	if(current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
 		current_mag.chamber_position = rand(1,current_mag.max_rounds)
 		user << "<span class='notice'>You spin the cylinder.</span>"
-		playsound(user, cocked_sound, 70, 1)
+		playsound(user, cocked_sound, 25, 1)
 		russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 
 /obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
@@ -71,7 +71,7 @@
 			current_mag.chamber_contents[current_mag.chamber_position + 1] = "bullet"
 			current_mag.chamber_position++
 
-	playsound(user, hand_reload_sound, 100, 1)
+	playsound(user, hand_reload_sound, 25, 1)
 	return 1
 
 /obj/item/weapon/gun/revolver
@@ -111,7 +111,7 @@
 						replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
 						current_mag.match_ammo(magazine,current_mag)
 						replace_cylinder(current_mag.current_rounds)
-						playsound(user, reload_sound, 80, 1) // Reloading via speedloader.
+						playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
 				else 	user << "<span class='warning'>That [magazine] doesn't fit!</span>"
 			else 		user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
 
@@ -127,7 +127,7 @@
 			russian_roulette = !russian_roulette //Resets the RR variable.
 		else
 			current_mag.chamber_closed = !current_mag.chamber_closed
-		playsound(src, unload_sound, 40, 1)
+		playsound(src, unload_sound, 25, 1)
 		update_icon()
 		return
 
@@ -170,7 +170,7 @@
 
 /obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
 	set waitfor = 0
-	playsound(user, spin_sound, 50, 1)
+	playsound(user, spin_sound, 25, 1)
 	if(double)
 		user.visible_message("[user] deftly flicks and spins [src] and [double]!","\blue You flick and spin [src] and [double]!")
 		animation_wrist_flick(double, 1)
@@ -178,7 +178,7 @@
 
 	animation_wrist_flick(src, direction)
 	sleep(3)
-	if(loc && user) playsound(user, thud_sound, 50, 1)
+	if(loc && user) playsound(user, thud_sound, 25, 1)
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
@@ -196,7 +196,7 @@
 	trick.loc = null
 	if(loc && user)
 		invisibility = 0
-		playsound(user, thud_sound, 50, 1)
+		playsound(user, thud_sound, 25, 1)
 		if(user.get_inactive_hand())
 			user.visible_message("[user] catches [src] with the same hand!","\blue You catch [src] as it spins in to your hand!")
 		else

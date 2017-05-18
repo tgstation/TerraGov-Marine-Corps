@@ -330,7 +330,7 @@
 			user << "\blue You can't unanchor the brace of a running drill!"
 			return
 
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user << "\blue You [anchored ? "un" : ""]anchor the brace."
 
 		anchored = !anchored

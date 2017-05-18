@@ -33,7 +33,7 @@
 		operating = 1
 	flick("shutterc0", src)
 	icon_state = "shutter0"
-	playsound(loc, 'sound/machines/blastdoor.ogg', 50)
+	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 	sleep(10)
 	density = 0
 	SetOpacity(0)
@@ -56,7 +56,7 @@
 	if(visible)
 		SetOpacity(1)
 	update_nearby_tiles()
-	playsound(loc, 'sound/machines/blastdoor.ogg', 50)
+	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 
 	sleep(10)
 	operating = 0

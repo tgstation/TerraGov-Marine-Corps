@@ -89,7 +89,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		update_icon()	//This is not needed for now. Maybe we'll have loaded sprites at some point, but I doubt it. Also doesn't play well with double barrel.
 		ready_in_chamber()
 		cock_gun(user)
-	if(user) playsound(user, reload_sound, 100, 1)
+	if(user) playsound(user, reload_sound, 25, 1)
 	return 1
 
 /obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
@@ -105,7 +105,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	if(user)
 		user.put_in_hands(new_handful)
-		playsound(user, reload_sound, 60, 1)
+		playsound(user, reload_sound, 25, 1)
 	else new_handful.loc = get_turf(src)
 
 	current_mag.current_rounds--
@@ -292,7 +292,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	add_to_tube(mob/user,selection) //Load it on the go, nothing chambered.
 		current_mag.chamber_position++
 		current_mag.chamber_contents[current_mag.chamber_position] = selection
-		playsound(user, reload_sound, 100, 1)
+		playsound(user, reload_sound, 25, 1)
 		return 1
 
 	able_to_fire(mob/user)
@@ -311,7 +311,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 		current_mag.chamber_closed = !current_mag.chamber_closed
 		update_icon()
-		playsound(user, reload_sound, 60, 1)
+		playsound(user, reload_sound, 25, 1)
 
 	load_into_chamber()
 		//Trimming down the unnecessary stuff.
@@ -404,7 +404,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	add_to_tube(mob/user, selection) //Load it on the go, nothing chambered.
 		current_mag.chamber_position++
 		current_mag.chamber_contents[current_mag.chamber_position] = selection
-		playsound(user, reload_sound, 100, 1)
+		playsound(user, reload_sound, 25, 1)
 		return 1
 	/*
 	Moves the ready_in_chamber to it's own proc.
@@ -426,7 +426,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		current_mag.used_casings--
 		make_casing(type_of_casings)
 
-	playsound(user, pump_sound, 70, 1)
+	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
 
 /obj/item/weapon/gun/shotgun/pump

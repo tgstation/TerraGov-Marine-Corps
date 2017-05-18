@@ -77,7 +77,7 @@
 
 /obj/effect/decal/mecha_wreckage/attack_alien(mob/living/carbon/Xenomorph/M)
     if(M.a_intent != "help")
-        playsound(src, 'sound/effects/metal_crash.ogg', 100, 1)
+        playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
         M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>You slice [src] apart!</span>")
         robogibs(src)
         cdel(src)

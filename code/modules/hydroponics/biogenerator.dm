@@ -138,7 +138,7 @@
 		processing = 1
 		update_icon()
 		updateUsrDialog()
-		playsound(src.loc, 'sound/machines/blender.ogg', 50, 1)
+		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
 		use_power(S*30)
 		sleep(S+15)
 		processing = 0

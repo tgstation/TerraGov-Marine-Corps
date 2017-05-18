@@ -310,20 +310,20 @@
 
 /obj/mecha/proc/mechturn(direction)
 	dir = direction
-	pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 40, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 40, 1))
+	pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
-		pick(playsound(src.loc, 'sound/mecha/powerloader_step.ogg', 40, 1), playsound(src.loc, 'sound/mecha/powerloader_step2.ogg', 40, 1))
+		pick(playsound(src.loc, 'sound/mecha/powerloader_step.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_step2.ogg', 25, 1))
 	return result
 
 
 /obj/mecha/proc/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
-		playsound(src,'sound/mecha/mechstep.ogg',40,1)
+		playsound(src,'sound/mecha/mechstep.ogg', 25, 1)
 	return result
 
 /obj/mecha/Bump(var/atom/obstacle)
@@ -425,12 +425,12 @@
 			if(!prob(src.deflect_chance))
 				src.take_damage(15)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
+				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 				user << "\red You slash at the armored suit!"
 				visible_message("\red The [user] slashes at [src.name]'s armor!")
 			else
 				src.log_append_to_last("Armor saved.")
-				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
+				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 				user << "\green Your claws had no effect!"
 				src.occupant_message("\blue The [user]'s claws are stopped by the armor.")
 				visible_message("\blue The [user] rebounds off [src.name]'s armor!")
@@ -463,7 +463,7 @@
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 		else
 			src.log_append_to_last("Armor saved.")
-			playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
+			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 			src.occupant_message("\blue The [user]'s attack is stopped by the armor.")
 			visible_message("\blue The [user] rebounds off [src.name]'s armor!")
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
@@ -1031,9 +1031,9 @@
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
 		dir = dir_in
-		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+		playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
 		if(!hasInternalDamage())
-			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
+			src.occupant << sound('sound/mecha/nominal.ogg',volume = 50)
 		return 1
 	else
 		return 0
