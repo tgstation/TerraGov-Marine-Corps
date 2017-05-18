@@ -317,7 +317,6 @@
 			if(grab_level >= GRAB_NECK)
 				var/mob/living/M = G.grabbed_thing
 				thrown_thing = M
-				stop_pulling()
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
 				if(start_T && end_T)
