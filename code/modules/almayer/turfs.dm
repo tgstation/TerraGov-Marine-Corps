@@ -224,9 +224,11 @@
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/reinforced/almayer/window_type = /obj/structure/window/reinforced/almayer
+	var/basestate = "window"
 
 /obj/structure/window_frame/almayer
 	icon_state = "rwindow0_frame"
+	basestate = "window"
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -259,13 +261,14 @@
 
 
 /obj/structure/window_frame/almayer
-	icon_state = "rwindow0_frame"
+	icon_state = "window0_frame"
 
 /obj/structure/window/reinforced/almayer/white
-	icon_state = "mwindow0"
-	basestate = "mwindow"
+	icon_state = "rwwindow0"
+	basestate = "rwwindow"
 	window_frame = /obj/structure/window_frame/almayer/white
 
 /obj/structure/window_frame/almayer/white
-	icon_state = "mwindow0_frame"
+	icon_state = "wwindow0_frame"
+	basestate = "wwindow"
 	window_type = /obj/structure/window/reinforced/almayer/white
