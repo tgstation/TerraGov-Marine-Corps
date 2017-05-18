@@ -65,9 +65,9 @@
 
 		//Obviously, since BYOND is great, they already fuck with volume in-house depending on position
 		//So, our only option at this point is to clamp the values so it doesn't affect the volume too much
-		S.x = Clamp(-3, S.x, 3)
-		S.y = Clamp(-3, S.y, 3)
-		S.z = Clamp(-3, S.z, 3)
+		S.x = Clamp(-5, S.x, 5)
+		S.y = Clamp(-5, S.y, 5)
+		S.z = Clamp(-5, S.z, 5)
 
 	if(!is_global) S.environment = 2
 	src << S

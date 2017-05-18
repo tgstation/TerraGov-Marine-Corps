@@ -60,7 +60,7 @@
 	..()
 
 	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
-	playsound(loc, 'sound/voice/alien_queen_command.ogg', 100, 0, 20)
+	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0, 20)
 
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
@@ -175,8 +175,8 @@
 		has_screeched = 0
 		src << "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>"
 
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100)
-	// playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)  //XMAS ONLY
+	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	// playsound(loc, 'sound/voice/alien_cena.ogg', 75, 0)  //XMAS ONLY
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 

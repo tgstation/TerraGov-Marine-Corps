@@ -205,7 +205,7 @@
 
 	proc/Open()
 		isSwitchingStates = 1
-		//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
+		//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 		flick("door_opening",src)
 		sleep(10)
 		density = 0
@@ -216,7 +216,7 @@
 
 	proc/Close()
 		isSwitchingStates = 1
-		//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
+		//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 		flick("door_closing",src)
 		sleep(10)
 		density = 1
