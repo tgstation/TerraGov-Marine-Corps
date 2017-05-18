@@ -26,7 +26,6 @@
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -192,8 +191,7 @@
 
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
-		/obj/structure/falserwall)
+		/obj/structure/falsewall)
 
 	var/tiles_special[] = list( //Special case.
 		/obj/machinery/door/airlock,

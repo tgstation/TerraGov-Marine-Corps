@@ -219,7 +219,9 @@
 
 /mob/living/carbon/human/proc/process_suit()
 	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-		process_squad_hud(src)
+		var/obj/item/clothing/suit/storage/marine/SM = wear_suit
+		if(SM.show_squad_hud)
+			process_squad_hud(src)
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	if(G && G.active)

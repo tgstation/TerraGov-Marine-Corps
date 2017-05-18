@@ -89,9 +89,6 @@
 /turf/simulated/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
 
-/obj/structure/falserwall/handle_icon_junction(junction)
-	icon_state = "rwall[junction]"
-
 /obj/structure/falsewall/handle_icon_junction(junction)
 	icon_state = "[mineral][junction]"
 
