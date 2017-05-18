@@ -16,6 +16,7 @@
 	var/obj/structure/window_frame/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/windowknock_cooldown = 0
 	var/static_frame = 0 //True/false. If true, can't move the window
+	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
@@ -34,7 +35,7 @@
 			if(reinf) new /obj/item/stack/rods(loc)
 			if(window_frame)
 				var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
-				new_window_frame.icon_state = "[icon_state]_frame"
+				new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 				new_window_frame.dir = dir
 		del(src)
 	else
@@ -294,7 +295,6 @@
 		if(!is_full_window())
 			icon_state = "[basestate]"
 			return
-		var/junction = 0 //Will be used to determine from which side the window is connected to other windows
 		if(anchored)
 			for(var/obj/structure/window/W in orange(src, 1))
 				if(W.anchored && W.density	&& W.is_full_window()) //Only counts anchored, not-destroyed fill-tile windows.

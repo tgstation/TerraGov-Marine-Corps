@@ -85,6 +85,10 @@
 
 /obj/structure/window/reinforced/almayer/handle_icon_junction(jun_1, jun_2)
 	icon_state = "[basestate][jun_2 ? jun_2 : jun_1]" //Use junction 2 if possible, junction 1 otherwise.
+	if(jun_2)
+		junction = jun_2
+	else
+		junction = jun_1
 
 /turf/simulated/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
