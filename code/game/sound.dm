@@ -60,15 +60,14 @@
 		S.y = 1
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS
 
-		S.volume -= round(max(distance - world.view, 0) * S.falloff ** 1.05) //multiplicative falloff to add on top of natural audio falloff. Power of 1.1 is a magic coefficient
+		S.volume -= round(max(distance - world.view, 0) * S.falloff) //multiplicative falloff to add on top of natural audio falloff. Power of 1.1 is a magic coefficient
 		if(S.volume <= 0) r_FAL	//No volume means no sound
 
 		//Obviously, since BYOND is great, they already fuck with volume in-house depending on position
 		//So, our only option at this point is to clamp the values so it doesn't affect the volume too much
-		S.x = Clamp(-1, S.x, 1)
-		S.y = Clamp(-1, S.y, 1)
-		S.z = Clamp(-1, S.z, 1)
-		// Old value was "2", changed it to define (0.5) times 4. For now, I guess
+		S.x = Clamp(-3, S.x, 3)
+		S.y = Clamp(-3, S.y, 3)
+		S.z = Clamp(-3, S.z, 3)
 
 	if(!is_global) S.environment = 2
 	src << S

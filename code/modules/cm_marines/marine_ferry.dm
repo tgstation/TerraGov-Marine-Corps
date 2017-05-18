@@ -138,7 +138,7 @@
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
 
-	playsound(turfs_src[sound_target], sound_takeoff, 75, 0, 10, -100)
+	playsound(turfs_src[sound_target], sound_takeoff, 100, 0)
 
 	sleep(warmup_time*10) //Warming up
 
@@ -152,8 +152,8 @@
 
 	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
 
-	playsound(turfs_int[sound_target], sound_landing, 75, 0, 10, -100)
-	playsound(turfs_trg[sound_target], sound_landing, 75, 0, 10, -100)
+	playsound(turfs_int[sound_target], sound_landing, 100, 0)
+	playsound(turfs_trg[sound_target], sound_landing, 100, 0)
 
 	sleep(100) //Wait for it to finish.
 
@@ -227,7 +227,7 @@
 	//START: Heavy lifting backend
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
-	playsound(turfs_src[sound_target], sound_takeoff, 75, 0, 10, -100)
+	playsound(turfs_src[sound_target], sound_takeoff, 100, 0)
 
 	sleep(warmup_time*10) //Warming up
 
@@ -244,7 +244,7 @@
 
 	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE [uppertext(MAIN_SHIP_NAME)]. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
 
-	playsound(turfs_int[sound_target], sound_landing, 75, 0, 10, -100)
+	playsound(turfs_int[sound_target], sound_landing, 100, 0)
 
 	sleep(85)
 
