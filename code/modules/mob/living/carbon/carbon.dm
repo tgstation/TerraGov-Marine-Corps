@@ -43,7 +43,7 @@
 				for(var/mob/M in viewers(user, null))
 					if(M.client)
 						M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
-				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
+				playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
 				if(prob(src.getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
@@ -110,7 +110,7 @@
 
 	src.apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
 
-	playsound(loc, "sparks", 50, 1, -1)
+	playsound(loc, "sparks", 25, 1, -1)
 	if (shock_damage > 10)
 		src.visible_message(
 			"\red [src] was shocked by the [source]!", \
@@ -244,7 +244,7 @@
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
 
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 
 /mob/living/carbon/proc/eyecheck()
 	return 0
@@ -429,7 +429,7 @@
 		if(lying) return FALSE //can't slip if already lying down.
 		stop_pulling()
 		src << "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>"
-		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+		playsound(src.loc, 'sound/misc/slip.ogg', 25, 1, -3)
 		Stun(stun_level)
 		Weaken(weaken_level)
 		. = TRUE

@@ -1167,7 +1167,7 @@ About the new airlock wires panel:
 			user.visible_message("<span class='notice'>[user] starts working on the [src] with the [W].</span>", \
 			"<span class='notice'>You start working on the [src] with the [W].</span>", \
 			"<span class='notice'>You hear welding.</span>")
-			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 50)
+			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50))
 				if(!src.welded)
 					src.welded = 1
@@ -1193,7 +1193,7 @@ About the new airlock wires panel:
 		else
 			beingcrowbarred = 0
 		if( beingcrowbarred && src.p_open && (operating == -1 || (density && welded && operating != 1 && !src.arePowerSystemsOn() && !src.locked)) )
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
 			if(do_after(user,40))
 				user << "\blue You removed the airlock electronics!"
@@ -1289,7 +1289,7 @@ About the new airlock wires panel:
 	if(safe)
 		for(var/turf/turf in locs)
 			if(locate(/mob/living) in turf)
-			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)	//THE BUZZING IT NEVER STOPS	-Pete
+			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
 				spawn (60 + openspeed)
 					close()
 				return

@@ -39,7 +39,7 @@
 					if (C.get_amount() < 5)
 						user << "<span class='warning'>You need five lengths of cable to add them to the frame.</span>"
 						return
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					user << "<span class='notice'>You start to add cables to the frame.</span>"
 					if(do_after(user, 20) && state == 1)
 						if(C && istype(C) && C.use(5))
@@ -48,7 +48,7 @@
 							icon_state = "box_1"
 				else
 					if(istype(P, /obj/item/weapon/wrench))
-						playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+						playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 						user << "\blue You dismantle the frame"
 						new /obj/item/stack/sheet/metal(src.loc, 5)
 						del(src)
@@ -56,7 +56,7 @@
 				if(istype(P, /obj/item/weapon/circuitboard))
 					var/obj/item/weapon/circuitboard/B = P
 					if(B.board_type == "machine")
-						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 						user << "\blue You add the circuit board to the frame."
 						circuit = P
 						if(user.drop_inv_item_to_loc(P, src))
@@ -80,7 +80,7 @@
 						user << "\red This frame does not accept circuit boards of this type!"
 				else
 					if(istype(P, /obj/item/weapon/wirecutters))
-						playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+						playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 						user << "\blue You remove the cables."
 						state = 1
 						icon_state = "box_0"
@@ -89,7 +89,7 @@
 
 			if(3)
 				if(istype(P, /obj/item/weapon/crowbar))
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					state = 2
 					circuit.loc = src.loc
 					circuit = null
@@ -111,7 +111,7 @@
 								component_check = 0
 								break
 						if(component_check)
-							playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+							playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 							var/obj/machinery/new_machine = new src.circuit.build_path(src.loc)
 							new_machine.component_parts.Cut()
 							src.circuit.construct(new_machine)
@@ -131,7 +131,7 @@
 						if(istype(P, /obj/item))
 							for(var/I in req_components)
 								if(istype(P, text2path(I)) && (req_components[I] > 0))
-									playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+									playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 									if(istype(P, /obj/item/stack/cable_coil))
 										var/obj/item/stack/cable_coil/CP = P
 										if(CP.get_amount() > 1)

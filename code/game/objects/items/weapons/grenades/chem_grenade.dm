@@ -135,7 +135,7 @@
 		active = 0
 		if(!has_reagents)
 			icon_state = initial(icon_state) +"_locked"
-			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, 1)
 			return
 
 		playsound(src.loc, 'sound/effects/bamf.ogg', 50, 1)

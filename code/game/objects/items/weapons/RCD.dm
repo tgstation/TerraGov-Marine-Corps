@@ -45,7 +45,7 @@ RCD
 			user.drop_held_item()
 			del(W)
 			stored_matter += 10
-			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+			playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 			user << "<span class='notice'>The RCD now holds [stored_matter]/30 matter-units.</span>"
 			desc = "A RCD. It currently holds [stored_matter]/30 matter-units."
 			return
@@ -53,7 +53,7 @@ RCD
 
 	attack_self(mob/user)
 		//Change the mode
-		playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+		playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 		switch(mode)
 			if(1)
 				mode = 2
@@ -75,7 +75,7 @@ RCD
 				return
 
 	proc/activate()
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 
 
 	afterattack(atom/A, mob/user, proximity)
@@ -100,7 +100,7 @@ RCD
 				if(istype(A, /turf/simulated/floor))
 					if(checkResource(3, user))
 						user << "Building Wall ..."
-						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 20))
 							if(!useResource(3, user)) return 0
 							activate()
@@ -112,7 +112,7 @@ RCD
 				if(istype(A, /turf/simulated/floor))
 					if(checkResource(10, user))
 						user << "Building Airlock..."
-						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50))
 							if(!useResource(10, user)) return 0
 							activate()
@@ -128,7 +128,7 @@ RCD
 						return 0
 					if(checkResource(5, user))
 						user << "Deconstructing Wall..."
-						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 40))
 							if(!useResource(5, user)) return 0
 							activate()
@@ -139,7 +139,7 @@ RCD
 				if(istype(A, /turf/simulated/floor) && !istype(A, /turf/simulated/floor/plating))
 					if(checkResource(5, user))
 						user << "Deconstructing Floor..."
-						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50))
 							if(!useResource(5, user)) return 0
 							activate()
@@ -150,7 +150,7 @@ RCD
 				if(istype(A, /obj/machinery/door/airlock))
 					if(checkResource(10, user))
 						user << "Deconstructing Airlock..."
-						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50))
 							if(!useResource(10, user)) return 0
 							activate()

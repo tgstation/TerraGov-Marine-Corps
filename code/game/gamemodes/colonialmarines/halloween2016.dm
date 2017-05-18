@@ -428,7 +428,7 @@
 				var/i = 0
 				while(++i < 6)
 					M.apply_damage(50,BURN,pick(DEFENSE_ZONES_LIVING))
-		playsound(src, 'sound/voice/scream_horror1.ogg', 120, 1)
+		playsound(src, 'sound/voice/scream_horror1.ogg', 50, 1)
 
 /obj/effect/rune/attunement
 	l_color = "#ff0000"

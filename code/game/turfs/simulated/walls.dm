@@ -172,7 +172,7 @@
 /turf/simulated/wall/proc/dismantle_wall(devastated=0, explode=0)
 	if(istype(src,/turf/simulated/wall/r_wall))
 		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 25, 1)
 			new /obj/structure/girder/reinforced(src)
 			new /obj/item/stack/sheet/plasteel( src )
 		else
@@ -181,7 +181,7 @@
 			new /obj/item/stack/sheet/plasteel( src )
 	else if(istype(src,/turf/simulated/wall/cult))
 		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 25, 1)
 			new /obj/effect/decal/cleanable/blood(src)
 			new /obj/structure/cultgirder(src)
 		else
@@ -190,7 +190,7 @@
 
 	else
 		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 25, 1)
 			new /obj/structure/girder(src)
 			if (mineral == "metal")
 				new /obj/item/stack/sheet/metal( src )
@@ -345,7 +345,7 @@
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
-				playsound(src, 'sound/items/Welder.ogg', 10, 1)
+				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 				for(var/obj/effect/E in src) if(E.name == "Wallrot")
 					del E
 				rotting = 0
@@ -374,7 +374,7 @@
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0,user))
 			user << "<span class='notice'>You start repairing the damage to [src].</span>"
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 25, 1)
 			if(do_after(user, max(5, damage / 5)) && WT && WT.isOn())
 				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
 				take_damage(-damage)
@@ -391,7 +391,7 @@
 			if( istype(W, /obj/item/weapon/weldingtool) )
 
 				var/obj/item/weapon/weldingtool/WT = W
-				playsound(src, 'sound/items/Welder.ogg', 100, 1)
+				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 				user << "<span class='notice'>You begin slicing through the outer plating...</span>"
 
 				if (do_after(user,d_sleep))
@@ -406,7 +406,7 @@
 			if (istype(W, /obj/item/weapon/screwdriver))
 
 				user << "<span class='notice'>You begin removing the support lines...</span>"
-				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
 				if (do_after(user,d_sleep))
 					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
@@ -421,7 +421,7 @@
 
 				var/obj/item/weapon/weldingtool/WT = W
 				user << "<span class='notice'>You begin slicing through the metal cover...</span>"
-				playsound(src, 'sound/items/Welder.ogg', 100, 1)
+				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if (do_after(user,d_sleep))
 					if( !istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T )	return
@@ -435,7 +435,7 @@
 			if (istype(W, /obj/item/weapon/crowbar))
 
 				user << "<span class='notice'>You struggle to pry off the cover...</span>"
-				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if (do_after(user,d_sleep))
 					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
@@ -449,7 +449,7 @@
 			if (istype(W, /obj/item/weapon/wrench))
 
 				user << "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame...</span>"
-				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
 				if (do_after(user,d_sleep))
 					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
@@ -463,7 +463,7 @@
 			if (istype(W, /obj/item/weapon/wirecutters))
 
 				user << "<span class='notice'>You work at uncrimping the hydraulic lines...</span>"
-				playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
+				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
 				if (do_after(user,d_sleep))
 					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
@@ -477,7 +477,7 @@
 			if( istype(W, /obj/item/weapon/crowbar) )
 
 				user << "<span class='notice'>You struggle to pry off the inner sheath...</span>"
-				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if (do_after(user,d_sleep))
 					if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
@@ -492,7 +492,7 @@
 
 				var/obj/item/weapon/weldingtool/WT = W
 				user << "<span class='notice'>You begin slicing through the final layer...</span>"
-				playsound(src, 'sound/items/Welder.ogg', 100, 1)
+				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if (do_after(user,d_sleep))
 					if( !istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T )	return

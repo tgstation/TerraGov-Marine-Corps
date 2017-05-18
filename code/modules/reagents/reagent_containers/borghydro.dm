@@ -75,7 +75,7 @@
 	var/datum/reagent/R = chemical_reagents_list[selection]
 	user << "\blue Synthesizer is now producing '[R.name]'."
 	mode = reagent_ids.Find(selection)
-	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/examine()

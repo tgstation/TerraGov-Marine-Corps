@@ -338,7 +338,7 @@
 					if (prob(15))	M.Weaken(5)
 					M.apply_damage(8,def_zone = "head")
 					visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>")
-					playsound(src.loc, 'sound/weapons/tablehit1.ogg', 50, 1)
+					playsound(src.loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 				else
 					user << "<span class='warning'>You need a better grip to do that!</span>"
 					return
@@ -350,7 +350,7 @@
 
 	if (istype(W, /obj/item/weapon/wrench))
 		user << "\blue Now disassembling table"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		if(do_after(user,50))
 			destroy(1)
 		return
@@ -362,8 +362,8 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, src.loc)
 		spark_system.start()
-		playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
-		playsound(src.loc, "sparks", 50, 1)
+		playsound(src.loc, 'sound/weapons/blade1.ogg', 25, 1)
+		playsound(src.loc, "sparks", 25, 1)
 		for(var/mob/O in viewers(user, 4))
 			O.show_message("\blue The [src] was sliced apart by [user]!", 1, "\red You hear [src] coming apart.", 2)
 		destroy()
@@ -371,7 +371,7 @@
 
 	if(istype(W, /obj/item/weapon/wristblades))
 		if(rand(0,2) == 0)
-			playsound(src.loc, 'sound/weapons/wristblades_hit.ogg', 50, 1)
+			playsound(src.loc, 'sound/weapons/wristblades_hit.ogg', 25, 1)
 			for(var/mob/O in viewers(user, 4))
 				O.show_message("\red <b>The [src] was sliced apart by [user]!</b>", 1, "\red <b>You hear [src] coming apart.</b>", 2)
 			destroy()
@@ -546,14 +546,14 @@
 		if(WT.remove_fuel(0, user))
 			if(src.status == 2)
 				user << "\blue Now weakening the reinforced table"
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if (do_after(user, 50))
 					if(!src || !WT.isOn()) return
 					user << "\blue Table weakened"
 					src.status = 1
 			else
 				user << "\blue Now strengthening the reinforced table"
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if (do_after(user, 50))
 					if(!src || !WT.isOn()) return
 					user << "\blue Table strengthened"
@@ -605,7 +605,7 @@
 /obj/structure/rack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/wrench))
 		destroy(1)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
 	if(isrobot(user))
 		return

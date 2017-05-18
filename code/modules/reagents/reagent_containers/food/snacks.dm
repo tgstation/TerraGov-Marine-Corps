@@ -91,7 +91,7 @@
 
 
 		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					/*
@@ -2932,7 +2932,7 @@
 
 	attack_self(mob/user as mob)
 		if (package == 1)
-			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 			user << "<span class='notice'>You pull off the wrapping from the squishy burrito!</span>"
 			package = 0
 			icon_state = "openburrito"
@@ -2950,7 +2950,7 @@
 
 	attack_self(mob/user as mob)
 		if (package == 1)
-			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 			user << "<span class='notice'>You pull off the wrapping from the squishy hamburger!</span>"
 			package = 0
 			icon_state = "hburger"
@@ -2967,7 +2967,7 @@
 
 	attack_self(mob/user as mob)
 		if (package == 1)
-			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 			user << "<span class='notice'>You pull off the wrapping from the squishy hotdog!</span>"
 			package = 0
 			icon_state = "hotdog"
@@ -3009,7 +3009,7 @@
 	attack_self(mob/user as mob)
 		if (package == 1)
 			user << "<span class='notice'>You pull open the package of the meal!</span>"
-			playsound(loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 
 			name = "\improper" + flavor
 			desc = "The contents of a USCM Standard issue MRE. This one is " + flavor + "."

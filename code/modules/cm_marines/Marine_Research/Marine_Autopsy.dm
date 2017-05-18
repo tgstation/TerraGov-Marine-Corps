@@ -56,7 +56,7 @@
 		return
 	active = 1
 	var CHECK = user.loc
-	playsound(loc, 'sound/weapons/pierce.ogg', 50)
+	playsound(loc, 'sound/weapons/pierce.ogg', 25)
 	usr << "You begin to cut into the alien... This might take some time..."
 	if(T.health >-100)
 		usr << "HOLY SHIT IT'S STILL ALIVE.  It knocks you down as it jumps up."

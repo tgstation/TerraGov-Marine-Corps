@@ -77,7 +77,7 @@
 					m_type = 2
 					if(miming)
 						m_type = 1
-					playsound(src.loc, 'sound/misc/clap.ogg', 50, 0)
+					playsound(src.loc, 'sound/misc/clap.ogg', 25, 0)
 					start_audio_emote_cooldown()
 			else
 				src << "You just did an audible emote. Wait a while."
@@ -174,7 +174,7 @@
 					m_type = 2
 					if(miming)
 						m_type = 1
-					playsound(src.loc, 'sound/misc/golfclap.ogg', 50, 0)
+					playsound(src.loc, 'sound/misc/golfclap.ogg', 25, 0)
 					start_audio_emote_cooldown()
 			else
 				src << "You just did an audible emote. Wait a while."
@@ -259,7 +259,7 @@
 
 		if ("medic")
 			if (has_species(src,"Yautja"))
-				playsound(src.loc, 'sound/misc/medic_female.ogg', 30, 0)
+				playsound(src.loc, 'sound/misc/medic_female.ogg', 25, 0)
 				return
 			if(!recent_audio_emote)
 				if (!muzzled && !stat)
@@ -267,11 +267,11 @@
 					m_type = 2
 					if(src.gender == "male")
 						if(rand(0,100) < 95)
-							playsound(src.loc, 'sound/misc/medic_male.ogg', 30, 0)
+							playsound(src.loc, 'sound/misc/medic_male.ogg', 25, 0)
 						else
-							playsound(src.loc, 'sound/misc/medic_male2.ogg', 30, 0)
+							playsound(src.loc, 'sound/misc/medic_male2.ogg', 25, 0)
 					else
-						playsound(src.loc, 'sound/misc/medic_female.ogg', 30, 0)
+						playsound(src.loc, 'sound/misc/medic_female.ogg', 25, 0)
 					start_audio_emote_cooldown()
 			else
 				src << "You just did an audible emote. Wait a while."
@@ -306,7 +306,7 @@
 					message = "<B>[comm_paygrade][src]</B> salutes to [param]."
 				else
 					message = "<B>[comm_paygrade][src]</b> salutes."
-				playsound(src.loc, 'sound/misc/salute.ogg', 50, 1)
+				playsound(src.loc, 'sound/misc/salute.ogg', 15, 1)
 			m_type = 1
 
 		if("scream")
@@ -315,9 +315,9 @@
 			if(!recent_audio_emote)
 				if(has_species(src,"Human") && src.client)
 					if(gender == "male")
-						playsound(loc, "scream_male", 75)
+						playsound(loc, "scream_male", 50)
 					else
-						playsound(loc, "scream_female", 75)
+						playsound(loc, "scream_female", 50)
 				start_audio_emote_cooldown()
 			else
 				src << "You just did an audible emote. Wait a while."
@@ -463,48 +463,48 @@
 		if ("anytime")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
-				playsound(src.loc, 'sound/voice/pred_anytime.ogg', 100, 0)
+				playsound(src.loc, 'sound/voice/pred_anytime.ogg', 25, 0)
 		if ("click")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
 				spawn(2)
 					if(rand(0,100) < 50)
-						playsound(src.loc, 'sound/voice/pred_click1.ogg', 100, 1)
+						playsound(src.loc, 'sound/voice/pred_click1.ogg', 25, 1)
 					else
-						playsound(src.loc, 'sound/voice/pred_click2.ogg', 100, 1)
+						playsound(src.loc, 'sound/voice/pred_click2.ogg', 25, 1)
 		if ("iseeyou")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
-				playsound(src.loc, 'sound/hallucinations/i_see_you2.ogg', 100, 0)
+				playsound(src.loc, 'sound/hallucinations/i_see_you2.ogg', 25, 0)
 		if ("laugh1")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
-				playsound(src.loc, 'sound/voice/pred_laugh1.ogg', 100, 0)
+				playsound(src.loc, 'sound/voice/pred_laugh1.ogg', 25, 0)
 		if ("laugh2")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
-				playsound(src.loc, 'sound/voice/pred_laugh2.ogg', 100, 0)
+				playsound(src.loc, 'sound/voice/pred_laugh2.ogg', 25, 0)
 		if ("laugh3")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
-				playsound(src.loc, 'sound/voice/pred_laugh3.ogg', 100, 0)
+				playsound(src.loc, 'sound/voice/pred_laugh3.ogg', 25, 0)
 		if ("overhere")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
-				playsound(src.loc, 'sound/voice/pred_overhere.ogg', 100, 0)
+				playsound(src.loc, 'sound/voice/pred_overhere.ogg', 25, 0)
 		if ("roar")
 			if(has_species(src,"Yautja") && src.loc)
 				message = "<B>[src] roars!</b>"
 				m_type = 1
 				spawn(2)
 					if(rand(0,100) < 50)
-						playsound(src.loc, 'sound/voice/pred_roar1.ogg', 100, 1)
+						playsound(src.loc, 'sound/voice/pred_roar1.ogg', 50, 1)
 					else
-						playsound(src.loc, 'sound/voice/pred_roar2.ogg', 100, 1)
+						playsound(src.loc, 'sound/voice/pred_roar2.ogg', 50, 1)
 		if ("turnaround")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
-				playsound(src.loc, 'sound/voice/pred_turnaround.ogg', 100, 0)
+				playsound(src.loc, 'sound/voice/pred_turnaround.ogg', 25, 0)
 		else
 			src << "\blue Unusable emote '[act]'. Say *help for a list of emotes."
 

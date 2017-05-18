@@ -358,10 +358,10 @@
 			user.visible_message("<span class='notice'>[user] starts working on [src] with the [WT].</span>", \
 			"<span class='notice'>You start working on the [src] with the [WT].</span>", \
 			"<span class='notice'>You hear welding.</span>")
-			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 50)
+			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50))
 				if(!src || !WT.isOn()) return
-				playsound(get_turf(src), 'sound/items/Welder2.ogg', 50, 1)
+				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message("<span class='notice'>[user] welds [src] shut.</span>", \
 					"<span class='notice'>You weld [src] shut.</span>", \
@@ -395,7 +395,7 @@
 		user << "<span class='warning'>You cannot unwrench this [src], it too exerted due to internal pressure.</span>"
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
 	if (do_after(user, 40))
 		user.visible_message( \

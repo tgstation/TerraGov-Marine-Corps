@@ -40,7 +40,7 @@
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
 			user << "\blue Constructing support lattice ..."
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			ReplaceWithLattice()
 		return
 
@@ -51,7 +51,7 @@
 			if (S.get_amount() < 1)
 				return
 			del(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			S.build(src)
 			S.use(1)
 			return

@@ -177,7 +177,7 @@
 		return
 
 	var/obj/item/projectile/A = new projectiletype(user:loc)
-	playsound(user, projectilesound, 100, 1)
+	playsound(user, projectilesound, 25, 1)
 	if(!A)	return
 
 	if (!istype(target, /turf))

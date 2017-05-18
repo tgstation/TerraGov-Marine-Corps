@@ -75,7 +75,7 @@
 	connected_ai = null
 
 	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
-	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
+	playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 0)
 
 //Redefining some robot procs...
 /mob/living/silicon/robot/drone/updatename()

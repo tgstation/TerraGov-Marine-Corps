@@ -670,7 +670,7 @@
 		pestlevel -= spray.pest_kill_str
 		weedlevel -= spray.weed_kill_str
 		user << "You spray [src] with [O]."
-		playsound(loc, 'sound/effects/spray3.ogg', 50, 1, -6)
+		playsound(loc, 'sound/effects/spray3.ogg', 25, 1, -6)
 		del(O)
 
 		check_level_sanity()
@@ -682,7 +682,7 @@
 		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
 			return ..()
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
 

@@ -44,7 +44,7 @@
 			visible_message("\red <b>SPLAT!</b>")
 			M.splat()
 		if(!target) return
-		playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
+		playsound(target.loc, 'sound/effects/snap.ogg', 25, 1)
 		layer = MOB_LAYER - 0.2
 		armed = 0
 		update_icon()
@@ -66,7 +66,7 @@
 			user << "<span class='notice'>You disarm [src].</span>"
 		armed = !armed
 		update_icon()
-		playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
+		playsound(user.loc, 'sound/weapons/handcuffs.ogg', 25, 1, -3)
 
 
 	attack_hand(mob/living/user as mob)

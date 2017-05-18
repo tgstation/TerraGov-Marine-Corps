@@ -31,39 +31,39 @@
 				m_type = 2
 				message = "<B>The [src.name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 100, 1, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 125, 1, 1)
 				else
 					if(mob_size != MOB_SIZE_BIG)
-						playsound(loc, 'sound/voice/alien_roar_small.ogg', 100, 1, 1)
+						playsound(loc, 'sound/voice/alien_roar_small.ogg', 50, 1, 1)
 					else
-						playsound(loc, 'sound/voice/alien_roar_large.ogg', 100, 1, 1)
+						playsound(loc, 'sound/voice/alien_roar_large.ogg', 75, 1, 1)
 		if("growl")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> growls."
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_growl.ogg', 30, 1, 1)
+					playsound(loc, 'sound/voice/predalien_growl.ogg', 25, 1, 1)
 				else
 					if(mob_size != MOB_SIZE_BIG)
-						playsound(loc, 'sound/voice/alien_growl_small.ogg', 30, 1, 1)
+						playsound(loc, 'sound/voice/alien_growl_small.ogg', 15, 1, 1)
 					else
-						playsound(loc, 'sound/voice/alien_growl_large.ogg', 30, 1, 1)
+						playsound(loc, 'sound/voice/alien_growl_large.ogg', 25, 1, 1)
 		if("hiss")
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> hisses."
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_hiss.ogg', 100, 1, 1)
+					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1, 1)
 				else
 					if(mob_size != MOB_SIZE_BIG)
-						playsound(loc, 'sound/voice/alien_hiss_small.ogg', 100, 1, 1)
+						playsound(loc, 'sound/voice/alien_hiss_small.ogg', 25, 1, 1)
 					else
-						playsound(loc, 'sound/voice/alien_hiss_large.ogg', 100, 1, 1)
+						playsound(loc, 'sound/voice/alien_hiss_large.ogg', 25, 1, 1)
 		if("tail")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> lashes its tail."
-				playsound(src.loc, 'sound/voice/alien_tail.ogg', 100, 1, 1)
+				playsound(src.loc, 'sound/voice/alien_tail.ogg', 25, 1, 1)
 		if("dance")
 			if(!src.is_mob_restrained())
 				message = "<B>The [src.name]</B> dances around!"

@@ -64,7 +64,7 @@
 		else	//can only use it  5 times a minute
 			user << "<span class='warning'>*click* *click*</span>"
 			return
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
+	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	var/flashfail = 0
 
 	if(iscarbon(M))
@@ -129,7 +129,7 @@
 		else	//can only use it  5 times a minute
 			user.show_message("<span class='warning'>*click* *click*</span>", 2)
 			return
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
+	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	flick("flash2", src)
 	if(user && isrobot(user))
 		spawn(0)

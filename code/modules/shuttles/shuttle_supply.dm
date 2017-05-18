@@ -44,7 +44,7 @@
 		//If we are at the away_area then we are just pretending to move, otherwise actually do the move
 		if (origin != away_area)
 			T = locate() in origin //Hacky, but hey. This will change to a better system anyway.
-			playsound(T, 'sound/effects/engine_cargoshuttle_startup.ogg', 100, 0, 10, -100)
+			playsound(T, 'sound/effects/engine_cargoshuttle_startup.ogg', 75, 0, 10, -100)
 			sleep(80)
 			move(origin, away_area)
 
@@ -59,7 +59,7 @@
 				sleep(rand(0,max_late_time))
 
 			T = locate() in destination
-			playsound(T, 'sound/effects/engine_cargoshuttle_landing.ogg', 100, 0, 10, -100)
+			playsound(T, 'sound/effects/engine_cargoshuttle_landing.ogg', 75, 0, 10, -100)
 			sleep(100)
 			move(away_area, destination)
 

@@ -114,7 +114,7 @@
 
 
 			if(power_drained > max_power * 0.95)
-				playsound(src, 'sound/effects/screech.ogg', 100, 1, 1)
+				playsound(src, 'sound/effects/screech.ogg', 75, 1, 1)
 			if(power_drained >= max_power)
 				processing_objects.Remove(src)
 				explosion(src.loc, 3,6,9,12)

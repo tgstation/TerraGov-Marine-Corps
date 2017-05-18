@@ -172,9 +172,9 @@
 		src.add_fingerprint(user)
 		if (src.bullets < 1)
 			user.show_message("\red *click* *click*", 2)
-			playsound(user, 'sound/weapons/gun_empty.ogg', 100, 1)
+			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
 			return
-		playsound(user, 'sound/weapons/Gunshot.ogg', 100, 1)
+		playsound(user, 'sound/weapons/Gunshot.ogg', 15, 1)
 		src.bullets--
 		for(var/mob/O in viewers(user, null))
 			O.show_message(text("\red <B>[] fires a cap gun at []!</B>", user, target), 1, "\red You hear a gunshot", 2)
@@ -238,7 +238,7 @@
 			bullets--
 			D.icon_state = "foamdart"
 			D.name = "foam dart"
-			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
+			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 
 			for(var/i=0, i<6, i++)
 				if (D)
@@ -286,7 +286,7 @@
 					O.show_message(text("\red <B>[] casually lines up a shot with []'s head and pulls the trigger!</B>", user, M), 1, "\red You hear the sound of foam against skull", 2)
 					O.show_message(text("\red [] was hit in the head by the foam dart!", M), 1)
 
-			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
+			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/ammo/crossbow(M.loc)
 			src.bullets--
 		else if (M.lying && src.bullets == 0)
@@ -329,13 +329,13 @@
 		src.active = !( src.active )
 		if (src.active)
 			user << "\blue You extend the plastic blade with a quick flick of your wrist."
-			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+			playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
 			src.w_class = 4
 		else
 			user << "\blue You push the plastic blade back down into the handle."
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+			playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
 			src.icon_state = "sword0"
 			src.item_state = "sword0"
 			src.w_class = 2
@@ -399,7 +399,7 @@
 		s.start()
 		new /obj/effect/decal/cleanable/ash(src.loc)
 		src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
-		playsound(src, 'sound/effects/snap.ogg', 50, 1)
+		playsound(src, 'sound/effects/snap.ogg', 25, 1)
 		del(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
@@ -413,7 +413,7 @@
 			s.start()
 			new /obj/effect/decal/cleanable/ash(src.loc)
 			src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
-			playsound(src, 'sound/effects/snap.ogg', 50, 1)
+			playsound(src, 'sound/effects/snap.ogg', 25, 1)
 			del(src)
 
 /*
@@ -465,7 +465,7 @@
 		D.icon_state = "chempuff"
 		D.create_reagents(5)
 		src.reagents.trans_to(D, 1)
-		playsound(src.loc, 'sound/effects/spray3.ogg', 50, 1, -6)
+		playsound(src.loc, 'sound/effects/spray3.ogg', 15, 1, -6)
 
 		spawn(0)
 			for(var/i=0, i<1, i++)
@@ -499,14 +499,14 @@
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
 		user << "<span class='notice'>You play with [src].</span>"
-		playsound(user, 'sound/mecha/mechstep.ogg', 20, 1)
+		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1)
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/user as mob)
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			user << "<span class='notice'>You play with [src].</span>"
-			playsound(user, 'sound/mecha/mechturn.ogg', 20, 1)
+			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1)
 			cooldown = world.time
 			return
 	..()

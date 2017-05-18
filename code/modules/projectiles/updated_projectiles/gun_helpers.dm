@@ -128,7 +128,7 @@ DEFINES in setup.dm, referenced here.
 	if(!(src in user)) return //No telekinetic toggling.
 
 	user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
-	playsound(usr,'sound/machines/click.ogg', 15, 1)
+	playsound(user, 'sound/machines/click.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 	return
 
@@ -294,7 +294,7 @@ should be alright.
 			user.temp_drop_inv_item(attachment)
 			attachment.Attach(src)
 			update_attachable(attachment.slot)
-			playsound(user,'sound/machines/click.ogg', 50, 1)
+			playsound(user, 'sound/machines/click.ogg', 15, 1)
 
 /obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
 	//overlays.Cut()
@@ -406,7 +406,7 @@ should be alright.
 		usr << "<span class='notice'>You remove [src]'s [stock].</span>"
 		stock.Detach(src)
 
-	playsound(src,'sound/machines/click.ogg', 50, 1)
+	playsound(src, 'sound/machines/click.ogg', 15, 1)
 	update_attachables()
 
 /obj/item/weapon/gun/verb/toggle_burst()
@@ -426,7 +426,7 @@ should be alright.
 		return
 
 	usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode.</span>"
-	playsound(usr,'sound/machines/click.ogg', 50, 1)
+	playsound(usr, 'sound/machines/click.ogg', 15, 1)
 	flags_gun_features ^= GUN_BURST_ON
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -495,12 +495,12 @@ should be alright.
 
 /obj/item/weapon/gun/proc/cancel_active_attachment(mob/user)
 	user << "<span class='notice'>You disable [active_attachable].</span>"
-	playsound(user,active_attachable.activation_sound, 50, 1)
+	playsound(user, active_attachable.activation_sound, 15, 1)
 	active_attachable = null
 
 /obj/item/weapon/gun/proc/toggle_active_attachment(mob/user)
 	user << "<span class='notice'>You toggle the [active_attachable.name].</span>"
-	playsound(user,active_attachable.activation_sound, 50, 1)
+	playsound(user, active_attachable.activation_sound, 15, 1)
 	active_attachable.activate_attachment(src,user)
 
 //----------------------------------------------------------

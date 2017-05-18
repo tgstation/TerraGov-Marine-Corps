@@ -47,7 +47,7 @@
 		user << "<span class='warning'>[O] must be safely placed on the ground for modification.</span>"
 		return
 
-	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+	playsound(user.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
 	user.visible_message("\red [user] opens \the [src] and modifies \the [O].","\red You open \the [src] and modify \the [O].")
 

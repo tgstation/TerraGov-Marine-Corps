@@ -594,7 +594,7 @@ Defined in setup.dm.
 /obj/item/attachable/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	set waitfor = 0
 	var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
-	playsound(user.loc,fire_sound, 50, 1)
+	playsound(user.loc, fire_sound, 50, 1)
 	message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
 	log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 	G.active = 1
@@ -643,7 +643,7 @@ Defined in setup.dm.
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T
-	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 80, 1)
+	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
 	for(T in turfs)
 		if(T == user.loc) 			continue
 		if(!current_rounds) 		break

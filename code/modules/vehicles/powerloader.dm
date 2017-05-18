@@ -22,7 +22,7 @@
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
 	. = ..()
 	if(.)
-		pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 40, 1), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 40, 1))
+		pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25, 1), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25, 1))
 
 
 

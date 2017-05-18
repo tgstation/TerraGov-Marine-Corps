@@ -73,9 +73,9 @@
 			if("shout")
 				usr.say("[invocation] [uppertext(chosenarea.name)]")
 				if(usr.gender==MALE)
-					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
+					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 25, 1)
 				else
-					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
+					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 25, 1)
 			if("whisper")
 				usr.whisper("[invocation] [uppertext(chosenarea.name)]")
 

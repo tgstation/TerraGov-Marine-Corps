@@ -157,7 +157,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		user.drop_inv_item_to_loc(D, src)
 		user << "\blue You add the disk to the machine!"
 	else if(istype(D, /obj/item/weapon/card/emag) && !emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
 		user << "\blue You you disable the security protocols"
 	else

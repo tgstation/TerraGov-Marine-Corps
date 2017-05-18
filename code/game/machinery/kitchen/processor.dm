@@ -130,10 +130,10 @@
 			log_admin("DEBUG: [O] in processor havent suitable recipe. How do you put it in?") //-rastaf0
 			continue
 		src.processing = 1
-		user.visible_message("\blue [user] turns on \a [src].", \
-			"You turn on \a [src].", \
+		user.visible_message("\blue [user] turns on [src].", \
+			"You turn on [src].", \
 			"You hear a food processor.")
-		playsound(src.loc, 'sound/machines/blender.ogg', 50, 1)
+		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
 		use_power(500)
 		sleep(P.time)
 		P.process(src.loc, O)

@@ -249,7 +249,7 @@
 			return
 		user.visible_message("<span class='notice'>[user] starts installing a new glass window on the frame.</span>", \
 		"<span class='notice'>You start installing a new window on the frame.</span>")
-		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 20))
 			user.visible_message("<span class='notice'>[user] installs a new glass window on the frame.</span>", \
 			"<span class='notice'>You install a new window on the frame.</span>")

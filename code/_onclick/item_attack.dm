@@ -73,11 +73,11 @@
 	if(istype(M, /mob/living/carbon/human))
 		var/hit = M:attacked_by(src, user, def_zone)
 		if (hit && hitsound)
-			playsound(loc, hitsound, 50, 1, -1)
+			playsound(loc, hitsound, 25, 1, -1)
 		return hit
 	else //Xenos taking damage from weapons goes here.
 		if(hitsound)
-			playsound(loc, hitsound, 50, 1, -1)
+			playsound(loc, hitsound, 25, 1, -1)
 		if(ishuman(M) && power > 5)
 			var/mob/living/carbon/human/H = M
 			H.forcesay()

@@ -6,7 +6,7 @@
 	w_class = 3.0
 
 	attack_self(mob/user)
-		playsound(loc, 'sound/items/zip.ogg', 75, 1)
+		playsound(loc, 'sound/items/zip.ogg', 25, 1)
 		user << "\blue You inflate [src]."
 		var/obj/structure/inflatable/R = new /obj/structure/inflatable(user.loc)
 		src.transfer_fingerprints_to(R)
@@ -97,13 +97,13 @@
 	proc/hit(var/damage, var/sound_effect = 1)
 		health = max(0, health - damage)
 		if(sound_effect)
-			playsound(loc, 'sound/effects/Glasshit_old.ogg', 75, 1)
+			playsound(loc, 'sound/effects/Glasshit_old.ogg', 25, 1)
 		if(health <= 0)
 			deflate(1)
 
 
 	proc/deflate(var/violent=0)
-		playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+		playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
 		if(violent)
 			visible_message("[src] rapidly deflates!")
 			//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
@@ -136,7 +136,7 @@
 	icon_state = "folded_door"
 
 	attack_self(mob/user)
-		playsound(loc, 'sound/items/zip.ogg', 75, 1)
+		playsound(loc, 'sound/items/zip.ogg', 25, 1)
 		user << "\blue You inflate [src]."
 		var/obj/structure/inflatable/door/R = new /obj/structure/inflatable/door(user.loc)
 		src.transfer_fingerprints_to(R)
@@ -232,7 +232,7 @@
 			icon_state = "door_closed"
 
 	deflate(var/violent=0)
-		playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+		playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
 		if(violent)
 			visible_message("[src] rapidly deflates!")
 			//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)

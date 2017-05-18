@@ -46,7 +46,7 @@
 
 			if(prob(bush_sound_prob))
 				var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
-				playsound(src.loc, sound, 50, 1)
+				playsound(src.loc, sound, 25, 1)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				var/stuck = rand(0,10)
@@ -77,7 +77,7 @@
 			user << "\red You flail away at the undergrowth, but it's too thick here."
 		else
 			user.visible_message("\red [user] flails away at the  [src] with [I].","\red You flail away at the [src] with [I].")
-			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 50, 1)
+			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
 			health -= damage
 			if(health < 0)
 				user << "\blue You clear away [src]."

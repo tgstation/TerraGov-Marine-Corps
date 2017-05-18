@@ -46,7 +46,7 @@
 	last_upgrade = world.time
 	if(user.grab_level <= GRAB_KILL)
 		user.grab_level++
-		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 		switch(user.grab_level)
 			if(GRAB_KILL)
 				icon_state = "disarm/kill1"

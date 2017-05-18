@@ -52,7 +52,7 @@
 
 	icon_state = initial(icon_state) + "_active"
 	active = 1
-	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+	playsound(loc, 'sound/weapons/armbomb.ogg', 25, 1, -3)
 	if(dangerous)
 		updateicon()
 	spawn(det_time)

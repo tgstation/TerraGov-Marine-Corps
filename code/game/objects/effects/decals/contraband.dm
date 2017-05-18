@@ -50,7 +50,7 @@ obj/structure/sign/poster/New(var/serial)
 
 obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wirecutters))
-		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(ruined)
 			user << "<span class='notice'>You remove the remnants of the poster.</span>"
 			del(src)
@@ -69,7 +69,7 @@ obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			if(user.loc != temp_loc)
 				return
 			visible_message("<span class='warning'>[user] rips [src] in a single, decisive motion!</span>" )
-			playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/poster_ripped.ogg', 25, 1)
 			ruined = 1
 			icon_state = "poster_ripped"
 			name = "ripped poster"
@@ -111,7 +111,7 @@ obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	flick("poster_being_set",D)
 	D.loc = src
 	del(P)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
-	playsound(D.loc, 'sound/items/poster_being_created.ogg', 100, 1)
+	playsound(D.loc, 'sound/items/poster_being_created.ogg', 25, 1)
 
 	sleep(17)
 	if(!D)	return

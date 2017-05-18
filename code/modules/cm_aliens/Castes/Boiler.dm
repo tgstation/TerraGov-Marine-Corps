@@ -217,7 +217,7 @@
 		P.damage = P.ammo.damage
 		P.accuracy += P.ammo.accuracy
 		P.fire_at(target, src, null, P.ammo.max_range, P.ammo.shell_speed)
-		playsound(src, 'sound/effects/blobattack.ogg', 60, 1)
+		playsound(src, 'sound/effects/blobattack.ogg', 25, 1)
 
 		spawn(200) //20 seconds cooldown.
 			bomb_cooldown = 0
@@ -246,7 +246,7 @@
 		src.smoke.attach(src)
 
 	prime()
-		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
+		playsound(src.loc, 'sound/effects/blobattack.ogg', 25, 1)
 		icon_state = "splatter"
 		smoke.set_up(6, 0, usr.loc)
 		spawn(0)
@@ -321,7 +321,7 @@
 		src.smoke.attach(src)
 
 	prime()
-		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
+		playsound(src.loc, 'sound/effects/blobattack.ogg', 25, 1)
 		icon_state = "splatter"
 		smoke.set_up(7, 0, usr.loc)
 		spawn(0)
@@ -414,7 +414,7 @@
 			return
 
 		acid_cooldown = 1
-		playsound(src.loc, 'sound/effects/refill.ogg', 100, 1)
+		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1)
 		visible_message("<span class='xenowarning'>\The [src] spews forth a virulent spray of acid!</span>", \
 		"<span class='xenowarning'>You spew forth a spray of acid!</span>")
 		var/turflist = getline(src, target)

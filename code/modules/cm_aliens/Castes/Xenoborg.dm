@@ -76,7 +76,7 @@
 
 		visible_message("<span class='xenowarning'>\The [src] fires its autocannon!</span>", \
 		"<span class='xenowarning'>You fire your autocannon!</span>" )
-		playsound(src.loc,'sound/weapons/gun_smg.ogg',60,1)
+		playsound(src.loc,'sound/weapons/gun_smg.ogg', 125, 1)
 		usedPounce = 1
 		spawn(1)
 			usedPounce = 0
@@ -106,7 +106,7 @@
 				adjustBruteLoss(-20)
 				adjustFireLoss(-20)
 				updatehealth()
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				visible_message("<span class='notice'>\The [user] repairs some of the damage to \the [src].</span>")
 				return
 			else

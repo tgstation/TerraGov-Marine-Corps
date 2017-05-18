@@ -23,7 +23,7 @@
 
 /obj/machinery/door/window/Del()
 	density = 0
-	playsound(src, "shatter", 70, 1)
+	playsound(src, "shatter", 50, 1)
 	update_nearby_tiles()
 	..()
 
@@ -82,7 +82,7 @@
 	if(!src.operating) //in case of emag
 		src.operating = 1
 	flick(text("[]opening", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	src.icon_state = text("[]open", src.base_state)
 	sleep(10)
 
@@ -100,7 +100,7 @@
 		return 0
 	src.operating = 1
 	flick(text("[]closing", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	src.icon_state = src.base_state
 
 	src.density = 1
@@ -156,7 +156,7 @@
 		tforce = 40
 	else
 		tforce = AM:throwforce
-	playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
+	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	take_damage(tforce)
 	//..() //Does this really need to be here twice? The parent proc doesn't even do anything yet. - Nodrak
 	return
@@ -170,7 +170,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 			visible_message("\red <B>[user] smashes against the [src.name].</B>", 1)
 			take_damage(25)
 			return
@@ -190,7 +190,7 @@
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
 			playsound(src.loc, "sparks", 50, 1)
-			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(src.loc, 'sound/weapons/blade1.ogg', 25, 1)
 			visible_message("\blue The glass door was sliced open by [user]!")
 		flick("[src.base_state]spark", src)
 		sleep(6)
@@ -199,7 +199,7 @@
 
 	//If it's emagged, crowbar can pry electronics out.
 	if (src.operating == -1 && istype(I, /obj/item/weapon/crowbar))
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if (do_after(user,40))
 			user << "\blue You removed the windoor electronics!"
@@ -239,7 +239,7 @@
 	//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
 	if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
 		var/aforce = I.force
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		visible_message("\red <B>[src] was hit by [I].</B>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)

@@ -259,7 +259,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/ai/attack_self(mob/user as mob)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
-		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
+		playsound(loc, 'sound/items/bikehorn.ogg', 25, 1)
 	return
 
 /*
@@ -587,7 +587,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				scanmode = 4
 		if("Honk")
 			if ( !(last_honk && world.time < last_honk + 20) )
-				playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
+				playsound(loc, 'sound/items/bikehorn.ogg', 25, 1)
 				last_honk = world.time
 		if("Gas Scan")
 			if(scanmode == 5)
@@ -741,7 +741,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
-		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
+		playsound(loc, 'sound/items/bikehorn.ogg', 25, 1)
 
 	return 1 // return 1 tells it to refresh the UI in NanoUI
 
@@ -771,14 +771,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
 		S.attach(P.loc)
 		S.set_up(P, 10, 0, P.loc)
-		playsound(P.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+		playsound(P.loc, 'sound/effects/smoke.ogg', 25, 1, -3)
 		S.start()
 		message += "Large clouds of smoke billow forth from your [P]!"
 	if(i>=40 && i<=45) //Bad smoke
 		var/datum/effect/effect/system/smoke_spread/bad/B = new /datum/effect/effect/system/smoke_spread/bad
 		B.attach(P.loc)
 		B.set_up(P, 10, 0, P.loc)
-		playsound(P.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+		playsound(P.loc, 'sound/effects/smoke.ogg', 25, 1, -3)
 		B.start()
 		message += "Large clouds of noxious smoke billow forth from your [P]!"
 	if(i>=65 && i<=75) //Weaken
@@ -898,7 +898,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 
 		if (!P.silent)
-			playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
+			playsound(P.loc, 'sound/machines/twobeep.ogg', 25, 1)
 		for (var/mob/O in hearers(3, P.loc))
 			if(!P.silent) O.show_message(text("\icon[P] *[P.ttone]*"))
 		//Search for holder of the PDA.

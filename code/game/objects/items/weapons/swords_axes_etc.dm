@@ -38,7 +38,7 @@
 		else
 			icon_state = "sword[item_color]"
 		w_class = 4
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		user << "\blue [src] is now active."
 
 	else
@@ -48,7 +48,7 @@
 		else
 			icon_state = "sword0"
 		w_class = 2
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		user << "\blue [src] can now be concealed."
 
 	if(istype(user,/mob/living/carbon/human))
@@ -90,7 +90,7 @@
 */
 
 	if(!..()) return
-	//playsound(src.loc, "swing_hit", 50, 1, -1)
+	//playsound(src.loc, "swing_hit", 25, 1, -1)
 	if (M.stuttering < 8 && (!(HULK in M.mutations))  /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
 		M.stuttering = 8
 	for(var/mob/O in viewers(M))
@@ -135,7 +135,7 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 50, 1)
+	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 15, 1)
 	add_fingerprint(user)
 
 	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
@@ -162,7 +162,7 @@
 				user.take_organ_damage(2*force)
 			return
 		if(..())
-			//playsound(src.loc, "swing_hit", 50, 1, -1)
+			//playsound(src.loc, "swing_hit", 25, 1, -1)
 			return
 	else
 		return ..()
@@ -235,14 +235,14 @@
 		force = 10
 		icon_state = "eshield[active]"
 		w_class = 4
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		user << "\blue [src] is now active."
 
 	else
 		force = 3
 		icon_state = "eshield[active]"
 		w_class = 1
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		user << "\blue [src] can now be concealed."
 
 	if(istype(user,/mob/living/carbon/human))
