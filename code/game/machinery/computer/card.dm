@@ -81,7 +81,6 @@
 	ui_interact(user)
 
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
-	return
 
 	user.set_machine(src)
 
