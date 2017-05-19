@@ -28,7 +28,19 @@
 	S.wait = 0 //No queue
 	S.channel = 0 //Any channel
 	S.volume = vol
-	S.environment = -1
+	S.environment = list(
+		100.0, 0.5, \
+		-250, -1000, 0, \
+		1.5, 0.75, 1.0, \
+		-2000, 0.01, \
+		500, 0.015, \
+		0.25, 0.1, \
+		0.25, 0.1, \
+		-10.0, \
+		5000.0, 250.0, \
+		1.0, 10.0, 10.0, 255, \
+	)
+	//S.environment = 16
 	if(vary) S.frequency = frequency ? frequency : GET_RANDOM_FREQ
 
 	if(isturf(turf_source))
@@ -65,6 +77,13 @@
 
 		//Obviously, since BYOND is great, they already fuck with volume in-house depending on position
 		//So, our only option at this point is to clamp the values so it doesn't affect the volume too much
+		S.echo = list(
+			0, 0, \
+			-250, -1000, \
+			0, 1.0, \
+			-1000, 0.25, 1.5, 1.0, \
+			-1000, 1.0, \
+			0, 1.0, 1.0, 1.0, 1.0, 7)
 		S.x = Clamp(-5, S.x, 5)
 		S.y = Clamp(-5, S.y, 5)
 		S.z = Clamp(-5, S.z, 5)
