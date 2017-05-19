@@ -69,6 +69,10 @@
 	update_adjacent()
 	..()
 
+/obj/structure/table/Dispose()
+	update_adjacent()
+	. = ..()
+
 /obj/structure/table/update_icon()
 	spawn(2) //So it properly updates when deleting
 

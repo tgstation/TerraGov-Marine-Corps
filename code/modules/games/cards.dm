@@ -61,10 +61,10 @@
 
 	if(usr.stat || !Adjacent(usr)) return
 
-	if(!istype(usr,/mob/living/carbon))
+	if(!ishuman(usr))
 		return
 
-	var/mob/living/carbon/user = usr
+	var/mob/living/carbon/human/user = usr
 
 	if(!cards.len)
 		usr << "There are no cards in the deck."

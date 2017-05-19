@@ -267,8 +267,8 @@
 		else
 			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
 				for(var/mob/M in acid_t.contents)
-					if(acid_t.loc) M.loc = acid_t.loc
-			del(acid_t)
+					if(acid_t.loc) M.forceMove(acid_t.loc)
+			cdel(acid_t)
 		cdel(src)
 		return
 

@@ -39,7 +39,7 @@
 	set category = "Object"
 	set name = "Enter Body Scanner"
 
-	if (usr.stat != 0)
+	if (usr.stat || !(ishuman(usr) || ismonkey(usr)))
 		return
 	if (src.occupant)
 		usr << "\blue <B>The scanner is already occupied!</B>"
@@ -47,10 +47,7 @@
 	if (usr.abiotic())
 		usr << "\blue <B>Subject cannot have abiotic items on.</B>"
 		return
-	usr.pulling = null
-	usr.client.perspective = EYE_PERSPECTIVE
-	usr.client.eye = src
-	usr.loc = src
+	usr.forceMove(src)
 	src.occupant = usr
 	update_use_power(2)
 	src.icon_state = "body_scanner_1"
@@ -67,10 +64,7 @@
 	for(var/obj/O in src)
 		O.loc = src.loc
 		//Foreach goto(30)
-	if (src.occupant.client)
-		src.occupant.client.eye = src.occupant.client.mob
-		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	src.occupant.forceMove(loc)
 	src.occupant = null
 	update_use_power(1)
 	src.icon_state = "body_scanner_0"
