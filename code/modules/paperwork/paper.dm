@@ -141,8 +141,13 @@
 	var/locid = 0
 	var/laststart = 1
 	var/textindex = 1
+	var/spam_protection = 100
 	while(1) // I know this can cause infinite loops and fuck up the whole server, but the if(istart==0) should be safe as fuck
 		var/istart = 0
+		spam_protection--
+		if(spam_protection <= 0)
+			return
+
 		if(links)
 			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
 		else
@@ -250,13 +255,18 @@
 
 //Count the fields
 	var/laststart = 1
+	var/fields_added = 0
 	while(1)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
 		if(i==0)
 			break
 		laststart = i+1
 		fields++
-
+		fields_added++
+	if(fields_added > 20)
+		fields -= fields_added
+		log_admin("PAPER: [usr] ([usr.ckey]) tried to spam paper writing in [src] with [fields_added] \[fields\].")
+		message_admins("PAPER: [usr] ([usr.ckey]) tried to spam paper writing in [src] with [fields_added] \[fields\].")
 	return t
 
 
