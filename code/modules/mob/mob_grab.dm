@@ -38,13 +38,15 @@
 /obj/item/weapon/grab/attack_self(mob/user)
 	if(!ismob(grabbed_thing) || world.time < (last_upgrade + UPGRADE_COOLDOWN))
 		return
+	if(!ishuman(user)) //only humans can reinforce a grab.
+		return
 	var/mob/victim = grabbed_thing
 	if(victim.mob_size > MOB_SIZE_HUMAN || !(victim.status_flags & CANPUSH))
 		return //can't tighten your grip on big mobs and mobs you can't push.
 	last_upgrade = world.time
 	if(user.grab_level <= GRAB_KILL)
 		user.grab_level++
-		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 		switch(user.grab_level)
 			if(GRAB_KILL)
 				icon_state = "disarm/kill1"

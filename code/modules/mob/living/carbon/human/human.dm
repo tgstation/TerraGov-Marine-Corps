@@ -34,7 +34,7 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[SQUAD_HUD]  = image('icons/mob/hud.dmi', src, "hudsquad")
+	hud_list[SQUAD_HUD]  = image('icons/mob/hud.dmi', src, "hudblank")
 
 	..()
 
@@ -173,7 +173,7 @@
 		M.emote("[M.friendly] [src]")
 	else
 		if(M.attack_sound)
-			playsound(loc, M.attack_sound, 50, 1, 1)
+			playsound(loc, M.attack_sound, 25, 1, 1)
 		for(var/mob/O in viewers(src, null))
 			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
@@ -730,7 +730,7 @@
 	if(!src.xylophone)
 		visible_message("\red [src] begins playing his ribcage like a xylophone. It's quite spooky.","\blue You begin to play a spooky refrain on your ribcage.","\red You hear a spooky xylophone melody.")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-		playsound(loc, song, 50, 1, -1)
+		playsound(loc, song, 25, 1, -1)
 		xylophone = 1
 		spawn(1200)
 			xylophone=0
@@ -754,7 +754,7 @@
 				if(stat == 2) //One last corpse check
 					return
 				src.visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!")
-				playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+				playsound(loc, 'sound/effects/splat.ogg', 25, 1)
 
 				var/turf/location = loc
 				if (istype(location, /turf/simulated))
@@ -1299,3 +1299,10 @@
 		if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
 			return FALSE
 		. = ..()
+
+	has_legs()
+		. = 0
+		if(has_organ("r_foot") && has_organ("r_leg"))
+			.++
+		if(has_organ("l_foot") && has_organ("l_leg"))
+			.++

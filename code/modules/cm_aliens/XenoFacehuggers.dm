@@ -284,7 +284,7 @@
 			target.equip_to_slot(src, WEAR_FACE)
 			target.contents += src //Monkey sanity check - Snapshot
 			target.update_inv_wear_mask()
-			if(ishuman(target)) playsound(loc, (gender == "male"?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 50, 0)
+			if(ishuman(target)) playsound(loc, (gender == "male"?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
 			if(!sterile) target.Paralyse(MIN_IMPREGNATION_TIME * 0.5) //THIS MIGHT NEED TWEAKS
 
 	GoIdle()
@@ -361,7 +361,7 @@
 	stat = DEAD
 
 	visible_message("\icon[src] <span class='danger'>\The [src] curls up into a ball!</span>")
-	playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 100, 1)
+	playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
 	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/M = loc

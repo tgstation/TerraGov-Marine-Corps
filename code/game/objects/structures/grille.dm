@@ -60,7 +60,7 @@
 
 /obj/structure/grille/attack_hand(mob/user as mob)
 
-	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
 	var/damage_dealt
 	if(istype(user,/mob/living/carbon/human))
@@ -91,7 +91,7 @@
 /obj/structure/grille/attack_animal(var/mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)	return
 
-	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	M.visible_message("<span class='warning'>[M] smashes against [src].</span>", \
 					  "<span class='warning'>You smash against [src].</span>", \
 					  "You hear twisting metal.")
@@ -124,12 +124,12 @@
 /obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(iswirecutter(W))
 		if(!shock(user, 100))
-			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			new /obj/item/stack/rods(loc, 2)
 			del(src)
 	else if(isscrewdriver(W) && (istype(loc, /turf/simulated) || istype(loc, /turf/unsimulated/floor))) //|| anchored Does this fix it?
 		if(!shock(user, 90))
-			playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			anchored = !anchored
 			user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
 								 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
@@ -178,7 +178,7 @@
 	else if(istype(W, /obj/item/weapon/shard))
 		health -= W.force * 0.1
 	else if(!shock(user, 70))
-		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 		switch(W.damtype)
 			if("fire")
 				health -= W.force

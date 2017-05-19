@@ -207,7 +207,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS) //One more check for good measure, in case it's triggered through a bomb instead of the destruct mechanism/admin panel.
 		enter_allowed = 0 //Do not want baldies spawning in as everything is exploding.
 		dest_status = NUKE_EXPLOSION_IN_PROGRESS
-		playsound(origin,'sound/machines/Alarm.ogg',100,0,5)
+		playsound(origin, 'sound/machines/Alarm.ogg', 75, 0, 5)
 		world << pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
 		var/ship_status = 1
@@ -325,7 +325,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		EvacuationAuthority.dest_rods = null
 
 	lock_or_unlock(lock)
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 65, 1)
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 25, 1)
 		..()
 
 	//TODO: Add sounds.
@@ -376,7 +376,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		EvacuationAuthority.dest_rods -= src
 
 	lock_or_unlock(lock)
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 75, 1)
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 25, 1)
 		..()
 		density = !density
 		if(lock) activate_time = null
@@ -386,12 +386,12 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			switch(active_state)
 				if(SELF_DESTRUCT_MACHINE_ACTIVE)
 					user << "<span class='notice'>You twist and release the control rod, arming it.</span>"
-					playsound(src, 'sound/machines/switch.ogg', 100, 1)
+					playsound(src, 'sound/machines/switch.ogg', 25, 1)
 					icon_state = "rod_4"
 					active_state = SELF_DESTRUCT_MACHINE_ARMED
 				if(SELF_DESTRUCT_MACHINE_ARMED)
 					user << "<span class='notice'>You twist and release the control rod, disarming it.</span>"
-					playsound(src, 'sound/machines/switch.ogg', 100, 1)
+					playsound(src, 'sound/machines/switch.ogg', 25, 1)
 					icon_state = "rod_3"
 					active_state = SELF_DESTRUCT_MACHINE_ACTIVE
 				else user << "<span class='warning'>The control rod is not ready.</span>"

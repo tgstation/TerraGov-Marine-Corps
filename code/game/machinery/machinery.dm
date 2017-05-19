@@ -281,7 +281,7 @@ Class Procs:
     text = "\The [src] pings."
 
   state(text, "blue")
-  playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+  playsound(src.loc, 'sound/machines/ping.ogg', 25, 0)
 
 /obj/machinery/proc/shock(mob/user, prb)
 	if(inoperable())
@@ -297,7 +297,7 @@ Class Procs:
 		return 0
 
 /obj/machinery/proc/dismantle()
-	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+	playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 	M.state = 2
 	M.icon_state = "box_1"

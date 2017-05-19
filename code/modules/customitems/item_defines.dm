@@ -548,7 +548,7 @@
 		item_color = kit.helmet_color
 
 		user << "You set about modifying the helmet into [src]."
-		playsound(user.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(user.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
 		kit.uses--
 		if(kit.uses<1)
@@ -567,7 +567,7 @@
 		item_state = kit.suit_icon
 
 		user << "You set about modifying the suit into [src]."
-		playsound(user.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(user.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
 		kit.uses--
 		if(kit.uses<1)

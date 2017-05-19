@@ -402,7 +402,7 @@ cdel(src)
 	//var/list/turfsToUpdate = list()
 	var/i //iterator
 
-	if(shuttle.sound_misc) playsound(source[shuttle.sound_target], shuttle.sound_misc, 100, 1, 7)
+	if(shuttle.sound_misc) playsound(source[shuttle.sound_target], shuttle.sound_misc, 75, 1)
 
 	source = rotate_shuttle_turfs(source, deg)
 

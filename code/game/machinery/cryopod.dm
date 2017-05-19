@@ -387,11 +387,8 @@ var/global/list/frozen_items = list()
 			usr << "\blue <B>The cryo pod is in use.</B>"
 			return
 
-		usr.stop_pulling()
-		usr.client.perspective = EYE_PERSPECTIVE
-		usr.client.eye = src
-		usr.loc = src
-		src.occupant = usr
+		usr.forceMove(src)
+		occupant = usr
 
 		if(orient_right)
 			icon_state = "body_scanner_1-r"
@@ -400,7 +397,6 @@ var/global/list/frozen_items = list()
 
 		usr << "\blue You feel cool air surround you. You go numb as your senses turn inward."
 		usr << "\blue <b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"
-		occupant = usr
 		time_entered = world.time
 
 		src.add_fingerprint(usr)
@@ -412,16 +408,10 @@ var/global/list/frozen_items = list()
 	if(!occupant)
 		return
 
-	if(occupant.client)
-		occupant.client.eye = src.occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-
-	occupant.loc = get_turf(src)
+	occupant.forceMove(get_turf(src))
 	occupant = null
 
 	if(orient_right)
 		icon_state = "body_scanner_0-r"
 	else
 		icon_state = "body_scanner_0"
-
-	return

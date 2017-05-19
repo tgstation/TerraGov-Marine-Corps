@@ -73,13 +73,13 @@
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
 	if(!.) return
-	if(wieldsound) playsound(user, wieldsound, 50, 1)
+	if(wieldsound) playsound(user, wieldsound, 15, 1)
 	force 		= force_wielded
 
 /obj/item/weapon/twohanded/unwield(mob/user)
 	. = ..()
 	if(!.) return
-	if(unwieldsound) playsound(user, unwieldsound, 50, 1)
+	if(unwieldsound) playsound(user, unwieldsound, 15, 1)
 	force 	 	= initial(force)
 
 /obj/item/weapon/twohanded/attack_self(mob/user)

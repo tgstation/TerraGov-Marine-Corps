@@ -587,7 +587,7 @@ var/list/slot_equipment_priority = list( \
 		return
 
 	if(M)
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 		visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
@@ -810,11 +810,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	var/laid_down = (stat || weakened || paralysis || resting || sleeping || (status_flags & FAKEDEATH))
+	var/laid_down = (stat || weakened || paralysis || !has_legs() || resting || sleeping || (status_flags & FAKEDEATH))
 	if(laid_down)
 		lying = 1
 	else
-		lying = !can_stand
+		lying = 0
 	if(buckled)
 		if(buckled.buckle_lying)
 			lying = 1
@@ -1108,3 +1108,7 @@ mob/proc/yank_out_object()
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
+
+//returns how many non-destroyed legs the mob has (currently only useful for humans)
+/mob/proc/has_legs()
+	return 2

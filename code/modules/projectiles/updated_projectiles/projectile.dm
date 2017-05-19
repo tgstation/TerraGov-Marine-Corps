@@ -286,7 +286,7 @@
 				if(hit_chance > hit_roll) 			r_TRU
 	if (!target.lying)
 		animatation_displace_reset(target)
-		if(ammo.sound_miss) target.playsound_local(get_turf(target), ammo.sound_miss, 100, 1)
+		if(ammo.sound_miss) target.playsound_local(get_turf(target), ammo.sound_miss, 75, 1)
 		target.visible_message("<span class='avoidharm'>[src] misses [target]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>")
 
 /obj/item/projectile/proc/roll_to_hit_obj(atom/shooter,obj/target)
@@ -300,7 +300,7 @@
 		if(prob(chance)) return 1
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
-	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 120, 1)
+	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)
 	if(M.stat != DEAD) animation_flash_color(M)
 
 //----------------------------------------------------------
@@ -416,7 +416,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			if(i || damage <= 5) src << "<span class='notice'>Your armor [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>"
 			if(damage <= 0)
 				damage = 0
-				if(P.ammo.sound_armor) playsound(src, P.ammo.sound_armor, 120, 1)
+				if(P.ammo.sound_armor) playsound(src, P.ammo.sound_armor, 50, 1)
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
@@ -593,7 +593,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 /atom/proc/bullet_ping(obj/item/projectile/P)
 	if(!P || !P.ammo.ping) return
 	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 120, 1)
+		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
 		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,P.ammo.ping,10))
 		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
 		I.pixel_x += rand(-6,6)

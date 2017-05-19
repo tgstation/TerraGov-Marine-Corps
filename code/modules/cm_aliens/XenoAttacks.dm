@@ -31,7 +31,7 @@
 			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 				return 0
 			if(health > 0)
-				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
 				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
 				"<span class='danger'>You are bit by \the [M].</span>")
 				adjustBruteLoss(rand(1, 3))
@@ -108,7 +108,7 @@
 
 					M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
 					"<span class='warning'>You grab \the [src]!</span>")
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 
 			if("hurt")//Can't slash other xenos for now. SORRY
 				if(isXeno(src)) //Can't slash other xenos for now
@@ -121,7 +121,7 @@
 				apply_damage(damage, BRUTE)
 
 			if("disarm")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
 				"<span class='warning'>You shove \the [src]!</span>")
 				if(ismonkey(src))

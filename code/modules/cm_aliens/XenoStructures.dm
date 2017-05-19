@@ -96,7 +96,7 @@
 		tforce = 10
 	else
 		tforce = AM:throwforce
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	health = max(0, health - tforce)
 	healthcheck()
 
@@ -105,14 +105,14 @@
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>You claw \the [src].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	health -= (M.melee_damage_upper + 50) //Beef up the damage a bit
 	healthcheck()
 
 /obj/effect/alien/resin/attack_animal(mob/living/M as mob)
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	health -= 40
 	healthcheck()
 
@@ -124,7 +124,7 @@
 
 /obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
 	health = health - W.force
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	healthcheck()
 	return ..(W, user)
 
@@ -224,7 +224,7 @@
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
-			playsound(loc, 'sound/items/Welder.ogg', 100, 1)
+			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 
 	health -= damage
 	healthcheck()
@@ -252,10 +252,15 @@
 	desc = "A weird, pulsating node."
 	layer = 2.7
 	var/node_range = NODERANGE
+	var/planter_ckey //ckey of the mob who planted it.
+	var/planter_name //nameof the mob who planted it.
 	health = 15
 
-	New()
+	New(loc, mob/living/carbon/Xenomorph/X)
 		..(loc, src)
+		if(X)
+			planter_ckey = X.ckey
+			planter_name = X.real_name
 		new /obj/effect/alien/weeds(loc)
 
 
@@ -479,7 +484,7 @@
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
-			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 
 	health -= damage
 	healthcheck()
@@ -660,7 +665,7 @@
 /obj/structure/stool/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/aforce = W.force
 	health = max(0, health - aforce)
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [W]!</span>", \
 	"<span class='warning'>You hit \the [src] with \the [W]!</span>")
 	healthcheck()
@@ -696,7 +701,7 @@
 	if(M.a_intent == "hurt")
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
 		"<span class='danger'>You claw at \the [src].</span>")
-		playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
 	else
@@ -705,7 +710,7 @@
 /obj/structure/stool/bed/nest/attack_animal(mob/living/M as mob)
 	M.visible_message("<span class='danger'>\The [M] tears at \the [src]!", \
 	"<span class='danger'>You tear at \the [src].")
-	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	health -= 40
 	healthcheck()
 

@@ -88,7 +88,7 @@
 			if(sound)
 				spawn(-1)
 					src = null
-					playsound(location,sound,60,1)
+					playsound(location, sound, 50, 1)
 		return
 
 	//do the monkey dance

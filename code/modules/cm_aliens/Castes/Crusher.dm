@@ -133,7 +133,7 @@
 	noise_timer = noise_timer ? --noise_timer : 3
 
 	if(noise_timer == 3 && momentum > 10)
-		playsound(loc, 'sound/mecha/mechstep.ogg', 50 + (momentum), 0)
+		playsound(loc, 'sound/mecha/mechstep.ogg', 15 + (momentum/2), 0)
 
 	if(momentum > 6)
 		for(var/mob/living/carbon/M in view(8))
@@ -216,7 +216,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		if(unacidable)
 			if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
 			r_FAL
-		playsound(loc, "punch", 100, 1, -1)
+		playsound(loc, "punch", 25, 1, -1)
 		X.visible_message(
 		"<span class='danger'>[X] smashes straight into [src]!</span>",
 		"<span class='xenodanger'>You smash straight into [src]!</span>")
@@ -233,7 +233,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		X.visible_message(
 		"<span class='danger'>[X] smashes straight into [src]!</span>",
 		"<span class='xenodanger'>You smash straight into [src]!</span>")
-		playsound(loc, "punch", 100, 1, -1)
+		playsound(loc, "punch", 25, 1, -1)
 		tip_over()
 		diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
 		step_away(src, X)
@@ -261,7 +261,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	X.visible_message(
 	"<span class='danger'>[X] rams [src]!</span>",
 	"<span class='xenodanger'>You ram [src]!</span>")
-	playsound(loc, "punch", 50, 1, -1)
+	playsound(loc, "punch", 25, 1, -1)
 	if(X.momentum > 25)
 		diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
 		step_away(src, X)
@@ -275,7 +275,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	X.visible_message(
 	"<span class='danger'>[X] rams [src]!</span>", \
 	"<span class='xenodanger'>You ram [src]!</span>")
-	playsound(loc, "punch", 70, 1, -1)
+	playsound(loc, "punch", 25, 1, -1)
 	if(X.momentum > 10 && prob(70 + X.momentum))
 		stat = 1
 		on = 0
@@ -370,7 +370,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 
 	has_screeched = world.time
 
-	playsound(loc, 'sound/effects/bang.ogg', 50, 0, 100, -1)
+	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
 	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
 	"<span class='xenodanger'>You smash into the ground!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom

@@ -25,7 +25,7 @@
 
 /obj/structure/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		new /obj/item/stack/sheet/metal(src.loc)
 		del(src)
 	return

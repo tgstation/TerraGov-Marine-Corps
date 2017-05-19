@@ -14,7 +14,7 @@
 	switch(state)
 		if(0)
 			if(istype(P, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20))
 					user << "\blue You wrench the frame into place."
 					anchored = 1
@@ -24,7 +24,7 @@
 				if(!WT.isOn())
 					user << "The welder must be on for this task."
 					return
-				playsound(loc, 'sound/items/Welder.ogg', 50, 1)
+				playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 				if(do_after(user, 20))
 					if(!src || !WT.remove_fuel(0, user)) return
 					user << "\blue You deconstruct the frame."
@@ -32,25 +32,25 @@
 					del(src)
 		if(1)
 			if(istype(P, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20))
 					user << "\blue You unfasten the frame."
 					anchored = 0
 					state = 0
 			if(istype(P, /obj/item/weapon/circuitboard/aicore) && !circuit)
 				if(user.drop_held_item())
-					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					user << "\blue You place the circuit board inside the frame."
 					icon_state = "1"
 					circuit = P
 					P.forceMove(src)
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "\blue You screw the circuit board into place."
 				state = 2
 				icon_state = "2"
 			if(istype(P, /obj/item/weapon/crowbar) && circuit)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user << "\blue You remove the circuit board."
 				state = 1
 				icon_state = "0"
@@ -58,7 +58,7 @@
 				circuit = null
 		if(2)
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "\blue You unfasten the circuit board."
 				state = 1
 				icon_state = "1"
@@ -68,7 +68,7 @@
 					user << "<span class='warning'>You need five coils of wire to add them to the frame.</span>"
 					return
 				user << "<span class='notice'>You start to add cables to the frame.</span>"
-				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				if (do_after(user, 20) && state == 2)
 					if (C.use(5))
 						state = 3
@@ -80,7 +80,7 @@
 				if (brain)
 					user << "Get that brain out of there first"
 				else
-					playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+					playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 					user << "\blue You remove the cables."
 					state = 2
 					icon_state = "2"
@@ -93,7 +93,7 @@
 					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
 					return
 				user << "<span class='notice'>You start to put in the glass panel.</span>"
-				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				if (do_after(user, 20) && state == 3)
 					if(RG.use(2))
 						user << "<span class='notice'>You put in the glass panel.</span>"
@@ -142,7 +142,7 @@
 					icon_state = "3b"
 
 			if(istype(P, /obj/item/weapon/crowbar) && brain)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user << "\blue You remove the brain."
 				brain.loc = loc
 				brain = null
@@ -150,7 +150,7 @@
 
 		if(4)
 			if(istype(P, /obj/item/weapon/crowbar))
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user << "\blue You remove the glass panel."
 				state = 3
 				if (brain)
@@ -161,7 +161,7 @@
 				return
 
 			if(istype(P, /obj/item/weapon/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "\blue You connect the monitor."
 				var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
 				if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created

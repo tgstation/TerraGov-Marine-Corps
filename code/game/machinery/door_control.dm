@@ -67,7 +67,7 @@
 	if(istype(W, /obj/item/weapon/card/emag))
 		req_access = list()
 		req_one_access = list()
-		playsound(src.loc, "sparks", 100, 1)
+		playsound(src.loc, "sparks", 25, 1)
 	return src.attack_hand(user)
 
 /obj/machinery/door_control/proc/handle_door()

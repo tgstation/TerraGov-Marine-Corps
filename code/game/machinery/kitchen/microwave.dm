@@ -304,7 +304,7 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/stop()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
@@ -319,11 +319,11 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
-	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
+	playsound(src.loc, 'sound/effects/splat.ogg', 25, 1) // Play a splat sound
 	src.icon_state = "mwbloody1" // Make it look dirty!!
 
 /obj/machinery/microwave/proc/muck_finish()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 	visible_message("\red The microwave gets covered in muck!")
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	flags_atom = null //So you can't add condiments

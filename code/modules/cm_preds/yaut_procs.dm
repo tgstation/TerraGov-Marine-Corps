@@ -69,10 +69,10 @@
 	if(!T) return
 
 	if(T.butchery_progress)
-		playsound(loc, 'sound/weapons/pierce.ogg', 50)
+		playsound(loc, 'sound/weapons/pierce.ogg', 25)
 		visible_message("<b>[src] goes back to butchering \the [T].</b>","<b>You get back to butchering \the [T].</b>")
 	else
-		playsound(loc, 'sound/weapons/pierce.ogg', 50)
+		playsound(loc, 'sound/weapons/pierce.ogg', 25)
 		visible_message("<b>[src] begins chopping and mutilating \the [T].</b>","<b>You take out your tools and begin your gruesome work on \the [T]. Hold still.</b>")
 		T.butchery_progress = 1
 
@@ -81,7 +81,7 @@
 		if(do_after(src,70, FALSE) && Adjacent(T))
 			visible_message("[src] makes careful slices and tears out the viscera in \the [T]'s abdominal cavity.","You carefully vivisect \the [T], ripping out the guts and useless organs. What a stench!")
 			T.butchery_progress = 2
-			playsound(loc, 'sound/weapons/slash.ogg', 50)
+			playsound(loc, 'sound/weapons/slash.ogg', 25)
 		else
 			src << "You pause your butchering for later."
 
@@ -94,7 +94,7 @@
 				T.apply_damage(100,BRUTE,pick("r_leg","l_leg","r_arm","l_arm"),0,1,1) //Basically just rips off a random limb.
 				new /obj/item/weapon/reagent_containers/food/snacks/meat(T.loc)
 			T.butchery_progress = 3
-			playsound(loc, 'sound/weapons/bladeslice.ogg', 50)
+			playsound(loc, 'sound/weapons/bladeslice.ogg', 25)
 		else
 			src << "You pause your butchering for later."
 
@@ -107,7 +107,7 @@
 				new /obj/item/weapon/reagent_containers/food/snacks/meat(T.loc)
 			T.apply_damage(100,BRUTE,"chest",0,0,0) //Does random serious damage, so we make sure they're dead.
 			T.butchery_progress = 4
-			playsound(loc, 'sound/weapons/wristblades_hit.ogg', 50)
+			playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25)
 		else
 			src << "You pause your butchering for later."
 
@@ -127,7 +127,7 @@
 				new /obj/item/stack/sheet/animalhide/human(T.loc)
 				new /obj/effect/decal/remains/human(T.loc)
 			T.butchery_progress = 5 //Won't really matter.
-			playsound(loc, 'sound/weapons/slice.ogg', 50)
+			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			src << "\blue You finish butchering!"
 			del(T)
 		else

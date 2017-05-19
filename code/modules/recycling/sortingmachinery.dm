@@ -34,7 +34,7 @@
 						update_icon()
 					else
 						src.sortTag = O.currTag
-					playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+					playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 1)
 				else
 					user << "<span class='warning'>The package is already labeled for [O.currTag].</span>"
 			else
@@ -143,7 +143,7 @@
 						update_icon()
 					else
 						src.sortTag = O.currTag
-					playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+					playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 1)
 				else
 					user << "<span class='warning'>The package is already labeled for [O.currTag].</span>"
 			else
@@ -396,7 +396,7 @@
 		air_contents = new()		// new empty gas resv.
 
 		sleep(10)
-		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
+		playsound(src, 'sound/machines/disposalflush.ogg', 25, 0, 0)
 		sleep(5) // wait for animation to finish
 
 		H.init(src)	// copy the contents of disposer to holder
@@ -417,18 +417,18 @@
 		if(istype(I, /obj/item/weapon/screwdriver))
 			if(c_mode==0)
 				c_mode=1
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "You remove the screws around the power connection."
 				return
 			else if(c_mode==1)
 				c_mode=0
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "You attach the screws around the power connection."
 				return
 		else if(istype(I,/obj/item/weapon/weldingtool) && c_mode==1)
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
+				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 				user << "You start slicing the floorweld off the delivery chute."
 				if(do_after(user,20))
 					if(!src || !W.isOn()) return

@@ -81,18 +81,6 @@
 			if(!E.len)
 				embedded_flag = 0
 
-		if(istype(l_hand, /obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/hug = l_hand
-			if(hug.stat != DEAD)
-				drop_inv_item_on_ground(hug)
-				hug.GoIdle()
-
-		if(istype(r_hand, /obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/hug = r_hand
-			if(hug.stat != DEAD)
-				drop_inv_item_on_ground(hug)
-				hug.GoIdle()
-
 		//Eyes
 		if(!species.has_organ["eyes"]) //Presumably if a species has no eyes, they see via something else.
 			eye_blind =  0

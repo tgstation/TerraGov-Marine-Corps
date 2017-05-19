@@ -8,7 +8,7 @@
 	var/mob/living/affected_mob
 	var/stage = 0
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst
-	var/wait_for_candidate = 0 //Chestburst will not happen if no candidate is around
+	var/larva_autoburst_countdown = 20 //to kick the larva out
 
 /obj/item/alien_embryo/New()
 	if(istype(loc, /mob/living))
@@ -25,6 +25,7 @@
 		affected_mob.status_flags &= ~(XENO_HOST)
 		spawn()
 			RemoveInfectionImages(affected_mob)
+		processing_objects.Remove(src)
 	..()
 
 /obj/item/alien_embryo/process()
@@ -45,9 +46,15 @@
 		if(ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
 			if(world.time > H.timeofdeath + H.revive_grace_period) //Can't be defibbed.
+				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+				if(L)
+					L.chest_burst(affected_mob)
 				processing_objects.Remove(src)
 				r_FAL
 		else
+			var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+			if(L)
+				L.chest_burst(affected_mob)
 			processing_objects.Remove(src)
 			r_FAL
 
@@ -94,25 +101,22 @@
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 												 "<span class='danger'>You start shaking uncontrollably!</span>")
 					affected_mob.Paralyse(10)
-					affected_mob.make_jittery(50)
+					affected_mob.make_jittery(105)
 					affected_mob.take_organ_damage(1)
 			if(prob(2))
 				affected_mob << "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>"
 		if(5)
-			if(wait_for_candidate)
-				wait_for_candidate--
-			if(affected_mob.paralysis < 1)
-				affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
-											 "<span class='danger'>You feel something ripping up your insides!</span>")
-				affected_mob.Paralyse(20)
-				affected_mob.make_jittery(100)
-			affected_mob.updatehealth()
-			chest_burst()
+			become_larva()
+		if(6)
+			larva_autoburst_countdown--
+			if(!larva_autoburst_countdown)
+				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+				if(L)
+					L.chest_burst(affected_mob)
 
-//We cause a chest burst. If possible, we put a candidate in it, otherwise we spawn a braindead larva for the observers to jump into
+//We look for a candidate. If found, we spawn the candidate as a larva
 //Order of priority is bursted individual (if xeno is enabled), then random candidate, and then it's up for grabs and spawns braindead
-/obj/item/alien_embryo/proc/chest_burst()
-	set waitfor = 0
+/obj/item/alien_embryo/proc/become_larva()
 	var/list/candidates = get_alien_candidates()
 	var/picked
 
@@ -127,22 +131,42 @@
 			picked = affected_mob.key
 		//Host doesn't want to be it, so we try and pull observers into the role
 		else if(candidates.len) picked = pick(candidates)
-		else wait_for_candidate = 10 //Try again in 10 seconds
 
-	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
-	affected_mob.update_burst()
-	sleep(6) //Sprite delay
-	if(!affected_mob || !affected_mob.loc) return//Might have died or something in that half second
-
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = isYautja(affected_mob) ? new /mob/living/carbon/Xenomorph/Larva/predalien(get_turf(affected_mob.loc)) : new(get_turf(affected_mob.loc))
-	if(picked) //If we are spawning it braindead, don't bother
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno
+	if(isYautja(affected_mob)) new_xeno = new /mob/living/carbon/Xenomorph/Larva/predalien(affected_mob)
+	else new_xeno = new(affected_mob)
+	if(picked) //found a candidate
 		new_xeno.key = picked
-		playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 100)
-	if(isYautja(affected_mob)) affected_mob.emote("roar")
-	else affected_mob.emote("scream")
+		new_xeno << "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>"
+	stage = 6
 
-	if(ishuman(affected_mob))
-		var/mob/living/carbon/human/H = affected_mob
+
+
+/mob/living/carbon/Xenomorph/Larva/proc/chest_burst(mob/living/carbon/victim)
+	set waitfor = 0
+	if(victim.chestburst || loc != victim) return
+	victim.chestburst = 1
+	src << "<span class='danger'>You start bursting out of [victim]'s chest!</span>"
+	if(victim.paralysis < 1)
+		victim.Paralyse(20)
+	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
+								 "<span class='danger'>You feel something ripping up your insides!</span>")
+	victim.make_jittery(300)
+	sleep(30)
+	if(!victim || !victim.loc || loc != victim) return//host could've been deleted, or we could've been removed from host.
+	victim.update_burst()
+	sleep(6) //Sprite delay
+	if(!victim || !victim.loc || loc != victim) return
+
+	if(isYautja(victim)) victim.emote("roar")
+	else victim.emote("scream")
+	forceMove(victim.loc)
+	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
+	var/obj/item/alien_embryo/AE = locate() in victim
+	if(AE)
+		del(AE)
+	if(ishuman(victim))
+		var/mob/living/carbon/human/H = victim
 		var/datum/organ/internal/O
 		var/i
 		for(i in list("heart","lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
@@ -150,12 +174,10 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 	else
-		affected_mob.adjustToxLoss(300) //This should kill without gibbing da body
-		affected_mob.updatehealth()
-	affected_mob.chestburst = 2
-	processing_objects.Remove(src)
-	affected_mob.update_burst()
-	del(src)
+		victim.adjustToxLoss(300) //This should kill without gibbing da body
+		victim.updatehealth()
+	victim.chestburst = 2
+	victim.update_burst()
 
 /*----------------------------------------
 Proc: RefreshInfectionImage()

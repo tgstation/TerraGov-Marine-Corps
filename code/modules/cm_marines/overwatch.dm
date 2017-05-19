@@ -415,7 +415,7 @@
 	//All set, let's do this.
 	send_to_squad("Initializing fire coordinates..")
 	if(current_squad.bbeacon)
-		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 100, 1)  //Placeholder
+		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 25, 1)  //Placeholder
 	sleep(20)
 	send_to_squad("Transmitting beacon feed..")
 	sleep(20)
@@ -512,12 +512,12 @@
 		if(current_squad.sbeacon)
 			del(current_squad.sbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.sbeacon = null
-		playsound(C.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehh
+		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 		C.z = T.z
 		C.x = T.x + x_offset
 		C.y = T.y + x_offset
 		spawn(0)
-			playsound(C.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehhhhhhhhh.
+			playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
 		C.visible_message("\icon[C] The [C] falls from the sky!")
 		usr << "\icon[src] [C] launched! Another launch will be available in <b>5</b> minutes."
 
@@ -606,7 +606,7 @@
 		anchored = 1
 		w_class = 10
 		icon_state = "[icon_activated]"
-		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		user << "You activate the [src]. Now toss it on the ground and wait for your supply drop."
 		return
 
@@ -658,6 +658,6 @@
 		anchored = 1
 		w_class = 10
 		icon_state = "[icon_activated]"
-		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		user << "You activate the [src]. Now toss it and get outside of danger close!"
 		return

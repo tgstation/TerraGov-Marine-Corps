@@ -73,7 +73,7 @@
 
 	proc/Open()
 		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 		flick("[mineralType]opening",src)
 		sleep(10)
 		density = 0
@@ -85,7 +85,7 @@
 
 	proc/Close()
 		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 		flick("[mineralType]closing",src)
 		sleep(10)
 		density = 1
@@ -217,7 +217,7 @@
 
 	Open()
 		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/doorcreaky.ogg', 100, 1)
+		playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 		flick("[mineralType]opening",src)
 		sleep(10)
 		density = 0
@@ -228,7 +228,7 @@
 
 	Close()
 		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/doorcreaky.ogg', 100, 1)
+		playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 		flick("[mineralType]closing",src)
 		sleep(10)
 		density = 1
@@ -266,7 +266,7 @@
 		if(user.a_intent == "hurt")
 			user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 			"<span class='xenowarning'>You claw at \the [src].</span>")
-			playsound(loc, 'sound/effects/attackblob.ogg', 30, 1, -4)
+			playsound(loc, 'sound/effects/attackblob.ogg', 25, 1, -4)
 			health -= rand(40, 60)
 			if(health <= 0)
 				user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
@@ -289,7 +289,7 @@
 	Open()
 		if(state) return //already open
 		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 		flick("[mineralType]opening",src)
 		sleep(10)
 		density = 0
@@ -311,7 +311,7 @@
 					Close()
 				return
 		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 		flick("[mineralType]closing",src)
 		sleep(10)
 		density = 1
@@ -328,7 +328,7 @@
 		del(src)
 
 	CheckHardness()
-		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 		..()
 
 /obj/structure/mineral_door/resin/proc/healthcheck()

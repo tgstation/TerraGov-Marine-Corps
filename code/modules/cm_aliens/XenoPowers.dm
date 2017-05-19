@@ -75,8 +75,8 @@
 	if(check_plasma(75))
 		visible_message("<span class='xenonotice'>\The [src] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>")
-		new /obj/effect/alien/weeds/node(loc)
-		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //Splat!
+		new /obj/effect/alien/weeds/node(loc, src)
+		playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
 
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
 
@@ -232,7 +232,7 @@
 
 	visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and shapes it into \a [choice]!</span>", \
 	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [choice].</span>")
-	playsound(loc, 'sound/effects/splat.ogg', 30, 1) //Splat!
+	playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
 
 	switch(choice)
 		if("resin door")
@@ -286,7 +286,7 @@
 		visible_message("<span class='xenowarning'>\The [src] spits at \the [T]!</span>", \
 		"<span class='xenowarning'>You spit at \the [T]!</span>" )
 		var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
-		playsound(src.loc, sound_to_play, 60, 1)
+		playsound(src.loc, sound_to_play, 25, 1)
 
 		var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
 		A.generate_bullet(ammo)

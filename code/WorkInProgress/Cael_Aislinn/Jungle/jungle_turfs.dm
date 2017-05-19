@@ -29,7 +29,7 @@
 			L.pixel_x += rand(-5,5)
 			L.pixel_y += rand(-5,5)
 			L.SetLuminosity(2)
-			playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+			playsound(user, 'sound/weapons/Genhit.ogg', 15, 1)
 
 	New()
 		icon_state = icon_spawn_state

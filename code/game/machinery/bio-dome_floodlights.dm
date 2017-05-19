@@ -65,7 +65,7 @@
 	if(!ispowered)
 		user << "Nothing happens."
 		return 0
-	playsound(src,'sound/machines/click.ogg', 50, 1)
+	playsound(src,'sound/machines/click.ogg', 15, 1)
 	use_power(5)
 	toggle_lights()
 	turned_on = !(src.turned_on)
@@ -104,7 +104,7 @@
 	if(istype(WT))
 		if(!damaged) return
 		if(WT.remove_fuel(0, user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			user.visible_message("[user.name] starts to weld the damage to [src.name].","You start to weld the damage to [src.name].")
 			if (do_after(user,200))
 				if(!src || !WT.isOn()) return
@@ -144,7 +144,7 @@
 				damaged = 1
 				SetLuminosity(0)
 				user << "You slash up the light! Raar!"
-				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+				playsound(src, 'sound/weapons/blade1.ogg', 25, 1)
 				update_icon()
 				return 0
 	..()

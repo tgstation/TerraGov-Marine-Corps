@@ -26,7 +26,6 @@
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -192,8 +191,7 @@
 
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
-		/obj/structure/falserwall)
+		/obj/structure/falsewall)
 
 	var/tiles_special[] = list( //Special case.
 		/obj/machinery/door/airlock,
@@ -226,9 +224,11 @@
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/reinforced/almayer/window_type = /obj/structure/window/reinforced/almayer
+	var/basestate = "window"
 
 /obj/structure/window_frame/almayer
 	icon_state = "rwindow0_frame"
+	basestate = "window"
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -251,7 +251,7 @@
 			return
 		user.visible_message("<span class='notice'>[user] starts installing a new glass window on the frame.</span>", \
 		"<span class='notice'>You start installing a new window on the frame.</span>")
-		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 20))
 			user.visible_message("<span class='notice'>[user] installs a new glass window on the frame.</span>", \
 			"<span class='notice'>You install a new window on the frame.</span>")
@@ -261,13 +261,14 @@
 
 
 /obj/structure/window_frame/almayer
-	icon_state = "rwindow0_frame"
+	icon_state = "window0_frame"
 
 /obj/structure/window/reinforced/almayer/white
-	icon_state = "mwindow0"
-	basestate = "mwindow"
+	icon_state = "rwwindow0"
+	basestate = "rwwindow"
 	window_frame = /obj/structure/window_frame/almayer/white
 
 /obj/structure/window_frame/almayer/white
-	icon_state = "mwindow0_frame"
+	icon_state = "wwindow0_frame"
+	basestate = "wwindow"
 	window_type = /obj/structure/window/reinforced/almayer/white

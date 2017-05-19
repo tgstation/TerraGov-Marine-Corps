@@ -421,7 +421,6 @@
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -436,7 +435,6 @@
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -451,7 +449,6 @@
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -677,7 +674,6 @@
 	tiles_with = list(
 		/turf/simulated/wall,
 		/obj/structure/falsewall,
-		/obj/structure/falserwall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 

@@ -216,5 +216,5 @@
 /*
 /datum/shuttle/proc/play_engine_sound()
 	for(var/obj/structure/engine_startup_sound/O in get_area(src))
-		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 1)
+		playsound(O.loc, 'sound/effects/engine_startup.ogg', 75, 1)
 */

@@ -63,7 +63,7 @@
 
 		if(istype(O,/obj/item/weapon/wrench))
 			if(anchored)
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("[user] rotates the [src].","You rotate the [src].")
 				if(dir == NORTH)
 					dir = EAST
@@ -80,7 +80,7 @@
 
 				user << "You begin wrenching [src] into place.."
 				if(do_after(user,40))
-					playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 					user.visible_message("\blue [user] anchors [src] into place.","\blue You anchor [src] into place.")
 					anchored = 1
 			return
@@ -97,7 +97,7 @@
 			if(do_after(user,40))
 				if (CC.use(10))
 					has_cable = 1
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					user.visible_message("\blue [user] installs wiring in the [src].","\blue You install the wiring in the [src].")
 					icon_state = "turret-bottom"
 					return
@@ -113,7 +113,7 @@
 				return
 			user << "You begin installing the turret gun section.."
 			if(do_after(user,60))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("\blue [user] installs [O] into place.","\blue You install [O] into place.")
 				has_top = 1
 				icon_state = "turret-nosensor"
@@ -131,7 +131,7 @@
 			user << "You begin installing the [O].."
 			if(do_after(user,40))
 				has_sensor = 1
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("\blue [user] installs the control sensor on the [src].","\blue You install the control sensor.")
 				icon_state = "turret-0"
 				user.drop_held_item()
@@ -154,7 +154,7 @@
 				if(!M) return
 				if(M.amount >= 10)
 					has_plates = 1
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					user.visible_message("\blue [user] installs the plating on the [src].","\blue You install the plating.")
 					M.amount -= 10
 					if(M.amount <= 0)
@@ -173,7 +173,7 @@
 			if(do_after(user,60))
 				if(!src || !WT || !WT.isOn()) return
 				if(WT.remove_fuel(0, user))
-					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
+					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 					user.visible_message("\blue [user.name] welds [src.name] together!","\blue You complete the [src]!")
 					var/obj/machinery/marine_turret/T = new(src.loc)  //Bing! Create a new turret.
 					T.visible_message("\icon[T] <B>[T] is now complete!</B>")
@@ -509,7 +509,7 @@
 			user << "You can't rotate the sentry when it's turned on. Way too dangerous!"
 			return
 		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
 			if(dir == NORTH)
 				dir = EAST
@@ -532,7 +532,7 @@
 				if(do_after(user,40))
 					user.visible_message("\blue [user] secures [src] to the floor!","\blue You secure [src] to the floor!")
 					anchored = 1
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			return
 		else
 			if(on)
@@ -543,7 +543,7 @@
 				if(do_after(user,40))
 					user.visible_message("\blue [user] unsecures [src] from the floor!","\blue You unsecure [src] from the floor!")
 					anchored = 0
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		return
 
 	if(istype(O, /obj/item/weapon/weldingtool))
@@ -561,7 +561,7 @@
 			if(do_after(user,50))
 				user.visible_message("\blue [user] repairs the damaged [src].","\blue Your repair the [src]'s damage.")
 				update_health(-50)
-				playsound(src.loc, 'sound/items/Welder2.ogg', 75, 1)
+				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 		return
 
 	if(istype(O,/obj/item/weapon/cell))
@@ -582,7 +582,7 @@
 			return
 		user.visible_message("[user] begins fitting a new box magazine into the sentry turret.","You begin reloading..")
 		if(do_after(user,70))
-			playsound(src.loc, 'sound/weapons/unload.ogg', 60, 1)
+			playsound(src.loc, 'sound/weapons/unload.ogg', 25, 1)
 			user.visible_message("\blue [user] reloads the [src].","\blue You reload the [src].")
 			user.drop_held_item()
 			rounds = rounds_max
@@ -607,7 +607,7 @@
 	if(health <= 0 && stat != 2)
 		stat = 2
 		visible_message("\icon[src] <span class='warning'>The [src] starts spitting out sparks and smoke!")
-		playsound(src.loc, 'sound/mecha/critdestrsyndi.ogg', 100, 1)
+		playsound(src.loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 		for(var/i = 1 to 6)
 			dir = pick(1,2,3,4)
 			sleep(2)
@@ -642,7 +642,7 @@
 	if(cell.charge - power <= 0)
 		cell.charge = 0
 		visible_message("\icon[src] [src] shuts down from lack of power!")
-		playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 60, 1)
+		playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 		on = 0
 		update_icon()
 		SetLuminosity(0)
@@ -793,7 +793,7 @@
 			in_chamber.original = target
 			in_chamber.dir = src.dir
 			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 100, 1)
+			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
@@ -802,7 +802,7 @@
 			rounds--
 			if(rounds == 0)
 				visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")
-				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
+				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 	return
 
 //Mostly taken from gun code.

@@ -49,7 +49,7 @@ Bonus
 
 	var/turf/pos = get_turf(M)
 	pos.add_vomit_floor(M)
-	playsound(pos, 'sound/effects/splat.ogg', 50, 1)
+	playsound(pos, 'sound/effects/splat.ogg', 25, 1)
 /*
 //////////////////////////////////////
 
@@ -91,4 +91,4 @@ Bonus
 
 	var/turf/pos = get_turf(M)
 	pos.add_blood_floor(M)
-	playsound(pos, 'sound/effects/splat.ogg', 50, 1)
+	playsound(pos, 'sound/effects/splat.ogg', 25, 1)

@@ -75,7 +75,7 @@ var/global/list/rad_collectors = list()
 		if(P)
 			user << "\blue Remove the phoron tank first."
 			return 1
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		src.anchored = !src.anchored
 		user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
 			"You [anchored? "secure":"undo"] the external bolts.", \

@@ -60,13 +60,13 @@
 	..()
 
 	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
-	playsound(loc, 'sound/voice/alien_queen_command.ogg', 100, 0, 20)
+	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0, 20)
 
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
 
 	if(stat != DEAD && ++breathing_counter >= rand(12, 17)) //Increase the breathing variable each tick. Play it at random intervals.
-		playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 10, 1, -3)
+		playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 15, 1, -3)
 		breathing_counter = 0 //Reset the counter
 
 /mob/living/carbon/Xenomorph/Queen/gib()
@@ -175,8 +175,8 @@
 		has_screeched = 0
 		src << "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>"
 
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
-	// playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)  //XMAS ONLY
+	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	// playsound(loc, 'sound/voice/alien_cena.ogg', 75, 0)  //XMAS ONLY
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 
@@ -194,7 +194,7 @@
 		if(dist <= 4)
 			M << "<span class='danger'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
-			M.Weaken(1)
+			M.Weaken(4)
 			if(!M.ear_deaf)
 				M.ear_deaf += 8 //Deafens them temporarily
 		else if(dist >= 5 && dist < 7)

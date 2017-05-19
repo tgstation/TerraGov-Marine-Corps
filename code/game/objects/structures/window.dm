@@ -16,6 +16,7 @@
 	var/obj/structure/window_frame/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/windowknock_cooldown = 0
 	var/static_frame = 0 //True/false. If true, can't move the window
+	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
@@ -26,7 +27,7 @@
 		if(user)
 			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? "with [AM]":""]!</span>")
 		if(make_shatter_sound)
-			playsound(src, "shatter", 70, 1)
+			playsound(src, "shatter", 50, 1)
 		if(create_debris)
 			new shardtype(loc)
 			if(is_full_window())
@@ -34,12 +35,12 @@
 			if(reinf) new /obj/item/stack/rods(loc)
 			if(window_frame)
 				var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
-				new_window_frame.icon_state = "[icon_state]_frame"
+				new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 				new_window_frame.dir = dir
 		del(src)
 	else
 		if(make_hit_sound)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
+			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
@@ -106,7 +107,7 @@
 
 /obj/structure/window/attack_tk(mob/user as mob)
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
-	playsound(loc, 'sound/effects/glassknock.ogg', 80, 1)
+	playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)
@@ -125,7 +126,7 @@
 
 		if(windowknock_cooldown > world.time)
 			return
-		playsound(loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(loc, 'sound/effects/glassknock.ogg', 25, 1)
 		user.visible_message("<span class='warning'>[user] bangs against [src]!</span>",
 		"<span class='warning'>You bang against [src]!</span>",
 		"<span class='warning'>You hear a banging sound.</span>")
@@ -133,7 +134,7 @@
 	else
 		if(windowknock_cooldown > world.time)
 			return
-		playsound(loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
 		user.visible_message("<span class='notice'>[user] knocks on [src].</span>",
 		"<span class='notice'>You knock on [src].</span>",
 		"<span class='notice'>You hear a knocking sound.</span>")
@@ -185,17 +186,17 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(reinf && state >= 1)
 			state = 3 - state
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>")
 		else if(reinf && state == 0 && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>")
 		else if(!reinf && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
 		else if(static_frame && state == 0)
 			var/obj/item/stack/sheet/glass/reinforced/G = new /obj/item/stack/sheet/glass/reinforced(loc)
@@ -206,7 +207,7 @@
 			del(src)
 	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
 		state = 1 - state
-		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
+		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
 	else
 		health -= W.force
@@ -294,7 +295,6 @@
 		if(!is_full_window())
 			icon_state = "[basestate]"
 			return
-		var/junction = 0 //Will be used to determine from which side the window is connected to other windows
 		if(anchored)
 			for(var/obj/structure/window/W in orange(src, 1))
 				if(W.anchored && W.density	&& W.is_full_window()) //Only counts anchored, not-destroyed fill-tile windows.

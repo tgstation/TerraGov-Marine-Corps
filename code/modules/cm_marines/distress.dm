@@ -309,7 +309,7 @@
 		usr << "<span class='warning'>You need to be an observer or new player to use this.</span>"
 	return
 
-/datum/emergency_call/proc/activate()
+/datum/emergency_call/proc/activate(var/announce = 1)
 	if(!ticker || !ticker.mode) //Something horribly wrong with the gamemode ticker
 		return
 
@@ -321,7 +321,7 @@
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
 
-	if (alert(src, "Would you like to announce to the population?",, "Yes", "No") == "Yes")
+	if (announce)
 		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert")
 
 	ticker.mode.has_called_emergency = 1
@@ -332,7 +332,10 @@
 			ticker.mode.has_called_emergency = 0
 			members = list() //Empty the members list.
 			candidates = list()
-			command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
+
+			if (announce)
+				command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
+
 			ticker.mode.distress_cooldown = 1
 			ticker.mode.picked_call = null
 			spawn(1200)
@@ -360,8 +363,9 @@
 							if(I.current)
 								I.current << "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>"
 
+			if (announce)
+				command_announcement.Announce(dispatch_message, "Distress Beacon") //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
-			command_announcement.Announce(dispatch_message, "Distress Beacon") //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
 			if(!shuttle || !istype(shuttle))

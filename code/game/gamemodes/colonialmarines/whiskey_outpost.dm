@@ -1309,7 +1309,7 @@
 						removed++
 						break
 				if(removed && !working)
-					playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
+					playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
 					working = 1 //Stops the sound from repeating
 				if(removed >= remove_max)
 					break
@@ -1371,7 +1371,7 @@
 	set desc = "This will disable the laser, enable the IR laser, or enable the UV laser. IR for airstrikes and UV for Mortars"
 	set src in usr
 
-	playsound(src,'sound/machines/click.ogg', 50, 1)
+	playsound(src,'sound/machines/click.ogg', 15, 1)
 
 	switch(laz_mode)
 		if(0) //Actually adding descriptions so you can tell what the hell you've selected now.
@@ -1397,7 +1397,7 @@
 	set desc = "Will change the airstrike plane from going East/West to North/South, or if using Mortars, it'll change the warhead used on them."
 	set src in usr
 
-	playsound(src,'sound/machines/click.ogg', 50, 1)
+	playsound(src,'sound/machines/click.ogg', 15, 1)
 
 	switch(plane_toggle)
 		if(0)
@@ -1574,12 +1574,12 @@
 	anchored = 1
 	w_class = 10
 	icon_state = "[icon_activated]"
-	playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 	user << "You activate the [src]. Now toss it, the supplies will arrive in a moment!"
 	sleep(100) //10 seconds should be enough.
 	var/turf/T = get_turf(src) //Make sure we get the turf we're tossing this on.
-	drop_supplies(T,supply_drop)
-	playsound(src,'sound/effects/bamf.ogg', 100, 1)
+	drop_supplies(T, supply_drop)
+	playsound(src,'sound/effects/bamf.ogg', 50, 1)
 	del(src)
 	return
 
@@ -1589,7 +1589,7 @@
 	set desc = "This will change the supplies that drop."
 	set src in usr
 
-	playsound(src,'sound/machines/click.ogg', 50, 1)
+	playsound(src,'sound/machines/click.ogg', 15, 1)
 
 	switch(supply_drop)
 		if(0)

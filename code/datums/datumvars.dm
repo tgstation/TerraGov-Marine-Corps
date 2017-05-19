@@ -270,6 +270,8 @@ client
 			body += "<option value='?_src_=vars;remlanguage=\ref[D]'>Remove Language</option>"
 			body += "<option value='?_src_=vars;addorgan=\ref[D]'>Add Organ</option>"
 			body += "<option value='?_src_=vars;remorgan=\ref[D]'>Remove Organ</option>"
+			body += "<option value='?_src_=vars;addlimb=\ref[D]'>Add Limb</option>"
+			body += "<option value='?_src_=vars;remlimb=\ref[D]'>Remove Limb</option>"
 
 			body += "<option value='?_src_=vars;fix_nano=\ref[D]'>Fix NanoUI</option>"
 
@@ -941,6 +943,58 @@ client
 
 		usr << "Removed [rem_organ] from [M]."
 		del(rem_organ)
+
+
+	else if(href_list["addlimb"])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/human/M = locate(href_list["addlimb"])
+		if(!istype(M))
+			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			return
+
+		var/new_limb = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/organ/external)-/datum/organ/external
+
+		if(!M)
+			usr << "Mob doesn't exist anymore"
+			return
+
+		var/datum/organ/external/EO = locate(new_limb) in M.organs
+		if(!EO)
+			return
+		if(!(EO.status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY)))
+			usr << "Mob already has that organ."
+			return
+
+		EO.status = 0
+		EO.amputated = 0
+		EO.destspawn = 0
+		M.update_body(0)
+		M.updatehealth()
+		M.UpdateDamageIcon()
+
+	else if(href_list["remlimb"])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/human/M = locate(href_list["remlimb"])
+		if(!istype(M))
+			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			return
+
+		var/rem_limb = input("Please choose a limb to remove.","Organ",null) as null|anything in M.organs
+
+		if(!M)
+			usr << "Mob doesn't exist anymore"
+			return
+
+		var/datum/organ/external/EO = locate(rem_limb) in M.organs
+		if(!EO)
+			return
+		if((EO.status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY)))
+			usr << "Mob doesn't have that limb."
+			return
+		EO.droplimb(1,1,1)
+
 
 	else if(href_list["fix_nano"])
 		if(!check_rights(R_DEBUG)) return

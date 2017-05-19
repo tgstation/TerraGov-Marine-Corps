@@ -166,7 +166,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/sparks/New()
 	..()
-	playsound(src.loc, "sparks", 100, 1)
+	playsound(src.loc, "sparks", 25, 1)
 	var/turf/T = src.loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
@@ -558,7 +558,7 @@ steam.start() -- spawns the effect
 	..(loc)
 	icon_state = "[ismetal ? "m":""]foam"
 	metal = ismetal
-	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
+	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, -3)
 	spawn(3 + metal*3)
 		process()
 		checkReagents()

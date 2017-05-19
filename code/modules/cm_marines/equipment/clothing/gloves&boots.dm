@@ -222,7 +222,7 @@
 			update_icon()
 			return
 
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
 
 		clipped = 1
@@ -242,7 +242,7 @@
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
-				playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 40, 1)
+				playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 				knife = 0
 				update_icon()
 			return
@@ -255,7 +255,7 @@
 			knife = I
 			I.loc = src
 			M << "<div class='notice'>You slide the [I] into [src].</div>"
-			playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 40, 1)
+			playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 			update_icon()
 
 	update_icon()

@@ -93,7 +93,7 @@
 
 		else if  (icon_state == "ladderdown" && d_state == 0 && istype(C, /obj/item/weapon/wrench))
 			user << "<span class='notice'>You start loosening the anchoring bolts which secure the ladder to the frame.</span>"
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 			sleep(30)
 			if(!user || !C)	return
@@ -112,7 +112,7 @@
 			if( WT.remove_fuel(0,user) )
 
 				user << "<span class='notice'>You begin to remove the ladder.</span>"
-				playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
+				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 
 				sleep(60)
 				if(!user || !WT || !WT.isOn())	return

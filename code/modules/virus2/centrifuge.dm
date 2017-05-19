@@ -133,7 +133,7 @@
 					delay = delay/2
 
 			curing = round(delay)
-			playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
+			playsound(src.loc, 'sound/machines/juicer.ogg', 25, 1)
 			update_icon()
 			return 1
 

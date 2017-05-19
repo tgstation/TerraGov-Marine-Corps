@@ -28,7 +28,7 @@
 		place_handcuffs(C, user)
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(src.loc, cuff_sound, 25, 1, -2)
 
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -118,7 +118,7 @@
 	if(!C.handcuffed)
 		var/turf/p_loc = user.loc
 		var/turf/p_loc_m = C.loc
-		playsound(src.loc, cuff_sound, 30, 1, -2)
+		playsound(src.loc, cuff_sound, 25, 1, -2)
 		user.visible_message("\red <B>[user] is trying to put handcuffs on [C]!</B>")
 
 		if (ishuman(C))

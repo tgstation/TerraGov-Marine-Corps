@@ -233,7 +233,6 @@
 /client/proc/Process_Grab()
 	if(mob.pulledby)
 		if(mob.stat || mob.stunned || mob.weakened || mob.paralysis)
-			move_delay = world.time + 10
 			return 1
 		else if(mob.is_mob_restrained())
 			move_delay = world.time + 10

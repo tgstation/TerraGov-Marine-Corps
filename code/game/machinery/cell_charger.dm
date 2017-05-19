@@ -63,7 +63,7 @@
 
 		anchored = !anchored
 		user << "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(charging)

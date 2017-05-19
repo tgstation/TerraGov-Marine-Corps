@@ -29,7 +29,7 @@
 				user << "\red That was close!"
 			src.reagents.trans_to(W, T.max_fuel)
 			user << "\blue Welder refilled!"
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, -6)
 			return
 	user << "\blue The tank scoffs at your insolence.  It only provides services to welders."
 	return
@@ -40,7 +40,7 @@
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
 		user << "\blue You crack the cap off the top of the pack and fill it back up again from the tank."
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, -6)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
 		user << "\blue The pack is already full!"

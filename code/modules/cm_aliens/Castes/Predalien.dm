@@ -140,14 +140,14 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 			if(!(O.status & ORGAN_DESTROYED)) O.droplimb(TRUE, TRUE) //Still not actually detached?
 			visible_message("<span class='danger'>[src] reaches down and rips off [H]'s spinal cord and skull!</span>",
 			"<span class='xenodanger'>You slice and pull on [H]'s head until it comes off in a bloody arc!</span>")
-			playsound(loc, 'sound/weapons/slice.ogg', 50)
+			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			emote("growl")
 			var/to_heal = max(1, 5 - (0.2 * (health < maxHealth ? butchered_sum++ : butchered_sum)))//So we do not heal multiple times due to the inline proc below.
 			XENO_HEAL_WOUNDS(isYautja(H)? 15 : to_heal) //Predators give far better healing.
 		else
 			visible_message("<span class='danger'>[src] slices and dices [H]'s body like a ragdoll!</span>",
 			"<span class='xenodanger'>You fly into a frenzy and butcher [H]'s body!</span>")
-			playsound(loc, 'sound/weapons/bladeslice.ogg', 50)
+			playsound(loc, 'sound/weapons/bladeslice.ogg', 25)
 			emote("growl")
 			var/i = 4
 			while(i--)

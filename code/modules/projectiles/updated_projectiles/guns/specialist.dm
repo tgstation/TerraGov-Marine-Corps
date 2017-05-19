@@ -237,7 +237,7 @@
 
 /obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
 	user << "\icon[src] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"]."
-	playsound(loc,'sound/machines/click.ogg', 50, 1)
+	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
 	ammo = ammo_secondary
 	ammo_secondary = A
@@ -329,7 +329,7 @@
 				return
 			if(grenades.len)
 				fire_grenade(target,user)
-				playsound(user.loc, cocked_sound, 50, 1)
+				playsound(user.loc, cocked_sound, 25, 1)
 			else user << "<span class='warning'>The grenade launcher is empty.</span>"
 
 	//Doesn't use most of any of these. Listed for reference.
@@ -344,7 +344,7 @@
 			var/obj/item/weapon/grenade/nade = grenades[grenades.len] //Grab the last one.
 			if(user)
 				user.put_in_hands(nade)
-				playsound(user, unload_sound, 20, 1)
+				playsound(user, unload_sound, 25, 1)
 			else nade.loc = get_turf(src)
 			grenades -= nade
 		else user << "<span class='warning'>It's empty!</span>"
@@ -502,8 +502,8 @@
 				current_mag.current_rounds = current_mag.max_rounds
 				rocket.current_rounds = 0
 				user << "<span class='notice'>You load [rocket] into [src].</span>"
-				if(reload_sound) playsound(user, reload_sound, 100, 1)
-				else playsound(user,'sound/machines/click.ogg', 100, 1)
+				if(reload_sound) playsound(user, reload_sound, 25, 1)
+				else playsound(user,'sound/machines/click.ogg', 25, 1)
 			else
 				user << "<span class='warning'>Your reload was interrupted!</span>"
 				return

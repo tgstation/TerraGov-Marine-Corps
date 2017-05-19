@@ -32,12 +32,12 @@ RSF
 		del(W)
 
 		stored_matter += 10
-		playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 		user << "The RSF now holds [stored_matter]/30 fabrication-units."
 		return
 
 /obj/item/weapon/rsf/attack_self(mob/user as mob)
-	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	if (mode == 1)
 		mode = 2
 		user << "Changed dispensing mode to 'Drinking Glass'"
@@ -79,7 +79,7 @@ RSF
 	if(!istype(A, /obj/structure/table) && !istype(A, /turf/simulated/floor))
 		return
 
-	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	playsound(src.loc, 'sound/machines/click.ogg', 25, 1)
 	var/used_energy = 0
 	var/obj/product
 
