@@ -325,11 +325,15 @@
 		return
 
 	if(href_list["write"])
-		var/id = href_list["write"]
+//		var/id = href_list["write"]
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 		//var/t =  strip_html_simple(input("Enter what you want to write:", "Write", null, null)  as message, MAX_MESSAGE_LEN)
 		var/t =  input("Enter what you want to write:", "Write", null, null)  as message
-		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
+		var/shortened_t = copytext(t,1,100)
+		log_admin("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
+		message_admins("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
+
+/*		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/weapon/pen))
 			if(!istype(i, /obj/item/toy/crayon))
@@ -363,7 +367,7 @@
 
 		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
-		update_icon()
+		update_icon()*/
 
 
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
