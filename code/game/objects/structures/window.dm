@@ -391,3 +391,56 @@
 
 	update_icon() //icon_state has to be set manually
 		return
+
+/obj/structure/window/reinforced/pressure
+	name = "pressure window"
+	desc = "A toughened window linked to pressure shutters."
+	health = 80
+	dir = 5
+
+/obj/structure/window/reinforced/pressure/divider
+	icon_state = "twindow0"
+	update_icon()
+		return
+
+/obj/structure/window/reinforced/pressure/Del()
+	for(var/obj/machinery/door/poddoor/shutters/pressure/P in src.loc )
+		P.close(7)
+	density = 0
+	update_nearby_tiles()
+	playsound(src, "shatter", 70, 1)
+	update_nearby_icons()
+	..()
+
+/obj/structure/window/reinforced/pressure/attackby(obj/item/W, mob/user) //no deconstruction
+	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)
+		var/obj/item/weapon/grab/G = W
+		if(istype(G.grabbed_thing, /mob/living))
+			var/mob/living/M = G.grabbed_thing
+			var/state = user.grab_level
+			user.drop_held_item()
+			switch(state)
+				if(GRAB_PASSIVE)
+					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+					M.apply_damage(7)
+					health -= 10
+				if(GRAB_AGGRESSIVE)
+					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+					if(prob(50))
+						M.Weaken(1)
+					M.apply_damage(10)
+					health -= 25
+				if(GRAB_NECK)
+					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+					M.Weaken(5)
+					M.apply_damage(20)
+					health -= 50
+			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
+		return
+
+	if(W.flags_atom & NOBLUDGEON) return
+
+	health -= W.force
+	healthcheck(1, 1, 1, user, W)
+	..()
+	return

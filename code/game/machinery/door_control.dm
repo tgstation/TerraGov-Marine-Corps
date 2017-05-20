@@ -211,3 +211,33 @@
 	active = 0
 
 	return
+
+/obj/machinery/door_control/timed_automatic
+	var/trigger_delay = 1 //in minutes
+	var/trigger_time
+	var/triggered = 0
+	use_power = 0
+
+/obj/machinery/door_control/timed_automatic/New()
+		..()
+		trigger_time = world.time + trigger_delay*600
+		processing_objects.Add(src)
+
+/obj/machinery/door_control/timed_automatic/process()
+	if (!triggered && world.time >= trigger_time)
+		icon_state = "doorctrl1"
+
+		switch(normaldoorcontrol)
+			if(CONTROL_NORMAL_DOORS)
+				handle_door()
+			if(CONTROL_POD_DOORS)
+				handle_pod()
+			if(CONTROL_EMITTERS)
+				handle_emitters()
+
+		desiredstate = !desiredstate
+		triggered = 1
+		processing_objects.Remove(src)
+		spawn(15)
+			if(!(stat & NOPOWER))
+				icon_state = "doorctrl0"

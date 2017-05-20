@@ -61,3 +61,52 @@
 	sleep(10)
 	operating = 0
 	return
+
+/obj/machinery/door/poddoor/shutters/pressure
+	name = "pressure shutters"
+	dir = 2
+	density = 0
+	opacity = 0
+	unacidable = 1
+	icon_state = "shutter0"
+	open_layer = 2.9 //below grilles
+	closed_layer = 3.3 //above windows
+	var/chain_reacting = 1
+
+	ex_act(severity)
+		return
+
+/obj/machinery/door/poddoor/shutters/pressure/divider
+	chain_reacting = 0
+
+/obj/machinery/door/poddoor/shutters/pressure/New()
+	..()
+	layer = 2.9
+
+/obj/machinery/door/poddoor/shutters/pressure/close(var/delay = 0, var/from_dir = 0)
+
+	spawn(delay)
+		if(operating)
+			return
+		operating = 1
+		flick("shutterc1", src)
+		icon_state = "shutter1"
+		density = 1
+		layer = closed_layer
+		update_nearby_tiles()
+
+
+		if(!from_dir)
+			playsound(loc, 'sound/machines/blastdoor.ogg', 50) //sound plays only for the initiating shutter
+
+		if(chain_reacting)
+			for(var/direction in cardinal)
+				if(direction == from_dir) continue //doesn't check backwards
+				for(var/obj/machinery/door/poddoor/shutters/pressure/P in get_step(src,direction) )
+					if(!P.density)
+						P.close(0,turn(direction,180))
+
+		if(visible)
+			SetOpacity(1)
+		operating = 0
+	return

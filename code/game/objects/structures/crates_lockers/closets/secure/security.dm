@@ -189,11 +189,11 @@
 /obj/structure/closet/secure_closet/security
 	name = "Security Officer's Locker"
 	req_access = list(ACCESS_MARINE_BRIG)
-	icon_state = "sec1"
-	icon_closed = "sec"
-	icon_locked = "sec1"
-	icon_opened = "secopen"
-	icon_broken = "secbroken"
+	icon_state = "secure_locked_police"
+	icon_closed = "secure_closed_police"
+	icon_locked = "secure_locked_police"
+	icon_opened = "secure_open_police"
+	icon_broken = "secure_broken_police"
 	icon_off = "secoff"
 
 	New()
