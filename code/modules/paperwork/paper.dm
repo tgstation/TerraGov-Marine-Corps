@@ -181,8 +181,7 @@
 
 /obj/item/weapon/paper/proc/updateinfolinks()
 	info_links = info
-	var/i = 0
-	for(i=1,i<=fields,i++)
+	for(var/i=1,  i<=min(fields, 15), i++)
 		addtofield(i, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[i]'>write</A></font>", 1)
 	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
 
@@ -255,18 +254,12 @@
 
 //Count the fields
 	var/laststart = 1
-	var/fields_added = 0
 	while(1)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
 		if(i==0)
 			break
 		laststart = i+1
-		fields++
-		fields_added++
-	if(fields_added > 20)
-		fields -= fields_added
-		log_admin("PAPER: [usr] ([usr.ckey]) tried to spam paper writing in [src] with [fields_added] \[fields\].")
-		message_admins("PAPER: [usr] ([usr.ckey]) tried to spam paper writing in [src] with [fields_added] \[fields\].")
+		fields = min(fields+1, 20)
 	return t
 
 
@@ -325,15 +318,13 @@
 		return
 
 	if(href_list["write"])
-//		var/id = href_list["write"]
-		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
-		//var/t =  strip_html_simple(input("Enter what you want to write:", "Write", null, null)  as message, MAX_MESSAGE_LEN)
-		var/t =  input("Enter what you want to write:", "Write", null, null)  as message
+		var/id = href_list["write"]
+		var/t =  strip_html_simple(input("Enter what you want to write:", "Write", null, null)  as message, MAX_MESSAGE_LEN)
 		var/shortened_t = copytext(t,1,100)
 		log_admin("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
 		message_admins("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
 
-/*		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
+		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/weapon/pen))
 			if(!istype(i, /obj/item/toy/crayon))
@@ -367,7 +358,7 @@
 
 		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
-		update_icon()*/
+		update_icon()
 
 
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)

@@ -141,7 +141,11 @@
 			used = CB.used
 
 	Dispose()
-		stasis_mob = null
+		var/mob/living/L = locate() in contents
+		if(L)
+			L.in_stasis = FALSE
+			stasis_mob = null
+			processing_objects.Remove(src)
 		. = ..()
 
 	open()
@@ -165,6 +169,10 @@
 
 	process()
 		used++
+		if(!stasis_mob)
+			processing_objects.Remove(src)
+			open()
+			return
 		if(used > last_use) //cryostasis takes a couple seconds to kick in.
 			if(!stasis_mob.in_stasis) stasis_mob.in_stasis = STASIS_IN_BAG
 		if(used > max_uses)
