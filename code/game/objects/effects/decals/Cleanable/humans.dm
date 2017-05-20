@@ -153,7 +153,7 @@ var/global/list/image/splatter_cache=list()
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
-	var/fleshcolor = "#FFFFFF"
+	var/fleshcolor = "#FFC896"
 
 /obj/effect/decal/cleanable/blood/gibs/update_icon()
 
