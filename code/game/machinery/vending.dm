@@ -506,7 +506,6 @@
 		user << "<span class='warning'>Access denied.</span>" //Unless emagged of course
 		flick(src.icon_deny,src)
 		return
-	src.vend_ready = 0 //One thing at a time!!
 
 	if (R in coin_records)
 		if(!coin)
@@ -521,6 +520,7 @@
 		else
 			del(coin)
 
+	vend_ready = 0 //One thing at a time!!
 	R.amount--
 
 	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
