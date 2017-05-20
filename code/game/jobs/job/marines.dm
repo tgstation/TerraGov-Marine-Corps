@@ -8,6 +8,7 @@
 	total_positions = 8
 	spawn_positions = 8
 	minimal_player_age = 3
+	var/fireteam = 0 //which fireteam they're assigned to in their squad.
 
 /datum/job/marine
 

@@ -56,7 +56,7 @@
 		if(!turbine)
 			stat |= BROKEN
 		else
-			turbine.stat &= !BROKEN
+			turbine.stat &= ~BROKEN
 			turbine.compressor = src
 
 
@@ -116,7 +116,7 @@
 		if(!compressor)
 			stat |= BROKEN
 		else
-			compressor.stat &= !BROKEN
+			compressor.stat &= ~BROKEN
 			compressor.turbine = src
 
 
@@ -125,13 +125,13 @@
 #define TURBGENG 0.8
 
 /obj/machinery/power/turbine/process()
+	if(!compressor)
+		stat |= BROKEN
+		return
 	if(!compressor.starter)
 		return
 	overlays.Cut()
 	if(stat & BROKEN)
-		return
-	if(!compressor)
-		stat |= BROKEN
 		return
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) *TURBGENQ
 

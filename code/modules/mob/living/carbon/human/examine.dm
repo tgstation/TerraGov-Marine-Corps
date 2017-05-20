@@ -453,6 +453,14 @@
 		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
 
 
+	if(hasHUD(usr,"squadleader"))
+		var/mob/living/carbon/human/H = usr
+		var/obj/item/weapon/card/id/ID = get_idcard()
+		if(ID && (ID.rank in ROLES_MARINES)) //examined mob is a marine
+			if(get_squad_from_card(src) == get_squad_from_card(H)) //same squad
+				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
+
+
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
 	msg += "*---------*</span>"
@@ -472,6 +480,8 @@
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
+			if("squadleader")
+				return istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/leader)
 			else
 				return 0
 	else if(istype(M, /mob/living/silicon/robot))

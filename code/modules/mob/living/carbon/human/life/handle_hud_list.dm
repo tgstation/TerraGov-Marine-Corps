@@ -154,22 +154,31 @@
 
 	if(hud_updateflag & 1 << SQUAD_HUD)
 		var/image/holder = hud_list[SQUAD_HUD]
-		var/has_rank = 1
 		holder.icon_state = "hudblank"
 		holder.overlays.Cut()
 		var/squad_nbr = get_squad_from_card(src)
 		if(squad_nbr)
+			var/squad_clr = squad_colors[squad_nbr]
 			if(wear_id)
 				var/obj/item/weapon/card/id/I = wear_id.GetID()
 				if(I)
+					var/marine_rk
 					switch(I.rank)
-						if("Squad Engineer") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadengi")
-						if("Squad Leader") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadleader")
-						if("Squad Specialist") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadspec")
-						if("Squad Medic") holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquadmed")
-						else has_rank = 0
-					if(has_rank)
-						holder.icon_state = "hudmarinesquad[squad_nbr]"
+						if("Squad Engineer") marine_rk = "engi"
+						if("Squad Leader") marine_rk = "leader"
+						if("Squad Specialist") marine_rk = "spec"
+						if("Squad Medic") marine_rk = "med"
+					if(marine_rk)
+						var/image/IMG = image('icons/mob/hud.dmi',src, "hudmarinesquad")
+						IMG.color = squad_clr
+						holder.overlays += IMG
+						holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquad[marine_rk]")
+					if(istype(I.role, /datum/job/marine))
+						var/datum/job/marine/JM = I.role
+						if(JM.fireteam)
+							var/image/IMG2 = image('icons/mob/hud.dmi',src, "hudmarinesquadft[JM.fireteam]")
+							IMG2.color = squad_clr
+							holder.overlays += IMG2
 		hud_list[SQUAD_HUD] = holder
 	hud_updateflag = 0
 
