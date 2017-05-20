@@ -243,9 +243,9 @@ var/list/AAlarmWireColorToIndex
 #define INFINITY 1.#INF
 
 	//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
-#define MAX_MESSAGE_LEN 256
-#define MAX_PAPER_MESSAGE_LEN 256
-#define MAX_BOOK_MESSAGE_LEN 256
+#define MAX_MESSAGE_LEN 1024
+#define MAX_PAPER_MESSAGE_LEN 3072
+#define MAX_BOOK_MESSAGE_LEN 9216
 #define MAX_NAME_LEN 26
 
 #define shuttle_time_in_station 1800 // 3 minutes in the station
