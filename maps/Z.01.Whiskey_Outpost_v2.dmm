@@ -548,7 +548,7 @@
 "kB" = (/turf/unsimulated/floor/gm/coast{dir = 8},/area/whiskey_outpost/outside/south)
 "kC" = (/turf/simulated/shuttle/wall/dropship{tag = "icon-rasputin5"; icon_state = "rasputin5"},/area/whiskey_outpost/outside/south)
 "kD" = (/turf/simulated/shuttle/wall/dropship{tag = "icon-rasputin12"; icon_state = "rasputin12"},/area/whiskey_outpost/outside/south)
-"kE" = (/obj/structure/engine_startup_sound,/obj/structure/engine_inside_sound,/obj/structure/engine_landing_sound,/turf/simulated/shuttle/wall/dropship{tag = "icon-rasputin14"; icon_state = "rasputin14"},/area/whiskey_outpost/outside/south)
+"kE" = (/turf/simulated/shuttle/wall/dropship{tag = "icon-rasputin14"; icon_state = "rasputin14"},/area/whiskey_outpost/outside/south)
 "kF" = (/turf/simulated/shuttle/wall/dropship{tag = "icon-rasputin12"; icon_state = "rasputin12"},/area/whiskey_outpost/outside/east)
 "kG" = (/turf/simulated/shuttle/wall/dropship{tag = "icon-rasputin9"; icon_state = "rasputin9"},/area/whiskey_outpost/outside/east)
 "kH" = (/turf/unsimulated/floor/gm/coast{tag = "icon-beachcorner"; icon_state = "beachcorner"; dir = 2},/area/whiskey_outpost/outside/east)
