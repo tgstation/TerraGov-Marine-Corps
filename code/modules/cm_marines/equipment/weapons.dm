@@ -194,7 +194,7 @@
 
 		reloading = 1
 		user.visible_message("[user.name] begin feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
-		if(do_after(user,50))
+		if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 			pcell.charge -= 50
 			if(!mygun.current_mag) //This shouldn't happen, since the mag can't be ejected. Good safety, I guess.
 				var/obj/item/ammo_magazine/internal/smartgun/A = new(mygun)
@@ -594,7 +594,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	if(!armed)
 		user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
 		"<span class='notice'>You start deploying [src].</span>")
-		if(!do_after(user, 40))
+		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 			user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
 		"<span class='notice'>You stop deploying \the [src].</span>")
 			return
@@ -616,7 +616,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
-			if(!do_after(user, 80))
+			if(!do_after(user, 80, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 				"<span class='warning'>You stop disarming [src].")
 				return

@@ -74,7 +74,7 @@ obj/structure/windoor_assembly/Del()
 					user.visible_message("[user] dissassembles the windoor assembly.", "You start to dissassemble the windoor assembly.")
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 
-					if(do_after(user, 40))
+					if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 						if(!src || !WT.isOn()) return
 						user << "\blue You dissasembled the windoor assembly!"
 						new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
@@ -90,7 +90,7 @@ obj/structure/windoor_assembly/Del()
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src) return
 					user << "\blue You've secured the windoor assembly!"
 					src.anchored = 1
@@ -104,7 +104,7 @@ obj/structure/windoor_assembly/Del()
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src) return
 					user << "\blue You've unsecured the windoor assembly!"
 					src.anchored = 0
@@ -121,7 +121,7 @@ obj/structure/windoor_assembly/Del()
 					return
 				user << "<span class='notice'>You start to reinforce the windoor with rods.</span>"
 
-				if(do_after(user,40) && !secure)
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK) && !secure)
 					if (R.use(4))
 						user << "<span class='notice'>You reinforce the windoor.</span>"
 						src.secure = "secure_"
@@ -135,7 +135,7 @@ obj/structure/windoor_assembly/Del()
 				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
 
 				var/obj/item/stack/cable_coil/CC = W
-				if(do_after(user, 40))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 					if (CC.use(1))
 						user << "<span class='notice'>You wire the windoor!</span>"
 						src.state = "02"
@@ -153,7 +153,7 @@ obj/structure/windoor_assembly/Del()
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src) return
 
 					user << "\blue You cut the windoor wires.!"
@@ -169,7 +169,7 @@ obj/structure/windoor_assembly/Del()
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src) return
 
 					user.drop_held_item()
@@ -185,7 +185,7 @@ obj/structure/windoor_assembly/Del()
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src || !src.electronics) return
 					user << "\blue You've removed the airlock electronics!"
 					if(src.secure)
@@ -205,7 +205,7 @@ obj/structure/windoor_assembly/Del()
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 
 					if(!src) return
 

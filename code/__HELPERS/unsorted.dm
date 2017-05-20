@@ -760,40 +760,100 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 
 	else return get_step(ref, base_dir)
 
-/proc/do_mob(var/mob/user , var/mob/target, var/time = 30) //This is quite an ugly solution but i refuse to use the old request system.
+
+var/global/image/busy_indicator_clock
+var/global/image/busy_indicator_med
+
+/proc/get_busy_icon(busy_type)
+	if(busy_type == BUSY_ICON_CLOCK)
+		if(!busy_indicator_clock)
+			busy_indicator_clock = image('icons/mob/mob.dmi',null,"busy_clock", "pixel_y" = 22)
+		return busy_indicator_clock
+	else if(busy_type == BUSY_ICON_MED)
+		if(!busy_indicator_med)
+			busy_indicator_med = image('icons/mob/mob.dmi',null,"busy_med", "pixel_y" = 22)
+		return busy_indicator_med
+
+
+/proc/do_mob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon)
 	if(!user || !target) return 0
+
+	var/image/busy_icon
+	if(show_busy_icon)
+		busy_icon = get_busy_icon(show_busy_icon)
+		if(busy_icon)
+			user.overlays += busy_icon
+
+	var/image/target_icon
+	if(show_target_icon) //putting a busy overlay on top of the target
+		target_icon = get_busy_icon(show_target_icon)
+		if(target_icon)
+			target.overlays += target_icon
+
 	var/user_loc = user.loc
 	var/target_loc = target.loc
+	var/delayfraction = round(time/5)
 	var/holding = user.get_active_hand()
-	sleep(time)
-	if(!user || !target) return 0
-	if ( user.loc == user_loc && target.loc == target_loc && user.get_active_hand() == holding && !( user.stat ) && ( !user.stunned && !user.weakened && !user.paralysis && !user.lying ) )
-		return 1
-	else
-		return 0
 
-/proc/do_after(mob/user, delay, needhand = 2, numticks = 5) //hacky, will suffice for now.
+	. = TRUE
+	for(var/i = 0 to 5)
+		sleep(delayfraction)
+		if(!user || !target)
+			. = FALSE
+			break
+		if(user.loc != user_loc || target.loc != target_loc)
+			. = FALSE
+			break
+		if(user.get_active_hand() != holding)
+			. = FALSE
+			break
+		if(user.stat || user.stunned || user.weakened || user.paralysis || user.lying)
+			. = FALSE
+			break
+
+	if(user && busy_icon)
+		user.overlays -= busy_icon
+	if(target && target_icon)
+		target.overlays -= target_icon
+
+
+/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon) //hacky, will suffice for now.
 	if(!istype(user) || delay <= 0) r_FAL
 
 	var/mob/living/L
 	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
 
+	var/image/busy_icon
+	if(show_busy_icon)
+		busy_icon = get_busy_icon(show_busy_icon)
+		if(busy_icon)
+			user.overlays += busy_icon
+
 	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
 	var/obj/holding = user.get_active_hand()
-
+	. = TRUE
 	for(var/i = 0 to numticks)
 		sleep(delayfraction)
-		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.weakened || user.stunned) r_FAL
-		if(L && L.health < config.health_threshold_crit) r_FAL //For some reason going into crit doesn't trigger the above things
-		switch(needhand)
-			if(1) //Just need an empty hand.
-				if(user.get_active_hand()) r_FAL //If there's something in the hand, fail.
-			if(2) //Need to use the same hand, holding a tool.
-				if(!holding || !holding.loc || user.get_active_hand() != holding ) r_FAL	//Sometimes you don't want the user to have to keep their active hand.
+		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.weakened || user.stunned)
+			. = FALSE
+			break
+		if(L && L.health < config.health_threshold_crit)
+			. = FALSE //catching mobs below crit level but haven't had their stat var updated
+			break
+		if(needhand)
+			if(holding)
+				if(!holding.loc || user.get_active_hand() != holding) //no longer holding the required item
+					. = FALSE
+					break
+			else if(user.get_active_hand()) //something in active hand when we need it to stay empty
+				. = FALSE
+				break
 
-	r_TRU
+	if(user && busy_icon)
+		user.overlays -= busy_icon
+
 
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.

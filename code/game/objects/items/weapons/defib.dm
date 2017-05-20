@@ -89,7 +89,7 @@
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 	busy = 1
 
-	if(do_after(user, 70))
+	if(do_mob(user, H, 70, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 
 		busy = 0
 		//Do this now, order doesn't matter

@@ -63,7 +63,7 @@
 			return
 		usr << "\blue Assembling grille..."
 		in_use = 1
-		if (!do_after(usr, 20))
+		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )

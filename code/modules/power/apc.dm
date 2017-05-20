@@ -404,7 +404,7 @@
 				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user << "You are trying to remove the power control board..." //lpeters - fixed grammar issues
-			if(do_after(user, 50))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 				has_electronics = 0
 				if((stat & BROKEN))
 					user.visible_message("\red [user.name] has broken the power control board inside [src.name]!",
@@ -510,7 +510,7 @@
 			return
 		user << "You start adding cables to the APC frame..."
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 20) && !terminal && opened && has_electronics != 2)
+		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && !terminal && opened && has_electronics != 2)
 			var/turf/T = get_turf(src)
 			var/obj/structure/cable/N = T.get_cable_node()
 			if (prob(50) && electrocute_mob(usr, N, N))
@@ -530,7 +530,7 @@
 			return
 		user << "You begin to cut the cables..."
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 50))
+		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 			if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 				s.set_up(5, 1, src)
@@ -544,7 +544,7 @@
 	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == 0 && !(stat & BROKEN))
 		user << "You trying to insert the power control board into the frame..."
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 10))
+		if(do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK))
 			has_electronics = 1
 			user << "You place the power control board inside the frame."
 			del(W)
@@ -558,7 +558,7 @@
 			return
 		user << "You start welding the APC frame..."
 		playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-		if(do_after(user, 50))
+		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 			if(!src || !WT.remove_fuel(3, user)) return
 			if (emagged || (stat & BROKEN) || opened==2)
 				new /obj/item/stack/sheet/metal(loc)
@@ -588,7 +588,7 @@
 			user << "You cannot repair this APC until you remove the electronics still inside."
 			return
 		user << "You begin to replace the damaged APC frame..."
-		if(do_after(user, 50))
+		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 			user.visible_message(\
 				"\red [user.name] has replaced the damaged APC frame with new one.",\
 				"You replace the damaged APC frame with new one.")

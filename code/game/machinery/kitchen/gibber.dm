@@ -101,7 +101,7 @@
 
 	user.visible_message("<span class='danger'>[user] starts to put [M] into the gibber!</span>")
 	src.add_fingerprint(user)
-	if(do_after(user, 30) && G && G.grabbed_thing && !occupant)
+	if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK) && G && G.grabbed_thing && !occupant)
 		user.visible_message("<span class='danger'>[user] stuffs [M] into the gibber!</span>")
 		M.forceMove(src)
 		occupant = M

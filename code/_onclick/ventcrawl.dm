@@ -85,7 +85,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 					visible_message("<span class='notice'>[src] begins climbing into [vent_found].</span>", \
 					"<span class='notice'>You begin climbing into [vent_found].</span>")
 
-					if(!do_after(src, 45, FALSE))
+					if(!do_after(src, 45, FALSE, 5, BUSY_ICON_CLOCK))
 						return
 
 					updatehealth()

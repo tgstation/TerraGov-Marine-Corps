@@ -77,7 +77,7 @@
 	if(istype(C, /obj/item/weapon/wrench))
 		user << "\blue Removing rods..."
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30))
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/simulated/floor)
 			var/turf/simulated/floor/F = src

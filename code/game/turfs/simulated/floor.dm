@@ -493,7 +493,7 @@ turf/simulated/floor/update_icon()
 				user << "<span class='warning'>You need more rods.</span>"
 				return
 			user << "\blue Reinforcing the floor..."
-			if(do_after(user, 30) && is_plating())
+			if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK) && is_plating())
 				if (!R) return
 				if (R.use(2))
 					ChangeTurf(/turf/simulated/floor/engine)

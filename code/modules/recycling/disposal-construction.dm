@@ -250,7 +250,7 @@
 				if(W.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 					user << "Welding the [nicetype] in place."
-					if(do_after(user, 20))
+					if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 						if(!src || !W.isOn()) return
 						user << "The [nicetype] has been welded in place!"
 						update() // TODO: Make this neat

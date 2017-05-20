@@ -25,7 +25,7 @@
 			if(istype(O, /obj/item/device/multitool))
 				user << "\red Resetting circuitry..."
 				playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 					src.locked = 0
 					user << "<span class = 'caution'> You disable the locking modules.</span>"
 					update_icon()
@@ -87,7 +87,7 @@
 					src.locked = 1
 					user << "\blue You re-enable the locking modules."
 					playsound(user, 'sound/machines/lockenable.ogg', 25, 1)
-					if(do_after(user,20))
+					if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 						src.locked = 1
 						user << "<span class = 'caution'> You re-enable the locking modules.</span>"
 					return

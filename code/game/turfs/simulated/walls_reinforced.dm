@@ -87,7 +87,7 @@
 		if(WT.remove_fuel(0,user))
 			user << "<span class='notice'>You start repairing the damage to [src].</span>"
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, damage / 5)) && WT && WT.isOn())
+			if(do_after(user, max(5, damage / 5, TRUE, 5, BUSY_ICON_CLOCK)) && WT && WT.isOn())
 				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
 				take_damage(-damage)
 			return

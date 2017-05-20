@@ -59,7 +59,7 @@
 				"\blue [user] starts to fix part of the microwave.", \
 				"\blue You start to fix part of the microwave." \
 			)
-			if (do_after(user,20))
+			if (do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message( \
 					"\blue [user] fixes part of the microwave.", \
 					"\blue You have fixed part of the microwave." \
@@ -70,7 +70,7 @@
 				"\blue [user] starts to fix part of the microwave.", \
 				"\blue You start to fix part of the microwave." \
 			)
-			if (do_after(user,20))
+			if (do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message( \
 					"\blue [user] fixes the microwave.", \
 					"\blue You have fixed the microwave." \
@@ -88,7 +88,7 @@
 				"\blue [user] starts to clean the microwave.", \
 				"\blue You start to clean the microwave." \
 			)
-			if (do_after(user,20))
+			if (do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message( \
 					"\blue [user]  has cleaned  the microwave.", \
 					"\blue You have cleaned the microwave." \

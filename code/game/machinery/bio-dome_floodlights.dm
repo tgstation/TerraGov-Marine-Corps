@@ -106,7 +106,7 @@
 		if(WT.remove_fuel(0, user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			user.visible_message("[user.name] starts to weld the damage to [src.name].","You start to weld the damage to [src.name].")
-			if (do_after(user,200))
+			if (do_after(user,200, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src || !WT.isOn()) return
 				damaged = 0
 				user << "You finish welding."
@@ -139,7 +139,7 @@
 				user << "<span class='xenowarning'>You need your claws empty for this!</span>"
 				r_FAL
 			user.visible_message("[user.name] starts to slash away at [src.name]!","In a rage, you start to slash and claw at the bright light! <b>You only need to claw once and then stand still!</b>")
-			if(do_after(user, 50, 1) && !damaged) //Not when it's already damaged.
+			if(do_after(user, 50) && !damaged) //Not when it's already damaged.
 				if(!src) return 0
 				damaged = 1
 				SetLuminosity(0)

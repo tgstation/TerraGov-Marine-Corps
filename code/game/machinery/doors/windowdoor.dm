@@ -201,7 +201,7 @@
 	if (src.operating == -1 && istype(I, /obj/item/weapon/crowbar))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
-		if (do_after(user,40))
+		if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 			user << "\blue You removed the windoor electronics!"
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)

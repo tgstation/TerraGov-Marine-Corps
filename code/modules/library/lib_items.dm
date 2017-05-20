@@ -231,7 +231,7 @@
 	else if(istype(W, /obj/item/weapon/kitchenknife) || istype(W, /obj/item/weapon/wirecutters))
 		if(carved)	return
 		user << "<span class='notice'>You begin to carve out [title].</span>"
-		if(do_after(user, 30))
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
 			user << "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>"
 			carved = 1
 			return

@@ -42,7 +42,7 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = usr.dir
 	var/constrloc = usr.loc
-	if (!do_after(usr, 30))
+	if (!do_after(usr, 30, TRUE, 5, BUSY_ICON_CLOCK))
 		return
 	switch(fixture_type)
 		if("bulb")
@@ -104,7 +104,7 @@
 		if (src.stage == 1)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			usr << "You begin deconstructing [src]."
-			if (!do_after(usr, 30))
+			if (!do_after(usr, 30, TRUE, 5, BUSY_ICON_CLOCK))
 				return
 			new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \

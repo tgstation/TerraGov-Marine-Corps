@@ -865,8 +865,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/organ/external/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
 	status |= ORGAN_SPLINTING //Set the tempory status. Set on organ so we don't worry about it being improperly reset or stuck.
-	if(do_after(user, 50))
-		if(user && user.loc && target && target.loc && !(status & ORGAN_DESTROYED) && !(status & ORGAN_SPLINTED))
+	if(do_mob(user, target, 50, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+		if(!(status & ORGAN_DESTROYED) && !(status & ORGAN_SPLINTED))
 			if(target != user)
 				user.visible_message(
 				"<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>",

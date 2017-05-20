@@ -1168,7 +1168,7 @@ About the new airlock wires panel:
 			"<span class='notice'>You start working on the [src] with the [W].</span>", \
 			"<span class='notice'>You hear welding.</span>")
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src.welded)
 					src.welded = 1
 				else
@@ -1195,7 +1195,7 @@ About the new airlock wires panel:
 		if( beingcrowbarred && src.p_open && (operating == -1 || (density && welded && operating != 1 && !src.arePowerSystemsOn() && !src.locked)) )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40))
+			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 				user << "\blue You removed the airlock electronics!"
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)

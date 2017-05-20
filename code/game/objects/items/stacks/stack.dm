@@ -127,6 +127,7 @@
 			return
 		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
 			usr << "\red There is another [R.title] here!"
+			return
 		if(locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/table) in usr.loc)
 			usr << "\red Not enough space to construct [R.title] here!"
 			return
@@ -135,7 +136,7 @@
 			return
 		if (R.time)
 			usr << "\blue Building [R.title] ..."
-			if (!do_after(usr, R.time))
+			if (!do_after(usr, R.time, 2, 5, BUSY_ICON_CLOCK))
 				return
 		//We want to check this again for girder stacking
 		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
