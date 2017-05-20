@@ -211,7 +211,7 @@
 	attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 		if(istype(D, /obj/item/weapon/screwdriver))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			if(do_after(user, 20))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 				if (src.stat & BROKEN)
 					user << "\blue The broken glass falls out."
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )

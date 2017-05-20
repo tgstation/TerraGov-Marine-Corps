@@ -162,7 +162,7 @@
 						else
 							O.show_message(text("\red <B>[] begins hunting for an injection port on []'s suit!</B>", user, target), 1)
 
-					if(!do_mob(user, target, time)) return
+					if(!do_mob(user, target, time, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
 
 					for(var/mob/O in viewers(world.view, user))
 						O.show_message(text("\red [] injects [] with the syringe!", user, target), 1)
@@ -358,7 +358,7 @@
 				if(ismob(target) && target != user)
 					for(var/mob/O in viewers(world.view, user))
 						O.show_message(text("\red <B>[] is trying to inject [] with a giant syringe!</B>", user, target), 1)
-					if(!do_mob(user, target, 300)) return
+					if(!do_mob(user, target, 300, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
 					for(var/mob/O in viewers(world.view, user))
 						O.show_message(text("\red [] injects [] with a giant syringe!", user, target), 1)
 					src.reagents.reaction(target, INGEST)

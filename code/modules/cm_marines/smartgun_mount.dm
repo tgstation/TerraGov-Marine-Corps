@@ -148,7 +148,7 @@
 				return
 
 			user << "You begin wrenching [src] into place.."
-			if(do_after(user,20))
+			if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("\blue [user] anchors [src] into place.","\blue You anchor [src] into place.")
 				anchored = 1
@@ -159,7 +159,7 @@
 			user << "The post must be anchored! Use a wrench!" // you tool
 			return
 		user << "You begin mounting the M56D.."
-		if(do_after(user,30))
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("\blue [user] installs [O] into place.","\blue You install [O] into place.")
 			gun_mounted = 1
@@ -180,7 +180,7 @@
 			user << "There isn't a M56D even mounted on this. Mount the M56D onto the mount first!"
 			return
 		user << "You're securing the M56D into place"
-		if(do_after(user,30))
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			user.visible_message("\blue [user] screws the M56D into the mount.","\blue You finalize the M56D mounted smartgun system.")
 			var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
@@ -279,7 +279,7 @@
 			user << "This one cannot be disassembled."
 		else
 			user << "You begin disassembling the M56D mounted smartgun"
-			if(do_after(user,15))
+			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				var/obj/item/device/m56d_gun/HMG = new(src.loc) //Here we generate our disassembled mg.
@@ -292,7 +292,7 @@
 		if(rounds)
 			usr << "There is already a ammo drum in the weapon!"
 			return
-		if(do_after(user,5))
+		if(do_after(user,5, TRUE, 5, BUSY_ICON_CLOCK))
 			user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
 			rounds = 700
 			update_icon()

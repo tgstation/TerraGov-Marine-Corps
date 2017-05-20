@@ -1011,7 +1011,7 @@ mob/proc/yank_out_object()
 			r_FAL
 		U << "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>"
 
-	if(!do_after(U, 80, 1))
+	if(!do_after(U, 80, TRUE, 5, BUSY_ICON_CLOCK))
 		return
 	if(!selection || !S || !U || !istype(selection))
 		return

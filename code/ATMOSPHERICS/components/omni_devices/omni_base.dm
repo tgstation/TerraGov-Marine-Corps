@@ -92,7 +92,7 @@
 		return 1
 	user << "\blue You begin to unfasten \the [src]..."
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-	if(do_after(user, 40))
+	if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
 			"\blue You have unfastened \the [src].", \

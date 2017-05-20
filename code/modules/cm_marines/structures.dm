@@ -100,7 +100,7 @@
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			busy = 1
-			if(do_after(user, 50))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 				busy = 0
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
@@ -158,7 +158,7 @@
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				busy = 1
-				if(do_after(user, 50))
+				if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 					busy = 0
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")

@@ -295,7 +295,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 			visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
 
-			if(do_after(user, 20))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!M || !G || !G.grabbed_thing || !G.grabbed_thing.loc || G.grabbed_thing != M) r_FAL
 				move_mob_inside(M)
 
@@ -342,7 +342,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 		visible_message("<span class='warning'>[user] starts climbing into the cryo pod.</span>", 3)
 
-		if(do_after(user, 20, FALSE))
+		if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
 			user.stop_pulling()
 			move_mob_inside(user)
 

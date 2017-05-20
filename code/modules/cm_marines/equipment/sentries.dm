@@ -79,7 +79,7 @@
 					return
 
 				user << "You begin wrenching [src] into place.."
-				if(do_after(user,40))
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 					user.visible_message("\blue [user] anchors [src] into place.","\blue You anchor [src] into place.")
 					anchored = 1
@@ -94,7 +94,7 @@
 				user << "There is already wiring installed on the [src]."
 				return
 			user << "You begin installing the wiring.."
-			if(do_after(user,40))
+			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 				if (CC.use(10))
 					has_cable = 1
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -112,7 +112,7 @@
 				user << "The top section is already installed!"
 				return
 			user << "You begin installing the turret gun section.."
-			if(do_after(user,60))
+			if(do_after(user,60, TRUE, 5, BUSY_ICON_CLOCK))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("\blue [user] installs [O] into place.","\blue You install [O] into place.")
 				has_top = 1
@@ -129,7 +129,7 @@
 				user << "It already has a sensor!"
 				return
 			user << "You begin installing the [O].."
-			if(do_after(user,40))
+			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 				has_sensor = 1
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("\blue [user] installs the control sensor on the [src].","\blue You install the control sensor.")
@@ -150,7 +150,7 @@
 				user << "You require at least 10 sheets of metal to reinforce the plating. You have only [M.amount]."
 				return
 			user << "You begin installing the reinforced plating.."
-			if(do_after(user,50))
+			if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!M) return
 				if(M.amount >= 10)
 					has_plates = 1
@@ -170,7 +170,7 @@
 				return
 			var/obj/item/weapon/weldingtool/WT = O
 			user << "You begin welding the parts together.."
-			if(do_after(user,60))
+			if(do_after(user,60, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src || !WT || !WT.isOn()) return
 				if(WT.remove_fuel(0, user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -304,7 +304,7 @@
 
 	if(stat)
 		user.visible_message("[user] begins to right the [src].","You begin to put the [src] upright..")
-		if(do_after(user,20, FALSE))
+		if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 			user.visible_message("[user] rights the [src].","You put the [src] upright.")
 			stat = 0
 			update_icon()
@@ -529,7 +529,7 @@
 		if(!anchored)
 			if(src.loc) //Just to be safe.
 				user << "You begin securing the [src] to the floor."
-				if(do_after(user,40))
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 					user.visible_message("\blue [user] secures [src] to the floor!","\blue You secure [src] to the floor!")
 					anchored = 1
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -540,7 +540,7 @@
 				return
 			else
 				user << "You begin unscrewing the anchoring bolts.."
-				if(do_after(user,40))
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 					user.visible_message("\blue [user] unsecures [src] from the floor!","\blue You unsecure [src] from the floor!")
 					anchored = 0
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -558,7 +558,7 @@
 
 		if(WT.remove_fuel(0, user))
 			user.visible_message("\blue [user] begins repairing damage to the [src].","\blue You begin repairing the damage to the [src].")
-			if(do_after(user,50))
+			if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message("\blue [user] repairs the damaged [src].","\blue Your repair the [src]'s damage.")
 				update_health(-50)
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -566,7 +566,7 @@
 
 	if(istype(O,/obj/item/weapon/cell))
 		user << "You begin the new power cell installation.."
-		if(do_after(user,30))
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
 			user.drop_inv_item_to_loc(O, src)
 			if(cell)
 				user.visible_message("[user] swaps out the power cells in the [src].","You swap out the power cells.")
@@ -581,7 +581,7 @@
 			user << "It can only be reloaded when empty."
 			return
 		user.visible_message("[user] begins fitting a new box magazine into the sentry turret.","You begin reloading..")
-		if(do_after(user,70))
+		if(do_after(user,70, TRUE, 5, BUSY_ICON_CLOCK))
 			playsound(src.loc, 'sound/weapons/unload.ogg', 25, 1)
 			user.visible_message("\blue [user] reloads the [src].","\blue You reload the [src].")
 			user.drop_held_item()

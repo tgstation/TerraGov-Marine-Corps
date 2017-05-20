@@ -128,7 +128,7 @@
 			if(WT.remove_fuel(0, user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to weld the damage to [src].</span>","<span class='notice'>You start to weld the damage to [name]. Stand still!</span>")
-				if (do_after(user,200))
+				if (do_after(user,200, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src || !WT.isOn()) return
 					buildstate = 2
 					user << "You finish welding."
@@ -141,7 +141,7 @@
 		if(buildstate == 2 && !is_on)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
-			if(do_after(user,120))
+			if(do_after(user,120, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src) return
 				buildstate = 3
 				user << "You finish securing the wires."
@@ -151,7 +151,7 @@
 		if(buildstate == 3 && !is_on)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
-			if(do_after(user,150))
+			if(do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src) return
 				buildstate = 0
 				is_on = 0
@@ -271,7 +271,7 @@
 		if(WT.remove_fuel(0, user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			user.visible_message("[user.name] starts to weld the damage to [src.name].","You start to weld the damage to [src.name].")
-			if (do_after(user,200))
+			if (do_after(user,200, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src || !WT.isOn()) return
 				damaged = 0
 				user << "You finish welding."
@@ -304,7 +304,7 @@
 				user << "<span class='xenowarning'>You need your claws empty for this!</span>"
 				r_FAL
 			user.visible_message("[user.name] starts to slash away at [src.name]!","In a rage, you start to slash and claw at the bright light! <b>You only need to claw once and then stand still!</b>")
-			if(do_after(user, 50, 1) && !damaged) //Not when it's already damaged.
+			if(do_after(user, 50) && !damaged) //Not when it's already damaged.
 				if(!src) return 0
 				damaged = 1
 				SetLuminosity(0)

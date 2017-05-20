@@ -1139,7 +1139,7 @@ table tr:first-child th:first-child { border: none;}
 			else if(istype(W, /obj/item/weapon/crowbar))
 				user << "You start prying out the circuit."
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user,20))
+				if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 					user << "You pry out the circuit!"
 					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
 					circuit.loc = user.loc

@@ -94,7 +94,7 @@
 
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 
-	if(!do_after(user, climb_delay, FALSE))
+	if(!do_after(user, climb_delay, FALSE, 5, BUSY_ICON_CLOCK))
 		return
 
 	if(!can_climb(user))

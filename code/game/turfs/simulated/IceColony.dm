@@ -29,7 +29,7 @@
 				return
 
 			user << "Now planting \the [L]."
-			if(!do_after(user,20))
+			if(!do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 				return
 
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")
@@ -59,7 +59,7 @@
 				user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
 				S.working = 1
 				playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-				if(!do_after(user,50))
+				if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 					user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 					S.working = 0
 					return
@@ -92,7 +92,7 @@
 					user.visible_message("[user.name] starts throwing out the snow to the ground.","You start throwing out the snow to the ground.")
 					S.working = 1
 					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-					if(!do_after(user,50))
+					if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 						user.visible_message("\red \The [user] decides not to add any more snow to [S].")
 						S.working = 0
 						return
@@ -118,7 +118,7 @@
 					user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
 					S.working = 1
 					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-					if(!do_after(user,50))
+					if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 						user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 						S.working = 0
 						return
@@ -152,7 +152,7 @@
 				user.visible_message("[user.name] starts shaping the barricade.","You start shaping the barricade")
 				S.working = 1
 				playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-				if(!do_after(user,150))
+				if(!do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))
 					user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
 					S.working = 0
 					return
@@ -703,7 +703,7 @@
 			return
 
 		user << "You start pulling out \the [src]."
-		if(!do_after(user,20, 1))
+		if(!do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 			return
 
 		anchored = 0
@@ -803,7 +803,7 @@
 					return
 				user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
 				S.working = 1
-				if(!do_after(user,100))
+				if(!do_after(user,100, TRUE, 5, BUSY_ICON_CLOCK))
 					user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 					S.working = 0
 					return

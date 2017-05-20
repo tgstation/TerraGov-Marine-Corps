@@ -318,7 +318,7 @@ var/global/list/frozen_items = list()
 
 			visible_message("<span class='notice'>[user] starts putting [M] into the cryo pod.</span>", 3)
 
-			if(!do_after(user, 20)) return
+			if(!do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK)) return
 			if(!M || !G || !G.grabbed_thing) return
 			M.forceMove(src)
 			if(orient_right)
@@ -378,7 +378,7 @@ var/global/list/frozen_items = list()
 
 	visible_message("[usr] starts climbing into the cryo pod.", 3)
 
-	if(do_after(usr, 20, FALSE))
+	if(do_after(usr, 20, FALSE, TRUE, 5, BUSY_ICON_CLOCK))
 
 		if(!usr || !usr.client)
 			return

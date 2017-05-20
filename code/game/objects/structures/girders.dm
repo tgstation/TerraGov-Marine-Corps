@@ -36,7 +36,7 @@
 			if(anchored && !istype(src,/obj/structure/girder/displaced))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user << "\blue Now disassembling the girder"
-				if(do_after(user,40))
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src) return
 					user << "\blue You dissasembled the girder!"
 					dismantle()
@@ -53,7 +53,7 @@
 
 		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
 			user << "\blue Now slicing apart the girder"
-			if(do_after(user,30))
+			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src) return
 				user << "\blue You slice apart the girder!"
 				dismantle()
@@ -65,7 +65,7 @@
 		else if(istype(W, /obj/item/weapon/screwdriver) && state == 2 && istype(src,/obj/structure/girder/reinforced))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << "\blue Now unsecuring support struts"
-			if(do_after(user,40))
+			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src) return
 				user << "\blue You unsecured the support struts!"
 				state = 1
@@ -73,7 +73,7 @@
 		else if(istype(W, /obj/item/weapon/wirecutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			user << "\blue Now removing support struts"
-			if(do_after(user,40))
+			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src) return
 				user << "\blue You removed the support struts!"
 				new/obj/structure/girder( src.loc )
@@ -82,7 +82,7 @@
 		else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user << "\blue Now dislodging the girder..."
-			if(do_after(user, 40))
+			if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 				if(!src) return
 				user << "\blue You dislodged the girder!"
 				new/obj/structure/girder/displaced( src.loc )
@@ -101,7 +101,7 @@
 					if(!anchored)
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,80))
+						if (do_after(user,80, TRUE, 5, BUSY_ICON_CLOCK))
 							if(!S) return
 							if(S.use(2))
 								user << "<span class='notice'>You create a false wall. Push on it to open or close the passage.</span>"
@@ -112,7 +112,7 @@
 					else
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,80))
+						if (do_after(user,80, TRUE, 5, BUSY_ICON_CLOCK))
 							if(!S) return
 							if (S.use(2))
 								user << "<span class='notice'>You added the plating!</span>"
@@ -165,7 +165,7 @@
 				else
 					if(S.amount < 2) return ..()
 					user << "\blue Now adding plating..."
-					if (do_after(user,40))
+					if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 						if(!src || !S || S.amount < 2) return
 						S.use(2)
 						user << "\blue You added the plating!"
@@ -247,14 +247,14 @@
 		if(istype(W, /obj/item/weapon/wrench))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user << "\blue Now disassembling the girder"
-			if(do_after(user,40))
+			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 				user << "\blue You dissasembled the girder!"
 				new /obj/effect/decal/remains/human(get_turf(src))
 				del(src)
 
 		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
 			user << "\blue Now slicing apart the girder"
-			if(do_after(user,30))
+			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
 				user << "\blue You slice apart the girder!"
 			new /obj/effect/decal/remains/human(get_turf(src))
 			del(src)

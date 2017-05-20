@@ -134,7 +134,7 @@ field_generator power level display
 					user.visible_message("[user.name] starts to weld the [src.name] to the floor.", \
 						"You start to weld the [src] to the floor.", \
 						"You hear welding")
-					if (do_after(user,20))
+					if (do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 						if(!src || !WT.isOn()) return
 						state = 2
 						user << "You weld the field generator to the floor."
@@ -146,7 +146,7 @@ field_generator power level display
 					user.visible_message("[user.name] starts to cut the [src.name] free from the floor.", \
 						"You start to cut the [src] free from the floor.", \
 						"You hear welding")
-					if (do_after(user,20))
+					if (do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 						if(!src || !WT.isOn()) return
 						state = 1
 						user << "You cut the [src] free from the floor."

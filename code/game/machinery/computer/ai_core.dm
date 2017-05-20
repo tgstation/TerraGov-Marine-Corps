@@ -15,7 +15,7 @@
 		if(0)
 			if(istype(P, /obj/item/weapon/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 					user << "\blue You wrench the frame into place."
 					anchored = 1
 					state = 1
@@ -25,7 +25,7 @@
 					user << "The welder must be on for this task."
 					return
 				playsound(loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src || !WT.remove_fuel(0, user)) return
 					user << "\blue You deconstruct the frame."
 					new /obj/item/stack/sheet/plasteel( loc, 4)
@@ -33,7 +33,7 @@
 		if(1)
 			if(istype(P, /obj/item/weapon/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 					user << "\blue You unfasten the frame."
 					anchored = 0
 					state = 0
@@ -69,7 +69,7 @@
 					return
 				user << "<span class='notice'>You start to add cables to the frame.</span>"
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				if (do_after(user, 20) && state == 2)
+				if (do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && state == 2)
 					if (C.use(5))
 						state = 3
 						icon_state = "3"
@@ -94,7 +94,7 @@
 					return
 				user << "<span class='notice'>You start to put in the glass panel.</span>"
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				if (do_after(user, 20) && state == 3)
+				if (do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && state == 3)
 					if(RG.use(2))
 						user << "<span class='notice'>You put in the glass panel.</span>"
 						state = 4

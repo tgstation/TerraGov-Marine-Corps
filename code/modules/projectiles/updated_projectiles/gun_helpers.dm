@@ -288,7 +288,7 @@ should be alright.
 		return
 
 	user << "<span class='notice'>You begin field modifying [src]...</span>"
-	if(do_after(user,60))
+	if(do_after(user,60, TRUE, 5, BUSY_ICON_CLOCK))
 		if(attachment && attachment.loc)
 			user << "<span class='notice'>You attach [attachment] to [src].</span>"
 			user.temp_drop_inv_item(attachment)
@@ -390,7 +390,7 @@ should be alright.
 		return
 
 	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
-	if(!do_after(usr,40))
+	if(!do_after(usr,40, TRUE, 5, BUSY_ICON_CLOCK))
 		return
 
 	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE) )

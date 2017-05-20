@@ -74,7 +74,7 @@
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 				user << "You start slicing the floorweld off the disposal unit."
 
-				if(do_after(user,20))
+				if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src || !W.isOn()) return
 					user << "You sliced the floorweld off the disposal unit."
 					var/obj/structure/disposalconstruct/C = new (src.loc)
@@ -107,7 +107,7 @@
 		if(ismob(G.grabbed_thing) && user.grab_level >= GRAB_AGGRESSIVE)
 			var/mob/GM = G.grabbed_thing
 			user.visible_message("[user] starts putting [GM] into the disposal.")
-			if(do_after(usr, 20))
+			if(do_after(usr, 20, TRUE, 5, BUSY_ICON_CLOCK))
 				GM.forceMove(src)
 				user.visible_message("\red [GM.name] has been placed in the [src] by [user].", 3)
 
@@ -145,7 +145,7 @@
 		if(target != user && !user.is_mob_restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
 			if(target.anchored) return
 			V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
-	if(!do_after(usr, 20, FALSE))
+	if(!do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
 		return
 	if(target_loc != target.loc)
 		return
@@ -1467,7 +1467,7 @@
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 				user << "You start slicing the floorweld off the disposal outlet."
-				if(do_after(user,20))
+				if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src || !W.isOn()) return
 					user << "You sliced the floorweld off the disposal outlet."
 					var/obj/structure/disposalconstruct/C = new (src.loc)

@@ -274,7 +274,7 @@
 	playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 	WT.eyecheck(user)
 	busy = 1
-	if(do_after(user, 100))
+	if(do_after(user, 100, TRUE, 5, BUSY_ICON_CLOCK))
 		busy = 0
 		if(!WT.isOn())
 			return 0

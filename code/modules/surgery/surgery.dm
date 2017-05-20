@@ -130,7 +130,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				Clamp(multipler, 0, 1)
 
 				//Multiply tool success rate with multipler
-				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
+				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, rand(S.min_duration, S.max_duration), BUSY_ICON_CLOCK, BUSY_ICON_MED))
 					S.end_step(user, M, user.zone_sel.selecting, tool) //Finish successfully
 
 				else if((tool in user.contents) && user.Adjacent(M)) //Or

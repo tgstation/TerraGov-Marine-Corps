@@ -111,7 +111,7 @@
 		if (unwrenched==0)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user << "\blue You begin to unfasten \the [src] from the floor..."
-			if (do_after(user, 40))
+			if (do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message( \
 					"[user] unfastens \the [src].", \
 					"\blue You have unfastened \the [src]. Now it can be pulled somewhere else.", \
@@ -124,7 +124,7 @@
 		else /*if (unwrenched==1)*/
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user << "\blue You begin to fasten \the [src] to the floor..."
-			if (do_after(user, 20))
+			if (do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message( \
 					"[user] fastens \the [src].", \
 					"\blue You have fastened \the [src]. Now it can dispense pipes.", \

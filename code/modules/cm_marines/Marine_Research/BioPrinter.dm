@@ -102,7 +102,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	icon_state = "protolathe"
 	busy = 1
 	use_power(max(1000, (3750)))
-	if (do_after(user, 16))
+	if (do_after(user, 16, TRUE, 5, BUSY_ICON_CLOCK))
 		user << "\blue You add a [O] to the [src.name]."
 		icon_state = "protolathe"
 		if(istype(O, /obj/item/XenoBio/Blood))

@@ -179,7 +179,7 @@
 			user << "<span class='warning'>You must remove the floor plating first.</span>"
 			return 1
 	user << "<span class='notice'>You start adding cable to the [src].</span>"
-	if(do_after(user, 50))
+	if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.dir = tempDir
 		terminal.master = src
@@ -246,7 +246,7 @@
 			else
 				user << "<span class='notice'>You begin to cut the cables...</span>"
 				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 25, 1)
-				if(do_after(user, 50))
+				if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)

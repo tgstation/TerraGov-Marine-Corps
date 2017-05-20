@@ -148,7 +148,7 @@
 			return
 		usr << "\blue Assembling sandbag barricade..."
 		in_use = 1
-		if (!do_after(usr, 20))
+		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			in_use = 0
 			return
 		var/obj/structure/m_barricade/sandbags/SB = new /obj/structure/m_barricade/sandbags ( usr.loc )

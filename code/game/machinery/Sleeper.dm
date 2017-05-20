@@ -228,7 +228,7 @@
 
 			visible_message("[user] starts putting [G.grabbed_thing] into the sleeper.", 3)
 
-			if(do_after(user, 20))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 				if(src.occupant)
 					user << "\blue <B>The sleeper is already occupied!</B>"
 					return
@@ -400,7 +400,7 @@
 			return
 
 		visible_message("[usr] starts climbing into the sleeper.", 3)
-		if(do_after(usr, 20, FALSE))
+		if(do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
 			if(src.occupant)
 				usr << "\blue <B>The sleeper is already occupied!</B>"
 				return

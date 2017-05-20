@@ -1830,7 +1830,7 @@
 			return
 
 		visible_message("[usr] starts climbing into the sleeper.", 3)
-		if(do_after(usr, 20, FALSE))
+		if(do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
 			if(occupant)
 				usr << "<span class='notice'>The sleeper is already occupied!</span>"
 				return
@@ -1873,7 +1873,7 @@
 
 			visible_message("[user] starts putting [M] into the Med-Pod.", 3)
 
-			if(do_after(user, 20, FALSE))
+			if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
 				if(src.occupant)
 					user << "<span class='notice'>The Med-Pod is already occupied!</span>"
 					return
