@@ -514,8 +514,7 @@
 		if(M.stat == DEAD)
 			return
 		if(!M) M = holder.my_atom
-		if(alien)
-			M.heal_organ_damage(2*REM,0)
+		M.heal_organ_damage(2*REM,0)
 
 /datum/reagent/quickclot
 	name = "Quick clot"
