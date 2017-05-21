@@ -3729,7 +3729,7 @@
 "btK" = (/obj/machinery/light/almayer,/turf/simulated/floor/almayer{tag = "icon-red"; icon_state = "red"},/area/almayer/shipboard/weapon_room)
 "btL" = (/obj/structure/rack,/turf/simulated/floor/almayer{tag = "icon-red (SOUTHEAST)"; icon_state = "red"; dir = 6},/area/almayer/shipboard/weapon_room)
 "btM" = (/obj/machinery/light/almayer,/turf/simulated/floor/almayer,/area/almayer/shipboard/brig)
-"btN" = (/obj/structure/stool/bed/chair/office/dark{dir = 4},/obj/effect/landmark/start{name = "Warrant Officer"},/turf/simulated/floor/almayer,/area/almayer/shipboard/brig)
+"btN" = (/obj/structure/stool/bed/chair/office/dark{dir = 4},/obj/effect/landmark/start{name = "Chief MP"},/turf/simulated/floor/almayer,/area/almayer/shipboard/brig)
 "btO" = (/obj/machinery/computer/security,/obj/structure/table/almayer,/turf/simulated/floor/almayer,/area/almayer/shipboard/brig)
 "btP" = (/obj/machinery/computer/secure_data,/obj/structure/table/almayer,/turf/simulated/floor/almayer,/area/almayer/shipboard/brig)
 "btQ" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 1},/turf/simulated/floor/almayer{tag = "icon-red (SOUTHWEST)"; icon_state = "red"; dir = 10},/area/almayer/shipboard/brig)
