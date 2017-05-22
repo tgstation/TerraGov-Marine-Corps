@@ -22,8 +22,8 @@
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>")
 
-		if("grab") //Defaults to ctrl-click pull. Grabs are fucked up!
-			if(M == src || anchored)
+		if("grab")
+			if(M == src || anchored || buckled)
 				return 0
 
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
@@ -35,10 +35,6 @@
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
 				M.update_icons() //To immediately show the grab
-
-				M.visible_message("<span class='warning'>[M] grabs [src]!</span>", \
-				"<span class='warning'>You grab [src]!</span>")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 
 		if("hurt")
 			if(!slashing_allowed && !M.is_intelligent)
@@ -183,16 +179,12 @@
 			return 0
 
 		if("grab")
-			if(M == src || anchored)
+			if(M == src || anchored || buckled)
 				return 0
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
 				M.update_icons() //To immediately show the grab
-
-				M.visible_message("<span class='warning'>[M] grabs [src]!</span>", \
-				"<span class='warning'>You grab [src]!</span>")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 
 		if("hurt")
 			if(isXeno(src)) //Can't slash other xenos for now

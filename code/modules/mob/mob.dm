@@ -552,7 +552,7 @@ var/list/slot_equipment_priority = list( \
 			temp_drop_inv_item(l_hand)
 
 
-/mob/proc/start_pulling(atom/movable/AM, grab_start_level)
+/mob/proc/start_pulling(atom/movable/AM)
 
 	if ( !AM || !usr || src==AM || !isturf(loc) || !isturf(AM.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
@@ -571,10 +571,11 @@ var/list/slot_equipment_priority = list( \
 			return
 
 	var/mob/M
+	if(ismob(AM))
+		M = AM
 
 	if(AM.pulledby)
-		if(ismob(AM))
-			M = AM
+		if(M)
 			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>")
 		AM.pulledby.stop_pulling()
 
