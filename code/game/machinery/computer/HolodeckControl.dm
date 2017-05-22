@@ -482,7 +482,7 @@ var/global/list/holodeck_programs = list(
 			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_inv_item_to_loc(W, src)
+		user.drop_inv_item_to_loc(W, loc)
 		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>")
 		return
 
