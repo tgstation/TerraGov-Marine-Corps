@@ -6,7 +6,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	flags_atom = NOBLUDGEON|DELONDROP
 	layer = 21
-	abstract = 1
+	abstract = TRUE
 	item_state = "nothing"
 	w_class = 5
 	var/atom/movable/grabbed_thing

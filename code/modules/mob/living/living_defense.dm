@@ -160,10 +160,10 @@
 	if(fire_stacks < 0)
 		fire_stacks++ //If we've doused ourselves in water to avoid fire, dry off slowly
 		fire_stacks = min(0, fire_stacks)//So we dry ourselves back to default, nonflammable.
-	else
-		adjust_fire_stacks(-1) //the fire is consumed slowly
 	if(!on_fire)
 		return 1
+	if(fire_stacks > 0)
+		adjust_fire_stacks(-1) //the fire is consumed slowly
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(700, 50, 1)
 

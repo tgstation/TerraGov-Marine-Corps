@@ -221,7 +221,7 @@
 
 	if(density)
 		density = 0
-		if(!step(M, get_dir(M, src) && loc != M.loc))
+		if(!step(M, get_dir(M, src)) && loc != M.loc)
 			density = 1
 			return
 		density = 1

@@ -598,7 +598,7 @@ BLIND     // can't see anything
 	attackby(obj/item/I, mob/user)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(loc == H)
+			if(loc == H && !holstered_weapon)
 				for(var/w_type in accepted_weapon_types)
 					if(ispath(I.type, w_type))
 						user.temp_drop_inv_item(I)

@@ -2,7 +2,7 @@
 	name = "item"
 	icon = 'icons/obj/items.dmi'
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
-	var/abstract = 0
+	var/abstract = FALSE
 	var/item_state = null
 	var/r_speed = 1.0
 	var/health = null

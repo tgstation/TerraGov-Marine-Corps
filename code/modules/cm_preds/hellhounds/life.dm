@@ -42,12 +42,6 @@
 
 	return
 
-/mob/living/carbon/hellhound/handle_fire()
-	if(..())
-		return
-//	adjustFireLoss(5)
-	return
-
 /mob/living/carbon/hellhound/proc/handle_regular_status_updates()
 	if(stat == DEAD)	//DEAD
 		blinded = 1

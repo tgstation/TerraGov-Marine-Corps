@@ -10,6 +10,7 @@
 	climbable = 1
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	anchored = 0
+	store_mobs = FALSE
 	var/rigged = 0
 
 
@@ -38,9 +39,8 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
 	for(var/obj/O in src)
 		O.loc = get_turf(src)
-	icon_state = icon_opened
-	src.opened = 1
-
+	opened = 1
+	update_icon()
 	if(climbable)
 		structure_shaken()
 	return 1
@@ -65,11 +65,12 @@
 		O.loc = src
 		itemcount++
 
-	icon_state = icon_closed
-	src.opened = 0
+	opened = 0
+	update_icon()
 	return 1
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.abstract) return
 	if(opened)
 		if(isrobot(user))
 			return
@@ -119,213 +120,6 @@
 		else
 	return
 
-/* Old Code
-/obj/structure/closet/crate/secure
-	desc = "A secure crate."
-	name = "Secure crate"
-	icon_state = "securecrate"
-	icon_opened = "securecrateopen"
-	icon_closed = "securecrate"
-	var/redlight = "securecrater"
-	var/greenlight = "securecrateg"
-	var/sparks = "securecratesparks"
-	var/emag = "securecrateemag"
-	var/broken = 0
-	var/locked = 1
-*/
-
-/obj/structure/closet/crate/secure
-	desc = "A secure crate."
-	name = "Secure crate"
-	icon_state = "secure_locked_basic"
-	icon_opened = "secure_open_basic"
-	icon_closed = "secure_locked_basic"
-	var/icon_locked = "secure_locked_basic"
-	var/icon_unlocked = "secure_unlocked_basic"
-	var/sparks = "securecratesparks"
-	var/emag = "securecrateemag"
-	var/broken = 0
-	var/locked = 1
-
-/* Old overlay system
-/obj/structure/closet/crate/secure/New()
-	..()
-	if(locked)
-		overlays.Cut()
-		overlays += redlight
-	else
-		overlays.Cut()
-		overlays += greenlight
-
-/obj/structure/closet/crate/secure/can_open()
-	return !locked
-
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
-	if(src.opened)
-		user << "<span class='notice'>Close the crate first.</span>"
-		return
-	if(src.broken)
-		user << "<span class='warning'>The crate appears to be broken.</span>"
-		return
-	if(src.allowed(user))
-		src.locked = !src.locked
-		for(var/mob/O in viewers(user, 3))
-			if((O.client && !( O.blinded )))
-				O << "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>"
-		overlays.Cut()
-		overlays += locked ? redlight : greenlight
-	else
-		user << "<span class='notice'>Access Denied</span>"
-
-/obj/structure/closet/crate/secure/verb/verb_togglelock()
-	set src in oview(1) // One square distance
-	set category = "Object"
-	set name = "Toggle Lock"
-
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
-		return
-
-	if(ishuman(usr))
-		src.add_fingerprint(usr)
-		src.togglelock(usr)
-	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
-
-/obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
-	if(locked)
-		src.togglelock(user)
-	else
-		src.toggle(user)
-
-/obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/wirecutters, /obj/item/weapon/weldingtool)))
-		return ..()
-	if(locked && (istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)))
-		overlays.Cut()
-		overlays += emag
-		overlays += sparks
-		spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-		playsound(src.loc, "sparks", 60, 1)
-		src.locked = 0
-		src.broken = 1
-		user << "<span class='notice'>You unlock \the [src].</span>"
-		return
-	if(!opened)
-		src.togglelock(user)
-		return
-	return ..()
-
-/obj/structure/closet/crate/secure/emp_act(severity)
-	for(var/obj/O in src)
-		O.emp_act(severity)
-	if(!broken && !opened  && prob(50/severity))
-		if(!locked)
-			src.locked = 1
-			overlays.Cut()
-			overlays += redlight
-		else
-			overlays.Cut()
-			overlays += emag
-			overlays += sparks
-			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-			playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
-			src.locked = 0
-	if(!opened && prob(20/severity))
-		if(!locked)
-			open()
-		else
-			src.req_access = list()
-			src.req_access += pick(get_all_accesses())
-	..()
-*/
-
-/obj/structure/closet/crate/secure/New()
-	..()
-	if(locked)
-		icon_state = icon_locked
-	else
-		icon_state = icon_unlocked
-
-/obj/structure/closet/crate/secure/can_open()
-	return !locked
-
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
-	if(src.opened)
-		user << "<span class='notice'>Close the crate first.</span>"
-		return
-	if(src.broken)
-		user << "<span class='warning'>The crate appears to be broken.</span>"
-		return
-	if(src.allowed(user))
-		src.locked = !src.locked
-		for(var/mob/O in viewers(user, 3))
-			if((O.client && !( O.blinded )))
-				O << "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>"
-		icon_state = locked ? icon_locked : icon_unlocked
-	else
-		user << "<span class='notice'>Access Denied</span>"
-
-/obj/structure/closet/crate/secure/verb/verb_togglelock()
-	set src in oview(1) // One square distance
-	set category = "Object"
-	set name = "Toggle Lock"
-
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
-		return
-
-	if(ishuman(usr))
-		src.add_fingerprint(usr)
-		src.togglelock(usr)
-	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
-
-/obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
-	if(locked)
-		src.togglelock(user)
-	else
-		src.toggle(user)
-
-/obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/wirecutters, /obj/item/weapon/weldingtool)))
-		return ..()
-	if(locked && (istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)))
-		overlays.Cut()
-		overlays += emag
-		overlays += sparks
-		spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-		playsound(src.loc, "sparks", 25, 1)
-		src.locked = 0
-		src.broken = 1
-		user << "<span class='notice'>You unlock \the [src].</span>"
-		return
-	if(!opened)
-		src.togglelock(user)
-		return
-	return ..()
-
-/obj/structure/closet/crate/secure/emp_act(severity)
-	for(var/obj/O in src)
-		O.emp_act(severity)
-	if(!broken && !opened  && prob(50/severity))
-		if(!locked)
-			src.locked = 1
-			icon_state = icon_unlocked
-		else
-			overlays.Cut()
-			overlays += emag
-			overlays += sparks
-			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
-			src.locked = 0
-	if(!opened && prob(20/severity))
-		if(!locked)
-			open()
-		else
-			src.req_access = list()
-			src.req_access += pick(get_all_accesses())
-	..()
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
@@ -568,146 +362,3 @@
 	icon_opened = "open_weapons"
 	icon_closed = "closed_weapons"
 
-//------------------------------------
-//			Secure Crates
-//------------------------------------
-
-/obj/structure/closet/crate/secure/ammo
-	name = "secure ammunitions crate"
-	desc = "A secure ammunitions crate"
-	icon_state = "secure_locked_ammo"
-	icon_opened = "secure_open_ammo"
-	icon_locked = "secure_locked_ammo"
-	icon_unlocked = "secure_unlocked_ammo"
-
-/obj/structure/closet/crate/secure/explosives
-	name = "explosives crate"
-	desc = "A explosives crate"
-	icon_state = "secure_locked_explosives"
-	icon_opened = "secure_open_explosives"
-	icon_locked = "secure_locked_explosives"
-	icon_unlocked = "secure_unlocked_explosives"
-
-// Needs to be converted to new system that does not use overlays
-// using default secure crate for now
-/obj/structure/closet/crate/secure/phoron
-	name = "phoron crate"
-	desc = "A secure phoron crate."
-
-// Needs to be converted to new system that does not use overlays
-// using Wayland crate for now
-/obj/structure/closet/crate/secure/gear
-	name = "gear crate"
-	desc = "A secure gear crate."
-	icon_state = "secure_locked_wayland"
-	icon_opened = "secure_open_wayland"
-	icon_locked = "secure_locked_wayland"
-	icon_unlocked = "secure_unlocked_wayland"
-
-/obj/structure/closet/crate/secure/hydrosec
-	name = "secure hydroponics crate"
-	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
-	icon_state = "secure_locked_hydro"
-	icon_opened = "secure_open_hydro"
-	icon_locked = "secure_locked_hydro"
-	icon_unlocked = "secure_unlocked_hydro"
-
-/obj/structure/closet/crate/secure/surgery
-	name = "surgery crate"
-	desc = "A surgery crate."
-	icon_state = "secure_locked_surgery"
-	icon_opened = "secure_open_surgery"
-	icon_locked = "secure_locked_surgery"
-	icon_unlocked = "secure_unlocked_surgery"
-
-/obj/structure/closet/crate/secure/weapon
-	name = "weapons crate"
-	desc = "A secure weapons crate."
-	icon_state = "secure_locked_weapons"
-	icon_opened = "secure_open_weapons"
-	icon_locked = "secure_locked_weapons"
-	icon_unlocked = "secure_unlocked_weapons"
-
-/obj/structure/closet/crate/secure/weyland
-	name = "secure Weyland-Armat crate"
-	desc = "A secure crate with a Weyland-Armat insignia on it."
-	icon_state = "secure_locked_weyland"
-	icon_opened = "secure_open_weyland"
-	icon_locked = "secure_locked_weyland"
-	icon_unlocked = "secure_unlocked_weyland"
-
-/* CM does not use these
-/obj/structure/closet/crate/secure/bin
-	desc = "A secure bin."
-	name = "Secure bin"
-	icon_state = "largebins"
-	icon_opened = "largebinsopen"
-	icon_closed = "largebins"
-	redlight = "largebinr"
-	greenlight = "largebing"
-	sparks = "largebinsparks"
-	emag = "largebinemag"
-*/
-
-/* Needs to be converted to new system that does not use overlays
-/obj/structure/closet/crate/large
-	name = "large crate"
-	desc = "A hefty metal crate."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "largemetal"
-	icon_opened = "largemetalopen"
-	icon_closed = "largemetal"
-
-/obj/structure/closet/crate/large/close()
-	. = ..()
-	if (.)//we can hold up to one large item
-		var/found = 0
-		for(var/obj/structure/S in src.loc)
-			if(S == src)
-				continue
-			if(!S.anchored)
-				found = 1
-				S.loc = src
-				break
-		if(!found)
-			for(var/obj/machinery/M in src.loc)
-				if(!M.anchored)
-					M.loc = src
-					break
-	return
-
-/obj/structure/closet/crate/secure/large
-	name = "large crate"
-	desc = "A hefty metal crate with an electronic locking system."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "largemetal"
-	icon_opened = "largemetalopen"
-	icon_closed = "largemetal"
-	redlight = "largemetalr"
-	greenlight = "largemetalg"
-
-/obj/structure/closet/crate/secure/large/close()
-	. = ..()
-	if (.)//we can hold up to one large item
-		var/found = 0
-		for(var/obj/structure/S in src.loc)
-			if(S == src)
-				continue
-			if(!S.anchored)
-				found = 1
-				S.loc = src
-				break
-		if(!found)
-			for(var/obj/machinery/M in src.loc)
-				if(!M.anchored)
-					M.loc = src
-					break
-	return
-
-//fluff variant
-/obj/structure/closet/crate/secure/large/reinforced
-	desc = "A hefty, reinforced metal crate with an electronic locking system."
-	icon_state = "largermetal"
-	icon_opened = "largermetalopen"
-	icon_closed = "largermetal"
-*/

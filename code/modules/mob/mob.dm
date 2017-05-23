@@ -894,8 +894,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 		stunned = max(stunned + amount,0)
 	return
 
-/mob/proc/Weaken(amount)
-	if(status_flags & CANWEAKEN)
+/mob/proc/Weaken(amount, force)
+	if((status_flags & CANWEAKEN) || force)
 		weakened = max(max(weakened,amount),0)
 		update_canmove()	//updates lying, canmove and icons
 	return
