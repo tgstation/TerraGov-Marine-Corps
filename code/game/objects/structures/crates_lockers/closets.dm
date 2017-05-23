@@ -17,9 +17,9 @@
 	var/open_sound = 'sound/machines/click.ogg'
 	var/close_sound = 'sound/machines/click.ogg'
 
-	var/store_misc = 1
-	var/store_items = 1
-	var/store_mobs = 1
+	var/store_misc = TRUE
+	var/store_items = TRUE
+	var/store_mobs = TRUE
 
 	anchored = 1 //Yep
 
@@ -136,8 +136,6 @@
 			continue
 
 		M.forceMove(src)
-		if(M.client)
-			M.reset_view(src)
 		stored_units += mob_size
 	return stored_units
 
@@ -194,7 +192,7 @@
 			if(G.grabbed_thing)
 				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
 			return
-		if(istype(W,/obj/item/tk_grab))
+		if(W.abstract)
 			return 0
 		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W

@@ -359,7 +359,7 @@
 			destroy(1)
 		return
 
-	if(isrobot(user))
+	if(W.abstract || isrobot(user))
 		return
 
 	if(istype(W, /obj/item/weapon/melee/energy/blade))

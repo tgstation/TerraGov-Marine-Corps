@@ -540,8 +540,8 @@
 	else if(iscarbon(L))
 		var/mob/living/carbon/human/CM = L
 		if(CM.on_fire && CM.canmove && !weakened)
-			CM.fire_stacks -= rand(3,6)
-			CM.weakened = 4
+			CM.fire_stacks = max(CM.fire_stacks - rand(3,6), 0)
+			CM.Weaken(4, TRUE)
 			CM.visible_message("<span class='danger'>[CM] rolls on the floor, trying to put themselves out!</span>", \
 				"<span class='notice'>You stop, drop, and roll!</span>")
 			if(fire_stacks <= 0)

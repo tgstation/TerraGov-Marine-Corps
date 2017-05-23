@@ -152,7 +152,7 @@
 	name = "radiation suit closet"
 	desc = "It's a storage unit for rad-protective suits."
 	icon_state = "radsuitcloset"
-	icon_opened = "toolclosetopen"
+	icon_opened = "radsuitclosetopen"
 	icon_closed = "radsuitcloset"
 
 /obj/structure/closet/radiation/New()
@@ -208,7 +208,7 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
-	store_mobs = 0
+	store_mobs = FALSE
 
 /obj/structure/closet/hydrant/New()
 	..()
@@ -232,7 +232,7 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
-	store_mobs = 0
+	store_mobs = FALSE
 
 /obj/structure/closet/medical_wall/update_icon()
 	if(!opened)
