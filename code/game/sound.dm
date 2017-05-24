@@ -1,4 +1,4 @@
-#define FALLOFF_SOUNDS 1 //Loses 100 % volume at 100 tiles
+#define FALLOFF_SOUNDS 1
 
 /proc/playsound(atom/source, soundin, vol, vary, extrarange = 100, falloff, is_global)
 
@@ -40,7 +40,7 @@
 		5000.0, 250.0, \
 		1.0, 10.0, 10.0, 255, \
 	)
-	//S.environment = 16
+
 	if(vary) S.frequency = frequency ? frequency : GET_RANDOM_FREQ
 
 	if(isturf(turf_source))
@@ -63,20 +63,21 @@
 				pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
 		else pressure_factor = 0 //in space
 		if(distance <= 1) pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
-		S.volume *= pressure_factor
+		S.volume *= round(pressure_factor, 0.1)
+
+		if(S.volume <= distance) r_FAL //no volume or too far away to hear such a volume level.
+
 		var/dx = turf_source.x - T.x // Hearing from the right/left
 		S.x = dx
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
 		S.z = dz
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		S.y = 1
-		S.falloff = falloff ? falloff : FALLOFF_SOUNDS
+		if(falloff) S.falloff = falloff
+		else S.falloff = FALLOFF_SOUNDS * max(round(S.volume * 0.1), 1) //louder sounds take a longer distance to fade.
 
-		S.volume -= round(max(distance - world.view, 0) * S.falloff) //multiplicative falloff to add on top of natural audio falloff. Power of 1.1 is a magic coefficient
-		if(S.volume <= 0) r_FAL	//No volume means no sound
+		if(S.volume <= distance) r_FAL //no volume or too far away to hear such a volume level.
 
-		//Obviously, since BYOND is great, they already fuck with volume in-house depending on position
-		//So, our only option at this point is to clamp the values so it doesn't affect the volume too much
 		S.echo = list(
 			0, 0, \
 			-250, -1000, \
@@ -84,9 +85,6 @@
 			-1000, 0.25, 1.5, 1.0, \
 			-1000, 1.0, \
 			0, 1.0, 1.0, 1.0, 1.0, 7)
-		S.x = Clamp(-5, S.x, 5)
-		S.y = Clamp(-5, S.y, 5)
-		S.z = Clamp(-5, S.z, 5)
 
 	if(!is_global) S.environment = 2
 	src << S
