@@ -4,9 +4,9 @@
 /obj/machinery/vending/uniform_supply
 	name = "\improper ColMarTech surplus uniform vender"
 	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
-	icon_state = "sec"
-	icon_vend = "sec-vend"
-	icon_deny = "sec"
+	icon_state = "uniform_marine"
+	icon_vend = "uniform_marine_vend"
+	icon_deny = "uniform_marine"
 	req_access = null
 	req_access_txt = "0"
 	req_one_access = null

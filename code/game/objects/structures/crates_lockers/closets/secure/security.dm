@@ -169,12 +169,12 @@
 /obj/structure/closet/secure_closet/marshal
 	name = "Marshal's Locker"
 	req_access = list(ACCESS_MARINE_BRIG)
-	icon_state = "wardensecure1"
-	icon_closed = "wardensecure"
-	icon_locked = "wardensecure1"
-	icon_opened = "wardensecureopen"
-	icon_broken = "wardensecurebroken"
-	icon_off = "wardensecureoff"
+	icon_state = "secure_locked_warrant"
+	icon_closed = "secure_unlocked_warrant"
+	icon_locked = "secure_locked_warrant"
+	icon_opened = "secure_open_warrant"
+	icon_broken = "secure_locked_warrant"
+	icon_off = "secure_closed_warrant"
 
 
 	New()
