@@ -99,7 +99,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 50, one_per_turf = 1), \
 	new/datum/stack_recipe("knife grip", /obj/item/butterflyhandle, 2, time = 20, one_per_turf = 0, on_floor = 1),
-	new/datum/stack_recipe("metal barricade", /obj/structure/m_barricade, 5, time = 80, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 5, time = 80, one_per_turf = 1, on_floor = 1),
 	new/datum/stack_recipe("sentry turret frame", /obj/machinery/marine_turret_frame, 20, time = 60, one_per_turf = 1, on_floor = 1),
 	)
 

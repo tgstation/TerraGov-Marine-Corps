@@ -222,7 +222,7 @@ Defined in setup.dm.
 	//Define our basic structures to type check for later.
 	var/obj/structure/support_structure //Something basic we're going to look for.
 	var/obj/structure/table/support_table //In case it's a table, which complicates matters.
-	var/obj/structure/m_barricade/support_barricade //In case it's a barricade.
+	var/obj/structure/barricade/support_barricade //In case it's a barricade.
 
 	for(var/obj/Q in active_turf) //We're going to check the turf we're on first.
 		support_structure = Q
@@ -236,8 +236,8 @@ Defined in setup.dm.
 					return 1
 				else continue //It's a table flipped, but it's not facing our way.
 			support_barricade = Q
-			//We're on something, its direction doesn't matter. If it's a metal barricade, direction does matter.
-			if( (istype(support_barricade) && support_barricade.dir == user.dir) || !istype(support_barricade) )
+			//We're on something, its direction doesn't matter unless it's a border structure.
+			if( (!(support_barricade.flags_atom & ON_BORDER) || support_barricade.dir == user.dir))
 				get_into_position(user, support_structure, active_turf)
 				return 1
 
@@ -267,7 +267,7 @@ Defined in setup.dm.
 /obj/item/attachable/proc/check_position(obj/item/weapon/gun, mob/living/user)
 	if(firing_turf == user.loc && firing_direction == user.dir) //We're in business.
 		var/obj/structure/table/support_table
-		var/obj/structure/m_barricade/support_barricade
+		var/obj/structure/barricade/support_barricade
 		switch(firing_flipped)
 			if(0) //It's a table, and it wasn't flipped when we got into position.
 				support_table = firing_support
@@ -281,7 +281,7 @@ Defined in setup.dm.
 					if(!support_table.flipped || support_table.dir != user.dir) //Either it was flipped or directions don't match.
 						leave_position()
 						return
-				else if(istype(support_barricade)) //It is a metal barriade.
+				else if(support_barricade.flags_atom & ON_BORDER) //It is a border structure.
 					if(support_barricade.dir != user.dir) //Directions don't match.
 						leave_position()
 						return

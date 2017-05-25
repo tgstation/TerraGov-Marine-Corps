@@ -5,6 +5,10 @@
 	var/abstract = FALSE
 	var/item_state = null
 	var/r_speed = 1.0
+	var/force = 0
+	var/damtype = "brute"
+	var/attack_speed = 7  //+3, Adds up to 10.
+
 	var/health = null
 	var/burn_point = null
 	var/burning = null

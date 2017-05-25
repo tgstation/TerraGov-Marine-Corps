@@ -128,7 +128,7 @@
 		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
 			usr << "\red There is another [R.title] here!"
 			return
-		if(locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/table) in usr.loc)
+		if(locate(/obj/structure/barricade) in usr.loc || locate(/obj/structure/table) in usr.loc)
 			usr << "\red Not enough space to construct [R.title] here!"
 			return
 		if (R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor) || istype(usr.loc, /turf/unsimulated/jungle)))

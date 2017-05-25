@@ -211,19 +211,31 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	healthcheck()
 	r_TRU
 
-/obj/structure/m_barricade/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
-	if(dir == reverse_direction(X.dir) && X.momentum > 10)
-		if(unacidable)
-			if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
-			r_FAL
-		playsound(loc, "punch", 25, 1, -1)
-		X.visible_message(
-		"<span class='danger'>[X] smashes straight into [src]!</span>",
-		"<span class='xenodanger'>You smash straight into [src]!</span>")
-		X.health -= (X.momentum * 4)
-		update_health()
-		X.momentum -= 6
-		r_TRU
+/obj/structure/barricade/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
+	if(flags_atom & ON_BORDER) //border barricade resists the crusher when charged into its front side.
+		if(dir == reverse_direction(X.dir) && X.momentum > 10)
+			if(unacidable)
+				if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
+				r_FAL
+			playsound(loc, "punch", 25, 1, -1)
+			X.visible_message(
+			"<span class='danger'>[X] smashes straight into [src]!</span>",
+			"<span class='xenodanger'>You smash straight into [src]!</span>")
+			X.health -= (X.momentum * 4)
+			update_health(TRUE)
+			X.momentum -= 6
+			r_TRU
+	else
+		if(X.momentum > 8)
+			if(unacidable)
+				if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
+				r_FAL
+			X.visible_message(
+			"<span class='danger'>[X] plows straight through [src]!</span>",
+			"<span class='xenodanger'>You plow straight through [src]!</span>")
+			X.momentum -= 3
+			cdel(src)
+			r_TRU
 
 /obj/machinery/vending/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	if(X.momentum > 20)
@@ -239,18 +251,6 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		step_away(src, X)
 		step_away(src, X)
 		X.momentum -= 6
-		r_TRU
-
-/obj/structure/barricade/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
-	if(X.momentum > 8)
-		if(unacidable)
-			if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
-			r_FAL
-		X.visible_message(
-		"<span class='danger'>[X] plows straight through [src]!</span>",
-		"<span class='xenodanger'>You plow straight through [src]!</span>")
-		X.momentum -= 3
-		cdel(src)
 		r_TRU
 
 /obj/mecha/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
