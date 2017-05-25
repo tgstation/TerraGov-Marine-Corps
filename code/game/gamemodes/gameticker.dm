@@ -52,9 +52,9 @@ var/global/datum/controller/gameticker/ticker
 //	'sound/music/DeadSpace_Ring_Around_the_Rosie.ogg',
 //	'sound/music/DeadSpace_Twinkle_Twinkle_Little_Star.ogg'
 //	'sound/music/fortunate_son.ogg',
-	'sound/music/buffalo_springfield.ogg')
+	'sound/music/buffalo_springfield.ogg',
 //	'sound/music/Prometheus_trailer.ogg',
-//	'sound/music/warrior_song.ogg'//The Warrior Song
+	'sound/music/warrior_song.ogg')//The Warrior Song
 //	'sound/music/NeilDiamondChanukah.ogg',
 //	'sound/music/WeirdAlGroundZeroXmas.ogg',
 //	'sound/music/WeirdAlSantaCrazy.ogg')
