@@ -1266,7 +1266,7 @@ About the new airlock wires panel:
 //	..()
 
 /obj/machinery/door/airlock/open(var/forced=0)
-	if( operating || welded || locked )
+	if( operating || welded || locked || !loc)
 		return 0
 	if(!forced)
 		if( !arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_OPEN_DOOR) )
@@ -1281,7 +1281,7 @@ About the new airlock wires panel:
 	return ..()
 
 /obj/machinery/door/airlock/close(var/forced=0)
-	if(operating || welded || locked)
+	if(operating || welded || locked || !loc)
 		return
 	if(!forced)
 		if( !arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS) )

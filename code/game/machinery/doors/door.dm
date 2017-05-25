@@ -221,7 +221,7 @@
 
 /obj/machinery/door/proc/open()
 	if(!density)		return 1
-	if(operating > 0)	return
+	if(operating > 0 || !loc)	return
 	if(!ticker)			return 0
 	if(!operating)		operating = 1
 
@@ -252,7 +252,7 @@
 
 /obj/machinery/door/proc/close()
 	if(density)	return 1
-	if(operating > 0)	return
+	if(operating > 0 || !loc)	return
 	operating = 1
 
 	src.density = 1

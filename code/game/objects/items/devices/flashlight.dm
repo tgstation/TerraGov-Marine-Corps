@@ -31,17 +31,24 @@
 		SetLuminosity(0)
 	..()
 
+/obj/item/device/flashlight/Dispose()
+	if(ismob(src.loc))
+		src.loc.SetLuminosity(-brightness_on)
+	else
+		SetLuminosity(0)
+	..()
+
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		if(loc == user)
+		if(loc && loc == user)
 			user.SetLuminosity(brightness_on)
 		else if(isturf(loc))
 			SetLuminosity(brightness_on)
 	else
 		icon_state = initial(icon_state)
-		if(loc == user)
+		if(loc && loc == user)
 			user.SetLuminosity(-brightness_on)
 		else if(isturf(loc))
 			SetLuminosity(0)
@@ -205,6 +212,10 @@
 
 /obj/item/device/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	..()
+
+/obj/item/device/flashlight/flare/Dispose()
+	processing_objects -= src
 	..()
 
 /obj/item/device/flashlight/flare/process()
