@@ -220,13 +220,14 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 				"Squad Engineer",
 				"Squad Medic",
 				"Squad Specialist",
+				"Squad Smartgunner",
 				"Squad Marine",
 				"Chief Medical Officer",
 				"Doctor",
 				"Researcher",
 				"Military Police",
 				"Chief MP"
-					)
+				)
 
 /proc/get_paygrades(paygrade, size, gender)
 	if(!paygrade) return

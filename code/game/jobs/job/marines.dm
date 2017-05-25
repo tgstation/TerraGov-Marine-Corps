@@ -116,6 +116,35 @@ You can serve a variety of roles, so choose carefully."}
 /datum/job/marine/specialist/equipped
 	flags_startup_parameters = ROLE_ADD_TO_SQUAD
 
+
+
+
+/datum/job/marine/smartgunner
+	title = "Squad Smartgunner"
+	comm_title = "LCPL"
+	paygrade = "E3"
+	flag = ROLE_MARINE_SMARTGUN
+	total_positions = 4
+	spawn_positions = 4
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
+	minimal_player_age = 7
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADD_TO_SQUAD
+
+	generate_wearable_equipment()
+		. = list(
+				WEAR_BODY = /obj/item/clothing/under/pj/marine,
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine
+				)
+
+	generate_entry_message()
+		. = ..() + {"\nYou are the smartgunner. Your job is to provide heavy weapons support."}
+
+
+/datum/job/marine/smartgunner/equipped
+	flags_startup_parameters = ROLE_ADD_TO_SQUAD
+
+
 /datum/job/marine/standard
 	title = "Squad Marine"
 	comm_title = "Mar"

@@ -360,8 +360,7 @@
 						/obj/item/weapon/grenade/incendiary = 2,
 //						/obj/item/weapon/flamethrower/full = 1,
 //						/obj/item/weapon/tank/phoron/m240 = 3,
-						/obj/item/weapon/shield/riot = 1,
-						/obj/item/smartgun_powerpack = 1
+						/obj/item/weapon/shield/riot = 1
 			)
 	contraband = list()
 	premium = list(
@@ -369,10 +368,29 @@
 					/obj/item/weapon/storage/box/grenade_system = 1,
 					/obj/item/weapon/storage/box/m42c_system = 1,
 					/obj/item/weapon/storage/box/m42c_system_Jungle = 1,
-					/obj/item/weapon/storage/box/m56_system = 1,
 					/obj/item/weapon/storage/box/heavy_armor = 1
 			)
 	prices = list()
+
+/obj/machinery/vending/marine_smartgun
+	name = "\improper ColMarTech Smartgun Vendor"
+	desc = "A marine smartgun equipment vendor"
+	hacking_safety = 1
+	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	req_access = list(ACCESS_MARINE_SMARTPREP)
+	icon_state = "boozeomat"
+	icon_deny = "boozeomat-deny"
+
+	products = list(
+						/obj/item/clothing/tie/storage/webbing = 1,
+						/obj/item/weapon/storage/box/m56_system = 1,
+						/obj/item/smartgun_powerpack = 1
+			)
+	contraband = list()
+	premium = list()
+	prices = list()
+
+
 
 /obj/machinery/vending/marine_leader
 	name = "\improper ColMarTech Leader Vendor"

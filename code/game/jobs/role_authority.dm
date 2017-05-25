@@ -513,6 +513,7 @@ roles willy nilly.
 			if(H.mind.assigned_role == "Squad Medic" && S.num_medics >= S.max_medics) continue
 			if(H.mind.assigned_role == "Squad Leader" && S.num_leaders >= S.max_leaders) continue
 			if(H.mind.assigned_role == "Squad Specialist" && S.num_specialists >= S.max_specialists) continue
+			if(H.mind.assigned_role == "Squad Smartgunner" && S.num_smartgun >= S.max_smartgun) continue
 
 			S.put_marine_in_squad(H) //Found one, add them in and stop the loop.
 			break

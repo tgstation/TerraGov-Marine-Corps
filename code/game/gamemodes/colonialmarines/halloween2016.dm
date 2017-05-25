@@ -32,7 +32,7 @@
 
 	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
 
-	var/role = input("Select which role to spawn.","Roles") in list("Corporate Liaison","Commander","Squad Leader","Squad Specialist","Squad Engineer","Squad Medic","Squad Marine")
+	var/role = input("Select which role to spawn.","Roles") in list("Corporate Liaison","Commander","Squad Leader","Squad Specialist","Squad Smartgunner","Squad Engineer","Squad Medic","Squad Marine")
 	if(!role) return
 	if(alert("Do you want to be a PMC or Marine?","Preference","Marine","PMC") == "PMC") CM.merc_starting_num = 1
 	else CM.merc_starting_num = 0

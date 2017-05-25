@@ -242,6 +242,7 @@ var/global/list/frozen_items = list()
 					if(occupant.mind.assigned_role == "Squad Engineer") S.num_engineers--
 					if(occupant.mind.assigned_role == "Squad Medic") S.num_medics--
 					if(occupant.mind.assigned_role == "Squad Specialist") S.num_specialists--
+					if(occupant.mind.assigned_role == "Squad Smartgunner") S.num_smartgun--
 					if(occupant.mind.assigned_role == "Squad Leader")
 						S.squad_leader = null
 						S.num_leaders--

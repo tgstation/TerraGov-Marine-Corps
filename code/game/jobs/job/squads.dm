@@ -17,6 +17,8 @@
 	var/max_medics = 2 //Ditto, squad medics
 	var/max_specialists = 1
 	var/num_specialists = 0
+	var/max_smartgun = 1
+	var/num_smartgun = 0
 	var/max_leaders = 1
 	var/num_leaders = 0
 	var/radio_freq = 1461 //Squad radio headset frequency.
@@ -83,6 +85,7 @@
 	if(M.mind.assigned_role == "Squad Engineer") src.num_engineers++
 	if(M.mind.assigned_role == "Squad Medic") src.num_medics++
 	if(M.mind.assigned_role == "Squad Specialist") src.num_specialists++
+	if(M.mind.assigned_role == "Squad Smartgunner") src.num_smartgun++
 	if(M.mind.assigned_role == "Squad Leader") //If more than one leader are somehow added, it will replace the old with new.
 		src.squad_leader = M
 		src.num_leaders++

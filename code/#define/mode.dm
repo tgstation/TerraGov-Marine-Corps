@@ -107,6 +107,7 @@ var/list/be_special_flags = list(
 #define ROLE_MARINE_ENGINEER		4
 #define ROLE_MARINE_STANDARD		8
 #define ROLE_MARINE_SPECIALIST		16
+#define ROLE_MARINE_SMARTGUN		32
 //=================================================
 
 #define ROLE_ADMIN_NOTIFY			1
@@ -122,7 +123,7 @@ var/list/be_special_flags = list(
 #define ROLES_ENGINEERING 	list("Chief Engineer","Maintenance Tech")
 #define ROLES_REQUISITION 	list("Requisitions Officer","Cargo Technician")
 #define ROLES_MEDICAL 		list("Chief Medical Officer","Doctor","Researcher")
-#define ROLES_MARINES		list("Squad Leader","Squad Specialist","Squad Medic","Squad Engineer","Squad Marine")
+#define ROLES_MARINES		list("Squad Leader","Squad Specialist","Squad Smartgunner","Squad Medic","Squad Engineer","Squad Marine")
 #define ROLES_SQUAD_ALL		list("Alpha","Bravo","Charlie","Delta")
 #define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
 #define ROLES_UNASSIGNED	list("Squad Marine")
@@ -143,6 +144,7 @@ var/list/be_special_flags = list(
 /*Access levels. Changed into defines, since that's what they should be.
 It's best not to mess with the numbers of the regular access levels because
 most of them are tied into map-placed objects. This should be reworked in the future.*/
+//WE NEED TO REWORK THIS ONE DAY.  Access levels make me cry - Apophis
 #define ACCESS_MARINE_COMMANDER 	1
 #define ACCESS_MARINE_LOGISTICS 	2
 #define ACCESS_MARINE_BRIG 			3
@@ -157,6 +159,7 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_MARINE_LEADER 		12
 #define ACCESS_MARINE_SPECPREP 		13
 #define ACCESS_MARINE_RESEARCH 		14
+#define ACCESS_MARINE_SMARTPREP		25
 
 #define ACCESS_MARINE_ALPHA 		15
 #define ACCESS_MARINE_BRAVO 		16

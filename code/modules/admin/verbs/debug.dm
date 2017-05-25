@@ -482,7 +482,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"strip",
 		"USCM Cryo",
 		"USCM Private",
-		"USCM Specialist (Smartgunner)",
+		"USCM Smartgunner (Smartgunner)",
 		"USCM Specialist (Armor)",
 		"USCM Second-Lieutenant (BO)",
 		"USCM First-Lieutenant (XO)",

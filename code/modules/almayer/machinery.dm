@@ -559,6 +559,13 @@
 	dir = 2
 	opacity = 0
 
+/obj/machinery/door/airlock/almayer/marine/alpha/smart
+	name = "\improper Alpha Squad Smartgunner Preparations"
+	req_access_txt ="0"
+	req_one_access_txt =  "25"
+	dir = 2
+	opacity = 0
+
 /obj/machinery/door/airlock/almayer/marine/bravo
 	name = "\improper Bravo Squad Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor_bravo.dmi'
@@ -591,6 +598,13 @@
 	name = "\improper Bravo Squad Medic Preparations"
 	req_access_txt ="10;16"
 	req_one_access_txt =  "0"
+	dir = 2
+	opacity = 0
+
+/obj/machinery/door/airlock/almayer/marine/bravo/smart
+	name = "\improper Bravo Squad Smartgunner Preparations"
+	req_access_txt ="0"
+	req_one_access_txt =  "25"
 	dir = 2
 	opacity = 0
 
@@ -629,6 +643,13 @@
 	dir = 2
 	opacity = 0
 
+/obj/machinery/door/airlock/almayer/marine/charlie/smart
+	name = "\improper Charlie Squad Smartgunner Preparations"
+	req_access_txt ="0"
+	req_one_access_txt =  "25"
+	dir = 2
+	opacity = 0
+
 /obj/machinery/door/airlock/almayer/marine/delta
 	name = "\improper Delta Squad Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor_delta.dmi'
@@ -664,6 +685,12 @@
 	dir = 2
 	opacity = 0
 
+/obj/machinery/door/airlock/almayer/marine/delta/smart
+	name = "\improper Delta Squad Smartgunner Preparations"
+	req_access_txt ="0"
+	req_one_access_txt =  "25"
+	dir = 2
+	opacity = 0
 
 // Double Doors
 
