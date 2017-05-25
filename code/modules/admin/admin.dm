@@ -1209,10 +1209,10 @@ var/global/floorIsLava = 0
 
 	if(istype(usr.loc, /turf/simulated/floor))
 		usr << "Placing a wall..."
-		usr.loc:ChangeTurf(/turf/simulated/wall/sulaco)
+		usr.loc:ChangeTurf(/turf/simulated/wall/almayer)
 		return
 
-	if(istype(usr.loc, /turf/simulated/wall/sulaco))
+	if(istype(usr.loc, /turf/simulated/wall/almayer))
 		usr << "Placing a floor..."
 		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
 		return
