@@ -1202,23 +1202,15 @@ var/global/floorIsLava = 0
 
 	// new /turf/simulated/wall/r_wall(usr.loc) - Not working. Air still escapes.
 
-	if(istype(usr.loc, /turf/space))
-		usr << "Placing a floor..."
+	if(istype(usr.loc, /turf/simulated/floor/plating/airless))
+		usr << "Plating detected. Placing a wall..."
+		usr.loc:ChangeTurf(/turf/simulated/wall/almayer/outer)
+	else
+		usr << "Placing plating..."
 		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
-		return
 
-	if(istype(usr.loc, /turf/simulated/floor))
-		usr << "Placing a wall..."
-		usr.loc:ChangeTurf(/turf/simulated/wall/almayer)
-		return
-
-	if(istype(usr.loc, /turf/simulated/wall/almayer))
-		usr << "Placing a floor..."
-		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
-		return
-
-	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
-	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+	log_admin("Admin [key_name_admin(usr)] used Fix Breach at [get_area(usr)]", 1)
+	message_admins("Admin [key_name_admin(usr)] used Fix Breach at [get_area(usr)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>)", 1)
 
 	return
 
