@@ -292,12 +292,13 @@
 /obj/item/projectile/proc/roll_to_hit_obj(atom/shooter,obj/target)
 	permutated += target
 	var/obj/structure/table/target_table = target
-	if( (istype(target_table) && target_table.flipped) || istype(target,/obj/structure/m_barricade) )
-		var/chance = 0
-		if(dir == reverse_direction(target.dir)) chance = 95
-		else if(dir == target.dir) chance = 1
-		else chance = 20
-		if(prob(chance)) return 1
+	if( (istype(target_table) && target_table.flipped) || istype(target,/obj/structure/barricade) )
+		if(target.flags_atom & ON_BORDER)
+			var/chance = 0
+			if(dir == reverse_direction(target.dir)) chance = 95
+			else if(dir == target.dir) chance = 1
+			else chance = 20
+			if(prob(chance)) return 1
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
 	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)
@@ -573,13 +574,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		destroy()
 	return 1
 
-/obj/structure/m_barricade/bullet_act(obj/item/projectile/P)
-	src.bullet_ping(P)
-	health -= round(P.damage/10)
-	if (health < 0)
-		visible_message("<span class='warning'>[src] breaks down!</span>")
-		destroy()
-	return 1
 
 //----------------------------------------------------------
 					//				    \\

@@ -9,7 +9,7 @@
 
 //The parent proc, will default to attack_paw behaviour unless overriden
 /atom/proc/attack_alien(mob/user as mob)
-	return ..(attack_paw(user))
+	return attack_paw(user)
 
 
 
@@ -132,3 +132,14 @@
 			Pounce(A)
 		else
 			fire_cannon(A)
+
+
+
+
+/mob/living/carbon/Xenomorph/Larva/UnarmedAttack(var/atom/A)
+	A.attack_larva(src)
+	next_move = world.time + (10 + attack_delay) //Adds some lag to the 'attack'
+
+//Larva attack, will default to attack_alien behaviour unless overriden
+/atom/proc/attack_larva(mob/living/carbon/Xenomorph/Larva/user)
+	return attack_alien(user)
