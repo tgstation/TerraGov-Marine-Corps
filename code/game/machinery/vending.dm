@@ -1071,6 +1071,9 @@
 	//everything after the power cell had no amounts, I improvised.  -Sayu
 
 
+
+// All instances of this vendor will share a single inventory for items in the shared list.
+// Meaning, if an item is taken from one vendor, it will not be available in any others as well.
 /obj/machinery/vending/shared_vending
 	var/list/shared = list()
 	var/static/list/shared_products = list()
