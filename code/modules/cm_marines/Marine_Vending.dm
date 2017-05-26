@@ -360,7 +360,7 @@
 						/obj/item/weapon/grenade/incendiary = 2,
 //						/obj/item/weapon/flamethrower/full = 1,
 //						/obj/item/weapon/tank/phoron/m240 = 3,
-						/obj/item/weapon/shield/riot = 1
+						/obj/item/weapon/shield/riot = 1,
 			)
 	contraband = list()
 	premium = list(
@@ -371,6 +371,52 @@
 					/obj/item/weapon/storage/box/heavy_armor = 1
 			)
 	prices = list()
+
+/obj/machinery/vending/shared_vending/marine_special
+	name = "\improper ColMarTech Specialist Vendor"
+	desc = "A marine specialist equipment vendor"
+	hacking_safety = 1
+	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	req_access = list(ACCESS_MARINE_SPECPREP)
+	icon_state = "boozeomat"
+	icon_deny = "boozeomat-deny"
+
+	products = list(
+						/obj/item/weapon/coin/marine = 1,
+						/obj/item/clothing/tie/storage/webbing = 1,
+						/obj/item/weapon/plastique = 2,
+						/obj/item/weapon/grenade/explosive = 2,
+						/obj/item/weapon/grenade/incendiary = 2,
+//						/obj/item/weapon/flamethrower/full = 1,
+//						/obj/item/weapon/tank/phoron/m240 = 3,
+						/obj/item/weapon/shield/riot = 1,
+						///obj/item/smartgun_powerpack = 1
+			)
+	contraband = list()
+	premium = list(/obj/item/weapon/storage/box/heavy_armor = 1)
+	shared = list(
+					/obj/item/weapon/storage/box/rocket_system = 1,
+					/obj/item/weapon/storage/box/grenade_system = 1,
+					/obj/item/weapon/storage/box/m42c_system = 1,
+					/obj/item/weapon/storage/box/m42c_system_Jungle = 1,
+					/obj/item/weapon/storage/box/m56_system = 1,
+			)
+	prices = list()
+
+/obj/machinery/vending/shared_vending/marine_special/New()
+
+	if(shared_products.len == 0)
+		shared_products = list(
+						new /datum/data/vending_product(),
+						new /datum/data/vending_product(),
+						new /datum/data/vending_product(),
+						new /datum/data/vending_product(),
+						new /datum/data/vending_product()
+				)
+
+	..()
+
+
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper ColMarTech Smartgun Vendor"
@@ -389,8 +435,6 @@
 	contraband = list()
 	premium = list()
 	prices = list()
-
-
 
 /obj/machinery/vending/marine_leader
 	name = "\improper ColMarTech Leader Vendor"

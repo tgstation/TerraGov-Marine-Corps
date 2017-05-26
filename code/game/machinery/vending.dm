@@ -1069,3 +1069,62 @@
 					/obj/item/weapon/scalpel = 2,/obj/item/weapon/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
+
+
+/obj/machinery/vending/shared_vending
+	var/list/shared = list()
+	var/static/list/shared_products = list()
+
+/obj/machinery/vending/shared_vending/New()
+	..()
+
+	build_shared_inventory(shared,0,1)
+
+/obj/machinery/vending/shared_vending/proc/build_shared_inventory(var/list/productlist,hidden=0,req_coin=0)
+
+	if(delay_product_spawn)
+		sleep(15) //Make ABSOLUTELY SURE the seed datum is properly populated.
+
+	var/i = 1
+
+	for(var/typepath in productlist)
+		var/amount = productlist[typepath]
+		var/price = prices[typepath]
+		if(isnull(amount)) amount = 1
+
+		var/obj/item/temp_path = typepath
+		var/datum/data/vending_product/R = shared_products[i]
+
+		if(!R.product_path)
+			R.product_path = typepath
+			R.amount = amount
+			R.price = price
+
+			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/flamethrower) || ispath(typepath,/obj/item/weapon/storage) )
+				R.display_color = "red"
+			else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
+				R.display_color = "green"
+			else if(ispath(typepath,/obj/item/weapon/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
+				R.display_color = "blue"
+			else
+				R.display_color = "black"
+
+		if(hidden)
+			R.category=CAT_HIDDEN
+			hidden_records += R
+		else if(req_coin)
+			R.category=CAT_COIN
+			coin_records += R
+		else
+			R.category=CAT_NORMAL
+			product_records += R
+
+		if(delay_product_spawn)
+			sleep(5) //sleep(1) did not seem to cut it, so here we are.
+
+		R.product_name = initial(temp_path.name)
+
+		i++;
+
+//		world << "Added: [R.product_name]] - [R.amount] - [R.product_path]"
+	return
