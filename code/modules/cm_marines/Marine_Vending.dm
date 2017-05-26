@@ -386,10 +386,7 @@
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 2,
-						/obj/item/weapon/grenade/incendiary = 2,
-//						/obj/item/weapon/flamethrower/full = 1,
-//						/obj/item/weapon/tank/phoron/m240 = 3,
-						///obj/item/smartgun_powerpack = 1
+						/obj/item/weapon/grenade/incendiary = 2
 			)
 	contraband = list()
 	premium = list(/obj/item/weapon/shield/riot = 1)
@@ -398,8 +395,7 @@
 					/obj/item/weapon/storage/box/rocket_system = 1,
 					/obj/item/weapon/storage/box/grenade_system = 1,
 					/obj/item/weapon/storage/box/m42c_system = 1,
-					/obj/item/weapon/storage/box/m42c_system_Jungle = 1,
-					/obj/item/weapon/storage/box/m56_system = 1,
+					/obj/item/weapon/storage/box/m42c_system_Jungle = 1
 			)
 	prices = list()
 
