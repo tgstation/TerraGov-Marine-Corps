@@ -13,10 +13,6 @@
 	var/edge = 0		// whether this object is more likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 
-	var/damtype = "brute"
-	var/force = 0
-	var/attack_speed = 7  //+3, Adds up to 10.
-
 	var/mob/living/buckled_mob
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE

@@ -4,7 +4,6 @@
 	var/datum/pipeline/parent
 
 	var/volume = 0
-	force = 20
 
 	layer = 2.4 //under wires with their 2.44
 	use_power = 0
