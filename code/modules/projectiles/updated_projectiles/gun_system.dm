@@ -534,7 +534,7 @@ and you're good to go.
 					if(projectile_to_fire) //We actually have a projectile, let's move on.
 						user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
 						var/actual_sound = (active_attachable && active_attachable.fire_sound) ? active_attachable.fire_sound : fire_sound
-						var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 25 : 125
+						var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 25 : 60
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(recoil + 2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
@@ -640,7 +640,7 @@ and you're good to go.
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 	var/actual_sound = fire_sound
-	var/sound_volume = flags_gun_features & GUN_SILENCED ? 25 : 75
+	var/sound_volume = flags_gun_features & GUN_SILENCED ? 25 : 60
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.
 	projectile_to_fire.shot_from = src
