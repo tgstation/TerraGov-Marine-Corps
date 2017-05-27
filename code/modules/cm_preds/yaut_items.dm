@@ -1080,7 +1080,7 @@
 	attack_verb = list("whipped", "slashed","sliced","diced","shredded")
 
 	attack(mob/target as mob, mob/living/user as mob)
-		if(user.zone_sel.selecting == "r_leg" || user.zone_sel.selecting == "l_leg" || user.zone_sel.selecting == "l_foot" || user.zone_sel.selecting == "r_foot")
+		if(user.zone_selected == "r_leg" || user.zone_selected == "l_leg" || user.zone_selected == "l_foot" || user.zone_selected == "r_foot")
 			if(prob(35) && !target.lying)
 				if(isXeno(target))
 					if(target.mob_size == MOB_SIZE_BIG) //Can't trip the big ones.
@@ -1208,9 +1208,9 @@
 		if(ishuman(target)) //Slicey dicey!
 			if(prob(14))
 				var/datum/organ/external/affecting
-				affecting = target:get_organ(ran_zone(user.zone_sel.selecting,60))
+				affecting = target:get_organ(ran_zone(user.zone_selected,60))
 				if(!affecting)
-					affecting = target:get_organ(ran_zone(user.zone_sel.selecting,90)) //No luck? Try again.
+					affecting = target:get_organ(ran_zone(user.zone_selected,90)) //No luck? Try again.
 				if(affecting)
 					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
 						user.visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")

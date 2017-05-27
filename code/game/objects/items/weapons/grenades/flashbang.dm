@@ -47,7 +47,8 @@
 
 //Flashing everyone
 		if(eye_safety < 1)
-			flick("e_flash", M.flash)
+			if(M.hud_used)
+				flick("e_flash", M.hud_used.flash_icon)
 			M.Stun(2)
 			M.Weaken(10)
 

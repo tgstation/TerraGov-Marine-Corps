@@ -116,7 +116,7 @@
 	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
 		stop_aim()
 		if (user.client)
-			user.client.remove_gun_icons()
+			user.update_gun_icons()
 
 	unwield(user)
 
@@ -329,7 +329,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!istype(A)) return
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
-	if(user && user.client && user.client.gun_mode && !(A in target)) PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
+	if(user && user.client && user.gun_mode && !(A in target)) PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 	else															  Fire(A,user,params) //Otherwise, fire normally.
 
 /*
@@ -523,7 +523,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(flags_gun_features & GUN_CAN_POINTBLANK) // If it can't point blank, you can't suicide and such.
-		if(M == user && user.zone_sel.selecting == "mouth")
+		if(M == user && user.zone_selected == "mouth")
 			if(able_to_fire(user))
 				flags_gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
@@ -651,7 +651,7 @@ and you're good to go.
 
 	if(user) //The gun only messages when fired by a user.
 		projectile_to_fire.firer = user
-		if(isliving(user)) projectile_to_fire.def_zone = user.zone_sel.selecting
+		if(isliving(user)) projectile_to_fire.def_zone = user.zone_selected
 		projectile_to_fire.dir = user.dir
 		playsound(user, actual_sound, sound_volume)
 		if(i == 1)

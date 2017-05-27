@@ -93,8 +93,8 @@
 			internal = null
 		if(internal)
 			return internal.remove_air_volume(volume_needed)
-		else if(internals)
-			internals.icon_state = "internal0"
+		else if(hud_used && hud_used.internals)
+			hud_used.internals.icon_state = "internal0"
 	return null
 
 /mob/living/carbon/human/proc/handle_breath(datum/gas_mixture/breath)

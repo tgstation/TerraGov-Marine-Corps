@@ -28,7 +28,7 @@
 
 		if (!H.handcuffed) return
 		if (H.a_intent != "hurt") return
-		if (H.zone_sel.selecting != "mouth") return
+		if (H.zone_selected != "mouth") return
 		if (H.wear_mask) return
 		if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 

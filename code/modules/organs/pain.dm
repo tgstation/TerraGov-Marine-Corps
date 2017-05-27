@@ -1,5 +1,6 @@
 mob/proc/flash_pain()
-	flick("pain",pain)
+	if(hud_used)
+		flick("pain", hud_used.pain_icon)
 
 mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""

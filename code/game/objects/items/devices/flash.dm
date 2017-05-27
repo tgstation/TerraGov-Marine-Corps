@@ -71,7 +71,8 @@
 		var/safety = M:eyecheck()
 		if(safety <= 0)
 			M.Weaken(10)
-			flick("e_flash", M.flash)
+			if(M.hud_used)
+				flick("e_flash", M.hud_used.flash_icon)
 		else
 			flashfail = 1
 
@@ -150,8 +151,8 @@
 					S.icon_state = "shield0"
 		var/safety = M:eyecheck()
 		if(!safety)
-			if(!M.blinded)
-				flick("flash", M.flash)
+			if(!M.blinded && M.hud_used)
+				flick("flash", M.hud_used.flash_icon)
 
 	return
 
@@ -170,7 +171,8 @@
 				var/safety = M.eyecheck()
 				if(safety <= 0)
 					M.Weaken(10)
-					flick("e_flash", M.flash)
+					if(M.hud_used)
+						flick("e_flash", M.hud_used.flash_icon)
 					for(var/mob/O in viewers(M, null))
 						O.show_message("<span class='disarm'>[M] is blinded by the flash!</span>")
 	..()

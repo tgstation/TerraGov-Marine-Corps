@@ -315,8 +315,8 @@
 	return ..()
 
 /mob/living/simple_animal/ex_act(severity)
-	if(!blinded)
-		flick("flash", flash)
+	if(!blinded && hud_used)
+		flick("flash", hud_used.flash_icon)
 	switch (severity)
 		if (1.0)
 			adjustBruteLoss(500)

@@ -35,7 +35,8 @@
 	M.real_name = src.name
 	M.stat = 2 //Kills the new mob
 	M.setToxLoss(300)
-	M.healths.icon_state = "health7"	//DEAD healthmeter
+	if(M.hud_used)
+		M.hud_used.healths.icon_state = "health7"	//DEAD healthmeter
 	if(src.corpseuniform)
 		M.equip_to_slot_or_del(new src.corpseuniform(M), WEAR_BODY)
 	if(src.corpsesuit)

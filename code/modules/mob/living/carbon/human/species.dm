@@ -506,8 +506,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(H), WEAR_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),WEAR_L_STORE)
 
-	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
-	H.hud_used = new /datum/hud(H)
 	H.universal_understand = 1
 	return ..()
 

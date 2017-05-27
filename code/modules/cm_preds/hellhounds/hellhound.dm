@@ -227,8 +227,8 @@
 		updatehealth()
 
 /mob/living/carbon/hellhound/ex_act(severity)
-	if(!blinded)
-		flick("flash", flash)
+	if(!blinded && hud_used)
+		flick("flash", hud_used.flash_icon)
 
 	switch(severity)
 		if(1.0)
@@ -310,7 +310,6 @@
 
 /mob/living/carbon/hellhound/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	update_hud()		//TODO: remove the need for this to be here
 	overlays.Cut()
 
 	if(stat == DEAD)

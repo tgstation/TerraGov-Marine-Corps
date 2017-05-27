@@ -31,12 +31,9 @@
 	update_inv_l_hand(0)
 	update_inv_handcuffed(0)
 	update_icons()
-	//Hud Stuff
-	update_hud()
-	return
+
 
 /mob/living/carbon/monkey/update_icons()
-	update_hud()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	overlays.Cut()
 	for(var/image/I in overlays_standing)
@@ -66,7 +63,7 @@
 /mob/living/carbon/monkey/update_inv_r_hand()
 	remove_overlay(M_R_HAND_LAYER)
 	if(r_hand)
-		if(client)
+		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			client.screen += r_hand
 			r_hand.screen_loc = ui_rhand
 		var/t_state = r_hand.item_state
@@ -78,7 +75,7 @@
 /mob/living/carbon/monkey/update_inv_l_hand()
 	remove_overlay(M_L_HAND_LAYER)
 	if(l_hand)
-		if(client)
+		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			client.screen += l_hand
 			l_hand.screen_loc = ui_lhand
 		var/t_state = l_hand.item_state
@@ -104,10 +101,6 @@
 
 		apply_overlay(M_HANDCUFF_LAYER)
 
-
-/mob/living/carbon/monkey/update_hud()
-	if (client)
-		client.screen |= contents
 
 /mob/living/carbon/monkey/update_fire()
 	remove_overlay(M_FIRE_LAYER)

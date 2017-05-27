@@ -87,8 +87,8 @@
 					stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
 
 /mob/living/carbon/human/ex_act(severity)
-	if(!blinded)
-		flick("flash", flash)
+	if(!blinded && hud_used)
+		flick("flash", hud_used.flash_icon)
 
 	var/shielded = 0
 	var/b_loss = null
@@ -1218,7 +1218,7 @@
 	if(!user)
 		target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
 	else if(!target_zone)
-		target_zone = user.zone_sel.selecting
+		target_zone = user.zone_selected
 
 	switch(target_zone)
 		if("head")

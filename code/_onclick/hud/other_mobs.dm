@@ -1,140 +1,64 @@
 
-/datum/hud/proc/unplayer_hud()
-	return
+//AI
 
-/datum/hud/proc/ghost_hud()
-	return
+/datum/hud/ai/New(mob/living/silicon/ai/owner)
+	..()
+	blind_icon = new /obj/screen/blind()
+	screenoverlays += blind_icon
 
-/datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
-	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-	mymob.blind.icon_state = "blackimageoverlay"
-	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
-	mymob.blind.plane = -80
+	flash_icon = new /obj/screen/flash()
+	screenoverlays += flash_icon
 
-/datum/hud/proc/ai_hud()
-	return
 
-/datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
+/mob/living/silicon/ai/create_mob_hud()
+	if(client && !hud_used)
+		hud_used = new /datum/hud/ai(src)
 
-	blobpwrdisplay = new /obj/screen()
-	blobpwrdisplay.name = "blob power"
-	blobpwrdisplay.icon_state = "block"
-	blobpwrdisplay.screen_loc = ui_health
-	blobpwrdisplay.layer = 20
 
-	blobhealthdisplay = new /obj/screen()
-	blobhealthdisplay.name = "blob health"
-	blobhealthdisplay.icon_state = "block"
-	blobhealthdisplay.screen_loc = ui_internal
-	blobhealthdisplay.layer = 20
+//BRAIN
 
-	mymob.client.screen = null
+/datum/hud/brain/New(mob/living/carbon/brain/owner, ui_style='icons/mob/screen1_Midnight.dmi')
+	..()
+	blind_icon = new /obj/screen/blind()
+	screenoverlays += blind_icon
 
-	mymob.client.screen += list(blobpwrdisplay, blobhealthdisplay)
+/mob/living/carbon/brain/create_mob_hud()
+	if(client && !hud_used)
+		hud_used = new /datum/hud/brain(src)
 
-/datum/hud/proc/hellhound_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
-	src.adding = list()
-	src.other = list()
+//HELLHOUND
 
+/datum/hud/hellhound/New(mob/living/carbon/hellhound/owner, ui_style = 'icons/mob/screen1_Midnight.dmi')
+	..()
 	var/obj/screen/using
 
-	using = new /obj/screen()
-	using.name = "act_intent"
-	using.dir = SOUTHWEST
+	using = new /obj/screen/act_intent/corner()
 	using.icon = ui_style
-	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
+	using.icon_state = "intent_"+owner.a_intent
 	using.screen_loc = ui_acti
-	using.layer = 20
-	src.adding += using
+	static_inventory += using
 	action_intent = using
 
-//intent small hud objects
-	var/icon/ico
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-	using = new /obj/screen( src )
-	using.name = "help"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	help_intent = using
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-	using = new /obj/screen( src )
-	using.name = "disarm"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	disarm_intent = using
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-	using = new /obj/screen( src )
-	using.name = "grab"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	grab_intent = using
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-	using = new /obj/screen( src )
-	using.name = "harm"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	hurt_intent = using
-
-//end intent small hud objects
-
-
-	using = new /obj/screen()
-	using.name = "drop"
+	using = new /obj/screen/drop()
 	using.icon = ui_style
-	using.icon_state = "act_drop"
 	using.screen_loc = ui_drop_throw
-	using.layer = 19
-	src.adding += using
+	static_inventory += using
 
-	mymob.healths = new /obj/screen()
-	mymob.healths.icon = ui_style
-	mymob.healths.icon_state = "health0"
-	mymob.healths.name = "health"
-	mymob.healths.screen_loc = ui_health
+	healths = new /obj/screen/healths()
+	infodisplay += healths
 
-	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-	mymob.blind.icon_state = "blackimageoverlay"
-	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
-	mymob.blind.plane = -80
+	blind_icon = new /obj/screen/blind()
+	screenoverlays += blind_icon
 
-	mymob.flash = new /obj/screen()
-	mymob.flash.icon = ui_style
-	mymob.flash.icon_state = "blank"
-	mymob.flash.name = "flash"
-	mymob.flash.screen_loc = "1,1 to 15,15"
-	mymob.flash.layer = 17
+	flash_icon = new /obj/screen/flash()
+	screenoverlays += flash_icon
 
-	mymob.zone_sel = new /obj/screen/zone_sel()
-	mymob.zone_sel.icon = ui_style
-	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	zone_sel = new /obj/screen/zone_sel()
+	zone_sel.icon = ui_style
+	zone_sel.update_icon(mymob)
+	static_inventory += zone_sel
 
-	mymob.client.screen = null
-
-	mymob.client.screen += list( mymob.zone_sel,mymob.healths,mymob.blind, mymob.flash)
-	mymob.client.screen += src.adding + src.other
+/mob/living/carbon/hellhound/create_mob_hud()
+	if(client && !hud_used)
+		hud_used = new /datum/hud/hellhound(src)

@@ -1,270 +1,130 @@
-/datum/hud/proc/alien_hud()
-
-	src.adding = list(  )
-	src.other = list(  )
-
+/datum/hud/alien/New(mob/living/carbon/Xenomorph/owner)
+	..()
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
-	using = new /obj/screen()
-	using.name = "act_intent"
-	using.dir = SOUTHWEST
+	using = new /obj/screen/act_intent()
 	using.icon = 'icons/mob/screen1_alien.dmi'
-	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
-	using.screen_loc = ui_acti
-	using.layer = 20
-	src.adding += using
+	using.icon_state = "intent_"+owner.a_intent
+	static_inventory += using
 	action_intent = using
 
-//intent small hud objects
-	var/icon/ico
 
-	ico = new('icons/mob/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-	using = new /obj/screen( src )
-	using.name = "help"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	help_intent = using
-
-	ico = new('icons/mob/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-	using = new /obj/screen( src )
-	using.name = "disarm"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	disarm_intent = using
-
-	ico = new('icons/mob/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-	using = new /obj/screen( src )
-	using.name = "grab"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	grab_intent = using
-
-	ico = new('icons/mob/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-	using = new /obj/screen( src )
-	using.name = "harm"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	hurt_intent = using
-
-//end intent small hud objects
-
-	using = new /obj/screen()
-	using.name = "mov_intent"
-	using.dir = SOUTHWEST
+	using = new /obj/screen/mov_intent()
 	using.icon = 'icons/mob/screen1_alien.dmi'
-	using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
-	using.screen_loc = ui_movi
-	using.layer = 20
-	src.adding += using
+	using.icon_state = (owner.m_intent == "run" ? "running" : "walking")
+	static_inventory += using
 	move_intent = using
 
-	using = new /obj/screen()
-	using.name = "drop"
+	using = new /obj/screen/drop()
 	using.icon = 'icons/mob/screen1_alien.dmi'
-	using.icon_state = "act_drop"
-	using.screen_loc = ui_drop_throw
-	using.layer = 19
-	src.adding += using
+	static_inventory += using
 
-//equippable shit
-	//suit
-/*
-	inv_box = new /obj/screen/inventory()
-	inv_box.name = "o_clothing"
-	inv_box.dir = SOUTH
-	inv_box.icon = 'icons/mob/screen1_alien.dmi'
-	inv_box.icon_state = "equip"
-	inv_box.screen_loc = ui_alien_oclothing
-	inv_box.slot_id = WEAR_JACKET
-	inv_box.layer = 19
-	src.adding += inv_box
-*/
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "r_hand"
-	inv_box.dir = WEST
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "hand_inactive"
-	if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
+	if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
 		using.icon_state = "hand_active"
 	inv_box.screen_loc = ui_rhand
 	inv_box.layer = 19
-	src.r_hand_hud_object = inv_box
 	inv_box.slot_id = WEAR_R_HAND
-	src.adding += inv_box
+	r_hand_hud_object = inv_box
+	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "l_hand"
-	inv_box.dir = EAST
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "hand_inactive"
-	if(mymob && mymob.hand)	//This being 1 means the left hand is in use
+	if(owner && owner.hand)	//This being 1 means the left hand is in use
 		inv_box.icon_state = "hand_active"
 	inv_box.screen_loc = ui_lhand
 	inv_box.layer = 19
 	inv_box.slot_id = WEAR_L_HAND
-	src.l_hand_hud_object = inv_box
-	src.adding += inv_box
+	l_hand_hud_object = inv_box
+	static_inventory += inv_box
 
 	using = new /obj/screen/inventory()
 	using.name = "hand"
-	using.dir = SOUTH
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "hand1"
 	using.screen_loc = ui_swaphand1
 	using.layer = 19
-	src.adding += using
+	static_inventory += using
 
 	using = new /obj/screen/inventory()
 	using.name = "hand"
-	using.dir = SOUTH
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "hand2"
 	using.screen_loc = ui_swaphand2
 	using.layer = 19
-	src.adding += using
+	static_inventory += using
 
 
-///////////////TEMP REMOVAL OF POCKETS
-/*
-	//pocket 1
-	inv_box = new /obj/screen/inventory()
-	inv_box.name = "storage1"
-	inv_box.icon = 'icons/mob/screen1_alien.dmi'
-	inv_box.icon_state = "pocket"
-	inv_box.screen_loc = ui_storage1
-	inv_box.slot_id = WEAR_L_STORE
-	inv_box.layer = 19
-	src.adding += inv_box
+	using = new /obj/screen/resist/alien()
+	hotkeybuttons += using
 
-	//pocket 2
-	inv_box = new /obj/screen/inventory()
-	inv_box.name = "storage2"
-	inv_box.icon = 'icons/mob/screen1_alien.dmi'
-	inv_box.icon_state = "pocket"
-	inv_box.screen_loc = ui_storage2
-	inv_box.slot_id = WEAR_R_STORE
-	inv_box.layer = 19
-	src.adding += inv_box
-
-
-
-
-	//head
-	inv_box = new /obj/screen/inventory()
-	inv_box.name = "head"
-	inv_box.icon = 'icons/mob/screen1_alien.dmi'
-	inv_box.icon_state = "hair"
-	inv_box.screen_loc = ui_alien_head
-	inv_box.slot_id = WEAR_HEAD
-	inv_box.layer = 19
-	src.adding += inv_box
-//end of equippable shit
-*/
-
-	using = new /obj/screen()
-	using.name = "resist"
-	using.icon = 'icons/mob/screen1_alien.dmi'
-	using.icon_state = "act_resist"
-	using.screen_loc = ui_storage2
-	using.layer = 19
-	src.adding += using
-
-	//pocket 1
+	//ready tail
 	using = new /obj/screen()
 	using.name = "ready tail"
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "tail_unready"
 	using.screen_loc = ui_storage1
 	using.layer = 19
-	src.adding += using
+	hotkeybuttons += using
 
-	mymob.throw_icon = new /obj/screen()
-	mymob.throw_icon.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.throw_icon.icon_state = "act_throw_off"
-	mymob.throw_icon.name = "throw"
-	mymob.throw_icon.screen_loc = ui_drop_throw
-/*
-//None of this stuff is remotely necessary.
-	mymob.oxygen = new /obj/screen()
-	mymob.oxygen.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.oxygen.icon_state = "oxy0"
-	mymob.oxygen.name = "oxygen"
-	mymob.oxygen.screen_loc = ui_alien_oxygen
+	throw_icon = new /obj/screen/throw_catch()
+	throw_icon.icon = 'icons/mob/screen1_alien.dmi'
+	hotkeybuttons += throw_icon
 
-	mymob.toxin = new /obj/screen()
-	mymob.toxin.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.toxin.icon_state = "tox0"
-	mymob.toxin.name = "toxin"
-	mymob.toxin.screen_loc = ui_alien_toxin
+	healths = new /obj/screen/healths/alien()
+	infodisplay += healths
 
-	mymob.fire = new /obj/screen()
-	mymob.fire.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.fire.icon_state = "fire0"
-	mymob.fire.name = "fire"
-	mymob.fire.screen_loc = ui_alien_fire
-*/
-	mymob.healths = new /obj/screen()
-	mymob.healths.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.healths.icon_state = "health0"
-	mymob.healths.name = "health"
-	mymob.healths.screen_loc = ui_alien_health
+	alien_plasma_display = new /obj/screen()
+	alien_plasma_display.icon = 'icons/mob/screen1_alien.dmi'
+	alien_plasma_display.icon_state = "power_display2"
+	alien_plasma_display.name = "plasma stored"
+	alien_plasma_display.screen_loc = ui_alienplasmadisplay
+	infodisplay += alien_plasma_display
 
-	mymob.alien_plasma_display = new /obj/screen()
-	mymob.alien_plasma_display.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.alien_plasma_display.icon_state = "power_display2"
-	mymob.alien_plasma_display.name = "plasma stored"
-	mymob.alien_plasma_display.screen_loc = ui_alienplasmadisplay
+	locate_queen = new /obj/screen/queen_locator()
+	infodisplay += locate_queen
 
-	mymob.locate_queen = new /obj/screen()
-	mymob.locate_queen.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.locate_queen.icon_state = "trackoff"
-	mymob.locate_queen.name = "queen locator"
-	mymob.locate_queen.screen_loc = ui_queen_locator
+	pull_icon = new /obj/screen/pull()
+	pull_icon.icon = 'icons/mob/screen1_alien.dmi'
+	pull_icon.screen_loc = ui_pull_resist
+	hotkeybuttons += using
 
-	mymob.pullin = new /obj/screen()
-	mymob.pullin.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.pullin.icon_state = "pull0"
-	mymob.pullin.name = "pull"
-	mymob.pullin.screen_loc = ui_pull_resist
+	blind_icon = new /obj/screen/blind()
+	screenoverlays += blind_icon
 
-	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-	mymob.blind.icon_state = "blackimageoverlay"
-	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
-	mymob.blind.plane = -80
+	flash_icon = new /obj/screen/flash()
+	screenoverlays += flash_icon
 
-	mymob.flash = new /obj/screen()
-	mymob.flash.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.flash.icon_state = "blank"
-	mymob.flash.name = "flash"
-	mymob.flash.screen_loc = "1,1 to 15,15"
-	mymob.flash.layer = 17
-
-	mymob.zone_sel = new /obj/screen/zone_sel()
-	mymob.zone_sel.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	zone_sel = new /obj/screen/zone_sel/alien()
+	zone_sel.update_icon(owner)
+	static_inventory += zone_sel
 
 
-	mymob.client.screen = null
 
-	mymob.client.screen += list(mymob.locate_queen, mymob.alien_plasma_display, mymob.throw_icon, mymob.zone_sel, mymob.healths,  mymob.pullin, mymob.blind, mymob.flash) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach, mymob.oxygen, mymob.toxin, mymob.fire,
-	mymob.client.screen += src.adding + src.other
+/datum/hud/alien/persistant_inventory_update()
+	if(!mymob)
+		return
+	var/mob/living/carbon/Xenomorph/H = mymob
+	if(hud_version != HUD_STYLE_NOHUD)
+		if(H.r_hand)
+			H.r_hand.screen_loc = ui_rhand
+			H.client.screen += H.r_hand
+		if(H.l_hand)
+			H.l_hand.screen_loc = ui_lhand
+			H.client.screen += H.l_hand
+	else
+		if(H.r_hand)
+			H.r_hand.screen_loc = null
+		if(H.l_hand)
+			H.l_hand.screen_loc = null
+
+
+/mob/living/carbon/Xenomorph/create_mob_hud()
+	if(client && !hud_used)
+		hud_used = new /datum/hud/alien(src)

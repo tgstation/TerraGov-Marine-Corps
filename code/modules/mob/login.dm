@@ -29,18 +29,12 @@
 	update_Login_details()
 	world.update_status()
 
-	client.images = null				//remove the images such as AIs being unable to see runes
 	client.screen = null				//remove hud items just in case
-	if(hud_used)	del(hud_used)		//remove the hud objects
-	hud_used = new /datum/hud(src)
+	if(!hud_used) create_mob_hud()
+	if(hud_used) hud_used.show_hud(hud_used.hud_version)
 
 	next_move = 1
 	sight |= SEE_SELF
 	..()
 
-	if(loc && !isturf(loc))
-		client.eye = loc
-		client.perspective = EYE_PERSPECTIVE
-	else
-		client.eye = src
-		client.perspective = MOB_PERSPECTIVE
+	reset_view(loc)

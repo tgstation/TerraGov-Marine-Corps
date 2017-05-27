@@ -87,7 +87,7 @@
 				return 0
 
 			var/datum/organ/external/affecting
-			affecting = get_organ(ran_zone(M.zone_sel.selecting, 70))
+			affecting = get_organ(ran_zone(M.zone_selected, 70))
 			if(!affecting) //No organ, just get a random one
 				affecting = get_organ(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
@@ -95,7 +95,7 @@
 
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(isYautja(src) && check_zone(M.zone_sel.selecting) == "head")
+			if(isYautja(src) && check_zone(M.zone_selected) == "head")
 				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
 					var/knock_chance = 1
 					if(M.frenzy_aura)

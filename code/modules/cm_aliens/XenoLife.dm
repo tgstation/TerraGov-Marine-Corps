@@ -158,61 +158,61 @@
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
-	if(healths)
+	if(hud_used && hud_used.healths)
 		if(stat != DEAD)
 			switch(round(health * 100 / maxHealth)) //Maxhealth should never be zero or this will generate runtimes.
 				if(100 to INFINITY)
-					healths.icon_state = "health0"
+					hud_used.healths.icon_state = "health0"
 				if(76 to 99)
-					healths.icon_state = "health1"
+					hud_used.healths.icon_state = "health1"
 				if(51 to 75)
-					healths.icon_state = "health2"
+					hud_used.healths.icon_state = "health2"
 				if(26 to 50)
-					healths.icon_state = "health3"
+					hud_used.healths.icon_state = "health3"
 				if(0 to 25)
-					healths.icon_state = "health4"
+					hud_used.healths.icon_state = "health4"
 				else
-					healths.icon_state = "health5"
+					hud_used.healths.icon_state = "health5"
 		else
-			healths.icon_state = "health6"
+			hud_used.healths.icon_state = "health6"
 
-	if(alien_plasma_display)
+	if(hud_used && hud_used.alien_plasma_display)
 		if(stat != DEAD)
 			if(maxplasma) //No divide by zeros please
 				switch(round(storedplasma * 100 / maxplasma))
 					if(100 to INFINITY)
-						alien_plasma_display.icon_state = "power_display2_9"
+						hud_used.alien_plasma_display.icon_state = "power_display2_9"
 					if(71 to 99)
-						alien_plasma_display.icon_state = "power_display2_8"
+						hud_used.alien_plasma_display.icon_state = "power_display2_8"
 					if(61 to 70)
-						alien_plasma_display.icon_state = "power_display2_7"
+						hud_used.alien_plasma_display.icon_state = "power_display2_7"
 					if(51 to 60)
-						alien_plasma_display.icon_state = "power_display2_6"
+						hud_used.alien_plasma_display.icon_state = "power_display2_6"
 					if(41 to 50)
-						alien_plasma_display.icon_state = "power_display2_5"
+						hud_used.alien_plasma_display.icon_state = "power_display2_5"
 					if(31 to 40)
-						alien_plasma_display.icon_state = "power_display2_4"
+						hud_used.alien_plasma_display.icon_state = "power_display2_4"
 					if(21 to 30)
-						alien_plasma_display.icon_state = "power_display2_3"
+						hud_used.alien_plasma_display.icon_state = "power_display2_3"
 					if(11 to 20)
-						alien_plasma_display.icon_state = "power_display2_2"
+						hud_used.alien_plasma_display.icon_state = "power_display2_2"
 					if(1 to 10)
-						alien_plasma_display.icon_state = "power_display2_1"
+						hud_used.alien_plasma_display.icon_state = "power_display2_1"
 					else
-						alien_plasma_display.icon_state = "power_display2_0"
+						hud_used.alien_plasma_display.icon_state = "power_display2_0"
 			else
-				alien_plasma_display.icon_state = "power_display2_0"
+				hud_used.alien_plasma_display.icon_state = "power_display2_0"
 		else
-			alien_plasma_display.icon_state = "power_display2_0"
+			hud_used.alien_plasma_display.icon_state = "power_display2_0"
 
 	if(client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
-	if(blind && stat != DEAD)
+	if(hud_used && hud_used.blind_icon && stat != DEAD)
 		if(blinded)
-			blind.plane = 0
+			hud_used.blind_icon.plane = 0
 		else
-			blind.plane = -80
+			hud_used.blind_icon.plane = -80
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
@@ -249,13 +249,13 @@ updatehealth()
 		if(environment.temperature > (T0C + 66))
 			adjustFireLoss((environment.temperature - (T0C + 66)) / 5) //Might be too high, check in testing.
 			updatehealth() //Make sure their actual health updates immediately
-			if(fire)
-				fire.icon_state = "fire2"
+			if(hud_used && hud_used.fire_icon)
+				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
 				src << "<span class='warning'>You feel a searing heat!</span>"
 		else
-			if(fire)
-				fire.icon_state = "fire0"
+			if(hud_used && hud_used.fire_icon)
+				hud_used.fire_icon.icon_state = "fire0"
 
 	if(!T || !istype(T))
 		return
@@ -408,21 +408,21 @@ updatehealth()
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null
 
-	if(locate_queen)
+	if(hud_used && hud_used.locate_queen)
 		for(var/mob/living/carbon/Xenomorph/Queen/M in living_mob_list)
 			if(M && !M.stat)
 				target = M
 				break
 
 	if(!target || !istype(target) || is_intelligent)
-		locate_queen.icon_state = "trackoff"
+		hud_used.locate_queen.icon_state = "trackoff"
 		return
 
 	if(target.z != src.z || get_dist(src,target) < 1 || src == target)
-		locate_queen.icon_state = "trackondirect"
+		hud_used.locate_queen.icon_state = "trackondirect"
 	else
-		locate_queen.dir = get_dir(src,target)
-		locate_queen.icon_state = "trackon"
+		hud_used.locate_queen.dir = get_dir(src,target)
+		hud_used.locate_queen.icon_state = "trackon"
 
 /mob/living/carbon/Xenomorph/updatehealth(gib_bonus = 0)
 	var/gib_prob = gib_chance + gib_bonus

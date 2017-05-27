@@ -265,12 +265,12 @@
 			if (!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS) )
 				internal = null
 			if(internal)
-				if (internals)
-					internals.icon_state = "internal1"
+				if (hud_used && hud_used.internals)
+					hud_used.internals.icon_state = "internal1"
 				return internal.remove_air_volume(volume_needed)
 			else
-				if (internals)
-					internals.icon_state = "internal0"
+				if (hud_used && hud_used.internals)
+					hud_used.internals.icon_state = "internal0"
 		return null
 
 	proc/handle_breath(datum/gas_mixture/breath)
@@ -540,64 +540,64 @@
 			see_in_dark = 2
 			see_invisible = SEE_INVISIBLE_LIVING
 
-		if (healths)
+		if (hud_used && hud_used.healths)
 			if (stat != 2)
 				switch(health)
 					if(100 to INFINITY)
-						healths.icon_state = "health0"
+						hud_used.healths.icon_state = "health0"
 					if(80 to 100)
-						healths.icon_state = "health1"
+						hud_used.healths.icon_state = "health1"
 					if(60 to 80)
-						healths.icon_state = "health2"
+						hud_used.healths.icon_state = "health2"
 					if(40 to 60)
-						healths.icon_state = "health3"
+						hud_used.healths.icon_state = "health3"
 					if(20 to 40)
-						healths.icon_state = "health4"
+						hud_used.healths.icon_state = "health4"
 					if(0 to 20)
-						healths.icon_state = "health5"
+						hud_used.healths.icon_state = "health5"
 					else
-						healths.icon_state = "health6"
+						hud_used.healths.icon_state = "health6"
 			else
-				healths.icon_state = "health7"
+				hud_used.healths.icon_state = "health7"
 
 
-		if(pressure)
-			pressure.icon_state = "pressure[pressure_alert]"
+		if(hud_used && hud_used.pressure_icon)
+			hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
 
-		if (toxin)	toxin.icon_state = "tox[phoron_alert ? 1 : 0]"
-		if (oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
-		if (fire) fire.icon_state = "fire[fire_alert ? 2 : 0]"
+		if (hud_used && hud_used.toxin_icon)	hud_used.toxin_icon.icon_state = "tox[phoron_alert ? 1 : 0]"
+		if (hud_used && hud_used.oxygen_icon) hud_used.oxygen_icon.icon_state = "oxy[oxygen_alert ? 1 : 0]"
+		if (hud_used && hud_used.fire_icon) hud_used.fire_icon.icon_state = "fire[fire_alert ? 2 : 0]"
 		//NOTE: the alerts dont reset when youre out of danger. dont blame me,
 		//blame the person who coded them. Temporary fix added.
 
-		if(bodytemp)
+		if(hud_used && hud_used.bodytemp_icon)
 			switch(bodytemperature) //310.055 optimal body temp
 				if(345 to INFINITY)
-					bodytemp.icon_state = "temp4"
+					hud_used.bodytemp_icon.icon_state = "temp4"
 				if(335 to 345)
-					bodytemp.icon_state = "temp3"
+					hud_used.bodytemp_icon.icon_state = "temp3"
 				if(327 to 335)
-					bodytemp.icon_state = "temp2"
+					hud_used.bodytemp_icon.icon_state = "temp2"
 				if(316 to 327)
-					bodytemp.icon_state = "temp1"
+					hud_used.bodytemp_icon.icon_state = "temp1"
 				if(300 to 316)
-					bodytemp.icon_state = "temp0"
+					hud_used.bodytemp_icon.icon_state = "temp0"
 				if(295 to 300)
-					bodytemp.icon_state = "temp-1"
+					hud_used.bodytemp_icon.icon_state = "temp-1"
 				if(280 to 295)
-					bodytemp.icon_state = "temp-2"
+					hud_used.bodytemp_icon.icon_state = "temp-2"
 				if(260 to 280)
-					bodytemp.icon_state = "temp-3"
+					hud_used.bodytemp_icon.icon_state = "temp-3"
 				else
-					bodytemp.icon_state = "temp-4"
+					hud_used.bodytemp_icon.icon_state = "temp-4"
 
 		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-		if(blind && stat != DEAD)
+		if(hud_used && hud_used.blind_icon && stat != DEAD)
 			if(blinded)
-				blind.plane = 0
+				hud_used.blind_icon.plane = 0
 			else
-				blind.plane = -80
+				hud_used.blind_icon.plane = -80
 
 				if(disabilities & NEARSIGHTED)
 					client.screen += global_hud.vimpaired

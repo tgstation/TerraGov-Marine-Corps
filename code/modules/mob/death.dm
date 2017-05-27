@@ -61,8 +61,8 @@
 
 	layer = MOB_LAYER - 0.1 //So people stand on corpses
 
-	if(blind && client)
-		blind.plane = 0
+	if(hud_used && hud_used.blind_icon && client)
+		hud_used.blind_icon.plane = 0
 
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 	see_in_dark = 8
@@ -71,8 +71,8 @@
 	drop_r_hand()
 	drop_l_hand()
 
-	if(healths)
-		healths.icon_state = "health6"
+	if(hud_used && hud_used.healths)
+		hud_used.healths.icon_state = "health6"
 
 	timeofdeath = world.time
 	if(mind) mind.store_memory("Time of death: [worldtime2text()]", 0)

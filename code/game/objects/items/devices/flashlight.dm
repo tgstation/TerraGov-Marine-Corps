@@ -76,7 +76,7 @@
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
-	if(on && user.zone_sel.selecting == "eyes")
+	if(on && user.zone_selected == "eyes")
 
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
@@ -92,7 +92,8 @@
 
 		if(M == user)	//they're using it on themselves
 			if(!M.blinded)
-				flick("flash", M.flash)
+				if(M.hud_used)
+					flick("flash", M.hud_used.flash_icon)
 				M.visible_message("<span class='notice'>[M] directs [src] to \his eyes.</span>", \
 									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			else
@@ -107,11 +108,13 @@
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
 				user << "<span class='notice'>[M] pupils does not react to the light!</span>"
 			else if(XRAY in M.mutations)	//mob has X-RAY vision
-				flick("flash", M.flash) //Yes, you can still get flashed wit X-Ray.
+				if(M.hud_used)
+					flick("flash", M.hud_used.flash_icon) //Yes, you can still get flashed wit X-Ray.
 				user << "<span class='notice'>[M] pupils give an eerie glow!</span>"
 			else	//they're okay!
 				if(!M.blinded)
-					flick("flash", M.flash)	//flash the affected mob
+					if(M.hud_used)
+						flick("flash", M.hud_used.flash_icon)	//flash the affected mob
 					user << "<span class='notice'>[M]'s pupils narrow.</span>"
 	else
 		return ..()

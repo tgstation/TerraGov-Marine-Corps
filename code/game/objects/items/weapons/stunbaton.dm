@@ -129,7 +129,7 @@
 	var/stun = stunforce
 	var/mob/living/L = M
 
-	var/target_zone = check_zone(user.zone_sel.selecting)
+	var/target_zone = check_zone(user.zone_selected)
 	if(user.a_intent == "hurt")
 		if (!..())	//item/attack() does it's own messaging and logs
 			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
@@ -143,7 +143,7 @@
 			L.lastattacker = user
 
 			if (user != L) // Attacking yourself can't miss
-				target_zone = get_zone_with_miss_chance(user.zone_sel.selecting, L)
+				target_zone = get_zone_with_miss_chance(user.zone_selected, L)
 
 			if(!target_zone)
 				L.visible_message("\red <B>[user] misses [L] with \the [src]!")
