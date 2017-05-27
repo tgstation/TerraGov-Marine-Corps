@@ -125,7 +125,7 @@
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_icon(owner)
-	static_inventory += pull_icon
+	hotkeybuttons += pull_icon
 
 	blind_icon = new /obj/screen/blind()
 	screenoverlays += blind_icon

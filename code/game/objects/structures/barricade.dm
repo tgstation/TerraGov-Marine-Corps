@@ -81,11 +81,11 @@
 
 	destroy()
 		if(stack_type)
-			var/stack_amount
-			if(always_drop_stack) stack_amount = stack_amount
-			else stack_amount = round(stack_amount * (health/maxhealth)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
+			var/stack_amt
+			if(always_drop_stack) stack_amt = stack_amount
+			else stack_amt = round(stack_amount * (health/maxhealth)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 
-			if(stack_amount) new stack_type (loc, stack_amount)
+			if(stack_amt) new stack_type (loc, stack_amt)
 		cdel(src)
 
 	ex_act(severity)

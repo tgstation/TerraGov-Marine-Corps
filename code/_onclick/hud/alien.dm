@@ -93,7 +93,8 @@
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = 'icons/mob/screen1_alien.dmi'
 	pull_icon.screen_loc = ui_pull_resist
-	hotkeybuttons += using
+	pull_icon.update_icon(owner)
+	hotkeybuttons += pull_icon
 
 	blind_icon = new /obj/screen/blind()
 	screenoverlays += blind_icon
