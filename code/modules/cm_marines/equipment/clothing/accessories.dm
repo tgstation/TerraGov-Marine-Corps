@@ -547,8 +547,20 @@ BLIND     // can't see anything
 		..()
 		overlay = null  //Stops the overlay.
 
+/obj/item/clothing/glasses/night/m42_night_goggles
+	name = "\improper M42 scout sight"
+	desc = "A headset and night vision goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "m56_goggles"
+	item_state = "m56_goggles"
+	vision_flags = SEE_TURFS
+	darkness_view = 12
+	toggleable = 1
+	icon_action_button = "action_meson"
 
-
+	New()
+		..()
+		overlay = null
 
 //============================//MISC\\================================\\
 //=======================================================================\\

@@ -383,33 +383,25 @@
 
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
-						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/weapon/plastique = 2,
-						/obj/item/weapon/grenade/explosive = 2,
-						/obj/item/weapon/grenade/incendiary = 2
+						/obj/item/clothing/tie/storage/webbing = 1
 			)
 	contraband = list()
 	premium = list(/obj/item/weapon/shield/riot = 1)
 	shared = list(
-					/obj/item/weapon/storage/box/heavy_armor = 1,
-					/obj/item/weapon/storage/box/rocket_system = 1,
-					/obj/item/weapon/storage/box/grenade_system = 1,
-					/obj/item/weapon/storage/box/m42c_system = 1,
-					/obj/item/weapon/storage/box/m42c_system_Jungle = 1
+					/obj/item/weapon/storage/box/demolitionist = 1,
+					/obj/item/weapon/storage/box/heavy_grenadier = 1,
+					/obj/item/weapon/storage/box/sniper = 1,
+					/obj/item/weapon/storage/box/scout = 1
 			)
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_special/New()
 
 	if(shared_products.len == 0)
-		shared_products = list(
-						new /datum/data/vending_product(),
-						new /datum/data/vending_product(),
-						new /datum/data/vending_product(),
-						new /datum/data/vending_product(),
-						new /datum/data/vending_product()
-				)
+		var/i
 
+		for(i in shared)
+			shared_products.Add(new /datum/data/vending_product())
 	..()
 
 

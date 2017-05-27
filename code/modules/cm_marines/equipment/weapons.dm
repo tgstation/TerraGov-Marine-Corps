@@ -308,6 +308,83 @@
 						new /obj/item/weapon/facepaint/sniper(src)
 		..()
 
+/obj/item/weapon/storage/box/sniper
+	name = "\improper Sniper equipment"
+	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 11
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/sniper(src)
+			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+			new /obj/item/ammo_magazine/sniper(src)
+			new /obj/item/ammo_magazine/sniper/incendiary(src)
+			new /obj/item/ammo_magazine/sniper/flak(src)
+			new /obj/item/device/binoculars(src)
+			new /obj/item/weapon/storage/backpack/marine/smock(src)
+			new /obj/item/weapon/gun/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+
+	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
+		if(!opened) //First time opening it, so add the round-specific items
+			opened = 1
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
+						new /obj/item/clothing/head/helmet/marine(src)
+					else
+						new /obj/item/clothing/head/helmet/durag(src)
+						new /obj/item/weapon/facepaint/sniper(src)
+		..()
+
+// Temporarily the same as the Sniper loadout.
+/obj/item/weapon/storage/box/scout
+	name = "\improper Scout equipment"
+	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 11
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/sniper(src)
+			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+			new /obj/item/ammo_magazine/sniper(src)
+			new /obj/item/ammo_magazine/sniper/incendiary(src)
+			new /obj/item/ammo_magazine/sniper/flak(src)
+			new /obj/item/device/binoculars(src)
+			new /obj/item/weapon/storage/backpack/marine/smock(src)
+			new /obj/item/weapon/gun/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+
+	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
+		if(!opened) //First time opening it, so add the round-specific items
+			opened = 1
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
+						new /obj/item/clothing/head/helmet/marine(src)
+					else
+						new /obj/item/clothing/head/helmet/durag(src)
+						new /obj/item/weapon/facepaint/sniper(src)
+		..()
+
 /obj/item/weapon/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
@@ -363,6 +440,26 @@
 			new /obj/item/weapon/storage/belt/grenade(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
 
+/obj/item/weapon/storage/box/heavy_grenadier
+	name = "\improper Heavy Grenadier case"
+	desc = "A large case containing M50 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "grenade_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/launcher/m92(src)
+			new /obj/item/weapon/storage/belt/grenade(src)
+			new /obj/item/weapon/storage/belt/grenade(src)
+			new /obj/item/clothing/gloves/marine/specialist(src)
+			new /obj/item/clothing/suit/storage/marine/specialist(src)
+			new /obj/item/clothing/head/helmet/marine/specialist(src)
 
 /obj/item/weapon/storage/box/rocket_system
 	name = "\improper M83 rocket launcher crate"
@@ -384,6 +481,31 @@
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/wp(src)
+
+/obj/item/weapon/storage/box/demolitionist
+	name = "\improper Demolitionist equipment"
+	desc = "A large case containing a heavy-caliber antitank missile launcher, missiles, C4, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
+	w_class = 5
+	storage_slots = 10
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/launcher/rocket(src)
+			new /obj/item/ammo_magazine/rocket(src)
+			new /obj/item/ammo_magazine/rocket(src)
+			new /obj/item/ammo_magazine/rocket/ap(src)
+			new /obj/item/ammo_magazine/rocket/ap(src)
+			new /obj/item/ammo_magazine/rocket/wp(src)
+			new /obj/item/device/mine(src)
+			new /obj/item/device/mine(src)
+			new /obj/item/weapon/plastique(src)
+			new /obj/item/weapon/plastique(src)
 
 /obj/item/weapon/tank/phoron/m240
 	name = "\improper M240 fuel tank"

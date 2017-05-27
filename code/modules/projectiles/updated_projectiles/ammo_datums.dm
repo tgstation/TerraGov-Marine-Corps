@@ -448,7 +448,7 @@
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
 	damage_bleed = 0
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
 	New()
 		..()
 		accuracy = config.med_hit_accuracy
@@ -463,7 +463,7 @@
 	name = "incendiary sniper bullet"
 	accuracy = 0
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SKIPS_HUMANS
 	New()
 		..()
 		accuracy_var_high = config.med_proj_variance
