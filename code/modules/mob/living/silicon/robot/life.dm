@@ -181,42 +181,42 @@
 			if (MED_HUD)
 				process_med_hud(src,0)
 
-	if (src.healths)
-		if (src.stat != 2)
+	if (hud_used && hud_used.healths)
+		if (src.stat != DEAD)
 			if(istype(src,/mob/living/silicon/robot/drone))
 				switch(health)
 					if(35 to INFINITY)
-						src.healths.icon_state = "health0"
+						hud_used.healths.icon_state = "health0"
 					if(25 to 34)
-						src.healths.icon_state = "health1"
+						hud_used.healths.icon_state = "health1"
 					if(15 to 24)
-						src.healths.icon_state = "health2"
+						hud_used.healths.icon_state = "health2"
 					if(5 to 14)
-						src.healths.icon_state = "health3"
+						hud_used.healths.icon_state = "health3"
 					if(0 to 4)
-						src.healths.icon_state = "health4"
+						hud_used.healths.icon_state = "health4"
 					if(-35 to 0)
-						src.healths.icon_state = "health5"
+						hud_used.healths.icon_state = "health5"
 					else
-						src.healths.icon_state = "health6"
+						hud_used.healths.icon_state = "health6"
 			else
 				switch(health)
 					if(500 to INFINITY)
-						src.healths.icon_state = "health0"
+						hud_used.healths.icon_state = "health0"
 					if(450 to 499)
-						src.healths.icon_state = "health1"
+						hud_used.healths.icon_state = "health1"
 					if(300 to 450)
-						src.healths.icon_state = "health2"
+						hud_used.healths.icon_state = "health2"
 					if(150 to 300)
-						src.healths.icon_state = "health3"
+						hud_used.healths.icon_state = "health3"
 					if(0 to 150)
-						src.healths.icon_state = "health4"
+						hud_used.healths.icon_state = "health4"
 					if(config.health_threshold_dead to 0)
-						src.healths.icon_state = "health5"
+						hud_used.healths.icon_state = "health5"
 					else
-						src.healths.icon_state = "health6"
+						hud_used.healths.icon_state = "health6"
 		else
-			src.healths.icon_state = "health7"
+			hud_used.healths.icon_state = "health7"
 
 	if (src.syndicate && src.client)
 		if(ticker.mode.name == "traitor")
@@ -249,18 +249,18 @@
 		else
 			src.cells.icon_state = "charge-empty"
 
-	if(bodytemp)
+	if(hud_used && hud_used.bodytemp_icon)
 		switch(src.bodytemperature) //310.055 optimal body temp
 			if(335 to INFINITY)
-				src.bodytemp.icon_state = "temp2"
+				hud_used.bodytemp_icon.icon_state = "temp2"
 			if(320 to 335)
-				src.bodytemp.icon_state = "temp1"
+				hud_used.bodytemp_icon.icon_state = "temp1"
 			if(300 to 320)
-				src.bodytemp.icon_state = "temp0"
+				hud_used.bodytemp_icon.icon_state = "temp0"
 			if(260 to 300)
-				src.bodytemp.icon_state = "temp-1"
+				hud_used.bodytemp_icon.icon_state = "temp-1"
 			else
-				src.bodytemp.icon_state = "temp-2"
+				hud_used.bodytemp_icon.icon_state = "temp-2"
 
 
 //Oxygen and fire does nothing yet!!
@@ -269,11 +269,11 @@
 
 	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-	if ((src.blind && src.stat != 2))
-		if(src.blinded)
-			src.blind.plane = 0
+	if (hud_used && hud_used.blind_icon && stat != DEAD)
+		if(blinded)
+			hud_used.blind_icon.plane = 0
 		else
-			src.blind.plane = -80
+			hud_used.blind_icon.plane = -80
 			if (src.disabilities & NEARSIGHTED)
 				src.client.screen += global_hud.vimpaired
 

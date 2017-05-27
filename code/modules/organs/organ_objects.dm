@@ -18,7 +18,7 @@
 /obj/item/organ/attack_self(mob/user as mob)
 
 	// Convert it to an edible form, yum yum.
-	if(!robotic && user.a_intent == "help" && user.zone_sel.selecting == "mouth")
+	if(!robotic && user.a_intent == "help" && user.zone_selected == "mouth")
 		bitten(user)
 		return
 

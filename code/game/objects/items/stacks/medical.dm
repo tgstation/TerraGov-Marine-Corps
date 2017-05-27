@@ -23,7 +23,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
 
 		if(affecting.display_name == "head")
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -63,7 +63,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
 
 		if(affecting.open == 0)
 			if(!affecting.bandage())
@@ -106,7 +106,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
 
 		if(affecting.open == 0)
 			if(!affecting.salve())
@@ -154,7 +154,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
 
 		if(affecting.open == 0)
 			var/bandaged = affecting.bandage()
@@ -202,7 +202,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
 
 		if(affecting.open == 0)
 			if(!affecting.salve())
@@ -232,7 +232,7 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
 		var/limb = affecting.display_name
 
 		if(!(affecting.name in list("l_arm","r_arm","l_leg","r_leg","r_hand","l_hand","r_foot","l_foot","chest","groin","head")))

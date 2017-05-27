@@ -250,11 +250,13 @@
 		for(var/mob/living/M in range(src, 200))
 			M << "<font color='red'><b>[pick("A high pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</b></font>"
 			if(pain)
-				flick("pain",M.pain)
+				if(M.hud_used)
+					flick("pain",M.hud_used.pain_icon)
 				if(prob(50))
 					M.adjustBruteLoss(5)
 			else
-				flick("flash",M.flash)
+				if(M.hud_used)
+					flick("flash",M.hud_used.flash_icon)
 				if(prob(50))
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)

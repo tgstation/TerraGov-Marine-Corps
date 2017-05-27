@@ -172,8 +172,8 @@
 	if(I.flags_inventory & HIDEEARS)
 		update_inv_ears()
 	if(internal)
-		if(internals)
-			internals.icon_state = "internal0"
+		if(hud_used && hud_used.internals)
+			hud_used.internals.icon_state = "internal0"
 		internal = null
 	update_inv_wear_mask()
 
@@ -749,8 +749,8 @@ It can still be worn/put on as normal.
 			if (target.internal)
 				target.internal.add_fingerprint(source)
 				target.internal = null
-				if (target.internals)
-					target.internals.icon_state = "internal0"
+				if (target.hud_used && target.hud_used.internals)
+					target.hud_used.internals.icon_state = "internal0"
 			else
 				if (!(istype(target.wear_mask, /obj/item/clothing/mask)))
 					return
@@ -765,8 +765,8 @@ It can still be worn/put on as normal.
 						for(var/mob/M in viewers(target, 1))
 							M.show_message("[target] is now running on internals.", 1)
 						target.internal.add_fingerprint(source)
-						if (target.internals)
-							target.internals.icon_state = "internal1"
+						if (target.hud_used. && target.hud_used.internals)
+							target.hud_used.internals.icon_state = "internal1"
 	if(slot_to_process)
 		if(strip_item) //Stripping an item from the mob
 			if(istype(strip_item,/obj/item/weapon/gun/smartgun)) //NOPE

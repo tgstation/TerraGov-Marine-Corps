@@ -89,24 +89,24 @@
 			stat = CONSCIOUS
 
 /mob/living/carbon/hellhound/proc/handle_regular_hud_updates()
-	if (healths)
+	if (hud_used && hud_used.healths)
 		if (stat != 2)
 			switch(health)
 				if(100 to INFINITY)
-					healths.icon_state = "health0"
+					hud_used.healths.icon_state = "health0"
 				if(80 to 100)
-					healths.icon_state = "health1"
+					hud_used.healths.icon_state = "health1"
 				if(60 to 80)
-					healths.icon_state = "health2"
+					hud_used.healths.icon_state = "health2"
 				if(40 to 60)
-					healths.icon_state = "health3"
+					hud_used.healths.icon_state = "health3"
 				if(20 to 40)
-					healths.icon_state = "health4"
+					hud_used.healths.icon_state = "health4"
 				if(0 to 20)
-					healths.icon_state = "health5"
+					hud_used.healths.icon_state = "health5"
 				else
-					healths.icon_state = "health6"
+					hud_used.healths.icon_state = "health6"
 		else
-			healths.icon_state = "health7"
+			hud_used.healths.icon_state = "health7"
 
 	return 1

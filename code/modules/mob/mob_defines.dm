@@ -12,37 +12,7 @@
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
 
-	var/obj/screen/flash = null
-	var/obj/screen/blind = null
-	var/obj/screen/hands = null
-	var/obj/screen/pullin = null
-	var/obj/screen/internals = null
-	var/obj/screen/oxygen = null
-	var/obj/screen/i_select = null
-	var/obj/screen/m_select = null
-	var/obj/screen/toxin = null
-	var/obj/screen/fire = null
-	var/obj/screen/bodytemp = null
-	var/obj/screen/healths = null
-	var/obj/screen/throw_icon = null
-	var/obj/screen/nutrition_icon = null
-	var/obj/screen/pressure = null
-	var/obj/screen/damageoverlay = null
-	var/obj/screen/pain = null
-	var/obj/screen/gun/item/item_use_icon = null
-	var/obj/screen/gun/move/gun_move_icon = null
-	var/obj/screen/gun/run/gun_run_icon = null
-	var/obj/screen/gun/mode/gun_setting_icon = null
-	var/obj/screen/alien_plasma_display = null
-	var/obj/screen/locate_queen = null
-	var/obj/screen/pred_power_icon = null
-
-	//Gun action icons.
-	var/obj/screen/eject_mag = null
-	var/obj/screen/toggle_burst = null
-	var/obj/screen/use_attachment = null
-	var/obj/screen/toggle_raillight = null
-	var/obj/screen/unique_action = null
+	var/obj/screen/hands = null //robot
 
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
@@ -51,7 +21,7 @@
 	I'll make some notes on where certain variable defines should probably go.
 	Changing this around would probably require a good look-over the pre-existing code.
 	*/
-	var/obj/screen/zone_sel/zone_sel = null
+	var/zone_selected = "chest"
 
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
@@ -127,10 +97,8 @@
 	var/frozen = 0.0
 	var/weakened = 0.0
 	var/losebreath = 0.0//Carbon
-	var/intent = null//Living
 	var/shakecamera = 0
 	var/a_intent = "help"//Living
-	var/m_int = null//Living
 	var/m_intent = "run"//Living
 	var/lastKnownIP = null
 	var/obj/structure/stool/bed/buckled = null//Living

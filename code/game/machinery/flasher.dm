@@ -82,11 +82,12 @@
 			var/mob/living/carbon/human/H = O
 			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 			if (E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
-				flick("e_flash", O:flash)
+				if(H.hud_used)
+					flick("e_flash", H.hud_used.flash_icon)
 				E.damage += rand(1, 5)
 		else
-			if(!O.blinded)
-				flick("flash", O:flash)
+			if(!O.blinded && O.hud_used)
+				flick("flash", O.hud_used.flash_icon)
 
 
 /obj/machinery/flasher/emp_act(severity)

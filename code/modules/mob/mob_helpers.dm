@@ -459,18 +459,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isXeno(src))
-		switch(input)
-			if("help","disarm","grab","hurt")
-				a_intent = input
-			if("right")
-				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if("left")
-				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
-		if(hud_used && hud_used.action_intent)
-			hud_used.action_intent.icon_state = "intent_[a_intent]"
-
-	else if(isrobot(src) || ismonkey(src))
+	if(isrobot(src) || ismonkey(src))
 		switch(input)
 			if("help")
 				a_intent = "help"
@@ -478,11 +467,18 @@ var/list/intents = list("help","disarm","grab","hurt")
 				a_intent = "hurt"
 			if("right","left")
 				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-		if(hud_used && hud_used.action_intent)
-			if(a_intent == "hurt")
-				hud_used.action_intent.icon_state = "harm"
-			else
-				hud_used.action_intent.icon_state = "help"
+	else
+		switch(input)
+			if("help","disarm","grab","hurt")
+				a_intent = input
+			if("right")
+				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+			if("left")
+				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+
+
+	if(hud_used && hud_used.action_intent)
+		hud_used.action_intent.icon_state = "intent_[a_intent]"
 
 /proc/broadcast_security_hud_message(var/message, var/broadcast_source)
 	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)

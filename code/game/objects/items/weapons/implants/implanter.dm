@@ -43,7 +43,7 @@
 					src.imp.implanted = 1
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
-						var/datum/organ/external/affected = H.get_organ(user.zone_sel.selecting)
+						var/datum/organ/external/affected = H.get_organ(user.zone_selected)
 						affected.implants += src.imp
 						imp.part = affected
 

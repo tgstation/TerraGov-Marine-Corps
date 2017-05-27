@@ -434,7 +434,7 @@
 	if(M.lying)
 		dmg += 10 //More damage when hitting downed people.
 
-	affecting = M.get_organ(ran_zone(zone_sel.selecting,75))
+	affecting = M.get_organ(ran_zone(zone_selected,75))
 	if(!affecting) //No organ, just get a random one
 		affecting = M.get_organ(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
@@ -452,7 +452,7 @@
 		return
 
 	//Selecting feet? Drop the damage and trip them.
-	if(zone_sel.selecting == "r_leg" || zone_sel.selecting == "l_leg" || zone_sel.selecting == "l_foot" || zone_sel.selecting == "r_foot")
+	if(zone_selected == "r_leg" || zone_selected == "l_leg" || zone_selected == "l_foot" || zone_selected == "r_foot")
 		if(prob(60) && !M.lying)
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 			visible_message("<span class='danger'>\The [src] lashes out with its tail and \the [M] goes down!</span>", \
@@ -484,9 +484,8 @@
 		return
 	if(!client)
 		return
-	if(!src.hud_used.hud_shown)
-		src.button_pressed_F12(1) //If the user has already limited their HUD this avoids them having a HUD when they zoom in
-	button_pressed_F12(1)
+	if(hud_used)
+		hud_used.show_hud(HUD_STYLE_REDUCED)
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
 	client.view = viewsize
@@ -508,8 +507,8 @@
 /mob/living/carbon/Xenomorph/proc/zoom_out()
 	if(!client)
 		return
-	if(!hud_used.hud_shown)
-		button_pressed_F12(1)
+	if(hud_used)
+		hud_used.show_hud(HUD_STYLE_STANDARD)
 	client.view = world.view
 	client.pixel_x = 0
 	client.pixel_y = 0

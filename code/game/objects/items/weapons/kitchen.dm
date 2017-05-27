@@ -41,7 +41,7 @@
 		return ..()
 
 	if(user.a_intent != "help")
-		if(user.zone_sel.selecting == "head" || user.zone_sel.selecting == "eyes")
+		if(user.zone_selected == "head" || user.zone_selected == "eyes")
 			if((CLUMSY in user.mutations) && prob(50))
 				M = user
 			return eyestab(M,user)
@@ -209,7 +209,7 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to attack [M.name] ([M.ckey])</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) used the [src.name] to attack [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	var/t = user:zone_sel.selecting
+	var/t = user:zone_selected
 	if (t == "head")
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -296,7 +296,7 @@
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
 
-	if(!(user.zone_sel.selecting == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
+	if(!(user.zone_selected == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
 		if(prob(33))
 			src.add_blood(H)
 			var/turf/location = H.loc

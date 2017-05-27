@@ -234,7 +234,7 @@
 			user << "How do you propose to modify a hardsuit while it is being worn?"
 			return
 
-		var/target_zone = user.zone_sel.selecting
+		var/target_zone = user.zone_selected
 
 		if(target_zone == "head")
 

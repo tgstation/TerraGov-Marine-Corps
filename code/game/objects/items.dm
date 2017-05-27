@@ -684,8 +684,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
 	else //Otherwise we want to zoom in.
-		if(!user.hud_used.hud_shown) user.button_pressed_F12(1) //If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		user.button_pressed_F12(1)
+		if(user.hud_used)
+			user.hud_used.show_hud(HUD_STYLE_REDUCED)
 		user.client.view = viewsize
 
 		var/tilesize = 32
@@ -712,7 +712,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
 	user.client.view = world.view
-	if(!user.hud_used.hud_shown) user.button_pressed_F12(1)
+	if(user.hud_used)
+		user.hud_used.show_hud(HUD_STYLE_STANDARD)
 
 	user.client.pixel_x = 0
 	user.client.pixel_y = 0

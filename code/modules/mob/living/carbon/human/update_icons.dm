@@ -154,7 +154,6 @@ Please contact me on #coderbus IRC. ~Carn x
 //I'll work on removing that stuff by rewriting some of the cloaking stuff at a later date.
 /mob/living/carbon/human/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
 	if (icon_update)
@@ -537,8 +536,7 @@ var/global/list/damage_icon_parts = list()
 	update_inv_pockets(0)
 	UpdateDamageIcon()
 	update_icons()
-	//Hud Stuff
-	update_hud()
+
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
@@ -877,13 +875,6 @@ var/global/list/damage_icon_parts = list()
 		apply_overlay(BACK_LAYER)
 
 
-/mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
-	if(client)
-		client.screen |= contents
-		if(hud_used)
-			hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
-
-
 /mob/living/carbon/human/update_inv_handcuffed()
 	remove_overlay(HANDCUFF_LAYER)
 	if(handcuffed)
@@ -905,7 +896,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_inv_r_hand()
 	remove_overlay(R_HAND_LAYER)
 	if(r_hand)
-		if(client)
+		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			client.screen += r_hand
 			r_hand.screen_loc = ui_rhand
 		var/t_state = r_hand.item_state
@@ -923,7 +914,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_inv_l_hand()
 	remove_overlay(L_HAND_LAYER)
 	if(l_hand)
-		if(client)
+		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			client.screen += l_hand
 			l_hand.screen_loc = ui_lhand
 		var/t_state = l_hand.item_state

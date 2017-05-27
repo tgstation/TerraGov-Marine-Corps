@@ -101,12 +101,12 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	for(var/datum/surgery_step/S in surgery_steps)
 		//Check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool))
-			var/step_is_valid = S.can_use(user, M, user.zone_sel.selecting, tool)
+			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool)
 			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == 2) //This is a failure that already has a message for failing.
 					return 1
 				M.op_stage.in_progress = 1
-				S.begin_step(user, M, user.zone_sel.selecting, tool) //Start on it
+				S.begin_step(user, M, user.zone_selected, tool) //Start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 
 				//Success multiplers!
@@ -131,13 +131,13 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 				//Multiply tool success rate with multipler
 				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, rand(S.min_duration, S.max_duration), BUSY_ICON_CLOCK, BUSY_ICON_MED))
-					S.end_step(user, M, user.zone_sel.selecting, tool) //Finish successfully
+					S.end_step(user, M, user.zone_selected, tool) //Finish successfully
 
 				else if((tool in user.contents) && user.Adjacent(M)) //Or
 					if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
 						M.emote("scream")
 						user << "<span class='danger'>[M] moved during the surgery! Use anesthetics!</span>"
-					S.fail_step(user, M, user.zone_sel.selecting, tool) //Malpractice
+					S.fail_step(user, M, user.zone_selected, tool) //Malpractice
 				else //This failing silently was a pain.
 					user << "<span class='warning'>You must remain close to your patient to conduct surgery.</span>"
 				M.op_stage.in_progress = 0 //Clear the in-progress flag.

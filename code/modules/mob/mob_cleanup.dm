@@ -161,7 +161,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 					//world << "Mask pass [passed]"
 
-	if(!passed && spread_type == AIRBORNE && !internals)
+	if(!passed && spread_type == AIRBORNE && !internal)
 		passed = (prob((50*virus.permeability_mod) - 1))
 
 	if(passed)

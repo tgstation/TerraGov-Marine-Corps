@@ -170,10 +170,10 @@ OBSOLETE BITCH
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
 	if(!I || !user)	return 0
 
-	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_sel.selecting, src)
+	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
 	if(user == src) // Attacking yourself can't miss
-		target_zone = user.zone_sel.selecting
+		target_zone = user.zone_selected
 	if(!target_zone)
 		visible_message("\red <B>[user] misses [src] with \the [I]!")
 		return 0
@@ -296,7 +296,7 @@ OBSOLETE BITCH
 		var/zone
 		if (istype(O.thrower, /mob/living))
 			var/mob/living/L = O.thrower
-			zone = check_zone(L.zone_sel.selecting)
+			zone = check_zone(L.zone_selected)
 		else
 			zone = ran_zone("chest",75)	//Hits a random part of the body, geared towards the chest
 

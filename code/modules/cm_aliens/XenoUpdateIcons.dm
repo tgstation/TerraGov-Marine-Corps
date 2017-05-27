@@ -72,7 +72,7 @@
 /mob/living/carbon/Xenomorph/update_inv_r_hand()
 	remove_overlay(X_R_HAND_LAYER)
 	if(r_hand)
-		if(client)
+		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			r_hand.screen_loc = ui_rhand
 			client.screen += r_hand
 		var/t_state = r_hand.item_state
@@ -84,7 +84,7 @@
 /mob/living/carbon/Xenomorph/update_inv_l_hand()
 	remove_overlay(X_L_HAND_LAYER)
 	if(l_hand)
-		if(client)
+		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			l_hand.screen_loc = ui_lhand
 			client.screen += l_hand
 		var/t_state = l_hand.item_state

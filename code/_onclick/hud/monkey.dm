@@ -1,113 +1,49 @@
-/datum/hud/proc/monkey_hud(var/ui_style='icons/mob/screen1_old.dmi')
-
-	src.adding = list()
-	src.other = list()
-
+/datum/hud/monkey/New(mob/living/carbon/monkey/owner, ui_style='icons/mob/screen1_old.dmi')
+	..()
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
-	using = new /obj/screen()
-	using.name = "act_intent"
-	using.dir = SOUTHWEST
+	using = new /obj/screen/act_intent()
 	using.icon = ui_style
-	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
-	using.screen_loc = ui_acti
-	using.layer = 20
-	src.adding += using
+	using.icon_state = "intent_"+owner.a_intent
+	static_inventory += using
 	action_intent = using
 
-//intent small hud objects
-	var/icon/ico
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-	using = new /obj/screen( src )
-	using.name = "help"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	help_intent = using
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-	using = new /obj/screen( src )
-	using.name = "disarm"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	disarm_intent = using
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-	using = new /obj/screen( src )
-	using.name = "grab"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	grab_intent = using
-
-	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-	using = new /obj/screen( src )
-	using.name = "harm"
-	using.icon = ico
-	using.screen_loc = ui_acti
-	using.layer = 21
-	src.adding += using
-	hurt_intent = using
-
-//end intent small hud objects
-
-	using = new /obj/screen()
-	using.name = "mov_intent"
-	using.dir = SOUTHWEST
+	using = new /obj/screen/mov_intent()
 	using.icon = ui_style
-	using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
-	using.screen_loc = ui_movi
-	using.layer = 20
-	src.adding += using
+	using.icon_state = (owner.m_intent == "run" ? "running" : "walking")
+	static_inventory += using
 	move_intent = using
 
-	using = new /obj/screen()
-	using.name = "drop"
+	using = new /obj/screen/drop()
 	using.icon = ui_style
-	using.icon_state = "act_drop"
-	using.screen_loc = ui_drop_throw
-	using.layer = 19
-	src.adding += using
+	static_inventory += using
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "r_hand"
 	inv_box.dir = WEST
 	inv_box.icon = ui_style
 	inv_box.icon_state = "hand_inactive"
-	if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
+	if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
 		inv_box.icon_state = "hand_active"
 	inv_box.screen_loc = ui_rhand
 	inv_box.slot_id = WEAR_R_HAND
 	inv_box.layer = 19
 	src.r_hand_hud_object = inv_box
-	src.adding += inv_box
+	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "l_hand"
 	inv_box.dir = EAST
 	inv_box.icon = ui_style
 	inv_box.icon_state = "hand_inactive"
-	if(mymob && mymob.hand)	//This being 1 means the left hand is in use
+	if(owner && owner.hand)	//This being 1 means the left hand is in use
 		inv_box.icon_state = "hand_active"
 	inv_box.screen_loc = ui_lhand
 	inv_box.slot_id = WEAR_L_HAND
 	inv_box.layer = 19
 	src.l_hand_hud_object = inv_box
-	src.adding += inv_box
+	static_inventory += inv_box
 
 	using = new /obj/screen/inventory()
 	using.name = "hand"
@@ -116,7 +52,7 @@
 	using.icon_state = "hand1"
 	using.screen_loc = ui_swaphand1
 	using.layer = 19
-	src.adding += using
+	static_inventory += using
 
 	using = new /obj/screen/inventory()
 	using.name = "hand"
@@ -125,7 +61,7 @@
 	using.icon_state = "hand2"
 	using.screen_loc = ui_swaphand2
 	using.layer = 19
-	src.adding += using
+	static_inventory += using
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "mask"
@@ -135,7 +71,7 @@
 	inv_box.screen_loc = ui_monkey_mask
 	inv_box.slot_id = WEAR_FACE
 	inv_box.layer = 19
-	src.adding += inv_box
+	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "back"
@@ -145,104 +81,124 @@
 	inv_box.screen_loc = ui_back
 	inv_box.slot_id = WEAR_BACK
 	inv_box.layer = 19
-	src.adding += inv_box
+	static_inventory += inv_box
 
-	mymob.throw_icon = new /obj/screen()
-	mymob.throw_icon.icon = ui_style
-	mymob.throw_icon.icon_state = "act_throw_off"
-	mymob.throw_icon.name = "throw"
-	mymob.throw_icon.screen_loc = ui_drop_throw
 
-	mymob.oxygen = new /obj/screen()
-	mymob.oxygen.icon = ui_style
-	mymob.oxygen.icon_state = "oxy0"
-	mymob.oxygen.name = "oxygen"
-	mymob.oxygen.screen_loc = ui_oxygen
+	throw_icon = new /obj/screen/throw_catch()
+	throw_icon.icon = ui_style
+	hotkeybuttons += throw_icon
 
-	mymob.pressure = new /obj/screen()
-	mymob.pressure.icon = ui_style
-	mymob.pressure.icon_state = "pressure0"
-	mymob.pressure.name = "pressure"
-	mymob.pressure.screen_loc = ui_pressure
+	oxygen_icon = new /obj/screen/oxygen()
+	oxygen_icon.icon = ui_style
+	infodisplay += oxygen_icon
 
-	mymob.toxin = new /obj/screen()
-	mymob.toxin.icon = ui_style
-	mymob.toxin.icon_state = "tox0"
-	mymob.toxin.name = "toxin"
-	mymob.toxin.screen_loc = ui_toxin
+	pressure_icon = new /obj/screen()
+	pressure_icon.icon = ui_style
+	pressure_icon.icon_state = "pressure0"
+	pressure_icon.name = "pressure"
+	pressure_icon.screen_loc = ui_pressure
+	infodisplay += pressure_icon
 
-	mymob.internals = new /obj/screen()
-	mymob.internals.icon = ui_style
-	mymob.internals.icon_state = "internal0"
-	mymob.internals.name = "internal"
-	mymob.internals.screen_loc = ui_internal
+	toxin_icon = new /obj/screen()
+	toxin_icon.icon = ui_style
+	toxin_icon.icon_state = "tox0"
+	toxin_icon.name = "toxin"
+	toxin_icon.screen_loc = ui_toxin
+	infodisplay += toxin_icon
 
-	mymob.fire = new /obj/screen()
-	mymob.fire.icon = ui_style
-	mymob.fire.icon_state = "fire0"
-	mymob.fire.name = "fire"
-	mymob.fire.screen_loc = ui_fire
+	internals = new /obj/screen/internals()
+	internals.icon = ui_style
+	infodisplay += internals
 
-	mymob.bodytemp = new /obj/screen()
-	mymob.bodytemp.icon = ui_style
-	mymob.bodytemp.icon_state = "temp1"
-	mymob.bodytemp.name = "body temperature"
-	mymob.bodytemp.screen_loc = ui_temp
+	fire_icon = new /obj/screen/fire()
+	fire_icon.icon = ui_style
+	infodisplay += fire_icon
 
-	mymob.healths = new /obj/screen()
-	mymob.healths.icon = ui_style
-	mymob.healths.icon_state = "health0"
-	mymob.healths.name = "health"
-	mymob.healths.screen_loc = ui_health
+	bodytemp_icon = new /obj/screen/bodytemp()
+	bodytemp_icon.icon = ui_style
+	infodisplay += bodytemp_icon
 
-	mymob.pullin = new /obj/screen()
-	mymob.pullin.icon = ui_style
-	mymob.pullin.icon_state = "pull0"
-	mymob.pullin.name = "pull"
-	mymob.pullin.screen_loc = ui_pull_resist
+	healths = new /obj/screen/healths()
+	healths.icon = ui_style
+	infodisplay += healths
 
-	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-	mymob.blind.icon_state = "blackimageoverlay"
-	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
-	mymob.blind.plane = -80
+	pull_icon = new /obj/screen/pull()
+	pull_icon.icon = ui_style
+	pull_icon.update_icon(owner)
+	static_inventory += pull_icon
 
-	mymob.flash = new /obj/screen()
-	mymob.flash.icon = ui_style
-	mymob.flash.icon_state = "blank"
-	mymob.flash.name = "flash"
-	mymob.flash.screen_loc = "1,1 to 15,15"
-	mymob.flash.layer = 17
+	blind_icon = new /obj/screen/blind()
+	screenoverlays += blind_icon
 
-	mymob.zone_sel = new /obj/screen/zone_sel()
-	mymob.zone_sel.icon = ui_style
-	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	flash_icon = new /obj/screen/flash()
+	screenoverlays += flash_icon
+
+	zone_sel = new /obj/screen/zone_sel()
+	zone_sel.icon = ui_style
+	zone_sel.update_icon(owner)
+	static_inventory += zone_sel
+
+	using = new /obj/screen/resist()
+	using.icon = ui_style
+	using.screen_loc = ui_pull_resist
+	hotkeybuttons += using
 
 	//Handle the gun settings buttons
-	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
-	if (mymob.client)
-		if (mymob.client.gun_mode) // If in aim mode, correct the sprite
-			mymob.gun_setting_icon.dir = 2
-	for(var/obj/item/weapon/gun/G in mymob) // If targeting someone, display other buttons
-		if (G.target)
-			mymob.item_use_icon = new /obj/screen/gun/item(null)
-			if (mymob.client.target_can_click)
-				mymob.item_use_icon.dir = 1
-			src.adding += mymob.item_use_icon
-			mymob.gun_move_icon = new /obj/screen/gun/move(null)
-			if (mymob.client.target_can_move)
-				mymob.gun_move_icon.dir = 1
-				mymob.gun_run_icon = new /obj/screen/gun/run(null)
-				if (mymob.client.target_can_run)
-					mymob.gun_run_icon.dir = 1
-				src.adding += mymob.gun_run_icon
-			src.adding += mymob.gun_move_icon
+	gun_setting_icon = new /obj/screen/gun/mode()
+	gun_setting_icon.update_icon(owner)
+	static_inventory += gun_setting_icon
 
-	mymob.client.screen = null
+	gun_item_use_icon = new /obj/screen/gun/item()
+	gun_item_use_icon.update_icon(owner)
+	static_inventory += gun_item_use_icon
 
-	mymob.client.screen += list( mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.pressure, mymob.toxin, mymob.bodytemp, mymob.internals, mymob.fire, mymob.healths, mymob.pullin, mymob.blind, mymob.flash, mymob.gun_setting_icon) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach )
-	mymob.client.screen += src.adding + src.other
+	gun_move_icon = new /obj/screen/gun/move()
+	gun_move_icon.update_icon(owner)
+	static_inventory +=	gun_move_icon
 
-	return
+	gun_run_icon = new /obj/screen/gun/run()
+	gun_run_icon.update_icon(owner)
+	static_inventory +=	gun_run_icon
+
+
+
+
+
+
+/datum/hud/monkey/persistant_inventory_update()
+	if(!mymob)
+		return
+	var/mob/living/carbon/monkey/M = mymob
+
+	if(hud_shown)
+		if(M.back)
+			M.back.screen_loc = ui_back
+			M.client.screen += M.back
+		if(M.wear_mask)
+			M.wear_mask.screen_loc = ui_monkey_mask
+			M.client.screen += M.wear_mask
+	else
+		if(M.back)
+			M.back.screen_loc = null
+		if(M.wear_mask)
+			M.wear_mask.screen_loc = null
+
+
+	if(hud_version != HUD_STYLE_NOHUD)
+		if(M.r_hand)
+			M.r_hand.screen_loc = ui_rhand
+			M.client.screen += M.r_hand
+		if(M.l_hand)
+			M.l_hand.screen_loc = ui_lhand
+			M.client.screen += M.l_hand
+	else
+		if(M.r_hand)
+			M.r_hand.screen_loc = null
+		if(M.l_hand)
+			M.l_hand.screen_loc = null
+
+
+
+/mob/living/carbon/monkey/create_mob_hud()
+	if(client && !hud_used)
+		hud_used = new /datum/hud/monkey(src, ui_style2icon(client.prefs.UI_style))

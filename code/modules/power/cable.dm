@@ -648,7 +648,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 
-		var/datum/organ/external/S = M:get_organ(user.zone_sel.selecting)
+		var/datum/organ/external/S = M:get_organ(user.zone_selected)
 		if(!(S.status & ORGAN_ROBOT) || user.a_intent != "help")
 			return ..()
 

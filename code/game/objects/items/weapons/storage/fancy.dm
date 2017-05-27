@@ -166,7 +166,7 @@
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_sel.selecting == "mouth" && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/W = new /obj/item/clothing/mask/cigarette(user)
 		reagents.trans_to(W, (reagents.total_volume/contents.len))
 		user.equip_to_slot_if_possible(W, WEAR_FACE)
@@ -239,7 +239,7 @@
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_sel.selecting == "mouth" && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/cigar/W = new /obj/item/clothing/mask/cigarette/cigar(user)
 		reagents.trans_to(W, (reagents.total_volume/contents.len))
 		user.equip_to_slot_if_possible(W, WEAR_FACE)

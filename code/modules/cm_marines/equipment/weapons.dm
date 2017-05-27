@@ -781,7 +781,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(M.intent == "help") return
+	if(M.a_intent == "help") return
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)

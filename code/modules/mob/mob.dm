@@ -545,7 +545,7 @@ var/list/slot_equipment_priority = list( \
 		pulling.pulledby = null
 		pulling = null
 		grab_level = 0
-		if(pullin)	pullin.icon_state = "pull0"
+		if(hud_used.pull_icon)	hud_used.pull_icon.icon_state = "pull0"
 		if(istype(r_hand, /obj/item/weapon/grab))
 			temp_drop_inv_item(r_hand)
 		else if(istype(l_hand, /obj/item/weapon/grab))
@@ -593,7 +593,7 @@ var/list/slot_equipment_priority = list( \
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
 
-	if(pullin) pullin.icon_state = "pull1"
+	if(hud_used && hud_used.pull_icon) hud_used.pull_icon.icon_state = "pull1"
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
@@ -956,7 +956,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return ""
 
 /mob/proc/flash_weak_pain()
-	flick("weak_pain",pain)
+	if(hud_used)
+		flick("weak_pain",hud_used.pain_icon)
 
 /mob/proc/get_visible_implants(var/class = 0)
 	var/list/visible_implants = list()

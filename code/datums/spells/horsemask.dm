@@ -32,8 +32,8 @@
 	target.visible_message(	"<span class='danger'>[target]'s face  lights up in fire, and after the event a horse's head takes its place!</span>", \
 							"<span class='danger'>Your face burns up, and shortly after the fire you realise you have the face of a horse!</span>")
 	target.equip_to_slot(magichead, WEAR_FACE)
-
-	flick("e_flash", target.flash)
+	if(target.hud_used)
+		flick("e_flash", target.hud_used.flash_icon)
 
 //item used by the horsehead spell
 /obj/item/clothing/mask/horsehead/magic

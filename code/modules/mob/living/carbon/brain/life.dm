@@ -205,34 +205,34 @@
 			see_in_dark = 2
 			see_invisible = SEE_INVISIBLE_LIVING
 
-		if (healths)
-			if (stat != 2)
+		if (hud_used && hud_used.healths)
+			if (stat != DEAD)
 				switch(health)
 					if(100 to INFINITY)
-						healths.icon_state = "health0"
+						hud_used.healths.icon_state = "health0"
 					if(80 to 100)
-						healths.icon_state = "health1"
+						hud_used.healths.icon_state = "health1"
 					if(60 to 80)
-						healths.icon_state = "health2"
+						hud_used.healths.icon_state = "health2"
 					if(40 to 60)
-						healths.icon_state = "health3"
+						hud_used.healths.icon_state = "health3"
 					if(20 to 40)
-						healths.icon_state = "health4"
+						hud_used.healths.icon_state = "health4"
 					if(0 to 20)
-						healths.icon_state = "health5"
+						hud_used.healths.icon_state = "health5"
 					else
-						healths.icon_state = "health6"
+						hud_used.healths.icon_state = "health6"
 			else
-				healths.icon_state = "health7"
+				hud_used.healths.icon_state = "health7"
 
 		if (client)
 			client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-		if ((blind && stat != 2))
+		if ((hud_used && hud_used.blind_icon && stat != 2))
 			if ((blinded))
-				blind.plane = 0
+				hud_used.blind_icon.plane = 0
 			else
-				blind.plane = -80
+				hud_used.blind_icon.plane = -80
 
 				if (disabilities & NEARSIGHTED)
 					client.screen += global_hud.vimpaired
@@ -243,7 +243,7 @@
 				if (druggy)
 					client.screen += global_hud.druggy
 
-		if (stat != 2)
+		if (stat != DEAD)
 			if (machine)
 				if (!( machine.check_eye(src) ))
 					reset_view(null)
