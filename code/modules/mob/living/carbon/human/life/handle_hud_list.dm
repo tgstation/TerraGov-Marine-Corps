@@ -168,6 +168,7 @@
 						if("Squad Leader") marine_rk = "leader"
 						if("Squad Specialist") marine_rk = "spec"
 						if("Squad Medic") marine_rk = "med"
+						if("Squad Smartgunner") marine_rk = "gun"
 					if(marine_rk)
 						var/image/IMG = image('icons/mob/hud.dmi',src, "hudmarinesquad")
 						IMG.color = squad_clr

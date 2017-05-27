@@ -29,6 +29,7 @@
 	update_Login_details()
 	world.update_status()
 
+	client.images = null
 	client.screen = null				//remove hud items just in case
 	if(!hud_used) create_mob_hud()
 	if(hud_used) hud_used.show_hud(hud_used.hud_version)
