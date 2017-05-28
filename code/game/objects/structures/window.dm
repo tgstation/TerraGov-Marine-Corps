@@ -144,8 +144,9 @@
 	return attack_hand(user)
 
 //Used by attack_animal
-/obj/structure/window/proc/attack_generic(mob/user as mob, damage = 0)
+/obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
 	health -= damage
+	user.animation_attack_on(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, 1, user)
 

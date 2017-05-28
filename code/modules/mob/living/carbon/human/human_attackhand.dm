@@ -105,6 +105,9 @@
 			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [pick(attack.attack_verb)]ed by [M.name] ([M.ckey])</font>")
 			msg_admin_attack("[key_name(M)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
+			M.animation_attack_on(src)
+			M.flick_attack_overlay(src, "punch")
+
 			var/damage = rand(0, 5)
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1, -1)
@@ -133,6 +136,9 @@
 		if("disarm")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
+
+			M.animation_attack_on(src)
+			M.flick_attack_overlay(src, "disarm")
 
 			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
 

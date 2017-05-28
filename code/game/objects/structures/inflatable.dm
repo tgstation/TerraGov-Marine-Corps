@@ -68,8 +68,9 @@
 		return
 
 
-	proc/attack_generic(mob/user as mob, damage = 0)	//used by attack_animal
+	proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
 		health -= damage
+		user.animation_attack_on(src)
 		if(health <= 0)
 			user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
 			deflate(1)
