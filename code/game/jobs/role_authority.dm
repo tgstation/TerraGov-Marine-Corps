@@ -516,32 +516,81 @@ roles willy nilly.
 	//If the number of available positions for the job are more than max_whatever, it will break.
 	//Ie. 8 squad medic jobs should be available, and total medics in squads should be 8.
 	if(H.mind.assigned_role != "Squad Marine")
-		var/datum/squad/found_squad
 		var/pref_squad_name
 		if(H && H.client && H.client.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
 			pref_squad_name = H.client.prefs.preferred_squad
 
-		for(var/datum/squad/S in squads) //Loop through the squads to find the first one one with an empty slot.
-			if(!S) break //something weird happened!
+		var/datum/squad/lowest
 
-			if(found_squad && S.name != pref_squad_name) continue
+		switch(H.mind.assigned_role)
+			if("Squad Engineer")
+				for(var/datum/squad/S in squads)
+					if(S)
+						if(S.num_engineers >= S.max_engineers) continue
+						if(pref_squad_name && S.name == pref_squad_name)
+							S.put_marine_in_squad(H) //fav squad has a spot for us, no more searching needed.
+							return
 
-			//Check the current squad's roster. If we're full, move on to the next squad and try that one.
-			switch(H.mind.assigned_role)
-				if("Squad Engineer")
-					if(S.num_engineers >= S.max_engineers) continue
-				if("Squad Medic")
-					if(S.num_medics >= S.max_medics) continue
-				if("Squad Leader")
-					if(S.num_leaders >= S.max_leaders) continue
-				if("Squad Specialist")
-					if(S.num_specialists >= S.max_specialists) continue
-				if("Squad Smartgunner")
-					if(S.num_smartgun >= S.max_smartgun) continue
+						if(!lowest)
+							lowest = S
+						else if(S.num_engineers < lowest.num_engineers)
+							lowest = S
 
-			found_squad = S
-		if(found_squad)
-			found_squad.put_marine_in_squad(H) //Found one, add them in and stop the loop.
+			if("Squad Medic")
+				for(var/datum/squad/S in squads)
+					if(S)
+						if(S.num_medics >= S.max_medics) continue
+						if(pref_squad_name && S.name == pref_squad_name)
+							S.put_marine_in_squad(H) //fav squad has a spot for us.
+							return
+
+						if(!lowest)
+							lowest = S
+						else if(S.num_medics < lowest.num_medics)
+							lowest = S
+
+			if("Squad Leader")
+				for(var/datum/squad/S in squads)
+					if(S)
+						if(S.num_leaders >= S.max_leaders) continue
+						if(pref_squad_name && S.name == pref_squad_name)
+							S.put_marine_in_squad(H) //fav squad has a spot for us.
+							return
+
+						if(!lowest)
+							lowest = S
+						else if(S.num_leaders < lowest.num_leaders)
+							lowest = S
+
+			if("Squad Specialist")
+				for(var/datum/squad/S in squads)
+					if(S)
+						if(S.num_specialists >= S.max_specialists) continue
+						if(pref_squad_name && S.name == pref_squad_name)
+							S.put_marine_in_squad(H) //fav squad has a spot for us.
+							return
+
+						if(!lowest)
+							lowest = S
+						else if(S.num_specialists < lowest.num_specialists)
+							lowest = S
+
+			if("Squad Smartgunner")
+				for(var/datum/squad/S in squads)
+					if(S)
+						if(S.num_smartgun >= S.max_smartgun) continue
+						if(pref_squad_name && S.name == pref_squad_name)
+							S.put_marine_in_squad(H) //fav squad has a spot for us.
+							return
+
+						if(!lowest)
+							lowest = S
+						else if(S.num_smartgun < lowest.num_smartgun)
+							lowest = S
+
+		if(lowest)	lowest.put_marine_in_squad(H)
+		else H << "Something went badly with randomize_squad()! Tell a coder!"
+
 	else
 		//Deal with marines. They get distributed to the lowest populated squad.
 		var/datum/squad/given_squad = get_lowest_squad(H)
