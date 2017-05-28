@@ -741,7 +741,7 @@
 			now_pushing = 0
 			return
 
-		if(!L.buckled)
+		if(!L.buckled && !L.anchored)
 			var/mob_swap
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == "grab")
