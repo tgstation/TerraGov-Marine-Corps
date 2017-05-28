@@ -11,6 +11,7 @@
 	w_class = 4.0
 	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
+	storage_slots = 14
 	max_combined_w_class = 21
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
