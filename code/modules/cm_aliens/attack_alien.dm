@@ -485,6 +485,14 @@
 /obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M)
 	attack_hand(M)
 
+
+/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	var/turf/cur_loc = M.loc
+	if(!istype(cur_loc))
+		return 0
+	TryToSwitchState(M)
+	return 1
+
 //clicking on resin doors attacks them, or opens them without harm intent
 /obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	var/turf/cur_loc = M.loc
@@ -494,8 +502,6 @@
 		TryToSwitchState(M)
 		return 1
 
-	if(isXenoLarva(M)) //Larvae don't rip door resin doors
-		return 0
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>")
 	if(do_after(M, 80, FALSE))

@@ -522,9 +522,9 @@
 		cdel(src)
 	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
 		loc = linked_egg
-	else if(ishuman(A))
-		var/mob/living/carbon/human/H = A
-		linked_egg.HasProximity(H)
+	else if(iscarbon(A))
+		var/mob/living/carbon/C = A
+		linked_egg.HasProximity(C)
 
 
 /obj/structure/tunnel

@@ -30,7 +30,7 @@
 
 	attackby(obj/item/weapon/W, mob/user)
 		if(istype(W, /obj/item/weapon/powerloader_clamp))
-			var/obj/item/weapon/powerloader_clamp/PC
+			var/obj/item/weapon/powerloader_clamp/PC = W
 			if(PC.linked_powerloader == src)
 				unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
 				return 1

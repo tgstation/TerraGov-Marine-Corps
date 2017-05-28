@@ -19,7 +19,8 @@
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	var/folded = 0 // 0 for unfolded, 1 for folded
-	var/has_dirt = 0 // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red.
+	var/has_dirt = 0
+	var/dirt_type = NO_DIRT // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red.
 
 	//Update overlay
 /obj/item/weapon/etool/update_icon()
@@ -28,7 +29,7 @@
 	else icon_state = "etool"
 
 	var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine-items.dmi',src,"etool_dirt"))
-	switch(has_dirt) // We can actually shape the color for what enviroment we dig up our dirt in.
+	switch(dirt_type) // We can actually shape the color for what enviroment we dig up our dirt in.
 		if(DIRT_TYPE_GROUND) I.color = "#512A09"
 		if(DIRT_TYPE_MARS) I.color = "#EBEBEB"
 		if(DIRT_TYPE_SNOW) I.color = "#FF5500"
@@ -59,8 +60,9 @@
 	if(!has_dirt)
 		if(isturf(target))
 			var/turf/T = target
-			has_dirt = T.get_dirt_type()
-			if(has_dirt)
+			dirt_type = T.get_dirt_type()
+			if(dirt_type)
+				has_dirt = 1
 				user <<"You dig up some dirt"
 				update_icon()
 	else
