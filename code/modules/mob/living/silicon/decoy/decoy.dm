@@ -2,7 +2,7 @@
 	New()
 		..()
 		name = MAIN_AI_SYSTEM
-		desc = "This is the the artificial intelligence system for the [MAIN_SHIP_NAME]. Like many other military-grade AI systems, this one was manufactured by Weyland-Yutani."
+		desc = "This is the artificial intelligence system for the [MAIN_SHIP_NAME]. Like many other military-grade AI systems, this one was manufactured by Weyland-Yutani."
 		R = new(src)
 
 //Should likely just replace this with an actual AI mob in the future. Might as well.
@@ -13,8 +13,8 @@
 	anchored = 1
 	canmove = 0
 	density = 1 //Do not want to see past it.
-	bound_height = 96 //putting this in so we can't walk through our machine.
-	bound_width = 64
+	bound_height = 64 //putting this in so we can't walk through our machine.
+	bound_width = 96
 	var/obj/item/device/radio/headset/mcom/ai/R //The thing it speaks into.
 	var/sound/S //The lines that it plays when speaking.
 
