@@ -220,8 +220,6 @@ var/waiting_for_drop_votes = 0
 		if(0) //colonial marine
 			if(prob(50))
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
-			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/marine(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 		if(1) //MP
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), WEAR_BODY)

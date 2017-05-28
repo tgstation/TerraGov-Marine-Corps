@@ -458,15 +458,24 @@ roles willy nilly.
 	return 1
 
 //Find which squad has the least population. If all 4 squads are equal it should just use the first one (alpha)
-/datum/authority/branch/role/proc/get_lowest_squad()
+/datum/authority/branch/role/proc/get_lowest_squad(mob/living/carbon/human/H)
 	if(!squads.len) //Something went wrong, our squads aren't set up.
 		world << "Warning, something messed up in get_lowest_squad(). No squads set up!"
 		return null
 
 	var/current_count = 0
 	var/datum/squad/lowest = null
+
+	var/datum/squad/pref_squad
+	var/datum/pref_squad_name
+	if(H && H.client && H.client.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
+		pref_squad_name = H.client.prefs.preferred_squad
+
 	for(var/datum/squad/L in squads) //This is kinda stupid, but whatever. We need a default squad.
 		if(L)
+			if(pref_squad_name)
+				if(L.name != pref_squad_name) continue
+				pref_squad = L //pref squad start as the lowest
 			lowest = L
 			break
 
@@ -482,6 +491,8 @@ roles willy nilly.
 			world << "Warning: Null squad in get_lowest_squad. Call a coder!"
 			break //null squad somehow, let's just abort
 		current_count = S.count //Grab our current squad's #
+		if(pref_squad && pref_squad != S)
+			current_count += 3 //we make non preferred squads' count artificially higher
 		if(current_count >= lowest_count) //Current squad is bigger or the same as our value. Skip it.
 			continue
 		lowest_count = current_count //We found a winner! This squad is lower than our default. Make it the new default.
@@ -505,21 +516,35 @@ roles willy nilly.
 	//If the number of available positions for the job are more than max_whatever, it will break.
 	//Ie. 8 squad medic jobs should be available, and total medics in squads should be 8.
 	if(H.mind.assigned_role != "Squad Marine")
+		var/datum/squad/found_squad
+		var/pref_squad_name
+		if(H && H.client && H.client.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
+			pref_squad_name = H.client.prefs.preferred_squad
+
 		for(var/datum/squad/S in squads) //Loop through the squads to find the first one one with an empty slot.
 			if(!S) break //something weird happened!
 
-			//Check the current squad's roster. If we're full, move on to the next squad and try that one.
-			if(H.mind.assigned_role == "Squad Engineer" && S.num_engineers >= S.max_engineers) continue
-			if(H.mind.assigned_role == "Squad Medic" && S.num_medics >= S.max_medics) continue
-			if(H.mind.assigned_role == "Squad Leader" && S.num_leaders >= S.max_leaders) continue
-			if(H.mind.assigned_role == "Squad Specialist" && S.num_specialists >= S.max_specialists) continue
-			if(H.mind.assigned_role == "Squad Smartgunner" && S.num_smartgun >= S.max_smartgun) continue
+			if(found_squad && S.name != pref_squad_name) continue
 
-			S.put_marine_in_squad(H) //Found one, add them in and stop the loop.
-			break
+			//Check the current squad's roster. If we're full, move on to the next squad and try that one.
+			switch(H.mind.assigned_role)
+				if("Squad Engineer")
+					if(S.num_engineers >= S.max_engineers) continue
+				if("Squad Medic")
+					if(S.num_medics >= S.max_medics) continue
+				if("Squad Leader")
+					if(S.num_leaders >= S.max_leaders) continue
+				if("Squad Specialist")
+					if(S.num_specialists >= S.max_specialists) continue
+				if("Squad Smartgunner")
+					if(S.num_smartgun >= S.max_smartgun) continue
+
+			found_squad = S
+		if(found_squad)
+			found_squad.put_marine_in_squad(H) //Found one, add them in and stop the loop.
 	else
 		//Deal with marines. They get distributed to the lowest populated squad.
-		var/datum/squad/given_squad = get_lowest_squad()
+		var/datum/squad/given_squad = get_lowest_squad(H)
 		if(!given_squad || !istype(given_squad)) //Something went horribly wrong!
 			H << "Something went wrong with randomize_squad()! Tell a coder!"
 			return

@@ -87,6 +87,7 @@ datum/preferences
 	var/species = "Human"               //Species datum to use.
 	var/language = "None"				//Secondary language
 	var/list/gear						//Custom/fluff item loadout.
+	var/preferred_squad = "None"
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
@@ -398,9 +399,11 @@ datum/preferences
 
 	dat += "Undershirt: <a href='?_src_=prefs;preference=undershirt;task=input'><b>[undershirt_t[undershirt]]</b></a><br>"
 
-	dat += "Backpack Type:<br><a href ='?_src_=prefs;preference=bag;task=input'><b>[backbaglist[backbag]]</b></a><br>"
+	dat += "Backpack Type: <a href ='?_src_=prefs;preference=bag;task=input'><b>[backbaglist[backbag]]</b></a><br>"
 
-	dat += "Corporate Relation:<br><a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
+	dat += "Corporate Relation: <a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
+
+	dat += "Preferred Squad: <a href ='?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
 
 	dat += "</td><td><b>Preview</b><br><img src=previewicon.png height=64 width=64><img src=previewicon2.png height=64 width=64></td></tr></table>"
 
@@ -1288,6 +1291,11 @@ datum/preferences
 					var/new_relation = input(user, "Choose your relation to the Weyland-Yutani company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
 					if(new_relation)
 						nanotrasen_relation = new_relation
+
+				if("prefsquad")
+					var/new_pref_squad = input(user, "Choose your preferred squad.", "Character Preference")  as null|anything in list("Alpha", "Bravo", "Charlie", "Delta", "None")
+					if(new_pref_squad)
+						preferred_squad = new_pref_squad
 
 				if("disabilities")
 					if(text2num(href_list["disabilities"]) >= -1)

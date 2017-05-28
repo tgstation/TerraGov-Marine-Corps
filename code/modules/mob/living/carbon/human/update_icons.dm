@@ -385,13 +385,18 @@ var/global/list/damage_icon_parts = list()
 		if(lip_style && (species && species.flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
 			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[lip_style]_s"), ICON_OVERLAY)
 
-	//Underwear
-	if(underwear >0 && underwear < 12 && species.flags & HAS_UNDERWEAR)
-		if(!fat && !skeleton)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear[underwear]_[g]_s"), ICON_OVERLAY)
 
-	if(undershirt>0 && undershirt < 5 && species.flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt[undershirt]_s"), ICON_OVERLAY)
+	if(species.flags & HAS_UNDERWEAR)
+
+		//Underwear
+		if(underwear >0 && underwear < 12)
+			if(!fat && !skeleton)
+				stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear[underwear]_[g]_s"), ICON_OVERLAY)
+
+		if(job in ROLES_MARINES) //we override the undershirt pref and replace it with marine undershirt.
+			stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirtmarine_s"), ICON_OVERLAY)
+		else if(undershirt>0 && undershirt < 5)
+			stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt[undershirt]_s"), ICON_OVERLAY)
 
 	if(update_icons)
 		update_icons()
