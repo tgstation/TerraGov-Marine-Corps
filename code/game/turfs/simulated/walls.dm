@@ -2,6 +2,7 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
+	icon_state = "0"
 	var/mineral = "metal"
 	var/rotting = 0
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
