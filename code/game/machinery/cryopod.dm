@@ -152,19 +152,6 @@ var/global/list/frozen_items = list()
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
-	// These items are preserved when the process() despawn proc occurs.
-	var/list/preserve_items = list(
-		/obj/item/weapon/hand_tele,
-		/obj/item/weapon/card/id/captains_spare,
-		/obj/item/device/aicard,
-		/obj/item/device/mmi,
-		/obj/item/clothing/suit,
-		/obj/item/clothing/shoes/magboots,
-		/obj/item/blueprints,
-		/obj/item/clothing/head/helmet/space,
-		/obj/item/weapon/storage/internal
-	)
-
 /obj/machinery/cryopod/right
 	orient_right = 1
 	icon_state = "body_scanner_0-r"
@@ -192,30 +179,29 @@ var/global/list/frozen_items = list()
 			for(var/obj/item/W in occupant)
 				occupant.drop_inv_item_to_loc(W, src)
 
-				if(W.contents.len) //Make sure we catch anything not handled by del() on the items.
-					for(var/obj/item/O in W.contents)
-						if(istype(O,/obj/item/weapon/storage/internal)) //Stop eating pockets, you fuck!
-							continue
-						O.loc = src
-
 			//Delete all items not on the preservation list.
 			var/list/items = src.contents
 			items -= occupant // Don't delete the occupant
 			items -= announce // or the autosay radio.
 
 			for(var/obj/item/W in items)
-
-				var/preserve = null
-				for(var/T in preserve_items)
-					if(istype(W,T))
-						preserve = 1
-						break
-
-				if(!preserve)
-					del(W)
-				else
-					frozen_items += W
-					W.loc = null
+				if(istype(W, /obj/item/weapon/card/id)) continue //don't keep id, to avoid abuse
+				if(W.flags_inventory & CANTSTRIP) // we don't keep donor items
+					if(istype(W, /obj/item/clothing/suit/storage))
+						var/obj/item/clothing/suit/storage/SS = W
+						for(var/obj/item/I in SS.pockets) //but we keep stuff inside them
+							SS.pockets.remove_from_storage(I, loc)
+							frozen_items += I
+							I.loc = null
+					if(istype(W, /obj/item/weapon/storage))
+						var/obj/item/weapon/storage/S = W
+						for(var/obj/item/I in S)
+							S.remove_from_storage(I, loc)
+							frozen_items += I
+							I.loc = null
+					continue
+				frozen_items += W
+				W.loc = null
 
 			//Update any existing objectives involving this mob.
 			for(var/datum/objective/O in all_objectives)

@@ -194,7 +194,8 @@
 	S["faction"] 			>> faction
 	S["religion"] 			>> religion
 
-	S["nanotrasen_relation"] >> nanotrasen_relation
+	S["preferred_squad"]		>> preferred_squad
+	S["nanotrasen_relation"] 	>> nanotrasen_relation
 	//S["skin_style"]			>> skin_style
 
 	S["uplinklocation"] >> uplinklocation
@@ -260,6 +261,7 @@
 	if(!citizenship) citizenship = "None"
 	if(!faction)     faction =     "None"
 	if(!religion)    religion =    "None"
+	if(!preferred_squad)	preferred_squad = "None"
 
 	return 1
 
@@ -340,7 +342,8 @@
 	S["faction"] 			<< faction
 	S["religion"] 			<< religion
 
-	S["nanotrasen_relation"] << nanotrasen_relation
+	S["nanotrasen_relation"] 	<< nanotrasen_relation
+	S["preferred_squad"]		<< preferred_squad
 	//S["skin_style"]			<< skin_style
 
 	S["uplinklocation"] << uplinklocation

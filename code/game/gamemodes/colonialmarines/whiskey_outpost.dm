@@ -131,10 +131,6 @@
 
 	if(istype(M,/mob/living/carbon/human)) //If We started on Sulaco as squad marine
 		H = M
-		if(H.contents.len)
-			for(var/I in H.contents)//Delete the cryo uniform
-				if(istype(I,/obj/item/clothing/under/pj/marine))
-					del(I)
 		switch(H.mind.assigned_role)
 			if("Doctor") //Only get rid of some of the stuff
 				for(var/I in H.contents)

@@ -152,16 +152,6 @@ include jackets and regular suits, not armor.*/
 		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 		..()
 
-//Marine pyjamas, they inherit the base game's pyjamas path so that you can't wear armor with them
-/obj/item/clothing/under/pj/marine
-	name = "marine underpants"
-	desc = "A simple undergarment worn by USCM operators during cryosleep. Makes you drowsy and slower while wearing. You should find an actual uniform."
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	icon_state = "marine_underpants"
-	item_state = "marine_underpants"
-	item_color = "marine_underpants"
-	slowdown = SLOWDOWN_UNDER_UNFITTING
-
 /obj/item/clothing/under/marine/medic
 	name = "\improper USCM medic uniform"
 	desc = "A standard-issue Marine Medic uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
