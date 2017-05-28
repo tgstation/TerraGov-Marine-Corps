@@ -172,6 +172,7 @@ OBSOLETE BITCH
 
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
+	user.animation_attack_on(src)
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
 	if(!target_zone)
@@ -216,6 +217,10 @@ OBSOLETE BITCH
 
 	if(armor >= 2)	return 0
 	if(!I.force)	return 0
+	if(weapon_sharp)
+		user.flick_attack_overlay(src, "punch")
+	else
+		user.flick_attack_overlay(src, "punch")
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 
 	apply_damage(I.force, I.damtype, affecting, armor, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)

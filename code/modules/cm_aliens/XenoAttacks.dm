@@ -10,6 +10,8 @@
 		if(!S.melee_damage_upper)
 			S.emote("[S.friendly] [src]")
 		else
+			M.animation_attack_on(src)
+			M.flick_attack_overlay(src, "punch")
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>")
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
 			adjustBruteLoss(damage)
@@ -31,6 +33,8 @@
 			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 				return 0
 			if(health > 0)
+				M.animation_attack_on(src)
+				M.flick_attack_overlay(src, "punch")
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
 				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
 				"<span class='danger'>You are bit by \the [M].</span>")
@@ -63,6 +67,9 @@
 			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
 			if(!attack.is_usable(M))
 				return 0
+
+			M.animation_attack_on(src)
+			M.flick_attack_overlay(src, "punch")
 
 			var/damage = rand(1, 3)
 			if(prob(85))
@@ -111,16 +118,15 @@
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 
 			if("hurt")//Can't slash other xenos for now. SORRY
-				if(isXeno(src)) //Can't slash other xenos for now
-					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
-					"<span class='warning'>You nibble \the [src].</span>")
-					return 1
-				var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
-				M.visible_message("<span class='danger'>\The [M] bites \the [src]!</span>", \
-				"<span class='danger'>You bite \the [src]!</span>")
-				apply_damage(damage, BRUTE)
+				M.animation_attack_on(src)
+				M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
+				"<span class='warning'>You nibble \the [src].</span>")
+				return 1
+
 
 			if("disarm")
+				M.animation_attack_on(src)
+				M.flick_attack_overlay(src, "disarm")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
 				"<span class='warning'>You shove \the [src]!</span>")

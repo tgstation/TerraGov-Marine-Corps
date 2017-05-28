@@ -18,6 +18,15 @@
 		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
 
+/mob/living
+	New()
+		..()
+		attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
+
+	Dispose()
+		. = ..()
+		cdel(attack_icon)
+
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
@@ -689,8 +698,6 @@
 			reset_view(destination)
 
 
-
-
 /mob/living/Bump(atom/movable/AM, yes)
 	if(buckled || !yes || now_pushing)
 		return
@@ -802,3 +809,12 @@
 	if(pulling) stop_pulling() //being thrown breaks pulls.
 	if(pulledby) pulledby.stop_pulling()
 	. = ..()
+//to make an attack sprite appear on top of the target atom.
+/mob/living/proc/flick_attack_overlay(atom/target, attack_icon_state)
+	set waitfor = 0
+
+	attack_icon.icon_state = attack_icon_state
+	target.overlays += attack_icon
+	sleep(4)
+	target.overlays -= attack_icon
+

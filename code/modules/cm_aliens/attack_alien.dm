@@ -74,13 +74,16 @@
 			if(M.check_tail_attack(src))
 				return 1
 
+			M.animation_attack_on(src)
 			//Somehow we will deal no damage on this attack
 			if(!damage)
 				playsound(M.loc, 'sound/weapons/slashmiss.ogg', 25, 1, -1)
+				M.animation_attack_on(src)
 				M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
 				"<span class='danger'>You lunge at [src]!</span>")
 				return 0
 
+			M.flick_attack_overlay(src, "slash")
 			var/datum/organ/external/affecting
 			affecting = get_organ(ran_zone(M.zone_selected, 70))
 			if(!affecting) //No organ, just get a random one
@@ -129,10 +132,12 @@
 			updatehealth()
 
 		if("disarm")
+			M.animation_attack_on(src)
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
 				M.visible_message("<span class='danger'>\The [M]'s tackle is blocked by [src]'s shield!</span>", \
 				"<span class='danger'>Your tackle is blocked by [src]'s shield!</span>")
 				return 0
+			M.flick_attack_overlay(src, "disarm")
 			if(weakened)
 				if(prob(20))
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
@@ -243,6 +248,7 @@
 //Breaking tables and racks
 /obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(breakable)
+		M.animation_attack_on(src)
 		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 		health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 		if(health <= 0)
@@ -255,6 +261,7 @@
 
 //Breaking barricades
 /obj/structure/barricade/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
@@ -267,6 +274,7 @@
 	update_health(TRUE)
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 	"<span class='danger'>You slice [src] apart!</span>")
@@ -280,6 +288,7 @@
 //Chairs.
 /obj/structure/stool/attack_alien(mob/living/carbon/Xenomorph/M)
 	..()
+	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 	"<span class='danger'>You slice [src] apart!</span>")
@@ -289,7 +298,7 @@
 /obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(status == 2) //Ignore if broken. Note that we can't use defines here
 		return 0
-
+	M.animation_attack_on(src)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
 	"<span class='danger'>You smash [src]!</span>")
 	broken() //Smashola!
@@ -306,6 +315,7 @@
 
 //Slashing bots
 /obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	health -= rand(15, 30)
 	if(health <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
@@ -331,6 +341,7 @@
 
 //Slashing windoors
 /obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
 	"<span class='danger'>You smash against [src]!</span>")
@@ -357,6 +368,7 @@
 
 //Slashing grilles
 /obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
@@ -374,6 +386,7 @@
 
 //Slashin mirrors
 /obj/structure/mirror/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	if(shattered)
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 		return 1
@@ -388,6 +401,7 @@
 
 //Foamed metal
 /obj/structure/foamedmetal/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	if(prob(33))
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>")
@@ -474,6 +488,7 @@
 //Beds, nests and chairs - unbuckling
 /obj/structure/stool/bed/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == "hurt")
+		M.animation_attack_on(src)
 		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 		"<span class='danger'>You slice [src] apart!</span>")
@@ -530,6 +545,7 @@
 
 //APCs.
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
@@ -587,6 +603,7 @@
 
 //Crates, closets, other paraphernalia
 /obj/structure/largecrate/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/wood(src)
 	var/turf/T = get_turf(src)
@@ -599,6 +616,7 @@
 
 /obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == "hurt" && !unacidable)
+		M.animation_attack_on(src)
 		if(!opened && prob(70))
 			break_open()
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \
@@ -614,6 +632,7 @@
 		M << "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>"
 		return 0
 	else
+		M.animation_attack_on(src)
 		health -= round(rand(M.melee_damage_lower, M.melee_damage_upper) / 2)
 		if(health <= 0)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
@@ -631,6 +650,7 @@
 		return 0
 
 	if(M.a_intent == "hurt")
+		M.animation_attack_on(src)
 		if(prob(M.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
@@ -659,6 +679,7 @@
 		tipped_level = 0
 
 /obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
 	deflate(1)
 
 /obj/machinery/vending/proc/tip_over()

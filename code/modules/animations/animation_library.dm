@@ -164,3 +164,31 @@ proc/animation_destruction_long_fade(atom/A, speed = 4, x_n = 4, y_n = 4)
 	return speed*9
 
 
+
+/mob/living/proc/animation_attack_on(atom/A)
+	var/pixel_x_diff = 0
+	var/pixel_y_diff = 0
+	var/direction = get_dir(src, A)
+	switch(direction)
+		if(NORTH)
+			pixel_y_diff = 8
+		if(SOUTH)
+			pixel_y_diff = -8
+		if(EAST)
+			pixel_x_diff = 8
+		if(WEST)
+			pixel_x_diff = -8
+		if(NORTHEAST)
+			pixel_x_diff = 8
+			pixel_y_diff = 8
+		if(NORTHWEST)
+			pixel_x_diff = -8
+			pixel_y_diff = 8
+		if(SOUTHEAST)
+			pixel_x_diff = 8
+			pixel_y_diff = -8
+		if(SOUTHWEST)
+			pixel_x_diff = -8
+			pixel_y_diff = -8
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
+	animate(pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
