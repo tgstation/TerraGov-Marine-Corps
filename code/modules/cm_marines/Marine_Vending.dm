@@ -442,6 +442,7 @@
 						/obj/item/weapon/plastique = 1,
 						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
+						/obj/item/device/motiondetector = 1,
 						/obj/item/weapon/storage/backpack/marine/satchel = 2,
 						/obj/item/weapon/gun/flamer = 2,
 						/obj/item/ammo_magazine/flamer_tank = 8
