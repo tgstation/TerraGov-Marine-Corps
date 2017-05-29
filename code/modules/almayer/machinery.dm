@@ -2,7 +2,7 @@
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
 /obj/machinery/vending/uniform_supply
-	name = "\improper ColMarTech surplus uniform vender"
+	name = "\improper ColMarTech surplus uniform vendor"
 	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
 	icon_state = "uniform_marine"
 	icon_vend = "uniform_marine_vend"
@@ -16,7 +16,6 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 					/obj/item/weapon/storage/backpack/marine = 10,
-					/obj/item/device/radio/headset/msulaco = 10,
 					/obj/item/weapon/storage/belt/marine = 10,
 					/obj/item/clothing/shoes/marine = 10,
 					/obj/item/clothing/under/marine = 10
@@ -27,18 +26,25 @@
 	New()
 
 		..()
+		var/products2[]
 		if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
-			var/products2[]
 			switch(squad_tag)
 				if("Alpha")
-					products2 = list(/obj/item/device/radio/headset/malpha = 20)
+					products2 = list(/obj/item/device/radio/headset/malpha = 20,
+									/obj/item/clothing/gloves/marine/alpha = 10)
 				if("Bravo")
-					products2 = list(/obj/item/device/radio/headset/mbravo = 20)
+					products2 = list(/obj/item/device/radio/headset/mbravo = 20,
+									/obj/item/clothing/gloves/marine/bravo = 10)
 				if("Charlie")
-					products2 = list(/obj/item/device/radio/headset/mcharlie = 20)
+					products2 = list(/obj/item/device/radio/headset/mcharlie = 20,
+									/obj/item/clothing/gloves/marine/charlie = 10)
 				if("Delta")
-					products2 = list(/obj/item/device/radio/headset/mdelta = 20)
-			build_inventory(products2)
+					products2 = list(/obj/item/device/radio/headset/mdelta = 20,
+									/obj/item/clothing/gloves/marine/delta = 10)
+		else
+			products2 = list(/obj/item/device/radio/headset/msulaco = 10,
+							/obj/item/clothing/gloves/marine = 10)
+		build_inventory(products2)
 		marine_vendors.Add(src)
 
 
