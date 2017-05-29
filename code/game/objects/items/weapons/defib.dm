@@ -50,10 +50,22 @@
 	else
 		icon_state += "_empty"
 
-/obj/item/weapon/melee/defibrillator/attack_self(mob/user as mob)
+/obj/item/weapon/melee/defibrillator/attack_self(mob/living/carbon/human/user as mob)
 
 	if(defib_cooldown > world.time)
 		return
+
+	//ID Locking
+	if (istype(user))
+		var/obj/item/weapon/card/id/card = user.wear_id
+
+		if (!card)
+			user << "<span class='warning'>[src] is ID locked!</span>"
+			return
+
+		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic"))
+			user << "<span class='warning'>[src] is ID locked!</span>"
+			return
 
 	defib_cooldown = world.time + 20 //2 seconds cooldown every time the defib is toggled
 	ready = !ready
@@ -63,7 +75,7 @@
 	update_icon()
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/H as mob, mob/user as mob)
+/obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/H as mob, mob/living/carbon/human/user as mob)
 
 	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)
 		return
@@ -71,6 +83,19 @@
 
 	if(busy) //Currently deffibing
 		return
+
+	//ID Locking
+	if (istype(user))
+		var/obj/item/weapon/card/id/card = user.wear_id
+
+		if (!card)
+			user << "<span class='warning'>[src] is ID locked!</span>"
+			return
+
+		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic"))
+			user << "<span class='warning'>[src] is ID locked!</span>"
+			return
+
 	if(!ishuman(H))
 		user << "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>"
 		return
