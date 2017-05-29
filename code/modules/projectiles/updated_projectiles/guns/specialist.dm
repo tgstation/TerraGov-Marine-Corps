@@ -28,6 +28,13 @@
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 
+	able_to_fire(mob/living/carbon/human/user as mob)
+		if (..()) //Let's check all that other stuff first.
+			if (istype(user))
+				var/obj/item/weapon/card/id/card = user.wear_id
+				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
+				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist")) return 1//We can check for access, but only Specialists have access to it.
+				else user << "<span class='warning'>[src] is ID locked!</span>"
 
 //Pow! Headshot.
 /obj/item/weapon/gun/rifle/sniper/M42A
@@ -208,13 +215,19 @@
 	unique_action(mob/user)
 		toggle_restriction(user)
 
-	able_to_fire(mob/user)
-		if(!ishuman(user)) return
+	able_to_fire(mob/living/carbon/human/user as mob)
+		if (!ishuman(user)) return
 		var/mob/living/carbon/human/smart_gunner = user
-		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
+		if ( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
 			click_empty(smart_gunner)
 			return
-		return ..()
+
+		if (..()) //Let's check all that other stuff first.
+			if (istype(user))
+				var/obj/item/weapon/card/id/card = user.wear_id
+				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
+				else if (istype(card) && (card.assignment == "Alpha Squad Smartgunner" || card.assignment == "Bravo Squad Smartgunner" || card.assignment == "Charlie Squad Smartgunner" || card.assignment == "Delta Squad Smartgunner") || card.assignment == "Commander") return 1//We can check for access, but only Smartgunners have access to it.
+				else user << "<span class='warning'>[src] is ID locked!</span>"
 
 	load_into_chamber(mob/user)
 		if(active_attachable) active_attachable = null
@@ -349,6 +362,14 @@
 			grenades -= nade
 		else user << "<span class='warning'>It's empty!</span>"
 
+	able_to_fire(mob/living/carbon/human/user as mob)
+		if (..()) //Let's check all that other stuff first.
+			if (istype(user))
+				var/obj/item/weapon/card/id/card = user.wear_id
+				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
+				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist")) return 1//We can check for access, but only Specialists have access to it.
+				else user << "<span class='warning'>[src] is ID locked!</span>"
+
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
 	for(var/mob/O in viewers(world.view, user))
@@ -457,14 +478,21 @@
 		else 							usr << "It's empty."
 
 
-	able_to_fire(mob/user)
-		if(user)
+	able_to_fire(mob/living/carbon/human/user as mob)
+		if (user)
 			var/turf/current_turf = get_turf(user)
-			if(current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Sulaco, bub.
+
+			if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Sulaco, bub.
 				click_empty(user)
 				user << "<span class='warning'>You can't fire that here!</span>"
 				return
-		return ..()
+
+		if (..()) //Let's check all that other stuff first.
+			if (istype(user))
+				var/obj/item/weapon/card/id/card = user.wear_id
+				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
+				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist")) return 1//We can check for access, but only Specialists have access to it.
+				else user << "<span class='warning'>[src] is ID locked!</span>"
 
 	load_into_chamber(mob/user)
 		if(active_attachable) active_attachable = null
