@@ -3,7 +3,7 @@
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
-	using = new /obj/screen/act_intent()
+	using = new /obj/screen/act_intent/corner()
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "intent_"+owner.a_intent
 	static_inventory += using

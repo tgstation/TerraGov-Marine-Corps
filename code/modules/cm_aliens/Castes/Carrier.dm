@@ -70,15 +70,6 @@
 	if(!check_state())
 		return
 	//This shit didn't wanna go into the upgrade area...
-	if(upgrade == 1)
-		huggers_max = 7
-		hugger_delay = 30
-	if(upgrade == 2)
-		huggers_max = 8
-		hugger_delay = 20
-	if(upgrade == 3)
-		huggers_max = 10
-		hugger_delay = 10
 
 	if(huggers_cur <= 0)
 		src << "<span class='warning'>You don't have any facehuggers to throw!</span>"
