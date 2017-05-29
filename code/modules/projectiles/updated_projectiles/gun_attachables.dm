@@ -392,6 +392,9 @@ Defined in setup.dm.
 	attackby(obj/item/I, mob/user)
 		if(istype(I,/obj/item/weapon/screwdriver))
 			user << "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>"
+			if(istype(loc, /obj/item/weapon/storage))
+				var/obj/item/weapon/storage/S = loc
+				S.remove_from_storage(src)
 			if(loc == user)
 				user.temp_drop_inv_item(src)
 			var/obj/item/device/flashlight/F = new(user)

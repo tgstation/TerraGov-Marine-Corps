@@ -170,6 +170,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 105, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
 	unacidable = 1
+	anti_hug = 6
 
 	New(loc,expected_type 		= type,
 		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper B18 snow helmet"),
