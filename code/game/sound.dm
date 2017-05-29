@@ -1,6 +1,6 @@
 #define FALLOFF_SOUNDS 1
 
-/proc/playsound(atom/source, soundin, vol, vary, extrarange = 100, falloff, is_global)
+/proc/playsound(atom/source, soundin, vol, vary, sound_range = 100, falloff, is_global)
 
 	soundin = get_sfx(soundin) // same sound for everyone
 
@@ -17,7 +17,7 @@
 	for(var/i in player_list)
 		M = i
 		if(!istype(M) || !M.client) continue
-		if(get_dist(M, turf_source) <= (world.view + extrarange) * 3)
+		if(get_dist(M, turf_source) <= sound_range)
 			T = get_turf(M)
 			if(T && T.z == turf_source.z) M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
 
