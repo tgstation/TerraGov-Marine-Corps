@@ -255,6 +255,9 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 4
 					tackle_chance = 60
 					speed = -0.4
+					var/mob/living/carbon/Xenomorph/Carrier/CA = src
+					CA.huggers_max = 7
+					CA.hugger_delay = 30
 				if("Queen")
 					melee_damage_lower = 40
 					melee_damage_upper = 55
@@ -452,6 +455,9 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 5
 					tackle_chance = 70
 					speed = -0.4
+					var/mob/living/carbon/Xenomorph/Carrier/CA = src
+					CA.huggers_max = 8
+					CA.hugger_delay = 20
 				if("Queen")
 					melee_damage_lower = 50
 					melee_damage_upper = 60
@@ -649,6 +655,9 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 6
 					tackle_chance = 75
 					speed = -0.3
+					var/mob/living/carbon/Xenomorph/Carrier/CA = src
+					CA.huggers_max = 10
+					CA.hugger_delay = 10
 				if("Queen")
 					src << "<span class='xenoannounce'>You are the Alpha and the Omega. The beginning and the end.</span>"
 					melee_damage_lower = 70
