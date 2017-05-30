@@ -18,7 +18,7 @@
 	return 0
 
 /obj/structure/curtain/attack_hand(mob/user)
-	playsound(get_turf(loc), "rustle", 15, 1, -5)
+	playsound(get_turf(loc), "rustle", 15, 1, 6)
 	toggle()
 	..()
 

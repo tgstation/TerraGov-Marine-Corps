@@ -103,7 +103,7 @@
 	if(bcell && bcell.charge > hitcost)
 		status = !status
 		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
-		playsound(loc, "sparks", 25, 1, -1)
+		playsound(loc, "sparks", 25, 1, 6)
 		update_icon()
 	else
 		status = 0
@@ -170,7 +170,7 @@
 		if(!L.weakened)
 			L.Weaken(4)
 
-	playsound(loc, 'sound/weapons/Egloves.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/Egloves.ogg', 25, 1, 6)
 	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
 
 	deductcharge(hitcost)

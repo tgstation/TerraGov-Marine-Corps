@@ -266,7 +266,7 @@
 		if(user.a_intent == "hurt")
 			user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 			"<span class='xenowarning'>You claw at \the [src].</span>")
-			playsound(loc, 'sound/effects/attackblob.ogg', 25, 1, -4)
+			playsound(loc, 'sound/effects/attackblob.ogg', 25, 1, 9)
 			health -= rand(40, 60)
 			if(health <= 0)
 				user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \

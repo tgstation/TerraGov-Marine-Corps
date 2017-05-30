@@ -389,14 +389,14 @@ updatehealth()
 
 	switch(caste)
 		if("Queen")
-			playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0, 20)
+			playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 			xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
 			xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
 			slashing_allowed = 1
 			if(ticker && ticker.mode) ticker.mode.check_queen_status(queen_time)
 		else
-			if(caste == "Predalien") playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1, 1)
-			else playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1, 1)
+			if(caste == "Predalien") playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
+			else playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 			var/area/A = get_area(src)
 			xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
 

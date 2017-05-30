@@ -106,7 +106,7 @@
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
 

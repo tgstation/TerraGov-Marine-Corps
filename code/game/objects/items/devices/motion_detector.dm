@@ -79,7 +79,7 @@
 		if(long_range_cooldown) return
 		else long_range_cooldown = initial(long_range_cooldown)
 
-	playsound(loc, 'sound/items/detector.ogg', 60, null, 7, 2)
+	playsound(loc, 'sound/items/detector.ogg', 60, 0, 7, 2)
 
 	var/detected
 	for(var/mob/M in mob_list)
@@ -100,7 +100,7 @@
 				show_blip(H, M)
 
 		if(detected)
-			playsound(loc, 'sound/items/tick.ogg', 50, null, 7, 2)
+			playsound(loc, 'sound/items/tick.ogg', 50, 0, 7, 2)
 
 /obj/item/device/motiondetector/proc/show_blip(mob/user, mob/target)
 	set waitfor = 0

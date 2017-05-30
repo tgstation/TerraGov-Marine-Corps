@@ -38,7 +38,7 @@ datum/chemical_reaction/coolant
 	//S.attach(src)
 	S.set_up(5, 0, src.loc)
 
-	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, -3)
+	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1)
 	spawn(0)
 		S.start()
 

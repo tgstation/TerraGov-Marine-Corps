@@ -33,7 +33,7 @@
 
 		icon_state = initial(icon_state) + "_active"
 		active = 1
-		playsound(loc, 'sound/items/countdown.ogg', 25, 1, -3)
+		playsound(loc, 'sound/items/countdown.ogg', 25, 1)
 		if(dangerous)
 			updateicon()
 		spawn(det_time)

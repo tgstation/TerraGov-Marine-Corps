@@ -465,7 +465,7 @@
 		D.icon_state = "chempuff"
 		D.create_reagents(5)
 		src.reagents.trans_to(D, 1)
-		playsound(src.loc, 'sound/effects/spray3.ogg', 15, 1, -6)
+		playsound(src.loc, 'sound/effects/spray3.ogg', 15, 1, 3)
 
 		spawn(0)
 			for(var/i=0, i<1, i++)

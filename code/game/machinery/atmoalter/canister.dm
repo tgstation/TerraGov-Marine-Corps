@@ -135,7 +135,7 @@ update_flag
 		location.assume_air(air_contents)
 
 		src.destroyed = 1
-		playsound(src.loc, 'sound/effects/spray.ogg', 25, 1, -3)
+		playsound(src.loc, 'sound/effects/spray.ogg', 25, 1, 5)
 		src.density = 0
 		update_icon()
 

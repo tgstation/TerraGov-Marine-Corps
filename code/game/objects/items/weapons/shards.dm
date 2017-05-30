@@ -20,7 +20,7 @@
 		return (BRUTELOSS)
 
 /obj/item/weapon/shard/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 6)
 	return ..()
 
 /obj/item/weapon/shard/Bump()

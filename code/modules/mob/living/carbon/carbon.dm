@@ -110,7 +110,7 @@
 
 	src.apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
 
-	playsound(loc, "sparks", 25, 1, -1)
+	playsound(loc, "sparks", 25, 1)
 	if (shock_damage > 10)
 		src.visible_message(
 			"\red [src] was shocked by the [source]!", \
@@ -244,7 +244,7 @@
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
 
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 
 /mob/living/carbon/proc/eyecheck()
 	return 0
@@ -428,7 +428,7 @@
 		if(lying) return FALSE //can't slip if already lying down.
 		stop_pulling()
 		src << "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>"
-		playsound(src.loc, 'sound/misc/slip.ogg', 25, 1, -3)
+		playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 		Stun(stun_level)
 		Weaken(weaken_level)
 		. = TRUE

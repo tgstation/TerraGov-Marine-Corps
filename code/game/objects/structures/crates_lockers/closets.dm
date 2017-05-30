@@ -81,7 +81,7 @@
 
 	opened = 1
 	update_icon()
-	playsound(src.loc, open_sound, 15, 1, -3)
+	playsound(src.loc, open_sound, 15, 1)
 	density = 0
 	return 1
 
@@ -103,7 +103,7 @@
 	opened = 0
 	update_icon()
 
-	playsound(src.loc, close_sound, 15, 1, -3)
+	playsound(src.loc, close_sound, 15, 1)
 	density = 1
 	return 1
 

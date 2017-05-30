@@ -60,13 +60,13 @@
 	..()
 
 	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
-	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0, 20)
+	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
 
 	if(stat != DEAD && ++breathing_counter >= rand(12, 17)) //Increase the breathing variable each tick. Play it at random intervals.
-		playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 15, 1, -3)
+		playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 15, 1, 4)
 		breathing_counter = 0 //Reset the counter
 
 /mob/living/carbon/Xenomorph/Queen/gib()

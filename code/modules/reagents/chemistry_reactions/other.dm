@@ -245,7 +245,7 @@
 		var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
 		S.attach(location)
 		S.set_up(holder, created_volume, 0, location)
-		playsound(location, 'sound/effects/smoke.ogg', 25, 1, -3)
+		playsound(location, 'sound/effects/smoke.ogg', 25, 1)
 		spawn(0)
 			S.start()
 		holder.clear_reagents()

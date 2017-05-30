@@ -30,7 +30,7 @@
 				S.icon_state = "shield0"
 
 		M << "\red <B>BANG</B>"
-		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)
+		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
 //Checking for protections
 		var/eye_safety = 0
@@ -126,12 +126,12 @@
 	for(,numspawned > 0, numspawned--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/cluster(src.loc)//Launches flashbangs
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, -3)
+			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
 
 	for(,again > 0, again--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, -3)
+			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
 	spawn(0)
 		del(src)
 		return
@@ -163,7 +163,7 @@
 	for(,numspawned > 0, numspawned--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/cluster(src.loc)
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, -3)
+			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
 	spawn(0)
 		del(src)
 		return

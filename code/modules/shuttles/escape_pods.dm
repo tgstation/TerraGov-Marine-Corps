@@ -253,7 +253,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	//		..(command)
 
 	prepare_for_undocking()
-		playsound(master,'sound/effects/escape_pod_warmup.ogg', 50, 1, 7)
+		playsound(master,'sound/effects/escape_pod_warmup.ogg', 50, 1)
 		//close_door()
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/check_launch_status()
@@ -357,7 +357,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 		being_forced = !being_forced
 		visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
-		playsound(src,'sound/effects/metal_creaking.ogg', 25, 1, 3)
+		playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
 		if(do_after(user, 20, FALSE)) go_out() //Force the occupant out.
 		being_forced = !being_forced
 

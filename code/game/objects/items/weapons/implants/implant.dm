@@ -172,7 +172,7 @@ Implant Specifics:<BR>"}
 				if (elevel == "Localized Limb")
 					if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
 						imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
-						playsound(loc, 'sound/items/countdown.ogg', 25, 1, -3)
+						playsound(loc, 'sound/items/countdown.ogg', 25, 1, 6)
 						sleep(25)
 						if (istype(part,/datum/organ/external/chest) ||	\
 							istype(part,/datum/organ/external/groin) ||	\
@@ -237,7 +237,7 @@ Implant Specifics:<BR>"}
 	proc/small_boom()
 		if (ishuman(imp_in) && part)
 			imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
-			playsound(loc, 'sound/items/countdown.ogg', 25, 1, -3)
+			playsound(loc, 'sound/items/countdown.ogg', 25, 1, 6)
 			spawn(25)
 				if (ishuman(imp_in) && part)
 					//No tearing off these parts since it's pretty much killing
