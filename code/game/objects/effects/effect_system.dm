@@ -558,7 +558,7 @@ steam.start() -- spawns the effect
 	..(loc)
 	icon_state = "[ismetal ? "m":""]foam"
 	metal = ismetal
-	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, -3)
+	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
 	spawn(3 + metal*3)
 		process()
 		checkReagents()

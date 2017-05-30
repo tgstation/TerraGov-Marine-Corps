@@ -57,17 +57,17 @@
 	else if(a_intent == "disarm")
 		if(isYautja(H))
 			visible_message("[src] shoves [H].", "You shove [H].")
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		else
 			if (!(H.paralysis ))
 				H.Paralyse(3)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
 						O.show_message(text("\red <B>[] knocks down [H]!</B>", src), 1)
 		return
 	else if(a_intent == "grab")
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\red [] has grabbed [H] in their jaws!", src), 1)
 		src.start_pulling(H)
@@ -79,7 +79,7 @@
 		var/dmg = rand(10,25)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
 		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
-		playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
 /mob/living/carbon/hellhound/proc/bite_xeno(var/mob/living/carbon/Xenomorph/X)
@@ -93,20 +93,20 @@
 		if (!(X.paralysis ) && X.mob_size != MOB_SIZE_BIG)
 			if(prob(40))
 				X.Paralyse(4)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				visible_message("\red [src] knocks down [X]!","\red You knock down [X]!")
 				return
 		visible_message("\red [src] shoves at [X]!","\red You shove at [X]!")
 		return
 	else if(a_intent == "grab")
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		visible_message("\red <B>[src] grabs [X] in their jaws!</B>","\red <B>You grab [X] in your jaws!</b>")
 		src.start_pulling(X)
 	else
 		var/dmg = rand(20,32)
 		X.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
 		visible_message("\red <B>[src] mauls [X]!</b>","\red <B>You maul [X]!</b>")
-		playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
 /mob/living/carbon/hellhound/proc/bite_animal(var/mob/living/H)
@@ -122,13 +122,13 @@
 		if(istype(H,/mob/living/carbon/monkey))
 			if (!(H.paralysis ))
 				H.Paralyse(8)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				visible_message("\red [src] knocks down [H]!","\red You knock down [H]!")
 				return
 		visible_message("\red [src] shoves at [H]!","\red You shove at [H]!")
 		return
 	else if(a_intent == "grab")
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		visible_message("\red <B>[src] grabs [H] in their jaws!</B>","\red <B>You grab [H] in your jaws!</b>")
 		src.start_pulling(H)
 		return
@@ -141,7 +141,7 @@
 		var/dmg = rand(3,8)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
 		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
-		playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
 /mob/living/carbon/hellhound/attack_paw(mob/M as mob)
@@ -152,7 +152,7 @@
 	else
 		if (M.a_intent == "hurt")
 			if ((prob(75) && health > 0))
-				playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
 					O.show_message("\red <B>[M.name] has bit [name]!</B>", 1)
 				var/damage = rand(2, 4)
@@ -176,7 +176,7 @@
 			if ((prob(75) && health > 0))
 				visible_message("\red <B>[M] [pick(attack.attack_verb)]ed [src]!</B>")
 
-				playsound(loc, "punch", 25, 1, -1)
+				playsound(loc, "punch", 25, 1)
 				var/damage = rand(3, 7)
 
 				adjustBruteLoss(damage)
@@ -187,7 +187,7 @@
 
 				updatehealth()
 			else
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
 		else
 			if (M.a_intent == "grab")
@@ -201,7 +201,7 @@
 				if (!( paralysis ))
 					if (prob(25))
 						Paralyse(2)
-						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !( O.blinded )))
 								O.show_message(text("\red <B>[] has pushed down [name]!</B>", M), 1)
@@ -217,7 +217,7 @@
 		M.emote("[M.friendly] [src]")
 	else
 		if(M.attack_sound)
-			playsound(loc, M.attack_sound, 25, 1, 1)
+			playsound(loc, M.attack_sound, 25, 1)
 		for(var/mob/O in viewers(src, null))
 			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")

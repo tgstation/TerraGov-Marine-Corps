@@ -404,7 +404,7 @@
 		affecting = M.get_organ("chest") //Gotta have a torso?!
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
-	playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	visible_message("<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>", \
 	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
@@ -445,7 +445,7 @@
 	if(isXenoHivelord(src))
 		miss_chance += 20 //Fuck hivelords
 	if(prob(miss_chance))
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 		visible_message("<span class='danger'>\The [src] lashes out with its tail but misses \the [M]!", \
 		"<span class='danger'>You snap your tail out but miss \the [M]!</span>")
 		readying_tail = 0
@@ -454,14 +454,14 @@
 	//Selecting feet? Drop the damage and trip them.
 	if(zone_selected == "r_leg" || zone_selected == "l_leg" || zone_selected == "l_foot" || zone_selected == "r_foot")
 		if(prob(60) && !M.lying)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 			visible_message("<span class='danger'>\The [src] lashes out with its tail and \the [M] goes down!</span>", \
 			"<span class='danger'>You snap your tail out and trip \the [M]!</span>")
 			M.Weaken(5)
 			dmg = dmg / 2 //Half damage for a tail strike.
 			tripped = 1
 
-	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1, -1) //Stolen from Yautja! Owned!
+	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
 	if(!tripped)
 		visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
 		"<span class='danger'>You violently impale \the [M] with your tail!</span>")

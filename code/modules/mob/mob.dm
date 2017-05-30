@@ -588,7 +588,7 @@ var/list/slot_equipment_priority = list( \
 		return
 
 	if(M)
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"

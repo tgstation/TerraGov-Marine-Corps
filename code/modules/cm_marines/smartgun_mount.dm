@@ -330,7 +330,7 @@
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/Xenomorph/M) // Those Ayy lmaos.
 	if(isXenoLarva(M)) return
 	src.visible_message("<span class='notice'> [M] has slashed [src]!</span>")
-	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
+	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
 	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()

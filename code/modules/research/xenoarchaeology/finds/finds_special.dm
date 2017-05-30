@@ -93,7 +93,7 @@
 			if(istype(B, /obj/effect/decal/cleanable/blood/drip)) blood_absorbed = 0.25
 			else
 				blood_absorbed = 1
-				playsound(loc, 'sound/effects/splat.ogg', 15, 1, -3)
+				playsound(loc, 'sound/effects/splat.ogg', 15, 1)
 			stored_blood += blood_absorbed
 			maximum_blood += blood_absorbed
 			current_consume = world.time
@@ -107,13 +107,13 @@
 			if(prob(5))
 				stored_blood -= 1
 				new /mob/living/simple_animal/hostile/creature(pick(view(1,src)))
-				playsound(loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
+				playsound(loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, 12)
 		if(1 to 2)
 			if(shadow_wights.len < 5 && prob(5))
 				var/obj/effect/shadow_wight/W = new(get_turf(src))
 				shadow_wights += W
 				W.master_doll = src
-				playsound(loc, 'sound/effects/ghost.ogg', 25, 1, -3)
+				playsound(loc, 'sound/effects/ghost.ogg', 25, 1, 12)
 				stored_blood -= 0.1
 		if(0.1 to 0.9)
 			if(prob(5))
@@ -150,7 +150,7 @@
 
 /obj/item/weapon/vampiric/proc/bloodcall(mob/living/carbon/human/H)
 	if(H.species != "Horror")
-		playsound(loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 25, 1, -3)
+		playsound(loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 25, 1, 12)
 
 		var/target = pick("chest","groin","head","l_arm","r_arm","r_leg","l_leg","l_hand","r_hand","l_foot","r_foot")
 		H.apply_damage(rand(5, 10), BRUTE, target)
@@ -229,7 +229,7 @@
 			'sound/hallucinations/over_here3.ogg',\
 			'sound/hallucinations/turn_around1.ogg',\
 			'sound/hallucinations/turn_around2.ogg',\
-			), 25, 1, -3)
+			), 25, 1, 12)
 			M.sleeping = max(M.sleeping,rand(5,10))
 			cdel(src,,animation_destruction_fade(src))
 

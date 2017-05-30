@@ -252,7 +252,7 @@
 			if(istype(I,/obj/item/weapon/implant))
 				var/obj/item/weapon/implant/imp = I
 				user.visible_message("<span class='warning'>Something beeps inside [target]'s [affected.display_name]!</span>")
-				playsound(imp.loc, 'sound/items/countdown.ogg', 25, 1, -3)
+				playsound(imp.loc, 'sound/items/countdown.ogg', 25, 1)
 				spawn(25)
 					imp.activate()
 	target.updatehealth()

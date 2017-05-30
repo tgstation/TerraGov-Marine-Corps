@@ -194,14 +194,14 @@
 				var/obj/o = target
 				o.reagents.trans_to(src, 200)
 				occupant_message("\blue \The [src] is now refilled")
-				playsound(chassis, 'sound/effects/refill.ogg', 25, 1, -6)
+				playsound(chassis, 'sound/effects/refill.ogg', 25, 1, 4)
 				return
 
 			if (src.reagents.total_volume < 1)
 				occupant_message("\red \The [src] is empty.")
 				return
 
-			playsound(chassis, 'sound/effects/extinguish.ogg', 25, 1, -3)
+			playsound(chassis, 'sound/effects/extinguish.ogg', 25, 1, 10)
 
 			var/direction = get_dir(chassis,target)
 

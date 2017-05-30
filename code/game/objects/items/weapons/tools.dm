@@ -194,7 +194,7 @@
 			O.reagents.trans_to(src, max_fuel)
 			weld_tick = 0
 			user << "<span class='notice'>Welder refueled.</span>"
-			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, -6)
+			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		else
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")

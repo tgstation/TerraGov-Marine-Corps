@@ -186,7 +186,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 				X.visible_message(
 				"<span class='warning'>[X] knocks aside [src]</span>!",
 				"<span class='xenowarning'>You casually knock aside [src].</span>") //Canisters, crates etc. go flying.
-				playsound(loc, "punch", 25, 1, -1)
+				playsound(loc, "punch", 25, 1)
 				diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 				step_away(src, X, round(X.momentum * 0.1) + 1)
 				X.momentum -= 3
@@ -217,7 +217,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 			if(unacidable)
 				if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
 				r_FAL
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(loc, "punch", 25, 1)
 			X.visible_message(
 			"<span class='danger'>[X] smashes straight into [src]!</span>",
 			"<span class='xenodanger'>You smash straight into [src]!</span>")
@@ -245,7 +245,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		X.visible_message(
 		"<span class='danger'>[X] smashes straight into [src]!</span>",
 		"<span class='xenodanger'>You smash straight into [src]!</span>")
-		playsound(loc, "punch", 25, 1, -1)
+		playsound(loc, "punch", 25, 1)
 		tip_over()
 		diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
 		step_away(src, X)
@@ -261,7 +261,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	X.visible_message(
 	"<span class='danger'>[X] rams [src]!</span>",
 	"<span class='xenodanger'>You ram [src]!</span>")
-	playsound(loc, "punch", 25, 1, -1)
+	playsound(loc, "punch", 25, 1)
 	if(X.momentum > 25)
 		diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
 		step_away(src, X)
@@ -275,7 +275,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	X.visible_message(
 	"<span class='danger'>[X] rams [src]!</span>", \
 	"<span class='xenodanger'>You ram [src]!</span>")
-	playsound(loc, "punch", 25, 1, -1)
+	playsound(loc, "punch", 25, 1)
 	if(X.momentum > 10 && prob(70 + X.momentum))
 		stat = 1
 		on = 0
@@ -295,7 +295,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 /mob/living/carbon/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	. = ..()
 	if(. && X.momentum > 7)
-		playsound(loc, "punch", 25, 1, 1)
+		playsound(loc, "punch", 25, 1)
 		switch(X.momentum)
 			if(8 to 11) Weaken(2)
 			if(12 to 19)
@@ -316,7 +316,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 //Special override case.
 /mob/living/carbon/Xenomorph/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	if(X.momentum > 6)
-		playsound(loc, "punch", 25, 1, -1)
+		playsound(loc, "punch", 25, 1)
 		diagonal_step(src, X.dir, 100)
 		step_away(src, X)
 		X.momentum -= 9

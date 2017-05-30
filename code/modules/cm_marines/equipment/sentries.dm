@@ -680,7 +680,7 @@
 /obj/machinery/marine_turret/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	src.visible_message("\red <B>[M] has slashed [src]!</B>")
-	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
+	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
 	if(prob(10))
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in src.loc)
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

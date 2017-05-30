@@ -48,7 +48,7 @@
 				return
 			path = 1
 			user << "\blue You add [W] to the metal casing."
-			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
+			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
 			user.temp_drop_inv_item(det)
 			det.forceMove(src)
 			detonator = det
@@ -65,7 +65,7 @@
 //					user << "\red You need to add at least one beaker before locking the assembly."
 					user << "\blue You lock the empty assembly."
 					name = "fake grenade"
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
 				icon_state = initial(icon_state) +"_locked"
 				stage = 2
 			else if(stage == 2)
@@ -75,7 +75,7 @@
 					return
 				else
 					user << "\blue You unlock the assembly."
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 					icon_state = initial(icon_state) + (detonator?"_ass":"")
 					stage = 1

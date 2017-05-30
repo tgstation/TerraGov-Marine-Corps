@@ -36,7 +36,7 @@
 				s.start()
 				return 2
 
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	for(var/obj/O in src)
 		O.loc = get_turf(src)
 	opened = 1
@@ -51,7 +51,7 @@
 	if(!src.can_close())
 		return 0
 
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	var/itemcount = 0
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)

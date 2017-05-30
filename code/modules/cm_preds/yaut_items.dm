@@ -1085,7 +1085,7 @@
 				if(isXeno(target))
 					if(target.mob_size == MOB_SIZE_BIG) //Can't trip the big ones.
 						return ..()
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				user.visible_message("<span class = 'danger'>[src] lashes out and [target] goes down!</span>","<span class='danger'><b>You trip [target]!</b></span>")
 				target.Weaken(5)
 		return ..()
@@ -1164,7 +1164,7 @@
 			force = initial(force)
 			if(prob(22) && !target.lying)
 				user.visible_message("<span class='danger'>[user] slashes [target] so hard, they go flying!</span>")
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				target.Weaken(3)
 				step_away(target,user,1)
 		else

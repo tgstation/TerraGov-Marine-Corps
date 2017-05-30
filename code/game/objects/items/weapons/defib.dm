@@ -71,7 +71,7 @@
 	ready = !ready
 	user.visible_message("<span class='notice'>[user] turns [src] [ready? "on and takes the paddles out" : "off and puts the paddles back in"].</span>",
 	"<span class='notice'>You turn [src] [ready? "on and take the paddles out" : "off and put the paddles back in"].</span>")
-	playsound(get_turf(src), "sparks", 25, 1, -1)
+	playsound(get_turf(src), "sparks", 25, 1, 4)
 	update_icon()
 	add_fingerprint(user)
 

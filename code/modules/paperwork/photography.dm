@@ -90,7 +90,7 @@
 		var/mob/M = usr
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
-		playsound(loc, "rustle", 15, 1, -5)
+		playsound(loc, "rustle", 15, 1, 6)
 		if((!( M.is_mob_restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
@@ -233,7 +233,7 @@
 	if(!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
-	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 15, 1, -3)
+	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 15, 1)
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."

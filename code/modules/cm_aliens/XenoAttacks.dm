@@ -35,7 +35,7 @@
 			if(health > 0)
 				M.animation_attack_on(src)
 				M.flick_attack_overlay(src, "punch")
-				playsound(loc, 'sound/weapons/bite.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
 				"<span class='danger'>You are bit by \the [M].</span>")
 				adjustBruteLoss(rand(1, 3))
@@ -81,12 +81,12 @@
 						step_away(src, M, 15)
 				damage += attack.damage > 5 ? attack.damage : 0
 
-				playsound(loc, attack.attack_sound, 25, 1, -1)
+				playsound(loc, attack.attack_sound, 25, 1)
 				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
-				playsound(loc, attack.miss_sound, 25, 1, -1)
+				playsound(loc, attack.miss_sound, 25, 1)
 				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 
 	return
@@ -115,7 +115,7 @@
 
 					M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
 					"<span class='warning'>You grab \the [src]!</span>")
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 
 			if("hurt")//Can't slash other xenos for now. SORRY
 				M.animation_attack_on(src)
@@ -127,7 +127,7 @@
 			if("disarm")
 				M.animation_attack_on(src)
 				M.flick_attack_overlay(src, "disarm")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
 				"<span class='warning'>You shove \the [src]!</span>")
 				if(ismonkey(src))

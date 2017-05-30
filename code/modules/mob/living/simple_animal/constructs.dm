@@ -66,7 +66,7 @@
 			M.emote("[M.friendly] \the <EM>[src]</EM>")
 		else
 			if(M.attack_sound)
-				playsound(loc, M.attack_sound, 25, 1, 1)
+				playsound(loc, M.attack_sound, 25, 1)
 			for(var/mob/O in viewers(src, null))
 				O.show_message("<span class='attack'>\The <EM>[M]</EM> [M.attacktext] \the <EM>[src]</EM>!</span>", 1)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")

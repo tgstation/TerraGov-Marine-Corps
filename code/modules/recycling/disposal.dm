@@ -427,7 +427,7 @@
 
 	sleep(10)
 	if(last_sound < world.time + 1)
-		playsound(src, 'sound/machines/disposalflush.ogg', 15, 0, 0)
+		playsound(src, 'sound/machines/disposalflush.ogg', 15, 0)
 		last_sound = world.time
 	sleep(5) // wait for animation to finish
 
@@ -455,7 +455,7 @@
 // should usually only occur if the pipe network is modified
 /obj/machinery/disposal/proc/expel(var/obj/structure/disposalholder/H)
 	var/turf/target
-	playsound(src, 'sound/machines/hiss.ogg', 25, 0, 0)
+	playsound(src, 'sound/machines/hiss.ogg', 25, 0)
 	if(H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
 		for(var/atom/movable/AM in H)
 			target = get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5))
@@ -648,7 +648,7 @@
 			for (var/mob/M in hearers(src.loc.loc))
 				M << "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>"
 
-		playsound(src.loc, 'sound/effects/clang.ogg', 25, 0, 0)
+		playsound(src.loc, 'sound/effects/clang.ogg', 25, 0)
 
 	// called to vent all gas in holder to a location
 	proc/vent_gas(var/atom/location)
@@ -781,7 +781,7 @@
 			else						// otherwise limit to 10 tiles
 				target = get_ranged_target_turf(T, direction, 10)
 
-			playsound(src, 'sound/machines/hiss.ogg', 25, 0, 0)
+			playsound(src, 'sound/machines/hiss.ogg', 25, 0)
 			if(H)
 				for(var/atom/movable/AM in H)
 					AM.loc = T
@@ -794,7 +794,7 @@
 
 		else	// no specified direction, so throw in random direction
 
-			playsound(src, 'sound/machines/hiss.ogg', 25, 0, 0)
+			playsound(src, 'sound/machines/hiss.ogg', 25, 0)
 			if(H)
 				for(var/atom/movable/AM in H)
 					target = get_offset_target_turf(T, rand(5)-rand(5), rand(5)-rand(5))
@@ -1431,9 +1431,9 @@
 	proc/expel(var/obj/structure/disposalholder/H)
 
 		flick("outlet-open", src)
-		playsound(src, 'sound/machines/warning-buzzer.ogg', 25, 0, 0)
+		playsound(src, 'sound/machines/warning-buzzer.ogg', 25, 0)
 		sleep(20)	//wait until correct animation frame
-		playsound(src, 'sound/machines/hiss.ogg', 25, 0, 0)
+		playsound(src, 'sound/machines/hiss.ogg', 25, 0)
 
 		if(H)
 			for(var/atom/movable/AM in H)

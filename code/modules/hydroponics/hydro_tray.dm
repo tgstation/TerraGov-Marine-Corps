@@ -670,7 +670,7 @@
 		pestlevel -= spray.pest_kill_str
 		weedlevel -= spray.weed_kill_str
 		user << "You spray [src] with [O]."
-		playsound(loc, 'sound/effects/spray3.ogg', 25, 1, -6)
+		playsound(loc, 'sound/effects/spray3.ogg', 25, 1, 3)
 		del(O)
 
 		check_level_sanity()

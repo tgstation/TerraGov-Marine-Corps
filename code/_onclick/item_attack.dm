@@ -68,7 +68,7 @@
 		user.flick_attack_overlay(M, "punch")
 
 		if(hitsound)
-			playsound(loc, hitsound, 25, 1, -1)
+			playsound(loc, hitsound, 25, 1)
 		switch(damtype)
 			if("brute")
 				M.apply_damage(power,BRUTE)
@@ -81,6 +81,6 @@
 		var/mob/living/carbon/human/H = M
 		var/hit = H.attacked_by(src, user, def_zone)
 		if (hit && hitsound)
-			playsound(loc, hitsound, 25, 1, -1)
+			playsound(loc, hitsound, 25, 1)
 		return hit
 	return 1

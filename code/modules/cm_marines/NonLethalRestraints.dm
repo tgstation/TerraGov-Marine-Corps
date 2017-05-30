@@ -35,7 +35,7 @@
 	if(charges > 0)
 		status = !status
 		user << "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>"
-		playsound(src.loc, "sparks", 15, 1, -1)
+		playsound(src.loc, "sparks", 15, 1)
 		update_icon()
 	else
 		status = 0
@@ -73,7 +73,7 @@
 		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by [user.name] ([user.ckey]) with [src.name]</font>"
 		log_attack("[user.name] ([user.ckey]) stunned [M.name] ([M.ckey]) with [src.name]")
 
-		playsound(src.loc, 'sound/weapons/Egloves.ogg', 25, 1, -1)
+		playsound(src.loc, 'sound/weapons/Egloves.ogg', 25, 1)
 		if(charges < 1)
 			status = 0
 			update_icon()
@@ -116,7 +116,7 @@
 	if(!C.handcuffed)
 		var/turf/p_loc = user.loc
 		var/turf/p_loc_m = C.loc
-		playsound(src.loc, 'sound/weapons/handcuffs.ogg', 25, 1, -2)
+		playsound(src.loc, 'sound/weapons/handcuffs.ogg', 25, 1, 6)
 		for(var/mob/O in viewers(user, null))
 			O.show_message("\red <B>[user] is trying to put restraints on [C]!</B>", 1)
 		spawn(30)

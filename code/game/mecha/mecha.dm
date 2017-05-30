@@ -425,15 +425,15 @@
 			if(!prob(src.deflect_chance))
 				src.take_damage(15)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
+				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 				user << "\red You slash at the armored suit!"
-				visible_message("\red The [user] slashes at [src.name]'s armor!")
+				visible_message("\red [user] slashes at [name]'s armor!")
 			else
 				src.log_append_to_last("Armor saved.")
-				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
+				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 				user << "\green Your claws had no effect!"
 				src.occupant_message("\blue The [user]'s claws are stopped by the armor.")
-				visible_message("\blue The [user] rebounds off [src.name]'s armor!")
+				visible_message("\blue [user] rebounds off [name]'s armor!")
 		else
 			user.visible_message("<font color='red'><b>[user] hits [src.name]. Nothing happens</b></font>","<font color='red'><b>You hit [src.name] with no visible effect.</b></font>")
 			src.log_append_to_last("Armor saved.")
@@ -463,7 +463,7 @@
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 		else
 			src.log_append_to_last("Armor saved.")
-			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
+			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 			src.occupant_message("\blue The [user]'s attack is stopped by the armor.")
 			visible_message("\blue The [user] rebounds off [src.name]'s armor!")
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")

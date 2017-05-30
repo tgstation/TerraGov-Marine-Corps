@@ -92,7 +92,7 @@
 	w_class = 4.0
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
 /obj/item/weapon/katana
@@ -121,7 +121,7 @@
 	throwforce = 7
 
 /obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
 /obj/item/weapon/butterfly/katana
@@ -609,7 +609,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		src.smoke.attach(src)
 
 	prime()
-		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, -3)
+		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 		src.smoke.set_up(10, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
@@ -643,7 +643,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		src.smoke.attach(src)
 
 	prime()
-		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, -3)
+		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 		src.smoke.set_up(10, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
@@ -724,7 +724,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		"<span class='notice'>You finish deploying [src].</span>")
 		anchored = 1
 		armed = 1
-		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1, -1)
+		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		icon_state += "_armed"
 		user.drop_held_item()
 		dir = user.dir //The direction it is planted in is the direction the user faces at that time
@@ -763,7 +763,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	"<span class='danger'>You hear a click.</span>")
 
 	triggered = 1
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
 	trigger_explosion()
 
 //Note : May not be actual explosion depending on linked method
@@ -784,7 +784,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	if(M.a_intent == "help") return
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
-	playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
+	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 
 	//We move the tripwire randomly in either of the four cardinal directions
 	triggered = 1

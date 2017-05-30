@@ -37,7 +37,7 @@
 
 			var/damage = rand(0, 9)
 			if(!damage)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				visible_message("\red <B>[M] has attempted to punch [src]!</B>")
 				return 0
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_selected))
@@ -45,7 +45,7 @@
 
 			if(HULK in M.mutations)			damage += 5
 
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(loc, "punch", 25, 1)
 
 			visible_message("\red <B>[M] has punched [src]!</B>")
 
@@ -110,7 +110,7 @@
 
 			var/damage = rand(0, 5)
 			if(!damage)
-				playsound(loc, attack.miss_sound, 25, 1, -1)
+				playsound(loc, attack.miss_sound, 25, 1)
 				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 				return
 
@@ -118,7 +118,7 @@
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(HULK in M.mutations) damage += 5
-			playsound(loc, attack.attack_sound, 25, 1, -1)
+			playsound(loc, attack.attack_sound, 25, 1)
 
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
@@ -169,7 +169,7 @@
 			var/randn = rand(1, 100)
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				visible_message("\red <B>[M] has pushed [src]!</B>")
 				return
 
@@ -181,11 +181,11 @@
 				else
 					drop_held_item()
 					visible_message("\red <B>[M] has disarmed [src]!</B>")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				return
 
 
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 			visible_message("\red <B>[M] attempted to disarm [src]!</B>")
 	return
 

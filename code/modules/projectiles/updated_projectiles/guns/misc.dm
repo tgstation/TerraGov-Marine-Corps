@@ -258,7 +258,7 @@
 
 			FT.reagents.remove_reagent("fuel", fuel_available)
 			current_rounds = fuel_available
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, -6)
+			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			caliber = "Fuel"
 			user << "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>"
 			update_icon()
