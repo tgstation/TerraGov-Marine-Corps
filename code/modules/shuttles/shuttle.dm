@@ -40,7 +40,7 @@
 
 	moving_status = SHUTTLE_WARMUP
 	if(transit_optimized)
-		recharging = round(recharge_time*0.75) //Optimized flight plan means less recharge time
+		recharging = round(recharge_time * SHUTTLE_OPTIMIZE_FACTOR_RECHARGE) //Optimized flight plan means less recharge time
 	else
 		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
 	spawn(warmup_time*10)
@@ -49,9 +49,9 @@
 			return	//someone canceled the launch
 
 		if(transit_optimized)
-			arrive_time = world.time + travel_time*10*0.5
+			arrive_time = world.time + travel_time * 10 * SHUTTLE_OPTIMIZE_FACTOR_TRAVEL
 		else
-			arrive_time = world.time + travel_time*10
+			arrive_time = world.time + travel_time * 10
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 		spawn(1)

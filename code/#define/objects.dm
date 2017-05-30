@@ -107,3 +107,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 // Diagonal movement for movable atoms
 #define FIRST_DIAG_STEP 	1
 #define SECOND_DIAG_STEP 	2
+
+// Shuttle defines
+
+#define SHUTTLE_OPTIMIZE_FACTOR_RECHARGE 0.75
+#define SHUTTLE_OPTIMIZE_FACTOR_TRAVEL 0.5

@@ -28,7 +28,7 @@
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
-	name = "\improper marine Commander's locker"
+	name = "commander's locker"
 	req_access = list(ACCESS_MARINE_COMMANDER)
 	icon_state = "secure_locked_commander"
 	icon_closed = "secure_unlocked_commander"
@@ -53,7 +53,7 @@
 	select_gamemode_equipment()
 
 /obj/structure/closet/secure_closet/securecom
-	name = "\improper Commander's secure box"
+	name = "commander's secure box"
 	req_access = list(ACCESS_MARINE_COMMANDER)
 	desc = "You could probably get court-marshaled just by looking at this..."
 	icon = 'icons/obj/storage.dmi'
@@ -97,7 +97,7 @@
 	select_gamemode_equipment()
 
 /obj/structure/closet/secure_closet/marine/marine_pilot
-	name = "/improper Pilot Officer's locker"
+	name = "pilot officer's locker"
 	req_access = list(ACCESS_MARINE_PILOT)
 	icon_state = "secure_locked_pilot"
 	icon_closed = "secure_unlocked_pilot"
@@ -153,7 +153,7 @@
 	select_gamemode_equipment()
 
 /obj/structure/closet/secure_closet/marine/warrant_officer
-	name = "\improper Chief MP's locker"
+	name = "chief MP's locker"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "secure_locked_warrant"
 	icon_closed = "secure_unlocked_warrant"
@@ -278,7 +278,7 @@
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
-	name = "\improper medical doctor's locker"
+	name = "medical doctor's locker"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	icon_state = "secure_locked_medical"
 	icon_closed = "secure_unlocked_medical"
