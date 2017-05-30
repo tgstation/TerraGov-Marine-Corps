@@ -35,7 +35,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
 	if(!msg)	return
 
-	if(!(prefs.toggles & CHAT_OOC))
+	if(!(prefs.toggles_chat & CHAT_OOC))
 		src << "\red You have OOC muted."
 		return
 
@@ -75,7 +75,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		display_colour = src.prefs.ooccolor
 
 	for(var/client/C in clients)
-		if(C.prefs.toggles & CHAT_OOC)
+		if(C.prefs.toggles_chat & CHAT_OOC)
 			var/display_name = src.key
 			if(holder)
 				if(holder.fakekey)
@@ -147,7 +147,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
 	if(!msg)	return
 
-	if(!(prefs.toggles & CHAT_LOOC))
+	if(!(prefs.toggles_chat & CHAT_LOOC))
 		src << "\red You have LOOC muted."
 		return
 
@@ -186,7 +186,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		if (C in admins)
 			continue //they are handled after that
 
-		if(C.prefs.toggles & CHAT_LOOC)
+		if(C.prefs.toggles_chat & CHAT_LOOC)
 			if(holder)
 				if(holder.fakekey)
 					if(C.holder)
@@ -201,7 +201,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		display_name = "[S.name]/([S.key])"
 
 	for(var/client/C in admins)
-		if(C.prefs.toggles & CHAT_LOOC)
+		if(C.prefs.toggles_chat & CHAT_LOOC)
 			var/prefix = "(R)LOOC"
 			if (C.mob in heard)
 				prefix = "LOOC"

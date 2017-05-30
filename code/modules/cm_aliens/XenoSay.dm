@@ -95,7 +95,7 @@
 	for (var/mob/S in player_list)
 		if(!isnull(S) && (istype(S,/mob/living/carbon/Xenomorph) || S.stat == DEAD) && !istype(S,/mob/new_player))
 			if(istype(S,/mob/dead/observer))
-				if(S.client.prefs && S.client.prefs.toggles & CHAT_GHOSTEARS)
+				if(S.client.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
 					track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
 					ghostrend= "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
 					S.show_message(ghostrend, 2)

@@ -11,7 +11,7 @@
 		src << "\red You cannot send DSAY messages (muted)."
 		return
 
-	if(!(prefs.toggles & CHAT_DEAD))
+	if(!(prefs.toggles_chat & CHAT_DEAD))
 		src << "\red You have deadchat muted."
 		return
 
@@ -25,7 +25,7 @@
 
 	if (src.holder.rights & R_MENTOR)
 		stafftype = "MENTOR"
-		
+
 	if (src.holder.rights & R_ADMIN)
 		stafftype = "ADMIN"
 
@@ -41,10 +41,10 @@
 		if (istype(M, /mob/new_player))
 			continue
 
-		if(M.client && M.client.holder && (M.client.prefs.toggles & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
+		if(M.client && M.client.holder && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
 			M.show_message(rendered, 2)
 
-		else if(M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // show the message to regular ghosts who have deadchat toggled on
+		else if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to regular ghosts who have deadchat toggled on
 			M.show_message(rendered, 2)
 
 	feedback_add_details("admin_verb","D") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

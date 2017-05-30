@@ -47,7 +47,8 @@ datum/preferences
 	var/ooccolor = "#b82e00"
 	var/be_special = 0					//Special role selection
 	var/UI_style = "Midnight"
-	var/toggles = TOGGLES_DEFAULT
+	var/toggles_chat = TOGGLES_CHAT_DEFAULT
+	var/toggles_sound = TOGGLES_SOUND_DEFAULT
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 
@@ -286,11 +287,12 @@ datum/preferences
 	dat += "<b>Custom UI</b>(recommended for White UI):<br>"
 	dat += "-Color: <a href='?_src_=prefs;preference=UIcolor'><b>[UI_style_color]</b></a> <table style='display:inline;' bgcolor='[UI_style_color]'><tr><td>__</td></tr></table><br>"
 	dat += "-Alpha(transparency): <a href='?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br>"
-	dat += "<b>Play admin midis:</b> <a href='?_src_=prefs;preference=hear_midis'><b>[(toggles & SOUND_MIDI) ? "Yes" : "No"]</b></a><br>"
-	dat += "<b>Play lobby music:</b> <a href='?_src_=prefs;preference=lobby_music'><b>[(toggles & SOUND_LOBBY) ? "Yes" : "No"]</b></a><br>"
-	dat += "<b>Ghost ears:</b> <a href='?_src_=prefs;preference=ghost_ears'><b>[(toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</b></a><br>"
-	dat += "<b>Ghost sight:</b> <a href='?_src_=prefs;preference=ghost_sight'><b>[(toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</b></a><br>"
-	dat += "<b>Ghost radio:</b> <a href='?_src_=prefs;preference=ghost_radio'><b>[(toggles & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
+	dat += "<b>Play admin midis:</b> <a href='?_src_=prefs;preference=hear_midis'><b>[(toggles_sound & SOUND_MIDI) ? "Yes" : "No"]</b></a><br>"
+	dat += "<b>Play lobby music:</b> <a href='?_src_=prefs;preference=lobby_music'><b>[(toggles_sound & SOUND_LOBBY) ? "Yes" : "No"]</b></a><br>"
+	dat += "<b>Ghost ears:</b> <a href='?_src_=prefs;preference=ghost_ears'><b>[(toggles_chat & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</b></a><br>"
+	dat += "<b>Ghost sight:</b> <a href='?_src_=prefs;preference=ghost_sight'><b>[(toggles_chat & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</b></a><br>"
+	dat += "<b>Ghost radio:</b> <a href='?_src_=prefs;preference=ghost_radio'><b>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
+	dat += "<b>Ghost hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'><b>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show Hivemind" : "Hide Hivemind"]</b></a><br>"
 
 	if(config.allow_Metadata)
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'> Edit </a><br>"
@@ -1445,7 +1447,7 @@ datum/preferences
 					disabilities = !disabilities//if you want to add actual disabilities, code that selects them should be here
 
 				if("hear_adminhelps")
-					toggles ^= SOUND_ADMINHELP
+					toggles_sound ^= SOUND_ADMINHELP
 
 				if("ui")
 					switch(UI_style)
@@ -1476,23 +1478,26 @@ datum/preferences
 					be_random_name = !be_random_name
 
 				if("hear_midis")
-					toggles ^= SOUND_MIDI
+					toggles_sound ^= SOUND_MIDI
 
 				if("lobby_music")
-					toggles ^= SOUND_LOBBY
-					if(toggles & SOUND_LOBBY)
+					toggles_sound ^= SOUND_LOBBY
+					if(toggles_sound & SOUND_LOBBY)
 						user << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
 					else
 						user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 
 				if("ghost_ears")
-					toggles ^= CHAT_GHOSTEARS
+					toggles_chat ^= CHAT_GHOSTEARS
 
 				if("ghost_sight")
-					toggles ^= CHAT_GHOSTSIGHT
+					toggles_chat ^= CHAT_GHOSTSIGHT
 
 				if("ghost_radio")
-					toggles ^= CHAT_GHOSTRADIO
+					toggles_chat ^= CHAT_GHOSTRADIO
+
+				if("ghost_hivemind")
+					toggles_chat ^= CHAT_GHOSTHIVEMIND
 
 				if("save")
 					save_preferences()

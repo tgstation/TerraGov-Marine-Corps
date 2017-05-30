@@ -4,7 +4,7 @@
 	if(!client)
 		return
 
-	if(speaker && !speaker.client && istype(src,/mob/dead/observer) && client.prefs.toggles & CHAT_GHOSTEARS && !speaker in view(src))
+	if(speaker && !speaker.client && istype(src,/mob/dead/observer) && client.prefs.toggles_chat & CHAT_GHOSTEARS && !speaker in view(src))
 			//Does the speaker have a client?  It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
 			//Or someone snoring.  So we make it where they won't hear it.
 		return
@@ -55,12 +55,12 @@
 
 	var/track = null
 	if(istype(src, /mob/dead/observer))
-		if(italics && client.prefs.toggles & CHAT_GHOSTRADIO)
+		if(italics && client.prefs.toggles_chat & CHAT_GHOSTRADIO)
 			return
 		if(speaker_name != speaker.real_name && speaker.real_name)
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "(<a href='byond://?src=\ref[src];track=\ref[speaker]'>follow</a>) "
-		if(client.prefs.toggles & CHAT_GHOSTEARS && speaker in view(src))
+		if(client.prefs.toggles_chat & CHAT_GHOSTEARS && speaker in view(src))
 			message = "<b>[message]</b>"
 
 	if(sdisabilities & DEAF || ear_deaf)

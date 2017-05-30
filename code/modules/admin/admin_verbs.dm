@@ -787,8 +787,8 @@ var/list/admin_verbs_mentor = list(
 	set name = "Toggle Attack Log Messages"
 	set category = "Preferences"
 
-	prefs.toggles ^= CHAT_ATTACKLOGS
-	if (prefs.toggles & CHAT_ATTACKLOGS)
+	prefs.toggles_chat ^= CHAT_ATTACKLOGS
+	if (prefs.toggles_chat & CHAT_ATTACKLOGS)
 		usr << "You now will get attack log messages"
 	else
 		usr << "You now won't get attack log messages"
@@ -797,8 +797,8 @@ var/list/admin_verbs_mentor = list(
 	set name = "Toggle FF Attack Log Messages"
 	set category = "Preferences"
 
-	prefs.toggles ^= CHAT_FFATTACKLOGS
-	if (prefs.toggles & CHAT_FFATTACKLOGS)
+	prefs.toggles_chat ^= CHAT_FFATTACKLOGS
+	if (prefs.toggles_chat & CHAT_FFATTACKLOGS)
 		usr << "You now will get friendly fire attack log messages"
 	else
 		usr << "You now won't get friendly fire attack log messages"
@@ -836,8 +836,8 @@ var/list/admin_verbs_mentor = list(
 	set name = "Toggle Debug Log Messages"
 	set category = "Preferences"
 
-	prefs.toggles ^= CHAT_DEBUGLOGS
-	if (prefs.toggles & CHAT_DEBUGLOGS)
+	prefs.toggles_chat ^= CHAT_DEBUGLOGS
+	if (prefs.toggles_chat & CHAT_DEBUGLOGS)
 		usr << "You now will get debug log messages"
 	else
 		usr << "You now won't get debug log messages"
