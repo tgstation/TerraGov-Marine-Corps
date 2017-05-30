@@ -102,6 +102,7 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define DROPSHIP_TRANSIT_DURATION		100	// 100 seconds
 #define DROPPOD_TRANSIT_DURATION		50	// 50 seconds
 #define ELEVATOR_TRANSIT_DURATION		5	// 5 seconds
+#define DROPSHIP_CRASH_TRANSIT_DURATION	180	// 180 seconds. 3 minutes
 
 #define SHUTTLE_RECHARGE  1200 // 2 minutes
 #define ELEVATOR_RECHARGE 150  // 15 seconds
