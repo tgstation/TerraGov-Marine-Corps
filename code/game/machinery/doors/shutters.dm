@@ -36,6 +36,7 @@
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 	sleep(10)
 	density = 0
+	layer = open_layer
 	SetOpacity(0)
 	update_nearby_tiles()
 
@@ -52,6 +53,7 @@
 	operating = 1
 	flick("shutterc1", src)
 	icon_state = "shutter1"
+	layer = closed_layer
 	density = 1
 	if(visible)
 		SetOpacity(1)
@@ -91,8 +93,8 @@
 		operating = 1
 		flick("shutterc1", src)
 		icon_state = "shutter1"
-		density = 1
 		layer = closed_layer
+		density = 1
 		update_nearby_tiles()
 
 
