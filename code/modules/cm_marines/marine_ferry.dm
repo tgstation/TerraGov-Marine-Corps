@@ -96,7 +96,7 @@
 
 	moving_status = SHUTTLE_WARMUP
 	if(transit_optimized)
-		recharging = round(recharge_time*0.75) //Optimized flight plan means less recharge time
+		recharging = round(recharge_time * SHUTTLE_OPTIMIZE_FACTOR_RECHARGE) //Optimized flight plan means less recharge time
 	else
 		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
 
@@ -128,9 +128,9 @@
 
 	var/travel_time = 0
 	if(transit_optimized)
-		travel_time = move_time*10*0.5
+		travel_time = move_time * 10 * SHUTTLE_OPTIMIZE_FACTOR_TRAVEL
 	else
-		travel_time = move_time*10
+		travel_time = move_time * 10
 
 	moving_status = SHUTTLE_INTRANSIT
 
@@ -194,7 +194,7 @@
 
 	moving_status = SHUTTLE_WARMUP
 	if(transit_optimized)
-		recharging = round(recharge_time*0.75) //Optimized flight plan means less recharge time
+		recharging = round(recharge_time * SHUTTLE_OPTIMIZE_FACTOR_RECHARGE) //Optimized flight plan means less recharge time
 	else
 		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
 
@@ -218,9 +218,9 @@
 
 	var/travel_time = 0
 	if(transit_optimized)
-		travel_time = move_time*10*0.5
+		travel_time = move_time * 10 * SHUTTLE_OPTIMIZE_FACTOR_TRAVEL
 	else
-		travel_time = move_time*10
+		travel_time = move_time * 10
 
 	moving_status = SHUTTLE_INTRANSIT
 

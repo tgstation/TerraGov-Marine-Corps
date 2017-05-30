@@ -66,7 +66,7 @@
 
 	var/effective_recharge_time = shuttle.recharge_time
 	if(shuttle.transit_optimized)
-		effective_recharge_time *= 0.5
+		effective_recharge_time *= SHUTTLE_OPTIMIZE_FACTOR_RECHARGE
 
 	var/recharge_status = effective_recharge_time - shuttle.recharging
 
