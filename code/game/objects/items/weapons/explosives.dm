@@ -1,3 +1,16 @@
+/obj/item/weapon/plastique
+	name = "plastic explosives"
+	desc = "Used to put holes in specific areas without too much extra hole."
+	gender = PLURAL
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "plastic-explosive0"
+	item_state = "plasticx"
+	flags_atom = FPRINT|NOBLUDGEON
+	w_class = 2.0
+	origin_tech = "syndicate=2"
+	var/timer = 10
+	var/atom/target = null
+
 /obj/item/weapon/plastique/attack_self(mob/user as mob)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(newtime < 10)
@@ -9,9 +22,9 @@
 
 /obj/item/weapon/plastique/afterattack(atom/target, mob/user, flag)
 	if (!flag) r_FAL
-	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target,/obj/item))
+	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/structure/ladder) || istype(target,/obj/item))
 		r_FAL
-	if(istype(target, /obj))
+	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
 		if(O.unacidable) r_FAL
 

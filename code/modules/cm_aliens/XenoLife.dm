@@ -31,7 +31,6 @@
 		//Status updates, death etc.
 		handle_regular_status_updates()
 		update_canmove()
-		handle_statuses() //Deals with stunned, etc
 		update_icons()
 		if(loc)
 			handle_environment(loc.return_air())
@@ -85,9 +84,6 @@
 			eye_blind = 0
 			eye_blurry = 0
 
-			if(weakened)
-				weakened--
-
 			if(paralysis) //If they're down, make sure they are actually down.
 				AdjustParalysis(-3)
 				blinded = 1
@@ -110,6 +106,8 @@
 				blinded = 0
 				if(halloss > 0)
 					adjustHalLoss(-1)
+
+			handle_statuses()//natural decrease of stunned, weakened, etc...
 
 		if(isXenoCrusher(src) && !stat) //Handle crusher stuff.
 			var/mob/living/carbon/Xenomorph/Crusher/X = src
@@ -434,3 +432,15 @@ updatehealth()
 	if(health <= crit_health)
 		if(prob(gib_prob)) 	gib()
 		else 				death()
+
+
+
+/mob/living/carbon/Xenomorph/handle_stunned()
+	if(stunned)
+		AdjustStunned(-2)
+	return stunned
+
+/mob/living/carbon/Xenomorph/handle_weakened()
+	if(weakened && client)
+		weakened = max(weakened-2,0)
+	return weakened

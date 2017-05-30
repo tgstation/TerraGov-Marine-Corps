@@ -101,18 +101,6 @@
 	else
 		layer = MOB_LAYER
 		src << "<span class='notice'>You have stopped hiding.</span>"
-	return
-
-/mob/living/carbon/Xenomorph/Larva/Bump(atom/AM as mob|obj|turf, yes)
-
-	spawn(0)
-		if(stat || !AM || !istype(AM) || AM == src || !yes)
-			return
-
-		if(ismob(AM))
-			loc = AM.loc
-			now_pushing = 0
-			return
 
 /mob/living/carbon/Xenomorph/Larva
 

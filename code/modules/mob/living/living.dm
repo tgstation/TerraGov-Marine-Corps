@@ -816,5 +816,6 @@
 	attack_icon.icon_state = attack_icon_state
 	target.overlays += attack_icon
 	sleep(4)
-	target.overlays -= attack_icon
+	if(target)
+		target.overlays -= attack_icon
 
