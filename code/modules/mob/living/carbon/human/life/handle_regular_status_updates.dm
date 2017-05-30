@@ -70,10 +70,6 @@
 
 		if(in_stasis) blinded = TRUE //Always blinded while in stasis.
 
-		if(has_species(src,"Yautja")) //Hurr hurr.
-			if(weakened)
-				weakened-- //Yautja stand up twice as fast from knockdown.
-
 		//Periodically double-check embedded_flag
 		if(embedded_flag && !(life_tick % 10))
 			var/list/E
@@ -139,3 +135,20 @@
 			gloves.germ_level += 1
 
 	return 1
+
+
+
+
+/mob/living/carbon/human/handle_weakened()
+	if(weakened && client)
+		var/reduce_amt = 1
+		if(has_species(src,"Yautja")) //predator get up twice as fast from knockdown
+			reduce_amt = 2
+		weakened = max(weakened-reduce_amt,0)
+	return weakened
+
+/mob/living/carbon/human/handle_stunned()
+	if(stunned)
+		if(has_species(src,"Yautja")) AdjustStunned(-2)
+		else AdjustStunned(-1)
+	return stunned

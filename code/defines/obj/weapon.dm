@@ -378,31 +378,6 @@
 
 	usr.client.eye = target
 
-/*
-/obj/item/weapon/cigarpacket
-	name = "Pete's Cuban Cigars"
-	desc = "The most robust cigars on the planet."
-	icon = 'icons/obj/cigarettes.dmi'
-	icon_state = "cigarpacket"
-	item_state = "cigarpacket"
-	w_class = 1
-	throwforce = 2
-	var/cigarcount = 6
-	flags = ONBELT|TABLEPASS */
-
-/obj/item/weapon/plastique
-	name = "plastic explosives"
-	desc = "Used to put holes in specific areas without too much extra hole."
-	gender = PLURAL
-	icon = 'icons/obj/assemblies.dmi'
-	icon_state = "plastic-explosive0"
-	item_state = "plasticx"
-	flags_atom = FPRINT|NOBLUDGEON
-	w_class = 2.0
-	origin_tech = "syndicate=2"
-	var/timer = 10
-	var/atom/target = null
-
 ///////////////////////////////////////Stock Parts /////////////////////////////////
 
 /obj/item/weapon/stock_parts
