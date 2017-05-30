@@ -48,6 +48,9 @@
 /area/prison/security/monitoring/maxsec
 	name = "\improper Maximum-Security Monitoring"
 
+/area/prison/security/monitoring/protective
+	name = "\improper Protective Custody Monitoring"
+
 /area/prison/security/checkpoint
 	icon_state = "checkpoint1"
 
