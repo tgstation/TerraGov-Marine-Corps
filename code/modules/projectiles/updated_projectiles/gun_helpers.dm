@@ -425,7 +425,7 @@ should be alright.
 		usr << "<span class='warning'>This weapon does not have a burst fire mode!</span>"
 		return
 
-	usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode.</span>"
+	usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] [src]'s burst fire mode.</span>"
 	playsound(usr, 'sound/machines/click.ogg', 15, 1)
 	flags_gun_features ^= GUN_BURST_ON
 

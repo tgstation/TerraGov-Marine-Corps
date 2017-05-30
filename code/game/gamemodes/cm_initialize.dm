@@ -515,7 +515,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	//Give them some information
 	spawn(4)
 		new_survivor << "<h2>You are a survivor!</h2>"
-		new_survivor << "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now."
+		new_survivor << "\blue You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now."
 		new_survivor << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
 		new_survivor << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
 	return 1

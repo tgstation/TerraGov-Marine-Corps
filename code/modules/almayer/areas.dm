@@ -179,7 +179,7 @@
 	icon_state = "gruntrnr"
 
 /area/almayer/living/officer_rnr
-	name = "\improper Almayer Officer Lounge"
+	name = "\improper Almayer Officer's Lounge"
 	icon_state = "officerrnr"
 
 /area/almayer/living/cafeteria_port
@@ -204,19 +204,19 @@
 
 
 /area/almayer/living/pilotbunks
-	name = "\improper Almayer Pilot Bunks"
+	name = "\improper Almayer Pilot's Bunks"
 	icon_state = "livingspace"
 
 /area/almayer/living/bridgebunks
-	name = "\improper Almayer Bridge Officer Bunks"
+	name = "\improper Almayer Staff Officer Bunks"
 	icon_state = "livingspace"
 
 /area/almayer/living/commandbunks
-	name = "\improper Almayer Commander Bunk"
+	name = "\improper Almayer Commander's Bunk"
 	icon_state = "livingspace"
 
 /area/almayer/living/numbertwobunks
-	name = "\improper Almayer Executive Officer Bunk"
+	name = "\improper Almayer Executive Officer's Bunk"
 	icon_state = "livingspace"
 
 /area/almayer/living/chapel
@@ -232,15 +232,15 @@
 	icon_state = "medical"
 
 /area/almayer/medical/operating_room_one
-	name = "\improper Almayer OR 1"
+	name = "\improper Almayer Operating Room 1"
 	icon_state = "operating"
 
 /area/almayer/medical/operating_room_two
-	name = "\improper Almayer OR 2"
+	name = "\improper Almayer Operating Room 2"
 	icon_state = "operating"
 
 /area/almayer/medical/operating_room_three
-	name = "\improper Almayer OR 3"
+	name = "\improper Almayer Operating Room 3"
 	icon_state = "operating"
 
 /area/almayer/medical/medical_science
@@ -252,23 +252,23 @@
 	icon_state = "chemistry"
 
 /area/almayer/squads/alpha
-	name = "\improper Almayer Alpha Prep"
+	name = "\improper Almayer Alpha Preparation"
 	icon_state = "alpha"
 
 /area/almayer/squads/bravo
-	name = "\improper Almayer Bravo Prep"
+	name = "\improper Almayer Bravo Preparation"
 	icon_state = "bravo"
 
 /area/almayer/squads/charlie
-	name = "\improper Almayer Charlie Prep"
+	name = "\improper Almayer Charlie Preparation"
 	icon_state = "charlie"
 
 /area/almayer/squads/delta
-	name = "\improper Almayer Delta Prep"
+	name = "\improper Almayer Delta Preparation"
 	icon_state = "delta"
 
 /area/almayer/squads/req
-	name = "\improper Almayer Requestions"
+	name = "\improper Almayer Requisitions"
 	icon_state = "req"
 
 /area/almayer/evacuation

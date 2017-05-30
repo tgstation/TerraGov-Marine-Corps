@@ -21,12 +21,12 @@
 			active = 0
 			icon_state = "degoggles"
 			user.update_inv_glasses()
-			usr << "You deactivate the optical matrix on the [src]."
+			usr << "You deactivate the optical matrix on [src]."
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			usr << "You activate the optical matrix on the [src]."
+			usr << "You activate the optical matrix on [src]."
 
 /obj/item/clothing/glasses/meson
 	name = "optical meson scanner"
@@ -149,14 +149,14 @@
 			flags_armor_protection |= EYES
 			icon_state = initial(icon_state)
 			eye_protection = initial(eye_protection)
-			usr << "You flip \the [src] down to protect your eyes."
+			usr << "You flip [src] down to protect your eyes."
 		else
 			src.up = !src.up
 			flags_inventory &= ~(COVEREYES|HIDEEYES)
 			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
-			usr << "You push \the [src] up out of your face."
+			usr << "You push [src] up out of your face."
 
 		update_clothing_icon()
 

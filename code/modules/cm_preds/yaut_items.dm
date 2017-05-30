@@ -1246,8 +1246,8 @@
 	if(timer) return
 	on = !on
 	if(on)
-		user.visible_message("<span class='info'>With a flick of their wrist, [user] extends their [src].</span>",\
-		"<span class='notice'>You extend the combi-stick.</span>",\
+		user.visible_message("<span class='info'>With a flick of their wrist, [user] extends [src].</span>",\
+		"<span class='notice'>You extend [src].</span>",\
 		"You hear an ominous click.")
 		icon_state = initial(icon_state)
 		item_state = initial(item_state)
@@ -1270,7 +1270,7 @@
 
 			overlays += blood_overlay
 	else
-		user << "<span class='notice'>You collapse the combi-stick for storage.</span>"
+		user << "<span class='notice'>You collapse [src] for storage.</span>"
 		icon_state = initial(item_state) + "_f"
 		item_state = icon_state
 		flags_equip_slot = SLOT_STORE
