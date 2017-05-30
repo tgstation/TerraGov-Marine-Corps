@@ -92,7 +92,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.recently_unbuckled)
-			user << "<span class='warning'>[M] was recently recently unbuckled. Wait a bit.</span>"
+			user << "<span class='warning'>[M] was recently unbuckled. Wait a bit.</span>"
 			return
 
 	if(M == user)

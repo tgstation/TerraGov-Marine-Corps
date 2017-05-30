@@ -435,7 +435,7 @@
 			current_squad.bbeacon = null
 		for(var/mob/living/carbon/H in living_mob_list)
 			if((H.z == 3 || H.z == 4) && !src.stat) //Sulaco decks.
-				H << "<span class='warning'>The deck of the Sulaco shudders as the orbital cannons open fire on the colony.</span>"
+				H << "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>"
 				if(!H.buckled && H.client)
 					shake_camera(H, 10, 1)
 		x_offset += rand(-2,2) //Little bit of randomness.
