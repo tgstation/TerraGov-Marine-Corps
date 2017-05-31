@@ -11,7 +11,7 @@
 	var/on = 0.0
 	var/stabilization_on = 0
 	var/volume_rate = 500              //Needed for borg jetpack transfer
-	icon_action_button = "action_jetpack"
+	actions_types = list(/datum/action/item_action)
 
 /obj/item/weapon/tank/jetpack/New()
 	..()
@@ -46,6 +46,10 @@
 	if (ismob(usr))
 		var/mob/M = usr
 		M.update_inv_back()
+
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
 
 /obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob)
 	if(!(src.on))

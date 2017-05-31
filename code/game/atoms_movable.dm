@@ -27,6 +27,8 @@
 	return
 //===========================================================================
 
+/atom/movable/proc/initialize()
+	return
 
 /atom/movable/Move(NewLoc, direct)
 	var/atom/oldloc = loc

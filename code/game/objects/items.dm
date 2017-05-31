@@ -30,8 +30,9 @@
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
-	var/icon_action_button //If this is set to anything, then it can appear in the action slots in the top left corner of the screen with its own icon state
-	var/action_button_name //This is the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. Note that icon_action_button needs to be set in order for the action button to appear.
+	var/list/actions = list() //list of /datum/action's that this item has.
+	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
+
 	var/item_color = null
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
@@ -128,8 +129,15 @@ cases. Override_icon_state should be a list.*/
 
 /obj/item/New(loc)
 	..()
+	for(var/path in actions_types)
+		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
 		drag_delay = 1
+
+/obj/item/Dispose()
+	for(var/X in actions)
+		cdel(X)
+	return ..()
 
 /obj/item/examine()
 	set src in view()
@@ -258,6 +266,11 @@ cases. Override_icon_state should be a list.*/
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
 			zoom(user, 11, 12)
+
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.remove_action(user)
+
 	if(flags_atom & DELONDROP)
 		cdel(src)
 
@@ -282,8 +295,15 @@ cases. Override_icon_state should be a list.*/
 // slot uses the slot_X defines found in setup.dm
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
-/obj/item/proc/equipped(var/mob/user, var/slot)
-	return
+/obj/item/proc/equipped(mob/user, slot)
+	for(var/X in actions)
+		var/datum/action/A = X
+		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
+			A.give_action(user)
+
+//sometimes we only want to grant the item's action if it's equipped in a specific slot.
+obj/item/proc/item_action_slot_check(mob/user, slot)
+	return TRUE
 
 //the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.

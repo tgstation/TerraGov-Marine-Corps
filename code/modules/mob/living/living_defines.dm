@@ -61,3 +61,4 @@
 
 	var/image/attack_icon = null //the image used as overlay on the things we attack.
 
+	var/list/datum/action/actions = list()
