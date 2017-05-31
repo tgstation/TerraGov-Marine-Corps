@@ -21,8 +21,8 @@
 		return 0
 
 	if(savefile_version < 12) //we've split toggles into toggles_sound and toggles_chat
-		if(S["toggles"])
-			del(S["toggles"])
+//		if(S["toggles"])
+//			del(S["toggles"])
 		S["toggles_chat"] << TOGGLES_SOUND_DEFAULT
 		S["toggles_chat"] << TOGGLES_CHAT_DEFAULT
 
