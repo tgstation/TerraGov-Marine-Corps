@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	11
+#define SAVEFILE_VERSION_MAX	12
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -9,8 +9,8 @@
 //This is mainly for format changes, such as the bitflags in toggles changing order or something.
 //if a file can't be updated, return 0 to delete it and start again
 //if a file was updated, return 1
-/datum/preferences/proc/savefile_update()
-	if(savefile_version < SAVEFILE_VERSION_MIN)	//lazily delete everything + additional files so they can be saved in the new format
+/datum/preferences/proc/savefile_update(savefile/S)
+	if(!isnum(savefile_version) || savefile_version < SAVEFILE_VERSION_MIN)	//lazily delete everything + additional files so they can be saved in the new format
 		for(var/ckey in preferences_datums)
 			var/datum/preferences/D = preferences_datums[ckey]
 			if(D == src)
@@ -20,11 +20,14 @@
 				break
 		return 0
 
-	if(savefile_version == SAVEFILE_VERSION_MAX)	//update successful.
-		save_preferences()
-		save_character()
-		return 1
-	return 0
+	if(savefile_version < 12) //we've split toggles into toggles_sound and toggles_chat
+		if(S["toggles"])
+			del(S["toggles"])
+		S["toggles_chat"] << TOGGLES_SOUND_DEFAULT
+		S["toggles_chat"] << TOGGLES_CHAT_DEFAULT
+
+	savefile_version = SAVEFILE_VERSION_MAX
+	return 1
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)	return
@@ -40,8 +43,8 @@
 
 	S["version"] >> savefile_version
 	//Conversion
-	if(!savefile_version || !isnum(savefile_version) || savefile_version < SAVEFILE_VERSION_MIN || savefile_version > SAVEFILE_VERSION_MAX)
-		if(!savefile_update())  //handles updates
+	if(!savefile_version || !isnum(savefile_version) || savefile_version != SAVEFILE_VERSION_MAX)
+		if(!savefile_update(S))  //handles updates
 			savefile_version = SAVEFILE_VERSION_MAX
 			save_preferences()
 			save_character()
@@ -53,7 +56,8 @@
 	S["UI_style"]			>> UI_style
 	S["be_special"]			>> be_special
 	S["default_slot"]		>> default_slot
-	S["toggles"]			>> toggles
+	S["toggles_chat"]		>> toggles_chat
+	S["toggles_sound"]		>> toggles_sound
 	S["UI_style_color"]		>> UI_style_color
 	S["UI_style_alpha"]		>> UI_style_alpha
 
@@ -70,7 +74,8 @@
 	UI_style		= sanitize_inlist(UI_style, list("White", "Midnight","Orange","old"), initial(UI_style))
 	be_special		= sanitize_integer(be_special, 0, 65535, initial(be_special))
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, 65535, initial(toggles))
+	toggles_chat	= sanitize_integer(toggles_chat, 0, 65535, initial(toggles_chat))
+	toggles_sound	= sanitize_integer(toggles_sound, 0, 65535, initial(toggles_sound))
 	UI_style_color	= sanitize_hexcolor(UI_style_color, initial(UI_style_color))
 	UI_style_alpha	= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
 
@@ -97,7 +102,8 @@
 	S["UI_style"]			<< UI_style
 	S["be_special"]			<< be_special
 	S["default_slot"]		<< default_slot
-	S["toggles"]			<< toggles
+	S["toggles_chat"]		<< toggles_chat
+	S["toggles_sound"]		<< toggles_sound
 
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
@@ -201,8 +207,8 @@
 	S["uplinklocation"] >> uplinklocation
 	S["exploit_record"]	>> exploit_record
 
-	S["UI_style_color"]		<< UI_style_color
-	S["UI_style_alpha"]		<< UI_style_alpha
+	S["UI_style_color"]		>> UI_style_color
+	S["UI_style_alpha"]		>> UI_style_alpha
 
 	//Sanitize
 	metadata		= sanitize_text(metadata, initial(metadata))

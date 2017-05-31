@@ -31,7 +31,7 @@
 		diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
 
 	for(var/client/C in admins)
-		if(C.prefs.toggles & CHAT_DEBUGLOGS)
+		if(C.prefs.toggles_chat & CHAT_DEBUGLOGS)
 			C << "DEBUG: [text]"
 
 
