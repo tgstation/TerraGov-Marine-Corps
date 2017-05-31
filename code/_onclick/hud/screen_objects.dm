@@ -45,28 +45,34 @@
 	return 1
 
 
-/obj/screen/item_action
-	var/obj/item/owner
+/obj/screen/action_button
+	icon = 'icons/mob/screen1_action.dmi'
+	icon_state = "template"
+	var/datum/action/source_action
 
-/obj/screen/item_action/Click()
-	if(!usr || !owner)
+/obj/screen/action_button/Click()
+	if(!usr || !source_action)
 		return 1
 	if(usr.next_move >= world.time)
 		return
 	usr.next_move = world.time + 6
 
-	if(usr.stat || usr.is_mob_restrained() || usr.stunned || usr.lying)
-		return 1
-
-	if(!(owner in usr))
-		return 1
-
-	owner.ui_action_click()
+	source_action.action_activate()
 	return 1
 
-//This is the proc used to update all the action buttons. It just returns for all mob types except humans.
-/mob/proc/update_action_buttons()
-	return
+/obj/screen/action_button/Dispose()
+	source_action = null
+	. = ..()
+
+/obj/screen/action_button/proc/get_button_screen_loc(button_number)
+	var/row = round((button_number-1)/10) //10 is max amount of buttons per row
+	var/col = ((button_number - 1)%(10)) + 1
+	var/coord_col = "+[col-1]"
+	var/coord_col_offset = 4+2*col
+	var/coord_row = "[-1 - row]"
+	var/coord_row_offset = 26
+	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:[coord_row_offset]"
+
 
 
 /obj/screen/storage

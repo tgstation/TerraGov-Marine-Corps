@@ -22,7 +22,7 @@
 	flags_atom = FPRINT|CONDUCT
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_armor_protection = HEAD|FACE|EYES
-	icon_action_button = "action_welding"
+	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	w_class = 3
 	anti_hug = 2
@@ -56,6 +56,9 @@
 
 		update_clothing_icon()	//so our mob-overlays update
 
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
 
 /*
  * Cakehat
@@ -128,12 +131,14 @@
 		else	user.SetLuminosity(-brightness_on)
 
 	pickup(mob/user)
+		..()
 		if(on)
 			user.SetLuminosity(brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(0)
 
 	dropped(mob/user)
+		..()
 		if(on)
 			user.SetLuminosity(-brightness_on)
 //			user.UpdateLuminosity()

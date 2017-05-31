@@ -28,12 +28,17 @@
 			user.update_inv_glasses()
 			usr << "You activate the optical matrix on [src]."
 
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+
+
 /obj/item/clothing/glasses/meson
 	name = "optical meson scanner"
 	desc = "Used for shield the user's eyes from harmful electromagnetic emissions, can also be used as safety googles."
 	icon_state = "meson"
 	item_state = "glasses"
-	icon_action_button = "action_meson" //This doesn't actually matter, the action button is generated from the current icon_state. But, this is the only way to get it to show up.
+	actions_types = list(/datum/action/item_action/toggle)
 	origin_tech = "magnets=2;engineering=2"
 	toggleable = 1
 
@@ -83,7 +88,7 @@
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state = "glasses"
-	icon_action_button = "action_material"
+	actions_types = list(/datum/action/item_action/toggle)
 	origin_tech = "magnets=3;engineering=3"
 	toggleable = 1
 	vision_flags = SEE_OBJS
@@ -128,7 +133,7 @@
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	icon_state = "welding-g"
 	item_state = "welding-g"
-	icon_action_button = "action_welding_g"
+	actions_types = list(/datum/action/item_action/toggle)
 	flags_inventory = COVEREYES|HIDEEYES
 	eye_protection = 2
 	var/up = 0
@@ -160,12 +165,16 @@
 
 		update_clothing_icon()
 
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+
+
 /obj/item/clothing/glasses/welding/superior
 	name = "superior welding goggles"
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
-	icon_action_button = "action_welding_g"
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -231,7 +240,7 @@
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
-	icon_action_button = "action_meson"
+	actions_types = list(/datum/action/item_action/toggle)
 	origin_tech = "magnets=3;syndicate=4"
 
 /obj/item/clothing/glasses/thermal/monocle

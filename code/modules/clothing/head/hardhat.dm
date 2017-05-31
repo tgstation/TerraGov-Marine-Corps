@@ -8,7 +8,7 @@
 	item_color = "yellow" //Determines used sprites: hardhat[on]_[color] and hardhat[on]_[color]2 (lying down sprite)
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 10, bomb = 20, bio = 10, rad = 20)
 	flags_inventory = 0
-	icon_action_button = "action_hardhat"
+	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
 
@@ -23,17 +23,27 @@
 		if(on)	user.SetLuminosity(brightness_on)
 		else	user.SetLuminosity(-brightness_on)
 
+		if(ismob(loc))
+			var/mob/M = loc
+			M.update_inv_head()
+
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+
 	pickup(mob/user)
 		if(on)
 			user.SetLuminosity(brightness_on)
 //			user.UpdateLuminosity()	//TODO: Carn
 			SetLuminosity(0)
+		..()
 
 	dropped(mob/user)
 		if(on)
 			user.SetLuminosity(-brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
+		..()
 
 	Del()
 		if(ismob(src.loc))
