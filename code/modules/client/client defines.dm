@@ -15,6 +15,7 @@
 		/////////
 	var/datum/preferences/prefs = null
 	var/move_delay		= 1
+	var/stored_delay	= 2 //Last move delay, needed for glide animations, for now at least. This gets overriden on movement
 	var/moving			= null
 	var/adminobs		= null
 	var/area			= null

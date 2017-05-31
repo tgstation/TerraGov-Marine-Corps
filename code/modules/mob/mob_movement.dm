@@ -193,15 +193,20 @@
 	if(isturf(mob.loc))
 
 		move_delay = world.time//set move delay
+		stored_delay = 0 //Ugh
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 3 + config.run_speed
+					stored_delay += 6
+				move_delay += 2.5 + config.run_speed
+				stored_delay += 2.5 + config.run_speed
 			if("walk")
 				move_delay += 6 + config.walk_speed
+				stored_delay += 6 + config.walk_speed
 		move_delay += mob.movement_delay()
+		stored_delay += mob.movement_delay()
 
 		//We are now going to move
 		moving = 1
@@ -243,7 +248,9 @@
 	var/turf/mobloc = get_turf(mob)
 	if(!isliving(mob))
 		return
-	if(world.time < move_delay)	return
+	if(world.time < move_delay)	return 0
+	if(moving) return 0
+	moving = 1
 	var/mob/living/L = mob
 	switch(L.incorporeal_move)
 		if(1)
@@ -291,7 +298,7 @@
 			L.dir = direct
 	move_delay = world.time//set move delay
 	move_delay += 2
-
+	moving = 0
 	return 1
 
 
