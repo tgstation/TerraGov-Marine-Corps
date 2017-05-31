@@ -9,7 +9,7 @@
 	var/brightness_on = 4 //luminosity when on
 	var/on = 0
 	item_color = "engineering" //Determines used sprites: rig[on]-[color] and rig[on]-[color]2 (lying down sprite)
-	icon_action_button = "action_hardhat"
+	actions_types = list(/datum/action/item_action/toggle)
 	flags_heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 
@@ -41,17 +41,23 @@
 			var/mob/living/carbon/human/H = user
 			H.update_inv_head()
 
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+
 	pickup(mob/user)
 		if(on)
 			user.SetLuminosity(brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(0)
+		..()
 
 	dropped(mob/user)
 		if(on)
 			user.SetLuminosity(-brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
+		..()
 
 	Del()
 		if(ismob(src.loc))

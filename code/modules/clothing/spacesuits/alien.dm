@@ -198,7 +198,6 @@
 		"Vox Armalis" = 'icons/mob/species/armalis/feet.dmi'
 		)
 
-	action_button_name = "Toggle the magclaws"
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(src.magpulse)

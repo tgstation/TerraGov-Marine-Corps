@@ -174,7 +174,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
 	var/armor_overlays[]
-	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	var/show_squad_hud = TRUE
 	w_class = 5
@@ -465,11 +465,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
 			user.SetLuminosity(brightness_on)
 			SetLuminosity(0)
+		..()
 
 	dropped(mob/user)
 		if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
 			user.SetLuminosity(-brightness_on)
 			SetLuminosity(brightness_on)
+		..()
 
 	Del()
 		if(ismob(src.loc))
@@ -498,6 +500,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 		playsound(src,'sound/machines/click.ogg', 15, 1)
 		update_icon(user)
+
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
 		return 1
 
 /obj/item/clothing/suit/storage/marine/specialist/verb/inject()
