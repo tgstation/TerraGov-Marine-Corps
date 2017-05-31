@@ -34,7 +34,13 @@
 	var/atom/oldloc = loc
 	var/old_dir = dir
 
-	glide_size = Ceiling(32 / max(5 * world.tick_lag, 1) * world.tick_lag) - 1 //We always split up movements into cardinals for issues with diagonal movements.
+	var/move_delay = max(5 * world.tick_lag, 1)
+	if(ismob(src))
+		var/mob/M = src
+		if(M.client)
+			move_delay = (3 + M.client.stored_delay) * world.tick_lag
+
+	glide_size = 32 / max(Ceiling(move_delay / world.tick_lag), 1) //We always split up movements into cardinals for issues with diagonal movements.
 
 	if(loc != NewLoc)
 		if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
