@@ -378,7 +378,8 @@ Defined in setup.dm.
 	light_mod = 7
 	slot = "rail"
 	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE
-	actions_types = list(/datum/action/item_action/toggle)
+	icon_action_button = 1
+	action_button_name = "Toggle Rail Flashlight"
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		if(target)

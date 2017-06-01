@@ -4,7 +4,8 @@
 	icon_state = "magboots0"
 	species_restricted = null
 	var/magpulse = 0
-	actions_types = list(/datum/action/item_action/toggle)
+	icon_action_button = "action_blank"
+	action_button_name = "Toggle the magboots"
 //	flags = NOSLIP //disabled by default
 
 	attack_self(mob/user)
@@ -21,11 +22,6 @@
 			icon_state = "magboots1"
 			user << "You enable the mag-pulse traction system."
 		user.update_inv_shoes()	//so our mob-overlays update
-
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
-
 
 	examine()
 		set src in view()

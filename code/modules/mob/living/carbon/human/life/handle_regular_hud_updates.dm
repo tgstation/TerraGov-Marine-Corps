@@ -14,6 +14,7 @@
 			client.images.Remove(hud)
 
 	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
+	update_action_buttons()
 
 	if(hud_used && hud_used.damageoverlay && hud_used.damageoverlay.overlays)
 		hud_used.damageoverlay.overlays = null

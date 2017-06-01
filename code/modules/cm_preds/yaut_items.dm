@@ -94,6 +94,7 @@
 		if(current_goggles > 3) current_goggles = 0
 
 	dropped(var/mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed. This should work even though they're !canremove.
+		..()
 		if(!istype(mob)) return //Somehow
 		var/obj/item/G = mob.glasses
 		if(G)
@@ -101,7 +102,6 @@
 				mob.temp_drop_inv_item(G)
 				cdel(G)
 				mob.update_inv_glasses()
-		..()
 
 /obj/item/clothing/suit/armor/yautja
 	name = "clan armor"
@@ -310,8 +310,8 @@
 				processing_objects.Add(src)
 
 	dropped(mob/user)
-		processing_objects.Remove(src)
 		..()
+		processing_objects.Remove(src)
 
 	process()
 		if(!ishuman(loc))
@@ -778,6 +778,7 @@
 	layer = 2.8 //Goes under weeds.
 
 	dropped(var/mob/living/carbon/human/mob) //Changes to "camouflaged" icons based on where it was dropped.
+		..()
 		if(armed)
 			if(isturf(mob.loc))
 				if(istype(mob.loc,/turf/unsimulated/floor/gm/dirt))
@@ -786,7 +787,6 @@
 					icon_state = "yauttrapgrass"
 				else
 					icon_state = "yauttrap1"
-		..()
 
 /obj/item/weapon/legcuffs/yautja/attack_self(mob/user as mob)
 	..()
@@ -999,7 +999,7 @@
 	w_class = 5.0
 	edge = 1
 	sharp = 0
-	flags_atom = NOSHIELD|DELONDROP
+	flags_atom = NOSHIELD
 	flags_equip_slot = NOFLAGS
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	canremove = 0
@@ -1027,7 +1027,7 @@
 			var/obj/item/weapon/wristblades/get_other_hand = M.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
 				get_other_hand.attack_speed = initial(attack_speed)
-		..()
+		cdel(src)
 
 	afterattack(obj/O as obj, mob/user as mob, proximity)
 		if(!proximity || !user) return
@@ -1106,7 +1106,7 @@
 	throw_range = 6
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	actions_types = list(/datum/action/item_action)
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	unacidable = 1
 
 	attack_self(mob/living/carbon/human/user as mob)
@@ -1320,9 +1320,9 @@
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/mode = 0
-	actions_types = list(/datum/action/item_action/toggle)
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	accuracy = 10
-	flags_atom = FPRINT|CONDUCT|NOBLUDGEON|DELONDROP //Can't buldgeon with this.
+	flags_atom = FPRINT|CONDUCT|NOBLUDGEON //Can't buldgeon with this.
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
@@ -1363,8 +1363,9 @@
 				ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 	dropped(mob/living/carbon/human/M)
-		playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
 		..()
+		playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
+		cdel(src)
 
 	able_to_fire(mob/user)
 		if(!source)	return

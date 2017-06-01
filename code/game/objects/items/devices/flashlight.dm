@@ -10,7 +10,7 @@
 
 	matter = list("metal" = 50,"glass" = 20)
 
-	actions_types = list(/datum/action/item_action)
+	icon_action_button = "action_flashlight"
 	var/on = 0
 	var/brightness_on = 5 //luminosity when on
 	var/raillight_compatible = 1 //Can this be turned into a rail light ?
@@ -59,9 +59,6 @@
 		return 0
 	on = !on
 	update_brightness(user)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
 	return 1
 
 /obj/item/device/flashlight/attackby(obj/item/I as obj, mob/user as mob)
@@ -135,14 +132,13 @@
 	if(on && src.loc != user)
 		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
-	..()
 
 
 /obj/item/device/flashlight/dropped(mob/user)
+	..()
 	if(on && src.loc != user)
 		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
-	..()
 
 /obj/item/device/flashlight/pen
 	name = "penlight"
@@ -212,7 +208,7 @@
 	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
 	item_state = "flare"
-	actions = list()	//just pull it manually, neckbeard.
+	icon_action_button = null	//just pull it manually, neckbeard.
 	raillight_compatible = 0
 	var/fuel = 0
 	var/on_damage = 7

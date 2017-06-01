@@ -193,20 +193,21 @@
 	if(isturf(mob.loc))
 
 		move_delay = world.time//set move delay
-		stored_delay = 0 //Ugh
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-					stored_delay += 6
-				move_delay += 2.5 + config.run_speed
-				stored_delay += 2.5 + config.run_speed
+				move_delay += 1+config.run_speed
 			if("walk")
-				move_delay += 6 + config.walk_speed
-				stored_delay += 6 + config.walk_speed
+				move_delay += 7+config.walk_speed
 		move_delay += mob.movement_delay()
-		stored_delay += mob.movement_delay()
+
+		if(config.Tickcomp)
+			move_delay -= 1.3
+			var/tickcomp = ((1/(world.tick_lag))*1.3)
+			move_delay += tickcomp
+
 
 		//We are now going to move
 		moving = 1
@@ -248,13 +249,10 @@
 	var/turf/mobloc = get_turf(mob)
 	if(!isliving(mob))
 		return
-	if(world.time < move_delay)	return 0
-	if(moving) return 0
-	moving = 1
 	var/mob/living/L = mob
 	switch(L.incorporeal_move)
 		if(1)
-			L.forceMove(get_step(L, direct))
+			L.loc = get_step(L, direct)
 			L.dir = direct
 		if(2)
 			if(prob(50))
@@ -294,11 +292,8 @@
 			else
 				spawn(0)
 					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,L.dir)
-				L.forceMove(get_step(L, direct))
+				L.loc = get_step(L, direct)
 			L.dir = direct
-	move_delay = world.time//set move delay
-	move_delay += 2
-	moving = 0
 	return 1
 
 

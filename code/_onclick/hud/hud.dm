@@ -60,6 +60,7 @@
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
 	var/list/screenoverlays = list() //the screen objects used as whole screen overlays (flash,blind, etc...)
 
+	var/list/obj/screen/item_action/item_action_list = list()	//Used for the item action ui buttons.
 
 
 /datum/hud/New(mob/owner)
@@ -88,6 +89,10 @@
 		for(var/thing in screenoverlays)
 			cdel(thing)
 		screenoverlays.Cut()
+	if(item_action_list.len)
+		for(var/thing in item_action_list)
+			cdel(thing)
+		item_action_list.Cut()
 
 	r_hand_hud_object = null
 	l_hand_hud_object = null
@@ -202,7 +207,7 @@
 
 	hud_version = display_hud_version
 	persistant_inventory_update()
-	mymob.update_action_buttons(TRUE)
+	mymob.update_action_buttons()
 
 
 

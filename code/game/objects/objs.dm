@@ -51,6 +51,9 @@
 	else
 		return null
 
+/atom/movable/proc/initialize()
+	return
+
 /obj/proc/updateUsrDialog()
 	if(in_use)
 		var/is_in_use = 0

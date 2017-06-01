@@ -110,7 +110,6 @@
 #include "code\controllers\settings\combat_defines.dm"
 #include "code\controllers\settings\configuration.dm"
 #include "code\controllers\settings\game_options.dm"
-#include "code\datums\action.dm"
 #include "code\datums\ai_laws.dm"
 #include "code\datums\browser.dm"
 #include "code\datums\computerfiles.dm"

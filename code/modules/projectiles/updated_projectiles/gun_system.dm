@@ -13,6 +13,7 @@
 	throw_range = 5
 	force 		= 5
 	attack_verb = null
+	icon_action_button = null //Adds it to the quick-icon list
 
 	var/fire_sound 		= 'sound/weapons/Gunshot.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'

@@ -161,7 +161,7 @@
 	w_class = 5.0
 	var/obj/item/weapon/cell/pcell = null
 	var/rounds_remaining = 250
-	actions_types = list(/datum/action/item_action/toggle)
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/reloading = 0
 
 	New()

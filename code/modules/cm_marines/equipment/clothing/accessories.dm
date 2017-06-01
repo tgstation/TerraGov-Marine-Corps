@@ -514,7 +514,7 @@ BLIND     // can't see anything
 	item_state = "glasses"
 	darkness_view = 5
 	toggleable = 1
-	actions_types = list(/datum/action/item_action/toggle)
+	icon_action_button = "action_meson"
 	vision_flags = SEE_TURFS
 
 	mob_can_equip(mob/user, slot)
@@ -541,7 +541,7 @@ BLIND     // can't see anything
 	item_state = "m56_goggles"
 	vision_flags = SEE_TURFS
 	toggleable = 1
-	actions_types = list(/datum/action/item_action/toggle)
+	icon_action_button = "action_meson"
 
 	New()
 		..()
@@ -556,7 +556,7 @@ BLIND     // can't see anything
 	vision_flags = SEE_TURFS
 	darkness_view = 12
 	toggleable = 1
-	actions_types = list(/datum/action/item_action/toggle)
+	icon_action_button = "action_meson"
 
 	New()
 		..()
@@ -646,11 +646,9 @@ BLIND     // can't see anything
 	equipped(mob/user, slot)
 		if(ishuman(user) && (slot == WEAR_BACK || slot == WEAR_J_STORE))
 			mouse_opacity = 2 //so it's easier to click when properly equipped.
-		..()
 
 	dropped(mob/user)
 		mouse_opacity = initial(mouse_opacity)
-		..()
 
 
 /obj/item/weapon/large_holster/m37
