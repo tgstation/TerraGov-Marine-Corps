@@ -72,7 +72,7 @@ into helmets.dm*/
 	item_color = "beretred"
 
 /obj/item/clothing/head/cmberet/wo
-	name = "\improper WO beret"
+	name = "\improper USCM chief MP beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
 	item_state = "beretwo"

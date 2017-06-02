@@ -248,7 +248,7 @@ include jackets and regular suits, not armor.*/
 	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature
 
 /obj/item/clothing/under/marine/officer/bridge
-	name = "bridge officer uniform"
+	name = "staff officer uniform"
 	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"

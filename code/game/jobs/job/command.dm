@@ -83,9 +83,9 @@ Make the USCM proud!"}
 
 	get_access() return get_all_marine_access()
 
-//Bridge Officer
+//Staff Officer
 /datum/job/command/bridge
-	title = "Bridge Officer"
+	title = "Staff Officer"
 	disp_title = "Staff Officer"
 	comm_title = "SO"
 	paygrade = "O2"
@@ -99,7 +99,7 @@ Make the USCM proud!"}
 	generate_wearable_equipment()
 		. = list(
 				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
-				WEAR_BODY = /obj/item/clothing/under/marine/officer/logistics,
+				WEAR_BODY = /obj/item/clothing/under/marine/officer/bridge,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/full,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap/ro,

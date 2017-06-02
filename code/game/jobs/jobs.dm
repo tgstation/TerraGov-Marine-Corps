@@ -28,7 +28,7 @@
 var/command_positions[] = list(
 						"Commander",
 						"Executive Officer",
-						"Bridge Officer",
+						"Staff Officer",
 						"Pilot Officer",
 						"Military Police",
 						"Corporate Liaison",
