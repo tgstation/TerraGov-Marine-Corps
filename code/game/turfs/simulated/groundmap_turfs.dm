@@ -166,14 +166,15 @@
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
-	layer = MOB_LAYER-0.1
+	layer = MOB_LAYER+0.1
 
 /obj/structure/jungle/vines_heavy
 	name = "vines"
 	desc = "A thick, coiled mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Hvy1"
-	layer = MOB_LAYER-0.1
+	layer = MOB_LAYER+0.1
+	opacity = 1
 
 /obj/structure/jungle/tree/grasscarpet
 	name = "thick grass"
