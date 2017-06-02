@@ -24,11 +24,6 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
 	if(selected_type == "Gameplay / Roleplay Issue")
 		msg = input("Please enter your message:", "Admin Help", null, null) as text
-		// Adminhelp cooldown
-		src.verbs -= /client/verb/adminhelp
-		spawn(1200)
-			if(src)
-				src.verbs += /client/verb/adminhelp
 
 	if(selected_type == "Suggestion / Bug Report")
 		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our forum.",,"Go to Suggestions forum","Go to Bugs forum","Cancel"))
@@ -145,42 +140,14 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 					X << 'sound/effects/adminhelp_new.ogg'
 				X << msg
-/*		if("Suggestion")
-			if(adminholders.len)
-				for(var/client/X in adminholders) // Admins of course get everything in their helps
-					if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp_new.ogg'
-					X << msg
-		if("Bug report")
-			if(debugholders.len)
-				for(var/client/X in debugholders)
-					if(R_ADMIN|R_MOD & X.holder.rights) // Admins get every button & special highlights in theirs
-						if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-							X << 'sound/effects/adminhelp_new.ogg'
-						X << msg
-					else
-						if (R_DEBUG & X.holder.rights) // Just devs or devmentors get non-highlighted names, but they do get JMP and VV for their bug reports.
-							if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-								X << 'sound/effects/adminhelp_new.ogg'
-						X << dev_msg
-*/
-
-
-
-
-	/*for(var/client/X in admins)
-		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
-			if(X.is_afk())
-				admin_number_afk++
-			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-				X << 'sound/effects/adminhelp.ogg'
-			if(X.holder.rights == R_MENTOR)
-				X << mentor_msg		// Mentors won't see coloring of names on people with special_roles (Antags, etc.)
-			else
-				X << msg*/
 
 	//show it to the person adminhelping too
 	src << "<br><font color='#009900'><b>PM to Staff ([selected_type]): <font color='#DA6200'>[original_msg]</b></font><br>"
+
+	// Adminhelp cooldown
+	verbs -= /client/verb/adminhelp
+	spawn(1200)
+		verbs += /client/verb/adminhelp
 
 	var/admin_number_present = admins.len - admin_number_afk
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")
