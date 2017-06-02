@@ -63,14 +63,14 @@
 	icon_locked = "largermetal"
 
 /obj/structure/closet/secure_closet/marine/marine_lo
-	name = "bridge officer's locker"
+	name = "staff officer's locker"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
-	icon_state = "secure_locked_pilot"
-	icon_closed = "secure_unlocked_pilot"
-	icon_locked = "secure_locked_pilot"
-	icon_opened = "secure_open_pilot"
-	icon_broken = "secure_locked_pilot"
-	icon_off = "secure_closed_pilot"
+	icon_state = "secure_locked_staff"
+	icon_closed = "secure_unlocked_staff"
+	icon_locked = "secure_locked_staff"
+	icon_opened = "secure_open_staff"
+	icon_broken = "secure_locked_staff"
+	icon_off = "secure_closed_staff"
 	icon = 'icons/obj/closet.dmi'
 
 	New()
@@ -84,8 +84,8 @@
 			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/device/radio/headset/mcom(src)
 			new /obj/item/device/radio/headset/mcom(src)
-			new /obj/item/clothing/under/marine/officer/logistics(src)
-			new /obj/item/clothing/under/marine/officer/logistics(src)
+			new /obj/item/clothing/under/marine/officer/bridge(src)
+			new /obj/item/clothing/under/marine/officer/bridge(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/suit/storage/marine/MP/RO(src)

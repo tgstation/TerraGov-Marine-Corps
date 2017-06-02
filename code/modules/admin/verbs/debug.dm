@@ -484,7 +484,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"USCM Private",
 		"USCM Smartgunner (Smartgunner)",
 		"USCM Specialist (Armor)",
-		"USCM Second-Lieutenant (BO)",
+		"USCM Second-Lieutenant (SO)",
 		"USCM First-Lieutenant (XO)",
 		"USCM Captain (CO)",
 		"USCM Officer (USCM Command)",
@@ -613,7 +613,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
-		if("USCM Second-Lieutenant (BO)")
+		if("USCM Second-Lieutenant (SO)")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(M), WEAR_BODY)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(M), WEAR_HEAD)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/full(M), WEAR_WAIST)

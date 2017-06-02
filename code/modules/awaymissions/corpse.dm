@@ -233,13 +233,13 @@
 /////////////////Officers//////////////////////
 
 /obj/effect/landmark/corpse/bridgeofficer
-	name = "Bridge Officer"
+	name = "Staff Officer"
 	corpseuniform = /obj/item/clothing/under/rank/centcom_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
-	corpseidjob = "Bridge Officer"
+	corpseidjob = "Staff Officer"
 	corpseidaccess = "Captain"
 
 /obj/effect/landmark/corpse/commander
