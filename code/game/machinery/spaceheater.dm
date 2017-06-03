@@ -164,7 +164,7 @@
 
 /obj/machinery/space_heater/process()
 	if(on)
-		if(cell && cell.charge)
+		if(isturf(loc) && cell && cell.charge)
 			var/datum/gas_mixture/env = loc.return_air()
 			if(env && abs(env.temperature - set_temperature) > 0.1)
 				var/transfer_moles = 0.25 * env.total_moles
