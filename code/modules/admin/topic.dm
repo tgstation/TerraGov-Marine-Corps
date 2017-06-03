@@ -2258,7 +2258,7 @@
 
 		ref_person.client.marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			ref_person.client.marked = 0
+			if(ref_person)	ref_person.client.marked = 0
 
 	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
 		var/mob/ref_person = locate(href_list["NOPE"])
@@ -2285,7 +2285,7 @@
 
 		ref_person.client.marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			ref_person.client.marked = 0
+			if(ref_person)	ref_person.client.marked = 0
 
 	// Saving this for future lels -Rahl
 	// if(href_list["retarded"]) // Their message is fucking stupid
