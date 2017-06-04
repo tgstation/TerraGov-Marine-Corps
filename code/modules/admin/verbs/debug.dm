@@ -1548,3 +1548,47 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	message_admins("[key_name_admin(src)] used <b>spawn predators!</b>")
 	return
+
+/client/proc/global_fix_atmos()
+	set name = "Global Fix Air"
+	set category = "Debug"
+	set desc = "Atmos panic button"
+
+	var/a = alert("WARNING: THIS WILL RESET ALL AIR GROUPS OVER 1000 kPa TO STANDARD TEMPERATURE AND AIR MAKEUP. THERE IS A MEDIUM CHANCE LAG THE FUCK OUT OF THE GAME. DO YOU WISH TO PROCEED?",, "Yes", "No")
+
+	if(a != "Yes") return
+
+	log_admin("[src] has hit the atmos panic button. Good luck, as God save us all")
+
+	var/i
+	var/zone/Z
+	var/datum/gas_mixture/G
+	var/savefile/S = new("atmos_logging.sav")
+
+	S["logging [time2text(world.realtime)]"] << "[time2text(world.realtime)] :: verb used by [src]"
+
+	for(i in air_master.zones)
+		Z = i
+		if(!istype(Z)) continue
+		G = Z.air
+		if(!istype(G)) continue
+		if(G.return_pressure() > 1000)
+			for(var/g in G.gas)
+				S["logging \ref[G] g"] << "[gas_data.name[g]]: [round((G.gas[g] / G.total_moles) * 100)]% ([round(G.gas[g], 0.01)])"
+			G.gas["sleeping_agent_archived"] = null
+			G.gas["sleeping_agent"] = 0
+			G.gas["phoron_archived"] = null
+			G.gas["phoron"] = 0
+			G.gas["carbon_dioxide"] = 0
+			G.gas["carbon_dioxide_archived"] = null
+			G.gas["oxygen"] = 21.8366
+			G.gas["oxygen_archived"] = null
+			G.gas["nitrogen"] = 82.1472
+			G.gas["nitrogen_archived"] = null
+			G.gas["temperature_archived"] = null
+			G.temperature = 293.15
+			G.update_values()
+
+	S.ExportText("/", file("atmos_logging.txt"))
+
+	src << "<font size=15 color=red>TELL MADSNAILDISEASE YOU USED THIS!</font>"
