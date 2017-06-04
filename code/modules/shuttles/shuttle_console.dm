@@ -129,10 +129,11 @@
 				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.launch_crash()
-					command_announcement.Announce("Unscheduled dropship departure detected from operational area. Illegal credentials detected. Hijack likely, shutting down auto-pilot.", \
-					"Dropship Alert", new_sound = 'sound/misc/queen_alarm.ogg')
+					command_announcement.Announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", \
+					"Dropship Alert", new_sound = 'sound/AI/hijack.ogg')
 					shuttle.alerts_allowed--
 					usr << "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>"
+					playsound(src, 'sound/misc/queen_alarm.ogg')
 				else if(i == "No")
 					return
 				else

@@ -239,7 +239,7 @@
 
 	//This is where things change and shit gets real
 
-	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE [uppertext(MAIN_SHIP_NAME)]. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
+	command_announcement.Announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", new_sound='sound/AI/dropship_emergency.ogg')
 
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 
