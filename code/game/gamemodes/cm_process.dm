@@ -359,7 +359,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	// The announcement to all Humans. Slightly off for the planet and elsewhere, accurate for the ship.
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = "Bioscan complete.\n\nSensors indicate [numXenosShip ? "[numXenosShip]":"no"] unknown lifeform signature[!numXenosShip || numXenosShip > 1 ? "s":""] present on the ship and [numXenosPlanet ? "approximately [numXenosPlanet]":"no"] signature[!numXenosPlanet || numXenosPlanet > 1 ? "s":""] located elsewhere."
-	command_announcement.Announce(input, name, new_sound = 'sound/AI/commandreport.ogg')
+	command_announcement.Announce(input, name, new_sound = 'sound/AI/bioscan.ogg')
 
 	log_admin("A bioscan/Queen Mother message has completed. Humans: [numHostsPlanet] on the planet and [numHostsShip] on the ship. Xenos: [numXenosPlanet] on the planet and [numXenosShip] on the ship.")
 	message_admins("A bioscan/Queen Mother message has completed. Humans: [numHostsPlanet] on the planet and [numHostsShip] on the ship. Xenos: [numXenosPlanet] on the planet and [numXenosShip] on the ship.", 1)

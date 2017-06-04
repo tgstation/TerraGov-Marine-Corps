@@ -118,7 +118,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	if(evac_status == EVACUATION_STATUS_INITIATING)
 		evac_status = EVACUATION_STATUS_IN_PROGRESS //Cannot cancel at this point. All shuttles are off.
 		spawn() //One of the few times spawn() is appropriate. No need for a new proc.
-			ai_system.Announce("WARNING: Evacuation order confirmed. Launching escape pods.")
+			ai_system.Announce("WARNING: Evacuation order confirmed. Launching escape pods.", 'sound/AI/evacuation_confirmed.ogg')
 			var/datum/shuttle/ferry/marine/evacuation_pod/P
 			var/L[] = new
 			var/i
@@ -130,7 +130,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				L -= i
 				sleep(50) //Sleeps 5 seconds each launch.
 			sleep(300) //Sleep 30 more seconds to make sure everyone had a chance to leave.
-			ai_system.Announce("ATTENTION: Evacuation complete. Outbound lifesigns detected: [P.passengers ? P.passengers  : "none"].")
+			ai_system.Announce("ATTENTION: Evacuation complete. Outbound lifesigns detected: [P.passengers ? P.passengers  : "none"].", 'sound/AI/evacuation_complete.ogg')
 			evac_status = EVACUATION_STATUS_COMPLETE
 		r_TRU
 

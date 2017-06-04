@@ -322,7 +322,7 @@
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
 
 	if (announce)
-		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert")
+		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
 
 	ticker.mode.has_called_emergency = 1
 	spawn(600) //If after 60 seconds we aren't full, abort
@@ -364,7 +364,7 @@
 								I.current << "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>"
 
 			if (announce)
-				command_announcement.Announce(dispatch_message, "Distress Beacon") //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
+				command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
 			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
