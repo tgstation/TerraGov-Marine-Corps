@@ -242,7 +242,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			if(card)
 				if(card.assignment == "Commander")
 					command = 3
-				else if(card.assignment == "Pilot Officer" || card.assignment == "Staff Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
+				else if(card.assignment == "Pilot Officer" || card.assignment == "Staff Officer" || card.assignment == "Executive Officer" || card.assignment == "Chief MP" || findtext(card.assignment, "Leader"))
 					command = 3
 
 			if(M.mind && M.mind.role_comm_title)
