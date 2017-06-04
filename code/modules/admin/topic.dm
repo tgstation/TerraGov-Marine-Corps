@@ -2235,14 +2235,14 @@
 
 	if(href_list["dibs"])
 		var/mob/ref_person = locate(href_list["dibs"])
+		if(!istype(ref_person))
+			usr << "\blue Looks like that person stopped existing!"
+			return
 		if(ref_person && ref_person.client.marked)
 			usr << "<b>This Adminhelp is already being handled.</b>"
 			usr << sound('sound/misc/fart_short.ogg')
 			return
 
-		if(!istype(ref_person))
-			usr << "\blue Looks like that person stopped existing!"
-			return
 		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'Mark'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked your request and is preparing to respond...</b>"
 
@@ -2258,18 +2258,18 @@
 
 		ref_person.client.marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			if(ref_person)	ref_person.client.marked = 0
+			ref_person.client.marked = 0
 
 	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
 		var/mob/ref_person = locate(href_list["NOPE"])
+		if(!istype(ref_person))
+			usr << "\blue Looks like that person stopped existing!"
+			return
 		if(ref_person && ref_person.client.marked)
 			usr << "<b>This Adminhelp is already being handled.</b>"
 			usr << sound('sound/misc/fart_short.ogg')
 			return
 
-		if(!istype(ref_person))
-			usr << "\blue Looks like that person stopped existing!"
-			return
 		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'No response necessary'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.</b>"
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your Adminhelp is being handled, it's fixed, or it's nonsensical.</font></b>"
 
@@ -2285,7 +2285,7 @@
 
 		ref_person.client.marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			if(ref_person)	ref_person.client.marked = 0
+			ref_person.client.marked = 0
 
 	// Saving this for future lels -Rahl
 	// if(href_list["retarded"]) // Their message is fucking stupid
