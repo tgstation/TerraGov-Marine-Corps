@@ -10,9 +10,9 @@
 	melee_damage_upper = 30
 	tacklemin = 4
 	tacklemax = 7
-	tackle_chance = 95
-	health = 250
-	maxHealth = 250
+	tackle_chance = 60
+	health = 200
+	maxHealth = 200
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
