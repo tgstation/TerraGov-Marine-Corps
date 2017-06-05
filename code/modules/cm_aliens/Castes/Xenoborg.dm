@@ -11,7 +11,7 @@
 	storedplasma = 1500
 	plasma_gain = 0
 	maxplasma = 1500
-	jellyMax = 0
+	evolution_threshold = 0
 	caste_desc = "Oh dear god!"
 	speed = -1.8
 	evolves_to = list() //Cannot evolve.

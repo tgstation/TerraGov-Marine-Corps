@@ -474,7 +474,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		armor -= penetration
-		armor += guard_aura ? (guard_aura * 5) : 0 //Bonus armor from pheroes, no matter what the armor was previously.
 		if(armor > 0) //Armor check. We should have some to continue.
 			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
 			 soaked. Small caliber firearms aren't really effective against combat armor.*/

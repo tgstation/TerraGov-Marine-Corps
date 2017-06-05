@@ -16,8 +16,7 @@
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
-	jelly = 1
-	jellyMax = 800
+	evolution_threshold = 800
 	caste_desc = "A brutal, devastating front-line attacker."
 	speed = -1.2 //Not as fast as runners, but faster than other xenos.
 	evolves_to = list()

@@ -1297,9 +1297,9 @@ About the new airlock wires panel:
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
 			if(isrobot(M))
-				M.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
+				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
 			else
-				M.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
+				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
 				M.SetStunned(5)
 				M.SetWeakened(5)
 				if (iscarbon(M))

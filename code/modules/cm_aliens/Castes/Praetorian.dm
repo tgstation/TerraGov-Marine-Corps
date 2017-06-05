@@ -16,10 +16,9 @@
 	storedplasma = 200
 	plasma_gain = 25
 	maxplasma = 800
-	jellyMax = 800
+	evolution_threshold = 800
 	spit_delay = 20
 	speed = 1
-	jelly = 1
 	pixel_x = -16
 	caste_desc = "Ptui!"
 	evolves_to = list()
@@ -28,6 +27,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = 3
 	upgrade = 0
+	aura_strength = 1.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,

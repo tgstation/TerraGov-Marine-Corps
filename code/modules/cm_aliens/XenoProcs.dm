@@ -20,12 +20,12 @@
 
 	if (.) //Only update when looking at the Status panel.
 
-		if(jelly && is_queen_alive())
-			stat(null, "Evolve Progress: [jellyGrow]/[jellyMax]")
+		if(evolution_allowed && is_queen_alive())
+			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 		else if(!is_queen_alive())
-			stat(null, "Evolve Progress (HALTED - NO QUEEN): [jellyGrow]/[jellyMax]")
+			stat(null, "Evolve Progress (HALTED - NO QUEEN): [evolution_stored]/[evolution_threshold]")
 		else
-			stat(null, "Evolve Progress (FINISHED): [jellyGrow]/[jellyMax]")
+			stat(null, "Evolve Progress (FINISHED): [evolution_stored]/[evolution_threshold]")
 
 		if(maxplasma > 0)
 			if(is_robotic)
@@ -42,10 +42,12 @@
 
 		if(frenzy_aura)
 			stat(null,"You are affected by a pheromone of FRENZY.")
-		if(guard_aura)
-			stat(null,"You are affected by a pheromone of GUARDING.")
+		if(warding_aura)
+			stat(null,"You are affected by a pheromone of WARDING.")
 		if(recovery_aura)
 			stat(null,"You are affected by a pheromone of RECOVERY.")
+		if(evolving_aura)
+			stat(null,"You are affected by a pheromone of EVOLVING.")
 
 		if(hive_orders && hive_orders != "")
 			stat(null,"Hive Orders: [hive_orders]")
@@ -115,7 +117,7 @@
 	. += speed
 
 	if(frenzy_aura)
-		. -= (frenzy_aura * 0.1) + 0.4
+		. -= (frenzy_aura * 0.1)
 
 
 

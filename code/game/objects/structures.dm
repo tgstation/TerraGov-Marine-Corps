@@ -119,8 +119,8 @@
 			var/damage = rand(15,30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(H))
-				H << "\red You land heavily!"
-				M.adjustBruteLoss(damage)
+				H << "<span class='danger'>You land heavily!</span>"
+				M.apply_damage(damage, BRUTE)
 				return
 
 			var/datum/organ/external/affecting
@@ -138,13 +138,13 @@
 					affecting = H.get_organ("head")
 
 			if(affecting)
-				M << "\red You land heavily on your [affecting.display_name]!"
+				M << "<span class='danger'>You land heavily on your [affecting.display_name]!</span>"
 				affecting.take_damage(damage, 0)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 			else
-				H << "\red You land heavily!"
-				H.adjustBruteLoss(damage)
+				H << "<span class='danger'>You land heavily!</span>"
+				H.apply_damage(damage, BRUTE)
 
 			H.UpdateDamageIcon()
 			H.updatehealth()

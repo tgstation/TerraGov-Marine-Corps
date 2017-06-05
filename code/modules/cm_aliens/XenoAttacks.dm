@@ -14,7 +14,7 @@
 			M.flick_attack_overlay(src, "punch")
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>")
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
-			adjustBruteLoss(damage)
+			apply_damage(damage, BRUTE)
 			S.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 			attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [S.name] ([S.ckey])</font>")
 			updatehealth()
@@ -38,7 +38,7 @@
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
 				"<span class='danger'>You are bit by \the [M].</span>")
-				adjustBruteLoss(rand(1, 3))
+				apply_damage(rand(1, 3), BRUTE)
 				updatehealth()
 
 
@@ -83,7 +83,7 @@
 
 				playsound(loc, attack.attack_sound, 25, 1)
 				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
-				adjustBruteLoss(damage)
+				apply_damage(damage, BRUTE)
 				updatehealth()
 			else
 				playsound(loc, attack.miss_sound, 25, 1)

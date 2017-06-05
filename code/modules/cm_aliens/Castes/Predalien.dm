@@ -13,9 +13,9 @@
 	amount_grown = 0
 	max_grown = 200
 	plasma_gain = 25
-	jelly = 0 //variable to check if they ate delicious jelly or not
-	jellyGrow = 0 //how much the jelly has grown
-	jellyMax = 0 //max amount jelly will grow till evolution
+	evolution_allowed = 0 //Predaliens are already in their ultimate form, they don't get even better
+	evolution_stored = 0
+	evolution_threshold = 0
 	tacklemin = 6
 	tacklemax = 10
 	tackle_chance = 80

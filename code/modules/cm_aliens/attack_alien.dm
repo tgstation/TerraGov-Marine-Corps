@@ -96,8 +96,8 @@
 			if(isYautja(src) && check_zone(M.zone_selected) == "head")
 				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
 					var/knock_chance = 1
-					if(M.frenzy_aura)
-						knock_chance += 2
+					if(M.frenzy_aura > 0)
+						knock_chance += 2 * M.frenzy_aura
 					if(M.is_intelligent)
 						knock_chance += 2
 					knock_chance += min(round(damage * 0.25), 10) //Maximum of 15% chance.
@@ -151,8 +151,8 @@
 
 			else
 				var/tackle_bonus = 0
-				if(M.frenzy_aura)
-					tackle_bonus = (M.frenzy_aura * 3)
+				if(M.frenzy_aura > 0)
+					tackle_bonus = M.frenzy_aura * 3
 				if(prob(M.tackle_chance + tackle_bonus)) //Tackle_chance is now a special var for each caste.
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
 					Weaken(rand(M.tacklemin, M.tacklemax))

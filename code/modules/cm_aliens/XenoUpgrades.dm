@@ -219,11 +219,11 @@ proc/initialize_upgrades()
 	helptext = "Quicken the speed at which royal jelly metabolizes, granting you new forms faster."
 
 /mob/living/carbon/Xenomorph/proc/upgrade_jelly()
-	if(jelly)
-		jellyGrow += 50
+	if(evolution_allowed)
+		evolution_stored += 50
 	else
-		jelly = 1
-		jellyGrow += 10
+		evolution_allowed = 1
+		evolution_stored += 10
 
 	src << "<span class='xenonotice'>You feel royal jelly ripple through your haemolymph.</span>"
 

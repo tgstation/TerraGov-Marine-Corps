@@ -168,9 +168,9 @@
 		usr << "<span class='warning'>[castepick] is not a valid caste! If you're seeing this message, tell a coder!</span>"
 		return
 
-	if(jellyMax && castepick != "Queen") //Does the caste have a jelly timer? Then check it
-		if(jellyGrow < jellyMax)
-			src << "<span class='warning'>You must wait before evolving. Currently at: [jellyGrow] / [jellyMax].</span>"
+	if(evolution_threshold && castepick != "Queen") //Does the caste have an evolution timer? Then check it
+		if(evolution_stored < evolution_threshold)
+			src << "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [evolution_threshold].</span>"
 			return
 
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
@@ -210,9 +210,9 @@
 			new_xeno.updatehealth()
 
 		new_xeno.add_inherent_verbs()
-		new_xeno.jellyGrow = 0
-		if(jelly)
-			new_xeno.jelly = jelly
+		new_xeno.evolution_stored = 0
+		if(evolution_allowed)
+			new_xeno.evolution_allowed = evolution_allowed
 		new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
 		new_xeno.shift_mouse_toggle = src.shift_mouse_toggle //Keep our toggle state
 

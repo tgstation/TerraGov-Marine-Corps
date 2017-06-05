@@ -24,17 +24,16 @@
 	plasma_gain = 30
 	is_intelligent = 1
 	speed = 0.8
-	jelly = 1
-	jellyMax = 800
+	evolution_threshold = 800
 	pixel_x = -16
 	fire_immune = 1
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
-	jelly = 1
 	armor_deflection = 45
 	tier = 0 //Queen doesn't count towards population limit.
 	upgrade = 0
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
+	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	var/breathing_counter = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
@@ -114,15 +113,15 @@
 	if(!isXeno(M) || isXenoLarva(M))
 		return
 
-	if(M.jelly)
+	if(M.evolution_allowed)
 		M << "<span class='warning'>Royal jelly is already seeping in your veins.</span>"
 		return
 
-	if(!M.jellyMax)
+	if(!M.evolution_threshold)
 		M << "<span class='warning'>The jelly gives off a revulsing smell. Something instinctively draws you away from it.</span>"
 		return
 
-	M.jelly = 1
+	M.evolution_allowed = 1
 	visible_message("<span class='xenonotice'>\The [M] greedily gulps down \the [src].", \
 	"<span class='xenonotice'>You greedily gulp down \the [src].")
 	del(src)

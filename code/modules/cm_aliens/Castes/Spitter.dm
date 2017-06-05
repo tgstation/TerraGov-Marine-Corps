@@ -12,10 +12,9 @@
 	storedplasma = 150
 	plasma_gain = 20
 	maxplasma = 600
-	jellyMax = 250
+	evolution_threshold = 250
 	spit_delay = 25
 	speed = -0.1
-	jelly = 1
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
 	armor_deflection = 15

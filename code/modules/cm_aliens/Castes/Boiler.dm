@@ -16,8 +16,7 @@
 	storedplasma = 450
 	plasma_gain = 30
 	maxplasma = 800
-	jelly = 1
-	jellyMax = 800
+	evolution_threshold = 800
 	spit_delay = 40
 	speed = 1.2 //faster from 1.5
 	pixel_x = -16

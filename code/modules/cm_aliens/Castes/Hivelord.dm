@@ -12,8 +12,7 @@
 	maxHealth = 220
 	storedplasma = 200
 	maxplasma = 800
-	jelly = 1
-	jellyMax = 800
+	evolution_threshold = 800
 	plasma_gain = 35
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
@@ -24,6 +23,7 @@
 	var/speed_activated = 0
 	tier = 2
 	upgrade = 0
+	aura_strength = 1 //Hivelord's aura is not extremely strong, but better than Drones. At the top, it's just a bit above a young Queen. Climbs by 0.5 to 2.5
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/build_resin,

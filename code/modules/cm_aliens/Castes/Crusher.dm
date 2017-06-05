@@ -16,8 +16,7 @@
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
-	jelly = 1
-	jellyMax = 800
+	evolution_threshold = 800
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.5
 	evolves_to = list()

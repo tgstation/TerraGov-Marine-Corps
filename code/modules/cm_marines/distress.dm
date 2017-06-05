@@ -623,7 +623,6 @@
 	else
 		new_xeno = new /mob/living/carbon/Xenomorph/Drone(spawn_loc)
 
-	new_xeno.jelly = 1
 	new_xeno.key  = M.key
 
 	if(original) //Just to be sure.
