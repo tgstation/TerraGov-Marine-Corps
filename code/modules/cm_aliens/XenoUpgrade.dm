@@ -35,8 +35,8 @@
 		src << "<span class='warning'>The restraints are too restricting to allow you to upgrade.</span>"
 		return
 
-	if(jellyMax) //Does the caste have a jelly timer? Then check it
-		if(jellyGrow < jellyMax && !bypass_limit)
+	if(evolution_threshold) //Does the caste have an evolution timer? Then check it
+		if(evolution_stored < evolution_threshold && !bypass_limit)
 			src << "<span class='warning'>You require more growth.</span>"
 			return
 
@@ -78,7 +78,7 @@ Queen 0.2 0.4 0.6 0.8
 					return
 			upgrade = 1
 			upgrade_name = "Mature"
-			jellyGrow = 0
+			evolution_stored = 0
 			src << "<span class='xenonotice'>You feel a bit stronger.</span>"
 			switch(caste)
 				if("Runner")
@@ -89,7 +89,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 2
 					maxplasma = 150
-					jellyMax = 400
+					evolution_threshold = 400
 					caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
 					speed = -2
 					armor_deflection = 5
@@ -105,7 +105,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 10
 					maxplasma = 150
-					jellyMax = 800
+					evolution_threshold = 800
 					caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
 					speed = -1.7
 					armor_deflection = 20
@@ -121,7 +121,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 10
 					maxplasma = 150
-					jellyMax = 1600
+					evolution_threshold = 1600
 					caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
 					speed = -1.3
 					armor_deflection = 45
@@ -139,7 +139,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 15
 					maxplasma = 300
-					jellyMax = 1600
+					evolution_threshold = 1600
 					caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
 					armor_deflection = 65
 				if("Sentinel")
@@ -150,7 +150,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 12
 					maxplasma = 400
-					jellyMax = 400
+					evolution_threshold = 400
 					spit_delay = 25
 					caste_desc = "A ranged combat alien. It looks a little more dangerous."
 					armor_deflection = 15
@@ -167,7 +167,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 25
 					maxplasma = 700
-					jellyMax = 800
+					evolution_threshold = 800
 					spit_delay = 20
 					caste_desc = "A ranged damage dealer. It looks a little more dangerous."
 					armor_deflection = 20
@@ -184,7 +184,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 35
 					maxplasma = 900
-					jellyMax = 1600
+					evolution_threshold = 1600
 					spit_delay = 30
 					caste_desc = "Some sort of abomination. It looks a little more dangerous."
 					armor_deflection = 30
@@ -200,7 +200,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 30
 					maxplasma = 900
-					jellyMax = 1600
+					evolution_threshold = 1600
 					spit_delay = 15
 					caste_desc = "A giant ranged monster. It looks a little more dangerous."
 					armor_deflection = 40
@@ -209,6 +209,7 @@ Queen 0.2 0.4 0.6 0.8
 					tackle_chance = 75
 					speed = 0.8
 					spit_type = 0
+					aura_strength = 2.5
 				if("Drone")
 					melee_damage_lower = 12
 					melee_damage_upper = 16
@@ -217,13 +218,14 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 800
 					plasma_gain = 20
-					jellyMax = 1000
+					evolution_threshold = 1000
 					caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 					armor_deflection = 5
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.6
+					aura_strength = 1
 				if("Hivelord")
 					melee_damage_lower = 15
 					melee_damage_upper = 20
@@ -232,13 +234,14 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 900
 					plasma_gain = 40
-					jellyMax = 1600
+					evolution_threshold = 1600
 					caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
 					armor_deflection = 10
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = 1
+					aura_strength = 1.5
 				if("Carrier")
 					src << "<span class='xenonotice'>Throw a hugger to get your hugger upgrades.</span>"
 					melee_damage_lower = 25
@@ -248,7 +251,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 300
 					plasma_gain = 10
-					jellyMax = 1600
+					evolution_threshold = 1600
 					caste_desc = "A portable Love transport. It looks a little more dangerous."
 					armor_deflection = 10
 					tacklemin = 3
@@ -266,19 +269,20 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 800
 					plasma_gain = 40
-					jellyMax = 1600
+					evolution_threshold = 1600
 					caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 					armor_deflection = 50
 					tacklemin = 5
 					tacklemax = 7
 					tackle_chance = 85
 					speed = 0.6
+					aura_strength = 3
 
 		//SECOND UPGRADE
 		if(1)
 			upgrade = 2
 			upgrade_name = "Elite"
-			jellyGrow = 0
+			evolution_stored = 0
 			src << "<span class='xenowarning'>You feel a whole lot stronger.</span>"
 			switch(caste)
 				if("Runner")
@@ -289,7 +293,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 2
 					maxplasma = 200
-					jellyMax = 800
+					evolution_threshold = 800
 					caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
 					speed = -2.1
 					armor_deflection = 10
@@ -305,7 +309,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 10
 					maxplasma = 200
-					jellyMax = 1600
+					evolution_threshold = 1600
 					caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
 					speed = -1.8
 					armor_deflection = 25
@@ -321,7 +325,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 15
 					maxplasma = 200
-					jellyMax = 3200
+					evolution_threshold = 3200
 					caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
 					speed = -1.4
 					armor_deflection = 50
@@ -339,7 +343,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 30
 					maxplasma = 400
-					jellyMax = 3200
+					evolution_threshold = 3200
 					caste_desc = "A huge tanky xenomorph. It looks pretty strong."
 					armor_deflection = 70
 				if("Sentinel")
@@ -350,7 +354,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 15
 					maxplasma = 500
-					jellyMax = 800
+					evolution_threshold = 800
 					spit_delay = 20
 					caste_desc = "A ranged combat alien. It looks pretty strong."
 					armor_deflection = 20
@@ -367,7 +371,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 30
 					maxplasma = 800
-					jellyMax = 1600
+					evolution_threshold = 1600
 					spit_delay = 15
 					caste_desc = "A ranged damage dealer. It looks pretty strong."
 					armor_deflection = 25
@@ -384,7 +388,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 40
 					maxplasma = 1000
-					jellyMax = 3200
+					evolution_threshold = 3200
 					spit_delay = 20
 					caste_desc = "Some sort of abomination. It looks pretty strong."
 					armor_deflection = 35
@@ -400,7 +404,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					plasma_gain = 40
 					maxplasma = 1000
-					jellyMax = 3200
+					evolution_threshold = 3200
 					spit_delay = 10
 					caste_desc = "A giant ranged monster. It looks pretty strong."
 					armor_deflection = 45
@@ -409,6 +413,7 @@ Queen 0.2 0.4 0.6 0.8
 					tackle_chance = 80
 					speed = 0.6
 					spit_type = 0
+					aura_strength = 3.5
 				if("Drone")
 					melee_damage_lower = 12
 					melee_damage_upper = 16
@@ -417,13 +422,14 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 900
 					plasma_gain = 30
-					jellyMax = 1500
+					evolution_threshold = 1500
 					caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 					armor_deflection = 10
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.8
+					aura_strength = 1.5
 				if("Hivelord")
 					melee_damage_lower = 15
 					melee_damage_upper = 20
@@ -432,13 +438,14 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 1000
 					plasma_gain = 50
-					jellyMax = 3200
+					evolution_threshold = 3200
 					caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
 					armor_deflection = 15
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 70
 					speed = 0.8
+					aura_strength = 2
 				if("Carrier")
 					src << "<span class='xenonotice'>Throw a hugger to get your hugger upgrades.</span>"
 					melee_damage_lower = 30
@@ -448,7 +455,7 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 350
 					plasma_gain = 12
-					jellyMax = 3200
+					evolution_threshold = 3200
 					caste_desc = "A portable Love transport. It looks pretty strong."
 					armor_deflection = 10
 					tacklemin = 4
@@ -466,21 +473,22 @@ Queen 0.2 0.4 0.6 0.8
 					storedplasma = 0
 					maxplasma = 900
 					plasma_gain = 50
-					jellyMax = 3200
+					evolution_threshold = 3200
 					caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
 					armor_deflection = 55
 					tacklemin = 6
 					tacklemax = 9
 					tackle_chance = 90
 					speed = 0.4
+					aura_strength = 4
 
 		//Final UPGRADE
 		if(2)
 			upgrade = 3
 			upgrade_name = "Ancient"
-			jelly = 0
-			jellyGrow = 0
-			jellyMax = 0
+			evolution_allowed = 0
+			evolution_stored = 0
+			evolution_threshold = 0
 			switch(caste)
 				if("Runner")
 					src << "<span class='xenodanger'>You are the fastest assassin of all time. Your speed is unmatched.</span>"
@@ -610,6 +618,7 @@ Queen 0.2 0.4 0.6 0.8
 					tackle_chance = 85
 					speed = 0.2
 					spit_type = 0
+					aura_strength = 4.5
 				if("Drone")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
@@ -624,6 +633,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 6
 					tackle_chance = 80
 					speed = -1
+					aura_strength = 2
 				if("Hivelord")
 					src <<"<span class='xenodanger'>You are the builder of walls. Ensure that the marines are the ones who pay for them.</span>"
 					melee_damage_lower = 20
@@ -673,6 +683,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 10
 					tackle_chance = 95
 					speed = 0.2
+					aura_strength = 5
 
 	generate_name() //Give them a new name now
 

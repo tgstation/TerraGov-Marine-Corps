@@ -15,8 +15,7 @@
 	maxHealth = 175
 	storedplasma = 50
 	maxplasma = 250
-	jelly = 1
-	jellyMax = 800
+	evolution_threshold = 800
 	plasma_gain = 8
 	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."

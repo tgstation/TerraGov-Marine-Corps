@@ -7,8 +7,8 @@
 	var/f_loss = 0
 	switch(severity)
 		if(1.0)
-			if(is_robotic || isXenoCrusher(src))
-				adjustBruteLoss(rand(200, 300))
+			if(is_robotic || mob_size < MOB_SIZE_BIG)
+				apply_damage(rand(200, 300), BRUTE)
 				updatehealth()
 				return
 			gib()
@@ -18,11 +18,12 @@
 				return
 			b_loss += rand(45, 55)
 			f_loss += rand(45, 65)
-			Weaken(12)
-			if(guard_aura)
+			if(mob_size < MOB_SIZE_BIG) //Big Xenos don't get stunned
+				Weaken(12)
+			if(warding_aura)
 				b_loss = round(b_loss / 2)
-			adjustBruteLoss(b_loss)
-			adjustFireLoss(f_loss)
+			apply_damage(b_loss, BRUTE)
+			apply_damage(f_loss, BURN)
 			updatehealth()
 			return
 		if(3.0)
@@ -30,13 +31,14 @@
 				return
 			b_loss += rand(20, 40)
 			f_loss += rand(25, 50)
-			if(prob(40))
-				Paralyse(2)
-			Weaken(rand(4, 6))
-			if(guard_aura)
+			if(mob_size < MOB_SIZE_BIG) //Big Xenos don't get stunned
+				if(prob(40))
+					Paralyse(2)
+				Weaken(rand(4, 6))
+			if(warding_aura)
 				b_loss = round(b_loss / 2)
-			adjustBruteLoss(b_loss)
-			adjustFireLoss(f_loss)
+			apply_damage(b_loss, BRUTE)
+			apply_damage(f_loss, BURN)
 			updatehealth()
 			return
 
@@ -57,8 +59,8 @@
 
 	if(stat == DEAD) return
 
-	if(guard_aura && damage > 0) //Slight damage reduction
-		damage = round(damage * 6 / 7)
+	if(warding_aura && damage > 0) //Damage reduction. Goes from 9.5/10 for Young Drone to 1/2 for Ancient Empress
+		damage = round(damage * (10 - warding_aura / 10))
 
 	if(def_zone == "head" || def_zone == "eyes" || def_zone == "mouth") //Little more damage vs the head
 		damage = round(damage * 8 / 7)
@@ -69,7 +71,7 @@
 		if(BURN)
 			adjustFireLoss(damage)
 
-	updatehealth(damage*0.65)
+	updatehealth(damage*0.65) //Seems to affect gibbing chance
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)

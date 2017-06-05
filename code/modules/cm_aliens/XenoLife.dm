@@ -23,9 +23,9 @@
 
 		update_progression()
 
-		if(jelly && jellyGrow < jellyMax && is_queen_alive())
-			jellyGrow++
-			if(jellyGrow == jellyMax - 1)
+		if(evolution_allowed && evolution_stored < evolution_threshold && is_queen_alive())
+			evolution_stored = min(evolution_stored + 1 + evolving_aura * 0.2, evolution_threshold)
+			if(evolution_stored == evolution_threshold - 1)
 				src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
 
 		//Status updates, death etc.
@@ -57,7 +57,7 @@
 		var/turf/T = loc
 		if(istype(T))
 			if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
-				adjustBruteLoss(5)
+				adjustBruteLoss(max(5 - warding_aura * 2, 0)) //You can reduce and even stop crit loss above 2.5 aura_strength
 				updatehealth()
 	else						//Alive! Yey! Turn on their vision.
 		if(isXenoBoiler(src))
@@ -119,19 +119,36 @@
 				if(X.charge_timer == 0 && X.momentum > 2)
 					X.stop_momentum()
 
-		frenzy_aura = 0
-		guard_aura = 0
-		recovery_aura = 0
+		//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
+		//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
+		//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
 
-		for(var/mob/living/carbon/Xenomorph/Z in range(7, src))
-			if(isnull(Z.current_aura))
-				continue
-			if(Z.current_aura == "frenzy" && !Z.stat && Z.storedplasma > 5)
-				frenzy_aura++
-			if(Z.current_aura == "guard"&& !Z.stat && Z.storedplasma > 5)
-				guard_aura++
-			if(Z.current_aura == "recovery"&& !Z.stat && Z.storedplasma > 5)
-				recovery_aura++
+		if(current_aura && !stat && storedplasma > 5)
+			var/pheromone_range = round(6 + aura_strength * 2)
+			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Quee
+				if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+					Z.frenzy_new = aura_strength
+				if(current_aura == "warding" && aura_strength > Z.warding_new)
+					Z.warding_new = aura_strength
+				if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+					Z.recovery_new = aura_strength
+				if(current_aura == "evolving" && aura_strength > Z.evolving_new)
+					Z.evolving_new = aura_strength
+
+		frenzy_aura = frenzy_new
+		warding_aura = warding_new
+		recovery_aura = recovery_new
+		evolving_aura = evolving_new
+
+		frenzy_new = 0
+		warding_new = 0
+		recovery_new = 0
+		evolving_new = 0
+
+		armor_bonus = 0
+
+		if(warding_aura > 0)
+			armor_bonus = warding_aura * 5 //Bonus armor from pheromones, no matter what the armor was previously.
 
 		update_icons()
 
@@ -269,7 +286,7 @@ updatehealth()
 				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
 					storedplasma += plasma_gain
 					if(recovery_aura)
-						storedplasma += (recovery_aura * 2)
+						storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
 			else
 				XENO_HEAL_WOUNDS(1)
 				/*
@@ -348,7 +365,7 @@ updatehealth()
 		storedplasma = 0
 		if(current_aura)
 			current_aura = null
-			src << "<span class='warning'>Having run out of plasma, you stop emitting pheromones.</span>"
+			src << "<span class='warning'>You have run out of pheromones and stopped emitting pheromones.</span>"
 		if(readying_tail)
 			readying_tail = 0
 			src << "<span class='warning'>You feel your tail relax.</span>"

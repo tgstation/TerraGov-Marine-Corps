@@ -65,9 +65,9 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/max_grown = 200
 	var/time_of_birth
 	var/plasma_gain = 5
-	var/jelly = 0 //Variable to check if they ate delicious jelly or not
-	var/jellyGrow = 0 //How much the jelly has grown
-	var/jellyMax = 0 //Max amount jelly will grow till evolution
+	var/evolution_allowed = 1 //Are they allowed to evolve (and have their evolution progress group)
+	var/evolution_stored = 0 //How much evolution they have stored
+	var/evolution_threshold = 0 //Threshold to next evolution
 	var/list/evolves_to = list() //This is where you add castes to evolve into. "Seperated", "by", "commas"
 	var/tacklemin = 2
 	var/tacklemax = 4
@@ -82,6 +82,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/shift_mouse_toggle = 0 //The same, but for shift clicking.
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/armor_deflection = 0 //Chance of deflecting projectiles.
+	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
 	var/fire_immune = 0 //Boolean
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
@@ -92,10 +93,13 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 	var/is_robotic = 0 //Robots use charge, not plasma (same thing sort of), and can only be healed with welders.
-	var/frenzy_aura = 0
-	var/guard_aura = 0
-	var/recovery_aura = 0
+	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
+	var/aura_allowed = list("frenzy", "warding", "recovery", "evolving")
 	var/current_aura = null //"claw", "armor", "regen", "speed"
+	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
+	var/warding_aura = 0
+	var/recovery_aura = 0
+	var/evolving_aura = 0
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
 	var/adjust_size_y = 1
 	var/spit_type = 0 //0: normal, 1: heavy
@@ -121,6 +125,13 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/list/inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate
 		)
+
+	//Lord forgive me for this horror, but Life code is awful
+	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
+	var/frenzy_new = 0
+	var/warding_new = 0
+	var/recovery_new = 0
+	var/evolving_new = 0
 
 /mob/living/carbon/Xenomorph/New()
 	..()

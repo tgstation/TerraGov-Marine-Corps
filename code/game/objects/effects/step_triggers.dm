@@ -170,8 +170,5 @@
 					M.Weaken(10)
 					M.inertia_dir = 0
 					M.make_floating(0)
-					M.visible_message("\red <B> [M] falls from the sky!</B>","\red <B>SPLAT!!</B>")
-					M.adjustBruteLoss(dmg)
-					if(istype(M,/mob/living/carbon/Xenomorph))
-						var/mob/living/carbon/Xenomorph/X = M
-						X.updatehealth()
+					M.visible_message("<span class='danger'>[M] falls from the sky and crashes into the ground!</span>","<span class='danger'>You fall from the sky and crash into the ground.</span>")
+					M.apply_damage(dmg, BRUTE)

@@ -87,7 +87,7 @@ Bonus
 	// They lose blood and health.
 	var/brute_dam = M.getBruteLoss()
 	if(brute_dam < 50)
-		M.adjustBruteLoss(3)
+		M.apply_damage(3, BRUTE)
 
 	var/turf/pos = get_turf(M)
 	pos.add_blood_floor(M)

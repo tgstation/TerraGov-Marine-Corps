@@ -18,8 +18,8 @@
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
-		usr.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
-		swirlie.adjustBruteLoss(8)
+		user.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
+		swirlie.apply_damage(8, BRUTE)
 		return
 
 	if(cistern && !open)
@@ -72,7 +72,7 @@
 					swirlie = null
 				else
 					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
-					GM.adjustBruteLoss(8)
+					GM.apply_damage(8, BRUTE)
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
 
@@ -109,7 +109,7 @@
 					user << "<span class='notice'>[GM.name] needs to be on the urinal.</span>"
 					return
 				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
-				GM.adjustBruteLoss(8)
+				GM.apply_damage(8, BRUTE)
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
 
