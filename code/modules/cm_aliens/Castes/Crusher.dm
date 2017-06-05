@@ -200,7 +200,12 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		r_FAL
 	health -= X.momentum * 4 + 10 //Should generally smash it unless not moving very fast.
 	healthcheck(user = X)
-	X.momentum -= 2
+
+	if (X.momentum > 2)
+		X.momentum -= 2
+	else
+		X.momentum = 0
+
 	r_TRU
 
 /obj/structure/grille/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
@@ -286,7 +291,13 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 
 /obj/structure/mineral_door/resin/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	TryToSwitchState(X)
-	if(X.momentum >= 3) X.momentum -= 5 //No flying through doors for free --MadSnailDisease
+
+	//No flying through doors for free --MadSnailDisease
+	if (X.momentum > 5)
+		X.momentum -= 5
+	else if (X.momentum > 2)
+		X.momentum = 0
+
 
 /obj/structure/table/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	Crossed(X)
@@ -319,7 +330,12 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		playsound(loc, "punch", 25, 1)
 		diagonal_step(src, X.dir, 100)
 		step_away(src, X)
-		X.momentum -= 9
+
+		if (X.momentum > 9)
+			X.momentum -= 9
+		else
+			X.momentum = 0
+
 		r_TRU
 
 /turf/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
