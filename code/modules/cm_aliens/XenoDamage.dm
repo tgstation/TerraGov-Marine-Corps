@@ -60,7 +60,7 @@
 	if(stat == DEAD) return
 
 	if(warding_aura && damage > 0) //Damage reduction. Goes from 9.5/10 for Young Drone to 1/2 for Ancient Empress
-		damage = round(damage * (10 - warding_aura / 10))
+		damage = round(damage * ((10 - warding_aura) / 10))
 
 	if(def_zone == "head" || def_zone == "eyes" || def_zone == "mouth") //Little more damage vs the head
 		damage = round(damage * 8 / 7)
