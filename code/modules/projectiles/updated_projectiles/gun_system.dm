@@ -40,6 +40,8 @@
 	var/fire_delay 		= 0  //For regular shots, how long to wait before firing again.
 	var/last_fired 		= 0  //When it was last fired, related to world.time.
 	var/aim_slowdown	= 0  //Self explanatory. How much does aiming (wielding the gun) slow you
+	var/wield_delay		= 5 //How long between wielding and firing in tenths of seconds
+	var/wield_time		= 0  //Storing value for above
 
 	//Burst fire.
 	var/burst_amount 	= 0 //How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -166,6 +168,7 @@
 	item_state += "_w"
 	slowdown = initial(slowdown) + aim_slowdown
 	place_offhand(user, initial(name))
+	wield_time = world.time + wield_delay
 	return 1
 
 /obj/item/weapon/gun/unwield(var/mob/user)
@@ -600,6 +603,7 @@ and you're good to go.
 	Consequently, predators are able to fire while cloaked.
 	*/
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	if(world.time < wield_time) return //We just put the gun up. Can't do it that fast
 	if(ismob(user)) //Could be an object firing the gun.
 		if(!user.IsAdvancedToolUser())
 			user << "<span class='warning'>You don't have the dexterity to do this!</span>"

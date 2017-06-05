@@ -63,4 +63,6 @@
 #define SLOWDOWN_ADS_INCINERATOR	1.1
 #define SLOWDOWN_ADS_SPECIALIST		1.5
 #define SLOWDOWN_ADS_SUPERWEAPON	2
+
+#define WIELD_DELAY_SCOPE			5
 //=================================================

@@ -56,6 +56,7 @@ Defined in setup.dm.
 	var/burst_mod 		= 0 //Changes burst rate. 1 == 0.
 	var/size_mod 		= 0 //Increases the weight class.
 	var/aim_speed_mod	= 0 //Changes the aiming speed slowdown of the wearer by this value.
+	var/wield_delay_mod	= 0 //How long ADS takes (time before firing)
 
 	//This is a special case.
 	var/twohanded_mod 	= 0 //If 1, removes two handed, if 2, adds two-handed.
@@ -134,6 +135,7 @@ Defined in setup.dm.
 	G.recoil 			+= recoil_mod
 	G.force 			+= melee_mod
 	G.aim_slowdown		+= aim_speed_mod
+	G.wield_delay		+= wield_delay_mod
 
 	if(G.burst_amount <= 1) G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
 	G.update_force_list() //This updates the gun to use proper force verbs.
@@ -172,6 +174,7 @@ Defined in setup.dm.
 	G.recoil 			-= recoil_mod
 	G.force 			-= melee_mod
 	G.aim_slowdown		-= aim_speed_mod
+	G.wield_delay		-= wield_delay_mod
 
 	G.update_force_list()
 
@@ -712,6 +715,7 @@ Defined in setup.dm.
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
 	aim_speed_mod = SLOWDOWN_ADS_SCOPE //Extra slowdown when aiming
+	wield_delay_mod = WIELD_DELAY_SCOPE
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PASSIVE
 
 	New()
