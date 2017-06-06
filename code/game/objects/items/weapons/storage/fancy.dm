@@ -167,13 +167,12 @@
 		return
 
 	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
-		var/obj/item/clothing/mask/cigarette/W = new /obj/item/clothing/mask/cigarette(user)
-		reagents.trans_to(W, (reagents.total_volume/contents.len))
-		user.equip_to_slot_if_possible(W, WEAR_FACE)
-		reagents.maximum_volume = 15 * contents.len
-		contents.len--
-		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
-		update_icon()
+		var/obj/item/clothing/mask/cigarette/C = locate() in src
+		if(C)
+			remove_from_storage(C, get_turf(user))
+			user.equip_to_slot_if_possible(C, WEAR_FACE)
+			user << "<span class='notice'>You take a cigarette out of the pack.</span>"
+			update_icon()
 	else
 		..()
 
@@ -230,23 +229,22 @@
 	return
 
 /obj/item/weapon/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
-		var/obj/item/clothing/mask/cigarette/cigar/C = W
-		if(!istype(C)) return
-		reagents.trans_to(C, (reagents.total_volume/contents.len))
-		..()
+	var/obj/item/clothing/mask/cigarette/cigar/C = W
+	if(!istype(C)) return
+	reagents.trans_to(C, (reagents.total_volume/contents.len))
+	. = ..()
 
 /obj/item/weapon/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
 
 	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
-		var/obj/item/clothing/mask/cigarette/cigar/W = new /obj/item/clothing/mask/cigarette/cigar(user)
-		reagents.trans_to(W, (reagents.total_volume/contents.len))
-		user.equip_to_slot_if_possible(W, WEAR_FACE)
-		reagents.maximum_volume = 15 * contents.len
-		contents.len--
-		user << "<span class='notice'>You take a cigar out of the case.</span>"
-		update_icon()
+		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
+		if(C)
+			remove_from_storage(C, get_turf(user))
+			user.equip_to_slot_if_possible(C, WEAR_FACE)
+			user << "<span class='notice'>You take a cigar out of the case.</span>"
+			update_icon()
 	else
 		..()
 

@@ -337,8 +337,8 @@
 		var/obj/item/weapon/grab/G = W
 		if (istype(G.grabbed_thing, /mob/living))
 			var/mob/living/M = G.grabbed_thing
-			if (user.grab_level < GRAB_AGGRESSIVE)
-				if(user.a_intent == "hurt")
+			if(user.a_intent == "hurt")
+				if(user.grab_level > GRAB_AGGRESSIVE)
 					if (prob(15))	M.Weaken(5)
 					M.apply_damage(8,def_zone = "head")
 					visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>")
@@ -346,7 +346,7 @@
 				else
 					user << "<span class='warning'>You need a better grip to do that!</span>"
 					return
-			else
+			else if(user.grab_level >= GRAB_AGGRESSIVE)
 				M.forceMove(loc)
 				M.Weaken(5)
 				visible_message("<span class='danger'>[user] puts [M] on [src].</span>")

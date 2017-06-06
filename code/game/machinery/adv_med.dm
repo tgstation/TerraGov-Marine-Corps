@@ -17,11 +17,10 @@
 /*/obj/machinery/bodyscanner/allow_drop()
 	return 0*/
 
-/obj/machinery/bodyscanner/relaymove(mob/user as mob)
-	if (user.stat)
-		return
-	src.go_out()
-	return
+/obj/machinery/bodyscanner/relaymove(mob/user)
+	if(user.stat || user.stunned || user.weakened) return
+	go_out()
+
 
 /obj/machinery/bodyscanner/verb/eject()
 	set src in oview(1)

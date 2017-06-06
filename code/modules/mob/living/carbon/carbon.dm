@@ -21,7 +21,8 @@
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
 
-/mob/living/carbon/relaymove(var/mob/user, direction)
+/mob/living/carbon/relaymove(mob/user, direction)
+	if(user.stat || user.stunned || user.weakened || user.paralysis) return
 	if(user in src.stomach_contents)
 		if(prob(40))
 			for(var/mob/M in hearers(4, src))

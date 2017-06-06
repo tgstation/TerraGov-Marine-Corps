@@ -67,10 +67,9 @@
 	return 0
 
 /obj/machinery/dna_scannernew/relaymove(mob/user as mob)
-	if (user.stat)
-		return
-	src.go_out()
-	return
+	if(user.stat || user.stunned || user.weakened) return
+	go_out()
+
 
 /obj/machinery/dna_scannernew/verb/eject()
 	set src in oview(1)

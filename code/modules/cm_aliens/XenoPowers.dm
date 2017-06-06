@@ -54,9 +54,9 @@
 
 	if(!check_state()) return
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 
-	if(!istype(T) || isnull(T))
+	if(!istype(T))
 		src << "<span class='warning'>You can't do that here.</span>"
 		return
 
@@ -205,13 +205,20 @@
 	if(!check_state())
 		return
 
+	var/turf/T = loc
+
+	if(!istype(T))
+		src << "<span class='warning'>You can't do that here.</span>"
+		return
+
 	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door", "resin wall", "resin membrane", "resin nest", "sticky resin", "cancel")
 
 	if(!choice || choice == "cancel")
 		return
 
-	var/turf/current_turf = get_turf(src)
-	if(!current_turf || !istype(current_turf))
+	var/turf/current_turf = loc
+	if(!istype(current_turf))
+		src << "<span class='warning'>You can't do that here.</span>"
 		return
 
 	if(!is_weedable(current_turf) || istype(get_area(src.loc),/area/shuttle/drop1/lz1 || istype(get_area(src.loc),/area/shuttle/drop2/lz2)) || istype(get_area(src.loc),/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
