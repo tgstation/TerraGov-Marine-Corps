@@ -526,12 +526,12 @@
 	prime()
 		spawn(0)
 			explosion(loc, -1, -1, 3)
-			cdel(src)
+			del(src)
 		return
 
 /obj/item/weapon/grenade/explosive/flamer_fire_act()
 	var/turf/T = loc
-	cdel(src)
+	del(src)
 	explosion(T, -1, -1, 3)
 
 
@@ -624,7 +624,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 			sleep(10)
 			src.smoke.start()
 		sleep(20)
-		cdel(src)
+		del(src)
 
 /obj/item/weapon/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
@@ -658,7 +658,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 			src.smoke.start()
 
 		sleep(20)
-		cdel(src)
+		del(src)
 
 
 ///***MINES***///
