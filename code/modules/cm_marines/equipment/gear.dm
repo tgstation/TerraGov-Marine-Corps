@@ -56,6 +56,66 @@
 	icon_opened = "snowtarp_open"
 	item_path = /obj/item/bodybag/tarp/snow
 
+/obj/item/device/squad_tracking_beacon
+	name = "\improper Tracking Beacon"
+	desc ="A weak transmitter allowing marines to locate their squad over short distances.\nIt is inactive."
+	var/base_desc = "A weak transmitter allowing marines to locate their squad over short distances."
+	icon_state = "tracking0"
+	var/icon_deactivated = "tracking0"
+	var/icon_activated = "tracking1"
+	var/activated = 0
+	w_class = 2
+	var/datum/squad/squad = null
+
+	attack_self(mob/user)
+		if(activated)
+			active_tracking_beacons -= src
+			activated = 0
+			icon_state = "[icon_deactivated]"
+			user << "You deactivate [src]."
+			desc = "[base_desc]\nIt is inactive."
+			return
+		if(!ishuman(user)) return
+		if(!user.mind)
+			user << "It doesn't seem to do anything for you."
+			return
+
+		squad = get_squad_data_from_card(user)
+
+		if(squad == null)
+			user << "You need a squad ID to activate this."
+			return
+
+		active_tracking_beacons += src
+		activated = 1
+		icon_state = "[icon_activated]"
+		user << "You activate [src]."
+		desc = "[base_desc]\nIt is set to Squad [squad.name]."
+
+		for(var/obj/item/device/squad_tracking_beacon/B in active_tracking_beacons)
+			if(B.squad == squad && B != src)
+				active_tracking_beacons -= B
+				B.activated = 0
+				B.icon_state = "[icon_deactivated]"
+				B.desc = "[base_desc]\nIt is inactive."
+
+				var/turf/T = get_turf(src)
+				T.visible_message("[B] shuts off. Looks like a tracking beacon was activated elsewhere with the same squad ID .")
+				user << "[src] beeps, indicating that a tracking beacon with the same squad ID elsewhere has been automatically deactivated."
+
+		return
+
+	Dispose()
+		if (activated)
+			active_tracking_beacons -= src
+		. = ..()
+
+	Del()
+		if (activated)
+			active_tracking_beacons -= src
+		. = ..()
+
+
 //MARINE ENCRYPTION KEYS
 
 /obj/item/device/encryptionkey/mcom
