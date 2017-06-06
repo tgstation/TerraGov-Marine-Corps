@@ -4,6 +4,7 @@ var/list/directory = list()							//list of all ckeys with associated client
 var/list/unansweredAhelps = list()					//This feels inefficient, but I can't think of a better way. Stores the message indexed by CID
 var/list/CLFaxes = list()							//List of all CL faxes sent this round
 var/list/USCMFaxes = list()							//List of all USCM faxes sent this round
+var/list/active_tracking_beacons = list()			//List of all active squad tracking beacons
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
