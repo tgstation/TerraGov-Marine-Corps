@@ -78,7 +78,7 @@
 			if(isscrewdriver(W))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
-				var/input = strip_html(input(usr, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: [MAIN_SHIP_NAME], Security,Secret ", "Set Network", "[MAIN_SHIP_NAME]"))
+				var/input = strip_html(input(usr, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: military, Security,Secret ", "Set Network", "military"))
 				if(!input)
 					usr << "No input found please hang up and try your call again."
 					return
