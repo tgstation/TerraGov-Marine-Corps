@@ -247,9 +247,9 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/closet/relaymove(mob/user as mob)
-	if(user.stat || !isturf(src.loc))
-		return
+/obj/structure/closet/relaymove(mob/user)
+	if(!isturf(src.loc)) return
+	if(user.stat || user.stunned || user.weakened || user.paralysis) return
 
 	if(!src.open())
 		user << "<span class='notice'>It won't budge!</span>"

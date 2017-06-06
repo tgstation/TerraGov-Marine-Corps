@@ -210,7 +210,7 @@
 	anchored = 1
 	unacidable = 1
 	density = 1
-	layer = 3.5
+	layer = MOB_LAYER //so you can't hide it under big xeno corpses
 	use_power = 0
 	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)

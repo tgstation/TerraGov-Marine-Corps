@@ -180,8 +180,8 @@
 	return get_turf(src)
 
 // attempt to move while inside
-/obj/machinery/disposal/relaymove(mob/user as mob)
-	if(user.stat || src.flushing)
+/obj/machinery/disposal/relaymove(mob/user)
+	if(user.stat || user.stunned || user.weakened || src.flushing)
 		return
 	if(user.loc == src)
 		src.go_out(user)

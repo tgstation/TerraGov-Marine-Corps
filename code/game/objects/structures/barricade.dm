@@ -19,7 +19,8 @@
 
 	New()
 		..()
-		update_icon()
+		spawn(0)
+			update_icon()
 
 	examine(mob/user)
 		..()
@@ -266,6 +267,7 @@
 	health = 250
 	maxhealth = 250
 	stack_type = /obj/item/stack/sandbags
+	barricade_hitsound = "sound/weapons/Genhit.ogg"
 
 	attackby(obj/item/W, mob/user)
 		if(istype(W, /obj/item/weapon/etool) && user.a_intent != "harm")

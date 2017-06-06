@@ -38,7 +38,7 @@
 	del(src)
 	return
 
-/obj/effect/spresent/relaymove(mob/user as mob)
+/obj/effect/spresent/relaymove(mob/user)
 	if (user.stat)
 		return
 	user << "\blue You cant move."

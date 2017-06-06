@@ -59,11 +59,10 @@
 	return 0
 
 
-/obj/machinery/atmospherics/unary/cryo_cell/relaymove(mob/user as mob)
-	if(user.stat)
-		return
+/obj/machinery/atmospherics/unary/cryo_cell/relaymove(mob/user)
+	if(user.stat || user.stunned || user.weakened) return
 	go_out()
-	return
+
 
 /obj/machinery/atmospherics/unary/cryo_cell/attack_hand(mob/user)
 	ui_interact(user)

@@ -65,9 +65,10 @@
 /obj/machinery/gibber/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/gibber/relaymove(mob/user as mob)
-	src.go_out()
-	return
+/obj/machinery/gibber/relaymove(mob/user)
+	if(user.stat || user.stunned || user.weakened) return
+	go_out()
+
 
 /obj/machinery/gibber/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))

@@ -598,7 +598,8 @@ BLIND     // can't see anything
 					user << "<span class='warning'>You try to move your [temp.display_name], but cannot!</span>"
 					return
 				if(holstered_weapon)
-					if(H.put_in_active_hand(holstered_weapon))
+					holstered_weapon.attack_hand(H)
+					if(loc == H) //just to be sure we managed to pick it up
 						holstered_weapon = null
 						if(drawSound)
 							playsound(src,drawSound, 15, 1)
