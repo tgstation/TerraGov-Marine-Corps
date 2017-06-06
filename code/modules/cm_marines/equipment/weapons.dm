@@ -525,14 +525,14 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,2)
-			del(src)
+			explosion(loc, -1, -1, 3)
+			cdel(src)
 		return
 
 /obj/item/weapon/grenade/explosive/flamer_fire_act()
 	var/turf/T = loc
 	cdel(src)
-	explosion(T,-1,-1,2)
+	explosion(T, -1, -1, 3)
 
 
 /obj/item/weapon/grenade/explosive/PMC
@@ -544,7 +544,7 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,3)
+			explosion(loc, -1, -1, 4)
 			del(src)
 		return
 
@@ -556,7 +556,7 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,2.5)
+			explosion(loc, -1, -1, 4)
 			del(src)
 		return
 
@@ -572,7 +572,7 @@
 
 	prime()
 		spawn(0)
-			flame_radius(1,get_turf(src))
+			flame_radius(2, get_turf(src))
 			del(src)
 		return
 
@@ -605,8 +605,8 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 
 	New()
 		..()
-		src.smoke = new /datum/effect/effect/system/smoke_spread/bad
-		src.smoke.attach(src)
+		smoke = new /datum/effect/effect/system/smoke_spread/bad
+		smoke.attach(src)
 
 	prime()
 		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -624,8 +624,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 			sleep(10)
 			src.smoke.start()
 		sleep(20)
-		del(src)
-		return
+		cdel(src)
 
 /obj/item/weapon/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
@@ -639,8 +638,8 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 
 	New()
 		..()
-		src.smoke = new /datum/effect/effect/system/smoke_spread/phosphorus
-		src.smoke.attach(src)
+		smoke = new /datum/effect/effect/system/smoke_spread/phosphorus
+		smoke.attach(src)
 
 	prime()
 		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -659,8 +658,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 			src.smoke.start()
 
 		sleep(20)
-		del(src)
-		return
+		cdel(src)
 
 
 ///***MINES***///
