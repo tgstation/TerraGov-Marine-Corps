@@ -258,6 +258,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 4
 					tackle_chance = 60
 					speed = -0.4
+					aura_strength = 1.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
 					CA.huggers_max = 7
 					CA.hugger_delay = 30
@@ -462,6 +463,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 5
 					tackle_chance = 70
 					speed = -0.4
+					aura_strength = 2
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
 					CA.huggers_max = 8
 					CA.hugger_delay = 20
@@ -665,6 +667,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemax = 6
 					tackle_chance = 75
 					speed = -0.3
+					aura_strength = 2.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
 					CA.huggers_max = 10
 					CA.hugger_delay = 10
