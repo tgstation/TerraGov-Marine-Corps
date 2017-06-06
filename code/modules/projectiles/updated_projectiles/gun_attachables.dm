@@ -681,6 +681,17 @@ Defined in setup.dm.
 			if(X.fire_immune) 	continue
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
+
+			if(user)
+				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+					H.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with a <b>[name]</b>"
+					user.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with a <b>[name]</b>"
+					msg_admin_ff("[user] ([user.ckey]) shot [H] ([H.ckey]) with a [name] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>) (<a href='?priv_msg=\ref[user.client]'>PM</a>)")
+				else
+					H.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with a <b>[name]</b>"
+					user.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with a <b>[name]</b>"
+					msg_admin_attack("[user] ([user.ckey]) shot [H] ([H.ckey]) with a [name] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos)) continue
 
 		M.adjustFireLoss(rand(20,50))  //fwoom!
