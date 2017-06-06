@@ -22,7 +22,6 @@
 
 	var/donator = 0
 	var/adminhelped = 0
-	var/marked = 0 // Prevents marking an Adminhelp more than once
 
 		///////////////
 		//SOUND STUFF//

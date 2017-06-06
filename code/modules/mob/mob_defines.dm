@@ -14,6 +14,7 @@
 
 	var/obj/screen/hands = null //robot
 
+	var/marked = 0 // Prevents marking an Adminhelp more than once
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.

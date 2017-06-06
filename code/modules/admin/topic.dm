@@ -2238,7 +2238,7 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		if(ref_person && ref_person.client.marked)
+		if(ref_person && ref_person.marked)
 			usr << "<b>This Adminhelp is already being handled.</b>"
 			usr << sound('sound/misc/fart_short.ogg')
 			return
@@ -2256,16 +2256,16 @@
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
 		src.viewUnheardAhelps() //This SHOULD refresh the page
 
-		ref_person.client.marked = 1 //Timer to prevent multiple clicks
+		ref_person.marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			if(ref_person.client.marked)	ref_person.client.marked = 0
+			if(ref_person)	ref_person.marked = 0
 
 	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
 		var/mob/ref_person = locate(href_list["NOPE"])
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		if(ref_person && ref_person.client.marked)
+		if(ref_person && ref_person.marked)
 			usr << "<b>This Adminhelp is already being handled.</b>"
 			usr << sound('sound/misc/fart_short.ogg')
 			return
@@ -2283,9 +2283,9 @@
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
 		src.viewUnheardAhelps() //This SHOULD refresh the page
 
-		ref_person.client.marked = 1 //Timer to prevent multiple clicks
+		ref_person.marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			if(ref_person.client.marked)	ref_person.client.marked = 0
+			if(ref_person)	ref_person.marked = 0
 
 	// Saving this for future lels -Rahl
 	// if(href_list["retarded"]) // Their message is fucking stupid
