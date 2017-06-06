@@ -594,25 +594,25 @@
 		shell_speed = config.slow_shell_speed
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
-		explosion(get_turf(M), -1, 1, 3, 4)
+		explosion(get_turf(M), -1, 1, 4, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(M))
 		smoke.start()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
-		explosion(get_turf(O), -1, 1, 3, 4)
+		explosion(get_turf(O), -1, 1, 4, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(O))
 		smoke.start()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
-		explosion(T,  -1, 1, 3, 4)
+		explosion(T,  -1, 1, 4, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, T)
 		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
-		explosion(get_turf(P),  -1, 1, 3, 4)
+		explosion(get_turf(P),  -1, 1, 4, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(P))
 		smoke.start()
@@ -631,25 +631,25 @@
 		penetration= config.max_armor_penetration
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
-		explosion(get_turf(M), -1, 1, 1, 4)
+		explosion(get_turf(M), -1, 1, 2, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(M))
 		smoke.start()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
-		explosion(get_turf(O), -1, 1, 1, 4)
+		explosion(get_turf(O), -1, 1, 2, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(O))
 		smoke.start()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
-		explosion(T,  -1, 1, 1, 4)
+		explosion(T,  -1, 1, 2, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, T)
 		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
-		explosion(get_turf(P),  -1, 1, 1, 4)
+		explosion(get_turf(P),  -1, 1, 2, 5)
 		var/datum/effect/effect/system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(P))
 		smoke.start()
@@ -706,19 +706,19 @@
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_flame(get_turf(M))
-		explosion(P.loc,  -1, 2, 3, 4)
+		explosion(P.loc,  -1, 2, 4, 5)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
 		drop_flame(get_turf(O))
-		explosion(P.loc,  -1, 2, 3, 4)
+		explosion(P.loc,  -1, 2, 4, 5)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
 		drop_flame(T)
-		explosion(P.loc,  -1, 2, 3, 4)
+		explosion(P.loc,  -1, 2, 4, 5)
 
 	do_at_max_range(obj/item/projectile/P)
 		drop_flame(get_turf(P))
-		explosion(P.loc,  -1, 2, 3, 4)
+		explosion(P.loc,  -1, 2, 4, 5)
 
 /*
 //================================================
