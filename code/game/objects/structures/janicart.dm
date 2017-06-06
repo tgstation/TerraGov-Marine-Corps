@@ -20,11 +20,9 @@
 	create_reagents(100)
 
 
-/obj/structure/janitorialcart/examine()
-	set src in usr
-	usr << "[src] \icon[src] contains [reagents.total_volume] unit\s of liquid!"
+/obj/structure/janitorialcart/examine(mob/user)
 	..()
-	//everything else is visible, so doesn't need to be mentioned
+	user << "It contains [reagents.total_volume] unit\s of liquid!"
 
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)

@@ -66,12 +66,12 @@
 		icon_state += "0"
 		name += " expended" //So people can see what have been expended since we have smexy new sprites people aren't used too...
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/examine()
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..()
 	if(reagents && reagents.reagent_list.len)
-		usr << "\blue It is currently loaded."
+		user << "\blue It is currently loaded."
 	else
-		usr << "\blue It is spent."
+		user << "\blue It is spent."
 
 /obj/item/weapon/reagent_containers/hypospray/tricordrazine
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients. Contains tricordrazine."

@@ -45,8 +45,7 @@
 		return
 	..()
 
-/obj/item/weapon/storage/backpack/marine/engineerpack/examine()
-	set src in usr
-	usr << text("\icon[] [] units of fuel left!", src, src.reagents.total_volume)
+/obj/item/weapon/storage/backpack/marine/engineerpack/examine(mob/user)
 	..()
-	return
+	user << "[reagents.total_volume] units of fuel left!"
+

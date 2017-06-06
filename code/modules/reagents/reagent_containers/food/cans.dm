@@ -84,20 +84,6 @@
 
 		return ..()
 
-/*	examine()
-		set src in view()
-		..()
-		if (!(usr in range(0)) && usr!=src.loc) return
-		if(!reagents || reagents.total_volume==0)
-			usr << "\blue \The [src] is empty!"
-		else if (reagents.total_volume<=src.volume/4)
-			usr << "\blue \The [src] is almost empty!"
-		else if (reagents.total_volume<=src.volume*0.66)
-			usr << "\blue \The [src] is half full!"
-		else if (reagents.total_volume<=src.volume*0.90)
-			usr << "\blue \The [src] is almost full!"
-		else
-			usr << "\blue \The [src] is full!"*/
 
 
 //DRINKS

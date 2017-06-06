@@ -773,12 +773,12 @@
 			overlays += image('icons/turf/snow.dmi', "snow_shovel_overlay")
 
 	//Examine
-	examine()
+	examine(mob/user)
 		..()
 		if(mode == 0)
-			usr << "\blue Selected mode: Removing snow."
+			user << "\blue Selected mode: Removing snow."
 		else
-			usr << "\blue Selected mode: [mode == 1 ? "Collecting/Throwing snow" : "Building/Removing barricades"]."
+			user << "\blue Selected mode: [mode == 1 ? "Collecting/Throwing snow" : "Building/Removing barricades"]."
 
 
 

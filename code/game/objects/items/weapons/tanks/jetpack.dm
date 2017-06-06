@@ -18,12 +18,11 @@
 	src.ion_trail = new /datum/effect/effect/system/ion_trail_follow()
 	src.ion_trail.set_up(src)
 
-/obj/item/weapon/tank/jetpack/examine()
-	set src in usr
+/obj/item/weapon/tank/jetpack/examine(mob/user)
 	..()
 	if(air_contents.gas["oxygen"] < 10)
-		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-		playsound(usr, 'sound/effects/alert.ogg', 25, 1)
+		user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
+		playsound(user, 'sound/effects/alert.ogg', 25, 1)
 
 /obj/item/weapon/tank/jetpack/verb/toggle_rockets()
 	set name = "Toggle Jetpack Stabilization"
@@ -106,12 +105,9 @@
 	src.ion_trail.set_up(src)
 	//src.air_contents.carbon_dioxide = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	air_contents.adjust_gas("carbon_dioxide", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
-/obj/item/weapon/tank/jetpack/carbondioxide/examine()
-	set src in usr
+/obj/item/weapon/tank/jetpack/carbondioxide/examine(mob/user)
 	..()
 	if(air_contents.gas["carbon_dioxide"] < 10)
-		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-		playsound(usr, 'sound/effects/alert.ogg', 25, 1)
-	return
+		user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
+		playsound(user, 'sound/effects/alert.ogg', 25, 1)

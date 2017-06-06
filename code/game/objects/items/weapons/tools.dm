@@ -161,10 +161,10 @@
 	return
 
 
-/obj/item/weapon/weldingtool/examine()
-	set src in usr
-	usr << "\icon[src] [name] contains [get_fuel()]/[max_fuel] units of fuel!"
-	return
+/obj/item/weapon/weldingtool/examine(mob/user)
+	..()
+	user << "It contains [get_fuel()]/[max_fuel] units of fuel!"
+
 
 
 /obj/item/weapon/weldingtool/process()

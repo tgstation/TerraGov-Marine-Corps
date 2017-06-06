@@ -23,12 +23,10 @@
 		return
 
 
-	examine()
-		set src in usr
+	examine(mob/user)
 		..()
 		if(air_contents.gas["oxygen"] < 10)
-			usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-			//playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+			user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
 
 
 /obj/item/weapon/tank/oxygen/yellow
@@ -67,12 +65,11 @@
 	icon_state = "oxygen"
 
 
-	examine()
-		set src in usr
+	examine(mob/user)
 		..()
-		if(air_contents.gas["oxygen"] < 1 && loc==usr)
-			usr << "\red <B>The meter on the [src.name] indicates you are almost out of air!</B>"
-			usr << sound('sound/effects/alert.ogg')
+		if(air_contents.gas["oxygen"] < 1 && loc==user)
+			user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
+			user << sound('sound/effects/alert.ogg')
 
 /obj/item/weapon/tank/air/New()
 	..()
@@ -122,12 +119,11 @@
 		return
 
 
-	examine()
-		set src in usr
+	examine(mob/user)
 		..()
-		if(air_contents.gas["oxygen"] < 0.2 && loc==usr)
-			usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-			usr << sound('sound/effects/alert.ogg')
+		if(air_contents.gas["oxygen"] < 0.2 && loc==user)
+			user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
+			user << sound('sound/effects/alert.ogg')
 
 /obj/item/weapon/tank/emergency_oxygen/engi
 	name = "extended-capacity emergency oxygen tank"
@@ -155,9 +151,7 @@
 	src.air_contents.adjust_gas("nitrogen", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
-/obj/item/weapon/tank/nitrogen/examine()
-	set src in usr
+/obj/item/weapon/tank/nitrogen/examine(mob/user)
 	..()
 	if(air_contents.gas["nitrogen"] < 10)
-		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-		//playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+		user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"

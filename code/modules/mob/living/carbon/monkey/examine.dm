@@ -1,9 +1,6 @@
-/mob/living/carbon/monkey/examine()
-	set src in oview()
-
-	if(!usr || !src)	return
-	if( (usr.sdisabilities & BLIND || usr.blinded || usr.stat) && !istype(usr,/mob/dead/observer) )
-		usr << "<span class='notice'>Something is there but you can't see it.</span>"
+/mob/living/carbon/monkey/examine(mob/user)
+	if( (user.sdisabilities & BLIND || user.blinded || user.stat) && !istype(user,/mob/dead/observer) )
+		user << "<span class='notice'>Something is there but you can't see it.</span>"
 		return
 
 	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
@@ -49,5 +46,5 @@
 
 	msg += "*---------*</span>"
 
-	usr << msg
+	user << msg
 	return

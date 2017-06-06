@@ -27,10 +27,9 @@
 			A.update_button_icon()
 
 
-	examine()
-		set src in view()
+	examine(mob/user)
 		..()
 		var/state = "disabled"
 		if(flags_inventory&NOSLIPPING)
 			state = "enabled"
-		usr << "Its mag-pulse traction system appears to be [state]."
+		user << "Its mag-pulse traction system appears to be [state]."

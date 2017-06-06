@@ -1,9 +1,6 @@
-/mob/living/carbon/human/examine()
-	set src in view()
-
-	if(!usr || !src)	return
-	if( usr.sdisabilities & BLIND || usr.blinded || usr.stat==UNCONSCIOUS )
-		usr << "<span class='notice'>Something is there but you can't see it.</span>"
+/mob/living/carbon/human/examine(mob/user)
+	if( user.sdisabilities & BLIND || user.blinded || user.stat==UNCONSCIOUS )
+		user << "<span class='notice'>Something is there but you can't see it.</span>"
 		return
 
 	var/skipgloves = 0
@@ -182,7 +179,7 @@
 		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/weapon/card/id/idcard = wear_id
 			id = idcard.registered_name
-		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
+		if(id && (id != real_name) && (get_dist(src, user) <= 1) && prob(10))
 			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
 		else*/
 		msg += "[t_He] [t_is] wearing \icon[wear_id] \a [wear_id].\n"
@@ -208,28 +205,28 @@
 	if(mSmallsize in mutations)
 		msg += "[t_He] [t_is] small halfling!\n"
 
-	var/distance = get_dist(usr,src)
-	if(istype(usr, /mob/dead/observer) || usr.stat == 2) // ghosts can see anything
+	var/distance = get_dist(user,src)
+	if(istype(user, /mob/dead/observer) || user.stat == DEAD) // ghosts can see anything
 		distance = 1
-	if (src.stat && !isXeno(usr))
+	if (src.stat && !isXeno(user))
 		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
 		if((stat == 2 || src.health < config.health_threshold_crit) && distance <= 3)
 			msg += "<span class='warning'>[t_He] does not appear to be breathing.</span>\n"
-		if(istype(usr, /mob/living/carbon/human) && !usr.stat && Adjacent(usr))
-			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
+		if(ishuman(user) && !user.stat && Adjacent(user))
+			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
 		spawn(15)
-			if(usr && src && distance <= 1 && usr.stat != 1)
+			if(user && src && distance <= 1 && user.stat != 1)
 				if(pulse == PULSE_NONE)
-					usr << "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>"
+					user << "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>"
 				else
-					usr << "<span class='deadsay'>[t_He] has a pulse!</span>"
+					user << "<span class='deadsay'>[t_He] has a pulse!</span>"
 
 	msg += "<span class='warning'>"
 
 	if(nutrition < 100)
 		msg += "[t_He] [t_is] severely malnourished.\n"
 	else if(nutrition >= 500)
-		/*if(usr.nutrition < 100)
+		/*if(user.nutrition < 100)
 			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
 		else*/
 		msg += "[t_He] [t_is] quite chubby.\n"
@@ -397,7 +394,7 @@
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
 
-	if (stat == 2 && isXeno(usr))
+	if (stat == 2 && isXeno(user))
 		msg += "\n<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
 
 
@@ -407,7 +404,7 @@
 		msg += "[t_He] [t_is] repulsively uncanny!\n"
 
 
-	if(hasHUD(usr,"security"))
+	if(hasHUD(user,"security"))
 		var/perpname = "wot"
 		var/criminal = "None"
 
@@ -430,7 +427,7 @@
 			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
 			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
 
-	if(hasHUD(usr,"medical"))
+	if(hasHUD(user,"medical"))
 		var/perpname = "wot"
 		var/medical = "None"
 
@@ -453,8 +450,8 @@
 		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
 
 
-	if(hasHUD(usr,"squadleader"))
-		var/mob/living/carbon/human/H = usr
+	if(hasHUD(user,"squadleader"))
+		var/mob/living/carbon/human/H = user
 		var/obj/item/weapon/card/id/ID = get_idcard()
 		if(ID && (ID.rank in ROLES_MARINES)) //examined mob is a marine
 			if(get_squad_from_card(src) == get_squad_from_card(H)) //same squad
@@ -469,7 +466,7 @@
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[t_He] is [pose]"
 
-	usr << msg
+	user << msg
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)

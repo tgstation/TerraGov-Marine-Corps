@@ -139,11 +139,9 @@ cases. Override_icon_state should be a list.*/
 		cdel(X)
 	return ..()
 
-/obj/item/examine()
-	set src in view()
-
+/obj/item/examine(mob/user)
 	var/size
-	switch(src.w_class)
+	switch(w_class)
 		if(1.0)
 			size = "tiny"
 		if(2.0)
@@ -156,10 +154,9 @@ cases. Override_icon_state should be a list.*/
 			size = "huge"
 		else
 	//if ((CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
-	usr << "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""]\icon[src][src.name]. It is a [size] item."
-	if(src.desc)
-		usr << src.desc
-	return
+	user << "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""]\icon[src][src.name]. It is a [size] item."
+	if(desc)
+		user << desc
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return

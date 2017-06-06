@@ -84,15 +84,14 @@
 					src.overlays += O
 */
 
-	examine()
-		set src in view()
+	examine(mob/user)
 		..()
-		if ((in_range(src, usr) || src.loc == usr))
-			if (src.secured)
-				usr << "\The [src] is ready!"
+		if (in_range(src, user) || loc == user)
+			if (secured)
+				user << "[src] is ready!"
 			else
-				usr << "\The [src] can be attached!"
-		return
+				user << "[src] can be attached!"
+
 
 
 	HasProximity(atom/movable/AM as mob|obj)

@@ -17,7 +17,7 @@
 	use_power = 0
 	idle_power_usage = 5			//5 Watts for thermostat related circuitry
 	active_power_usage 			//50 kW. The power rating of the heater
-	
+
 	var/max_power_usage = 20000	//power rating when the usage is turned up to 100
 	var/power_setting = 100
 
@@ -34,7 +34,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	
+
 	active_power_usage = max_power_usage * (power_setting/100)
 
 /obj/machinery/atmospherics/unary/heater/initialize()
@@ -163,10 +163,10 @@
 
 /obj/machinery/atmospherics/unary/heater/proc/set_power_level(var/new_power_setting)
 	power_setting = new_power_setting
-	
+
 	var/old_power_usage = active_power_usage
 	active_power_usage = max_power_usage * (power_setting/100)
-	
+
 	if (use_power >= 2 && old_power_usage != active_power_usage)
 		force_power_update()
 
@@ -183,7 +183,7 @@
 
 	..()
 
-/obj/machinery/atmospherics/unary/heater/examine()
+/obj/machinery/atmospherics/unary/heater/examine(mob/user)
 	..()
-	if (opened)
-		usr << "The maintenance hatch is open."
+	if(opened)
+		user << "The maintenance hatch is open."

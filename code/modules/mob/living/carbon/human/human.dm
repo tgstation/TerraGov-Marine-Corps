@@ -661,7 +661,7 @@
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
 		if(istype(I))
-			I.examine()
+			I.examine(usr)
 
 	if (href_list["flavor_change"])
 		switch(href_list["flavor_change"])

@@ -38,14 +38,14 @@ They're all essentially identical when it comes to getting the job done.
 		if(current_rounds <= 0) 					icon_state += "_e" //Is it zero? Then it's empty.
 		else if(current_rounds - round_diff <= 0) 	icon_state  = copytext(icon_state,1,-2) //Did we add ammo to an empty?
 
-	examine()
+	examine(mob/user)
 		..()
 		// It should never have negative ammo after spawn. If it does, we need to know about it.
 		if(current_rounds < 0)
-			usr<< "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
+			user<< "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
 			log_debug("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
 		else
-			usr << "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
+			user << "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 
 	attack_hand(mob/user)

@@ -270,7 +270,7 @@
 	src << "\red There is nothing of interest to take."
 	return 0
 
-/mob/living/simple_animal/spiderbot/examine()
+/mob/living/simple_animal/spiderbot/examine(mob/user)
 	..()
-	if(src.held_item)
-		usr << "It is carrying \a [src.held_item] \icon[src.held_item]."
+	if(held_item)
+		user << "It is carrying \a [held_item] \icon[held_item]."

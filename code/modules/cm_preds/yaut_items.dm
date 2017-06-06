@@ -344,9 +344,9 @@
 		M.update_power_display(perc)
 		return 1
 
-	examine()
+	examine(mob/user)
 		..()
-		usr << "They currently have [charge] out of [charge_max] charge."
+		user << "They currently have [charge] out of [charge_max] charge."
 
 	//Should put a cool menu here, like ninjas.
 	verb/wristblades()
@@ -1431,11 +1431,11 @@
 		verbs -= /obj/item/weapon/gun/verb/activate_attachment
 		verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
-	examine()
-		if(isYautja(usr))
+	examine(mob/user)
+		if(isYautja(user))
 			..()
-			usr << "It currently has [spikes] / [max_spikes] spikes."
-		else usr << "Looks like some kind of...mechanical donut."
+			user << "It currently has [spikes] / [max_spikes] spikes."
+		else user << "Looks like some kind of...mechanical donut."
 
 	update_icon()
 		var/new_icon_state = spikes <=1 ? null : icon_state + "[round(spikes/4, 1)]"
@@ -1504,11 +1504,11 @@
 		verbs -= /obj/item/weapon/gun/verb/empty_mag
 		verbs -= /obj/item/weapon/gun/verb/activate_attachment
 
-	examine()
-		if(isYautja(usr))
+	examine(mob/user)
+		if(isYautja(user))
 			..()
-			usr << "It currently has [charge_time] / 100 charge."
-		else usr << "This thing looks like an alien rifle of some kind. Strange."
+			user << "It currently has [charge_time] / 100 charge."
+		else user << "This thing looks like an alien rifle of some kind. Strange."
 
 	update_icon()
 		if(last_regen < charge_time + 20 || last_regen > charge_time || charge_time > 95)
@@ -1682,9 +1682,9 @@
 	fire_sound = 'sound/weapons/Laser2.ogg' //Vyoooo!
 
 
-/obj/item/weapon/gun/launcher/netgun/examine()
+/obj/item/weapon/gun/launcher/netgun/examine(mob/user)
 	..()
-	usr << "It has [nets] [nets == 1 ? "net" : "nets"] remaining."
+	user << "It has [nets] [nets == 1 ? "net" : "nets"] remaining."
 
 /obj/item/weapon/gun/launcher/netgun/update_icon()
 	if(!nets)

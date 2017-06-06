@@ -194,18 +194,17 @@ its easier to just keep the beam vertical.
 
 
 //All atoms
-/atom/verb/examine()
+/atom/verb/atom_examine()
 	set name = "Examine"
 	set category = "IC"
 	set src in view(usr.client) //If it can be seen, it can be examined.
 
-	if (!( usr ))
-		return
-	usr << "That's \a [src]." //changed to "That's" from "This is" because "This is some metal sheets" sounds dumb compared to "That's some metal sheets" ~Carn
-	usr << desc
-	// *****RM
-	//usr << "[name]: Dn:[density] dir:[dir] cont:[contents] icon:[icon] is:[icon_state] loc:[loc]"
-	return
+	if(!usr) return
+	examine(usr)
+
+/atom/proc/examine(mob/user)
+	user << "\icon[src] That's \a [src]." //changed to "That's" from "This is" because "This is some metal sheets" sounds dumb compared to "That's some metal sheets" ~Carn
+	user << desc
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.

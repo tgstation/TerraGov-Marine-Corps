@@ -258,15 +258,13 @@
 	else
 		w_class = 2.0
 
-/obj/item/stack/cable_coil/examine()
-	set src in view(1)
-
+/obj/item/stack/cable_coil/examine(mob/user)
 	if(amount == 1)
-		usr << "A short piece of power cable."
+		user << "A short piece of power cable."
 	else if(amount == 2)
-		usr << "A piece of power cable."
+		user << "A piece of power cable."
 	else
-		usr << "A coil of power cable. There are [amount] lengths of cable in the coil."
+		user << "A coil of power cable. There are [amount] lengths of cable in the coil."
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"

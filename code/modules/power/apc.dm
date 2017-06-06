@@ -197,29 +197,26 @@
 	spawn(5)
 		src.update()
 
-/obj/machinery/power/apc/examine()
-	set src in oview(1)
+/obj/machinery/power/apc/examine(mob/user)
+	user << "A control terminal for the area electrical systems."
+	if(stat & BROKEN)
+		user << "Looks broken."
+		return
+	if(opened)
+		if(has_electronics && terminal)
+			user << "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
+		else if (!has_electronics && terminal)
+			user << "There are some wires but no any electronics."
+		else if (has_electronics && !terminal)
+			user << "Electronics installed but not wired."
+		else /* if (!has_electronics && !terminal) */
+			user << "There is no electronics nor connected wires."
 
-	if(usr /*&& !usr.stat*/)
-		usr << "A control terminal for the area electrical systems."
-		if(stat & BROKEN)
-			usr << "Looks broken."
-			return
-		if(opened)
-			if(has_electronics && terminal)
-				usr << "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
-			else if (!has_electronics && terminal)
-				usr << "There are some wires but no any electronics."
-			else if (has_electronics && !terminal)
-				usr << "Electronics installed but not wired."
-			else /* if (!has_electronics && !terminal) */
-				usr << "There is no electronics nor connected wires."
-
+	else
+		if (stat & MAINT)
+			user << "The cover is closed. Something wrong with it: it doesn't work."
 		else
-			if (stat & MAINT)
-				usr << "The cover is closed. Something wrong with it: it doesn't work."
-			else
-				usr << "The cover is closed."
+			user << "The cover is closed."
 
 // update the APC icon to show the three base states
 // also add overlays for indicator lights

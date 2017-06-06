@@ -201,7 +201,7 @@
 
 	..()
 
-/obj/machinery/atmospherics/unary/freezer/examine()
+/obj/machinery/atmospherics/unary/freezer/examine(mob/user)
 	..()
-	if (opened)
-		usr << "The maintenance hatch is open."
+	if(opened)
+		user << "The maintenance hatch is open."

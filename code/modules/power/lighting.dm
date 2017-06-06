@@ -83,20 +83,16 @@
 	if (fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
 
-/obj/machinery/light_construct/examine()
-	set src in view()
+/obj/machinery/light_construct/examine(mob/user)
 	..()
-	if (!(usr in view(2))) return
-	switch(src.stage)
+	switch(stage)
 		if(1)
-			usr << "It's an empty frame."
-			return
+			user << "It's an empty frame."
 		if(2)
-			usr << "It's wired."
-			return
+			user << "It's wired."
 		if(3)
-			usr << "The casing is closed."
-			return
+			user << "The casing is closed."
+
 
 /obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
@@ -315,18 +311,17 @@
 	update()
 
 // examine verb
-/obj/machinery/light/examine()
-	set src in oview(1)
-	if(usr && !usr.stat)
-		switch(status)
-			if(LIGHT_OK)
-				usr << "[desc] It is turned [on? "on" : "off"]."
-			if(LIGHT_EMPTY)
-				usr << "[desc] The [fitting] has been removed."
-			if(LIGHT_BURNED)
-				usr << "[desc] The [fitting] is burnt out."
-			if(LIGHT_BROKEN)
-				usr << "[desc] The [fitting] has been smashed."
+/obj/machinery/light/examine(mob/user)
+	..()
+	switch(status)
+		if(LIGHT_OK)
+			user << "It is turned [on? "on" : "off"]."
+		if(LIGHT_EMPTY)
+			user << "The [fitting] has been removed."
+		if(LIGHT_BURNED)
+			user << "The [fitting] is burnt out."
+		if(LIGHT_BROKEN)
+			user << "The [fitting] has been smashed."
 
 
 

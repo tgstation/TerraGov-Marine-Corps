@@ -575,10 +575,10 @@ Defined in setup.dm.
 	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
-	examine()
+	examine(mob/user)
 		..()
-		if(current_rounds > 0) 	usr << "It's still got some punch left."
-		else 					usr << "It looks spent."
+		if(current_rounds > 0) 	user << "It's still got some punch left."
+		else 					user << "It looks spent."
 
 
 	//"Readying" the gun for the grenade launch is not needed. Just point & click
@@ -623,10 +623,10 @@ Defined in setup.dm.
 	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
-	examine()
+	examine(mob/user)
 		..()
-		if(current_rounds > 0) usr << "It's still got some flame left."
-		else usr << "It looks spent."
+		if(current_rounds > 0) user << "It's still got some flame left."
+		else user << "It looks spent."
 
 	activate_attachment(atom/target,mob/living/carbon/user)
 		user << "<span class='notice'>Your next shot will unleash a burst of flame from [src].</span>"
@@ -699,10 +699,10 @@ Defined in setup.dm.
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_CONTINUOUS|ATTACH_PROJECTILE
 
-	examine()
+	examine(mob/user)
 		..()
-		if(current_rounds > 0) 	usr << "It's still got some shells left."
-		else 					usr << "It looks spent."
+		if(current_rounds > 0) 	user << "It's still got some shells left."
+		else 					user << "It looks spent."
 
 	//Because it's got an ammo_type, everything is taken care of when the gun shoots. It more or less just uses the attachment instead.
 	activate_attachment(atom/target,mob/living/carbon/user)

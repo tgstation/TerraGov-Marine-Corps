@@ -202,9 +202,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
 		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
-	examine()
+	examine(mob/user)
 		..()
-		if(in_chamber) usr << "It has a chambered round."
+		if(in_chamber) user << "It has a chambered round."
 
 //-------------------------------------------------------
 //TACTICAL SHOTGUN
@@ -238,9 +238,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		update_attachable(G.slot)
 		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
-	examine()
+	examine(mob/user)
 		..()
-		if(in_chamber) usr << "It has a chambered round."
+		if(in_chamber) user << "It has a chambered round."
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -273,10 +273,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		fire_delay = config.mlow_fire_delay
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
-	examine()
+	examine(mob/user)
 		..()
-		if(current_mag.chamber_closed) usr << "It's closed."
-		else usr << "It's open with [current_mag.current_rounds] shell\s loaded."
+		if(current_mag.chamber_closed) user << "It's closed."
+		else user << "It's open with [current_mag.current_rounds] shell\s loaded."
 
 	unique_action(mob/user)
 		empty_chamber(user)

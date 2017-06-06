@@ -551,15 +551,15 @@
 						src.other = T //Link them!
 						break
 
-	examine()
-		if(!usr || !isXeno(usr))
+	examine(mob/user)
+		if(!isXeno(user))
 			return ..()
 
 		if(!other)
-			usr << "It does not seem to lead anywhere."
+			user << "It does not seem to lead anywhere."
 		else
 			var/area/A = get_area(other)
-			usr << "It seems to lead to <b>[A.name]</b>."
+			user << "It seems to lead to <b>[A.name]</b>."
 
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)

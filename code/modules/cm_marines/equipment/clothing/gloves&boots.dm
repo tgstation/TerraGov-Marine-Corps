@@ -191,11 +191,6 @@
 //========================//VARIOUS PROCS\\==============================\\
 //=======================================================================\\
 
-/obj/item/clothing/gloves/examine()
-	set src in usr
-	..()
-	return
-
 /obj/item/clothing/gloves/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc

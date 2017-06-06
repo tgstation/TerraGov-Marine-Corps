@@ -50,10 +50,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/obj/item/weapon/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null //related to above
 
-/obj/item/device/pda/examine()
+/obj/item/device/pda/examine(mob/user)
 	..()
-	if(get_dist(usr, src) <= 1)
-		usr << "The time [worldtime2text()] is displayed in the corner of the screen."
+	if(get_dist(user, src) <= 1)
+		user << "The time [worldtime2text()] is displayed in the corner of the screen."
 
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/weapon/cartridge/medical

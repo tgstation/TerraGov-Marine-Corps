@@ -78,11 +78,10 @@
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	return
 
-/obj/item/weapon/reagent_containers/borghypo/examine()
-	set src in view()
+/obj/item/weapon/reagent_containers/borghypo/examine(mob/user)
 	..()
-	if (!(usr in view(2)) && usr!=src.loc) return
+	if (user != loc) return
 
 	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
 
-	usr << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"
+	user << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"

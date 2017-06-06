@@ -54,38 +54,38 @@
 
 //Appearance
 
-/turf/simulated/wall/examine()
+/turf/simulated/wall/examine(mob/user)
 	. = ..()
 
 	if(!damage)
-		usr << "<span class='notice'>It looks fully intact.</span>"
+		user << "<span class='notice'>It looks fully intact.</span>"
 	else
 		var/dam = damage / damage_cap
 		if(dam <= 0.3)
-			usr << "<span class='warning'>It looks slightly damaged.</span>"
+			user << "<span class='warning'>It looks slightly damaged.</span>"
 		else if(dam <= 0.6)
-			usr << "<span class='warning'>It looks moderately damaged.</span>"
+			user << "<span class='warning'>It looks moderately damaged.</span>"
 		else
-			usr << "<span class='danger'>It looks heavily damaged.</span>"
+			user << "<span class='danger'>It looks heavily damaged.</span>"
 
 	if(rotting)
-		usr << "<span class='warning'>There is fungus growing on [src].</span>"
+		user << "<span class='warning'>There is fungus growing on [src].</span>"
 
 	switch(d_state)
 		if(1)
-			usr << "The outer plating has been sliced open. A screwdriver should remove the support lines."
+			user << "The outer plating has been sliced open. A screwdriver should remove the support lines."
 		if(2)
-			usr << "The support lines have been removed. A welding tool should slice through the metal cover."
+			user << "The support lines have been removed. A welding tool should slice through the metal cover."
 		if(3)
-			usr << "The metal cover has been sliced through. A crowbar should pry it off."
+			user << "The metal cover has been sliced through. A crowbar should pry it off."
 		if(4)
-			usr << "The metal cover has been removed. A wrench will remove the anchor bolts."
+			user << "The metal cover has been removed. A wrench will remove the anchor bolts."
 		if(5)
-			usr << "The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines."
+			user << "The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines."
 		if(6)
-			usr << "Hydraulic lines are gone. A crowbar will pry off the inner sheath."
+			user << "Hydraulic lines are gone. A crowbar will pry off the inner sheath."
 		if(7)
-			usr << "The inner sheath is gone. A welding tool should finish off this wall."
+			user << "The inner sheath is gone. A welding tool should finish off this wall."
 
 #define BULLETHOLE_STATES 10 //How many variations of bullethole patterns there are
 #define BULLETHOLE_MAX 8 * 3 //Maximum possible bullet holes.

@@ -209,11 +209,10 @@
 	A.ShiftClick(src)
 	return
 
-/atom/proc/ShiftClick(var/mob/user)
+/atom/proc/ShiftClick(mob/user)
 	if(user.client && user.client.eye == user)
-		examine()
+		examine(user)
 		user.face_atom(src)
-	return
 
 /*
 	Ctrl click

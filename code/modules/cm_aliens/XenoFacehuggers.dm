@@ -97,13 +97,13 @@
 		user << "<span class='warning'>The facehugger refuses to attach.</span>"
 		..()
 
-/obj/item/clothing/mask/facehugger/examine()
+/obj/item/clothing/mask/facehugger/examine(mob/user)
 	..()
 	switch(stat)
-		if(DEAD, UNCONSCIOUS) usr << "<span class='danger'>\The [src] is not moving.</span>"
-		if(CONSCIOUS) usr << "<span class='danger'>\The [src] seems to be active.</span>"
+		if(DEAD, UNCONSCIOUS) user << "<span class='danger'>[src] is not moving.</span>"
+		if(CONSCIOUS) user << "<span class='danger'>[src] seems to be active.</span>"
 	if(sterile)
-		usr << "<span class='danger'>It looks like the proboscis has been removed.</span>"
+		user << "<span class='danger'>It looks like the proboscis has been removed.</span>"
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/clothing/mask/facehugger/W, mob/user)
 	if(istype(W)) return

@@ -209,10 +209,10 @@
 		burst_delay = config.min_fire_delay
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 19, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
-	examine()
+	examine(mob/user)
 		..()
-		usr << "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]"
-		usr << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
+		user << "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]"
+		user << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
 
 	unique_action(mob/user)
 		toggle_restriction(user)
@@ -318,12 +318,11 @@
 		grenades += new /obj/item/weapon/grenade/explosive(src)
 		grenades += new /obj/item/weapon/grenade/explosive(src)
 
-	examine()
-		set src in view()
+	examine(mob/user)
 		..()
 		if(grenades.len)
-			if (!(usr in view(2)) && usr!=src.loc) return
-			usr << "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades."
+			if (get_dist(user, src) > 2 && user != loc) return
+			user << "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades."
 
 	attackby(obj/item/I, mob/user)
 		if((istype(I, /obj/item/weapon/grenade)))
@@ -475,11 +474,11 @@
 		puff = new /datum/effect/effect/system/smoke_spread()
 		puff.attach(src)
 
-	examine()
+	examine(mob/user)
 		..()
 
-		if(current_mag.current_rounds)  usr << "It's ready to rocket."
-		else 							usr << "It's empty."
+		if(current_mag.current_rounds)  user << "It's ready to rocket."
+		else 							user << "It's empty."
 
 
 	able_to_fire(mob/living/carbon/human/user as mob)

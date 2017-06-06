@@ -82,7 +82,7 @@ Items and objects that are very hard to get to and do not affect balance.
 		else
 			user << "\red \the [W] does not fit inside that rectangular hole."
 
-	examine()
+	examine(mob/user)
 		desc = state?"<font size='4' color='red'>NO BUGS</font>":"A strange small metal object with a button in the middle and rectangular hole on the side..."
 		..()
 

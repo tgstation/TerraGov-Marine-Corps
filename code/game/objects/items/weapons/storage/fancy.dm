@@ -29,15 +29,14 @@
 			update_icon(1)
 
 
-	examine()
-		set src in oview(1)
+	examine(mob/user)
 		..()
 		if(contents.len <= 0)
-			usr << "There are no [src.icon_type]s left in the box."
+			user << "There are no [src.icon_type]s left in the box."
 		else if(contents.len == 1)
-			usr << "There is one [src.icon_type] left in the box."
+			user << "There is one [src.icon_type] left in the box."
 		else
-			usr << "There are [src.contents.len] [src.icon_type]s in the box."
+			user << "There are [src.contents.len] [src.icon_type]s in the box."
 
 
 /*
