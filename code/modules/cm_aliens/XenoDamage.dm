@@ -18,23 +18,35 @@
 				return
 			b_loss += rand(45, 55)
 			f_loss += rand(45, 65)
-			if(mob_size < MOB_SIZE_BIG) //Big Xenos don't get stunned
-				Weaken(12)
+
+			if (!isXenoRavager(src)) //Crushers and Ravagers don't get stunned, Queens have resistance to weaken.
+				if (isXenoQueen(src))
+					Weaken(4)
+				else
+					Weaken(12)
+
 			if(warding_aura)
 				b_loss = round(b_loss / 2)
+
 			apply_damage(b_loss, BRUTE)
 			apply_damage(f_loss, BURN)
 			updatehealth()
+
 			return
 		if(3.0)
 			if(is_robotic || isXenoCrusher(src)) //Robots and crushers are immune.
 				return
 			b_loss += rand(20, 40)
 			f_loss += rand(25, 50)
-			if(mob_size < MOB_SIZE_BIG) //Big Xenos don't get stunned
-				if(prob(40))
-					Paralyse(2)
-				Weaken(rand(4, 6))
+
+			if (!isXenoRavager(src)) //Crushers and Ravagers don't get stunned, Queens have resistance to weaken.
+				if (isXenoQueen(src))
+					Weaken(4)
+				else
+					if(prob(40))
+						Paralyse(2)
+					Weaken(rand(4, 6))
+
 			if(warding_aura)
 				b_loss = round(b_loss / 2)
 			apply_damage(b_loss, BRUTE)
