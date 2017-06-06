@@ -42,7 +42,9 @@
 					/obj/item/clothing/shoes/marine = 5,
 					/obj/item/clothing/under/marine = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
-					/obj/item/clothing/head/helmet/marine = 10
+					/obj/item/clothing/head/helmet/marine = 10,
+
+					/obj/item/attachable/flashlight = 10
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,

@@ -1,5 +1,5 @@
 /obj/item/weapon/combat_knife
-	name = "\improper M11 combat bayonet"
+	name = "\improper M11 combat knife"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "knife"

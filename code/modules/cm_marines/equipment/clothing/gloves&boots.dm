@@ -148,7 +148,7 @@
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 	siemens_coefficient = 0.7
-	var/obj/item/weapon/combat_knife/knife
+	var/obj/item/weapon/knife
 	var/armor_stage = 0
 
 /obj/item/clothing/shoes/marinechief
@@ -236,7 +236,7 @@
 		if(knife && src.loc == M && !M.stat) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
-				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
+				M << "<span class='notice'>You slide [knife] out of [src].</span>"
 				playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 				knife = 0
 				update_icon()
@@ -244,7 +244,7 @@
 		..()
 
 	attackby(var/obj/item/I, var/mob/living/M)
-		if(istype(I, /obj/item/weapon/combat_knife))
+		if(istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/throwing_knife))
 			if(knife)	return
 			M.drop_held_item()
 			knife = I

@@ -317,7 +317,11 @@ should be alright.
 	overlays -= I
 	cdel(I)
 	if(A) //Only updates if the attachment exists for that slot.
-		I = rnew(/image/reusable, list(A.icon,src, ( (slot == "rail" && flags_gun_features & GUN_FLASHLIGHT_ON) ? "[A.icon_state]-on" : A.icon_state )))
+		var/item_icon = A.icon_state
+		if(A.attach_icon) item_icon = A.attach_icon
+		if(slot == "rail" && (flags_gun_features & GUN_FLASHLIGHT_ON))
+			item_icon = "[item_icon]-on"
+		I = rnew(/image/reusable, list(A.icon,src, item_icon))
 		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
 		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
 		attachable_overlays[slot] = I
