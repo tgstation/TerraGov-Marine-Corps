@@ -75,6 +75,6 @@
 	else
 		return..()
 
-/obj/machinery/bioprinter/examine()
+/obj/machinery/bioprinter/examine(mob/user)
 	..()
-	usr << "It has [stored_matter] matter and [stored_metal] metal left."
+	user << "It has [stored_matter] matter and [stored_metal] metal left."

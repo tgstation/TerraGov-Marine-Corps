@@ -93,9 +93,9 @@
 		icon_state = "evidenceobj"
 	return
 
-/obj/item/weapon/evidencebag/examine()
+/obj/item/weapon/evidencebag/examine(mob/user)
 	..()
-	if (stored_item) stored_item.examine()
+	if (stored_item) stored_item.examine(user)
 
 /obj/item/weapon/storage/box/evidence
 	name = "evidence bag box"

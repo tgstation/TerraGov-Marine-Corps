@@ -62,9 +62,9 @@
 		user.temp_drop_inv_item(src)
 		del(src)
 
-/obj/item/device/modkit/examine()
+/obj/item/device/modkit/examine(mob/user)
 	..()
-	usr << "It looks as though it modifies hardsuits to fit [target_species] users."
+	user << "It looks as though it modifies hardsuits to fit [target_species] users."
 
 /obj/item/device/modkit/tajaran
 	name = "tajaran hardsuit modification kit"

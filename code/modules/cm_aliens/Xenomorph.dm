@@ -196,29 +196,28 @@ var/global/hive_orders = "" //What orders should the hive have
 	real_name = name
 	if(mind) mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
 
-/mob/living/carbon/Xenomorph/examine()
-	if(!usr) return //Somehow?
+/mob/living/carbon/Xenomorph/examine(mob/user)
 	..()
-	if(isXeno(usr) && caste_desc)
-		usr << caste_desc
+	if(isXeno(user) && caste_desc)
+		user << caste_desc
 
 	if(stat == DEAD)
-		usr << "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
+		user << "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
 	else if(stat == UNCONSCIOUS)
-		usr << "It quivers a bit, but barely moves."
+		user << "It quivers a bit, but barely moves."
 	else
 		var/percent = (health / maxHealth * 100)
 		switch(percent)
 			if(95 to 101)
-				usr << "It looks quite healthy."
+				user << "It looks quite healthy."
 			if(75 to 94)
-				usr << "It looks slightly injured."
+				user << "It looks slightly injured."
 			if(50 to 74)
-				usr << "It looks injured."
+				user << "It looks injured."
 			if(25 to 49)
-				usr << "It bleeds with sizzling wounds."
+				user << "It bleeds with sizzling wounds."
 			if(1 to 24)
-				usr << "It is heavily injured and limping badly."
+				user << "It is heavily injured and limping badly."
 	return
 
 /mob/living/carbon/Xenomorph/Del()

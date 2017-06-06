@@ -40,21 +40,18 @@
 	ghostize()
 	del src
 
-/mob/living/simple_animal/construct/examine()
-	set src in oview()
-
+/mob/living/simple_animal/construct/examine(mob/user)
 	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
-	if (src.health < src.maxHealth)
+	if (health < maxHealth)
 		msg += "<span class='warning'>"
-		if (src.health >= src.maxHealth/2)
+		if (health >= maxHealth/2)
 			msg += "It looks slightly dented.\n"
 		else
 			msg += "<B>It looks severely dented!</B>\n"
 		msg += "</span>"
 	msg += "*---------*</span>"
 
-	usr << msg
-	return
+	user << msg
 
 
 /mob/living/simple_animal/construct/attack_animal(mob/living/M as mob)

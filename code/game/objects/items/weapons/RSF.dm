@@ -16,10 +16,9 @@ RSF
 	var/mode = 1
 	w_class = 3.0
 
-/obj/item/weapon/rsf/examine()
-	set src in view(1)
+/obj/item/weapon/rsf/examine(mob/user)
 	..()
-	usr << "It currently holds [stored_matter]/30 fabrication-units."
+	user << "It currently holds [stored_matter]/30 fabrication-units."
 
 /obj/item/weapon/rsf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()

@@ -178,12 +178,12 @@
 		if(used > max_uses)
 			open()
 
-	examine()
+	examine(mob/user)
 		..()
 		switch(used)
-			if(0 to 600) usr << "It looks new."
-			if(601 to 1200) usr << "It looks a bit used."
-			if(1201 to 1800) usr << "It looks really used."
+			if(0 to 600) user << "It looks new."
+			if(601 to 1200) user << "It looks a bit used."
+			if(1201 to 1800) user << "It looks really used."
 
 
 /obj/item/used_stasis_bag

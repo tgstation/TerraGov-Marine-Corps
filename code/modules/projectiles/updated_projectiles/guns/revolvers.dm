@@ -29,9 +29,9 @@
 		recoil = config.min_recoil_value
 		replace_cylinder(current_mag.current_rounds)
 
-	examine()
+	examine(mob/user)
 		..()
-		usr << "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]"
+		user << "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]"
 
 	update_icon() //Special snowflake update icon.
 		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"

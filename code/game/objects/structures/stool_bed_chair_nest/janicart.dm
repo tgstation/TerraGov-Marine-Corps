@@ -19,11 +19,10 @@
 	create_reagents(100)
 
 
-/obj/structure/stool/bed/chair/janicart/examine()
-	set src in usr
-	usr << "\icon[src] This [callme] contains [reagents.total_volume] unit\s of water!"
+/obj/structure/stool/bed/chair/janicart/examine(mob/user)
+	user << "\icon[src] This [callme] contains [reagents.total_volume] unit\s of water!"
 	if(mybag)
-		usr << "\A [mybag] is hanging on the [callme]."
+		user << "\A [mybag] is hanging on the [callme]."
 
 
 /obj/structure/stool/bed/chair/janicart/attackby(obj/item/I, mob/user)

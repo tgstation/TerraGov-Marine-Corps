@@ -43,15 +43,13 @@
 		emagged = 2
 		log_and_message_admins("emagged [src]'s inner circuits")
 
-/obj/machinery/bot/examine()
-	set src in view()
+/obj/machinery/bot/examine(mob/user)
 	..()
-	if (src.health < maxhealth)
-		if (src.health > maxhealth/3)
-			usr << "<span class='warning'>[src]'s parts look loose.</span>"
+	if (health < maxhealth)
+		if (health > maxhealth/3)
+			user << "<span class='warning'>[src]'s parts look loose.</span>"
 		else
-			usr << "<span class='danger'>[src]'s parts look very loose!</span>"
-	return
+			user << "<span class='danger'>[src]'s parts look very loose!</span>"
 
 /obj/machinery/bot/attack_animal(var/mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)	return

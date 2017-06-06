@@ -18,7 +18,7 @@
 	return 0
 
 // Hide popout menu verbs
-/mob/aiEye/examine()
+/mob/aiEye/atom_examine()
 	set popup_menu = 0
 	set src = usr.contents
 	return 0

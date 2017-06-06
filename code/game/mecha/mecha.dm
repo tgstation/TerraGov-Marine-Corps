@@ -166,8 +166,7 @@
 	else
 		return 0
 
-/obj/mecha/examine()
-	set src in view()
+/obj/mecha/examine(mob/user)
 	..()
 	var/integrity = health/initial(health)*100
 	switch(integrity)
@@ -182,10 +181,9 @@
 		else
 			usr << "It's falling apart."
 	if(equipment && equipment.len)
-		usr << "It's equipped with:"
+		user << "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			usr << "\icon[ME] [ME]"
-	return
+			user << "\icon[ME] [ME]"
 
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.

@@ -157,12 +157,10 @@
 	return
 
 
-/obj/item/weapon/wrapping_paper/examine()
-	set src in oview(1)
-
+/obj/item/weapon/wrapping_paper/examine(mob/user)
 	..()
-	usr << text("There is about [] square units of paper left!", src.amount)
-	return
+	user << "There is about [amount] square units of paper left!"
+
 
 /obj/item/weapon/wrapping_paper/attack(mob/target as mob, mob/user as mob)
 	if (!istype(target, /mob/living/carbon/human)) return

@@ -95,11 +95,9 @@
 	user << "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>"
 
 
-/obj/item/weapon/reagent_containers/spray/examine()
-	set src in usr
+/obj/item/weapon/reagent_containers/spray/examine(mob/user)
 	..()
-	usr << "[round(src.reagents.total_volume)] units left."
-	return
+	user << "[round(reagents.total_volume)] units left."
 
 /obj/item/weapon/reagent_containers/spray/verb/empty()
 
@@ -143,10 +141,10 @@
 	..()
 	reagents.add_reagent("condensedcapsaicin", 40)
 
-/obj/item/weapon/reagent_containers/spray/pepper/examine()
+/obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
 	..()
-	if(get_dist(usr,src) <= 1)
-		usr << "The safety is [safety ? "on" : "off"]."
+	if(get_dist(user,src) <= 1)
+		user << "The safety is [safety ? "on" : "off"]."
 
 /obj/item/weapon/reagent_containers/spray/pepper/attack_self(var/mob/user)
 	safety = !safety

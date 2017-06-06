@@ -127,7 +127,7 @@
 	icon_state = (!current_mag || current_mag.current_rounds <= 0) ? icon_state + "_e" : copytext(icon_state, 1, -2)
 	update_mag_overlay()
 
-/obj/item/weapon/gun/examine()
+/obj/item/weapon/gun/examine(mob/user)
 	..()
 	if( !(flags_gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
 
@@ -144,7 +144,7 @@
 				if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
 				else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
 			else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
-		usr << dat
+		user << dat
 
 /obj/item/weapon/gun/wield(var/mob/user)
 

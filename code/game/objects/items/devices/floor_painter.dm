@@ -204,6 +204,6 @@
 				if("P (OP)")
 					mode = "white_halfp"
 
-/obj/item/device/floor_painter/examine()
+/obj/item/device/floor_painter/examine(mob/user)
 	..()
-	usr << "It is in [mode_nice] mode."
+	user << "It is in [mode_nice] mode."

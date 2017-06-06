@@ -228,13 +228,11 @@
 		else
 			..()
 
-	examine()
-		set src in oview(1)
+	examine(mob/user)
 		..()
-
-		if (get_dist(usr, src) <= 1)
+		if (get_dist(user, src) <= 1)
 			if(pcell)
-				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 250."
+				user << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 250."
 
 /obj/item/smartgun_powerpack/snow
 	icon = 'icons/mob/back.dmi'

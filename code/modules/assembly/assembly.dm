@@ -117,15 +117,13 @@
 		return
 
 
-	examine()
-		set src in view()
+	examine(mob/user)
 		..()
-		if((in_range(src, usr) || loc == usr))
+		if((in_range(src, user) || loc == usr))
 			if(secured)
-				usr << "\The [src] is ready!"
+				user << "[src] is ready!"
 			else
-				usr << "\The [src] can be attached!"
-		return
+				user << "[src] can be attached!"
 
 
 	attack_self(mob/user as mob)
