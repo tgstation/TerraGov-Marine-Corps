@@ -310,7 +310,7 @@
 		if(!S || S.field_type != get_responsive_reagent(F.find_type))
 			if(X)
 				visible_message("\red<b>[pick("[display_name] crumbles away into dust","[display_name] breaks apart")].</b>")
-				del(X)
+				cdel(X)
 
 	finds.Remove(F)
 

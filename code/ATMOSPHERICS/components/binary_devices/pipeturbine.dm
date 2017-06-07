@@ -38,20 +38,18 @@
 			if(WEST)
 				initialize_directions = NORTH|SOUTH
 
-	Del()
-		loc = null
-
+	Dispose()
 		if(node1)
 			node1.disconnect(src)
-			del(network1)
+			cdel(network1)
+			network1 = null
 		if(node2)
 			node2.disconnect(src)
-			del(network2)
-
+			cdel(network2)
+			network2 = null
 		node1 = null
 		node2 = null
-
-		..()
+		. = ..()
 
 	process()
 		..()
@@ -110,10 +108,10 @@
 			else
 				if(node1)
 					node1.disconnect(src)
-					del(network1)
+					cdel(network1)
 				if(node2)
 					node2.disconnect(src)
-					del(network2)
+					cdel(network2)
 
 				node1 = null
 				node2 = null
@@ -216,11 +214,11 @@
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
-			del(network1)
+			cdel(network1)
 			node1 = null
 
 		else if(reference==node2)
-			del(network2)
+			cdel(network2)
 			node2 = null
 
 		return null

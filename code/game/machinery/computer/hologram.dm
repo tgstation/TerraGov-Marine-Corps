@@ -64,45 +64,39 @@
 			if (src.projector.hologram)
 				src.projector.icon_state = "hologram0"
 				//src.projector.hologram = null
-				del(src.projector.hologram)
+				cdel(src.projector.hologram)
 			else
 				src.projector.hologram = new(src.projector.loc)
 				src.projector.hologram.icon = 'icons/mob/human.dmi'
 				src.projector.hologram.icon_state = "body_m_s"
 				src.projector.icon_state = "hologram1"
 				src.render()
-		else
-			if (href_list["h_r"])
-				if (src.projector.hologram)
-					src.h_r += text2num(href_list["h_r"])
-					src.h_r = min(max(src.h_r, 0), 255)
-					render()
-			else
-				if (href_list["h_g"])
-					if (src.projector.hologram)
-						src.h_g += text2num(href_list["h_g"])
-						src.h_g = min(max(src.h_g, 0), 255)
-						render()
-				else
-					if (href_list["h_b"])
-						if (src.projector.hologram)
-							src.h_b += text2num(href_list["h_b"])
-							src.h_b = min(max(src.h_b, 0), 255)
-							render()
-					else
-						if (href_list["light"])
-							if (src.projector.hologram)
-								src.lumens += text2num(href_list["light"])
-								src.lumens = min(max(src.lumens, -185.0), 35)
-								render()
-						else
-							if (href_list["reset"])
-								if (src.projector.hologram)
-									src.lumens = 0
-									render()
-							else
-								if (href_list["temp"])
-									src.temp = null
+		else if (href_list["h_r"])
+			if (src.projector.hologram)
+				src.h_r += text2num(href_list["h_r"])
+				src.h_r = min(max(src.h_r, 0), 255)
+				render()
+		else if (href_list["h_g"])
+			if (src.projector.hologram)
+				src.h_g += text2num(href_list["h_g"])
+				src.h_g = min(max(src.h_g, 0), 255)
+				render()
+		else if (href_list["h_b"])
+			if (src.projector.hologram)
+				src.h_b += text2num(href_list["h_b"])
+				src.h_b = min(max(src.h_b, 0), 255)
+				render()
+		else if (href_list["light"])
+			if (src.projector.hologram)
+				src.lumens += text2num(href_list["light"])
+				src.lumens = min(max(src.lumens, -185.0), 35)
+				render()
+		else if (href_list["reset"])
+			if (src.projector.hologram)
+				src.lumens = 0
+				render()
+		else if (href_list["temp"])
+			src.temp = null
 		for(var/mob/M in viewers(1, src))
 			if ((M.client && M.machine == src))
 				src.show_console(M)

@@ -24,8 +24,9 @@
 		T.y += rand(-6,6)
 		tribesmen += T
 
-/obj/effect/jungle_tribe_spawn/Del()
+/obj/effect/jungle_tribe_spawn/Dispose()
 	processing_objects.Remove(src)
+	. = ..()
 
 /obj/effect/jungle_tribe_spawn/process()
 	set background = 1

@@ -75,10 +75,9 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	..()
 	return
 
-/obj/machinery/message_server/Del()
+/obj/machinery/message_server/Dispose()
 	message_servers -= src
-	..()
-	return
+	. = ..()
 
 /obj/machinery/message_server/proc/GenerateKey()
 	//Feel free to move to Helpers.
@@ -122,7 +121,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		istype(O,/obj/item/weapon/circuitboard/message_monitor))
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
 		user.temp_drop_inv_item(O)
-		del(O)
+		cdel(O)
 		user << "You install additional memory and processors into message server. Its filtering capabilities have been enhanced."
 	else
 		..(O, user)
@@ -224,10 +223,10 @@ var/obj/machinery/blackbox_recorder/blackbox
 /obj/machinery/blackbox_recorder/New()
 	if(blackbox)
 		if(istype(blackbox,/obj/machinery/blackbox_recorder))
-			del(src)
+			cdel(src)
 	blackbox = src
 
-/obj/machinery/blackbox_recorder/Del()
+/obj/machinery/blackbox_recorder/Dispose()
 	var/turf/T = locate(1,1,2)
 	if(T)
 		blackbox = null
@@ -246,7 +245,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 		BR.messages_admin = messages_admin
 		if(blackbox != BR)
 			blackbox = BR
-	..()
+	. = ..()
 
 /obj/machinery/blackbox_recorder/proc/find_feedback_datum(var/variable)
 	for(var/datum/feedback_variable/FV in feedback)

@@ -69,15 +69,15 @@
 /obj/item/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			if (prob(5))
-				del(src)
+				cdel(src)
 				return
 		else
 	return
@@ -135,9 +135,13 @@ cases. Override_icon_state should be a list.*/
 		drag_delay = 1
 
 /obj/item/Dispose()
+	flags_atom &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
+	if(ismob(loc))
+		var/mob/M = loc
+		M.temp_drop_inv_item(src, TRUE) //unequip before deletion to clear possible item references on the mob.
 	for(var/X in actions)
 		cdel(X)
-	return ..()
+	. = ..()
 
 /obj/item/examine(mob/user)
 	var/size

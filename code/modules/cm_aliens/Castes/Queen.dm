@@ -124,7 +124,7 @@
 	M.evolution_allowed = 1
 	visible_message("<span class='xenonotice'>\The [M] greedily gulps down \the [src].", \
 	"<span class='xenonotice'>You greedily gulp down \the [src].")
-	del(src)
+	cdel(src)
 
 /mob/living/carbon/Xenomorph/Queen/proc/produce_jelly()
 

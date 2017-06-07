@@ -117,7 +117,7 @@
 			if(assembly)
 				assembly.loc = src.loc
 				assembly.state = 1
-			del(src)
+			cdel(src)
 
 
 	// OTHER
@@ -166,7 +166,7 @@
 		playsound(loc, 'sound/weapons/blade1.ogg', 25, 1)
 		playsound(loc, "sparks", 50, 1)
 		visible_message("\blue The camera has been sliced apart by [] with an energy blade!")
-		del(src)
+		cdel(src)
 	else
 		..()
 	return

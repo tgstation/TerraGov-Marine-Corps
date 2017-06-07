@@ -40,10 +40,6 @@
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
 
-/obj/item/clothing/mask/facehugger/Del()
-
-	return ..()
-
 /obj/item/clothing/mask/facehugger/dropped()
 	set waitfor = 0
 	sleep(2)

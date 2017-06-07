@@ -37,7 +37,7 @@
 				var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
 				new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 				new_window_frame.dir = dir
-		del(src)
+		cdel(src)
 	else
 		if(make_hit_sound)
 			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
@@ -205,7 +205,7 @@
 			var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
 			new_window_frame.icon_state = "[icon_state]_frame"
 			new_window_frame.dir = dir
-			del(src)
+			cdel(src)
 	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -266,11 +266,11 @@
 	update_nearby_tiles(need_rebuild = 1)
 	update_nearby_icons()
 
-/obj/structure/window/Del()
+/obj/structure/window/Dispose()
 	density = 0
 	update_nearby_tiles()
 	update_nearby_icons()
-	..()
+	. = ..()
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
@@ -404,14 +404,14 @@
 	update_icon()
 		return
 
-/obj/structure/window/reinforced/pressure/Del()
+/obj/structure/window/reinforced/pressure/Dispose()
 	for(var/obj/machinery/door/poddoor/shutters/pressure/P in src.loc )
 		P.close(7)
 	density = 0
 	update_nearby_tiles()
 	playsound(src, "shatter", 70, 1)
 	update_nearby_icons()
-	..()
+	. = ..()
 
 /obj/structure/window/reinforced/pressure/attackby(obj/item/W, mob/user) //no deconstruction
 	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)

@@ -49,10 +49,10 @@
 	SetLuminosity(round(potency/15))
 	lastTick = world.timeofday
 
-/obj/effect/glowshroom/Del()
+/obj/effect/glowshroom/Dispose()
 	processing_objects -= src
 	SetLuminosity(0)
-	..()
+	. = ..()
 
 /obj/effect/glowshroom/process()
 	if(!spreaded)
@@ -144,15 +144,15 @@
 /obj/effect/glowshroom/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			if (prob(5))
-				del(src)
+				cdel(src)
 				return
 		else
 	return
@@ -164,4 +164,4 @@
 
 /obj/effect/glowshroom/proc/CheckEndurance()
 	if(endurance <= 0)
-		del(src)
+		cdel(src)

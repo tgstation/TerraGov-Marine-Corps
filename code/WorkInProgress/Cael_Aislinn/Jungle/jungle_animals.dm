@@ -10,7 +10,7 @@
 	if(!spawn_type)
 		var/new_type = pick(typesof(/obj/effect/landmark/animal_spawner) - /obj/effect/landmark/animal_spawner)
 		new new_type(get_turf(src))
-		del(src)
+		cdel(src)
 
 	processing_objects.Add(src)
 	spawned_animal = new spawn_type(get_turf(src))
@@ -23,8 +23,9 @@
 		spawn(rand(1200,2400))
 			spawned_animal.loc = locate(src.x + rand(-12,12), src.y + rand(-12,12), src.z)
 
-/obj/effect/landmark/animal_spawner/Del()
+/obj/effect/landmark/animal_spawner/Dispose()
 	processing_objects.Remove(src)
+	. = ..()
 
 /obj/effect/landmark/animal_spawner/panther
 	name = "panther spawner"

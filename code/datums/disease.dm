@@ -126,7 +126,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 			source = affected_mob
 		else //no source and no mob affected. Rogue disease. Break
 			return
-	
+
 	if(affected_mob.reagents != null)
 		if(affected_mob)
 			if(affected_mob.reagents.has_reagent("spaceacillin"))
@@ -158,7 +158,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 			if(D != src)
 				if(IsSame(D))
 					//error("Deleting [D.name] because it's the same as [src.name].")
-					del(D) // if there are somehow two viruses of the same kind in the system, delete the other one
+					cdel(D) // if there are somehow two viruses of the same kind in the system, delete the other one
 
 	if(holder == affected_mob)
 		if(affected_mob.stat != DEAD) //he's alive
@@ -183,7 +183,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 		/*if(istype(src, /datum/disease/alien_embryo))	//Get rid of the infection flag if it's a xeno embryo.
 			affected_mob.status_flags &= ~(XENO_HOST)*/
 		affected_mob.viruses -= src		//remove the datum from the list
-	del(src)	//delete the datum to stop it processing
+	cdel(src)	//delete the datum to stop it processing
 	return
 
 
@@ -201,7 +201,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 /datum/disease/proc/Copy(var/process = 0)
 	return new type(process, src)
 
-/*
-/datum/disease/Del()
-	active_diseases.Remove(src)
-*/
+
+/datum/disease/Dispose()
+	. = ..()
+	return TA_PURGE_ME_NOW //immediate deletion

@@ -12,7 +12,7 @@
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
-		del(t)
+		cdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
@@ -47,8 +47,8 @@
 	O << "<B>You are now [O]. </B>"
 
 	spawn(0)//To prevent the proc from returning null.
-		del(src)
-	del(animation)
+		cdel(src)
+	cdel(animation)
 
 	return O
 
@@ -60,7 +60,7 @@
 	if (monkeyizing)
 		return
 	for(var/t in organs)
-		del(t)
+		cdel(t)
 
 	return ..()
 
@@ -124,7 +124,7 @@
 
 	O.rename_self("ai",1)
 	. = O
-	del(src)
+	cdel(src)
 
 
 //human -> robot
@@ -139,7 +139,7 @@
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
-		del(t)
+		cdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 
@@ -177,7 +177,7 @@
 	O.Namepick()
 
 	spawn(0)//To prevent the proc from returning null.
-		del(src)
+		cdel(src)
 	return O
 
 //human -> alien
@@ -192,7 +192,7 @@
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
-		del(t)
+		cdel(t)
 
 //	var/alien_caste = "larva"
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
@@ -202,7 +202,7 @@
 
 	new_xeno << "<B>You are now an alien.</B>"
 	spawn(0)//To prevent the proc from returning null.
-		del(src)
+		cdel(src)
 	return
 
 //human -> alien drone
@@ -217,7 +217,7 @@
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
-		del(t)
+		cdel(t)
 
 //	var/alien_caste = "Drone"
 	var/mob/living/carbon/Xenomorph/Drone/new_xeno = new /mob/living/carbon/Xenomorph/Drone(loc)
@@ -228,7 +228,7 @@
 	new_xeno << "<b>You are an alien!</b>"
 	new_xeno << "<b>Use Say \":a message\" to communicate with other aliens.</b>"
 	spawn(0)//To prevent the proc from returning null.
-		del(src)
+		cdel(src)
 	return
 
 /mob/living/carbon/human/proc/corgize()
@@ -242,7 +242,7 @@
 	icon = null
 	invisibility = 101
 	for(var/t in organs)	//this really should not be necessary
-		del(t)
+		cdel(t)
 
 	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
 	new_corgi.a_intent = "hurt"
@@ -250,7 +250,7 @@
 
 	new_corgi << "<B>You are now a Corgi. Yap Yap!</B>"
 	spawn(0)//To prevent the proc from returning null.
-		del(src)
+		cdel(src)
 	return
 
 /mob/living/carbon/human/Animalize()
@@ -274,7 +274,7 @@
 	invisibility = 101
 
 	for(var/t in organs)
-		del(t)
+		cdel(t)
 
 	var/mob/new_mob = new mobpath(src.loc)
 
@@ -284,7 +284,7 @@
 
 	new_mob << "You suddenly feel more... animalistic."
 	spawn()
-		del(src)
+		cdel(src)
 	return
 
 /mob/proc/Animalize()
@@ -302,7 +302,7 @@
 	new_mob.a_intent = "hurt"
 	new_mob << "You feel more... animalistic"
 
-	del(src)
+	cdel(src)
 
 /* Certain mob types have problems and should not be allowed to be controlled by players.
  *

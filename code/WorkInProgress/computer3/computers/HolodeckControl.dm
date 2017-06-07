@@ -159,7 +159,7 @@
 		if(!silent)
 			var/obj/oldobj = obj
 			obj.visible_message("The [oldobj.name] fades away!")
-		del(obj)
+		cdel(obj)
 
 	proc/checkInteg(var/area/A)
 		for(var/turf/T in A)
@@ -212,10 +212,10 @@
 			derez(item)
 
 		for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
-			del(B)
+			cdel(B)
 
 		for(var/mob/living/simple_animal/hostile/carp/C in linkedholodeck)
-			del(C)
+			cdel(C)
 
 		holographic_items = A.copy_contents_to(linkedholodeck , 1)
 

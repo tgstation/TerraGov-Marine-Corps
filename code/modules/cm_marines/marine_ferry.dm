@@ -415,7 +415,7 @@
 
 		for(var/obj/structure/mineral_door/resin/R in T)
 			if(istype(R))
-				del(R) //This is all that it's dismantle() does so this is okay
+				cdel(R) //This is all that it's dismantle() does so this is okay
 				break
 
 /datum/shuttle/ferry/marine/proc/shake_cameras(var/list/L)

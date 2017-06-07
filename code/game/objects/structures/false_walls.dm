@@ -19,10 +19,9 @@
 	update_icon()
 	..()
 
-/obj/structure/falsewall/Del()
-
+/obj/structure/falsewall/Dispose()
 	relativewall_neighbours()
-	..()
+	. = ..()
 
 
 /obj/structure/falsewall/relativewall()
@@ -91,7 +90,7 @@
 				T.ChangeTurf(/turf/simulated/wall)
 			else
 				T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
-			del(src)
+			cdel(src)
 
 		if( istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
@@ -103,7 +102,7 @@
 				if(mineral != "phoron")//Stupid shit keeps me from pushing the attackby() to phoron walls -Sieve
 					T = get_turf(src)
 					T.attackby(W,user)
-				del(src)
+				cdel(src)
 	else
 		user << "\blue You can't reach, close it first!"
 
@@ -116,7 +115,7 @@
 		if(mineral != "phoron")
 			T = get_turf(src)
 			T.attackby(W,user)
-		del(src)
+		cdel(src)
 
 	//DRILLING
 	else if (istype(W, /obj/item/weapon/pickaxe/diamonddrill))
@@ -127,7 +126,7 @@
 			T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
 		T = get_turf(src)
 		T.attackby(W,user)
-		del(src)
+		cdel(src)
 
 	else if( istype(W, /obj/item/weapon/melee/energy/blade) )
 		var/turf/T = get_turf(src)
@@ -138,7 +137,7 @@
 		if(mineral != "phoron")
 			T = get_turf(src)
 			T.attackby(W,user)
-		del(src)
+		cdel(src)
 
 /obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
 	..()

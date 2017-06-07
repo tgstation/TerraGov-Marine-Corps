@@ -89,11 +89,11 @@
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			if (prob(25))
@@ -516,9 +516,11 @@
 				user << "\blue You successfully pull the coin out before the [src] could swallow it."
 			else
 				user << "\blue You weren't able to pull the coin out fast enough, the machine ate it, string and all."
-				del(coin)
+				cdel(coin)
+				coin = null
 		else
-			del(coin)
+			cdel(coin)
+			coin = null
 
 	vend_ready = 0 //One thing at a time!!
 	R.amount--
@@ -571,7 +573,7 @@
 				if(item_to_stock.flags_atom & WIELDED)
 					item_to_stock.unwield(user)
 				user.temp_drop_inv_item(item_to_stock)
-			del(item_to_stock)
+			cdel(item_to_stock)
 			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
 			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++

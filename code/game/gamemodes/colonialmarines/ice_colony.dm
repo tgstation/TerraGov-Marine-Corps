@@ -63,7 +63,7 @@
 	new_xeno.update_icons()
 
 	if(original) //Just to be sure.
-		del(original)
+		cdel(original)
 */
 //Start the Survivor players. This must go post-setup so we already have a body.
 /datum/game_mode/ice_colony/transform_survivor(var/datum/mind/ghost)

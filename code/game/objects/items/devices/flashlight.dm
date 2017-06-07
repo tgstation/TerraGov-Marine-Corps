@@ -24,19 +24,12 @@
 		icon_state = initial(icon_state)
 		SetLuminosity(0)
 
-/obj/item/device/flashlight/Del()
-	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
-	else
-		SetLuminosity(0)
-	..()
-
 /obj/item/device/flashlight/Dispose()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-brightness_on)
 	else
 		SetLuminosity(0)
-	..()
+	. = ..()
 
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)

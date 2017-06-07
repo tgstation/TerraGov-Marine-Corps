@@ -263,10 +263,10 @@
 	attackby(var/obj/D, mob/user as mob)
 		if(isprox(D))
 			user << "You add [D] to [src]."
-			del(D)
+			cdel(D)
 			user.put_in_hands(new /obj/item/weapon/bucket_sensor)
 			user.drop_inv_item_on_ground(src)
-			del(src)
+			cdel(src)
 
 	update_icon()
 		overlays.Cut()

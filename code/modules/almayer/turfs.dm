@@ -66,7 +66,7 @@
 	. = ..()
 
 	loc.overlays += src
-	del src
+	cdel(src)
 
 /turf/simulated/shuttle/wall/dropship1
 	name = "wall"
@@ -209,11 +209,11 @@
 /obj/structure/window/reinforced/almayer/update_icon()
 	relativewall()
 
-/obj/structure/window/reinforced/almayer/Del()
+/obj/structure/window/reinforced/almayer/Dispose()
 	density = 0
 	update_nearby_tiles()
 	update_nearby_icons()
-	..()
+	. = ..()
 
 /obj/structure/window_frame
 	name = "window frame"
@@ -257,7 +257,7 @@
 			"<span class='notice'>You install a new window on the frame.</span>")
 			sheet.use(2)
 			new window_type(loc) //This only works on Almayer windows!
-			del(src)
+			cdel(src)
 
 
 /obj/structure/window_frame/almayer

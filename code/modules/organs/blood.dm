@@ -329,7 +329,7 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 		if(drips.len >= 5)
 			//TODO: copy all virus data from drips to new splatter?
 			for(var/obj/effect/decal/cleanable/blood/drip/drop in drips)
-				del drop
+				cdel(drop)
 		else
 			decal_type = /obj/effect/decal/cleanable/blood/drip
 

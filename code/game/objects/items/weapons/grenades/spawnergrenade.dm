@@ -29,7 +29,7 @@
 
 				// Spawn some hostile syndicate critters
 
-		del(src)
+		cdel(src)
 		return
 
 /obj/item/weapon/grenade/spawnergrenade/manhacks

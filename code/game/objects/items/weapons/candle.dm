@@ -17,12 +17,12 @@
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
-/obj/item/weapon/flame/candle/Del()
+/obj/item/weapon/flame/candle/Dispose()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-CANDLE_LUM)
 	else
 		SetLuminosity(0)
-	..()
+	. = ..()
 
 /obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -61,7 +61,7 @@
 		new/obj/item/trash/candle(src.loc)
 		if(istype(src.loc, /mob))
 			src.dropped()
-		del(src)
+		cdel(src)
 	update_icon()
 	if(istype(loc, /turf)) //start a fire if possible
 		var/turf/T = loc

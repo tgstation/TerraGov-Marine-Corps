@@ -45,17 +45,17 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				del(src)
+				cdel(src)
 				return
 			if(2.0)
 				if (prob(50))
 					new /obj/effect/effect/water(src.loc)
-					del(src)
+					cdel(src)
 					return
 			if(3.0)
 				if (prob(5))
 					new /obj/effect/effect/water(src.loc)
-					del(src)
+					cdel(src)
 					return
 			else
 		return
@@ -171,7 +171,7 @@
 	else
 		explosion(src.loc,0,0,1, flame_range = 2)
 	if(src)
-		del(src)
+		cdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(temperature > T0C+500)

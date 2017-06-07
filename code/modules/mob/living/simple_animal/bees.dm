@@ -21,10 +21,10 @@
 	parent = new_parent
 	verbs -= /atom/movable/verb/pull
 
-/mob/living/simple_animal/bee/Del()
+/mob/living/simple_animal/bee/Dispose()
 	if(parent)
 		parent.owned_bee_swarms.Remove(src)
-	..()
+	. = ..()
 
 /mob/living/simple_animal/bee/Life()
 	..()
@@ -108,7 +108,7 @@
 
 			if(feral > 0)
 				src.strength += B.strength
-				del(B)
+				cdel(B)
 				src.icon_state = "bees[src.strength]"
 				if(strength > 5)
 					icon_state = "bees_swarm"
@@ -121,7 +121,7 @@
 
 					B.icon_state = "bees[B.strength]"
 					if(src.strength <= 0)
-						del(src)
+						cdel(src)
 						return
 					src.icon_state = "bees[B.strength]"
 					var/turf/simulated/floor/T = get_turf(get_step(src, pick(1,2,4,8)))
@@ -170,7 +170,7 @@
 	if(!parent && prob(10))
 		strength -= 1
 		if(strength <= 0)
-			del(src)
+			cdel(src)
 		else if(strength <= 5)
 			icon_state = "bees[strength]"
 

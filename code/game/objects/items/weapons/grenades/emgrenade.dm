@@ -7,6 +7,6 @@
 	prime()
 		..()
 		if(empulse(src, 4, 10))
-			del(src)
+			cdel(src)
 		return
 

@@ -206,7 +206,7 @@
 			callHook("borgify", list(O))
 			O.Namepick()
 
-			del(src)
+			cdel(src)
 		else
 			user << "\blue The MMI must go in after everything else!"
 
@@ -263,8 +263,8 @@
 		user << "\blue You install some manipulators and modify the head, creating a functional spider-bot!"
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.temp_drop_inv_item(W)
-		del(W)
-		del(src)
+		cdel(W)
+		cdel(src)
 		return
 	return
 

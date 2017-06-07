@@ -26,36 +26,36 @@
 /obj/effect/plantsegment/New()
 	return
 
-/obj/effect/plantsegment/Del()
+/obj/effect/plantsegment/Dispose()
 	if(master)
 		master.vines -= src
 		master.growth_queue -= src
-	..()
+	. = ..()
 
 /obj/effect/plantsegment/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (!W || !user || !W.type) return
 	switch(W.type)
-		if(/obj/item/weapon/circular_saw) del src
-		if(/obj/item/weapon/kitchen/utensil/knife) del src
-		if(/obj/item/weapon/scalpel) del src
-		if(/obj/item/weapon/twohanded/fireaxe) del src
-		if(/obj/item/weapon/hatchet) del src
-		if(/obj/item/weapon/melee/energy) del src
-		if(/obj/item/weapon/pickaxe/plasmacutter) del src
-		if(/obj/item/weapon/combat_knife) del src
+		if(/obj/item/weapon/circular_saw) cdel(src)
+		if(/obj/item/weapon/kitchen/utensil/knife) cdel(src)
+		if(/obj/item/weapon/scalpel) cdel(src)
+		if(/obj/item/weapon/twohanded/fireaxe) cdel(src)
+		if(/obj/item/weapon/hatchet) cdel(src)
+		if(/obj/item/weapon/melee/energy) cdel(src)
+		if(/obj/item/weapon/pickaxe/plasmacutter) cdel(src)
+		if(/obj/item/weapon/combat_knife) cdel(src)
 
 		// Less effective weapons
 		if(/obj/item/weapon/wirecutters)
-			if(prob(25)) del src
+			if(prob(25)) cdel(src)
 		if(/obj/item/weapon/shard)
-			if(prob(25)) del src
+			if(prob(25)) cdel(src)
 
 		// Weapons with subtypes
 		else
-			if(istype(W, /obj/item/weapon/melee/energy/sword)) del src
+			if(istype(W, /obj/item/weapon/melee/energy/sword)) cdel(src)
 			else if(istype(W, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = W
-				if(WT.remove_fuel(0, user)) del src
+				if(WT.remove_fuel(0, user)) cdel(src)
 			else
 				manual_unbuckle(user)
 				return
@@ -232,12 +232,12 @@
 
 // Hotspots kill vines.
 /obj/effect/plantsegment/fire_act(null, temp, volume)
-	del src
+	cdel(src)
 
 /obj/effect/plantsegment/proc/die()
 	if(seed && harvest && rand(5))
 		seed.harvest(src,1)
-		del(src)
+		cdel(src)
 
 /obj/effect/plantsegment/proc/life()
 
@@ -300,16 +300,16 @@
 
 /obj/effect/plant_controller/New()
 	if(!istype(src.loc,/turf/simulated/floor))
-		del(src)
+		cdel(src)
 
 	spawn(0)
 		spawn_piece(src.loc)
 
 	processing_objects.Add(src)
 
-/obj/effect/plant_controller/Del()
+/obj/effect/plant_controller/Dispose()
 	processing_objects.Remove(src)
-	..()
+	. = ..()
 
 /obj/effect/plant_controller/proc/spawn_piece(var/turf/location)
 	var/obj/effect/plantsegment/SV = new(location)
@@ -326,12 +326,12 @@
 
 	// Space vines exterminated. Remove the controller
 	if(!vines)
-		del(src)
+		cdel(src)
 		return
 
 	// Sanity check.
 	if(!growth_queue)
-		del(src)
+		cdel(src)
 		return
 
 	// Check if we're too big for our own good.

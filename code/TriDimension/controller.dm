@@ -28,9 +28,9 @@
 	initialized = 1
 	return 1
 
-/obj/effect/landmark/zcontroller/Del()
+/obj/effect/landmark/zcontroller/Dispose()
 	processing_objects.Remove(src)
-	return
+	. = ..()
 
 /obj/effect/landmark/zcontroller/process()
 	if (world.time > fast_time)

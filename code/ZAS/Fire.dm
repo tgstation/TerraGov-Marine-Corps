@@ -159,7 +159,7 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	..()
 
 	if(!istype(loc, /turf))
-		del src
+		cdel(src)
 
 	dir = pick(cardinal)
 	SetLuminosity(3)
@@ -167,14 +167,14 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	air_master.active_hotspots.Add(src)
 
 
-/obj/fire/Del()
+/obj/fire/Dispose()
 	if (istype(loc, /turf/simulated))
 		SetLuminosity(0)
 
 		loc = null
 	air_master.active_hotspots.Remove(src)
 
-	..()
+	. = ..()
 
 /obj/fire/proc/RemoveFire()
 	if (istype(loc, /turf))
@@ -204,7 +204,7 @@ datum/gas_mixture/proc/zburn(obj/effect/decal/cleanable/liquid_fuel/liquid, forc
 		if(liquid)
 		//Liquid Fuel
 			if(liquid.amount <= 0.1)
-				del liquid
+				cdel(liquid)
 			else
 				total_fuel += liquid.amount
 
@@ -239,7 +239,7 @@ datum/gas_mixture/proc/zburn(obj/effect/decal/cleanable/liquid_fuel/liquid, forc
 		if(liquid)
 			liquid.amount -= (liquid.amount * used_fuel_ratio * used_reactants_ratio) * 5 // liquid fuel burns 5 times as quick
 
-			if(liquid.amount <= 0) del liquid
+			if(liquid.amount <= 0) cdel(liquid)
 
 		//calculate the energy produced by the reaction and then set the new temperature of the mix
 		temperature = (starting_energy + vsc.fire_fuel_energy_release * total_fuel) / heat_capacity()

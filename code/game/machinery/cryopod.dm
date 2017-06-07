@@ -208,7 +208,7 @@ var/global/list/frozen_items = list()
 				// We don't want revs to get objectives that aren't for heads of staff. Letting
 				// them win or lose based on cryo is silly so we remove the objective.
 				if(istype(O,/datum/objective/mutiny) && O.target == occupant.mind)
-					del(O)
+					cdel(O)
 				else if(O.target && istype(O.target,/datum/mind))
 					if(O.target == occupant.mind)
 						if(O.owner && O.owner.current)
@@ -220,7 +220,7 @@ var/global/list/frozen_items = list()
 							if(!(O.target))
 								all_objectives -= O
 								O.owner.objectives -= O
-								del(O)
+								cdel(O)
 
 			if(occupant.mind && occupant.mind.assigned_squad)
 				var/datum/squad/S = occupant.mind.assigned_squad
@@ -240,7 +240,7 @@ var/global/list/frozen_items = list()
 				RoleAuthority.free_role(RoleAuthority.roles_for_mode[occupant.mind.assigned_role])
 
 				if(occupant.mind.objectives.len)
-					del(occupant.mind.objectives)
+					cdel(occupant.mind.objectives)
 					occupant.mind.special_role = null
 
 			//Delete them from datacore.
@@ -248,13 +248,13 @@ var/global/list/frozen_items = list()
 				PDA_Manifest.Cut()
 			for(var/datum/data/record/R in data_core.medical)
 				if ((R.fields["name"] == occupant.real_name))
-					del(R)
+					cdel(R)
 			for(var/datum/data/record/T in data_core.security)
 				if ((T.fields["name"] == occupant.real_name))
-					del(T)
+					cdel(T)
 			for(var/datum/data/record/G in data_core.general)
 				if ((G.fields["name"] == occupant.real_name))
-					del(G)
+					cdel(G)
 
 			if(orient_right)
 				icon_state = "body_scanner_0-r"

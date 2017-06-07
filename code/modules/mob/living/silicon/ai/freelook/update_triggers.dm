@@ -11,9 +11,9 @@
 	if(ticker)
 		cameranet.updateVisibility(src)
 
-/turf/simulated/Del()
+/turf/simulated/Dispose()
 	visibilityChanged()
-	..()
+	. = ..()
 
 /turf/simulated/New()
 	..()
@@ -23,10 +23,10 @@
 
 // STRUCTURES
 
-/obj/structure/Del()
+/obj/structure/Dispose()
 	if(ticker)
 		cameranet.updateVisibility(src)
-	..()
+	. = ..()
 
 /obj/structure/New()
 	..()
@@ -35,10 +35,10 @@
 
 // EFFECTS
 
-/obj/effect/Del()
+/obj/effect/Dispose()
 	if(ticker)
 		cameranet.updateVisibility(src)
-	..()
+	. = ..()
 
 /obj/effect/New()
 	..()
@@ -94,11 +94,11 @@
 	if(open_networks.len) //If there is at least one open network, chunk is available for AI usage.
 		cameranet.addCamera(src)
 
-/obj/machinery/camera/Del()
+/obj/machinery/camera/Dispose()
 	cameranet.cameras -= src
 	var/list/open_networks = difflist(network,RESTRICTED_CAMERA_NETWORKS)
 	if(open_networks.len)
 		cameranet.removeCamera(src)
-	..()
+	. = ..()
 
 #undef BORG_CAMERA_BUFFER

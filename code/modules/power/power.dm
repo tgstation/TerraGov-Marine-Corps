@@ -9,9 +9,9 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
-/obj/machinery/power/Del()
+/obj/machinery/power/Dispose()
 	disconnect_from_network()
-	..()
+	. = ..()
 
 // common helper procs for all power machines
 /obj/machinery/power/proc/add_avail(var/amount)
@@ -95,7 +95,7 @@
 
 /proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
-		del(PN)
+		cdel(PN)
 	powernets.Cut()
 
 	for(var/obj/structure/cable/PC in cable_list)

@@ -16,6 +16,10 @@ datum/pipe_network
 
 		..()
 
+	Dispose()
+		. = ..()
+		return TA_PURGE_ME_NOW //immediate deletion
+
 	proc/process()
 		//Equalize gases amongst pipe if called for
 		if(update)
@@ -31,7 +35,7 @@ datum/pipe_network
 		//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
 
 		if(!start_normal)
-			del(src)
+			cdel(src)
 
 		start_normal.network_expand(src, reference)
 
@@ -40,7 +44,7 @@ datum/pipe_network
 		if((normal_members.len>0)||(line_members.len>0))
 			pipe_networks += src
 		else
-			del(src)
+			cdel(src)
 
 	proc/merge(datum/pipe_network/giver)
 		if(giver==src) return 0
@@ -70,7 +74,7 @@ datum/pipe_network
 
 		for(var/datum/pipeline/line_member in line_members)
 			gases += line_member.air
-		
+
 		for(var/datum/gas_mixture/air in gases)
 			volume += air.volume
 

@@ -11,7 +11,7 @@
 	..()
 	if (!prob(spawn_nothing_percentage))
 		spawn_item()
-	del src
+	cdel(src)
 
 
 // this function should return a specific item to spawn

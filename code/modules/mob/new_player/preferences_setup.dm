@@ -182,9 +182,9 @@ datum/preferences
 		if(updating_icon)
 			return
 		updating_icon = 1
-		del(preview_icon_front)
-		del(preview_icon_side)
-		del(preview_icon)
+		cdel(preview_icon_front)
+		cdel(preview_icon_side)
+		cdel(preview_icon)
 
 		var/g = "m"
 		if(gender == FEMALE)	g = "f"
@@ -601,8 +601,8 @@ datum/preferences
 		preview_icon_front = new(preview_icon, dir = SOUTH)
 		preview_icon_side = new(preview_icon, dir = WEST)
 
-		del(eyes_s)
-		del(underwear_s)
-		del(undershirt_s)
-		del(clothes_s)
+		cdel(eyes_s)
+		cdel(underwear_s)
+		cdel(undershirt_s)
+		cdel(clothes_s)
 		updating_icon = 0

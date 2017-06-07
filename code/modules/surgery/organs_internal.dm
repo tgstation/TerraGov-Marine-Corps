@@ -61,7 +61,7 @@
 		var/mob/living/carbon/Xenomorph/Larva/L = locate() in target //the larva was fully grown, ready to burst.
 		if(L)
 			L.forceMove(target.loc)
-			del(A)
+			cdel(A)
 		else
 			A.forceMove(target.loc)
 
@@ -469,7 +469,7 @@
 		O.organ_data.status |= ORGAN_CUT_AWAY
 		O.replaced(target)
 
-	del(O)
+	cdel(O)
 
 /datum/surgery_step/internal/replace_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging \the [tool]!</span>", \

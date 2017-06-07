@@ -34,11 +34,11 @@
 		return
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(25))
-				del(src)
+				cdel(src)
 				return
 			if (prob(50))
 				for(var/x in verbs)
@@ -107,7 +107,7 @@
 				A.state = 4
 				A.icon_state = "4"
 			M.deconstruct(src)
-			del(src)
+			cdel(src)
 	else
 		if(isXeno(user))
 			src.attack_alien(user)

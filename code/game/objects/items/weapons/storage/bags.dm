@@ -158,7 +158,7 @@
 		if(!inserted || !S.amount)
 			usr.temp_drop_inv_item(S)
 			if(!S.amount)
-				del S
+				cdel(S)
 			else
 				S.forceMove(src)
 
@@ -203,7 +203,7 @@
 				N.amount = stacksize
 				S.amount -= stacksize
 			if(!S.amount)
-				del S // todo: there's probably something missing here
+				cdel(S) // todo: there's probably something missing here
 		orient2hud(usr)
 		if(usr.s_active)
 			usr.s_active.show_to(usr)

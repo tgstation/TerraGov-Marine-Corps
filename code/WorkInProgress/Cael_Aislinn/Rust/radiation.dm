@@ -15,7 +15,7 @@
 		else
 			time_alive -= 0.1
 			if(time_alive < 0)
-				del(src)
+				cdel(src)
 
 		//radiate mobs nearby here
 		//

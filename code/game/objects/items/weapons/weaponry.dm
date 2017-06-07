@@ -93,7 +93,7 @@
 	if(istype(W,/obj/item/weapon/screwdriver))
 		user << "You finish the concealed blade weapon."
 		new /obj/item/weapon/butterfly(user.loc)
-		del(src)
+		cdel(src)
 		return
 
 /obj/item/butterflyblade
@@ -114,8 +114,8 @@
 	if(istype(W,/obj/item/butterflyblade))
 		user << "You attach the two concealed blade parts."
 		new /obj/item/butterflyconstruction(user.loc)
-		del(W)
-		del(src)
+		cdel(W)
+		cdel(src)
 		return
 	update_icon(user)
 
@@ -168,8 +168,8 @@ obj/item/weapon/wirerod/attackby(var/obj/item/I, mob/user as mob)
 
 		user.put_in_hands(S)
 		user << "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>"
-		del(I)
-		del(src)
+		cdel(I)
+		cdel(src)
 		update_icon(user)
 
 	else if(istype(I, /obj/item/weapon/wirecutters))
@@ -177,7 +177,7 @@ obj/item/weapon/wirerod/attackby(var/obj/item/I, mob/user as mob)
 
 		user.put_in_hands(P)
 		user << "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>"
-		del(I)
-		del(src)
+		cdel(I)
+		cdel(src)
 		update_icon(user)
 	update_icon(user)

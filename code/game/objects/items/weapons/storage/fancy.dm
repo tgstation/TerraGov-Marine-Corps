@@ -146,11 +146,6 @@
 		new /obj/item/clothing/mask/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
-/obj/item/weapon/storage/fancy/cigarettes/Del()
-	del(reagents)
-	..()
-
-
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
 	return
@@ -218,10 +213,6 @@
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette/cigar(src)
 	create_reagents(15 * storage_slots)
-
-/obj/item/weapon/storage/fancy/cigar/Del()
-	del(reagents)
-	..()
 
 /obj/item/weapon/storage/fancy/cigar/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"

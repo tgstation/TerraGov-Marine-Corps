@@ -1245,9 +1245,9 @@ var/global/floorIsLava = 0
 	if(location.zone)
 		for(var/turf/T in location.zone.contents)
 			for(var/obj/fire/F in T.contents)
-				del(F)
+				cdel(F)
 		for(var/obj/fire/FF in world)
-			del(FF)
+			cdel(FF)
 	log_admin("Admin [key_name_admin(usr)] used Fix Air at [get_area(usr)]", 1)
 	message_admins("Admin [key_name_admin(usr)] used Fix Air at [get_area(usr)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>)", 1)
 

@@ -11,15 +11,15 @@
 /obj/structure/stool/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			if (prob(5))
-				del(src)
+				cdel(src)
 				return
 	return
 
@@ -27,7 +27,7 @@
 	if(istype(W, /obj/item/weapon/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		new /obj/item/stack/sheet/metal(src.loc)
-		del(src)
+		cdel(src)
 	return
 
 /obj/structure/stool/MouseDrop(atom/over_object)
@@ -54,14 +54,14 @@
 
 	if(!origin)
 		user.temp_drop_inv_item(src)
-		del (src)
+		cdel(src)
 		return
 
 	if(user)
 		origin.loc = get_turf(user)
 		user.temp_drop_inv_item(src)
 		user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
-		del(src)
+		cdel(src)
 
 /obj/item/weapon/stool/attack_self(mob/user as mob)
 	..()
@@ -77,6 +77,6 @@
 		if(istype(T) && !isXeno(T))
 			T.Weaken(10)
 		T.apply_damage(20)
-		del src
+		cdel(src)
 		return
 	..()

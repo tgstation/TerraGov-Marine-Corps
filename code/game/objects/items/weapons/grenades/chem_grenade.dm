@@ -159,7 +159,7 @@
 
 		invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?
 		spawn(50)		   //To make sure all reagents can work
-			del(src)	   //correctly before deleting the grenade.
+			cdel(src)	   //correctly before deleting the grenade.
 
 
 /obj/item/weapon/grenade/chem_grenade/large

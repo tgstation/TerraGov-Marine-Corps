@@ -53,4 +53,4 @@ datum/chemical_reaction/coolant
 
 	sleep(10)
 	if(src)
-		del(src)
+		cdel(src)

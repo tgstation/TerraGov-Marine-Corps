@@ -13,19 +13,18 @@
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/New()
-	..()
-	update_nearby_tiles()
-	if (src.req_access && src.req_access.len)
-		src.icon_state = "[src.icon_state]"
-		src.base_state = src.icon_state
-	return
+	New()
+		..()
+		update_nearby_tiles()
+		if (src.req_access && src.req_access.len)
+			src.icon_state = "[src.icon_state]"
+			src.base_state = src.icon_state
 
-/obj/machinery/door/window/Del()
-	density = 0
-	playsound(src, "shatter", 50, 1)
-	update_nearby_tiles()
-	..()
+	Dispose()
+		density = 0
+		playsound(src, "shatter", 50, 1)
+		update_nearby_tiles()
+		. = ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if (!( ismob(AM) ))
@@ -138,7 +137,7 @@
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
 		src.density = 0
-		del(src)
+		cdel(src)
 		return
 
 /obj/machinery/door/window/bullet_act(var/obj/item/projectile/Proj)
@@ -233,7 +232,7 @@
 			ae.icon_state = "door_electronics_smoked"
 
 			operating = 0
-			del(src)
+			cdel(src)
 			return
 
 	//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)

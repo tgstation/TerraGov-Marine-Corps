@@ -53,7 +53,7 @@
 	..()
 	for(var/obj/structure/table/T in src.loc)
 		if(T != src)
-			del(T)
+			cdel(T)
 	update_icon()
 	update_adjacent()
 
@@ -64,10 +64,6 @@
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through \the [src]!</span>")
 			destroy()
-
-/obj/structure/table/Del()
-	update_adjacent()
-	..()
 
 /obj/structure/table/Dispose()
 	update_adjacent()
@@ -632,4 +628,4 @@
 	else
 		new /obj/item/stack/sheet/metal(loc)
 	density = 0
-	del(src)
+	cdel(src)

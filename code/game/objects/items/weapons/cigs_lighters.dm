@@ -81,10 +81,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	flags_atom |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 
-/obj/item/clothing/mask/cigarette/Del()
-	..()
-	del(reagents)
-
 /obj/item/clothing/mask/cigarette/attackby(obj/item/weapon/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -140,13 +136,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/datum/effect/effect/system/reagents_explosion/e = new()
 			e.set_up(round(reagents.get_reagent_amount("phoron") / 2.5, 1), get_turf(src), 0, 0)
 			e.start()
-			del(src)
+			cdel(src)
 			return
 		if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
 			var/datum/effect/effect/system/reagents_explosion/e = new()
 			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
 			e.start()
-			del(src)
+			cdel(src)
 			return
 		flags_atom &= ~NOREACT // allowing reagents to react after being lit
 		reagents.handle_reactions()
@@ -211,7 +207,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.temp_drop_inv_item(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask(0)
 	processing_objects.Remove(src)
-	del(src)
+	cdel(src)
 
 ////////////
 // CIGARS //
@@ -398,12 +394,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_off = "lighter-[clr]"
 		icon_state = icon_off
 
-/obj/item/weapon/flame/lighter/Del()
+/obj/item/weapon/flame/lighter/Dispose()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-2)
 	else
 		SetLuminosity(0)
-	..()
+	. = ..()
 
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(user.r_hand == src || user.l_hand == src)

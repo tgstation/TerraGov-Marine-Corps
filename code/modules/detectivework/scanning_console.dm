@@ -270,7 +270,7 @@
 			if(istype(I, /obj/item/weapon/f_card))
 				if(process_card(I))
 					M.drop_held_item()
-					del(I)
+					cdel(I)
 			else
 				usr << "<spawn class='warning'>Invalid fingerprint card, rejected.</span>"
 		if("print")

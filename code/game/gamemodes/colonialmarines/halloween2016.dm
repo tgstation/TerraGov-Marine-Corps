@@ -1217,7 +1217,7 @@
 			if(!G.can_reenter_corpse || !(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
 
 	if(!candidates.len)
-		del(horror)
+		cdel(horror)
 		return
 	candidates = shuffle(candidates)
 
@@ -1228,7 +1228,7 @@
 		else candidates -= candidate_mob
 
 	if(!horror_key)
-		del(horror)
+		cdel(horror)
 		return
 
 	horror.key = horror_key

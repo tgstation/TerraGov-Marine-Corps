@@ -220,9 +220,9 @@ var/global/hive_orders = "" //What orders should the hive have
 				user << "It is heavily injured and limping badly."
 	return
 
-/mob/living/carbon/Xenomorph/Del()
+/mob/living/carbon/Xenomorph/Dispose()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
-	..()
+	. = ..()
 
 
 /mob/living/carbon/Xenomorph

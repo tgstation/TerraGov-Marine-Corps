@@ -44,7 +44,7 @@
 			living_mob_list += brainmob
 
 			user.drop_held_item()
-			del(O)
+			cdel(O)
 
 			name = "Man-Machine Interface: [brainmob.real_name]"
 			icon_state = "mmi_full"

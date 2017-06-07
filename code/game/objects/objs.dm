@@ -129,11 +129,6 @@
 		*/
 	return
 
-
-/obj/Del()
-	if(buckled_mob) unbuckle()
-	..()
-
 /obj/Dispose()
 	if(buckled_mob) unbuckle()
 	. = ..()

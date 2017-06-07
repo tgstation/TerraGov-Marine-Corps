@@ -44,12 +44,12 @@
 			cdel(M)
 			cdel(M.tripwire)
 
-/turf/simulated/wall/Del()
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") del E
-	..()
+/turf/simulated/wall/Dispose()
+	for(var/obj/effect/E in src) if(E.name == "Wallrot") cdel(E)
+	. = ..()
 
 /turf/simulated/wall/ChangeTurf(var/newtype)
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") del E
+	for(var/obj/effect/E in src) if(E.name == "Wallrot") cdel(E)
 	..(newtype)
 
 //Appearance
@@ -273,7 +273,7 @@
 	user << "<span class='warning'>The thermite starts melting through the wall.</span>"
 
 	spawn(100)
-		if(O)	del(O)
+		if(O)	cdel(O)
 	return
 
 //Interactions
@@ -348,7 +348,7 @@
 				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 				for(var/obj/effect/E in src) if(E.name == "Wallrot")
-					del E
+					cdel(E)
 				rotting = 0
 				return
 		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)

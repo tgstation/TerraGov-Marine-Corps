@@ -80,12 +80,12 @@
 	update_icon()
 
 
-/obj/structure/cable/Del()						// called when a cable is deleted
+/obj/structure/cable/Dispose()					// called when a cable is deleted
 	if(!defer_powernet_rebuild)					// set if network will be rebuilt manually
 		if(powernet)
 			powernet.cut_cable(src)				// update the powernets
 	cable_list -= src
-	..()													// then go ahead and delete the cable
+	. = ..()									// then go ahead and delete the cable
 
 /obj/structure/cable/hide(var/i)
 
@@ -142,10 +142,10 @@
 					var/turf/below = locate(src.x, src.y, controller.down_target)
 					for(var/obj/structure/cable/c in below)
 						if(c.d1 == 12 || c.d2 == 12)
-							c.Del()
+							cdel(c)
 ///// Z-Level Stuff
 
-		del(src)
+		cdel(src)
 
 		return	// not needed, but for clarity
 
@@ -191,16 +191,16 @@
 
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 		if(2.0)
 			if (prob(50))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				del(src)
+				cdel(src)
 
 		if(3.0)
 			if (prob(25))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				del(src)
+				cdel(src)
 	return
 
 // the cable coil object, used for laying cable
@@ -431,7 +431,7 @@
 			if (C.shock(user, 50))
 				if (prob(50)) //fail
 					new/obj/item/stack/cable_coil(C.loc, 1, C.color)
-					del(C)
+					cdel(C)
 		//src.laying = 1
 		//last = C
 
@@ -491,7 +491,7 @@
 			if (NC.shock(user, 50))
 				if (prob(50)) //fail
 					new/obj/item/stack/cable_coil(NC.loc, 1, NC.color)
-					del(NC)
+					cdel(NC)
 
 			return
 	else if(C.d1 == 0)		// exisiting cable doesn't point at our position, so see if it's a stub
@@ -530,7 +530,7 @@
 		if (C.shock(user, 50))
 			if (prob(50)) //fail
 				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
-				del(C)
+				cdel(C)
 
 		return
 

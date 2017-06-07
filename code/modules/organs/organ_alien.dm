@@ -41,7 +41,7 @@
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(target))
-		del(src)
+		cdel(src)
 
 	if(!H.internal_organs.len)
 		H.death()
@@ -49,12 +49,12 @@
 	//This is a terrible hack and I should be ashamed.
 	var/datum/seed/diona = seed_types["diona"]
 	if(!diona)
-		del(src)
+		cdel(src)
 
 //	var/mob/living/carbon/alien/diona/D = new(get_turf(src))
 //	diona.request_player(D)
 
-	del(src)
+	cdel(src)
 
 // These are different to the standard diona organs as they have a purpose in other
 // species (absorbing radiation and light respectively)

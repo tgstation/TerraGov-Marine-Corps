@@ -8,7 +8,7 @@
 	var/avail = 0
 	var/viewload = 0
 	var/number = 0
-	
+
 	var/perapc = 0			// per-apc avilability
 	var/perapc_excess = 0
 	var/netexcess = 0
@@ -41,7 +41,7 @@
 			perapc_excess += min(netexcess/numapc, (avail - perapc) - perapc_excess)
 		else
 			perapc_excess = 0
-		
+
 		perapc = avail/numapc + perapc_excess
 
 	if( netexcess > 100)		// if there was excess power last cycle
@@ -70,7 +70,7 @@
 	var/surplus = max(avail - newload, 0)
 	var/actual_draw = min(requested_amount, surplus)
 	newload += actual_draw
-	
+
 	return actual_draw
 
 // cut a powernet at this cable object
@@ -261,5 +261,5 @@
 			Cable.powernet = net1
 			net1.cables += Cable
 
-	del(net2)
+	cdel(net2)
 	return net1

@@ -128,9 +128,9 @@ var/global/list/holodeck_programs = list(
 	//		loadProgram(target)
 
 //This could all be done better, but it works for now.
-/obj/machinery/computer/HolodeckControl/Del()
+/obj/machinery/computer/HolodeckControl/Dispose()
 	emergencyShutdown()
-	..()
+	. = ..()
 
 /obj/machinery/computer/HolodeckControl/emp_act(severity)
 	emergencyShutdown()
@@ -182,7 +182,7 @@ var/global/list/holodeck_programs = list(
 	if(!silent)
 		var/obj/oldobj = obj
 		visible_message("The [oldobj.name] fades away!")
-	del(obj)
+	cdel(obj)
 
 /obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
 	for(var/turf/T in A)
@@ -235,10 +235,10 @@ var/global/list/holodeck_programs = list(
 		derez(item)
 
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
-		del(B)
+		cdel(B)
 
 	for(var/mob/living/simple_animal/hostile/carp/C in linkedholodeck)
-		del(C)
+		cdel(C)
 
 	holographic_items = A.copy_contents_to(linkedholodeck , 1)
 
@@ -391,8 +391,6 @@ var/global/list/holodeck_programs = list(
 	flags_atom = ON_BORDER
 
 
-/obj/structure/holowindow/Del()
-	..()
 
 /obj/item/weapon/holo
 	damtype = HALLOSS
@@ -538,7 +536,7 @@ var/global/list/holodeck_programs = list(
 
 	currentarea = get_area(src.loc)
 	if(!currentarea)
-		del(src)
+		cdel(src)
 
 	if(eventstarted)
 		usr << "The event has already begun!"
@@ -569,7 +567,7 @@ var/global/list/holodeck_programs = list(
 	eventstarted = 1
 
 	for(var/obj/structure/holowindow/W in currentarea)
-		del(W)
+		cdel(W)
 
 	for(var/mob/M in currentarea)
 		M << "FIGHT!"

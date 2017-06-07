@@ -26,7 +26,7 @@
 		for(var/mob/living/M in target)
 			if(M)
 				M.NotTargeted(src) //Untargeting people.
-		del(target)
+		cdel(target)
 
 //Compute how to fire.....
 /obj/item/weapon/gun/proc/PreFire(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, params)
@@ -51,7 +51,7 @@
 			for(var/mob/living/L in target)
 				if(L)
 					L.NotTargeted(src)
-			del(target)
+			cdel(target)
 			usr.visible_message("\red <b>[usr] turns \the [src] on [M]!</b>")
 		else
 			usr.visible_message("\red <b>[usr] aims \a [src] at [M]!</b>")
@@ -218,8 +218,8 @@
 	if(istype(T) && T.client && !I.target)
 		T.update_gun_icons()
 	if(!targeted_by.len)
-		del target_locked //Remove the overlay
-		del targeted_by
+		cdel(target_locked) //Remove the overlay
+		cdel(targeted_by)
 	spawn(1) update_targeted()
 
 /mob/living/Move()

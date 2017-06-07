@@ -59,12 +59,12 @@
 			SetLuminosity(brightness_on)
 		..()
 
-	Del()
+	Dispose()
 		if(ismob(src.loc))
 			src.loc.SetLuminosity(-brightness_on)
 		else
 			SetLuminosity(0)
-		..()
+		. = ..()
 
 /obj/item/clothing/suit/space/rig
 	name = "hardsuit"

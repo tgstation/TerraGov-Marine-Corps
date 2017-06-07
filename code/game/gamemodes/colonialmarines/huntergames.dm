@@ -202,7 +202,7 @@ var/waiting_for_drop_votes = 0
 		H = M
 		if(H.contents.len)
 			for(var/I in H.contents)
-				del(I)
+				cdel(I)
 		H.loc = picked
 	else
 		H = new(picked)

@@ -11,7 +11,7 @@
 		var/obj/structure/inflatable/R = new /obj/structure/inflatable(user.loc)
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
-		del(src)
+		cdel(src)
 
 /obj/structure/inflatable
 	name = "inflatable wall"
@@ -30,9 +30,9 @@
 		..()
 		update_nearby_tiles(need_rebuild=1)
 
-	Del()
+	Dispose()
 		update_nearby_tiles()
-		..()
+		. = ..()
 
 
 
@@ -50,7 +50,7 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				del(src)
+				cdel(src)
 				return
 			if(2.0)
 				deflate(1)
@@ -109,14 +109,14 @@
 			visible_message("[src] rapidly deflates!")
 			//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 			//src.transfer_fingerprints_to(R)
-			del(src)
+			cdel(src)
 		else
 			//user << "\blue You slowly deflate the inflatable wall."
 			visible_message("[src] slowly deflates.")
 			spawn(50)
 				var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
 				src.transfer_fingerprints_to(R)
-				del(src)
+				cdel(src)
 
 	verb/hand_deflate()
 		set name = "Deflate"
@@ -142,7 +142,7 @@
 		var/obj/structure/inflatable/door/R = new /obj/structure/inflatable/door(user.loc)
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
-		del(src)
+		cdel(src)
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
@@ -238,14 +238,14 @@
 			visible_message("[src] rapidly deflates!")
 			//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 			//src.transfer_fingerprints_to(R)
-			del(src)
+			cdel(src)
 		else
 			//user << "\blue You slowly deflate the inflatable wall."
 			visible_message("[src] slowly deflates.")
 			spawn(50)
 				var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
 				src.transfer_fingerprints_to(R)
-				del(src)
+				cdel(src)
 
 /*
 /obj/item/inflatable/torn

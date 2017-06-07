@@ -49,7 +49,7 @@ Class Variables:
 Class Procs:
    New()                     'game/machinery/machine.dm'
 
-   Del()                     'game/machinery/machine.dm'
+   Dispose()                     'game/machinery/machine.dm'
 
    auto_use_power()            'game/machinery/machine.dm'
       This proc determines how power mode power is deducted by the machine.
@@ -113,16 +113,16 @@ Class Procs:
 	var/global/gl_uid = 1
 	layer = 3
 
-/obj/machinery/New()
-	..()
-	if(!(stat & MACHINE_DO_NOT_PROCESS))
-		machines += src
-		machinery_sort_required = 1
-	else stat &= ~MACHINE_DO_NOT_PROCESS
+	New()
+		..()
+		if(!(stat & MACHINE_DO_NOT_PROCESS))
+			machines += src
+			machinery_sort_required = 1
+		else stat &= ~MACHINE_DO_NOT_PROCESS
 
-/obj/machinery/Del()
-	machines -= src
-	..()
+	Dispose()
+		machines -= src
+		. = ..()
 
 /obj/machinery/process()//If you dont use process or power why are you here
 	return PROCESS_KILL
@@ -145,15 +145,15 @@ Class Procs:
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			if (prob(25))
-				del(src)
+				cdel(src)
 				return
 		else
 	return
@@ -305,5 +305,5 @@ Class Procs:
 		if(I.reliability != 100 && crit_fail)
 			I.crit_fail = 1
 		I.loc = loc
-	del(src)
+	cdel(src)
 	return 1

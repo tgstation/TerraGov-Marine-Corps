@@ -90,7 +90,7 @@
 			animation.master = user
 			flick("blspell", animation)
 			sleep(5)
-			del(animation)
+			cdel(animation)
 
 	if(!flashfail)
 		flick("flash2", src)
@@ -141,7 +141,7 @@
 			animation.master = user
 			flick("blspell", animation)
 			sleep(5)
-			del(animation)
+			cdel(animation)
 
 	for(var/mob/living/carbon/human/M in oviewers(3, null))
 		if(prob(50))

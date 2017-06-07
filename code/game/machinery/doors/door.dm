@@ -31,14 +31,6 @@
 	dir = EAST
 	var/width = 1
 
-	Dispose()
-		. = ..()
-		if(filler && width > 1)
-			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
-			filler = null
-		density = 0
-		update_nearby_tiles()
-
 	New()
 		. = ..()
 		if(density)
@@ -53,12 +45,13 @@
 
 		update_nearby_tiles(need_rebuild=1)
 
-	Del()
+	Dispose()
+		. = ..()
 		if(filler && width > 1)
 			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
+			filler = null
 		density = 0
-		if(loc) update_nearby_tiles()
-		..()
+		update_nearby_tiles()
 
 /obj/machinery/door/proc/handle_multidoor()
 	if(width > 1)
@@ -182,10 +175,10 @@
 /obj/machinery/door/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 		if(2.0)
 			if(prob(25))
-				del(src)
+				cdel(src)
 		if(3.0)
 			if(prob(80))
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -271,7 +264,7 @@
 	//I shall not add a check every x ticks if a door has closed over some fire.
 	var/obj/fire/fire = locate() in loc
 	if(fire)
-		del fire
+		cdel(fire)
 	return
 
 /obj/machinery/door/proc/requiresID()

@@ -16,13 +16,13 @@
 			health -= Proj.damage
 			if(health <= 0)
 				new /obj/item/stack/sheet/metal(get_turf(src))
-				del(src)
+				cdel(src)
 		else
 			if(prob(50))
 				health -= round(Proj.ammo.damage / 2)
 				if(health <= 0)
 					new /obj/item/stack/sheet/metal(get_turf(src))
-					del(src)
+					cdel(src)
 		return 1
 
 
@@ -49,7 +49,7 @@
 				if(do_after(user, 40))
 					user << "\blue You secured the girder!"
 					new/obj/structure/girder( src.loc )
-					del(src)
+					cdel(src)
 
 		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
 			user << "\blue Now slicing apart the girder"
@@ -77,7 +77,7 @@
 				if(!src) return
 				user << "\blue You removed the support struts!"
 				new/obj/structure/girder( src.loc )
-				del(src)
+				cdel(src)
 
 		else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -86,7 +86,7 @@
 				if(!src) return
 				user << "\blue You dislodged the girder!"
 				new/obj/structure/girder/displaced( src.loc )
-				del(src)
+				cdel(src)
 
 		else if(istype(W, /obj/item/stack/sheet))
 
@@ -108,7 +108,7 @@
 								new /obj/structure/falsewall (src.loc)
 								for(var/obj/structure/falsewall/F in src.loc)
 									if(F)	F.add_hiddenprint(usr)
-								del(src)
+								cdel(src)
 					else
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
@@ -120,7 +120,7 @@
 								Tsrc.ChangeTurf(/turf/simulated/wall)
 								for(var/turf/simulated/wall/X in Tsrc.loc)
 									if(X)	X.add_hiddenprint(usr)
-								del(src)
+								cdel(src)
 						return
 
 				if(/obj/item/stack/sheet/plasteel)
@@ -142,7 +142,7 @@
 							// 		Tsrc.ChangeTurf(/turf/simulated/wall/r_wall)
 							// 		for(var/turf/simulated/wall/r_wall/X in Tsrc.loc)
 							// 			if(X)	X.add_hiddenprint(usr)
-							// 		del(src)
+							// 		cdel(src)
 							return
 						if(S.get_amount() < 1) return ..()
 						user << "\red It doesn't look like the plasteel will do anything. Try metal."
@@ -150,7 +150,7 @@
 						// 	if(S.use(1))
 						// 		user << "<span class='notice'>Girders reinforced!</span>"
 						// 		new/obj/structure/girder/reinforced( src.loc )
-						// 		del(src)
+						// 		cdel(src)
 						return
 
 			if(S.sheettype)
@@ -161,7 +161,7 @@
 					user << "\blue You create a false wall! Push on it to open or close the passage."
 					var/F = text2path("/obj/structure/falsewall/[M]")
 					new F (src.loc)
-					del(src)
+					cdel(src)
 				else
 					if(S.amount < 2) return ..()
 					user << "\blue Now adding plating..."
@@ -173,7 +173,7 @@
 						Tsrc.ChangeTurf(text2path("/turf/simulated/wall/mineral/[M]"))
 						for(var/turf/simulated/wall/mineral/X in Tsrc.loc)
 							if(X)	X.add_hiddenprint(usr)
-						del(src)
+						cdel(src)
 					return
 
 			add_hiddenprint(usr)
@@ -189,7 +189,7 @@
 
 	proc/dismantle()
 		new /obj/item/stack/sheet/metal(get_turf(src))
-		del(src)
+		cdel(src)
 
 	attack_hand(mob/user as mob)
 		if (HULK in user.mutations)
@@ -208,19 +208,19 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				del(src)
+				cdel(src)
 				return
 			if(2.0)
 				if (prob(30))
 					var/remains = pick(/obj/item/stack/rods,/obj/item/stack/sheet/metal)
 					new remains(loc)
-					del(src)
+					cdel(src)
 				return
 			if(3.0)
 				if (prob(5))
 					var/remains = pick(/obj/item/stack/rods,/obj/item/stack/sheet/metal)
 					new remains(loc)
-					del(src)
+					cdel(src)
 				return
 			else
 		return
@@ -250,19 +250,19 @@
 			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 				user << "\blue You dissasembled the girder!"
 				new /obj/effect/decal/remains/human(get_turf(src))
-				del(src)
+				cdel(src)
 
 		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
 			user << "\blue Now slicing apart the girder"
 			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
 				user << "\blue You slice apart the girder!"
 			new /obj/effect/decal/remains/human(get_turf(src))
-			del(src)
+			cdel(src)
 
 		else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
 			user << "\blue You drill through the girder!"
 			new /obj/effect/decal/remains/human(get_turf(src))
-			del(src)
+			cdel(src)
 
 	bullet_act(var/obj/item/projectile/Proj) //No beam check- How else will you destroy the cult girder with silver bullets?????
 
@@ -270,24 +270,24 @@
 		..()
 		if(health <= 0)
 			new /obj/item/stack/sheet/metal(get_turf(src))
-			del(src)
+			cdel(src)
 
 		return 1
 
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				del(src)
+				cdel(src)
 				return
 			if(2.0)
 				if (prob(30))
 					new /obj/effect/decal/remains/human(loc)
-					del(src)
+					cdel(src)
 				return
 			if(3.0)
 				if (prob(5))
 					new /obj/effect/decal/remains/human(loc)
-					del(src)
+					cdel(src)
 				return
 			else
 		return

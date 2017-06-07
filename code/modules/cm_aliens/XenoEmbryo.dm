@@ -20,13 +20,13 @@
 	else
 		cdel(src)
 
-/obj/item/alien_embryo/Del()
+/obj/item/alien_embryo/Dispose()
 	if(affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
 		spawn()
 			RemoveInfectionImages(affected_mob)
 		processing_objects.Remove(src)
-	..()
+	. = ..()
 
 /obj/item/alien_embryo/process()
 	if(!affected_mob) //The mob we were gestating in is straight up gone, we shouldn't be here
@@ -164,7 +164,7 @@
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 	var/obj/item/alien_embryo/AE = locate() in victim
 	if(AE)
-		del(AE)
+		cdel(AE)
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		var/datum/organ/internal/O

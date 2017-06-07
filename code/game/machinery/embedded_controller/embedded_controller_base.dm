@@ -3,7 +3,7 @@
 
 	name = "Embedded Controller"
 	anchored = 1
-	
+
 	use_power = 1
 	idle_power_usage = 10
 
@@ -44,7 +44,7 @@
 	icon_state = "airlock_control_standby"
 	power_channel = ENVIRON
 	density = 0
-	
+
 	var/id_tag
 	//var/radio_power_use = 50 //power used to xmit signals
 
@@ -71,7 +71,7 @@
 		//use_power(radio_power_use)	//neat idea, but causes way too much lag.
 		return radio_connection.post_signal(src, signal, filter)
 	else
-		del(signal)
+		cdel(signal)
 
 /obj/machinery/embedded_controller/radio/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)

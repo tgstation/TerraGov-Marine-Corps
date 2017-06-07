@@ -114,7 +114,7 @@
 		user.drop_held_item()
 		var/obj/item/weapon/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
-		del(src)
+		cdel(src)
 		return
 
 	..()
@@ -168,7 +168,7 @@
 		src.desc = W.desc
 		src.icon = W.icon
 		src.icon_state = W.icon_state
-		del(W)
+		cdel(W)
 		return
 
 /obj/item/weapon/card/id/verb/read()

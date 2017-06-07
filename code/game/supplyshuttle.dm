@@ -66,13 +66,13 @@ var/list/mechtoys = list(
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
 		if (1)
-			del(src)
+			cdel(src)
 		if (2)
 			if (prob(50))
-				del(src)
+				cdel(src)
 		if (3)
 			if (prob(5))
-				del(src)
+				cdel(src)
 
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "\improper Airtight plastic flaps"
@@ -84,12 +84,12 @@ var/list/mechtoys = list(
 			T.blocks_air = 1
 		..()
 
-	Del() //lazy hack to set the turf to allow air to pass if it's a simulated floor
+	Dispose() //lazy hack to set the turf to allow air to pass if it's a simulated floor
 		var/turf/T = get_turf(loc)
 		if(T)
 			if(istype(T, /turf/simulated/floor))
 				T.blocks_air = 0
-		..()
+		. = ..()
 
 /obj/machinery/computer/supplycomp
 	name = "Supply shuttle console"
@@ -220,7 +220,7 @@ var/list/mechtoys = list(
 						var/obj/item/stack/sheet/mineral/platinum/P = A
 						plat_count += P.get_amount()
 
-			del(MA)
+			cdel(MA)
 
 		if(phoron_count)
 			points += phoron_count * points_per_phoron

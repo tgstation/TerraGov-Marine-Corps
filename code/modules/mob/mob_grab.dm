@@ -21,12 +21,12 @@
 	user.stop_pulling()
 	. = ..()
 
-/obj/item/weapon/grab/Del()
+/obj/item/weapon/grab/Dispose()
 	if(ismob(loc))
 		var/mob/M = loc
 		M.grab_level = 0
 		M.stop_pulling()
-	..()
+	. = ..()
 
 /obj/item/weapon/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(isturf(target))

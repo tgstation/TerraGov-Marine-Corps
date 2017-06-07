@@ -23,10 +23,10 @@
 		src.amount = amount
 	return
 
-/obj/item/stack/Del()
-	if (src && usr && usr.machine == src)
+/obj/item/stack/Dispose()
+	if (usr && usr.machine == src)
 		usr << browse(null, "window=stack")
-	..()
+	. = ..()
 
 /obj/item/stack/examine(mob/user)
 	..()
@@ -154,14 +154,14 @@
 			var/oldsrc = src
 			src = null //dont kill proc after del()
 			usr.drop_inv_item_on_ground(oldsrc)
-			del(oldsrc)
+			cdel(oldsrc)
 			if (istype(O,/obj/item) && istype(usr,/mob/living/carbon))
 				usr.put_in_hands(O)
 		O.add_fingerprint(usr)
 		//BubbleWrap - so newly formed boxes are empty
 		if ( istype(O, /obj/item/weapon/storage) )
 			for (var/obj/item/I in O)
-				del(I)
+				cdel(I)
 		//BubbleWrap END
 	if (src && usr.machine==src) //do not reopen closed window
 		spawn( 0 )
@@ -177,7 +177,7 @@
 		if(usr)
 			usr.drop_inv_item_on_ground(src)
 		spawn(1) //Did they not have spawn back in the day? Pff.
-			del(src)
+			cdel(src)
 	return 1
 
 /obj/item/stack/proc/add(var/extra)

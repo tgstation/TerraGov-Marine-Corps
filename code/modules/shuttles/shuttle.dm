@@ -175,9 +175,9 @@
 
 	for(var/turf/T in destination)
 		for(var/obj/O in T)
-			del(O)
+			cdel(O)
 		if(istype(T, /turf/simulated))
-			del(T)
+			cdel(T)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()

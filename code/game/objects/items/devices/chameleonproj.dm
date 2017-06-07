@@ -41,7 +41,7 @@
 	if(active_dummy)
 		eject_all()
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 25, 1, 3)
-		del(active_dummy)
+		cdel(active_dummy)
 		active_dummy = null
 		usr << "\blue You deactivate the [src]."
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
@@ -54,7 +54,7 @@
 		if(!O) return
 		var/obj/effect/dummy/chameleon/C = new/obj/effect/dummy/chameleon(usr.loc)
 		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
-		del(O)
+		cdel(O)
 		usr << "\blue You activate the [src]."
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
@@ -69,7 +69,7 @@
 		spark_system.start()
 		eject_all()
 		if(delete_dummy)
-			del(active_dummy)
+			cdel(active_dummy)
 		active_dummy = null
 		can_use = 0
 		spawn(50) can_use = 1
@@ -142,6 +142,6 @@
 		step(src, direction)
 	return
 
-/obj/effect/dummy/chameleon/Del()
+/obj/effect/dummy/chameleon/Dispose()
 	master.disrupt(0)
-	..()
+	. = ..()

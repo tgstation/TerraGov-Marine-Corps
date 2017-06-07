@@ -151,7 +151,7 @@
 	for(var/x in typesof(/datum/faction))
 		var/datum/faction/F = new x
 		if(!F.name)
-			del(F)
+			cdel(F)
 			continue
 		else
 			ticker.factions.Add(F)
@@ -169,7 +169,7 @@
 			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
 			M.real_name = "Corpse"
 			M.death()
-			del(A)
+			cdel(A)
 			continue
 		if (A.name == "Corpse-Engineer")
 			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
@@ -191,7 +191,7 @@
 			else
 				if (prob(50))
 					M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/welding(M), WEAR_HEAD)
-			del(A)
+			cdel(A)
 			continue
 		if (A.name == "Corpse-Engineer-Space")
 			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
@@ -214,7 +214,7 @@
 					M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/welding(M), WEAR_HEAD)
 				else
 					M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space(M), WEAR_HEAD)
-			del(A)
+			cdel(A)
 			continue
 		if (A.name == "Corpse-Engineer-Chief")
 			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
@@ -235,7 +235,7 @@
 			else
 				if (prob(50))
 					M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/welding(M), WEAR_HEAD)
-			del(A)
+			cdel(A)
 			continue
 		if (A.name == "Corpse-Syndicate")
 			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
@@ -257,6 +257,6 @@
 			else
 				M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(M), WEAR_JACKET)
 				M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/swat(M), WEAR_HEAD)
-			del(A)
+			cdel(A)
 			continue
 */

@@ -60,7 +60,7 @@
 						continue
 					G.attackby(NG, user)
 					usr << "You add the newly-formed wood to the stack. It now contains [NG.amount] planks."
-			del(src)
+			cdel(src)
 			return
 
 /obj/item/weapon/grown/sunflower // FLOWER POWER!
@@ -129,7 +129,7 @@
 		if(user)
 			user << "All the leaves have fallen off \the [src] from violent whacking."
 			user.temp_drop_inv_item(src)
-		del(src)
+		cdel(src)
 
 /obj/item/weapon/grown/nettle/death // -- Skie
 	plantname = "deathnettle"
@@ -184,5 +184,5 @@
 	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || istype(W, /obj/item/weapon/kitchen/utensil/knife) || istype(W, /obj/item/weapon/kitchenknife) || istype(W, /obj/item/weapon/kitchenknife/ritual))
 		user << "<span class='notice'>You use [W] to fashion a pipe out of the corn cob!</span>"
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe (user.loc)
-		del(src)
+		cdel(src)
 		return

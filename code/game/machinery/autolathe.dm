@@ -179,7 +179,7 @@
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
 		if(user.temp_drop_inv_item(O))
-			del(O)
+			cdel(O)
 
 	updateUsrDialog()
 	return
@@ -337,7 +337,7 @@
 							recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
 						else
 							recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
-				del(I)
+				cdel(I)
 
 	//Create parts for lathe.
 	component_parts = list()

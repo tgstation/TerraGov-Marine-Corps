@@ -92,10 +92,10 @@
 		else
 			if(node1)
 				node1.disconnect(src)
-				del(network1)
+				cdel(network1)
 			if(node2)
 				node2.disconnect(src)
-				del(network2)
+				cdel(network2)
 
 			node1 = null
 			node2 = null

@@ -36,12 +36,12 @@ proc/cardinalrange(var/center)
 /obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
 	//Make sure we are the only one here
 	if(!istype(src.loc, /turf))
-		del(src)
+		cdel(src)
 		return
 	for(var/obj/machinery/am_shielding/AMS in loc.contents)
 		if(AMS == src) continue
 		spawn(0)
-			del(src)
+			cdel(src)
 		return
 
 	//Search for shielding first
@@ -61,17 +61,16 @@ proc/cardinalrange(var/center)
 				controllerscan(1)//Last chance
 			return
 		spawn(0)
-			del(src)
+			cdel(src)
 	return
 
 
-/obj/machinery/am_shielding/Del()
+/obj/machinery/am_shielding/Dispose()
 	if(control_unit)	control_unit.remove_shielding(src)
 	if(processing)	shutdown_core()
 	visible_message("\red The [src.name] melts!")
 	//Might want to have it leave a mess on the floor but no sprites for now
-	..()
-	return
+	. = ..()
 
 
 /obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
@@ -169,7 +168,7 @@ proc/cardinalrange(var/center)
 	if(injecting_fuel && control_unit)
 		control_unit.exploding = 1
 	if(src)
-		del(src)
+		cdel(src)
 	return
 
 
@@ -199,7 +198,7 @@ proc/cardinalrange(var/center)
 /obj/item/device/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/device/multitool) && istype(src.loc,/turf))
 		new/obj/machinery/am_shielding(src.loc)
-		del(src)
+		cdel(src)
 		return
 	..()
 	return

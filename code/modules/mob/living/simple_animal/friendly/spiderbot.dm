@@ -182,9 +182,9 @@
 		src.name = "Spider-bot"
 		update_icon()
 
-/mob/living/simple_animal/spiderbot/Del()
+/mob/living/simple_animal/spiderbot/Dispose()
 	eject_brain()
-	..()
+	. = ..()
 
 /mob/living/simple_animal/spiderbot/New()
 
@@ -207,8 +207,7 @@
 	held_item = null
 
 	robogibs(src.loc, viruses)
-	src.Del()
-	return
+	cdel(src)
 
 //Cannibalized from the parrot mob. ~Zuhayr
 /mob/living/simple_animal/spiderbot/verb/drop_spider_held_item()

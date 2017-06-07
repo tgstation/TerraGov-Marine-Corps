@@ -110,11 +110,6 @@
 			active_tracking_beacons -= src
 		. = ..()
 
-	Del()
-		if (activated)
-			active_tracking_beacons -= src
-		. = ..()
-
 
 //MARINE ENCRYPTION KEYS
 
@@ -329,7 +324,7 @@
 	frequency = CIV_GEN_FREQ
 	New()
 		..()
-		del(keyslot1)
+		cdel(keyslot1)
 		keyslot1 = new /obj/item/device/encryptionkey/bears
 		recalculateChannels()
 

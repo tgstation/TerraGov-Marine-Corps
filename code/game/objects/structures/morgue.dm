@@ -36,21 +36,21 @@
 			for(var/atom/movable/A as mob|obj in src)
 				A.loc = src.loc
 				ex_act(severity)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
-				del(src)
+				cdel(src)
 				return
 	return
 
@@ -67,7 +67,7 @@
 				A.forceMove(src)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		//src.connected = null
-		del(src.connected)
+		cdel(src.connected)
 	else
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		src.connected = new /obj/structure/m_tray( src.loc )
@@ -83,7 +83,7 @@
 			src.connected.dir = src.dir
 		else
 			//src.connected = null
-			del(src.connected)
+			cdel(src.connected)
 	src.add_fingerprint(user)
 	update()
 	return
@@ -117,7 +117,7 @@
 		src.connected.icon_state = "morguet"
 	else
 		//src.connected = null
-		del(src.connected)
+		cdel(src.connected)
 	return
 
 
@@ -148,7 +148,7 @@
 		src.connected.update()
 		add_fingerprint(user)
 		//SN src = null
-		del(src)
+		cdel(src)
 		return
 	return
 
@@ -199,21 +199,21 @@
 			for(var/atom/movable/A as mob|obj in src)
 				A.loc = src.loc
 				ex_act(severity)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
-				del(src)
+				cdel(src)
 				return
 	return
 
@@ -239,7 +239,7 @@
 				A.loc = src
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		//src.connected = null
-		del(src.connected)
+		cdel(src.connected)
 	else if (src.locked == 0)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		src.connected = new /obj/structure/c_tray( src.loc )
@@ -254,7 +254,7 @@
 			src.connected.icon_state = "cremat"
 		else
 			//src.connected = null
-			del(src.connected)
+			cdel(src.connected)
 	src.add_fingerprint(user)
 	update()
 
@@ -289,7 +289,7 @@
 		src.connected.icon_state = "cremat"
 	else
 		//src.connected = null
-		del(src.connected)
+		cdel(src.connected)
 	return
 
 /obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
@@ -330,10 +330,10 @@
 			//log_attack("\[[time_stamp()]\] <b>[user]/[user.ckey]</b> cremated <b>[M]/[M.ckey]</b>")
 			M.death(1)
 			M.ghostize()
-			del(M)
+			cdel(M)
 
 		for(var/obj/O in contents) //obj instead of obj/item so that bodybags and ashes get destroyed. We dont want tons and tons of ash piling up
-			del(O)
+			cdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
 		sleep(30)
@@ -370,7 +370,7 @@
 		src.connected.update()
 		add_fingerprint(user)
 		//SN src = null
-		del(src)
+		cdel(src)
 		return
 	return
 

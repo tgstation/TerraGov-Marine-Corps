@@ -89,21 +89,17 @@
 	output += "</div>"
 	return output
 
-/obj/mecha/hoverpod/Del()
+/obj/mecha/hoverpod/Dispose()
 	for(var/mob/M in src)
-		if(M==src.occupant)
+		if(M == occupant)
 			continue
-		M.loc = get_turf(src)
-		M.loc.Entered(M)
+		M.forceMove(get_turf(src))
 		step_rand(M)
 	for(var/atom/movable/A in src.cargo)
-		A.loc = get_turf(src)
-		var/turf/T = get_turf(A)
-		if(T)
-			T.Entered(A)
+		A.forceMove(get_turf(src))
 		step_rand(A)
-	..()
-	return
+	. = ..()
+
 
 //Hoverpod variants
 

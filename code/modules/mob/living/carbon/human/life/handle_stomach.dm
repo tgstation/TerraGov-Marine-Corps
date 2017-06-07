@@ -10,7 +10,7 @@
 				if(M.stat == DEAD)
 					M.death(1)
 					stomach_contents.Remove(M)
-					del(M)
+					cdel(M)
 					continue
 				if(air_master.current_cycle % 3 == 1)
 					if(!(M.status_flags & GODMODE))

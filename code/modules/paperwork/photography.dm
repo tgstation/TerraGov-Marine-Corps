@@ -154,7 +154,7 @@
 			return
 		user << "<span class='notice'>You insert [I] into [src].</span>"
 		if(user.temp_drop_inv_item(I))
-			del(I)
+			cdel(I)
 			pictures_left = pictures_max
 		return
 	..()

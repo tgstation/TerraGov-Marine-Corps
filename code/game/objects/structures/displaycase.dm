@@ -16,7 +16,7 @@
 			new /obj/item/weapon/shard( src.loc )
 			if (occupied)
 				occupied = 0
-			del(src)
+			cdel(src)
 		if (2)
 			if (prob(50))
 				src.health -= 15

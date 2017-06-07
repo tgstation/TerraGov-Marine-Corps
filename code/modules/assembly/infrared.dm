@@ -32,7 +32,7 @@
 			processing_objects.Add(src)
 		else
 			on = 0
-			if(first)	del(first)
+			if(first)	cdel(first)
 			processing_objects.Remove(src)
 		update_icon()
 		return secured
@@ -53,7 +53,7 @@
 	process()//Old code
 		if(!on)
 			if(first)
-				del(first)
+				cdel(first)
 				return
 
 		if((!(first) && (secured && (istype(loc, /turf) || (holder && istype(holder.loc, /turf))))))
@@ -77,7 +77,7 @@
 
 
 	attack_hand()
-		del(first)
+		cdel(first)
 		..()
 		return
 
@@ -86,14 +86,14 @@
 		var/t = dir
 		..()
 		dir = t
-		del(first)
+		cdel(first)
 		return
 
 
 	holder_movement()
 		if(!holder)	return 0
 //		dir = holder.dir
-		del(first)
+		cdel(first)
 		return 1
 
 
@@ -175,7 +175,7 @@
 	if(master)
 		//world << "beam hit \ref[src]: calling master \ref[master].hit"
 		master.trigger_beam()
-	del(src)
+	cdel(src)
 	return
 
 /obj/effect/beam/i_beam/proc/vis_spread(v)
@@ -193,7 +193,7 @@
 
 	if((loc.density || !(master)))
 	//	world << "beam hit loc [loc] or no master [master], deleting"
-		del(src)
+		cdel(src)
 		return
 	//world << "proccess: [src.left] left"
 
@@ -233,17 +233,17 @@
 				return
 		else
 			//world << "is a next: \ref[next], deleting beam \ref[I]"
-			del(I)
+			cdel(I)
 	else
 		//world << "step failed, deleting \ref[next]"
-		del(next)
+		cdel(next)
 	spawn(10)
 		process()
 		return
 	return
 
 /obj/effect/beam/i_beam/Bump()
-	del(src)
+	cdel(src)
 	return
 
 /obj/effect/beam/i_beam/Bumped()
@@ -258,7 +258,8 @@
 		return
 	return
 
-/obj/effect/beam/i_beam/Del()
-	del(next)
-	..()
-	return
+/obj/effect/beam/i_beam/Dispose()
+	cdel(next)
+	next = null
+	. = ..()
+

@@ -29,9 +29,9 @@
 		..()
 		ammo = ammo_list[ammo]
 
-	Del()
+	Dispose()
 		ammo = null
-		..()
+		. = ..()
 
 
 /obj/machinery/power/emitter/verb/rotate()
@@ -51,11 +51,11 @@
 		connect_to_network()
 		src.directwired = 1
 
-/obj/machinery/power/emitter/Del()
+/obj/machinery/power/emitter/Dispose()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("Emitter deleted at ([x],[y],[z])")
 	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
-	..()
+	. = ..()
 
 /obj/machinery/power/emitter/update_icon()
 	if (active && powernet && avail(active_power_usage))

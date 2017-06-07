@@ -413,7 +413,7 @@ cdel(src)
 
 		for(var/obj/O in T_trg)
 			if(istype(O, /obj/effect/effect/smoke)) continue //We land on smoke a lot and it has weird TTL systems that will generate runtimes otherwise
-			del(O)
+			cdel(O)
 
 		var/mob/living/carbon/MLC
 		for(i in T_trg)

@@ -34,7 +34,7 @@
 		if(4)
 			if(!src.transformed)
 				if ((!strain_data["name"]) || (!strain_data["UI"]) || (!strain_data["SE"]))
-					del(affected_mob.virus)
+					cdel(affected_mob.virus)
 					return
 
 				//Save original dna for when the disease is cured.
@@ -56,7 +56,7 @@
 
 	return
 
-/datum/disease/dnaspread/Del()
+/datum/disease/dnaspread/Dispose()
 	if ((original_dna["name"]) && (original_dna["UI"]) && (original_dna["SE"]))
 		var/list/newUI=original_dna["UI"]
 		var/list/newSE=original_dna["SE"]
@@ -66,4 +66,4 @@
 		affected_mob.real_name = original_dna["name"]
 
 		affected_mob << "\blue You feel more like yourself."
-	..()
+	. = ..()

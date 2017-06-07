@@ -248,7 +248,7 @@ var/global/list/damage_icon_parts = list()
 
 	//Create a new, blank icon for our mob to use.
 	if(stand_icon)
-		del(stand_icon)
+		cdel(stand_icon)
 
 	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
 

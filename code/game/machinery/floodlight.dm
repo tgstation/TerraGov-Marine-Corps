@@ -14,14 +14,14 @@
 	var/brightness_on = 7		//can't remember what the maxed out value is
 	unacidable = 1
 
-/obj/machinery/floodlight/New()
-	..()
-	spawn(1)
-		cell = new /obj/item/weapon/cell(src)
+	New()
+		..()
+		spawn(1)
+			cell = new /obj/item/weapon/cell(src)
 
-/obj/machinery/floodlight/Del()
-	SetLuminosity(0)
-	..()
+	Dispose()
+		SetLuminosity(0)
+		. = ..()
 
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"

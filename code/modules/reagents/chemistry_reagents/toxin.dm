@@ -161,11 +161,11 @@
 		M.silent = max(M.silent, 10)
 		M.tod = worldtime2text()
 
-	Del()
+	Dispose()
 		if(holder && ismob(holder.my_atom))
 			var/mob/M = holder.my_atom
 			M.status_flags &= ~FAKEDEATH
-		..()
+		. = ..()
 
 /datum/reagent/toxin/mindbreaker
 	name = "Mindbreaker Toxin"
@@ -217,7 +217,7 @@
 			var/turf/simulated/wall/W = T
 			if(W.rotting)
 				W.rotting = 0
-				for(var/obj/effect/E in W) if(E.name == "Wallrot") del E
+				for(var/obj/effect/E in W) if(E.name == "Wallrot") cdel(E)
 
 				for(var/mob/O in viewers(W, null))
 					O.show_message(text("\blue The fungi are completely dissolved by the solution!"), 1)
@@ -228,7 +228,7 @@
 			alien_weeds.health -= rand(15,35) // Kills alien weeds pretty fast
 			alien_weeds.healthcheck()
 		else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
-			del(O)
+			cdel(O)
 		else if(istype(O,/obj/effect/plantsegment))
 			if(prob(50)) del(O) //Kills kudzu too.
 		else if(istype(O,/obj/machinery/portable_atmospherics/hydroponics))
@@ -402,7 +402,7 @@
 				if(H.head)
 					if(prob(meltprob) && !H.head.unacidable)
 						H << "<span class='danger'>Your headgear melts away but protects you from the acid!</span>"
-						del(H.head)
+						cdel(H.head)
 						H.update_inv_head(0)
 						H.update_hair(0)
 					else
@@ -412,7 +412,7 @@
 				if(H.wear_mask)
 					if(prob(meltprob) && !H.wear_mask.unacidable)
 						H << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
-						del (H.wear_mask)
+						cdel(H.wear_mask)
 						H.update_inv_wear_mask(0)
 						H.update_hair(0)
 					else
@@ -422,7 +422,7 @@
 				if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 					if(prob(meltprob) && !H.glasses.unacidable)
 						H << "<span class='danger'>Your glasses melts away!</span>"
-						del (H.glasses)
+						cdel(H.glasses)
 						H.update_inv_glasses(0)
 
 			else if(ismonkey(M))
@@ -430,7 +430,7 @@
 				if(MK.wear_mask)
 					if(!MK.wear_mask.unacidable)
 						MK << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
-						del (MK.wear_mask)
+						cdel(MK.wear_mask)
 						MK.update_inv_wear_mask(0)
 					else
 						MK << "<span class='warning'>Your mask protects you from the acid.</span>"
@@ -460,7 +460,7 @@
 				I.desc = "Looks like this was \an [O] some time ago."
 				for(var/mob/M in viewers(5, O))
 					M << "\red \the [O] melts."
-				del(O)
+				cdel(O)
 
 /datum/reagent/toxin/acid/polyacid
 	name = "Polytrinic acid"

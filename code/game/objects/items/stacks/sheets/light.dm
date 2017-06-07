@@ -19,7 +19,7 @@
 		new/obj/item/stack/sheet/glass(user.loc)
 		if(amount <= 0)
 			user.temp_drop_inv_item(src)
-			del(src)
+			cdel(src)
 
 	if(istype(O,/obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = O

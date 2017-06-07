@@ -147,6 +147,8 @@
 	relativewall_neighbours()
 	..()
 
+
+//turfs call del() when they're replaced by another turf, so we can't use Dispose() unfortunately.
 /turf/simulated/wall/Del()
 	spawn(10)
 		for(var/turf/simulated/wall/W in range(src,1))
@@ -163,4 +165,4 @@
 				shroom.pixel_x = 0
 				shroom.pixel_y = 0
 
-	..()
+	. = ..()
