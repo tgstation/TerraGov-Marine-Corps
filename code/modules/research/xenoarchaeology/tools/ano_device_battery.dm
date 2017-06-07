@@ -189,9 +189,9 @@
 	p = min(p, 100)
 	icon_state = "anodev[round(p,25)]"
 
-/obj/item/weapon/anodevice/Del()
+/obj/item/weapon/anodevice/Dispose()
 	processing_objects.Remove(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/anodevice/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if (!istype(M))

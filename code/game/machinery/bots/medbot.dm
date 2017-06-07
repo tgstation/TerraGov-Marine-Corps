@@ -492,7 +492,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	del(src)
+	cdel(src)
 	return
 
 /obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
@@ -567,11 +567,11 @@
 	else if(istype(src,/obj/item/weapon/storage/firstaid/o2))
 		A.skin = "o2"
 
-	del(S)
+	cdel(S)
 	user.put_in_hands(A)
 	user << "<span class='notice'>You add the robot arm to the first aid kit.</span>"
 	user.temp_drop_inv_item(src)
-	del(src)
+	cdel(src)
 
 
 /obj/item/weapon/firstaid_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -588,7 +588,7 @@
 			if(0)
 				if(istype(W, /obj/item/device/healthanalyzer))
 					user.drop_held_item()
-					del(W)
+					cdel(W)
 					src.build_step++
 					user << "<span class='notice'>You add the health sensor to [src].</span>"
 					src.name = "First aid/robot arm/health analyzer assembly"
@@ -597,7 +597,7 @@
 			if(1)
 				if(isprox(W))
 					user.drop_held_item()
-					del(W)
+					cdel(W)
 					src.build_step++
 					user << "<span class='notice'>You complete the Medibot! Beep boop.</span>"
 					var/turf/T = get_turf(src)
@@ -605,4 +605,4 @@
 					S.skin = src.skin
 					S.name = src.created_name
 					user.temp_drop_inv_item(src)
-					del(src)
+					cdel(src)

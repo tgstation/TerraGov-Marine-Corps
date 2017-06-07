@@ -75,7 +75,7 @@
 	New()
 		..()
 		for(var/obj/structure/bush/B in src)
-			del B
+			cdel(B)
 
 /turf/unsimulated/jungle/proc/Spread(var/probability, var/prob_loss = 50)
 	if(probability <= 0)
@@ -145,7 +145,7 @@
 /turf/unsimulated/jungle/water/New()
 	..()
 	for(var/obj/structure/bush/B in src)
-		del(B)
+		cdel(B)
 
 /turf/unsimulated/jungle/water/Entered(atom/movable/O)
 	..()

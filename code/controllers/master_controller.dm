@@ -11,6 +11,8 @@ var/global/last_tick_duration = 0
 var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
+
+
 datum/controller/game_controller
 	var/processing = 0
 	var/breather_ticks = 2		//a somewhat crude attempt to iron over the 'bumps' caused by high-cpu use by letting the MC have a breather for this many ticks after every loop
@@ -36,6 +38,9 @@ datum/controller/game_controller
 	var/list/shuttle_list	                    // For debugging and VV
 	var/datum/ore_distribution/asteroid_ore_map // For debugging and VV.
 
+/datum/controller/Dispose()
+	..()
+	return TA_PURGE_ME_NOW //all controllers are immediately deleted
 
 datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.
@@ -43,7 +48,7 @@ datum/controller/game_controller/New()
 		log_debug("Rebuilding Master Controller")
 		if(istype(master_controller))
 			Recover()
-			del(master_controller)
+			cdel(master_controller)
 		master_controller = src
 
 	if(!RoleAuthority)

@@ -481,7 +481,7 @@
 		M << "<B>Objectives:</b> [objectives]"
 
 	if(original)
-		del(original)
+		cdel(original)
 	return
 
 
@@ -626,7 +626,7 @@
 	new_xeno.key  = M.key
 
 	if(original) //Just to be sure.
-		del(original)
+		cdel(original)
 
 /datum/emergency_call/mercs/create_member(var/datum/mind/M, hostile)
 	var/turf/spawn_loc = get_spawn_point()
@@ -678,7 +678,7 @@
 		M << "<B>Objectives:</b> [objectives]"
 
 	if(original)
-		del(original)
+		cdel(original)
 	return
 
 /datum/emergency_call/mercs/proc/spawn_captain(var/mob/M)
@@ -783,7 +783,7 @@
 	mob.add_language("Russian")
 
 	if(original)
-		del(original)
+		cdel(original)
 	return
 
 
@@ -872,7 +872,7 @@
 		M << "<B>Objectives:</b> [objectives]"
 
 	if(original)
-		del(original)
+		cdel(original)
 	return
 
 /datum/emergency_call/pizza/proc/spawn_pizza(var/mob/M)
@@ -1154,7 +1154,7 @@
 		M << "<B>Objectives:</b> [objectives]"
 
 	if(original)
-		del(original)
+		cdel(original)
 	return
 
 
@@ -1252,7 +1252,7 @@
 		M << "<B>Objectives:</b> [objectives]"
 
 	if(original)
-		del(original)
+		cdel(original)
 	return
 
 

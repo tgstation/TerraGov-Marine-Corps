@@ -304,13 +304,13 @@
 		M.weakened = min(M.weakened, 3)
 
 	src.visible_message("\blue \icon[src] [src] deactivates with a gentle shudder.")
-	del(suspension_field)
+	cdel(suspension_field)
 	icon_state = "suspension2"
 
-/obj/machinery/suspension_gen/Del()
+/obj/machinery/suspension_gen/Dispose()
 	//safety checks: clear the field and drop anything it's holding
 	deactivate()
-	..()
+	. = ..()
 
 /obj/machinery/suspension_gen/verb/rotate_ccw()
 	set src in view(1)
@@ -339,7 +339,7 @@
 	density = 1
 	var/field_type = "chlorine"
 
-/obj/effect/suspension_field/Del()
+/obj/effect/suspension_field/Dispose()
 	for(var/obj/I in src)
 		I.loc = src.loc
-	..()
+	. = ..()

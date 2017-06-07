@@ -40,8 +40,8 @@
 
 	dead_mob_list -= src
 	spawn(15)
-		if(animation)	del(animation)
-		if(src)			del(src)
+		if(animation)	cdel(animation)
+		if(src)			cdel(src)
 
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...")

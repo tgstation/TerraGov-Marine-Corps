@@ -183,10 +183,6 @@
 		F.fswitch = src
 	..()
 
-/obj/machinery/colony_floodlight/Del()
-	SetLuminosity(0)
-	..()
-
 /obj/machinery/colony_floodlight_switch/update_icon()
 	if(!ispowered)
 		icon_state = "panelnopower"
@@ -250,6 +246,10 @@
 	use_power = 0 //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
+
+	Dispose()
+		SetLuminosity(0)
+		. = ..()
 
 /obj/machinery/colony_floodlight/update_icon()
 	if(damaged)

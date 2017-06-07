@@ -17,9 +17,9 @@
 	..()
 	update_nearby_tiles()
 
-/obj/effect/energy_field/Del()
+/obj/effect/energy_field/Dispose()
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/effect/energy_field/ex_act(var/severity)
 	Stress(0.5 + severity)

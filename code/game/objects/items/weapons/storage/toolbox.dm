@@ -13,12 +13,6 @@
 	origin_tech = "combat=1"
 	attack_verb = list("robusted")
 
-	New()
-		..()
-		if (src.type == /obj/item/weapon/storage/toolbox)
-			world << "BAD: [src] ([src.type]) spawned at [src.x] [src.y] [src.z]"
-			del(src)
-
 /obj/item/weapon/storage/toolbox/emergency
 	name = "emergency toolbox"
 	icon_state = "red"

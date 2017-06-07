@@ -65,7 +65,7 @@
 	switch(query_tree[1])
 		if("delete")
 			for(var/datum/d in objs)
-				del d
+				cdel(d)
 
 		if("select")
 			var/text = ""
@@ -116,7 +116,7 @@
 	var/datum/SDQL_parser/parser = new(query_list)
 	var/list/query_tree = parser.parse()
 
-	del(parser)
+	cdel(parser)
 
 	return query_tree
 

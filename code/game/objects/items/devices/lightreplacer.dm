@@ -90,7 +90,7 @@
 				AddUses(1)
 				user << "You insert the [L.name] into the [src.name]. You have [uses] lights remaining."
 				user.drop_held_item()
-				del(L)
+				cdel(L)
 				return
 		else
 			user << "You need a working light."
@@ -156,7 +156,7 @@
 			target.brightness = L2.brightness
 			target.on = target.has_power()
 			target.update()
-			del(L2)
+			cdel(L2)
 
 			if(target.on && target.rigged)
 				target.explode()

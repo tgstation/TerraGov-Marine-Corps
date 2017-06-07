@@ -126,4 +126,4 @@
 
 		explosion(src.loc,-1,-1,0)
 		if(src)
-			del(src)
+			cdel(src)

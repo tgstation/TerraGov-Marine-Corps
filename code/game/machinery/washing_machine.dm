@@ -50,7 +50,7 @@
 	for(var/obj/item/stack/sheet/hairlesshide/HH in contents)
 		var/obj/item/stack/sheet/wetleather/WL = new(src)
 		WL.amount = HH.amount
-		del(HH)
+		cdel(HH)
 
 
 	if(crayon)
@@ -83,10 +83,10 @@
 					new_jumpsuit_icon_state = J.icon_state
 					new_jumpsuit_item_state = J.item_state
 					new_jumpsuit_name = J.name
-					del(J)
+					cdel(J)
 					//world << "DEBUG: YUP! [new_icon_state] and [new_item_state]"
 					break
-				del(J)
+				cdel(J)
 			for(var/T in typesof(/obj/item/clothing/gloves))
 				var/obj/item/clothing/gloves/G = new T
 				//world << "DEBUG: [color] == [J.color]"
@@ -94,40 +94,40 @@
 					new_glove_icon_state = G.icon_state
 					new_glove_item_state = G.item_state
 					new_glove_name = G.name
-					del(G)
+					cdel(G)
 					//world << "DEBUG: YUP! [new_icon_state] and [new_item_state]"
 					break
-				del(G)
+				cdel(G)
 			for(var/T in typesof(/obj/item/clothing/shoes))
 				var/obj/item/clothing/shoes/S = new T
 				//world << "DEBUG: [color] == [J.color]"
 				if(wash_color == S.item_color)
 					new_shoe_icon_state = S.icon_state
 					new_shoe_name = S.name
-					del(S)
+					cdel(S)
 					//world << "DEBUG: YUP! [new_icon_state] and [new_item_state]"
 					break
-				del(S)
+				cdel(S)
 			for(var/T in typesof(/obj/item/weapon/bedsheet))
 				var/obj/item/weapon/bedsheet/B = new T
 				//world << "DEBUG: [color] == [J.color]"
 				if(wash_color == B.item_color)
 					new_sheet_icon_state = B.icon_state
 					new_sheet_name = B.name
-					del(B)
+					cdel(B)
 					//world << "DEBUG: YUP! [new_icon_state] and [new_item_state]"
 					break
-				del(B)
+				cdel(B)
 			for(var/T in typesof(/obj/item/clothing/head/soft))
 				var/obj/item/clothing/head/soft/H = new T
 				//world << "DEBUG: [color] == [J.color]"
 				if(wash_color == H.item_color)
 					new_softcap_icon_state = H.icon_state
 					new_softcap_name = H.name
-					del(H)
+					cdel(H)
 					//world << "DEBUG: YUP! [new_icon_state] and [new_item_state]"
 					break
-				del(H)
+				cdel(H)
 			if(new_jumpsuit_icon_state && new_jumpsuit_item_state && new_jumpsuit_name)
 				for(var/obj/item/clothing/under/J in contents)
 					//world << "DEBUG: YUP! FOUND IT!"
@@ -169,7 +169,7 @@
 					H.item_color = wash_color
 					H.name = new_softcap_name
 					H.desc = new_desc
-		del(crayon)
+		cdel(crayon)
 		crayon = null
 
 

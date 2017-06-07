@@ -300,10 +300,10 @@
 		f1.SetOpacity(opacity)
 		f2.SetOpacity(opacity)
 
-	Del()
-		del f1
-		del f2
-		..()
+	Dispose()
+		cdel(f1)
+		cdel(f2)
+		. = ..()
 
 /obj/machinery/door/poddoor/two_tile_ver
 	var/obj/machinery/door/poddoor/filler_object/f1
@@ -319,10 +319,10 @@
 		f1.SetOpacity(opacity)
 		f2.SetOpacity(opacity)
 
-	Del()
-		del f1
-		del f2
-		..()
+	Dispose()
+		cdel(f1)
+		cdel(f2)
+		. = ..()
 
 /obj/machinery/door/poddoor/four_tile_hor
 	var/obj/machinery/door/poddoor/filler_object/f1
@@ -346,12 +346,12 @@
 		f4.SetOpacity(opacity)
 		f3.SetOpacity(opacity)
 
-	Del()
-		del f1
-		del f2
-		del f3
-		del f4
-		..()
+	Dispose()
+		cdel(f1)
+		cdel(f2)
+		cdel(f3)
+		cdel(f4)
+		. = ..()
 
 /obj/machinery/door/poddoor/four_tile_ver
 	var/obj/machinery/door/poddoor/filler_object/f1
@@ -375,12 +375,12 @@
 		f4.SetOpacity(opacity)
 		f3.SetOpacity(opacity)
 
-	Del()
-		del f1
-		del f2
-		del f3
-		del f4
-		..()
+	Dispose()
+		cdel(f1)
+		cdel(f2)
+		cdel(f3)
+		cdel(f4)
+		. = ..()
 
 /obj/machinery/door/poddoor/filler_object
 	name = ""

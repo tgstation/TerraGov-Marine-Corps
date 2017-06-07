@@ -151,7 +151,7 @@
 
 	New() //Self-deletes after creation & animation
 		spawn(8)
-			del(src)
+			cdel(src)
 			return
 
 /obj/effect/xenomorph/splatterblob
@@ -165,7 +165,7 @@
 
 	New() //Self-deletes after creation & animation
 		spawn(40)
-			del(src)
+			cdel(src)
 			return
 
 /obj/effect/xenomorph/spray
@@ -181,7 +181,7 @@
 	New() //Self-deletes
 		spawn(100 + rand(0, 20))
 			processing_objects.Remove(src)
-			del(src)
+			cdel(src)
 			return
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
@@ -213,7 +213,7 @@
 	var/turf/simulated/T = src.loc
 	if(!istype(T))
 		processing_objects.Remove(src)
-		del(src)
+		cdel(src)
 		return
 
 	for(var/mob/living/carbon/M in loc)

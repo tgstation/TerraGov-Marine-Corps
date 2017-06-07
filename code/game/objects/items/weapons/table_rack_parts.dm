@@ -30,14 +30,14 @@
 		if (istype(W, /obj/item/weapon/wrench))
 			new /obj/item/stack/sheet/metal( user.loc )
 			//SN src = null
-			del(src)
+			cdel(src)
 		if (istype(W, /obj/item/stack/rods))
 			var/obj/item/stack/rods/R = W
 			if (R.use(4))
 				new /obj/item/weapon/table_parts/reinforced(get_turf(loc))
 				user << "<span class='notice'>You reinforce the [name].</span>"
 				user.temp_drop_inv_item(src)
-				del(src)
+				cdel(src)
 			else
 				user << "<span class='warning'>You need at least four rods to reinforce the [name].</span>"
 
@@ -73,7 +73,7 @@
 		if (istype(W, /obj/item/weapon/wrench))
 			new /obj/item/stack/sheet/metal( get_turf(loc) )
 			new /obj/item/stack/rods( get_turf(loc) )
-			del(src)
+			cdel(src)
 
 /*
  * Wooden Table Parts
@@ -91,13 +91,13 @@
 		if (istype(W, /obj/item/weapon/wrench))
 			new /obj/item/stack/sheet/wood( get_turf(loc) )
 			//SN src = null
-			del(src)
+			cdel(src)
 		if (istype(W, /obj/item/stack/tile/carpet))
 			var/obj/item/stack/tile/carpet/C = W
 			if (C.use(1))
 				new /obj/item/weapon/table_parts/gambling(get_turf(loc))
 				user << "<span class='notice'>You put a layer of carpet on the table.</span>"
-				del(src)
+				cdel(src)
 
 /*
  * Gambling Table Parts
@@ -114,12 +114,12 @@
 		if (istype(W, /obj/item/weapon/wrench))
 			new /obj/item/stack/sheet/wood( get_turf(loc) )
 			new /obj/item/stack/tile/carpet( get_turf(loc) )
-			del(src)
+			cdel(src)
 		if (istype(W, /obj/item/weapon/crowbar))
 			new /obj/item/stack/tile/carpet( get_turf(loc) )
 			new /obj/item/weapon/table_parts/wood( get_turf(loc) )
 			user << "<span class='notice'>You pry the carpet out of the table.</span>"
-			del(src)
+			cdel(src)
 
 
 
@@ -142,7 +142,7 @@
 		..()
 		if (istype(W, /obj/item/weapon/wrench))
 			new /obj/item/stack/sheet/metal( get_turf(loc) )
-			del(src)
+			cdel(src)
 			return
 		return
 
@@ -163,5 +163,5 @@
 		var/obj/structure/rack/R = new /obj/structure/rack( user.loc )
 		R.add_fingerprint(user)
 		user.drop_held_item()
-		del(src)
+		cdel(src)
 

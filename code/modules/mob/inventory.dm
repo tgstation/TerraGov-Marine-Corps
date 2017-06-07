@@ -268,5 +268,5 @@
 			W.loc = src
 	else
 		if (del_on_fail)
-			del(W)
+			cdel(W)
 	return equipped

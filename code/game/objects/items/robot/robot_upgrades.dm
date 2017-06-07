@@ -35,7 +35,7 @@
 		//world << R.icon_state
 		icon = 'icons/mob/custom-synthetic.dmi'
 		R.icon_state = "[R.ckey]-Standard"
-	del(R.module)
+	cdel(R.module)
 	R.module = null
 	R.camera.network.Remove(list("Engineering","Medical","MINE"))
 	R.updatename("Default")

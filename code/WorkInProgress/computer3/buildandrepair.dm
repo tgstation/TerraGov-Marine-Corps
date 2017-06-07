@@ -95,7 +95,7 @@
 					if(!src || !WT.isOn()) return
 					user << "\blue You deconstruct the frame."
 					new /obj/item/stack/sheet/metal( src.loc, 5 )
-					del(src)
+					cdel(src)
 		if(1)
 			if(istype(P, /obj/item/weapon/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -211,7 +211,7 @@
 				if(circuit.OS)
 					circuit.OS.computer = B
 				B.RefreshParts()		// todo
-				del(src)
+				cdel(src)
 
 /*
 	This will remove peripherals if you specify one, but the main function is to

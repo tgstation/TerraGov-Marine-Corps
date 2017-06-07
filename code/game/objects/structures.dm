@@ -10,7 +10,7 @@
 	if(parts)
 		new parts(loc)
 	density = 0
-	del(src)
+	cdel(src)
 
 /obj/structure/attack_hand(mob/user)
 	..()
@@ -35,11 +35,11 @@
 /obj/structure/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			return
@@ -48,9 +48,6 @@
 	..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
-
-/obj/structure/Del()
-	..()
 
 /obj/structure/proc/climb_on()
 

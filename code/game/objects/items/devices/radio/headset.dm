@@ -45,7 +45,7 @@
 	origin_tech = "syndicate=3"
 /obj/item/device/radio/headset/syndicate/New()
 	..()
-	del(keyslot1)
+	cdel(keyslot1)
 	keyslot1 = new /obj/item/device/encryptionkey/syndicate
 	syndie = 1
 	recalculateChannels()
@@ -54,7 +54,7 @@
 	origin_tech = "syndicate=3"
 /obj/item/device/radio/headset/binary/New()
 	..()
-	del(keyslot1)
+	cdel(keyslot1)
 	keyslot1 = new /obj/item/device/encryptionkey/binary
 	recalculateChannels()
 

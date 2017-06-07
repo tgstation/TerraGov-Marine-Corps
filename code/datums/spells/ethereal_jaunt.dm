@@ -53,8 +53,8 @@
 								break
 				target.canmove = 1
 				target.client.eye = target
-				del(animation)
-				del(holder)
+				cdel(animation)
+				cdel(holder)
 			else
 				flick("liquify",animation)
 				target.loc = holder
@@ -79,8 +79,8 @@
 								break
 				target.canmove = 1
 				target.client.eye = target
-				del(animation)
-				del(holder)
+				cdel(animation)
+				cdel(holder)
 
 /obj/effect/dummy/spell_jaunt
 	name = "water"

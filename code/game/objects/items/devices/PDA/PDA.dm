@@ -266,16 +266,19 @@ var/global/list/obj/item/device/pda/PDAs = list()
  *	The Actual PDA
  */
 /obj/item/device/pda/pickup(mob/user)
-	if(fon && src.loc != user)
+	if(fon && loc != user)
 		SetLuminosity(0)
 		user.SetLuminosity(f_lum)
 
-/obj/item/device/pda/Del()
+/obj/item/device/pda/Dispose()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-f_lum)
 	else
 		SetLuminosity(0)
-	..()
+	PDAs -= src
+	if (id && prob(90)) //IDs are kept in 90% of the cases
+		id.loc = get_turf(loc)
+	. = ..()
 
 /obj/item/device/pda/dropped(mob/user)
 	..()
@@ -799,11 +802,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		j = prob(10)
 
 	if(j) //This kills the PDA
-		P.Del()
 		if(message)
 			message += "It melts in a puddle of plastic."
 		else
 			message += "Your [P] shatters in a thousand pieces!"
+		cdel(P)
 
 	if(M && isliving(M))
 		message = "\red" + message
@@ -1055,7 +1058,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				if ( !(C:blood_DNA) )
 					user << "\blue No blood found on [C]"
 					if(C:blood_DNA)
-						del(C:blood_DNA)
+						cdel(C:blood_DNA)
 				else
 					user << "\blue Blood found on [C]. Analysing..."
 					spawn(15)
@@ -1184,12 +1187,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		T.hotspot_expose(700,125)
 		explosion(T, 0, 0, 1, rand(1,2))
 	return
-
-/obj/item/device/pda/Del()
-	PDAs -= src
-	if (src.id && prob(90)) //IDs are kept in 90% of the cases
-		src.id.loc = get_turf(src.loc)
-	..()
 
 /obj/item/device/pda/proc/available_pdas()
 	var/list/names = list()

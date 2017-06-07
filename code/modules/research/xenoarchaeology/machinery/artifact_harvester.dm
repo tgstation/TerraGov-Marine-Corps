@@ -155,7 +155,7 @@
 						//see if we can clear out an old effect
 						//delete it when the ids match to account for duplicate ids having different effects
 						if(inserted_battery.battery_effect && inserted_battery.stored_charge <= 0)
-							del(inserted_battery.battery_effect)
+							cdel(inserted_battery.battery_effect)
 
 						//
 						var/datum/artifact_effect/source_effect

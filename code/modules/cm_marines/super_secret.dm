@@ -76,7 +76,7 @@ Items and objects that are very hard to get to and do not affect balance.
 			if(coins < 4 && !state)
 				user.visible_message("[user] inserts \the [W] into \the [src].","\blue You insert \the [W] inside \the [src].")
 				coins++
-				del(W)
+				cdel(W)
 			else
 				user << "\red \the [W] does not fit anymore."
 		else

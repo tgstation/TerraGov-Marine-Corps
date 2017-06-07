@@ -30,9 +30,9 @@
 	spawn(1)
 		update()
 
-/obj/item/organ/Del()
+/obj/item/organ/Dispose()
 	if(!robotic) processing_objects -= src
-	..()
+	. = ..()
 
 /obj/item/organ/process()
 
@@ -232,4 +232,4 @@
 	if(fingerprintslast) O.fingerprintslast = fingerprintslast
 
 	user.put_in_active_hand(O)
-	del(src)
+	cdel(src)

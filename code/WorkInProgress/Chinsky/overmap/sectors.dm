@@ -108,12 +108,13 @@ var/global/list/map_sectors = list()
 	map_sectors["[map_z]"] = src
 	testing("Temporary sector at [x],[y] was created, corresponding zlevel is [map_z].")
 
-/obj/effect/map/sector/temporary/Del()
+/obj/effect/map/sector/temporary/Dispose()
 	map_sectors["[map_z]"] = null
 	testing("Temporary sector at [x],[y] was deleted.")
 	if (can_die())
 		testing("Associated zlevel disappeared.")
 		world.maxz--
+	. = ..()
 
 /obj/effect/map/sector/temporary/proc/can_die(var/mob/observer)
 	testing("Checking if sector at [map_z] can die.")

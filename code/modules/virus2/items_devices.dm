@@ -63,7 +63,7 @@
 			for(var/mob/living/carbon/target in view(1, get_turf(src)))
 				if(airborne_can_reach(get_turf(src), get_turf(target)))
 					infect_virus2(target, src.virus2)
-		del src
+		cdel(src)
 
 /obj/item/weapon/virusdish/examine(mob/user)
 	user << "This is a virus containment dish."
@@ -83,7 +83,7 @@
 
 	if(prob(50))
 		user << "\The [src] shatters!"
-		del src
+		cdel(src)
 
 ///////////////GNA DISK///////////////
 

@@ -91,7 +91,7 @@
 			var/obj/item/weapon/cell/potato/pocell = new /obj/item/weapon/cell/potato(user.loc)
 			pocell.maxcharge = src.potency * 10
 			pocell.charge = pocell.maxcharge
-			del(src)
+			cdel(src)
 			return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/grapes
@@ -159,7 +159,7 @@
 	var/obj/item/stack/medical/ointment/tajaran/poultice = new /obj/item/stack/medical/ointment/tajaran(user.loc)
 
 	poultice.heal_burn = potency
-	del(src)
+	cdel(src)
 
 	user << "<span class='notice'>You mash the petals into a poultice.</span>"
 
@@ -169,7 +169,7 @@
 	var/obj/item/stack/medical/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/bruise_pack/tajaran(user.loc)
 
 	poultice.heal_brute = potency
-	del(src)
+	cdel(src)
 
 	user << "<span class='notice'>You mash the leaves into a poultice.</span>"
 
@@ -182,10 +182,10 @@
 	icon_state = "glowberrypile"
 	plantname = "glowberries"
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/Del()
+/obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/Dispose()
 	if(istype(loc,/mob))
 		loc.SetLuminosity(round(-potency/5,1))
-	..()
+	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/pickup(mob/user)
 	src.SetLuminosity(0)
@@ -292,7 +292,7 @@
 	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || istype(W, /obj/item/weapon/twohanded/fireaxe) || istype(W, /obj/item/weapon/kitchen/utensil/knife) || istype(W, /obj/item/weapon/kitchenknife) || istype(W, /obj/item/weapon/melee/energy))
 		user.show_message("<span class='notice'>You carve a face into [src]!</span>", 1)
 		new /obj/item/clothing/head/pumpkinhead (user.loc)
-		del(src)
+		cdel(src)
 		return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/lime
@@ -371,7 +371,7 @@
 	..()
 	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
 	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
-	del(src)
+	cdel(src)
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/killertomato
@@ -387,7 +387,7 @@
 	if(istype(user.loc,/turf/space))
 		return
 	new /mob/living/simple_animal/tomato(user.loc)
-	del(src)
+	cdel(src)
 
 	user << "<span class='notice'>You plant the killer-tomato.</span>"
 
@@ -406,7 +406,7 @@
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
-	del(src)
+	cdel(src)
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato
@@ -424,7 +424,7 @@
 	src.reagents.reaction(get_turf(hit_atom))
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
-	del(src)
+	cdel(src)
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato/Crossed(AM as mob|obj)
@@ -522,7 +522,7 @@
 	if(istype(user.loc,/turf/space))
 		return
 	new /mob/living/simple_animal/mushroom(user.loc)
-	del(src)
+	cdel(src)
 
 	user << "<span class='notice'>You plant the walking mushroom.</span>"
 
@@ -549,14 +549,14 @@
 	planted.delay = 50
 	planted.endurance = 100
 	planted.potency = potency
-	del(src)
+	cdel(src)
 
 	user << "<span class='notice'>You plant the glowshroom.</span>"
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/Del()
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/Dispose()
 	if(istype(loc,/mob))
 		loc.SetLuminosity(round(-potency/10,1))
-	..()
+	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/pickup(mob/user)
 	SetLuminosity(0)
@@ -591,7 +591,7 @@
 	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
 		new/obj/effect/decal/cleanable/blood/oil(src.loc)
 		src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
-		del(src)
+		cdel(src)
 		return
 	for(var/turf/T in orange(M,outer_teleport_radius))
 		if(T in orange(M,inner_teleport_radius)) continue
@@ -628,5 +628,5 @@
 				s.start()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
 	src.visible_message("<span class='notice'>The [src.name] has been squashed, causing a distortion in space-time.</span>","<span class='moderate'>You hear a splat and a crackle.</span>")
-	del(src)
+	cdel(src)
 	return

@@ -37,23 +37,13 @@
 							break
 		return
 
-/*	ex_act(severity)
-		switch(severity)
-			if(1.0)
-				if(icon_state == "ladderup" && prob(10))
-					Del()
-			if(2.0)
-				if(prob(50))
-					Del()
-			if(3.0)
-				Del()
-		return*/
 
-	Del()
+	Dispose()
 		spawn(1)
 			if(target && icon_state == "ladderdown")
-				del target
-		return ..()
+				cdel(target)
+				target = null
+		. = ..()
 
 	attack_paw(var/mob/M)
 		return attack_hand(M)
@@ -81,7 +71,7 @@
 					if(!blocked && !istype(below, /turf/simulated/wall))
 						var/obj/multiz/ladder/X = new /obj/multiz/ladder(below)
 						S.amount = S.amount - 2
-						if(S.amount == 0) S.Del()
+						if(S.amount == 0) cdel(S)
 						X.icon_state = "ladderup"
 						connect()
 						user << "You finish the ladder."
@@ -102,7 +92,7 @@
 			if(target)
 				var/obj/item/stack/rods/R = new /obj/item/stack/rods(target.loc)
 				R.amount = 2
-				target.Del()
+				cdel(target)
 
 				user << "<span class='notice'>You remove the bolts anchoring the ladder.</span>"
 			return
@@ -120,7 +110,7 @@
 				var/obj/item/stack/sheet/metal/S = new /obj/item/stack/sheet/metal( src )
 				S.amount = 2
 				user << "<span class='notice'>You remove the ladder and close the hole.</span>"
-				Del()
+				cdel(src)
 			else
 				user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
@@ -170,7 +160,7 @@
 		attack_hand(var/mob/M)
 
 			if(!target || !istype(target.loc, /turf))
-				del src
+				cdel(src)
 
 			if(active)
 				M << "That [src] is being used."
@@ -188,7 +178,7 @@
 
 			spawn(7)
 				if(!target || !istype(target.loc, /turf))
-					del src
+					cdel(src)
 				if(M.z == z && get_dist(src,M) <= 1)
 					var/list/adjacent_to_me = global_adjacent_z_levels["[z]"]
 					M.visible_message("\blue \The [M] scurries [target.z == adjacent_to_me["up"] ? "up" : "down"] \the [src]!", "You scramble [target.z == adjacent_to_me["up"] ? "up" : "down"] \the [src]!", "You hear some grunting, and a hatch sealing.")

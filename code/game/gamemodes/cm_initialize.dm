@@ -383,7 +383,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	new_xeno.update_icons()
 
-	if(original) del(original) //Just to be sure.
+	if(original) cdel(original) //Just to be sure.
 
 //===================================================\\
 

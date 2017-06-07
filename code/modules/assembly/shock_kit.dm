@@ -8,11 +8,12 @@
 	w_class = 5.0
 	flags_atom = FPRINT|CONDUCT
 
-/obj/item/assembly/shock_kit/Del()
-	del(part1)
-	del(part2)
-	..()
-	return
+/obj/item/assembly/shock_kit/Dispose()
+	cdel(part1)
+	part1 = null
+	cdel(part2)
+	part2 = null
+	. = ..()
 
 /obj/item/assembly/shock_kit/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench) && !status)
@@ -25,7 +26,7 @@
 		part2.master = null
 		part1 = null
 		part2 = null
-		del(src)
+		cdel(src)
 		return
 	if(istype(W, /obj/item/weapon/screwdriver))
 		status = !status

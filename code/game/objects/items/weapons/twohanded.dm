@@ -143,7 +143,7 @@
 	if(!proximity) return
 	..()
 	if(A && (flags_atom & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
-		del(A)
+		cdel(A)
 
 /*
  * Double-Bladed Energy Swords - Cheridan

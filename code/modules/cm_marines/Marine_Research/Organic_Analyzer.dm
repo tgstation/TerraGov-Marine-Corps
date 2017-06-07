@@ -61,7 +61,7 @@ Note: Must be placed within 3 tiles of the WY Research Console
 			M.icon_state = "box_1"
 			for(var/obj/I in component_parts)
 				I.loc = src.loc
-			del(src)
+			cdel(src)
 			return 1
 		else
 			user << "\red You can't load the [src.name] while it's opened."

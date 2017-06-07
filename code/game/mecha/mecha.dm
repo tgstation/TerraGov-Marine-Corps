@@ -89,12 +89,12 @@
 	mechas_list += src //global mech list
 	return
 
-/obj/mecha/Del()
-	src.go_out()
+/obj/mecha/Dispose()
+	go_out()
 	mechas_list -= src //global mech list
 	SetLuminosity(0)
-	..()
-	return
+	. = ..()
+
 
 ////////////////////////
 ////// Helpers /////////
@@ -559,7 +559,7 @@
 						E.forceMove(T)
 						E.destroy()
 		spawn(0)
-			del(src)
+			cdel(src)
 	return
 
 /obj/mecha/ex_act(severity)
@@ -749,7 +749,7 @@
 		src.reset_icon()
 
 		user.drop_held_item()
-		del(P)
+		cdel(P)
 
 	else
 		call((proc_res["dynattackby"]||src), "dynattackby")(W,user)
@@ -1682,7 +1682,7 @@
 			AI.bruteloss = O.getBruteLoss()
 			AI.toxloss = O.toxloss
 			AI.updatehealth()
-			del(O)
+			cdel(O)
 			if (!AI.stat)
 				AI.icon_state = "ai"
 			else
@@ -1769,7 +1769,7 @@
 					if(t_air)
 						t_air.merge(removed)
 					else //just delete the cabin gas, we're in space or some shit
-						del(removed)
+						cdel(removed)
 		else
 			return stop()
 		return
@@ -1812,7 +1812,7 @@
 				if(mecha.loc && hascall(mecha.loc,"assume_air"))
 					mecha.loc.assume_air(leaked_gas)
 				else
-					del(leaked_gas)
+					cdel(leaked_gas)
 		if(mecha.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			if(mecha.get_charge())
 				mecha.spark_system.start()

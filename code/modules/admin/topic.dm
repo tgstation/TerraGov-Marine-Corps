@@ -722,7 +722,7 @@
 			log_admin("[key_name(usr)] booted [key_name(M)].")
 			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 			//M.client = null
-			del(M.client)
+			cdel(M.client)
 /*
 	//Player Notes
 	else if(href_list["notes"])
@@ -795,7 +795,7 @@
 		message_admins("\blue[usr.client.ckey] has banned [mob_key].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
 
-		del(mob_client)
+		cdel(mob_client)
 
 	else if(href_list["lazyban"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
@@ -844,7 +844,7 @@
 		log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 		notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
-		del(M.client)
+		cdel(M.client)
 
 
 	else if(href_list["mute"])
@@ -1013,7 +1013,7 @@
 
 		var/mob/new_player/NP = new()
 		NP.ckey = M.ckey
-		del(M)
+		cdel(M)
 
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))	return

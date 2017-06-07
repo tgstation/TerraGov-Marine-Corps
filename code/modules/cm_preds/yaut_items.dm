@@ -608,7 +608,7 @@
 		for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
 			usr << "<span class='warning'>The [S] skips back towards you!</span>"
 			new /obj/item/weapon/grenade/spawnergrenade/smartdisc(S.loc)
-			del(S)
+			cdel(S)
 
 		for(var/obj/item/weapon/grenade/spawnergrenade/smartdisc/D in range(10))
 			D.throw_at(usr,10,1,usr)
@@ -1629,7 +1629,7 @@
 			var/turf/T = get_turf(src)
 			if(ispath(spawner_type))
 				new spawner_type(T)
-//		del(src)
+//		cdel(src)
 		return
 
 	check_eye(var/mob/user as mob)

@@ -26,7 +26,7 @@
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 					F.loc = get_turf(src)
-				del(src) //Delete da old knife
+				cdel(src) //Delete da old knife
 			else
 				user << "<span class='notice'>You don't have enough cable for that.</span>"
 				return
@@ -524,12 +524,12 @@
 	prime()
 		spawn(0)
 			explosion(loc, -1, -1, 3)
-			del(src)
+			cdel(src)
 		return
 
 /obj/item/weapon/grenade/explosive/flamer_fire_act()
 	var/turf/T = loc
-	del(src)
+	cdel(src)
 	explosion(T, -1, -1, 3)
 
 
@@ -543,7 +543,7 @@
 	prime()
 		spawn(0)
 			explosion(loc, -1, -1, 4)
-			del(src)
+			cdel(src)
 		return
 
 /obj/item/weapon/grenade/explosive/m40
@@ -555,7 +555,7 @@
 	prime()
 		spawn(0)
 			explosion(loc, -1, -1, 4)
-			del(src)
+			cdel(src)
 		return
 
 /obj/item/weapon/grenade/incendiary
@@ -571,7 +571,7 @@
 	prime()
 		spawn(0)
 			flame_radius(2, get_turf(src))
-			del(src)
+			cdel(src)
 		return
 
 proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
@@ -622,7 +622,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 			sleep(10)
 			src.smoke.start()
 		sleep(20)
-		del(src)
+		cdel(src)
 
 /obj/item/weapon/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
@@ -656,7 +656,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 			src.smoke.start()
 
 		sleep(20)
-		del(src)
+		cdel(src)
 
 
 ///***MINES***///

@@ -28,16 +28,13 @@
 
 		return null
 
-	Del()
-		loc = null
-
+	Dispose()
 		if(node)
 			node.disconnect(src)
-			del(network)
-
+			cdel(network)
+			network = null
 		node = null
-
-		..()
+		. = ..()
 
 	initialize()
 		if(node) return
@@ -87,7 +84,7 @@
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node)
-			del(network)
+			cdel(network)
 			node = null
 
 		update_icon()

@@ -21,7 +21,7 @@
 		if (equip_to_slot_if_possible(W, slots[slot], del_on_fail = 0))
 			return slot
 	if (del_on_fail)
-		del(W)
+		cdel(W)
 	return null
 
 
@@ -338,9 +338,9 @@
 
 /obj/effect/equip_e/New()
 	if (!ticker)
-		del(src)
+		cdel(src)
 	spawn(100)
-		del(src)
+		cdel(src)
 	..()
 	return
 
@@ -351,22 +351,22 @@
 		switch(place)
 			if("mask")
 				if(!(target.wear_mask))
-					del(src)
+					cdel(src)
 			if("l_hand")
 				if(!(target.l_hand))
-					del(src)
+					cdel(src)
 			if("r_hand")
 				if(!(target.r_hand))
-					del(src)
+					cdel(src)
 			if("suit")
 				if(!(target.wear_suit))
-					del(src)
+					cdel(src)
 			if("uniform")
 				if(!(target.w_uniform))
-					del(src)
+					cdel(src)
 			if("back")
 				if(!(target.back))
-					del(src)
+					cdel(src)
 			if("syringe")
 				return
 			if("pill")
@@ -379,10 +379,10 @@
 				return
 			if("handcuff")
 				if(!(target.handcuffed))
-					del(src)
+					cdel(src)
 			if("id")
 				if((!(target.wear_id)))
-					del(src)
+					cdel(src)
 			if("splints")
 				var/count = 0
 				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
@@ -391,20 +391,20 @@
 						count = 1
 						break
 				if(count == 0)
-					del(src)
+					cdel(src)
 					return
 			if("sensor")
 				if(!target.w_uniform)
-					del(src)
+					cdel(src)
 			if("internal")
 				if((!((istype(target.wear_mask, /obj/item/clothing/mask) && (istype(target.back, /obj/item/weapon/tank) || istype(target.belt, /obj/item/weapon/tank) || istype(target.s_store, /obj/item/weapon/tank)) && !(target.internal))) && !(target.internal)))
-					del(src)
+					cdel(src)
 
 	var/list/L = list("syringe", "pill", "drink", "dnainjector", "fuel", "sensor", "internal", "tie")
 	var/message = null
 	if((item && !(L.Find(place))))
 		if(isrobot(source) && place != "handcuff")
-			del(src)
+			cdel(src)
 		message = "\red <B>[source] is trying to put \a [item.name] on [target]</B>"
 	switch(place)
 		if("syringe")
@@ -555,7 +555,7 @@
 			message = "\red <B>[source] is trying to empty [target]'s pockets.</B>"
 		if("CPR")
 			if(!target.cpr_time)
-				del(src)
+				cdel(src)
 			target.cpr_time = 0
 			message = "\red <B>[source] is trying perform CPR on [target]!</B>"
 		if("id")
@@ -649,13 +649,13 @@ It can still be worn/put on as normal.
 				strip_item = target.shoes
 		if("l_hand")
 			if (istype(target, /obj/item/clothing/suit/straight_jacket))
-				del(src)
+				cdel(src)
 			slot_to_process = WEAR_L_HAND
 			if (target.l_hand)
 				strip_item = target.l_hand
 		if("r_hand")
 			if (istype(target, /obj/item/clothing/suit/straight_jacket))
-				del(src)
+				cdel(src)
 			slot_to_process = WEAR_R_HAND
 			if (target.r_hand)
 				strip_item = target.r_hand
@@ -722,11 +722,11 @@ It can still be worn/put on as normal.
 				S.add_fingerprint(source)
 				if (!(istype(S, /obj/item/weapon/dnainjector)))
 					S.inuse = 0
-					del(src)
+					cdel(src)
 				S.inject(target, source)
 				if (S.s_time >= world.time + 30)
 					S.inuse = 0
-					del(src)
+					cdel(src)
 				S.s_time = world.time
 				source.visible_message("\red [source] injects [target] with the DNA Injector!")
 				S.inuse = 0
@@ -770,7 +770,7 @@ It can still be worn/put on as normal.
 	if(slot_to_process)
 		if(strip_item) //Stripping an item from the mob
 			if(istype(strip_item,/obj/item/weapon/gun/smartgun)) //NOPE
-				del(src)
+				cdel(src)
 				return
 
 			//Prevent donor items from being unequipped
@@ -796,4 +796,4 @@ It can still be worn/put on as normal.
 	if(source && target)
 		if(source.machine == target)
 			target.show_inv(source)
-	del(src)
+	cdel(src)

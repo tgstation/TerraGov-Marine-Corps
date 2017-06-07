@@ -2,12 +2,12 @@
 	..()
 	return TA_PURGE_ME_NOW
 
-/mob/Del()//This makes sure that mobs with clients/keys are not just deleted from the game.
+/mob/Dispose()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
 	ghostize()
-	..()
+	. = ..()
 
 /mob/New()
 	mob_list += src
@@ -366,7 +366,7 @@ var/list/slot_equipment_priority = list( \
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
-		del(M)
+		cdel(M)
 		return
 
 	M.key = key

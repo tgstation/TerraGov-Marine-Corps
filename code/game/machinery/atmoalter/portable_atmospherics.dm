@@ -34,10 +34,10 @@
 	else
 		update_icon()
 
-/obj/machinery/portable_atmospherics/Del()
-	del(air_contents)
-
-	..()
+/obj/machinery/portable_atmospherics/Dispose()
+	cdel(air_contents)
+	air_contents = null
+	. = ..()
 
 /obj/machinery/portable_atmospherics/update_icon()
 	return null

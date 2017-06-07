@@ -98,10 +98,10 @@
 
 		return
 
-	Del() //if a chunk a destroyed, make a new worm out of the split halves
+	Dispose() //if a chunk a destroyed, make a new worm out of the split halves
 		if(previous)
 			previous.Detach()
-		..()
+		. = ..()
 
 	Move()
 		var/attachementNextPosition = loc
@@ -170,7 +170,7 @@
 		if(die)
 			newHead.death()
 
-		del(src)
+		cdel(src)
 
 	proc/ProcessStomach()
 		for(var/atom/movable/stomachContent in contents)
@@ -179,16 +179,16 @@
 					if(!istype(stomachContent,/obj/item/stack/sheet/mineral/phoron))
 						var/obj/item/stack/oldStack = stomachContent
 						new /obj/item/stack/sheet/mineral/phoron(src, oldStack.get_amount())
-						del(oldStack)
+						cdel(oldStack)
 						continue
 				else if(istype(stomachContent,/obj/item)) //converts to plasma, keeping the w_class
 					var/obj/item/oldItem = stomachContent
 					new /obj/item/stack/sheet/mineral/phoron(src, oldItem.w_class)
-					del(oldItem)
+					cdel(oldItem)
 					continue
 				else
 					new /obj/item/stack/sheet/mineral/phoron(src, flatPlasmaValue) //just flat amount
-					del(stomachContent)
+					cdel(stomachContent)
 					continue
 
 		if(previous)

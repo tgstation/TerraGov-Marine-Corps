@@ -125,5 +125,5 @@
 				C.handcuffed = new /obj/item/weapon/restraints(C)
 				C.handcuff_update()
 				C.visible_message("\red [C] has been successfully restrained by [user]!")
-				del(src)
+				cdel(src)
 	return

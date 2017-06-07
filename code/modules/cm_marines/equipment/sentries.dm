@@ -118,7 +118,7 @@
 				has_top = 1
 				icon_state = "turret-nosensor"
 				user.drop_held_item()
-				del(O)
+				cdel(O)
 				return
 
 		if(istype(O,/obj/item/device/turret_sensor))
@@ -135,7 +135,7 @@
 				user.visible_message("\blue [user] installs the control sensor on the [src].","\blue You install the control sensor.")
 				icon_state = "turret-0"
 				user.drop_held_item()
-				del(O)
+				cdel(O)
 				return
 
 		if(istype(O,/obj/item/stack/sheet/metal))
@@ -159,7 +159,7 @@
 					M.amount -= 10
 					if(M.amount <= 0)
 						user.drop_held_item()
-						del(M)
+						cdel(M)
 					return
 				else
 					user << "You need more metal!"
@@ -178,7 +178,7 @@
 					var/obj/machinery/marine_turret/T = new(src.loc)  //Bing! Create a new turret.
 					T.visible_message("\icon[T] <B>[T] is now complete!</B>")
 					T.dir = src.dir
-					del(src)
+					cdel(src)
 					return
 				else
 					user << "\red You need more welding fuel to complete this task."
@@ -252,21 +252,23 @@
 			processing_objects.Add(src)
 		ammo = ammo_list[ammo]
 
-	Del() //Clear these for safety's sake.
+	Dispose() //Clear these for safety's sake.
 		if(operator && operator.machine)
 			operator.machine = null
 			operator = null
 		if(camera)
-			del(camera)
+			cdel(camera)
+			camera = null
 		if(cell)
-			del(cell)
+			cdel(cell)
+			cell = null
 		if(target)
 			target = null
 		if(worker)
 			worker = null
 		SetLuminosity(0)
 		processing_objects.Remove(src)
-		..()
+		. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
 	if(isYautja(user))
@@ -586,7 +588,7 @@
 			user.visible_message("\blue [user] reloads the [src].","\blue You reload the [src].")
 			user.drop_held_item()
 			rounds = rounds_max
-			del(O)
+			cdel(O)
 		return
 
 	if(O.force)
@@ -616,7 +618,7 @@
 				explosion(src.loc,-1,-1,2,0)
 				new /obj/machinery/marine_turret_frame(src.loc)
 				if(src)
-					del(src)
+					cdel(src)
 		return
 
 	if(health > health_max)

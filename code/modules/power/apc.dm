@@ -537,14 +537,14 @@
 			user.visible_message(\
 				"\red [user.name] cut the cables and dismantled the power terminal.",\
 				"You cut the cables and dismantle the power terminal.")
-			del(terminal)
+			cdel(terminal)
 	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == 0 && !(stat & BROKEN))
 		user << "You trying to insert the power control board into the frame..."
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK))
 			has_electronics = 1
 			user << "You place the power control board inside the frame."
-			del(W)
+			cdel(W)
 	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && (stat & BROKEN))
 		user << "\red You cannot put the board inside, the frame is damaged."
 		return
@@ -569,7 +569,7 @@
 					"\red [src] has been cut from the wall by [user.name] with the weldingtool.",\
 					"You cut the APC frame from the wall.",\
 					"\red You hear welding.")
-			del(src)
+			cdel(src)
 			return
 	else if (istype(W, /obj/item/apc_frame) && opened && emagged)
 		emagged = 0
@@ -578,7 +578,7 @@
 		user.visible_message(\
 			"\red [user.name] has replaced the damaged APC frontal panel with a new one.",\
 			"You replace the damaged APC frontal panel with a new one.")
-		del(W)
+		cdel(W)
 		update_icon()
 	else if (istype(W, /obj/item/apc_frame) && opened && (stat & BROKEN))
 		if (has_electronics)
@@ -589,7 +589,7 @@
 			user.visible_message(\
 				"\red [user.name] has replaced the damaged APC frame with new one.",\
 				"You replace the damaged APC frame with new one.")
-			del(W)
+			cdel(W)
 			stat &= ~BROKEN
 			if (opened==2)
 				opened = 1
@@ -1261,10 +1261,9 @@
 
 	switch(severity)
 		if(1.0)
-			//set_broken() //now Del() do what we need
 			if (cell)
 				cell.ex_act(1.0) // more lags woohoo
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if (prob(50))
@@ -1303,11 +1302,11 @@
 					L.broken()
 					sleep(1)
 
-/obj/machinery/power/apc/Del()
+/obj/machinery/power/apc/Dispose()
 	area.power_light = 0
 	area.power_equip = 0
 	area.power_environ = 0
 	area.power_change()
-	..()
+	. = ..()
 
 #undef APC_UPDATE_ICON_COOLDOWN

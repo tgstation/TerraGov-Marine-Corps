@@ -553,7 +553,7 @@
 		kit.uses--
 		if(kit.uses<1)
 			user.drop_held_item()
-			del(O)
+			cdel(O)
 
 /obj/item/clothing/suit/space/rig/attackby(var/obj/item/O as obj, mob/user as mob)
 	..()
@@ -572,7 +572,7 @@
 		kit.uses--
 		if(kit.uses<1)
 			user.drop_held_item()
-			del(O)
+			cdel(O)
 
 ///////// Salvage crew hardsuit - Cybele Petit - solaruin ///////////////
 /obj/item/device/kit/suit/fluff/salvage

@@ -460,12 +460,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			SetLuminosity(brightness_on)
 		..()
 
-	Del()
+	Dispose()
 		if(ismob(src.loc))
 			src.loc.SetLuminosity(-brightness_on)
 		else
 			SetLuminosity(0)
-		..()
+		. = ..()
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))

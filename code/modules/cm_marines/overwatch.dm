@@ -431,7 +431,7 @@
 			message_admins("ALERT: [usr] ([usr.key]) fired an orbital bombardment in [A.name] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 		current_squad.handle_btimer(20000)
 		if(current_squad.bbeacon)
-			del(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
+			cdel(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.bbeacon = null
 		for(var/mob/living/carbon/H in living_mob_list)
 			if((H.z == 3 || H.z == 4) && !src.stat) //Sulaco decks.
@@ -510,7 +510,7 @@
 	spawn(100)
 		if(!current_squad) return
 		if(current_squad.sbeacon)
-			del(current_squad.sbeacon) //Wipe the beacon. It's only good for one use.
+			cdel(current_squad.sbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.sbeacon = null
 		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 		C.z = T.z

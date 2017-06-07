@@ -23,7 +23,7 @@
 /obj/effect/decal/mecha_wreckage/ex_act(severity)
 	if(severity < 2)
 		spawn
-			del src
+			cdel(src)
 	return
 
 /obj/effect/decal/mecha_wreckage/bullet_act(var/obj/item/projectile/Proj)

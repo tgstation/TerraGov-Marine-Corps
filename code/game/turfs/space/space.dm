@@ -50,7 +50,7 @@
 			var/obj/item/stack/tile/plasteel/S = C
 			if (S.get_amount() < 1)
 				return
-			del(L)
+			cdel(L)
 			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			S.build(src)
 			S.use(1)
@@ -80,7 +80,7 @@
 		if(A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
 
 			if(istype(A, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks travel Z levels  ... And moving this shit down here so it only fires when they're actually trying to change z-level.
-				del(A) //The disk's Del() proc ensures a new one is created
+				cdel(A) //The disk's Dispose() proc ensures a new one is created
 				return
 			if(config.use_overmap)
 				overmap_spacetravel(src,A)
@@ -101,10 +101,10 @@
 							MM.inertia_dir = 2
 					else
 						for(var/obj/item/weapon/disk/nuclear/N in disk_search)
-							del(N)//Make the disk respawn it is on a clientless mob or corpse
+							cdel(N)//Make the disk respawn it is on a clientless mob or corpse
 				else
 					for(var/obj/item/weapon/disk/nuclear/N in disk_search)
-						del(N)//Make the disk respawn if it is floating on its own
+						cdel(N)//Make the disk respawn if it is floating on its own
 				return
 
 			var/move_to_z = src.z

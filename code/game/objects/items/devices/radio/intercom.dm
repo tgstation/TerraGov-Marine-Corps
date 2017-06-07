@@ -15,9 +15,9 @@
 	..()
 	processing_objects += src
 
-/obj/item/device/radio/intercom/Del()
+/obj/item/device/radio/intercom/Dispose()
 	processing_objects -= src
-	..()
+	. = ..()
 
 /obj/item/device/radio/intercom/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)

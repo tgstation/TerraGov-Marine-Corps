@@ -45,11 +45,11 @@
 		density = 0
 		destroyed = 1
 		new /obj/item/stack/rods(loc)
-		del(src)
+		cdel(src)
 	return
 
 /obj/structure/grille/ex_act(severity)
-	del(src)
+	cdel(src)
 
 /obj/structure/grille/Bumped(atom/user)
 	if(ismob(user)) shock(user, 70)
@@ -126,7 +126,7 @@
 		if(!shock(user, 100))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			new /obj/item/stack/rods(loc, 2)
-			del(src)
+			cdel(src)
 	else if(isscrewdriver(W) && (istype(loc, /turf/simulated) || istype(loc, /turf/unsimulated/floor))) //|| anchored Does this fix it?
 		if(!shock(user, 90))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -200,7 +200,7 @@
 		else
 			if(health <= -6)
 				new /obj/item/stack/rods(loc)
-				del(src)
+				cdel(src)
 				return
 	return
 

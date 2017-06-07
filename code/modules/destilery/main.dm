@@ -53,7 +53,7 @@
 		else
 			error = 1
 
-	del(milled_item)
+	cdel(milled_item)
 	busy = 0
 
 /obj/machinery/mill/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
@@ -122,7 +122,7 @@
 		else
 			error = 1
 
-	del(fermenting_item)
+	cdel(fermenting_item)
 	busy = 0
 
 /obj/machinery/fermenter/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
@@ -182,7 +182,7 @@
 		else
 			error = 1
 
-	del(destilling_item)
+	cdel(destilling_item)
 	busy = 0
 
 /obj/machinery/still/attackby(var/obj/item/weapon/W as obj, mob/user as mob)

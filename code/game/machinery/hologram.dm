@@ -1,8 +1,47 @@
 /* Holograms!
  * Contains:
- *		Holopad
  *		Hologram
+ *		Holopad
  *		Other stuff
+ */
+
+
+
+/*
+ * Hologram
+ */
+
+/obj/machinery/hologram
+	anchored = 1
+	use_power = 1
+	idle_power_usage = 5
+	active_power_usage = 100
+	var/obj/effect/overlay/hologram//The projection itself. If there is one, the instrument is on, off otherwise.
+
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				cdel(src)
+			if(2.0)
+				if (prob(50))
+					cdel(src)
+			if(3.0)
+				if (prob(5))
+					cdel(src)
+
+	Dispose()
+		if(hologram)
+			clear_holo()
+		. = ..()
+
+/obj/machinery/hologram/proc/clear_holo()
+	if(hologram)
+		cdel(hologram)
+
+
+
+/*
+ * Holopad
  */
 
 /*
@@ -19,10 +58,6 @@ Possible to do for anyone motivated enough:
 	Itegrate EMP effect to disable the unit.
 */
 
-
-/*
- * Holopad
- */
 
 // HOLOPAD MODE
 // 0 = RANGE BASED
@@ -106,9 +141,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	use_power = 2//Active power usage.
 	return 1
 
-/obj/machinery/hologram/holopad/proc/clear_holo()
+/obj/machinery/hologram/holopad/clear_holo()
 //	hologram.SetLuminosity(0)//Clear lighting.	//handled by the lighting controller when its ower is deleted
-	del(hologram)//Get rid of hologram.
+	cdel(hologram)//Get rid of hologram.
 	if(master.holo == src)
 		master.holo = null
 	master = null//Null the master, since no-one is using it now.
@@ -142,34 +177,6 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 	return 1
 
-/*
- * Hologram
- */
-
-/obj/machinery/hologram
-	anchored = 1
-	use_power = 1
-	idle_power_usage = 5
-	active_power_usage = 100
-	var/obj/effect/overlay/hologram//The projection itself. If there is one, the instrument is on, off otherwise.
-
-//Destruction procs.
-/obj/machinery/hologram/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			del(src)
-		if(2.0)
-			if (prob(50))
-				del(src)
-		if(3.0)
-			if (prob(5))
-				del(src)
-	return
-
-/obj/machinery/hologram/Del()
-	if(hologram)
-		src:clear_holo()
-	..()
 
 /*
 Holographic project of everything else.

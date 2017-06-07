@@ -48,11 +48,10 @@
 
 
 
-/obj/structure/transit_tube_pod/Del()
+/obj/structure/transit_tube_pod/Dispose()
 	for(var/atom/movable/AM in contents)
 		AM.loc = loc
-
-	..()
+	. = ..()
 
 
 
@@ -64,7 +63,7 @@ obj/structure/ex_act(severity)
 				AM.loc = loc
 				AM.ex_act(severity++)
 
-			del(src)
+			cdel(src)
 			return
 		if(2.0)
 			if(prob(50))
@@ -72,7 +71,7 @@ obj/structure/ex_act(severity)
 					AM.loc = loc
 					AM.ex_act(severity++)
 
-				del(src)
+				cdel(src)
 				return
 		if(3.0)
 			return

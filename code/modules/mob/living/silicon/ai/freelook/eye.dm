@@ -74,10 +74,11 @@
 	spawn(5)
 		eyeobj.loc = src.loc
 
-/mob/living/silicon/ai/Del()
+/mob/living/silicon/ai/Dispose()
 	eyeobj.ai = null
-	del(eyeobj) // No AI, no Eye
-	..()
+	cdel(eyeobj) // No AI, no Eye
+	eyeobj = null
+	. = ..()
 
 /atom/proc/move_camera_by_click()
 	if(istype(usr, /mob/living/silicon/ai))

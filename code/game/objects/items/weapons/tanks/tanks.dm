@@ -31,13 +31,12 @@
 	processing_objects.Add(src)
 	return
 
-/obj/item/weapon/tank/Del()
+/obj/item/weapon/tank/Dispose()
 	if(air_contents)
-		del(air_contents)
-
+		cdel(air_contents)
+		air_contents = null
 	processing_objects.Remove(src)
-
-	..()
+	. = ..()
 
 /obj/item/weapon/tank/examine(mob/user)
 	var/obj/icon = src
@@ -230,7 +229,7 @@
 		//world << "\blue Exploding Pressure: [pressure] kPa, intensity: [range]"
 
 		explosion(epicenter, round(range*0.25), round(range*0.5), round(range), round(range*1.5))
-		del(src)
+		cdel(src)
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		//world << "\blue[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"
@@ -240,7 +239,7 @@
 				return
 			T.assume_air(air_contents)
 			playsound(src.loc, 'sound/effects/spray.ogg', 25, 1, 6)
-			del(src)
+			cdel(src)
 		else
 			integrity--
 

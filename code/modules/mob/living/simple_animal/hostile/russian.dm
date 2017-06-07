@@ -95,7 +95,7 @@
 		new corpse (src.loc)
 	if(weapon1)
 		new weapon1 (src.loc)
-	del src
+	cdel(src)
 	return
 /*
 /mob/living/simple_animal/hostile/russian/UPP

@@ -403,7 +403,7 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
-		del(src)
+		cdel(src)
 
 /obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
 	..()
@@ -420,12 +420,12 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_pump/Del()
+/obj/machinery/atmospherics/unary/vent_pump/Dispose()
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
 		initial_loc.air_vent_names -= id_tag
-	..()
-	return
+	. = ..()
+
 
 /*
 	Alt-click to vent crawl - Monkeys, aliens, and mice.

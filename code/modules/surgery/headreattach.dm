@@ -224,7 +224,7 @@
 	//Deal with the head item properly
 
 	user.temp_drop_inv_item(B)
-	del(B)
+	cdel(B)
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)

@@ -188,7 +188,7 @@
 	//Deal with the limb item properly
 
 	user.temp_drop_inv_item(tool)
-	del(tool)
+	cdel(tool)
 
 /datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)

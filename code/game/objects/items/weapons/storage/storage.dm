@@ -175,11 +175,15 @@
 	var/obj/item/sample_object
 	var/number
 
-	New(obj/item/sample as obj)
+	New(obj/item/sample)
 		if(!istype(sample))
-			del(src)
+			cdel(src)
 		sample_object = sample
 		number = 1
+
+	Dispose()
+		sample_object = null
+		. = ..()
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
@@ -421,7 +425,15 @@
 	src.closer.icon_state = "x"
 	src.closer.layer = 20
 	orient2hud()
-	return
+
+/obj/item/weapon/storage/Dispose()
+	if(boxes)
+		cdel(boxes)
+		boxes = null
+	if(closer)
+		cdel(closer)
+		closer = null
+	. = ..()
 
 /obj/item/weapon/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))
@@ -430,7 +442,7 @@
 	..()
 
 // BubbleWrap - A box can be folded up to make card
-/obj/item/weapon/storage/attack_self(mob/user as mob)
+/obj/item/weapon/storage/attack_self(mob/user)
 
 	//Clicking on itself will empty it, if it has the verb to do that.
 	if(user.get_active_hand() == src)
@@ -456,7 +468,7 @@
 	// Now make the cardboard
 	user << "<span class='notice'>You fold [src] flat.</span>"
 	new src.foldable(get_turf(src))
-	del(src)
+	cdel(src)
 //BubbleWrap END
 
 /obj/item/weapon/storage/hear_talk(mob/M as mob, text)

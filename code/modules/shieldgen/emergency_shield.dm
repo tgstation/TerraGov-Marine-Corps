@@ -17,11 +17,11 @@
 	..()
 	update_nearby_tiles(need_rebuild=1)
 
-/obj/machinery/shield/Del()
+/obj/machinery/shield/Dispose()
 	opacity = 0
 	density = 0
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/machinery/shield/CanPass(atom/movable/mover, turf/target, height, air_group)
 	if(!height || air_group) return 0
@@ -41,7 +41,7 @@
 
 	if (src.health <= 0)
 		visible_message("\blue The [src] dissipates!")
-		del(src)
+		cdel(src)
 		return
 
 	opacity = 1
@@ -54,7 +54,7 @@
 	..()
 	if(health <=0)
 		visible_message("\blue The [src] dissipates!")
-		del(src)
+		cdel(src)
 		return 1
 	opacity = 1
 	spawn(20) if(src) opacity = 0
@@ -64,22 +64,22 @@
 	switch(severity)
 		if(1.0)
 			if (prob(75))
-				del(src)
+				cdel(src)
 		if(2.0)
 			if (prob(50))
-				del(src)
+				cdel(src)
 		if(3.0)
 			if (prob(25))
-				del(src)
+				cdel(src)
 	return
 
 /obj/machinery/shield/emp_act(severity)
 	switch(severity)
 		if(1)
-			del(src)
+			cdel(src)
 		if(2)
 			if(prob(50))
-				del(src)
+				cdel(src)
 
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
@@ -100,7 +100,7 @@
 	//Handle the destruction of the shield
 	if (src.health <= 0)
 		visible_message("\blue The [src] dissipates!")
-		del(src)
+		cdel(src)
 		return
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
@@ -134,9 +134,9 @@
 	use_power = 0
 	idle_power_usage = 0
 
-/obj/machinery/shieldgen/Del()
+/obj/machinery/shieldgen/Dispose()
 	collapse_shields()
-	..()
+	. = ..()
 
 
 /obj/machinery/shieldgen/proc/shields_up()
@@ -172,7 +172,7 @@
 
 /obj/machinery/shieldgen/proc/collapse_shields()
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
-		del(shield_tile)
+		cdel(shield_tile)
 
 /obj/machinery/shieldgen/power_change()
 	..()
@@ -189,7 +189,7 @@
 
 	if(malfunction)
 		if(deployed_shields.len && prob(5))
-			del(pick(deployed_shields))
+			cdel(pick(deployed_shields))
 	else
 		if (check_delay <= 0)
 			create_shields()
@@ -212,7 +212,7 @@
 	if(health <= 0)
 		spawn(0)
 			explosion(get_turf(src.loc), 0, 0, 1, 0, 0, 0)
-		del(src)
+		cdel(src)
 	update_icon()
 	return
 

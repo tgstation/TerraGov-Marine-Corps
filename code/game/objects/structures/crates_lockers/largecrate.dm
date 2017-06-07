@@ -20,7 +20,7 @@
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
-		del(src)
+		cdel(src)
 	else
 		return attack_hand(user)
 

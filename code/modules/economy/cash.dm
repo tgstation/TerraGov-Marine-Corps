@@ -26,7 +26,7 @@
 			user.temp_drop_inv_item(cash)
 			bundle = new (src.loc)
 			bundle.worth += cash.worth
-			del(cash)
+			cdel(cash)
 		else //is bundle
 			bundle = W
 		bundle.worth += src.worth
@@ -37,7 +37,7 @@
 			h_user.temp_drop_inv_item(bundle)
 			h_user.put_in_hands(bundle)
 		user << "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>"
-		del(src)
+		cdel(src)
 
 /obj/item/weapon/spacecash/bundle
 	name = "stack of dollars"
@@ -87,7 +87,7 @@
 		bundle.update_icon()
 		usr.put_in_hands(bundle)
 	if(!worth)
-		del(src)
+		cdel(src)
 
 /obj/item/weapon/spacecash/c1
 	name = "1 dollar bill"

@@ -357,7 +357,7 @@ datum/mind
 	proc/take_uplink()
 		var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
 		if(H)
-			del(H)
+			cdel(H)
 
 	proc/make_Traitor()
 		if(!(src in ticker.mode.traitors))

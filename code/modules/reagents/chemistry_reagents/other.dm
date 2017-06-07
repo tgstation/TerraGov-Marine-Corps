@@ -121,10 +121,10 @@
 			lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 			lowertemp.react()
 			T.assume_air(lowertemp)
-			del(hotspot)
+			cdel(hotspot)
 		var/hotspot2 = (locate(/obj/effect/effect/fire) in T)//Delete fire effect
 		if(hotspot && !istype(T, /turf/space))
-			del(hotspot2)
+			cdel(hotspot2)
 		return
 	reaction_obj(var/obj/O, var/volume)
 		src = null
@@ -135,7 +135,7 @@
 			lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 			lowertemp.react()
 			T.assume_air(lowertemp)
-			del(hotspot)
+			cdel(hotspot)
 		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 			var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
 			if(!cube.wrapped)
@@ -601,7 +601,7 @@
 
 	reaction_obj(var/obj/O, var/volume)
 		if(istype(O,/obj/effect/decal/cleanable))
-			del(O)
+			cdel(O)
 		else
 			if(O)
 				O.clean_blood()
@@ -614,7 +614,7 @@
 			T.clean_blood()
 			for(var/obj/effect/decal/cleanable/C in T.contents)
 				src.reaction_obj(C, volume)
-				del(C)
+				cdel(C)
 
 	reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 		if(iscarbon(M))

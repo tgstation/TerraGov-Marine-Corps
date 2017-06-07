@@ -58,9 +58,9 @@
 		see_in_dark = 20
 		bomb_ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
 
-	Del()
+	Dispose()
 		SetLuminosity(0)
-		..()
+		. = ..()
 
 
 /mob/living/carbon/Xenomorph/Boiler/proc/longrange()
@@ -254,7 +254,7 @@
 			src.smoke.start()
 		invisibility = 101
 		sleep(20)
-		del(src)
+		cdel(src)
 		return
 
 /datum/effect/effect/system/smoke_spread/xeno_acid
@@ -329,7 +329,7 @@
 			smoke.start()
 		invisibility = 101
 		sleep(20)
-		del(src)
+		cdel(src)
 
 /datum/effect/effect/system/smoke_spread/xeno_weaken
 	smoke_type = /obj/effect/effect/smoke/xeno_weak

@@ -98,7 +98,7 @@
 			"\blue You have unfastened \the [src].", \
 			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
-		del(src)
+		cdel(src)
 
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())
@@ -231,16 +231,14 @@
 
 	return null
 
-/obj/machinery/atmospherics/omni/Del()
-	loc = null
-
+/obj/machinery/atmospherics/omni/Dispose()
 	for(var/datum/omni_port/P in ports)
 		if(P.node)
 			P.node.disconnect(src)
-			del(P.network)
+			cdel(P.network)
+			P.network = null
 			P.node = null
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/omni/initialize()
 	for(var/datum/omni_port/P in ports)
@@ -295,7 +293,7 @@
 /obj/machinery/atmospherics/omni/disconnect(obj/machinery/atmospherics/reference)
 	for(var/datum/omni_port/P in ports)
 		if(reference == P.node)
-			del(P.network)
+			cdel(P.network)
 			P.node = null
 			P.update = 1
 			break

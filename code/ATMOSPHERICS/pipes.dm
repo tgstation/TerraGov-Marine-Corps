@@ -22,7 +22,7 @@
 
 /obj/machinery/atmospherics/pipe/proc/check_pressure(pressure)
 	//Return 1 if parent should continue checking other pipes
-	//Return null if parent should stop checking other pipes. Recall: del(src) will by default return null
+	//Return null if parent should stop checking other pipes. Recall: cdel(src) will by default return null
 
 	return 1
 
@@ -54,17 +54,16 @@
 
 	return parent.return_network(reference)
 
-/obj/machinery/atmospherics/pipe/Del()
-
+/obj/machinery/atmospherics/pipe/Dispose()
 	if(contents.len)
 		for(var/atom/movable/A in contents)
 			A.forceMove(loc)
-
-	del(parent)
+	if(parent)
+		cdel(parent)
+		parent = null
 	if(air_temporary)
 		loc.assume_air(air_temporary)
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
@@ -98,8 +97,8 @@
 		for (var/obj/machinery/meter/meter in T)
 			if (meter.target == src)
 				new /obj/item/pipe_meter(T)
-				del(meter)
-		del(src)
+				cdel(meter)
+		cdel(src)
 
 /obj/machinery/atmospherics/proc/change_color(var/new_color)
 	//only pass valid pipe colors please ~otherwise your pipe will turn invisible
@@ -216,7 +215,7 @@
 	var/datum/effect/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1,0, src.loc, 0)
 	smoke.start()
-	del(src)
+	cdel(src)
 
 /obj/machinery/atmospherics/pipe/simple/proc/normalize_dir()
 	if(dir==3)
@@ -224,13 +223,12 @@
 	else if(dir==12)
 		dir = 4
 
-/obj/machinery/atmospherics/pipe/simple/Del()
+/obj/machinery/atmospherics/pipe/simple/Dispose()
 	if(node1)
 		node1.disconnect(src)
 	if(node2)
 		node2.disconnect(src)
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
 	return list(node1, node2)
@@ -257,8 +255,8 @@
 		for (var/obj/machinery/meter/meter in T)
 			if (meter.target == src)
 				new /obj/item/pipe_meter(T)
-				del(meter)
-		del(src)
+				cdel(meter)
+		cdel(src)
 	else if(node1 && node2)
 		overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "[pipe_icon]intact[icon_connect_type]")
 	else
@@ -297,7 +295,7 @@
 				break
 
 	if(!node1 && !node2)
-		del(src)
+		cdel(src)
 		return
 
 	var/turf/T = get_turf(src)
@@ -308,12 +306,12 @@
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node2 = null
 
 	update_icon()
@@ -449,30 +447,29 @@
 	else
 		. = PROCESS_KILL
 
-/obj/machinery/atmospherics/pipe/manifold/Del()
+/obj/machinery/atmospherics/pipe/manifold/Dispose()
 	if(node1)
 		node1.disconnect(src)
 	if(node2)
 		node2.disconnect(src)
 	if(node3)
 		node3.disconnect(src)
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/manifold/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node2 = null
 
 	if(reference == node3)
 		if(istype(node3, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node3 = null
 
 	update_icon()
@@ -501,8 +498,8 @@
 		for (var/obj/machinery/meter/meter in T)
 			if (meter.target == src)
 				new /obj/item/pipe_meter(T)
-				del(meter)
-		del(src)
+				cdel(meter)
+		cdel(src)
 	else
 		overlays.Cut()
 		overlays += icon_manager.get_atmos_icon("manifold", , pipe_color, "core" + icon_connect_type)
@@ -577,7 +574,7 @@
 				break
 
 	if(!node1 && !node2 && !node3)
-		del(src)
+		cdel(src)
 		return
 
 	var/turf/T = get_turf(src)
@@ -687,7 +684,7 @@
 	else
 		. = PROCESS_KILL
 
-/obj/machinery/atmospherics/pipe/manifold4w/Del()
+/obj/machinery/atmospherics/pipe/manifold4w/Dispose()
 	if(node1)
 		node1.disconnect(src)
 	if(node2)
@@ -696,28 +693,27 @@
 		node3.disconnect(src)
 	if(node4)
 		node4.disconnect(src)
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node2 = null
 
 	if(reference == node3)
 		if(istype(node3, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node3 = null
 
 	if(reference == node4)
 		if(istype(node4, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node4 = null
 
 	update_icon()
@@ -748,8 +744,8 @@
 		for (var/obj/machinery/meter/meter in T)
 			if (meter.target == src)
 				new /obj/item/pipe_meter(T)
-				del(meter)
-		del(src)
+				cdel(meter)
+		cdel(src)
 	else
 		overlays.Cut()
 		overlays += icon_manager.get_atmos_icon("manifold", , pipe_color, "4way" + icon_connect_type)
@@ -835,7 +831,7 @@
 				break
 
 	if(!node1 && !node2 && !node3 && !node4)
-		del(src)
+		cdel(src)
 		return
 
 	var/turf/T = get_turf(src)
@@ -944,16 +940,15 @@
 		..()
 	else
 		. = PROCESS_KILL
-/obj/machinery/atmospherics/pipe/cap/Del()
+/obj/machinery/atmospherics/pipe/cap/Dispose()
 	if(node)
 		node.disconnect(src)
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node)
 		if(istype(node, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node = null
 
 	update_icon()
@@ -1063,11 +1058,10 @@
 	else
 		. = PROCESS_KILL
 
-/obj/machinery/atmospherics/pipe/tank/Del()
+/obj/machinery/atmospherics/pipe/tank/Dispose()
 	if(node1)
 		node1.disconnect(src)
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/tank/pipeline_expansion()
 	return list(node1)
@@ -1100,7 +1094,7 @@
 /obj/machinery/atmospherics/pipe/tank/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node1 = null
 
 	update_underlays()
@@ -1250,11 +1244,10 @@
 	else
 		parent.mingle_with_turf(loc, volume)
 
-/obj/machinery/atmospherics/pipe/vent/Del()
+/obj/machinery/atmospherics/pipe/vent/Dispose()
 	if(node1)
 		node1.disconnect(src)
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/vent/pipeline_expansion()
 	return list(node1)
@@ -1285,7 +1278,7 @@
 /obj/machinery/atmospherics/pipe/vent/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			del(parent)
+			cdel(parent)
 		node1 = null
 
 	update_icon()

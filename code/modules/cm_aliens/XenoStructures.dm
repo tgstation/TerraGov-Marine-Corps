@@ -66,7 +66,7 @@
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <= 0)
 		density = 0
-		del(src)
+		cdel(src)
 
 /obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
@@ -156,7 +156,7 @@
 	New(pos, node)
 		..()
 		if(istype(loc, /turf/space))
-			del(src)
+			cdel(src)
 			return
 		linked_node = node
 		if(icon_state == "weeds")
@@ -175,7 +175,7 @@
 	var/turf/U = get_turf(src)
 
 	if(istype(U, /turf/space) || isnull(U))
-		del(src)
+		cdel(src)
 		return
 
 	if(!linked_node || (get_dist(linked_node, src) > linked_node.node_range) )
@@ -200,13 +200,13 @@
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			cdel(src)
 		if(2.0)
 			if(prob(70))
-				del(src)
+				cdel(src)
 		if(3.0)
 			if(prob(50))
-				del(src)
+				cdel(src)
 
 /obj/effect/alien/weeds/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!W || !user || isnull(W))
@@ -231,7 +231,7 @@
 
 /obj/effect/alien/weeds/proc/healthcheck()
 	if(health <= 0)
-		del(src)
+		cdel(src)
 
 /obj/effect/alien/weeds/update_icon()
 	overlays.Cut()
@@ -243,7 +243,7 @@
 	if(on_fire)
 		update_icon()
 		spawn(rand(100,175))
-			del(src)
+			cdel(src)
 
 
 /obj/effect/alien/weeds/node
@@ -302,7 +302,7 @@
 			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
 				for(var/mob/M in acid_t.contents)
 					if(acid_t.loc) M.loc = acid_t.loc
-			del(acid_t)
+			cdel(acid_t)
 		cdel(src)
 		return
 
@@ -566,8 +566,8 @@
 		visible_message("<span class='danger'>The [src] suddenly collapses!</span>")
 		if(other && isturf(other.loc))
 			visible_message("<span class='danger'>The [other] suddenly collapses!</span>")
-			del(other)
-		del(src)
+			cdel(other)
+		cdel(src)
 
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
 	return 0
@@ -649,7 +649,7 @@
 	icon_state = "sticky2"
 
 	dropped()
-		del(src)
+		cdel(src)
 		return*/
 
 /obj/item/weapon/legcuffs/xeno
@@ -660,7 +660,7 @@
 	icon_state = "sticky2"
 
 /obj/item/weapon/legcuffs/xeno/dropped()
-	del(src)
+	cdel(src)
 
 /obj/structure/stool/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/aforce = W.force
@@ -673,7 +673,7 @@
 /obj/structure/stool/bed/nest/proc/healthcheck()
 	if(health <= 0)
 		density = 0
-		del(src)
+		cdel(src)
 
 /obj/structure/stool/bed/nest/update_icon()
 	overlays.Cut()
@@ -685,7 +685,7 @@
 	if(on_fire)
 		update_icon()
 		spawn(rand(225, 400))
-			del(src)
+			cdel(src)
 
 /obj/structure/stool/bed/nest/unbuckle(mob/user as mob)
 	if(!buckled_mob)

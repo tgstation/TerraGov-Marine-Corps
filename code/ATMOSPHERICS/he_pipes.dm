@@ -37,7 +37,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 				node2 = target
 				break
 		if(!node1 && !node2)
-			del(src)
+			cdel(src)
 			return
 
 		update_icon()
@@ -99,7 +99,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 				break
 
 		if(!node1&&!node2)
-			del(src)
+			cdel(src)
 			return
 
 		update_icon()

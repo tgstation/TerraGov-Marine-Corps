@@ -20,10 +20,12 @@
 
 		hide(T.intact)
 
-	Del()
+	Dispose()
 		if(Beacon)
-			del(Beacon)
-		..()
+			cdel(Beacon)
+			Beacon = null
+		. = ..()
+
 
 	// update the invisibility and icon
 	hide(var/intact)

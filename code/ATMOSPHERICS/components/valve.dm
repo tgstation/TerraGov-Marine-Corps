@@ -73,20 +73,18 @@
 
 	return null
 
-/obj/machinery/atmospherics/valve/Del()
-	loc = null
-
+/obj/machinery/atmospherics/valve/Dispose()
 	if(node1)
 		node1.disconnect(src)
-		del(network_node1)
+		cdel(network_node1)
+		network_node1 = null
 	if(node2)
 		node2.disconnect(src)
-		del(network_node2)
-
+		cdel(network_node2)
+		network_node2 = null
 	node1 = null
 	node2 = null
-
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/valve/proc/open()
 	if(open) return 0
@@ -113,9 +111,9 @@
 	update_icon()
 
 	if(network_node1)
-		del(network_node1)
+		cdel(network_node1)
 	if(network_node2)
-		del(network_node2)
+		cdel(network_node2)
 
 	build_network()
 
@@ -223,11 +221,11 @@
 
 /obj/machinery/atmospherics/valve/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node1)
-		del(network_node1)
+		cdel(network_node1)
 		node1 = null
 
 	else if(reference==node2)
-		del(network_node2)
+		cdel(network_node2)
 		node2 = null
 
 	update_underlays()
@@ -319,4 +317,4 @@
 			"\blue You have unfastened \the [src].", \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
-		del(src)
+		cdel(src)

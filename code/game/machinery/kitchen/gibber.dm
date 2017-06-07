@@ -26,7 +26,7 @@
 				if(input_obj)
 					if(isturf(input_obj.loc))
 						input_plate = input_obj.loc
-						del(input_obj)
+						cdel(input_obj)
 						break
 
 			if(!input_plate)
@@ -204,7 +204,7 @@
 		src.occupant.death(1)
 		src.occupant.ghostize()
 
-	del(src.occupant)
+	cdel(src.occupant)
 
 	spawn(src.gibtime)
 		playsound(src.loc, 'sound/effects/splat.ogg', 25, 1)

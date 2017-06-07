@@ -846,7 +846,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.attach(owner)
 			spark_system.start()
 			spawn(10)
-				del(spark_system)
+				cdel(spark_system)
 
 /datum/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
 	if(!W || isnull(W) || !W.canremove)

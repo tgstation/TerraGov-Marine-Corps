@@ -182,12 +182,6 @@
 	if(time_coeff!=diff)
 		time_coeff = diff
 
-/obj/machinery/mecha_part_fabricator/Del()
-	for(var/atom/A in src)
-		del A
-	..()
-	return
-
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
 	if(isrobot(M) || isAI(M))
 		return 1
@@ -257,7 +251,7 @@
 	if(!istype(apart)) return 0
 	for(var/obj/O in part_set)
 		if(O.type == apart.type)
-			del apart
+			cdel(apart)
 			return 0
 	part_set[++part_set.len] = apart
 	return 1
@@ -731,7 +725,7 @@
 		res.Move(src.loc)
 		result = res.amount
 	else
-		del res
+		cdel(res)
 	return result
 
 
@@ -777,7 +771,7 @@
 			if(src.resources["diamond"] >= 2000)
 				var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond(src.loc)
 				G.amount = round(src.resources["diamond"] / G.perunit)
-			del(src)
+			cdel(src)
 			return 1
 		else
 			user << "\red You can't load the [src.name] while it's opened."

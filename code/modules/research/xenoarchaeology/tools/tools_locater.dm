@@ -16,9 +16,9 @@
 	..()
 	processing_objects.Add(src)
 
-/obj/item/device/beacon_locator/Del()
+/obj/item/device/beacon_locator/Dispose()
 	processing_objects.Remove(src)
-	..()
+	. = ..()
 
 /obj/item/device/beacon_locator/process()
 	if(target_radio)

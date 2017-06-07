@@ -24,7 +24,7 @@
 	if(!parts)
 		user << "<span class='warning'>This kit has no parts for this modification left.</span>"
 		user.temp_drop_inv_item(src)
-		del(src)
+		cdel(src)
 		return
 
 	var/allowed = 0
@@ -60,7 +60,7 @@
 
 	if(!parts)
 		user.temp_drop_inv_item(src)
-		del(src)
+		cdel(src)
 
 /obj/item/device/modkit/examine(mob/user)
 	..()

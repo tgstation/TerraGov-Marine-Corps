@@ -72,7 +72,7 @@
 	if(istype(O,/obj/item/m56d_ammo)) //lets equip it with ammo
 		if(!rounds)
 			rounds = 700
-			del(O)
+			cdel(O)
 			update_icon()
 			return
 		else
@@ -93,10 +93,10 @@
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
 		if((user.get_active_hand() == src) || (user.get_inactive_hand() == src))
 			new /obj/machinery/m56d_post(user.loc)
-			del(src)
+			cdel(src)
 		else
 			new /obj/machinery/m56d_post(src.loc)
-			del(src)
+			cdel(src)
 		return
 
 
@@ -169,7 +169,7 @@
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
 			user.temp_drop_inv_item(O)
-			del(O)
+			cdel(O)
 			return
 
 	if(istype(O,/obj/item/weapon/screwdriver))
@@ -187,7 +187,7 @@
 			G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
 			G.dir = src.dir //make sure we face the right direction
 			G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
-			del(src)
+			cdel(src)
 			return
 	return ..()
 
@@ -224,7 +224,7 @@
 		ammo = ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 		update_icon()
 
-	Del() //Make sure we pick up our trash.
+	Dispose() //Make sure we pick up our trash.
 		if(operator && operator.machine)
 			operator.client.view = world.view
 			operator.machine = null
@@ -233,7 +233,7 @@
 			operator = null
 		SetLuminosity(0)
 		processing_objects.Remove(src)
-		..()
+		. = ..()
 
 /obj/machinery/m56d_hmg/examine(mob/user as mob) //Let us see how much ammo we got in this thing.
 	..()
