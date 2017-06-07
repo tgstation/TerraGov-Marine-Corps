@@ -48,7 +48,6 @@ datum/controller/game_controller/New()
 
 	if(!RoleAuthority)
 		RoleAuthority = new /datum/authority/branch/role()
-		RoleAuthority.load_roles("config/jobs.txt")
 		world << "\red \b Job setup complete"
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()

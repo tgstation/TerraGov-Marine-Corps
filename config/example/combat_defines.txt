@@ -1,0 +1,161 @@
+##DAMAGE CALCULATION DEFINES
+##If you are wondering what point these values have,
+##they should also transfer over to various forms of combat.
+##Assuming those forms of combat will exist in the future, but
+##for right now they exist for shooting guns at things.
+
+##Global settings for projectile damage and accuracy multiplication. Can increase or decrease it based on these numbers.
+##This can be changed in the game, and is based off 1 instead of .01. It's just multiplied by .01 after the number is changed.
+##So, 0.95 is less than 1.05. The latter will result in more damage/accuracy, the former in less.
+PROJ_BASE_ACCURACY_MULT 0.01
+PROJ_BASE_DAMAGE_MULT 0.01
+
+##Global settings for projectile variance for damage and accuracy. This is the base other variance is added to.
+PROJ_VARIANCE_HIGH 105
+PROJ_VARIANCE_LOW 95
+
+##This is the lower boundry of a critical.
+CRITICAL_CHANCE_LOW 5 
+##This is the upper boundry of a critical.
+CRITICAL_CHANCE_HIGH 10
+##This is the initial multiple * after soaking damage.
+BASE_ARMOR_RESIST_LOW 1.0 
+##This is the derived multiple * after soaking damgage again.
+BASE_ARMOR_RESIST_HIGH 2.0
+##Xenos use this as a lower boundary for soaking damage or adding more armor.
+XENO_ARMOR_RESIST_LOW 0.5
+##Xenos use this as the upper boundary for deflecting damage on their second pass.
+XENO_ARMOR_RESIST_HIGH 1.5
+
+##ACCURACY
+MIN_HIT_ACCURACY 5
+LOW_HIT_ACCURACY 10
+MED_HIT_ACCURACY 15
+HMED_HIT_ACCURACY 20
+HIGH_HIT_ACCURACY 30
+MAX_HIT_ACCURACY 40
+
+##ACCURACY WEAPON MULTIPLIER
+BASE_HIT_ACCURACY_MULT 1
+MIN_HIT_ACCURACY_MULT 0.05
+LOW_HIT_ACCURACY_MULT 0.10
+MED_HIT_ACCURACY_MULT 0.20
+HMED_HIT_ACCURACY_MULT 0.30
+HIGH_HIT_ACCURACY_MULT 0.40
+MAX_HIT_ACCURACY_MULT 0.50
+
+##DAMAGE
+##Damage of the projectile, though the gun itself can modify it. This is the main source of projectile damage.
+BASE_HIT_DAMAGE 10
+MIN_HIT_DAMAGE 15
+MLOW_HIT_DAMAGE 20
+LOW_HIT_DAMAGE 30
+LMED_HIT_DAMAGE 40
+MED_HIT_DAMAGE 50
+HMED_HIT_DAMAGE 55
+HIGH_HIT_DAMAGE 70
+MHIGH_HIT_DAMAGE 80
+MAX_HIT_DAMAGE 90
+SUPER_HIT_DAMAGE 120
+ULTRA_HIT_DAMAGE 150
+
+##DAMAGE WEAPON MULTIPLIER
+BASE_HIT_DAMAGE_MULT 1
+MIN_HIT_DAMAGE_MULT 0.05
+LOW_HIT_DAMAGE_MULT 0.10
+MED_HIT_DAMAGE_MULT 0.20
+HMED_HIT_DAMAGE_MULT 0.30
+HIGH_HIT_DAMAGE_MULT 0.40
+MAX_HIT_DAMAGE_MULT 0.50
+
+##DAMAGE BLEED
+##How much damage the projectile loses per turf traveled.
+REG_DAMAGE_BLEED 1
+BUCKSHOT_DAMAGE_BLEED 20
+EXTRA_DAMAGE_BLEED 10
+
+##BURST FIRE
+##How many shots the weapon shoots each burst. Should be set to 1 if the gun doesn't burst at all.
+MIN_BURST_VALUE 1
+LOW_BURST_VALUE 2
+MED_BURST_VALUE 3
+HIGH_BURST_VALUE 4
+MAX_BURST_VALUE 6
+
+##FIRE DELAY
+##Ticks before the weapon can be fired again. Should be 6 for regular delay and 2 for burst delay.
+MIN_FIRE_DELAY 1
+MLOW_FIRE_DELAY 2
+LOW_FIRE_DELAY 3
+MED_FIRE_DELAY 4
+HIGH_FIRE_DELAY 5
+MHIGH_FIRE_DELAY 6
+MAX_FIRE_DELAY 7
+
+##SCATTER
+##% chance of scattering the projectile, added to the gun scatter chance when fired. Only affects guns.
+MIN_SCATTER_VALUE 5
+LOW_SCATTER_VALUE 15
+MED_SCATTER_VALUE 20
+HIGH_SCATTER_VALUE 25
+MAX_SCATTER_VALUE 40
+
+##RECOIL
+##Amount of screen shake. Anything above 2 is really crazy recoil.
+MIN_RECOIL_VALUE 1
+LOW_RECOIL_VALUE 2
+MED_RECOIL_VALUE 3
+HIGH_RECOIL_VALUE 4
+MAX_RECOIL_VALUE 5
+
+##SHRAPNEL
+##% chance of imbedding shrapnel in the target.
+MIN_SHRAPNEL_CHANCE 5
+LOW_SHRAPNEL_CHANCE 10
+MED_SHRAPNEL_CHANCE 25
+HIGH_SHRAPNEL_CHANCE 45
+MAX_SHRAPNEL_CHANCE 75
+
+##RANGE
+##Number of tiles.
+MIN_SHELL_RANGE 5
+CLOSE_SHELL_RANGE 5
+NEAR_SHELL_RANGE 10
+SHORT_SHELL_RANGE 10
+NORM_SHELL_RANGE 20
+LONG_SHELL_RANGE 30
+MAX_SHELL_RANGE 40
+
+##SPEED
+##How quick the projectile travels, or more accurately how many turfs per sleep(1) it travels.
+SLOW_SHELL_SPEED 1
+REG_SHELL_SPEED	2
+FAST_SHELL_SPEED 3
+SUPER_SHELL_SPEED 4
+ULTRA_SHELL_SPEED 5
+
+##PENETRATION
+##Flat number subtracted from target armor before damage calculations take place.
+MIN_ARMOR_PENETRATION 5
+MLOW_ARMOR_PENETRATION 10
+LOW_ARMOR_PENETRATION 20
+MED_ARMOR_PENETRATION 30
+HIGH_ARMOR_PENETRATION 50
+MHIGH_ARMOR_PENETRATION 60
+MAX_ARMOR_PENETRATION 80
+
+##EXTRA PRJECTILES
+#How many extra projectiles the projectile spawn when fired. Extra projectiles scatter when fired.
+MIN_PROJ_EXTRA 1
+LOW_PROJ_EXTRA 2
+MED_PROJ_EXTRA 3
+HIGH_PROJ_EXTRA 5
+MAX_PROJ_EXTRA 8
+
+##VARIANCE
+##Variance is is a multiple (out of 100) that is used when generating a bullet. Affects accuracy and damage.
+MIN_PROJ_VARIANCE 1
+LOW_PROJ_VARIANCE 5
+MED_PROJ_VARIANCE 7
+HIGH_PROJ_VARIANCE 9
+MAX_PROJ_VARIANCE 10
