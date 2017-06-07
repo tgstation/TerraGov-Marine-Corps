@@ -42,7 +42,7 @@
 		)
 
 /mob/living/carbon/Xenomorph/Praetorian/proc/resin_spit(var/atom/T)
-	set name = "Spit Sticky Resin (150)"
+	set name = "Spit Sticky Resin (250)"
 	set desc = "Spits a glob a sticky resin. Use Shift+Click for better results."
 	set category = "Alien"
 
@@ -68,7 +68,7 @@
 		return
 
 	if(T)
-		if(!check_plasma(150))
+		if(!check_plasma(250))
 			return
 
 		var/turf/current_turf = get_turf(src)
@@ -99,14 +99,21 @@
 	desc = "Gooey."
 
 /obj/resin_glob/proc/splatter(turf/T)
-		new /obj/effect/alien/resin/sticky(T)
-		new /obj/effect/alien/resin/sticky(get_step(T, NORTH))
-		new /obj/effect/alien/resin/sticky(get_step(T, NORTHEAST))
-		new /obj/effect/alien/resin/sticky(get_step(T, EAST))
-		new /obj/effect/alien/resin/sticky(get_step(T, SOUTHEAST))
-		new /obj/effect/alien/resin/sticky(get_step(T, SOUTH))
-		new /obj/effect/alien/resin/sticky(get_step(T, SOUTHWEST))
-		new /obj/effect/alien/resin/sticky(get_step(T, WEST))
-		new /obj/effect/alien/resin/sticky(get_step(T, NORTHWEST))
 
+		do_safe_splatter(T)
+		do_safe_splatter(get_step(T, NORTH))
+		do_safe_splatter(get_step(T, NORTHEAST))
+		do_safe_splatter(get_step(T, EAST))
+		do_safe_splatter(get_step(T, SOUTHEAST))
+		do_safe_splatter(get_step(T, SOUTH))
+		do_safe_splatter(get_step(T, SOUTHWEST))
+		do_safe_splatter(get_step(T, WEST))
+		do_safe_splatter(get_step(T, NORTHWEST))
 		del(src)
+
+/obj/resin_glob/proc/do_safe_splatter(turf/T)
+	for (var/atom/A in T.contents)
+		if (istype(A, /obj/effect/alien/resin/sticky))
+			return
+
+	new /obj/effect/alien/resin/sticky(T)
