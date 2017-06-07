@@ -31,45 +31,46 @@
 	return
 
 /atom/movable/Move(NewLoc, direct)
+
+	if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
+		moving_diagonally = FIRST_DIAG_STEP
+		if (direct & 1)
+			if (direct & 4)
+				if (step(src, NORTH))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, EAST)
+				else if (step(src, EAST))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, NORTH)
+			else if (direct & 8)
+				if (step(src, NORTH))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, WEST)
+				else if (step(src, WEST))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, NORTH)
+		else if (direct & 2)
+			if (direct & 4)
+				if (step(src, SOUTH))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, EAST)
+				else if (step(src, EAST))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, SOUTH)
+			else if (direct & 8)
+				if (step(src, SOUTH))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, WEST)
+				else if (step(src, WEST))
+					moving_diagonally = SECOND_DIAG_STEP
+					. = step(src, SOUTH)
+		moving_diagonally = 0
+		return
+
 	var/atom/oldloc = loc
 	var/old_dir = dir
 
-	if(loc != NewLoc)
-		if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
-			moving_diagonally = FIRST_DIAG_STEP
-			if (direct & 1)
-				if (direct & 4)
-					if (step(src, NORTH))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
-					else if (step(src, EAST))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
-				else if (direct & 8)
-					if (step(src, NORTH))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
-					else if (step(src, WEST))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
-			else if (direct & 2)
-				if (direct & 4)
-					if (step(src, SOUTH))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
-					else if (step(src, EAST))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
-				else if (direct & 8)
-					if (step(src, SOUTH))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
-					else if (step(src, WEST))
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
-			moving_diagonally = 0
-		else
-			. = ..()
+	. = ..()
 	if(flags_atom & DIRLOCK) dir = old_dir
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
