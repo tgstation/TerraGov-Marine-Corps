@@ -282,7 +282,7 @@
 		return
 
 	if(T)
-		if(!check_plasma(spit_type? 100:50))
+		if(!check_plasma(spit_type ? 100:50))
 			return
 
 		var/turf/current_turf = get_turf(src)

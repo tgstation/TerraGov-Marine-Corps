@@ -99,6 +99,9 @@
 	Xeno_MiddleClick_Action(atom/A)
 		neurotoxin(A)
 
+	Xeno_ShiftClick_Action(atom/A)
+		resin_spit(A)
+
 
 
 /mob/living/carbon/Xenomorph/Crusher

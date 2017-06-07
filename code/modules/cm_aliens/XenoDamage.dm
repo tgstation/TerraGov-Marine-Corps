@@ -7,23 +7,28 @@
 	var/f_loss = 0
 	switch(severity)
 		if(1.0)
-			if(is_robotic || mob_size < MOB_SIZE_BIG)
+			if(is_robotic || isXenoCrusher(src) || isXenoRavager(src) || isXenoQueen(src)) // Crushers, Ravagers, and the Queen won't be gibbed.
+				if (isXenoQueen(src))
+					Weaken(4)
 				apply_damage(rand(200, 300), BRUTE)
 				updatehealth()
 				return
 			gib()
 			return
+
 		if(2.0)
-			if(is_robotic || isXenoCrusher(src)) //Robots and crushers are immune.
+			if(is_robotic || isXenoCrusher(src) || isXenoRavager(src)) //Robots and crushers are immune.
 				return
 			b_loss += rand(45, 55)
 			f_loss += rand(45, 65)
 
 			if (!isXenoRavager(src)) //Crushers and Ravagers don't get stunned, Queens have resistance to weaken.
 				if (isXenoQueen(src))
-					Weaken(4)
+					Weaken(2)
 				else
-					Weaken(12)
+					if (prob(80))
+						Paralyse(4)
+				Weaken(12)
 
 			if(warding_aura)
 				b_loss = round(b_loss / 2)
@@ -33,19 +38,17 @@
 			updatehealth()
 
 			return
+
 		if(3.0)
-			if(is_robotic || isXenoCrusher(src)) //Robots and crushers are immune.
+			if(is_robotic || isXenoCrusher(src) || isXenoRavager(src)) //Robots and crushers are immune to small explosions.
 				return
 			b_loss += rand(20, 40)
 			f_loss += rand(25, 50)
 
-			if (!isXenoRavager(src)) //Crushers and Ravagers don't get stunned, Queens have resistance to weaken.
-				if (isXenoQueen(src))
-					Weaken(4)
-				else
-					if(prob(40))
-						Paralyse(2)
-					Weaken(rand(4, 6))
+			if (!isXenoRavager(src) && !isXenoQueen(src)) //Crushers, Ravagers, and Queens don't get weakened.
+				if(prob(40))
+					Paralyse(2)
+				Weaken(rand(4, 6))
 
 			if(warding_aura)
 				b_loss = round(b_loss / 2)

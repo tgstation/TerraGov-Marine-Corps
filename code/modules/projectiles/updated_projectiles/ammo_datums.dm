@@ -868,6 +868,32 @@
 	name = "neurotoxic splash"
 	debilitate = list(3,4,0,0,3,5,0,0)
 
+/datum/ammo/xeno/sticky
+	name = "sticky resin spit"
+	flags_ammo_behavior = AMMO_SKIPS_ALIENS
+
+	New()
+		..()
+		shell_speed = config.fast_shell_speed
+		accuracy_var_high = config.max_proj_variance
+		max_range = config.max_shell_range
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_resin(get_turf(P))
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_resin(get_turf(P))
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_resin(T)
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_resin(get_turf(P))
+
+	proc/drop_resin(turf/T)
+		var/obj/resin_glob/G = new(T)
+		G.splatter(T)
+
 /datum/ammo/xeno/acid
 	name = "acid spit"
 	icon_state = "neurotoxin"
