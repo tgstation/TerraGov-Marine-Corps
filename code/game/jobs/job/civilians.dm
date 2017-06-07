@@ -25,12 +25,6 @@
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/officer,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
 				)
-		/*
-		switch(H.backbag)
-			if(2) L[WEAR_BACK] = /obj/item/weapon/storage/backpack/medic
-			if(3) L[WEAR_BACK] = /obj/item/weapon/storage/backpack/satchel_med
-			if(4) L[WEAR_BACK] = /obj/item/weapon/storage/backpack/satchel
-		*/
 
 	generate_stored_equipment()
 		. = list(
@@ -64,6 +58,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 				WEAR_L_EAR = /obj/item/device/radio/headset/headset_med,
 				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
 				)
