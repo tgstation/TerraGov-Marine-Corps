@@ -148,6 +148,9 @@
 /obj/item/organ/liver/prosthetic
 	robotic = 2
 
+/obj/item/organ/brain/prosthetic
+	robotic = 2
+
 /obj/item/organ/appendix
 	name = "appendix"
 
