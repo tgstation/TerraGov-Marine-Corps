@@ -101,9 +101,11 @@
 							MM.inertia_dir = 2
 					else
 						for(var/obj/item/weapon/disk/nuclear/N in disk_search)
+							disk_search -= N
 							cdel(N)//Make the disk respawn it is on a clientless mob or corpse
 				else
 					for(var/obj/item/weapon/disk/nuclear/N in disk_search)
+						disk_search -= N
 						cdel(N)//Make the disk respawn if it is floating on its own
 				return
 

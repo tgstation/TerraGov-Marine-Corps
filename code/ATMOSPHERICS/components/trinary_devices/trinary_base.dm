@@ -164,14 +164,17 @@ obj/machinery/atmospherics/trinary
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
 			cdel(network1)
+			network1 = null
 			node1 = null
 
 		else if(reference==node2)
 			cdel(network2)
+			network2 = null
 			node2 = null
 
 		else if(reference==node3)
 			cdel(network3)
+			network3 = null
 			node3 = null
 
 		update_underlays()

@@ -22,6 +22,7 @@
 	. = ..()
 
 /obj/item/weapon/grab/Dispose()
+	grabbed_thing = null
 	if(ismob(loc))
 		var/mob/M = loc
 		M.grab_level = 0

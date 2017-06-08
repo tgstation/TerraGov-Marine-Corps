@@ -601,7 +601,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(body_part == UPPER_TORSO) return
 
 		status &= ~(ORGAN_BROKEN|ORGAN_BLEEDING|ORGAN_SPLINTING|ORGAN_SPLINTED|ORGAN_DEAD)
-		for(var/i in implants) cdel(i)
+		for(var/i in implants)
+			implants -= i
+			cdel(i)
 
 		germ_level = 0
 
@@ -667,7 +669,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()
-			spawn(10) cdel(spark_system)
+			spawn(10)
+				cdel(spark_system)
+				spark_system = null
 
 		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
@@ -847,6 +851,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.start()
 			spawn(10)
 				cdel(spark_system)
+				spark_system = null
 
 /datum/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
 	if(!W || isnull(W) || !W.canremove)

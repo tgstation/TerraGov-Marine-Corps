@@ -324,8 +324,8 @@
 /obj/item/weapon/module/power_control/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (istype(W, /obj/item/device/multitool))
 		var/obj/item/weapon/circuitboard/ghettosmes/newcircuit = new/obj/item/weapon/circuitboard/ghettosmes(user.loc)
-		cdel(src)
 		user.put_in_hands(newcircuit)
+		cdel(src)
 
 
 /obj/item/weapon/module/id_auth

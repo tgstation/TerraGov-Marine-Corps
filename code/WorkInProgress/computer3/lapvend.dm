@@ -392,6 +392,7 @@
 	vendor_account.transaction_log.Add(T)
 
 	cdel(relap)
+	relap = null
 	vendmode = 0
 	cardreader = 0
 	floppy = 0

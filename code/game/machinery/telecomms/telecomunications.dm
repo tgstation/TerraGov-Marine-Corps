@@ -161,6 +161,9 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/Dispose()
 	telecomms_list -= src
+	for(var/obj/machinery/telecomms/T in links)
+		T.links -= src
+	links = null
 	. = ..()
 
 // Used in auto linking

@@ -107,6 +107,7 @@ var/global/datum/controller/gameticker/ticker
 	if (!src.mode.can_start())
 		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		cdel(mode)
+		mode = null
 		current_state = GAME_STATE_PREGAME
 		RoleAuthority.reset_roles()
 		return 0
@@ -114,6 +115,7 @@ var/global/datum/controller/gameticker/ticker
 	var/can_continue = src.mode.pre_setup()//Setup special modes
 	if(!can_continue)
 		cdel(mode)
+		mode = null
 		current_state = GAME_STATE_PREGAME
 		world << "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby."
 		RoleAuthority.reset_roles()

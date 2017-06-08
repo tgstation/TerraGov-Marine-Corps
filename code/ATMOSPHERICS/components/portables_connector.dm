@@ -66,6 +66,7 @@
 	if(node)
 		node.disconnect(src)
 		cdel(network)
+		network = null
 	node = null
 	. = ..()
 
@@ -121,6 +122,7 @@
 /obj/machinery/atmospherics/portables_connector/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node)
 		cdel(network)
+		network = null
 		node = null
 
 	update_underlays()

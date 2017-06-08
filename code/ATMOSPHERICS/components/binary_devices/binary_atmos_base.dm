@@ -129,10 +129,12 @@ obj/machinery/atmospherics/binary
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
 			cdel(network1)
+			network1 = null
 			node1 = null
 
 		else if(reference==node2)
 			cdel(network2)
+			network2 = null
 			node2 = null
 
 		update_icon()

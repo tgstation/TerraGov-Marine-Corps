@@ -100,6 +100,7 @@
 		overlays_standing[X_TARGETED_LAYER]	= image("icon" = target_locked, "layer" =-X_TARGETED_LAYER)
 	else if(!targeted_by && target_locked)
 		cdel(target_locked)
+		target_locked = null
 	if(!targeted_by || src.stat == DEAD)
 		overlays_standing[X_TARGETED_LAYER]	= null
 	apply_overlay(X_TARGETED_LAYER)

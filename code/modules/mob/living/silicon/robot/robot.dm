@@ -765,11 +765,12 @@ var/list/robot_verbs_default = list(
 					src << "<b>Obey these laws:</b>"
 					laws.show_laws(src)
 					src << "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands."
-					if(src.module && istype(src.module, /obj/item/weapon/robot_module/miner))
-						for(var/obj/item/weapon/pickaxe/borgdrill/D in src.module.modules)
+					if(module && istype(module, /obj/item/weapon/robot_module/miner))
+						for(var/obj/item/weapon/pickaxe/borgdrill/D in module.modules)
+							module.modules -= D
 							cdel(D)
-						src.module.modules += new /obj/item/weapon/pickaxe/diamonddrill(src.module)
-						src.module.rebuild()
+						module.modules += new /obj/item/weapon/pickaxe/diamonddrill(module)
+						module.rebuild()
 					updateicon()
 				else
 					user << "You fail to hack [src]'s interface."
@@ -907,6 +908,7 @@ var/list/robot_verbs_default = list(
 /mob/living/silicon/robot/update_targeted()
 	if(!targeted_by && target_locked)
 		cdel(target_locked)
+		target_locked = null
 	updateicon()
 	if (targeted_by && target_locked)
 		overlays += target_locked

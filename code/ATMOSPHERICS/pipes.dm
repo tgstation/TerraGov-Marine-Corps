@@ -949,6 +949,7 @@
 	if(reference == node)
 		if(istype(node, /obj/machinery/atmospherics/pipe))
 			cdel(parent)
+			parent = null
 		node = null
 
 	update_icon()
@@ -1095,6 +1096,7 @@
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			cdel(parent)
+			parent = null
 		node1 = null
 
 	update_underlays()
@@ -1279,6 +1281,7 @@
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			cdel(parent)
+			parent = null
 		node1 = null
 
 	update_icon()

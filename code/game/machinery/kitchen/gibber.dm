@@ -204,7 +204,8 @@
 		src.occupant.death(1)
 		src.occupant.ghostize()
 
-	cdel(src.occupant)
+	cdel(occupant)
+	occupant = null
 
 	spawn(src.gibtime)
 		playsound(src.loc, 'sound/effects/splat.ogg', 25, 1)

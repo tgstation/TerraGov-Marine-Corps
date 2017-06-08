@@ -538,6 +538,7 @@
 				"\red [user.name] cut the cables and dismantled the power terminal.",\
 				"You cut the cables and dismantle the power terminal.")
 			cdel(terminal)
+			terminal = null
 	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == 0 && !(stat & BROKEN))
 		user << "You trying to insert the power control board into the frame..."
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)

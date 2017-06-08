@@ -119,6 +119,7 @@
 		. = ..()
 		if(linked_ear)
 			cdel(linked_ear)
+			linked_ear = null
 
 	dropped(mob/user)
 		if(linked_ear && ishuman(user))

@@ -36,6 +36,7 @@
 		var/obj/effect/decal/cleanable/blood/gibs/gib = null
 		for(var/datum/disease/D in viruses)
 			if(D.spread_type == SPECIAL)
+				viruses -= D
 				cdel(D)
 
 		if(sparks)

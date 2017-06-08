@@ -409,6 +409,7 @@
 
 /obj/effect/alien/egg/proc/delete_egg_triggers()
 	for(var/atom/trigger in egg_triggers)
+		egg_triggers -= trigger
 		cdel(trigger)
 
 /obj/effect/alien/egg/proc/Burst(kill = 1) //drops and kills the hugger if any is remaining
@@ -551,6 +552,12 @@
 						src.other = T //Link them!
 						break
 
+	Dispose()
+		if(other)
+			other.other = null
+			other = null
+		. = ..()
+
 	examine(mob/user)
 		if(!isXeno(user))
 			return ..()
@@ -567,6 +574,7 @@
 		if(other && isturf(other.loc))
 			visible_message("<span class='danger'>The [other] suddenly collapses!</span>")
 			cdel(other)
+			other = null
 		cdel(src)
 
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)

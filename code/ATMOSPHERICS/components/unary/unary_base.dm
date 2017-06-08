@@ -85,6 +85,7 @@
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node)
 			cdel(network)
+			network = null
 			node = null
 
 		update_icon()

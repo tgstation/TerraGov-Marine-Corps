@@ -57,6 +57,7 @@
 				if (isobj(target))
 					if (target)
 						cdel(target)
+						target = null
 				if (src)
 					cdel(src)
 

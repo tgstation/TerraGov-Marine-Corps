@@ -14,6 +14,18 @@
 	var/obj/item/device/assembly/a_right = null
 	var/obj/special_assembly = null
 
+	Dispose()
+		if(a_left)
+			cdel(a_left)
+			a_left = null
+		if(a_right)
+			cdel(a_right)
+			a_right = null
+		if(special_assembly)
+			cdel(special_assembly)
+			special_assembly = null
+		. = ..()
+
 	proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
 		return
 

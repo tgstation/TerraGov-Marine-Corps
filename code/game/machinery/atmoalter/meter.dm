@@ -16,6 +16,10 @@
 	src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 	return 1
 
+/obj/machinery/meter/Dispose()
+	target = null
+	. = ..()
+
 /obj/machinery/meter/initialize()
 	if (!target)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc

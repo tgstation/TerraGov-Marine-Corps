@@ -174,6 +174,7 @@
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
 		cdel(mymist)
+		mymist = null
 
 	if(on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
@@ -193,6 +194,7 @@
 		spawn(250)
 			if(src && !on)
 				cdel(mymist)
+				mymist = null
 				ismist = 0
 
 /obj/machinery/shower/Crossed(atom/movable/O)

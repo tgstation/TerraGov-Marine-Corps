@@ -112,8 +112,10 @@
 
 	if(network_node1)
 		cdel(network_node1)
+		network_node1 = null
 	if(network_node2)
 		cdel(network_node2)
+		network_node2 = null
 
 	build_network()
 
@@ -222,10 +224,12 @@
 /obj/machinery/atmospherics/valve/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node1)
 		cdel(network_node1)
+		network_node1 = null
 		node1 = null
 
 	else if(reference==node2)
 		cdel(network_node2)
+		network_node2 = null
 		node2 = null
 
 	update_underlays()

@@ -16,6 +16,10 @@
 		set_desc(steps.len)
 		return
 
+	Dispose()
+		holder = null
+		. = ..()
+
 	proc/next_step()
 		steps.len--
 		if(!steps.len)
@@ -62,6 +66,7 @@
 			new result(get_turf(holder))
 			spawn()
 				cdel(holder)
+				holder = null
 		return
 
 	proc/set_desc(index as num)

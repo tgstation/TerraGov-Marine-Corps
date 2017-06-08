@@ -237,6 +237,15 @@
 		"/obj/item/ammo_magazine/pistol"
 		)
 
+	Dispose()
+		if(gun_underlay)
+			cdel(gun_underlay)
+			gun_underlay = null
+		if(current_gun)
+			cdel(current_gun)
+			current_gun = null
+		. = ..()
+
 	proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
 		var/mob/user = loc
 		if(holds_guns_now) //So it has a gun, let's make an icon.

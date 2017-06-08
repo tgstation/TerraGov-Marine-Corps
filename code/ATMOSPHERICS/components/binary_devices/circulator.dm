@@ -93,9 +93,11 @@
 			if(node1)
 				node1.disconnect(src)
 				cdel(network1)
+				network1 = null
 			if(node2)
 				node2.disconnect(src)
 				cdel(network2)
+				network2 = null
 
 			node1 = null
 			node2 = null

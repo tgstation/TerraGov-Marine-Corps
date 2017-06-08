@@ -118,7 +118,9 @@ var/list/department_radio_keys = list(
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
-	spawn(30) cdel(speech_bubble)
+	spawn(30)
+		if(client) client.images -= speech_bubble
+		cdel(speech_bubble)
 
 	for(var/mob/M in listening)
 		if(!M.stat)

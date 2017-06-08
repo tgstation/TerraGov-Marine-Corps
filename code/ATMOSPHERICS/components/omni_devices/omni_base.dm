@@ -294,6 +294,7 @@
 	for(var/datum/omni_port/P in ports)
 		if(reference == P.node)
 			cdel(P.network)
+			P.network = null
 			P.node = null
 			P.update = 1
 			break

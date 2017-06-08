@@ -86,4 +86,5 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 	if(holder)
 		holder.disassociate()
 		cdel(holder)
+		holder = null
 	return 1

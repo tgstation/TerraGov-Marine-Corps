@@ -235,9 +235,11 @@ var/global/list/holodeck_programs = list(
 		derez(item)
 
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
+		linkedholodeck -= B
 		cdel(B)
 
 	for(var/mob/living/simple_animal/hostile/carp/C in linkedholodeck)
+		linkedholodeck -= C
 		cdel(C)
 
 	holographic_items = A.copy_contents_to(linkedholodeck , 1)
@@ -567,6 +569,7 @@ var/global/list/holodeck_programs = list(
 	eventstarted = 1
 
 	for(var/obj/structure/holowindow/W in currentarea)
+		currentarea -= W
 		cdel(W)
 
 	for(var/mob/M in currentarea)

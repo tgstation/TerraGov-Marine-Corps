@@ -353,6 +353,7 @@ its easier to just keep the beam vertical.
 	//Cleaning up shit.
 	if(fingerprints && !fingerprints.len)
 		cdel(fingerprints)
+		fingerprints = null
 	return
 
 
@@ -408,6 +409,7 @@ its easier to just keep the beam vertical.
 	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		cdel(blood_DNA)
+		blood_DNA = null
 		return 1
 
 

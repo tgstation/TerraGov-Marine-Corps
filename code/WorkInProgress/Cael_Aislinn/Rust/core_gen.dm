@@ -272,6 +272,7 @@ max volume of phoron storeable by the field = the total volume of a number of ti
 	if(owned_field)
 		icon_state = "core0"
 		cdel(owned_field)
+		owned_field = null
 		luminosity = 0
 		use_power = 1
 

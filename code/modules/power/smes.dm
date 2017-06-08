@@ -258,6 +258,7 @@
 						"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
 						"<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
 					cdel(terminal)
+					terminal = null
 		building_terminal = 0
 		return 0
 	return 1

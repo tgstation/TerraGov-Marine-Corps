@@ -241,6 +241,7 @@ var/global/list/frozen_items = list()
 
 				if(occupant.mind.objectives.len)
 					cdel(occupant.mind.objectives)
+					occupant.mind.objectives = null
 					occupant.mind.special_role = null
 
 			//Delete them from datacore.
@@ -248,12 +249,15 @@ var/global/list/frozen_items = list()
 				PDA_Manifest.Cut()
 			for(var/datum/data/record/R in data_core.medical)
 				if ((R.fields["name"] == occupant.real_name))
+					data_core.medical -= R
 					cdel(R)
 			for(var/datum/data/record/T in data_core.security)
 				if ((T.fields["name"] == occupant.real_name))
+					data_core.security -= T
 					cdel(T)
 			for(var/datum/data/record/G in data_core.general)
 				if ((G.fields["name"] == occupant.real_name))
+					data_core.general -= G
 					cdel(G)
 
 			if(orient_right)

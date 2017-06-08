@@ -119,6 +119,7 @@
 		overlays_standing[TARGETED_LAYER]	= image("icon"=target_locked, "layer" =-TARGETED_LAYER)
 	else if (!targeted_by && target_locked)
 		cdel(target_locked)
+		target_locked = null
 	apply_overlay(TARGETED_LAYER)
 
 /mob/living/carbon/monkey/update_burst()

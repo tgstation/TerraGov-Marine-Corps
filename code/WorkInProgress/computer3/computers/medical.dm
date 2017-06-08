@@ -253,6 +253,7 @@
 			if (href_list["del_all2"])
 				for(var/datum/data/record/R in data_core.medical)
 					//R = null
+					data_core.medical -= R
 					cdel(R)
 					//Foreach goto(494)
 				src.temp = "All records deleted."
@@ -422,6 +423,7 @@
 				if (src.active2)
 					//src.active2 = null
 					cdel(src.active2)
+					active2 = null
 
 			if (href_list["d_rec"])
 				var/datum/data/record/R = locate(href_list["d_rec"])
