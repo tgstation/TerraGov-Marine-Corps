@@ -236,6 +236,7 @@
 	icon_state = "missiletubenorth"
 	bound_width = 32
 	bound_height = 96
+	unacidable = 1
 
 /obj/structure/prop/almayer/ship_memorial
 	name = "slab of victory"
@@ -244,18 +245,21 @@
 	icon_state = "ship_memorial"
 	bound_width = 64
 	bound_height = 32
+	unacidable = 1
 
 /obj/structure/prop/almayer/particle_cannon
 	name = "\improper 0.75cm/140 Mark 74 General Atomics railgun"
 	desc = "The Mark 74 Railgun is top of the line for space based weaponry. Capable of firing a round with a diameter of 3/4ths of a meter at 24 kilometers per second. It also is capable of using a variety of round types which can be interchanged at anytime with its newly designed feed system."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "1"
+	unacidable = 1
 
 /obj/structure/prop/almayer/name_stencil
 	desc = "The name of the ship stenciled on the hull."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "almayer0"
 	density = 0 //dunno who would walk on it, but you know.
+	unacidable = 1
 
 	New()
 		..()
@@ -472,6 +476,7 @@
 	name = "\improper Security Airlock"
 	icon = 'icons/obj/doors/almayer/secdoor_glass.dmi'
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/command
 	name = "\improper Command Airlock"
@@ -493,6 +498,7 @@
 	name = "\improper Engineering Airlock"
 	icon = 'icons/obj/doors/almayer/engidoor.dmi'
 	opacity = 0
+	glass = 1
 	req_access_txt = "0"
 	req_one_access_txt = "2;7"
 
@@ -506,6 +512,7 @@
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/almayer/medidoor_glass.dmi'
 	opacity = 0
+	glass = 1
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
 
@@ -522,6 +529,7 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/requisitions
 	name = "\improper Requisitions Bay"
@@ -529,6 +537,7 @@
 	req_access_txt = "0"
 	req_one_access_txt =  "2;21"
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/alpha
 	name = "\improper Alpha Squad Preparations"
@@ -536,6 +545,7 @@
 	req_access_txt = "9"
 	req_one_access_txt =  "2;15"
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/alpha/sl
 	name = "\improper Alpha Squad Leader Preparations"
@@ -543,6 +553,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/alpha/spec
 	name = "\improper Alpha Squad Specialist Preparations"
@@ -550,6 +561,7 @@
 	req_one_access_txt =  "13"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/alpha/engineer
 	name = "\improper Alpha Squad Engineer Preparations"
@@ -557,6 +569,7 @@
 	req_one_access_txt =  "11"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/alpha/medic
 	name = "\improper Alpha Squad Medic Preparations"
@@ -564,6 +577,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/alpha/smart
 	name = "\improper Alpha Squad Smartgunner Preparations"
@@ -571,6 +585,7 @@
 	req_one_access_txt =  "25"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/bravo
 	name = "\improper Bravo Squad Preparations"
@@ -578,6 +593,7 @@
 	req_access_txt = "9"
 	req_one_access_txt =  "2;16"
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/bravo/sl
 	name = "\improper Bravo Squad Leader Preparations"
@@ -585,6 +601,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/bravo/spec
 	name = "\improper Bravo Squad Specialist Preparations"
@@ -592,6 +609,7 @@
 	req_one_access_txt =  "13"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/bravo/engineer
 	name = "\improper Bravo Squad Engineer Preparations"
@@ -599,6 +617,7 @@
 	req_one_access_txt =  "11"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/bravo/medic
 	name = "\improper Bravo Squad Medic Preparations"
@@ -606,6 +625,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/bravo/smart
 	name = "\improper Bravo Squad Smartgunner Preparations"
@@ -613,6 +633,7 @@
 	req_one_access_txt =  "25"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/charlie
 	name = "\improper Charlie Squad Preparations"
@@ -620,6 +641,7 @@
 	req_access_txt = "9"
 	req_one_access_txt =  "2;17"
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/charlie/sl
 	name = "\improper Charlie Squad Leader Preparations"
@@ -627,6 +649,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/charlie/spec
 	name = "\improper Charlie Squad Specialist Preparations"
@@ -634,6 +657,7 @@
 	req_one_access_txt =  "13"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/charlie/engineer
 	name = "\improper Charlie Squad Engineer Preparations"
@@ -641,6 +665,7 @@
 	req_one_access_txt =  "11"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/charlie/medic
 	name = "\improper Charlie Squad Medic Preparations"
@@ -648,6 +673,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/charlie/smart
 	name = "\improper Charlie Squad Smartgunner Preparations"
@@ -655,6 +681,7 @@
 	req_one_access_txt =  "25"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/delta
 	name = "\improper Delta Squad Preparations"
@@ -662,6 +689,7 @@
 	req_access_txt = "9"
 	req_one_access_txt =  "2;18"
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/delta/sl
 	name = "\improper Delta Squad Leader Preparations"
@@ -669,6 +697,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/delta/spec
 	name = "\improper Delta Squad Specialist Preparations"
@@ -676,6 +705,7 @@
 	req_one_access_txt =  "13"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/delta/engineer
 	name = "\improper Delta Squad Engineer Preparations"
@@ -683,6 +713,7 @@
 	req_one_access_txt =  "11"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/delta/medic
 	name = "\improper Delta Squad Medic Preparations"
@@ -690,6 +721,7 @@
 	req_one_access_txt =  "0"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/almayer/marine/delta/smart
 	name = "\improper Delta Squad Smartgunner Preparations"
@@ -697,6 +729,7 @@
 	req_one_access_txt =  "25"
 	dir = 2
 	opacity = 0
+	glass = 1
 
 // Double Doors
 
@@ -719,11 +752,13 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/almayer/2x1generic.dmi'
 	opacity = 0
+	glass = 1
 
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/almayer/2x1medidoor.dmi'
 	opacity = 0
+	glass = 1
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
 
@@ -731,6 +766,7 @@
 	name = "\improper Command Airlock"
 	icon = 'icons/obj/doors/almayer/2x1comdoor.dmi'
 	opacity = 0
+	glass = 1
 	req_access_txt = "19"
 
 /obj/machinery/door/firedoor/border_only/almayer
