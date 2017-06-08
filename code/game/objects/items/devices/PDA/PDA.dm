@@ -1018,8 +1018,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				C.forceMove(src)
 				user << "<span class='notice'>You slide \the [C] into \the [src].</span>"
 
-/obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
-	if (istype(C, /mob/living/carbon))
+/obj/item/device/pda/attack(mob/living/L, mob/living/user)
+	if (istype(L, /mob/living/carbon))
+		var/mob/living/carbon/C = L
 		switch(scanmode)
 			if(1)
 
@@ -1055,15 +1056,16 @@ var/global/list/obj/item/device/pda/PDAs = list()
 						user << "\blue No fingerprints found on [C]"
 				else
 					user << text("\blue [C]'s Fingerprints: [md5(C:dna.uni_identity)]")
-				if ( !(C:blood_DNA) )
+				if (!C.blood_DNA || !C.blood_DNA.len)
 					user << "\blue No blood found on [C]"
-					if(C:blood_DNA)
-						cdel(C:blood_DNA)
+					if(C.blood_DNA)
+						cdel(C.blood_DNA)
+						C.blood_DNA = null
 				else
 					user << "\blue Blood found on [C]. Analysing..."
 					spawn(15)
-						for(var/blood in C:blood_DNA)
-							user << "\blue Blood type: [C:blood_DNA[blood]]\nDNA: [blood]"
+						for(var/blood in C.blood_DNA)
+							user << "\blue Blood type: [C.blood_DNA[blood]]\nDNA: [blood]"
 
 			if(4)
 				for (var/mob/O in viewers(C, null))

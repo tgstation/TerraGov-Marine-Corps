@@ -127,10 +127,9 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 		else //no source and no mob affected. Rogue disease. Break
 			return
 
-	if(affected_mob.reagents != null)
-		if(affected_mob)
-			if(affected_mob.reagents.has_reagent("spaceacillin"))
-				return // Don't spread if we have spaceacillin in our system.
+	if(affected_mob && affected_mob.reagents)
+		if(affected_mob.reagents.has_reagent("spaceacillin"))
+			return // Don't spread if we have spaceacillin in our system.
 
 	var/check_range = airborne_range//defaults to airborne - range 2
 

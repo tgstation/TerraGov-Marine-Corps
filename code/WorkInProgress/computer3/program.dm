@@ -112,6 +112,7 @@ Programs are a file that can be executed
 	if(popup)
 		popup.close()
 		cdel(popup)
+		popup = null
 	return
 
 /*

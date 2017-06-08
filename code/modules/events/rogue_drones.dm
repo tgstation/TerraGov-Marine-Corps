@@ -44,6 +44,7 @@
 		D.z = 2
 		D.has_loot = 0
 
+		drones_list -= D
 		cdel(D)
 		num_recovered++
 

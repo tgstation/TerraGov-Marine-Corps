@@ -124,6 +124,7 @@
 			//GC will hopefully pick them up before too long
 			positive_locations = list()
 			cdel(current)
+			current = null
 	else if(href_list["close"])
 		usr.unset_machine()
 		usr << browse(null, "window=depth_scanner")

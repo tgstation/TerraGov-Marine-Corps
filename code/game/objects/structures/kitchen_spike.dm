@@ -27,6 +27,7 @@
 				for(var/mob/O in viewers(src, null))
 					O.show_message(text("\red [user] has forced [G.grabbed_thing] onto the spike, killing them instantly!"))
 				cdel(G.grabbed_thing)
+				G.grabbed_thing = null
 				cdel(G)
 
 			else
@@ -40,6 +41,7 @@
 				for(var/mob/O in viewers(src, null))
 					O.show_message(text("\red [user] has forced [G.grabbed_thing] onto the spike, killing them instantly!"))
 				cdel(G.grabbed_thing)
+				G.grabbed_thing = null
 				cdel(G)
 			else
 				user << "\red The spike already has something on it, finish collecting its meat first!"

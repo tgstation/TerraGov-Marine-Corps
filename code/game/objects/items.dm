@@ -140,7 +140,9 @@ cases. Override_icon_state should be a list.*/
 		var/mob/M = loc
 		M.temp_drop_inv_item(src, TRUE) //unequip before deletion to clear possible item references on the mob.
 	for(var/X in actions)
+		actions -= X
 		cdel(X)
+	master = null
 	. = ..()
 
 /obj/item/examine(mob/user)

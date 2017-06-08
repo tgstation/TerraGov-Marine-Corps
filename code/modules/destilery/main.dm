@@ -25,6 +25,12 @@
 	idle_power_usage = 10
 	active_power_usage = 1000
 
+	Dispose()
+		if(milled_item)
+			cdel(milled_item)
+			milled_item = null
+		. = ..()
+
 /obj/machinery/mill/process()
 	if(error)
 		return
@@ -54,6 +60,7 @@
 			error = 1
 
 	cdel(milled_item)
+	milled_item = null
 	busy = 0
 
 /obj/machinery/mill/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
@@ -92,6 +99,12 @@
 	idle_power_usage = 10
 	active_power_usage = 500
 
+	Dispose()
+		if(fermenting_item)
+			cdel(fermenting_item)
+			fermenting_item = null
+		. = ..()
+
 /obj/machinery/fermenter/process()
 	if(error)
 		return
@@ -123,6 +136,7 @@
 			error = 1
 
 	cdel(fermenting_item)
+	fermenting_item = null
 	busy = 0
 
 /obj/machinery/fermenter/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
@@ -157,6 +171,12 @@
 	idle_power_usage = 10
 	active_power_usage = 10000
 
+	Dispose()
+		if(destilling_item)
+			cdel(destilling_item)
+			destilling_item = null
+		. = ..()
+
 /obj/machinery/still/process()
 	if(error)
 		return
@@ -183,6 +203,7 @@
 			error = 1
 
 	cdel(destilling_item)
+	destilling_item = null
 	busy = 0
 
 /obj/machinery/still/attackby(var/obj/item/weapon/W as obj, mob/user as mob)

@@ -251,6 +251,10 @@
 	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	tick(strength_t)
 
+/obj/effect/xenomorph/acid/Dispose()
+	acid_t = null
+	. = ..()
+
 /obj/effect/xenomorph/acid/proc/tick(strength_t)
 	set waitfor = 0
 	if(!acid_t || !acid_t.loc)
@@ -271,6 +275,7 @@
 				for(var/mob/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
 			cdel(acid_t)
+			acid_t = null
 		cdel(src)
 		return
 

@@ -39,6 +39,7 @@
 
 		else
 			for(var/atom/a in hallucinations)
+				hallucinations -= a
 				cdel(a)
 
 			if(halloss > 100)

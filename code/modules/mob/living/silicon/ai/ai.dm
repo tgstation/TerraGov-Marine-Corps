@@ -570,6 +570,7 @@ var/list/ai_verbs_default = list(
 		input = input("Please select a hologram:") as null|anything in icon_list
 		if(input)
 			cdel(holo_icon)
+			holo_icon = null
 			switch(input)
 				if("default")
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))

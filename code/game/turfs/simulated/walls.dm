@@ -42,7 +42,6 @@
 		if(M)
 			visible_message("<span class='warning'>\The [M] is sealed inside the wall as it is built</span>")
 			cdel(M)
-			cdel(M.tripwire)
 
 /turf/simulated/wall/Dispose()
 	for(var/obj/effect/E in src) if(E.name == "Wallrot") cdel(E)

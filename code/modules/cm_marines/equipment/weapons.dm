@@ -689,6 +689,12 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	ex_act() trigger_explosion() //We don't care about how strong the explosion was.
 	emp_act() trigger_explosion() //Same here. Don't care about the effect strength.
 
+/obj/item/device/mine/Dispose()
+	if(tripwire)
+		cdel(tripwire)
+		tripwire = null
+	. = ..()
+
 /obj/item/device/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the United States Colonial Marines. It has been modified for use by the W-Y PMC forces."
@@ -743,7 +749,9 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 			anchored = 0
 			armed = 0
 			icon_state = copytext(icon_state,1,-6)
-			if(tripwire) cdel(tripwire)
+			if(tripwire)
+				cdel(tripwire)
+				tripwire = null
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
 /obj/item/device/mine/Crossed(atom/A)
@@ -770,7 +778,6 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		if("explosive")
 			if(tripwire)
 				explosion(tripwire.loc, -1, -1, 2)
-				if(tripwire) cdel(tripwire)
 				cdel(src)
 
 /obj/item/device/mine/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -797,6 +804,11 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	invisibility = 101
 	unacidable = 1 //You never know
 	var/obj/item/device/mine/linked_claymore
+
+/obj/effect/mine_tripwire/Dispose()
+	if(linked_claymore)
+		linked_claymore = null
+	. = ..()
 
 /obj/effect/mine_tripwire/Crossed(atom/A)
 	if(!linked_claymore)

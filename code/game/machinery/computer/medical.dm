@@ -242,7 +242,7 @@
 
 			if (href_list["del_all2"])
 				for(var/datum/data/record/R in data_core.medical)
-					//R = null
+					data_core.medical -= R
 					cdel(R)
 					//Foreach goto(494)
 				src.temp = "All records deleted."
@@ -405,13 +405,13 @@
 
 
 			if (href_list["del_r"])
-				if (src.active2)
+				if (active2)
 					src.temp = text("Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='?src=\ref[];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='?src=\ref[];temp=1'>No</A><br>", src, src)
 
 			if (href_list["del_r2"])
-				if (src.active2)
-					//src.active2 = null
-					cdel(src.active2)
+				if (active2)
+					cdel(active2)
+					active2 = null
 
 			if (href_list["d_rec"])
 				var/datum/data/record/R = locate(href_list["d_rec"])
@@ -545,6 +545,7 @@
 			continue
 
 		else if(prob(1))
+			data_core.medical -= R
 			cdel(R)
 			continue
 

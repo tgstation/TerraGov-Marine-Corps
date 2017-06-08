@@ -270,10 +270,6 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	var/being_forced = 0 //Simple variable to prevent sound spam.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program
 
-	Dispose()
-		. =.. ()
-		cdel(occupant)
-
 	ex_act(severity) r_FAL
 
 	attackby(obj/item/weapon/grab/G, mob/user)

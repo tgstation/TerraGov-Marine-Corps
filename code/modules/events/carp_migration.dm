@@ -21,4 +21,5 @@
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/space))
+				spawned_carp -= C
 				cdel(C)

@@ -19,6 +19,13 @@
 		trigger_beam()
 
 
+	Dispose()
+		if(first)
+			cdel(first)
+			first = null
+		processing_objects.Remove(src)
+		. = ..()
+
 	activate()
 		if(!..())	return 0//Cooldown check
 		on = !on
@@ -259,7 +266,10 @@
 	return
 
 /obj/effect/beam/i_beam/Dispose()
-	cdel(next)
-	next = null
+	if(master)
+		master = null
+	if(next)
+		cdel(next)
+		next = null
 	. = ..()
 

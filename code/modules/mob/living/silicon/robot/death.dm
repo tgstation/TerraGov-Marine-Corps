@@ -2,6 +2,7 @@
 	//Delete the MMI first so that it won't go popping out.
 	if(mmi)
 		cdel(mmi)
+		mmi = null
 	..()
 
 /mob/living/silicon/robot/death(gibbed)

@@ -26,6 +26,7 @@
 	Dispose()
 		. = ..()
 		cdel(attack_icon)
+		attack_icon = null
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
@@ -639,6 +640,7 @@
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						CM.temp_drop_inv_item(CM.legcuffed)
 						cdel(CM.legcuffed)
+						CM.legcuffed = null
 			else
 				var/obj/item/weapon/legcuffs/HC = CM.legcuffed
 				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type

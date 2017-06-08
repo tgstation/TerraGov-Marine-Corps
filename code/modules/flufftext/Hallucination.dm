@@ -228,11 +228,8 @@ proc/check_panel(mob/M)
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
 	var/obj/item/weap = null
-	var/image/stand_icon = null
 	var/image/currentimage = null
-	var/icon/base = null
 	var/s_tone
-	var/mob/living/clone = null
 	var/image/left
 	var/image/right
 	var/image/up
@@ -268,6 +265,27 @@ proc/check_panel(mob/M)
 		step_away(src,my_target,2)
 		spawn attack_loop()
 
+	Dispose()
+		if(my_target)
+			my_target.hallucinations -= src
+			my_target = null
+		weap = null
+		if(currentimage)
+			cdel(currentimage)
+			currentimage = null
+		if(left)
+			cdel(left)
+			left = null
+		if(right)
+			cdel(right)
+			right = null
+		if(up)
+			cdel(up)
+			up = null
+		if(down)
+			cdel(down)
+			down = null
+		. = ..()
 
 	proc/updateimage()
 

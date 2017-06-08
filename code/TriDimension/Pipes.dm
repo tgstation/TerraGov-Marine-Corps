@@ -105,11 +105,13 @@ obj/machinery/atmospherics/pipe/zpipe/disconnect(obj/machinery/atmospherics/refe
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			cdel(parent)
+			parent = null
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
 			cdel(parent)
+			parent = null
 		node2 = null
 
 	return null

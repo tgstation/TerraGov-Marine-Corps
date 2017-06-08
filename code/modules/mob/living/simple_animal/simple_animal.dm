@@ -352,6 +352,7 @@
 /mob/living/simple_animal/update_targeted()
 	if(!targeted_by && target_locked)
 		cdel(target_locked)
+		target_locked = null
 	overlays = null
 	if (targeted_by && target_locked)
 		overlays += target_locked

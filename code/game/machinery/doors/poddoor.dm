@@ -302,7 +302,9 @@
 
 	Dispose()
 		cdel(f1)
+		f1 = null
 		cdel(f2)
+		f2 = null
 		. = ..()
 
 /obj/machinery/door/poddoor/two_tile_ver
@@ -321,7 +323,9 @@
 
 	Dispose()
 		cdel(f1)
+		f1 = null
 		cdel(f2)
+		f2 = null
 		. = ..()
 
 /obj/machinery/door/poddoor/four_tile_hor
@@ -348,9 +352,13 @@
 
 	Dispose()
 		cdel(f1)
+		f1 = null
 		cdel(f2)
+		f2 = null
 		cdel(f3)
+		f3 = null
 		cdel(f4)
+		f4 = null
 		. = ..()
 
 /obj/machinery/door/poddoor/four_tile_ver
@@ -377,9 +385,13 @@
 
 	Dispose()
 		cdel(f1)
+		f1 = null
 		cdel(f2)
+		f2 = null
 		cdel(f3)
+		f3 = null
 		cdel(f4)
+		f4 = null
 		. = ..()
 
 /obj/machinery/door/poddoor/filler_object

@@ -11,6 +11,15 @@
 	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
 	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a phoron tank
 
+/obj/item/device/onetankbomb/Dispose()
+	if(bombassembly)
+		cdel(bombassembly)
+		bombassembly = null
+	if(bombtank)
+		cdel(bombtank)
+		bombtank = null
+	. = ..()
+
 /obj/item/device/onetankbomb/examine(mob/user)
 	..()
 	bombtank.examine(user)
@@ -145,6 +154,7 @@
 
 	if(master)
 		cdel(master)
+		master = null
 	cdel(src)
 
 /obj/item/weapon/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.

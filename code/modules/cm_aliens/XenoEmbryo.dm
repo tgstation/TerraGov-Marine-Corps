@@ -206,4 +206,5 @@ Des: Removes all images from the mob infected by this embryo
 		if(alien.client)
 			for(var/image/I in alien.client.images)
 				if(dd_hasprefix_case(I.icon_state, "infected") && I.loc == affected_mob)
+					alien.client.images -= I
 					cdel(I)

@@ -73,6 +73,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			log_debug("ERROR CODE SD2: could not find any self destruct rods")
 			world << "<span class='debuginfo'>ERROR CODE SD2: could not find any self destruct rods</span>"
 			cdel(dest_master)
+			dest_master = null
 			r_FAL
 		dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / dest_rods.len
 		dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."

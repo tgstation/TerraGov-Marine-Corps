@@ -66,7 +66,6 @@
 			if (!( A.anchored ))
 				A.forceMove(src)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		//src.connected = null
 		cdel(connected)
 		connected = null
 	else
@@ -83,7 +82,6 @@
 			src.connected.icon_state = "morguet"
 			src.connected.dir = src.dir
 		else
-			//src.connected = null
 			cdel(connected)
 			connected = null
 	src.add_fingerprint(user)

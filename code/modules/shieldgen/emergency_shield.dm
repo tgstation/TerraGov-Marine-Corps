@@ -172,6 +172,7 @@
 
 /obj/machinery/shieldgen/proc/collapse_shields()
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
+		deployed_shields -= shield_tile
 		cdel(shield_tile)
 
 /obj/machinery/shieldgen/power_change()
