@@ -203,7 +203,9 @@
 				move_delay += 7+config.walk_speed
 		move_delay += mob.movement_delay()
 
-		if(!isXeno(mob))
+		if(isXeno(mob))
+			move_delay += 1.3
+		else
 			move_delay += 2.6
 
 		//We are now going to move
