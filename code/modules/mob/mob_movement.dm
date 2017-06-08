@@ -203,10 +203,7 @@
 				move_delay += 7+config.walk_speed
 		move_delay += mob.movement_delay()
 
-		if(!isXeno(mob))
-			move_delay += 2.6
-
-		glide_size = Ceiling(32 / move_delay * world.tick_lag) - 1 //We always split up movements into cardinals for issues with diagonal movements.
+		move_delay += 2.6
 
 		//We are now going to move
 		moving = 1

@@ -32,6 +32,13 @@
 
 /atom/movable/Move(NewLoc, direct)
 
+	var/move_delay = max(5 * world.tick_lag, 1)
+	if(ismob(src))
+		var/mob/M = src
+		if(M.client)
+			move_delay = (3+(M.client.move_delay - world.time))*world.tick_lag
+
+	glide_size = Ceiling(32 / move_delay * world.tick_lag) - 1 //We always split up movements into cardinals for issues with diagonal movements.
 	if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
 		moving_diagonally = FIRST_DIAG_STEP
 		if (direct & 1)
