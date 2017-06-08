@@ -613,7 +613,7 @@
 	..()
 	target_department = departments[1]
 	target_species = species[1]
-	if(!target_department || !target_species) del(src)
+	if(!target_department || !target_species) cdel(src)
 
 /obj/machinery/suit_cycler/engineering
 	name = "Engineering suit cycler"

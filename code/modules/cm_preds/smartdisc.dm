@@ -128,7 +128,7 @@
 		new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 		..()
 		spawn(1)
-			if(src) del(src)
+			if(src) cdel(src)
 
 	gib()
 		visible_message("\The [src] explodes!")

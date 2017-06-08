@@ -667,7 +667,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()
-			spawn(10) del(spark_system)
+			spawn(10) cdel(spark_system)
 
 		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",

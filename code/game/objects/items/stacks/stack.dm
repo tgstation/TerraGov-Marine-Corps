@@ -105,7 +105,7 @@
 		list_recipes(usr, text2num(href_list["sublist"]))
 
 	if (href_list["make"])
-		if (src.amount < 1) del(src) //Never should happen
+		if (src.amount < 1) cdel(src) //Never should happen
 
 		var/list/recipes_list = recipes
 		if (href_list["sublist"])
@@ -152,7 +152,7 @@
 		src.amount-=R.req_amount*multiplier
 		if (src.amount<=0)
 			var/oldsrc = src
-			src = null //dont kill proc after del()
+			src = null //dont kill proc after cdel()
 			usr.drop_inv_item_on_ground(oldsrc)
 			cdel(oldsrc)
 			if (istype(O,/obj/item) && istype(usr,/mob/living/carbon))

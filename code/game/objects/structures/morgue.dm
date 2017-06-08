@@ -67,7 +67,8 @@
 				A.forceMove(src)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		//src.connected = null
-		cdel(src.connected)
+		cdel(connected)
+		connected = null
 	else
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		src.connected = new /obj/structure/m_tray( src.loc )
@@ -83,7 +84,8 @@
 			src.connected.dir = src.dir
 		else
 			//src.connected = null
-			cdel(src.connected)
+			cdel(connected)
+			connected = null
 	src.add_fingerprint(user)
 	update()
 	return
@@ -116,9 +118,9 @@
 			//Foreach goto(106)
 		src.connected.icon_state = "morguet"
 	else
-		//src.connected = null
-		cdel(src.connected)
-	return
+		cdel(connected)
+		connected = null
+
 
 
 /*
@@ -238,8 +240,8 @@
 			if (!( A.anchored ))
 				A.loc = src
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		//src.connected = null
-		cdel(src.connected)
+		cdel(connected)
+		connected = null
 	else if (src.locked == 0)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		src.connected = new /obj/structure/c_tray( src.loc )
@@ -253,8 +255,8 @@
 				A.loc = src.connected.loc
 			src.connected.icon_state = "cremat"
 		else
-			//src.connected = null
 			cdel(src.connected)
+			connected = null
 	src.add_fingerprint(user)
 	update()
 
@@ -288,9 +290,8 @@
 			//Foreach goto(106)
 		src.connected.icon_state = "cremat"
 	else
-		//src.connected = null
-		cdel(src.connected)
-	return
+		cdel(connected)
+		connected = null
 
 /obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
 //	for(var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm

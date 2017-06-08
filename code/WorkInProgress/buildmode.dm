@@ -241,7 +241,7 @@
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.dir = holder.builddir.dir
 			else if(pa.Find("right"))
-				if(isobj(object)) del(object)
+				if(isobj(object)) cdel(object)
 
 		if(3)
 			if(pa.Find("left")) //I cant believe this shit actually compiles.
