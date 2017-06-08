@@ -596,7 +596,7 @@
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!is_queen_alive())
+		if(!living_xeno_queen)
 			M << "<span class='xenowarning'>There is no queen. You must choose a queen first.</span>"
 			r_FAL
 		else if(istype(M, /mob/living/carbon/Xenomorph/Queen))

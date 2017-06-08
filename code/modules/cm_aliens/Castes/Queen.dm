@@ -1,4 +1,5 @@
-//Xenomorph - Queen- Colonial Marines - Apophis775 - Last Edit: 11JUN16
+
+var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to the Xeno Queen if there's one alive.
 
 /mob/living/carbon/Xenomorph/Queen
 	caste = "Queen"
@@ -57,9 +58,15 @@
 /mob/living/carbon/Xenomorph/Queen/New()
 
 	..()
-
+	if(!living_xeno_queen)
+		living_xeno_queen = src
 	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
+
+/mob/living/carbon/Xenomorph/Queen/Dispose()
+	. = ..()
+	if(living_xeno_queen == src)
+		living_xeno_queen = null
 
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
