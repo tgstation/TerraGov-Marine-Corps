@@ -559,7 +559,7 @@
 		var/obj/item/I = A
 		stock(I, user)
 
-/obj/machinery/vending/proc/stock(var/obj/item/item_to_stock, var/mob/user)
+/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user)
 	var/datum/data/vending_product/R //Let's try with a new datum.
 	 //More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
@@ -573,6 +573,11 @@
 				if(item_to_stock.flags_atom & WIELDED)
 					item_to_stock.unwield(user)
 				user.temp_drop_inv_item(item_to_stock)
+
+			if (istype(item_to_stock.loc, /obj/item/weapon/storage)) //inside a storage item
+				var/obj/item/weapon/storage/S = item_to_stock.loc
+				S.remove_from_storage(item_to_stock, user.loc)
+
 			cdel(item_to_stock)
 			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
 			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
