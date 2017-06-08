@@ -62,7 +62,7 @@
 		if(2.0)
 			for(var/obj/item/weapon/book/b in contents)
 				if (prob(50)) b.loc = (get_turf(src))
-				else del(b)
+				else cdel(b)
 			cdel(src)
 			return
 		if(3.0)

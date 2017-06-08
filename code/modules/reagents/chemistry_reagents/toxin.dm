@@ -230,7 +230,7 @@
 		else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
 			cdel(O)
 		else if(istype(O,/obj/effect/plantsegment))
-			if(prob(50)) del(O) //Kills kudzu too.
+			if(prob(50)) cdel(O) //Kills kudzu too.
 		else if(istype(O,/obj/machinery/portable_atmospherics/hydroponics))
 			var/obj/machinery/portable_atmospherics/hydroponics/tray = O
 

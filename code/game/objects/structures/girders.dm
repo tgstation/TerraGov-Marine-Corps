@@ -128,7 +128,7 @@
 						// if(S.use(2))
 							// user << "\blue You create a false wall! Push on it to open or close the passage."
 							// new /obj/structure/falserwall (src.loc)
-							// del(src)
+							// cdel(src)
 						user << "\red It doesn't look like the plasteel will do anything. Try metal." //Disable reinforced false walls
 						return
 					else

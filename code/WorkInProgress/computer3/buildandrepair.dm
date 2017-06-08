@@ -159,7 +159,7 @@
 					if(do_after(user, 20))
 						if(P)
 							P:amount -= 5
-							if(!P:amount) del(P)
+							if(!P:amount) cdel(P)
 							user << "\blue You add cables to the frame."
 							src.state = 3
 							src.icon_state = "3"

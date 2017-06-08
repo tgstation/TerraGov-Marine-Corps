@@ -17,7 +17,7 @@
 	if(do_gibs) gibs(loc, viruses, dna)
 
 	cdel(animation,,13)
-	spawn(15) del(src) //I'll leave this alone for now. Garbage collecting mobs is iffy at the moment.
+	spawn(15) cdel(src)
 
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.

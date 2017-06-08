@@ -105,7 +105,7 @@
 	if(!istype(W)) return
 
 	if(!W.mob_can_equip(src, slot, disable_warning))
-		if(del_on_fail) del(W)
+		if(del_on_fail) cdel(W)
 		else
 			if(!disable_warning) src << "<span class='warning'>You are unable to equip that.</span>" //Only print if del_on_fail is false
 		return
