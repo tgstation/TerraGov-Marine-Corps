@@ -109,17 +109,14 @@
 	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 	//Should count mindless as well so people don't cheat
 	for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
-		if(M.tier == 0)
-			continue
-		else if(M.tier == 1)
-		// 	tierA++
-		else if(M.tier == 2)
-			tierB++
-		else if(M.tier == 3)
-			tierC++
-		else
-			src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
-			continue
+		switch(M.tier)
+			if(0) continue
+			if(1)
+			if(2) tierB++
+			if(3) tierC++
+			else
+				src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
+				continue
 		totalXenos++
 
 	if(tier == 1 && ((tierB + tierC) / totalXenos)> 0.5 && castepick != "Queen")
@@ -135,7 +132,7 @@
 
 	//Better to use a get_caste_by_text proc but ehhhhhhhh. Lazy.
 	switch(castepick) //ADD NEW CASTES HERE!
-		if("Larva" || "Bloody Larva" || "Normal Larva") //Not actually possible, but put here for insanity's sake
+		if("Larva" || "Bloody Larva") //Not actually possible, but put here for insanity's sake
 			M = /mob/living/carbon/Xenomorph/Larva
 		if("Runner")
 			M = /mob/living/carbon/Xenomorph/Runner
@@ -177,6 +174,9 @@
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	if(do_after(src, 25, FALSE))
 		if(castepick == "Queen") //Do another check after the tick.
+			if(jobban_isbanned(src, "Queen")
+				src << "<span class='warning'>You are jobbanned from the Queen role.</span>"
+				return
 			if(living_xeno_queen)
 				src << "<span class='warning'>There already is a Queen.</span>"
 				return

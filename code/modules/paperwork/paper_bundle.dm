@@ -180,11 +180,12 @@
 
 			amount--
 			update_icon()
-	else
-		usr << "<span class='notice'>You need to hold it in hands!</span>"
-	if (istype(src.loc, /mob) ||istype(src.loc.loc, /mob))
+
 		src.attack_self(src.loc)
 		updateUsrDialog()
+	else
+		usr << "<span class='notice'>You need to hold it in hands!</span>"
+
 
 
 

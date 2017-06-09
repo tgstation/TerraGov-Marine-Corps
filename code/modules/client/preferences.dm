@@ -4,6 +4,7 @@ var/list/preferences_datums = list()
 
 var/global/list/special_roles = list(
 	"alien" = 1,
+	"alien queen" = 1,
 	"survivor" = 1,
 	"responder" = 1,
 	"predator" = 1,

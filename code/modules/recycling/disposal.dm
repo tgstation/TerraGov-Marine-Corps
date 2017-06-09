@@ -122,7 +122,7 @@
 		return
 
 	user.drop_inv_item_to_loc(I, src)
-	user << "You place \the [I] into the [src]."
+	user << "<span class = 'notice'>You place [I] into the [src].</span>"
 	for(var/mob/M in viewers(src))
 		if(M == user)
 			continue
@@ -431,10 +431,10 @@
 		last_sound = world.time
 	sleep(5) // wait for animation to finish
 
+	if(H)
+		H.init(src)	// copy the contents of disposer to holder
 
-	H.init(src)	// copy the contents of disposer to holder
-
-	H.start(src) // start the holder processing movement
+		H.start(src) // start the holder processing movement
 	flushing = 0
 	// now reset disposal state
 	flush = 0
@@ -456,7 +456,7 @@
 /obj/machinery/disposal/proc/expel(var/obj/structure/disposalholder/H)
 	var/turf/target
 	playsound(src, 'sound/machines/hiss.ogg', 25, 0)
-	if(H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
+	if(H && H.loc) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
 		for(var/atom/movable/AM in H)
 			target = get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5))
 
@@ -504,6 +504,10 @@
 
 	var/partialTag = "" //set by a partial tagger the first time round, then put in destinationTag if it goes through again.
 
+	Dispose()
+		active = 0
+		. = ..()
+
 	// initialize a holder from the contents of a disposal unit
 	proc/init(var/obj/machinery/disposal/D)
 		gas = D.air_contents// transfer gas resv. into holder object
@@ -545,6 +549,7 @@
 	// start the movement process
 	// argument is the disposal unit the holder started in
 	proc/start(var/obj/machinery/disposal/D)
+
 		if(!D.trunk)
 			D.expel(src)	// no trunk connected, so expel immediately
 			return
@@ -559,6 +564,7 @@
 
 	// movement process, persists while holder is moving through pipes
 	proc/move()
+
 		var/obj/structure/disposalpipe/last
 		while(active)
 			if(hasmob && prob(3))
@@ -577,7 +583,7 @@
 			var/obj/structure/disposalpipe/curr = loc
 			last = curr
 			curr = curr.transfer(src)
-			if(!curr)
+			if(!curr && loc)
 				last.expel(src, loc, dir)
 
 			//
@@ -837,7 +843,7 @@
 				return
 
 			// otherwise, do normal expel from turf
-			if(H)
+			if(H && H.loc)
 				expel(H, T, 0)
 
 		spawn(2)	// delete pipe after 2 ticks to ensure expel proc finished
@@ -1362,14 +1368,14 @@
 	// otherwise, go to the linked object
 	if(linked)
 		var/obj/structure/disposaloutlet/O = linked
-		if(istype(O) && (H))
+		if(istype(O) && H && H.loc)
 			O.expel(H)	// expel at outlet
 		else
 			var/obj/machinery/disposal/D = linked
-			if(H)
+			if(H && H.loc)
 				D.expel(H)	// expel at disposal
 	else
-		if(H)
+		if(H && H.loc)
 			src.expel(H, src.loc, 0)	// expel at turf
 	return null
 
