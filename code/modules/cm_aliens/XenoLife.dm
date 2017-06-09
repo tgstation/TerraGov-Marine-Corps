@@ -23,7 +23,7 @@
 
 		update_progression()
 
-		if(evolution_allowed && evolution_stored < evolution_threshold && is_queen_alive())
+		if(evolution_allowed && evolution_stored < evolution_threshold && living_xeno_queen)
 			evolution_stored = min(evolution_stored + 1 + evolving_aura * 0.2, evolution_threshold)
 			if(evolution_stored == evolution_threshold - 1)
 				src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
@@ -408,6 +408,13 @@ updatehealth()
 			xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
 			xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
 			slashing_allowed = 1
+			if(living_xeno_queen == src)
+				living_xeno_queen = null
+				//on the off chance there was somehow two queen alive
+				for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
+					if(!isnull(Q) && Q != src && Q.stat != DEAD)
+						living_xeno_queen = Q
+						break
 			if(ticker && ticker.mode) ticker.mode.check_queen_status(queen_time)
 		else
 			if(caste == "Predalien") playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
@@ -418,7 +425,7 @@ updatehealth()
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A
 		A.loc = loc
-	return 1
+
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null

@@ -92,7 +92,7 @@
 	if(castepick == "Queen") //Special case for dealing with queenae
 		if(!hardcore)
 			if(storedplasma >= 500)
-				if(is_queen_alive())
+				if(living_xeno_queen)
 					src << "<span class='warning'>There is already a queen.</span>"
 					return
 			else
@@ -177,7 +177,7 @@
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	if(do_after(src, 25, FALSE))
 		if(castepick == "Queen") //Do another check after the tick.
-			if(is_queen_alive())
+			if(living_xeno_queen)
 				src << "<span class='warning'>There already is a Queen.</span>"
 				return
 
@@ -225,13 +225,3 @@
 		cdel(src)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"
-
-/proc/is_queen_alive()
-	var/found = 0
-
-	for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
-		if(!isnull(Q) && Q.stat != DEAD)
-			found = 1
-			break
-
-	return found

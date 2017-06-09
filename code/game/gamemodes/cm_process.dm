@@ -131,7 +131,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	var/num_last_deaths = ++xeno_queen_deaths
 	sleep(QUEEN_DEATH_COUNTDOWN)
 	//We want to make sure that another queen didn't die in the interim.
-	if(xeno_queen_deaths == num_last_deaths && !round_finished && !is_queen_alive() ) round_finished = MODE_INFESTATION_M_MINOR
+	if(xeno_queen_deaths == num_last_deaths && !round_finished && !living_xeno_queen ) round_finished = MODE_INFESTATION_M_MINOR
 
 //===================================================\\
 

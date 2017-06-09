@@ -20,9 +20,9 @@
 
 	if (.) //Only update when looking at the Status panel.
 
-		if(evolution_allowed && is_queen_alive())
+		if(evolution_allowed && living_xeno_queen)
 			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
-		else if(!is_queen_alive())
+		else if(!living_xeno_queen)
 			stat(null, "Evolve Progress (HALTED - NO QUEEN): [evolution_stored]/[evolution_threshold]")
 		else
 			stat(null, "Evolve Progress (FINISHED): [evolution_stored]/[evolution_threshold]")
