@@ -174,7 +174,7 @@
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	if(do_after(src, 25, FALSE))
 		if(castepick == "Queen") //Do another check after the tick.
-			if(jobban_isbanned(src, "Queen")
+			if(jobban_isbanned(src, "Queen"))
 				src << "<span class='warning'>You are jobbanned from the Queen role.</span>"
 				return
 			if(living_xeno_queen)
