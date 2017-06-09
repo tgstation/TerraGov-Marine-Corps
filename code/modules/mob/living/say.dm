@@ -118,15 +118,20 @@ var/list/department_radio_keys = list(
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+
+	var/not_dead_speaker = (stat != DEAD)
+	for(var/mob/M in listening)
+		if(not_dead_speaker)
+			M << speech_bubble
+		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+
 	spawn(30)
 		if(client) client.images -= speech_bubble
+		if(not_dead_speaker)
+			for(var/mob/M in listening)
+				if(M.client) M.client.images -= speech_bubble
 		cdel(speech_bubble)
 
-	for(var/mob/M in listening)
-		if(!M.stat)
-			if(src.stat != DEAD)
-				M << speech_bubble
-		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
 	var/fail = 10
 	for(var/obj/O in listening_obj)
