@@ -64,5 +64,11 @@
 #define SLOWDOWN_ADS_SPECIALIST		1.5
 #define SLOWDOWN_ADS_SUPERWEAPON	2
 
-#define WIELD_DELAY_SCOPE			5
+//Wield delays, in milliseconds. 10 is 1 second
+#define WIELD_DELAY_VERY_FAST		2
+#define WIELD_DELAY_FAST			4
+#define WIELD_DELAY_NORMAL			8
+#define WIELD_DELAY_SLOW			12
+#define WIELD_DELAY_VERY_SLOW		16
+#define WIELD_DELAY_HORRIBLE		20
 //=================================================
