@@ -22,6 +22,7 @@
 	var/russian_roulette = 0 //God help you if you do this.
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
 
 	New()
 		..() //Do all that other stuff.

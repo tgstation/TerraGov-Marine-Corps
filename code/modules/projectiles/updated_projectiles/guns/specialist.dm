@@ -46,7 +46,7 @@
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
-	wield_delay = 15 //Ends up being 2 seconds due to scope
+	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
 	attachable_allowed = list(
 						/obj/item/attachable/gyro,
@@ -186,7 +186,7 @@
 	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 20
-	wield_delay = 20
+	wield_delay = 16
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
@@ -295,7 +295,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	wield_delay = 10
+	wield_delay = 8
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = new/list()
@@ -457,7 +457,7 @@
 	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 15
-	wield_delay = 15
+	wield_delay = 12
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)

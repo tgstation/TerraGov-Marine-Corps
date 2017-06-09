@@ -11,6 +11,7 @@
 	type_of_casings = "bullet"
 	force = 8
 	w_class = 4
+	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your SMG to be two-handed, it will still be fast to aim
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,

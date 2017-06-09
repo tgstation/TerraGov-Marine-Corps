@@ -6,7 +6,7 @@
 	item_state = "gun"
 	var/muzzle_flash 	= "muzzle_flash"
 	matter = list("metal" = 75000)
-	origin_tech = "combat=1" //Guns generally have their own unique levels.
+	origin_tech = "combat=1"					//Guns generally have their own unique levels.
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
@@ -17,50 +17,50 @@
 	var/fire_sound 		= 'sound/weapons/Gunshot.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
 	var/empty_sound 	= 'sound/weapons/smg_empty_alarm.ogg'
-	var/reload_sound 	= null //We don't want these for guns that don't have them.
+	var/reload_sound 	= null					//We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
-	var/cock_cooldown	= 0 //world.time value, to prevent COCK COCK COCK COCK
-	var/cock_delay		= 30 //Delay before we can cock again, in tenths of seconds
+	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
+	var/cock_delay		= 30					//Delay before we can cock again, in tenths of seconds
 
 	//Ammo will be replaced on New() for things that do not use mags..
-	var/datum/ammo/ammo = null //How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
-	var/obj/item/projectile/in_chamber = null //What is currently in the chamber. Most guns will want something in the chamber upon creation.
+	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
+	var/obj/item/projectile/in_chamber = null 	//What is currently in the chamber. Most guns will want something in the chamber upon creation.
 	/*Ammo mags may or may not be internal, though the difference is a few additional variables. If they are not internal, don't call
 	on those unique vars. This is done for quicker pathing. Just keep in mind most mags aren't internal, though some are.
 	This is also the default magazine path loaded into a projectile weapon for reverse lookups on New(). Leave this null to do your own thing.*/
 	var/obj/item/ammo_magazine/internal/current_mag = null
-	var/type_of_casings = null //Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
+	var/type_of_casings = null					//Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
 
 	//Basic stats.
-	var/accuracy 		= 0  //Miltiplier. Increased and decreased through attachments. Multiplies the damage by this number.
-	var/damage 			= 0  //Same as above.
-	var/recoil 			= 0  //Screen shake when the weapon is fired.
-	var/scatter			= 0  //How much the bullet scatters when fired.
-	var/jamming			= 0	 //How often the gun jams.
-	var/fire_delay 		= 0  //For regular shots, how long to wait before firing again.
-	var/last_fired 		= 0  //When it was last fired, related to world.time.
-	var/aim_slowdown	= 0  //Self explanatory. How much does aiming (wielding the gun) slow you
-	var/wield_delay		= 5 //How long between wielding and firing in tenths of seconds
-	var/wield_time		= 0  //Storing value for above
+	var/accuracy 		= 0						//Miltiplier. Increased and decreased through attachments. Multiplies the damage by this number.
+	var/damage 			= 0						//Same as above.
+	var/recoil 			= 0						//Screen shake when the weapon is fired.
+	var/scatter			= 0						//How much the bullet scatters when fired.
+	var/jamming			= 0						//How often the gun jams.
+	var/fire_delay 		= 0						//For regular shots, how long to wait before firing again.
+	var/last_fired 		= 0						//When it was last fired, related to world.time.
+	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
+	var/wield_delay		= WIELD_DELAY_FAST		//How long between wielding and firing in tenths of seconds
+	var/wield_time		= 0						//Storing value for above
 
 	//Burst fire.
-	var/burst_amount 	= 0 //How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
-	var/burst_delay 	= 0 //The delay in between shots. Lower = less delay = faster.
-	var/extra_delay 	= 0 //When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
+	var/burst_amount 	= 0						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
+	var/burst_delay 	= 0						//The delay in between shots. Lower = less delay = faster.
+	var/extra_delay 	= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 
 	//Targeting.
-	var/tmp/list/mob/living/target //List of who yer targeting.
-	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
+	var/tmp/list/mob/living/target				//List of who yer targeting.
+	var/tmp/mob/living/last_moved_mob			//Used to fire faster at more than one person.
 	var/tmp/lock_time 		= -100
-	var/automatic 			= 0 //Used to determine if you can target multiple people.
-	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
-	var/firerate 			= 0 	//0 for keep shooting until aim is lowered
-						//1 for one bullet after target moves and aim is lowered
+	var/automatic 			= 0					//Used to determine if you can target multiple people.
+	var/tmp/told_cant_shoot = 0					//So that it doesn't spam them with the fact they cannot hit them.
+	var/firerate 			= 0					//0 for keep shooting until aim is lowered
+												//1 for one bullet after target moves and aim is lowered
 	//Attachments.
-	var/attachable_overlays[] 		= null //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
-	var/attachable_offset[] 		= null //Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
-	var/attachable_allowed[]		= list() //Must be the exact path to the attachment present in the list. Empty list for a default.
-	var/obj/item/attachable/muzzle 	= null //Attachable slots. Only one item per slot.
+	var/attachable_overlays[] 		= null		//List of overlays so we can switch them in an out, instead of using Cut() on overlays.
+	var/attachable_offset[] 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
+	var/attachable_allowed[]		= list()	//Must be the exact path to the attachment present in the list. Empty list for a default.
+	var/obj/item/attachable/muzzle 	= null		//Attachable slots. Only one item per slot.
 	var/obj/item/attachable/rail 	= null
 	var/obj/item/attachable/under 	= null
 	var/obj/item/attachable/stock 	= null
