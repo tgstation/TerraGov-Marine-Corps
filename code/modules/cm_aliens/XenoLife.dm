@@ -400,7 +400,7 @@ updatehealth()
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 
-	if(!gibbed) icon_state = "[caste] Dead"
+	if(!gibbed) update_icons()
 
 	switch(caste)
 		if("Queen")

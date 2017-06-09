@@ -539,6 +539,13 @@
 		else
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Alien;jobban4=\ref[M]'>Alien</a></td>"
 
+		//Queen
+		if(jobban_isbanned(M, "Queen") || isbanned_dept)
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Queen;jobban4=\ref[M]'><font color=red>Queen</font></a></td>"
+		else
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Queen;jobban4=\ref[M]'>Queen</a></td>"
+
+
 		//Survivor
 		if(jobban_isbanned(M, "Survivor") || isbanned_dept)
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Survivor;jobban4=\ref[M]'><font color=red>Survivor</font></a></td>"

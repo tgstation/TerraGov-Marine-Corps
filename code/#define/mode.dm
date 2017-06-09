@@ -27,10 +27,12 @@
 #define MODE_HAS_FINISHED		8
 #define MODE_FOG_ACTIVATED 		16
 
-#define BE_ALIEN      1
-#define BE_SURVIVOR	  4
-#define BE_RESPONDER  8
-#define BE_PREDATOR   16
+#define BE_ALIEN		1
+#define BE_QUEEN		2
+#define BE_SURVIVOR		4
+#define BE_RESPONDER	8
+#define BE_PREDATOR		16
+
 
 #define BE_REV        32
 #define BE_TRAITOR    64
@@ -50,7 +52,8 @@ var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"Survivor" = BE_SURVIVOR,
 	"Responder" = BE_RESPONDER,
-	"Predator" = BE_PREDATOR
+	"Predator" = BE_PREDATOR,
+	"Queen" = BE_QUEEN
 
 /*
 	"Malf AI" = BE_MALF,

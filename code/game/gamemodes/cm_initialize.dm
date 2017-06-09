@@ -371,15 +371,26 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(xeno_candidate) xeno_candidate.loc = null
 
 /datum/game_mode/proc/transform_xeno(datum/mind/ghost_mind)
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn))
-	new_xeno.amount_grown = 100
 	var/mob/original = ghost_mind.current
+	var/mob/living/carbon/Xenomorph/new_xeno
+	var/is_queen = FALSE
+	if(!living_xeno_queen && original && original.client && original.client.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
+		new_xeno = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
+		is_queen = TRUE
+	else
+		new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
+		new_xeno.amount_grown = 100
 	ghost_mind.transfer_to(new_xeno) //The mind is fine, since we already labeled them as a xeno. Away they go.
 	ghost_mind.name = ghost_mind.current.name
 
-	new_xeno << "<B>You are now an alien!</B>"
-	new_xeno << "<B>Your job is to spread the hive and protect the Queen. You can become the Queen yourself by evolving into a drone.</B>"
-	new_xeno << "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')"
+	if(is_queen)
+		new_xeno << "<B>You are now the alien queen!</B>"
+		new_xeno << "<B>Your job is to spread the hive.</B>"
+		new_xeno << "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')"
+	else
+		new_xeno << "<B>You are now an alien!</B>"
+		new_xeno << "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>"
+		new_xeno << "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')"
 
 	new_xeno.update_icons()
 

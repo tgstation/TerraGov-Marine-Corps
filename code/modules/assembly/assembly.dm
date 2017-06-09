@@ -26,7 +26,8 @@
 	Dispose()
 		if(holder)
 			holder = null
-		attached_overlays.Cut()
+		if(attached_overlays)
+			attached_overlays.Cut()
 		. = ..()
 
 	proc/activate()									//What the device does when turned on

@@ -4,7 +4,7 @@
 	name = "alien embryo"
 	desc = "All slimy and yucky."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
-	icon_state = "Normal Larva Dead"
+	icon_state = "Larva Dead"
 	var/mob/living/affected_mob
 	var/stage = 0
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst
