@@ -458,6 +458,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
 			user.SetLuminosity(-brightness_on)
 			SetLuminosity(brightness_on)
+			toggle_armor_light() //turn the light off
 		..()
 
 	Dispose()
@@ -475,23 +476,35 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		if(flashlight_cooldown > world.time)
 			return
 
-		flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
-		if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
-			if(user) user.SetLuminosity(-brightness_on)
-			else SetLuminosity(0)
-		else //Turn it on.
-			if(user) user.SetLuminosity(brightness_on)
-			else SetLuminosity(brightness_on)
+		if(!ishuman(user)) return
+		var/mob/living/carbon/human/H = user
+		if(H.wear_suit != src) return
 
-		flags_marine_armor ^= ARMOR_LAMP_ON
-
-		playsound(src,'sound/machines/click.ogg', 15, 1)
-		update_icon(user)
-
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		toggle_armor_light(user)
 		return 1
+
+	item_action_slot_check(mob/user, slot)
+		if(!ishuman(user)) return FALSE
+		if(slot != WEAR_JACKET) return FALSE
+		return TRUE //only give action button when armor is worn.
+
+/obj/item/clothing/suit/storage/marine/proc/toggle_armor_light(mob/user)
+	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
+	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
+		if(user) user.SetLuminosity(-brightness_on)
+		else SetLuminosity(0)
+	else //Turn it on.
+		if(user) user.SetLuminosity(brightness_on)
+		else SetLuminosity(brightness_on)
+
+	flags_marine_armor ^= ARMOR_LAMP_ON
+
+	playsound(src,'sound/machines/click.ogg', 15, 1)
+	update_icon(user)
+
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
 
 /obj/item/clothing/suit/storage/marine/verb/toggle_squadhud()
 	set name = "Toggle Squad HUD"
