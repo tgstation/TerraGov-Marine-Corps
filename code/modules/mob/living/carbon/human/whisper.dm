@@ -118,21 +118,29 @@
 	//now mobs
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
-	spawn(30)
-		if(client) client.images -= speech_bubble
-		cdel(speech_bubble)
 
+	var/not_dead_speaker = (stat != DEAD)
 	for(var/mob/M in listening)
-		if(src.stat != DEAD)
+		if(not_dead_speaker)
 			M << speech_bubble
 		M.hear_say(message, verb, speaking, alt_name, italics, src)
 
 	if (eavesdropping.len)
 		var/new_message = stars(message)	//hopefully passing the message twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear normally you would be able to catch even less.
 		for(var/mob/M in eavesdropping)
-			if(src.stat != DEAD)
+			if(not_dead_speaker)
 				M << speech_bubble
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
+
+	spawn(30)
+		if(client) client.images -= speech_bubble
+		if(not_dead_speaker)
+			for(var/mob/M in listening)
+				if(M.client) M.client.images -= speech_bubble
+			for(var/mob/M in eavesdropping)
+				if(M.client) M.client.images -= speech_bubble
+		cdel(speech_bubble)
+
 
 	if (watching.len)
 		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> whispers something.</span>"
