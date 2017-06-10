@@ -9,18 +9,15 @@ datum/pipeline
 
 	var/alert_pressure = 0
 
-	Dispose()
+	Del()
 		if(network)
-			cdel(network)
-			network = null
+			del(network)
 
 		if(air && air.volume)
 			temporarily_store_air()
-			cdel(air)
-			air = null
+			del(air)
 
 		..()
-		return TA_PURGE_ME_NOW //immediate deletion
 
 	proc/process()//This use to be called called from the pipe networks
 

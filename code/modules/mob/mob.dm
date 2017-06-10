@@ -545,7 +545,7 @@ var/list/slot_equipment_priority = list( \
 		pulling.pulledby = null
 		pulling = null
 		grab_level = 0
-		if(hud_used.pull_icon)	hud_used.pull_icon.icon_state = "pull0"
+		if(hud_used && hud_used.pull_icon)	hud_used.pull_icon.icon_state = "pull0"
 		if(istype(r_hand, /obj/item/weapon/grab))
 			temp_drop_inv_item(r_hand)
 		else if(istype(l_hand, /obj/item/weapon/grab))

@@ -59,8 +59,7 @@
 		for(var/atom/movable/A in contents)
 			A.forceMove(loc)
 	if(parent)
-		cdel(parent)
-		parent = null
+		del(parent)
 	if(air_temporary)
 		loc.assume_air(air_temporary)
 	. = ..()
@@ -306,12 +305,12 @@
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node2 = null
 
 	update_icon()
@@ -459,17 +458,17 @@
 /obj/machinery/atmospherics/pipe/manifold/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node2 = null
 
 	if(reference == node3)
 		if(istype(node3, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node3 = null
 
 	update_icon()
@@ -698,22 +697,22 @@
 /obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node2 = null
 
 	if(reference == node3)
 		if(istype(node3, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node3 = null
 
 	if(reference == node4)
 		if(istype(node4, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
+			del(parent)
 		node4 = null
 
 	update_icon()
@@ -948,8 +947,7 @@
 /obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node)
 		if(istype(node, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
-			parent = null
+			del(parent)
 		node = null
 
 	update_icon()
@@ -1095,8 +1093,7 @@
 /obj/machinery/atmospherics/pipe/tank/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
-			parent = null
+			del(parent)
 		node1 = null
 
 	update_underlays()
@@ -1280,8 +1277,7 @@
 /obj/machinery/atmospherics/pipe/vent/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			cdel(parent)
-			parent = null
+			del(parent)
 		node1 = null
 
 	update_icon()

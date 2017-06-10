@@ -31,8 +31,7 @@
 	Dispose()
 		if(node)
 			node.disconnect(src)
-			cdel(network)
-			network = null
+			del(network)
 		node = null
 		. = ..()
 
@@ -84,8 +83,7 @@
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node)
-			cdel(network)
-			network = null
+			del(network)
 			node = null
 
 		update_icon()

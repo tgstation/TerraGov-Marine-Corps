@@ -45,7 +45,7 @@ Pipelines + Other Objects -> Pipe network
 	for(var/mob/living/M in src) //ventcrawling is serious business
 		M.remove_ventcrawl()
 		M.loc = src.loc
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/device/pipe_painter))

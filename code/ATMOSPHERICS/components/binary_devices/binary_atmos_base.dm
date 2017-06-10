@@ -47,12 +47,10 @@ obj/machinery/atmospherics/binary
 	Dispose()
 		if(node1)
 			node1.disconnect(src)
-			cdel(network1)
-			network1 = null
+			del(network1)
 		if(node2)
 			node2.disconnect(src)
-			cdel(network2)
-			network2 = null
+			del(network2)
 
 		node1 = null
 		node2 = null
@@ -128,13 +126,11 @@ obj/machinery/atmospherics/binary
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
-			cdel(network1)
-			network1 = null
+			del(network1)
 			node1 = null
 
 		else if(reference==node2)
-			cdel(network2)
-			network2 = null
+			del(network2)
 			node2 = null
 
 		update_icon()

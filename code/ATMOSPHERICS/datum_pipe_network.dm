@@ -16,10 +16,6 @@ datum/pipe_network
 
 		..()
 
-	Dispose()
-		. = ..()
-		return TA_PURGE_ME_NOW //immediate deletion
-
 	proc/process()
 		//Equalize gases amongst pipe if called for
 		if(update)
