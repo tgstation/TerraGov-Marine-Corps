@@ -79,7 +79,7 @@
 
 /obj/item/weapon/storage/belt/utility
 	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	can_hold = list(
@@ -117,7 +117,7 @@
 
 /obj/item/weapon/storage/belt/medical
 	name = "\improper M276 pattern medical storage rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is an less common configuration, designed to transport medical supplies, and light pistol munitions."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies, and light pistol munitions."
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
@@ -188,7 +188,7 @@
 
 /obj/item/weapon/storage/belt/security
 	name = "\improper M276 pattern security rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This configuration is commonly seen among USCM Military Police and peacekeepers, though it can hold some light munitions."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This configuration is commonly seen among USCM Military Police and peacekeepers, though it can hold some light munitions."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
 	storage_slots = 7
@@ -301,7 +301,7 @@
 
 /obj/item/weapon/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
 		"/obj/item/weapon/gun/pistol/m1911",
@@ -334,8 +334,8 @@
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/m44
-	name = "\improper M276 pattern m44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is for the m44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
+	name = "\improper M276 pattern M44 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
 	max_w_class = 7
@@ -356,7 +356,7 @@
 
 /obj/item/weapon/storage/belt/gun/m39
 	name = "\improper M276 pattern M39 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed for the m39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is designed for the M39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m39_holster"
 	item_state = "m39_holster"
 	storage_slots = 1
@@ -377,7 +377,7 @@
 
 /obj/item/weapon/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition carrying operations."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
 	w_class = 4
 	storage_slots = 6
@@ -399,7 +399,7 @@
 
 /obj/item/weapon/storage/belt/security/MP
 	name = "\improper M276 pattern military police rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
 	icon_state = "securitybelt"
 	item_state = "security"
 	storage_slots = 6
@@ -433,7 +433,7 @@
 
 /obj/item/weapon/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
-	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
+	desc="The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
 	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
 	w_class = 3
@@ -453,7 +453,7 @@
 
 /obj/item/weapon/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
-	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
+	desc="The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
 	item_state="s_marine"
 	w_class = 4
