@@ -162,7 +162,7 @@
 
 /obj/structure/prop/almayer/minigun_crate
 	name = "30mm ammo crate"
-	desc = "A crate full of 30mm bullets used on one of the weapon pod types for the dropship. Moving this will require some sort of lifer"
+	desc = "A crate full of 30mm bullets used on one of the weapon pod types for the dropship. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "30mm_crate"
 
@@ -286,7 +286,8 @@
 	icon_state = "security"
 
 /obj/machinery/computer/shuttle_control/dropship1
-	name = "dropship console"
+	name = "\improper 'Alamo' dropship console"
+	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 
@@ -299,13 +300,15 @@
 		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
 
 /obj/machinery/computer/shuttle_control/dropship1/onboard
-	name = "flight controls"
+	name = "\improper 'Alamo' flight controls"
+	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
 
 /obj/machinery/computer/shuttle_control/dropship2
-	name = "dropship console"
+	name = "\improper 'Normandy' dropship console"
+	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decivise victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	unacidable = 1
@@ -317,7 +320,8 @@
 		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
 
 /obj/machinery/computer/shuttle_control/dropship2/onboard
-	name = "flight controls"
+	name = "\improper 'Normandy' flight controls"
+	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decivise victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1

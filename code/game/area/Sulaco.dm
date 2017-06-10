@@ -264,67 +264,67 @@
 	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg')
 
 /area/shuttle/drop1/sulaco
-	name = "\improper Sulaco Dropship 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop1/LV624
-	name = "\improper Sulaco Dropship 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/Haunted
-	name = "\improper Sulaco Dropship 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/prison
-	name = "\improper Sulaco Dropship 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/BigRed
-	name = "\improper Sulaco Dropship 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/ice_colony
-	name = "\improper Sulaco Dropship 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/transit
-	name = "\improper Sulaco Dropship 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop1/lz1
-	name = "\improper Landing Zone 1"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "away1"
 
 /area/shuttle/drop2/sulaco
-	name = "\improper Sulaco Dropship 2"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle"
 
 /area/shuttle/drop2/LV624
-	name = "\improper Sulaco Dropship 2"
+	name = "\improper Almayer Dropship 'Alamo'"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/Haunted
-	name = "\improper Sulaco Dropship 2"
+	name = "\improper Almayer Dropship 'Normandy'"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/prison
-	name = "\improper Sulaco Dropship 2"
+	name = "\improper Almayer Dropship 'Normandy'"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/BigRed
-	name = "\improper Sulaco Dropship 2"
+	name = "\improper Almayer Dropship 'Normandy'"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/ice_colony
-	name = "\improper Sulaco Dropship 2"
+	name = "\improper Almayer Dropship 'Normandy'"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/transit
-	name = "\improper Sulaco Dropship 2"
+	name = "\improper Almayer Dropship 'Normandy'"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop2/lz2
-	name = "\improper Landing Zone 2"
+	name = "\improper 'Normandy' Landing Zone"
 	icon_state = "away2"
 
 //Distress

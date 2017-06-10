@@ -12,7 +12,7 @@
  */
 /obj/item/stack/sheet/glass
 	name = "glass"
-	desc = "HOLY SHEET! That is a lot of glass."
+	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
 	matter = list("glass" = 3750)
@@ -22,12 +22,7 @@
 	var/list/construction_options = list("One Direction", "Full Window")
 
 /obj/item/stack/sheet/glass/cyborg
-	name = "glass"
-	desc = "HOLY SHEET! That is a lot of glass."
-	singular_name = "glass sheet"
-	icon_state = "sheet-glass"
 	matter = null
-	created_window = /obj/structure/window
 
 /obj/item/stack/sheet/glass/attack_self(mob/user as mob)
 
@@ -143,7 +138,7 @@
  */
 /obj/item/stack/sheet/glass/reinforced
 	name = "reinforced glass"
-	desc = "Glass which has been reinforced with metal rods."
+	desc = "Reinforced glass is made out of squares of regular silicate glass layered on a metallic rod matrice. This glass is more resistant to direct impacts, even if it may crack."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
 
@@ -155,17 +150,14 @@
 	construction_options = list("One Direction", "Full Window", "Windoor")
 
 /obj/item/stack/sheet/glass/reinforced/cyborg
-	name = "reinforced glass"
-	desc = "Glass which has been reinforced with metal rods."
-	singular_name = "reinforced glass sheet"
-	icon_state = "sheet-rglass"
+	matter = null
 
 /*
  * Phoron Glass sheets
  */
 /obj/item/stack/sheet/glass/phoronglass
 	name = "phoron glass"
-	desc = "A very strong and very resistant sheet of a phoron-glass alloy."
+	desc = "Phoron glass is a silicate-phoron alloy turned into a non-crystalline solid. It is transparent just like glass, even if visibly tainted pink, and very resistant to damage and heat."
 	singular_name = "phoron glass sheet"
 	icon_state = "sheet-phoronglass"
 	matter = list("glass" = 7500)
@@ -194,7 +186,7 @@
  */
 /obj/item/stack/sheet/glass/phoronrglass
 	name = "reinforced phoron glass"
-	desc = "Phoron glass which has been reinforced with metal rods."
+	desc = "Reinforced phoron glass is made out of squares of silicate-phoron alloy glass layered on a metallic rod matrice. It is insanely resistant to both physical shock and heat."
 	singular_name = "reinforced phoron glass sheet"
 	icon_state = "sheet-phoronrglass"
 	matter = list("glass" = 7500,"metal" = 1875)
