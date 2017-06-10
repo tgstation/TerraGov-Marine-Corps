@@ -57,16 +57,13 @@ obj/machinery/atmospherics/trinary
 	Dispose()
 		if(node1)
 			node1.disconnect(src)
-			cdel(network1)
-			network1 = null
+			del(network1)
 		if(node2)
 			node2.disconnect(src)
-			cdel(network2)
-			network2 = null
+			del(network2)
 		if(node3)
 			node3.disconnect(src)
-			cdel(network3)
-			network3 = null
+			del(network3)
 		node1 = null
 		node2 = null
 		node3 = null
@@ -163,18 +160,15 @@ obj/machinery/atmospherics/trinary
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
-			cdel(network1)
-			network1 = null
+			del(network1)
 			node1 = null
 
 		else if(reference==node2)
-			cdel(network2)
-			network2 = null
+			del(network2)
 			node2 = null
 
 		else if(reference==node3)
-			cdel(network3)
-			network3 = null
+			del(network3)
 			node3 = null
 
 		update_underlays()

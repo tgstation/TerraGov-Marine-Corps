@@ -65,8 +65,7 @@
 		connected_device.disconnect()
 	if(node)
 		node.disconnect(src)
-		cdel(network)
-		network = null
+		del(network)
 	node = null
 	. = ..()
 
@@ -121,8 +120,7 @@
 
 /obj/machinery/atmospherics/portables_connector/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node)
-		cdel(network)
-		network = null
+		del(network)
 		node = null
 
 	update_underlays()
