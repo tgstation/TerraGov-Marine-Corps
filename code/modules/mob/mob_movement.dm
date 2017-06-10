@@ -204,7 +204,7 @@
 		move_delay += mob.movement_delay()
 
 		if(isXeno(mob))
-			move_delay += 2 //Compensating for balance reasons
+			move_delay -= 1 //Compensating for balance reasons
 
 		//We are now going to move
 		moving = 1
