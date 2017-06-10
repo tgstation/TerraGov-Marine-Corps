@@ -56,7 +56,6 @@
 	var/heat_level_3 = 1000 // Heat damage level 2 above this point.
 
 	var/body_temperature = 310.15	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
-	var/synth_temp_gain = 0			//IS_SYNTHETIC species will gain this much temperature every second
 	var/reagent_tag                 //Used for metabolizing reagents.
 
 	var/darksight = 2
@@ -455,7 +454,7 @@
 	heat_level_2 = 1000
 	heat_level_3 = 2000
 
-	synth_temp_gain = 10 //this should cause IPCs to stabilize at ~80 C in a 20 C environment.
+	body_temperature = 350
 
 	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_PAIN|IS_SYNTHETIC
 
@@ -465,6 +464,38 @@
 	has_organ = list(
 		"heart" =    /datum/organ/internal/heart,
 		"brain" =    /datum/organ/internal/brain,
+		)
+
+/datum/species/android
+	name = "Android"
+	name_plural = "androids"
+
+	unarmed_type = /datum/unarmed_attack/punch/strong
+	rarity_value = 2
+
+	brute_mod = 0.25
+	burn_mod = 1.1
+
+	warning_low_pressure = 0
+	hazard_low_pressure = 0
+
+	cold_level_1 = -1
+	cold_level_2 = -1
+	cold_level_3 = -1
+
+	heat_level_1 = 500
+	heat_level_2 = 1000
+	heat_level_3 = 2000
+
+	body_temperature = 350
+
+	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_PAIN|IS_SYNTHETIC
+
+	blood_color = "#EEEEEE"
+
+	has_organ = list(
+		"heart" =    /datum/organ/internal/heart/prosthetic,
+		"brain" =    /datum/organ/internal/brain/prosthetic,
 		)
 
 /datum/species/yautja

@@ -33,19 +33,22 @@
 		else if(light_amount < 2) //Heal in the dark
 			heal_overall_damage(1, 1)
 
-	//Nutrition decrease
-	if(nutrition > 0 && stat != 2)
-		nutrition = max (0, nutrition - HUNGER_FACTOR)
-
-	if(nutrition > 450)
-		if(overeatduration < 600) //Capped so people don't take forever to unfat
-			overeatduration++
-	else
-		if(overeatduration > 1)
-			overeatduration -= 2 //Doubled the unfat rate
-
 	if(!(species.flags & IS_SYNTHETIC))
+		//Nutrition decrease
+		if(nutrition > 0 && stat != 2)
+			nutrition = max (0, nutrition - HUNGER_FACTOR)
+
+		if(nutrition > 450)
+			if(overeatduration < 600) //Capped so people don't take forever to unfat
+				overeatduration++
+		else
+			if(overeatduration > 1)
+				overeatduration -= 2 //Doubled the unfat rate
+
 		handle_trace_chems()
+
+	else nutrition = 350 //synthetics are never hungry
+
 	updatehealth()
 
 	return //TODO: DEFERRED

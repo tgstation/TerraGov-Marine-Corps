@@ -61,7 +61,7 @@
 		var/used_verb = "attacked"
 		if(attack_verb && attack_verb.len)
 			used_verb = pick(attack_verb)
-		M.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",\
+		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",\
 						"<span class='danger'>You attack [M] with [src].</span>")
 
 		user.animation_attack_on(M)

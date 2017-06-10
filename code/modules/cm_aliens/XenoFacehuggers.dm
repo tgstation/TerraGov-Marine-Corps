@@ -294,12 +294,16 @@
 	if(!target || target.wear_mask != src || target.stat == DEAD || isXeno(target)) //Was taken off or something
 		return
 
+	var/mob/living/carbon/human/H
+	if(ishuman(target))
+		H = target
+		if(H.species && (H.species.flags & IS_SYNTHETIC)) return //can't impregnate synthetics
+
 	if(!sterile)
 		var/obj/item/alien_embryo/E = new (target)
 		target.status_flags |= XENO_HOST
-		if(ishuman(target))
-			var/mob/living/carbon/human/T = target
-			var/datum/organ/external/chest/affected = T.get_organ("chest")
+		if(H)
+			var/datum/organ/external/chest/affected = H.get_organ("chest")
 			affected.implants += E
 		target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
 		icon_state = "[initial(icon_state)]_impregnated"

@@ -53,9 +53,7 @@
 		return ONE_ATMOSPHERE + pressure_difference
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
-	if(species.flags & IS_SYNTHETIC)
-		bodytemperature += species.synth_temp_gain //Just keep putting out heat.
-		return
+
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
