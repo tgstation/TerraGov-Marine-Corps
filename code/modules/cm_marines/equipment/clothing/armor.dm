@@ -397,6 +397,79 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	unacidable = 1
 
 
+//===========================//U.P.P\\================================\\
+//=====================================================================\\
+
+/obj/item/clothing/suit/storage/marine/veteran/UPP
+	name = "\improper UM5 personal armor"
+	desc = "Standard body armor of the UPP military, the UM5 (Union Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the USCM. Unlike the M3, however, the plate has a heavier neckplate, but unfortunately restricts movement slightly more. This has earned many UA members to refer to UPP soldiers as 'tin men'."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "upp_armor"
+	icon_state = "upp_armor"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 60, bullet = 60, laser = 50, energy = 60, bomb = 40, bio = 10, rad = 10)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP)
+
+/obj/item/clothing/suit/storage/marine/veteran/UPP/commando
+	name = "\improper UM5CU personal armor"
+	desc = "A modification of the UM5, designed for stealth operations."
+	item_state = "upp_armor_commando"
+	icon_state = "upp_armor_commando"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+
+/obj/item/clothing/suit/storage/marine/veteran/UPP/heavy
+	name = "\improper UH7 heavy plated armor"
+	desc = "An extremely heavy duty set of body armor in service with the UPP military, the UH7 (Union Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment. Although the armor doesn't protect certain areas, it provides unmatchable protection from the front, which UPP engineers summerized as the most likely target for enemy fire. In order to cut costs, the head shielding in the MK6 has been stripped down a bit in the MK7, but this comes at much more streamlined production.  "
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "upp_armor_heavy"
+	icon_state = "upp_armor_heavy"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 85, bullet = 85, laser = 50, energy = 60, bomb = 60, bio = 10, rad = 10)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP)
+
+/obj/item/clothing/suit/storage/marine/smartgunner/UPP
+	name = "\improper UH7 heavy plated armor"
+	desc = "An extremely heavy duty set of body armor in service with the UPP military, the UH7 (Union Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment. Although the armor doesn't protect certain areas, it provides unmatchable protection from the front, which UPP engineers summerized as the most likely target for enemy fire. In order to cut costs, the head shielding in the MK6 has been stripped down a bit in the MK7, but this comes at much more streamlined production.  "
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "upp_armor_heavy"
+	icon_state = "upp_armor_heavy"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 85, bullet = 85, laser = 50, energy = 60, bomb = 60, bio = 10, rad = 10)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP)
+
+//===========================//FREELANCER\\================================\\
+//=====================================================================\\
+
+/obj/item/clothing/suit/storage/marine/veteran/freelancer
+	name = "\improper freelancer cuirass"
+	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the USCM. The many skilled craftsmen in the freelancers ranks produce these vests at a rate about one a month."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "freelancer_armor"
+	icon_state = "freelancer_armor"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 60, bullet = 60, laser = 50, energy = 60, bomb = 40, bio = 10, rad = 10)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/freelancer)
+
+/obj/item/clothing/suit/storage/militia
+	name = "\improper colonial militia hauberk"
+	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "rebel_armor"
+	icon_state = "rebel_armor"
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 40, bullet = 40, laser = 40, energy = 30, bomb = 60, bio = 30, rad = 30)
+	uniform_restricted = list(/obj/item/clothing/under/colonist)
+
 //=========================//ARMOR PROCS\\===============================\\
 //=======================================================================\\
 

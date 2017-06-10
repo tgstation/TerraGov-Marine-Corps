@@ -2944,7 +2944,8 @@
 	package = 1
 	New()
 		..()
-		reagents.add_reagent("nutriment", 7)
+		reagents.add_reagent("nutriment", 5)
+		reagents.add_reagent("sodiumchloride", 2)
 
 
 	attack_self(mob/user as mob)
@@ -2962,7 +2963,8 @@
 	package = 1
 	New()
 		..()
-		reagents.add_reagent("nutriment", 4)
+		reagents.add_reagent("nutriment", 3)
+		reagents.add_reagent("sodiumchloride", 2)
 
 	attack_self(mob/user as mob)
 		if (package == 1)
@@ -2970,6 +2972,33 @@
 			user << "<span class='notice'>You pull off the wrapping from the squishy hotdog!</span>"
 			package = 0
 			icon_state = "hotdog"
+
+/obj/item/weapon/reagent_containers/food/snacks/upp
+	name = "\improper UPP ration"
+	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the UPP military, especially those units stationed on far-flung colonies. This one is stamped for consumption by the UPP's 'Smoldering Sons' battalion and was packaged in 2179."
+	icon_state = "upp_ration"
+	bitesize = 1
+	package = 1
+	New()
+		..()
+		reagents.add_reagent("nutriment", 2)
+		reagents.add_reagent("sodiumchloride", 3)
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+			user << "<span class='notice'>You tear off the ration seal and pull out the contents!</span>"
+			package = 0
+			var/variation = rand(1,2)
+			desc = "An extremely dried item of food, with little flavoring or coloration. Looks to be prepped for long term storage, but will expire without the packaging. Best to eat it now to avoid waste. At least things are equal."
+			switch(variation)
+				if(1)
+					name = "rationed fish"
+					icon_state = "upp_1"
+				if(2)
+					name = "rationed rice"
+					icon_state = "upp_2"
+
 
 /obj/item/weapon/reagent_containers/food/snacks/eat_bar
 	name = "EAT Bar"

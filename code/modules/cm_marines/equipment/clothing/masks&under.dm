@@ -88,6 +88,10 @@ include jackets and regular suits, not armor.*/
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 	flags_inventory = HIDEEARS|HIDEFACE|COVERMOUTH|ALLOWINTERNALS|HIDEALLHAIR|BLOCKGASEFFECT|ALLOWREBREATH
 
+/obj/item/clothing/mask/gas/PMC/upp
+	name = "\improper UPP armored commando balaclava"
+	icon_state = "upp_mask"
+
 /obj/item/clothing/mask/gas/PMC/leader
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
@@ -153,8 +157,8 @@ include jackets and regular suits, not armor.*/
 		..()
 
 /obj/item/clothing/under/marine/medic
-	name = "\improper USCM medic uniform"
-	desc = "A standard-issue Marine Medic uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	name = "\improper USCM medic fatigues"
+	desc = "A standard-issue Marine Medic fatigues It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_medic"
 	item_state = "marine_medic"
 	item_color = "marine_medic"
@@ -165,8 +169,8 @@ include jackets and regular suits, not armor.*/
 		..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/engineer
-	name = "\improper USCM engineer uniform"
-	desc = "A standard-issue Marine Engineer uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	name = "\improper USCM engineer fatigues"
+	desc = "A standard-issue Marine Engineer fatigues It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_engineer"
 	item_state = "marine_engineer"
 	item_color = "marine_engineer"
@@ -296,7 +300,7 @@ include jackets and regular suits, not armor.*/
 //=======================================================================\\
 
 /obj/item/clothing/under/marine/veteran/PMC
-	name = "\improper PMC uniform"
+	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit."
 	icon = 'icons/PMC/PMC.dmi'
 	//icon_override = 'icons/PMC/PMC.dmi'
@@ -307,7 +311,7 @@ include jackets and regular suits, not armor.*/
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
-	name = "\improper PMC command uniform"
+	name = "\improper PMC command fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	item_state = "officer_jumpsuit"
 	item_color = "officer_jumpsuit"
@@ -329,6 +333,32 @@ include jackets and regular suits, not armor.*/
 	icon_state = "bear_jumpsuit"
 	item_state = "bear_jumpsuit"
 	item_color = "bear_jumpsuit"
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/UPP
+	name = "\improper UPP fatigues"
+	desc = "A set of UPP fatigues, mass produced for the armed-forces of the Union of Progressive Peoples. A rare sight, especially in ICC zones. This particular set sports the dark drab pattern of the UPP 17th battalion, 'Smoldering Sons', operating in the sparse UPP frontier in the Anglo-Japanese arm."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "upp_uniform"
+	item_state = "upp_uniform"
+	item_color = "upp_uniform"
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/UPP/medic
+	name = "\improper UPP medic fatigues"
+	icon_state = "upp_uniform_medic"
+	item_state = "upp_uniform_medic"
+	item_color = "upp_uniform_medic"
+
+/obj/item/clothing/under/marine/veteran/freelancer
+	name = "\improper freelancer fatigues"
+	desc = "A set of loose fitting fatigues, perfect for an informal mercenary. Smells like gunpowder, apple pie, and covered in grease and sake stains."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "freelancer_uniform"
+	item_state = "freelancer_uniform"
+	item_color = "freelancer_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
 
