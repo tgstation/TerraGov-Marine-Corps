@@ -39,6 +39,23 @@
 							"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
 		return (BRUTELOSS)
 
+/obj/item/weapon/upp_knife
+	name = "\improper Type 30 survival knife"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "upp_knife"
+	item_state = "knife"
+	desc = "The standard issue survival knife of the UPP forces, the Type 30 is effective, but humble. It is small enough to be non-cumbersome, but lethal none-the-less."
+	flags_atom = FPRINT|CONDUCT
+	sharp = 1
+	force = 20
+	w_class = 1.0
+	throwforce = 10
+	throw_speed = 2
+	throw_range = 8
+	hitsound = 'sound/weapons/slash.ogg'
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+
 /obj/item/weapon/throwing_knife
 	name ="\improper M11 throwing knife"
 	icon='icons/obj/weapons.dmi'
@@ -555,6 +572,42 @@
 	prime()
 		spawn(0)
 			explosion(loc, -1, -1, 4)
+			del(src)
+		return
+
+/obj/item/weapon/grenade/explosive/stick
+	name = "\improper Webley Mk15 stick grenade"
+	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "grenade_stick"
+	item_state = "grenade_stick"
+	icon = 'icons/obj/grenade.dmi'
+	force = 10
+	w_class = 2.0
+	throwforce = 15
+	throw_speed = 2
+	throw_range = 7
+	hitsound = 'sound/effects/metalhit.ogg'
+
+	prime()
+		spawn(0)
+			explosion(src.loc,-1,-1,3)
+			del(src)
+		return
+
+/obj/item/weapon/grenade/explosive/upp
+	name = "\improper Type 5 shrapnel grenade"
+	desc = "A fragmentation grenade found within the ranks of the UPP. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "grenade_upp"
+	item_state = "grenade_upp"
+	icon = 'icons/obj/grenade.dmi'
+	throw_speed = 2
+	throw_range = 6
+	hitsound = 'sound/effects/metalhit.ogg'
+	prime()
+		spawn(0)
+			explosion(src.loc,-1,-1,3)
 			del(src)
 		return
 

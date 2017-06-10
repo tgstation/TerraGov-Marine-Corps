@@ -333,3 +333,109 @@
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
 
 //-------------------------------------------------------
+
+
+//-------------------------------------------------------
+//UPP TYPE 71 RIFLE
+
+/obj/item/ammo_magazine/rifle/type71
+	name = "\improper Type 71 magazine (7.62x39mm)"
+	desc = "A 7.62x39mm magazine that fits in the Type 71 rifle."
+	caliber = "7.62x39mm"
+	icon_state = "type_71"
+	default_ammo = /datum/ammo/bullet/rifle/mar40
+	max_rounds = 40
+	gun_type = /obj/item/weapon/gun/rifle/type71
+
+/obj/item/weapon/gun/rifle/type71
+	name = "\improper Type 71 pulse rifle"
+	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable pulse rifle chambered in 7.62x39mm. Firing in two round bursts to conserve ammunition, the Type 71 was originally designed as a aerodynamic rifle to be used in outer-space operations. The Type 71 suffers from some reliability issues, and is prone to jamming in terrestrial climates, but makes up for this with a high number of variants and ease of production."
+	icon_state = "type71"
+	item_state = "type71"
+	origin_tech = "combat=4;materials=2;syndicate=4"
+	fire_sound = list('sound/weapons/gun_type71.ogg')
+	current_mag = /obj/item/ammo_magazine/rifle/type71
+	wield_delay = 4
+	//type_of_casings = "cartridge"
+	/*
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/grenade,
+						/obj/item/attachable/flamer,
+						/obj/item/attachable/shotgun)
+	*/
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_RUSSIANS|GUN_BURST_ON
+
+	New()
+		..()
+		burst_amount = config.low_burst_value
+		burst_delay = config.mlow_fire_delay
+		accuracy += config.max_hit_accuracy_mult
+		fire_delay = config.high_fire_delay
+		/*
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	*/
+	toggle_burst()
+		usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
+
+/obj/item/weapon/gun/rifle/type71/flamer
+	name = "\improper Type 71 pulse rifle"
+	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
+	New()
+		..()
+		var/obj/item/attachable/flamer/S = new(src)
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
+		S.Attach(src)
+		update_attachable(S.slot)
+		accuracy += config.max_hit_accuracy_mult + 1
+
+
+/obj/item/weapon/gun/rifle/type71/carbine
+	name = "\improper Type 71 pulse carbine"
+	icon_state = "type71c"
+	item_state = "type71c"
+	wield_delay = 2 //Carbine is more lightweight
+
+
+/obj/item/weapon/gun/rifle/type71/carbine/commando
+	name = "\improper Type 71 'Commando' pulse carbine"
+	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units and officer cadres."
+	icon_state = "type73"
+	item_state = "type73"
+	wield_delay = 0 //Ends up being .5 seconds due to scope
+
+	New()//Making the gun have an invisible silencer since it's supposed to have one.
+		..()
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
+		//supressor
+		var/obj/item/attachable/suppressor/S = new(src)
+		S.icon_state = ""
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
+		S.Attach(src)
+		update_attachable(S.slot)
+		//scope
+		var/obj/item/attachable/scope/F = new(src)
+		F.icon_state = ""
+		F.flags_attach_features &= ~ATTACH_REMOVABLE
+		F.Attach(src)
+		update_attachable(F.slot)
+
+		accuracy += config.max_hit_accuracy_mult + 3
+		burst_amount = config.low_burst_value
+		burst_delay = config.mlow_fire_delay
+		fire_delay = config.high_fire_delay
+
+//-------------------------------------------------------

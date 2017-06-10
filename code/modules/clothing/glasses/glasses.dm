@@ -14,12 +14,13 @@
 	var/obj/screen/overlay = null
 	flags_inventory = COVEREYES
 	flags_armor_protection = EYES
+	var/deactive_state = "degoggles"
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
 		if(active)
 			active = 0
-			icon_state = "degoggles"
+			icon_state = deactive_state
 			user.update_inv_glasses()
 			usr << "You deactivate the optical matrix on [src]."
 		else

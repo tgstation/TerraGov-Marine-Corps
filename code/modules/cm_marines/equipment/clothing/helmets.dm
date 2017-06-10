@@ -289,6 +289,24 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	armor = list(melee = 40, bullet = 45, laser = 40, energy = 55, bomb = 40, bio = 100, rad = 50)
 	unacidable = 1
 
+/obj/item/clothing/head/helmet/UPP
+	name = "\improper UM4 helmet"
+	desc = "A skirted helmet designed for use with the UM/UH system."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "upp_helmet1"
+	icon_state = "upp_helmet1"
+	armor = list(melee = 70, bullet = 55, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+
+/obj/item/clothing/head/helmet/UPP/heavy
+	name = "\improper UH7 helmet"
+	item_state = "upp_helmet_heavy"
+	icon_state = "upp_helmet_heavy"
+	armor = list(melee = 90, bullet = 85, laser = 60, energy = 65, bomb = 85, bio = 5, rad = 5)
+	unacidable = 1
+	anti_hug = 3
+
 //==========================//HELMET PROCS\\=============================\\
 //=======================================================================\\
 

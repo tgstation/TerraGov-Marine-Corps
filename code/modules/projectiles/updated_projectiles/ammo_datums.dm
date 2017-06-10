@@ -174,6 +174,10 @@
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
 
+/datum/ammo/bullet/pistol/tranq
+	name = "sedative bullet"
+	debilitate = list(0,1,0,0,1,1,3,0)
+
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
 	New()

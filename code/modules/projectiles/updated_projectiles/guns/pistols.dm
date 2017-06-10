@@ -177,17 +177,27 @@
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
+/obj/item/ammo_magazine/pistol/c99t
+	name = "\improper PK-9 magazine (.22 tranq)"
+	default_ammo = /datum/ammo/bullet/pistol/tranq
+	caliber = ".22"
+	icon_state = "pk-9_tranq"
+	max_rounds = 8
+	gun_type = /obj/item/weapon/gun/pistol/c99
+
 /obj/item/ammo_magazine/pistol/c99
-	name = "\improper PK-9 magazine (9mm)"
+	name = "\improper PK-9 magazine (.22 hollowpoint)"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
-	caliber = ".9mmM"
-	icon_state = "m4a3" //PLACEHOLDER
+	caliber = ".22"
+	icon_state = "pk-9"
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
 
+
+
 /obj/item/weapon/gun/pistol/c99
 	name = "\improper Korovin PK-9 pistol"
-	desc = "An updated variant of an old Russian design, dating back to from the 19th century. Commonly found among mercenary companies due to its reliability, but also issued to armed forces. Features extended magazine capacity and an integrated silencer."
+	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Commonly found among mercenary companies due to its reliability, but also issued to UPP armed forces. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version.."
 	icon_state = "pk9"
 	item_state = "pk9"
 	origin_tech = "combat=3;materials=1;syndicate=3"
@@ -204,6 +214,7 @@
 	New()//Making the gun have an invisible silencer since it's supposed to have one.
 		..()
 		fire_delay = config.high_fire_delay
+		accuracy += config.high_hit_accuracy_mult
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 		var/obj/item/attachable/suppressor/S = new(src)
 		S.icon_state = ""
@@ -214,7 +225,18 @@
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
 	item_state = "pk9r"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
+
+/obj/item/weapon/gun/pistol/c99/upp
+	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Commonly found among mercenary companies due to its reliability, but also issued to UPP armed forces. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with the more common .22 hollowpoint rounds and appears to be a UPP model."
+	icon_state = "pk9u"
+	item_state = "pk9u"
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+
+/obj/item/weapon/gun/pistol/c99/upp/tranq
+	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Commonly found among mercenary companies due to its reliability, but also issued to UPP armed forces. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
+	desc = "This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
+	current_mag = /obj/item/ammo_magazine/pistol/c99t
 
 //-------------------------------------------------------
 //KT-42 //Inspired by the .44 Auto Mag pistol

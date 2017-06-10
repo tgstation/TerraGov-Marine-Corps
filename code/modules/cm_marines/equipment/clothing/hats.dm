@@ -234,3 +234,60 @@ into helmets.dm*/
 	flags_cold_protection = HEAD|UPPER_TORSO|ARMS
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+
+
+/obj/item/clothing/head/uppcap
+	name = "\improper UPP cap"
+	desc = "Standard UPP head gear for covert operations and low-ranking officers alike. Sells for high prices on the black market due to their rarity."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	icon_state = "upp_cap"
+	item_state = "upp_cap"
+	siemens_coefficient = 2.0
+	//anti_hug = 2
+	flags_armor_protection = HEAD
+	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+
+/obj/item/clothing/head/uppcap/beret
+	name = "\improper UPP beret"
+	icon_state = "upp_beret"
+	item_state = "upp_beret"
+
+/obj/item/clothing/head/frelancer
+	name = "\improper Freelancer cap"
+	desc = "A sturdy freelancer's cap. More protective than it seems."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	icon_state = "freelancer_cap"
+	item_state = "freelancer_cap"
+	siemens_coefficient = 2.0
+	flags_armor_protection = HEAD
+	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+
+/obj/item/clothing/head/frelancer/beret
+	name = "\improper Freelancer beret"
+	icon_state = "freelancer_beret"
+	item_state = "freelancer_beret"
+
+/obj/item/clothing/head/militia
+	name = "\improper militia cowl"
+	desc = "A large hood in service with some militias, meant for obscurity on the frontier. Offers some head protection due to the study fibers utilized in production."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	icon_state = "rebel_hood"
+	item_state = "rebel_hood"
+	siemens_coefficient = 2.0
+	flags_armor_protection = HEAD|UPPER_TORSO
+	armor = list(melee = 30, bullet = 30, laser = 45, energy = 35, bomb = 45, bio = 20, rad = 30)
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+
+
+

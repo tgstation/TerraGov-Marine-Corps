@@ -31,7 +31,7 @@
 	icon_state = "marinepackt"
 
 /obj/item/weapon/storage/backpack/marine/satchel
-	name = "\improper USCM infantry satchel"
+	name = "\improper USCM satchel"
 	desc = "A heavy-duty satchel carried by some USCM soldiers."
 	icon_state = "marinesat"
 
@@ -44,6 +44,12 @@
 	name = "\improper USCM technician satchel"
 	desc = "A heavy-duty satchel carried by some USCM technicians."
 	icon_state = "marinesatt"
+
+/obj/item/weapon/storage/backpack/marine/satchel/lightpack
+	name = "\improper lightweight combat pack"
+	desc = "A small lightweight pack for expeditions and short-range operations."
+	icon_state = "ERT_satchel"
+	item_state = "ERT_satchel"
 
 /obj/item/weapon/storage/backpack/marine/smock
 	name = "\improper M3 sniper's smock"
@@ -366,6 +372,35 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/smg/m39(src)
 	new_gun.on_enter_storage(src)
 
+/obj/item/weapon/storage/belt/gun/korovin
+	name = "\improper Type 41 pistol holster rig"
+	desc = "A modification of the standard UPP pouch rig to carry a single Korovin PK-9 pistol. It also contains side pouches that can store .22 magazines, either hollowpoints or tranquilizers."
+	icon_state = "korovin_holster"
+	item_state = "korovin_holster"
+	can_hold = list(
+		"/obj/item/weapon/gun/pistol/c99",
+		"/obj/item/weapon/gun/pistol/c99/russian",
+		"/obj/item/weapon/gun/pistol/c99/upp",
+		"/obj/item/ammo_magazine/pistol/c99",
+		"/obj/item/ammo_magazine/pistol/c99t"
+		)
+
+/obj/item/weapon/storage/belt/gun/korovin/standard/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new_gun.on_enter_storage(src)
+
+/obj/item/weapon/storage/belt/gun/korovin/tranq/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp/tranq(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new_gun.on_enter_storage(src)
+
 /obj/item/weapon/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition carrying operations."
@@ -476,6 +511,12 @@
 	icon_state="sparepouch"
 	item_state="marine_s"
 
+/obj/item/weapon/storage/belt/marine/upp
+	name = "\improper Type 41 pattern load rig"
+	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
+	icon_state = "upp_belt"
+	item_state = "upp_belt"
+
 //============================//GOGGLES\\================================\\
 //=======================================================================\\
 
@@ -512,6 +553,7 @@ BLIND     // can't see anything
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "glasses"
+	deactive_state = "m56_goggles_0"
 	darkness_view = 5
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
@@ -539,6 +581,7 @@ BLIND     // can't see anything
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
+	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
@@ -553,6 +596,7 @@ BLIND     // can't see anything
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
+	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
 	darkness_view = 12
 	toggleable = 1
@@ -561,6 +605,13 @@ BLIND     // can't see anything
 	New()
 		..()
 		overlay = null
+
+/obj/item/clothing/glasses/night/m42_night_goggles/upp
+	name = "\improper Type 9 commando goggles"
+	desc = "A headset and night vision goggles system used by UPP forces. Allows highlighted imaging of surroundings. Click it to toggle."
+	icon_state = "upp_goggles"
+	item_state = "upp_goggles"
+	deactive_state = "upp_goggles_0"
 
 //============================//MISC\\================================\\
 //=======================================================================\\
