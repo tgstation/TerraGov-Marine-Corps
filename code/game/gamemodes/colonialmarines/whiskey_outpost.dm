@@ -469,7 +469,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
 			//Backup SMG Weapon
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m39/full(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/m39/full(H), WEAR_WAIST)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)

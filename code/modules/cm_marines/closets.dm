@@ -114,7 +114,7 @@
 			new /obj/item/clothing/under/marine/officer/pilot(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/suit/armor/vest/pilot(src)
-			new /obj/item/weapon/storage/belt/gun/m39(src)
+			new /obj/item/weapon/large_holster/m39(src)
 			new /obj/item/weapon/storage/backpack/marine/satchel(src)
 			new /obj/item/clothing/gloves/yellow(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
