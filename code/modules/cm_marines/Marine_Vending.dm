@@ -90,7 +90,7 @@
 					/obj/item/clothing/tie/holster = 0,
 					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
 					/obj/item/weapon/storage/belt/gun/m44 = 3,
-					/obj/item/weapon/storage/belt/gun/m39 = 3,
+					/obj/item/weapon/large_holster/m39 = 3,
 					/obj/item/weapon/gun/pistol/m4a3 = 5,
 					/obj/item/weapon/gun/pistol/m1911 = 1,
 					/obj/item/weapon/gun/revolver/m44 = 5,

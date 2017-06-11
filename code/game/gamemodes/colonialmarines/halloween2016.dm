@@ -809,7 +809,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/sniper/jungle(H), WEAR_JACKET)
 						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), WEAR_EYES)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/smock(H), WEAR_BACK)
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m39/full(H), WEAR_WAIST)
+						H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/m39/full(H), WEAR_WAIST)
 
 						new /obj/item/ammo_magazine/sniper(W.hold)
 						new /obj/item/ammo_magazine/sniper(W.hold)
@@ -1266,7 +1266,7 @@
 		/obj/item/clothing/tie/holster = 4,
 		/obj/item/clothing/tie/storage/brown_vest = 6,
 		/obj/item/clothing/tie/storage/webbing = 4,
-		/obj/item/weapon/storage/belt/gun/m39 = 5
+		/obj/item/weapon/large_holster/m39 = 5
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"extra storage crate")*/
 
@@ -1383,7 +1383,7 @@
 		/obj/item/clothing/tie/storage/webbing = 4,
 		/obj/item/weapon/storage/belt/gun/m44 = 5,
 		/obj/item/weapon/storage/belt/gun/m4a3 = 6,
-		/obj/item/weapon/storage/belt/gun/m39 = 3
+		/obj/item/weapon/large_holster/m39 = 3
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"extra storage crate") */
 

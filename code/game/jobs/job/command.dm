@@ -128,7 +128,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/pilot,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m39/full,
+				WEAR_WAIST = /obj/item/weapon/large_holster/m39/full,
 				WEAR_JACKET = /obj/item/clothing/suit/armor/vest/pilot,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)

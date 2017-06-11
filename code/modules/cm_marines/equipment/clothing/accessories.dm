@@ -360,27 +360,6 @@
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/weapon/storage/belt/gun/m39
-	name = "\improper M276 pattern M39 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is designed for the M39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
-	icon_state = "m39_holster"
-	item_state = "m39_holster"
-	storage_slots = 1
-	max_combined_w_class = 6
-	max_w_class = 6
-	can_hold = list(
-		"/obj/item/weapon/gun/smg/m39",
-		"/obj/item/weapon/gun/smg/m39/elite",
-		"/obj/item/ammo_magazine/smg/m39",
-		"/obj/item/ammo_magazine/smg/m39/ap",
-		"/obj/item/ammo_magazine/smg/m39/extended"
-		)
-
-/obj/item/weapon/storage/belt/gun/m39/full/New()
-	..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/smg/m39(src)
-	new_gun.on_enter_storage(src)
-
 /obj/item/weapon/storage/belt/gun/korovin
 	name = "\improper Type 41 pistol holster rig"
 	desc = "A modification of the standard UPP pouch rig to carry a single Korovin PK-9 pistol. It also contains side pouches that can store .22 magazines, either hollowpoints or tranquilizers."
@@ -744,3 +723,34 @@ BLIND     // can't see anything
 	item_state = "machete_holster_full"
 	holstered_weapon = new /obj/item/weapon/claymore/mercsword/machete(src)
 
+
+/obj/item/weapon/large_holster/m39
+	name = "\improper M276 pattern M39 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is designed for the M39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	icon_state = "m39_holster"
+	item_state = "m39_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
+	base_icon = "m39_holster"
+	flags_equip_slot = SLOT_WAIST
+	accepted_weapon_types = list(/obj/item/weapon/gun/smg/m39)
+
+	update_icon()
+		var/mob/user = loc
+		if(holstered_weapon)
+			icon_state = "[base_icon]_full_[holstered_weapon.icon_state]"
+			item_state = "[base_icon]_full"
+		else
+			icon_state = base_icon
+			item_state = base_icon
+		if(istype(user)) user.update_inv_belt()
+
+	equipped(mob/user, slot)
+		if(ishuman(user) && slot == WEAR_WAIST)
+			mouse_opacity = 2 //so it's easier to click when properly equipped.
+		..()
+
+/obj/item/weapon/large_holster/m39/full/New()
+	..()
+	icon_state = "m39_holster_full_m39"
+	item_state = "m39_holster_full"
+	holstered_weapon = new /obj/item/weapon/gun/smg/m39(src)
