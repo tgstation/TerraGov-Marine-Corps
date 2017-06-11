@@ -33,7 +33,7 @@
 			if (istype(user))
 				var/obj/item/weapon/card/id/card = user.wear_id
 				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
-				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist" || card.assignment == "Iron Bear" || card.assignment == "Iron Bears Sergeant")) return 1//We can check for access, but only Specialists have access to it.
+				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist" || card.assignment == "Iron Bear" || card.assignment == "Iron Bears Sergeant" || card.assignment == "PMC Sniper")) return 1//We can check for access, but only Specialists have access to it.
 				else user << "<span class='warning'>[src] is ID locked!</span>"
 
 //Pow! Headshot.
@@ -228,7 +228,7 @@
 			if (istype(user))
 				var/obj/item/weapon/card/id/card = user.wear_id
 				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
-				else if (istype(card) && (card.assignment == "Alpha Squad Smartgunner" || card.assignment == "Bravo Squad Smartgunner" || card.assignment == "Charlie Squad Smartgunner" || card.assignment == "Delta Squad Smartgunner") || card.assignment == "Commander" || card.assignment == "Combat Synth") return 1 // ID locks.
+				else if (istype(card) && (card.assignment == "Alpha Squad Smartgunner" || card.assignment == "Bravo Squad Smartgunner" || card.assignment == "Charlie Squad Smartgunner" || card.assignment == "Delta Squad Smartgunner") || card.assignment == "Commander" || card.assignment == "PMC Specialist") return 1 // ID locks.
 				else user << "<span class='warning'>[src] is ID locked!</span>"
 
 	load_into_chamber(mob/user)
