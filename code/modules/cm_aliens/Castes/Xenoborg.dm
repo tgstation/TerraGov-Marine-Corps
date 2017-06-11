@@ -23,6 +23,7 @@
 	armor_deflection = 90
 	fire_immune = 1
 	is_robotic = 1
+	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	var/gun_on = 0
 
 	inherent_verbs = list(

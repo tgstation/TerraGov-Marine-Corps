@@ -30,6 +30,7 @@
 	armor_deflection = 40
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
+	xeno_explosion_resistance = 2 //no stuns from explosions
 	attack_delay = -2
 	tier = 3
 	upgrade = 0
