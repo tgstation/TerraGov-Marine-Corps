@@ -35,6 +35,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	upgrade = 0
 	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	xeno_explosion_resistance = 1 //some resistance against explosion stuns.
 	var/breathing_counter = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,

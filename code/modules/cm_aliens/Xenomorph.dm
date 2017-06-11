@@ -113,6 +113,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
 	var/crit_health = -100 // What negative healthy they die in.
 	var/gib_chance  = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
+	var/xeno_explosion_resistance = 0 //0 to 3. how explosions affects the xeno, can it stun it, etc...
 
 	//Naming variables
 	var/caste = ""

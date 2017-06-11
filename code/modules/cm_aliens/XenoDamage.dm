@@ -6,56 +6,49 @@
 	var/b_loss = 0
 	var/f_loss = 0
 	switch(severity)
-		if(1.0)
-			if(is_robotic || isXenoCrusher(src) || isXenoRavager(src) || isXenoQueen(src)) // Crushers, Ravagers, and the Queen won't be gibbed.
-				if (isXenoQueen(src))
+		if(1)
+			switch(xeno_explosion_resistance)
+				if(2,3)
+					apply_damage(rand(200, 300), BRUTE)
+					updatehealth()
+				if(1)
 					Weaken(4)
-				apply_damage(rand(200, 300), BRUTE)
-				updatehealth()
-				return
-			gib()
+					apply_damage(rand(200, 300), BRUTE)
+					updatehealth()
+				else
+					gib()
 			return
 
-		if(2.0)
-			if(is_robotic || isXenoCrusher(src) || isXenoRavager(src)) //Robots and crushers are immune.
-				return
+		if(2)
+			switch(xeno_explosion_resistance)
+				if(3) return
+				if(1)
+					Weaken(2)
+				if(0)
+					if(prob(80))
+						Paralyse(4)
+					Weaken(12)
+
 			b_loss += rand(45, 55)
 			f_loss += rand(45, 65)
 
-			if (!isXenoRavager(src)) //Crushers and Ravagers don't get stunned, Queens have resistance to weaken.
-				if (isXenoQueen(src))
-					Weaken(2)
-				else
-					if (prob(80))
-						Paralyse(4)
-				Weaken(12)
+		if(3)
+			switch(xeno_explosion_resistance)
+				if(3) return
+				if(0)
+					if(prob(40))
+						Paralyse(2)
+					Weaken(rand(4, 6))
 
-			if(warding_aura)
-				b_loss = round(b_loss / 2)
-
-			apply_damage(b_loss, BRUTE)
-			apply_damage(f_loss, BURN)
-			updatehealth()
-
-			return
-
-		if(3.0)
-			if(is_robotic || isXenoCrusher(src) || isXenoRavager(src)) //Robots and crushers are immune to small explosions.
-				return
 			b_loss += rand(20, 40)
 			f_loss += rand(25, 50)
 
-			if (!isXenoRavager(src) && !isXenoQueen(src)) //Crushers, Ravagers, and Queens don't get weakened.
-				if(prob(40))
-					Paralyse(2)
-				Weaken(rand(4, 6))
+	if(warding_aura)
+		b_loss = round(b_loss / 2)
+	apply_damage(b_loss, BRUTE)
+	apply_damage(f_loss, BURN)
+	updatehealth()
 
-			if(warding_aura)
-				b_loss = round(b_loss / 2)
-			apply_damage(b_loss, BRUTE)
-			apply_damage(f_loss, BURN)
-			updatehealth()
-			return
 
 /mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
 	if(!damage) return
