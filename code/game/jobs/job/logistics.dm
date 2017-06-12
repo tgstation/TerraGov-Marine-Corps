@@ -22,6 +22,7 @@
 				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/ce,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/tech
 				)
@@ -90,6 +91,7 @@ A happy ship is a well-functioning ship."}
 				WEAR_L_EAR = /obj/item/device/radio/headset/headset_eng,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/engi,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
@@ -124,6 +126,7 @@ Start with the ship's engine, and don't forget radiation equipment."}
 				WEAR_L_EAR = /obj/item/device/radio/headset/headset_cargo,
 				WEAR_BODY = /obj/item/clothing/under/rank/cargotech,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
 				WEAR_HEAD = /obj/item/clothing/head/cmbandana/tan,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/tech

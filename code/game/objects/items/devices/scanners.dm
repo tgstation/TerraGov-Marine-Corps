@@ -77,9 +77,10 @@ REAGENT SCANNER
 	throw_range = 10
 	matter = list("metal" = 200)
 	origin_tech = "magnets=1;biotech=1"
-	var/mode = 1;
+	var/mode = 1
+
 /obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
-	if (( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
+	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
@@ -88,11 +89,14 @@ REAGENT SCANNER
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		usr << "\red You don't have the dexterity to do this!"
 		return
+	if(isXeno(M)) //Nope
+		user << "<span class='warning'>[src] can't even make sense of this creature. Doesn't seem to be in the database.</span>"
+		return
 	user.visible_message("<span class='notice'> [user] has analyzed [M]'s vitals.","<span class='notice'> You have analyzed [M]'s vitals.")
-	if (!istype(M, /mob/living/carbon) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!istype(M, /mob/living/carbon) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		//these sensors are designed for organic life
 		user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
 		user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)

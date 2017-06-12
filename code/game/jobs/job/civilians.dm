@@ -22,7 +22,9 @@
 				WEAR_L_EAR = /obj/item/device/radio/headset/heads/cmo,
 				WEAR_BODY = /obj/item/clothing/under/rank/chief_medical_officer,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/officer,
+				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
 				)
 
@@ -58,7 +60,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 				WEAR_L_EAR = /obj/item/device/radio/headset/headset_med,
 				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
+				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
 				)
@@ -94,7 +98,9 @@ You are also an expert when it comes to medication and treatment. If you do not 
 				WEAR_L_EAR = /obj/item/device/radio/headset/headset_med,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/researcher,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
+				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
 				)
 
