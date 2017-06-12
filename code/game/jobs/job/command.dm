@@ -29,7 +29,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 				WEAR_FEET = /obj/item/clothing/shoes/marinechief/commander,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/techofficer/commander,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/commander,
-				WEAR_HEAD = /obj/item/clothing/head/cmberet/tan,
+				WEAR_HEAD = /obj/item/clothing/head/beret/marine/commander,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
 
@@ -178,6 +178,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 				WEAR_L_EAR = /obj/item/device/radio/headset/mmpo,
 				WEAR_BODY = /obj/item/clothing/under/marine/mp,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_HANDS = /obj/item/clothing/gloves/black,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/security/MP/full,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
@@ -207,6 +208,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/warrant,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_HANDS = /obj/item/clothing/gloves/black,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/security/MP/full,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP/WO,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
