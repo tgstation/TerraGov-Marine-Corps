@@ -93,7 +93,39 @@
 	go_out()
 	mechas_list -= src //global mech list
 	SetLuminosity(0)
+
+/obj/mecha/Dispose()
+	go_out()
+	mechas_list -= src //global mech list
+	SetLuminosity(0)
+	if(cell)
+		cdel(cell)
+		cell = null
+	if(spark_system)
+		cdel(spark_system)
+		spark_system = null
+	if(internal_tank)
+		cdel(internal_tank)
+		internal_tank = null
+	if(cabin_air)
+		cdel(cabin_air)
+		cabin_air = null
+	if(connected_port)
+		cdel(connected_port)
+		connected_port = null
+	if(radio)
+		cdel(radio)
+		radio = null
+	if(pr_int_temp_processor)
+		del(pr_int_temp_processor) //not using cdel is intentional.
+	if(pr_inertial_movement)
+		del(pr_inertial_movement)
+	if(pr_give_air)
+		del(pr_give_air)
+	if(pr_internal_damage)
+		del(pr_internal_damage)
 	. = ..()
+
 
 
 ////////////////////////
@@ -551,9 +583,11 @@
 						WR.crowbar_salvage += cell
 						cell.forceMove(WR)
 						cell.charge = rand(0, cell.charge)
+						cell = null
 					if(internal_tank)
 						WR.crowbar_salvage += internal_tank
 						internal_tank.forceMove(WR)
+						internal_tank = null
 				else
 					for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 						E.forceMove(T)
