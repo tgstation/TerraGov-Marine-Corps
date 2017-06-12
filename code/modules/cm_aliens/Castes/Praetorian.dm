@@ -77,10 +77,10 @@
 			return
 
 		sticky_cooldown = 1
-		visible_message("<span class='xenowarning'>\The [src] spits at \the [T]!</span>", \
-		"<span class='xenowarning'>You spit at \the [T]!</span>" )
+		visible_message("<span class='xenowarning'>[src] spits at [T]!</span>", \
+		"<span class='xenowarning'>You spit at [T]!</span>" )
 		var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
-		playsound(src.loc, sound_to_play, 25, 1)
+		playsound(loc, sound_to_play, 25, 1)
 
 		var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
 		A.generate_bullet(ammo_list[/datum/ammo/xeno/sticky])
@@ -90,7 +90,7 @@
 
 		spawn(90) //12 second cooldown.
 			sticky_cooldown = 0
-			src << "<span class='warning'>You feel your resin glands refill. You can spit <B>resin</b> again.</span>"
+			src << "<span class='xenowarning'>You feel your resin glands refill. You can spit <B>resin</b> again.</span>"
 	else
 		src << "<span class='warning'>You have nothing to spit at!</span>"
 
@@ -112,8 +112,10 @@
 		del(src)
 
 /obj/resin_glob/proc/do_safe_splatter(turf/T)
-	for (var/atom/A in T.contents)
-		if (istype(A, /obj/effect/alien/resin/sticky))
+	for(var/atom/A in T.contents)
+		if(istype(A, /obj/effect/alien/resin/sticky))
+			return
+		if(A.density) //We can't grow if something dense is here
 			return
 
 	new /obj/effect/alien/resin/sticky(T)
