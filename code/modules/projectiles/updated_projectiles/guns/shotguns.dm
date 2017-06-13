@@ -95,7 +95,13 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
 	if(current_mag.current_rounds <= 0)
-		if(user) user << "<span class='warning'>[src] is already empty.</span>"
+		if(in_chamber)
+			in_chamber = null
+			var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
+			playsound(user, reload_sound, 25, 1)
+			new_handful.forceMove(get_turf(src))
+		else
+			if(user) user << "<span class='warning'>[src] is already empty.</span>"
 		return
 
 	unload_shell(user)
@@ -417,11 +423,12 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/proc/pump_shotgun(mob/user)	//We can't fire bursts with pumps.
 	if(world.time < (recent_pump + pump_delay) ) return //Don't spam it.
 
-	if(in_chamber) //We don't want them to pump out loaded rounds.
-		user << "<span class='warning'>It's already chambered with a round!</span>"
-		return
+	if(in_chamber) //eject the chambered round
+		in_chamber = null
+		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
+		new_handful.forceMove(get_turf(src))
 
-	if(!in_chamber) ready_shotgun_tube()
+	ready_shotgun_tube()
 
 	if(current_mag.used_casings)
 		current_mag.used_casings--

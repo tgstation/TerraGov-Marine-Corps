@@ -400,6 +400,9 @@ updatehealth()
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 
+	if(is_zoomed)
+		zoom_out()
+
 	if(!gibbed) update_icons()
 
 	switch(caste)

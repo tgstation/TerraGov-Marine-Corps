@@ -520,9 +520,6 @@
 	client.pixel_x = 0
 	client.pixel_y = 0
 	is_zoomed = 0
-	if(isXenoBoiler(src))
-		var/mob/living/carbon/Xenomorph/Boiler/boiler = src
-		boiler.zoom_timer = 0
 	zoom_turf = null
 
 /mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
