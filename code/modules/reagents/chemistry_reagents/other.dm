@@ -122,7 +122,7 @@
 			lowertemp.react()
 			T.assume_air(lowertemp)
 			cdel(hotspot)
-		var/hotspot2 = (locate(/obj/effect/effect/fire) in T)//Delete fire effect
+		var/hotspot2 = (locate(/obj/effect/particle_effect/fire) in T)//Delete fire effect
 		if(hotspot && !istype(T, /turf/space))
 			cdel(hotspot2)
 		return

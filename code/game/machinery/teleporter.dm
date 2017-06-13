@@ -201,7 +201,7 @@
 			com.one_time_use = 0
 			com.locked = null
 	else
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
 		accurate = 1
@@ -290,7 +290,7 @@
 	M.loc = tmploc
 	sleep(2)
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, M)
 	s.start()
 	return

@@ -6,7 +6,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 */
 
 
-/obj/effect/effect
+/obj/effect
+
+
+/obj/effect/particle_effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
@@ -14,14 +17,14 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	flags_pass = PASSTABLE|PASSGRILLE
 
 	//Fire
-/obj/effect/effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
+/obj/effect/particle_effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
 	name = "fire"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
 	var/life = 0.5 //In seconds
 	mouse_opacity = 0
 
-/obj/effect/effect/fire/New()
+/obj/effect/particle_effect/fire/New()
 	if(!istype(loc, /turf))
 		cdel(src)
 	extinguish()
@@ -38,20 +41,20 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	for(var/obj/structure/stool/bed/nest/N in loc)//Nests
 		N.fire_act()
 
-/obj/effect/effect/fire/proc/extinguish()
+/obj/effect/particle_effect/fire/proc/extinguish()
 	spawn(life * 10)
 		if (istype(loc, /turf/simulated))
 			SetLuminosity(0)
 		cdel(src)
 
-/obj/effect/effect/fire/Crossed(mob/living/L)
+/obj/effect/particle_effect/fire/Crossed(mob/living/L)
 	..()
 	if(isliving(L))
 		L.fire_act()
 
 	//End fire
 
-/obj/effect/effect/water
+/obj/effect/particle_effect/water
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
@@ -64,7 +67,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		reagents.delete()
 	return
 
-/obj/effect/effect/water/Move(turf/newloc)
+/obj/effect/particle_effect/water/Move(turf/newloc)
 	//var/turf/T = src.loc
 	//if (istype(T, /turf))
 	//	T.firelevel = 0 //TODO: FIX
@@ -75,13 +78,13 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		return 0
 	.=..()
 
-/obj/effect/effect/water/Bump(atom/A)
+/obj/effect/particle_effect/water/Bump(atom/A)
 	if(reagents)
 		reagents.reaction(A)
 	return ..()
 
 
-/datum/effect/effect/system
+/datum/effect_system
 	var/number = 3
 	var/cardinals = 0
 	var/turf/location
@@ -117,13 +120,13 @@ OPTIONAL: steam.attach(mob)
 steam.start() -- spawns the effect
 */
 /////////////////////////////////////////////
-/obj/effect/effect/steam
+/obj/effect/particle_effect/steam
 	name = "steam"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	density = 0
 
-/datum/effect/effect/system/steam_spread
+/datum/effect_system/steam_spread
 
 	set_up(n = 3, c = 0, turf/loc)
 		if(n > 10)
@@ -138,7 +141,7 @@ steam.start() -- spawns the effect
 			spawn(0)
 				if(holder)
 					src.location = get_turf(holder)
-				var/obj/effect/effect/steam/steam = new /obj/effect/effect/steam(src.location)
+				var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(src.location)
 				var/direction
 				if(src.cardinals)
 					direction = pick(cardinal)
@@ -157,14 +160,14 @@ steam.start() -- spawns the effect
 // will always spawn at the items location.
 /////////////////////////////////////////////
 
-/obj/effect/effect/sparks
+/obj/effect/particle_effect/sparks
 	name = "sparks"
 	icon_state = "sparks"
 	var/amount = 6.0
 	anchored = 1.0
 	mouse_opacity = 0
 
-/obj/effect/effect/sparks/New()
+/obj/effect/particle_effect/sparks/New()
 	..()
 	playsound(src.loc, "sparks", 25, 1)
 	var/turf/T = src.loc
@@ -174,20 +177,20 @@ steam.start() -- spawns the effect
 		delete()
 	return
 
-/obj/effect/effect/sparks/Dispose()
+/obj/effect/particle_effect/sparks/Dispose()
 	var/turf/T = loc
 	if (isturf(T))
 		T.hotspot_expose(1000,100)
 	. = ..()
 
-/obj/effect/effect/sparks/Move()
+/obj/effect/particle_effect/sparks/Move()
 	..()
 	var/turf/T = src.loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 	return
 
-/datum/effect/effect/system/spark_spread
+/datum/effect_system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
 
 	set_up(n = 3, c = 0, loca)
@@ -208,7 +211,7 @@ steam.start() -- spawns the effect
 			spawn(0)
 				if(holder)
 					src.location = get_turf(holder)
-				var/obj/effect/effect/sparks/sparks = new /obj/effect/effect/sparks(src.location)
+				var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(src.location)
 				src.total_sparks++
 				var/direction
 				if(src.cardinals)
@@ -232,7 +235,7 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 
 
-/obj/effect/effect/smoke
+/obj/effect/particle_effect/smoke
 	name = "smoke"
 	icon_state = "smoke"
 	opacity = 1
@@ -247,25 +250,25 @@ steam.start() -- spawns the effect
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/effect/smoke/New()
+/obj/effect/particle_effect/smoke/New()
 	..()
 	spawn (time_to_live)
 		delete()
 	return
 
-/obj/effect/effect/smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/effect/particle_effect/smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)
 	return 1
 
-/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
+/obj/effect/particle_effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()
 	if(istype(M))
 		affect(M)
 
-/obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
+/obj/effect/particle_effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (istype(M))
 		return 0
 	return 1
@@ -274,15 +277,15 @@ steam.start() -- spawns the effect
 // Bad smoke
 /////////////////////////////////////////////
 
-/obj/effect/effect/smoke/bad
+/obj/effect/particle_effect/smoke/bad
 	time_to_live = 200
 
-/obj/effect/effect/smoke/bad/Move()
+/obj/effect/particle_effect/smoke/bad/Move()
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
+/obj/effect/particle_effect/smoke/bad/affect(var/mob/living/carbon/M)
 	..()
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
@@ -301,14 +304,14 @@ steam.start() -- spawns the effect
 // Sleep smoke
 /////////////////////////////////////////////
 
-/obj/effect/effect/smoke/sleepy
+/obj/effect/particle_effect/smoke/sleepy
 
-/obj/effect/effect/smoke/sleepy/Move()
+/obj/effect/particle_effect/smoke/sleepy/Move()
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
+/obj/effect/particle_effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
 	if (!..())
 		return 0
 
@@ -324,16 +327,16 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 
 
-/obj/effect/effect/smoke/mustard
+/obj/effect/particle_effect/smoke/mustard
 	name = "mustard gas"
 	icon_state = "mustard"
 
-/obj/effect/effect/smoke/mustard/Move()
+/obj/effect/particle_effect/smoke/mustard/Move()
 	..()
 	for(var/mob/living/carbon/human/R in get_turf(src))
 		affect(R)
 
-/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
+/obj/effect/particle_effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
 	..()
 	R.burn_skin(0.75)
 	if (R.coughedtime != 1)
@@ -348,15 +351,15 @@ steam.start() -- spawns the effect
 // Phosporus Gas
 /////////////////////////////////////////////
 
-/obj/effect/effect/smoke/phosphorus
+/obj/effect/particle_effect/smoke/phosphorus
 	time_to_live = 200
 
-/obj/effect/effect/smoke/phosphorus/Move()
+/obj/effect/particle_effect/smoke/phosphorus/Move()
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/phosphorus/affect(var/mob/living/carbon/M)
+/obj/effect/particle_effect/smoke/phosphorus/affect(var/mob/living/carbon/M)
 	..()
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
@@ -380,12 +383,12 @@ steam.start() -- spawns the effect
 // Smoke spread
 /////////////////////////////////////////////
 
-/datum/effect/effect/system/smoke_spread
+/datum/effect_system/smoke_spread
 	var/total_smoke = 0 // To stop it being spammed and lagging!
 	var/direction
-	var/smoke_type = /obj/effect/effect/smoke
+	var/smoke_type = /obj/effect/particle_effect/smoke
 
-/datum/effect/effect/system/smoke_spread/set_up(n = 5, c = 0, loca, direct)
+/datum/effect_system/smoke_spread/set_up(n = 5, c = 0, loca, direct)
 	if(n > 10)
 		n = 10
 	number = n
@@ -397,7 +400,7 @@ steam.start() -- spawns the effect
 	if(direct)
 		direction = direct
 
-/datum/effect/effect/system/smoke_spread/start()
+/datum/effect_system/smoke_spread/start()
 	var/i = 0
 	for(i=0, i<src.number, i++)
 		if(src.total_smoke > 20)
@@ -405,7 +408,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/effect/smoke/smoke = new smoke_type(src.location)
+			var/obj/effect/particle_effect/smoke/smoke = new smoke_type(src.location)
 			src.total_smoke++
 			var/direction = src.direction
 			if(!direction)
@@ -421,18 +424,18 @@ steam.start() -- spawns the effect
 				src.total_smoke--
 
 
-/datum/effect/effect/system/smoke_spread/bad
-	smoke_type = /obj/effect/effect/smoke/bad
+/datum/effect_system/smoke_spread/bad
+	smoke_type = /obj/effect/particle_effect/smoke/bad
 
-/datum/effect/effect/system/smoke_spread/sleepy
-	smoke_type = /obj/effect/effect/smoke/sleepy
+/datum/effect_system/smoke_spread/sleepy
+	smoke_type = /obj/effect/particle_effect/smoke/sleepy
 
 
-/datum/effect/effect/system/smoke_spread/mustard
-	smoke_type = /obj/effect/effect/smoke/mustard
+/datum/effect_system/smoke_spread/mustard
+	smoke_type = /obj/effect/particle_effect/smoke/mustard
 
-/datum/effect/effect/system/smoke_spread/phosphorus
-	smoke_type = /obj/effect/effect/smoke/phosphorus
+/datum/effect_system/smoke_spread/phosphorus
+	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
 
 
 /////////////////////////////////////////////
@@ -442,12 +445,12 @@ steam.start() -- spawns the effect
 /// and don't call start() in a loop that will be repeated otherwise it'll get spammed!
 /////////////////////////////////////////////
 
-/obj/effect/effect/ion_trails
+/obj/effect/particle_effect/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
 	anchored = 1.0
 
-/datum/effect/effect/system/ion_trail_follow
+/datum/effect_system/ion_trail_follow
 	var/turf/oldposition
 	var/processing = 1
 	var/on = 1
@@ -466,7 +469,7 @@ steam.start() -- spawns the effect
 				var/turf/T = get_turf(src.holder)
 				if(T != src.oldposition)
 					if(istype(T, /turf/space))
-						var/obj/effect/effect/ion_trails/I = new /obj/effect/effect/ion_trails(src.oldposition)
+						var/obj/effect/particle_effect/ion_trails/I = new /obj/effect/particle_effect/ion_trails(src.oldposition)
 						src.oldposition = T
 						I.dir = src.holder.dir
 						flick("ion_fade", I)
@@ -495,7 +498,7 @@ steam.start() -- spawns the effect
 // even if it's carried of thrown.
 /////////////////////////////////////////////
 
-/datum/effect/effect/system/steam_trail_follow
+/datum/effect_system/steam_trail_follow
 	var/turf/oldposition
 	var/processing = 1
 	var/on = 1
@@ -512,7 +515,7 @@ steam.start() -- spawns the effect
 			src.processing = 0
 			spawn(0)
 				if(src.number < 3)
-					var/obj/effect/effect/steam/I = new /obj/effect/effect/steam(src.oldposition)
+					var/obj/effect/particle_effect/steam/I = new /obj/effect/particle_effect/steam(src.oldposition)
 					src.number++
 					src.oldposition = get_turf(holder)
 					I.dir = src.holder.dir
@@ -539,7 +542,7 @@ steam.start() -- spawns the effect
 // Similar to smoke, but spreads out more
 // metal foams leave behind a foamed metal wall
 
-/obj/effect/effect/foam
+/obj/effect/particle_effect/foam
 	name = "foam"
 	icon_state = "foam"
 	opacity = 0
@@ -553,7 +556,7 @@ steam.start() -- spawns the effect
 	var/metal = 0
 
 
-/obj/effect/effect/foam/New(loc, var/ismetal=0)
+/obj/effect/particle_effect/foam/New(loc, var/ismetal=0)
 	..(loc)
 	icon_state = "[ismetal ? "m":""]foam"
 	metal = ismetal
@@ -576,14 +579,14 @@ steam.start() -- spawns the effect
 	return
 
 // transfer any reagents to the floor
-/obj/effect/effect/foam/proc/checkReagents()
+/obj/effect/particle_effect/foam/proc/checkReagents()
 	if(!metal && reagents)
 		for(var/atom/A in src.loc.contents)
 			if(A == src)
 				continue
 			reagents.reaction(A, 1, 1)
 
-/obj/effect/effect/foam/process()
+/obj/effect/particle_effect/foam/process()
 	if(--amount < 0)
 		return
 
@@ -598,7 +601,7 @@ steam.start() -- spawns the effect
 		if(!T.Enter(src))
 			continue
 
-		var/obj/effect/effect/foam/F = locate() in T
+		var/obj/effect/particle_effect/foam/F = locate() in T
 		if(F)
 			continue
 
@@ -612,7 +615,7 @@ steam.start() -- spawns the effect
 
 // foam disolves when heated
 // except metal foams
-/obj/effect/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/effect/particle_effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
@@ -620,7 +623,7 @@ steam.start() -- spawns the effect
 			delete()
 
 
-/obj/effect/effect/foam/Crossed(var/atom/movable/AM)
+/obj/effect/particle_effect/foam/Crossed(var/atom/movable/AM)
 	if(metal)
 		return
 	if (iscarbon(AM))
@@ -628,7 +631,7 @@ steam.start() -- spawns the effect
 		C.slip("foam", 5, 2)
 
 
-/datum/effect/effect/system/foam_spread
+/datum/effect_system/foam_spread
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/metal = 0				// 0=foam, 1=metalfoam, 2=ironfoam
@@ -658,7 +661,7 @@ steam.start() -- spawns the effect
 
 	start()
 		spawn(0)
-			var/obj/effect/effect/foam/F = locate() in location
+			var/obj/effect/particle_effect/foam/F = locate() in location
 			if(F)
 				F.amount += amount
 				return
@@ -751,7 +754,7 @@ steam.start() -- spawns the effect
 		if(air_group) return 0
 		return !density
 
-/datum/effect/effect/system/reagents_explosion
+/datum/effect_system/reagents_explosion
 	var/amount 						// TNT equivalent
 	var/flashing = 0			// does explosion creates flash effect?
 	var/flashing_factor = 0		// factor of how powerful the flash effect relatively to the explosion
@@ -770,7 +773,7 @@ steam.start() -- spawns the effect
 
 	start()
 		if (amount <= 2)
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(2, 1, location)
 			s.start()
 

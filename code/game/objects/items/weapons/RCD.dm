@@ -20,7 +20,7 @@ RCD
 	w_class = 3.0
 	matter = list("metal" = 50000)
 	origin_tech = "engineering=4;materials=2"
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect_system/spark_spread/spark_system
 	var/stored_matter = 0
 	var/working = 0
 	var/mode = 1
@@ -30,7 +30,7 @@ RCD
 
 	New()
 		desc = "A RCD. It currently holds [stored_matter]/30 matter-units."
-		src.spark_system = new /datum/effect/effect/system/spark_spread
+		src.spark_system = new /datum/effect_system/spark_spread
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		return

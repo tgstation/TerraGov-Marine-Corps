@@ -7,8 +7,8 @@
 	var/atom/movable/teleatom //atom to teleport
 	var/atom/destination //destination to teleport to
 	var/precision = 0 //teleport precision
-	var/datum/effect/effect/system/effectin //effect to show right before teleportation
-	var/datum/effect/effect/system/effectout //effect to show right after teleportation
+	var/datum/effect_system/effectin //effect to show right before teleportation
+	var/datum/effect_system/effectout //effect to show right after teleportation
 	var/soundin //soundfile to play before teleportation
 	var/soundout //soundfile to play after teleportation
 	var/force_teleport = 1 //if false, teleport will use Move() proc (dense objects will prevent teleportation)
@@ -58,7 +58,7 @@
 
 	//custom effects must be properly set up first for instant-type teleports
 	//optional
-	proc/setEffects(datum/effect/effect/system/aeffectin=null,datum/effect/effect/system/aeffectout=null)
+	proc/setEffects(datum/effect_system/aeffectin=null,datum/effect_system/aeffectout=null)
 		effectin = istype(aeffectin) ? aeffectin : null
 		effectout = istype(aeffectout) ? aeffectout : null
 		return 1
@@ -78,7 +78,7 @@
 	proc/teleportChecks()
 		return 1
 
-	proc/playSpecials(atom/location,datum/effect/effect/system/effect,sound)
+	proc/playSpecials(atom/location,datum/effect_system/effect,sound)
 		if(location)
 			if(effect)
 				spawn(-1)
@@ -141,9 +141,9 @@
 
 /datum/teleport/instant/science
 
-	setEffects(datum/effect/effect/system/aeffectin,datum/effect/effect/system/aeffectout)
+	setEffects(datum/effect_system/aeffectin,datum/effect_system/aeffectout)
 		if(!aeffectin || !aeffectout)
-			var/datum/effect/effect/system/spark_spread/aeffect = new
+			var/datum/effect_system/spark_spread/aeffect = new
 			aeffect.set_up(5, 1, teleatom)
 			effectin = effectin || aeffect
 			effectout = effectout || aeffect

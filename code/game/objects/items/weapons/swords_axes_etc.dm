@@ -190,7 +190,7 @@
 	flags_atom = DELONDROP|FPRINT|NOBLOODY
 
 	New()
-		spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system = new /datum/effect_system/spark_spread()
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		..()

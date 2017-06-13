@@ -412,7 +412,7 @@ cdel(src)
 		var/turf/T_trg = locate(trg.x + C.x_pos, trg.y + C.y_pos, trg.z)
 
 		for(var/obj/O in T_trg)
-			if(istype(O, /obj/effect/effect/smoke)) continue //We land on smoke a lot and it has weird TTL systems that will generate runtimes otherwise
+			if(istype(O, /obj/effect/particle_effect/smoke)) continue //We land on smoke a lot and it has weird TTL systems that will generate runtimes otherwise
 			cdel(O)
 
 		var/mob/living/carbon/MLC

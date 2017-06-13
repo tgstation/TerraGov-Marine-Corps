@@ -202,8 +202,8 @@
 					r_FAL
 
 			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
-				var/datum/effect/effect/system/spark_spread/spark_system
-				spark_system = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect_system/spark_spread/spark_system
+				spark_system = new /datum/effect_system/spark_spread()
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()

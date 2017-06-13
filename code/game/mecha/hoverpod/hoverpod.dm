@@ -13,7 +13,7 @@
 	var/list/cargo = new
 	var/cargo_capacity = 3
 	max_equip = 2
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect_system/ion_trail_follow/ion_trail
 
 /obj/mecha/hoverpod/New()
 	..()
@@ -21,7 +21,7 @@
 	if(T.z != 2)
 		new /obj/item/mecha_parts/mecha_tracking(src)
 
-	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+	ion_trail = new /datum/effect_system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.start()
 

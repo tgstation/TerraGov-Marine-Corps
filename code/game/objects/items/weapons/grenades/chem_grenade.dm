@@ -143,7 +143,7 @@
 			G.reagents.trans_to(src, G.reagents.total_volume)
 
 		if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
-			var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
+			var/datum/effect_system/steam_spread/steam = new /datum/effect_system/steam_spread()
 			steam.set_up(10, 0, get_turf(src))
 			steam.attach(src)
 			steam.start()

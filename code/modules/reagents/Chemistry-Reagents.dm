@@ -25,7 +25,7 @@
 	src = null										  //of the reagent to the mob on TOUCHING it.
 
 	if(self.holder)		//for catching rare runtimes
-		if(!istype(self.holder.my_atom, /obj/effect/effect/smoke/chem))
+		if(!istype(self.holder.my_atom, /obj/effect/particle_effect/smoke/chem))
 			// If the chemicals are in a smoke cloud, do not try to let the chemicals "penetrate" into the mob's system (balance station 13) -- Doohl
 
 			if(method == TOUCH)

@@ -12,10 +12,10 @@
 	var/busy
 	var/ready = 0
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
-	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
 	var/charge_cost = 100 //How much energy is used.
 	var/obj/item/weapon/cell/dcell = null
-	var/datum/effect/effect/system/spark_spread/sparks = new
+	var/datum/effect_system/spark_spread/sparks = new
 	var/defib_cooldown = 0 //Cooldown for toggling the defib
 	origin_tech = "biotech=3"
 

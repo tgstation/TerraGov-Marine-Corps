@@ -599,25 +599,25 @@
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 4, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(M))
 		smoke.start()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
 		explosion(get_turf(O), -1, 1, 4, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(O))
 		smoke.start()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
 		explosion(T,  -1, 1, 4, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, T)
 		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
 		explosion(get_turf(P),  -1, 1, 4, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(P))
 		smoke.start()
 
@@ -636,25 +636,25 @@
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 2, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(M))
 		smoke.start()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
 		explosion(get_turf(O), -1, 1, 2, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(O))
 		smoke.start()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
 		explosion(T,  -1, 1, 2, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, T)
 		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
 		explosion(get_turf(P),  -1, 1, 2, 5)
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, get_turf(P))
 		smoke.start()
 
@@ -671,7 +671,7 @@
 
 	drop_flame(turf/T)
 		if(!istype(T)) return
-		var/datum/effect/effect/system/smoke_spread/smoke = new
+		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(6, 0, T)
 		smoke.start()
 		if(locate(/obj/flamer_fire) in T) return

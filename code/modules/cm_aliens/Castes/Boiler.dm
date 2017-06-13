@@ -33,7 +33,7 @@
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"
 	var/readying_bombard = 0
 	var/bomb_cooldown = 0
-	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
+	var/datum/effect_system/smoke_spread/xeno_acid/smoke
 	var/acid_cooldown = 0
 	var/prev_turf = null
 	var/turf/bomb_turf = null
@@ -53,7 +53,7 @@
 	New()
 		..()
 		SetLuminosity(3)
-		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
+		smoke = new /datum/effect_system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
 		bomb_ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
@@ -237,11 +237,11 @@
 	flags_atom = FPRINT
 	anchored = 1
 	density = 0
-	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
+	var/datum/effect_system/smoke_spread/xeno_acid/smoke
 
 	New()
 		..()
-		src.smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
+		src.smoke = new /datum/effect_system/smoke_spread/xeno_acid
 		src.smoke.attach(src)
 
 	prime()
@@ -257,21 +257,21 @@
 		cdel(src)
 		return
 
-/datum/effect/effect/system/smoke_spread/xeno_acid
-	smoke_type = /obj/effect/effect/smoke/xeno_burn
+/datum/effect_system/smoke_spread/xeno_acid
+	smoke_type = /obj/effect/particle_effect/smoke/xeno_burn
 
 //Xeno acid smoke.
-/obj/effect/effect/smoke/xeno_burn
+/obj/effect/particle_effect/smoke/xeno_burn
 	time_to_live = 180
 	color = "#86B028" //Mostly green?
 	anchored = 1
 
-/obj/effect/effect/smoke/xeno_burn/Move()
+/obj/effect/particle_effect/smoke/xeno_burn/Move()
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/xeno_burn/affect(var/mob/living/carbon/M)
+/obj/effect/particle_effect/smoke/xeno_burn/affect(var/mob/living/carbon/M)
 	..()
 	if(isXeno(M))
 		return
@@ -312,11 +312,11 @@
 	det_time = 8
 	flags_atom = FPRINT
 	anchored = 1
-	var/datum/effect/effect/system/smoke_spread/xeno_weaken/smoke
+	var/datum/effect_system/smoke_spread/xeno_weaken/smoke
 
 	New()
 		..()
-		src.smoke = new /datum/effect/effect/system/smoke_spread/xeno_weaken
+		src.smoke = new /datum/effect_system/smoke_spread/xeno_weaken
 		src.smoke.attach(src)
 
 	prime()
@@ -331,20 +331,20 @@
 		sleep(20)
 		cdel(src)
 
-/datum/effect/effect/system/smoke_spread/xeno_weaken
-	smoke_type = /obj/effect/effect/smoke/xeno_weak
+/datum/effect_system/smoke_spread/xeno_weaken
+	smoke_type = /obj/effect/particle_effect/smoke/xeno_weak
 
 //Xeno acid smoke.
-/obj/effect/effect/smoke/xeno_weak
+/obj/effect/particle_effect/smoke/xeno_weak
 	time_to_live = 150
 	color = "#82BA13" //Mostly green?
 
-/obj/effect/effect/smoke/xeno_weak/Move()
+/obj/effect/particle_effect/smoke/xeno_weak/Move()
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
+/obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
 	..()
 	if(isXeno(M))
 		return

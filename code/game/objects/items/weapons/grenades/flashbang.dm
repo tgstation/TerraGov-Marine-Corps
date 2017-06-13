@@ -19,7 +19,7 @@
 
 
 
-		new/obj/effect/effect/smoke/flashbang(src.loc)
+		new/obj/effect/particle_effect/smoke/flashbang(src.loc)
 		cdel(src)
 		return
 
@@ -99,13 +99,13 @@
 				M << "\red Your ears start to ring!"
 		M.update_icons()
 
-/obj/effect/effect/smoke/flashbang
+/obj/effect/particle_effect/smoke/flashbang
 	name = "illumination"
 	time_to_live = 10
 	opacity = 0
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/flashbang/New()
+/obj/effect/particle_effect/smoke/flashbang/New()
 	..()
 //	SetLuminosity(15)
 

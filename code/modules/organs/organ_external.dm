@@ -665,7 +665,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"<span class='danger'>Your [display_name] explodes!</span>",
 			"<span class='warning'>You hear an explosion!</span>")
 			explosion(get_turf(owner),-1,-1,2,3)
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()
@@ -845,7 +845,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(10))
 			owner.drop_inv_item_on_ground(c_hand)
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()

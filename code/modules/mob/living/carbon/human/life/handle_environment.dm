@@ -111,9 +111,9 @@
 			pressure_alert = -1
 
 	if(isturf(loc) && !stat)
-		var/obj/effect/effect/smoke/xeno_weak/X = locate() in loc
+		var/obj/effect/particle_effect/smoke/xeno_weak/X = locate() in loc
 		if(X)
 			X.affect(src)
-		var/obj/effect/effect/smoke/xeno_burn/Z = locate() in loc
+		var/obj/effect/particle_effect/smoke/xeno_burn/Z = locate() in loc
 		if(Z)
 			Z.affect(src)
