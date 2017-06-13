@@ -78,8 +78,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/force_shuttle
 )
 var/list/admin_verbs_ban = list(
-	/client/proc/unban_panel,
-	/client/proc/jobbans
+	/client/proc/unban_panel
+	// /client/proc/jobbans // Disabled temporarily due to 15-30 second lag spikes. Don't forget the comma in the line above when uncommenting this!
 	)
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
@@ -239,7 +239,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/toggle_own_ghost_vis,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
-	/client/proc/jobbans,
+	// /client/proc/jobbans // Disabled temporarily due to 15-30 second lag spikes. Don't forget the comma in the line above when uncommenting this!
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
 	/client/proc/toggleffattacklogs,
@@ -419,7 +419,7 @@ var/list/admin_verbs_mentor = list(
 	return
 
 /client/proc/jobbans()
-	set name = "Display Job bans"
+	set name = "Display Job Bans"
 	set category = "Admin"
 	if(holder)
 		if(config.ban_legacy_system)
