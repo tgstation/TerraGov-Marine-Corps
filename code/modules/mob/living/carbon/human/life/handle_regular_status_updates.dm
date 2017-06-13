@@ -103,7 +103,7 @@
 			ear_deaf = max(ear_deaf, 1)
 		else if(ear_deaf) //Deafness, heals slowly over time
 			ear_deaf = max(ear_deaf - 1, 0)
-		else if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))	//Resting your ears with earmuffs heals ear damage faster
+		else if(istype(wear_ear, /obj/item/clothing/ears/earmuffs))	//Resting your ears with earmuffs heals ear damage faster
 			ear_damage = max(ear_damage - 0.15, 0)
 			ear_deaf = max(ear_deaf, 1)
 		else if(ear_damage < 25) //Ear damage heals slowly under this threshold. otherwise you'll need earmuffs

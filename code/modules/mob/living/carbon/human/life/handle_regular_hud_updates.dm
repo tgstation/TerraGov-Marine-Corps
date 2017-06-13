@@ -117,8 +117,8 @@
 			glasses_processed = 1
 			process_glasses(glasses)
 
-		if(wear_suit)
-			process_suit()
+		if(wear_ear)
+			process_earpiece()
 
 		if(!glasses_processed)
 			see_invisible = SEE_INVISIBLE_LIVING

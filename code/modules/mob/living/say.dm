@@ -1,6 +1,4 @@
 var/list/department_radio_keys = list(
-	  ":r" = "right ear",	"#r" = "right ear",		".r" = "right ear",
-	  ":l" = "left ear",	"#l" = "left ear",		".l" = "left ear",
 	  ":i" = "intercom",	"#i" = "intercom",		".i" = "intercom",
 	  ":h" = "department",	"#h" = "department",	".h" = "department",
 	  ":+" = "special",		"#+" = "special",		".+" = "special", //activate radio-specific special functions
@@ -54,12 +52,10 @@ var/list/department_radio_keys = list(
 		return
 
 	var/mob/living/carbon/human/H = src
-	if (H.l_ear || H.r_ear)
+	if (H.wear_ear)
 		var/obj/item/device/radio/headset/dongle
-		if(istype(H.l_ear,/obj/item/device/radio/headset))
-			dongle = H.l_ear
-		else
-			dongle = H.r_ear
+		if(istype(H.wear_ear,/obj/item/device/radio/headset))
+			dongle = H.wear_ear
 		if(!istype(dongle)) return
 		if(dongle.translate_binary) return 1
 

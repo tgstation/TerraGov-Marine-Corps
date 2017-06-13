@@ -19,7 +19,7 @@
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/heads/cmo,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/cmo,
 				WEAR_BODY = /obj/item/clothing/under/rank/chief_medical_officer,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
@@ -57,7 +57,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/headset_med,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/doc,
 				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
@@ -95,7 +95,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/headset_med,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/doc,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/researcher,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
@@ -133,7 +133,7 @@ Your role involves a lot of roleplaying, but you can perform the function of a r
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/liaison_suit,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/satchel

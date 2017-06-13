@@ -70,42 +70,10 @@
 
 	switch (message_mode)
 		if("headset")
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = l_ear
+			if(wear_ear && istype(wear_ear,/obj/item/device/radio))
+				var/obj/item/device/radio/R = wear_ear
 				R.talk_into(src,message,null,verb,speaking)
-				used_radios += l_ear
-			else if(r_ear && istype(r_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = r_ear
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += r_ear
-
-		if("right ear")
-			var/obj/item/device/radio/R
-			var/has_radio = 0
-			if(r_ear && istype(r_ear,/obj/item/device/radio))
-				R = r_ear
-				has_radio = 1
-			if(r_hand && istype(r_hand, /obj/item/device/radio))
-				R = r_hand
-				has_radio = 1
-			if(has_radio)
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += R
-
-
-		if("left ear")
-			var/obj/item/device/radio/R
-			var/has_radio = 0
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
-				R = l_ear
-				has_radio = 1
-			if(l_hand && istype(l_hand,/obj/item/device/radio))
-				R = l_hand
-				has_radio = 1
-			if(has_radio)
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += R
-
+				used_radios += wear_ear
 		if("intercom")
 			for(var/obj/item/device/radio/intercom/I in view(1, null))
 				I.talk_into(src, message, verb, speaking)
@@ -115,12 +83,9 @@
 			return
 		else
 			if(message_mode)
-				if(l_ear && istype(l_ear,/obj/item/device/radio))
-					l_ear.talk_into(src,message, message_mode, verb, speaking)
-					used_radios += l_ear
-				else if(r_ear && istype(r_ear,/obj/item/device/radio))
-					r_ear.talk_into(src,message, message_mode, verb, speaking)
-					used_radios += r_ear
+				if(wear_ear && istype(wear_ear,/obj/item/device/radio))
+					wear_ear.talk_into(src,message, message_mode, verb, speaking)
+					used_radios += wear_ear
 
 	var/sound/speech_sound
 	var/sound_vol

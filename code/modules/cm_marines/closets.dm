@@ -47,7 +47,7 @@
 			new /obj/item/clothing/under/marine/officer/command(src)
 			new /obj/item/clothing/head/beret/marine/commander(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
-			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/device/radio/headset/almayer/mcom(src)
 
 	select_gamemode_equipment()
 
@@ -81,8 +81,8 @@
 			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/clothing/head/cmcap/ro(src)
-			new /obj/item/device/radio/headset/mcom(src)
-			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/device/radio/headset/almayer/mcom(src)
+			new /obj/item/device/radio/headset/almayer/mcom(src)
 			new /obj/item/clothing/under/marine/officer/bridge(src)
 			new /obj/item/clothing/under/marine/officer/bridge(src)
 			new /obj/item/clothing/shoes/marine(src)
@@ -109,7 +109,7 @@
 	New()
 		spawn(2)
 			new /obj/item/clothing/head/helmet/marine/pilot(src)
-			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/device/radio/headset/almayer/mcom(src)
 			new /obj/item/clothing/under/marine/officer/pilot(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/suit/armor/vest/pilot(src)
@@ -146,7 +146,7 @@
 			new /obj/item/weapon/storage/belt/security/MP(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
-			new /obj/item/device/radio/headset/mmpo(src)
+			new /obj/item/device/radio/headset/almayer/mmpo(src)
 			new /obj/item/weapon/gun/energy/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/security (src)
@@ -174,7 +174,7 @@
 			new /obj/item/weapon/storage/belt/security/MP(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
-			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/device/radio/headset/almayer/mcom(src)
 			new /obj/item/weapon/gun/energy/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/security (src)
@@ -202,9 +202,9 @@
 			new /obj/item/clothing/head/helmet/riot(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
-			new /obj/item/device/radio/headset/mmpo(src)
+			new /obj/item/device/radio/headset/almayer/mmpo(src)
 			new /obj/item/clothing/gloves/black(src)
-			new /obj/item/device/radio/headset/mmpo(src)
+			new /obj/item/device/radio/headset/almayer/mmpo(src)
 			new /obj/item/clothing/tie/holster/waist(src)
 
 	select_gamemode_equipment()
@@ -224,7 +224,7 @@
 		..()
 		spawn(5)
 			new /obj/item/clothing/gloves/marine/alpha(src)
-			new /obj/item/device/radio/headset/malpha(src)
+			new /obj/item/device/radio/headset/almayer/marine/alpha(src)
 
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment
@@ -241,7 +241,7 @@
 		..()
 		spawn(6)
 			new /obj/item/clothing/gloves/marine/bravo(src)
-			new /obj/item/device/radio/headset/mbravo(src)
+			new /obj/item/device/radio/headset/almayer/marine/bravo(src)
 
 //CHARLIE EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_charlie_equipment
@@ -258,7 +258,7 @@
 		..()
 		spawn(7)
 			new /obj/item/clothing/gloves/marine/charlie(src)
-			new /obj/item/device/radio/headset/mcharlie(src)
+			new /obj/item/device/radio/headset/almayer/marine/charlie(src)
 
 //DELTA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
@@ -275,7 +275,7 @@
 		..()
 		spawn(8)
 			new /obj/item/clothing/gloves/marine/delta(src)
-			new /obj/item/device/radio/headset/mdelta(src)
+			new /obj/item/device/radio/headset/almayer/marine/delta(src)
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
@@ -309,7 +309,7 @@
 			new /obj/item/clothing/suit/storage/labcoat(src)
 			new /obj/item/clothing/suit/storage/fr_jacket(src)
 			new /obj/item/clothing/shoes/white(src)
-			if(z != 1) new /obj/item/device/radio/headset/headset_med(src)
+			if(z != 1) new /obj/item/device/radio/headset/almayer/doc(src)
 			new /obj/item/weapon/storage/belt/medical(src)
 			new /obj/item/clothing/glasses/hud/health(src)
 
@@ -347,8 +347,8 @@
 		..()
 		for(var/c, c<10, c++)
 			new /obj/item/clothing/gloves/marine/alpha(src)
-			new /obj/item/device/radio/headset/malpha(src)
-		new /obj/item/device/radio/headset/malphal(src)
+			new /obj/item/device/radio/headset/almayer/marine/alpha(src)
+		new /obj/item/device/radio/headset/almayer/marine/alpha/lead(src)
 		return
 
 /obj/structure/closet/crate/plastic/marine/bravo
@@ -358,8 +358,8 @@
 		..()
 		for(var/c, c<5, c++)
 			new /obj/item/clothing/gloves/marine/bravo(src)
-			new /obj/item/device/radio/headset/mbravo(src)
-		new /obj/item/device/radio/headset/mbravol(src)
+			new /obj/item/device/radio/headset/almayer/marine/bravo(src)
+		new /obj/item/device/radio/headset/almayer/marine/bravo/lead(src)
 		return
 
 /obj/structure/closet/crate/plastic/marine/charlie
@@ -369,8 +369,8 @@
 		..()
 		for(var/c, c<5, c++)
 			new /obj/item/clothing/gloves/marine/charlie(src)
-			new /obj/item/device/radio/headset/mcharlie(src)
-		new /obj/item/device/radio/headset/mcharliel(src)
+			new /obj/item/device/radio/headset/almayer/marine/charlie(src)
+		new /obj/item/device/radio/headset/almayer/marine/charlie/lead(src)
 		return
 
 /obj/structure/closet/crate/plastic/marine/delta
@@ -380,8 +380,8 @@
 		..()
 		for(var/c, c<5, c++)
 			new /obj/item/clothing/gloves/marine/delta(src)
-			new /obj/item/device/radio/headset/mdelta(src)
-		new /obj/item/device/radio/headset/mdeltal(src)
+			new /obj/item/device/radio/headset/almayer/marine/delta(src)
+		new /obj/item/device/radio/headset/almayer/marine/delta/lead(src)
 		return
 
 /obj/structure/closet/crate/plastic/marine/REBEL
@@ -413,7 +413,7 @@
 
 	New()
 		spawn(2)
-			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/device/radio/headset/almayer/mcom(src)
 			new /obj/item/clothing/under/rank/ro_suit(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)

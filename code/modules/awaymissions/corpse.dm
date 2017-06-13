@@ -42,7 +42,7 @@
 	if(src.corpsegloves)
 		M.equip_to_slot_or_del(new src.corpsegloves(M), WEAR_HANDS)
 	if(src.corpseradio)
-		M.equip_to_slot_or_del(new src.corpseradio(M), WEAR_L_EAR)
+		M.equip_to_slot_or_del(new src.corpseradio(M), WEAR_EAR)
 	if(src.corpseglasses)
 		M.equip_to_slot_or_del(new src.corpseglasses(M), WEAR_EYES)
 	if(src.corpsemask)

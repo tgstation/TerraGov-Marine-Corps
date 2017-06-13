@@ -227,7 +227,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/cargo(src)
-//		new /obj/item/device/encryptionkey/headset_cargo(src)
+//		new /obj/item/device/encryptionkey/req(src)
 		return
 
 /obj/structure/closet/secure_closet/security/engine
@@ -235,7 +235,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/engine(src)
-		new /obj/item/device/encryptionkey/headset_eng(src)
+		new /obj/item/device/encryptionkey/engi(src)
 		return
 
 /obj/structure/closet/secure_closet/security/science
@@ -251,7 +251,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/medgreen(src)
-		new /obj/item/device/encryptionkey/headset_med(src)
+		new /obj/item/device/encryptionkey/med(src)
 		return
 
 

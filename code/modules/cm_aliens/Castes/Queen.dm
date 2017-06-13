@@ -195,7 +195,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 
 	for(var/mob/living/carbon/human/M in oview())
-		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
+		if(istype(M.wear_ear, /obj/item/clothing/ears/earmuffs))
 			continue
 		var/dist = get_dist(src,M)
 		if(dist <= 4)
