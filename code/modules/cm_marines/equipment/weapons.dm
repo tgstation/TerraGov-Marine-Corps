@@ -652,11 +652,11 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	icon_state = "grenade_smoke"
 	det_time = 20
 	item_state = "grenade_smoke"
-	var/datum/effect/effect/system/smoke_spread/bad/smoke
+	var/datum/effect_system/smoke_spread/bad/smoke
 
 	New()
 		..()
-		smoke = new /datum/effect/effect/system/smoke_spread/bad
+		smoke = new /datum/effect_system/smoke_spread/bad
 		smoke.attach(src)
 
 	prime()
@@ -684,12 +684,12 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	icon_state = "grenade_phos"
 	det_time = 20
 	item_state = "grenade_phos"
-	var/datum/effect/effect/system/smoke_spread/phosphorus/smoke
+	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	dangerous = 1
 
 	New()
 		..()
-		smoke = new /datum/effect/effect/system/smoke_spread/phosphorus
+		smoke = new /datum/effect_system/smoke_spread/phosphorus
 		smoke.attach(src)
 
 	prime()

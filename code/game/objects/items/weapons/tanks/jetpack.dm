@@ -7,7 +7,7 @@
 	w_class = 4.0
 	item_state = "jetpack"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect_system/ion_trail_follow/ion_trail
 	var/on = 0.0
 	var/stabilization_on = 0
 	var/volume_rate = 500              //Needed for borg jetpack transfer
@@ -15,7 +15,7 @@
 
 /obj/item/weapon/tank/jetpack/New()
 	..()
-	src.ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+	src.ion_trail = new /datum/effect_system/ion_trail_follow()
 	src.ion_trail.set_up(src)
 
 /obj/item/weapon/tank/jetpack/examine(mob/user)
@@ -101,7 +101,7 @@
 
 /obj/item/weapon/tank/jetpack/carbondioxide/New()
 	..()
-	src.ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+	src.ion_trail = new /datum/effect_system/ion_trail_follow()
 	src.ion_trail.set_up(src)
 	//src.air_contents.carbon_dioxide = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	air_contents.adjust_gas("carbon_dioxide", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))

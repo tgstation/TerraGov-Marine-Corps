@@ -110,7 +110,7 @@
 
 			if(T)
 				if(dist < flame_range && prob(40) && !istype(T, /turf/space))
-					var/obj/effect/effect/fire/F = new /obj/effect/effect/fire(T)
+					var/obj/effect/particle_effect/fire/F = new /obj/effect/particle_effect/fire(T)
 					if(istype(F))
 						F.life = rand(6,10)
 

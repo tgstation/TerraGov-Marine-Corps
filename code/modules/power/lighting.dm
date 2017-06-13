@@ -415,7 +415,7 @@
 
 		user << "You stick \the [W] into the light socket!"
 		if(has_power() && (W.flags_atom & CONDUCT))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
@@ -557,7 +557,7 @@
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 //		if(on)
-//			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+//			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 //			s.set_up(3, 1, src)
 //			s.start()
 	status = LIGHT_BROKEN

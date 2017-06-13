@@ -227,7 +227,7 @@
 	var/health = 200
 	var/health_max = 200
 	stat = 0 //Used just like mob.stat
-	var/datum/effect/effect/system/spark_spread/spark_system // the spark system, used for generating... sparks?
+	var/datum/effect_system/spark_spread/spark_system // the spark system, used for generating... sparks?
 	var/obj/item/weapon/cell/cell = null
 	var/burst_fire = 0
 	var/obj/machinery/camera/camera = null
@@ -240,7 +240,7 @@
 	var/obj/item/projectile/in_chamber = null
 
 	New()
-		spark_system = new /datum/effect/effect/system/spark_spread
+		spark_system = new /datum/effect_system/spark_spread
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		cell = new (src)
@@ -950,7 +950,7 @@
 	icon_state = "turret-1"
 
 	New()
-		spark_system = new /datum/effect/effect/system/spark_spread
+		spark_system = new /datum/effect_system/spark_spread
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		var/obj/item/weapon/cell/super/H = new(src) //Better cells in these ones.

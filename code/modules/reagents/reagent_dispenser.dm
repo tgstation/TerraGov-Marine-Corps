@@ -49,12 +49,12 @@
 				return
 			if(2.0)
 				if (prob(50))
-					new /obj/effect/effect/water(src.loc)
+					new /obj/effect/particle_effect/water(src.loc)
 					cdel(src)
 					return
 			if(3.0)
 				if (prob(5))
-					new /obj/effect/effect/water(src.loc)
+					new /obj/effect/particle_effect/water(src.loc)
 					cdel(src)
 					return
 			else

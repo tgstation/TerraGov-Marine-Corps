@@ -63,7 +63,7 @@
 /obj/machinery/sparker/power_change()
 	..()
 	if ( !(stat & NOPOWER) && disable == 0 )
-		
+
 		icon_state = "[base_state]"
 //		src.sd_SetLuminosity(2)
 	else
@@ -101,7 +101,7 @@
 
 
 	flick("[base_state]-spark", src)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(2, 1, src)
 	s.start()
 	src.last_spark = world.time
