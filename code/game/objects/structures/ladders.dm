@@ -31,6 +31,18 @@
 				break
 		update_icon()
 
+/obj/structure/ladder/Dispose()
+	if(down)
+		down.up = null
+		down = null
+	if(up)
+		up.down = null
+		up = null
+	if(cam)
+		cdel(cam)
+		cam = null
+	. = ..()
+
 /obj/structure/ladder/update_icon()
 	if(up && down)
 		icon_state = "ladder11"
@@ -86,11 +98,11 @@
 
 	//Are ladder cameras ok?
 	if (is_watching == 1)
-		if (!down.cam || !down.cam.can_use()) //camera doesn't work or is gone
+		if (!down || !down.cam || !down.cam.can_use()) //camera doesn't work or is gone
 			is_watching = 0
 			user.unset_machine()
 	else if (is_watching == 2)
-		if (!up.cam || !up.cam.can_use()) //camera doesn't work or is gone
+		if (!up || !up.cam || !up.cam.can_use()) //camera doesn't work or is gone
 			is_watching = 0
 			user.unset_machine()
 
