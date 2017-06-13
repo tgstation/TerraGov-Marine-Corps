@@ -492,3 +492,9 @@
 						M.emote("scream")
 					if(prob(40))
 						M.Weaken(rand(3, 8))
+
+
+/mob/living/carbon/Xenomorph/Boiler/zoom_out()
+	..()
+	var/mob/living/carbon/Xenomorph/Boiler/boiler = src
+	boiler.zoom_timer = 0
