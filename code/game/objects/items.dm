@@ -386,20 +386,10 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 				if(!(flags_equip_slot & SLOT_HEAD))
 					return 0
 				return 1
-			if(WEAR_L_EAR)
-				if(H.l_ear)
+			if(WEAR_EAR)
+				if(H.wear_ear)
 					return 0
 				if(!(flags_equip_slot & SLOT_EAR))
-					return 0
-				if((flags_equip_slot & SLOT_EARS) && H.r_ear)
-					return 0
-				return 1
-			if(WEAR_R_EAR)
-				if(H.r_ear)
-					return 0
-				if(!(flags_equip_slot & SLOT_EAR))
-					return 0
-				if((flags_equip_slot & SLOT_EARS) && H.l_ear)
 					return 0
 				return 1
 			if(WEAR_BODY)

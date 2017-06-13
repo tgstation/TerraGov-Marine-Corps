@@ -24,7 +24,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/command,
 				WEAR_FEET = /obj/item/clothing/shoes/marinechief/commander,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/techofficer/commander,
@@ -68,7 +68,7 @@ Come hell or high water, you are going to be there for them."}
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/exec,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m44/full,
@@ -98,7 +98,7 @@ Make the USCM proud!"}
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/bridge,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/full,
@@ -124,7 +124,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/pilot,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
@@ -175,7 +175,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mmpo,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mmpo,
 				WEAR_BODY = /obj/item/clothing/under/marine/mp,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/black,
@@ -205,7 +205,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/warrant,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/black,

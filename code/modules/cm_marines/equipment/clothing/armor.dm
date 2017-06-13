@@ -177,7 +177,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	var/armor_overlays[]
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
-	var/show_squad_hud = TRUE
 	w_class = 5
 	uniform_restricted = list(/obj/item/clothing/under/marine)
 
@@ -578,17 +577,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-
-/obj/item/clothing/suit/storage/marine/verb/toggle_squadhud()
-	set name = "Toggle Squad HUD"
-	set category = "Object"
-	set src in usr
-
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
-		return 0
-	show_squad_hud = !show_squad_hud
-	usr << "<span class='notice'>You toggle [src]'s squad HUD [show_squad_hud ? "on":"off"].</span>"
-	playsound(src,'sound/machines/click.ogg', 20, 1)
 
 /obj/item/clothing/suit/storage/marine/verb/locate_squad_tracking_beacon()
 	set name = "Locate Squad Tracking Beacon"

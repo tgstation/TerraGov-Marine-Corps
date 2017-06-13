@@ -644,40 +644,23 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_ears()
 	remove_overlay(EARS_LAYER)
-	if(l_ear)
+	if(wear_ear)
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
-			l_ear.screen_loc = ui_l_ear
-			client.screen += l_ear
-	if(r_ear)
-		if(client && hud_used &&  hud_used.hud_shown && hud_used.inventory_shown)
-			r_ear.screen_loc = ui_r_ear
-			client.screen += r_ear
+			wear_ear.screen_loc = ui_wear_ear
+			client.screen += wear_ear
 	if( (head && (head.flags_inventory & HIDEEARS)) || (wear_mask && (wear_mask.flags_inventory & HIDEEARS)))
 		return
 
-	if(l_ear || r_ear)
-		var/t_type
-		if(l_ear)
-			t_type = l_ear.item_state? l_ear.item_state : l_ear.icon_state
-			if(l_ear.icon_override)
-				t_type = "[t_type]_l"
-				overlays_standing[EARS_LAYER] = image("icon" = l_ear.icon_override, "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
-			else if(l_ear.sprite_sheets && l_ear.sprite_sheets[species.name])
-				t_type = "[t_type]_l"
-				overlays_standing[EARS_LAYER] = image("icon" = l_ear.sprite_sheets[species.name], "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
-			else
-				overlays_standing[EARS_LAYER] = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
-
-		if(r_ear)
-			t_type = r_ear.item_state? r_ear.item_state : r_ear.icon_state
-			if(r_ear.icon_override)
-				t_type = "[t_type]_r"
-				overlays_standing[EARS_LAYER] = image("icon" = r_ear.icon_override, "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
-			else if(r_ear.sprite_sheets && r_ear.sprite_sheets[species.name])
-				t_type = "[t_type]_r"
-				overlays_standing[EARS_LAYER] = image("icon" = r_ear.sprite_sheets[species.name], "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
-			else
-				overlays_standing[EARS_LAYER] = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
+	if(wear_ear)
+		var/t_type = wear_ear.item_state? wear_ear.item_state : wear_ear.icon_state
+		if(wear_ear.icon_override)
+			t_type = "[t_type]_l"
+			overlays_standing[EARS_LAYER] = image("icon" = wear_ear.icon_override, "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
+		else if(wear_ear.sprite_sheets && wear_ear.sprite_sheets[species.name])
+			t_type = "[t_type]_l"
+			overlays_standing[EARS_LAYER] = image("icon" = wear_ear.sprite_sheets[species.name], "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
+		else
+			overlays_standing[EARS_LAYER] = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]", "layer" =-EARS_LAYER)
 
 		apply_overlay(EARS_LAYER)
 

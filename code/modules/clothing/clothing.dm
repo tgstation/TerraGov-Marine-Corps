@@ -102,82 +102,19 @@
 	w_class = 1.0
 	throwforce = 2
 	flags_equip_slot = SLOT_EAR
-	var/obj/item/clothing/ears/linked_ear //used by ear pieces that cover both ears.
-
-	equipped(var/mob/M, var/slot)
-		if((slot == WEAR_R_EAR || slot == WEAR_L_EAR) && (flags_equip_slot & SLOT_EARS) && ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/obj/item/clothing/ears/offear/O = new(null, src)
-			if(slot == WEAR_R_EAR)
-				H.equip_to_slot(O, WEAR_L_EAR)
-			else
-				H.equip_to_slot(O, WEAR_R_EAR)
-
-		..()
-
-	Dispose()
-		. = ..()
-		if(linked_ear)
-			cdel(linked_ear)
-			linked_ear = null
-
-	dropped(mob/user)
-		if(linked_ear && ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(linked_ear == H.l_ear || linked_ear == H.r_ear)//is the associated earpiece still in the other ear slot?
-				var/obj/item/clothing/ears/E = linked_ear
-				linked_ear = null
-				E.linked_ear = null
-				H.temp_drop_inv_item(E)
-				if(!istype(E, /obj/item/clothing/ears/offear)) //the linked ear was the real one
-					E.forceMove(H.loc)
-		..()
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_ears()
 
-/obj/item/clothing/ears/offear
-	name = "Other ear"
-	w_class = 5.0
-	icon = 'icons/mob/screen1_Midnight.dmi'
-	icon_state = "block"
-	flags_equip_slot = SLOT_EAR
-	flags_atom = DELONDROP
-
-	New(loc, obj/item/clothing/ears/E)
-		if(istype(E))
-			name = E.name
-			desc = E.desc
-			icon = E.icon
-			icon_state = E.icon_state
-			dir = E.dir
-			E.linked_ear = src
-			linked_ear = E
-		..()
-
-	attack_hand(mob/user) //clicking the offear makes you click the real ear.
-		if(linked_ear)
-			linked_ear.attack_hand(user)
-
-
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	flags_equip_slot = SLOT_EAR|SLOT_EARS
+	flags_equip_slot = SLOT_EAR
 
-
-
-///////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
 //Suit

@@ -48,9 +48,7 @@
 			return has_organ("chest")
 		if(WEAR_ID)
 			return 1
-		if(WEAR_L_EAR)
-			return has_organ("head")
-		if(WEAR_R_EAR)
+		if(WEAR_EAR)
 			return has_organ("head")
 		if(WEAR_EYES)
 			return has_organ("head")
@@ -133,11 +131,8 @@
 	else if (I == glasses)
 		glasses = null
 		update_inv_glasses()
-	else if (I == l_ear)
-		l_ear = null
-		update_inv_ears()
-	else if (I == r_ear)
-		r_ear = null
+	else if (I == wear_ear)
+		wear_ear = null
 		update_inv_ears()
 	else if (I == shoes)
 		shoes = null
@@ -231,12 +226,8 @@
 			wear_id = W
 			W.equipped(src, slot)
 			update_inv_wear_id()
-		if(WEAR_L_EAR)
-			l_ear = W
-			W.equipped(src, slot)
-			update_inv_ears()
-		if(WEAR_R_EAR)
-			r_ear = W
+		if(WEAR_EAR)
+			wear_ear = W
 			W.equipped(src, slot)
 			update_inv_ears()
 		if(WEAR_EYES)
@@ -449,22 +440,14 @@
 				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their eyewear ([target.glasses.name]) removed by [source.name] ([source.ckey])</font>")
 				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) eyewear ([target.glasses])</font>")
 				message = "\red <B>[source] is trying to take off [target.glasses] from [target]'s eyes!</B>"
-		if("l_ear")
-			if(target.l_ear)
-				if(!target.l_ear.canremove)
-					message = "\red <B>[source] fails to take off [target.l_ear] from [target]'s left ear!</B>"
+		if("wear_ear")
+			if(target.wear_ear)
+				if(!target.wear_ear.canremove)
+					message = "\red <B>[source] fails to take off [target.wear_ear] from [target]'s left ear!</B>"
 					return
-				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their left ear item ([target.l_ear.name]) removed by [source.name] ([source.ckey])</font>")
-				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) left ear item ([target.l_ear])</font>")
-				message = "\red <B>[source] is trying to take off [target.l_ear] from [target]'s left ear!</B>"
-		if("r_ear")
-			if(target.r_ear)
-				if(!target.r_ear.canremove)
-					message = "\red <B>[source] fails to take off [target.r_ear] from [target]'s right ear!</B>"
-					return
-				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their right ear item ([target.r_ear.name]) removed by [source.name] ([source.ckey])</font>")
-				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) right ear item ([target.r_ear])</font>")
-				message = "\red <B>[source] is trying to take off [target.r_ear] from [target]'s right ear!</B>"
+				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their left ear item ([target.wear_ear.name]) removed by [source.name] ([source.ckey])</font>")
+				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) left ear item ([target.wear_ear])</font>")
+				message = "\red <B>[source] is trying to take off [target.wear_ear] from [target]'s left ear!</B>"
 		if("head")
 			if(target.head)
 				if(!target.head.canremove)
@@ -635,14 +618,10 @@ It can still be worn/put on as normal.
 			slot_to_process = WEAR_HEAD
 			if (target.head && target.head.canremove)
 				strip_item = target.head
-		if("l_ear")
-			slot_to_process = WEAR_L_EAR
-			if (target.l_ear)
-				strip_item = target.l_ear
-		if("r_ear")
-			slot_to_process = WEAR_R_EAR
-			if (target.r_ear)
-				strip_item = target.r_ear
+		if("wear_ear")
+			slot_to_process = WEAR_EAR
+			if (target.wear_ear)
+				strip_item = target.wear_ear
 		if("shoes")
 			slot_to_process = WEAR_FEET
 			if (target.shoes && target.shoes.canremove)

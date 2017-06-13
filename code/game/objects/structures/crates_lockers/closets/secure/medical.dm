@@ -102,7 +102,7 @@
 		new /obj/item/clothing/shoes/white(src)
 //		new /obj/item/weapon/cartridge/medical(src)
 		if(z && (z == 3 || z == 4))
-			new /obj/item/device/radio/headset/headset_med(src)
+			new /obj/item/device/radio/headset/almayer/doc(src)
 		return
 
 
@@ -142,7 +142,7 @@
 		new /obj/item/weapon/cartridge/cmo(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/shoes/brown	(src)
-		new /obj/item/device/radio/headset/heads/cmo(src)
+		new /obj/item/device/radio/headset/almayer/cmo(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(src)
 		return

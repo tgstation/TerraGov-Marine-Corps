@@ -139,8 +139,7 @@ var/list/slot_equipment_priority = list( \
 		WEAR_HEAD,\
 		WEAR_FEET,\
 		WEAR_HANDS,\
-		WEAR_L_EAR,\
-		WEAR_R_EAR,\
+		WEAR_EAR,\
 		WEAR_EYES,\
 		WEAR_WAIST,\
 		WEAR_J_STORE,\

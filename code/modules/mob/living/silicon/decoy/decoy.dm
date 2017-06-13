@@ -15,7 +15,7 @@
 	density = 1 //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
-	var/obj/item/device/radio/headset/mcom/ai/R //The thing it speaks into.
+	var/obj/item/device/radio/headset/almayer/mcom/ai/R //The thing it speaks into.
 	var/sound/S //The lines that it plays when speaking.
 
 	Life()

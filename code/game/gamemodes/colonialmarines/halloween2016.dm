@@ -510,7 +510,7 @@
 	if(merc_starting_num-- > 0)
 		if(pmc_spawns.len) picked = pick(pmc_spawns)
 
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), WEAR_L_EAR)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), WEAR_EAR)
 /*		switch(given_role)
 			if("Squad Leader") //Well equipped, great weapons overall.
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(H), WEAR_BODY)
@@ -682,12 +682,12 @@
 		if(marine_spawns.len) picked = pick(marine_spawns)
 
 		//Find their squad
-		var/squad = H.mind.assigned_squad ? lowertext(H.mind.assigned_squad.name) : "alpha"
+//		var/squad = H.mind.assigned_squad ? lowertext(H.mind.assigned_squad.name) : "alpha"
 
-		var/item_path = text2path("/obj/item/device/radio/headset/m[squad][given_role == "Squad Leader"? "l" : ""]")
-		H.equip_to_slot_or_del(new item_path(H), WEAR_L_EAR)
-		item_path = text2path("/obj/item/clothing/gloves/marine/[squad]")
-		H.equip_to_slot_or_del(new item_path(H), WEAR_HANDS)
+//		var/item_path = text2path("/obj/item/device/radio/headset/m[squad][given_role == "Squad Leader"? "l" : ""]")
+//		H.equip_to_slot_or_del(new item_path(H), WEAR_EAR)
+//		item_path = text2path("/obj/item/clothing/gloves/marine/[squad]")
+//		H.equip_to_slot_or_del(new item_path(H), WEAR_HANDS)
 
 		var/obj/item/clothing/tie/storage/webbing/W
 		var/obj/item/clothing/under/U
@@ -734,7 +734,7 @@
 				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/device/multitool(H.back), WEAR_L_STORE)
-				H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_eng(H), WEAR_R_STORE)
+				H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/engi(H), WEAR_R_STORE)
 
 			if("Squad Medic")
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
@@ -762,7 +762,7 @@
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/tramadol(H.back), WEAR_IN_BACK)
 
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/spaceacillin(H.back), WEAR_L_STORE)
-				H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_med(H), WEAR_R_STORE)
+				H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/med(H), WEAR_R_STORE)
 
 			if("Squad Specialist")
 				U = new /obj/item/clothing/under/marine(H)

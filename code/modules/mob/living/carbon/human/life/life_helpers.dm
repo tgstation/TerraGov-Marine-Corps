@@ -215,10 +215,10 @@
 		return min(1, thermal_protection)
 
 
-/mob/living/carbon/human/proc/process_suit()
-	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-		var/obj/item/clothing/suit/storage/marine/SM = wear_suit
-		if(SM.show_squad_hud)
+/mob/living/carbon/human/proc/process_earpiece()
+	if(istype(wear_ear, /obj/item/device/radio/headset/almayer))
+		var/obj/item/device/radio/headset/almayer/H = wear_ear
+		if(H.headset_hud_on)
 			process_squad_hud(src)
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)

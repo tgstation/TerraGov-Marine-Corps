@@ -327,12 +327,9 @@
 		if(H.gloves)
 			H.gloves.screen_loc = ui_gloves
 			H.client.screen += H.gloves
-		if(H.l_ear)
-			H.l_ear.screen_loc = ui_l_ear
-			H.client.screen += H.l_ear
-		if(H.r_ear)
-			H.r_ear.screen_loc = ui_r_ear
-			H.client.screen += H.r_ear
+		if(H.wear_ear)
+			H.wear_ear.screen_loc = ui_wear_ear
+			H.client.screen += H.wear_ear
 		if(H.glasses)
 			H.glasses.screen_loc = ui_glasses
 			H.client.screen += H.glasses
@@ -353,10 +350,8 @@
 			H.shoes.screen_loc = null
 		if(H.gloves)
 			H.gloves.screen_loc = null
-		if(H.l_ear)
-			H.l_ear.screen_loc = null
-		if(H.r_ear)
-			H.r_ear.screen_loc = null
+		if(H.wear_ear)
+			H.wear_ear.screen_loc = null
 		if(H.glasses)
 			H.glasses.screen_loc = null
 		if(H.w_uniform)

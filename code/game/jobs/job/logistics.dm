@@ -19,7 +19,7 @@
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/ce,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
@@ -51,7 +51,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/rank/ro_suit,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
@@ -88,7 +88,7 @@ A happy ship is a well-functioning ship."}
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/headset_eng,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mt,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/engi,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
@@ -123,7 +123,7 @@ Start with the ship's engine, and don't forget radiation equipment."}
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/headset_cargo,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/ct,
 				WEAR_BODY = /obj/item/clothing/under/rank/cargotech,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,

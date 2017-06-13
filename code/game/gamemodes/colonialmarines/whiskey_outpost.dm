@@ -166,7 +166,7 @@
 	switch(H.mind.assigned_role)
 		if("Executive Officer")
 			custom_message = 1
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), WEAR_L_EAR)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), WEAR_BACK)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), WEAR_JACKET)
@@ -209,7 +209,7 @@
 		//HONOR GUARD
 		if("Military Police")
 			custom_message = 1
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), WEAR_L_EAR)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), WEAR_BACK)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
@@ -272,7 +272,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), WEAR_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), WEAR_L_EAR)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/tech(H), WEAR_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
@@ -354,7 +354,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
 			H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), WEAR_L_EAR)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), WEAR_EAR)
 
 		//HUD GLASSES (NEEDED)
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
@@ -437,7 +437,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H), WEAR_IN_BACK)
 
 			//Medical encryption key
-			H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_med(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/med(H), WEAR_L_HAND)
 
 			//Combat Lifesaver belt
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
@@ -573,9 +573,9 @@
 		if(1)//Alpha
 				//Radio
 			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/malphal(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha/lead(H), WEAR_EAR)
 			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/malpha(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha(H), WEAR_EAR)
 				//Gloves
 			if(H.mind.assigned_role != "Squad Engineer")
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), WEAR_HANDS)
@@ -585,9 +585,9 @@
 		if(2)//Bravo
 				//Radio
 			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mbravol(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo/lead(H), WEAR_EAR)
 			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mbravo(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo(H), WEAR_EAR)
 				//Gloves
 			if(H.mind.assigned_role != "Squad Engineer")
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/bravo(H), WEAR_HANDS)
@@ -597,9 +597,9 @@
 		if(3)//Charlie
 				//Radio
 			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcharliel(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie/lead(H), WEAR_EAR)
 			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcharlie(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie(H), WEAR_EAR)
 				//Gloves
 			if(H.mind.assigned_role != "Squad Engineer")
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/charlie(H), WEAR_HANDS)
@@ -609,9 +609,9 @@
 		if(4)//Delta
 			//Radio
 			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mdeltal(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta/lead(H), WEAR_EAR)
 			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mdelta(H), WEAR_L_EAR)
+				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta(H), WEAR_EAR)
 				//Gloves
 			if(H.mind.assigned_role != "Squad Engineer")
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/delta(H), WEAR_HANDS)

@@ -61,7 +61,7 @@
 
 	generate_wearable_equipment()
 		var/L[] = list(
-						WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+						WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 						WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 						WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 						WEAR_HANDS = /obj/item/clothing/gloves/marine/veteran/PMC,
@@ -96,7 +96,7 @@
 
 	generate_wearable_equipment()
 		var/L[] = list(
-						WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+						WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 						WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 						WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 						WEAR_HANDS = /obj/item/clothing/gloves/yellow,
@@ -133,7 +133,7 @@
 
 	generate_wearable_equipment()
 		var/L[] = list(
-						WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+						WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 						WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 						WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 						WEAR_HANDS = /obj/item/clothing/gloves/latex,
@@ -175,7 +175,7 @@
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+				WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 				WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 				WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/veteran/PMC,
@@ -206,7 +206,7 @@
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+				WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 				WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 				WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/veteran/PMC,
@@ -237,7 +237,7 @@
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+				WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 				WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 				WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/knifepouch,
@@ -266,7 +266,7 @@
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+				WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 				WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC/commando,
 				WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC/commando,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/veteran/PMC/commando,
@@ -303,7 +303,7 @@
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_L_EAR = /obj/item/device/radio/headset/distress/PMC,
+				WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 				WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC/leader,
 				WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/veteran/PMC,

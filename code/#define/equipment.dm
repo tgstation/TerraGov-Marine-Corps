@@ -114,15 +114,13 @@ should all be unique more or less. flags_inventory can double up.
 #define SLOT_BACK 			1024
 #define SLOT_STORE 			2048	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
 #define SLOT_NO_STORE		4096	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define SLOT_EARS 		8192
 #define SLOT_LEGS 			16384
 //=================================================
 
 //slots
-//Text strings so that the slots can be associated when doing iventory lists.
+//Text strings so that the slots can be associated when doing inventory lists.
 #define WEAR_ID				"id"
-#define WEAR_L_EAR			"l_ear"
-#define WEAR_R_EAR			"r_ear"
+#define WEAR_EAR			"wear_ear"
 #define WEAR_BODY			"body"
 #define WEAR_LEGS			"legs"
 #define WEAR_FEET			"feet"

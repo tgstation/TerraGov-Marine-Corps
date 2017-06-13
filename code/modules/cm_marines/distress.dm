@@ -488,7 +488,7 @@
 /datum/emergency_call/pmc/proc/spawn_standard(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
@@ -521,7 +521,7 @@
 /datum/emergency_call/pmc/proc/spawn_officer(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
@@ -552,7 +552,7 @@
 /datum/emergency_call/pmc/proc/spawn_gunner(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), WEAR_JACKET)
@@ -579,7 +579,7 @@
 /datum/emergency_call/pmc/proc/spawn_heavy(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
@@ -684,7 +684,7 @@
 /datum/emergency_call/mercs/proc/spawn_captain(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
@@ -713,7 +713,7 @@
 /datum/emergency_call/mercs/proc/spawn_mercenary(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
 	if(prob(50)) M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
@@ -790,7 +790,7 @@
 /datum/emergency_call/bears/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
@@ -819,7 +819,7 @@
 /datum/emergency_call/bears/proc/spawn_officer(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
@@ -1161,7 +1161,7 @@
 /datum/emergency_call/dutch/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
 	//M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
@@ -1185,7 +1185,7 @@
 /datum/emergency_call/dutch/proc/spawn_officer(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch/ranger(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
@@ -1258,7 +1258,7 @@
 
 /datum/emergency_call/death/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), WEAR_EYES)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), WEAR_JACKET)
@@ -1290,7 +1290,7 @@
 /datum/emergency_call/death/proc/spawn_officer(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_EAR)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), WEAR_EYES)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), WEAR_JACKET)
