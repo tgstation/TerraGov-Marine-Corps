@@ -45,6 +45,7 @@
 <div class="item" style="padding-top: 10px">
 	<div class="item">
 		<div class="itemContent" style="padding-top: 2px; width: 100%">
+		{{:helper.link('DOOR CONTROL', 'alert', {'command' : 'lock_door'}, data.can_lock ? null : 'disabled', data.can_force ? 'redButton' : null)}}
 		{{:helper.link('MANUAL EJECT', 'alert', {'command' : 'force_launch'}, data.can_force ? null : 'disabled', data.can_force ? 'redButton' : null)}}
 		{{:helper.link('DELAY LAUNCH', 'alert', {'command' : 'delay_launch'}, data.can_delay ? null : 'disabled', data.can_delay ? 'yellowButton' : null)}}
 		</div>

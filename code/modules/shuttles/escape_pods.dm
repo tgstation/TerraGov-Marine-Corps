@@ -39,7 +39,7 @@ with the original.*/
 		process_state = WAIT_LAUNCH
 
 	can_launch() //Cannot launch it early before the evacuation takes place proper, and the pod must be ready. Cannot be delayed, broken, launching, or otherwise.
-		if(..() && EvacuationAuthority.evac_status > EVACUATION_STATUS_INITIATING)
+		if(..() && EvacuationAuthority.evac_status >= EVACUATION_STATUS_INITIATING)
 			switch(evacuation_program.dock_state)
 				if(STATE_READY) r_TRU
 				if(STATE_DELAYED)
@@ -54,7 +54,8 @@ with the original.*/
 	short_jump()
 		. = ..()
 		evacuation_program.dock_state = STATE_LAUNCHED
-		check_passengers("<span class='centerbold'>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</span>")
+		spawn(10)
+			check_passengers("<br><br><span class='centerbold'><big>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</big></span><br>")
 
 /*
 This processes tags and connections dynamically, so you do not need to modify or pregenerate linked objects.
@@ -211,11 +212,12 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 		var/launch_status[] = evacuation_program.check_launch_status()
 		var/data[] = list(
-			"docking_status" = evacuation_program.dock_state,
-			"door_state" = 	evacuation_program.memory["door_status"]["state"],
-			"door_lock" = 	evacuation_program.memory["door_status"]["lock"],
-			"can_force" = launch_status[1],
-			"can_delay" = launch_status[2]
+			"docking_status"	= evacuation_program.dock_state,
+			"door_state"		= evacuation_program.memory["door_status"]["state"],
+			"door_lock"			= evacuation_program.memory["door_status"]["lock"],
+			"can_lock"			= evacuation_program.dock_state == (STATE_READY || STATE_DELAYED) ? 1:0,
+			"can_force"			= evacuation_program.dock_state == (STATE_READY || STATE_DELAYED) ? 1:0,
+			"can_delay"			= launch_status[2]
 		)
 
 		ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -229,12 +231,23 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	Topic(href, href_list)
 		if(..()) r_TRU	//Has to return true to fail. For some reason.
 
+		var/datum/shuttle/ferry/marine/evacuation_pod/P = shuttle_controller.shuttles[id_tag]
 		switch(href_list["command"])
 			if("force_launch")
-				var/datum/shuttle/ferry/marine/evacuation_pod/P = shuttle_controller.shuttles[id_tag]
 				P.prepare_for_launch()
 			if("delay_launch")
 				evacuation_program.dock_state = evacuation_program.dock_state == STATE_DELAYED ? STATE_READY : STATE_DELAYED
+			if("lock_door")
+				if(P.D.density) //Closed
+					spawn()
+						P.D.unlock()
+						P.D.open()
+						P.D.lock()
+				else //Open
+					spawn()
+						P.D.unlock()
+						P.D.close()
+						P.D.lock()
 
 
 //=========================================================================================
