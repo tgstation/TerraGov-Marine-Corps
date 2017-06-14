@@ -629,22 +629,17 @@
 
 	msg = sanitize(msg)
 	msg = oldreplacetext(msg, "a", "@")
-	msg = oldreplacetext(msg, "b", "8")
-	msg = oldreplacetext(msg, "c", "x")
-	msg = oldreplacetext(msg, "d", ")")
-	msg = oldreplacetext(msg, "e", "x")
-	msg = oldreplacetext(msg, "h", "#")
+	msg = oldreplacetext(msg, "e", "3")
 	msg = oldreplacetext(msg, "i", "1")
-	msg = oldreplacetext(msg, "j", "]")
-	msg = oldreplacetext(msg, "k", "X")
-	msg = oldreplacetext(msg, "l", "|")
 	msg = oldreplacetext(msg, "o", "0")
-	msg = oldreplacetext(msg, "p", "x")
+	msg = oldreplacetext(msg, "u", "^")
+	msg = oldreplacetext(msg, "y", "7")
+	msg = oldreplacetext(msg, "r", "9")
+	msg = oldreplacetext(msg, "s", "5")
 	msg = oldreplacetext(msg, "t", "7")
-	msg = oldreplacetext(msg, "u", "x")
-	msg = oldreplacetext(msg, "x", "%")
-	msg = oldreplacetext(msg, "y", "x")
-	msg = oldreplacetext(msg, "z", "2")   //Preds now speak in bastardized 1337speak BECAUSE.
+	msg = oldreplacetext(msg, "l", "1")
+	msg = oldreplacetext(msg, "n", "*")
+	   //Preds now speak in bastardized 1337speak BECAUSE.
 
 	spawn(10)
 		if(!drain_power(usr,50)) return //At this point they've upgraded.
