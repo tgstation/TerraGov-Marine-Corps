@@ -44,20 +44,40 @@
 	icon_state = "red"
 	item_state = "redgloves"
 
+/obj/item/clothing/gloves/marine/alpha/insulated
+	name = "insulated alpha squad gloves"
+	desc = "Insulated marine tactical gloves that protects against electrical shocks."
+	siemens_coefficient = 0
+
 /obj/item/clothing/gloves/marine/bravo
 	name = "bravo squad gloves"
 	icon_state = "yellow"
 	item_state = "ygloves"
+
+/obj/item/clothing/gloves/marine/bravo/insulated
+	name = "insulated bravo squad gloves"
+	desc = "Insulated marine tactical gloves that protects against electrical shocks."
+	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/charlie
 	name = "charlie squad gloves"
 	icon_state = "purple"
 	item_state = "purplegloves"
 
+/obj/item/clothing/gloves/marine/charlie/insulated
+	name = "insulated charlie squad gloves"
+	desc = "Insulated marine tactical gloves that protects against electrical shocks."
+	siemens_coefficient = 0
+
 /obj/item/clothing/gloves/marine/delta
 	name = "delta squad gloves"
 	icon_state = "blue"
 	item_state = "bluegloves"
+
+/obj/item/clothing/gloves/marine/delta/insulated
+	name = "insulated delta squad gloves"
+	desc = "Insulated marine tactical gloves that protects against electrical shocks."
+	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
