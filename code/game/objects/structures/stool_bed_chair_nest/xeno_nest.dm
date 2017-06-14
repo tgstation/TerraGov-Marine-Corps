@@ -65,7 +65,7 @@
 /mob/living/carbon/human/proc/start_nesting_cooldown()
 	set waitfor = 0
 	recently_unbuckled = 1
-	sleep(300)
+	sleep(50)
 	recently_unbuckled = 0
 
 /obj/structure/stool/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
