@@ -96,6 +96,7 @@ REAGENT SCANNER
 		user << "<span class='warning'>[src] can't even make sense of this creature. Doesn't seem to be in the database.</span>"
 		return
 	user.visible_message("<span class='notice'> [user] has analyzed [M]'s vitals.","<span class='notice'> You have analyzed [M]'s vitals.")
+	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 	if(!istype(M, /mob/living/carbon) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		//these sensors are designed for organic life
 		user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
@@ -112,9 +113,9 @@ REAGENT SCANNER
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
-		user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: dead")
+		user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: <b>DEAD</b>")
 	else
-		user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[M.health - M.halloss]% healthy"]")
+		user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health - M.halloss]% healthy"]</b>")
 	user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
 	user.show_message("\t Damage Specifics: <font color='blue'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
 	user.show_message("\blue Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
