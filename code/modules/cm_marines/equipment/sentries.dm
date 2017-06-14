@@ -923,6 +923,9 @@
 		user.machine = null
 		operator = null
 		return 0
+	if(user.get_active_hand() != null)
+		usr << "<span class='warning'>You need a free hand to shoot [src].</span>"
+		return 0
 
 	target = A
 	if(!istype(target))
