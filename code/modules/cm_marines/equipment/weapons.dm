@@ -761,11 +761,11 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		return
 
 	if(user.loc && user.loc.density)
-		user << "<span class='warning'>How do you plan to put a mine inside a wall?</span>"
+		user << "<span class='warning'>You can't plant a mine here.</span>"
 		return
 
 	if(user.z == 3 || user.z == 4) // On the Sulaco.
-		user << "<span class='warning'>Are you crazy? You can't plant a mine on a spaceship!</span>"
+		user << "<span class='warning'>You can't plant a mine on a spaceship!</span>"
 		return
 
 	if(!armed)
@@ -815,8 +815,8 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 
 	if((istype(H) && H.get_target_lock(iff_signal)) || isrobot(H)) return
 
-	H.visible_message("<span class='danger'>\icon[src] [src] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>\icon[src] [src] clicks as you move in front of it.</span>", \
+	H.visible_message("<span class='danger'>\icon[src] The [name] clicks as [H] moves in front of it.</span>", \
+	"<span class='danger'>\icon[src] The [name] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
 	triggered = 1
