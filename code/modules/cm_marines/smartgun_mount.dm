@@ -424,6 +424,9 @@
 		user.machine = null
 		operator = null
 		return 0
+	if(user.get_active_hand() != null)
+		usr << "<span class='warning'>You need a free hand to shoot the [src].</span>"
+		return 0
 
 	target = A
 	if(!istype(target))
@@ -470,7 +473,7 @@
 	if(prob(65))
 		var/layer = MOB_LAYER-0.1
 
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,"muzzle_flash",layer))
+		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi', src, "muzzle_flash",layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)
@@ -485,8 +488,8 @@
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
 		if(user.machine == src)
 			operator = null
-			visible_message("\icon[src] <span class='notice'> [user] decided to let someone else have a go </span>")
-			usr << "<span class='notice'> You decided to let someone else have a go on the MG </span>"
+			visible_message("\icon[src] <span class='notice'>[user] decided to let someone else have a go </span>")
+			usr << "<span class='notice'>You decided to let someone else have a go on the MG </span>"
 			user.machine = null
 			user.client.view = world.view
 			return
@@ -500,10 +503,12 @@
 			if(user.machine) //Make sure we're not manning two guns at once, tentacle arms.
 				usr << "You're already manning something!"
 				return
+			if(user.get_active_hand() != null)
+				usr << "<span class='warning'>You need a free hand to man the [src].</span>"
 			else
 				operator = usr //now we are the captain.
-				visible_message("\icon[src] <span class='notice'> [user] mans the M56D!</span>")
-				usr << "<span class='notice'> You man the gun!</span>"
+				visible_message("\icon[src] <span class='notice'>[user] mans the M56D!</span>")
+				usr << "<span class='notice'>You man the gun!</span>"
 				user.machine = src
 				if(zoom)
 					user.client.view = 12

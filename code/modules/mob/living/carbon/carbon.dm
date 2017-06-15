@@ -146,7 +146,9 @@
 			src << "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>" //So it's an offhand.
 			return
 		else wielded_item.unwield(src) //Get rid of it.
-	src.hand = !( src.hand )
+	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
+		wielded_item.zoom(src)
+	hand = !hand
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
 			hud_used.l_hand_hud_object.icon_state = "hand_active"
@@ -417,8 +419,6 @@
 /mob/living/carbon/Bump(atom/movable/AM, yes)
 	if(!yes || now_pushing)
 		return
-	if(iscarbon(AM) && prob(10))
-		spread_disease_to(AM, "Contact")
 	. = ..()
 
 /mob/living/carbon

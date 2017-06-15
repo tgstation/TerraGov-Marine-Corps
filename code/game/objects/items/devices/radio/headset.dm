@@ -288,8 +288,19 @@
 /obj/item/device/radio/headset/almayer/marine/alpha/lead
 	name = "marine alpha leader radio headset"
 	desc = "This is used by the marine alpha squad leader. Channels are as follows: :v - marine command, :q - alpha squad."
-	icon_state = "cargo_headset"
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
+
+/obj/item/device/radio/headset/almayer/marine/alpha/engi
+	name = "marine alpha engineer radio headset"
+	desc = "This is used by the marine alpha combat engineers. Channels are as follows: :e - engineering, :q - alpha squad."
+	keyslot2 = new /obj/item/device/encryptionkey/engi
+
+/obj/item/device/radio/headset/almayer/marine/alpha/med
+	name = "marine alpha medic radio headset"
+	desc = "This is used by the marine alpha combat medics. Channels are as follows: :m - engineering, :q - alpha squad."
+	keyslot2 = new /obj/item/device/encryptionkey/med
+
+
 
 /obj/item/device/radio/headset/almayer/marine/bravo
 	name = "marine bravo radio headset"
@@ -300,8 +311,19 @@
 /obj/item/device/radio/headset/almayer/marine/bravo/lead
 	name = "marine bravo leader radio headset"
 	desc = "This is used by the marine bravo squad leader. Channels are as follows: :v - marine command, :b - bravo squad."
-	icon_state = "cargo_headset"
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
+
+/obj/item/device/radio/headset/almayer/marine/bravo/engi
+	name = "marine bravo engineer radio headset"
+	desc = "This is used by the marine bravo combat engineers. Channels are as follows: :e - engineering, :b - bravo squad."
+	keyslot2 = new /obj/item/device/encryptionkey/engi
+
+/obj/item/device/radio/headset/almayer/marine/bravo/med
+	name = "marine bravo medic radio headset"
+	desc = "This is used by the marine bravo combat medics. Channels are as follows: :m - medical, :b - bravo squad."
+	keyslot2 = new /obj/item/device/encryptionkey/med
+
+
 
 /obj/item/device/radio/headset/almayer/marine/charlie
 	name = "marine charlie radio headset"
@@ -312,8 +334,19 @@
 /obj/item/device/radio/headset/almayer/marine/charlie/lead
 	name = "marine charlie leader radio headset"
 	desc = "This is used by the marine charlie squad leader. Channels are as follows: :v - marine command, :c - charlie squad."
-	icon_state = "cargo_headset"
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
+
+/obj/item/device/radio/headset/almayer/marine/charlie/engi
+	name = "marine charlie engineer radio headset"
+	desc = "This is used by the marine charlie combat engineers. Channels are as follows: :e - engineering, :c - charlie squad."
+	keyslot2 = new /obj/item/device/encryptionkey/engi
+
+/obj/item/device/radio/headset/almayer/marine/charlie/med
+	name = "marine charlie medic radio headset"
+	desc = "This is used by the marine charlie combat medics. Channels are as follows: :m - medical, :c - charlie squad."
+	keyslot2 = new /obj/item/device/encryptionkey/med
+
+
 
 /obj/item/device/radio/headset/almayer/marine/delta
 	name = "marine delta radio headset"
@@ -324,8 +357,19 @@
 /obj/item/device/radio/headset/almayer/marine/delta/lead
 	name = "marine delta leader radio headset"
 	desc = "This is used by the marine delta squad leader. Channels are as follows: :v - marine command, :d - delta squad."
-	icon_state = "cargo_headset"
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
+
+/obj/item/device/radio/headset/almayer/marine/delta/engi
+	name = "marine delta engineer radio headset"
+	desc = "This is used by the marine delta combat engineers. Channels are as follows: :e - engineering, :d - delta squad."
+	keyslot2 = new /obj/item/device/encryptionkey/engi
+
+/obj/item/device/radio/headset/almayer/marine/delta/med
+	name = "marine delta medic radio headset"
+	desc = "This is used by the marine delta combat medics. Channels are as follows: :m - medical, :d - delta squad."
+	keyslot2 = new /obj/item/device/encryptionkey/med
+
+
 
 /obj/item/device/radio/headset/almayer/mmpo
 	name = "marine military police radio headset"

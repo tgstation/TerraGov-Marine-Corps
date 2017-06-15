@@ -84,7 +84,7 @@ REAGENT SCANNER
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
-		user.show_message(text("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy"), 1)
+		user.show_message(text("\blue Health Analyzer results for The floor:\n\t Overall Status: Healthy"), 1)
 		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
@@ -92,91 +92,62 @@ REAGENT SCANNER
 	if(!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		usr << "\red You don't have the dexterity to do this!"
 		return
-	if(isXeno(M)) //Nope
-		user << "<span class='warning'>[src] can't even make sense of this creature. Doesn't seem to be in the database.</span>"
+	if(isXeno(M))
+		user << "<span class='warning'>[src] can't make sense of this creature.</span>"
 		return
-	user.visible_message("<span class='notice'> [user] has analyzed [M]'s vitals.","<span class='notice'> You have analyzed [M]'s vitals.")
+	user.visible_message("","<span class='notice'>[user] has analyzed [M]'s vitals.")
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
+
+	// Doesn't work on non-humans and synthetics
 	if(!istype(M, /mob/living/carbon) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
-		//these sensors are designed for organic life
-		user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
-		user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
-		user.show_message("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
+		user.show_message("\n\blue Health Analyzer results for ERROR:\n\t Overall Status: ERROR")
+		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
+		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
 		user.show_message("\blue Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
 		user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
 		user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
 		return
+
+	// Calculate damage amounts
 	var/fake_oxy = max(rand(1,40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
 	var/OX = M.getOxyLoss() > 50 	? 	"<b>[M.getOxyLoss()]</b>" 		: M.getOxyLoss()
 	var/TX = M.getToxLoss() > 50 	? 	"<b>[M.getToxLoss()]</b>" 		: M.getToxLoss()
 	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
+
+	// Show overall
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
-		user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: <b>DEAD</b>")
+		user.show_message("\n\blue Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>")
 	else
-		user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health - M.halloss]% healthy"]</b>")
-	user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
-	user.show_message("\t Damage Specifics: <font color='blue'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
-	user.show_message("\blue Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
-	if(M.tod && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
-		user.show_message("\blue Time of Death: [M.tod]")
+		user.show_message("\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health - M.halloss]% healthy"]</b>")
+	user.show_message("\tType:    <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
+	user.show_message("\tDamage: \t<font color='blue'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
+
+	// Show specific limb damage
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
-		user.show_message("\blue Localized Damage, Brute/Burn:",1)
-		if(length(damaged)>0)
+		if(length(damaged))
 			for(var/datum/organ/external/org in damaged)
-				user.show_message(text("\blue \t []: [][]\blue - []",	\
-				"[capitalize(org.display_name)][org.status & ORGAN_ROBOT ? "(Cybernetic)" : ""]",	\
-				(org.brute_dam > 0)	?	"\red [org.brute_dam]"							:0,		\
-				(org.status & ORGAN_BLEEDING)?"\red <b>\[Bleeding\]</b>":"\t", 		\
-				(org.burn_dam > 0)	?	"<font color='#FFA500'>[org.burn_dam]</font>"	:0),1)
-		else
-			user.show_message("\blue \t Limbs are OK.",1)
-	OX = M.getOxyLoss() > 50 ? 	"<font color='blue'><b>Severe oxygen deprivation detected</b></font>" 		: 	"Subject bloodstream oxygen level normal"
-	TX = M.getToxLoss() > 50 ? 	"<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
-	BU = M.getFireLoss() > 50 ? 	"<font color='#FFA500'><b>Severe burn damage detected</b></font>" 			:	"Subject burn injury status O.K"
-	BR = M.getBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical damage detected</b></font>" 		: 	"Subject brute-force injury status O.K"
-	if(M.status_flags & FAKEDEATH)
-		OX = fake_oxy > 50 ? 		"\red Severe oxygen deprivation detected\blue" 	: 	"Subject bloodstream oxygen level normal"
-	user.show_message("[OX]|[TX]|[BU]|[BR]")
-	if (istype(M, /mob/living/carbon))
-		if(M:reagents.total_volume > 0)
-			var/unknown = 0
-			var/reagentdata[0]
-			for(var/A in M.reagents.reagent_list)
-				var/datum/reagent/R = A
-				if(R.scannable)
-					reagentdata["[R.id]"] = "\t [R.overdose != 0 && M.reagents.get_reagent_amount(R.id) >= R.overdose ? "\red OD: " : "\blue"] [round(M.reagents.get_reagent_amount(R.id), 1)]u [R.name]"
-				else
-					unknown++
-			if(reagentdata.len)
-				user.show_message("\blue Beneficial reagents detected in subject's blood:")
-				for(var/d in reagentdata)
-					user.show_message(reagentdata[d])
-			if(unknown)
-				user.show_message(text("\red Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood."))
-		if(M:virus2.len)
-			var/mob/living/carbon/C = M
-			for (var/ID in C.virus2)
-				if (ID in virusDB)
-					var/datum/data/record/V = virusDB[ID]
-					user.show_message(text("\red *Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]"))
-//			user.show_message(text("\red Warning: Unknown pathogen detected in subject's blood."))
+				user.show_message(text("\t\t []: [] - [] []",	\
+				"[capitalize(org.display_name)][org.status & ORGAN_ROBOT ? " (Cybernetic)" : ""]",	\
+				(org.burn_dam > 0)				?	"<font color='#FFA500'><b>[org.burn_dam]</b></font>"	: "<font color='#FFA500'>0</font>", \
+				(org.brute_dam > 0)				?	"\red <b>[org.brute_dam]</b>"							: "<font color='red'>0</font>", \
+				(org.status & ORGAN_BLEEDING) 	? 	"\red <b>(Bleeding)</b>" 								: ""),1)
+
+	// Show red messages - broken bokes, infection, etc
 	if (M.getCloneLoss())
-		user.show_message("\red *Subject appears to have been imperfectly cloned.")
+		user.show_message("\t\red *Subject appears to have been imperfectly cloned.")
 	for(var/datum/disease/D in M.viruses)
 		if(!D.hidden[SCANNER])
-			user.show_message(text("\red <b>*Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
-//	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
-//		user.show_message("\blue Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.")
+			user.show_message(text("\t\red <b>*Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
-		user.show_message("\red *Subject is brain dead.")
+		user.show_message("\t\red *Subject is <b>brain dead</b>.")
 	else if (M.getBrainLoss() >= 60)
-		user.show_message("\red *Severe brain damage detected. Subject likely to have mental retardation.")
+		user.show_message("\t\red *<b>Severe brain damage</b> detected. Subject likely to have mental retardation.")
 	else if (M.getBrainLoss() >= 10)
-		user.show_message("\red *Significant brain damage detected. Subject may have had a concussion.")
+		user.show_message("\t\red *<b>Significant brain damage</b> detected. Subject may have had a concussion.")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/name in H.organs_by_name)
@@ -185,38 +156,67 @@ REAGENT SCANNER
 			var/can_amputate = ""
 			if(e.status & ORGAN_BROKEN)
 				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")) && (!(e.status & ORGAN_SPLINTED)))
-					user << "\red *Unsecured fracture in subject [limb]. Splinting recommended for transport."
+					user << "\t\red *Unsecured fracture in subject's <b>[limb]</b>. Splinting recommended."
 			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
 				can_amputate = "or amputation"
 			if(e.germ_level >= INFECTION_LEVEL_THREE)
-				user << "\red *Subject's [limb] is in the last stage of infection. 30u> of Antibiotics [can_amputate] recommended."
+				user << "\t\red *Subject's <b>[limb]</b> is in the last stage of infection. < 30u of antibiotics [can_amputate] recommended."
 			if(e.germ_level >= INFECTION_LEVEL_ONE && e.germ_level < INFECTION_LEVEL_THREE)
-				user << "\red *Subject's [limb] is fighting off with an infection. Antibiotics recommended."
+				user << "\t\red *Subject's <b>[limb]</b> has an infection. Antibiotics recommended."
 			if(e.has_infected_wound())
-				user << "\red *Infected wound detected in subject [limb]. Disinfection of wounds recommended"
+				user << "\t\red *Infected wound detected in subject's <b>[limb]</b>. Disinfection recommended."
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/e = H.organs_by_name[name]
 			if(e.status & ORGAN_BROKEN)
-				user.show_message(text("\red *Bone fractures detected. Advanced scanner required for location."), 1)
-				break
+				if(!((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")))
+					user.show_message(text("\t\red *<b>Bone fractures</b> detected. Advanced scanner required for location."), 1)
+					break
 		for(var/datum/organ/external/e in H.organs)
 			for(var/datum/wound/W in e.wounds) if(W.internal)
-				user.show_message(text("\red *Internal bleeding detected. Advanced scanner required for location."), 1)
+				user.show_message(text("\t\red *<b>Internal bleeding</b> detected. Advanced scanner required for location."), 1)
 				break
+
+	if(istype(M, /mob/living/carbon))
+		// Show helpful reagents
+		if(M:reagents.total_volume > 0)
+			var/unknown = 0
+			var/reagentdata[0]
+			for(var/A in M.reagents.reagent_list)
+				var/datum/reagent/R = A
+				if(R.scannable)
+					reagentdata["[R.id]"] = "[R.overdose != 0 && M.reagents.get_reagent_amount(R.id) >= R.overdose ? "\red <b>OD: </b>" : ""] <font color='#9773C4'><b>[round(M.reagents.get_reagent_amount(R.id), 1)]u [R.name]</b></font>"
+				else
+					unknown++
+			if(reagentdata.len)
+				user.show_message("\n\tBeneficial reagents:")
+				for(var/d in reagentdata)
+					user.show_message("\t\t [reagentdata[d]]")
+			if(unknown)
+				user.show_message(text("\t\red Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood."))
+
+	// Show body temp
+	user.show_message("\n\tBody Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
+
+	if (istype(M, /mob/living/carbon))
+		// Show blood level
 		if(M:vessel)
 			var/blood_volume = round(M:vessel.get_reagent_amount("blood"))
 			var/blood_percent =  blood_volume / 560
 			var/blood_type = M.dna.b_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
-				user.show_message("\red <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.\blue Type: [blood_type]")
+				user.show_message("\t\red <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.\blue Type: [blood_type]")
 			else if(blood_volume <= 336)
-				user.show_message("\red <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.\blue Type: [blood_type]")
+				user.show_message("\t\red <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.\blue Type: [blood_type]")
 			else
-				user.show_message("\blue Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
-		user.show_message("\blue Subject's pulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>")
+				user.show_message("\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
+		// Show pulse
+		var/mob/living/carbon/human/H = M
+		user.show_message("\tPulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>")
+
 	src.add_fingerprint(user)
 	return
+
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
 	set category = "Object"
