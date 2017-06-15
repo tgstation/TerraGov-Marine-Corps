@@ -966,6 +966,10 @@
 
 	for (var/datum/disease/virus in viruses)
 		virus.cure()
+	for (var/ID in virus2)
+		var/datum/disease2/disease/V = virus2[ID]
+		V.cure(src)
+
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()

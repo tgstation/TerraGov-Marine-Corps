@@ -243,6 +243,12 @@
 	build_path = /obj/machinery/computer/telecomms/traffic
 	origin_tech = "programming=3"
 
+/obj/item/weapon/circuitboard/curefab
+	name = "Circuit board (Cure fab)"
+	build_path = /obj/machinery/computer/curer
+/obj/item/weapon/circuitboard/splicer
+	name = "Circuit board (Disease Splicer)"
+	build_path = /obj/machinery/computer/diseasesplicer
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = "Circuit board (Mining Shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/mining

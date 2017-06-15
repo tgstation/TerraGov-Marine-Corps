@@ -123,13 +123,9 @@
 
 /obj/item/weapon/storage/belt/medical
 	name = "\improper M276 pattern medical storage rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies, and light ammunitions."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies, and light pistol munitions."
 	icon_state = "medicalbelt"
 	item_state = "medical"
-	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
-	max_w_class = 3
-	max_combined_w_class = 28
-
 	can_hold = list(
 		"/obj/item/device/healthanalyzer",
 		"/obj/item/weapon/dnainjector",
@@ -138,7 +134,8 @@
 		"/obj/item/weapon/reagent_containers/glass/bottle",
 		"/obj/item/weapon/reagent_containers/pill",
 		"/obj/item/weapon/reagent_containers/syringe",
-		"/obj/item/weapon/flame/lighter",
+		"/obj/item/weapon/reagent_containers/glass/dispenser",
+		"/obj/item/weapon/flame/lighter/zippo",
 		"/obj/item/weapon/storage/fancy/cigarettes",
 		"/obj/item/weapon/storage/pill_bottle",
 		"/obj/item/stack/medical",
@@ -147,24 +144,8 @@
 		"/obj/item/clothing/gloves/latex",
 		"/obj/item/weapon/storage/syringe_case",
 		"/obj/item/ammo_magazine/pistol",
-		"/obj/item/ammo_magazine/revolver",
-		"/obj/item/device/flashlight/flare",
-	    "/obj/item/weapon/reagent_containers/hypospray",
-	    "/obj/item/bodybag",
-	    "/obj/item/weapon/melee/defibrillator"
+	    "/obj/item/weapon/reagent_containers/hypospray"
 	)
-
-/obj/item/weapon/storage/belt/medical/New()
-	..()
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 
 
 /obj/item/weapon/storage/belt/medical/combatLifesaver
@@ -173,35 +154,43 @@
 	icon_state = "medicalbag"
 	item_state = "medicbag"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
-	max_combined_w_class = 42
-	max_w_class = 2
 	can_hold = list(
 		"/obj/item/weapon/reagent_containers/glass/bottle",
 		"/obj/item/weapon/reagent_containers/pill",
 		"/obj/item/weapon/reagent_containers/syringe",
+		"/obj/item/weapon/reagent_containers/glass/dispenser",
 		"/obj/item/weapon/storage/pill_bottle",
 		"/obj/item/clothing/gloves/latex",
 		"/obj/item/weapon/storage/syringe_case",
 		"/obj/item/weapon/reagent_containers/hypospray/autoinjector",
 		"/obj/item/stack/medical"
 	)
-
+	max_combined_w_class = 42
 
 
 /obj/item/weapon/storage/belt/medical/combatLifesaver/New()  //The belt, with all it's magic inside!
 	..()
 	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
-
+	new /obj/item/weapon/storage/pill_bottle/russianRed(src)
 
 /obj/item/weapon/storage/belt/security
 	name = "\improper M276 pattern security rig"

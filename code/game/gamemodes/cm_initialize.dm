@@ -684,10 +684,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/clothing/shoes/marine = round(scale * 5),
 						/obj/item/clothing/under/marine = round(scale * 10),
 						/obj/item/clothing/suit/storage/marine = round(scale * 10),
-						/obj/item/clothing/head/helmet/marine = round(scale * 10),
-
-						/obj/item/attachable/flashlight = round(scale * 10),
-						/obj/item/attachable/bayonet = round(scale * 10)
+						/obj/item/clothing/head/helmet/marine = round(scale * 10)
 						)
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),

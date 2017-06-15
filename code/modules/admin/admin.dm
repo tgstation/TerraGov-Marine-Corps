@@ -627,9 +627,9 @@ var/global/floorIsLava = 0
 			<B>Fun Secrets</B><BR>
 			<BR>
 			<A href='?src=\ref[src];secretsfun=striketeam'>Send in a strike team</A> (inop)<BR> <!--Not working. Maybe a 2nd Death Squad if needed in the future -->
-			<A href='?src=\ref[src];secretsfun=unpower'>Unpower all SMESs and APCs</A><BR>
-			<A href='?src=\ref[src];secretsfun=power'>Power all SMESs and APCs</A><BR>
-			<A href='?src=\ref[src];secretsfun=quickpower'>Power all SMESs</A><BR>
+			<A href='?src=\ref[src];secretsfun=power'>Make all areas powered</A> (inop)<BR> <!--Not working -->
+			<A href='?src=\ref[src];secretsfun=unpower'>Make all areas unpowered</A> (inop)<BR> <!--Not working -->
+			<A href='?src=\ref[src];secretsfun=quickpower'>Power all SMES</A> (inop)<BR> <!--Not working -->
 			<A href='?src=\ref[src];secretsfun=traitor_all'>Make everyone a traitor and give them one objective</A><BR>
 			<A href='?src=\ref[src];secretsfun=onlyone'>There can only be one!</A> (inop)<BR> <!--Not working -->
 			<A href='?src=\ref[src];secretsfun=blackout'>Break all lights</A><BR>
