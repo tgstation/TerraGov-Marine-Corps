@@ -419,8 +419,6 @@
 /mob/living/carbon/Bump(atom/movable/AM, yes)
 	if(!yes || now_pushing)
 		return
-	if(iscarbon(AM) && prob(10))
-		spread_disease_to(AM, "Contact")
 	. = ..()
 
 /mob/living/carbon

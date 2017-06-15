@@ -530,6 +530,15 @@
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
+//this machine does nothing
+/obj/machinery/disease2/diseaseanalyser
+	name = "Disease Analyser"
+	icon = 'icons/obj/virology.dmi'
+	icon_state = "analyser"
+	anchored = 1
+	density = 1
+
+
 /obj/machinery/computer/pandemic
 	name = "PanD.E.M.I.C 2200"
 	density = 1
@@ -814,11 +823,6 @@
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ricestalk = list("rice" = -5),
 		/obj/item/weapon/reagent_containers/food/snacks/grown/cherries = list("cherryjelly" = 0),
 		/obj/item/weapon/reagent_containers/food/snacks/grown/plastellium = list("plasticide" = 5),
-
-
-		//archaeology!
-		/obj/item/weapon/rocksliver = list("ground_rock" = 50),
-
 
 
 		//All types that you can put into the grinder to transfer the reagents to the beaker. !Put all recipes above this.!
@@ -1140,20 +1144,6 @@
 					beaker.reagents.add_reagent(r_id,min(O.reagents.get_reagent_amount(r_id), space))
 			else
 				beaker.reagents.add_reagent(r_id,min(amount, space))
-
-			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
-				break
-		remove_object(O)
-
-	//xenoarch
-	for(var/obj/item/weapon/rocksliver/O in holdingitems)
-		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
-			break
-		var/allowed = get_allowed_by_id(O)
-		for (var/r_id in allowed)
-			var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume
-			var/amount = allowed[r_id]
-			beaker.reagents.add_reagent(r_id,min(amount, space), O.geological_data)
 
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break

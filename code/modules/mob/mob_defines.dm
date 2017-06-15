@@ -160,13 +160,12 @@
 //Changlings, but can be used in other modes
 //	var/obj/effect/proc_holder/changpower/list/power_list = list()
 
-//List of active diseases
 
-	var/list/viruses = list() // replaces var/datum/disease/virus
+
+	var/list/viruses = list() //List of active diseases
 
 //Monkey/infected mode
 	var/list/resistances = list()
-	var/datum/disease/virus = null
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
