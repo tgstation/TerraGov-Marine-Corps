@@ -21,6 +21,19 @@
 					M.contract_disease(D)
 				else //injected
 					M.contract_disease(D, 1, 0)
+		if(self.data && self.data["virus2"] && istype(M, /mob/living/carbon))//infecting...
+			var/list/vlist = self.data["virus2"]
+			if(vlist.len)
+				for (var/ID in vlist)
+					var/datum/disease2/disease/V = vlist[ID]
+
+					if(method == TOUCH)
+						infect_virus2(M,V.getcopy())
+					else
+						infect_virus2(M,V.getcopy(),1) //injected, force infection!
+		if(self.data && self.data["antibodies"] && istype(M, /mob/living/carbon))//... and curing
+			var/mob/living/carbon/C = M
+			C.antibodies |= self.data["antibodies"]
 
 	on_merge(var/data)
 		if(data["blood_colour"])
@@ -428,6 +441,17 @@
 		if(!.) return
 		if(!M) M = holder.my_atom
 		M.apply_effect(2*REM,IRRADIATE,0)
+		// radium may increase your chances to cure a disease
+		if(istype(M,/mob/living/carbon)) // make sure to only use it on carbon mobs
+			var/mob/living/carbon/C = M
+			if(C.virus2.len)
+				for (var/ID in C.virus2)
+					var/datum/disease2/disease/V = C.virus2[ID]
+					if(prob(5))
+						M:antibodies |= V.antigen
+						if(prob(50))
+							M.radiation += 50 // curing it that way may kill you instead
+							M.adjustToxLoss(100)
 
 	reaction_turf(var/turf/T, var/volume)
 		src = null

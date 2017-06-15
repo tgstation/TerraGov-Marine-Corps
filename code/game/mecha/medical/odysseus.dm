@@ -88,6 +88,11 @@
 				if(!D.hidden[SCANNER])
 					foundVirus++
 
+			for (var/ID in patient.virus2)
+				if (ID in virusDB)
+					foundVirus = 1
+					break
+
 			holder = patient.hud_list[HEALTH_HUD]
 			if(patient.stat == 2)
 				holder.icon_state = "hudhealth-100"

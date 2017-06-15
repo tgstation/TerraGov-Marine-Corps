@@ -301,22 +301,6 @@
 		user << "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>"
 		return
 
-	if(!on && !stat)
-		user.visible_message("<span class='notice'>[user] activates [src].</span>",
-		"<span class='notice'>You activate [src].</span>")
-		visible_message("\icon[src] <span class='notice'>The [name] hums to life and emits several beeps, buzzing in a monotone voice: 'Default systems initiated.'</span>")
-		dir_locked = 1
-		target = null
-		worker = null
-		on = 1
-		SetLuminosity(7)
-		if(!camera)
-			camera = new /obj/machinery/camera(src)
-			camera.network = list("military")
-			camera.c_tag = src.name
-		update_icon()
-		return
-
 	if(stat)
 		user.visible_message("<span class='notice'>[user] begins to set [src] upright.</span>",
 		"<span class='notice'>You begin to set [src] upright.</span>")
@@ -332,57 +316,40 @@
 		user << "<span class='warning'>[src]'s control panel is locked! Only a Squad Leader or Engineer can unlock it now.</span>"
 		return
 
+
 	worker = user
 
-	var/dat = "<b>[src.name]:</b> <BR><BR>"
-	dat += "--------------------<BR><BR>"
-	dat += "<B>Current Rounds:</b> [rounds] / [rounds_max]<BR>"
-	dat += "<B>Structural Integrity:</b> [round(health * 100 / health_max)] percent<BR>"
-	if(cell)
-		dat += "<B>Power Cell:</b> [cell.charge] / [cell.maxcharge]<BR>"
-	dat += "<B><A href='?src=\ref[src];op=power'>Power Down</a></B><br>"
-	dat += "--------------------<BR><BR>"
-	dat += "<B><A href='?src=\ref[src];op=direction'>Direction Cycle Lock</a>:</B> "
-	if(dir_locked)
-		switch(dir)
-			if(NORTH)
-				dat += "NORTH (conical)<BR>"
-			if(EAST)
-				dat += "EAST (conical)<BR>"
-			if(SOUTH)
-				dat += "SOUTH (conical)<BR>"
-			if(WEST)
-				dat += "WEST (conical)<BR>"
-	else
-		dat += "360 Degree Rotation<br>"
-
-
-	dat += "<B><A href='?src=\ref[src];op=burst'>Burst Fire</a>:</B> "
-	if(burst_fire)
-		dat += "ON<BR>"
-	else
-		dat += "OFF<BR>	"
-
-	dat += "<B><A href='?src=\ref[src];op=safety'>Safety Toggle</a>:</B> "
-	if(safety_off)
-		dat += "<font color='red'>OFF</font><BR><BR>"
-	else
-		dat += "ON<BR><BR>"
-
-	dat += "--------------------<BR><BR>"
-	dat += "<B>AI Logic:</B> "
-	if(manual_override)
-		dat += "MANUAL OVERRIDE<BR>"
-	else
-		dat += "ON<BR>"
-
-	dat += "<A href='?src=\ref[src];op=manual'>Manual Override Toggle</a><BR><BR>"
-	dat += "--------------------<BR><BR>"
-	dat += "<A href='?src=\ref[src];op=close'>{Close}</a><BR>"
 	user.set_machine(src)
-	user << browse(dat, "window=turret;size=300x400")
-	onclose(user, "turret")
+	ui_interact(user)
+
 	return
+
+/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+
+	var/list/data = list(
+		"self_ref" = "\ref[src]",
+		"name" = copytext(src.name, 2),
+		"is_on" = on,
+		"rounds" = rounds,
+		"rounds_max" = rounds_max,
+		"health" = health,
+		"health_max" = health_max,
+		"has_cell" = (cell ? 1 : 0),
+		"cell_charge" = cell.charge,
+		"cell_maxcharge" = cell.maxcharge,
+		"dir_locked" = dir_locked,
+		"dir" = dir,
+		"burst_fire" = burst_fire,
+		"safety_toggle" = !safety_off,
+		"manual_override" = manual_override,
+	)
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "cm_sentry.tmpl", "[src.name] UI", 625, 525)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
 
 /obj/machinery/marine_turret/Topic(href, href_list)
 	if(usr.stat)
@@ -398,74 +365,61 @@
 	usr.set_machine(src)
 	switch(href_list["op"])
 		if("direction")
-			var/alert_input = alert(usr,"Do you want to turn on the direction lock? This will keep the turret aimed where it's facing.", "Direction Lock", "Yes", "No")
 			if(user.stat || get_dist(src.loc, user.loc) < 1)
 				return
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
 				return
 
-			if(alert_input == "Yes")
-				if(dir_locked)
-					usr << "<span class='warning'>[src] is already direction locked.</span>"
-				else
-					dir_locked = 1
-					usr.visible_message("<span class='notice'>[usr] activates [src]'s direction lock.</span>",
-					"<span class='notice'>You activate [src]'s direction lock.</span>")
-					visible_message("\icon[src] <span class='notice'>The [name]'s turret stops rotating.</span>")
+			if(dir_locked)
+				dir_locked = 0
+				visible_message("\icon[src] The [src]'s turret begins turning side to side.")
+				usr << "\blue You deactivate the direction lock."
 			else
-				if(!dir_locked)
-					usr << "<span class='warning'>[src] is already on free rotation mode.</span>"
-				else
-					dir_locked = 0
-					usr.visible_message("<span class='notice'>[usr] deactivates [src]'s direction lock.</span>",
-					"<span class='notice'>You deactivate [src]'s direction lock.</span>")
-					visible_message("\icon[src] <span class='notice'>The [name]'s turret begins turning side to side.</span>")
+				dir_locked = 1
+				usr.visible_message("<span class='notice'>[usr] activates [src]'s direction lock.</span>",
+				"<span class='notice'>You activate [src]'s direction lock.</span>")
+				visible_message("\icon[src] <span class='notice'>The [name]'s turret stops rotating.</span>")
+
+			return
+
 		if("burst")
-			var/alert_input = alert(usr,"Do you want to turn on burst fire mode? It will be much less accurate.", "Burst Fire", "Yes", "No")
 			if(user.stat || get_dist(src.loc, user.loc) < 1)
 				return
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
 				return
-			if(alert_input == "Yes")
-				if(burst_fire)
-					usr << "<span class='warning'>[src] is already on burst fire mode.</span>"
-				else
-					burst_fire = 1
-					fire_delay = 15
-					usr.visible_message("<span class='notice'>[usr] activates [src]'s burst fire mode.</span>",
-					"<span class='notice'>You activate [src]'s burst fire mode.</span>")
-					visible_message("\icon[src] <span class='notice'>A green light on [src] blinks rapidly.</span>")
+
+			if(burst_fire)
+				burst_fire = 0
+				visible_message("\icon[src] A green light on [src] blinks slowly.")
+				usr << "\blue You deactivate the burst fire mode."
 			else
-				if(!burst_fire)
-					usr << "<span class='warning'>[src] is already on single fire mode.</span>"
-				else
-					burst_fire = 0
-					fire_delay = 5 //Original
-					usr.visible_message("<span class='notice'>[usr] deactivates [src]'s burst fire mode.</span>",
-					"<span class='notice'>You deactivate [src]'s burst fire mode.</span>")
-					visible_message("\icon[src] <span class='notice'>A green light on [src] blinks slowly.</span>")
+				burst_fire = 1
+				fire_delay = 15
+				usr.visible_message("<span class='notice'>[usr] activates [src]'s burst fire mode.</span>",
+				"<span class='notice'>You activate [src]'s burst fire mode.</span>")
+				visible_message("\icon[src] <span class='notice'>A green light on [src] blinks rapidly.</span>")
+
+			return
+
 		if("safety")
-			var/alert_input = alert(usr,"Do you want to turn on the safety lock? It will not stop firing when a friendly is in the way.", "Safety", "Yes", "No")
 			if(user.stat || get_dist(src.loc, user.loc) < 1)
 				return
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
 				return
-			if(alert_input == "Yes")
-				if(!safety_off)
-					usr << "<span class='warning'>[src] is already on safety lock.</span>"
-				else
-					safety_off = 0
-					usr.visible_message("<span class='notice'>[usr] activates [src]'s safety lock.</span>",
-					"<span class='notice'>You activate [src]'s safety lock.</span>")
-					visible_message("\icon[src] <span class='notice'>A red light on [src] blinks rapidly.</span>")
+
+			if(!safety_off)
+				safety_off = 1
+				visible_message("\icon[src] A red light on [src] blinks brightly!")
+				usr << "\blue You deactivate the safety lock. Careful now!"
 			else
-				if(safety_off)
-					usr << "<span class='warning'>[src] is already not on safety lock.</span>"
-				else
-					safety_off = 1
-					usr.visible_message("<span class='notice'>[usr] deactivates [src]'s safety lock.</span>",
-					"<span class='notice'>You deactivate [src]'s safety lock.</span>")
-					visible_message("\icon[src] <span class='warning'>A red light on [src] blinks brightly!</span>")
+				safety_off = 0
+				usr.visible_message("<span class='notice'>[usr] activates [src]'s safety lock.</span>",
+				"<span class='notice'>You activate [src]'s safety lock.</span>")
+				visible_message("\icon[src] <span class='notice'>A red light on [src] blinks rapidly.</span>")
+
+
+			return
+
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(!dir_locked) //Direction lock check
 				usr << "<span class='warning'>[src] can only be fired manually in direction-locked mode.</span>"
@@ -496,12 +450,28 @@
 					user << "<span class='warning'>You are not currently overriding this turret.</span>" //Should be system only failure
 			if(stat == 2)
 				stat = 0 //Weird bug goin on here
+			return
 		if("power")
-			on = 0
-			user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
-			"<span class='notice'>You deactivate [src].</span>")
-			visible_message("\icon[src] <span class='notice'>The [name] powers down and goes silent.</span>")
-			update_icon()
+			if(!on)
+				user << "You turn on the [src]."
+				visible_message("\blue [src] hums to life and emits several beeps.")
+				visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
+				dir_locked = 1
+				target = null
+				worker = null
+				on = 1
+				SetLuminosity(7)
+				if(!camera)
+					camera = new /obj/machinery/camera(src)
+					camera.network = list("military")
+					camera.c_tag = src.name
+				update_icon()
+			else
+				on = 0
+				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
+				"<span class='notice'>You deactivate [src].</span>")
+				visible_message("\icon[src] <span class='notice'>The [name] powers down and goes silent.</span>")
+				update_icon()
 			return
 
 	attack_hand(user)

@@ -253,6 +253,7 @@
 		"stationtime" = worldtime2text(),
 		"stat" = H.stat,
 		"health" = H.health,
+		"virus_present" = H.virus2.len,
 		"bruteloss" = H.getBruteLoss(),
 		"fireloss" = H.getFireLoss(),
 		"oxyloss" = H.getOxyLoss(),

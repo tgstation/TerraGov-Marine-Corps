@@ -21,6 +21,10 @@
 		for(var/datum/disease/D in viruses)
 			if(!D.hidden[SCANNER])
 				foundVirus++
+		for(var/ID in virus2)
+			if(ID in virusDB)
+				foundVirus = 1
+				break
 
 		var/datum/organ/external/head = get_organ("head")
 		var/datum/organ/internal/heart/heart = internal_organs_by_name["heart"]
@@ -46,6 +50,10 @@
 			holder.icon_state = "hudill"
 		else
 			holder.icon_state = "hudhealthy"
+			if(virus2.len)
+				holder2.icon_state = "hudill"
+			else
+				holder2.icon_state = "hudhealthy"
 
 		hud_list[STATUS_HUD] = holder
 		hud_list[STATUS_HUD_OOC] = holder2

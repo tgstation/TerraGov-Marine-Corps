@@ -31,10 +31,12 @@
 		/obj/machinery/computer/pandemic,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/machinery/iv_drip,
+		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
 		/obj/machinery/apiary,
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/hostile/retaliate/goat,
+		/obj/machinery/computer/centrifuge,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
@@ -117,7 +119,14 @@
 			var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 			user << "\blue You transfer [trans] units of the solution to [target]."
 
+
+		else if(istype(target, /obj/machinery/bunsen_burner))
+			return
+
 		else if(istype(target, /obj/machinery/smartfridge))
+			return
+
+		else if(istype(target, /obj/machinery/radiocarbon_spectrometer))
 			return
 
 		else if(reagents.total_volume)
