@@ -198,13 +198,6 @@ REAGENT SCANNER
 	user.show_message("\n\tBody Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
 
 	if (istype(M, /mob/living/carbon))
-		// Show viruses
-		if(M:virus2.len)
-			var/mob/living/carbon/C = M
-			for (var/ID in C.virus2)
-				if (ID in virusDB)
-					var/datum/data/record/V = virusDB[ID]
-					user.show_message(text("\t\red *Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]"))
 		// Show blood level
 		if(M:vessel)
 			var/blood_volume = round(M:vessel.get_reagent_amount("blood"))
