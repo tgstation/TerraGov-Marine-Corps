@@ -393,7 +393,6 @@
 	for(var/obj/effect/decal/cleanable/blood/B in contents)
 		if(!B.blood_DNA[M.dna.unique_enzymes])
 			B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-			B.virus2 = virus_copylist(M.virus2)
 		return 1 //we bloodied the floor
 
 	blood_splatter(src,M.get_blood(M.vessel),1)

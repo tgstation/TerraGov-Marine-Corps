@@ -30,7 +30,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.blood_color,"blood_type"=dna.b_type,	\
-							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = null)
+							"resistances"=null,"trace_chem"=null)
 			B.color = B.data["blood_colour"]
 
 	if(!pale_max)
@@ -187,10 +187,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 
 	//set reagent data
 	B.data["donor"] = src
-	if (!B.data["virus2"])
-		B.data["virus2"] = list()
-	B.data["virus2"] |= virus_copylist(src.virus2)
-	B.data["antibodies"] = src.antibodies
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	if(src.resistances && src.resistances.len)
 		if(B.data["resistances"])
@@ -229,12 +225,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	var/datum/reagent/blood/injected = get_blood(container.reagents)
 	if (!injected)
 		return
-	var/list/sniffles = virus_copylist(injected.data["virus2"])
-	for(var/ID in sniffles)
-		var/datum/disease2/disease/sniffle = sniffles[ID]
-		infect_virus2(src,sniffle,1)
-	if (injected.data["antibodies"] && prob(5))
-		antibodies |= injected.data["antibodies"]
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
 	for(var/C in chems)
@@ -355,13 +345,5 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 			B.blood_DNA[source.data["blood_DNA"]] = source.data["blood_type"]
 		else
 			B.blood_DNA[source.data["blood_DNA"]] = "O+"
-
-	// Update virus information. //Looks like this is out of date.
-	//for(var/datum/disease/D in source.data["viruses"])
-	//	var/datum/disease/new_virus = D.Copy(1)
-	//	source.viruses += new_virus
-	//	new_virus.holder = B
-	if(source.data["virus2"])
-		B.virus2 = virus_copylist(source.data["virus2"])
 
 	return B

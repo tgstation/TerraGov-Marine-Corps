@@ -34,7 +34,7 @@
 		if(4)
 			if(!src.transformed)
 				if ((!strain_data["name"]) || (!strain_data["UI"]) || (!strain_data["SE"]))
-					cdel(affected_mob.virus)
+					cure()
 					return
 
 				//Save original dna for when the disease is cured.
