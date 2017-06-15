@@ -235,6 +235,7 @@
 #include "code\game\gamemodes\colonialmarines\huntergames.dm"
 #include "code\game\gamemodes\colonialmarines\ice_colony.dm"
 #include "code\game\gamemodes\colonialmarines\whiskey_outpost.dm"
+#include "code\game\gamemodes\events\power_failure.dm"
 #include "code\game\gamemodes\extended\extended.dm"
 #include "code\game\gamemodes\traitor\traitor.dm"
 #include "code\game\jobs\access.dm"
