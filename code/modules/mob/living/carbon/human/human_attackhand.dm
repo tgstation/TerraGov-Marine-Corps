@@ -55,10 +55,6 @@
 				apply_effect(4, WEAKEN, armor_block)
 
 			return
-	else
-		if(istype(M,/mob/living/carbon))
-//			log_debug("No gloves, [M] is truing to infect [src]")
-			M.spread_disease_to(src, "Contact")
 
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)

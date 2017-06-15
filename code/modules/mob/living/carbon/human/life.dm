@@ -58,8 +58,6 @@
 			//Random events (vomiting etc)
 			handle_random_events()
 
-			handle_virus_updates()
-
 			//stuff in the stomach
 			handle_stomach()
 
