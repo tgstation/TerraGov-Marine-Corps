@@ -27,23 +27,14 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 		new/datum/stack_recipe("teal comfy chair", /obj/structure/stool/bed/chair/comfy/teal, 2, one_per_turf = 1, on_floor = 1), \
 		), 2), \
 	null, \
-	new/datum/stack_recipe("table parts", /obj/item/weapon/table_parts, 2), \
-	new/datum/stack_recipe("rack parts", /obj/item/weapon/rack_parts), \
 	new/datum/stack_recipe("metal baseball bat", /obj/item/weapon/baseballbat/metal, 10, time = 20, one_per_turf = 0, on_floor = 1), \
-	/*
-	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = 1, on_floor = 1), \
-
-	null, \
-	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = 1, on_floor = 1), \
-	null, /*\
-	new/datum/stack_recipe("cannon frame", /obj/item/weapon/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0), \
-	null, \*/
-	*/
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60), \
 	null, \
+	new/datum/stack_recipe("barbed wire", /obj/item/barbed_wire, 2, time = 10), \
+	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 5, time = 80, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 25, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("wall girders", /obj/structure/girder, 4, time = 100, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("wall girders", /obj/structure/girder, 8, time = 100, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("machine frame", /obj/machinery/constructable_frame/machine_frame, 5, time = 25, one_per_turf = 1, on_floor = 1), \
 	null, \
 	new/datum/stack_recipe_list("airlock assemblies", list( \
@@ -99,7 +90,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 50, one_per_turf = 1), \
 	new/datum/stack_recipe("knife grip", /obj/item/butterflyhandle, 2, time = 20, one_per_turf = 0, on_floor = 1),
-	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 5, time = 80, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 80, one_per_turf = 1, on_floor = 1),
 	new/datum/stack_recipe("sentry turret frame", /obj/machinery/marine_turret_frame, 20, time = 60, one_per_turf = 1, on_floor = 1),
 	)
 
@@ -124,7 +115,9 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, 1), \
 	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
+	/*
 	new/datum/stack_recipe("table parts", /obj/item/weapon/table_parts/wood, 2), \
+	 */
 	new/datum/stack_recipe("wooden chair", /obj/structure/stool/bed/chair/wood/normal, 3, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 50, one_per_turf = 1, on_floor = 1), \
 

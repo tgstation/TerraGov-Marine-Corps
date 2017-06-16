@@ -735,7 +735,7 @@
 "og" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "11"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
 "oh" = (/turf/simulated/wall/mineral/sandstone,/area/space)
 "oi" = (/turf/unsimulated/floor/gm/dirt,/area/space)
-"oj" = (/obj/structure/falsewall/sandstone,/turf/unsimulated/floor/gm/dirt,/area/space)
+"oj" = (/obj/structure/mineral_door/sandstone,/turf/unsimulated/floor/gm/dirt,/area/space)
 "ok" = (/obj/structure/mineral_door/sandstone,/turf/unsimulated/floor/gm/dirt,/area/space)
 "ol" = (/obj/item/weapon/crowbar/fluff/zelda_creedy_1{desc = "A bent piece of metal, used for prying things. Or beating heads."; force = 25; name = "Universal Prying Bar"},/obj/structure/table,/turf/unsimulated/floor/gm/dirt,/area/space)
 "om" = (/turf/simulated/wall/mineral/silver,/area/space)

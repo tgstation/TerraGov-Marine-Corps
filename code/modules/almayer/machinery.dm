@@ -434,7 +434,6 @@
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -448,7 +447,6 @@
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -462,7 +460,6 @@
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 
@@ -743,7 +740,6 @@
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/falsewall,
 		/obj/structure/window/reinforced/almayer,
 		/obj/machinery/door/airlock)
 

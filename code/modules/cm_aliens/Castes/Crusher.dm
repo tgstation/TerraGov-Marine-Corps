@@ -1,5 +1,3 @@
-//Crusher Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
-
 /mob/living/carbon/Xenomorph/Crusher
 	caste = "Crusher"
 	name = "Crusher"
@@ -62,6 +60,7 @@
 	if(.)
 		stat(null, "Momentum: [momentum]")
 
+// This is depricated. Use handle_collision() for all future momentum changes. ~Bmc777
 /mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(direction, stunned)
 	if(!lastturf) r_FAL //Not charging.
 	momentum = 0
@@ -151,6 +150,28 @@
 
 	update_icons()
 
+// The atom collided with is passed to this proc, all types of collisions are dealt with here.
+// The atom does not tell the Crusher how to handle a collision, the Crusher is an independant
+// Xeno who don't need no atom. ~Bmc777
+/mob/living/carbon/Xenomorph/Crusher/proc/handle_collision(atom/target)
+	if (!target)
+		r_FAL
+
+	//Barricade collision
+	if (istype(target, /obj/structure/barricade))
+		var/obj/structure/barricade/B = target
+		if (momentum > 24)
+			visible_message(
+			"<span class='danger'>[src] hits [B] and skids to a halt!</span>",
+			"<span class='xenowarning'>You hit [B] and skid to a halt!</span>")
+
+			flags_pass = 0
+			speed = initial(speed) //TODO This doesn't take into account other speed upgrades, resetting after evolve.
+			update_icons()
+			r_TRU
+
+	r_FAL
+
 proc/diagonal_step(atom/movable/A, direction, P = 75)
 	if(!A || !prob(P)) r_FAL
 	switch(direction)
@@ -192,7 +213,15 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 				X.momentum -= 3
 			else r_FAL
 
-//Beginning special object overrrides.
+//Beginning special object overrides.
+
+//**READ ME**
+//NO MORE SPECIAL OBJECT OVERRIDES! Do not create another crusher_act.
+//For all future collisions, add to the body of handle_collision().
+//We do not want to add Crusher specific procs to objects, all Crusher
+//related code should be handled by Crusher code. The object collided with
+//should handle it's own damage (and deletion if needed) through it's
+//Bumped() proc. ~Bmc777
 
 /obj/structure/window/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	if(unacidable)
@@ -215,32 +244,6 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	health -= X.momentum * 3 //Usually knocks it down.
 	healthcheck()
 	r_TRU
-
-/obj/structure/barricade/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
-	if(flags_atom & ON_BORDER) //border barricade resists the crusher when charged into its front side.
-		if(dir == reverse_direction(X.dir) && X.momentum > 10)
-			if(unacidable)
-				if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
-				r_FAL
-			playsound(loc, "punch", 25, 1)
-			X.visible_message(
-			"<span class='danger'>[X] smashes straight into [src]!</span>",
-			"<span class='xenodanger'>You smash straight into [src]!</span>")
-			X.health -= (X.momentum * 4)
-			update_health(TRUE)
-			X.momentum -= 6
-			r_TRU
-	else
-		if(X.momentum > 8)
-			if(unacidable)
-				if(X.momentum > 26) X.stop_momentum(X.charge_dir, TRUE)
-				r_FAL
-			X.visible_message(
-			"<span class='danger'>[X] plows straight through [src]!</span>",
-			"<span class='xenodanger'>You plow straight through [src]!</span>")
-			X.momentum -= 3
-			cdel(src)
-			r_TRU
 
 /obj/machinery/vending/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	if(X.momentum > 20)
@@ -360,8 +363,9 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		stop_momentum()
 		return ..()
 
-	if(!A.crusher_act(src))
-		return ..()
+	if (!handle_collision(A))
+		if(!A.crusher_act(src)) //crusher_act is depricated and only here to handle cases that have not been refactored as of yet.
+			return ..()
 
 	var/turf/T = get_step(src, dir)
 	if(!T || !get_step_to(src, T)) //If it still exists, try to push it.

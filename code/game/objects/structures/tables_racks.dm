@@ -12,7 +12,7 @@
  */
 /obj/structure/table
 	name = "table"
-	desc = "A square piece of metal standing on four metal legs. It can not move."
+	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "table"
 	density = 1
@@ -36,7 +36,7 @@
 			if(prob(50))
 				new /obj/item/stack/rods(loc)
 			new /obj/item/stack/sheet/metal(loc)
-		else if(istype(src,/obj/structure/table/woodentable) || istype(src,/obj/structure/table/gamblingtable))
+		else if(istype(src, /obj/structure/table/woodentable) || istype(src, /obj/structure/table/gamblingtable))
 			new /obj/item/stack/sheet/wood(loc)
 		else
 			new /obj/item/stack/sheet/metal(loc)
@@ -44,9 +44,9 @@
 	cdel(src)
 
 /obj/structure/table/proc/update_adjacent()
-	for(var/direction in list(1,2,4,8,5,6,9,10))
-		if(locate(/obj/structure/table,get_step(src,direction)))
-			var/obj/structure/table/T = locate(/obj/structure/table,get_step(src,direction))
+	for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
+		if(locate(/obj/structure/table,get_step(src, direction)))
+			var/obj/structure/table/T = locate(/obj/structure/table, get_step(src,direction))
 			T.update_icon()
 
 /obj/structure/table/New()
@@ -62,7 +62,7 @@
 	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
 		var/mob/living/carbon/Xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message("<span class='danger'>[O] plows straight through \the [src]!</span>")
+			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy()
 
 /obj/structure/table/Dispose()
@@ -75,27 +75,27 @@
 		if(flipped)
 			var/type = 0
 			var/tabledirs = 0
-			for(var/direction in list(turn(dir,90), turn(dir,-90)) )
-				var/obj/structure/table/T = locate(/obj/structure/table,get_step(src,direction))
-				if (T && T.flipped && T.dir == src.dir)
+			for(var/direction in list(turn(dir, 90), turn(dir, -90)) )
+				var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
+				if (T && T.flipped && T.dir == dir)
 					type++
 					tabledirs |= direction
 			var/base = "table"
-			if (istype(src, /obj/structure/table/woodentable))
+			if(istype(src, /obj/structure/table/woodentable))
 				base = "wood"
-			if (istype(src, /obj/structure/table/reinforced))
+			if(istype(src, /obj/structure/table/reinforced))
 				base = "rtable"
 
 			icon_state = "[base]flip[type]"
-			if (type==1)
-				if (tabledirs & turn(dir,90))
+			if(type == 1)
+				if(tabledirs & turn(dir,90))
 					icon_state = icon_state+"-"
-				if (tabledirs & turn(dir,-90))
+				if(tabledirs & turn(dir,-90))
 					icon_state = icon_state+"+"
 			return 1
 
 		var/dir_sum = 0
-		for(var/direction in list(1,2,4,8,5,6,9,10))
+		for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
 			var/skip_sum = 0
 			for(var/obj/structure/window/W in src.loc)
 				if(W.dir == direction) //So smooth tables don't go smooth through windows
@@ -119,14 +119,14 @@
 					inv_direction = 6
 				if(10)
 					inv_direction = 5
-			for(var/obj/structure/window/W in get_step(src,direction))
+			for(var/obj/structure/window/W in get_step(src, direction))
 				if(W.dir == inv_direction) //So smooth tables don't go smooth through windows when the window is on the other table's tile
 					skip_sum = 1
 					continue
 			if(!skip_sum) //means there is a window between the two tiles in this direction
-				var/obj/structure/table/T = locate(/obj/structure/table,get_step(src,direction))
+				var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
 				if(T && !T.flipped)
-					if(direction <5)
+					if(direction < 5)
 						dir_sum += direction
 					else
 						if(direction == 5)	//This permits the use of all table directions. (Set up so clockwise around the central table is a higher value, from north)
@@ -144,19 +144,19 @@
 		if(dir_sum%16 in cardinal)
 			table_type = 1 //endtable
 			dir_sum %= 16
-		if(dir_sum%16 in list(3,12))
+		if(dir_sum%16 in list(3, 12))
 			table_type = 2 //1 tile thick, streight table
 			if(dir_sum%16 == 3) //3 doesn't exist as a dir
 				dir_sum = 2
 			if(dir_sum%16 == 12) //12 doesn't exist as a dir.
 				dir_sum = 4
-		if(dir_sum%16 in list(5,6,9,10))
-			if(locate(/obj/structure/table,get_step(src.loc,dir_sum%16)))
+		if(dir_sum%16 in list(5, 6, 9, 10))
+			if(locate(/obj/structure/table, get_step(src.loc, dir_sum%16)))
 				table_type = 3 //full table (not the 1 tile thick one, but one of the 'tabledir' tables)
 			else
 				table_type = 2 //1 tile thick, corner table (treated the same as streight tables in code later on)
 			dir_sum %= 16
-		if(dir_sum%16 in list(13,14,7,11)) //Three-way intersection
+		if(dir_sum%16 in list(13, 14, 7, 11)) //Three-way intersection
 			table_type = 5 //full table as three-way intersections are not sprited, would require 64 sprites to handle all combinations.  TOO BAD -- SkyMarshal
 			switch(dir_sum%16)	//Begin computation of the special type tables.  --SkyMarshal
 				if(7)
@@ -210,7 +210,7 @@
 		if(dir_sum%16 == 15)
 			table_type = 4 //4-way intersection, the 'middle' table sprites will be used.
 
-		if(istype(src,/obj/structure/table/reinforced))
+		if(istype(src, /obj/structure/table/reinforced))
 			switch(table_type)
 				if(0)
 					icon_state = "reinf_table"
@@ -226,7 +226,7 @@
 					icon_state = "reinf_tabledir2"
 				if(6)
 					icon_state = "reinf_tabledir3"
-		else if(istype(src,/obj/structure/table/woodentable))
+		else if(istype(src, /obj/structure/table/woodentable))
 			switch(table_type)
 				if(0)
 					icon_state = "wood_table"
@@ -242,7 +242,7 @@
 					icon_state = "wood_tabledir2"
 				if(6)
 					icon_state = "wood_tabledir3"
-		else if(istype(src,/obj/structure/table/gamblingtable))
+		else if(istype(src, /obj/structure/table/gamblingtable))
 			switch(table_type)
 				if(0)
 					icon_state = "gamble_table"
@@ -274,7 +274,7 @@
 					icon_state = "tabledir2"
 				if(6)
 					icon_state = "tabledir3"
-		if (dir_sum in list(1,2,4,8,5,6,9,10))
+		if (dir_sum in list(1, 2, 4, 8, 5, 6, 9, 10))
 			dir = dir_sum
 		else
 			dir = 2
@@ -282,14 +282,14 @@
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return
 
-/obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/table/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	var/obj/structure/table/T = locate(/obj/structure/table) in get_turf(mover)
 	if(T && !T.flipped) //flipped tables don't count
 		return 1
-	if (flipped)
-		if (get_dir(loc, target) == dir)
+	if(flipped)
+		if(get_dir(loc, target) == dir)
 			return !density
 		else
 			return 1
@@ -298,8 +298,8 @@
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
 		return 1
-	if (flipped)
-		if (get_dir(loc, target) == dir)
+	if(flipped)
+		if(get_dir(loc, target) == dir)
 			return !density
 		else
 			return 1
@@ -317,27 +317,28 @@
 
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if(!istype(O, /obj/item/weapon) || !user.get_active_hand() != O)
 		return ..()
 	if(isrobot(user))
 		return
 	user.drop_held_item()
-	if (O.loc != src.loc)
+	if(O.loc != src.loc)
 		step(O, get_dir(O, src))
 	return
 
 
 /obj/structure/table/attackby(obj/item/W, mob/user)
-	if (!W) return
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<=1)
+	if(!W) return
+	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) <= 1)
 		var/obj/item/weapon/grab/G = W
-		if (istype(G.grabbed_thing, /mob/living))
+		if(istype(G.grabbed_thing, /mob/living))
 			var/mob/living/M = G.grabbed_thing
 			if(user.a_intent == "hurt")
 				if(user.grab_level > GRAB_AGGRESSIVE)
 					if (prob(15))	M.Weaken(5)
-					M.apply_damage(8,def_zone = "head")
-					visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>")
+					M.apply_damage(8, def_zone = "head")
+					user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
+					"<span class='danger'>You slam [M]'s face against [src]!</span>")
 					playsound(src.loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 				else
 					user << "<span class='warning'>You need a better grip to do that!</span>"
@@ -345,13 +346,17 @@
 			else if(user.grab_level >= GRAB_AGGRESSIVE)
 				M.forceMove(loc)
 				M.Weaken(5)
-				visible_message("<span class='danger'>[user] puts [M] on [src].</span>")
+				user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
+				"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if (istype(W, /obj/item/weapon/wrench))
-		user << "\blue Now disassembling table"
+	if(istype(W, /obj/item/weapon/wrench))
+		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
+		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
+			"<span class='notice'>You disassemble [src].</span>")
 			destroy(1)
 		return
 
@@ -364,19 +369,19 @@
 		spark_system.start()
 		playsound(src.loc, 'sound/weapons/blade1.ogg', 25, 1)
 		playsound(src.loc, "sparks", 25, 1)
-		for(var/mob/O in viewers(user, 4))
-			O.show_message("\blue The [src] was sliced apart by [user]!", 1, "\red You hear [src] coming apart.", 2)
+		user.visible_message("<span class='danger'>[user] slices [src] apart!",
+		"<span class='danger'>You slice [src] apart!")
 		destroy()
 		return
 
 	if(istype(W, /obj/item/weapon/wristblades))
-		if(rand(0,2) == 0)
+		if(rand(0, 2) == 0)
 			playsound(src.loc, 'sound/weapons/wristblades_hit.ogg', 25, 1)
-			for(var/mob/O in viewers(user, 4))
-				O.show_message("\red <b>The [src] was sliced apart by [user]!</b>", 1, "\red <b>You hear [src] coming apart.</b>", 2)
+			user.visible_message("<span class='danger'>[user] slices [src] apart!",
+			"<span class='danger'>You slice [src] apart!")
 			destroy()
 		else
-			user << "\red You slice at the table, but only claw it up a little."
+			user << "<span class='warning'>You slice at the table, but only claw it up a little.</span>"
 		return
 
 	user.drop_inv_item_to_loc(W, loc)
@@ -384,16 +389,16 @@
 
 /obj/structure/table/proc/straight_table_check(var/direction)
 	var/obj/structure/table/T
-	for(var/angle in list(-90,90))
-		T = locate() in get_step(src.loc,turn(direction,angle))
+	for(var/angle in list(-90, 90))
+		T = locate() in get_step(loc, turn(direction, angle))
 		if(T && !T.flipped)
 			return 0
 	T = locate() in get_step(src.loc,direction)
-	if (!T || T.flipped)
+	if(!T || T.flipped)
 		return 1
-	if (istype(T,/obj/structure/table/reinforced/))
+	if(istype(T, /obj/structure/table/reinforced/))
 		var/obj/structure/table/reinforced/R = T
-		if (R.status == 2)
+		if(R.status == 2)
 			return 0
 	return T.straight_table_check(direction)
 
@@ -407,10 +412,11 @@
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
-		usr << "<span class='warning'>It won't budge.</span>"
+		usr << "<span class='warning'>[src] won't budge.</span>"
 		return
 
-	usr.visible_message("<span class='warning'>[usr] flips \the [src]!</span>")
+	usr.visible_message("<span class='warning'>[usr] flips [src]!</span>",
+	"<span class='warning'>You flip [src]!</span>")
 
 	if(climbable)
 		structure_shaken()
@@ -448,7 +454,7 @@
 		return
 
 	if(!unflipping_check())
-		usr << "<span class='warning'>It won't budge.</span>"
+		usr << "<span class='warning'>[src] won't budge.</span>"
 		return
 
 	unflip()
@@ -460,17 +466,17 @@
 	if(world.time < flip_cooldown)
 		return 0
 
-	if(!straight_table_check(turn(direction,90)) || !straight_table_check(turn(direction,-90)))
+	if(!straight_table_check(turn(direction, 90)) || !straight_table_check(turn(direction, -90)))
 		return 0
 
 	verbs -=/obj/structure/table/verb/do_flip
 	verbs +=/obj/structure/table/proc/do_put
 
-	var/list/targets = list(get_step(src,dir),get_step(src,turn(dir, 45)),get_step(src,turn(dir, -45)))
-	for (var/atom/movable/A in get_turf(src))
-		if (!A.anchored)
+	var/list/targets = list(get_step(src,dir),get_step(src, turn(dir, 45)),get_step(src, turn(dir, -45)))
+	for(var/atom/movable/A in get_turf(src))
+		if(!A.anchored)
 			spawn(0)
-				A.throw_at(pick(targets),1,1)
+				A.throw_at(pick(targets), 1, 1)
 
 	dir = direction
 	if(dir != NORTH)
@@ -510,7 +516,7 @@
  */
 /obj/structure/table/woodentable
 	name = "wooden table"
-	desc = "Do not apply fire to this. Rumour says it burns easily."
+	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon_state = "wood_table"
 	parts = /obj/item/weapon/table_parts/wood
 	health = 50
@@ -519,7 +525,7 @@
  */
 /obj/structure/table/gamblingtable
 	name = "gambling table"
-	desc = "A curved wooden table with a thin carpet of green fabric."
+	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
 	icon_state = "gamble_table"
 	parts = /obj/item/weapon/table_parts/gambling
 	health = 50
@@ -528,43 +534,43 @@
  */
 /obj/structure/table/reinforced
 	name = "reinforced table"
-	desc = "A version of the four legged table. It is stronger."
+	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
 	icon_state = "reinf_table"
 	health = 200
 	var/status = 2
 	parts = /obj/item/weapon/table_parts/reinforced
 
 /obj/structure/table/reinforced/flip(var/direction)
-	if (status == 2)
-		return 0
-	else
-		return ..()
+	return 0 //No, just no. It's a full desk, you can't flip that
 
 /obj/structure/table/reinforced/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			if(src.status == 2)
-				user << "\blue Now weakening the reinforced table"
+			if(status == 2)
+				user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
+				"<span class='notice'>You start weakening [src]</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if (do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src || !WT.isOn()) return
-					user << "\blue Table weakened"
+					user.visible_message("<span class='notice'>[user] weakens [src].</span>",
+					"<span class='notice'>You weaken [src]</span>")
 					src.status = 1
 			else
-				user << "\blue Now strengthening the reinforced table"
+				user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
+				"<span class='notice'>You start welding [src] back together.</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if (do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src || !WT.isOn()) return
-					user << "\blue Table strengthened"
-					src.status = 2
+					user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
+					"<span class='notice'>You weld [src] back together.</span>")
+					status = 2
 			return
 		return
 
-	if (istype(W, /obj/item/weapon/wrench))
-		if(src.status == 2)
+	if(istype(W, /obj/item/weapon/wrench))
+		if(status == 2)
 			return
-
 	..()
 
 /*
@@ -572,7 +578,7 @@
  */
 /obj/structure/rack
 	name = "rack"
-	desc = "Different from the Middle Ages version."
+	desc = "A bunch of metal shelves stacked on top of eachother. Excellent for storage purposes, less so as cover."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
 	density = 1
@@ -583,9 +589,9 @@
 	climbable = 1
 	parts = /obj/item/weapon/rack_parts
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/rack/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height==0)) return 1
-	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
+	if(density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
@@ -593,17 +599,17 @@
 		return 0
 
 /obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if(!istype(O, /obj/item/weapon) || !user.get_active_hand() != O)
 		return
 	if(isrobot(user))
 		return
 	user.drop_held_item()
-	if (O.loc != src.loc)
+	if(O.loc != loc)
 		step(O, get_dir(O, src))
 	return
 
 /obj/structure/rack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/wrench))
 		destroy(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
@@ -618,7 +624,7 @@
 	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
 		var/mob/living/carbon/Xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
+			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy()
 
 /obj/structure/rack/destroy(var/deconstruct = 0)
