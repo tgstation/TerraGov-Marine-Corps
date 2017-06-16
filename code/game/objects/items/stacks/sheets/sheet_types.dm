@@ -32,7 +32,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60), \
 	null, \
 	new/datum/stack_recipe("barbed wire", /obj/item/barbed_wire, 2, time = 10), \
-	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 5, time = 80, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 80, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 25, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("wall girders", /obj/structure/girder, 8, time = 100, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("machine frame", /obj/machinery/constructable_frame/machine_frame, 5, time = 25, one_per_turf = 1, on_floor = 1), \
