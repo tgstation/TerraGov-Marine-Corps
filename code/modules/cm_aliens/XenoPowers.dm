@@ -468,7 +468,7 @@
 			return
 		var/choice = input(src, "Choose a pheromone") in aura_allowed + "help" + "cancel"
 		if(choice == "help")
-			src << "<span class='notice'><br>Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.<br>Frenzy - Increased run speed and tackle chance<br>Warding - Increased armor, reduced incoming damage and critical bleedout.<br>Recovery - Increased plasma and health regeneration.<br>Evolving - Faster evolution increase.<br></span>"
+			src << "<span class='notice'><br>Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.<br>Frenzy - Increased run speed and tackle chance<br>Warding - Increased armor, reduced incoming damage and critical bleedout.<br>Recovery - Increased plasma and health regeneration.<br></span>"
 			return
 		if(choice != "cancel")
 			current_aura = choice
