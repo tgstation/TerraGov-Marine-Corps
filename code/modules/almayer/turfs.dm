@@ -68,7 +68,7 @@
 	cdel(src)
 
 /turf/simulated/shuttle/wall/dropship1
-	name = "\improper Normandy"
+	name = "\improper Alamo"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 
@@ -76,7 +76,7 @@
 	opacity = 0
 
 /turf/simulated/shuttle/wall/dropship2
-	name = "\improper Alamo"
+	name = "\improper Normandy"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
 
