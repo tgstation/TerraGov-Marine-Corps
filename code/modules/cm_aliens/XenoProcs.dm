@@ -46,8 +46,6 @@
 			stat(null,"You are affected by a pheromone of WARDING.")
 		if(recovery_aura)
 			stat(null,"You are affected by a pheromone of RECOVERY.")
-		if(evolving_aura)
-			stat(null,"You are affected by a pheromone of EVOLVING.")
 
 		if(hive_orders && hive_orders != "")
 			stat(null,"Hive Orders: [hive_orders]")

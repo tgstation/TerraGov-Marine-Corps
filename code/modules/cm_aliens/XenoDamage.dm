@@ -43,8 +43,6 @@
 			b_loss += rand(20, 40)
 			f_loss += rand(25, 50)
 
-	if(warding_aura)
-		b_loss = round(b_loss / 2)
 	apply_damage(b_loss, BRUTE)
 	apply_damage(f_loss, BURN)
 	updatehealth()
@@ -67,8 +65,8 @@
 
 	if(stat == DEAD) return
 
-	if(warding_aura && damage > 0) //Damage reduction. Goes from 9.5/10 for Young Drone to 1/2 for Ancient Empress
-		damage = round(damage * ((10 - warding_aura) / 10))
+	if(warding_aura && damage > 0) //Damage reduction. Goes from 9.5/15 for Young Drone to 2/3 for Ancient Empress. Used to be out of 10
+		damage = round(damage * ((15 - warding_aura) / 15))
 
 	if(def_zone == "head" || def_zone == "eyes" || def_zone == "mouth") //Little more damage vs the head
 		damage = round(damage * 8 / 7)

@@ -24,7 +24,7 @@
 		update_progression()
 
 		if(evolution_allowed && evolution_stored < evolution_threshold && living_xeno_queen)
-			evolution_stored = min(evolution_stored + 1 + evolving_aura * 0.2, evolution_threshold)
+			evolution_stored = min(evolution_stored++, evolution_threshold)
 			if(evolution_stored == evolution_threshold - 1)
 				src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
 
@@ -132,23 +132,19 @@
 					Z.warding_new = aura_strength
 				if(current_aura == "recovery" && aura_strength > Z.recovery_new)
 					Z.recovery_new = aura_strength
-				if(current_aura == "evolving" && aura_strength > Z.evolving_new)
-					Z.evolving_new = aura_strength
 
 		frenzy_aura = frenzy_new
 		warding_aura = warding_new
 		recovery_aura = recovery_new
-		evolving_aura = evolving_new
 
 		frenzy_new = 0
 		warding_new = 0
 		recovery_new = 0
-		evolving_new = 0
 
 		armor_bonus = 0
 
 		if(warding_aura > 0)
-			armor_bonus = warding_aura * 5 //Bonus armor from pheromones, no matter what the armor was previously.
+			armor_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
 
 		update_icons()
 
