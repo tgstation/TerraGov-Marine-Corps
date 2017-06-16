@@ -208,10 +208,20 @@
 			if(!A.density) //We're scanning a non dense object.
 				continue
 
-			//Scan for tables, barricades, and other assorted larger nonsense
-			if( (A.layer >= 3) || roll_to_hit_obj(firer,A))
+			//Scan for tables, barricades.
+			if(istype(A, /obj/structure/barricade) || istype(A, /obj/structure/table))
+				if (roll_to_hit_obj(firer,A))
+					ammo.on_hit_obj(A, src)
+					if (A && A.loc)
+						A.bullet_act(src)
+					return 1
+				continue
+
+			//Scan for other assorted larger nonsense.
+			if(A.layer >= 3)
 				ammo.on_hit_obj(A,src)
-				if(A && A.loc) A.bullet_act(src)
+				if(A && A.loc)
+					A.bullet_act(src)
 				return 1
 
 		else if(ismob(A))

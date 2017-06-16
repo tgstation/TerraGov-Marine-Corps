@@ -588,9 +588,11 @@
 		if (closed)
 			user.visible_message("<span class='notice'>[user] flips the [src] open.</span>",
 			"<span class='notice'>You flip the [src] open.</span>")
+			density = 1
 		else
 			user.visible_message("<span class='notice'>[user] flips the [src] closed.</span>",
 			"<span class='notice'>You flip the [src] open.</span>")
+			density = 0
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		closed = !closed
@@ -638,7 +640,7 @@
 	New()
 		..()
 
-		if (dir == NORTH)
+		if (dir == SOUTH)
 			pixel_y = -7
 
 	attackby(obj/item/W, mob/user)
