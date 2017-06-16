@@ -63,3 +63,44 @@
 	layer = 16
 	anchored = 1
 	effect_duration = 25
+
+
+/obj/effect/overlay/temp/laser_target
+	name = "laser"
+	anchored = TRUE
+	layer = MOB_LAYER + 1
+	mouse_opacity = 1
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "laser_target"
+	effect_duration = 600
+	var/target_id
+	var/obj/item/device/binoculars/tactical/source_binoc
+
+	New()
+		..()
+		target_id = rand(1,1000) //giving it a pseudo unique id.
+		active_laser_targets += src
+
+	Dispose()
+		active_laser_targets -= src
+		if(source_binoc)
+			source_binoc.laser_cooldown = world.time + 200
+			source_binoc.laser = null
+			source_binoc = null
+		..()
+
+	Del()
+		active_laser_targets -= src
+		if(source_binoc)
+			source_binoc.laser_cooldown = world.time + 200
+			source_binoc.laser = null
+			source_binoc = null
+		..()
+
+	ex_act(severity) //immune to explosions
+		return
+
+	examine()
+		..()
+		if(ishuman(usr))
+			usr << "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>"

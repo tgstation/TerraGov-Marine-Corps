@@ -1680,6 +1680,7 @@
 	name = "dirt"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "mars_tile_1"
+	is_groundmap_turf = TRUE
 
 	New()
 		..()

@@ -35,6 +35,7 @@
 	var/sound/sound_landing = 'sound/effects/engine_landing.ogg'//Landing sounds.
 	var/sound/sound_moving //Movement sounds, usually not applicable.
 	var/sound/sound_misc //Anything else, like escape pods.
+	var/obj/structure/dropship_equipment/list/equipments = list()
 
 /datum/shuttle/ferry/marine/proc/load_datums()
 	if(!(info_tag in s_info))
@@ -100,6 +101,10 @@
 	else
 		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
 
+	for(var/obj/structure/dropship_equipment/fuel/cooling_system/CS in equipments)
+		recharging = round(recharging * SHUTTLE_COOLING_FACTOR_RECHARGE) //cooling system reduces recharge time
+		break
+
 	//START: Heavy lifting backend
 
 	//Simple pick() process for now, but this should be changed later.
@@ -110,15 +115,20 @@
 	var/turf/T_trg = pick(locs_land)
 	var/trg_rot = locs_land[T_trg]
 
+	if(transit_gun_mission)//gun mission makes you land back where you started.
+		T_trg = T_src
+		trg_rot = src_rot
+
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.\n <font size=10>WARNING: DROPSHIP LAUNCH WILL FAIL</font></span>")
 		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.")
 
-	//Switch the landmarks so we can do this again
-	locs_dock -= T_src
-	locs_land -= T_trg
-	locs_dock |= T_trg
-	locs_land |= T_src
+	//Switch the landmarks, to swap docking and landing locs, so we can move back and forth.
+	if(!transit_gun_mission) //gun mission makes you land back where you started. no need to swap dock and land turfs.
+		locs_dock -= T_src
+		locs_land -= T_trg
+		locs_dock |= T_trg
+		locs_land |= T_src
 
 	//END: Heavy lifting backend
 
@@ -127,12 +137,19 @@
 		return	//someone canceled the launch
 
 	var/travel_time = 0
-	if(transit_optimized)
-		travel_time = move_time * 10 * SHUTTLE_OPTIMIZE_FACTOR_TRAVEL
+	if(transit_gun_mission)
+		travel_time = move_time * 10 //fire missions not made shorter by optimization.
 	else
-		travel_time = move_time * 10
+		if(transit_optimized)
+			travel_time = move_time * 10 * SHUTTLE_OPTIMIZE_FACTOR_TRAVEL
+		else
+			travel_time = move_time * 10
 
-	moving_status = SHUTTLE_INTRANSIT
+		for(var/X in equipments)
+			var/obj/structure/dropship_equipment/E = X
+			if(istype(E, /obj/structure/dropship_equipment/fuel/fuel_enhancer))
+				travel_time  = round(travel_time * SHUTTLE_FUEL_ENHANCE_FACTOR_TRAVEL) //fuel enhancer reduces travel time
+				break
 
 	//START: Heavy lifting backend
 
@@ -141,6 +158,12 @@
 	playsound(turfs_src[sound_target], sound_takeoff, 60, 0)
 
 	sleep(warmup_time*10) //Warming up
+
+	moving_status = SHUTTLE_INTRANSIT
+
+	for(var/X in equipments)
+		var/obj/structure/dropship_equipment/E = X
+		E.on_launch()
 
 	close_doors(turfs_src) //Close the doors
 
@@ -163,8 +186,9 @@
 
 	//Now that we've landed, assuming some rotation including 0, we need to make sure it doesn't fuck up when we go back
 	locs_move[T_int] = -1*trg_rot
-	locs_dock[T_trg] = src_rot
-	locs_land[T_src] = trg_rot
+	if(!transit_gun_mission)
+		locs_dock[T_trg] = src_rot
+		locs_land[T_src] = trg_rot
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since they hadn't moved yet
@@ -174,15 +198,21 @@
 
 	//END: Heavy lifting backend
 
+	for(var/X in equipments)
+		var/obj/structure/dropship_equipment/E = X
+		E.on_arrival()
+
 	moving_status = SHUTTLE_IDLE
 
-	location = !location
+	if(!transit_gun_mission) //we're back where we started, no location change.
+		location = !location
+
+	transit_optimized = 0 //De-optimize the flight plans
+	transit_gun_mission = 0 //no longer on a fire mission.
 
 	//Simple, cheap ticker
 	if(recharge_time)
 		while(--recharging) sleep(1)
-
-	transit_optimized = 0 //De-optimize the flight plans
 
 //Starts out exactly the same as long_jump()
 //Differs in the target selection and later things enough to merit it's own proc
@@ -204,6 +234,17 @@
 	var/turf/T_int = pick(locs_move)//int stands for interim
 	var/turf/T_trg = pick(shuttle_controller.locs_crash)
 
+	for(var/X in equipments)
+		var/obj/structure/dropship_equipment/E = X
+		if(istype(E, /obj/structure/dropship_equipment/adv_comp/docking))
+			var/list/crash_turfs = list()
+			for(var/turf/TU in shuttle_controller.locs_crash)
+				if(istype(get_area(TU), /area/almayer/hallways/hangar))
+					crash_turfs += TU
+			if(crash_turfs.len) T_trg = pick(crash_turfs)
+			else message_admins("\blue no crash turf found in Almayer Hangar, contact coders.")
+			break
+
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.\n WARNING: DROPSHIP LAUNCH WILL FAIL</span>")
 		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.")
@@ -219,14 +260,18 @@
 	var/travel_time = 0
 	travel_time = DROPSHIP_CRASH_TRANSIT_DURATION * 10
 
-	moving_status = SHUTTLE_INTRANSIT
-
 	//START: Heavy lifting backend
 
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums) //Which turfs are we moving?
 	playsound(turfs_src[sound_target], sound_takeoff, 60, 0)
 
 	sleep(warmup_time*10) //Warming up
+
+	moving_status = SHUTTLE_INTRANSIT
+
+	for(var/X in equipments)
+		var/obj/structure/dropship_equipment/E = X
+		E.on_launch()
 
 	close_doors(turfs_src) //Close the doors
 
@@ -264,6 +309,10 @@
 	//We didn't need to do it before since the hadn't moved yet
 	turfs_trg = get_shuttle_turfs(T_trg, info_datums)
 
+	for(var/X in equipments)
+		var/obj/structure/dropship_equipment/E = X
+		E.on_arrival()
+
 	open_doors_crashed(turfs_trg) //And now open the doors
 
 	//Stolen from events.dm. WARNING: This code is old as hell
@@ -278,6 +327,8 @@
 
 	sleep(100)
 	moving_status = SHUTTLE_CRASHED
+
+
 
 /datum/shuttle/ferry/marine/short_jump()
 
@@ -303,6 +354,7 @@
 	//END: Heavy lifting backend
 
 	moving_status = SHUTTLE_WARMUP
+
 	sleep(warmup_time*10)
 
 	if (moving_status == SHUTTLE_IDLE)
@@ -310,8 +362,16 @@
 
 	moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 
+	for(var/X in equipments)
+		var/obj/structure/dropship_equipment/E = X
+		E.on_launch()
+
 	var/list/turfs_src = get_shuttle_turfs(T_src, info_datums)
 	move_shuttle_to(T_trg, null, turfs_src, 0, trg_rot, src)
+
+	for(var/X in equipments)
+		var/obj/structure/dropship_equipment/E = X
+		E.on_arrival()
 
 	moving_status = SHUTTLE_IDLE
 

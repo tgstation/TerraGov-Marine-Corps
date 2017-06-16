@@ -23,9 +23,17 @@
 			PC.linked_powerloader = src
 
 	relaymove(mob/user, direction)
-		. = ..()
-		if(.)
-			pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25, 1), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25, 1))
+		if(world.time > l_move_time + move_delay)
+			if(dir != direction)
+				l_move_time = world.time
+				dir = direction
+				handle_rotation()
+				pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
+				. = TRUE
+			else
+				. = step(src, direction)
+				if(.)
+					pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25, 1), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25, 1))
 
 
 	attackby(obj/item/weapon/W, mob/user)
@@ -60,6 +68,8 @@
 			layer = FLY_LAYER
 		else
 			layer = OBJ_LAYER
+		if(buckled_mob)
+			buckled_mob.dir = dir
 
 	explode()
 		new /obj/structure/powerloader_wreckage(loc)
@@ -114,7 +124,6 @@
 			else
 				user << "<span class='warning'>Can't grab [loaded].</span>"
 
-
 	update_icon()
 		if(loaded) icon_state = "loader_clamp_full"
 		else icon_state = "loader_clamp"
@@ -122,6 +131,7 @@
 	attack_self(mob/user)
 		if(linked_powerloader)
 			linked_powerloader.unbuckle()
+
 
 /obj/structure/powerloader_wreckage
 	name = "\improper Power Loader wreckage"

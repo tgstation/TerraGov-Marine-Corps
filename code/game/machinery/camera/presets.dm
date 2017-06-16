@@ -21,6 +21,18 @@
 	..()
 	upgradeMotion()
 
+//used by the advanced camera dropship equipment
+/obj/machinery/camera/adv_dropship_camera
+	invuln = TRUE
+	icon_state = ""
+	mouse_opacity = 0
+	view_range = 12
+	network = list("dropship_adv_cam") //that network is unused, only here to not have an empty list.
+
+	isXRay()
+		return TRUE
+
+
 // ALL UPGRADES
 
 /obj/machinery/camera/all/New()

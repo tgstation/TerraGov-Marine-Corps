@@ -8,14 +8,18 @@
 	var/hacked = 0   // Has been emagged, no access restrictions.
 	var/shuttle_optimized = 0 //Have the shuttle's flight subroutines been generated ?
 	var/onboard = 0 //Wether or not the computer is on the physical ship. A bit hacky but that'll do.
+	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
+	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
 
-/obj/machinery/computer/shuttle_control/attack_hand(user as mob)
+/obj/machinery/computer/shuttle_control/attack_hand(mob/user)
 	if(..(user))
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user) && !isXeno(user))
 		user << "<span class='warning'>Access denied.</span>"
 		return 1
+
+	user.set_machine(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(!isXeno(user) && onboard && shuttle.queen_locked && !shuttle.iselevator)
@@ -52,23 +56,50 @@
 		if(WAIT_FINISH)
 			shuttle_status = "Arriving at destination now."
 
-	var/shuttle_status_optimization
+	var/shuttle_status_message
+	if(shuttle.transit_gun_mission)
+		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FIRE MISSION. </span>"
+	else
+		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #44ff44'>TRANSPORT. </span>"
+
 	if(shuttle.transit_optimized) //If the shuttle is recharging, just go ahead and tell them it's unoptimized (it will be once recharged)
 		if(shuttle.recharging && shuttle.moving_status == SHUTTLE_IDLE)
-			shuttle_status_optimization = "No custom flight subroutines have been submitted for the upcoming flight" //FYI: Flight plans are reset once recharging ends
+			shuttle_status_message += "<br>No custom flight subroutines have been submitted for the upcoming flight" //FYI: Flight plans are reset once recharging ends
 		else
-			shuttle_status_optimization = "Custom flight subroutines have been submitted for the [shuttle.moving_status == SHUTTLE_INTRANSIT ? "ongoing":"upcoming"] flight."
+			shuttle_status_message += "<br>Custom flight subroutines have been submitted for the [shuttle.moving_status == SHUTTLE_INTRANSIT ? "ongoing":"upcoming"] flight."
 	else
 		if(shuttle.moving_status == SHUTTLE_INTRANSIT)
-			shuttle_status_optimization = "Default failsafe flight subroutines are being used for the current flight."
+			shuttle_status_message += "<br>Default failsafe flight subroutines are being used for the current flight."
 		else
-			shuttle_status_optimization = "No custom flight subroutines have been submitted for the upcoming flight"
+			shuttle_status_message += "<br>No custom flight subroutines have been submitted for the upcoming flight"
 
 	var/effective_recharge_time = shuttle.recharge_time
 	if(shuttle.transit_optimized)
 		effective_recharge_time *= SHUTTLE_OPTIMIZE_FACTOR_RECHARGE
 
 	var/recharge_status = effective_recharge_time - shuttle.recharging
+
+	var/list/equipment_data = list()
+	var/list/targets_data = list()
+	var/is_dropship = FALSE
+	if(istype(shuttle, /datum/shuttle/ferry/marine))
+		var/datum/shuttle/ferry/marine/FM = shuttle
+		is_dropship = TRUE
+		for(var/X in active_laser_targets)
+			var/obj/effect/overlay/temp/laser_target/LT = X
+			if(!istype(LT))
+				continue
+			var/area/laser_area = get_area(LT)
+			targets_data += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
+		if(onboard)
+			shuttle_equipments = FM.equipments
+			var/element_nbr = 1
+			for(var/X in FM.equipments)
+				var/obj/structure/dropship_equipment/E = X
+				var/is_selected = FALSE
+				if(E == selected_equipment) is_selected = TRUE
+				equipment_data += list(list("name"= E.name, "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable, "is_selected" = is_selected, "ammo_amt" = E.ammo_equipped ? E.ammo_equipped.ammo_count : 0))
+				element_nbr++
 
 	data = list(
 		"shuttle_status" = shuttle_status,
@@ -82,17 +113,24 @@
 		"can_optimize" = shuttle.can_optimize(),
 		"optimize_allowed" = shuttle.can_be_optimized,
 		"optimized" = shuttle.transit_optimized,
-		"shuttle_status_optimization" = shuttle_status_optimization,
+		"gun_mission_allowed" = shuttle.can_do_gun_mission,
+		"fire_mission_enabled" = shuttle.transit_gun_mission,
+		"shuttle_status_message" = shuttle_status_message,
 		"recharging" = shuttle.recharging,
 		"recharging_seconds" = round(shuttle.recharging/10),
 		"recharge_time" = effective_recharge_time,
 		"recharge_status" = recharge_status,
+		"equipment_data" = equipment_data,
+		"targets_data" = targets_data,
+		"human_user" = ishuman(user),
+		"is_dropship" = is_dropship,
+		"onboard" = onboard,
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, shuttle.iselevator? "elevator_control_console.tmpl" : "shuttle_control_console.tmpl", shuttle.iselevator? "Elevator Control" : "Shuttle Control", 550, 350)
+		ui = new(user, src, ui_key, shuttle.iselevator? "elevator_control_console.tmpl" : "shuttle_control_console.tmpl", shuttle.iselevator? "Elevator Control" : "Shuttle Control", 550, 700)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -126,6 +164,7 @@
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
 			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
+				if(shuttle.moving_status != SHUTTLE_IDLE || shuttle.locked || shuttle.location != 1 || !shuttle.alerts_allowed || shuttle.queen_locked || shuttle.recharging) return
 				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.launch_crash()
@@ -148,13 +187,61 @@
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
 	if(href_list["optimize"])
+		if(shuttle.transit_optimized) return
 		var/mob/M = usr
 		if(M.mind.assigned_role == "Pilot Officer")
-			usr << "<span class='notice'>You load in and review a custom flight plan you took time to prepare earlier. This should cut half of the flight time on its own!</span>"
+			usr << "<span class='notice'>You load in and review a custom flight plan you took time to prepare earlier. This should cut half of the transport flight time on its own!</span>"
 			shuttle.transit_optimized = 1
 		else
 			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
 			return
+
+	if(href_list["fire_mission"])
+		if(shuttle.moving_status != SHUTTLE_IDLE) return
+		shuttle.transit_gun_mission = !shuttle.transit_gun_mission
+		if(shuttle.transit_gun_mission)
+			var/mob/M = usr
+			if(M.mind.assigned_role == "Pilot Officer") //only pilots can activate the fire mission mode, but everyone can reset it back to transport..
+				usr << "<span class='notice'>You upload a flight plan for a fire mission above the planet.</span>"
+			else
+				usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
+				return
+		else
+			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
+
+	if(href_list["equip_interact"])
+		var/base_tag = text2num(href_list["equip_interact"])
+		var/obj/structure/dropship_equipment/E = shuttle_equipments[base_tag]
+		E.linked_console = src
+		E.equipment_interact(usr)
+
+	if(href_list["open_fire"])
+		var/targ_id = text2num(href_list["open_fire"])
+		var/mob/M = usr
+		if(M.mind.assigned_role != "Pilot Officer") //only pilots can fire dropship weapons.
+			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
+			return
+		for(var/X in active_laser_targets)
+			var/obj/effect/overlay/temp/laser_target/LT = X
+			if(LT.target_id == targ_id)
+				if(!shuttle.transit_gun_mission || shuttle.moving_status != SHUTTLE_INTRANSIT)
+					usr << "<span class='warning'>Dropship can only fire during a fire mission flight.</span>"
+					return
+				if(shuttle.queen_locked) return
+
+				if(!selected_equipment || !selected_equipment.is_weapon)
+					usr << "<span class='warning'>No weapon selected.</span>"
+					return
+				var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
+				if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
+					usr << "<span class='warning'>[DEW] has no ammo.</span>"
+					return
+				if(DEW.is_busy)
+					usr << "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>"
+					return
+				if(!LT.loc) return
+				DEW.open_fire(LT)
+				break
 
 /obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
@@ -169,3 +256,17 @@
 /obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
 	visible_message("[Proj] ricochets off [src]!")
 	return 0
+
+
+
+/obj/machinery/computer/shuttle_control
+
+	check_eye(mob/user)
+		if(user.stat || get_dist(user, src) > 1 || user.blinded)
+			return
+		if(!selected_equipment) return
+		var/obj/O = selected_equipment.get_camera()
+		if(!O) return
+		if(!selected_equipment.can_use_camera()) return
+		user.reset_view(O)
+		return 1

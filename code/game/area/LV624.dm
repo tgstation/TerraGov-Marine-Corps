@@ -118,6 +118,7 @@
 	name ="\improper Caves"
 	icon_state = "cave"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
+	is_underground = TRUE
 
 //Caves
 /area/lv624/ground/caves/west1

@@ -5,6 +5,7 @@
 	icon_state = "desert"
 //	floor_tile = null
 	heat_capacity = 500000 //Shouldn't be possible, but you never know...
+	is_groundmap_turf = TRUE
 
 	ex_act(severity) //Should make it indestructable
 		return

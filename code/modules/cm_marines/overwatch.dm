@@ -591,15 +591,16 @@
 		if(squad.sbeacon)
 			user << "Your squad already has a beacon activated."
 			return
-		if(!istype(get_turf(user),/turf/unsimulated/floor/gm) && !istype(get_turf(user),/turf/unsimulated/floor/snow) && !istype(get_turf(user),/turf/unsimulated/floor/mars))
+		var/turf/TU = get_turf(user)
+		var/turf/unsimulated/floor/F = TU
+		if(!istype(F) || !F.is_groundmap_turf)
 			user << "You have to be outside (on a ground map turf) to activate this."
 			return
 
 		var/area/A = get_area(user)
-		if(A && istype(A))
-			if(istype(A,/area/ice_colony/underground))
-				user << "This won't work if you're standing underground."
-				return
+		if(A && istype(A) && A.is_underground)
+			user << "This won't work if you're standing underground."
+			return
 
 		squad.sbeacon = src
 		activated = 1
@@ -644,13 +645,8 @@
 			return
 
 		var/area/A = get_area(user)
-		if(A && istype(A))
-			if(istype(A,/area/lv624/ground/caves))
-				user << "This won't work if you're standing in a cave."
-				return
-			if(istype(A,/area/ice_colony/underground))
-				user << "This won't work if you're standing underground."
-				return
+		if(A && istype(A) && A.is_underground)
+			user << "This won't work if you're standing underground."
 
 		message_admins("ALERT: [user] ([user.key]) triggered an orbital strike beacon.")
 		squad.bbeacon = src //Set us up the bomb~

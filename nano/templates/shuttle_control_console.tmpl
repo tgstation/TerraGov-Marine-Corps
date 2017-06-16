@@ -5,7 +5,7 @@
 			{{:data.shuttle_status}}
 		</div>
 		<div class="item">
-			{{:data.shuttle_status_optimization}}
+			{{:data.shuttle_status_message}}
 		</div>
 	{{/if}}
 </div>
@@ -53,6 +53,8 @@
 		{{/if}}
 	</div>
 </div>
+
+
 {{if data.has_docking && data.shuttle_state != "crashed"}}
 	<div class="item" style="padding-top: 10px">
 		<div class="item">
@@ -86,17 +88,61 @@
 {{/if}}
 
 {{if data.shuttle_state != "crashed"}}
-	<h3>Shuttle Control</h3>
-	<div class="item" style="padding-top: 10px">
+	<div style="padding-top: 10px">
+		<h3>Shuttle Control</h3>
 		<div class="item">
 			<div class="itemContent" style="padding-top: 2px; width: 100%">
 				{{:helper.link('Launch Shuttle', 'arrowthickstop-1-e', {'move' : '1'}, data.can_launch? null : 'disabled' , null)}}
 				<!-- {{:helper.link('Cancel Launch', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
 				{{:helper.link('Force Launch', 'alert', {'force' : '1'}, data.can_force? null : 'disabled' , data.can_force ? 'redButton' : null)}} -->
-				{{if data.optimize_allowed == 1}}
-					{{:helper.link('Run Flight Optimization', 'refresh', {'optimize' : '1'}, data.can_optimize? null : 'disabled' , null)}}
+				{{if data.human_user}}
+					{{if data.optimize_allowed == 1}}
+						{{:helper.link('Run Flight Optimization', 'refresh', {'optimize' : '1'}, data.can_optimize ? null : 'disabled' , null)}}
+					{{/if}}
+					{{if data.gun_mission_allowed == 1}}
+						{{:helper.link('Toggle Fire Mission', 'refresh', {'fire_mission' : '1'}, data.shuttle_state == "idle" ? null : 'disabled' , null)}}
+					{{/if}}
 				{{/if}}
 			</div>
 		</div>
 	</div>
+{{/if}}
+
+{{if data.human_user && data.is_dropship && data.onboard}}
+	<div style="padding-top: 10px">
+		<h3>Equipment installed:</h3>
+		<div style="padding-top: 2px">
+			{{for data.equipment_data}}
+				{{if value.is_weapon}}
+					<div class="item">
+						{{:helper.link(value.name, null , {'equip_interact' : value.eqp_tag}, !value.ammo_amt ? 'disabled' : (value.is_selected ? 'selected' : null) , null)}}
+						ammo: {{:value.ammo_amt}}
+					</div>
+				{{else value.is_interactable}}
+					<div class="item">
+						{{:helper.link(value.name, null, {'equip_interact' : value.eqp_tag},  value.is_selected ? 'selected' : null , null)}}
+					</div>
+				{{else}}
+					<div class="item">
+						{{:value.name}}
+					</div>
+				{{/if}}
+			{{empty}}
+				No equipment installed.
+			{{/for}}
+		</div>
+	</div>
+
+	{{if data.fire_mission_enabled}}
+		<div style="padding-top: 10px">
+			<h3>Laser targeting:</h3>
+			<div class="item" style="padding-top: 2px">
+				{{for data.targets_data}}
+					Open fire on:{{:helper.link(value.target_name, null, {'open_fire' : value.target_tag},  (data.shuttle_state == "in_transit") ? null : 'disabled' , null)}}
+				{{empty}}
+					No laser target detected.
+				{{/for}}
+			</div>
+		</div>
+	{{/if}}
 {{/if}}

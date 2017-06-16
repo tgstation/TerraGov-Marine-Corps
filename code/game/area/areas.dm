@@ -7,6 +7,7 @@
 	var/global/global_uid = 0
 	var/uid
 	var/can_hellhound_enter = 1
+	var/is_underground //whether the area count as above or under ground. Used by orbital beacons.
 
 /area/New()
 	..()

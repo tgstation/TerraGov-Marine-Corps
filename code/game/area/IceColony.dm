@@ -449,6 +449,7 @@
 /area/ice_colony/underground
 	name = "\improper Ice Colony - Built Underground"
 	icon_state = "explored"
+	is_underground = TRUE
 
 /*
  * Underground - Crew Areas
