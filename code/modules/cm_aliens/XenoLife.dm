@@ -24,7 +24,7 @@
 		update_progression()
 
 		if(evolution_allowed && evolution_stored < evolution_threshold && living_xeno_queen)
-			evolution_stored = min(evolution_stored++, evolution_threshold)
+			evolution_stored = min(evolution_stored + 1, evolution_threshold)
 			if(evolution_stored == evolution_threshold - 1)
 				src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
 
