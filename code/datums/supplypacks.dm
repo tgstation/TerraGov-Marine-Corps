@@ -502,7 +502,8 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/sandbags
 	name = "empty sandbags crate"
 	contains = list(/obj/item/stack/sandbags_empty)
-	cost = 25
+	amount = 50
+	cost = 15
 	containertype = "/obj/structure/closet/crate/supply"
 	containername = "empty sandbags crate"
 	group = "Supplies"

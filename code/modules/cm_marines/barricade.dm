@@ -54,7 +54,7 @@
 				return
 
 			if (crusher_resistant)
-				health -= 150
+				health -= 100
 				update_health()
 
 			else if(!C.stat)
@@ -99,7 +99,7 @@
 
 		if (is_wired)
 			M.visible_message("<span class='danger'>The barbed wire slices into your hide!</span>")
-			M.apply_damage(5)
+			M.apply_damage(10)
 
 	attackby(obj/item/W as obj, mob/user)
 		if (istype(W, /obj/item/barbed_wire))
@@ -112,8 +112,8 @@
 					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire", dir = src.dir)
 
 				overlays += wired_overlay
-				health += 25
-				maxhealth += 25
+				maxhealth += 50
+				health += 50
 				can_wire = 0
 				is_wired = 1
 				climbable = FALSE
@@ -328,11 +328,13 @@
 	desc = "A solid barricade made of reinforced metal. Use a welding tool to repair it if damaged."
 	icon_state = "metal_0"
 	flags_atom = ON_BORDER
-	health = 100
-	maxhealth = 100
+	health = 200
+	maxhealth = 200
 	crusher_resistant = TRUE
 	barricade_resistance = 10
 	stack_type = /obj/item/stack/sheet/metal
+	stack_amount = 2
+	always_drop_stack = TRUE
 	barricade_hitsound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
 	can_wire = 1
@@ -475,11 +477,13 @@
 	desc = "A very strong barricade comprised of pure plasteel."
 	icon_state = "plasteel_0"
 	flags_atom = ON_BORDER
-	health = 500
-	maxhealth = 500
+	health = 600
+	maxhealth = 600
 	crusher_resistant = TRUE
 	barricade_resistance = 20
 	stack_type = /obj/item/stack/sheet/plasteel
+	stack_amount = 2
+	always_drop_stack = TRUE
 	barricade_hitsound = "sound/effects/metalhit.ogg"
 	barricade_type = "plasteel"
 	closed = 1
@@ -614,11 +618,11 @@
 	ex_act(severity)
 		switch(severity)
 			if(1)
-				health -= rand(400, 600)
+				health -= rand(450, 650)
 			if(2)
-				health -= rand(150, 350)
+				health -= rand(200, 400)
 			if(3)
-				health -= rand(50, 100)
+				health -= rand(50, 150)
 
 		update_health()
 
@@ -642,8 +646,8 @@
 	icon_state = "sandbag_0"
 	flags_atom = ON_BORDER
 	barricade_resistance = 15
-	health = 250
-	maxhealth = 250
+	health = 400
+	maxhealth = 400
 	stack_type = /obj/item/stack/sandbags
 	barricade_hitsound = "sound/weapons/Genhit.ogg"
 	barricade_type = "sandbag"
