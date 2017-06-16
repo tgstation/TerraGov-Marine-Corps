@@ -420,7 +420,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Supplies"
 
 /datum/supply_packs/evacuation
-	name = "Emergency equipment"
+	name = "\improper Emergency equipment"
 	contains = list(/obj/item/weapon/storage/toolbox/emergency,
 					/obj/item/weapon/storage/toolbox/emergency,
 					/obj/item/clothing/suit/storage/hazardvest,
@@ -441,17 +441,17 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Supplies"
 
 /datum/supply_packs/inflatable
-	name = "Inflatable barriers"
+	name = "inflatable barriers"
 	contains = list(/obj/item/weapon/storage/briefcase/inflatable,
 					/obj/item/weapon/storage/briefcase/inflatable,
 					/obj/item/weapon/storage/briefcase/inflatable)
 	cost = 20
 	containertype = /obj/structure/closet/crate/construction
-	containername = "inflatable barrier crate"
+	containername = "inflatable barriers crate"
 	group = "Engineering"
 
 /datum/supply_packs/janitor
-	name = "Janitorial supplies"
+	name = "\improper Janitorial supplies"
 	contains = list(/obj/item/weapon/reagent_containers/glass/bucket,
 					/obj/item/weapon/reagent_containers/glass/bucket,
 					/obj/item/weapon/reagent_containers/glass/bucket,
@@ -469,21 +469,21 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/paper/janitor)
 	cost = 15
 	containertype = /obj/structure/closet/crate/supply
-	containername = "Janitorial supplies"
+	containername = "\improper Janitorial supplies crate"
 	group = "Supplies"
 
 /datum/supply_packs/lightbulbs
-	name = "Replacement lights"
+	name = "replacement lights"
 	contains = list(/obj/item/weapon/storage/box/lights/mixed,
 					/obj/item/weapon/storage/box/lights/mixed,
 					/obj/item/weapon/storage/box/lights/mixed)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
-	containername = "replacement lights"
+	containername = "replacement lights crate"
 	group = "Engineering"
 
 /datum/supply_packs/boxes
-	name = "Empty boxes"
+	name = "empty boxes"
 	contains = list(/obj/item/weapon/storage/box,
 	/obj/item/weapon/storage/box,
 	/obj/item/weapon/storage/box,
@@ -497,6 +497,14 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	cost = 10
 	containertype = "/obj/structure/closet/crate/supply"
 	containername = "empty box crate"
+	group = "Supplies"
+
+/datum/supply_packs/sandbags
+	name = "empty sandbags crate"
+	contains = list(/obj/item/stack/sandbags_empty)
+	cost = 25
+	containertype = "/obj/structure/closet/crate/supply"
+	containername = "empty sandbags crate"
 	group = "Supplies"
 
 /datum/supply_packs/medical

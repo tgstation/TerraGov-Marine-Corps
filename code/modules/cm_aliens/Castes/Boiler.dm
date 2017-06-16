@@ -241,8 +241,8 @@
 
 	New()
 		..()
-		src.smoke = new /datum/effect_system/smoke_spread/xeno_acid
-		src.smoke.attach(src)
+		smoke = new /datum/effect_system/smoke_spread/xeno_acid
+		smoke.attach(src)
 
 	prime()
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 25, 1)
@@ -270,6 +270,8 @@
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
+	for(var/obj/structure/barricade/B in get_turf(src))
+		B.smoke_damage(src)
 
 /obj/effect/particle_effect/smoke/xeno_burn/affect(var/mob/living/carbon/M)
 	..()

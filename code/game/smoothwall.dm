@@ -93,9 +93,6 @@
 /turf/simulated/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
 
-/obj/structure/falsewall/handle_icon_junction(junction)
-	icon_state = "[mineral][junction]"
-
 /obj/structure/grille/almayer/handle_icon_junction(junction)
 	icon_state = "grille[junction]"
 
@@ -152,9 +149,6 @@
 /turf/simulated/wall/Del()
 	spawn(10)
 		for(var/turf/simulated/wall/W in range(src,1))
-			W.relativewall()
-
-		for(var/obj/structure/falsewall/W in range(src,1))
 			W.relativewall()
 
 	for(var/direction in cardinal)

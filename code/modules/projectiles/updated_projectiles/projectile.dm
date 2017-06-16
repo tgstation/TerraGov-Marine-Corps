@@ -209,7 +209,7 @@
 				continue
 
 			//Scan for tables, barricades, and other assorted larger nonsense
-			if( (!A.throwpass && A.layer >= 3) || roll_to_hit_obj(firer,A))
+			if( (A.layer >= 3) || roll_to_hit_obj(firer,A))
 				ammo.on_hit_obj(A,src)
 				if(A && A.loc) A.bullet_act(src)
 				return 1

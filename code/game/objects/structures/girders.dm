@@ -98,18 +98,7 @@
 			switch(S.type)
 
 				if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
-					if(!anchored)
-						if(S.get_amount() < 2) return ..()
-						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,80, TRUE, 5, BUSY_ICON_CLOCK))
-							if(!S) return
-							if(S.use(2))
-								user << "<span class='notice'>You create a false wall. Push on it to open or close the passage.</span>"
-								new /obj/structure/falsewall (src.loc)
-								for(var/obj/structure/falsewall/F in src.loc)
-									if(F)	F.add_hiddenprint(usr)
-								cdel(src)
-					else
+					if (anchored)
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
 						if (do_after(user,80, TRUE, 5, BUSY_ICON_CLOCK))
@@ -124,51 +113,23 @@
 						return
 
 				if(/obj/item/stack/sheet/plasteel)
-					if(!anchored)
-						// if(S.use(2))
-							// user << "\blue You create a false wall! Push on it to open or close the passage."
-							// new /obj/structure/falserwall (src.loc)
-							// cdel(src)
-						user << "\red It doesn't look like the plasteel will do anything. Try metal." //Disable reinforced false walls
-						return
-					else
-						if (src.icon_state == "reinforced") //I cant believe someone would actually write this line of code...
-							// if(S.get_amount() < 1) return ..()
-							user << "\red It doesn't look like the plasteel will do anything. Try metal."
-							// if(do_after(user, 50))
-							// 	if (S.use(1))
-							// 		user << "<span class='notice'>Wall fully reinforced!</span>"
-							// 		var/turf/Tsrc = get_turf(src)
-							// 		Tsrc.ChangeTurf(/turf/simulated/wall/r_wall)
-							// 		for(var/turf/simulated/wall/r_wall/X in Tsrc.loc)
-							// 			if(X)	X.add_hiddenprint(usr)
-							// 		cdel(src)
-							return
-						if(S.get_amount() < 1) return ..()
-						user << "\red It doesn't look like the plasteel will do anything. Try metal."
-						// if (do_after(user,60))
-						// 	if(S.use(1))
-						// 		user << "<span class='notice'>Girders reinforced!</span>"
-						// 		new/obj/structure/girder/reinforced( src.loc )
-						// 		cdel(src)
+					if (anchored)
+						if(S.get_amount() < 1)
+							return ..()
+
+						user << "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>"
 						return
 
 			if(S.sheettype)
 				var/M = S.sheettype
-				if(!anchored)
-					if(S.amount < 2) return
-					S.use(2)
-					user << "\blue You create a false wall! Push on it to open or close the passage."
-					var/F = text2path("/obj/structure/falsewall/[M]")
-					new F (src.loc)
-					cdel(src)
-				else
-					if(S.amount < 2) return ..()
-					user << "\blue Now adding plating..."
+				if (anchored)
+					if(S.amount < 2)
+						return ..()
+					user << "<span class='notice'>Now adding plating...</span>"
 					if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 						if(!src || !S || S.amount < 2) return
 						S.use(2)
-						user << "\blue You added the plating!"
+						user << "<span class='notice'>You added the plating!</span>"
 						var/turf/Tsrc = get_turf(src)
 						Tsrc.ChangeTurf(text2path("/turf/simulated/wall/mineral/[M]"))
 						for(var/turf/simulated/wall/mineral/X in Tsrc.loc)

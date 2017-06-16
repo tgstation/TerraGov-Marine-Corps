@@ -134,6 +134,21 @@
 	path = /obj/item/weapon/rcd_ammo
 	category = "Engineering"
 
+/datum/autolathe/recipe/table_parts
+	name = "table parts"
+	path = /obj/item/weapon/table_parts
+	category = "Engineering"
+
+/datum/autolathe/recipe/table_parts_reinforced
+	name = "reinforced table parts"
+	path = /obj/item/weapon/table_parts/reinforced
+	category = "Engineering"
+
+/datum/autolathe/recipe/rack_parts
+	name = "rack parts"
+	path = /obj/item/weapon/rack_parts
+	category = "Engineering"
+
 /datum/autolathe/recipe/scalpel
 	name = "scalpel"
 	path = /obj/item/weapon/scalpel
