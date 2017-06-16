@@ -226,7 +226,8 @@
 
 	Dispose() //Make sure we pick up our trash.
 		if(operator && operator.machine)
-			operator.client.view = world.view
+			if(operator.client)
+				operator.client.view = world.view
 			operator.machine = null
 			operator = null
 		if(operator)

@@ -70,6 +70,7 @@
 	anchored = TRUE
 	layer = MOB_LAYER + 1
 	mouse_opacity = 1
+	luminosity = 2
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "laser_target"
 	effect_duration = 600
