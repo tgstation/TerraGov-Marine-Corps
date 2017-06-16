@@ -82,7 +82,7 @@
 	playsound(loc, 'sound/items/detector.ogg', 60, 0, 7, 2)
 
 	var/detected
-	for(var/mob/M in mob_list)
+	for(var/mob/M in living_mob_list)
 		if(loc.z != M.z) continue
 		if(get_dist(M, src) > detector_range) continue
 		if(M == loc) continue //device user isn't detected
@@ -90,7 +90,7 @@
 		if(world.time > M.l_move_time + 20) continue //hasn't moved recently
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(istype(H.wear_suit, /obj/item/clothing/suit/storage/marine))
+			if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer))
 				continue //device detects marine armors and ignores the wearer.
 		detected = TRUE
 
