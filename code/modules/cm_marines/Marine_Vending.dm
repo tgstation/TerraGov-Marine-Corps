@@ -13,6 +13,7 @@
 	req_access_txt = "0"
 	req_one_access = null
 	req_one_access_txt = "9;2;21"
+	wrenchable = FALSE
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -83,6 +84,7 @@
 	name = "\improper ColMarTech automated armaments vendor"
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	hacking_safety = 1
+	wrenchable = FALSE
 	products = list(
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/weapon/storage/belt/marine = 10,
@@ -141,6 +143,7 @@
 	name = "\improper ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
 	hacking_safety = 1
+	wrenchable = FALSE
 	products = list(
 					///obj/item/weapon/claymore/mercsword/machete = 5,
 					/obj/item/weapon/large_holster/machete/full = 6,
@@ -198,6 +201,7 @@
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "generic"
 	icon_deny = "generic-deny"
+	wrenchable = FALSE
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
@@ -225,6 +229,7 @@
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY)
+	wrenchable = FALSE
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 5,
@@ -288,6 +293,7 @@
 	req_access = list(ACCESS_MARINE_ENGPREP)
 	icon_state = "tool"
 	icon_deny = "tool-deny"
+	wrenchable = FALSE
 	products = list(
 						/obj/item/weapon/coin/marine/engineer = 1,
 						/obj/item/clothing/under/marine/engineer = 3,
@@ -326,6 +332,7 @@
 	req_access = list(ACCESS_MARINE_MEDPREP)
 	icon_state = "med"
 	icon_deny = "med-deny"
+	wrenchable = FALSE
 
 	products = list(
 						/obj/item/clothing/under/marine/medic = 3,
@@ -354,6 +361,7 @@
 	req_access = list(ACCESS_MARINE_SPECPREP)
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
+	wrenchable = FALSE
 
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
@@ -383,6 +391,7 @@
 	req_access = list(ACCESS_MARINE_SPECPREP)
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
+	wrenchable = FALSE
 
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
@@ -417,6 +426,7 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
+	wrenchable = FALSE
 
 	products = list(
 						/obj/item/clothing/tie/storage/webbing = 1,
@@ -435,6 +445,7 @@
 	req_access = list(ACCESS_MARINE_LEADER)
 	icon_state = "tool"
 	icon_deny = "tool-deny"
+	wrenchable = FALSE
 
 	products = list(
 						/obj/item/clothing/suit/storage/marine/leader = 1,
@@ -445,7 +456,7 @@
 						/obj/item/device/squad_beacon/bomb = 1,
 						/obj/item/weapon/plastique = 1,
 						/obj/item/weapon/grenade/smokebomb = 3,
-						/obj/item/device/binoculars = 1,
+						/obj/item/device/binoculars/tactical = 1,
 						/obj/item/device/motiondetector = 1,
 						/obj/item/weapon/storage/backpack/marine/satchel = 2,
 						/obj/item/weapon/gun/flamer = 2,
@@ -460,6 +471,7 @@
 	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
+	wrenchable = FALSE
 
 	products = list(
 						/obj/item/attachable/suppressor = 8,

@@ -2,6 +2,7 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "Floor3"
+	var/is_groundmap_turf = FALSE //whether this a turf used as main turf type for the 'outside' of a map.
 
 /turf/unsimulated/floor/attack_paw(user as mob)
 	return src.attack_hand(user)

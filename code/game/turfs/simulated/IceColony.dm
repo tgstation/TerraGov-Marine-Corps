@@ -17,6 +17,7 @@
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	oxygen = MOLES_O2STANDARD*1.15
 	nitrogen = MOLES_N2STANDARD*1.15
+	is_groundmap_turf = TRUE
 
 	//PLACING/REMOVING/BUILDING
 	attackby(var/obj/item/I, var/mob/user)

@@ -814,6 +814,7 @@
 #include "code\modules\cm_marines\closets.dm"
 #include "code\modules\cm_marines\distress.dm"
 #include "code\modules\cm_marines\Donor_Items.dm"
+#include "code\modules\cm_marines\dropship_equipment.dm"
 #include "code\modules\cm_marines\marine_ferry.dm"
 #include "code\modules\cm_marines\Marine_medical.dm"
 #include "code\modules\cm_marines\Marine_Vending.dm"

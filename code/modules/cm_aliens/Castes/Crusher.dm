@@ -417,3 +417,13 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	if(!check_state()) r_FAL
 	is_charging = !is_charging
 	src << "<span class='xenonotice'>You will [is_charging ? "now" : "no longer"] charge when moving.</span>"
+
+
+/mob/living/carbon/Xenomorph/Crusher/ex_act(severity)
+
+	if(!blinded && hud_used)
+		flick("flash", hud_used.flash_icon)
+
+	if(severity == 1)
+		adjustBruteLoss(rand(200, 300))
+		updatehealth()

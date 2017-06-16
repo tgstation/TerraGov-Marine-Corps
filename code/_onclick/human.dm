@@ -7,6 +7,17 @@
 */
 
 
+
+/mob/living/carbon/human/DblClickOn(var/atom/A, var/params)
+	var/obj/item/I = get_held_item()
+	if(I && istype(I, /obj/item/device/binoculars/tactical))
+		var/obj/item/device/binoculars/tactical/BS = I
+		if(BS.zoom)
+			BS.acquire_target(A, src)
+			return
+	ClickOn(A,params)
+
+
 /mob/living/carbon/human
 
 	ClickOn(var/atom/A, params)

@@ -18,6 +18,8 @@
 
 	var/can_be_optimized = 0 //Can we optimize the flight of this ship ?
 	var/transit_optimized = 0 //Has the transit itself been optimized ?
+	var/can_do_gun_mission = 0
+	var/transit_gun_mission = 0 //is the flight a gun mission? (launch and then land back where you started)
 
 	var/iselevator = 0 //Used to remove some shuttle related procs and texts to make it compatible with elevators
 

@@ -65,6 +65,7 @@
 	var/obj/item/weapon/spacecash/ewallet/ewallet
 	var/tipped_level = 0
 	var/hacking_safety = 0 //1 = Will never shoot inventory or allow all access
+	var/wrenchable = TRUE
 
 /obj/machinery/vending/New()
 	..()
@@ -188,9 +189,7 @@
 		return
 
 	else if(istype(W, /obj/item/weapon/wrench))
-
-		if (istype(src, /obj/machinery/vending/marine) || istype(src, /obj/machinery/vending/marineFood) || istype(src, /obj/machinery/vending/MarineMed) || istype(src, /obj/machinery/vending/MarineMed/Blood) || istype(src, /obj/machinery/vending/marine_engi) || istype(src, /obj/machinery/vending/marine_medic) || istype(src, /obj/machinery/vending/marine_special) || istype(src, /obj/machinery/vending/marine_leader) || istype(src, /obj/machinery/vending/attachments))
-			return
+		if(!wrenchable) return
 
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			if(!src) return

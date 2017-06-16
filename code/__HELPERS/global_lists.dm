@@ -24,6 +24,9 @@ var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mob
 var/global/list/ammo_list = list()					//list of all ammo types. Used by guns to tell the projectile how to act.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
+//used by binoculars for dropship bombardment
+var/list/global/active_laser_targets = list()
+
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]

@@ -68,9 +68,20 @@
 	cdel(src)
 
 /turf/simulated/shuttle/wall/dropship1
-	name = "wall"
+	name = "\improper Normandy"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
+
+/turf/simulated/shuttle/wall/dropship1/transparent
+	opacity = 0
+
+/turf/simulated/shuttle/wall/dropship2
+	name = "\improper Alamo"
+	icon = 'icons/turf/dropship2.dmi'
+	icon_state = "1"
+
+/turf/simulated/shuttle/wall/dropship2/transparent
+	opacity = 0
 
 /turf/simulated/shuttle/wall/escapepod
 	name = "wall"
@@ -224,10 +235,6 @@
 	var/obj/structure/window/reinforced/almayer/window_type = /obj/structure/window/reinforced/almayer
 	var/basestate = "window"
 
-/obj/structure/window_frame/almayer
-	icon_state = "rwindow0_frame"
-	basestate = "window"
-
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
@@ -259,7 +266,7 @@
 
 
 /obj/structure/window_frame/almayer
-	icon_state = "window0_frame"
+	icon_state = "rwindow0_frame"
 
 /obj/structure/window/reinforced/almayer/white
 	icon_state = "rwwindow0"
