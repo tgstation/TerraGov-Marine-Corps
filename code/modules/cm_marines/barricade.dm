@@ -50,7 +50,7 @@
 
 			var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-			if (C.momentum < 25)
+			if (C.momentum < 20)
 				return
 
 			if (crusher_resistant)
@@ -63,6 +63,9 @@
 
 	CheckExit(atom/movable/O, turf/target)
 		if (closed)
+			return 1
+
+		if (O && O.throwing)
 			return 1
 
 		var/obj/structure/table/T = locate() in get_turf(O)
@@ -78,6 +81,9 @@
 		if (closed)
 			return 1
 
+		if (mover && mover.throwing)
+			return 1
+
 		var/obj/structure/table/T = locate() in get_turf(mover)
 		if(T && !T.flipped) //Non-flipped tables let you climb on barricades.
 			return 1
@@ -86,6 +92,14 @@
 			return 0
 		else
 			return 1
+
+
+	attack_alien(mob/living/carbon/Xenomorph/M)
+		..()
+
+		if (is_wired)
+			M.visible_message("<span class='danger'>The barbed wire slices into your hide!</span>")
+			M.apply_damage(5)
 
 	attackby(obj/item/W as obj, mob/user)
 		if (istype(W, /obj/item/barbed_wire))
@@ -485,8 +499,6 @@
 				user << "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>"
 			if(0)
 				user << "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>"
-
-
 
 	attackby(obj/item/W, mob/user)
 

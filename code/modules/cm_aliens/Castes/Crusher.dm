@@ -160,14 +160,16 @@
 	//Barricade collision
 	if (istype(target, /obj/structure/barricade))
 		var/obj/structure/barricade/B = target
-		if (momentum > 24)
+		if (momentum > 19)
 			visible_message(
 			"<span class='danger'>[src] hits [B] and skids to a halt!</span>",
 			"<span class='xenowarning'>You hit [B] and skid to a halt!</span>")
 
 			flags_pass = 0
-			speed = initial(speed) //TODO This doesn't take into account other speed upgrades, resetting after evolve.
 			update_icons()
+			B.Bumped(src)
+			momentum = 0
+			speed = initial(speed)
 			r_TRU
 
 	r_FAL
