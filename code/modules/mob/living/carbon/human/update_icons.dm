@@ -448,7 +448,7 @@ var/global/list/damage_icon_parts = list()
 	if(FAT in mutations)
 		fat = "fat"
 
-	var/image/standing	= image("icon" = 'icons/effects/genetics.dmi')
+	var/image/standing	= image("icon" = 'icons/effects/genetics.dmi', "layer" =-MUTATIONS_LAYER)
 	var/add_image = 0
 	var/g = "m"
 	if(gender == FEMALE)	g = "f"
