@@ -48,4 +48,4 @@
 
 /obj/item/weapon/weldpack/examine(mob/user)
 	..()
-	user << "[reagents.total_volume] units of water left!"
+	user << "[reagents.total_volume] units of welding fuel left!"

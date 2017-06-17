@@ -57,7 +57,7 @@
 			shuttle_status = "Arriving at destination now."
 
 	var/shuttle_status_message
-	if(shuttle.transit_gun_mission)
+	if(shuttle.transit_gun_mission && onboard)
 		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FIRE MISSION. </span>"
 	else
 		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #44ff44'>TRANSPORT. </span>"
@@ -164,9 +164,10 @@
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
 			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
-				if(shuttle.moving_status != SHUTTLE_IDLE || shuttle.locked || shuttle.location != 1 || !shuttle.alerts_allowed || shuttle.queen_locked || shuttle.recharging) return
+				if(shuttle.moving_status != SHUTTLE_IDLE || shuttle.locked || shuttle.location != 1 || !shuttle.alerts_allowed || !shuttle.queen_locked || shuttle.recharging) return
 				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
+					shuttle1.transit_gun_mission = 0
 					shuttle1.launch_crash()
 					command_announcement.Announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", \
 					"Dropship Alert", new_sound = 'sound/AI/hijack.ogg')
@@ -182,6 +183,7 @@
 				usr << "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>"
 				return
 			else
+				if(!onboard) shuttle.transit_gun_mission = 0 //remote launch always do transport flight.
 				shuttle.launch(src)
 				shuttle.locked = 1 //We are initiating transit, so don't recieve any more instructions
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")

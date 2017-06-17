@@ -695,7 +695,8 @@ Defined in setup.dm.
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos)) continue
 
-		M.adjustFireLoss(rand(20,50))  //fwoom!
+		M.adjust_fire_stacks(rand(3,5))
+		M.adjustFireLoss(rand(20,40))  //fwoom!
 		M << "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!"
 
 /obj/item/attachable/shotgun

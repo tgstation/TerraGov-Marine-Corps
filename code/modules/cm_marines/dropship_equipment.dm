@@ -720,8 +720,8 @@
 
 	detonate_on(turf/impact)
 		explosion(impact,-1,1,3, 5, 0)//no messaging admin, that'd spam them.
-		var/datum/effect/system/expl_particles/P = new/datum/effect/system/expl_particles()
-		P.set_up(4,impact)
+		var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+		P.set_up(4, 0, impact)
 		P.start()
 		spawn(5)
 			var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
