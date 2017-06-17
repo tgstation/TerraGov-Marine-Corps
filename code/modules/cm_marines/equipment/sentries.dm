@@ -976,3 +976,8 @@
 			stat = 0
 			processing_objects.Add(src)
 		ammo = ammo_list[ammo]
+
+/obj/machinery/marine_turret/premade/dumb
+	name = "Modified UA-577 Gauss Turret"
+	iff_signal = 0
+	ammo = /datum/ammo/bullet/turret/dumb

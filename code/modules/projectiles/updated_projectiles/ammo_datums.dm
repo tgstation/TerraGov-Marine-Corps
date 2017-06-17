@@ -553,6 +553,10 @@
 		penetration= config.mlow_armor_penetration
 		accuracy = config.high_hit_accuracy
 
+/datum/ammo/bullet/turret/dumb
+	icon_state 	= "bullet"
+	iff_signal = 0
+
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
 	icon_state 	= "bullet" // Keeping it bog standard with the turret but allows it to be changed. Had to remove IFF so you have to watch out.
