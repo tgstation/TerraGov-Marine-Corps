@@ -323,7 +323,7 @@
 "gk" = (/obj/effect/decal/remains/human,/obj/structure/table/reinforced{dir = 1; flipped = 1},/turf/simulated/floor/plating,/area/lv624/ground/sand2)
 "gl" = (/obj/item/ammo_casing,/obj/effect/landmark{name = "crap_item"},/turf/simulated/floor/plating,/area/lv624/ground/sand2)
 "gm" = (/obj/item/device/flashlight/lantern,/turf/simulated/floor/plating,/area/lv624/ground/sand2)
-"gn" = (/obj/structure/cargo_container{tag = "icon-WY"; icon_state = "WY"},/turf/simulated/floor,/area/lv624/ground/sand2)
+"gn" = (/turf/simulated/floor,/area/lv624/ground/sand2)
 "go" = (/obj/structure/mineral_door/resin,/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/sand3)
 "gp" = (/obj/effect/landmark{name = "hunter_primary"},/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/sand3)
 "gq" = (/obj/structure/mineral_door/resin,/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/sand4)

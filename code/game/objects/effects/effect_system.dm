@@ -91,12 +91,12 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/atom/holder
 	var/setup = 0
 
-	proc/set_up(n = 3, c = 0, turf/loc)
+	proc/set_up(n = 3, c = 0, turf/loca)
 		if(n > 10)
 			n = 10
 		number = n
 		cardinals = c
-		location = loc
+		location = loca
 		setup = 1
 
 	proc/attach(atom/atom)
@@ -114,7 +114,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 // will always spawn at the items location, even if it's moved.
 
 /* Example:
-var/datum/effect/system/steam_spread/steam = new /datum/effect/system/steam_spread() -- creates new system
+var/datum/effect_system/steam_spread/steam = new /datum/effect_system/steam_spread() -- creates new system
 steam.set_up(5, 0, mob.loc) -- sets up variables
 OPTIONAL: steam.attach(mob)
 steam.start() -- spawns the effect
@@ -809,3 +809,84 @@ steam.start() -- spawns the effect
 				dmglevel = 3
 
 			if(dmglevel<4) holder.ex_act(dmglevel)
+
+
+
+
+
+
+// EXPLOSION PARTICLES EFFECT
+
+
+/obj/effect/particle_effect/expl_particles
+	name = "explosive particles"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "explosion_particle"
+	opacity = 1
+	anchored = 1
+	mouse_opacity = 0
+
+/obj/effect/particle_effect/expl_particles/New()
+	..()
+	spawn (15)
+		src.loc = null
+	return
+
+/obj/effect/particle_effect/expl_particles/Move()
+	..()
+	return
+
+/datum/effect_system/expl_particles
+	number = 10
+
+/datum/effect_system/expl_particles/set_up(n = 10, c = 0, turf/loca)
+	number = n
+	if(istype(loca, /turf/)) location = loca
+	else location = get_turf(loca)
+
+/datum/effect_system/expl_particles/start()
+	var/i = 0
+	for(i=0, i<src.number, i++)
+		spawn(0)
+			var/obj/effect/particle_effect/expl_particles/expl = new /obj/effect/particle_effect/expl_particles(src.location)
+			var/direct = pick(alldirs)
+			for(i=0, i<pick(1;25,2;50,3,4;200), i++)
+				sleep(1)
+				step(expl,direct)
+
+
+
+//EXPLOSION EFFECT
+
+/obj/effect/particle_effect/explosion
+	name = "explosive particles"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "explosion"
+	opacity = 1
+	anchored = 1
+	mouse_opacity = 0
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/particle_effect/explosion/New()
+	..()
+	spawn (10)
+		src.loc = null
+	return
+
+/datum/effect_system/explosion
+	number = 1
+
+/datum/effect_system/explosion/set_up(n = 1, c = 0, turf/loca)
+	if(istype(loca, /turf/)) location = loca
+	else location = get_turf(loca)
+
+/datum/effect_system/explosion/start()
+	new/obj/effect/particle_effect/explosion( location )
+	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+	P.set_up(10, 0, location)
+	P.start()
+	spawn(5)
+		var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
+		S.set_up(5,0,location,null)
+		S.start()
