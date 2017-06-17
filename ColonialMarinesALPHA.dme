@@ -638,6 +638,7 @@
 #include "code\game\turfs\simulated\groundmap_simulated.dm"
 #include "code\game\turfs\simulated\groundmap_turfs.dm"
 #include "code\game\turfs\simulated\IceColony.dm"
+#include "code\game\turfs\simulated\nostromolite.dm"
 #include "code\game\turfs\simulated\sulaco_turfs.dm"
 #include "code\game\turfs\simulated\walls.dm"
 #include "code\game\turfs\simulated\walls_mineral.dm"
