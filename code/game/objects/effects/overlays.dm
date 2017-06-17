@@ -85,7 +85,7 @@
 	Dispose()
 		active_laser_targets -= src
 		if(source_binoc)
-			source_binoc.laser_cooldown = world.time + 200
+			source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 			source_binoc.laser = null
 			source_binoc = null
 		..()
