@@ -26,6 +26,7 @@
 	if (reagents.total_volume)
 		user << "\blue You inject [M] with [src]."
 		M << "\red You feel a tiny prick!"
+		playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
 		src.reagents.reaction(M, INGEST)
 		if(M.reagents)

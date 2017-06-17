@@ -291,14 +291,4 @@
 
 /turf/simulated/floor/plating/airless/asteroid/Entered(atom/movable/M as mob|obj)
 	..()
-	if(istype(M,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = M
-		if(istype(R.module, /obj/item/weapon/robot_module/miner))
-			if(istype(R.module_state_1,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_1,R)
-			else if(istype(R.module_state_2,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_2,R)
-			else if(istype(R.module_state_3,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_3,R)
-			else
-				return
+	return

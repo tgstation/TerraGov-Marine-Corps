@@ -118,8 +118,8 @@
 		PS.reagents.add_reagent("pacid", 2)
 	..()
 
-/obj/item/weapon/robot_module/crisis
-	name = "crisis robot module"
+/obj/item/weapon/robot_module/medic
+	name = "medic robot module"
 	stacktypes = list(
 		/obj/item/stack/medical/ointment = 15,
 		/obj/item/stack/medical/advanced/bruise_pack = 15,
@@ -151,44 +151,22 @@
 		src.emag.name = "Polyacid spray"
 		return
 
-/obj/item/weapon/robot_module/crisis/respawn_consumable(var/mob/living/silicon/robot/R)
+	respawn_consumable(var/mob/living/silicon/robot/R)
+		var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
+		if(S.mode == 2)
+			S.reagents.clear_reagents()
+			S.mode = initial(S.mode)
+			S.desc = initial(S.desc)
+			S.update_icon()
 
-	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
-	if(S.mode == 2)
-		S.reagents.clear_reagents()
-		S.mode = initial(S.mode)
-		S.desc = initial(S.desc)
-		S.update_icon()
+		var/obj/item/weapon/reagent_containers/spray/cleaner/C = locate() in src.modules
+		C.reagents.add_reagent("cleaner", C.volume)
 
-	var/obj/item/weapon/reagent_containers/spray/cleaner/C = locate() in src.modules
-	C.reagents.add_reagent("cleaner", C.volume)
+		if(src.emag)
+			var/obj/item/weapon/reagent_containers/spray/PS = src.emag
+			PS.reagents.add_reagent("pacid", 2)
 
-	if(src.emag)
-		var/obj/item/weapon/reagent_containers/spray/PS = src.emag
-		PS.reagents.add_reagent("pacid", 2)
-
-	..()
-
-/obj/item/weapon/robot_module/construction
-	name = "construction robot module"
-
-	stacktypes = list(
-		/obj/item/stack/sheet/metal = 50,
-		/obj/item/stack/sheet/plasteel = 10,
-		/obj/item/stack/sheet/glass/reinforced = 50,
-		/obj/item/stack/rods = 50
-		)
-
-	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/borg/sight/meson(src)
-		src.modules += new /obj/item/weapon/extinguisher(src)
-		src.modules += new /obj/item/weapon/rcd/borg(src)
-		src.modules += new /obj/item/weapon/screwdriver(src)
-		src.modules += new /obj/item/weapon/wrench(src)
-		src.modules += new /obj/item/weapon/crowbar(src)
-		src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
+		..()
 
 /obj/item/weapon/robot_module/engineering
 	name = "engineering robot module"
@@ -249,20 +227,20 @@
 //		src.emag = new /obj/item/weapon/gun/energy/laser/cyborg(src)
 		return
 
-/obj/item/weapon/robot_module/security/respawn_consumable(var/mob/living/silicon/robot/R)
-	var/obj/item/device/flash/F = locate() in src.modules
-	if(F.broken)
-		F.broken = 0
-		F.times_used = 0
-		F.icon_state = "flash"
-	else if(F.times_used)
-		F.times_used--
-//	var/obj/item/weapon/gun/energy/taser/cyborg/T = locate() in src.modules
-//	if(T.power_supply.charge < T.power_supply.maxcharge)
-//		T.power_supply.give(T.charge_cost)
-//		T.update_icon()
-//	else
-//	T.charge_tick = 0
+	respawn_consumable(var/mob/living/silicon/robot/R)
+		var/obj/item/device/flash/F = locate() in src.modules
+		if(F.broken)
+			F.broken = 0
+			F.times_used = 0
+			F.icon_state = "flash"
+		else if(F.times_used)
+			F.times_used--
+		// var/obj/item/weapon/gun/energy/taser/cyborg/T = locate() in src.modules
+		// if(T.power_supply.charge < T.power_supply.maxcharge)
+		// 	T.power_supply.give(T.charge_cost)
+		// 	T.update_icon()
+		// else
+		// T.charge_tick = 0
 
 /obj/item/weapon/robot_module/janitor
 	name = "janitorial robot module"
@@ -280,12 +258,12 @@
 		src.emag.name = "Lube spray"
 		return
 
-/obj/item/weapon/robot_module/janitor/respawn_consumable(var/mob/living/silicon/robot/R)
-	var/obj/item/device/lightreplacer/LR = locate() in src.modules
-	LR.Charge(R)
-	if(src.emag)
-		var/obj/item/weapon/reagent_containers/spray/S = src.emag
-		S.reagents.add_reagent("lube", 2)
+	respawn_consumable(var/mob/living/silicon/robot/R)
+		var/obj/item/device/lightreplacer/LR = locate() in src.modules
+		LR.Charge(R)
+		if(src.emag)
+			var/obj/item/weapon/reagent_containers/spray/S = src.emag
+			S.reagents.add_reagent("lube", 2)
 
 /obj/item/weapon/robot_module/butler
 	name = "service robot module"
@@ -328,49 +306,12 @@
 		R.add_language("Tradeband", 1)
 		R.add_language("Gutter", 1)
 
-/obj/item/weapon/robot_module/clerical
-	name = "clerical robot module"
-
-	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/weapon/pen/robopen(src)
-		src.modules += new /obj/item/weapon/form_printer(src)
-		src.modules += new /obj/item/weapon/gripper/paperwork(src)
-
-		src.emag = new /obj/item/weapon/stamp/denied(src)
-
-	add_languages(var/mob/living/silicon/robot/R)
-		R.add_language("Sol Common", 1)
-		R.add_language("Sinta'unathi", 1)
-		R.add_language("Siik'maas", 1)
-		R.add_language("Siik'tajr", 0)
-		R.add_language("Skrellian", 1)
-		R.add_language("Rootspeak", 1)
-		R.add_language("Tradeband", 1)
-		R.add_language("Gutter", 1)
-
-/obj/item/weapon/robot_module/butler/respawn_consumable(var/mob/living/silicon/robot/R)
-	var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
-	E.reagents.add_reagent("enzyme", 2)
-	if(src.emag)
-		var/obj/item/weapon/reagent_containers/food/drinks/cans/beer/B = src.emag
-		B.reagents.add_reagent("beer2", 2)
-
-/obj/item/weapon/robot_module/miner
-	name = "miner robot module"
-
-	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/borg/sight/meson(src)
-		src.modules += new /obj/item/weapon/wrench(src)
-		src.modules += new /obj/item/weapon/screwdriver(src)
-		src.modules += new /obj/item/weapon/storage/bag/ore(src)
-		src.modules += new /obj/item/weapon/pickaxe/borgdrill(src)
-		src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
-		src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
-		return
+	respawn_consumable(var/mob/living/silicon/robot/R)
+		var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
+		E.reagents.add_reagent("enzyme", 2)
+		if(src.emag)
+			var/obj/item/weapon/reagent_containers/food/drinks/cans/beer/B = src.emag
+			B.reagents.add_reagent("beer2", 2)
 
 /obj/item/weapon/robot_module/syndicate
 	name = "syndicate robot module"
@@ -438,15 +379,15 @@
 	add_languages(var/mob/living/silicon/robot/R)
 		return	//not much ROM to spare in that tiny microprocessor!
 
-/obj/item/weapon/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R)
-	var/obj/item/weapon/reagent_containers/spray/cleaner/C = locate() in src.modules
-	C.reagents.add_reagent("cleaner", 3)
+	respawn_consumable(var/mob/living/silicon/robot/R)
+		var/obj/item/weapon/reagent_containers/spray/cleaner/C = locate() in src.modules
+		C.reagents.add_reagent("cleaner", 3)
 
-	var/obj/item/device/lightreplacer/LR = locate() in src.modules
-	LR.Charge(R)
+		var/obj/item/device/lightreplacer/LR = locate() in src.modules
+		LR.Charge(R)
 
-	..()
-	return
+		..()
+		return
 
 //checks whether this item is a module of the robot it is located in.
 /obj/item/proc/is_robot_module()

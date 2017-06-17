@@ -13,4 +13,6 @@
 		if(G) G.drop_item()
 	remove_robot_verbs()
 	sql_report_cyborg_death(src)
-	..(gibbed,"shudders violently for a moment, then becomes motionless, its eyes slowly darkening.")
+	..(gibbed,"is destroyed!")
+	robogibs(src)
+	cdel(src)
