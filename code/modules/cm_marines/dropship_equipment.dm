@@ -291,6 +291,7 @@
 
 	on_arrival()
 		if(deployed_turret)
+			deployed_turret.on = 1
 			deployed_turret.loc = get_step(src, dir)
 			icon_state = "sentry_system_deployed"
 
@@ -669,6 +670,7 @@
 				playsound(impact, get_sfx("explosion"), 40, 1, 20, falloff = 3)
 				soundplaycooldown = 3
 			soundplaycooldown--
+			new /obj/effect/particle_effect/expl_particles(U)
 
 /obj/structure/ship_ammo/rocket
 	name = "abstract rocket"
