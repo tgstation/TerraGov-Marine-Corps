@@ -109,7 +109,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 						/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
 						/obj/item/weapon/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/weapon/deck = "helmet_card_card",
-						/obj/item/weapon/hand = "helmet_card_card",
+						/obj/item/weapon/handcard = "helmet_card_card",
 						/obj/item/weapon/reagent_containers/food/drinks/flask = "helmet_flask",
 						/obj/item/weapon/reagent_containers/food/drinks/flask/marine = "helmet_flask",
 						/obj/item/weapon/reagent_containers/food/snacks/eat_bar = "helmet_snack_eat",

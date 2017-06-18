@@ -87,7 +87,7 @@
 /datum/job/proc/equip_preference_gear(mob/living/carbon/human/H)
 	 //TODO Adjust this based on mob and latejoin.
 	 //TODO Adjust the actual spawns, so they all have a slot, instead of spawning in the pack when they don't have a slot.
-	if(!H.client || !H.client.prefs.gear) return//We want to equip them with custom stuff second, after they are equipped with everything else.
+	if(!H.client || !H.client.prefs || !H.client.prefs.gear) return//We want to equip them with custom stuff second, after they are equipped with everything else.
 	var/datum/gear/G
 	var/i
 	for(i in H.client.prefs.gear)

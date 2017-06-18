@@ -15,8 +15,7 @@
 	var/page = 1
 	var/screen = 0
 
-
-/obj/item/weapon/paper_bundle/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/paper_bundle/attackby(obj/item/weapon/W, mob/user)
 	..()
 	var/obj/item/weapon/paper/P
 	if(istype(W, /obj/item/weapon/paper))
@@ -27,46 +26,32 @@
 				user << "<span class='notice'>Take off the carbon copy first.</span>"
 				add_fingerprint(user)
 				return
-
-		amount++
-		if(screen == 2)
-			screen = 1
-		user << "<span class='notice'>You add [(P.name == "paper") ? "the paper" : P.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
-		user.drop_inv_item_on_ground(P)
-		P.loc = src
-		if(istype(user,/mob/living/carbon/human))
-			user:update_inv_l_hand(0)
-			user:update_inv_r_hand()
+		if(loc == user)
+			user.drop_inv_item_on_ground(P)
+			attach_doc(P, user)
 	else if(istype(W, /obj/item/weapon/photo))
-		amount++
-		if(screen == 2)
-			screen = 1
-		user << "<span class='notice'>You add [(W.name == "photo") ? "the photo" : W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
-		user.drop_inv_item_on_ground(W)
-		W.loc = src
+		if(loc == user)
+			user.drop_inv_item_on_ground(W)
+			attach_doc(W, user)
 	else if(istype(W, /obj/item/weapon/flame))
 		burnpaper(W, user)
 	else if(istype(W, /obj/item/weapon/paper_bundle))
-		user.drop_inv_item_on_ground(W)
-		for(var/obj/O in W)
-			O.loc = src
-			O.add_fingerprint(usr)
-			src.amount++
-			if(screen == 2)
-				screen = 1
-		user << "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
-		cdel(W)
+		if(loc == user)
+			user.drop_inv_item_on_ground(W)
+			for(var/obj/O in W)
+				attach_doc(O, user, TRUE)
+			user << "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
+			cdel(W)
 	else
 		if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/toy/crayon))
 			usr << browse("", "window=[name]") //Closes the dialog
-		P = src[page]
+		P = contents[page]
 		P.attackby(W, user)
 
-
 	update_icon()
-	attack_self(usr) //Update the browsed page.
-	add_fingerprint(usr)
-	return
+	attack_self(user) //Update the browsed page.
+	add_fingerprint(user)
+
 
 
 /obj/item/weapon/paper_bundle/proc/burnpaper(obj/item/weapon/flame/P, mob/user)
@@ -106,7 +91,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
-		var/obj/item/weapon/W = src[page]
+		var/obj/item/weapon/W = contents[page]
 		switch(screen)
 			if(0)
 				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'></DIV>"
@@ -145,7 +130,6 @@
 /obj/item/weapon/paper_bundle/Topic(href, href_list)
 	..()
 	if((src in usr.contents) || (istype(src.loc, /obj/item/weapon/folder) && (src.loc in usr.contents)))
-		usr.set_machine(src)
 		if(href_list["next_page"])
 			if(page == amount)
 				screen = 2
@@ -165,14 +149,15 @@
 			page--
 			playsound(src.loc, "pageturn", 15, 1)
 		if(href_list["remove"])
-			var/obj/item/weapon/W = src[page]
+			var/obj/item/weapon/W = contents[page]
 			usr.put_in_hands(W)
 			usr << "<span class='notice'>You remove the [W.name] from the bundle.</span>"
 			if(amount == 1)
-				var/obj/item/weapon/paper/P = src[1]
+				var/obj/item/weapon/paper/P = contents[1]
 				usr.drop_inv_item_on_ground(src)
 				usr.put_in_hands(P)
 				cdel(src)
+				return
 			else if(page == amount)
 				screen = 2
 			else if(page == amount+1)
@@ -198,7 +183,7 @@
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
 	add_fingerprint(usr)
-	return
+
 
 
 /obj/item/weapon/paper_bundle/verb/remove_all()
@@ -208,36 +193,35 @@
 
 	usr << "<span class='notice'>You loosen the bundle.</span>"
 	for(var/obj/O in src)
-		O.loc = usr.loc
-		O.layer = initial(O.layer)
+		O.forceMove(usr.loc)
 		O.add_fingerprint(usr)
 	usr.drop_inv_item_on_ground(src)
 	cdel(src)
-	return
 
 
 /obj/item/weapon/paper_bundle/update_icon()
-	var/obj/item/weapon/paper/P = src[1]
-	icon_state = P.icon_state
-	overlays = P.overlays
+	if(contents.len)
+		var/obj/item/I = contents[1]
+		icon_state = I.icon_state
+		overlays = I.overlays
 	underlays = 0
 	var/i = 0
 	var/photo
 	for(var/obj/O in src)
-		var/image/img = image('icons/obj/bureaucracy.dmi')
+		var/image/IMG = image('icons/obj/bureaucracy.dmi')
 		if(istype(O, /obj/item/weapon/paper))
-			img.icon_state = O.icon_state
-			img.pixel_x -= min(1*i, 2)
-			img.pixel_y -= min(1*i, 2)
+			IMG.icon_state = O.icon_state
+			IMG.pixel_x -= min(1*i, 2)
+			IMG.pixel_y -= min(1*i, 2)
 			pixel_x = min(0.5*i, 1)
 			pixel_y = min(  1*i, 2)
-			underlays += img
+			underlays += IMG
 			i++
 		else if(istype(O, /obj/item/weapon/photo))
-			var/obj/item/weapon/photo/Ph = O
-			img = Ph.tiny
+			var/obj/item/weapon/photo/PH = O
+			IMG = PH.tiny
 			photo = 1
-			overlays += img
+			overlays += IMG
 	if(i>1)
 		desc =  "[i] papers clipped to each other."
 	else
@@ -245,4 +229,16 @@
 	if(photo)
 		desc += "\nThere is a photo attached to it."
 	overlays += image('icons/obj/bureaucracy.dmi', "clip")
-	return
+
+/obj/item/weapon/paper_bundle/proc/attach_doc(obj/item/I, mob/living/user, no_message)
+	if(I.loc == user)
+		user.drop_inv_item_on_ground(I)
+	I.forceMove(src)
+	I.add_fingerprint(user)
+	amount++
+	if(!no_message)
+		user << "<span class='notice'>You add [I] to [src].</span>"
+	if(screen == 2)
+		screen = 1
+	update_icon()
+

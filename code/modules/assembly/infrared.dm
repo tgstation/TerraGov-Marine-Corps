@@ -195,6 +195,10 @@
 		return
 	return
 
+/obj/effect/beam/i_beam/Dispose()
+	processing_objects.Remove(src)
+	. = ..()
+
 /obj/effect/beam/i_beam/process()
 	//world << "i_beam \ref[src] : process"
 
