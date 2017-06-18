@@ -20,7 +20,9 @@
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Double click to target something."
 	var/laser_cooldown = 0
+	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
+	var/target_acquisition_delay = 70 //7 seconds
 	var/busy = FALSE
 
 	New()
@@ -38,7 +40,6 @@
 		if(user && laser)
 			if(!zoom)
 				cdel(laser)
-				laser_cooldown = world.time + 200
 				laser = null
 
 /obj/item/device/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
@@ -81,7 +82,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	user << "<span class='notice'>INITIATING LASER TARGETING ON: '[A]'. Stand still.</span>"
 	var/old_A_loc = A.loc
-	if(!do_after(user, 70, TRUE, 5, BUSY_ICON_CLOCK) || world.time < laser_cooldown || laser || !A || A.loc != old_A_loc)
+	if(!do_after(user, target_acquisition_delay, TRUE, 5, BUSY_ICON_CLOCK) || world.time < laser_cooldown || laser || !A || A.loc != old_A_loc)
 		busy = FALSE
 		return
 	busy = FALSE
@@ -96,3 +97,10 @@
 				cdel(laser)
 				laser = null
 			break
+
+
+/obj/item/device/binoculars/tactical/scout
+	name = "scout tactical binoculars"
+	desc = "A modified version of tactical binoculars with an advanced laser targeting function. Double click to target something."
+	cooldown_duration = 80
+	target_acquisition_delay = 30
