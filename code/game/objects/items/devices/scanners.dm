@@ -197,12 +197,13 @@ REAGENT SCANNER
 	// Show body temp
 	user.show_message("\n\tBody Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
 
-	if (istype(M, /mob/living/carbon))
+	if (ishuman(M))
+		var/mob/living/carbon/human/H = M
 		// Show blood level
-		if(M:vessel)
-			var/blood_volume = round(M:vessel.get_reagent_amount("blood"))
+		if(H.vessel)
+			var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
 			var/blood_percent =  blood_volume / 560
-			var/blood_type = M.dna.b_type
+			var/blood_type = H.dna.b_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
 				user.show_message("\t\red <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.\blue Type: [blood_type]")
@@ -211,7 +212,6 @@ REAGENT SCANNER
 			else
 				user.show_message("\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
 		// Show pulse
-		var/mob/living/carbon/human/H = M
 		user.show_message("\tPulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>")
 
 	src.add_fingerprint(user)

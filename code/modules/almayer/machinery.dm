@@ -404,10 +404,10 @@
 	for(var/i = 1, i < width, i++)
 		if(dir in list(NORTH, SOUTH))
 			var/turf/T = locate(x, y + i, z)
-			T.SetOpacity(opacity)
+			if(T) T.SetOpacity(opacity)
 		else if(dir in list(EAST, WEST))
 			var/turf/T = locate(x + i, y, z)
-			T.SetOpacity(opacity)
+			if(T) T.SetOpacity(opacity)
 
 /obj/machinery/door/airlock/multi_tile/almayer/open()
 	. = ..()

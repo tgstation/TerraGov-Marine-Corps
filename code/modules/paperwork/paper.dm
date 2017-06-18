@@ -359,7 +359,7 @@
 		update_icon()
 
 
-/obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
+/obj/item/weapon/paper/attackby(obj/item/weapon/P, mob/user)
 	..()
 	var/clown = 0
 	if(user.mind && (user.mind.assigned_role == "Clown"))
@@ -372,44 +372,17 @@
 				user << "<span class='notice'>Take off the carbon copy first.</span>"
 				add_fingerprint(user)
 				return
+		if(loc != user) return
 		var/obj/item/weapon/paper_bundle/B = new(src.loc)
 		if (name != "paper")
 			B.name = name
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
 		user.drop_inv_item_on_ground(P)
-		if (istype(user, /mob/living/carbon/human))
-			var/mob/living/carbon/human/h_user = user
-			if (h_user.r_hand == src)
-				h_user.drop_inv_item_on_ground(src)
-				h_user.put_in_r_hand(B)
-			else if (h_user.l_hand == src)
-				h_user.drop_inv_item_on_ground(src)
-				h_user.put_in_l_hand(B)
-			else if (h_user.l_store == src)
-				h_user.drop_inv_item_on_ground(src)
-				B.loc = h_user
-				B.layer = 20
-				h_user.l_store = B
-				h_user.update_inv_pockets()
-			else if (h_user.r_store == src)
-				h_user.drop_inv_item_on_ground(src)
-				B.loc = h_user
-				B.layer = 20
-				h_user.r_store = B
-				h_user.update_inv_pockets()
-			else if (h_user.head == src)
-				h_user.drop_inv_item_on_ground(src)
-				h_user.put_in_hands(B)
-			else if (!istype(src.loc, /turf))
-				src.loc = get_turf(h_user)
-				if(h_user.client)	h_user.client.screen -= src
-				h_user.put_in_hands(B)
+		user.drop_inv_item_on_ground(src)
 		user << "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>"
-		src.loc = B
-		P.loc = B
-		B.amount++
-		B.update_icon()
+		B.attach_doc(src, user, TRUE)
+		B.attach_doc(P, user, TRUE)
 
 	else if(istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
 		if ( istype(P, /obj/item/weapon/pen/robopen) && P:mode == 2 )

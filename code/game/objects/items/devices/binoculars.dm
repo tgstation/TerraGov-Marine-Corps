@@ -67,6 +67,7 @@
 		return
 
 	var/turf/TU = get_turf(A)
+	if(!istype(TU)) return
 	var/is_outside = FALSE
 	if(TU.z == 1)
 		if(istype(TU, /turf/unsimulated/floor))

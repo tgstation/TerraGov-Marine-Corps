@@ -43,8 +43,8 @@
 		cards += P
 
 /obj/item/weapon/deck/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/weapon/hand))
-		var/obj/item/weapon/hand/H = O
+	if(istype(O,/obj/item/weapon/handcard))
+		var/obj/item/weapon/handcard/H = O
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		cdel(O)
@@ -70,10 +70,10 @@
 		usr << "There are no cards in the deck."
 		return
 
-	var/obj/item/weapon/hand/H
-	if(user.l_hand && istype(user.l_hand,/obj/item/weapon/hand))
+	var/obj/item/weapon/handcard/H
+	if(user.l_hand && istype(user.l_hand,/obj/item/weapon/handcard))
 		H = user.l_hand
-	else if(user.r_hand && istype(user.r_hand,/obj/item/weapon/hand))
+	else if(user.r_hand && istype(user.r_hand,/obj/item/weapon/handcard))
 		H = user.r_hand
 	else
 		H = new(get_turf(src))
@@ -113,7 +113,7 @@
 	deal_at(usr, M)
 
 /obj/item/weapon/deck/proc/deal_at(mob/user, mob/target)
-	var/obj/item/weapon/hand/H = new(get_step(user, user.dir))
+	var/obj/item/weapon/handcard/H = new(get_step(user, user.dir))
 
 	H.cards += cards[1]
 	cards -= cards[1]
@@ -125,9 +125,9 @@
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
-/obj/item/weapon/hand/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/weapon/hand))
-		var/obj/item/weapon/hand/H = O
+/obj/item/weapon/handcard/attackby(obj/O as obj, mob/user as mob)
+	if(istype(O,/obj/item/weapon/handcard))
+		var/obj/item/weapon/handcard/H = O
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		src.concealed = H.concealed
@@ -159,7 +159,7 @@
 
 	deal_at(usr, over)
 
-/obj/item/weapon/hand
+/obj/item/weapon/handcard
 	name = "hand of cards"
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
@@ -169,7 +169,7 @@
 	var/concealed = 0
 	var/list/cards = list()
 
-/obj/item/weapon/hand/verb/discard()
+/obj/item/weapon/handcard/verb/discard()
 
 	set category = "Object"
 	set name = "Discard"
@@ -185,7 +185,7 @@
 	var/datum/playingcard/card = to_discard[discarding]
 	cdel(to_discard)
 
-	var/obj/item/weapon/hand/H = new(src.loc)
+	var/obj/item/weapon/handcard/H = new(src.loc)
 	H.cards += card
 	cards -= card
 	H.concealed = 0
@@ -197,24 +197,20 @@
 	if(!cards.len)
 		cdel(src)
 
-/obj/item/weapon/hand/attack_self(var/mob/user as mob)
+/obj/item/weapon/handcard/attack_self(var/mob/user as mob)
 	concealed = !concealed
 	update_icon()
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
 
-/obj/item/weapon/hand/examine(mob/user)
+/obj/item/weapon/handcard/examine(mob/user)
 	..()
 	if((!concealed || loc == user) && cards.len)
 		user << "It contains: "
 		for(var/datum/playingcard/P in cards)
 			user << "The [P.name]."
 
-/obj/item/weapon/hand/update_icon(var/direction = 0)
-
-	if(!cards.len)
-		cdel(src)
-		return
-	else if(cards.len > 1)
+/obj/item/weapon/handcard/update_icon(var/direction = 0)
+	if(cards.len > 1)
 		name = "hand of cards"
 		desc = "Some playing cards."
 	else
@@ -264,12 +260,12 @@
 		overlays += I
 		i++
 
-/obj/item/weapon/hand/dropped(mob/user as mob)
+/obj/item/weapon/handcard/dropped(mob/user as mob)
 	..()
 	if(locate(/obj/structure/table, loc))
 		src.update_icon(user.dir)
 	else
 		update_icon()
 
-/obj/item/weapon/hand/pickup(mob/user as mob)
+/obj/item/weapon/handcard/pickup(mob/user as mob)
 	src.update_icon()
