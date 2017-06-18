@@ -617,12 +617,18 @@
 
 // for /obj/machinery/vending/sovietsoda
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda
+	name = "soda glass"
+	desc = "A drinking glass for soda."
+
 	New()
 		..()
 		reagents.add_reagent("sodawater", 50)
 		on_reagent_change()
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola
+	name = "cola glass"
+	desc = "A drinking glass for cola."
+
 	New()
 		..()
 		reagents.add_reagent("cola", 50)

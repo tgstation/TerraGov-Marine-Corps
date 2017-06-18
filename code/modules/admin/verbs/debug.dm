@@ -937,7 +937,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP/medic(M), WEAR_BODY)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap(M), WEAR_HEAD)
-			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(M), WEAR_WAIST)
+			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver(M), WEAR_WAIST)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/upp(M), WEAR_WAIST)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)

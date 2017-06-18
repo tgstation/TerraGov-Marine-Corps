@@ -309,7 +309,7 @@
 "fW" = (/turf/simulated/floor/holofloor{dir = 4; icon_state = "green"},/area/holodeck/source_thunderdomecourt)
 "fX" = (/turf/unsimulated/wall/splashscreen,/area/start)
 "fY" = (/turf/unsimulated/wall,/area/tdome)
-"fZ" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/belt/medical/combatLifesaver,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/shuttle/distress_start)
+"fZ" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/belt/combatLifesaver,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/shuttle/distress_start)
 "ga" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/weapon/storage/toolbox/emergency,/obj/item/weapon/storage/belt/utility,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/shuttle/distress_start)
 "gb" = (/obj/machinery/sleeper,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/escape/centcom)
 "gc" = (/obj/machinery/sleep_console,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/escape/centcom)

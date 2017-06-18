@@ -137,7 +137,7 @@
 						WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 						WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 						WEAR_HANDS = /obj/item/clothing/gloves/latex,
-						SLOW_WAIST = /obj/item/weapon/storage/belt/medical/combatLifesaver,
+						SLOW_WAIST = /obj/item/weapon/storage/belt/combatLifesaver,
 						WEAR_JACKET = /obj/item/clothing/suit/storage/marine/veteran/PMC,
 						WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 						WEAR_BACK = /obj/item/weapon/storage/backpack/satchel_med

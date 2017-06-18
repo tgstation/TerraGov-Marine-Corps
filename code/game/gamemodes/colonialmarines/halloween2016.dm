@@ -617,7 +617,7 @@
 					/*if("Squad Medic")
 						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver(H), WEAR_WAIST)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), WEAR_BACK)
 					//	H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(H), WEAR_L_STORE)
 						H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(H), WEAR_L_STORE)
@@ -747,7 +747,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), WEAR_FACE)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver(H), WEAR_WAIST)
 				H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(H), WEAR_WAIST)
 
 				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/medic(H), WEAR_BACK)
