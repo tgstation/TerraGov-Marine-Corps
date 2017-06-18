@@ -56,6 +56,8 @@
 			cdel(T)
 	update_icon()
 	update_adjacent()
+	if(flipped)
+		climbable = 0
 
 /obj/structure/table/Crossed(atom/movable/O)
 	..()
@@ -274,7 +276,7 @@
 					icon_state = "tabledir2"
 				if(6)
 					icon_state = "tabledir3"
-		if (dir_sum in list(1, 2, 4, 8, 5, 6, 9, 10))
+		if(dir_sum in list(1, 2, 4, 8, 5, 6, 9, 10))
 			dir = dir_sum
 		else
 			dir = 2
@@ -283,11 +285,13 @@
 	return
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0)) return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
-	var/obj/structure/table/T = locate(/obj/structure/table) in get_turf(mover)
-	if(T && !T.flipped) //flipped tables don't count
-		return 1
+	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
+	if(S.climbable) //Climbable objects allow you to universally climb over others
+		if(climbable) //If the other can be climbed on, of course
+			return 1
 	if(flipped)
 		if(get_dir(loc, target) == dir)
 			return !density
@@ -421,6 +425,8 @@
 	if(climbable)
 		structure_shaken()
 
+	climbable = 0 //We can't climb on it anymore, to prevent silliness
+
 	flip_cooldown = world.time + 50
 
 /obj/structure/table/proc/unflipping_check(var/direction)
@@ -438,7 +444,7 @@
 		L.Add(turn(src.dir,-90))
 		L.Add(turn(src.dir,90))
 	for(var/new_dir in L)
-		var/obj/structure/table/T = locate() in get_step(src.loc,new_dir)
+		var/obj/structure/table/T = locate() in get_step(loc, new_dir)
 		if(T)
 			if(T.flipped && T.dir == src.dir && !T.unflipping_check(new_dir))
 				return 0
@@ -458,6 +464,8 @@
 		return
 
 	unflip()
+
+	climbable = initial(climbable)
 
 	flip_cooldown = world.time + 50
 
@@ -590,11 +598,15 @@
 	parts = /obj/item/weapon/rack_parts
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height==0)) return 1
+	if(air_group || (height == 0)) return 1
 	if(density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
+	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
+	if(S.climbable) //Climbable objects allow you to universally climb over others
+		if(climbable) //If the other can be climbed on, of course
+			return 1
 	else
 		return 0
 

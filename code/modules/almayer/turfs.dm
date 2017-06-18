@@ -7,9 +7,7 @@
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "testwall0"
-//	mineral = "silver"
 	walltype = "testwall"
-	hull = 1 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 
 	damage = 0
 	damage_cap = 10000 //Wall will break down to girders if damage reaches this point
@@ -44,10 +42,9 @@
 /turf/simulated/wall/almayer/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
-	icon_state = "testwall0"
+	//icon_state = "testwall0_debug" //Use "testwall0". Testing sprite to check for missing/misplaced is testwall0_debug
 	walltype = "testwall"
-//	mineral = "testwall"
-//	unacidable = 1
+	hull = 1 //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
 
 /turf/simulated/wall/almayer/white
 	walltype = "wwall"
@@ -224,6 +221,13 @@
 	update_nearby_icons()
 	. = ..()
 
+/obj/structure/window/reinforced/almayer/hull
+	name = "hull window"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	//icon_state = "rwindow0_debug" //Should be rwindow0. Use rwindow0_debug to check for missing/misplaced hull windows
+	hull = 1
+	health = 1000000 //Failsafe, shouldn't matter
+
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
@@ -236,11 +240,13 @@
 	var/basestate = "window"
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0)) return 1 //Air can pass through a window-sized hole
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
-	var/obj/structure/window_frame/WF = locate(/obj/structure/window_frame) in get_turf(mover)
-	if(WF)
-		return 1
+	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
+	if(S.climbable) //Climbable objects allow you to universally climb over others
+		if(climbable) //If the other can be climbed on, of course
+			return 1
 	return 0
 
 /obj/structure/window_frame/CheckExit(atom/movable/O as mob|obj, target as turf)

@@ -89,7 +89,7 @@
 	if(!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 
 	if(!do_after(user, climb_delay, FALSE, 5, BUSY_ICON_CLOCK))
 		return
@@ -100,7 +100,7 @@
 	user.forceMove(get_turf(src))
 
 	if(get_turf(user) == get_turf(src))
-		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+		user.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 
 /obj/structure/proc/structure_shaken()
 
@@ -148,16 +148,16 @@
 	return
 
 /obj/structure/proc/can_touch(var/mob/user)
-	if (!user)
+	if(!user)
 		return 0
 	if(!Adjacent(user))
 		return 0
-	if (user.is_mob_restrained() || user.buckled)
+	if(user.is_mob_restrained() || user.buckled)
 		user << "<span class='notice'>You need your hands and legs free for this.</span>"
 		return 0
-	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
+	if(user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
-	if (issilicon(user))
+	if(issilicon(user))
 		user << "<span class='notice'>You need hands for this.</span>"
 		return 0
 	return 1

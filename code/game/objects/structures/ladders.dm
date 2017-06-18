@@ -74,14 +74,16 @@
 		ladder_dest = down
 	else return //just in case
 
-	user << "You start climbing [ladder_dir_name] the ladder.."
-	if(do_after(user,20, FALSE, 5, BUSY_ICON_CLOCK))
+	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
+	"<span class='notice'>You start climbing [ladder_dir_name] the ladder.</span>")
+	if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
 
-		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] \the [src]!</span>", \
-							 "<span class='notice'>You climb [ladder_dir_name] \the [src]!</span>")
-		user.loc = get_turf(ladder_dest)
+		user.loc = get_turf(ladder_dest) //Make sure we move before we broadcast the message
+		visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
+		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
+		"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
 		ladder_dest.add_fingerprint(user)
-		if(user.pulling && get_dist(src,user.pulling) <= 2)
+		if(user.pulling && get_dist(src, user.pulling) <= 2)
 			user.pulling.loc = ladder_dest.loc
 
 	add_fingerprint(user)

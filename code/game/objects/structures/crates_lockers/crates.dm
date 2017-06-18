@@ -8,11 +8,11 @@
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"
 	climbable = 1
+	climb_delay = 20 //Doesn't need as long to climb over a crate
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	anchored = 0
 	store_mobs = FALSE
 	var/rigged = 0
-
 
 /obj/structure/closet/crate/can_open()
 	return 1
@@ -20,11 +20,23 @@
 /obj/structure/closet/crate/can_close()
 	return 1
 
+/obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0)) return 1
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
+	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
+	if(S.climbable) //Climbable objects allow you to universally climb over others
+		if(climbable) //If the other can be climbed on, of course
+			return 1
+	if(opened) //Open crate, you can cross over it
+		return 1
+	else
+		return 0
 
 /obj/structure/closet/crate/open()
-	if(src.opened)
+	if(opened)
 		return 0
-	if(!src.can_open())
+	if(!can_open())
 		return 0
 
 	if(rigged && locate(/obj/item/device/radio/electropack) in src)
@@ -46,9 +58,9 @@
 	return 1
 
 /obj/structure/closet/crate/close()
-	if(!src.opened)
+	if(!opened)
 		return 0
-	if(!src.can_close())
+	if(!can_close())
 		return 0
 
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
@@ -56,7 +68,7 @@
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)
 			break
-		if(O.density || O.anchored || istype(O,/obj/structure/closet))
+		if(O.density || O.anchored || istype(O, /obj/structure/closet))
 			continue
 		if(istype(O, /obj/structure/stool/bed)) //This is only necessary because of rollerbeds and swivel chairs.
 			var/obj/structure/stool/bed/B = O
@@ -119,7 +131,6 @@
 			return
 		else
 	return
-
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"
@@ -361,4 +372,3 @@
 	icon_state = "closed_weapons"
 	icon_opened = "open_weapons"
 	icon_closed = "closed_weapons"
-

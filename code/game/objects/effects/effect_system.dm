@@ -256,8 +256,8 @@ steam.start() -- spawns the effect
 		delete()
 	return
 
-/obj/effect/particle_effect/smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/effect/particle_effect/smoke/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)
@@ -750,7 +750,7 @@ steam.start() -- spawns the effect
 		else
 			user << "\blue You hit the metal foam to no effect."
 
-	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
 		if(air_group) return 0
 		return !density
 
