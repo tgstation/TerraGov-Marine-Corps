@@ -360,7 +360,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
 
 		//Combat Lifesaver belt
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver(H), WEAR_WAIST)
 
 		//Advanced Meds
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_L_STORE)
@@ -440,7 +440,7 @@
 			H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/med(H), WEAR_L_HAND)
 
 			//Combat Lifesaver belt
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver(H), WEAR_WAIST)
 
 			//Med Hud
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
@@ -1149,7 +1149,7 @@
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
-								/obj/item/weapon/storage/belt/medical/combatLifesaver,
+								/obj/item/weapon/storage/belt/combatLifesaver,
 								/obj/item/clothing/glasses/hud/health,
 								/obj/item/clothing/glasses/hud/health,
 								/obj/item/weapon/melee/defibrillator,
@@ -1165,7 +1165,7 @@
 								/obj/item/weapon/storage/firstaid/toxin,
 								/obj/item/weapon/storage/firstaid/o2,
 								/obj/item/weapon/storage/firstaid/adv,
-								/obj/item/weapon/storage/belt/medical/combatLifesaver,
+								/obj/item/weapon/storage/belt/combatLifesaver,
 								/obj/item/weapon/storage/pill_bottle/tramadol,
 								/obj/item/weapon/storage/pill_bottle/tramadol,
 								/obj/item/weapon/storage/pill_bottle/spaceacillin,

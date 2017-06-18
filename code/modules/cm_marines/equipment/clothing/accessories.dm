@@ -167,7 +167,7 @@
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 
 
-/obj/item/weapon/storage/belt/medical/combatLifesaver
+/obj/item/weapon/storage/belt/combatLifesaver
 	name = "\improper M276 pattern lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
 	icon_state = "medicalbag"
@@ -186,19 +186,25 @@
 		"/obj/item/stack/medical"
 	)
 
-
-
-/obj/item/weapon/storage/belt/medical/combatLifesaver/New()  //The belt, with all it's magic inside!
+/obj/item/weapon/storage/belt/combatLifesaver/New()  //The belt, with all it's magic inside!
 	..()
 	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
 

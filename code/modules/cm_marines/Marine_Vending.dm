@@ -340,7 +340,7 @@
 						/obj/item/weapon/storage/backpack/marine/medic = 4,
 						/obj/item/weapon/storage/backpack/marine/satchel/medic = 2,
 						/obj/item/device/encryptionkey/med = 3,
-						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
+						/obj/item/weapon/storage/belt/combatLifesaver = 3,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/clothing/tie/storage/webbing = 2,
 						/obj/item/weapon/melee/defibrillator = 3,
