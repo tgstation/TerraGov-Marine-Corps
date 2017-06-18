@@ -25,9 +25,8 @@
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S.climbable) //Climbable objects allow you to universally climb over others
-		if(climbable) //If the other can be climbed on, of course
-			return 1
+	if(S && S.climbable && climbable) //Climbable objects allow you to universally climb over others
+		return 1
 	if(opened) //Open crate, you can cross over it
 		return 1
 	else

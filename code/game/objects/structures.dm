@@ -83,13 +83,27 @@
 		if(O && O.density && !(O.flags_atom & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
 			user << "<span class='warning'>There's \a [O.name] in the way.</span>"
 			return 0
+
+	if((flags_atom & ON_BORDER))
+		if(user.loc != loc && user.loc != get_step(get_turf(src), dir))
+			user << "<span class='warning'>You need to be up against [src] to leap over.</span>"
+			return
+		if(user.loc == loc)
+			var/turf/target = get_step(get_turf(src), dir)
+			if(target.density) //Turf is dense, not gonna work
+				user << "<span class='warning'>You cannot leap this way.</span>"
+				return
+			for(var/atom/movable/A in target)
+				if(A.density)
+					user << "<span class='warning'>You cannot leap this way.</span>"
+					return
 	return 1
 
 /obj/structure/proc/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
 
-	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	user.visible_message("<span class='warning'>[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!</span>")
 
 	if(!do_after(user, climb_delay, FALSE, 5, BUSY_ICON_CLOCK))
 		return
@@ -97,10 +111,28 @@
 	if(!can_climb(user))
 		return
 
-	user.forceMove(get_turf(src))
+	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
+		user.forceMove(get_turf(src))
 
-	if(get_turf(user) == get_turf(src))
-		user.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+		if(get_turf(user) == get_turf(src))
+			user.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+	else //If border structure, assume complex behavior
+		var/turf/target = get_step(get_turf(src), dir)
+		if(user.loc == target)
+			user.forceMove(get_turf(src))
+			user.visible_message("<span class='warning'>[user] leaps over \the [src]!</span>")
+		else
+			if(target.density) //Turf is dense, not gonna work
+				user << "<span class='warning'>You cannot leap this way.</span>"
+				return
+			for(var/atom/movable/A in target)
+				if(A.density)
+					user << "<span class='warning'>You cannot leap this way.</span>"
+					return
+			user.forceMove(get_turf(target)) //One more move, we "leap" over the border structure
+
+			if(get_turf(user) == get_turf(target))
+				user.visible_message("<span class='warning'>[user] leaps over \the [src]!</span>")
 
 /obj/structure/proc/structure_shaken()
 

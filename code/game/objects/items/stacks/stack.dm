@@ -98,82 +98,97 @@
 
 /obj/item/stack/Topic(href, href_list)
 	..()
-	if ((usr.is_mob_restrained() || usr.stat || usr.get_active_hand() != src))
+	if((usr.is_mob_restrained() || usr.stat || usr.get_active_hand() != src))
 		return
 
-	if (href_list["sublist"] && !href_list["make"])
+	if(href_list["sublist"] && !href_list["make"])
 		list_recipes(usr, text2num(href_list["sublist"]))
 
-	if (href_list["make"])
-		if (src.amount < 1) cdel(src) //Never should happen
+	if(href_list["make"])
+		if(amount < 1) cdel(src) //Never should happen
 
 		var/list/recipes_list = recipes
-		if (href_list["sublist"])
+		if(href_list["sublist"])
 			var/datum/stack_recipe_list/srl = recipes_list[text2num(href_list["sublist"])]
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier || (multiplier <= 0)) //href exploit protection
+		if(!multiplier || (multiplier <= 0)) //href exploit protection
 			return
-		if (src.amount < R.req_amount*multiplier)
-			if (R.req_amount*multiplier>1)
-				usr << "\red You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!"
+		if(amount < R.req_amount * multiplier)
+			if(R.req_amount * multiplier > 1)
+				usr << "<span class='warning'>You need more [name] to build \the [R.req_amount*multiplier] [R.title]\s!</span>"
 			else
-				usr << "\red You haven't got enough [src] to build \the [R.title]!"
+				usr << "<span class='warning'>You need more [name] to build \the [R.title]!</span>"
 			return
-		if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
+		if(istype(get_area(usr.loc), /area/sulaco/hangar))  //HANGAR BUILDING
 			usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 			return
-		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
-			usr << "\red There is another [R.title] here!"
+		//1 is absolute one per tile, 2 is directional one per tile. Hacky way to get around it without adding more vars
+		if(R.one_per_turf == 1 && (locate(R.result_type) in usr.loc))
+			usr << "<span class='warning'>There is already another [R.title] here!</span>"
 			return
-		if(locate(/obj/structure/barricade) in usr.loc || locate(/obj/structure/table) in usr.loc)
-			usr << "\red Not enough space to construct [R.title] here!"
+		for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
+			if(O.density && !istype(O, R.result_type))
+				usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
+				return
+			if(R.one_per_turf == 2 && istype(O, R.result_type) && O.dir == usr.dir)
+				usr << "<span class='warning'>There is already another [R.title] in this direction!</span>"
+				return
+		if(R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor) || istype(usr.loc, /turf/unsimulated/jungle)))
+			usr << "<span class='warning'>\The [R.title] must be constructed on a proper surface!</span>"
 			return
-		if (R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor) || istype(usr.loc, /turf/unsimulated/jungle)))
-			usr << "\red \The [R.title] must be constructed on the floor!"
-			return
-		if (R.time)
-			usr << "\blue Building [R.title] ..."
-			if (!do_after(usr, R.time, 2, 5, BUSY_ICON_CLOCK))
+		if(R.time)
+			usr.visible_message("<span class='notice'>[usr] starts assembling \a [R.title].</span>",
+			"<span class='notice'>You start assembling \a [R.title].</span>")
+			if(!do_after(usr, R.time, 2, 5, BUSY_ICON_CLOCK))
 				return
 		//We want to check this again for girder stacking
-		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
-			usr << "\red There is another [R.title] here!"
+		if(R.one_per_turf == 1 && (locate(R.result_type) in usr.loc))
+			usr << "<span class='warning'>There is already another [R.title] here!</span>"
 			return
-		if (src.amount < R.req_amount*multiplier)
+		for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
+			if(O.density && !istype(O, R.result_type))
+				usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
+				return
+			if(R.one_per_turf == 2 && istype(O, R.result_type) && O.dir == usr.dir)
+				usr << "<span class='warning'>There is already another [R.title] in this direction!</span>"
+				return
+		if(amount < R.req_amount * multiplier)
 			return
-		var/atom/O = new R.result_type( usr.loc )
+		var/atom/O = new R.result_type(usr.loc)
+		usr.visible_message("<span class='notice'>[usr] assembles \a [O].</span>",
+		"<span class='notice'>You assemble \a [O].</span>")
 		O.dir = usr.dir
-		if (R.max_res_amount>1)
+		if(R.max_res_amount > 1)
 			var/obj/item/stack/new_item = O
-			new_item.amount = R.res_amount*multiplier
+			new_item.amount = R.res_amount * multiplier
 			//new_item.add_to_stacks(usr)
-		src.amount-=R.req_amount*multiplier
-		if (src.amount<=0)
+		amount -= R.req_amount * multiplier
+		if(amount <= 0)
 			var/oldsrc = src
 			src = null //dont kill proc after cdel()
 			usr.drop_inv_item_on_ground(oldsrc)
 			cdel(oldsrc)
-			if (istype(O,/obj/item) && istype(usr,/mob/living/carbon))
+			if(istype(O,/obj/item) && istype(usr,/mob/living/carbon))
 				usr.put_in_hands(O)
 		O.add_fingerprint(usr)
 		//BubbleWrap - so newly formed boxes are empty
-		if ( istype(O, /obj/item/weapon/storage) )
+		if(istype(O, /obj/item/weapon/storage))
 			for (var/obj/item/I in O)
 				cdel(I)
 		//BubbleWrap END
-	if (src && usr.machine==src) //do not reopen closed window
-		spawn( 0 )
-			src.interact(usr)
+	if(src && usr.machine == src) //do not reopen closed window
+		spawn()
+			interact(usr)
 			return
 	return
 
 /obj/item/stack/proc/use(var/used)
-	if (used > amount) //If it's larger than what we have, no go.
+	if(used > amount) //If it's larger than what we have, no go.
 		return 0
 	amount -= used
-	if (amount <= 0)
+	if(amount <= 0)
 		if(usr)
 			usr.drop_inv_item_on_ground(src)
 		spawn(1) //Did they not have spawn back in the day? Pff.
