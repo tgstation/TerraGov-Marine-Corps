@@ -56,8 +56,6 @@
 			cdel(T)
 	update_icon()
 	update_adjacent()
-	if(flipped)
-		climbable = 0
 
 /obj/structure/table/Crossed(atom/movable/O)
 	..()
@@ -289,9 +287,8 @@
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S.climbable) //Climbable objects allow you to universally climb over others
-		if(climbable) //If the other can be climbed on, of course
-			return 1
+	if(S && S.climbable && climbable) //Climbable objects allow you to universally climb over others
+		return 1
 	if(flipped)
 		if(get_dir(loc, target) == dir)
 			return !density
@@ -425,8 +422,6 @@
 	if(climbable)
 		structure_shaken()
 
-	climbable = 0 //We can't climb on it anymore, to prevent silliness
-
 	flip_cooldown = world.time + 50
 
 /obj/structure/table/proc/unflipping_check(var/direction)
@@ -465,8 +460,6 @@
 
 	unflip()
 
-	climbable = initial(climbable)
-
 	flip_cooldown = world.time + 50
 
 /obj/structure/table/proc/flip(var/direction)
@@ -489,7 +482,6 @@
 	dir = direction
 	if(dir != NORTH)
 		layer = 5
-	climbable = 0 //flipping tables allows them to be used as makeshift barriers
 	flipped = 1
 	flags_atom |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
@@ -604,9 +596,8 @@
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S.climbable) //Climbable objects allow you to universally climb over others
-		if(climbable) //If the other can be climbed on, of course
-			return 1
+	if(S && S.climbable && climbable) //Climbable objects allow you to universally climb over others
+		return 1
 	else
 		return 0
 

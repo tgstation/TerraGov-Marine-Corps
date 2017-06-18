@@ -68,10 +68,6 @@
 	if(O && O.throwing)
 		return 1
 
-	var/obj/structure/table/T = locate() in get_turf(O)
-	if(T && !T.flipped) //Non-flipped tables let you climb on barricades.
-		return 1
-
 	if((flags_atom & ON_BORDER) && get_dir(loc, target) == dir)
 		return 0
 	else
@@ -85,8 +81,8 @@
 	if(mover && mover.throwing)
 		return 1
 
-	var/obj/structure/table/T = locate() in get_turf(mover)
-	if(T && !T.flipped) //Non-flipped tables let you climb on barricades.
+	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
+	if(S && S.climbable && climbable) //Climbable objects allow you to universally climb over others
 		return 1
 
 	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir)
@@ -155,11 +151,13 @@
 		if(!can_change_dmg_state)
 			icon_state = "[barricade_type]"
 			if(dir == SOUTH) layer = MOB_LAYER + 1
+			else if(dir == NORTH) layer = initial(layer) - 0.01
 			else layer = initial(layer)
 
 		if(!closed)
 			icon_state = "[barricade_type]_[damage_state]"
 			if(dir == SOUTH) layer = MOB_LAYER + 1
+			else if(dir == NORTH) layer = initial(layer) - 0.01
 			else layer = initial(layer)
 		else
 			icon_state = "[barricade_type]_closed_[damage_state]"
@@ -651,11 +649,19 @@
 	barricade_type = "sandbag"
 	can_wire = 1
 
-	New()
+	New(loc, dir)
 		..()
 
-		if(dir == SOUTH)
+		if(loc)
+			src.loc = loc
+
+		if(dir)
+			src.dir = dir
+
+		if(src.dir == SOUTH)
 			pixel_y = -7
+		if(src.dir == NORTH)
+			pixel_y = 7
 
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/etool) && user.a_intent != "harm")
@@ -741,26 +747,29 @@
 		user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
-	for(var/obj/structure/barricade/B in user.loc)
-		if(!(B.flags_atom & ON_BORDER) || user.dir == B.dir)
-			user << "<span class='warning'>You can't place more sandbags where a barricade is!</span>"
-			return
 
-	if(locate(/obj/structure/table, user.loc) || locate(/obj/structure/rack, user.loc))
-		user << "<span class='warning'>You can't place sandbags where other structures are!</span>"
-		return
+	//Using same safeties as other constructions
+	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
+		if(O.density && !istype(O, /obj/structure/barricade/sandbags))
+			usr << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
+			return
+		if(istype(O, /obj/structure/barricade/sandbags) && O.dir == user.dir)
+			usr << "<span class='warning'>There is already another sandbag barricade in this direction!</span>"
+			return
 
 	if(!in_use)
 		if(amount < 5)
-			user << "<span class='warning'>You need at least five sandbags to do this.</span>"
+			user << "<span class='warning'>You need at least five [name] to do this.</span>"
 			return
-		user << "<span class='notice'>Assembling sandbag barricade...</span>"
+		user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
+		"<span class='notice'>You start assembling a sandbag barricade.</span>")
 		in_use = 1
-		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_CLOCK))
+		if(!do_after(usr, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			in_use = 0
 			return
-		var/obj/structure/barricade/sandbags/SB = new (usr.loc)
-		user << "<span class='notice'>You assemble a sandbag barricade!</span>"
+		var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
+		user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
+		"<span class='notice'>You assemble a sandbag barricade.</span>")
 		SB.dir = usr.dir
 		in_use = 0
 		SB.add_fingerprint(usr)
