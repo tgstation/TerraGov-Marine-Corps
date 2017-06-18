@@ -828,13 +828,8 @@ steam.start() -- spawns the effect
 
 /obj/effect/particle_effect/expl_particles/New()
 	..()
-	spawn (15)
-		src.loc = null
-	return
-
-/obj/effect/particle_effect/expl_particles/Move()
-	..()
-	return
+	spawn(15)
+		cdel(src)
 
 /datum/effect_system/expl_particles
 	number = 10
@@ -870,9 +865,8 @@ steam.start() -- spawns the effect
 
 /obj/effect/particle_effect/explosion/New()
 	..()
-	spawn (10)
-		src.loc = null
-	return
+	spawn(10)
+		cdel(src)
 
 /datum/effect_system/explosion
 	number = 1
