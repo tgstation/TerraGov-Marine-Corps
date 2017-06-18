@@ -17,12 +17,17 @@
 	var/windowknock_cooldown = 0
 	var/static_frame = 0 //True/false. If true, can't move the window
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
+	var/hull = 0 //Setting this to 1 defines this as a hull window, making it impossible to damage, deconstruct, destroy or relocate
 
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
 //Please only fire this after a hit
 /obj/structure/window/proc/healthcheck(make_hit_sound = 1, make_shatter_sound = 1, create_debris = 1, mob/user, atom/movable/AM)
 
+	if(hull) //Impossible to destroy
+		if(make_hit_sound) //We'll still make the noise for immersion's sake
+			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
+		return
 	if(health <= 0)
 		if(user)
 			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? "with [AM]":""]!</span>")
@@ -48,12 +53,15 @@
 	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
 		return 0
 
-	health -= Proj.damage
+	if(!hull) //Impossible to destroy
+		health -= Proj.damage
 	..()
 	healthcheck()
 	return 1
 
 /obj/structure/window/ex_act(severity)
+	if(hull) //Impossible to destroy
+		return
 	switch(severity)
 		if(1)
 			health -= rand(125, 250)
@@ -98,11 +106,12 @@
 		var/obj/item/I = AM
 		tforce = I.throwforce
 	if(reinf) tforce *= 0.25
-	health = max(0, health - tforce)
-	if(health <= 7 && !reinf && !static_frame)
-		anchored = 0
-		update_nearby_icons()
-		step(src, get_dir(AM, src))
+	if(!hull) //Impossible to destroy
+		health = max(0, health - tforce)
+		if(health <= 7 && !reinf && !static_frame)
+			anchored = 0
+			update_nearby_icons()
+			step(src, get_dir(AM, src))
 	healthcheck()
 
 /obj/structure/window/attack_tk(mob/user as mob)
@@ -112,8 +121,9 @@
 /obj/structure/window/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-		health -= 500
+		if(!hull) //Impossible to destroy
+			user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
+			health -= 500
 		healthcheck(1, 1, 1, user)
 
 	else if(user.a_intent == "hurt")
@@ -145,7 +155,8 @@
 
 //Used by attack_animal
 /obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
-	health -= damage
+	if(!hull) //Impossible to destroy
+		health -= damage
 	user.animation_attack_on(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, 1, user)
@@ -167,55 +178,59 @@
 				if(GRAB_PASSIVE)
 					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 					M.apply_damage(7)
-					health -= 10
+					if(!hull) //Impossible to destroy
+						health -= 10
 				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					if(prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
-					health -= 25
+					if(!hull) //Impossible to destroy
+						health -= 25
 				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 					M.Weaken(5)
 					M.apply_damage(20)
-					health -= 50
+					if(!hull) //Impossible to destroy
+						health -= 50
 			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
 		return
 
 	if(W.flags_atom & NOBLUDGEON) return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/screwdriver) && !hull)
 		if(reinf && state >= 1)
 			state = 3 - state
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>")
-		else if(reinf && state == 0 && !static_frame)
+		else if(reinf && state == 0 && !static_frame && !hull)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>")
-		else if(!reinf && !static_frame)
+		else if(!reinf && !static_frame && !hull)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
-		else if(static_frame && state == 0)
+		else if(static_frame && state == 0 && !hull)
 			var/obj/item/stack/sheet/glass/reinforced/G = new /obj/item/stack/sheet/glass/reinforced(loc)
 			G.amount = 2
 			var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
 			new_window_frame.icon_state = "[icon_state]_frame"
 			new_window_frame.dir = dir
 			cdel(src)
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
+	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1 && !hull)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
 	else
-		health -= W.force
-		if(health <= 7  && !reinf && !static_frame)
-			anchored = 0
-			update_nearby_icons()
-			step(src, get_dir(user, src))
+		if(!hull) //Impossible to destroy
+			health -= W.force
+			if(health <= 7  && !reinf && !static_frame)
+				anchored = 0
+				update_nearby_icons()
+				step(src, get_dir(user, src))
 		healthcheck(1, 1, 1, user, W)
 		..()
 	return
@@ -226,6 +241,8 @@
 	set src in oview(1)
 
 	if(static_frame)
+		return 0
+	if(hull)
 		return 0
 	if(anchored)
 		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
@@ -243,6 +260,8 @@
 	set src in oview(1)
 
 	if(static_frame)
+		return 0
+	if(hull)
 		return 0
 	if(anchored)
 		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
@@ -283,7 +302,7 @@
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
 	for(var/direction in cardinal)
-		for(var/obj/structure/window/W in get_step(src,direction) )
+		for(var/obj/structure/window/W in get_step(src, direction))
 			W.update_icon()
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
@@ -313,7 +332,8 @@
 
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		health -= round(exposed_volume / 100)
+		if(!hull)
+			health -= round(exposed_volume / 100)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
 	..()
 

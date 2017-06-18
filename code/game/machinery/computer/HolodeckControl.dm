@@ -486,8 +486,8 @@ var/global/list/holodeck_programs = list(
 		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>")
 		return
 
-/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (istype(mover,/obj/item) && mover.throwing)
+/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
 			return

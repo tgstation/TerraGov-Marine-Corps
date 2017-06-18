@@ -470,18 +470,16 @@
 		H.vent_gas(loc)
 		cdel(H)
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (istype(mover,/obj/item) && mover.throwing)
+/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
 			return
 		if(prob(75))
 			I.loc = src
-			for(var/mob/M in viewers(src))
-				M.show_message("\the [I] lands in \the [src].", 3)
+			visible_message("[I] lands into [src].")
 		else
-			for(var/mob/M in viewers(src))
-				M.show_message("\the [I] bounces off of \the [src]'s rim!", 3)
+			visible_message("[I] bounces off of [src]'s rim!")
 		return 0
 	else
 		return ..(mover, target, height, air_group)

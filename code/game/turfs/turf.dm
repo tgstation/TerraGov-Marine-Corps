@@ -81,7 +81,7 @@
 				return 0
 
 	//Then, check the turf itself
-	if (!src.CanPass(mover, src))
+	if (!CanPass(mover, src))
 		mover.Bump(src, 1)
 		return 0
 

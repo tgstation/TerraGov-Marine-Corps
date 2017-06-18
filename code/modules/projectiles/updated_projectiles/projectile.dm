@@ -571,7 +571,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 //Hitting an object. These are too numerous so they're staying in their files.
 //Why are there special cases listed here? Oh well, whatever. ~N
 /obj/bullet_act(obj/item/projectile/P)
-	if(!CanPass(P,get_turf(src),src.layer) && density)
+	if(!CanPass(P, get_turf(src), layer) && density)
 		bullet_ping(P)
 		return 1
 

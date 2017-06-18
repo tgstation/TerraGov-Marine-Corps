@@ -33,7 +33,7 @@ obj/effect/decal/cleanable/liquid_fuel
 				var/turf/simulated/origin = get_turf(src)
 				if(origin.CanPass(null, target, 0, 0) && target.CanPass(null, origin, 0, 0))
 					if(!locate(/obj/effect/decal/cleanable/liquid_fuel) in target)
-						new/obj/effect/decal/cleanable/liquid_fuel(target, amount*0.25,1)
+						new/obj/effect/decal/cleanable/liquid_fuel(target, amount * 0.25,1)
 						amount *= 0.75
 
 	flamethrower_fuel
@@ -55,6 +55,6 @@ obj/effect/decal/cleanable/liquid_fuel
 					continue
 				if(O.CanPass(null, S, 0, 0) && S.CanPass(null, O, 0, 0))
 					new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(O,amount*0.25,d)
-					O.hotspot_expose((T20C*2) + 380,500) //Light flamethrower fuel on fire immediately.
+					O.hotspot_expose((T20C * 2) + 380, 500) //Light flamethrower fuel on fire immediately.
 
 			amount *= 0.25
