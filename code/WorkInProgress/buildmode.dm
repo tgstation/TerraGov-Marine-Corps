@@ -8,7 +8,7 @@
 			M.client.show_popup_menus = 1
 			for(var/obj/effect/bmode/buildholder/H)
 				if(H.cl == M.client)
-					cdel(H)
+					del(H)
 		else
 			log_admin("[key_name(usr)] has entered build mode.")
 			M.client.buildmode = 1

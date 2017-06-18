@@ -5,8 +5,8 @@ var/list/robot_verbs_default = list(
 #define CYBORG_POWER_USAGE_MULTIPLIER 2.5 // Multiplier for amount of power cyborgs use.
 
 /mob/living/silicon/robot
-	name = "Cyborg"
-	real_name = "Cyborg"
+	name = "Robot"
+	real_name = "Robot"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "robot"
 	maxHealth = 500
@@ -173,7 +173,7 @@ var/list/robot_verbs_default = list(
 /mob/living/silicon/robot/proc/pick_module()
 	if(module)
 		return
-	var/list/modules = list("Standard", "Engineering", "Construction", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security")
+	var/list/modules = list("Standard", "Engineering", "Surgeon", "Medic", "Janitor", "Service", "Security")
 	if((crisis && security_level == SEC_LEVEL_RED) || crisis_override) //Leaving this in until it's balanced appropriately.
 		src << "\red Crisis mode active. Combat module available."
 		modules+="Combat"
@@ -201,28 +201,9 @@ var/list/robot_verbs_default = list(
 			module_sprites["Default"] = "Service2"
 			module_sprites["Drone"] = "drone-service" // How does this even work...? Oh well.
 
-		if("Clerical")
-			module = new /obj/item/weapon/robot_module/clerical(src)
-			module_sprites["Waitress"] = "Service"
-			module_sprites["Kent"] = "toiletbot"
-			module_sprites["Bro"] = "Brobot"
-			module_sprites["Rich"] = "maximillion"
-			module_sprites["Default"] = "Service2"
-			module_sprites["Drone"] = "drone-service"
-
-		if("Miner")
-			module = new /obj/item/weapon/robot_module/miner(src)
-			module.channels = list("Supply" = 1)
-			if(camera && "Robots" in camera.network)
-				camera.network.Add("MINE")
-			module_sprites["Basic"] = "Miner_old"
-			module_sprites["Advanced Droid"] = "droid-miner"
-			module_sprites["Treadhead"] = "Miner"
-			module_sprites["Drone"] = "drone-medical"
-
-		if("Crisis")
-			module = new /obj/item/weapon/robot_module/crisis(src)
-			module.channels = list("Medical" = 1)
+		if("Medic")
+			module = new /obj/item/weapon/robot_module/medic(src)
+			module.channels = list("MedSci" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
 			module_sprites["Basic"] = "Medbot"
@@ -232,10 +213,9 @@ var/list/robot_verbs_default = list(
 
 		if("Surgeon")
 			module = new /obj/item/weapon/robot_module/surgeon(src)
-			module.channels = list("Medical" = 1)
+			module.channels = list("MedSci" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
-
 			module_sprites["Basic"] = "Medbot"
 			module_sprites["Standard"] = "surgeon"
 			module_sprites["Advanced Droid"] = "droid-medical"
@@ -244,7 +224,7 @@ var/list/robot_verbs_default = list(
 
 		if("Security")
 			module = new /obj/item/weapon/robot_module/security(src)
-			module.channels = list("Security" = 1)
+			module.channels = list("MP" = 1)
 			module_sprites["Basic"] = "secborg"
 			module_sprites["Red Knight"] = "Security"
 			module_sprites["Black Knight"] = "securityrobot"
@@ -254,18 +234,7 @@ var/list/robot_verbs_default = list(
 
 		if("Engineering")
 			module = new /obj/item/weapon/robot_module/engineering(src)
-			module.channels = list("Engineering" = 1)
-			if(camera && "Robots" in camera.network)
-				camera.network.Add("Engineering")
-			module_sprites["Basic"] = "Engineering"
-			module_sprites["Antique"] = "engineerrobot"
-			module_sprites["Landmate"] = "landmate"
-			module_sprites["Landmate - Treaded"] = "engiborg+tread"
-			module_sprites["Drone"] = "drone-engineer"
-
-		if("Construction")
-			module = new /obj/item/weapon/robot_module/construction(src)
-			module.channels = list("Engineering" = 1)
+			module.channels = list("Engi" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Engineering")
 			module_sprites["Basic"] = "Engineering"
@@ -765,12 +734,6 @@ var/list/robot_verbs_default = list(
 					src << "<b>Obey these laws:</b>"
 					laws.show_laws(src)
 					src << "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands."
-					if(module && istype(module, /obj/item/weapon/robot_module/miner))
-						for(var/obj/item/weapon/pickaxe/borgdrill/D in module.modules)
-							module.modules -= D
-							cdel(D)
-						module.modules += new /obj/item/weapon/pickaxe/diamonddrill(module)
-						module.rebuild()
 					updateicon()
 				else
 					user << "You fail to hack [src]'s interface."
@@ -1082,7 +1045,7 @@ var/list/robot_verbs_default = list(
 		return
 
 /mob/living/silicon/robot/proc/self_destruct()
-	gib()
+	robogibs()
 	return
 
 /mob/living/silicon/robot/proc/UnlinkSelf()

@@ -101,6 +101,9 @@
 			M.visible_message("<span class='danger'>The barbed wire slices into your hide!</span>")
 			M.apply_damage(10)
 
+	attack_robot(mob/user as mob)
+		return attack_hand(user)
+
 	attackby(obj/item/W as obj, mob/user)
 		if (istype(W, /obj/item/barbed_wire))
 			var/obj/item/barbed_wire/B = W

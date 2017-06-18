@@ -27,7 +27,7 @@
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
-	if (ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
+	if (ishuman(usr) || ismonkey(usr) || isrobot(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 			return
