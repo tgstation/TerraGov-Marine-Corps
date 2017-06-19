@@ -33,6 +33,8 @@
 /obj/structure/barricade/examine(mob/user)
 	..()
 
+	if(is_wired)
+		user << "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>"
 	var/health_percent = health/maxhealth * 100
 
 	if(health_percent < 25)
@@ -121,18 +123,23 @@
 		var/obj/item/barbed_wire/B = W
 
 		if(can_wire)
-			if(!closed)
-				wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire", dir = src.dir)
-			else
-				wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire", dir = src.dir)
+			user.visible_message("<span class='notice'>[user] starts setting up [W.name] on [src].</span>",
+			"<span class='notice'>You start setting up [W.name] on [src].</span>")
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+				user.visible_message("<span class='notice'>[user] sets up [W.name] on [src].</span>",
+				"<span class='notice'>You set up [W.name] on [src].</span>")
+				if(!closed)
+					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire", dir = src.dir)
+				else
+					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire", dir = src.dir)
 
-			overlays += wired_overlay
-			maxhealth += 50
-			health += 50
-			can_wire = 0
-			is_wired = 1
-			climbable = FALSE
-			cdel(B)
+				overlays += wired_overlay
+				maxhealth += 50
+				health += 50
+				can_wire = 0
+				is_wired = 1
+				climbable = FALSE
+				cdel(B)
 		return
 
 	if(W.force > barricade_resistance)
@@ -248,7 +255,7 @@
 				return
 			user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
 			S.working = 1
-			if(!do_after(user,100, TRUE, 5, BUSY_ICON_CLOCK))
+			if(!do_after(user, 100, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 				S.working = 0
 				return
@@ -769,8 +776,8 @@
 		if(O.density && !istype(O, /obj/structure/barricade/sandbags) && !(O.flags_atom & ON_BORDER))
 			usr << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
 			return
-		if(istype(O, /obj/structure/barricade/sandbags) && O.dir == user.dir)
-			usr << "<span class='warning'>There is already another sandbag barricade in this direction!</span>"
+		if((O.flags_atom & ON_BORDER) && O.dir == user.dir)
+			usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
 			return
 
 	if(!in_use)
@@ -787,8 +794,8 @@
 			if(O.density && !istype(O, /obj/structure/barricade/sandbags) && !(O.flags_atom & ON_BORDER))
 				usr << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
 				return
-			if(istype(O, /obj/structure/barricade/sandbags) && O.dir == user.dir)
-				usr << "<span class='warning'>There is already another sandbag barricade in this direction!</span>"
+			if((O.flags_atom & ON_BORDER) && O.dir == user.dir)
+				usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
 				return
 		var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
 		user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
