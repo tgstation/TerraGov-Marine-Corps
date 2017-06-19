@@ -7,6 +7,7 @@
 	density = 1
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	layer = OBJ_LAYER - 0.1
+	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled
 	var/always_drop_stack = FALSE //Whether the amount of stack dropped is independent of the health.
@@ -34,11 +35,11 @@
 
 	var/health_percent = health/maxhealth * 100
 
-	if (health_percent < 25)
+	if(health_percent < 25)
 		user << "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>"
-	else if (health_percent < 50)
+	else if(health_percent < 50)
 		user << "<span class='warning'>It's quite beat up, but it's holding together.</span>"
-	else if (health_percent < 75)
+	else if(health_percent < 75)
 		user << "<span class='warning'>It's slightly damaged, but still very functional.</span>"
 	else
 		user << "<span class='info'>It appears to be in good shape.</span>"
@@ -66,9 +67,16 @@
 		return 1
 
 	if(O && O.throwing)
+		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
+			var/mob/living/carbon/C = O
+			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
+			"<span class='danger'>The barbed wire slices into you!</span>")
+			C.apply_damage(10)
+			C.Weaken(2) //Leaping into barbed wire is VERY bad
+			return 0
 		return 1
 
-	if((flags_atom & ON_BORDER) && get_dir(loc, target) == dir)
+	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir)) //Barbed wires blocks movement
 		return 0
 	else
 		return 1
@@ -79,13 +87,20 @@
 		return 1
 
 	if(mover && mover.throwing)
+		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
+			var/mob/living/carbon/C = mover
+			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
+			"<span class='danger'>The barbed wire slices into you!</span>")
+			C.apply_damage(10)
+			C.Weaken(2) //Leaping into barbed wire is VERY bad
+			return 0
 		return 1
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && climbable) //Climbable objects allow you to universally climb over others
 		return 1
 
-	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir)
+	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir) //Barbed wires blocks movement
 		return 0
 	else
 		return 1
@@ -94,7 +109,8 @@
 	..()
 
 	if(is_wired)
-		M.visible_message("<span class='danger'>The barbed wire slices into your hide!</span>")
+		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
+		"<span class='danger'>The barbed wire slices into you!</span>")
 		M.apply_damage(10)
 
 /obj/structure/barricade/attack_robot(mob/user as mob)
@@ -105,7 +121,7 @@
 		var/obj/item/barbed_wire/B = W
 
 		if(can_wire)
-			if (!closed)
+			if(!closed)
 				wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire", dir = src.dir)
 			else
 				wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire", dir = src.dir)
@@ -750,7 +766,7 @@
 
 	//Using same safeties as other constructions
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-		if(O.density && !istype(O, /obj/structure/barricade/sandbags))
+		if(O.density && !istype(O, /obj/structure/barricade/sandbags) && !(O.flags_atom & ON_BORDER))
 			usr << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
 			return
 		if(istype(O, /obj/structure/barricade/sandbags) && O.dir == user.dir)
@@ -767,6 +783,13 @@
 		if(!do_after(usr, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			in_use = 0
 			return
+		for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
+			if(O.density && !istype(O, /obj/structure/barricade/sandbags) && !(O.flags_atom & ON_BORDER))
+				usr << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
+				return
+			if(istype(O, /obj/structure/barricade/sandbags) && O.dir == user.dir)
+				usr << "<span class='warning'>There is already another sandbag barricade in this direction!</span>"
+				return
 		var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
 		user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
 		"<span class='notice'>You assemble a sandbag barricade.</span>")

@@ -443,6 +443,9 @@
 		if(T)
 			if(T.flipped && T.dir == src.dir && !T.unflipping_check(new_dir))
 				return 0
+	for(var/obj/structure/S in loc)
+		if((S.flags_atom & ON_BORDER) && S.density && S != src) //We would put back on a structure that wouldn't allow it
+			return 0
 	return 1
 
 /obj/structure/table/proc/do_put()

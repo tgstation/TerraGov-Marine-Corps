@@ -94,9 +94,15 @@
 				user << "<span class='warning'>You cannot leap this way.</span>"
 				return
 			for(var/atom/movable/A in target)
-				if(A.density)
-					user << "<span class='warning'>You cannot leap this way.</span>"
-					return
+				if(A && A.density && !(A.flags_atom & ON_BORDER))
+					if(istype(A, /obj/structure))
+						var/obj/structure/S = A
+						if(!S.climbable) //Transfer onto climbable surface
+							user << "<span class='warning'>You cannot leap this way.</span>"
+							return
+					else
+						user << "<span class='warning'>You cannot leap this way.</span>"
+						return
 	return 1
 
 /obj/structure/proc/do_climb(var/mob/living/user)
@@ -126,9 +132,15 @@
 				user << "<span class='warning'>You cannot leap this way.</span>"
 				return
 			for(var/atom/movable/A in target)
-				if(A.density)
-					user << "<span class='warning'>You cannot leap this way.</span>"
-					return
+				if(A && A.density && !(A.flags_atom & ON_BORDER))
+					if(istype(A, /obj/structure))
+						var/obj/structure/S = A
+						if(!S.climbable) //Transfer onto climbable surface
+							user << "<span class='warning'>You cannot leap this way.</span>"
+							return
+					else
+						user << "<span class='warning'>You cannot leap this way.</span>"
+						return
 			user.forceMove(get_turf(target)) //One more move, we "leap" over the border structure
 
 			if(get_turf(user) == get_turf(target))
