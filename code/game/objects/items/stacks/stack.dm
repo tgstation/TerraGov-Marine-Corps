@@ -129,10 +129,10 @@
 			usr << "<span class='warning'>There is already another [R.title] here!</span>"
 			return
 		for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-			if(O.density && !istype(O, R.result_type))
+			if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2)) //Note: If no dense items, or if dense item, both it and result must be border tiles
 				usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
 				return
-			if(R.one_per_turf == 2 && istype(O, R.result_type) && O.dir == usr.dir)
+			if(R.one_per_turf == 2 && istype(O, R.result_type) && O.dir == usr.dir) //We check overlapping dir here
 				usr << "<span class='warning'>There is already another [R.title] in this direction!</span>"
 				return
 		if(R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor) || istype(usr.loc, /turf/unsimulated/jungle)))
@@ -148,7 +148,7 @@
 			usr << "<span class='warning'>There is already another [R.title] here!</span>"
 			return
 		for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-			if(O.density && !istype(O, R.result_type))
+			if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2))
 				usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
 				return
 			if(R.one_per_turf == 2 && istype(O, R.result_type) && O.dir == usr.dir)
