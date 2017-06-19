@@ -93,10 +93,10 @@
 	var/nutrition = 400.0//Carbon
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
-	var/paralysis = 0.0
+	var/knocked_out = 0.0
 	var/stunned = 0.0
 	var/frozen = 0.0
-	var/weakened = 0.0
+	var/knocked_down = 0.0
 	var/losebreath = 0.0//Carbon
 	var/shakecamera = 0
 	var/a_intent = "help"//Living
@@ -171,7 +171,7 @@
 
 	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call
 
-	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
+	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
 	var/area/lastarea = null
 
@@ -182,6 +182,8 @@
 
 
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
+
+	var/atom/movable/remote_control //the object that the mob controls via relaymove.
 
 	//Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
 	var/universal_speak = 0 // Set to 1 to enable the mob to speak to everyone -- TLE

@@ -137,7 +137,7 @@
 			else
 				user << "\red You need more welding fuel to complete this task."
 				return
-	if(istype(O,/obj/item/weapon/wirecutters))
+	else if(istype(O,/obj/item/weapon/wirecutters))
 		if(buildstate == 2 && !is_on)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
@@ -147,7 +147,7 @@
 				user << "You finish securing the wires."
 				update_icon()
 				return
-	if(istype(O,/obj/item/weapon/wrench))
+	else if(istype(O,/obj/item/weapon/wrench))
 		if(buildstate == 3 && !is_on)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
@@ -158,8 +158,9 @@
 				user << "You finish repairing the plating. The generator looks good to go! Press it to turn it on."
 				update_icon()
 				return
-	..() //Deal with everything else, like hitting with stuff
-	return
+	else
+		return ..() //Deal with everything else, like hitting with stuff
+
 
 //Putting these here since it's power-related
 

@@ -133,45 +133,35 @@
 // mouse drop another mob or self
 //
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if (!istype(target) || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.stat || istype(user, /mob/living/silicon/ai))
+	if (!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || istype(user, /mob/living/silicon/ai))
 		return
 	if(isanimal(user) && target != user) return //animals cannot put mobs other than themselves into disposal
 	src.add_fingerprint(user)
 	var/target_loc = target.loc
-	var/msg
-	for (var/mob/V in viewers(usr))
-		if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-			V.show_message("[usr] starts climbing into the disposal.", 3)
-		if(target != user && !user.is_mob_restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-			if(target.anchored) return
-			V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
-	if(!do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
+
+	if(target == user)
+		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
+	else
+		if(user.is_mob_restrained()) return //can't stuff someone other than you if restrained.
+		visible_message("<span class ='warning'>[user] starts stuffing [target.name] into the disposal.</span>")
+	if(!do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
 		return
 	if(target_loc != target.loc)
 		return
-	if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)	// if drop self, then climbed in
-											// must be awake, not stunned or whatever
-		msg = "[user.name] climbs into the [src]."
-		user << "You climb into the [src]."
-	else if(target != user && !user.is_mob_restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-		msg = "[user.name] stuffs [target.name] into the [src]!"
-		user << "You stuff [target.name] into the [src]!"
+	if(target == user)
+		if(user.is_mob_incapacitated(TRUE)) return
+		user.visible_message("<span class='notice'>[user.name] climbs into the [src].</span>",\
+							"<span class ='notice'>You climb into the [src].</span>")
+	else
+		if(user.is_mob_incapacitated()) return
+		user.visible_message("<span class ='danger'>[user.name] stuffs [target.name] into the [src]!</span>",\
+					"<span class ='warning'>You stuff [target.name] into the [src]!</span>")
 
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
 		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
 		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-	else
-		return
-	if (target.client)
-		target.client.perspective = EYE_PERSPECTIVE
-		target.client.eye = src
-	target.loc = src
 
-	for (var/mob/C in viewers(src))
-		if(C == user)
-			continue
-		C.show_message(msg, 3)
-
+	target.forceMove(src)
 	update()
 	return
 
@@ -181,7 +171,7 @@
 
 // attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user)
-	if(user.stat || user.stunned || user.weakened || src.flushing)
+	if(user.stat || user.stunned || user.knocked_down || src.flushing)
 		return
 	if(user.loc == src)
 		src.go_out(user)

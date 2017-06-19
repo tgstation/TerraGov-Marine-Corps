@@ -123,7 +123,7 @@
 	return 1
 
 /obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
-	if(user.stat || user.stunned || user.weakened) return
+	if(user.is_mob_incapacitated(TRUE)) return
 	if(istype(loc, /turf/space)) return //No magical space movement!
 
 	if(can_move)

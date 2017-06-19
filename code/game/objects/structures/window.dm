@@ -183,13 +183,13 @@
 				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					if(prob(50))
-						M.Weaken(1)
+						M.KnockDown(1)
 					M.apply_damage(10)
 					if(!hull) //Impossible to destroy
 						health -= 25
 				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
-					M.Weaken(5)
+					M.KnockDown(5)
 					M.apply_damage(20)
 					if(!hull) //Impossible to destroy
 						health -= 50
@@ -448,12 +448,12 @@
 				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					if(prob(50))
-						M.Weaken(1)
+						M.KnockDown(1)
 					M.apply_damage(10)
 					health -= 25
 				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
-					M.Weaken(5)
+					M.KnockDown(5)
 					M.apply_damage(20)
 					health -= 50
 			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it

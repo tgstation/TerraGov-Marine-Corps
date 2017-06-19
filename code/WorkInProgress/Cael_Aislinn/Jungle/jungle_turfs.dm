@@ -155,7 +155,7 @@
 		if(prob(10 + (M.m_intent == "run" ? 40 : 0)))
 			M << pick("\blue You slip on something slimy.","\blue You fall over into the murk.")
 			M.Stun(2)
-			M.Weaken(1)
+			M.KnockDown(1)
 
 		//piranhas - 25% chance to be an omnipresent risk, although they do practically no damage
 		if(prob(25))

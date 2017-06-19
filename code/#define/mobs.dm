@@ -184,8 +184,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Bitflags defining which status effects could be or are inflicted on a mob
 #define CANSTUN		1
-#define CANWEAKEN	2
-#define CANPARALYSE	4
+#define CANKNOCKDOWN	2
+#define CANKNOCKOUT	4
 #define CANPUSH		8
 #define LEAPING		16
 #define PASSEMOTES	32      //holders inside of mob that need to see emotes.

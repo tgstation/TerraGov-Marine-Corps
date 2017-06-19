@@ -1190,7 +1190,7 @@
 					loc.assume_air(removed)
 
 			occupant.SetStunned(5)
-			occupant.SetWeakened(5)
+			occupant.SetKnockeddown(5)
 			occupant << "You were blown out of the mech!"
 	*/
 		src.log_message("[mob_container] moved out.")

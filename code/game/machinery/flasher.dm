@@ -9,7 +9,7 @@
 	var/range = 2 //this is roughly the size of brig cell
 	var/disable = 0
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
-	var/strength = 10 //How weakened targets are when flashed.
+	var/strength = 10 //How knocked down targets are when flashed.
 	var/base_state = "mflash"
 	anchored = 1
 
@@ -77,7 +77,7 @@
 		if (istype(O, /mob/living/carbon/Xenomorph))//So aliens don't get flashed (they have no external eyes)/N
 			continue
 
-		O.Weaken(strength)
+		O.KnockDown(strength)
 		if (istype(O, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = O
 			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]

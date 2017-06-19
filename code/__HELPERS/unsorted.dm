@@ -840,7 +840,7 @@ var/global/image/busy_indicator_med
 		if(user.get_active_hand() != holding)
 			. = FALSE
 			break
-		if(user.stat || user.stunned || user.weakened || user.paralysis || user.lying)
+		if(user.is_mob_incapacitated(TRUE) || user.lying)
 			. = FALSE
 			break
 
@@ -869,7 +869,7 @@ var/global/image/busy_indicator_med
 	. = TRUE
 	for(var/i = 0 to numticks)
 		sleep(delayfraction)
-		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.weakened || user.stunned)
+		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
 		if(L && L.health < config.health_threshold_crit)

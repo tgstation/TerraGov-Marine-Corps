@@ -984,7 +984,7 @@
 			M.drop_inv_item_to_loc(I, locker)
 
 		//so they black out before warping
-		M.Paralyse(5)
+		M.KnockOut(5)
 		sleep(5)
 		if(!M)	return
 
@@ -1039,7 +1039,7 @@
 		for(var/obj/item/I in M)
 			M.drop_inv_item_on_ground(I)
 
-		M.Paralyse(5)
+		M.KnockOut(5)
 		sleep(5)
 		M.loc = pick(tdome1)
 		spawn(50)
@@ -1064,7 +1064,7 @@
 		for(var/obj/item/I in M)
 			M.drop_inv_item_on_ground(I)
 
-		M.Paralyse(5)
+		M.KnockOut(5)
 		sleep(5)
 		M.loc = pick(tdome2)
 		spawn(50)
@@ -1086,7 +1086,7 @@
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
-		M.Paralyse(5)
+		M.KnockOut(5)
 		sleep(5)
 		M.loc = pick(tdomeadmin)
 		spawn(50)
@@ -1115,7 +1115,7 @@
 			var/mob/living/carbon/human/observer = M
 			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), WEAR_BODY)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), WEAR_FEET)
-		M.Paralyse(5)
+		M.KnockOut(5)
 		sleep(5)
 		M.loc = pick(tdomeobserve)
 		spawn(50)
@@ -1420,7 +1420,7 @@
 		else
 			M.adjustBruteLoss( min( 99 , (M.health - 1) )    )
 			M.Stun(20)
-			M.Weaken(20)
+			M.KnockDown(20)
 			M.stuttering = 20
 
 	else if(href_list["CentcommReply"])

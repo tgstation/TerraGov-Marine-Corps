@@ -75,7 +75,7 @@
 		m.loc = get_turf(src)
 		var/mob/living/T = M
 		if(istype(T) && !isXeno(T))
-			T.Weaken(10)
+			T.KnockDown(10)
 		T.apply_damage(20)
 		cdel(src)
 		return

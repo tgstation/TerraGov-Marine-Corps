@@ -229,7 +229,7 @@
 		return
 	if(O.loc == user)
 		return
-	if(user.is_mob_restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
+	if(user.is_mob_incapacitated())
 		return
 	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
 		return
@@ -249,7 +249,7 @@
 
 /obj/structure/closet/relaymove(mob/user)
 	if(!isturf(src.loc)) return
-	if(user.stat || user.stunned || user.weakened || user.paralysis) return
+	if(user.is_mob_incapacitated(TRUE)) return
 
 	if(!src.open())
 		user << "<span class='notice'>It won't budge!</span>"

@@ -127,8 +127,8 @@
 					victim.eye_blurry = max(M.eye_blurry, 15)
 					victim.eye_blind = max(M.eye_blind, 5)
 					victim.Stun(5)
-					victim.Weaken(5)
-					//victim.Paralyse(10)
+					victim.KnockDown(5)
+					//victim.KnockOut(10)
 					//victim.drop_held_item()
 					return
 				else if( mouth_covered ) // Mouth cover is better than eye cover
@@ -144,8 +144,8 @@
 					victim.eye_blurry = max(M.eye_blurry, 25)
 					victim.eye_blind = max(M.eye_blind, 10)
 					victim.Stun(5)
-					victim.Weaken(5)
-					//victim.Paralyse(10)
+					victim.KnockDown(5)
+					//victim.KnockOut(10)
 					//victim.drop_held_item()
 
 	on_mob_life(mob/living/M)

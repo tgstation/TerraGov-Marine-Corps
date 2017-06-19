@@ -3,15 +3,15 @@
 /mob/living/carbon/human/proc/handle_disabilities()
 
 	if(disabilities & EPILEPSY)
-		if((prob(1) && paralysis < 1))
+		if((prob(1) && knocked_out < 1))
 			visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
 			"<span class='danger'>You start having a seizure!</span>")
-			Paralyse(10)
+			KnockOut(10)
 			make_jittery(1000)
 			return
 
 	if(disabilities & COUGHING)
-		if((prob(5) && paralysis <= 1))
+		if((prob(5) && knocked_out <= 1))
 			drop_held_item()
 			spawn()
 				emote("cough")
@@ -19,7 +19,7 @@
 
 	if(disabilities & TOURETTES)
 		speech_problem_flag = 1
-		if((prob(10) && paralysis <= 1))
+		if((prob(10) && knocked_out <= 1))
 			Stun(10)
 			spawn()
 				switch(rand(1, 3))

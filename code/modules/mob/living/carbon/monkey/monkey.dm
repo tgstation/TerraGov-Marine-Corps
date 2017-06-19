@@ -170,7 +170,7 @@
 			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
-					Weaken(5)
+					KnockDown(5)
 					if (stuttering < 5)
 						stuttering = 5
 					Stun(5)
@@ -195,8 +195,8 @@
 				var/damage = rand(5, 10)
 				if (prob(40))
 					damage = rand(10, 15)
-					if (paralysis < 5)
-						Paralyse(rand(10, 15))
+					if (knocked_out < 5)
+						KnockOut(rand(10, 15))
 						visible_message("\red <B>[M] has knocked out [src]!</B>")
 
 				adjustBruteLoss(damage)
@@ -217,9 +217,9 @@
 				M.start_pulling(src)
 				return 1
 			else
-				if (!( paralysis ))
+				if (!( knocked_out ))
 					if (prob(25))
-						Paralyse(2)
+						KnockOut(2)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !( O.blinded )))
@@ -286,7 +286,7 @@
 				adjustBruteLoss(30)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 			if (prob(50))
-				Paralyse(10)
+				KnockOut(10)
 		else
 	return
 

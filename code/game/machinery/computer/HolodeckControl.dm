@@ -346,7 +346,7 @@ var/global/list/holodeck_programs = list(
 				user << "<span class='warning'>You need a better grip to do that!</span>"
 				return
 			M.forceMove(loc)
-			M.Weaken(5)
+			M.KnockDown(5)
 			user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
 		return
 
@@ -478,7 +478,7 @@ var/global/list/holodeck_programs = list(
 				user << "<span class='warning'>You need a better grip to do that!</span>"
 				return
 			M.forceMove(loc)
-			M.Weaken(5)
+			M.KnockDown(5)
 			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)

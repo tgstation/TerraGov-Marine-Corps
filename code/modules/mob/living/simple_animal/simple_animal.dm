@@ -85,8 +85,8 @@
 		health = maxHealth
 
 	handle_stunned()
-	handle_weakened()
-	handle_paralysed()
+	handle_knocked_down()
+	handle_knocked_out()
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)

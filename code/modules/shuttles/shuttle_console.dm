@@ -57,9 +57,9 @@
 			shuttle_status = "Arriving at destination now."
 
 	var/shuttle_status_message
-	if(shuttle.transit_gun_mission && onboard)
+	if(shuttle.transit_gun_mission && (onboard || shuttle.moving_status != SHUTTLE_IDLE))
 		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FIRE MISSION. </span>"
-	else
+	else //console not onboard stays on TRANSPORT and only shows FIRE MISSION when shuttle has already launched
 		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #44ff44'>TRANSPORT. </span>"
 
 	if(shuttle.transit_optimized) //If the shuttle is recharging, just go ahead and tell them it's unoptimized (it will be once recharged)

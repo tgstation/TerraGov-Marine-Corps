@@ -48,7 +48,7 @@
 					var/update = 0
 					switch(damtype)
 						if("brute")
-							H.Paralyse(1)
+							H.KnockOut(1)
 							update |= temp.take_damage(rand(force/2, force), 0)
 						if("fire")
 							update |= temp.take_damage(0, rand(force/2, force))
@@ -66,7 +66,7 @@
 			else
 				switch(damtype)
 					if("brute")
-						M.Paralyse(1)
+						M.KnockOut(1)
 						M.take_overall_damage(rand(force/2, force))
 					if("fire")
 						M.take_overall_damage(0, rand(force/2, force))

@@ -574,7 +574,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 		/*
 		M << "\red You stab yourself in the eye."
 		M.sdisabilities |= BLIND
-		M.weakened += 4
+		M.knocked_down += 4
 		M.adjustBruteLoss(10)
 		*/
 
@@ -603,8 +603,8 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 					M << "\red You drop what you're holding and clutch at your eyes!"
 					M.drop_held_item()
 				M.eye_blurry += 10
-				M.Paralyse(1)
-				M.Weaken(4)
+				M.KnockOut(1)
+				M.KnockDown(4)
 			if (eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
 					M << "\red You go blind!"

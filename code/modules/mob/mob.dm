@@ -22,7 +22,7 @@
 	if(!client)	return
 
 	if (type)
-		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis) )//Vision related
+		if(type & 1 && (sdisabilities & BLIND || blinded || knocked_out) )//Vision related
 			if (!( alt ))
 				return
 			else
@@ -83,6 +83,9 @@
 
 /mob/proc/is_mob_restrained()
 	return
+
+/mob/proc/is_mob_incapacitated(ignore_restrained)
+	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && is_mob_restrained()))
 
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
@@ -223,7 +226,7 @@ var/list/slot_equipment_priority = list( \
 	if(!A.mouse_opacity)//can't click it? can't point at it.
 		return 0
 
-	if(stat || stunned || weakened || is_mob_restrained() || (status_flags & FAKEDEATH)) //incapacitated, can't point
+	if(is_mob_incapacitated() || (status_flags & FAKEDEATH)) //incapacitated, can't point
 		return 0
 
 	var/tile = get_turf(A)
@@ -559,7 +562,7 @@ var/list/slot_equipment_priority = list( \
 	if (AM.anchored || AM.throwing)
 		return
 
-	if(throwing || stat || weakened || stunned || paralysis || is_mob_restrained())
+	if(throwing || is_mob_incapacitated())
 		return
 
 	if(pulling)
@@ -811,7 +814,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	var/laid_down = (stat || weakened || paralysis || !has_legs() || resting || sleeping || (status_flags & FAKEDEATH))
+	var/laid_down = (is_mob_incapacitated(TRUE) || !has_legs() || resting || sleeping || (status_flags & FAKEDEATH))
 	if(laid_down)
 		lying = 1
 	else
@@ -895,37 +898,37 @@ note dizziness decrements automatically in the mob's Life() proc.
 		stunned = max(stunned + amount,0)
 	return
 
-/mob/proc/Weaken(amount, force)
-	if((status_flags & CANWEAKEN) || force)
-		weakened = max(max(weakened,amount),0)
+/mob/proc/KnockDown(amount, force)
+	if((status_flags & CANKNOCKDOWN) || force)
+		knocked_down = max(max(knocked_down,amount),0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/SetWeakened(amount)
-	if(status_flags & CANWEAKEN)
-		weakened = max(amount,0)
+/mob/proc/SetKnockeddown(amount)
+	if(status_flags & CANKNOCKDOWN)
+		knocked_down = max(amount,0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/AdjustWeakened(amount)
-	if(status_flags & CANWEAKEN)
-		weakened = max(weakened + amount,0)
+/mob/proc/AdjustKnockeddown(amount)
+	if(status_flags & CANKNOCKDOWN)
+		knocked_down = max(knocked_down + amount,0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/Paralyse(amount)
-	if(status_flags & CANPARALYSE)
-		paralysis = max(max(paralysis,amount),0)
+/mob/proc/KnockOut(amount)
+	if(status_flags & CANKNOCKOUT)
+		knocked_out = max(max(knocked_out,amount),0)
 	return
 
-/mob/proc/SetParalysis(amount)
-	if(status_flags & CANPARALYSE)
-		paralysis = max(amount,0)
+/mob/proc/SetKnockedout(amount)
+	if(status_flags & CANKNOCKOUT)
+		knocked_out = max(amount,0)
 	return
 
-/mob/proc/AdjustParalysis(amount)
-	if(status_flags & CANPARALYSE)
-		paralysis = max(paralysis + amount,0)
+/mob/proc/AdjustKnockedout(amount)
+	if(status_flags & CANKNOCKOUT)
+		knocked_out = max(knocked_out + amount,0)
 	return
 
 /mob/proc/Sleeping(amount)
@@ -1060,7 +1063,7 @@ mob/proc/yank_out_object()
 
 /mob/living/proc/handle_statuses()
 	handle_stunned()
-	handle_weakened()
+	handle_knocked_down()
 	handle_stuttering()
 	handle_silent()
 	handle_drugged()
@@ -1071,10 +1074,10 @@ mob/proc/yank_out_object()
 		AdjustStunned(-1)
 	return stunned
 
-/mob/living/proc/handle_weakened()
-	if(weakened && client)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
-	return weakened
+/mob/living/proc/handle_knocked_down()
+	if(knocked_down && client)
+		knocked_down = max(knocked_down-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+	return knocked_down
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)
@@ -1096,10 +1099,10 @@ mob/proc/yank_out_object()
 		slurring = max(slurring-1, 0)
 	return slurring
 
-/mob/living/proc/handle_paralysed() // Currently only used by simple_animal.dm, treated as a special case in other mobs
-	if(paralysis)
-		AdjustParalysis(-1)
-	return paralysis
+/mob/living/proc/handle_knocked_out() // Currently only used by simple_animal.dm, treated as a special case in other mobs
+	if(knocked_out)
+		AdjustKnockedout(-1)
+	return knocked_out
 
 
 /mob/proc/updateicon()

@@ -99,23 +99,6 @@
 //			update_icon() //Gonna either make a new one of these with blackjack and hooker or just ignore it 5ever.
 
 
-	attackby(obj/item/W, mob/user)
-		if(istype(W, /obj/item/weapon/fuelCell))
-			if(is_on)
-				user << "<span class='warning'>The [src] needs to be turned off first...</span>"
-				r_TRU
-			if(fuel_amount>50)
-				user << "<span class='warning'>The current cell is more than half full.</span>"
-				r_TRU
-			user.temp_drop_inv_item(W)
-			cdel(W) //FUEL CELL IS CURRENTLY CONSUMED.  Maybe eventually dump one out.
-			fuel_amount = 100
-			icon_track = 100
-			user << "<span class='notice'>The empty cell is ejected into space and a fresh one takes it's place.</span>"  //Temporarily just throw away used fuel cells, maybe eventually "pop" them out for use?
-			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  It's got a freshly filled Fuel Cell inside it."
-			r_TRU
-		return ..()
-
 	attack_hand(mob/user as mob)
 		if(!anchored) //Shouldn't actually be possible
 			usr << "MAKE AN AHELP RIGHT AWAY, BECAUSE SHIT IS SOMEHOW FUCKED - ERROR: ALM001."
@@ -154,15 +137,29 @@
 		r_TRU
 
 
-	attackby(var/obj/item/O as obj, var/mob/user as mob)
-		if(istype(O, /obj/item/weapon/weldingtool))
+	attackby(obj/item/O, mob/user)
+		if(istype(O, /obj/item/weapon/fuelCell))
+			if(is_on)
+				user << "<span class='warning'>The [src] needs to be turned off first...</span>"
+				r_TRU
+			if(fuel_amount>50)
+				user << "<span class='warning'>The current cell is more than half full.</span>"
+				r_TRU
+			user.temp_drop_inv_item(O)
+			cdel(O) //FUEL CELL IS CURRENTLY CONSUMED.  Maybe eventually dump one out.
+			fuel_amount = 100
+			icon_track = 100
+			user << "<span class='notice'>The empty cell is ejected into space and a fresh one takes it's place.</span>"  //Temporarily just throw away used fuel cells, maybe eventually "pop" them out for use?
+			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  It's got a freshly filled Fuel Cell inside it."
+			r_TRU
+		else if(istype(O, /obj/item/weapon/weldingtool))
 			if(buildstate == 1 && !is_on)
 				var/obj/item/weapon/weldingtool/WT = O
 				if(WT.remove_fuel(0, user))
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts to weld the damage to [src].</span>","<span class='notice'>You start to weld the damage to [name]. Stand still!</span>")
 					if (do_after(user,200, TRUE, 5, BUSY_ICON_CLOCK))
-						if(!src || !WT.isOn()) r_FAL
+						if(buildstate != 1 || is_on || !WT.isOn()) r_FAL
 						buildstate = 2
 						user << "You finish welding."
 						icon_state = "wire"
@@ -171,30 +168,31 @@
 				else
 					user << "\red You need more welding fuel to complete this task."
 					r_FAL
-		if(istype(O,/obj/item/weapon/wirecutters))
+		else if(istype(O,/obj/item/weapon/wirecutters))
 			if(buildstate == 2 && !is_on)
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
-				if(do_after(user,120, TRUE, 5, BUSY_ICON_CLOCK))
-					if(!src) r_FAL
+				if(do_after(user,120, TRUE, 12, BUSY_ICON_CLOCK))
+					if(buildstate != 2 || is_on) r_FAL
 					buildstate = 3
 					user << "You finish securing the wires."
 					icon_state = "wrench"
 	//				update_icon()
 					r_TRU
-		if(istype(O,/obj/item/weapon/wrench))
+		else if(istype(O,/obj/item/weapon/wrench))
 			if(buildstate == 3 && !is_on)
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
-				if(do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))
-					if(!src) r_FAL
+				if(do_after(user,150, TRUE, 15, BUSY_ICON_CLOCK))
+					if(buildstate != 3 || is_on) r_FAL
 					buildstate = 0
 					is_on = 0
 					user << "You finish repairing the plating. The generator looks good to go! Press it to turn it on."
 					icon_state = "off"
 //					update_icon
 					r_TRU
-		..()
+		else
+			return ..()
 
 
 

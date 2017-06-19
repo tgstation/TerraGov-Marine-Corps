@@ -31,7 +31,7 @@
 		for(var/obj/item/W in M)
 			M.drop_inv_item_on_ground(W)
 		//teleport person to cell
-		M.Paralyse(5)
+		M.KnockOut(5)
 		sleep(5)	//so they black out before warping
 		M.loc = pick(prisonwarp)
 		if(istype(M, /mob/living/carbon/human))

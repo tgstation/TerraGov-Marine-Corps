@@ -212,7 +212,7 @@ var/waiting_for_drop_votes = 0
 	if(!H.mind)
 		H.mind = new(H.key)
 
-	H.Weaken(15)
+	H.KnockDown(15)
 	H.nutrition = 300
 
 	var/randjob = rand(0,10)

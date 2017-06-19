@@ -138,10 +138,10 @@
 				"<span class='danger'>Your tackle is blocked by [src]'s shield!</span>")
 				return 0
 			M.flick_attack_overlay(src, "disarm")
-			if(weakened)
+			if(knocked_down)
 				if(prob(20))
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
-					Weaken(rand(M.tacklemin, M.tacklemax)) //Min and max tackle strenght. They are located in individual caste files.
+					KnockDown(rand(M.tacklemin, M.tacklemax)) //Min and max tackle strenght. They are located in individual caste files.
 					M.visible_message("<span class='danger'>\The [M] tackles down [src]!</span>", \
 					"<span class='danger'>You tackle down [src]!</span>")
 				else
@@ -155,7 +155,7 @@
 					tackle_bonus = M.frenzy_aura * 3
 				if(prob(M.tackle_chance + tackle_bonus)) //Tackle_chance is now a special var for each caste.
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
-					Weaken(rand(M.tacklemin, M.tacklemax))
+					KnockDown(rand(M.tacklemin, M.tacklemax))
 					M.visible_message("<span class='danger'>\The [M] tackles down [src]!</span>", \
 					"<span class='danger'>You tackle down [src]!</span>")
 				else
@@ -217,7 +217,7 @@
 			M.visible_message("<span class='warning'>\The [M] shoves [src]!</span>", \
 			"<span class='warning'>You shove [src]!</span>")
 			if(ismonkey(src))
-				Weaken(8)
+				KnockDown(8)
 	return 0
 
 /mob/living/attack_larva(mob/living/carbon/Xenomorph/Larva/M)

@@ -23,8 +23,8 @@
 /mob/living/silicon/robot/proc/clamp_values()
 
 //	SetStunned(min(stunned, 30))
-	SetParalysis(min(paralysis, 30))
-//	SetWeakened(min(weakened, 20))
+	SetKnockedout(min(knocked_out, 30))
+//	SetKnockeddown(min(knocked_down, 20))
 	sleeping = 0
 	adjustBruteLoss(0)
 	adjustToxLoss(0)
@@ -70,24 +70,24 @@
 	updatehealth()
 
 	if(src.sleeping)
-		Paralyse(3)
+		KnockOut(3)
 		src.sleeping--
 
 	if(src.resting)
-		Weaken(5)
+		KnockDown(5)
 
 	if(health < config.health_threshold_dead && src.stat != 2) //die only once
 		death()
 
-	if (src.stat != 2) //Alive.
-		if (src.paralysis || src.stunned || src.weakened || !src.has_power) //Stunned etc.
-			src.stat = 1
+	if (stat != DEAD) //Alive.
+		if (knocked_out || stunned || knocked_down || !has_power) //Stunned etc.
+			stat = UNCONSCIOUS
 			if (src.stunned > 0)
 				AdjustStunned(-1)
-			if (src.weakened > 0)
-				AdjustWeakened(-1)
-			if (src.paralysis > 0)
-				AdjustParalysis(-1)
+			if (src.knocked_down > 0)
+				AdjustKnockeddown(-1)
+			if (src.knocked_out > 0)
+				AdjustKnockedout(-1)
 				src.blinded = 1
 			else
 				src.blinded = 0
@@ -328,6 +328,6 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()
-	if(paralysis || stunned || weakened || buckled || lockcharge || !is_component_functioning("actuator")) canmove = 0
+	if(knocked_out || stunned || knocked_down || buckled || lockcharge || !is_component_functioning("actuator")) canmove = 0
 	else canmove = 1
 	return canmove

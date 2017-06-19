@@ -493,7 +493,7 @@
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
-		M.weakened = max(M.weakened, 3)
+		M.knocked_down = max(M.knocked_down, 3)
 		if(!data) data = 1
 		data++
 		M.dizziness +=6

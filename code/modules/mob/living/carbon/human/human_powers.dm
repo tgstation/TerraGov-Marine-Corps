@@ -9,7 +9,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
+	if(is_mob_incapacitated() || lying || buckled)
 		src << "You cannot tackle someone in your current state."
 		return
 
@@ -28,7 +28,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
+	if(is_mob_incapacitated() || lying || buckled)
 		src << "You cannot tackle in your current state."
 		return
 
@@ -36,14 +36,14 @@
 
 	var/failed
 	if(prob(75))
-		T.Weaken(rand(0.5,3))
+		T.KnockDown(rand(0.5,3))
 	else
-		src.Weaken(rand(2,4))
+		src.KnockDown(rand(2,4))
 		failed = 1
 
 	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
 	if(failed)
-		src.Weaken(rand(2,4))
+		src.KnockDown(rand(2,4))
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
@@ -57,7 +57,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
+	if(is_mob_incapacitated() || lying || buckled)
 		src << "You cannot leap in your current state."
 		return
 
@@ -76,7 +76,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
+	if(is_mob_incapacitated() || lying || buckled)
 		src << "You cannot leap in your current state."
 		return
 
@@ -95,11 +95,11 @@
 		src << "\red You miss!"
 		return
 
-	T.Weaken(5)
+	T.KnockDown(5)
 
 	//Only official cool kids get the grab and no self-prone.
 	if(!(src.mind && src.mind.special_role))
-		src.Weaken(5)
+		src.KnockDown(5)
 		return
 
 	if(T == src || T.anchored)
@@ -115,7 +115,7 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying)
+	if(is_mob_incapacitated(TRUE) || lying)
 		src << "\red You cannot do that in your current state."
 		return
 

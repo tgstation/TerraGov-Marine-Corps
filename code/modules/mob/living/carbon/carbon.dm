@@ -22,35 +22,36 @@
 			germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
-	if(user.stat || user.stunned || user.weakened || user.paralysis) return
+	if(user.is_mob_incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
-		if(prob(40))
-			for(var/mob/M in hearers(4, src))
+		if(user.client)
+			user.client.move_delay = world.time + 20
+		for(var/mob/M in hearers(4, src))
+			if(M.client)
+				M.show_message(text("\red You hear something rumbling inside [src]'s stomach..."), 2)
+		var/obj/item/I = user.get_active_hand()
+		if(I && I.force)
+			var/d = rand(round(I.force / 4), I.force)
+			if(istype(src, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = src
+				var/organ = H.get_organ("chest")
+				if (istype(organ, /datum/organ/external))
+					var/datum/organ/external/temp = organ
+					if(temp.take_damage(d, 0))
+						H.UpdateDamageIcon()
+				H.updatehealth()
+			else
+				src.take_organ_damage(d)
+			for(var/mob/M in viewers(user, null))
 				if(M.client)
-					M.show_message(text("\red You hear something rumbling inside [src]'s stomach..."), 2)
-			var/obj/item/I = user.get_active_hand()
-			if(I && I.force)
-				var/d = rand(round(I.force / 4), I.force)
-				if(istype(src, /mob/living/carbon/human))
-					var/mob/living/carbon/human/H = src
-					var/organ = H.get_organ("chest")
-					if (istype(organ, /datum/organ/external))
-						var/datum/organ/external/temp = organ
-						if(temp.take_damage(d, 0))
-							H.UpdateDamageIcon()
-					H.updatehealth()
-				else
-					src.take_organ_damage(d)
-				for(var/mob/M in viewers(user, null))
-					if(M.client)
-						M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
-				playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
+					M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
+			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
-				if(prob(src.getBruteLoss() - 50))
-					for(var/atom/movable/A in stomach_contents)
-						A.loc = loc
-						stomach_contents.Remove(A)
-					src.gib()
+			if(prob(src.getBruteLoss() - 50))
+				for(var/atom/movable/A in stomach_contents)
+					A.loc = loc
+					stomach_contents.Remove(A)
+				src.gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
 		L.chest_burst(src)
@@ -120,10 +121,10 @@
 		)
 		if(isXeno(src) && mob_size == MOB_SIZE_BIG)
 			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
-			Weaken(1)
+			KnockDown(1)
 		else
 			Stun(10)//This should work for now, more is really silly and makes you lay there forever
-			Weaken(10)
+			KnockDown(10)
 	else
 		src.visible_message(
 			"\red [src] was mildly shocked by the [source].", \
@@ -243,9 +244,9 @@
 					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
 								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
 
-			AdjustParalysis(-3)
+			AdjustKnockedout(-3)
 			AdjustStunned(-3)
-			AdjustWeakened(-3)
+			AdjustKnockeddown(-3)
 
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 
@@ -431,7 +432,7 @@
 		src << "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>"
 		playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 		Stun(stun_level)
-		Weaken(weaken_level)
+		KnockDown(weaken_level)
 		. = TRUE
 		if(slide_steps && lying)//lying check to make sure we downed the mob
 			var/slide_dir = dir

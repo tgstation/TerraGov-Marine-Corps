@@ -58,7 +58,7 @@
 			M.eye_blurry = max(M.eye_blurry, 10)
 			M:drowsyness  = max(M:drowsyness, 0)
 		if(d >= pass_out)
-			M:paralysis = max(M:paralysis, 20)
+			M:knocked_out = max(M:knocked_out, 20)
 			M:drowsyness  = max(M:drowsyness, 30)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M

@@ -84,7 +84,7 @@
 				return
 
 		if ("collapse")
-			Paralyse(2)
+			KnockOut(2)
 			message = "<B>[comm_paygrade][src]</B> collapses!"
 			m_type = 2
 			if(miming)

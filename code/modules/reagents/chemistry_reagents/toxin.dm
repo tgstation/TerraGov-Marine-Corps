@@ -157,7 +157,7 @@
 		if(!M) M = holder.my_atom
 		M.status_flags |= FAKEDEATH
 		M.adjustOxyLoss(0.5*REM)
-		M.Weaken(10)
+		M.KnockDown(10)
 		M.silent = max(M.silent, 10)
 		M.tod = worldtime2text()
 
@@ -279,10 +279,10 @@
 				M.eye_blurry = max(M.eye_blurry, 10)
 			if(15 to 49)
 				if(prob(50))
-					M.Weaken(2)
+					M.KnockDown(2)
 				M.drowsyness  = max(M.drowsyness, 20)
 			if(50 to INFINITY)
-				M.Weaken(20)
+				M.KnockDown(20)
 				M.drowsyness  = max(M.drowsyness, 30)
 		data++
 
@@ -308,7 +308,7 @@
 				M.confused += 2
 				M.drowsyness += 2
 			if(2 to 199)
-				M.Weaken(30)
+				M.KnockDown(30)
 			if(200 to INFINITY)
 				M.sleeping += 1
 
@@ -330,7 +330,7 @@
 				if(H.losebreath >= 10)
 					H.losebreath = max(10, H.losebreath-10)
 				H.adjustOxyLoss(2)
-				H.Weaken(10)
+				H.KnockDown(10)
 
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
@@ -350,7 +350,7 @@
 				if(H.losebreath >= 10)
 					H.losebreath = max(10, M.losebreath-10)
 				H.adjustOxyLoss(2)
-				H.Weaken(10)
+				H.KnockDown(10)
 
 /datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
 	name = "Beer"

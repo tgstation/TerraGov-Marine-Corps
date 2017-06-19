@@ -83,9 +83,9 @@ proc/trigger_side_effect(mob/living/carbon/human/H)
 		S.start(H)
 		spawn(20)
 			if(!istype(H)) return
-			H.Weaken(rand(0, S.duration / 50))
+			H.KnockDown(rand(0, S.duration / 50))
 		sleep(S.duration)
 
 		if(!istype(H)) return
-		H.SetWeakened(0)
+		H.SetKnockeddown(0)
 		S.finish(H)

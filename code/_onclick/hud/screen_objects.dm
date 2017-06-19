@@ -81,7 +81,7 @@
 /obj/screen/storage/Click()
 	if(world.time <= usr.next_move)
 		return 1
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+	if(usr.is_mob_incapacitated(TRUE))
 		return 1
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
@@ -368,7 +368,7 @@
 	// We don't even know if it's a middle click
 	if(world.time <= usr.next_move)
 		return 1
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+	if(usr.is_mob_incapacitated(TRUE))
 		return 1
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
@@ -495,7 +495,7 @@
 /obj/screen/internals/Click()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		if(!C.stat && !C.stunned && !C.paralysis && !C.is_mob_restrained())
+		if(!C.is_mob_incapacitated())
 			if(C.internal)
 				C.internal = null
 				C << "<span class='notice'>No longer running on internals.</span>"

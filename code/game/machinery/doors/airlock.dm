@@ -843,7 +843,7 @@ About the new airlock wires panel:
 				visible_message("\red [user] headbutts the airlock.")
 				var/datum/organ/external/affecting = H.get_organ("head")
 				H.Stun(8)
-				H.Weaken(5)
+				H.KnockDown(5)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else
@@ -1168,7 +1168,7 @@ About the new airlock wires panel:
 			"<span class='notice'>You start working on the [src] with the [W].</span>", \
 			"<span class='notice'>You hear welding.</span>")
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK) && density)
 				if(!src.welded)
 					src.welded = 1
 				else
@@ -1301,7 +1301,7 @@ About the new airlock wires panel:
 			else
 				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
 				M.SetStunned(5)
-				M.SetWeakened(5)
+				M.SetKnockeddown(5)
 				if (iscarbon(M))
 					var/mob/living/carbon/C = M
 					if (!(C.species && (C.species.flags & NO_PAIN)))

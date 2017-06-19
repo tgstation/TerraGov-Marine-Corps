@@ -364,13 +364,13 @@
 			M.coughedtime = 1
 			M.emote("gasp")
 			M.adjustOxyLoss(1)
-			M.Weaken(2)
+			M.KnockDown(2)
 			spawn(15)
 				M.coughedtime = 0
-		if(!M.weakened && prob(75))
+		if(!M.knocked_down && prob(75))
 			spawn(rand(1, 5))
 				if(M)
-					M.Weaken(20)
+					M.KnockDown(20)
 					M.visible_message("<span class='danger'>\The [M] collapses.</span>", \
 					"<span class='danger'>You collapse as the gas scalds your nerves.</span>")
 
@@ -493,7 +493,7 @@
 					if(prob(70))
 						M.emote("scream")
 					if(prob(40))
-						M.Weaken(rand(3, 8))
+						M.KnockDown(rand(3, 8))
 
 
 /mob/living/carbon/Xenomorph/Boiler/zoom_out()

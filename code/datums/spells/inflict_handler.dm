@@ -2,8 +2,8 @@
 	name = "Inflict Handler"
 	desc = "This spell blinds and/or destroys/damages/heals and/or weakens/stuns the target."
 
-	var/amt_weakened = 0
-	var/amt_paralysis = 0
+	var/amt_knocked_down = 0
+	var/amt_knocked_out = 0
 	var/amt_stunned = 0
 
 	//set to negatives for healing
@@ -51,8 +51,8 @@
 		target.adjustToxLoss(amt_dam_tox)
 		target.oxyloss += amt_dam_oxy
 		//disabling
-		target.Weaken(amt_weakened)
-		target.Paralyse(amt_paralysis)
+		target.KnockDown(amt_knocked_down)
+		target.KnockOut(amt_knocked_out)
 		target.Stun(amt_stunned)
 
 		target.eye_blind += amt_eye_blind

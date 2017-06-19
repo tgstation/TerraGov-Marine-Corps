@@ -8,12 +8,12 @@ mob/proc/airflow_stun()
 		return 0
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)	return 0
 
-	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
+	if(!(status_flags & CANSTUN) && !(status_flags & CANKNOCKDOWN))
 		src << "<span class='notice'>You stay upright as the air rushes past you.</span>"
 		return 0
 	if(!lying)
 		src << "<span class='warning'>The sudden rush of air knocks you over!</span>"
-	Weaken(5)
+	KnockDown(5)
 	last_airflow_stun = world.time
 
 mob/living/silicon/airflow_stun()
@@ -197,7 +197,7 @@ mob/airflow_hit(atom/A)
 		M.show_message("\red <B>\The [src] slams into \a [A]!</B>",1,"\red You hear a loud slam!",2)
 	playsound(src.loc, "smash.ogg", 25, 1)
 	var/weak_amt = istype(A,/obj/item) ? A:w_class : rand(1,5) //Heheheh
-	Weaken(weak_amt)
+	KnockDown(weak_amt)
 	. = ..()
 
 obj/airflow_hit(atom/A)
@@ -229,8 +229,8 @@ mob/living/carbon/human/airflow_hit(atom/A)
 	apply_damage(b_loss/3, BRUTE, "groin", blocked, 0, "Airflow")
 
 	if(airflow_speed > 10)
-		Paralyse(round(airflow_speed * vsc.airflow_stun))
-		Stun(paralysis + 3)
+		KnockOut(round(airflow_speed * vsc.airflow_stun))
+		Stun(knocked_out + 3)
 	else
 		Stun(round(airflow_speed * vsc.airflow_stun/2))
 	. = ..()

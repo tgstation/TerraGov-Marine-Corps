@@ -118,7 +118,7 @@
 			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 				PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 				step(PMC_sniper,turn(PMC_sniper.dir,180))
-				PMC_sniper.Weaken(5)
+				PMC_sniper.KnockDown(5)
 
 //SVD //Based on the actual Dragunov sniper rifle.
 /obj/item/ammo_magazine/rifle/sniper/svd

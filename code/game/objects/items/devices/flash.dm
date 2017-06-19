@@ -70,14 +70,14 @@
 	if(iscarbon(M))
 		var/safety = M:eyecheck()
 		if(safety <= 0)
-			M.Weaken(10)
+			M.KnockDown(10)
 			if(M.hud_used)
 				flick("e_flash", M.hud_used.flash_icon)
 		else
 			flashfail = 1
 
 	else if(issilicon(M))
-		M.Weaken(rand(5,10))
+		M.KnockDown(rand(5,10))
 	else
 		flashfail = 1
 
@@ -170,7 +170,7 @@
 				var/mob/living/carbon/M = loc
 				var/safety = M.eyecheck()
 				if(safety <= 0)
-					M.Weaken(10)
+					M.KnockDown(10)
 					if(M.hud_used)
 						flick("e_flash", M.hud_used.flash_icon)
 					for(var/mob/O in viewers(M, null))

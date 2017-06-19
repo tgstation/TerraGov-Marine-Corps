@@ -82,7 +82,7 @@
 			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getOxyLoss())
 			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getToxLoss())
 			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getFireLoss())
-			dat += text("<HR>Paralysis Summary %: [] ([] seconds left!)<BR>", occupant.paralysis, round(occupant.paralysis / 4))
+			dat += text("<HR>Knocked Out Summary %: [] ([] seconds left!)<BR>", occupant.knocked_out, round(occupant.knocked_out / 4))
 			if(occupant.reagents)
 				for(var/chemical in connected.available_chemicals)
 					dat += "[connected.available_chemicals[chemical]]: [occupant.reagents.get_reagent_amount(chemical)] units<br>"
@@ -288,11 +288,11 @@
 			else
 				M.adjustOxyLoss(-12)
 			M.updatehealth()
-		M.AdjustParalysis(-4)
-		M.AdjustWeakened(-4)
+		M.AdjustKnockedout(-4)
+		M.AdjustKnockeddown(-4)
 		M.AdjustStunned(-4)
-		M.Paralyse(1)
-		M.Weaken(1)
+		M.KnockOut(1)
+		M.KnockDown(1)
 		M.Stun(1)
 		if (M:reagents.get_reagent_amount("inaprovaline") < 5)
 			M:reagents.add_reagent("inaprovaline", 5)
@@ -351,7 +351,7 @@
 			user << text("[]\t -Toxin Content %: []", (src.occupant.getToxLoss() < 60 ? "\blue " : "\red "), src.occupant.getToxLoss())
 			user << text("[]\t -Burn Severity %: []", (src.occupant.getFireLoss() < 60 ? "\blue " : "\red "), src.occupant.getFireLoss())
 			user << "\blue Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)"
-			user << text("\blue \t [] second\s (if around 1 or 2 the sleeper is keeping them asleep.)", src.occupant.paralysis / 5)
+			user << text("\blue \t [] second\s (if around 1 or 2 the sleeper is keeping them asleep.)", src.occupant.knocked_out / 5)
 			if(src.beaker)
 				user << text("\blue \t Dialysis Output Beaker has [] of free space remaining.", src.beaker.reagents.maximum_volume - src.beaker.reagents.total_volume)
 			else

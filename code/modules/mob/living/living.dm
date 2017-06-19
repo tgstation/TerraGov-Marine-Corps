@@ -281,9 +281,9 @@
 	setOxyLoss(0)
 	setCloneLoss(0)
 	setBrainLoss(0)
-	SetParalysis(0)
+	SetKnockedout(0)
 	SetStunned(0)
-	SetWeakened(0)
+	SetKnockeddown(0)
 	ExtinguishMob()
 	fire_stacks = 0
 
@@ -419,7 +419,7 @@
 
 	if(!isliving(usr) || usr.next_move > world.time)
 		return
-	if(usr.stat || usr.weakened || usr.stunned || usr.paralysis)
+	if(usr.is_mob_incapacitated(TRUE))
 		src << "<span class='warning'>You can't resist in your current state.</span>"
 		return
 	var/mob/living/L = usr
@@ -549,9 +549,9 @@
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
 		var/mob/living/carbon/human/CM = L
-		if(CM.on_fire && CM.canmove && !weakened)
+		if(CM.on_fire && CM.canmove && !knocked_down)
 			CM.fire_stacks = max(CM.fire_stacks - rand(3,6), 0)
-			CM.Weaken(4, TRUE)
+			CM.KnockDown(4, TRUE)
 			CM.visible_message("<span class='danger'>[CM] rolls on the floor, trying to put themselves out!</span>", \
 				"<span class='notice'>You stop, drop, and roll!</span>")
 			if(fire_stacks <= 0)

@@ -22,7 +22,7 @@
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if((getOxyLoss() > 50) || (config.health_threshold_crit > health))
-			Paralyse(3)
+			KnockOut(3)
 
 		if(hallucination)
 			if(hallucination >= 20)
@@ -45,11 +45,11 @@
 			if(halloss > 100)
 				visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>", \
 				"<span class='warning'>You slump to the ground, you're in too much pain to keep going.</span>")
-				Paralyse(10)
+				KnockOut(10)
 				setHalLoss(99)
 
-		if(paralysis)
-			AdjustParalysis(-1)
+		if(knocked_out)
+			AdjustKnockedout(-1)
 			blinded = 1
 			stat = UNCONSCIOUS
 			if(halloss > 0)
@@ -127,7 +127,7 @@
 			eye_blurry = max(2, eye_blurry)
 			if(prob(5))
 				sleeping += 1
-				Paralyse(5)
+				KnockOut(5)
 
 		confused = max(0, confused - 1)
 
@@ -140,13 +140,13 @@
 
 
 
-/mob/living/carbon/human/handle_weakened()
-	if(weakened && client)
+/mob/living/carbon/human/handle_knocked_down()
+	if(knocked_down && client)
 		var/reduce_amt = 1
 		if(has_species(src,"Yautja")) //predator get up twice as fast from knockdown
 			reduce_amt = 2
-		weakened = max(weakened-reduce_amt,0)
-	return weakened
+		knocked_down = max(knocked_down-reduce_amt,0)
+	return knocked_down
 
 /mob/living/carbon/human/handle_stunned()
 	if(stunned)

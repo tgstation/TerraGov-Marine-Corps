@@ -14,8 +14,8 @@
 	var/spell_loss_chance_modifier = 7 //amount of probability of losing a spell added per spell (mind_transfer included)
 	var/spell_loss_amount = 1 //the maximum amount of spells possible to lose during a single transfer
 	var/msg_wait = 500 //how long in deciseconds it waits before telling that body doesn't feel right or mind swap robbed of a spell
-	var/paralysis_amount_caster = 20 //how much the caster is paralysed for after the spell
-	var/paralysis_amount_victim = 20 //how much the victim is paralysed for after the spell
+	var/knocked_out_amount_caster = 20 //how much the caster is paralysed for after the spell
+	var/knocked_out_amount_victim = 20 //how much the victim is paralysed for after the spell
 
 /*
 Urist: I don't feel like figuring out how you store object spells so I'm leaving this for you to do.
@@ -106,8 +106,8 @@ Also, you never added distance checking after target is selected. I've went ahea
 	//MIND TRANSFER END
 
 	//Here we paralyze both mobs and knock them out for a time.
-	caster.Paralyse(paralysis_amount_caster)
-	victim.Paralyse(paralysis_amount_victim)
+	caster.KnockOut(knocked_out_amount_caster)
+	victim.KnockOut(knocked_out_amount_victim)
 
 	//After a certain amount of time the victim gets a message about being in a different body.
 	spawn(msg_wait)

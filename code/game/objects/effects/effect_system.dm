@@ -782,7 +782,7 @@ steam.start() -- spawns the effect
 			for(var/mob/M in viewers(1, location))
 				if (prob (50 * amount))
 					M << "\red The explosion knocks you down."
-					M.Weaken(rand(1,5))
+					M.KnockDown(rand(1,5))
 			return
 		else
 			var/light = -1

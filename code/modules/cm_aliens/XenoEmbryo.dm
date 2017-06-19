@@ -97,10 +97,10 @@
 				affected_mob.emote("[pick("sneeze", "cough")]")
 		if(4)
 			if(prob(1))
-				if(affected_mob.paralysis < 1)
+				if(affected_mob.knocked_out < 1)
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 												 "<span class='danger'>You start shaking uncontrollably!</span>")
-					affected_mob.Paralyse(10)
+					affected_mob.KnockOut(10)
 					affected_mob.make_jittery(105)
 					affected_mob.take_organ_damage(1)
 			if(prob(2))
@@ -147,8 +147,8 @@
 	if(victim.chestburst || loc != victim) return
 	victim.chestburst = 1
 	src << "<span class='danger'>You start bursting out of [victim]'s chest!</span>"
-	if(victim.paralysis < 1)
-		victim.Paralyse(20)
+	if(victim.knocked_out < 1)
+		victim.KnockOut(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								 "<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.make_jittery(300)

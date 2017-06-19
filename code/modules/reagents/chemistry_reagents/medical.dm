@@ -299,9 +299,9 @@
 		M.sdisabilities = 0
 		M.eye_blurry = 0
 		M.eye_blind = 0
-		M.SetWeakened(0)
+		M.SetKnockeddown(0)
 		M.SetStunned(0)
-		M.SetParalysis(0)
+		M.SetKnockedout(0)
 		M.silent = 0
 		M.dizziness = 0
 		M.drowsyness = 0
@@ -375,9 +375,9 @@
 		if(!.) return
 		if(!M) M = holder.my_atom
 		M.drowsyness = max(M.drowsyness-5, 0)
-		M.AdjustParalysis(-1)
+		M.AdjustKnockedout(-1)
 		M.AdjustStunned(-1)
-		M.AdjustWeakened(-1)
+		M.AdjustKnockeddown(-1)
 		holder.remove_reagent("mindbreaker", 5)
 		M.hallucination = max(0, M.hallucination - 10)
 		if(prob(80))	M.adjustToxLoss(1)

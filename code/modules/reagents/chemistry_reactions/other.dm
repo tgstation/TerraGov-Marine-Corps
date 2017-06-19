@@ -195,7 +195,7 @@
 							continue
 					if(M.hud_used)
 						flick("e_flash", M.hud_used.flash_icon)
-					M.Weaken(15)
+					M.KnockDown(15)
 
 				if(4 to 5)
 					if(hasvar(M, "glasses"))

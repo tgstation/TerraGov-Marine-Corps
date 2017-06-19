@@ -135,7 +135,7 @@
 
 
 /mob/living/simple_animal/construct/armoured/Life()
-	weakened = 0
+	knocked_down = 0
 	..()
 
 /mob/living/simple_animal/construct/armoured/bullet_act(var/obj/item/projectile/P)

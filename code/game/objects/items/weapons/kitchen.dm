@@ -202,7 +202,7 @@
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red The [src] slips out of your hand and hits your head."
 		user.take_organ_damage(10)
-		user.Paralyse(2)
+		user.KnockOut(2)
 		return
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
@@ -221,7 +221,7 @@
 					return
 				var/time = rand(2, 6)
 				if (prob(75))
-					H.Paralyse(time)
+					H.KnockOut(time)
 				else
 					H.Stun(time)
 				if(H.stat != 2)	H.stat = 1
@@ -284,7 +284,7 @@
 
 	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
 		M << "\red You accidentally slam yourself with the [src]!"
-		M.Weaken(1)
+		M.KnockDown(1)
 		user.take_organ_damage(2)
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
@@ -308,7 +308,7 @@
 		msg_admin_attack("[user.name] ([user.ckey]) used the [src.name] to attack [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		if(prob(15))
-			M.Weaken(3)
+			M.KnockDown(3)
 			M.take_organ_damage(3)
 		else
 			M.take_organ_damage(5)
@@ -379,7 +379,7 @@
 		else
 			M.take_organ_damage(8)
 			if(prob(30))
-				M.Weaken(2)
+				M.KnockDown(2)
 				return
 			return
 

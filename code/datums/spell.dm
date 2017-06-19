@@ -210,10 +210,10 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			target.adjustOxyLoss(amount)
 		if("stunned")
 			target.AdjustStunned(amount)
-		if("weakened")
-			target.AdjustWeakened(amount)
-		if("paralysis")
-			target.AdjustParalysis(amount)
+		if("knocked_down")
+			target.AdjustKnockeddown(amount)
+		if("knocked_out")
+			target.AdjustKnockedout(amount)
 		else
 			target.vars[type] += amount //I bear no responsibility for the runtimes that'll happen if you try to adjust non-numeric or even non-existant vars
 	return

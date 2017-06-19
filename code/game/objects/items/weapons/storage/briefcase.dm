@@ -20,7 +20,7 @@
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red The [src] slips out of your hand and hits your head."
 		user.take_organ_damage(10)
-		user.Paralyse(2)
+		user.KnockOut(2)
 		return
 
 
@@ -37,7 +37,7 @@
 				return
 		var/time = rand(2, 6)
 		if (prob(75))
-			M.Paralyse(time)
+			M.KnockOut(time)
 		else
 			M.Stun(time)
 		if(M.stat != 2)	M.stat = 1

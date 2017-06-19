@@ -167,7 +167,7 @@
 					var/mob/living/carbon/M = A
 					if(!istype(M)) return
 					var/dmg = rand(150,400)
-					M.Weaken(10)
+					M.KnockDown(10)
 					M.inertia_dir = 0
 					M.make_floating(0)
 					M.visible_message("<span class='danger'>[M] falls from the sky and crashes into the ground!</span>","<span class='danger'>You fall from the sky and crash into the ground.</span>")

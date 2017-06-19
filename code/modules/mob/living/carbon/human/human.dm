@@ -120,7 +120,7 @@
 				ear_damage += 30
 				ear_deaf += 120
 			if (prob(70) && !shielded)
-				Paralyse(10)
+				KnockOut(10)
 
 		if(3.0)
 			b_loss += 30
@@ -130,7 +130,7 @@
 				ear_damage += 15
 				ear_deaf += 60
 			if (prob(50) && !shielded)
-				Paralyse(10)
+				KnockOut(10)
 
 	var/update = 0
 
