@@ -31,8 +31,8 @@
 //The units themselves/////////////////
 
 /obj/machinery/suit_storage_unit/carbon_unit
-	SUIT_TYPE = /obj/item/clothing/suit/space/nasavoid
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/nasavoid
+	SUIT_TYPE = /obj/item/clothing/suit/space/uscm
+	HELMET_TYPE = /obj/item/clothing/head/helmet/space/uscm
 	MASK_TYPE = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/standard_unit

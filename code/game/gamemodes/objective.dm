@@ -254,7 +254,7 @@ datum/objective/steal
 		"a functional AI" = /obj/item/device/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
-		"a nasa voidsuit" = /obj/item/clothing/suit/space/nasavoid,
+		"a nasa voidsuit" = /obj/item/clothing/suit/space/uscm,
 		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
 		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
