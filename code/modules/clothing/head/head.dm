@@ -1,17 +1,3 @@
-//===========================//HEADGEAR\\================================\\
-//=======================================================================\\
-
-/*Hats should go in here whether they have armor or not. If they don't have
-hugger protection, they will usually belong in here. Everything else can go
-into helmets.dm*/
-
-//=======================================================================\\
-//=======================================================================\\
-
-//==========================//SOFT CAPS\\================================\\
-
-//=======================================================================\\
-
 /obj/item/clothing/head
 	name = "head"
 	icon = 'icons/obj/clothing/hats.dmi'
@@ -28,7 +14,6 @@ into helmets.dm*/
 		M.update_inv_head()
 
 
-///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/head/cmbandana
 	name = "\improper USCM bandana"
@@ -145,38 +130,6 @@ into helmets.dm*/
 	item_state = "cargocap"
 	item_color = "cargocap"
 
-/obj/item/clothing/head/soft/marine
-	name = "marine sergeant cap"
-	desc = "It's a soft cap made from advanced ballistic-resistant fibres. Fails to prevent lumps in the head."
-	icon_state = "greysoft"
-	item_color = "grey"
-	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
-	flags_inventory = BLOCKSHARPOBJ
-
-/obj/item/clothing/head/soft/marine/alpha
-	name = "alpha squad sergeant cap"
-	icon_state = "redsoft"
-	item_color = "red"
-
-/obj/item/clothing/head/soft/marine/beta
-	name = "beta squad sergeant cap"
-	icon_state = "yellowsoft"
-	item_color = "yellow"
-
-/obj/item/clothing/head/soft/marine/charlie
-	name = "charlie squad sergeant cap"
-	icon_state = "purplesoft"
-	item_color = "purple"
-
-/obj/item/clothing/head/soft/marine/delta
-	name = "delta squad sergeant cap"
-	icon_state = "bluesoft"
-	item_color = "blue"
-
-/obj/item/clothing/head/soft/marine/mp
-	name = "marine police sergeant cap"
-	icon_state = "greensoft"
-	item_color = "green"
 
 //============================//BERETS\\=================================\\
 //=======================================================================\\
@@ -221,6 +174,17 @@ into helmets.dm*/
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 	anti_hug = 1
+
+	attack_self(mob/user as mob)
+		if(src.icon_state == "ushankadown")
+			src.icon_state = "ushankaup"
+			src.item_state = "ushankaup"
+			user << "You raise the ear flaps on the ushanka."
+		else
+			src.icon_state = "ushankadown"
+			src.item_state = "ushankadown"
+			user << "You lower the ear flaps on the ushanka."
+
 
 /obj/item/clothing/head/bearpelt
 	name = "bear pelt hat"
@@ -288,6 +252,5 @@ into helmets.dm*/
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
-
 
 

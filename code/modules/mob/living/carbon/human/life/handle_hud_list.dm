@@ -44,8 +44,10 @@
 			holder2.icon_state = "hudxeno" //Observer and admin HUD only
 		else if(foundVirus)
 			holder.icon_state = "hudill"
+			holder2.icon_state = "hudill"
 		else
 			holder.icon_state = "hudhealthy"
+			holder2.icon_state = "hudhealthy"
 
 		hud_list[STATUS_HUD] = holder
 		hud_list[STATUS_HUD_OOC] = holder2

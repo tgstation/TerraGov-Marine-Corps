@@ -1,3 +1,4 @@
+
 /obj/item/clothing/under/gimmick
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	has_sensor = 0
@@ -156,3 +157,19 @@
 	desc = "Something to cover up that artificial hand... Who says heroes can't be self-conscious?"
 	icon_state = "skywalker_gloves"
 	item_state = "skywalker_gloves"
+
+
+
+/obj/item/clothing/under/gimmick/rank/captain/suit
+	name = "captain's suit"
+	desc = "A green suit and yellow necktie. Exemplifies authority."
+	icon_state = "green_suit"
+	item_state = "dg_suit"
+	item_color = "green_suit"
+
+/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
+	name = "head of personnel's suit"
+	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
+	icon_state = "teal_suit"
+	item_state = "g_suit"
+	item_color = "teal_suit"
