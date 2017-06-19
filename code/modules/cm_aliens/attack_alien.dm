@@ -210,6 +210,9 @@
 			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
 			M.visible_message("<span class='danger'>\The [M] bites [src]!</span>", \
 			"<span class='danger'>You bite [src]!</span>")
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slashed by [M.name] ([M.ckey])</font>")
+			M.attack_log += text("\[[time_stamp()]\] <font color='red'>slashed [src.name] ([src.ckey])</font>")
+			log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
 			apply_damage(damage, BRUTE)
 
 		if("disarm")
