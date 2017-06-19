@@ -27,3 +27,5 @@
 /obj/item/clothing/suit/storage/hear_talk(mob/M, msg)
 	pockets.hear_talk(M, msg)
 	..()
+
+

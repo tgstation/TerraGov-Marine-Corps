@@ -42,3 +42,28 @@
 	icon_state = "medical"
 	item_state = "medical"
 	permeability_coefficient = 0.01
+
+
+
+
+
+
+//REBREATHER
+
+/obj/item/clothing/mask/rebreather
+	name = "rebreather"
+	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
+	icon_state = "rebreather"
+	item_state = "rebreather"
+	w_class = 2
+	flags_armor_protection = 0
+	flags_inventory = COVERMOUTH|HIDELOWHAIR|ALLOWREBREATH
+
+/obj/item/clothing/mask/rebreather/scarf
+	name = "heat absorbent coif"
+	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
+	icon_state = "coif"
+	item_state = "coif"
+	flags_inventory = COVERMOUTH|HIDEALLHAIR|HIDEEARS|ALLOWREBREATH
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature

@@ -1,143 +1,7 @@
-//========================//MASKS AND UNDER\\============================\\
-//=======================================================================\\
-
-/*This should contain all the various under clothing people can wear, along
-with all of the masks and or other facial coverings. For the latter category
-it doesn't matter if they provide hugger protection or not. This can also
-include jackets and regular suits, not armor.*/
-
-//=======================================================================\\
-//=======================================================================\\
-
-
-//===========================//MASKS\\===================================\\
-//=======================================================================\\
-
-//Mask
-/obj/item/clothing/mask
-	name = "mask"
-	icon = 'icons/obj/clothing/masks.dmi'
-	flags_armor_protection = HEAD
-	flags_pass = PASSTABLE
-	flags_atom = FPRINT
-	flags_equip_slot = SLOT_FACE
-	flags_armor_protection = FACE|EYES
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
-	var/anti_hug = 0
-
-/obj/item/clothing/mask/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_wear_mask()
-
-/obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
-	return
-
-/obj/item/clothing/mask/rebreather
-	name = "rebreather"
-	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
-	icon_state = "rebreather"
-	item_state = "rebreather"
-	w_class = 2
-	flags_armor_protection = 0
-	flags_inventory = COVERMOUTH|HIDELOWHAIR|ALLOWREBREATH
-
-/obj/item/clothing/mask/rebreather/scarf
-	name = "heat absorbent coif"
-	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
-	icon_state = "coif"
-	item_state = "coif"
-	flags_inventory = COVERMOUTH|HIDEALLHAIR|HIDEEARS|ALLOWREBREATH
-	flags_cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-
-/obj/item/clothing/mask/gas
-	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
-	icon_state = "gas_alt"
-	flags_inventory = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
-	w_class = 3.0
-	item_state = "gas_alt"
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.01
-	siemens_coefficient = 0.9
-	var/gas_filter_strength = 1			//For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
-
-/obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
-	var/datum/gas_mixture/filtered = new
-
-	for(var/g in filtered_gases)
-		if(air.gas[g])
-			filtered.gas[g] = air.gas[g] * gas_filter_strength
-			air.gas[g] -= filtered.gas[g]
-
-	air.update_values()
-	filtered.update_values()
-
-	return filtered
-
-/obj/item/clothing/mask/gas/PMC
-	name = "\improper M8 pattern armored balaclava"
-	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "helmet"
-	icon_state = "pmc_mask"
-	anti_hug = 3
-	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
-	flags_inventory = HIDEEARS|HIDEFACE|COVERMOUTH|ALLOWINTERNALS|HIDEALLHAIR|BLOCKGASEFFECT|ALLOWREBREATH
-
-/obj/item/clothing/mask/gas/PMC/upp
-	name = "\improper UPP armored commando balaclava"
-	icon_state = "upp_mask"
-
-/obj/item/clothing/mask/gas/PMC/leader
-	name = "\improper M8 pattern armored balaclava"
-	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
-	icon = 'icons/PMC/PMC.dmi'
-	item_state = "officer_mask"
-	icon_state = "officer_mask"
-
-/obj/item/clothing/mask/gas/bear
-	name = "tactical balaclava"
-	desc = "A superior balaclava worn by the Iron Bears."
-	icon = 'icons/PMC/PMC.dmi'
-	item_state = "bear_mask"
-	icon_state = "bear_mask"
-	icon_override = 'icons/PMC/PMC.dmi'
-	anti_hug = 2
 
 //=========================//MARINES\\===================================\\
 //=======================================================================\\
 
-/obj/item/clothing/under
-	icon = 'icons/obj/clothing/uniforms.dmi'
-	name = "under"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	permeability_coefficient = 0.90
-	flags_pass = PASSTABLE
-	flags_atom = FPRINT
-	flags_equip_slot = SLOT_ICLOTHING
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	w_class = 3
-	var/has_sensor = 1//For the crew computer 2 = unable to change mode
-	var/sensor_mode = 3
-		/*
-		1 = Report living/dead
-		2 = Report detailed damages
-		3 = Report location
-		*/
-	var/obj/item/clothing/tie/hastie = null
-	var/displays_id = 1
-	var/base_color
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
-
-	New()
-		..()
-		base_color = item_color
 
 /obj/item/clothing/under/marine
 	name = "\improper USCM uniform"
@@ -189,27 +53,6 @@ include jackets and regular suits, not armor.*/
 		)
 		..(loc,expected_type, new_name, new_protection, icon_override)
 
-//========================//OFFICERS\\===================================\\
-//=======================================================================\\
-
-/obj/item/clothing/under/rank/chef/exec
-	name = "\improper Weyland Yutani suit"
-	desc = "A formal white undersuit."
-
-/obj/item/clothing/under/rank/ro_suit
-	name = "requisition officer suit."
-	desc = "A nicely-fitting military suit for a requisition officer. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
-	icon_state = "RO_jumpsuit"
-	item_state = "RO_jumpsuit"
-	item_color = "RO_jumpsuit"
-
-/obj/item/clothing/suit/storage/RO
-	name = "\improper RO jacket"
-	desc = "A green jacket worn by USCM personnel. The back has the flag of the United Americas on it."
-	icon_state = "RO_jacket"
-	item_state = "RO_jacket"
-	blood_overlay_type = "coat"
-	flags_armor_protection = UPPER_TORSO|ARMS
 
 /obj/item/clothing/under/marine/mp
 	name = "military police jumpsuit"
@@ -380,8 +223,12 @@ include jackets and regular suits, not armor.*/
 	item_state = "dutch_jumpsuit2"
 	item_color = "dutch_jumpsuit2"
 
-//===========================//CIVILIANS\\===============================\\
-//=======================================================================\\
+
+
+
+
+////// Civilians /////////
+
 
 /obj/item/clothing/under/pizza
 	name = "pizza delivery uniform"
@@ -408,13 +255,6 @@ include jackets and regular suits, not armor.*/
 	armor = list(melee = 15, bullet = 15, laser = 15,energy = 5, bomb = 5, bio = 5, rad = 5)
 	has_sensor = 0
 
-/obj/item/clothing/suit/storage/CMB
-	name = "\improper CMB jacket"
-	desc = "A green jacket worn by crew on the Colonial Marshals."
-	icon_state = "CMB_jacket"
-	item_state = "CMB_jacket"
-	blood_overlay_type = "coat"
-	flags_armor_protection = UPPER_TORSO|ARMS
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
@@ -444,205 +284,16 @@ include jackets and regular suits, not armor.*/
 	item_state = "liaison_suspenders"
 	item_color = "liaison_suspenders"
 
-/obj/item/clothing/suit/storage/snow_suit
-	name = "snow suit"
-	desc = "A standard snow suit. It can protect the wearer from extreme cold."
-	icon = 'icons/obj/clothing/suits.dmi'
-	icon_state = "snowsuit_alpha"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	blood_overlay_type = "armor"
-	siemens_coefficient = 0.7
-
-/obj/item/clothing/suit/storage/snow_suit/doctor
-	name = "doctor's snow suit"
-	icon_state = "snowsuit_doctor"
-	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
-
-/obj/item/clothing/suit/storage/snow_suit/engineer
-	name = "engineer's snow suit"
-	icon_state = "snowsuit_engineer"
-	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
-
-//==========================//UNDER PROCS\\=============================\\
-//=======================================================================\\
-
-/obj/item/clothing/under/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_w_uniform()
-
-/obj/item/clothing/under/attackby(obj/item/I, mob/user)
-	if(hastie)
-		hastie.attackby(I, user)
-		return 1
-
-	if(!hastie && istype(I, /obj/item/clothing/tie))
-		user.drop_held_item()
-		hastie = I
-		hastie.on_attached(src, user)
-
-		if(istype(loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = loc
-			H.update_inv_w_uniform()
-
-		return
-
-	if(loc == user && istype(I,/obj/item/clothing/under) && src != I)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.w_uniform == src)
-				H.drop_inv_item_on_ground(src)
-				if(H.equip_to_appropriate_slot(I))
-					H.put_in_active_hand(src)
-
-	..()
-
-/obj/item/clothing/under/attack_hand(mob/user as mob)
-	//only forward to the attached accessory if the clothing is equipped (not in a storage)
-	if(hastie && src.loc == user)
-		hastie.attack_hand(user)
-		return
-
-	if ((ishuman(usr) || ismonkey(usr)) && src.loc == user)	//make it harder to accidentally undress yourself
-		return
-
-	..()
-
-/obj/item/clothing/under/MouseDrop(obj/over_object as obj)
-	if (ishuman(usr) || ismonkey(usr))
-		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-		if (!canremove || !(loc == usr))
-			return
-
-		if (!( usr.is_mob_restrained() ) && !( usr.stat ))
-			if(over_object)
-				switch(over_object.name)
-					if("r_hand")
-						usr.drop_inv_item_on_ground(src)
-						usr.put_in_r_hand(src)
-					if("l_hand")
-						usr.drop_inv_item_on_ground(src)
-						usr.put_in_l_hand(src)
-				add_fingerprint(usr)
 
 
-/obj/item/clothing/under/examine(mob/user)
-	..()
-	if(has_sensor)
-		switch(sensor_mode)
-			if(0)
-				user << "Its sensors appear to be disabled."
-			if(1)
-				user << "Its binary life sensors appear to be enabled."
-			if(2)
-				user << "Its vital tracker appears to be enabled."
-			if(3)
-				user << "Its vital tracker and tracking beacon appear to be enabled."
-	if(hastie)
-		user << "\A [hastie] is clipped to it."
+/obj/item/clothing/under/rank/chef/exec
+	name = "\improper Weyland Yutani suit"
+	desc = "A formal white undersuit."
 
-/obj/item/clothing/under/proc/set_sensors(mob/user)
-	if (istype(user, /mob/dead/)) return
-	if (user.stat || user.is_mob_restrained()) return
-	if(has_sensor >= 2)
-		user << "The controls are locked."
-		return 0
-	if(has_sensor <= 0)
-		user << "This suit does not have any sensors."
-		return 0
+/obj/item/clothing/under/rank/ro_suit
+	name = "requisition officer suit."
+	desc = "A nicely-fitting military suit for a requisition officer. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	icon_state = "RO_jumpsuit"
+	item_state = "RO_jumpsuit"
+	item_color = "RO_jumpsuit"
 
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
-	if(get_dist(user, src) > 1)
-		user << "You have moved too far away."
-		return
-	sensor_mode = modes.Find(switchMode) - 1
-
-	if (loc == user)
-		switch(sensor_mode)
-			if(0)
-				user << "You disable your suit's remote sensing equipment."
-			if(1)
-				user << "Your suit will now report whether you are live or dead."
-			if(2)
-				user << "Your suit will now report your vital lifesigns."
-			if(3)
-				user << "Your suit will now report your vital lifesigns as well as your coordinate position."
-	else if (ismob(loc))
-		switch(sensor_mode)
-			if(0)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("\red [user] disables [src.loc]'s remote sensing equipment.", 1)
-			if(1)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] turns [src.loc]'s remote sensors to binary.", 1)
-			if(2)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] sets [src.loc]'s sensors to track vitals.", 1)
-			if(3)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] sets [src.loc]'s sensors to maximum.", 1)
-
-/obj/item/clothing/under/verb/toggle()
-	set name = "Toggle Suit Sensors"
-	set category = "Object"
-	set src in usr
-	set_sensors(usr)
-	..()
-
-/obj/item/clothing/under/verb/rollsuit()
-	set name = "Roll Down Jumpsuit"
-	set category = "Object"
-	set src in usr
-	if(!isliving(usr)) return
-	if(usr.stat) return
-
-	if(base_color + "_d_s" in icon_states('icons/mob/uniform_0.dmi'))
-		var/full_coverage = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-		if(item_color == base_color)
-			var/partial_coverage = UPPER_TORSO|LOWER_TORSO|LEGS
-			var/final_coverage
-			//Marine uniforms can only roll up the sleeves, not wear it at the waist.
-			if(istype(src,/obj/item/clothing/under/marine))
-				final_coverage = copytext(item_color,1,3) == "s_" ? full_coverage : partial_coverage
-			else final_coverage = partial_coverage & ~UPPER_TORSO
-			flags_armor_protection = final_coverage
-			item_color = "[base_color]_d"
-		else
-			flags_armor_protection = full_coverage
-			item_color = base_color
-
-		flags_cold_protection = flags_armor_protection
-		flags_heat_protection = flags_armor_protection
-		update_clothing_icon()
-
-	else usr << "<span class='warning'>You cannot roll down the uniform!</span>"
-
-/obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
-	if(!hastie)
-		return
-
-	hastie.on_removed(user)
-	hastie = null
-	update_clothing_icon()
-
-/obj/item/clothing/under/verb/removetie()
-	set name = "Remove Accessory"
-	set category = "Object"
-	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
-
-	src.remove_accessory(usr)
-
-/obj/item/clothing/under/rank/New()
-	//sensor_mode = pick(0,1,2,3) //Why was this a thing --MadSnailDisease
-	..()
-
-/obj/item/clothing/under/emp_act(severity)
-	if (hastie)
-		hastie.emp_act(severity)
-	..()

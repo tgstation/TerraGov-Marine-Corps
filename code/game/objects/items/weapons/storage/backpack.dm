@@ -265,3 +265,70 @@
 	desc = "A spacious backpack with lots of pockets, worn by medical members of a Emergency Response Team."
 	icon_state = "ert_medical"
 	item_state = "ert_medical"
+
+
+
+
+
+//==========================// MARINE BACKPACKS\\================================\\
+//=======================================================================\\
+
+/obj/item/weapon/storage/backpack/marine
+	name = "\improper USCM infantry backpack"
+	desc = "The standard-issue backpack of the USCM forces."
+	icon_state = "marinepack"
+	max_w_class = 3    //  Largest item that can be placed into the backpack
+	max_combined_w_class = 21   //Capacity of the backpack
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
+/obj/item/weapon/storage/backpack/marine/medic
+	name = "\improper USCM medic backpack"
+	desc = "The standard-issue backpack worn by USCM medics."
+	icon_state = "marinepackm"
+
+/obj/item/weapon/storage/backpack/marine/tech
+	name = "\improper USCM technician backpack"
+	desc = "The standard-issue backpack worn by USCM technicians."
+	icon_state = "marinepackt"
+
+/obj/item/weapon/storage/backpack/marine/satchel
+	name = "\improper USCM satchel"
+	desc = "A heavy-duty satchel carried by some USCM soldiers."
+	icon_state = "marinesat"
+
+/obj/item/weapon/storage/backpack/marine/satchel/medic
+	name = "\improper USCM medic satchel"
+	desc = "A heavy-duty satchel carried by some USCM medics."
+	icon_state = "marinesatm"
+
+/obj/item/weapon/storage/backpack/marine/satchel/tech
+	name = "\improper USCM technician satchel"
+	desc = "A heavy-duty satchel carried by some USCM technicians."
+	icon_state = "marinesatt"
+
+/obj/item/weapon/storage/backpack/marine/satchel/lightpack
+	name = "\improper lightweight combat pack"
+	desc = "A small lightweight pack for expeditions and short-range operations."
+	icon_state = "ERT_satchel"
+	item_state = "ERT_satchel"
+
+/obj/item/weapon/storage/backpack/marine/smock
+	name = "\improper M3 sniper's smock"
+	desc = "A specially designed smock with pockets for all your sniper needs."
+	icon_state = "smock"
+
+/obj/item/weapon/storage/backpack/commando
+	name = "commando bag"
+	desc = "A heavy-duty bag carried by Weyland Yutani commandos."
+	icon_state = "commandopack"
+	item_state = "commandopack"
+	storage_slots = 10
+	max_combined_w_class = 30
+
+/obj/item/weapon/storage/backpack/mcommander
+	name = "marine commander backpack"
+	desc = "The contents of this backpack are top secret."
+	icon_state = "marinepack"

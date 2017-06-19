@@ -2,12 +2,13 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
-	//w_class = 2.0
-	//flags = GLASSESCOVERSEYES
-	//flags_equip_slot = SLOT_EYES
-	//var/vision_flags = 0
-	//var/darkness_view = 0//Base human is 2
-	//var/invisa_view = 0
+	w_class = 2.0
+	flags_inventory = COVEREYES
+	flags_equip_slot = SLOT_EYES
+	var/vision_flags = 0
+	var/darkness_view = 0//Base human is 2
+	var/invisa_view = 0
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = 0
 	var/toggleable = 0
 	var/active = 1
@@ -15,6 +16,13 @@
 	flags_inventory = COVEREYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
+
+
+/obj/item/clothing/glasses/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_glasses()
+
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
@@ -34,41 +42,12 @@
 			A.update_button_icon()
 
 
-/obj/item/clothing/glasses/meson
-	name = "optical meson scanner"
-	desc = "Used to shield the user's eyes from harmful electromagnetic emissions, also used as general safety goggles. Not adequate as welding protection."
-	icon_state = "meson"
-	item_state = "glasses"
-	actions_types = list(/datum/action/item_action/toggle)
-	origin_tech = "magnets=2;engineering=2"
-	toggleable = 1
-
-/obj/item/clothing/glasses/meson/New()
-	..()
-	overlay = global_hud.meson
-
-/obj/item/clothing/glasses/meson/prescription
-	name = "prescription optical meson scanner"
-	desc = "Used for shield the user's eyes from harmful electromagnetic emissions, can also be used as safety googles. Contains prescription lenses."
-	prescription = 1
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
 	desc = "The goggles do nothing! Can be used as safety googles."
 	icon_state = "purple"
 	item_state = "glasses"
-
-/obj/item/clothing/glasses/night
-	name = "night vision goggles"
-	desc = "You can totally see in the dark now!"
-	icon_state = "night"
-	item_state = "glasses"
-	origin_tech = "magnets=2"
-	darkness_view = 7
-
-/obj/item/clothing/glasses/night/New()
-	..()
-	overlay = global_hud.nvg
 
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
@@ -122,12 +101,44 @@
 	item_state = "gglasses"
 	flags_armor_protection = 0
 
-/obj/item/clothing/glasses/sunglasses
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
-	name = "sunglasses"
-	icon_state = "sun"
-	item_state = "sunglasses"
-	darkness_view = -1
+/obj/item/clothing/glasses/mgoggles
+	name = "marine ballistic goggles"
+	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet."
+	icon_state = "mgoggles"
+	item_state = "mgoggles"
+	flags_equip_slot = SLOT_EYES|SLOT_FACE
+
+/obj/item/clothing/glasses/mgoggles/prescription
+	name = "prescription marine ballistic goggles"
+	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
+	icon_state = "mgoggles"
+	item_state = "mgoggles"
+	prescription = 1
+
+/obj/item/clothing/glasses/mbcg
+	name = "Marine RPG glasses"
+	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
+	icon_state = "mBCG"
+	item_state = "mBCG"
+	prescription = 1
+
+/obj/item/clothing/glasses/m42_goggles
+	name = "\improper M42 scout sight"
+	desc = "A headset and goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "m56_goggles"
+	item_state = "m56_goggles"
+	deactive_state = "m56_goggles_0"
+	vision_flags = SEE_TURFS
+	toggleable = 1
+	actions_types = list(/datum/action/item_action/toggle)
+
+	New()
+		..()
+		overlay = null  //Stops the overlay.
+
+
+//welding goggles
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
@@ -177,6 +188,17 @@
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
 
+
+
+//sunglasses
+
+/obj/item/clothing/glasses/sunglasses
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
+	name = "sunglasses"
+	icon_state = "sun"
+	item_state = "sunglasses"
+	darkness_view = -1
+
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
@@ -210,80 +232,4 @@
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
 
-/obj/item/clothing/glasses/thermal
-	name = "Optical Thermal Scanner"
-	desc = "Thermals in the shape of glasses."
-	icon_state = "thermal"
-	item_state = "glasses"
-	origin_tech = "magnets=3"
-	toggleable = 1
-	vision_flags = SEE_MOBS
-	invisa_view = 2
-	eye_protection = -1
 
-	emp_act(severity)
-		if(istype(src.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = src.loc
-			M << "\red The Optical Thermal Scanner overloads and blinds you!"
-			if(M.glasses == src)
-				M.eye_blind = 3
-				M.eye_blurry = 5
-				M.disabilities |= NEARSIGHTED
-				spawn(100)
-					M.disabilities &= ~NEARSIGHTED
-		..()
-
-/obj/item/clothing/glasses/thermal/New()
-	..()
-	overlay = global_hud.thermal
-
-/obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
-	name = "Optical Meson Scanner"
-	desc = "Used for seeing walls, floors, and stuff through anything."
-	icon_state = "meson"
-	actions_types = list(/datum/action/item_action/toggle)
-	origin_tech = "magnets=3;syndicate=4"
-
-/obj/item/clothing/glasses/thermal/monocle
-	name = "Thermoncle"
-	desc = "A monocle thermal."
-	icon_state = "thermoncle"
-	flags_atom = null //doesn't protect eyes because it's a monocle, duh
-	toggleable = 0
-	flags_armor_protection = 0
-
-/obj/item/clothing/glasses/thermal/eyepatch
-	name = "Optical Thermal Eyepatch"
-	desc = "An eyepatch with built-in thermal optics"
-	icon_state = "eyepatch"
-	item_state = "eyepatch"
-	toggleable = 0
-	flags_armor_protection = 0
-
-/obj/item/clothing/glasses/thermal/jensen
-	name = "Optical Thermal Implants"
-	desc = "A set of implantable lenses designed to augment your vision"
-	icon_state = "thermalimplants"
-	item_state = "syringe_kit"
-	toggleable = 0
-
-/obj/item/clothing/glasses/mgoggles
-	name = "marine ballistic goggles"
-	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet."
-	icon_state = "mgoggles"
-	item_state = "mgoggles"
-	flags_equip_slot = SLOT_EYES|SLOT_FACE
-
-/obj/item/clothing/glasses/mgoggles/prescription
-	name = "prescription marine ballistic goggles"
-	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
-	icon_state = "mgoggles"
-	item_state = "mgoggles"
-	prescription = 1
-
-/obj/item/clothing/glasses/mbcg
-	name = "Marine RPG glasses"
-	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
-	icon_state = "mBCG"
-	item_state = "mBCG"
-	prescription = 1

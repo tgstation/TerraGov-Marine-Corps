@@ -134,3 +134,105 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
+
+
+
+/////////////////////////////////////////////////////////
+//Gloves
+/obj/item/clothing/gloves
+	name = "gloves"
+	gender = PLURAL //Carn: for grammarically correct text-parsing
+	w_class = 2.0
+	icon = 'icons/obj/clothing/gloves.dmi'
+	siemens_coefficient = 0.50
+	var/wired = 0
+	var/obj/item/weapon/cell/cell = 0
+	var/clipped = 0
+	flags_armor_protection = HANDS
+	flags_equip_slot = SLOT_HANDS
+	attack_verb = list("challenged")
+	species_restricted = list("exclude","Yautja")
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
+
+
+/obj/item/clothing/gloves/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_gloves()
+
+/obj/item/clothing/gloves/emp_act(severity)
+	if(cell)
+		//why is this not part of the powercell code?
+		cell.charge -= 1000 / severity
+		if (cell.charge < 0)
+			cell.charge = 0
+		if(cell.reliability != 100 && prob(50/severity))
+			cell.reliability -= 10 / severity
+	..()
+
+// Called just before an attack_hand(), in mob/UnarmedAttack()
+/obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
+	return 0 // return 1 to cancel attack_hand()
+
+/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+		if (clipped)
+			user << "<span class='notice'>The [src] have already been clipped!</span>"
+			update_icon()
+			return
+
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
+
+		clipped = 1
+		name = "mangled [name]"
+		desc = "[desc]<br>They have had the fingertips cut off of them."
+		if("exclude" in species_restricted)
+			species_restricted -= "Yautja"
+
+
+
+
+//////////////////////////////////////////////////////////////////
+//Mask
+/obj/item/clothing/mask
+	name = "mask"
+	icon = 'icons/obj/clothing/masks.dmi'
+	flags_armor_protection = HEAD
+	flags_pass = PASSTABLE
+	flags_atom = FPRINT
+	flags_equip_slot = SLOT_FACE
+	flags_armor_protection = FACE|EYES
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
+	var/anti_hug = 0
+
+/obj/item/clothing/mask/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_wear_mask()
+
+/obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
+	return
+
+
+
+////////////////////////////////////////////////////////////////////////
+//Shoes
+/obj/item/clothing/shoes
+	name = "shoes"
+	icon = 'icons/obj/clothing/shoes.dmi'
+	desc = "Comfortable-looking shoes."
+	gender = PLURAL //Carn: for grammarically correct text-parsing
+	siemens_coefficient = 0.9
+	flags_armor_protection = FEET
+	flags_equip_slot = SLOT_FEET
+	permeability_coefficient = 0.50
+	slowdown = SHOES_SLOWDOWN
+	species_restricted = list("exclude","Yautja")
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
+
+
+/obj/item/clothing/shoes/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_shoes()

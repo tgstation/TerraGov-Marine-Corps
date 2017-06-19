@@ -84,3 +84,19 @@
 	flags_armor_protection = UPPER_TORSO|ARMS
 
 
+
+/obj/item/clothing/head/helmet/space/compression
+	name = "\improper MK.50 compression helmet"
+	desc = "A heavy space helmet, designed to be coupled with the MK.50 compression suit, though it is less resilient than the suit. Feels like you could hotbox in here."
+	item_state = "compression"
+	icon_state = "compression"
+	armor = list(melee = 40, bullet = 45, laser = 40, energy = 55, bomb = 40, bio = 100, rad = 50)
+	unacidable = 1
+
+/obj/item/clothing/suit/space/compression
+	name = "\improper MK.50 compression suit"
+	desc = "A heavy, bulky civilian space suit, fitted with armored plates. Commonly seen in the hands of mercenaries, explorers, scavengers, and researchers."
+	item_state = "compression"
+	icon_state = "compression"
+	armor = list(melee = 50, bullet = 55, laser = 65,energy = 70, bomb = 65, bio = 100, rad = 70)
+	unacidable = 1

@@ -158,3 +158,34 @@
 	name = "Scientist labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a purple stripe on the shoulder."
 	icon_state = "labcoat_tox_open"
+
+/obj/item/clothing/suit/storage/labcoat/officer
+	//name = "Medical officer's labcoat"
+	icon_state = "labcoatg"
+	item_state = "labcoatg"
+
+
+
+
+
+/obj/item/clothing/suit/storage/snow_suit
+	name = "snow suit"
+	desc = "A standard snow suit. It can protect the wearer from extreme cold."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "snowsuit_alpha"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	blood_overlay_type = "armor"
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/snow_suit/doctor
+	name = "doctor's snow suit"
+	icon_state = "snowsuit_doctor"
+	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/snow_suit/engineer
+	name = "engineer's snow suit"
+	icon_state = "snowsuit_engineer"
+	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)

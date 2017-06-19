@@ -137,3 +137,15 @@
 	flags_inventory = NOSLIPPING
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
+
+
+/obj/item/clothing/shoes/snow
+	name = "snow boots"
+	desc = "When you feet are as cold as your heart"
+	icon_state = "swat"
+	siemens_coefficient = 0.6
+	flags_cold_protection = FEET
+	flags_heat_protection = FEET
+	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+

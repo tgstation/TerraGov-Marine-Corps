@@ -1,4 +1,68 @@
 
+/obj/item/clothing/suit/armor
+	flags_atom = FPRINT
+	flags_inventory = BLOCKSHARPOBJ
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
+	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
+	siemens_coefficient = 0.6
+	w_class = 5
+	allowed = list(/obj/item/weapon/gun)//Guns only.
+	uniform_restricted = list(/obj/item/clothing/under)
+
+
+
+//armored vest
+
+/obj/item/clothing/suit/armor/vest
+	name = "armored vest"
+	desc = "An armored vest that protects against some damage."
+	icon_state = "armor"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	flags_armor_protection = UPPER_TORSO
+	armor = list(melee = 50, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/armor/vest/pilot
+	name = "\improper M70 flak jacket"
+	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "pilot"
+	item_state = "pilot"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	blood_overlay_type = "armor"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 50, bullet = 60, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/storage/fancy/cigarettes,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/grenade,
+		/obj/item/device/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/weapon/large_holster/machete,
+		/obj/item/weapon/storage/belt/gun/m4a3,
+		/obj/item/weapon/storage/belt/gun/m44)
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
+
+/obj/item/clothing/suit/armor/vest/dutch
+	name = "armored jacket"
+	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
+	icon_state = "dutch_armor"
+	item_state = "dutch_armor"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
+
+
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
 	desc = "An armored vest that protects against some damage. This one has a Weyland-Yutani corporate badge."
@@ -20,6 +84,36 @@
 	blood_overlay_type = "armor"
 	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0
+
+/obj/item/clothing/suit/armor/bulletproof
+	name = "bulletproof vest"
+	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "bulletproof"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	flags_armor_protection = UPPER_TORSO
+	armor = list(melee = 30, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/armor/riot
+	name = "riot suit"
+	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
+	icon_state = "riot"
+	item_state = "swat_suit"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	slowdown = 1
+	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	flags_inventory = HIDEJUMPSUIT|BLOCKSHARPOBJ
+	siemens_coefficient = 0.5
+
+/obj/item/clothing/suit/armor/riot/marine
+	name = "\improper M5 riot control armor"
+	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
+	icon_state = "riot"
+	item_state = "swat_suit"
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	armor = list(melee = 70, bullet = 45, laser = 35, energy = 20, bomb = 35, bio = 10, rad = 10)
+
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
@@ -94,6 +188,10 @@
 	src.icon_state = "reactiveoff"
 	src.item_state = "reactiveoff"
 	..()
+
+
+
+
 
 
 //All of the armor below is mostly unused

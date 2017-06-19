@@ -93,3 +93,40 @@
 	desc = "It's baseball hat in corporate colors."
 	icon_state = "corpsoft"
 	item_color = "corp"
+
+
+
+//marine cap
+
+/obj/item/clothing/head/soft/marine
+	name = "marine sergeant cap"
+	desc = "It's a soft cap made from advanced ballistic-resistant fibres. Fails to prevent lumps in the head."
+	icon_state = "greysoft"
+	item_color = "grey"
+	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
+	flags_inventory = BLOCKSHARPOBJ
+
+/obj/item/clothing/head/soft/marine/alpha
+	name = "alpha squad sergeant cap"
+	icon_state = "redsoft"
+	item_color = "red"
+
+/obj/item/clothing/head/soft/marine/beta
+	name = "beta squad sergeant cap"
+	icon_state = "yellowsoft"
+	item_color = "yellow"
+
+/obj/item/clothing/head/soft/marine/charlie
+	name = "charlie squad sergeant cap"
+	icon_state = "purplesoft"
+	item_color = "purple"
+
+/obj/item/clothing/head/soft/marine/delta
+	name = "delta squad sergeant cap"
+	icon_state = "bluesoft"
+	item_color = "blue"
+
+/obj/item/clothing/head/soft/marine/mp
+	name = "marine police sergeant cap"
+	icon_state = "greensoft"
+	item_color = "green"
