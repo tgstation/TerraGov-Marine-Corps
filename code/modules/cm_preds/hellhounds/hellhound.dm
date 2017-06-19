@@ -59,8 +59,8 @@
 			visible_message("[src] shoves [H].", "You shove [H].")
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		else
-			if (!(H.paralysis ))
-				H.Paralyse(3)
+			if (!(H.knocked_out ))
+				H.KnockOut(3)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
@@ -90,9 +90,9 @@
 		visible_message("[src] growls at [X].", "You growl at [X].")
 		return
 	else if(a_intent == "disarm")
-		if (!(X.paralysis ) && X.mob_size != MOB_SIZE_BIG)
+		if (!(X.knocked_out ) && X.mob_size != MOB_SIZE_BIG)
 			if(prob(40))
-				X.Paralyse(4)
+				X.KnockOut(4)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				visible_message("\red [src] knocks down [X]!","\red You knock down [X]!")
 				return
@@ -120,8 +120,8 @@
 		if(istype(H,/mob/living/carbon/hellhound))
 			return
 		if(istype(H,/mob/living/carbon/monkey))
-			if (!(H.paralysis ))
-				H.Paralyse(8)
+			if (!(H.knocked_out ))
+				H.KnockOut(8)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				visible_message("\red [src] knocks down [H]!","\red You knock down [H]!")
 				return
@@ -198,9 +198,9 @@
 				return 1
 
 			else
-				if (!( paralysis ))
+				if (!( knocked_out ))
 					if (prob(25))
-						Paralyse(2)
+						KnockOut(2)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !( O.blinded )))
@@ -240,13 +240,13 @@
 			if (stat != 2)
 				adjustBruteLoss(rand(60,200))
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-				Paralyse(12)
+				KnockOut(12)
 			return
 		if(3.0)
 			if (stat != 2)
 				adjustBruteLoss(rand(30,100))
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-				Paralyse(5)
+				KnockOut(5)
 			return
 
 /mob/living/carbon/hellhound/IsAdvancedToolUser()

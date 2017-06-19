@@ -64,7 +64,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(stat || paralysis || stunned || weakened)
+	if(is_mob_incapacitated(TRUE))
 		return
 
 	face_atom(A)

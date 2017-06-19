@@ -12,7 +12,7 @@
 					apply_damage(rand(200, 300), BRUTE)
 					updatehealth()
 				if(1)
-					Weaken(4)
+					KnockDown(4)
 					apply_damage(rand(200, 300), BRUTE)
 					updatehealth()
 				else
@@ -23,11 +23,11 @@
 			switch(xeno_explosion_resistance)
 				if(3) return
 				if(1)
-					Weaken(2)
+					KnockDown(2)
 				if(0)
 					if(prob(80))
-						Paralyse(4)
-					Weaken(12)
+						KnockOut(4)
+					KnockDown(12)
 
 			b_loss += rand(45, 55)
 			f_loss += rand(45, 65)
@@ -37,8 +37,8 @@
 				if(3) return
 				if(0)
 					if(prob(40))
-						Paralyse(2)
-					Weaken(rand(4, 6))
+						KnockOut(2)
+					KnockDown(rand(4, 6))
 
 			b_loss += rand(20, 40)
 			f_loss += rand(25, 50)

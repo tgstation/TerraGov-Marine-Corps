@@ -61,8 +61,8 @@
 		adjustFireLoss(-5)
 		adjustOxyLoss(-10)
 		adjustToxLoss(-50)
-		if(weakened) weakened -= 2
-		if(weakened < 0) weakened = 0 //Just to be sure.
+		if(knocked_down) knocked_down -= 2
+		if(knocked_down < 0) knocked_down = 0 //Just to be sure.
 		if(stunned) stunned = 0
 
 		//UNCONSCIOUS. NO-ONE IS HOME
@@ -72,10 +72,10 @@
 					emote("gasp")
 			if(!reagents.has_reagent("inaprovaline"))
 				adjustOxyLoss(11)
-			Paralyse(3)
+			KnockOut(3)
 
-		if(paralysis)
-			AdjustParalysis(-1)
+		if(knocked_out)
+			AdjustKnockedout(-1)
 			blinded = 1
 			stat = UNCONSCIOUS
 		else if(sleeping)

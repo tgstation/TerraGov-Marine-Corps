@@ -66,7 +66,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/gibber/relaymove(mob/user)
-	if(user.stat || user.stunned || user.weakened) return
+	if(user.is_mob_incapacitated(TRUE)) return
 	go_out()
 
 

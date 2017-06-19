@@ -92,7 +92,7 @@
 	"<span class='xenodanger'>WARN__--d-sEIE)(*##&&$*@#*&#</span>")
 	adjustBruteLoss(50 * severity)
 	adjustFireLoss(50 * severity)
-	Weaken(10)
+	KnockDown(10)
 	updatehealth()
 
 /mob/living/carbon/Xenomorph/Xenoborg/attackby(var/obj/item/O as obj, var/mob/user as mob)

@@ -473,7 +473,7 @@
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	rarity_value = 2
 
-	brute_mod = 0.25
+	brute_mod = 0.75
 	burn_mod = 1.1
 
 	warning_low_pressure = 0

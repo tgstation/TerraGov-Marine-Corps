@@ -95,7 +95,7 @@
 		s.set_up(3, 1, M)
 		s.start()
 
-		M.Weaken(10)
+		M.KnockDown(10)
 
 	if(master && wires & 1)
 		master.receive_signal()

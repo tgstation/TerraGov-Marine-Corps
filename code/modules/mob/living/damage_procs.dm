@@ -46,9 +46,9 @@
 		if(STUN)
 			Stun(effect/(blocked+1))
 		if(WEAKEN)
-			Weaken(effect/(blocked+1))
+			KnockDown(effect/(blocked+1))
 		if(PARALYZE)
-			Paralyse(effect/(blocked+1))
+			KnockOut(effect/(blocked+1))
 		if(AGONY)
 			halloss += effect // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)

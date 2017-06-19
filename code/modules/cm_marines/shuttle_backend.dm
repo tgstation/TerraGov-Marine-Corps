@@ -465,7 +465,7 @@ cdel(src)
 					shake_camera(M, iselevator? 2 : 10, 1)
 			if(istype(M, /mob/living/carbon) && !iselevator)
 				if(!M.buckled)
-					M.Weaken(3)
+					M.KnockDown(3)
 
 		if(turftoleave && ispath(turftoleave))
 			T_src.ChangeTurf(turftoleave)

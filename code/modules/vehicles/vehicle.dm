@@ -33,7 +33,7 @@
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/relaymove(mob/user, direction)
-	if(user.stat || user.stunned || user.weakened || user.paralysis || user.is_mob_restrained()) return
+	if(user.is_mob_incapacitated()) return
 	if(world.time > l_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()

@@ -225,6 +225,6 @@
 			var/mob/living/L = target_mob
 			L.attack_animal(src)
 			if(prob(5))
-				L.Weaken(3)
+				L.KnockDown(3)
 				L.visible_message("<span class='danger'>\The [src] viciously slashes at \the [L]!</span>")
 			return L

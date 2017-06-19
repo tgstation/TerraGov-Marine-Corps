@@ -336,7 +336,7 @@
 			var/mob/living/M = G.grabbed_thing
 			if(user.a_intent == "hurt")
 				if(user.grab_level > GRAB_AGGRESSIVE)
-					if (prob(15))	M.Weaken(5)
+					if (prob(15))	M.KnockDown(5)
 					M.apply_damage(8, def_zone = "head")
 					user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 					"<span class='danger'>You slam [M]'s face against [src]!</span>")
@@ -346,7 +346,7 @@
 					return
 			else if(user.grab_level >= GRAB_AGGRESSIVE)
 				M.forceMove(loc)
-				M.Weaken(5)
+				M.KnockDown(5)
 				user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 				"<span class='danger'>You throw [M] on [src].</span>")
 		return

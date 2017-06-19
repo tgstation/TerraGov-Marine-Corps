@@ -18,7 +18,7 @@
 	return 0*/
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
-	if(user.stat || user.stunned || user.weakened) return
+	if(user.is_mob_incapacitated(TRUE)) return
 	go_out()
 
 
@@ -260,7 +260,7 @@
 		"rads" = H.radiation,
 		"cloneloss" = H.getCloneLoss(),
 		"brainloss" = H.getBrainLoss(),
-		"paralysis" = H.paralysis,
+		"knocked_out" = H.knocked_out,
 		"bodytemp" = H.bodytemperature,
 		"inaprovaline_amount" = H.reagents.get_reagent_amount("inaprovaline"),
 		"dexalin_amount" = H.reagents.get_reagent_amount("dexalin"),
@@ -300,7 +300,7 @@
 	dat += text("[]\tRadiation Level %: []</font><br>", (occ["rads"] < 10 ?"<font color='blue'>" : "<font color='red'>"), occ["rads"])
 	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", (occ["cloneloss"] < 1 ?"<font color='blue'>" : "<font color='red'>"), occ["cloneloss"])
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", (occ["brainloss"] < 1 ?"<font color='blue'>" : "<font color='red'>"), occ["brainloss"])
-	dat += text("Paralysis Summary %: [] ([] seconds left!)<br>", occ["paralysis"], round(occ["paralysis"] / 4))
+	dat += text("Knocked Out Summary %: [] ([] seconds left!)<br>", occ["knocked_out"], round(occ["knocked_out"] / 4))
 	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
 
 	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", (occ["blood_amount"] > 448 ?"<font color='blue'>" : "<font color='red'>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])

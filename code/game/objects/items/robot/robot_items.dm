@@ -17,7 +17,7 @@
 		user.cell.charge -= 30
 
 		playsound(M.loc, 'sound/weapons/Egloves.ogg', 25, 1, 4)
-		M.Weaken(5)
+		M.KnockDown(5)
 		if (M.stuttering < 5)
 			M.stuttering = 5
 		M.Stun(5)

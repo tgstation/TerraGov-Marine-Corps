@@ -142,12 +142,17 @@
 	if(isXeno(mob))
 		if(mob:is_zoomed) mob:zoom_out()
 
+	var/mob/living/L
 	if(isliving(mob))
-		var/mob/living/L = mob
+		L = mob
 		if(L.incorporeal_move)//Move though walls
 			Process_Incorpmove(direct)
 			return
 
+	if(mob.remote_control)
+		return mob.remote_control.relaymove(mob,direct)
+
+	if(L)
 		if(mob.client)
 			if(mob.client.view != world.view) // If mob moves while zoomed in with device, unzoom them.
 				for(var/obj/item/item in mob.contents)
@@ -155,9 +160,7 @@
 						item.zoom(mob)
 						break
 
-	if(istype(mob.machine, /obj/machinery))
-		if(mob.machine.relaymove(mob,direct))
-			return
+
 
 	if(Process_Grab()) return
 
@@ -229,7 +232,7 @@
 ///Checks to see if you are being grabbed and if so attemps to break it
 /client/proc/Process_Grab()
 	if(mob.pulledby)
-		if(mob.stat || mob.stunned || mob.weakened || mob.paralysis)
+		if(mob.is_mob_incapacitated(TRUE))
 			return 1
 		else if(mob.is_mob_restrained())
 			move_delay = world.time + 10

@@ -82,17 +82,17 @@
 	proc/handle_disabilities()
 
 		if (disabilities & EPILEPSY)
-			if ((prob(1) && paralysis < 10))
+			if ((prob(1) && knocked_out < 10))
 				src << "\red You have a seizure!"
-				Paralyse(10)
+				KnockOut(10)
 		if (disabilities & COUGHING)
-			if ((prob(5) && paralysis <= 1))
+			if ((prob(5) && knocked_out <= 1))
 				drop_held_item()
 				spawn( 0 )
 					emote("cough")
 					return
 		if (disabilities & TOURETTES)
-			if ((prob(10) && paralysis <= 1))
+			if ((prob(10) && knocked_out <= 1))
 				Stun(10)
 				spawn( 0 )
 					emote("twitch")
@@ -114,14 +114,14 @@
 		if ((HULK in mutations) && health <= 25)
 			mutations.Remove(HULK)
 			src << "\red You suddenly feel very weak."
-			Weaken(3)
+			KnockDown(3)
 			emote("collapse")
 
 		if (radiation)
 
 			if (radiation > 100)
 				radiation = 100
-				Weaken(10)
+				KnockDown(10)
 				if(!lying)
 					src << "\red You feel weak."
 					emote("collapse")
@@ -137,7 +137,7 @@
 					adjustToxLoss(1)
 					if(prob(5))
 						radiation -= 5
-						Weaken(3)
+						KnockDown(3)
 						if(!lying)
 							src << "\red You feel weak."
 							emote("collapse")
@@ -283,7 +283,7 @@
 			if(!co2overloadtime) // If it's the first breath with too much CO2 in it, lets start a counter, then have them pass out after 12s or so.
 				co2overloadtime = world.time
 			else if(world.time - co2overloadtime > 120)
-				Paralyse(3)
+				KnockOut(3)
 				adjustOxyLoss(3) // Lets hurt em a little, let them know we mean business
 				if(world.time - co2overloadtime > 300) // They've been in here 30s now, lets start to kill them for their own good!
 					adjustOxyLoss(8)
@@ -305,7 +305,7 @@
 		if(breath.gas["sleeping_agent"])
 			var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
 			if(SA_pp > SA_para_min) // Enough to make us paralysed for a bit
-				Paralyse(3) // 3 gives them one second to wake up and run away a bit!
+				KnockOut(3) // 3 gives them one second to wake up and run away a bit!
 				if(SA_pp > SA_sleep_min) // Enough to make us sleep as well
 					sleeping = max(sleeping+2, 10)
 			else if(SA_pp > 0.01)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
@@ -394,7 +394,7 @@
 			eye_blurry = max(2, eye_blurry)
 			if (prob(5))
 				sleeping += 1
-				Paralyse(5)
+				KnockOut(5)
 
 		if(confused)
 			confused = max(0, confused - 1)
@@ -427,16 +427,16 @@
 						emote("gasp")
 				if(!reagents.has_reagent("inaprovaline"))
 					adjustOxyLoss(1)
-				Paralyse(3)
+				KnockOut(3)
 			if(halloss > 100)
 				src << "<span class='notice'>You're in too much pain to keep going...</span>"
 				for(var/mob/O in oviewers(src, null))
 					O.show_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.", 1)
-				Paralyse(10)
+				KnockOut(10)
 				setHalLoss(99)
 
-			if(paralysis)
-				AdjustParalysis(-1)
+			if(knocked_out)
+				AdjustKnockedout(-1)
 				blinded = 1
 				stat = UNCONSCIOUS
 				if(halloss > 0)

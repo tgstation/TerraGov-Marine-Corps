@@ -30,6 +30,7 @@
 	. = ..()
 
 /obj/item/weapon/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(user.pulling == user.buckled) return //can't move the thing you're sitting on.
 	if(isturf(target))
 		var/turf/T = target
 		if(!T.density && T.Adjacent(user))

@@ -117,7 +117,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 					if(prob(15))
 						update_body()
 				if(prob(15))
-					Paralyse(rand(1,3))
+					KnockOut(rand(1,3))
 					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel extremely [word]"
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)

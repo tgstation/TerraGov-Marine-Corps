@@ -152,7 +152,7 @@
 
 		if(M.lying) return //No spamming this on people.
 
-		M.Weaken(5)
+		M.KnockDown(5)
 		M << "\red You topple as \the [src] moves under you!"
 
 		if(prob(25))
@@ -199,7 +199,7 @@
 	if(user.is_mob_restrained() || user.buckled)
 		user << "<span class='notice'>You need your hands and legs free for this.</span>"
 		return 0
-	if(user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
+	if(user.is_mob_incapacitated(TRUE) || user.lying)
 		return 0
 	if(issilicon(user))
 		user << "<span class='notice'>You need hands for this.</span>"

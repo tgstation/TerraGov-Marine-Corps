@@ -9,5 +9,5 @@
 		adjustOxyLoss(1)
 
 	if(pulledby.grab_level >= GRAB_KILL)
-		Weaken(5)
+		KnockDown(5)
 		losebreath = min(losebreath + 2, 3)

@@ -66,7 +66,7 @@
 		if( ( !istype(card) ) || ( istype(card) && !src.check_access(card)) )
 			H.visible_message("\blue [src] beeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
 			spawn(2)
-				H.Weaken(20)
+				H.KnockDown(20)
 				H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
 				deductcharge(hitcost)
 			add_fingerprint(user)
@@ -116,7 +116,7 @@
 /obj/item/weapon/melee/baton/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "span class='danger'>You accidentally hit yourself with the [src]!</span>"
-		user.Weaken(30)
+		user.KnockDown(30)
 		deductcharge(hitcost)
 		return
 
@@ -166,8 +166,8 @@
 	//stun effects
 	if(!istype(L,/mob/living/carbon/Xenomorph)) //Xenos are IMMUNE to all baton stuns.
 		L.stun_effect_act(stun, agony, target_zone, src)
-		if(!L.weakened)
-			L.Weaken(4)
+		if(!L.knocked_down)
+			L.KnockDown(4)
 
 	playsound(loc, 'sound/weapons/Egloves.ogg', 25, 1, 6)
 	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")

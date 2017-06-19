@@ -51,7 +51,7 @@
 			if(M.hud_used)
 				flick("e_flash", M.hud_used.flash_icon)
 			M.Stun(2)
-			M.Weaken(10)
+			M.KnockDown(10)
 
 
 
@@ -59,10 +59,10 @@
 		if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
 			if(ear_safety > 0)
 				M.Stun(2)
-				M.Weaken(1)
+				M.KnockDown(1)
 			else
 				M.Stun(10)
-				M.Weaken(3)
+				M.KnockDown(3)
 				if ((prob(14) || (M == src.loc && prob(70))))
 					M.ear_damage += rand(1, 10)
 				else

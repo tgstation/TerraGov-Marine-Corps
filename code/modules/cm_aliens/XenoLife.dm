@@ -51,7 +51,7 @@
 			readying_tail = 0
 		blinded = 1
 		see_in_dark = 5
-		Paralyse(4)
+		KnockOut(4)
 		if(isXenoRunner(src) && layer != initial(layer)) //Unhide
 			layer = MOB_LAYER
 		var/turf/T = loc
@@ -84,8 +84,8 @@
 			eye_blind = 0
 			eye_blurry = 0
 
-			if(paralysis) //If they're down, make sure they are actually down.
-				AdjustParalysis(-3)
+			if(knocked_out) //If they're down, make sure they are actually down.
+				AdjustKnockedout(-3)
 				blinded = 1
 				stat = UNCONSCIOUS
 				if(halloss > 0)
@@ -107,7 +107,7 @@
 				if(halloss > 0)
 					adjustHalLoss(-1)
 
-			handle_statuses()//natural decrease of stunned, weakened, etc...
+			handle_statuses()//natural decrease of stunned, knocked_down, etc...
 
 		if(isXenoCrusher(src) && !stat) //Handle crusher stuff.
 			var/mob/living/carbon/Xenomorph/Crusher/X = src
@@ -463,7 +463,7 @@ updatehealth()
 		AdjustStunned(-2)
 	return stunned
 
-/mob/living/carbon/Xenomorph/handle_weakened()
-	if(weakened && client)
-		weakened = max(weakened-2,0)
-	return weakened
+/mob/living/carbon/Xenomorph/handle_knocked_down()
+	if(knocked_down && client)
+		knocked_down = max(knocked_down-2,0)
+	return knocked_down

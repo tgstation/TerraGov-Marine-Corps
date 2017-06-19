@@ -172,7 +172,7 @@
 			M.mutations.Remove(HULK)
 			M.update_mutations()		//update our mutation overlays
 			M << "\red You suddenly feel very weak."
-			M.Weaken(3)
+			M.KnockDown(3)
 			M.emote("collapse")
 
 /datum/dna/gene/basic/xray

@@ -74,7 +74,7 @@
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red You club yourself over the head."
-		user.Weaken(3 * force)
+		user.KnockDown(3 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, "head")
@@ -154,7 +154,7 @@
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
 			user << "\red You club yourself over the head."
-			user.Weaken(3 * force)
+			user.KnockDown(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				H.apply_damage(2*force, BRUTE, "head")

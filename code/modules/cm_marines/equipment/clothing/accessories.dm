@@ -110,6 +110,7 @@
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/weapon/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+	new /obj/item/device/multitool(src)
 
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()

@@ -781,7 +781,7 @@
 				src.visible_message("\red [src] knocks over [M]!")
 				M.stop_pulling()
 				M.Stun(8)
-				M.Weaken(5)
+				M.KnockDown(5)
 				M.lying = 1
 	..()
 
@@ -808,7 +808,7 @@
 
 // player on mulebot attempted to move
 /obj/machinery/bot/mulebot/relaymove(mob/user)
-	if(user.stat || user.stunned || user.weakened) return
+	if(user.is_mob_incapacitated(TRUE)) return
 	if(load == user)
 		unload(0)
 

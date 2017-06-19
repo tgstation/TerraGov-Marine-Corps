@@ -42,7 +42,7 @@
 
 	if (stun_amount)
 		Stun(stun_amount)
-		Weaken(stun_amount)
+		KnockDown(stun_amount)
 		apply_effect(STUTTER, stun_amount)
 		apply_effect(EYE_BLUR, stun_amount)
 

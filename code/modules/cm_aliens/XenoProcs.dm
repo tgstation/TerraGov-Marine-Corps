@@ -55,7 +55,7 @@
 	if(!isXeno(src) || isnull(src)) //Somehow
 		return 0
 
-	if(stat || paralysis || stunned || weakened || lying || is_mob_restrained() || buckled)
+	if(is_mob_incapacitated() || lying || buckled)
 		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return 0
 
@@ -195,7 +195,7 @@
 				if(prob(chance))
 					H.emote("scream")
 				if(prob(chance / 2))
-					H.Weaken(2)
+					H.KnockDown(2)
 				var/datum/organ/external/affecting = H.get_organ("l_foot")
 				if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
 					H.UpdateDamageIcon()
@@ -320,20 +320,20 @@
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
 						if(H.check_shields(15, "the pounce")) //Human shield block.
-							Weaken(3)
+							KnockDown(3)
 							throwing = FALSE //Reset throwing manually.
 							r_FAL
 
 						if(isYautja(H) && prob(40)) //Another chance for the predator to block the pounce.
 							visible_message("<span class='danger'>[H] body slams [src]!</span>",
 											"<span class='xenodanger'>[H] body slams you!</span>")
-							Weaken(4)
+							KnockDown(4)
 							throwing = FALSE
 							r_FAL
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>You pounce on [M]!</span>")
-					M.Weaken(charge_type == 1 ? 1 : 3)
+					M.KnockDown(charge_type == 1 ? 1 : 3)
 					step_to(src, M)
 					canmove = FALSE
 					frozen = TRUE
@@ -343,7 +343,7 @@
 				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
 					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) / (4 - upgrade)) //About 12.5 to 80 extra damage depending on upgrade level.
 					M.attack_alien(src,  extra_dam) //Ancients deal about twice as much damage on a charge as a regular slash.
-					M.Weaken(2)
+					M.KnockDown(2)
 
 				if(4) //Predalien.
 					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
@@ -462,7 +462,7 @@
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 			visible_message("<span class='danger'>\The [src] lashes out with its tail and \the [M] goes down!</span>", \
 			"<span class='danger'>You snap your tail out and trip \the [M]!</span>")
-			M.Weaken(5)
+			M.KnockDown(5)
 			dmg = dmg / 2 //Half damage for a tail strike.
 			tripped = 1
 

@@ -131,11 +131,11 @@
 	if(HULK in mutations)	return
 	..()
 
-/mob/living/carbon/human/Weaken(amount)
+/mob/living/carbon/human/KnockDown(amount)
 	if(HULK in mutations)	return
 	..()
 
-/mob/living/carbon/human/Paralyse(amount)
+/mob/living/carbon/human/KnockOut(amount)
 	if(HULK in mutations)	return
 	..()
 

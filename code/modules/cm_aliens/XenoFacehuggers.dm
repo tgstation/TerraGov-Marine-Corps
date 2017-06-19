@@ -280,8 +280,14 @@
 			target.equip_to_slot(src, WEAR_FACE)
 			target.contents += src //Monkey sanity check - Snapshot
 			target.update_inv_wear_mask()
-			if(ishuman(target)) playsound(loc, (target.gender == "male"?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
-			if(!sterile) target.Paralyse(MIN_IMPREGNATION_TIME * 0.5) //THIS MIGHT NEED TWEAKS
+
+			var/mob/living/carbon/human/H
+			if(ishuman(target))
+				H = target
+				playsound(loc, (target.gender == "male"?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
+			if(!sterile)
+				if(!H || !H.species || !(H.species.flags & IS_SYNTHETIC)) //synthetics aren't paralyzed
+					target.KnockOut(MIN_IMPREGNATION_TIME * 0.5) //THIS MIGHT NEED TWEAKS
 
 	GoIdle()
 

@@ -18,7 +18,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 	var/msg
 	if(amount > 10 && ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.paralysis) H.paralysis = max(0, H.paralysis-round(amount * 0.1))
+		if(H.knocked_out) H.knocked_out = max(0, H.knocked_out-round(amount * 0.1))
 
 		var/datum/organ/external/right_hand = H.organs_by_name["r_hand"]
 		var/datum/organ/external/left_hand = H.organs_by_name["l_hand"]

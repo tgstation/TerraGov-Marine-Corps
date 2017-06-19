@@ -38,13 +38,13 @@
 				H.vomit()
 			else
 				affected_mob << "\red You gag as you want to throw up, but there's nothing in your stomach!"
-				affected_mob.Weaken(10)
+				affected_mob.KnockDown(10)
 				affected_mob.adjustToxLoss(3)
 	if(stage > 3)
 		if(prob(1) && ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
 			H << "\red Your abdomen is a world of pain!"
-			H.Weaken(10)
+			H.KnockDown(10)
 
 			var/datum/organ/external/groin = H.get_organ("groin")
 			var/datum/wound/W = new /datum/wound/internal_bleeding(20)

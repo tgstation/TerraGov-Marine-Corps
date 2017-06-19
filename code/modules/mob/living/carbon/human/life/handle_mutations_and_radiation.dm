@@ -33,7 +33,7 @@
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
 				src << "<span class='warning'>You feel weak.</span>"
-				Weaken(3)
+				KnockDown(3)
 				if(!lying)
 					emote("collapse")
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.name == "Human") //Apes go bald

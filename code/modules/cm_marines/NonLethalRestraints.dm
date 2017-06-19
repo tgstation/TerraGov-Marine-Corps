@@ -26,7 +26,7 @@
 /obj/item/weapon/melee/stunprod/attack_self(mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "\red You grab the [src] on the wrong side."
-		user.Weaken(30)
+		user.KnockDown(30)
 		charges--
 		if(charges < 1)
 			status = 0
@@ -45,7 +45,7 @@
 /obj/item/weapon/melee/stunprod/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
-		user.Weaken(30)
+		user.KnockDown(30)
 		charges--
 		if(charges < 1)
 			status = 0
@@ -63,7 +63,7 @@
 		return
 
 	if(status)
-		M.weakened = 6
+		M.KnockDown(6)
 		user.lastattacked = M
 		M.lastattacker = user
 		charges -= 2

@@ -103,7 +103,7 @@
 	return
 
 /obj/structure/morgue/relaymove(mob/user)
-	if(user.stat || user.stunned || user.weakened || user.paralysis) return
+	if(user.is_mob_incapacitated(TRUE)) return
 	src.connected = new /obj/structure/m_tray( src.loc )
 	step(src.connected, EAST)
 	src.connected.layer = OBJ_LAYER
@@ -275,7 +275,7 @@
 
 /obj/structure/crematorium/relaymove(mob/user)
 	if(locked) return
-	if(user.stat || user.stunned || user.weakened || user.paralysis) return
+	if(user.is_mob_incapacitated(TRUE)) return
 	src.connected = new /obj/structure/c_tray( src.loc )
 	step(src.connected, SOUTH)
 	src.connected.layer = OBJ_LAYER

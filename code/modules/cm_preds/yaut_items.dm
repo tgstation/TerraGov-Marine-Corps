@@ -809,7 +809,7 @@
 							H.legcuff_update()
 							playsound(H,'sound/weapons/tablehit1.ogg', 25, 1)
 							H << "\icon[src] \red <B>You step on \the [src]!</B>"
-							H.Weaken(4)
+							H.KnockDown(4)
 							if(ishuman(H))
 								H.emote("scream")
 							feedback_add_details("handcuffs","B")
@@ -1082,7 +1082,7 @@
 						return ..()
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				user.visible_message("<span class = 'danger'>[src] lashes out and [target] goes down!</span>","<span class='danger'><b>You trip [target]!</b></span>")
-				target.Weaken(5)
+				target.KnockDown(5)
 		return ..()
 
 /obj/item/weapon/melee/yautja_knife
@@ -1160,7 +1160,7 @@
 			if(prob(22) && !target.lying)
 				user.visible_message("<span class='danger'>[user] slashes [target] so hard, they go flying!</span>")
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-				target.Weaken(3)
+				target.KnockDown(3)
 				step_away(target,user,1)
 		else
 			user << "<span class='warning'>You aren't strong enough to swing the sword properly!</span>"

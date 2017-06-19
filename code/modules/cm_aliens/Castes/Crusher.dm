@@ -313,12 +313,12 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	if(. && X.momentum > 7)
 		playsound(loc, "punch", 25, 1)
 		switch(X.momentum)
-			if(8 to 11) Weaken(2)
+			if(8 to 11) KnockDown(2)
 			if(12 to 19)
-				Weaken(6)
+				KnockDown(6)
 				apply_damage(X.momentum, BRUTE)
 			if(20 to INFINITY)
-				Weaken(8)
+				KnockDown(8)
 				take_overall_damage(X.momentum * 2)
 		animation_flash_color(src)
 		diagonal_step(src, X.dir) //Occasionally fling it diagonally.
@@ -403,7 +403,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		if(!isXeno(M) && isliving(M))
 			L = M
 			L.take_overall_damage(40) //The same as a full charge, but no more than that.
-			L.Weaken(rand(2, 3))
+			L.KnockDown(rand(2, 3))
 			L << "<span class='highdanger'>You are stomped on by [src]!</span>"
 			shake_camera(L, 2, 2)
 		i--

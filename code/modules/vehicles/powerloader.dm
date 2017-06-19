@@ -13,6 +13,7 @@
 	buckling_y = 6
 	health = 200
 	maxhealth = 200
+	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING,ACCESS_CIVILIAN_LOGISTICS,ACCESS_MARINE_CARGO,ACCESS_MARINE_PILOT,ACCESS_MARINE_BRIG)
 
 
 	New()
@@ -34,6 +35,17 @@
 				. = step(src, direction)
 				if(.)
 					pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25, 1), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25, 1))
+
+
+	attack_hand(mob/user)
+		if(buckled_mob && user != buckled_mob)
+			buckled_mob.visible_message("<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",\
+							"<span class='danger'>[user] tries to move you out of [src]!</span>")
+			var/oldloc = loc
+			var/olddir = dir
+			var/old_buckled_mob = buckled_mob
+			if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK) && dir == olddir && loc == oldloc && buckled_mob == old_buckled_mob)
+				manual_unbuckle(user)
 
 
 	attackby(obj/item/weapon/W, mob/user)
@@ -60,7 +72,13 @@
 	buckle_mob(mob/M, mob/user)
 		if(M != user) return
 		if(!ishuman(M))	return
-		if(M.r_hand || M.l_hand) return
+		var/mob/living/carbon/human/H = M
+		if(!check_access(H.wear_id))
+			H << "<span class='warning'>You don't have the access to use [src].</span>"
+			return
+		if(H.r_hand || H.l_hand)
+			H << "<span class='warning'>You need your two hands to use [src].</span>"
+			return
 		. = ..()
 
 	handle_rotation()
@@ -93,6 +111,13 @@
 				linked_powerloader.unbuckle() //drop a clamp, you auto unbuckle from the powerloader.
 		else cdel(src)
 
+
+	attack(mob/living/M, mob/living/user, def_zone)
+		if(M == linked_powerloader.buckled_mob)
+			unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
+			return 1
+		else
+			return ..()
 
 	afterattack(atom/target, mob/user, proximity)
 		if(!proximity) return

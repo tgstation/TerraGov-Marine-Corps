@@ -353,11 +353,11 @@
 
 	if((istype(mob,/mob/living/carbon/human/)) && (mob:m_intent == "run")) // Only clumbsy humans can fall on their asses.
 		mob:AdjustStunned(5)
-		mob:AdjustWeakened(5)
+		mob:AdjustKnockeddown(5)
 
 	else if (istype(mob,/mob/living/carbon/human/))
 		mob:AdjustStunned(2)
-		mob:AdjustWeakened(2)
+		mob:AdjustKnockeddown(2)
 
 	mob << "Gravity!"
 

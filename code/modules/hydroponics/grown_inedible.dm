@@ -142,7 +142,7 @@
 /obj/item/weapon/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)
 
 	if(..() && prob(50))
-		user.Paralyse(5)
+		user.KnockOut(5)
 		user << "\red You are stunned by the deathnettle when you try picking it up!"
 
 /obj/item/weapon/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
@@ -164,8 +164,8 @@
 
 		M.eye_blurry += force/7
 		if(prob(20))
-			M.Paralyse(force/6)
-			M.Weaken(force/15)
+			M.KnockOut(force/6)
+			M.KnockDown(force/15)
 		M.drop_held_item()
 
 /obj/item/weapon/corncob

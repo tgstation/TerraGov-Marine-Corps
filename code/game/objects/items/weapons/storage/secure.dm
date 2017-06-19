@@ -176,7 +176,7 @@
 		if ((CLUMSY in user.mutations) && prob(50))
 			user << "\red The [src] slips out of your hand and hits your head."
 			user.take_organ_damage(10)
-			user.Paralyse(2)
+			user.KnockOut(2)
 			return
 
 		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
@@ -195,7 +195,7 @@
 						return
 					var/time = rand(2, 6)
 					if (prob(75))
-						H.Paralyse(time)
+						H.KnockOut(time)
 					else
 						H.Stun(time)
 					if(H.stat != 2)	H.stat = 1

@@ -32,7 +32,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(stat || lockcharge || weakened || stunned || paralysis)
+	if(lockcharge || is_mob_incapacitated(TRUE))
 		return
 
 	if(next_move >= world.time)

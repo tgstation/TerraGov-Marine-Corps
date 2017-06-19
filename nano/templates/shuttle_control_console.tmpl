@@ -99,7 +99,7 @@
 					{{if data.optimize_allowed == 1}}
 						{{:helper.link('Run Flight Optimization', 'refresh', {'optimize' : '1'}, data.can_optimize ? null : 'disabled' , null)}}
 					{{/if}}
-					{{if data.gun_mission_allowed == 1}}
+					{{if data.onboard && data.gun_mission_allowed == 1}}
 						{{:helper.link('Toggle Fire Mission', 'refresh', {'fire_mission' : '1'}, data.shuttle_state == "idle" ? null : 'disabled' , null)}}
 					{{/if}}
 				{{/if}}
