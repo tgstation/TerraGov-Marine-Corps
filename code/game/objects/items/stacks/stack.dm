@@ -17,9 +17,9 @@
 	var/amount = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 
-/obj/item/stack/New(var/loc, var/amount=null)
+/obj/item/stack/New(var/loc, var/amount = null)
 	..()
-	if (amount)
+	if(amount)
 		src.amount = amount
 	return
 
@@ -32,63 +32,60 @@
 	..()
 	user << "There are [amount] [singular_name]\s in the stack."
 
-
 /obj/item/stack/attack_self(mob/user as mob)
-
-
 	list_recipes(user)
 
 /obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
-	if (!recipes)
+	if(!recipes)
 		return
-	if (!src || amount<=0)
+	if(!src || amount <= 0)
 		user << browse(null, "window=stack")
 	user.set_machine(src) //for correct work of onclose
 	var/list/recipe_list = recipes
-	if (recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
+	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
 	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, src.amount)
-	for(var/i=1;i<=recipe_list.len,i++)
+	for(var/i = 1; i <= recipe_list.len, i++)
 		var/E = recipe_list[i]
-		if (isnull(E))
+		if(isnull(E))
 			t1 += "<hr>"
 			continue
 
-		if (i>1 && !isnull(recipe_list[i-1]))
+		if(i > 1 && !isnull(recipe_list[i-1]))
 			t1+="<br>"
 
-		if (istype(E, /datum/stack_recipe_list))
+		if(istype(E, /datum/stack_recipe_list))
 			var/datum/stack_recipe_list/srl = E
-			if (src.amount >= srl.req_amount)
+			if(src.amount >= srl.req_amount)
 				t1 += "<a href='?src=\ref[src];sublist=[i]'>[srl.title] ([srl.req_amount] [src.singular_name]\s)</a>"
 			else
 				t1 += "[srl.title] ([srl.req_amount] [src.singular_name]\s)<br>"
 
-		if (istype(E, /datum/stack_recipe))
+		if(istype(E, /datum/stack_recipe))
 			var/datum/stack_recipe/R = E
 			var/max_multiplier = round(src.amount / R.req_amount)
 			var/title as text
 			var/can_build = 1
-			can_build = can_build && (max_multiplier>0)
-			if (R.res_amount>1)
-				title+= "[R.res_amount]x [R.title]\s"
+			can_build = can_build && (max_multiplier > 0)
+			if(R.res_amount > 1)
+				title += "[R.res_amount]x [R.title]\s"
 			else
-				title+= "[R.title]"
+				title += "[R.title]"
 			title+= " ([R.req_amount] [src.singular_name]\s)"
-			if (can_build)
+			if(can_build)
 				t1 += text("<A href='?src=\ref[src];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
 			else
 				t1 += text("[]", title)
 				continue
-			if (R.max_res_amount>1 && max_multiplier>1)
+			if(R.max_res_amount>1 && max_multiplier > 1)
 				max_multiplier = min(max_multiplier, round(R.max_res_amount/R.res_amount))
 				t1 += " |"
-				var/list/multipliers = list(5,10,25)
+				var/list/multipliers = list(5, 10, 25)
 				for (var/n in multipliers)
 					if (max_multiplier>=n)
 						t1 += " <A href='?src=\ref[src];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
-				if (!(max_multiplier in multipliers))
+				if(!(max_multiplier in multipliers))
 					t1 += " <A href='?src=\ref[src];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
 
 	t1 += "</TT></body></HTML>"
@@ -132,8 +129,8 @@
 			if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2)) //Note: If no dense items, or if dense item, both it and result must be border tiles
 				usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
 				return
-			if(R.one_per_turf == 2 && istype(O, R.result_type) && O.dir == usr.dir) //We check overlapping dir here
-				usr << "<span class='warning'>There is already another [R.title] in this direction!</span>"
+			if(R.one_per_turf == 2 && (O.flags_atom & ON_BORDER) && O.dir == usr.dir) //We check overlapping dir here. Doesn't have to be the same type
+				usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
 				return
 		if(R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor) || istype(usr.loc, /turf/unsimulated/jungle)))
 			usr << "<span class='warning'>\The [R.title] must be constructed on a proper surface!</span>"
@@ -151,8 +148,8 @@
 			if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2))
 				usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
 				return
-			if(R.one_per_turf == 2 && istype(O, R.result_type) && O.dir == usr.dir)
-				usr << "<span class='warning'>There is already another [R.title] in this direction!</span>"
+			if(R.one_per_turf == 2 && (O.flags_atom & ON_BORDER) && O.dir == usr.dir)
+				usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
 				return
 		if(amount < R.req_amount * multiplier)
 			return
