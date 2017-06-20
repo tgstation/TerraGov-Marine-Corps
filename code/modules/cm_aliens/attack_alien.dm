@@ -128,6 +128,11 @@
 				M.attack_log += text("\[[time_stamp()]\] <font color='red'>slashed [src.name] ([src.ckey])</font>")
 			log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
 
+			if (M.caste == "Ravager")
+				var/mob/living/carbon/Xenomorph/Ravager/R = M
+				if (R.delimb(src, affecting))
+					return 1
+
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
 

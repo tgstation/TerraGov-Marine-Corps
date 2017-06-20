@@ -6,13 +6,13 @@
 	desc = "A huge, nasty red alien with enormous scythed claws."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Ravager Walking"
-	melee_damage_lower = 30
-	melee_damage_upper = 50
+	melee_damage_lower = 25
+	melee_damage_upper = 35
 	tacklemin = 3
 	tacklemax = 6
 	tackle_chance = 80
-	health = 180
-	maxHealth = 180
+	health = 150
+	maxHealth = 150
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
@@ -78,6 +78,16 @@
 
 	return
 
+//Chance of insta limb amputation after a melee attack.
+/mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/organ/external/O)
+	if (prob(20))
+		O = H.get_organ(check_zone(zone_selected))
+		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
+			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
+			O.droplimb(1, 0, 0)
+			return 1
+
+	return 0
 
 //Super hacky firebreathing Halloween rav.
 /mob/living/carbon/Xenomorph/Ravager/ravenger

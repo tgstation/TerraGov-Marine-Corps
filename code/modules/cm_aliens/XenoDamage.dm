@@ -8,12 +8,18 @@
 	switch(severity)
 		if(1)
 			switch(xeno_explosion_resistance)
-				if(2,3)
-					apply_damage(rand(200, 300), BRUTE)
+				if(3)
+					apply_damage(rand(200, 299), BRUTE)
+					updatehealth()
+				if(2)
+					KnockDown(4)
+					apply_damage(rand(200, 299), BRUTE)
 					updatehealth()
 				if(1)
-					KnockDown(4)
-					apply_damage(rand(200, 300), BRUTE)
+					if(prob(80))
+						KnockOut(2)
+					KnockDown(6)
+					apply_damage(rand(200, 299), BRUTE)
 					updatehealth()
 				else
 					gib()
@@ -22,8 +28,10 @@
 		if(2)
 			switch(xeno_explosion_resistance)
 				if(3) return
-				if(1)
+				if(2)
 					KnockDown(2)
+				if(1)
+					KnockDown(4)
 				if(0)
 					if(prob(80))
 						KnockOut(4)
@@ -34,7 +42,7 @@
 
 		if(3)
 			switch(xeno_explosion_resistance)
-				if(3) return
+				if(3, 2, 1) return
 				if(0)
 					if(prob(40))
 						KnockOut(2)
@@ -119,6 +127,4 @@
 				"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
 				if(prob(60) && !victim.stat)
 					victim.emote("scream") //Topkek
-				victim.take_organ_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part
-
-
+				victim.take_organ_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.
