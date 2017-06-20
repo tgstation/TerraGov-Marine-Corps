@@ -269,18 +269,18 @@
 	name = "sentry deployment system"
 	desc = "A box that deploys a sentry turret. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "sentry_system"
-	var/obj/machinery/marine_turret/premade/deployed_turret
+	var/obj/machinery/marine_turret/premade/dropship/deployed_turret
 
 	initialize()
 		if(!deployed_turret)
 			deployed_turret = new(src)
-			deployed_turret.density = 0
+			deployed_turret.deployment_system = src
 		..()
 
 	New()
 		if(!deployed_turret)
 			deployed_turret = new(src)
-			deployed_turret.density = 0
+			deployed_turret.deployment_system = src
 		..()
 
 	on_launch()

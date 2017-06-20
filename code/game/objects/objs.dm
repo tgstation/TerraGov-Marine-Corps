@@ -95,8 +95,14 @@
 /obj/proc/update_icon()
 	return
 
+//things the obj that is the user's machine must do when we unset the user's machine.
+/obj/proc/on_unset_machine(mob/user)
+	return
+
 /mob/proc/unset_machine()
-	src.machine = null
+	if(machine)
+		machine.on_unset_machine(src)
+		machine = null
 
 /mob/proc/set_machine(var/obj/O)
 	if(src.machine)

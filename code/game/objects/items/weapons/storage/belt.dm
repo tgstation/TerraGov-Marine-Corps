@@ -162,6 +162,7 @@
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)

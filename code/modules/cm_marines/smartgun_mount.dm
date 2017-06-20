@@ -415,17 +415,12 @@
 	if(operator != user) return 0
 	if(istype(A,/obj/screen)) return 0
 	if(is_bursting) return
-	if(user.lying) //Fixing the fact if they're going prone that they can't shoot or that they are unconconcious
+	if(user.lying || get_dist(user,src) > 1 || user.is_mob_incapacitated())
 		user.client.view = world.view
 		user.machine = null
 		operator = null
 		return 0
-	if(get_dist(user,src) > 1 || user.stat)
-		user.client.view = world.view
-		user.machine = null
-		operator = null
-		return 0
-	if(user.get_active_hand() != null)
+	if(user.get_active_hand())
 		usr << "<span class='warning'>You need a free hand to shoot the [src].</span>"
 		return 0
 
@@ -514,6 +509,12 @@
 				if(zoom)
 					user.client.view = 12
 				return
+
+
+/obj/machinery/m56d_hmg/on_unset_machine(mob/user)
+	if(zoom && user.client)
+		user.client.view = world.view
+
 
 /obj/machinery/m56d_hmg/CtrlClick(var/mob/user) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
 	if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.

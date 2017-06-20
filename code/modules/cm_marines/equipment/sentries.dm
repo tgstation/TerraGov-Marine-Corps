@@ -639,7 +639,7 @@
 	if(stat)
 		density = 0
 	else
-		density = 1
+		density = initial(density)
 	update_icon()
 
 /obj/machinery/marine_turret/proc/check_power(var/power)
@@ -981,3 +981,14 @@
 	name = "Modified UA-577 Gauss Turret"
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
+
+//the turret inside the sentry deployment system
+/obj/machinery/marine_turret/premade/dropship
+	density = 0
+	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
+
+	Dispose()
+		if(deployment_system)
+			deployment_system.deployed_turret = null
+			deployment_system = null
+		. = ..()
