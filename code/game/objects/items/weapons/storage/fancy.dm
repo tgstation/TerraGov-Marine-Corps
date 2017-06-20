@@ -19,14 +19,13 @@
 	name = "donut box"
 	var/icon_type = "donut"
 
-	update_icon(itemremoved = 0)
-		var/total_contents = contents.len - itemremoved
-		icon_state = "[src.icon_type]box[total_contents]"
+	update_icon()
+		icon_state = "[icon_type]box[contents.len]"
 
 	remove_from_storage(obj/item/W, atom/new_location)
 		. = ..()
 		if(.)
-			update_icon(1)
+			update_icon()
 
 
 	examine(mob/user)

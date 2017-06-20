@@ -131,11 +131,11 @@
 	..()
 	if((src in usr.contents) || (istype(src.loc, /obj/item/weapon/folder) && (src.loc in usr.contents)))
 		if(href_list["next_page"])
-			if(page == amount)
+			if(page == amount-1)
 				screen = 2
 			else if(page == 1)
 				screen = 1
-			else if(page == amount+1)
+			else if(page == amount)
 				return
 			page++
 			playsound(src.loc, "pageturn", 15, 1)
@@ -144,7 +144,7 @@
 				return
 			else if(page == 2)
 				screen = 0
-			else if(page == amount+1)
+			else if(page == amount)
 				screen = 1
 			page--
 			playsound(src.loc, "pageturn", 15, 1)
@@ -160,7 +160,6 @@
 				return
 			else if(page == amount)
 				screen = 2
-			else if(page == amount+1)
 				page--
 
 			amount--

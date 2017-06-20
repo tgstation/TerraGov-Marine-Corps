@@ -373,7 +373,7 @@
 				add_fingerprint(user)
 				return
 		if(loc != user) return
-		var/obj/item/weapon/paper_bundle/B = new(src.loc)
+		var/obj/item/weapon/paper_bundle/B = new(get_turf(user))
 		if (name != "paper")
 			B.name = name
 		else if (P.name != "paper" && P.name != "photo")
@@ -383,6 +383,7 @@
 		user << "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>"
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(P, user, TRUE)
+		user.put_in_hands(B)
 
 	else if(istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
 		if ( istype(P, /obj/item/weapon/pen/robopen) && P:mode == 2 )
