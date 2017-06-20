@@ -12,13 +12,13 @@
 					apply_damage(rand(200, 299), BRUTE)
 					updatehealth()
 				if(2)
-					KnockDown(4)
+					KnockDown(6)
 					apply_damage(rand(200, 299), BRUTE)
 					updatehealth()
 				if(1)
 					if(prob(80))
 						KnockOut(2)
-					KnockDown(6)
+					KnockDown(8)
 					apply_damage(rand(200, 299), BRUTE)
 					updatehealth()
 				else
@@ -29,9 +29,9 @@
 			switch(xeno_explosion_resistance)
 				if(3) return
 				if(2)
-					KnockDown(2)
-				if(1)
 					KnockDown(4)
+				if(1)
+					KnockDown(6)
 				if(0)
 					if(prob(80))
 						KnockOut(4)
@@ -42,7 +42,11 @@
 
 		if(3)
 			switch(xeno_explosion_resistance)
-				if(3, 2, 1) return
+				if(3) return
+				if(2)
+					KnockDown(2)
+				if(1)
+					KnockDown(4)
 				if(0)
 					if(prob(40))
 						KnockOut(2)
