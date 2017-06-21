@@ -283,3 +283,8 @@
 	if (src.master)
 		return src.master.attack_hand(a, b, c)
 	return
+
+
+//things the object that is the user's machine must do when we unset the user's machine.
+/atom/movable/proc/on_unset_machine(mob/user)
+	return
