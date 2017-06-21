@@ -16,7 +16,7 @@
 	maxplasma = 200
 	evolution_threshold = 800
 	caste_desc = "A huge tanky xenomorph."
-	speed = 0.5
+	speed = 0.1
 	evolves_to = list()
 	armor_deflection = 60
 	tier = 3
@@ -113,7 +113,7 @@
 		stop_momentum(charge_dir)
 		r_FAL
 
-	if(speed > -1.6) speed -= 0.1 //Speed increases each step taken. At 30 tiles, maximum speed is reached.
+	if(speed > -2.0) speed -= 0.15 //Speed increases each step taken. At 30 tiles, maximum speed is reached. //Seems to be 13 tiles now. Would match more with observations
 
 	switch(momentum)
 		if(-INFINITY to -1) momentum = 0 //Close enough.

@@ -18,7 +18,7 @@
 	maxplasma = 800
 	evolution_threshold = 800
 	spit_delay = 20
-	speed = 1
+	speed = 0.1
 	pixel_x = -16
 	caste_desc = "Ptui!"
 	evolves_to = list()

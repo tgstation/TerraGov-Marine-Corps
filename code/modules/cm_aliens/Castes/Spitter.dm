@@ -14,7 +14,7 @@
 	maxplasma = 600
 	evolution_threshold = 250
 	spit_delay = 25
-	speed = -0.1
+	speed = -0.5
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
 	armor_deflection = 15

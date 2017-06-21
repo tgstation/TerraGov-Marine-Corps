@@ -13,7 +13,7 @@
 	maxplasma = 1500
 	evolution_threshold = 0
 	caste_desc = "Oh dear god!"
-	speed = -1.8
+	speed = -2.1
 	evolves_to = list() //Cannot evolve.
 	charge_type = 1 //Pounce
 	is_intelligent = 1

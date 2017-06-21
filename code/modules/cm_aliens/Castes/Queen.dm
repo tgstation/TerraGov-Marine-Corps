@@ -24,7 +24,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	maxplasma = 700
 	plasma_gain = 30
 	is_intelligent = 1
-	speed = 0.8
+	speed = 0.3
 	evolution_threshold = 800
 	pixel_x = -16
 	fire_immune = 1
