@@ -17,7 +17,7 @@
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	pixel_x = -16
-	speed = 1.2
+	speed = 0.4
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/speed_activated = 0

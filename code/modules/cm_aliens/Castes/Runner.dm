@@ -15,7 +15,7 @@
 	maxplasma = 100
 	evolution_threshold = 200
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-	speed = -1.9
+	speed = -1.8
 	evolves_to = list("Hunter")
 	charge_type = 1 //Pounce - Runner
 	flags_pass = PASSTABLE

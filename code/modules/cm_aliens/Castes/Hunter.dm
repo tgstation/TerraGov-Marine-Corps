@@ -14,7 +14,7 @@
 	maxplasma = 100
 	evolution_threshold = 500
 	caste_desc = "A fast, powerful front line combatant."
-	speed = -1.6 //Not as fast as runners, but faster than other xenos
+	speed = -1.5 //Not as fast as runners, but faster than other xenos
 	evolves_to = list("Ravager", "Crusher")
 	charge_type = 2 //Pounce - Hunter
 	armor_deflection = 15

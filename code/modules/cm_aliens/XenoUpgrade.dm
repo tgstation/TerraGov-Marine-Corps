@@ -6,7 +6,7 @@
 	set desc = "Upgrades you, at the cost of never being able to evolve. Requires full plasma"
 	set category = "Alien"
 
-	upgrade_xeno(0,upgrade)
+	upgrade_xeno(0, upgrade)
 
 /mob/living/carbon/Xenomorph/proc/upgrade_xeno(bypass_limit, tier)
 	upgrade = tier
@@ -41,31 +41,38 @@
 			return
 
 /*
+*1 is indicative of the base speed/armor
 ARMOR
-runner 0, 5, 10, 10
-hunter 15, 20, 25, 25
-Ravager 40, 45, 50, 50
-Crusher 60, 65, 70, 75
-Sentinel 15, 15, 20, 20
-Spitter 15, 20, 25, 30
-Boiler 20, 30, 35, 35
-Praetorian 35, 40, 45, 45
-Drone 0, 5, 10, 15
-Hivelord 0, 10, 15, 20
-Carrier 0, 10, 10, 15
-Queen 45, 50, 55, 55
+UPGRADE		*1	2	3	4
+--------------------------
+Runner		0	5	10	10
+Hunter		15	20	25	25
+Ravager		40	45	50	50
+Crusher		60	65	70	75
+Sentinel	15	15	20	20
+Spitter		15	20	25	30
+Boiler		20	30	35	35
+Praetorian	35	40	45	45
+Drone		0	5	10	15
+Hivelord	0	10	15	20
+Carrier		0	10	10	15
+Queen		45	50	55	55
 
-SPEED:
-Runner -2.2 -2.1 -2
-Hunter -2 -1.8 -1.7 -1.6
-Ravager -1.5 -1.4 -1.3 -1.2
-Sentinel -1 -0.8 -0.6 -0.4
-Spitter -0.8 -0.5 -0.3 -0.1
-Boiler 0.4 0.8 1 1.2
-Preatorian 0.2 0.6 0.8 1
-Drone -1 -0.8 -0.6 -0.8
-Hivelord 0.4 0.8 1 1.2
-Queen 0.2 0.4 0.6 0.8
+SPEED
+UPGRADE		 4		 3		 2		 *1
+----------------------------------------
+Runner		-2.1	-2.0	-1.9	-1.8
+Hunter		-1.8	-1.7	-1.6	-1.5
+Ravager		-1.0	-0.9	-0.8	-0.7
+Crusher		 0.1	 0.1	 0.1	 0.1	*-2.0 when charging
+Sentinel	-1.1	-1.0	-0.9	-0.8
+Spitter		-0.8	-0.7	-0.6	-0.5
+Boiler		 0.2	 0.3	 0.4	 0.5
+Preatorian	-0.2	-0.1	 0.0	 0.1
+Drone		-1.1	-1.0	-0.9	-0.8
+Hivelord	 0.1	 0.2	 0.3	 0.4
+Carrier		-0.3	-0.2	-0.1	 0.0
+Queen		 0.0	 0.1	 0.2	 0.3
 */
 
 	switch(upgrade)
@@ -91,7 +98,7 @@ Queen 0.2 0.4 0.6 0.8
 					maxplasma = 150
 					evolution_threshold = 400
 					caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
-					speed = -2
+					speed = -1.9
 					armor_deflection = 5
 					attack_delay = -4
 					tacklemin = 2
@@ -107,7 +114,7 @@ Queen 0.2 0.4 0.6 0.8
 					maxplasma = 150
 					evolution_threshold = 800
 					caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
-					speed = -1.7
+					speed = -1.6
 					armor_deflection = 20
 					attack_delay = -2
 					tacklemin = 3
@@ -123,7 +130,7 @@ Queen 0.2 0.4 0.6 0.8
 					maxplasma = 150
 					evolution_threshold = 1600
 					caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
-					speed = -1.3
+					speed = -0.8
 					armor_deflection = 45
 					tacklemin = 4
 					tacklemax = 8
@@ -157,7 +164,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
-					speed = -0.6
+					speed = -0.9
 					spit_type = 0
 				if("Spitter")
 					melee_damage_lower = 20
@@ -174,7 +181,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
-					speed = -0.3
+					speed = -0.6
 					spit_type = 0
 				if("Boiler")
 					melee_damage_lower = 20
@@ -191,7 +198,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 65
-					speed = 1.0
+					speed = 0.4
 				if("Praetorian")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
@@ -207,7 +214,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 5
 					tacklemax = 8
 					tackle_chance = 75
-					speed = 0.8
+					speed = 0.0
 					spit_type = 0
 					aura_strength = 2.5
 				if("Drone")
@@ -224,7 +231,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
-					speed = -0.6
+					speed = -0.9
 					aura_strength = 1
 				if("Hivelord")
 					melee_damage_lower = 15
@@ -240,7 +247,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
-					speed = 1
+					speed = 0.3
 					aura_strength = 1.5
 				if("Carrier")
 					src << "<span class='xenonotice'>Throw a hugger to get your hugger upgrades.</span>"
@@ -257,7 +264,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 4
 					tackle_chance = 60
-					speed = -0.4
+					speed = -0.1
 					aura_strength = 1.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
 					CA.huggers_max = 7
@@ -276,7 +283,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 5
 					tacklemax = 7
 					tackle_chance = 85
-					speed = 0.6
+					speed = 0.2
 					aura_strength = 3
 
 		//SECOND UPGRADE
@@ -296,7 +303,7 @@ Queen 0.2 0.4 0.6 0.8
 					maxplasma = 200
 					evolution_threshold = 800
 					caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
-					speed = -2.1
+					speed = -2.0
 					armor_deflection = 10
 					attack_delay = -4
 					tacklemin = 3
@@ -312,7 +319,7 @@ Queen 0.2 0.4 0.6 0.8
 					maxplasma = 200
 					evolution_threshold = 1600
 					caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
-					speed = -1.8
+					speed = -1.7
 					armor_deflection = 25
 					attack_delay = -3
 					tacklemin = 4
@@ -328,7 +335,7 @@ Queen 0.2 0.4 0.6 0.8
 					maxplasma = 200
 					evolution_threshold = 3200
 					caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
-					speed = -1.4
+					speed = -0.9
 					armor_deflection = 50
 					tacklemin = 5
 					tacklemax = 9
@@ -362,7 +369,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 60
-					speed = -0.8
+					speed = -1.0
 					spit_type = 0
 				if("Spitter")
 					melee_damage_lower = 25
@@ -379,7 +386,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 70
-					speed = -0.5
+					speed = -0.7
 					spit_type = 0
 				if("Boiler")
 					melee_damage_lower = 30
@@ -396,7 +403,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 70
-					speed = 0.8
+					speed = 0.3
 				if("Praetorian")
 					melee_damage_lower = 30
 					melee_damage_upper = 35
@@ -412,7 +419,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 6
 					tacklemax = 9
 					tackle_chance = 80
-					speed = 0.6
+					speed = -0.1
 					spit_type = 0
 					aura_strength = 3.5
 				if("Drone")
@@ -429,7 +436,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
-					speed = -0.8
+					speed = -1.0
 					aura_strength = 1.5
 				if("Hivelord")
 					melee_damage_lower = 15
@@ -445,7 +452,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 70
-					speed = 0.8
+					speed = 0.2
 					aura_strength = 2
 				if("Carrier")
 					src << "<span class='xenonotice'>Throw a hugger to get your hugger upgrades.</span>"
@@ -462,7 +469,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 4
 					tacklemax = 5
 					tackle_chance = 70
-					speed = -0.4
+					speed = -0.2
 					aura_strength = 2
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
 					CA.huggers_max = 8
@@ -481,7 +488,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 6
 					tacklemax = 9
 					tackle_chance = 90
-					speed = 0.4
+					speed = 0.1
 					aura_strength = 4
 
 		//Final UPGRADE
@@ -502,7 +509,7 @@ Queen 0.2 0.4 0.6 0.8
 					plasma_gain = 2
 					maxplasma = 200
 					caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
-					speed = -2.2
+					speed = -2.1
 					armor_deflection = 10
 					attack_delay = -4
 					tacklemin = 3
@@ -518,7 +525,7 @@ Queen 0.2 0.4 0.6 0.8
 					plasma_gain = 20
 					maxplasma = 300
 					caste_desc = "A completly unmatched hunter. No, not even the Yautja can match you."
-					speed = -2
+					speed = -1.8
 					armor_deflection = 25
 					attack_delay = -3
 					tacklemin = 4
@@ -534,7 +541,7 @@ Queen 0.2 0.4 0.6 0.8
 					plasma_gain = 15
 					maxplasma = 200
 					caste_desc = "As I walk through the valley of the shadow of death."
-					speed = -1.5
+					speed = -1.0
 					armor_deflection = 50
 					tacklemin = 6
 					tacklemax = 10
@@ -568,7 +575,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 60
-					speed = -1
+					speed = -1.1
 					spit_type = 0
 				if("Spitter")
 					src << "<span class='xenodanger'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>"
@@ -602,7 +609,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 80
-					speed = 0.4
+					speed = 0.7
 				if("Praetorian")
 					src << "<span class='xenodanger'>You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream.</span>"
 					melee_damage_lower = 40
@@ -618,7 +625,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 7
 					tacklemax = 10
 					tackle_chance = 85
-					speed = 0.2
+					speed = -0.2
 					spit_type = 0
 					aura_strength = 4.5
 				if("Drone")
@@ -634,7 +641,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 80
-					speed = -1
+					speed = -1.1
 					aura_strength = 2
 				if("Hivelord")
 					src <<"<span class='xenodanger'>You are the builder of walls. Ensure that the marines are the ones who pay for them.</span>"
@@ -650,7 +657,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 5
 					tacklemax = 7
 					tackle_chance = 80
-					speed = 0.4
+					speed = 0.1
 				if("Carrier")
 					src << "<span class='xenodanger'>You are the master of huggers. Throw them like baseballs at the marines!</span>"
 					src << "<span class='xenonotice'>Throw a hugger to get your hugger upgrades.</span>"
@@ -685,7 +692,7 @@ Queen 0.2 0.4 0.6 0.8
 					tacklemin = 7
 					tacklemax = 10
 					tackle_chance = 95
-					speed = 0.2
+					speed = 0.0
 					aura_strength = 5
 
 	generate_name() //Give them a new name now

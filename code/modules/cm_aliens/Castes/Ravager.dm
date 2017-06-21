@@ -18,7 +18,7 @@
 	maxplasma = 100
 	evolution_threshold = 800
 	caste_desc = "A brutal, devastating front-line attacker."
-	speed = -1.2 //Not as fast as runners, but faster than other xenos.
+	speed = -0.7 //Not as fast as runners, but faster than other xenos.
 	evolves_to = list()
 	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
 	var/CHARGESPEED = 2

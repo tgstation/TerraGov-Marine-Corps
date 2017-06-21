@@ -17,7 +17,7 @@
 	see_in_dark = 8
 	caste_desc = "D'awwwww, so cute!"
 	flags_pass = PASSTABLE | PASSMOB
-	speed = -1.2 //Zoom!
+	speed = -1.6 //Zoom!
 	away_timer = 300
 	tier = 0  //Larva's don't count towards Pop limits
 	upgrade = -2

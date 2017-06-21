@@ -21,6 +21,7 @@
 	caste_desc = "A carrier of huggies."
 	drag_delay = 6 //pulling a big dead xeno is hard
 	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
+	speed = 0.0
 	var/huggers_max = 6
 	var/huggers_cur = 0
 	var/throwspeed = 1

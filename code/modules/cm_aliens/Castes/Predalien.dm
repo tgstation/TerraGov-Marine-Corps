@@ -39,7 +39,7 @@
 
 	mob_size = MOB_SIZE_BIG
 	attack_delay = -2
-	speed = -1.8
+	speed = -2.1
 	tier = 1
 	upgrade = -1
 
