@@ -95,18 +95,24 @@
 	feedback_add_details("admin_verb","TLobby") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/togglemidis()
-	set name = "Hear/Silence Midis"
+	set name = "Silence Current Midi"
 	set category = "Preferences"
 	set desc = "Toggles hearing sounds uploaded by admins"
-	prefs.toggles_sound ^= SOUND_MIDI
-	prefs.save_preferences()
-	if(prefs.toggles_sound & SOUND_MIDI)
-		src << "You will now hear any sounds uploaded by admins."
+	// prefs.toggles_sound ^= SOUND_MIDI // Toggle on/off
+	// prefs.save_preferences() // We won't save the change - it'll be a temporary switch instead of permanent, but they can still make it permanent in character setup.
+	if(prefs.toggles_sound & SOUND_MIDI) // Not using && midi_playing here - since we can't tell how long an admin midi is, the user should always be able to turn it off at any time.
+		src << "The currently playing midi has been silenced."
 		var/sound/break_sound = sound(null, repeat = 0, wait = 0, channel = 777)
 		break_sound.priority = 250
 		src << break_sound	//breaks the client's sound output on channel 777
+		if(src.mob.client.midi_silenced)	return
+		if(midi_playing)
+			message_admins("A player has silenced the currently playing midi.", 1)
+			src.mob.client.midi_silenced = 1
+			spawn(300) // Prevents message_admins() spam. Should match with the midi_playing_timer spawn() in playsound.dm
+				src.mob.client.midi_silenced = 0
 	else
-		src << "You will no longer hear sounds uploaded by admins; any currently playing midis have been disabled."
+		src << "You have 'Play Admin Midis' disabled in your Character Setup, so this verb is useless to you."
 	feedback_add_details("admin_verb","TMidi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/listen_ooc()
@@ -118,7 +124,6 @@
 	src << "You will [(prefs.toggles_chat & CHAT_OOC) ? "now" : "no longer"] see messages on the OOC channel."
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/verb/listen_looc()
 	set name = "Show/Hide LOOC"
 	set category = "Preferences"
@@ -128,8 +133,6 @@
 
 	src << "You will [(prefs.toggles_chat & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel."
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
 
 /client/verb/Toggle_Soundscape() //All new ambience should be added here so it works with this verb until someone better at things comes up with a fix that isn't awful
 	set name = "Hear/Silence Ambience"

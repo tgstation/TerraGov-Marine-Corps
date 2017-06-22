@@ -82,8 +82,8 @@ var/list/admin_verbs_ban = list(
 	// /client/proc/jobbans // Disabled temporarily due to 15-30 second lag spikes. Don't forget the comma in the line above when uncommenting this!
 	)
 var/list/admin_verbs_sounds = list(
-	/client/proc/play_local_sound,
-	/client/proc/play_sound
+	/client/proc/play_sound_from_list,
+	/client/proc/play_imported_sound
 	)
 var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
@@ -180,8 +180,8 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_check_contents,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
-	/client/proc/play_local_sound,
-	/client/proc/play_sound,
+	/client/proc/play_sound_from_list,
+	/client/proc/play_imported_sound,
 	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
