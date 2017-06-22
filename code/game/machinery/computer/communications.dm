@@ -159,6 +159,7 @@
 		if("distress")
 			if(state == STATE_DISTRESS)
 
+				//Comment to test
 				if(world.time < DISTRESS_TIME_LOCK)
 					usr << "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 					r_FAL
@@ -173,12 +174,14 @@
 					usr << "<span class='warning'>The distress beacon is currently recalibrating.</span>"
 					r_FAL
 
+				 //Comment block to test
 				if(world.time < cooldown_request + COOLDOWN_COMM_REQUEST)
 					usr << "<span class='warning'>The distress beacon has recently broadcast a message. Please wait.</span>"
 					r_FAL
 
-				 //Currently only counts aliens, but this will likely need to change with human opponents.
-				 //I think this should instead count human losses, so that a distress beacon is available when a certain number of dead pile up.
+				//Currently only counts aliens, but this will likely need to change with human opponents.
+				//I think this should instead count human losses, so that a distress beacon is available when a certain number of dead pile up.
+				//Comment block to test
 				var/L[] = ticker.mode.count_humans_and_xenos()
 
 				if(L[2] < round(L[1] * 0.5))
