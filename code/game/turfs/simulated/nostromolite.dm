@@ -51,7 +51,7 @@ var/list/obj/effect/death_drop/DEATH_TELEPORT = list()
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg')
+	ambience = list('sound/ambience/ambispace.ogg')
 
 /obj/item/weapon/bananapeel/surface_slip
 	name = "slippery surface"

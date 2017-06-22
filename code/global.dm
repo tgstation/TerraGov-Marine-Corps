@@ -131,6 +131,7 @@ var/guests_allowed = 1
 var/shuttle_frozen = 0
 var/shuttle_left = 0
 var/tinted_weldhelh = 1
+var/midi_playing = 0
 
 var/list/jobMax = list()
 var/list/bombers = list(  )

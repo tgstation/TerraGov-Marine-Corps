@@ -34,7 +34,7 @@
 			else
 				. = step(src, direction)
 				if(.)
-					pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25, 1), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25, 1))
+					pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
 
 	attack_hand(mob/user)
@@ -80,6 +80,13 @@
 			H << "<span class='warning'>You need your two hands to use [src].</span>"
 			return
 		. = ..()
+
+	verb/enter_powerloader(mob/M)
+		set category = "Object"
+		set name = "Enter Power Loader"
+
+		set src in oview(1)
+		buckle_mob(M, usr)
 
 	handle_rotation()
 		if(dir == NORTH)

@@ -1,76 +1,49 @@
-/client/proc/play_sound(S as sound)
+/client/proc/play_imported_sound(S as sound)
 	set category = "Fun"
-	set name = "Play Global Sound"
+	set name = "Play Imported Sound"
+	set desc = "Play a sound imported from anywhere on your computer."
 	if(!check_rights(R_SOUNDS))	return
 
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
+	var/heard = 0
 
-	log_admin("[key_name(src)] played sound [S]")
-	message_admins("[key_name_admin(src)] played sound [S]", 1)
-	for(var/mob/M in player_list)
-		if(M.client.prefs.toggles_sound & SOUND_MIDI)
-			M << uploaded_sound
+	switch( alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel") )
+		if("Global")
+			for(var/mob/M in player_list)
+				if(M.client.prefs.toggles_sound & SOUND_MIDI)
+					M << uploaded_sound
+					heard ++
+		if("Local")
+			playsound(get_turf(src.mob), uploaded_sound, 50, 0)
+			for(var/mob/M in view())
+				heard ++
+		if("Cancel")
+			return
 
-	feedback_add_details("admin_verb","PGS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(src)] played sound `[S]` for [heard] player(s) - the rest have disabled admin midis.")
+	message_admins("[key_name_admin(src)] played sound `[S]` for [heard] player(s) - the rest have disabled admin midis.", 1)
+	feedback_add_details("admin_verb","PCS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	// A 30 sec timer used to show Admins how many players are silencing the sound after it starts - see preferences_toggles.dm
+	var/midi_playing_timer = 300 // Should match with the midi_silenced spawn() in preferences_toggles.dm
+	midi_playing = 1
+	spawn(midi_playing_timer)
+		midi_playing = 0
 
 
-/client/proc/play_local_sound(S as sound)
+/client/proc/play_sound_from_list()
 	set category = "Fun"
-	set name = "Play Local Sound"
+	set name = "Play Sound From List"
+	set desc = "Play a sound already in the project from a pre-made list."
 	if(!check_rights(R_SOUNDS))	return
 
-	log_admin("[key_name(src)] played a local sound [S]")
-	message_admins("[key_name_admin(src)] played a local sound [S]", 1)
-	playsound(get_turf(src.mob), S, 25, 0)
-	feedback_add_details("admin_verb","PLS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	var/list/sounds = file2list("sound/soundlist.txt");
+	sounds += "--CANCEL--"
 
+	var/melody = input("Select a sound to play", "Sound list", "--CANCEL--") in sounds
 
-/*
-/client/proc/cuban_pete()
-	set category = "Fun"
-	set name = "Cuban Pete Time"
+	if(melody == "--CANCEL--")	return
 
-	message_admins("[key_name_admin(usr)] has declared Cuban Pete Time!", 1)
-	for(var/mob/M in world)
-		if(M.client)
-			if(M.client.midis)
-				M << 'cubanpetetime.ogg'
-
-	for(var/mob/living/carbon/human/CP in world)
-		if(CP.real_name=="Cuban Pete" && CP.key!="Rosham")
-			CP << "Your body can't contain the rhumba beat"
-			CP.gib()
-
-
-/client/proc/bananaphone()
-	set category = "Fun"
-	set name = "Banana Phone"
-
-	message_admins("[key_name_admin(usr)] has activated Banana Phone!", 1)
-	for(var/mob/M in world)
-		if(M.client)
-			if(M.client.midis)
-				M << 'bananaphone.ogg'
-
-
-client/proc/space_asshole()
-	set category = "Fun"
-	set name = "Space Asshole"
-
-	message_admins("[key_name_admin(usr)] has played the Space Asshole Hymn.", 1)
-	for(var/mob/M in world)
-		if(M.client)
-			if(M.client.midis)
-				M << 'sound/music/space_asshole.ogg'
-
-
-client/proc/honk_theme()
-	set category = "Fun"
-	set name = "Honk"
-
-	message_admins("[key_name_admin(usr)] has creeped everyone out with Blackest Honks.", 1)
-	for(var/mob/M in world)
-		if(M.client)
-			if(M.client.midis)
-				M << 'honk_theme.ogg'*/
+	play_imported_sound(melody)
+	feedback_add_details("admin_verb","PDS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
