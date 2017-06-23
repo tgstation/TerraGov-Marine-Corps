@@ -161,7 +161,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	return
 
-/proc/get_options_bar(whom, detail = 2, name = 0, highlight_special = 1)
+/proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
 	if(!whom)
 		return "<b>(*null*)</b>"
 	var/mob/M
@@ -178,12 +178,12 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	var/ref_mob = "\ref[M]"
 	switch(detail)
 		if(0)
-			return "<b>[key_name(C, name, highlight_special)]</b>"
+			return "<b>[key_name(C, link, name, highlight_special)]</b>"
 		if(1)
-			return "<b>[key_name(C, name, highlight_special)] \
+			return "<b>[key_name(C, link, name, highlight_special)] \
 			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>)</b>"
 		if(2)
-			return "<b>[key_name(C, name, highlight_special)] \
+			return "<b>[key_name(C, link, name, highlight_special)] \
 			(<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) \
 			(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>) \
 			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) \
@@ -193,6 +193,6 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
 			(<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
 		if(3)
-			return "<b>[key_name(C, name, highlight_special)] \
+			return "<b>[key_name(C, link, name, highlight_special)] \
 			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
 			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)</b>"
