@@ -93,7 +93,7 @@
 			cdel(animation)
 
 	if(!flashfail)
-		flick("flash2", src)
+	//	flick("flash2", src)
 		if(!issilicon(M))
 
 			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
@@ -131,7 +131,7 @@
 			user.show_message("<span class='warning'>*click* *click*</span>", 2)
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
-	flick("flash2", src)
+	//flick("flash2", src)
 	if(user && isrobot(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
