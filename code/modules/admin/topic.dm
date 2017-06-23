@@ -2253,9 +2253,9 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		if(ref_person && ref_person.marked)
+		if(ref_person && ref_person.adminhelp_marked)
 			usr << "<b>This Adminhelp is already being handled.</b>"
-			usr << sound('sound/misc/fart_short.ogg')
+			usr << sound('sound/effects/adminhelp-error.ogg')
 			return
 
 		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'Mark'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
@@ -2271,16 +2271,16 @@
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
 		src.viewUnheardAhelps() //This SHOULD refresh the page
 
-		ref_person.marked = 1 //Timer to prevent multiple clicks
+		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			if(ref_person)	ref_person.marked = 0
+			if(ref_person)	ref_person.adminhelp_marked = 0
 
 	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
 		var/mob/ref_person = locate(href_list["NOPE"])
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		if(ref_person && ref_person.marked)
+		if(ref_person && ref_person.adminhelp_marked)
 			usr << "<b>This Adminhelp is already being handled.</b>"
 			usr << sound('sound/misc/fart_short.ogg')
 			return
@@ -2298,9 +2298,9 @@
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
 		src.viewUnheardAhelps() //This SHOULD refresh the page
 
-		ref_person.marked = 1 //Timer to prevent multiple clicks
+		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
-			if(ref_person)	ref_person.marked = 0
+			if(ref_person)	ref_person.adminhelp_marked = 0
 
 	// Saving this for future lels -Rahl
 	// if(href_list["retarded"]) // Their message is fucking stupid

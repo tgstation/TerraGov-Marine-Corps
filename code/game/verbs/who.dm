@@ -4,19 +4,29 @@
 	set category = "OOC"
 
 	var/count_observers = 0
+	var/count_nonadmin_observers = 0
 	var/count_humans = 0
+	var/count_marine_humans = 0
 	var/count_infectedhumans = 0
 	var/count_aliens = 0
+	var/count_preds = 0
 
 	for(var/client/C in clients)
-		if(isobserver(C.mob) && !C.holder)		
+		if(isobserver(C.mob))
 			count_observers++
-		if(ishuman(C.mob) && C.mob.stat != DEAD)
-			count_humans++
-		if(ishuman(C.mob) && C.mob.stat != DEAD && C.mob.status_flags & XENO_HOST)
-			count_infectedhumans++
-		if(isXeno(C.mob) && C.mob.stat != DEAD)
-			count_aliens++
+			if(!C.holder)
+				count_nonadmin_observers++
+		if(C.mob.stat != DEAD)
+			if(ishuman(C.mob))
+				count_humans++
+				if(C.mob.job in (ROLES_MARINES))
+					count_marine_humans++
+				if(C.mob.status_flags & XENO_HOST)
+					count_infectedhumans++
+			if(isXeno(C.mob))
+				count_aliens++
+			if(isYautja(C.mob))
+				count_preds++
 
 
 	var/msg = "<b>Current Players:</b>\n"
@@ -31,16 +41,16 @@
 			entry += " - Playing as [C.mob.real_name]"
 			switch(C.mob.stat)
 				if(UNCONSCIOUS)
-					entry += " - <font color='darkgray'><b>Unconscious</b></font>"
+					entry += " - <font color='#404040'><b>Unconscious</b></font>"
 				if(DEAD)
 					if(isobserver(C.mob))
 						var/mob/dead/observer/O = C.mob
 						if(O.started_as_observer)
-							entry += " - <font color='gray'>Observing</font>"
+							entry += " - <font color='#777'>Observing</font>"
 						else
-							entry += " - <font color='black'><b>DEAD</b></font>"
+							entry += " - <font color='#000'><b>DEAD</b></font>"
 					else
-						entry += " - <font color='black'><b>DEAD</b></font>"
+						entry += " - <font color='#000'><b>DEAD</b></font>"
 
 /*			var/age
 			if(isnum(C.player_age))
@@ -71,9 +81,10 @@
 
 	if(holder)
 		msg += "<b>Total Players: [length(Lines)]</b>"
-		msg += "<br><b style=\"color:#777\">Total Non-Admin Observers: [count_observers]</b>"
-		msg += "<br><b style=\"color:#688944\">Total Alive Humans: [count_humans] \red(Infected: [count_infectedhumans])</b>"
-		msg += "<br><b style=\"color:#6161A1\">Total Alive Aliens: [count_aliens]</b>"
+		msg += "<br><b style='color:#777'>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
+		msg += "<br><b style='color:#2C7EFF'>Humans: [count_humans]</b> <b style='color:#688944'>(Marines: ~[count_marine_humans])</b> <b style='color:#F00'>(Infected: [count_infectedhumans])</b>"
+		msg += "<br><b style='color:#8200FF'>Aliens: [count_aliens]</b> <b style='color:#4D0096'>(Queen: [living_xeno_queen ? "Alive" : "Dead"])</b>"
+		msg += "<br><b style='color:#7ABA19'>Predators: [count_preds]</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"
 	src << msg
