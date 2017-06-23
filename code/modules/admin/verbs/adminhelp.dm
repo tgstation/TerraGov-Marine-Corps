@@ -20,7 +20,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
 
 	var/msg
-	var/list/type = list ("Gameplay / Roleplay Issue", "Suggestion / Bug Report")
+	var/list/type = list ("Suggestion / Bug Report", "Gameplay / Roleplay Issue")
 	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
 	if(selected_type == "Gameplay / Roleplay Issue")
 		msg = input("Please enter your message:", "Admin Help", null, null) as text
@@ -101,13 +101,10 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 							continue
 			msg += "[original_word] "
 
-	if(!mob)	return						//this doesn't happen
+	if(!mob)	return	//this doesn't happen
 
-	var/ref_mob = "\ref[mob]"
-	var/mentor_msg = "<br><br><font color='#009900'><b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>) [get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
-	msg = "<br><br><font color='#009900'><b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>) [get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
-
-
+	var/mentor_msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 0, 0, 1, 0)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
+	msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 2, 1, 1)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
 
 	var/admin_number_afk = 0
 
@@ -163,3 +160,39 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	unansweredAhelps["[src.computer_id]"] = msg //We are gonna do it by CID, since any other way really gets fucked over by ghosting etc
 
 	return
+
+/proc/get_options_bar(whom, detail = 2, name = 0, highlight_special = 1)
+	if(!whom)
+		return "<b>(*null*)</b>"
+	var/mob/M
+	var/client/C
+	if(istype(whom, /client))
+		C = whom
+		M = C.mob
+	else if(istype(whom, /mob))
+		M = whom
+		C = M.client
+	else
+		return "<b>(*not a mob*)</b>"
+
+	var/ref_mob = "\ref[M]"
+	switch(detail)
+		if(0)
+			return "<b>[key_name(C, name, highlight_special)]</b>"
+		if(1)
+			return "<b>[key_name(C, name, highlight_special)] \
+			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>)</b>"
+		if(2)
+			return "<b>[key_name(C, name, highlight_special)] \
+			(<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) \
+			(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>) \
+			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) \
+			(<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) \
+			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
+			(<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) \
+			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
+			(<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
+		if(3)
+			return "<b>[key_name(C, name, highlight_special)] \
+			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
+			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)</b>"

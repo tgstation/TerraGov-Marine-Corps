@@ -11,6 +11,13 @@ var/global/floorIsLava = 0
 		if(R_ADMIN & C.holder.rights)
 			C << msg
 
+/proc/message_staff(var/msg) // ALL staff - including Mentors
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
+	log_adminwarn(msg)
+	for(var/client/C in admins)
+		if(C.holder.rights)
+			C << msg
+
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	log_attack(text)
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
@@ -1061,31 +1068,6 @@ var/global/floorIsLava = 0
 	if(C.holder.rights == R_MENTOR)
 		return 1
 	return 0
-
-/proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
-	if(!whom)
-		return "<b>(*null*)</b>"
-	var/mob/M
-	var/client/C
-	if(istype(whom, /client))
-		C = whom
-		M = C.mob
-	else if(istype(whom, /mob))
-		M = whom
-		C = M.client
-	else
-		return "<b>(*not an mob*)</b>"
-	switch(detail)
-		if(0)
-			return "<b>[key_name(C, link, name, highlight_special)]</b>"
-		if(1)
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>)</b>"
-		if(2)
-			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>)(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)(<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>)(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)(<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
-		if(3)
-			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)</b>"
 
 /datum/admins/proc/togglesleep(var/mob/living/M as mob in world)
 	set category = "Admin"
