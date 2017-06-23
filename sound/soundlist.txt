@@ -9,3 +9,12 @@ sound/misc/sadtrombone.ogg
 sound/misc/sunshine_distress.ogg
 sound/misc/surrounded_by_assholes.ogg
 sound/misc/good_is_dumb.ogg
+sound/AI/commandreport.ogg
+sound/AI/evacuate.ogg
+sound/AI/ionstorm.ogg
+sound/AI/poweroff.ogg
+sound/AI/poweron.ogg
+sound/AI/selfdestruct.ogg
+sound/AI/selfdestruct_deactivated.ogg
+sound/AI/shuttlecalled.ogg
+sound/AI/shuttlerecalled.ogg
