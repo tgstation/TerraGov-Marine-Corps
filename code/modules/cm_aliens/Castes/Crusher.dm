@@ -113,7 +113,7 @@
 		stop_momentum(charge_dir)
 		r_FAL
 
-	if(speed > -2.0) speed -= 0.15 //Speed increases each step taken. At 30 tiles, maximum speed is reached. //Seems to be 13 tiles now. Would match more with observations
+	if(speed > -2.0) speed -= 0.17 //Speed increases each step taken. At 30 tiles, maximum speed is reached. //Seems to be 13 tiles now. Would match more with observations
 
 	switch(momentum)
 		if(-INFINITY to -1) momentum = 0 //Close enough.
