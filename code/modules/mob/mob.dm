@@ -513,19 +513,6 @@ var/list/slot_equipment_priority = list( \
 	return
 
 
-/mob/proc/pull_damage()
-	return 0
-
-/mob/living/carbon/human/pull_damage()
-	if(health - halloss <= config.health_threshold_softcrit)
-		for(var/N in organs_by_name)
-			var/datum/organ/external/e = organs_by_name[N]
-			if(lying && !buckled)
-				if(((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
-					return 1
-					break
-		return 0
-
 /mob/MouseDrop(mob/M as mob)
 	..()
 	if(M != usr) return
@@ -596,11 +583,6 @@ var/list/slot_equipment_priority = list( \
 			G.icon_state = "!reinforce"
 
 	if(hud_used && hud_used.pull_icon) hud_used.pull_icon.icon_state = "pull1"
-
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			src << "\red <B>Pulling [H] in their current condition would probably be a bad idea.</B>"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(M)
