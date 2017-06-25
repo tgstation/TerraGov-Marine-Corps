@@ -116,19 +116,35 @@
 		select_gamemode_skin(/obj/item/clothing/head/cmcap)
 		..()
 
+/obj/item/clothing/head/cmcap/verb/fliphat()
+	set name = "Flip hat"
+	set category = "Object"
+	set src in usr
+	if(!isliving(usr)) return
+	if(usr.stat) return
+
+	if(icon_state == item_color)
+		usr << "You spin the hat backwards! You look like a tool."
+		icon_state = icon_state + "_b"
+	else
+		usr << "You spin the hat back forwards. That's better."
+		icon_state = item_color
+
+	update_clothing_icon()
+
 /obj/item/clothing/head/cmcap/ro
 	name = "\improper USCM officer cap"
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
 	item_state = "rocap"
-	item_color = "rocap"
+	item_color = "rocap2"
 
 /obj/item/clothing/head/cmcap/req
 	name = "\improper USCM requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 	item_state = "cargocap"
-	item_color = "cargocap"
+	item_color = "cargocap2"
 
 
 //============================//BERETS\\=================================\\

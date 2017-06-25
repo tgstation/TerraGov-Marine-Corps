@@ -29,7 +29,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 				WEAR_FEET = /obj/item/clothing/shoes/marinechief/commander,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/techofficer/commander,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/commander,
-				WEAR_HEAD = /obj/item/clothing/head/beret/marine/commander,
+				WEAR_HEAD = /obj/item/clothing/head/cmberet/tan,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
 
@@ -71,7 +71,7 @@ Come hell or high water, you are going to be there for them."}
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/exec,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m44/full,
+				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/vp70,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
@@ -128,7 +128,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/pilot,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
-				WEAR_WAIST = /obj/item/weapon/large_holster/m39/full,
+				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/vp70,
 				WEAR_JACKET = /obj/item/clothing/suit/armor/vest/pilot,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)

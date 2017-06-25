@@ -1,9 +1,9 @@
 /obj/item/weapon/combat_knife
-	name = "\improper M11 combat knife"
+	name = "\improper M5 survival knife"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
-	item_state = "knife"
-	desc = "The standard issue combat bayonet issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
+	item_state = "combat_knife"
+	desc = "The standard issue survival knife issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
 	flags_atom = FPRINT|CONDUCT
 	sharp = 1
 	force = 25
