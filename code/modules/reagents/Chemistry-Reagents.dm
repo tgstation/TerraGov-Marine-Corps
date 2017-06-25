@@ -13,7 +13,8 @@
 	var/volume = 0
 	var/nutriment_factor = 0
 	var/custom_metabolism = REAGENTS_METABOLISM
-	var/overdose = 0
+	var/overdose = 0 //The young brother of overdose. Side effects include
+	var/overdose_critical = 0 //The nastier brother of overdose. Expect to die
 	var/overdose_dam = 1//Handeled by heart damage
 	var/scannable = 0 //shows up on health analyzers
 	//var/list/viruses = list()
@@ -63,15 +64,22 @@
 	return
 
 /datum/reagent/proc/on_mob_life(mob/living/M, alien)
-	if(!istype(M, /mob/living) || alien == IS_HORROR) return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
+	if(!isliving(M) || alien == IS_HORROR) return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
 	//We do not horrors to metabolize anything.
 
-	if( (overdose > 0) && (volume >= overdose)) M.adjustToxLoss(overdose_dam)
 	holder.remove_reagent(id, custom_metabolism) //By default it slowly disappears.
+	if(overdose && volume >= overdose)
+		on_overdose(M, alien) //Small OD
 
-	if(volume > (overdose*2) && overdose && overdose_dam) //Makes sure that there's actually an overdose or overdose damage to deal
-		M.adjustToxLoss(overdose_dam*(volume/overdose))//Super fuck people up if they take hundreds of chems.
+	if(overdose_critical && volume > overdose_critical)
+		on_overdose_critical(M, alien) //Big OD
 	return 1
+
+/datum/reagent/proc/on_overdose(mob/living/M, alien)
+	return
+
+/datum/reagent/proc/on_overdose_critical(mob/living/M, alien)
+	return
 
 /datum/reagent/proc/on_move(var/mob/M)
 	return

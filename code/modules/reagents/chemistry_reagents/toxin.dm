@@ -92,6 +92,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	toxpwr = 0
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -103,6 +104,12 @@
 			M.take_organ_damage(1*REM, 0)
 		M.adjustOxyLoss(3)
 		if(prob(20)) M.emote("gasp")
+
+	on_overdose(mob/living/M)
+		M.apply_damages(2, 0, 2) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(3, 0, 3) //Overdose starts getting bad
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
@@ -175,12 +182,24 @@
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
 		M.hallucination += 10
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+		M.make_jittery(5)
+		M.knocked_out = max(M.knocked_out, 20)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Overdose starts getting bad
+		M.make_jittery(10)
+		M.knocked_out = max(M.knocked_out, 20)
+		M.drowsyness = max(M.drowsyness, 30)
 
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
@@ -265,6 +284,7 @@
 	toxpwr = 0
 	custom_metabolism = 0.1
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 
 	on_mob_life(mob/living/M)
@@ -286,6 +306,12 @@
 				M.drowsyness  = max(M.drowsyness, 30)
 		data++
 
+	on_overdose(mob/living/M)
+		M.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(0, 0, 2, 3) //Overdose starts getting bad
+
 /datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
@@ -294,8 +320,8 @@
 	color = "#000067" // rgb: 0, 0, 103
 	toxpwr = 1
 	custom_metabolism = 0.1 //Default 0.2
-	overdose = 15
-	overdose_dam = 5
+	overdose = REAGENTS_OVERDOSE/2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -311,6 +337,12 @@
 				M.KnockDown(30)
 			if(200 to INFINITY)
 				M.sleeping += 1
+
+	on_overdose(mob/living/M)
+		M.apply_damages(0, 0, 2, 3) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(0, 0, 3, 2) //Overdose starts getting bad
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -360,6 +392,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	custom_metabolism = 0.15 // Sleep toxins should always be consumed pretty fast
 	overdose = REAGENTS_OVERDOSE/2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -376,6 +409,12 @@
 				M.sleeping += 1
 				M.adjustToxLoss((data - 50)*REM)
 		data++
+
+	on_overdose(mob/living/M)
+		M.apply_damages(0, 0, 2, 3) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(0, 0, 3, 2) //Overdose starts getting bad
 
 /datum/reagent/toxin/acid
 	name = "Sulphuric acid"

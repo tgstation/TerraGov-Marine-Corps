@@ -151,6 +151,7 @@
 	reagent_state = LIQUID
 	color = "#009CA8" // rgb: 0, 156, 168
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	reaction_turf(var/turf/simulated/T, var/volume)
 		if(!istype(T)) return
@@ -165,6 +166,12 @@
 					T.overlays -= T.wet_overlay
 					T.wet_overlay = null
 				return
+
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(3, TOX)
 
 /datum/reagent/plasticide
 	name = "Plasticide"
@@ -181,8 +188,6 @@
 		// Toxins are really weak, but without being treated, last very long.
 		M.adjustToxLoss(0.2)
 
-
-
 /datum/reagent/space_drugs
 	name = "Space drugs"
 	id = "space_drugs"
@@ -190,6 +195,7 @@
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -202,6 +208,15 @@
 		if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
 		holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+		M.knocked_out = max(M.knocked_out, 20)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Overdose starts getting bad
+		M.knocked_out = max(M.knocked_out, 20)
+		M.drowsyness = max(M.drowsyness, 30)
+
 /datum/reagent/serotrotium
 	name = "Serotrotium"
 	id = "serotrotium"
@@ -209,6 +224,7 @@
 	reagent_state = LIQUID
 	color = "#202040" // rgb: 20, 20, 40
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -217,6 +233,14 @@
 			if(prob(7)) M.emote(pick("twitch","drool","moan","gasp"))
 			holder.remove_reagent(src.id, 0.25 * REAGENTS_METABOLISM)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+		M.knocked_out = max(M.knocked_out, 20)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Overdose starts getting bad
+		M.knocked_out = max(M.knocked_out, 20)
+		M.drowsyness = max(M.drowsyness, 30)
 
 /datum/reagent/oxygen
 	name = "Oxygen"
@@ -330,12 +354,19 @@
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
-		M.take_organ_damage(1*REM, 0)
+		M.take_organ_damage(REM, 0)
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Overdose starts getting bad
 
 /datum/reagent/fluorine
 	name = "Fluorine"
@@ -344,12 +375,19 @@
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
-		M.adjustToxLoss(1*REM)
+		M.adjustToxLoss(REM)
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Overdose starts getting bad
 
 /datum/reagent/sodium
 	name = "Sodium"
@@ -376,6 +414,7 @@
 	reagent_state = SOLID
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -384,6 +423,12 @@
 		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/space))
 			step(M, pick(cardinal))
 		if(prob(5)) M.emote(pick("twitch","drool","moan"))
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Overdose starts getting bad
 
 /datum/reagent/sugar
 	name = "Sugar"
@@ -438,9 +483,6 @@
 					new /obj/effect/decal/cleanable/greenglow(T)
 				return
 
-
-
-
 /datum/reagent/thermite
 	name = "Thermite"
 	id = "thermite"
@@ -463,8 +505,6 @@
 		if(!M) M = holder.my_atom
 		M.adjustFireLoss(1)
 
-
-
 /datum/reagent/virus_food
 	name = "Virus Food"
 	id = "virusfood"
@@ -486,6 +526,13 @@
 	reagent_state = SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+
+	on_overdose(mob/living/M)
+		M.apply_damages(1, 0, 1) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(2, 0, 2) //Overdose starts getting bad
 
 /datum/reagent/gold
 	name = "Gold"
@@ -522,7 +569,6 @@
 				if(!glow)
 					new /obj/effect/decal/cleanable/greenglow(T)
 
-
 /datum/reagent/aluminum
 	name = "Aluminum"
 	id = "aluminum"
@@ -544,6 +590,7 @@
 	reagent_state = LIQUID
 	color = "#660000" // rgb: 102, 0, 0
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	reaction_obj(var/obj/O, var/volume)
 		var/turf/the_turf = get_turf(O)
@@ -566,6 +613,11 @@
 		if(method == TOUCH)
 			M.adjust_fire_stacks(volume / 10)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(3, TOX) //Overdose starts getting bad
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
@@ -574,6 +626,7 @@
 	reagent_state = LIQUID
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	reaction_obj(var/obj/O, var/volume)
 		if(istype(O,/obj/effect/decal/cleanable))
@@ -621,6 +674,12 @@
 					return
 			M.clean_blood()
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(3, TOX) //Overdose starts getting bad
+
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
 	id = "cryptobiolin"
@@ -628,6 +687,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -638,6 +698,11 @@
 		M.confused = max(M.confused, 20)
 		holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(3, TOX) //Overdose starts getting bad
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
@@ -646,15 +711,22 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
-		M.jitteriness = max(M.jitteriness-5,0)
-		if(prob(80)) M.adjustBrainLoss(1*REM)
+		M.jitteriness = max(M.jitteriness - 5,0)
+		if(prob(80)) M.adjustBrainLoss(REM)
 		if(prob(50)) M.drowsyness = max(M.drowsyness, 3)
 		if(prob(10)) M.emote("drool")
+
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX) //Overdose starts getting bad
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(3, TOX) //Overdose starts getting bad
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
