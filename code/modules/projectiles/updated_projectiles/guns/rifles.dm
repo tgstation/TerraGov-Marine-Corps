@@ -58,7 +58,7 @@
 	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
-	fire_sound = 'sound/weapons/gun_smg.ogg'
+	fire_sound = "gun_pulse"
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
