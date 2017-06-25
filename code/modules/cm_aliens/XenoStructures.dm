@@ -123,9 +123,10 @@
 	return attack_hand()
 
 /obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
-	health = health - W.force
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	healthcheck()
+	if(!(W.flags_atom & NOBLUDGEON))
+		health = health - W.force
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		healthcheck()
 	return ..(W, user)
 
 /obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
@@ -209,7 +210,7 @@
 				cdel(src)
 
 /obj/effect/alien/weeds/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!W || !user || isnull(W))
+	if(!W || !user || isnull(W) || (W.flags_atom & NOBLUDGEON))
 		return 0
 
 	if(istype(src, /obj/effect/alien/weeds/node)) //The pain is real
@@ -668,61 +669,6 @@
 	icon_state = "sticky2"
 
 /obj/item/weapon/legcuffs/xeno/dropped()
-	cdel(src)
-
-/obj/structure/stool/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/aforce = W.force
-	health = max(0, health - aforce)
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [W]!</span>", \
-	"<span class='warning'>You hit \the [src] with \the [W]!</span>")
-	healthcheck()
-
-/obj/structure/stool/bed/nest/proc/healthcheck()
-	if(health <= 0)
-		density = 0
-		cdel(src)
-
-/obj/structure/stool/bed/nest/update_icon()
-	overlays.Cut()
-	if(on_fire)
-		overlays += "alien_fire"
-
-/obj/structure/stool/bed/nest/fire_act()
-	on_fire = 1
-	if(on_fire)
-		update_icon()
-		spawn(rand(225, 400))
-			cdel(src)
-
-/obj/structure/stool/bed/nest/unbuckle(mob/user as mob)
-	if(!buckled_mob)
-		return
-	resisting = 0
-	buckled_mob.pixel_y = 0
-	buckled_mob.old_y = 0
-	..()
-
-/obj/structure/stool/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
-		return
-	if(M.a_intent == "hurt")
-		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
-		"<span class='danger'>You claw at \the [src].</span>")
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
-		healthcheck()
-	else
-		attack_hand(M)
-
-/obj/structure/stool/bed/nest/attack_animal(mob/living/M as mob)
-	M.visible_message("<span class='danger'>\The [M] tears at \the [src]!", \
-	"<span class='danger'>You tear at \the [src].")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	health -= 40
-	healthcheck()
-
-/obj/structure/stool/bed/nest/flamer_fire_act()
 	cdel(src)
 
 //Alien blood effects.

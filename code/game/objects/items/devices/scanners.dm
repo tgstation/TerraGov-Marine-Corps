@@ -90,12 +90,12 @@ REAGENT SCANNER
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
 	if(!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "\red You don't have the dexterity to do this!"
+		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
 	if(isXeno(M))
 		user << "<span class='warning'>[src] can't make sense of this creature.</span>"
 		return
-	user.visible_message("","<span class='notice'>[user] has analyzed [M]'s vitals.")
+	user << "<span class='notice'>[user] has analyzed [M]'s vitals."
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 
 	// Doesn't work on non-humans and synthetics

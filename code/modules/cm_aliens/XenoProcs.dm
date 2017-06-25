@@ -223,7 +223,7 @@
 /obj/effect/xenomorph/acid
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
-	icon_state = "acid"
+	icon_state = "acid3"
 	density = 0
 	opacity = 0
 	anchored = 1
@@ -549,4 +549,4 @@
 			src << "<span class='warning'>You decide not to drop [F] after all.</span>"
 			return
 
-	..()
+	. = ..()
