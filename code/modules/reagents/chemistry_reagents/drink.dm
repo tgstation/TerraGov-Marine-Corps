@@ -212,6 +212,8 @@
 	id = "coffee"
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
 	color = "#482000" // rgb: 72, 32, 0
+	overdose = REAGENTS_OVERDOSE*2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL*2
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
@@ -225,6 +227,27 @@
 			holder.remove_reagent("frostoil", 10*REAGENTS_METABOLISM)
 
 		holder.remove_reagent(src.id, 0.1)
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+		M.make_jittery(5)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			E.damage += 0.5
+			if(prob(10))
+				M.emote(pick("twitch", "blink_r", "shiver"))
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(2, TOX) //Overdose starts getting bad
+		M.make_jittery(10)
+		M.knocked_out = max(M.knocked_out, 20)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			E.damage += 2
+			if(prob(25))
+				M.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/drink/coffee/icecoffee
 	name = "Iced Coffee"

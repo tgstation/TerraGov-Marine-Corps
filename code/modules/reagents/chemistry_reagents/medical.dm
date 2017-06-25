@@ -10,6 +10,8 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE*2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL*2
+
 	scannable = 1
 
 	on_mob_life(mob/living/M, alien)
@@ -25,6 +27,18 @@
 
 		holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
 
+	on_overdose(mob/living/M)
+		M.make_jittery(5) //Overdose causes a spasm
+		M.knocked_out = max(M.knocked_out, 20)
+
+	on_overdose_critical(mob/living/M)
+		M.drowsyness = max(M.drowsyness, 20)
+		if(ishuman(M)) //Critical overdose causes total blackout and heart damage. Too much stimulant
+			var/mob/living/carbon/human/H = M
+			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			E.damage += 0.5
+			if(prob(10))
+				M.emote(pick("twitch","blink_r","shiver"))
 
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
@@ -33,6 +47,7 @@
 	reagent_state = SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -50,6 +65,14 @@
 			var/mob/living/carbon/human/H = M
 			H.update_mutations()
 
+	on_overdose(mob/living/M)
+		M.confused = max(M.confused, 20) //Confusion and some toxins
+		M.apply_damage(1, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.knocked_out = max(M.knocked_out, 20) //Total DNA collapse
+		M.apply_damage(1, TOX)
+		M.apply_damage(3, CLONE)
 
 /datum/reagent/paracetamol
 	name = "Paracetamol"
@@ -57,16 +80,17 @@
 	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
 	reagent_state = LIQUID
 	color = "#C855DC"
-	overdose = 60
 	scannable = 1
 	custom_metabolism = 0.025 // Lasts 10 minutes for 15 units
+	overdose = REAGENTS_OVERDOSE*2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL*2
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(volume > overdose)
-			M.hallucination = max(M.hallucination, 2)
+	on_overdose(mob/living/M)
+		M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
+		M.apply_damage(1, TOX)
 
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Massive liver damage
 
 /datum/reagent/tramadol
 	name = "Tramadol"
@@ -74,16 +98,17 @@
 	description = "A simple, yet effective painkiller."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	overdose = 30
 	scannable = 1
 	custom_metabolism = 0.1 // Lasts 10 minutes for 15 units
+	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(volume > overdose)
-			M.hallucination = max(M.hallucination, 2)
+	on_overdose(mob/living/M)
+		M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
+		M.apply_damage(1, TOX)
 
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Massive liver damage
 
 /datum/reagent/oxycodone
 	name = "Oxycodone"
@@ -91,15 +116,17 @@
 	description = "An effective and very addictive painkiller."
 	reagent_state = LIQUID
 	color = "#C805DC"
-	overdose = 20
 	custom_metabolism = 0.25 // Lasts 10 minutes for 15 units
+	overdose = REAGENTS_OVERDOSE * 0.66
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL * 0.66
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(volume > overdose)
-			M.druggy = max(M.druggy, 10)
-			M.hallucination = max(M.hallucination, 3)
+	on_overdose(mob/living/M)
+		M.hallucination = max(M.hallucination, 3) //Hallucinations and tox damage
+		M.druggy = max(M.druggy, 10)
+		M.apply_damage(1, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Massive liver damage
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"
@@ -119,16 +146,15 @@
 	reaction_turf(var/turf/T, var/volume)
 		T.germ_level -= min(volume*20, T.germ_level)
 
-
-
 /datum/reagent/leporazine
 	name = "Leporazine"
 	id = "leporazine"
 	description = "Leporazine can be use to stabilize an individuals body temperature."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -139,6 +165,11 @@
 		else if(M.bodytemperature < 311)
 			M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 
+	on_overdose(mob/living/M)
+		M.knocked_out = max(M.knocked_out, 20)
+
+	on_overdose_critical(mob/living/M)
+		M.drowsyness  = max(M.drowsyness, 30)
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -146,17 +177,23 @@
 	description = "Kelotane is a drug used to treat burns."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(var/mob/living/M)
 		. = ..()
 		if(!.) return
-		if(M.stat == 2.0)
+		if(M.stat == DEAD)
 			return
 		if(!M) M = holder.my_atom
-		M.heal_organ_damage(0,2*REM)
+		M.heal_organ_damage(0, 2 * REM)
 
+	on_overdose(mob/living/M)
+		M.apply_damages(1, 0, 1) //Mixed brute/tox damage
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(4, 0, 4) //Massive brute/tox damage
 
 /datum/reagent/dermaline
 	name = "Dermaline"
@@ -165,6 +202,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE/2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = 1
 
 	on_mob_life(mob/living/M, alien)
@@ -174,8 +212,13 @@
 			return
 		if(!M) M = holder.my_atom
 		if(!alien)
-			M.heal_organ_damage(0,3*REM)
+			M.heal_organ_damage(0, 3 * REM)
 
+	on_overdose(mob/living/M)
+		M.apply_damages(1, 0, 1) //Mixed brute/tox damage
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(4, 0, 4) //Massive brute/tox damage
 
 /datum/reagent/dexalin
 	name = "Dexalin"
@@ -184,6 +227,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 
 	on_mob_life(mob/living/M,alien)
@@ -198,8 +242,13 @@
 		else if(!alien)
 			M.adjustOxyLoss(-2*REM)
 
-		holder.remove_reagent("lexorin", 2*REM)
+		holder.remove_reagent("lexorin", 2 * REM)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Mixed brute/tox damage
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(2, 0, 4) //Massive brute/tox damage
 
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
@@ -208,6 +257,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE/2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = 1
 
 	on_mob_life(mob/living/M,alien)
@@ -224,6 +274,11 @@
 
 		holder.remove_reagent("lexorin", 2*REM)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Mixed brute/tox damage
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(2, 0, 4) //Massive brute/tox damage
 
 /datum/reagent/tricordrazine
 	name = "Tricordrazine"
@@ -233,22 +288,27 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = 1
 	overdose = REAGENTS_OVERDOSE
-	overdose_dam = 0
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M, alien)
 		. = ..()
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		if(volume > overdose)
-			M.adjustBrainLoss(2)
 		if(!M) M = holder.my_atom
 		if(!alien)
-			if(M.getOxyLoss()) M.adjustOxyLoss(-1*REM)
-			if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(1*REM,0)
-			if(M.getFireLoss() && prob(80)) M.heal_organ_damage(0,1*REM)
-			if(M.getToxLoss() && prob(80)) M.adjustToxLoss(-1*REM)
+			if(M.getOxyLoss()) M.adjustOxyLoss(-REM)
+			if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(REM, 0)
+			if(M.getFireLoss() && prob(80)) M.heal_organ_damage(0, REM)
+			if(M.getToxLoss() && prob(80)) M.adjustToxLoss(-REM)
 
+	on_overdose(mob/living/M)
+		M.make_jittery(5)
+		M.adjustBrainLoss(1)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(5, 5, 5) //Massive damage bounceback if abused
+		M.adjustBrainLoss(1)
 
 /datum/reagent/anti_toxin
 	name = "Dylovene"
@@ -257,8 +317,8 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = 1
-	overdose = 30
-	overdose_dam = 0
+	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M,alien)
 		. = ..()
@@ -270,11 +330,23 @@
 				var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 				E.damage += rand(2, 4)
 		if(!alien)
-			M.reagents.remove_all_type(/datum/reagent/toxin, 1*REM, 0, 1)
-			M.drowsyness = max(M.drowsyness-2*REM, 0)
-			M.hallucination = max(0, M.hallucination - 5*REM)
-			M.adjustToxLoss(-2*REM)
+			M.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 1)
+			M.drowsyness = max(M.drowsyness- 2 * REM, 0)
+			M.hallucination = max(0, M.hallucination -  5 * REM)
+			M.adjustToxLoss(-2 * REM)
 
+	on_overdose(mob/living/M)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+			E.damage += 0.5
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(3, 3) //Starts detoxing, hard
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+			E.damage += 2
 
 /datum/reagent/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
@@ -314,7 +386,6 @@
 			D.stage--
 			if(D.stage < 1)
 				D.cure()
-
 
 /datum/reagent/thwei //OP yautja chem
 	name = "thwei"
@@ -358,7 +429,6 @@
 			if(D.stage < 1)
 				D.cure()
 
-
 /datum/reagent/synaptizine
 	name = "Synaptizine"
 	id = "synaptizine"
@@ -366,9 +436,9 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.1
-	overdose = 6
+	overdose = REAGENTS_OVERDOSE/5
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = 1
-	overdose_dam = 1
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -382,6 +452,11 @@
 		M.hallucination = max(0, M.hallucination - 10)
 		if(prob(80))	M.adjustToxLoss(1)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(1, 1, 3)
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -391,6 +466,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 
 	on_mob_life(var/mob/living/M as mob)
@@ -399,6 +475,12 @@
 		if(!M) M = holder.my_atom
 		M.radiation = max(M.radiation-3*REM,0)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(1, 1, 3)
+
 /datum/reagent/arithrazine
 	name = "Arithrazine"
 	id = "arithrazine"
@@ -406,7 +488,8 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
-	overdose = REAGENTS_OVERDOSE
+	overdose = REAGENTS_OVERDOSE/2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -419,6 +502,12 @@
 		if(prob(15))
 			M.take_organ_damage(1, 0)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(1, 1, 3)
+
 /datum/reagent/russianred
 	name = "Russian Red"
 	id = "russianred"
@@ -426,7 +515,8 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 1
-	overdose = 10
+	overdose = REAGENTS_OVERDOSE/3
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/3
 	scannable = 1
 
 	on_mob_life(mob/living/M)
@@ -435,10 +525,16 @@
 		if(volume >= overdose)
 			M.adjustBrainLoss(2)
 		if(!M) M = holder.my_atom
-		M.radiation = max(M.radiation-10*REM,0)
+		M.radiation = max(M.radiation - 10 * REM, 0)
 		M.adjustToxLoss(-1*REM)
 		if(prob(50))
 			M.take_organ_damage(3, 0)
+
+	on_overdose(mob/living/M)
+		M.apply_damages(1, 0, 0)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(1, 2, 2)
 
 /datum/reagent/alkysine
 	name = "Alkysine"
@@ -448,13 +544,20 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
 		if(!M) M = holder.my_atom
-		M.adjustBrainLoss(-3*REM)
+		M.adjustBrainLoss(-3 * REM)
+
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(1, 1, 3)
 
 /datum/reagent/imidazoline
 	name = "Imidazoline"
@@ -463,6 +566,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 
 	on_mob_life(mob/living/M)
@@ -478,13 +582,20 @@
 				if(E.damage > 0)
 					E.damage = max(E.damage - 1, 0)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(1, 1, 3)
+
 /datum/reagent/peridaxon
 	name = "Peridaxon"
 	id = "peridaxon"
 	description = "Used to encourage recovery of internal organs and nervous systems. Medicate cautiously."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = 10
+	overdose = REAGENTS_OVERDOSE/3
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/3
 	scannable = 1
 
 	on_mob_life(mob/living/M)
@@ -499,6 +610,12 @@
 				if((I.damage > 0) && (I.robotic != 2))
 					I.damage = max(I.damage - 1, 0)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, BRUTE)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(3, 3, 3)
+
 /datum/reagent/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"
@@ -506,6 +623,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 
 	on_mob_life(mob/living/M, alien)
@@ -516,14 +634,20 @@
 		if(!M) M = holder.my_atom
 		M.heal_organ_damage(2*REM,0)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(1, BURN)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(0, 4, 2)
+
 /datum/reagent/quickclot
-	name = "Quick clot"
+	name = "Quick Clot"
 	id = "quickclot"
 	description = "A chemical designed to quickly stop internal bleeding"
 	reagent_state = LIQUID
 	color = "#CC00FF"
-	overdose = 4
-	overdose_dam = 30//Quick-clot overdoses will pretty much fuck you up
+	overdose = REAGENTS_OVERDOSE/5 //Was 4, now 6
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = 1 //scannable now.  HUZZAH.
 	custom_metabolism = 0.1
 	on_mob_life(mob/living/M)
@@ -532,6 +656,12 @@
 		if(!M) M = holder.my_atom
 		M.take_organ_damage(1*REM, 0)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(3, BRUTE)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(2, 3, 3)
+
 /datum/reagent/hyperzine
 	name = "Hyperzine"
 	id = "hyperzine"
@@ -539,18 +669,12 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.2
-	overdose = 6
+	overdose = REAGENTS_OVERDOSE/5
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/5
 
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(volume > overdose)
-			if(ishuman(M))
-				if(prob(50))
-					var/mob/living/carbon/human/H = M
-					var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
-					E.damage += 1
-					M.emote(pick("twitch","blink_r","shiver"))
 
 		if(!M) M = holder.my_atom
 		if(prob(1))
@@ -560,6 +684,22 @@
 				var/datum/organ/internal/heart/F = H.internal_organs_by_name["heart"]
 				F.damage += 1
 				M.emote(pick("twitch","blink_r","shiver"))
+
+	on_overdose(mob/living/M)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			E.damage += 0.5
+			if(prob(10))
+				M.emote(pick("twitch", "blink_r", "shiver"))
+
+	on_overdose_critical(mob/living/M)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			E.damage += 2
+			if(prob(25))
+				M.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
@@ -604,6 +744,7 @@
 	reagent_state = SOLID
 	color = "#669900" // rgb: 102, 153, 0
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 
 	on_mob_life(mob/living/M)
@@ -625,6 +766,12 @@
 				M.make_dizzy(5)
 				M.make_jittery(5)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(2, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(3, TOX)
+
 /datum/reagent/spaceacillin
 	name = "Spaceacillin"
 	id = "spaceacillin"
@@ -633,7 +780,14 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.01
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX)
 
 /datum/reagent/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
@@ -642,6 +796,7 @@
 	reagent_state = SOLID
 	color = "#605048" // rgb: 96, 80, 72
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -651,15 +806,17 @@
 		M.drowsyness = 0
 		M.stuttering = 0
 		M.confused = 0
-		M.reagents.remove_all_type(/datum/reagent/ethanol, 1*REM, 0, 1)
+		M.reagents.remove_all_type(/datum/reagent/ethanol, REM, 0, 1)
 
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX)
 
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX)
 
 ///////ANTIDEPRESSANTS///////
 
-
 #define ANTIDEPRESSANT_MESSAGE_DELAY 5*60*10
-
 
 /datum/reagent/antidepressant/methylphenidate
 	name = "Methylphenidate"

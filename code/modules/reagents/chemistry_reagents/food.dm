@@ -27,6 +27,7 @@
 	nutriment_factor = 10 * REAGENTS_METABOLISM
 	color = "#BBEDA4" // rgb: 187, 237, 164
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -36,6 +37,12 @@
 		M.overeatduration = 0
 		if(M.nutrition < 0)//Prevent from going into negatives.
 			M.nutrition = 0
+
+	on_overdose(mob/living/M)
+		M.apply_damages(1, 1) //Causes chemical burns and structural damage
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(4, 4) //Causes massive burns and structural damage
 
 /datum/reagent/soysauce
 	name = "Soysauce"
@@ -195,6 +202,18 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+
+	on_overdose(mob/living/M)
+		M.confused = max(M.confused, 20)
+		if(prob(10))
+			M.emote(pick("sigh","grumble","frown"))
+
+	on_overdose_critical(mob/living/M)
+		M.make_jittery(5) //Turn super salty
+		M.knocked_out = max(M.knocked_out, 20)
+		if(prob(10))
+			M.emote(pick("cry","moan","scream"))
 
 /datum/reagent/blackpepper
 	name = "Black Pepper"
@@ -237,6 +256,7 @@
 	description = "A strong psycotropic derived from certain species of mushroom."
 	color = "#E700E7" // rgb: 231, 0, 231
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
 	on_mob_life(mob/living/M)
 		. = ..()
@@ -263,6 +283,15 @@
 				if(prob(30)) M.emote(pick("twitch","giggle"))
 		holder.remove_reagent(src.id, 0.2)
 		data++
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, TOX) //Overdose starts getting bad
+		M.knocked_out = max(M.knocked_out, 20)
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damage(4, TOX) //Overdose starts getting bad
+		M.knocked_out = max(M.knocked_out, 20)
+		M.drowsyness = max(M.drowsyness, 30)
 
 /datum/reagent/sprinkles
 	name = "Sprinkles"
@@ -323,6 +352,13 @@
 	reagent_state = LIQUID
 	color = "#365E30" // rgb: 54, 94, 48
 	overdose = REAGENTS_OVERDOSE
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+
+	on_overdose(mob/living/M)
+		M.apply_damage(1, BURN) //Causes chemical burns
+
+	on_overdose_critical(mob/living/M)
+		M.apply_damages(5, BURN) //Causes massive burns
 
 /datum/reagent/dry_ramen
 	name = "Dry Ramen"
