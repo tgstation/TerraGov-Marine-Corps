@@ -139,6 +139,7 @@ Defined in setup.dm.
 	G.wield_delay		+= wield_delay_mod
 
 	if(G.burst_amount <= 1) G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
+	else if (!G.burst_delay) G.burst_delay = config.mlow_fire_delay //if no burst delay set, we set it to default.
 	G.update_force_list() //This updates the gun to use proper force verbs.
 
 	switch(twohanded_mod)

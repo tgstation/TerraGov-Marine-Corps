@@ -846,6 +846,13 @@ note dizziness decrements automatically in the mob's Life() proc.
 			var/mob/living/L = src
 			L.update_fire() //Maybe fixes fire overlay problems
 
+	if(lying)
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+	else
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+
 	return canmove
 
 

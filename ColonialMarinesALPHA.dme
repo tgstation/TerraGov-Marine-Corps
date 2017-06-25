@@ -20,6 +20,7 @@
 #include "code\#define\atmospherics.dm"
 #include "code\#define\conflict.dm"
 #include "code\#define\equipment.dm"
+#include "code\#define\layers.dm"
 #include "code\#define\mobs.dm"
 #include "code\#define\mode.dm"
 #include "code\#define\objects.dm"

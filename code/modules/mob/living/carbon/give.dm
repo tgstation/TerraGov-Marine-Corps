@@ -21,7 +21,7 @@
 		I = usr.l_hand
 	else if(!usr.hand)
 		I = usr.r_hand
-	if(!I || !istype(I) || !I.canremove)
+	if(!I || !istype(I) || !I.canremove || (I.flags_atom & DELONDROP))
 		return
 	if(src.r_hand == null || src.l_hand == null)
 		switch(alert(src,"[usr] wants to give you \a [I]?",,"Yes","No"))
@@ -41,9 +41,9 @@
 					usr << "\red Their hands are full."
 					return
 				else
-					usr.drop_held_item()
-					if(put_in_hands(I))
-						src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
+					if(usr.drop_held_item())
+						if(put_in_hands(I))
+							src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
 			if("No")
 				return
 	else

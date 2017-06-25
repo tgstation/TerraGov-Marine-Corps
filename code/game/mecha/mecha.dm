@@ -16,7 +16,7 @@
 	opacity = 1 ///opaque. Menacing.
 	anchored = 1 //no pulling around.
 	unacidable = 1 //and no deleting hoomans inside
-	layer = MOB_LAYER //icon draw layer
+	layer = LYING_MOB_LAYER //so ejected occupant lying down don't appear behind the mech
 	infra_luminosity = 15 //byond implementation is bugged.
 	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
