@@ -366,21 +366,6 @@
 
 		var/pull_dir = get_dir(src, pulling)
 		if(get_dist(src, pulling) > 1 || ((pull_dir - 1) & pull_dir)) //puller and pullee more than one tile away or in diagonal position
-			if(isliving(pulling))
-				var/mob/living/M = pulling
-				if(M.pull_damage() && grab_level < GRAB_AGGRESSIVE) //aggressive grab prevent wounds worsening when being pulled.
-					if(prob(25) && M.stat != DEAD)
-						M.adjustBruteLoss(2)
-						visible_message("<span class='danger'>[M]'s wounds worsen terribly from being dragged!</span>")
-						var/turf/location = M.loc
-						if (istype(location, /turf))
-							location.add_blood(M)
-							if(ishuman(M))
-								var/mob/living/carbon/human/H = M
-								var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-								if(blood_volume > 0)
-									H.vessel.remove_reagent("blood",1)
-
 			pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
 			if(pulling && get_dist(src, pulling) > 1) //the pullee couldn't keep up
 				stop_pulling()
