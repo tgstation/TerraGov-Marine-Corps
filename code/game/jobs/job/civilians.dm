@@ -25,7 +25,7 @@
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/officer,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
 
 	generate_stored_equipment()
@@ -64,7 +64,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
 
 	generate_stored_equipment()
@@ -101,7 +101,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/medic
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
 
 	generate_stored_equipment()

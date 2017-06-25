@@ -274,8 +274,8 @@
 //=======================================================================\\
 
 /obj/item/weapon/storage/backpack/marine
-	name = "\improper USCM infantry backpack"
-	desc = "The standard-issue backpack of the USCM forces."
+	name = "\improper lightweight IMP backpack"
+	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
@@ -296,7 +296,7 @@
 
 /obj/item/weapon/storage/backpack/marine/satchel
 	name = "\improper USCM satchel"
-	desc = "A heavy-duty satchel carried by some USCM soldiers."
+	desc = "A heavy-duty satchel carried by some USCM soldiers and support personnel."
 	icon_state = "marinesat"
 
 /obj/item/weapon/storage/backpack/marine/satchel/medic

@@ -36,8 +36,8 @@ var/global/list/gear_datums = list()
 	slot = WEAR_HEAD
 
 /datum/gear/cmberettan
-	display_name = "USCM Beret (tan)"
-	path = /obj/item/clothing/head/cmberet/tan
+	display_name = "USCM Beret (Green)"
+	path = /obj/item/clothing/head/cmberet
 	cost = 3
 	slot = WEAR_HEAD
 

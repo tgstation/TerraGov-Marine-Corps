@@ -421,12 +421,14 @@
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
 		"/obj/item/weapon/gun/pistol/m1911",
+		"/obj/item/weapon/gun/pistol/vp70",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/pistol/hp",
 		"/obj/item/ammo_magazine/pistol/ap",
 		"/obj/item/ammo_magazine/pistol/incendiary",
 		"/obj/item/ammo_magazine/pistol/extended",
-		"/obj/item/ammo_magazine/pistol/m1911"
+		"/obj/item/ammo_magazine/pistol/m1911",
+		"/obj/item/ammo_magazine/pistol/vp70"
 		)
 
 	New()
@@ -447,6 +449,14 @@
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
+	new_gun.on_enter_storage(src)
+
+/obj/item/weapon/storage/belt/gun/m4a3/vp70/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/m44
