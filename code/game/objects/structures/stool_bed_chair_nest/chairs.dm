@@ -118,7 +118,7 @@
 
 /obj/structure/stool/bed/chair/office
 	anchored = 0
-	drag_delay = 0 //pulling something on wheels is easy
+	drag_delay = 1 //pulling something on wheels is easy
 
 /obj/structure/stool/bed/chair/comfy/black
 	color = rgb(167,164,153)
