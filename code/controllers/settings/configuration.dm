@@ -1,6 +1,7 @@
 /datum/configuration
 	var/server_name = null				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
+	var/hub_password = null				// hub password
 
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
@@ -303,6 +304,9 @@
 
 		if ("serversuffix")
 			config.server_suffix = 1
+
+		if ("hubpassword")
+			config.hub_password = value
 
 		if ("nudge_script_path")
 			config.nudge_script_path = value
