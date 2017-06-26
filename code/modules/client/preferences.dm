@@ -459,16 +459,9 @@ datum/preferences
 				else
 					dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
 			n++
-	dat += "</td></tr></table><hr><center>"
+	dat += "</td></tr></table></body></html>"
 
-	if(!IsGuestKey(user.key))
-		dat += "<a href='?_src_=prefs;preference=load'>Undo</a> - "
-		dat += "<a href='?_src_=prefs;preference=save'>Save Setup</a> - "
-
-	dat += "<a href='?_src_=prefs;preference=reset_all'>Reset Setup</a>"
-	dat += "</center></body></html>"
-
-	user << browse(dat, "window=preferences;size=620x780")
+	user << browse(dat, "window=preferences;size=620x880")
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 20, list/splitJobs = list(), width = 450, height = 500)
 	if(!RoleAuthority) return
