@@ -3,18 +3,19 @@
 
 /obj/vehicle/powerloader
 	name = "\improper Power Loader"
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/powerloader.dmi'
 	desc = "Autonomous Power Loader Unit. The workhorse of the exosuit world."
-	icon_state = "powerloader"
+	icon_state = "powerloader_open"
 	layer = OBJ_LAYER
 	anchored = 1
 	density = 1
 	move_delay = 6
-	buckling_y = 6
+	buckling_y = 9
 	health = 200
 	maxhealth = 200
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING,ACCESS_CIVILIAN_LOGISTICS,ACCESS_MARINE_CARGO,ACCESS_MARINE_PILOT,ACCESS_MARINE_BRIG)
-
+	pixel_x = -16
+	pixel_y = -2
 
 	New()
 		..()
@@ -60,6 +61,7 @@
 		. = ..()
 		overlays.Cut()
 		if(.)
+			icon_state = "powerloader"
 			overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
 			var/clamp_equipped = 0
 			for(var/obj/item/weapon/powerloader_clamp/PC in contents)
@@ -67,6 +69,7 @@
 				else clamp_equipped++
 			if(clamp_equipped != 2) unbuckle() //can't use the powerloader without both clamps equipped
 		else
+			icon_state = "powerloader_open"
 			M.drop_held_items() //drop the clamp when unbuckling
 
 	buckle_mob(mob/M, mob/user)
@@ -89,12 +92,13 @@
 		buckle_mob(M, usr)
 
 	handle_rotation()
-		if(dir == NORTH)
-			layer = FLY_LAYER
-		else
-			layer = OBJ_LAYER
+
 		if(buckled_mob)
 			buckled_mob.dir = dir
+			switch(dir)
+				if(EAST) buckled_mob.pixel_x = 7
+				if(WEST) buckled_mob.pixel_x = -7
+				else buckled_mob.pixel_x = 0
 
 	explode()
 		new /obj/structure/powerloader_wreckage(loc)
@@ -136,6 +140,24 @@
 						if(AM.density)
 							user << "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>"
 							return
+					if(loaded.bound_height > 32)
+						var/turf/next_turf = get_step(T, NORTH)
+						if(next_turf.density)
+							user << "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>"
+							return
+						for(var/atom/movable/AM in next_turf.contents)
+							if(AM.density)
+								user << "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>"
+								return
+					if(loaded.bound_width > 32)
+						var/turf/next_turf = get_step(T, EAST)
+						if(next_turf.density)
+							user << "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>"
+							return
+						for(var/atom/movable/AM in next_turf.contents)
+							if(AM.density)
+								user << "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>"
+								return
 					loaded.forceMove(T)
 					loaded = null
 					playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
@@ -168,8 +190,10 @@
 /obj/structure/powerloader_wreckage
 	name = "\improper Power Loader wreckage"
 	desc = "Remains of some unfortunate Power Loader. Completely unrepairable."
-	icon = 'icons/mecha/mecha.dmi'
-	icon_state = "ripley-broken-old"
+	icon = 'icons/obj/powerloader.dmi'
+	icon_state = "wreck"
 	density = 1
 	anchored = 0
 	opacity = 0
+	pixel_x = -18
+	pixel_y = -5
