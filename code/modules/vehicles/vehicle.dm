@@ -232,6 +232,7 @@
 		M.pixel_y = buckling_y
 		M.old_y = buckling_y
 	else
+		M.pixel_x = initial(buckled_mob.pixel_x)
 		M.pixel_y = initial(buckled_mob.pixel_y)
 		M.old_y = initial(buckled_mob.pixel_y)
 
