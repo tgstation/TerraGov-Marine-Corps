@@ -70,6 +70,7 @@
 	density = 0
 	storage_capacity = (mob_size * 2) - 1
 	anchored = 0
+	drag_delay = 2 //slightly easier than to drag the body directly.
 
 	attackby(W as obj, mob/user as mob)
 		if (istype(W, /obj/item/weapon/pen))

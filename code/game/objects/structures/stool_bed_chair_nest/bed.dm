@@ -45,7 +45,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
-	drag_delay = 0 //pulling something on wheels is easy
+	drag_delay = 1 //pulling something on wheels is easy
 	buckling_y = 6
 
 /obj/structure/stool/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -86,7 +86,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
 	w_class = 3 //fits in a backpack
-	drag_delay = 0 //pulling something on wheels is easy
+	drag_delay = 1 //pulling something on wheels is easy
 
 	attack_self(mob/user)
 		deploy_roller(user, user.loc)
