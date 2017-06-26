@@ -308,7 +308,7 @@
 
 /obj/machinery/computer/shuttle_control/dropship2
 	name = "\improper 'Normandy' dropship console"
-	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decivise victory in World War II and the campaign for the Liberation of France."
+	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	unacidable = 1

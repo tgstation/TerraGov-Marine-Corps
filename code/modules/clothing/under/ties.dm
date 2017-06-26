@@ -361,7 +361,7 @@
 
 /obj/item/clothing/tie/storage/webbing
 	name = "webbing"
-	desc = "Strudy mess of synthcotton belts and buckles, ready to share your burden."
+	desc = "A sturdy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
 	item_color = "webbing"
 	slots = 3

@@ -1242,7 +1242,7 @@
 		else horror << "<span class='notice'>You have been transported to who-knows where from elsewhere! Fight the horrors of this place!</span>"
 	if(entry_sound) world << entry_sound
 
-/datum/game_mode/colonialmarines_halloween_2016/proc/generate_supply_crate(turf/supply_spawn[], supply_manifest[], crate_name = "supplies")
+/datum/game_mode/colonialmarines_halloween_2016/proc/generate_supply_crate(turf/supply_spawn[], supply_manifest[], crate_name = "supplies", crate_desc = "A crate of supplies. Surely the contents will help, somehow.")
 	var/turf/spawn_point = pick(supply_spawn)
 	supply_spawn -= spawn_point // Let's get rid of it. We don't want boxes to overlap.
 	var/obj/structure/closet/crate/C = new(spawn_point)
@@ -1252,6 +1252,7 @@
 		i = supply_manifest[item_path]
 		while(i--) new item_path(C)
 	C.name = crate_name
+	C.desc = crate_desc
 
 /datum/game_mode/colonialmarines_halloween_2016/proc/create_pmc_supplies(turf/supply_spawn[])
 	var/supply_manifest[] =list(
@@ -1276,13 +1277,13 @@
 		/obj/item/weapon/grenade/incendiary = 4,
 		/obj/item/weapon/grenade/explosive/m40 = 4
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)", "A crate full of high explosives. Not a good time to have a smoke.")
 
 	supply_manifest=list(
 		/obj/item/weapon/flamethrower/full = 2,
 		/obj/item/weapon/tank/phoron/m240 = 6
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper M240 Incinerator crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper M240 Incinerator crate", "A crate containing a functional flamethrower with spare fuel tanks.")
 
 	supply_manifest=list(
 		/obj/item/ammo_magazine/rifle/extended = 3,
@@ -1290,24 +1291,18 @@
 		/obj/item/ammo_magazine/pistol/vp70 = 5,
 		/obj/item/ammo_magazine/revolver/mateba = 5
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (assorted)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (assorted)", "A crate containing all sorts of ammunition, surely something useful to be scavenged inside.")
 
 	supply_manifest=list(
 		/obj/item/ammo_magazine/smg/m39/extended = 8,
 		/obj/item/ammo_magazine/smg/m39/ap = 8
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
-
-	supply_manifest=list(
-		/obj/item/ammo_magazine/smg/m39/extended = 8,
-		/obj/item/ammo_magazine/smg/m39/ap = 8
-		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)", "A crate containing SMG ammo. By the looks of it, it isn't standard issue.")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/box/wy_mre = 12
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate", "A crate containing Weyland-Yutani MREs. An army marches on its stomach, right?")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/firstaid/regular = 1,
@@ -1321,7 +1316,7 @@
 		/obj/item/weapon/storage/box/syringes = 1,
 		/obj/item/weapon/storage/box/autoinjectors = 1
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"medical crate", "A crate containing assorted medical supplies. Hopefully some of the labels should make sense.")
 
 /datum/game_mode/colonialmarines_halloween_2016/proc/create_marine_supplies(turf/supply_spawn[])
 	var/supply_manifest[]=list(
@@ -1341,7 +1336,7 @@
 		/obj/item/attachable/burstfire_assembly = 1,
 		/obj/item/attachable/stock/rifle = 3
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (rifle)")
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (rifle)", "A crate containing assorted attachments for rifles. Unga dunga!")
 
 	supply_manifest=list(
 		/obj/item/attachable/reddot = 3,
@@ -1352,7 +1347,7 @@
 		/obj/item/attachable/foregrip = 3,
 		/obj/item/attachable/burstfire_assembly = 1
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (smg)")
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (smg)", "A crate containing assorted attachments for SMGs. Unga dunga!")
 
 	supply_manifest=list(
 		/obj/item/attachable/reddot = 3,
@@ -1364,7 +1359,7 @@
 		/obj/item/attachable/gyro = 3,
 		/obj/item/attachable/stock/shotgun = 2
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (shotgun)")
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (shotgun)", "A crate containing assorted attachments for shotguns. Unga dunga!")
 
 	supply_manifest=list(
 		/obj/item/attachable/scope = 1,
@@ -1375,7 +1370,7 @@
 		/obj/item/attachable/compensator = 3,
 		/obj/item/attachable/stock/revolver = 3
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (sidearm)")
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (sidearm)", "A crate containing assorted attachments for sidearms. Unga dunga!")
 
 /*	supply_manifest=list(
 		/obj/item/weapon/large_holster/m37 = 5,
@@ -1392,23 +1387,23 @@
 		/obj/item/ammo_magazine/rifle/ap = 4,
 		/obj/item/ammo_magazine/rifle/extended = 4
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)", "A crate containing ammunition for rifles. Can't go wrong with standard issue.")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)", "A crate containing ammunition for rifles. Can't go wrong with standard issue.")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)", "A crate containing ammunition for rifles. Can't go wrong with standard issue.")
 
 	supply_manifest=list(
 		/obj/item/ammo_magazine/smg/m39 = 10,
 		/obj/item/ammo_magazine/smg/m39/ap = 4,
 		/obj/item/ammo_magazine/smg/m39/extended = 4
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)", "A crate containing ammunition for SMGs. Quick and deadly.")
 
 	supply_manifest=list(
 		/obj/item/ammo_magazine/shotgun = 8,
 		/obj/item/ammo_magazine/shotgun/buckshot = 8,
 		/obj/item/ammo_magazine/shotgun/incendiary = 2
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (shotgun)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (shotgun)", "A crate containing ammunition for shotguns. Quite a blast.")
 
 	supply_manifest=list(
 		/obj/item/ammo_magazine/pistol = 8,
@@ -1416,7 +1411,7 @@
 		/obj/item/ammo_magazine/revolver = 5,
 		/obj/item/ammo_magazine/revolver/marksman = 3
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (sidearm)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (sidearm)", "A crate containing ammunition for sidearms. Having a backup is always nice.")
 
 	supply_manifest=list(
 		/obj/item/smartgun_powerpack = 2,
@@ -1424,7 +1419,7 @@
 		/obj/item/ammo_magazine/sniper/flak = 2,
 		/obj/item/ammo_magazine/sniper/incendiary = 1
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"specialist ammo crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"specialist ammo crate", "A crate containing ammunition for specialist weapons. A special gift indeed.")
 
 	supply_manifest=list(
 		/obj/item/weapon/gun/rifle/m41a/scoped = 2,
@@ -1433,14 +1428,14 @@
 		/obj/item/ammo_magazine/rifle/lmg = 2,
 		/obj/item/weapon/gun/launcher/m92 = 1
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"experimental weapon crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"experimental weapon crate", "A crate containing all sorts of precious, experimental gear. Fancy.")
 
 	supply_manifest=list(
 		/obj/item/ammo_magazine/rocket = 3,
 		/obj/item/ammo_magazine/rocket/ap = 1,
 		/obj/item/ammo_magazine/rocket/wp = 2,
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"explosive ammo crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"explosive ammo crate", "A crate containing rockets. Better find a launcher to use those with.")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/box/explosive_mines = 3,
@@ -1448,12 +1443,12 @@
 		/obj/item/weapon/grenade/incendiary = 3,
 		/obj/item/weapon/grenade/explosive/m40 = 3
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)", "A crate containing all sorts of explosives.")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/box/uscm_mre = 12
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper MRE crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper MRE crate", "A crate containing USCM MREs. Yuck.")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/firstaid/regular = 6,
@@ -1466,8 +1461,8 @@
 		/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2,
 		/obj/item/weapon/storage/box/syringes = 1,
 		/obj/item/weapon/storage/box/autoinjectors = 1)
-	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
-	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"medical crate", "A crate containing assorted medical supplies. Hopefully some of the labels should make sense.")
+	generate_supply_crate(supply_spawn,supply_manifest,"medical crate", "A crate containing assorted medical supplies. Hopefully some of the labels should make sense.")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/box/m94 = 5,
@@ -1475,7 +1470,7 @@
 		/obj/item/weapon/facepaint/brown = 1,
 		/obj/item/weapon/facepaint/black = 1
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"misc supplies crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"misc supplies crate", "A crate containing odds and ends. Hopefully there's something useful in here.")
 
 
 #undef EVENT_MAJOR_INTERVAL
