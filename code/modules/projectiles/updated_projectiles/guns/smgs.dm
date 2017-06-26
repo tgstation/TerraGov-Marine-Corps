@@ -272,8 +272,8 @@
 //FP9000 //Based on the FN P90
 
 /obj/item/ammo_magazine/smg/p90
-	name = "P90 magazine (5.7x28mm)"
-	desc = "A magazine for the P90 SMG."
+	name = "FN FP9000 magazine (5.7x28mm)"
+	desc = "A magazine for the FN FP9000 SMG."
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = "5.7x28mm"
 	icon_state = "FP9000"

@@ -90,7 +90,7 @@
 
 /obj/item/weapon/large_holster/m37
 	name = "\improper L44 M37A2 scabbard"
-	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage"
+	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
 	item_state = "m37_holster"
 	accepted_weapon_types = list(
@@ -106,7 +106,7 @@
 
 /obj/item/weapon/large_holster/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
-	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back or the armor"
+	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back or the armor."
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
 	item_state = "machete_holster"
