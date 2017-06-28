@@ -87,6 +87,8 @@
 
 /obj/machinery/door/poddoor/shutters/pressure/close(var/delay = 0, var/from_dir = 0)
 
+	if(density) return
+
 	spawn(delay)
 		if(operating)
 			return
@@ -105,8 +107,7 @@
 			for(var/direction in cardinal)
 				if(direction == from_dir) continue //doesn't check backwards
 				for(var/obj/machinery/door/poddoor/shutters/pressure/P in get_step(src,direction) )
-					if(!P.density)
-						P.close(0,turn(direction,180))
+					P.close(0,turn(direction,180))
 
 		if(visible)
 			SetOpacity(1)

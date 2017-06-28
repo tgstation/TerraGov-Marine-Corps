@@ -384,7 +384,7 @@
 	icon_state = "tcomsatcham"
 
 /area/prison/pirate
-	name = "Pirate Freighter \"Rocinante\""
+	name = "Tramp Freighter \"Rocinante\""
 	icon_state = "syndie-ship"
 
 /area/prison/secret

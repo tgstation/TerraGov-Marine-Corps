@@ -172,3 +172,12 @@
 					M.make_floating(0)
 					M.visible_message("<span class='danger'>[M] falls from the sky and crashes into the ground!</span>","<span class='danger'>You fall from the sky and crash into the ground.</span>")
 					M.apply_damage(dmg, BRUTE)
+
+				if(A.z == 4 && isliving(A)) //Space map Z-level
+					var/mob/living/carbon/M = A
+					if(!istype(M)) return
+					M.KnockDown(10)
+					M.inertia_dir = 0
+					M.make_floating(1)
+					M << "<span class='danger'>You are lost into the depths of space.</span>"
+					M.death()

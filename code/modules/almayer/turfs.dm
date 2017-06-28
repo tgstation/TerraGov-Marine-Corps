@@ -225,7 +225,8 @@
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Should be rwindow0. Use rwindow0_debug to check for missing/misplaced hull windows
-	hull = 1
+	not_damageable = 1
+	not_deconstructable = 1
 	health = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window_frame
