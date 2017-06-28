@@ -323,6 +323,7 @@
 /turf/simulated/wall/r_wall/unmeltable
 	icon_state = "r_wall"
 	walltype = "rwall"
+	hull = 1
 
 	ex_act(severity) //Should make it indestructable
 		return

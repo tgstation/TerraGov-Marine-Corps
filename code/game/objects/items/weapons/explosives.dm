@@ -33,7 +33,7 @@
 			r_FAL
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
-		if(W.hull)
+		if(W.not_damageable)
 			user << "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>." //On purpose to mimic wall message
 			r_FAL
 

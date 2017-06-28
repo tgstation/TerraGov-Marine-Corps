@@ -172,6 +172,8 @@
 
 
 /obj/machinery/door/ex_act(severity)
+	if(unacidable) return
+
 	switch(severity)
 		if(1.0)
 			cdel(src)
