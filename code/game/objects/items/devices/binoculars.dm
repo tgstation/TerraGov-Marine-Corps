@@ -67,15 +67,17 @@
 		return
 
 	var/turf/TU = get_turf(A)
+	var/area/targ_area = get_area(A)
 	if(!istype(TU)) return
 	var/is_outside = FALSE
 	if(TU.z == 1)
 		if(istype(TU, /turf/unsimulated/floor))
 			var/turf/unsimulated/floor/F = TU
 			if(F.is_groundmap_turf)
-				var/area/targ_area = get_area(A)
 				if(istype(targ_area) && !targ_area.is_underground)
 					is_outside = TRUE
+		else if (istype(targ_area,/area/prison))
+			is_outside = TRUE
 	if(!is_outside)
 		user << "<span class='warning'>INVALID TARGET: target must be outside on open ground.</span>"
 		return
