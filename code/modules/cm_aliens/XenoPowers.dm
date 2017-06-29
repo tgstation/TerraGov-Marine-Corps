@@ -314,7 +314,7 @@
 
 //Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
 //The acid items are stored in XenoProcs.
-/mob/living/carbon/Xenomorph/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
+/mob/living/carbon/Xenomorph/proc/corrosive_acid(var/atom/O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (variable)"
 	set desc = "Drench an object in acid. Drones/Sentinel cost 75, Boilers 200, everything else 100."
 	set category = "Alien"
@@ -354,19 +354,31 @@
 		if(!check_plasma(75))
 			return
 		var/obj/effect/xenomorph/acid/weak/A = new(get_turf(O), O)
-		A.layer = O:layer + 0.6
+		A.icon_state = "acid_weak[isturf(O) ? "_wall":""]"
+		if(istype(O, /obj/structure) || istype(O, /obj/machinery)) //Always appears above machinery
+			A.layer = O.layer + 0.1
+		else //If not, appear on the floor (turf layer is 2, vents are 2.4)
+			A.layer = 2.41
 
 	else if(isXenoBoiler(src)) //Strong level
 		if(!check_plasma(200))
 			return
 		var/obj/effect/xenomorph/acid/strong/A = new(get_turf(O), O)
-		A.layer = O:layer + 0.6
+		A.icon_state = "acid_strong[isturf(O) ? "_wall":""]"
+		if(istype(O, /obj/structure) || istype(O, /obj/machinery)) //Always appears above machinery
+			A.layer = O.layer + 0.1
+		else //If not, appear on the floor (turf layer is 2, vents are 2.4)
+			A.layer = 2.41
 
 	else
 		if(!check_plasma(100))
 			return
 		var/obj/effect/xenomorph/acid/A = new(get_turf(O), O)
-		A.layer = O:layer + 0.6
+		A.icon_state = "acid_normal[isturf(O) ? "_wall":""]"
+		if(istype(O, /obj/structure) || istype(O, /obj/machinery)) //Always appears above machinery
+			A.layer = O.layer + 0.1
+		else //If not, appear on the floor (turf layer is 2, vents are 2.4)
+			A.layer = 2.41
 
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
