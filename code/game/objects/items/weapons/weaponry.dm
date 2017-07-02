@@ -43,27 +43,27 @@
 	attack_verb = list("jabbed","stabbed","ripped")
 
 /obj/item/weapon/baseballbat
-	name = "wooden bat"
-	desc = "HOME RUN!"
+	name = "\improper wooden baseball bat"
+	desc = "A large wooden baseball bat. Commonly used in colony recreation, but also used as a means of self defense. Often carried by thugs and ruffians."
 	icon_state = "woodbat"
 	item_state = "woodbat"
 	sharp = 0
 	edge = 0
 	w_class = 3
-	force = 15
+	force = 20
 	throw_speed = 3
 	throw_range = 7
 	throwforce = 7
-	attack_verb = list("smashed", "beaten", "slammed", "smacked", "striked", "battered", "bonked")
+	attack_verb = list("smashed", "beaten", "slammed", "struck", "smashed", "battered", "cracked")
 	hitsound = 'sound/weapons/genhit3.ogg'
 
 
 /obj/item/weapon/baseballbat/metal
-	name = "metal bat"
-	desc = "A shiny metal bat."
+	name = "\improper metal baseball bat"
+	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
 	icon_state = "metalbat"
 	item_state = "metalbat"
-	force = 18
+	force = 25
 	w_class = 3.0
 
 /obj/item/weapon/butterfly

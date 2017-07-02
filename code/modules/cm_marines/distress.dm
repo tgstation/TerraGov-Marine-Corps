@@ -28,7 +28,8 @@
 		/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
 		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
 		/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
-		/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90)
+		/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90,
+		/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi/extended)
 
 	var/gunpath = sidearm? pick(merc_sidearms) : pick(merc_firearms)
 	var/ammopath = sidearm? merc_sidearms[gunpath] : merc_firearms[gunpath]
@@ -42,13 +43,120 @@
 			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
 				new ammopath(H.back)
 				new ammopath(H.back)
+				new ammopath(H.back)
+				new ammopath(H.back)
 		else
 			if(ammopath)
 				spawnloc = get_turf(spawnloc)
 				new ammopath(spawnloc)
 				new ammopath(spawnloc)
+				new ammopath(spawnloc)
 
 	return 1
+
+/proc/spawn_rebel_gun(var/atom/M,var/sidearm = 0)
+	if(!M) return
+	var/atom/spawnloc = M
+
+	var/list/rebel_firearms = list(
+		/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun,
+		/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
+		/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
+		/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi/extended,
+		/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi/extended,
+		/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
+		/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
+		/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
+		/obj/item/weapon/gun/pistol/heavy = /obj/item/ammo_magazine/pistol/heavy,
+		/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
+		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
+		/obj/item/weapon/gun/pistol/highpower = /obj/item/ammo_magazine/pistol/highpower,
+		/obj/item/weapon/gun/smg/mp7 = /obj/item/ammo_magazine/smg/mp7,
+		/obj/item/weapon/gun/smg/skorpion = /obj/item/ammo_magazine/smg/skorpion,
+		/obj/item/weapon/gun/smg/skorpion/upp = /obj/item/ammo_magazine/smg/skorpion,
+		/obj/item/weapon/gun/shotgun/double/sawn = /obj/item/ammo_magazine/shotgun/incendiary,
+		/obj/item/weapon/gun/shotgun/double/sawn = /obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
+		/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
+		/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
+		/obj/item/weapon/gun/pistol/vp70 = /obj/item/ammo_magazine/pistol/vp70
+		)
+
+
+	var/list/rebel_sidearms = list(
+		/obj/item/weapon/large_holster/katana/full = null,
+		/obj/item/weapon/large_holster/katana/full = null,
+		/obj/item/weapon/large_holster/katana/full = null,
+		/obj/item/weapon/large_holster/machete/full = null,
+		/obj/item/weapon/combat_knife = null,
+		/obj/item/weapon/grenade/explosive/stick = null,
+		/obj/item/weapon/grenade/explosive/stick = null,
+		/obj/item/weapon/grenade/explosive/stick = null,
+		/obj/item/weapon/upp_knife = null,
+		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
+		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
+		/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
+		/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
+		/obj/item/weapon/reagent_containers/spray/pepper = null,
+		/obj/item/weapon/reagent_containers/spray/pepper = null,
+		/obj/item/clothing/tie/storage/webbing = null,
+		/obj/item/weapon/storage/belt/marine = null,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = null,
+		/obj/item/weapon/grenade/phosphorus = null,
+		/obj/item/clothing/glasses/welding = null,
+		/obj/item/weapon/reagent_containers/ld50_syringe/choral = null,
+		/obj/item/weapon/storage/box/engineer = null,
+		/obj/item/weapon/storage/firstaid/regular = null,
+		/obj/item/weapon/reagent_containers/pill/cyanide = null,
+		/obj/item/device/megaphone = null,
+		/obj/item/weapon/storage/belt/utility/full = null,
+		/obj/item/weapon/storage/belt/utility/full = null,
+		/obj/item/weapon/storage/bible = null,
+		/obj/item/weapon/scalpel = null,
+		/obj/item/weapon/scalpel = null,
+		/obj/item/weapon/baseballbat = null,
+		/obj/item/weapon/baseballbat = null,
+		/obj/item/weapon/baseballbat/metal = null,
+		/obj/item/weapon/grenade/empgrenade = null,
+		/obj/item/weapon/grenade/smokebomb = null,
+		/obj/item/weapon/grenade/smokebomb = null,
+		/obj/item/weapon/grenade/smokebomb = null,
+		/obj/item/weapon/grenade/phosphorus/upp = null
+		)
+
+	var/gunpath = sidearm? pick(rebel_sidearms) : pick(rebel_firearms)
+	var/ammopath = sidearm? rebel_sidearms[gunpath] : rebel_firearms[gunpath]
+	var/obj/item/weapon/gun/gun
+
+	if(gunpath)
+		gun = new gunpath(spawnloc)
+		if(ishuman(spawnloc))
+			var/mob/living/carbon/human/H = spawnloc
+			H.equip_to_slot_or_del(gun, sidearm? WEAR_L_HAND : WEAR_R_HAND)
+			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage) && ammopath != null)
+				new ammopath(H.back)
+				new ammopath(H.back)
+				new ammopath(H.back)
+				new ammopath(H.back)
+		else
+			if(ammopath != null)
+				spawnloc = get_turf(spawnloc)
+				new ammopath(spawnloc)
+				new ammopath(spawnloc)
+				new ammopath(spawnloc)
+
+
+	return 1
+
 
 /proc/spawn_slavic_gun(var/atom/M,var/sidearm = 0)
 	if(!M) return
@@ -103,6 +211,7 @@
 /datum/emergency_call
 	var/name = "name"
 	var/mob_max = 0
+	var/mob_min = 3
 	var/dispatch_message = "An encrypted signal has been received from a nearby vessel. Stand by." //Msg to display when starting
 	var/arrival_message = "" //Msg to display about when the shuttle arrives
 	var/objectives //Txt of objectives to display to joined. Todo: make this into objective notes
@@ -114,10 +223,14 @@
 	var/role_needed = BE_RESPONDER //Obsolete
 	var/name_of_spawn = "Distress" //If we want to set up different spawn locations
 	var/mob/living/carbon/leader = null //Who's leading these miscreants
+	var/medics = 0
+	var/heavies = 0
+	var/max_medics = 1
+	var/max_heavies = 1
 
 //Weyland Yutani commandos. Friendly to USCM, hostile to xenos.
 /datum/emergency_call/pmc
-	name = "Weyland-Yutani PMC"
+	name = "Weyland-Yutani PMC (Squad)"
 	mob_max = 6
 	probability = 30
 
@@ -126,28 +239,41 @@
 		arrival_message = "[MAIN_SHIP_NAME], this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
 		objectives = "Secure the Corporate Liaison and the [MAIN_SHIP_NAME] Commander, and eliminate any hostile threats. Do not damage W-Y property."
 
-//Supply drop. Just docks and has a crapload of stuff inside.
-/datum/emergency_call/supplies
-	name = "Supply Drop"
-	mob_max = 0
-	arrival_message = "Weyland Yutani Automated Supply Drop 334-Q signal received. Docking procedures have commenced."
-	probability = 5
-
 //Randomly-equipped mercenaries. May be friendly or hostile to the USCM, hostile to xenos.
 /datum/emergency_call/mercs
-	name = "Mercenaries"
-	mob_max = 5
+	name = "Freelancers (Squad)"
+	mob_max = 8
 	probability = 30
 
 	New()
 		..()
-		arrival_message = "[MAIN_SHIP_NAME], this is mercenary vessel MC-98 responding to your distress call. Prepare for boarding."
+		arrival_message = "[MAIN_SHIP_NAME], this is Freelancer shuttle MC-98 responding to your distress call. Prepare for boarding."
 		objectives = "Help the crew of the [MAIN_SHIP_NAME] in exchange for payment, and choose your payment well. Do what your Captain says. Ensure your survival at all costs."
+
+//Colonial Liberation Front
+/datum/emergency_call/clf
+	name = "Colonial Liberation Front (Squad)"
+	mob_max = 10
+	arrival_message = "Incoming Transmission: 'Attention, you are tresspassing on our soverign territory. Expect no forgiveness.'"
+	objectives = "Assault the USCM, and sabotage as much as you can. Ensure any survivors escape in your custody."
+	probability = 0
+
+//UPP Strike Team
+/datum/emergency_call/upp
+	name = "UPP Naval Infantry (Squad)"
+	mob_max = 7
+	probability = 0
+
+	New()
+		..()
+		arrival_message = "T*is i* UP* d^sp^*ch`. STr*&e teaM, #*u are cLe*% for a*pr*%^h. Pr*mE a*l wE*p^ns )0r c|*$e @u*r*r$ c0m&*t."
+		objectives = "Eliminate the UA Forces to ensure the UPP prescence in this sector is continued. Listen to your superior officers and take over the [MAIN_SHIP_NAME] at all costs."
+
 
 //Xenomorphs, hostile to everyone.
 /datum/emergency_call/xenos
-	name = "Xenomorphs"
-	mob_max = 6
+	name = "Xenomorphs (Squad)"
+	mob_max = 7
 	probability = 30
 	role_needed = BE_ALIEN
 
@@ -156,48 +282,81 @@
 		arrival_message = "[MAIN_SHIP_NAME], this is USS Vriess respond-- #&...*#&^#.. signal.. oh god, they're in the vent---... Priority Warning: Signal lost."
 		objectives = "For the Empress!"
 
-//Russian 'iron bear' mercenaries. Hostile to everyone. //TODO Replace.
-/datum/emergency_call/bears
-	name = "Iron Bears"
-	mob_max = 5
+/datum/emergency_call/pmc/platoon
+	name = "Weyland-Yutani PMC (Platoon)"
+	mob_min = 8
+	mob_max = 25
 	probability = 0
 
-	New()
-		..()
-		arrival_message = "Incoming Transmission: ' Vrageskie korabli pryamo po kursu, podgotovitcya k shturmu, ekipaj lekvidirovat!'"
-		objectives = "Kill everything that moves. Blow up everything that doesn't. Listen to your superior officers and take over the [MAIN_SHIP_NAME] at all costs."
+/datum/emergency_call/mercs/platoon
+	name = "Freelancers (Platoon)"
+	mob_min = 8
+	mob_max = 30
+	probability = 0
+	max_medics = 3
 
-//Terrified pizza delivery
-/datum/emergency_call/pizza
-	name = "Pizza Delivery"
-	mob_max = 1
-	arrival_message = "Incoming Transmission: 'That'll be.. sixteen orders of cheesy fries, eight large double topping pizzas, nine bottles of Four Loko.. hello? Is anyone on this ship? Your pizzas are getting cold.'"
-	objectives = "Make sure you get a tip!"
+/datum/emergency_call/clf/platoon
+	name = "Colonial Liberation Front (Platoon)"
+	mob_min = 8
+	mob_max = 30
+	probability = 0
+	max_medics = 2
+
+/datum/emergency_call/upp/platoon
+	name = "UPP Naval Infantry (Platoon)"
+	mob_min = 8
+	mob_max = 30
+	probability = 0
+	max_medics = 2
+	max_heavies = 2
+
+/datum/emergency_call/xenos/platoon
+	name = "Xenomorphs (Platoon)"
+	mob_min = 8
+	mob_max = 30
+	probability = 0
+
+
+//Supply drop. Just docks and has a crapload of stuff inside.
+/datum/emergency_call/supplies
+	name = "Supply Drop"
+	mob_max = 0
+	mob_min = 0
+	arrival_message = "Weyland Yutani Automated Supply Drop 334-Q signal received. Docking procedures have commenced."
 	probability = 5
+
+/datum/emergency_call/upp_commando
+	name = "UPP Commandos"
+	mob_max = 6
+	probability = 0
+	objectives = "Stealthily assault the ship. Use your silenced weapons, tranquilizers, and night vision to get the advantage on the enemy. Take out the power systems, comms and engine. Stick together and keep a low profile."
+
+//Deathsquad Commandos
+/datum/emergency_call/death
+	name = "Weyland Deathsquad"
+	mob_max = 8
+	mob_min = 5
+	arrival_message = "Intercepted Transmission: '!`2*%slau#*jer t*h$em a!l%. le&*ve n(o^ w&*nes%6es.*v$e %#d ou^'"
+	objectives = "Wipe out everything. Ensure there are no traces of the infestation or any witnesses."
+	probability = 0
 
 //Blank colonist ERT for admin stuff.
 /datum/emergency_call/colonist
 	name = "Colonists"
 	mob_max = 8
+	mob_min = 1
 	arrival_message = "Incoming Transmission: 'This is the *static*. We are *static*.'"
 	objectives = "Follow the orders given to you."
 	probability = 0
 
-//Dutch's Dozen. Friendly to the USCM, but more neutral than anything. //TODO Replace.
-/datum/emergency_call/dutch
-	name = "Dutch's Team"
-	mob_max = 5
-	arrival_message = "Incoming Transmission: 'Get to the shuttle! This is Major Dutch and my team of mercenaries. Responding to your distress call.'"
-	objectives = "Follow the orders of Dutch and assist the marines. If there are any Yajuta on the field, you are to give it your full attention. If the shuttle is called, you need to get to it."
-	probability = 0
-
-//Deathsquad Commandos
-/datum/emergency_call/death
-	name = "Weyland Deathsquad"
-	mob_max = 5
-	arrival_message = "Intercepted Transmission: '!`2*%slau#*jer t*h$em a!l%. le&*ve n(o^ w&*nes%6es.*v$e %#d ou^'"
-	objectives = "Wipe out everything. Ensure there are no traces of the infestation or any witnesses."
-	probability = 0
+//Terrified pizza delivery
+/datum/emergency_call/pizza
+	name = "Pizza Delivery"
+	mob_max = 1
+	mob_min = 1
+	arrival_message = "Incoming Transmission: 'That'll be.. sixteen orders of cheesy fries, eight large double topping pizzas, nine bottles of Four Loko.. hello? Is anyone on this ship? Your pizzas are getting cold.'"
+	objectives = "Make sure you get a tip!"
+	probability = 5
 
 
 
@@ -326,7 +485,7 @@
 
 	ticker.mode.has_called_emergency = 1
 	spawn(600) //If after 60 seconds we aren't full, abort
-		if(candidates.len < mob_max)
+		if(candidates.len < mob_min)
 			message_admins("Aborting distress beacon, not enough candidates: found [candidates.len].", 1)
 			ticker.mode.waiting_for_candidates = 0
 			ticker.mode.has_called_emergency = 0
@@ -425,6 +584,74 @@
 
 	return spawn_loc
 
+/datum/emergency_call/proc/print_backstory_pmc(var/mob/living/carbon/human/M)
+	M << "<B>You were born [pick(75;"in Europe", 15;"in Asia", 10;"on Mars")] to a [pick(75;"well-off", 15;"well-established", 10;"average")] family.</b>"
+	M << "<B>Joining the ranks of Weyland Yutani has proven to be very profitable for you.</b>"
+	M << "<B>While you are officially an employee, much of your work is off the books. You work as a skilled mercenary.</b>"
+	M << "<B>You are [pick(50;"unaware of the xenomorph threat", 15;"acutely aware of the xenomorph threat", 10;"well-informed of the xenomorph threat")]</b>"
+	M << ""
+	M << ""
+	M << "<B>You are part of  Weyland Yutani Task Force Oberon that arrived in 2182 following the UA withdrawl of the Tychon's Rift sector.</b>"
+	M << "<B>Task-force Oberon is stationed aboard the USCSS Royce, a powerful Weyland-Yutani cruiser that patrols the outer edges of Tychon's Rift. </b>"
+	M << "<B>Under the directive of Weyland-Yutani board member Johan Almric, you act as private security for Weyland Yutani science teams.</b>"
+	M << "<B>The USCSS Royce contains a crew of roughly two hundred PMCs, and one hundred scientists and support personnel.</b>"
+	M << ""
+	M << ""
+	M << "<B>Ensure no damage is incurred against Weyland Yutani. Make sure the CL is safe.</b>"
+	M << "<B>Deny Weyland-Yutani's involvement and do not trust the UA/USCM forces.</b>"
+
+/datum/emergency_call/proc/print_backstory_upp(var/mob/living/carbon/human/M)
+	M << ""
+	M << "<B>You grew up in relativly simple family in [pick(75;"Eurasia", 25;"a famished UPP colony")] with few belongings or luxuries. </B>"
+	M << "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"three", 20;"four", 30;"five", 20;"six")] children.</B>"
+	M << "<B>You come from a long line of [pick(40;"crop-harvesters", 20;"soldiers", 20;"factory workers", 5;"scientists", 15;"engineers")], and quickly enlisted to improve your living conditions.</B>"
+	M << ""
+	M << ""
+	M << "<B>Following your enlistment UPP military at the age of 17 you were assigned to the 17th 'Smoldering Sons' battalion (six hundred strong) under the command of Colonel Ganbaatar. </B>"
+	M << "<B>You were shipped off with the battalion to one of the UPP's most remote territories, a gas giant designated MV-35 in the Anglo-Japanese Arm, in the Tychon's Rift sector.  </B>"
+	M << ""
+	M << ""
+	M << "<B>For the past 14 months, you and the rest of the Smoldering Sons have been stationed at MV-35's only facility, the helium refinery, Altai Station. </B>"
+	M << "<B>As MV-35 and Altai Station are the only UPP-held zones in the Tychon's Rift sector for many lightyears, you have spent most of your military career holed up in crammed quarters in near darkness, waiting for supply shipments and transport escort deployments.</B>"
+	//M << "<B>you have spent most of your military career holed up in crammed quarters in near darkness, waiting for supply shipments and transport escort deployments.</B>"
+	M << ""
+	M << ""
+	M << "<B>With the recent arrival of the enemy USCM battalion the 'Falling Falcons' and their flagship, the [MAIN_SHIP_NAME], the UPP has felt threatened in the sector. </B>"
+	M << "<B>In an effort to protect the vunerable MV-35 from the emproaching UA/USCM imperialists, the leadership of your battalion has opted this the best opportunity to strike at the Falling Falcons to catch them off guard. </B>"
+	M << ""
+	M << ""
+	M << "<font size='3'>\red Glory to Colonel Ganbaatar.</font>"
+	M << "<font size='3'>\red Glory to the Smoldering Sons.</font>"
+	M << "<font size='3'>\red Glory to the UPP.</font>"
+	M << ""
+	M << ""
+	M << "\blue Use say :3 <text> to speak in your native tongue."
+	M << "\blue This allows you to speak privately with your fellow UPP allies."
+	M << "\blue Utilize it with your radio to prevent enemy radio interceptions."
+
+
+/datum/emergency_call/proc/print_backstory_clf(var/mob/living/carbon/human/mob)
+	mob << "<B>You grew up [pick(5;"on the UA prison station", 10;"in the LV-624 jungle", 25;"on the farms of LV-771", 25;"in the slums of LV-221", 20;"the red wastes of LV-361", 15;"the icy tundra of LV-571")] to a [pick(50;"poor", 15;"well-off", 35;"average")] family.</B>"
+	mob << "<B>As a native of the Tychon's Rift sector, you joined the CLF because [pick(20;"the Dust Raiders killed someone close to you in 2181", 20;"you harbor a strong hatred of the United Americas", 10;"you are a wanted criminal in the United Americas", 5;"have UPP sympathies and want to see the UA driven out of the secor", 10;"you believe the USCM occupation will hurt your quality of life", 5;"are a violent person and want to kill someone for the sake of killing", 20;"want the Tychon's Rift to be free from outsiders", 10;"your militia was absorbed into the CLF")] and are considered a terrorist by the UA.</B>"
+
+	mob << "<B>The Tychon's Rift sector has largely enjoyed its indepdendence..</B>"
+	mob << "<B>Though technically part of the United American frontier, many colonists in the Tychon's Rift have enjoyed their freedoms.</B>"
+	mob << ""
+	mob << "<B>In 2181, however, the United Americas moved the USCM Battalion, the 'Dust Raiders', and the battalion flagship, the USS Alistoun, to the Tychon's Rift sector. </B>"
+	mob << "<B>The Dust Raiders responded with deadly force, scattering many of the colonists who attempted to fight their occupation.</B>"
+	mob << "<B>The Dust Raiders and their flagship, the USS Alistoun eventually withdrew from the sector by the end of the year.</font></B>"
+	mob << "<B> "
+	mob << "<B>With the Tychon's Rift sector existing in relative isolation from United America oversight for the last five years, many colonists have considered themselves free from governmental rule.</B>"
+	mob << ""
+	mob << "<B>The year is now 2186.</B>"
+	mob << "<B>The arrival of the USCM Battalion, the Falling Falcons, and their flagship, the USS Almayer, have reaffirmed that the United Americas considers Tychon's Rift part of their holdings.</B>"
+	mob << "<B>It is up to you and your fellow colonists to make them realize their trespasses. This sector is no longer theirs.</B>"
+
+/datum/emergency_call/proc/print_backstory_freelancers(var/mob/living/carbon/human/mob)
+	mob << "<B> You started off in Tychon's Rift system as a colonist seeking work at one of the established colonies.</b>"
+	mob << "<B> The withdrawl of United American forces in the early 2180s, the system fell into disarray.</b>"
+	mob << "<B> Taking up arms as a mercenary, the Freelancers have become a powerful force of order in the system.</b>"
+	mob << "<B> While they are motivated primarily by money, many colonists see the Freelancers as the main forces of order in Tychon's Rift.</b>"
 
 /datum/emergency_call/proc/create_member(var/datum/mind/M) //This is the parent, each type spawns its own variety.
 	return
@@ -436,17 +663,23 @@
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(MALE,FEMALE)
+	mob.gender = MALE
+	var/list/first_names_mb = list("Owen","Luka","Nelson","Branson", "Tyson", "Leo", "Bryant", "Kobe", "Rohan", "Riley", "Aidan", "Watase","Egawa","Hisakawa","Koide")
+	var/list/last_names_mb = list("Bates","Shaw","Hansen","Black", "Chambers", "Hall", "Gibson", "Weiss", "Waller", "Burton", "Bakin", "Rohan", "Naomichi", "Yakumo", "Yosai")
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
-	if(mob.gender == MALE)
-		mob.real_name = "PMC [pick(first_names_male)] [pick(last_names)]"
-	else
-		mob.real_name = "PMC [pick(first_names_female)] [pick(last_names)]"
-	mob.name = mob.real_name
-	mob.age = rand(17,45)
-	mob.dna.ready_dna(mob)
 
+
+	mob.real_name = "PMC [pick(first_names_mb)] [pick(last_names_mb)]"
+	mob.name = mob.real_name
+	mob.age = rand(25,35)
+	mob.dna.ready_dna(mob)
+	mob.h_style = "Shaved Head"
+	mob.f_style = "5 O'clock Shadow"
+	mob.r_hair = 25
+	mob.g_hair = 25
+	mob.b_hair = 35
+	mob.s_tone = rand(0,35)
 	mob.key = M.key
 //	M.transfer_to(mob)
 
@@ -459,24 +692,23 @@
 			spawn_officer(mob)
 			mob.mind.special_role = "MODE"
 			mob.mind.assigned_role = "PMC Leader"
-			mob << "<font size='3'>\red You are the Weyland Yutani PMC leader!</font>"
-			mob << "<B> You must lead the PMCs to victory against any and all hostile threats.</b>"
-			mob << "<B> Ensure no damage is incurred against Weyland Yutani. Make sure the CL is safe.</b>"
+			print_backstory_pmc(mob)
 		else
 			mob.mind.special_role = "MODE"
 			if(prob(55)) //Randomize the heavy commandos and standard PMCs.
 				spawn_standard(mob)
-				mob << "<font size='3'>\red You are a Weyland Yutani tactical responder!</font>"
-				mob << "<b> Follow your orders and protect W-Y interests. Make sure the CL is safe.</b>"
+				mob << "<font size='3'>\red You are a Weyland Yutani mercenary!</font>"
+				print_backstory_pmc(mob)
 			else
-				if(prob(50))
+				if(prob(30))
 					spawn_heavy(mob)
 					mob << "<font size='3'>\red You are a Weyland Yutani sniper!</font>"
-					mob << "<b> Follow your orders and protect W-Y interests. Make sure the CL is safe.</b>"
+					print_backstory_pmc(mob)
 				else
 					spawn_gunner(mob)
 					mob << "<font size='3'>\red You are a Weyland Yutani heavy gunner!</font>"
-					mob << "<b> Follow your orders and protect W-Y interests. Make sure the CL is safe.</b>"
+					print_backstory_pmc(mob)
+
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
 
@@ -488,123 +720,22 @@
 /datum/emergency_call/pmc/proc/spawn_standard(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), WEAR_R_HAND)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), WEAR_L_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Standard"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
+	M.arm_equipment(M, "Weyland-Yutani PMC (Standard)")
 
 /datum/emergency_call/pmc/proc/spawn_officer(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M), WEAR_WAIST)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), WEAR_R_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), WEAR_IN_BACK)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_R_HAND)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), WEAR_L_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Officer"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
+	M.arm_equipment(M, "Weyland-Yutani PMC (Leader)")
 
 /datum/emergency_call/pmc/proc/spawn_gunner(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
-	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), WEAR_R_HAND)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_L_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Specialist"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
+	M.arm_equipment(M, "Weyland-Yutani PMC (Gunner)")
 
 /datum/emergency_call/pmc/proc/spawn_heavy(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), WEAR_EYES)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_R_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), WEAR_R_HAND)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), WEAR_L_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), WEAR_IN_BACK)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Sniper"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
+	M.arm_equipment(M, "Weyland-Yutani PMC (Sniper)")
 
 /datum/emergency_call/pmc/proc/spawn_xenoborg(var/mob/M) //Deferred for now. Just keep it in mind
 	return
@@ -614,19 +745,22 @@
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
-	var/chance = rand(0,2)
+	var/chance = rand(0,3)
 	var/mob/living/carbon/Xenomorph/new_xeno
-	if(chance == 0)
-		new_xeno = new /mob/living/carbon/Xenomorph/Hunter(spawn_loc)
+	if(!leader)
+		new_xeno = new /mob/living/carbon/Xenomorph/Ravager/ravenger(spawn_loc)
+		leader = new_xeno
+	else if(chance == 0)
+		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elite(spawn_loc)
 	else if(chance == 1)
-		new_xeno = new /mob/living/carbon/Xenomorph/Spitter(spawn_loc)
+		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)
 	else
-		new_xeno = new /mob/living/carbon/Xenomorph/Drone(spawn_loc)
-
+		new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
 	new_xeno.key  = M.key
 
 	if(original) //Just to be sure.
 		cdel(original)
+	return
 
 /datum/emergency_call/mercs/create_member(var/datum/mind/M, hostile)
 	var/turf/spawn_loc = get_spawn_point()
@@ -635,16 +769,24 @@
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(MALE,FEMALE)
+	mob.gender = pick(80;MALE,20;FEMALE)
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
+	var/list/first_names_mcol = list("Alan","Jack","Bil","Jonathan","John","Shiro","Gareth","Clark","Sam", "Lionel", "Aaron", "Charlie", "Scott", "Winston", "Aidan", "Ellis", "Mason", "Wesley", "Nicholas", "Calvin", "Nishikawa", "Hiroto", "Chiba", "Ouchi", "Furuse", "Takagi", "Oba", "Kishimoto")
+	var/list/first_names_fcol = list("Emma", "Adelynn", "Mary", "Halie", "Chelsea", "Lexie", "Arya", "Alicia", "Selah", "Amber", "Heather", "Myra", "Heidi", "Charlotte", "Oliva", "Lydia", "Tia", "Riko", "Ari", "Machida", "Ueki", "Mihara", "Noda")
+	var/list/last_names_col = list("Hawkins","Rickshaw","Elliot","Billard","Cooper","Fox", "Barlow", "Barrows", "Stewart", "Morgan", "Green", "Stone", "Burr", "Hunt", "Yuko", "Gesshin", "Takanibu", "Tetsuzan", "Tomomi", "Bokkai", "Takesi")
 	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_male)] [pick(last_names)]"
+		mob.real_name = "[pick(first_names_mcol)] [pick(last_names_col)]"
+		mob.f_style = "5 O'clock Shadow"
 	else
-		mob.real_name = "[pick(first_names_female)] [pick(last_names)]"
+		mob.real_name = "[pick(first_names_fcol)] [pick(last_names_col)]"
 	mob.name = mob.real_name
-	mob.age = rand(17,45)
+	mob.age = rand(20,45)
 	mob.dna.ready_dna(mob)
+	mob.r_hair = 25
+	mob.g_hair = 25
+	mob.b_hair = 35
+	mob.s_tone = rand(0,120)
 	mob.key = M.key
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Mercenary"
@@ -653,26 +795,35 @@
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
 			spawn_captain(mob)
+			mob << "<font size='3'>\red You are the Freelancer leader!</font>"
+			print_backstory_freelancers(mob)
 			if(hostility)
-				mob << "<font size='3'>\red You are the Mercenary captain!</font>"
-				mob << "<B> You must lead the mercs to victory against any and all hostile threats.</b>"
-				mob << "<B> You are a space pirate responding to a distress. You are to loot the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
-				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+				mob << "<B> Despite this, you have been tasked to ransack the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
+				mob << "<B> Any UPP, CLF or WY forces also responding are to be considered neutral parties unless proven hostile.</b>"
 			else
-				mob << "<font size='3'>\red You are the Mercenary captain!</font>"
-				mob << "<B> You must lead the mercs to victory against any and all hostile threats.</b>"
-				mob << "<B> You are to help with the defense of the [MAIN_SHIP_NAME], but you will not leave without payment.</b>"
-				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+				mob << "<B> To this end, you have been contacted by Weyland-Yutani of the USCSS Royce to assist the [MAIN_SHIP_NAME]..</b>"
+				mob << "<B> Ensure they are not destroyed.</b>"
+		else if(medics < max_medics)
+			spawn_medic(mob)
+			medics++
+			mob << "<font size='3'>\red You are a Freelancer medic!</font>"
+			print_backstory_freelancers(mob)
+			if(hostility)
+				mob << "<B> Despite this, you have been tasked to ransack the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
+				mob << "<B> Any UPP, CLF or WY forces also responding are to be considered neutral parties unless proven hostile.</b>"
+			else
+				mob << "<B> To this end, you have been contacted by Weyland-Yutani of the USCSS Royce to assist the [MAIN_SHIP_NAME]..</b>"
+				mob << "<B> Ensure they are not destroyed.</b>"
 		else
 			spawn_mercenary(mob)
+			mob << "<font size='3'>\red You are a Freelancer mercenary!</font>"
+			print_backstory_freelancers(mob)
 			if(hostility)
-				mob << "<font size='3'>\red You are a Space Mercenary!</font>"
-				mob << "<B> You are a space pirate responding to a distress. You are to loot the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
-				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+				mob << "<B> Despite this, you have been tasked to ransack the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
+				mob << "<B> Any UPP, CLF or WY forces also responding are to be considered neutral parties unless proven hostile.</b>"
 			else
-				mob << "<font size='3'>\red You are a Space Mercenary!</font>"
-				mob << "<B> You are to help with the defense of the [MAIN_SHIP_NAME], but you will not leave without payment.</b>"
-				mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
+				mob << "<B> To this end, you have been contacted by Weyland-Yutani of the USCSS Royce to assist the [MAIN_SHIP_NAME]..</b>"
+				mob << "<B> Ensure they are not destroyed.</b>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -684,98 +835,76 @@
 /datum/emergency_call/mercs/proc/spawn_captain(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), WEAR_FEET)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), WEAR_R_HAND)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), WEAR_L_HAND)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M), WEAR_L_STORE)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Mercenary Captain"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_freelancer_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
+	M.arm_equipment(M, "Freelancer (Leader)")
 
 /datum/emergency_call/mercs/proc/spawn_mercenary(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
-	if(prob(50)) M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
-	else M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), WEAR_FEET)
+	M.arm_equipment(M, "Freelancer (Standard)")
 
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Mercenary"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_freelancer_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
+/datum/emergency_call/mercs/proc/spawn_medic(var/mob/M)
+	if(!M || !istype(M)) return
+	M.arm_equipment(M, "Freelancer (Medic)")
+	medics++
 
-	spawn_merc_gun(M)
-	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands
+///////////////////UPP///////////////////////////
 
-/datum/emergency_call/bears/create_member(var/datum/mind/M)
+/datum/emergency_call/upp/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(MALE,FEMALE)
+	mob.gender = pick(85;MALE,15;FEMALE)
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
-	var/list/first_names_mr = list("Grigory","Vladimir","Alexei","Andrei","Artyom","Viktor","Boris","Ivan","Igor","Oleg")
-	var/list/first_names_fr = list("Alexandra","Anna","Anastasiya","Eva","Klara","Oksana","Olga","Svetlana","Tatyana","Yaroslava")
-	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Dragomirov","Yeltsin","Zhirov","Zhukov","Ivanov","Vasnetsov","Kasputin","Belov","Melnikov", "Vasilevsky", "Penkin")
+	var/list/first_names_mr = list("Badai","Mongkeemur","Alexei","Andrei","Artyom","Viktor","Xangai","Ivan","Choban","Oleg", "Dayan", "Taghi", "Batu", "Arik", "Orda", "Ghazan", "Bala", "Gao", "Zhan", "Ren", "Hou", "Serafim", "Luca")
+	var/list/first_names_fr = list("Altani","Cirina","Anastasiya","Saran","Wei","Oksana","Ren","Svena","Tatyana","Yaroslava", "Miruna", "Flori", "Lucia", "Anica")
+	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Khan","Noica","Barbu","Zhukov","Ivanov","Mihai","Kasputin","Belov","Melnikov", "Vasilevsky", "Proca", "Zaituc", "Arcos", "Kubat", "Kral", "Volf")
 
-	if(mob.gender == MALE) 	mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
-	else 					mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)+"a"]"
+	if(mob.gender == MALE)
+		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
+		mob.f_style = "5 O'clock Shadow"
+	else
+		mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)]"
 
 	mob.name = mob.real_name
-	mob.age = rand(17,45)
+	mob.age = rand(17,35)
+	mob.h_style = "Shaved Head"
+	mob.r_hair = 15
+	mob.g_hair = 15
+	mob.b_hair = 25
+	mob.r_eyes = 139
+	mob.g_eyes = 62
+	mob.b_eyes = 19
 	mob.dna.ready_dna(mob)
+	mob.s_tone = rand(0,40)
 	mob.key = M.key
 	mob.mind.assigned_role = "MODE"
-	mob.mind.special_role = "IRON BEARS"
+	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
 			spawn_officer(mob)
-			mob << "<font size='3'>\red You are the Iron Bears leader!</font>"
-			mob << "<B> You are a highly trained military cell and part of the Russian Spetsnaz.</b>"
-			mob << "<B> You must lead the Iron Bears mercenaries in taking the [MAIN_SHIP_NAME] by taking over the bridge.</b>"
-			mob << "<B> Make sure to contact the USSR and eliminate any resistance!</b>"
-			mob << "<B> You're the only one they taught any English, so make use of that.</b>"
-			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
-		else
-			spawn_standard(mob)
 			mob.remove_language("Sol Common")
-			mob.remove_language("English")
-			mob << "<font size='3'>\red You are an Iron Bear mercenary!</font>"
-			mob << "<font size='3'>\red You must take over the [MAIN_SHIP_NAME] at all costs! Listen to your leader!</font>"
-			mob << "<font size='3'>\red Make sure to contact the USSR and eliminate any resistance!</font>"
-			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
+			mob << "<font size='3'>\red You are an officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
+			print_backstory_upp(mob)
+		else if(medics < max_medics)
+			mob << "<font size='3'>\red You are a medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
+			spawn_medic(mob)
+			print_backstory_upp(mob)
+			medics++
+		else if(heavies < max_heavies)
+			mob << "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
+			spawn_heavy(mob)
+			print_backstory_upp(mob)
+			heavies++
+		else
+			mob << "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
+			spawn_standard(mob)
+			print_backstory_upp(mob)
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -787,60 +916,105 @@
 	return
 
 
-/datum/emergency_call/bears/proc/spawn_standard(var/mob/M)
+/datum/emergency_call/upp/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/bear(M), WEAR_FACE)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), WEAR_EYES)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), WEAR_L_STORE)
+	M.arm_equipment(M, "UPP Soldier (Standard)")
 
-	spawn_slavic_gun(M)
-	spawn_slavic_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Iron Bear"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_antagonist_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
-
-/datum/emergency_call/bears/proc/spawn_officer(var/mob/M)
+/datum/emergency_call/upp/proc/spawn_heavy(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), WEAR_EYES)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
+	M.arm_equipment(M, "UPP Soldier (Heavy)")
 
-	spawn_slavic_gun(M)
-	spawn_slavic_gun(M,1)
+/datum/emergency_call/upp/proc/spawn_medic(var/mob/M)
+	if(!M || !istype(M)) return
 
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Iron Bears Sergeant"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_antagonist_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
+	M.arm_equipment(M, "UPP Soldier (Medic)")
+
+/datum/emergency_call/upp/proc/spawn_officer(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.arm_equipment(M, "UPP Soldier (Leader)")
+
+//UPP COMMANDOS
+
+/datum/emergency_call/upp_commando/create_member(var/datum/mind/M)
+	var/turf/spawn_loc = get_spawn_point()
+	var/mob/original = M.current
+
+	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+
+	var/mob/living/carbon/human/mob = new(spawn_loc)
+	mob.gender = pick(90;MALE,10;FEMALE)
+	var/datum/preferences/A = new()
+	A.randomize_appearance_for(mob)
+	var/list/first_names_mr = list("Badai","Mongkeemur","Alexei","Andrei","Artyom","Viktor","Xangai","Ivan","Choban","Oleg", "Dayan", "Taghi", "Batu", "Arik", "Orda", "Ghazan", "Bala", "Gao", "Zhan", "Ren", "Hou", "Serafim", "Luca")
+	var/list/first_names_fr = list("Altani","Cirina","Anastasiya","Saran","Wei","Oksana","Ren","Svena","Tatyana","Yaroslava", "Miruna", "Flori", "Lucia", "Anica")
+	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Khan","Noica","Barbu","Zhukov","Ivanov","Mihai","Kasputin","Belov","Melnikov", "Vasilevsky", "Proca", "Zaituc", "Arcos", "Kubat", "Kral", "Volf")
+
+	if(mob.gender == MALE)
+		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
+		mob.f_style = "7 O'clock Shadow"
+	else
+		mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)]"
+
+	mob.name = mob.real_name
+	mob.age = rand(25,35)
+	mob.h_style = "Shaved Head"
+	mob.r_hair = 15
+	mob.g_hair = 15
+	mob.b_hair = 25
+	mob.r_eyes = 139
+	mob.g_eyes = 62
+	mob.b_eyes = 19
+	mob.dna.ready_dna(mob)
+	mob.s_tone = rand(0,40)
+	mob.key = M.key
+	mob.mind.assigned_role = "MODE"
+	mob.mind.special_role = "UPP"
+	ticker.mode.traitors += mob.mind
+	spawn(0)
+		if(!leader)       //First one spawned is always the leader.
+			leader = mob
+			spawn_officer(mob)
+			mob.remove_language("Sol Common")
+			mob << "<font size='3'>\red You are a commando officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
+			print_backstory_upp(mob)
+		else if(medics < max_medics)
+			mob << "<font size='3'>\red You are a commando medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
+			spawn_medic(mob)
+			print_backstory_upp(mob)
+			medics++
+		else
+			mob << "<font size='3'>\red You are a commando of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
+			spawn_standard(mob)
+			print_backstory_upp(mob)
+
+	spawn(10)
+		M << "<B>Objectives:</b> [objectives]"
+
+	mob.add_language("Russian")
+
+	if(original)
+		cdel(original)
+	return
+
+
+/datum/emergency_call/upp_commando/proc/spawn_standard(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.arm_equipment(M, "UPP Commando (Standard)")
+
+/datum/emergency_call/upp_commando/proc/spawn_medic(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.arm_equipment(M, "UPP Commando (Medic)")
+
+/datum/emergency_call/upp_commando/proc/spawn_officer(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.arm_equipment(M, "UPP Commando (Leader)")
+
 
 /datum/emergency_call/pizza/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
@@ -865,7 +1039,7 @@
 	ticker.mode.traitors += mob.mind
 	spawn(0)
 		spawn_pizza(mob)
-		var/pizzatxt = pick("Pizzachimp","Pizza the Hut","Papa Donks")
+		var/pizzatxt = pick("Discount Pizza","Pizza Kingdom","Papa Pizza")
 		mob << "<font size='3'>\red You are a pizza deliverer! Your employer is the [pizzatxt] Corporation.</font>"
 		mob << "Your job is to deliver your pizzas. You're PRETTY sure this is the right place.."
 	spawn(10)
@@ -894,7 +1068,7 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(M.back), WEAR_IN_BACK)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Pizzachimp Deliverer"
+	W.assignment = "Pizza Deliverer"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -909,7 +1083,7 @@
 	var/turf/drop_spawn
 	var/choice
 
-	for(var/i = 1 to 3) //Spawns up to 3 random things.
+	for(var/i = 0 to 0) //Spawns up to 3 random things.
 		if(prob(20)) continue
 		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
 		if(choice < 0) choice = 0
@@ -917,10 +1091,10 @@
 		if(istype(drop_spawn))
 			switch(choice)
 				if(0)
-					new /obj/item/weapon/gun/pistol/vp78(drop_spawn)
-					new /obj/item/weapon/gun/pistol/vp78(drop_spawn)
-					new /obj/item/ammo_magazine/pistol/vp78
-					new /obj/item/ammo_magazine/pistol/vp78
+					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
+					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/ap
+					new /obj/item/ammo_magazine/smg/m39/ap
 					continue
 				if(1)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
@@ -1023,11 +1197,12 @@
 					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
 					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
 
-/datum/emergency_call/bears/spawn_items()
+/*
+/datum/emergency_call/upp/spawn_items()
 	var/turf/drop_spawn
 	var/choice
 
-	for(var/i = 1 to 3) //Spawns up to 3 random things.
+	for(var/i = 0 to 0) //Spawns up to 3 random things.Disabled
 		if(prob(10)) continue
 		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
 		if(choice < 0) choice = 0
@@ -1071,7 +1246,7 @@
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
-
+*/
 /datum/emergency_call/colonist/create_member(datum/mind/M) //Blank ERT with only basic items.
 	var/turf/T = get_spawn_point()
 	var/mob/original = M.current
@@ -1103,52 +1278,51 @@
 
 	if(original && original.loc) cdel(original)
 
-/datum/emergency_call/dutch/create_member(var/datum/mind/M)
+/datum/emergency_call/clf/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(MALE)
+	mob.gender = pick(65;MALE, 35;FEMALE)
 	var/datum/preferences/A = new()
-	var/list/first_names_mr = list("Alan","Rick","Billy","Blain","Al","Mac","Jorge","Jim","Poncho")
-	var/list/last_names_r = list("Hawkins","Sole","Elliot","Dillon","Cooper","Ramirez")
+	var/list/first_names_mreb = list("Alan","Jack","Bil","Jonathan","John","Shiro","Gareth","Clark","Sam", "Lionel", "Aaron", "Charlie", "Scott", "Winston", "Aidan", "Ellis", "Mason", "Wesley", "Nicholas", "Calvin", "Nishikawa", "Hiroto", "Chiba", "Ouchi", "Furuse", "Takagi", "Oba", "Kishimoto")
+	var/list/first_names_freb = list("Emma", "Adelynn", "Mary", "Halie", "Chelsea", "Lexie", "Arya", "Alicia", "Selah", "Amber", "Heather", "Myra", "Heidi", "Charlotte", "Oliva", "Lydia", "Tia", "Riko", "Ari", "Machida", "Ueki", "Mihara", "Noda")
+	var/list/last_names_reb = list("Hawkins","Rickshaw","Elliot","Billard","Cooper","Fox", "Barlow", "Barrows", "Stewart", "Morgan", "Green", "Stone", "Burr", "Hunt", "Yuko", "Gesshin", "Takanibu", "Tetsuzan", "Tomomi", "Bokkai", "Takesi")
 	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
+		mob.real_name = "[pick(first_names_mreb)] [pick(last_names_reb)]"
 	else
-		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
-	A.randomize_appearance_for(mob)
+		mob.real_name = "[pick(first_names_freb)] [pick(last_names_reb)]"
 	mob.name = mob.real_name
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
 	mob.key = M.key
 	mob.mind.assigned_role = "MODE"
-	mob.mind.special_role = "DUTCH'S DOZEN"
+	mob.mind.special_role = "CLF"
 	ticker.mode.traitors += mob.mind
+	mob.r_hair = 25
+	mob.g_hair = 25
+	mob.b_hair = 35
+	mob.r_eyes = 139
+	mob.g_eyes = 62
+	mob.b_eyes = 19
+	mob.s_tone = rand(0,90)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
-		/*
-			mob.name = "Dutch Schaefer"
-			mob.age = 38
-			mob.s_tone = 35
-			mob.h_style = "pompadour"
-			mob.f_style = "shaved"
-			mob.r_hair = 125
-			mob.g_hair = 95
-			mob.b_hair = 75
-		*/
-			leader = mob
+			mob << "<font size='4'>\red You are a leader of the local resistance group, the Colonial Liberation Front."
 			spawn_officer(mob)
-			mob << "<font size='3'>\red You are in charge of the mercenary team!</font>"
-			mob << "<B> Lead your mercenary team to assist the Colonial Marines. You have been paid to do it, but you do not listen to USCM commands.</b>"
-			mob << "<B> Should you encounter a Yautja, you are to hunt it down at all costs. If the shuttle is called, you must get to it.</b>"
-			mob << "<B> You have prior knowledge of existance of the Yautja, but you are not to tell anyone about them!</b>"
+			print_backstory_clf(mob)
+			leader = mob
+		else if(medics < max_medics)
+			mob << "<font size='4'>\red You are a medic of the local resistance group, the Colonial Liberation Front."
+			spawn_medic(mob)
+			print_backstory_clf(mob)
+			medics++
 		else
+			mob << "<font size='4'>\red You are a member of the local resistance group, the Colonial Liberation Front."
 			spawn_standard(mob)
-			mob << "<font size='3'>\red You are a member of Dutch's Mercenary team!</font>"
-			mob << "<B> Should you encounter a Yautja, you are to hunt it down at all costs. If the shuttle is called, you must get to it.</b>"
-			mob << "<B> You have prior knowledge of existance of the Yautja, but you are not to tell anyone about them!</b>"
+			print_backstory_clf(mob)
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -1158,59 +1332,20 @@
 	return
 
 
-/datum/emergency_call/dutch/proc/spawn_standard(var/mob/M)
+/datum/emergency_call/clf/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
-	//M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/cap(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+	M.arm_equipment(M, "CLF Fighter (Standard)")
 
-	spawn_merc_gun(M)
-	spawn_merc_gun(M,1)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Dutch's Team Mercenary"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	M.equip_to_slot_or_del(W, WEAR_ID)
-
-/datum/emergency_call/dutch/proc/spawn_officer(var/mob/M)
+/datum/emergency_call/clf/proc/spawn_medic(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch/ranger(M), WEAR_BODY)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/band(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+	M.arm_equipment(M, "CLF Fighter (Medic)")
 
-	spawn_merc_gun(M)
-	spawn_merc_gun(M,1)
+/datum/emergency_call/clf/proc/spawn_officer(var/mob/M)
+	if(!M || !istype(M)) return
 
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Dutch's Team Leader"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, WEAR_ID)
-
-	M.add_language("Russian")
-	M.add_language("Sainja")
-
+	M.arm_equipment(M, "CLF Fighter (Leader)")
 
 // DEATH SQUAD--------------------------------------------------------------------------------
 /datum/emergency_call/death/create_member(var/datum/mind/M)
@@ -1239,12 +1374,12 @@
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
 			spawn_officer(mob)
-			mob << "<font size='3'>\red You are the Commando Leader!</font>"
+			mob << "<font size='3'>\red You are the Death Squad Leader!</font>"
 			mob << "<B> You must clear out any traces of the infestation and it's survivors..</b>"
 			mob << "<B> Follow any orders directly from Weyland-Yutani!</b>"
 		else
 			spawn_standard(mob)
-			mob << "<font size='3'>\red You are a Weyland-Yutani Commando!!</font>"
+			mob << "<font size='3'>\red You are a Death Squad Commando!!</font>"
 			mob << "<B> You must clear out any traces of the infestation and it's survivors..</b>"
 			mob << "<B> Follow any orders directly from Weyland-Yutani!</b>"
 
@@ -1280,7 +1415,7 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_J_STORE)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Commando"
+	W.assignment = "Deathsquad"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -1312,7 +1447,7 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_J_STORE)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Commando Leader"
+	W.assignment = "Deathsquad Leader"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"

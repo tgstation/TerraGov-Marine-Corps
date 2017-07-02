@@ -508,7 +508,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"Weyland-Yutani PMC (Leader)",
 		"Weyland-Yutani PMC (Gunner)",
 		"Weyland-Yutani PMC (Sniper)",
-		"Weyland-Yutani PMC (Commando)",
 		"UPP Soldier (Standard)",
 		"UPP Soldier (Medic)",
 		"UPP Soldier (Heavy)",
@@ -522,6 +521,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"Freelancer (Standard)",
 		"Freelancer (Medic)",
 		"Freelancer (Leader)",
+		"Weyland-Yutani Deathsquad",
 		"Business Person",
 		"UPP Spy",
 		"Mk50 Compression Suit",
@@ -538,6 +538,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if (istype(I, /obj/item/weapon/implant))
 			continue
 		cdel(I)
+	M.arm_equipment(M, dresscode)
+	M.regenerate_icons()
+	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
+	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1)
+	return
+
+/mob/proc/arm_equipment(var/mob/living/carbon/human/M, var/dresscode)
 	switch(dresscode)
 		if ("strip")
 			//do nothing
@@ -687,6 +694,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("Weyland-Yutani PMC (Standard)")
+			var/choice = rand(1,4)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), WEAR_JACKET)
@@ -699,14 +707,24 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/vp70,(M), WEAR_WAIST)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), WEAR_R_HAND)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), WEAR_L_STORE)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
+			switch(choice)
+				if(1,2,3)
+					M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), WEAR_R_HAND)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), WEAR_L_STORE)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
+				if(4)
+					M.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer(M), WEAR_R_HAND)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_L_STORE)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(M.back), WEAR_IN_BACK)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(M.back), WEAR_IN_BACK)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(M.back), WEAR_IN_BACK)
+					M.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(M.back), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Standard"
@@ -766,9 +784,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), WEAR_R_HAND)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_L_STORE)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/vp70,(M), WEAR_WAIST)
 
 			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Specialist"
@@ -790,12 +806,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), WEAR_HEAD)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), WEAR_EYES)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_R_STORE)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/vp70,(M), WEAR_WAIST)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), WEAR_R_HAND)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), WEAR_L_STORE)
@@ -815,7 +830,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				M.mind.assigned_role = "PMC"
 				M.mind.special_role = "MODE"
 
-		if("Weyland-Yutani PMC (Commando)")
+		if("Weyland-Yutani Deathsquad")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), WEAR_EYES)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), WEAR_BODY)
@@ -899,10 +914,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("UPP Soldier (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/UPP(M), WEAR_HEAD)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/upp(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 
@@ -917,7 +932,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M), WEAR_R_STORE)
 			M.equip_to_slot_or_del(new /obj/item/weapon/upp_knife(M), WEAR_L_STORE)
-
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -935,20 +949,20 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("UPP Soldier (Medic)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP/medic(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap(M), WEAR_HEAD)
 			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/upp(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver/u(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/upp(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/carbine(M), WEAR_R_HAND)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/skorpion/upp(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/upp_knife(M), WEAR_L_STORE)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(M.back), WEAR_IN_BACK)
@@ -977,15 +991,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("UPP Soldier (Heavy)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP/heavy(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP/heavy(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/UPP/heavy(M), WEAR_HEAD)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/upp(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/upp(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/flamer(M), WEAR_R_HAND)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/c99/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99(M.back), WEAR_IN_BACK)
@@ -1016,10 +1030,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("UPP Soldier (Leader)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP/heavy(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP/heavy(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap/beret(M), WEAR_HEAD)
 			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/upp(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 
@@ -1055,10 +1069,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("UPP Commando (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP/commando(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP/commando(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap(M), WEAR_HEAD)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/upp(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/korovin/tranq(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/upp(M), WEAR_FACE)
@@ -1075,9 +1089,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/phosphorus/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/chameleon	(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M), WEAR_R_STORE)
 			M.equip_to_slot_or_del(new /obj/item/weapon/upp_knife(M), WEAR_L_STORE)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
 
 
 			var/obj/item/weapon/card/id/W = new(M)
@@ -1097,15 +1115,16 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("UPP Commando (Medic)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP/medic(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP/commando(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP/commando(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap(M), WEAR_HEAD)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/upp(M), WEAR_FACE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp(M), WEAR_EYES)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/carbine/commando(M), WEAR_R_HAND)
+			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver/u(M), WEAR_WAIST)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/korovin/tranq(M), WEAR_WAIST)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
@@ -1117,12 +1136,16 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/healthanalyzer(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver/u(M.back), WEAR_IN_BACK)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/chameleon	(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/upp_knife(M), WEAR_L_STORE)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
 
 
 			var/obj/item/weapon/card/id/W = new(M)
@@ -1141,9 +1164,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("UPP Commando (Leader)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/UPP/commando(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP/commando(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap/beret(M), WEAR_HEAD)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/upp(M), WEAR_FACE)
@@ -1160,9 +1183,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/phosphorus/upp(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/phosphorus/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/chameleon	(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M), WEAR_R_STORE)
 			M.equip_to_slot_or_del(new /obj/item/weapon/upp_knife(M), WEAR_L_STORE)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
 
 
 
@@ -1187,12 +1215,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/militia(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/militia(M), WEAR_HEAD)
 			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M), WEAR_R_STORE)
 
-			spawn_merc_gun(M)
+			spawn_rebel_gun(M)
+			spawn_rebel_gun(M,1)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1212,9 +1242,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/militia(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/militia(M), WEAR_HEAD)
 			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(M.back), WEAR_IN_BACK)
@@ -1223,9 +1253,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/healthanalyzer(M), WEAR_R_STORE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M), WEAR_L_STORE)
 
 
-			spawn_merc_gun(M)
+			spawn_rebel_gun(M)
+			spawn_rebel_gun(M,1)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1245,15 +1277,18 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/militia(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(M), WEAR_HEAD)
 			//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M), WEAR_R_STORE)
 
-			spawn_merc_gun(M)
+			spawn_rebel_gun(M)
+			spawn_rebel_gun(M,1)
+			spawn_rebel_gun(M,1)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1270,17 +1305,18 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Freelancer (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/freelancer(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/freelancer(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(M), WEAR_HEAD)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
 
-
 			spawn_merc_gun(M)
+			spawn_rebel_gun(M,1)
+
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1297,10 +1333,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Freelancer (Medic)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/freelancer(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/freelancer(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(M), WEAR_HEAD)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
@@ -1330,10 +1366,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Freelancer (Leader)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(M), WEAR_BODY)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/freelancer(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/freelancer(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer/beret(M), WEAR_HEAD)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
@@ -1389,6 +1425,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/handcuffs(M.back), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1745,11 +1782,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 */
-	M.regenerate_icons()
-
-	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1)
-	return
 
 /client/proc/startSinglo()
 

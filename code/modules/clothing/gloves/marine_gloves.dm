@@ -91,7 +91,7 @@
 	unacidable = 1
 
 /obj/item/clothing/gloves/marine/veteran/PMC
-	name = "specops gloves"
+	name = "armored gloves"
 	desc = "Armored gloves used in special operations. They are also insulated against electrical shock."
 	icon_state = "black"
 	item_state = "bgloves"

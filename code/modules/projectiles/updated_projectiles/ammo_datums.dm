@@ -124,6 +124,9 @@
 					if("IRON BEARS") //These antags can shrug off tasers so they are not shut down.
 						target.apply_effects(1,1) //Barely affected.
 						return
+					if("UPP") //These antags can shrug off tasers so they are not shut down.
+						target.apply_effects(1,1) //Barely affected.
+						return
 					if("DEATH SQUAD")
 						target.apply_effects(0,1) //Almost unaffacted.
 						return
@@ -175,8 +178,8 @@
 	name = "light pistol bullet"
 
 /datum/ammo/bullet/pistol/tranq
-	name = "sedative bullet"
-	debilitate = list(0,1,0,0,1,1,3,0)
+	name = "tranq bullet"
+	debilitate = list(0,2,0,0,5,3,20,0)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
