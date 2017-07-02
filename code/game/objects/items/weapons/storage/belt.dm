@@ -177,6 +177,32 @@
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
 
+/obj/item/weapon/storage/belt/combatLifesaver/u
+	icon_state = "medicalbag_u"
+	item_state = "medicbag_u"
+
+/obj/item/weapon/storage/belt/combatLifesaver/u/New()  //The belt, with all it's magic inside!
+	..()
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
 
 /obj/item/weapon/storage/belt/security
 	name = "\improper M276 pattern security rig"
@@ -498,7 +524,7 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
-	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/korovin/tranq/New()

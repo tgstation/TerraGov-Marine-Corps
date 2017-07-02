@@ -118,6 +118,21 @@
 	item_state = "machete_holster_full"
 	holstered_weapon = new /obj/item/weapon/claymore/mercsword/machete(src)
 
+/obj/item/weapon/large_holster/katana
+	name = "\improper katana scabbard"
+	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back or the armor."
+	base_icon = "katana_holster"
+	icon_state = "katana_holster"
+	item_state = "katana_holster"
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	accepted_weapon_types = list(/obj/item/weapon/katana)
+
+/obj/item/weapon/large_holster/katana/full/New()
+	..()
+	icon_state = "katana_holster_full"
+	item_state = "katana_holster_full"
+	holstered_weapon = new /obj/item/weapon/katana(src)
+
 
 /obj/item/weapon/large_holster/m39
 	name = "\improper M276 pattern M39 holster rig"

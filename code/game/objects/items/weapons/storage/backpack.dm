@@ -309,11 +309,13 @@
 	desc = "A heavy-duty satchel carried by some USCM technicians."
 	icon_state = "marinesatt"
 
-/obj/item/weapon/storage/backpack/marine/satchel/lightpack
+/obj/item/weapon/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
 	item_state = "ERT_satchel"
+	max_w_class = 3    //  Largest item that can be placed into the backpack
+	max_combined_w_class = 21   //Capacity of the backpack
 
 /obj/item/weapon/storage/backpack/marine/smock
 	name = "\improper M3 sniper's smock"

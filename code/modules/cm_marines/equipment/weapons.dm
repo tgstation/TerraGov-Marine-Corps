@@ -114,12 +114,12 @@
 
 /obj/item/weapon/katana
 	name = "katana"
-	desc = "A finely made Japanese sword, expertly crafted by a dedicated weaponsmith. It has some foreign letters carved into the hilt."
+	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
 	item_state = "katana"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
-	force = 40
+	//flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	force = 50
 	throwforce = 10
 	sharp = 1
 	edge = 1
@@ -711,6 +711,13 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		sleep(20)
 		cdel(src)
 
+/obj/item/weapon/grenade/phosphorus/upp
+	name = "\improper Type 8 WP grenade"
+	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosporus on the target. It explodes 2 seconds after the pin has been pulled."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "grenade_upp_wp"
+	item_state = "grenade_upp_wp"
+	icon = 'icons/obj/grenade.dmi'
 
 ///***MINES***///
 //Mines have an invisible "tripwire" atom that explodes when crossed

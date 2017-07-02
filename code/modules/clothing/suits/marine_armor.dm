@@ -477,7 +477,110 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 //===========================//U.P.P\\================================\\
 //=====================================================================\\
 
-/obj/item/clothing/suit/storage/marine/veteran/UPP
+/obj/item/clothing/suit/storage/faction
+	flags_atom = FPRINT|CONDUCT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
+	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
+	blood_overlay_type = "armor"
+	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	siemens_coefficient = 0.7
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/flamethrower,
+		/obj/item/device/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/weapon/large_holster/machete)
+	var/brightness_on = 5 //Average attachable pocket light
+	var/flashlight_cooldown = 0 //Cooldown for toggling the light
+	var/locate_cooldown = 0 //Cooldown for SL locator
+	var/armor_overlays["lamp"]
+	actions_types = list(/datum/action/item_action/toggle)
+	var/flags_faction_armor = ARMOR_LAMP_OVERLAY
+
+	New()
+		..()
+		armor_overlays = list("lamp")
+		update_icon()
+
+	update_icon(mob/user)
+		var/image/reusable/I
+		I = armor_overlays["lamp"]
+		overlays -= I
+		cdel(I)
+		if(flags_faction_armor & ARMOR_LAMP_OVERLAY)
+			I = rnew(/image/reusable, flags_faction_armor & ARMOR_LAMP_ON? list('icons/Marine/marine_armor.dmi', src, "lamp-on") : list('icons/Marine/marine_armor.dmi', src, "lamp-off"))
+			armor_overlays["lamp"] = I
+			overlays += I
+		else armor_overlays["lamp"] = null
+		if(user) user.update_inv_wear_suit()
+
+	pickup(mob/user)
+		if(flags_faction_armor & ARMOR_LAMP_ON && src.loc != user)
+			user.SetLuminosity(brightness_on)
+			SetLuminosity(0)
+		..()
+
+	dropped(mob/user)
+		if(flags_faction_armor & ARMOR_LAMP_ON && src.loc != user)
+			user.SetLuminosity(-brightness_on)
+			SetLuminosity(brightness_on)
+			toggle_armor_light() //turn the light off
+		..()
+
+	Dispose()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		. = ..()
+
+	attack_self(mob/user)
+		if(!isturf(user.loc))
+			user << "<span class='warning'>You cannot turn the light on while in this [user.loc].</span>" //To prevent some lighting anomalities.
+			return
+
+		if(flashlight_cooldown > world.time)
+			return
+
+		if(!ishuman(user)) return
+		var/mob/living/carbon/human/H = user
+		if(H.wear_suit != src) return
+
+		toggle_armor_light(user)
+		return 1
+
+	item_action_slot_check(mob/user, slot)
+		if(!ishuman(user)) return FALSE
+		if(slot != WEAR_JACKET) return FALSE
+		return TRUE //only give action button when armor is worn.
+
+/obj/item/clothing/suit/storage/faction/proc/toggle_armor_light(mob/user)
+	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
+	if(flags_faction_armor & ARMOR_LAMP_ON) //Turn it off.
+		if(user) user.SetLuminosity(-brightness_on)
+		else SetLuminosity(0)
+	else //Turn it on.
+		if(user) user.SetLuminosity(brightness_on)
+		else SetLuminosity(brightness_on)
+
+	flags_faction_armor ^= ARMOR_LAMP_ON
+
+	playsound(src,'sound/machines/click.ogg', 15, 1)
+	update_icon(user)
+
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+/obj/item/clothing/suit/storage/faction/UPP
 	name = "\improper UM5 personal armor"
 	desc = "Standard body armor of the UPP military, the UM5 (Union Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the USCM. Unlike the M3, however, the plate has a heavier neckplate, but unfortunately restricts movement slightly more. This has earned many UA members to refer to UPP soldiers as 'tin men'."
 	icon = 'icons/PMC/PMC.dmi'
@@ -489,14 +592,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 60, bullet = 60, laser = 50, energy = 60, bomb = 40, bio = 10, rad = 10)
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP)
 
-/obj/item/clothing/suit/storage/marine/veteran/UPP/commando
+/obj/item/clothing/suit/storage/faction/UPP/commando
 	name = "\improper UM5CU personal armor"
 	desc = "A modification of the UM5, designed for stealth operations."
 	item_state = "upp_armor_commando"
 	icon_state = "upp_armor_commando"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
-/obj/item/clothing/suit/storage/marine/veteran/UPP/heavy
+/obj/item/clothing/suit/storage/faction/UPP/heavy
 	name = "\improper UH7 heavy plated armor"
 	desc = "An extremely heavy duty set of body armor in service with the UPP military, the UH7 (Union Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment. Although the armor doesn't protect certain areas, it provides unmatchable protection from the front, which UPP engineers summerized as the most likely target for enemy fire. In order to cut costs, the head shielding in the MK6 has been stripped down a bit in the MK7, but this comes at much more streamlined production.  "
 	icon = 'icons/PMC/PMC.dmi'
@@ -504,7 +607,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "upp_armor_heavy"
 	icon_state = "upp_armor_heavy"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 85, bullet = 85, laser = 50, energy = 60, bomb = 60, bio = 10, rad = 10)
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP)
 
@@ -523,7 +626,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 //===========================//FREELANCER\\================================\\
 //=====================================================================\\
 
-/obj/item/clothing/suit/storage/marine/veteran/freelancer
+/obj/item/clothing/suit/storage/faction/freelancer
 	name = "\improper freelancer cuirass"
 	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the USCM. The many skilled craftsmen in the freelancers ranks produce these vests at a rate about one a month."
 	icon = 'icons/PMC/PMC.dmi'
@@ -543,9 +646,21 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "rebel_armor"
 	icon_state = "rebel_armor"
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 40, bullet = 40, laser = 40, energy = 30, bomb = 60, bio = 30, rad = 30)
 	uniform_restricted = list(/obj/item/clothing/under/colonist)
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/flamethrower,
+		/obj/item/device/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/weapon/large_holster/machete,
+		/obj/item/weapon/baseballbat,
+		/obj/item/weapon/baseballbat/metal)
 
 /obj/item/clothing/suit/storage/CMB
 	name = "\improper CMB jacket"

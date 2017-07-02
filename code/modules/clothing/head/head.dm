@@ -217,7 +217,7 @@
 
 
 /obj/item/clothing/head/uppcap
-	name = "\improper UPP cap"
+	name = "\improper armored UPP cap"
 	desc = "Standard UPP head gear for covert operations and low-ranking officers alike. Sells for high prices on the black market due to their rarity."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
@@ -232,12 +232,12 @@
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 
 /obj/item/clothing/head/uppcap/beret
-	name = "\improper UPP beret"
+	name = "\improper armored UPP beret"
 	icon_state = "upp_beret"
 	item_state = "upp_beret"
 
 /obj/item/clothing/head/frelancer
-	name = "\improper Freelancer cap"
+	name = "\improper armored Freelancer cap"
 	desc = "A sturdy freelancer's cap. More protective than it seems."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
@@ -251,12 +251,12 @@
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 
 /obj/item/clothing/head/frelancer/beret
-	name = "\improper Freelancer beret"
+	name = "\improper armored Freelancer beret"
 	icon_state = "freelancer_beret"
 	item_state = "freelancer_beret"
 
 /obj/item/clothing/head/militia
-	name = "\improper militia cowl"
+	name = "\improper armored militia cowl"
 	desc = "A large hood in service with some militias, meant for obscurity on the frontier. Offers some head protection due to the study fibers utilized in production."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'

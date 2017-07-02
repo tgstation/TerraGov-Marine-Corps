@@ -135,8 +135,8 @@ var/list/radiochannels = list(
 	"Yautja" 		= YAUT_FREQ,
 	"WY PMC" 		= PMC_FREQ,
 	"SpecOps" 		= DTH_FREQ,
-	"Spetsnaz" 		= RUS_FREQ,
-	"D.Dozen"		= DUT_FREQ,
+	"UPP" 			= RUS_FREQ,
+	"Colonist"		= DUT_FREQ,
 
 	"Almayer"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,

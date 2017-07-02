@@ -178,15 +178,15 @@
 //SKORPION //Based on the same thing.
 
 /obj/item/ammo_magazine/smg/skorpion
-	name = "\improper Skorpion magazine (.32ACP)"
-	desc = "A .32ACP caliber magazine for the Skorpion."
+	name = "\improper CZ-81 magazine (.32ACP)"
+	desc = "A .32ACP caliber magazine for the CZ-81."
 	caliber = ".32ACP"
 	icon_state = "skorpion" //PLACEHOLDER
 	gun_type = /obj/item/weapon/gun/smg/skorpion
 	max_rounds = 20 //Can also be 10.
 
 /obj/item/weapon/gun/smg/skorpion
-	name = "\improper Skorpion submachinegun"
+	name = "\improper CZ-81 submachinegun"
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20 round magazine."
 	icon_state = "skorpion"
 	item_state = "skorpion"
@@ -201,6 +201,10 @@
 		damage += config.hmed_hit_damage_mult
 		fire_delay = config.low_fire_delay
 		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
+
+/obj/item/weapon/gun/smg/skorpion/upp
+	icon_state = "skorpion_u"
+	item_state = "skorpion_u"
 
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.

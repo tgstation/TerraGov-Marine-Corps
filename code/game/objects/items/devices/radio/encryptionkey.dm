@@ -118,17 +118,17 @@
 
 //PMCs
 /obj/item/device/encryptionkey/dutch
-	name = "\improper Dutch's Dozen encryption key"
-	channels = list("D.Dozen" = 1)
+	name = "\improper Colonist encryption key"
+	channels = list("Colonist" = 1)
 
 /obj/item/device/encryptionkey/PMC
 	name = "\improper Weyland Yutani encryption key"
 	channels = list("WY PMC" = 1)
 
 /obj/item/device/encryptionkey/bears
-	name = "\improper Iron Bears encryption key"
+	name = "\improper UPP encryption key"
 	syndie = 1
-	channels = list("Spetsnaz" = 1)
+	channels = list("UPP" = 1)
 
 /obj/item/device/encryptionkey/commando
 	name = "\improper WY commando encryption key"
