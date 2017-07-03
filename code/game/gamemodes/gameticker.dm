@@ -41,11 +41,16 @@ var/global/datum/controller/gameticker/ticker
 	var/datum/mind/liaison = null
 
 /datum/controller/gameticker/proc/pregame()
-	login_music = pick(/*'sound/music/space.ogg',
-	'sound/music/traitor.ogg',
-	'sound/music/title2.ogg',
-	'sound/music/clouds.s3m'*/
-	'sound/music/good_day_to_die.ogg',//It's a Good Day to Die
+	//MURICA DAY.  DEAL WITH IT.
+	login_music = pick('sound/music/America_fuck_yeah.ogg',
+	'sound/music/America_The_Beautiful.ogg',
+	'sound/music/God_Bless_the_U.ogg',
+	'sound/music/Made_In_The_USA.ogg',
+	'sound/music/Stars_and_strips_fly.ogg',
+	'sound/music/Red_White_and_Blue.ogg')
+
+/*
+	login_music = pick('sound/music/good_day_to_die.ogg',//It's a Good Day to Die
 //	'sound/music/ColonialHalloween.ogg'
 //	'sound/music/Suspense_Explore.ogg',
 	'sound/music/Aliens_Main_Theme.ogg',
@@ -58,11 +63,12 @@ var/global/datum/controller/gameticker/ticker
 //	'sound/music/NeilDiamondChanukah.ogg',
 //	'sound/music/WeirdAlGroundZeroXmas.ogg',
 //	'sound/music/WeirdAlSantaCrazy.ogg')
+*/
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
-	//	world << "HAPPY THANKSGIVING 2015!!!! - There's a special treat in the Sulaco Cafeteria!!!"
+		world << "HAPPY MURICA DAY 2017.
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i=0, i<10, i++)
 				sleep(1)
