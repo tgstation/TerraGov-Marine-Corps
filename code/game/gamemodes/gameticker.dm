@@ -68,7 +68,7 @@ var/global/datum/controller/gameticker/ticker
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
-		world << "HAPPY MURICA DAY 2017.
+		world << "HAPPY MURICA DAY 2017."
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i=0, i<10, i++)
 				sleep(1)
