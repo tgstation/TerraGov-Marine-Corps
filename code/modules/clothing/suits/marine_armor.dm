@@ -126,25 +126,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		else armor_overlays["lamp"] = null
 		if(user) user.update_inv_wear_suit()
 
-	pickup(mob/user)
-		if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
-			user.SetLuminosity(brightness_on)
-			SetLuminosity(0)
-		..()
 
 	dropped(mob/user)
 		if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
-			user.SetLuminosity(-brightness_on)
-			SetLuminosity(brightness_on)
 			toggle_armor_light() //turn the light off
 		..()
-
-	Dispose()
-		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
-		else
-			SetLuminosity(0)
-		. = ..()
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
@@ -169,11 +155,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 /obj/item/clothing/suit/storage/marine/proc/toggle_armor_light(mob/user)
 	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
 	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
-		if(user) user.SetLuminosity(-brightness_on)
-		else SetLuminosity(0)
+		SetLuminosity(0)
 	else //Turn it on.
-		if(user) user.SetLuminosity(brightness_on)
-		else SetLuminosity(brightness_on)
+		SetLuminosity(brightness_on)
 
 	flags_marine_armor ^= ARMOR_LAMP_ON
 

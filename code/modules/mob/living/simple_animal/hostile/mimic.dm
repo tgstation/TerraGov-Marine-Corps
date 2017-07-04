@@ -136,7 +136,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 /mob/living/simple_animal/hostile/mimic/copy/death()
 
 	for(var/atom/movable/M in src)
-		M.loc = get_turf(src)
+		M.forceMove(get_turf(src))
 	..()
 
 /mob/living/simple_animal/hostile/mimic/copy/ListTargets()

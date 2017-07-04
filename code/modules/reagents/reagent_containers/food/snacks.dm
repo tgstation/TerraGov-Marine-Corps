@@ -219,7 +219,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/Dispose()
 	if(contents)
 		for(var/atom/movable/something in contents)
-			something.loc = get_turf(src)
+			something.forceMove(get_turf(src))
 	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/attack_animal(var/mob/M)

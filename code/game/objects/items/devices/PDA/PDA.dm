@@ -265,26 +265,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /*
  *	The Actual PDA
  */
-/obj/item/device/pda/pickup(mob/user)
-	if(fon && loc != user)
-		SetLuminosity(0)
-		user.SetLuminosity(f_lum)
 
 /obj/item/device/pda/Dispose()
-	if(ismob(src.loc))
-		src.loc.SetLuminosity(-f_lum)
-	else
-		SetLuminosity(0)
 	PDAs -= src
 	if (id && prob(90)) //IDs are kept in 90% of the cases
 		id.loc = get_turf(loc)
 	. = ..()
-
-/obj/item/device/pda/dropped(mob/user)
-	..()
-	if(fon && src.loc != user)
-		user.SetLuminosity(-f_lum)
-		SetLuminosity(f_lum)
 
 /obj/item/device/pda/New()
 	..()
@@ -567,12 +553,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if("Light")
 			if(fon)
 				fon = 0
-				if(src in U.contents)	U.SetLuminosity(-f_lum)
-				else					SetLuminosity(0)
+				SetLuminosity(0)
 			else
 				fon = 1
-				if(src in U.contents)	U.SetLuminosity(f_lum)
-				else					SetLuminosity(f_lum)
+				SetLuminosity(f_lum)
 		if("Medical Scan")
 			if(scanmode == 1)
 				scanmode = 0

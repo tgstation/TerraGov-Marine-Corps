@@ -139,7 +139,7 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 		evacuation_program.dock_state = STATE_BROKEN
 		explosion(evacuation_program.master, -1, -1, 3, 4)
 		sleep(25)
-		staging_area.initialize_power_and_lighting(TRUE) //We want to reinitilize power usage and turn off everything.
+		staging_area.initialize_power(TRUE) //We want to reinitilize power usage and turn off everything.
 
 		MOVE_MOB_OUTSIDE
 		//evacuation_program.open_door()

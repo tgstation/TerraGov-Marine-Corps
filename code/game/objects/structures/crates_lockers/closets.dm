@@ -57,18 +57,8 @@
 	return 1
 
 /obj/structure/closet/proc/dump_contents()
-	//Cham Projector Exception
-	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.loc = src.loc
-
-	for(var/obj/I in src)
-		I.loc = src.loc
-
-	for(var/mob/M in src)
-		M.loc = src.loc
-		if(M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
+	for(var/atom/movable/AM in src)
+		AM.forceMove(loc)
 
 /obj/structure/closet/proc/open()
 	if(src.opened)
@@ -112,7 +102,7 @@
 	for(var/obj/effect/dummy/chameleon/AD in src.loc)
 		if(stored_units > storage_capacity)
 			break
-		AD.loc = src
+		AD.forceMove(src)
 		stored_units++
 	return stored_units
 
@@ -122,7 +112,7 @@
 		if(stored_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)
-			I.loc = src
+			I.forceMove(src)
 			stored_units += item_size
 	return stored_units
 
