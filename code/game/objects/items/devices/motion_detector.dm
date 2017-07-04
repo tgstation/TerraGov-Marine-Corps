@@ -83,6 +83,7 @@
 
 	var/detected
 	for(var/mob/M in living_mob_list)
+		if(loc == null || M == null) continue
 		if(loc.z != M.z) continue
 		if(get_dist(M, src) > detector_range) continue
 		if(M == loc) continue //device user isn't detected
