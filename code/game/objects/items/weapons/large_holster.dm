@@ -120,10 +120,12 @@
 
 /obj/item/weapon/large_holster/katana
 	name = "\improper katana scabbard"
-	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back or the armor."
+	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back or the armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
 	base_icon = "katana_holster"
 	icon_state = "katana_holster"
 	item_state = "katana_holster"
+	force = 12
+	attack_verb = list("bludgeoned", "struck", "cracked")
 	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	accepted_weapon_types = list(/obj/item/weapon/katana)
 

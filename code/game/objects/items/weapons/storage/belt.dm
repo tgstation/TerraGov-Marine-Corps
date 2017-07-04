@@ -263,6 +263,8 @@
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
 	icon_state = "upp_belt"
 	item_state = "upp_belt"
+	New()
+		..()
 
 
 /obj/item/weapon/storage/belt/security/MP

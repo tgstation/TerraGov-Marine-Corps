@@ -109,12 +109,12 @@
 		/obj/item/weapon/reagent_containers/spray/pepper = null,
 		/obj/item/weapon/reagent_containers/spray/pepper = null,
 		/obj/item/clothing/tie/storage/webbing = null,
+		/obj/item/clothing/tie/storage/webbing = null,
 		/obj/item/weapon/storage/belt/marine = null,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = null,
+		/obj/item/weapon/storage/pill_bottle/tramadol = null,
 		/obj/item/weapon/grenade/phosphorus = null,
 		/obj/item/clothing/glasses/welding = null,
 		/obj/item/weapon/reagent_containers/ld50_syringe/choral = null,
-		/obj/item/weapon/storage/box/engineer = null,
 		/obj/item/weapon/storage/firstaid/regular = null,
 		/obj/item/weapon/reagent_containers/pill/cyanide = null,
 		/obj/item/device/megaphone = null,
@@ -125,12 +125,21 @@
 		/obj/item/weapon/scalpel = null,
 		/obj/item/weapon/baseballbat = null,
 		/obj/item/weapon/baseballbat = null,
+		/obj/item/weapon/baseballbat = null,
 		/obj/item/weapon/baseballbat/metal = null,
 		/obj/item/weapon/grenade/empgrenade = null,
 		/obj/item/weapon/grenade/smokebomb = null,
 		/obj/item/weapon/grenade/smokebomb = null,
 		/obj/item/weapon/grenade/smokebomb = null,
-		/obj/item/weapon/grenade/phosphorus/upp = null
+		/obj/item/weapon/grenade/phosphorus/upp = null,
+		/obj/item/weapon/hatchet = null,
+		/obj/item/weapon/hatchet = null,
+		/obj/item/weapon/hatchet = null,
+		/obj/item/weapon/storage/box/MRE = null,
+		/obj/item/clothing/mask/fluff/balaclava = null,
+		/obj/item/clothing/glasses/night/m42_night_goggles/upp = null,
+		/obj/item/weapon/storage/box/handcuffs = null,
+		/obj/item/weapon/storage/pill_bottle/happy = null
 		)
 
 	var/gunpath = sidearm? pick(rebel_sidearms) : pick(rebel_firearms)
@@ -210,7 +219,7 @@
 //The distress call parent. Cannot be called itself due to "name" being a filtered target.
 /datum/emergency_call
 	var/name = "name"
-	var/mob_max = 0
+	var/mob_max = 3
 	var/mob_min = 3
 	var/dispatch_message = "An encrypted signal has been received from a nearby vessel. Stand by." //Msg to display when starting
 	var/arrival_message = "" //Msg to display about when the shuttle arrives
@@ -232,7 +241,7 @@
 /datum/emergency_call/pmc
 	name = "Weyland-Yutani PMC (Squad)"
 	mob_max = 6
-	probability = 30
+	probability = 25
 
 	New()
 		..()
@@ -243,7 +252,7 @@
 /datum/emergency_call/mercs
 	name = "Freelancers (Squad)"
 	mob_max = 8
-	probability = 30
+	probability = 25
 
 	New()
 		..()
@@ -256,13 +265,13 @@
 	mob_max = 10
 	arrival_message = "Incoming Transmission: 'Attention, you are tresspassing on our soverign territory. Expect no forgiveness.'"
 	objectives = "Assault the USCM, and sabotage as much as you can. Ensure any survivors escape in your custody."
-	probability = 0
+	probability = 20
 
 //UPP Strike Team
 /datum/emergency_call/upp
 	name = "UPP Naval Infantry (Squad)"
 	mob_max = 7
-	probability = 0
+	probability = 10
 
 	New()
 		..()
@@ -274,7 +283,7 @@
 /datum/emergency_call/xenos
 	name = "Xenomorphs (Squad)"
 	mob_max = 7
-	probability = 30
+	probability = 10
 	role_needed = BE_ALIEN
 
 	New()
@@ -298,7 +307,7 @@
 /datum/emergency_call/clf/platoon
 	name = "Colonial Liberation Front (Platoon)"
 	mob_min = 8
-	mob_max = 30
+	mob_max = 35
 	probability = 0
 	max_medics = 2
 
@@ -393,7 +402,7 @@
 			add_prob += E.probability
 			continue
 		chosen_call = E //Our random chance found one.
-		E.hostility = pick(0,1)
+		E.hostility = pick(75;0,25;1)
 		break
 
 	if(!istype(chosen_call))
@@ -539,7 +548,7 @@
 				for(var/datum/mind/M in picked_candidates)
 					members += M
 					i++
-					if(i > 10) break //Some logic. Hopefully this will never happen..
+					if(i > mob_max) break //Some logic. Hopefully this will never happen..
 					spawn(1 + i)
 						create_member(M)
 			candidates = null //Blank out the candidates list for next time.
@@ -748,7 +757,7 @@
 	var/chance = rand(0,3)
 	var/mob/living/carbon/Xenomorph/new_xeno
 	if(!leader)
-		new_xeno = new /mob/living/carbon/Xenomorph/Ravager/ravenger(spawn_loc)
+		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)
 		leader = new_xeno
 	else if(chance == 0)
 		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elite(spawn_loc)
@@ -1286,7 +1295,6 @@
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
 	mob.gender = pick(65;MALE, 35;FEMALE)
-	var/datum/preferences/A = new()
 	var/list/first_names_mreb = list("Alan","Jack","Bil","Jonathan","John","Shiro","Gareth","Clark","Sam", "Lionel", "Aaron", "Charlie", "Scott", "Winston", "Aidan", "Ellis", "Mason", "Wesley", "Nicholas", "Calvin", "Nishikawa", "Hiroto", "Chiba", "Ouchi", "Furuse", "Takagi", "Oba", "Kishimoto")
 	var/list/first_names_freb = list("Emma", "Adelynn", "Mary", "Halie", "Chelsea", "Lexie", "Arya", "Alicia", "Selah", "Amber", "Heather", "Myra", "Heidi", "Charlotte", "Oliva", "Lydia", "Tia", "Riko", "Ari", "Machida", "Ueki", "Mihara", "Noda")
 	var/list/last_names_reb = list("Hawkins","Rickshaw","Elliot","Billard","Cooper","Fox", "Barlow", "Barrows", "Stewart", "Morgan", "Green", "Stone", "Burr", "Hunt", "Yuko", "Gesshin", "Takanibu", "Tetsuzan", "Tomomi", "Bokkai", "Takesi")

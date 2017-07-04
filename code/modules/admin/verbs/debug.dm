@@ -1219,6 +1219,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stick(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary/molotov(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary/molotov(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M), WEAR_R_STORE)
 
 			spawn_rebel_gun(M)

@@ -624,6 +624,7 @@
 	prime()
 		spawn(0)
 			flame_radius(2, get_turf(src))
+			playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
 			cdel(src)
 		return
 
@@ -643,6 +644,24 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 		F.burnlevel = 15 //make it sort of deadly.
 		if(F.firelevel < 1) F.firelevel = 1
 		if(F.firelevel > 16) F.firelevel = 16
+
+/obj/item/weapon/grenade/incendiary/molotov
+	name = "\improper improvised firebomb"
+	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
+	icon_state = "molotov"
+	item_state = "molotov"
+	arm_sound = 'sound/items/Welder2.ogg'
+	New()
+		det_time = rand(10,40)//Adds some risk to using this thing.
+		..()
+
+	prime()
+		spawn(0)
+			playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
+			flame_radius(1, get_turf(src))
+			playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 30, 1, 4)
+			cdel(src)
+		return
 
 
 /obj/item/weapon/grenade/smokebomb
