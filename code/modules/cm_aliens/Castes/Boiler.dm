@@ -52,6 +52,7 @@
 
 	New()
 		..()
+		l_color = LIGHT_COLOR_SLIME_LAMP
 		SetLuminosity(3)
 		smoke = new /datum/effect_system/smoke_spread/xeno_acid
 		smoke.attach(src)
