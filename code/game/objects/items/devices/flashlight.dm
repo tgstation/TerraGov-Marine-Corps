@@ -177,7 +177,7 @@
 	desc = "A red USCM issued flare. There are instructions on the side, it reads 'pull cord, make light'."
 	w_class = 2.0
 	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
-	l_color = "#ff0000"
+	l_color = LIGHT_COLOR_FLARE
 	icon_state = "flare"
 	item_state = "flare"
 	actions = list()	//just pull it manually, neckbeard.
@@ -249,6 +249,7 @@
 	item_state = "slime"
 	w_class = 1
 	brightness_on = 6
+	l_color = LIGHT_COLOR_SLIME_LAMP
 	on = 1 //Bio-luminesence has one setting, on.
 	raillight_compatible = 0
 
