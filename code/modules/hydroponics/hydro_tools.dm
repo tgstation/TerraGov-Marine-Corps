@@ -307,13 +307,13 @@
 //Hatchets and things to kill kudzu
 /obj/item/weapon/hatchet
 	name = "hatchet"
-	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	desc = "A sharp hand hatchet, commonly used to cut things apart, be it timber or other objects. Often found in the hands of woodsmen, scouts, and looters."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hatchet"
 	flags_atom = FPRINT|CONDUCT
-	force = 12.0
+	force = 25.0
 	w_class = 2.0
-	throwforce = 15.0
+	throwforce = 20.0
 	throw_speed = 4
 	throw_range = 4
 	sharp = 1

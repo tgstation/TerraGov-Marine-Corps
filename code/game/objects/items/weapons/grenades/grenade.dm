@@ -12,6 +12,7 @@
 	var/active = 0
 	var/det_time = 50
 	var/dangerous = 0		//Make an danger overlay for humans?
+	var/arm_sound = 'sound/weapons/armbomb.ogg'
 
 
 /obj/item/weapon/grenade/examine(mob/user)
@@ -51,7 +52,7 @@
 
 	icon_state = initial(icon_state) + "_active"
 	active = 1
-	playsound(loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
+	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
 		updateicon()
 	spawn(det_time)
