@@ -158,20 +158,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if (user && user.client)
 		user.update_gun_icons()
 
-	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		user.SetLuminosity(-rail.light_mod)
-		SetLuminosity(rail.light_mod)
-
 	unwield(user)
 	harness_check(user)
 
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
-
-	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		user.SetLuminosity(rail.light_mod)
-		SetLuminosity(0)
-
 	unwield(user)
 
 /obj/item/weapon/gun/proc/wy_allowed_check(mob/living/carbon/human/user)

@@ -212,7 +212,6 @@
 					return W
 ///// Z-Level Stuff
 
-	var/old_lumcount = lighting_lumcount - initial(lighting_lumcount)
 	var/obj/fire/old_fire = fire
 
 	//world << "Replacing [src.type] with [N]"
@@ -237,11 +236,6 @@
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
 		//W.Assimilate_Air()
 
-		W.lighting_lumcount += old_lumcount
-
-		if(W.lighting_lumcount)
-			W.UpdateAffectingLights()
-
 		if(old_fire)
 			fire = old_fire
 
@@ -263,10 +257,6 @@
 		var/path = "[src.type]"
 		var/turf/W = new N( locate(src.x, src.y, src.z) )
 		W.oldTurf = path
-		W.lighting_lumcount += old_lumcount
-		if(old_lumcount != W.lighting_lumcount)
-			W.lighting_changed = 1
-			lighting_controller.changed_turfs += W
 
 		if(old_fire)
 			old_fire.RemoveFire()

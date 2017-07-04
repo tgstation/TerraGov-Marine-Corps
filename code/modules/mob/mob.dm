@@ -753,6 +753,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 			stat(null,"Net-[master_controller.networks_cost]\tPnet-[master_controller.powernets_cost]")
 			stat(null,"NanoUI-[master_controller.nano_cost]\t#[nanomanager.processing_uis.len]")
 			stat(null,"Tick-[master_controller.ticker_cost]\tALL-[master_controller.total_cost]")
+			if(lighting_controller)
+				stat(null,"Light-[lighting_controller.process_cost]\tLsrc-[lighting_controller.changed_lights.len]")
 		else
 			stat(null,"MasterController-ERROR")
 
@@ -765,6 +767,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 			statpanel(listed_turf.name, null, listed_turf)
 			for(var/atom/A in listed_turf)
 				if(A.invisibility > see_invisible)
+					continue
+				if(!A.mouse_opacity)
 					continue
 				statpanel(listed_turf.name, null, A)
 

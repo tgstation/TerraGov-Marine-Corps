@@ -394,13 +394,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_off = "lighter-[clr]"
 		icon_state = icon_off
 
-/obj/item/weapon/flame/lighter/Dispose()
-	if(ismob(src.loc))
-		src.loc.SetLuminosity(-2)
-	else
-		SetLuminosity(0)
-	. = ..()
-
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(user.r_hand == src || user.l_hand == src)
 		if(!lit)
@@ -420,7 +413,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
-			user.SetLuminosity(2)
+			SetLuminosity(2)
 			processing_objects.Add(src)
 		else
 			lit = FALSE
@@ -431,7 +424,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				user.visible_message("<span class='notice'>[user] quietly shuts off the [src].")
 
-			user.SetLuminosity(-2)
+			SetLuminosity(0)
 			processing_objects.Remove(src)
 	else
 		return ..()
@@ -462,17 +455,3 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 	return
-
-
-/obj/item/weapon/flame/lighter/pickup(mob/user)
-	if(lit && src.loc != user)
-		SetLuminosity(0)
-		user.SetLuminosity(2)
-	return
-
-
-/obj/item/weapon/flame/lighter/dropped(mob/user)
-	if(lit && src.loc != user)
-		user.SetLuminosity(-2)
-		SetLuminosity(2)
-	return ..()

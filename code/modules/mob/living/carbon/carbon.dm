@@ -49,8 +49,8 @@
 
 			if(prob(src.getBruteLoss() - 50))
 				for(var/atom/movable/A in stomach_contents)
-					A.loc = loc
 					stomach_contents.Remove(A)
+					A.forceMove(loc)
 				src.gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user

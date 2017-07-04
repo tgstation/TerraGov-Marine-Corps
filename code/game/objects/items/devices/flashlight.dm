@@ -24,27 +24,14 @@
 		icon_state = initial(icon_state)
 		SetLuminosity(0)
 
-/obj/item/device/flashlight/Dispose()
-	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
-	else
-		SetLuminosity(0)
-	. = ..()
-
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		if(loc && loc == user)
-			user.SetLuminosity(brightness_on)
-		else if(isturf(loc))
-			SetLuminosity(brightness_on)
+		SetLuminosity(brightness_on)
 	else
 		icon_state = initial(icon_state)
-		if(loc && loc == user)
-			user.SetLuminosity(-brightness_on)
-		else if(isturf(loc))
-			SetLuminosity(0)
+		SetLuminosity(0)
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -124,19 +111,6 @@
 		return ..()
 
 
-/obj/item/device/flashlight/pickup(mob/user)
-	if(on && src.loc != user)
-		user.SetLuminosity(brightness_on)
-		SetLuminosity(0)
-	..()
-
-
-/obj/item/device/flashlight/dropped(mob/user)
-	if(on && src.loc != user)
-		user.SetLuminosity(-brightness_on)
-		SetLuminosity(brightness_on)
-	..()
-
 /obj/item/device/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
@@ -203,6 +177,7 @@
 	desc = "A red USCM issued flare. There are instructions on the side, it reads 'pull cord, make light'."
 	w_class = 2.0
 	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
+	l_color = "#ff0000"
 	icon_state = "flare"
 	item_state = "flare"
 	actions = list()	//just pull it manually, neckbeard.
@@ -224,11 +199,19 @@
 	if(pos)
 		pos.hotspot_expose(produce_heat, 5)
 	fuel = max(fuel - 1, 0)
+	switch(fuel) //flares dim as their fuel gets depleted
+		if(400 to 1000)	brightness_on = 5
+		if(200 to 400)	brightness_on = 4
+		if(100 to 200)	brightness_on = 3
+		if(0 to 100)	brightness_on = 2
 	if(!fuel || !on)
 		turn_off()
 		if(!fuel)
 			src.icon_state = "[initial(icon_state)]-empty"
 		processing_objects -= src
+	else if(luminosity != brightness_on)
+		SetLuminosity(brightness_on)
+
 
 /obj/item/device/flashlight/flare/proc/turn_off()
 	on = 0
