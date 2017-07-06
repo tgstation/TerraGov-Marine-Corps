@@ -5,6 +5,9 @@
 	config_tag = "Ice Colony"
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
+	monkey_amount = 24
+	monkey_types = list(/mob/living/carbon/monkey/yiren)
+
 	flags_round_type = MODE_INFESTATION
 
 /* Pre-pre-startup */

@@ -63,6 +63,8 @@ Additional game mode variables.
 	var/round_fog[]				//List of the fog locations.
 	var/round_time_lobby 		//Base time for the lobby, for fog dispersal.
 	var/round_time_fog 			//Variance time for fog dispersal, done during pre-setup.
+	var/monkey_amount		= 0 //How many monkeys do we spawn on this map ?
+	var/list/monkey_types	= list() //What type of monkeys do we spawn
 
 	//Role Authority set up.
 	var/role_instruction 	= 0 // 1 is to replace, 2 is to add, 3 is to remove.
