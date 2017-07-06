@@ -135,7 +135,6 @@
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "plantbot1"
-	l_color = LIGHT_COLOR_SLIME_LAMP
 
 /obj/structure/jungle/planttop1
 	name = "strange tree"

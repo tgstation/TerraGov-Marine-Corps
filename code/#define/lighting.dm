@@ -1,6 +1,10 @@
+
+
 #define LIGHTING_CIRCULAR 1									//comment this out to use old square lighting effects.
 #define LIGHTING_CAP 10										//The lumcount level at which alpha is 0 and we're fully lit.
 #define LIGHTING_CAP_FRAC (255/LIGHTING_CAP)				//A precal'd variable we'll use in turf/redraw_lighting()
+
+
 
 #define LIGHT_COLOR_RED        "#FA8282" //Warm but extremely diluted red. rgb(250, 130, 130)
 #define LIGHT_COLOR_GREEN      "#64C864" //Bright but quickly dissipating neon green. rgb(100, 200, 100)

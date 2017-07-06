@@ -213,7 +213,6 @@
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
-	l_color = LIGHT_COLOR_TUNGSTEN
 
 
 /obj/machinery/light/spot
