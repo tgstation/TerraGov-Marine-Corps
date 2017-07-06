@@ -42,6 +42,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 /datum/game_mode/proc/pre_setup_infestation()
 	round_fog = new
 	var/xeno_tunnels[] = new
+	var/monkey_spawns[] = new
 	var/obj/effect/blocker/fog/F
 	for(var/obj/effect/landmark/L in world)
 		switch(L.name)
@@ -62,6 +63,21 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			if("xeno tunnel")
 				xeno_tunnels += L.loc
 				cdel(L)
+			if("monkey_spawn")
+				monkey_spawns += L.loc
+				cdel(L)
+
+	if(monkey_amount && monkey_types.len)
+		//var/debug_tally = 0
+		for(var/i = monkey_amount, i > 0, i--)
+			var/turf/T = pick(monkey_spawns)
+			monkey_spawns -= T
+			var/monkey_to_spawn = pick(monkey_types)
+			new monkey_to_spawn(T)
+			//debug_tally++
+
+		//message_admins("SPAWNED [debug_tally] MONKEYS") //DO NOT LEAVE THIS UNCOMMENTED, THIS IS DEV INFO ONLY
+
 	if(!round_fog.len) round_fog = null //No blockers?
 	else
 		round_time_fog = rand(-2500,2500)

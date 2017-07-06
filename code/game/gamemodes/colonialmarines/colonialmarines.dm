@@ -3,6 +3,9 @@
 	config_tag = "LV-624"
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
+	monkey_amount = 32
+	monkey_types = list(/mob/living/carbon/monkey, /mob/living/carbon/monkey/tajara, /mob/living/carbon/monkey/unathi, /mob/living/carbon/monkey/skrell)
+
 	flags_round_type = MODE_INFESTATION
 
 ////////////////////////////////////////////////////////////////////////////////////////
