@@ -17,6 +17,13 @@
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
+/obj/item/weapon/flame/candle/Dispose()
+	if(ismob(src.loc))
+		src.loc.SetLuminosity(-CANDLE_LUM)
+	else
+		SetLuminosity(0)
+	. = ..()
+
 /obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -52,6 +59,8 @@
 	wax--
 	if(!wax)
 		new/obj/item/trash/candle(src.loc)
+		if(istype(src.loc, /mob))
+			src.dropped()
 		cdel(src)
 	update_icon()
 	if(istype(loc, /turf)) //start a fire if possible
@@ -64,3 +73,17 @@
 		lit = 0
 		update_icon()
 		SetLuminosity(0)
+		user.SetLuminosity(-CANDLE_LUM)
+
+
+/obj/item/weapon/flame/candle/pickup(mob/user)
+	if(lit && src.loc != user)
+		SetLuminosity(0)
+		user.SetLuminosity(CANDLE_LUM)
+
+
+/obj/item/weapon/flame/candle/dropped(mob/user)
+	..()
+	if(lit && src.loc != user)
+		user.SetLuminosity(-CANDLE_LUM)
+		SetLuminosity(CANDLE_LUM)

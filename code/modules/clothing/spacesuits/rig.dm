@@ -34,8 +34,8 @@
 		icon_state = "rig[on]-[item_color]"
 //		item_state = "rig[on]-[color]"
 
-		if(on)	SetLuminosity(brightness_on)
-		else	SetLuminosity(0)
+		if(on)	user.SetLuminosity(brightness_on)
+		else	user.SetLuminosity(-brightness_on)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -45,6 +45,26 @@
 			var/datum/action/A = X
 			A.update_button_icon()
 
+	pickup(mob/user)
+		if(on)
+			user.SetLuminosity(brightness_on)
+//			user.UpdateLuminosity()
+			SetLuminosity(0)
+		..()
+
+	dropped(mob/user)
+		if(on)
+			user.SetLuminosity(-brightness_on)
+//			user.UpdateLuminosity()
+			SetLuminosity(brightness_on)
+		..()
+
+	Dispose()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		. = ..()
 
 /obj/item/clothing/suit/space/rig
 	name = "hardsuit"

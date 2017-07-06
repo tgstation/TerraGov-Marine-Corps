@@ -71,7 +71,6 @@
 	layer = MOB_LAYER + 1
 	mouse_opacity = 1
 	luminosity = 2
-	l_color = "#ee1100" //red light
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "laser_target"
 	effect_duration = 600

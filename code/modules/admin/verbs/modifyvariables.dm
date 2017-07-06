@@ -455,26 +455,24 @@ var/list/forbidden_varedit_object_types = list(
 			O.vars[variable] = var_new
 
 		if("num")
-			switch(variable)
-				if("luminosity")
-					var/var_new = input("Enter new number:","Num",O.vars[variable]) as null|num
-					if(var_new == null) return
-					O.SetLuminosity(var_new)
-				if("stat")
-					var/var_new = input("Enter new number:","Num",O.vars[variable]) as null|num
-					if(var_new == null) return
-					if(!ismob(O)) return //stat is also used by other objects
-					if((O.vars[variable] == DEAD) && (var_new < DEAD))//Bringing the dead back to life
-						dead_mob_list -= O
-						living_mob_list += O
-					if((O.vars[variable] < DEAD) && (var_new == DEAD))//Kill he
-						living_mob_list -= O
-						dead_mob_list += O
-					O.vars[variable] = var_new
-				else
-					var/var_new =  input("Enter new number:","Num",O.vars[variable]) as null|num
-					if(var_new==null) return
-					O.vars[variable] = var_new
+			if(variable=="luminosity")
+				var/var_new = input("Enter new number:","Num",O.vars[variable]) as null|num
+				if(var_new == null) return
+				O.SetLuminosity(var_new)
+			else if(variable=="stat")
+				var/var_new = input("Enter new number:","Num",O.vars[variable]) as null|num
+				if(var_new == null) return
+				if((O.vars[variable] == 2) && (var_new < 2))//Bringing the dead back to life
+					dead_mob_list -= O
+					living_mob_list += O
+				if((O.vars[variable] < 2) && (var_new == 2))//Kill he
+					living_mob_list -= O
+					dead_mob_list += O
+				O.vars[variable] = var_new
+			else
+				var/var_new =  input("Enter new number:","Num",O.vars[variable]) as null|num
+				if(var_new==null) return
+				O.vars[variable] = var_new
 
 		if("type")
 			var/var_new = input("Enter type:","Type",O.vars[variable]) as null|anything in typesof(/obj,/mob,/area,/turf)

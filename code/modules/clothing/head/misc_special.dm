@@ -127,9 +127,29 @@
 		icon_state = "hardhat[on]_[item_color]"
 		item_state = "hardhat[on]_[item_color]"
 
-		if(on)	SetLuminosity(brightness_on)
-		else	SetLuminosity(0)
+		if(on)	user.SetLuminosity(brightness_on)
+		else	user.SetLuminosity(-brightness_on)
 
+	pickup(mob/user)
+		..()
+		if(on)
+			user.SetLuminosity(brightness_on)
+//			user.UpdateLuminosity()
+			SetLuminosity(0)
+
+	dropped(mob/user)
+		..()
+		if(on)
+			user.SetLuminosity(-brightness_on)
+//			user.UpdateLuminosity()
+			SetLuminosity(brightness_on)
+
+	Dispose()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		. = ..()
 /*
  * Kitty ears
  */

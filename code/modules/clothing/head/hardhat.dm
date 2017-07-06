@@ -20,8 +20,8 @@
 		icon_state = "hardhat[on]_[item_color]"
 		item_state = "hardhat[on]_[item_color]"
 
-		if(on)	SetLuminosity(brightness_on)
-		else	SetLuminosity(0)
+		if(on)	user.SetLuminosity(brightness_on)
+		else	user.SetLuminosity(-brightness_on)
 
 		if(ismob(loc))
 			var/mob/M = loc
@@ -31,6 +31,26 @@
 			var/datum/action/A = X
 			A.update_button_icon()
 
+	pickup(mob/user)
+		if(on)
+			user.SetLuminosity(brightness_on)
+//			user.UpdateLuminosity()	//TODO: Carn
+			SetLuminosity(0)
+		..()
+
+	dropped(mob/user)
+		if(on)
+			user.SetLuminosity(-brightness_on)
+//			user.UpdateLuminosity()
+			SetLuminosity(brightness_on)
+		..()
+
+	Dispose()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		. = ..()
 
 
 /obj/item/clothing/head/hardhat/orange

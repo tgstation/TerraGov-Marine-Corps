@@ -339,7 +339,6 @@ var/list/ghostteleportlocs = list()
 	name = "\improper abandoned  Centcom"
 	icon_state = "centcom"
 	requires_power = 0
-	lighting_use_dynamic = 0
 
 /area/centcom/control
 	name = "\improper abandoned  Centcom Control"
@@ -430,7 +429,6 @@ var/list/ghostteleportlocs = list()
 	name = "\improper abandoned  Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
-	lighting_use_dynamic = 0
 
 /area/tdome/tdome1
 	name = "\improper abandoned  Thunderdome (Team 1)"

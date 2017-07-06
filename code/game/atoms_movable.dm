@@ -94,16 +94,13 @@
 	return
 
 /atom/movable/proc/Moved(atom/OldLoc,Dir)
-
-	var/datum/light_source/L
-	var/thing
-	for (thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
-		L = thing
-		L.owner.update_light()
-
-	if(opacity)
-		OldLoc.UpdateAffectingLights()
-
+	if(isturf(loc))
+		if(opacity)
+			OldLoc.UpdateAffectingLights()
+		else
+			if(light)
+				light.changed()
+	return
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
