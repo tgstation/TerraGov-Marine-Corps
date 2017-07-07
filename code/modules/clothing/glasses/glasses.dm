@@ -3,8 +3,6 @@
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = 2.0
-	flags_inventory = COVEREYES
-	flags_equip_slot = SLOT_EYES
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/invisa_view = 0
@@ -14,6 +12,7 @@
 	var/active = 1
 	var/obj/screen/overlay = null
 	flags_inventory = COVEREYES
+	flags_equip_slot = SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
 

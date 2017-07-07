@@ -206,9 +206,8 @@
 			return
 		if(isrobot(user))
 			return
-		user.drop_held_item()
-		if(W)
-			W.loc = src.loc
+		if(user.drop_held_item())
+			W.forceMove(loc)
 	else if(istype(W, /obj/item/weapon/packageWrap))
 		return
 	else if(istype(W, /obj/item/weapon/weldingtool))

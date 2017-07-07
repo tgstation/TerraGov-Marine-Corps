@@ -25,6 +25,7 @@
 			PC.linked_powerloader = src
 
 	relaymove(mob/user, direction)
+		if(user.is_mob_incapacitated()) return
 		if(world.time > l_move_time + move_delay)
 			if(dir != direction)
 				l_move_time = world.time
