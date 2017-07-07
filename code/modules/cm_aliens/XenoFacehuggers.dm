@@ -52,7 +52,9 @@
 			visible_message("<span class='xenowarning'>The facehugger is furiously cannibalized by the nearby horde of other ones!</span>")
 			cdel(src)
 			return
-	if(check_lifecycle()) GoIdle()
+	if(stat == CONSCIOUS && loc) //Make sure we're conscious and not idle or dead.
+		if(check_lifecycle())
+			GoIdle()
 
 //Can be picked up by aliens
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob)
