@@ -296,7 +296,6 @@ datum/game_mode/proc/initialize_special_clamps()
 		else //Out of candidates, spawn in empty larvas directly
 			larvae_spawn = xeno_spawn.len ? pick(xeno_spawn) : pick(xeno_spawn_ice_colony) // Hack to fix an ice colony run time. We need to make sure spawn locations are always normalized.
 			var/mob/living/carbon/Xenomorph/Larva/empty_xeno = new(larvae_spawn)
-			//empty_xeno.amount_grown = 100
 		i--
 
 	/*
@@ -381,7 +380,6 @@ datum/game_mode/proc/initialize_special_clamps()
 		is_queen = TRUE
 	else
 		new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
-		new_xeno.amount_grown = 100
 	ghost_mind.transfer_to(new_xeno) //The mind is fine, since we already labeled them as a xeno. Away they go.
 	ghost_mind.name = ghost_mind.current.name
 
