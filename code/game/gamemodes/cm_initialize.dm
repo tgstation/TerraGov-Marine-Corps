@@ -295,7 +295,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			xenomorphs += new_xeno
 		else //Out of candidates, spawn in empty larvas directly
 			larvae_spawn = xeno_spawn.len ? pick(xeno_spawn) : pick(xeno_spawn_ice_colony) // Hack to fix an ice colony run time. We need to make sure spawn locations are always normalized.
-			var/mob/living/carbon/Xenomorph/Larva/empty_xeno = new(larvae_spawn)
+			new /mob/living/carbon/Xenomorph/Larva(larvae_spawn)
 		i--
 
 	/*
