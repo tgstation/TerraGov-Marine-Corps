@@ -296,7 +296,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		else //Out of candidates, spawn in empty larvas directly
 			larvae_spawn = xeno_spawn.len ? pick(xeno_spawn) : pick(xeno_spawn_ice_colony) // Hack to fix an ice colony run time. We need to make sure spawn locations are always normalized.
 			var/mob/living/carbon/Xenomorph/Larva/empty_xeno = new(larvae_spawn)
-			empty_xeno.amount_grown = 100
+			//empty_xeno.amount_grown = 100
 		i--
 
 	/*
@@ -314,7 +314,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		transform_xeno(new_xeno)
 
 /datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
-	if(jobban_isbanned(xeno_candidate,"Alien")) // User is jobbanned
+	if(jobban_isbanned(xeno_candidate, "Alien")) // User is jobbanned
 		xeno_candidate << "<span class='warning'>You are banned from playing aliens and cannot spawn as a xenomorph.</span>"
 		return
 	return 1
@@ -328,7 +328,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			if(A.away_timer >= 300) available_xenos_non_ssd += A
 			available_xenos += A
 
-	if(!available_xenos.len || (instant_join && !available_xenos_non_ssd.len) )
+	if(!available_xenos.len || (instant_join && !available_xenos_non_ssd.len))
 		xeno_candidate << "<span class='warning'>There aren't any available xenomorphs. Check back later!</span>"
 		return
 
