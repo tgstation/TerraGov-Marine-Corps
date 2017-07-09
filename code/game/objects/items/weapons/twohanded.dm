@@ -130,13 +130,13 @@
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	icon_state = "fireaxe"
 	item_state = "fireaxe"
-	force = 10
+	force = 20
 	sharp = 1
 	edge = 1
 	w_class = 4.0
 	flags_equip_slot = SLOT_BACK
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
-	force_wielded = 40
+	force_wielded = 45
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
@@ -158,7 +158,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	force_wielded = 30
+	force_wielded = 70
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	flags_atom = FPRINT|NOSHIELD|NOBLOODY|TWOHANDED
@@ -207,4 +207,4 @@
 	sharp = 1
 	flags_atom = FPRINT|NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
+	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
