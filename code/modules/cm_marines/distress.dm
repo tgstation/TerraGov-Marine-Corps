@@ -139,7 +139,9 @@
 		/obj/item/clothing/mask/fluff/balaclava = null,
 		/obj/item/clothing/glasses/night/m42_night_goggles/upp = null,
 		/obj/item/weapon/storage/box/handcuffs = null,
-		/obj/item/weapon/storage/pill_bottle/happy = null
+		/obj/item/weapon/storage/pill_bottle/happy = null,
+		/obj/item/weapon/twohanded/fireaxe = null,
+		/obj/item/weapon/twohanded/spear = null
 		)
 
 	var/gunpath = sidearm? pick(rebel_sidearms) : pick(rebel_firearms)

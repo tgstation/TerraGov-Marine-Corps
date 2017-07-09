@@ -41,25 +41,25 @@
 	unacidable = 1
 
 /obj/structure/cable/yellow
-	color = COLOR_YELLOW
+	color = "#ffe28a"
 
 /obj/structure/cable/green
-	color = COLOR_GREEN
+	color = "#589471"
 
 /obj/structure/cable/blue
-	color = COLOR_BLUE
+	color = "#a8c1dd"
 
 /obj/structure/cable/pink
-	color = COLOR_PINK
+	color = "#6fcb9f"
 
 /obj/structure/cable/orange
-	color = COLOR_ORANGE
+	color = "#ff9845"
 
 /obj/structure/cable/cyan
-	color = COLOR_CYAN
+	color = "#a8c1dd"
 
 /obj/structure/cable/white
-	color = COLOR_WHITE
+	color = "#666547"
 
 /obj/structure/cable/New()
 	..()
@@ -619,25 +619,25 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	update_wclass()
 
 /obj/item/stack/cable_coil/yellow
-	color = COLOR_YELLOW
+	color = "#ffe28a"
 
 /obj/item/stack/cable_coil/blue
-	color = COLOR_BLUE
+	color = "#a8c1dd"
 
 /obj/item/stack/cable_coil/green
-	color = COLOR_GREEN
+	color = "#589471"
 
 /obj/item/stack/cable_coil/pink
-	color = COLOR_PINK
+	color = "#6fcb9f"
 
 /obj/item/stack/cable_coil/orange
-	color = COLOR_ORANGE
+	color = "#ff9845"
 
 /obj/item/stack/cable_coil/cyan
-	color = COLOR_CYAN
+	color = "#a8c1dd"
 
 /obj/item/stack/cable_coil/white
-	color = COLOR_WHITE
+	color = "#666547"
 
 /obj/item/stack/cable_coil/random/New()
 	color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
