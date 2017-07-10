@@ -6,6 +6,7 @@
 
 //Game defining directives.
 #define MAIN_SHIP_Z_LEVEL list(3)
+#define ADMIN_Z_LEVEL 2
 #define GAME_PLAY_Z_LEVELS list(1,2,3)
 #define MAIN_AI_SYSTEM "ARES v3.2"
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11

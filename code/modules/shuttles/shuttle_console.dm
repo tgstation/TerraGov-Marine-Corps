@@ -96,10 +96,23 @@
 			var/element_nbr = 1
 			for(var/X in FM.equipments)
 				var/obj/structure/dropship_equipment/E = X
-				var/is_selected = FALSE
-				if(E == selected_equipment) is_selected = TRUE
-				equipment_data += list(list("name"= E.name, "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable, "is_selected" = is_selected, "ammo_amt" = E.ammo_equipped ? E.ammo_equipped.ammo_count : 0))
+				equipment_data += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable))
 				element_nbr++
+
+
+	var/selected_eqp_name = ""
+	var/selected_eqp_ammo_name = ""
+	var/selected_eqp_ammo_amt = 0
+	var/selected_eqp_max_ammo_amt = 0
+	var/screen_mode = 0
+	if(selected_equipment)
+		selected_eqp_name = sanitize(copytext(selected_equipment.name,1,MAX_MESSAGE_LEN))
+		if(selected_equipment.ammo_equipped)
+			selected_eqp_ammo_name = sanitize(copytext(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
+			selected_eqp_ammo_amt = selected_equipment.ammo_equipped.ammo_count
+			selected_eqp_max_ammo_amt = selected_equipment.ammo_equipped.max_ammo_count
+		screen_mode = selected_equipment.screen_mode
+
 
 	data = list(
 		"shuttle_status" = shuttle_status,
@@ -125,6 +138,11 @@
 		"human_user" = ishuman(user),
 		"is_dropship" = is_dropship,
 		"onboard" = onboard,
+		"selected_eqp" = selected_eqp_name,
+		"selected_eqp_ammo_name" = selected_eqp_ammo_name,
+		"selected_eqp_ammo_amt" = selected_eqp_ammo_amt,
+		"selected_eqp_max_ammo_amt" = selected_eqp_max_ammo_amt,
+		"screen_mode" = screen_mode,
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -244,6 +262,9 @@
 				if(!LT.loc) return
 				DEW.open_fire(LT)
 				break
+
+	if(href_list["deselect"])
+		selected_equipment = null
 
 /obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
