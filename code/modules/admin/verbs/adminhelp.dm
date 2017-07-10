@@ -184,8 +184,10 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>)</b>"
 		if(2)
 			return "<b>[key_name(C, link, name, highlight_special)] \
-			(<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) \
-			(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>) \
+			(<A HREF='?_src_=holder;mark=[ref_mob]'>Mark</A>) \
+			(<A HREF='?_src_=holder;noresponse=[ref_mob]'>NR</A>) \
+			(<A HREF='?_src_=holder;warning=[ref_mob]'>Warn</A>) \
+			(<A HREF='?_src_=holder;autoresponse=[ref_mob]'>AutoResponse...</A>) \
 			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) \
 			(<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) \
 			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
