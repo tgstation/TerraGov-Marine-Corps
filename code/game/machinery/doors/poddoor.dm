@@ -3,7 +3,7 @@
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "pdoor1"
-	var/id = 1.0
+	id = 1.0
 	dir = 1
 	explosion_resistance = 25
 

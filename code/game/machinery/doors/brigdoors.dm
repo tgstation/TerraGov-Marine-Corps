@@ -3,6 +3,7 @@
 #define FONT_COLOR "#09f"
 #define FONT_STYLE "Arial Black"
 
+// TODO: Make this a child of door_display. ~Bmc777
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,9 +221,9 @@
 // Also updates dialog window and timer icon
 /obj/machinery/door_timer/Topic(href, href_list)
 	if(..())
-		return
+		return 0
 	if(!src.allowed(usr))
-		return
+		return 0
 
 	usr.set_machine(src)
 
@@ -254,13 +255,7 @@
 	src.updateUsrDialog()
 	src.update_icon()
 
-	/* if(src.timing)
-		src.timer_start()
-
-	else
-		src.timer_end() */
-
-	return
+	return 1
 
 
 //icon update function

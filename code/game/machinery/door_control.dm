@@ -241,3 +241,4 @@
 		spawn(15)
 			if(!(stat & NOPOWER))
 				icon_state = "doorctrl0"
+

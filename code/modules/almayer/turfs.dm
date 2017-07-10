@@ -27,6 +27,8 @@
 		/obj/machinery/door/airlock)
 
 /turf/simulated/wall/almayer/handle_icon_junction(junction)
+	if (!walltype)
+		return
 	//lets make some detailed randomized shit happen.
 	var/r1 = rand(0,10) //Make a random chance for this to happen
 	var/r2 = rand(0,3) // Which wall if we do choose it
@@ -283,3 +285,78 @@
 	icon_state = "wwindow0_frame"
 	basestate = "wwindow"
 	window_type = /obj/structure/window/reinforced/almayer/white
+
+// RESEARCH STUFF
+/turf/simulated/floor/almayer/research/containment/entrance
+	icon_state = "containment_entrance"
+
+/turf/simulated/floor/almayer/research/containment/floor1
+	icon_state = "containment_floor_1"
+
+/turf/simulated/floor/almayer/research/containment/floor2
+	icon_state = "containment_floor_2"
+
+/turf/simulated/floor/almayer/research/containment/corner
+	icon_state = "containment_corner"
+
+/turf/simulated/floor/almayer/research/containment/corner1
+	icon_state = "containment_corner_1"
+
+/turf/simulated/floor/almayer/research/containment/corner2
+	icon_state = "containment_corner_2"
+
+/turf/simulated/floor/almayer/research/containment/corner3
+	icon_state = "containment_corner_3"
+
+/turf/simulated/floor/almayer/research/containment/corner_var1
+	icon_state = "containment_corner_variant_1"
+
+/turf/simulated/floor/almayer/research/containment/corner_var2
+	icon_state = "containment_corner_variant_2"
+
+/turf/simulated/wall/almayer/research/containment/wall
+	name = "cell wall"
+	tiles_with = null
+	walltype = null
+
+/turf/simulated/wall/almayer/research/containment/wall/corner
+	icon_state = "containment_wall_corner"
+
+/turf/simulated/wall/almayer/research/containment/wall/divide
+	icon_state = "containment_wall_divide"
+
+/turf/simulated/wall/almayer/research/containment/wall/south
+	icon_state = "containment_wall_south"
+
+/turf/simulated/wall/almayer/research/containment/wall/west
+	icon_state = "containment_wall_w"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect_e
+	icon_state = "containment_wall_connect_e"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect3
+	icon_state = "containment_wall_connect3"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect_w
+	icon_state = "containment_wall_connect_w"
+
+/turf/simulated/wall/almayer/research/containment/wall/east
+	icon_state = "containment_wall_e"
+
+/turf/simulated/wall/almayer/research/containment/wall/north
+	icon_state = "containment_wall_n"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect_e2
+	name = "/improper Containment Cell window."
+	icon_state = "containment_wall_connect_e2"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect_s1
+	icon_state = "containment_wall_connect_s1"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect_s2
+	icon_state = "containment_wall_connect_s2"
+
+/turf/simulated/wall/almayer/research/containment/wall/purple
+	name = "cell window"
+	icon_state = "containment_window"
+	opacity = 0
