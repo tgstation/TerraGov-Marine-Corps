@@ -25,14 +25,14 @@
 
 		if (istype(W,/obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = W
-			if (cig.lit == 1)
+			if (cig.heat_source)
 				src.visible_message("[user] crushes [cig] in [src], putting it out.")
 				processing_objects.Remove(cig)
 				var/obj/item/butt = new cig.type_butt(src)
 				cig.transfer_fingerprints_to(butt)
 				cdel(cig)
 				W = butt
-			else if (cig.lit == 0)
+			else if (cig.heat_source == 0)
 				user << "You place [cig] in [src] without even smoking it. Why would you do that?"
 
 		src.visible_message("[user] places [W] in [src].")

@@ -35,7 +35,7 @@
 				if(src.smashed || src.localopened)
 					if(localopened)
 						localopened = 0
-						icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
+						icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
 						spawn(10) update_icon()
 					return
 				else

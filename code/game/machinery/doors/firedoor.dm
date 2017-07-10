@@ -195,45 +195,34 @@
 			update_icon()
 			return
 
-	if(blocked)
-		user << "<span class='danger'>\The [src] is welded solid!</span>"
-		return
-
-	if(istype(C, /obj/item/weapon/crowbar) || istype(C,/obj/item/weapon/melee/energy/blade) || istype(C,/obj/item/weapon/twohanded/fireaxe))
+	else if(C.pry_capable)
 		if(operating)
 			return
 
-		if(blocked && istype(C, /obj/item/weapon/crowbar))
+		if(blocked && C.pry_capable == IS_PRY_CAPABLE_CROWBAR) //actual crowbar
 			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
 			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 			"You hear someone struggle and metal straining.")
 			return
 
-		if(istype(C,/obj/item/weapon/twohanded/fireaxe))
-			var/obj/item/weapon/twohanded/fireaxe/F = C
-			if(!(F.flags_atom & WIELDED))
-				return
-
 		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
 				"You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!",\
 				"You hear metal strain.")
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
-			if(istype(C, /obj/item/weapon/crowbar))
-				if(stat & (BROKEN|NOPOWER) || !density)
-					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-					"You force \the [src] [density ? "open" : "closed"] with \the [C]!",\
-					"You hear metal strain, and a door [density ? "open" : "close"].")
-			else
-				user.visible_message("<span class='danger'>\The [user] forces \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-					"You force \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \the [C]!",\
+			if(C.pry_capable != IS_PRY_CAPABLE_CROWBAR || ((stat & (BROKEN|NOPOWER) || !density) && !blocked))
+				user.visible_message("<span class='danger'>\The [user] forces \the[ blocked ? " welded " : " " ][src] [density ? "open" : "closed"] with \a [C]!</span>",\
+					"You force \the[ blocked ? " welded " : " "][src] [density ? "open" : "closed"] with \the [C]!",\
 					"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
-			if(density)
-				spawn(0)
+			spawn(0)
+				if(density)
 					open(1)
-			else
-				spawn(0)
+				else
 					close()
+	else
+		if(blocked)
+			user << "<span class='danger'>\The [src] is welded solid!</span>"
 			return
+
 
 // CHECK PRESSURE
 /obj/machinery/door/firedoor/process()

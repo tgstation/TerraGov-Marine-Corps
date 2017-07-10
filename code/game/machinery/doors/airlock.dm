@@ -1151,7 +1151,7 @@ About the new airlock wires panel:
 		updateUsrDialog()
 	return
 
-/obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/attackby(obj/item/C, mob/user)
 	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())
@@ -1186,13 +1186,8 @@ About the new airlock wires panel:
 		return src.attack_hand(user)
 	else if(istype(C, /obj/item/device/assembly/signaler))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/twohanded/fireaxe) )
-		var/beingcrowbarred = null
-		if(istype(C, /obj/item/weapon/crowbar) )
-			beingcrowbarred = 1 //derp, Agouri
-		else
-			beingcrowbarred = 0
-		if( beingcrowbarred && src.p_open && (operating == -1 || (density && welded && operating != 1 && !src.arePowerSystemsOn() && !src.locked)) )
+	else if(C.pry_capable)
+		if(C.pry_capable == IS_PRY_CAPABLE_CROWBAR && src.p_open && (operating == -1 || (density && welded && operating != 1 && !src.arePowerSystemsOn() && !src.locked)) )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
 			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
@@ -1237,28 +1232,15 @@ About the new airlock wires panel:
 		else if(locked)
 			user << "\blue The airlock's bolts prevent it from being forced."
 		else if( !welded && !operating )
-			if(density)
-				if(beingcrowbarred == 0) //being fireaxe'd
-					var/obj/item/weapon/twohanded/fireaxe/F = C
-					if(F.flags_atom & WIELDED)
-						spawn(0)	open(1)
-					else
-						user << "\red You need to be wielding the Fire axe to do that."
+			spawn(0)
+				if(density)
+					open(1)
 				else
-					spawn(0)	open(1)
-			else
-				if(beingcrowbarred == 0)
-					var/obj/item/weapon/twohanded/fireaxe/F = C
-					if(F.flags_atom & WIELDED)
-						spawn(0)	close(1)
-					else
-						user << "\red You need to be wielding the Fire axe to do that."
-				else
-					spawn(0)	close(1)
+					close(1)
 
 	else
-		..()
-	return
+		return ..()
+
 
 ///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
 //	if(C)
