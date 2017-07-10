@@ -138,6 +138,7 @@
 	if(picked) //found a candidate
 		new_xeno.key = picked
 		new_xeno << "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>"
+		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 	stage = 6
 
 
