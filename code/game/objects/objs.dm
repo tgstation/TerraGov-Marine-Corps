@@ -243,11 +243,12 @@
 		. = 0
 
 /obj/proc/handle_buckled_mob_movement(NewLoc, direct)
-	if(!buckled_mob.Move(NewLoc, direct))
-		loc = buckled_mob.loc
-		last_move_dir = buckled_mob.last_move_dir
-		buckled_mob.inertia_dir = last_move_dir
-		return 0
+	if(!(direct & (direct - 1))) //not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
+		if(!buckled_mob.Move(NewLoc, direct))
+			loc = buckled_mob.loc
+			last_move_dir = buckled_mob.last_move_dir
+			buckled_mob.inertia_dir = last_move_dir
+			return 0
 	return 1
 
 /obj/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)

@@ -203,21 +203,17 @@ turf/simulated/floor/update_icon()
 			return 0
 
 
-/turf/simulated/floor/attack_paw(mob/user as mob)
+/turf/simulated/floor/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/turf/simulated/floor/attack_hand(mob/user as mob)
+/turf/simulated/floor/attack_hand(mob/user)
 	if (is_light_floor())
 		var/obj/item/stack/tile/light/T = floor_tile
 		T.on = !T.on
 		update_icon()
-	if ((!( user.canmove ) || user.is_mob_restrained() || !( user.pulling )))
+	if (user.is_mob_incapacitated() || !user.pulling)
 		return
-	if (!isturf(user.pulling.loc))
-		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
-		return
-
+	if(user.pulling == user.buckled) return //can't move the thing you're sitting on.
 	step(user.pulling, get_dir(user.pulling.loc, src))
 
 
