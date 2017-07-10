@@ -517,6 +517,18 @@
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
 
+/obj/machinery/door/airlock/almayer/research
+	name = "\improper Research Airlock"
+	icon = 'icons/obj/doors/almayer/medidoor.dmi'
+	req_access_txt = "14"
+
+/obj/machinery/door/airlock/almayer/research/glass
+	name = "\improper Research Airlock"
+	icon = 'icons/obj/doors/almayer/medidoor_glass.dmi'
+	opacity = 0
+	glass = 1
+	req_access_txt = "14"
+
 /obj/machinery/door/airlock/almayer/generic
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/almayer/personaldoor.dmi'

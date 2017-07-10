@@ -13,6 +13,7 @@
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
+	var/id = ""
 
 	var/secondsElectrified = 0
 	var/visible = 1

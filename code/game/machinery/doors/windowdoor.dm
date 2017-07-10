@@ -262,7 +262,6 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(ACCESS_MARINE_BRIG)
-	var/id = null
 	health = 300.0 //Stronger doors for prison (regular window door health is 200)
 
 
