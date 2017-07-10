@@ -64,7 +64,7 @@
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = 'sound/weapons/Genhit.ogg'
 	var/drill_verb = "picking"
-	sharp = IS_SHARP_ITEM_SIMPLE
+	sharp = 1
 
 	var/excavation_amount = 100
 
@@ -117,7 +117,6 @@
 		origin_tech = "materials=4;phorontech=3;engineering=3"
 		desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 		drill_verb = "cutting"
-		heat_source = 3800
 
 	diamond
 		name = "diamond pickaxe"

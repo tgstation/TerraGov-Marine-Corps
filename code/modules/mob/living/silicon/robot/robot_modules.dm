@@ -281,7 +281,7 @@
 		src.modules += new /obj/item/weapon/reagent_containers/robodropper(src)
 
 		var/obj/item/weapon/flame/lighter/zippo/L = new /obj/item/weapon/flame/lighter/zippo(src)
-		L.heat_source = 1000
+		L.lit = 1
 		src.modules += L
 
 		src.modules += new /obj/item/weapon/tray/robotray(src)

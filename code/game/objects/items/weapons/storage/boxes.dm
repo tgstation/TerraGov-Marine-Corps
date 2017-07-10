@@ -481,8 +481,12 @@
 			new /obj/item/weapon/flame/match(src)
 
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
-		if(istype(W) && !W.heat_source && !W.burnt)
-			W.light_match()
+		if(istype(W) && !W.lit && !W.burnt)
+			W.lit = 1
+			W.damtype = "burn"
+			W.icon_state = "match_lit"
+			processing_objects.Add(W)
+			W.update_icon()
 
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"

@@ -1322,7 +1322,7 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 	item_state = "swordbelt_u"
 
 //CUSTOM ITEMS - NO TEMPLATES - ALL UNIQUE ////////////////////////
-/obj/item/weapon/flame/lighter/zippo/fluff/ghost
+/obj/item/weapon/lighter/zippo/fluff/ghost
 	name = "Gold zippo lighter"
 	desc = "A Golden Zippo lighter, engraved with the name John Donable... UNIQUE DONOR ITEM."
 	icon = 'icons/obj/custom_items.dmi'
@@ -1341,7 +1341,7 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 
 //GHOST CIGAR CODE
 /obj/item/clothing/mask/cigarette/cigar/fluff/ghost/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/flame/lighter/zippo/fluff/ghost))
+	if(istype(W, /obj/item/weapon/lighter/zippo/fluff/ghost))
 		..()
 	else
 		user << "<span class='notice'>\The [src] straight out REFUSES to be lit by anything other than a purple zippo.</span>"

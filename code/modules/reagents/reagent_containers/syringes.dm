@@ -16,7 +16,7 @@
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
 	w_class = 1
-	sharp = IS_SHARP_ITEM_SIMPLE
+	sharp = 1
 	var/mode = SYRINGE_DRAW
 
 	on_reagent_change()

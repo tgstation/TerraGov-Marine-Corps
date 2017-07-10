@@ -130,7 +130,6 @@
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	icon_state = "fireaxe"
 	item_state = "fireaxe"
-	sharp = IS_SHARP_ITEM_BIG
 	force = 20
 	sharp = 1
 	edge = 1
@@ -139,16 +138,6 @@
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	force_wielded = 45
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
-
-/obj/item/weapon/twohanded/fireaxe/wield(mob/user)
-	. = ..()
-	if(!.) return
-	pry_capable = IS_PRY_CAPABLE_SIMPLE
-
-/obj/item/weapon/twohanded/fireaxe/unwield(mob/user)
-	. = ..()
-	if(!.) return
-	pry_capable = 0
 
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
@@ -175,7 +164,7 @@
 	flags_atom = FPRINT|NOSHIELD|NOBLOODY|TWOHANDED
 	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharp = IS_SHARP_ITEM_BIG
+	sharp = 1
 	edge = 1
 
 /obj/item/weapon/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
@@ -215,7 +204,7 @@
 	throwforce = 30
 	throw_speed = 3
 	edge = 1
-	sharp = IS_SHARP_ITEM_SIMPLE
+	sharp = 1
 	flags_atom = FPRINT|NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")

@@ -21,11 +21,11 @@
 	else
 		return 0
 
-/obj/machinery/door/poddoor/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/door/poddoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(!W.pry_capable)
+	if( !istype(C, /obj/item/weapon/crowbar) && !( istype(C, /obj/item/weapon/twohanded/fireaxe) && (C.flags_atom & WIELDED) ) )
 		return
-	if(density && (stat & NOPOWER) && !operating)
+	if ((src.density && (stat & NOPOWER) && !( src.operating )))
 		spawn( 0 )
 			src.operating = 1
 			flick("pdoorc0", src)
@@ -34,8 +34,8 @@
 			sleep(15)
 			src.density = 0
 			src.operating = 0
-
-
+			return
+	return
 
 /obj/machinery/door/poddoor/open()
 	if (src.operating == 1) //doors can still open when emag-disabled

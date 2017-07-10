@@ -901,7 +901,7 @@
 	throwforce = 38
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
 	unacidable = 1
-	sharp = IS_SHARP_ITEM_BIG
+	sharp = 1
 
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
@@ -916,7 +916,7 @@
 	throwforce = 50
 	throw_speed = 3
 	edge = 1
-	sharp = IS_SHARP_ITEM_BIG
+	sharp = 1
 	flags_atom = FPRINT|CONDUCT|NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
@@ -1038,7 +1038,7 @@
 	item_state = "knife"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_STORE
-	sharp = IS_SHARP_ITEM_ACCURATE
+	sharp = 1
 	force = 24
 	w_class = 1.0
 	throwforce = 28
@@ -1089,7 +1089,7 @@
 	item_state = "clansword"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
-	sharp = IS_SHARP_ITEM_BIG
+	sharp = 1
 	edge = 1
 	force = 45 //More damage than other weapons like it. Considering how "strong" this sword is supposed to be, 38 damage was laughable.
 	w_class = 4.0
@@ -1127,7 +1127,7 @@
 	item_state = "scythe0"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
-	sharp = IS_SHARP_ITEM_BIG
+	sharp = 1
 	force = 32
 	w_class = 4.0
 	throwforce = 24
@@ -1174,7 +1174,7 @@
 	force = 32
 	throwforce = 70
 	unacidable = 1
-	sharp = IS_SHARP_ITEM_ACCURATE
+	sharp = 1
 	attack_verb = list("speared", "stabbed", "impaled")
 	var/on = 1
 	var/timer = 0

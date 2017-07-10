@@ -49,7 +49,7 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(W.sharp == IS_SHARP_ITEM_BIG)
+		if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || (istype(W, /obj/item/weapon/twohanded/fireaxe) && (W.flags_atom & WIELDED)) || istype(W, /obj/item/weapon/melee/energy))
 			user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 			for(var/i=0,i<2,i++)
 				var/obj/item/stack/sheet/wood/NG = new (user.loc)
@@ -180,9 +180,9 @@
 	throw_range = 20
 
 /obj/item/weapon/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.sharp == IS_SHARP_ITEM_ACCURATE)
+	..()
+	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || istype(W, /obj/item/weapon/kitchen/utensil/knife) || istype(W, /obj/item/weapon/kitchenknife) || istype(W, /obj/item/weapon/kitchenknife/ritual))
 		user << "<span class='notice'>You use [W] to fashion a pipe out of the corn cob!</span>"
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe (user.loc)
 		cdel(src)
-	else
-		return ..()
+		return

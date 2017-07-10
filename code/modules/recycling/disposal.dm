@@ -89,6 +89,10 @@
 				user << "You need more welding fuel to complete this task."
 				return
 
+	if(istype(I, /obj/item/weapon/melee/energy/blade))
+		user << "You can't place that item inside the disposal unit."
+		return
+
 	if(istype(I, /obj/item/weapon/storage/bag/trash))
 		var/obj/item/weapon/storage/bag/trash/T = I
 		user << "\blue You empty the bag."
@@ -117,9 +121,13 @@
 	if(!I)
 		return
 
-	if(user.drop_inv_item_to_loc(I, src))
-		user.visible_message("[user.name] places \the [I] into the [src].",\
-					"<span class = 'notice'>You place [I] into the [src].</span>")
+	user.drop_inv_item_to_loc(I, src)
+	user << "<span class = 'notice'>You place [I] into the [src].</span>"
+	for(var/mob/M in viewers(src))
+		if(M == user)
+			continue
+		M.show_message("[user.name] places \the [I] into the [src].", 3)
+
 	update()
 
 // mouse drop another mob or self

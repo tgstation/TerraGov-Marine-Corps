@@ -101,7 +101,7 @@
 	throw_range = 5
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
-	sharp = IS_SHARP_ITEM_SIMPLE
+	sharp = 1
 	edge = 0
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 

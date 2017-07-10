@@ -8,15 +8,10 @@
 	var/force = 0
 	var/damtype = "brute"
 	var/attack_speed = 7  //+3, Adds up to 10.
-	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/health = null
-
-	var/sharp = 0		// whether this item cuts
-	var/edge = 0		// whether this item is more likely to dismember
-	var/pry_capable = 0 //whether this item can be used to pry things open.
-	var/heat_source = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
-
+	var/burn_point = null
+	var/burning = null
 	var/hitsound = null
 	var/w_class = 3.0
 	flags_atom = FPRINT
@@ -73,15 +68,19 @@
 
 /obj/item/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(1.0)
 			cdel(src)
-		if(2)
-			if(prob(50))
+			return
+		if(2.0)
+			if (prob(50))
 				cdel(src)
-		if(3)
-			if(prob(5))
+				return
+		if(3.0)
+			if (prob(5))
 				cdel(src)
-
+				return
+		else
+	return
 
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user

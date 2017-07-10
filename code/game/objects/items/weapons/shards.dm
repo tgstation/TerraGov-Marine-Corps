@@ -4,7 +4,7 @@
 	name = "glass shard"
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
-	sharp = IS_SHARP_ITEM_SIMPLE
+	sharp = 1
 	edge = 1
 	desc = "Could probably be used as ... a throwing weapon?"
 	w_class = 2.0
@@ -121,7 +121,8 @@
 	force = 8.0
 	throwforce = 15.0
 	icon_state = "phoronlarge"
-
+	sharp = 1
+	edge = 1
 
 /obj/item/weapon/shard/phoron/New()
 

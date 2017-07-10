@@ -32,7 +32,7 @@
 
 /obj/item/weapon/harpoon
 	name = "harpoon"
-	sharp = IS_SHARP_ITEM_SIMPLE
+	sharp = 1
 	edge = 0
 	desc = "Tharr she blows!"
 	icon_state = "harpoon"
@@ -132,7 +132,7 @@
 		force = 15 //bay adjustments
 		throwforce = 12
 		edge = 1
-		sharp = IS_SHARP_ITEM_ACCURATE
+		sharp = 1
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = 3

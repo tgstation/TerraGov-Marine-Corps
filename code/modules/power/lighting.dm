@@ -738,6 +738,6 @@
 		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
 		status = LIGHT_BROKEN
 		force = 5
-		sharp = IS_SHARP_ITEM_SIMPLE
+		sharp = 1
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		update()

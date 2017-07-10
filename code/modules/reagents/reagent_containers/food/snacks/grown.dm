@@ -288,12 +288,12 @@
 	plantname = "pumpkin"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.sharp == IS_SHARP_ITEM_ACCURATE || W.sharp == IS_SHARP_ITEM_BIG)
-		user << "<span class='notice'>You carve a face into [src]!</span>"
+	..()
+	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || istype(W, /obj/item/weapon/twohanded/fireaxe) || istype(W, /obj/item/weapon/kitchen/utensil/knife) || istype(W, /obj/item/weapon/kitchenknife) || istype(W, /obj/item/weapon/melee/energy))
+		user.show_message("<span class='notice'>You carve a face into [src]!</span>", 1)
 		new /obj/item/clothing/head/pumpkinhead (user.loc)
 		cdel(src)
-	else
-		return ..()
+		return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/lime
 	name = "lime"

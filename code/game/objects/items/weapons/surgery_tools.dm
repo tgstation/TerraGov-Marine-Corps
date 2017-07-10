@@ -80,7 +80,7 @@
 	icon_state = "scalpel"
 	flags_atom = FPRINT|CONDUCT
 	force = 10.0
-	sharp = IS_SHARP_ITEM_ACCURATE
+	sharp = 1
 	edge = 1
 	w_class = 2.0
 	throwforce = 5.0
@@ -143,7 +143,7 @@
 	matter = list("metal" = 20000,"glass" = 10000)
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharp = IS_SHARP_ITEM_BIG
+	sharp = 1
 	edge = 1
 
 //misc, formerly from code/defines/weapons.dm

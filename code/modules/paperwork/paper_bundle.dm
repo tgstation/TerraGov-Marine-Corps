@@ -33,7 +33,7 @@
 		if(loc == user)
 			user.drop_inv_item_on_ground(W)
 			attach_doc(W, user)
-	else if(W.heat_source >= 400)
+	else if(istype(W, /obj/item/weapon/flame))
 		burnpaper(W, user)
 	else if(istype(W, /obj/item/weapon/paper_bundle))
 		if(loc == user)
@@ -54,10 +54,10 @@
 
 
 
-/obj/item/weapon/paper_bundle/proc/burnpaper(obj/item/weapon/P, mob/user)
+/obj/item/weapon/paper_bundle/proc/burnpaper(obj/item/weapon/flame/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.heat_source >= 400 && !user.is_mob_restrained())
+	if(P.lit && !user.is_mob_restrained())
 		if(istype(P, /obj/item/weapon/flame/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -65,7 +65,7 @@
 		"[class]You hold \the [P] up to \the [src], burning it slowly.")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.heat_source)
+			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
 				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.", \
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
 

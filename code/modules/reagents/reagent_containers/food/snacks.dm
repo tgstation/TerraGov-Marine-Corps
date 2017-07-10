@@ -163,8 +163,20 @@
 		return 0
 
 	var/inaccurate = 0
-	if(W.sharp == IS_SHARP_ITEM_ACCURATE)
-	else if(W.sharp == IS_SHARP_ITEM_BIG)
+	if( \
+			istype(W, /obj/item/weapon/combat_knife) || \
+			istype(W, /obj/item/weapon/kitchenknife) || \
+			istype(W, /obj/item/weapon/butch) || \
+			istype(W, /obj/item/weapon/scalpel) || \
+			istype(W, /obj/item/weapon/kitchen/utensil/knife) \
+		)
+	else if( \
+			istype(W, /obj/item/weapon/circular_saw) || \
+			istype(W, /obj/item/weapon/melee/energy/sword) && W:active || \
+			istype(W, /obj/item/weapon/melee/energy/blade) || \
+			istype(W, /obj/item/weapon/shovel) || \
+			istype(W, /obj/item/weapon/hatchet) \
+		)
 		inaccurate = 1
 	else if(W.w_class <= 2 && istype(src,/obj/item/weapon/reagent_containers/food/snacks/sliceable))
 		if(!iscarbon(user))
