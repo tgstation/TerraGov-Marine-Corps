@@ -41,46 +41,32 @@
 	if( !istype(user.loc, /turf) )	return	//can't do this stuff whilst inside objects and such
 
 	if(rotting)
-		if(istype(W, /obj/item/weapon/weldingtool) )
-			var/obj/item/weapon/weldingtool/WT = W
-			if( WT.remove_fuel(0,user) )
-				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
-				playsound(src, 'sound/items/Welder.ogg', 25, 1)
-				for(var/obj/effect/E in src) if(E.name == "Wallrot")
-					cdel(E)
-				rotting = 0
-				return
+		if(W.heat_source >= 3000)
+			if(istype(W, /obj/item/weapon/weldingtool))
+				var/obj/item/weapon/weldingtool/WT = W
+				WT.remove_fuel(0,user)
+			user << "<span class='notice'>You burn away the fungi with \the [W].</span>"
+			playsound(src, 'sound/items/Welder.ogg', 25, 1)
+			for(var/obj/effect/E in src) if(E.name == "Wallrot")
+				cdel(E)
+			rotting = 0
+			return
 		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)
 			user << "<span class='notice'>\The [src] crumbles away under the force of your [W.name].</span>"
 			src.dismantle_wall()
 			return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
-	if( thermite )
-		if( istype(W, /obj/item/weapon/weldingtool) )
-			var/obj/item/weapon/weldingtool/WT = W
-			if( WT.remove_fuel(0,user) )
+	if(thermite)
+		if(W.heat_source >= 1000)
+			if(hull)
+				user << "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>."
+			else
+				if(istype(W, /obj/item/weapon/weldingtool))
+					var/obj/item/weapon/weldingtool/WT = W
+					WT.remove_fuel(0,user)
 				thermitemelt(user)
-				return
-
-		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-			thermitemelt(user)
 			return
-
-		else if( istype(W, /obj/item/weapon/melee/energy/blade) )
-			var/obj/item/weapon/melee/energy/blade/EB = W
-
-			EB.spark_system.start()
-			user << "<span class='notice'>You slash \the [src] with \the [EB]; the thermite ignites!</span>"
-			playsound(src, "sparks", 25, 1)
-			playsound(src, 'sound/weapons/blade1.ogg', 25, 1)
-
-			thermitemelt(user)
-			return
-
-	else if(istype(W, /obj/item/weapon/melee/energy/blade))
-		user << "<span class='notice'>This wall is too thick to slice through. You will need to find a different path.</span>"
-		return
 
 	if(damage && istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W

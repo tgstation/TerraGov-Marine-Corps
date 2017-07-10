@@ -285,10 +285,10 @@
 		\[hr\] : Adds a horizontal rule.
 	</BODY></HTML>"}, "window=paper_help")
 
-/obj/item/weapon/paper/proc/burnpaper(obj/item/weapon/flame/P, mob/user)
+/obj/item/weapon/paper/proc/burnpaper(obj/item/weapon/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.lit && !user.is_mob_restrained())
+	if(P.heat_source >= 400 && !user.is_mob_restrained())
 		if(istype(P, /obj/item/weapon/flame/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -296,7 +296,7 @@
 		"[class]You hold \the [P] up to \the [src], burning it slowly.")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
+			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.heat_source)
 				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.", \
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
 
@@ -429,7 +429,7 @@
 
 		user << "<span class='notice'>You stamp the paper with your rubber stamp.</span>"
 
-	else if(istype(P, /obj/item/weapon/flame))
+	else if(P.heat_source >= 400)
 		burnpaper(P, user)
 
 	add_fingerprint(user)

@@ -12,9 +12,10 @@ ZIPPO
 CIGARETTE PACKETS ARE IN FANCY.DM
 */
 
-//For anything that can light stuff on fire
+
+//this typepath has no use.
 /obj/item/weapon/flame
-	var/lit = FALSE
+
 
 ///////////
 //MATCHES//
@@ -41,12 +42,20 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 /obj/item/weapon/flame/match/dropped(mob/user as mob)
-	if(lit)
+	if(heat_source)
 		burn_out()
 	return ..()
 
+/obj/item/weapon/flame/match/proc/light_match()
+	if(heat_source) return
+	heat_source = 1000
+	damtype = "burn"
+	icon_state = "match_lit"
+	processing_objects.Add(src)
+	update_icon()
+
 /obj/item/weapon/flame/match/proc/burn_out()
-	lit = FALSE
+	heat_source = 0
 	burnt = 1
 	damtype = "brute"
 	icon_state = "match_burnt"
@@ -67,7 +76,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	w_class = 1
 	flags_armor_protection = 0
 	attack_verb = list("burnt", "singed")
-	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	var/icon_off = "cigoff"
 	var/type_butt = /obj/item/weapon/cigbutt
@@ -90,17 +98,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/weapon/flame/lighter/zippo))
 		var/obj/item/weapon/flame/lighter/zippo/Z = W
-		if(Z.lit)
+		if(Z.heat_source)
 			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/flame/lighter))
 		var/obj/item/weapon/flame/lighter/L = W
-		if(L.lit)
+		if(L.heat_source)
 			light("<span class='notice'>[user] manages to light their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/flame/match))
 		var/obj/item/weapon/flame/match/M = W
-		if(M.lit)
+		if(M.heat_source)
 			light("<span class='notice'>[user] lights their [name] with their [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/melee/energy/sword))
@@ -129,8 +137,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text)
-	if(!lit)
-		lit = TRUE
+	if(!heat_source)
+		heat_source = 1000
 		damtype = "fire"
 		if(reagents.get_reagent_amount("phoron")) // the phoron explodes when exposed to fire
 			var/datum/effect_system/reagents_explosion/e = new()
@@ -190,8 +198,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return
 
 
-/obj/item/clothing/mask/cigarette/attack_self(mob/user as mob)
-	if(lit)
+/obj/item/clothing/mask/cigarette/attack_self(mob/user)
+	if(heat_source)
 		user.visible_message("<span class='notice'>[user] calmly drops and treads on the lit [src], putting it out instantly.</span>")
 		die()
 	return ..()
@@ -205,7 +213,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/mob/living/M = loc
 		M << "<span class='notice'>Your [name] goes out.</span>"
 		M.temp_drop_inv_item(src)	//un-equip it so the overlays can update
-		M.update_inv_wear_mask(0)
+		M.update_inv_wear_mask()
 	processing_objects.Remove(src)
 	cdel(src)
 
@@ -262,17 +270,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/weapon/flame/lighter/zippo))
 		var/obj/item/weapon/flame/lighter/zippo/Z = W
-		if(Z.lit)
+		if(Z.heat_source)
 			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with their [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/flame/lighter))
 		var/obj/item/weapon/flame/lighter/L = W
-		if(L.lit)
+		if(L.heat_source)
 			light("<span class='notice'>[user] manages to offend their [name] by lighting it with [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/flame/match))
 		var/obj/item/weapon/flame/match/M = W
-		if(M.lit)
+		if(M.heat_source)
 			light("<span class='notice'>[user] lights their [name] with their [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/melee/energy/sword))
@@ -303,7 +311,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(ismob(loc))
 			var/mob/living/M = loc
 			M << "<span class='notice'>Your [name] goes out, and you empty the ash.</span>"
-			lit = FALSE
+			heat_source = 0
 			icon_state = icon_off
 			item_state = icon_off
 			M.update_inv_wear_mask(0)
@@ -314,9 +322,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return
 
 /obj/item/clothing/mask/cigarette/pipe/attack_self(mob/user as mob) //Refills the pipe. Can be changed to an attackby later, if loose tobacco is added to vendors or something.
-	if(lit)
+	if(heat_source)
 		user.visible_message("<span class='notice'>[user] puts out [src].</span>")
-		lit = FALSE
+		heat_source = 0
 		icon_state = icon_off
 		item_state = icon_off
 		processing_objects.Remove(src)
@@ -334,17 +342,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/weapon/flame/lighter/zippo))
 		var/obj/item/weapon/flame/lighter/zippo/Z = W
-		if(Z.lit)
+		if(Z.heat_source)
 			light("<span class='rose'>With much care, [user] lights their [name] with their [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/flame/lighter))
 		var/obj/item/weapon/flame/lighter/L = W
-		if(L.lit)
+		if(L.heat_source)
 			light("<span class='notice'>[user] manages to light their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/flame/match))
 		var/obj/item/weapon/flame/match/M = W
-		if(M.lit)
+		if(M.heat_source)
 			light("<span class='notice'>[user] lights their [name] with their [W].</span>")
 
 	else if(istype(W, /obj/item/device/assembly/igniter))
@@ -403,8 +411,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(user.r_hand == src || user.l_hand == src)
-		if(!lit)
-			lit = TRUE
+		if(!heat_source)
+			heat_source = 1500
 			icon_state = icon_on
 			item_state = icon_on
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
@@ -423,7 +431,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			user.SetLuminosity(2)
 			processing_objects.Add(src)
 		else
-			lit = FALSE
+			heat_source = 0
 			icon_state = icon_off
 			item_state = icon_off
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
@@ -445,7 +453,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!istype(M, /mob))
 		return
 
-	if(istype(M.wear_mask, /obj/item/clothing/mask/cigarette) && user.zone_selected == "mouth" && lit)
+	if(istype(M.wear_mask, /obj/item/clothing/mask/cigarette) && user.zone_selected == "mouth" && heat_source)
 		var/obj/item/clothing/mask/cigarette/cig = M.wear_mask
 		if(M == user)
 			cig.attackby(src, user)
@@ -465,14 +473,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/weapon/flame/lighter/pickup(mob/user)
-	if(lit && src.loc != user)
+	if(heat_source && src.loc != user)
 		SetLuminosity(0)
 		user.SetLuminosity(2)
 	return
 
 
 /obj/item/weapon/flame/lighter/dropped(mob/user)
-	if(lit && src.loc != user)
+	if(heat_source && src.loc != user)
 		user.SetLuminosity(-2)
 		SetLuminosity(2)
 	return ..()

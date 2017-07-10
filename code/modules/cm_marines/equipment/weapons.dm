@@ -5,7 +5,7 @@
 	item_state = "combat_knife"
 	desc = "The standard issue survival knife issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
 	flags_atom = FPRINT|CONDUCT
-	sharp = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 25
 	w_class = 1.0
 	throwforce = 20
@@ -46,7 +46,7 @@
 	item_state = "knife"
 	desc = "The standard issue survival knife of the UPP forces, the Type 30 is effective, but humble. It is small enough to be non-cumbersome, but lethal none-the-less."
 	flags_atom = FPRINT|CONDUCT
-	sharp = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = 1.0
 	throwforce = 10
@@ -62,7 +62,7 @@
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
 	flags_atom = FPRINT|CONDUCT
-	sharp = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 10
 	w_class = 1.0
 	throwforce = 35
@@ -81,7 +81,7 @@
 	flags_equip_slot = SLOT_WAIST
 	force = 40
 	throwforce = 10
-	sharp = 1
+	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -121,7 +121,7 @@
 	//flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	force = 50
 	throwforce = 10
-	sharp = 1
+	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
