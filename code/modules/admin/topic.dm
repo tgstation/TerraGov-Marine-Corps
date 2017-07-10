@@ -2240,8 +2240,8 @@
 				PlayerNotesPage(text2num(href_list["index"]))
 		return
 
-	if(href_list["dibs"])
-		var/mob/ref_person = locate(href_list["dibs"])
+	if(href_list["mark"])
+		var/mob/ref_person = locate(href_list["mark"])
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
@@ -2250,13 +2250,8 @@
 			usr << sound('sound/effects/adminhelp-error.ogg')
 			return
 
-		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'Mark'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
+		message_staff("[usr.key] has used 'Mark' on the Adminhelp from [key_name_admin(ref_person)] and is preparing to respond...", 1)
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked your request and is preparing to respond...</b>"
-
-		//send this msg to all admins
-		for(var/client/X in admins)
-			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
-				X << msg
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
@@ -2267,25 +2262,86 @@
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
 			if(ref_person)	ref_person.adminhelp_marked = 0
 
-	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
-		var/mob/ref_person = locate(href_list["NOPE"])
+	if(href_list["noresponse"])
+		var/mob/ref_person = locate(href_list["noresponse"])
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
 		if(ref_person && ref_person.adminhelp_marked)
 			usr << "<b>This Adminhelp is already being handled.</b>"
-			usr << sound('sound/misc/fart_short.ogg')
+			usr << sound('sound/effects/adminhelp-error.ogg')
 			return
 
-		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'No response necessary'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.</b>"
+		message_staff("[usr.key] has used 'No Response' on the Adminhelp from [key_name_admin(ref_person)]. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.", 1)
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your Adminhelp is being handled, it's fixed, or it's nonsensical.</font></b>"
 
-		//send this msg to all admins
-		for(var/client/X in admins)
-			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
-				X << msg
+		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+		ref_person << sound('sound/effects/adminhelp-error.ogg')
+
+		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
+		src.viewUnheardAhelps() //This SHOULD refresh the page
+
+		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
+		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
+			if(ref_person)	ref_person.adminhelp_marked = 0
+
+	if(href_list["warning"])
+		var/mob/ref_person = locate(href_list["warning"])
+		if(!istype(ref_person))
+			usr << "\blue Looks like that person stopped existing!"
+			return
+		if(ref_person && ref_person.adminhelp_marked)
+			usr << "<b>This Adminhelp is already being handled.</b>"
+			usr << sound('sound/effects/adminhelp-error.ogg')
+			return
+
+		message_staff("[usr.key] has used 'Warn' on the Adminhelp from [key_name_admin(ref_person)]. The player has been warned for abusing the Adminhelp system.", 1)
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has given you a <font color=red>warning</font>. Adminhelps are for serious inquiries only. Please do not abuse this system.</b>"
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+		ref_person << sound('sound/effects/adminhelp-error.ogg')
+
+		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
+		src.viewUnheardAhelps() //This SHOULD refresh the page
+
+		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
+		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
+			if(ref_person)	ref_person.adminhelp_marked = 0
+
+	if(href_list["autoresponse"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
+		var/mob/ref_person = locate(href_list["autoresponse"])
+		if(!istype(ref_person))
+			usr << "\blue Looks like that person stopped existing!"
+			return
+		if(ref_person && ref_person.adminhelp_marked)
+			usr << "<b>This Adminhelp is already being handled.</b>"
+			usr << sound('sound/effects/adminhelp-error.ogg')
+			return
+
+		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "Being Handled", "Fixed", "Thanks", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen")
+
+		var/msgplayer
+		switch(choice)
+			if("Being Handled")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The issue is already being dealt with.</b>"
+			if("Fixed")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The issue is already fixed.</b>"
+			if("Thanks")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>! Have a CM day!</b>"
+			if("L: Xeno Quickstart Guide")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Xeno Quickstart Guide on our wiki. <a href='http://www.colonial-marines.com/wiki/Xeno_Quickstart_Guide'>Check it out here.</a></b>"
+			if("L: Marine quickstart guide")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Marine Quickstart Guide on our wiki. <a href='http://www.colonial-marines.com/wiki/Marine_Quickstart_Guide'>Check it out here.</a></b>"
+			if("L: Current Map")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you need a map to the current game, you can (usually) find them on the front page of our wiki in the 'Maps' section. <a href='http://www.colonial-marines.com/wiki/Main_Page'>Check it out here.</a> If the map is not listed, it's a new or rare map and the overview hasn't been finished yet.</b>"
+			if("A: No plasma regen")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you have low plasma regen, it's most likely because you're injured or are currently using a passive ability, such as 'Stalk' or emitting a pheromone.</b>"
+			else return
+
+		message_staff("[usr.key] is autoresponding to [ref_person] with <font color='#009900'>'[choice]'</font>. They have been shown the following:\n[msgplayer]", 1)
+
+		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+		ref_person << sound('sound/effects/adminhelp-reply.ogg')
 
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
 		src.viewUnheardAhelps() //This SHOULD refresh the page
@@ -2311,8 +2367,8 @@
 	// 	ref_person << msgplayer //send a message to the player
 
 
-	if(href_list["ccdibs"]) // CentComm-Dibs. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
-		var/mob/ref_person = locate(href_list["ccdibs"])
+	if(href_list["ccmark"]) // CentComm-mark. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
+		var/mob/ref_person = locate(href_list["ccmark"])
 		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>.</b>"
 
 		//send this msg to all admins
