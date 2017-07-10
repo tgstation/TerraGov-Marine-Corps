@@ -277,7 +277,7 @@ updatehealth()
 		is_runner_hiding = 1
 
 	if(!is_robotic && !hardcore) //Robot no heal
-		if(locate(/obj/effect/alien/weeds) in T)
+		if(innate_healing || (locate(/obj/effect/alien/weeds) in T))
 			if(health >= maxHealth)
 				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
 					storedplasma += plasma_gain

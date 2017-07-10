@@ -154,6 +154,7 @@
 	var/obj/machinery/computer/shuttle_control/linked_console //the console of the dropship we're installed on.
 	var/is_interactable = FALSE //whether they get a button when shown on the shuttle console's equipment list.
 	var/datum/shuttle/ferry/marine/linked_shuttle
+	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 
 	Dispose()
 		if(ammo_equipped)
@@ -248,11 +249,9 @@
 
 /obj/structure/dropship_equipment/proc/equipment_interact(mob/user)
 	if(is_interactable)
-		if(linked_console.selected_equipment == src)
-			linked_console.selected_equipment = null
-		else
-			linked_console.selected_equipment = src
-			user << "<span class='notice'>You select [src].</span>"
+		if(linked_console.selected_equipment) return
+		linked_console.selected_equipment = src
+		user << "<span class='notice'>You select [src].</span>"
 
 //returns the camera linked to that equipment
 /obj/structure/dropship_equipment/proc/get_camera()
@@ -269,6 +268,8 @@
 	name = "sentry deployment system"
 	desc = "A box that deploys a sentry turret. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "sentry_system"
+	is_interactable = TRUE
+	var/deployment_cooldown
 	var/obj/machinery/marine_turret/premade/dropship/deployed_turret
 
 	initialize()
@@ -283,42 +284,71 @@
 			deployed_turret.deployment_system = src
 		..()
 
-	on_launch()
-		if(deployed_turret)
-			deployed_turret.loc = src
-			deployed_turret.on = 0
-			icon_state = "sentry_system_installed"
+	examine(mob/user)
+		..()
+		if(!deployed_turret)
+			user << "Its turret is missing."
 
-	on_arrival()
+	on_launch()
+		undeploy_sentry()
+
+	equipment_interact(mob/user)
 		if(deployed_turret)
-			deployed_turret.on = 1
-			deployed_turret.loc = get_step(src, dir)
-			icon_state = "sentry_system_deployed"
+			if(deployment_cooldown > world.time)
+				user << "<span class='warning'>[src] is busy.</span>"
+				return //prevents spamming deployment/undeployment
+			if(deployed_turret.loc == src) //not deployed
+				if(z == ADMIN_Z_LEVEL)
+					user << "<span class='warning'>[src] can't deploy mid-flight.</span>"
+				else
+					user << "<span class='notice'>You deploy [src].</span>"
+					deploy_sentry()
+			else
+				user << "<span class='notice'>You retract [src].</span>"
+				undeploy_sentry()
+		else
+			user << "<span class='warning'>[src] is unresponsive.</span>"
 
 	update_equipment()
 		if(ship_base)
 			dir = ship_base.dir
+			icon_state = "sentry_system_installed"
 			if(deployed_turret)
-				deployed_turret.loc = get_step(src, dir)
 				deployed_turret.dir = dir
-				icon_state = "sentry_system_deployed"
 				switch(dir)
 					if(SOUTH) deployed_turret.pixel_y = 16
 					if(NORTH) deployed_turret.pixel_y = -16
 					if(EAST) deployed_turret.pixel_x = -16
 					if(WEST) deployed_turret.pixel_x = 16
-				deployed_turret.on = 1
-			else
-				icon_state = "sentry_system_installed"
 		else
 			dir = initial(dir)
-			icon_state = "sentry_system"
 			if(deployed_turret)
+				icon_state = "sentry_system"
 				deployed_turret.pixel_y = 0
 				deployed_turret.pixel_x = 0
 				deployed_turret.loc = src
 				deployed_turret.dir = dir
 				deployed_turret.on = 0
+			else
+				icon_state = "sentry_system_destroyed"
+
+/obj/structure/dropship_equipment/sentry_holder/proc/deploy_sentry()
+	if(deployed_turret)
+		playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		deployment_cooldown = world.time + 50
+		deployed_turret.on = 1
+		deployed_turret.loc = get_step(src, dir)
+		icon_state = "sentry_system_deployed"
+
+/obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
+	if(deployed_turret)
+		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		deployment_cooldown = world.time + 50
+		deployed_turret.loc = src
+		deployed_turret.on = 0
+		icon_state = "sentry_system_installed"
+
+
 
 
 
@@ -336,6 +366,11 @@
 	New()
 		if(!deployed_mg) deployed_mg = new(src)
 		..()
+
+	examine(mob/user)
+		..()
+		if(!deployed_mg)
+			user << "Its machine gun is missing."
 
 	update_equipment()
 		if(deployed_mg)
@@ -408,17 +443,34 @@
 	name = "spotlight"
 	icon_state = "spotlights"
 	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."
+	is_interactable = TRUE
+	var/spotlights_cooldown
 	var/brightness = 11
 
 	get_light_range()
 		return min(luminosity, LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS)
 
+	equipment_interact(mob/user)
+		if(spotlights_cooldown > world.time)
+			user << "<span class='warning'>[src] is busy.</span>"
+			return //prevents spamming deployment/undeployment
+		if(luminosity != brightness)
+			SetLuminosity(brightness)
+			icon_state = "spotlights_on"
+			user << "<span class='notice'>You turn on [src].</span>"
+		else
+			SetLuminosity(0)
+			icon_state = "spotlights_off"
+			user << "<span class='notice'>You turn off [src].</span>"
+		spotlights_cooldown = world.time + 50
+
 	update_equipment()
 		..()
 		if(ship_base)
-			icon_state = "spotlights_installed"
 			if(luminosity != brightness)
-				SetLuminosity(brightness)
+				icon_state = "spotlights_off"
+			else
+				icon_state = "spotlights_on"
 		else
 			icon_state = "spotlights"
 			if(luminosity)
@@ -431,6 +483,8 @@
 		SetLuminosity(brightness)
 
 #undef LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS
+
+
 
 /obj/structure/dropship_equipment/electronics/flare_launcher
 	name = "flare launcher"
@@ -506,10 +560,12 @@
 	bound_height = 64
 	uses_ammo = TRUE
 	is_weapon = TRUE
+	screen_mode = 1
 	is_interactable = TRUE
 	var/is_busy = FALSE //used for weapon cooldown after use.
 	var/firing_sound
 	var/ammo_used_per_firing = 1
+	var/firing_delay = 20 //delay between firing. 2 seconds by default
 
 	update_equipment()
 		if(ship_base)
@@ -526,19 +582,21 @@
 		if(is_interactable)
 			if(linked_console.selected_equipment == src)
 				linked_console.selected_equipment = null
-			else if(!ammo_equipped || ammo_equipped.ammo_count <= 0)
-				user << "<span class='warning'>[src] has no ammo.</span>"
 			else
 				linked_console.selected_equipment = src
-				user << "<span class='notice'>You select [src].</span>"
 
-
-
+	examine(mob/user)
+		..()
+		if(ammo_equipped)
+			ammo_equipped.show_loaded_desc(user)
+		else
+			user << "It's empty."
 
 
 
 /obj/structure/dropship_equipment/weapon/proc/deplete_ammo()
-	ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_used_per_firing, 0)
+	if(ammo_equipped)
+		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_used_per_firing, 0)
 	update_icon()
 
 /obj/structure/dropship_equipment/weapon/proc/open_fire(obj/selected_target)
@@ -546,12 +604,13 @@
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
+	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
 	deplete_ammo()
 	is_busy = TRUE
-	sleep(20)
+	sleep(firing_delay)
 	is_busy = FALSE
 	var/accuracy_range = 3
-	var/ammo_travelling_time = 100 //how long the rockets/bullets take to reach the ground target.
+	var/ammo_travelling_time = SA.travelling_time //how long the rockets/bullets take to reach the ground target.
 	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
 			accuracy_range = max(accuracy_range-2, 1) //targeting system increase accuracy and reduce travelling time.
@@ -565,7 +624,7 @@
 	for(var/turf/TU in range(accuracy_range, target_turf))
 		possible_turfs += TU
 	var/turf/impact = pick(possible_turfs)
-	ammo_equipped.detonate_on(impact)
+	SA.detonate_on(impact)
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
@@ -587,6 +646,11 @@
 	icon_state = "rocket_pod"
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
 	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	firing_delay = 5
+
+	deplete_ammo()
+		ammo_equipped = null //nothing left to empty after firing
+		update_icon()
 
 	update_icon()
 		if(ammo_equipped && ammo_equipped.ammo_count)
@@ -602,6 +666,7 @@
 	desc = "A mini rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	firing_delay = 10 //1 seconds
 
 	update_icon()
 		if(ammo_equipped && ammo_equipped.ammo_count)
@@ -610,7 +675,10 @@
 			if(ship_base) icon_state = "minirocket_pod_installed"
 			else icon_state = "minirocket_pod"
 
-
+	deplete_ammo()
+		..()
+		if(ammo_equipped && !ammo_equipped.ammo_count) //fired last minirocket
+			ammo_equipped = null
 
 //////////////////////////////////// dropship weapon ammunition ////////////////////////////
 
@@ -620,24 +688,47 @@
 	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
+	var/travelling_time = 100 //time to impact
 	var/equipment_type //type of equipment that accept this type of ammo.
 	var/ammo_count
+	var/max_ammo_count
+	var/ammo_name = "round"
 	var/ammo_id
+	var/transferable_ammo = FALSE //whether the ammo inside this magazine can be transfered to another magazine.
 
 	attackby(obj/item/I, mob/user)
 
 		if(istype(I, /obj/item/weapon/powerloader_clamp))
 			var/obj/item/weapon/powerloader_clamp/PC = I
-			if(PC.linked_powerloader && !PC.loaded)
-				forceMove(PC.linked_powerloader)
-				PC.loaded = src
-				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				PC.update_icon()
-				user << "<span class='notice'>You grab [PC.loaded] with [PC].</span>"
-				update_icon()
+			if(PC.linked_powerloader)
+				if(PC.loaded)
+					if(istype(PC.loaded, /obj/structure/ship_ammo))
+						var/obj/structure/ship_ammo/SA = PC.loaded
+						if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
+							if(ammo_count < max_ammo_count)
+								var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
+								ammo_count += transf_amt
+								SA.ammo_count -= transf_amt
+								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+								user << "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>"
+								if(!SA.ammo_count)
+									PC.loaded = null
+									PC.update_icon()
+									cdel(SA)
+				else
+					forceMove(PC.linked_powerloader)
+					PC.loaded = src
+					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+					PC.update_icon()
+					user << "<span class='notice'>You grab [PC.loaded] with [PC].</span>"
+					update_icon()
 			return TRUE
 		. = ..()
 
+//what to show to the user that examines the weapon we're loaded on.
+/obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
+	user << "It's loaded with \a [src]."
+	return
 
 /obj/structure/ship_ammo/proc/detonate_on(turf/impact)
 	return
@@ -648,15 +739,23 @@
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
 	ammo_count = 200
+	max_ammo_count = 200
+	transferable_ammo = TRUE
 
-	examine()
+	examine(mob/user)
 		..()
-		usr << "It has [ammo_count] round\s."
+		user << "It has [ammo_count] round\s."
+
+	show_loaded_desc(mob/user)
+		if(ammo_count)
+			user << "It's loaded with \a [src] containing [ammo_count] round\s."
+		else
+			user << "It's loaded with an empty [name]."
 
 	detonate_on(turf/impact)
 		set waitfor = 0
 		var/list/turf_list = list()
-		for(var/turf/T in range(impact, 3))
+		for(var/turf/T in range(impact, 4))
 			turf_list += T
 		var/soundplaycooldown = 0
 		for(var/i=1, i<=20, i++)
@@ -678,38 +777,45 @@
 	icon = 'icons/Marine/almayer_props64.dmi'
 	equipment_type = /obj/structure/dropship_equipment/weapon/rocket_pod
 	ammo_count = 1
+	max_ammo_count = 1
+	ammo_name = "rocket"
 	ammo_id = ""
 	bound_width = 64
 	bound_height = 32
+	travelling_time = 60 //faster than 30mm rounds
 
 	detonate_on(turf/impact)
 		explosion(impact,1,3,5)
+		cdel(src)
+
 
 //this one is air-to-air only
 /obj/structure/ship_ammo/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
-	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Moving this will require some sort of lifter."
+	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
 	icon_state = "single"
+	travelling_time = 35 //not powerful, but reaches target fast
 	ammo_id = ""
 
 /obj/structure/ship_ammo/rocket/banshee
 	name = "\improper AGM-227 'Banshee'"
-	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Moving this will require some sort of lifter."
+	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
 
 	detonate_on(turf/impact)
 		explosion(impact,1,3,6,6,1,0,7) //more spread out, with flames
+		cdel(src)
 
 /obj/structure/ship_ammo/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
-	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Moving this will require some sort of lifter."
+	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets. Moving this will require some sort of lifter."
 	icon_state = "paveway"
 	ammo_id = "k"
 
 	detonate_on(turf/impact)
 		explosion(impact,3,4,4,6) //tighter blast radius, but more devastating near center
-
+		cdel(src)
 
 
 /obj/structure/ship_ammo/minirocket
@@ -719,6 +825,10 @@
 	icon = 'icons/Marine/almayer_props.dmi'
 	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
 	ammo_count = 6
+	max_ammo_count = 6
+	ammo_name = "minirocket"
+	travelling_time = 80 //faster than 30mm cannon, slower than real rockets
+	transferable_ammo = TRUE
 
 	detonate_on(turf/impact)
 		explosion(impact,-1,1,3, 5, 0)//no messaging admin, that'd spam them.
@@ -729,7 +839,13 @@
 			var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
 			S.set_up(1,0,impact,null)
 			S.start()
+		if(!ammo_count && loc)
+			cdel(src) //deleted after last minirocket is fired and impact the ground.
 
-	examine()
+	show_loaded_desc(mob/user)
+		if(ammo_count)
+			user << "It's loaded with \a [src] containing [ammo_count] minirocket\s."
+
+	examine(mob/user)
 		..()
-		usr << "It has [ammo_count] minirocket\s."
+		user << "It has [ammo_count] minirocket\s."

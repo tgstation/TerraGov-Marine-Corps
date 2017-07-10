@@ -207,7 +207,8 @@ its easier to just keep the beam vertical.
 
 /atom/proc/examine(mob/user)
 	user << "\icon[src] That's \a [src]." //changed to "That's" from "This is" because "This is some metal sheets" sounds dumb compared to "That's some metal sheets" ~Carn
-	user << desc
+	if(desc)
+		user << desc
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
