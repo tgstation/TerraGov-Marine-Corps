@@ -80,6 +80,9 @@
 		if(pulled.stat == DEAD)
 			X << "<span class='warning'>Ew, [pulled] is already starting to rot.</span>"
 			return 0
+		if(X.stomach_contents.len) //Only one thing in the stomach at a time, please
+			X << "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>"
+			return 0
 			/* Saving this in case we want to allow devouring of dead bodies UNLESS their client is still online somewhere
 			if(pulled.client) //The client is still inside the body
 			else // The client is observing
