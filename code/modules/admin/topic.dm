@@ -2322,9 +2322,8 @@
 			usr << "\blue Looks like that person stopped existing!"
 			return
 		if(ref_person && ref_person.adminhelp_marked)
-			usr << "<b>This Adminhelp is already being handled.</b>"
+			usr << "<b>This Adminhelp is already being handled, but continue if you wish.</b>"
 			usr << sound('sound/effects/adminhelp-error.ogg')
-			return
 
 		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "Being Handled", "Fixed", "Thanks", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen")
 
@@ -2343,7 +2342,7 @@
 			if("L: Current Map")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you need a map to the current game, you can (usually) find them on the front page of our wiki in the 'Maps' section. <a href='http://www.colonial-marines.com/wiki/Main_Page'>Check it out here.</a> If the map is not listed, it's a new or rare map and the overview hasn't been finished yet.</b>"
 			if("A: No plasma regen")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you have low plasma regen, it's most likely because you're injured or are currently using a passive ability, such as 'Stalk' or emitting a pheromone.</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you have low/no plasma regen, it's most likely because you're injured or are currently using a passive ability, such as the Runner's 'Hide', readying a tail attack, or emitting a pheromone.</b>"
 			else return
 
 		message_staff("[usr.key] is autoresponding to [ref_person] with <font color='#009900'>'[choice]'</font>. They have been shown the following:\n[msgplayer]", 1)
