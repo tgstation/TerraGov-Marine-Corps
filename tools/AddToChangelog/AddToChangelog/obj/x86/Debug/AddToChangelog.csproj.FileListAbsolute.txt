@@ -1,0 +1,8 @@
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\bin\Debug\AddToChangelog.exe
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\bin\Debug\AddToChangelog.pdb
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\obj\x86\Debug\AddToChangelog.csprojResolveAssemblyReference.cache
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\obj\x86\Debug\AddToChangelog.MainForm.resources
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\obj\x86\Debug\AddToChangelog.Properties.Resources.resources
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\obj\x86\Debug\AddToChangelog.csproj.GenerateResource.Cache
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\obj\x86\Debug\AddToChangelog.exe
+E:\Colonial Marines\tools\AddToChangelog\AddToChangelog\obj\x86\Debug\AddToChangelog.pdb
