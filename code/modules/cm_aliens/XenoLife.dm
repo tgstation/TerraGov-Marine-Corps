@@ -151,21 +151,12 @@
 
 		//Deal with dissolving/damaging stuff in stomach.
 		if(stomach_contents.len)
-			for(var/mob/living/M in src)
-				if(!isnull(M) && M in stomach_contents)
-					M.acid_damage++
-					if(M.stat != DEAD)
-						M.adjustToxLoss(1)
-						if(prob(50))
-							M.adjustFireLoss(1)
-							if(prob(10))
-								M << "<span class='danger'>You are burned by stomach acids!</span>"
-						M.updatehealth()
-					if(M.acid_damage > 240)
-						src << "<span class='xenodanger'>\The [M] is dissolved in your gut with a gurgle.</span>"
-						stomach_contents.Remove(M)
-						M.loc = locate(138,136,2)
-
+			for(var/atom/movable/M in stomach_contents)
+				M.acid_damage++
+				if(M.acid_damage > 300)
+					src << "<span class='xenodanger'>\The [M] is dissolved in your gut with a gurgle.</span>"
+					stomach_contents.Remove(M)
+					M.loc = locate(138, 136, 2)
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
