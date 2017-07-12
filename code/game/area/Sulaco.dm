@@ -296,11 +296,11 @@
 	icon_state = "away1"
 
 /area/shuttle/drop2/sulaco
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Almayer Dropship Normandy"
 	icon_state = "shuttle"
 
 /area/shuttle/drop2/LV624
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Almayer Dropship Normandy"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/Haunted
