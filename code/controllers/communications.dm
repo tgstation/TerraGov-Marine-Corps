@@ -125,6 +125,9 @@ var/const/BRAVO_FREQ 	= 1363
 var/const/CHARLIE_FREQ 	= 1365
 var/const/DELTA_FREQ 	= 1367
 
+var/const/DS1_FREQ		= 1441
+var/const/DS2_FREQ		= 1443
+
 //Civilian channels
 var/const/CIV_GEN_FREQ 	= 1469
 var/const/CIV_COMM_FREQ = 1471
@@ -149,6 +152,8 @@ var/list/radiochannels = list(
 	"Bravo"			= BRAVO_FREQ,
 	"Charlie"		= CHARLIE_FREQ,
 	"Delta"			= DELTA_FREQ,
+	"Alamo"			= DS1_FREQ,
+	"Normandy"		= DS2_FREQ,
 
 	"Common"		= CIV_GEN_FREQ,
 	"Civ Command"	= CIV_COMM_FREQ
