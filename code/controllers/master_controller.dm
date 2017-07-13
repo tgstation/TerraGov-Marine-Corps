@@ -172,13 +172,14 @@ datum/controller/game_controller/proc/process()
 
 				sleep(breather_ticks)*/
 
+				/*
 				//SUN
 				timer = world.timeofday
 				last_thing_processed = sun.type
 				sun.calc_position()
 				sun_cost = (world.timeofday - timer) / 10
 
-				sleep(breather_ticks)
+				sleep(breather_ticks)*/
 
 				//MOBS
 				timer = world.timeofday
