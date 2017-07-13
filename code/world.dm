@@ -60,6 +60,11 @@ var/global/datum/global_init/init = new ()
 	// due to this list not being instantiated.
 	populate_seed_list()
 
+	// Process Scheduler
+	processScheduler = new
+	processScheduler.setup()
+	processScheduler.start()
+
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)
 		master_controller.setup()

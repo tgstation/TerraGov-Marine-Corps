@@ -66,12 +66,15 @@ datum/controller/game_controller/proc/setup()
 	// spawn(20)
 	// 	createRandomZlevel()
 
+	/********************
 	if(!air_master)
 		air_master = new /datum/controller/air_system()
 		air_master.Setup()
+	*/
 
+	/*
 	if(!ticker)
-		ticker = new /datum/controller/gameticker()
+		ticker = new /datum/controller/gameticker()*/
 
 	setup_objects()
 	setupgenetics()
@@ -82,9 +85,11 @@ datum/controller/game_controller/proc/setup()
 	for(var/i=0, i<max_secret_rooms, i++)
 		make_mining_asteroid_secret()
 
+	/*
 	spawn(0)
 		if(ticker)
 			ticker.pregame()
+	*/
 
 	lighting_controller.Initialize()
 
@@ -148,7 +153,7 @@ datum/controller/game_controller/proc/process()
 				process_newscaster()
 
 				//AIR
-
+				/*
 				if(!air_processing_killed)
 					timer = world.timeofday
 					last_thing_processed = air_master.type
@@ -165,7 +170,7 @@ datum/controller/game_controller/proc/process()
 
 					air_cost = (world.timeofday - timer) / 10
 
-				sleep(breather_ticks)
+				sleep(breather_ticks)*/
 
 				//SUN
 				timer = world.timeofday
@@ -230,11 +235,12 @@ datum/controller/game_controller/proc/process()
 				process_events()
 				events_cost = (world.timeofday - timer) / 10
 
-				//TICKER
+				/*//TICKER
 				timer = world.timeofday
 				last_thing_processed = ticker.type
 				ticker.process()
 				ticker_cost = (world.timeofday - timer) / 10
+				*/
 
 				//TIMING
 				total_cost = air_cost + sun_cost + mobs_cost + diseases_cost + machines_cost + objects_cost + networks_cost + powernets_cost + nano_cost + events_cost + ticker_cost
