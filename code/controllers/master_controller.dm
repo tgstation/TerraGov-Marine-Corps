@@ -58,7 +58,7 @@ datum/controller/game_controller/New()
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
 	if(!EvacuationAuthority)		EvacuationAuthority = new
-	if(!shuttle_controller)			shuttle_controller = new /datum/shuttle_controller()
+	//if(!shuttle_controller)			shuttle_controller = new /datum/shuttle_controller()
 
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
@@ -76,14 +76,15 @@ datum/controller/game_controller/proc/setup()
 	if(!ticker)
 		ticker = new /datum/controller/gameticker()*/
 
-	setup_objects()
+	populate_spawn_points()
+	//setup_objects()
 	setupgenetics()
 	setupfactions()
 	setup_economy()
 	// SetupXenoarch()
 
-	for(var/i=0, i<max_secret_rooms, i++)
-		make_mining_asteroid_secret()
+	//for(var/i=0, i<max_secret_rooms, i++)
+		//make_mining_asteroid_secret()
 
 	/*
 	spawn(0)
@@ -93,7 +94,7 @@ datum/controller/game_controller/proc/setup()
 
 	lighting_controller.Initialize()
 
-
+/*
 datum/controller/game_controller/proc/setup_objects()
 	/*
 	world << "\red \b Initializing objects"
@@ -119,7 +120,7 @@ datum/controller/game_controller/proc/setup_objects()
 			T.broadcast_status()
 	*/
 
-
+	/*
 	//Create the mining ore distribution map.
 	asteroid_ore_map = new /datum/ore_distribution()
 	asteroid_ore_map.populate_distribution_map()
@@ -128,12 +129,14 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/turf/simulated/floor/plating/airless/asteroid/T in world)
 		T.updateMineralOverlays()
 		T.name = "asteroid"
+	*/
 
 	//Set up spawn points.
 	populate_spawn_points()
 
 	world << "\red \b Initializations complete."
 	sleep(-1)
+*/
 
 
 datum/controller/game_controller/proc/process()
@@ -148,13 +151,13 @@ datum/controller/game_controller/proc/process()
 			last_tick_timeofday = currenttime
 
 			if(processing)
-				var/timer
+				//var/timer
 				var/start_time = world.timeofday
 				controller_iteration++
 
 				//TrashAuthority.EmptyTrash()
 				//vote.process()
-				shuttle_controller.process()
+				//shuttle_controller.process()
 				//process_newscaster()
 
 				//AIR

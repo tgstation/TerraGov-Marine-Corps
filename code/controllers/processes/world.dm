@@ -8,8 +8,9 @@ datum/controller/process/world/setup()
 	setupgenetics()
 	setupfactions()
 	setup_economy()
-	//populate_spawn_points()
-	lighting_controller.Initialize()*/
+	populate_spawn_points()
+	lighting_controller.Initialize()
+	*/
 
 datum/controller/process/world/doWork()
 
