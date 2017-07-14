@@ -141,7 +141,7 @@ datum/controller/game_controller/proc/process()
 	spawn(0)
 		set background = 1
 		while(1)	//far more efficient than recursively calling ourself
-			if(!Failsafe)	new /datum/controller/failsafe()
+			//if(!Failsafe)	new /datum/controller/failsafe()
 
 			var/currenttime = world.timeofday
 			last_tick_duration = (currenttime - last_tick_timeofday) / 10
@@ -152,10 +152,10 @@ datum/controller/game_controller/proc/process()
 				var/start_time = world.timeofday
 				controller_iteration++
 
-				TrashAuthority.EmptyTrash()
-				vote.process()
+				//TrashAuthority.EmptyTrash()
+				//vote.process()
 				shuttle_controller.process()
-				process_newscaster()
+				//process_newscaster()
 
 				//AIR
 				/*
@@ -271,6 +271,7 @@ datum/controller/game_controller/proc/process()
 				if(end_time < start_time)	//why not just use world.time instead?
 					start_time -= 864000    //deciseconds in a day
 				sleep( round(minimum_ticks - (end_time - start_time),1) )
+
 			else
 				sleep(10)
 

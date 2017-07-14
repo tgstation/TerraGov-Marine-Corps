@@ -9,7 +9,7 @@ datum/controller/process/world/setup()
 	setupfactions()
 	setup_economy()
 	//populate_spawn_points()
-	lighting_controller.Initialize()
+	lighting_controller.Initialize()*/
 
 datum/controller/process/world/doWork()
 
@@ -18,5 +18,3 @@ datum/controller/process/world/doWork()
 
 	TrashAuthority.EmptyTrash()
 	vote.process()
-	process_newscaster()
-	*/
