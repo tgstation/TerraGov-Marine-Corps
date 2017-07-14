@@ -5,5 +5,12 @@ datum/controller/process/power/setup()
 	schedule_interval = 35 //3.5 seconds
 
 datum/controller/process/power/doWork()
-	//for (var/datum/powernet/P in powernets)
-		//P.process()
+
+	var/i = 1
+	while(i<=powernets.len)
+		var/datum/powernet/Powernet = powernets[i]
+		if(Powernet)
+			Powernet.process()
+			i++
+			continue
+		powernets.Cut(i,i+1)

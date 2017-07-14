@@ -95,10 +95,12 @@ datum/controller/game_controller/proc/setup()
 
 
 datum/controller/game_controller/proc/setup_objects()
+	/*
 	world << "\red \b Initializing objects"
 	sleep(-1)
 	for(var/atom/movable/object in world)
 		object.initialize()
+	*/
 
 	/*
 	world << "\red \b Initializing pipe networks"
@@ -202,19 +204,23 @@ datum/controller/game_controller/proc/process()
 				sleep(breather_ticks)
 				*/
 
+				/*
 				//MACHINES
 				timer = world.timeofday
 				process_machines()
 				machines_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
+				*/
 
+				/*
 				//OBJECTS
 				timer = world.timeofday
 				process_objects()
 				objects_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
+				*/
 
 				/*
 				//PIPENETS
@@ -226,12 +232,14 @@ datum/controller/game_controller/proc/process()
 				sleep(breather_ticks)
 				*/
 
+				/*
 				//POWERNETS
 				timer = world.timeofday
 				process_powernets()
 				powernets_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
+				*/
 
 				//NANO UIS
 				timer = world.timeofday
@@ -292,6 +300,7 @@ datum/controller/game_controller/proc/process_diseases()
 		active_diseases.Cut(i,i+1)
 */
 
+/*
 datum/controller/game_controller/proc/process_machines()
 	process_machines_sort()
 	process_machines_process()
@@ -349,6 +358,8 @@ datum/controller/game_controller/proc/process_machines_power()
 
 		A.powerupdate = 0
 		active_areas.Cut(i,i+1)
+*/
+
 /*
 datum/controller/game_controller/proc/process_machines_rebuild()
 	if(controller_iteration % 150 == 0 || rebuild_active_areas)	//Every 300 seconds we retest every area/machine
@@ -359,6 +370,7 @@ datum/controller/game_controller/proc/process_machines_rebuild()
 		rebuild_active_areas = 0
 */
 
+/*
 datum/controller/game_controller/proc/process_objects()
 	var/i = 1
 	while(i<=processing_objects.len)
@@ -369,6 +381,7 @@ datum/controller/game_controller/proc/process_objects()
 			i++
 			continue
 		processing_objects.Cut(i,i+1)
+*/
 
 /*
 datum/controller/game_controller/proc/process_pipenets()
@@ -383,7 +396,7 @@ datum/controller/game_controller/proc/process_pipenets()
 		pipe_networks.Cut(i,i+1)
 */
 
-
+/*
 datum/controller/game_controller/proc/process_powernets()
 	last_thing_processed = /datum/powernet
 	var/i = 1
@@ -394,6 +407,7 @@ datum/controller/game_controller/proc/process_powernets()
 			i++
 			continue
 		powernets.Cut(i,i+1)
+*/
 
 datum/controller/game_controller/proc/process_nano()
 	var/i = 1
