@@ -295,8 +295,9 @@
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
 	icon_state = "wooden"
-	health = 50
-	maxhealth = 50
+	flags_atom = ON_BORDER
+	health = 100
+	maxhealth = 100
 	layer = OBJ_LAYER
 	climbable = FALSE
 	throwpass = FALSE
@@ -326,7 +327,7 @@
 /obj/structure/barricade/wooden/hit_barricade(obj/item/I)
 	switch(I.damtype)
 		if("fire")
-			health -= I.force * 1
+			health -= I.force * 1.5
 		if("brute")
 			health -= I.force * 0.75
 	update_health()
