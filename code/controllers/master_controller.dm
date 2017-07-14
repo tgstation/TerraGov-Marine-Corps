@@ -100,6 +100,7 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/atom/movable/object in world)
 		object.initialize()
 
+	/*
 	world << "\red \b Initializing pipe networks"
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
@@ -114,6 +115,8 @@ datum/controller/game_controller/proc/setup_objects()
 		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
+	*/
+
 
 	//Create the mining ore distribution map.
 	asteroid_ore_map = new /datum/ore_distribution()
@@ -181,19 +184,23 @@ datum/controller/game_controller/proc/process()
 
 				sleep(breather_ticks)*/
 
+				/*
 				//MOBS
 				timer = world.timeofday
 				process_mobs()
 				mobs_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
+				*/
 
+				/*
 				//DISEASES
 				timer = world.timeofday
 				process_diseases()
 				diseases_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
+				*/
 
 				//MACHINES
 				timer = world.timeofday
@@ -209,6 +216,7 @@ datum/controller/game_controller/proc/process()
 
 				sleep(breather_ticks)
 
+				/*
 				//PIPENETS
 				if(!pipe_processing_killed)
 					timer = world.timeofday
@@ -216,6 +224,7 @@ datum/controller/game_controller/proc/process()
 					networks_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
+				*/
 
 				//POWERNETS
 				timer = world.timeofday
@@ -253,6 +262,7 @@ datum/controller/game_controller/proc/process()
 			else
 				sleep(10)
 
+/*
 datum/controller/game_controller/proc/process_mobs()
 	var/i = 1
 	expensive_mobs.Cut()
@@ -267,7 +277,9 @@ datum/controller/game_controller/proc/process_mobs()
 			i++
 			continue
 		mob_list.Cut(i,i+1)
+*/
 
+/*
 datum/controller/game_controller/proc/process_diseases()
 	var/i = 1
 	while(i<=active_diseases.len)
@@ -278,6 +290,7 @@ datum/controller/game_controller/proc/process_diseases()
 			i++
 			continue
 		active_diseases.Cut(i,i+1)
+*/
 
 datum/controller/game_controller/proc/process_machines()
 	process_machines_sort()
@@ -357,6 +370,7 @@ datum/controller/game_controller/proc/process_objects()
 			continue
 		processing_objects.Cut(i,i+1)
 
+/*
 datum/controller/game_controller/proc/process_pipenets()
 	last_thing_processed = /datum/pipe_network
 	var/i = 1
@@ -367,6 +381,8 @@ datum/controller/game_controller/proc/process_pipenets()
 			i++
 			continue
 		pipe_networks.Cut(i,i+1)
+*/
+
 
 datum/controller/game_controller/proc/process_powernets()
 	last_thing_processed = /datum/powernet
