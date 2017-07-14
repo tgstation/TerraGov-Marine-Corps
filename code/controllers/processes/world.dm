@@ -4,17 +4,19 @@ datum/controller/process/world/setup()
 	name = "World"
 	schedule_interval = 23 //2.3 seconds
 
-	/*setupgenetics()
+	/*
+	setupgenetics()
 	setupfactions()
 	setup_economy()
-	populate_spawn_points()
-	lighting_controller.Initialize()*/
+	//populate_spawn_points()
+	lighting_controller.Initialize()
 
 datum/controller/process/world/doWork()
 
-	//if(!Failsafe)
-		//new /datum/controller/failsafe()
+	if(!Failsafe)
+		new /datum/controller/failsafe()
 
-	/*TrashAuthority.EmptyTrash()
+	TrashAuthority.EmptyTrash()
 	vote.process()
-	process_newscaster()*/
+	process_newscaster()
+	*/

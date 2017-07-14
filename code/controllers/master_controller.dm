@@ -241,17 +241,21 @@ datum/controller/game_controller/proc/process()
 				sleep(breather_ticks)
 				*/
 
+				/*
 				//NANO UIS
 				timer = world.timeofday
 				process_nano()
 				nano_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
+				*/
 
+				/*
 				//EVENTS
 				timer = world.timeofday
 				process_events()
 				events_cost = (world.timeofday - timer) / 10
+				*/
 
 				/*//TICKER
 				timer = world.timeofday
@@ -409,6 +413,7 @@ datum/controller/game_controller/proc/process_powernets()
 		powernets.Cut(i,i+1)
 */
 
+/*
 datum/controller/game_controller/proc/process_nano()
 	var/i = 1
 	while(i<=nanomanager.processing_uis.len)
@@ -418,7 +423,9 @@ datum/controller/game_controller/proc/process_nano()
 			i++
 			continue
 		nanomanager.processing_uis.Cut(i,i+1)
+*/
 
+/*
 datum/controller/game_controller/proc/process_events()
 	last_thing_processed = /datum/event
 	var/i = 1
@@ -430,6 +437,7 @@ datum/controller/game_controller/proc/process_events()
 			continue
 		events.Cut(i,i+1)
 	checkEvent()
+*/
 
 datum/controller/game_controller/proc/Recover()		//Mostly a placeholder for now.
 	var/msg = "## DEBUG: [time2text(world.timeofday)] MC restarted. Reports:\n"

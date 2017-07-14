@@ -5,7 +5,13 @@ datum/controller/process/events/setup()
 	schedule_interval = 75 //7.5 seconds
 
 datum/controller/process/events/doWork()
-	for (var/datum/event/E in events)
-		E.process()
 
+	var/i = 1
+	while(i<=events.len)
+		var/datum/event/Event = events[i]
+		if(Event)
+			Event.process()
+			i++
+			continue
+		events.Cut(i,i+1)
 	checkEvent()
