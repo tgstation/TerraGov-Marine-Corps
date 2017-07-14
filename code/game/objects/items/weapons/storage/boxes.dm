@@ -523,7 +523,7 @@
 /obj/item/weapon/storage/box/lights/tubes/New()
 	..()
 	for(var/i = 0; i < 21; i++)
-		new /obj/item/weapon/light/tube(src)
+		new /obj/item/weapon/light/tube/large(src)
 
 /obj/item/weapon/storage/box/lights/mixed
 	name = "box of replacement lights"
@@ -532,6 +532,6 @@
 /obj/item/weapon/storage/box/lights/mixed/New()
 	..()
 	for(var/i = 0; i < 14; i++)
-		new /obj/item/weapon/light/tube(src)
+		new /obj/item/weapon/light/tube/large(src)
 	for(var/i = 0; i < 7; i++)
 		new /obj/item/weapon/light/bulb(src)
