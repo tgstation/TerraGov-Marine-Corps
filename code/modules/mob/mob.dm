@@ -743,6 +743,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		stat(null,"CPU:\t[world.cpu]")
 		stat(null,"Instances:\t[world.contents.len]")
 
+		/*
 		if(master_controller)
 			stat(null,"MasterController-[last_tick_duration] ([master_controller.processing?"On":"Off"]-[controller_iteration])")
 			stat(null,"Air-[master_controller.air_cost]\tSun-[master_controller.sun_cost]")
@@ -755,6 +756,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			stat(null,"Tick-[master_controller.ticker_cost]\tALL-[master_controller.total_cost]")
 		else
 			stat(null,"MasterController-ERROR")
+		*/
 
 
 	//This displays items on on turf via ALT+Click
