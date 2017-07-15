@@ -24,7 +24,7 @@
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 		if(40 to 59)
-			if(shock_stage == 40) src << "<span class='danger'>[pick("The pain is excrutiating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+			if(shock_stage == 40) src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 		if(60 to 79)
@@ -32,19 +32,19 @@
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 			if(prob(2))
-				src << "<span class='danger'>[pick("The pain is excrutiating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+				src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 				KnockDown(20)
 		if(80 to 119)
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 			if(prob(7))
-				src << "<span class='danger'>[pick("The pain is excrutiating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+				src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 				KnockDown(20)
 		if(120 to 149)
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 			if(prob(7))
-				src << "<span class='danger'>[pick("The pain is excrutiating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+				src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 				KnockDown(20)
 			if(prob(2))
 				src << "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
@@ -53,7 +53,7 @@
 			if(shock_stage == 150) emote("me", 1, "can no longer stand, collapsing!")
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
-			if(prob(7)) src << "<span class='danger'>[pick("The pain is excrutiating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+			if(prob(7)) src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 			if(prob(2))
 				src << "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
 				KnockOut(5)
