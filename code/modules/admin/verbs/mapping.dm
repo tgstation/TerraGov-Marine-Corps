@@ -120,66 +120,68 @@ var/intercom_range_display_status = 0
 					cdel(F)
 	feedback_add_details("admin_verb","mIRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-var/list/debug_verbs = list (
-        /client/proc/do_not_use_these
-        ,/client/proc/camera_view
-        ,/client/proc/sec_camera_report
-        ,/client/proc/intercom_view
-        ,/client/proc/Cell
-        ,/client/proc/atmosscan
-        ,/client/proc/powerdebug
-        ,/client/proc/count_objects_on_z_level
-        ,/client/proc/count_objects_all
-        ,/client/proc/cmd_assume_direct_control
-        ,/client/proc/jump_to_dead_group
-        ,/client/proc/startSinglo
-        ,/client/proc/ticklag
-        ,/client/proc/cmd_admin_grantfullaccess
-        ,/client/proc/kaboom
-        ,/client/proc/splash
-        ,/client/proc/cmd_admin_areatest
-        ,/client/proc/cmd_admin_rejuvenate
-        ,/datum/admins/proc/show_traitor_panel
-        ,/client/proc/forceEvent
-        ,/client/proc/break_all_air_groups
-        ,/client/proc/regroup_all_air_groups
-        ,/client/proc/kill_pipe_processing
-        ,/client/proc/kill_air_processing
-        ,/client/proc/disable_communication
-        ,/client/proc/disable_movement
-        ,/client/proc/Zone_Info
-        ,/client/proc/Test_ZAS_Connection
-        ,/client/proc/ZoneTick
-        ,/client/proc/rebootAirMaster
-        ,/client/proc/hide_debug_verbs
-        ,/client/proc/testZAScolors
-        ,/client/proc/testZAScolors_remove
-        ,/client/proc/setup_supermatter_engine
-        ,/client/proc/view_power_update_stats_area
-        ,/client/proc/view_power_update_stats_machines
-        ,/client/proc/toggle_power_update_profiling
-		,/client/proc/atmos_toggle_debug
-		,/client/proc/nanomapgen_DumpImage
-	)
+var/list/debug_verbs = list(
+        /client/proc/do_not_use_these,
+        /client/proc/camera_view,
+        /client/proc/sec_camera_report,
+        /client/proc/intercom_view,
+        /client/proc/Cell,
+        /client/proc/atmosscan,
+        /client/proc/powerdebug,
+        /client/proc/count_objects_on_z_level,
+        /client/proc/count_objects_all,
+        /client/proc/cmd_assume_direct_control,
+        /client/proc/jump_to_dead_group,
+        /client/proc/startSinglo,
+        /client/proc/ticklag,
+        /client/proc/cmd_admin_grantfullaccess,
+        /client/proc/kaboom,
+        /client/proc/splash,
+        /client/proc/cmd_admin_areatest,
+        /client/proc/cmd_admin_rejuvenate,
+        /datum/admins/proc/show_traitor_panel,
+        /client/proc/forceEvent,
+        /client/proc/break_all_air_groups,
+        /client/proc/regroup_all_air_groups,
+        /client/proc/kill_pipe_processing,
+        /client/proc/kill_air_processing,
+        /client/proc/disable_communication,
+        /client/proc/disable_movement,
+        /client/proc/Zone_Info,
+        /client/proc/Test_ZAS_Connection,
+        /client/proc/ZoneTick,
+        /client/proc/rebootAirMaster,
+        /client/proc/hide_debug_verbs,
+        /client/proc/testZAScolors,
+        /client/proc/testZAScolors_remove,
+        /client/proc/setup_supermatter_engine,
+        /client/proc/view_power_update_stats_area,
+        /client/proc/view_power_update_stats_machines,
+        /client/proc/toggle_power_update_profiling,
+        /client/proc/atmos_toggle_debug,
+		/client/proc/nanomapgen_DumpImage
+		)
 
 
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
-	set name = "Debug verbs"
+	set name = "Debug Verbs - Show"
 
 	if(!check_rights(R_DEBUG)) return
 
 	verbs += debug_verbs
+	verbs -= /client/proc/enable_debug_verbs
 
 	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/hide_debug_verbs()
 	set category = "Debug"
-	set name = "Hide Debug verbs"
+	set name = "Debug Verbs - Hide"
 
 	if(!check_rights(R_DEBUG)) return
 
 	verbs -= debug_verbs
+	verbs += /client/proc/enable_debug_verbs
 
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

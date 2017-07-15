@@ -64,7 +64,7 @@
 
 /obj/item/weapon/gun/pistol/chimp
 	name = "\improper CHIMP70 pistol"
-	desc = "A powerful sidearm issed mainly to highly trained elite assassin necro-cyber-agents."
+	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "c70"
 	item_state = "c70"
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"

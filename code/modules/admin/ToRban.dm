@@ -43,7 +43,7 @@
 		return 0
 
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
-	set name = "ToRban"
+	set name = "ToR Ban Settings"
 	set category = "Server"
 	if(!holder)	return
 	switch(task)
