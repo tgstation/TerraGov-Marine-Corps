@@ -256,7 +256,7 @@ Ccomp's first proc.
 
 /client/proc/allow_character_respawn()
 	set category = "Special Verbs"
-	set name = "Allow player to respawn"
+	set name = "Allow Player Corpse Re-Enter"
 	set desc = "Let's the player bypass the 30 minute wait to respawn or allow them to re-enter their corpse."
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -785,7 +785,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_gib_self()
-	set name = "Gibself"
+	set name = "Gib Self"
 	set category = "Fun"
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")

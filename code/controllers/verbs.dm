@@ -50,7 +50,7 @@
 
 /client/proc/debug_controller(controller in list("Master","Failsafe","Ticker","Lighting","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","Cameras", "Transfer Controller", "Gas Data"))
 	set category = "Debug"
-	set name = "Debug Controller"
+	set name = "Debug Controllers"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
 
 	if(!holder)	return
