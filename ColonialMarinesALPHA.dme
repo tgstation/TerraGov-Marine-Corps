@@ -113,6 +113,7 @@
 #include "code\controllers\processes\nano.dm"
 #include "code\controllers\processes\objects.dm"
 #include "code\controllers\processes\power.dm"
+#include "code\controllers\processes\process_ui.dm"
 #include "code\controllers\processes\shuttle.dm"
 #include "code\controllers\processes\sun.dm"
 #include "code\controllers\processes\ticker.dm"
