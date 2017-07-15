@@ -724,10 +724,10 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/toggledsay()
 	set category = "Server"
-	set desc="Globally Toggles DSAY"
-	set name="Toggle DSAY"
+	set desc = "Globally Toggles Deadchat"
+	set name = "Toggle Deadchat"
 	dsay_allowed = !( dsay_allowed )
-	if (dsay_allowed)
+	if(dsay_allowed)
 		world << "<B>Deadchat has been globally enabled!</B>"
 	else
 		world << "<B>Deadchat has been globally disabled!</B>"
@@ -999,7 +999,7 @@ var/global/floorIsLava = 0
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
-	set name="Toggle guests"
+	set name="Toggle Guest Joining"
 	guests_allowed = !( guests_allowed )
 	if (!( guests_allowed ))
 		world << "<B>Guests may no longer enter the game.</B>"

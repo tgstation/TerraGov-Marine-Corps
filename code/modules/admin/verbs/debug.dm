@@ -1,6 +1,6 @@
 /client/proc/Debug2()
 	set category = "Debug"
-	set name = "Debug-Game"
+	set name = "Debugging Mode"
 	if(!check_rights(R_DEBUG))	return
 
 	if(Debug2)
@@ -297,7 +297,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
-	set name = "Del-All"
+	set name = "Delete Instance"
 
 	// to prevent REALLY stupid deletions
 	var/blocked = list(/obj, /obj/item, /obj/effect, /obj/mecha, /obj/machinery, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/Xenomorph, /mob/living/carbon/human, /mob/dead, /mob/dead/observer, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
@@ -326,7 +326,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
-	set name = "Make Powernets"
+	set name = "Generate Powernets"
 	makepowernets()
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
@@ -487,7 +487,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
 	set category = "Fun"
-	set name = "Select equipment"
+	set name = "Select Equipment"
 	if(!ishuman(M))
 		alert("Invalid mob")
 		return
@@ -1956,7 +1956,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /client/proc/spawn_predators()
 	set category = "Debug"
-	set name = "Spawn Preds"
+	set name = "Force Spawn Predators"
 	set desc = "This allows you to spawn predators outside of predator rounds. They can join the hunt manually during a predator round instead."
 
 	if(!ticker || !ticker.mode)

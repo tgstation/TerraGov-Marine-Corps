@@ -106,7 +106,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		usr.talked = 0
 
 /client/proc/set_ooc(newColor as color)
-	set name = "Set Player OOC Colour"
+	set name = "OOC Text Color - Global"
 	set desc = "Set to yellow for eye burning goodness."
 	set category = "Fun"
 	normal_ooc_colour = newColor

@@ -449,7 +449,7 @@ var/list/admin_verbs_mentor = list(
 	return
 
 /client/proc/secrets()
-	set name = "Secrets"
+	set name = "Secrets Panel"
 	set category = "Admin"
 	if (holder)
 		holder.Secrets()
@@ -458,7 +458,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/colorooc()
 	set category = "Fun"
-	set name = "OOC Text Color"
+	set name = "OOC Text Color - Self"
 	if(!holder && !donator)	return
 	var/new_ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color|null
 	if(new_ooccolor)
@@ -607,7 +607,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/object_talk(var/msg as text) // -- TLE
 	set category = "Special Verbs"
-	set name = "oSay"
+	set name = "Object Say"
 	set desc = "Display a message to everyone who can hear the target"
 	if(mob.control_object)
 		if(!msg)
@@ -631,19 +631,31 @@ var/list/admin_verbs_mentor = list(
 	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
 
 /client/proc/deadmin_self()
-	set name = "De-admin self"
+	set name = "De-admin Self"
 	set category = "Admin"
 
 	if(holder)
-		if(alert("Confirm self-deadmin for the round? You can't re-admin yourself without someont promoting you.",,"Yes","No") == "Yes")
-			log_admin("[src] deadmined themself.")
-			message_admins("[src] deadmined themself.", 1)
+		if(alert("Confirm deadmin? This procedure can be reverted at any time and will not carry over to next round, but you will lose all your admin powers in the meantime.", , "Yes", "No") == "Yes")
+			log_admin("[src] deadmined themselves.")
+			message_admins("[src] deadmined themselves.", 1)
+			verbs += /client/proc/readmin_self
 			deadmin()
-			src << "<span class='interface'>You are now a normal player.</span>"
-	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			src << "<br><br><span class='centerbold'><big>You are now a normal player. You can ascend back to adminhood at any time using the 'Re-admin Self' verb in your Admin panel.</big></span><br>"
+	feedback_add_details("admin_verb", "DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/readmin_self()
+	set name = "Re-admin Self"
+	set category = "Admin"
+
+	load_admins() //A bit ugly, but hey
+	verbs -= /client/proc/readmin_self
+	src << "<br><br><span class='centerbold'><big>You have ascended back to adminhood. All your verbs should be back where you left them.</big></span><br>"
+	log_admin("[src] readmined themselves.")
+	message_admins("[src] readmined themselves.", 1)
+	feedback_add_details("admin_verb", "RAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_log_hrefs()
-	set name = "Toggle href logging"
+	set name = "Toggle href Logging"
 	set category = "Server"
 	if(!holder)	return
 	if(config)
@@ -778,7 +790,7 @@ var/list/admin_verbs_mentor = list(
 
 
 /client/proc/toggleghostwriters()
-	set name = "Toggle ghost writers"
+	set name = "Toggle Ghost Blood Writing"
 	set category = "Server"
 	if(!holder)	return
 	if(config)
@@ -792,7 +804,7 @@ var/list/admin_verbs_mentor = list(
 			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
 
 /client/proc/toggledrones()
-	set name = "Toggle maintenance drones"
+	set name = "Toggle Maintenance Drones"
 	set category = "Server"
 	if(!holder)	return
 	if(config)
@@ -841,7 +853,7 @@ var/list/admin_verbs_mentor = list(
 */
 
 /client/proc/change_security_level()
-	set name = "Set security level"
+	set name = "Set Security Level"
 	set desc = "Sets the station security level"
 	set category = "Admin"
 
