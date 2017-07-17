@@ -1,5 +1,5 @@
 /obj/item/weapon/combat_knife
-	name = "\improper M5 survival knife"
+	name = "\improper M5 'Night Raider' survival knife"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
@@ -171,7 +171,7 @@
 	name = "\improper M56 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "powerpack"
+	icon_state = "powerpack_worn"
 	item_state = "powerpack"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
@@ -183,6 +183,7 @@
 
 	New()
 		select_gamemode_skin(/obj/item/smartgun_powerpack)
+		item_state = "powerpack"
 		..()
 		pcell = new /obj/item/weapon/cell(src)
 

@@ -97,6 +97,11 @@
 		/obj/item/weapon/gun/shotgun/pump,
 		/obj/item/weapon/gun/shotgun/combat
 		)
+	New()
+		select_gamemode_skin(/obj/item/weapon/large_holster/m37)
+		base_icon = icon_state
+		..()
+
 
 /obj/item/weapon/large_holster/m37/full/New()
 	..()

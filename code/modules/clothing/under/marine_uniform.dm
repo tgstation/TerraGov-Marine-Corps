@@ -93,6 +93,9 @@
 	item_state = "pilot_flightsuit"
 	item_color = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature
+	New()
+		select_gamemode_skin(/obj/item/clothing/under/marine/officer/pilot)
+		..()
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"
@@ -100,6 +103,9 @@
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
+	New()
+		select_gamemode_skin(/obj/item/clothing/under/marine/officer/bridge)
+		..()
 
 /obj/item/clothing/under/marine/officer/exec
 	name = "executive officer uniform"
@@ -107,6 +113,9 @@
 	icon_state = "XO_jumpsuit"
 	item_state = "XO_jumpsuit"
 	item_color = "XO_jumpsuit"
+	New()
+		select_gamemode_skin(/obj/item/clothing/under/marine/officer/exec)
+		..()
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
@@ -114,6 +123,9 @@
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
 	item_color = "CO_jumpsuit"
+	New()
+		select_gamemode_skin(/obj/item/clothing/under/marine/officer/command)
+		..()
 
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief engineer uniform"

@@ -273,6 +273,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "\improper M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer, /obj/item/clothing/under/rank/ro_suit)
+	New()
+		select_gamemode_skin(/obj/item/clothing/suit/storage/marine/MP/RO)
+		..()
 
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "\improper M3 pattern recon armor"
@@ -322,6 +325,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun,
 					/obj/item/weapon/storage/sparepouch)
+	New()
+		select_gamemode_skin(type)
+		..()
+	/*
+	New(loc,expected_type 	= type,
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M56 combat harness"))
+		..(loc,expected_type,,new_name)
+		..()
+	*/
 
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
@@ -661,6 +673,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/large_holster/machete,
 		/obj/item/weapon/baseballbat,
 		/obj/item/weapon/baseballbat/metal)
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 
 /obj/item/clothing/suit/storage/CMB
 	name = "\improper CMB jacket"

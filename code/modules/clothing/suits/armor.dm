@@ -53,6 +53,9 @@
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
+	New()
+		select_gamemode_skin(/obj/item/clothing/suit/armor/vest/pilot)
+		..()
 
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"
