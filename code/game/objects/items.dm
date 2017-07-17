@@ -121,9 +121,22 @@ cases. Override_icon_state should be a list.*/
 		if(override_protection) new_protection = override_protection[game_mode]
 		switch(ticker.mode.type)
 			if(/datum/game_mode/ice_colony) //Can easily add other states if needed.
-				icon_state = new_icon_state ? new_icon_state : "s_" + icon_state
-				if(new_name) name = new_name
-				if(new_protection) min_cold_protection_temperature = new_protection
+				if(icon == 'icons/Marine/marine_armor.dmi')
+					icon = 'icons/Marine/marine_armor_snow.dmi'
+					icon_override = 'icons/Marine/marine_armor_snow.dmi'
+				else
+					icon_state = new_icon_state ? new_icon_state : "s_" + icon_state
+					if(new_name) name = new_name
+					if(new_protection) min_cold_protection_temperature = new_protection
+			if(/datum/game_mode/whiskey_outpost) //Can easily add other states if needed.
+				if(icon == 'icons/Marine/marine_armor.dmi')
+					icon = 'icons/Marine/marine_armor_dust.dmi'
+					icon_override = 'icons/Marine/marine_armor_dust.dmi'
+				else
+					icon_state = new_icon_state ? new_icon_state : "d_" + icon_state
+					if(new_name) name = new_name
+					if(new_protection) min_cold_protection_temperature = new_protection
+
 		item_state = icon_state
 		item_color = icon_state
 

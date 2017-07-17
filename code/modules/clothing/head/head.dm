@@ -50,6 +50,9 @@
 	icon_state = "berettan"
 	item_state = "berettan"
 	item_color = "berettan"
+	New()
+		select_gamemode_skin(/obj/item/clothing/head/cmberet/tan)
+		..()
 
 /obj/item/clothing/head/cmberet/red
 	icon_state = "beretred"
@@ -138,6 +141,10 @@
 	icon_state = "rocap"
 	item_state = "rocap"
 	item_color = "rocap2"
+	New()
+		select_gamemode_skin(/obj/item/clothing/head/cmcap/ro)
+		..()
+
 
 /obj/item/clothing/head/cmcap/req
 	name = "\improper USCM requisition cap"
@@ -268,5 +275,6 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+
 
 

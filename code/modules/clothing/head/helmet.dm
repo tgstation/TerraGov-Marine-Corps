@@ -305,6 +305,9 @@
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 	flags_marine_helmet = NOFLAGS
+	New()
+		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/pilot)
+		..()
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
