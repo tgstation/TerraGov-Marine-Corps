@@ -8,6 +8,8 @@
 	//	act = copytext(act,1,length(act))
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 
+	if(emotedown)
+		return
 	switch(act)
 		if("me")
 			if(silent)
@@ -66,12 +68,13 @@
 				playsound(src.loc, 'sound/voice/alien_tail.ogg', 25, 1)
 		if("dance")
 			if(!src.is_mob_restrained())
-				message = "<B>The [src.name]</B> dances around!"
+			//	message = "<B>The [src.name]</B> dances around!"
 				m_type = 1
 				spawn(0)
-					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 						dir = i
 						sleep(1)
+
 		if("help")
 			src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
 			dance, \
@@ -90,4 +93,10 @@
 		else
 			for(var/mob/O in hearers(src, null))
 				O.show_message(message, m_type)
+
+	emotedown = 1
+	spawn(100)
+		emotedown = 0
+
+
 	return

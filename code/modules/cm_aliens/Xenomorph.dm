@@ -114,6 +114,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/gib_chance  = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/xeno_explosion_resistance = 0 //0 to 3. how explosions affects the xeno, can it stun it, etc...
 	var/innate_healing = FALSE //whether the xeno slowly heals even outside weeds.
+	var/emotedown = 0
 
 	//Naming variables
 	var/caste = ""
