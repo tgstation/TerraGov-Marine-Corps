@@ -183,14 +183,14 @@ var/global/datum/controller/gameticker/ticker
 
 	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE
 
-	for(var/obj/multiz/ladder/L in world) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
+	//for(var/obj/multiz/ladder/L in world) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
 	if(config.sql_enabled)
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
-		for(var/obj/structure/closet/C in world) //Set up special equipment for lockers and vendors, depending on gamemode
+		for(var/obj/structure/closet/C in structure_list) //Set up special equipment for lockers and vendors, depending on gamemode
 			C.select_gamemode_equipment(mode.type)
-		for(var/obj/machinery/vending/V in world)
+		for(var/obj/machinery/vending/V in machines)
 			V.select_gamemode_equipment(mode.type)
 	return 1
 

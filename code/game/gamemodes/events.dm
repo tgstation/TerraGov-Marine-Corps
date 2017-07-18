@@ -250,7 +250,7 @@
 
 
 	var/list/area/areas = list()
-	for(var/area/A in world)
+	for(var/area/A in all_areas)
 		if(istype(A, /area/sulaco/brig))
 			areas += A
 
