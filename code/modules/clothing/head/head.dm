@@ -276,5 +276,15 @@
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 
-
+/obj/item/clothing/head/admiral
+	name = "\improper armored Admiral cap"
+	desc = "A sturdy admiral's cap. More protective than it seems. Please don't ditch this for a helmet like a punk."
+	icon_state = "admiral_helmet"
+	item_state = "admiral_helmet"
+	siemens_coefficient = 2.0
+	flags_armor_protection = HEAD
+	armor = list(melee = 60, bullet = 60, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 

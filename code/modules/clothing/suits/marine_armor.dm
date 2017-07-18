@@ -268,6 +268,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer/warrant)
 
+/obj/item/clothing/suit/storage/marine/MP/admiral
+	icon_state = "admiral"
+	name = "\improper M3 pattern admiral armor"
+	desc = "A well-crafted suit of M3 Pattern Armor with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
+	w_class = 3
+	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer/admiral)
+
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
 	name = "\improper M3 pattern officer armor"

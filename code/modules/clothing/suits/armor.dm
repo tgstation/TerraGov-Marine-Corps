@@ -65,6 +65,13 @@
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
 
+/obj/item/clothing/suit/armor/vest/admiral
+	name = "admiral's jacket"
+	desc = "An armoured jacket with gold regalia"
+	icon_state = "admiral_jacket"
+	item_state = "admiral_jacket"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	w_class = 3
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"

@@ -508,6 +508,33 @@
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new_gun.on_enter_storage(src)
 
+/obj/item/weapon/storage/belt/gun/mateba
+	name = "\improper M276 pattern Mateba holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
+	icon_state = "mateba_holster"
+	item_state = "mateba_holster"
+	max_w_class = 7
+	can_hold = list(
+		"/obj/item/weapon/gun/revolver/mateba",
+		"/obj/item/ammo_magazine/revolver/mateba"
+		)
+
+/obj/item/weapon/storage/belt/gun/mateba/full/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new_gun.on_enter_storage(src)
+
+/obj/item/weapon/storage/belt/gun/mateba/admiral/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new_gun.on_enter_storage(src)
+
 /obj/item/weapon/storage/belt/gun/korovin
 	name = "\improper Type 41 pistol holster rig"
 	desc = "A modification of the standard UPP pouch rig to carry a single Korovin PK-9 pistol. It also contains side pouches that can store .22 magazines, either hollowpoints or tranquilizers."

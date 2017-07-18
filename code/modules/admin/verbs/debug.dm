@@ -889,11 +889,28 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_if_possible(W, WEAR_ID)
 
 		if("USCM Admiral (USCM Command)")
-			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/captain(M), WEAR_BODY)
-			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), WEAR_FEET)
-			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), WEAR_HANDS)
-			M.equip_if_possible(new /obj/item/clothing/head/beret/centcom/captain(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/admiral(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/centcom(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(M), WEAR_EAR)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/mateba/admiral(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/lightpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/admiral(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/admiral(M), WEAR_JACKET)
+
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/handcuffs(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/phosphorus(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/flashbang(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/admiral(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
+
+
+
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
