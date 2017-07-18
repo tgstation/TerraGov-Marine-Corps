@@ -1,7 +1,7 @@
 /datum/game_mode/whiskey_outpost
 	name = "Whiskey Outpost"
 	config_tag = "Whiskey Outpost"
-	required_players 		= 1
+	required_players 		= 0
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
 	role_instruction		= 1
@@ -106,14 +106,17 @@
 
 	sleep(10)
 	world << "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>"
-	world << "<span class='round_body'>Marines have to defend the outpost on this hostile planet</span>"
-	world << "<span class='round_body'>They need to hold it for one hour until main forces arrive</span>"
+	world << "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the USS Almayer and the 7th 'Falling Falcons' Battalion in the sector</span>"
+	world << "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a USCM prescence in the Tychon's Rift sector</span>"
+	world << "<span class='round_body'>Whiskey Outpost, one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>"
+	world << "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at Whiskey outpost must survive for an hour to alert the rest of their battalion in the sector</span>"
+	world << "<span class='round_body'>Hold out for as long as you can.</span>"
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(50)
 	switch(map_locale) //Switching it up.
 		if(0)
-			command_announcement.Announce("This is Commander Anderson speaking from the USS Alistoun. We've heard the [MAIN_SHIP_NAME]'s distress beacon, but we need you to hold Whiskey Outpost for an hour before the marine force is equipped and ready. We're sending UD-22 Navajo gunships to assist in your defense.", "USS Alistoun")
+			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on LV-624. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold Whiskey Outpost in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 	set waitfor = 0 //Doing this before hand.
@@ -193,10 +196,11 @@
 			sleep(40)
 			if(H)
 				H << "________________________"
-				H << "<span class='boldnotice'>You are the Ground Commander!</span>"
+				H << "<span class='boldnotice'>You are the Dust Raiders Commander!</span>"
 				H << "Coordinate your team and prepare defenses."
 				H << "Stay alive!"
-				H << "Hold the outpost for one hour until the main force arrives!"
+				H << "Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!"
+				H << "The local population warned you about establishing a base in the jungles of LV-624.."
 				H << "________________________"
 			sleep(240) //So they can see it
 			if(H)
@@ -211,7 +215,7 @@
 			custom_message = 1
 			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), WEAR_HEAD)
@@ -259,7 +263,7 @@
 			sleep(40)
 			if(H)
 				H << "________________________"
-				H << "<span class='boldnotice'>You are part of the Honor Guard!</span>"
+				H << "<span class='boldnotice'>You are part of the Battalion Honor Guard!</span>"
 				H << "Protect the outpost itself! Make sure the Ground Commander lives!"
 				H << "Stay alive!"
 				H << "This role does not know engineering or medical tasks(outside of first aid)!"
@@ -312,7 +316,7 @@
 			sleep(40)
 			if(H)
 				H << "________________________"
-				H << "<span class='boldnotice'>You are a Outpost Engineer!</span>"
+				H << "<span class='boldnotice'>You are a Dust Raiders Engineer!</span>"
 				H << "Fortify the frontlines with the other combat engineers and make sure the outpost functions!"
 				H << "Stay alive!"
 				H << "This role does knows how to do engineering tasks but does not know medical!"
@@ -373,7 +377,7 @@
 				H << "<span class='boldnotice'>You are the WO Doctor!</span>"
 				H << "Gear up, prepare the medbay and keep your temmates alive."
 				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
-				H << "Hold the outpost for one hour until the main force arrives!"
+				H << "Hold the outpost for one hour until the signal can be established!"
 				H << "________________________"
 			sleep(240) //So they can see it
 			if(H)
@@ -625,7 +629,8 @@
 		H << "<span class='boldnotice'>You are the [H.mind.assigned_role]!</span>"
 		H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
 		H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
-		H << "Hold the outpost for one hour until the main force arrives!"
+		H << "Hold the outpost for one hour until the signal can be established!"
+		H << "Ensure the Dust Raiders don't lose their foothold on LV-624 so you can alert the main forces."
 		H << "________________________"
 	//Finally, update all icons
 	H.update_icons()
@@ -668,16 +673,16 @@
 
 			switch(xeno_wave)
 				if(1)
-					command_announcement.Announce("This is the USS Alistoun, gunships are reporting that the first group of hostiles are now on your position.", "USS Alistoun")
+					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
 				if(8)
-					command_announcement.Announce("This is the USS Alistoun, we're sending strikecraft to destroy the inbound xeno force on the main road. Hold tight.", "USS Alistoun")
+					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
 				if(9)
 					world << sound('sound/voice/alien_queen_command.ogg')
-					command_announcement.Announce("It appears that vanguard of the alien force is still approaching, hunker down marines we're almost there.", "USS Alistoun")
+					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on LV-624. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
 				if(12)
-					command_announcement.Announce("This is the USS Alistoun, strikecraft are picking up large signatures inbound, we'll see what we can do to delay them.", "USS Alistoun")
+					command_announcement.Announce("This is Captain Naiche, we are picking up large signatures inbound, we'll see what we can do to delay them.", "Captain Naich, 3rd Battalion Command, LV-624")
 				if(14)
-					command_announcement.Announce("This is the USS Alistoun, dropships are inbound. Hold on for a bit longer!", "USS Alistoun")
+					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
 
 
 			//SUPPLY SPAWNER
@@ -1023,8 +1028,10 @@
 /datum/game_mode/whiskey_outpost/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","Xenos won")
-		world << "<span class='round_header'>The Xenos have succesfully defended their home planet from colonization.</span>"
-		world << "<span class='round_body'>Well done, you've secured the planet for the hive!</span>"
+		world << "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>"
+		world << "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>"
+		world << "<span class='round_body'>It will be another five years before the USCM returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the USS Almayer.</span>"
+		world << "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>"
 		world << sound('sound/misc/Game_Over_Man.ogg')
 
 		if(round_stats) // Logging to data/logs/round_stats.log
@@ -1033,7 +1040,9 @@
 	else if(finished == 2)
 		feedback_set_details("round_end_result","Marines Won")
 		world << "<span class='round_header'>Against the onslaught, the marines have survived.</span>"
-		world << "<span class='round_body'>The roar of thrusters can be heard as dropships arrive. Relief has finally arrived.</span>"
+		world << "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>"
+		world << "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>"
+		world << "<span class='round_body'>The USS Almayer and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>"
 		world << sound('sound/misc/hell_march.ogg')
 
 		if(round_stats) // Logging to data/logs/round_stats.log
