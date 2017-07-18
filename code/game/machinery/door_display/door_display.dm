@@ -220,7 +220,7 @@
 
 	// Open/Close Shutter
 	if (open_shutter)
-		data += "<a href='?src=\ref[src];shutter=0, open=0'>Close Shutter</a><br/>"
+		data += "<a href='?src=\ref[src];shutter=0; open=0'>Close Shutter</a><br/>"
 	else
 		data += "<a href='?src=\ref[src];shutter=1'>Open Shutter</a><br/>"
 

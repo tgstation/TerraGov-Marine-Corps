@@ -60,9 +60,32 @@ var/global/datum/global_init/init = new ()
 	// due to this list not being instantiated.
 	populate_seed_list()
 
-	master_controller = new /datum/controller/game_controller()
-	spawn(1)
-		master_controller.setup()
+	if(!RoleAuthority)
+		RoleAuthority = new /datum/authority/branch/role()
+		world << "\red \b Job setup complete"
+
+	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
+	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
+	if(!EvacuationAuthority)		EvacuationAuthority = new
+
+	world.tick_lag = config.Ticklag
+
+	// Process Scheduler
+	src << "\red \b Scheduler initialized."
+	processScheduler = new
+
+	spawn(0)
+		processScheduler.setup()
+
+	src << "\red \b Scheduler setup complete."
+
+	spawn(0)
+		processScheduler.start()
+
+//	master_controller = new /datum/controller/game_controller()
+
+	//spawn(1)
+		//master_controller.setup()
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)

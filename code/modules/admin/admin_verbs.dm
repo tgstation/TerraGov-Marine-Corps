@@ -119,7 +119,7 @@ var/list/admin_verbs_debug = list(
         /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/Debug2,
-	/client/proc/kill_air,
+	///client/proc/kill_air,
 	/client/proc/ZASSettings,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
@@ -132,8 +132,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/reload_admins,
 	/client/proc/reload_whitelist,
 	/client/proc/restart_controller,
-	/client/proc/remake_distribution_map,
-	/client/proc/show_distribution_map,
+	///client/proc/remake_distribution_map,
+	///client/proc/show_distribution_map,
 	/client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
@@ -143,7 +143,8 @@ var/list/admin_verbs_debug = list(
 	/datum/proc/ra_diagnose,
 	/datum/proc/ta_purge,
 	/datum/proc/ra_purge,
-	/client/proc/global_fix_atmos
+	/client/proc/global_fix_atmos,
+	/client/proc/scheduler
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -209,7 +210,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/reload_whitelist,
-	/client/proc/kill_air,
+	///client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
@@ -616,6 +617,7 @@ var/list/admin_verbs_mentor = list(
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/*
 /client/proc/kill_air() // -- TLE
 	set category = "Debug"
 	set name = "Kill Air"
@@ -629,6 +631,7 @@ var/list/admin_verbs_mentor = list(
 	feedback_add_details("admin_verb","KA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
+*/
 
 /client/proc/deadmin_self()
 	set name = "De-admin Self"
