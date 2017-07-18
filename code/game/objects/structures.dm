@@ -6,6 +6,12 @@
 	var/parts
 	anchored = 1
 
+/obj/structure/New()
+
+	..()
+
+	structure_list += src
+
 /obj/structure/proc/destroy()
 	if(parts)
 		new parts(loc)

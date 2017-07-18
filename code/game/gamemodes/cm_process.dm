@@ -44,7 +44,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	var/xeno_tunnels[] = new
 	var/monkey_spawns[] = new
 	var/obj/effect/blocker/fog/F
-	for(var/obj/effect/landmark/L in world)
+	for(var/obj/effect/landmark/L in landmarks_list)
 		switch(L.name)
 			if("hunter_primary")
 				cdel(L)
