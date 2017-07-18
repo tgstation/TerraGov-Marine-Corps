@@ -9,6 +9,7 @@
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 
 	if(emotedown)
+		src << "STOP SPAMMING"
 		return
 	switch(act)
 		if("me")
@@ -71,9 +72,11 @@
 			//	message = "<B>The [src.name]</B> dances around!"
 				m_type = 1
 				spawn(0)
-					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2))
+						canmove = 0
 						dir = i
 						sleep(1)
+				canmove = 1
 
 		if("help")
 			src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
