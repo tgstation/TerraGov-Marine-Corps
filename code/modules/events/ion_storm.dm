@@ -7,7 +7,7 @@
 /datum/event/ionstorm/announce()
 	endWhen = rand(500, 1500)
 //		command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions", "Anomaly Alert")
-	for (var/mob/living/carbon/human/player in world)
+	for (var/mob/living/carbon/human/player in player_list)
 		if(player.client)
 			players += player.real_name
 	var/random_player = "The Captain"
@@ -69,7 +69,7 @@
 							"There will be a mandatory tea break every 30 minutes, with a duration of 5 minutes. Anyone caught working during a tea break must be sent a formal, but fairly polite, complaint about their actions, in writing.")
 	var/law = pick(laws)
 
-	for (var/mob/living/silicon/ai/target in world)
+	for (var/mob/living/silicon/ai/target in player_list)
 		if(target.mind.special_role == "traitor")
 			continue
 		target << "\red <b>You have detected a change in your laws information:</b>"
@@ -88,7 +88,7 @@
 
 /datum/event/ionstorm/tick()
 	if(botEmagChance)
-		for(var/obj/machinery/bot/bot in world)
+		for(var/obj/machinery/bot/bot in machines)
 			if(prob(botEmagChance))
 				bot.Emag()
 
@@ -204,7 +204,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("THE STATION IS [who2pref] [who2]")
 
 	if(botEmagChance)
-		for(var/obj/machinery/bot/bot in world)
+		for(var/obj/machinery/bot/bot in machines)
 			if(prob(botEmagChance))
 				bot.Emag()
 */
@@ -220,21 +220,21 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 
 	spawn(0)
 		world << "Started processing APCs"
-		for (var/obj/machinery/power/apc/APC in world)
+		for (var/obj/machinery/power/apc/APC in machines)
 			if(APC.z == 1)
 				APC.ion_act()
 				apcnum++
 		world << "Finished processing APCs. Processed: [apcnum]"
 	spawn(0)
 		world << "Started processing SMES"
-		for (var/obj/machinery/power/smes/SMES in world)
+		for (var/obj/machinery/power/smes/SMES in machines)
 			if(SMES.z == 1)
 				SMES.ion_act()
 				smesnum++
 		world << "Finished processing SMES. Processed: [smesnum]"
 	spawn(0)
 		world << "Started processing AIRLOCKS"
-		for (var/obj/machinery/door/airlock/D in world)
+		for (var/obj/machinery/door/airlock/D in machines)
 			if(D.z == 1)
 				//if(length(D.req_access) > 0 && !(12 in D.req_access)) //not counting general access and maintenance airlocks
 				airlocknum++
@@ -243,7 +243,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 		world << "Finished processing AIRLOCKS. Processed: [airlocknum]"
 	spawn(0)
 		world << "Started processing FIREDOORS"
-		for (var/obj/machinery/door/firedoor/D in world)
+		for (var/obj/machinery/door/firedoor/D in machines)
 			if(D.z == 1)
 				firedoornum++;
 				spawn(0)

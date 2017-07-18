@@ -30,7 +30,7 @@
 	..()
 
 	spawn(20)
-		for(var/obj/machinery/door/D in world)
+		for(var/obj/machinery/door/D in machines)
 			if (D.id == id)
 				targets += D
 
@@ -207,7 +207,7 @@
 /obj/machinery/door_display/research_cell/New()
 	..()
 	spawn(20)
-		for(var/obj/machinery/flasher/F in world)
+		for(var/obj/machinery/flasher/F in machines)
 			if (F.id == id)
 				targets += F
 

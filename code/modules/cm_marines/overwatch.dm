@@ -234,7 +234,7 @@
 							src.attack_hand(usr)
 							find_helmet_cam() //Set the helmet cam, if one is being worn by the SL
 							if(!current_squad.drop_pad) //Why the hell did this not link?
-								for(var/obj/item/effect/supply_drop/S in world)
+								for(var/obj/item/effect/supply_drop/S in item_list)
 									S.force_link() //LINK THEM ALL!
 
 						else

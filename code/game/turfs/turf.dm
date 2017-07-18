@@ -35,9 +35,10 @@
 
 /turf/New()
 	..()
+	turfs += src
 	for(var/atom/movable/AM as mob|obj in src)
-		spawn( 0 )
-			src.Entered(AM)
+		spawn(0)
+			Entered(AM)
 			return
 	return
 

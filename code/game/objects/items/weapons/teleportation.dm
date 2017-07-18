@@ -60,7 +60,7 @@ Frequency:
 			if (sr)
 				src.temp += "<B>Located Beacons:</B><BR>"
 
-				for(var/obj/item/device/radio/beacon/W in world)
+				for(var/obj/item/device/radio/beacon/W in item_list)
 					if (W.frequency == src.frequency)
 						var/turf/tr = get_turf(W)
 						if (tr.z == sr.z && tr)
@@ -78,7 +78,7 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>Extranneous Signals:</B><BR>"
-				for (var/obj/item/weapon/implant/tracking/W in world)
+				for (var/obj/item/weapon/implant/tracking/W in item_list)
 					if (!W.implanted || !(istype(W.loc,/datum/organ/external) || ismob(W.loc)))
 						continue
 					else
@@ -141,7 +141,7 @@ Frequency:
 		user << "<span class='notice'>\The [src] is malfunctioning.</span>"
 		return
 	var/list/L = list(  )
-	for(var/obj/machinery/teleport/hub/R in world)
+	for(var/obj/machinery/teleport/hub/R in machines)
 		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
 		if (istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
 			if(R.icon_state == "tele1")
@@ -158,8 +158,8 @@ Frequency:
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
 	if ((user.get_active_hand() != src || user.stat || user.is_mob_restrained()))
 		return
-	var/count = 0	//num of portals from this teleport in world
-	for(var/obj/effect/portal/PO in world)
+	var/count = 0	//num of portals from this teleport in the world
+	for(var/obj/effect/portal/PO in effect_list)
 		if(PO.creator == src)	count++
 	if(count >= 3)
 		user.show_message("<span class='notice'>\The [src] is recharging!</span>")

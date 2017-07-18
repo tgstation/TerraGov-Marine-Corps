@@ -27,7 +27,7 @@
 		else if(screen == 1)
 			dat += "<HR>Chemical Implants<BR>"
 			var/turf/Tr = null
-			for(var/obj/item/weapon/implant/chem/C in world)
+			for(var/obj/item/weapon/implant/chem/C in item_list)
 				Tr = get_turf(C)
 				if((Tr) && (Tr.z != computer.z))	continue//Out of range
 				if(!C.implanted) continue
@@ -37,7 +37,7 @@
 				dat += "<A href='?src=\ref[src];inject10=\ref[C]'>(<font color=red>(10)</font>)</A><BR>"
 				dat += "********************************<BR>"
 			dat += "<HR>Tracking Implants<BR>"
-			for(var/obj/item/weapon/implant/tracking/T in world)
+			for(var/obj/item/weapon/implant/tracking/T in item_list)
 				Tr = get_turf(T)
 				if((Tr) && (Tr.z != computer.z))	continue//Out of range
 				if(!T.implanted) continue

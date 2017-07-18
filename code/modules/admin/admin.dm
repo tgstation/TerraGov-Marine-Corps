@@ -1028,7 +1028,7 @@ var/global/floorIsLava = 0
 	if(!ai_number)
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
 
-/datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in world)
+/datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in player_list)
 	set category = "Admin"
 	set name = "Show Skills"
 
@@ -1069,7 +1069,7 @@ var/global/floorIsLava = 0
 		return 1
 	return 0
 
-/datum/admins/proc/togglesleep(var/mob/living/M as mob in world)
+/datum/admins/proc/togglesleep(var/mob/living/M as mob in mob_list)
 	set category = "Admin"
 	set name = "Toggle Sleeping"
 
@@ -1228,7 +1228,7 @@ var/global/floorIsLava = 0
 		for(var/turf/T in location.zone.contents)
 			for(var/obj/fire/F in T.contents)
 				cdel(F)
-		for(var/obj/fire/FF in world)
+		for(var/obj/fire/FF in object_list)
 			cdel(FF)
 	log_admin("Admin [key_name_admin(usr)] used Fix Air at [get_area(usr)]", 1)
 	message_admins("Admin [key_name_admin(usr)] used Fix Air at [get_area(usr)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>)", 1)

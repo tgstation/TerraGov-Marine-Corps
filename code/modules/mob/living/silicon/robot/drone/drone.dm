@@ -156,7 +156,7 @@
 
 			user.visible_message("\red \the [user] swipes \his ID card through \the [src], attempting to reboot it.", "\red You swipe your ID card through \the [src], attempting to reboot it.")
 			var/drones = 0
-			for(var/mob/living/silicon/robot/drone/D in world)
+			for(var/mob/living/silicon/robot/drone/D in player_list)
 				if(D.key && D.client)
 					drones++
 			if(drones < config.max_maint_drones)

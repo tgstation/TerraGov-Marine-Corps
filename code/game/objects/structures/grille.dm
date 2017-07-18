@@ -18,6 +18,9 @@
 	health = 50
 
 /obj/structure/grille/fence/New()
+
+	..()
+
 	if(width > 1)
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size

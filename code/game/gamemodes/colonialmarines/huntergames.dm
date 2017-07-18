@@ -123,7 +123,7 @@ var/waiting_for_drop_votes = 0
 	good_spawns = list()
 	supply_votes = list()
 
-	for(var/obj/effect/landmark/L in world)
+	for(var/obj/effect/landmark/L in landmarks_list)
 		switch(L.name)
 			if("hunter_primary")
 				primary_spawns += L.loc
@@ -147,8 +147,8 @@ var/waiting_for_drop_votes = 0
 			if("xeno tunnel")
 				cdel(L)
 
-	for(var/obj/item/weapon/gun/G in world) cdel(G) //No guns or ammo allowed.
-	for(var/obj/item/ammo_magazine/M in world) cdel(M)
+	for(var/obj/item/weapon/gun/G in item_list) cdel(G) //No guns or ammo allowed.
+	for(var/obj/item/ammo_magazine/M in item_list) cdel(M)
 
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready)
@@ -282,7 +282,7 @@ var/waiting_for_drop_votes = 0
 		if(!drops_disabled)
 			world << "<span class='round_body'>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</span>"
 			world << "<span class='round_body'>One lucky contestant should prepare for a supply drop in 60 seconds.</span>"
-			for(var/mob/dead/D in world)
+			for(var/mob/dead/D in dead_mob_list)
 				D << "<span class='round_body'>Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</span>"
 			world << sound('sound/effects/alert.ogg')
 			last_drop = world.time

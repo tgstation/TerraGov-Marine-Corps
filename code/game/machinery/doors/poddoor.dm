@@ -8,7 +8,7 @@
 	explosion_resistance = 25
 
 /obj/machinery/door/poddoor/New()
-	. = ..()
+	..()
 	if(density)
 		layer = 3.3		//to override door.New() proc
 	else

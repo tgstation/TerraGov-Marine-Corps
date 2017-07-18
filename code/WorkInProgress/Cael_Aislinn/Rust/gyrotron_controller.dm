@@ -32,7 +32,7 @@
 				return
 		var/t = "<B>Gyrotron Remote Control Console</B><BR>"
 		t += "<hr>"
-		for(var/obj/machinery/rust/gyrotron/gyro in world)
+		for(var/obj/machinery/rust/gyrotron/gyro in machines)
 			if(gyro.remoteenabled && gyro.on)
 				t += "<font color=green>Gyrotron operational</font><br>"
 				t += "Operational mode: <font color=blue>"

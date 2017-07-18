@@ -423,7 +423,7 @@ var/list/slot_equipment_priority = list( \
 	var/list/namecounts = list()
 	var/list/creatures = list()
 
-	for(var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
+	for(var/obj/O in object_list)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
 		if(!O.loc)
 			continue
 		if(istype(O, /obj/item/weapon/disk/nuclear))

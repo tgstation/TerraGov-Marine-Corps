@@ -42,6 +42,7 @@ FLOOR SAFES
 
 
 /obj/structure/safe/New()
+	..()
 	tumbler_1_pos = 0
 	tumbler_1_open = (rand(0,10) * 5)
 

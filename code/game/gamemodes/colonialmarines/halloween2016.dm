@@ -129,11 +129,11 @@
 
 	world << "<span class='round_setup'>Setting up the mist...</span>"
 	//Get all the fog effects in the world.
-	for(F in world) fog_blockers += F
+	for(F in effect_list) fog_blockers += F
 
 	world << "<span class='round_setup'>Generating spawn locations...</span>"
 	//Set up landmarks.
-	for(L in world)
+	for(L in landmarks_list)
 		switch(L.name)
 			if("marine start") marine_spawns += L.loc
 			if("pmc start") pmc_spawns += L.loc
@@ -988,7 +988,7 @@
 			//Going to create some spooky imagery here.
 			//sleep(300)
 		else
-			for(var/area/A in world)
+			for(var/area/A in all_areas)
 				if(A.z == 1 && A.requires_power)
 					for(var/obj/machinery/light/L in A)
 						if(prob(75)) L.flicker(10)

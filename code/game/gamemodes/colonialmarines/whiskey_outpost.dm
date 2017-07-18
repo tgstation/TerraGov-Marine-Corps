@@ -64,7 +64,7 @@
 /datum/game_mode/whiskey_outpost/pre_setup()
 	var/obj/effect/landmark/L
 
-	for(L in world)
+	for(L in landmarks_list)
 		switch(L.name)
 			if("whiskey_outpost_marine")
 				marine_spawns += L.loc

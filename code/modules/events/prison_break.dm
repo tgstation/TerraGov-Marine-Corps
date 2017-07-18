@@ -23,7 +23,7 @@
 
 
 /datum/event/prison_break/start()
-	for(var/area/A in world)
+	for(var/area/A in all_areas)
 		if(istype(A, /area/sulaco/brig))
 			prisonAreas += A
 

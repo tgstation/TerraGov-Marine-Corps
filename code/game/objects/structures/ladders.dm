@@ -13,12 +13,13 @@
 	var/obj/machinery/camera/cam
 
 /obj/structure/ladder/New()
+	..()
 	spawn(8)
 		cam = new /obj/machinery/camera(src)
 		cam.network = list("LADDER")
 		cam.c_tag = name
 
-		for(var/obj/structure/ladder/L in world)
+		for(var/obj/structure/ladder/L in structure_list)
 			if(L.id == id)
 				if(L.height == (height - 1))
 					down = L

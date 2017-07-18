@@ -50,7 +50,7 @@
 
 /obj/machinery/drone_fabricator/proc/count_drones()
 	var/drones = 0
-	for(var/mob/living/silicon/robot/drone/D in world)
+	for(var/mob/living/silicon/robot/drone/D in player_list)
 		if(D.key && D.client)
 			drones++
 	return drones
@@ -124,7 +124,7 @@
 		usr << "You must wait 10 minutes to respawn as a drone!"
 		return
 
-	for(var/obj/machinery/drone_fabricator/DF in world)
+	for(var/obj/machinery/drone_fabricator/DF in machines)
 		if(DF.stat & NOPOWER || !DF.produce_drones)
 			continue
 

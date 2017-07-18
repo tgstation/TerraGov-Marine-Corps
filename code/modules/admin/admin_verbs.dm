@@ -584,7 +584,7 @@ var/list/admin_verbs_mentor = list(
 	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
 	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the disease [D].", 1)
 
-/client/proc/make_sound(var/obj/O in world) // -- TLE
+/client/proc/make_sound(var/obj/O in object_list) // -- TLE
 	set category = "Special Verbs"
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
@@ -686,7 +686,7 @@ var/list/admin_verbs_mentor = list(
 //	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/editappear(mob/living/carbon/human/M as mob in world)
+/client/proc/editappear(mob/living/carbon/human/M as mob in mob_list)
 	set name = "Edit Appearance"
 	set category = "Fun"
 

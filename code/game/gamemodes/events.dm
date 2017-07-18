@@ -56,7 +56,7 @@
 			world << sound('sound/AI/spanomalies.ogg')
 			var/list/turfs = new
 			var/turf/picked
-			for(var/turf/simulated/floor/T in world)
+			for(var/turf/simulated/floor/T in turfs)
 				if(T.z == 1)
 					turfs += T
 			for(var/turf/simulated/floor/T in turfs)
@@ -210,7 +210,7 @@
 /proc/high_radiation_event()
 
 /* // Haha, this is way too laggy. I'll keep the prison break though.
-	for(var/obj/machinery/light/L in world)
+	for(var/obj/machinery/light/L in machines)
 		if(L.z != 1) continue
 		L.flicker(50)
 
@@ -443,21 +443,21 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 
 	spawn(0)
 		world << "Started processing APCs"
-		for (var/obj/machinery/power/apc/APC in world)
+		for (var/obj/machinery/power/apc/APC in machines)
 			if(APC.z == 1)
 				APC.ion_act()
 				apcnum++
 		world << "Finished processing APCs. Processed: [apcnum]"
 	spawn(0)
 		world << "Started processing SMES"
-		for (var/obj/machinery/power/smes/SMES in world)
+		for (var/obj/machinery/power/smes/SMES in machines)
 			if(SMES.z == 1)
 				SMES.ion_act()
 				smesnum++
 		world << "Finished processing SMES. Processed: [smesnum]"
 	spawn(0)
 		world << "Started processing AIRLOCKS"
-		for (var/obj/machinery/door/airlock/D in world)
+		for (var/obj/machinery/door/airlock/D in machines)
 			if(D.z == 1)
 				//if(length(D.req_access) > 0 && !(12 in D.req_access)) //not counting general access and maintenance airlocks
 				airlocknum++
@@ -466,7 +466,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 		world << "Finished processing AIRLOCKS. Processed: [airlocknum]"
 	spawn(0)
 		world << "Started processing FIREDOORS"
-		for (var/obj/machinery/door/firedoor/D in world)
+		for (var/obj/machinery/door/firedoor/D in machines)
 			if(D.z == 1)
 				firedoornum++;
 				spawn(0)

@@ -46,9 +46,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				class = input("Proc owned by...","Owner",null) as null|anything in list("Obj","Mob","Area or Turf","Client")
 				switch(class)
 					if("Obj")
-						target = input("Enter target:","Target",usr) as obj in world
+						target = input("Enter target:","Target",usr) as obj in object_list
 					if("Mob")
-						target = input("Enter target:","Target",usr) as mob in world
+						target = input("Enter target:","Target",usr) as mob in mob_list
 					if("Area or Turf")
 						target = input("Enter target:","Target",usr.loc) as area|turf in world
 					if("Client")
@@ -95,7 +95,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 					lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
 
 				if("mob reference")
-					lst[i] = input("Select reference:","Reference",usr) as mob in world
+					lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
 
 				if("file")
 					lst[i] = input("Pick file:","File") as file
@@ -105,12 +105,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 				if("client")
 					var/list/keys = list()
-					for(var/mob/M in world)
+					for(var/mob/M in player_list)
 						keys += M.client
 					lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
 
 				if("mob's area")
-					var/mob/temp = input("Select mob", "Selection", usr) as mob in world
+					var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
 					lst[i] = temp.loc
 
 		if(targetselected)
@@ -202,97 +202,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into an alien.", 1)
 	else
 		alert("Invalid mob")
-
-/*
-/client/proc/cmd_admin_monkeyize(var/mob/M in world)
-	set category = "Fun"
-	set name = "Make Monkey"
-
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/target = M
-		log_admin("[key_name(src)] is attempting to monkeyize [M.key].")
-		spawn(10)
-			target.monkeyize()
-	else
-		alert("Invalid mob")
-
-/client/proc/cmd_admin_changelinginize(var/mob/M in world)
-	set category = "Fun"
-	set name = "Make Changeling"
-
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
-	if(istype(M, /mob/living/carbon/human))
-		log_admin("[key_name(src)] has made [M.key] a changeling.")
-		spawn(10)
-			M.absorbed_dna[M.real_name] = M.dna.Clone()
-			M.make_changeling()
-			if(M.mind)
-				M.mind.special_role = "Changeling"
-	else
-		alert("Invalid mob")
-*/
-/*
-/client/proc/cmd_admin_abominize(var/mob/M in world)
-	set category = null
-	set name = "Make Abomination"
-
-	usr << "Ruby Mode disabled. Command aborted."
-	return
-	if(!ticker)
-		alert("Wait until the game starts.")
-		return
-	if(istype(M, /mob/living/carbon/human))
-		log_admin("[key_name(src)] has made [M.key] an abomination.")
-
-	//	spawn(10)
-	//		M.make_abomination()
-
-*/
-/*
-/client/proc/make_cultist(var/mob/M in world) // -- TLE, modified by Urist
-	set category = "Fun"
-	set name = "Make Cultist"
-	set desc = "Makes target a cultist"
-	if(!cultwords["travel"])
-		runerandom()
-	if(M)
-		if(M.mind in ticker.mode.cult)
-			return
-		else
-			if(alert("Spawn that person a tome?",,"Yes","No")=="Yes")
-				M << "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie. A tome, a message from your new master, appears on the ground."
-				new /obj/item/weapon/book/tome(M.loc)
-			else
-				M << "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie."
-			var/glimpse=pick("1","2","3","4","5","6","7","8")
-			switch(glimpse)
-				if("1")
-					M << "\red You remembered one thing from the glimpse... [cultwords["travel"]] is travel..."
-				if("2")
-					M << "\red You remembered one thing from the glimpse... [cultwords["blood"]] is blood..."
-				if("3")
-					M << "\red You remembered one thing from the glimpse... [cultwords["join"]] is join..."
-				if("4")
-					M << "\red You remembered one thing from the glimpse... [cultwords["hell"]] is Hell..."
-				if("5")
-					M << "\red You remembered one thing from the glimpse... [cultwords["destroy"]] is destroy..."
-				if("6")
-					M << "\red You remembered one thing from the glimpse... [cultwords["technology"]] is technology..."
-				if("7")
-					M << "\red You remembered one thing from the glimpse... [cultwords["self"]] is self..."
-				if("8")
-					M << "\red You remembered one thing from the glimpse... [cultwords["see"]] is see..."
-
-			if(M.mind)
-				M.mind.special_role = "Cultist"
-				ticker.mode.cult += M.mind
-			src << "Made [M] a cultist."
-*/
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
@@ -410,41 +319,41 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/list/areas_with_intercom = list()
 	var/list/areas_with_camera = list()
 
-	for(var/area/A in world)
+	for(var/area/A in all_areas)
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 
-	for(var/obj/machinery/power/apc/APC in world)
+	for(var/obj/machinery/power/apc/APC in machines)
 		var/area/A = get_area(APC)
 		if(!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
 
-	for(var/obj/machinery/alarm/alarm in world)
+	for(var/obj/machinery/alarm/alarm in machines)
 		var/area/A = get_area(alarm)
 		if(!(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 
-	for(var/obj/machinery/requests_console/RC in world)
+	for(var/obj/machinery/requests_console/RC in machines)
 		var/area/A = get_area(RC)
 		if(!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 
-	for(var/obj/machinery/light/L in world)
+	for(var/obj/machinery/light/L in machines)
 		var/area/A = get_area(L)
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
-	for(var/obj/machinery/light_switch/LS in world)
+	for(var/obj/machinery/light_switch/LS in machines)
 		var/area/A = get_area(LS)
 		if(!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
 
-	for(var/obj/item/device/radio/intercom/I in world)
+	for(var/obj/item/device/radio/intercom/I in item_list)
 		var/area/A = get_area(I)
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
-	for(var/obj/machinery/camera/C in world)
+	for(var/obj/machinery/camera/C in machines)
 		var/area/A = get_area(C)
 		if(!(A.type in areas_with_camera))
 			areas_with_camera.Add(A.type)
@@ -1813,15 +1722,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Yes","No") != "Yes")
 		return
 
-	for(var/obj/machinery/power/emitter/E in world)
+	for(var/obj/machinery/power/emitter/E in machines)
 		if(E.anchored)
 			E.active = 1
 
-	for(var/obj/machinery/field_generator/F in world)
+	for(var/obj/machinery/field_generator/F in machines)
 		if(F.anchored)
 			F.Varedit_start = 1
 	spawn(30)
-		for(var/obj/machinery/the_singularitygen/G in world)
+		for(var/obj/machinery/the_singularitygen/G in machines)
 			if(G.anchored)
 				var/obj/machinery/singularity/S = new /obj/machinery/singularity(get_turf(G), 50)
 				spawn(0)
@@ -1839,7 +1748,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				//S.dissipate_track = 0
 				//S.dissipate_strength = 10
 
-	for(var/obj/machinery/power/rad_collector/Rad in world)
+	for(var/obj/machinery/power/rad_collector/Rad in machines)
 		if(Rad.anchored)
 			if(!Rad.P)
 				var/obj/item/weapon/tank/phoron/Phoron = new/obj/item/weapon/tank/phoron(Rad)
@@ -1851,7 +1760,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(!Rad.active)
 				Rad.toggle_power()
 
-	for(var/obj/machinery/power/smes/SMES in world)
+	for(var/obj/machinery/power/smes/SMES in machines)
 		if(SMES.anchored)
 			SMES.chargemode = 1
 
@@ -1870,7 +1779,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/found_the_pump = 0
 	var/obj/machinery/power/supermatter/SM
 
-	for(var/obj/machinery/M in world)
+	for(var/obj/machinery/M in machines)
 		if(!M)
 			continue
 		if(!M.loc)

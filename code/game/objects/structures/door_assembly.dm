@@ -15,6 +15,9 @@ obj/structure/door_assembly
 	var/created_name = null
 
 	New()
+
+		..()
+
 		update_state()
 
 	door_assembly_com
@@ -115,6 +118,7 @@ obj/structure/door_assembly
 		glass = -1 //To prevent bugs in deconstruction process.
 
 		New()
+			..()
 			if(dir in list(EAST, WEST))
 				bound_width = width * world.icon_size
 				bound_height = world.icon_size

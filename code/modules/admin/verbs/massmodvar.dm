@@ -139,12 +139,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
@@ -155,12 +155,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -179,12 +179,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 			else
@@ -194,12 +194,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -223,7 +223,7 @@
 								M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if ( istype(A , O.type) )
 							if(variable=="luminosity")
 								A.SetLuminosity(new_value)
@@ -231,7 +231,7 @@
 								A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if ( istype(A , O.type) )
 							if(variable=="luminosity")
 								A.SetLuminosity(new_value)
@@ -248,7 +248,7 @@
 								M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if (A.type == O.type)
 							if(variable=="luminosity")
 								A.SetLuminosity(new_value)
@@ -256,7 +256,7 @@
 								A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if (A.type == O.type)
 							if(variable=="luminosity")
 								A.SetLuminosity(new_value)
@@ -275,12 +275,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 			else
@@ -290,12 +290,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -311,12 +311,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O.type, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O.type, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 			else
@@ -326,12 +326,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O.type, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O.type, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -346,12 +346,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
@@ -362,12 +362,12 @@
 							M.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in object_list)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in world)
+					for(var/turf/A in turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 

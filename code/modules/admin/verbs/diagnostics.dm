@@ -10,7 +10,7 @@
 	var/inactive_groups = air_master.zones.len - active_groups
 
 	var/hotspots = 0
-	for(var/obj/fire/hotspot in world)
+	for(var/obj/fire/hotspot in object_list)
 		hotspots++
 
 	var/active_on_main_station = 0
@@ -48,7 +48,7 @@
 	var/largest_click_time = 0
 	var/mob/largest_move_mob = null
 	var/mob/largest_click_mob = null
-	for(var/mob/M in world)
+	for(var/mob/M in mob_list)
 		if(!M.client)
 			continue
 		if(M.next_move >= largest_move_time)

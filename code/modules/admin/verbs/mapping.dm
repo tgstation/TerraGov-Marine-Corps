@@ -54,7 +54,7 @@ var/intercom_range_display_status = 0
 
 
 
-	for(var/obj/effect/debugging/camera_range/C in world)
+	for(var/obj/effect/debugging/camera_range/C in effect_list)
 		cdel(C)
 
 	if(camera_range_display_status)
@@ -109,11 +109,11 @@ var/intercom_range_display_status = 0
 	else
 		intercom_range_display_status = 1
 
-	for(var/obj/effect/debugging/marker/M in world)
+	for(var/obj/effect/debugging/marker/M in effect_list)
 		cdel(M)
 
 	if(intercom_range_display_status)
-		for(var/obj/item/device/radio/intercom/I in world)
+		for(var/obj/item/device/radio/intercom/I in item_list)
 			for(var/turf/T in orange(7,I))
 				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)
 				if (!(F in view(7,I.loc)))
