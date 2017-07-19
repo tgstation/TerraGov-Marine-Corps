@@ -98,7 +98,7 @@
 				O.show_message(message, m_type)
 
 	emotedown = 1
-	spawn(100)
+	spawn(50)
 		emotedown = 0
 
 
