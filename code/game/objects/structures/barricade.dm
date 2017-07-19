@@ -294,7 +294,7 @@
 /obj/structure/barricade/wooden
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
-	icon_state = "wooden"
+	icon_state = "wooden_0"
 	flags_atom = ON_BORDER
 	health = 100
 	maxhealth = 100
@@ -308,6 +308,7 @@
 	can_change_dmg_state = 0
 	barricade_type = "wooden"
 	can_wire = 0
+	can_change_dmg_state = 0
 
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/stack/sheet/wood))
