@@ -165,6 +165,10 @@ var/global/hive_orders = "" //What orders should the hive have
 		M.Scale(adjust_size_x, adjust_size_y)
 		transform = M
 
+	if(hud_used && hud_used.healths)
+		hud_used.healths.icon_state = "health_full"
+	if(hud_used && hud_used.alien_plasma_display)
+		hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
 		generate_name()

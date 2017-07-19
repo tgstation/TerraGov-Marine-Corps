@@ -126,7 +126,7 @@
 
 		if(current_aura && !stat && storedplasma > 5)
 			var/pheromone_range = round(6 + aura_strength * 2)
-			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Quee
+			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
 				if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
 					Z.frenzy_new = aura_strength
 				if(current_aura == "warding" && aura_strength > Z.warding_new)
@@ -165,48 +165,92 @@
 		if(stat != DEAD)
 			switch(round(health * 100 / maxHealth)) //Maxhealth should never be zero or this will generate runtimes.
 				if(100 to INFINITY)
-					hud_used.healths.icon_state = "health0"
-				if(76 to 99)
-					hud_used.healths.icon_state = "health1"
-				if(51 to 75)
-					hud_used.healths.icon_state = "health2"
-				if(26 to 50)
-					hud_used.healths.icon_state = "health3"
-				if(0 to 25)
-					hud_used.healths.icon_state = "health4"
+					hud_used.healths.icon_state = "health_full"
+				if(94 to 99)
+					hud_used.healths.icon_state = "health_16"
+				if(88 to 93)
+					hud_used.healths.icon_state = "health_15"
+				if(82 to 87)
+					hud_used.healths.icon_state = "health_14"
+				if(76 to 81)
+					hud_used.healths.icon_state = "health_13"
+				if(70 to 75)
+					hud_used.healths.icon_state = "health_12"
+				if(64 to 69)
+					hud_used.healths.icon_state = "health_11"
+				if(58 to 63)
+					hud_used.healths.icon_state = "health_10"
+				if(52 to 57)
+					hud_used.healths.icon_state = "health_9"
+				if(46 to 51)
+					hud_used.healths.icon_state = "health_8"
+				if(40 to 45)
+					hud_used.healths.icon_state = "health_7"
+				if(34 to 39)
+					hud_used.healths.icon_state = "health_6"
+				if(28 to 33)
+					hud_used.healths.icon_state = "health_5"
+				if(22 to 27)
+					hud_used.healths.icon_state = "health_4"
+				if(16 to 21)
+					hud_used.healths.icon_state = "health_3"
+				if(10 to 15)
+					hud_used.healths.icon_state = "health_2"
+				if(4 to 9)
+					hud_used.healths.icon_state = "health_1"
+				if(0 to 3)
+					hud_used.healths.icon_state = "health_0"
 				else
-					hud_used.healths.icon_state = "health5"
+					hud_used.healths.icon_state = "health_critical"
 		else
-			hud_used.healths.icon_state = "health6"
+			hud_used.healths.icon_state = "health_dead"
 
 	if(hud_used && hud_used.alien_plasma_display)
 		if(stat != DEAD)
 			if(maxplasma) //No divide by zeros please
 				switch(round(storedplasma * 100 / maxplasma))
 					if(100 to INFINITY)
-						hud_used.alien_plasma_display.icon_state = "power_display2_9"
-					if(71 to 99)
-						hud_used.alien_plasma_display.icon_state = "power_display2_8"
-					if(61 to 70)
-						hud_used.alien_plasma_display.icon_state = "power_display2_7"
-					if(51 to 60)
-						hud_used.alien_plasma_display.icon_state = "power_display2_6"
-					if(41 to 50)
-						hud_used.alien_plasma_display.icon_state = "power_display2_5"
-					if(31 to 40)
-						hud_used.alien_plasma_display.icon_state = "power_display2_4"
-					if(21 to 30)
-						hud_used.alien_plasma_display.icon_state = "power_display2_3"
-					if(11 to 20)
-						hud_used.alien_plasma_display.icon_state = "power_display2_2"
-					if(1 to 10)
-						hud_used.alien_plasma_display.icon_state = "power_display2_1"
+						hud_used.alien_plasma_display.icon_state = "power_display_full"
+					if(94 to 99)
+						hud_used.alien_plasma_display.icon_state = "power_display_16"
+					if(88 to 93)
+						hud_used.alien_plasma_display.icon_state = "power_display_15"
+					if(82 to 87)
+						hud_used.alien_plasma_display.icon_state = "power_display_14"
+					if(76 to 81)
+						hud_used.alien_plasma_display.icon_state = "power_display_13"
+					if(70 to 75)
+						hud_used.alien_plasma_display.icon_state = "power_display_12"
+					if(64 to 69)
+						hud_used.alien_plasma_display.icon_state = "power_display_11"
+					if(58 to 63)
+						hud_used.alien_plasma_display.icon_state = "power_display_10"
+					if(52 to 57)
+						hud_used.alien_plasma_display.icon_state = "power_display_9"
+					if(46 to 51)
+						hud_used.alien_plasma_display.icon_state = "power_display_8"
+					if(40 to 45)
+						hud_used.alien_plasma_display.icon_state = "power_display_7"
+					if(34 to 39)
+						hud_used.alien_plasma_display.icon_state = "power_display_6"
+					if(28 to 33)
+						hud_used.alien_plasma_display.icon_state = "power_display_5"
+					if(22 to 27)
+						hud_used.alien_plasma_display.icon_state = "power_display_4"
+					if(16 to 21)
+						hud_used.alien_plasma_display.icon_state = "power_display_3"
+					if(10 to 15)
+						hud_used.alien_plasma_display.icon_state = "power_display_2"
+					if(4 to 9)
+						hud_used.alien_plasma_display.icon_state = "power_display_1"
+					if(0 to 3)
+						hud_used.alien_plasma_display.icon_state = "power_display_0"
 					else
-						hud_used.alien_plasma_display.icon_state = "power_display2_0"
+						hud_used.alien_plasma_display.icon_state = "power_display_empty"
 			else
-				hud_used.alien_plasma_display.icon_state = "power_display2_0"
+				hud_used.alien_plasma_display.icon_state = "power_display_empty"
 		else
-			hud_used.alien_plasma_display.icon_state = "power_display2_0"
+			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
 	if(client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
@@ -391,7 +435,12 @@ updatehealth()
 	if(is_zoomed)
 		zoom_out()
 
-	if(!gibbed) update_icons()
+	if(!gibbed)
+		if(hud_used && hud_used.healths)
+			hud_used.healths.icon_state = "health_dead"
+		if(hud_used && hud_used.alien_plasma_display)
+			hud_used.alien_plasma_display.icon_state = "power_display_empty"
+		update_icons()
 
 	switch(caste)
 		if("Queen")
@@ -416,7 +465,6 @@ updatehealth()
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A
 		A.loc = loc
-
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null

@@ -93,7 +93,7 @@
 		if(!hardcore)
 			if(storedplasma >= 500)
 				if(living_xeno_queen)
-					src << "<span class='warning'>There is already a queen.</span>"
+					src << "<span class='warning'>There already is a living Queen.</span>"
 					return
 			else
 				src << "<span class='warning'>You require more plasma! Currently at: [storedplasma] / 500.</span>"
