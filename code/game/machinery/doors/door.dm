@@ -120,46 +120,51 @@
 		else				flick("door_deny", src)
 	return
 
-/obj/machinery/door/attack_ai(mob/user as mob)
+/obj/machinery/door/attack_ai(mob/user)
 	return src.attack_hand(user)
 
 
-/obj/machinery/door/attack_paw(mob/user as mob)
+/obj/machinery/door/attack_paw(mob/user)
 	return src.attack_hand(user)
 
 
-/obj/machinery/door/attack_hand(mob/user as mob)
-	return src.attackby(user, user)
+/obj/machinery/door/attack_hand(mob/user)
+	return try_to_activate_door(user)
 
-/obj/machinery/door/attack_tk(mob/user as mob)
+/obj/machinery/door/attack_tk(mob/user)
 	if(requiresID() && !allowed(null))
 		return
 	..()
 
-/obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/device/detective_scanner))
+/obj/machinery/door/proc/try_to_activate_door(mob/user)
+	add_fingerprint(user)
+	if(operating || emagged)
 		return
-	if(src.operating || isrobot(user))	return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
-	src.add_fingerprint(user)
 	if(!Adjacent(user))
-		user = null
-	if(!src.requiresID())
-		user = null
-	if(src.density && ((operable() && istype(I, /obj/item/weapon/card/emag)) || istype(I, /obj/item/weapon/melee/energy/blade)))
-		flick("door_spark", src)
-		sleep(6)
-		open()
-		operating = -1
-		return 1
-	if(src.allowed(user))
-		if(src.density)
+		user = null //so allowed(user) always succeeds
+	if(!requiresID())
+		user = null //so allowed(user) always succeeds
+	if(allowed(user))
+		if(density)
 			open()
 		else
 			close()
 		return
-	if(src.density)
+	if(density)
 		flick("door_deny", src)
-	return
+
+
+/obj/machinery/door/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/card/emag))
+		if(!operating && density && operable())
+			flick("door_spark", src)
+			sleep(6)
+			open()
+			operating = -1
+		return 1
+	else if(!(I.flags_atom & NOBLUDGEON))
+		try_to_activate_door(user)
+		return 1
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )

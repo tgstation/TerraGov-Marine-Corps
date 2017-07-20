@@ -105,7 +105,7 @@
 	matter = list("metal" = 80)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("pinched", "nipped")
-	sharp = 1
+	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
 
 /obj/item/weapon/wirecutters/New()
@@ -262,6 +262,7 @@
 			damtype = "fire"
 			icon_state = "welder1"
 			w_class = 4
+			heat_source = 3800
 			processing_objects.Add(src)
 		else
 			usr << "<span class='warning'>Need more fuel!</span>"
@@ -277,6 +278,7 @@
 		icon_state = "welder"
 		welding = 0
 		w_class = initial(w_class)
+		heat_source = 0
 		if(ismob(loc))
 			var/mob/M = loc
 			if(M.r_hand == src)
@@ -378,6 +380,7 @@
 	matter = list("metal" = 50)
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
+	pry_capable = IS_PRY_CAPABLE_CROWBAR
 
 /obj/item/weapon/crowbar/red
 	icon = 'icons/obj/items.dmi'

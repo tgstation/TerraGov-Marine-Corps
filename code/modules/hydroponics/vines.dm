@@ -33,34 +33,26 @@
 	. = ..()
 
 /obj/effect/plantsegment/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (!W || !user || !W.type) return
-	switch(W.type)
-		if(/obj/item/weapon/circular_saw) cdel(src)
-		if(/obj/item/weapon/kitchen/utensil/knife) cdel(src)
-		if(/obj/item/weapon/scalpel) cdel(src)
-		if(/obj/item/weapon/twohanded/fireaxe) cdel(src)
-		if(/obj/item/weapon/hatchet) cdel(src)
-		if(/obj/item/weapon/melee/energy) cdel(src)
-		if(/obj/item/weapon/pickaxe/plasmacutter) cdel(src)
-		if(/obj/item/weapon/combat_knife) cdel(src)
+	if(istype(W, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/WT = W
+		if(WT.remove_fuel(0, user))
+			cdel(src)
+	else if(W.heat_source >= 3500)
+		cdel(src)
+	else if(W.sharp)
+		switch(W.sharp)
+			if(IS_SHARP_ITEM_BIG)
+				cdel(src)
+			if(IS_SHARP_ITEM_ACCURATE)
+				if(prob(60))
+					cdel(src)
+			if(IS_SHARP_ITEM_SIMPLE)
+				if(prob(25))
+					cdel(src)
+	else
+		manual_unbuckle(user)
+		return
 
-		// Less effective weapons
-		if(/obj/item/weapon/wirecutters)
-			if(prob(25)) cdel(src)
-		if(/obj/item/weapon/shard)
-			if(prob(25)) cdel(src)
-
-		// Weapons with subtypes
-		else
-			if(istype(W, /obj/item/weapon/melee/energy/sword)) cdel(src)
-			else if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
-				if(WT.remove_fuel(0, user)) cdel(src)
-			else
-				manual_unbuckle(user)
-				return
-		// Plant-b-gone damage is handled in its entry in chemistry-reagents.dm
-	..()
 
 
 /obj/effect/plantsegment/attack_hand(mob/user as mob)

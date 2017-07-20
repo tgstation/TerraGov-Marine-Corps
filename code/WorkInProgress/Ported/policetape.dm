@@ -3,7 +3,7 @@
 	name = "tape roll"
 	icon = 'icons/obj/policetape.dmi'
 	icon_state = "rollstart"
-	flags_atom = FPRINT
+	flags_atom = FPRINT|NOBLUDGEON
 	w_class = 2.0
 	var/turf/start
 	var/turf/end

@@ -364,17 +364,6 @@
 	if(W.abstract || isrobot(user))
 		return
 
-	if(istype(W, /obj/item/weapon/melee/energy/blade))
-		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
-		spark_system.set_up(5, 0, src.loc)
-		spark_system.start()
-		playsound(src.loc, 'sound/weapons/blade1.ogg', 25, 1)
-		playsound(src.loc, "sparks", 25, 1)
-		user.visible_message("<span class='danger'>[user] slices [src] apart!",
-		"<span class='danger'>You slice [src] apart!")
-		destroy()
-		return
-
 	if(istype(W, /obj/item/weapon/wristblades))
 		if(rand(0, 2) == 0)
 			playsound(src.loc, 'sound/weapons/wristblades_hit.ogg', 25, 1)

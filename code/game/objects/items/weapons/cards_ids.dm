@@ -67,6 +67,7 @@
 	name = "cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"
+	flags_atom = FPRINT|NOBLUDGEON
 	origin_tech = "magnets=2;syndicate=2"
 	var/uses = 10
 	// List of devices that cost a use to emag.
