@@ -1361,63 +1361,28 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
-proc/is_hot(obj/item/W as obj)
-	switch(W.type)
-		if(/obj/item/weapon/weldingtool)
-			var/obj/item/weapon/weldingtool/WT = W
-			if(WT.isOn())
-				return 3800
-			else
-				return 0
-		if(/obj/item/weapon/flame/lighter)
-			if(W:lit)
-				return 1500
-			else
-				return 0
-		if(/obj/item/weapon/flame/match)
-			if(W:lit)
-				return 1000
-			else
-				return 0
-		if(/obj/item/clothing/mask/cigarette)
-			if(W:lit)
-				return 1000
-			else
-				return 0
-		if(/obj/item/weapon/pickaxe/plasmacutter)
-			return 3800
-		if(/obj/item/weapon/melee/energy)
-			return 3500
-		else
-			return 0
-
-	return 0
+proc/is_hot(obj/item/I)
+	return I.heat_source
 
 //Whether or not the given item counts as sharp in terms of dealing damage
-/proc/is_sharp(obj/O as obj)
-	if (!O) return 0
-	if (O.sharp) return 1
-	if (O.edge) return 1
+/proc/is_sharp(obj/item/I)
+	if (!istype(I)) return 0
+	if (I.sharp) return 1
+	if (I.edge) return 1
 	return 0
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
-	if (!O) return 0
-	if (O.edge) return 1
+/proc/has_edge(obj/item/I)
+	if (!istype(I)) return 0
+	if (I.edge) return 1
 	return 0
 
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
-/proc/can_puncture(obj/item/W as obj)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
-	if(!W) return 0
-	if(W.sharp) return 1
-	return ( \
-		W.sharp													  || \
-		istype(W, /obj/item/weapon/screwdriver)                   || \
-		istype(W, /obj/item/weapon/pen)                           || \
-		istype(W, /obj/item/weapon/weldingtool)					  || \
-		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \
-		istype(W, /obj/item/weapon/flame/match)            		  || \
-		istype(W, /obj/item/clothing/mask/cigarette) 		      || \
+/proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
+	if(!istype(W)) return 0
+	return (W.sharp || W.heat_source >= 400 	|| \
+		istype(W, /obj/item/weapon/screwdriver)	 || \
+		istype(W, /obj/item/weapon/pen) 		 || \
 		istype(W, /obj/item/weapon/shovel) \
 	)
 

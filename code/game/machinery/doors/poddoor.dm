@@ -21,11 +21,11 @@
 	else
 		return 0
 
-/obj/machinery/door/poddoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/poddoor/attackby(obj/item/weapon/W, mob/user)
 	src.add_fingerprint(user)
-	if( !istype(C, /obj/item/weapon/crowbar) && !( istype(C, /obj/item/weapon/twohanded/fireaxe) && (C.flags_atom & WIELDED) ) )
+	if(!W.pry_capable)
 		return
-	if ((src.density && (stat & NOPOWER) && !( src.operating )))
+	if(density && (stat & NOPOWER) && !operating)
 		spawn( 0 )
 			src.operating = 1
 			flick("pdoorc0", src)
@@ -34,7 +34,9 @@
 			sleep(15)
 			src.density = 0
 			src.operating = 0
-			return
+
+
+/obj/machinery/door/poddoor/try_to_activate_door(mob/user)
 	return
 
 /obj/machinery/door/poddoor/open()

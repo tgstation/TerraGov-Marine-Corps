@@ -95,7 +95,7 @@
 	icon_state = "knife"
 	force = 10.0
 	throwforce = 10.0
-	sharp = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 
 	suicide_act(mob/user)
@@ -136,7 +136,7 @@
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags_atom = FPRINT|CONDUCT
-	sharp = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	force = 10.0
 	w_class = 3.0
@@ -176,7 +176,7 @@
 	matter = list("metal" = 12000)
 	origin_tech = "materials=1"
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharp = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 
 /obj/item/weapon/butch/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

@@ -349,15 +349,16 @@
 	if(!istype(user.loc, /turf)) return	//Can't do this stuff whilst inside objects and such
 
 	if(rotting)
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
-			if(WT.remove_fuel(0, user))
-				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
-				playsound(src, 'sound/items/Welder.ogg', 25, 1)
-				for(var/obj/effect/E in src) if(E.name == "Wallrot")
-					cdel(E)
-				rotting = 0
-				return
+		if(W.heat_source >= 3000)
+			if(istype(W, /obj/item/weapon/weldingtool))
+				var/obj/item/weapon/weldingtool/WT = W
+				WT.remove_fuel(0,user)
+			user << "<span class='notice'>You burn away the fungi with \the [W].</span>"
+			playsound(src, 'sound/items/Welder.ogg', 25, 1)
+			for(var/obj/effect/E in src) if(E.name == "Wallrot")
+				cdel(E)
+			rotting = 0
+			return
 		else if((!is_sharp(W) && W.force >= 10 || W.force >= 20) && !hull)
 			user << "<span class='notice'>\The [src] crumbles away under the force of your [W.name].</span>"
 			dismantle_wall(1)
@@ -365,14 +366,15 @@
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(W.heat_source >= 1000)
 			if(hull)
 				user << "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>."
-				return
-			if(WT.remove_fuel(0, user))
+			else
+				if(istype(W, /obj/item/weapon/weldingtool))
+					var/obj/item/weapon/weldingtool/WT = W
+					WT.remove_fuel(0,user)
 				thermitemelt(user)
-				return
+			return
 
 	if(istype(W,/obj/item/apc_frame))
 		var/obj/item/apc_frame/AH = W
