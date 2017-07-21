@@ -4,6 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
+	can_crawl = 1
 
 	var/list/hud_list[TOTAL_HUD_AMOUNT]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -1289,15 +1290,14 @@
 			return 1
 	return 0
 
-/mob/living/carbon/human
-	slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-		if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
-			return FALSE
-		. = ..()
+/mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+	if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
+		return FALSE
+	. = ..()
 
-	has_legs()
-		. = 0
-		if(has_organ("r_foot") && has_organ("r_leg"))
-			.++
-		if(has_organ("l_foot") && has_organ("l_leg"))
-			.++
+/mob/living/carbon/human/has_legs()
+	. = 0
+	if(has_organ("r_foot") && has_organ("r_leg"))
+		.++
+	if(has_organ("l_foot") && has_organ("l_leg"))
+		.++
