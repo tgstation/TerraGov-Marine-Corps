@@ -141,6 +141,8 @@
 
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
 
+	var/can_crawl = 0 //Can mobs move around when lying down as long as they are not knocked out or stunned ?
+
 //Generic list for proc holders. Only way I can see to enable certain verbs/procs. Should be modified if needed.
 	var/proc_holder_list[] = list()//Right now unused.
 	//Also unlike the spell list, this would only store the object in contents, not an object in itself.

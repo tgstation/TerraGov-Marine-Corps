@@ -773,7 +773,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	if(!canmove)						return 0
 	if(client.moving)					return 0
 	if(world.time < client.move_delay)	return 0
-	if(stat==2)							return 0
+	if(stat == DEAD)							return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
 	if(is_mob_restrained())					return 0
@@ -782,7 +782,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	var/laid_down = (is_mob_incapacitated(TRUE) || !has_legs() || resting || sleeping || (status_flags & FAKEDEATH))
+	var/laid_down = (is_mob_incapacitated(TRUE) || has_legs() != 2 || resting || sleeping || knocked_down || (status_flags & FAKEDEATH))
 	if(laid_down)
 		lying = 1
 	else
@@ -793,7 +793,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		else
 			lying = 0
 
-	canmove =  !(stunned || frozen || laid_down)
+	canmove =  !(stunned || knocked_out || frozen || sleeping || (status_flags & FAKEDEATH) || stat == DEAD || (lying && !can_crawl)) //Add is_mob_incapacitated(TRUE) to prevent crit crawling
 
 	if(lying)
 		density = 0

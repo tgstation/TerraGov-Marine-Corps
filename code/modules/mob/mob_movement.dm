@@ -197,13 +197,16 @@
 
 		move_delay = world.time//set move delay
 		mob.last_move_intent = world.time + 10
-		switch(mob.m_intent)
-			if("run")
-				if(mob.drowsyness > 0)
-					move_delay += 6
-				move_delay += 2.5+config.run_speed
-			if("walk")
-				move_delay += 7+config.walk_speed
+		if(!mob.lying)
+			switch(mob.m_intent)
+				if("run")
+					if(mob.drowsyness > 0)
+						move_delay += 6
+					move_delay += 2.5+config.run_speed
+				if("walk")
+					move_delay += 7+config.walk_speed
+		else
+			move_delay += 14 //Crawling is super slow, and that doesn't even account limb loss or damage
 		move_delay += mob.movement_delay()
 
 		//We are now going to move
