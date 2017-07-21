@@ -374,25 +374,25 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donut
 	name = "donut"
-	desc = "Goes great with Robust Coffee."
+	desc = "A donut pastry, which is a common snack on Earth. Goes great with coffee."
 	icon_state = "donut1"
 	filling_color = "#D9C386"
 	var/overlay_state = "box-donut1"
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/normal
 	name = "donut"
-	desc = "Goes great with Robust Coffee."
+	desc = "A chocolate donut. Rare on the frontier, so take care of it."
 	icon_state = "donut1"
 	New()
 		..()
 		reagents.add_reagent("nutriment", 3)
-		reagents.add_reagent("sprinkles", 1)
+		reagents.add_reagent("coco", 1)
 		src.bitesize = 3
 		if(prob(30))
 			src.icon_state = "donut2"
 			src.overlay_state = "box-donut2"
-			src.name = "frosted donut"
-			reagents.add_reagent("sprinkles", 2)
+			src.name = "chocolate donut"
+			reagents.add_reagent("coco", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/chaos
 	name = "Chaos Donut"

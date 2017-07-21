@@ -417,6 +417,15 @@
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This version is snubnosed, engraved with gold, tinted black, and highly customized for a high-ranking admiral. It uses heavy .454 rounds."
 	icon_state = "amateba"
 	item_state = "amateba"
+
+/obj/item/weapon/gun/revolver/mateba/cmateba
+	name = "\improper Mateba autorevolver special"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the USCM, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
+	icon_state = "cmateba"
+	item_state = "cmateba"
+	New()
+		..()
+		select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 

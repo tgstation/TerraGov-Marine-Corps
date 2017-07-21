@@ -3,8 +3,8 @@
 /obj/item/clothing/shoes/marine
 	name = "marine combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
-	icon_state = "jackboots"
-	item_state = "jackboots"
+	icon_state = "marine"
+	item_state = "marine"
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
@@ -37,7 +37,7 @@
 
 	update_icon()
 		if(knife && !armor_stage)
-			icon_state = "jackboots-1"
+			icon_state = "marine-1"
 		else
 			if(!armor_stage)
 				icon_state = initial(icon_state)
