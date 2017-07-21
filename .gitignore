@@ -6,8 +6,8 @@ Thumbs.db
 *.dmb
 *.lk
 *.backup
-*.json
 data/
+cfg/
 tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
-code/controllers/ProcessScheduler/
+*.json
