@@ -392,6 +392,107 @@
 		sleep(10)
 		if(F && F.loc) F.prime()
 
+/obj/item/weapon/gun/launcher/m81
+	name = "\improper M81 grenade launcher"
+	desc = "A lightweight, single-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
+	icon_state = "m81"
+	item_state = "m81"
+	origin_tech = "combat=5;materials=5"
+	matter = list("metal" = 80000)
+	w_class = 4.0
+	throw_speed = 2
+	throw_range = 10
+	force = 5.0
+	wield_delay = WIELD_DELAY_VERY_FAST
+	fire_sound = 'sound/weapons/armbomb.ogg'
+	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
+	var/grenade
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+
+	flags_atom = FPRINT|CONDUCT
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
+
+	New()
+		set waitfor = 0
+		..()
+		fire_delay = config.max_fire_delay * 1.5
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+		sleep(1)
+		grenade = new /obj/item/weapon/grenade/explosive(src)
+
+	examine(mob/user)
+		..()
+		if(grenade)
+			if (get_dist(user, src) > 2 && user != loc) return
+			user << "\blue It is loaded with a grenade."
+
+	attackby(obj/item/I, mob/user)
+		if((istype(I, /obj/item/weapon/grenade)))
+			if(!grenade)
+				if(user.drop_inv_item_to_loc(I, src))
+					grenade = I
+					user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
+			else
+				user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
+
+		else if(istype(I,/obj/item/attachable))
+			if(check_inactive_hand(user)) attach_to_gun(user,I)
+
+	afterattack(atom/target, mob/user, flag)
+		if(able_to_fire(user))
+			if(get_dist(target,user) <= 2)
+				user << "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>"
+				return
+			if(grenade)
+				fire_grenade(target,user)
+				playsound(user.loc, cocked_sound, 25, 1)
+			else user << "<span class='warning'>The grenade launcher is empty.</span>"
+
+	//Doesn't use most of any of these. Listed for reference.
+	load_into_chamber()
+		return
+
+	reload_into_chamber()
+		return
+
+	unload(mob/user)
+		if(grenade)
+			var/obj/item/weapon/grenade/nade = grenade
+			if(user)
+				user.put_in_hands(nade)
+				playsound(user, unload_sound, 25, 1)
+			else nade.loc = get_turf(src)
+			grenade = null
+		else user << "<span class='warning'>It's empty!</span>"
+
+	able_to_fire(mob/living/carbon/human/user as mob)
+		if (..()) //Let's check all that other stuff first.
+			if (istype(user))
+				var/obj/item/weapon/card/id/card = user.wear_id
+				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
+				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist")) return 1//We can check for access, but only Specialists have access to it.
+				else user << "<span class='warning'>[src] is ID locked!</span>"
+
+/obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
+	set waitfor = 0
+	for(var/mob/O in viewers(world.view, user))
+		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
+	user << "<span class='warning'>You fire the grenade launcher!</span>"
+	var/obj/item/weapon/grenade/F = grenade
+	grenade = null
+	F.loc = user.loc
+	F.throw_range = 20
+	F.throw_at(target, 20, 2, user)
+	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
+		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from \a ([name]).")
+		log_game("[key_name_admin(user)] used a grenade ([name]).")
+		F.icon_state = initial(F.icon_state) + "_active"
+		F.active = 1
+		F.updateicon()
+		playsound(F.loc, fire_sound, 50, 1)
+		sleep(10)
+		if(F && F.loc) F.prime()
+
 //-------------------------------------------------------
 //SADAR
 
