@@ -98,12 +98,14 @@
 			return ask_verb
 	return speech_verb
 
+/*
 /datum/language/human
 	name = "Sol Common"
 	desc = "A bastardized hybrid of informal English and elements of Mandarin Chinese; the common language of the Sol system."
 	colour = "rough"
 	key = "1"
 	flags = RESTRICTED
+*/
 
 // Galactic common languages (systemwide accepted standards).
 /datum/language/trader
