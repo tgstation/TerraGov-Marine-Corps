@@ -183,7 +183,7 @@ var/global/datum/controller/gameticker/ticker
 
 	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE
 
-	//for(var/obj/multiz/ladder/L in world) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
+	//for(var/obj/multiz/ladder/L in object_list) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
 	if(config.sql_enabled)
 		spawn(3000)
@@ -374,7 +374,7 @@ var/global/datum/controller/gameticker/ticker
 
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
-	//Look into all mobs in world, dead or alive
+	//Look into all mobs in the world, dead or alive
 	for(var/datum/mind/Mind in minds)
 		var/temprole = Mind.special_role
 		if(temprole)							//if they are an antagonist of some sort.

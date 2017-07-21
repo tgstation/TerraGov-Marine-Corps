@@ -68,6 +68,11 @@
 	*/
 	var/list/sprite_sheets_obj = null
 
+/obj/item/New()
+
+	..()
+	item_list += src
+
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 

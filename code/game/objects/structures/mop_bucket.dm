@@ -11,6 +11,7 @@
 
 
 /obj/structure/mopbucket/New()
+	..()
 	create_reagents(100)
 
 

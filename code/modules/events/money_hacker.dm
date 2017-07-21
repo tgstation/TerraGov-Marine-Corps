@@ -22,7 +22,7 @@
 	var/sending = message + "<font color='blue'><b>Message dispatched by [my_department].</b></font>"
 
 	var/pass = 0
-	for(var/obj/machinery/message_server/MS in world)
+	for(var/obj/machinery/message_server/MS in machines)
 		if(!MS.active) continue
 		// /obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
 		MS.send_rc_message("Engineering/Security/Bridge", my_department, message, "", "", 2)
@@ -83,7 +83,7 @@
 	var/sending = message + "<font color='blue'><b>Message dispatched by [my_department].</b></font>"
 
 	var/pass = 0
-	for(var/obj/machinery/message_server/MS in world)
+	for(var/obj/machinery/message_server/MS in machines)
 		if(!MS.active) continue
 		// /obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
 		MS.send_rc_message("Engineering/Security/Bridge", my_department, message, "", "", 2)

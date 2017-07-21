@@ -255,7 +255,7 @@
 	if(mode==43 || mode==433)
 		var/pMonData[0]
 		var/apcData[0]
-		for(var/obj/machinery/power/monitor/pMon in world)
+		for(var/obj/machinery/power/monitor/pMon in machines)
 			if(!(pMon.stat & (NOPOWER|BROKEN)) )
 				var/turf/monitorturf = locate(pMon.x,pMon.y,pMon.z)
 				var/area/monitorarea = monitorturf.loc
@@ -452,7 +452,7 @@
 		else
 			JaniData["user_loc"] = list("x" = 0, "y" = 0)
 		var/MopData[0]
-		for(var/obj/item/weapon/mop/M in world)
+		for(var/obj/item/weapon/mop/M in item_list)
 			var/turf/ml = get_turf(M)
 			if(ml)
 				if(ml.z != cl.z)
@@ -465,7 +465,7 @@
 
 
 		var/BucketData[0]
-		for(var/obj/structure/mopbucket/B in world)
+		for(var/obj/structure/mopbucket/B in structure_list)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
@@ -477,7 +477,7 @@
 			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 
 		var/CbotData[0]
-		for(var/obj/machinery/bot/cleanbot/B in world)
+		for(var/obj/machinery/bot/cleanbot/B in machines)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
@@ -489,7 +489,7 @@
 		if(!CbotData.len)
 			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 		var/CartData[0]
-		for(var/obj/structure/janitorialcart/B in world)
+		for(var/obj/structure/janitorialcart/B in structure_list)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)

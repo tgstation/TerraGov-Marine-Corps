@@ -168,9 +168,9 @@
 						if("mob-reference")
 							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in mob_list
 						if("obj-reference")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in world
+							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in object_list
 						if("turf-reference")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in world
+							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in turfs
     	return 1
 
 /proc/build_click(var/mob/user, buildmode, params, var/obj/object)

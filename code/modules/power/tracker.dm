@@ -46,7 +46,7 @@
 		return
 
 	// find all solar controls and update them
-	// currently, just update all controllers in world
+	// currently, just update all controllers in the world
 	// ***TODO: better communication system using network
 	if(powernet)
 		for(var/obj/machinery/power/solar_control/C in get_solars_powernet())

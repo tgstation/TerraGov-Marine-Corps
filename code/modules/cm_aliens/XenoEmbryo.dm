@@ -11,6 +11,7 @@
 	var/larva_autoburst_countdown = 20 //to kick the larva out
 
 /obj/item/alien_embryo/New()
+	..()
 	if(istype(loc, /mob/living))
 		affected_mob = loc
 		affected_mob.status_flags |= XENO_HOST

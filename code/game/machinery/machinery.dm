@@ -115,10 +115,12 @@ Class Procs:
 
 	New()
 		..()
-		if(!(stat & MACHINE_DO_NOT_PROCESS))
-			machines += src
-			machinery_sort_required = 1
-		else stat &= ~MACHINE_DO_NOT_PROCESS
+		//if(!(stat & MACHINE_DO_NOT_PROCESS))
+			//machines += src
+			//machinery_sort_required = 1
+		//else stat &= ~MACHINE_DO_NOT_PROCESS
+		machines += src
+		machinery_sort_required = 1
 
 	Dispose()
 		machines -= src

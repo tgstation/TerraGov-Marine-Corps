@@ -25,6 +25,20 @@ var/global/list/ammo_list = list()					//List of all ammo types. Used by guns to
 var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
 var/global/list/structure_list = list()				//List of all /obj/structure as they are created, to fetch generic structures with a lot less lag
+var/global/list/active_areas = list()
+var/global/list/all_areas = list()
+var/global/list/machines = list()
+var/global/list/turfs = list()
+var/global/list/object_list = list()
+var/global/list/item_list = list()
+var/global/list/effect_list = list()
+var/global/list/attachment_vendors = list() //Used by our gamemode code
+var/global/list/marine_vendors = list() //Used by our gamemode code
+var/global/list/processing_objects = list()
+var/global/list/active_diseases = list()
+var/global/list/events = list()
+var/global/list/med_hud_users = list() //list of all entities using a medical HUD.
+var/global/list/sec_hud_users = list() //list of all entities using a security HUD.
 
 //used by binoculars for dropship bombardment
 var/list/global/active_laser_targets = list()

@@ -545,9 +545,10 @@
 	var/id = null //For mapping
 
 	New()
+		..()
 		spawn(5)
 			if(id && !other)
-				for(var/obj/structure/tunnel/T in world)
+				for(var/obj/structure/tunnel/T in structure_list)
 					if(T.id == id && T != src && T.other == null) //Found a matching tunnel
 						T.other = src
 						src.other = T //Link them!

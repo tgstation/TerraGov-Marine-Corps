@@ -22,7 +22,7 @@ proc/toggle_move_stars(zlevel, direction)
 
 	if (moving_levels["zlevel"] != gen_dir)
 		moving_levels["zlevel"] = gen_dir
-		for(var/turf/space/S in world)
+		for(var/turf/space/S in turfs)
 			if(S.z == zlevel)
 				spawn(0)
 					var/turf/T = S

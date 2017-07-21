@@ -153,7 +153,7 @@
 	files = new /datum/research(src) //Setup the research data holder.
 	/*
 	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in world)
+		for(var/obj/machinery/r_n_d/server/centcom/S in machines)
 			S.initialize()
 			break
 	*/

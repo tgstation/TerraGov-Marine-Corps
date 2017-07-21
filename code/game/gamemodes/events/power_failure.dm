@@ -2,7 +2,7 @@
 /proc/power_failure(var/announce = 1)
 	var/list/skipped_areas = list(/area/turret_protected/ai)
 
-	for(var/obj/machinery/power/smes/S in world)
+	for(var/obj/machinery/power/smes/S in machines)
 		var/area/current_area = get_area(S)
 		if(current_area.type in skipped_areas || S.z != 3) // Ship only
 			continue
@@ -15,7 +15,7 @@
 		S.updateicon()
 		S.power_change()
 
-	for(var/obj/machinery/power/apc/C in world)
+	for(var/obj/machinery/power/apc/C in machines)
 		if(C.cell && C.z == 3)
 			C.cell.charge = 0
 
@@ -26,7 +26,7 @@
 /proc/power_restore(var/announce = 1)
 	var/list/skipped_areas = list(/area/turret_protected/ai)
 
-	for(var/obj/machinery/power/smes/S in world)
+	for(var/obj/machinery/power/smes/S in machines)
 		var/area/current_area = get_area(S)
 		if(current_area.type in skipped_areas || S.z != 3)
 			continue
@@ -36,7 +36,7 @@
 		S.updateicon()
 		S.power_change()
 
-	for(var/obj/machinery/power/apc/C in world)
+	for(var/obj/machinery/power/apc/C in machines)
 		if(C.cell && C.z == 3)
 			C.cell.charge = C.cell.maxcharge
 
@@ -46,7 +46,7 @@
 
 /proc/power_restore_quick(var/announce = 1)
 
-	for(var/obj/machinery/power/smes/S in world)
+	for(var/obj/machinery/power/smes/S in machines)
 		if(S.z != 3) // Ship only
 			continue
 		S.charge = S.capacity

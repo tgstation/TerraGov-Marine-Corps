@@ -56,7 +56,7 @@ var/list/forbidden_varedit_object_types = list(
 			var_value = input("Select reference:","Reference") as null|mob|obj|turf|area in world
 
 		if("mob reference")
-			var_value = input("Select reference:","Reference") as null|mob in world
+			var_value = input("Select reference:","Reference") as null|mob in mob_list
 
 		if("file")
 			var_value = input("Pick file:","File") as null|file
@@ -105,7 +105,7 @@ var/list/forbidden_varedit_object_types = list(
 			var_value = input("Select reference:","Reference") as mob|obj|turf|area in world
 
 		if("mob reference")
-			var_value = input("Select reference:","Reference") as mob in world
+			var_value = input("Select reference:","Reference") as mob in mob_list
 
 		if("file")
 			var_value = input("Pick file:","File") as file
@@ -255,7 +255,7 @@ var/list/forbidden_varedit_object_types = list(
 			L[L.Find(variable)] = input("Select reference:","Reference") as mob|obj|turf|area in world
 
 		if("mob reference")
-			L[L.Find(variable)] = input("Select reference:","Reference") as mob in world
+			L[L.Find(variable)] = input("Select reference:","Reference") as mob in mob_list
 
 		if("file")
 			L[L.Find(variable)] = input("Pick file:","File") as file
@@ -485,7 +485,7 @@ var/list/forbidden_varedit_object_types = list(
 			O.vars[variable] = var_new
 
 		if("mob reference")
-			var/var_new = input("Select reference:","Reference",O.vars[variable]) as null|mob in world
+			var/var_new = input("Select reference:","Reference",O.vars[variable]) as null|mob in mob_list
 			if(var_new==null) return
 			O.vars[variable] = var_new
 

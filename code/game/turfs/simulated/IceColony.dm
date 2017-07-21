@@ -967,7 +967,7 @@ obj/item/alienjar
 						D.safe = 0
 
 /datum/file/program/door_control/proc/handle_pod()
-	for(var/obj/machinery/door/poddoor/M in world)
+	for(var/obj/machinery/door/poddoor/M in machines)
 		if(M.id == src.id)
 			if(M.density)
 				spawn(0)

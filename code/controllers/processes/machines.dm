@@ -20,7 +20,6 @@ datum/controller/process/machines/proc/process_machines_process()
 	for(var/obj/machinery/M in machines)
 		if(istype(M) && M.process() != PROCESS_KILL) //Doesn't actually have a process, just remove it.
 			continue
-		machines.Remove(M)
 
 datum/controller/process/machines/proc/process_machines_power()
 	// O(n^3) complexity. No wonder this is slower than shit. TODO: Get rid of one of these loops somehow. ~Bmc777

@@ -390,7 +390,7 @@
 
 /obj/machinery/crema_switch/attack_hand(mob/user as mob)
 	if(src.allowed(usr))
-		for (var/obj/structure/crematorium/C in world)
+		for (var/obj/structure/crematorium/C in structure_list)
 			if (C.id == id)
 				if (!C.cremating)
 					C.cremate(user)

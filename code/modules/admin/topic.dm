@@ -1244,7 +1244,7 @@
 
 	if (href_list["l_players"])
 		var/dat = "<B>Name/Real Name/Key/IP:</B><HR>"
-		for(var/mob/M in world)
+		for(var/mob/M in mob_list)
 			var/foo = ""
 			if (ismob(M) && M.client)
 				if(!M.client.authenticated && !M.client.authenticating)
@@ -1738,7 +1738,7 @@
 					usr << "Please wait until the game starts!  Not sure how it will work otherwise."
 					return
 				gravity_is_on = !gravity_is_on
-				for(var/area/A in world)
+				for(var/area/A in all_areas)
 					A.gravitychange(gravity_is_on,A)
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Grav")
@@ -1820,7 +1820,7 @@
 			if("whiteout")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","WO")
-				for(var/obj/machinery/light/L in world)
+				for(var/obj/machinery/light/L in machines)
 					L.fix()
 				message_admins("[key_name_admin(usr)] fixed all lights", 1)
 			if("ionstorm")
@@ -1957,10 +1957,10 @@
 
 				var/datum/shuttle/S = shuttle_controller.shuttles[shuttle_tag]
 
-				var/origin_area = input("Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
+				var/origin_area = input("Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in all_areas
 				if (!origin_area) return
 
-				var/destination_area = input("Which area do you want to move the shuttle to? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
+				var/destination_area = input("Which area do you want to move the shuttle to? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in all_areas
 				if (!destination_area) return
 
 				S.move(origin_area, destination_area)

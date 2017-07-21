@@ -60,7 +60,7 @@
 
 
 	proc/scan()
-		for(var/obj/item/clothing/under/C in world)
+		for(var/obj/item/clothing/under/C in item_list)
 			if((C.has_sensor) && (istype(C.loc, /mob/living/carbon/human)))
 				tracked |= C
 		return 1

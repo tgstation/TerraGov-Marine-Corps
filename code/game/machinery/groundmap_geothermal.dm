@@ -179,7 +179,7 @@
 
 /obj/machinery/colony_floodlight_switch/New() //Populate our list of floodlights so we don't need to scan for them ever again
 	sleep(5) //let's make sure it exists first..
-	for(var/obj/machinery/colony_floodlight/F in world)
+	for(var/obj/machinery/colony_floodlight/F in machines)
 		floodlist += F
 		F.fswitch = src
 	..()

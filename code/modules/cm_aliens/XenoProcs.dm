@@ -148,6 +148,7 @@
 	layer = 4.1
 
 	New() //Self-deletes after creation & animation
+		..()
 		spawn(8)
 			cdel(src)
 			return
@@ -162,6 +163,7 @@
 	layer = 5
 
 	New() //Self-deletes after creation & animation
+		..()
 		spawn(40)
 			cdel(src)
 			return
@@ -177,6 +179,7 @@
 	mouse_opacity = 0
 
 	New() //Self-deletes
+		..()
 		spawn(100 + rand(0, 20))
 			processing_objects.Remove(src)
 			cdel(src)

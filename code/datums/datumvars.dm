@@ -5,8 +5,6 @@ client
 	proc/debug_variables(datum/D in world)
 		set category = "Debug"
 		set name = "View Variables"
-		//set src in world
-
 
 		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_MOD))
 			usr << "\red You need to be a moderator or higher to access this."
@@ -594,7 +592,7 @@ client
 		switch(action_type)
 			if("Strict type")
 				var/i = 0
-				for(var/obj/Obj in world)
+				for(var/obj/Obj in object_list)
 					if(Obj.type == O_type)
 						i++
 						cdel(Obj)
@@ -605,7 +603,7 @@ client
 				message_admins("\blue [key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
 			if("Type and subtypes")
 				var/i = 0
-				for(var/obj/Obj in world)
+				for(var/obj/Obj in object_list)
 					if(istype(Obj,O_type))
 						i++
 						cdel(Obj)

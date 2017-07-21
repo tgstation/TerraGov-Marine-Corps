@@ -14,6 +14,11 @@
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
 
+/obj/New()
+
+	..()
+	object_list += src
+
 /obj/item/proc/is_used_on(obj/O, mob/user)
 
 /obj/proc/process()

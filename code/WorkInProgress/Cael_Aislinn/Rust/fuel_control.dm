@@ -38,7 +38,7 @@
 	stage_status["SCRAM"] = 0
 
 	spawn(0)
-		for(var/obj/machinery/power/rust_fuel_injector/Injector in world)
+		for(var/obj/machinery/power/rust_fuel_injector/Injector in machines)
 			if(Injector.stage in fuel_injectors)
 				var/list/targetlist = fuel_injectors[Injector.stage]
 				targetlist.Add(Injector)*/

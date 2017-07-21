@@ -8,6 +8,11 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /obj/effect
 
+/obj/effect/New()
+
+	..()
+
+	effect_list += src
 
 /obj/effect/particle_effect
 	name = "effect"
