@@ -76,7 +76,7 @@
 
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
-	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one is crested with an elephant-tusk ivory grip and has a slide carefully polished by a team of orphan children. Looks important."
+	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
@@ -84,6 +84,7 @@
 		..()
 		damage += config.low_hit_damage_mult
 		fire_delay = config.high_fire_delay
+		select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3/custom)
 
 //-------------------------------------------------------
 //M4A3 45 //Inspired by the 1911

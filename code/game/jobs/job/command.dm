@@ -28,9 +28,13 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/command,
 				WEAR_FEET = /obj/item/clothing/shoes/marinechief/commander,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/techofficer/commander,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/commander,
+				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/mateba/cmateba/full,
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/tan,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				)
+	generate_stored_equipment()
+		. = list(
+				WEAR_L_STORE = /obj/item/device/binoculars,
 				)
 
 
@@ -101,9 +105,13 @@ Make the USCM proud!"}
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/bridge,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/full,
+				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/commander,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap/ro,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				)
+	generate_stored_equipment()
+		. = list(
+				WEAR_L_STORE = /obj/item/device/binoculars,
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)

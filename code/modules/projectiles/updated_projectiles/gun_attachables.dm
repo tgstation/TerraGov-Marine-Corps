@@ -521,6 +521,13 @@ Defined in setup.dm.
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
 	slot = "stock"
 	icon_state = "stock"
+	New()
+		..()
+		select_gamemode_skin(type)
+
+/obj/item/attachable/stock/tactical
+	name = "\improper MK221 tactical stock"
+	icon_state = "tactical_stock"
 
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"

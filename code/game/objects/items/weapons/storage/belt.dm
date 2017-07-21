@@ -499,6 +499,9 @@
 		"/obj/item/ammo_magazine/revolver/marksman",
 		"/obj/item/ammo_magazine/revolver/heavy"
 		)
+	New()
+		..()
+		select_gamemode_skin(type)
 
 /obj/item/weapon/storage/belt/gun/m44/full/New()
 	..()
@@ -510,18 +513,26 @@
 
 /obj/item/weapon/storage/belt/gun/mateba
 	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
-	icon_state = "mateba_holster"
-	item_state = "mateba_holster"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. This one is aging poorly, and seems to be surplus equipment. This one is stamped '3rd 'Dust Raiders' Battalion'."
+	icon_state = "d_cmateba_holster"
+	item_state = "d_cmateba_holster"
 	max_w_class = 7
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/mateba",
 		"/obj/item/ammo_magazine/revolver/mateba"
 		)
+/obj/item/weapon/storage/belt/gun/mateba/cmateba
+	name = "\improper M276 pattern Mateba holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. Was included with the mail-in order for the USCM edition of the Mateba autorevolver in the early 2170s."
+	icon_state = "cmateba_holster"
+	item_state = "cmateba_holster"
+	New()
+		..()
+		select_gamemode_skin(type)
 
-/obj/item/weapon/storage/belt/gun/mateba/full/New()
+/obj/item/weapon/storage/belt/gun/mateba/cmateba/full/New()
 	..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/cmateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -529,6 +540,8 @@
 
 /obj/item/weapon/storage/belt/gun/mateba/admiral/New()
 	..()
+	icon_state = "amateba_holster"
+	item_state = "amateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
