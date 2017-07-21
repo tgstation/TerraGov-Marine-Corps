@@ -92,7 +92,7 @@
 			user << "<span class='warning'>[src] is ID locked!</span>"
 			return
 
-		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic"))
+		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Medical Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic"))
 			user << "<span class='warning'>[src] is ID locked!</span>"
 			return
 

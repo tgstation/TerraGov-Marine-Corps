@@ -86,7 +86,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	paygrade = "CD"
 	flag = ROLE_CIVILIAN_RESEARCHER
 	total_positions = 2
-	spawn_positions = 3
+	spawn_positions = 2
 	supervisors = "chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
