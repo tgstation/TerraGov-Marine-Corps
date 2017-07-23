@@ -427,26 +427,87 @@
 
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
-	if(ticker && ticker.mode.xenomorphs.len)
-		var/mob/living/carbon/Xenomorph/X
-		var/list[] = new
-		var/count = 0
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
-			X = L.current
-			var/area/A = get_area(X)
-			if(istype(X))
-				list += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : "<b>(<font color=green>[A ? A.name : null])</b>"]</td></tr>"
-				if(!(X.stat & DEAD)) count++
-			else
-				list += "<tr><td>[L.name] <b><font color=red>(DESTROYED)</font></b></td></tr>"
+	var/count = 0
+	var/queen_list = ""
+	//var/exotic_list = ""
+	//var/exotic_count = 0
+	var/boiler_list = ""
+	var/boiler_count = 0
+	var/crusher_list = ""
+	var/crusher_count = 0
+	var/praetorian_list = ""
+	var/praetorian_count = 0
+	var/ravager_list = ""
+	var/ravager_count = 0
+	var/carrier_list = ""
+	var/carrier_count = 0
+	var/hivelord_list = ""
+	var/hivelord_count = 0
+	var/hunter_list = ""
+	var/hunter_count = 0
+	var/spitter_list = ""
+	var/spitter_count = 0
+	var/drone_list = ""
+	var/drone_count = 0
+	var/runner_list = ""
+	var/runner_count = 0
+	var/sentinel_list = ""
+	var/sentinel_count = 0
+	var/larva_list = ""
+	var/larva_count = 0
+	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+		var/area/A = get_area(X)
+		if(isXenoQueen(X))
+			queen_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+		if(isXenoBoiler(X))
+			boiler_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			boiler_count++
+		if(isXenoCrusher(X))
+			crusher_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			crusher_count++
+		if(isXenoPraetorian(X))
+			praetorian_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			praetorian_count++
+		if(isXenoRavager(X))
+			ravager_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			ravager_count++
+		if(isXenoCarrier(X))
+			carrier_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			carrier_count++
+		if(isXenoHunter(X))
+			hunter_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			hunter_count++
+		if(isXenoSpitter(X))
+			spitter_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			spitter_count++
+		if(isXenoDrone(X))
+			drone_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			drone_count++
+		if(isXenoRunner(X))
+			runner_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			runner_count++
+		if(isXenoSentinel(X))
+			sentinel_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			sentinel_count++
+		if(isXenoLarva(X))
+			larva_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			larva_count++
+		//else
+			//exotic_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : "<b>(<font color=green>[A ? A.name : null])</b>"]</td></tr>"
+			//exotic_count++
+		if(!(X.stat & DEAD)) count++ //Dead players shouldn't be on this list, but who knows
 
-		dat += "Total Alive Sisters: [count]"
-		dat += "<table cellspacing=4>"
-		for(var/s in list)
-			dat += s
-
-		dat += "</table></body>"
-	usr << browse(dat, "window=roundstatus;size=400x300")
+	dat += "<b>Total Living Sisters: [count]</b><BR>"
+	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
+		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
+	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count]<BR>"
+	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
+	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count]<BR>"
+	dat += "<b>Larvas: [larva_count] Sisters<BR>"
+	dat += "<table cellspacing=4>"
+	dat += queen_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + larva_list
+	dat += "</table></body>"
+	usr << browse(dat, "window=roundstatus;size=500x500")
 
 /mob/living/carbon/Xenomorph/proc/tail_attack()
 	set name = "Ready Tail Attack (20)"
