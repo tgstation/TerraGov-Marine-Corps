@@ -84,6 +84,14 @@
 					dat += "<table border='1' style='width:100%' align='center'><tr>"
 					dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th><th>SL Distance</th></tr>"
 
+					var/leader_text = ""
+					var/spec_text = ""
+					var/medic_text = ""
+					var/engi_text = ""
+					var/smart_text = ""
+					var/marine_text = ""
+					var/misc_text = ""
+
 					for(var/mob/living/carbon/human/H in mob_list)
 						if(!H.mind) continue
 						var/datum/squad/H_squad = H.mind.assigned_squad //This should be set always for squaddies.
@@ -91,28 +99,36 @@
 						var/area/A = get_area(H)
 						var/mob_state = ""
 						var/role = ""
-						var/dist = 0
+						var/dist = ""
 
 						if(current_squad.squad_leader)
 							if(H.z == current_squad.squad_leader.z && H.z != 0)
-								dist = get_dist(H,current_squad.squad_leader)
-							else if (H == current_squad.squad_leader)
-								dist = -2
+								dist = "[get_dist(H, current_squad.squad_leader)]"
 							else
-								dist = -1
+								dist = "<b>???</b>"
 						if(H.mind)
 							if(H.mind.assigned_role) role = H.mind.assigned_role
 						if(H.stat == CONSCIOUS) mob_state = "Conscious"
 						if(H.stat == UNCONSCIOUS) mob_state = "<b>Unconscious</b>"
 						if(H.stat == DEAD) mob_state = "<font color='red'>DEAD</font>"
 
-						dat += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td>"
-						if(dist > -1 && H != current_squad.squad_leader)
-							dat += "<td>[dist]</td></tr>"
-						else if (dist == -1)
-							dat += "<td>???</td></tr>"
-						else if (dist == -2)
-							dat += "<td><font color='red'>Leader</font></td></tr>"
+						switch(role)
+							if("Squad Leader")
+								leader_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td><b>N/A</b></td></tr>"
+							if("Squad Specialist")
+								spec_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td></tr>"
+							if("Squad Medic")
+								medic_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td></tr>"
+							if("Squad Engineer")
+								engi_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td></tr>"
+							if("Squad Smartgunner")
+								smart_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td></tr>"
+							if("Squad Marine")
+								marine_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td></tr>"
+							else
+								misc_text += "<tr><td>[H.name]</td><td><i>[role]</i></td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td></tr>"
+
+					dat += leader_text + spec_text + medic_text + engi_text + smart_text + marine_text + misc_text
 					dat += "</table>"
 				dat += "<BR><BR>----------------------<br>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
