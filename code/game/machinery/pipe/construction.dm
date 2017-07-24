@@ -66,6 +66,8 @@ Buildable meters
 
 /obj/item/pipe/New(var/loc, var/pipe_type as num, var/dir as num, var/obj/machinery/atmospherics/make_from = null)
 	..()
+	if(pipe_type == null)
+		pipe_type = 0
 	if (make_from)
 		src.dir = make_from.dir
 		src.pipename = make_from.name
