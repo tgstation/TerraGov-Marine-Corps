@@ -421,6 +421,7 @@
 	id = "sacid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
 	reagent_state = LIQUID
+	spray_warning = TRUE
 	color = "#DB5008" // rgb: 219, 80, 8
 	toxpwr = 1
 	var/meltprob = 10

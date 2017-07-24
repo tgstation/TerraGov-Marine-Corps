@@ -633,7 +633,7 @@
 
 	if(do_after(M, tunnel_time, FALSE))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
-			M.loc = other.loc
+			M.forceMove(other.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
 			"<span class='xenonotice'>You pop out through the other side!</span>")
 		else

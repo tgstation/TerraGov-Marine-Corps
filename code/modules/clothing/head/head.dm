@@ -124,7 +124,7 @@
 	set category = "Object"
 	set src in usr
 	if(!isliving(usr)) return
-	if(usr.stat) return
+	if(usr.is_mob_incapacitated()) return
 
 	if(icon_state == item_color)
 		usr << "You spin the hat backwards! You look like a tool."
@@ -140,7 +140,7 @@
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
 	item_state = "rocap"
-	item_color = "rocap2"
+	item_color = "rocap"
 	New()
 		select_gamemode_skin(/obj/item/clothing/head/cmcap/ro)
 		..()
@@ -151,7 +151,7 @@
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 	item_state = "cargocap"
-	item_color = "cargocap2"
+	item_color = "cargocap"
 
 
 //============================//BERETS\\=================================\\
