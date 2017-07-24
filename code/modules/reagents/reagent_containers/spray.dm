@@ -14,6 +14,7 @@
 	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
+	var/safety = FALSE
 	volume = 250
 
 
@@ -21,7 +22,7 @@
 	..()
 	src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 
-/obj/item/weapon/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/weapon/reagent_containers/spray/afterattack(atom/A, mob/user, proximity)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
 	|| istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart || istype(A, /obj/structure/ladder)))
@@ -47,22 +48,21 @@
 		user << "<span class='notice'>\The [src] is empty!</span>"
 		return
 
+	if(safety)
+		user << "<span class = 'warning'>The safety is on!</span>"
+		return
+
 	Spray_at(A)
 
 	playsound(src.loc, 'sound/effects/spray2.ogg', 25, 1, 3)
 
-	if(reagents.has_reagent("sacid"))
-		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
-		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
-	if(reagents.has_reagent("pacid"))
-		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
-		log_game("[key_name(user)] fired Polyacid from \a [src].")
-	if(reagents.has_reagent("lube"))
-		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
-		log_game("[key_name(user)] fired Space lube from \a [src].")
-	return
+	for(var/X in reagents.reagent_list)
+		var/datum/reagent/R = X
+		if(R.spray_warning)
+			message_admins("[key_name_admin(user)] fired [R.name] from \a [src].")
+			log_game("[key_name(user)] fired [R.name] from \a [src].")
 
-/obj/item/weapon/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj)
+/obj/item/weapon/reagent_containers/spray/proc/Spray_at(atom/A)
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
 	reagents.trans_to(D, amount_per_transfer_from_this, 1/spray_size)
@@ -70,8 +70,9 @@
 
 	var/turf/A_turf = get_turf(A)//BS12
 
+	var/spray_dist = spray_size
 	spawn(0)
-		for(var/i=0, i<spray_size, i++)
+		for(var/i=0, i<spray_dist, i++)
 			step_towards(D,A)
 			D.reagents.reaction(get_turf(D))
 			for(var/atom/T in get_turf(D))
@@ -85,7 +86,6 @@
 			sleep(3)
 		cdel(D)
 
-	return
 
 /obj/item/weapon/reagent_containers/spray/attack_self(var/mob/user)
 	if(!possible_transfer_amounts)
@@ -134,7 +134,7 @@
 	item_state = "pepperspray"
 	possible_transfer_amounts = null
 	volume = 40
-	var/safety = 1
+	safety = TRUE
 
 
 /obj/item/weapon/reagent_containers/spray/pepper/New()
@@ -146,15 +146,9 @@
 	if(get_dist(user,src) <= 1)
 		user << "The safety is [safety ? "on" : "off"]."
 
-/obj/item/weapon/reagent_containers/spray/pepper/attack_self(var/mob/user)
+/obj/item/weapon/reagent_containers/spray/pepper/attack_self(mob/user)
 	safety = !safety
-	usr << "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>"
-
-/obj/item/weapon/reagent_containers/spray/pepper/Spray_at(atom/A as mob|obj)
-	if(safety)
-		usr << "<span class = 'warning'>The safety is on!</span>"
-		return
-	..()
+	user << "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>"
 
 //water flower
 /obj/item/weapon/reagent_containers/spray/waterflower
@@ -238,9 +232,6 @@
 	reagents.add_reagent("plantbgone", 100)
 
 
-/obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
-
-
-
 	..()

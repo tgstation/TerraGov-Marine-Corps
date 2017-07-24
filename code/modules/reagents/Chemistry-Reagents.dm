@@ -17,6 +17,7 @@
 	var/overdose_critical = 0 //The nastier brother of overdose. Expect to die
 	var/overdose_dam = 1//Handeled by heart damage
 	var/scannable = 0 //shows up on health analyzers
+	var/spray_warning = FALSE //whether spraying that reagent creates an admin message.
 	//var/list/viruses = list()
 	var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
 
