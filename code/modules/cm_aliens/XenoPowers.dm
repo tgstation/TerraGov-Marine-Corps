@@ -243,11 +243,20 @@
 
 	switch(choice)
 		if("resin door")
-			new /obj/structure/mineral_door/resin(current_turf)
+			if (caste == "Hivelord")
+				new /obj/structure/mineral_door/resin/thick(current_turf)
+			else
+				new /obj/structure/mineral_door/resin(current_turf)
 		if("resin wall")
-			new /obj/effect/alien/resin/wall(current_turf)
+			if (caste == "Hivelord")
+				new /obj/effect/alien/resin/wall/thick/(current_turf)
+			else
+				new /obj/effect/alien/resin/wall(current_turf)
 		if("resin membrane")
-			new /obj/effect/alien/resin/membrane(current_turf)
+			if (caste == "Hivelord")
+				new /obj/effect/alien/resin/membrane/thick/(current_turf)
+			else
+				new /obj/effect/alien/resin/membrane(current_turf)
 		if("resin nest")
 			new /obj/structure/stool/bed/nest(current_turf)
 		if("sticky resin")
