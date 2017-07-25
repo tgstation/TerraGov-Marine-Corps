@@ -76,7 +76,8 @@
 	drone_progress = 0
 
 
-
+/*
+/////DISABLING THIS FOR NOW
 /mob/dead/verb/join_as_drone()
 
 	set category = "Ghost"
@@ -135,3 +136,4 @@
 		if(DF.drone_progress >= 100)
 			DF.create_drone(src.client)
 			return
+*/

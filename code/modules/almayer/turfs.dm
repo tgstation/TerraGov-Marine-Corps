@@ -347,7 +347,7 @@
 	icon_state = "containment_wall_n"
 
 /turf/simulated/wall/almayer/research/containment/wall/connect_e2
-	name = "/improper Containment Cell window."
+	name = "\improper cell wall."
 	icon_state = "containment_wall_connect_e2"
 
 /turf/simulated/wall/almayer/research/containment/wall/connect_s1
