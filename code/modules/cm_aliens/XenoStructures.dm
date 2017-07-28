@@ -37,6 +37,11 @@
 		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
+/obj/effect/alien/resin/wall/thick
+	name = "thick resin wall"
+	desc = "Weird slime solidified into a thick wall."
+	health = 400
+
 /obj/effect/alien/resin/membrane
 	name = "resin membrane"
 	desc = "Weird slime just translucent enough to let light pass through."
@@ -48,6 +53,11 @@
 	New()
 		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
+
+/obj/effect/alien/resin/membrane/thick
+	name = "thick resin membrane"
+	desc = "A thick layer of weird slime just transulucent enough to let light pass through."
+	health = 240
 
 /obj/effect/alien/resin/sticky
 	name = "sticky resin"
@@ -135,6 +145,97 @@
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
+
+//Resin Doors
+/obj/structure/mineral_door/resin
+	name = "resin door"
+	mineralType = "resin"
+	icon = 'icons/Xeno/Effects.dmi'
+	hardness = 1.5
+	var/health = 80
+	var/close_delay = 100
+
+	New()
+		..()
+		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
+
+	attack_paw(mob/user as mob)
+		if(user.a_intent == "hurt")
+			user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
+			"<span class='xenowarning'>You claw at \the [src].</span>")
+			playsound(loc, 'sound/effects/attackblob.ogg', 25, 1, 9)
+			health -= rand(40, 60)
+			if(health <= 0)
+				user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
+				"<span class='xenodanger'>You slice \the [src] apart.</span>")
+			healthcheck()
+			return
+		else
+			return TryToSwitchState(user)
+
+	bullet_act(var/obj/item/projectile/Proj)
+		health -= Proj.damage
+		..()
+		healthcheck()
+		return 1
+
+	TryToSwitchState(atom/user)
+		if(isXeno(user))
+			return ..()
+
+	Open()
+		if(state || !loc) return //already open
+		isSwitchingStates = 1
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		flick("[mineralType]opening",src)
+		sleep(10)
+		density = 0
+		opacity = 0
+		state = 1
+		update_icon()
+		isSwitchingStates = 0
+
+		spawn(close_delay)
+			if(!isSwitchingStates && state == 1)
+				Close()
+
+	Close()
+		if(!state || !loc) return //already closed
+		//Can't close if someone is blocking it
+		for(var/turf/turf in locs)
+			if(locate(/mob/living) in turf)
+				spawn (close_delay)
+					Close()
+				return
+		isSwitchingStates = 1
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		flick("[mineralType]closing",src)
+		sleep(10)
+		density = 1
+		opacity = 1
+		state = 0
+		update_icon()
+		isSwitchingStates = 0
+		for(var/turf/turf in locs)
+			if(locate(/mob/living) in turf)
+				Open()
+				return
+
+	Dismantle(devastated = 0)
+		cdel(src)
+
+	CheckHardness()
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		..()
+
+/obj/structure/mineral_door/resin/proc/healthcheck()
+	if(src.health <= 0)
+		src.Dismantle(1)
+
+/obj/structure/mineral_door/resin/thick
+	name = "thick resin door"
+	health = 160
+	hardness = 2.0
 
 /*
  * Weeds
