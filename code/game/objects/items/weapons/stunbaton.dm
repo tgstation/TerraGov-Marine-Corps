@@ -17,6 +17,7 @@
 	var/status = 0		//whether the thing is on or not
 	var/obj/item/weapon/cell/bcell = null
 	var/hitcost = 1000	//oh god why do power cells carry so much charge? We probably need to make a distinction between "industrial" sized power cells for APCs and power cells for everything else.
+	var/has_user_lock = TRUE //whether the baton prevents people without correct access from using it.
 
 /obj/item/weapon/melee/baton/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
@@ -59,21 +60,26 @@
 		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
 /obj/item/weapon/melee/baton/attack_hand(mob/user)
-
-	var/mob/living/carbon/human/H = user
-	if(H && !istype(src, /obj/item/weapon/melee/baton/cattleprod))
-		var/obj/item/weapon/card/id/card = H.wear_id
-		if( ( !istype(card) ) || ( istype(card) && !src.check_access(card)) )
-			H.visible_message("\blue [src] beeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
-			spawn(2)
-				H.KnockDown(20)
-				H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
-				deductcharge(hitcost)
-			add_fingerprint(user)
-		else
-			..()
-	else
+	if(!has_user_lock || check_user_auth(user))
 		..()
+
+//checks if the mob touching the baton has proper access
+/obj/item/weapon/melee/baton/proc/check_user_auth(mob/user)
+	var/mob/living/carbon/human/H = user
+	if(istype(H))
+		var/obj/item/weapon/card/id/I = H.wear_id
+		if(!istype(I) || !check_access(I))
+			H.visible_message("\blue [src] beeeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
+			H.KnockDown(20)
+			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
+			deductcharge(hitcost)
+			add_fingerprint(user)
+			return FALSE
+	return TRUE
+
+/obj/item/weapon/melee/baton/pull_response(mob/puller)
+	if(has_user_lock)
+		check_user_auth(puller)
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
 
@@ -205,3 +211,4 @@
 	hitcost = 2500
 	attack_verb = list("poked")
 	flags_equip_slot = NOFLAGS
+	has_user_lock = FALSE

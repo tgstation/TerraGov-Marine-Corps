@@ -57,7 +57,8 @@
 	else	//wtf make your ladders properly assholes
 		icon_state = "ladder00"
 
-/obj/structure/ladder/attack_hand(mob/user as mob)
+/obj/structure/ladder/attack_hand(mob/user)
+	if(user.buckled) return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
 	if(up && down)

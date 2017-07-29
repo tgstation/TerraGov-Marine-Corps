@@ -587,10 +587,11 @@ var/list/slot_equipment_priority = list( \
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(M)
 		M.inertia_dir = 0
-		M.pull_response(src)
 
-//how a mob reacts to being pulled (only used by xenos so far)
-/mob/proc/pull_response(mob/puller)
+	AM.pull_response(src)
+
+//how a movable atom reacts to being pulled (only used by xenos so far)
+/atom/movable/proc/pull_response(mob/puller)
 	return
 
 /mob/proc/can_use_hands()
