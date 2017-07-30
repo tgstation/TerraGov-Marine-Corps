@@ -944,6 +944,7 @@
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	canremove = 0
 	attack_speed = 6
+	pry_capable = 2
 
 	New()
 		..()

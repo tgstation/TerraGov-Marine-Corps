@@ -112,10 +112,14 @@
 		del(src)
 
 /obj/resin_glob/proc/do_safe_splatter(turf/T)
-	for(var/atom/A in T.contents)
-		if(istype(A, /obj/effect/alien/resin/sticky))
+	if (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall))
+		return
+
+	for(var/obj/O in T.contents)
+		if(istype(O, /obj/effect/alien/resin/sticky))
 			return
-		if(A.density) //We can't grow if something dense is here
+
+		if(O.density) //We can't grow if something dense is here
 			return
 
 	new /obj/effect/alien/resin/sticky(T)
