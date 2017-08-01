@@ -13,12 +13,14 @@ Underrail attachments should just fit snugly, that's about it. Stocks are pretty
 All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
 ~N
 
-Defined in setup.dm.
+Defined in conflicts.dm of the #defines folder.
 #define ATTACH_PASSIVE		1
 #define ATTACH_REMOVABLE	2
 #define ATTACH_CONTINUOUS	4
 #define ATTACH_ACTIVATION	8
 #define ATTACH_PROJECTILE	16
+#define ATTACH_RELOADABLE	32
+#define ATTACH_WEAPON		64
 */
 
 /obj/item/attachable
@@ -83,6 +85,7 @@ Defined in setup.dm.
 	var/max_rounds 		= 0 //How much ammo it can store
 	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/type_of_casings = null
+	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 
 	var/flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE
 
@@ -96,6 +99,18 @@ Defined in setup.dm.
 		ammo = null
 		firing_support = null
 		firing_turf = null
+
+	attackby(obj/item/I, mob/user)
+		if(flags_attach_features & ATTACH_RELOADABLE)
+			if(user.get_inactive_hand() != src)
+				user << "<span class='warning'>You have to hold [src] to do that!</span>"
+			else
+				reload_attachment(I, user)
+			return TRUE
+		else
+			. = ..()
+
+
 
 /obj/item/attachable/proc/Attach(obj/item/weapon/gun/G)
 	if(!istype(G)) return //Guns only
@@ -201,6 +216,9 @@ Defined in setup.dm.
 	loc = get_turf(G)
 
 /obj/item/attachable/proc/activate_attachment(atom/target, mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
+	return
+
+/obj/item/attachable/proc/reload_attachment(obj/item/I, mob/user)
 	return
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
@@ -318,8 +336,10 @@ Defined in setup.dm.
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	melee_mod = 20 //35 for a rifle, comparable to 37 before. 40 with the stock, comparable to 42.
 	slot = "muzzle"
+	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_y = 18
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I, mob/user)
 		if(istype(I,/obj/item/weapon/screwdriver))
 			user << "<span class='notice'>You modify the bayonet back into a combat knife.</span>"
 			if(src.loc == user)
@@ -330,9 +350,7 @@ Defined in setup.dm.
 				F.loc = src.loc
 			cdel(src) //Delete da old bayonet
 		else
-			..()
-	pixel_shift_x = 14 //Bellow the muzzle.
-	pixel_shift_y = 18
+			. = ..()
 
 	New()
 		..()
@@ -405,7 +423,7 @@ Defined in setup.dm.
 			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 			cdel(src) //Delete da old flashlight
 		else
-			..()
+			. = ..()
 
 /obj/item/attachable/bipod
 	name = "bipod"
@@ -574,36 +592,53 @@ Defined in setup.dm.
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
 /obj/item/attachable/grenade
 	name = "underslung grenade launcher"
-	desc = "A weapon-mounted, two-shot grenade launcher. It cannot be reloaded."
+	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
 	icon_state = "grenade"
-	w_class = 4.0
-	current_rounds = 2
+	w_class = 4
+	current_rounds = 1
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+	New()
+		..()
+		attachment_firing_delay = config.max_fire_delay * 3
 
 	examine(mob/user)
 		..()
-		if(current_rounds > 0) 	user << "It's still got some punch left."
-		else 					user << "It looks spent."
+		if(current_rounds) 	user << "It has [current_rounds] grenade\s left."
+		else 				user << "It's empty."
 
 
-	//"Readying" the gun for the grenade launch is not needed. Just point & click
+
 	activate_attachment(atom/target,mob/living/user)
-		user << "<span class='notice'>Your next shot will fire an explosive grenade.</span>"
-		return 1
+		user << "<span class='notice'>You are now using [src].</span>"
+
+	reload_attachment(obj/item/weapon/grenade/explosive/E, mob/user)
+		if(!istype(E))
+			user << "<span class='warning'>[src] only accepts M40 HEDP grenades.</span>"
+			return
+		if(!E.active) //can't load live grenades
+			if(E.type != /obj/item/weapon/grenade/explosive) //we don't want the children
+				user << "<span class='warning'>[src] only accepts M40 HEDP grenades.</span>"
+				return
+			if(current_rounds >= max_rounds)
+				user << "<span class='warning'>[src] is full.</span>"
+			else
+				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+				current_rounds++
+				user << "<span class='notice'>You load [E] in [src].</span>"
+				user.temp_drop_inv_item(E)
+				cdel(E)
 
 	fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 		if(get_dist(user,target) > max_range)
 			user << "<span class='warning'>Too far to fire the attachment!</span>"
-			return 1
-
+			return
 		if(current_rounds > 0) prime_grenade(target,gun,user)
-		else user << "<span class='warning'>\icon[gun] The [src.name] is empty!</span>"
 
-		return 1
 
 /obj/item/attachable/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	set waitfor = 0
@@ -623,33 +658,48 @@ Defined in setup.dm.
 /obj/item/attachable/flamer
 	name = "mini flamethrower"
 	icon_state = "flamethrower"
-	desc = "A weapon-mounted flamethrower attachment.\nIt is designed for short bursts and must be discarded after it is empty."
-	w_class = 4.0
+	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
+	w_class = 4
 	current_rounds = 20
 	max_rounds = 20
-	max_range = 5
+	max_range = 4
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+	New()
+		..()
+		attachment_firing_delay = config.max_fire_delay * 5
 
 	examine(mob/user)
 		..()
-		if(current_rounds > 0) user << "It's still got some flame left."
-		else user << "It looks spent."
+		if(current_rounds > 0) user << "It has [current_rounds] unit\s of fuel left."
+		else user << "It's empty."
 
 	activate_attachment(atom/target,mob/living/carbon/user)
-		user << "<span class='notice'>Your next shot will unleash a burst of flame from [src].</span>"
-		return 1
+		user << "<span class='notice'>You are now using [src].</span>"
+
+	reload_attachment(obj/item/ammo_magazine/flamer_tank/FT, mob/user)
+		if(istype(FT))
+			if(current_rounds >= max_rounds)
+				user << "<span class='warning'>[src] is full.</span>"
+			else if(FT.current_rounds <= 0)
+				user << "<span class='warning'>[FT] is empty!</span>"
+			else
+				playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
+				user << "<span class='notice'>You refill [src] with [FT].</span>"
+				var/transfered_rounds = min(max_rounds - current_rounds, FT.current_rounds)
+				current_rounds += transfered_rounds
+				FT.current_rounds -= transfered_rounds
+		else
+			user << "<span class='warning'>[src] can only be refilled with an incinerator tank.</span>"
 
 	fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
 		if(get_dist(user,target) > max_range+3)
 			user << "<span class='warning'>Too far to fire the attachment!</span>"
-			return 1
-
+			return
 		if(current_rounds) unleash_flame(target, user)
-		else user << "<span class='warning'>\icon[gun] [src] is empty!</span>"
 
-		return 1
 
 /obj/item/attachable/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -710,25 +760,47 @@ Defined in setup.dm.
 /obj/item/attachable/shotgun
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
-	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. It cannot be reloaded."
-	w_class = 4.0
-	max_rounds = 5
-	current_rounds = 5
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with standard slugs."
+	w_class = 4
+	max_rounds = 3
+	current_rounds = 3
 	ammo = /datum/ammo/bullet/shotgun/slug
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	type_of_casings = "shell"
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_CONTINUOUS|ATTACH_PROJECTILE
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_CONTINUOUS|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+	New()
+		..()
+		attachment_firing_delay = config.mhigh_fire_delay*2
 
 	examine(mob/user)
 		..()
-		if(current_rounds > 0) 	user << "It's still got some shells left."
-		else 					user << "It looks spent."
+		if(current_rounds > 0) 	user << "It has [current_rounds] shell\s left."
+		else 					user << "It's empty."
 
 	//Because it's got an ammo_type, everything is taken care of when the gun shoots. It more or less just uses the attachment instead.
 	activate_attachment(atom/target,mob/living/carbon/user)
-		user << "<span class='notice'>You will now shoot shotgun shells from the [src.name].</span>"
-		return 1
+		user << "<span class='notice'>You are now using [src].</span>"
+
+	reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
+		if(istype(mag) && mag.flags_magazine & AMMUNITION_HANDFUL)
+			if(mag.default_ammo == /datum/ammo/bullet/shotgun/slug)
+				if(current_rounds >= max_rounds)
+					user << "<span class='warning'>[src] is full.</span>"
+				else
+					current_rounds++
+					mag.current_rounds--
+					mag.update_icon()
+					user << "<span class='notice'>You load one shotgun slug in [src].</span>"
+					playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+					if(mag.current_rounds <= 0)
+						user.temp_drop_inv_item(mag)
+						cdel(mag)
+				return
+		user << "<span class='warning'>[src] only accepts standard shotgun slugs.</span>"
+
+
 
 /obj/item/attachable/scope
 	name = "rail scope"

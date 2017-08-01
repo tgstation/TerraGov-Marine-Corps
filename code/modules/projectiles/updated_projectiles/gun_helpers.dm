@@ -226,11 +226,16 @@ should be alright.
 /obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
-	if(istype(I,/obj/item/ammo_magazine))
+	if(istype(I,/obj/item/attachable))
+		if(check_inactive_hand(user)) attach_to_gun(user,I)
+
+ 	//the active attachment is reloadable
+	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
+		active_attachable.reload_attachment(I, user)
+
+	else if(istype(I,/obj/item/ammo_magazine))
 		if(check_inactive_hand(user)) reload(user,I)
 
-	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) attach_to_gun(user,I)
 
 //----------------------------------------------------------
 				//						 \\

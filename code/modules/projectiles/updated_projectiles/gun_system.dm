@@ -136,8 +136,13 @@
 
 		if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
 		if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-		if(under) 	dat += "It has \icon[under] [under.name] mounted underneath.<br>"
 		if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+		if(under)
+			dat += "It has \icon[under] [under.name]"
+			if(under.flags_attach_features & ATTACH_WEAPON)
+				dat += " ([under.current_rounds]/[under.max_rounds])"
+			dat += " mounted underneath.<br>"
+
 
 		if(!istype(current_mag)) //Internal mags and the like have their own stuff set.
 			if(current_mag && current_mag.current_rounds > 0)
@@ -352,7 +357,8 @@ and you're good to go.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
 		else
-			user << "<span class='warning'>[active_attachable.name] is empty!</span>"
+			user << "<span class='warning'>[active_attachable] is empty!</span>"
+			user << "<span class='notice'>You disable [active_attachable].</span>"
 			active_attachable = null
 	else return ready_in_chamber()//We're not using the active attachable, we must use the active mag if there is one.
 
@@ -431,12 +437,16 @@ and you're good to go.
 	This is also a general check to see if the attachment can fire in the first place.
 	*/
 	var/check_for_attachment_fire = 0
-	if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) ) //Attachment activated and isn't a flashlight or something.
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_WEAPON) //Attachment activated and is a weapon.
 		check_for_attachment_fire = 1
 		if( !(active_attachable.flags_attach_features & ATTACH_PROJECTILE) ) //If it's unique projectile, this is where we fire it.
-			active_attachable.fire_attachment(target,src,user) //Fire it.
-			if(active_attachable.current_rounds <= 0) click_empty(user) //If it's empty, let them know.
-			active_attachable = null //Set it to null anyway, it's done.
+			if(active_attachable.current_rounds <= 0)
+				click_empty(user) //If it's empty, let them know.
+				user << "<span class='warning'>[active_attachable] is empty!</span>"
+				user << "<span class='notice'>You disable [active_attachable].</span>"
+				active_attachable = null //disable the attachment
+			else
+				active_attachable.fire_attachment(target,src,user) //Fire it.
 			return
 			//If there's more to the attachment, it will be processed farther down, through in_chamber and regular bullet act.
 
@@ -624,7 +634,11 @@ and you're good to go.
 
 		//Has to be on the bottom of the stack to prevent delay when failing to fire the weapon for the first time.
 		//Can also set last_fired through New(), but honestly there's not much point to it.
-		if(world.time >= last_fired + max(0, fire_delay) + extra_delay) //If not, check the last time it was fired.
+
+		var/added_delay = fire_delay
+		if(active_attachable && active_attachable.attachment_firing_delay)
+			added_delay = active_attachable.attachment_firing_delay
+		if(world.time >= last_fired + max(0, added_delay) + extra_delay) //check the last time it was fired.
 			extra_delay = 0
 			last_fired = world.time
 		else
@@ -641,31 +655,38 @@ and you're good to go.
 		playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
-/obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+/obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0)
 	var/actual_sound = fire_sound
-	var/sound_volume = flags_gun_features & GUN_SILENCED ? 25 : 60
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.
 	projectile_to_fire.shot_from = src
-
-	if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE))
-		if(active_attachable.fire_sound) actual_sound = active_attachable.fire_sound //If we're firing from an attachment, use that noise instead.
-		sound_volume = 50 //Since we're using an attachable, the silencer doesn't matter.
 
 	if(user) //The gun only messages when fired by a user.
 		projectile_to_fire.firer = user
 		if(isliving(user)) projectile_to_fire.def_zone = user.zone_selected
 		projectile_to_fire.dir = user.dir
-		playsound(user, actual_sound, sound_volume)
-		if(i == 1)
-			if(!(flags_gun_features & GUN_SILENCED))
-				user.visible_message(
-				"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-				"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
-				"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>"
-				)
-			else
-				user << "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>"
+
+		//firing from an attachment
+		if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
+			if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
+				playsound(user, active_attachable.fire_sound, 50)
+			user.visible_message(
+			"<span class='danger'>[user] fires [active_attachable][reflex ? " by reflex":""]!</span>", \
+			"<span class='warning'>You fire [active_attachable][reflex ? "by reflex":""]!</span>", \
+			"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>"
+			)
+		else
+			if(bullets_fired == 1)
+				if(!(flags_gun_features & GUN_SILENCED))
+					playsound(user, actual_sound, 60)
+					user.visible_message(
+					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
+					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
+					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>"
+					)
+				else
+					playsound(user, actual_sound, 25)
+					user << "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>"
 	return 1
 
 /obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0)

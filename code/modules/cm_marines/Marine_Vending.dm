@@ -108,7 +108,7 @@
 					/obj/item/weapon/gun/shotgun/combat = 0,
 					/obj/item/device/mine = 0,
 					/obj/item/weapon/grenade/explosive = 0,
-					/obj/item/weapon/grenade/explosive/m40 = 0,
+					/obj/item/weapon/grenade/explosive/m15 = 0,
 					/obj/item/weapon/grenade/incendiary = 0,
 					/obj/item/weapon/grenade/smokebomb = 0,
 					/obj/item/weapon/grenade/phosphorus = 0,
