@@ -779,7 +779,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(H), WEAR_EYES)
 
 						new /obj/item/weapon/grenade/explosive(W.hold)
-						new /obj/item/weapon/grenade/explosive/m40(W.hold)
+						new /obj/item/weapon/grenade/explosive/m15(W.hold)
 						new /obj/item/weapon/grenade/incendiary(W.hold)
 
 						H.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(H), WEAR_J_STORE)
@@ -1275,7 +1275,7 @@
 		/obj/item/weapon/storage/box/explosive_mines/pmc = 2,
 		/obj/item/weapon/grenade/explosive/PMC = 6,
 		/obj/item/weapon/grenade/incendiary = 4,
-		/obj/item/weapon/grenade/explosive/m40 = 4
+		/obj/item/weapon/grenade/explosive/m15 = 4
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)", "A crate full of high explosives. Not a good time to have a smoke.")
 
@@ -1441,7 +1441,7 @@
 		/obj/item/weapon/storage/box/explosive_mines = 3,
 		/obj/item/weapon/grenade/explosive = 4,
 		/obj/item/weapon/grenade/incendiary = 3,
-		/obj/item/weapon/grenade/explosive/m40 = 3
+		/obj/item/weapon/grenade/explosive/m15 = 3
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)", "A crate containing all sorts of explosives.")
 

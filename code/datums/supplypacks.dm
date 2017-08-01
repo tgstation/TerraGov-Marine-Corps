@@ -149,8 +149,8 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/incendiary,
 					/obj/item/weapon/grenade/incendiary,
-					/obj/item/weapon/grenade/explosive/m40,
-					/obj/item/weapon/grenade/explosive/m40
+					/obj/item/weapon/grenade/explosive/m15,
+					/obj/item/weapon/grenade/explosive/m15
 				)
 	cost = 50
 	containertype = /obj/structure/closet/crate/explosives

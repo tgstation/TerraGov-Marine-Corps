@@ -80,15 +80,23 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	var/list/starting_attachment_types = list(/obj/item/attachable/grenade)
 
 	New()
 		select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
 		..()
 		fire_delay = config.med_fire_delay
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-		var/obj/item/attachable/grenade/G = new(src)
-		G.Attach(src)
-		update_attachable(G.slot)
+
+		for(var/path in starting_attachment_types)
+			var/obj/item/attachable/A = new path(src)
+			A.Attach(src)
+			update_attachable(A.slot)
+
+//variant without ugl attachment
+/obj/item/weapon/gun/rifle/m41a/stripped
+	starting_attachment_types = null
+
 
 //-------------------------------------------------------
 //M41A MARKSMAN VARIANT
