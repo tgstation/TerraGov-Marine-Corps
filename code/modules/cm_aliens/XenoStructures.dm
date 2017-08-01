@@ -61,7 +61,7 @@
 
 /obj/effect/alien/resin/sticky
 	name = "sticky resin"
-	desc = "Some disgusting sticky slime. Gross!."
+	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
 	density = 0
 	opacity = 0
@@ -72,6 +72,17 @@
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			H.next_move_slowdown += 8
+
+// Praetorian Sticky Resin spit uses this.
+/obj/effect/alien/resin/sticky/thin
+	name = "thin sticky resin"
+	desc = "A thin layer of disgusting sticky slime."
+	health = 30
+
+	Crossed(atom/movable/AM)
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			H.next_move_slowdown += 4
 
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <= 0)

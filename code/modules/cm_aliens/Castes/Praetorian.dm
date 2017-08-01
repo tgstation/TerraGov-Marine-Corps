@@ -122,4 +122,4 @@
 		if(O.density) //We can't grow if something dense is here
 			return
 
-	new /obj/effect/alien/resin/sticky(T)
+	new /obj/effect/alien/resin/sticky/thin(T)
