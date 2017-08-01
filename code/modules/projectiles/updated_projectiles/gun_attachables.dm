@@ -760,11 +760,11 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/shotgun
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with standard slugs."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot."
 	w_class = 4
 	max_rounds = 3
 	current_rounds = 3
-	ammo = /datum/ammo/bullet/shotgun/slug
+	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	type_of_casings = "shell"
@@ -772,7 +772,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	New()
 		..()
-		attachment_firing_delay = config.mhigh_fire_delay*2
+		attachment_firing_delay = config.mhigh_fire_delay*3
 
 	examine(mob/user)
 		..()
@@ -785,20 +785,20 @@ Defined in conflicts.dm of the #defines folder.
 
 	reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
 		if(istype(mag) && mag.flags_magazine & AMMUNITION_HANDFUL)
-			if(mag.default_ammo == /datum/ammo/bullet/shotgun/slug)
+			if(mag.default_ammo == /datum/ammo/bullet/shotgun/buckshot)
 				if(current_rounds >= max_rounds)
 					user << "<span class='warning'>[src] is full.</span>"
 				else
 					current_rounds++
 					mag.current_rounds--
 					mag.update_icon()
-					user << "<span class='notice'>You load one shotgun slug in [src].</span>"
+					user << "<span class='notice'>You load one shotgun shell in [src].</span>"
 					playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 					if(mag.current_rounds <= 0)
 						user.temp_drop_inv_item(mag)
 						cdel(mag)
 				return
-		user << "<span class='warning'>[src] only accepts standard shotgun slugs.</span>"
+		user << "<span class='warning'>[src] only accepts shotgun buckshot.</span>"
 
 
 

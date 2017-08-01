@@ -430,6 +430,16 @@
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
 
+
+//buckshot variant only used by the masterkey shotgun attachment.
+/datum/ammo/bullet/shotgun/buckshot/masterkey
+	New()
+		..()
+		max_range = config.min_shell_range+1
+		damage = config.mhigh_hit_damage
+
+
+
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
