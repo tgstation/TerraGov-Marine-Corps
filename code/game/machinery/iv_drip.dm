@@ -39,16 +39,23 @@
 /obj/machinery/iv_drip/MouseDrop(over_object, src_location, over_location)
 	..()
 
-	if(attached)
-		visible_message("[src.attached] is detached from \the [src]")
-		src.attached = null
-		src.update_icon()
-		return
+	if(ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		if(H.stat || get_dist(H, src) > 1 || H.blinded || H.lying)
+			return
 
-	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
-		visible_message("[usr] attaches \the [src] to \the [over_object].")
-		src.attached = over_object
-		src.update_icon()
+		if(attached)
+			H.visible_message("[H] detaches \the [src] from \the [attached].", \
+			"You detach \the [src] from \the [attached].")
+			attached = null
+			update_icon()
+			return
+
+		if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
+			H.visible_message("[H] attaches \the [src] to \the [over_object].", \
+			"You attach \the [src] to \the [over_object].")
+			attached = over_object
+			update_icon()
 
 
 /obj/machinery/iv_drip/attackby(obj/item/weapon/W as obj, mob/user as mob)

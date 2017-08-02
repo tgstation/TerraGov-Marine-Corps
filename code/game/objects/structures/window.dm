@@ -218,7 +218,7 @@
 			var/obj/item/stack/sheet/glass/reinforced/G = new /obj/item/stack/sheet/glass/reinforced(loc)
 			G.amount = 2
 			var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
-			new_window_frame.icon_state = "[icon_state]_frame"
+			new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 			new_window_frame.dir = dir
 			cdel(src)
 	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1 && !not_deconstructable)

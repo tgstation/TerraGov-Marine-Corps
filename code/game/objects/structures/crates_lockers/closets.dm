@@ -205,26 +205,28 @@
 	return
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if(istype(O, /obj/screen))	//fix for HUD elements making their way into the world	-Pete
+	if(istype(O, /obj/screen)) //Fix for HUD elements making their way into the world	-Pete
 		return
 	if(O.loc == user)
 		return
 	if(user.is_mob_incapacitated())
 		return
-	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
+	if((!(istype(O, /atom/movable)) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
 		return
-	if(user.loc==null) // just in case someone manages to get a closet into the blue light dimension, as unlikely as that seems
+	if(user.loc == null) //Just in case someone manages to get a closet into the blue light dimension, as unlikely as that seems
 		return
-	if(!istype(user.loc, /turf)) // are you in a container/closet/pod/etc?
+	if(!istype(user.loc, /turf)) //Are you in a container/closet/pod/etc?
 		return
-	if(!src.opened)
+	if(climbable && user == O)
+		do_climb(user)
+	if(!opened)
 		return
 	if(istype(O, /obj/structure/closet))
 		return
-	step_towards(O, src.loc)
+	step_towards(O, loc)
 	if(user != O)
 		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/structure/closet/relaymove(mob/user)

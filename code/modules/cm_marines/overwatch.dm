@@ -244,7 +244,7 @@
 		if("pick_squad")
 			if(operator == usr)
 				if(current_squad)
-					usr << "\icon[src] You are already selecting a squad. Log out first."
+					usr << "<span class='warning'>\icon[src] You are already selecting a squad.</span>"
 				else
 					var/list/squad_list = list()
 					var/datum/squad/selected = null
@@ -256,6 +256,9 @@
 					squad_list += "Cancel"
 					name_sel = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_list
 					if(name_sel != "Cancel" && !isnull(name_sel))
+						if(current_squad)
+							usr << "<span class='warning'>\icon[src] You are already selecting a squad..</span>"
+							return
 						selected = get_squad_by_name(name_sel)
 						if(selected)
 							selected.overwatch_officer = usr //Link everything together, squad, console, and officer
@@ -269,7 +272,7 @@
 									S.force_link() //LINK THEM ALL!
 
 						else
-							usr << "Not a valid squad."
+							usr << "<span class='warning'>\icon[src] Invalid input. Aborting.</span>"
 		if("message")
 			if(current_squad && operator == usr)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")

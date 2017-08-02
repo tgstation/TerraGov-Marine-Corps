@@ -554,13 +554,15 @@
 		return
 
 	if(isnull(current_aura))
-		if(!check_plasma(30))
-			return
 		var/choice = input(src, "Choose a pheromone") in aura_allowed + "help" + "cancel"
 		if(choice == "help")
-			src << "<span class='notice'><br>Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.<br>Frenzy - Increased run speed and tackle chance<br>Warding - Increased armor, reduced incoming damage and critical bleedout.<br>Recovery - Increased plasma and health regeneration.<br></span>"
+			src << "<span class='notice'><br>Pheromones provide a buff to all Xenos in range at the cost of some stored plasma every second, as follows:<br><B>Frenzy</B> - Increased run speed and tackle chance.<br><B>Warding</B> - Increased armor, reduced incoming damage and critical bleedout.<br><B>Recovery</B> - Increased plasma and health regeneration.<br></span>"
 			return
 		if(choice != "cancel")
+			if(!isnull(current_aura)) //If they are stacking windows, disable all input
+				return
+			if(!check_plasma(30))
+				return
 			current_aura = choice
 			visible_message("<span class='xenowarning'>\The [src] begins to emit strange-smelling pheromones.</span>", \
 			"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")

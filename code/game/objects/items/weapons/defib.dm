@@ -63,7 +63,7 @@
 			user << "<span class='warning'>[src] is ID locked!</span>"
 			return
 
-		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Medical Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic" || card.assignment == "PMC Triage"))
+		if(!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Medical Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic" || card.assignment == "PMC Triage" || card.assignment == "UPP Medic" || card.assignment == "UPP Commando Medic" || card.assignment == "Colonist Medic" || card.assignment == "Freelancer Medic"))
 			user << "<span class='warning'>[src] is ID locked!</span>"
 			return
 
@@ -92,7 +92,7 @@
 			user << "<span class='warning'>[src] is ID locked!</span>"
 			return
 
-		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Medical Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic"))
+		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Medical Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic" || card.assignment == "PMC Triage" || card.assignment == "UPP Medic" || card.assignment == "UPP Commando Medic" || card.assignment == "Colonist Medic" || card.assignment == "Freelancer Medic"))
 			user << "<span class='warning'>[src] is ID locked!</span>"
 			return
 
@@ -141,7 +141,7 @@
 		if(prob(25))
 			heart.damage += 5 //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-		if(!head || !head.is_usable() || !heart || heart.is_broken() || !H.has_brain() || H.chestburst || (HUSK in H.mutations))
+		if(!head || !heart || heart.is_broken() || !H.has_brain() || H.chestburst || (HUSK in H.mutations))
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 			return
 

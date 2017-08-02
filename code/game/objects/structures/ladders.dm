@@ -11,6 +11,7 @@
 	unacidable = 1
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
+	var/busy = 0 //Ladders are wonderful creatures, only one person can use it at a time
 
 /obj/structure/ladder/New()
 	..()
@@ -58,7 +59,10 @@
 		icon_state = "ladder00"
 
 /obj/structure/ladder/attack_hand(mob/user)
-	if(user.buckled) return
+	if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying || user.buckled) return
+	if(busy)
+		user << "<span class='warning'>Someone else is currently using this ladder.</span>"
+		return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
 	if(up && down)
@@ -78,8 +82,10 @@
 
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] the ladder.</span>")
+	busy = 1
 	if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
 
+		if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying || user.buckled) return
 		user.loc = get_turf(ladder_dest) //Make sure we move before we broadcast the message
 		visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
@@ -88,6 +94,7 @@
 		if(user.pulling && get_dist(src, user.pulling) <= 2)
 			user.pulling.loc = ladder_dest.loc
 
+	busy = 0
 	add_fingerprint(user)
 
 /obj/structure/ladder/attack_paw(mob/user as mob)

@@ -64,16 +64,16 @@
 //Checks your plasma levels, removes them accordingly, and gives a handy message.
 /mob/living/carbon/Xenomorph/proc/check_plasma(var/value)
 	if(stat)
-		src << "<span class='warning'>Can't do this while unconcious.</span>"
+		src << "<span class='warning'>You cannot do this while unconcious.</span>"
 		return 0
 
 	if(value)
 		if(is_robotic)
 			if(storedplasma < value)
-				src << "<span class='warning'>Beep. Insufficient charge. You require [value] but have only [storedplasma].</span>"
+				src << "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
 				return 0
 		if(storedplasma < value)
-			src << "<span class='warning'>Insufficient plasma. You require [value] but have only [storedplasma].</span>"
+			src << "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
 			return 0
 
 		storedplasma -= value

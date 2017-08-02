@@ -18,6 +18,8 @@
 	return 1
 
 /obj/structure/closet/crate/can_close()
+	for(var/mob/living/L in get_turf(src)) //Can't close if someone is standing inside it. This is to prevent "crate traps" (let someone step in, close, open for 30 damage)
+		return 0
 	return 1
 
 /obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
@@ -25,7 +27,7 @@
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && climbable) //Climbable objects allow you to universally climb over others
+	if(S && S.climbable && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return 1
 	if(opened) //Open crate, you can cross over it
 		return 1
@@ -54,6 +56,7 @@
 	update_icon()
 	if(climbable)
 		structure_shaken()
+		climbable = 0 //Open crate is not a surface that works when climbing around
 	return 1
 
 /obj/structure/closet/crate/close()
@@ -77,6 +80,7 @@
 		itemcount++
 
 	opened = 0
+	climbable = 1
 	update_icon()
 	return 1
 
