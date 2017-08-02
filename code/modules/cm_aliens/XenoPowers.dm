@@ -491,6 +491,9 @@
 		if(isXenoCarrier(X))
 			carrier_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
 			carrier_count++
+		if(isXenoHivelord(X))
+			hivelord_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
+			hivelord_count++
 		if(isXenoHunter(X))
 			hunter_list += "<tr><td>[X.name] [X.client ? "" : " <i>(SSD)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : " <b><font color=green>([A ? A.name : null])</b>"]</td></tr>"
 			hunter_count++

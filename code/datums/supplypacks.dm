@@ -718,7 +718,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/officer_outfits
 	contains = list(
 					/obj/item/clothing/under/rank/ro_suit,
-					/obj/item/clothing/under/marine/officer/logistics,
+					/obj/item/clothing/under/marine/officer/bridge,
 					/obj/item/clothing/under/marine/officer/bridge,
 					/obj/item/clothing/under/marine/officer/exec,
 					/obj/item/clothing/under/marine/officer/ce
