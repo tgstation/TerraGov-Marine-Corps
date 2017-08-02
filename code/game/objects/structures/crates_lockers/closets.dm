@@ -17,7 +17,6 @@
 	var/open_sound = 'sound/machines/click.ogg'
 	var/close_sound = 'sound/machines/click.ogg'
 
-	var/store_misc = TRUE
 	var/store_items = TRUE
 	var/store_mobs = TRUE
 
@@ -57,18 +56,12 @@
 	return 1
 
 /obj/structure/closet/proc/dump_contents()
-	//Cham Projector Exception
-	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.loc = src.loc
 
 	for(var/obj/I in src)
-		I.loc = src.loc
+		I.forceMove(loc)
 
 	for(var/mob/M in src)
-		M.loc = src.loc
-		if(M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
+		M.forceMove(loc)
 
 /obj/structure/closet/proc/open()
 	if(src.opened)
@@ -92,9 +85,6 @@
 		return 0
 
 	var/stored_units = 0
-
-	if(store_misc)
-		stored_units = store_misc(stored_units)
 	if(store_items)
 		stored_units = store_items(stored_units)
 	if(store_mobs)
@@ -106,15 +96,6 @@
 	playsound(src.loc, close_sound, 15, 1)
 	density = 1
 	return 1
-
-//Cham Projector Exception
-/obj/structure/closet/proc/store_misc(var/stored_units)
-	for(var/obj/effect/dummy/chameleon/AD in src.loc)
-		if(stored_units > storage_capacity)
-			break
-		AD.loc = src
-		stored_units++
-	return stored_units
 
 /obj/structure/closet/proc/store_items(var/stored_units)
 	for(var/obj/item/I in src.loc)
