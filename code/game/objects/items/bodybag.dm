@@ -129,8 +129,7 @@
 	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant at the cost of genetic damage."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
-	store_misc = 0
-	store_items = 0
+	store_items = FALSE
 	var/mob/living/stasis_mob //the mob in stasis
 	var/used = 0
 	var/last_use = 0 //remembers the value of used, to delay crostasis start.

@@ -760,7 +760,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/shotgun
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness."
 	w_class = 4
 	max_rounds = 3
 	current_rounds = 3
