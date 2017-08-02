@@ -102,7 +102,7 @@
 	in_flight = 1
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
-	if(ammo.bonus_projectiles) ammo.multiple_projectiles(src, range, speed)
+	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type) ammo.fire_bonus_projectiles(src)
 
 	path = getline2(starting,target_turf)
 
