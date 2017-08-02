@@ -41,7 +41,8 @@
 	var/penetration			= 0 //How much armor it ignores before calculations take place.
 	var/shrapnel_chance 	= 0 //The % chance it will imbed in a human.
 	var/shell_speed 		= 0 //How fast the projectile moves.
-	var/bonus_projectiles 	= 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
+	var/bonus_projectiles_type //the type path of the extra projectiles
+	var/bonus_projectiles_amount 	= 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
 	var/debilitate[]		= null //stun,weaken,paralyze,irradiate,stutter,eyeblur,drowsy,agony
 
 	New()
@@ -102,18 +103,18 @@
 			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
 			M.apply_damage(rand(5,P.damage/2),damage_type)
 
-	proc/multiple_projectiles(obj/item/projectile/original_P, range, speed)
+	proc/fire_bonus_projectiles(obj/item/projectile/original_P)
 		set waitfor = 0
 		var/i
-		for(i = 0 to bonus_projectiles) //Want to run this for the number of bonus projectiles.
+		for(i = 0 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 			var/scatter_x = rand(-1,1)
 			var/scatter_y = rand(-1,1)
 			var/turf/new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
 			if(!istype(new_target) || isnull(new_target)) continue	//If we didn't find anything, make another pass.
 			var/obj/item/projectile/P = rnew(/obj/item/projectile, original_P.shot_from)
-			P.generate_bullet(ammo_list[/datum/ammo/bullet/shotgun/spread]) //No bonus damage or anything.
+			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			P.original = new_target
-			P.fire_at(new_target,original_P.firer,original_P.shot_from,range,speed) //Fire!
+			P.fire_at(new_target,original_P.firer,original_P.shot_from,P.ammo.max_range,P.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
@@ -413,6 +414,8 @@
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot"
 	icon_state = "buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
+
 	New()
 		..()
 		accuracy_var_low = config.high_proj_variance
@@ -424,7 +427,7 @@
 		damage_var_high = config.med_proj_variance
 		damage_bleed = config.buckshot_damage_bleed
 		penetration	= -config.mlow_armor_penetration
-		bonus_projectiles = config.low_proj_extra
+		bonus_projectiles_amount = config.low_proj_extra
 		shell_speed = config.reg_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
@@ -433,10 +436,11 @@
 
 //buckshot variant only used by the masterkey shotgun attachment.
 /datum/ammo/bullet/shotgun/buckshot/masterkey
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
+
 	New()
 		..()
-		max_range = config.min_shell_range+1
-		damage = config.mhigh_hit_damage
+		damage = config.high_hit_damage
 
 
 
@@ -448,12 +452,17 @@
 		accuracy_var_low = config.high_proj_variance
 		accuracy_var_high = config.high_proj_variance
 		accurate_range = config.min_shell_range
-		max_range = config.min_shell_range
+		max_range = config.close_shell_range
 		damage = config.med_hit_damage
 		damage_var_low = -config.med_proj_variance
 		damage_var_high = config.med_proj_variance
 		damage_bleed = config.extra_damage_bleed
 		shell_speed = config.reg_shell_speed
+
+/datum/ammo/bullet/shotgun/spread/masterkey
+	New()
+		..()
+		damage = config.low_hit_damage
 
 
 /*
