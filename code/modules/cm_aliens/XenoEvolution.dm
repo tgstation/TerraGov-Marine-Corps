@@ -17,10 +17,12 @@
 		src << "<span class='warning'>This place is too constraining to evolve.</span>"
 		return
 
+	/*
 	var/area/A = get_area(loc)
 	if(istype(A, /area/sulaco/hub))
 		src << "<span class='warning'>This seems like a bad idea, you might get stuck in here.</span>"
 		return
+	 */
 
 	if(hardcore)
 		src << "<span class='warning'>Nuh-uh.</span>"
@@ -44,7 +46,7 @@
 			return
 
 	if(isnull(evolves_to))
-		src << "<span class='warning'>You are already the apex of form and function. Go! Spread the hive!</span>"
+		src << "<span class='warning'>You are already the apex of form and function. Go forth and spread the hive!</span>"
 		return
 
 	if(upgrade > 0 && caste != "Drone")
@@ -79,6 +81,10 @@
 
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
 	if(castepick == "Cancel" || isnull(castepick) || castepick == "") //Changed my mind
+		return
+
+	if(!living_xeno_queen && castepick != "Queen" && !isXenoLarva(src))
+		src << "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>"
 		return
 
 	if(stat != CONSCIOUS)

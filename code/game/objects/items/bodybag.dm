@@ -190,4 +190,4 @@
 	name = "used stasis bag"
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_used"
-	desc = "Pretty useless now.."
+	desc = "It's been ripped open. You will need to find a machine capable of recycling it."

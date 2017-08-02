@@ -984,7 +984,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
-			W.assignment = "UPP Soldier (Leader)"
+			W.assignment = "UPP Leader"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
@@ -1080,7 +1080,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
-			W.assignment = "UPP Commando (Medic)"
+			W.assignment = "UPP Commando Medic"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
@@ -1128,7 +1128,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
-			W.assignment = "UPP Commando (Leader)"
+			W.assignment = "UPP Commando Leader"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
@@ -1194,7 +1194,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
-			W.assignment = "Colonist"
+			W.assignment = "Colonist Medic"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			W.access = get_all_accesses()
@@ -1226,7 +1226,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
-			W.assignment = "Colonist (Leader)"
+			W.assignment = "Colonist Leader"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			W.access = get_all_accesses()
@@ -1286,7 +1286,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
-			W.assignment = "Freelancer (Medic)"
+			W.assignment = "Freelancer Medic"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			W.access = get_all_accesses()

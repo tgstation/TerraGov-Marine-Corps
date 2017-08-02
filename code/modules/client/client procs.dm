@@ -301,5 +301,5 @@
 		'html/images/LV624.png',
 		'html/images/IceColony.png',
 		'html/images/BigRed.png',
-		'html/images/ntlogo.png'
+		'html/images/wylogo.png'
 		)
