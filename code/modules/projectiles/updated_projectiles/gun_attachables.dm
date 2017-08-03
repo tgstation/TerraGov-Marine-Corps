@@ -595,7 +595,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
 	icon_state = "grenade"
 	w_class = 4
-	current_rounds = 1
+	current_rounds = 0
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
