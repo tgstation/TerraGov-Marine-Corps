@@ -159,6 +159,24 @@
 		new /obj/item/device/flashlight/flare(src)
 		return
 
+/obj/item/weapon/storage/box/nade_box
+	name = "\improper M40 HEDP grenade box"
+	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
+	icon_state = "nade_placeholder"
+	w_class = 4
+	storage_slots = 25
+	can_hold = list(
+		"/obj/item/weapon/grenade/explosive"
+		)
+
+	New()
+		..()
+		contents = list()
+		sleep(1)
+		var/i = 0
+		while(++i < 25)
+			new /obj/item/weapon/grenade/explosive(src)
+
 /obj/item/weapon/coin/marine
 	name = "marine specialist weapon token"
 	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
