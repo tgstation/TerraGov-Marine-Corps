@@ -27,7 +27,7 @@
 		shuttle.queen_locked = 0
 	ui_interact(user)
 
-/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/data[0]
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
@@ -79,40 +79,9 @@
 
 	var/recharge_status = effective_recharge_time - shuttle.recharging
 
-	var/list/equipment_data = list()
-	var/list/targets_data = list()
 	var/is_dropship = FALSE
 	if(istype(shuttle, /datum/shuttle/ferry/marine))
-		var/datum/shuttle/ferry/marine/FM = shuttle
 		is_dropship = TRUE
-		for(var/X in active_laser_targets)
-			var/obj/effect/overlay/temp/laser_target/LT = X
-			if(!istype(LT))
-				continue
-			var/area/laser_area = get_area(LT)
-			targets_data += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
-		if(onboard)
-			shuttle_equipments = FM.equipments
-			var/element_nbr = 1
-			for(var/X in FM.equipments)
-				var/obj/structure/dropship_equipment/E = X
-				equipment_data += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable))
-				element_nbr++
-
-
-	var/selected_eqp_name = ""
-	var/selected_eqp_ammo_name = ""
-	var/selected_eqp_ammo_amt = 0
-	var/selected_eqp_max_ammo_amt = 0
-	var/screen_mode = 0
-	if(selected_equipment)
-		selected_eqp_name = sanitize(copytext(selected_equipment.name,1,MAX_MESSAGE_LEN))
-		if(selected_equipment.ammo_equipped)
-			selected_eqp_ammo_name = sanitize(copytext(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
-			selected_eqp_ammo_amt = selected_equipment.ammo_equipped.ammo_count
-			selected_eqp_max_ammo_amt = selected_equipment.ammo_equipped.max_ammo_count
-		screen_mode = selected_equipment.screen_mode
-
 
 	data = list(
 		"shuttle_status" = shuttle_status,
@@ -127,28 +96,20 @@
 		"optimize_allowed" = shuttle.can_be_optimized,
 		"optimized" = shuttle.transit_optimized,
 		"gun_mission_allowed" = shuttle.can_do_gun_mission,
-		"fire_mission_enabled" = shuttle.transit_gun_mission,
 		"shuttle_status_message" = shuttle_status_message,
 		"recharging" = shuttle.recharging,
 		"recharging_seconds" = round(shuttle.recharging/10),
 		"recharge_time" = effective_recharge_time,
 		"recharge_status" = recharge_status,
-		"equipment_data" = equipment_data,
-		"targets_data" = targets_data,
 		"human_user" = ishuman(user),
 		"is_dropship" = is_dropship,
 		"onboard" = onboard,
-		"selected_eqp" = selected_eqp_name,
-		"selected_eqp_ammo_name" = selected_eqp_ammo_name,
-		"selected_eqp_ammo_amt" = selected_eqp_ammo_amt,
-		"selected_eqp_max_ammo_amt" = selected_eqp_max_ammo_amt,
-		"screen_mode" = screen_mode,
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, shuttle.iselevator? "elevator_control_console.tmpl" : "shuttle_control_console.tmpl", shuttle.iselevator? "Elevator Control" : "Shuttle Control", 550, 700)
+		ui = new(user, src, ui_key, shuttle.iselevator? "elevator_control_console.tmpl" : "shuttle_control_console.tmpl", shuttle.iselevator? "Elevator Control" : "Shuttle Control", 550, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -206,6 +167,7 @@
 				shuttle.locked = 1 //We are initiating transit, so don't recieve any more instructions
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
+
 	if(href_list["optimize"])
 		if(shuttle.transit_optimized) return
 		var/mob/M = usr
@@ -229,42 +191,41 @@
 		else
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 
-	if(href_list["equip_interact"])
-		var/base_tag = text2num(href_list["equip_interact"])
-		var/obj/structure/dropship_equipment/E = shuttle_equipments[base_tag]
-		E.linked_console = src
-		E.equipment_interact(usr)
+	if(href_list["shutter"])
+		var/ship_id = "sh_dropship1"
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			ship_id = "sh_dropship2"
+		//mostly copypasted from obj/machinery/door_control code.
+		for(var/obj/machinery/door/poddoor/M in machines)
+			if(M.id == ship_id)
+				if(shuttle.moving_status == SHUTTLE_INTRANSIT) r_FAL
+				if(M.density)
+					spawn()
+						M.open()
+				else
+					spawn()
+						M.close()
 
-	if(href_list["open_fire"])
-		var/targ_id = text2num(href_list["open_fire"])
-		var/mob/M = usr
-		if(M.mind.assigned_role != "Pilot Officer") //only pilots can fire dropship weapons.
-			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
-			return
-		for(var/X in active_laser_targets)
-			var/obj/effect/overlay/temp/laser_target/LT = X
-			if(LT.target_id == targ_id)
-				if(!shuttle.transit_gun_mission || shuttle.moving_status != SHUTTLE_INTRANSIT)
-					usr << "<span class='warning'>Dropship can only fire during a fire mission flight.</span>"
-					return
-				if(shuttle.queen_locked) return
+	if(href_list["side door"])
+		var/ship_id = "sh_dropship1"
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			ship_id = "sh_dropship2"
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+			if(M.id == ship_id)
+				var/is_right_side = text2num(href_list["right side"])
+				if(is_right_side)
+					if(M.dir != WEST)
+						continue
+				else
+					if(M.dir != EAST)
+						continue
+				if(M.locked)
+					M.unlock()
+				else
+					M.lock()
 
-				if(!selected_equipment || !selected_equipment.is_weapon)
-					usr << "<span class='warning'>No weapon selected.</span>"
-					return
-				var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
-				if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
-					usr << "<span class='warning'>[DEW] has no ammo.</span>"
-					return
-				if(DEW.is_busy)
-					usr << "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>"
-					return
-				if(!LT.loc) return
-				DEW.open_fire(LT)
-				break
+	ui_interact(usr)
 
-	if(href_list["deselect"])
-		selected_equipment = null
 
 /obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
@@ -282,14 +243,48 @@
 
 
 
-/obj/machinery/computer/shuttle_control
 
-	check_eye(mob/user)
-		if(user.stat || get_dist(user, src) > 1 || user.blinded)
-			return
-		if(!selected_equipment) return
-		var/obj/O = selected_equipment.get_camera()
-		if(!O) return
-		if(!selected_equipment.can_use_camera()) return
-		user.reset_view(O)
-		return 1
+
+
+//Dropship control console
+
+/obj/machinery/computer/shuttle_control/dropship1
+	name = "\improper 'Alamo' dropship console"
+	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "shuttle"
+
+	unacidable = 1
+	exproof = 1
+	req_one_access_txt = "22;200"
+
+	New()
+		..()
+		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+
+/obj/machinery/computer/shuttle_control/dropship1/onboard
+	name = "\improper 'Alamo' flight controls"
+	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "console"
+	onboard = 1
+
+/obj/machinery/computer/shuttle_control/dropship2
+	name = "\improper 'Normandy' dropship console"
+	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "shuttle"
+	unacidable = 1
+	exproof = 1
+	req_one_access_txt = "12;22;200"
+
+	New()
+		..()
+		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+
+/obj/machinery/computer/shuttle_control/dropship2/onboard
+	name = "\improper 'Normandy' flight controls"
+	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "console"
+	onboard = 1

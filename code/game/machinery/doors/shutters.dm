@@ -113,3 +113,30 @@
 			SetOpacity(1)
 		operating = 0
 	return
+
+
+
+
+/obj/machinery/door/poddoor/shutters/almayer
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	openspeed = 4 //shorter open animation.
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/structure/window/reinforced/almayer,
+		/obj/machinery/door/airlock)
+
+	New()
+		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
+			relativewall_neighbours()
+		..()
+
+
+//transit shutters used by marine dropships
+/obj/machinery/door/poddoor/shutters/transit
+	name = "Transit shutters"
+	desc = "Safety shutters to prevent dangerous depressurization during flight"
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	unacidable = 1
+
+	ex_act(severity) //immune to explosions
+		return

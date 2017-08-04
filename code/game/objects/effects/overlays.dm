@@ -72,15 +72,19 @@
 	mouse_opacity = 1
 	luminosity = 2
 	icon = 'icons/obj/projectiles.dmi'
-	icon_state = "laser_target"
+	icon_state = "laser_target2"
 	effect_duration = 600
 	var/target_id
 	var/obj/item/device/binoculars/tactical/source_binoc
+	var/obj/machinery/camera/laser_cam/linked_cam
 
-	New()
+	New(loc, squad_name)
 		..()
+		if(squad_name)
+			name = "[squad_name] laser"
 		target_id = rand(1,1000) //giving it a pseudo unique id.
 		active_laser_targets += src
+		linked_cam = new(loc, name)
 
 	Dispose()
 		active_laser_targets -= src
@@ -88,14 +92,9 @@
 			source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 			source_binoc.laser = null
 			source_binoc = null
-		..()
-
-	Del()
-		active_laser_targets -= src
-		if(source_binoc)
-			source_binoc.laser_cooldown = world.time + 200
-			source_binoc.laser = null
-			source_binoc = null
+		if(linked_cam)
+			cdel(linked_cam)
+			linked_cam = null
 		..()
 
 	ex_act(severity) //immune to explosions
@@ -105,3 +104,15 @@
 		..()
 		if(ishuman(usr))
 			usr << "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>"
+
+
+//used to show where dropship ordnance will impact.
+/obj/effect/overlay/temp/blinking_laser
+	name = "blinking laser"
+	anchored = TRUE
+	layer = MOB_LAYER + 1
+	luminosity = 2
+	effect_duration = 10
+	mouse_opacity = 0
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "laser_target3"

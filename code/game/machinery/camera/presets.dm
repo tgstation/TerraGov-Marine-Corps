@@ -21,16 +21,26 @@
 	..()
 	upgradeMotion()
 
-//used by the advanced camera dropship equipment
-/obj/machinery/camera/adv_dropship_camera
+//used by the laser camera dropship equipment
+/obj/machinery/camera/laser_cam
+	name = "laser camera"
 	invuln = TRUE
 	icon_state = ""
 	mouse_opacity = 0
-	view_range = 12
-	network = list("dropship_adv_cam") //that network is unused, only here to not have an empty list.
+	network = list("laser targets")
+	unacidable = TRUE
 
-	isXRay()
-		return TRUE
+	New(loc, laser_name)
+		..()
+		if(!c_tag && laser_name)
+			var/area/A = get_area(src)
+			c_tag = "[laser_name] ([A.name])"
+
+	emp_act(severity)
+		return //immune to EMPs, just in case
+
+	ex_act()
+		return
 
 
 // ALL UPGRADES
@@ -60,6 +70,44 @@
 					if(C.number)
 						number = max(number, C.number+1)
 			c_tag = "[A.name] #[number]"
+
+
+/obj/machinery/camera/autoname/almayer
+	icon = 'icons/obj/almayer.dmi'
+
+	New()
+		..()
+		switch(dir)
+			if(1)	pixel_y = 40
+			if(2)	pixel_y = -18
+			if(4)	pixel_x = -27
+			if(8)	pixel_x = 27
+
+
+//cameras installed inside the dropships, accessible via both cockpit monitor and Almayer camera computers
+/obj/machinery/camera/autoname/almayer/dropship_one
+	network = list("military", "dropship1")
+
+/obj/machinery/camera/autoname/almayer/dropship_two
+	network = list("military", "dropship2")
+
+
+
+//used by the landing camera dropship equipment. Do not place them right under where the dropship lands.
+//Should place them near each corner of your LZs.
+/obj/machinery/camera/autoname/lz_camera
+	name = "landing zone camera"
+	invuln = TRUE
+	icon_state = ""
+	mouse_opacity = 0
+	network = list("landing zones")
+
+	emp_act(severity)
+		return //immune to EMPs, just in case
+
+	ex_act()
+		return
+
 
 
 // CHECKS

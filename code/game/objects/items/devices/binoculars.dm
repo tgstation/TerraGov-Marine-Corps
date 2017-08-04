@@ -90,8 +90,7 @@
 		return
 	busy = FALSE
 	user << "<span class='notice'>TARGET ACQUIRED. LASER TARGETING ON '[A]' IS ONLINE. DON'T MOVE.</span>"
-	var/obj/effect/overlay/temp/laser_target/LT = new (get_turf(A))
-	LT.name = "[S.name] laser"
+	var/obj/effect/overlay/temp/laser_target/LT = new (get_turf(A), S.name)
 	laser = LT
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	while(laser)

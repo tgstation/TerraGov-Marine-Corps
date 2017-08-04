@@ -377,10 +377,6 @@
 
 	location = !location
 
-/obj/machinery/door/poddoor/shutters/transit
-	name = "Transit shutters"
-	desc = "Safety shutters to prevent dangerous depressurization during flight"
-	unacidable = 1
 
 /datum/shuttle/ferry/marine/close_doors(var/list/L)
 
@@ -421,7 +417,6 @@
 				break
 
 /datum/shuttle/ferry/marine/open_doors(var/list/L)
-
 	var/i //iterator
 	var/turf/T
 

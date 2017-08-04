@@ -420,3 +420,19 @@
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	openspeed = 17
 	unacidable = 1
+
+
+
+
+/obj/machinery/door/poddoor/almayer
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	openspeed = 4 //shorter open animation.
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/structure/window/reinforced/almayer,
+		/obj/machinery/door/airlock)
+
+	New()
+		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
+			relativewall_neighbours()
+		..()
