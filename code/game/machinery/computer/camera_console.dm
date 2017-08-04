@@ -29,7 +29,7 @@
 		return 1
 
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(mob/user)
 		if (src.z > 6)
 			user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
 			return
@@ -48,20 +48,22 @@
 		D["Cancel"] = "Cancel"
 		for(var/obj/machinery/camera/C in L)
 			if(can_access_camera(C))
-				D[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
+				D["[C.c_tag][C.can_use() ? null : " (Deactivated)"]"] = C
 
 		var/t = input(user, "Which camera should you change to?") as null|anything in D
 		if(!t)
 			user.unset_machine()
+			user.reset_view()
 			return 0
 
 		var/obj/machinery/camera/C = D[t]
-
 		if(t == "Cancel")
 			user.unset_machine()
+			user.reset_view()
 			return 0
 
 		if(C)
+			if(!can_access_camera(C)) return
 			switch_to_camera(user, C)
 			spawn(5)
 				attack_hand(user)
@@ -172,3 +174,30 @@
 	icon_state = "syndicam"
 	network = list("NUKE")
 	circuit = null
+
+
+/obj/machinery/computer/security/almayer
+	density = 0
+	icon = 'icons/obj/almayer.dmi'
+	icon_state = "security"
+
+
+/obj/machinery/computer/security/dropship
+	name = "abstract dropship camera computer"
+	desc = "A computer to monitor cameras linked to the dropship."
+	density = 1
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "consoleleft"
+	circuit = null
+	unacidable = TRUE
+	exproof = TRUE
+
+
+/obj/machinery/computer/security/dropship/one
+	name = "\improper 'Alamo' camera controls"
+	network = list("dropship1")
+
+/obj/machinery/computer/security/dropship/two
+	name = "\improper 'Normandy' camera controls"
+	network = list("dropship2")
+

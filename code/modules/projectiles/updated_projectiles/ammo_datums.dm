@@ -136,10 +136,8 @@
 	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
 		if(!istype(T)) return
 		if(locate(/obj/flamer_fire) in T) return
-		var/obj/flamer_fire/F =  new(T)
-		processing_objects.Add(F)
-		F.firelevel = 20 //mama mia she a hot one!
-		F.burnlevel = 20
+		new /obj/flamer_fire(T, 20, 20)
+
 
 /*
 //================================================
@@ -701,9 +699,7 @@
 		smoke.set_up(6, 0, T)
 		smoke.start()
 		if(locate(/obj/flamer_fire) in T) return
-		var/obj/flamer_fire/F =  new(T)
-		processing_objects.Add(F)
-		F.firelevel = pick(15, 20, 25, 30) //mama mia she a hot one!
+		new /obj/flamer_fire(T, pick(15, 20, 25, 30))
 
 		for(var/mob/living/carbon/M in range(3, T))
 			if(istype(M,/mob/living/carbon/Xenomorph))

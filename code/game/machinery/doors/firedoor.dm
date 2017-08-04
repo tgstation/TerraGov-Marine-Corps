@@ -370,6 +370,16 @@
 		return 1
 */
 
+
+//ALMAYER FIRE DOOR
+
+/obj/machinery/door/firedoor/border_only/almayer
+	name = "\improper Emergency Shutter"
+	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
+	icon = 'icons/obj/doors/almayer/purinadoor.dmi'
+	openspeed = 4
+
+
 /obj/machinery/door/firedoor/multi_tile
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
 	width = 2

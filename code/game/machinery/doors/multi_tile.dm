@@ -60,3 +60,98 @@
 	glass = 1
 	openspeed = 31
 	req_access = null
+
+
+
+
+
+// ALMAYER
+
+
+/obj/machinery/door/airlock/multi_tile/almayer
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/almayer/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
+	openspeed = 4 //shorter open animation.
+	tiles_with = list(
+		/turf/simulated/wall,
+		/obj/structure/window/reinforced/almayer,
+		/obj/machinery/door/airlock)
+
+	New()
+		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
+			relativewall_neighbours()
+		..()
+
+/obj/machinery/door/airlock/multi_tile/almayer/generic
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/almayer/2x1generic.dmi'
+	opacity = 0
+	glass = 1
+
+/obj/machinery/door/airlock/multi_tile/almayer/medidoor
+	name = "\improper Medical Airlock"
+	icon = 'icons/obj/doors/almayer/2x1medidoor.dmi'
+	opacity = 0
+	glass = 1
+	req_access_txt = "0"
+	req_one_access_txt =  "2;8;19"
+
+/obj/machinery/door/airlock/multi_tile/almayer/comdoor
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/doors/almayer/2x1comdoor.dmi'
+	opacity = 0
+	glass = 1
+	req_access_txt = "19"
+
+
+
+
+/obj/machinery/door/airlock/multi_tile/almayer/handle_multidoor()
+	if(!(width > 1)) return //Bubblewrap
+
+	for(var/i = 1, i < width, i++)
+		if(dir in list(NORTH, SOUTH))
+			var/turf/T = locate(x, y + i, z)
+			T.SetOpacity(opacity)
+		else if(dir in list(EAST, WEST))
+			var/turf/T = locate(x + i, y, z)
+			T.SetOpacity(opacity)
+
+	if(dir in list(NORTH, SOUTH))
+		bound_height = world.icon_size * width
+	else if(dir in list(EAST, WEST))
+		bound_width = world.icon_size * width
+
+//We have to find these again since these doors are used on shuttles a lot so the turfs changes
+/obj/machinery/door/airlock/multi_tile/almayer/proc/update_filler_turfs()
+
+	for(var/i = 1, i < width, i++)
+		if(dir in list(NORTH, SOUTH))
+			var/turf/T = locate(x, y + i, z)
+			if(T) T.SetOpacity(opacity)
+		else if(dir in list(EAST, WEST))
+			var/turf/T = locate(x + i, y, z)
+			if(T) T.SetOpacity(opacity)
+
+/obj/machinery/door/airlock/multi_tile/almayer/open()
+	. = ..()
+	update_filler_turfs()
+
+/obj/machinery/door/airlock/multi_tile/almayer/close()
+	. = ..()
+	update_filler_turfs()
+
+
+//------Dropship Cargo Doors -----//
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropship1
+	name = "\improper Alamo cargo door"
+	opacity = 1
+	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
+	width = 3
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropship2
+	name = "\improper Normandy cargo door"
+	opacity = 1
+	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
+	width = 3

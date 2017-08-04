@@ -156,8 +156,7 @@
 	if(!istype(T))
 		return
 	if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-		var/obj/flamer_fire/F =  new/obj/flamer_fire(T)
-		processing_objects.Add(F)
+		new/obj/flamer_fire(T)
 	else
 		return
 

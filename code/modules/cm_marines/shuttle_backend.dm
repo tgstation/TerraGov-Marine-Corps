@@ -247,11 +247,11 @@ x_pos = 0 1 2 3 4 5 6
 
 	s_info["Almayer Dropship"] = newlist(
 
-	/datum/coords{x_pos=4;y_pos=20}, /datum/coords{x_pos=5;y_pos=20}, /datum/coords{x_pos=6;y_pos=20},
+	/datum/coords{x_pos=3;y_pos=20}, /datum/coords{x_pos=4;y_pos=20}, /datum/coords{x_pos=5;y_pos=20}, /datum/coords{x_pos=6;y_pos=20}, /datum/coords{x_pos=7;y_pos=20},
 
-	/datum/coords{x_pos=4;y_pos=19}, /datum/coords{x_pos=5;y_pos=19}, /datum/coords{x_pos=6;y_pos=19},
+	/datum/coords{x_pos=3;y_pos=19}, /datum/coords{x_pos=4;y_pos=19}, /datum/coords{x_pos=5;y_pos=19}, /datum/coords{x_pos=6;y_pos=19}, /datum/coords{x_pos=7;y_pos=19},
 
-	/datum/coords{x_pos=4;y_pos=18}, /datum/coords{x_pos=5;y_pos=18}, /datum/coords{x_pos=6;y_pos=18},
+	/datum/coords{x_pos=3;y_pos=18}, /datum/coords{x_pos=4;y_pos=18}, /datum/coords{x_pos=5;y_pos=18}, /datum/coords{x_pos=6;y_pos=18}, /datum/coords{x_pos=7;y_pos=18},
 
 	/datum/coords{x_pos=1;y_pos=17}, /datum/coords{x_pos=2;y_pos=17}, /datum/coords{x_pos=3;y_pos=17}, /datum/coords{x_pos=4;y_pos=17}, /datum/coords{x_pos=5;y_pos=17}, /datum/coords{x_pos=6;y_pos=17}, /datum/coords{x_pos=7;y_pos=17}, /datum/coords{x_pos=8;y_pos=17}, /datum/coords{x_pos=9;y_pos=17},
 

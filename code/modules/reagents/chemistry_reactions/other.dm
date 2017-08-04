@@ -223,12 +223,8 @@
 			if(T.density) continue
 			if(istype(T,/turf/space)) continue
 			if(locate(/obj/flamer_fire) in T) continue //No stacking
+			new /obj/flamer_fire(T, 5 + rand(0,11))
 
-			var/obj/flamer_fire/F = new(T)
-			processing_objects.Add(F)
-			F.firelevel = 5 + rand(0,11)
-			if(F.firelevel < 1) F.firelevel = 1
-			if(F.firelevel > 16) F.firelevel = 16
 		holder.del_reagent("napalm")
 
 
