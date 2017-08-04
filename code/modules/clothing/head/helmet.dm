@@ -139,13 +139,14 @@
 
 /obj/item/clothing/head/helmet/marine
 	name = "\improper M10 pattern marine helmet"
-	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'. Contains a small built-in camera."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "helmet"
 	item_state = "helmet"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
+	var/obj/machinery/camera/camera
 	var/helmet_overlays[]
 	flags_inventory = HIDEEARS|BLOCKSHARPOBJ
 	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
@@ -182,6 +183,9 @@
 		pockets.storage_slots = 1
 		pockets.max_w_class = 2
 		pockets.max_combined_w_class = 2
+
+		camera = new /obj/machinery/camera(src)
+		camera.network = list("LEADER")
 
 	attack_hand(mob/user)
 		if (pockets.handle_attack_hand(user))
@@ -227,6 +231,16 @@
 			var/mob/M = loc
 			M.update_inv_head()
 
+	equipped(var/mob/living/carbon/human/mob, slot)
+		if(camera)
+			camera.c_tag = mob.name
+		..()
+
+	dropped(var/mob/living/carbon/human/mob)
+		if(camera)
+			camera.c_tag = "Unknown"
+		..()
+
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
 	if(flags_marine_helmet & HELMET_DAMAGE_OVERLAY && !(flags_marine_helmet & HELMET_IS_DAMAGED))
 		helmet_overlays["damage"] = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
@@ -262,26 +276,11 @@
 	icon_state = "helml"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
-	var/obj/machinery/camera/camera
 
 	New(loc,expected_type 		= type,
 		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M11 pattern leader snow helmet"),
 		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
 		..(loc,expected_type,new_name,new_protection)
-
-		camera = new /obj/machinery/camera(src)
-		camera.network = list("LEADER")
-
-	equipped(var/mob/living/carbon/human/mob, slot)
-		if(camera)
-			camera.c_tag = mob.name
-		..()
-
-	dropped(var/mob/living/carbon/human/mob)
-		if(camera)
-			camera.c_tag = "Unknown"
-		..()
-
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
