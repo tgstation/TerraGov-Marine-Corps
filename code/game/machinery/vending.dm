@@ -7,7 +7,7 @@
 	var/product_path = null
 	var/amount = 0
 	var/price = 0
-	var/display_color = "blue"
+	var/display_color = "white"
 	var/category = CAT_NORMAL
 
 /obj/machinery/vending
@@ -126,13 +126,13 @@
 		R.price = price
 
 		if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/flamethrower) || ispath(typepath,/obj/item/weapon/storage) )
-			R.display_color = "red"
-		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
-			R.display_color = "green"
-		else if(ispath(typepath,/obj/item/weapon/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
-			R.display_color = "blue"
-		else
 			R.display_color = "black"
+//		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
+//			R.display_color = "white"
+//		else if(ispath(typepath,/obj/item/weapon/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
+//			R.display_color = "blue"
+		else
+			R.display_color = "white"
 
 		if(hidden)
 			R.category=CAT_HIDDEN
@@ -317,54 +317,12 @@
 	user.set_machine(src)
 
 	if(src.seconds_electrified != 0)
-		if(src.shock(user, 100))
+		if(shock(user, 100))
 			return
 
-	var/vendorname = (src.name)  //import the machine's name
-
-	if(src.currently_vending)
-		var/dat = "<TT><center><b>[vendorname]</b></center><hr /><br>" //display the name, and added a horizontal rule
-		dat += "<b>You have selected [currently_vending.product_name].<br>Please swipe your ID to pay for the article.</b><br>"
-		dat += "<a href='byond://?src=\ref[src];cancel_buying=1'>Cancel</a>"
-		user << browse(dat, "window=vending")
-		onclose(user, "")
-		return
-
-	var/dat = "<TT><center><b>[vendorname]</b></center><hr /><br>" //display the name, and added a horizontal rule
-	dat += "<b>Select an item: </b><br><br>" //the rest is just general spacing and bolding
-
-	if (premium.len > 0)
-		dat += "<b>Coin slot:</b> [coin ? coin : "No coin inserted"] (<a href='byond://?src=\ref[src];remove_coin=1'>Remove</A>)<br>"
-
-	if (ewallet)
-		dat += "<b>Charge card's credits:</b> [ewallet ? ewallet.worth : "No charge card inserted"] (<a href='byond://?src=\ref[src];remove_ewallet=1'>Remove</A>)<br><br>"
-
-	if (src.product_records.len == 0)
-		dat += "<font color = 'red'>No product loaded!</font>"
-	else
-		var/list/display_records = list()
-		display_records += src.product_records
-
-		if(src.extended_inventory)
-			display_records += src.hidden_records
-		if(src.coin)
-			display_records += src.coin_records
-
-		for (var/datum/data/vending_product/R in display_records)
-			dat += "<FONT color = '[R.display_color]'><B>[R.product_name]</B>:"
-			dat += " <b>[R.amount]</b> </font>"
-			if(R.price)
-				dat += " <b>(Price: [R.price])</b>"
-			if (R.amount > 0)
-				var/idx=GetProductIndex(R)
-				dat += " <a href='byond://?src=\ref[src];vend=[idx];cat=[R.category]'>(Vend)</A>"
-			else
-				dat += " <font color = 'red'>SOLD OUT</font>"
-			dat += "<br>"
-
-		dat += "</TT>"
 
 	if(panel_open)
+		var/dat = ""
 		var/list/vendwires = list(
 			"Violet" = 1,
 			"Orange" = 2,
@@ -391,14 +349,54 @@
 		if (product_slogans != "")
 			dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a>"
 
-	user << browse(dat, "window=vending")
-	onclose(user, "")
-	return
+		user << browse(dat, "window=vending")
+		onclose(user, "vending")
+
+
+	ui_interact(user)
+
+
+
+
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+
+	var/list/display_list = list()
+	var/list/display_records = list()
+	display_records += product_records
+	if(extended_inventory)
+		display_records += hidden_records
+	if(coin)
+		display_records += coin_records
+	for (var/datum/data/vending_product/R in display_records)
+		var/prodname = adminscrub(R.product_name)
+		if(R.amount) prodname += ": [R.amount]"
+		else prodname += ": SOLD OUT"
+		if(R.price) prodname += " (Price: [R.price])"
+		prodname = "<color = [R.display_color]>[prodname]</color>"
+		display_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
+
+	var/list/data = list(
+		"vendor_name" = name,
+		"currently_vending_name" = currently_vending ? currently_vending.product_name : null,
+		"premium_length" = premium.len,
+		"ewallet" = ewallet ? ewallet.name : null,
+		"ewallet_worth" = ewallet ? ewallet.worth : null,
+		"coin" = coin ? coin.name : null,
+		"displayed_records" = display_list,
+	)
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+
+	if (!ui)
+		ui = new(user, src, ui_key, "vending_machine.tmpl", name , 450, 600)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
 
 /obj/machinery/vending/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if(usr.stat || usr.is_mob_restrained())
+	if(usr.is_mob_incapacitated())
 		return
 
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
@@ -424,17 +422,7 @@
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
-		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
-
-			// if(istype(usr,/mob/living/silicon))
-			// 	if(istype(usr,/mob/living/silicon/robot))
-			// 		var/mob/living/silicon/robot/R = usr
-			// 		if(!(R.module && istype(R.module,/obj/item/weapon/robot_module/butler) ))
-			// 			usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
-			// 			return
-			// 	else
-			// 		usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
-			// 		return
+		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
 			if(!allowed(usr) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
 				usr << "<span class='warning'>Access denied.</span>" //Unless emagged of course
@@ -494,11 +482,8 @@
 			src.shut_up = !src.shut_up
 
 		src.add_fingerprint(usr)
-		src.updateUsrDialog()
-	else
-		usr << browse(null, "window=vending")
-		return
-	return
+		ui_interact(usr)
+
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if(!allowed(user) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH
@@ -1110,13 +1095,13 @@
 			R.price = price
 
 			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/flamethrower) || ispath(typepath,/obj/item/weapon/storage) )
-				R.display_color = "red"
-			else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
-				R.display_color = "green"
-			else if(ispath(typepath,/obj/item/weapon/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
-				R.display_color = "blue"
-			else
 				R.display_color = "black"
+//			else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
+//				R.display_color = "green"
+//			else if(ispath(typepath,/obj/item/weapon/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
+//				R.display_color = "blue"
+			else
+				R.display_color = "white"
 
 		if(hidden)
 			R.category=CAT_HIDDEN
