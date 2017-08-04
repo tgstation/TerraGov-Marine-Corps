@@ -944,7 +944,7 @@
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	canremove = 0
 	attack_speed = 6
-	pry_capable = 2
+	pry_capable = IS_PRY_CAPABLE_FORCE
 
 	New()
 		..()
@@ -970,28 +970,18 @@
 				get_other_hand.attack_speed = initial(attack_speed)
 		..()
 
-	afterattack(obj/O as obj, mob/user as mob, proximity)
+	afterattack(atom/A, mob/user, proximity)
 		if(!proximity || !user) return
 		if(user)
 			var/obj/item/weapon/wristblades/get_other_hand = user.get_inactive_hand()
 			attack_speed = (get_other_hand && istype(get_other_hand)) ? attack_speed - attack_speed/3 : initial(attack_speed)
 
-		if (istype(O, /obj/machinery/door/airlock) && get_dist(src,O) <= 1)
-			var/obj/machinery/door/airlock/D = O
-			if(!D.density)
-				return
-
-			if(D.locked)
-				user << "<span class='info'>There's some kind of lock keeping it shut.</span>"
-				return
-
-			if(D.welded)
-				user << "<span class='warning'>It's welded shut. You won't be able to rip it open!</span>"
-				return
-
-			user << "\blue You jam \the [src] into [O] and strain to rip it open."
+		if (istype(A, /obj/machinery/door/airlock))
+			var/obj/machinery/door/airlock/D = A
+			if(D.operating || !D.density) return
+			user << "<span class='notice'>You jam [src] into [D] and strain to rip it open.</span>"
 			playsound(user,'sound/weapons/wristblades_hit.ogg', 15, 1)
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && D.density)
 				D.open(1)
 
 /obj/item/weapon/wristblades/scimitar

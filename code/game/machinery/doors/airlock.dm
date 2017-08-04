@@ -998,17 +998,22 @@ About the new airlock wires panel:
 
 				cdel(src)
 				return
-		else if(arePowerSystemsOn())
-			user << "\blue The airlock's motors resist your efforts to force it."
+
+		else if(arePowerSystemsOn() && C.pry_capable != IS_PRY_CAPABLE_FORCE)
+			user << "<span class='warning'>The airlock's motors resist your efforts to force it.</span>"
 		else if(locked)
-			user << "\blue The airlock's bolts prevent it from being forced."
-		else if( !welded && !operating )
+			user << "<span class='warning'>The airlock's bolts prevent it from being forced.</span>"
+		else if(welded)
+			user << "<span class='warning'>The airlock is welded shut.</span>"
+		else if(C.pry_capable == IS_PRY_CAPABLE_FORCE)
+			return FALSE //handled by the item's afterattack
+		else if(!operating )
 			spawn(0)
 				if(density)
 					open(1)
 				else
 					close(1)
-
+		return TRUE //no afterattack call
 	else
 		return ..()
 

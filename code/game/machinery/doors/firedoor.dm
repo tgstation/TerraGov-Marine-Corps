@@ -199,25 +199,27 @@
 		if(operating)
 			return
 
-		if(blocked && C.pry_capable == IS_PRY_CAPABLE_CROWBAR) //actual crowbar
+		if(blocked)
 			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
 			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 			"You hear someone struggle and metal straining.")
 			return
 
 		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-				"You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!",\
+				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
 				"You hear metal strain.")
+		var/old_density = density
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
-			if(C.pry_capable != IS_PRY_CAPABLE_CROWBAR || ((stat & (BROKEN|NOPOWER) || !density) && !blocked))
-				user.visible_message("<span class='danger'>\The [user] forces \the[blocked ? " welded " : " " ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
-					"You force \the[blocked ? " welded " : " "][name] [density ? "open" : "closed"] with \the [C]!",\
-					"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
+			if(blocked || density != old_density) return
+			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
+				"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [C]!</span>",\
+				"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
 			spawn(0)
 				if(density)
 					open(1)
 				else
 					close()
+		return TRUE //no afterattack call
 	else
 		if(blocked)
 			user << "<span class='danger'>\The [src] is welded solid!</span>"
