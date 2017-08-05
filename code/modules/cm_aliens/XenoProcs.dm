@@ -553,3 +553,10 @@
 			return
 
 	. = ..()
+
+
+/mob/living/carbon/Xenomorph/start_pulling(atom/movable/AM)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(L.buckled) return //to stop xeno from pulling marines on roller beds.
+	..()
