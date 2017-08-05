@@ -7,10 +7,8 @@
 	var/datum/squad/current_squad = null
 	var/state = 0
 	var/mob/living/carbon/human/info_from = null
-	var/mob/living/carbon/human/cam_target = null
 	var/obj/machinery/camera/cam = null
 	var/list/network = list("LEADER")
-	var/is_watching = 0
 	var/x_offset_s = 0
 	var/y_offset_s = 0
 	var/x_offset_b = 0
@@ -55,7 +53,7 @@
 					dat += "----------------------<BR><BR>"
 					if(current_squad.squad_leader && istype(current_squad.squad_leader))
 						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=get_info;info_from=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
-						dat += "<A href='?src=\ref[src];operation=cam;cam_target=\ref[current_squad.squad_leader]'>\[CAM\]</a> "
+						dat += "<A href='?src=\ref[src];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>\[CAM\]</a> "
 						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE\]</a><BR><BR>"
 					else
@@ -117,25 +115,25 @@
 
 						switch(role)
 							if("Squad Leader")
-								leader_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td><b>N/A</b></td><td><A href='?src=\ref[src];operation=cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								leader_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td><b>N/A</b></td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								leader_count++
 							if("Squad Specialist")
-								spec_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								spec_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								spec_count++
 							if("Squad Medic")
-								medic_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								medic_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								medic_count++
 							if("Squad Engineer")
-								engi_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								engi_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								engi_count++
 							if("Squad Smartgunner")
-								smart_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								smart_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								smart_count++
 							if("Squad Marine")
-								marine_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								marine_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								marine_count++
 							else
-								misc_text += "<tr><td>[H.name]</td><td><i>[role]</i></td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr></tr>"
+								misc_text += "<tr><td>[H.name]</td><td><i>[role]</i></td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr></tr>"
 
 					dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><BR>"
 					dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><BR>"
@@ -240,8 +238,9 @@
 				current_squad.overwatch_officer = null //Reset the squad's officer.
 			operator = null
 			current_squad = null
+			if(cam)
+				usr.reset_view(null)
 			cam = null
-			is_watching = 0 //Drop the camera
 		if("pick_squad")
 			if(operator == usr)
 				if(current_squad)
@@ -267,7 +266,6 @@
 							send_to_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
 							send_to_squad("Your Overwatch officer is: [operator.name].")
 							src.attack_hand(usr)
-							//find_helmet_cam() //Set the helmet cam, if one is being worn by the SL
 							if(!current_squad.drop_pad) //Why the hell did this not link?
 								for(var/obj/item/effect/supply_drop/S in item_list)
 									S.force_link() //LINK THEM ALL!
@@ -330,8 +328,6 @@
 			src.attack_hand(usr)
 		if("change_lead")
 			change_lead()
-			spawn(0)
-				src.attack_hand(usr)
 		if("dropsupply")
 			if(current_squad)
 				if(current_squad.supply_timer)
@@ -345,69 +341,45 @@
 				else
 					handle_bombard()
 		if("back")
-			src.state = 0
-			src.attack_hand(usr)
-		if("cam")
+			state = 0
+		if("use_cam")
 			if(current_squad)
-				if(cam)
-					if(is_watching)
-						usr << "\icon[src] Stopping helmet cam view."
-						is_watching = 0
-						usr.reset_view(null)
-						send_to_squad("Helmet camera: Activated.",0,1) //1-> Only to SL
-					else
-						usr << "\icon[src] Helmet camera activated."
-						is_watching = 1
-						check_eye(usr)
-						send_to_squad("Helmet camera: Deactivated.",0,1)
+				var/mob/cam_target = locate(href_list["cam_target"])
+				var/obj/machinery/camera/new_cam = get_camera_from_target(cam_target)
+				if(!new_cam || !new_cam.can_use())
+					usr << "\icon[src] Searching for helmet cam.."
+					usr << "\icon[src] No helmet cam found for this marine! Tell your squad to put their helmets on!"
+				else if(cam && cam == new_cam)//click the camera you're watching a second time to stop watching.
+					usr << "\icon[src] Stopping helmet cam view."
+					cam = null
+					usr.reset_view(null)
 				else
 					usr << "\icon[src] Searching for helmet cam.."
-					cam_target = locate(href_list["cam_target"])
-					switch_to_camera(cam_target)
-					if(!cam)
-						usr << "\icon[src] No helmet cam found for this marine! Tell your squad to put their helmets on!"
-						is_watching = 0
-					else
-						usr << "\icon[src] Helmet cam found and linked."
-						is_watching = 1
-						check_eye(usr)
+					cam = new_cam
+					usr << "\icon[src] Helmet cam found and linked."
+					check_eye(usr)
 //	src.updateUsrDialog()
 	src.attack_hand(usr) //The above doesn't ever seem to work.
 
-/obj/machinery/computer/overwatch/check_eye(var/mob/user as mob)
-	if (user.stat || get_dist(user, src) > 1 || user.blinded) //user can't see - not sure why canmove is here.
-		is_watching = 0
+/obj/machinery/computer/overwatch/check_eye(mob/user)
+	if (user.is_mob_incapacitated(TRUE) || get_dist(user, src) > 1 || user.blinded) //user can't see - not sure why canmove is here.
 		user.unset_machine()
+		cam = null
+	else if (!cam || !cam.can_use()) //camera doesn't work, is no longer selected or is gone
+		user.unset_machine()
+		cam = null
+		//reset_view(null) called by a life subproc when check_eye fails
 	else
-		if ( !src.cam || !src.cam.can_use() ) //camera doesn't work or is gone
-			is_watching = 0
-			user.unset_machine()
-
-	if(is_watching)
 		user.reset_view(cam)
-	else
-		user.reset_view(null) //Stop the camera if they move away.
-	return 1
+		return 1
 
-/obj/machinery/computer/overwatch/proc/switch_to_camera(var/mob/living/carbon/human/H)
+//returns the helmet camera the human is wearing
+/obj/machinery/computer/overwatch/proc/get_camera_from_target(mob/living/carbon/human/H)
 	if (current_squad)
 		if (H && istype(H) && istype(H.head, /obj/item/clothing/head/helmet/marine))
 			var/obj/item/clothing/head/helmet/marine/helm = H.head
-			if (helm.camera)
-				cam = helm.camera
-				return
+			return helm.camera
 
-/* No longer using this, was used when Squad Leaders only had helmet cams.
-/obj/machinery/computer/overwatch/proc/find_helmet_cam()
-	if(current_squad && !cam) //Look for a cam if we don't have one already.
-		if(current_squad.squad_leader) //Link the camera, if any.
-			var/mob/living/carbon/human/L = current_squad.squad_leader
-			if(L && istype(L) && istype(L.head,/obj/item/clothing/head/helmet/marine/leader))
-				var/obj/item/clothing/head/helmet/marine/leader/helm = L.head
-				if(helm.camera)
-					cam = helm.camera //Found and linked.
-					return
-*/
 
 //Sends a string to our currently selected squad.
 /obj/machinery/computer/overwatch/proc/send_to_squad(var/txt = "", var/plus_name = 0, var/only_leader = 0)
@@ -504,7 +476,6 @@
 			current_squad.squad_leader = H
 			usr << "\icon[src] New leader found and linked!"
 			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
-			//find_helmet_cam()
 			return
 
 	usr << "\icon[src] No new leaders found for this squad. They must have a squad set using the squad consoles."
