@@ -339,13 +339,12 @@
 //Slashing cameras
 /obj/machinery/camera/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(status)
-		status = 0
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>")
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-		icon_state = "[initial(icon_state)]1"
-		add_hiddenprint(M)
-		deactivate(M, 0)
+		wires = 0 //wires all cut
+		light_disabled = 0
+		toggle_cam_status(M, TRUE)
 
 //Slashing windoors
 /obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)

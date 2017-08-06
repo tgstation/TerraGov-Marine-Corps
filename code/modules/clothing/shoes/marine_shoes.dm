@@ -15,8 +15,7 @@
 	var/armor_stage = 0
 
 	attack_hand(var/mob/living/M)
-		if(knife && src.loc == M && !M.stat) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
-			knife.loc = get_turf(src)
+		if(knife && src.loc == M && !M.is_mob_incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 			if(M.put_in_active_hand(knife))
 				M << "<span class='notice'>You slide [knife] out of [src].</span>"
 				playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)

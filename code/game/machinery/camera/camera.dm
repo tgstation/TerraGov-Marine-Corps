@@ -91,12 +91,11 @@
 		return
 
 	if(user.species.can_shred(user))
-		status = 0
 		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-		icon_state = "[initial(icon_state)]1"
-		add_hiddenprint(user)
-		deactivate(user,0)
+		wires = 0 //wires all cut
+		light_disabled = 0
+		toggle_cam_status(user, TRUE)
 
 /obj/machinery/camera/attackby(W as obj, mob/living/user as mob)
 
@@ -162,19 +161,19 @@
 		..()
 	return
 
-/obj/machinery/camera/proc/deactivate(user as mob, var/choice = 1)
-	if(choice==1)
-		status = !( src.status )
-		if (!(src.status))
-			visible_message("\red [user] has deactivated [src]!")
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			icon_state = "[initial(icon_state)]1"
-			add_hiddenprint(user)
+/obj/machinery/camera/proc/toggle_cam_status(mob/user, silent)
+	status = !status
+	add_hiddenprint(user)
+	if(!silent)
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		if(status)
+			visible_message("<span class='warning'>[user] has reactivated [src]!</span>")
 		else
-			visible_message("\red [user] has reactivated [src]!")
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			icon_state = initial(icon_state)
-			add_hiddenprint(user)
+			visible_message("<span class='warning'>[user] has deactivated [src]!</span>")
+	if(status)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]1"
 	// now disconnect anyone using the camera
 	//Apparently, this will disconnect anyone even if the camera was re-activated.
 	//I guess that doesn't matter since they can't use it anyway?
