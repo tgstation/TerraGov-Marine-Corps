@@ -698,7 +698,7 @@
 /obj/machinery/power/apc/interact(mob/user)
 	if(!user)
 		return
-
+	user.set_machine(src)
 	if(wiresexposed /*&& (!istype(user, /mob/living/silicon))*/) //Commented out the typecheck to allow engiborgs to repair damaged apcs.
 		var/t1 = text("<html><head><title>[area.name] APC wires</title></head><body><B>Access Panel</B><br>\n")
 
@@ -720,7 +720,7 @@
 	ui_interact(user)
 	return
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	if(!user)
 		return
 
