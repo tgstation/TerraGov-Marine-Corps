@@ -9,6 +9,7 @@
 	throwforce = 35
 	w_class = 1.0
 	det_time = 30
+	unacidable = TRUE
 
 	attack_self(mob/user as mob)
 		if(!active)
