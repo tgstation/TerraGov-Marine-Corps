@@ -46,9 +46,8 @@
 			if (src.connected_ai)
 				src.connected_ai = null
 		if (BORG_WIRE_CAMERA)
-			if(!isnull(src.camera) && !scrambledcodes)
-				src.camera.status = 0
-				src.camera.deactivate(usr, 0) // Will kick anyone who is watching the Cyborg's camera.
+			if(camera && camera.status && !scrambledcodes)
+				camera.toggle_cam_status(usr, TRUE) // Will kick anyone who is watching the Cyborg's camera.
 
 	src.interact(usr)
 
@@ -61,9 +60,8 @@
 			if (src.lawupdate == 0 && !src.emagged)
 				src.lawupdate = 1
 		if(BORG_WIRE_CAMERA)
-			if (!isnull(src.camera) && !scrambledcodes)
-				src.camera.status = 1
-				src.camera.deactivate(usr, 0) // Will kick anyone who is watching the Cyborg's camera.
+			if(camera && !camera.status && !scrambledcodes)
+				camera.toggle_cam_status(usr, TRUE) // Will kick anyone who is watching the Cyborg's camera.
 
 	src.interact(usr)
 
@@ -81,8 +79,8 @@
 				src.connected_ai = select_active_ai()
 
 		if (BORG_WIRE_CAMERA)
-			if(!isnull(src.camera) && src.camera.status && !scrambledcodes)
-				src.camera.deactivate(usr, 0) // Kick anyone watching the Cyborg's camera, doesn't display you disconnecting the camera.
+			if(camera && camera.status && !scrambledcodes)
+				camera.toggle_cam_status(src, TRUE) // Kick anyone watching the Cyborg's camera, doesn't display you disconnecting the camera.
 				usr << "[src]'s camera lens focuses loudly."
 				src << "Your camera lens focuses loudly."
 
