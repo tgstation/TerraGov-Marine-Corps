@@ -152,12 +152,17 @@
 	New()
 		..()
 		contents = list()
-		sleep(1)
 		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/device/flashlight/flare(src)
 		return
+
+	update_icon()
+		if(!contents.len)
+			icon_state = "m94_e"
+		else
+			icon_state = "m94"
 
 /obj/item/weapon/storage/box/nade_box
 	name = "\improper M40 HEDP grenade box"
@@ -165,6 +170,7 @@
 	icon_state = "nade_placeholder"
 	w_class = 4
 	storage_slots = 25
+	var/nade_box_icon
 	can_hold = list(
 		"/obj/item/weapon/grenade/explosive"
 		)
@@ -172,10 +178,19 @@
 	New()
 		..()
 		contents = list()
-		sleep(1)
+		select_gamemode_skin(/obj/item/weapon/storage/box/nade_box)
+		nade_box_icon = icon_state
 		var/i = 0
 		while(++i < 25)
 			new /obj/item/weapon/grenade/explosive(src)
+
+	update_icon()
+		if(!contents.len)
+			icon_state = "[nade_box_icon]_e"
+		else
+			icon_state = nade_box_icon
+
+
 
 /obj/item/weapon/coin/marine
 	name = "marine specialist weapon token"
