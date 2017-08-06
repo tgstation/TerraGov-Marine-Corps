@@ -13,7 +13,31 @@
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
-	var/empty = 0
+	var/empty = 0 //whether the kit starts empty
+	var/icon_full //icon state to use when kit is full
+	var/possible_icons_full
+
+	New()
+		..()
+		if(possible_icons_full)
+			icon_state = pick(possible_icons_full)
+		icon_full = icon_state
+		if(empty)
+			icon_state = "kit_empty"
+		else
+			fill_firstaid_kit()
+
+
+	update_icon()
+		if(!contents.len)
+			icon_state = "kit_empty"
+		else
+			icon_state = icon_full
+
+
+//to fill medkits with stuff when spawned
+/obj/item/weapon/storage/firstaid/proc/fill_firstaid_kit()
+	return
 
 
 /obj/item/weapon/storage/firstaid/fire
@@ -21,13 +45,9 @@
 	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
+	possible_icons_full = list("ointment","firefirstaid")
 
-	New()
-		..()
-		if (empty) return
-
-		icon_state = pick("ointment","firefirstaid")
-
+	fill_firstaid_kit()
 		new /obj/item/device/healthanalyzer( src )
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/stack/medical/ointment( src )
@@ -35,15 +55,13 @@
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 		new /obj/item/weapon/storage/syringe_case/burn( src )
-		return
+
 
 
 /obj/item/weapon/storage/firstaid/regular
 	icon_state = "firstaid"
 
-	New()
-		..()
-		if (empty) return
+	fill_firstaid_kit()
 		new /obj/item/device/healthanalyzer(src)
 		new /obj/item/stack/medical/bruise_pack(src)
 		new /obj/item/stack/medical/bruise_pack(src)
@@ -51,20 +69,16 @@
 		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/weapon/storage/syringe_case/regular(src)
-		return
+
 
 /obj/item/weapon/storage/firstaid/toxin
 	name = "toxin first aid"
 	desc = "Used to treat when you have a high amount of toxins in your body."
 	icon_state = "antitoxin"
 	item_state = "firstaid-toxin"
+	possible_icons_full = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
 
-	New()
-		..()
-		if (empty) return
-
-		icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
-
+	fill_firstaid_kit()
 		new /obj/item/device/healthanalyzer( src )
 		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
@@ -73,7 +87,6 @@
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 		new /obj/item/weapon/storage/syringe_case/tox( src )
 
-		return
 
 /obj/item/weapon/storage/firstaid/o2
 	name = "oxygen deprivation first aid"
@@ -81,9 +94,7 @@
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 
-	New()
-		..()
-		if (empty) return
+	fill_firstaid_kit()
 		new /obj/item/device/healthanalyzer( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
@@ -91,7 +102,7 @@
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 		new /obj/item/weapon/storage/syringe_case/oxy( src )
-		return
+
 
 /obj/item/weapon/storage/firstaid/adv
 	name = "advanced first-aid kit"
@@ -99,35 +110,31 @@
 	icon_state = "advfirstaid"
 	item_state = "firstaid-advanced"
 
-/obj/item/weapon/storage/firstaid/adv/New()
-	..()
-	if (empty) return
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	return
+	fill_firstaid_kit()
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+		new /obj/item/stack/medical/advanced/bruise_pack(src)
+		new /obj/item/stack/medical/advanced/bruise_pack(src)
+		new /obj/item/stack/medical/advanced/bruise_pack(src)
+		new /obj/item/stack/medical/advanced/ointment(src)
+		new /obj/item/stack/medical/advanced/ointment(src)
+		new /obj/item/stack/medical/splint(src)
+
 
 /obj/item/weapon/storage/firstaid/rad
 	name = "radiation first-aid kit"
 	desc = "Contains treatment for radiation exposure"
 	icon_state = "purplefirstaid"
 
-/obj/item/weapon/storage/firstaid/rad/New()
-	..()
-	if (empty) return
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
-	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
-	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
-	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	return
+	fill_firstaid_kit()
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+
 
 	/*
  * Syringe Case
