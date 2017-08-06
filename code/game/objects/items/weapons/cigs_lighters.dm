@@ -41,9 +41,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		location.hotspot_expose(700, 5)
 		return
 
-/obj/item/weapon/flame/match/dropped(mob/user as mob)
+/obj/item/weapon/flame/match/dropped(mob/user)
 	if(heat_source)
-		burn_out()
+		burn_out(user)
 	return ..()
 
 /obj/item/weapon/flame/match/proc/light_match()
@@ -51,19 +51,30 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	heat_source = 1000
 	damtype = "burn"
 	icon_state = "match_lit"
+	if(ismob(loc))
+		loc.SetLuminosity(2)
+	else
+		SetLuminosity(2)
 	processing_objects.Add(src)
 	update_icon()
 
-/obj/item/weapon/flame/match/proc/burn_out()
+/obj/item/weapon/flame/match/proc/burn_out(mob/user)
 	heat_source = 0
 	burnt = 1
 	damtype = "brute"
 	icon_state = "match_burnt"
 	item_state = "cigoff"
+	if(user && loc != user)
+		user.SetLuminosity(-2)
+	SetLuminosity(0)
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
 	processing_objects.Remove(src)
-
+/obj/item/weapon/flame/lighter/dropped(mob/user)
+	if(heat_source && src.loc != user)
+		user.SetLuminosity(-2)
+		SetLuminosity(2)
+	return ..()
 //////////////////
 //FINE SMOKABLES//
 //////////////////

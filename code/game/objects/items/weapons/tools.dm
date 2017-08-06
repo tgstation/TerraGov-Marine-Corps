@@ -161,6 +161,14 @@
 	return
 
 
+/obj/item/weapon/weldingtool/Dispose()
+	if(welding)
+		if(ismob(loc))
+			loc.SetLuminosity(-2)
+		else
+			SetLuminosity(0)
+	. = ..()
+
 /obj/item/weapon/weldingtool/examine(mob/user)
 	..()
 	user << "It contains [get_fuel()]/[max_fuel] units of fuel!"
@@ -252,11 +260,18 @@
 
 //Toggles the welder off and on
 /obj/item/weapon/weldingtool/proc/toggle(var/message = 0)
+	var/mob/M
+	if(ismob(loc))
+		M = loc
 	if(!welding)
 		if(get_fuel() > 0)
-			usr << "<span class='notice'>You switch [src] on.</span>"
 			playsound(loc, 'sound/items/weldingtool_on.ogg', 25)
 			welding = 1
+			if(M)
+				M << "<span class='notice'>You switch [src] on.</span>"
+				M.SetLuminosity(2)
+			else
+				SetLuminosity(2)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = "fire"
@@ -265,13 +280,10 @@
 			heat_source = 3800
 			processing_objects.Add(src)
 		else
-			usr << "<span class='warning'>Need more fuel!</span>"
+			if(M)
+				M << "<span class='warning'>Need more fuel!</span>"
 			return
 	else
-		if(!message)
-			usr << "<span class='notice'>You switch [src] off.</span>"
-		else
-			usr << "<span class='warning'>[src] shuts off!</span>"
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
 		force = 3
 		damtype = "brute"
@@ -279,12 +291,18 @@
 		welding = 0
 		w_class = initial(w_class)
 		heat_source = 0
-		if(ismob(loc))
-			var/mob/M = loc
+		if(M)
+			if(!message)
+				M << "<span class='notice'>You switch [src] off.</span>"
+			else
+				M << "<span class='warning'>[src] shuts off!</span>"
+			M.SetLuminosity(-2)
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
+		else
+			SetLuminosity(0)
 		processing_objects.Remove(src)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
@@ -331,6 +349,20 @@
 				spawn(100)
 					H.disabilities &= ~NEARSIGHTED
 	return
+
+
+
+/obj/item/weapon/weldingtool/pickup(mob/user)
+	if(welding && loc != user)
+		SetLuminosity(0)
+		user.SetLuminosity(2)
+
+
+/obj/item/weapon/weldingtool/dropped(mob/user)
+	if(welding && loc != user)
+		user.SetLuminosity(-2)
+		SetLuminosity(2)
+	return ..()
 
 
 /obj/item/weapon/weldingtool/largetank
