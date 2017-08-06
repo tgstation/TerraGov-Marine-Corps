@@ -316,3 +316,9 @@
 	item_state = "RO_jumpsuit"
 	item_color = "RO_jumpsuit"
 
+
+/obj/item/clothing/under/rank/synthetic
+	name = "\improper Synthetic uniform"
+	desc = "A simple uniform worn by Synthetic crewmembers."
+	icon_state = "rdalt"
+	item_state = "rdalt"

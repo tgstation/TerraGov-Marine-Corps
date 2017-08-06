@@ -176,8 +176,8 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	supervisors = "the acting commander"
 	selection_color = "#aaee55"
 	idtype = /obj/item/weapon/card/id/gold
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY//ROLE_WHITELISTED
-//	flags_whitelist = WHITELIST_SYNTHETIC
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_whitelist = WHITELIST_SYNTHETIC
 
 	get_access()
 		return get_all_accesses()
@@ -186,8 +186,10 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	generate_wearable_equipment()
 		. = list(
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
-				WEAR_BODY = /obj/item/clothing/under/marine/officer/engi,
+				WEAR_BODY = /obj/item/clothing/under/rank/synthetic,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
 
 	generate_entry_conditions(mob/living/carbon/human/H)
