@@ -61,8 +61,10 @@
 
 	layer = MOB_LAYER - 0.1 //So people stand on corpses
 
-	if(hud_used && hud_used.blind_icon && client)
-		hud_used.blind_icon.plane = 0
+	if(client)
+		if(hud_used && hud_used.blind_icon)
+			hud_used.blind_icon.plane = 0
+		client.view = world.view //just so we never get stuck with a large view somehow
 
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 	see_in_dark = 8
