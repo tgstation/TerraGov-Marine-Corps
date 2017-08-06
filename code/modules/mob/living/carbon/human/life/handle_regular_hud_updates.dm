@@ -131,24 +131,18 @@
 					if(1)	hud_used.healths.icon_state = "health6"
 					if(2)	hud_used.healths.icon_state = "health7"
 					else
-						if(isYautja(src))
-							switch(health)
-								if(100 to INFINITY)		hud_used.healths.icon_state = "health0"
-								if(80 to 100)			hud_used.healths.icon_state = "health1"
-								if(60 to 80)			hud_used.healths.icon_state = "health2"
-								if(40 to 60)			hud_used.healths.icon_state = "health3"
-								if(20 to 40)			hud_used.healths.icon_state = "health4"
-								if(0 to 20)				hud_used.healths.icon_state = "health5"
-								else					hud_used.healths.icon_state = "health6"
-						else
-							switch(100 - ((species && species.flags & NO_PAIN & !IS_SYNTHETIC) ? 0 : traumatic_shock))
-								if(100 to INFINITY)		hud_used.healths.icon_state = "health0"
-								if(80 to 100)			hud_used.healths.icon_state = "health1"
-								if(60 to 80)			hud_used.healths.icon_state = "health2"
-								if(40 to 60)			hud_used.healths.icon_state = "health3"
-								if(20 to 40)			hud_used.healths.icon_state = "health4"
-								if(0 to 20)				hud_used.healths.icon_state = "health5"
-								else					hud_used.healths.icon_state = "health6"
+						var/perceived_health = health - traumatic_shock
+						if(species && species.flags & NO_PAIN)
+							perceived_health = health
+
+						switch(perceived_health)
+							if(100 to INFINITY)		hud_used.healths.icon_state = "health0"
+							if(80 to 100)			hud_used.healths.icon_state = "health1"
+							if(60 to 80)			hud_used.healths.icon_state = "health2"
+							if(40 to 60)			hud_used.healths.icon_state = "health3"
+							if(20 to 40)			hud_used.healths.icon_state = "health4"
+							if(0 to 20)				hud_used.healths.icon_state = "health5"
+							else					hud_used.healths.icon_state = "health6"
 
 		if(hud_used && hud_used.nutrition_icon)
 			switch(nutrition)

@@ -444,7 +444,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			shrap.desc = "[shrap.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
 			shrap.loc = organ
 			organ.embed(shrap)
-			if(!stat)
+			if(!stat && !(species && species.flags & NO_PAIN))
 				emote("scream")
 				src << "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>"
 

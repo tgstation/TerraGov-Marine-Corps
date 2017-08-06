@@ -387,30 +387,30 @@
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
-/obj/item/weapon/weldingtool/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/weldingtool/attack(mob/M, mob/user)
 
 	if(hasorgans(M))
-
-		var/datum/organ/external/S = M:organs_by_name[user.zone_selected]
+		var/mob/living/carbon/human/H = M
+		var/datum/organ/external/S = H.organs_by_name[user.zone_selected]
 
 		if (!S) return
 		if(!(S.status & ORGAN_ROBOT) || user.a_intent != "help")
 			return ..()
 
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.flags & IS_SYNTHETIC)
-				if(M == user)
-					user << "\red You can't repair damage to your own body - it's against OH&S."
-					return
+		if(H.species.flags & IS_SYNTHETIC)
+			if(M == user)
+				user << "\red You can't repair damage to your own body - it's against OH&S."
+				return
 
 		if(S.brute_dam && welding)
 			S.heal_damage(15,0,0,1)
-			user.visible_message("\red \The [user] patches some dents on \the [M]'s [S.display_name] with \the [src].")
+			H.UpdateDamageIcon()
+			user.visible_message("<span class='warning'>\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src].</span>", \
+								"<span class='warning'>You patch some dents on \the [H]'s [S.display_name] with \the [src].</span>")
 			remove_fuel(1,user)
 			return
 		else
-			user << "Nothing to fix!"
+			user << "<span class='warning'>Nothing to fix!</span>"
 
 	else
 		return ..()

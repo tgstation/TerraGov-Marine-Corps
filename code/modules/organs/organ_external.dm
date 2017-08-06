@@ -624,8 +624,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/obj/organ	//Dropped limb object
 		switch(body_part)
 			if(HEAD)
-				//if(owner.species.flags & IS_SYNTHETIC) //TODO New organs for synths.
-				organ= new /obj/item/weapon/organ/head(owner.loc, owner)
+				if(owner.species.flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
+					organ= new /obj/item/weapon/organ/head/synth(owner.loc, owner)
+				else
+					organ= new /obj/item/weapon/organ/head(owner.loc, owner)
 				owner.drop_inv_item_on_ground(owner.glasses)
 				owner.drop_inv_item_on_ground(owner.head)
 				owner.drop_inv_item_on_ground(owner.wear_ear)
@@ -1119,6 +1121,7 @@ obj/item/weapon/organ/head
 	unacidable = 1
 	var/mob/living/carbon/brain/brainmob
 	var/brain_op_stage = 0
+	var/brain_item_type = /obj/item/organ/brain
 
 obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	if(istype(H))
@@ -1156,7 +1159,7 @@ obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 
 	H.regenerate_icons()
 
-	brainmob.stat = 2
+	brainmob.stat = DEAD
 	brainmob.death()
 
 obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
@@ -1172,18 +1175,16 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/scalpel))
 		switch(brain_op_stage)
 			if(0)
-				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] is beginning to have \his head cut open with [W] by [user].", 1)
-				brainmob << "\red [user] begins to cut open your head with [W]!"
-				user << "\red You cut [brainmob]'s head open with [W]!"
+				user.visible_message("<span class='warning'>[brainmob] is beginning to have \his head cut open with [W] by [user].</span>", \
+									"<span class='warning'>You cut [brainmob]'s head open with [W]!</span>")
+				brainmob << "<span class='warning'>[user] begins to cut open your head with [W]!</span>"
 
 				brain_op_stage = 1
 
 			if(2)
-				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] is having \his connections to the brain delicately severed with [W] by [user].", 1)
-				brainmob << "\red [user] begins to cut open your head with [W]!"
-				user << "\red You cut [brainmob]'s head open with [W]!"
+				user.visible_message("<span class='warning'>[brainmob] is having \his connections to the brain delicately severed with [W] by [user].</span>", \
+									"<span class='warning'>You cut [brainmob]'s head open with [W]!</span>")
+				brainmob << "<span class='warning'>[user] begins to cut open your head with [W]!</span>"
 
 				brain_op_stage = 3.0
 			else
@@ -1191,24 +1192,23 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	else if(istype(W,/obj/item/weapon/circular_saw))
 		switch(brain_op_stage)
 			if(1)
-				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] has \his head sawed open with [W] by [user].", 1)
-				brainmob << "\red [user] begins to saw open your head with [W]!"
-				user << "\red You saw [brainmob]'s head open with [W]!"
-
+				user.visible_message("<span class='warning'>[brainmob] has \his head sawed open with [W] by [user].</span>", \
+							"<span class='warning'>You saw [brainmob]'s head open with [W]!</span>")
+				brainmob << "<span class='warning'>[user] saw open your head with [W]!</span>"
 				brain_op_stage = 2
 			if(3)
-				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] has \his spine's connection to the brain severed with [W] by [user].", 1)
-				brainmob << "\red [user] severs your brain's connection to the spine with [W]!"
-				user << "\red You sever [brainmob]'s brain's connection to the spine with [W]!"
+				user.visible_message("<span class='warning'>[brainmob] has \his spine's connection to the brain severed with [W] by [user].</span>", \
+									"<span class='warning'>You sever [brainmob]'s brain's connection to the spine with [W]!</span>")
+				brainmob << "<span class='warning'>[user] severs your brain's connection to the spine with [W]!</span>"
 
 				user.attack_log += "\[[time_stamp()]\]<font color='red'> Debrained [brainmob.name] ([brainmob.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
 				brainmob.attack_log += "\[[time_stamp()]\]<font color='orange'> Debrained by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
 				msg_admin_attack("[user] ([user.ckey]) debrained [brainmob] ([brainmob.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 				//TODO: ORGAN REMOVAL UPDATE.
-				var/obj/item/organ/brain/B = new(loc)
+				var/obj/item/organ/brain/B = new brain_item_type(loc)
+				if(brainmob.stat != DEAD)
+					brainmob.death() //brain mob doesn't survive outside a head
 				B.transfer_identity(brainmob)
 
 				brain_op_stage = 4.0
@@ -1216,3 +1216,87 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 				..()
 	else
 		..()
+
+
+//synthetic head, allowing brain mob inside to talk
+/obj/item/weapon/organ/head/synth
+	name = "synthetic head"
+	brain_item_type = /obj/item/organ/brain/prosthetic
+	var/obj/item/stack/cable_coil/linked_wires
+	var/obj/item/weapon/cell/linked_cell
+
+/obj/item/weapon/organ/head/synth/examine(mob/user)
+	..()
+
+	var/examin_msg = ""
+	if(linked_wires) examin_msg += "It has some wires coming out of it. "
+	if(linked_cell) examin_msg += "It's hooked to a power cell."
+	else if(ishuman(user)) user << "It has no power source."
+	if(examin_msg) user << examin_msg
+
+/obj/item/weapon/organ/head/synth/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/weapon/cell))
+		var/obj/item/weapon/cell/C = W
+		if(!C.charge)
+			user << "<span class='warning'>[C] has no charge left.</span>"
+			return TRUE
+		if(!linked_wires)
+			user << "<span class='warning'>[src] needs wires first.</span>"
+			return TRUE
+		if(linked_cell)
+			user << "<span class='warning'>[src] already has a power cell.</span>"
+		else if(user.drop_inv_item_to_loc(C, src))
+			linked_cell = C
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			user.visible_message("<span class='warning'>[user] links [C] to [src].</span>", \
+								"<span class='notice'>You link [C] to [src].</span>")
+			if(brainmob)
+				brainmob << "<span class='danger'>[user] links [C] to your head!</span>"
+				if(brainmob.stat == DEAD)
+					brainmob.revive()
+					brainmob << "<span class='danger'>You live again!</span>"
+					visible_message("<span class='notice'>[src] seems to be alive.</span>")
+		return TRUE
+	if(W.pry_capable)
+		if(linked_cell)
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			user.visible_message("<span class='warning'>[user] removes [linked_cell] from [src].</span>", \
+								"<span class='notice'>You remove [linked_cell] from [src].</span>")
+			if(brainmob) brainmob << "<span class='danger'>[user] removes [linked_cell] from your head!</span>"
+			linked_cell.forceMove(get_turf(src))
+			linked_cell = null
+		return TRUE
+	if(istype(W, /obj/item/stack/cable_coil))
+		if(linked_wires)
+			user << "<span class='warning'>[src] is already wired.</span>"
+		else
+			var/obj/item/stack/cable_coil/C = W
+			if(C.get_amount() < 5)
+				user << "<span class='warning'>You need more wires.</span>"
+				return
+
+			if (C.use(5))
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				user.visible_message("<span class='warning'>[user] adds [W] to [src].</span>", \
+									"<span class='notice'>You link [W] to [src].</span>")
+				if(brainmob) brainmob << "<span class='danger'>[user] adds wires to your head!</span>"
+				linked_wires = new C.type (src, 5)
+		return TRUE
+
+	if(istype(W, /obj/item/weapon/wirecutters))
+		if(linked_wires)
+			user << "<span class='warning'>[src] is already wired.</span>"
+		else
+			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+			user.visible_message("<span class='warning'>[user] removes [linked_wires] from [src].</span>", \
+								"<span class='notice'>You remove [linked_wires] from [src].</span>")
+			if(brainmob) brainmob << "<span class='danger'>[user] removes wires from your head!</span>"
+			linked_wires.forceMove(get_turf(src))
+			linked_wires = null
+		return TRUE
+
+	return ..()
+
+
+
+

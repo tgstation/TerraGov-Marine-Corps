@@ -66,6 +66,20 @@
 
 	. = ..(anim, do_gibs, f_icon)
 
+
+/mob/living/carbon/revive()
+	if (handcuffed && !initial(handcuffed))
+		drop_inv_item_on_ground(handcuffed)
+	handcuffed = initial(handcuffed)
+
+	if (legcuffed && !initial(legcuffed))
+		drop_inv_item_on_ground(legcuffed)
+	legcuffed = initial(legcuffed)
+	hud_updateflag |= 1 << HEALTH_HUD
+	hud_updateflag |= 1 << STATUS_HUD
+	..()
+
+
 /mob/living/carbon/attack_hand(mob/M as mob)
 	if(!istype(M, /mob/living/carbon)) return
 	if (hasorgans(M))
@@ -422,24 +436,23 @@
 		return
 	. = ..()
 
-/mob/living/carbon
-	slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-		set waitfor = 0
-		if(buckled) return FALSE //can't slip while buckled
-		if(run_only && (m_intent != "run")) return FALSE
-		if(lying) return FALSE //can't slip if already lying down.
-		stop_pulling()
-		src << "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>"
-		playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-		Stun(stun_level)
-		KnockDown(weaken_level)
-		. = TRUE
-		if(slide_steps && lying)//lying check to make sure we downed the mob
-			var/slide_dir = dir
-			for(var/i=1, i<=slide_steps, i++)
-				step(src, slide_dir)
-				sleep(2)
-				if(!lying)
-					break
+/mob/living/carbon/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+	set waitfor = 0
+	if(buckled) return FALSE //can't slip while buckled
+	if(run_only && (m_intent != "run")) return FALSE
+	if(lying) return FALSE //can't slip if already lying down.
+	stop_pulling()
+	src << "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>"
+	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
+	Stun(stun_level)
+	KnockDown(weaken_level)
+	. = TRUE
+	if(slide_steps && lying)//lying check to make sure we downed the mob
+		var/slide_dir = dir
+		for(var/i=1, i<=slide_steps, i++)
+			step(src, slide_dir)
+			sleep(2)
+			if(!lying)
+				break
 
 

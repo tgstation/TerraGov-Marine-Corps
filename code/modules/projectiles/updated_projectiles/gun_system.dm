@@ -619,6 +619,13 @@ and you're good to go.
 			user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 			return
 
+		if(!config.allow_synthetic_gun_use)
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(istype(H.species , /datum/species/synthetic))
+					user << "<span class='warning'>Your program does not allow you to use firearms.</span>"
+					return
+
 		if(flags_gun_features & GUN_TRIGGER_SAFETY)
 			user << "<span class='warning'>The safety is on!</span>"
 			return

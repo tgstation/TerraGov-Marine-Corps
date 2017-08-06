@@ -145,7 +145,7 @@
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 			return
 
-		if(!check_tod(H) || H.suiciding)
+		if((!check_tod(H) && !(H.species.flags & IS_SYNTHETIC)) || H.suiciding) //synthetic species have no expiration date
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient is braindead.</span>")
 			return
 
