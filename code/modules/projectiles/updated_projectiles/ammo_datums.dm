@@ -989,7 +989,7 @@
 		..()
 		damage = config.med_hit_damage
 		damage_var_high = config.max_proj_variance
-		damage_type = config.hmed_hit_damage
+		damage_type = BURN
 
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
