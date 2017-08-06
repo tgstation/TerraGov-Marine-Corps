@@ -448,14 +448,22 @@ cdel(src)
 			S_trg.air.copy_from(S_src.air) //TODO: FIX THE BUG INVOLVING THIS PROC
 			S_src.zone.remove(S_src)
 
+		var/list/shaken_mobs = list()
+
 		for(var/obj/O in T_src)
 			if(!istype(O)) continue
 			O.loc = T_trg
+			if(istype(O, /obj/structure/closet))
+				for(var/mob/M in O)
+					shaken_mobs += M
 
 		for(var/mob/M in T_src)
 			if(!istype(M)) continue
 			M.loc = T_trg
+			shaken_mobs += M
 
+		for(var/X in shaken_mobs)
+			var/mob/M = X
 			if(M.client)
 				if(M.buckled && !iselevator)
 					M << "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>"
@@ -463,7 +471,7 @@ cdel(src)
 				else if (!M.buckled)
 					M << "<span class='warning'>The floor lurches beneath you!</span>"
 					shake_camera(M, iselevator? 2 : 10, 1)
-			if(istype(M, /mob/living/carbon) && !iselevator)
+			if(iscarbon(M) && !iselevator)
 				if(!M.buckled)
 					M.KnockDown(3)
 
