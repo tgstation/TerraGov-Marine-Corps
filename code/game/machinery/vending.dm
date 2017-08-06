@@ -482,7 +482,10 @@
 			src.shut_up = !src.shut_up
 
 		src.add_fingerprint(usr)
-		ui_interact(usr)
+		ui_interact(usr) //updates the nanoUI window
+		updateUsrDialog() //updates the wires window
+	else
+		usr << browse(null, "window=vending")
 
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
