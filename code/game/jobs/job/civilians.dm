@@ -160,3 +160,42 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 The W-Y mercs were hired to protect some important science experiment, and W-Y expects you to keep them in line.
 These are hardened killers, and you write on paper for a living. It won't be easy, that's for damn sure.
 Best to let the mercs do the killing and the dying, but remind them who pays the bills."}
+
+
+
+
+
+/datum/job/civilian/synthetic
+	title = "Synthetic"
+	comm_title = "Syn"
+	paygrade = "???"
+	flag = ROLE_SYNTHETIC
+	department_flag = ROLEGROUP_MARINE_COMMAND
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the acting commander"
+	selection_color = "#aaee55"
+	idtype = /obj/item/weapon/card/id/gold
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY|//ROLE_WHITELISTED
+//	flags_whitelist = WHITELIST_SYNTHETIC
+
+	get_access()
+		return get_all_accesses()
+
+
+	generate_wearable_equipment()
+		. = list(
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
+				WEAR_BODY = /obj/item/clothing/under/marine/officer/engi,
+				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				)
+
+	generate_entry_conditions(mob/living/carbon/human/H)
+		. = ..()
+		H.set_species("Synthetic")
+
+	generate_entry_message()
+		. = {"You are a Synthetic! You are held to a higher standard and are required to obey not only the Server Rules but Marine Law and Synthetic Rules. Failure to do so may result in your White-list Removal.
+Your primary job is to support and assist all USCM Departments and Personnel on-board.
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
+As a Synthetic you answer to the acting commander. Special circumstances may change this!"}

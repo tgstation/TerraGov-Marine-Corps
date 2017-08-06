@@ -117,11 +117,23 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(!target)
 				usr << "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>"
 				return
-			if(!hascall(target,procname))
+
+			var/actual_name = procname
+			//Remove the "/proc/" in front of the actual name
+			if(findtext(procname, "/proc/"))
+				actual_name = replacetext(procname, "/proc/", "")
+			else if(findtext(procname, "/proc"))
+				actual_name = replacetext(procname, "/proc", "")
+			else if(findtext(procname, "proc/"))
+				actual_name = replacetext(procname, "proc/", "")
+			//Remove Parenthesis if any
+			actual_name = replacetext(actual_name, "()", "")
+
+			if(!hascall(target,actual_name))
 				usr << "<font color='red'>Error: callproc(): target has no such call [procname].</font>"
 				return
 			log_admin("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-			returnval = call(target,procname)(arglist(lst)) // Pass the lst as an argument list to the proc
+			returnval = call(target,actual_name)(arglist(lst)) // Pass the lst as an argument list to the proc
 		else
 			//this currently has no hascall protection. wasn't able to get it working.
 			log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")

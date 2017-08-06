@@ -28,6 +28,7 @@
 
 	var/use_loyalty_implants = 0
 	var/remove_gun_restrictions = 0
+	var/allow_synthetic_gun_use = 0
 
 /datum/configuration/proc/initialize_game_options(name,value)
 	value = text2num(value)

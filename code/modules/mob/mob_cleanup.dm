@@ -13,7 +13,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 // This proc has some procs that should be extracted from it. I believe we can develop some helper procs from it - Rockdtben
 /mob/proc/contract_disease(var/datum/disease/virus, var/skip_this = 0, var/force_species_check=1, var/spread_type = -5)
 	//world << "Contract_disease called by [src] with virus [virus]"
-	if(stat >=2)
+	if(stat == DEAD)
 		//world << "He's dead jim."
 		return
 	if(istype(virus, /datum/disease/advance))
@@ -30,10 +30,8 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 			//world << "Normal virus and resisted"
 			return
 
-
 	if(has_disease(virus))
 		return
-
 
 	if(force_species_check)
 		var/fail = 1
@@ -56,27 +54,9 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 		if(v.can_carry && prob(5))
 			v.carrier = 1
 		return
-	//world << "Not skipping."
-	//if(src.virus) //
-		//return //
 
-
-/*
-	var/list/clothing_areas	= list()
-	var/list/covers = list(UPPER_TORSO,LOWER_TORSO,LEGS,FEET,ARMS,HANDS)
-	for(var/Covers in covers)
-		clothing_areas[Covers] = list()
-
-	for(var/obj/item/clothing/Clothing in src)
-		if(Clothing)
-			for(var/Covers in covers)
-				if(Clothing&Covers)
-					clothing_areas[Covers] += Clothing
-
-*/
 	if(prob(15/virus.permeability_mod)) return //the power of immunity compels this disease! but then you forgot resistances
 	//world << "past prob()"
-	var/obj/item/clothing/Cl = null
 	var/passed = 1
 
 	//chances to target this zone
@@ -108,93 +88,13 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 
 	var/target_zone = pick(head_ch;1,body_ch;2,hands_ch;3,feet_ch;4)//1 - head, 2 - body, 3 - hands, 4- feet
 
-	if(istype(src, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
-
-		switch(target_zone)
-			if(1)
-				if(isobj(H.head) && !istype(H.head, /obj/item/weapon/paper))
-					Cl = H.head
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(H.wear_mask))
-					Cl = H.wear_mask
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(2)//arms and legs included
-				if(isobj(H.wear_suit))
-					Cl = H.wear_suit
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(WEAR_BODY))
-					Cl = WEAR_BODY
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(3)
-				if(isobj(H.wear_suit) && H.wear_suit.flags_armor_protection&HANDS)
-					Cl = H.wear_suit
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-
-				if(passed && isobj(H.gloves))
-					Cl = H.gloves
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(4)
-				if(isobj(H.wear_suit) && H.wear_suit.flags_armor_protection&FEET)
-					Cl = H.wear_suit
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-
-				if(passed && isobj(H.shoes))
-					Cl = H.shoes
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-			else
-				src << "Something strange's going on, something's wrong."
-
-			/*if("feet")
-				if(H.shoes && istype(H.shoes, /obj/item/clothing/))
-					Cl = H.shoes
-					passed = prob(Cl.permeability_coefficient*100)
-					//
-					world << "Shoes pass [passed]"
-			*/		//
-	else if(istype(src, /mob/living/carbon/monkey))
-		var/mob/living/carbon/monkey/M = src
-		switch(target_zone)
-			if(1)
-				if(M.wear_mask && isobj(M.wear_mask))
-					Cl = M.wear_mask
-					passed = prob((Cl.permeability_coefficient*100) - 1)
-					//world << "Mask pass [passed]"
+	passed = check_disease_pass_clothes(target_zone)
 
 	if(!passed && spread_type == AIRBORNE && !internal)
 		passed = (prob((50*virus.permeability_mod) - 1))
 
 	if(passed)
 		//world << "Infection in the mob [src]. YAY"
-
-
-/*
-	var/score = 0
-	if(istype(src, /mob/living/carbon/human))
-		if(src:gloves) score += 5
-		if(istype(src:wear_suit, /obj/item/clothing/suit/space)) score += 10
-		if(istype(src:wear_suit, /obj/item/clothing/suit/bio_suit)) score += 10
-		if(istype(src:head, /obj/item/clothing/head/helmet/space)) score += 5
-		if(istype(src:head, /obj/item/clothing/head/bio_hood)) score += 5
-	if(wear_mask)
-		score += 5
-		if((istype(src:wear_mask, /obj/item/clothing/mask) || istype(src:wear_mask, /obj/item/clothing/mask/surgical)) && !internal)
-			score += 5
-		if(internal)
-			score += 5
-	if(score > 20)
-		return
-	else if(score == 20 && prob(95))
-		return
-	else if(score >= 15 && prob(75))
-		return
-	else if(score >= 10 && prob(55))
-		return
-	else if(score >= 5 && prob(35))
-		return
-	else if(prob(15))
-		return
-	else*/
 
 		var/datum/disease/v = new virus.type(1, virus, 0)
 		src.viruses += v
@@ -203,5 +103,57 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 		v.holder = src
 		if(v.can_carry && prob(5))
 			v.carrier = 1
-		return
-	return
+
+
+
+/mob/living/carbon/human/contract_disease(datum/disease/virus, skip_this = 0, force_species_check=1, spread_type = -5)
+	if(species.flags & IS_SYNTHETIC) return //synthetic species are immune
+	..()
+
+//returns whether the mob's clothes stopped the disease from passing through
+/mob/proc/check_disease_pass_clothes(target_zone)
+	return 1
+
+/mob/living/carbon/monkey/check_disease_pass_clothes(target_zone)
+	switch(target_zone)
+		if(1)
+			if(wear_mask)
+				. = prob((wear_mask.permeability_coefficient*100) - 1)
+
+
+
+/mob/living/carbon/human/check_disease_pass_clothes(target_zone)
+	var/obj/item/clothing/Cl
+	switch(target_zone)
+		if(1)
+			if(isobj(head) && !istype(head, /obj/item/weapon/paper))
+				Cl = head
+				. = prob((Cl.permeability_coefficient*100) - 1)
+			if(. && wear_mask)
+				. = prob((Cl.permeability_coefficient*100) - 1)
+		if(2)//arms and legs included
+			if(isobj(wear_suit))
+				Cl = wear_suit
+				. = prob((Cl.permeability_coefficient*100) - 1)
+			if(. && isobj(WEAR_BODY))
+				Cl = WEAR_BODY
+				. = prob((Cl.permeability_coefficient*100) - 1)
+		if(3)
+			if(isobj(wear_suit) && wear_suit.flags_armor_protection&HANDS)
+				Cl = wear_suit
+				. = prob((Cl.permeability_coefficient*100) - 1)
+
+			if(. && isobj(gloves))
+				Cl = gloves
+				. = prob((Cl.permeability_coefficient*100) - 1)
+		if(4)
+			if(isobj(wear_suit) && wear_suit.flags_armor_protection&FEET)
+				Cl = wear_suit
+				. = prob((Cl.permeability_coefficient*100) - 1)
+
+			if(. && isobj(shoes))
+				Cl = shoes
+				. = prob((Cl.permeability_coefficient*100) - 1)
+		else
+			src << "Something bad happened with disease target zone code, tell a dev or admin "
+

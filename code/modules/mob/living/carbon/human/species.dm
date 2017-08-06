@@ -171,18 +171,20 @@
 	add_inherent_verbs(H)
 
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events.
+/*
 	if(flags & IS_SYNTHETIC)
 		H.h_style = ""
 		spawn(100)
 			if(!H) return
 			H.update_hair()
 	return
+*/
 
 //Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
 /datum/species/proc/handle_unique_behavior(var/mob/living/carbon/human/H)
 	return
 
-// Only used for alien plasma weeds atm, but could be used for Dionaea later.
+// Only used for alien plasma weeds.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
 	return
 
@@ -363,8 +365,8 @@
 
 	eyes = "vox_eyes_s"
 
-	breath_type = "nitrogen"
-	poison_type = "oxygen"
+	breath_type = "oxygen"//"nitrogen"
+	poison_type = "phoron"//"oxygen"
 	insulated = 1
 
 	flags = NO_SCAN
@@ -466,9 +468,9 @@
 		"brain" =    /datum/organ/internal/brain,
 		)
 
-/datum/species/android
-	name = "Android"
-	name_plural = "androids"
+/datum/species/synthetic
+	name = "Synthetic"
+	name_plural = "synthetics"
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	rarity_value = 2
@@ -497,6 +499,10 @@
 		"heart" =    /datum/organ/internal/heart/prosthetic,
 		"brain" =    /datum/organ/internal/brain/prosthetic,
 		)
+
+/datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
+	H.universal_understand = 1
+	return ..()
 
 /datum/species/yautja
 	name = "Yautja"

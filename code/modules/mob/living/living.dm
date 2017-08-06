@@ -260,19 +260,7 @@
 
 /mob/living/proc/revive()
 	rejuvenate()
-//	buckled = initial(src.buckled) // << This causes problems
-	if(iscarbon(src))
-		var/mob/living/carbon/C = src
 
-		if (C.handcuffed && !initial(C.handcuffed))
-			C.drop_inv_item_on_ground(C.handcuffed)
-		C.handcuffed = initial(C.handcuffed)
-
-		if (C.legcuffed && !initial(C.legcuffed))
-			C.drop_inv_item_on_ground(C.legcuffed)
-		C.legcuffed = initial(C.legcuffed)
-	hud_updateflag |= 1 << HEALTH_HUD
-	hud_updateflag |= 1 << STATUS_HUD
 
 /mob/living/proc/rejuvenate()
 

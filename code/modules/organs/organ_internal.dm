@@ -145,7 +145,7 @@
 	parent_organ = "chest"
 	removed_type = /obj/item/organ/heart
 
-/datum/organ/internal/heart/prosthetic //used by android species
+/datum/organ/internal/heart/prosthetic //used by synthetic species
 	robotic = 2
 	removed_type = /obj/item/organ/heart/prosthetic
 
@@ -268,7 +268,7 @@
 	removed_type = /obj/item/organ/brain
 	vital = 1
 
-/datum/organ/internal/brain/prosthetic //used by android species
+/datum/organ/internal/brain/prosthetic //used by synthetic species
 	robotic = 2
 	removed_type = /obj/item/organ/brain/prosthetic
 

@@ -80,8 +80,9 @@
 
 		//Eyes
 		if(!species.has_organ["eyes"]) //Presumably if a species has no eyes, they see via something else.
-			eye_blind =  0
-			blinded =    0
+			eye_blind = 0
+			if(stat == CONSCIOUS) //even with 'eye-less' vision, unconsciousness makes you blind
+				blinded = 0
 			eye_blurry = 0
 		else if(!has_eyes())           //Eyes cut out? Permablind.
 			eye_blind =  1
