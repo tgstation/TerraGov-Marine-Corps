@@ -120,7 +120,8 @@
 		stored_units += mob_size
 	return stored_units
 
-/obj/structure/closet/proc/toggle(mob/user as mob)
+/obj/structure/closet/proc/toggle(mob/user)
+	user.next_move = world.time + 5
 	if(!(src.opened ? src.close() : src.open()))
 		user << "<span class='notice'>It won't budge!</span>"
 	return
@@ -232,6 +233,7 @@
 /obj/structure/closet/relaymove(mob/user)
 	if(!isturf(src.loc)) return
 	if(user.is_mob_incapacitated(TRUE)) return
+	user.next_move = world.time + 5
 
 	if(!src.open())
 		user << "<span class='notice'>It won't budge!</span>"

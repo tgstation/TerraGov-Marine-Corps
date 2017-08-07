@@ -335,6 +335,8 @@
 		src << "<span class='warning'>\The [O] is too far away.</span>"
 		return
 
+	var/wait_time = 10
+
 	//OBJ CHECK
 	if(isobj(O))
 		var/obj/I = O
@@ -355,14 +357,21 @@
 
 		if (istype(T, /turf/simulated/wall/r_wall))
 			src << "<span class='xenowarning'>You begin generating enough acid to melt through \the [T].</span>"
-			sleep(100)
+			wait_time = 100
 		else if (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall))
 			src << "<span class='xenowarning'>You begin generating enough acid to melt through \the [T].</span>"
-			sleep(50)
+			wait_time = 50
 
 	else
 		src << "<span class='warning'>You cannot dissolve \the [O].</span>"
 		return
+
+	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK)))
+		return
+
+	if(!check_state())
+		return
+
 
 	if(isnull(O) || isnull(get_turf(O))) //Some logic.
 		return
