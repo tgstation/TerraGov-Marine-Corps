@@ -366,7 +366,7 @@
 		src << "<span class='warning'>You cannot dissolve \the [O].</span>"
 		return
 
-	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK)))
+	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
 		return
 
 	if(!check_state())
