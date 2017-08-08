@@ -80,7 +80,7 @@
 	if(unwrenched || !usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 	if(href_list["make"])
 		if(!wait)
@@ -119,7 +119,7 @@
 				src.anchored = 0
 				src.stat |= MAINT
 				src.unwrenched = 1
-				if (usr.machine==src)
+				if (usr.interactee==src)
 					usr << browse(null, "window=pipedispenser")
 		else /*if (unwrenched==1)*/
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -193,7 +193,7 @@ Nah
 /obj/machinery/pipedispenser/disposal/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 	if(href_list["dmake"])
 		if(unwrenched || !usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))

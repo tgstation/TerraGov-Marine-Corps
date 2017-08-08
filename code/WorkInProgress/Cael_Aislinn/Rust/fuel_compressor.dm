@@ -32,7 +32,7 @@ var/const/max_assembly_amount = 300
 /obj/machinery/rust_fuel_compressor/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
 		if (!istype(user, /mob/living/silicon))
-			user.unset_machine()
+			user.unset_interaction()
 			user << browse(null, "window=fuelcomp")
 			return
 
@@ -51,7 +51,7 @@ var/const/max_assembly_amount = 300
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 
 	user << browse(t, "window=fuelcomp;size=500x300")
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	//var/locked
 	//var/coverlocked
@@ -60,7 +60,7 @@ var/const/max_assembly_amount = 300
 	..()
 	if( href_list["close"] )
 		usr << browse(null, "window=fuelcomp")
-		usr.machine = null
+		usr.unset_interaction()
 
 	if( href_list["eject_matter"] )
 		var/ejected = 0

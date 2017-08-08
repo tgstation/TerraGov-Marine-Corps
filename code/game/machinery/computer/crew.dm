@@ -48,7 +48,7 @@
 	if( href_list["close"] )
 		var/mob/user = usr
 		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
-		usr.unset_machine()
+		usr.unset_interaction()
 		ui.close()
 		return 0
 	if(href_list["update"])
@@ -61,7 +61,7 @@
 /obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 	src.scan()
 
 	var/data[0]

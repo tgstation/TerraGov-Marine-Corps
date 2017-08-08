@@ -22,11 +22,11 @@
 
 /obj/machinery/computer/engines/attack_hand(var/mob/user as mob)
 	if(..())
-		user.unset_machine()
+		user.unset_interaction()
 		return
 
 	if(!isAI(user))
-		user.set_machine(src)
+		user.set_interaction(src)
 
 	ui_interact(user)
 

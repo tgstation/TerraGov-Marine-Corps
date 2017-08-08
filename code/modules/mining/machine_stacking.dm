@@ -25,7 +25,7 @@
 	interact(user)
 
 /obj/machinery/mineral/stacking_unit_console/interact(mob/user)
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/dat
 

@@ -275,11 +275,11 @@ display round(lastgen) and phorontank amount
 /obj/machinery/power/port_gen/pacman/interact(mob/user)
 	if (get_dist(src, user) > 1 )
 		if (!istype(user, /mob/living/silicon/ai))
-			user.unset_machine()
+			user.unset_interaction()
 			user << browse(null, "window=port_gen")
 			return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/dat = text("<b>[name]</b><br>")
 	if (active)
@@ -326,7 +326,7 @@ display round(lastgen) and phorontank amount
 				src.updateUsrDialog()
 		if (href_list["action"] == "close")
 			usr << browse(null, "window=port_gen")
-			usr.unset_machine()
+			usr.unset_interaction()
 
 /obj/machinery/power/port_gen/pacman/inoperable(var/additional_flags)
 	return (stat & (BROKEN|additional_flags)) //Removes NOPOWER check since its a goddam generator and doesn't need power

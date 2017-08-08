@@ -185,8 +185,8 @@
 
 	U.cameraFollow = target
 	//U << text("Now tracking [] on camera.", target.name)
-	//if (U.machine == null)
-	//	U.machine = U
+	//if (U.interactee == null)
+	//	U.set_interaction(U)
 	U << "Now tracking [target.name] on camera."
 
 	spawn (0)

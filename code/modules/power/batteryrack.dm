@@ -140,7 +140,7 @@
 			else
 				user << "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>"
 		else
-			user.set_machine(src)
+			user.set_interaction(src)
 			interact(user)
 			return 1
 	return

@@ -155,7 +155,7 @@ What a mess.*/
 	if (!( data_core.general.Find(active1) ))
 		active1 = null
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		switch(href_list["choice"])
 // SORTING!
 			if("Sorting")

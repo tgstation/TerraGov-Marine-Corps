@@ -43,7 +43,7 @@
 	return interact(user)
 
 /obj/machinery/computer/atmoscontrol/interact(mob/user)
-	user.set_machine(src)
+	user.set_interaction(src)
 	if(allowed(user))
 		overridden = 1
 	else if(!emagged)

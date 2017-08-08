@@ -8,7 +8,7 @@
 		if (src.stat!=0)
 			src.cameraFollow = null
 			src.reset_view(null)
-			src.unset_machine()
+			src.unset_interaction()
 
 		src.updatehealth()
 
@@ -23,9 +23,8 @@
 			death()
 			return
 
-		if (src.machine)
-			if (!( src.machine.check_eye(src) ))
-				src.reset_view(null)
+		if (interactee)
+			interactee.check_eye(src)
 
 		// Handle power damage (oxy)
 		if(src:aiRestorePowerRoutine != 0)

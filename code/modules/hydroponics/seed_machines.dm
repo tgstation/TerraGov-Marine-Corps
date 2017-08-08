@@ -205,7 +205,7 @@
 		visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
 		loaded_disk = null
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 /obj/machinery/botany/extractor/Topic(href, href_list)
@@ -213,7 +213,7 @@
 	if(..())
 		return 1
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	if(href_list["scan_genome"])
@@ -334,5 +334,5 @@
 			seed.seed.apply_gene(gene)
 			seed.modified += rand(5,10)
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)

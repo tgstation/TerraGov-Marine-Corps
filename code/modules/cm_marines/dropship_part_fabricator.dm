@@ -36,7 +36,7 @@
 /obj/machinery/dropship_part_fabricator/attack_hand(mob/user)
 	if(..())
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = "<center><h2>Dropship Part Fabricator</h2></center><hr/>"
 	dat += "<h4>Points Available: [dropship_points]</h4>"
 	dat += "<h3>Dropship Equipment:</h3>"
@@ -81,7 +81,7 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	add_fingerprint(usr)
 
 	if(busy)

@@ -172,11 +172,11 @@ max volume of phoron storeable by the field = the total volume of a number of ti
 
 /obj/machinery/power/rust_core/interact(mob/user)
 	if(stat & BROKEN)
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=core_gen")
 		return
 	if(!istype(user, /mob/living/silicon) && get_dist(src, user) > 1)
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=core_gen")
 		return
 
@@ -218,7 +218,7 @@ max volume of phoron storeable by the field = the total volume of a number of ti
 
 	user << browse(dat, "window=core_gen;size=500x300")
 	onclose(user, "core_gen")
-	user.set_machine(src)
+	user.set_interaction(src)
 
 /obj/machinery/power/rust_core/Topic(href, href_list)
 	if(href_list["str"])
@@ -247,7 +247,7 @@ max volume of phoron storeable by the field = the total volume of a number of ti
 
 	if(href_list["close"])
 		usr << browse(null, "window=core_gen")
-		usr.unset_machine()
+		usr.unset_interaction()
 
 	if(href_list["extern_update"])
 		var/obj/machinery/computer/rust_core_control/C = locate(href_list["extern_update"])

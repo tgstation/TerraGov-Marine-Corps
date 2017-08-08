@@ -148,7 +148,7 @@
 /obj/machinery/bot/medbot/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 	if ((href_list["power"]) && (src.allowed(usr)))
 		if (src.on)
@@ -406,10 +406,16 @@
 	var/reagent_id = null
 
 	//Use whatever is inside the loaded beaker. If there is one.
-	if((src.use_beaker) && (src.reagent_glass) && (src.reagent_glass.reagents.total_volume))
-		reagent_id = "internal_beaker"
+	if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
+		var/safety_fail = 0
+		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
+			if(!C.reagents.has_reagent(R))
+				safety_fail = 1
+				break
+		if(!safety_fail)
+			reagent_id = "internal_beaker"
 
-	if(src.emagged == 2) //Emagged! Time to poison everybody.
+	if(emagged == 2) //Emagged! Time to poison everybody.
 		reagent_id = "toxin"
 
 	var/virus = 0
@@ -449,7 +455,7 @@
 		visible_message("\red <B>[src] is trying to inject [src.patient]!</B>")
 		spawn(30)
 			if ((get_dist(src, src.patient) <= 1) && (src.on))
-				if((reagent_id == "internal_beaker") && (src.reagent_glass) && (src.reagent_glass.reagents.total_volume))
+				if(reagent_id == "internal_beaker" && reagent_glass && reagent_glass.reagents.total_volume)
 					src.reagent_glass.reagents.trans_to(src.patient,src.injection_amount) //Inject from beaker instead.
 					src.reagent_glass.reagents.reaction(src.patient, 2)
 				else

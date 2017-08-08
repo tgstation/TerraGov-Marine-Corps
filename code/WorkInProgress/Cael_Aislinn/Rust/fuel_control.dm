@@ -52,12 +52,12 @@
 
 /obj/machinery/computer/rust_fuel_control/interact(mob/user)
 	if(stat & (BROKEN|NOPOWER))
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=fuel_control")
 		return
 
 	if (!istype(user, /mob/living/silicon) && get_dist(src, user) > 1)
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=fuel_control")
 		return
 
@@ -113,7 +113,7 @@
 	dat += "<A href='?src=\ref[src];refresh=1'>Refresh</A> "
 	dat += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 	user << browse(dat, "window=fuel_control;size=800x400")
-	user.set_machine(src)
+	user.set_interaction(src)
 
 /obj/machinery/computer/rust_fuel_control/Topic(href, href_list)
 	..()
@@ -166,7 +166,7 @@
 
 	if( href_list["close"] )
 		usr << browse(null, "window=fuel_control")
-		usr.unset_machine()
+		usr.unset_interaction()
 
 	if( href_list["set_next_stage"] )
 		var/cur_stage = href_list["set_next_stage"]

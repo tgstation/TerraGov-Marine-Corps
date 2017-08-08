@@ -60,7 +60,7 @@
 	return 0
 
 /obj/machinery/juicer/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	interact(user)
 
 /obj/machinery/juicer/interact(mob/user as mob) // The microwave Menu
@@ -106,7 +106,7 @@
 /obj/machinery/juicer/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	switch(href_list["action"])
 		if ("juice")
 			juice()

@@ -27,7 +27,7 @@
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	var/health = 100
 
-/obj/structure/table/destroy(var/deconstruct = 0)
+/obj/structure/table/destroy(deconstruct)
 	if(deconstruct)
 		if(parts)
 			new parts(loc)
@@ -622,7 +622,7 @@
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy()
 
-/obj/structure/rack/destroy(var/deconstruct = 0)
+/obj/structure/rack/destroy(deconstruct)
 	if(deconstruct)
 		if(parts)
 			new parts(loc)

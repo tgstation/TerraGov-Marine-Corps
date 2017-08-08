@@ -279,7 +279,12 @@
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
 		"<span class='danger'>You slash [src]!</span>")
+	if(is_wired)
+		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
+		"<span class='danger'>The barbed wire slices into you!</span>")
+		M.apply_damage(10)
 	update_health(TRUE)
+
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)

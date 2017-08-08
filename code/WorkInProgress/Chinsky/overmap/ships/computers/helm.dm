@@ -51,22 +51,23 @@
 		linked.relaymove(user,direction)
 		return 1
 
-/obj/machinery/computer/helm/check_eye(var/mob/user as mob)
+/obj/machinery/computer/helm/check_eye(mob/user)
 	if (!manual_control)
-		return null
-	if (!get_dist(user, src) > 1 || user.blinded || !linked )
-		return null
-	user.reset_view(linked)
-	return 1
+		user.reset_view(null)
+	else if (get_dist(user, src) > 1 || user.is_mob_incapacitated() || user.blinded || !linked )
+		user.reset_view(null)
+	else
+		user.reset_view(linked)
+
 
 /obj/machinery/computer/helm/attack_hand(var/mob/user as mob)
 	if(..())
-		user.unset_machine()
+		user.unset_interaction()
 		manual_control = 0
 		return
 
 	if(!isAI(user))
-		user.set_machine(src)
+		user.set_interaction(src)
 
 	ui_interact(user)
 

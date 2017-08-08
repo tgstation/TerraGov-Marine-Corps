@@ -53,7 +53,7 @@
 	if(..())
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat
 	if (!( ticker ))
 		return
@@ -223,7 +223,7 @@
 /obj/machinery/computer/marine_card/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	switch(href_list["choice"])
 		if ("modify")
 			if (modify)
@@ -400,7 +400,7 @@
 		return
 	if(user) add_fingerprint(user)
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 	var/dat = "<div align='center'><b>Squad Distribution Console</b></div>"
 
@@ -434,7 +434,7 @@
 		return
 
 	if (get_dist(src, usr) <= 1 && istype(src.loc, /turf))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if(href_list["card"])
 			if(modify)
 				modify.loc = src.loc
@@ -534,7 +534,7 @@
 	if( href_list["close"] )
 		var/mob/user = usr
 		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
-		usr.unset_machine()
+		usr.unset_interaction()
 		ui.close()
 		return 0
 	if(href_list["update"])
@@ -547,7 +547,7 @@
 /obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 	src.scan()
 
 	var/data[0]

@@ -170,7 +170,7 @@
 	var/setsecond = round((timetoset / 10) % 60)
 	var/setminute = round(((timetoset / 10) - setsecond) / 60)
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	// dat
 	var/dat = "<HTML><BODY><TT>"
@@ -225,7 +225,7 @@
 	if(!src.allowed(usr))
 		return 0
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 	if(href_list["timing"])
 		src.timing = text2num(href_list["timing"])

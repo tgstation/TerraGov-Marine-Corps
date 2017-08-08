@@ -31,7 +31,7 @@
 	if(..())
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = "<h3>AI System Integrity Restorer</h3><br><br>"
 
 	if (src.occupant)

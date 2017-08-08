@@ -245,7 +245,7 @@ Programs are a file that can be executed
 		return 1
 
 	if("close" in href_list)
-		usr.unset_machine()
+		usr.unset_interaction()
 		popup.close()
 		return 1
 	//

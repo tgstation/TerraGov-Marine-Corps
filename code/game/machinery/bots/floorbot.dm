@@ -70,7 +70,7 @@
 	. = ..()
 	if (.)
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	interact(user)
 
 /obj/machinery/bot/floorbot/interact(mob/user as mob)
@@ -129,7 +129,7 @@
 /obj/machinery/bot/floorbot/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 	switch(href_list["operation"])
 		if("start")

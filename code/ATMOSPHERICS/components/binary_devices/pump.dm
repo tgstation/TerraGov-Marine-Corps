@@ -196,7 +196,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(!src.allowed(user))
 		user << "\red Access denied."
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	ui_interact(user)
 	return
 
@@ -215,7 +215,7 @@ Thus, the two variables affect pump operation are set in New():
 			var/new_pressure = input(usr,"Enter new output pressure (0-[max_pressure_setting]kPa)","Pressure control",src.target_pressure) as num
 			src.target_pressure = between(0, new_pressure, max_pressure_setting)
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	src.update_icon()

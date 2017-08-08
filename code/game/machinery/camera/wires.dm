@@ -103,7 +103,7 @@
 	if(!panel_open)
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/t1 = text("<B>Access Panel</B><br>\n")
 	var/list/wires = list(
 		"Orange" = 1,
@@ -137,7 +137,7 @@
 /obj/machinery/camera/Topic(href, href_list)
 	..()
 	if (in_range(src, usr) && istype(src.loc, /turf))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if (href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
 			if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
@@ -159,7 +159,7 @@
 				src.pulse(t1)
 		else if (href_list["close2"])
 			usr << browse(null, "window=wires")
-			usr.unset_machine()
+			usr.unset_interaction()
 			return
 
 

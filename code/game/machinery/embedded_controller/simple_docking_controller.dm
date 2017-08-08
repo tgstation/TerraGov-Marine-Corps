@@ -31,7 +31,7 @@
 	if(..())
 		return 1
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	var/clean = 0

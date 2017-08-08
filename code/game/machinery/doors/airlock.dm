@@ -441,7 +441,7 @@ About the new airlock wires panel:
 		return
 
 	//Separate interface for the AI.
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/t1 = text("<B>Airlock Control</B><br>\n")
 	if(src.secondsMainPowerLost > 0)
 		if((!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2)))
@@ -628,7 +628,7 @@ About the new airlock wires panel:
 	**/
 
 	if(src.p_open)
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/t1 = text("<B>Access Panel</B><br>\n")
 
 		//t1 += text("[]: ", airlockFeatureNames[airlockWireColorToIndex[9]])
@@ -694,12 +694,12 @@ About the new airlock wires panel:
 	add_fingerprint(usr)
 	if(href_list["close"])
 		usr << browse(null, "window=airlock")
-		if(usr.machine==src)
-			usr.unset_machine()
+		if(usr.interactee==src)
+			usr.unset_interaction()
 			return
 
 	if((in_range(src, usr) && istype(src.loc, /turf)) && src.p_open)
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
 			if(!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))

@@ -31,7 +31,7 @@
 		..()
 		if( href_list["close"] )
 			usr << browse(null, "window=gyro_monitor")
-			usr.machine = null
+			usr.unset_interaction()
 			return
 		if( href_list["modifypower"] )
 			var/new_val = text2num(input("Enter new emission power level (0.001 - 0.01)", "Modifying power level (MeV)", mega_energy))
@@ -167,7 +167,7 @@
 	interact(mob/user)
 		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
 			if (!istype(user, /mob/living/silicon))
-				user.machine = null
+				user.unset_interaction()
 				user << browse(null, "window=gyro_monitor")
 				return
 		var/t = "<B>Free electron MASER (Gyrotron) Control Panel</B><BR>"
@@ -186,4 +186,4 @@
 		t += "<hr>"
 		t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 		user << browse(t, "window=gyro_monitor;size=500x800")
-		user.machine = src
+		user.set_interaction(src)

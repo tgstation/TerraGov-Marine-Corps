@@ -342,7 +342,10 @@ Defined in conflicts.dm of the #defines folder.
 	attackby(obj/item/I, mob/user)
 		if(istype(I,/obj/item/weapon/screwdriver))
 			user << "<span class='notice'>You modify the bayonet back into a combat knife.</span>"
-			if(src.loc == user)
+			if(istype(loc, /obj/item/weapon/storage))
+				var/obj/item/weapon/storage/S = loc
+				S.remove_from_storage(src)
+			if(loc == user)
 				user.drop_inv_item_on_ground(src)
 			var/obj/item/weapon/combat_knife/F = new(src.loc)
 			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.

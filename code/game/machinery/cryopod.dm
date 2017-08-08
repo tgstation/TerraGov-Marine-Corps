@@ -30,7 +30,7 @@ var/global/list/frozen_items = list()
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	var/dat

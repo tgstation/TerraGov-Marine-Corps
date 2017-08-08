@@ -71,7 +71,7 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/gravity_control_computer/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	add_fingerprint(user)
 
 	if(stat & (BROKEN|NOPOWER))
@@ -118,7 +118,7 @@
 
 	if ( (get_dist(src, usr) > 1 ))
 		if (!istype(usr, /mob/living/silicon))
-			usr.unset_machine()
+			usr.unset_interaction()
 			usr << browse(null, "window=air_alarm")
 			return
 

@@ -375,12 +375,12 @@ var/list/solars_list = list()
 	if(stat & (BROKEN|NOPOWER)) return
 	if ( (get_dist(src, user) > 1 ))
 		if (!istype(user, /mob/living/silicon))
-			user.unset_machine()
+			user.unset_interaction()
 			user << browse(null, "window=solcon")
 			return
 
 	add_fingerprint(user)
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/t = "<TT><B>Solar Generator Control</B><HR><PRE>"
 	t += "<B>Generated power</B> : [round(lastgen)] W<BR>"
@@ -414,11 +414,11 @@ var/list/solars_list = list()
 /obj/machinery/power/solar_control/Topic(href, href_list)
 	if(..())
 		usr << browse(null, "window=solcon")
-		usr.unset_machine()
+		usr.unset_interaction()
 		return
 	if(href_list["close"] )
 		usr << browse(null, "window=solcon")
-		usr.unset_machine()
+		usr.unset_interaction()
 		return
 
 	if(href_list["dir"])

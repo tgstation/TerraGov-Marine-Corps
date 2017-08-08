@@ -1968,7 +1968,7 @@
 		if(..())
 			return
 		if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))))
-			usr.set_machine(src)
+			usr.set_interaction(src)
 			if (href_list["refresh"])
 				updateUsrDialog()
 			if (href_list["surgery"])

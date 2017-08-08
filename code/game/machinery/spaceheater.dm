@@ -74,9 +74,9 @@
 		open = !open
 		user.visible_message("\blue [user] [open ? "opens" : "closes"] the hatch on the [src].", "\blue You [open ? "open" : "close"] the hatch on the [src].")
 		update_icon()
-		if(!open && user.machine == src)
+		if(!open && user.interactee == src)
 			user << browse(null, "window=spaceheater")
-			user.unset_machine()
+			user.unset_interaction()
 	else
 		..()
 	return
@@ -105,7 +105,7 @@
 		dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
 		dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A><BR>"
 
-		user.set_machine(src)
+		user.set_interaction(src)
 		user << browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
 		onclose(user, "spaceheater")
 	else
@@ -119,7 +119,7 @@
 	if (usr.stat)
 		return
 	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 
 		switch(href_list["op"])
 
@@ -152,7 +152,7 @@
 		updateDialog()
 	else
 		usr << browse(null, "window=spaceheater")
-		usr.unset_machine()
+		usr.unset_interaction()
 	return
 
 

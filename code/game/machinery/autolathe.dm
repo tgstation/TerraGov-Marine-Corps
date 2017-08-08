@@ -188,7 +188,7 @@
 	return attack_hand(user)
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
@@ -196,7 +196,7 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	add_fingerprint(usr)
 
 	if(busy)

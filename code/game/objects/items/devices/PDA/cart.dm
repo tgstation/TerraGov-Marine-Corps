@@ -518,7 +518,7 @@
 	..()
 
 	if (!usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))
-		usr.unset_machine()
+		usr.unset_interaction()
 		usr << browse(null, "window=pda")
 		return
 

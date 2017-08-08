@@ -217,7 +217,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 /obj/machinery/requests_console/Topic(href, href_list)
 	if(..())	return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	add_fingerprint(usr)
 
 	if(reject_bad_text(href_list["write"]))

@@ -132,7 +132,7 @@
 							M.ExtinguishMob()
 					if(W.loc == my_target) break
 					sleep(2)
-				W.delete()
+				cdel(W)
 
 		if((istype(usr.loc, /turf/space)) || (usr.lastarea.has_gravity == 0))
 			user.inertia_dir = get_dir(target, user)

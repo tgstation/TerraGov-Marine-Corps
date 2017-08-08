@@ -97,7 +97,7 @@
 	Topic(href, href_list)
 		if(..())
 			return
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		src.add_fingerprint(usr)
 
 

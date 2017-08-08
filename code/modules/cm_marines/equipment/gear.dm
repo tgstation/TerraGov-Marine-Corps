@@ -8,18 +8,7 @@
 	desc = "A Flashlight designed to be held in the hand, or attached to a rifle"
 	icon_state = "flashlight"
 	item_state = "flashlight"
-	var/attachable = 0  //Can this be attached to another weapon or device?
 	brightness_on = 5 //Pretty luminous, but still a flashlight that fits in a pocket
-
-/obj/item/device/flashlight/combat/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
-		if(attachable)
-			attachable = 0
-			usr << "\red You screw the side panel on [src] closed. It can no longer be attached!"
-		else if(!attachable)
-			attachable = 1
-			usr << "\red You screw open the side panel on [src], which can now be attached!"
-	return
 
 //MARINE SNIPER TARPS
 

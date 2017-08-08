@@ -23,11 +23,11 @@
 
 /obj/machinery/computer/rust_core_control/interact(mob/user)
 	if(stat & BROKEN)
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=core_control")
 		return
 	if (!istype(user, /mob/living/silicon) && (get_dist(src, user) > 1 ))
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=core_control")
 		return
 
@@ -100,7 +100,7 @@
 
 	user << browse(dat, "window=core_control;size=500x400")
 	onclose(user, "core_control")
-	user.set_machine(src)
+	user.set_interaction(src)
 
 /obj/machinery/computer/rust_core_control/Topic(href, href_list)
 	..()
@@ -127,7 +127,7 @@
 
 	if( href_list["close"] )
 		usr << browse(null, "window=core_control")
-		usr.unset_machine()
+		usr.unset_interaction()
 
 	updateDialog()
 

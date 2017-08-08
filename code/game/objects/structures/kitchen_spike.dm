@@ -15,34 +15,22 @@
 	attack_paw(mob/user as mob)
 		return src.attack_hand(usr)
 
-	attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
+	attackby(obj/item/weapon/grab/G, mob/user)
 		if(!istype(G, /obj/item/weapon/grab))
 			return
 		if(istype(G.grabbed_thing, /mob/living/carbon/monkey))
-			if(src.occupied == 0)
-				src.icon_state = "spikebloody"
-				src.occupied = 1
-				src.meat = 5
-				src.meattype = 1
-				for(var/mob/O in viewers(src, null))
-					O.show_message(text("\red [user] has forced [G.grabbed_thing] onto the spike, killing them instantly!"))
-				cdel(G.grabbed_thing)
+			var/mob/living/carbon/monkey/M = G.grabbed_thing
+			if(!occupied)
+				icon_state = "spikebloody"
+				occupied = 1
+				meat = 5
+				meattype = 1
+				visible_message("\red [user] has forced [M] onto the spike, killing them instantly!")
+				M.death()
+				cdel(M)
 				G.grabbed_thing = null
 				cdel(G)
 
-			else
-				user << "\red The spike already has something on it, finish collecting its meat first!"
-		else if(istype(G.grabbed_thing, /mob/living/carbon/Xenomorph))
-			if(src.occupied == 0)
-				src.icon_state = "spikebloodygreen"
-				src.occupied = 1
-				src.meat = 5
-				src.meattype = 2
-				for(var/mob/O in viewers(src, null))
-					O.show_message(text("\red [user] has forced [G.grabbed_thing] onto the spike, killing them instantly!"))
-				cdel(G.grabbed_thing)
-				G.grabbed_thing = null
-				cdel(G)
 			else
 				user << "\red The spike already has something on it, finish collecting its meat first!"
 		else

@@ -94,32 +94,3 @@
 	else
 		src << "<span class='warning'>You have nothing to spit at!</span>"
 
-/obj/resin_glob
-	name = "glob of sticky resin"
-	desc = "Gooey."
-
-/obj/resin_glob/proc/splatter(turf/T)
-
-		do_safe_splatter(T)
-		do_safe_splatter(get_step(T, NORTH))
-		do_safe_splatter(get_step(T, NORTHEAST))
-		do_safe_splatter(get_step(T, EAST))
-		do_safe_splatter(get_step(T, SOUTHEAST))
-		do_safe_splatter(get_step(T, SOUTH))
-		do_safe_splatter(get_step(T, SOUTHWEST))
-		do_safe_splatter(get_step(T, WEST))
-		do_safe_splatter(get_step(T, NORTHWEST))
-		del(src)
-
-/obj/resin_glob/proc/do_safe_splatter(turf/T)
-	if (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall))
-		return
-
-	for(var/obj/O in T.contents)
-		if(istype(O, /obj/effect/alien/resin/sticky))
-			return
-
-		if(O.density) //We can't grow if something dense is here
-			return
-
-	new /obj/effect/alien/resin/sticky/thin(T)

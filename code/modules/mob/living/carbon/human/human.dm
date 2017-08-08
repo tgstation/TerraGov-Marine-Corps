@@ -223,7 +223,7 @@
 	if (istype(w_uniform, /obj/item/clothing/under))
 		suit = w_uniform
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
@@ -364,12 +364,12 @@
 
 /mob/living/carbon/human/Topic(href, href_list)
 	if (href_list["refresh"])
-		if((machine)&&(in_range(src, usr)))
-			show_inv(machine)
+		if(interactee&&(in_range(src, usr)))
+			show_inv(interactee)
 
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_machine()
+		unset_interaction()
 		src << browse(null, t1)
 
 	if ((href_list["item"] && !usr.is_mob_incapacitated() && in_range(src, usr) && ticker)) //if game hasn't started, can't make an equip_e

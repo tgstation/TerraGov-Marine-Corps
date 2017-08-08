@@ -69,7 +69,7 @@
 
 
 /obj/item/device/radio/attack_self(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	interact(user)
 
 /obj/item/device/radio/interact(mob/user as mob)
@@ -127,7 +127,7 @@
 	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf) ))))
 		usr << browse(null, "window=radio")
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"])
 		var/mob/living/silicon/ai/A = locate(href_list["track2"])
@@ -479,7 +479,7 @@
 
 /obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	user.set_machine(src)
+	user.set_interaction(src)
 	if (!( istype(W, /obj/item/weapon/screwdriver) ))
 		return
 	b_stat = !( b_stat )
@@ -523,7 +523,7 @@
 
 /obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
-	user.set_machine(src)
+	user.set_interaction(src)
 	if (!( istype(W, /obj/item/weapon/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 

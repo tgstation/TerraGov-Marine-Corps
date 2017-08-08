@@ -70,7 +70,7 @@
 			return
 		if( href_list["close"] )
 			usr << browse(null, "window=crewcomp")
-			usr.unset_machine()
+			usr.unset_interaction()
 			return
 		if(href_list["update"])
 			interact()

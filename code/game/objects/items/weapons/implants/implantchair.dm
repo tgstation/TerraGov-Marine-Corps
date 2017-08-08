@@ -32,7 +32,7 @@
 
 
 	attack_hand(mob/user as mob)
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/health_text = ""
 		if(src.occupant)
 			if(src.occupant.health <= -100)
@@ -48,7 +48,7 @@
 		dat += "<B>Implants:</B> [src.implant_list.len ? "[implant_list.len]" : "<A href='?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
 		if(src.occupant)
 			dat += "[src.ready ? "<A href='?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
-		user.set_machine(src)
+		user.set_interaction(src)
 		user << browse(dat, "window=implant")
 		onclose(user, "implant")
 

@@ -294,6 +294,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/human_mob = src
 		human_mob.restore_blood()
+		reagents.clear_reagents() //and clear all reagents in them
 
 	// fix all of our organs
 	restore_all_organs()

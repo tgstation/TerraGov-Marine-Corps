@@ -24,7 +24,7 @@
 	return
 
 /obj/item/stack/Dispose()
-	if (usr && usr.machine == src)
+	if (usr && usr.interactee == src)
 		usr << browse(null, "window=stack")
 	. = ..()
 
@@ -40,7 +40,7 @@
 		return
 	if(!src || amount <= 0)
 		user << browse(null, "window=stack")
-	user.set_machine(src) //for correct work of onclose
+	user.set_interaction(src) //for correct work of onclose
 	var/list/recipe_list = recipes
 	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
@@ -175,7 +175,7 @@
 			for (var/obj/item/I in O)
 				cdel(I)
 		//BubbleWrap END
-	if(src && usr.machine == src) //do not reopen closed window
+	if(src && usr.interactee == src) //do not reopen closed window
 		spawn()
 			interact(usr)
 			return
@@ -225,7 +225,7 @@
 		src.add_fingerprint(user)
 		F.add_fingerprint(user)
 		use(1)
-		if (src && usr.machine==src)
+		if (src && usr.interactee==src)
 			spawn(0) src.interact(usr)
 	else
 		..()
@@ -243,10 +243,10 @@
 		else
 			to_transfer = min(src.amount, S.max_amount-S.amount)
 		S.add(to_transfer)
-		if (S && usr.machine==S)
+		if (S && usr.interactee==S)
 			spawn(0) S.interact(usr)
 		src.use(to_transfer)
-		if (src && usr.machine==src)
+		if (src && usr.interactee==src)
 			spawn(0) src.interact(usr)
 	else return ..()
 

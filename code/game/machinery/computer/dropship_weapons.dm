@@ -25,7 +25,7 @@
 		user << "<span class='warning'>Access denied.</span>"
 		return 1
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	ui_interact(user)
 
 

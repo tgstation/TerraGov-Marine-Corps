@@ -565,9 +565,8 @@
 					client.screen += global_hud.druggy
 
 		if (stat != 2)
-			if (machine)
-				if (!( machine.check_eye(src) ))
-					reset_view(null)
+			if(interactee)
+				interactee.check_eye(src)
 			else
 				if(client && !client.adminobs)
 					reset_view(null)

@@ -89,7 +89,7 @@
 	return 1
 
 /obj/machinery/atmospherics/omni/filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 	var/list/data = new()
 

@@ -201,7 +201,7 @@
 	sleep(150+rand(0,20))	// turning it off before it is deleted results in cleaner
 	smoke.opacity = 0		// lighting and view range updates
 	fadeOut(smoke)
-	smoke.delete()
+	cdel(smoke)
 
 //------------------------------------------
 // Fades out the smoke smoothly using it's alpha variable.

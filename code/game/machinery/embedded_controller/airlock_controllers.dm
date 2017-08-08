@@ -47,7 +47,7 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	var/clean = 0
@@ -103,7 +103,7 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	var/clean = 0
@@ -167,7 +167,7 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	var/clean = 0

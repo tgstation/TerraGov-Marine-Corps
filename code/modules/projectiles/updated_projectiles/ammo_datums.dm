@@ -917,8 +917,23 @@
 		drop_resin(get_turf(P))
 
 	proc/drop_resin(turf/T)
-		var/obj/resin_glob/G = new(T)
-		G.splatter(T)
+		do_sticky_splatter(T)
+		for(var/tempdir in CARDINAL_ALL_DIRS)
+			do_sticky_splatter(get_step(T, tempdir))
+
+	proc/do_sticky_splatter(turf/T)
+		if(T.density) return
+
+		for(var/obj/O in T.contents)
+			if(istype(O, /obj/effect/alien/resin/sticky))
+				return
+
+			if(O.density) //We can't grow if something dense is here
+				return
+
+		new /obj/effect/alien/resin/sticky/thin(T)
+
+
 
 /datum/ammo/xeno/acid
 	name = "acid spit"

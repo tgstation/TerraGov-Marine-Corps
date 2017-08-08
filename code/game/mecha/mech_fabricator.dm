@@ -536,7 +536,7 @@
 		return
 	if(!operation_allowed(user))
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/turf/exit = get_step(src,SOUTH)
 	if(exit.density)
 		src.visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Part outlet is obstructed\".")

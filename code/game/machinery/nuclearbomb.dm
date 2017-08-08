@@ -55,7 +55,7 @@ var/bomb_set
 		if (src.timeleft <= 0)
 			explode()
 		for(var/mob/M in viewers(1, src))
-			if ((M.client && M.machine == src))
+			if ((M.client && M.interactee == src))
 				src.attack_hand(M)
 	return
 
@@ -177,7 +177,7 @@ var/bomb_set
 		if (!ishuman(user))
 			usr << "\red You don't have the dexterity to do this!"
 			return 1
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/dat = text("<TT><B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='?src=\ref[];auth=1'>[]</A><HR>", src, (src.auth ? "++++++++++" : "----------"))
 		if (src.auth)
 			if (src.yes_code)
@@ -245,7 +245,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	if (!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
@@ -358,7 +358,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 		src.add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))
-			if ((M.client && M.machine == src))
+			if ((M.client && M.interactee == src))
 				src.attack_hand(M)
 	else
 		usr << browse(null, "window=nuclearbomb")

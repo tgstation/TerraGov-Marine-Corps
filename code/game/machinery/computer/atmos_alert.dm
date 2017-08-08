@@ -44,7 +44,7 @@
 	if(..(user))
 		return
 	user << browse(return_text(),"window=computer")
-	user.set_machine(src)
+	user.set_interaction(src)
 	onclose(user, "computer")
 
 /obj/machinery/computer/atmos_alert/process()

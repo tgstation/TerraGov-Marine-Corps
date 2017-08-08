@@ -83,7 +83,7 @@
 
 
 	attack_self(mob/user as mob)
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
 		var/message = "Code"
 		if ((src.l_set == 0) && (!src.emagged) && (!src.l_setshort))
@@ -126,7 +126,7 @@
 						src.code = "ERROR"
 			src.add_fingerprint(usr)
 			for(var/mob/M in viewers(1, src.loc))
-				if ((M.client && M.machine == src))
+				if ((M.client && M.interactee == src))
 					src.attack_self(M)
 				return
 		return

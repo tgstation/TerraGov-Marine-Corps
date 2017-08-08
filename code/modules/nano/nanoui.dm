@@ -333,7 +333,7 @@ nanoui is used to open and update nano browser uis
 	map_z_level = nz
 
  /**
-  * Set whether or not to use the "old" on close logic (mainly unset_machine())
+  * Set whether or not to use the "old" on close logic (mainly unset_interaction())
   *
   * @param state int (bool) Set on_close_logic to 1 or 0 (true/false)
   *

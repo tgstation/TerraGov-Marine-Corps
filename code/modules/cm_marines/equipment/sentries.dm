@@ -234,7 +234,6 @@
 	var/rounds_max = 300
 	var/locked = 0
 	var/atom/target = null
-	var/mob/living/carbon/human/worker = null
 	var/manual_override = 0
 	var/on = 0
 	var/health = 200
@@ -266,8 +265,8 @@
 		ammo = ammo_list[ammo]
 
 	Dispose() //Clear these for safety's sake.
-		if(operator && operator.machine)
-			operator.machine = null
+		if(operator)
+			operator.unset_interaction()
 			operator = null
 		if(camera)
 			cdel(camera)
@@ -277,8 +276,6 @@
 			cell = null
 		if(target)
 			target = null
-		if(worker)
-			worker = null
 		SetLuminosity(0)
 		processing_objects.Remove(src)
 		. = ..()
@@ -316,15 +313,12 @@
 		user << "<span class='warning'>[src]'s control panel is locked! Only a Squad Leader or Engineer can unlock it now.</span>"
 		return
 
-
-	worker = user
-
-	user.set_machine(src)
+	user.set_interaction(src)
 	ui_interact(user)
 
 	return
 
-/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 
 	var/list/data = list(
 		"self_ref" = "\ref[src]",
@@ -359,14 +353,12 @@
 	if(!istype(user))
 		return
 
-	if(get_dist(src.loc, user.loc) > 1)
+	if(get_dist(src.loc, user.loc) > 1 || user.is_mob_incapacitated())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	switch(href_list["op"])
 		if("direction")
-			if(user.stat || get_dist(src.loc, user.loc) < 1)
-				return
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
 				return
 
@@ -380,11 +372,8 @@
 				"<span class='notice'>You activate [src]'s direction lock.</span>")
 				visible_message("\icon[src] <span class='notice'>The [name]'s turret stops rotating.</span>")
 
-			return
 
 		if("burst")
-			if(user.stat || get_dist(src.loc, user.loc) < 1)
-				return
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
 				return
 
@@ -399,11 +388,8 @@
 				"<span class='notice'>You activate [src]'s burst fire mode.</span>")
 				visible_message("\icon[src] <span class='notice'>A green light on [src] blinks rapidly.</span>")
 
-			return
 
 		if("safety")
-			if(user.stat || get_dist(src.loc, user.loc) < 1)
-				return
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
 				return
 
@@ -418,14 +404,12 @@
 				visible_message("\icon[src] <span class='notice'>A red light on [src] blinks rapidly.</span>")
 
 
-			return
-
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(!dir_locked) //Direction lock check
 				usr << "<span class='warning'>[src] can only be fired manually in direction-locked mode.</span>"
 				manual_override = 0 //Make sure we jump back to AI mode, was a small bug when testing new handle_click()
 				return
-			if(user.machine != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
+			if(user.interactee != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
 				usr << "<span class='warning'>You can't multitask like this!</span>"
 				return
 			if(operator != user && operator) //Don't question this. If it has operator != user it wont fucken work. Like for some reason this does it proper.
@@ -436,21 +420,19 @@
 				usr.visible_message("<span class='notice'>[usr] takes manual control of [src]</span>",
 				"<span class='notice'>You take manual control of [src]</span>")
 				visible_message("\icon[src] <span class='warning'>The [name] buzzes: <B>WARNING!</b> MANUAL OVERRIDE INITIATED.</span>")
-				user.machine = src
+				user.set_interaction(src)
 				manual_override = 1
 			else
-				if(user.machine)
-					operator = null
+				if(user.interactee)
 					usr.visible_message("<span class='notice'>[usr] lets go of [src]</span>",
 					"<span class='notice'>You let go of [src]</span>")
 					visible_message("\icon[src] <span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
-					user.machine = null
-					manual_override = 0
+					user.unset_interaction()
 				else
 					user << "<span class='warning'>You are not currently overriding this turret.</span>" //Should be system only failure
 			if(stat == 2)
 				stat = 0 //Weird bug goin on here
-			return
+
 		if("power")
 			if(!on)
 				user << "You turn on the [src]."
@@ -458,7 +440,6 @@
 				visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
 				dir_locked = 1
 				target = null
-				worker = null
 				on = 1
 				SetLuminosity(7)
 				if(!camera)
@@ -472,10 +453,21 @@
 				"<span class='notice'>You deactivate [src].</span>")
 				visible_message("\icon[src] <span class='notice'>The [name] powers down and goes silent.</span>")
 				update_icon()
-			return
 
 	attack_hand(user)
-	return
+
+
+//manual override turns off automatically once the user no longer interacts with the turret.
+/obj/machinery/marine_turret/on_unset_interaction(mob/user)
+	..()
+	if(manual_override && operator == user)
+		operator = null
+		manual_override = 0
+
+/obj/machinery/marine_turret/check_eye(mob/user)
+	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || user.blinded || user.lying || !user.client)
+		user.unset_interaction()
+
 
 /obj/machinery/marine_turret/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(!ishuman(user))
@@ -489,11 +481,11 @@
 			user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s panel.</span>",
 			"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s panel.</span>")
 			if(locked)
-				if(user.machine == src)
-					user.unset_machine()
+				if(user.interactee == src)
+					user.unset_interaction()
 					user << browse(null, "window=turret")
 			else
-				if(user.machine == src)
+				if(user.interactee == src)
 					attack_hand(user)
 		else
 			user << "<span class='warning'>Access denied.</span>"
@@ -878,20 +870,18 @@
 	if(targets.len) . = pick(targets)
 
 //direct replacement to new proc. Everything works.
-/obj/machinery/marine_turret/handle_click(var/mob/living/carbon/human/user, var/atom/A, var/params)
+/obj/machinery/marine_turret/handle_click(mob/living/carbon/human/user, atom/A, params)
 	if(!operator || !istype(user)) return 0
 	if(operator != user) return 0
 	if(istype(A, /obj/screen)) return 0
 	if(!manual_override) return 0
-	if(operator.machine != src) return 0
+	if(operator.interactee != src) return 0
 	if(is_bursting) return
-	if(get_dist(user, src) > 1 || user.stat)
+	if(get_dist(user, src) > 1 || user.is_mob_incapacitated())
 		user.visible_message("<span class='notice'>[usr] lets go of [src]</span>",
 		"<span class='notice'>You let go of [src]</span>")
 		visible_message("\icon[src] <span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
-		manual_override = 0
-		user.machine = null
-		operator = null
+		user.unset_interaction()
 		return 0
 	if(user.get_active_hand() != null)
 		usr << "<span class='warning'>You need a free hand to shoot [src].</span>"

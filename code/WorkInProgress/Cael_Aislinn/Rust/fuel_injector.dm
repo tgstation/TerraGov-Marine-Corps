@@ -132,12 +132,12 @@
 
 /obj/machinery/power/rust_fuel_injector/interact(mob/user)
 	if(stat & BROKEN)
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=fuel_injector")
 		return
 	if(get_dist(src, user) > 1 )
 		if (!istype(user, /mob/living/silicon))
-			user.unset_machine()
+			user.unset_interaction()
 			user << browse(null, "window=fuel_injector")
 			return
 
@@ -169,7 +169,7 @@
 
 	user << browse(dat, "window=fuel_injector;size=500x300")
 	onclose(user, "fuel_injector")
-	user.set_machine(src)
+	user.set_interaction(src)
 
 /obj/machinery/power/rust_fuel_injector/Topic(href, href_list)
 	..()
@@ -214,7 +214,7 @@
 
 	if( href_list["close"] )
 		usr << browse(null, "window=fuel_injector")
-		usr.unset_machine()
+		usr.unset_interaction()
 
 	updateDialog()
 

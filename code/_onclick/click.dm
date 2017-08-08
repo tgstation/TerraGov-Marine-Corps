@@ -36,7 +36,7 @@
 */
 
 /mob/proc/ClickOn( var/atom/A, var/params )
-	if(world.time <= next_click || istype(machine, /obj/structure/ladder))
+	if(world.time <= next_click || istype(interactee, /obj/structure/ladder))
 		return
 	next_click = world.time + 1
 

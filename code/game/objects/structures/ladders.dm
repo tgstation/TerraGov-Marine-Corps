@@ -100,54 +100,62 @@
 /obj/structure/ladder/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/structure/ladder/check_eye(var/mob/user as mob)
+/obj/structure/ladder/check_eye(mob/user)
 	//Are we capable of looking?
-	if (is_watching)
-		if (user.stat || get_dist(user, src) > 1 || user.blinded || user.lying)
-			user.unset_machine()
-			is_watching = 0
+	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || user.blinded || user.lying || !user.client)
+		user.unset_interaction()
 
 	//Are ladder cameras ok?
-	if (is_watching == 1)
+	else if (is_watching == 1)
 		if (!down || !down.cam || !down.cam.can_use()) //camera doesn't work or is gone
-			is_watching = 0
-			user.unset_machine()
+			user.unset_interaction()
 	else if (is_watching == 2)
 		if (!up || !up.cam || !up.cam.can_use()) //camera doesn't work or is gone
-			is_watching = 0
-			user.unset_machine()
+			user.unset_interaction()
 
-	//Where are we looking? 			//THIS NEEDS TO BE OPTIMISED!
-	if(is_watching == 1)					//IT RESETS VIEW EVERY TICK EVEN IF NOT NEEDED
-		user.reset_view(down.cam)
-	else if(is_watching == 2)
-		user.reset_view(up.cam)
-	else if (!is_watching)
-		user.reset_view(null) //Stop the camera if they move away.
-	return 1
 
+
+/obj/structure/ladder/on_set_interaction(mob/user)
+	if (is_watching == 1)
+		if (down || down.cam || down.cam.can_use()) //camera works
+			user.reset_view(down.cam)
+			return
+	else if (is_watching == 2)
+		if (up || up.cam || up.cam.can_use())
+			user.reset_view(up.cam)
+			return
+
+	user.unset_interaction() //no usable cam, we stop interacting right away
+
+
+
+/obj/structure/ladder/on_unset_interaction(mob/user)
+	..()
+	is_watching = 0
+	user.reset_view(null)
 
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
-		if(isXenoLarva(usr) || isobserver(usr) || usr.stat)
+		if(isXenoLarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || usr.blinded || usr.lying)
 			usr << "You can't do that. Just use the ladder."
+			return
+		if(is_watching)
+			usr << "Someone's already looking through the ladder."
 			return
 		if(up && down)
 			switch( alert("Look up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
 				if("Up")
 					usr.visible_message("<span class='notice'>[usr] looks up \the [src]!</span>", \
 										 "<span class='notice'>You look up \the [src]!</span>")
-					usr.set_machine(src)
 					is_watching = 2
-					check_eye(usr)
+					usr.set_interaction(src)
 
 				if("Down")
 					usr.visible_message("<span class='notice'>[usr] looks down \the [src]!</span>", \
 										 "<span class='notice'>You look down \the [src]!</span>")
-					usr.set_machine(src)
 					is_watching = 1
-					check_eye(usr)
+					usr.set_interaction(src)
 
 				if("Cancel")
 					return
@@ -155,16 +163,15 @@
 		else if(up)
 			usr.visible_message("<span class='notice'>[usr] looks up \the [src]!</span>", \
 								 "<span class='notice'>You look up \the [src]!</span>")
-			usr.set_machine(src)
 			is_watching = 2
-			check_eye(usr)
+			usr.set_interaction(src)
+
 
 		else if(down)
 			usr.visible_message("<span class='notice'>[usr] looks down \the [src]!</span>", \
 								 "<span class='notice'>You look down \the [src]!</span>")
-			usr.set_machine(src)
 			is_watching = 1
-			check_eye(usr)
+			usr.set_interaction(src)
 
 	add_fingerprint(usr)
 

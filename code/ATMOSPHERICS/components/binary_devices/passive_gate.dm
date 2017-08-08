@@ -176,7 +176,7 @@
 	if(!src.allowed(user))
 		user << "\red Access denied."
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	ui_interact(user)
 	return
 
@@ -239,7 +239,7 @@
 			var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[air1.volume]kPa)","Flow Rate Control",src.set_flow_rate) as num
 			src.set_flow_rate = between(0, new_flow_rate, air1.volume)
 
-	usr.set_machine(src)	//Is this even needed with NanoUI?
+	usr.set_interaction(src)	//Is this even needed with NanoUI?
 	src.update_icon()
 	src.add_fingerprint(usr)
 	return

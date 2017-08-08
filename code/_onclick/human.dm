@@ -21,8 +21,8 @@
 /mob/living/carbon/human
 
 	ClickOn(var/atom/A, params)
-		if(machine && machine.flags_atom == RELAY_CLICK) //Fix works, should just normally allow you click on world objects, at worst a second click. Also no longer spams runtime errors.
-			machine.handle_click(machine.operator, A, params)
+		if(interactee && interactee.flags_atom == RELAY_CLICK) //Fix works, should just normally allow you click on world objects, at worst a second click. Also no longer spams runtime errors.
+			interactee.handle_click(src, A, params)
 			return
 		else
 			..()
@@ -88,10 +88,10 @@
 					return
 			A.attack_tk(src)
 
-// This was also the next define. Didn't know if you wanted this in setup or not.
-//Made it a /obj/ thing so it can be used for more things.
-/obj/proc/handle_click(var/mob/living/carbon/human/user, var/atom/A, var/params) //Heres our handle click relay proc thing.
+
+
+/atom/movable/proc/handle_click(mob/living/carbon/human/user, atom/A, params) //Heres our handle click relay proc thing.
 	return
 
-/atom/proc/attack_hand(mob/user as mob)
+/atom/proc/attack_hand(mob/user)
 	return

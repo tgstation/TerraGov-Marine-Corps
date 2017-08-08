@@ -100,7 +100,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(var/mob/user as mob)
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/holding_text
 
 	if(holding)
@@ -131,7 +131,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 		return
 
 	if (((get_dist(src, usr) <= 1) && istype(src.loc, /turf)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 
 		if(href_list["power"])
 			on = !on

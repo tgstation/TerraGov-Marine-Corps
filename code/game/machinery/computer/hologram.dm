@@ -46,7 +46,7 @@
 
 /obj/machinery/computer/hologram_comp/proc/show_console(var/mob/user as mob)
 	var/dat
-	user.set_machine(src)
+	user.set_interaction(src)
 	if (src.temp)
 		dat = text("[]<BR><BR><A href='?src=\ref[];temp=1'>Clear</A>", src.temp, src)
 	else
@@ -98,6 +98,6 @@
 		else if (href_list["temp"])
 			src.temp = null
 		for(var/mob/M in viewers(1, src))
-			if ((M.client && M.machine == src))
+			if ((M.client && M.interactee == src))
 				src.show_console(M)
 	return

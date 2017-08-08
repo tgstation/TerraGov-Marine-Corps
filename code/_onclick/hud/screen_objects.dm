@@ -296,7 +296,7 @@
 				H.quick_equip()
 
 		if("Reset Machine")
-			usr.unset_machine()
+			usr.unset_interaction()
 
 		if("module")
 			if(issilicon(usr))

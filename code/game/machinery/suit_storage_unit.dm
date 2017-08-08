@@ -159,7 +159,7 @@
 	if(..())
 		return
 	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if (href_list["toggleUV"])
 			src.toggleUV(usr)
 			src.updateUsrDialog()
@@ -777,7 +777,7 @@
 		if(src.shock(user, 100))
 			return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 	var/dat = "<HEAD><TITLE>Suit Cycler Interface</TITLE></HEAD>"
 

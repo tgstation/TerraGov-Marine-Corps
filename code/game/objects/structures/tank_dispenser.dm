@@ -38,7 +38,7 @@
 	..()
 
 /obj/structure/dispenser/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
 	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=\ref[src];phoron=1'>Dispense</A>" : "empty"]"
@@ -88,7 +88,7 @@
 	if(usr.stat || usr.is_mob_restrained())
 		return
 	if(Adjacent(usr))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if(href_list["oxygen"])
 			if(oxygentanks > 0)
 				var/obj/item/weapon/tank/oxygen/O
