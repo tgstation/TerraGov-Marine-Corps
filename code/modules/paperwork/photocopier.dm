@@ -195,39 +195,40 @@
 						toner = 0
 		return
 
-/obj/machinery/photocopier/proc/copy(var/obj/item/weapon/paper/copy)
-	var/obj/item/weapon/paper/c = new /obj/item/weapon/paper (loc)
+/obj/machinery/photocopier/proc/copy(obj/item/weapon/paper/original)
+	var/obj/item/weapon/paper/copy = new /obj/item/weapon/paper (loc)
 	if(toner > 10)	//lots of toner, make it dark
-		c.info = "<font color = #101010>"
+		copy.info = "<font color = #101010>"
 	else			//no toner? shitty copies for you!
-		c.info = "<font color = #808080>"
-	var/copied = copy.info
-	copied = oldreplacetext(copied, "<font face=\"[c.deffont]\" color=", "<font face=\"[c.deffont]\" nocolor=")	//state of the art techniques in action
-	copied = oldreplacetext(copied, "<font face=\"[c.crayonfont]\" color=", "<font face=\"[c.crayonfont]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
-	c.info += copied
-	c.info += "</font>"
-	c.name = copy.name // -- Doohl
-	c.fields = copy.fields
-	c.stamps = copy.stamps
-	c.stamped = copy.stamped
-	c.ico = copy.ico
-	c.offset_x = copy.offset_x
-	c.offset_y = copy.offset_y
-	var/list/temp_overlays = copy.overlays       //Iterates through stamps
-	var/image/img                                //and puts a matching
-	for (var/j = 1, j <= temp_overlays.len, j++) //gray overlay onto the copy
-		if (findtext(copy.ico[j], "cap") || findtext(copy.ico[j], "cent"))
+		copy.info = "<font color = #808080>"
+	var/copied = original.info
+	copied = oldreplacetext(copied, "<font face=\"[copy.deffont]\" color=", "<font face=\"[copy.deffont]\" nocolor=")	//state of the art techniques in action
+	copied = oldreplacetext(copied, "<font face=\"[copy.crayonfont]\" color=", "<font face=\"[copy.crayonfont]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+	copy.info += copied
+	copy.info += "</font>"
+	copy.name = original.name // -- Doohl
+	copy.fields = original.fields
+	copy.stamps = original.stamps
+	copy.stamped = original.stamped
+	copy.ico = original.ico
+	copy.offset_x = original.offset_x
+	copy.offset_y = original.offset_y
+
+	//Iterates through stamps and puts a matching gray overlay onto the copy
+	var/image/img                                //
+	for (var/j = 1, j <= original.ico.len, j++)
+		if (findtext(original.ico[j], "cap") || findtext(original.ico[j], "cent"))
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-circle")
-		else if (findtext(copy.ico[j], "deny"))
+		else if (findtext(original.ico[j], "deny"))
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-x")
 		else
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-dots")
-		img.pixel_x = copy.offset_x[j]
-		img.pixel_y = copy.offset_y[j]
-		c.overlays += img
-	c.updateinfolinks()
+		img.pixel_x = original.offset_x[j]
+		img.pixel_y = original.offset_y[j]
+		copy.overlays += img
+	copy.updateinfolinks()
 	toner--
-	return c
+	return copy
 
 
 /obj/machinery/photocopier/proc/photocopy(var/obj/item/weapon/photo/photocopy)

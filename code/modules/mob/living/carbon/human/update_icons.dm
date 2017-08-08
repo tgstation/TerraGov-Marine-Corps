@@ -300,6 +300,9 @@ var/global/list/damage_icon_parts = list()
 			if(part.status & ORGAN_DESTROYED)
 				continue
 
+			if(istype(part, /datum/organ/external/chest)) //already done above
+				continue
+
 			if (istype(part, /datum/organ/external/groin) || istype(part, /datum/organ/external/head))
 				temp = part.get_icon(race_icon,deform_icon,g)
 			else

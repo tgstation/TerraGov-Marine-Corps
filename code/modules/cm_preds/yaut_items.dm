@@ -835,20 +835,8 @@
 			if(M)
 				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
 				sleep(animation_teleport_quick_out(M))
-				if(M && M.loc)
-					M.loc = pick(pred_spawn)
-					animation_teleport_quick_in(M)
-
-			// Teleport whoever you're grabbing.
-			var/obj/item/weapon/grab/G = user.get_inactive_hand()
-
-			if(istype(G))
-				M = G.grabbed_thing
-				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
-				sleep(animation_teleport_quick_out(M))
-				if(G) G.dropped()
-				if(M && M.loc)
-					M.loc = pick(pred_spawn)
+				if(M && M.loc && M == user.pulling)
+					M.forceMove(pick(pred_spawn))
 					animation_teleport_quick_in(M)
 
 		else

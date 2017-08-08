@@ -184,21 +184,24 @@
 	for(var/i; i <= sorted.len; i++)
 		var/atom/A = sorted[i]
 		if(A)
-			var/icon/img = getFlatIcon(A)//build_composite_icon(A)
+			var/icon/IM = getFlatIcon(A)//build_composite_icon(A)
 
 			// If what we got back is actually a picture, draw it.
-			if(istype(img, /icon))
+			if(istype(IM, /icon))
 				// Check if we're looking at a mob that's lying down
-				if(istype(A, /mob/living) && A:lying)
-					// If they are, apply that effect to their picture.
-					img.BecomeLying()
+				if(istype(A, /mob/living))
+					var/mob/living/L = A
+					if(!istype(L, /mob/living/carbon/Xenomorph)) //xenos don't use icon rotatin for lying.
+						if(L.lying)
+							// If they are, apply that effect to their picture.
+							IM.BecomeLying()
 				// Calculate where we are relative to the center of the photo
 				var/xoff = (A.x - center.x) * 32 + center_offset
 				var/yoff = (A.y - center.y) * 32 + center_offset
 				if (istype(A,/atom/movable))
 					xoff+=A:step_x
 					yoff+=A:step_y
-				res.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
+				res.Blend(IM, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
 
 	// Lastly, render any contained effects on top.
 	for(var/turf/the_turf in turfs)
