@@ -143,7 +143,7 @@
 /obj/machinery/computer/forensic_scanning/attack_hand(mob/user)
 	if(..())
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/dat
 	if(!authenticated)

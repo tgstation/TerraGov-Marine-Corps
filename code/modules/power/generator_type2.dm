@@ -101,11 +101,11 @@
 
 /obj/machinery/power/generator_type2/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
-		user.unset_machine()
+		user.unset_interaction()
 		user << browse(null, "window=teg")
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/t = "<PRE><B>Thermo-Electric Generator</B><HR>"
 
@@ -132,7 +132,7 @@
 
 	if( href_list["close"] )
 		usr << browse(null, "window=teg")
-		usr.unset_machine()
+		usr.unset_interaction()
 		return 0
 
 	return 1

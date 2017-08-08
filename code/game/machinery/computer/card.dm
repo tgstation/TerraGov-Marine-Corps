@@ -82,7 +82,7 @@
 
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/data[0]
 	data["src"] = "\ref[src]"

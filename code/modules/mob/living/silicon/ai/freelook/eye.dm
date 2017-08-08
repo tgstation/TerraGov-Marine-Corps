@@ -110,7 +110,7 @@
 	else
 		user.sprint = initial
 
-	//user.unset_machine() //Uncomment this if it causes problems.
+	//user.unset_interaction() //Uncomment this if it causes problems.
 	//user.lightNearbyCamera()
 
 
@@ -125,7 +125,7 @@
 
 /mob/living/silicon/ai/proc/view_core()
 	camera = null
-	unset_machine()
+	unset_interaction()
 
 	if(!src.eyeobj)
 		src << "ERROR: Eyeobj not found. Creating new eye..."

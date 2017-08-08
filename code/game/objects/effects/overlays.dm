@@ -116,3 +116,20 @@
 	mouse_opacity = 0
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "laser_target3"
+
+
+/obj/effect/overlay/temp/emp_sparks
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "empdisable"
+	name = "emp sparks"
+	effect_duration = 10
+
+	New(loc)
+		dir = pick(cardinal)
+		..()
+
+/obj/effect/overlay/temp/emp_pulse
+	name = "emp pulse"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "emppulse"
+	effect_duration = 20

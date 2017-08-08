@@ -31,7 +31,7 @@
 	var/lastattacked = null
 	var/attack_log = list( )
 	var/already_placed = 0.0
-	var/obj/machinery/machine = null
+	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/memory = ""
 	var/poll_answer = 0.0
 	var/sdisabilities = 0	//Carbon

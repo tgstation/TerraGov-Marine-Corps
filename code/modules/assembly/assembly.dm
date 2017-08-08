@@ -135,7 +135,7 @@
 
 	attack_self(mob/user as mob)
 		if(!user)	return 0
-		user.set_machine(src)
+		user.set_interaction(src)
 		interact(user)
 		return 1
 

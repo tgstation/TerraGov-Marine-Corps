@@ -80,6 +80,12 @@
 
 		marine_vendors.Add(src)
 
+
+	Dispose()
+		. = ..()
+		marine_vendors.Remove(src)
+
+
 /obj/machinery/vending/marine/cargo_guns
 	name = "\improper ColMarTech automated armaments vendor"
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
@@ -506,3 +512,7 @@
 		..()
 
 		attachment_vendors.Add(src)
+
+	Dispose()
+		. = ..()
+		attachment_vendors.Remove(src)

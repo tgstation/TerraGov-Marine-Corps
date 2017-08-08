@@ -48,6 +48,9 @@
 		marine_vendors.Add(src)
 
 
+	Dispose()
+		. = ..()
+		marine_vendors.Remove(src)
 
 //-----USS Almayer Props -----//
 //Put any props that don't function properly, they could function in the future but for now are for looks. This system could be expanded for other maps too. ~Art

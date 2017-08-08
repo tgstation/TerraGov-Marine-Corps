@@ -380,7 +380,7 @@
 	return
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>

@@ -22,7 +22,7 @@
 		return attack_hand(user)
 
 	attack_hand(mob/user as mob)
-		user.set_machine(src)
+		user.set_interaction(src)
 
 		var/dat = "Photocopier<BR><BR>"
 		if(copy || photocopy || bundle)

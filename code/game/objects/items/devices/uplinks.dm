@@ -195,7 +195,7 @@ datum/nano_item_lists
 	var/mob/user = usr
 	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
 	if ((usr.contents.Find(src.loc) || (in_range(src.loc, usr) && istype(src.loc.loc, /turf))))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if(href_list["lock"])
 			toggle()
 			ui.close()

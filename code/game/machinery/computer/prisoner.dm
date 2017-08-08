@@ -25,7 +25,7 @@
 	attack_hand(var/mob/user as mob)
 		if(..())
 			return
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/dat
 		dat += "<B>Prisoner Implant Manager System</B><BR>"
 		if(screen == 0)
@@ -74,7 +74,7 @@
 		if(..())
 			return
 		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-			usr.set_machine(src)
+			usr.set_interaction(src)
 
 			if(href_list["inject1"])
 				var/obj/item/weapon/implant/I = locate(href_list["inject1"])

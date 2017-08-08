@@ -42,11 +42,11 @@
 			locked = !locked
 			user << "You [ locked ? "lock" : "unlock"] the device."
 			if (locked)
-				if (user.machine==src)
-					user.unset_machine()
+				if (user.interactee==src)
+					user.unset_interaction()
 					user << browse(null, "window=ai_slipper")
 			else
-				if (user.machine==src)
+				if (user.interactee==src)
 					src.attack_hand(usr)
 		else
 			user << "\red Access denied."
@@ -62,11 +62,11 @@
 	if ( (get_dist(src, user) > 1 ))
 		if (!istype(user, /mob/living/silicon))
 			user << text("Too far away.")
-			user.unset_machine()
+			user.unset_interaction()
 			user << browse(null, "window=ai_slipper")
 			return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/loc = src.loc
 	if (istype(loc, /turf))
 		loc = loc:loc

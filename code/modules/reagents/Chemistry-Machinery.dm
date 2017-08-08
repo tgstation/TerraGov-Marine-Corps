@@ -179,6 +179,7 @@
 	ui_title = "Soda Dispens-o-matic"
 	energy = 100
 	accept_glass = 1
+	req_one_access = list()
 	max_energy = 100
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
@@ -204,6 +205,7 @@
 	energy = 100
 	accept_glass = 1
 	max_energy = 100
+	req_one_access = list()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","sake","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 
@@ -291,7 +293,7 @@
 	if(!in_range(src, usr)) return
 
 	src.add_fingerprint(usr)
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 
 	if (href_list["ejectp"])
@@ -300,7 +302,7 @@
 			loaded_pill_bottle = null
 	else if(href_list["close"])
 		usr << browse(null, "window=chemmaster")
-		usr.unset_machine()
+		usr.unset_interaction()
 		return
 
 	if(beaker)
@@ -448,7 +450,7 @@
 /obj/machinery/chem_master/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
@@ -576,7 +578,7 @@
 	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	if(!beaker) return
 
 	if (href_list["create_vaccine"])
@@ -683,7 +685,7 @@
 /obj/machinery/computer/pandemic/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = ""
 	if(src.temphtml)
 		dat = "[src.temphtml]<BR><BR><A href='?src=\ref[src];clear=1'>Main Menu</A>"
@@ -912,7 +914,7 @@
 	return 0
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	interact(user)
 
 /obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
@@ -964,7 +966,7 @@
 /obj/machinery/reagentgrinder/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	switch(href_list["action"])
 		if ("grind")
 			grind()

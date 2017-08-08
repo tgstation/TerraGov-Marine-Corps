@@ -314,7 +314,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	if(src.seconds_electrified != 0)
 		if(shock(user, 100))
@@ -421,7 +421,7 @@
 		ewallet = null
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
 			if(!allowed(usr) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access

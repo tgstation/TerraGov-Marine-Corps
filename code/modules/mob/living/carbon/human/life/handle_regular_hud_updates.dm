@@ -237,9 +237,8 @@
 		if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && hud_used)
 			hud_used.blind_icon.layer = 18
 
-		if(machine)
-			if(!machine.check_eye(src))
-				reset_view(null)
+		if(interactee)
+			interactee.check_eye(src)
 		else
 			var/isRemoteObserve = 0
 			if((mRemote in mutations) && remoteview_target)

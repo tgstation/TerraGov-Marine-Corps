@@ -12,7 +12,7 @@
 		..()
 		if( href_list["close"] )
 			usr << browse(null, "window=gyrotron_controller")
-			usr.machine = null
+			usr.unset_interaction()
 			return
 		if( href_list["target"] )
 			var/obj/machinery/rust/gyrotron/gyro = locate(href_list["target"])
@@ -27,7 +27,7 @@
 	interact(mob/user)
 		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
 			if (!istype(user, /mob/living/silicon))
-				user.machine = null
+				user.unset_interaction()
 				user << browse(null, "window=gyrotron_controller")
 				return
 		var/t = "<B>Gyrotron Remote Control Console</B><BR>"
@@ -85,4 +85,4 @@
 		*/
 		t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 		user << browse(t, "window=gyrotron_controller;size=500x400")
-		user.machine = src
+		user.set_interaction(src)

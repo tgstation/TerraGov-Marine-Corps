@@ -274,7 +274,7 @@
 	if(!anchored)
 		return
 
-	usr.machine = src
+	usr.set_interaction(src)
 	var/dat = "<HEAD><TITLE>Piano</TITLE></HEAD><BODY>"
 
 	if(song)

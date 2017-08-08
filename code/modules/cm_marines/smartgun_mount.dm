@@ -225,13 +225,8 @@
 		update_icon()
 
 	Dispose() //Make sure we pick up our trash.
-		if(operator && operator.machine)
-			if(operator.client)
-				operator.client.view = world.view
-			operator.machine = null
-			operator = null
 		if(operator)
-			operator = null
+			operator.unset_interaction()
 		SetLuminosity(0)
 		processing_objects.Remove(src)
 		. = ..()
@@ -410,15 +405,13 @@
 	return
 
 // New proc for MGs and stuff replaced handle_manual_fire(). Same arguements though, so alls good.
-/obj/machinery/m56d_hmg/handle_click(var/mob/living/carbon/human/user, var/atom/A, var/params)
+/obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, params)
 	if(!operator) return 0
 	if(operator != user) return 0
 	if(istype(A,/obj/screen)) return 0
 	if(is_bursting) return
 	if(user.lying || get_dist(user,src) > 1 || user.is_mob_incapacitated())
-		user.client.view = world.view
-		user.machine = null
-		operator = null
+		user.unset_interaction()
 		return 0
 	if(user.get_active_hand())
 		usr << "<span class='warning'>You need a free hand to shoot the [src].</span>"
@@ -482,39 +475,45 @@
 	var/mob/living/carbon/human/user = usr //this is us
 	src.add_fingerprint(usr)
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
-		if(user.machine == src)
-			operator = null
+		if(user.interactee == src)
+			user.unset_interaction()
 			visible_message("\icon[src] <span class='notice'>[user] decided to let someone else have a go </span>")
 			usr << "<span class='notice'>You decided to let someone else have a go on the MG </span>"
-			user.machine = null
-			user.client.view = world.view
 			return
 		if(operator) //If there is already a operator then they're manning it.
-			if(operator.machine == null)
-				operator = null
+			if(operator.interactee == null)
+				operator = null //this shouldn't happen, but just in case
 			else
 				user << "Someone's already controlling it."
 				return
 		else
-			if(user.machine) //Make sure we're not manning two guns at once, tentacle arms.
-				usr << "You're already manning something!"
+			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
+				user << "You're already manning something!"
 				return
 			if(user.get_active_hand() != null)
-				usr << "<span class='warning'>You need a free hand to man the [src].</span>"
+				user << "<span class='warning'>You need a free hand to man the [src].</span>"
 			else
-				operator = usr //now we are the captain.
 				visible_message("\icon[src] <span class='notice'>[user] mans the M56D!</span>")
-				usr << "<span class='notice'>You man the gun!</span>"
-				user.machine = src
-				if(zoom)
-					user.client.view = 12
-				return
+				user << "<span class='notice'>You man the gun!</span>"
+				user.set_interaction(src)
 
 
-/obj/machinery/m56d_hmg/on_unset_machine(mob/user)
+/obj/machinery/m56d_hmg/on_set_interaction(mob/user)
+	..()
+	if(zoom)
+		user.client.view = 12
+	operator = user
+
+/obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
+	..()
 	if(zoom && user.client)
 		user.client.view = world.view
+	if(operator == user)
+		operator = null
 
+/obj/machinery/m56d_hmg/check_eye(mob/user)
+	if(user.lying || get_dist(user,src) > 1 || user.is_mob_incapacitated() || !user.client)
+		user.unset_interaction()
 
 /obj/machinery/m56d_hmg/CtrlClick(var/mob/user) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
 	if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
@@ -536,7 +535,6 @@
 	rounds = 1500
 	rounds_max = 1500
 	locked = 1
-	flags_atom = RELAY_CLICK
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_full = "towergun"
 	icon_empty = "towergun"

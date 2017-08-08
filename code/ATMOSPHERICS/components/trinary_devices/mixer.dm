@@ -132,7 +132,7 @@
 	if(!src.allowed(user))
 		user << "\red Access denied."
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
 				<b>Set Flow Rate Limit: </b>
 				[set_flow_rate]L/s|<a href='?src=\ref[src];set_press=1'>Change</a>

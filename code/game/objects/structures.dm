@@ -7,12 +7,14 @@
 	anchored = 1
 
 /obj/structure/New()
-
 	..()
-
 	structure_list += src
 
-/obj/structure/proc/destroy()
+/obj/structure/Dispose()
+	. = ..()
+	structure_list -= src
+
+/obj/structure/proc/destroy(deconstruct)
 	if(parts)
 		new parts(loc)
 	density = 0

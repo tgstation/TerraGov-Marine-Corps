@@ -36,7 +36,7 @@
 				winset(editingcode, "tcscode", "is-disabled=false")
 
 			// If the player's not manning the keyboard anymore, adjust everything
-			if( (!(editingcode in range(1, src)) && !issilicon(editingcode)) || (editingcode.machine != src && !issilicon(editingcode)))
+			if( (!(editingcode in range(1, src)) && !issilicon(editingcode)) || (editingcode.interactee != src && !issilicon(editingcode)))
 				if(editingcode)
 					winshow(editingcode, "Telecomms IDE", 0) // hide the window!
 				editingcode = null
@@ -52,7 +52,7 @@
 
 				for(var/mob/M in viewingcode)
 
-					if( (M.machine == src && M in view(1, src) ) || issilicon(M))
+					if( (M.interactee == src && M in view(1, src) ) || issilicon(M))
 						winset(M, "tcscode", "is-disabled=true")
 						winset(M, "tcscode", "text=\"[showcode]\"")
 					else
@@ -73,7 +73,7 @@
 	attack_hand(mob/user as mob)
 		if(stat & (BROKEN|NOPOWER))
 			return
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/dat = "<TITLE>Telecommunication Traffic Control</TITLE><center><b>Telecommunications Traffic Control</b></center>"
 
 		switch(screen)
@@ -123,7 +123,7 @@
 
 
 		add_fingerprint(usr)
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if(!src.allowed(usr) && !emagged)
 			usr << "\red ACCESS DENIED."
 			return

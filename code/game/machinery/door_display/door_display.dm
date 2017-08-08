@@ -95,7 +95,7 @@
 	if(..())
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	user << browse(display_contents(user), "window=computer;size=400x500")
 	onclose(user, "computer")
@@ -130,7 +130,7 @@
 	if(!allowed(usr))
 		return 0
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 	if(href_list["open"])
 		open = text2num(href_list["open"])

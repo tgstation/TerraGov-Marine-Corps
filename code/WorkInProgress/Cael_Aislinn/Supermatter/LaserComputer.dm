@@ -21,7 +21,7 @@
 	interact(mob/user)
 		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
 			if (!istype(user, /mob/living/silicon))
-				user.machine = null
+				user.unset_interaction()
 				user << browse(null, "window=laser_control")
 				return
 		var/t = "<TT><B>Laser status monitor</B><HR>"
@@ -33,19 +33,19 @@
 		t += "<hr>"
 		t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 		user << browse(t, "window=laser_control;size=500x800")
-		user.machine = src
+		user.set_interaction(src)
 
 /*
 /obj/machinery/computer/lasercon/proc/interact(mob/user)
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
 		if (!istype(user, /mob/living/silicon))
-			user.machine = null
+			user.interactee = null
 			user << browse(null, "window=powcomp")
 			return
 
 
-	user.machine = src
+	user.set_interaction(src)
 	var/t = "<TT><B>Laser status monitor</B><HR>"
 
 	var/obj/machinery/engine/laser/laser = src.laser[1]
@@ -71,7 +71,7 @@
 	..()
 	if( href_list["close"] )
 		usr << browse(null, "window=laser_control")
-		usr.machine = null
+		usr.unset_interaction()
 		return
 
 	else if( href_list["input"] )

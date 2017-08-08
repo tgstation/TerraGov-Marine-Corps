@@ -71,13 +71,13 @@
 	..()
 	//Ignore input if we are broken, !silicon guy cant touch us, or nonai controlling from super far away
 	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !istype(usr, /mob/living/silicon)) || (get_dist(src, usr) > 8 && !istype(usr, /mob/living/silicon/ai)))
-		usr.unset_machine()
+		usr.unset_interaction()
 		usr << browse(null, "window=pacontrol")
 		return
 
 	if( href_list["close"] )
 		usr << browse(null, "window=pacontrol")
-		usr.unset_machine()
+		usr.unset_interaction()
 		return
 	if(href_list["togglep"])
 		src.toggle_power()
@@ -99,7 +99,7 @@
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = strength
 			part.update_icon()
-		
+
 		if (strength != old_strength)
 			active_power_usage = initial(active_power_usage) * (strength + 1)
 			use_power(0) //update power usage
@@ -114,7 +114,7 @@
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = strength
 			part.update_icon()
-		
+
 		if (strength != old_strength)
 			active_power_usage = initial(active_power_usage) * (strength + 1)
 			use_power(0) //update power usage
@@ -216,10 +216,10 @@
 /obj/machinery/particle_accelerator/control_box/interact(mob/user)
 	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
 		if(!istype(user, /mob/living/silicon))
-			user.unset_machine()
+			user.unset_interaction()
 			user << browse(null, "window=pacontrol")
 			return
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/dat = ""
 	dat += "Particle Accelerator Control Panel<BR>"

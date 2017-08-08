@@ -471,7 +471,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 //NOTE: graphic resources are loaded on client login
 /obj/item/device/pda/attack_self(mob/user as mob)
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	if(active_uplink_check(user))
 		return
@@ -497,20 +497,20 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (usr.stat == DEAD)
 		return 0
 	if(!can_use()) //Why reinvent the wheel? There's a proc that does exactly that.
-		U.unset_machine()
+		U.unset_interaction()
 		if(ui)
 			ui.close()
 		return 0
 
 	add_fingerprint(U)
-	U.set_machine(src)
+	U.set_interaction(src)
 
 	switch(href_list["choice"])
 
 //BASIC FUNCTIONS===================================
 
 		if("Close")//Self explanatory
-			U.unset_machine()
+			U.unset_interaction()
 			ui.close()
 			return 0
 		if("Refresh")//Refresh, goes to the end of the proc.
@@ -732,7 +732,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				else
 					U << "PDA not found."
 			else
-				U.unset_machine()
+				U.unset_interaction()
 				ui.close()
 				return 0
 

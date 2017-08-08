@@ -55,7 +55,7 @@
 /obj/machinery/r_n_d/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 	if(href_list["pulse"])
 		var/temp_wire = href_list["wire"]

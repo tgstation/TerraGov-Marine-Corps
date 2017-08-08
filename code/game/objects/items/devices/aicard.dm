@@ -31,7 +31,7 @@
 	attack_self(mob/user)
 		if (!in_range(src, user))
 			return
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/dat = "<TT><B>Intelicard</B><BR>"
 		var/laws
 		for(var/mob/living/silicon/ai/A in src)
@@ -80,18 +80,18 @@
 
 	Topic(href, href_list)
 		var/mob/U = usr
-		if (!in_range(src, U)||U.machine!=src)//If they are not in range of 1 or less or their machine is not the card (ie, clicked on something else).
+		if (!in_range(src, U)||U.interactee!=src)//If they are not in range of 1 or less or their machine is not the card (ie, clicked on something else).
 			U << browse(null, "window=aicard")
-			U.unset_machine()
+			U.unset_interaction()
 			return
 
 		add_fingerprint(U)
-		U.set_machine(src)
+		U.set_interaction(src)
 
 		switch(href_list["choice"])//Now we switch based on choice.
 			if ("Close")
 				U << browse(null, "window=aicard")
-				U.unset_machine()
+				U.unset_interaction()
 				return
 
 			if ("Radio")
@@ -103,9 +103,9 @@
 			if ("Wipe")
 				var/confirm = alert("Are you sure you want to wipe this card's memory? This cannot be undone once started.", "Confirm Wipe", "Yes", "No")
 				if(confirm == "Yes")
-					if(isnull(src)||!in_range(src, U)||U.machine!=src)
+					if(isnull(src)||!in_range(src, U)||U.interactee!=src)
 						U << browse(null, "window=aicard")
-						U.unset_machine()
+						U.unset_interaction()
 						return
 					else
 						flush = 1

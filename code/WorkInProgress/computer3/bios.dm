@@ -42,12 +42,12 @@
 						user << "\red It's too complicated to work at a distance!"
 						return 0
 					add_fingerprint(user)
-					user.set_machine(src)
+					user.set_interaction(src)
 					return 1
 				return 0
 
 		add_fingerprint(user)
-		user.set_machine(src)
+		user.set_interaction(src)
 		return 1
 
 	/*
@@ -66,15 +66,15 @@
 		This is used by the camera monitoring program to see if you're still in range
 	*/
 	check_eye(var/mob/user as mob)
-		if(!interactable(user) || user.machine != src)
-			if(user.machine == src)
-				user.unset_machine()
+		if(!interactable(user) || user.interactee != src)
+			if(user.interactee == src)
+				user.unset_interaction()
 			return null
 
 		var/datum/file/program/security/S = program
 		if( !istype(S) || !S.current || !S.current.status || !camnet )
-			if( user.machine == src )
-				user.unset_machine()
+			if( user.interactee == src )
+				user.unset_interaction()
 			return null
 
 		user.reset_view(S.current)

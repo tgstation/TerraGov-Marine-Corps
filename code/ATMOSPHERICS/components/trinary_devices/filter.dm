@@ -210,7 +210,7 @@
 /obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 	if(href_list["filterset"])
 		filter_type = text2num(href_list["filterset"])
@@ -240,7 +240,7 @@
 	src.updateUsrDialog()
 /*
 	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.machine == src))
+		if ((M.client && M.interactee == src))
 			src.attack_hand(M)
 */
 	return

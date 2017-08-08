@@ -24,7 +24,7 @@
 
 
 	interact(mob/user)
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 		dat += "<A HREF='?src=\ref[user];mach_close=alerts'>Close</A><br><br>"
 		for (var/cat in src.alarms)

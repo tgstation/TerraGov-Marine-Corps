@@ -20,13 +20,24 @@
 		return attack_hand(user)
 
 
-	check_eye(var/mob/user as mob)
-		if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
-			return null
-		if ( !current || !current.can_use() ) //camera doesn't work
+	check_eye(mob/user)
+		if (user.is_mob_incapacitated() || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+			user.unset_interaction()
+			return
+		else if ( !current || !current.can_use() ) //camera doesn't work
 			current = null
 		user.reset_view(current)
-		return 1
+
+
+	on_set_interaction(mob/user)
+		..()
+		if(current && current.can_use())
+			user.reset_view(current)
+
+
+	on_unset_interaction(mob/user)
+		..()
+		user.reset_view(null)
 
 
 	attack_hand(mob/user)
@@ -36,7 +47,7 @@
 		if(stat & (NOPOWER|BROKEN))	return
 
 		if(!isAI(user))
-			user.set_machine(src)
+			user.set_interaction(src)
 
 		var/list/L = list()
 		for (var/obj/machinery/camera/C in cameranet.cameras)
@@ -52,14 +63,12 @@
 
 		var/t = input(user, "Which camera should you change to?") as null|anything in D
 		if(!t)
-			user.unset_machine()
-			user.reset_view()
+			user.unset_interaction()
 			return 0
 
 		var/obj/machinery/camera/C = D[t]
 		if(t == "Cancel")
-			user.unset_machine()
-			user.reset_view()
+			user.unset_interaction()
 			return 0
 
 		if(C)
@@ -69,13 +78,13 @@
 				attack_hand(user)
 		return
 
-	proc/can_access_camera(var/obj/machinery/camera/C)
+	proc/can_access_camera(obj/machinery/camera/C)
 		var/list/shared_networks = src.network & C.network
 		if(shared_networks.len)
 			return 1
 		return 0
 
-	proc/switch_to_camera(var/mob/user, var/obj/machinery/camera/C)
+	proc/switch_to_camera(mob/user, obj/machinery/camera/C)
 		//don't need to check if the camera works for AI because the AI jumps to the camera location and doesn't actually look through cameras.
 		if(isAI(user))
 			var/mob/living/silicon/ai/A = user
@@ -83,15 +92,16 @@
 			A.client.eye = A.eyeobj
 			return 1
 
-		if (!C.can_use() || user.stat || (get_dist(user, src) > 1 || user.machine != src || user.blinded || !( user.canmove ) && !istype(user, /mob/living/silicon)))
+		if (!C.can_use() || user.is_mob_incapacitated() || (get_dist(user, src) > 1 || user.interactee != src || user.blinded || !( user.canmove ) && !istype(user, /mob/living/silicon)))
 			return 0
 		src.current = C
 		use_power(50)
+		user.reset_view(C)
 		return 1
 
 //Camera control: moving.
 	proc/jump_on_click(var/mob/user,var/A)
-		if(user.machine != src)
+		if(user.interactee != src)
 			return
 		var/obj/machinery/camera/jump_to
 		if(istype(A,/obj/machinery/camera))
@@ -121,8 +131,8 @@
 //Camera control: mouse.
 /atom/DblClick()
 	..()
-	if(istype(usr.machine,/obj/machinery/computer/security))
-		var/obj/machinery/computer/security/console = usr.machine
+	if(istype(usr.interactee,/obj/machinery/computer/security))
+		var/obj/machinery/computer/security/console = usr.interactee
 		console.jump_on_click(usr,src)
 
 /obj/machinery/computer/security/telescreen

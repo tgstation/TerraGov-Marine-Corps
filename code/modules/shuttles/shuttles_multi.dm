@@ -80,7 +80,7 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	var/datum/shuttle/multi_shuttle/MS = shuttle_controller.shuttles[shuttle_tag]

@@ -611,14 +611,14 @@
 	return interact(user)
 
 /obj/machinery/alarm/interact(mob/user)
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	if(buildstage!=2)
 		return
 
 	if ( (get_dist(src, user) > 1 ))
 		if (!istype(user, /mob/living/silicon))
-			user.machine = null
+			user.unset_interaction()
 			user << browse(null, "window=air_alarm")
 			user << browse(null, "window=AAlarmwires")
 			return
@@ -931,13 +931,13 @@ table tr:first-child th:first-child { border: none;}
 
 /obj/machinery/alarm/Topic(href, href_list)
 	if(..() || !( Adjacent(usr) || istype(usr, /mob/living/silicon)) ) // dont forget calling super in machine Topics -walter0o
-		usr.machine = null
+		usr.unset_interaction()
 		usr << browse(null, "window=air_alarm")
 		usr << browse(null, "window=AAlarmwires")
 		return
 
 	add_fingerprint(usr)
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 	// hrefs that can always be called -walter0o
 	if(href_list["rcon"])
@@ -1383,7 +1383,7 @@ FIRE ALARM
 	if (buildstage != 2)
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/area/A = src.loc
 	var/d1
 	var/d2
@@ -1429,7 +1429,7 @@ FIRE ALARM
 		return
 
 	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if (href_list["reset"])
 			src.reset()
 		else if (href_list["alarm"])

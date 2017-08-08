@@ -120,7 +120,7 @@
 
 	var/obj/item/device/multitool/P = get_multitool(user)
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat
 	dat = "<font face = \"Courier\"><HEAD><TITLE>[src.name]</TITLE></HEAD><center><H3>[src.name] Access</H3></center>"
 	dat += "<br>[temp]<br>"
@@ -391,7 +391,7 @@
 
 	src.Options_Topic(href, href_list)
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	updateUsrDialog()

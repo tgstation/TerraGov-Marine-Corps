@@ -536,7 +536,7 @@
 					return
 				exploding = 0
 				M << "<span class='notice'>Your bracers stop beeping.</span>"
-				return
+			return
 		if((M.wear_mask && istype(M.wear_mask,/obj/item/clothing/mask/facehugger)) || M.status_flags & XENO_HOST)
 			M << "<span class='warning'>Strange...something seems to be interfering with your bracer functions...</span>"
 			return
@@ -1519,11 +1519,11 @@
 	var/obj/machinery/camera/current = null
 	var/turf/activated_turf = null
 
-	dropped()
-		check_eye()
+	dropped(mob/user)
+		check_eye(user)
 		return ..()
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user)
 		if(!active)
 			if(!isYautja(user))
 				user << "What's this thing?"
@@ -1540,7 +1540,7 @@
 			display_camera(user)
 		return
 
-	activate(mob/user as mob)
+	activate(mob/user)
 		if(active)
 			return
 
@@ -1563,13 +1563,12 @@
 //		cdel(src)
 		return
 
-	check_eye(var/mob/user as mob)
-		if (user.stat || user.blinded )
-			current = null
-		if ( !current || get_turf(user) != activated_turf || src.loc != user ) //camera doesn't work, or we moved.
-			current = null
-		user.reset_view(current)
-		return 1
+	check_eye(mob/user)
+		if (user.is_mob_incapacitated() || user.blinded )
+			user.unset_interaction()
+		else if ( !current || get_turf(user) != activated_turf || src.loc != user ) //camera doesn't work, or we moved.
+			user.unset_interaction()
+
 
 	proc/display_camera(var/mob/user as mob)
 		var/list/L = list()
@@ -1579,9 +1578,7 @@
 
 		var/choice = input(user,"Which hellhound would you like to observe? (moving will drop the feed)","Camera View") as null|anything in L
 		if(!choice || choice == "Cancel" || isnull(choice))
-			current = null
-			user.reset_view(null)
-			user.unset_machine()
+			user.unset_interaction()
 			user << "Stopping camera feed."
 			return
 
@@ -1592,11 +1589,21 @@
 
 		if(istype(current))
 			user << "Switching feed.."
-			user.set_machine(current)
-			user.reset_view(current)
+			user.set_interaction(current)
+
 		else
 			user << "Something went wrong with the camera feed."
 		return
+
+
+/obj/item/weapon/grenade/spawnergrenade/hellhound/on_set_interaction(mob/user)
+	..()
+	user.reset_view(current)
+
+/obj/item/weapon/grenade/spawnergrenade/hellhound/on_unset_interaction(mob/user)
+	..()
+	current = null
+	user.reset_view(null)
 
 /*
 /obj/item/weapon/gun/launcher/netgun

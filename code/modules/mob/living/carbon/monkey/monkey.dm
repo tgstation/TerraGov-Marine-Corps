@@ -117,7 +117,7 @@
 	..()
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_machine()
+		unset_interaction()
 		src << browse(null, t1)
 	if ((href_list["item"] && !( usr.stat ) && !( usr.is_mob_restrained() ) && in_range(src, usr) ))
 		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )

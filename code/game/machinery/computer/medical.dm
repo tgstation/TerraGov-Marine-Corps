@@ -143,7 +143,7 @@
 		src.active2 = null
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 
 		if (href_list["temp"])
 			src.temp = null

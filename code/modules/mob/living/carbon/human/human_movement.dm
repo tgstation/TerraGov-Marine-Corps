@@ -5,13 +5,8 @@
 
 	. = ..()
 
-	if(machine)
-		if(machine.flags_atom == RELAY_CLICK) //make sure any MGs and stuff dont fuck up
-			src.client.view = world.view
-			machine.operator = null
-			machine = null
-		else
-			machine = null //If we move, we shouldn't be doing stuff anyway. Tested with overwatch consoles, still worked after i moved. Menus don't break.
+	if(interactee)// moving stops any kind of interaction
+		unset_interaction()
 
 	if(species.slowdown)
 		. += species.slowdown

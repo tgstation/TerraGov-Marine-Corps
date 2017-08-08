@@ -50,7 +50,7 @@ var/global/list/holodeck_programs = list(
 
 		if(..())
 			return
-		user.set_machine(src)
+		user.set_interaction(src)
 		var/dat
 
 		dat += "<B>Holodeck Control System</B><BR>"
@@ -85,7 +85,7 @@ var/global/list/holodeck_programs = list(
 		if(..())
 			return
 		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-			usr.set_machine(src)
+			usr.set_interaction(src)
 
 			if(href_list["program"])
 				var/prog = href_list["program"]

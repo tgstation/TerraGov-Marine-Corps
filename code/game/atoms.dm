@@ -53,11 +53,6 @@ directive is properly returned.
 	else
 		return null
 
-/atom/proc/check_eye(user as mob)
-	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
-		return 1
-	return
-
 /atom/proc/on_reagent_change()
 	return
 

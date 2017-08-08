@@ -51,7 +51,7 @@
 
 
 /obj/machinery/lapvend/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/vendorname = (src.name)  //import the machine's name
 	var/dat = "<TT><center><b>[vendorname]</b></center><hr /><br>" //display the name, and added a horizontal rule
 	if(vendmode == 0)
@@ -123,7 +123,7 @@
 
 /obj/machinery/lapvend/Topic(href, href_list)
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 	switch(href_list["choice"])
 		if("single_add")
 			cardreader = 1

@@ -33,7 +33,7 @@
 	if(..())  //Checks for power outages
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = "<head><title>Overwatch Console</title></head><body>"
 
 	if(!operator)
@@ -214,7 +214,7 @@
 		return
 
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 
 	switch(href_list["operation"])
 		// main interface
@@ -357,21 +357,21 @@
 					usr << "\icon[src] Searching for helmet cam.."
 					cam = new_cam
 					usr << "\icon[src] Helmet cam found and linked."
-					check_eye(usr)
+					usr.reset_view(cam)
 //	src.updateUsrDialog()
 	src.attack_hand(usr) //The above doesn't ever seem to work.
 
 /obj/machinery/computer/overwatch/check_eye(mob/user)
 	if (user.is_mob_incapacitated(TRUE) || get_dist(user, src) > 1 || user.blinded) //user can't see - not sure why canmove is here.
-		user.unset_machine()
-		cam = null
+		user.unset_interaction()
 	else if (!cam || !cam.can_use()) //camera doesn't work, is no longer selected or is gone
-		user.unset_machine()
-		cam = null
-		//reset_view(null) called by a life subproc when check_eye fails
-	else
-		user.reset_view(cam)
-		return 1
+		user.unset_interaction()
+
+
+/obj/machinery/computer/overwatch/on_unset_interaction(mob/user)
+	..()
+	cam = null
+	user.reset_view(null)
 
 //returns the helmet camera the human is wearing
 /obj/machinery/computer/overwatch/proc/get_camera_from_target(mob/living/carbon/human/H)

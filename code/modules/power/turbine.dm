@@ -152,18 +152,18 @@
 
 
 	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.machine == src))
+		if ((M.client && M.interactee == src))
 			attack_hand(M)
 	AutoUpdateAI(src)
 
 /obj/machinery/power/turbine/attack_hand(mob/user)
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
-		user.machine = null
+		user.unset_interaction()
 		user << browse(null, "window=turbine")
 		return
 
-	user.machine = src
+	user.set_interaction(src)
 
 	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
 
@@ -185,19 +185,19 @@
 	..()
 	if(stat & BROKEN)
 		return
-	if (usr.stat || usr.is_mob_restrained() )
+	if (usr.is_mob_incapacitated() || usr.is_mob_restrained() )
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
 			usr << "\red You don't have the dexterity to do this!"
 			return
 
-	if (( usr.machine==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
 
 
 		if( href_list["close"] )
 			usr << browse(null, "window=turbine")
-			usr.machine = null
+			usr.unset_interaction()
 			return
 
 		else if( href_list["str"] )
@@ -205,12 +205,12 @@
 
 		spawn(0)
 			for(var/mob/M in viewers(1, src))
-				if ((M.client && M.machine == src))
+				if ((M.client && M.interactee == src))
 					src.interact(M)
 
 	else
 		usr << browse(null, "window=turbine")
-		usr.machine = null
+		usr.unset_interaction()
 
 	return
 
@@ -273,7 +273,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/turbine_computer/attack_hand(mob/user as mob)
-	user.machine = src
+	user.set_interaction(src)
 	var/dat
 	var/turbineav = 0
 	var/gastempav = 0
@@ -323,7 +323,7 @@
 	if(..())
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.machine = src
+		usr.set_interaction(src)
 
 		if( href_list["view"] )
 			if(compressors.len)
@@ -346,7 +346,7 @@
 						door_status = 0
 		else if( href_list["close"] )
 			usr << browse(null, "window=computer")
-			usr.machine = null
+			usr.unset_interaction()
 			return
 
 		src.add_fingerprint(usr)

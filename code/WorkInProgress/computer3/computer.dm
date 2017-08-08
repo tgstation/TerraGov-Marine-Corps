@@ -347,13 +347,13 @@
 			if(program.error)
 				Crash(program.error)
 				return
-			user.set_machine(src)
+			user.set_interaction(src)
 			program.attack_hand(user) // will normally translate to program/interact()
 			return
 
 		if(os)
 			program = os
-			user.set_machine(src)
+			user.set_interaction(src)
 			os.attack_hand(user)
 			return
 
@@ -372,13 +372,13 @@
 			if(program.error)
 				Crash(program.error)
 				return
-			user.set_machine(src)
+			user.set_interaction(src)
 			program.attack_hand(user) // will normally translate to program/interact()
 			return
 
 		if(os)
 			program = os
-			user.set_machine(src)
+			user.set_interaction(src)
 			os.attack_hand(user)
 			return
 
@@ -389,7 +389,7 @@
 			Reset()
 			return
 		if(!allowed(usr) || !usr in view(1))
-			usr.unset_machine()
+			usr.unset_interaction()
 			return
 
 		if(program)

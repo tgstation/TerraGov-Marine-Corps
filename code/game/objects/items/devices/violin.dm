@@ -237,7 +237,7 @@
 
 /obj/item/device/violin/attack_self(mob/user as mob)
 	if(!isliving(user) || user.stat || user.is_mob_restrained() || user.lying)	return
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/dat = "<HEAD><TITLE>Violin</TITLE></HEAD><BODY>"
 
@@ -388,6 +388,6 @@
 
 	add_fingerprint(usr)
 	for(var/mob/M in viewers(1, loc))
-		if((M.client && M.machine == src))
+		if((M.client && M.interactee == src))
 			attack_self(M)
 	return

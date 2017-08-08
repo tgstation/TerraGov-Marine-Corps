@@ -213,7 +213,7 @@
 ********************/
 
 /obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/is_secure = istype(src,/obj/machinery/smartfridge/secure)
 
@@ -271,7 +271,7 @@
 	src.add_fingerprint(user)
 
 	if (href_list["close"])
-		user.unset_machine()
+		user.unset_interaction()
 		ui.close()
 		return 0
 

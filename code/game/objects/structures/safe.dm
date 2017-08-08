@@ -108,7 +108,7 @@ FLOOR SAFES
 
 
 /obj/structure/safe/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = "<center>"
 	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a><br>"
 	dat += "Dial 1: <a href='?src=\ref[src];decrement=1'>-</a> [tumbler_1_pos] <a href='?src=\ref[src];increment=1'>+</a><br>"

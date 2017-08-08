@@ -78,7 +78,7 @@
 /obj/machinery/shield_capacitor/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
 		if (!istype(user, /mob/living/silicon))
-			user.unset_machine()
+			user.unset_interaction()
 			user << browse(null, "window=shield_capacitor")
 			return
 	var/t = "<B>Shield Capacitor Control Console</B><br><br>"
@@ -102,7 +102,7 @@
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 
 	user << browse(t, "window=shield_capacitor;size=500x400")
-	user.set_machine(src)
+	user.set_interaction(src)
 
 /obj/machinery/shield_capacitor/process()
 	if (!anchored)
@@ -129,7 +129,7 @@
 	..()
 	if( href_list["close"] )
 		usr << browse(null, "window=shield_capacitor")
-		usr.unset_machine()
+		usr.unset_interaction()
 		return
 	if( href_list["toggle"] )
 		if(!active && !anchored)

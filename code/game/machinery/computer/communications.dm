@@ -54,7 +54,7 @@
 /obj/machinery/computer/communications/Topic(href, href_list)
 	if(..()) r_FAL
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 
 	switch(href_list["operation"])
 		if("main") state = STATE_DEFAULT
@@ -331,7 +331,7 @@
 		usr << "<span class='warning'>Unable to establish a connection.</span>"
 		r_FAL
 
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = "<head><title>Communications Console</title></head><body>"
 	if(EvacuationAuthority.evac_status == EVACUATION_STATUS_INITIATING)
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"

@@ -4,7 +4,7 @@
 	set name = ".map"
 	set category = "Object"
 	set src in view(1)
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	if(!mapping)	return
 
 	log_game("[usr]([usr.key]) used station map L[z] in [src.loc.loc]")
@@ -356,5 +356,5 @@ proc/getb(col)
 		cdel(O)
 
 	mapobjs = null
-	src.unset_machine()
+	src.unset_interaction()
 

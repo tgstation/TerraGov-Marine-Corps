@@ -57,7 +57,7 @@
 		user << "This device is busy."
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/dat = "<h1>Keycard Authentication Device</h1>"
 

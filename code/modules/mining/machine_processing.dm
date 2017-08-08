@@ -33,7 +33,7 @@
 		user << "\red Access denied."
 		return
 
-	user.set_machine(src)
+	user.set_interaction(src)
 
 	var/dat = "<h1>Ore processor console</h1>"
 
@@ -68,7 +68,7 @@
 /obj/machinery/mineral/processing_unit_console/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	if(href_list["toggle_smelting"])

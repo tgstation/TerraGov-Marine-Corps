@@ -177,7 +177,7 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/show_inv(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
@@ -492,7 +492,7 @@ var/list/slot_equipment_priority = list( \
 	set name = "Cancel Camera View"
 	set category = "OOC"
 	reset_view(null)
-	unset_machine()
+	unset_interaction()
 	if(istype(src, /mob/living))
 		var/mob/living/M = src
 		if(M.cameraFollow)
@@ -501,7 +501,7 @@ var/list/slot_equipment_priority = list( \
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
-		unset_machine()
+		unset_interaction()
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
@@ -783,7 +783,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	var/laid_down = (is_mob_incapacitated(TRUE) || !has_legs() || resting || sleeping || (status_flags & FAKEDEATH))
+	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || sleeping || (status_flags & FAKEDEATH))
 	if(laid_down)
 		lying = 1
 	else

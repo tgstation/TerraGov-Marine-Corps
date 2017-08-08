@@ -31,7 +31,7 @@ var/list/ai_verbs_default = list(
 	if (subject!=null)
 		for(var/A in ai_list)
 			var/mob/living/silicon/ai/M = A
-			if ((M.client && M.machine == subject))
+			if ((M.client && M.interactee == subject))
 				is_in_use = 1
 				subject.attack_ai(M)
 	return is_in_use
@@ -329,11 +329,11 @@ var/list/ai_verbs_default = list(
 	spawn(600)//One minute cooldown
 		message_cooldown = 0
 
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
+/mob/living/silicon/ai/check_eye(mob/user)
 	if (!camera)
-		return null
+		user.reset_view(null)
+		return
 	user.reset_view(camera)
-	return 1
 
 /mob/living/silicon/ai/is_mob_restrained()
 	return 0
@@ -350,7 +350,7 @@ var/list/ai_verbs_default = list(
 		if (href_list["mach_close"] == "aialerts")
 			viewalerts = 0
 		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_machine()
+		unset_interaction()
 		src << browse(null, t1)
 	if (href_list["switchcamera"])
 		switchCamera(locate(href_list["switchcamera"])) in cameranet.cameras
@@ -477,7 +477,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/ai_network_change()
 	set category = "AI Commands"
 	set name = "Jump To Network"
-	unset_machine()
+	unset_interaction()
 	var/cameralist[0]
 
 	if(check_unable())

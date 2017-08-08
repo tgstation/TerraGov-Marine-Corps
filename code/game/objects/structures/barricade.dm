@@ -9,8 +9,8 @@
 	layer = OBJ_LAYER - 0.1
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
-	var/stack_amount = 5 //The amount of stack dropped when disassembled
-	var/always_drop_stack = FALSE //Whether the amount of stack dropped is independent of the health.
+	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
+	var/destroyed_stack_amount //to specify a non-zero amount of stack to drop when destroyed
 	var/health = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/maxhealth = 100 //Basic code functions
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
@@ -107,13 +107,6 @@
 	else
 		return 1
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/Xenomorph/M)
-	..()
-
-	if(is_wired)
-		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
-		"<span class='danger'>The barbed wire slices into you!</span>")
-		M.apply_damage(10)
 
 /obj/structure/barricade/attack_robot(mob/user as mob)
 	return attack_hand(user)
@@ -148,10 +141,10 @@
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(W)
 
-/obj/structure/barricade/destroy()
+/obj/structure/barricade/destroy(deconstruct)
 	if(stack_type)
 		var/stack_amt
-		if(always_drop_stack) stack_amt = stack_amount
+		if(!deconstruct && destroyed_stack_amount) stack_amt = destroyed_stack_amount
 		else stack_amt = round(stack_amount * (health/maxhealth)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 
 		if(stack_amt) new stack_type (loc, stack_amt)
@@ -302,8 +295,8 @@
 	climbable = FALSE
 	throwpass = FALSE
 	stack_type = /obj/item/stack/sheet/wood
-	stack_amount = 3
-	always_drop_stack = TRUE
+	stack_amount = 5
+	destroyed_stack_amount = 3
 	barricade_hitsound = "sound/effects/woodhit.ogg"
 	can_change_dmg_state = 0
 	barricade_type = "wooden"
@@ -357,8 +350,8 @@
 	crusher_resistant = TRUE
 	barricade_resistance = 10
 	stack_type = /obj/item/stack/sheet/metal
-	stack_amount = 2
-	always_drop_stack = TRUE
+	stack_amount = 4
+	destroyed_stack_amount = 2
 	barricade_hitsound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
 	can_wire = 1
@@ -462,7 +455,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy() //Note : Handles deconstruction too !
+					destroy(TRUE) //Note : Handles deconstruction too !
 				else busy = 0
 				return
 
@@ -496,15 +489,15 @@
 /obj/structure/barricade/plasteel
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a welding tool to repair. Can be flipped down to create a path."
-	icon_state = "plasteel_0"
+	icon_state = "plasteel_closed_0"
 	flags_atom = ON_BORDER
 	health = 600
 	maxhealth = 600
 	crusher_resistant = TRUE
 	barricade_resistance = 20
 	stack_type = /obj/item/stack/sheet/plasteel
-	stack_amount = 2
-	always_drop_stack = TRUE
+	stack_amount = 5
+	destroyed_stack_amount = 2
 	barricade_hitsound = "sound/effects/metalhit.ogg"
 	barricade_type = "plasteel"
 	closed = 1
@@ -612,7 +605,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy() //Note : Handles deconstruction too !
+					destroy(TRUE) //Note : Handles deconstruction too !
 				else busy = 0
 				return
 
@@ -622,17 +615,19 @@
 	if(isXeno(user))
 		return
 
-	if(closed)
-		user.visible_message("<span class='notice'>[user] flips the [src] open.</span>",
-		"<span class='notice'>You flip the [src] open.</span>")
-		density = 1
-	else
-		user.visible_message("<span class='notice'>[user] flips the [src] closed.</span>",
-		"<span class='notice'>You flip the [src] open.</span>")
-		density = 0
-
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 	closed = !closed
+	density = !density
+
+	if(closed)
+		user.visible_message("<span class='notice'>[user] flips the [src] closed.</span>",
+		"<span class='notice'>You flip the [src] closed.</span>")
+	else
+		user.visible_message("<span class='notice'>[user] flips the [src] open.</span>",
+		"<span class='notice'>You flip the [src] open.</span>")
+
+
+
 	update_icon()
 	update_overlay()
 
@@ -697,7 +692,7 @@
 			if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
-				destroy()
+				destroy(TRUE)
 		return 1
 	else
 		. = ..()

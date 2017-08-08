@@ -692,13 +692,13 @@
 		return
 
 	// do APC interaction
-	//user.set_machine(src)
+	//user.set_interaction(src)
 	src.interact(user)
 
 /obj/machinery/power/apc/interact(mob/user)
 	if(!user)
 		return
-	user.set_machine(src)
+	user.set_interaction(src)
 	if(wiresexposed /*&& (!istype(user, /mob/living/silicon))*/) //Commented out the typecheck to allow engiborgs to repair damaged apcs.
 		var/t1 = text("<html><head><title>[area.name] APC wires</title></head><body><B>Access Panel</B><br>\n")
 

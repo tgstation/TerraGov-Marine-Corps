@@ -120,7 +120,7 @@
 	if(..())
 		return
 	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if (href_list["chemical"])
 			if (src.connected)
 				if (src.connected.occupant)

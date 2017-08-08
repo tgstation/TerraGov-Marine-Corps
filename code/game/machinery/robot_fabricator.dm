@@ -67,7 +67,7 @@ Please wait until completion...</TT><BR>
 	if (..())
 		return
 
-	usr.set_machine(src)
+	usr.set_interaction(src)
 	src.add_fingerprint(usr)
 
 	if (href_list["make"])
@@ -137,5 +137,5 @@ Please wait until completion...</TT><BR>
 		return
 
 	for (var/mob/M in viewers(1, src))
-		if (M.client && M.machine == src)
+		if (M.client && M.interactee == src)
 			src.attack_hand(M)

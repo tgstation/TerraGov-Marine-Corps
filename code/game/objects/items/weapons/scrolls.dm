@@ -11,7 +11,7 @@
 	origin_tech = "bluespace=4"
 
 /obj/item/weapon/teleportation_scroll/attack_self(mob/user as mob)
-	user.set_machine(src)
+	user.set_interaction(src)
 	var/dat = "<B>Teleportation Scroll:</B><BR>"
 	dat += "Number of uses: [src.uses]<BR>"
 	dat += "<HR>"
@@ -30,7 +30,7 @@
 	if (!( istype(H, /mob/living/carbon/human)))
 		return 1
 	if ((usr == src.loc || (in_range(src, usr) && istype(src.loc, /turf))))
-		usr.set_machine(src)
+		usr.set_interaction(src)
 		if (href_list["spell_teleport"])
 			if (src.uses >= 1)
 				teleportscroll(H)

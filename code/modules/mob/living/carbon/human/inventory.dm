@@ -773,6 +773,6 @@ It can still be worn/put on as normal.
 					target.update_icons()
 
 	if(source && target)
-		if(source.machine == target)
+		if(source.interactee == target)
 			target.show_inv(source)
 	cdel(src)
