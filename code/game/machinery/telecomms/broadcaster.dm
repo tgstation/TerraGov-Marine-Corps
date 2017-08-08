@@ -230,23 +230,17 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	if(M)
 		if(istype(M,/mob/living/carbon/human))
-			var/obj/item/device/pda/I = M:wear_id
-			var/obj/item/weapon/card/id/card = null
+			var/mob/living/carbon/human/H = M
+			if(H.wear_id)
+				var/obj/item/weapon/card/id/card = H.wear_id.GetID()
+				if(istype(card))
+					if(card.assignment == "Commander")
+						command = 3
+					else if(card.assignment == "Pilot Officer" || card.assignment == "Staff Officer" || card.assignment == "Executive Officer" || card.assignment == "Chief MP" || findtext(card.assignment, "Leader"))
+						command = 3
 
-			if(I && istype(I))
-				if(I.id)
-					card = I.id
-			else
-				card = I
-
-			if(card)
-				if(card.assignment == "Commander")
-					command = 3
-				else if(card.assignment == "Pilot Officer" || card.assignment == "Staff Officer" || card.assignment == "Executive Officer" || card.assignment == "Chief MP" || findtext(card.assignment, "Leader"))
-					command = 3
-
-			if(M.mind && M.mind.role_comm_title)
-				comm_title = M.mind.role_comm_title //Set up [CO] and stuff after frequency
+			if(H.mind && H.mind.role_comm_title)
+				comm_title = H.mind.role_comm_title //Set up [CO] and stuff after frequency
 		else if(istype(M,/mob/living/silicon/decoy/ship_ai)) command = 3
 
 	for (var/mob/R in receive)

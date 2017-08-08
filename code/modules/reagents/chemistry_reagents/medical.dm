@@ -339,14 +339,16 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
-			E.damage += 0.5
+			if(E)
+				E.damage += 0.5
 
 	on_overdose_critical(mob/living/M)
 		M.apply_damages(3, 3) //Starts detoxing, hard
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
-			E.damage += 2
+			if(E)
+				E.damage += 2
 
 /datum/reagent/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
@@ -689,7 +691,8 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
-			E.damage += 0.5
+			if(E)
+				E.damage += 0.5
 			if(prob(10))
 				M.emote(pick("twitch", "blink_r", "shiver"))
 
@@ -697,7 +700,8 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
-			E.damage += 2
+			if(E)
+				E.damage += 2
 			if(prob(25))
 				M.emote(pick("twitch", "blink_r", "shiver"))
 
