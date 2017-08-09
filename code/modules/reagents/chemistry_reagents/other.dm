@@ -587,7 +587,7 @@
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"
-	description = "Required for welders. Flamable."
+	description = "Required for blowtorches. Highly flamable."
 	reagent_state = LIQUID
 	color = "#660000" // rgb: 102, 0, 0
 	overdose = REAGENTS_OVERDOSE

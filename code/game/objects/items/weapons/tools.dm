@@ -7,7 +7,7 @@
  * 		Wrench
  * 		Screwdriver
  * 		Wirecutters
- * 		Welding Tool
+ * 		Blowtorch
  * 		Crowbar
  */
 
@@ -125,10 +125,10 @@
 		..()
 
 /*
- * Welding Tool
+ * Blowtorch
  */
 /obj/item/weapon/weldingtool
-	name = "welding tool"
+	name = "blowtorch"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 	flags_atom = FPRINT|CONDUCT
@@ -147,8 +147,8 @@
 	//R&D tech level
 	origin_tech = "engineering=1"
 
-	//Welding tool specific stuff
-	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
+	//blowtorch specific stuff
+	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
 
@@ -201,12 +201,13 @@
 		if(!welding)
 			O.reagents.trans_to(src, max_fuel)
 			weld_tick = 0
-			user << "<span class='notice'>Welder refueled.</span>"
+			user.visible_message("<span class='notice'>[user] refills [src].</span>", \
+			"<span class='notice'>You refill [src].</span>")
 			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		else
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-			user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
+			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a blowtorch.")
+			log_game("[key_name(user)] triggered a fueltank explosion with a blowtorch.")
+			user << "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>"
 			var/obj/structure/reagent_dispensers/fueltank/tank = O
 			tank.explode()
 		return
@@ -231,7 +232,7 @@
 	return reagents.get_reagent_amount("fuel")
 
 
-//Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
+//Removes fuel from the blowtorch. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
 /obj/item/weapon/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!welding || !check_fuel())
 		return 0
@@ -246,7 +247,7 @@
 			M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 		return 0
 
-//Returns whether or not the welding tool is currently on.
+//Returns whether or not the blowtorch is currently on.
 /obj/item/weapon/weldingtool/proc/isOn()
 	return src.welding
 
@@ -281,7 +282,7 @@
 			processing_objects.Add(src)
 		else
 			if(M)
-				M << "<span class='warning'>Need more fuel!</span>"
+				M << "<span class='warning'>[src] needs more fuel!</span>"
 			return
 	else
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
@@ -330,7 +331,7 @@
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(-1)
-				usr << "<span class='warning'>Your thermals intensify the welder's glow. Your eyes itch and burn severely.</span>"
+				usr << "<span class='warning'>Your thermals intensify [src]'s glow. Your eyes itch and burn severely.</span>"
 				H.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<2)
@@ -366,21 +367,21 @@
 
 
 /obj/item/weapon/weldingtool/largetank
-	name = "Industrial Welding Tool"
+	name = "industrial blowtorch"
 	max_fuel = 40
 	matter = list("metal" = 70, "glass" = 60)
 	origin_tech = "engineering=2"
 
 /obj/item/weapon/weldingtool/hugetank
-	name = "Upgraded Welding Tool"
+	name = "high-capacity industrial blowtorch"
 	max_fuel = 80
 	w_class = 3.0
 	matter = list("metal" = 70, "glass" = 120)
 	origin_tech = "engineering=3"
 
 /obj/item/weapon/weldingtool/experimental
-	name = "Experimental Welding Tool"
-	max_fuel = 40
+	name = "experimental blowtorch"
+	max_fuel = 40 //?
 	w_class = 3.0
 	matter = list("metal" = 70, "glass" = 120)
 	origin_tech = "engineering=4;phorontech=3"

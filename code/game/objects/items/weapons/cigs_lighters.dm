@@ -104,7 +104,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	..()
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
-		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a welding tool
+		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a blowtorch
 			light("<span class='notice'>[user] casually lights the [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/flame/lighter/zippo))

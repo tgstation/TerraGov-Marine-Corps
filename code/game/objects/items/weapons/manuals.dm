@@ -651,7 +651,7 @@
 
 				<h3>Dents</h3>
 				If a cyborg becomes damaged due to impact from heavy or fast-moving objects, it will become dented. Sure, a dent may not seem like much, but it can compromise the structural integrity of the cyborg, possibly causing a critical failure.
-				Dents in a cyborg's frame are rather easy to repair, all you need is to apply a welding tool to the dented area, and the high-tech cyborg frame will repair the dent under the heat of the welder.
+				Dents in a cyborg's frame are rather easy to repair, all you need is to apply a blowtorch to the dented area, and the high-tech cyborg frame will repair the dent under the heat of the welder.
 
 				<h3>Excessive Heat Damage</h3>
 				If a cyborg becomes damaged due to excessive heat, it is likely that the internal wires will have been damaged. You must replace those wires to ensure that the cyborg remains functioning properly.<br>To replace the internal wiring follow the steps below:

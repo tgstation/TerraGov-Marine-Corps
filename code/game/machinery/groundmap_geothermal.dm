@@ -2,7 +2,7 @@
 	name = "\improper G-11 geothermal generator"
 	icon = 'icons/turf/geothermal.dmi'
 	icon_state = "weld"
-	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a welding tool, wrench, then wirecutters to repair it."
+	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wrench, then wirecutters to repair it."
 	var/almayer = 0
 	anchored = 1
 	density = 1
@@ -37,7 +37,7 @@
 	else
 		if(buildstate == 1)
 			icon_state = "weld"
-			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a welding tool, wirecutters, then wrench to repair it."
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, then wrench to repair it."
 		else if(buildstate == 2)
 			icon_state = "wire"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use a wirecutters, then wrench to repair it."
@@ -100,7 +100,7 @@
 		return 0
 	add_fingerprint(user)
 	if(buildstate == 1)
-		usr << "<span class='info'>Use a welding tool, then wirecutters, then wrench to repair it."
+		usr << "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it."
 		return 0
 	else if (buildstate == 2)
 		usr << "<span class='info'>Use a wirecutters, then wrench to repair it."

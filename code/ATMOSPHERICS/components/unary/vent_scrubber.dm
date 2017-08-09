@@ -270,7 +270,7 @@
 					welded = 0
 					update_icon()
 			else
-				user << "<span class='notice'>The welding tool needs to be on to start this task.</span>"
+				user << "<span class='notice'>[WT] needs to be on to start this task.</span>"
 		else
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 		return

@@ -41,7 +41,7 @@
 	category = "Tools"
 
 /datum/autolathe/recipe/weldertool
-	name = "welding tool"
+	name = "blowtorch"
 	path = /obj/item/weapon/weldingtool
 	category = "Tools"
 
@@ -307,7 +307,7 @@
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/welder_industrial
-	name = "industrial welding tool"
+	name = "industrial blowtorch"
 	path = /obj/item/weapon/weldingtool/largetank
 	hidden = 1
 	category = "Tools"

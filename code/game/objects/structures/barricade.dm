@@ -342,7 +342,7 @@
 
 /obj/structure/barricade/metal
 	name = "metal barricade"
-	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a welding tool to repair."
+	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
 	flags_atom = ON_BORDER
 	health = 200
@@ -488,7 +488,7 @@
 
 /obj/structure/barricade/plasteel
 	name = "plasteel barricade"
-	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a welding tool to repair. Can be flipped down to create a path."
+	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
 	flags_atom = ON_BORDER
 	health = 600

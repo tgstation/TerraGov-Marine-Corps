@@ -112,7 +112,7 @@
 		add_fingerprint(user)
 		switch(buildstate)
 			if(1)
-				usr << "<span class='info'>Use a welding tool, then wirecutters, then wrench to repair it.</span>"
+				usr << "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>"
 				r_FAL
 			if(2)
 				usr << "<span class='notice'>Use a wirecutters, then wrench to repair it.</span>"

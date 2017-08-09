@@ -355,8 +355,8 @@
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
-			user.visible_message("<span class='notice'>[user] starts working on [src] with the [WT].</span>", \
-			"<span class='notice'>You start working on the [src] with the [WT].</span>", \
+			user.visible_message("<span class='notice'>[user] starts working on \the [src] with [WT].</span>", \
+			"<span class='notice'>You start working on \the [src] with [WT].</span>", \
 			"<span class='notice'>You hear welding.</span>")
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
