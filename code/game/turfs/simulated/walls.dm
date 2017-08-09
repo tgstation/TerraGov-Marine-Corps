@@ -71,7 +71,7 @@
 		if(1)
 			user << "<span class='info'>The outer plating has been sliced open. A screwdriver should remove the support lines.</span>"
 		if(2)
-			user << "<span class='info'>The support lines have been removed. A welding tool should slice through the metal cover.</span>"
+			user << "<span class='info'>The support lines have been removed. A blowtorch should slice through the metal cover.</span>"
 		if(3)
 			user << "<span class='info'>The metal cover has been sliced through. A crowbar should pry it off.</span>"
 		if(4)
@@ -81,7 +81,7 @@
 		if(6)
 			user << "<span class='info'>Hydraulic lines are gone. A crowbar will pry off the inner sheath.</span>"
 		if(7)
-			user << "<span class='info'>The inner sheath is gone. A welding tool should finish off this wall.</span>"
+			user << "<span class='info'>The inner sheath is gone. A blowtorch should finish off this wall.</span>"
 
 #define BULLETHOLE_STATES 10 //How many variations of bullethole patterns there are
 #define BULLETHOLE_MAX 8 * 3 //Maximum possible bullet holes.

@@ -883,7 +883,7 @@
 				user << "You need more welding fuel to cut the pipe."
 				return
 
-	// called when pipe is cut with welder
+	//Called when pipe is cut with blowtorch
 	proc/welded()
 
 		var/obj/structure/disposalconstruct/C = new (src.loc)

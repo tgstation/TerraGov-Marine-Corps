@@ -937,8 +937,8 @@ About the new airlock wires panel:
 	if((istype(C, /obj/item/weapon/weldingtool) && !operating && density))
 		var/obj/item/weapon/weldingtool/W = C
 		if(W.remove_fuel(0,user))
-			user.visible_message("<span class='notice'>[user] starts working on the [src] with the [W].</span>", \
-			"<span class='notice'>You start working on the [src] with the [W].</span>", \
+			user.visible_message("<span class='notice'>[user] starts working on \the [src] with [W].</span>", \
+			"<span class='notice'>You start working on \the [src] with [W].</span>", \
 			"<span class='notice'>You hear welding.</span>")
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK) && density)

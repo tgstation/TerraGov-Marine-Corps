@@ -708,7 +708,7 @@ datum/design/mech_laser
 
 datum/design/mech_laser_rigged
 	name = "Exosuit Weapon Design (Jury-rigged Laser)"
-	desc = "Allows for the construction a welder-laser assembly package for non-combat exosuits."
+	desc = "Allows for the construction of a welding laser assembly package for non-combat exosuits."
 	id = "mech_laser_rigged"
 	build_type = MECHFAB
 	req_tech = list("combat" = 2, "magnets" = 2)
