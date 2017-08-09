@@ -295,6 +295,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		src << "<span class='warning'>You can't do that while unconcious.</span>"
 		return 0
 	var/input = input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "") as message|null
+	input = html_encode(input)
 	if(!input)
 		return
 
