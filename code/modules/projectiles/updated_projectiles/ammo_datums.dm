@@ -410,7 +410,7 @@
 		burst(get_turf(T),P,damage_type)
 
 /datum/ammo/bullet/shotgun/buckshot
-	name = "shotgun buckshot"
+	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 
