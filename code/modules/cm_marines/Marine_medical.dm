@@ -123,15 +123,15 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard
 	name = "\improper Bicaridine autoinjector"
-	desc = "An auto-injector loaded with 5u of Bicaridine."
-	amount_per_transfer_from_this = 5
-	volume = 5
+	desc = "An auto-injector loaded with 10u of Bicaridine."
+	amount_per_transfer_from_this = 10
+	volume = 10
 	icon_state = "bicaridine"
 
 	New()
 		..()
 		spawn(1)
-			reagents.add_reagent("bicaridine", 5)
+			reagents.add_reagent("bicaridine", 10)
 			update_icon()
 		return
 
@@ -154,25 +154,25 @@
 
 /obj/item/weapon/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
-	desc = "Pills to counter extreme radiation.  (VERY DANGEROUS)"
+	desc = "Pills to counter extreme radiation. (VERY DANGEROUS)"
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
-		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+		new /obj/item/weapon/reagent_containers/pill/russianRed(src)
 
 
 /obj/item/weapon/reagent_containers/pill/russianRed
 	name = "\improper Russian Red (10u) pill"
-	desc = "An EXTREME radiation countering pill.  VERY dangerous"
+	desc = "An EXTREME radiation countering pill. VERY dangerous"
 	icon_state = "pill4"
 	New()
 		..()
@@ -187,16 +187,16 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
-		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
+		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
 
 
 /obj/item/weapon/reagent_containers/pill/peridaxon
@@ -214,16 +214,16 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
-		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
+		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
 
 
 /obj/item/weapon/reagent_containers/pill/imidazoline
@@ -241,16 +241,16 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
-		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
+		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
 
 
 /obj/item/weapon/reagent_containers/pill/alkysine
@@ -268,25 +268,25 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
 
 
 /obj/item/weapon/reagent_containers/pill/bicaridine
-	name = "\improper Bicaridine (5u) pill"
-	desc = "Heals Brute damage.  Take Orally."
+	name = "\improper Bicaridine (10u) pill"
+	desc = "Heals Brute damage. Take Orally."
 	icon_state = "pill13"
 	New()
 		..()
-		reagents.add_reagent("bicaridine", 5)
+		reagents.add_reagent("bicaridine", 10)
 
 //DEXALIN
 /obj/item/weapon/storage/pill_bottle/dexalin
@@ -295,25 +295,15 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-
-/*/obj/item/weapon/reagent_containers/pill/bicaridine
-	name = "bicaridine (5u)"
-	desc = "Heals Brute"
-	icon_state = "pill13"
-	New()
-		..()
-		reagents.add_reagent("bicaridine", 5)*/
-
-
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
 
 //GLASS BOTTLES
