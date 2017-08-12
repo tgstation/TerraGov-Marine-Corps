@@ -112,27 +112,26 @@
 	return attack_hand(user)
 
 /obj/structure/barricade/attackby(obj/item/W as obj, mob/user)
-	if(istype(W, /obj/item/barbed_wire))
-		var/obj/item/barbed_wire/B = W
+	if(istype(W, /obj/item/stack/barbed_wire))
+		var/obj/item/stack/barbed_wire/B = W
 
 		if(can_wire)
 			user.visible_message("<span class='notice'>[user] starts setting up [W.name] on [src].</span>",
 			"<span class='notice'>You start setting up [W.name] on [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && can_wire)
 				user.visible_message("<span class='notice'>[user] sets up [W.name] on [src].</span>",
 				"<span class='notice'>You set up [W.name] on [src].</span>")
 				if(!closed)
 					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire", dir = src.dir)
 				else
 					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire", dir = src.dir)
-
+				B.use(1)
 				overlays += wired_overlay
 				maxhealth += 50
 				health += 50
 				can_wire = 0
 				is_wired = 1
 				climbable = FALSE
-				cdel(B)
 		return
 
 	if(W.force > barricade_resistance)
@@ -142,6 +141,8 @@
 		hit_barricade(W)
 
 /obj/structure/barricade/destroy(deconstruct)
+	if(deconstruct && is_wired)
+		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
 		var/stack_amt
 		if(!deconstruct && destroyed_stack_amount) stack_amt = destroyed_stack_amount
@@ -708,16 +709,3 @@
 
 	return 1
 
-
-
-/obj/item/barbed_wire
-	name = "barbed wire"
-	desc = "A spiky length of wire."
-	icon = 'icons/Marine/marine-items.dmi'
-	icon_state = "barbed_wire"
-	w_class = 1.0
-	force = 2.0
-	throwforce = 5.0
-	throw_speed = 5
-	throw_range = 20
-	attack_verb = list("hit", "whacked", "sliced")

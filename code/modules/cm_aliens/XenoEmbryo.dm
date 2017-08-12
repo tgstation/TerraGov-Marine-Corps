@@ -175,9 +175,8 @@
 			O = H.internal_organs_by_name[i]
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
-	else
-		victim.adjustToxLoss(300) //This should kill without gibbing da body
-		victim.updatehealth()
+	victim.adjustToxLoss(300) //This should kill without gibbing da body
+	victim.updatehealth()
 	victim.chestburst = 2
 	victim.update_burst()
 

@@ -457,7 +457,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //SHOTGUN FROM ISOLATION
 
 /obj/item/ammo_magazine/internal/shotgun/pump/CMB //The only cycle method.
-	max_rounds = 4
+	max_rounds = 8
 
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper HG 37-12 pump shotgun"

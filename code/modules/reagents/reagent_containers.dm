@@ -27,11 +27,11 @@
 	reagents = R
 	R.my_atom = src
 
-/obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
+/obj/item/weapon/reagent_containers/attack_self(mob/user)
 	return
 
-/obj/item/weapon/reagent_containers/attack(mob/M as mob, mob/user as mob, def_zone)
-	if (can_operate(M))        //Checks if mob is lying down on table for surgery
+/obj/item/weapon/reagent_containers/attack(mob/M, mob/user, def_zone)
+	if (M.can_be_operated_on())        //Checks if mob is lying down on table for surgery
 		if (do_surgery(M,user,src))
 			return
 

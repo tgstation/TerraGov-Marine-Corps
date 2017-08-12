@@ -181,15 +181,14 @@
 			return
 	return
 
-/obj/item/stack/proc/use(var/used)
+/obj/item/stack/proc/use(used)
 	if(used > amount) //If it's larger than what we have, no go.
 		return 0
 	amount -= used
 	if(amount <= 0)
 		if(usr)
-			usr.drop_inv_item_on_ground(src)
-		spawn(1) //Did they not have spawn back in the day? Pff.
-			cdel(src)
+			usr.temp_drop_inv_item(src)
+		cdel(src)
 	return 1
 
 /obj/item/stack/proc/add(var/extra)

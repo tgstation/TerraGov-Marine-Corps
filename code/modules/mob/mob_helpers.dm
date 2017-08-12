@@ -502,3 +502,25 @@ var/list/intents = list("help","disarm","grab","hurt")
 		var/turf/targetturf = get_turf(M)
 		if(targetturf && (targetturf.z == sourceturf.z))
 			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
+
+
+
+
+//can the mob be operated on?
+/mob/proc/can_be_operated_on()
+	return FALSE
+
+//check if mob is lying down on something we can operate him on.
+/mob/living/carbon/can_be_operated_on()
+	if(!lying) return FALSE
+	if(locate(/obj/machinery/optable, loc) || locate(/obj/structure/stool/bed/roller, loc))
+		return TRUE
+	var/obj/structure/table/T = locate(/obj/structure/table, loc)
+	if(!T.flipped) return TRUE
+
+/mob/living/carbon/hellhound/can_be_operated_on()
+	return FALSE
+
+/mob/living/carbon/Xenomorph/can_be_operated_on()
+	return FALSE
+
