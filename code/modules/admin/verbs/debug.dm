@@ -235,12 +235,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 					if(hsbitem in blocked)
 						if(alert("Are you REALLY sure you wish to delete all instances of [hsbitem]? This will lead to catastrophic results!",,"Yes","No") != "Yes")
 							do_delete = 0
+					var/del_amt = 0
 					if(do_delete)
 						for(var/atom/O in world)
 							if(istype(O, hsbitem))
+								del_amt++
 								cdel(O)
-						log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
-						message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
+						log_admin("[key_name(src)] has deleted all instances of [hsbitem] ([del_amt]).")
+						message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem] ([del_amt]).", 0)
 		else
 			usr << "<span class = 'warning'>Not a valid type path.</span>"
 	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

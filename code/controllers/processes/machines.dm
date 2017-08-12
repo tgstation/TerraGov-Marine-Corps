@@ -1,4 +1,3 @@
-/var/global/machinery_sort_required = 0
 
 datum/controller/process/machines
 
@@ -7,14 +6,8 @@ datum/controller/process/machines/setup()
 	schedule_interval = 33 //3.3 seconds
 
 datum/controller/process/machines/doWork()
-	process_machines_sort()
 	process_machines_process()
 	process_machines_power()
-
-datum/controller/process/machines/proc/process_machines_sort()
-	if(machinery_sort_required)
-		machinery_sort_required = 0
-		machines = dd_sortedObjectList(machines)
 
 datum/controller/process/machines/proc/process_machines_process()
 	for(var/obj/machinery/M in machines)
