@@ -307,10 +307,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		else
 			var/mob/dead/observer/ghost = new/mob/dead/observer(M,1)
 			ghost.ckey = M.ckey
+			if(ghost.client) ghost.client.view = world.view
 	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
+	if(M.client) M.client.view = world.view
 	if( isobserver(adminmob) )
 		cdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -379,6 +379,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				var/mob/living/carbon/monkey/new_monkey = new(pick(latejoin))
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
+				if(new_monkey.client) new_monkey.client.view = world.view
 				new_monkey << "You have been fully respawned. Enjoy the game."
 				message_admins("\blue [key_name_admin(usr)] has respawned [new_monkey.key] as a filthy xeno.", 1)
 				return	//all done. The ghost is auto-deleted
@@ -436,6 +437,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.dna.ready_dna(new_character)
 
 	new_character.key = G_found.key
+	if(new_character.client) new_character.client.view = world.view
 
 	/*
 	The code below functions with the assumption that the mob is already a traitor if they have a special role.
@@ -712,6 +714,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name_admin(usr)] modified [O.name]'s ckey to [new_ckey]", 1)
 	feedback_add_details("admin_verb","KEY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	O.ckey = new_ckey
+	if(O.client) O.client.view = world.view
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
 	set category = "Special Verbs"

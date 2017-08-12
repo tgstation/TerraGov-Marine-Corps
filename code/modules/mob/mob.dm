@@ -372,6 +372,7 @@ var/list/slot_equipment_priority = list( \
 		return
 
 	M.key = key
+	if(M.client) M.client.view = world.view
 //	M.Login()	//wat
 	return
 

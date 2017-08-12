@@ -692,6 +692,7 @@
 	mob.b_hair = 35
 	mob.s_tone = rand(0,35)
 	mob.key = M.key
+	if(mob.client) mob.client.view = world.view
 //	M.transfer_to(mob)
 
 
@@ -799,6 +800,7 @@
 	mob.b_hair = 35
 	mob.s_tone = rand(0,120)
 	mob.key = M.key
+	if(mob.client) mob.client.view = world.view
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Mercenary"
 	ticker.mode.traitors += mob.mind
@@ -892,6 +894,7 @@
 	mob.dna.ready_dna(mob)
 	mob.s_tone = rand(0,40)
 	mob.key = M.key
+	if(mob.client) mob.client.view = world.view
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind
@@ -981,6 +984,7 @@
 	mob.dna.ready_dna(mob)
 	mob.s_tone = rand(0,40)
 	mob.key = M.key
+	if(mob.client) mob.client.view = world.view
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind
@@ -1045,6 +1049,7 @@
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
 	mob.key = M.key
+	if(mob.client) mob.client.view = world.view
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Pizza"
 	ticker.mode.traitors += mob.mind
@@ -1273,6 +1278,7 @@
 	H.age = rand(21,45)
 	H.dna.ready_dna(H)
 	H.key = M.key
+	if(H.client) H.client.view = world.view
 	H.mind.assigned_role = "Colonist"
 	H.mind.special_role = "MODE"
 	ticker.mode.traitors += H.mind
@@ -1308,6 +1314,7 @@
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
 	mob.key = M.key
+	if(mob.client) mob.client.view = world.view
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "CLF"
 	ticker.mode.traitors += mob.mind
@@ -1377,6 +1384,7 @@
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
 	mob.key = M.key
+	if(mob.client) mob.client.view = world.view
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "DEATH SQUAD"
 	ticker.mode.traitors += mob.mind

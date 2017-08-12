@@ -70,3 +70,4 @@
 			brainmob.mind.transfer_to(target)
 		else
 			target.key = brainmob.key
+			if(target.client) target.client.view = world.view

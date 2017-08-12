@@ -77,7 +77,9 @@ datum/mind
 		current = new_character		//link ourself to our new body
 		new_character.mind = src	//and link our new body to ourself
 
-		if(active) new_character.key = key		//now transfer the key to link the client to our new body
+		if(active)
+			new_character.key = key		//now transfer the key to link the client to our new body
+			if(new_character.client) new_character.client.view = world.view //reset view range to default.
 
 	proc/store_memory(new_text)
 		memory += "[new_text]<BR>"

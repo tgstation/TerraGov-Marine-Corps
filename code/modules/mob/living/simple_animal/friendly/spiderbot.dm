@@ -153,6 +153,7 @@
 		src.mind = M.brainmob.mind
 		src.mind.key = M.brainmob.key
 		src.ckey = M.brainmob.ckey
+		if(client) client.view = world.view
 		src.name = "Spider-bot ([M.brainmob.name])"
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.

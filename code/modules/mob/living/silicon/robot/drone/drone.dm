@@ -249,7 +249,7 @@
 /mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
 
 	if(!player) return
-
+	player.view = world.view
 	src.ckey = player.ckey
 
 	if(player.mob && player.mob.mind)

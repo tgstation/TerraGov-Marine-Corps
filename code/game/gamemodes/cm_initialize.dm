@@ -219,6 +219,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_predator.mind.special_role = "Predator"
 	new_predator.key = pred_candidate.key
 	new_predator.mind.key = new_predator.key
+	if(new_predator.client) new_predator.client.view = world.view
 
 	if(!new_predator.client.prefs) new_predator.client.prefs = new /datum/preferences(new_predator.client) //Let's give them one.
 	//They should have these set, but it's possible they don't have them.
@@ -367,6 +368,7 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/new_xeno)
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
+	if(new_xeno.client) new_xeno.client.view = world.view
 	message_admins("[new_xeno.key] has joined as [new_xeno].")
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
 	if(xeno_candidate) xeno_candidate.loc = null

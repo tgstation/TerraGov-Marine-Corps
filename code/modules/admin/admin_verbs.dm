@@ -375,6 +375,7 @@ var/list/admin_verbs_mentor = list(
 		body.ghostize(1)
 		if(body && !body.key)
 			body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
+			if(body.client) body.client.view = world.view //reset view range to default.
 		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
