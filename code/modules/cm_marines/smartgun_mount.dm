@@ -87,17 +87,12 @@
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "folded_mount"
 
-/obj/item/device/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod so it opens up.
+/obj/item/device/m56d_post/attack_self(mob/user) //click the tripod to unfold it.
 	if(!ishuman(usr)) return
-	var/mob/living/carbon/human/user = usr //this is us
-	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
-		if((user.get_active_hand() == src) || (user.get_inactive_hand() == src))
-			new /obj/machinery/m56d_post(user.loc)
-			cdel(src)
-		else
-			new /obj/machinery/m56d_post(src.loc)
-			cdel(src)
-		return
+	user << "<span class='notice'>You deploy [src].</span>"
+	new /obj/machinery/m56d_post(user.loc)
+	cdel(src)
+
 
 
 //The mount for the weapon.
@@ -111,84 +106,122 @@
 	layer = 3.4
 	var/gun_mounted = 0 //Has the gun been mounted?
 	var/gun_rounds = 0 //Did the gun come with any ammo?
-	var/screwed_in = 0 // Is it screwed onto the mount? Won't ever be 1 considering the step it goes to 1 generates the MG.
 
-/obj/machinery/m56d_post/examine(mob/user as mob)
+/obj/machinery/m56d_post/examine(mob/user)
 	..()
 	if(!anchored)
-		usr << "It must be <B>wrenched</b> to the floor."
-	if(!gun_mounted)
-		usr << "The <b>M56D Mounted Smartgun</b> is not yet mounted."
-	if(!screwed_in)
-		usr << "The M56D isn't screwed into the mount. Use a <b>screwdriver</b> to finish the job."
+		user << "It must be <B>screwed</b> to the floor."
+	else if(!gun_mounted)
+		user << "The <b>M56D Mounted Smartgun</b> is not yet mounted."
+	else
+		user << "The M56D isn't screwed into the mount. Use a <b>screwdriver</b> to finish the job."
 
-/obj/machinery/m56d_post/attackby(var/obj/item/O as obj, mob/user as mob)
+
+/obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
+	if(!ishuman(usr)) return
+	var/mob/living/carbon/human/user = usr //this is us
+	if(over_object == user && in_range(src, user))
+		if(anchored)
+			user << "<span class='warning'>[src] can't be folded while screwed to the floor. Unscrew it first.</span>"
+			return
+		user << "<span class='notice'>You fold [src].</span>"
+		var/obj/item/device/m56d_post/P = new(loc)
+		user.put_in_hands(P)
+		cdel(src)
+
+
+
+/obj/machinery/m56d_post/attackby(obj/item/O, mob/user)
 	if(!ishuman(user)) //first make sure theres no funkiness
 		return
 
-	if(isnull(O))
+	if(istype(O,/obj/item/weapon/wrench)) //rotate the mount
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] rotates [src].</span>","<span class='notice'>You rotate [src].</span>")
+		switch(dir)
+			if(NORTH)
+				dir = EAST
+			if(EAST)
+				dir = SOUTH
+			if(SOUTH)
+				dir = WEST
+			if(WEST)
+				dir = NORTH
 		return
 
-	if(istype(O,/obj/item/weapon/wrench)) //lets anchor it to the ground.
-		if(anchored) //lets make it so we can turn it when we have it on the ground, a nice feature from the actual sentry
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user.visible_message("[user] rotates the [src].","You rotate the [src].")
-			switch(dir)
-				if(NORTH)
-					dir = EAST
-				if(EAST)
-					dir = SOUTH
-				if(SOUTH)
-					dir = WEST
-				if(WEST)
-					dir = NORTH
-		else
-			if(locate(/obj/machinery/marine_turret || /obj/machinery/m56d_hmg) in src.loc) // make sure we're not stacking MGs or something
-				user << "There's already a turret or m56d here. Drag the frame off first."
-				return
-
-			user << "You begin wrenching [src] into place.."
-			if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				user.visible_message("\blue [user] anchors [src] into place.","\blue You anchor [src] into place.")
-				anchored = 1
-		return
 	if(istype(O,/obj/item/device/m56d_gun)) //lets mount the MG onto the mount.
 		var/obj/item/device/m56d_gun/MG = O
 		if(!anchored)
-			user << "The post must be anchored! Use a wrench!" // you tool
+			user << "<span class='warning'>[src] must be anchored! Use a screwdriver!</span>"
 			return
-		user << "You begin mounting the M56D.."
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+		user << "You begin mounting [MG].."
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && !gun_mounted)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user.visible_message("\blue [user] installs [O] into place.","\blue You install [O] into place.")
+			user.visible_message("\blue [user] installs [MG] into place.","\blue You install [MG] into place.")
 			gun_mounted = 1
 			gun_rounds = MG.rounds
 			if(!gun_rounds)
 				icon_state = "M56D_e"
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
-			user.temp_drop_inv_item(O)
-			cdel(O)
+			user.temp_drop_inv_item(MG)
+			cdel(MG)
+		return
+
+	if(istype(O,/obj/item/weapon/crowbar))
+		if(!gun_mounted)
+			user << "<span class='warning'>There is no gun mounted.</span>"
 			return
+		user << "You begin dismounting [src]'s gun.."
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && gun_mounted)
+			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
+			user.visible_message("\blue [user] removes [src]'s gun.","\blue You remove [src]'s gun.")
+			new /obj/item/device/m56d_gun(loc)
+			gun_mounted = 0
+			gun_rounds = 0
+			icon_state = "M56D_mount"
+		return
 
 	if(istype(O,/obj/item/weapon/screwdriver))
-		if(!anchored)
-			user << "The post must be anchored! Use a wrench!"
-			return
-		if(!gun_mounted)
-			user << "There isn't a M56D even mounted on this. Mount the M56D onto the mount first!"
-			return
-		user << "You're securing the M56D into place"
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			user.visible_message("\blue [user] screws the M56D into the mount.","\blue You finalize the M56D mounted smartgun system.")
-			var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
-			G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
-			G.dir = src.dir //make sure we face the right direction
-			G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
-			cdel(src)
-			return
+		if(gun_mounted)
+			user << "You're securing the M56D into place"
+			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				user.visible_message("\blue [user] screws the M56D into the mount.","\blue You finalize the M56D mounted smartgun system.")
+				var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
+				G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
+				G.dir = src.dir //make sure we face the right direction
+				G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
+				cdel(src)
+		else
+
+			if(!anchored)
+				var/turf/T = get_turf(src)
+				var/fail = 0
+				if(T.density)
+					fail = 1
+				else
+					for(var/obj/X in T)
+						if(X.density  && X != src && !(X.flags_atom & ON_BORDER))
+							fail = 1
+							break
+				if(fail)
+					user << "<span class='warning'>Can't install [src] here, something is in the way.</span>"
+					return
+			if(anchored)
+				user << "You begin unscrewing [src] from the ground.."
+			else
+				user << "You begin screwing [src] into place.."
+			var/old_anchored = anchored
+			if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK) && anchored == old_anchored)
+				anchored = !anchored
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				if(anchored)
+					user.visible_message("\blue [user] anchors [src] into place.","\blue You anchor [src] into place.")
+				else
+					user.visible_message("\blue [user] unanchors [src].","\blue You unanchor [src].")
+		return
+
 	return ..()
 
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.

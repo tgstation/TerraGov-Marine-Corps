@@ -78,6 +78,8 @@
 		for(var/mob/dead/observer/ghost in player_list)
 			if(ghost.mind && ghost.mind.current == R)
 				R.key = ghost.key
+				if(R.client) R.client.view = world.view
+				break
 
 	R.stat = CONSCIOUS
 	return 1

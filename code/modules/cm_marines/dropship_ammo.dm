@@ -132,8 +132,8 @@
 	icon_state = "laser_battery"
 	desc = "A high-capacity laser battery used to power laser beam weapons."
 	travelling_time = 10
-	ammo_count = 80
-	max_ammo_count = 80
+	ammo_count = 100
+	max_ammo_count = 100
 	ammo_used_per_firing = 40
 	equipment_type = /obj/structure/dropship_equipment/weapon/laser_beam_gun
 	ammo_name = "charge"
@@ -142,7 +142,7 @@
 	ammo_used_per_firing = 10
 	max_inaccuracy = 1
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 500
+	point_cost = 300
 
 	examine(mob/user)
 		..()
@@ -160,12 +160,12 @@
 		var/opposite_laser_dir = turn(laser_dir, 180)
 		laser_burn(impact)
 		var/turf/current = impact
-		for(var/i = 0 to 4)
+		for(var/i = 0 to 5)
 			var/turf/T = get_step(current, laser_dir)
 			laser_burn(T)
 			current = T
 		current = impact
-		for(var/i = 0 to 4)
+		for(var/i = 0 to 5)
 			var/turf/T = get_step(current, opposite_laser_dir)
 			laser_burn(T)
 			current = T

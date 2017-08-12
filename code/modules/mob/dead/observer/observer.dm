@@ -145,6 +145,7 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
+		if(ghost.client) ghost.client.view = world.view
 //		if(!ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 //			ghost.verbs -= /mob/dead/observer/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 		return ghost
@@ -221,6 +222,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>"
 		return
 	mind.current.key = key
+	if(mind.current.client) mind.current.client.view = world.view
 	return 1
 
 /mob/dead/observer/verb/toggle_medHUD()
@@ -408,6 +410,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			src << "\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"
 		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C"
 		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
+
+
+/mob/dead/observer/verb/toggle_zoom()
+	set name = "Toggle Zoom"
+	set category = "Ghost"
+
+	if(client)
+		if(client.view != world.view)
+			client.view = world.view
+		else
+			client.view = 14
 
 
 /mob/dead/observer/verb/toggle_darkness()
@@ -632,6 +645,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		message_admins("[usr.ckey] has joined as a [L].")
 		log_admin("[usr.ckey] has joined as a [L].")
 		L.ckey = usr.ckey
+		if(L.client) L.client.view = world.view
 
 		if( isobserver(ghostmob) )
 			cdel(ghostmob)

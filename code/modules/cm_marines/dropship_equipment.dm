@@ -671,7 +671,7 @@
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."
 	icon_state = "30mm_cannon"
 	firing_sound = 'sound/effects/cannon30.ogg'
-	point_cost = 500
+	point_cost = 400
 	fire_mission_only = FALSE
 
 	update_icon()
@@ -688,7 +688,7 @@
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
 	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
 	firing_delay = 5
-	point_cost = 700
+	point_cost = 600
 
 	deplete_ammo()
 		ammo_equipped = null //nothing left to empty after firing
@@ -730,7 +730,8 @@
 	icon = 'icons/Marine/almayer_props64.dmi'
 	firing_sound = 'sound/effects/phasein.ogg'
 	firing_delay = 50 //5 seconds
-	point_cost = 1000
+	point_cost = 500
+	fire_mission_only = FALSE
 
 	update_icon()
 		if(ammo_equipped && ammo_equipped.ammo_count)

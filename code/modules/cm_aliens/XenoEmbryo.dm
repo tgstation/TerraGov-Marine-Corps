@@ -138,6 +138,7 @@
 	else new_xeno = new(affected_mob)
 	if(picked) //found a candidate
 		new_xeno.key = picked
+		if(new_xeno.client) new_xeno.client.view = world.view
 		new_xeno << "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>"
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 	stage = 6
