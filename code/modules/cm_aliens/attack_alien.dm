@@ -234,17 +234,25 @@
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/attack_alien(mob/living/carbon/Xenomorph/M)
+	return
 
-	if(istype(src,/obj/item/clothing/mask/facehugger)) //Xenomorphs can pick up huggers for the time being
+/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/M)
+	attack_hand(M)
+
+
+/obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.a_intent == "hurt")
+		M.animation_attack_on(src)
+		playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
+		M.flick_attack_overlay(src, "slash")
+		health -= 15
+		playsound(src.loc, "smash.ogg", 25, 1)
+		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>")
+		healthcheck()
+	else
 		attack_hand(M)
-		return
 
-	if(istype(src, /obj/item)) //Can't pick up anything else
-		return 0
-
-	..() //Default to generic atom proc for everything else that may be
-	return 1
 
 /obj/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	return //larva can't do anything

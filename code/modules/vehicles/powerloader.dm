@@ -179,6 +179,20 @@
 			else
 				user << "<span class='warning'>Can't grab [loaded].</span>"
 
+		else if(istype(target, /obj/structure/largecrate))
+			var/obj/structure/largecrate/LC = target
+			if(!LC.anchored)
+				if(linked_powerloader)
+					LC.forceMove(linked_powerloader)
+					loaded = LC
+					playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+					update_icon()
+					user << "<span class='notice'>You grab [loaded] with [src].</span>"
+			else
+				user << "<span class='warning'>Can't grab [loaded].</span>"
+
+
+
 	update_icon()
 		if(loaded) icon_state = "loader_clamp_full"
 		else icon_state = "loader_clamp"

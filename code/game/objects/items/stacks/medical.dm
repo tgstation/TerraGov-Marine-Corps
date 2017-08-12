@@ -85,7 +85,7 @@
 										"\blue You place bandaid over [W.desc] on [M]'s [affecting.display_name]." )
 				use(1)
 		else
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
@@ -117,7 +117,7 @@
 										"\blue You salve wounds on [M]'s [affecting.display_name]." )
 				use(1)
 		else
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
@@ -181,7 +181,7 @@
 					affecting.heal_damage(heal_brute,0)
 				use(1)
 		else
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
@@ -214,7 +214,7 @@
 				affecting.heal_damage(0,heal_burn)
 				use(1)
 		else
-			if (can_operate(H))        //Checks if mob is lying down on table for surgery
+			if (H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else

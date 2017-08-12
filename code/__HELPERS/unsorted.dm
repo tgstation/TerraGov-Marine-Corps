@@ -1396,13 +1396,8 @@ proc/is_hot(obj/item/I)
 	istype(W, /obj/item/weapon/bonesetter)
 	)
 
-//check if mob is lying down on something we can operate him on.
-/proc/can_operate(mob/living/carbon/M)
-	if(istype(M,/mob/living/carbon/Xenomorph)) return 0
-	return (M.lying && \
-	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/stool/bed/roller, M.loc)) || \
-	(locate(/obj/structure/table/, M.loc)))//Sucess rate now handeled in surgery.dm
+
+
 
 /proc/reverse_direction(direction)
 	switch(direction)

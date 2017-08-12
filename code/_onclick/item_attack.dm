@@ -31,7 +31,7 @@
 	if (!istype(M)) // not sure if this is the right thing...
 		return 0
 
-	if (can_operate(M))        //Checks if mob is lying down on table for surgery
+	if (M.can_be_operated_on())        //Checks if mob is lying down on table for surgery
 		if (do_surgery(M,user,src))
 			return 0
 
