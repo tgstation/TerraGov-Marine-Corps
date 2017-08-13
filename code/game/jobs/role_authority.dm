@@ -450,10 +450,10 @@ roles willy nilly.
 		J.announce_entry_message(H, A) //Tell them their spawn info.
 		J.generate_entry_conditions(H) //Do any other thing that relates to their spawn.
 
-		//TODO What the hell is this?
-		H.hud_updateflag |= (1 << ID_HUD)
-		H.hud_updateflag |= (1 << IMPLOYAL_HUD)
-		H.hud_updateflag |= (1 << SPECIALROLE_HUD)
+		H.sec_hud_set_ID()
+		H.sec_hud_set_implants()
+		H.hud_set_special_role()
+		H.hud_set_squad()
 
 	return 1
 

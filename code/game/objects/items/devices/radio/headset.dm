@@ -221,14 +221,38 @@
 	frequency = PUB_FREQ
 	var/headset_hud_on = 0
 
+
+/obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
+	if(slot == WEAR_EAR)
+		if(headset_hud_on)
+			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
+			H.add_hud_to(user)
+	..()
+
+/obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
+	if(istype(user) && headset_hud_on)
+		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
+			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
+			H.remove_hud_from(user)
+	..()
+
+
 /obj/item/device/radio/headset/almayer/verb/toggle_squadhud()
 	set name = "Toggle headset HUD"
 	set category = "Object"
 	set src in usr
 
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+	if(usr.is_mob_incapacitated())
 		return 0
 	headset_hud_on = !headset_hud_on
+	if(ishuman(usr))
+		var/mob/living/carbon/human/user = usr
+		if(src == user.wear_ear) //worn
+			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
+			if(headset_hud_on)
+				H.add_hud_to(usr)
+			else
+				H.remove_hud_from(usr)
 	usr << "<span class='notice'>You toggle [src]'s headset HUD [headset_hud_on ? "on":"off"].</span>"
 	playsound(src,'sound/machines/click.ogg', 20, 1)
 

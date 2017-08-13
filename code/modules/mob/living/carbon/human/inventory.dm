@@ -115,6 +115,7 @@
 			if(S.uniform_restricted.len)
 				drop_inv_item_on_ground(wear_suit)
 		w_uniform = null
+		update_suit_sensors()
 		update_inv_w_uniform()
 	else if(I == head)
 		head = null
@@ -142,6 +143,8 @@
 		update_inv_belt()
 	else if (I == wear_id)
 		wear_id = null
+		sec_hud_set_ID()
+		hud_set_squad()
 		update_inv_wear_id()
 	else if (I == r_store)
 		r_store = null
@@ -202,6 +205,7 @@
 				update_hair()	//rebuild hair
 				update_inv_ears()
 			W.equipped(src, slot)
+			sec_hud_set_ID()
 			update_inv_wear_mask()
 		if(WEAR_HANDCUFFS)
 			handcuffed = W
@@ -225,6 +229,8 @@
 		if(WEAR_ID)
 			wear_id = W
 			W.equipped(src, slot)
+			sec_hud_set_ID()
+			hud_set_squad()
 			update_inv_wear_id()
 		if(WEAR_EAR)
 			wear_ear = W
@@ -263,6 +269,7 @@
 		if(WEAR_BODY)
 			w_uniform = W
 			W.equipped(src, slot)
+			sec_hud_set_ID()
 			update_inv_w_uniform()
 		if(WEAR_L_STORE)
 			l_store = W

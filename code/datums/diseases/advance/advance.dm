@@ -47,7 +47,7 @@ var/list/advance_cures = 	list(
 
  */
 
-/datum/disease/advance/New(var/process = 1, var/datum/disease/advance/D)
+/datum/disease/advance/New(process = 1, datum/disease/advance/D)
 
 	// Setup our dictionary if it hasn't already.
 	if(!dictionary_symptoms.len)
@@ -68,8 +68,8 @@ var/list/advance_cures = 	list(
 				symptoms += new S.type
 
 	Refresh()
-	..(process, D)
-	return
+	..()
+
 
 /datum/disease/advance/Dispose()
 	if(processing)
@@ -108,7 +108,7 @@ var/list/advance_cures = 	list(
 		var/id = "[GetDiseaseID()]"
 		if(resistance && !(id in affected_mob.resistances))
 			affected_mob.resistances[id] = id
-		affected_mob.viruses -= src		//remove the datum from the list
+		remove_virus()
 	cdel(src)	//delete the datum to stop it processing
 	return
 

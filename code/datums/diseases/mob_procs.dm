@@ -1,7 +1,3 @@
-//Methods that need to be cleaned.
-/* INFORMATION
-Put (mob/proc)s here that are in dire need of a code cleanup.
-*/
 
 /mob/proc/has_disease(var/datum/disease/virus)
 	for(var/datum/disease/D in viruses)
@@ -95,20 +91,30 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 
 	if(passed)
 		//world << "Infection in the mob [src]. YAY"
+		AddDisease(virus)
 
-		var/datum/disease/v = new virus.type(1, virus, 0)
-		src.viruses += v
-		v.affected_mob = src
-		v.strain_data = v.strain_data.Copy()
-		v.holder = src
-		if(v.can_carry && prob(5))
-			v.carrier = 1
 
 
 
 /mob/living/carbon/human/contract_disease(datum/disease/virus, skip_this = 0, force_species_check=1, spread_type = -5)
 	if(species.flags & IS_SYNTHETIC) return //synthetic species are immune
 	..()
+
+
+
+/mob/proc/AddDisease(datum/disease/D)
+	var/datum/disease/DD = new D.type(1, D)
+	viruses += DD
+	DD.affected_mob = src
+	DD.strain_data = DD.strain_data.Copy()
+	DD.holder = src
+	if(DD.can_carry && prob(5))
+		DD.carrier = 1
+
+
+/mob/living/carbon/human/AddDisease(datum/disease/D)
+	..()
+	med_hud_set_status()
 
 //returns whether the mob's clothes stopped the disease from passing through
 /mob/proc/check_disease_pass_clothes(target_zone)

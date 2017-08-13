@@ -96,4 +96,4 @@
 	var/prev_gender = null // Debug for plural genders
 	var/temperature_alert = 0
 	var/revive_grace_period = 3000 //In deciseconds. Set to 5 minutes
-	var/defib_icon_flick = 1 //Once set to zero, we switch to the death icon on this mob, and keep it that way
+	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.

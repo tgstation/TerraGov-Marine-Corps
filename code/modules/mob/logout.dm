@@ -1,5 +1,6 @@
 /mob/Logout()
 	nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
+	if(interactee) unset_interaction()
 	player_list -= src
 	log_access("Logout: [key_name(src)]")
 	unansweredAhelps.Remove(src.computer_id)

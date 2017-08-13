@@ -20,7 +20,7 @@
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
 //	var/has_enabled_antagHUD = 0
-	var/medHUD = 0
+	var/list/HUD_toggled = list(0,0,0,0)
 //	var/antagHUD = 0
 	universal_speak = 1
 	var/atom/movable/following = null
@@ -99,12 +99,6 @@ Works together with spawning an observer, noted above.
 	if(!loc) return
 	if(!client) return 0
 
-
-	if(client.images.len)
-		for(var/image/hud in client.images)
-			if(copytext(hud.icon_state,1,4) == "hud")
-				client.images.Remove(hud)
-
 //	if(antagHUD)
 //		var/list/target_list = list()
 //		for(var/mob/living/target in oview(src, 14))
@@ -112,15 +106,6 @@ Works together with spawning an observer, noted above.
 //				target_list += target
 //		if(target_list.len)
 //			assess_targets(target_list, src)
-	if(medHUD)
-		process_medHUD(src)
-
-
-/mob/dead/proc/process_medHUD(var/mob/M)
-	var/client/C = M.client
-	for(var/mob/living/carbon/human/patient in oview(M, 14))
-		C.images += patient.hud_list[HEALTH_HUD]
-		C.images += patient.hud_list[STATUS_HUD_OOC]
 
 ///mob/dead/proc/assess_targets(list/target_list, mob/dead/observer/U)
 //	var/client/C = U.client
@@ -225,18 +210,43 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.client) mind.current.client.view = world.view
 	return 1
 
-/mob/dead/observer/verb/toggle_medHUD()
+/mob/dead/observer/verb/toggle_HUDs()
 	set category = "Ghost"
-	set name = "Toggle MedicHUD"
-	set desc = "Toggles Medical HUD allowing you to see how everyone is doing"
+	set name = "Toggle HUDs"
+	set desc = "Toggles various HUDs."
 	if(!client)
 		return
-	if(medHUD)
-		medHUD = 0
-		src << "\blue <B>Medical HUD Disabled</B>"
+	var/list/listed_huds = list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD")
+	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD", null) as null|anything in listed_huds
+	if(!client)
+		return
+	var/datum/mob_hud/H
+	var/HUD_nbr = 1
+	switch(hud_choice)
+		if("Medical HUD")
+			H = huds[MOB_HUD_MEDICAL_OBSERVER]
+		if("Security HUD")
+			H = huds[MOB_HUD_SECURITY_ADVANCED]
+			HUD_nbr = 2
+		if("Squad HUD")
+			H = huds[MOB_HUD_SQUAD]
+			HUD_nbr = 3
+		if("Xeno Status HUD")
+			H = huds[MOB_HUD_XENO_STATUS]
+			HUD_nbr = 4
+		else
+			return
+
+	if(HUD_toggled[HUD_nbr])
+		HUD_toggled[HUD_nbr] = 0
+		H.remove_hud_from(src)
+		src << "\blue <B>[hud_choice] Disabled</B>"
 	else
-		medHUD = 1
-		src << "\blue <B>Medical HUD Enabled</B>"
+		HUD_toggled[HUD_nbr] = 1
+		H.add_hud_to(src)
+		src << "\blue <B>[hud_choice] Enabled</B>"
+
+
 
 /mob/dead/observer/proc/dead_tele()
 	set category = "Ghost"

@@ -122,6 +122,11 @@
 		return
 	sensor_mode = modes.Find(switchMode) - 1
 
+	if(istype(user,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		if(H.w_uniform == src)
+			H.update_suit_sensors()
+
 	if (loc == user)
 		switch(sensor_mode)
 			if(0)
@@ -152,7 +157,7 @@
 	set category = "Object"
 	set src in usr
 	set_sensors(usr)
-	..()
+
 
 /obj/item/clothing/under/verb/rollsuit()
 	set name = "Roll Down Jumpsuit"

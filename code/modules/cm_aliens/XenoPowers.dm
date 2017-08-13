@@ -585,60 +585,18 @@
 		"<span class='xenowarning'>You stop emitting pheromones.</span>")
 
 
-//COMMENTED OUT BY APOP
-/*/mob/living/carbon/Xenomorph/proc/secure_host(mob/living/carbon/human/victim as mob in view(2))
-	set name = "Secure Host (50)"
-	set desc = "Spin some resin to further secure a host within the nest."
+
+/mob/living/carbon/Xenomorph/verb/toggle_xeno_mobhud()
+	set name = "Toggle Xeno status HUD"
+	set desc = "Toggles the health and plasma hud appearing above Xenomorphs."
 	set category = "Alien"
 
-	if(last_special > world.time)
-		return
+	xeno_mobhud = !xeno_mobhud
+	var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+	if(xeno_mobhud)
+		H.add_hud_to(usr)
+	else
+		H.remove_hud_from(usr)
 
-	if(!check_state())
-		return
 
-	if(!ishuman(victim)) //Runtime fix for attempting to secure Monkeys, which don't need to be cuffed anyway
-		return
 
-	if(!victim)
-		var/list/victims = list()
-		for(var/mob/living/carbon/human/C in view(2))
-			if(C.lying && (!C.handcuffed || !C.legcuffed))
-				victims += C
-
-		victim = input(src, "Who to secure?") as null|anything in victims
-
-	if(victim && get_dist(src, victim) <= 2)
-		if(!check_plasma(50))
-			return
-		if(!victim.lying)
-			src << "<span class='warning'>Your victim has to be lying down.</span>"
-			return
-		if(!victim.buckled || !istype(victim.buckled,/obj/structure/stool/bed/nest))
-			src << "<span class='warning'>Your victim must be nested.</span>"
-			return
-		if(victim.handcuffed && victim.legcuffed)
-			src << "<span class='warning'>They're already secured.</span>"
-			return
-
-		src.visible_message("<span class='warning'>\The [src] begins securing \the [victim] with resin!</span>", \
-		"<span class='notice'>You begin securing [victim] with resin.</span>")
-		if(do_after(src, 40))
-			src.visible_message("<span class='warning'>\The [src] continues securing \the [victim] with resin.", \
-			"<span class='notice'>You continue securing [victim] with resin.</span>")
-		if(do_after(src, 80))
-			if(!victim.handcuffed)
-				victim.handcuffed = new /obj/item/weapon/handcuffs/xeno(victim)
-				victim.xenoCuffed = 1
-				src.visible_message("<span class='danger'>\The [src] finishes securing \the [victim]'s arms.</span>", \
-				"<span class='notice'>You finish securing \the [victim]'s arms!</span>")
-			else
-				src << "<span class='warning'>Looks like someone secured them before you!</span>"
-				return
-			victim.update_icons()
-			last_special = world.time + 50
-
-		return
-
-	src << "<span class='warning'>Nobody like that around here.</span>"
- */

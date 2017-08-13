@@ -300,7 +300,7 @@
 	restore_all_organs()
 
 	// remove the character from the list of the dead
-	if(stat == 2)
+	if(stat == DEAD)
 		dead_mob_list -= src
 		living_mob_list += src
 		tod = null
@@ -311,10 +311,8 @@
 
 	// make the icons look correct
 	regenerate_icons()
-
-	hud_updateflag |= 1 << HEALTH_HUD
-	hud_updateflag |= 1 << STATUS_HUD
-	return
+	med_hud_set_status()
+	med_hud_set_health()
 
 /mob/living/proc/UpdateDamageIcon()
 	return

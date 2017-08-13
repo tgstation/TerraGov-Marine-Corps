@@ -199,6 +199,6 @@
 
 
 
-/mob/living/carbon/monkey/create_mob_hud()
+/mob/living/carbon/monkey/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/monkey(src, ui_style2icon(client.prefs.UI_style))

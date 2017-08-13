@@ -25,9 +25,6 @@
 	life_tick++
 	var/datum/gas_mixture/environment = loc.return_air()
 
-	if(life_tick % 30 == 15)
-		hud_updateflag = 1022
-
 	voice = GetVoice()
 
 	//No need to update all of these procs if the guy is dead.
@@ -73,13 +70,16 @@
 
 			//In case we want them to do something unique every life cycle, like twitch or moan, or whatever.
 			species.handle_unique_behavior(src)
+
+		else //Dead
+			if(!undefibbable)
+				if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > revive_grace_period))	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
+					med_hud_set_status()
+					undefibbable = TRUE
+
 	else
 		handle_stasis_bag()
 
-	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > revive_grace_period))	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
-		if(defib_icon_flick) //However, we have one last task to accomplish before cutting the HUD updates forever
-			handle_defib_flick()
-		return //We go ahead and process them 5 times for HUD images and other stuff though.
 
 	//Handle temperature/pressure differences between body and environment
 	handle_environment(environment) //Optimized a good bit.

@@ -4,8 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-
-	var/list/hud_list[TOTAL_HUD_AMOUNT]
+	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
@@ -24,17 +23,6 @@
 	reagents = R
 	R.my_atom = src
 
-	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
-	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudunknown")
-	hud_list[WANTED_HUD]      = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPLOYAL_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[SQUAD_HUD]  = image('icons/mob/hud.dmi', src, "hudblank")
-
 	..()
 
 	if(dna)
@@ -42,6 +30,26 @@
 
 	prev_gender = gender // Debug for plural genders
 	make_blood()
+
+
+/mob/living/carbon/human/prepare_huds()
+	..()
+	//updating all the mob's hud images
+	med_hud_set_health()
+	med_hud_set_status()
+	sec_hud_set_ID()
+	sec_hud_set_implants()
+	sec_hud_set_security_status()
+	hud_set_squad()
+	//and display them
+	add_to_all_mob_huds()
+
+
+
+/mob/living/carbon/human/Dispose()
+	. = ..()
+	remove_from_all_mob_huds()
+
 
 /mob/living/carbon/human/Stat()
 	. = ..()
@@ -399,7 +407,7 @@
 							if("Fire Team 2") JM.fireteam = 2
 							if("Fire Team 3") JM.fireteam = 3
 							else return
-						hud_updateflag |= 1 << SQUAD_HUD
+						hud_set_squad()
 
 	if (href_list["criminal"])
 		if(hasHUD(usr,"security"))
@@ -427,15 +435,8 @@
 									if(setcriminal != "Cancel")
 										R.fields["criminal"] = setcriminal
 										modified = 1
+										sec_hud_set_security_status()
 
-										spawn()
-											hud_updateflag |= 1 << WANTED_HUD
-											if(istype(usr,/mob/living/carbon/human))
-												var/mob/living/carbon/human/U = usr
-												U.handle_regular_hud_updates()
-											if(istype(usr,/mob/living/silicon/robot))
-												var/mob/living/silicon/robot/U = usr
-												U.handle_regular_hud_updates()
 
 			if(!modified)
 				usr << "\red Unable to locate a data core entry for this person."
@@ -966,6 +967,8 @@
 
 	for (var/datum/disease/virus in viruses)
 		virus.cure()
+
+	undefibbable = FALSE
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()

@@ -37,8 +37,6 @@ var/global/list/marine_vendors = list() //Used by our gamemode code
 var/global/list/processing_objects = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
-var/global/list/med_hud_users = list() //list of all entities using a medical HUD.
-var/global/list/sec_hud_users = list() //list of all entities using a security HUD.
 
 //used by binoculars for dropship bombardment
 var/list/global/active_laser_targets = list()

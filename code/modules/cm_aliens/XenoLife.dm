@@ -401,6 +401,8 @@ updatehealth()
 			readying_tail = 0
 			src << "<span class='warning'>You feel your tail relax.</span>"
 
+	hud_set_plasma() //update plasma amount on the plasma mob_hud
+
 /mob/living/carbon/Xenomorph/gib()
 	var/to_flick = "gibbed-a"
 	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))

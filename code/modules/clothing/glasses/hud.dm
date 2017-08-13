@@ -3,11 +3,32 @@
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 	origin_tech = "magnets=3;biotech=2"
-	var/list/icon/current = list() //the current hud icons
+	var/hud_type
 
-	proc
-		process_hud(var/mob/M)	return
 
+/obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
+	if(slot == WEAR_EYES && active)
+		var/datum/mob_hud/H = huds[hud_type]
+		H.add_hud_to(user)
+	..()
+
+/obj/item/clothing/glasses/hud/dropped(mob/living/carbon/human/user)
+	if(istype(user) && active)
+		if(src == user.glasses) //dropped is called before the inventory reference is updated.
+			var/datum/mob_hud/H = huds[hud_type]
+			H.remove_hud_from(user)
+	..()
+
+/obj/item/clothing/glasses/hud/attack_self(mob/user)
+	..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(toggleable && H.glasses == src) //toggleable and worn
+			var/datum/mob_hud/MH = huds[hud_type]
+			if(active)
+				MH.add_hud_to(user)
+			else
+				MH.remove_hud_from(user)
 
 
 /obj/item/clothing/glasses/hud/health
@@ -17,7 +38,7 @@
 	deactive_state = "healthhud"
 	flags_armor_protection = 0
 	toggleable = 1
-
+	hud_type = MOB_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
 	New()
@@ -25,14 +46,13 @@
 		overlay = null  //Stops the overlay.
 
 
-/obj/item/clothing/glasses/hud/health/process_hud(var/mob/M)
-	process_med_hud(M, 1)
 
 /obj/item/clothing/glasses/hud/security
 	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
 	flags_armor_protection = 0
+	hud_type = MOB_HUD_SECURITY_ADVANCED
 	var/global/list/jobs[0]
 
 /obj/item/clothing/glasses/hud/security/jensenshades
@@ -43,5 +63,3 @@
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 
-/obj/item/clothing/glasses/hud/security/process_hud(var/mob/M)
-	process_sec_hud(M, 1)

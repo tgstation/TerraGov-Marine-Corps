@@ -594,8 +594,6 @@ var/global/list/damage_icon_parts = list()
 			overlays_standing[ID_LAYER]	= null
 		apply_overlay(ID_LAYER)
 
-	hud_updateflag |= 1 << ID_HUD
-	hud_updateflag |= 1 << WANTED_HUD
 
 
 /mob/living/carbon/human/update_inv_gloves()

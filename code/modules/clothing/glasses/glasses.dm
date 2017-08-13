@@ -29,12 +29,12 @@
 			active = 0
 			icon_state = deactive_state
 			user.update_inv_glasses()
-			usr << "You deactivate the optical matrix on [src]."
+			user << "You deactivate the optical matrix on [src]."
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			usr << "You activate the optical matrix on [src]."
+			user << "You activate the optical matrix on [src]."
 
 		for(var/X in actions)
 			var/datum/action/A = X
@@ -219,12 +219,23 @@
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
 	eye_protection = 1
-	var/obj/item/clothing/glasses/hud/security/hud = null
+	var/hud_type = MOB_HUD_SECURITY_ADVANCED
 
-	New()
-		..()
-		src.hud = new/obj/item/clothing/glasses/hud/security(src)
-		return
+
+
+/obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
+	if(slot == WEAR_EYES)
+		var/datum/mob_hud/H = huds[hud_type]
+		H.add_hud_to(user)
+	..()
+
+/obj/item/clothing/glasses/sunglasses/sechud/dropped(mob/living/carbon/human/user)
+	if(istype(user))
+		if(src == user.glasses) //dropped is called before the inventory reference is updated.
+			var/datum/mob_hud/H = huds[hud_type]
+			H.remove_hud_from(user)
+	..()
+
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "tactical HUD"

@@ -39,6 +39,8 @@
 	for(var/datum/disease/D in O.viruses)
 		D.affected_mob = O
 
+	O.med_hud_set_status()
+
 	if (client)
 		client.mob = O
 	if(mind)

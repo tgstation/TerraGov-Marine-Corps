@@ -137,7 +137,7 @@
 
 
 
-/mob/living/silicon/robot/create_mob_hud()
+/mob/living/silicon/robot/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/robot(src)
 

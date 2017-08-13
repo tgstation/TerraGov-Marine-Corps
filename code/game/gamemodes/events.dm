@@ -166,16 +166,12 @@
 			D.strain_data["UI"] = H.dna.uni_identity
 			D.strain_data["SE"] = H.dna.struc_enzymes
 			D.carrier = 1
-			D.holder = H
-			D.affected_mob = H
-			H.viruses += D
+			H.AddDisease(D)
 			break
 		else
 			var/datum/disease/D = new virus_type
 			D.carrier = 1
-			D.holder = H
-			D.affected_mob = H
-			H.viruses += D
+			H.AddDisease(D)
 			break
 	spawn(rand(1500, 3000)) //Delayed announcements to keep the crew on their toes.
 		command_announcement.Announce("Confirmed outbreak of level 7 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')

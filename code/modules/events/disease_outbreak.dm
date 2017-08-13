@@ -32,14 +32,10 @@
 			D.strain_data["UI"] = H.dna.UI.Copy()
 			D.strain_data["SE"] = H.dna.SE.Copy()
 			D.carrier = 1
-			D.holder = H
-			D.affected_mob = H
-			H.viruses += D
+			H.AddDisease(D)
 			break
 		else
 			var/datum/disease/D = new virus_type
 			D.carrier = 1
-			D.holder = H
-			D.affected_mob = H
-			H.viruses += D
+			H.AddDisease(D)
 			break

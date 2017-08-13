@@ -416,7 +416,7 @@
 
 
 
-/mob/living/carbon/human/create_mob_hud()
+/mob/living/carbon/human/create_hud()
 	if(client && !hud_used)
 //		if(!client.prefs)
 //			client.prefs = new /datum/preferences(client) //Eughhhhhhhhh

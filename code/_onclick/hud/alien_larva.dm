@@ -21,6 +21,6 @@
 	screenoverlays += flash_icon
 
 
-/mob/living/carbon/Xenomorph/Larva/create_mob_hud()
+/mob/living/carbon/Xenomorph/Larva/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/larva(src)
