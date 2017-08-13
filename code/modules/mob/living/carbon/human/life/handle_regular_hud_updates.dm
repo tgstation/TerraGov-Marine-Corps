@@ -2,16 +2,9 @@
 
 /mob/living/carbon/human/proc/handle_regular_hud_updates()
 
-	if(hud_updateflag) //Update our mob's hud overlays, AKA what others see floating above our head
-		handle_hud_list()
-
 	//Now handle what we see on our screen
 	if(!client || isnull(client))
 		return 0
-
-	for(var/image/hud in client.images)
-		if(copytext(hud.icon_state,1,4) == "hud") //Ugly, but icon comparison is worse, I believe
-			client.images.Remove(hud)
 
 	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
@@ -112,15 +105,9 @@
 			if(!druggy)
 				see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
-		var/tmp/glasses_processed = 0
 		if(glasses)
-			glasses_processed = 1
 			process_glasses(glasses)
-
-		if(wear_ear)
-			process_earpiece()
-
-		if(!glasses_processed)
+		else
 			see_invisible = SEE_INVISIBLE_LIVING
 
 		if(hud_used && hud_used.healths)

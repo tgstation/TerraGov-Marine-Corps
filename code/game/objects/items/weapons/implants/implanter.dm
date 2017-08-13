@@ -47,7 +47,7 @@
 						affected.implants += src.imp
 						imp.part = affected
 
-						H.hud_updateflag |= 1 << IMPLOYAL_HUD
+						M.sec_hud_set_implants()
 
 				src.imp = null
 				update()

@@ -53,6 +53,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_in_dark = 8
 	see_infrared = 1
 	see_invisible = SEE_INVISIBLE_MINIMUM
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD)
 	var/dead_icon = "Drone Dead"
 	var/language = "Xenomorph"
 	var/obj/item/clothing/suit/wear_suit = null
@@ -133,6 +134,8 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/frenzy_new = 0
 	var/warding_new = 0
 	var/recovery_new = 0
+
+	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
 /mob/living/carbon/Xenomorph/New()
 	..()
@@ -258,3 +261,17 @@ var/global/hive_orders = "" //What orders should the hive have
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
 		pulledby.stop_pulling()
 		. = 0
+
+
+
+/mob/living/carbon/Xenomorph/prepare_huds()
+	..()
+	//updating all the mob's hud images
+	med_hud_set_health()
+	hud_set_plasma()
+	//and display them
+	add_to_all_mob_huds()
+	var/datum/mob_hud/MH = huds[MOB_HUD_XENO_INFECTION]
+	MH.add_hud_to(src)
+
+

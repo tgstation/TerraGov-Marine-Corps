@@ -1,13 +1,3 @@
-#define SPECIAL -1
-#define NON_CONTAGIOUS 0
-#define BLOOD 1
-#define CONTACT_FEET 2
-#define CONTACT_HANDS 3
-#define CONTACT_GENERAL 4
-#define AIRBORNE 5
-
-#define SCANNER 1
-#define PANDEMIC 2
 
 /*
 
@@ -179,14 +169,21 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 		if(resistance && !(type in affected_mob.resistances))
 			var/saved_type = "[type]"
 			affected_mob.resistances += text2path(saved_type)
-		/*if(istype(src, /datum/disease/alien_embryo))	//Get rid of the infection flag if it's a xeno embryo.
-			affected_mob.status_flags &= ~(XENO_HOST)*/
-		affected_mob.viruses -= src		//remove the datum from the list
+		remove_virus()
 	cdel(src)	//delete the datum to stop it processing
 	return
 
 
-/datum/disease/New(var/process=1, var/datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
+//unsafe proc, call cure() instead
+/datum/disease/proc/remove_virus()
+	affected_mob.viruses -= src
+	if(ishuman(affected_mob))
+		var/mob/living/carbon/human/H = affected_mob
+		H.med_hud_set_status()
+
+
+
+/datum/disease/New(process=1, datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
 	cure_list = list(cure_id) // to add more cures, add more vars to this list in the actual disease's New()
 	if(process)				 // Viruses in list are considered active.
 		active_diseases += src

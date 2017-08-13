@@ -81,6 +81,9 @@ datum/mind
 			new_character.key = key		//now transfer the key to link the client to our new body
 			if(new_character.client) new_character.client.view = world.view //reset view range to default.
 
+		new_character.refresh_huds(current)					//inherit the HUDs from the old body
+
+
 	proc/store_memory(new_text)
 		memory += "[new_text]<BR>"
 
@@ -287,12 +290,12 @@ datum/mind
 			objective.completed = !objective.completed
 
 		else if (href_list["traitor"])
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
 			switch(href_list["traitor"])
 				if("clear")
 					if(src in ticker.mode.traitors)
 						ticker.mode.traitors -= src
 						special_role = null
+						current.hud_set_special_role()
 						current << "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT>"
 						log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
 						if(isAI(current))
@@ -304,6 +307,7 @@ datum/mind
 					if(!(src in ticker.mode.traitors))
 						ticker.mode.traitors += src
 						special_role = "traitor"
+						current.hud_set_special_role()
 						current << "<B>\red You are a traitor!</B>"
 						log_admin("[key_name_admin(usr)] has traitor'ed [current].")
 						show_objectives()

@@ -215,12 +215,6 @@
 		return min(1, thermal_protection)
 
 
-/mob/living/carbon/human/proc/process_earpiece()
-	if(istype(wear_ear, /obj/item/device/radio/headset/almayer))
-		var/obj/item/device/radio/headset/almayer/H = wear_ear
-		if(H.headset_hud_on)
-			process_squad_hud(src)
-
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	if(G && G.active)
 		see_in_dark += G.darkness_view
@@ -233,19 +227,7 @@
 		if(istype(G,/obj/item/clothing/glasses/night))
 			see_invisible = SEE_INVISIBLE_MINIMUM
 
-		/*
-		 * HUD shit goes here, as long as it doesn't modify sight flags
-		 * The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
-		 */
 
-		var/obj/item/clothing/glasses/hud/O = G
-		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
-			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
-			O = S.hud
-		if(istype(O))
-			O.process_hud(src)
-			if(!druggy)
-				see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/human/handle_silent()
 	if(..())

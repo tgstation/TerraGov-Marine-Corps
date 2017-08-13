@@ -75,8 +75,6 @@
 	if (legcuffed && !initial(legcuffed))
 		drop_inv_item_on_ground(legcuffed)
 	legcuffed = initial(legcuffed)
-	hud_updateflag |= 1 << HEALTH_HUD
-	hud_updateflag |= 1 << STATUS_HUD
 	..()
 
 

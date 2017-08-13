@@ -4,7 +4,6 @@
 	var/syndicate = 0
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	immune_to_ssd = 1
-	var/list/hud_list[9]
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
 
 	//Used in say.dm.
@@ -15,9 +14,9 @@
 	var/obj/item/device/camera/siliconcam/aiCamera = null //photography
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
-	var/sensor_mode = 0 //Determines the current HUD.
-	#define SEC_HUD 1 //Security HUD mode
-	#define MED_HUD 2 //Medical HUD mode
+	var/med_hud = MOB_HUD_MEDICAL_ADVANCED //Determines the med hud to use
+	var/sec_hud = MOB_HUD_SECURITY_ADVANCED //Determines the sec hud to use
+
 
 /mob/living/silicon/New()
 	..()
@@ -158,17 +157,22 @@
 	src << browse(dat, "window=checklanguage")
 	return
 
+
+
 /mob/living/silicon/proc/toggle_sensor_mode()
 	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical","Disable")
+	var/datum/mob_hud/H = huds[sec_hud]
+	var/datum/mob_hud/M = huds[med_hud]
+	H.remove_hud_from(src)
+	M.remove_hud_from(src)
 	switch(sensor_type)
 		if ("Security")
-			sensor_mode = SEC_HUD
+			H.add_hud_to(src)
 			src << "<span class='notice'>Security records overlay enabled.</span>"
 		if ("Medical")
-			sensor_mode = MED_HUD
+			M.add_hud_to(src)
 			src << "<span class='notice'>Life signs monitor overlay enabled.</span>"
 		if ("Disable")
-			sensor_mode = 0
 			src << "Sensor augmentations disabled."
 
 /mob/living/silicon/verb/pose()

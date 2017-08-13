@@ -132,7 +132,7 @@
 	. = ..()
 
 
-/mob/proc/create_mob_hud()
+/mob/proc/create_hud()
 	return
 
 

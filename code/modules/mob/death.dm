@@ -81,6 +81,9 @@
 	living_mob_list -= src
 	dead_mob_list |= src
 
+	med_hud_set_health()
+	med_hud_set_status()
+
 	updateicon()
 
 //This is an expensive proc, let's not fire it on EVERY death. It already gets checked in gamemodes.

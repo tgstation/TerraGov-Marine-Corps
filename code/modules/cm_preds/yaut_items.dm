@@ -93,14 +93,23 @@
 		current_goggles++
 		if(current_goggles > 3) current_goggles = 0
 
-	dropped(var/mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed. This should work even though they're !canremove.
-		if(!istype(mob)) return //Somehow
-		var/obj/item/G = mob.glasses
-		if(G)
-			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
-				mob.temp_drop_inv_item(G)
-				cdel(G)
-				mob.update_inv_glasses()
+
+	equipped(mob/living/carbon/human/user, slot)
+		if(slot == WEAR_FACE)
+			var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
+			H.add_hud_to(user)
+		..()
+
+	dropped(mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed. This should work even though they're !canremove.
+		if(istype(mob) && mob.wear_mask == src) //inventory reference is only cleared after dropped().
+			var/obj/item/G = mob.glasses
+			if(G)
+				if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
+					mob.temp_drop_inv_item(G)
+					cdel(G)
+					mob.update_inv_glasses()
+			var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
+			H.remove_hud_from(mob)
 		..()
 
 /obj/item/clothing/suit/armor/yautja

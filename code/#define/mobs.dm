@@ -300,3 +300,20 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUD_STYLE_REDUCED	2
 #define HUD_STYLE_NOHUD		3
 #define HUD_VERSIONS		3
+
+
+
+
+
+//diseases
+
+#define SPECIAL -1
+#define NON_CONTAGIOUS 0
+#define BLOOD 1
+#define CONTACT_FEET 2
+#define CONTACT_HANDS 3
+#define CONTACT_GENERAL 4
+#define AIRBORNE 5
+
+#define SCANNER 1
+#define PANDEMIC 2

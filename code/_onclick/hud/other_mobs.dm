@@ -10,7 +10,7 @@
 	screenoverlays += flash_icon
 
 
-/mob/living/silicon/ai/create_mob_hud()
+/mob/living/silicon/ai/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/ai(src)
 
@@ -22,7 +22,7 @@
 	blind_icon = new /obj/screen/blind()
 	screenoverlays += blind_icon
 
-/mob/living/carbon/brain/create_mob_hud()
+/mob/living/carbon/brain/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/brain(src)
 
@@ -59,6 +59,6 @@
 	zone_sel.update_icon(mymob)
 	static_inventory += zone_sel
 
-/mob/living/carbon/hellhound/create_mob_hud()
+/mob/living/carbon/hellhound/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/hellhound(src)

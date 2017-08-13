@@ -215,13 +215,16 @@
 			"<span class='notice'>You take [obj] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
 			affected.implants -= obj
 
-			target.hud_updateflag |= 1 << IMPLOYAL_HUD
-
 			obj.loc = get_turf(target)
 			if(istype(obj,/obj/item/weapon/implant))
 				var/obj/item/weapon/implant/imp = obj
 				imp.imp_in = null
 				imp.implanted = 0
+
+			if(istype(target, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = target
+				H.sec_hud_set_implants()
+
 		else
 			user.visible_message("<span class='notice'>[user] removes \the [tool] from [target]'s [affected.display_name].</span>", \
 			"<span class='notice'>There's something inside [target]'s [affected.display_name], but you just missed it this time.</span>")

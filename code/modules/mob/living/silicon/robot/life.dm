@@ -169,17 +169,6 @@
 		src.see_in_dark = 8
 		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
-	regular_hud_updates()
-
-	var/obj/item/borg/sight/hud/hud = (locate(/obj/item/borg/sight/hud) in src)
-	if(hud && hud.hud)
-		hud.hud.process_hud(src)
-	else
-		switch(src.sensor_mode)
-			if (SEC_HUD)
-				process_sec_hud(src,0)
-			if (MED_HUD)
-				process_med_hud(src,0)
 
 	if (hud_used && hud_used.healths)
 		if (src.stat != DEAD)

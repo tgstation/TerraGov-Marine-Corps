@@ -127,6 +127,6 @@
 			H.l_hand.screen_loc = null
 
 
-/mob/living/carbon/Xenomorph/create_mob_hud()
+/mob/living/carbon/Xenomorph/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/alien(src)
