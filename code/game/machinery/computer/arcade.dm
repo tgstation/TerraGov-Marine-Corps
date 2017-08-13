@@ -1,27 +1,27 @@
 /obj/machinery/computer/arcade
-	name = "arcade machine"
-	desc = "Does not support Pin ball."
+	name = "Black Donnovan II: Double Revenge"
+	desc = "Two years after the average high school teenager Josh transformed into the powerful ninja 'Black Donnovan' and defeated the evil forces of Colonel Ranchenko and his UPP experiments to save his captured ninja girlfriend Reino, chaos is unleashed again on the world. Josh's Canadian cousin, transforming into the powerful ninja 'Fury Fuhrer', has created a world in Florida no longer exists. Josh once again transforms into 'Black Donnovan' to fight against Fury Fuhrer's legions of goons and restore the hellscape world to its former glory."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "arcade"
 	circuit = "/obj/item/weapon/circuitboard/arcade"
-	var/enemy_name = "Space Villian"
-	var/temp = "Winners Don't Use Spacedrugs" //Temporary message, for attack messages, etc
+	var/enemy_name = "Fury Fuhrer"
+	var/temp = "Sponsored by Weyland-Yutani and the United States Colonial Marines" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10
-	var/enemy_hp = 45 //Enemy health/attack points
-	var/enemy_mp = 20
+	var/enemy_hp = 50 //Enemy health/attack points
+	var/enemy_mp = 25
 	var/gameover = 0
 	var/blocked = 0 //Player cannot attack/heal while set
-	var/list/prizes = list(	/obj/item/weapon/storage/box/snappops			= 2,
-							/obj/item/weapon/spacecash/c10					= 1,
-							/obj/item/weapon/soap/deluxe					= 1,
-							/obj/item/weapon/flame/lighter/zippo			= 1,
-							/obj/item/weapon/flame/lighter					= 2,
-							/obj/item/toy/katana							= 1,
-							/obj/item/device/flashlight/pen					= 2,
-							/obj/item/weapon/deck							= 2,
-							/obj/item/weapon/dice/d20						= 1,
-							/obj/item/weapon/pen							= 4
+	var/list/prizes = list(	/obj/item/weapon/storage/box/MRE			    = 3,
+							/obj/item/weapon/spacecash/c10					= 4,
+							/obj/item/ammo_magazine/flamer_tank			    = 1,
+							/obj/item/weapon/flame/lighter/zippo			= 2,
+							/obj/item/weapon/weldingtool					= 1,
+							/obj/item/weapon/storage/box/uscm_mre			= 2,
+							/obj/item/device/camera				        	= 2,
+							/obj/item/device/camera_film					= 4,
+							/obj/item/weapon/cell/crap/empty				= 3,
+							/obj/item/weapon/hand_labeler					= 1
 							)
 
 /obj/machinery/computer/arcade
@@ -29,6 +29,8 @@
 
 /obj/machinery/computer/arcade/New()
 	..()
+	//Disabled for now to make sense with the splash screen.
+	/*
 	var/name_action
 	var/name_part1
 	var/name_part2
@@ -40,6 +42,7 @@
 
 	src.enemy_name = oldreplacetext((name_part1 + name_part2), "the ", "")
 	src.name = (name_action + name_part1 + name_part2)
+	*/
 
 
 /obj/machinery/computer/arcade/attack_ai(mob/user as mob)
@@ -79,7 +82,7 @@
 		if (href_list["attack"])
 			src.blocked = 1
 			var/attackamt = rand(2,6)
-			src.temp = "You attack for [attackamt] damage!"
+			src.temp = "Your sword strikes for [attackamt] damage!"
 			src.updateUsrDialog()
 			if(turtle > 0)
 				turtle--
@@ -199,7 +202,7 @@
 
 	if ((src.player_mp <= 0) || (src.player_hp <= 0))
 		src.gameover = 1
-		src.temp = "You have been crushed! GAME OVER"
+		src.temp = "GAME OVER"
 		if(emagged)
 			feedback_inc("arcade_loss_hp_emagged")
 			usr.gib()
