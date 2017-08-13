@@ -516,7 +516,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 	if(locate(/obj/machinery/optable, loc) || locate(/obj/structure/stool/bed/roller, loc))
 		return TRUE
 	var/obj/structure/table/T = locate(/obj/structure/table, loc)
-	if(!T.flipped) return TRUE
+	if(T && !T.flipped) return TRUE
 
 /mob/living/carbon/hellhound/can_be_operated_on()
 	return FALSE
