@@ -87,7 +87,7 @@
 			/obj/item/device/binoculars,
 			/obj/item/weapon/combat_knife,
 			/obj/item/weapon/storage/sparepouch,
-			/obj/item/weapon/large_holster/machete)
+			/obj/item/weapon/storage/large_holster/machete)
 
 //ROBOCOP
 /obj/item/clothing/under/gimmick/robocop

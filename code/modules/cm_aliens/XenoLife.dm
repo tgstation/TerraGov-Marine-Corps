@@ -493,6 +493,8 @@ updatehealth()
 		stat = CONSCIOUS
 	else health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 
+	med_hud_set_health()
+
 	if(health <= crit_health)
 		if(prob(gib_prob)) 	gib()
 		else 				death()

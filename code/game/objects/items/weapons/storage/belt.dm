@@ -12,6 +12,26 @@
 
 
 
+/obj/item/weapon/storage/belt/equipped(mob/user, slot)
+	if(slot == WEAR_WAIST)
+		mouse_opacity = 2 //so it's easier to click when properly equipped.
+	..()
+
+/obj/item/weapon/storage/belt/dropped(mob/user)
+	mouse_opacity = initial(mouse_opacity)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.belt == src)
+			//we drop the pouches in our pocket slots.
+			if(istype(H.r_store, /obj/item/weapon/storage/pouch))
+				H.drop_inv_item_on_ground(H.r_store)
+			if(istype(H.l_store, /obj/item/weapon/storage/pouch))
+				H.drop_inv_item_on_ground(H.l_store)
+	..()
+
+
+
+
 /obj/item/weapon/storage/belt/soulstone
 	name = "soul stone belt"
 	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"
@@ -218,13 +238,17 @@
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
 	w_class = 4
-	storage_slots = 9
+	storage_slots = 5
 	max_w_class = 3
-	max_combined_w_class = 18
+	max_combined_w_class = 15
 	can_hold = list(
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
-		"/obj/item/ammo_magazine",
+		"/obj/item/ammo_magazine/rifle",
+		"/obj/item/ammo_magazine/smg",
+		"/obj/item/ammo_magazine/pistol",
+		"/obj/item/ammo_magazine/revolver",
+		"/obj/item/ammo_magazine/sniper",
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",

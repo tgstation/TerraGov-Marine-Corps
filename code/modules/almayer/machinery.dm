@@ -16,6 +16,7 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 					/obj/item/weapon/storage/backpack/marine = 10,
+					/obj/item/weapon/storage/backpack/marine/satchel = 10,
 					/obj/item/weapon/storage/belt/marine = 10,
 					/obj/item/clothing/shoes/marine = 10,
 					/obj/item/clothing/under/marine = 10

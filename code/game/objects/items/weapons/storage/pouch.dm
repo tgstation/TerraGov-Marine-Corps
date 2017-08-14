@@ -7,6 +7,24 @@
 	max_w_class = 2
 	flags_equip_slot = SLOT_STORE
 	storage_slots = 1
+	var/draw_mode = 0
+
+/obj/item/weapon/storage/pouch/verb/toggle_draw_mode()
+	set name = "Switch Pouch Drawing Method"
+	set category = "Object"
+	draw_mode = !draw_mode
+	if(draw_mode)
+		usr << "Clicking [src] with an empty hand now puts the first stored item in your hand."
+	else
+		usr << "Clicking [src] with an empty hand now opens the pouch storage menu."
+
+
+/obj/item/weapon/storage/pouch/attack_hand(mob/user)
+	if(draw_mode && ishuman(user) && contents.len && loc == user)
+		var/obj/item/I = contents[1]
+		I.attack_hand(user)
+	else
+		..()
 
 /obj/item/weapon/storage/pouch/examine(mob/user)
 	..()
@@ -16,7 +34,7 @@
 	. = ..()
 	if(. && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!H.belt)
+		if(!H.belt || !istype(H.belt, /obj/item/weapon/storage/belt))
 			H << "<span class='warning'>You need to wear a belt first to equip [src].</span>"
 			return 0
 
@@ -36,24 +54,28 @@
 	name = "light general pouch"
 	desc = "A general purpose pouch used to carry small items."
 	icon_state = "small_drop"
+	draw_mode = 1
 
 /obj/item/weapon/storage/pouch/general/medium
 	name = "medium general pouch"
 	storage_slots = 2
 	icon_state = "medium_drop"
+	draw_mode = 0
 
 /obj/item/weapon/storage/pouch/general/large
 	name = "large general pouch"
 	storage_slots = 3
 	icon_state = "large_drop"
+	draw_mode = 0
 
 
 /obj/item/weapon/storage/pouch/bayonet
 	name = "bayonet sheath"
 	desc = "A pouch for your knife."
-	can_hold = list("/obj/item/weapon/combat_knife", "/obj/item/weapon/throwing_knife")
+	can_hold = list("/obj/item/weapon/combat_knife", "/obj/item/weapon/throwing_knife", "/obj/item/attachable/bayonet")
 	icon_state = "bayonet"
 	storage_slots = 1
+	draw_mode = 1
 
 /obj/item/weapon/storage/pouch/bayonet/full/New()
 	..()
@@ -88,22 +110,22 @@
 
 /obj/item/weapon/storage/pouch/firstaid
 	name = "firstaid pouch"
-	desc = "It can contain a syringe, ointments, and bandages."
+	desc = "It can contain autoinjectors, ointments, and bandages."
 	icon_state = "firstaid"
 	storage_slots = 3
 	can_hold = list(
 					"/obj/item/stack/medical/ointment",
-					"/obj/item/weapon/reagent_containers/syringe",
+					"/obj/item/weapon/reagent_containers/hypospray/autoinjector",
 					"/obj/item/stack/medical/bruise_pack"
 					)
 
 /obj/item/weapon/storage/pouch/firstaid/full
-	desc = "Contains an inaprovaline syringe, some ointment, and some bandages."
+	desc = "Contains a tricordrazine autoinjector, some ointment, and some bandages."
 
 /obj/item/weapon/storage/pouch/firstaid/full/New()
 	..()
 	new /obj/item/stack/medical/ointment (src)
-	new /obj/item/weapon/reagent_containers/syringe/inaprovaline (src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 
 
@@ -113,6 +135,7 @@
 	icon_state = "pistol"
 	max_w_class = 3
 	can_hold = list("/obj/item/weapon/gun/pistol")
+	draw_mode = 1
 
 
 
@@ -123,10 +146,12 @@
 	desc = "It can contain ammo magazines."
 	icon_state = "small_ammo_mag"
 	max_w_class = 3
+	draw_mode = 1
 	can_hold = list("/obj/item/ammo_magazine/rifle",
 					"/obj/item/ammo_magazine/smg",
 					"/obj/item/ammo_magazine/pistol",
-					"/obj/item/ammo_magazine/revolver"
+					"/obj/item/ammo_magazine/revolver",
+					"/obj/item/ammo_magazine/sniper",
 					)
 
 
@@ -134,11 +159,13 @@
 	name = "medium magazine pouch"
 	icon_state = "medium_ammo_mag"
 	storage_slots = 2
+	draw_mode = 0
 
 /obj/item/weapon/storage/pouch/magazine/large
 	name = "large magazine pouch"
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
+	draw_mode = 0
 
 
 /obj/item/weapon/storage/pouch/magazine/pistol
@@ -147,6 +174,7 @@
 	max_w_class = 2
 	icon_state = "pistol_mag"
 	storage_slots = 2
+	draw_mode = 0
 	can_hold = list(
 					"/obj/item/ammo_magazine/pistol",
 					"/obj/item/ammo_magazine/revolver"
@@ -285,6 +313,7 @@
 /obj/item/weapon/storage/pouch/medkit
 	name = "medkit pouch"
 	max_w_class = 3
+	draw_mode = 1
 	icon_state = "medkit"
 	desc = "It's specifically made to hold a medkit."
 	can_hold = list("/obj/item/weapon/storage/firstaid")
@@ -296,18 +325,20 @@
 
 /obj/item/weapon/storage/pouch/document
 	name = "document pouch"
-	desc = "It can contain papers."
+	desc = "It can contain papers and clipboards."
 	icon_state = "document"
 	storage_slots = 7
-	can_hold = list("/obj/item/weapon/paper")
+	can_hold = list("/obj/item/weapon/paper", "/obj/item/weapon/clipboard")
 
 
 /obj/item/weapon/storage/pouch/flare
 	name = "flare pouch"
-	desc = "A pouch designed to hold a m94 flare pack."
-	max_w_class = 3
+	desc = "A pouch designed to hold flares."
+	max_w_class = 2
+	storage_slots = 5
+	draw_mode = 1
 	icon_state = "flare"
-	can_hold = list("/obj/item/weapon/storage/box/m94")
+	can_hold = list("/obj/item/device/flashlight/flare")
 
 
 
@@ -315,6 +346,7 @@
 	name = "radio pouch"
 	storage_slots = 2
 	icon_state = "radio"
+	draw_mode = 1
 	desc = "It can contain two handheld radios."
 	can_hold = list("/obj/item/device/radio")
 

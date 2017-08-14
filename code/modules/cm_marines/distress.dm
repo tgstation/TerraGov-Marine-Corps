@@ -93,10 +93,10 @@
 
 
 	var/list/rebel_sidearms = list(
-		/obj/item/weapon/large_holster/katana/full = null,
-		/obj/item/weapon/large_holster/katana/full = null,
-		/obj/item/weapon/large_holster/katana/full = null,
-		/obj/item/weapon/large_holster/machete/full = null,
+		/obj/item/weapon/storage/large_holster/katana/full = null,
+		/obj/item/weapon/storage/large_holster/katana/full = null,
+		/obj/item/weapon/storage/large_holster/katana/full = null,
+		/obj/item/weapon/storage/large_holster/machete/full = null,
 		/obj/item/weapon/combat_knife = null,
 		/obj/item/weapon/grenade/explosive/stick = null,
 		/obj/item/weapon/grenade/explosive/stick = null,
