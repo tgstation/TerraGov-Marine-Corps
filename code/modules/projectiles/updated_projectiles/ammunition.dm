@@ -149,6 +149,7 @@ bullets/shells. ~N
 	matter = list("metal" = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	flags_equip_slot = null // It only fits into pockets and such.
 	origin_tech = "combat=1'materials=1"
+	w_class = 2
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
 	flags_atom = FPRINT|CONDUCT|DIRLOCK

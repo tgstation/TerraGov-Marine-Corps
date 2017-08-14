@@ -201,6 +201,7 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = 1
 	throwforce = 2
+	w_class = 2
 	flags_equip_slot = SLOT_WAIST
 	storage_slots = 7
 	can_hold = list("/obj/item/clothing/mask/cigarette/cigar")

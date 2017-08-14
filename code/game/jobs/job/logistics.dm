@@ -24,7 +24,8 @@
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/tech
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/tech,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/electronics
 				)
 
 	generate_stored_equipment()
@@ -57,7 +58,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m44/full,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap/req,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -93,13 +95,14 @@ A happy ship is a well-functioning ship."}
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium
 				)
 
 	generate_stored_equipment()
 		. = list(
 				WEAR_L_STORE = /obj/item/device/pda/engineering,
-				WEAR_R_STORE = /obj/item/device/t_scanner
+				WEAR_L_HAND = /obj/item/device/t_scanner
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -129,7 +132,8 @@ Start with the ship's engine, and don't forget radiation equipment."}
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
 				WEAR_HEAD = /obj/item/clothing/head/cmbandana/tan,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/tech
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/tech,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)

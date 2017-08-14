@@ -15,7 +15,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+			new /obj/item/weapon/storage/backpack/satchel/eng(src)
 		if (prob(70))
 			new /obj/item/clothing/tie/storage/brown_vest(src)
 		else
@@ -36,7 +36,10 @@
 		new /obj/item/device/flash(src)
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/device/flashlight(src)
-		return
+		new /obj/item/weapon/storage/pouch/electronics(src)
+		new /obj/item/weapon/storage/pouch/general/medium(src)
+		new /obj/item/weapon/storage/pouch/construction(src)
+
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
@@ -106,7 +109,7 @@
 		..()
 		sleep(2)
 		if(prob(50)) new /obj/item/weapon/storage/backpack/industrial(src)
-		else new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		else new /obj/item/weapon/storage/backpack/satchel/eng(src)
 		if (prob(70)) new /obj/item/clothing/tie/storage/brown_vest(src)
 		else new /obj/item/clothing/tie/storage/webbing(src)
 		new /obj/item/weapon/storage/toolbox/mechanical(src)
@@ -115,6 +118,10 @@
 		new /obj/item/weapon/cartridge/engineering(src)
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
+		new /obj/item/weapon/storage/pouch/general(src)
+		new /obj/item/weapon/storage/pouch/electronics(src)
+		new /obj/item/weapon/storage/pouch/construction(src)
+		new /obj/item/weapon/storage/pouch/medkit(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/device/flashlight(src)
 
@@ -141,7 +148,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+			new /obj/item/weapon/storage/backpack/satchel/eng(src)
 		if (prob(70))
 			new /obj/item/clothing/tie/storage/brown_vest(src)
 		else

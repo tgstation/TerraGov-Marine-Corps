@@ -606,7 +606,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_eng(H), WEAR_BACK)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/eng(H), WEAR_BACK)
 						H.equip_to_slot_or_del(new /obj/item/weapon/plastique(H), WEAR_L_STORE)
 						var/obj/item/stack/sheet/plasteel/P = new /obj/item/stack/sheet/plasteel(H.back)
 						P.amount = 30
@@ -618,7 +618,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver(H), WEAR_WAIST)
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), WEAR_BACK)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/med(H), WEAR_BACK)
 					//	H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(H), WEAR_L_STORE)
 						H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(H), WEAR_L_STORE)
 						H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H.back), WEAR_IN_BACK)

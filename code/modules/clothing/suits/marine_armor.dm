@@ -113,6 +113,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		..()
 		armor_overlays = list("lamp") //Just one for now, can add more later.
 		update_icon()
+		pockets.can_hold = list("/obj/item/ammo_magazine/rifle", "/obj/item/ammo_magazine/smg") //two exceptions to size restriction.
+		pockets.max_combined_w_class = 6
+
+
 
 	update_icon(mob/user)
 		var/image/reusable/I

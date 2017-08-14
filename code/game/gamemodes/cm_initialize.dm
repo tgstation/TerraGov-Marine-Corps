@@ -446,7 +446,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(0) //assistant
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
 		if(1) //civilian in pajamas
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
@@ -454,18 +454,18 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/tox(new_survivor), WEAR_BACK)
 		if(3) //Doctor
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(new_survivor), WEAR_L_HAND)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/med(new_survivor), WEAR_BACK)
 		if(4) //Chef!
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(new_survivor), WEAR_L_HAND)
 		if(5) //Botanist
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
@@ -538,7 +538,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/weldingtool/largetank(new_survivor), WEAR_R_HAND)
 
 	new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight(new_survivor), WEAR_R_STORE)
-	new_survivor.equip_to_slot_or_del(new /obj/item/weapon/crowbar(new_survivor), WEAR_L_STORE)
+	new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/survival/full(new_survivor), WEAR_L_STORE)
 
 	new_survivor.update_icons()
 
@@ -636,7 +636,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING_NORMAL, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
 
 	//Set up attachment vendor contents related to Marine count
-	for(var/obj/machinery/vending/attachments/A in attachment_vendors)
+	for(var/X in attachment_vendors)
+		var/obj/machinery/vending/attachments/A = X
 
 		//Forcefully reset the product list
 		A.product_records = list()
@@ -671,7 +672,46 @@ datum/game_mode/proc/initialize_special_clamps()
 		//Rebuild the vendor's inventory to make our changes apply
 		A.build_inventory(A.products)
 
-	for(var/obj/machinery/vending/marine/M in marine_vendors)
+	for(var/X in cargo_ammo_vendors)
+		var/obj/machinery/vending/marine/cargo_ammo/CA = X
+
+		//Forcefully reset the product list
+		CA.product_records = list()
+
+		CA.products = list(
+						///obj/item/weapon/claymore/mercsword/machete = 5,
+						/obj/item/weapon/large_holster/machete/full = round(scale * 6),
+						/obj/item/ammo_magazine/pistol = round(scale * 10),
+						/obj/item/ammo_magazine/pistol/hp = 0,
+						/obj/item/ammo_magazine/pistol/ap = round(scale * 3),
+						/obj/item/ammo_magazine/pistol/incendiary = round(scale * 1),
+						/obj/item/ammo_magazine/pistol/extended = round(scale * 1),
+						/obj/item/ammo_magazine/pistol/m1911 = round(scale * 1),
+						/obj/item/ammo_magazine/revolver = round(scale * 10),
+						/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),
+						/obj/item/ammo_magazine/smg/m39 = round(scale * 10),
+						/obj/item/ammo_magazine/smg/m39/ap = round(scale * 5),
+						/obj/item/ammo_magazine/smg/m39/extended = round(scale * 1),
+						/obj/item/ammo_magazine/rifle = round(scale * 15),
+						/obj/item/ammo_magazine/rifle/extended = round(scale * 1),
+						/obj/item/ammo_magazine/rifle/incendiary = round(scale * 1),
+						/obj/item/ammo_magazine/rifle/ap = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/marksman = round(scale * 1),
+						/obj/item/ammo_magazine/rifle/m41aMK1 = 0,
+						/obj/item/ammo_magazine/rifle/lmg = 0,
+						/obj/item/ammo_magazine/shotgun = round(scale * 8),
+						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 5),
+						/obj/item/ammo_magazine/sniper = round(scale * 1),
+						/obj/item/ammo_magazine/sniper/incendiary = round(scale * 1),
+						/obj/item/ammo_magazine/sniper/flak = round(scale * 1),
+						/obj/item/smartgun_powerpack = round(scale * 1)
+						)
+
+		CA.build_inventory(CA.products)
+
+
+	for(var/X in marine_vendors)
+		var/obj/machinery/vending/marine/M = X
 
 		//Forcefully reset the product list
 		M.product_records = list()
@@ -706,7 +746,15 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/clothing/head/helmet/marine = round(scale * 10),
 
 						/obj/item/attachable/flashlight = round(scale * 10),
-						/obj/item/attachable/bayonet = round(scale * 10)
+						/obj/item/attachable/bayonet = round(scale * 10),
+
+						/obj/item/weapon/storage/pouch/general = round(scale * 10),
+						/obj/item/weapon/storage/pouch/bayonet = round(scale * 10),
+						/obj/item/weapon/storage/pouch/firstaid/full = round(scale * 10),
+						/obj/item/weapon/storage/pouch/pistol = round(scale * 10),
+						/obj/item/weapon/storage/pouch/magazine = round(scale * 10),
+						/obj/item/weapon/storage/pouch/flare = round(scale * 10),
+						/obj/item/weapon/storage/pouch/magazine/pistol = round(scale * 10)
 						)
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),

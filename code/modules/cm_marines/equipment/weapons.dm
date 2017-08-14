@@ -7,7 +7,7 @@
 	flags_atom = FPRINT|CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 25
-	w_class = 1.0
+	w_class = 2
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
@@ -42,21 +42,15 @@
 							"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
 		return (BRUTELOSS)
 
-/obj/item/weapon/upp_knife
+/obj/item/weapon/combat_knife/upp
 	name = "\improper Type 30 survival knife"
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "upp_knife"
 	item_state = "knife"
 	desc = "The standard issue survival knife of the UPP forces, the Type 30 is effective, but humble. It is small enough to be non-cumbersome, but lethal none-the-less."
-	flags_atom = FPRINT|CONDUCT
-	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
-	w_class = 1.0
 	throwforce = 10
 	throw_speed = 2
 	throw_range = 8
-	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 
 /obj/item/weapon/throwing_knife
@@ -67,7 +61,7 @@
 	flags_atom = FPRINT|CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 10
-	w_class = 1.0
+	w_class = 1
 	throwforce = 35
 	throw_speed = 4
 	throw_range = 7
@@ -587,7 +581,7 @@
 	item_state = "grenade_stick"
 	icon = 'icons/obj/grenade.dmi'
 	force = 10
-	w_class = 2.0
+	w_class = 2
 	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
@@ -746,7 +740,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "m20"
 	force = 5.0
-	w_class = 2.0
+	w_class = 2
 	//layer = MOB_LAYER - 0.1 //You can't just randomly hide claymores under boxes. Booby-trapping bodies is fine though
 	throwforce = 5.0
 	throw_range = 6

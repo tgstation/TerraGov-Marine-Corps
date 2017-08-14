@@ -53,7 +53,7 @@
 	var/icon_deactivated = "tracking0"
 	var/icon_activated = "tracking1"
 	var/activated = 0
-	w_class = 2
+	w_class = 1
 	var/datum/squad/squad = null
 
 	attack_self(mob/user)
@@ -129,11 +129,11 @@
 	name = "\improper M20P mine box"
 
 /obj/item/weapon/storage/box/m94
-	name = "\improper M94 marking flare pouch"
-	desc = "A packet of four M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
+	name = "\improper M94 marking flare pack"
+	desc = "A packet of five M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
 	icon_state = "m94"
-	w_class = 2
-	storage_slots = 4
+	w_class = 3
+	storage_slots = 5
 	can_hold = list(
 		"/obj/item/device/flashlight/flare"
 		)
@@ -141,6 +141,7 @@
 	New()
 		..()
 		contents = list()
+		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/device/flashlight/flare(src)
@@ -321,6 +322,7 @@
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
 	filling_color = "#ED1169"
+	w_class = 1
 
 	New()
 		..()
@@ -338,7 +340,7 @@
 	name = "\improper generic MRE pack"
 	//trash = /obj/item/trash/USCMtray
 	trash = null
-	w_class = 3
+	w_class = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1
 	name = "\improper USCM Prepared Meal (cornbread)"
@@ -468,7 +470,7 @@
 	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
 	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks")
-	w_class = 2
+	w_class = 4
 
 	New()
 		..()
@@ -499,6 +501,7 @@
 	item_state = "map"
 	author = "Weyland Yutani"
 	title = "Lazarus Landing Map"
+	w_class = 1
 	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
 	dat = {"
 
@@ -522,6 +525,7 @@
 	color = "blue"
 	author = "Weyland Yutani"
 	title = "Ice Colony Map"
+	w_class = 1
 	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
 	dat = {"
 
@@ -545,6 +549,7 @@
 	color = "grey"
 	author = "Weyland Yutani"
 	title = "Whiskey Outpost Map"
+	w_class = 1
 	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
 	dat = {"
 
@@ -568,6 +573,7 @@
 	color = "#e88a10"
 	author = "Weyland Yutani"
 	title = "Solaris Ridge Map"
+	w_class = 1
 	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
 	dat = {"
 

@@ -9,7 +9,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
-	w_class = 2.0
+	w_class = 1
 	flags_equip_slot = SLOT_WAIST
 
 	//Main variables

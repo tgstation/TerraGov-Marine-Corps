@@ -29,7 +29,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
-	w_class = 2.0
+	w_class = 1
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -40,7 +40,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
-	w_class = 2.0
+	w_class = 1
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -79,7 +79,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "c_tube"
 	throwforce = 1
-	w_class = 2.0
+	w_class = 2
 	throw_speed = 4
 	throw_range = 5
 
@@ -106,7 +106,7 @@
 	desc = "Better keep this safe."
 	icon_state = "nucleardisk"
 	item_state = "card-id"
-	w_class = 2.0
+	w_class = 1
 
 /*
 /obj/item/weapon/game_kit

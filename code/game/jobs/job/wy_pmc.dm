@@ -18,31 +18,28 @@
 		if(1 to 11)
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/smg/m39/elite,
-					WEAR_R_STORE = /obj/item/ammo_magazine/smg/m39/ap,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/smg/m39/ap,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/smg/m39/ap,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/smg/m39/ap
+					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_m39,
+					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/m39/ap,
+					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/m39/ap
 					)
 		if(12,15)
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/smg/p90,
-					WEAR_R_STORE = /obj/item/ammo_magazine/smg/p90,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/smg/p90,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/smg/p90,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/smg/p90
+					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_p90,
+					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/p90,
+					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/p90
 					)
 		if(16,18)
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/rifle/lmg,
-					WEAR_R_STORE = /obj/item/ammo_magazine/rifle/lmg,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/rifle/lmg,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/rifle/lmg,
-					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/rifle/lmg
+					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_lmg,
+					WEAR_IN_BACK = /obj/item/ammo_magazine/rifle/lmg,
+					WEAR_IN_BACK = /obj/item/ammo_magazine/rifle/lmg
 					)
 		else
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/revolver/mateba,
-					WEAR_R_STORE = /obj/item/ammo_magazine/revolver/mateba,
+					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_mateba,
 					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/revolver/mateba,
 					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/revolver/mateba,
 					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/revolver/mateba
@@ -75,7 +72,7 @@
 		var/L[] = new
 		if(prob(60))
 			L[WEAR_WAIST] = /obj/item/weapon/gun/pistol/vp70
-			L[WEAR_L_STORE] = /obj/item/ammo_magazine/pistol/vp70
+			L[WEAR_L_STORE] = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_vp70
 		else if(prob(35)) L[WEAR_WAIST] = /obj/item/weapon/storage/belt/knifepouch
 		L[WEAR_IN_JACKET] = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
 		L[WEAR_IN_JACKET] = /obj/item/weapon/grenade/explosive/PMC
@@ -103,7 +100,7 @@
 						SLOW_WAIST = /obj/item/weapon/storage/belt/utility/full,
 						WEAR_JACKET = /obj/item/clothing/suit/storage/marine/veteran/PMC,
 						WEAR_EYES = /obj/item/clothing/glasses/welding,
-						WEAR_BACK = /obj/item/weapon/storage/backpack/satchel_eng
+						WEAR_BACK = /obj/item/weapon/storage/backpack/satchel/eng
 						)
 		if(prob(65)) L[WEAR_FACE] = /obj/item/clothing/mask/gas/PMC
 		if(prob(65)) L[WEAR_HEAD] = /obj/item/clothing/head/helmet/marine/veteran/PMC
@@ -111,11 +108,12 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/weapon/plastique,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/explosive/large,
+				WEAR_IN_BACK = /obj/item/weapon/plastique,
 				WEAR_IN_BACK = /obj/item/stack/sheet/plasteel,
 				WEAR_IN_BACK = /obj/item/weapon/grenade/explosive/PMC,
 				WEAR_IN_BACK = /obj/item/weapon/grenade/incendiary,
-				WEAR_IN_BACK = /obj/item/stack/sheet/plasteel,
+				WEAR_IN_BACK = /obj/item/stack/sheet/plasteel
 				)
 
 	equip(mob/living/carbon/human/H, L[] = generate_wearable_equipment() + generate_stored_equipment() + generate_random_pmc_primary())
@@ -140,7 +138,7 @@
 						SLOW_WAIST = /obj/item/weapon/storage/belt/combatLifesaver,
 						WEAR_JACKET = /obj/item/clothing/suit/storage/marine/veteran/PMC,
 						WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-						WEAR_BACK = /obj/item/weapon/storage/backpack/satchel_med
+						WEAR_BACK = /obj/item/weapon/storage/backpack/satchel/med
 						)
 		if(prob(65)) L[WEAR_FACE] = /obj/item/clothing/mask/gas/PMC
 		if(prob(65)) L[WEAR_HEAD] = /obj/item/clothing/head/helmet/marine/veteran/PMC
@@ -148,8 +146,8 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone,
-				WEAR_IN_BACK = /obj/item/weapon/storage/firstaid/regular,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/medkit/full,
+				WEAR_IN_BACK = /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone,
 				WEAR_IN_BACK = /obj/item/weapon/storage/firstaid/adv,
 				WEAR_IN_BACK = /obj/item/weapon/melee/defibrillator,
 				WEAR_IN_BACK = /obj/item/bodybag,
@@ -190,8 +188,8 @@
 		. = list(
 				SLOW_WAIST = /obj/item/weapon/gun/pistol/vp70,
 				WEAR_J_STORE = /obj/item/weapon/gun/smartgun/dirty,
-				WEAR_L_STORE = /obj/item/ammo_magazine/pistol/vp70,
-				WEAR_R_STORE = /obj/item/weapon/plastique,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_vp70,
+				WEAR_IN_BACK = /obj/item/weapon/plastique,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/webbing,
 				WEAR_IN_ACCESSORY = /obj/item/weapon/grenade/phosphorus,
 				WEAR_IN_ACCESSORY = /obj/item/weapon/grenade/smokebomb,
@@ -219,12 +217,10 @@
 		. = list(
 				SLOW_WAIST = /obj/item/weapon/gun/pistol/vp70,
 				WEAR_J_STORE = /obj/item/weapon/gun/rifle/sniper/elite,
-				WEAR_L_STORE = /obj/item/ammo_magazine/sniper/elite,
-				WEAR_R_STORE = /obj/item/device/flashlight,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_sniper,
+				WEAR_IN_BACK = /obj/item/device/flashlight,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/black_vest,
-				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/sniper/elite,
-				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/sniper/elite,
-				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/pistol/vp70,
+				WEAR_IN_BACK = /obj/item/ammo_magazine/pistol/vp70,
 				WEAR_IN_ACCESSORY = /obj/item/device/flashlight/flare,
 				WEAR_IN_ACCESSORY = /obj/item/device/flashlight/flare,
 				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
@@ -247,13 +243,12 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/device/binoculars,
-				WEAR_R_STORE = /obj/item/ammo_magazine/rifle/ap,
+				WEAR_IN_BACK = /obj/item/device/binoculars,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_rifle,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/general/large,
 				WEAR_J_STORE = /obj/item/weapon/gun/rifle/m41a/elite,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/black_vest,
-				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/rifle/ap,
-				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/rifle/ap,
-				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/rifle/extended,
+				WEAR_IN_BACK = /obj/item/ammo_magazine/rifle/extended,
 				WEAR_IN_ACCESSORY = /obj/item/weapon/grenade/explosive/PMC,
 				WEAR_IN_ACCESSORY = /obj/item/device/flashlight,
 				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
@@ -279,7 +274,7 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/weapon/combat_knife,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/bayonet/full,
 				WEAR_IN_BACK = /obj/item/weapon/plastique,
 				WEAR_IN_BACK = /obj/item/weapon/plastique,
 				WEAR_IN_BACK = /obj/item/weapon/storage/firstaid/regular,
@@ -318,14 +313,13 @@
 		. = list(
 				SLOW_WAIST = /obj/item/weapon/gun/pistol/vp78,
 				WEAR_J_STORE = /obj/item/weapon/gun/shotgun/combat,
-				WEAR_L_STORE = /obj/item/device/binoculars,
-				WEAR_R_STORE = /obj/item/ammo_magazine/pistol/vp78,
+				WEAR_IN_BACK = /obj/item/device/binoculars,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_vp78,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/shotgun,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/shotgun/buckshot,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/shotgun/incendiary,
 				WEAR_IN_BACK = /obj/item/weapon/melee/baton,
 				WEAR_IN_BACK = /obj/item/device/flashlight,
-				WEAR_IN_BACK = /obj/item/ammo_magazine/pistol/vp78,
 				WEAR_IN_BACK = /obj/item/weapon/grenade/explosive/PMC,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/webbing,
 				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/pistol/vp70,

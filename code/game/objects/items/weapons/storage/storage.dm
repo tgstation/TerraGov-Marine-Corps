@@ -16,6 +16,7 @@
 	var/storage_slots = 7 //The number of storage slots in this container.
 	var/obj/screen/storage/boxes = null
 	var/obj/screen/close/closer = null
+	var/show_storage_fullness = TRUE //whether our storage box on hud changes color when full.
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
 	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
@@ -25,6 +26,8 @@
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
+
+
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if (ishuman(usr) || ismonkey(usr) || isrobot(usr)) //so monkeys can take off their backpacks -- Urist
@@ -78,11 +81,11 @@
 				return
 	if(user.s_active)
 		user.s_active.hide_from(user)
-	user.client.screen -= src.boxes
-	user.client.screen -= src.closer
-	user.client.screen -= src.contents
-	user.client.screen += src.boxes
-	user.client.screen += src.closer
+	user.client.screen -= boxes
+	user.client.screen -= closer
+	user.client.screen -= contents
+	user.client.screen += boxes
+	user.client.screen += closer
 	user.client.screen += src.contents
 	user.s_active = src
 	content_watchers |= user
@@ -109,10 +112,10 @@
 			content_watchers -= M
 	return lookers
 
-/obj/item/weapon/storage/proc/open(mob/user as mob)
+/obj/item/weapon/storage/proc/open(mob/user)
 	if(!opened)
 		opened = 1
-	if (src.use_sound)
+	if (use_sound)
 		playsound(src.loc, src.use_sound, 25, 1, 6)
 
 	orient2hud(user)
@@ -120,9 +123,9 @@
 		user.s_active.close(user)
 	show_to(user)
 
-/obj/item/weapon/storage/proc/close(mob/user as mob)
+/obj/item/weapon/storage/proc/close(mob/user)
 
-	src.hide_from(user)
+	hide_from(user)
 	user.s_active = null
 	return
 
@@ -131,7 +134,7 @@
 /obj/item/weapon/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
-	src.boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
+	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
 	for(var/obj/O in src.contents)
 		O.screen_loc = "[cx],[cy]"
 		O.layer = 20
@@ -139,14 +142,15 @@
 		if (cx > mx)
 			cx = tx
 			cy--
-	src.closer.screen_loc = "[mx+1],[my]"
-	return
+	closer.screen_loc = "[mx+1],[my]"
+	if(show_storage_fullness)
+		boxes.update_fullness(src)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
 /obj/item/weapon/storage/proc/standard_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
-	src.boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
+	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
 
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
@@ -168,8 +172,9 @@
 			if (cx > (4+cols))
 				cx = 4
 				cy--
-	src.closer.screen_loc = "[4+cols+1]:16,2:16"
-	return
+	closer.screen_loc = "[4+cols+1]:16,2:16"
+	if(show_storage_fullness)
+		boxes.update_fullness(src)
 
 /datum/numbered_display
 	var/obj/item/sample_object
@@ -211,7 +216,7 @@
 	var/col_count = min(7,storage_slots) -1
 	if (adjusted_contents > 7)
 		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-	src.standard_orient_objs(row_num, col_count, numbered_contents)
+	standard_orient_objs(row_num, col_count, numbered_contents)
 	return
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
@@ -353,11 +358,11 @@
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
 
-/obj/item/weapon/storage/dropped(mob/user as mob)
+/obj/item/weapon/storage/dropped(mob/user)
 	return
 
-/obj/item/weapon/storage/attack_hand(mob/user as mob)
-	if(ishuman(user))
+/obj/item/weapon/storage/attack_hand(mob/user)
+/*	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
@@ -367,7 +372,7 @@
 			H.put_in_hands(src)
 			H.r_store = null
 			return
-
+*/
 	if (src.loc == user)
 		src.open(user)
 	else
@@ -375,8 +380,8 @@
 		for(var/mob/M in range(1))
 			if (M.s_active == src)
 				src.close(M)
-	src.add_fingerprint(user)
-	return
+	add_fingerprint(user)
+
 
 /obj/item/weapon/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
@@ -414,16 +419,14 @@
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
 
-	src.boxes = new /obj/screen/storage(  )
-	src.boxes.name = "storage"
-	src.boxes.master = src
-	src.boxes.icon_state = "block"
-	src.boxes.screen_loc = "7,7 to 10,8"
-	src.boxes.layer = 19
-	src.closer = new /obj/screen/close(  )
-	src.closer.master = src
-	src.closer.icon_state = "x"
-	src.closer.layer = 20
+	boxes = new
+	boxes.name = "storage"
+	boxes.master = src
+	boxes.icon_state = "block"
+	boxes.screen_loc = "7,7 to 10,8"
+	boxes.layer = 19
+	closer = new
+	closer.master = src
 	orient2hud()
 
 /obj/item/weapon/storage/Dispose()

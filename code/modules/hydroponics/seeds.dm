@@ -4,7 +4,7 @@
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "seed"
 	flags_atom = NOFLAGS
-	w_class = 2.0
+	w_class = 1
 
 	var/seed_type
 	var/datum/seed/seed
