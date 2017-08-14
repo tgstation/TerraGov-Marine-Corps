@@ -101,7 +101,7 @@
 		/obj/item/weapon/grenade/explosive/stick = null,
 		/obj/item/weapon/grenade/explosive/stick = null,
 		/obj/item/weapon/grenade/explosive/stick = null,
-		/obj/item/weapon/upp_knife = null,
+		/obj/item/weapon/combat_knife/upp = null,
 		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
 		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
 		/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,

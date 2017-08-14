@@ -30,11 +30,12 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/techofficer/commander,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/mateba/cmateba/full,
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/tan,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
 				)
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/device/binoculars,
+				WEAR_L_HAND = /obj/item/device/binoculars
 				)
 
 
@@ -77,7 +78,8 @@ Come hell or high water, you are going to be there for them."}
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/vp70,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -107,11 +109,12 @@ Make the USCM proud!"}
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/commander,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap/ro,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
 				)
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/device/binoculars,
+				WEAR_L_HAND = /obj/item/device/binoculars
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -138,12 +141,13 @@ You are in charge of logistics and the overwatch system. You are also in line to
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/vp70,
 				WEAR_JACKET = /obj/item/clothing/suit/armor/vest/pilot,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
 				)
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/clothing/glasses/sunglasses,
+				WEAR_L_HAND = /obj/item/clothing/glasses/sunglasses,
 				WEAR_R_HAND = /obj/item/clothing/head/helmet/marine/pilot
 				)
 
@@ -191,7 +195,8 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/red,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/security
+				WEAR_BACK = /obj/item/weapon/storage/backpack/security,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -221,7 +226,8 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP/WO,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/wo,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/security
+				WEAR_BACK = /obj/item/weapon/storage/backpack/security,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)

@@ -71,7 +71,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_med(src)
+			new /obj/item/weapon/storage/backpack/satchel/med(src)
 		new /obj/item/clothing/under/rank/nursesuit (src)
 		new /obj/item/clothing/head/nursehat (src)
 		switch(pick("blue", "green", "purple"))
@@ -100,6 +100,12 @@
 		new /obj/item/clothing/suit/storage/labcoat(src)
 		new /obj/item/clothing/suit/storage/fr_jacket(src)
 		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/weapon/storage/pouch/medical(src)
+		new /obj/item/weapon/storage/pouch/medical(src)
+		new /obj/item/weapon/storage/pouch/syringe(src)
+		new /obj/item/weapon/storage/pouch/syringe(src)
+		new /obj/item/weapon/storage/pouch/medkit(src)
+		new /obj/item/weapon/storage/pouch/medkit(src)
 //		new /obj/item/weapon/cartridge/medical(src)
 		if(z && (z == 3 || z == 4))
 			new /obj/item/device/radio/headset/almayer/doc(src)
@@ -123,7 +129,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_med(src)
+			new /obj/item/weapon/storage/backpack/satchel/med(src)
 		new /obj/item/clothing/suit/bio_suit/cmo(src)
 		new /obj/item/clothing/head/bio_hood/cmo(src)
 		new /obj/item/clothing/shoes/white(src)
@@ -145,7 +151,9 @@
 		new /obj/item/device/radio/headset/almayer/cmo(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(src)
-		return
+		new /obj/item/weapon/storage/pouch/medical(src)
+		new /obj/item/weapon/storage/pouch/syringe(src)
+		new /obj/item/weapon/storage/pouch/medkit(src)
 
 
 

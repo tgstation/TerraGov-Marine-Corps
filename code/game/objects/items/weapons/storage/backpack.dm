@@ -11,25 +11,43 @@
 	w_class = 4.0
 	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
-	storage_slots = 14
+	storage_slots = 10
 	max_combined_w_class = 21
+	var/worn_accessible = FALSE //whether you can access its content while worn on the back
 
-/obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (src.use_sound)
+/obj/item/weapon/storage/backpack/attack_hand(mob/user)
+	if(!worn_accessible && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.back == src)
+			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
+			return
+	..()
+
+/obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W, mob/user)
+	if(!worn_accessible && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.back == src)
+			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
+			return TRUE
+	if (use_sound)
 		playsound(src.loc, src.use_sound, 15, 1, 6)
 	..()
 
-/obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
-	if (slot == WEAR_BACK && src.use_sound)
-		playsound(src.loc, src.use_sound, 15, 1, 6)
-	..(user, slot)
+/obj/item/weapon/storage/backpack/equipped(mob/user, slot)
+	if(slot == WEAR_BACK)
+		mouse_opacity = 2 //so it's easier to click when properly equipped.
+		if(use_sound)
+			playsound(loc, use_sound, 15, 1, 6)
+		if(!worn_accessible)
+			close(user)
+	..()
 
-/*
-/obj/item/weapon/storage/backpack/dropped(mob/user as mob)
-	if (loc == user && src.use_sound)
-		playsound(src.loc, src.use_sound, 15, 1, 6)
-	..(user)
-*/
+/obj/item/weapon/storage/backpack/dropped(mob/user)
+	mouse_opacity = initial(mouse_opacity)
+	..()
+
+
+
 
 /*
  * Backpack Types
@@ -167,67 +185,70 @@
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
 	item_state = "satchel"
+	worn_accessible = TRUE
+	storage_slots = 7
+	max_combined_w_class = 15
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
 	New()
 		..()
 		new /obj/item/weapon/storage/wallet/random( src )
 
-/obj/item/weapon/storage/backpack/satchel_norm
+/obj/item/weapon/storage/backpack/satchel/norm
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 	item_state = "satchel-norm"
 
-/obj/item/weapon/storage/backpack/satchel_eng
+/obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel-eng"
 	item_state = "satchel-eng"
 
-/obj/item/weapon/storage/backpack/satchel_med
+/obj/item/weapon/storage/backpack/satchel/med
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-med"
 	item_state = "satchel-med"
 
-/obj/item/weapon/storage/backpack/satchel_vir
+/obj/item/weapon/storage/backpack/satchel/vir
 	name = "virologist satchel"
 	desc = "A sterile satchel with virologist colours."
 	icon_state = "satchel-vir"
 	item_state = "satchel-vir"
 
-/obj/item/weapon/storage/backpack/satchel_chem
+/obj/item/weapon/storage/backpack/satchel/chem
 	name = "chemist satchel"
 	desc = "A sterile satchel with chemist colours."
 	icon_state = "satchel-chem"
 	item_state = "satchel-chem"
 
-/obj/item/weapon/storage/backpack/satchel_gen
+/obj/item/weapon/storage/backpack/satchel/gen
 	name = "geneticist satchel"
 	desc = "A sterile satchel with geneticist colours."
 	icon_state = "satchel-gen"
 	item_state = "satchel-gen"
 
-/obj/item/weapon/storage/backpack/satchel_tox
+/obj/item/weapon/storage/backpack/satchel/tox
 	name = "scientist satchel"
 	desc = "Useful for holding research materials."
 	icon_state = "satchel-tox"
 	item_state = "satchel-tox"
 
-/obj/item/weapon/storage/backpack/satchel_sec
+/obj/item/weapon/storage/backpack/satchel/sec
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
 	icon_state = "satchel-sec"
 	item_state = "satchel-sec"
 
-/obj/item/weapon/storage/backpack/satchel_hyd
+/obj/item/weapon/storage/backpack/satchel/hyd
 	name = "hydroponics satchel"
 	desc = "A green satchel for plant related work."
 	icon_state = "satchel_hyd"
 	item_state = "satchel_hyd"
 
-/obj/item/weapon/storage/backpack/satchel_cap
+/obj/item/weapon/storage/backpack/satchel/cap
 	name = "captain's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
@@ -277,8 +298,6 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
-	max_w_class = 3    //  Largest item that can be placed into the backpack
-	max_combined_w_class = 21   //Capacity of the backpack
 
 	New()
 		select_gamemode_skin(type)
@@ -298,6 +317,10 @@
 	name = "\improper USCM satchel"
 	desc = "A heavy-duty satchel carried by some USCM soldiers and support personnel."
 	icon_state = "marinesat"
+	worn_accessible = TRUE
+	storage_slots = 7
+	max_combined_w_class = 15
+
 
 /obj/item/weapon/storage/backpack/marine/satchel/medic
 	name = "\improper USCM medic satchel"
@@ -309,18 +332,71 @@
 	desc = "A heavy-duty satchel carried by some USCM technicians."
 	icon_state = "marinesatt"
 
+/obj/item/weapon/storage/backpack/marine/smock
+	name = "\improper M3 sniper's smock"
+	desc = "A specially designed smock with pockets for all your sniper needs."
+	icon_state = "smock"
+	worn_accessible = TRUE
+
+
+
+// Welder Backpacks //
+
+/obj/item/weapon/storage/backpack/marine/engineerpack
+	name = "\improper USCM technician welderpack"
+	desc = "A specialized backpack worn by USCM technicians. It carries a fueltank for quick welder refueling and use,"
+	icon_state = "engineerpack"
+	item_state = "engineerpack"
+	var/max_fuel = 260
+	max_combined_w_class = 15
+	storage_slots = 7
+
+/obj/item/weapon/storage/backpack/marine/engineerpack/New()
+	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
+	reagents = R
+	R.my_atom = src
+	R.add_reagent("fuel", max_fuel)
+	..()
+	return
+
+/obj/item/weapon/storage/backpack/marine/engineerpack/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/T = W
+		if(T.welding)
+			user << "\red That was close! However you realized you had the welder on and prevented disaster"
+			return
+		src.reagents.trans_to(W, T.max_fuel)
+		user << "\blue Welder refilled!"
+		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		return
+	. = ..()
+
+/obj/item/weapon/storage/backpack/marine/engineerpack/afterattack(obj/O as obj, mob/user as mob, proximity)
+	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
+		return
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
+		O.reagents.trans_to(src, max_fuel)
+		user << "\blue You crack the cap off the top of the pack and fill it back up again from the tank."
+		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		return
+	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
+		user << "\blue The pack is already full!"
+		return
+	..()
+
+/obj/item/weapon/storage/backpack/marine/engineerpack/examine(mob/user)
+	..()
+	user << "[reagents.total_volume] units of fuel left!"
+
+
+
+
+
 /obj/item/weapon/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
 	item_state = "ERT_satchel"
-	max_w_class = 3    //  Largest item that can be placed into the backpack
-	max_combined_w_class = 21   //Capacity of the backpack
-
-/obj/item/weapon/storage/backpack/marine/smock
-	name = "\improper M3 sniper's smock"
-	desc = "A specially designed smock with pockets for all your sniper needs."
-	icon_state = "smock"
 
 /obj/item/weapon/storage/backpack/commando
 	name = "commando bag"
@@ -334,3 +410,5 @@
 	name = "marine commander backpack"
 	desc = "The contents of this backpack are top secret."
 	icon_state = "marinepack"
+	storage_slots = 10
+	max_combined_w_class = 30

@@ -25,7 +25,9 @@
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/officer,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/medical,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/syringe
 				)
 
 	generate_stored_equipment()
@@ -64,7 +66,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/medical,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/syringe
 				)
 
 	generate_stored_equipment()
@@ -101,7 +105,9 @@ You are also an expert when it comes to medication and treatment. If you do not 
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/medical,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/syringe
 				)
 
 	generate_stored_equipment()
@@ -189,7 +195,9 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 				WEAR_BODY = /obj/item/clothing/under/rank/synthetic,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/general/medium
 				)
 
 	generate_entry_conditions(mob/living/carbon/human/H)

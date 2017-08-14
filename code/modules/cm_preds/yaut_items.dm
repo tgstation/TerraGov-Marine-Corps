@@ -801,7 +801,7 @@
 	icon_state = "teleporter"
 	origin_tech = "materials=7;bluespace=7;engineering=7"
 	flags_atom = FPRINT|CONDUCT
-	w_class = 2
+	w_class = 1
 	force = 1
 	throwforce = 1
 	unacidable = 1
@@ -1028,7 +1028,7 @@
 	flags_equip_slot = SLOT_STORE
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 24
-	w_class = 1.0
+	w_class = 1
 	throwforce = 28
 	throw_speed = 3
 	throw_range = 6

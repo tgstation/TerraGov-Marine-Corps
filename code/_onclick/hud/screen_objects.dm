@@ -9,7 +9,7 @@
 /obj/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
-	layer = 20.0
+	layer = 20
 	unacidable = 1
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 
@@ -36,6 +36,8 @@
 
 /obj/screen/close
 	name = "close"
+	icon_state = "x"
+
 
 /obj/screen/close/Click()
 	if(master)
@@ -91,6 +93,21 @@
 			usr.ClickOn(master)
 			usr.next_move = world.time+2
 	return 1
+
+/obj/screen/storage/proc/update_fullness(obj/item/weapon/storage/S)
+	if(!S.contents.len)
+		color = null
+	else
+		var/total_w = 0
+		for(var/obj/item/I in S)
+			total_w += I.w_class
+		var/fullness = round(10*max(S.contents.len/S.storage_slots, total_w/S.max_combined_w_class))
+		switch(fullness)
+			if(10) color = "#ff0000"
+			if(7 to 9) color = "#ffa500"
+			else color = null
+
+
 
 /obj/screen/gun
 	name = "gun"

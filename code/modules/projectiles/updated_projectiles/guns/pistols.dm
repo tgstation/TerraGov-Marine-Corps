@@ -39,6 +39,7 @@
 	caliber = "9mm"
 	icon_state = "m4a3"
 	max_rounds = 12
+	w_class = 2
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/m4a3
 

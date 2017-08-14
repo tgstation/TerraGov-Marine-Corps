@@ -45,7 +45,7 @@
 	icon_state = "cautery"
 	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = FPRINT|CONDUCT
-	w_class = 2.0
+	w_class = 1
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("burnt")
 
@@ -82,7 +82,7 @@
 	force = 10.0
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
-	w_class = 2.0
+	w_class = 1
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5

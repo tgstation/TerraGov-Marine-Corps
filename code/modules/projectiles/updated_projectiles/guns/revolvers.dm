@@ -259,6 +259,7 @@
 	flags_equip_slot = NOFLAGS
 	caliber = ".44"
 	icon_state = "m44"
+	w_class = 2
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/m44
 

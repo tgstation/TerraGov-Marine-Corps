@@ -27,7 +27,6 @@
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 22,
-					/obj/item/ammo_magazine/rifle/ap = 5,
 					/obj/item/ammo_magazine/shotgun = 8,
 					/obj/item/ammo_magazine/shotgun/buckshot = 8,
 
@@ -46,7 +45,16 @@
 					/obj/item/clothing/head/helmet/marine = 10,
 
 					/obj/item/attachable/flashlight = 10,
-					/obj/item/attachable/bayonet = 10
+					/obj/item/attachable/bayonet = 10,
+
+					/obj/item/weapon/storage/pouch/general = 10,
+					/obj/item/weapon/storage/pouch/bayonet = 10,
+					/obj/item/weapon/storage/pouch/firstaid/full = 10,
+					/obj/item/weapon/storage/pouch/pistol = 10,
+					/obj/item/weapon/storage/pouch/magazine = 10,
+					/obj/item/weapon/storage/pouch/flare = 10,
+					/obj/item/weapon/storage/pouch/magazine/pistol = 10
+
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
@@ -61,29 +69,39 @@
 
 	prices = list()
 
-	select_gamemode_equipment(gamemode)
-		var/products2[]
-		switch(gamemode)
-			if(/datum/game_mode/ice_colony)
-				products2 = list(
-							/obj/item/clothing/mask/rebreather/scarf = 10,
-								)
-			if(/datum/game_mode/bigred)
-				products2 = list(
-							/obj/item/clothing/mask/gas/ = 20,
-								)
-		build_inventory(products2)
 
-	New()
-
-		..()
-
-		marine_vendors.Add(src)
+/obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
+	var/products2[]
+	switch(gamemode)
+		if(/datum/game_mode/ice_colony)
+			products2 = list(
+						/obj/item/clothing/mask/rebreather/scarf = 10,
+							)
+		if(/datum/game_mode/bigred)
+			products2 = list(
+						/obj/item/clothing/mask/gas/ = 20,
+							)
+	build_inventory(products2)
 
 
-	Dispose()
-		. = ..()
-		marine_vendors.Remove(src)
+/obj/machinery/vending/marine/New()
+	..()
+	marine_vendors.Add(src)
+
+
+/obj/machinery/vending/marine/Dispose()
+	. = ..()
+	marine_vendors.Remove(src)
+
+
+/obj/machinery/vending/marine/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/weapon/gun))
+		stock(W, user)
+		return TRUE
+	if(istype(W, /obj/item/ammo_magazine))
+		stock(W, user)
+		return TRUE
+	. = ..()
 
 
 /obj/machinery/vending/marine/cargo_guns
@@ -100,6 +118,16 @@
 					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
 					/obj/item/weapon/storage/belt/gun/m44 = 3,
 					/obj/item/weapon/large_holster/m39 = 3,
+					/obj/item/weapon/storage/pouch/general/medium = 1,
+					/obj/item/weapon/storage/pouch/construction = 1,
+					/obj/item/weapon/storage/pouch/explosive/large = 1,
+					/obj/item/weapon/storage/pouch/syringe = 1,
+					/obj/item/weapon/storage/pouch/medical = 1,
+					/obj/item/weapon/storage/pouch/medkit = 1,
+					/obj/item/weapon/storage/pouch/magazine/medium = 1,
+					/obj/item/weapon/storage/pouch/flare = 3,
+					/obj/item/weapon/storage/pouch/firstaid/full = 3,
+					/obj/item/weapon/storage/pouch/magazine/pistol/large = 1,
 					/obj/item/weapon/gun/pistol/m4a3 = 5,
 					/obj/item/weapon/gun/pistol/m1911 = 1,
 					/obj/item/weapon/gun/revolver/m44 = 5,
@@ -112,14 +140,15 @@
 					/obj/item/weapon/gun/rifle/lmg = 0,
 					/obj/item/weapon/gun/shotgun/pump = 5,
 					/obj/item/weapon/gun/shotgun/combat = 0,
-					/obj/item/device/mine = 0,
+					/obj/item/device/mine = 1,
 					/obj/item/weapon/storage/box/nade_box = 4,
-					/obj/item/weapon/grenade/explosive = 0,
-					/obj/item/weapon/grenade/explosive/m15 = 0,
-					/obj/item/weapon/grenade/incendiary = 0,
-					/obj/item/weapon/grenade/smokebomb = 0,
+					/obj/item/weapon/grenade/explosive = 1,
+					/obj/item/weapon/grenade/explosive/m15 = 1,
+					/obj/item/weapon/grenade/incendiary = 1,
+					/obj/item/weapon/grenade/smokebomb = 1,
 					/obj/item/weapon/grenade/phosphorus = 0,
-					/obj/item/device/flashlight/ = 5
+					/obj/item/weapon/storage/box/m94 = 8,
+					/obj/item/device/flashlight/combat = 5
 					)
 
 	contraband = list(
@@ -138,12 +167,13 @@
 					/obj/item/weapon/gun/smg/p90 = 0
 					)
 	premium = list()
-	select_gamemode_equipment()
+
+
+	select_gamemode_equipment(gamemode)
+		return
 
 	New()
-
 		..()
-
 		marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_ammo
@@ -156,27 +186,27 @@
 					/obj/item/weapon/large_holster/machete/full = 6,
 					/obj/item/ammo_magazine/pistol = 10,
 					/obj/item/ammo_magazine/pistol/hp = 0,
-					/obj/item/ammo_magazine/pistol/ap = 0,
-					/obj/item/ammo_magazine/pistol/incendiary = 0,
-					/obj/item/ammo_magazine/pistol/extended = 0,
-					/obj/item/ammo_magazine/pistol/m1911 = 0,
+					/obj/item/ammo_magazine/pistol/ap = 3,
+					/obj/item/ammo_magazine/pistol/incendiary = 1,
+					/obj/item/ammo_magazine/pistol/extended = 1,
+					/obj/item/ammo_magazine/pistol/m1911 = 1,
 					/obj/item/ammo_magazine/revolver = 10,
-					/obj/item/ammo_magazine/revolver/marksman = 0,
+					/obj/item/ammo_magazine/revolver/marksman = 2,
 					/obj/item/ammo_magazine/smg/m39 = 15,
-					/obj/item/ammo_magazine/smg/m39/ap = 0,
-					/obj/item/ammo_magazine/smg/m39/extended = 0,
+					/obj/item/ammo_magazine/smg/m39/ap = 5,
+					/obj/item/ammo_magazine/smg/m39/extended = 1,
 					/obj/item/ammo_magazine/rifle = 15,
-					/obj/item/ammo_magazine/rifle/extended = 0,
-					/obj/item/ammo_magazine/rifle/incendiary = 0,
-					/obj/item/ammo_magazine/rifle/ap = 0,
-					/obj/item/ammo_magazine/rifle/marksman = 0,
+					/obj/item/ammo_magazine/rifle/extended = 1,
+					/obj/item/ammo_magazine/rifle/incendiary = 1,
+					/obj/item/ammo_magazine/rifle/ap = 10,
+					/obj/item/ammo_magazine/rifle/marksman = 1,
 					/obj/item/ammo_magazine/rifle/m41aMK1 = 0,
 					/obj/item/ammo_magazine/rifle/lmg = 0,
 					/obj/item/ammo_magazine/shotgun = 5,
 					/obj/item/ammo_magazine/shotgun/buckshot = 5,
-					/obj/item/ammo_magazine/sniper = 0,
-					/obj/item/ammo_magazine/sniper/incendiary = 0,
-					/obj/item/ammo_magazine/sniper/flak = 0,
+					/obj/item/ammo_magazine/sniper = 1,
+					/obj/item/ammo_magazine/sniper/incendiary = 1,
+					/obj/item/ammo_magazine/sniper/flak = 1,
 					/obj/item/smartgun_powerpack = 0
 					)
 
@@ -194,13 +224,21 @@
 					/obj/item/ammo_magazine/smg/p90 = 0
 					)
 	premium = list()
-	select_gamemode_equipment()
+
+
+	select_gamemode_equipment(gamemode)
+		return
 
 	New()
-
 		..()
-
+		cargo_ammo_vendors.Add(src)
 		marine_vendors.Remove(src)
+
+	Dispose()
+		. = ..()
+		cargo_ammo_vendors.Remove(src)
+
+
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
@@ -323,7 +361,11 @@
 						/obj/item/weapon/module/power_control = 10,
 						/obj/item/weapon/airalarm_electronics = 10,
 						/obj/item/weapon/cell/high = 10,
-						/obj/item/weapon/etool = 3
+						/obj/item/weapon/etool = 3,
+						/obj/item/weapon/storage/pouch/explosive/large = 2,
+						/obj/item/weapon/storage/pouch/construction = 2,
+						/obj/item/weapon/storage/pouch/electronics = 2,
+						/obj/item/weapon/storage/pouch/magazine/medium = 2
 					)
 	contraband = list(/obj/item/weapon/cell/super = 1)
 
@@ -355,7 +397,11 @@
 						/obj/item/device/healthanalyzer = 3,
 						/obj/item/clothing/glasses/hud/health = 3,
 						/obj/item/weapon/storage/firstaid/regular = 4,
-						/obj/item/weapon/storage/firstaid/adv = 3
+						/obj/item/weapon/storage/firstaid/adv = 3,
+						/obj/item/weapon/storage/pouch/medical = 2,
+						/obj/item/weapon/storage/pouch/syringe = 2,
+						/obj/item/weapon/storage/pouch/medkit = 1,
+						/obj/item/weapon/storage/pouch/magazine/medium = 2
 					)
 	contraband = list(/obj/item/weapon/reagent_containers/blood/OMinus = 1)
 
@@ -379,6 +425,8 @@
 //						/obj/item/weapon/flamethrower/full = 1,
 //						/obj/item/weapon/tank/phoron/m240 = 3,
 						/obj/item/weapon/shield/riot = 1,
+						/obj/item/weapon/storage/pouch/magazine/large = 1,
+						/obj/item/weapon/storage/pouch/general/medium = 1
 			)
 	contraband = list()
 	premium = list(
@@ -402,7 +450,9 @@
 
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
-						/obj/item/clothing/tie/storage/webbing = 1
+						/obj/item/clothing/tie/storage/webbing = 1,
+						/obj/item/weapon/storage/pouch/magazine/large = 1,
+						/obj/item/weapon/storage/pouch/general/medium = 1
 			)
 	contraband = list()
 	premium = list(/obj/item/weapon/shield/riot = 1)
@@ -438,7 +488,8 @@
 	products = list(
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/weapon/storage/box/m56_system = 1,
-						/obj/item/smartgun_powerpack = 1
+						/obj/item/smartgun_powerpack = 1,
+						/obj/item/weapon/storage/pouch/magazine/medium = 1
 			)
 	contraband = list()
 	premium = list()
@@ -467,8 +518,25 @@
 						/obj/item/device/motiondetector = 1,
 						/obj/item/weapon/storage/backpack/marine/satchel = 2,
 						/obj/item/weapon/gun/flamer = 2,
-						/obj/item/ammo_magazine/flamer_tank = 8
+						/obj/item/ammo_magazine/flamer_tank = 8,
+						/obj/item/weapon/storage/pouch/magazine/large = 1,
+						/obj/item/weapon/storage/pouch/general/large = 1
 					)
+
+/obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
+	var/products2[]
+	switch(gamemode)
+		if(/datum/game_mode/ice_colony)
+			products2 = list( /obj/item/weapon/book/manual/ice_colony_map = 3)
+		if(/datum/game_mode/bigred)
+			products2 = list(/obj/item/weapon/book/manual/big_red_map = 3)
+		if(/datum/game_mode/whiskey_outpost)
+			products2 = list(/obj/item/weapon/book/manual/whiskey_outpost_map = 3)
+		else
+			products2 = list(/obj/item/weapon/book/manual/lazarus_landing_map = 3)
+	build_inventory(products2)
+
+
 
 /obj/machinery/vending/attachments
 	name = "\improper Armat Systems Attachments Vendor"

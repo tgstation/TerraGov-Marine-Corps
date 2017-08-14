@@ -429,7 +429,7 @@
 	New()
 		..()
 		if(prob(50)) new /obj/item/weapon/storage/backpack/medic(src)
-		else new /obj/item/weapon/storage/backpack/satchel_med(src)
+		else new /obj/item/weapon/storage/backpack/satchel/med(src)
 		new /obj/item/clothing/under/rank/nursesuit (src)
 		new /obj/item/clothing/head/nursehat (src)
 		var/i = 0

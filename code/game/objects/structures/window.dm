@@ -6,6 +6,7 @@
 	density = 1
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1
+	layer = OBJ_LAYER + 0.2 //Just above doors
 	flags_atom = ON_BORDER
 	var/health = 15
 	var/state = 2

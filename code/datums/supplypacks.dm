@@ -141,6 +141,38 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "extra storage crate"
 	group = "Operations"
 
+/datum/supply_packs/pouches
+	name = "Pouches crate"
+	randomised_num_contained = 6
+	contains = list(/obj/item/weapon/storage/pouch/general,
+					/obj/item/weapon/storage/pouch/general/medium,
+					/obj/item/weapon/storage/pouch/general/large,
+					/obj/item/weapon/storage/pouch/firstaid/full,
+					/obj/item/weapon/storage/pouch/bayonet,
+					/obj/item/weapon/storage/pouch/pistol,
+					/obj/item/weapon/storage/pouch/magazine,
+					/obj/item/weapon/storage/pouch/magazine/medium,
+					/obj/item/weapon/storage/pouch/magazine/large,
+					/obj/item/weapon/storage/pouch/magazine/pistol,
+					/obj/item/weapon/storage/pouch/magazine/pistol/large,
+					/obj/item/weapon/storage/pouch/explosive,
+					/obj/item/weapon/storage/pouch/explosive/large,
+					/obj/item/weapon/storage/pouch/medical,
+					/obj/item/weapon/storage/pouch/syringe,
+					/obj/item/weapon/storage/pouch/medkit,
+					/obj/item/weapon/storage/pouch/document,
+					/obj/item/weapon/storage/pouch/flare,
+					/obj/item/weapon/storage/pouch/electronics,
+					/obj/item/weapon/storage/pouch/construction,
+					/obj/item/weapon/storage/pouch/radio,
+					/obj/item/weapon/storage/pouch/survival
+					)
+	cost = 50
+	containertype = /obj/structure/closet/crate
+	containername = "pouches crate"
+	group = "Operations"
+
+
 /datum/supply_packs/explosives
 	name = "Explosives crate"
 	contains = list(
@@ -157,8 +189,22 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "\improper explosives crate (WARNING)"
 	group = "Operations"
 
-/datum/supply_packs/weapons_inc
-	name = "M240 Incinerator crate"
+/datum/supply_packs/flares
+	name = "Flare pack crate (M94)"
+	contains = list(
+					/obj/item/weapon/storage/box/m94,
+					/obj/item/weapon/storage/box/m94,
+					/obj/item/weapon/storage/box/m94,
+					/obj/item/weapon/storage/box/m94
+				)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "flare pack crate"
+	group = "Operations"
+
+
+/datum/supply_packs/flamethrower
+	name = "M240 Flamethrower crate"
 	contains = list(
 					/obj/item/weapon/gun/flamer,
 					/obj/item/weapon/gun/flamer,
@@ -198,7 +244,24 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot
 				)
-	cost = 30
+	cost = 15
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_shotgun_regular
+	name = "Shotgun Ammo Boxes crate"
+	contains = list(
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/ammo_magazine/shotgun/buckshot
+				)
+	cost = 15
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
@@ -206,7 +269,15 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/ammo_box_rifle
 	name = "Large Ammo Box crate (M41A)"
 	contains = list(/obj/item/big_ammo_box)
-	cost = 50
+	cost = 20
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_box_rifle_ap
+	name = "Large AP Ammo Box crate (M41A)"
+	contains = list(/obj/item/big_ammo_box/ap)
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
@@ -214,7 +285,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/ammo_box_smg
 	name = "Large Ammo Box crate (M39)"
 	contains = list(/obj/item/big_ammo_box/smg)
-	cost = 50
+	cost = 20
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
@@ -324,22 +395,35 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "surplus ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_specialist
-	name = "Specialist Ammo crate (M42c, M56)"
+/datum/supply_packs/ammo_smartgun
+	name = "M56 Smartgun Powerpack crate"
 	contains = list(
 					/obj/item/smartgun_powerpack,
 					/obj/item/smartgun_powerpack,
+				)
+	cost = 25
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "smartgun powerpack crate"
+	group = "Ammo"
+
+
+/datum/supply_packs/ammo_sniper
+	name = "M42c Sniper Ammo crate"
+	contains = list(
 					/obj/item/ammo_magazine/sniper,
 					/obj/item/ammo_magazine/sniper/flak,
 					/obj/item/ammo_magazine/sniper/incendiary
 				)
-	cost = 50
+	cost = 25
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "specialist ammo crate"
+	containername = "sniper ammo crate"
 	group = "Ammo"
 
+
+
+
 /datum/supply_packs/explosive_ammo_crate
-	name = "Explosive Ammo crate (SADAR rockets)"
+	name = "SADAR Rocket Ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/rocket,
 					/obj/item/ammo_magazine/rocket,
@@ -350,7 +434,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 				)
 	cost = 30
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "explosive ammo crate"
+	containername = "SADAR ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sentry

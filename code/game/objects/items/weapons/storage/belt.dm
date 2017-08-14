@@ -119,7 +119,8 @@
 		"/obj/item/device/flashlight/flare",
 	    "/obj/item/weapon/reagent_containers/hypospray",
 	    "/obj/item/bodybag",
-	    "/obj/item/weapon/melee/defibrillator"
+	    "/obj/item/weapon/melee/defibrillator",
+	    "/obj/item/roller"
 	)
 
 /obj/item/weapon/storage/belt/medical/New()
@@ -177,32 +178,9 @@
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
 
-/obj/item/weapon/storage/belt/combatLifesaver/u
+/obj/item/weapon/storage/belt/combatLifesaver/upp
 	icon_state = "medicalbag_u"
 	item_state = "medicbag_u"
-
-/obj/item/weapon/storage/belt/combatLifesaver/u/New()  //The belt, with all it's magic inside!
-	..()
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
 
 /obj/item/weapon/storage/belt/security
 	name = "\improper M276 pattern security rig"
@@ -240,8 +218,9 @@
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
 	w_class = 4
-	storage_slots = 6
-	max_combined_w_class = 12
+	storage_slots = 9
+	max_w_class = 3
+	max_combined_w_class = 18
 	can_hold = list(
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
@@ -250,8 +229,7 @@
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
 		"/obj/item/device/mine",
-		"/obj/item/weapon/reagent_containers/food/snacks",
-		"/obj/item/device/flashlight/flare"
+		"/obj/item/weapon/reagent_containers/food/snacks"
 		)
 
 	New()
@@ -307,15 +285,17 @@
 	icon_state="knifebelt"
 	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
 	w_class = 3
-	storage_slots = 4
+	storage_slots = 6
 	max_w_class = 1
-	max_combined_w_class=4
+	max_combined_w_class = 6
 
 	can_hold=list("/obj/item/weapon/throwing_knife")
 	New()
 		select_gamemode_skin(type)
 		..()
 		item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
+		new /obj/item/weapon/throwing_knife(src)
+		new /obj/item/weapon/throwing_knife(src)
 		new /obj/item/weapon/throwing_knife(src)
 		new /obj/item/weapon/throwing_knife(src)
 		new /obj/item/weapon/throwing_knife(src)
@@ -367,8 +347,8 @@
 	item_state = "m4a3_holster"
 	use_sound = null
 	w_class = 4
-	storage_slots = 4
-	max_combined_w_class = 6
+	storage_slots = 5
+	max_combined_w_class = 11
 	max_w_class = 3
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
@@ -448,15 +428,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
-		"/obj/item/weapon/gun/pistol/m1911",
-		"/obj/item/weapon/gun/pistol/vp70",
-		"/obj/item/ammo_magazine/pistol",
-		"/obj/item/ammo_magazine/pistol/hp",
-		"/obj/item/ammo_magazine/pistol/ap",
-		"/obj/item/ammo_magazine/pistol/incendiary",
-		"/obj/item/ammo_magazine/pistol/extended",
-		"/obj/item/ammo_magazine/pistol/m1911",
-		"/obj/item/ammo_magazine/pistol/vp70"
+		"/obj/item/ammo_magazine/pistol"
 		)
 
 	New()
@@ -469,6 +441,7 @@
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/m4a3/commander/New()
@@ -477,11 +450,21 @@
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
 	new_gun.on_enter_storage(src)
+
+
+/obj/item/weapon/storage/belt/gun/m4a3/vp70
+	can_hold = list(
+		"/obj/item/weapon/gun/pistol/m4a3",
+		"/obj/item/weapon/gun/pistol/vp70",
+		"/obj/item/ammo_magazine/pistol"
+		)
 
 /obj/item/weapon/storage/belt/gun/m4a3/vp70/New()
 	..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -495,9 +478,7 @@
 	max_w_class = 7
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/m44",
-		"/obj/item/ammo_magazine/revolver",
-		"/obj/item/ammo_magazine/revolver/marksman",
-		"/obj/item/ammo_magazine/revolver/heavy"
+		"/obj/item/ammo_magazine/revolver"
 		)
 	New()
 		..()
@@ -506,6 +487,7 @@
 /obj/item/weapon/storage/belt/gun/m44/full/New()
 	..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
@@ -536,6 +518,7 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/mateba/admiral/New()
@@ -543,6 +526,7 @@
 	icon_state = "amateba_holster"
 	item_state = "amateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -555,8 +539,6 @@
 	item_state = "korovin_holster"
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/c99",
-		"/obj/item/weapon/gun/pistol/c99/russian",
-		"/obj/item/weapon/gun/pistol/c99/upp",
 		"/obj/item/ammo_magazine/pistol/c99",
 		"/obj/item/ammo_magazine/pistol/c99t"
 		)
@@ -567,6 +549,7 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/korovin/tranq/New()
@@ -574,5 +557,6 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp/tranq(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)

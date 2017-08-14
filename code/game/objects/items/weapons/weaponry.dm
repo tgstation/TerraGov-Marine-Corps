@@ -73,7 +73,7 @@
 	item_state = null
 	hitsound = null
 	var/active = 0
-	w_class = 2
+	w_class = 1
 	force = 8
 	sharp = 0
 	edge = 0

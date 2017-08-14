@@ -6,7 +6,7 @@
 	icon = 'icons/obj/powerloader.dmi'
 	desc = "Autonomous Power Loader Unit. The workhorse of the exosuit world."
 	icon_state = "powerloader_open"
-	layer = OBJ_LAYER
+	layer = OBJ_LAYER + 0.3 //so the top appears above windows
 	anchored = 1
 	density = 1
 	move_delay = 6

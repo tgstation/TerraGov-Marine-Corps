@@ -5,7 +5,7 @@
 	flags_atom = FPRINT | CONDUCT
 	flags_pass = PASSTABLE
 	flags_equip_slot = SLOT_WAIST
-	w_class = 2.0
+	w_class = 1
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20

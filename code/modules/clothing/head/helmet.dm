@@ -181,7 +181,7 @@
 		helmet_overlays = list("damage","band","item") //To make things simple.
 		pockets = new/obj/item/weapon/storage/internal(src)
 		pockets.storage_slots = 1
-		pockets.max_w_class = 2
+		pockets.max_w_class = 1
 		pockets.max_combined_w_class = 2
 
 		camera = new /obj/machinery/camera(src)

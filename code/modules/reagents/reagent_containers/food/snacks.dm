@@ -2993,6 +2993,8 @@
 	desc = "Packed full of nutrients you can't pronounce."
 	icon_state = "eat_bar"
 	bitesize = 2
+	w_class = 1
+
 	New()
 		..()
 		reagents.add_reagent("nutriment", 3)
@@ -3017,7 +3019,7 @@
 	bitesize = 1
 	icon_state = "entree"
 	var/flavor = "boneless pork ribs"//default value
-	w_class = 3
+
 	New(loc, newflavor)
 		..()
 		determinetype(newflavor)
@@ -3061,7 +3063,7 @@
 	name = "\improper USCM MRE"
 	desc = "Meal Ready-to-Eat, property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
 	icon_state = "mealpack"
-	w_class = 1
+	w_class = 2
 	can_hold = list()
 	storage_slots = 4
 	max_w_class = 0

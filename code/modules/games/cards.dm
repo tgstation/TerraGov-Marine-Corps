@@ -7,7 +7,7 @@
 	desc = "A simple deck of playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "deck"
-	w_class = 2
+	w_class = 1
 
 	var/list/cards = list()
 

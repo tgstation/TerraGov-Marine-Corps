@@ -435,7 +435,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 					return 0
 				if(flags_equip_slot & SLOT_NO_STORE)
 					return 0
-				if(w_class <= 2 || (flags_equip_slot & SLOT_STORE))
+				if(w_class <= 1 || (flags_equip_slot & SLOT_STORE))
 					return 1
 			if(WEAR_R_STORE)
 				if(H.r_store)
