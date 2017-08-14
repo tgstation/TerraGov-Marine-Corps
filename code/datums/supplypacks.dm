@@ -134,7 +134,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/clothing/tie/storage/webbing,
 					/obj/item/weapon/storage/belt/gun/m4a3,
 					/obj/item/weapon/storage/belt/gun/m44,
-					/obj/item/weapon/large_holster/m39
+					/obj/item/weapon/storage/large_holster/m39
 					)
 	cost = 40
 	containertype = /obj/structure/closet/crate
@@ -408,7 +408,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 
 
 /datum/supply_packs/ammo_sniper
-	name = "M42c Sniper Ammo crate"
+	name = "M42A Sniper Ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/sniper,
 					/obj/item/ammo_magazine/sniper/flak,
@@ -860,8 +860,8 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 
 
 /datum/supply_packs/gun_holster
-	contains = list(/obj/item/weapon/large_holster/m39,
-					/obj/item/weapon/large_holster/m39)
+	contains = list(/obj/item/weapon/storage/large_holster/m39,
+					/obj/item/weapon/storage/large_holster/m39)
 	name = "M39 Holster crate"
 	cost = 25
 	containertype = /obj/structure/closet/crate

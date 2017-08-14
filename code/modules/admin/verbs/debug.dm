@@ -636,7 +636,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/vp70,(M), WEAR_WAIST)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/magazine/pistol/pmc_vp70(M), WEAR_R_STORE)
-//phil235
+
 			switch(choice)
 				if(1,2,3)
 					M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), WEAR_R_HAND)
@@ -1066,7 +1066,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/magazine/large/upp(M), WEAR_R_STORE)
-//phil235			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/combatLifesaver/upp(M.back), WEAR_IN_BACK)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/upp(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/chameleon	(M.back), WEAR_IN_BACK)

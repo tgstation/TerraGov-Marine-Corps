@@ -49,7 +49,7 @@
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/large_holster/machete,
+		/obj/item/weapon/storage/large_holster/machete,
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)

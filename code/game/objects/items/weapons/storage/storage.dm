@@ -44,7 +44,7 @@
 
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
-		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+		if (loc != usr || (loc && loc.loc == usr))
 			return
 
 		if (!( usr.is_mob_restrained() ) && !( usr.stat ))
@@ -55,9 +55,8 @@
 				if("l_hand")
 					usr.drop_inv_item_on_ground(src)
 					usr.put_in_l_hand(src)
-			src.add_fingerprint(usr)
-			return
-	return
+			add_fingerprint(usr)
+
 
 
 /obj/item/weapon/storage/proc/return_inv()
@@ -362,17 +361,6 @@
 	return
 
 /obj/item/weapon/storage/attack_hand(mob/user)
-/*	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
-			H.put_in_hands(src)
-			H.l_store = null
-			return
-		if(H.r_store == src && !H.get_active_hand())
-			H.put_in_hands(src)
-			H.r_store = null
-			return
-*/
 	if (src.loc == user)
 		src.open(user)
 	else

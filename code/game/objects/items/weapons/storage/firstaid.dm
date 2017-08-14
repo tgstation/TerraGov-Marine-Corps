@@ -13,6 +13,7 @@
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
+	cant_hold = list("/obj/item/ammo_magazine") //to prevent powergaming.
 	var/empty = 0 //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full

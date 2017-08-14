@@ -34,11 +34,12 @@
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/weapon/storage/box/m94 = 5,
 					/obj/item/weapon/storage/backpack/marine = 10,
+					/obj/item/weapon/storage/backpack/marine/satchel = 10,
 					/obj/item/device/radio/headset/almayer = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
 					/obj/item/weapon/storage/belt/knifepouch = 5,
 					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
-					/obj/item/weapon/large_holster/m37 = 5,
+					/obj/item/weapon/storage/large_holster/m37 = 5,
 					/obj/item/clothing/shoes/marine = 5,
 					/obj/item/clothing/under/marine = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
@@ -117,7 +118,7 @@
 					/obj/item/clothing/tie/holster = 0,
 					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
 					/obj/item/weapon/storage/belt/gun/m44 = 3,
-					/obj/item/weapon/large_holster/m39 = 3,
+					/obj/item/weapon/storage/large_holster/m39 = 3,
 					/obj/item/weapon/storage/pouch/general/medium = 1,
 					/obj/item/weapon/storage/pouch/construction = 1,
 					/obj/item/weapon/storage/pouch/explosive/large = 1,
@@ -183,7 +184,7 @@
 	wrenchable = FALSE
 	products = list(
 					///obj/item/weapon/claymore/mercsword/machete = 5,
-					/obj/item/weapon/large_holster/machete/full = 6,
+					/obj/item/weapon/storage/large_holster/machete/full = 6,
 					/obj/item/ammo_magazine/pistol = 10,
 					/obj/item/ammo_magazine/pistol/hp = 0,
 					/obj/item/ammo_magazine/pistol/ap = 3,
@@ -399,8 +400,7 @@
 						/obj/item/weapon/storage/firstaid/regular = 4,
 						/obj/item/weapon/storage/firstaid/adv = 3,
 						/obj/item/weapon/storage/pouch/medical = 2,
-						/obj/item/weapon/storage/pouch/syringe = 2,
-						/obj/item/weapon/storage/pouch/medkit = 1,
+						/obj/item/weapon/storage/pouch/medkit = 2,
 						/obj/item/weapon/storage/pouch/magazine/medium = 2
 					)
 	contraband = list(/obj/item/weapon/reagent_containers/blood/OMinus = 1)

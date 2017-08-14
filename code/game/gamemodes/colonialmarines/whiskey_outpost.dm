@@ -474,7 +474,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
 			//Backup SMG Weapon
-			H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/m39/full(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/large_holster/m39/full(H), WEAR_WAIST)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
@@ -500,7 +500,7 @@
 
 				if(9 to 10)//B18
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/heavy_armor(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/weapon/large_holster/machete/full(H), WEAR_L_HAND)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/large_holster/machete/full(H), WEAR_L_HAND)
 
 		//SQUAD MARINE
 		else

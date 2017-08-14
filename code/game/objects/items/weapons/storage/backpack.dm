@@ -19,6 +19,12 @@
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
+/*			if(user.drop_inv_item_on_ground(src))
+				pickup(user)
+				add_fingerprint(user)
+				if(!user.put_in_active_hand(src))
+					dropped(user)
+*/
 			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
 			return
 	..()
@@ -47,7 +53,13 @@
 	..()
 
 
-
+/obj/item/weapon/storage/backpack/open(mob/user)
+	if(!worn_accessible && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.back == src)
+			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
+			return
+	..()
 
 /*
  * Backpack Types
