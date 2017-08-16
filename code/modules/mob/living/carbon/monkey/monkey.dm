@@ -7,6 +7,7 @@
 	gender = NEUTER
 	flags_pass = PASSTABLE
 	update_icon = 0		///no need to call regenerate_icon
+	hud_possible = list(STATUS_HUD_XENO_INFECTION)
 
 	var/obj/item/weapon/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/greaterform = "Human"                  // Used when humanizing a monkey.
@@ -14,6 +15,14 @@
 	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
 	var/list/uni_append = list(0x12C,0x4E2)    // Same as above for DNA2.
 	var/update_muts = 1                        // Monkey gene must be set at start.
+
+
+/mob/living/carbon/monkey/prepare_huds()
+	..()
+	med_hud_set_status()
+	add_to_all_mob_huds()
+
+
 
 /mob/living/carbon/monkey/tajara
 	name = "farwa"

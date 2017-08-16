@@ -11,6 +11,7 @@
 	w_class = 3.0
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
+	var/list/bypass_w_limit = new/list() //a list of objects which this item can store despite not passing the w_class limit
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
@@ -249,7 +250,14 @@
 				usr << "<span class='notice'>[src] cannot hold [W].</span>"
 			return 0
 
-	if (W.w_class > max_w_class)
+	var/w_limit_bypassed = 0
+	if(bypass_w_limit.len)
+		for(var/A in bypass_w_limit)
+			if(istype(W, text2path(A) ))
+				w_limit_bypassed = 1
+				break
+
+	if (!w_limit_bypassed && W.w_class > max_w_class)
 		if(!stop_messages)
 			usr << "<span class='notice'>[W] is too big for this [src].</span>"
 		return 0

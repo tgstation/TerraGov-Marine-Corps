@@ -19,14 +19,6 @@
 
 /obj/item/weapon/storage/belt/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.belt == src)
-			//we drop the pouches in our pocket slots.
-			if(istype(H.r_store, /obj/item/weapon/storage/pouch))
-				H.drop_inv_item_on_ground(H.r_store)
-			if(istype(H.l_store, /obj/item/weapon/storage/pouch))
-				H.drop_inv_item_on_ground(H.l_store)
 	..()
 
 
@@ -249,6 +241,7 @@
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/revolver",
 		"/obj/item/ammo_magazine/sniper",
+		"/obj/item/ammo_magazine/handful",
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
@@ -385,53 +378,62 @@
 		"/obj/item/ammo_magazine/pistol"
 		)
 
-	Dispose()
-		if(gun_underlay)
-			cdel(gun_underlay)
-			gun_underlay = null
-		if(current_gun)
-			cdel(current_gun)
-			current_gun = null
-		. = ..()
+/obj/item/weapon/storage/belt/gun/Dispose()
+	if(gun_underlay)
+		cdel(gun_underlay)
+		gun_underlay = null
+	if(current_gun)
+		cdel(current_gun)
+		current_gun = null
+	. = ..()
 
-	proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
-		var/mob/user = loc
-		if(holds_guns_now) //So it has a gun, let's make an icon.
-			/*
-			Have to use a workaround here, otherwise images won't display properly at all times.
-			Reason being, transform is not displayed when right clicking/alt+clicking an object,
-			so it's necessary to pre-load the potential states so the item actually shows up
-			correctly without having to rotate anything. Preloading weapon icons also makes
-			sure that we don't have to do any extra calculations.
-			*/
-			playsound(src,drawSound, 15, 1)
-			gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
-			icon_state += "_g"
-			item_state = icon_state
-			underlays += gun_underlay
-		else
-			playsound(src,sheatheSound, 15, 1)
-			underlays -= gun_underlay
-			icon_state = copytext(icon_state,1,-2)
-			item_state = icon_state
-			cdel(gun_underlay)
-			gun_underlay = null
-		if(istype(user)) user.update_inv_belt()
-		if(istype(user)) user.update_inv_s_store()
 
-	//There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
-	can_be_inserted(obj/item/W, stop_messages) //We don't need to stop messages, but it can be left in.
-		if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
-			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
-				if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-					if(!stop_messages) usr << "<span class='warning'>[src] already holds a gun.</span>"
-					return //Nothing else to do.
-			else //Must be ammo.
-			//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
-				if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
-					if(!stop_messages) usr << "<span class='warning'>[src] can't hold any more magazines.</span>"
-					return
-			return 1
+/obj/item/weapon/storage/belt/gun/attack_hand(mob/user)
+	if(current_gun && ishuman(user) && loc == user)
+		current_gun.attack_hand(user)
+	else
+		..()
+
+
+/obj/item/weapon/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
+	var/mob/user = loc
+	if(holds_guns_now) //So it has a gun, let's make an icon.
+		/*
+		Have to use a workaround here, otherwise images won't display properly at all times.
+		Reason being, transform is not displayed when right clicking/alt+clicking an object,
+		so it's necessary to pre-load the potential states so the item actually shows up
+		correctly without having to rotate anything. Preloading weapon icons also makes
+		sure that we don't have to do any extra calculations.
+		*/
+		playsound(src,drawSound, 15, 1)
+		gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
+		icon_state += "_g"
+		item_state = icon_state
+		underlays += gun_underlay
+	else
+		playsound(src,sheatheSound, 15, 1)
+		underlays -= gun_underlay
+		icon_state = copytext(icon_state,1,-2)
+		item_state = icon_state
+		cdel(gun_underlay)
+		gun_underlay = null
+	if(istype(user)) user.update_inv_belt()
+	if(istype(user)) user.update_inv_s_store()
+
+
+//There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
+/obj/item/weapon/storage/belt/gun/can_be_inserted(obj/item/W, stop_messages) //We don't need to stop messages, but it can be left in.
+	if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
+		if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
+			if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
+				if(!stop_messages) usr << "<span class='warning'>[src] already holds a gun.</span>"
+				return //Nothing else to do.
+		else //Must be ammo.
+		//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
+			if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
+				if(!stop_messages) usr << "<span class='warning'>[src] can't hold any more magazines.</span>"
+				return
+		return 1
 
 /obj/item/weapon/gun/on_enter_storage(obj/item/weapon/storage/belt/gun/gun_belt)
 	if(istype(gun_belt))

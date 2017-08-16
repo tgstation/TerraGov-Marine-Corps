@@ -16,18 +16,18 @@
 		affected_mob = loc
 		affected_mob.status_flags |= XENO_HOST
 		processing_objects.Add(src)
-		if(istype(affected_mob,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = affected_mob
-			H.med_hud_set_status()
+		if(iscarbon(affected_mob))
+			var/mob/living/carbon/C = affected_mob
+			C.med_hud_set_status()
 	else
 		cdel(src)
 
 /obj/item/alien_embryo/Dispose()
 	if(affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
-		if(istype(affected_mob,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = affected_mob
-			H.med_hud_set_status()
+		if(iscarbon(affected_mob))
+			var/mob/living/carbon/C = affected_mob
+			C.med_hud_set_status()
 		processing_objects.Remove(src)
 	. = ..()
 
@@ -40,9 +40,9 @@
 	if(loc != affected_mob) //Our location is not the host
 		affected_mob.status_flags &= ~(XENO_HOST)
 		processing_objects.Remove(src)
-		if(istype(affected_mob,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = affected_mob
-			H.med_hud_set_status()
+		if(iscarbon(affected_mob))
+			var/mob/living/carbon/C = affected_mob
+			C.med_hud_set_status()
 		affected_mob = null
 		r_FAL
 
@@ -83,9 +83,9 @@
 	if(stage < 5 && counter >= 120)
 		counter = 0
 		stage++
-		if(ishuman(affected_mob))
-			var/mob/living/carbon/human/H = affected_mob
-			H.med_hud_set_status()
+		if(iscarbon(affected_mob))
+			var/mob/living/carbon/C = affected_mob
+			C.med_hud_set_status()
 
 	switch(stage)
 		if(2)

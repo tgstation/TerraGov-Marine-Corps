@@ -25,16 +25,17 @@
 				if(!user.put_in_active_hand(src))
 					dropped(user)
 */
-			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
+			H << "<span class='notice'>You can't look in [src] while it's on your back.</span>"
 			return
 	..()
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W, mob/user)
-	if(!worn_accessible && ishuman(user))
+/*	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
 			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
 			return TRUE
+*/
 	if (use_sound)
 		playsound(src.loc, src.use_sound, 15, 1, 6)
 	..()

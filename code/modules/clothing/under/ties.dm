@@ -366,6 +366,14 @@
 	item_color = "webbing"
 	slots = 3
 
+/obj/item/clothing/tie/storage/webbing/New()
+	..()
+	hold.bypass_w_limit = list(
+		"/obj/item/ammo_magazine/rifle",
+		"/obj/item/ammo_magazine/smg",
+		"/obj/item/ammo_magazine/sniper",
+		 )
+
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
 	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
