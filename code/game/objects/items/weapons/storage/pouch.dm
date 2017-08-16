@@ -14,29 +14,22 @@
 	set category = "Object"
 	draw_mode = !draw_mode
 	if(draw_mode)
-		usr << "Clicking [src] with an empty hand now puts the first stored item in your hand."
+		usr << "Clicking [src] with an empty hand now puts the last stored item in your hand."
 	else
 		usr << "Clicking [src] with an empty hand now opens the pouch storage menu."
 
 
 /obj/item/weapon/storage/pouch/attack_hand(mob/user)
 	if(draw_mode && ishuman(user) && contents.len && loc == user)
-		var/obj/item/I = contents[1]
+		var/obj/item/I = contents[contents.len]
 		I.attack_hand(user)
 	else
 		..()
 
 /obj/item/weapon/storage/pouch/examine(mob/user)
 	..()
-	user << "Can be worn by attaching it to a pocket when wearing a belt."
+	user << "Can be worn by attaching it to a pocket."
 
-/obj/item/weapon/storage/pouch/mob_can_equip(mob/M, slot)
-	. = ..()
-	if(. && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!H.belt || !istype(H.belt, /obj/item/weapon/storage/belt))
-			H << "<span class='warning'>You need to wear a belt first to equip [src].</span>"
-			return 0
 
 /obj/item/weapon/storage/pouch/equipped(mob/user, slot)
 	if(slot == WEAR_L_STORE || slot == WEAR_R_STORE)
@@ -52,9 +45,15 @@
 
 /obj/item/weapon/storage/pouch/general
 	name = "light general pouch"
-	desc = "A general purpose pouch used to carry small items."
+	desc = "A general purpose pouch used to carry small items and ammo magazines."
 	icon_state = "small_drop"
 	draw_mode = 1
+	bypass_w_limit = list("/obj/item/ammo_magazine/rifle",
+					"/obj/item/ammo_magazine/smg",
+					"/obj/item/ammo_magazine/pistol",
+					"/obj/item/ammo_magazine/revolver",
+					"/obj/item/ammo_magazine/sniper",
+					)
 
 /obj/item/weapon/storage/pouch/general/medium
 	name = "medium general pouch"
@@ -71,10 +70,10 @@
 
 /obj/item/weapon/storage/pouch/bayonet
 	name = "bayonet sheath"
-	desc = "A pouch for your knife."
+	desc = "A pouch for your knives."
 	can_hold = list("/obj/item/weapon/combat_knife", "/obj/item/weapon/throwing_knife", "/obj/item/attachable/bayonet")
 	icon_state = "bayonet"
-	storage_slots = 1
+	storage_slots = 3
 	draw_mode = 1
 
 /obj/item/weapon/storage/pouch/bayonet/full/New()
@@ -142,11 +141,12 @@
 //// MAGAZINE POUCHES /////
 
 /obj/item/weapon/storage/pouch/magazine
-	name = "light magazine pouch"
+	name = "magazine pouch"
 	desc = "It can contain ammo magazines."
-	icon_state = "small_ammo_mag"
+	icon_state = "medium_ammo_mag"
 	max_w_class = 3
-	draw_mode = 1
+	storage_slots = 2
+	draw_mode = 0
 	can_hold = list("/obj/item/ammo_magazine/rifle",
 					"/obj/item/ammo_magazine/smg",
 					"/obj/item/ammo_magazine/pistol",
@@ -155,17 +155,11 @@
 					)
 
 
-/obj/item/weapon/storage/pouch/magazine/medium
-	name = "medium magazine pouch"
-	icon_state = "medium_ammo_mag"
-	storage_slots = 2
-	draw_mode = 0
-
 /obj/item/weapon/storage/pouch/magazine/large
 	name = "large magazine pouch"
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
-	draw_mode = 0
+
 
 
 /obj/item/weapon/storage/pouch/magazine/pistol
@@ -174,7 +168,7 @@
 	max_w_class = 2
 	icon_state = "pistol_mag"
 	storage_slots = 2
-	draw_mode = 0
+
 	can_hold = list(
 					"/obj/item/ammo_magazine/pistol",
 					"/obj/item/ammo_magazine/revolver"
@@ -182,7 +176,7 @@
 
 /obj/item/weapon/storage/pouch/magazine/pistol/large
 	name = "large pistol magazine pouch"
-	storage_slots = 3
+	storage_slots = 4
 
 
 
@@ -202,7 +196,7 @@
 	new /obj/item/ammo_magazine/pistol/vp78 (src)
 
 
-/obj/item/weapon/storage/pouch/magazine/medium/upp/New()
+/obj/item/weapon/storage/pouch/magazine/upp/New()
 	..()
 	new /obj/item/ammo_magazine/rifle/type71 (src)
 	new /obj/item/ammo_magazine/rifle/type71 (src)
@@ -213,7 +207,7 @@
 	new /obj/item/ammo_magazine/rifle/type71 (src)
 	new /obj/item/ammo_magazine/rifle/type71 (src)
 
-/obj/item/weapon/storage/pouch/magazine/medium/upp_smg/New()
+/obj/item/weapon/storage/pouch/magazine/upp_smg/New()
 	..()
 	new /obj/item/ammo_magazine/smg/skorpion (src)
 	new /obj/item/ammo_magazine/smg/skorpion (src)
@@ -253,8 +247,8 @@
 /obj/item/weapon/storage/pouch/explosive
 	name = "explosive pouch"
 	desc = "It can contain grenades, and other explosives."
-	icon_state = "explosive"
-	storage_slots = 2
+	icon_state = "large_explosive"
+	storage_slots = 3
 	can_hold = list(
 					"/obj/item/weapon/plastique",
 					"/obj/item/device/mine",
@@ -265,21 +259,12 @@
 	..()
 	new /obj/item/weapon/grenade/explosive (src)
 	new /obj/item/weapon/grenade/explosive (src)
-
-/obj/item/weapon/storage/pouch/explosive/large
-	name = "large explosive pouch"
-	icon_state = "large_explosive"
-	storage_slots = 3
-
-/obj/item/weapon/storage/pouch/explosive/large/full/New()
-	..()
-	new /obj/item/weapon/grenade/explosive (src)
-	new /obj/item/weapon/grenade/explosive (src)
 	new /obj/item/weapon/grenade/explosive (src)
 
 
 /obj/item/weapon/storage/pouch/explosive/upp/New()
 	..()
+	new /obj/item/weapon/plastique(src)
 	new /obj/item/weapon/plastique(src)
 	new /obj/item/weapon/plastique(src)
 
@@ -339,6 +324,14 @@
 	draw_mode = 1
 	icon_state = "flare"
 	can_hold = list("/obj/item/device/flashlight/flare")
+
+/obj/item/weapon/storage/pouch/flare/full/New()
+	..()
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
 
 
 

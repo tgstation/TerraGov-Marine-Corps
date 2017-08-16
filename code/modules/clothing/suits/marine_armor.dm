@@ -113,26 +113,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		..()
 		armor_overlays = list("lamp") //Just one for now, can add more later.
 		update_icon()
-		pockets.max_w_class = 3
-		pockets.can_hold = list(
-		"/obj/item/ammo_magazine/pistol",
+		pockets.max_w_class = 2 //Can contain small items AND rifle magazines.
+		pockets.bypass_w_limit = list(
 		"/obj/item/ammo_magazine/rifle",
-		"/obj/item/ammo_magazine/smg/m39",
+		"/obj/item/ammo_magazine/smg",
 		"/obj/item/ammo_magazine/sniper",
-		"/obj/item/ammo_magazine/revolver",
-		"/obj/item/device/flashlight",
-		"/obj/item/weapon/storage/fancy/cigarettes",
-		"/obj/item/weapon/combat_knife",
-		"/obj/item/weapon/throwing_knife",
-		"/obj/item/attachable/bayonet",
-		"/obj/item/weapon/storage/box/MRE",
-		"/obj/item/weapon/weldingtool",
-		"/obj/item/stack/medical",
-		"/obj/item/weapon/reagent_containers/hypospray",
-		"/obj/item/device/healthanalyzer",
-		"/obj/item/weapon/reagent_containers/pill",
-		"/obj/item/weapon/reagent_containers/syringe",
-		"/obj/item/weapon/storage/pill_bottle",
 		 )
 		pockets.max_combined_w_class = 6
 

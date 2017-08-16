@@ -870,7 +870,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/magazine/medium/upp(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/magazine/upp(M), WEAR_R_STORE)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/bayonet/upp(M), WEAR_L_STORE)
 
 			var/obj/item/weapon/card/id/W = new(M)
@@ -906,7 +906,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/fire(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/magazine/medium/upp_smg, WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/magazine/upp_smg, WEAR_R_STORE)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/bayonet/upp(M), WEAR_L_STORE)
 
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(M), WEAR_EYES)

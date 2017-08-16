@@ -108,7 +108,7 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/explosive/large,
+				WEAR_L_STORE = /obj/item/weapon/storage/pouch/explosive,
 				WEAR_IN_BACK = /obj/item/weapon/plastique,
 				WEAR_IN_BACK = /obj/item/stack/sheet/plasteel,
 				WEAR_IN_BACK = /obj/item/weapon/grenade/explosive/PMC,

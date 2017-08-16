@@ -52,8 +52,7 @@
 					/obj/item/weapon/storage/pouch/bayonet = 10,
 					/obj/item/weapon/storage/pouch/firstaid/full = 10,
 					/obj/item/weapon/storage/pouch/pistol = 10,
-					/obj/item/weapon/storage/pouch/magazine = 10,
-					/obj/item/weapon/storage/pouch/flare = 10,
+					/obj/item/weapon/storage/pouch/flare/full = 10,
 					/obj/item/weapon/storage/pouch/magazine/pistol = 10
 
 					)
@@ -121,12 +120,12 @@
 					/obj/item/weapon/storage/large_holster/m39 = 3,
 					/obj/item/weapon/storage/pouch/general/medium = 1,
 					/obj/item/weapon/storage/pouch/construction = 1,
-					/obj/item/weapon/storage/pouch/explosive/large = 1,
+					/obj/item/weapon/storage/pouch/explosive = 1,
 					/obj/item/weapon/storage/pouch/syringe = 1,
 					/obj/item/weapon/storage/pouch/medical = 1,
 					/obj/item/weapon/storage/pouch/medkit = 1,
-					/obj/item/weapon/storage/pouch/magazine/medium = 1,
-					/obj/item/weapon/storage/pouch/flare = 3,
+					/obj/item/weapon/storage/pouch/magazine = 1,
+					/obj/item/weapon/storage/pouch/flare/full = 3,
 					/obj/item/weapon/storage/pouch/firstaid/full = 3,
 					/obj/item/weapon/storage/pouch/magazine/pistol/large = 1,
 					/obj/item/weapon/gun/pistol/m4a3 = 5,
@@ -363,10 +362,10 @@
 						/obj/item/weapon/airalarm_electronics = 10,
 						/obj/item/weapon/cell/high = 10,
 						/obj/item/weapon/etool = 3,
-						/obj/item/weapon/storage/pouch/explosive/large = 2,
+						/obj/item/weapon/storage/pouch/explosive = 2,
 						/obj/item/weapon/storage/pouch/construction = 2,
 						/obj/item/weapon/storage/pouch/electronics = 2,
-						/obj/item/weapon/storage/pouch/magazine/medium = 2
+						/obj/item/weapon/storage/pouch/magazine = 2
 					)
 	contraband = list(/obj/item/weapon/cell/super = 1)
 
@@ -401,7 +400,7 @@
 						/obj/item/weapon/storage/firstaid/adv = 3,
 						/obj/item/weapon/storage/pouch/medical = 2,
 						/obj/item/weapon/storage/pouch/medkit = 2,
-						/obj/item/weapon/storage/pouch/magazine/medium = 2
+						/obj/item/weapon/storage/pouch/magazine = 2
 					)
 	contraband = list(/obj/item/weapon/reagent_containers/blood/OMinus = 1)
 
@@ -489,7 +488,7 @@
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/weapon/storage/box/m56_system = 1,
 						/obj/item/smartgun_powerpack = 1,
-						/obj/item/weapon/storage/pouch/magazine/medium = 1
+						/obj/item/weapon/storage/pouch/magazine = 1
 			)
 	contraband = list()
 	premium = list()
