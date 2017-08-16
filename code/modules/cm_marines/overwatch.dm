@@ -353,6 +353,8 @@
 					usr << "\icon[src] Stopping helmet cam view."
 					cam = null
 					usr.reset_view(null)
+				else if(usr.client.view != world.view)
+					usr << "<span class='warning'>You're too busy peering through binoculars.</span>"
 				else
 					usr << "\icon[src] Searching for helmet cam.."
 					cam = new_cam
@@ -530,6 +532,15 @@
 			playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
 		C.visible_message("\icon[C] The [C] falls from the sky!")
 		usr << "\icon[src] [C] launched! Another launch will be available in <b>5</b> minutes."
+
+
+
+/obj/machinery/computer/overwatch/almayer
+	density = 0
+	icon = 'icons/obj/almayer.dmi'
+	icon_state = "overwatch"
+
+
 
 
 /obj/item/effect/supply_drop

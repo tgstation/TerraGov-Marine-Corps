@@ -16,8 +16,7 @@
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
-/obj/item/stack/sandbags_empty/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+/obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/weapon/etool))
 		var/obj/item/weapon/etool/ET = W
 		if(ET.has_dirt)
@@ -31,8 +30,8 @@
 			ET.update_icon()
 			if(!E && replace)
 				user.put_in_hands(new_bags)
-		return
-	..()
+	else
+		return ..()
 
 //Full sandbags
 /obj/item/stack/sandbags

@@ -37,6 +37,7 @@
 					/obj/item/weapon/storage/backpack/marine/satchel = 10,
 					/obj/item/device/radio/headset/almayer = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
+					/obj/item/weapon/storage/belt/shotgun = 3,
 					/obj/item/weapon/storage/belt/knifepouch = 5,
 					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
 					/obj/item/weapon/storage/large_holster/m37 = 5,
@@ -112,6 +113,7 @@
 	products = list(
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/weapon/storage/belt/marine = 10,
+					/obj/item/weapon/storage/belt/shotgun = 6,
 					/obj/item/clothing/tie/storage/webbing = 3,
 					/obj/item/clothing/tie/storage/brown_vest = 0,
 					/obj/item/clothing/tie/holster = 0,

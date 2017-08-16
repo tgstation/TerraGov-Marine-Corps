@@ -35,16 +35,12 @@
 
 	if(is_wired)
 		user << "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>"
-	var/health_percent = health/maxhealth * 100
+	switch(damage_state)
+		if(0) user << "<span class='info'>It appears to be in good shape.</span>"
+		if(1) user << "<span class='warning'>It's slightly damaged, but still very functional.</span>"
+		if(2) user << "<span class='warning'>It's quite beat up, but it's holding together.</span>"
+		if(3) user << "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>"
 
-	if(health_percent < 25)
-		user << "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>"
-	else if(health_percent < 50)
-		user << "<span class='warning'>It's quite beat up, but it's holding together.</span>"
-	else if(health_percent < 75)
-		user << "<span class='warning'>It's slightly damaged, but still very functional.</span>"
-	else
-		user << "<span class='info'>It appears to be in good shape.</span>"
 
 /obj/structure/barricade/Bumped(atom/A)
 	..()
@@ -129,6 +125,7 @@
 				overlays += wired_overlay
 				maxhealth += 50
 				health += 50
+				update_health()
 				can_wire = 0
 				is_wired = 1
 				climbable = FALSE
@@ -164,20 +161,22 @@
 	update_health()
 
 /obj/structure/barricade/update_icon()
-	if(flags_atom & ON_BORDER)
-		if(!can_change_dmg_state)
-			icon_state = "[barricade_type]"
-			if(dir == SOUTH) layer = MOB_LAYER + 1
-			else if(dir == NORTH) layer = initial(layer) - 0.01
-			else layer = initial(layer)
-
-		if(!closed)
+	if(!closed)
+		if(can_change_dmg_state)
 			icon_state = "[barricade_type]_[damage_state]"
-			if(dir == SOUTH) layer = MOB_LAYER + 1
-			else if(dir == NORTH) layer = initial(layer) - 0.01
-			else layer = initial(layer)
 		else
+			icon_state = "[barricade_type]"
+		if(flags_atom & ON_BORDER)
+			switch(dir)
+				if(SOUTH) layer = MOB_LAYER + 1
+				if(NORTH) layer = initial(layer) - 0.01
+				else layer = initial(layer)
+	else
+		if(can_change_dmg_state)
 			icon_state = "[barricade_type]_closed_[damage_state]"
+		else
+			icon_state = "[barricade_type]_closed"
+		if(flags_atom & ON_BORDER)
 			layer = MOB_LAYER - 1
 
 /obj/structure/barricade/proc/update_overlay()
@@ -208,16 +207,13 @@
 	update_icon()
 
 /obj/structure/barricade/proc/update_damage_state()
-	var/health_percent = health/maxhealth * 100
+	var/health_percent = round(health/maxhealth * 100)
+	switch(health_percent)
+		if(0 to 25) damage_state = 3
+		if(25 to 50) damage_state = 2
+		if(50 to 75) damage_state = 1
+		if(75 to INFINITY) damage_state = 0
 
-	if(health_percent < 25)
-		damage_state = 3
-	else if(health_percent < 50)
-		damage_state = 2
-	else if(health_percent < 75)
-		damage_state = 1
-	else
-		damage_state = 0
 
 /obj/structure/barricade/proc/smoke_damage(var/obj/effect/particle_effect/smoke/S)
 	if(istype(S, /obj/effect/particle_effect/smoke/xeno_burn))
@@ -231,11 +227,10 @@
 /obj/structure/barricade/snow
 	name = "snow barricade"
 	desc = "A mound of snow shaped into a sloped wall. Statistically better than thin air as cover."
-	icon = 'icons/turf/snowbarricade.dmi'
-	icon_state = "barricade_3"
-	health = 50 //Actual health depends on snow layer
-	maxhealth = 50
-	can_change_dmg_state = 0
+	icon_state = "snow_0"
+	barricade_type = "snow"
+	health = 75 //Actual health depends on snow layer
+	maxhealth = 75
 	can_wire = 0
 
 //Item Attack
@@ -288,7 +283,7 @@
 /obj/structure/barricade/wooden
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
-	icon_state = "wooden_0"
+	icon_state = "wooden"
 	flags_atom = ON_BORDER
 	health = 100
 	maxhealth = 100
@@ -302,7 +297,6 @@
 	can_change_dmg_state = 0
 	barricade_type = "wooden"
 	can_wire = 0
-	can_change_dmg_state = 0
 
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/stack/sheet/wood))
@@ -437,6 +431,10 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				var/obj/structure/barricade/B = locate() in loc
+				if(B.dir == dir || !(B.flags_atom & ON_BORDER))
+					user << "<span class='warning'>There's already a barricade here.</span>"
+					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -555,6 +553,10 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				var/obj/structure/barricade/B = locate() in loc
+				if(B.dir == dir || !(B.flags_atom & ON_BORDER))
+					user << "<span class='warning'>There's already a barricade here.</span>"
+					return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)

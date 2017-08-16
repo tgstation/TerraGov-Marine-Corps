@@ -737,6 +737,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/weapon/storage/backpack/marine/satchel = round(scale * 10),
 						/obj/item/device/radio/headset/almayer = round(scale * 5),
 						/obj/item/weapon/storage/belt/marine = round(scale * 5),
+						/obj/item/weapon/storage/belt/shotgun = round(scale * 3),
 						/obj/item/weapon/storage/belt/knifepouch = round(scale * 5),
 						/obj/item/weapon/storage/belt/gun/m4a3 = round(scale * 5),
 						/obj/item/weapon/storage/large_holster/m37 = round(scale * 5),
