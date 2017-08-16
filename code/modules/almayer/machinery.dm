@@ -233,12 +233,6 @@
 	density = 0
 	layer = 2.1
 
-//---USS Almayer Computers ---//
-
-/obj/machinery/computer/overwatch/almayer
-	density = 0
-	icon = 'icons/obj/almayer.dmi'
-	icon_state = "overwatch"
 
 
 

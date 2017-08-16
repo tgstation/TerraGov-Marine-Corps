@@ -262,6 +262,23 @@
 		..()
 
 
+
+/obj/item/weapon/storage/belt/shotgun
+	name = "\improper shotgun shell load rig"
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
+	icon_state = "shotgunbelt"
+	w_class = 4
+	storage_slots = 10
+	max_w_class = 2
+	max_combined_w_class = 20
+	can_hold = list("/obj/item/ammo_magazine/handful")
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
+
+
 /obj/item/weapon/storage/belt/security/MP
 	name = "\improper M276 pattern military police rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
@@ -453,7 +470,7 @@
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
-		"/obj/item/weapon/gun/pistol/m4a3",
+		"/obj/item/weapon/gun/pistol",
 		"/obj/item/ammo_magazine/pistol"
 		)
 
@@ -478,14 +495,6 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new_gun.on_enter_storage(src)
-
-
-/obj/item/weapon/storage/belt/gun/m4a3/vp70
-	can_hold = list(
-		"/obj/item/weapon/gun/pistol/m4a3",
-		"/obj/item/weapon/gun/pistol/vp70",
-		"/obj/item/ammo_magazine/pistol"
-		)
 
 /obj/item/weapon/storage/belt/gun/m4a3/vp70/New()
 	..()
