@@ -5,7 +5,7 @@
 	icon_state = ""
 	item_state = "gun"
 	var/muzzle_flash 	= "muzzle_flash"
-	matter = list("metal" = 75000)
+	matter = list("metal" = 5000)
 	origin_tech = "combat=1"					//Guns generally have their own unique levels.
 	w_class 	= 3
 	throwforce 	= 5

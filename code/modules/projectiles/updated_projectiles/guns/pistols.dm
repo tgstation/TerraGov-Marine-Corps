@@ -6,7 +6,7 @@
 	reload_sound = 'sound/weapons/flipblade.ogg'
 	cocked_sound = 'sound/weapons/gun_pistol_cocked.ogg'
 	origin_tech = "combat=3;materials=2"
-	matter = list("metal" = 65000)
+	matter = list("metal" = 2000)
 	flags_equip_slot = SLOT_WAIST
 	w_class = 3
 	force = 6

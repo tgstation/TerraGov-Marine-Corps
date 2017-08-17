@@ -290,7 +290,7 @@
 	icon_state = "m92"
 	item_state = "m92" //NEED TWO HANDED SPRITE
 	origin_tech = "combat=5;materials=5"
-	matter = list("metal" = 80000)
+	matter = list("metal" = 6000)
 	w_class = 4.0
 	throw_speed = 2
 	throw_range = 10
@@ -398,7 +398,7 @@
 	icon_state = "m81"
 	item_state = "m81"
 	origin_tech = "combat=5;materials=5"
-	matter = list("metal" = 80000)
+	matter = list("metal" = 7000)
 	w_class = 4.0
 	throw_speed = 2
 	throw_range = 10
@@ -502,7 +502,7 @@
 	caliber = "rocket"
 	icon_state = "rocket"
 	origin_tech = "combat=3;materials=3"
-	matter = list("metal" = 100000)
+	matter = list("metal" = 10000)
 	w_class = 3.0
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
@@ -553,7 +553,7 @@
 	icon_state = "m83"
 	item_state = "m83"
 	origin_tech = "combat=6;materials=5"
-	matter = list("metal" = 100000)
+	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket
 	flags_equip_slot = NOFLAGS
 	w_class = 5
