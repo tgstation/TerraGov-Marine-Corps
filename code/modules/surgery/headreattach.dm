@@ -223,14 +223,6 @@
 		B.brainmob.mind.transfer_to(target)
 
 	//Deal with the head item properly
-
-	if(istype(B, /obj/item/weapon/organ/head/synth))
-		var/obj/item/weapon/organ/head/synth/S = B
-		if(S.linked_wires)
-			S.linked_wires.forceMove(target.loc)
-		if(S.linked_cell)
-			S.linked_cell.forceMove(target.loc)
-
 	user.temp_drop_inv_item(B)
 	cdel(B)
 
