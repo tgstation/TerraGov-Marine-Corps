@@ -193,8 +193,9 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 		. = list(
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/rank/synthetic,
-				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
+				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
 				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium,
 				WEAR_L_STORE = /obj/item/weapon/storage/pouch/general/medium
@@ -203,9 +204,25 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	generate_entry_conditions(mob/living/carbon/human/H)
 		. = ..()
 		H.set_species("Synthetic")
+		//Most of the code below is copypasted from transform_predator().
+		if(!H.client.prefs) H.client.prefs = new /datum/preferences(H.client) //Let's give them one.
+		//They should have these set, but it's possible they don't have them.
+		H.real_name = H.client.prefs.synthetic_name
+		if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
+			H.real_name = "David"
+			spawn(9)
+				H << "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>"
+		//update id with new name
+		if(H.wear_id)
+			var/obj/item/weapon/card/id/I = H.wear_id
+			I.registered_name = H.real_name
+			I.name = "[I.registered_name]'s ID Card ([I.assignment])"
+
 
 	generate_entry_message()
 		. = {"You are a Synthetic! You are held to a higher standard and are required to obey not only the Server Rules but Marine Law and Synthetic Rules. Failure to do so may result in your White-list Removal.
 Your primary job is to support and assist all USCM Departments and Personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
 As a Synthetic you answer to the acting commander. Special circumstances may change this!"}
+
+

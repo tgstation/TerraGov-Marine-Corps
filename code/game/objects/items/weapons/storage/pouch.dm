@@ -318,13 +318,34 @@
 
 /obj/item/weapon/storage/pouch/flare
 	name = "flare pouch"
-	desc = "A pouch designed to hold flares."
+	desc = "A pouch designed to hold flares. Refillable with a M94 flare pack."
 	max_w_class = 2
 	storage_slots = 5
 	draw_mode = 1
 	icon_state = "flare"
 	can_hold = list("/obj/item/device/flashlight/flare")
 
+/obj/item/weapon/storage/pouch/flare/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/weapon/storage/box/m94))
+		var/obj/item/weapon/storage/box/m94/M = W
+		if(M.contents.len)
+			if(contents.len < storage_slots)
+				user << "<span class='notice'>You start refilling [src] with [M].</span>"
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK)) return
+				for(var/obj/item/I in M)
+					if(contents.len < storage_slots)
+						M.remove_from_storage(I)
+						handle_item_insertion(I, 1) //quiet insertion
+					else
+						break
+				playsound(user.loc, "rustle", 15, 1, 6)
+			else
+				user << "<span class='warning'>[src] is full.</span>"
+		else
+			user << "<span class='warning'>[M] is empty.</span>"
+		return TRUE
+	else
+		return ..()
 /obj/item/weapon/storage/pouch/flare/full/New()
 	..()
 	new /obj/item/device/flashlight/flare(src)
@@ -332,6 +353,7 @@
 	new /obj/item/device/flashlight/flare(src)
 	new /obj/item/device/flashlight/flare(src)
 	new /obj/item/device/flashlight/flare(src)
+
 
 
 

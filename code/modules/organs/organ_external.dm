@@ -1115,15 +1115,16 @@ obj/item/weapon/organ/r_leg
 	name = "right leg"
 	icon_state = "r_leg"
 
-obj/item/weapon/organ/head
+/obj/item/weapon/organ/head
 	name = "head"
 	icon_state = "head_m"
 	unacidable = 1
 	var/mob/living/carbon/brain/brainmob
 	var/brain_op_stage = 0
 	var/brain_item_type = /obj/item/organ/brain
+	var/braindeath_on_decap = 1 //whether the brainmob dies when head is decapitated (used by synthetics)
 
-obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
+/obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
 	..()
@@ -1159,10 +1160,11 @@ obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 
 	H.regenerate_icons()
 
-	brainmob.stat = DEAD
-	brainmob.death()
+	if(braindeath_on_decap)
+		brainmob.stat = DEAD
+		brainmob.death()
 
-obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
+/obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -1171,7 +1173,7 @@ obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 
-obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/scalpel))
 		switch(brain_op_stage)
 			if(0)
@@ -1222,80 +1224,7 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 /obj/item/weapon/organ/head/synth
 	name = "synthetic head"
 	brain_item_type = /obj/item/organ/brain/prosthetic
-	var/obj/item/stack/cable_coil/linked_wires
-	var/obj/item/weapon/cell/linked_cell
-
-/obj/item/weapon/organ/head/synth/examine(mob/user)
-	..()
-
-	var/examin_msg = ""
-	if(linked_wires) examin_msg += "It has some wires coming out of it. "
-	if(linked_cell) examin_msg += "It's hooked to a power cell."
-	else if(ishuman(user)) user << "It has no power source."
-	if(examin_msg) user << examin_msg
-
-/obj/item/weapon/organ/head/synth/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/cell))
-		var/obj/item/weapon/cell/C = W
-		if(!C.charge)
-			user << "<span class='warning'>[C] has no charge left.</span>"
-			return TRUE
-		if(!linked_wires)
-			user << "<span class='warning'>[src] needs wires first.</span>"
-			return TRUE
-		if(linked_cell)
-			user << "<span class='warning'>[src] already has a power cell.</span>"
-		else if(user.drop_inv_item_to_loc(C, src))
-			linked_cell = C
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			user.visible_message("<span class='warning'>[user] links [C] to [src].</span>", \
-								"<span class='notice'>You link [C] to [src].</span>")
-			if(brainmob)
-				brainmob << "<span class='danger'>[user] links [C] to your head!</span>"
-				if(brainmob.stat == DEAD)
-					brainmob.revive()
-					brainmob << "<span class='danger'>You live again!</span>"
-					visible_message("<span class='notice'>[src] seems to be alive.</span>")
-		return TRUE
-	if(W.pry_capable)
-		if(linked_cell)
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			user.visible_message("<span class='warning'>[user] removes [linked_cell] from [src].</span>", \
-								"<span class='notice'>You remove [linked_cell] from [src].</span>")
-			if(brainmob) brainmob << "<span class='danger'>[user] removes [linked_cell] from your head!</span>"
-			linked_cell.forceMove(get_turf(src))
-			linked_cell = null
-		return TRUE
-	if(istype(W, /obj/item/stack/cable_coil))
-		if(linked_wires)
-			user << "<span class='warning'>[src] is already wired.</span>"
-		else
-			var/obj/item/stack/cable_coil/C = W
-			if(C.get_amount() < 5)
-				user << "<span class='warning'>You need more wires.</span>"
-				return
-
-			if (C.use(5))
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message("<span class='warning'>[user] adds [W] to [src].</span>", \
-									"<span class='notice'>You link [W] to [src].</span>")
-				if(brainmob) brainmob << "<span class='danger'>[user] adds wires to your head!</span>"
-				linked_wires = new C.type (src, 5)
-		return TRUE
-
-	if(istype(W, /obj/item/weapon/wirecutters))
-		if(linked_wires)
-			user << "<span class='warning'>[src] is already wired.</span>"
-		else
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			user.visible_message("<span class='warning'>[user] removes [linked_wires] from [src].</span>", \
-								"<span class='notice'>You remove [linked_wires] from [src].</span>")
-			if(brainmob) brainmob << "<span class='danger'>[user] removes wires from your head!</span>"
-			linked_wires.forceMove(get_turf(src))
-			linked_wires = null
-		return TRUE
-
-	return ..()
+	braindeath_on_decap = 0
 
 
 
