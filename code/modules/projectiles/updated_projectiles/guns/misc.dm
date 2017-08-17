@@ -8,7 +8,7 @@
 	muzzle_flash = null //TO DO.
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = "combat=1;materials=1"
-	matter = list("metal" = 40000)
+	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
 	var/obj/item/weapon/cell/high/cell //10000 power.
 	var/charge_cost = 100 //100 shots.
@@ -58,7 +58,7 @@
 	caliber = ".70M"
 	icon_state = "c70" //PLACEHOLDER
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
-	matter = list("metal" = 100000)
+	matter = list("metal" = 3000)
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp
 
@@ -161,7 +161,7 @@
 	caliber = "7.62x51mm"
 	icon_state = "painless" //PLACEHOLDER
 	origin_tech = "combat=3;materials=3"
-	matter = list("metal" = 100000)
+	matter = list("metal" = 10000)
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 300
 	reload_delay = 24 //Hard to reload.

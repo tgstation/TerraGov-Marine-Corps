@@ -432,7 +432,7 @@
 					return
 				tool_cooldown = world.time + 10
 				var/obj/structure/barricade/B = locate() in loc
-				if(B.dir == dir || !(B.flags_atom & ON_BORDER))
+				if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
 					user << "<span class='warning'>There's already a barricade here.</span>"
 					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
@@ -554,7 +554,7 @@
 					return
 				tool_cooldown = world.time + 10
 				var/obj/structure/barricade/B = locate() in loc
-				if(B.dir == dir || !(B.flags_atom & ON_BORDER))
+				if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
 					user << "<span class='warning'>There's already a barricade here.</span>"
 					return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
