@@ -7,5 +7,5 @@ datum/controller/process/sun/setup()
 	if(!sun)
 		sun = new /datum/sun()
 
-datum/controller/process/ticker/doWork()
+datum/controller/process/sun/doWork()
 	sun.calc_position()
