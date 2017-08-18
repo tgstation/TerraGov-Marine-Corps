@@ -431,10 +431,10 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				var/obj/structure/barricade/B = locate() in loc
-				if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
-					user << "<span class='warning'>There's already a barricade here.</span>"
-					return
+				for(var/obj/structure/barricade/B in loc)
+					if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
+						user << "<span class='warning'>There's already a barricade here.</span>"
+						return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -553,10 +553,10 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				var/obj/structure/barricade/B = locate() in loc
-				if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
-					user << "<span class='warning'>There's already a barricade here.</span>"
-					return
+				for(var/obj/structure/barricade/B in loc)
+					if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
+						user << "<span class='warning'>There's already a barricade here.</span>"
+						return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
