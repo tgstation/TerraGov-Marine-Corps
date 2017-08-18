@@ -43,7 +43,7 @@
 	var/shell_speed 		= 0 //How fast the projectile moves.
 	var/bonus_projectiles_type //the type path of the extra projectiles
 	var/bonus_projectiles_amount 	= 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
-	var/debilitate[]		= null //stun,weaken,paralyze,irradiate,stutter,eyeblur,drowsy,agony
+	var/debilitate[]		= null //stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 
 	New()
 		accuracy 			= config.min_hit_accuracy //This is added to the bullet's base accuracy.
@@ -52,7 +52,7 @@
 		accurate_range 		= config.close_shell_range //For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
 		max_range 			= config.norm_shell_range //This will de-increment a counter on the bullet.
 		damage_var_low		= config.min_proj_variance //Same as with accuracy variance.
-		damage_var_low		= config.min_proj_variance
+		damage_var_high		= config.min_proj_variance
 		damage_bleed 		= config.reg_damage_bleed //How much damage the bullet loses per turf traveled.
 		shell_speed 		= config.slow_shell_speed //How fast the projectile moves.
 
@@ -387,6 +387,31 @@
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
+
+
+
+/datum/ammo/bullet/shotgun/beanbag
+	name = "beanbag slug"
+	icon_state = "beanbag"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IGNORE_RESIST
+	New()
+		..()
+		max_range = config.short_shell_range
+		shrapnel_chance = 0
+		accuracy = config.med_hit_accuracy
+		shell_speed = config.fast_shell_speed
+
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		if(!M || M == P.firer) return
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.species.name == "Human") //no effect on synths or preds.
+				if(H.mind && H.mind.special_role)
+					H.apply_effects(0,1) //ineffective against antags.
+				else
+					H.apply_effects(4,6)
+			shake_camera(H, 2, 1)
+
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
