@@ -164,9 +164,12 @@
 				if(A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || istype(src,/mob/living/carbon)))
 					src.throw_impact(A,speed)
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower)
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin)
 	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+
+	if(spin)
+		animation_spin(5, 1)
 
 	src.throwing = 1
 	src.thrower = thrower

@@ -29,6 +29,12 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 
+/obj/item/ammo_magazine/shotgun/beanbag
+	name = "box of beanbag slugs"
+	desc = "A box filled with beanbag shotgun shells used for non-lethal crowd control. 12 Gauge."
+	icon_state = "beanbag"
+	default_ammo = /datum/ammo/bullet/shotgun/beanbag
+
 //-------------------------------------------------------
 
 /*

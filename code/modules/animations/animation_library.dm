@@ -193,3 +193,22 @@ proc/animation_destruction_long_fade(atom/A, speed = 4, x_n = 4, y_n = 4)
 			pixel_y_diff = -8
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
+
+
+/atom/proc/animation_spin(speed = 5, loop_amount = -1, clockwise = TRUE, sections = 3)
+	if(!sections)
+		return
+	var/section = 360/sections
+	if(!clockwise)
+		section = -section
+	var/list/matrix_list = list()
+	for(var/i in 1 to sections-1)
+		var/matrix/M = matrix(transform)
+		M.Turn(section*i)
+		matrix_list += M
+	var/matrix/last = matrix(transform)
+	matrix_list += last
+	speed /= sections
+	animate(src, transform = matrix_list[1], time = speed, loop_amount)
+	for(var/i in 2 to sections)
+		animate(transform = matrix_list[i], time = speed)

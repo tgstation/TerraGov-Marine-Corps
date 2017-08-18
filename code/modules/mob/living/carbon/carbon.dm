@@ -327,11 +327,14 @@
 
 	if(!I) return
 
+	var/spin_throw = TRUE
+
 	if (istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
 		if(ismob(G.grabbed_thing))
 			if(grab_level >= GRAB_NECK)
 				var/mob/living/M = G.grabbed_thing
+				spin_throw = FALSE //thrown mobs don't spin
 				thrown_thing = M
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
@@ -359,7 +362,7 @@
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
-		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src)
+		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
