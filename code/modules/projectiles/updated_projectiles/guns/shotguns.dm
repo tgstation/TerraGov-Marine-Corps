@@ -310,10 +310,11 @@ can cause issues with ammo types getting mixed up during the burst.
 		return 1
 
 	able_to_fire(mob/user)
-		if(!current_mag.chamber_closed)
-			user << "\red Close the chamber!"
-			return
-		return ..()
+		. = ..()
+		if(. && istype(user))
+			if(!current_mag.chamber_closed)
+				user << "\red Close the chamber!"
+				return 0
 
 	empty_chamber(mob/user)
 		if(current_mag.chamber_closed) //Has to be closed.

@@ -56,15 +56,21 @@
 	if(!user.mind)
 		return
 
+	var/acquisition_time = target_acquisition_delay
+	if(user.mind.skills_list)
+		if(user.mind.skills_list["leadership"] < SKILL_LEAD_BINOCS)
+			user << "<span class='warning'>You don't have the training to use [src].</span>"
+			return
+		acquisition_time = max(20, acquisition_time + 40 - 20*user.mind.skills_list["leadership"])
+
 	var/datum/squad/S
 	if(user.mind.assigned_squad)
 		S = user.mind.assigned_squad
 	else
 		S = get_squad_data_from_card(user)
 
-	if(!S)
-		user << "<span class='warning'>You need to be in a squad for this to do anything.</span>"
-		return
+	var/laz_name = ""
+	if(S) laz_name = S.name
 
 	var/turf/TU = get_turf(A)
 	var/area/targ_area = get_area(A)
@@ -85,12 +91,12 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	user << "<span class='notice'>INITIATING LASER TARGETING ON: '[A]'. Stand still.</span>"
 	var/old_A_loc = A.loc
-	if(!do_after(user, target_acquisition_delay, TRUE, 5, BUSY_ICON_CLOCK) || world.time < laser_cooldown || laser || !A || A.loc != old_A_loc)
+	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_CLOCK) || world.time < laser_cooldown || laser || !A || A.loc != old_A_loc)
 		busy = FALSE
 		return
 	busy = FALSE
 	user << "<span class='notice'>TARGET ACQUIRED. LASER TARGETING ON '[A]' IS ONLINE. DON'T MOVE.</span>"
-	var/obj/effect/overlay/temp/laser_target/LT = new (get_turf(A), S.name)
+	var/obj/effect/overlay/temp/laser_target/LT = new (get_turf(A), laz_name)
 	laser = LT
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	while(laser)

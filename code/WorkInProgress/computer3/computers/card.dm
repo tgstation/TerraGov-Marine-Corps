@@ -24,7 +24,7 @@
 	var/printing = 0
 
 	proc/list_jobs()
-		return get_all_jobs() + "Custom"
+		return get_all_jobs_titles() + "Custom"
 
 	// creates the block with the script in it
 	// cache the result since it's almost constant but not quite

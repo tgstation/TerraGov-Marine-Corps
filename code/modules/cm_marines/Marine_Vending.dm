@@ -423,7 +423,7 @@
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 2,
 						/obj/item/weapon/grenade/incendiary = 2,
-//						/obj/item/weapon/flamethrower/full = 1,
+//						/obj/item/weapon/gun/flamer = 1,
 //						/obj/item/weapon/tank/phoron/m240 = 3,
 						/obj/item/weapon/shield/riot = 1,
 						/obj/item/weapon/storage/pouch/magazine/large = 1,

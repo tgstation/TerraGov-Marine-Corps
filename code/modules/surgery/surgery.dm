@@ -94,6 +94,9 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if(user.a_intent == "harm") //Check for Hippocratic Oath
 		return 0
+	if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_SURGERY)
+		user << "<span class='warning'>You have no idea how to do surgery...</span>"
+		return 1
 	if(M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << "<span class='warning'>You can't operate on the patient while surgery is already in progress.</span>"
 		return 1
@@ -115,7 +118,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					multipler -= 0.10
 				else if(locate(/obj/structure/table/, M.loc))
 					multipler -= 0.20
-				if(M.stat == 0)//If not on anesthetics or not unconsious
+				if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
 					multipler -= 0.5
 					if(M.reagents.has_reagent("stoxin"))
 						multipler += 0.15
@@ -129,8 +132,14 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 						multipler += 0.25
 				Clamp(multipler, 0, 1)
 
+				//calculate step duration
+				var/step_duration = rand(S.min_duration, S.max_duration)
+				if(user.mind && user.mind.skills_list)
+					//1 second reduction per level above minimum for performing surgery
+					step_duration = max(5, step_duration - 10*(user.mind.skills_list["medical"] - SKILL_MEDICAL_SURGERY))
+
 				//Multiply tool success rate with multipler
-				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, rand(S.min_duration, S.max_duration), BUSY_ICON_CLOCK, BUSY_ICON_MED))
+				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 					S.end_step(user, M, user.zone_selected, tool) //Finish successfully
 
 				else if((tool in user.contents) && user.Adjacent(M)) //Or

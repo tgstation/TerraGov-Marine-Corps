@@ -31,29 +31,29 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60), \
 	null, \
-	new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, time = 10), \
-	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 80, one_per_turf = 2, on_floor = 1), \
-	new/datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 25, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("wall girder", /obj/structure/girder, 8, time = 100, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("machine frame", /obj/machinery/constructable_frame/machine_frame, 5, time = 25, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, time = 10, engi_req = SKILL_ENGINEER_METAL), \
+	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 80, one_per_turf = 2, on_floor = 1, engi_req = SKILL_ENGINEER_METAL), \
+	new/datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 25, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+	new/datum/stack_recipe("wall girder", /obj/structure/girder, 8, time = 100, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_ENGI), \
+	new/datum/stack_recipe("machine frame", /obj/machinery/constructable_frame/machine_frame, 5, time = 25, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
 	null, \
 	new/datum/stack_recipe_list("airlock assemblies", list( \
-		new/datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("command airlock assembly", /obj/structure/door_assembly/door_assembly_com, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("security airlock assembly", /obj/structure/door_assembly/door_assembly_sec, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("engineering airlock assembly", /obj/structure/door_assembly/door_assembly_eng, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("mining airlock assembly", /obj/structure/door_assembly/door_assembly_min, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("atmospherics airlock assembly", /obj/structure/door_assembly/door_assembly_atmo, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("research airlock assembly", /obj/structure/door_assembly/door_assembly_research, 4, time = 50, one_per_turf = 1, on_floor = 1), \
+		new/datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("command airlock assembly", /obj/structure/door_assembly/door_assembly_com, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("security airlock assembly", /obj/structure/door_assembly/door_assembly_sec, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("engineering airlock assembly", /obj/structure/door_assembly/door_assembly_eng, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("mining airlock assembly", /obj/structure/door_assembly/door_assembly_min, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("atmospherics airlock assembly", /obj/structure/door_assembly/door_assembly_atmo, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("research airlock assembly", /obj/structure/door_assembly/door_assembly_research, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
 /*		new/datum/stack_recipe("science airlock assembly", /obj/structure/door_assembly/door_assembly_science, 4, time = 50, one_per_turf = 1, on_floor = 1), \ */
-		new/datum/stack_recipe("medical airlock assembly", /obj/structure/door_assembly/door_assembly_med, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("maintenance airlock assembly", /obj/structure/door_assembly/door_assembly_mai, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("external airlock assembly", /obj/structure/door_assembly/door_assembly_ext, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("freezer airlock assembly", /obj/structure/door_assembly/door_assembly_fre, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("airtight hatch assembly", /obj/structure/door_assembly/door_assembly_hatch, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("maintenance hatch assembly", /obj/structure/door_assembly/door_assembly_mhatch, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("high security airlock assembly", /obj/structure/door_assembly/door_assembly_highsecurity, 4, time = 50, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("multi-tile airlock assembly", /obj/structure/door_assembly/multi_tile, 4, time = 50, one_per_turf = 1, on_floor = 1), \
+		new/datum/stack_recipe("medical airlock assembly", /obj/structure/door_assembly/door_assembly_med, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("maintenance airlock assembly", /obj/structure/door_assembly/door_assembly_mai, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("external airlock assembly", /obj/structure/door_assembly/door_assembly_ext, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("freezer airlock assembly", /obj/structure/door_assembly/door_assembly_fre, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("airtight hatch assembly", /obj/structure/door_assembly/door_assembly_hatch, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("maintenance hatch assembly", /obj/structure/door_assembly/door_assembly_mhatch, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("high security airlock assembly", /obj/structure/door_assembly/door_assembly_highsecurity, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
+		new/datum/stack_recipe("multi-tile airlock assembly", /obj/structure/door_assembly/multi_tile, 4, time = 50, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_MT), \
 		), 4), \
 	null, \
 	new/datum/stack_recipe("grenade casing", /obj/item/weapon/grenade/chem_grenade), \
@@ -90,8 +90,8 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 50, one_per_turf = 1), \
 	new/datum/stack_recipe("knife grip", /obj/item/butterflyhandle, 2, time = 20, one_per_turf = 0, on_floor = 1),
-	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 80, one_per_turf = 1, on_floor = 1),
-	new/datum/stack_recipe("sentry turret frame", /obj/machinery/marine_turret_frame, 20, time = 60, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 80, one_per_turf = 1, on_floor = 1, engi_req =  SKILL_ENGINEER_PLASTEEL),
+	new/datum/stack_recipe("sentry turret frame", /obj/machinery/marine_turret_frame, 20, time = 60, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_PLASTEEL),
 	)
 
 /obj/item/stack/sheet/plasteel

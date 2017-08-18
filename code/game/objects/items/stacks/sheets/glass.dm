@@ -62,11 +62,14 @@
 			if (!G && replace)
 				user.put_in_hands(RG)
 
-/obj/item/stack/sheet/glass/proc/construct_window(mob/user as mob)
+/obj/item/stack/sheet/glass/proc/construct_window(mob/user)
 	if(!user || !src)	return 0
 	if(!istype(user.loc,/turf)) return 0
 	if(!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
+		return 0
+	if(ishuman(user) && user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+		user << "<span class='warning'>You are not trained to build with [src]...</span>"
 		return 0
 	var/title = "Sheet-[name]"
 	title += " ([src.amount] sheet\s left)"

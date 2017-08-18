@@ -66,6 +66,14 @@
 			syringestab(target, user)
 			return
 
+		var/injection_time = 30
+		if(user.mind && user.mind.skills_list)
+			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+				user << "<span class='warning'>You aren't trained to use syringes...</span>"
+				return
+			else
+				injection_time = max(5, 50 - 10*user.mind.skills_list["medical"])
+
 
 		switch(mode)
 			if(SYRINGE_DRAW)
@@ -139,14 +147,12 @@
 
 				if(ismob(target) && target != user)
 
-					var/time = 30 //Injecting through a hardsuit takes longer due to needing to find a port.
-
 					if(istype(target,/mob/living/carbon/human))
 
 						var/mob/living/carbon/human/H = target
 						if(H.wear_suit)
 							if(istype(H.wear_suit,/obj/item/clothing/suit/space))
-								time = 60
+								injection_time = 60
 							else if(!H.can_inject(user, 1))
 								return
 
@@ -157,12 +163,12 @@
 							return
 
 					for(var/mob/O in viewers(world.view, user))
-						if(time == 30)
+						if(injection_time != 60)
 							O.show_message(text("\red <B>[] is trying to inject []!</B>", user, target), 1)
 						else
 							O.show_message(text("\red <B>[] begins hunting for an injection port on []'s suit!</B>", user, target), 1)
 
-					if(!do_mob(user, target, time, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
+					if(!do_mob(user, target, injection_time, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
 
 					for(var/mob/O in viewers(world.view, user))
 						O.show_message(text("\red [] injects [] with the syringe!", user, target), 1)

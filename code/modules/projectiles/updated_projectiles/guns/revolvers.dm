@@ -23,6 +23,7 @@
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
+	gun_skill_category = GUN_SKILL_PISTOLS
 
 	New()
 		..() //Do all that other stuff.
@@ -138,10 +139,11 @@
 			current_mag.used_casings = 0 //Always dump out everything.
 
 	able_to_fire(mob/user)
-		if(!current_mag.chamber_closed)
-			user << "<span class='warning'>Close the cylinder!</span>"
-			return
-		return ..()
+		. = ..()
+		if(. && istype(user))
+			if(!current_mag.chamber_closed)
+				user << "<span class='warning'>Close the cylinder!</span>"
+				return 0
 
 	ready_in_chamber()
 		if(current_mag.current_rounds > 0)

@@ -87,8 +87,11 @@
 	return text
 
 
-/obj/machinery/computer/attackby(I as obj, user as mob)
+/obj/machinery/computer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_MT)
+			user << "<span class='warning'>You don't know how to deconstruct [src]...</span>"
+			return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )

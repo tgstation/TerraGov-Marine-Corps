@@ -21,6 +21,10 @@
 	if(istype(P, /obj/item/device/multitool))
 		attack_hand(user)
 
+	else
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_MT)
+			user << "<span class='warning'>You stare at [src] cluelessly...</span>"
+			return 0
 
 	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
 	if(istype(P, /obj/item/stack/nanopaste))
@@ -111,6 +115,9 @@
 
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_MT)
+			user << "<span class='warning'>You stare at [src] cluelessly...</span>"
+			return
 		// istype returns false if the value is null
 		if(!istype(user.get_active_hand(), /obj/item/device/multitool))
 			return

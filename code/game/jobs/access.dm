@@ -162,14 +162,22 @@
 		if(ACCESS_IFF_PMC) 				return "W-Y Identification"
 
 
-/proc/get_all_jobs()
-	var/all_jobs[] = new
+/proc/get_all_jobs_titles()
+	var/all_jobs_titles[] = new
 	var/all_datums[] = typesof(/datum/job) - list(/datum/job, /datum/job/pmc)
 	var/datum/job/jobdatum
 	for(var/jobtype in all_datums)
 		jobdatum = new jobtype
-		all_jobs += jobdatum.title
+		all_jobs_titles += jobdatum.title
+	return all_jobs_titles
+
+/proc/get_all_jobs()
+	var/list/all_jobs = list()
+	var/list/all_jobtypes = typesof(/datum/job) - list(/datum/job, /datum/job/pmc)
+	for(var/jobtype in all_jobtypes)
+		all_jobs += new jobtype
 	return all_jobs
+
 
 /proc/get_all_centcom_jobs() return list()
 

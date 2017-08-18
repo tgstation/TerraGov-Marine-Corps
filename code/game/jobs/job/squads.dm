@@ -95,7 +95,8 @@
 	M.mind.assigned_squad = src //Add them to the squad
 	var/c_oldass = C.assignment
 	C.access += src.access //Add their squad access to their ID
-	C.assignment = "[src.name] [c_oldass]"
+	C.assignment = "[name] [c_oldass]"
+	C.squad_name = name
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 	return 1
 
@@ -116,25 +117,15 @@
 /proc/get_squad_data_from_card(var/mob/living/carbon/human/H)
 	if(!istype(H))	return null
 
-	var/text = null
-	var/obj/item/device/pda/I = H.wear_id
+	var/obj/item/I = H.wear_id
 	var/obj/item/weapon/card/id/card = null
 
-	if(I && istype(I))
-		if(I.id)
-			card = I.id
-	else
-		card = H.wear_id
+	if(I)
+		card = I.GetID()
 
 	if(!card || !istype(card))
 		return null
-
-	if(findtext(card.assignment, "Alpha")) text = "Alpha"
-	if(findtext(card.assignment, "Bravo")) text = "Bravo"
-	if(findtext(card.assignment, "Charlie")) text = "Charlie"
-	if(findtext(card.assignment, "Delta")) text = "Delta"
-
-	return get_squad_by_name(text)
+	return get_squad_by_name(card.squad_name)
 
 //These are to handle the tick timers on the supply drops, so they aren't reset if Overwatch changes squads.
 /datum/squad/proc/handle_stimer(var/ticks)
@@ -153,36 +144,32 @@
 	if(!istype(H))	return 0
 
 	var/squad = 0
-	var/obj/item/device/pda/I = H.wear_id
-	var/obj/item/weapon/card/id/card = null
-
-	if(I && istype(I))
-		if(I.id)
-			card = I.id
-	else
-		card = H.wear_id
+	var/obj/item/I = H.wear_id
+	var/obj/item/weapon/card/id/card
+	if(I) card = I.GetID()
 
 	if(!card || !istype(card))
 		return 0
 
-	if(findtext(card.assignment, "Alpha"))
-		squad = 1 //Returns the card's numeric squad so we can pull the armor colors.
-		if(H.mind)
-			H.mind.assigned_squad = get_squad_by_name("Alpha") //Sets their assigned squad so Overwatch can grab it.
-	else if(findtext(card.assignment, "Bravo"))
-		squad = 2
-		if(H.mind)
-			H.mind.assigned_squad = get_squad_by_name("Bravo")
-	else if(findtext(card.assignment, "Charlie"))
-		squad = 3
-		if(H.mind)
-			H.mind.assigned_squad = get_squad_by_name("Charlie")
-	else if(findtext(card.assignment, "Delta"))
-		squad = 4
-		if(H.mind)
-			H.mind.assigned_squad = get_squad_by_name("Delta")
-	else
-		return 0
+	switch(card.squad_name)
+		if("Alpha")
+			squad = 1 //Returns the card's numeric squad so we can pull the armor colors.
+			if(H.mind)
+				H.mind.assigned_squad = get_squad_by_name("Alpha") //Sets their assigned squad so Overwatch can grab it.
+		if("Bravo")
+			squad = 2
+			if(H.mind)
+				H.mind.assigned_squad = get_squad_by_name("Bravo")
+		if("Charlie")
+			squad = 3
+			if(H.mind)
+				H.mind.assigned_squad = get_squad_by_name("Charlie")
+		if("Delta")
+			squad = 4
+			if(H.mind)
+				H.mind.assigned_squad = get_squad_by_name("Delta")
+		else
+			return 0
 
 	return squad
 

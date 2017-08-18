@@ -293,7 +293,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	output += "<tr><td><b>Duration:</b> <input type='text' name='dbbaddduration'></td>"
 	output += "<td><b>Job:</b><select name='dbbanaddjob'>"
 	output += "<option value=''>--</option>"
-	for(var/j in get_all_jobs())
+	for(var/j in get_all_jobs_titles())
 		output += "<option value='[j]'>[j]</option>"
 	for(var/j in list("traitor","changeling","operative","revolutionary","cultist","wizard"))
 		output += "<option value='[j]'>[j]</option>"

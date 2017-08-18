@@ -50,21 +50,15 @@
 	else
 		icon_state += "_empty"
 
-/obj/item/weapon/melee/defibrillator/attack_self(mob/living/carbon/human/user as mob)
+/obj/item/weapon/melee/defibrillator/attack_self(mob/living/carbon/human/user)
 
 	if(defib_cooldown > world.time)
 		return
 
-	//ID Locking
+	//Job knowledge requirement
 	if (istype(user))
-		var/obj/item/weapon/card/id/card = user.wear_id
-
-		if (!card)
-			user << "<span class='warning'>[src] is ID locked!</span>"
-			return
-
-		if(!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Medical Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic" || card.assignment == "PMC Triage" || card.assignment == "UPP Medic" || card.assignment == "UPP Commando Medic" || card.assignment == "Colonist Medic" || card.assignment == "Freelancer Medic"))
-			user << "<span class='warning'>[src] is ID locked!</span>"
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 			return
 
 	defib_cooldown = world.time + 20 //2 seconds cooldown every time the defib is toggled
@@ -75,7 +69,7 @@
 	update_icon()
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/H as mob, mob/living/carbon/human/user as mob)
+/obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
 
 	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)
 		return
@@ -84,17 +78,10 @@
 	if(busy) //Currently deffibing
 		return
 
-	//ID Locking
-	if (istype(user))
-		var/obj/item/weapon/card/id/card = user.wear_id
-
-		if (!card)
-			user << "<span class='warning'>[src] is ID locked!</span>"
-			return
-
-		if (!istype(card) || !(card.assignment == "Chief Medical Officer" || card.assignment == "Doctor" || card.assignment == "Medical Researcher" || card.assignment == "Alpha Squad Medic" || card.assignment == "Bravo Squad Medic" || card.assignment == "Charlie Squad Medic" || card.assignment == "Delta Squad Medic" || card.assignment == "PMC Triage" || card.assignment == "UPP Medic" || card.assignment == "UPP Commando Medic" || card.assignment == "Colonist Medic" || card.assignment == "Freelancer Medic"))
-			user << "<span class='warning'>[src] is ID locked!</span>"
-			return
+	//job knowledge requirement
+	if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		return
 
 	if(!ishuman(H))
 		user << "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>"

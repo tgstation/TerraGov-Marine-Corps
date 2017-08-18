@@ -234,10 +234,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			if(H.wear_id)
 				var/obj/item/weapon/card/id/card = H.wear_id.GetID()
 				if(istype(card))
-					if(card.assignment == "Commander")
-						command = 3
-					else if(card.assignment == "Pilot Officer" || card.assignment == "Staff Officer" || card.assignment == "Executive Officer" || card.assignment == "Chief MP" || findtext(card.assignment, "Leader"))
-						command = 3
+					if(card.chat_message_size)
+						command = card.chat_message_size
 
 			if(H.mind && H.mind.role_comm_title)
 				comm_title = H.mind.role_comm_title //Set up [CO] and stuff after frequency

@@ -104,7 +104,10 @@
 			M.animation_attack_on(src)
 			M.flick_attack_overlay(src, "punch")
 
-			var/damage = rand(0, 5)
+			var/max_dmg = 5
+			if(M.mind. && M.mind.skills_list)
+				max_dmg += M.mind.skills_list["cqc"]
+			var/damage = rand(0, max_dmg)
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1)
 				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
@@ -142,27 +145,36 @@
 				w_uniform.add_fingerprint(M)
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_selected))
 
-			if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
-				var/obj/item/weapon/gun/W = null
-				var/chance = 0
+			//Accidental gun discharge
+			if(!M.mind || !M.mind.skills_list || M.mind.skills_list["cqc"] < SKILL_CQC_MP)
+				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
+					var/obj/item/weapon/gun/W = null
+					var/chance = 0
 
-				if (istype(l_hand,/obj/item/weapon/gun))
-					W = l_hand
-					chance = hand ? 40 : 20
+					if (istype(l_hand,/obj/item/weapon/gun))
+						W = l_hand
+						chance = hand ? 40 : 20
 
-				if (istype(r_hand,/obj/item/weapon/gun))
-					W = r_hand
-					chance = !hand ? 40 : 20
+					if (istype(r_hand,/obj/item/weapon/gun))
+						W = r_hand
+						chance = !hand ? 40 : 20
 
-				if (prob(chance))
-					visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!")
-					var/list/turfs = list()
-					for(var/turf/T in view())
-						turfs += T
-					var/turf/target = pick(turfs)
-					return W.afterattack(target,src)
+					if (prob(chance))
+						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!")
+						var/list/turfs = list()
+						for(var/turf/T in view())
+							turfs += T
+						var/turf/target = pick(turfs)
+						return W.afterattack(target,src)
 
 			var/randn = rand(1, 100)
+			if(M.mind && M.mind.skills_list)
+				randn -= 5 * M.mind.skills_list["cqc"] //attacker's martial arts training
+
+			if(mind && mind.skills_list)
+				randn += 5 * mind.skills_list["cqc"] //defender's martial arts training
+
+
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)

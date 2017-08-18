@@ -9,11 +9,10 @@
 	layer = OBJ_LAYER + 0.3 //so the top appears above windows
 	anchored = 1
 	density = 1
-	move_delay = 6
+	move_delay = 8
 	buckling_y = 9
 	health = 200
 	maxhealth = 200
-	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING,ACCESS_CIVILIAN_LOGISTICS,ACCESS_MARINE_CARGO,ACCESS_MARINE_PILOT,ACCESS_MARINE_BRIG)
 	pixel_x = -16
 	pixel_y = -2
 
@@ -64,12 +63,15 @@
 		if(.)
 			icon_state = "powerloader"
 			overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
+			if(M.mind && M.mind.skills_list)
+				move_delay = max(4, move_delay - M.mind.skills_list["powerloader"])
 			var/clamp_equipped = 0
 			for(var/obj/item/weapon/powerloader_clamp/PC in contents)
 				if(!M.put_in_hands(PC)) PC.forceMove(src)
 				else clamp_equipped++
 			if(clamp_equipped != 2) unbuckle() //can't use the powerloader without both clamps equipped
 		else
+			move_delay = initial(move_delay)
 			icon_state = "powerloader_open"
 			M.drop_held_items() //drop the clamp when unbuckling
 
@@ -77,8 +79,8 @@
 		if(M != user) return
 		if(!ishuman(M))	return
 		var/mob/living/carbon/human/H = M
-		if(!check_access(H.wear_id))
-			H << "<span class='warning'>You don't have the access to use [src].</span>"
+		if(H.mind && user.mind.skills_list && !user.mind.skills_list["powerloader"])
+			H << "<span class='warning'>You don't seem to know how to operate [src].</span>"
 			return
 		if(H.r_hand || H.l_hand)
 			H << "<span class='warning'>You need your two hands to use [src].</span>"

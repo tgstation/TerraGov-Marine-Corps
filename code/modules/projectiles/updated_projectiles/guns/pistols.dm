@@ -13,6 +13,7 @@
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
 	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
 	type_of_casings = "bullet"
+	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,

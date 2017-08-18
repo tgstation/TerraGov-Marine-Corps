@@ -28,13 +28,12 @@
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 
-	able_to_fire(mob/living/carbon/human/user as mob)
-		if (..()) //Let's check all that other stuff first.
-			if (istype(user))
-				var/obj/item/weapon/card/id/card = user.wear_id
-				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
-				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist" || card.assignment == "Iron Bear" || card.assignment == "Iron Bears Sergeant" || card.assignment == "PMC Sniper")) return 1//We can check for access, but only Specialists have access to it.
-				else user << "<span class='warning'>[src] is ID locked!</span>"
+	able_to_fire(mob/living/user)
+		. = ..()
+		if(. && istype(user)) //Let's check all that other stuff first.
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+				return 0
 
 //Pow! Headshot.
 /obj/item/weapon/gun/rifle/sniper/M42A
@@ -193,6 +192,7 @@
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety on.
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/burstfire_assembly)
@@ -217,19 +217,18 @@
 	unique_action(mob/user)
 		toggle_restriction(user)
 
-	able_to_fire(mob/living/carbon/human/user as mob)
-		if (!ishuman(user)) return
-		var/mob/living/carbon/human/smart_gunner = user
-		if ( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
-			click_empty(smart_gunner)
-			return
+	able_to_fire(mob/living/user)
+		. = ..()
+		if(.)
+			if(!ishuman(user)) return 0
+			var/mob/living/carbon/human/H = user
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["smartgun"] < SKILL_SMART_USE)
+				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+				return 0
+			if ( !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
+				click_empty(H)
+				return 0
 
-		if (..()) //Let's check all that other stuff first.
-			if (istype(user))
-				var/obj/item/weapon/card/id/card = user.wear_id
-				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
-				else if (istype(card) && (card.assignment == "Alpha Squad Smartgunner" || card.assignment == "Bravo Squad Smartgunner" || card.assignment == "Charlie Squad Smartgunner" || card.assignment == "Delta Squad Smartgunner") || card.assignment == "Commander" || card.assignment == "PMC Specialist") return 1 // ID locks.
-				else user << "<span class='warning'>[src] is ID locked!</span>"
 
 	load_into_chamber(mob/user)
 		if(active_attachable) active_attachable = null
@@ -364,13 +363,12 @@
 			grenades -= nade
 		else user << "<span class='warning'>It's empty!</span>"
 
-	able_to_fire(mob/living/carbon/human/user as mob)
-		if (..()) //Let's check all that other stuff first.
-			if (istype(user))
-				var/obj/item/weapon/card/id/card = user.wear_id
-				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
-				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist")) return 1//We can check for access, but only Specialists have access to it.
-				else user << "<span class='warning'>[src] is ID locked!</span>"
+	able_to_fire(mob/living/user)
+		. = ..()
+		if (. && istype(user)) //Let's check all that other stuff first.
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+				return 0
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
@@ -465,13 +463,12 @@
 			grenade = null
 		else user << "<span class='warning'>It's empty!</span>"
 
-	able_to_fire(mob/living/carbon/human/user as mob)
-		if (..()) //Let's check all that other stuff first.
-			if (istype(user))
-				var/obj/item/weapon/card/id/card = user.wear_id
-				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
-				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist")) return 1//We can check for access, but only Specialists have access to it.
-				else user << "<span class='warning'>[src] is ID locked!</span>"
+	able_to_fire(mob/living/user)
+		. = ..()
+		if (. && istype(user)) //Let's check all that other stuff first.
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+				return 0
 
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
@@ -582,21 +579,17 @@
 		else 							user << "It's empty."
 
 
-	able_to_fire(mob/living/carbon/human/user as mob)
-		if (user)
+	able_to_fire(mob/living/user)
+		. = ..()
+		if (. && istype(user)) //Let's check all that other stuff first.
 			var/turf/current_turf = get_turf(user)
-
-			if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Sulaco, bub.
+			if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
 				click_empty(user)
 				user << "<span class='warning'>You can't fire that here!</span>"
-				return
-
-		if (..()) //Let's check all that other stuff first.
-			if (istype(user))
-				var/obj/item/weapon/card/id/card = user.wear_id
-				if (!card) user << "<span class='warning'>[src] is ID locked!</span>"
-				else if (istype(card) && (card.assignment == "Alpha Squad Specialist" || card.assignment == "Bravo Squad Specialist" || card.assignment == "Charlie Squad Specialist" || card.assignment == "Delta Squad Specialist")) return 1//We can check for access, but only Specialists have access to it.
-				else user << "<span class='warning'>[src] is ID locked!</span>"
+				return 0
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+				return 0
 
 	load_into_chamber(mob/user)
 		if(active_attachable) active_attachable = null
@@ -705,7 +698,3 @@
 		burst_delay = config.med_fire_delay
 		burst_amount = config.high_burst_value
 
-/obj/item/weapon/flamethrower/full/M240
-	name = "\improper M240 incinerator unit"
-	desc = "A carbine-style flamethrower carried by the USCM in close quarters engagements. It is especially effective against soft-targets and in situations where area denial is important."
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
