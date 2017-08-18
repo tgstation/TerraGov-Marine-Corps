@@ -266,7 +266,7 @@
 /*
 /datum/autolathe/recipe/flamethrower
 	name = "flamethrower"
-	path = /obj/item/weapon/flamethrower/full
+	path = /obj/item/weapon/gun/flamer
 	hidden = 1
 	category = "Arms and Ammunition"
 

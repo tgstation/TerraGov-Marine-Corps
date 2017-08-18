@@ -29,9 +29,14 @@
 /obj/machinery/computer/overwatch/attack_paw(var/mob/user as mob) //why monkey why
 	return src.attack_hand(user)
 
-/obj/machinery/computer/overwatch/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/overwatch/attack_hand(mob/user)
 	if(..())  //Checks for power outages
 		return
+
+	if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_OVERWATCH)
+		user << "<span class='warning'>You don't have the training to use [src].</span>"
+		return
+
 
 	user.set_interaction(src)
 	var/dat = "<head><title>Overwatch Console</title></head><body>"
@@ -601,12 +606,16 @@
 			user << "It doesn't seem to do anything for you."
 			return
 
+		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_BINOCS)
+			user << "<span class='warning'>You don't have the training to use [src].</span>"
+			return
+
 		if(user.mind.assigned_squad)
 			squad = user.mind.assigned_squad
 		else
 			squad = get_squad_data_from_card(user)
 
-		if(squad == null)
+		if(!squad)
 			user << "You need to be in a squad for this to do anything."
 			return
 		if(squad.sbeacon)
@@ -649,12 +658,16 @@
 			user << "It doesn't seem to do anything for you."
 			return
 
+		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_SL)
+			user << "<span class='warning'>You don't have the training to use [src].</span>"
+			return
+
 		if(user.mind.assigned_squad)
 			squad = user.mind.assigned_squad
 		else
 			squad = get_squad_data_from_card(user)
 
-		if(squad == null)
+		if(!squad)
 			user << "You need to be in a squad for this to do anything."
 			return
 		if(squad.bbeacon)

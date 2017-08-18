@@ -95,10 +95,17 @@
 
 /obj/machinery/power/geothermal/attack_hand(mob/user as mob)
 	if(!anchored) return 0 //Shouldn't actually be possible
-	if(!ishuman(user) || user.stat) //I see dead or unconscious people!
+	if(user.is_mob_incapacitated()) return 0
+	if(!ishuman(user))
 		user << "\red You have no idea how to use that." //No xenos or mankeys
 		return 0
+
 	add_fingerprint(user)
+
+	if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+		user << "<span class='warning'>You have no clue how this thing works...</span>"
+		return 0
+
 	if(buildstate == 1)
 		usr << "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it."
 		return 0
@@ -124,6 +131,9 @@
 /obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/weldingtool))
 		if(buildstate == 1 && !is_on)
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
+				return 0
 			var/obj/item/weapon/weldingtool/WT = O
 			if(WT.remove_fuel(0, user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -139,6 +149,9 @@
 				return
 	else if(istype(O,/obj/item/weapon/wirecutters))
 		if(buildstate == 2 && !is_on)
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
+				return 0
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
 			if(do_after(user,120, TRUE, 5, BUSY_ICON_CLOCK))
@@ -149,6 +162,9 @@
 				return
 	else if(istype(O,/obj/item/weapon/wrench))
 		if(buildstate == 3 && !is_on)
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
+				return 0
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
 			if(do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))

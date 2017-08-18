@@ -23,7 +23,7 @@
 		user << "\The [src] is set for instant detonation."
 
 
-/obj/item/weapon/grenade/attack_self(mob/user as mob)
+/obj/item/weapon/grenade/attack_self(mob/user)
 	if(!active)
 
 		if(!user.IsAdvancedToolUser())

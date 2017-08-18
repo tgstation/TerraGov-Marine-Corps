@@ -895,7 +895,7 @@
 					else
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_R_HAND)
 				else
-					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_J_STORE)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer(H), WEAR_J_STORE)
 					if(istype(H.back, /obj/item/weapon/storage/backpack/marine))
 						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H.back), WEAR_IN_BACK)
 						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H.back), WEAR_IN_BACK)
@@ -1281,7 +1281,7 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)", "A crate full of high explosives. Not a good time to have a smoke.")
 
 	supply_manifest=list(
-		/obj/item/weapon/flamethrower/full = 2,
+		/obj/item/weapon/gun/flamer = 2,
 		/obj/item/weapon/tank/phoron/m240 = 6
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"\improper M240 Incinerator crate", "A crate containing a functional flamethrower with spare fuel tanks.")

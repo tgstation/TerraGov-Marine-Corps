@@ -105,6 +105,9 @@
 		..()
 
 /obj/item/weapon/melee/baton/attack_self(mob/user)
+	if(has_user_lock && user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
+		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		return
 	if(bcell && bcell.charge > hitcost)
 		status = !status
 		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
@@ -120,6 +123,9 @@
 
 
 /obj/item/weapon/melee/baton/attack(mob/M, mob/user)
+	if(has_user_lock && user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
+		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		return
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "span class='danger'>You accidentally hit yourself with the [src]!</span>"
 		user.KnockDown(30)

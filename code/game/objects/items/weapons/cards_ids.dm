@@ -136,8 +136,11 @@
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
 	var/dorm = 0		// determines if this ID has claimed a dorm already
-	var/datum/job/role
 	var/paygrade = 0  // Marine's paygrade
+
+	var/squad_name = "" //which squad this ID belongs to, only used by squad marines.
+	var/fire_team = "" //which fire team this ID belongs to, only used by squad marines.
+	var/chat_message_size //how big our radio messages appear in chat (e.g. commander)
 
 /obj/item/weapon/card/id/New()
 	..()

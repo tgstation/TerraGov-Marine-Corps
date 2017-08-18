@@ -5,110 +5,109 @@
 	origin_tech = "materials=2;combat=1"
 	var/banglet = 0
 
-	prime()
-		..()
-		for(var/obj/structure/closet/L in hear(7, get_turf(src)))
-			if(locate(/mob/living/carbon/, L))
-				for(var/mob/living/carbon/M in L)
-					bang(get_turf(src), M)
+
+/obj/item/weapon/grenade/flashbang/attack_self(mob/user)
+	if(user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
+		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		return
+	..()
 
 
-		for(var/mob/living/carbon/M in hear(7, get_turf(src)))
-			if(!istype(M,/mob/living/carbon/Xenomorph))
+/obj/item/weapon/grenade/flashbang/prime()
+	..()
+	for(var/obj/structure/closet/L in hear(7, get_turf(src)))
+		if(locate(/mob/living/carbon/, L))
+			for(var/mob/living/carbon/M in L)
 				bang(get_turf(src), M)
 
 
+	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
+		if(!istype(M,/mob/living/carbon/Xenomorph))
+			bang(get_turf(src), M)
 
-		new/obj/effect/particle_effect/smoke/flashbang(src.loc)
-		cdel(src)
-		return
 
-	proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
-		if (locate(/obj/item/weapon/cloaking_device, M))			// Called during the loop that bangs people in lockers/containers and when banging
-			for(var/obj/item/weapon/cloaking_device/S in M)			// people in normal view.  Could theroetically be called during other explosions.
-				S.active = 0										// -- Polymorph
-				S.icon_state = "shield0"
 
-		M << "\red <B>BANG</B>"
-		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
+	new/obj/effect/particle_effect/smoke/flashbang(src.loc)
+	cdel(src)
+	return
+
+/obj/item/weapon/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
+	if (locate(/obj/item/weapon/cloaking_device, M))			// Called during the loop that bangs people in lockers/containers and when banging
+		for(var/obj/item/weapon/cloaking_device/S in M)			// people in normal view.  Could theroetically be called during other explosions.
+			S.active = 0										// -- Polymorph
+			S.icon_state = "shield0"
+
+	M << "\red <B>BANG</B>"
+	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
 //Checking for protections
-		var/eye_safety = 0
-		var/ear_safety = 0
-		if(iscarbon(M))
-			eye_safety = M.eyecheck()
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))
-					ear_safety += 2
-				if(HULK in H.mutations)
-					ear_safety += 1
-				if(istype(H.head, /obj/item/clothing/head/helmet))
-					ear_safety += 1
+	var/eye_safety = 0
+	var/ear_safety = 0
+	if(iscarbon(M))
+		eye_safety = M.eyecheck()
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))
+				ear_safety += 2
+			if(HULK in H.mutations)
+				ear_safety += 1
+			if(istype(H.head, /obj/item/clothing/head/helmet))
+				ear_safety += 1
 
 //Flashing everyone
-		if(eye_safety < 1)
-			if(M.hud_used)
-				flick("e_flash", M.hud_used.flash_icon)
-			M.Stun(2)
-			M.KnockDown(10)
+	if(eye_safety < 1)
+		if(M.hud_used)
+			flick("e_flash", M.hud_used.flash_icon)
+		M.Stun(2)
+		M.KnockDown(10)
 
 
 
 //Now applying sound
-		if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
-			if(ear_safety > 0)
-				M.Stun(2)
-				M.KnockDown(1)
+	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+		if(ear_safety > 0)
+			M.Stun(2)
+			M.KnockDown(1)
+		else
+			M.Stun(10)
+			M.KnockDown(3)
+			if ((prob(14) || (M == src.loc && prob(70))))
+				M.ear_damage += rand(1, 10)
 			else
-				M.Stun(10)
-				M.KnockDown(3)
-				if ((prob(14) || (M == src.loc && prob(70))))
-					M.ear_damage += rand(1, 10)
-				else
-					M.ear_damage += rand(0, 5)
-					M.ear_deaf = max(M.ear_deaf,15)
+				M.ear_damage += rand(0, 5)
+				M.ear_deaf = max(M.ear_deaf,15)
 
-		else if(get_dist(M, T) <= 5)
-			if(!ear_safety)
-				M.Stun(8)
-				M.ear_damage += rand(0, 3)
-				M.ear_deaf = max(M.ear_deaf,10)
+	else if(get_dist(M, T) <= 5)
+		if(!ear_safety)
+			M.Stun(8)
+			M.ear_damage += rand(0, 3)
+			M.ear_deaf = max(M.ear_deaf,10)
 
-		else if(!ear_safety)
-			M.Stun(4)
-			M.ear_damage += rand(0, 1)
-			M.ear_deaf = max(M.ear_deaf,5)
+	else if(!ear_safety)
+		M.Stun(4)
+		M.ear_damage += rand(0, 1)
+		M.ear_deaf = max(M.ear_deaf,5)
 
 //This really should be in mob not every check
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
-			if (E && E.damage >= E.min_bruised_damage)
-				M << "\red Your eyes start to burn badly!"
-				if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
-					if (E.damage >= E.min_broken_damage)
-						M << "\red You can't see anything!"
-		if (M.ear_damage >= 15)
-			M << "\red Your ears start to ring badly!"
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+		if (E && E.damage >= E.min_bruised_damage)
+			M << "\red Your eyes start to burn badly!"
 			if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
-				if (prob(M.ear_damage - 10 + 5))
-					M << "\red You can't hear anything!"
-					M.sdisabilities |= DEAF
-		else
-			if (M.ear_damage >= 5)
-				M << "\red Your ears start to ring!"
-		M.update_icons()
+				if (E.damage >= E.min_broken_damage)
+					M << "\red You can't see anything!"
+	if (M.ear_damage >= 15)
+		M << "\red Your ears start to ring badly!"
+		if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
+			if (prob(M.ear_damage - 10 + 5))
+				M << "\red You can't hear anything!"
+				M.sdisabilities |= DEAF
+	else
+		if (M.ear_damage >= 5)
+			M << "\red Your ears start to ring!"
+	M.update_icons()
 
-/obj/effect/particle_effect/smoke/flashbang
-	name = "illumination"
-	time_to_live = 10
-	opacity = 0
-	icon_state = "sparks"
-
-/obj/effect/particle_effect/smoke/flashbang/New()
-	..()
-//	SetLuminosity(15)
 
 /obj/item/weapon/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
 	desc = "Use of this weapon may constiute a war crime in your area, consult your local captain."

@@ -393,21 +393,24 @@
 			return
 
 	if (href_list["squadfireteam"])
-		if(hasHUD(usr,"squadleader"))
+		if(!usr.is_mob_incapacitated() && get_dist(usr, src) <= 7 && hasHUD(usr,"squadleader"))
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/weapon/card/id/ID = get_idcard()
 			if(ID && (ID.rank in ROLES_MARINES)) //still a marine
 				if(get_squad_from_card(src) == get_squad_from_card(H)) //still same squad
-					var/datum/job/marine/JM = ID.role
-					if(JM)
-						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3", "Cancel")
-						switch(newfireteam)
-							if("None") JM.fireteam = 0
-							if("Fire Team 1") JM.fireteam = 1
-							if("Fire Team 2") JM.fireteam = 2
-							if("Fire Team 3") JM.fireteam = 3
-							else return
-						hud_set_squad()
+					var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3", "Cancel")
+					if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
+					ID = get_idcard()
+					if(ID && (ID.rank in ROLES_MARINES)) //still a marine
+						if(get_squad_from_card(src) == get_squad_from_card(H)) //still same squad
+							switch(newfireteam)
+								if("None") ID.fire_team = 0
+								if("Fire Team 1") ID.fire_team = 1
+								if("Fire Team 2") ID.fire_team = 2
+								if("Fire Team 3") ID.fire_team = 3
+								else return
+							hud_set_squad()
+
 
 	if (href_list["criminal"])
 		if(hasHUD(usr,"security"))

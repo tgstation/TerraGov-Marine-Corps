@@ -371,6 +371,9 @@
 		if(busy || tool_cooldown > world.time)
 			return
 		tool_cooldown = world.time + 10
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+			user << "<span class='warning'>You're not trained to repair [src]...</span>"
+			return
 		var/obj/item/weapon/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
 			user << "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>"
@@ -401,6 +404,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -411,6 +417,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -420,6 +429,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -431,6 +443,11 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+
+
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
 						user << "<span class='warning'>There's already a barricade here.</span>"
@@ -445,6 +462,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -523,6 +543,9 @@
 		if(busy || tool_cooldown > world.time)
 			return
 		tool_cooldown = world.time + 10
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+			user << "<span class='warning'>You're not trained to repair [src]...</span>"
+			return
 		var/obj/item/weapon/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
 			user << "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>"
@@ -553,11 +576,16 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
+
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
 						user << "<span class='warning'>There's already a barricade here.</span>"
 						return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
+
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				build_state = 1
@@ -568,6 +596,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -577,6 +608,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -589,6 +623,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -599,6 +636,9 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)

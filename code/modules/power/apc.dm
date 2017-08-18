@@ -396,6 +396,9 @@
 	src.add_fingerprint(user)
 	if (istype(W, /obj/item/weapon/crowbar) && opened)
 		if (has_electronics==1)
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no idea how to deconstruct [src]...</span>"
+				return
 			if (terminal)
 				user << "\red Disconnect wires first."
 				return
@@ -423,6 +426,9 @@
 			opened = 1
 			update_icon()
 	else if	(istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea how to fit [W] in [src]...</span>"
+			return
 		if(cell)
 			user << "There is a power cell already installed."
 			return
@@ -439,6 +445,9 @@
 				update_icon()
 	else if	(istype(W, /obj/item/weapon/screwdriver))	// haxing
 		if(opened)
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>[src]'s wiring confuses you...</span>"
+				return
 			if (cell)
 				user << "\red Close the APC first." //Less hints more mystery!
 				return
@@ -465,6 +474,9 @@
 			update_icon()
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You're not sure where to swipe [W] on [src]...</span>"
+			return
 		if(emagged)
 			user << "The interface is broken."
 		else if(opened)
@@ -498,6 +510,9 @@
 				else
 					user << "You fail to [ locked ? "unlock" : "lock"] the APC interface."
 	else if (istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics != 2)
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea what to do with [src]...</span>"
+			return
 		if (src.loc:intact)
 			user << "\red You must remove the floor plating in front of the APC first."
 			return
@@ -522,6 +537,9 @@
 				make_terminal()
 				terminal.connect_to_network()
 	else if (istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics!=2)
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
+			return
 		if (src.loc:intact)
 			user << "\red You must remove the floor plating in front of the APC first."
 			return
@@ -540,6 +558,9 @@
 			cdel(terminal)
 			terminal = null
 	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == 0 && !(stat & BROKEN))
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
+			return
 		user << "You trying to insert the power control board into the frame..."
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK))
@@ -547,9 +568,15 @@
 			user << "You place the power control board inside the frame."
 			cdel(W)
 	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && (stat & BROKEN))
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
+			return
 		user << "\red You cannot put the board inside, the frame is damaged."
 		return
 	else if (istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics==0 && !terminal)
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
+			return
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
 			user << "\blue You need more welding fuel to complete this task."
@@ -573,6 +600,9 @@
 			cdel(src)
 			return
 	else if (istype(W, /obj/item/apc_frame) && opened && emagged)
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
+			return
 		emagged = 0
 		if (opened==2)
 			opened = 1
@@ -582,6 +612,9 @@
 		cdel(W)
 		update_icon()
 	else if (istype(W, /obj/item/apc_frame) && opened && (stat & BROKEN))
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
+			return
 		if (has_electronics)
 			user << "You cannot repair this APC until you remove the electronics still inside."
 			return
@@ -678,6 +711,9 @@
 
 	if(usr == user && opened && (!issilicon(user)))
 		if(cell)
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no idea how to remove the power cell from [src]...</span>"
+				return
 			user.put_in_hands(cell)
 			cell.add_fingerprint(user)
 			cell.updateicon()
@@ -938,6 +974,9 @@
 		if(!can_use(usr, 1))
 			return 0
 	src.add_fingerprint(usr)
+	if(ishuman(usr) && usr.mind && usr.mind.skills_list && usr.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+		usr << "<span class='warning'>You don't know how to use [src]'s interface...</span>"
+		return
 
 	if (href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])

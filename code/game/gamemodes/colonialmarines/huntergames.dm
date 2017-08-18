@@ -213,6 +213,8 @@ var/waiting_for_drop_votes = 0
 	if(!H.mind)
 		H.mind = new(H.key)
 
+	H.mind.skills_list = null //no restriction on what the contestants can do
+
 	H.KnockDown(15)
 	H.nutrition = 300
 
@@ -268,7 +270,8 @@ var/waiting_for_drop_votes = 0
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET)
 
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/flare(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/general(H), WEAR_R_STORE)
 
 	H.update_icons()
 

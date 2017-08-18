@@ -1119,9 +1119,9 @@
 					new /obj/item/ammo_magazine/smg/m39/ap
 					continue
 				if(2)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
@@ -1142,13 +1142,13 @@
 					continue
 				if(6)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 				if(7)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 	return
 
@@ -1178,9 +1178,9 @@
 					new /obj/item/ammo_magazine/smg/m39/ap(drop_spawn)
 					new /obj/item/ammo_magazine/smg/m39/ap(drop_spawn)
 				if(2)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
 					new /obj/item/weapon/plastique(drop_spawn)
@@ -1231,7 +1231,7 @@
 					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 				if(1)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					continue
 				if(2)
@@ -1256,7 +1256,7 @@
 					continue
 				if(6)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 				if(7)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)

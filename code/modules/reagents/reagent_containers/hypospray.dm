@@ -17,13 +17,19 @@
 /obj/item/weapon/reagent_containers/hypospray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/item/weapon/reagent_containers/hypospray/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/reagent_containers/hypospray/attack(mob/M, mob/user)
 	if(!reagents.total_volume)
 		user << "\red [src] is empty."
 		return
 	if (!( istype(M, /mob) ))
 		return
 	if (reagents.total_volume)
+		if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_CHEM)
+			for(var/A in reagents.reagent_list)
+				var/datum/reagent/R = A
+				if(R.id != "tricordrazine")
+					user << "<span class='warning'>[src] contains chemicals you don't recognize, better not use it...</span>"
+					return 0
 		user << "\blue You inject [M] with [src]."
 		M << "\red You feel a tiny prick!"
 		playsound(loc, 'sound/items/hypospray.ogg', 50, 1)

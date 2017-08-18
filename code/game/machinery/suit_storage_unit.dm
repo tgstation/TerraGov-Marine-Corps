@@ -94,7 +94,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_hand(mob/user)
 	var/dat
 	if(..())
 		return

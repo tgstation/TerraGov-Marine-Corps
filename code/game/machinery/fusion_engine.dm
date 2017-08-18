@@ -145,6 +145,10 @@
 			if(fuel_amount>50)
 				user << "<span class='warning'>The current cell is more than half full.</span>"
 				r_TRU
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You start fumbling around, trying to move the fuel cell...</span>"
+				var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 			user.temp_drop_inv_item(O)
 			cdel(O) //FUEL CELL IS CURRENTLY CONSUMED.  Maybe eventually dump one out.
 			fuel_amount = 100
@@ -156,6 +160,10 @@
 			if(buildstate == 1 && !is_on)
 				var/obj/item/weapon/weldingtool/WT = O
 				if(WT.remove_fuel(0, user))
+					if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+						user << "<span class='warning'>You start fumbling around, examing what's broken...</span>"
+						var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+						if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts to weld the damage to [src].</span>","<span class='notice'>You start to weld the damage to [name]. Stand still!</span>")
 					if (do_after(user,200, TRUE, 5, BUSY_ICON_CLOCK))
@@ -170,6 +178,10 @@
 					r_FAL
 		else if(istype(O,/obj/item/weapon/wirecutters))
 			if(buildstate == 2 && !is_on)
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+					user << "<span class='warning'>You start fumbling around, trying to figure out the wiring...</span>"
+					var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
 				if(do_after(user,120, TRUE, 12, BUSY_ICON_CLOCK))
@@ -181,6 +193,10 @@
 					r_TRU
 		else if(istype(O,/obj/item/weapon/wrench))
 			if(buildstate == 3 && !is_on)
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+					user << "<span class='warning'>You start fumbling around, examining the damage on the tubes and plating...</span>"
+					var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
 				if(do_after(user,150, TRUE, 15, BUSY_ICON_CLOCK))

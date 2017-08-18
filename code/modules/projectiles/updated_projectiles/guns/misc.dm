@@ -13,6 +13,7 @@
 	var/obj/item/weapon/cell/high/cell //10000 power.
 	var/charge_cost = 100 //100 shots.
 	flags_gun_features = GUN_UNUSUAL_DESIGN
+	gun_skill_category = GUN_SKILL_PISTOLS
 
 	New()
 		..()
@@ -27,12 +28,12 @@
 		update_icon()
 		..()
 
-	able_to_fire(mob/living/carbon/human/user as mob)
-		if(..()) //Let's check all that other stuff first.
-			if(istype(user))
-				var/obj/item/weapon/card/id/card = user.wear_id
-				if(istype(card) && (card.assignment == "Military Police" || card.assignment == "Chief MP")) return 1//We can check for access, but only MPs have access to it.
-				else user << "<span class='warning'>[src] is ID locked!</span>"
+	able_to_fire(mob/living/user)
+		. = ..()
+		if (. && istype(user)) //Let's check all that other stuff first.
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
+				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+				return 0
 
 	load_into_chamber()
 		if(!cell || cell.charge - charge_cost < 0) return
@@ -73,6 +74,7 @@
 	w_class = 3
 	force = 8
 	type_of_casings = null
+	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED
 
@@ -95,6 +97,7 @@
 	var/num_flares = 1
 	var/max_flares = 1
 	flags_gun_features = GUN_UNUSUAL_DESIGN
+	gun_skill_category = GUN_SKILL_PISTOLS
 
 	examine(mob/user)
 		..()
@@ -201,6 +204,7 @@
 	name = "\improper BUG ROCKER rocket launcher"
 	desc = "Where did this come from? <b>NO BUGS</b>"
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/nobugs
+	gun_skill_category = GUN_SKILL_FIREARMS
 
 /obj/item/ammo_magazine/rocket/nobugs
 	name = "\improper BUG ROCKER rocket tube"

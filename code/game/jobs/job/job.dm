@@ -28,6 +28,9 @@
 	var/flags_startup_parameters 	= NOFLAGS //These flags are used to determine how to load the role, and some other parameters.
 	var/flags_whitelist 			= NOFLAGS //Only used by whitelisted roles. Can be a single whitelist flag, or a combination of them.
 
+	var/list/skills_list //the job knowledges we have. Associative list
+	var/chat_message_size //how big radio messages from player with that job will appear in chat
+
 	New()
 		..()
 		if(!disp_title) disp_title = title
@@ -123,10 +126,10 @@
 	C = new idtype(H)
 	C.access = get_access()
 	C.paygrade = paygrade
+	C.chat_message_size = chat_message_size
 	C.registered_name = H.real_name
 	C.rank = title
 	C.assignment = title_alt ? title_alt : disp_title
-	C.role = src
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 
 	//put the player's account number onto the ID

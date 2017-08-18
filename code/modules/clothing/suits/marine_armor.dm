@@ -80,8 +80,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
-		///obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/flamethrower,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,
@@ -255,7 +253,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "mp"
 	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(/obj/item/weapon/gun,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
@@ -415,7 +413,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "pmc_armor"
 	armor = list(melee = 55, bullet = 62, laser = 42, energy = 38, bomb = 40, bio = 15, rad = 15)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(/obj/item/weapon/gun,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
@@ -426,7 +424,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/flamethrower,
 		/obj/item/weapon/combat_knife)
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/PMC)
 
@@ -518,12 +515,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(/obj/item/weapon/gun,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/grenade,
-		/obj/item/weapon/flamethrower,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,
@@ -679,12 +675,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 40, bullet = 40, laser = 40, energy = 30, bomb = 60, bio = 30, rad = 30)
 	uniform_restricted = list(/obj/item/clothing/under/colonist)
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(/obj/item/weapon/gun,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/grenade,
-		/obj/item/weapon/flamethrower,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,

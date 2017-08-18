@@ -171,11 +171,11 @@
 	if(href_list["optimize"])
 		if(shuttle.transit_optimized) return
 		var/mob/M = usr
-		if(M.mind.assigned_role == "Pilot Officer")
+		if(M.mind && M.mind.skills_list && !M.mind.skills_list["pilot"])
+			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
+		else
 			usr << "<span class='notice'>You load in and review a custom flight plan you took time to prepare earlier. This should cut half of the transport flight time on its own!</span>"
 			shuttle.transit_optimized = 1
-		else
-			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
 			return
 
 	if(href_list["fire_mission"])
@@ -183,11 +183,11 @@
 		shuttle.transit_gun_mission = !shuttle.transit_gun_mission
 		if(shuttle.transit_gun_mission)
 			var/mob/M = usr
-			if(M.mind.assigned_role == "Pilot Officer") //only pilots can activate the fire mission mode, but everyone can reset it back to transport..
-				usr << "<span class='notice'>You upload a flight plan for a fire mission above the planet.</span>"
-			else
+			if(M.mind && M.mind.skills_list && !M.mind.skills_list["pilot"]) //only pilots can activate the fire mission mode, but everyone can reset it back to transport..
 				usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
 				return
+			else
+				usr << "<span class='notice'>You upload a flight plan for a fire mission above the planet.</span>"
 		else
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 

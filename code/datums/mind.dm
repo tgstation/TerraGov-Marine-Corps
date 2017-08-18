@@ -41,10 +41,13 @@ datum/mind
 	var/assigned_role
 	var/special_role
 
+	var/list/skills_list //the knowledge you have about certain abilities and actions (e.g. do you how to do surgery?)
+								//see skills.dm in #define folder for more info
+
 	var/role_alt_title
 	var/role_comm_title
 
-	var/datum/job/assigned_job
+//	var/datum/job/assigned_job
 	var/datum/squad/assigned_squad
 
 	var/list/datum/objective/objectives = list()
@@ -60,11 +63,14 @@ datum/mind
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
 
+	//put this here for easier tracking ingame
+	var/datum/money_account/initial_account
+
 	New(var/key)
 		src.key = key
 
-	//put this here for easier tracking ingame
-	var/datum/money_account/initial_account
+
+
 
 	proc/transfer_to(mob/living/new_character)
 		if(!istype(new_character))
@@ -171,6 +177,16 @@ datum/mind
 			var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
 			if (!new_role) return
 			assigned_role = new_role
+			if(ishuman(current))
+				var/mob/living/carbon/human/H = current
+				if(H.mind)
+					for(var/datum/job/J in get_all_jobs())
+						if(J.title == new_role)
+							H.mind.skills_list = J.skills_list //give new role's job_knowledge to us.
+							H.mind.special_role = J.special_role
+							H.mind.role_alt_title = J.get_alternative_title(src)
+							H.mind.role_comm_title = J.comm_title
+							break
 
 		else if (href_list["memory_edit"])
 			var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null|message),1,MAX_MESSAGE_LEN)
@@ -411,14 +427,29 @@ datum/mind
 		mind.original = src
 		if(ticker) ticker.minds += mind
 		else world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
-
+		. = 1 //successfully created a new mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
-	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Squad Marine"	//default
+	if(..()) //new mind created
+		//if we find an ID with assignment, we give the new mind the info linked to that job.
+		if(wear_id)
+			var/obj/item/weapon/card/id/I = wear_id.GetID()
+			if(I && I.assignment)
+				for(var/datum/job/J in get_all_jobs())
+					if(J.title == I.rank)
+						mind.assigned_role = J.title
+						mind.skills_list = J.skills_list
+						mind.special_role = J.special_role
+						mind.role_alt_title = J.get_alternative_title(src)
+						mind.role_comm_title = J.comm_title
+						break
+	//if not, we give the mind default job_knowledge and assigned_role
+	if(!mind.assigned_role)
+		mind.assigned_role = "Squad Marine"	//default
+		mind.skills_list = null //no restriction on what we can do.
 
 //MONKEY
 /mob/living/carbon/monkey/mind_initialize()

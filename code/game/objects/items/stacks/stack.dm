@@ -112,6 +112,10 @@
 		var/multiplier = text2num(href_list["multiplier"])
 		if(!multiplier || (multiplier <= 0)) //href exploit protection
 			return
+		if(R.engi_req)
+			if(ishuman(usr) && usr.mind && usr.mind.skills_list && usr.mind.skills_list["engineer"] < R.engi_req)
+				usr << "<span class='warning'>You are not trained to build this...</span>"
+				return
 		if(amount < R.req_amount * multiplier)
 			if(R.req_amount * multiplier > 1)
 				usr << "<span class='warning'>You need more [name] to build \the [R.req_amount*multiplier] [R.title]\s!</span>"
@@ -268,7 +272,9 @@
 	var/time = 0
 	var/one_per_turf = 0
 	var/on_floor = 0
-	New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0)
+	var/engi_req = 0 //whether only people with sufficient engineer skills can build this.
+
+	New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, engi_req = 0)
 		src.title = title
 		src.result_type = result_type
 		src.req_amount = req_amount
@@ -277,6 +283,7 @@
 		src.time = time
 		src.one_per_turf = one_per_turf
 		src.on_floor = on_floor
+		src.engi_req = engi_req
 
 /*
  * Recipe list datum

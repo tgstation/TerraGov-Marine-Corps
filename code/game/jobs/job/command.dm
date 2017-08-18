@@ -8,6 +8,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	total_positions = 1
 	spawn_positions = 1
 	minimal_player_age = 7
+	chat_message_size = 3
 
 //Commander
 /datum/job/command/commander
@@ -21,6 +22,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_player_age = 14
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
 	flags_whitelist = WHITELIST_COMMANDER
+	skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_OVERWATCH,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_FLASH,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
 	generate_wearable_equipment()
 		. = list(
@@ -70,6 +72,8 @@ Come hell or high water, you are going to be there for them."}
 	paygrade = "O3"
 	flag = ROLE_EXECUTIVE_OFFICER
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
+	skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_OVERWATCH,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_FLASH,"powerloader"=SKILL_POWERLOADER_TRAINED)
+
 
 	generate_wearable_equipment()
 		. = list(
@@ -101,6 +105,8 @@ Make the USCM proud!"}
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
+	skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_OVERWATCH,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+
 
 	generate_wearable_equipment()
 		. = list(
@@ -132,6 +138,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
+	skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BINOCS,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_TRAINED,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
 	generate_wearable_equipment()
 		. = list(
@@ -177,6 +184,8 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	idtype = /obj/item/weapon/card/id
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
+	chat_message_size = 0 //no big message for you, despite being a command job
+	skills_list = list("cqc"=SKILL_CQC_MP,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_MP,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 	get_total_positions()
 		var/count = 0
@@ -215,6 +224,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
+	skills_list = list("cqc"=SKILL_CQC_MP,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BINOCS,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_MP,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 	generate_wearable_equipment()
 		. = list(

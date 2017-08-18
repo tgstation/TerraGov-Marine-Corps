@@ -125,7 +125,7 @@
 		R.amount = amount
 		R.price = price
 
-		if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/flamethrower) || ispath(typepath,/obj/item/weapon/storage) )
+		if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/gun/flamer) || ispath(typepath,/obj/item/weapon/storage) )
 			R.display_color = "black"
 //		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
 //			R.display_color = "white"
@@ -459,6 +459,9 @@
 
 		else if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
+			if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				usr << "<span class='warning'>You don't understand anything about this wiring...</span>"
+				return 0
 			if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
 				usr << "You need wirecutters!"
 				return
@@ -469,6 +472,9 @@
 
 		else if ((href_list["pulsewire"]) && (src.panel_open))
 			var/twire = text2num(href_list["pulsewire"])
+			if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				usr << "<span class='warning'>You don't understand anything about this wiring...</span>"
+				return 0
 			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
 				usr << "You need a multitool!"
 				return
@@ -1103,7 +1109,7 @@
 			R.amount = amount
 			R.price = price
 
-			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/flamethrower) || ispath(typepath,/obj/item/weapon/storage) )
+			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/gun/flamer) || ispath(typepath,/obj/item/weapon/storage) )
 				R.display_color = "black"
 //			else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
 //				R.display_color = "green"

@@ -2423,7 +2423,7 @@
 "UE" = (/obj/structure/jungle/vines_heavy{pixel_x = -28},/obj/structure/jungle/vines_heavy,/turf/unsimulated/floor/gm/grass,/area/lv624/ground/jungle3)
 "UF" = (/obj/structure/safe{spawnkey = 0},/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/item/weapon/cell/high,/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "UG" = (/obj/structure/rack,/obj/item/device/aicard,/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
-"UH" = (/obj/structure/rack,/obj/item/weapon/flamethrower/full,/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
+"UH" = (/obj/structure/rack,/obj/item/weapon/gun/flamer,/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "UI" = (/obj/structure/rack,/obj/item/weapon/gun/rifle/m41a,/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "UJ" = (/obj/structure/rack,/obj/item/ammo_magazine/rifle/extended,/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "UK" = (/obj/structure/table,/obj/item/weapon/weldingtool,/obj/item/weapon/wrench,/turf/simulated/floor{dir = 9; icon_state = "brown"},/area/lv624/lazarus/comms)
