@@ -1,32 +1,43 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills.
 ////////////////////////////////////////////////////////////////////////////////
+
+//randomizing pill icons
+var/global/list/randomized_pill_icons
+
+
 /obj/item/weapon/reagent_containers/pill
 	name = "pill"
-	desc = "a pill."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = null
 	item_state = "pill"
 	possible_transfer_amounts = null
 	w_class = 1
 	volume = 60
+	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 
 	New()
 		..()
+		if(!randomized_pill_icons)
+			var/allowed_numbers = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+			randomized_pill_icons = list()
+			for(var/i = 1 to 20)
+				randomized_pill_icons += "pill[pick_n_take(allowed_numbers)]"
 		if(!icon_state)
 			icon_state = "pill[rand(1,20)]"
+
+
+	examine(mob/user)
+		..()
+		if(!user.mind || !user.mind.skills_list || user.mind.skills_list["medical"] >= SKILL_MEDICAL_CHEM)
+			user << pill_desc
+		else
+			user << "You don't know what's in it."
 
 	attack_self(mob/user as mob)
 		return
 
 	attack(mob/M, mob/user, def_zone)
-
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_CHEM)
-			for(var/A in reagents.reagent_list)
-				var/datum/reagent/R = A
-				if(R.id != "tricordrazine")
-					user << "<span class='warning'>[src] contains chemicals you don't recognize, better not use it...</span>"
-					return 0
 
 		if(M == user)
 
@@ -102,126 +113,152 @@
 
 //Pills
 /obj/item/weapon/reagent_containers/pill/antitox
-	name = "anti-toxins pill (25u)"
-	desc = "Neutralizes many common toxins."
-	icon_state = "pill17"
+	pill_desc = "An anti-toxins pill (25u), it neutralizes many common toxins."
 	New()
 		..()
+		icon_state = randomized_pill_icons[1]
 		reagents.add_reagent("anti_toxin", 25)
 
 /obj/item/weapon/reagent_containers/pill/tox
-	name = "toxins pill"
-	desc = "Highly toxic."
-	icon_state = "pill5"
+	pill_desc = "A toxins pill, it's highly toxic."
 	New()
 		..()
+		icon_state = randomized_pill_icons[2]
 		reagents.add_reagent("toxin", 50)
 
 /obj/item/weapon/reagent_containers/pill/cyanide
-	name = "cyanide pill"
-	desc = "Don't swallow this."
-	icon_state = "pill5"
+	pill_desc = "A cyanide pill, don't swallow this!"
 	New()
 		..()
+		icon_state = randomized_pill_icons[2]
 		reagents.add_reagent("cyanide", 50)
 
 /obj/item/weapon/reagent_containers/pill/adminordrazine
-	name = "\improper Adminordrazine pill"
-	desc = "It's magic. We don't have to explain it."
-	icon_state = "pill16"
+	pill_desc = "An Adminordrazine pill, it's magic. We don't have to explain it."
 	New()
 		..()
+		icon_state = randomized_pill_icons[3]
 		reagents.add_reagent("adminordrazine", 50)
 
 /obj/item/weapon/reagent_containers/pill/stox
-	name = "sleeping pill"
-	desc = "Commonly used to treat insomnia."
-	icon_state = "pill8"
+	pill_desc = "A sleeping pill, commonly used to treat insomnia."
 	New()
 		..()
+		icon_state = randomized_pill_icons[4]
 		reagents.add_reagent("stoxin", 15)
 
 /obj/item/weapon/reagent_containers/pill/kelotane
-	name = "\improper Kelotane pill (15u)"
-	desc = "Used to treat burns."
-	icon_state = "pill11"
+	pill_desc = "A Kelotane pill (15u), Used to treat burns."
 	New()
 		..()
+		icon_state = randomized_pill_icons[5]
 		reagents.add_reagent("kelotane", 15)
 
 /obj/item/weapon/reagent_containers/pill/paracetamol
-	name = "\improper Paracetamol pill"
-	desc = "Tylenol! A painkiller for the ages. Chewables!"
-	icon_state = "pill8"
+	pill_desc = "A Paracetamol pill, painkiller for the ages."
 	New()
 		..()
+		icon_state = randomized_pill_icons[6]
 		reagents.add_reagent("paracetamol", 15)
 
 /obj/item/weapon/reagent_containers/pill/tramadol
-	name = "\improper Tramadol pill (15u)"
-	desc = "A simple painkiller."
-	icon_state = "pill7"
+	pill_desc = "A Tramadol pill (15u), simple painkiller."
 	New()
 		..()
+		icon_state = randomized_pill_icons[7]
 		reagents.add_reagent("tramadol", 15)
 
 
 /obj/item/weapon/reagent_containers/pill/methylphenidate
-	name = "\improper Methylphenidate pill"
-	desc = "Improves the ability to concentrate."
-	icon_state = "pill8"
+	pill_desc = "A Methylphenidate pill, improves the ability to concentrate."
 	New()
 		..()
+		icon_state = randomized_pill_icons[8]
 		reagents.add_reagent("methylphenidate", 15)
 
 /obj/item/weapon/reagent_containers/pill/citalopram
-	name = "\improper Citalopram pill"
-	desc = "Mild anti-depressant."
-	icon_state = "pill8"
+	pill_desc = "A Citalopram pill, mild anti-depressant."
 	New()
 		..()
+		icon_state = randomized_pill_icons[9]
 		reagents.add_reagent("citalopram", 15)
 
 
 /obj/item/weapon/reagent_containers/pill/inaprovaline
-	name = "\improper Inaprovaline pill (30u)"
-	desc = "Used to stabilize patients."
-	icon_state = "pill2"
+	pill_desc = "A Inaprovaline pill (30u), used to stabilize patients."
 	New()
 		..()
+		icon_state = randomized_pill_icons[10]
 		reagents.add_reagent("inaprovaline", 30)
 
 /obj/item/weapon/reagent_containers/pill/dexalin
-	name = "\improper Dexalin pill (15u)"
-	desc = "Used to treat oxygen deprivation."
-	icon_state = "pill16"
+	pill_desc = "A Dexalin pill (15u), used to treat oxygen deprivation."
 	New()
 		..()
+		icon_state = randomized_pill_icons[11]
 		reagents.add_reagent("dexalin", 15)
 
 /obj/item/weapon/reagent_containers/pill/spaceacillin
-	name = "\improper Spaceacillin pill (10u)"
-	desc = "Used to treat infected wounds and slow down viral infections."
-	icon_state = "pill9"
+	pill_desc = "A Spaceacillin pill (10u), used to treat infected wounds and slow down viral infections."
 	New()
 		..()
+		icon_state = randomized_pill_icons[12]
 		reagents.add_reagent("spaceacillin", 10)
 
 /obj/item/weapon/reagent_containers/pill/happy
-	name = "\improper Happy Pill!"
-	desc = "Happy happy joy joy!"
-	icon_state = "pill18"
+	pill_desc = "A Happy Pill! Happy happy joy joy!"
 	New()
 		..()
+		icon_state = randomized_pill_icons[13]
 		reagents.add_reagent("space_drugs", 15)
 		reagents.add_reagent("sugar", 15)
 
 /obj/item/weapon/reagent_containers/pill/zoom
-	name = "\improper Zoom Pill!"
-	desc = "Zoooom!"
-	icon_state = "pill18"
+	pill_desc = "A Zoom Pill! Zoooom!"
 	New()
 		..()
+		icon_state = randomized_pill_icons[14]
 		reagents.add_reagent("impedrezene", 10)
 		reagents.add_reagent("synaptizine", 5)
 		reagents.add_reagent("hyperzine", 5)
+
+
+
+/obj/item/weapon/reagent_containers/pill/russianRed
+	pill_desc = "A Russian Red (10u) pill, an EXTREME radiation countering pill. VERY dangerous"
+	New()
+		..()
+		icon_state = randomized_pill_icons[15]
+		reagents.add_reagent("russianred", 10)
+
+
+/obj/item/weapon/reagent_containers/pill/peridaxon
+	pill_desc = "A Peridaxon (10u) pill, heals internal organ damage"
+	New()
+		..()
+		icon_state = randomized_pill_icons[16]
+		reagents.add_reagent("peridaxon", 10)
+
+
+/obj/item/weapon/reagent_containers/pill/imidazoline
+	pill_desc = "A Imidazoline (10u) pill, heals eye damage"
+	New()
+		..()
+		icon_state = randomized_pill_icons[17]
+		reagents.add_reagent("imidazoline", 10)
+
+
+/obj/item/weapon/reagent_containers/pill/alkysine
+	pill_desc = "A Alkysine (10u) pill, heals brain damage"
+	New()
+		..()
+		icon_state = randomized_pill_icons[18]
+		reagents.add_reagent("alkysine", 10)
+
+
+/obj/item/weapon/reagent_containers/pill/bicaridine
+	pill_desc = "A Bicaridine (10u) pill, heals Brute damage."
+	New()
+		..()
+		icon_state = randomized_pill_icons[19]
+		reagents.add_reagent("bicaridine", 10)

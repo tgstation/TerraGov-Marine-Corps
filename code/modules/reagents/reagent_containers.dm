@@ -1,6 +1,6 @@
 /obj/item/weapon/reagent_containers
 	name = "Container"
-	desc = "..."
+	desc = ""
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = null
 	throwforce = 3
