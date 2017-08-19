@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/silicon/robot/emote(var/act,var/m_type=1,var/message = null, player_caused)
 	var/param = null
 	if (findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
@@ -10,21 +10,22 @@
 
 	switch(act)
 		if ("me")
-			if (src.client)
-				if(client.prefs.muted & MUTE_IC)
-					src << "You cannot send IC messages (muted)."
-					return
-				if (src.client.handle_spam_prevention(message,MUTE_IC))
-					return
+			if(player_caused)
+				if (src.client)
+					if(client.prefs.muted & MUTE_IC)
+						src << "You cannot send IC messages (muted)."
+						return
+					if (src.client.handle_spam_prevention(message,MUTE_IC))
+						return
 			if (stat)
 				return
 			if(!(message))
 				return
 			else
-				return custom_emote(m_type, message)
+				return custom_emote(m_type, message, player_caused)
 
 		if ("custom")
-			return custom_emote(m_type, message)
+			return custom_emote(m_type, message, player_caused)
 
 		if ("salute")
 			if (!src.buckled)
@@ -230,7 +231,7 @@
 		else
 			src << "\blue Unusable emote '[act]'. Say *help for a list."
 
-	if ((message && src.stat == 0))
+	if ((message && stat == CONSCIOUS))
 		if (m_type & 1)
 			for(var/mob/O in viewers(src, null))
 				O.show_message(message, m_type)

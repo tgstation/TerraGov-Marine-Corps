@@ -1,4 +1,4 @@
-/mob/living/carbon/Xenomorph/emote(var/act, var/m_type = 1, var/message = null)
+/mob/living/carbon/Xenomorph/emote(var/act, var/m_type = 1, var/message = null, player_caused)
 	if(stat) return
 	if(findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
@@ -8,6 +8,9 @@
 	//	act = copytext(act,1,length(act))
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 
+	if(stat && act != "help")
+		return
+
 	if(emotedown)
 		src << "STOP SPAMMING"
 		return
@@ -15,20 +18,21 @@
 		if("me")
 			if(silent)
 				return
-			if(client)
-				if (client.prefs.muted & MUTE_IC)
-					src << "<span class='warning'>You cannot send IC messages (muted)</span>"
-					return
-				if(client.handle_spam_prevention(message, MUTE_IC))
-					return
+			if(player_caused)
+				if(client)
+					if (client.prefs.muted & MUTE_IC)
+						src << "<span class='warning'>You cannot send IC messages (muted)</span>"
+						return
+					if(client.handle_spam_prevention(message, MUTE_IC))
+						return
 			if(stat)
 				return
 			if(!message)
 				return
-			return custom_emote(m_type, message)
+			return custom_emote(m_type, message, player_caused)
 
 		if("custom")
-			return custom_emote(m_type, message)
+			return custom_emote(m_type, message, player_caused)
 		if("roar")
 			if(!muzzled)
 				m_type = 2
@@ -88,7 +92,7 @@
 			<span style='color: green;'>tail</span></b><br>"
 		else
 			src << text("Invalid Emote: []", act)
-	if(message && stat == CONSCIOUS)
+	if(message)
 		log_emote("[name]/[key] : [message]")
 		if(m_type & 1)
 			for(var/mob/O in viewers(src, null))
@@ -97,9 +101,7 @@
 			for(var/mob/O in hearers(src, null))
 				O.show_message(message, m_type)
 
-	emotedown = 1
-	spawn(50)
-		emotedown = 0
-
-
-	return
+	if(player_caused)
+		emotedown = 1
+		spawn(50)
+			emotedown = 0

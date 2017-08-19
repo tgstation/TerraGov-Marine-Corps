@@ -1,8 +1,9 @@
 // All mobs should have custom emote, really..
-/mob/proc/custom_emote(var/m_type=1,var/message = null)
+/mob/proc/custom_emote(var/m_type=1,var/message = null, player_caused)
 	var/comm_paygrade = ""
-	if(stat || !use_me && usr == src)
-		usr << "You are unable to emote."
+	if(stat || (!use_me && player_caused))
+		if(player_caused)
+			src << "You are unable to emote."
 		return
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
@@ -34,7 +35,7 @@
 				continue
 			if(findtext(message," snores.")) //Because we have so many sleeping people.
 				break
-			if(M.stat == 2 && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
+			if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
 				M.show_message(message)
 
 
