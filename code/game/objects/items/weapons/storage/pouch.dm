@@ -129,11 +129,11 @@
 
 
 /obj/item/weapon/storage/pouch/pistol
-	name = "pistol pouch"
-	desc = "It can contain a pistol. Useful for emergencies."
+	name = "sidearm pouch"
+	desc = "It can contain a pistol or revolver. Useful for emergencies."
 	icon_state = "pistol"
 	max_w_class = 3
-	can_hold = list("/obj/item/weapon/gun/pistol")
+	can_hold = list("/obj/item/weapon/gun/pistol", "/obj/item/weapon/gun/revolver")
 	draw_mode = 1
 
 
@@ -177,7 +177,7 @@
 /obj/item/weapon/storage/pouch/magazine/pistol/large
 	name = "large pistol magazine pouch"
 	storage_slots = 4
-
+	icon_state = "large_pistol_mag"
 
 
 /obj/item/weapon/storage/pouch/magazine/pistol/pmc_mateba/New()

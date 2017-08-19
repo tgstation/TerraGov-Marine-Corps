@@ -52,7 +52,6 @@
 					/obj/item/weapon/storage/pouch/general = 10,
 					/obj/item/weapon/storage/pouch/bayonet = 10,
 					/obj/item/weapon/storage/pouch/firstaid/full = 10,
-					/obj/item/weapon/storage/pouch/pistol = 10,
 					/obj/item/weapon/storage/pouch/flare/full = 10,
 					/obj/item/weapon/storage/pouch/magazine/pistol = 10
 
@@ -129,6 +128,7 @@
 					/obj/item/weapon/storage/pouch/magazine = 1,
 					/obj/item/weapon/storage/pouch/flare/full = 3,
 					/obj/item/weapon/storage/pouch/firstaid/full = 3,
+					/obj/item/weapon/storage/pouch/pistol = 10,
 					/obj/item/weapon/storage/pouch/magazine/pistol/large = 1,
 					/obj/item/weapon/gun/pistol/m4a3 = 5,
 					/obj/item/weapon/gun/pistol/m1911 = 1,
@@ -402,7 +402,8 @@
 						/obj/item/weapon/storage/firstaid/adv = 3,
 						/obj/item/weapon/storage/pouch/medical = 2,
 						/obj/item/weapon/storage/pouch/medkit = 2,
-						/obj/item/weapon/storage/pouch/magazine = 2
+						/obj/item/weapon/storage/pouch/magazine = 2,
+						/obj/item/weapon/storage/pouch/pistol = 2
 					)
 	contraband = list(/obj/item/weapon/reagent_containers/blood/OMinus = 1)
 
@@ -521,7 +522,8 @@
 						/obj/item/weapon/gun/flamer = 2,
 						/obj/item/ammo_magazine/flamer_tank = 8,
 						/obj/item/weapon/storage/pouch/magazine/large = 1,
-						/obj/item/weapon/storage/pouch/general/large = 1
+						/obj/item/weapon/storage/pouch/general/large = 1,
+						/obj/item/weapon/storage/pouch/pistol = 1
 					)
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
