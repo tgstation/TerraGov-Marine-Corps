@@ -774,7 +774,6 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/weapon/storage/pouch/general = round(scale * 10),
 						/obj/item/weapon/storage/pouch/bayonet = round(scale * 10),
 						/obj/item/weapon/storage/pouch/firstaid/full = round(scale * 10),
-						/obj/item/weapon/storage/pouch/pistol = round(scale * 10),
 						/obj/item/weapon/storage/pouch/flare/full = round(scale * 10),
 						/obj/item/weapon/storage/pouch/magazine/pistol = round(scale * 10)
 						)

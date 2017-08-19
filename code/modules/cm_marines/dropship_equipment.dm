@@ -548,6 +548,7 @@
 			icon_state = "[initial(icon_state)]_installed"
 		else
 			linked_cam_console = null
+			icon_state = initial(icon_state)
 
 
 	Dispose()

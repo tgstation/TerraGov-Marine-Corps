@@ -469,6 +469,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1)
 	return
 
+
+//note: when adding new dresscodes, on top of adding a proper skills_list, make sure the ID given has
+//a rank that matches a job title unless you want the human to bypass the skill system.
 /mob/proc/arm_equipment(var/mob/living/carbon/human/M, var/dresscode)
 	switch(dresscode)
 		if ("strip")

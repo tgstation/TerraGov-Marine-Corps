@@ -64,6 +64,9 @@
 	anchored = 1
 	effect_duration = 25
 
+/obj/effect/overlay/temp/point/big
+	icon_state = "big_arrow"
+	effect_duration = 40
 
 /obj/effect/overlay/temp/laser_target
 	name = "laser"

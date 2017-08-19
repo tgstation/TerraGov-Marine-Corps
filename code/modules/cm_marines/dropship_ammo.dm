@@ -240,15 +240,24 @@
 
 /obj/structure/ship_ammo/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
-	desc = "The SM-17 'Fatty' is a special ordnance that only requires laser-guidance when first launched. Nicknamed 'Fatty' for its slow velocity."
+	desc = "The SM-17 'Fatty' is a cluster-bomb type ordnance that only requires laser-guidance when first launched."
 	icon_state = "fatty"
 	ammo_id = "f"
-	travelling_time = 120 //very slow but deadly accurate, even if laser guidance is stopped mid-travel.
+	travelling_time = 70 //slower but deadly accurate, even if laser guidance is stopped mid-travel.
 	max_inaccuracy = 1
-	point_cost = 500
+	point_cost = 450
 
 	detonate_on(turf/impact)
-		explosion(impact,2,4,6)
+		set waitfor = 0
+		explosion(impact,1,2,3) //first explosion is small to trick xenos into thinking its a minirocket.
+		sleep(20)
+		var/list/impact_coords = list(list(-4,4),list(0,5),list(4,4),list(-5,0),list(5,0),list(-4,-4),list(0,-5), list(4,-4))
+		var/turf/T
+		var/list/coords
+		for(var/i=1 to 8)
+			coords = impact_coords[i]
+			T = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+			explosion(T,1,3,5)
 		cdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
