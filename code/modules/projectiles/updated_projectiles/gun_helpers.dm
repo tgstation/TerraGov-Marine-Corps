@@ -223,7 +223,7 @@ should be alright.
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
-/obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user)
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(istype(I,/obj/item/attachable))
@@ -235,6 +235,37 @@ should be alright.
 
 	else if(istype(I,/obj/item/ammo_magazine))
 		if(check_inactive_hand(user)) reload(user,I)
+
+
+//tactical reloads
+/obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
+	if(istype(dropping, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/AM = dropping
+		if(!istype(user) || user.is_mob_incapacitated(TRUE))
+			return
+		if(loc != user.r_hand && loc != user.l_hand)
+			user << "<span class='warning'>[src] must be in your hand to do that.</span>"
+			return
+		if(flags_gun_features & GUN_INTERNAL_MAG)
+			user << "<span class='warning'>Can't do tactical reloads with [src].</span>"
+			return
+		//no tactical reload for the untrained.
+		if(user.mind && user.mind.skills_list && user.mind.skills_list[gun_skill_category] < 0)
+			user << "<span class='warning'>You don't know how to do tactical reloads.</span>"
+			return
+		if(istype(src, AM.gun_type))
+			if(current_mag)
+				unload(user,0,1)
+				user << "<span class='notice'>You start a tactical reload.</span>"
+			var/old_mag_loc = AM.loc
+			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK) && AM.loc == old_mag_loc && !current_mag)
+				if(istype(AM.loc, /obj/item/weapon/storage))
+					var/obj/item/weapon/storage/S = AM.loc
+					S.remove_from_storage(AM)
+				reload(user, AM)
+	else
+		..()
+
 
 
 //----------------------------------------------------------
