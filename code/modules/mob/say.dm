@@ -76,9 +76,9 @@
 
 	set_typing_indicator(0)
 	if(use_me)
-		usr.emote("me",usr.emote_type,message)
+		usr.emote("me",usr.emote_type,message, TRUE)
 	else
-		usr.emote(message)
+		usr.emote(message, 1, null, TRUE)
 	usr.talked = 1
 	spawn (10)
 		if (usr.talked ==2)
@@ -197,9 +197,9 @@
         return verb
 
 
-/mob/proc/emote(var/act, var/type, var/message)
+/mob/proc/emote(var/act, var/type, var/message, player_caused)
 	if(act == "me")
-		return custom_emote(type, message)
+		return custom_emote(type, message, player_caused)
 
 /mob/proc/get_ear()
 	// returns an atom representing a location on the map from which this

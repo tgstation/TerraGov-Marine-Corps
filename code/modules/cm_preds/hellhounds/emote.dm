@@ -1,4 +1,4 @@
-/mob/living/carbon/hellhound/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/hellhound/emote(var/act,var/m_type=1,var/message = null, player_caused)
 
 //	var/param = null
 	if (findtext(act, "-", 1, null))
@@ -8,6 +8,8 @@
 
 	if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
 		act = copytext(act,1,length(act))
+
+	if(stat) return
 
 	switch(act)
 		if ("me")
@@ -71,7 +73,7 @@
 		else
 			src << text("Invalid Emote: []", act)
 			return
-	if ((message && src.stat == 0))
+	if (message)
 		if(src.client)
 			log_emote("[name]/[key] : [message]")
 		if (m_type & 1)

@@ -1,4 +1,4 @@
-/mob/living/carbon/monkey/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/monkey/emote(var/act,var/m_type=1,var/message = null, player_caused)
 
 	var/param = null
 	if (findtext(act, "-", 1, null))
@@ -11,25 +11,31 @@
 
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 
+	if(act != "help") //you can always use the help emote
+		if(stat == DEAD)
+			return
+
+		else if(stat && (act != "gasp" || player_caused)) //involuntary gasps can still be emoted when unconscious
+			return
+
 	switch(act)
 		if ("me")
 			if(silent)
 				return
-			if (src.client)
-				if (client.prefs.muted & MUTE_IC)
-					src << "\red You cannot send IC messages (muted)."
-					return
-				if (src.client.handle_spam_prevention(message,MUTE_IC))
-					return
-			if (stat)
-				return
+			if(player_caused)
+				if (src.client)
+					if (client.prefs.muted & MUTE_IC)
+						src << "\red You cannot send IC messages (muted)."
+						return
+					if (src.client.handle_spam_prevention(message,MUTE_IC))
+						return
 			if(!(message))
 				return
-			return custom_emote(m_type, message)
+			return custom_emote(m_type, message, player_caused)
 
 
 		if ("custom")
-			return custom_emote(m_type, message)
+			return custom_emote(m_type, message, player_caused)
 
 		if("sign")
 			if (!src.is_mob_restrained())
@@ -118,7 +124,7 @@
 			src << text
 		else
 			src << text("Invalid Emote: []", act)
-	if ((message && src.stat == 0))
+	if (message)
 		if(src.client)
 			log_emote("[name]/[key] : [message]")
 		if (m_type & 1)

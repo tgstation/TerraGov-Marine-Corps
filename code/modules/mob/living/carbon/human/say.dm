@@ -18,7 +18,7 @@
 	var/message_mode = parse_message_mode(message, "headset")
 
 	if(copytext(message,1,2) == "*")
-		return emote(copytext(message,2))
+		return emote(copytext(message,2), 1, null, TRUE) //TRUE arg means emote was caused by player (e.g. no an auto scream when hurt).
 
 	if(name != GetVoice())
 		alt_name = "(as [get_id_name("Unknown")])"
