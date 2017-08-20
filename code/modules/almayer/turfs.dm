@@ -165,6 +165,12 @@
 	temperature = TCMB
 
 //Others
+/turf/simulated/floor/almayer/uscm
+	icon_state = "logo_c"
+	name = "\improper USCM Logo"
+
+/turf/simulated/floor/almayer/uscm/directional
+	icon_state = "logo_directional"
 
 //------ Grilles -----///
 
