@@ -11,7 +11,6 @@
 	max_combined_w_class = 4
 	var/base_icon = "m37_holster"
 	var/drawSound = 'sound/weapons/gun_rifle_draw.ogg'
-	var/list/accepted_weapon_types = list()
 
 
 /obj/item/weapon/storage/large_holster/update_icon()
@@ -60,9 +59,9 @@
 	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
 	item_state = "m37_holster"
-	accepted_weapon_types = list(
-		/obj/item/weapon/gun/shotgun/pump,
-		/obj/item/weapon/gun/shotgun/combat
+	can_hold = list(
+		"/obj/item/weapon/gun/shotgun/pump",
+		"/obj/item/weapon/gun/shotgun/combat"
 		)
 
 /obj/item/weapon/storage/large_holster/m37/New()
@@ -83,7 +82,7 @@
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
 	item_state = "machete_holster"
-	accepted_weapon_types = list(/obj/item/weapon/claymore/mercsword/machete)
+	can_hold = list("/obj/item/weapon/claymore/mercsword/machete")
 
 /obj/item/weapon/storage/large_holster/machete/full/New()
 	..()
@@ -100,7 +99,7 @@
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
 	flags_equip_slot = SLOT_WAIST|SLOT_BACK
-	accepted_weapon_types = list(/obj/item/weapon/katana)
+	can_hold = list("/obj/item/weapon/katana")
 
 /obj/item/weapon/storage/large_holster/katana/full/New()
 	..()
@@ -117,7 +116,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "m39_holster"
 	flags_equip_slot = SLOT_WAIST
-	accepted_weapon_types = list(/obj/item/weapon/gun/smg/m39)
+	can_hold = list("/obj/item/weapon/gun/smg/m39")
 
 /obj/item/weapon/storage/large_holster/m39/update_icon()
 	var/mob/user = loc
