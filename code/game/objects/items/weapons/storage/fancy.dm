@@ -170,10 +170,10 @@
 		..()
 
 /obj/item/weapon/storage/fancy/cigarettes/dromedaryco
-	name = "\improper DromedaryCo packet"
-	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
-	icon_state = "Dpacket"
-	item_state = "Dpacket"
+	name = "\improper Weyland Yutani Gold packet"
+	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Weyland Yutani's entry into the market. Comes backed by a fierce legal team."
+	icon_state = "wypacket"
+	item_state = "wypacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/lucky_strikes
 	name = "\improper Lucky Strikes Packet"
@@ -188,10 +188,10 @@
 	item_state = "kpacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/lady_finger
-	name = "\improper Lady Finger packet"
-	desc = "You're not sure what makes these high-menthol cigarettes 'Ladylike,' but damn do they calm the shakes."
-	icon_state = "lfpacket"
-	item_state = "lfpacket"
+	name = "\improper Arcturian Ace"
+	desc = "An entry level brand of cigarettes with a bright blue packaging. You're guessing these aren't really good for you, but it doesn't matter when it's Arcturian baby!"
+	icon_state = "aapacket"
+	item_state = "aapacket"
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
