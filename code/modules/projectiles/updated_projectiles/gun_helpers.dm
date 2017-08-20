@@ -243,7 +243,7 @@ should be alright.
 		var/obj/item/ammo_magazine/AM = dropping
 		if(!istype(user) || user.is_mob_incapacitated(TRUE))
 			return
-		if(loc != user.r_hand && loc != user.l_hand)
+		if(src != user.r_hand && src != user.l_hand)
 			user << "<span class='warning'>[src] must be in your hand to do that.</span>"
 			return
 		if(flags_gun_features & GUN_INTERNAL_MAG)
