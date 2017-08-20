@@ -65,6 +65,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggledrones,
 	/client/proc/change_security_level, /* Changes alert levels*/
 	/client/proc/toggle_gun_restrictions,
+	/client/proc/toggle_synthetic_restrictions,
 	/client/proc/adjust_weapon_mult,
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,

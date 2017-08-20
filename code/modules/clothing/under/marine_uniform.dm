@@ -318,7 +318,8 @@
 
 
 /obj/item/clothing/under/rank/synthetic
-	name = "\improper Synthetic uniform"
-	desc = "A simple uniform worn by Synthetic crewmembers."
+	name = "\improper USCM Support Uniform"
+	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
 	item_state = "rdalt"
+	item_color = "rdalt"
