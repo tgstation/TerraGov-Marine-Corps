@@ -217,6 +217,8 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 			H.real_name = "David"
 			spawn(9)
 				H << "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>"
+		H.mind.name = H.real_name
+
 		//update id with new name
 		if(H.wear_id)
 			var/obj/item/weapon/card/id/I = H.wear_id
