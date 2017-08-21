@@ -251,27 +251,27 @@
 		set waitfor = 0
 		explosion(impact,1,2,3) //first explosion is small to trick xenos into thinking its a minirocket.
 		sleep(20)
-		var/list/impact_coords = list(list(-4,4),list(0,5),list(4,4),list(-5,0),list(5,0),list(-4,-4),list(0,-5), list(4,-4))
+		var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
 		var/turf/T
 		var/list/coords
 		for(var/i=1 to 8)
 			coords = impact_coords[i]
 			T = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
-			explosion(T,1,3,5)
+			explosion(T,1,2,3)
 		cdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
-	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire."
+	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 600
+	point_cost = 500
 
 	detonate_on(turf/impact)
-		explosion(impact,1,2,3,6,1,0,7) //weak, but good flame range
-		for(var/turf/T in range(5,impact))
+		explosion(impact,1,2,3,6,1,0) //relatively weak
+		for(var/turf/T in range(4,impact))
 			if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-				new/obj/flamer_fire(T, 60, 30)
+				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
 		cdel(src)
 
 

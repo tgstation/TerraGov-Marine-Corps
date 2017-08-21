@@ -115,11 +115,7 @@
 		defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
 		if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Please apply on bare skin.</span>")
-			return
-
-		if(H.w_uniform && istype(H.w_uniform,/obj/item/clothing/under) && prob(50))
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Please apply on bare skin.</span>")
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Please remove suit or armor.</span>")
 			return
 
 		var/datum/organ/external/head = H.get_organ("head")
