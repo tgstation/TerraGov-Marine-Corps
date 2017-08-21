@@ -189,10 +189,14 @@
  */
 
 
+//randomizing pill icons
+var/global/list/randomized_pillbottle_icons
+
+
 /obj/item/weapon/storage/pill_bottle
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
-	icon_state = "pill_canister"
+	icon_state = "pill_canister1"
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
 	w_class = 2.0
@@ -201,7 +205,17 @@
 	use_to_pickup = 1
 	storage_slots = 14
 	use_sound = null
-	var/pillbottle_label = "..."
+	var/pillbottle_label = ""
+
+	New()
+		..()
+		name = "pill bottle"
+		if(!randomized_pillbottle_icons)
+			var/allowed_numbers = list(1,2,3,4,5,6,7,8,9,10)
+			randomized_pillbottle_icons = list()
+			for(var/i = 1 to 20)
+				randomized_pillbottle_icons += "pill_canister[pick_n_take(allowed_numbers)]"
+
 
 	examine(mob/user)
 		..()
@@ -228,10 +242,12 @@
 
 
 /obj/item/weapon/storage/pill_bottle/kelotane
+	name = "\improper Kelotane pill bottle"
 	pillbottle_label = "KELOTANE"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[1]
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
@@ -241,10 +257,12 @@
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 
 /obj/item/weapon/storage/pill_bottle/antitox
+	name = "\improper Dylovene pill bottle"
 	pillbottle_label = "DYLOVENE"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[2]
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
@@ -254,10 +272,12 @@
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 
 /obj/item/weapon/storage/pill_bottle/inaprovaline
+	name = "\improper Inaprovaline pill bottle"
 	pillbottle_label = "INAPROVALINE"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[3]
 		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
 		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
 		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
@@ -267,10 +287,12 @@
 		new /obj/item/weapon/reagent_containers/pill/inaprovaline( src )
 
 /obj/item/weapon/storage/pill_bottle/tramadol
+	name = "\improper Tramadol pill bottle"
 	pillbottle_label = "TRAMADOL"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[4]
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
@@ -287,10 +309,12 @@
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
 
 /obj/item/weapon/storage/pill_bottle/spaceacillin
+	name = "\improper Spaceacillin pill bottle"
 	pillbottle_label = "ANTIBIOTIC"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[5]
 		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
 		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
 		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
@@ -309,10 +333,12 @@
 
 
 /obj/item/weapon/storage/pill_bottle/bicaridine
+	name = "\improper Bicaridine pill bottle"
 	pillbottle_label = "BICARIDINE"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[6]
 		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
 		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
 		new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
@@ -326,10 +352,12 @@
 
 
 /obj/item/weapon/storage/pill_bottle/dexalin
+	name = "\improper Dexalin pill bottle"
 	pillbottle_label = "DEXALIN"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[7]
 		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
 		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
 		new /obj/item/weapon/reagent_containers/pill/dexalin(src)
@@ -344,10 +372,12 @@
 
 //Alkysine
 /obj/item/weapon/storage/pill_bottle/alkysine
+	name = "\improper Alkysine pill bottle"
 	pillbottle_label = "ALKYSINE"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[8]
 		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
 		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
 		new /obj/item/weapon/reagent_containers/pill/alkysine(src)
@@ -362,10 +392,12 @@
 
 //imidazoline
 /obj/item/weapon/storage/pill_bottle/imidazoline
+	name = "\improper Imidazoline pill bottle"
 	pillbottle_label = "IMIDAZOLINE"
 
 	New()
 		..()
+		icon_state = randomized_pillbottle_icons[9]
 		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
 		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
 		new /obj/item/weapon/reagent_containers/pill/imidazoline(src)
@@ -379,10 +411,13 @@
 
 //PERIDAXON
 /obj/item/weapon/storage/pill_bottle/peridaxon
+	name = "\improper Peridaxon pill bottle"
 	pillbottle_label = "PERIDAXON"
 
 	New()
 		..()
+
+		icon_state = randomized_pillbottle_icons[10]
 		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
 		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
 		new /obj/item/weapon/reagent_containers/pill/peridaxon(src)
@@ -397,6 +432,7 @@
 
 //RUSSIAN RED ANTI-RAD
 /obj/item/weapon/storage/pill_bottle/russianRed
+	name = "\improper Russian Red pill bottle"
 	pillbottle_label = "RUSSIAN RED (VERY DANGEROUS)"
 
 	New()

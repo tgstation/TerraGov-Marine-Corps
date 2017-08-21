@@ -147,10 +147,15 @@
 		else
 			if(user.drop_held_item())
 				O.forceMove(src)
-				if(item_quants[O.name])
-					item_quants[O.name]++
+				var/display_name = O.name
+				if(istype(O, /obj/item/weapon/storage/pill_bottle)) //pill bottles all have the same name,
+					var/obj/item/weapon/storage/pill_bottle/PB = O	//we add the label so they are unique.
+					if(PB.pillbottle_label)
+						display_name += " ([PB.pillbottle_label])"
+				if(item_quants[display_name])
+					item_quants[display_name]++
 				else
-					item_quants[O.name] = 1
+					item_quants[display_name] = 1
 				user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].", \
 									 "<span class='notice'>You add \the [O] to \the [src].")
 
@@ -287,7 +292,16 @@
 
 			var/i = amount
 			for(var/obj/O in contents)
-				if (O.name == K)
+				//this is hacky, I'm sorry
+				if(istype(O, /obj/item/weapon/storage/pill_bottle))
+					var/obj/item/weapon/storage/pill_bottle/PB = O
+					var/disp_name = O.name + " ([PB.pillbottle_label])"
+					if(disp_name == K)
+						O.loc = loc
+						i--
+						if (i <= 0)
+							return 1
+				else if (O.name == K)
 					O.loc = loc
 					i--
 					if (i <= 0)

@@ -592,20 +592,43 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 
 /datum/supply_packs/medical
 	name = "Medical crate"
+	contains = list(/obj/item/weapon/storage/box/autoinjectors,
+					/obj/item/weapon/storage/box/syringes,
+					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
+					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
+					/obj/item/weapon/reagent_containers/glass/bottle/bicaridine,
+					/obj/item/weapon/reagent_containers/glass/bottle/dexalin,
+					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin,
+					/obj/item/weapon/reagent_containers/glass/bottle/kelotane,
+					/obj/item/weapon/reagent_containers/glass/bottle/tramadol,
+					/obj/item/weapon/storage/pill_bottle/inaprovaline,
+					/obj/item/weapon/storage/pill_bottle/antitox,
+					/obj/item/weapon/storage/pill_bottle/bicaridine,
+					/obj/item/weapon/storage/pill_bottle/dexalin,
+					/obj/item/weapon/storage/pill_bottle/spaceacillin,
+					/obj/item/weapon/storage/pill_bottle/kelotane,
+					/obj/item/weapon/storage/pill_bottle/tramadol,
+					/obj/item/weapon/storage/box/pillbottles)
+	cost = 20
+	containertype = /obj/structure/closet/crate/medical
+	containername = "medical crate"
+	group = "Medical"
+
+
+/datum/supply_packs/firstaid
+	name = "First-aid kit crate"
 	contains = list(/obj/item/weapon/storage/firstaid/regular,
+					/obj/item/weapon/storage/firstaid/regular,
 					/obj/item/weapon/storage/firstaid/fire,
 					/obj/item/weapon/storage/firstaid/toxin,
 					/obj/item/weapon/storage/firstaid/o2,
 					/obj/item/weapon/storage/firstaid/adv,
-					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-					/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-					/obj/item/weapon/storage/box/syringes,
-					/obj/item/weapon/storage/box/autoinjectors)
-	cost = 25
+					/obj/item/weapon/storage/firstaid/adv)
+	cost = 20
 	containertype = /obj/structure/closet/crate/medical
 	containername = "medical crate"
 	group = "Medical"
+
 
 /datum/supply_packs/bodybag
 	name = "Body bag crate"
