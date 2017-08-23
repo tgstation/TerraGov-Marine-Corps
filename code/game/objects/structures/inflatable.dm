@@ -273,7 +273,7 @@
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
 	item_state = "syringe_kit"
-	max_storage_space = 21
+	max_combined_w_class = 21
 
 	New()
 		..()

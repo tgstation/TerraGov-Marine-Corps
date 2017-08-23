@@ -25,7 +25,7 @@
 	var/open = 0
 	w_class = 3.0
 	max_w_class = 2
-	max_storage_space = 14
+	max_combined_w_class = 14
 
 	examine(mob/user)
 		..()

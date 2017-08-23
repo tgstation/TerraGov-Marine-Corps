@@ -712,7 +712,7 @@
 	flags_equip_slot = SLOT_WAIST
 	max_w_class = 3
 	storage_slots = 10
-	max_storage_space = 30
+	max_combined_w_class = 30
 
 
 /obj/item/weapon/legcuffs/yautja
