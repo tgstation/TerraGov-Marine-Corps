@@ -12,10 +12,18 @@
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = new/list() //a list of objects which this item can store despite not passing the w_class limit
+	var/list/click_border_start = new/list() //In slotless storage, stores areas where clicking will refer to the associated item
+	var/list/click_border_end = new/list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
+	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
 	var/obj/screen/storage/boxes = null
+	var/obj/screen/storage/storage_start = null //storage UI
+	var/obj/screen/storage/storage_continue = null
+	var/obj/screen/storage/storage_end = null
+	var/obj/screen/storage/stored_start = null
+	var/obj/screen/storage/stored_continue = null
+	var/obj/screen/storage/stored_end = null
 	var/obj/screen/close/closer = null
 	var/show_storage_fullness = TRUE //whether our storage box on hud changes color when full.
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
@@ -82,11 +90,21 @@
 	if(user.s_active)
 		user.s_active.hide_from(user)
 	user.client.screen -= boxes
+	user.client.screen -= storage_start
+	user.client.screen -= storage_continue
+	user.client.screen -= storage_end
 	user.client.screen -= closer
 	user.client.screen -= contents
-	user.client.screen += boxes
 	user.client.screen += closer
-	user.client.screen += src.contents
+	user.client.screen += contents
+
+	if(storage_slots)
+		user.client.screen += boxes
+	else
+		user.client.screen += storage_start
+		user.client.screen += storage_continue
+		user.client.screen += storage_end
+
 	user.s_active = src
 	content_watchers |= user
 	return
@@ -96,6 +114,9 @@
 	if(!user.client)
 		return
 	user.client.screen -= src.boxes
+	user.client.screen -= storage_start
+	user.client.screen -= storage_continue
+	user.client.screen -= storage_end
 	user.client.screen -= src.closer
 	user.client.screen -= src.contents
 	if(user.s_active == src)
@@ -147,7 +168,7 @@
 		boxes.update_fullness(src)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/weapon/storage/proc/standard_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
+/obj/item/weapon/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
 	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
@@ -175,6 +196,72 @@
 	closer.screen_loc = "[4+cols+1]:16,2:16"
 	if(show_storage_fullness)
 		boxes.update_fullness(src)
+
+/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
+
+	var/baseline_max_storage_space = 21 //should be equal to default backpack capacity
+	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
+	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
+	var/storage_width = min( round( 258 * max_storage_space/baseline_max_storage_space ,1) ,284) //length of sprite for the box representing total storage space
+
+	click_border_start.Cut()
+	click_border_end.Cut()
+	storage_start.overlays.Cut()
+
+	var/matrix/M = matrix()
+	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
+	storage_continue.transform = M
+
+	storage_start.screen_loc = "4:16,2:16"
+	storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
+	storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
+
+	var/startpoint = 0
+	var/endpoint = 1
+
+	for(var/obj/item/O in contents)
+		startpoint = endpoint + 1
+		endpoint += storage_width * O.get_storage_cost()/max_storage_space
+
+		click_border_start.Add(startpoint)
+		click_border_end.Add(endpoint)
+
+		var/matrix/M_start = matrix()
+		var/matrix/M_continue = matrix()
+		var/matrix/M_end = matrix()
+		M_start.Translate(startpoint,0)
+		M_continue.Scale((endpoint-startpoint-stored_cap_width*2)/32,1)
+		M_continue.Translate(startpoint+stored_cap_width+(endpoint-startpoint-stored_cap_width*2)/2 - 16,0)
+		M_end.Translate(endpoint-stored_cap_width,0)
+		stored_start.transform = M_start
+		stored_continue.transform = M_continue
+		stored_end.transform = M_end
+		storage_start.overlays += src.stored_start
+		storage_start.overlays += src.stored_continue
+		storage_start.overlays += src.stored_end
+
+		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
+		O.maptext = ""
+		O.layer = 20
+
+	src.closer.screen_loc = "4:[storage_width+19],2:16"
+	return
+
+/obj/screen/storage/Click(location,control,params)
+	var/obj/item/weapon/storage/S = master
+	if(S.storage_slots)
+		return
+
+	var/list/mouse_control = params2list(params)
+	var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
+	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
+
+	for(var/i=1,i<=S.click_border_start.len,i++)
+		if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
+			usr.ClickOn(S.contents[i], params)
+			return
+	return
 
 /datum/numbered_display
 	var/obj/item/sample_object
@@ -211,12 +298,14 @@
 				adjusted_contents++
 				numbered_contents.Add( new/datum/numbered_display(I) )
 
-	//var/mob/living/carbon/human/H = user
-	var/row_num = 0
-	var/col_count = min(7,storage_slots) -1
-	if (adjusted_contents > 7)
-		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-	standard_orient_objs(row_num, col_count, numbered_contents)
+	if(storage_slots == null)
+		src.space_orient_objs(numbered_contents)
+	else
+		var/row_num = 0
+		var/col_count = min(7,storage_slots) -1
+		if (adjusted_contents > 7)
+			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
+		slot_orient_objs(row_num, col_count, numbered_contents)
 	return
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
@@ -226,7 +315,7 @@
 
 	if(src.loc == W)
 		return 0 //Means the item is already in the storage item
-	if(contents.len >= storage_slots)
+	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] is full, make some space.</span>"
 		return 0 //Storage item is full
@@ -259,14 +348,14 @@
 
 	if (!w_limit_bypassed && W.w_class > max_w_class)
 		if(!stop_messages)
-			usr << "<span class='notice'>[W] is too big for this [src].</span>"
+			usr << "<span class='notice'>[W] is too long for this [src].</span>"
 		return 0
 
-	var/sum_w_class = W.w_class
+	var/sum_storage_cost = W.get_storage_cost()
 	for(var/obj/item/I in contents)
-		sum_w_class += I.w_class //Adds up the combined w_classes which will be in the storage item if the item is added to it.
+		sum_storage_cost += I.get_storage_cost() //Adds up the combined storage costs which will be in the storage item if the item is added to it.
 
-	if(sum_w_class > max_combined_w_class)
+	if(sum_storage_cost > max_storage_space)
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] is full, make some space.</span>"
 		return 0
@@ -306,7 +395,8 @@
 		orient2hud(usr)
 		for(var/mob/M in can_see_content())
 			show_to(M)
-	W.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
+	if (storage_slots)
+		W.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
 	return 1
 
@@ -421,6 +511,36 @@
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
 	boxes.layer = 19
+
+	storage_start = new /obj/screen/storage(  )
+	storage_start.name = "storage"
+	storage_start.master = src
+	storage_start.icon_state = "storage_start"
+	storage_start.screen_loc = "7,7 to 10,8"
+	storage_start.layer = 19
+	storage_continue = new /obj/screen/storage(  )
+	storage_continue.name = "storage"
+	storage_continue.master = src
+	storage_continue.icon_state = "storage_continue"
+	storage_continue.screen_loc = "7,7 to 10,8"
+	storage_continue.layer = 19
+	storage_end = new /obj/screen/storage(  )
+	storage_end.name = "storage"
+	storage_end.master = src
+	storage_end.icon_state = "storage_end"
+	storage_end.screen_loc = "7,7 to 10,8"
+	storage_end.layer = 19
+
+	stored_start = new /obj //we just need these to hold the icon
+	stored_start.icon_state = "stored_start"
+	stored_start.layer = 19
+	stored_continue = new /obj
+	stored_continue.icon_state = "stored_continue"
+	stored_continue.layer = 19
+	stored_end = new /obj
+	stored_end.icon_state = "stored_end"
+	stored_end.layer = 19
+
 	closer = new
 	closer.master = src
 	orient2hud()
@@ -429,6 +549,24 @@
 	if(boxes)
 		cdel(boxes)
 		boxes = null
+	if(storage_start)
+		cdel(storage_start)
+		storage_start = null
+	if(storage_continue)
+		cdel(storage_continue)
+		storage_continue = null
+	if(storage_end)
+		cdel(storage_end)
+		storage_end = null
+	if(stored_start)
+		cdel(stored_start)
+		stored_start = null
+	if(src.stored_continue)
+		cdel(src.stored_continue)
+		src.stored_continue = null
+	if(stored_end)
+		cdel(stored_end)
+		stored_end = null
 	if(closer)
 		cdel(closer)
 		closer = null
@@ -475,6 +613,26 @@
 		if(istype(A,/obj/))
 			var/obj/O = A
 			O.hear_talk(M, text)
+
+/obj/item/proc/get_storage_cost() //framework for adjusting storage costs
+	if (storage_cost)
+		return storage_cost
+	else
+		return w_class
+/*
+		if(w_class == 1)
+			return 1
+		if(w_class == 2)
+			return 2
+		if(w_class == 3)
+			return 4
+		if(w_class == 4)
+			return 8
+		if(w_class == 5)
+			return 16
+		else
+			return 1000
+*/
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
