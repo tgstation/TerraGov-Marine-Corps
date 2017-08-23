@@ -8,7 +8,7 @@
 	flags_equip_slot = SLOT_BACK
 	max_w_class = 4
 	storage_slots = 1
-	max_combined_w_class = 4
+	max_storage_space = 4
 	var/base_icon = "m37_holster"
 	var/drawSound = 'sound/weapons/gun_rifle_draw.ogg'
 
