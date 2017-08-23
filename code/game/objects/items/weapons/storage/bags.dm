@@ -77,7 +77,7 @@
 	flags_equip_slot = SLOT_WAIST|SLOT_STORE
 	w_class = 3
 	storage_slots = 50
-	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
+	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
 	max_w_class = 3
 	can_hold = list("/obj/item/weapon/ore")
 
@@ -91,7 +91,7 @@
 	icon_state = "plantbag"
 	name = "Plant Bag"
 	storage_slots = 50; //the number of plant pieces it can carry.
-	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
+	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
 	w_class = 2
 	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks/grown","/obj/item/seeds","/obj/item/weapon/grown")
@@ -189,7 +189,7 @@
 		var/col_count = min(7,storage_slots) -1
 		if (adjusted_contents > 7)
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-		src.standard_orient_objs(row_num, col_count, numbered_contents)
+		src.slot_orient_objs(row_num, col_count, numbered_contents)
 		return
 
 
@@ -245,7 +245,7 @@
 	name = "Cash bag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
 	storage_slots = 50; //the number of cash pieces it can carry.
-	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
+	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = 3
 	w_class = 2
 	can_hold = list("/obj/item/weapon/coin","/obj/item/weapon/spacecash")

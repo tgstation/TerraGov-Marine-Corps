@@ -52,7 +52,7 @@
 	item_state = "swatbelt"
 	storage_slots = 9
 	max_w_class = 3
-	max_combined_w_class = 21
+	max_storage_space = 21
 
 
 
@@ -108,7 +108,7 @@
 	item_state = "medical"
 	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
 	max_w_class = 3
-	max_combined_w_class = 28
+	max_storage_space = 28
 
 	can_hold = list(
 		"/obj/item/device/healthanalyzer",
@@ -154,7 +154,7 @@
 	icon_state = "medicalbag"
 	item_state = "medicbag"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
-	max_combined_w_class = 42
+	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
 		"/obj/item/weapon/reagent_containers/glass/bottle",
@@ -201,7 +201,7 @@
 	item_state = "security"//Could likely use a better one.
 	storage_slots = 7
 	max_w_class = 3
-	max_combined_w_class = 21
+	max_storage_space = 21
 	can_hold = list(
 		"/obj/item/weapon/grenade/flashbang",
 		"/obj/item/weapon/reagent_containers/spray/pepper",
@@ -232,7 +232,7 @@
 	w_class = 4
 	storage_slots = 5
 	max_w_class = 3
-	max_combined_w_class = 15
+	max_storage_space = 15
 	can_hold = list(
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
@@ -270,7 +270,7 @@
 	w_class = 4
 	storage_slots = 10
 	max_w_class = 2
-	max_combined_w_class = 20
+	max_storage_space = 20
 	can_hold = list("/obj/item/ammo_magazine/handful")
 
 	New()
@@ -286,7 +286,7 @@
 	item_state = "security"
 	storage_slots = 6
 	max_w_class = 3
-	max_combined_w_class = 30
+	max_storage_space = 30
 	can_hold = list(
 		"/obj/item/weapon/grenade/flashbang",
 		"/obj/item/weapon/reagent_containers/spray/pepper",
@@ -321,7 +321,7 @@
 	w_class = 3
 	storage_slots = 6
 	max_w_class = 1
-	max_combined_w_class = 6
+	max_storage_space = 6
 
 	can_hold=list("/obj/item/weapon/throwing_knife")
 	New()
@@ -343,7 +343,7 @@
 	w_class = 4
 	storage_slots = 8
 	max_w_class = 3
-	max_combined_w_class = 24
+	max_storage_space = 24
 
 	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb","/obj/item/weapon/grenade/, /obj/item/weapon/grenade/phosphorus")
 
@@ -382,7 +382,7 @@
 	use_sound = null
 	w_class = 4
 	storage_slots = 5
-	max_combined_w_class = 11
+	max_storage_space = 11
 	max_w_class = 3
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.

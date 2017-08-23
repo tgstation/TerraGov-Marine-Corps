@@ -101,7 +101,7 @@
 		var/total_w = 0
 		for(var/obj/item/I in S)
 			total_w += I.w_class
-		var/fullness = round(10*max(S.contents.len/S.storage_slots, total_w/S.max_combined_w_class))
+		var/fullness = round(10*max(S.contents.len/S.storage_slots, total_w/S.max_storage_space))
 		switch(fullness)
 			if(10) color = "#ff0000"
 			if(7 to 9) color = "#ffa500"
