@@ -473,7 +473,7 @@
 
 /obj/item/clothing/tie/storage/knifeharness/New()
 	..()
-	hold.max_storage_space = 4
+	hold.max_combined_w_class = 4
 	hold.can_hold = list("/obj/item/weapon/hatchet/unathiknife",\
 	"/obj/item/weapon/kitchen/utensil/knife",\
 	"/obj/item/weapon/kitchen/utensil/pknife",\

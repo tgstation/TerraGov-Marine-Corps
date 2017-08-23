@@ -19,7 +19,6 @@
 
 	var/hitsound = null
 	var/w_class = 3.0
-	var/storage_cost = null
 	flags_atom = FPRINT
 	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.

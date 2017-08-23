@@ -183,7 +183,7 @@
 		pockets.storage_slots = 2
 		pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses.
 		pockets.bypass_w_limit = list("/obj/item/clothing/glasses")
-		pockets.max_storage_space = 3
+		pockets.max_combined_w_class = 3
 
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("LEADER")

@@ -117,7 +117,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		"/obj/item/ammo_magazine/smg",
 		"/obj/item/ammo_magazine/sniper",
 		 )
-		pockets.max_storage_space = 6
+		pockets.max_combined_w_class = 6
 
 
 

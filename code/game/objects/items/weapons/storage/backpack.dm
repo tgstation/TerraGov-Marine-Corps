@@ -11,8 +11,8 @@
 	w_class = 4.0
 	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
-	storage_slots = null
-	max_storage_space = 21
+	storage_slots = 10
+	max_combined_w_class = 21
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
 
 /obj/item/weapon/storage/backpack/attack_hand(mob/user)
@@ -73,7 +73,7 @@
 	icon_state = "holdingpack"
 	item_state = "holdingpack"
 	max_w_class = 4
-	max_storage_space = 28
+	max_combined_w_class = 28
 
 	New()
 		..()
@@ -119,9 +119,9 @@
 	icon_state = "giftbag0"
 	item_state = "giftbag"
 	w_class = 4.0
-	storage_slots = null
+	storage_slots = 20
 	max_w_class = 3
-	max_storage_space = 400 // can store a ton of shit!
+	max_combined_w_class = 400 // can store a ton of shit!
 
 /obj/item/weapon/storage/backpack/cultpack
 	name = "trophy rack"
@@ -199,8 +199,8 @@
 	icon_state = "satchel"
 	item_state = "satchel"
 	worn_accessible = TRUE
-	storage_slots = null
-	max_storage_space = 15
+	storage_slots = 7
+	max_combined_w_class = 15
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
 	New()
@@ -331,8 +331,8 @@
 	desc = "A heavy-duty satchel carried by some USCM soldiers and support personnel."
 	icon_state = "marinesat"
 	worn_accessible = TRUE
-	storage_slots = null
-	max_storage_space = 15
+	storage_slots = 7
+	max_combined_w_class = 15
 
 
 /obj/item/weapon/storage/backpack/marine/satchel/medic
@@ -361,8 +361,8 @@
 	icon_state = "engineerpack"
 	item_state = "engineerpack"
 	var/max_fuel = 260
-	max_storage_space = 15
-	storage_slots = null
+	max_combined_w_class = 15
+	storage_slots = 7
 
 /obj/item/weapon/storage/backpack/marine/engineerpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
@@ -416,12 +416,12 @@
 	desc = "A heavy-duty bag carried by Weyland Yutani commandos."
 	icon_state = "commandopack"
 	item_state = "commandopack"
-	storage_slots = null
-	max_storage_space = 30
+	storage_slots = 10
+	max_combined_w_class = 30
 
 /obj/item/weapon/storage/backpack/mcommander
 	name = "marine commander backpack"
 	desc = "The contents of this backpack are top secret."
 	icon_state = "marinepack"
-	storage_slots = null
-	max_storage_space = 30
+	storage_slots = 10
+	max_combined_w_class = 30
