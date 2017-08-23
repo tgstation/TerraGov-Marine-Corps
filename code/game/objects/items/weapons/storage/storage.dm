@@ -250,6 +250,7 @@
 /obj/screen/storage/Click(location,control,params)
 	var/obj/item/weapon/storage/S = master
 	if(S.storage_slots)
+		..()
 		return
 
 	var/list/mouse_control = params2list(params)
@@ -261,6 +262,7 @@
 		if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
 			usr.ClickOn(S.contents[i], params)
 			return
+	..()
 	return
 
 /datum/numbered_display
