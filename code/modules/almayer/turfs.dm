@@ -44,7 +44,7 @@
 /turf/simulated/wall/almayer/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
-	//icon_state = "testwall0_debug" //Use "testwall0". Testing sprite to check for missing/misplaced is testwall0_debug
+	//icon_state = "testwall0_debug" //Uncomment to check hull in the map editor.
 	walltype = "testwall"
 	hull = 1 //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
 
@@ -232,7 +232,7 @@
 /obj/structure/window/reinforced/almayer/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
-	//icon_state = "rwindow0_debug" //Should be rwindow0. Use rwindow0_debug to check for missing/misplaced hull windows
+	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	not_damageable = 1
 	not_deconstructable = 1
 	health = 1000000 //Failsafe, shouldn't matter
