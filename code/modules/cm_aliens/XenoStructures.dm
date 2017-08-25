@@ -1,3 +1,48 @@
+turf/simulated/wall/resin
+	name = "resin wall"
+	desc = "Weird slime solidified into a wall."
+	icon = 'icons/Xeno/structures.dmi'
+	icon_state = "resin0"
+	walltype = "resin"
+	mineral = "resin"
+	damage_cap = 200
+	layer = 3.1
+
+	tiles_with = list(/turf/simulated/wall/resin, /turf/simulated/wall/resin/membrane, /obj/structure/mineral_door/resin)
+
+	New()
+		..()
+		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
+
+turf/simulated/wall/resin/flamer_fire_act()
+	take_damage(50)
+
+turf/simulated/wall/resin/thick
+	name = "thick resin wall"
+	desc = "Weird slime solidified into a thick wall."
+	damage_cap = 400
+	icon_state = "thickresin0"
+	walltype = "thickresin"
+	mineral = "thickresin"
+
+turf/simulated/wall/resin/membrane
+	name = "resin membrane"
+	desc = "Weird slime translucent enough to let light pass through."
+	icon_state = "membrane0"
+	walltype = "membrane"
+	mineral = "membrane"
+	damage_cap = 120
+	opacity = 0
+	alpha = 180
+
+turf/simulated/wall/resin/membrane/thick
+	name = "thick resin membrane"
+	desc = "Weird thick slime just translucent enough to let light pass through."
+	damage_cap = 240
+	icon_state = "thickmembrane0"
+	walltype = "thickmembrane"
+	mineral = "thickmembrane"
+	alpha = 210
 
 /*
  * effect/alien
@@ -12,6 +57,7 @@
 /obj/effect/alien/flamer_fire_act()
 	health -= 50
 	if(health < 0) cdel(src)
+
 /*
  * Resin
  */
@@ -26,38 +72,6 @@
 	health = 200
 	layer = 2.8
 	unacidable = 1
-
-/obj/effect/alien/resin/wall
-	name = "resin wall"
-	desc = "Weird slime solidified into a wall."
-	icon_state = "ResinWall1" //same as resin, but consistency ho!
-	layer = 3.1
-
-	New()
-		..()
-		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
-
-/obj/effect/alien/resin/wall/thick
-	name = "thick resin wall"
-	desc = "Weird slime solidified into a thick wall."
-	health = 400
-
-/obj/effect/alien/resin/membrane
-	name = "resin membrane"
-	desc = "Weird slime just translucent enough to let light pass through."
-	icon_state = "Resin Membrane"
-	opacity = 0
-	health = 120
-	layer = 3
-
-	New()
-		..()
-		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
-
-/obj/effect/alien/resin/membrane/thick
-	name = "thick resin membrane"
-	desc = "A thick layer of weird slime just transulucent enough to let light pass through."
-	health = 240
 
 /obj/effect/alien/resin/sticky
 	name = "sticky resin"
@@ -166,7 +180,12 @@
 	var/health = 80
 	var/close_delay = 100
 
+	tiles_with = list(/turf/simulated/wall/resin, /turf/simulated/wall/resin/membrane, /obj/structure/mineral_door/resin)
+
 	New()
+		spawn(10)
+			relativewall()
+			relativewall_neighbours()
 		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
