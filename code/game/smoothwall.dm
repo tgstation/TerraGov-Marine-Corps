@@ -86,9 +86,10 @@
 
 // Not proud of this.
 /obj/structure/mineral_door/resin/handle_icon_junction(junction)
-	if (junction < 4)
+	if (junction == 1 || junction == 2)
 		dir = 4
-	else dir = 1
+	else if (junction == 4 || junction == 8)
+		dir = 1
 
 /obj/structure/window/reinforced/almayer/handle_icon_junction(jun_1, jun_2)
 	icon_state = "[basestate][jun_2 ? jun_2 : jun_1]" //Use junction 2 if possible, junction 1 otherwise.

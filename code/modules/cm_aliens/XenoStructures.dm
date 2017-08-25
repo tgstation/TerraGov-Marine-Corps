@@ -44,6 +44,74 @@ turf/simulated/wall/resin/membrane/thick
 	mineral = "thickmembrane"
 	alpha = 210
 
+turf/simulated/wall/resin/bullet_act(var/obj/item/projectile/Proj)
+	take_damage(Proj.damage)
+	..()
+
+	return 1
+
+turf/simulated/wall/resin/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			take_damage(500)
+		if(2.0)
+			take_damage(rand(140, 300))
+		if(3.0)
+			take_damage(rand(50, 100))
+	return
+
+turf/simulated/wall/resin/hitby(AM as mob|obj)
+	..()
+	if(istype(AM,/mob/living/carbon/Xenomorph))
+		return
+	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
+	"<span class='danger'>You hit \the [src].</span>")
+	var/tforce = 0
+	if(ismob(AM))
+		tforce = 10
+	else
+		tforce = AM:throwforce
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	take_damage(max(0, damage_cap - tforce))
+
+turf/simulated/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(isXenoLarva(M)) //Larvae can't do shit
+		return 0
+	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
+	"<span class='xenonotice'>You claw \the [src].</span>")
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
+
+turf/simulated/wall/resin/attack_animal(mob/living/M as mob)
+	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
+	"<span class='danger'>You tear \the [name].</span>")
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	take_damage(40)
+
+turf/simulated/wall/resin/attack_hand()
+	usr << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
+
+turf/simulated/wall/resin/attack_paw()
+	return attack_hand()
+
+turf/simulated/wall/resin/attackby(obj/item/W as obj, mob/user as mob)
+	if(!(W.flags_atom & NOBLUDGEON))
+		take_damage(damage_cap - W.force)
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	return ..(W, user)
+
+turf/simulated/wall/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group)
+		return 0
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return !opacity
+	return !density
+
+/turf/simulated/wall/resin/dismantle_wall(devastated = 0, explode = 0)
+	if(oldTurf != "") ChangeTurf(text2path(oldTurf))
+	else ChangeTurf(/turf/simulated/floor/plating)
+
+
 /*
  * effect/alien
  */
@@ -257,6 +325,11 @@ turf/simulated/wall/resin/membrane/thick
 	CheckHardness()
 		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 		..()
+
+	Del()
+		spawn(10)
+		relativewall_neighbours()
+
 
 /obj/structure/mineral_door/resin/proc/healthcheck()
 	if(src.health <= 0)

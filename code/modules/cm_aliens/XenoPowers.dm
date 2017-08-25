@@ -220,6 +220,7 @@
 	if(!istype(current_turf))
 		src << "<span class='warning'>You can't do that here.</span>"
 		return
+	var/turf_type = "[current_turf.type]"
 
 	if(!is_weedable(current_turf) || istype(get_area(src.loc),/area/shuttle/drop1/lz1 || istype(get_area(src.loc),/area/shuttle/drop2/lz2)) || istype(get_area(src.loc),/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
 		src << "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>"
@@ -249,14 +250,18 @@
 				new /obj/structure/mineral_door/resin(current_turf)
 		if("resin wall")
 			if (caste == "Hivelord")
-				new /turf/simulated/wall/resin/thick(current_turf)
+				var/turf/simulated/wall/resin/thick/W = new /turf/simulated/wall/resin/thick(current_turf)
+				W.oldTurf = turf_type
 			else
-				new /turf/simulated/wall/resin(current_turf)
+				var/turf/simulated/wall/resin/W = new /turf/simulated/wall/resin(current_turf)
+				W.oldTurf = turf_type
 		if("resin membrane")
 			if (caste == "Hivelord")
-				new /turf/simulated/wall/resin/membrane/thick(current_turf)
+				var/turf/simulated/wall/resin/membrane/thick/W = new /turf/simulated/wall/resin/membrane/thick(current_turf)
+				W.oldTurf = turf_type
 			else
-				new /turf/simulated/wall/resin/membrane(current_turf)
+				var/turf/simulated/wall/resin/membrane/W = new /turf/simulated/wall/resin/membrane(current_turf)
+				W.oldTurf = turf_type
 		if("resin nest")
 			new /obj/structure/stool/bed/nest(current_turf)
 		if("sticky resin")
