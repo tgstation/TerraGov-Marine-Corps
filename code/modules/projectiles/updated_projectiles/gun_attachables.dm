@@ -717,7 +717,7 @@ Defined in conflicts.dm of the #defines folder.
 		if(distance >= max_range) 	break
 		if(DirBlocked(T,user.dir))  break
 		else if(DirBlocked(T,turn(user.dir,180))) break
-		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/structure/mineral_door/resin,T) || locate(/obj/effect/alien/resin/membrane,T)) break
+		if(locate(/turf/simulated/wall/resin,T) || locate(/obj/structure/mineral_door/resin,T)) break
 		W = locate() in T
 		if(W)
 			if(W.is_full_window()) 	break

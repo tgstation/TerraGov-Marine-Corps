@@ -140,7 +140,7 @@
 			break
 		else if(DirBlocked(T, turn(dir, 180)))
 			break
-		if(locate(/obj/effect/alien/resin/wall, T) || locate(/obj/structure/mineral_door/resin, T) || locate(/obj/effect/alien/resin/membrane, T))
+		if(locate(/turf/simulated/wall/resin, T) || locate(/obj/structure/mineral_door/resin, T))
 			break
 		W = locate() in T
 		if(W)

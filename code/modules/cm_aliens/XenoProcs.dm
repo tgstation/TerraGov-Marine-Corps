@@ -548,7 +548,7 @@
 /mob/living/carbon/Xenomorph/drop_held_item()
 	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
 	if(istype(F))
-		if(locate(/obj/effect/alien/resin/wall) in loc || locate(/obj/effect/alien/resin/membrane) in loc)
+		if(locate(/turf/simulated/wall/resin) in loc)
 			src << "<span class='warning'>You decide not to drop [F] after all.</span>"
 			return
 
