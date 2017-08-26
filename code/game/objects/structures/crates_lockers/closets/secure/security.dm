@@ -254,6 +254,20 @@
 		new /obj/item/device/encryptionkey/med(src)
 		return
 
+/obj/structure/closet/secure_closet/security_empty
+	name = "Security Officer's Locker"
+	req_access = list(ACCESS_MARINE_BRIG)
+	icon_state = "secure_open_police"
+	icon_closed = "secure_closed_police"
+	icon_locked = "secure_locked_police"
+	icon_opened = "secure_open_police"
+	icon_broken = "secure_broken_police"
+	icon_off = "secoff"
+
+	opened = 1
+	locked = 0
+	density = 0
+
 
 /obj/structure/closet/secure_closet/detective
 	name = "Detective's Cabinet"

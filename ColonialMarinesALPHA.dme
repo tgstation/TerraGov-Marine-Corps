@@ -226,6 +226,7 @@
 #include "code\game\area\IceColony.dm"
 #include "code\game\area\LV624.dm"
 #include "code\game\area\prison.dm"
+#include "code\game\area\Prison_Station_FOP.dm"
 #include "code\game\area\Space Station 13 areas.dm"
 #include "code\game\area\Sulaco.dm"
 #include "code\game\area\WhiskeyOutpost.dm"
