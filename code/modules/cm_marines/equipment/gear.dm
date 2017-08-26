@@ -512,3 +512,26 @@
 		</html>
 
 		"}
+
+/obj/item/weapon/book/manual/FOP_map
+	name = "\improper Fiorina Orbital Penitentiary Map"
+	desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	color = "#e88a10"
+	author = "United States Colonial Marine Corps"
+	title = "Fiorina Orbital Penitentiary Map"
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<img src="FOP.png" alt="Map">
+		</body>
+
+		</html>
+
+		"}
