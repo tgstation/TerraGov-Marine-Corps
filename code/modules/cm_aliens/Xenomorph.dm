@@ -116,6 +116,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/xeno_explosion_resistance = 0 //0 to 3. how explosions affects the xeno, can it stun it, etc...
 	var/innate_healing = FALSE //whether the xeno slowly heals even outside weeds.
 	var/emotedown = 0
+	var/evolve_busy = 0
 
 	//Naming variables
 	var/caste = ""
