@@ -19,9 +19,10 @@
 	cur_tick = 0 //Tick updater
 
 	//almayer Generator Unique Vars
-	var/fusion_cell = 1 //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
+
+	var/obj/item/weapon/fuelCell/fusion_cell = new/obj/item/weapon/fuelCell //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
+
 	var/produce_heat = 1 //Fusion is a VERY warm process.  The reactor room should probably be cooled... Probably...
-	var/fuel_amount = 100.00 // Amount of Fuel in the cell.
 	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
 	var/icon_track = 100 //This is to track the amount of fuel so it selects the proper icon.
 
@@ -31,13 +32,14 @@
 			if(1) icon_state = "weld"
 			if(2) icon_state = "wire"
 			if(3) icon_state = "wrench"
-		fuel_amount = rand(15,100)
+
+		fusion_cell.fuel_amount = rand(15,100)
 		..()
 
 	process()
 		if(!is_on || buildstate || !anchored) //Default logic checking
 			return 0
-		if (fuel_amount <= 0)
+		if (fusion_cell.fuel_amount <= 0)
 			visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The reactor ran out of fuel and seized up"
 			fuel_rate = 0
@@ -71,11 +73,11 @@
 						fuel_rate = 0.1
 
 				add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
-				fuel_amount-=fuel_rate //Consumes fuel
+				fusion_cell.fuel_amount-=fuel_rate //Consumes fuel
 
 		if(is_on && powernet) //This can probably be changed in the future.  For now, when a fuel cell is ejected, it'll be "useless" no matter how much fuel remains.
-			switch(fuel_amount)
-				if(1 to 10)
+			switch(fusion_cell.fuel_amount)
+				if(0 to 10)
 	//				visible_message("\icon[src] <b>[src]</b> displasy that the fuel cell is critically low and needs to be replaced")
 					desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  <red>The Fuel cell is critically low.</red>"
 					icon_track = 10
@@ -103,9 +105,6 @@
 		if(!anchored) //Shouldn't actually be possible
 			usr << "MAKE AN AHELP RIGHT AWAY, BECAUSE SHIT IS SOMEHOW FUCKED - ERROR: ALM001."
 			r_FAL
-		if(fuel_amount <= 0)
-			usr << "<span class='warning'>ERROR: FUEL CELL DEPLETED.  Please replace.</span>"
-			r_FAL
 		if(!ishuman(user) || user.stat)
 			user << "<span class='warning'>You have no idea how to use that.</span>" //No ayylamos
 			r_FAL
@@ -128,7 +127,12 @@
 			cur_tick = 0
 	//		update_icon()
 			r_TRU
-		visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns the generator on and beings the process of fusion...</span>")
+		if(fusion_cell == null)
+			usr << "<span class='notice'>The reactor requires a fuel cell before you can turn it on.</span>"
+			r_FAL
+		if(fusion_cell.fuel_amount <= 10)
+			usr << "\icon[src] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>"
+		visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns the generator on and begins the process of fusion...</span>")
 		icon_state = "on-[icon_track]"
 		fuel_rate = 0.01
 		is_on = 1
@@ -142,19 +146,18 @@
 			if(is_on)
 				user << "<span class='warning'>The [src] needs to be turned off first...</span>"
 				r_TRU
-			if(fuel_amount>50)
-				user << "<span class='warning'>The current cell is more than half full.</span>"
+			if(fusion_cell == null)
+				if(user.drop_inv_item_to_loc(O, src.))
+					fusion_cell = O
+					user << "<span class='notice'>You load the [src] with the [O].</span>"
 				r_TRU
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
-				user << "<span class='warning'>You start fumbling around, trying to move the fuel cell...</span>"
-				var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
-			user.temp_drop_inv_item(O)
-			cdel(O) //FUEL CELL IS CURRENTLY CONSUMED.  Maybe eventually dump one out.
-			fuel_amount = 100
+			else
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+					user << "<span class='warning'>You need to remove the fuel cell from the [src] first.</span>"
+					r_TRU
 			icon_track = 100
-			user << "<span class='notice'>The empty cell is ejected into space and a fresh one takes it's place.</span>"  //Temporarily just throw away used fuel cells, maybe eventually "pop" them out for use?
-			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat.  It's got a freshly filled Fuel Cell inside it."
+			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat. "
+			desc += (fusion_cell == null) ? "There is no fuel cell in the receptacle." : "You can see a fuel cell in the receptacle."
 			r_TRU
 		else if(istype(O, /obj/item/weapon/weldingtool))
 			if(buildstate == 1 && !is_on)
@@ -207,6 +210,29 @@
 					icon_state = "off"
 //					update_icon
 					r_TRU
+		else if(istype(O,/obj/item/weapon/crowbar))
+			if(buildstate != 0)
+				user << "<span class='notice'>You must repair the generator before working with its fuel cell.</span>"
+				return
+			if(is_on)
+				user << "<span class='notice'>You must turn off the generator before working with its fuel cell.</span>"
+				return
+			if(!fusion_cell)
+				user << "<span class='notice'>There is no cell to remove.</span>"
+			else
+				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+					user << "<span class='warning'>You start to jam the head of the crowbar under the fuel cell's safety cover...</span>"
+					var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
+				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] starts to pry open the fuel receptacle on [src].</span>","<span class='notice'>You start to pry open the cover. Stand still!</span>")
+				if(do_after(user, 100, TRUE, 15, BUSY_ICON_CLOCK))
+					if(buildstate != 0 || is_on) r_FAL
+					user << "You pop open the cover and pull out the fuel cell."
+					fusion_cell.update_icon()
+					user.put_in_hands(fusion_cell)
+					fusion_cell = null
+					r_TRU
 		else
 			return ..()
 
@@ -217,4 +243,29 @@
 	name = "\improper WL-6 universal fuel cell"
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "cell-full"
-	desc = "A single-use fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
+	desc = "A rechargable fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
+	var/fuel_amount = 100.0
+	var/max_fuel_amount = 100.0
+
+	update_icon()
+		if(fuel_amount == 0)
+			icon_state = "cell-empty"
+		else if(percent() > 0 && percent() < 25)
+			icon_state = "cell-low"
+		else if(percent() >= 25 && percent() < 75)
+			icon_state = "cell-medium"
+		else if(percent() >= 75 && percent() < 100)
+			icon_state = "cell-high"
+		else if(fuel_amount == max_fuel_amount)
+			icon_state = "cell-full"
+
+/obj/item/weapon/fuelCell/proc/percent()
+	return 100.0*fuel_amount/max_fuel_amount
+
+/obj/item/weapon/fuelCell/proc/is_regenerated()
+	return (fuel_amount == max_fuel_amount)
+
+/obj/item/weapon/fuelCell/proc/give(amount as num)
+	fuel_amount += amount
+	if(fuel_amount > max_fuel_amount)
+		fuel_amount = max_fuel_amount
