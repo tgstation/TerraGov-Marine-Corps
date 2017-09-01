@@ -65,9 +65,6 @@
 	return
 
 /datum/reagent/proc/on_mob_life(mob/living/M, alien)
-	if(!isliving(M) || alien == IS_HORROR) return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
-	//We do not horrors to metabolize anything.
-
 	holder.remove_reagent(id, custom_metabolism) //By default it slowly disappears.
 	if(overdose && volume >= overdose)
 		on_overdose(M, alien) //Small OD

@@ -80,6 +80,7 @@
 
 	var/turf/T = src.loc
 	if(!T || !istype(T)) return 0
+	if(T.density) return 0 //src is on top of a dense turf.
 	if(!user.Adjacent(src))	return 0
 
 	for(var/obj/O in T.contents)

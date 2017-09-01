@@ -14,7 +14,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(prob(50)) M.heal_organ_damage(1,0)
 		M.nutrition += nutriment_factor	// For hunger and fatness
 
@@ -32,7 +31,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.nutrition = max(M.nutrition - nutriment_factor, 0)
 		M.overeatduration = 0
 		if(M.nutrition < 0)//Prevent from going into negatives.
@@ -261,7 +259,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.druggy = max(M.druggy, 30)
 		if(!data) data = 1
 		switch(data)

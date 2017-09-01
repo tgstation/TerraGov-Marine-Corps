@@ -20,7 +20,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.nutrition += nutriment_factor
 		holder.remove_reagent(src.id, FOOD_METABOLISM)
 		// Drinks should be used up faster than other reagents.
@@ -228,7 +227,8 @@
 
 		holder.remove_reagent(src.id, 0.1)
 
-	on_overdose(mob/living/M)
+	on_overdose(mob/living/M, alien)
+		if(alien == IS_YAUTJA)  return
 		M.apply_damage(1, TOX) //Overdose starts getting bad
 		M.make_jittery(5)
 		if(ishuman(M))
@@ -239,7 +239,8 @@
 			if(prob(10))
 				M.emote(pick("twitch", "blink_r", "shiver"))
 
-	on_overdose_critical(mob/living/M)
+	on_overdose_critical(mob/living/M, alien)
+		if(alien == IS_YAUTJA)  return
 		M.apply_damage(2, TOX) //Overdose starts getting bad
 		M.make_jittery(10)
 		M.knocked_out = max(M.knocked_out, 20)
@@ -450,7 +451,6 @@
 		if(!.) return
 		M:nutrition += nutriment_factor
 		holder.remove_reagent(src.id, FOOD_METABOLISM)
-		if(!M) M = holder.my_atom
 		if(M:getOxyLoss() && prob(50)) M:adjustOxyLoss(-2)
 		if(M:getBruteLoss() && prob(60)) M:heal_organ_damage(2,0)
 		if(M:getFireLoss() && prob(50)) M:heal_organ_damage(0,2)
@@ -517,7 +517,6 @@
 	on_mob_life(mob/living/carbon/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.knocked_down = max(M.knocked_down, 3)
 		if(!data) data = 1
 		data++
@@ -542,7 +541,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.druggy = max(M.druggy, 50)
 		if(!data) data = 1
 		data++

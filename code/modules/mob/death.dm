@@ -59,8 +59,6 @@
 	dizziness = 0
 	jitteriness = 0
 
-	layer = MOB_LAYER - 0.1 //So people stand on corpses
-
 	if(client)
 		if(hud_used && hud_used.blind_icon)
 			hud_used.blind_icon.plane = 0

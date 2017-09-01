@@ -44,7 +44,7 @@ var/global/list/randomized_pill_icons
 			if(istype(M, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(H.species.flags & IS_SYNTHETIC)
-					H << "\red You have a monitor for a head, where do you think you're going to put that?"
+					H << "\red You can't eat pills."
 					return
 
 			M << "\blue You swallow [src]."

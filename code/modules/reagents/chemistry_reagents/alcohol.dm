@@ -278,8 +278,6 @@
 	confused_start = 1
 
 	on_mob_life(mob/living/M,alien)
-		if(alien == IS_HORROR) return
-		if(!M) M = holder.my_atom
 		M.druggy = max(M.druggy, 50)
 		if(!data) data = 1
 		data++

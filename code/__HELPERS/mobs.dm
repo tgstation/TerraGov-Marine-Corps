@@ -76,43 +76,6 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
-proc/RoundHealth(health)
-	switch(health)
-		if(100 to INFINITY)
-			return "health100"
-		if(85 to 100)
-			return "health90"
-		if(75 to 85)
-			return "health80"
-		if(67 to 75)
-			return "health70"
-		if(63 to 67)
-			return "health65"
-		if(55 to 63)
-			return "health60"
-		if(47 to 55)
-			return "health50"
-		if(43 to 47)
-			return "health45"
-		if(35 to 43)
-			return "health40"
-		if(25 to 35)
-			return "health30"
-		if(17 to 25)
-			return "health20"
-		if(13 to 17)
-			return "health15"
-		if(7 to 13)
-			return "health10"
-		if(3 to 7)
-			return "health10"
-		if(0 to 3)
-			return "health0"
-		if(-99 to 0)
-			return "health-0"
-		else
-			return "health-100"
-	return "0"
 
 proc/has_species(var/mob/M, var/species)
 	if(!M || !istype(M,/mob/living/carbon/human)) return 0

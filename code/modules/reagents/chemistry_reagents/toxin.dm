@@ -14,7 +14,7 @@
 	on_mob_life(mob/living/M,alien)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
+		if(alien == IS_YAUTJA) return 0 //immunity to toxin reagents
 		if(toxpwr)
 			M.adjustToxLoss(toxpwr*REM)
 			if(alien) holder.remove_reagent(id, custom_metabolism) //Kind of a catch-all for aliens without kidneys.
@@ -43,7 +43,6 @@
 	on_mob_life(mob/living/M,alien)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.adjustOxyLoss(1)
 
 
@@ -67,7 +66,6 @@
 		. = ..()
 		if(!.) return
 		if(!istype(M))	return
-		if(!M) M = holder.my_atom
 		M.apply_effect(10,IRRADIATE,0)
 
 /datum/reagent/toxin/phoron
@@ -81,7 +79,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		holder.remove_reagent("inaprovaline", 2*REM)
 
 /datum/reagent/toxin/lexorin
@@ -99,7 +96,6 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		if(!M) M = holder.my_atom
 		if(prob(33))
 			M.take_organ_damage(1*REM, 0)
 		M.adjustOxyLoss(3)
@@ -123,7 +119,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.adjustOxyLoss(4*REM)
 		M.sleeping += 1
 
@@ -138,7 +133,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(FAT in M.mutations)
 			M.gib()
 
@@ -161,7 +155,6 @@
 	on_mob_life(mob/living/carbon/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.status_flags |= FAKEDEATH
 		M.adjustOxyLoss(0.5*REM)
 		M.KnockDown(10)
@@ -187,15 +180,16 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.hallucination += 10
 
-	on_overdose(mob/living/M)
+	on_overdose(mob/living/M, alien)
+		if(alien == IS_YAUTJA)  return
 		M.apply_damage(1, TOX) //Overdose starts getting bad
 		M.make_jittery(5)
 		M.knocked_out = max(M.knocked_out, 20)
 
-	on_overdose_critical(mob/living/M)
+	on_overdose_critical(mob/living/M, alien)
+		if(alien == IS_YAUTJA)  return
 		M.apply_damage(4, TOX) //Overdose starts getting bad
 		M.make_jittery(10)
 		M.knocked_out = max(M.knocked_out, 20)
@@ -290,7 +284,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(!data) data = 1
 		switch(data)
 			if(1 to 12)
@@ -326,7 +319,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(!data) data = 1
 		data++
 		switch(data)
@@ -397,7 +389,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(!data) data = 1
 		switch(data)
 			if(1)
@@ -429,7 +420,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.take_organ_damage(0, 1*REM)
 
 	reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//magic numbers everywhere

@@ -24,6 +24,8 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
 	var/mutantrace = "human"
+	var/xenovictim = FALSE //whether this person was infected and killed by xenos
+
 
 /obj/effect/landmark/corpse/initialize()
 	createCorpse()
@@ -31,33 +33,33 @@
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	M.dna.mutantrace = mutantrace
-	M.real_name = src.name
+	M.real_name = name
 	M.death(1) //Kills the new mob
-	if(src.corpseuniform)
-		M.equip_to_slot_or_del(new src.corpseuniform(M), WEAR_BODY)
-	if(src.corpsesuit)
-		M.equip_to_slot_or_del(new src.corpsesuit(M), WEAR_JACKET)
-	if(src.corpseshoes)
-		M.equip_to_slot_or_del(new src.corpseshoes(M), WEAR_FEET)
-	if(src.corpsegloves)
-		M.equip_to_slot_or_del(new src.corpsegloves(M), WEAR_HANDS)
-	if(src.corpseradio)
-		M.equip_to_slot_or_del(new src.corpseradio(M), WEAR_EAR)
-	if(src.corpseglasses)
-		M.equip_to_slot_or_del(new src.corpseglasses(M), WEAR_EYES)
-	if(src.corpsemask)
-		M.equip_to_slot_or_del(new src.corpsemask(M), WEAR_FACE)
-	if(src.corpsehelmet)
-		M.equip_to_slot_or_del(new src.corpsehelmet(M), WEAR_HEAD)
-	if(src.corpsebelt)
-		M.equip_to_slot_or_del(new src.corpsebelt(M), WEAR_WAIST)
-	if(src.corpsepocket1)
-		M.equip_to_slot_or_del(new src.corpsepocket1(M), WEAR_R_STORE)
-	if(src.corpsepocket2)
-		M.equip_to_slot_or_del(new src.corpsepocket2(M), WEAR_L_STORE)
-	if(src.corpseback)
-		M.equip_to_slot_or_del(new src.corpseback(M), WEAR_BACK)
-	if(src.corpseid == 1)
+	if(corpseuniform)
+		M.equip_to_slot_or_del(new corpseuniform(M), WEAR_BODY)
+	if(corpsesuit)
+		M.equip_to_slot_or_del(new corpsesuit(M), WEAR_JACKET)
+	if(corpseshoes)
+		M.equip_to_slot_or_del(new corpseshoes(M), WEAR_FEET)
+	if(corpsegloves)
+		M.equip_to_slot_or_del(new corpsegloves(M), WEAR_HANDS)
+	if(corpseradio)
+		M.equip_to_slot_or_del(new corpseradio(M), WEAR_EAR)
+	if(corpseglasses)
+		M.equip_to_slot_or_del(new corpseglasses(M), WEAR_EYES)
+	if(corpsemask)
+		M.equip_to_slot_or_del(new corpsemask(M), WEAR_FACE)
+	if(corpsehelmet)
+		M.equip_to_slot_or_del(new corpsehelmet(M), WEAR_HEAD)
+	if(corpsebelt)
+		M.equip_to_slot_or_del(new corpsebelt(M), WEAR_WAIST)
+	if(corpsepocket1)
+		M.equip_to_slot_or_del(new corpsepocket1(M), WEAR_R_STORE)
+	if(corpsepocket2)
+		M.equip_to_slot_or_del(new corpsepocket2(M), WEAR_L_STORE)
+	if(corpseback)
+		M.equip_to_slot_or_del(new corpseback(M), WEAR_BACK)
+	if(corpseid)
 		var/obj/item/weapon/card/id/W = new(M)
 		W.name = "[M.real_name]'s ID Card"
 		var/datum/job/jobdatum
@@ -66,9 +68,9 @@
 			if(J.title == corpseidaccess)
 				jobdatum = J
 				break
-		if(src.corpseidicon)
+		if(corpseidicon)
 			W.icon_state = corpseidicon
-		if(src.corpseidaccess)
+		if(corpseidaccess)
 			if(jobdatum)
 				W.access = jobdatum.get_access()
 			else
@@ -77,6 +79,24 @@
 			W.assignment = corpseidjob
 		W.registered_name = M.real_name
 		M.equip_to_slot_or_del(W, WEAR_ID)
+	if(xenovictim)
+		M.adjustBruteLoss(300)
+		var/datum/organ/internal/O
+		var/i
+		for(i in list("heart","lungs"))
+			O = M.internal_organs_by_name[i]
+			M.internal_organs_by_name -= i
+			M.internal_organs -= O
+		M.chestburst = 2
+		M.update_burst()
+		//buckle to nest
+		var/obj/structure/stool/bed/nest/N = locate() in get_turf(src)
+		if(N)
+			M.buckled = N
+			M.dir = N.dir
+			M.update_canmove()
+			N.buckled_mob = M
+			N.afterbuckle(M)
 	cdel(src)
 
 
@@ -152,6 +172,7 @@
 	corpseid = 1
 	corpseidjob = "Medical Doctor"
 //	corpseidaccess = "Medical Doctor"
+	xenovictim = TRUE
 
 /obj/effect/landmark/corpse/engineer
 	name = "Engineer"
@@ -164,6 +185,7 @@
 	corpseid = 1
 	corpseidjob = "Station Engineer"
 //	corpseidaccess = "Station Engineer"
+	xenovictim = TRUE
 
 /obj/effect/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
@@ -190,6 +212,7 @@
 	corpseid = 1
 	corpseidjob = "Scientist"
 //	corpseidaccess = "Scientist"
+	xenovictim = TRUE
 
 /obj/effect/landmark/corpse/miner
 	corpseuniform = /obj/item/clothing/under/colonist
@@ -199,6 +222,7 @@
 	corpseid = 1
 	corpseidjob = "Shaft Miner"
 //	corpseidaccess = "Shaft Miner"
+	xenovictim = TRUE
 
 /obj/effect/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/mining
@@ -209,6 +233,7 @@
 	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
+	xenovictim = TRUE
 
 /obj/effect/landmark/corpse/prison_security
 	name = "Prison Guard"

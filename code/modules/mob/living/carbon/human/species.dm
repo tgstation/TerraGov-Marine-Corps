@@ -45,7 +45,7 @@
 	var/poison_type = "phoron"   // Poisonous air.
 	var/exhale_type = "carbon_dioxide"      // Exhaled gas type.
 
-	var/total_health = 100  //Point at which the mob will enter crit.
+	var/total_health = 100  //new maxHealth
 
 	var/cold_level_1 = 260  // Cold damage level 1 below this point.
 	var/cold_level_2 = 240  // Cold damage level 2 below this point.
@@ -142,6 +142,7 @@
 			E.status |= ORGAN_ROBOT
 		for(var/datum/organ/internal/I in H.internal_organs)
 			I.mechanize()
+
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
 
@@ -245,7 +246,7 @@
 	brute_mod = 0.15
 	burn_mod = 1.50
 	reagent_tag = IS_HORROR
-	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_REACTION
+	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_METABOLIZATION
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
@@ -458,7 +459,7 @@
 
 	body_temperature = 350
 
-	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_PAIN|IS_SYNTHETIC
+	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
 
 	blood_color = "#EEEEEE"
 	flesh_color = "#272757"
@@ -475,6 +476,8 @@
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	rarity_value = 2
 
+	total_health = 150 //more health than regular humans
+
 	brute_mod = 0.75
 	burn_mod = 1.1
 
@@ -488,7 +491,7 @@
 
 	body_temperature = 350
 
-	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_PAIN|IS_SYNTHETIC
+	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
 
 	blood_color = "#EEEEEE"
 
@@ -497,9 +500,11 @@
 		"brain" =    /datum/organ/internal/brain/prosthetic,
 		)
 
+
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
 	H.universal_understand = 1
 	return ..()
+
 
 /datum/species/yautja
 	name = "Yautja"
