@@ -13,6 +13,20 @@
 		R.add_fingerprint(user)
 		cdel(src)
 
+/obj/structure/inflatable/popped
+	name = "popped inflatable wall"
+	desc = "It used to be an inflated wall, now it's just a mess of plastic."
+	density = 0
+	anchored = 1
+	opacity = 1
+
+	icon = 'icons/obj/inflatable.dmi'
+	icon_state = "wall_popped"
+
+	hand_deflate()
+		set src = usr
+		return
+
 /obj/structure/inflatable
 	name = "inflatable wall"
 	desc = "An inflated membrane. Do not puncture."
@@ -107,12 +121,16 @@
 		playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
 		if(violent)
 			visible_message("[src] rapidly deflates!")
+			flick("wall_popping", src)
+			sleep(10)
+			new /obj/structure/inflatable/popped(loc)
 			//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 			//src.transfer_fingerprints_to(R)
 			cdel(src)
 		else
 			//user << "\blue You slowly deflate the inflatable wall."
 			visible_message("[src] slowly deflates.")
+			flick("wall_deflating", src)
 			spawn(50)
 				var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
 				src.transfer_fingerprints_to(R)
@@ -143,6 +161,17 @@
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
 		cdel(src)
+
+/obj/structure/inflatable/popped/door
+	name = "popped inflatable door"
+	desc = "This used to be an inflatable door, now it's just a mess of plastic on the ground."
+	density = 0
+	anchored = 1
+	opacity = 1
+
+	icon = 'icons/obj/inflatable.dmi'
+	icon_state = "door_popped"
+
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
@@ -236,12 +265,16 @@
 		playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
 		if(violent)
 			visible_message("[src] rapidly deflates!")
+			flick("door_popping",src)
+			sleep(10)
+			new /obj/structure/inflatable/popped/door(loc)
 			//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 			//src.transfer_fingerprints_to(R)
 			cdel(src)
 		else
 			//user << "\blue You slowly deflate the inflatable wall."
 			visible_message("[src] slowly deflates.")
+			flick("door_deflating", src)
 			spawn(50)
 				var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
 				src.transfer_fingerprints_to(R)

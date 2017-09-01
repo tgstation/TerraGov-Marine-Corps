@@ -276,11 +276,11 @@
 	name = "commander's secure box"
 	req_access = list(ACCESS_MARINE_COMMANDER)
 	desc = "You could probably get court-marshaled just by looking at this..."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "largermetal"
-	icon_opened = "largermetalopen"
-	icon_closed = "largermetal"
-	icon_locked = "largermetal"
+	icon = 'icons/Marine/Marine_Lockers.dmi'
+	icon_state = "commander_safe"
+	icon_opened = "commander_safe_open"
+	icon_closed = "commander_safe"
+	icon_locked = "commander_safe"
 
 /obj/structure/closet/secure_closet/staff_officer
 	name = "staff officer's locker"

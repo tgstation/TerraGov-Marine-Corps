@@ -132,6 +132,40 @@
 	icon = 'icons/obj/almayer.dmi'
 	icon_state = "terminal"
 
+/obj/machinery/prop/almayer/computer/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			cdel(src)
+			return
+		if(2.0)
+			if (prob(25))
+				cdel(src)
+				return
+			if (prob(50))
+				set_broken()
+		if(3.0)
+			if (prob(25))
+				set_broken()
+		else
+			return
+
+/obj/machinery/prop/almayer/computer/proc/set_broken()
+	stat |= BROKEN
+	update_icon()
+
+/obj/machinery/prop/almayer/computer/power_change()
+	..()
+	update_icon()
+
+/obj/machinery/prop/almayer/computer/update_icon()
+	..()
+	icon_state = initial(icon_state)
+	if(stat & BROKEN)
+		icon_state += "b"
+	if(stat & NOPOWER)
+		icon_state = initial(icon_state)
+		icon_state += "0"
+
 /obj/machinery/prop/almayer/CICmap
 	name = "map table"
 	desc = "A table that displays a map of the current target location"
