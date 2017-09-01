@@ -139,7 +139,6 @@
 
 			if(shuttle.locked) return
 
-
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
 			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
@@ -164,7 +163,6 @@
 			else
 				if(!onboard) shuttle.transit_gun_mission = 0 //remote launch always do transport flight.
 				shuttle.launch(src)
-				shuttle.locked = 1 //We are initiating transit, so don't recieve any more instructions
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
 
@@ -180,6 +178,7 @@
 
 	if(href_list["fire_mission"])
 		if(shuttle.moving_status != SHUTTLE_IDLE) return
+		if(shuttle.locked) return
 		shuttle.transit_gun_mission = !shuttle.transit_gun_mission
 		if(shuttle.transit_gun_mission)
 			var/mob/M = usr
