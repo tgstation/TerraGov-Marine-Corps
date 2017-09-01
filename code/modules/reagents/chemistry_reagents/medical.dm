@@ -17,7 +17,6 @@
 	on_mob_life(mob/living/M, alien)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 
 		if(alien && alien == IS_VOX)
 			M.adjustToxLoss(REAGENTS_METABOLISM)
@@ -27,11 +26,13 @@
 
 		holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
 
-	on_overdose(mob/living/M)
+	on_overdose(mob/living/M, alien)
+		if(alien == IS_YAUTJA) return
 		M.make_jittery(5) //Overdose causes a spasm
 		M.knocked_out = max(M.knocked_out, 20)
 
-	on_overdose_critical(mob/living/M)
+	on_overdose_critical(mob/living/M, alien)
+		if(alien == IS_YAUTJA) return
 		M.drowsyness = max(M.drowsyness, 20)
 		if(ishuman(M)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 			var/mob/living/carbon/human/H = M
@@ -52,7 +53,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 
 		var/needs_update = M.mutations.len > 0
 
@@ -159,16 +159,17 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(M.bodytemperature > 310)
 			M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 		else if(M.bodytemperature < 311)
 			M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 
-	on_overdose(mob/living/M)
+	on_overdose(mob/living/M, alien)
+		if(alien == IS_YAUTJA) return
 		M.knocked_out = max(M.knocked_out, 20)
 
-	on_overdose_critical(mob/living/M)
+	on_overdose_critical(mob/living/M, alien)
+		if(alien == IS_YAUTJA) return
 		M.drowsyness  = max(M.drowsyness, 30)
 
 /datum/reagent/kelotane
@@ -186,7 +187,6 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		if(!M) M = holder.my_atom
 		M.heal_organ_damage(0, 2 * REM)
 
 	on_overdose(mob/living/M)
@@ -210,7 +210,6 @@
 		if(!.) return
 		if(M.stat == DEAD) //THE GUY IS **DEAD**! BEREFT OF ALL LIFE HE RESTS IN PEACE etc etc. He does NOT metabolise shit anymore, god DAMN
 			return
-		if(!M) M = holder.my_atom
 		if(!alien)
 			M.heal_organ_damage(0, 3 * REM)
 
@@ -235,7 +234,6 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return  //See above, down and around. --Agouri
-		if(!M) M = holder.my_atom
 
 		if(alien && alien == IS_VOX)
 			M.adjustToxLoss(2*REM)
@@ -265,7 +263,6 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		if(!M) M = holder.my_atom
 
 		if(alien && alien == IS_VOX)
 			M.adjustOxyLoss()
@@ -295,7 +292,6 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		if(!M) M = holder.my_atom
 		if(!alien)
 			if(M.getOxyLoss()) M.adjustOxyLoss(-REM)
 			if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(REM, 0)
@@ -323,7 +319,6 @@
 	on_mob_life(mob/living/M,alien)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(volume > overdose)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -360,7 +355,6 @@
 	on_mob_life(mob/living/carbon/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom ///This can even heal dead people.
 		M.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
 		M.setCloneLoss(0)
 		M.setOxyLoss(0)
@@ -399,7 +393,6 @@
 	on_mob_life(mob/living/carbon/M,alien)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom ///This can even heal dead people.
 		if(alien != IS_YAUTJA) return
 
 		if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(1*REM,0)
@@ -445,7 +438,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.drowsyness = max(M.drowsyness-5, 0)
 		M.AdjustKnockedout(-1)
 		M.AdjustStunned(-1)
@@ -474,7 +466,6 @@
 	on_mob_life(var/mob/living/M as mob)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.radiation = max(M.radiation-3*REM,0)
 
 	on_overdose(mob/living/M)
@@ -498,7 +489,6 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return  //See above, down and around. --Agouri
-		if(!M) M = holder.my_atom
 		M.radiation = max(M.radiation-7*REM,0)
 		M.adjustToxLoss(-1*REM)
 		if(prob(15))
@@ -526,7 +516,6 @@
 		if(!.) return
 		if(volume >= overdose)
 			M.adjustBrainLoss(2)
-		if(!M) M = holder.my_atom
 		M.radiation = max(M.radiation - 10 * REM, 0)
 		M.adjustToxLoss(-1*REM)
 		if(prob(50))
@@ -552,7 +541,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.adjustBrainLoss(-3 * REM)
 
 	on_overdose(mob/living/M)
@@ -574,7 +562,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.eye_blurry = max(M.eye_blurry-5 , 0)
 		M.eye_blind = max(M.eye_blind-5 , 0)
 		if(ishuman(M))
@@ -603,7 +590,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
@@ -633,7 +619,6 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		if(!M) M = holder.my_atom
 		M.heal_organ_damage(2*REM,0)
 
 	on_overdose(mob/living/M)
@@ -655,7 +640,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.take_organ_damage(1*REM, 0)
 
 	on_overdose(mob/living/M)
@@ -678,7 +662,6 @@
 		. = ..()
 		if(!.) return
 
-		if(!M) M = holder.my_atom
 		if(prob(1))
 			M.emote(pick("twitch","blink_r","shiver"))
 			if(ishuman(M))
@@ -716,7 +699,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(M.bodytemperature < 170)
 			M.adjustCloneLoss(-1)
 			M.adjustOxyLoss(-1)
@@ -734,7 +716,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(M.bodytemperature < 170)
 			M.adjustCloneLoss(-3)
 			M.adjustOxyLoss(-3)
@@ -754,7 +735,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(!data) data = 1
 		data++
 		switch(data)
@@ -805,7 +785,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.dizziness = 0
 		M.drowsyness = 0
 		M.stuttering = 0
@@ -834,7 +813,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(src.volume <= 0.1) if(data != -1)
 			data = -1
 			M << "<span class='warning'>You lose focus.</span>"
@@ -855,7 +833,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(volume <= 0.1) if(data != -1)
 			data = -1
 			M << "<span class='warning'>Your mind feels a little less stable...</span>"
@@ -877,7 +854,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(volume <= 0.1) if(data != -1)
 			data = -1
 			M << "<span class='warning'>Your mind feels much less stable...</span>"

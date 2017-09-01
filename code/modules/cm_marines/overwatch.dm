@@ -460,8 +460,7 @@
 		y_offset += rand(-2,2)
 		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 		if(target && istype(target))
-			explosion(target,5,6,7,6,1,0) //massive boom
-			explosion(target,5,6,7,6,1,0) //double tap
+			explosion(target,4,5,6,6,1,0) //massive boom
 			for(var/turf/TU in range(6,target))
 				if(!locate(/obj/flamer_fire) in TU)
 					new/obj/flamer_fire(TU, 10, 40) //super hot flames

@@ -2,7 +2,7 @@
 
 /mob/living/carbon/human/proc/handle_chemicals_in_body()
 
-	if(reagents && !(species.flags & IS_SYNTHETIC)) //Synths don't process reagents.
+	if(reagents && !(species.flags & NO_CHEM_METABOLIZATION))
 		var/alien = 0
 		if(species && species.reagent_tag)
 			alien = species.reagent_tag

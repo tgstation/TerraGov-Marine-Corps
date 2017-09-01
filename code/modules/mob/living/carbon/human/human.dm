@@ -1116,7 +1116,7 @@
 
 	if(species)
 
-		if(species.name && species.name == new_species)
+		if(species.name && species.name == new_species) //we're already that species.
 			return
 		if(species.language)
 			remove_language(species.language)

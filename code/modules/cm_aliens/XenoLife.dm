@@ -137,6 +137,7 @@
 		frenzy_aura = frenzy_new
 		warding_aura = warding_new
 		recovery_aura = recovery_new
+		hud_set_pheromone()
 
 		frenzy_new = 0
 		warding_new = 0

@@ -394,7 +394,10 @@ Only checks living mobs with a client attached.
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/space)) //If they have a z var, they are on a turf.
 			A = get_area(M.loc) //Get their area.
 			if(!istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
-				if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST)) num_humans++
+				if(ishuman(M) && !(M.status_flags & XENO_HOST))
+					var/mob/living/carbon/human/H = M
+					if(H.species && H.species.name == "Human") //only real humans count
+						num_humans++
 				else if(isXeno(M)) num_xenos++
 
 	return list(num_humans,num_xenos)

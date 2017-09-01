@@ -213,8 +213,6 @@
 		if(istype(O, /obj/structure/sign/poster))
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
-		else
-			O.loc = src
 
 	if(oldTurf != "") ChangeTurf(text2path(oldTurf))
 	else ChangeTurf(/turf/simulated/floor/plating)

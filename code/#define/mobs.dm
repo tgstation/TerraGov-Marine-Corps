@@ -263,7 +263,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define NO_PAIN 8
 #define NO_SLIP 16
 #define NO_POISON 32
-#define NO_CHEM_REACTION 64 //Prevents reagents from acting on_mob_life().
+#define NO_CHEM_METABOLIZATION 64 //Prevents reagents from acting on_mob_life().
 #define HAS_SKIN_TONE 128
 #define HAS_SKIN_COLOR 256
 #define HAS_LIPS 512

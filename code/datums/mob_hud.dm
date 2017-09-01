@@ -103,7 +103,7 @@ var/datum/mob_hud/huds = list(
 
 //Xeno status hud, for xenos
 /datum/mob_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD)
 
 
 
@@ -211,7 +211,25 @@ var/datum/mob_hud/huds = list(
 	if(stat == DEAD)
 		holder.icon_state = "hudhealth-100"
 	else
-		holder.icon_state = "hud[RoundHealth(health)]"
+		var/percentage = round(health*100/species.total_health)
+		switch(percentage)
+			if(100 to INFINITY) holder.icon_state = "hudhealth100"
+			if(85 to 100) holder.icon_state = "hudhealth90"
+			if(75 to 85) holder.icon_state = "hudhealth80"
+			if(67 to 75) holder.icon_state = "hudhealth70"
+			if(63 to 67) holder.icon_state = "hudhealth65"
+			if(55 to 63) holder.icon_state = "hudhealth60"
+			if(47 to 55) holder.icon_state = "hudhealth50"
+			if(43 to 47) holder.icon_state = "hudhealth45"
+			if(35 to 43) holder.icon_state = "hudhealth40"
+			if(25 to 35) holder.icon_state = "hudhealth30"
+			if(17 to 25) holder.icon_state = "hudhealth20"
+			if(13 to 17) holder.icon_state = "hudhealth15"
+			if(3 to 13) holder.icon_state = "hudhealth10"
+			if(0 to 3) holder.icon_state = "hudhealth0"
+			if(-99 to 0) holder.icon_state = "hudhealth-0"
+			else holder.icon_state = "hudhealth-100"
+
 
 
 /mob/proc/med_hud_set_status() //called when mob stat changes, or get a virus/xeno host, etc
@@ -219,6 +237,7 @@ var/datum/mob_hud/huds = list(
 
 /mob/living/carbon/Xenomorph/med_hud_set_status()
 	hud_set_plasma()
+	hud_set_pheromone()
 
 /mob/living/carbon/monkey/med_hud_set_status()
 	var/image/holder = hud_list[STATUS_HUD_XENO_INFECTION]
@@ -235,41 +254,47 @@ var/datum/mob_hud/huds = list(
 	var/image/holder = hud_list[STATUS_HUD]
 	var/image/holder2 = hud_list[STATUS_HUD_OOC]
 	var/image/holder3 = hud_list[STATUS_HUD_XENO_INFECTION]
-	var/datum/organ/external/head = get_organ("head")
-	var/datum/organ/internal/heart/heart = internal_organs_by_name["heart"]
-	var/revive_enabled = 1
-	if(world.time - timeofdeath > revive_grace_period)
-		revive_enabled = 0
+
+	if(species.flags & IS_SYNTHETIC)
+		holder.icon_state = "hudsynth"
+		holder2.icon_state = "hudsynth"
+		holder3.icon_state = "hudsynth"
 	else
-		if(suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
+		var/datum/organ/external/head = get_organ("head")
+		var/datum/organ/internal/heart/heart = internal_organs_by_name["heart"]
+		var/revive_enabled = 1
+		if(world.time - timeofdeath > revive_grace_period)
 			revive_enabled = 0
-
-	if(stat == DEAD)
-		if(revive_enabled)
-			holder.icon_state = "huddeaddefib"
-			holder2.icon_state = "huddeaddefib"
 		else
-			holder.icon_state = "huddead"
-			holder2.icon_state = "huddead"
-		holder3.icon_state = "huddead"
-		return
-	var/holder2_set = 0
-	if(status_flags & XENO_HOST)
-		holder2.icon_state = "hudxeno"//Observer and admin HUD only
-		holder2_set = 1
-		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-		holder3.icon_state = "infected[E.stage]"
+			if(suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
+				revive_enabled = 0
 
-	for(var/datum/disease/D in viruses)
-		if(!D.hidden[SCANNER])
-			holder.icon_state = "hudill"
-			if(!holder2_set)
-				holder2.icon_state = "hudill"
+		if(stat == DEAD)
+			if(revive_enabled)
+				holder.icon_state = "huddeaddefib"
+				holder2.icon_state = "huddeaddefib"
+			else
+				holder.icon_state = "huddead"
+				holder2.icon_state = "huddead"
+			holder3.icon_state = "huddead"
 			return
-	holder.icon_state = "hudhealthy"
-	if(!holder2_set)
-		holder2.icon_state = "hudhealthy"
-		holder3.icon_state = ""
+		var/holder2_set = 0
+		if(status_flags & XENO_HOST)
+			holder2.icon_state = "hudxeno"//Observer and admin HUD only
+			holder2_set = 1
+			var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
+			holder3.icon_state = "infected[E.stage]"
+
+		for(var/datum/disease/D in viruses)
+			if(!D.hidden[SCANNER])
+				holder.icon_state = "hudill"
+				if(!holder2_set)
+					holder2.icon_state = "hudill"
+				return
+		holder.icon_state = "hudhealthy"
+		if(!holder2_set)
+			holder2.icon_state = "hudhealthy"
+			holder3.icon_state = ""
 
 
 
@@ -285,6 +310,18 @@ var/datum/mob_hud/huds = list(
 		holder.icon_state = "plasma[amount]"
 
 
+/mob/living/carbon/Xenomorph/proc/hud_set_pheromone()
+	var/image/holder = hud_list[PHEROMONE_HUD]
+	holder.icon_state = "hudblank"
+	holder.overlays.Cut()
+	if(stat != DEAD)
+		if(frenzy_aura)
+			holder.overlays += image('icons/mob/hud.dmi',src, "hudfrenzy")
+		if(warding_aura)
+			holder.overlays += image('icons/mob/hud.dmi',src, "hudwarding")
+		if(recovery_aura)
+			holder.overlays += image('icons/mob/hud.dmi',src, "hudrecovery")
+	hud_list[PHEROMONE_HUD] = holder
 
 
 

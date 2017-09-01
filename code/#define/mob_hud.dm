@@ -15,6 +15,7 @@
 #define HEALTH_HUD_XENO		"11" //health HUD for xenos
 #define SQUAD_HUD			"12" //squad hud showing who's leader, medic, etc for each squad.
 #define PLASMA_HUD			"13" //indicates the plasma level of xenos.
+#define PHEROMONE_HUD		"14" //indicates which pheromone is active on a xeno.
 
 
 //data HUD (medhud, sechud) defines

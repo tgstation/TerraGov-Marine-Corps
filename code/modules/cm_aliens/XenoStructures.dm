@@ -1,4 +1,4 @@
-turf/simulated/wall/resin
+/turf/simulated/wall/resin
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
 	icon = 'icons/Xeno/structures.dmi'
@@ -12,12 +12,17 @@ turf/simulated/wall/resin
 
 	New()
 		..()
-		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
+		if(!locate(/obj/effect/alien/weeds) in src)
+			new /obj/effect/alien/weeds(src)
 
-turf/simulated/wall/resin/flamer_fire_act()
+/turf/simulated/wall/resin/flamer_fire_act()
 	take_damage(50)
 
-turf/simulated/wall/resin/thick
+//this one is only for map use
+/turf/simulated/wall/resin/ondirt
+	oldTurf = "/turf/unsimulated/floor/gm/dirt"
+
+/turf/simulated/wall/resin/thick
 	name = "thick resin wall"
 	desc = "Weird slime solidified into a thick wall."
 	damage_cap = 400
@@ -25,7 +30,7 @@ turf/simulated/wall/resin/thick
 	walltype = "thickresin"
 	mineral = "thickresin"
 
-turf/simulated/wall/resin/membrane
+/turf/simulated/wall/resin/membrane
 	name = "resin membrane"
 	desc = "Weird slime translucent enough to let light pass through."
 	icon_state = "membrane0"
@@ -35,7 +40,11 @@ turf/simulated/wall/resin/membrane
 	opacity = 0
 	alpha = 180
 
-turf/simulated/wall/resin/membrane/thick
+//this one is only for map use
+/turf/simulated/wall/resin/membrane/ondirt
+	oldTurf = "/turf/unsimulated/floor/gm/dirt"
+
+/turf/simulated/wall/resin/membrane/thick
 	name = "thick resin membrane"
 	desc = "Weird thick slime just translucent enough to let light pass through."
 	damage_cap = 240
@@ -44,13 +53,13 @@ turf/simulated/wall/resin/membrane/thick
 	mineral = "thickmembrane"
 	alpha = 210
 
-turf/simulated/wall/resin/bullet_act(var/obj/item/projectile/Proj)
+/turf/simulated/wall/resin/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.damage)
 	..()
 
 	return 1
 
-turf/simulated/wall/resin/ex_act(severity)
+/turf/simulated/wall/resin/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			take_damage(500)
@@ -60,7 +69,7 @@ turf/simulated/wall/resin/ex_act(severity)
 			take_damage(rand(50, 100))
 	return
 
-turf/simulated/wall/resin/hitby(AM as mob|obj)
+/turf/simulated/wall/resin/hitby(AM as mob|obj)
 	..()
 	if(istype(AM,/mob/living/carbon/Xenomorph))
 		return
@@ -74,7 +83,7 @@ turf/simulated/wall/resin/hitby(AM as mob|obj)
 	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	take_damage(max(0, damage_cap - tforce))
 
-turf/simulated/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/turf/simulated/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
@@ -82,25 +91,25 @@ turf/simulated/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 
-turf/simulated/wall/resin/attack_animal(mob/living/M as mob)
+/turf/simulated/wall/resin/attack_animal(mob/living/M as mob)
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
 	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	take_damage(40)
 
-turf/simulated/wall/resin/attack_hand()
+/turf/simulated/wall/resin/attack_hand()
 	usr << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
 
-turf/simulated/wall/resin/attack_paw()
+/turf/simulated/wall/resin/attack_paw()
 	return attack_hand()
 
-turf/simulated/wall/resin/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/resin/attackby(obj/item/W as obj, mob/user as mob)
 	if(!(W.flags_atom & NOBLUDGEON))
 		take_damage(damage_cap - W.force)
 		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	return ..(W, user)
 
-turf/simulated/wall/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/turf/simulated/wall/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group)
 		return 0
 	if(istype(mover) && mover.checkpass(PASSGLASS))

@@ -185,7 +185,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		// Toxins are really weak, but without being treated, last very long.
 		M.adjustToxLoss(0.2)
 
@@ -201,7 +200,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.druggy = max(M.druggy, 15)
 		if(isturf(M.loc) && !istype(M.loc, /turf/space))
 			if(M.canmove && !M.is_mob_restrained())
@@ -314,7 +312,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/space))
 			step(M, pick(cardinal))
 		if(prob(5)) M.emote(pick("twitch","drool","moan"))
@@ -360,7 +357,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.take_organ_damage(REM, 0)
 
 	on_overdose(mob/living/M)
@@ -381,7 +377,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.adjustToxLoss(REM)
 
 	on_overdose(mob/living/M)
@@ -420,7 +415,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/space))
 			step(M, pick(cardinal))
 		if(prob(5)) M.emote(pick("twitch","drool","moan"))
@@ -472,7 +466,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.apply_effect(2*REM,IRRADIATE,0)
 
 	reaction_turf(var/turf/T, var/volume)
@@ -503,7 +496,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.adjustFireLoss(1)
 
 /datum/reagent/virus_food
@@ -517,7 +509,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.nutrition += nutriment_factor*REM
 
 /datum/reagent/iron
@@ -559,7 +550,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.apply_effect(1,IRRADIATE,0)
 
 	reaction_turf(var/turf/T, var/volume)
@@ -605,7 +595,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.adjustToxLoss(1)
 
 	reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with welding fuel to make them easy to ignite!
@@ -693,7 +682,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.make_dizzy(1)
 		if(!M.confused) M.confused = 1
 		M.confused = max(M.confused, 20)
@@ -717,7 +705,6 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(!M) M = holder.my_atom
 		M.jitteriness = max(M.jitteriness - 5,0)
 		if(prob(80)) M.adjustBrainLoss(REM)
 		if(prob(50)) M.drowsyness = max(M.drowsyness, 3)
