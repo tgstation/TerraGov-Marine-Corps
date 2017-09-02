@@ -15,10 +15,9 @@
 
 /obj/structure/inflatable/popped
 	name = "popped inflatable wall"
-	desc = "It used to be an inflated wall, now it's just a mess of plastic."
+	desc = "It used to be an inflatable wall, now it's just a mess of plastic."
 	density = 0
 	anchored = 1
-	opacity = 1
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall_popped"
@@ -26,6 +25,9 @@
 	hand_deflate()
 		set src = usr
 		return
+
+	CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+		return 1
 
 /obj/structure/inflatable
 	name = "inflatable wall"
@@ -164,13 +166,12 @@
 
 /obj/structure/inflatable/popped/door
 	name = "popped inflatable door"
-	desc = "This used to be an inflatable door, now it's just a mess of plastic on the ground."
-	density = 0
-	anchored = 1
-	opacity = 1
+	desc = "This used to be an inflatable door, now it's just a mess of plastic."
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_popped"
+
+
 
 
 /obj/structure/inflatable/door //Based on mineral door code
