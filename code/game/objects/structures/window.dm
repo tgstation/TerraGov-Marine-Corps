@@ -428,7 +428,7 @@
 
 /obj/structure/window/reinforced/pressure/Dispose()
 	for(var/obj/machinery/door/poddoor/shutters/pressure/P in src.loc )
-		P.close(7)
+		P.close(0)
 	density = 0
 	update_nearby_tiles()
 	playsound(src, "shatter", 70, 1)
