@@ -10,6 +10,9 @@
 #define FIREDOOR_ALERT_COLD     2
 // Not used #define FIREDOOR_ALERT_LOWPRESS 4
 
+#define FIREDOOR_OPEN_LAYER 2.509		//Right under poddoors
+#define FIREDOOR_CLOSED_LAYER 3.189		//Right under poddoors
+
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
@@ -18,9 +21,9 @@
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	opacity = 0
 	density = 0
-	layer = DOOR_OPEN_LAYER - 0.01
-	open_layer = DOOR_OPEN_LAYER - 0.01 // Just below doors when open
-	closed_layer = DOOR_CLOSED_LAYER + 0.01 // Just above doors when closed
+	layer = FIREDOOR_OPEN_LAYER
+	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
+	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
 
 	var/blocked = 0
 	var/lockdown = 0 // When the door has detected a problem, it locks.

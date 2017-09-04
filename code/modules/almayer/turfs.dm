@@ -115,7 +115,7 @@
 		update_turf_overlay()
 
 /turf/simulated/floor/almayer/plating/catwalk/proc/update_turf_overlay()
-	var/image/reusable/I = rnew(/image/reusable, list('icons/turf/almayer.dmi',src,"catwalk",2.5))
+	var/image/reusable/I = rnew(/image/reusable, list('icons/turf/almayer.dmi', src, "catwalk", 2.5))
 	switch(covered)
 		if(0)
 			overlays -= I
@@ -345,6 +345,9 @@
 
 /turf/simulated/wall/almayer/research/containment/wall/connect_w
 	icon_state = "containment_wall_connect_w"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect_w2
+	icon_state = "containment_wall_connect_w2"
 
 /turf/simulated/wall/almayer/research/containment/wall/east
 	icon_state = "containment_wall_e"

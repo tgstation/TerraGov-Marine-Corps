@@ -60,13 +60,20 @@
 		if("main") state = STATE_DEFAULT
 
 		if("login")
-			var/mob/M = usr
-			var/obj/item/weapon/card/id/I = M.get_active_hand()
+			var/mob/living/carbon/human/C = usr
+			var/obj/item/weapon/card/id/I = C.get_active_hand()
 			if(istype(I))
 				if(check_access(I)) authenticated = 1
 				if(ACCESS_MARINE_COMMANDER in I.access)
 					authenticated = 2
 					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
+			else
+				I = C.wear_id
+				if(istype(I))
+					if(check_access(I)) authenticated = 1
+					if(ACCESS_MARINE_COMMANDER in I.access)
+						authenticated = 2
+						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
 			authenticated = 0
 			crew_announcement.announcer = ""

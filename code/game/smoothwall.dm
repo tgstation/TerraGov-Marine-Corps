@@ -86,9 +86,9 @@
 
 // Not proud of this.
 /obj/structure/mineral_door/resin/handle_icon_junction(junction)
-	if (junction == 1 || junction == 2)
+	if(junction == 1 || junction == 2)
 		dir = 4
-	else if (junction == 4 || junction == 8)
+	else if(junction == 4 || junction == 8)
 		dir = 1
 
 /obj/structure/window/reinforced/almayer/handle_icon_junction(jun_1, jun_2)
