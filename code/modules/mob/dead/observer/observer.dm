@@ -580,7 +580,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
-		src << "<span class='warning'>The game hasn't started yet!</span?"
+		src << "<span class='warning'>The game hasn't started yet!</span>"
 		return
 
 	if(ticker.mode.check_xeno_late_join(src))
@@ -595,7 +595,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/L = src
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
-		usr << "\red The game hasn't started yet!"
+		usr << "<span class='warning'>The game hasn't started yet!</span>"
 		return
 
 	if (!usr.stat) // Make sure we're an observer
@@ -607,7 +607,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0 // Something is terribly wrong
 
 	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing aliens and cannot spawn as a Hellhound."
+		usr << "<span class='warning'>You are banned from playing aliens and cannot spawn as a Hellhound.</span>"
 		return
 
 	var/list/hellhound_list = list()
