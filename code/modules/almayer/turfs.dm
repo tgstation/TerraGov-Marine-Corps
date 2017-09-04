@@ -105,13 +105,15 @@
 
 /turf/simulated/floor/almayer/plating/catwalk
 	icon = 'icons/turf/almayer.dmi'
-	icon_state = "plating"
+	icon_state = "plating_catwalk"
+	var/base_state = "plating" //Post mapping
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	var/covered = 1 //1 for theres the cover, 0 if there isn't.
 
 	New()
 		..()
+		icon_state = base_state
 		update_turf_overlay()
 
 /turf/simulated/floor/almayer/plating/catwalk/proc/update_turf_overlay()
