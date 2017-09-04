@@ -315,7 +315,7 @@ updatehealth()
 	if(!is_robotic && !hardcore) //Robot no heal
 		if(innate_healing || (locate(/obj/effect/alien/weeds) in T))
 			if(health >= maxHealth)
-				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
+				if(!readying_tail) //Readying tail = no plasma increase.
 					storedplasma += plasma_gain
 					if(recovery_aura)
 						storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
@@ -331,8 +331,8 @@ updatehealth()
 				updatehealth()
 				*/
 
-		else //Xenos restore plasma VERY slowly off weeds, regardless of health
-			if(prob(50))
+		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
+			if(prob(50) && !is_runner_hiding && !readying_tail && !current_aura)
 				storedplasma++
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
@@ -356,7 +356,7 @@ updatehealth()
 	else if(!is_robotic && hardcore)//Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health > 0)
-				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
+				if(!readying_tail) //Readying tail = no plasma increase.
 					storedplasma += plasma_gain
 					if(recovery_aura)
 						storedplasma += (recovery_aura * 2)
@@ -369,8 +369,8 @@ updatehealth()
 				adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 				updatehealth() //Make sure their actual health updates immediately.
 
-		else //Xenos restore plasma VERY slowly off weeds
-			if(prob(50))
+		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
+			if(prob(50) && !is_runner_hiding && !readying_tail && !current_aura)
 				storedplasma++
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)

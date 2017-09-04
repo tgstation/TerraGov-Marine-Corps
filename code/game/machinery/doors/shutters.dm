@@ -6,7 +6,7 @@
 
 /obj/machinery/door/poddoor/shutters/New()
 	..()
-	layer = 3.1
+	layer = PODDOOR_CLOSED_LAYER
 
 /obj/machinery/door/poddoor/shutters/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	add_fingerprint(user)
@@ -71,8 +71,8 @@
 	opacity = 0
 	unacidable = 1
 	icon_state = "shutter0"
-	open_layer = 2.9 //below grilles
-	closed_layer = 3.3 //above windows
+	open_layer = PODDOOR_OPEN_LAYER //below grilles
+	closed_layer = PODDOOR_CLOSED_LAYER //above windows
 	var/chain_reacting = 1
 
 	ex_act(severity)
@@ -83,7 +83,7 @@
 
 /obj/machinery/door/poddoor/shutters/pressure/New()
 	..()
-	layer = 2.9
+	layer = PODDOOR_OPEN_LAYER
 
 /obj/machinery/door/poddoor/shutters/pressure/close(var/delay = 0, var/from_dir = 0)
 

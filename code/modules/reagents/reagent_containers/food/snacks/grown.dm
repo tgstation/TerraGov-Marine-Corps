@@ -36,7 +36,8 @@
 				var/rtotal = reagent_data[1]
 				if(reagent_data.len > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
-				reagents.add_reagent(rid,max(1,rtotal))
+				if(reagents)
+					reagents.add_reagent(rid, max(1, rtotal))
 
 		if(reagents.total_volume > 0)
 			bitesize = 1+round(reagents.total_volume / 2, 1)

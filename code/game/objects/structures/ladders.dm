@@ -9,6 +9,7 @@
 	var/obj/structure/ladder/up = null		//the ladder above this one
 	anchored = 1
 	unacidable = 1
+	layer = 2.55
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
 	var/busy = 0 //Ladders are wonderful creatures, only one person can use it at a time

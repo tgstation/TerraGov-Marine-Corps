@@ -30,11 +30,11 @@
 		user << "<span class='notice'>You can't label cyborgs.</span>"
 		return
 	if(istype(A, /obj/item/weapon/reagent_containers/glass))
-		user << "<span class='notice'>The label can't stick to the [A.name].  (Try using a pen)</span>"
+		user << "<span class='notice'>The label will not stick to [A]. Use a pen instead.</span>"
 		return
 
-	user.visible_message("<span class='notice'>[user] labels [A] as [label].</span>", \
-						 "<span class='notice'>You label [A] as [label].</span>")
+	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
+						 "<span class='notice'>You label [A] as \"[label]\".</span>")
 	A.name = "[A.name] ([label])"
 
 /obj/item/weapon/hand_labeler/attack_self(mob/user as mob)
@@ -43,7 +43,7 @@
 	if(mode)
 		user << "<span class='notice'>You turn on \the [src].</span>"
 		//Now let them chose the text.
-		var/str = copytext(reject_bad_text(input(user,"Label text?","Set label","")),1,MAX_NAME_LEN)
+		var/str = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
 		if(!str || !length(str))
 			user << "<span class='notice'>Invalid text.</span>"
 			return
