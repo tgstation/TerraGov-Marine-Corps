@@ -267,34 +267,9 @@
 	density = 0
 	layer = 2.1
 
-
-
-
-//---USS Almayer Lights -----//
-
-/obj/machinery/light/almayer/New()
-	..()
-	switch(dir)
-		if(1)	pixel_y = 23
-		if(4)	pixel_x = 10
-		if(8)	pixel_x = -10
-
-// the smaller bulb light fixture
-
-/obj/machinery/light/small/almayer/New()
-	..()
-	switch(dir)
-		if(1)	pixel_y = 23
-		if(4)	pixel_x = 10
-		if(8)	pixel_x = -10
-
-
-
-
 //------APCs ------//
 
 /obj/machinery/power/apc/almayer
-	icon = 'icons/obj/almayer.dmi'
 	cell_type = /obj/item/weapon/cell/high
 //------ Air Alarms -----//
 
@@ -305,7 +280,9 @@
 		..()
 		switch(dir)
 			if(1) pixel_y = 25
-			if(2) pixel_y = 25
+			if(2) pixel_y = -25
+			if(4) pixel_x = 25
+			if(8) pixel_x = -25
 
 //------USS Almayer Tables ------//
 /obj/structure/table/almayer

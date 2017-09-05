@@ -60,7 +60,7 @@
 
 /obj/machinery/alarm
 	name = "alarm"
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/almayer.dmi' // I made these really quickly because idk where they have their new air alarm ~Art
 	icon_state = "alarm0"
 	anchored = 1
 	use_power = 1
@@ -122,6 +122,11 @@
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
 	target_temperature = 90
 
+	switch(dir)
+		if(1) pixel_y = 24
+		if(2) pixel_y = -24
+		if(4) pixel_x = 24
+		if(8) pixel_x = -24
 
 /obj/machinery/alarm/New(var/loc, var/dir, var/building = 0)
 	..()

@@ -12,7 +12,7 @@
 		/obj/structure/window/reinforced/almayer,
 		/obj/structure/window_frame,
 		/obj/structure/girder,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door)
 
 	var/damage = 0
 	var/damage_cap = 1000 //Wall will break down to girders if damage reaches this point
