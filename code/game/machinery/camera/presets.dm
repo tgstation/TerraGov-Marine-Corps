@@ -71,19 +71,6 @@
 						number = max(number, C.number+1)
 			c_tag = "[A.name] #[number]"
 
-
-/obj/machinery/camera/autoname/almayer
-	icon = 'icons/obj/almayer.dmi'
-
-	New()
-		..()
-		switch(dir)
-			if(1)	pixel_y = 40
-			if(2)	pixel_y = -18
-			if(4)	pixel_x = -27
-			if(8)	pixel_x = 27
-
-
 //cameras installed inside the dropships, accessible via both cockpit monitor and Almayer camera computers
 /obj/machinery/camera/autoname/almayer/dropship_one
 	network = list("military", "dropship1")
@@ -91,7 +78,8 @@
 /obj/machinery/camera/autoname/almayer/dropship_two
 	network = list("military", "dropship2")
 
-
+/obj/machinery/camera/autoname/almayer
+	name = "military-grade camera"
 
 //used by the landing camera dropship equipment. Do not place them right under where the dropship lands.
 //Should place them near each corner of your LZs.

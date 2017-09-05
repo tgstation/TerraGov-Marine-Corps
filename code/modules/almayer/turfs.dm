@@ -237,6 +237,7 @@
 /obj/structure/window/reinforced/almayer/colony
 	icon_state = "cwindow0"
 	basestate = "cwindow"
+	window_frame = /obj/structure/window_frame/almayer/colony
 
 	tiles_with = list(
 		/turf/simulated/wall)
@@ -248,6 +249,7 @@
 /obj/structure/window/reinforced/almayer/colony/reinforced
 	icon_state = "crwindow0"
 	basestate = "crwindow"
+	window_frame = /obj/structure/window_frame/almayer/colony/reinforced
 
 /obj/structure/window_frame
 	name = "window frame"

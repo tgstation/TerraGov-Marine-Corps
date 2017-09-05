@@ -214,7 +214,6 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 
-
 /obj/machinery/light/spot
 	name = "spotlight"
 	fitting = "large tube"
@@ -245,8 +244,17 @@
 				brightness = 4
 				if(prob(5))
 					broken(1)
+
 		spawn(1)
 			update(0)
+
+	switch(dir)
+		if(1)
+			pixel_y = 23
+		if(4)
+			pixel_x = 10
+		if(8)
+			pixel_x = -10
 
 /obj/machinery/light/Dispose()
 	var/area/A = get_area(src)
