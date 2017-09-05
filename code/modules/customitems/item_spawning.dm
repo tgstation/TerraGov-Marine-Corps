@@ -79,13 +79,9 @@
 							M.belt=null
 							M.equip_if_possible(Pda, WEAR_L_STORE, 0)
 						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
-				else if(istype(M.back,/obj/item/weapon/storage) && M.back:contents.len < M.back:storage_slots) // Try to place it in something on the mob's back
-					Item.loc = M.back
-					ok = 1
-
 				else
 					for(var/obj/item/weapon/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
-						if (S.contents.len < S.storage_slots)
+						if (S.can_be_inserted(Item)) // Try to place it in something on the mob's back
 							Item.loc = S
 							ok = 1
 							break

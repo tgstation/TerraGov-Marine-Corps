@@ -129,13 +129,10 @@ var/list/department_radio_keys = list(
 		cdel(speech_bubble)
 
 
-	var/fail = 10
 	for(var/obj/O in listening_obj)
-		fail--
-		if(!fail) break //NOPE
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.
-				O.hear_talk(src, message, verb, speaking)
+				O.hear_talk(src, message, verb, speaking, italics)
 
 	log_say("[name]/[key] : [message]")
 	return 1
