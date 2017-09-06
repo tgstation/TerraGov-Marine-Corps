@@ -70,13 +70,13 @@
 
 	switch (message_mode)
 		if("headset")
+			message_mode = null
 			if(wear_ear && istype(wear_ear,/obj/item/device/radio))
 				var/obj/item/device/radio/R = wear_ear
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += wear_ear
+				used_radios += R
 		if("intercom")
-			for(var/obj/item/device/radio/intercom/I in view(1, null))
-				I.talk_into(src, message, verb, speaking)
+			message_mode = null
+			for(var/obj/item/device/radio/intercom/I in view(1))
 				used_radios += I
 		if("whisper")
 			whisper_say(message, speaking, alt_name)
@@ -84,7 +84,6 @@
 		else
 			if(message_mode)
 				if(wear_ear && istype(wear_ear,/obj/item/device/radio))
-					wear_ear.talk_into(src,message, message_mode, verb, speaking)
 					used_radios += wear_ear
 
 	var/sound/speech_sound
@@ -95,18 +94,24 @@
 
 	//speaking into radios
 	if(used_radios.len)
-		italics = 1
-		message_range = 1
 
-		for(var/mob/living/M in hearers(5, src))
+		if (speech_sound)
+			sound_vol *= 0.5
+
+		for(var/mob/living/M in hearers(message_range, src))
 			if(M != src)
 				M.show_message("<span class='notice'>[src] talks into [used_radios.len ? used_radios[1] : "the radio."]</span>")
-			if (speech_sound)
-				sound_vol *= 0.5
 		if(has_species(src,"Human"))
 			playsound(src.loc, 'sound/effects/radiostatic.ogg', 15, 1)
 
+		italics = 1
+		message_range = 2
+
 	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
+
+	for(var/obj/item/device/radio/R in used_radios)
+		spawn(0)
+			R.talk_into(src,message, message_mode, verb, speaking)
 
 /mob/living/carbon/human/proc/forcesay()
 	if(stat == CONSCIOUS)

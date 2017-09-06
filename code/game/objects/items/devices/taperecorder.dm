@@ -20,25 +20,10 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says")
+/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", var/speaking, var/italics = 0)
 	if(recording)
-		//var/ending = copytext(msg, length(msg))
 		timestamp+= timerecorded
-	/*
-		if(M.stuttering)
-			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] stammers, \"[msg]\""
-			return
-		if(M.getBrainLoss() >= 60)
-			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] gibbers, \"[msg]\""
-			return
-		if(ending == "?")
-			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] asks, \"[msg]\""
-			return
-		else if(ending == "!")
-			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] exclaims, \"[msg]\""
-			return
-	*/
-		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] [verb], \"[msg]\""
+		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] [verb], \"[italics ? "<i>" : ][msg][italics ? "</i>" : ]\""
 		return
 
 /obj/item/device/taperecorder/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -56,7 +41,7 @@
 	var/turf/T = get_turf(loc)
 	if(ismob(loc))
 		var/mob/M = loc
-		M << "<span class='danger'>\The [src] explodes!</span>"
+		M << "<span class='danger'>[src] explodes!</span>"
 	if(T)
 		T.hotspot_expose(700,125)
 		explosion(T, -1, -1, 0, 4)
@@ -70,7 +55,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		usr << "\red [src] makes a scratchy noise."
 		return
 	icon_state = "taperecorderrecording"
 	if(timerecorded < 3600 && playing == 0)
@@ -87,7 +72,7 @@
 		icon_state = "taperecorderidle"
 		return
 	else
-		usr << "<span class='notice'>Either your tape recorder's memory is full, or it is currently playing back its memory.</span>"
+		usr << "<span class='notice'>Either [src]'s memory is full, or it is currently playing back its memory.</span>"
 
 
 /obj/item/device/taperecorder/verb/stop()
@@ -97,7 +82,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		usr << "\red [src] makes a scratchy noise."
 		return
 	if(recording == 1)
 		recording = 0
@@ -109,7 +94,7 @@
 	else if(playing == 1)
 		playing = 0
 		var/turf/T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Playback stopped.</font>")
+		T.visible_message("<font color=Maroon><B>[src]</B>: Playback stopped.</font>")
 		icon_state = "taperecorderidle"
 		return
 
@@ -121,7 +106,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "<span class='warning'>The tape recorder makes a scratchy noise.</span>"
+		usr << "<span class='warning'>[src] makes a scratchy noise.</span>"
 		return
 	if(recording == 1 || playing == 1)
 		usr << "<span class='notice'>You can't clear the memory while playing or recording!</span>"
@@ -141,7 +126,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		usr << "\red [src] makes a scratchy noise."
 		return
 	if(recording == 1)
 		usr << "<span class='notice'>You can't playback when recording!</span>"
@@ -158,37 +143,37 @@
 		if(storedinfo.len < i)
 			break
 		var/turf/T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: [storedinfo[i]]</font>")
+		T.visible_message("<font color=Maroon><B>[src]</B>: [storedinfo[i]]</font>")
 		if(storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
 			T = get_turf(src)
-			T.visible_message("<font color=Maroon><B>Tape Recorder</B>: End of recording.</font>")
+			T.visible_message("<font color=Maroon><B>[src]</B>: End of recording.</font>")
 		else
 			playsleepseconds = timestamp[i+1] - timestamp[i]
 		if(playsleepseconds > 14)
 			sleep(10)
 			T = get_turf(src)
-			T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Skipping [playsleepseconds] seconds of silence</font>")
+			T.visible_message("<font color=Maroon><B>[src]</B>: Skipping [playsleepseconds] seconds of silence</font>")
 			playsleepseconds = 1
 		i++
 	icon_state = "taperecorderidle"
 	playing = 0
 	if(emagged == 1.0)
 		var/turf/T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: This tape recorder will self-destruct in... Five.</font>")
+		T.visible_message("<font color=Maroon><B>[src]</B>: Device will self-destruct in... Five.</font>")
 		sleep(10)
 		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Four.</font>")
+		T.visible_message("<font color=Maroon><B>[src]</B>: Four.</font>")
 		sleep(10)
 		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Three.</font>")
+		T.visible_message("<font color=Maroon><B>[src]</B>: Three.</font>")
 		sleep(10)
 		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Two.</font>")
+		T.visible_message("<font color=Maroon><B>[src]</B>: Two.</font>")
 		sleep(10)
 		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: One.</font>")
+		T.visible_message("<font color=Maroon><B>[src]</B>: One.</font>")
 		sleep(10)
 		explode()
 
@@ -200,7 +185,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		usr << "\red [src] makes a scratchy noise."
 		return
 	if(!canprint)
 		usr << "<span class='notice'>The recorder can't print that fast!</span>"
@@ -225,7 +210,7 @@
 		if(usr.stat)
 			return
 		if(emagged == 1)
-			usr << "\red The tape recorder makes a scratchy noise."
+			usr << "\red [src] makes a scratchy noise."
 			return
 		icon_state = "taperecorderrecording"
 		if(timerecorded < 3600 && playing == 0)
@@ -242,7 +227,7 @@
 			icon_state = "taperecorderidle"
 			return
 		else
-			usr << "\red Either your tape recorder's memory is full, or it is currently playing back its memory."
+			usr << "\red Either [src]'s memory is full, or it is currently playing back its memory."
 	else
 		if(usr.stat)
 			usr << "Not when you're incapacitated."
@@ -258,7 +243,7 @@
 			playing = 0
 			var/turf/T = get_turf(src)
 			for(var/mob/O in hearers(world.view-1, T))
-				O.show_message("<font color=Maroon><B>Tape Recorder</B>: Playback stopped.</font>",2)
+				O.show_message("<font color=Maroon><B>[src]</B>: Playback stopped.</font>",2)
 			icon_state = "taperecorderidle"
 			return
 		else
