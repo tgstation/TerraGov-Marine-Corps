@@ -107,12 +107,11 @@
 		italics = 1
 		message_range = 2
 
+	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
+
 	for(var/obj/item/device/radio/R in used_radios)
 		spawn(0)
 			R.talk_into(src,message, message_mode, verb, speaking)
-
-	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
-
 
 /mob/living/carbon/human/proc/forcesay()
 	if(stat == CONSCIOUS)
