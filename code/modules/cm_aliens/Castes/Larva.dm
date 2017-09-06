@@ -96,8 +96,8 @@
 	if(is_mob_incapacitated() || lying || buckled)
 		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return
-	if(layer != TURF_LAYER + 0.2)
-		layer = TURF_LAYER + 0.2
+	if(layer != TURF_LAYER + 0.75)
+		layer = TURF_LAYER + 0.75
 		src << "<span class='notice'>You are now hiding.</span>"
 	else
 		layer = MOB_LAYER

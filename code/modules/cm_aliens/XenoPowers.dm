@@ -348,7 +348,9 @@
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			src << "<span class='warning'>You cannot dissolve \the [I].</span>" // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
-
+		if(istype(O, /obj/structure/window_frame/almayer/colony/reinforced) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
+			return
 	//TURF CHECK
 	else if(istype(O, /turf/simulated) || istype(O, /turf/unsimulated))
 		var/turf/T = O

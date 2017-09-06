@@ -12,14 +12,15 @@
 
 	New()
 		..()
-		if(!locate(/obj/effect/alien/weeds) in src)
-			new /obj/effect/alien/weeds(src)
+		if(!locate(/obj/effect/alien/weeds) in loc)
+			new /obj/effect/alien/weeds(loc)
 
 /turf/simulated/wall/resin/flamer_fire_act()
 	take_damage(50)
 
 //this one is only for map use
 /turf/simulated/wall/resin/ondirt
+
 	oldTurf = "/turf/unsimulated/floor/gm/dirt"
 
 /turf/simulated/wall/resin/thick
@@ -42,6 +43,7 @@
 
 //this one is only for map use
 /turf/simulated/wall/resin/membrane/ondirt
+
 	oldTurf = "/turf/unsimulated/floor/gm/dirt"
 
 /turf/simulated/wall/resin/membrane/thick
@@ -61,11 +63,11 @@
 
 /turf/simulated/wall/resin/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(500)
-		if(2.0)
+		if(2)
 			take_damage(rand(140, 300))
-		if(3.0)
+		if(3)
 			take_damage(rand(50, 100))
 	return
 
@@ -263,82 +265,82 @@
 		spawn(10)
 			relativewall()
 			relativewall_neighbours()
+			if(!locate(/obj/effect/alien/weeds) in loc)
+				new /obj/effect/alien/weeds(loc)
 		..()
-		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
-	attack_paw(mob/user as mob)
-		if(user.a_intent == "hurt")
-			user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
-			"<span class='xenowarning'>You claw at \the [src].</span>")
-			playsound(loc, 'sound/effects/attackblob.ogg', 25, 1, 9)
-			health -= rand(40, 60)
-			if(health <= 0)
-				user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
-				"<span class='xenodanger'>You slice \the [src] apart.</span>")
-			healthcheck()
-			return
-		else
-			return TryToSwitchState(user)
-
-	bullet_act(var/obj/item/projectile/Proj)
-		health -= Proj.damage
-		..()
+/obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
+	if(user.a_intent == "hurt")
+		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
+		"<span class='xenowarning'>You claw at \the [src].</span>")
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1, 9)
+		health -= rand(40, 60)
+		if(health <= 0)
+			user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
+			"<span class='xenodanger'>You slice \the [src] apart.</span>")
 		healthcheck()
-		return 1
+		return
+	else
+		return TryToSwitchState(user)
 
-	TryToSwitchState(atom/user)
-		if(isXeno(user))
-			return ..()
+/obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
+	health -= Proj.damage
+	..()
+	healthcheck()
+	return 1
 
-	Open()
-		if(state || !loc) return //already open
-		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-		flick("[mineralType]opening",src)
-		sleep(10)
-		density = 0
-		opacity = 0
-		state = 1
-		update_icon()
-		isSwitchingStates = 0
+/obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
+	if(isXeno(user))
+		return ..()
 
-		spawn(close_delay)
-			if(!isSwitchingStates && state == 1)
+/obj/structure/mineral_door/resin/Open()
+	if(state || !loc) return //already open
+	isSwitchingStates = 1
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	flick("[mineralType]opening",src)
+	sleep(10)
+	density = 0
+	opacity = 0
+	state = 1
+	update_icon()
+	isSwitchingStates = 0
+
+	spawn(close_delay)
+		if(!isSwitchingStates && state == 1)
+			Close()
+
+/obj/structure/mineral_door/resin/Close()
+	if(!state || !loc) return //already closed
+	//Can't close if someone is blocking it
+	for(var/turf/turf in locs)
+		if(locate(/mob/living) in turf)
+			spawn (close_delay)
 				Close()
+			return
+	isSwitchingStates = 1
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	flick("[mineralType]closing",src)
+	sleep(10)
+	density = 1
+	opacity = 1
+	state = 0
+	update_icon()
+	isSwitchingStates = 0
+	for(var/turf/turf in locs)
+		if(locate(/mob/living) in turf)
+			Open()
+			return
 
-	Close()
-		if(!state || !loc) return //already closed
-		//Can't close if someone is blocking it
-		for(var/turf/turf in locs)
-			if(locate(/mob/living) in turf)
-				spawn (close_delay)
-					Close()
-				return
-		isSwitchingStates = 1
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-		flick("[mineralType]closing",src)
-		sleep(10)
-		density = 1
-		opacity = 1
-		state = 0
-		update_icon()
-		isSwitchingStates = 0
-		for(var/turf/turf in locs)
-			if(locate(/mob/living) in turf)
-				Open()
-				return
+/obj/structure/mineral_door/resin/Dismantle(devastated = 0)
+	cdel(src)
 
-	Dismantle(devastated = 0)
-		cdel(src)
+/obj/structure/mineral_door/resin/CheckHardness()
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	..()
 
-	CheckHardness()
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-		..()
-
-	Del()
-		spawn(10)
-		relativewall_neighbours()
-
+/obj/structure/mineral_door/resin/Dispose()
+	relativewall_neighbours()
+	return ..()
 
 /obj/structure/mineral_door/resin/proc/healthcheck()
 	if(src.health <= 0)
@@ -361,7 +363,7 @@
 
 	anchored = 1
 	density = 0
-	layer = 2
+	layer = 2.52
 	unacidable = 1
 	health = 1
 	var/obj/effect/alien/weeds/node/linked_node = null
@@ -496,7 +498,6 @@
 
 /obj/effect/alien/acid/New(loc, acid_t)
 	..(loc)
-	world << "acid was SPAWNEDDDs"
 	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	tick(acid_t,strength_t)
 

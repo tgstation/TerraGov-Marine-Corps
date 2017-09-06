@@ -21,11 +21,6 @@
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
-	tiles_with = list(
-		/turf/simulated/wall,
-		/obj/structure/window/reinforced/almayer,
-		/obj/machinery/door/airlock)
-
 /turf/simulated/wall/almayer/handle_icon_junction(junction)
 	if (!walltype)
 		return
@@ -105,17 +100,19 @@
 
 /turf/simulated/floor/almayer/plating/catwalk
 	icon = 'icons/turf/almayer.dmi'
-	icon_state = "plating"
+	icon_state = "plating_catwalk"
+	var/base_state = "plating" //Post mapping
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	var/covered = 1 //1 for theres the cover, 0 if there isn't.
 
 	New()
 		..()
+		icon_state = base_state
 		update_turf_overlay()
 
 /turf/simulated/floor/almayer/plating/catwalk/proc/update_turf_overlay()
-	var/image/reusable/I = rnew(/image/reusable, list('icons/turf/almayer.dmi',src,"catwalk",2.5))
+	var/image/reusable/I = rnew(/image/reusable, list('icons/turf/almayer.dmi', src, "catwalk", 2.5))
 	switch(covered)
 		if(0)
 			overlays -= I
@@ -207,10 +204,10 @@
 	tiles_with = list(
 		/turf/simulated/wall)
 
-	var/tiles_special[] = list( //Special case.
-		/obj/machinery/door/airlock,
+	var/tiles_special[] = list(/obj/machinery/door/airlock,
 		/obj/structure/window/reinforced/almayer,
-		/obj/structure/window_frame)
+		/obj/structure/girder,
+		/obj/structure/window_frame/almayer)
 
 /obj/structure/window/reinforced/almayer/New()
 	spawn(10)
@@ -237,6 +234,23 @@
 	not_deconstructable = 1
 	health = 1000000 //Failsafe, shouldn't matter
 
+/obj/structure/window/reinforced/almayer/colony
+	icon_state = "cwindow0"
+	basestate = "cwindow"
+	window_frame = /obj/structure/window_frame/almayer/colony
+
+	tiles_with = list(
+		/turf/simulated/wall)
+
+	tiles_special = list(/obj/machinery/door/airlock,
+		/obj/structure/window/reinforced/almayer/colony,
+		/obj/structure/window_frame/almayer/colony)
+
+/obj/structure/window/reinforced/almayer/colony/reinforced
+	icon_state = "crwindow0"
+	basestate = "crwindow"
+	window_frame = /obj/structure/window_frame/almayer/colony/reinforced
+
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
@@ -247,6 +261,15 @@
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/reinforced/almayer/window_type = /obj/structure/window/reinforced/almayer
 	var/basestate = "window"
+	var/junction = 0
+
+	tiles_with = list(
+		/turf/simulated/wall)
+
+	var/tiles_special[] = list(/obj/machinery/door/airlock,
+		/obj/structure/window/reinforced/almayer,
+		/obj/structure/girder,
+		/obj/structure/window_frame/almayer)
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0)) return 1 //Air can pass through a window-sized hole
@@ -261,6 +284,23 @@
 	if(istype(O) && O.checkpass(PASSTABLE))
 		return 1
 	return 1
+
+/obj/structure/window_frame/New()
+	spawn(10)
+		relativewall()
+		relativewall_neighbours()
+
+/obj/structure/window_frame/proc/update_nearby_icons()
+	relativewall_neighbours()
+
+/obj/structure/window_frame/update_icon()
+	relativewall()
+
+/obj/structure/window_frame/Dispose()
+	density = 0
+	update_nearby_tiles()
+	update_nearby_icons()
+	. = ..()
 
 /obj/structure/window_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, sheet_type))
@@ -291,6 +331,14 @@
 	icon_state = "wwindow0_frame"
 	basestate = "wwindow"
 	window_type = /obj/structure/window/reinforced/almayer/white
+
+/obj/structure/window_frame/almayer/colony
+	icon_state = "cwindow0_frame"
+	basestate = "cwindow"
+
+/obj/structure/window_frame/almayer/colony/reinforced
+	icon_state = "crwindow0_frame"
+	basestate = "crwindow"
 
 // RESEARCH STUFF
 /turf/simulated/floor/almayer/research/containment/entrance
@@ -345,6 +393,9 @@
 
 /turf/simulated/wall/almayer/research/containment/wall/connect_w
 	icon_state = "containment_wall_connect_w"
+
+/turf/simulated/wall/almayer/research/containment/wall/connect_w2
+	icon_state = "containment_wall_connect_w2"
 
 /turf/simulated/wall/almayer/research/containment/wall/east
 	icon_state = "containment_wall_e"

@@ -31,7 +31,7 @@
 				T.updateMineralOverlays()
 
 			else if(istype(turf_to_check,/turf/space) || istype(turf_to_check,/turf/simulated/floor) || istype(turf_to_check,/turf/unsimulated/floor))
-				turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side_[direction]")
+				turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side_[direction]", 2.99) //Really high since it's an overhead turf and it shouldn't collide with anything else
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)

@@ -1,7 +1,7 @@
 /obj/machinery/camera
 	name = "security camera"
 	desc = "It's used to monitor rooms."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/almayer.dmi'
 	icon_state = "camera"
 	use_power = 2
 	idle_power_usage = 5
@@ -51,6 +51,13 @@
 			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
+
+	switch(dir)
+		if(1)	pixel_y = 40
+		if(2)	pixel_y = -18
+		if(4)	pixel_x = -27
+		if(8)	pixel_x = 27
+
 	..()
 
 /obj/machinery/camera/emp_act(severity)
