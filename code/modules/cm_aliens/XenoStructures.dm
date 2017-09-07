@@ -384,7 +384,8 @@
 	Crossed(atom/movable/AM)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			H.next_move_slowdown += 1
+			if(!has_species(H,"Yautja")) //predators are immune to weed slowdown effect
+				H.next_move_slowdown += 1
 
 /obj/effect/alien/weeds/proc/Life()
 	set background = 1
@@ -394,7 +395,7 @@
 		cdel(src)
 		return
 
-	if(!linked_node || (get_dist(linked_node, src) > linked_node.node_range) )
+	if(!linked_node || !linked_node.loc || (get_dist(linked_node, src) > linked_node.node_range) )
 		return
 
 	direction_loop:
@@ -472,12 +473,21 @@
 	var/planter_name //nameof the mob who planted it.
 	health = 15
 
-	New(loc, mob/living/carbon/Xenomorph/X)
-		..(loc, src)
-		if(X)
-			planter_ckey = X.ckey
-			planter_name = X.real_name
-		new /obj/effect/alien/weeds(loc)
+/obj/effect/alien/weeds/node/New(loc, mob/living/carbon/Xenomorph/X)
+	..(loc, src)
+	if(X)
+		planter_ckey = X.ckey
+		planter_name = X.real_name
+	new /obj/effect/alien/weeds(loc)
+
+/obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	M.visible_message("<span class='xenonotice'>\The [M] clears [src].</span>", \
+		"<span class='xenonotice'>You clear [src].</span>")
+	cdel(src)
+
+
 
 
 #undef NODERANGE

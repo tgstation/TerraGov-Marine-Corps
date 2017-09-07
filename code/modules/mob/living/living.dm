@@ -650,7 +650,7 @@
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(pulling && pulling.drag_delay)	//Dragging stuff can slow you down a bit.
+	if(pulling && pulling.drag_delay && !ignore_pull_delay())	//Dragging stuff can slow you down a bit.
 		var/pull_delay = pulling.drag_delay
 		if(ismob(pulling))
 			var/mob/M = pulling
@@ -662,14 +662,20 @@
 		. += next_move_slowdown
 		next_move_slowdown = 0
 
-/mob/living
-	forceMove(atom/destination)
-		stop_pulling()
-		if(buckled)
-			buckled.unbuckle()
-		. = ..()
-		if(.)
-			reset_view(destination)
+//whether we are slowed when dragging things
+/mob/living/proc/ignore_pull_delay()
+	return FALSE
+
+/mob/living/carbon/human/ignore_pull_delay()
+	return has_species(src,"Yautja") //Predators aren't slowed when pulling their prey.
+
+/mob/living/forceMove(atom/destination)
+	stop_pulling()
+	if(buckled)
+		buckled.unbuckle()
+	. = ..()
+	if(.)
+		reset_view(destination)
 
 
 /mob/living/Bump(atom/movable/AM, yes)

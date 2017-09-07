@@ -1197,6 +1197,7 @@
 			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
 			if(H.mind)
 				H.mind.transfer_to(M)
+				H.mind.skills_list = null //no skill restriction
 			else
 				M.key = H.key
 				if(M.client) M.client.view = world.view
