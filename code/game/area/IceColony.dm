@@ -587,6 +587,10 @@
 	name = "\improper Underground Southern Maintenance"
 	icon_state = "asmaint"
 
+/area/ice_colony/underground/maintenance/north
+	name = "\improper Underground Northern Maintenance"
+	icon_state = "asmaint"
+
 /*
  * Underground - Medbay
  */
