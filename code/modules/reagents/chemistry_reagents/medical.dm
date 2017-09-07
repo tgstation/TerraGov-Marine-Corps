@@ -417,7 +417,7 @@
 		M.jitteriness = 0
 		for(var/datum/organ/internal/I in M.internal_organs)
 			if(I.damage > 0)
-				I.damage = max(I.damage--, 0)
+				I.damage = max(I.damage - 1, 0)
 		for(var/datum/disease/D in M.viruses)
 			D.spread = "Remissive"
 			D.stage--

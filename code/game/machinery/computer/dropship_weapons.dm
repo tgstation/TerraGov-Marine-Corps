@@ -13,10 +13,6 @@
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
 
 
-/obj/machinery/computer/dropship_weapons/bullet_act(obj/item/projectile/Proj)
-	visible_message("[Proj] ricochets off [src]!")
-	return 0
-
 
 /obj/machinery/computer/dropship_weapons/attack_hand(mob/user)
 	if(..())

@@ -1,11 +1,4 @@
-/mob/living/carbon/human/attack_hand(mob/living/carbon/human/M as mob)
-	var/datum/organ/external/temp = M:organs_by_name["r_hand"]
-	if (M.hand)
-		temp = M:organs_by_name["l_hand"]
-	if(temp && !temp.is_usable())
-		M << "\red You can't use your [temp.display_name]."
-		return
-
+/mob/living/carbon/human/attack_hand(mob/living/carbon/human/M)
 	..()
 
 	if((M != src) && check_shields(0, M.name))

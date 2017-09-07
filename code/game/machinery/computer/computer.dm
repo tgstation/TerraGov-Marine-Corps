@@ -53,10 +53,14 @@
 	return
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
-	if(prob(round(Proj.ammo.damage /2)))
-		set_broken()
-	..()
-	return 1
+	if(exproof)
+		visible_message("[Proj] ricochets off [src]!")
+		return 0
+	else
+		if(prob(round(Proj.ammo.damage /2)))
+			set_broken()
+		..()
+		return 1
 
 /obj/machinery/computer/update_icon()
 	..()

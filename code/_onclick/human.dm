@@ -65,6 +65,13 @@
 		if(proximity && istype(G) && G.Touch(A,1))
 			return
 
+		var/datum/organ/external/temp = organs_by_name["r_hand"]
+		if (hand)
+			temp = organs_by_name["l_hand"]
+		if(temp && !temp.is_usable())
+			src << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
+			return
+
 		A.attack_hand(src)
 
 	RangedAttack(var/atom/A)

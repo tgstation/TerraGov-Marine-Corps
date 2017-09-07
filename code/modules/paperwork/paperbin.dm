@@ -21,18 +21,11 @@
 	return
 
 
-/obj/item/weapon/paper_bin/attack_paw(mob/user as mob)
+/obj/item/weapon/paper_bin/attack_paw(mob/user)
 	return attack_hand(user)
 
 
-/obj/item/weapon/paper_bin/attack_hand(mob/user as mob)
-	if (hasorgans(user))
-		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
-		if (user.hand)
-			temp = user:organs_by_name["l_hand"]
-		if(temp && !temp.is_usable())
-			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
-			return
+/obj/item/weapon/paper_bin/attack_hand(mob/user)
 	var/response = ""
 	if(!papers.len > 0)
 		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")

@@ -280,6 +280,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 /obj/machinery/cryopod/evacuation
 	stat = MACHINE_DO_NOT_PROCESS
 	unacidable = 1
+	time_till_despawn = 6000000 //near infinite so despawn never occurs.
 	var/being_forced = 0 //Simple variable to prevent sound spam.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program
 

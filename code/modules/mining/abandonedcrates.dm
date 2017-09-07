@@ -63,8 +63,8 @@
 		if(30)
 			new/obj/item/weapon/melee/baton(src)
 
-/obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
-	if(locked)
+/obj/structure/closet/crate/secure/loot/togglelock(mob/user)
+	if(locked && ishuman(user))
 		user << "<span class='notice'>The crate is locked with a Deca-code lock.</span>"
 		var/input = input(usr, "Enter digit from [min] to [max].", "Deca-Code Lock", "") as num
 		if(in_range(src, user))
