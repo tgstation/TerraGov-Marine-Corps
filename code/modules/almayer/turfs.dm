@@ -251,6 +251,11 @@
 	basestate = "crwindow"
 	window_frame = /obj/structure/window_frame/almayer/colony/reinforced
 
+/obj/structure/window/reinforced/almayer/colony/reinforced/tinted
+	name =  "tinted reinforced window"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
+	opacity = 1
+
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
