@@ -1,4 +1,3 @@
-
 /*
  * Backpack
  */
@@ -311,6 +310,7 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
+	item_state = "marinepack"
 
 	New()
 		select_gamemode_skin(type)
@@ -320,16 +320,19 @@
 	name = "\improper USCM medic backpack"
 	desc = "The standard-issue backpack worn by USCM medics."
 	icon_state = "marinepackm"
+	item_state = "marinepackm"
 
 /obj/item/weapon/storage/backpack/marine/tech
 	name = "\improper USCM technician backpack"
 	desc = "The standard-issue backpack worn by USCM technicians."
 	icon_state = "marinepackt"
+	item_state = "marinepackt"
 
 /obj/item/weapon/storage/backpack/marine/satchel
 	name = "\improper USCM satchel"
 	desc = "A heavy-duty satchel carried by some USCM soldiers and support personnel."
 	icon_state = "marinesat"
+	item_state = "marinesat"
 	worn_accessible = TRUE
 	storage_slots = null
 	max_storage_space = 15
@@ -339,11 +342,13 @@
 	name = "\improper USCM medic satchel"
 	desc = "A heavy-duty satchel carried by some USCM medics."
 	icon_state = "marinesatm"
+	item_state = "marinesatm"
 
 /obj/item/weapon/storage/backpack/marine/satchel/tech
 	name = "\improper USCM technician satchel"
 	desc = "A heavy-duty satchel carried by some USCM technicians."
 	icon_state = "marinesatt"
+	item_state = "marinesatt"
 
 /obj/item/weapon/storage/backpack/marine/smock
 	name = "\improper M3 sniper's smock"
