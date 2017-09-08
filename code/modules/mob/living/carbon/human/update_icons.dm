@@ -126,9 +126,10 @@ Please contact me on #coderbus IRC. ~Carn x
 #define LEGCUFF_LAYER			6
 #define L_HAND_LAYER			5
 #define R_HAND_LAYER			4
-#define TARGETED_LAYER			3
-#define FIRE_LAYER				2		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
-#define BURST_LAYER				1 	//Chestburst overlay
+#define BURST_LAYER				3 	//Chestburst overlay
+#define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
+#define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
+
 #define TOTAL_LAYERS			25
 //////////////////////////////////
 
@@ -511,11 +512,19 @@ var/global/list/damage_icon_parts = list()
 //Call when target overlay should be added/removed
 /mob/living/carbon/human/update_targeted()
 	remove_overlay(TARGETED_LAYER)
+	var/image/I
 	if (targeted_by && target_locked)
-		overlays_standing[TARGETED_LAYER]	= image("icon" = target_locked, "layer" =-TARGETED_LAYER)
+		I = image("icon" = target_locked, "layer" =-TARGETED_LAYER)
 	else if (!targeted_by && target_locked)
 		cdel(target_locked)
 		target_locked = null
+	if(holo_card_color)
+		if(I)
+			I.overlays += image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]")
+		else
+			I = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]", "layer" =-TARGETED_LAYER)
+	if(I)
+		overlays_standing[TARGETED_LAYER] = I
 	apply_overlay(TARGETED_LAYER)
 
 

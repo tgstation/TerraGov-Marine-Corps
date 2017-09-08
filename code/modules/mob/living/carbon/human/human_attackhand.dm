@@ -192,3 +192,83 @@
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
+
+
+
+
+/mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
+	if (health >= config.health_threshold_crit)
+		if(src == M)
+			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
+				holo_card_color = null
+				update_targeted()
+				visible_message("<span class='notice'>[src] removes the holo card on [gender==MALE?"himself":"herself"].</span>", \
+					"<span class='notice'>You remove the holo card on yourself.</span>")
+				return
+			visible_message("<span class='notice'>[src] examines [gender==MALE?"himself":"herself"].</span>", \
+				"<span class='notice'>You check yourself for injuries.</span>")
+
+			for(var/datum/organ/external/org in organs)
+				var/status = ""
+				var/brutedamage = org.brute_dam
+				var/burndamage = org.burn_dam
+				if(halloss > 0)
+					status = "tingling"
+
+				if(brutedamage > 0)
+					status = "bruised"
+				if(brutedamage > 20)
+					status = "battered"
+				if(brutedamage > 40)
+					status = "mangled"
+				if(brutedamage > 0 && burndamage > 0)
+					status += " and "
+				if(burndamage > 40)
+					status += "peeling away"
+
+				else if(burndamage > 10)
+					status += "blistered"
+				else if(burndamage > 0)
+					status += "numb"
+
+				if(!status) status = "OK"
+
+				if(org.status & ORGAN_SPLINTED) status += " <b>(SPLINTED)</b>"
+				if(org.status & ORGAN_MUTATED)
+					status = "weirdly shapen."
+				if(org.status & ORGAN_DESTROYED)
+					status = "MISSING!"
+
+				src << "\t [status=="OK"?"\blue ":"\red "]My [org.display_name] is [status]."
+			if((SKELETON in mutations) && !w_uniform && !wear_suit)
+				play_xylophone()
+		else
+			var/t_him = "it"
+			if (gender == MALE)
+				t_him = "him"
+			else if (gender == FEMALE)
+				t_him = "her"
+			if (w_uniform)
+				w_uniform.add_fingerprint(M)
+
+			if(lying || sleeping)
+				if(client)
+					sleeping = max(0,src.sleeping-5)
+				if(!sleeping)
+					resting = 0
+					update_canmove()
+				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
+									"<span class='notice'>You shake [src] trying to wake [t_him] up!")
+			else
+				var/mob/living/carbon/human/H = M
+				if(istype(H))
+					H.species.hug(H,src)
+				else
+					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
+								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
+
+			AdjustKnockedout(-3)
+			AdjustStunned(-3)
+			AdjustKnockeddown(-3)
+
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
