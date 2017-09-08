@@ -662,6 +662,29 @@
 									var/mob/living/silicon/robot/U = usr
 									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 
+	if (href_list["medholocard"])
+		if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+			usr << "<span class='warning'>You're not trained to use this.</span>"
+			return
+		if(!has_species(src, "Human"))
+			usr << "<span class='warning'>Triage holocards only works on humans.</span>"
+			return
+		var/newcolor = input("Choose a triage holo card to add to the patient:", "Triage holo card", null, null) in list("black", "red", "orange", "none")
+		if(!newcolor) return
+		if(get_dist(usr, src) > 7)
+			usr << "<span class='warning'>[src] is too far away.</span>"
+			return
+		if(newcolor == "none")
+			if(!holo_card_color) return
+			holo_card_color = null
+			usr << "<span class='notice'>You remove the holo card on [src].</span>"
+		else if(newcolor != holo_card_color)
+			holo_card_color = newcolor
+			usr << "<span class='notice'>You add a [newcolor] holo card on [src].</span>"
+		update_targeted()
+
+
+
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
 		if(istype(I))

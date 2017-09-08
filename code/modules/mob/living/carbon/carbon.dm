@@ -183,62 +183,18 @@
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if (health >= config.health_threshold_crit)
-		if(src == M && istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = src
-			src.visible_message( \
-				text("\blue [src] examines [].",src.gender==MALE?"himself":"herself"), \
-				"\blue You check yourself for injuries." \
-				)
-
-			for(var/datum/organ/external/org in H.organs)
-				var/status = ""
-				var/brutedamage = org.brute_dam
-				var/burndamage = org.burn_dam
-				if(halloss > 0)
-					status = "tingling"
-
-				if(brutedamage > 0)
-					status = "bruised"
-				if(brutedamage > 20)
-					status = "battered"
-				if(brutedamage > 40)
-					status = "mangled"
-				if(brutedamage > 0 && burndamage > 0)
-					status += " and "
-				if(burndamage > 40)
-					status += "peeling away"
-
-				else if(burndamage > 10)
-					status += "blistered"
-				else if(burndamage > 0)
-					status += "numb"
-
-				if(!status) status = "OK"
-
-				if(org.status & ORGAN_SPLINTED) status += " <b>(SPLINTED)</b>"
-				if(org.status & ORGAN_MUTATED)
-					status = "weirdly shapen."
-				if(org.status & ORGAN_DESTROYED)
-					status = "MISSING!"
-
-				show_message(text("\t []My [] is [].",status=="OK"?"\blue ":"\red ",org.display_name,status),1)
-			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
-				H.play_xylophone()
-		else
+		if(src != M)
 			var/t_him = "it"
-			if (src.gender == MALE)
+			if (gender == MALE)
 				t_him = "him"
-			else if (src.gender == FEMALE)
+			else if (gender == FEMALE)
 				t_him = "her"
-			if (istype(src,/mob/living/carbon/human) && src:w_uniform)
-				var/mob/living/carbon/human/H = src
-				H.w_uniform.add_fingerprint(M)
-
-			if(lying || src.sleeping)
+			if(lying || sleeping)
 				if(client)
-					src.sleeping = max(0,src.sleeping-5)
-				if(src.sleeping == 0)
-					src.resting = 0
+					sleeping = max(0,sleeping-5)
+				if(sleeping == 0)
+					resting = 0
+					update_canmove()
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!")
 			else
@@ -254,6 +210,8 @@
 			AdjustKnockeddown(-3)
 
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
+
+
 
 /mob/living/carbon/proc/eyecheck()
 	return 0

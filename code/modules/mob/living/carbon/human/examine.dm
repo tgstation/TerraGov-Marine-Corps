@@ -195,6 +195,9 @@
 		if(o && o.status & ORGAN_SPLINTED)
 			msg += "<span class='warning'>[t_He] [t_has] a splint on [t_his] [o.display_name]!</span>\n"
 
+	if(holo_card_color)
+		msg += "[t_He] has a [holo_card_color] holo card on [t_his] chest.\n"
+
 	if(suiciding)
 		msg += "<span class='warning'>[t_He] appears to have commited suicide... there is no hope of recovery.</span>\n"
 
@@ -425,6 +428,7 @@
 			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
+/*
 		var/perpname = "wot"
 		var/medical = "None"
 
@@ -442,9 +446,12 @@
 				for (var/datum/data/record/R in data_core.general)
 					if (R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
-
 		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
 		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
+*/
+		var/cardcolor = holo_card_color
+		if(!cardcolor) cardcolor = "none"
+		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=\ref[src];medholocard=1'>\[[cardcolor]\]</a>\n"
 
 
 	if(hasHUD(user,"squadleader"))
