@@ -8,6 +8,8 @@
 	var/uid
 	var/can_hellhound_enter = 1
 	var/is_underground //whether the area count as above or under ground. Used by orbital beacons.
+	var/sound_env = 0
+	var/dynamic_sound_env = null
 
 /area/New()
 	..()

@@ -1,6 +1,7 @@
 /area/whiskey_outpost
 	name = "\improper Whiskey Outpost"
 	icon_state = "green"
+	sound_env = PARKING_LOT
 
 /area/whiskey_outpost/outside/north
 	name = "\improper Whiskey Outpost North"
@@ -22,6 +23,7 @@
 /area/whiskey_outpost/outside
 	name = "\improper Unused"
 	icon_state = "green"
+	sound_env = FOREST
 
 	requires_power = 1
 	always_unpowered = 1
