@@ -135,6 +135,14 @@
 
 		if(S.volume <= distance) r_FAL //no volume or too far away to hear such a volume level.
 
+		S.echo = list(
+			0, 0, \
+			-250, -1000, \
+			0, 1.0, \
+			-1000, 0.25, 1.5, 1.0, \
+			-1000, 1.0, \
+			0, 1.0, 1.0, 1.0, 1.0, 7)
+
 	if(!is_global)
 		if(istype(src,/mob/living/))
 			var/mob/living/M = src
