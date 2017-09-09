@@ -85,7 +85,7 @@
 	"<span class='notice'>You start climbing [ladder_dir_name] the ladder.</span>")
 	busy = 1
 	if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
-		if(!user.is_mob_incapacitated() && !get_dist(user, src) > 1 && !user.blinded && !user.lying && !user.buckled)
+		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.blinded && !user.lying && !user.buckled)
 			user.loc = get_turf(ladder_dest) //Make sure we move before we broadcast the message
 			visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 			user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
