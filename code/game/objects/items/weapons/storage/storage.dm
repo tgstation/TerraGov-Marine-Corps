@@ -548,6 +548,8 @@
 	orient2hud()
 
 /obj/item/weapon/storage/Dispose()
+	for(var/mob/M in content_watchers)
+		hide_from(M)
 	if(boxes)
 		cdel(boxes)
 		boxes = null

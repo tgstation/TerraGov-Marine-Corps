@@ -176,7 +176,7 @@
 		return
 
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user)
 		src.add_fingerprint(user)
 		if(src.secured)
 			if(!a_left || !a_right)
@@ -194,16 +194,18 @@
 					a_right.attack_self(user)
 		else
 			var/turf/T = get_turf(src)
-			if(!T)	return 0
+			if(!T)
+				return
 			if(a_left)
-				a_left:holder = null
+				a_left.holder = null
 				a_left.loc = T
+				a_left = null
 			if(a_right)
-				a_right:holder = null
+				a_right.holder = null
 				a_right.loc = T
-			spawn(0)
-				cdel(src)
-		return
+				a_right = null
+			cdel(src)
+
 
 
 	process_activation(var/obj/D, var/normal = 1, var/special = 1)

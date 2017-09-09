@@ -321,7 +321,7 @@
 
 /obj/item/device/radio/headset/almayer/marine/alpha/med
 	name = "marine alpha medic radio headset"
-	desc = "This is used by the marine alpha combat medics. Channels are as follows: :m - engineering, :q - alpha squad."
+	desc = "This is used by the marine alpha combat medics. Channels are as follows: :m - medical, :q - alpha squad."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
