@@ -260,8 +260,7 @@
 	icon_state = "yellow"
 
 //Drop Pods
-/area/shuttle/
-	dynamic_sound_env = "ENCLOSED"
+/area/shuttle/drop1
 	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg')
 
 /area/shuttle/drop1/sulaco
@@ -294,8 +293,6 @@
 
 /area/shuttle/drop1/lz1
 	name = "\improper Alamo Landing Zone"
-	dynamic_sound_env = null
-	sound_env = PARKING_LOT
 	icon_state = "away1"
 
 /area/shuttle/drop2/sulaco
@@ -328,8 +325,6 @@
 
 /area/shuttle/drop2/lz2
 	name = "\improper Normandy Landing Zone"
-	dynamic_sound_env = null
-	sound_env = PARKING_LOT
 	icon_state = "away2"
 
 //Distress

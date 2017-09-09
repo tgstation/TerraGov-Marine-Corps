@@ -1,48 +1,5 @@
 #define FALLOFF_SOUNDS 1
 
-//Sound environment defines. Reverb preset for sounds played in an area, see sound datum reference for more.
-#define GENERIC 0
-#define PADDED_CELL 1
-#define ROOM 2
-#define BATHROOM 3
-#define LIVINGROOM 4
-#define STONEROOM 5
-#define AUDITORIUM 6
-#define CONCERT_HALL 7
-#define CAVE 8
-#define ARENA 9
-#define HANGAR 10
-#define CARPETED_HALLWAY 11
-#define HALLWAY 12
-#define STONE_CORRIDOR 13
-#define ALLEY 14
-#define FOREST 15
-#define CITY 16
-#define MOUNTAINS 17
-#define QUARRY 18
-#define PLAIN 19
-#define PARKING_LOT 20
-#define SEWER_PIPE 21
-#define UNDERWATER 22
-#define DRUGGED 23
-#define DIZZY 24
-#define PSYCHOTIC 25
-
-#define ENCLOSED_SMALL BATHROOM
-#define ENCLOSED_MEDIUM STONEROOM
-#define ENCLOSED_LARGE HANGAR
-#define ENCLOSED_HALLWAY_SMALL SEWER_PIPE
-#define ENCLOSED_HALLWAY_MEDIUM STONE_CORRIDOR
-#define ENCLOSED_HALLWAY_LARGE STONE_CORRIDOR
-
-#define SOFTFLOOR_SMALL ROOM
-#define SOFTFLOOR_MEDIUM LIVINGROOM
-#define SOFTFLOOR_LARGE AUDITORIUM
-#define SOFTFLOOR_HALLWAY_SMALL CARPETED_HALLWAY
-#define SOFTFLOOR_HALLWAY_MEDIUM CARPETED_HALLWAY
-#define SOFTFLOOR_HALLWAY_LARGE CARPETED_HALLWAY
-
-#define SPACE UNDERWATER
 
 //Proc used to play a sound.
 //source: self-explanatory.
@@ -99,10 +56,6 @@
 
 	if(vary) S.frequency = frequency ? frequency : GET_RANDOM_FREQ
 
-	//sound volume falloff with pressure
-	var/pressure_factor = 1.0
-	var/datum/gas_mixture/hearer_env = null
-
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
 		var/turf/T = get_turf(src)
@@ -110,7 +63,10 @@
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
-		hearer_env = T.return_air()
+		//sound volume falloff with pressure
+		var/pressure_factor = 1.0
+
+		var/datum/gas_mixture/hearer_env = T.return_air()
 		var/datum/gas_mixture/source_env = turf_source.return_air()
 
 		if(hearer_env && source_env)
@@ -143,77 +99,8 @@
 			-1000, 1.0, \
 			0, 1.0, 1.0, 1.0, 1.0, 7)
 
-	if(!is_global)
-		if(istype(src,/mob/living/))
-			var/mob/living/M = src
-			if (M.hallucination)
-				S.environment = PSYCHOTIC
-			else if (M.druggy)
-				S.environment = DRUGGED
-			else if (M.drowsyness)
-				S.environment = DIZZY
-			else if (M.confused)
-				S.environment = DIZZY
-			else if (M.sleeping)
-				S.environment = UNDERWATER
-			else if (pressure_factor < 0.5)
-				S.environment = SPACE
-			else
-				var/area/A = get_area(src)
-				if(A.dynamic_sound_env && hearer_env)
-					var/env_size = hearer_env.group_multiplier //number of tiles in airgroup
-					S.environment = return_sound_env(A.dynamic_sound_env,env_size)
-				else
-					S.environment = A.sound_env
-
-		else if (pressure_factor < 0.5)
-			S.environment = SPACE
-		else
-
-			var/area/A = get_area(src)
-			if(A.dynamic_sound_env && hearer_env)
-				var/env_size = hearer_env.group_multiplier //number of tiles in airgroup
-				S.environment = return_sound_env(A.dynamic_sound_env,env_size)
-			else
-				S.environment = A.sound_env
+	if(!is_global) S.environment = 2
 	src << S
-
-/mob/proc/return_sound_env(var/dynamic_sound_env, var/size)
-	switch(dynamic_sound_env)
-		if ("ENCLOSED")
-			switch(size)
-				if(0 to 64)
-					return ENCLOSED_SMALL
-				if(64 to 144)
-					return ENCLOSED_MEDIUM
-				else
-					return ENCLOSED_LARGE
-		if("ENCLOSED_HALLWAY")
-			switch(size)
-				if(0 to 64)
-					return ENCLOSED_HALLWAY_SMALL
-				if(64 to 144)
-					return ENCLOSED_HALLWAY_MEDIUM
-				else
-					return ENCLOSED_HALLWAY_LARGE
-		if ("SOFTFLOOR")
-			switch(size)
-				if(0 to 64)
-					return SOFTFLOOR_SMALL
-				if(64 to 144)
-					return SOFTFLOOR_MEDIUM
-				else
-					return SOFTFLOOR_LARGE
-		if ("SOFTFLOOR_HALLWAY")
-			switch(size)
-				if(0 to 64)
-					return SOFTFLOOR_HALLWAY_SMALL
-				if(64 to 144)
-					return SOFTFLOOR_HALLWAY_MEDIUM
-				else
-					return SOFTFLOOR_HALLWAY_LARGE
-	return SOFTFLOOR_SMALL
-
 
 /client/proc/playtitlemusic()
 	if(!ticker || !ticker.login_music)	r_FAL

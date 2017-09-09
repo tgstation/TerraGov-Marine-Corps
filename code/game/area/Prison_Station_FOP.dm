@@ -1,7 +1,6 @@
 //Base Instance
 /area/prison
 	name = "Fiorina Orbital Penitentiary"
-	dynamic_sound_env = "ENCLOSED"
 
 //SECURITY
 /area/prison/security
@@ -15,7 +14,6 @@
 /area/prison/security/head
 	name = "\improper Head of Security's office"
 	icon_state = "sec_hos"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/prison/security/armory/riot
 	name = "\improper Riot Armory"
@@ -100,7 +98,6 @@
 
 /area/prison/recreation/staff
 	name = "\improper Staff Recreation"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/prison/recreation/medsec
 	name = "\improper Medium-Security Recreation"
@@ -138,7 +135,6 @@
 /area/prison/command
 	name = "\improper Warden's Office"
 	icon_state = "Warden"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/prison/toilet
 	icon_state = "restrooms"
@@ -156,7 +152,6 @@
 	name = "\improper Staff Restooms"
 
 /area/prison/maintenance
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
 
 /area/prison/maintenance/staff_research
 	name = "\improper Staff-Research Maintenance"
@@ -185,7 +180,6 @@
 /area/prison/library
 	name = "\improper Library"
 	icon_state = "green"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/prison/engineering
 	name = "\improper Engineering"
@@ -214,9 +208,6 @@
 /area/prison/yard
 	name = "\improper Yard"
 	icon_state = "thunder"
-
-/area/prison/hallway
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
 
 /area/prison/hallway/entrance
 	name = "\improper Entrance Hallway"
@@ -251,7 +242,6 @@
 	icon_state = "purple"
 
 /area/prison/cellblock/
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
 
 /area/prison/cellblock/lowsec/nw
 	name = "\improper Northwest Low-Security Cellblock"
@@ -304,9 +294,6 @@
 /area/prison/cellblock/highsec/south/south
 	name = "\improper South High-Security Cellblock South"
 	icon_state = "cells_high_ss"
-
-/area/prison/cellblock/maxsec
-	dynamic_sound_env = "ENCLOSED"
 
 /area/prison/cellblock/maxsec/north
 	name = "\improper Maximum-Security Panopticon Cellblock"
