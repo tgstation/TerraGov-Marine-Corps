@@ -242,7 +242,7 @@
 	unacidable = 1
 
 /obj/structure/prop/almayer/particle_cannon
-	name = "\improper 0.75cm/140 Mark 74 General Atomics railgun"
+	name = "\improper 75cm/140 Mark 74 General Atomics railgun"
 	desc = "The Mark 74 Railgun is top of the line for space based weaponry. Capable of firing a round with a diameter of 3/4ths of a meter at 24 kilometers per second. It also is capable of using a variety of round types which can be interchanged at anytime with its newly designed feed system."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "1"

@@ -216,7 +216,7 @@
 				var/duration_time = 10
 				if(ship_base) duration_time = 70 //uninstalling equipment takes more time
 				if(do_after(user, duration_time, FALSE, 5, BUSY_ICON_CLOCK))
-					if(PC.linked_powerloader && PC.linked_powerloader.buckled_mob == user)
+					if(PC.linked_powerloader && !PC.loaded && PC.linked_powerloader.buckled_mob == user)
 						forceMove(PC.linked_powerloader)
 						PC.loaded = src
 						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)

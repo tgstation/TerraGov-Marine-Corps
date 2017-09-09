@@ -85,16 +85,18 @@
 	"<span class='notice'>You start climbing [ladder_dir_name] the ladder.</span>")
 	busy = 1
 	if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
-
-		if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying || user.buckled) return
-		user.loc = get_turf(ladder_dest) //Make sure we move before we broadcast the message
-		visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
-		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
-		"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
-		ladder_dest.add_fingerprint(user)
-		if(user.pulling && get_dist(src, user.pulling) <= 2)
-			user.pulling.loc = ladder_dest.loc
-
+		if(!user.is_mob_incapacitated() && !get_dist(user, src) > 1 && !user.blinded && !user.lying && !user.buckled)
+			user.loc = get_turf(ladder_dest) //Make sure we move before we broadcast the message
+			visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
+			user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
+			"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
+			ladder_dest.add_fingerprint(user)
+			if(user.pulling && get_dist(src, user.pulling) <= 2)
+				user.pulling.loc = ladder_dest.loc
+				if(isobj(user.pulling))
+					var/obj/O = user.pulling
+					if(O.buckled_mob)
+						O.buckled_mob.loc = ladder_dest.loc
 	busy = 0
 	add_fingerprint(user)
 
@@ -183,71 +185,69 @@
 	return
 
 //Throwing Shiet
-/obj/structure/ladder/attackby(obj/item/weapon/W, mob/user as mob)
-	if(W && !isnull(W))
-		//Throwing Grenades
-		if(istype(W,/obj/item/weapon/grenade))
-			var/obj/item/weapon/grenade/G = W
+/obj/structure/ladder/attackby(obj/item/weapon/W, mob/user)
+	//Throwing Grenades
+	if(istype(W,/obj/item/weapon/grenade))
+		var/obj/item/weapon/grenade/G = W
+		var/ladder_dir_name
+		var/obj/structure/ladder/ladder_dest
+		if(up && down)
+			ladder_dir_name = alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel")
+			if(ladder_dir_name == "Cancel")
+				return
+			ladder_dir_name = lowertext(ladder_dir_name)
+			if(ladder_dir_name == "up") ladder_dest = up
+			else ladder_dest = down
+		else if(up)
+			ladder_dir_name = "up"
+			ladder_dest = up
+		else if(down)
+			ladder_dir_name = "down"
+			ladder_dest = down
+		else return //just in case
+
+		user << "You take the position to throw the [G]."
+		if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+			user.visible_message("<span class='warning'>[user] throws [G] [ladder_dir_name] [src]!</span>", \
+								 "<span class='warning'>You throw [G] [ladder_dir_name] [src]</span>")
+			user.drop_held_item()
+			G.loc = get_turf(ladder_dest)
+			G.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+			step_away(G,src,rand(1,5))
 			if(!G.active)
-				var/ladder_dir_name
-				var/obj/structure/ladder/ladder_dest
-				if(up && down)
-					ladder_dir_name = alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel")
-					if(ladder_dir_name == "Cancel")
-						return
-					ladder_dir_name = lowertext(ladder_dir_name)
-					if(ladder_dir_name == "up") ladder_dest = up
-					else ladder_dest = down
-				else if(up)
-					ladder_dir_name = "up"
-					ladder_dest = up
-				else if(down)
-					ladder_dir_name = "down"
-					ladder_dest = down
-				else return //just in case
+				G.activate(user)
 
-				user << "You take the position to throw the [G]."
-				if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
-					user.visible_message("<span class='warning'>[user] throws [G] [ladder_dir_name] [src]!</span>", \
-										 "<span class='warning'>You throw [G] [ladder_dir_name] [src]</span>")
-					user.drop_held_item()
-					G.loc = get_turf(ladder_dest)
-					G.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-					step_away(G,src,rand(1,5))
-					G.activate(user)
+	//Throwing Flares and flashlights
+	else if(istype(W,/obj/item/device/flashlight))
+		var/obj/item/device/flashlight/F = W
+		var/ladder_dir_name
+		var/obj/structure/ladder/ladder_dest
+		if(up && down)
+			ladder_dir_name = alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel")
+			if(ladder_dir_name == "Cancel")
+				return
+			ladder_dir_name = lowertext(ladder_dir_name)
+			if(ladder_dir_name == "up") ladder_dest = up
+			else ladder_dest = down
+		else if(up)
+			ladder_dir_name = "up"
+			ladder_dest = up
+		else if(down)
+			ladder_dir_name = "down"
+			ladder_dest = down
+		else return //just in case
 
-		//Throwing Flares and flashlights
-		else if(istype(W,/obj/item/device/flashlight))
-			var/obj/item/device/flashlight/F = W
-			var/ladder_dir_name
-			var/obj/structure/ladder/ladder_dest
-			if(up && down)
-				ladder_dir_name = alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel")
-				if(ladder_dir_name == "Cancel")
-					return
-				ladder_dir_name = lowertext(ladder_dir_name)
-				if(ladder_dir_name == "up") ladder_dest = up
-				else ladder_dest = down
-			else if(up)
-				ladder_dir_name = "up"
-				ladder_dest = up
-			else if(down)
-				ladder_dir_name = "down"
-				ladder_dest = down
-			else return //just in case
-
-			user << "You take the position to throw the [F]."
-			if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
-				user.visible_message("<span class='warning'>[user] throws [F] [ladder_dir_name] [src]!</span>", \
-									 "<span class='warning'>You throw [F] [ladder_dir_name] [src]</span>")
-				user.drop_held_item()
-				F.loc = get_turf(ladder_dest)
-				F.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-				step_away(F,src,rand(1,5))
-				F.SetLuminosity(0)
-				if(F.on && loc != user)
-					F.SetLuminosity(F.brightness_on)
-		else
-			return attack_hand(user)
+		user << "You take the position to throw the [F]."
+		if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+			user.visible_message("<span class='warning'>[user] throws [F] [ladder_dir_name] [src]!</span>", \
+								 "<span class='warning'>You throw [F] [ladder_dir_name] [src]</span>")
+			user.drop_held_item()
+			F.loc = get_turf(ladder_dest)
+			F.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+			step_away(F,src,rand(1,5))
+			F.SetLuminosity(0)
+			if(F.on && loc != user)
+				F.SetLuminosity(F.brightness_on)
 	else
 		return attack_hand(user)
+

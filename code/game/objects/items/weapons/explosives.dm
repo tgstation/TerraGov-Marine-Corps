@@ -74,6 +74,8 @@
 					if (target)
 						cdel(target)
 						target = null
+				if(target && target.loc)
+					target.overlays -= image('icons/obj/assemblies.dmi', "plastic-explosive2")
 				if (src)
 					cdel(src)
 

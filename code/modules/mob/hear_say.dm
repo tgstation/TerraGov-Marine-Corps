@@ -92,7 +92,7 @@
 	var/sound_to_play
 	if(istype(speaker, /mob/living/silicon/decoy/ship_ai)) //For the AI stuff. TODO: Change.
 		var/mob/living/silicon/decoy/ship_ai/AI = speaker
-		sound_to_play = AI.S
+		sound_to_play = AI.ai_sound
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
