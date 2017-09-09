@@ -11,8 +11,7 @@
 	throw_range = 5
 	origin_tech = "biotech=3"
 	attack_verb = list("attacked", "slapped", "whacked")
-	prosthetic_name = "cyberbrain"
-	prosthetic_icon = "brain-prosthetic"
+	organ_type = /datum/organ/internal/brain
 	organ_tag = "brain"
 
 	var/mob/living/carbon/brain/brainmob = null

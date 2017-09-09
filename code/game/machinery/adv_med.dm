@@ -327,6 +327,7 @@
 		var/AN = ""
 		var/open = ""
 		var/infected = ""
+		var/necrosis = ""
 		var/imp = ""
 		var/bled = ""
 		var/robot = ""
@@ -347,6 +348,8 @@
 			bled = "Bleeding:<br>"
 		if(e.status & ORGAN_BROKEN)
 			AN = "[e.broken_description]:<br>"
+		if(e.status & ORGAN_DEAD)
+			necrosis = "Necrotizing:<br>"
 		if(e.status & ORGAN_ROBOT)
 			robot = "Prosthetic:<br>"
 		if(e.open)
@@ -372,20 +375,27 @@
 			if (INFECTION_LEVEL_THREE to INFINITY)
 				infected = "Septic++:<br>"
 
+		var/unknown_body = 0
 		if (e.implants.len)
-			var/unknown_body = 0
 			for(var/I in e.implants)
 				if(is_type_in_list(I,known_implants))
 					imp += "[I] implanted:<br>"
 				else
 					unknown_body++
-			if(unknown_body || e.hidden)
+		if(e.hidden)
+			unknown_body++
+		if(locate(/obj/item/alien_embryo) in connected.occupant)
+			unknown_body++
+		if(unknown_body)
+			if(unknown_body > 1)
+				imp += "Unknown bodies present:<br>"
+			else
 				imp += "Unknown body present:<br>"
 
-		if(!AN && !open && !infected & !imp)
+		if(!AN && !open && !infected & !imp && !necrosis)
 			AN = "None:"
 		if(!(e.status & ORGAN_DESTROYED))
-			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured]</td>"
+			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"
 		else
 			dat += "<td>[e.display_name]</td><td>-</td><td>-</td><td>Not Found</td>"
 		dat += "</tr>"

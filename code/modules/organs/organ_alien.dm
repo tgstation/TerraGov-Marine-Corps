@@ -63,6 +63,7 @@
 	organ_tag = "nutrient vessel"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
+	organ_type = /datum/organ/internal/diona/nutrients
 
 /obj/item/organ/diona/nutrients/removed()
 	return
@@ -72,6 +73,8 @@
 	organ_tag = "receptor node"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
+	organ_type = /datum/organ/internal/diona/node
+
 
 /obj/item/organ/diona/node/removed()
 	return
@@ -129,26 +132,31 @@
 	name = "egg sac"
 	icon_state = "xgibmid1"
 	organ_tag = "egg sac"
+	organ_type = /datum/organ/internal/xenos/eggsac
 
 /obj/item/organ/xenos/plasmavessel
 	name = "plasma vessel"
 	icon_state = "xgibdown1"
 	organ_tag = "plasma vessel"
+	organ_type = /datum/organ/internal/xenos/plasmavessel
 
 /obj/item/organ/xenos/acidgland
 	name = "acid gland"
 	icon_state = "xgibtorso"
 	organ_tag = "acid gland"
+	organ_type = /datum/organ/internal/xenos/acidgland
 
 /obj/item/organ/xenos/hivenode
 	name = "hive node"
 	icon_state = "xgibmid2"
 	organ_tag = "hive node"
+	organ_type = /datum/organ/internal/xenos/hivenode
 
 /obj/item/organ/xenos/resinspinner
 	name = "hive node"
 	icon_state = "xgibmid2"
 	organ_tag = "resin spinner"
+	organ_type = /datum/organ/internal/xenos/resinspinner
 
 //VOX ORGANS.
 /datum/organ/internal/stack
@@ -175,6 +183,8 @@
 	icon_state = "brain-prosthetic"
 	organ_tag = "stack"
 	robotic = 2
+	organ_type = /datum/organ/internal/stack
 
 /obj/item/organ/stack/vox
 	name = "vox cortical stack"
+	organ_type = /datum/organ/internal/stack/vox

@@ -17,8 +17,6 @@
 	var/min_duration = 0 //Minimum duration of the step
 	var/max_duration = 0 //Maximum duration of the step
 
-	var/is_same_target = 0 //Safety check to prevent surgery juggling
-
 	var/can_infect = 0 //Evil infection stuff that will make everyone hate me
 	var/blood_level = 0 //How much blood this step can get on surgeon. 1 - hands, 2 - full body
 
@@ -174,9 +172,12 @@ proc/sort_surgeries()
 				surgery_steps.Swap(i, gap + i)
 				swapped = 1
 
+
+
 /datum/surgery_status/
 	var/eyes	=	0
 	var/face	=	0
 	var/head_reattach = 0
 	var/current_organ = "organ"
 	var/in_progress = 0
+	var/is_same_target = "" //Safety check to prevent surgery juggling

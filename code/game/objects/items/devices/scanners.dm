@@ -134,11 +134,13 @@ REAGENT SCANNER
 		var/list/damaged = H.get_damaged_organs(1,1)
 		if(length(damaged))
 			for(var/datum/organ/external/org in damaged)
-				user.show_message(text("\t\t []: [] - [] []",	\
-				"[capitalize(org.display_name)][org.status & ORGAN_ROBOT ? " (Cybernetic)" : ""]",	\
-				(org.burn_dam > 0)				?	"<font color='#FFA500'><b>[org.burn_dam]</b></font>"	: "<font color='#FFA500'>0</font>", \
-				(org.brute_dam > 0)				?	"\red <b>[org.brute_dam]</b>"							: "<font color='red'>0</font>", \
-				(org.status & ORGAN_BLEEDING) 	? 	"\red <b>(Bleeding)</b>" 								: ""),1)
+				var/org_nam = "[capitalize(org.display_name)][org.status & ORGAN_ROBOT ? " (Cybernetic)" : ""]"
+				var/burn_info = org.burn_dam > 0 ? "<font color='#FFA500'><b>[org.burn_dam]</b></font>" : "<font color='#FFA500'>0</font>"
+				var/brute_info =  org.brute_dam > 0 ? "\red <b>[org.brute_dam]</b>" : "<font color='red'>0</font>"
+				var/org_bleed = (org.status & ORGAN_BLEEDING) ? "\red <b>(Bleeding)</b>" : ""
+				var/org_necro = (org.status & ORGAN_DEAD) ? "\red <b>(Necrotizing)</b>" : ""
+				user.show_message("\t\t [org_nam]: [burn_info] - [brute_info] [org_bleed][org_necro]",1)
+
 
 	// Show red messages - broken bokes, infection, etc
 	if (M.getCloneLoss())

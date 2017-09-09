@@ -16,6 +16,7 @@
 	var/rejecting            // Is this organ already being rejected?
 	var/obj/item/organ/organ_holder // If not in a body, held in this item.
 	var/list/transplant_data
+
 /datum/organ/internal/proc/rejuvenate()
 	damage=0
 
@@ -168,6 +169,11 @@
 				spawn owner.emote("me", 1, "gasps for air!")
 				owner.losebreath += 15
 
+/datum/organ/internal/lungs/prosthetic
+	robotic = 2
+	removed_type = /obj/item/organ/lungs/prosthetic
+
+
 /datum/organ/internal/liver
 	name = "liver"
 	parent_organ = "chest"
@@ -236,7 +242,11 @@
 			else if(is_broken() && prob(50))
 				owner.adjustToxLoss(0.3 * (damage/2))
 
-/datum/organ/internal/kidney
+/datum/organ/internal/liver/prosthetic
+	robotic = 2
+	removed_type = /obj/item/organ/liver/prosthetic
+
+/datum/organ/internal/kidneys
 	name = "kidneys"
 	parent_organ = "groin"
 	removed_type = /obj/item/organ/kidneys
@@ -260,6 +270,10 @@
 			owner.adjustToxLoss(0.1 * (damage/3))
 		else if(is_broken() && prob(50))
 			owner.adjustToxLoss(0.2 * (damage/3))
+
+/datum/organ/internal/kidneys/prosthetic
+	robotic = 2
+	removed_type = /obj/item/organ/kidneys
 
 
 /datum/organ/internal/brain
@@ -287,6 +301,11 @@
 		if(is_broken())
 			owner.eye_blind = 20
 
+/datum/organ/internal/eyes/prosthetic
+	robotic = 2
+	removed_type = /obj/item/organ/eyes/prosthetic
+
+
 /datum/organ/internal/appendix
 	name = "appendix"
 	parent_organ = "groin"
@@ -296,11 +315,9 @@
 
 	if(!removed_type) return 0
 
-	var/obj/item/organ/removed_organ = new removed_type(get_turf(user))
+	var/obj/item/organ/removed_organ = new removed_type(get_turf(user), src)
 
 	if(istype(removed_organ))
-		removed_organ.organ_data = src
-		removed_organ.update()
 		organ_holder = removed_organ
 
 	return removed_organ

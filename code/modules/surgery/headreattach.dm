@@ -34,14 +34,14 @@
 
 /datum/surgery_step/head/peel/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts peeling back tattered flesh where [target]'s head used to be with \the [tool].</span>", \
 	"<span class='notice'>You start peeling back tattered flesh where [target]'s head used to be with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/peel/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] peels back tattered flesh where [target]'s head used to be with \the [tool].</span>",	\
@@ -74,14 +74,14 @@
 
 /datum/surgery_step/head/shape/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] is beginning to reshape [target]'s esophagal and vocal region with \the [tool].</span>", \
 	"<span class='notice'>You start to reshape [target]'s [affected.display_name] esophagal and vocal region with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/shape/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] has finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool].</span>",	\
@@ -113,14 +113,14 @@
 
 /datum/surgery_step/head/suture/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] is stapling and suturing flesh into place in [target]'s esophagal and vocal region with \the [tool].</span>", \
 	"<span class='notice'>You start to staple and suture flesh into place in [target]'s esophagal and vocal region with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/suture/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] has finished stapling [target]'s neck into place with \the [tool].</span>",	\
@@ -153,14 +153,14 @@
 
 /datum/surgery_step/head/prepare/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts adjusting area around [target]'s neck with \the [tool].</span>", \
 	"<span class='notice'>You start adjusting area around [target]'s neck with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/prepare/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] has finished adjusting the area around [target]'s neck with \the [tool].</span>",	\
@@ -194,13 +194,13 @@
 
 /datum/surgery_step/head/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts attaching [tool] to [target]'s reshaped neck.</span>", \
 	"<span class='notice'>You start attaching [tool] to [target]'s reshaped neck.</span>")
 
 /datum/surgery_step/head/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] has attached [target]'s head to the body.</span>",	\

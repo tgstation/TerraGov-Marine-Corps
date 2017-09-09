@@ -12,8 +12,6 @@
 	var/organ_tag                             // What slot does it go in?
 	var/organ_type = /datum/organ/internal    // Used to spawn the relevant organ data when produced via a machine or spawn().
 	var/datum/organ/internal/organ_data       // Stores info when removed.
-	var/prosthetic_name = "prosthetic organ"  // Flavour string for robotic organ.
-	var/prosthetic_icon                       // Icon for robotic organ.
 
 /obj/item/organ/attack_self(mob/user as mob)
 
@@ -22,13 +20,16 @@
 		bitten(user)
 		return
 
-/obj/item/organ/New()
+/obj/item/organ/New(loc, organ_datum)
 	..()
 	create_reagents(5)
+	if(organ_datum)
+		organ_data = organ_datum
+	else
+		organ_data = new organ_type()
 	if(!robotic)
 		processing_objects += src
-	spawn(1)
-		update()
+
 
 /obj/item/organ/Dispose()
 	if(!robotic) processing_objects -= src
@@ -61,98 +62,88 @@
 	//TODO: Grey out the icon state.
 	//TODO: Inject an organ with peridaxon to make it alive again.
 
-/obj/item/organ/proc/roboticize()
-
-	robotic = (organ_data && organ_data.robotic) ? organ_data.robotic : 1
-
-	if(prosthetic_name)
-		name = prosthetic_name
-
-	if(prosthetic_icon)
-		icon_state = prosthetic_icon
-	else
-		//TODO: convert to greyscale.
-
-/obj/item/organ/proc/update()
-
-	if(!organ_data)
-		organ_data = new /datum/organ/internal()
-
-	if(robotic)
-		organ_data.robotic = robotic
-
-	if(organ_data.robotic >= 2)
-		roboticize()
 
 // Brain is defined in brain_item.dm.
 /obj/item/organ/heart
 	name = "heart"
 	icon_state = "heart-on"
-	prosthetic_name = "circulatory pump"
-	prosthetic_icon = "heart-prosthetic"
 	organ_tag = "heart"
 	fresh = 6 // Juicy.
 	dead_icon = "heart-off"
+	organ_type = /datum/organ/internal/heart
 
 /obj/item/organ/lungs
 	name = "lungs"
 	icon_state = "lungs"
 	gender = PLURAL
-	prosthetic_name = "gas exchange system"
-	prosthetic_icon = "lungs-prosthetic"
 	organ_tag = "lungs"
+	organ_type = /datum/organ/internal/lungs
 
 /obj/item/organ/kidneys
 	name = "kidneys"
 	icon_state = "kidneys"
 	gender = PLURAL
-	prosthetic_name = "prosthetic kidneys"
-	prosthetic_icon = "kidneys-prosthetic"
 	organ_tag = "kidneys"
+	organ_type = /datum/organ/internal/kidneys
 
 /obj/item/organ/eyes
 	name = "eyeballs"
 	icon_state = "eyes"
 	gender = PLURAL
-	prosthetic_name = "visual prosthesis"
-	prosthetic_icon = "eyes-prosthetic"
 	organ_tag = "eyes"
-
+	organ_type = /datum/organ/internal/eyes
 	var/eye_colour
 
 /obj/item/organ/liver
 	name = "liver"
 	icon_state = "liver"
-	prosthetic_name = "toxin filter"
-	prosthetic_icon = "liver-prosthetic"
 	organ_tag = "liver"
+	organ_type = /datum/organ/internal/liver
 
 /obj/item/organ/appendix
 	name = "appendix"
 	icon_state = "appendix"
+	organ_type = /datum/organ/internal/appendix
 	organ_tag = "appendix"
 
 //These are here so they can be printed out via the fabricator.
 /obj/item/organ/heart/prosthetic
+	name = "circulatory pump"
+	icon_state = "heart-prosthetic"
 	robotic = 2
+	organ_type = /datum/organ/internal/heart/prosthetic
 
 /obj/item/organ/lungs/prosthetic
 	robotic = 2
+	name = "gas exchange system"
+	icon_state = "lungs-prosthetic"
+	organ_type = /datum/organ/internal/lungs/prosthetic
 
 /obj/item/organ/kidneys/prosthetic
 	robotic = 2
+	name = "prosthetic kidneys"
+	icon_state = "kidneys-prosthetic"
+	organ_type = /datum/organ/internal/kidneys/prosthetic
+
 
 /obj/item/organ/eyes/prosthetic
 	robotic = 2
+	name = "visual prosthesis"
+	icon_state = "eyes-prosthetic"
+	organ_type = /datum/organ/internal/eyes/prosthetic
 
 /obj/item/organ/liver/prosthetic
 	robotic = 2
+	name = "toxin filter"
+	icon_state = "liver-prosthetic"
+	organ_type = /datum/organ/internal/liver/prosthetic
 
 /obj/item/organ/brain/prosthetic
 	robotic = 2
+	name = "cyberbrain"
+	icon_state = "brain-prosthetic"
+	organ_type = /datum/organ/internal/brain/prosthetic
 
-/obj/item/organ/appendix
-	name = "appendix"
 
 /obj/item/organ/proc/removed(var/mob/living/target,var/mob/living/user)
 
@@ -222,7 +213,7 @@
 	blood_splatter(src,B,1)
 
 
-	user.drop_inv_item_on_ground(src)
+	user.temp_drop_inv_item(src)
 	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon_state = dead_icon ? dead_icon : icon_state

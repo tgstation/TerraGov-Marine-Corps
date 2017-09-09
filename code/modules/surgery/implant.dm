@@ -50,7 +50,7 @@
 
 /datum/surgery_step/cavity/make_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 
 	user.visible_message("<span class='notice'>[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>", \
 	"<span class='notice'>You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>")
@@ -60,7 +60,7 @@
 
 /datum/surgery_step/cavity/make_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>", \
@@ -91,7 +91,7 @@
 
 /datum/surgery_step/cavity/close_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 
 	user.visible_message("<span class='notice'>[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].</span>", \
 	"<span class='notice'>You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].</span>")
@@ -101,7 +101,7 @@
 
 /datum/surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool].</span>", \
@@ -128,7 +128,7 @@
 
 /datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 
 	user.visible_message("<span class='notice'>[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
 	"<span class='notice'>You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" )
@@ -137,7 +137,7 @@
 
 /datum/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
@@ -174,21 +174,22 @@
 	max_duration = 80
 
 /datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
-		return ..() && (!sponge || !sponge.damage)
+	var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
+	//potential conflict with brain repair surgery
+	return ..() && (target_zone != "head" || (!sponge || !sponge.damage || sponge.damage>20))
 
 /datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/datum/organ/external/affected = target.get_organ(target_zone)
-		is_same_target = affected
+	var/datum/organ/external/affected = target.get_organ(target_zone)
+	target.op_stage.is_same_target = affected
 
-		user.visible_message("<span class='notice'>[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool].</span>", \
-		"<span class='notice'>You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool].</span>")
-		target.custom_pain("The pain in your chest is living hell!", 1)
-		..()
+	user.visible_message("<span class='notice'>[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool].</span>", \
+	"<span class='notice'>You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool].</span>")
+	target.custom_pain("The pain in your chest is living hell!", 1)
+	..()
 
 /datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	var/datum/organ/external/affected = target.get_organ(target_zone)
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	var/find_prob = 0

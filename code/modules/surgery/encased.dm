@@ -34,7 +34,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 
 	user.visible_message("<span class='notice'>[user] begins to cut through [target]'s [affected.encased] with \the [tool].</span>", \
 	"<span class='notice'>You begin to cut through [target]'s [affected.encased] with \the [tool].</span>")
@@ -45,7 +45,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] has cut [target]'s [affected.encased] open with \the [tool].</span>",		\
@@ -83,7 +83,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 
 	user.visible_message("<span class='notice'>[user] starts to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You start to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool].</span>")
@@ -94,7 +94,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 
@@ -137,7 +137,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 
 	user.visible_message("<span class='notice'>[user] starts bending [target]'s [affected.encased] back into place with \the [tool].</span>", \
 	"<span class='notice'>You start bending [target]'s [affected.encased] back into place with \the [tool].</span>")
@@ -148,7 +148,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 
@@ -187,7 +187,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	is_same_target = affected
+	target.op_stage.is_same_target = affected
 
 	user.visible_message("<span class='notice'>[user] starts applying \the [tool] to [target]'s [affected.encased].</span>", \
 	"<span class='notice'>You start applying \the [tool] to [target]'s [affected.encased].</span>")
@@ -198,7 +198,7 @@
 	if(!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
-	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
+	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 
