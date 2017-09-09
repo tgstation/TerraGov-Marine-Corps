@@ -309,11 +309,7 @@
 		if(H.species && (H.species.flags & IS_SYNTHETIC)) return //can't impregnate synthetics
 
 	if(!sterile)
-		var/obj/item/alien_embryo/E = new (target)
-		target.status_flags |= XENO_HOST
-		if(H)
-			var/datum/organ/external/chest/affected = H.get_organ("chest")
-			affected.implants += E
+		new /obj/item/alien_embryo(target)
 		target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
 		icon_state = "[initial(icon_state)]_impregnated"
 		Die()

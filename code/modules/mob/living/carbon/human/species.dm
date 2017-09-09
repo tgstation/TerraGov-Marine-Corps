@@ -85,7 +85,7 @@
 		"heart" =    /datum/organ/internal/heart,
 		"lungs" =    /datum/organ/internal/lungs,
 		"liver" =    /datum/organ/internal/liver,
-		"kidneys" =  /datum/organ/internal/kidney,
+		"kidneys" =  /datum/organ/internal/kidneys,
 		"brain" =    /datum/organ/internal/brain,
 		"appendix" = /datum/organ/internal/appendix,
 		"eyes" =     /datum/organ/internal/eyes
@@ -385,7 +385,7 @@
 		"heart" =    /datum/organ/internal/heart,
 		"lungs" =    /datum/organ/internal/lungs,
 		"liver" =    /datum/organ/internal/liver,
-		"kidneys" =  /datum/organ/internal/kidney,
+		"kidneys" =  /datum/organ/internal/kidneys,
 		"brain" =    /datum/organ/internal/brain,
 		"eyes" =     /datum/organ/internal/eyes,
 		"stack" =    /datum/organ/internal/stack/vox

@@ -78,7 +78,7 @@
 		if (!canremove || !(loc == usr))
 			return
 
-		if (!( usr.is_mob_restrained() ) && !( usr.stat ))
+		if (!usr.is_mob_incapacitated() && !(usr.buckled && usr.lying))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")

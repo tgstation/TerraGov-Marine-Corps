@@ -784,14 +784,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return
 
 /datum/organ/external/proc/robotize()
-	src.status &= ~ORGAN_BROKEN
-	src.status &= ~ORGAN_BLEEDING
-	src.status &= ~ORGAN_SPLINTED
-	src.status &= ~ORGAN_CUT_AWAY
-	src.status &= ~ORGAN_ATTACHABLE
-	src.status &= ~ORGAN_DESTROYED
-	src.status |= ORGAN_ROBOT
-	src.destspawn = 0
+	status &= ~ORGAN_BROKEN
+	status &= ~ORGAN_BLEEDING
+	status &= ~ORGAN_SPLINTED
+	status &= ~ORGAN_CUT_AWAY
+	status &= ~ORGAN_ATTACHABLE
+	status &= ~ORGAN_DESTROYED
+	status &= ~ORGAN_DEAD
+	status &= ~ORGAN_MUTATED
+	status |= ORGAN_ROBOT
+	destspawn = 0
 	for (var/datum/organ/external/T in children)
 		if(T)
 			T.robotize()
