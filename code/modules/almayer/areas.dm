@@ -3,8 +3,6 @@
 // Port = South | Starboard = North //
 /area/almayer
 	icon = 'icons/turf/area_almayer.dmi'
-	dynamic_sound_env = "ENCLOSED"
-	sound_env = ENCLOSED_MEDIUM
 	ambience = list('sound/ambience/shipambience.ogg')
 	icon_state = "almayer"
 
@@ -14,12 +12,10 @@
 
 /area/almayer/command/airoom
 	name = "\improper Almayer AI Core"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "airoom"
 
 /area/almayer/command/telecomms
 	name = "\improper Almayer Telecommunications"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "tcomms"
 
 /area/almayer/command/self_destruct
@@ -28,8 +24,6 @@
 
 /area/almayer/command/corporateliason
 	name = "\improper Almayer Corporate Liason Office"
-	dynamic_sound_env = "SOFTFLOOR"
-	sound_env = SOFTFLOOR_MEDIUM
 	icon_state = "corporatespace"
 
 /area/almayer/engineering/upper_engineering
@@ -38,23 +32,18 @@
 
 /area/almayer/engineering/ce_room
 	name = "\improper Almayer Chief Engineer Office"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "ceroom"
 
 /area/almayer/engineering/upper_engine_monitoring
 	name = "\improper Almayer Upper Engine Monitoring"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "uppermonitoring"
 
 /area/almayer/engineering/lower_engine_monitoring
 	name = "\improper Almayer Lower Engine Monitoring"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "lowermonitoring"
 
 /area/almayer/engineering/lower_engineering
 	name = "\improper Almayer Lower Engineering"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_MEDIUM
 	icon_state = "lowerengineering"
 
 /area/almayer/engineering/engineering_workshop
@@ -63,17 +52,14 @@
 
 /area/almayer/engineering/engine_core
 	name = "\improper Almayer Core Room"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "coreroom"
 
 /area/almayer/engineering/starboard_atmos
 	name = "\improper Almayer Starboard Atmospherics"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "starboardatmos"
 
 /area/almayer/engineering/port_atmos
 	name = "\improper Almayer Port Atmospherics"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "portatmos"
 
 /area/almayer/shipboard/navigation
@@ -90,29 +76,22 @@
 
 /area/almayer/shipboard/weapon_room
 	name = "\improper Almayer Weapon Control Room"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "weaponroom"
 
 /area/almayer/shipboard/starboard_point_defense
 	name = "\improper Almayer Starboard Point Defense"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "starboardpd"
 
 /area/almayer/shipboard/port_point_defense
 	name = "\improper Almayer Port Point Defense"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "portpd"
 
 /area/almayer/shipboard/brig
 	name = "\improper Almayer Brig"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_MEDIUM
 	icon_state = "brig"
 
 /area/almayer/shipboard/brig_cells
 	name = "\improper Almayer Brig Cells"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_SMALL
 	icon_state = "brigcells"
 
 /area/almayer/shipboard/sensors
@@ -121,7 +100,6 @@
 
 /area/almayer/hallways/hangar
 	name = "\improper Almayer Hangar"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "hangar"
 
 /area/almayer/hallways/exoarmor
@@ -146,48 +124,34 @@
 
 /area/almayer/hallways/aft_hallway
 	name = "\improper Almayer Aft Hallway"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_SMALL
 	icon_state = "aft"
 
 /area/almayer/hallways/stern_hallway
 	name = "\improper Almayer Stern Hallway"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_SMALL
 	icon_state = "stern"
 
 /area/almayer/hallways/port_hallway
 	name = "\improper Almayer Port Hallway"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_MEDIUM
 	icon_state = "port"
 
 /area/almayer/hallways/starboard_hallway
 	name = "\improper Almayer Starboard Hallway"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_MEDIUM
 	icon_state = "starboard"
 
 /area/almayer/hull/lower_hull
 	name = "\improper Almayer Hull"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_SMALL
 	icon_state = "lowerhull"
 
 /area/almayer/hull/upper_hull
 	name = "\improper Almayer Hull"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
-	sound_env = ENCLOSED_HALLWAY_SMALL
 	icon_state = "upperhull"
 
 /area/almayer/living/cryo_cells
 	name = "\improper Almayer Cryo Cells"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "cryo"
 
 /area/almayer/living/briefing
 	name = "\improper Almayer Briefing Area"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "briefing"
 
 /area/almayer/living/port_emb
@@ -200,41 +164,30 @@
 
 /area/almayer/living/port_garden
 	name = "\improper Almayer Garden"
-	dynamic_sound_env = "SOFTFLOOR"
-	sound_env = SOFTFLOOR_LARGE
 	icon_state = "portemb"
 
 /area/almayer/living/starboard_garden
 	name = "\improper Almayer Garden"
-	dynamic_sound_env = "SOFTFLOOR"
-	sound_env = SOFTFLOOR_LARGE
 	icon_state = "starboardemb"
 
 /area/almayer/living/basketball
 	name = "\improper Almayer Basketball Court"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "basketball"
 
 /area/almayer/living/grunt_rnr
 	name = "\improper Almayer Lounge"
-	dynamic_sound_env = "SOFTFLOOR"
-	sound_env = SOFTFLOOR_LARGE
 	icon_state = "gruntrnr"
 
 /area/almayer/living/officer_rnr
 	name = "\improper Almayer Officer's Lounge"
-	dynamic_sound_env = "SOFTFLOOR"
-	sound_env = SOFTFLOOR_LARGE
 	icon_state = "officerrnr"
 
 /area/almayer/living/cafeteria_port
 	name = "\improper Almayer Cafeteria"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "food"
 
 /area/almayer/living/cafeteria_starboard
 	name = "\improper Almayer Cafeteria"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "food"
 
 /area/almayer/living/cafeteria_officer
@@ -252,22 +205,18 @@
 
 /area/almayer/living/pilotbunks
 	name = "\improper Almayer Pilot's Bunks"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "livingspace"
 
 /area/almayer/living/bridgebunks
 	name = "\improper Almayer Staff Officer Bunks"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "livingspace"
 
 /area/almayer/living/commandbunks
 	name = "\improper Almayer Commander's Bunk"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "livingspace"
 
 /area/almayer/living/numbertwobunks
 	name = "\improper Almayer Executive Officer's Bunk"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "livingspace"
 
 /area/almayer/living/chapel
@@ -284,17 +233,14 @@
 
 /area/almayer/medical/operating_room_one
 	name = "\improper Almayer Operating Room 1"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "operating"
 
 /area/almayer/medical/operating_room_two
 	name = "\improper Almayer Operating Room 2"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "operating"
 
 /area/almayer/medical/operating_room_three
 	name = "\improper Almayer Operating Room 3"
-	sound_env = ENCLOSED_SMALL
 	icon_state = "operating"
 
 /area/almayer/medical/medical_science
@@ -323,12 +269,10 @@
 
 /area/almayer/squads/req
 	name = "\improper Almayer Requisitions"
-	sound_env = ENCLOSED_LARGE
 	icon_state = "req"
 
 /area/almayer/evacuation
 	icon = 'icons/turf/areas.dmi'
-	sound_env = ENCLOSED_SMALL
 	icon_state = "shuttle2"
 	requires_power = 0
 

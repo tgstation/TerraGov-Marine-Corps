@@ -99,7 +99,6 @@ var/list/ghostteleportlocs = list()
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	sound_env = SPACE
 	ambience = list('sound/ambience/ambispace.ogg')
 
 /area/engine/
