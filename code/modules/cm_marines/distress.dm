@@ -576,6 +576,7 @@
 			candidates += M.mind
 	return 1
 
+
 /datum/emergency_call/proc/get_spawn_point(var/is_for_items = 0)
 	var/list/spawn_list = list()
 
@@ -693,7 +694,11 @@
 	mob.s_tone = rand(0,35)
 	mob.key = M.key
 	if(mob.client) mob.client.view = world.view
+
 //	M.transfer_to(mob)
+	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 
 	mob.mind.assigned_role = "PMC"
@@ -804,6 +809,9 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Mercenary"
 	ticker.mode.traitors += mob.mind
+	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
@@ -898,6 +906,9 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind
+	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
@@ -988,6 +999,9 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind
+	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
@@ -1053,6 +1067,9 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Pizza"
 	ticker.mode.traitors += mob.mind
+	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		spawn_pizza(mob)
 		var/pizzatxt = pick("Discount Pizza","Pizza Kingdom","Papa Pizza")
@@ -1282,6 +1299,9 @@
 	H.mind.assigned_role = "Colonist"
 	H.mind.special_role = "MODE"
 	ticker.mode.traitors += H.mind
+	H.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
@@ -1325,6 +1345,9 @@
 	mob.g_eyes = 62
 	mob.b_eyes = 19
 	mob.s_tone = rand(0,90)
+	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			mob << "<font size='4'>\red You are a leader of the local resistance group, the Colonial Liberation Front."
@@ -1388,6 +1411,9 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "DEATH SQUAD"
 	ticker.mode.traitors += mob.mind
+	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
+		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
+		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
