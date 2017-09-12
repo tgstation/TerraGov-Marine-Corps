@@ -252,6 +252,7 @@
 		new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.caste] emerges from the husk of \the [src].</span>", \
 		"<span class='xenodanger'>You emerge in a greater form from the husk of your old body. For the hive!</span>")
 		evolve_busy = 0
+		round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 		cdel(src)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"

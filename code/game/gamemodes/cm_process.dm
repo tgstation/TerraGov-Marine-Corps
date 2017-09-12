@@ -208,6 +208,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	if(flags_round_type & MODE_INFESTATION)
 		declare_completion_announce_xenomorphs()
 		declare_completion_announce_survivors()
+	declare_completion_announce_medal_awards()
 	return 1
 
 /datum/game_mode/proc/declare_completion_announce_individual()
@@ -321,6 +322,19 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				else 			dat += "<br>[P.key]'s body was destroyed... <span class='boldnotice'>(DIED)</span>"
 
 		world << dat
+
+
+/datum/game_mode/proc/declare_completion_announce_medal_awards()
+	set waitfor = 0
+	sleep(120)
+	if(medal_awards.len)
+		var/dat =  "<span class='round_body'>Medal Awards:</span>"
+		for(var/recipient in medal_awards)
+			var/datum/recipient_awards/RA = medal_awards[recipient]
+			for(var/i in 1 to RA.medal_names.len)
+				dat += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the <span class='boldnotice'>[RA.medal_names[i]]</span>: \'<i>[RA.medal_citations[i]]</i>\'."
+		world << dat
+
 
 
 //===================================================\\

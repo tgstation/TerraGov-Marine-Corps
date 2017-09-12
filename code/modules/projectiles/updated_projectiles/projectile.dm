@@ -101,6 +101,12 @@
 	shot_from = S
 	in_flight = 1
 
+	round_statistics.total_projectiles_fired++
+	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		round_statistics.total_bullets_fired++
+		if(ammo.bonus_projectiles_amount)
+			round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
+
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type) ammo.fire_bonus_projectiles(src)
 
@@ -358,6 +364,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	flash_weak_pain()
 
+	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		round_statistics.total_bullet_hits_on_humans++
+
 	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) )
 	#if DEBUG_HUMAN_DEFENSE
 	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
@@ -462,6 +471,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) ) //Aliens won't be harming aliens.
 		bullet_ping(P)
 		return
+
+	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		round_statistics.total_bullet_hits_on_xenos++
 
 	flash_weak_pain()
 

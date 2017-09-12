@@ -164,6 +164,8 @@ var/global/hive_orders = "" //What orders should the hive have
 	R.my_atom = src
 	gender = NEUTER
 
+	round_statistics.total_xenos_created++
+
 	if(adjust_size_x != 1)
 		var/matrix/M = matrix()
 		M.Scale(adjust_size_x, adjust_size_y)

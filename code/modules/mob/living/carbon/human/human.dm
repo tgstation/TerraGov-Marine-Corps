@@ -25,6 +25,9 @@
 
 	..()
 
+	if(ticker && ticker.current_state == 3) //game has started, to ignore the map placed corpses.
+		round_statistics.total_humans_created++
+
 	if(dna)
 		dna.real_name = real_name
 

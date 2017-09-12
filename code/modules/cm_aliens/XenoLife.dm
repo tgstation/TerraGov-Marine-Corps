@@ -430,9 +430,8 @@ updatehealth()
 	xgibs(get_turf(src))
 
 /mob/living/carbon/Xenomorph/death(gibbed)
+	if(stat == DEAD) return
 	var/msg = !is_robotic ? "lets out a waning guttural screech, green blood bubbling from its maw." : "begins to shudder, and the lights go out in its eyes as it lies still."
-	. = ..(gibbed,msg)
-	if(!.) return //If they're already dead, it will return.
 
 	if(is_zoomed)
 		zoom_out()
@@ -467,6 +466,11 @@ updatehealth()
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A
 		A.loc = loc
+
+	round_statistics.total_xeno_deaths++
+
+	. = ..(gibbed,msg)
+
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null
