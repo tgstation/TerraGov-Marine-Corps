@@ -33,6 +33,10 @@
 	usr.put_in_hands(src)
 	src.add_fingerprint(user)
 
+//for special checks if we want some to allow pinning onto a uniform.
+/obj/item/clothing/tie/proc/tie_check(obj/item/clothing/under/U, mob/user)
+	return TRUE
+
 //default attackby behaviour
 /obj/item/clothing/tie/attackby(obj/item/I, mob/user)
 	..()
@@ -106,10 +110,60 @@
 	desc = "A bronze medal."
 	icon_state = "bronze"
 	item_color = "bronze"
+	var/recipient_name //name of the person this is awarded to.
+	var/recipient_rank
+	var/medal_citation
+
+/obj/item/clothing/tie/medal/tie_check(obj/item/clothing/under/U, mob/user)
+	if(!ishuman(U.loc))
+		user << "<span class='warning'>[U] must be worn to apply [src].</span>"
+	else
+		var/mob/living/carbon/human/H = U.loc
+		if(H.w_uniform != U)
+			user << "<span class='warning'>[U] must be worn to apply [src].</span>"
+		else
+			if(recipient_name != H.real_name)
+				user << "<span class='warning'>[src] isn't awarded to [H].</span>"
+			else
+				return TRUE
+
+/obj/item/clothing/tie/medal/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
+	if(istype(H) && istype(user) && user.a_intent == "help")
+		if(H.w_uniform)
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(U.hastie)
+				user << "<span class='warning'>There's already something attached to [H.w_uniform].</span>"
+				return
+			else
+				if(recipient_name != H.real_name)
+					user << "<span class='warning'>[src] isn't awarded to [H].</span>"
+					return
+				if(user != H)
+					user.visible_message("[user] is trying to pin [src] on [H]'s chest.", \
+										 "<span class='notice'>You try to pin [src] on [H]'s chest.</span>")
+					if(!do_mob(user, H, 20, BUSY_ICON_CLOCK)) return
+				user.drop_held_item()
+				U.hastie = src
+				on_attached(U, user)
+				H.update_inv_w_uniform()
+				if(user == H)
+					user << "<span class='notice'>You attach [src] to [U].</span>"
+				else
+					user.visible_message("[user] pins [src] on [H]'s chest.", \
+						"<span class='notice'>You pin [src] on [H]'s chest.</span>")
+		else
+			user << "<span class='warning'>[src] needs a uniform to be pinned to.</span>"
+	else
+		return ..()
+
+
+/obj/item/clothing/tie/medal/examine(mob/user)
+	..()
+	user << "Awarded to: \'[recipient_rank] [recipient_name]\'. The citation reads \'[medal_citation]\'."
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award given by W-Y. It is often awarded by a captain to a member of his crew."
+	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the USCM"
 
 /obj/item/clothing/tie/medal/bronze_heart
 	name = "bronze heart medal"
@@ -146,7 +200,7 @@
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by CentComm. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	desc = "An extremely rare golden medal awarded only by the USCM. To recieve such a medal is the highest honor and as such, very few exist."
 
 //Armbands
 /obj/item/clothing/tie/armband

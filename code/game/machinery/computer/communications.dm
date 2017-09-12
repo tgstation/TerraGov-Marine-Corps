@@ -114,11 +114,18 @@
 				crew_announcement.Announce(input, to_xenos = 0)
 				cooldown_message = world.time
 
+		if("award")
+			if(!usr.mind || usr.mind.assigned_role != "Commander")
+				usr << "<span class='warning'>Only the Commander can award medals.</span>"
+				return
+			if(give_medal_award(loc))
+				visible_message("<span class='notice'>[src] prints a medal.</span>")
+
 		if("evacuation_start")
 			if(state == STATE_EVACUATION)
 
 				if(world.time < EVACUATION_TIME_LOCK) //Cannot call it early in the round.
-					usr << "<span class='warning'>USMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
+					usr << "<span class='warning'>USCM protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 					r_FAL
 
 				if(!ticker || !ticker.mode || !ticker.mode.has_called_emergency)
@@ -364,6 +371,7 @@
 				if(authenticated == 2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
 					dat += admins.len > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageUSCM'>Send a message to USCM</A> \]" : "<BR>\[ USCM communication offline \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
 					switch(EvacuationAuthority.evac_status)
 						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A> \]"

@@ -1010,3 +1010,20 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("Admin [key_name(src)] has toggled Ordukai Mode.")
 	else
 		usr << "<span class='warning'>You need to be a ghost in order to use this.</span>"
+
+
+
+/client/proc/check_round_statistics()
+	set category = "Special Verbs"
+	set name = "Round Statistics"
+	if(!check_rights(R_ADMIN))	return
+
+	debug_variables(round_statistics)
+
+
+/client/proc/award_medal()
+	set category = "Special Verbs"
+	set name = "Award a Medal"
+	if(!check_rights(R_ADMIN))	return
+
+	give_medal_award()
