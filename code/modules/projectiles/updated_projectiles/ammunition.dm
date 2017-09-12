@@ -35,8 +35,8 @@ They're all essentially identical when it comes to getting the job done.
 			if(0) icon_state += "_e" //In case it spawns empty instead.
 
 	update_icon(var/round_diff = 0)
-		if(current_rounds <= 0) 					icon_state += "_e" //Is it zero? Then it's empty.
-		else if(current_rounds - round_diff <= 0) 	icon_state  = copytext(icon_state,1,-2) //Did we add ammo to an empty?
+		if(current_rounds <= 0) 					icon_state = initial(icon_state) + "_e"
+		else if(current_rounds - round_diff <= 0) 	icon_state = initial(icon_state)
 
 	examine(mob/user)
 		..()

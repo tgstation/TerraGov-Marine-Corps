@@ -126,7 +126,10 @@
 	return ..()
 
 /obj/item/weapon/gun/update_icon()
-	icon_state = (!current_mag || current_mag.current_rounds <= 0) ? icon_state + "_e" : copytext(icon_state, 1, -2)
+	if(!current_mag || current_mag.current_rounds <= 0)
+		icon_state = initial(icon_state) + "_e"
+	else
+		icon_state = initial(icon_state)
 	update_mag_overlay()
 
 /obj/item/weapon/gun/examine(mob/user)
