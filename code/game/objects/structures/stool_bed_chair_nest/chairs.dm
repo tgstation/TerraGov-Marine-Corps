@@ -93,19 +93,6 @@
 	desc = "It looks comfy."
 	icon_state = "comfychair"
 	color = rgb(255,255,255)
-	var/image/armrest = null
-
-/obj/structure/stool/bed/chair/comfy/New()
-	armrest = image("icons/obj/objects.dmi", "comfychair_armrest")
-	armrest.layer = MOB_LAYER + 0.1
-
-	return ..()
-
-/obj/structure/stool/bed/chair/comfy/afterbuckle()
-	if(buckled_mob)
-		overlays += armrest
-	else
-		overlays -= armrest
 
 /obj/structure/stool/bed/chair/comfy/brown
 	color = rgb(255,113,0)

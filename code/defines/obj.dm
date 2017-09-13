@@ -62,6 +62,7 @@
 	var/list/heads = new()
 	var/list/misc = new()
 	var/list/isactive = new()
+	var/list/squads = new()
 
 	var/dat = {"
 	<head><style>
@@ -105,6 +106,10 @@
 			med[name] = rank
 			department = 1
 		if(real_rank in ROLES_MARINES)
+			for(var/mob/M in player_list)
+				if(M.real_name == name && M.mind)
+					squads[name] = M.mind.assigned_squad.name
+					break
 			mar[name] = rank
 			department = 1
 		if(!department && !(name in heads))
@@ -116,9 +121,12 @@
 			even = !even
 	if(mar.len > 0)
 		dat += "<tr><th colspan=3>Marines</th></tr>"
-		for(name in mar)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar[name]]</td><td>[isactive[name]]</td></tr>"
-			even = !even
+		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
+			dat += "<tr><th colspan=3>[j]</th></tr>"
+			for(name in mar)
+				if(squads[name] == j)
+					dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar[name]]</td><td>[isactive[name]]</td></tr>"
+					even = !even
 	if(eng.len > 0)
 		dat += "<tr><th colspan=3>Engineering</th></tr>"
 		for(name in eng)
