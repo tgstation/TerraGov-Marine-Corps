@@ -218,45 +218,43 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				ship_status = 0 //Destroyed.
 				break
 
-		var/to_sleep = 100 //Total seconds to sleep before showing the screen.
 		var/L1[] = new //Everyone who will be destroyed on the zlevel(s).
 		var/L2[] = new //Everyone who only needs to see the cinematic.
 		var/mob/M
 		var/turf/T
 		for(M in player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
-			if(to_sleep <= 0) break
 			if(!M || !M.loc) continue //In case something changes when we sleep().
 			T = get_turf(M)
 			if(T.z in z_levels)
-				if(M.stat == DEAD) 	L2 |= M
+				if(M.stat == DEAD)
+					L2 |= M
 				else
-					if(!ship_status) //Actual self destruct.
-						if(prob(50)) 	explosion(T, -1, 1, 3, 4)
-						else			shake_camera(M, 10, 4)
 					L1 |= M
-					to_sleep -= 15
-					sleep(15)
-		if(to_sleep > 0) sleep(to_sleep)
+					shake_camera(M, 110, 4)
 
+
+		sleep(100)
 		/*Hardcoded for now, since this was never really used for anything else.
 		Would ideally use a better system for showing cutscenes.*/
 		var/obj/screen/cinematic/explosion/C = new
 
 		for(M in L1 + L2)
-			if(M && M.loc && M.client) M.client.screen |= C //They may have disconnected in the mean time.
+			if(M && M.loc && M.client)
+				M.client.screen |= C //They may have disconnected in the mean time.
 
-		sleep(15) //Extra 1.5 seconds to look at the ship. TODO: This is not working as intended. Need to double check into frames displayed.
-
+		sleep(15) //Extra 1.5 seconds to look at the ship.
 		flick(override ? "intro_override" : "intro_nuke", C)
 		sleep(35)
-		flick(ship_status ? "ship_spared" : "ship_destroyed", C)
-		world << sound('sound/effects/explosionfar.ogg')
-		C.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
-
 		for(M in L1)
 			if(M && M.loc) //Who knows, maybe they escaped, or don't exist anymore.
 				T = get_turf(M)
-				if(T.z in z_levels) M.death() //No mercy.
+				if(T.z in z_levels)
+					M.death()
+				else
+					M.client.screen -= C //those who managed to escape the z level at last second shouldn't have their view obstructed.
+		flick(ship_status ? "ship_spared" : "ship_destroyed", C)
+		world << sound('sound/effects/explosionfar.ogg')
+		C.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
 
 		dest_status = NUKE_EXPLOSION_FINISHED
 
@@ -352,6 +350,10 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			if("dest_trigger")
 				if(EvacuationAuthority.initiate_self_destruct()) nanomanager.close_user_uis(usr, src, "main")
 			if("dest_cancel")
+				var/list/allowed_officers = list("Commander", "Executive Officer", "Staff Officer", "Chief MP","Chief Medical Officer","Chief Engineer")
+				if(!usr.mind || !allowed_officers.Find(usr.mind.assigned_role))
+					usr << "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>"
+					return
 				if(EvacuationAuthority.cancel_self_destruct()) nanomanager.close_user_uis(usr, src, "main")
 
 	ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)

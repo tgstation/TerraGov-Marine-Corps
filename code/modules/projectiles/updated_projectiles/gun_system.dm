@@ -98,18 +98,22 @@
 		update_force_list() //This gives the gun some unique verbs for attacking.
 
 /obj/item/weapon/gun/Dispose()
-	. = ..()
 	in_chamber 		= null
 	ammo 			= null
 	current_mag 	= null
 	target 			= null
 	last_moved_mob 	= null
 	muzzle 			= null
-	if( (flags_gun_features & GUN_FLASHLIGHT_ON) && ismob(loc) ) loc.SetLuminosity(-rail.light_mod) //Handle flashlight.
+	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
+		if(ismob(loc))
+			loc.SetLuminosity(-rail.light_mod)
+		else
+			SetLuminosity(0)
 	rail 			= null
 	under 			= null
 	stock 			= null
 	attachable_overlays = null
+	. = ..()
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
