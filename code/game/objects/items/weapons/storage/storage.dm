@@ -135,11 +135,11 @@
 
 /obj/item/weapon/storage/proc/open(mob/user)
 	if(!opened)
+		orient2hud()
 		opened = 1
 	if (use_sound)
 		playsound(src.loc, src.use_sound, 25, 1, 6)
 
-	orient2hud(user)
 	if (user.s_active)
 		user.s_active.close(user)
 	show_to(user)
@@ -208,13 +208,13 @@
 	click_border_end.Cut()
 	storage_start.overlays.Cut()
 
-	var/matrix/M = matrix()
-	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
-	storage_continue.transform = M
-
-	storage_start.screen_loc = "4:16,2:16"
-	storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
-	storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
+	if(!opened) //initialize background box
+		var/matrix/M = matrix()
+		M.Scale((storage_width-storage_cap_width*2+3)/32,1)
+		storage_continue.transform = M
+		storage_start.screen_loc = "4:16,2:16"
+		storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
+		storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
 
 	var/startpoint = 0
 	var/endpoint = 1
@@ -280,7 +280,7 @@
 		. = ..()
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
-/obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
+/obj/item/weapon/storage/proc/orient2hud()
 
 	var/adjusted_contents = contents.len
 
@@ -394,7 +394,7 @@
 				else if (W && W.w_class >= 3.0) //Otherwise they can only see large or normal items from a distance...
 					M.show_message("<span class='notice'>[usr] puts [W] into [src].</span>")
 
-		orient2hud(usr)
+		orient2hud()
 		for(var/mob/M in can_see_content())
 			show_to(M)
 	if (storage_slots)
@@ -420,8 +420,8 @@
 	else
 		W.forceMove(get_turf(src))
 
+	orient2hud()
 	for(var/mob/M in can_see_content())
-		orient2hud(M)
 		show_to(M)
 	if(W.maptext)
 		W.maptext = ""
@@ -545,7 +545,6 @@
 
 	closer = new
 	closer.master = src
-	orient2hud()
 
 /obj/item/weapon/storage/Dispose()
 	for(var/mob/M in content_watchers)
