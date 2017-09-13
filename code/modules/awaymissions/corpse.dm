@@ -81,7 +81,7 @@
 		M.equip_to_slot_or_del(W, WEAR_ID)
 	if(xenovictim)
 		M.adjustBruteLoss(300)
-		var/datum/organ/internal/O
+		var/datum/internal_organ/O
 		var/i
 		for(i in list("heart","lungs"))
 			O = M.internal_organs_by_name[i]

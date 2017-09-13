@@ -79,7 +79,7 @@ Frequency:
 
 				src.temp += "<B>Extranneous Signals:</B><BR>"
 				for (var/obj/item/weapon/implant/tracking/W in item_list)
-					if (!W.implanted || !(istype(W.loc,/datum/organ/external) || ismob(W.loc)))
+					if (!W.implanted || !(istype(W.loc,/datum/limb) || ismob(W.loc)))
 						continue
 					else
 						var/mob/M = W.loc

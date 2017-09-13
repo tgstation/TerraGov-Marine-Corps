@@ -118,8 +118,8 @@
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Please remove suit or armor.</span>")
 			return
 
-		var/datum/organ/external/head = H.get_organ("head")
-		var/datum/organ/internal/heart/heart = H.internal_organs_by_name["heart"]
+		var/datum/limb/head = H.get_limb("head")
+		var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
 
 		if(prob(25))
 			heart.damage += 5 //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib

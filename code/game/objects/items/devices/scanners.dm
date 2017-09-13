@@ -131,14 +131,14 @@ REAGENT SCANNER
 	// Show specific limb damage
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
 		var/mob/living/carbon/human/H = M
-		var/list/damaged = H.get_damaged_organs(1,1)
+		var/list/damaged = H.get_damaged_limbs(1,1)
 		if(length(damaged))
-			for(var/datum/organ/external/org in damaged)
-				var/org_nam = "[capitalize(org.display_name)][org.status & ORGAN_ROBOT ? " (Cybernetic)" : ""]"
+			for(var/datum/limb/org in damaged)
+				var/org_nam = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
 				var/burn_info = org.burn_dam > 0 ? "<font color='#FFA500'><b>[org.burn_dam]</b></font>" : "<font color='#FFA500'>0</font>"
 				var/brute_info =  org.brute_dam > 0 ? "\red <b>[org.brute_dam]</b>" : "<font color='red'>0</font>"
-				var/org_bleed = (org.status & ORGAN_BLEEDING) ? "\red <b>(Bleeding)</b>" : ""
-				var/org_necro = (org.status & ORGAN_DEAD) ? "\red <b>(Necrotizing)</b>" : ""
+				var/org_bleed = (org.status & LIMB_BLEEDING) ? "\red <b>(Bleeding)</b>" : ""
+				var/org_necro = (org.status & LIMB_NECROTIZED) ? "\red <b>(Necrotizing)</b>" : ""
 				user.show_message("\t\t [org_nam]: [burn_info] - [brute_info] [org_bleed][org_necro]",1)
 
 
@@ -156,12 +156,12 @@ REAGENT SCANNER
 		user.show_message("\t\red *<b>Significant brain damage</b> detected. Subject may have had a concussion.")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/name in H.organs_by_name)
-			var/datum/organ/external/e = H.organs_by_name[name]
+		for(var/X in H.limbs)
+			var/datum/limb/e = X
 			var/limb = e.display_name
 			var/can_amputate = ""
-			if(e.status & ORGAN_BROKEN)
-				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")) && (!(e.status & ORGAN_SPLINTED)))
+			if(e.status & LIMB_BROKEN)
+				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")) && (!(e.status & LIMB_SPLINTED)))
 					user << "\t\red *Unsecured fracture in subject's <b>[limb]</b>. Splinting recommended."
 			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
 				can_amputate = "or amputation"
@@ -171,13 +171,14 @@ REAGENT SCANNER
 				user << "\t\red *Subject's <b>[limb]</b> has an infection. Antibiotics recommended."
 			if(e.has_infected_wound())
 				user << "\t\red *Infected wound detected in subject's <b>[limb]</b>. Disinfection recommended."
-		for(var/name in H.organs_by_name)
-			var/datum/organ/external/e = H.organs_by_name[name]
-			if(e.status & ORGAN_BROKEN)
+		for(var/X in H.limbs)
+			var/datum/limb/e = X
+			if(e.status & LIMB_BROKEN)
 				if(!((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")))
 					user.show_message(text("\t\red *<b>Bone fractures</b> detected. Advanced scanner required for location."), 1)
 					break
-		for(var/datum/organ/external/e in H.organs)
+		for(var/X in H.limbs)
+			var/datum/limb/e = X
 			for(var/datum/wound/W in e.wounds) if(W.internal)
 				user.show_message(text("\t\red *<b>Internal bleeding</b> detected. Advanced scanner required for location."), 1)
 				break

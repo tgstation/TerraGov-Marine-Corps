@@ -191,8 +191,8 @@
 
 	//splints
 	for(var/organ in list("l_leg","r_leg","l_arm","r_arm","l_foot","r_foot","l_hand","r_hand"))
-		var/datum/organ/external/o = get_organ(organ)
-		if(o && o.status & ORGAN_SPLINTED)
+		var/datum/limb/o = get_limb(organ)
+		if(o && o.status & LIMB_SPLINTED)
 			msg += "<span class='warning'>[t_He] [t_has] a splint on [t_his] [o.display_name]!</span>\n"
 
 	if(holo_card_color)
@@ -251,13 +251,13 @@
 	var/list/wound_flavor_text = list()
 	var/list/is_destroyed = list()
 	var/list/is_bleeding = list()
-	for(var/datum/organ/external/temp in organs)
+	for(var/datum/limb/temp in limbs)
 		if(temp)
-			if(temp.status & ORGAN_DESTROYED)
+			if(temp.status & LIMB_DESTROYED)
 				is_destroyed["[temp.display_name]"] = 1
 				wound_flavor_text["[temp.display_name]"] = "<span class='warning'><b>[t_He] is missing [t_his] [temp.display_name].</b></span>\n"
 				continue
-			if(temp.status & ORGAN_ROBOT)
+			if(temp.status & LIMB_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
 					if(!(species.flags & IS_SYNTHETIC))
 						wound_flavor_text["[temp.display_name]"] = "<span class='warning'>[t_He] has a robot [temp.display_name]!</span>\n"
@@ -329,7 +329,7 @@
 					wound_flavor_text["[temp.display_name]"] = flavor_text_string
 				else
 					wound_flavor_text["[temp.display_name]"] = ""
-				if(temp.status & ORGAN_BLEEDING)
+				if(temp.status & LIMB_BLEEDING)
 					is_bleeding["[temp.display_name]"] = 1
 			else
 				wound_flavor_text["[temp.display_name]"] = ""

@@ -168,7 +168,7 @@
 	if(ishuman(user))
 		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
 		var/mob/living/carbon/human/wielder = user
-		var/datum/organ/external/hand = wielder.organs_by_name[check_hand]
+		var/datum/limb/hand = wielder.get_limb(check_hand)
 		if(!istype(hand) || !hand.is_usable())
 			user << "<span class='warning'>Your other hand can't hold \the [src]!</span>"
 			return

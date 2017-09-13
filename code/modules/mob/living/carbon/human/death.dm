@@ -1,7 +1,7 @@
 /mob/living/carbon/human/gib()
 
-	for(var/datum/organ/external/E in src.organs)
-		if(istype(E, /datum/organ/external/chest))
+	for(var/datum/limb/E in limbs)
+		if(istype(E, /datum/limb/chest))
 			continue
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))

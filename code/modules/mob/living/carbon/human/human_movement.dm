@@ -53,24 +53,24 @@
 
 	if(istype(buckled, /obj/structure/stool/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm","chest","groin","head"))
-			var/datum/organ/external/E = get_organ(organ_name)
-			if(!E || (E.status & ORGAN_DESTROYED))
+			var/datum/limb/E = get_limb(organ_name)
+			if(!E || (E.status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & ORGAN_SPLINTED)
+			if(E.status & LIMB_SPLINTED)
 				. += 0.65
-			else if(E.status & ORGAN_BROKEN)
+			else if(E.status & LIMB_BROKEN)
 				. += 1.5
 	else
 		if(shoes)
 			. += shoes.slowdown
 
 		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg","chest","groin","head"))
-			var/datum/organ/external/E = get_organ(organ_name)
-			if(!E || (E.status & ORGAN_DESTROYED))
+			var/datum/limb/E = get_limb(organ_name)
+			if(!E || (E.status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & ORGAN_SPLINTED)
+			if(E.status & LIMB_SPLINTED)
 				. += 0.75
-			else if(E.status & ORGAN_BROKEN)
+			else if(E.status & LIMB_BROKEN)
 				. += 1.5
 
 	if(mRun in mutations)

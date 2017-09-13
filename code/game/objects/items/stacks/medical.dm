@@ -23,7 +23,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
+		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.display_name == "head")
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -34,7 +34,7 @@
 				user << "\red You can't apply [src] through [H.wear_suit]!"
 				return 1
 
-		if(affecting.status & ORGAN_ROBOT)
+		if(affecting.status & LIMB_ROBOT)
 			user << "\red This isn't useful at all on a robotic limb.."
 			return 1
 
@@ -63,7 +63,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
+		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.open == 0)
 			if(!affecting.bandage())
@@ -106,7 +106,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
+		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.open == 0)
 			if(!affecting.salve())
@@ -154,7 +154,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
+		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.open == 0)
 			var/bandaged = affecting.bandage()
@@ -202,7 +202,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
+		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.open == 0)
 			if(!affecting.salve())
@@ -232,22 +232,18 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/affecting = H.get_organ(user.zone_selected)
+		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 		var/limb = affecting.display_name
 
 		if(!(affecting.name in list("l_arm","r_arm","l_leg","r_leg","r_hand","l_hand","r_foot","l_foot","chest","groin","head")))
 			user << "<span class='warning'>You can't apply a splint there!</span>"
 			return
 
-		if(affecting.status & ORGAN_SPLINTING)
-			user << "<span class='warning'>[user == M ? "Your" : "[M]'s"] [limb] is already being splinted!</span>"
-			return
-
-		if(affecting.status & ORGAN_DESTROYED)
+		if(affecting.status & LIMB_DESTROYED)
 			user << "<span class='warning'>[user == M ? "You don't" : "[M] doesn't"] have \a [limb]!</span>"
 			return
 
-		if(affecting.status & ORGAN_SPLINTED)
+		if(affecting.status & LIMB_SPLINTED)
 			user << "<span class='warning'>[user == M ? "Your" : "[M]'s"] [limb] is already splinted!</span>"
 			return
 

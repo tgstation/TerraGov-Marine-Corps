@@ -134,10 +134,10 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 	visible_message("<span class='danger'>[src] reaches down, angling its body toward [H], claws outstretched.</span>",
 	"<span class='xenonotice'>You stoop near the host's body, savoring the moment before you claim a trophy for your kill. You must stand still...</span>")
 	if(do_after(src, PREDALIEN_BUTCHER_WAIT_TIME, FALSE) && Adjacent(H))
-		var/datum/organ/external/head/O = H.get_organ("head")
-		if(!(O.status & ORGAN_DESTROYED))
+		var/datum/limb/head/O = H.get_limb("head")
+		if(!(O.status & LIMB_DESTROYED))
 			H.apply_damage(150, BRUTE, "head", FALSE, TRUE, TRUE)
-			if(!(O.status & ORGAN_DESTROYED)) O.droplimb(TRUE, TRUE) //Still not actually detached?
+			if(!(O.status & LIMB_DESTROYED)) O.droplimb(TRUE, TRUE) //Still not actually detached?
 			visible_message("<span class='danger'>[src] reaches down and rips off [H]'s spinal cord and skull!</span>",
 			"<span class='xenodanger'>You slice and pull on [H]'s head until it comes off in a bloody arc!</span>")
 			playsound(loc, 'sound/weapons/slice.ogg', 25)

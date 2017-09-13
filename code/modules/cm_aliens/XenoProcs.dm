@@ -199,10 +199,10 @@
 					H.emote("scream")
 				if(prob(chance / 2))
 					H.KnockDown(2)
-				var/datum/organ/external/affecting = H.get_organ("l_foot")
+				var/datum/limb/affecting = H.get_limb("l_foot")
 				if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
 					H.UpdateDamageIcon()
-				affecting = H.get_organ("r_foot")
+				affecting = H.get_limb("r_foot")
 				if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
 					H.UpdateDamageIcon()
 				H.updatehealth()
@@ -404,12 +404,12 @@
 	if(rand(0, 100) > chance)
 		return 0 //Failed the check, get out
 
-	var/datum/organ/external/affecting
-	affecting = M.get_organ(ran_zone("head", 50))
+	var/datum/limb/affecting
+	affecting = M.get_limb(ran_zone("head", 50))
 	if(!affecting) //No head? Just get a random one
-		affecting = M.get_organ(ran_zone(null,0))
+		affecting = M.get_limb(ran_zone(null,0))
 	if(!affecting) //Still nothing??
-		affecting = M.get_organ("chest") //Gotta have a torso?!
+		affecting = M.get_limb("chest") //Gotta have a torso?!
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
 	playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
@@ -436,17 +436,17 @@
 	var/dmg = (round(readying_tail * 2.5)) + rand(5, 10) //Ready max is 20
 	if(mob_size == MOB_SIZE_BIG)
 		dmg += 10
-	var/datum/organ/external/affecting
+	var/datum/limb/affecting
 	var/tripped = 0
 
 	if(M.lying)
 		dmg += 10 //More damage when hitting downed people.
 
-	affecting = M.get_organ(ran_zone(zone_selected,75))
+	affecting = M.get_limb(ran_zone(zone_selected,75))
 	if(!affecting) //No organ, just get a random one
-		affecting = M.get_organ(ran_zone(null, 0))
+		affecting = M.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
-		affecting = M.get_organ("chest") // Gotta have a torso?!
+		affecting = M.get_limb("chest") // Gotta have a torso?!
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
 	var/miss_chance = 15

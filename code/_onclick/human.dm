@@ -43,7 +43,7 @@
 		if (H.wear_mask) return
 		if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 
-		var/datum/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
+		var/datum/limb/O = H.get_limb(H.hand?"l_hand":"r_hand")
 		if (!O) return
 
 		var/s = "\red [H.name] chews on \his [O.display_name]!"
@@ -65,9 +65,7 @@
 		if(proximity && istype(G) && G.Touch(A,1))
 			return
 
-		var/datum/organ/external/temp = organs_by_name["r_hand"]
-		if (hand)
-			temp = organs_by_name["l_hand"]
+		var/datum/limb/temp = get_limb(hand ? "l_hand" : "r_hand")
 		if(temp && !temp.is_usable())
 			src << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return

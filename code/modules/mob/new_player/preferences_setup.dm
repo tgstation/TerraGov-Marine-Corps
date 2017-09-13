@@ -202,7 +202,7 @@ datum/preferences
 		preview_icon.Blend(new /icon(icobase, "head_[g]"), ICON_OVERLAY)
 
 		for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
-			if(organ_data[name] == "amputated") continue
+//			if(organ_data[name] == "amputated") continue
 
 			var/icon/temp = new /icon(icobase, "[name]")
 			if(organ_data[name] == "cyborg")

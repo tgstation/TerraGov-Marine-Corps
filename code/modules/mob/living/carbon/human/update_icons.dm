@@ -198,8 +198,8 @@ var/global/list/damage_icon_parts = list()
 	// first check whether something actually changed about damage appearance
 	var/damage_appearance = ""
 
-	for(var/datum/organ/external/O in organs)
-		if(O.status & ORGAN_DESTROYED) damage_appearance += "d"
+	for(var/datum/limb/O in limbs)
+		if(O.status & LIMB_DESTROYED) damage_appearance += "d"
 		else
 			damage_appearance += O.damage_state
 
@@ -216,8 +216,8 @@ var/global/list/damage_icon_parts = list()
 	var/image/standing_image = new /image("icon" = standing, "layer" =-DAMAGE_LAYER)
 
 	// blend the individual damage states with our icons
-	for(var/datum/organ/external/O in organs)
-		if(!(O.status & ORGAN_DESTROYED))
+	for(var/datum/limb/O in limbs)
+		if(!(O.status & LIMB_DESTROYED))
 			O.update_icon()
 			if(O.damage_state == "00") continue
 
@@ -254,16 +254,16 @@ var/global/list/damage_icon_parts = list()
 	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
 
 	var/icon_key = "[species.race_key][g][s_tone]"
-	for(var/datum/organ/external/part in organs)
+	for(var/datum/limb/part in limbs)
 
-		if(istype(part,/datum/organ/external/head) && !(part.status & ORGAN_DESTROYED))
+		if(istype(part,/datum/limb/head) && !(part.status & LIMB_DESTROYED))
 			has_head = 1
 
-		if(part.status & ORGAN_DESTROYED)
+		if(part.status & LIMB_DESTROYED)
 			icon_key = "[icon_key]0"
-		else if(part.status & ORGAN_ROBOT)
+		else if(part.status & LIMB_ROBOT)
 			icon_key = "[icon_key]2"
-		else if(part.status & ORGAN_DEAD)
+		else if(part.status & LIMB_NECROTIZED)
 			icon_key = "[icon_key]3"
 		else
 			icon_key = "[icon_key]1"
@@ -287,29 +287,29 @@ var/global/list/damage_icon_parts = list()
 
 		//Robotic limbs are handled in get_icon() so all we worry about are missing or dead limbs.
 		//No icon stored, so we need to start with a basic one.
-		var/datum/organ/external/chest = get_organ("chest")
+		var/datum/limb/chest = get_limb("chest")
 		base_icon = chest.get_icon(race_icon,deform_icon,g)
 
-		if(chest.status & ORGAN_DEAD)
+		if(chest.status & LIMB_NECROTIZED)
 			base_icon.ColorTone(necrosis_color_mod)
 			base_icon.SetIntensity(0.7)
 
-		for(var/datum/organ/external/part in organs)
+		for(var/datum/limb/part in limbs)
 
 			var/icon/temp //Hold the bodypart icon for processing.
 
-			if(part.status & ORGAN_DESTROYED)
+			if(part.status & LIMB_DESTROYED)
 				continue
 
-			if(istype(part, /datum/organ/external/chest)) //already done above
+			if(istype(part, /datum/limb/chest)) //already done above
 				continue
 
-			if (istype(part, /datum/organ/external/groin) || istype(part, /datum/organ/external/head))
+			if (istype(part, /datum/limb/groin) || istype(part, /datum/limb/head))
 				temp = part.get_icon(race_icon,deform_icon,g)
 			else
 				temp = part.get_icon(race_icon,deform_icon)
 
-			if(part.status & ORGAN_DEAD)
+			if(part.status & LIMB_NECROTIZED)
 				temp.ColorTone(necrosis_color_mod)
 				temp.SetIntensity(0.7)
 
@@ -413,8 +413,8 @@ var/global/list/damage_icon_parts = list()
 	//Reset our hair
 	remove_overlay(HAIR_LAYER)
 
-	var/datum/organ/external/head/head_organ = get_organ("head")
-	if( !head_organ || (head_organ.status & ORGAN_DESTROYED) )
+	var/datum/limb/head/head_organ = get_limb("head")
+	if( !head_organ || (head_organ.status & LIMB_DESTROYED) )
 		return
 
 	//masks and helmets can obscure our hair.

@@ -1021,14 +1021,12 @@ mob/proc/yank_out_object()
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		var/datum/organ/external/affected
+		var/datum/limb/affected
 
-		for(var/datum/organ/external/organ in H.organs) //Grab the organ holding the implant.
-			if(!organ) //Somehow we have no organs.
-				break
-			for(var/obj/item/weapon/O in organ.implants)
+		for(var/datum/limb/E in H.limbs) //Grab the limb holding the implant.
+			for(var/obj/item/weapon/O in E.implants)
 				if(O == selection)
-					affected = organ
+					affected = E
 					break
 
 		if(!affected) //Somehow, something fucked up. Somewhere.

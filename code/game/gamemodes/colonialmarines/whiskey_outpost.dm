@@ -1738,13 +1738,13 @@
 		var/internal_t_dam = 0 //Making these guys a bit more seperate because its a bit easier to track.
 		var/implants_t_dam = 0
 		var/broken_t_dam = 0
-		for(var/datum/organ/internal/I in M.internal_organs)
+		for(var/datum/internal_organ/I in M.internal_organs)
 			internal_t_dam += (I.damage * 5) // This makes massive internal organ damage be more severe to repair. 20*5 = 100, 1:40 min to repair.
-		for(var/datum/organ/external/O in src.occupant.organs)
+		for(var/datum/limb/O in src.occupant.limbs)
 			for(var/obj/S in O.implants)
 				if(istype(S))
 					implants_t_dam += 20 // 20 seconds per shrapnel piece stuck inside.
-			if(O.status & ORGAN_BROKEN)
+			if(O.status & LIMB_BROKEN)
 				broken_t_dam += 30 //30 seconds per broken bone should be better.
 		if(M.getOxyLoss() > 50) //Make sure they don't DIE in here, also starts assisted breathing instantly.
 			M.setOxyLoss(rand(0,25)) //Set it to 25 to not ded.
@@ -1772,11 +1772,11 @@
 		if(!occupant) return
 		M.setOxyLoss(0) //Fix our breathing issues
 		M.heal_organ_damage(25,25)
-		for(var/datum/organ/internal/I in M.internal_organs) //Fix the organs
+		for(var/datum/internal_organ/I in M.internal_organs) //Fix the organs
 			I.damage = 0
-		for(var/datum/organ/external/O in occupant.organs) //Remove all the friendly fire.
-			if(istype(O, /datum/organ/external/head))
-				var/datum/organ/external/head/H = O
+		for(var/datum/limb/O in occupant.limbs) //Remove all the friendly fire.
+			if(istype(O, /datum/limb/head))
+				var/datum/limb/head/H = O
 				if(H.disfigured)	H.disfigured = 0
 			for(var/obj/S in O.implants)
 				if(istype(S))

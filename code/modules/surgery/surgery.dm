@@ -51,7 +51,7 @@
 
 //Does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 /datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(can_infect && affected)
 		spread_germs_to_organ(affected, user)
 	if(ishuman(user) && prob(60))
@@ -70,7 +70,7 @@
 /datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	return null
 
-proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
+proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	if(!istype(user) || !istype(E)) return
 
 	//Gloves
@@ -104,7 +104,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(S.tool_quality(tool))
 			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool)
 			if(step_is_valid && S.is_valid_target(M))
-				if(step_is_valid == 2) //This is a failure that already has a message for failing.
+				if(step_is_valid == SPECIAL_SURGERY_INVALID) //This is a failure that already has a message for failing.
 					return 1
 				M.op_stage.in_progress = 1
 				S.begin_step(user, M, user.zone_selected, tool) //Start on it
@@ -181,3 +181,5 @@ proc/sort_surgeries()
 	var/current_organ = "organ"
 	var/in_progress = 0
 	var/is_same_target = "" //Safety check to prevent surgery juggling
+	var/necro = 0
+

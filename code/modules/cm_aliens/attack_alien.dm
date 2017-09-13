@@ -84,12 +84,12 @@
 				return 0
 
 			M.flick_attack_overlay(src, "slash")
-			var/datum/organ/external/affecting
-			affecting = get_organ(ran_zone(M.zone_selected, 70))
+			var/datum/limb/affecting
+			affecting = get_limb(ran_zone(M.zone_selected, 70))
 			if(!affecting) //No organ, just get a random one
-				affecting = get_organ(ran_zone(null, 0))
+				affecting = get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
-				affecting = get_organ("chest") //Gotta have a torso?!
+				affecting = get_limb("chest") //Gotta have a torso?!
 
 			var/armor_block = run_armor_check(affecting, "melee")
 

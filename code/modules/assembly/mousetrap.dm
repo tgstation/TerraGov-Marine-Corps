@@ -23,17 +23,17 @@
 	proc/triggered(mob/target as mob, var/type = "feet")
 		if(!armed)
 			return
-		var/datum/organ/external/affecting = null
+		var/datum/limb/affecting = null
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			switch(type)
 				if("feet")
 					if(!H.shoes)
-						affecting = H.get_organ(pick("l_leg", "r_leg"))
+						affecting = H.get_limb(pick("l_leg", "r_leg"))
 						H.KnockDown(3)
 				if("l_hand", "r_hand")
 					if(!H.gloves)
-						affecting = H.get_organ(type)
+						affecting = H.get_limb(type)
 						H.Stun(3)
 			if(affecting)
 				if(affecting.take_damage(1, 0))

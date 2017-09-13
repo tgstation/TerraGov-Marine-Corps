@@ -118,7 +118,7 @@
 
 	//Lung damage increases the minimum safe pressure.
 	if(species.has_organ["lungs"])
-		var/datum/organ/internal/lungs/L = internal_organs_by_name["lungs"]
+		var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 		if(!L)
 			safe_pressure_min = INFINITY //No lungs, how are you breathing?
 		else if(L.is_broken())

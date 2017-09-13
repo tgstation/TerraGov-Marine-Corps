@@ -86,7 +86,7 @@ proc/isobserver(A)
 	return 0
 
 proc/isorgan(A)
-	if(istype(A, /datum/organ/external))
+	if(istype(A, /datum/limb))
 		return 1
 	return 0
 

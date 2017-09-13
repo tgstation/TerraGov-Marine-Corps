@@ -14,25 +14,25 @@
 	max_duration = 60
 
 /datum/surgery_step/brain/bone_chips/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
-	var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
+	var/datum/limb/affected = target.get_limb(target_zone)
+	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	return (sponge && sponge.damage > 0 && sponge.damage <= 20) && affected.open == 3 && target_zone == "head"
 
 /datum/surgery_step/brain/bone_chips/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts taking bone chips out of [target]'s brain with \the [tool].</span>", \
 	"<span class='notice'>You start taking bone chips out of [target]'s brain with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brain/bone_chips/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] takes out all the bone chips in [target]'s brain with \the [tool].</span>",	\
 	"<span class='notice'>You take out all the bone chips in [target]'s brain with \the [tool].</span>")
-	var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
+	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	if(sponge)
 		sponge.damage = 0
 
@@ -53,25 +53,25 @@
 	max_duration = 80
 
 /datum/surgery_step/brain/hematoma/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
-	var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
+	var/datum/limb/affected = target.get_limb(target_zone)
+	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	return (sponge && sponge.damage > 20) && affected.open == 3 && target_zone == "head"
 
 /datum/surgery_step/brain/hematoma/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts mending hematoma in [target]'s brain with \the [tool].</span>", \
 	"<span class='notice'>You start mending hematoma in [target]'s brain with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/brain/hematoma/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] mends hematoma in [target]'s brain with \the [tool].</span>",	\
 	"<span class='notice'>You mend hematoma in [target]'s brain with \the [tool].</span>")
-	var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
+	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	if(sponge)
 		sponge.damage = 20
 

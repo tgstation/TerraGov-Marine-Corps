@@ -271,7 +271,7 @@
 		"disabilities" = H.sdisabilities,
 		"tg_diseases_list" = H.viruses.Copy(),
 		"lung_ruptured" = H.is_lung_ruptured(),
-		"external_organs" = H.organs.Copy(),
+		"external_organs" = H.limbs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
 		"species_organs" = H.species.has_organ //Just pass a reference for this, it shouldn't ever be modified outside of the datum.
 		)
@@ -323,7 +323,7 @@
 	dat += "<th>Other Wounds</th>"
 	dat += "</tr>"
 
-	for(var/datum/organ/external/e in occ["external_organs"])
+	for(var/datum/limb/e in occ["external_organs"])
 		var/AN = ""
 		var/open = ""
 		var/infected = ""
@@ -340,17 +340,17 @@
 		for(var/datum/wound/W in e.wounds) if(W.internal)
 			internal_bleeding = "Internal bleeding<br>"
 			break
-		if(istype(e, /datum/organ/external/chest) && occ["lung_ruptured"])
+		if(istype(e, /datum/limb/chest) && occ["lung_ruptured"])
 			lung_ruptured = "Lung ruptured:<br>"
-		if(e.status & ORGAN_SPLINTED)
+		if(e.status & LIMB_SPLINTED)
 			splint = "Splinted:<br>"
-		if(e.status & ORGAN_BLEEDING)
+		if(e.status & LIMB_BLEEDING)
 			bled = "Bleeding:<br>"
-		if(e.status & ORGAN_BROKEN)
+		if(e.status & LIMB_BROKEN)
 			AN = "[e.broken_description]:<br>"
-		if(e.status & ORGAN_DEAD)
+		if(e.status & LIMB_NECROTIZED)
 			necrosis = "Necrotizing:<br>"
-		if(e.status & ORGAN_ROBOT)
+		if(e.status & LIMB_ROBOT)
 			robot = "Prosthetic:<br>"
 		if(e.open)
 			open = "Open:<br>"
@@ -394,18 +394,18 @@
 
 		if(!AN && !open && !infected & !imp && !necrosis)
 			AN = "None:"
-		if(!(e.status & ORGAN_DESTROYED))
+		if(!(e.status & LIMB_DESTROYED))
 			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"
 		else
 			dat += "<td>[e.display_name]</td><td>-</td><td>-</td><td>Not Found</td>"
 		dat += "</tr>"
 
-	for(var/datum/organ/internal/i in occ["internal_organs"])
+	for(var/datum/internal_organ/i in occ["internal_organs"])
 
 		var/mech = ""
-		if(i.robotic == 1)
+		if(i.robotic == ORGAN_ASSISTED)
 			mech = "Assisted:<br>"
-		if(i.robotic == 2)
+		if(i.robotic == ORGAN_ROBOT)
 			mech = "Mechanical:<br>"
 
 		var/infection = "None"

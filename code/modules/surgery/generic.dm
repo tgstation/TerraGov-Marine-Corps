@@ -10,14 +10,14 @@
 			return 0
 		if(!hasorgans(target))
 			return 0
-		var/datum/organ/external/affected = target.get_organ(target_zone)
+		var/datum/limb/affected = target.get_limb(target_zone)
 		if(affected == null)
 			return 0
-		if(affected.status & ORGAN_DESTROYED)
+		if(affected.status & LIMB_DESTROYED)
 			return 0
 		if(target_zone == "head" && target.species && (target.species.flags & IS_SYNTHETIC))
 			return 1
-		if(affected.status & ORGAN_ROBOT)
+		if(affected.status & LIMB_ROBOT)
 			return 0
 		return 1
 
@@ -32,11 +32,11 @@
 
 /datum/surgery_step/generic/incision_manager/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
+		var/datum/limb/affected = target.get_limb(target_zone)
 		return affected.open == 0 && target_zone != "mouth"
 
 /datum/surgery_step/generic/incision_manager/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You start to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].</span>")
@@ -44,7 +44,7 @@
 	..()
 
 /datum/surgery_step/generic/incision_manager/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -53,7 +53,7 @@
 	affected.open = 1
 
 	if(istype(target) && !(target.species.flags & NO_BLOOD))
-		affected.status |= ORGAN_BLEEDING
+		affected.status |= LIMB_BLEEDING
 
 	affected.createwound(CUT, 1)
 	affected.clamp() //Hemostat function, clamp bleeders
@@ -61,7 +61,7 @@
 	target.updatehealth()
 
 /datum/surgery_step/generic/incision_manager/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.display_name] with \the [tool]!</span>")
 	affected.createwound(CUT, 20)
@@ -82,11 +82,11 @@
 
 /datum/surgery_step/generic/cut_with_laser/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
+		var/datum/limb/affected = target.get_limb(target_zone)
 		return affected.open == 0 && target_zone != "mouth"
 
 /datum/surgery_step/generic/cut_with_laser/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts the bloodless incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You start the bloodless incision on [target]'s [affected.display_name] with \the [tool].</span>")
@@ -94,7 +94,7 @@
 	..()
 
 /datum/surgery_step/generic/cut_with_laser/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, stop
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -104,7 +104,7 @@
 	affected.open = 1
 
 	if(istype(target) && !(target.species.flags & NO_BLOOD))
-		affected.status |= ORGAN_BLEEDING
+		affected.status |= LIMB_BLEEDING
 
 	affected.createwound(CUT, 1)
 	affected.clamp() //Hemostat function, clamp bleeders
@@ -112,7 +112,7 @@
 	affected.update_wounds()
 
 /datum/surgery_step/generic/cut_with_laser/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips as the blade sputters, searing a long gash in [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips as the blade sputters, searing a long gash in [target]'s [affected.display_name] with \the [tool]!</span>")
 	affected.createwound(CUT, 7.5)
@@ -134,11 +134,11 @@
 
 /datum/surgery_step/generic/cut_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
+		var/datum/limb/affected = target.get_limb(target_zone)
 		return affected.open == 0 && target_zone != "mouth"
 
 /datum/surgery_step/generic/cut_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts the incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You start the incision on [target]'s [affected.display_name] with \the [tool].</span>")
@@ -146,7 +146,7 @@
 	..()
 
 /datum/surgery_step/generic/cut_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -155,13 +155,13 @@
 	affected.open = 1
 
 	if(istype(target) && !(target.species.flags & NO_BLOOD))
-		affected.status |= ORGAN_BLEEDING
+		affected.status |= LIMB_BLEEDING
 
 	affected.createwound(CUT, 1)
 	target.updatehealth()
 
 /datum/surgery_step/generic/cut_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, slicing open [target]'s [affected.display_name] in the wrong place with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, slicing open [target]'s [affected.display_name] in the wrong place with \the [tool]!</span>")
 	affected.createwound(CUT, 10)
@@ -179,11 +179,11 @@
 
 /datum/surgery_step/generic/clamp_bleeders/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
-		return affected.open && (affected.status & ORGAN_BLEEDING)
+		var/datum/limb/affected = target.get_limb(target_zone)
+		return affected.open && (affected.status & LIMB_BLEEDING)
 
 /datum/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts clamping bleeders in [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You start clamping bleeders in [target]'s [affected.display_name] with \the [tool].</span>")
@@ -191,7 +191,7 @@
 	..()
 
 /datum/surgery_step/generic/clamp_bleeders/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -201,7 +201,7 @@
 	spread_germs_to_organ(affected, user)
 
 /datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",	\
 	"<span class='warning'>Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",)
 	affected.createwound(CUT, 10)
@@ -219,11 +219,11 @@
 
 /datum/surgery_step/generic/retract_skin/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
-		return affected.open == 1 //&& !(affected.status & ORGAN_BLEEDING)
+		var/datum/limb/affected = target.get_limb(target_zone)
+		return affected.open == 1 //&& !(affected.status & LIMB_BLEEDING)
 
 /datum/surgery_step/generic/retract_skin/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	if(target_zone == "chest")
 		user.visible_message("<span class='notice'>[user] starts to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool].</span>", \
@@ -238,7 +238,7 @@
 	..()
 
 /datum/surgery_step/generic/retract_skin/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -254,7 +254,7 @@
 	affected.open = 2
 
 /datum/surgery_step/generic/retract_skin/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target_zone == "chest")
 		user.visible_message("<span class='warning'>[user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, damaging several organs in [target]'s torso with \the [tool]!</span>")
@@ -280,11 +280,11 @@
 
 /datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
+		var/datum/limb/affected = target.get_limb(target_zone)
 		return affected.open && target_zone != "mouth"
 
 /datum/surgery_step/generic/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] is beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool].</span>" , \
 	"<span class='notice'>You are beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool].</span>")
@@ -292,7 +292,7 @@
 	..()
 
 /datum/surgery_step/generic/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -300,10 +300,10 @@
 	"<span class='notice'>You cauterize the incision on [target]'s [affected.display_name] with \the [tool].</span>")
 	affected.open = 0
 	affected.germ_level = 0
-	affected.status &= ~ORGAN_BLEEDING
+	affected.status &= ~LIMB_BLEEDING
 
 /datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>")
 	target.apply_damage(3, BURN, affected)
@@ -324,17 +324,17 @@
 		return 0
 	if(!hasorgans(target))
 		return 0
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(affected == null)
 		return 0
-	if(affected.status & ORGAN_DESTROYED)
+	if(affected.status & LIMB_DESTROYED)
 		return 0
 	if(affected.open) //avoids conflict with sawing skull open
 		return 0
 	return target_zone != "chest" && target_zone != "groin"
 
 /datum/surgery_step/generic/cut_limb/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] is beginning to cut off [target]'s [affected.display_name] with \the [tool].</span>" , \
 	"<span class='notice'>You are beginning to cut off [target]'s [affected.display_name] with \the [tool].</span>")
@@ -342,7 +342,7 @@
 	..()
 
 /datum/surgery_step/generic/cut_limb/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -352,7 +352,7 @@
 	target.updatehealth()
 
 /datum/surgery_step/generic/cut_limb/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, sawing through the bone in [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, sawing through the bone in [target]'s [affected.display_name] with \the [tool]!</span>")
 	affected.createwound(CUT, 30)

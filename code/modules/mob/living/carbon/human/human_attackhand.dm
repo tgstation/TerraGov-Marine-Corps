@@ -33,7 +33,7 @@
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				visible_message("\red <B>[M] has attempted to punch [src]!</B>")
 				return 0
-			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_selected))
+			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(HULK in M.mutations)			damage += 5
@@ -106,7 +106,7 @@
 				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 				return
 
-			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_selected))
+			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(HULK in M.mutations) damage += 5
@@ -136,7 +136,7 @@
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_selected))
+			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 
 			//Accidental gun discharge
 			if(!M.mind || !M.mind.skills_list || M.mind.skills_list["cqc"] < SKILL_CQC_MP)
@@ -208,7 +208,7 @@
 			visible_message("<span class='notice'>[src] examines [gender==MALE?"himself":"herself"].</span>", \
 				"<span class='notice'>You check yourself for injuries.</span>")
 
-			for(var/datum/organ/external/org in organs)
+			for(var/datum/limb/org in limbs)
 				var/status = ""
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
@@ -233,10 +233,10 @@
 
 				if(!status) status = "OK"
 
-				if(org.status & ORGAN_SPLINTED) status += " <b>(SPLINTED)</b>"
-				if(org.status & ORGAN_MUTATED)
+				if(org.status & LIMB_SPLINTED) status += " <b>(SPLINTED)</b>"
+				if(org.status & LIMB_MUTATED)
 					status = "weirdly shapen."
-				if(org.status & ORGAN_DESTROYED)
+				if(org.status & LIMB_DESTROYED)
 					status = "MISSING!"
 
 				src << "\t [status=="OK"?"\blue ":"\red "]My [org.display_name] is [status]."

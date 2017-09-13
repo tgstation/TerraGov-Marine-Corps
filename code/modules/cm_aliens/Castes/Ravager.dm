@@ -79,9 +79,9 @@
 	return
 
 //Chance of insta limb amputation after a melee attack.
-/mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/organ/external/O)
+/mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
 	if (prob(20))
-		O = H.get_organ(check_zone(zone_selected))
+		O = H.get_limb(check_zone(zone_selected))
 		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 			O.droplimb(1, 0, 0)

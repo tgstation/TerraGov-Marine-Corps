@@ -260,8 +260,8 @@ var/datum/mob_hud/huds = list(
 		holder2.icon_state = "hudsynth"
 		holder3.icon_state = "hudsynth"
 	else
-		var/datum/organ/external/head = get_organ("head")
-		var/datum/organ/internal/heart/heart = internal_organs_by_name["heart"]
+		var/datum/limb/head = get_limb("head")
+		var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 		var/revive_enabled = 1
 		if(world.time - timeofdeath > revive_grace_period)
 			revive_enabled = 0

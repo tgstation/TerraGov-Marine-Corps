@@ -80,8 +80,8 @@
 				return
 
 			if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.flags_armor_protection & FEET) ) )
-				var/datum/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot"))
-				if(affecting.status & ORGAN_ROBOT)
+				var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
+				if(affecting.status & LIMB_ROBOT)
 					return
 				H.KnockDown(3)
 				if(affecting.take_damage(5, 0))

@@ -174,7 +174,7 @@
 		cdel(AE)
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
-		var/datum/organ/internal/O
+		var/datum/internal_organ/O
 		var/i
 		for(i in list("heart","lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
 			O = H.internal_organs_by_name[i]

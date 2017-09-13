@@ -27,19 +27,19 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/driver = user
-		var/datum/organ/external/left_hand = driver.get_organ("l_hand")
-		var/datum/organ/external/right_hand = driver.get_organ("r_hand")
+		var/datum/limb/left_hand = driver.get_limb("l_hand")
+		var/datum/limb/right_hand = driver.get_limb("r_hand")
 		var/working_hands = 2
 		move_delay = initial(move_delay)
-		if(!left_hand || (left_hand.status & ORGAN_DESTROYED))
+		if(!left_hand || (left_hand.status & LIMB_DESTROYED))
 			move_delay += 4 //harder to move a wheelchair with a single hand
 			working_hands--
-		else if((left_hand.status & ORGAN_BROKEN) && !(left_hand.status & ORGAN_SPLINTED))
+		else if((left_hand.status & LIMB_BROKEN) && !(left_hand.status & LIMB_SPLINTED))
 			move_delay++
-		if(!right_hand || (right_hand.status & ORGAN_DESTROYED))
+		if(!right_hand || (right_hand.status & LIMB_DESTROYED))
 			move_delay += 4
 			working_hands--
-		else if((right_hand.status & ORGAN_BROKEN) && !(right_hand.status & ORGAN_SPLINTED))
+		else if((right_hand.status & LIMB_BROKEN) && !(right_hand.status & LIMB_SPLINTED))
 			move_delay += 2
 		if(!working_hands)
 			return // No hands to drive your chair? Tough luck!

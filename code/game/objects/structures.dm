@@ -173,19 +173,19 @@
 				M.apply_damage(damage, BRUTE)
 				return
 
-			var/datum/organ/external/affecting
+			var/datum/limb/affecting
 
 			switch(pick(list("ankle","wrist","head","knee","elbow")))
 				if("ankle")
-					affecting = H.get_organ(pick("l_foot", "r_foot"))
+					affecting = H.get_limb(pick("l_foot", "r_foot"))
 				if("knee")
-					affecting = H.get_organ(pick("l_leg", "r_leg"))
+					affecting = H.get_limb(pick("l_leg", "r_leg"))
 				if("wrist")
-					affecting = H.get_organ(pick("l_hand", "r_hand"))
+					affecting = H.get_limb(pick("l_hand", "r_hand"))
 				if("elbow")
-					affecting = H.get_organ(pick("l_arm", "r_arm"))
+					affecting = H.get_limb(pick("l_arm", "r_arm"))
 				if("head")
-					affecting = H.get_organ("head")
+					affecting = H.get_limb("head")
 
 			if(affecting)
 				M << "<span class='danger'>You land heavily on your [affecting.display_name]!</span>"

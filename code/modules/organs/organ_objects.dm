@@ -10,8 +10,8 @@
 	var/dead_icon                             // Icon used when the organ dies.
 	var/robotic                               // Is the limb prosthetic?
 	var/organ_tag                             // What slot does it go in?
-	var/organ_type = /datum/organ/internal    // Used to spawn the relevant organ data when produced via a machine or spawn().
-	var/datum/organ/internal/organ_data       // Stores info when removed.
+	var/organ_type = /datum/internal_organ    // Used to spawn the relevant organ data when produced via a machine or spawn().
+	var/datum/internal_organ/organ_data       // Stores info when removed.
 
 /obj/item/organ/attack_self(mob/user as mob)
 
@@ -70,79 +70,79 @@
 	organ_tag = "heart"
 	fresh = 6 // Juicy.
 	dead_icon = "heart-off"
-	organ_type = /datum/organ/internal/heart
+	organ_type = /datum/internal_organ/heart
 
 /obj/item/organ/lungs
 	name = "lungs"
 	icon_state = "lungs"
 	gender = PLURAL
 	organ_tag = "lungs"
-	organ_type = /datum/organ/internal/lungs
+	organ_type = /datum/internal_organ/lungs
 
 /obj/item/organ/kidneys
 	name = "kidneys"
 	icon_state = "kidneys"
 	gender = PLURAL
 	organ_tag = "kidneys"
-	organ_type = /datum/organ/internal/kidneys
+	organ_type = /datum/internal_organ/kidneys
 
 /obj/item/organ/eyes
 	name = "eyeballs"
 	icon_state = "eyes"
 	gender = PLURAL
 	organ_tag = "eyes"
-	organ_type = /datum/organ/internal/eyes
+	organ_type = /datum/internal_organ/eyes
 	var/eye_colour
 
 /obj/item/organ/liver
 	name = "liver"
 	icon_state = "liver"
 	organ_tag = "liver"
-	organ_type = /datum/organ/internal/liver
+	organ_type = /datum/internal_organ/liver
 
 /obj/item/organ/appendix
 	name = "appendix"
 	icon_state = "appendix"
-	organ_type = /datum/organ/internal/appendix
+	organ_type = /datum/internal_organ/appendix
 	organ_tag = "appendix"
 
 //These are here so they can be printed out via the fabricator.
 /obj/item/organ/heart/prosthetic
 	name = "circulatory pump"
 	icon_state = "heart-prosthetic"
-	robotic = 2
-	organ_type = /datum/organ/internal/heart/prosthetic
+	robotic = ORGAN_ROBOT
+	organ_type = /datum/internal_organ/heart/prosthetic
 
 /obj/item/organ/lungs/prosthetic
-	robotic = 2
+	robotic = ORGAN_ROBOT
 	name = "gas exchange system"
 	icon_state = "lungs-prosthetic"
-	organ_type = /datum/organ/internal/lungs/prosthetic
+	organ_type = /datum/internal_organ/lungs/prosthetic
 
 /obj/item/organ/kidneys/prosthetic
-	robotic = 2
+	robotic = ORGAN_ROBOT
 	name = "prosthetic kidneys"
 	icon_state = "kidneys-prosthetic"
-	organ_type = /datum/organ/internal/kidneys/prosthetic
+	organ_type = /datum/internal_organ/kidneys/prosthetic
 
 
 /obj/item/organ/eyes/prosthetic
-	robotic = 2
+	robotic = ORGAN_ROBOT
 	name = "visual prosthesis"
 	icon_state = "eyes-prosthetic"
-	organ_type = /datum/organ/internal/eyes/prosthetic
+	organ_type = /datum/internal_organ/eyes/prosthetic
 
 /obj/item/organ/liver/prosthetic
-	robotic = 2
+	robotic = ORGAN_ROBOT
 	name = "toxin filter"
 	icon_state = "liver-prosthetic"
-	organ_type = /datum/organ/internal/liver/prosthetic
+	organ_type = /datum/internal_organ/liver/prosthetic
 
 /obj/item/organ/brain/prosthetic
-	robotic = 2
+	robotic = ORGAN_ROBOT
 	name = "cyberbrain"
 	icon_state = "brain-prosthetic"
-	organ_type = /datum/organ/internal/brain/prosthetic
+	organ_type = /datum/internal_organ/brain/prosthetic
 
 
 /obj/item/organ/proc/removed(var/mob/living/target,var/mob/living/user)

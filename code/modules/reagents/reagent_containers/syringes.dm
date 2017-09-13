@@ -240,11 +240,11 @@
 		if(istype(target, /mob/living/carbon/human))
 
 			var/target_zone = ran_zone(check_zone(user.zone_selected, target))
-			var/datum/organ/external/affecting = target:get_organ(target_zone)
+			var/datum/limb/affecting = target:get_limb(target_zone)
 
 			if (!affecting)
 				return
-			if(affecting.status & ORGAN_DESTROYED)
+			if(affecting.status & LIMB_DESTROYED)
 				user << "What [affecting.display_name]?"
 				return
 			var/hit_area = affecting.display_name

@@ -101,9 +101,9 @@
 			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : WEAR_IN_BACK)
 
 	//Give humans wheelchairs, if they need them.
-	var/datum/organ/external/l_foot = H.get_organ("l_foot")
-	var/datum/organ/external/r_foot = H.get_organ("r_foot")
-	if((!l_foot || l_foot.status & ORGAN_DESTROYED) && (!r_foot || r_foot.status & ORGAN_DESTROYED))
+	var/datum/limb/l_foot = H.get_limb("l_foot")
+	var/datum/limb/r_foot = H.get_limb("r_foot")
+	if((!l_foot || l_foot.status & LIMB_DESTROYED) && (!r_foot || r_foot.status & LIMB_DESTROYED))
 		var/obj/structure/stool/bed/chair/wheelchair/W = new (H.loc)
 		H.buckled = W
 		H.update_canmove()
