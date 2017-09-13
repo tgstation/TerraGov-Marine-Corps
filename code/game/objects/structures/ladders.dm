@@ -81,6 +81,7 @@
 		ladder_dest = down
 	else return //just in case
 
+	step(user, get_dir(user, src))
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] the ladder.</span>")
 	busy = 1

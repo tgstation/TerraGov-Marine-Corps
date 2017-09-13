@@ -161,7 +161,6 @@
 			new /obj/item/weapon/gun/smartgun(src)
 			new /obj/item/smartgun_powerpack(src)
 			new /obj/item/clothing/suit/storage/marine/smartgunner(src)
-			opened = 1
 		..()
 
 /obj/item/smartgun_powerpack
@@ -279,7 +278,6 @@
 			new /obj/item/clothing/gloves/marine/specialist(src)
 			new /obj/item/clothing/suit/storage/marine/specialist(src)
 			new /obj/item/clothing/head/helmet/marine/specialist(src)
-			opened = 1
 		..()
 
 /obj/item/weapon/storage/box/m42c_system
@@ -311,7 +309,6 @@
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			opened = 1
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
 					if("Ice Colony")
@@ -349,7 +346,6 @@
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			opened = 1
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
 					if("Ice Colony")
@@ -388,7 +384,6 @@
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			opened = 1
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
 					if("Ice Colony")
@@ -422,7 +417,6 @@
 
 	open(var/mob/user as mob)
 		if(!opened)
-			opened = 1
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
 					if("Ice Colony")
