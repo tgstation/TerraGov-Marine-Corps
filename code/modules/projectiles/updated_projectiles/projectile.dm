@@ -390,7 +390,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			bullet_ping(P)
 			return
 
-	var/datum/organ/external/organ = get_organ(check_zone(P.def_zone)) //Let's finally get what organ we actually hit.
+	var/datum/limb/organ = get_limb(check_zone(P.def_zone)) //Let's finally get what organ we actually hit.
 	if(!organ) return//Nope. Gotta shoot something!
 
 	//Run armor check. We won't bother if there is no damage being done.

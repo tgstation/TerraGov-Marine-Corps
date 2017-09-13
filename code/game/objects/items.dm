@@ -596,7 +596,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 
 	if(istype(M, /mob/living/carbon/human))
 
-		var/datum/organ/internal/eyes/eyes = H.internal_organs_by_name["eyes"]
+		var/datum/internal_organ/eyes/eyes = H.internal_organs_by_name["eyes"]
 
 		if(M != user)
 			for(var/mob/O in (viewers(M) - user - M))
@@ -624,7 +624,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 			if (eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
 					M << "\red You go blind!"
-		var/datum/organ/external/affecting = M:get_organ("head")
+		var/datum/limb/affecting = M:get_limb("head")
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()
 	else

@@ -25,10 +25,10 @@
 
 	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/S = H.get_organ(user.zone_selected)
+		var/datum/limb/S = H.get_limb(user.zone_selected)
 
 		if(S.open == 1)
-			if (S && (S.status & ORGAN_ROBOT))
+			if (S && (S.status & LIMB_ROBOT))
 				if(S.get_damage())
 					S.heal_damage(15, 15, robo_repair = 1)
 					H.updatehealth()

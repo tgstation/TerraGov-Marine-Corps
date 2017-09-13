@@ -1,4 +1,4 @@
-//Updates the mob's health from organs and mob damage variables
+//Updates the mob's health from limbs and mob damage variables
 /mob/living/carbon/human/updatehealth()
 
 	if(status_flags & GODMODE)
@@ -7,7 +7,7 @@
 		return
 	var/total_burn	= 0
 	var/total_brute	= 0
-	for(var/datum/organ/external/O in organs)	//hardcoded to streamline things a bit
+	for(var/datum/limb/O in limbs)	//hardcoded to streamline things a bit
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 
@@ -30,7 +30,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(species && species.has_organ["brain"])
-		var/datum/organ/internal/brain/sponge = internal_organs_by_name["brain"]
+		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.take_damage(amount)
 			sponge.damage = Clamp(sponge.damage, 0, maxHealth*2)
@@ -45,7 +45,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(species && species.has_organ["brain"])
-		var/datum/organ/internal/brain/sponge = internal_organs_by_name["brain"]
+		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.damage = Clamp(amount, 0, maxHealth*2)
 			brainloss = sponge.damage
@@ -59,7 +59,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(species && species.has_organ["brain"])
-		var/datum/organ/internal/brain/sponge = internal_organs_by_name["brain"]
+		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(istype(sponge)) //Make sure they actually have a brain
 			brainloss = min(sponge.damage,maxHealth*2)
 		else
@@ -68,16 +68,16 @@
 		brainloss = 0
 	return brainloss
 
-//These procs fetch a cumulative total damage from all organs
+//These procs fetch a cumulative total damage from all limbs
 /mob/living/carbon/human/getBruteLoss()
 	var/amount = 0
-	for(var/datum/organ/external/O in organs)
+	for(var/datum/limb/O in limbs)
 		amount += O.brute_dam
 	return amount
 
 /mob/living/carbon/human/getFireLoss()
 	var/amount = 0
-	for(var/datum/organ/external/O in organs)
+	for(var/datum/limb/O in limbs)
 		amount += O.burn_dam
 	return amount
 
@@ -106,14 +106,15 @@
 	if(species && species.brute_mod)
 		amount = amount*species.brute_mod
 
-	if (organ_name in organs_by_name)
-		var/datum/organ/external/O = get_organ(organ_name)
-
-		if(amount > 0)
-			O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
-		else
-			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(-amount, 0, internal=0, robo_repair=(O.status & ORGAN_ROBOT))
+	for(var/X in limbs)
+		var/datum/limb/O = X
+		if(O.name == organ_name)
+			if(amount > 0)
+				O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
+			else
+				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
+				O.heal_damage(-amount, 0, internal=0, robo_repair=(O.status & LIMB_ROBOT))
+			break
 
 
 
@@ -121,15 +122,15 @@
 	if(species && species.burn_mod)
 		amount = amount*species.burn_mod
 
-	if (organ_name in organs_by_name)
-		var/datum/organ/external/O = get_organ(organ_name)
-
-		if(amount > 0)
-			O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
-		else
-			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(0, -amount, internal=0, robo_repair=(O.status & ORGAN_ROBOT))
-
+	for(var/X in limbs)
+		var/datum/limb/O = X
+		if(O.name == organ_name)
+			if(amount > 0)
+				O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
+			else
+				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
+				O.heal_damage(0, -amount, internal=0, robo_repair=(O.status & LIMB_ROBOT))
+			break
 
 
 /mob/living/carbon/human/Stun(amount)
@@ -169,26 +170,26 @@
 	var/mut_prob = min(80, getCloneLoss()+10)
 	if (amount > 0)
 		if (prob(mut_prob))
-			var/list/datum/organ/external/candidates = list()
-			for (var/datum/organ/external/O in organs)
-				if(O.status & (ORGAN_CUT_AWAY|ORGAN_ROBOT|ORGAN_DESTROYED|ORGAN_MUTATED)) continue
+			var/list/datum/limb/candidates = list()
+			for (var/datum/limb/O in limbs)
+				if(O.status & (LIMB_CUT_AWAY|LIMB_ROBOT|LIMB_DESTROYED|LIMB_MUTATED)) continue
 				candidates |= O
 			if (candidates.len)
-				var/datum/organ/external/O = pick(candidates)
+				var/datum/limb/O = pick(candidates)
 				O.mutate()
 				src << "<span class = 'notice'>Something is not right with your [O.display_name]...</span>"
 				return
 	else
 		if (prob(heal_prob))
-			for (var/datum/organ/external/O in organs)
-				if (O.status & ORGAN_MUTATED)
+			for (var/datum/limb/O in limbs)
+				if (O.status & LIMB_MUTATED)
 					O.unmutate()
 					src << "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>"
 					return
 
 	if (getCloneLoss() < 1)
-		for (var/datum/organ/external/O in organs)
-			if (O.status & ORGAN_MUTATED)
+		for (var/datum/limb/O in limbs)
+			if (O.status & LIMB_MUTATED)
 				O.unmutate()
 				src << "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>"
 
@@ -230,18 +231,18 @@
 
 ////////////////////////////////////////////
 
-//Returns a list of damaged organs
-/mob/living/carbon/human/proc/get_damaged_organs(var/brute, var/burn)
-	var/list/datum/organ/external/parts = list()
-	for(var/datum/organ/external/O in organs)
+//Returns a list of damaged limbs
+/mob/living/carbon/human/proc/get_damaged_limbs(var/brute, var/burn)
+	var/list/datum/limb/parts = list()
+	for(var/datum/limb/O in limbs)
 		if((brute && O.brute_dam) || (burn && O.burn_dam))
 			parts += O
 	return parts
 
-//Returns a list of damageable organs
-/mob/living/carbon/human/proc/get_damageable_organs()
-	var/list/datum/organ/external/parts = list()
-	for(var/datum/organ/external/O in organs)
+//Returns a list of damageable limbs
+/mob/living/carbon/human/proc/get_damageable_limbs()
+	var/list/datum/limb/parts = list()
+	for(var/datum/limb/O in limbs)
 		if(O.brute_dam + O.burn_dam < O.max_damage)
 			parts += O
 	return parts
@@ -250,9 +251,9 @@
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
 /mob/living/carbon/human/heal_organ_damage(var/brute, var/burn)
-	var/list/datum/organ/external/parts = get_damaged_organs(brute,burn)
+	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
 	if(!parts.len)	return
-	var/datum/organ/external/picked = pick(parts)
+	var/datum/limb/picked = pick(parts)
 	if(picked.heal_damage(brute,burn))
 		UpdateDamageIcon()
 	updatehealth()
@@ -265,22 +266,22 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
 /mob/living/carbon/human/take_organ_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0)
-	var/list/datum/organ/external/parts = get_damageable_organs()
+	var/list/datum/limb/parts = get_damageable_limbs()
 	if(!parts.len)	return
-	var/datum/organ/external/picked = pick(parts)
+	var/datum/limb/picked = pick(parts)
 	if(picked.take_damage(brute,burn,sharp,edge))
 		UpdateDamageIcon()
 	updatehealth()
 	speech_problem_flag = 1
 
 
-//Heal MANY external organs, in random order
+//Heal MANY limbs, in random order
 /mob/living/carbon/human/heal_overall_damage(var/brute, var/burn)
-	var/list/datum/organ/external/parts = get_damaged_organs(brute,burn)
+	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
 
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )
-		var/datum/organ/external/picked = pick(parts)
+		var/datum/limb/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
@@ -295,13 +296,13 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	speech_problem_flag = 1
 	if(update)	UpdateDamageIcon()
 
-// damage MANY external organs, in random order
+// damage MANY limbs, in random order
 /mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0, var/used_weapon = null)
 	if(status_flags & GODMODE)	return	//godmode
-	var/list/datum/organ/external/parts = get_damageable_organs()
+	var/list/datum/limb/parts = get_damageable_limbs()
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )
-		var/datum/organ/external/picked = pick(parts)
+		var/datum/limb/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
@@ -327,27 +328,25 @@ This function restores the subjects blood to max.
 
 
 /*
-This function restores all organs.
+This function restores all limbs.
 */
 /mob/living/carbon/human/restore_all_organs()
-	for(var/datum/organ/external/current_organ in organs)
-		current_organ.rejuvenate()
+	for(var/datum/limb/E in limbs)
+		E.rejuvenate()
 
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)
-	var/datum/organ/external/E = get_organ(zone)
-	if(istype(E, /datum/organ/external))
-		if (E.heal_damage(brute, burn))
-			UpdateDamageIcon()
-	else
-		return 0
-	return
+	var/datum/limb/E = get_limb(zone)
+	if(E.heal_damage(brute, burn))
+		UpdateDamageIcon()
 
 
-/mob/living/carbon/human/proc/get_organ(var/zone)
-	if(!zone)	zone = "chest"
-	if (zone in list( "eyes", "mouth" ))
-		zone = "head"
-	return organs_by_name[zone]
+
+/mob/living/carbon/human/proc/get_limb(zone)
+	zone = check_zone(zone)
+	for(var/X in limbs)
+		var/datum/limb/EO = X
+		if(EO.name == zone)
+			return EO
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 
@@ -368,12 +367,12 @@ This function restores all organs.
 
 	if(blocked >= 2)	return 0
 
-	var/datum/organ/external/organ = null
+	var/datum/limb/organ = null
 	if(isorgan(def_zone))
 		organ = def_zone
 	else
 		if(!def_zone)	def_zone = ran_zone(def_zone)
-		organ = get_organ(check_zone(def_zone))
+		organ = get_limb(check_zone(def_zone))
 	if(!organ)	return 0
 
 	if(blocked)

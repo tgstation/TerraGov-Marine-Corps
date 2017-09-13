@@ -4,7 +4,7 @@
 		return
 
 	if(stat != DEAD)
-		if(!(container && (istype(container, /obj/item/device/mmi) || istype(container, /obj/item/weapon/organ/head/synth))))
+		if(!(container && (istype(container, /obj/item/device/mmi) || istype(container, /obj/item/limb/head/synth))))
 			return //No MMI or synthetic head, can't speak.
 
 		if(prob(emp_damage*4))

@@ -11,7 +11,7 @@
 	stunned = 1
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
+	for(var/t in limbs)
 		cdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
 	animation.icon_state = "blank"
@@ -61,7 +61,7 @@
 /mob/living/carbon/human/AIize()
 	if (monkeyizing)
 		return
-	for(var/t in organs)
+	for(var/t in limbs)
 		cdel(t)
 
 	return ..()
@@ -141,7 +141,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
+	for(var/t in limbs)
 		cdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
@@ -195,7 +195,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
+	for(var/t in limbs)
 		cdel(t)
 
 //	var/alien_caste = "larva"
@@ -221,7 +221,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	for(var/t in organs)
+	for(var/t in limbs)
 		cdel(t)
 
 //	var/alien_caste = "Drone"
@@ -247,7 +247,7 @@
 	canmove = 0
 	icon = null
 	invisibility = 101
-	for(var/t in organs)	//this really should not be necessary
+	for(var/t in limbs)	//this really should not be necessary
 		cdel(t)
 
 	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
@@ -280,7 +280,7 @@
 	icon = null
 	invisibility = 101
 
-	for(var/t in organs)
+	for(var/t in limbs)
 		cdel(t)
 
 	var/mob/new_mob = new mobpath(src.loc)

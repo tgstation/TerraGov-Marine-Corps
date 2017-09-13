@@ -158,7 +158,7 @@
 	if(!istype(M)) //Ghosts etc
 		return 1
 
-	if(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs || istype(M,/mob/living/carbon/Xenomorph))
+	if(locate(/datum/internal_organ/xenos/hivenode) in M.internal_organs || istype(M,/mob/living/carbon/Xenomorph))
 		return 1
 
 	return 0

@@ -1036,10 +1036,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					user.show_message("\blue \t Time of Death: [C.tod]")
 				if(istype(C, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = C
-					var/list/damaged = H.get_damaged_organs(1,1)
+					var/list/damaged = H.get_damaged_limbs(1,1)
 					user.show_message("\blue Localized Damage, Brute/Burn:",1)
 					if(length(damaged)>0)
-						for(var/datum/organ/external/org in damaged)
+						for(var/datum/limb/org in damaged)
 							user.show_message(text("\blue \t []: []\blue-[]",capitalize(org.display_name),(org.brute_dam > 0)?"\red [org.brute_dam]":0,(org.burn_dam > 0)?"\red [org.burn_dam]":0),1)
 					else
 						user.show_message("\blue \t Limbs are OK.",1)

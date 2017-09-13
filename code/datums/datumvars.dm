@@ -858,7 +858,7 @@ client
 			usr << "This can only be done to instances of type /mob/living/carbon"
 			return
 
-		var/new_organ = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/organ/internal)-/datum/organ/internal
+		var/new_organ = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/internal_organ)-/datum/internal_organ
 
 		if(!M)
 			usr << "Mob doesn't exist anymore"
@@ -870,7 +870,7 @@ client
 
 		if(istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/I = new new_organ(H)
+			var/datum/internal_organ/I = new new_organ(H)
 
 			var/organ_slot = input(usr, "Which slot do you want the organ to go in ('default' for default)?")  as text|null
 
@@ -928,22 +928,21 @@ client
 			usr << "This can only be done to instances of type /mob/living/carbon/human"
 			return
 
-		var/new_limb = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/organ/external)-/datum/organ/external
+		var/new_limb = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/limb)-/datum/limb
 
 		if(!M)
 			usr << "Mob doesn't exist anymore"
 			return
 
-		var/datum/organ/external/EO = locate(new_limb) in M.organs
+		var/datum/limb/EO = locate(new_limb) in M.limbs
 		if(!EO)
 			return
-		if(!(EO.status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY)))
+		if(!(EO.status & LIMB_DESTROYED))
 			usr << "Mob already has that organ."
 			return
 
-		EO.status = 0
-		EO.amputated = 0
-		EO.destspawn = 0
+		EO.status = NOFLAGS
+		EO.has_dropped_limb = 0
 		M.update_body(0)
 		M.updatehealth()
 		M.UpdateDamageIcon()
@@ -956,16 +955,16 @@ client
 			usr << "This can only be done to instances of type /mob/living/carbon/human"
 			return
 
-		var/rem_limb = input("Please choose a limb to remove.","Organ",null) as null|anything in M.organs
+		var/rem_limb = input("Please choose a limb to remove.","Organ",null) as null|anything in M.limbs
 
 		if(!M)
 			usr << "Mob doesn't exist anymore"
 			return
 
-		var/datum/organ/external/EO = locate(rem_limb) in M.organs
+		var/datum/limb/EO = locate(rem_limb) in M.limbs
 		if(!EO)
 			return
-		if((EO.status & (ORGAN_DESTROYED|ORGAN_CUT_AWAY)))
+		if((EO.status & (LIMB_DESTROYED|LIMB_CUT_AWAY)))
 			usr << "Mob doesn't have that limb."
 			return
 		EO.droplimb(1,1,1)

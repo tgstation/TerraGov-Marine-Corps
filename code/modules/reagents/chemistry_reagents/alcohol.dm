@@ -62,7 +62,7 @@
 			M:drowsyness  = max(M:drowsyness, 30)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				var/datum/organ/internal/liver/L = H.internal_organs_by_name["liver"]
+				var/datum/internal_organ/liver/L = H.internal_organs_by_name["liver"]
 				if(!L)
 					H.adjustToxLoss(5)
 				else if(istype(L))
@@ -312,13 +312,13 @@
 				if(prob(30)) M.adjustToxLoss(2)
 				if(prob(5)) if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					var/datum/organ/internal/heart/L = H.internal_organs_by_name["heart"]
+					var/datum/internal_organ/heart/L = H.internal_organs_by_name["heart"]
 					if(L && istype(L))
 						L.take_damage(5, 0)
 			if(300 to INFINITY)
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					var/datum/organ/internal/heart/L = H.internal_organs_by_name["heart"]
+					var/datum/internal_organ/heart/L = H.internal_organs_by_name["heart"]
 					if(L && istype(L))
 						L.take_damage(100, 0)
 		holder.remove_reagent(src.id, FOOD_METABOLISM)

@@ -7,13 +7,13 @@
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!hasorgans(target))
 		return 0
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(!affected)
 		return 0
-	if(!(affected.status & ORGAN_DESTROYED))
+	if(!(affected.status & LIMB_DESTROYED))
 		return 0
 	if(affected.parent)
-		if(affected.parent.status & ORGAN_DESTROYED)
+		if(affected.parent.status & LIMB_DESTROYED)
 			return 0
 	return affected.name == "head"
 
@@ -29,27 +29,27 @@
 
 /datum/surgery_step/head/peel/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
-		return !(affected.status & ORGAN_CUT_AWAY)
+		var/datum/limb/affected = target.get_limb(target_zone)
+		return !(affected.status & LIMB_CUT_AWAY)
 
 /datum/surgery_step/head/peel/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts peeling back tattered flesh where [target]'s head used to be with \the [tool].</span>", \
 	"<span class='notice'>You start peeling back tattered flesh where [target]'s head used to be with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/peel/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] peels back tattered flesh where [target]'s head used to be with \the [tool].</span>",	\
 	"<span class='notice'>You peel back tattered flesh where [target]'s head used to be with \the [tool].</span>")
-	affected.status |= ORGAN_CUT_AWAY
+	affected.status |= LIMB_CUT_AWAY
 
 /datum/surgery_step/head/peel/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(affected.parent)
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, ripping [target]'s [affected.display_name] open!</span>", \
@@ -69,18 +69,18 @@
 
 /datum/surgery_step/head/shape/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/affected = target.get_organ(target_zone)
-		return affected.status & ORGAN_CUT_AWAY && target.op_stage.head_reattach == 0 && !(affected.status & ORGAN_ATTACHABLE)
+		var/datum/limb/affected = target.get_limb(target_zone)
+		return affected.status & LIMB_CUT_AWAY && target.op_stage.head_reattach == 0 && !(affected.status & LIMB_ATTACHABLE)
 
 /datum/surgery_step/head/shape/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] is beginning to reshape [target]'s esophagal and vocal region with \the [tool].</span>", \
 	"<span class='notice'>You start to reshape [target]'s [affected.display_name] esophagal and vocal region with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/shape/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -89,7 +89,7 @@
 	target.op_stage.head_reattach = 1
 
 /datum/surgery_step/head/shape/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(affected.parent)
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, further rending flesh on [target]'s neck!</span>", \
@@ -112,14 +112,14 @@
 		return target.op_stage.head_reattach == 1
 
 /datum/surgery_step/head/suture/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] is stapling and suturing flesh into place in [target]'s esophagal and vocal region with \the [tool].</span>", \
 	"<span class='notice'>You start to staple and suture flesh into place in [target]'s esophagal and vocal region with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/suture/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -128,7 +128,7 @@
 	target.op_stage.head_reattach = 2
 
 /datum/surgery_step/head/suture/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(affected.parent)
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, ripping apart flesh on [target]'s neck!</span>", \
@@ -152,27 +152,27 @@
 		return target.op_stage.head_reattach == 2
 
 /datum/surgery_step/head/prepare/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts adjusting area around [target]'s neck with \the [tool].</span>", \
 	"<span class='notice'>You start adjusting area around [target]'s neck with \the [tool].</span>")
 	..()
 
 /datum/surgery_step/head/prepare/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] has finished adjusting the area around [target]'s neck with \the [tool].</span>",	\
 	"<span class='notice'>You have finished adjusting the area around [target]'s neck with \the [tool].</span>")
 	target.op_stage.head_reattach = 0
-	affected.status |= ORGAN_ATTACHABLE
-	affected.amputated = 1
+	affected.status |= LIMB_ATTACHABLE
+	affected.status |= LIMB_AMPUTATED
 	affected.setAmputatedTree()
 	affected.open = 0
 
 /datum/surgery_step/head/prepare/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(affected.parent)
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, searing [target]'s neck!</span>", \
@@ -181,7 +181,7 @@
 		target.updatehealth()
 
 /datum/surgery_step/head/attach
-	allowed_tools = list(/obj/item/weapon/organ/head = 100)
+	allowed_tools = list(/obj/item/limb/head = 100)
 	can_infect = 0
 
 	min_duration = 60
@@ -189,17 +189,17 @@
 
 /datum/surgery_step/head/attach/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
-		var/datum/organ/external/head = target.get_organ(target_zone)
-		return head.status & ORGAN_ATTACHABLE
+		var/datum/limb/head = target.get_limb(target_zone)
+		return head.status & LIMB_ATTACHABLE
 
 /datum/surgery_step/head/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts attaching [tool] to [target]'s reshaped neck.</span>", \
 	"<span class='notice'>You start attaching [tool] to [target]'s reshaped neck.</span>")
 
 /datum/surgery_step/head/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -208,17 +208,18 @@
 
 	//Update our dear victim to have a head again
 
-	affected.status = 0
-	affected.amputated = 0
-	affected.destspawn = 0
+	var/obj/item/limb/head/B = tool
+
+	if(istype(B, /obj/item/limb/head/synth))
+		affected.status = LIMB_ROBOT
+	else
+		affected.status = NOFLAGS
+	affected.has_dropped_limb = 0
 	target.updatehealth()
 	target.update_body()
 	target.UpdateDamageIcon()
 
 	//Prepare mind datum
-
-	var/obj/item/weapon/organ/head/B = tool
-
 	if(B.brainmob.mind)
 		B.brainmob.mind.transfer_to(target)
 
@@ -227,7 +228,7 @@
 	cdel(B)
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging connectors on [target]'s neck!</span>", \
 	"<span class='warning'>Your hand slips, damaging connectors on [target]'s neck!</span>")
 	target.apply_damage(10, BRUTE, affected, sharp = 1)

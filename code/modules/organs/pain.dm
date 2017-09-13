@@ -20,12 +20,12 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 		var/mob/living/carbon/human/H = src
 		if(H.knocked_out) H.knocked_out = max(0, H.knocked_out-round(amount * 0.1))
 
-		var/datum/organ/external/right_hand = H.organs_by_name["r_hand"]
-		var/datum/organ/external/left_hand = H.organs_by_name["l_hand"]
+		var/datum/limb/right_hand = H.get_limb("r_hand")
+		var/datum/limb/left_hand = H.get_limb("l_hand")
 		if(!H.stat && amount > 50 && prob(amount * 0.1))
 			msg = "You [pick("wince","shiver","grimace")] in pain"
 			var/i
-			for(var/datum/organ/external/O in list(right_hand,left_hand))
+			for(var/datum/limb/O in list(right_hand,left_hand))
 				if(!O || !O.is_usable()) continue //Not if the organ can't possibly function.
 				if(O.name == "l_hand") 	drop_l_hand()
 				else 					drop_r_hand()
@@ -86,17 +86,17 @@ mob/living/carbon/human/proc/handle_pain()
 
 	var/maxdam = 0
 	var/dam
-	var/datum/organ/external/damaged_organ = null
-	for(var/datum/organ/external/E in organs)
+	var/datum/limb/damaged_organ = null
+	for(var/datum/limb/E in limbs)
 		/*
 		Amputated, dead, or missing limbs don't cause pain messages.
 		Broken limbs that are also splinted do not cause pain messages either.
 		*/
-		if(E.amputated || E.status & (ORGAN_DEAD|ORGAN_DESTROYED)) continue
+		if(E.status & (LIMB_NECROTIZED|LIMB_DESTROYED|LIMB_AMPUTATED)) continue
 
 		dam = E.get_damage()
-		if(E.status & ORGAN_BROKEN)
-			if(E.status & ORGAN_SPLINTED) dam -= E.min_broken_damage //If they have a splinted body part, and it's broken, we want to subtract bone break damage.
+		if(E.status & LIMB_BROKEN)
+			if(E.status & LIMB_SPLINTED) dam -= E.min_broken_damage //If they have a splinted body part, and it's broken, we want to subtract bone break damage.
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
@@ -106,10 +106,10 @@ mob/living/carbon/human/proc/handle_pain()
 
 
 	// Damage to internal organs hurts a lot.
-	var/datum/organ/external/parent
-	for(var/datum/organ/internal/I in internal_organs)
+	var/datum/limb/parent
+	for(var/datum/internal_organ/I in internal_organs)
 		if(I.damage > 2) if(prob(2))
-			parent = get_organ(I.parent_organ)
+			parent = get_limb(I.parent_limb)
 			custom_pain("You feel a sharp pain in your [parent.display_name]!", 1)
 
 	var/toxDamageMessage = null

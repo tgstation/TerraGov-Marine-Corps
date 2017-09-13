@@ -34,9 +34,9 @@
 			var/d = rand(round(I.force / 4), I.force)
 			if(istype(src, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = src
-				var/organ = H.get_organ("chest")
-				if (istype(organ, /datum/organ/external))
-					var/datum/organ/external/temp = organ
+				var/organ = H.get_limb("chest")
+				if (istype(organ, /datum/limb))
+					var/datum/limb/temp = organ
 					if(temp.take_damage(d, 0))
 						H.UpdateDamageIcon()
 				H.updatehealth()

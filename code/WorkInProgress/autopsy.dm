@@ -37,7 +37,7 @@
 		W.time_inflicted = time_inflicted
 		return W
 
-/obj/item/weapon/autopsy_scanner/proc/add_data(var/datum/organ/external/O)
+/obj/item/weapon/autopsy_scanner/proc/add_data(var/datum/limb/O)
 	if(!O.autopsy_data.len && !O.trace_chemicals.len) return
 
 	for(var/V in O.autopsy_data)
@@ -191,7 +191,7 @@
 
 	src.timeofdeath = M.timeofdeath
 
-	var/datum/organ/external/S = M.get_organ(user.zone_selected)
+	var/datum/limb/S = M.get_limb(user.zone_selected)
 	if(!S)
 		usr << "<b>You can't scan this body part.</b>"
 		return

@@ -36,7 +36,7 @@
 		M.drowsyness = max(M.drowsyness, 20)
 		if(ishuman(M)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			E.damage += 0.5
 			if(prob(10))
 				M.emote(pick("twitch","blink_r","shiver"))
@@ -322,7 +322,7 @@
 		if(volume > overdose)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+				var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 				E.damage += rand(2, 4)
 		if(!alien)
 			M.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 1)
@@ -333,7 +333,7 @@
 	on_overdose(mob/living/M)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 			if(E)
 				E.damage += 0.5
 
@@ -341,7 +341,7 @@
 		M.apply_damages(3, 3) //Starts detoxing, hard
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 			if(E)
 				E.damage += 2
 
@@ -415,7 +415,7 @@
 		M.stuttering = 0
 		M.confused = 0
 		M.jitteriness = 0
-		for(var/datum/organ/internal/I in M.internal_organs)
+		for(var/datum/internal_organ/I in M.internal_organs)
 			if(I.damage > 0)
 				I.damage = max(I.damage - 1, 0)
 		for(var/datum/disease/D in M.viruses)
@@ -566,7 +566,7 @@
 		M.eye_blind = max(M.eye_blind-5 , 0)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 			if(E && istype(E))
 				if(E.damage > 0)
 					E.damage = max(E.damage - 1, 0)
@@ -594,7 +594,7 @@
 			var/mob/living/carbon/human/H = M
 
 			//Peridaxon heals only non-robotic organs
-			for(var/datum/organ/internal/I in H.internal_organs)
+			for(var/datum/internal_organ/I in H.internal_organs)
 				if((I.damage > 0) && (I.robotic != 2))
 					I.damage = max(I.damage - 1, 0)
 
@@ -666,14 +666,14 @@
 			M.emote(pick("twitch","blink_r","shiver"))
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				var/datum/organ/internal/heart/F = H.internal_organs_by_name["heart"]
+				var/datum/internal_organ/heart/F = H.internal_organs_by_name["heart"]
 				F.damage += 1
 				M.emote(pick("twitch","blink_r","shiver"))
 
 	on_overdose(mob/living/M)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
 				E.damage += 0.5
 			if(prob(10))
@@ -682,7 +682,7 @@
 	on_overdose_critical(mob/living/M)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
 				E.damage += 2
 			if(prob(25))

@@ -9,9 +9,10 @@
 
 	var/armor = 0
 	var/counter = 0
-	for(var/i in organs_by_name)
-		armor = getarmor_organ(organs_by_name[i], "bullet")
-		src << "<span class='debuginfo'><b>[i]</b> is protected with <b>[armor]</b> armor against bullets.</span>"
+	for(var/X in H.limbs)
+		var/datum/limb/E = X
+		armor = getarmor_organ(E, "bullet")
+		src << "<span class='debuginfo'><b>[E.name]</b> is protected with <b>[armor]</b> armor against bullets.</span>"
 		counter += armor
 	src << "<span class='debuginfo'>The overall armor score is: <b>[counter]</b>.</span>"
 #endif

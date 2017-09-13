@@ -161,7 +161,7 @@
 				return 0
 
 			var/mob/living/carbon/human/H = L
-			var/datum/organ/external/affecting = H.get_organ(target_zone)
+			var/datum/limb/affecting = H.get_limb(target_zone)
 			if (affecting)
 				if(!status)
 					L.visible_message("<span class='warning'>[L] has been prodded in the [affecting.display_name] with [src] by [user]. Luckily it was off.</span>")

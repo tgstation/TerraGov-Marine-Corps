@@ -33,7 +33,7 @@
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 
-		if (!H.has_organ_for_slot(WEAR_HANDCUFFS))
+		if (!H.has_limb_for_slot(WEAR_HANDCUFFS))
 			user << "\red \The [H] needs at least two wrists before you can cuff them together!"
 			return
 
@@ -123,7 +123,7 @@
 
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
-			if (!H.has_organ_for_slot(WEAR_HANDCUFFS))
+			if (!H.has_limb_for_slot(WEAR_HANDCUFFS))
 				user << "\red \The [H] needs at least two wrists before you can cuff them together!"
 				return
 

@@ -80,7 +80,7 @@
 		O.KnockDown(strength)
 		if (istype(O, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = O
-			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 			if (E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				if(H.hud_used)
 					flick("e_flash", H.hud_used.flash_icon)

@@ -19,7 +19,7 @@
 	if(!hasorgans(target))
 		return 0
 
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 
 	var/internal_bleeding = 0
 	for(var/datum/wound/W in affected.wounds)
@@ -30,7 +30,7 @@
 	return affected.open >= 2 && internal_bleeding
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>" , \
 	"<span class='notice'>You start patching the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>")
@@ -38,7 +38,7 @@
 	..()
 
 /datum/surgery_step/fix_vein/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
@@ -52,7 +52,7 @@
 		user:bloody_hands(target, 0)
 
 /datum/surgery_step/fix_vein/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>" , \
 	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
 	affected.take_damage(5, 0)
@@ -79,12 +79,12 @@
 	if(target_zone == "mouth" || target_zone == "eyes")
 		return 0
 
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 
-	return affected.open >= 2 && (affected.status & ORGAN_DEAD)
+	return affected.open == 2 && (affected.status & LIMB_NECROTIZED) && target.op_stage.necro == 0
 
 /datum/surgery_step/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
 	user.visible_message("<span class='notice'>[user] starts cutting away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>" , \
 	"<span class='notice'>You start cutting away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>")
@@ -92,16 +92,16 @@
 	..()
 
 /datum/surgery_step/fix_dead_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] has cut away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>", \
 		"<span class='notice'>You have cut away necrotic tissue in [target]'s [affected.display_name] with \the [tool].</span>")
-	affected.open = 3
+	target.op_stage.necro = 1
 
 /datum/surgery_step/fix_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!</span>")
 	affected.createwound(CUT, 20, 1)
@@ -110,11 +110,9 @@
 /datum/surgery_step/treat_necrosis
 	priority = 1
 	allowed_tools = list(
-		/obj/item/weapon/reagent_containers/dropper = 100,     \
-		/obj/item/weapon/reagent_containers/glass/bottle = 75, \
-		/obj/item/weapon/reagent_containers/glass/beaker = 75, \
-		/obj/item/weapon/reagent_containers/spray = 50,        \
-		/obj/item/weapon/reagent_containers/glass/bucket = 50, \
+	/obj/item/stack/medical/advanced/bruise_pack= 100, \
+	/obj/item/stack/medical/bruise_pack = 20,          \
+	/obj/item/stack/medical/bruise_pack/tajaran = 70,  \
 	)
 
 	can_infect = 0
@@ -124,63 +122,38 @@
 	max_duration = 60
 
 /datum/surgery_step/treat_necrosis/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!istype(tool, /obj/item/weapon/reagent_containers))
-		return 0
-
-	var/obj/item/weapon/reagent_containers/container = tool
-	if(!container.reagents.has_reagent("peridaxon"))
-		return 0
-
 	if(!hasorgans(target))
 		return 0
 
 	if(target_zone == "mouth" || target_zone == "eyes")
 		return 0
 
-	var/datum/organ/external/affected = target.get_organ(target_zone)
-	return affected.open == 3 && (affected.status & ORGAN_DEAD)
+	var/datum/limb/affected = target.get_limb(target_zone)
+	return affected.open == 2 && (affected.status & LIMB_NECROTIZED) && target.op_stage.necro == 1
 
 /datum/surgery_step/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	target.op_stage.is_same_target = affected
-	user.visible_message("<span class='notice'>[user] starts applying medication to the affected tissue in [target]'s [affected.display_name] with \the [tool].</span>" , \
-	"<span class='notice'>You start applying medication to the affected tissue in [target]'s [affected.display_name] with \the [tool].</span>")
+	user.visible_message("<span class='notice'>[user] starts applying \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>" , \
+	"<span class='notice'>You start applying \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>")
 	target.custom_pain("Something in your [affected.display_name] is causing you a lot of pain!", 1)
 	..()
 
 /datum/surgery_step/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 	if(target.op_stage.is_same_target != affected) //We are not aiming at the same organ as when be begun, cut him up
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
-	if(!istype(tool, /obj/item/weapon/reagent_containers))
-		return
 
-	var/obj/item/weapon/reagent_containers/container = tool
+	affected.status &= ~LIMB_NECROTIZED
+	target.update_body()
 
-	var/trans = container.reagents.trans_to(target, container.amount_per_transfer_from_this)
-	if(trans > 0)
-		container.reagents.reaction(target, INGEST)	//Technically it's contact, but the reagents are being applied to internal tissue
-
-		if(container.reagents.has_reagent("peridaxon"))
-			affected.status &= ~ORGAN_DEAD
-			target.update_body()
-
-		user.visible_message("<span class='notice'>[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.display_name].</span>", \
-		"<span class='notice'>You apply [trans] units of the solution to affected tissue in [target]'s [affected.display_name] with \the [tool].</span>")
+	user.visible_message("<span class='notice'>[user] applies \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>", \
+	"<span class='notice'>You apply \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>")
+	target.op_stage.necro = 0
 
 /datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/organ/external/affected = target.get_organ(target_zone)
+	var/datum/limb/affected = target.get_limb(target_zone)
 
-	if(!istype(tool, /obj/item/weapon/reagent_containers))
-		return
-
-	var/obj/item/weapon/reagent_containers/container = tool
-
-	var/trans = container.reagents.trans_to(target, container.amount_per_transfer_from_this)
-	container.reagents.reaction(target, INGEST)	//Technically it's contact, but the reagents are being applied to internal tissue
-
-	user.visible_message("<span class='warning'>[user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.display_name] with the [tool]!</span>" , \
-	"<span class='warning'>Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.display_name] with the [tool]!</span>")
-
-	//No damage or anything, just wastes medicine
+	user.visible_message("<span class='warning'>[user]'s hand slips, applying \the [tool] to the wrong place in [target]'s [affected.display_name]!</span>" , \
+	"<span class='warning'>Your hand slips, applying \the [tool] to the wrong place in [target]'s [affected.display_name]!</span>")

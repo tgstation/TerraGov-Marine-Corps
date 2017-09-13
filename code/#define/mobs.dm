@@ -222,20 +222,30 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define HUMAN_BLOODTYPES list("O-","O+","A-","A+","B-","B+","AB-","AB+")
 
-///////////////////ORGAN DEFINES///////////////////
+///////////////////LIMB DEFINES///////////////////
 
-#define ORGAN_CUT_AWAY 1
-#define ORGAN_GAUZED 2
-#define ORGAN_ATTACHABLE 4
-#define ORGAN_BLEEDING 8
-#define ORGAN_BROKEN 32
-#define ORGAN_DESTROYED 64
-#define ORGAN_ROBOT 128
-#define ORGAN_SPLINTING 256
-#define ORGAN_SPLINTED 512
-#define SALVED 1024
-#define ORGAN_DEAD 2048
-#define ORGAN_MUTATED 4096
+#define LIMB_CUT_AWAY 1 //limb is cut away, first step toward an amputation.
+#define LIMB_ATTACHABLE 2 //prepared limb stump, ready to receive a replacement limb.
+#define LIMB_BLEEDING 4
+#define LIMB_BROKEN 8
+#define LIMB_DESTROYED 16 //limb is missing
+#define LIMB_ROBOT 32
+#define LIMB_SPLINTED 64
+#define LIMB_NECROTIZED 128 //necrotizing limb, nerves are dead.
+#define LIMB_MUTATED 256 //limb is deformed by mutations
+#define LIMB_AMPUTATED 512 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+
+///////////////////INTERNAL ORGANS DEFINES///////////////////
+
+#define ORGAN_ASSISTED	1
+#define ORGAN_ROBOT		2
+
+
+///////////////SURGERY DEFINES///////////////
+#define SPECIAL_SURGERY_INVALID	"special_surgery_invalid"
+
+
+
 //=================================================
 
 //Languages!

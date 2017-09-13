@@ -233,7 +233,7 @@
 		M.make_jittery(5)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
 				E.damage += 0.5
 			if(prob(10))
@@ -246,7 +246,7 @@
 		M.knocked_out = max(M.knocked_out, 20)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
 				E.damage += 2
 			if(prob(25))

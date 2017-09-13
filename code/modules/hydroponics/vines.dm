@@ -144,7 +144,7 @@
 					H.adjustBruteLoss(damage)
 					return
 
-				var/datum/organ/external/affecting = H.get_organ(pick("l_foot","r_foot","l_leg","r_leg","l_hand","r_hand","l_arm", "r_arm","head","chest","groin"))
+				var/datum/limb/affecting = H.get_limb(pick("l_foot","r_foot","l_leg","r_leg","l_hand","r_hand","l_arm", "r_arm","head","chest","groin"))
 
 				if(affecting)
 					affecting.take_damage(damage, 0)

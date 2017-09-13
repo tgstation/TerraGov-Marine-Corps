@@ -25,51 +25,52 @@
 	return null
 
 
-/mob/living/carbon/human/proc/has_organ(name)
-	var/datum/organ/external/O = organs_by_name[name]
+/mob/living/carbon/human/proc/has_limb(org_name)
+	for(var/X in limbs)
+		var/datum/limb/E = X
+		if(E.name == org_name)
+			return !(E.status & LIMB_DESTROYED)
 
-	return (O && !(O.status & ORGAN_DESTROYED) )
-
-/mob/living/carbon/human/proc/has_organ_for_slot(slot)
+/mob/living/carbon/human/proc/has_limb_for_slot(slot)
 	switch(slot)
 		if(WEAR_BACK)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_FACE)
-			return has_organ("head")
+			return has_limb("head")
 		if(WEAR_HANDCUFFS)
-			return has_organ("l_hand") && has_organ("r_hand")
+			return has_limb("l_hand") && has_limb("r_hand")
 		if(WEAR_LEGCUFFS)
-			return has_organ("l_leg") && has_organ("r_leg")
+			return has_limb("l_leg") && has_limb("r_leg")
 		if(WEAR_L_HAND)
-			return has_organ("l_hand")
+			return has_limb("l_hand")
 		if(WEAR_R_HAND)
-			return has_organ("r_hand")
+			return has_limb("r_hand")
 		if(WEAR_WAIST)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_ID)
 			return 1
 		if(WEAR_EAR)
-			return has_organ("head")
+			return has_limb("head")
 		if(WEAR_EYES)
-			return has_organ("head")
+			return has_limb("head")
 		if(WEAR_HANDS)
-			return has_organ("l_hand") && has_organ("r_hand")
+			return has_limb("l_hand") && has_limb("r_hand")
 		if(WEAR_HEAD)
-			return has_organ("head")
+			return has_limb("head")
 		if(WEAR_FEET)
-			return has_organ("r_foot") && has_organ("l_foot")
+			return has_limb("r_foot") && has_limb("l_foot")
 		if(WEAR_JACKET)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_BODY)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_L_STORE)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_R_STORE)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_J_STORE)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_ACCESSORY)
-			return has_organ("chest")
+			return has_limb("chest")
 		if(WEAR_IN_BACK)
 			return 1
 		if(WEAR_IN_JACKET)
@@ -78,13 +79,13 @@
 			return 1
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
-	var/datum/organ/external/O = organs_by_name["l_hand"]
+	var/datum/limb/O = get_limb("l_hand")
 	if(!O || !O.is_usable())
 		return FALSE
 	. = ..()
 
 /mob/living/carbon/human/put_in_r_hand(obj/item/W)
-	var/datum/organ/external/O = organs_by_name["r_hand"]
+	var/datum/limb/O = get_limb("r_hand")
 	if(!O || !O.is_usable())
 		return FALSE
 	. = ..()
@@ -181,7 +182,7 @@
 /mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
 	if(!slot) return
 	if(!istype(W)) return
-	if(!has_organ_for_slot(slot)) return
+	if(!has_limb_for_slot(slot)) return
 
 	if(W == l_hand)
 		l_hand = null
@@ -383,9 +384,9 @@
 					cdel(src)
 			if("splints")
 				var/count = 0
-				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
-					var/datum/organ/external/o = target.organs_by_name[organ]
-					if(o.status & ORGAN_SPLINTED)
+				for(var/X in target.limbs)
+					var/datum/limb/E = X
+					if(E.status & LIMB_SPLINTED)
 						count = 1
 						break
 				if(count == 0)
@@ -685,10 +686,10 @@ It can still be worn/put on as normal.
 
 			if(can_reach_splints)
 				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
-					var/datum/organ/external/o = target.get_organ(organ)
-					if (o && o.status & ORGAN_SPLINTED)
+					var/datum/limb/o = target.get_limb(organ)
+					if (o && o.status & LIMB_SPLINTED)
 						var/obj/item/W = new /obj/item/stack/medical/splint(amount=1)
-						o.status &= ~ORGAN_SPLINTED
+						o.status &= ~LIMB_SPLINTED
 						if (W)
 							W.loc = target.loc
 							W.layer = initial(W.layer)
@@ -771,7 +772,7 @@ It can still be worn/put on as normal.
 					target.drop_inv_item_on_ground(target.r_store)
 			target.update_icons()
 		else
-			if(item && target.has_organ_for_slot(slot_to_process)) //Placing an item on the mob
+			if(item && target.has_limb_for_slot(slot_to_process)) //Placing an item on the mob
 				if(item.mob_can_equip(target, slot_to_process, 0))
 					source.drop_inv_item_on_ground(item)
 					if(item && item.loc) //Might be self-deleted?

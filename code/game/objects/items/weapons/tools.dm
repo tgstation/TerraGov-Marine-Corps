@@ -314,7 +314,7 @@
 	var/safety = C.eyecheck()
 	if(istype(C, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = C
-		var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(!E)
 			return
 		if(H.species.flags & IS_SYNTHETIC)
@@ -424,10 +424,10 @@
 
 	if(hasorgans(M))
 		var/mob/living/carbon/human/H = M
-		var/datum/organ/external/S = H.organs_by_name[user.zone_selected]
+		var/datum/limb/S = H.get_limb(user.zone_selected)
 
 		if (!S) return
-		if(!(S.status & ORGAN_ROBOT) || user.a_intent != "help")
+		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
 			return ..()
 
 		if(H.species.flags & IS_SYNTHETIC)

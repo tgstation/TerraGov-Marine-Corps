@@ -82,13 +82,13 @@
 	// Species-specific abilities.
 	var/list/inherent_verbs
 	var/list/has_organ = list(
-		"heart" =    /datum/organ/internal/heart,
-		"lungs" =    /datum/organ/internal/lungs,
-		"liver" =    /datum/organ/internal/liver,
-		"kidneys" =  /datum/organ/internal/kidneys,
-		"brain" =    /datum/organ/internal/brain,
-		"appendix" = /datum/organ/internal/appendix,
-		"eyes" =     /datum/organ/internal/eyes
+		"heart" =    /datum/internal_organ/heart,
+		"lungs" =    /datum/internal_organ/lungs,
+		"liver" =    /datum/internal_organ/liver,
+		"kidneys" =  /datum/internal_organ/kidneys,
+		"brain" =    /datum/internal_organ/brain,
+		"appendix" = /datum/internal_organ/appendix,
+		"eyes" =     /datum/internal_organ/eyes
 		)
 
 /datum/species/New()
@@ -100,47 +100,40 @@
 	if(unarmed_type) unarmed = new unarmed_type()
 	if(secondary_unarmed_type) secondary_unarmed = new secondary_unarmed_type()
 
-/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
+/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs and limbs.
 
-	//Trying to work out why species changes aren't fixing organs properly.
-	if(H.organs)                  H.organs.Cut()
-	if(H.internal_organs)         H.internal_organs.Cut()
-	if(H.organs_by_name)          H.organs_by_name.Cut()
-	if(H.internal_organs_by_name) H.internal_organs_by_name.Cut()
-
-	H.organs = list()
+	H.limbs = list()
 	H.internal_organs = list()
-	H.organs_by_name = list()
 	H.internal_organs_by_name = list()
 
 	//This is a basic humanoid limb setup.
-	H.organs_by_name["chest"] = new/datum/organ/external/chest()
-	H.organs_by_name["groin"] = new/datum/organ/external/groin(H.organs_by_name["chest"])
-	H.organs_by_name["head"] = new/datum/organ/external/head(H.organs_by_name["chest"])
-	H.organs_by_name["l_arm"] = new/datum/organ/external/l_arm(H.organs_by_name["chest"])
-	H.organs_by_name["r_arm"] = new/datum/organ/external/r_arm(H.organs_by_name["chest"])
-	H.organs_by_name["r_leg"] = new/datum/organ/external/r_leg(H.organs_by_name["groin"])
-	H.organs_by_name["l_leg"] = new/datum/organ/external/l_leg(H.organs_by_name["groin"])
-	H.organs_by_name["l_hand"] = new/datum/organ/external/l_hand(H.organs_by_name["l_arm"])
-	H.organs_by_name["r_hand"] = new/datum/organ/external/r_hand(H.organs_by_name["r_arm"])
-	H.organs_by_name["l_foot"] = new/datum/organ/external/l_foot(H.organs_by_name["l_leg"])
-	H.organs_by_name["r_foot"] = new/datum/organ/external/r_foot(H.organs_by_name["r_leg"])
+	var/datum/limb/chest/C = new(null, H)
+	H.limbs += C
+	var/datum/limb/groin/G = new(C, H)
+	H.limbs += G
+	H.limbs += new/datum/limb/head(C, H)
+	var/datum/limb/l_arm/LA = new(C, H)
+	H.limbs += LA
+	var/datum/limb/r_arm/RA = new(C, H)
+	H.limbs += RA
+	var/datum/limb/l_leg/LL = new(G, H)
+	H.limbs += LL
+	var/datum/limb/r_leg/RL = new(G, H)
+	H.limbs += RL
+	H.limbs +=  new/datum/limb/l_hand(LA, H)
+	H.limbs +=  new/datum/limb/r_hand(RA, H)
+	H.limbs +=  new/datum/limb/l_foot(LL, H)
+	H.limbs +=  new/datum/limb/r_foot(RL, H)
 
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]
 		H.internal_organs_by_name[organ] = new organ_type(H)
 
-	for(var/name in H.organs_by_name)
-		H.organs += H.organs_by_name[name]
-
-	for(var/datum/organ/external/O in H.organs)
-		O.owner = H
-
 	if(flags & IS_SYNTHETIC)
-		for(var/datum/organ/external/E in H.organs)
-			if(E.status & ORGAN_CUT_AWAY || E.status & ORGAN_DESTROYED) continue
-			E.status |= ORGAN_ROBOT
-		for(var/datum/organ/internal/I in H.internal_organs)
+		for(var/datum/limb/E in H.limbs)
+			if(E.status & LIMB_DESTROYED) continue
+			E.status |= LIMB_ROBOT
+		for(var/datum/internal_organ/I in H.internal_organs)
 			I.mechanize()
 
 
@@ -382,13 +375,13 @@
 		)
 
 	has_organ = list(
-		"heart" =    /datum/organ/internal/heart,
-		"lungs" =    /datum/organ/internal/lungs,
-		"liver" =    /datum/organ/internal/liver,
-		"kidneys" =  /datum/organ/internal/kidneys,
-		"brain" =    /datum/organ/internal/brain,
-		"eyes" =     /datum/organ/internal/eyes,
-		"stack" =    /datum/organ/internal/stack/vox
+		"heart" =    /datum/internal_organ/heart,
+		"lungs" =    /datum/internal_organ/lungs,
+		"liver" =    /datum/internal_organ/liver,
+		"kidneys" =  /datum/internal_organ/kidneys,
+		"brain" =    /datum/internal_organ/brain,
+		"eyes" =     /datum/internal_organ/eyes,
+		"stack" =    /datum/internal_organ/stack/vox
 		)
 
 /datum/species/vox/armalis
@@ -465,8 +458,8 @@
 	flesh_color = "#272757"
 
 	has_organ = list(
-		"heart" =    /datum/organ/internal/heart,
-		"brain" =    /datum/organ/internal/brain,
+		"heart" =    /datum/internal_organ/heart,
+		"brain" =    /datum/internal_organ/brain,
 		)
 
 /datum/species/synthetic
@@ -496,8 +489,8 @@
 	blood_color = "#EEEEEE"
 
 	has_organ = list(
-		"heart" =    /datum/organ/internal/heart/prosthetic,
-		"brain" =    /datum/organ/internal/brain/prosthetic,
+		"heart" =    /datum/internal_organ/heart/prosthetic,
+		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
 
@@ -578,12 +571,12 @@
 		return 0
 
 	// Check if they have a functioning hand.
-	var/datum/organ/external/E = user.organs_by_name["l_hand"]
-	if(E && !(E.status & ORGAN_DESTROYED))
+	var/datum/limb/E = user.get_limb("l_hand")
+	if(E && !(E.status & LIMB_DESTROYED))
 		return 1
 
-	E = user.organs_by_name["r_hand"]
-	if(E && !(E.status & ORGAN_DESTROYED))
+	E = user.get_limb("r_hand")
+	if(E && !(E.status & LIMB_DESTROYED))
 		return 1
 
 	return 0

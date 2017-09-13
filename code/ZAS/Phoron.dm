@@ -114,7 +114,7 @@ obj/var/contaminated = 0
 	if(!species.has_organ["eyes"])
 		return
 
-	var/datum/organ/internal/eyes/E = internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/E = internal_organs_by_name["eyes"]
 	if(E)
 		if(prob(20)) src << "\red Your eyes burn!"
 		E.damage += 2.5

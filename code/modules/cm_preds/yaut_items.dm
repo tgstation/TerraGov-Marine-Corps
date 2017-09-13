@@ -383,7 +383,7 @@
 				user << "<span class='warning'>Your hand must be free to activate your wrist blade!</span>"
 				return
 
-			var/datum/organ/external/hand = user.organs_by_name[user.hand ? "l_hand" : "r_hand"]
+			var/datum/limb/hand = user.get_limb(user.hand ? "l_hand" : "r_hand")
 			if(!istype(hand) || !hand.is_usable())
 				user << "<span class='warning'>You can't hold that!</span>"
 				return
@@ -1047,16 +1047,16 @@
 
 		if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 			var/obj/item/weapon/shard/shrapnel/S
-			for(var/datum/organ/external/O in user.organs)
+			for(var/datum/limb/O in user.limbs)
 				for(S in O.implants)
 					user << "<span class='notice'>You dig shrapnel out of your [O.name].</span>"
 					S.loc = user.loc
 					O.implants -= S
 					pain_factor++
 					O.take_damage(rand(2,5), 0, 0)
-					O.status |= ORGAN_BLEEDING
+					O.status |= LIMB_BLEEDING
 
-			for(var/datum/organ/internal/I in user.internal_organs) //Now go in and clean out the internal ones.
+			for(var/datum/internal_organ/I in user.internal_organs) //Now go in and clean out the internal ones.
 				for(var/obj/Q in I)
 					Q.loc = user.loc
 					I.take_damage(rand(1,2), 0, 0)
@@ -1135,10 +1135,10 @@
 		..()
 		if(ishuman(target)) //Slicey dicey!
 			if(prob(14))
-				var/datum/organ/external/affecting
-				affecting = target:get_organ(ran_zone(user.zone_selected,60))
+				var/datum/limb/affecting
+				affecting = target:get_limb(ran_zone(user.zone_selected,60))
 				if(!affecting)
-					affecting = target:get_organ(ran_zone(user.zone_selected,90)) //No luck? Try again.
+					affecting = target:get_limb(ran_zone(user.zone_selected,90)) //No luck? Try again.
 				if(affecting)
 					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
 						user.visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")

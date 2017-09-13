@@ -11,7 +11,7 @@
 	throw_range = 5
 	origin_tech = "biotech=3"
 	attack_verb = list("attacked", "slapped", "whacked")
-	organ_type = /datum/organ/internal/brain
+	organ_type = /datum/internal_organ/brain
 	organ_tag = "brain"
 
 	var/mob/living/carbon/brain/brainmob = null
