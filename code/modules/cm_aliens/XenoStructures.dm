@@ -405,7 +405,7 @@
 			if(!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space))
 				continue
 
-			if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast) || T.slayer > 0)
+			if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast) || istype(T, /turf/unsimulated/floor/mars) || T.slayer > 0)
 				continue
 
 			for(var/obj/O in T)
