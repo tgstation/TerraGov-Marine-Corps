@@ -58,7 +58,7 @@
 		var/turf/T = loc
 		if(istype(T))
 			if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
-				adjustBruteLoss(max(5 - warding_aura * 2, 0)) //You can reduce and even stop crit loss above 2.5 aura_strength
+				adjustBruteLoss(-warding_aura) //You can reduce and even stop crit loss above 2.5 aura_strength //Can now heal damage outright
 				updatehealth()
 	else						//Alive! Yey! Turn on their vision.
 		if(isXenoBoiler(src))
@@ -319,10 +319,13 @@ updatehealth()
 				if(recovery_aura)
 					storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
 			if(health < maxHealth)
-				if(lying || resting && health > 0)
-					XENO_HEAL_WOUNDS(1)
+				if(lying || resting)
+					if(health > -100 && health < 0) //Unconscious
+						XENO_HEAL_WOUNDS(0.33) //Healing is much slower. Warding pheromones make up for the rest if you're curious
+					else
+						XENO_HEAL_WOUNDS(1)
 				else
-					XENO_HEAL_WOUNDS(0.33) //Major healing nerf if standing or crit (Warding takes over in that case)
+					XENO_HEAL_WOUNDS(0.33) //Major healing nerf if standing
 				updatehealth()
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
