@@ -165,38 +165,6 @@
 		M << "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>"
 		src << "<span class='xenonotice'>You said: \"[msg]\" to [M]</span>"
 
-/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M in oview(2))
-	set name = "Transfer Plasma"
-	set desc = "Transfer Plasma to another alien"
-	set category = "Alien"
-
-	if(!check_state())
-		return
-
-	if(!M || !istype(M))
-		return
-
-	if(get_dist(src, M) >= 3)
-		src << "<span class='warning'>You need to be closer.</span>"
-		return
-
-	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
-
-	if(get_dist(src, M) >= 3)//Double Check
-		src << "<span class='warning'>You need to be closer.</span>"
-		return
-
-	if(amount)
-		amount = abs(round(amount))
-		if(storedplasma < amount)
-			amount = storedplasma //Just use all of it
-		storedplasma -= amount
-		M.storedplasma += amount
-		if(M.storedplasma > M.maxplasma)
-			M.storedplasma = M.maxplasma
-		M << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [M.storedplasma].</span>"
-		src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [M]. You now have [storedplasma].</span>"
-
 /mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE <---There's a name I haven't heard in a while. ~N
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
@@ -594,7 +562,7 @@
 
 
 /mob/living/carbon/Xenomorph/verb/toggle_xeno_mobhud()
-	set name = "Toggle Xeno status HUD"
+	set name = "Toggle Xeno Status HUD"
 	set desc = "Toggles the health and plasma hud appearing above Xenomorphs."
 	set category = "Alien"
 

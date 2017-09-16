@@ -46,13 +46,10 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		/mob/living/carbon/Xenomorph/proc/build_resin,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/Queen/proc/screech,
-		// /mob/living/carbon/Xenomorph/Queen/proc/produce_jelly, // Disabling this because the jelly system is clunky and relies on a competent Queen player
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
-		// /mob/living/carbon/Xenomorph/proc/bestial_roar,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/toggle_auras,
 		/mob/living/carbon/Xenomorph/Queen/proc/set_orders,
-	//	/mob/living/carbon/Xenomorph/proc/secure_host,
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
 

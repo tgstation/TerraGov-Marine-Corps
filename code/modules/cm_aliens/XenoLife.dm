@@ -274,7 +274,8 @@
 
 	return 1
 
-/*Heal 1/70th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+/*Heal 1/70th of your max health in brute per tick. 1 as a bonus, to help smaller pools.
+Additionally, recovery pheromones mutiply this base healing, up to 2.5 times faster at level 5
 Modified via m, to multiply the number of wounds healed.
 Heal from fire half as fast
 Xenos don't actually take oxyloss, oh well
@@ -282,11 +283,10 @@ hmmmm, this is probably unnecessary
 Make sure their actual health updates immediately.*/
 
 #define XENO_HEAL_WOUNDS(m) \
-adjustBruteLoss(-((maxHealth / 70) + 1)*(m)); \
-if(recovery_aura) adjustBruteLoss(-(recovery_aura)*(m)); \
-adjustFireLoss(-(maxHealth / 60)*(m)); \
-adjustOxyLoss(-(maxHealth * 0.1)*(m)); \
-adjustToxLoss(-(maxHealth / 5)*(m)); \
+adjustBruteLoss(-((maxHealth / 70) + 1 + (maxHealth / 70) * recovery_aura)*(m)); \
+adjustFireLoss(-(maxHealth / 60 + (maxHealth / 60) * recovery_aura)*(m)); \
+adjustOxyLoss(-(maxHealth * 0.1 + (maxHealth * 0.1) * recovery_aura)*(m)); \
+adjustToxLoss(-(maxHealth / 5 + (maxHealth / 5) * recovery_aura)*(m)); \
 updatehealth()
 
 
@@ -314,30 +314,20 @@ updatehealth()
 
 	if(!is_robotic && !hardcore) //Robot no heal
 		if(innate_healing || (locate(/obj/effect/alien/weeds) in T))
-			if(health >= maxHealth)
-				if(!readying_tail) //Readying tail = no plasma increase.
-					storedplasma += plasma_gain
-					if(recovery_aura)
-						storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
-			else
-				XENO_HEAL_WOUNDS(1)
-				/*
-				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+			if(!readying_tail) //Readying tail = no plasma increase.
+				storedplasma += plasma_gain
 				if(recovery_aura)
-					adjustBruteLoss(-(recovery_aura))
-				adjustFireLoss(-(maxHealth / 60))
-				adjustOxyLoss(-(maxHealth / 10))
-				adjustToxLoss(-(maxHealth / 5))
+					storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
+			if(health < maxHealth)
+				if(lying || resting && health > 0)
+					XENO_HEAL_WOUNDS(1)
+				else
+					XENO_HEAL_WOUNDS(0.33) //Major healing nerf if standing or crit (Warding takes over in that case)
 				updatehealth()
-				*/
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
 			if(prob(50) && !is_runner_hiding && !readying_tail && !current_aura)
 				storedplasma++
-			if(recovery_aura)
-				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
-				storedplasma += round(recovery_aura + 1)
-				updatehealth()
 
 		if(isXenoHivelord(src))
 			var/mob/living/carbon/Xenomorph/Hivelord/H = src

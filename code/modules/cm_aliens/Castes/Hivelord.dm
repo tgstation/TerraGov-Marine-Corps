@@ -28,12 +28,10 @@
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/build_resin,
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/toggle_auras,
 		/mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed,
-	//	/mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
 /mob/living/carbon/Xenomorph/Hivelord/movement_delay()

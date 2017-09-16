@@ -37,7 +37,6 @@
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/Crusher/proc/stomp,
 		/mob/living/carbon/Xenomorph/Crusher/proc/ready_charge
 		)
