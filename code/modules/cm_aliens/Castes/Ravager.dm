@@ -38,7 +38,6 @@
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/Ravager/proc/charge,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
@@ -111,7 +110,6 @@
 	New()
 		..()
 		verbs -= /mob/living/carbon/Xenomorph/Ravager/proc/charge
-		verbs -= /mob/living/carbon/Xenomorph/proc/transfer_plasma
 		verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
 		verbs -= /mob/living/carbon/Xenomorph/proc/regurgitate
 		verbs -= /mob/living/carbon/Xenomorph/verb/Upgrade
