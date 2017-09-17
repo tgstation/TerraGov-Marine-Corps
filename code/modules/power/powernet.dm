@@ -38,7 +38,7 @@
 		//Therefore we can raise the amount of power rationed out to APCs on the assumption that those APCs that used less than perapc will continue to do so.
 		//If that assumption fails, then some APCs will miss out on power next tick, however it will be rebalanced for the tick after.
 		if (netexcess >= 0)
-			perapc_excess += min(netexcess/numapc, (avail - perapc) - perapc_excess)
+			perapc_excess = max(0, perapc_excess + min(netexcess/numapc, (avail - perapc) - perapc_excess))
 		else
 			perapc_excess = 0
 

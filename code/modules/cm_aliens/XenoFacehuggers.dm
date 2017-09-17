@@ -151,18 +151,29 @@
 		icon_state = "[initial(icon_state)]"
 	leaping = 0
 
-/obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom)
+/obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	set waitfor = 0
-	..()
 	if(stat == CONSCIOUS)
 		icon_state = "[initial(icon_state)]"
-		if(leaping && CanHug(hit_atom)) Attach(hit_atom)
-		else if(ismob(hit_atom) && hit_atom.density)
-			stat = UNCONSCIOUS //Giving it some brief downtime before jumping on someone via movement.
-			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a guy.
-			sleep(15) //1.5 seconds.
-			if(loc && stat != DEAD) stat = CONSCIOUS
+	if(ismob(hit_atom) && stat != DEAD)
+		if(stat == CONSCIOUS)
+			if(leaping && CanHug(hit_atom))
+				Attach(hit_atom)
+			else if(hit_atom.density)
+				stat = UNCONSCIOUS //Giving it some brief downtime before jumping on someone via movement.
+				icon_state = "[initial(icon_state)]_inactive"
+				step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
+				throwing = 0
+				sleep(15) //1.5 seconds.
+				if(loc && stat != DEAD)
+					stat = CONSCIOUS
+					icon_state = "[initial(icon_state)]"
+				return
 		throwing = 0
+		return
+	else
+		..()
+
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status()
 	set waitfor = 0

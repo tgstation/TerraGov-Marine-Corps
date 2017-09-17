@@ -3,7 +3,7 @@ datum/controller/process/machines
 
 datum/controller/process/machines/setup()
 	name = "Machines"
-	schedule_interval = 33 //3.3 seconds
+	schedule_interval = 35 //3.5 seconds
 
 datum/controller/process/machines/doWork()
 	process_machines_process()
