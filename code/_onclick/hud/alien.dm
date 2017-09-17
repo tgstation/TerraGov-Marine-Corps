@@ -65,16 +65,6 @@
 	using = new /obj/screen/resist/alien()
 	hotkeybuttons += using
 
-	//ready tail
-	if(owner.has_tail_attack)
-		tail_intent = new /obj/screen()
-		tail_intent.name = "ready tail"
-		tail_intent.icon = 'icons/mob/screen1_alien.dmi'
-		tail_intent.icon_state = "tail_unready"
-		tail_intent.screen_loc = ui_storage1
-		tail_intent.layer = 19
-		hotkeybuttons += tail_intent
-
 	throw_icon = new /obj/screen/throw_catch()
 	throw_icon.icon = 'icons/mob/screen1_alien.dmi'
 	hotkeybuttons += throw_icon

@@ -38,10 +38,39 @@
 
 
 
+/datum/action/xeno_action/activable/tail_attack
+	name = "Tail Attack (20)(drain while active)"
+	action_icon_state = "tail_attack"
+	plasma_cost = 20
+	ability_name = "ready tail attack"
+
+/datum/action/xeno_action/activable/tail_attack/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.readying_tail || X.storedplasma >= plasma_cost))
+		return TRUE
+
+/datum/action/xeno_action/activable/tail_attack/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.tail_attack(A)
+
+/datum/action/xeno_action/activable/tail_attack/on_activation()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.readying_tail = 1
+	X.visible_message("<span class='warning'>\The [X]'s tail starts to coil like a spring.</span>", \
+	"<span class='notice'>You begin to ready your tail for a vicious attack. This will drain plasma to keep active.</span>")
+
+
+/datum/action/xeno_action/activable/tail_attack/on_deactivation()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.readying_tail = 0
+	X.visible_message("<span class='notice'>\The [X]'s tail relaxes.</span>", \
+	"<span class='notice'>You relax your tail. You are no longer readying a tail attack.</span>")
+
+
 
 /datum/action/xeno_action/shift_spits
 	name = "Toggle Spit Type"
-	action_icon_state = "shift_spit_toxin"
+	action_icon_state = "shift_spit_neurotoxin"
 	plasma_cost = 0
 
 
@@ -323,6 +352,35 @@
 		X.current_aura = choice
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
 		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
+
+
+
+
+
+
+/datum/action/xeno_action/activable/transfer_plasma
+	name = "Transfer Plasma"
+	action_icon_state = "transfer_plasma"
+	plasma_cost = 0
+	ability_name = "transfer plasma"
+	var/plasma_transfer_amount = 50
+	var/transfer_delay = 20
+	var/max_range = 2
+
+/datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.xeno_transfer_plasma(A, plasma_transfer_amount, transfer_delay, max_range)
+
+/datum/action/xeno_action/activable/transfer_plasma/hivelord
+	plasma_transfer_amount = 200
+	transfer_delay = 5
+	max_range = 7
+
+
+
+
+
+
 
 
 
@@ -675,7 +733,7 @@
 		return
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(7, X))
-		if(possible_target == X) continue
+		if(possible_target == X || !possible_target.client) continue
 		target_list += possible_target
 
 	var/mob/living/M = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list

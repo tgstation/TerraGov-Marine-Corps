@@ -32,13 +32,12 @@
 	var/sticky_cooldown = 0
 	actions = list(
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		)
-	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		)
+
 
 

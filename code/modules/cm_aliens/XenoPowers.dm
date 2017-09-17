@@ -19,8 +19,6 @@
 	usedPounce = 30 //About 12 seconds
 	flags_pass = PASSTABLE
 	use_plasma(10)
-	if(readying_tail)
-		readying_tail = 0
 	throw_at(T, 6, 2, src) //Victim, distance, speed
 	spawn(6)
 		if(!hardcore)
@@ -47,6 +45,114 @@
 	if(pipe)
 		handle_ventcrawl(pipe)
 
+
+
+
+
+/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
+	if(!istype(A, /mob/living/carbon/Xenomorph))
+		return
+	var/mob/living/carbon/Xenomorph/target = A
+
+	if(!check_state())
+		return
+
+	if(get_dist(src, target) > max_range)
+		src << "<span class='warning'>You need to be closer to [target].</span>"
+		return
+
+	src << "<span class='notice'>You start focusing your plasma towards [target].</span>"
+	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_CLOCK))
+		return
+
+	if(!check_state())
+		return
+
+	if(get_dist(src, target) > max_range)
+		src << "<span class='warning'>You need to be closer to [target].</span>"
+		return
+
+	if(storedplasma < amount)
+		amount = storedplasma //Just use all of it
+	use_plasma(amount)
+	target.gain_plasma(amount)
+	target << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.storedplasma].</span>"
+	src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [storedplasma].</span>"
+
+
+
+
+//Tail stab. Checked during a slash, after the above.
+//Deals a monstrous amount of damage based on how long it's been charging, but charging it drains plasma.
+//Toggle is in XenoPowers.dm.
+/mob/living/carbon/Xenomorph/proc/tail_attack(mob/living/carbon/human/M)
+	if(!ismob(M))
+		return
+	if(!readying_tail)
+		return 0 //Tail attack not prepared, or not available.
+
+	if(get_dist(src, M) > 1)
+		return
+
+	if(!istype(M))
+		src << "<span class='xenowarning'>Tail attacks only work on humans.</span>"
+		return 0
+
+	var/dmg = (round(readying_tail * 2.5)) + rand(5, 10) //Ready max is 20
+	if(mob_size == MOB_SIZE_BIG)
+		dmg += 10
+	var/datum/limb/affecting
+	var/tripped = 0
+
+	if(M.lying)
+		dmg += 10 //More damage when hitting downed people.
+
+	affecting = M.get_limb(ran_zone(zone_selected,75))
+	if(!affecting) //No organ, just get a random one
+		affecting = M.get_limb(ran_zone(null, 0))
+	if(!affecting) //Still nothing??
+		affecting = M.get_limb("chest") // Gotta have a torso?!
+	var/armor_block = M.run_armor_check(affecting, "melee")
+
+	var/miss_chance = 15
+	if(isXenoHivelord(src))
+		miss_chance += 20 //Fuck hivelords
+
+	animation_attack_on(M)
+	if(prob(miss_chance))
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
+		visible_message("<span class='danger'>\The [src] lashes out with its tail but misses \the [M]!", \
+		"<span class='danger'>You snap your tail out but miss \the [M]!</span>")
+		readying_tail = 0
+		selected_ability.button.icon_state = "template"
+		selected_ability = null
+		return
+
+	//Selecting feet? Drop the damage and trip them.
+	if(zone_selected == "r_leg" || zone_selected == "l_leg" || zone_selected == "l_foot" || zone_selected == "r_foot")
+		if(prob(60) && !M.lying)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
+			visible_message("<span class='danger'>\The [src] lashes out with its tail and \the [M] goes down!</span>", \
+			"<span class='danger'>You snap your tail out and trip \the [M]!</span>")
+			M.KnockDown(5)
+			dmg = dmg / 2 //Half damage for a tail strike.
+			tripped = 1
+
+
+	flick_attack_overlay(M, "slash")
+	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
+	if(!tripped)
+		visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
+		"<span class='danger'>You violently impale \the [M] with your tail!</span>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
+
+	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
+	M.updatehealth()
+	readying_tail = 0
+	selected_ability.button.icon_state = "template"
+	selected_ability = null
+	return 1
 
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
@@ -172,26 +278,6 @@
 
 
 
-/mob/living/carbon/Xenomorph/proc/tail_attack()
-	set name = "Ready Tail Attack (20)"
-	set desc = "Wind up your tail for a devastating stab on your next harm attack. Drains plasma when active."
-	set category = "Alien"
-
-	if(!check_state())
-		return
-
-	if(!readying_tail)
-		if(!check_plasma(20))
-			return
-		storedplasma -= 20
-		visible_message("<span class='warning'>\The [src]'s tail starts to coil like a spring.</span>", \
-		"<span class='notice'>You begin to ready your tail for a vicious attack. This will drain plasma to keep active.</span>")
-		readying_tail = 1
-	else
-		visible_message("<span class='notice'>\The [src]'s tail relaxes.</span>", \
-		"<span class='notice'>You relax your tail. You are no longer readying a tail attack.</span>")
-		readying_tail = 0
-
 
 
 
@@ -239,9 +325,10 @@
 		var/xenoinfo = "<tr><td>[X.name] "
 		if(!X.client) xenoinfo += " <i>(SSD)</i>"
 		if(X.stat == DEAD)
-			count++ //Dead players shouldn't be on this list, but who knows
 			xenoinfo += " <b><font color=red>(DEAD)</font></b></td></tr>"
-		else xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+		else
+			count++ //Dead players shouldn't be on this list
+			xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
 
 		if(isXenoQueen(X))
 			queen_list += xenoinfo
@@ -308,4 +395,14 @@
 		H.remove_hud_from(usr)
 
 
+/mob/living/carbon/Xenomorph/verb/middle_mousetoggle()
+	set name = "Toggle Middle/Shift Clicking"
+	set desc = "Toggles between using middle mouse click and shift click for selected abilitiy use."
+	set category = "Alien"
+
+	middle_mouse_toggle = !middle_mouse_toggle
+	if(!middle_mouse_toggle)
+		src << "<span class='notice'>The selected xeno ability will now be activated with shift clicking.</span>"
+	else
+		src << "<span class='notice'>The selected xeno ability will now be activated with middle mouse clicking.</span>"
 

@@ -39,6 +39,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	var/breathing_counter = 0
 	actions = list(
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/secrete_resin,
@@ -51,7 +52,6 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
-		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/Queen/proc/set_orders,
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)

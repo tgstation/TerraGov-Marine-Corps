@@ -23,9 +23,8 @@
 	upgrade = 0
 	actions = list(
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/activable/pounce,
 		)
-	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/tail_attack
-		)
+
 

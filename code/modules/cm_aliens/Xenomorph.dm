@@ -79,6 +79,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/has_spat = 0
 	var/spit_delay = 60 //Delay timer for spitting
 	var/has_screeched = 0
+	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/armor_deflection = 0 //Chance of deflecting projectiles.
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
@@ -88,7 +89,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
 	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
-	var/readying_tail = 0 //'charges' up to 10, next attack does a tail stab.
+	var/readying_tail = 0 //'charges' up to 10.
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 	var/is_robotic = 0 //Robots use charge, not plasma (same thing sort of), and can only be healed with welders.
@@ -118,7 +119,6 @@ var/global/hive_orders = "" //What orders should the hive have
 
 	var/datum/action/xeno_action/activable/selected_ability
 	var/selected_resin = "resin wall" //which resin structure to build when we secrete resin
-	var/has_tail_attack = TRUE
 
 	//Naming variables
 	var/caste = ""

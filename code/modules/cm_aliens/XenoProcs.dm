@@ -455,64 +455,6 @@
 
 	return 1
 
-//Tail stab. Checked during a slash, after the above.
-//Deals a monstrous amount of damage based on how long it's been charging, but charging it drains plasma.
-//Toggle is in XenoPowers.dm.
-/mob/living/carbon/Xenomorph/proc/check_tail_attack(var/mob/living/carbon/human/M)
-	if(!M || !istype(M))
-		return 0
-
-	if(!readying_tail || readying_tail == -1)
-		return 0 //Tail attack not prepared, or not available.
-
-	var/dmg = (round(readying_tail * 2.5)) + rand(5, 10) //Ready max is 20
-	if(mob_size == MOB_SIZE_BIG)
-		dmg += 10
-	var/datum/limb/affecting
-	var/tripped = 0
-
-	if(M.lying)
-		dmg += 10 //More damage when hitting downed people.
-
-	affecting = M.get_limb(ran_zone(zone_selected,75))
-	if(!affecting) //No organ, just get a random one
-		affecting = M.get_limb(ran_zone(null, 0))
-	if(!affecting) //Still nothing??
-		affecting = M.get_limb("chest") // Gotta have a torso?!
-	var/armor_block = M.run_armor_check(affecting, "melee")
-
-	var/miss_chance = 15
-	if(isXenoHivelord(src))
-		miss_chance += 20 //Fuck hivelords
-	if(prob(miss_chance))
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-		visible_message("<span class='danger'>\The [src] lashes out with its tail but misses \the [M]!", \
-		"<span class='danger'>You snap your tail out but miss \the [M]!</span>")
-		readying_tail = 0
-		hud_used.tail_intent.icon_state = "tail_unready"
-		return
-
-	//Selecting feet? Drop the damage and trip them.
-	if(zone_selected == "r_leg" || zone_selected == "l_leg" || zone_selected == "l_foot" || zone_selected == "r_foot")
-		if(prob(60) && !M.lying)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-			visible_message("<span class='danger'>\The [src] lashes out with its tail and \the [M] goes down!</span>", \
-			"<span class='danger'>You snap your tail out and trip \the [M]!</span>")
-			M.KnockDown(5)
-			dmg = dmg / 2 //Half damage for a tail strike.
-			tripped = 1
-
-	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
-	if(!tripped)
-		visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
-		"<span class='danger'>You violently impale \the [M] with your tail!</span>")
-	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
-
-	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
-	M.updatehealth()
-	readying_tail = 0
-	return 1
 
 /mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
 	if(stat || resting)

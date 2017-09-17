@@ -129,13 +129,15 @@
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(X.selected_ability == src)
-		X << "You will no longer use [ability_name] with middle-click or shift-click."
+		X << "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"]."
 		button.icon_state = "template"
+		X.selected_ability.on_deactivation()
 		X.selected_ability = null
 	else
-		X << "You will now use [ability_name] with middle-click or shift-click."
+		X << "You will now use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"]."
 		button.icon_state = "template_on"
 		X.selected_ability = src
+		X.selected_ability.on_activation()
 		for(var/datum/action/xeno_action/activable/A in X.actions)
 			if(A == src) continue
 			A.button.icon_state = "template"
@@ -145,10 +147,15 @@
 	if(X.selected_ability == src)
 		X.selected_ability = null
 
+//the thing to do when the selected action ability is selected and triggered by middle_click
 /datum/action/xeno_action/activable/proc/use_ability(atom/A)
 	return
 
+/datum/action/xeno_action/activable/proc/on_activation()
+	return
 
+/datum/action/xeno_action/activable/proc/on_deactivation()
+	return
 
 
 
