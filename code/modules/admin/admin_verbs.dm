@@ -38,6 +38,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_create_centcom_report, //Messages from USCM command.
 	/client/proc/cmd_admin_create_AI_report,  //Allows creation of IC reports by the ships AI
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
+	/client/proc/show_hive_status,
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			/*admin memo system. show/delete/write. +SERVER needed to delete admin memos of others*/
