@@ -13,55 +13,17 @@
 
 
 
-/mob/living/carbon/Xenomorph
+/mob/living/carbon/Xenomorph/MiddleClickOn(atom/A)
+	if(selected_ability)
+		selected_ability.use_ability(A)
+		return
+	..()
 
-	MiddleClickOn(atom/A)
-		if(middle_mouse_toggle)
-			Xeno_MiddleClick_Action(A)
-			return
-		..()
-
-	ShiftClickOn(atom/A)
-		if(shift_mouse_toggle)
-			Xeno_ShiftClick_Action(A)
-			return
-		..()
-
-/mob/living/carbon/Xenomorph/proc/Xeno_MiddleClick_Action(atom/A)
-	return
-
-/mob/living/carbon/Xenomorph/proc/Xeno_ShiftClick_Action(atom/A)
-	Xeno_MiddleClick_Action(A) //defaults to the middleclick action
-
-
-
-/mob/living/carbon/Xenomorph/Hunter
-
-	Xeno_MiddleClick_Action(atom/A)
-		Pounce(A)
-
-
-/mob/living/carbon/Xenomorph/Sentinel
-
-	Xeno_MiddleClick_Action(atom/A)
-		neurotoxin(A)
-
-
-
-
-/mob/living/carbon/Xenomorph/Runner
-
-	Xeno_MiddleClick_Action(atom/A)
-		Pounce(A)
-
-
-
-/mob/living/carbon/Xenomorph/Spitter
-
-	Xeno_MiddleClick_Action(atom/A)
-		neurotoxin(A)
-
-
+/mob/living/carbon/Xenomorph/ShiftClickOn(atom/A)
+	if(selected_ability)
+		selected_ability.use_ability(A)
+		return
+	..()
 
 /mob/living/carbon/Xenomorph/Boiler
 
@@ -80,61 +42,15 @@
 				return
 		..()
 
-	Xeno_MiddleClick_Action(atom/A)
-		if(A)
-			face_atom(A)
-			acid_spray(A)
-
-
-
-/mob/living/carbon/Xenomorph/Carrier
-
-	Xeno_MiddleClick_Action(atom/A)
-		throw_hugger(A)
-
-
-
-/mob/living/carbon/Xenomorph/Praetorian
-
-	Xeno_MiddleClick_Action(atom/A)
-		neurotoxin(A)
-
-	Xeno_ShiftClick_Action(atom/A)
-		resin_spit(A)
-
-
 
 /mob/living/carbon/Xenomorph/Crusher
 
-	ClickOn( var/atom/A, var/params )
+	ClickOn( var/atom/A, var/params)
 		if(!istype(A,/obj/screen))
 			if(momentum > 1)
 				stop_momentum(charge_dir)
 		..()
 
-
-
-/mob/living/carbon/Xenomorph/Ravager
-
-	Xeno_MiddleClick_Action(atom/A)
-		charge(A)
-
-
-
-/mob/living/carbon/Xenomorph/Ravager/ravenger
-
-	Xeno_MiddleClick_Action(atom/A)
-		breathe_fire(A)
-
-
-
-/mob/living/carbon/Xenomorph/Xenoborg
-
-	Xeno_MiddleClick_Action(atom/A)
-		if(!gun_on)
-			Pounce(A)
-		else
-			fire_cannon(A)
 
 
 

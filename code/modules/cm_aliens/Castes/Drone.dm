@@ -19,12 +19,15 @@
 	aura_strength = 0.5 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/secrete_resin,
+		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/xeno_action/emit_pheromones,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/plant,
-		/mob/living/carbon/Xenomorph/proc/build_resin,
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/proc/toggle_auras,
 		)

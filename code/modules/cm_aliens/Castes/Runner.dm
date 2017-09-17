@@ -23,12 +23,13 @@
 	tier = 1
 	upgrade = 0
 	pixel_x = -16  //Needed for 2x2
-
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/activable/pounce,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
-		/mob/living/carbon/Xenomorph/proc/Pounce,
-		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 

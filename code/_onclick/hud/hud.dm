@@ -60,10 +60,13 @@
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
 	var/list/screenoverlays = list() //the screen objects used as whole screen overlays (flash,blind, etc...)
 
+	var/obj/screen/action_button/hide_toggle/hide_actions_toggle
+	var/action_buttons_hidden = 0
 
 
 /datum/hud/New(mob/owner)
 	mymob = owner
+	hide_actions_toggle = new
 
 /datum/hud/Dispose()
 	if(mymob.hud_used == src)
@@ -88,6 +91,9 @@
 		for(var/thing in screenoverlays)
 			cdel(thing)
 		screenoverlays.Cut()
+
+ 	cdel(hide_actions_toggle)
+	hide_actions_toggle = null
 
 	r_hand_hud_object = null
 	l_hand_hud_object = null

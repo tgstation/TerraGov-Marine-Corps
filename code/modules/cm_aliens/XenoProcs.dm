@@ -52,44 +52,76 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
-	if(!isXeno(src) || isnull(src)) //Somehow
-		return 0
-
 	if(is_mob_incapacitated() || lying || buckled)
 		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return 0
-
 	return 1
 
-//Checks your plasma levels, removes them accordingly, and gives a handy message.
-/mob/living/carbon/Xenomorph/proc/check_plasma(var/value)
+//Checks your plasma levels and gives a handy message.
+/mob/living/carbon/Xenomorph/proc/check_plasma(value)
 	if(stat)
-		src << "<span class='warning'>You cannot do this while unconcious.</span>"
+		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return 0
 
 	if(value)
-		if(is_robotic)
-			if(storedplasma < value)
-				src << "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
-				return 0
 		if(storedplasma < value)
-			src << "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
+			if(is_robotic)
+				src << "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
+			else
+				src << "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
 			return 0
-
-		storedplasma -= value
-	return 1 //If plasma cost is 0 just go ahead and do it
-
-
-//Check if you can plant on groundmap turfs.
-//Does NOT return a message, just a 0 or 1.
-/mob/living/carbon/Xenomorph/proc/is_weedable(turf/T)
-	if(isnull(T) || !isturf(T))
-		return 0
-	if(istype(T, /turf/space))
-		return 0
-	if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/mars) || istype(T, /turf/unsimulated/floor/gm/dirtgrassborder) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast) || istype(T, /turf/simulated/floor/gm/coast) || istype(T, /turf/simulated/floor/gm/grass) || istype(T, /turf/simulated/floor/gm/dirtgrassborder) || istype(T, /turf/simulated/floor/gm/river))
-		return 0
 	return 1
+
+/mob/living/carbon/Xenomorph/proc/use_plasma(value)
+	storedplasma = max(storedplasma - value, 0)
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+/mob/living/carbon/Xenomorph/proc/gain_plasma(value)
+	storedplasma = min(storedplasma + value, maxplasma)
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+
+//Check if you can plant weeds on that turf.
+//Does NOT return a message, just a 0 or 1.
+/turf/proc/is_weedable()
+	return !density
+
+/turf/space/is_weedable()
+	return FALSE
+
+/turf/unsimulated/floor/gm/grass/is_weedable()
+	return FALSE
+
+/turf/unsimulated/floor/gm/dirtgrassborder/is_weedable()
+	return FALSE
+
+/turf/unsimulated/floor/gm/river/is_weedable()
+	return FALSE
+
+/turf/unsimulated/floor/gm/coast/is_weedable()
+	return FALSE
+
+/turf/unsimulated/floor/snow/is_weedable()
+	return !slayer
+
+/turf/unsimulated/floor/mars/is_weedable()
+	return FALSE
+
+/turf/simulated/floor/gm/grass/is_weedable()
+	return FALSE
+
+/turf/simulated/floor/gm/dirtgrassborder/is_weedable()
+	return FALSE
+
+/turf/simulated/floor/gm/river/is_weedable()
+	return FALSE
+
+
+
 
 //Strip all inherent xeno verbs from your caste. Used in evolution.
 /mob/living/carbon/Xenomorph/proc/remove_inherent_verbs()
@@ -102,6 +134,7 @@
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			verbs |= verb_path
+
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
@@ -226,7 +259,7 @@
 /obj/effect/xenomorph/acid
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
-	icon_state = "acid3"
+	icon_state = "acid_normal"
 	density = 0
 	opacity = 0
 	anchored = 1
@@ -240,11 +273,13 @@
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
 	acid_strength = 2.5 //250% normal speed
+	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
 	acid_strength = 0.4 //20% normal speed
+	icon_state = "acid_strong"
 
 /obj/effect/xenomorph/acid/New(loc, target)
 	..(loc)
@@ -370,10 +405,7 @@
 				contents.Remove(A)
 				A.loc = get_turf(src)
 
-/mob/living/carbon/Xenomorph/verb/toggle_darkness()
-	set name = "Toggle Darkvision"
-	set category = "Alien"
-
+/mob/living/carbon/Xenomorph/proc/toggle_nightvision()
 	if(see_invisible == SEE_INVISIBLE_MINIMUM)
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO //Turn it off.
 		see_in_dark = 4
@@ -457,6 +489,7 @@
 		visible_message("<span class='danger'>\The [src] lashes out with its tail but misses \the [M]!", \
 		"<span class='danger'>You snap your tail out but miss \the [M]!</span>")
 		readying_tail = 0
+		hud_used.tail_intent.icon_state = "tail_unready"
 		return
 
 	//Selecting feet? Drop the damage and trip them.
@@ -528,7 +561,7 @@
 	var/obj/effect/alien/resin/alien_construct = locate() in current_turf
 	var/obj/structure/stool/chair = locate() in current_turf
 
-	if(alien_door || alien_construct || chair)
+	if(alien_door || alien_construct || chair || istype(current_turf, /turf/simulated/wall/resin))
 		src << "<span class='warning'>There's something built here already.</span>"
 		return
 

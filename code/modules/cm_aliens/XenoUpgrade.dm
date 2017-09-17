@@ -165,7 +165,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.9
-					spit_type = 0
+
 				if("Spitter")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
@@ -182,7 +182,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.6
-					spit_type = 0
+
 				if("Boiler")
 					melee_damage_lower = 20
 					melee_damage_upper = 25
@@ -215,7 +215,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 8
 					tackle_chance = 75
 					speed = 0.0
-					spit_type = 0
+
 					aura_strength = 2.5
 				if("Drone")
 					melee_damage_lower = 12
@@ -370,7 +370,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 60
 					speed = -1.0
-					spit_type = 0
+
 				if("Spitter")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
@@ -387,7 +387,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 70
 					speed = -0.7
-					spit_type = 0
+
 				if("Boiler")
 					melee_damage_lower = 30
 					melee_damage_upper = 35
@@ -420,7 +420,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 9
 					tackle_chance = 80
 					speed = -0.1
-					spit_type = 0
+
 					aura_strength = 3.5
 				if("Drone")
 					melee_damage_lower = 12
@@ -576,7 +576,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 60
 					speed = -1.1
-					spit_type = 0
+
 				if("Spitter")
 					src << "<span class='xenodanger'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>"
 					melee_damage_lower = 35
@@ -593,7 +593,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 7
 					tackle_chance = 75
 					speed = -0.8
-					spit_type = 0
+
 				if("Boiler")
 					src << "<span class='xenodanger'>You are the master of ranged artillery. Bring death from above.</span>"
 					melee_damage_lower = 35
@@ -626,7 +626,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 10
 					tackle_chance = 85
 					speed = -0.2
-					spit_type = 0
 					aura_strength = 4.5
 				if("Drone")
 					melee_damage_lower = 20

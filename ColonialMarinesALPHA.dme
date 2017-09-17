@@ -824,6 +824,7 @@
 #include "code\modules\clothing\under\jobs\security.dm"
 #include "code\modules\cm_aliens\attack_alien.dm"
 #include "code\modules\cm_aliens\Xeno_login.dm"
+#include "code\modules\cm_aliens\XenoAbilities.dm"
 #include "code\modules\cm_aliens\XenoAttacks.dm"
 #include "code\modules\cm_aliens\XenoDamage.dm"
 #include "code\modules\cm_aliens\XenoEmbryo.dm"

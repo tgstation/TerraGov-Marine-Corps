@@ -8,6 +8,9 @@
 	static_inventory += using
 	move_intent = using
 
+	using = new /obj/screen/xenonightvision()
+	infodisplay += using
+
 	healths = new /obj/screen/healths/alien()
 	infodisplay += healths
 

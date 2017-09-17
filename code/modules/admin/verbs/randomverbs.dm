@@ -646,6 +646,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		usr << "<span class='warning'>[MAIN_AI_SYSTEM] is not responding. It may be offline or destroyed.</span>"
 
+
+/client/proc/show_hive_status()
+	set name = "Show Hive Status"
+	set desc = "Check the status of the hive."
+	set category = "Special Verbs"
+	if(!holder)
+		src << "Only administrators may use this command."
+		return
+
+	check_hive_status()
+
+
 /client/proc/cmd_admin_xeno_report()
 	set category = "Special Verbs"
 	set name = "Create Queen Mother Report"

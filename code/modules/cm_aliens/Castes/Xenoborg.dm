@@ -25,14 +25,15 @@
 	is_robotic = 1
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	var/gun_on = 0
-
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/activable/fire_cannon,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
-		/mob/living/carbon/Xenomorph/proc/Pounce,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/Xenoborg/proc/fire_cannon
 		)
 
 	New()
@@ -42,10 +43,9 @@
 		add_language("Tradeband")
 
 
-/mob/living/carbon/Xenomorph/Xenoborg/proc/fire_cannon(var/atom/T)
-	set name = "Fire Cannon (5)"
-	set desc = "Blast a sucker! Use middle mouse button for best results."
-	set category = "Alien"
+/mob/living/carbon/Xenomorph/Xenoborg/proc/fire_cannon(atom/T)
+	if(!T)
+		return
 
 	if(!check_state())
 		return
@@ -59,33 +59,21 @@
 
 	if(!check_plasma(5))
 		return
+	use_plasma(5)
 
-	if(!T)
-		var/list/victims = list()
-		for(var/mob/living/carbon/human/C in oview(7))
-			if(C && istype(C) && !C.stat && !C.lying )
-				victims += C
-		T = input(src, "Who should you shoot towards?") as null|anything in victims
+	var/turf/M = get_turf(src)
+	var/turf/U = get_turf(T)
+	if (!istype(M) || !istype(U))
+		return
+	face_atom(T)
 
-	if(T && !isnull(T.loc))
+	visible_message("<span class='xenowarning'>\The [src] fires its autocannon!</span>", \
+	"<span class='xenowarning'>You fire your autocannon!</span>" )
+	playsound(src.loc,'sound/weapons/gun_smg.ogg', 75, 1)
+	usedPounce = 1
+	spawn(1)
+		usedPounce = 0
 
-		var/turf/M = get_turf(src)
-		var/turf/U = get_turf(T)
-		if (!istype(M) || !istype(U))
-			return
-		face_atom(T)
-
-		visible_message("<span class='xenowarning'>\The [src] fires its autocannon!</span>", \
-		"<span class='xenowarning'>You fire your autocannon!</span>" )
-		playsound(src.loc,'sound/weapons/gun_smg.ogg', 75, 1)
-		usedPounce = 1
-		spawn(1)
-			usedPounce = 0
-
-	else
-		storedplasma += 5 //Since we already stole 5
-		src << "<span class='warning'>You see nothing to fire at!</span>"
-	return
 
 /mob/living/carbon/Xenomorph/Xenoborg/emp_act(severity)
 	visible_message("<span class='danger'>\The [src] sparks and shudders!</span>", \

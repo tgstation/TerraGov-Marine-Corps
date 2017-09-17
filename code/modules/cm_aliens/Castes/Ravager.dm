@@ -36,46 +36,41 @@
 	upgrade = 0
 	pixel_x = -16
 
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/charge,
+		)
+
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/Ravager/proc/charge,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
-/mob/living/carbon/Xenomorph/Ravager/proc/charge(var/atom/T)
-	set name = "Charge (20)"
-	set desc = "Charge towards something! Raaaugh!"
-	set category = "Alien"
+/mob/living/carbon/Xenomorph/Ravager/proc/charge(atom/T)
+	if(!T) return
 
 	if(!check_state())
 		return
 
-	if(!usedPounce)
-		if(!T)
-			var/list/victims = list()
-			for(var/mob/living/carbon/human/C in oview(6))
-				if(C && istype(C) && !C.lying && !C.stat)
-					victims += C
-			T = input(src, "Who should you charge towards?") as null|anything in victims
+	if(usedPounce)
+		return
 
-		if(T)
-			if(!check_plasma(20))
-				return
-			visible_message("<span class='danger'>[src] charges towards \the [T]!</span>", \
-			"<span class='danger'>You charge towards \the [T]!</span>" )
-			emote("roar") //heheh
-			usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
-			if(readying_tail)
-				readying_tail = 0
-			throw_at(T, CHARGEDISTANCE, CHARGESPEED, src)
-			spawn(CHARGECOOLDOWN)
-				usedPounce = 0
-				src << "<span class='notice'>Your exoskeleton quivers as you get ready to charge again.</span>"
+	if(!check_plasma(20))
+		return
+	visible_message("<span class='danger'>[src] charges towards \the [T]!</span>", \
+	"<span class='danger'>You charge towards \the [T]!</span>" )
+	emote("roar") //heheh
+	usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+	use_plasma(20)
+	if(readying_tail)
+		readying_tail = 0
+	throw_at(T, CHARGEDISTANCE, CHARGESPEED, src)
+	spawn(CHARGECOOLDOWN)
+		usedPounce = 0
+		src << "<span class='notice'>Your exoskeleton quivers as you get ready to charge again.</span>"
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
 
-		else
-			src << "<span class='warning'>You see nothing to charge at!</span>"
-
-	return
 
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
@@ -106,14 +101,14 @@
 	maxplasma = 200
 	upgrade = 3
 	var/used_fire_breath = 0
+	actions = list(
+		/datum/action/xeno_action/activable/breathe_fire,
+		)
 
 	New()
 		..()
-		verbs -= /mob/living/carbon/Xenomorph/Ravager/proc/charge
 		verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
-		verbs -= /mob/living/carbon/Xenomorph/proc/regurgitate
 		verbs -= /mob/living/carbon/Xenomorph/verb/Upgrade
-		verbs += /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire
 		spawn(15) name = "Ravenger"
 
 

@@ -395,6 +395,10 @@ updatehealth()
 			readying_tail = 0
 			src << "<span class='warning'>You feel your tail relax.</span>"
 
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
 /mob/living/carbon/Xenomorph/gib()

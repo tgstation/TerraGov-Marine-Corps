@@ -540,7 +540,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>")
 	if(do_after(M, 80, FALSE))
-		if(!src)
+		if(!loc)
 			return 0 //Someone already destroyed it, do_after should check this but best to be safe
 		if(M.loc != cur_loc)
 			return 0 //Make sure we're still there
