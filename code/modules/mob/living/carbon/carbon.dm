@@ -47,11 +47,11 @@
 					M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
 			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
-			if(prob(src.getBruteLoss() - 50))
+			if(prob(max(getBruteLoss() - 80,0)))
 				for(var/atom/movable/A in stomach_contents)
 					A.loc = loc
 					stomach_contents.Remove(A)
-				src.gib()
+				gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
 		L.chest_burst(src)
