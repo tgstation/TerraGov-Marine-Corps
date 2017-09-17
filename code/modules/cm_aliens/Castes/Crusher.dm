@@ -35,14 +35,10 @@
 	pixel_x = -16
 	pixel_y = -3
 
-	has_tail_attack = FALSE
-
 	actions = list(
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
-		)
-	inherent_verbs = list(
 		)
 
 

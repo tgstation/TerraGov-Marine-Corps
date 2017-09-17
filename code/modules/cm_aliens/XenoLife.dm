@@ -50,6 +50,8 @@
 	if(health > -100 && health < 0) //Unconscious
 		if(readying_tail)
 			readying_tail = 0
+			selected_ability.button.icon_state = "template"
+			selected_ability = null
 		blinded = 1
 		see_in_dark = 5
 		KnockOut(4)
@@ -393,6 +395,8 @@ updatehealth()
 			src << "<span class='warning'>You have run out of pheromones and stopped emitting pheromones.</span>"
 		if(readying_tail)
 			readying_tail = 0
+			selected_ability.button.icon_state = "template"
+			selected_ability = null
 			src << "<span class='warning'>You feel your tail relax.</span>"
 
 	for(var/X in actions)

@@ -21,7 +21,6 @@
 	var/obj/screen/alien_plasma_display
 	var/obj/screen/locate_queen
 	var/obj/screen/pred_power_icon
-	var/obj/screen/tail_intent
 
 	var/obj/screen/module_store_icon
 
@@ -102,7 +101,6 @@
 	alien_plasma_display = null
 	locate_queen = null
 	pred_power_icon = null
-	tail_intent = null
 
 	module_store_icon = null
 

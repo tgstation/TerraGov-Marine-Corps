@@ -14,13 +14,13 @@
 
 
 /mob/living/carbon/Xenomorph/MiddleClickOn(atom/A)
-	if(selected_ability)
+	if(selected_ability && middle_mouse_toggle)
 		selected_ability.use_ability(A)
 		return
 	..()
 
 /mob/living/carbon/Xenomorph/ShiftClickOn(atom/A)
-	if(selected_ability)
+	if(selected_ability && !middle_mouse_toggle)
 		selected_ability.use_ability(A)
 		return
 	..()

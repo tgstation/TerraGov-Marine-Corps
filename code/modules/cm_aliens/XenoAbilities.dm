@@ -38,10 +38,39 @@
 
 
 
+/datum/action/xeno_action/activable/tail_attack
+	name = "Tail Attack (20)(drain while active)"
+	action_icon_state = "tail_attack"
+	plasma_cost = 20
+	ability_name = "ready tail attack"
+
+/datum/action/xeno_action/activable/tail_attack/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.readying_tail || X.storedplasma >= plasma_cost))
+		return TRUE
+
+/datum/action/xeno_action/activable/tail_attack/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.tail_attack(A)
+
+/datum/action/xeno_action/activable/tail_attack/on_activation()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.readying_tail = 1
+	X.visible_message("<span class='warning'>\The [X]'s tail starts to coil like a spring.</span>", \
+	"<span class='notice'>You begin to ready your tail for a vicious attack. This will drain plasma to keep active.</span>")
+
+
+/datum/action/xeno_action/activable/tail_attack/on_deactivation()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.readying_tail = 0
+	X.visible_message("<span class='notice'>\The [X]'s tail relaxes.</span>", \
+	"<span class='notice'>You relax your tail. You are no longer readying a tail attack.</span>")
+
+
 
 /datum/action/xeno_action/shift_spits
 	name = "Toggle Spit Type"
-	action_icon_state = "shift_spit_toxin"
+	action_icon_state = "shift_spit_neurotoxin"
 	plasma_cost = 0
 
 
@@ -117,93 +146,19 @@
 
 
 
-
-
-/datum/action/xeno_action/secrete_resin
+/datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin (75)"
 	action_icon_state = "secrete_resin"
-	plasma_cost = 75
+	ability_name = "secrete resin"
+	var/resin_plasma_cost = 75
 
-/datum/action/xeno_action/secrete_resin/action_activate()
+/datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
-	if(!X.check_plasma(75))
-		return
-	var/turf/current_turf = X.loc
+	X.build_resin(A, resin_plasma_cost)
 
-	if(!istype(current_turf) || !current_turf.is_weedable())
-		X << "<span class='warning'>You can't do that here.</span>"
-		return
-
-	var/area/AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		src << "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>"
-		return
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-
-	if(!alien_weeds)
-		X << "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>"
-		return
-
-	if(!X.check_alien_construction(current_turf))
-		return
-
-	var/wait_time = 5
-	if(X.caste == "Drone")
-		wait_time = 10
-
-	if(!do_after(X, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
-		return
-	if(!X.check_state())
-		return
-	if(!X.check_plasma(75))
-		return
-	current_turf = get_turf(X)
-	if(!istype(current_turf) || !current_turf.is_weedable())
-		return
-
-	AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1 || istype(AR,/area/shuttle/drop2/lz2)) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		return
-
-	alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		return
-
-	if(!X.check_alien_construction(current_turf))
-		return
-
-	X.use_plasma(75)
-	X.visible_message("<span class='xenonotice'>\The [X] regurgitates a thick substance and shapes it into \a [X.selected_resin]!</span>", \
-	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [X.selected_resin].</span>")
-	playsound(X.loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
-
-	switch(X.selected_resin)
-		if("resin door")
-			if (X.caste == "Hivelord")
-				new /obj/structure/mineral_door/resin/thick(current_turf)
-			else
-				new /obj/structure/mineral_door/resin(current_turf)
-		if("resin wall")
-			if (X.caste == "Hivelord")
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/thick)
-			else
-				current_turf.ChangeTurf(/turf/simulated/wall/resin)
-		if("resin membrane")
-			if (X.caste == "Hivelord")
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane/thick)
-			else
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane)
-
-		if("resin nest")
-			new /obj/structure/stool/bed/nest(current_turf)
-		if("sticky resin")
-			new /obj/effect/alien/resin/sticky(current_turf)
-
-
-
+/datum/action/xeno_action/activable/secrete_resin/hivelord
+	name = "Secrete Resin (100)"
+	resin_plasma_cost = 100
 
 
 
@@ -323,6 +278,35 @@
 		X.current_aura = choice
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
 		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
+
+
+
+
+
+
+/datum/action/xeno_action/activable/transfer_plasma
+	name = "Transfer Plasma"
+	action_icon_state = "transfer_plasma"
+	plasma_cost = 0
+	ability_name = "transfer plasma"
+	var/plasma_transfer_amount = 50
+	var/transfer_delay = 20
+	var/max_range = 2
+
+/datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.xeno_transfer_plasma(A, plasma_transfer_amount, transfer_delay, max_range)
+
+/datum/action/xeno_action/activable/transfer_plasma/hivelord
+	plasma_transfer_amount = 200
+	transfer_delay = 5
+	max_range = 7
+
+
+
+
+
+
 
 
 
@@ -675,7 +659,7 @@
 		return
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(7, X))
-		if(possible_target == X) continue
+		if(possible_target == X || !possible_target.client) continue
 		target_list += possible_target
 
 	var/mob/living/M = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list

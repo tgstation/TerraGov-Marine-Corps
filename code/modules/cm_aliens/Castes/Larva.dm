@@ -24,7 +24,6 @@
 	crit_health = -25
 	gib_chance = 25
 	innate_healing = TRUE //heals even outside weeds so you're not stuck unable to evolve when hiding on the ship wounded.
-	has_tail_attack = FALSE
 	actions = list(
 		/datum/action/xeno_action/xenohide,
 		)

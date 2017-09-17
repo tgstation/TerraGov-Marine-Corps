@@ -799,9 +799,9 @@
 
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)
-		visible_message("<span class='danger'>The [src] suddenly collapses!</span>")
+		visible_message("<span class='danger'>[src] suddenly collapses!</span>")
 		if(other && isturf(other.loc))
-			visible_message("<span class='danger'>The [other] suddenly collapses!</span>")
+			visible_message("<span class='danger'>[other] suddenly collapses!</span>")
 			cdel(other)
 			other = null
 		cdel(src)

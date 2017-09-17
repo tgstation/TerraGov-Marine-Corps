@@ -38,12 +38,10 @@
 
 	actions = list(
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/activable/charge,
 		)
 
-	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/tail_attack
-		)
 
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(atom/T)
 	if(!T) return
@@ -61,8 +59,6 @@
 	emote("roar") //heheh
 	usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	use_plasma(20)
-	if(readying_tail)
-		readying_tail = 0
 	throw_at(T, CHARGEDISTANCE, CHARGESPEED, src)
 	spawn(CHARGECOOLDOWN)
 		usedPounce = 0

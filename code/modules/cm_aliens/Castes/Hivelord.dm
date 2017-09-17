@@ -26,17 +26,17 @@
 	aura_strength = 1 //Hivelord's aura is not extremely strong, but better than Drones. At the top, it's just a bit above a young Queen. Climbs by 0.5 to 2.5
 	actions = list(
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/secrete_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/transfer_plasma/hivelord,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
 		)
-	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		)
+
 
 
 /mob/living/carbon/Xenomorph/Hivelord/movement_delay()

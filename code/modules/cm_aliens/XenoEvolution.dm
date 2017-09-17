@@ -242,6 +242,7 @@
 		new_xeno.evolution_stored = 0
 		if(evolution_allowed)
 			new_xeno.evolution_allowed = evolution_allowed
+		new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
 
 		for(var/obj/item/W in contents) //Drop stuff
 			drop_inv_item_on_ground(W)

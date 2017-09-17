@@ -70,10 +70,6 @@
 			if(M.check_bite(src))
 				return 1
 
-			//Check for a special tail attack
-			if(M.check_tail_attack(src))
-				return 1
-
 			M.animation_attack_on(src)
 			//Somehow we will deal no damage on this attack
 			if(!damage)

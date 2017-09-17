@@ -21,13 +21,14 @@
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	actions = list(
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/secrete_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/transfer_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/emit_pheromones,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
-		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		)

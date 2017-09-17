@@ -68,8 +68,8 @@
 	. = ..()
 
 /obj/screen/action_button/proc/get_button_screen_loc(button_number)
-	var/row = round((button_number-1)/12) //12 is max amount of buttons per row
-	var/col = ((button_number - 1)%(12)) + 1
+	var/row = round((button_number-1)/13) //13 is max amount of buttons per row
+	var/col = ((button_number - 1)%(13)) + 1
 	var/coord_col = "+[col-1]"
 	var/coord_col_offset = 4+2*col
 	var/coord_row = "[-1 - row]"
@@ -365,16 +365,6 @@
 		if("module3")
 			if(istype(usr, /mob/living/silicon/robot))
 				usr:toggle_module(3)
-
-		if("ready tail")
-			if(istype(usr,/mob/living/carbon/Xenomorph))
-				var/mob/living/carbon/Xenomorph/X = usr
-				X.tail_attack()
-				if(X.readying_tail)
-					icon_state = "tail_ready"
-				else
-					icon_state = "tail_unready"
-
 
 		if("Activate weapon attachment")
 			var/obj/item/weapon/gun/G = usr.get_held_item()
