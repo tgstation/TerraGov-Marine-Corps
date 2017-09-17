@@ -232,6 +232,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	not_damageable = 1
 	not_deconstructable = 1
+	unacidable = 1
 	health = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/reinforced/almayer/colony

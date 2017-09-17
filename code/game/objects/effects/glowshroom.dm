@@ -15,14 +15,11 @@
 	var/delay = 1200
 	var/floor = 0
 	var/yield = 3
-	var/spreadChance = 40
-	var/spreadIntoAdjacentChance = 60
 	var/evolveChance = 2
 	var/lastTick = 0
 	var/spreaded = 1
 
 /obj/effect/glowshroom/single
-	spreadChance = 0
 
 /obj/effect/glowshroom/New()
 
@@ -44,62 +41,12 @@
 	else //if on the floor, glowshroom on-floor sprite
 		icon_state = "glowshroomf"
 
-	processing_objects += src
-
 	SetLuminosity(round(potency/15))
 	lastTick = world.timeofday
 
 /obj/effect/glowshroom/Dispose()
-	processing_objects -= src
 	SetLuminosity(0)
 	. = ..()
-
-/obj/effect/glowshroom/process()
-	if(!spreaded)
-		return
-
-	if(((world.timeofday - lastTick) > delay) || ((world.timeofday - lastTick) < 0))
-		lastTick = world.timeofday
-		spreaded = 0
-
-		for(var/i=1,i<=yield,i++)
-			if(prob(spreadChance))
-				var/list/possibleLocs = list()
-				var/spreadsIntoAdjacent = 0
-
-				if(prob(spreadIntoAdjacentChance))
-					spreadsIntoAdjacent = 1
-
-				for(var/turf/simulated/floor/plating/airless/asteroid/earth in view(3,src))
-					if(spreadsIntoAdjacent || !locate(/obj/effect/glowshroom) in view(1,earth))
-						possibleLocs += earth
-
-				if(!possibleLocs.len)
-					break
-
-				var/turf/newLoc = pick(possibleLocs)
-
-				var/shroomCount = 0 //hacky
-				var/placeCount = 1
-				for(var/obj/effect/glowshroom/shroom in newLoc)
-					shroomCount++
-				for(var/wallDir in cardinal)
-					var/turf/isWall = get_step(newLoc,wallDir)
-					if(isWall.density)
-						placeCount++
-				if(shroomCount >= placeCount)
-					continue
-
-				var/obj/effect/glowshroom/child = new /obj/effect/glowshroom(newLoc)
-				child.potency = potency
-				child.yield = yield
-				child.delay = delay
-				child.endurance = endurance
-
-				spreaded++
-
-		if(prob(evolveChance)) //very low chance to evolve on its own
-			potency += rand(4,6)
 
 /obj/effect/glowshroom/proc/CalcDir(turf/location = loc)
 	set background = 1
