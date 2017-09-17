@@ -14,17 +14,20 @@
 	maxplasma = 300
 	evolution_threshold = 200
 	spit_delay = 30
+	spit_types = list(/datum/ammo/xeno/toxin)
 	caste_desc = "A weak ranged combat alien."
 	evolves_to = list("Spitter")
 	armor_deflection = 15
 	tier = 1
 	upgrade = 0
 	speed = -0.8
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/xeno_spit,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/proc/neurotoxin //Weakest version
 		)
 

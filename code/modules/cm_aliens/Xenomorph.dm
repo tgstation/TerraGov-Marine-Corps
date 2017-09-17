@@ -79,15 +79,13 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/has_spat = 0
 	var/spit_delay = 60 //Delay timer for spitting
 	var/has_screeched = 0
-	var/middle_mouse_toggle = 1 //This toggles middle mouse clicking for certain abilities.
-	var/shift_mouse_toggle = 0 //The same, but for shift clicking.
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/armor_deflection = 0 //Chance of deflecting projectiles.
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
 	var/fire_immune = 0 //Boolean
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
-	var/datum/ammo/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
+	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
 	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
 	var/readying_tail = 0 //'charges' up to 10, next attack does a tail stab.
@@ -102,7 +100,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/recovery_aura = 0
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
 	var/adjust_size_y = 1
-	var/spit_type = 0 //0: normal, 1: heavy
+	var/list/spit_types //list of datum projectile types the xeno can use.
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/autopsied = 0
@@ -118,6 +116,10 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/emotedown = 0
 	var/evolve_busy = 0
 
+	var/datum/action/xeno_action/activable/selected_ability
+	var/selected_resin = "resin wall" //which resin structure to build when we secrete resin
+	var/has_tail_attack = TRUE
+
 	//Naming variables
 	var/caste = ""
 	var/upgrade_name = "Young"
@@ -126,9 +128,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
-	var/list/inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate
-		)
+	var/list/inherent_verbs = list()
 
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
@@ -147,17 +147,15 @@ var/global/hive_orders = "" //What orders should the hive have
 	add_language("Xenomorph") //xenocommon
 	add_language("Hivemind") //hivemind
 	add_inherent_verbs()
+	add_abilities()
 
 	sight |= SEE_MOBS
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-	switch(type)
-		if(/mob/living/carbon/Xenomorph/Praetorian)
-			ammo = ammo_list[/datum/ammo/xeno/toxin/heavy]
-		if(/mob/living/carbon/Xenomorph/Spitter)
-			ammo = ammo_list[/datum/ammo/xeno/toxin/medium]
-		else ammo = ammo_list[/datum/ammo/xeno/toxin]
+
+	if(spit_types && spit_types.len)
+		ammo = ammo_list[spit_types[1]]
 
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R
@@ -170,11 +168,6 @@ var/global/hive_orders = "" //What orders should the hive have
 		var/matrix/M = matrix()
 		M.Scale(adjust_size_x, adjust_size_y)
 		transform = M
-
-	if(hud_used && hud_used.healths)
-		hud_used.healths.icon_state = "health_full"
-	if(hud_used && hud_used.alien_plasma_display)
-		hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
 		generate_name()

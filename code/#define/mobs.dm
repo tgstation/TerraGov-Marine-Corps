@@ -327,3 +327,10 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define SCANNER 1
 #define PANDEMIC 2
+
+
+
+
+// xeno abilities cooldown
+
+#define CRUSHER_STOMP_COOLDOWN 200

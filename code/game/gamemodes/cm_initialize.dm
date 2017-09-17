@@ -347,6 +347,8 @@ datum/game_mode/proc/initialize_special_clamps()
 
 		if(!xeno_bypass_timer)
 			var/deathtime = world.time - xeno_candidate.timeofdeath
+			if(istype(xeno_candidate, /mob/new_player))
+				deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 			var/deathtimeminutes = round(deathtime / 600)
 			var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 			if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )

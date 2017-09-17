@@ -37,18 +37,21 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	xeno_explosion_resistance = 1 //some resistance against explosion stuns.
 	var/breathing_counter = 0
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/secrete_resin,
+		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/emit_pheromones,
+		/datum/action/xeno_action/activable/gut,
+		/datum/action/xeno_action/psychic_whisper,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/plant,
-		/mob/living/carbon/Xenomorph/Queen/proc/lay_egg,
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/psychic_whisper,
-		/mob/living/carbon/Xenomorph/Queen/proc/gut,
-		/mob/living/carbon/Xenomorph/proc/build_resin,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/Queen/proc/screech,
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/toggle_auras,
 		/mob/living/carbon/Xenomorph/Queen/proc/set_orders,
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
@@ -76,189 +79,9 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //Prevents resetting queen death timer.
 
-/mob/living/carbon/Xenomorph/Queen/proc/lay_egg()
 
-	set name = "Lay Egg (500)"
-	set desc = "Lay an egg to produce huggers to impregnate prey with."
-	set category = "Alien"
 
-	if(!check_state())
-		return
 
-	var/turf/current_turf = get_turf(src)
-	if(!current_turf || !istype(current_turf))
-		return
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-
-	if(!alien_weeds)
-		src << "<span class='warning'>Your eggs wouldn't grow well enough here. Lay them on resin.</span>"
-		return
-
-	if(!check_alien_construction(current_turf))
-		return
-
-	if(check_plasma(500)) //New plasma check proc, removes/updates plasma automagically
-		visible_message("<span class='xenowarning'>\The [src] has laid an egg!</span>", \
-		"<span class='xenowarning'>You have laid an egg!</span>")
-		new /obj/effect/alien/egg(current_turf)
-	return
-
-/obj/royaljelly
-	name = "royal jelly"
-	desc = "A greenish-yellow blob of slime that encourages xenomorph evolution."
-	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "jelly"
-	anchored = 1
-	opacity = 0
-	density = 0
-	layer = 3.4 //On top of most things
-
-/obj/royaljelly/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(!isXeno(M) || isXenoLarva(M))
-		return
-
-	if(M.evolution_allowed)
-		M << "<span class='warning'>Royal jelly is already seeping in your veins.</span>"
-		return
-
-	if(!M.evolution_threshold)
-		M << "<span class='warning'>The jelly gives off a revulsing smell. Something instinctively draws you away from it.</span>"
-		return
-
-	M.evolution_allowed = 1
-	visible_message("<span class='xenonotice'>\The [M] greedily gulps down \the [src].", \
-	"<span class='xenonotice'>You greedily gulp down \the [src].")
-	cdel(src)
-
-/mob/living/carbon/Xenomorph/Queen/proc/produce_jelly()
-
-	set name = "Produce Jelly (350)"
-	set desc = "Squirt out some royal jelly for hive advancement."
-	set category = "Alien"
-
-	if(!check_state())
-		return
-
-	var/turf/current_turf = get_turf(src)
-	if(!current_turf || !istype(current_turf))
-		return
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-
-	if(!alien_weeds)
-		src << "<span class='warning'>Your jelly would dry and dirty instantly there. Squirt it on resin.</span>"
-		return
-
-	if(!check_alien_construction(current_turf))
-		return
-
-	if(check_plasma(350)) //New plasma check proc, removes/updates plasma automagically
-		visible_message("<span class='xenonotice'>\The [src] squirts out a greenish blob of jelly.</span>", \
-		"<span class='xenonotice'>You squirt out a greenish blob of jelly.</span>")
-		new /obj/royaljelly(current_turf)
-	return
-
-/mob/living/carbon/Xenomorph/Queen/proc/screech()
-	set name = "Screech (250)"
-	set desc = "Emit a screech that stuns prey."
-	set category = "Alien"
-
-	if(!check_state())
-		return
-
-	if(has_screeched)
-		src << "<span class='warning'>You are not ready to screech again.</span>"
-		return
-
-	if(!check_plasma(250))
-		return
-
-	has_screeched = 1
-	spawn(500)
-		has_screeched = 0
-		src << "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>"
-
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	// playsound(loc, 'sound/voice/alien_cena.ogg', 75, 0)  //XMAS ONLY
-	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
-	create_shriekwave() //Adds the visual effect. Wom wom wom
-
-	for(var/mob/M in view())
-		if(M && M.client)
-			if(isXeno(M))
-				shake_camera(M, 10, 1)
-			else
-				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
-
-	for(var/mob/living/carbon/human/M in oview())
-		if(istype(M.wear_ear, /obj/item/clothing/ears/earmuffs))
-			continue
-		var/dist = get_dist(src,M)
-		if(dist <= 4)
-			M << "<span class='danger'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
-			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
-			M.KnockDown(4)
-			if(!M.ear_deaf)
-				M.ear_deaf += 8 //Deafens them temporarily
-		else if(dist >= 5 && dist < 7)
-			M.stunned += 3
-			M << "<span class='danger'>The roar shakes your body to the core, freezing you in place!</span>"
-	return
-
-/mob/living/carbon/Xenomorph/Queen/proc/gut()
-	set category = "Alien"
-	set name = "Gut (200)"
-	set desc = "While pulling someone, rip their guts out or tear them apart."
-
-	if(!check_state())
-		return
-
-	if(last_special > world.time)
-		return
-
-	var/mob/living/carbon/victim = src.pulling
-	if(!victim || isnull(victim) || !istype(victim))
-		src << "<span class='warning'>You're not pulling anyone that can be gutted.</span>"
-		return
-
-	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
-		var/mob/living/carbon/human/H = victim
-		if(victim.stat != DEAD) //Not dead yet.
-			src << "<span class='xenowarning'>The host and child are still alive!</span>"
-			return
-		else if(istype(H) && ( world.time <= H.timeofdeath + H.revive_grace_period )) //Dead, but the host can still hatch, possibly.
-			src << "<span class='xenowarning'>The child may still hatch! Not yet!</span>"
-			return
-
-	if(isXeno(victim))
-		src << "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>"
-		return
-
-	var/turf/cur_loc = victim.loc
-	if(!cur_loc)
-		return //logic
-	if(!cur_loc || !istype(cur_loc))
-		return
-
-	if(!check_plasma(200))
-		return
-
-	last_special = world.time + 50
-
-	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_after(src, 80, FALSE))
-		if(!victim || isnull(victim))
-			return
-		if(victim.loc != cur_loc)
-			return
-		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
-		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching \him apart!</span>")
-		emote("roar")
-		attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [victim.name] ([victim.ckey])</font>")
-		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>was gibbed by [src.name] ([src.ckey])</font>")
-		victim.gib() //Splut
 
 /mob/living/carbon/Xenomorph/Queen/proc/set_orders()
 	set category = "Alien"
@@ -271,7 +94,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		return
 	if(last_special > world.time)
 		return
-
+	storedplasma -= 50
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
 
 	if(txt)
@@ -282,12 +105,14 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 	last_special = world.time + 150
 
+
 /mob/living/carbon/Xenomorph/Queen/proc/hive_Message()
 	set category = "Alien"
 	set name = "Word of the Queen (50)"
 	set desc = "Send a message to all aliens in the hive that is big and visible"
 	if(!check_plasma(50))
 		return
+	storedplasma -= 50
 	if(health <= 0)
 		src << "<span class='warning'>You can't do that while unconcious.</span>"
 		return 0
@@ -309,3 +134,134 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	log_admin("[key_name(src)] has created a Word of the Queen report:")
 	log_admin("[queensWord]")
 	message_admins("[key_name_admin(src)] has created a Word of the Queen report.", 1)
+
+
+/mob/living/carbon/Xenomorph/proc/claw_toggle()
+	set name = "Permit/Disallow Slashing"
+	set desc = "Allows you to permit the hive to harm."
+	set category = "Alien"
+
+	if(stat)
+		src << "<span class='warning'>You can't do that now.</span>"
+		return
+
+	if(pslash_delay)
+		src << "<span class='warning'>You must wait a bit before you can toggle this again.</span>"
+		return
+
+	spawn(300)
+		pslash_delay = 0
+
+	pslash_delay = 1
+
+
+	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
+
+	if(choice == "Allowed")
+		src << "<span class='xenonotice'>You allow slashing.</span>"
+		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!", 3)
+		slashing_allowed = 1
+	else if(choice == "Restricted - Less Damage")
+		src << "<span class='xenonotice'>You restrict slashing.</span>"
+		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will only slash when hurt.", 3)
+		slashing_allowed = 2
+	else if(choice == "Forbidden")
+		src << "<span class='xenonotice'>You forbid slashing entirely.</span>"
+		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.", 3)
+		slashing_allowed = 0
+
+/mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
+	if(!check_state())
+		return
+
+	if(has_screeched)
+		src << "<span class='warning'>You are not ready to screech again.</span>"
+		return
+
+	if(!check_plasma(250))
+		return
+
+	has_screeched = 1
+	use_plasma(250)
+	spawn(500)
+		has_screeched = 0
+		src << "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>"
+		for(var/Z in actions)
+			var/datum/action/A = Z
+			A.update_button_icon()
+	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	// playsound(loc, 'sound/voice/alien_cena.ogg', 75, 0)  //XMAS ONLY
+	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
+	create_shriekwave() //Adds the visual effect. Wom wom wom
+
+	for(var/mob/M in view())
+		if(M && M.client)
+			if(isXeno(M))
+				shake_camera(M, 10, 1)
+			else
+				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+
+	for(var/mob/living/carbon/human/M in oview(7, src))
+		if(istype(M.wear_ear, /obj/item/clothing/ears/earmuffs))
+			continue
+		var/dist = get_dist(src,M)
+		if(dist <= 4)
+			M << "<span class='danger'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
+			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
+			M.KnockDown(4)
+			if(!M.ear_deaf)
+				M.ear_deaf += 8 //Deafens them temporarily
+		else if(dist >= 5 && dist < 7)
+			M.stunned += 3
+			M << "<span class='danger'>The roar shakes your body to the core, freezing you in place!</span>"
+
+
+
+/mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
+
+	if(!iscarbon(A))
+		return
+
+	var/mob/living/carbon/victim = A
+
+	if(!check_state())
+		return
+
+	if(last_special > world.time)
+		return
+
+	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
+		var/mob/living/carbon/human/H = victim
+		if(victim.stat != DEAD) //Not dead yet.
+			src << "<span class='xenowarning'>The host and child are still alive!</span>"
+			return
+		else if(istype(H) && ( world.time <= H.timeofdeath + H.revive_grace_period )) //Dead, but the host can still hatch, possibly.
+			src << "<span class='xenowarning'>The child may still hatch! Not yet!</span>"
+			return
+
+	if(isXeno(victim))
+		src << "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>"
+		return
+
+	var/turf/cur_loc = victim.loc
+	if(!istype(cur_loc))
+		return
+
+	if(!check_plasma(200))
+		return
+	use_plasma(200)
+	last_special = world.time + 50
+
+	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
+	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
+	if(do_mob(src, victim, 80, BUSY_ICON_CLOCK))
+		if(!victim)
+			return
+		if(victim.loc != cur_loc)
+			return
+		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
+		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching \him apart!</span>")
+		emote("roar")
+		attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [victim.name] ([victim.ckey])</font>")
+		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>was gibbed by [name] ([ckey])</font>")
+		victim.gib() //Splut

@@ -48,7 +48,7 @@
 
 
 /obj/screen/action_button
-	icon = 'icons/mob/screen1_action.dmi'
+	icon = 'icons/mob/actions.dmi'
 	icon_state = "template"
 	var/datum/action/source_action
 
@@ -59,7 +59,8 @@
 		return
 	usr.next_move = world.time + 6
 
-	source_action.action_activate()
+	if(source_action.can_use_action())
+		source_action.action_activate()
 	return 1
 
 /obj/screen/action_button/Dispose()
@@ -67,13 +68,34 @@
 	. = ..()
 
 /obj/screen/action_button/proc/get_button_screen_loc(button_number)
-	var/row = round((button_number-1)/10) //10 is max amount of buttons per row
-	var/col = ((button_number - 1)%(10)) + 1
+	var/row = round((button_number-1)/12) //12 is max amount of buttons per row
+	var/col = ((button_number - 1)%(12)) + 1
 	var/coord_col = "+[col-1]"
 	var/coord_col_offset = 4+2*col
 	var/coord_row = "[-1 - row]"
 	var/coord_row_offset = 26
 	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:[coord_row_offset]"
+
+
+
+/obj/screen/action_button/hide_toggle
+	name = "Hide Buttons"
+	icon = 'icons/mob/actions.dmi'
+	icon_state = "hide"
+	var/hidden = 0
+
+/obj/screen/action_button/hide_toggle/Click(location,control,params)
+	usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
+	hidden = usr.hud_used.action_buttons_hidden
+	if(hidden)
+		name = "Show Buttons"
+		icon_state = "show"
+	else
+		name = "Hide Buttons"
+		icon_state = "hide"
+	usr.update_action_buttons()
+
+
 
 
 
@@ -346,14 +368,13 @@
 
 		if("ready tail")
 			if(istype(usr,/mob/living/carbon/Xenomorph))
-				if(/mob/living/carbon/Xenomorph/proc/tail_attack in usr:inherent_verbs)
-					usr:tail_attack()
-					if(usr:readying_tail)
-						src.icon_state = "tail_ready"
-					else
-						src.icon_state = "tail_unready"
+				var/mob/living/carbon/Xenomorph/X = usr
+				X.tail_attack()
+				if(X.readying_tail)
+					icon_state = "tail_ready"
 				else
-					usr << "Your caste lacks the ability to do this."
+					icon_state = "tail_unready"
+
 
 		if("Activate weapon attachment")
 			var/obj/item/weapon/gun/G = usr.get_held_item()
@@ -659,6 +680,22 @@
 	icon_state = "trackoff"
 	name = "queen locator"
 	screen_loc = ui_queen_locator
+
+
+/obj/screen/xenonightvision
+	icon = 'icons/mob/screen1_alien.dmi'
+	name = "toggle night vision"
+	icon = 'icons/mob/screen1_alien.dmi'
+	icon_state = "nightvision1"
+	screen_loc = ui_alien_nightvision
+
+/obj/screen/xenonightvision/Click()
+	var/mob/living/carbon/Xenomorph/X = usr
+	X.toggle_nightvision()
+	if(icon_state == "nightvision1")
+		icon_state = "nightvision0"
+	else
+		icon_state = "nightvision1"
 
 
 /obj/screen/bodytemp

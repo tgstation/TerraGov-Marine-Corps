@@ -24,8 +24,11 @@
 	crit_health = -25
 	gib_chance = 25
 	innate_healing = TRUE //heals even outside weeds so you're not stuck unable to evolve when hiding on the ship wounded.
+	has_tail_attack = FALSE
+	actions = list(
+		/datum/action/xeno_action/xenohide,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
@@ -89,24 +92,8 @@
 	else
 		icon_state = "[state]Larva"
 
-/mob/living/carbon/Xenomorph/Larva/proc/xenohide()
-	set name = "Hide"
-	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
-	set category = "Alien"
-	if(is_mob_incapacitated() || lying || buckled)
-		src << "<span class='warning'>You cannot do this in your current state.</span>"
-		return
-	if(layer != TURF_LAYER + 0.75)
-		layer = TURF_LAYER + 0.75
-		src << "<span class='notice'>You are now hiding.</span>"
-	else
-		layer = MOB_LAYER
-		src << "<span class='notice'>You have stopped hiding.</span>"
+/mob/living/carbon/Xenomorph/Larva/start_pulling(atom/movable/AM)
+	return
 
-/mob/living/carbon/Xenomorph/Larva
-
-	start_pulling(var/atom/movable/AM)
-		return
-
-	pull_response(mob/puller)
-		return
+/mob/living/carbon/Xenomorph/Larva/pull_response(mob/puller)
+	return

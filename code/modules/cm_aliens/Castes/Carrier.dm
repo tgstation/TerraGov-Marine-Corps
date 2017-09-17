@@ -31,12 +31,15 @@
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
 
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/emit_pheromones,
+		/datum/action/xeno_action/activable/throw_hugger,
+		)
+
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/plant,
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/toggle_auras,
 		)
 
 	death(gibbed)
@@ -53,18 +56,14 @@
 				i--
 				chance -= 30
 
-/mob/living/carbon/Xenomorph/Carrier/can_ventcrawl()
-	return
 
 /mob/living/carbon/Xenomorph/Carrier/Stat()
 	. = ..()
 	if(.)
 		stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
 
-/mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger(var/mob/living/carbon/T)
-	set name = "Throw Facehugger"
-	set desc = "Throw one of your facehuggers. MIDDLE MOUSE BUTTON quick-throws."
-	set category = "Alien"
+/mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger(atom/T)
+	if(!T) return
 
 	if(!check_state())
 		return
@@ -75,20 +74,18 @@
 		return
 
 	if(!threw_a_hugger)
-		if(!T)
-			var/list/victims = list()
-			for(var/mob/living/carbon/human/C in oview(7))
-				victims += C
-			T = input(src, "Who should you throw at?") as null|anything in victims
-		if(T)
-			threw_a_hugger = 1
-			var/obj/item/clothing/mask/facehugger/newthrow = new()
-			huggers_cur--
-			newthrow.loc = loc
-			newthrow.throw_at(T, 4, throwspeed)
-			visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
-			"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
-			spawn(hugger_delay)
-				threw_a_hugger = 0
-		else
-			src << "<span class='warning'>You see nothing to throw this facehugger at!</span>"
+		threw_a_hugger = 1
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+		var/obj/item/clothing/mask/facehugger/newthrow = new()
+		huggers_cur--
+		newthrow.loc = loc
+		newthrow.throw_at(T, 4, throwspeed)
+		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
+		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
+		spawn(hugger_delay)
+			threw_a_hugger = 0
+			for(var/X in actions)
+				var/datum/action/A = X
+				A.update_button_icon()

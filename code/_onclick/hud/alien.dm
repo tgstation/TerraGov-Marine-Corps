@@ -66,13 +66,14 @@
 	hotkeybuttons += using
 
 	//ready tail
-	using = new /obj/screen()
-	using.name = "ready tail"
-	using.icon = 'icons/mob/screen1_alien.dmi'
-	using.icon_state = "tail_unready"
-	using.screen_loc = ui_storage1
-	using.layer = 19
-	hotkeybuttons += using
+	if(owner.has_tail_attack)
+		tail_intent = new /obj/screen()
+		tail_intent.name = "ready tail"
+		tail_intent.icon = 'icons/mob/screen1_alien.dmi'
+		tail_intent.icon_state = "tail_unready"
+		tail_intent.screen_loc = ui_storage1
+		tail_intent.layer = 19
+		hotkeybuttons += tail_intent
 
 	throw_icon = new /obj/screen/throw_catch()
 	throw_icon.icon = 'icons/mob/screen1_alien.dmi'
@@ -80,6 +81,9 @@
 
 	healths = new /obj/screen/healths/alien()
 	infodisplay += healths
+
+	using = new /obj/screen/xenonightvision()
+	infodisplay += using
 
 	alien_plasma_display = new /obj/screen()
 	alien_plasma_display.icon = 'icons/mob/screen1_alien.dmi'

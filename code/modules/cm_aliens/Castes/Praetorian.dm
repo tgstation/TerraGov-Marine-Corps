@@ -18,6 +18,7 @@
 	maxplasma = 800
 	evolution_threshold = 800
 	spit_delay = 20
+	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 	speed = 0.1
 	pixel_x = -16
 	caste_desc = "Ptui!"
@@ -29,67 +30,15 @@
 	upgrade = 0
 	aura_strength = 1.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	var/sticky_cooldown = 0
-
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/emit_pheromones,
+		/datum/action/xeno_action/shift_spits,
+		/datum/action/xeno_action/activable/xeno_spit,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/shift_spits,
-		/mob/living/carbon/Xenomorph/proc/toggle_auras,
-		/mob/living/carbon/Xenomorph/proc/neurotoxin, //Stronger version
-		/mob/living/carbon/Xenomorph/Praetorian/proc/resin_spit
 		)
 
-/mob/living/carbon/Xenomorph/Praetorian/proc/resin_spit(var/atom/T)
-	set name = "Spit Sticky Resin (250)"
-	set desc = "Spits a glob a sticky resin. Use Shift+Click for better results."
-	set category = "Alien"
-
-	if(!check_state())
-		return
-
-	if(sticky_cooldown)
-		return
-
-	if(!isturf(loc))
-		src << "<span class='warning'>You can't spit from here!</span>"
-		return
-
-	if(!T)
-		var/list/victims = list()
-		for(var/mob/living/carbon/human/C in oview(7))
-			if(!C.stat)
-				victims += C
-		victims += "Cancel"
-		T = input(src, "Who should you spit towards?") as null|anything in victims
-
-	if(!client || !loc || T == "Cancel")
-		return
-
-	if(T)
-		if(!check_plasma(250))
-			return
-
-		var/turf/current_turf = get_turf(src)
-
-		if(!current_turf)
-			return
-
-		sticky_cooldown = 1
-		visible_message("<span class='xenowarning'>[src] spits at [T]!</span>", \
-		"<span class='xenowarning'>You spit at [T]!</span>" )
-		var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
-		playsound(loc, sound_to_play, 25, 1)
-
-		var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
-		A.generate_bullet(ammo_list[/datum/ammo/xeno/sticky])
-		A.permutated += src
-		A.def_zone = get_organ_target()
-		A.fire_at(T, src, null, ammo.max_range, ammo.shell_speed)
-
-		spawn(90) //12 second cooldown.
-			sticky_cooldown = 0
-			src << "<span class='xenowarning'>You feel your resin glands refill. You can spit <B>resin</b> again.</span>"
-	else
-		src << "<span class='warning'>You have nothing to spit at!</span>"
 

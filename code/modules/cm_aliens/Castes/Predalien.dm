@@ -24,9 +24,6 @@
 	is_intelligent = TRUE
 	hardcore = TRUE
 
-	middle_mouse_toggle = TRUE
-	shift_mouse_toggle = FALSE
-
 	charge_type = 4
 	armor_deflection = 50
 	tunnel_delay = 0
@@ -48,10 +45,11 @@
 
 	#define PREDALIEN_BUTCHER_COOLDOWN 140 //14 seconds.
 	#define PREDALIEN_BUTCHER_WAIT_TIME 120 //12 seconds.
-
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/pounce,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/Pounce,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/Predalien/proc/claim_trophy
 		)
@@ -84,16 +82,6 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 
 	emote("roar")
 
-/mob/living/carbon/Xenomorph/Predalien/ClickOn(atom/A, params)
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		Pounce(A)
-		r_FAL
-	if(modifiers["shift"] && shift_mouse_toggle)
-		Pounce(A)
-		r_FAL
-	..()
 
 /mob/living/carbon/Xenomorph/Predalien/proc/claim_trophy()
 	set category = "Alien"

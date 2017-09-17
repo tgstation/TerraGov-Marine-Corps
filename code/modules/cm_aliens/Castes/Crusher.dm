@@ -35,24 +35,19 @@
 	pixel_x = -16
 	pixel_y = -3
 
+	has_tail_attack = FALSE
+
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/stomp,
+		/datum/action/xeno_action/ready_charge,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/Crusher/proc/stomp,
-		/mob/living/carbon/Xenomorph/Crusher/proc/ready_charge
 		)
 
 
-/mob/living/carbon/Xenomorph/Crusher/ClickOn(atom/A, params)
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && middle_mouse_toggle)
-		stomp(A)
-		r_FAL
-	if(modifiers["shift"] && shift_mouse_toggle)
-		stomp(A)
-		r_FAL
-	..()
 
-/mob/living/carbon/Xenomorph/Crusher/can_ventcrawl() r_FAL
+
 
 /mob/living/carbon/Xenomorph/Crusher/Stat()
 	. = ..()
@@ -85,6 +80,38 @@
 			stop_momentum() //This should disallow rapid turn bumps
 		else
 			handle_momentum()
+
+
+
+/mob/living/carbon/Xenomorph/Crusher/proc/stomp()
+
+	if(!check_state()) return
+
+	if(world.time < has_screeched + CRUSHER_STOMP_COOLDOWN) //Sure, let's use this.
+		src << "<span class='xenowarning'>You are not ready to stomp again.</span>"
+		r_FAL
+
+	if(!check_plasma(50)) return
+	has_screeched = world.time
+	use_plasma(50)
+
+	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
+	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
+	"<span class='xenodanger'>You smash into the ground!</span>")
+	create_shriekwave() //Adds the visual effect. Wom wom wom
+	var/mob/living/L
+	var/i = 5
+	for(var/mob/M in loc)
+		if(!i) break
+		if(!isXeno(M) && isliving(M))
+			L = M
+			L.take_overall_damage(40) //The same as a full charge, but no more than that.
+			L.KnockDown(rand(2, 3))
+			L << "<span class='highdanger'>You are stomped on by [src]!</span>"
+			shake_camera(L, 2, 2)
+		i--
+
+
 
 /mob/living/carbon/Xenomorph/Crusher/proc/handle_momentum()
 	if(throwing) r_FAL
@@ -375,47 +402,8 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	lastturf = null //Reset this so we can properly continue with momentum.
 	r_TRU
 
-#define CRUSHER_STOMP_COOLDOWN 200
-/mob/living/carbon/Xenomorph/Crusher/proc/stomp()
-	set name = "Stomp (50)"
-	set desc = "Strike the earth!"
-	set category = "Alien"
 
-	if(!check_state()) r_FAL
 
-	if(world.time < has_screeched + CRUSHER_STOMP_COOLDOWN) //Sure, let's use this.
-		src << "<span class='xenowarning'>You are not ready to stomp again.</span>"
-		r_FAL
-
-	if(!check_plasma(50)) r_FAL
-
-	has_screeched = world.time
-
-	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
-	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
-	"<span class='xenodanger'>You smash into the ground!</span>")
-	create_shriekwave() //Adds the visual effect. Wom wom wom
-	var/mob/living/L
-	var/i = 5
-	for(var/mob/M in loc)
-		if(!i) break
-		if(!isXeno(M) && isliving(M))
-			L = M
-			L.take_overall_damage(40) //The same as a full charge, but no more than that.
-			L.KnockDown(rand(2, 3))
-			L << "<span class='highdanger'>You are stomped on by [src]!</span>"
-			shake_camera(L, 2, 2)
-		i--
-#undef CRUSHER_STOMP_COOLDOWN
-
-/mob/living/carbon/Xenomorph/Crusher/proc/ready_charge()
-	set name = "Toggle Charging"
-	set desc = "Stop auto-charging when you move."
-	set category = "Alien"
-
-	if(!check_state()) r_FAL
-	is_charging = !is_charging
-	src << "<span class='xenonotice'>You will [is_charging ? "now" : "no longer"] charge when moving.</span>"
 
 
 /mob/living/carbon/Xenomorph/Crusher/ex_act(severity)

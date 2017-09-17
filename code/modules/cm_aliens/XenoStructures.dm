@@ -82,34 +82,37 @@
 		tforce = 10
 	else
 		tforce = AM:throwforce
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
 	take_damage(max(0, damage_cap - tforce))
 
 /turf/simulated/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
+	M.animation_attack_on(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>You claw \the [src].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
 	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 
-/turf/simulated/wall/resin/attack_animal(mob/living/M as mob)
+/turf/simulated/wall/resin/attack_animal(mob/living/M)
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
+	M.animation_attack_on(src)
 	take_damage(40)
 
-/turf/simulated/wall/resin/attack_hand()
-	usr << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
+/turf/simulated/wall/resin/attack_hand(mob/user)
+	user << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
 
-/turf/simulated/wall/resin/attack_paw()
-	return attack_hand()
+/turf/simulated/wall/resin/attack_paw(mob/user)
+	return attack_hand(user)
 
-/turf/simulated/wall/resin/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/resin/attackby(obj/item/W, mob/living/user)
 	if(!(W.flags_atom & NOBLUDGEON))
+		user.animation_attack_on(src)
 		take_damage(damage_cap - W.force)
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	return ..(W, user)
+		playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
+	return ..()
 
 /turf/simulated/wall/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group)
@@ -402,10 +405,10 @@
 		for(var/dirn in cardinal)
 			var/turf/T = get_step(src, dirn)
 
-			if(!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space))
+			if(!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival))
 				continue
 
-			if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast) || istype(T, /turf/unsimulated/floor/mars) || T.slayer > 0)
+			if(!T.is_weedable())
 				continue
 
 			for(var/obj/O in T)

@@ -283,7 +283,7 @@
 	for(var/obj/item/weapon/gun/G in src)
 		G.lock_time = world.time + 5
 		if(G.target)
-			for(var/mob/living/M in G.target)
+			for(var/mob/living/carbon/human/M in G.target)
 				if(target_can_move)
 					M << "Your character may now <b>walk</b> at the discretion of their targeter."
 					if(!target_can_run)

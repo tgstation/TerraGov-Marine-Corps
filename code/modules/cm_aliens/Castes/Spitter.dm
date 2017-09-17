@@ -14,18 +14,21 @@
 	maxplasma = 600
 	evolution_threshold = 250
 	spit_delay = 25
+	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 	speed = -0.5
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
 	armor_deflection = 15
 	tier = 2
 	upgrade = 0
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/shift_spits,
+		/datum/action/xeno_action/activable/xeno_spit,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/proc/shift_spits,
-		/mob/living/carbon/Xenomorph/proc/neurotoxin //Stronger version
 		)
 

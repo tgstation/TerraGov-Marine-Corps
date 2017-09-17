@@ -8,10 +8,11 @@
 	New(Target)
 		target = Target
 		button = new
-		var/image/IMG = image(target.icon, button, target.icon_state)
-		IMG.pixel_x = 0
-		IMG.pixel_y = 0
-		button.overlays += IMG
+		if(target)
+			var/image/IMG = image(target.icon, button, target.icon_state)
+			IMG.pixel_x = 0
+			IMG.pixel_y = 0
+			button.overlays += IMG
 		button.source_action = src
 		button.name = name
 
@@ -26,8 +27,7 @@
 	return
 
 /datum/action/proc/action_activate()
-	if(can_use_action())
-		return TRUE
+	return
 
 /datum/action/proc/can_use_action()
 	if(owner) return TRUE
@@ -55,45 +55,101 @@
 /datum/action/item_action
 	name = "Use item"
 
-	New(Target)
-		..()
+/datum/action/item_action/New(Target)
+	..()
+	var/obj/item/I = target
+	I.actions += src
+	name = "Use [I]"
+	button.name = name
+
+/datum/action/item_action/Dispose()
+	var/obj/item/I = target
+	I.actions -= src
+	..()
+
+/datum/action/item_action/action_activate()
+	if(target)
 		var/obj/item/I = target
-		I.actions += src
-		name = "Use [I]"
-		button.name = name
+		I.ui_action_click(owner)
 
-	Dispose()
-		var/obj/item/I = target
-		I.actions -= src
-		..()
+/datum/action/item_action/can_use_action()
+	if(owner && !owner.is_mob_incapacitated() && !owner.lying)
+		return TRUE
 
-	action_activate()
-		. = ..()
-		if(.)
-			if(target)
-				var/obj/item/I = target
-				I.ui_action_click(owner)
-				return TRUE
+/datum/action/item_action/update_button_icon()
+	button.overlays.Cut()
+	var/obj/item/I = target
+	var/old = I.layer
+	I.layer = FLOAT_LAYER
+	button.overlays += I
+	I.layer = old
 
-	can_use_action()
-		. = ..()
-		if(.)
-			if(owner.stat || owner.is_mob_restrained() || owner.stunned || owner.lying)
-				return FALSE
 
-	update_button_icon()
-		button.overlays.Cut()
-		var/obj/item/I = target
-		var/old = I.layer
-		I.layer = FLOAT_LAYER
-		button.overlays += I
-		I.layer = old
+/datum/action/item_action/toggle/New(Target)
+	..()
+	name = "Toggle [target]"
+	button.name = name
 
-/datum/action/item_action/toggle
-	New(Target)
-		..()
-		name = "Toggle [target]"
-		button.name = name
+
+
+
+
+/datum/action/xeno_action
+	var/action_icon_state
+	var/plasma_cost = 0
+
+/datum/action/xeno_action/New(Target)
+	..()
+	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
+
+/datum/action/xeno_action/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && X.storedplasma >= plasma_cost)
+		return TRUE
+
+
+//checks if the linked ability is on some cooldown.
+//The action can still be activated by clicking the button
+/datum/action/xeno_action/proc/action_cooldown_check()
+	return TRUE
+
+/datum/action/xeno_action/update_button_icon()
+	if(!can_use_action())
+		button.color = rgb(128,0,0,128)
+	else if(!action_cooldown_check())
+		button.color = rgb(240,180,0,200)
+	else
+		button.color = rgb(255,255,255,255)
+
+
+
+/datum/action/xeno_action/activable
+	var/ability_name
+
+/datum/action/xeno_action/activable/action_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X.selected_ability == src)
+		X << "You will no longer use [ability_name] with middle-click or shift-click."
+		button.icon_state = "template"
+		X.selected_ability = null
+	else
+		X << "You will now use [ability_name] with middle-click or shift-click."
+		button.icon_state = "template_on"
+		X.selected_ability = src
+		for(var/datum/action/xeno_action/activable/A in X.actions)
+			if(A == src) continue
+			A.button.icon_state = "template"
+
+/datum/action/xeno_action/activable/remove_action(mob/living/carbon/Xenomorph/X)
+	..()
+	if(X.selected_ability == src)
+		X.selected_ability = null
+
+/datum/action/xeno_action/activable/proc/use_ability(atom/A)
+	return
+
+
+
 
 
 
@@ -106,17 +162,30 @@
 	if(!hud_used || !client)
 		return
 
-	if(hud_used.hud_shown != HUD_STYLE_STANDARD)
+	if(hud_used.hud_version == HUD_STYLE_NOHUD)
 		return
 
 	var/button_number = 0
 
-	for(var/datum/action/A in actions)
-		button_number++
-		var/obj/screen/action_button/B = A.button
-		if(client && client.prefs.UI_style)
-			B.icon = ui_style2icon(client.prefs.UI_style)
-		B.screen_loc = B.get_button_screen_loc(button_number)
-		if(reload_screen)
-			client.screen += B
+	if(hud_used.action_buttons_hidden)
+		for(var/datum/action/A in actions)
+			A.button.screen_loc = null
+			if(reload_screen)
+				client.screen += A.button
+	else
+		for(var/datum/action/A in actions)
+			button_number++
+			var/obj/screen/action_button/B = A.button
+			B.screen_loc = B.get_button_screen_loc(button_number)
+			if(reload_screen)
+				client.screen += B
+
+		if(!button_number)
+			hud_used.hide_actions_toggle.screen_loc = null
+			return
+
+	hud_used.hide_actions_toggle.screen_loc = hud_used.hide_actions_toggle.get_button_screen_loc(button_number+1)
+
+	if(reload_screen)
+		client.screen += hud_used.hide_actions_toggle
 

@@ -885,10 +885,13 @@
 //================================================
 */
 /datum/ammo/xeno
-	icon_state = "toxin"
+	icon_state = "neurotoxin"
 	ping = "ping_x"
 	damage_type = TOX
 	flags_ammo_behavior = AMMO_XENO_ACID
+	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
+	var/spit_cost
+
 	New()
 		..()
 		accuracy = config.med_hit_accuracy
@@ -901,6 +904,8 @@
 	damage_bleed = 0
 	debilitate = list(1,2,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
+	spit_cost = 50
+
 	New()
 		..()
 		shell_speed = config.reg_shell_speed
@@ -921,7 +926,11 @@
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
-	flags_ammo_behavior = AMMO_SKIPS_ALIENS
+	icon_state = "sticky"
+	ping = null
+	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
+	added_spit_delay = 5
+	spit_cost = 40
 
 	New()
 		..()
@@ -942,30 +951,28 @@
 		drop_resin(get_turf(P))
 
 	proc/drop_resin(turf/T)
-		do_sticky_splatter(T)
-		for(var/tempdir in CARDINAL_ALL_DIRS)
-			do_sticky_splatter(get_step(T, tempdir))
-
-	proc/do_sticky_splatter(turf/T)
-		if(T.density) return
-
 		for(var/obj/O in T.contents)
 			if(istype(O, /obj/effect/alien/resin/sticky))
 				return
 
-			if(O.density) //We can't grow if something dense is here
+			if(O.density && !(O.flags_atom & ON_BORDER)) //We can't grow if something dense is here
 				return
 
 		new /obj/effect/alien/resin/sticky/thin(T)
 
 
 
+
+
 /datum/ammo/xeno/acid
 	name = "acid spit"
-	icon_state = "neurotoxin"
+	icon_state = "xeno_acid"
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
+	added_spit_delay = 10
+	spit_cost = 100
+
 	New()
 		..()
 		damage = config.mlow_hit_damage
@@ -993,7 +1000,7 @@
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
-	icon_state = "acid"
+	icon_state = "boiler_gas"
 	ping = "ping_x"
 	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST

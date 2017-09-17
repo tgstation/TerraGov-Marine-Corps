@@ -21,10 +21,11 @@
 	attack_delay = -2
 	tier = 2
 	upgrade = 0
+	actions = list(
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/pounce,
+		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
-		/mob/living/carbon/Xenomorph/proc/Pounce,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
