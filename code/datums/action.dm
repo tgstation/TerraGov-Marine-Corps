@@ -135,12 +135,14 @@
 		X.selected_ability = null
 	else
 		X << "You will now use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"]."
+		if(X.selected_ability)
+			X.selected_ability.button.icon_state = "template"
+			X.selected_ability.on_deactivation()
+			X.selected_ability = null
 		button.icon_state = "template_on"
 		X.selected_ability = src
 		X.selected_ability.on_activation()
-		for(var/datum/action/xeno_action/activable/A in X.actions)
-			if(A == src) continue
-			A.button.icon_state = "template"
+
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/Xenomorph/X)
 	..()

@@ -139,7 +139,7 @@
 			tripped = 1
 
 
-	flick_attack_overlay(M, "slash")
+	flick_attack_overlay(M, "tail")
 	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
 	if(!tripped)
 		visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
@@ -202,6 +202,125 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
+
+
+
+/mob/living/carbon/Xenomorph/proc/build_resin(atom/A, resin_plasma_cost)
+	if(!check_state())
+		return
+	if(!check_plasma(resin_plasma_cost))
+		return
+	var/turf/current_turf = loc
+	if (caste == "Hivelord") //hivelords can thicken existing resin structures.
+		if(get_dist(src,A) <= 1)
+			if(istype(A, /turf/simulated/wall/resin))
+				var/turf/simulated/wall/resin/WR = A
+				if(WR.walltype == "resin")
+					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [WR].</span>", \
+					"<span class='xenonotice'>You regurgitate some resin and thicken [WR].</span>")
+					var/prev_oldturf = WR.oldTurf
+					WR.ChangeTurf(/turf/simulated/wall/resin/thick)
+					WR.oldTurf = prev_oldturf
+					use_plasma(resin_plasma_cost)
+					playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+				else if(WR.walltype == "membrane")
+					var/prev_oldturf = WR.oldTurf
+					WR.ChangeTurf(/turf/simulated/wall/resin/membrane/thick)
+					WR.oldTurf = prev_oldturf
+					use_plasma(resin_plasma_cost)
+					playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+				else
+					src << "<span class='xenowarning'>[WR] can't be made thicker.</span>"
+				return
+
+			else if(istype(A, /obj/structure/mineral_door/resin))
+				var/obj/structure/mineral_door/resin/DR = A
+				if(DR.hardness == 1.5) //non thickened
+					var/oldloc = DR.loc
+					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [DR].</span>", \
+						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>")
+					cdel(DR)
+					new /obj/structure/mineral_door/resin/thick (oldloc)
+					playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+					use_plasma(resin_plasma_cost)
+				else
+					src << "<span class='xenowarning'>[DR] can't be made thicker.</span>"
+				return
+
+			else
+				current_turf = get_turf(A) //Hivelords can secrete resin on adjacent turfs.
+
+
+	if(!istype(current_turf) || !current_turf.is_weedable())
+		src << "<span class='warning'>You can't do that here.</span>"
+		return
+
+	var/area/AR = get_area(current_turf)
+	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
+		src << "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>"
+		return
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+
+	if(!alien_weeds)
+		src << "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>"
+		return
+
+	if(!check_alien_construction(current_turf))
+		return
+
+	var/wait_time = 5
+	if(caste == "Drone")
+		wait_time = 10
+
+	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
+		return
+	if(!check_state())
+		return
+	if(!check_plasma(resin_plasma_cost))
+		return
+
+	if(!istype(current_turf) || !current_turf.is_weedable())
+		return
+
+	AR = get_area(current_turf)
+	if(istype(AR,/area/shuttle/drop1/lz1 || istype(AR,/area/shuttle/drop2/lz2)) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
+		return
+
+	alien_weeds = locate() in current_turf
+	if(!alien_weeds)
+		return
+
+	if(!check_alien_construction(current_turf))
+		return
+
+	use_plasma(resin_plasma_cost)
+	visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and shapes it into \a [selected_resin]!</span>", \
+	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [selected_resin].</span>")
+	playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+
+	switch(selected_resin)
+		if("resin door")
+			if (caste == "Hivelord")
+				new /obj/structure/mineral_door/resin/thick(current_turf)
+			else
+				new /obj/structure/mineral_door/resin(current_turf)
+		if("resin wall")
+			if (caste == "Hivelord")
+				current_turf.ChangeTurf(/turf/simulated/wall/resin/thick)
+			else
+				current_turf.ChangeTurf(/turf/simulated/wall/resin)
+		if("resin membrane")
+			if (caste == "Hivelord")
+				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane/thick)
+			else
+				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane)
+
+		if("resin nest")
+			new /obj/structure/stool/bed/nest(current_turf)
+		if("sticky resin")
+			new /obj/effect/alien/resin/sticky(current_turf)
+
 
 
 

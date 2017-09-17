@@ -146,93 +146,19 @@
 
 
 
-
-
-/datum/action/xeno_action/secrete_resin
+/datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin (75)"
 	action_icon_state = "secrete_resin"
-	plasma_cost = 75
+	ability_name = "secrete resin"
+	var/resin_plasma_cost = 75
 
-/datum/action/xeno_action/secrete_resin/action_activate()
+/datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
-	if(!X.check_plasma(75))
-		return
-	var/turf/current_turf = X.loc
+	X.build_resin(A, resin_plasma_cost)
 
-	if(!istype(current_turf) || !current_turf.is_weedable())
-		X << "<span class='warning'>You can't do that here.</span>"
-		return
-
-	var/area/AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		src << "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>"
-		return
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-
-	if(!alien_weeds)
-		X << "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>"
-		return
-
-	if(!X.check_alien_construction(current_turf))
-		return
-
-	var/wait_time = 5
-	if(X.caste == "Drone")
-		wait_time = 10
-
-	if(!do_after(X, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
-		return
-	if(!X.check_state())
-		return
-	if(!X.check_plasma(75))
-		return
-	current_turf = get_turf(X)
-	if(!istype(current_turf) || !current_turf.is_weedable())
-		return
-
-	AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1 || istype(AR,/area/shuttle/drop2/lz2)) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		return
-
-	alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		return
-
-	if(!X.check_alien_construction(current_turf))
-		return
-
-	X.use_plasma(75)
-	X.visible_message("<span class='xenonotice'>\The [X] regurgitates a thick substance and shapes it into \a [X.selected_resin]!</span>", \
-	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [X.selected_resin].</span>")
-	playsound(X.loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
-
-	switch(X.selected_resin)
-		if("resin door")
-			if (X.caste == "Hivelord")
-				new /obj/structure/mineral_door/resin/thick(current_turf)
-			else
-				new /obj/structure/mineral_door/resin(current_turf)
-		if("resin wall")
-			if (X.caste == "Hivelord")
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/thick)
-			else
-				current_turf.ChangeTurf(/turf/simulated/wall/resin)
-		if("resin membrane")
-			if (X.caste == "Hivelord")
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane/thick)
-			else
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane)
-
-		if("resin nest")
-			new /obj/structure/stool/bed/nest(current_turf)
-		if("sticky resin")
-			new /obj/effect/alien/resin/sticky(current_turf)
-
-
-
+/datum/action/xeno_action/activable/secrete_resin/hivelord
+	name = "Secrete Resin (100)"
+	resin_plasma_cost = 100
 
 
 

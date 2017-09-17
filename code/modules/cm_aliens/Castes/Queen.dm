@@ -42,7 +42,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/secrete_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid,
