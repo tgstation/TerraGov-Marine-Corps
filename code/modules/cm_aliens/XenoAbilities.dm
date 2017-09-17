@@ -606,9 +606,9 @@
 //Queen Abilities
 
 /datum/action/xeno_action/lay_egg
-	name = "Lay Egg (500)"
+	name = "Lay Egg (400)"
 	action_icon_state = "lay_egg"
-	plasma_cost = 500
+	plasma_cost = 400
 
 
 /datum/action/xeno_action/lay_egg/action_activate()
@@ -629,8 +629,8 @@
 	if(!X.check_alien_construction(current_turf))
 		return
 
-	if(X.check_plasma(500))
-		X.use_plasma(500)
+	if(X.check_plasma(plasma_cost))
+		X.use_plasma(plasma_cost)
 		X.visible_message("<span class='xenowarning'>\The [X] has laid an egg!</span>", \
 		"<span class='xenowarning'>You have laid an egg!</span>")
 		new /obj/effect/alien/egg(current_turf)

@@ -22,11 +22,11 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
 	speed = 0.0
-	var/huggers_max = 6
+	var/huggers_max = 8
 	var/huggers_cur = 0
 	var/throwspeed = 1
 	var/threw_a_hugger = 0
-	var/hugger_delay = 40
+	var/hugger_delay = 30
 	tier = 3
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
