@@ -9,8 +9,8 @@
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 60
-	health = 200
-	maxHealth = 200
+	health = 250
+	maxHealth = 250
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
@@ -18,7 +18,7 @@
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.1
 	evolves_to = list()
-	armor_deflection = 60
+	armor_deflection = 75
 	tier = 3
 	upgrade = 0
 	drag_delay = 6 //pulling a big dead xeno is hard

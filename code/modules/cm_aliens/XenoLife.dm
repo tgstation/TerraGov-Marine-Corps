@@ -326,8 +326,12 @@ updatehealth()
 						XENO_HEAL_WOUNDS(0.33) //Healing is much slower. Warding pheromones make up for the rest if you're curious
 					else
 						XENO_HEAL_WOUNDS(1)
+				else if (isXenoCrusher() || isXenoRavager())
+					XENO_HEAL_WOUNDS(0.66)
 				else
 					XENO_HEAL_WOUNDS(0.33) //Major healing nerf if standing
+
+
 				updatehealth()
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
