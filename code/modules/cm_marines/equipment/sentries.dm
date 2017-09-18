@@ -685,6 +685,8 @@
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
+	M.animation_attack_on(src)
+	M.flick_attack_overlay(src, "slash")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 	if(prob(10))
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)

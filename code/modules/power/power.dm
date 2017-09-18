@@ -95,7 +95,7 @@
 
 /proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
-		cdel(PN)
+		del(PN) //not cdel on purpose, powernet is still using del.
 	powernets.Cut()
 
 	for(var/obj/structure/cable/PC in cable_list)

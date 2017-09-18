@@ -166,21 +166,21 @@
 	name = "Corrosive Acid (100)"
 	action_icon_state = "corrosive_acid"
 	ability_name = "corrosive acid"
-	plasma_cost = 100
+	var/acid_plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.corrosive_acid(A, acid_type, plasma_cost)
+	X.corrosive_acid(A, acid_type, acid_plasma_cost)
 
 /datum/action/xeno_action/activable/corrosive_acid/drone
 	name = "Corrosive Acid (75)"
-	plasma_cost = 75
+	acid_plasma_cost = 75
 	acid_type = /obj/effect/xenomorph/acid/weak
 
 /datum/action/xeno_action/activable/corrosive_acid/Boiler
 	name = "Corrosive Acid (200)"
-	plasma_cost = 200
+	acid_plasma_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
 
 
@@ -287,7 +287,6 @@
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
-	plasma_cost = 0
 	ability_name = "transfer plasma"
 	var/plasma_transfer_amount = 50
 	var/transfer_delay = 20
@@ -439,7 +438,6 @@
 /datum/action/xeno_action/activable/stomp
 	name = "Stomp (50)"
 	action_icon_state = "stomp"
-	plasma_cost = 50
 	ability_name = "stomp"
 
 /datum/action/xeno_action/activable/stomp/action_cooldown_check()
@@ -566,6 +564,11 @@
 		spawn(2400)
 			X << "<span class='notice'>You are ready to dig a tunnel again.</span>"
 			X.tunnel_delay = 0
+		var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
+		if(msg)
+			newt.other.tunnel_desc = msg
+			newt.tunnel_desc = msg
+
 	X.use_plasma(200)
 	playsound(X.loc, 'sound/weapons/pierce.ogg', 25, 1)
 
@@ -624,7 +627,6 @@
 /datum/action/xeno_action/activable/screech
 	name = "Screech (250)"
 	action_icon_state = "screech"
-	plasma_cost = 250
 	ability_name = "screech"
 
 /datum/action/xeno_action/activable/screech/action_cooldown_check()
@@ -639,7 +641,6 @@
 /datum/action/xeno_action/activable/gut
 	name = "Gut (200)"
 	action_icon_state = "gut"
-	plasma_cost = 200
 	ability_name = "gut"
 
 /datum/action/xeno_action/activable/gut/use_ability(atom/A)

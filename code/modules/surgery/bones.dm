@@ -18,7 +18,7 @@
 	if(!hasorgans(target))
 		return 0
 	var/datum/limb/affected = target.get_limb(target_zone)
-	return affected.open >= 2 && affected.stage == 0
+	return affected.open >= 2 && affected.stage == 0 && !(affected.status & LIMB_DESTROYED)
 
 /datum/surgery_step/glue_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/limb/affected = target.get_limb(target_zone)
@@ -56,7 +56,7 @@
 	if(!hasorgans(target))
 		return 0
 	var/datum/limb/affected = target.get_limb(target_zone)
-	return affected.name != "head" && affected.open >= 2 && affected.stage == 1
+	return affected.name != "head" && affected.open >= 2 && affected.stage == 1 && !(affected.status & LIMB_DESTROYED)
 
 /datum/surgery_step/set_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/limb/affected = target.get_limb(target_zone)
@@ -101,7 +101,7 @@
 	if(!hasorgans(target))
 		return 0
 	var/datum/limb/affected = target.get_limb(target_zone)
-	return affected.name == "head" && affected.open >= 2 && affected.stage == 1
+	return affected.name == "head" && affected.open >= 2 && affected.stage == 1 && !(affected.status & LIMB_DESTROYED)
 
 /datum/surgery_step/mend_skull/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/limb/affected = target.get_limb(target_zone)
@@ -143,7 +143,7 @@
 	if(!hasorgans(target))
 		return 0
 	var/datum/limb/affected = target.get_limb(target_zone)
-	return affected.open >= 2 && affected.stage == 2
+	return affected.open >= 2 && affected.stage == 2 && !(affected.status & LIMB_DESTROYED)
 
 /datum/surgery_step/finish_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/limb/affected = target.get_limb(target_zone)

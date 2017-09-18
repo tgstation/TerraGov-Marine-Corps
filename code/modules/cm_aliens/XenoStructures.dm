@@ -767,6 +767,8 @@
 	anchored = 1
 	unacidable = 1
 
+	var/tunnel_desc = "" //description added by the hivelord.
+
 	var/health = 140
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
@@ -788,14 +790,17 @@
 		. = ..()
 
 	examine(mob/user)
+		..()
 		if(!isXeno(user))
-			return ..()
+			return
 
 		if(!other)
 			user << "It does not seem to lead anywhere."
 		else
 			var/area/A = get_area(other)
 			user << "It seems to lead to <b>[A.name]</b>."
+			if(tunnel_desc)
+				user << "The Hivelord scent reads: \'[tunnel_desc]\'"
 
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)

@@ -128,6 +128,9 @@
 
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
+	if(plasma_cost)
+		if(!X.check_plasma(plasma_cost))
+			return
 	if(X.selected_ability == src)
 		X << "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"]."
 		button.icon_state = "template"
@@ -142,6 +145,8 @@
 		button.icon_state = "template_on"
 		X.selected_ability = src
 		X.selected_ability.on_activation()
+	if(plasma_cost)
+		X.use_plasma(plasma_cost) //after on_activation so the button's appearance is updated correctly.
 
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/Xenomorph/X)

@@ -88,6 +88,7 @@
 /mob/living/carbon/Xenomorph/proc/tail_attack(mob/living/carbon/human/M)
 	if(!ismob(M))
 		return
+
 	if(!readying_tail)
 		return 0 //Tail attack not prepared, or not available.
 
@@ -97,6 +98,12 @@
 	if(!istype(M))
 		src << "<span class='xenowarning'>Tail attacks only work on humans.</span>"
 		return 0
+
+	if(M.stat == DEAD)
+		src << "<span class='warning'>[M] is dead, why would you want to touch it?</span>"
+		return 0
+
+	next_move = world.time + 3 //so you can't instantly combo tail+slash
 
 	var/dmg = (round(readying_tail * 2.5)) + rand(5, 10) //Ready max is 20
 	if(mob_size == MOB_SIZE_BIG)

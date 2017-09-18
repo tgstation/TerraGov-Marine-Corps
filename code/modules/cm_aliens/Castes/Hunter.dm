@@ -26,5 +26,7 @@
 		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/activable/pounce,
 		)
-
+	inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		)
 
