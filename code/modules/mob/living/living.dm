@@ -794,7 +794,11 @@
 
 	attack_icon.icon_state = attack_icon_state
 	target.overlays += attack_icon
+	var/old_icon = attack_icon.icon_state
 	sleep(4)
 	if(target)
+		var/new_icon = attack_icon.icon_state
+		attack_icon.icon_state = old_icon //necessary b/c the attack_icon can change sprite during the sleep.
 		target.overlays -= attack_icon
+		attack_icon.icon_state = new_icon
 

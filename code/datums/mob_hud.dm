@@ -241,12 +241,11 @@ var/datum/mob_hud/huds = list(
 
 /mob/living/carbon/monkey/med_hud_set_status()
 	var/image/holder = hud_list[STATUS_HUD_XENO_INFECTION]
-	if(stat == DEAD)
-		holder.icon_state = "huddead"
-		return
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		holder.icon_state = "infected[E.stage]"
+	else if(stat == DEAD)
+		holder.icon_state = "huddead"
 	else
 		holder.icon_state = ""
 
@@ -269,21 +268,29 @@ var/datum/mob_hud/huds = list(
 			if(suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
 				revive_enabled = 0
 
-		if(stat == DEAD)
-			if(revive_enabled)
-				holder.icon_state = "huddeaddefib"
-				holder2.icon_state = "huddeaddefib"
-			else
-				holder.icon_state = "huddead"
-				holder2.icon_state = "huddead"
-			holder3.icon_state = "huddead"
-			return
 		var/holder2_set = 0
 		if(status_flags & XENO_HOST)
 			holder2.icon_state = "hudxeno"//Observer and admin HUD only
 			holder2_set = 1
 			var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 			holder3.icon_state = "infected[E.stage]"
+
+		if(stat == DEAD)
+			if(revive_enabled)
+				holder.icon_state = "huddeaddefib"
+				if(!holder2_set)
+					holder2.icon_state = "huddeaddefib"
+					holder3.icon_state = "huddead"
+					holder2_set = 1
+			else
+				holder.icon_state = "huddead"
+				if(!holder2_set)
+					holder2.icon_state = "huddead"
+					holder3.icon_state = "huddead"
+					holder2_set = 1
+
+			return
+
 
 		for(var/datum/disease/D in viruses)
 			if(!D.hidden[SCANNER])
