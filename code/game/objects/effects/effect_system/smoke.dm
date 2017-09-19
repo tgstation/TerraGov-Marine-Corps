@@ -24,8 +24,11 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/particle_effect/smoke/New(loc)
+/obj/effect/particle_effect/smoke/New(loc, new_amount)
 	..()
+	if(new_amount)
+		amount = new_amount
+	apply_smoke_effect(loc)
 	time_to_live += rand(-1,1)
 	processing_objects.Add(src)
 
@@ -43,7 +46,8 @@
 			T.UpdateAffectingLights()
 		cdel(src)
 	else if(time_to_live == 1)
-		alpha = 120
+		alpha = 180
+		amount = 0
 		opacity = 0
 
 
@@ -74,10 +78,8 @@
 		var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 		if(foundsmoke)
 			continue
-		apply_smoke_effect(T)
-		var/obj/effect/particle_effect/smoke/S = new type(T)
+		var/obj/effect/particle_effect/smoke/S = new type(T, amount-1)
 		S.dir = pick(cardinal)
-		S.amount = amount-1
 		S.color = color
 		S.time_to_live = time_to_live
 		if(S.amount>0)

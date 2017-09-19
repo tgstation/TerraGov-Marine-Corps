@@ -338,6 +338,13 @@
 				E.icon_state = "Egg"
 				cdel(src)
 				return
+			var/obj/effect/alien/resin/trap/T = locate() in loc
+			if(T && !T.hugger)
+				visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
+				T.hugger = TRUE
+				T.icon_state = "trap1"
+				cdel(src)
+				return
 		Die()
 	else
 		lifecycle -= 50

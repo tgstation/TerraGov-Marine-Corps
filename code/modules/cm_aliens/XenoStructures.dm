@@ -180,6 +180,97 @@
 			var/mob/living/carbon/human/H = AM
 			H.next_move_slowdown += 4
 
+//Carrier trap
+/obj/effect/alien/resin/trap
+	desc = "It looks like a hiding hole."
+	name = "resin hole"
+	icon_state = "trap0"
+	density = 0
+	opacity = 0
+	anchored = 1
+	health = 20
+	layer = 3
+	var/hugger = FALSE
+
+/obj/effect/alien/resin/trap/examine(mob/user)
+	if(isXeno(user))
+		user << "A hole for a little one to hide in ambush."
+		if(hugger)
+			user << "There's a little one inside."
+		else
+			user << "It's empty."
+	else
+		..()
+
+
+/obj/effect/alien/resin/trap/bullet_act(obj/item/projectile/P)
+	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
+		return
+	. = ..()
+
+/obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
+	if(hugger)
+		drop_hugger()
+
+/obj/effect/alien/resin/trap/proc/drop_hugger()
+	set waitfor = 0
+	var/obj/item/clothing/mask/facehugger/FH = new (loc)
+	hugger = FALSE
+	icon_state = "trap0"
+	visible_message("<span class='warning'>[FH] gets out of [src]!</span>")
+	sleep(15)
+	if(FH.stat == CONSCIOUS && FH.loc) //Make sure we're conscious and not idle or dead.
+		FH.leap_at_nearest_target()
+
+/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.a_intent != "hurt")
+		var/list/allowed_castes = list("Queen","Drone","Hivelord","Carrier")
+		if(istype(M, /mob/living/carbon/Xenomorph/Carrier) && !hugger)
+			var/mob/living/carbon/Xenomorph/Carrier/C = M
+			if(C.huggers_cur > 0)
+				C.huggers_cur--
+				hugger = TRUE
+				icon_state = "trap1"
+				C << "<span class='xenonotice'>You place a facehugger in [src].</span>"
+			else
+				C << "<span class='warning'>You don't have any facehugger to place in [src].</span>"
+			return
+
+		else if(allowed_castes.Find(M.caste) && M.a_intent != "hurt")
+			if(!hugger)
+				M << "<span class='warning'>[src] is empty.</span>"
+			else
+				hugger = FALSE
+				icon_state = "trap0"
+				new /obj/item/clothing/mask/facehugger(loc)
+				M << "<span class='xenonotice'>You remove the facehugger from [src].</span>"
+			return
+	..()
+
+/obj/effect/alien/resin/trap/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/clothing/mask/facehugger) && isXeno(user))
+		var/obj/item/clothing/mask/facehugger/FH = W
+		if(FH.stat == DEAD)
+			user << "<span class='warning'>You can't put a dead facehugger in [src].</span>"
+		else
+			hugger = TRUE
+			icon_state = "trap1"
+			user << "<span class='xenonotice'>You place a facehugger in [src].</span>"
+			cdel(FH)
+	else
+		. = ..()
+
+/obj/effect/alien/resin/trap/Crossed(atom/A)
+	if(ishuman(A))
+		var/mob/living/carbon/human/C = A
+		HasProximity(C)
+
+/obj/effect/alien/resin/trap/Dispose()
+	if(hugger && loc)
+		drop_hugger()
+	. = ..()
+
+
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <= 0)
 		density = 0
@@ -754,6 +845,12 @@
 	else if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		linked_egg.HasProximity(C)
+
+
+
+
+
+
 
 
 /obj/structure/tunnel

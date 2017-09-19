@@ -267,7 +267,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -0.1
 					aura_strength = 1.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
-					CA.huggers_max = 7
+					CA.huggers_max = 9
 					CA.hugger_delay = 30
 				if("Queen")
 					melee_damage_lower = 40
@@ -472,7 +472,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -0.2
 					aura_strength = 2
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
-					CA.huggers_max = 8
+					CA.huggers_max = 10
 					CA.hugger_delay = 20
 				if("Queen")
 					melee_damage_lower = 50
@@ -675,7 +675,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -0.3
 					aura_strength = 2.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
-					CA.huggers_max = 10
+					CA.huggers_max = 11
 					CA.hugger_delay = 10
 				if("Queen")
 					src << "<span class='xenoannounce'>You are the Alpha and the Omega. The beginning and the end.</span>"
