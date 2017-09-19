@@ -205,8 +205,8 @@
 			if(istype(A,/obj/structure/window) && (ammo.flags_ammo_behavior & AMMO_ENERGY))
 				continue
 
-			if(A == original) //Specifically clicking on eggs / huggers
-				if(istype(A,/obj/effect/alien/egg) || istype(A,/obj/item/clothing/mask/facehugger))
+			if(A == original) //Specifically clicking on eggs/hugger traps/huggers
+				if(istype(A,/obj/effect/alien/egg) || istype(A,/obj/effect/alien/resin/trap) || istype(A,/obj/item/clothing/mask/facehugger))
 					ammo.on_hit_obj(A,src)
 					if(A && A.loc) A.bullet_act(src)
 					return 1

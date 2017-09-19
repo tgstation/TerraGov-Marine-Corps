@@ -37,6 +37,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/throw_hugger,
+		/datum/action/xeno_action/place_trap,
 		)
 
 	death(gibbed)
