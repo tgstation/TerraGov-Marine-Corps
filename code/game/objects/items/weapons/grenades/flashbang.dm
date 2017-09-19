@@ -15,19 +15,20 @@
 
 /obj/item/weapon/grenade/flashbang/prime()
 	..()
-	for(var/obj/structure/closet/L in hear(7, get_turf(src)))
+	var/turf/T = get_turf(src)
+	for(var/obj/structure/closet/L in hear(7, T))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
 				bang(get_turf(src), M)
 
 
-	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
+	for(var/mob/living/carbon/M in hear(7, T))
 		if(!istype(M,/mob/living/carbon/Xenomorph))
-			bang(get_turf(src), M)
+			bang(T, M)
 
 
 
-	new/obj/effect/particle_effect/smoke/flashbang(src.loc)
+	new/obj/effect/particle_effect/smoke/flashbang(T)
 	cdel(src)
 	return
 

@@ -1063,11 +1063,11 @@
 				src.emagged = 1
 				update_icon()
 				var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-				smoke.set_up(3, 0, src.loc)
+				smoke.set_up(1, 0, src.loc)
 				smoke.attach(src)
 				smoke.start()
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-				s.set_up(3, 1, src)
+				s.set_up(1, 1, src)
 				s.start()
 				for(var/mob/M in viewers(src))
 					M.show_message("\red The [src.name] suddenly lets out a blast of smoke and some sparks!", 3, "\red You hear sizzling electronics.", 2)

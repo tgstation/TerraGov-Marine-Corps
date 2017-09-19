@@ -125,11 +125,12 @@
 				E.activate(user)
 				return
 
-/obj/machinery/door_control/attack_hand(mob/user as mob)
+/obj/machinery/door_control/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	if(istype(user,/mob/living/carbon/Xenomorph))
 		return
 	if(stat & (NOPOWER|BROKEN))
+		user << "<span class='warning>[src] doesn't seem to be working.</span>"
 		return
 
 	if(!allowed(user) && (wires & 1))

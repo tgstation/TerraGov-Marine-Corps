@@ -301,9 +301,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "marine_sniper"
 	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 	//uniform_restricted = list(/obj/item/clothing/under/marine/sniper) //TODO : This item exists, but isn't implemented yet. Makes sense otherwise
 
 	New(loc,expected_type 	= type,

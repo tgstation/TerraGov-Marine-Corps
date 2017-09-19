@@ -667,20 +667,8 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 
 	prime()
 		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-		src.smoke.set_up(10, 0, usr.loc)
-		spawn(0)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-		sleep(20)
+		smoke.set_up(3, 0, usr.loc, null, 6)
+		smoke.start()
 		cdel(src)
 
 /obj/item/weapon/grenade/phosphorus
@@ -700,21 +688,8 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 
 	prime()
 		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-		src.smoke.set_up(10, 0, usr.loc)
-		spawn(0)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-			sleep(10)
-			src.smoke.start()
-
-		sleep(20)
+		smoke.set_up(3, 0, usr.loc)
+		smoke.start()
 		cdel(src)
 
 /obj/item/weapon/grenade/phosphorus/upp

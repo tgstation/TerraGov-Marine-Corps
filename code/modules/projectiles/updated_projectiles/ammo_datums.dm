@@ -638,36 +638,40 @@
 	sound_bounce	= "rocket_bounce"
 	damage_bleed = 0
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+	var/datum/effect_system/smoke_spread/smoke
+
 	New()
 		..()
+		smoke = new()
 		accuracy = config.low_hit_accuracy
 		accurate_range = config.norm_shell_range
 		max_range = config.long_shell_range
 		damage = config.min_hit_damage
 		shell_speed = config.slow_shell_speed
 
+	Dispose()
+		cdel(smoke)
+		smoke = null
+		. = ..()
+
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 4, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, get_turf(M))
+		smoke.set_up(1, get_turf(M))
 		smoke.start()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
 		explosion(get_turf(O), -1, 1, 4, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, get_turf(O))
+		smoke.set_up(1, get_turf(O))
 		smoke.start()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
 		explosion(T,  -1, 1, 4, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, T)
+		smoke.set_up(1, T)
 		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
 		explosion(get_turf(P),  -1, 1, 4, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, get_turf(P))
+		smoke.set_up(1, get_turf(P))
 		smoke.start()
 
 /datum/ammo/rocket/ap
@@ -685,26 +689,22 @@
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 2, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, get_turf(M))
+		smoke.set_up(1, get_turf(M))
 		smoke.start()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
 		explosion(get_turf(O), -1, 1, 2, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, get_turf(O))
+		smoke.set_up(1, get_turf(O))
 		smoke.start()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
 		explosion(T,  -1, 1, 2, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, T)
+		smoke.set_up(1, T)
 		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
 		explosion(get_turf(P),  -1, 1, 2, 5)
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, get_turf(P))
+		smoke.set_up(1, get_turf(P))
 		smoke.start()
 
 /datum/ammo/rocket/wp
@@ -720,8 +720,7 @@
 
 	drop_flame(turf/T)
 		if(!istype(T)) return
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(6, 0, T)
+		smoke.set_up(1, T)
 		smoke.start()
 		if(locate(/obj/flamer_fire) in T) return
 		new /obj/flamer_fire(T, pick(15, 20, 25, 30))
@@ -1004,10 +1003,18 @@
 	ping = "ping_x"
 	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
+	var/datum/effect_system/smoke_spread/smoke_system
+
 	New()
 		..()
+		set_xeno_smoke()
 		accuracy_var_high = config.max_proj_variance
 		max_range = config.long_shell_range
+
+	Dispose()
+		cdel(smoke_system)
+		smoke_system = null
+		. = ..()
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -1021,10 +1028,14 @@
 	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))
 
+	proc/set_xeno_smoke()
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+
 	proc/drop_nade(turf/T)
-		var/obj/item/weapon/grenade/xeno_weaken/G = new (T)
-		G.visible_message("<span class='danger'>A glob of gas falls from the sky!</span>")
-		G.prime()
+		smoke_system.set_up(3, 0, T)
+		smoke_system.start()
+		T.visible_message("<span class='danger'>A glob of gas falls from the sky!</span>")
+
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
@@ -1032,6 +1043,7 @@
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR|AMMO_INCENDIARY
+
 	New()
 		..()
 		damage = config.med_hit_damage
@@ -1041,10 +1053,15 @@
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
 
+	set_xeno_smoke()
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
+
+
 	drop_nade(turf/T)
-		var/obj/item/weapon/grenade/xeno/G = new (T)
-		G.visible_message("<span class='danger'>A glob of acid falls from the sky!</span>")
-		G.prime()
+		smoke_system.set_up(2, 0, T)
+		smoke_system.start()
+		T.visible_message("<span class='danger'>A glob of acid falls from the sky!</span>")
+
 
 /*
 //================================================

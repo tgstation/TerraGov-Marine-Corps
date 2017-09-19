@@ -215,10 +215,9 @@
 		if(75 to INFINITY) damage_state = 0
 
 
-/obj/structure/barricade/proc/smoke_damage(var/obj/effect/particle_effect/smoke/S)
-	if(istype(S, /obj/effect/particle_effect/smoke/xeno_burn))
-		health -= 10
-		update_health()
+/obj/structure/barricade/proc/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S)
+	health -= 10
+	update_health()
 
 /*----------------------*/
 // SNOW
