@@ -780,7 +780,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(i>=40 && i<=45) //Bad smoke
 		var/datum/effect_system/smoke_spread/bad/B = new /datum/effect_system/smoke_spread/bad
 		B.attach(P.loc)
-		B.set_up(P, 10, 0, P.loc)
+		B.set_up(3, 0, P.loc)
 		playsound(P.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 		B.start()
 		message += "Large clouds of noxious smoke billow forth from your [P]!"

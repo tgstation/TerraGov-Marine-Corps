@@ -562,15 +562,15 @@
 
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
-	var/datum/effect_system/smoke_spread/puff
+	var/datum/effect_system/smoke_spread/smoke
 
 	New()
 		..()
 		recoil = config.med_recoil_value
 		fire_delay = config.high_fire_delay*2
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-		puff = new /datum/effect_system/smoke_spread()
-		puff.attach(src)
+		smoke = new()
+		smoke.attach(src)
 
 	examine(mob/user)
 		..()
@@ -649,8 +649,7 @@
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 
 	var/backblast_loc = get_turf(get_step(user.loc, turn(user.dir, 180)))
-	var/datum/effect_system/smoke_spread/smoke = new
-	smoke.set_up(2, 0, backblast_loc, turn(user.dir, 180))
+	smoke.set_up(1, 0, backblast_loc, turn(user.dir, 180))
 	smoke.start()
 	for(var/mob/living/carbon/C in backblast_loc)
 		if(!C.lying) //Have to be standing up to get the fun stuff

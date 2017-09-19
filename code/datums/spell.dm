@@ -35,7 +35,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	var/sparks_spread = 0
 	var/sparks_amt = 0 //cropped at 10
 	var/smoke_spread = 0 //1 - harmless, 2 - harmful
-	var/smoke_amt = 0 //cropped at 10
+	var/smoke_amt = 0 //smoke radius. cropped at 10
 
 	var/critfailchance = 0
 	var/centcomm_cancast = 1 //Whether or not the spell should be allowed on z2

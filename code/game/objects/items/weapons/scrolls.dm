@@ -50,7 +50,7 @@
 		return
 
 	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-	smoke.set_up(5, 0, user.loc)
+	smoke.set_up(1, 0, user.loc)
 	smoke.attach(user)
 	smoke.start()
 	var/list/L = list()
