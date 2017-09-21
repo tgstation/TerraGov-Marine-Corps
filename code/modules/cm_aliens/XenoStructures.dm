@@ -236,7 +236,7 @@
 				C << "<span class='warning'>You don't have any facehugger to place in [src].</span>"
 			return
 
-		else if(allowed_castes.Find(M.caste) && M.a_intent != "hurt")
+		else if(allowed_castes.Find(M.caste))
 			if(!hugger)
 				M << "<span class='warning'>[src] is empty.</span>"
 			else
@@ -244,7 +244,7 @@
 				icon_state = "trap0"
 				new /obj/item/clothing/mask/facehugger(loc)
 				M << "<span class='xenonotice'>You remove the facehugger from [src].</span>"
-			return
+		return
 	..()
 
 /obj/effect/alien/resin/trap/attackby(obj/item/W, mob/user)
