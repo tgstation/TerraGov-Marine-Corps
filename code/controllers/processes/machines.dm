@@ -8,11 +8,14 @@ datum/controller/process/machines/setup()
 datum/controller/process/machines/doWork()
 	process_machines_process()
 	process_machines_power()
+	process_powernet()
 
 datum/controller/process/machines/proc/process_machines_process()
 	for(var/obj/machinery/M in machines)
 		if(istype(M) && M.process() != PROCESS_KILL) //Doesn't actually have a process, just remove it.
 			continue
+
+
 
 datum/controller/process/machines/proc/process_machines_power()
 	// O(n^3) complexity. No wonder this is slower than shit. TODO: Get rid of one of these loops somehow. ~Bmc777
@@ -39,3 +42,16 @@ datum/controller/process/machines/proc/process_machines_power()
 
 		A.powerupdate = 0
 		active_areas.Cut(i,i+1)
+
+
+///powernets are processed with machines so we're sure power generating machines
+// and powernets are processed together in sync.
+datum/controller/process/machines/proc/process_powernet()
+	var/i = 1
+	while(i<=powernets.len)
+		var/datum/powernet/Powernet = powernets[i]
+		if(Powernet)
+			Powernet.process()
+			i++
+			continue
+		powernets.Cut(i,i+1)

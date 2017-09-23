@@ -1,3 +1,5 @@
+//Code moved into datum/controller/process/machines
+/*
 datum/controller/process/power
 
 datum/controller/process/power/setup()
@@ -5,7 +7,6 @@ datum/controller/process/power/setup()
 	schedule_interval = 35 //3.5 seconds
 
 datum/controller/process/power/doWork()
-
 	var/i = 1
 	while(i<=powernets.len)
 		var/datum/powernet/Powernet = powernets[i]
@@ -14,3 +15,4 @@ datum/controller/process/power/doWork()
 			i++
 			continue
 		powernets.Cut(i,i+1)
+*/
