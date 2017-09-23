@@ -576,6 +576,8 @@
 		if(istype(AM,/obj/structure/cable))
 			var/obj/structure/cable/C = AM
 			if(C.powernet == powernet)	continue
+			if(C.d2 != d1 && C.d2 != d2 && C.d1 != d1 && C.d1 != d2) //not connected if they have no common direction
+				continue
 			if(C.powernet)
 				merge_powernets(powernet, C.powernet)
 			else
