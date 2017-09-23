@@ -82,6 +82,9 @@
 			client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 		return
 
+	if(!check_state())
+		return
+
 	if(!is_bombarding)
 		src << "<span class='warning'>You must dig yourself in before you can do this.</span>"
 		return
@@ -118,6 +121,9 @@
 	use_plasma(200)
 
 	if(do_after(src, 50, FALSE))
+		if(!check_state())
+			bomb_cooldown = 0
+			return
 		bomb_turf = null
 		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
 		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>")
