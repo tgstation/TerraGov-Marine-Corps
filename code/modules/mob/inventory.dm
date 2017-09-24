@@ -23,7 +23,7 @@
 	if(!l_hand)
 		W.forceMove(src)
 		l_hand = W
-		W.layer = 20
+		W.layer = ABOVE_HUD_LAYER
 		W.equipped(src,WEAR_L_HAND)
 		update_inv_l_hand()
 		return 1
@@ -36,7 +36,7 @@
 	if(!r_hand)
 		W.forceMove(src)
 		r_hand = W
-		W.layer = 20
+		W.layer = ABOVE_HUD_LAYER
 		W.equipped(src,WEAR_R_HAND)
 		update_inv_r_hand()
 		return 1
@@ -258,7 +258,7 @@
 					equipped = 1
 
 	if(equipped)
-		W.layer = 20
+		W.layer = ABOVE_HUD_LAYER
 		if(src.back && W.loc != src.back)
 			W.loc = src
 	else

@@ -186,8 +186,8 @@
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
 	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","\blue You flick and toss [src] into the air!")
-	var/layer = MOB_LAYER+0.1
-	var/image/trick = image(icon,user,icon_state,layer)
+	var/img_layer = MOB_LAYER+0.1
+	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
 		if(1) animation_toss_snatch(trick)
 		if(2) animation_toss_flick(trick, pick(1,-1))

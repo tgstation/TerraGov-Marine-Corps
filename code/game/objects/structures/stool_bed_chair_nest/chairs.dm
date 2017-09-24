@@ -161,7 +161,7 @@
 
 /obj/structure/stool/bed/chair/dropship/passenger/New()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
-	chairbar.layer = MOB_LAYER + 0.1
+	chairbar.layer = ABOVE_MOB_LAYER
 
 	return ..()
 

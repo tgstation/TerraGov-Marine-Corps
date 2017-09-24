@@ -724,7 +724,7 @@
 	desc = "A bizarre Yautja device used for trapping and killing prey."
 	var/armed = 0
 	breakouttime = 600 // 1 minute
-	layer = 2.8 //Goes under weeds.
+	layer = LOWER_ITEM_LAYER
 
 	dropped(var/mob/living/carbon/human/mob) //Changes to "camouflaged" icons based on where it was dropped.
 		if(armed)
@@ -859,7 +859,7 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
 	icon_state = "campfire"
 	density = 0
-	layer = 2
+	layer = TURF_LAYER
 	anchored = 1
 	unacidable = 1
 

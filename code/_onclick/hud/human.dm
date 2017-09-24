@@ -18,7 +18,7 @@
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.icon = ui_style
-		inv_box.layer = 19
+		inv_box.layer = HUD_LAYER
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
@@ -79,7 +79,7 @@
 		using.icon = ui_style
 		using.icon_state = "act_equip"
 		using.screen_loc = ui_equip
-		using.layer = 20
+		using.layer = ABOVE_HUD_LAYER
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using
@@ -93,7 +93,7 @@
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = ui_rhand
 		inv_box.slot_id = WEAR_R_HAND
-		inv_box.layer = 19
+		inv_box.layer = HUD_LAYER
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 		r_hand_hud_object = inv_box
@@ -108,7 +108,7 @@
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = ui_lhand
 		inv_box.slot_id = WEAR_L_HAND
-		inv_box.layer = 19
+		inv_box.layer = HUD_LAYER
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 		l_hand_hud_object = inv_box
@@ -120,7 +120,7 @@
 		using.icon = ui_style
 		using.icon_state = "hand1"
 		using.screen_loc = ui_swaphand1
-		using.layer = 19
+		using.layer = HUD_LAYER
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using
@@ -131,7 +131,7 @@
 		using.icon = ui_style
 		using.icon_state = "hand2"
 		using.screen_loc = ui_swaphand2
-		using.layer = 19
+		using.layer = HUD_LAYER
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using

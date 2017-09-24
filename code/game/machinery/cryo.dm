@@ -6,7 +6,7 @@
 	icon_state = "cell-off"
 	density = 0
 	anchored = 1.0
-	layer = 2.8
+	layer = BELOW_OBJ_LAYER
 
 	var/on = 0
 	use_power = 1

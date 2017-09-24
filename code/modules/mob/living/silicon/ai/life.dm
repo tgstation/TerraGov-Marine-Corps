@@ -92,8 +92,8 @@
 			//stage = 6
 			if(hud_used)
 				hud_used.blind_icon.screen_loc = "1,1 to 15,15"
-				if (hud_used.blind_icon.layer!=18)
-					hud_used.blind_icon.layer = 18
+				if (hud_used.blind_icon.layer!=FULLSCREEN_BLIND_LAYER)
+					hud_used.blind_icon.layer = FULLSCREEN_BLIND_LAYER
 			src.sight = src.sight&~SEE_TURFS
 			src.sight = src.sight&~SEE_MOBS
 			src.sight = src.sight&~SEE_OBJS

@@ -1,5 +1,3 @@
-#define PODDOOR_OPEN_LAYER 2.51		//Under doors (2.7) and virtually everything that's "above the floor" (2.5)
-#define PODDOOR_CLOSED_LAYER 3.19	//Above doors which are at 3.1
 
 /obj/machinery/door/poddoor
 	name = "\improper Podlock"

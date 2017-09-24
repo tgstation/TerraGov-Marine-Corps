@@ -1,5 +1,5 @@
 /atom/movable
-	layer = 3
+	layer = OBJ_LAYER
 	var/last_move_dir = null
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere

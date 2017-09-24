@@ -1013,11 +1013,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(isobserver(usr))
 		if(usr.invisibility <> 60 && usr.layer <> 4.0)
 			usr.invisibility = 60
-			usr.layer = 4.0
+			usr.layer = MOB_LAYER
 			usr << "<span class='warning'>Ghost visibility returned to normal.</span>"
 		else
 			usr.invisibility = 70
-			usr.layer = LYING_MOB_LAYER - 0.1
+			usr.layer = BELOW_MOB_LAYER
 			usr << "<span class='warning'>Your ghost is now invisibile to other ghosts.</span>"
 		log_admin("Admin [key_name(src)] has toggled Ordukai Mode.")
 	else

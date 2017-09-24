@@ -193,7 +193,7 @@
 
 	W.screen_loc = null
 	W.loc = src
-	W.layer = 20
+	W.layer = ABOVE_HUD_LAYER
 
 	switch(slot)
 		if(WEAR_BACK)

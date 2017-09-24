@@ -10,7 +10,7 @@ LINEN BINS
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet"
 	item_state = "bedsheet"
-	layer = 4.0
+	layer = MOB_LAYER
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 2
@@ -21,7 +21,7 @@ LINEN BINS
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_held_item()
 	if(layer == initial(layer))
-		layer = 5
+		layer = ABOVE_MOB_LAYER
 	else
 		layer = initial(layer)
 	add_fingerprint(user)

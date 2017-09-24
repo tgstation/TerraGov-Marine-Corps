@@ -394,7 +394,7 @@
 	if(istype(O, /obj/structure) || istype(O, /obj/machinery)) //Always appears above machinery
 		A.layer = O.layer + 0.1
 	else //If not, appear on the floor (turf layer is 2, vents are 2.4)
-		A.layer = 2.41
+		A.layer = XENO_FLOOR_ACID_LAYER
 
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")

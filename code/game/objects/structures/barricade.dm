@@ -6,7 +6,7 @@
 	anchored = TRUE
 	density = 1
 	throwpass = TRUE //You can throw objects over this, despite its density.
-	layer = OBJ_LAYER - 0.1
+	layer = BELOW_OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
@@ -168,7 +168,7 @@
 			icon_state = "[barricade_type]"
 		if(flags_atom & ON_BORDER)
 			switch(dir)
-				if(SOUTH) layer = MOB_LAYER + 1
+				if(SOUTH) layer = ABOVE_MOB_LAYER
 				if(NORTH) layer = initial(layer) - 0.01
 				else layer = initial(layer)
 	else
@@ -177,7 +177,7 @@
 		else
 			icon_state = "[barricade_type]_closed"
 		if(flags_atom & ON_BORDER)
-			layer = MOB_LAYER - 1
+			layer = OBJ_LAYER
 
 /obj/structure/barricade/proc/update_overlay()
 	if(!is_wired)

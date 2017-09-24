@@ -94,7 +94,7 @@
 	desc = "It never stays still for long."
 	icon_state = "spiderling"
 	anchored = 0
-	layer = 2.7
+	layer = BELOW_TABLE_LAYER
 	health = 3
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent

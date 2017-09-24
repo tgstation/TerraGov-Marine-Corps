@@ -215,7 +215,7 @@ obj/machinery/atmospherics/pipe/zpipe/up/scrubbers
 	name = "upwards scrubbers pipe"
 	desc = "A scrubbers pipe segment to connect upwards."
 	connect_types = list(3)
-	layer = 2.38
+	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -224,7 +224,7 @@ obj/machinery/atmospherics/pipe/zpipe/up/supply
 	name = "upwards supply pipe"
 	desc = "A supply pipe segment to connect upwards."
 	connect_types = list(2)
-	layer = 2.39
+	layer = ATMOS_PIPE_SUPPLY_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -233,7 +233,7 @@ obj/machinery/atmospherics/pipe/zpipe/down/scrubbers
 	name = "downwards scrubbers pipe"
 	desc = "A scrubbers pipe segment to connect downwards."
 	connect_types = list(3)
-	layer = 2.38
+	layer = ATMOS_PIPE_SCRUBBER_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -242,6 +242,6 @@ obj/machinery/atmospherics/pipe/zpipe/down/supply
 	name = "downwards supply pipe"
 	desc = "A supply pipe segment to connect downwards."
 	connect_types = list(2)
-	layer = 2.39
+	layer = ATMOS_PIPE_SUPPLY_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE

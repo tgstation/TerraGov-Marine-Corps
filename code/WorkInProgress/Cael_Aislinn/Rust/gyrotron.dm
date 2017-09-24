@@ -8,7 +8,7 @@
 	name = "Gyrotron"
 	anchored = 1
 	density = 0
-	layer = 4
+	layer = MOB_LAYER
 	var/frequency = 1
 	var/emitting = 0
 	var/rate = 10

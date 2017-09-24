@@ -111,7 +111,7 @@ Class Procs:
 	var/uid
 	var/manual = 0
 	var/global/gl_uid = 1
-	layer = 3
+	layer = OBJ_LAYER
 
 	New()
 		..()

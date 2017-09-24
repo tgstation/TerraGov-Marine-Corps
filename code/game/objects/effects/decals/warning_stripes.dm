@@ -1,6 +1,6 @@
 /obj/effect/decal/warning_stripes
 	icon = 'icons/effects/warning_stripes.dmi'
-	layer = 2
+	layer = TURF_LAYER
 
 /obj/effect/decal/warning_stripes/New()
 	. = ..()

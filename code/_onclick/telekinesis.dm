@@ -69,7 +69,7 @@ var/const/tk_maxrange = 15
 	flags_atom = NOBLUDGEON
 	//item_state = null
 	w_class = 10.0
-	layer = 20
+	layer = ABOVE_HUD_LAYER
 
 	var/last_throw = 0
 	var/atom/movable/focus = null

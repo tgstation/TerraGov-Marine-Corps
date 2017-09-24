@@ -15,7 +15,7 @@
 	req_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_RESEARCH)
 	integrated_light_power = 2
 	local_transmit = 1
-	layer = 3.9
+	layer = ABOVE_LYING_MOB_LAYER
 
 	// We need to keep track of a few module items so we don't need to do list operations
 	// every time we need them. These get set in New() after the module is chosen.

@@ -43,7 +43,7 @@ var/list/mechtoys = list(
 	icon_state = "plasticflaps"
 	density = 0
 	anchored = 1
-	layer = 4
+	layer = MOB_LAYER
 	explosion_resistance = 5
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)

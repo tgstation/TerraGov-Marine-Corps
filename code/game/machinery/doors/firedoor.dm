@@ -10,8 +10,6 @@
 #define FIREDOOR_ALERT_COLD     2
 // Not used #define FIREDOOR_ALERT_LOWPRESS 4
 
-#define FIREDOOR_OPEN_LAYER 2.509		//Right under poddoors
-#define FIREDOOR_CLOSED_LAYER 3.189		//Right under poddoors
 
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"

@@ -9,7 +9,7 @@
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "radio"
 	using.screen_loc = ui_movi
-	using.layer = 20
+	using.layer = ABOVE_HUD_LAYER
 	static_inventory += using
 
 //Module select
@@ -20,7 +20,7 @@
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv1"
 	using.screen_loc = ui_inv1
-	using.layer = 20
+	using.layer = ABOVE_HUD_LAYER
 	owner.inv1 = using
 	static_inventory += using
 
@@ -30,7 +30,7 @@
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv2"
 	using.screen_loc = ui_inv2
-	using.layer = 20
+	using.layer = ABOVE_HUD_LAYER
 	owner.inv2 = using
 	static_inventory += using
 
@@ -40,7 +40,7 @@
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv3"
 	using.screen_loc = ui_inv3
-	using.layer = 20
+	using.layer = ABOVE_HUD_LAYER
 	owner.inv3 = using
 	static_inventory += using
 
@@ -79,7 +79,7 @@
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "panel"
 	using.screen_loc = ui_borg_panel
-	using.layer = 19
+	using.layer = HUD_LAYER
 	static_inventory += using
 
 //Store

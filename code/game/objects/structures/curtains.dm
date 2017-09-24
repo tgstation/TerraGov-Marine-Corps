@@ -2,7 +2,7 @@
 	icon = 'icons/obj/curtain.dmi'
 	name = "curtain"
 	icon_state = "closed"
-	layer = MOB_LAYER + 0.1
+	layer = ABOVE_MOB_LAYER
 	opacity = 1
 	density = 0
 
@@ -26,7 +26,7 @@
 	opacity = !opacity
 	if(opacity)
 		icon_state = "closed"
-		layer = MOB_LAYER + 0.1
+		layer = ABOVE_MOB_LAYER
 	else
 		icon_state = "open"
 		layer = OBJ_LAYER

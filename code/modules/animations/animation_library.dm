@@ -66,7 +66,7 @@ Instead of being uniform, it starts out a littler slower, goes fast in the middl
 		I.transform = matrix(A.transform, rand(0,-45), MATRIX_ROTATE)
 		I.pixel_x += rand(0,-5)
 		I.pixel_y += rand(0,-5)
-	I.layer = MOB_LAYER + 0.1
+	I.layer = ABOVE_MOB_LAYER
 	I.flick_overlay(A,7)
 
 /proc/animatation_displace_reset(atom/A, x_n = 2, y_n = 2, speed = 3)

@@ -28,7 +28,7 @@
 	if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
 		using.icon_state = "hand_active"
 	inv_box.screen_loc = ui_rhand
-	inv_box.layer = 19
+	inv_box.layer = HUD_LAYER
 	inv_box.slot_id = WEAR_R_HAND
 	r_hand_hud_object = inv_box
 	static_inventory += inv_box
@@ -40,7 +40,7 @@
 	if(owner && owner.hand)	//This being 1 means the left hand is in use
 		inv_box.icon_state = "hand_active"
 	inv_box.screen_loc = ui_lhand
-	inv_box.layer = 19
+	inv_box.layer = HUD_LAYER
 	inv_box.slot_id = WEAR_L_HAND
 	l_hand_hud_object = inv_box
 	static_inventory += inv_box
@@ -50,7 +50,7 @@
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "hand1"
 	using.screen_loc = ui_swaphand1
-	using.layer = 19
+	using.layer = HUD_LAYER
 	static_inventory += using
 
 	using = new /obj/screen/inventory()
@@ -58,7 +58,7 @@
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "hand2"
 	using.screen_loc = ui_swaphand2
-	using.layer = 19
+	using.layer = HUD_LAYER
 	static_inventory += using
 
 

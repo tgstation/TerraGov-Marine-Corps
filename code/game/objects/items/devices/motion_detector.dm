@@ -6,7 +6,7 @@
 /obj/detector_blip
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "detector_blip"
-	layer = 18
+	layer = BELOW_FULLSCREEN_LAYER
 
 	Dispose()
 		..()

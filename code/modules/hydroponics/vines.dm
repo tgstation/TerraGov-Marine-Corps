@@ -7,7 +7,7 @@
 	icon_state = "Light1"
 	anchored = 1
 	density = 0
-	layer = 5
+	layer = FLY_LAYER
 	flags_pass = PASSTABLE|PASSGRILLE
 
 	// Vars used by vines with seed data.
@@ -107,7 +107,7 @@
 			return
 
 		src.opacity = 1
-		layer = 5
+		layer = FLY_LAYER
 	else if(!limited_growth)
 		src.icon_state = pick("Hvy1", "Hvy2", "Hvy3")
 		energy = 2

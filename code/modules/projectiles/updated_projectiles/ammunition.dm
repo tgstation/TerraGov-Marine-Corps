@@ -215,7 +215,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "casing_"
 	throwforce = 1
 	w_class = 1.0
-	layer = OBJ_LAYER - 0.1 //Below other objects but above weeds.
+	layer = LOWER_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
 	flags_atom = FPRINT|CONDUCT|DIRLOCK
 	var/current_casings = 1 //This is manipulated in the procs that use these.

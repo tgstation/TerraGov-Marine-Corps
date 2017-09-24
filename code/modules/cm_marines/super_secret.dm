@@ -128,7 +128,7 @@ Items and objects that are very hard to get to and do not affect balance.
 
 					icon = 'icons/obj/decals.dmi'
 					icon_state = "nobugs"
-					layer = 20
+					layer = ABOVE_HUD_LAYER
 					spawn(100)
 						icon = 'icons/obj/device.dmi'
 						icon_state = "implant_melted"

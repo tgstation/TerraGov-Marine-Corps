@@ -798,7 +798,7 @@
 	name = "All-In-One Grinder"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
-	layer = 2.9
+	layer = ABOVE_TABLE_LAYER
 	density = 0
 	anchored = 0
 	use_power = 1

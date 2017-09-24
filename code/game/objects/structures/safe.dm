@@ -27,7 +27,7 @@ FLOOR SAFES
 	icon_state = "safe"
 	anchored = 1
 	density = 1
-	layer = 2.1
+	layer = BELOW_OBJ_LAYER
 	unacidable = 1
 	explosion_resistance = 500
 	var/spawnkey = 1 //Spawn safe code on top of it?
@@ -198,7 +198,7 @@ obj/structure/safe/ex_act(severity)
 	icon_state = "floorsafe"
 	density = 0
 	level = 1	//underfloor
-	layer = 2.5
+	layer = UNDERFLOOR_OBJ_LAYER
 
 
 /obj/structure/safe/floor/initialize()
