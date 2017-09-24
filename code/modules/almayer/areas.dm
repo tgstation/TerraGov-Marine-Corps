@@ -94,6 +94,14 @@
 	name = "\improper Almayer Brig Cells"
 	icon_state = "brigcells"
 
+/area/almayer/shipboard/chief_mp_office
+	name = "\improper Almayer Chief MP Office"
+	icon_state = "chiefmpoffice"
+
+/area/almayer/shipboard/firing_range
+	name = "\improper Almayer Firing Range"
+	icon_state = "firingrange"
+
 /area/almayer/shipboard/sensors
 	name = "\improper Almayer Sensor Room"
 	icon_state = "sensor"
@@ -182,6 +190,10 @@
 	name = "\improper Almayer Officer's Lounge"
 	icon_state = "officerrnr"
 
+/area/almayer/living/officer_study
+	name = "\improper Almayer Officer's Study"
+	icon_state = "officerstudy"
+
 /area/almayer/living/cafeteria_port
 	name = "\improper Almayer Cafeteria"
 	icon_state = "food"
@@ -201,7 +213,6 @@
 /area/almayer/living/captain_mess
 	name = "\improper Almayer Captain's Mess"
 	icon_state = "briefing"
-
 
 /area/almayer/living/pilotbunks
 	name = "\improper Almayer Pilot's Bunks"
