@@ -134,9 +134,9 @@ Start with the ship's engine, and don't forget radiation equipment."}
 				WEAR_BODY = /obj/item/clothing/under/rank/cargotech,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
-				WEAR_HEAD = /obj/item/clothing/head/cmbandana/tan,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel/tech,
+				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/full,
+				WEAR_HEAD = /obj/item/clothing/head/beanie,
+				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
 				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium
 				)
 

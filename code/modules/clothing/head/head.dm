@@ -33,6 +33,16 @@
 	item_state = "band2"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band2"
+	
+/obj/item/clothing/head/beanie
+	name = "\improper USCM beanie"
+	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "beanie_cargo"
+	item_state = "beanie_cargo"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "beanie_cargo"
+	flags_inventory = HIDETOPHAIR
 
 /obj/item/clothing/head/cmberet
 	name = "\improper USCM beret"
