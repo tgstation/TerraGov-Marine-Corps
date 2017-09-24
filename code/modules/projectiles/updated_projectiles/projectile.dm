@@ -101,6 +101,8 @@
 	shot_from = S
 	in_flight = 1
 
+	dir = get_dir(loc, target_turf)
+
 	round_statistics.total_projectiles_fired++
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		round_statistics.total_bullets_fired++
@@ -140,6 +142,7 @@
 	set waitfor = 0
 
 	var/dist_since_sleep = 5 //Just so we always see the bullet.
+
 	var/turf/current_turf = get_turf(src)
 	var/turf/next_turf
 	var/this_iteration = 0
@@ -149,6 +152,14 @@
 
 		if(distance_travelled >= range)
 			ammo.do_at_max_range(src)
+			cdel(src)
+			return
+
+		if(!current_turf.Adjacent(next_turf)) //we can't reach the next turf
+			ammo.on_hit_turf(current_turf,src)
+			current_turf.bullet_act(src)
+			in_flight = 0
+			sleep(0)
 			cdel(src)
 			return
 
@@ -195,46 +206,54 @@
 		if(T && T.loc) T.bullet_act(src)
 		return 1
 	if(!T.contents.len) return //Nothing here.
-	for(var/atom/A in T)
+	for(var/atom/movable/A in T)
 		if(A in permutated) continue
+		permutated += A //Don't want to hit them again, no matter what the outcome.
+		var/hit_chance = A.get_projectile_hit_chance(src)
+		if(hit_chance)
+			if(isliving(A))
+				var/mob_is_hit = FALSE
+				var/mob/living/L = A
 
-		//Don't need to check for turfs inside turfs. Turfs can't be in turfs.
-		//The space flight check never worked anyway, because T.contents.len above would cancel it.
+				var/hit_roll
+				var/critical_miss = rand(config.critical_chance_low,config.critical_chance_high)
+				var/i = 0
+				while(++i <= 2 && hit_chance > 0) //This runs twice if necessary.
+					hit_roll 					= rand(0,100) //Our randomly generated roll.
+					if(hit_roll < 25) def_zone 	= pick(base_miss_chance)
+					hit_chance 				   -= base_miss_chance[def_zone] //Reduce accuracy based on spot.
 
-		if(isobj(A))
-			if(istype(A,/obj/structure/window) && (ammo.flags_ammo_behavior & AMMO_ENERGY))
-				continue
-
-			if(A == original) //Specifically clicking on eggs/hugger traps/huggers
-				if(istype(A,/obj/effect/alien/egg) || istype(A,/obj/effect/alien/resin/trap) || istype(A,/obj/item/clothing/mask/facehugger))
-					ammo.on_hit_obj(A,src)
-					if(A && A.loc) A.bullet_act(src)
+					switch(i)
+						if(1)
+							if(hit_chance > hit_roll)
+								mob_is_hit = TRUE
+								break //Hit
+							if( hit_chance < (hit_roll - 20) )
+								break //Outright miss.
+							def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+							hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
+						if(2)
+							if(prob(critical_miss) )
+								break //Critical miss on the second go around.
+							if(hit_chance > hit_roll)
+								mob_is_hit = TRUE
+								break
+				if(mob_is_hit)
+					ammo.on_hit_mob(L,src)
+					if(L && L.loc)
+						L.bullet_act(src)
 					return 1
+				else if (!L.lying)
+					animatation_displace_reset(L)
+					if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
+					L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>")
 
-			if(!A.density) //We're scanning a non dense object.
-				continue
-
-			//Scan for tables, barricades.
-			if(istype(A, /obj/structure/barricade) || istype(A, /obj/structure/table))
-				if (roll_to_hit_obj(firer,A))
-					ammo.on_hit_obj(A, src)
-					if (A && A.loc)
-						A.bullet_act(src)
-					return 1
-				continue
-
-			//Scan for other assorted larger nonsense.
-			if(A.layer >= 3)
+			else if(isobj(A))
 				ammo.on_hit_obj(A,src)
 				if(A && A.loc)
 					A.bullet_act(src)
 				return 1
 
-		else if(ismob(A))
-			if( isliving(A) && roll_to_hit_mob(firer,A) && (A:lying == 0 || A == original))
-				ammo.on_hit_mob(A,src)
-				if(A && A.loc) A.bullet_act(src)
-				return 1
 
 //----------------------------------------------------------
 		    	//				    	\\
@@ -244,77 +263,101 @@
 //----------------------------------------------------------
 
 
-/obj/item/projectile/proc/roll_to_hit_mob(atom/shooter,mob/living/target)
-	permutated += target //Don't want to hit them again, no matter what the outcome.
+//returns probability for the projectile to hit us.
+/atom/movable/proc/get_projectile_hit_chance(obj/item/projectile/P)
+	return 0
 
-	if(ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) && istype(target.buckled, /obj/structure/stool/bed/nest) && target.status_flags & XENO_HOST) r_FAL
+//obj version just returns true or false.
+/obj/get_projectile_hit_chance(obj/item/projectile/P)
+	if(!density)
+		return FALSE
 
-	var/acc = accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
+	if(layer >= OBJ_LAYER)
+		return TRUE
+
+/obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
+	if(flags_atom & ON_BORDER)
+		if(src == P.original)
+			return TRUE
+		if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
+			return FALSE
+		if(P.dir & reverse_direction(dir))
+			return prob(95)
+
+/obj/structure/table/get_projectile_hit_chance(obj/item/projectile/P)
+	if(flags_atom & ON_BORDER) //flipped table
+		if(src == P.original)
+			return TRUE
+		if(P.distance_travelled <= 1)
+			return FALSE
+		if(P.dir & reverse_direction(dir))
+			return prob(95)
+
+/obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
+	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)
+		return FALSE
+	. = ..()
+
+/obj/effect/alien/egg/get_projectile_hit_chance(obj/item/projectile/P)
+	return src == P.original
+
+/obj/effect/alien/resin/trap/get_projectile_hit_chance(obj/item/projectile/P)
+	return src == P.original
+
+/obj/item/clothing/mask/facehugger/get_projectile_hit_chance(obj/item/projectile/P)
+	return src == P.original
+
+
+/mob/living/get_projectile_hit_chance(obj/item/projectile/P)
+
+	if(lying && src != P.original)
+		return 0
+
+	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
+		if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/stool/bed/nest))
+			return 0
+
+	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
 	world << "<span class='debuginfo'>Base accuracy is <b>[acc]</b></span>"
 	#endif
-	if(distance_travelled <= (ammo.accurate_range + rand(0,2)) ) //Less to or equal.
-		if(ammo.flags_ammo_behavior & AMMO_SNIPER) 	acc -= (ammo.max_range - distance_travelled) * 4.8
-		else if(distance_travelled <= 2)		acc += 25
-	else acc -= (ammo.flags_ammo_behavior & AMMO_SNIPER) ? (distance_travelled * 1.3) : (distance_travelled * 5)
+	if(P.distance_travelled <= (P.ammo.accurate_range + rand(0,2)) ) //Less to or equal.
+		if(P.ammo.flags_ammo_behavior & AMMO_SNIPER) 	. -= (P.ammo.max_range - P.distance_travelled) * 4.8
+		else if(P.distance_travelled <= 2)		. += 25
+	else . -= (P.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (P.distance_travelled * 1.3) : (P.distance_travelled * 5)
 	#if DEBUG_HIT_CHANCE
-	world << "<span class='debuginfo'>Final accuracy is <b>[acc]</b></span>"
+	world << "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>"
 	#endif
 
-	var/hit_chance = max(5,acc) //At least 5%.
-	if(target.lying && target.stat) hit_chance += 15 //Bonus hit against unconscious people.
+	. = max(5, .) //default hit chance is at least 5%.
+	if(lying && stat) . += 15 //Bonus hit against unconscious people.
 
-	if(ishuman(target))
-		var/mob/living/carbon/human/target_human = target
-		if( ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && target_human.get_target_lock(ammo.iff_signal) ) r_FAL
-		var/mob/living/carbon/human/shooter_human = shooter
-		if( istype(shooter_human) && (shooter_human.faction == target_human.faction || target_human.m_intent == "walk") ) hit_chance -= 15
-	else if(isXeno(target))
-		if(ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS) r_FAL
-		var/mob/living/carbon/Xenomorph/target_xeno = target
-		if(target_xeno.mob_size == MOB_SIZE_BIG)	hit_chance += 10
-		else						hit_chance -= 10
+	if(isliving(P.firer))
+		var/mob/living/shooter_living = P.firer
+		if( !can_see(shooter_living,src) ) . -= 15 //Can't see the target
+		. -= round((shooter_living.maxHealth - shooter_living.health) / 4) //Less chance to hit when injured.
 
-	if(isliving(shooter))
-		var/mob/living/shooter_living = shooter
-		if( !can_see(shooter_living,target) ) hit_chance -= 15 //Can't see the target
-		hit_chance -= round((shooter_living.maxHealth - shooter_living.health) / 4) //Less chance to hit when injured.
-	#if DEBUG_HIT_CHANCE
-	world << "<span class='debuginfo'>Calculated hit chance is <b>[hit_chance]</b></span>"
-	#endif
 
-	var/hit_roll
-	var/critical_miss = rand(config.critical_chance_low,config.critical_chance_high)
-	var/i = 0
-	while(++i <= 2 && hit_chance > 0) //This runs twice if necessary.
-		hit_roll 					= rand(0,100) //Our randomly generated roll.
-		if(hit_roll < 25) def_zone 	= pick(base_miss_chance)
-		hit_chance 				   -= base_miss_chance[def_zone] //Reduce accuracy based on spot.
 
-		switch(i)
-			if(1)
-				if(hit_chance > hit_roll) 			r_TRU //Hit
-				if( hit_chance < (hit_roll - 20) ) 	break //Outright miss.
-				def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
-				hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
-			if(2)
-				if(prob(critical_miss) ) 			break //Critical miss on the second go around.
-				if(hit_chance > hit_roll) 			r_TRU
-	if (!target.lying)
-		animatation_displace_reset(target)
-		if(ammo.sound_miss) target.playsound_local(get_turf(target), ammo.sound_miss, 75, 1)
-		target.visible_message("<span class='avoidharm'>[src] misses [target]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>")
+/mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
+	. = ..()
+	if(.)
+		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(P.ammo.iff_signal))
+			return 0
+		var/mob/living/carbon/human/shooter_human = P.firer
+		if(istype(shooter_human))
+			if(shooter_human.faction == faction || m_intent == "walk")
+				. -= 15
 
-/obj/item/projectile/proc/roll_to_hit_obj(atom/shooter,obj/target)
-	permutated += target
-	var/obj/structure/table/target_table = target
-	if( (istype(target_table) && target_table.flipped) || istype(target,/obj/structure/barricade) )
-		if(target.flags_atom & ON_BORDER)
-			var/chance = 0
-			if(dir == reverse_direction(target.dir)) chance = 95
-			else if(dir == target.dir) chance = 1
-			else chance = 20
-			if(prob(chance)) return 1
+
+/mob/living/carbon/Xenomorph/get_projectile_hit_chance(obj/item/projectile/P)
+	. = ..()
+	if(.)
+		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
+			return 0
+		if(mob_size == MOB_SIZE_BIG)	. += 10
+		else							. -= 10
+
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
 	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)
@@ -560,7 +603,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(mobs_list.len)
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
-		if(istype(picked_mob) && P.firer && P.roll_to_hit_mob(P.firer,picked_mob))
+		if(istype(picked_mob) && P.firer && prob(P.get_projectile_hit_chance(P.firer,picked_mob)))
 			picked_mob.bullet_act(P)
 			return 1
 	return 1

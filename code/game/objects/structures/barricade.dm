@@ -95,10 +95,10 @@
 		return 1
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return 1
 
-	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir) //Barbed wires blocks movement
+	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir)
 		return 0
 	else
 		return 1
@@ -518,6 +518,7 @@
 	destroyed_stack_amount = 2
 	barricade_hitsound = "sound/effects/metalhit.ogg"
 	barricade_type = "plasteel"
+	density = 0
 	closed = 1
 	can_wire = 1
 

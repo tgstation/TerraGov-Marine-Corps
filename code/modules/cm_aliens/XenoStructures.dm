@@ -209,7 +209,8 @@
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
 	if(hugger)
-		drop_hugger()
+		if(CanHug(AM) && !isYautja(AM))
+			drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	set waitfor = 0
@@ -260,9 +261,8 @@
 		. = ..()
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
-	if(ishuman(A))
-		var/mob/living/carbon/human/C = A
-		HasProximity(C)
+	if(ismob(A))
+		HasProximity(A)
 
 /obj/effect/alien/resin/trap/Dispose()
 	if(hugger && loc)

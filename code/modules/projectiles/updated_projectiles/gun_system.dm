@@ -693,7 +693,6 @@ and you're good to go.
 	if(user) //The gun only messages when fired by a user.
 		projectile_to_fire.firer = user
 		if(isliving(user)) projectile_to_fire.def_zone = user.zone_selected
-		projectile_to_fire.dir = user.dir
 
 		//firing from an attachment
 		if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)

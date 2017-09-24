@@ -284,7 +284,7 @@ var/datum/mob_hud/huds = list(
 					holder2_set = 1
 			else
 				holder.icon_state = "huddead"
-				if(!holder2_set)
+				if(!holder2_set || world.time - timeofdeath > revive_grace_period)
 					holder2.icon_state = "huddead"
 					holder3.icon_state = "huddead"
 					holder2_set = 1
