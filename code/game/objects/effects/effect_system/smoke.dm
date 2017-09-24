@@ -68,7 +68,8 @@
 		affect(L)
 
 /obj/effect/particle_effect/smoke/proc/spread_smoke(direction)
-	var/list/newsmokes = list()
+	set waitfor = 0
+	sleep(spread_speed)
 	for(var/i in cardinal)
 		if(direction && i != direction)
 			continue
@@ -80,16 +81,9 @@
 			continue
 		var/obj/effect/particle_effect/smoke/S = new type(T, amount)
 		S.dir = pick(cardinal)
-		S.color = color
 		S.time_to_live = time_to_live
 		if(S.amount>0)
-			newsmokes.Add(S)
-
-	if(newsmokes.len)
-		spawn(spread_speed) //the smoke spreads rapidly but not instantly
-			for(var/X in newsmokes)
-				var/obj/effect/particle_effect/smoke/SM = X
-				SM.spread_smoke()
+			S.spread_smoke()
 
 /obj/effect/particle_effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (istype(M))
@@ -225,10 +219,12 @@
 	time_to_live = 6
 	color = "#86B028" //Mostly green?
 	anchored = 1
-	spread_speed = 8
+	spread_speed = 10
 
 /obj/effect/particle_effect/smoke/xeno_burn/apply_smoke_effect(turf/T)
 	for(var/mob/living/L in T)
+		if(istype(L.buckled, /obj/structure/stool/bed/nest) && L.status_flags & XENO_HOST)
+			continue //nested infected hosts are not hurt by acid smoke
 		affect(L)
 	for(var/obj/structure/barricade/B in T)
 		B.acid_smoke_damage(src)
@@ -270,7 +266,7 @@
 /obj/effect/particle_effect/smoke/xeno_weak
 	time_to_live = 6
 	color = "#90dd00" //Mostly light green?
-	spread_speed = 8
+	spread_speed = 10
 
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
 	..()
@@ -335,8 +331,7 @@
 /datum/effect_system/smoke_spread/start()
 	if(holder)
 		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/S = new smoke_type(location)
-	S.amount = amount
+	var/obj/effect/particle_effect/smoke/S = new smoke_type(location, amount+1)
 	if(lifetime)
 		S.time_to_live = lifetime
 	if(S.amount)

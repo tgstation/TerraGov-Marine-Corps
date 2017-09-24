@@ -1299,10 +1299,7 @@
 	H.mind.assigned_role = "Colonist"
 	H.mind.special_role = "MODE"
 	ticker.mode.traitors += H.mind
-	H.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
-		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_DEFAULT,"medical"=SKILL_MEDICAL_MEDIC,
-		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
-
+	H.mind.skills_list = null //no restriction
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 	H.equip_to_slot(new /obj/item/weapon/combat_knife(H), WEAR_L_STORE)

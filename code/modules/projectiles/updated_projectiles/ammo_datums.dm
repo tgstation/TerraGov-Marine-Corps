@@ -677,7 +677,6 @@
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
 	damage_bleed = 0
-	flags_ammo_behavior = AMMO_ROCKET
 	New()
 		..()
 		accuracy = -config.min_hit_accuracy
@@ -709,7 +708,7 @@
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
-	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE
 	damage_type = BURN
 	New()
 		..()
