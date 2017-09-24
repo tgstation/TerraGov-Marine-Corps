@@ -3,7 +3,7 @@
 /obj/effect/decal/spraystill
 	density = 0
 	anchored = 1
-	layer = 50
+	layer = FLY_LAYER
 
 //Used by spraybottles.
 /obj/effect/decal/chempuff

@@ -9,7 +9,7 @@
 /obj/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
-	layer = 20
+	layer = ABOVE_HUD_LAYER
 	unacidable = 1
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 
@@ -22,7 +22,7 @@
 	maptext_width = 480
 
 /obj/screen/cinematic
-	layer = 21
+	layer = CINEMATIC_LAYER
 	mouse_opacity = 0
 	screen_loc = "1,0"
 
@@ -442,7 +442,7 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "act_drop"
 	screen_loc = ui_drop_throw
-	layer = 19
+	layer = HUD_LAYER
 
 /obj/screen/drop/Click()
 	usr.drop_item_v()
@@ -452,7 +452,7 @@
 	name = "resist"
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "act_resist"
-	layer = 19
+	layer = HUD_LAYER
 	screen_loc = ui_pull_resist
 
 /obj/screen/resist/Click()
@@ -647,13 +647,14 @@
 	name = " "
 	screen_loc = "1,1"
 	plane = -80
+	layer = FULLSCREEN_BLIND_LAYER
 
 /obj/screen/flash
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "blank"
 	name = "flash"
 	screen_loc = "1,1 to 15,15"
-	layer = 17
+	layer = FULLSCREEN_FLASH_LAYER
 
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
@@ -661,8 +662,7 @@
 	name = "dmg"
 	screen_loc = "1,1"
 	mouse_opacity = 0
-	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
-
+	layer = FULLSCREEN_DAMAGE_LAYER
 
 
 /obj/screen/queen_locator

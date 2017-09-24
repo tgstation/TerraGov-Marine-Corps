@@ -5,7 +5,7 @@
 	name = "Fuel Rod Assembly"
 	var/list/rod_quantities
 	var/percent_depleted = 1
-	layer = 3.1
+	layer = UPPER_ITEM_LAYER
 	//
 	New()
 		rod_quantities = new/list

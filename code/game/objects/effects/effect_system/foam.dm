@@ -13,7 +13,7 @@
 	opacity = 0
 	anchored = 1
 	density = 0
-	layer = OBJ_LAYER + 0.9
+	layer = BELOW_MOB_LAYER
 	mouse_opacity = 0
 	var/amount = 3
 	var/expand = 1

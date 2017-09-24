@@ -6,7 +6,7 @@
 	use_power = 2
 	idle_power_usage = 5
 	active_power_usage = 10
-	layer = 5
+	layer = FLY_LAYER
 
 	var/list/network = list("military")
 	var/c_tag = null

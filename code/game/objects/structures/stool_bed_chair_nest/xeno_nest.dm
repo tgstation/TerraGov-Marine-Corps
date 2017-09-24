@@ -11,7 +11,7 @@
 	var/resisting = 0
 	var/resisting_ready = 0
 	var/nest_resist_time = 1200
-	layer = 2.9 //Just above weeds.
+	layer = RESIN_STRUCTURE_LAYER
 
 	New()
 		..()

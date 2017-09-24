@@ -158,7 +158,7 @@
 	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
 	for(var/obj/O in src.contents)
 		O.screen_loc = "[cx],[cy]"
-		O.layer = 20
+		O.layer = ABOVE_HUD_LAYER
 		cx++
 		if (cx > mx)
 			cx = tx
@@ -178,7 +178,7 @@
 			ND.sample_object.mouse_opacity = 2
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			ND.sample_object.layer = 20
+			ND.sample_object.layer = ABOVE_HUD_LAYER
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -188,7 +188,7 @@
 			O.mouse_opacity = 2 //So storage items that start with contents get the opacity trick.
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
-			O.layer = 20
+			O.layer = ABOVE_HUD_LAYER
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -242,7 +242,7 @@
 
 		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
 		O.maptext = ""
-		O.layer = 20
+		O.layer = ABOVE_HUD_LAYER
 
 	src.closer.screen_loc = "4:[storage_width+19],2:16"
 	return
@@ -412,7 +412,7 @@
 
 	if(new_location)
 		if(ismob(new_location))
-			W.layer = 20
+			W.layer = ABOVE_HUD_LAYER
 			W.pickup(new_location)
 		else
 			W.layer = initial(W.layer)
@@ -512,36 +512,36 @@
 	boxes.master = src
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
-	boxes.layer = 19
+	boxes.layer = HUD_LAYER
 
 	storage_start = new /obj/screen/storage(  )
 	storage_start.name = "storage"
 	storage_start.master = src
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
-	storage_start.layer = 19
+	storage_start.layer = HUD_LAYER
 	storage_continue = new /obj/screen/storage(  )
 	storage_continue.name = "storage"
 	storage_continue.master = src
 	storage_continue.icon_state = "storage_continue"
 	storage_continue.screen_loc = "7,7 to 10,8"
-	storage_continue.layer = 19
+	storage_continue.layer = HUD_LAYER
 	storage_end = new /obj/screen/storage(  )
 	storage_end.name = "storage"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
 	storage_end.screen_loc = "7,7 to 10,8"
-	storage_end.layer = 19
+	storage_end.layer = HUD_LAYER
 
 	stored_start = new /obj //we just need these to hold the icon
 	stored_start.icon_state = "stored_start"
-	stored_start.layer = 19
+	stored_start.layer = HUD_LAYER
 	stored_continue = new /obj
 	stored_continue.icon_state = "stored_continue"
-	stored_continue.layer = 19
+	stored_continue.layer = HUD_LAYER
 	stored_end = new /obj
 	stored_end.icon_state = "stored_end"
-	stored_end.layer = 19
+	stored_end.layer = HUD_LAYER
 
 	closer = new
 	closer.master = src

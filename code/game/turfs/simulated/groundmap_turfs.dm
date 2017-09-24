@@ -124,7 +124,7 @@
 	density = 0
 	anchored = 1
 	unacidable = 1 // can toggle it off anyway
-	layer = MOB_LAYER+0.1
+	layer = ABOVE_MOB_LAYER
 
 /obj/structure/jungle/shrub
 	name = "jungle foliage"
@@ -144,6 +144,7 @@
 /obj/structure/jungle/tree
 	icon = 'icons/obj/flora/ground_map64.dmi'
 	desc = "What an enormous tree!"
+	layer = ABOVE_FLY_LAYER
 
 /obj/structure/jungle/tree/bigtreeTR
 	name = "huge tree"
@@ -167,18 +168,17 @@
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
-	layer = MOB_LAYER+0.1
+	layer = ABOVE_MOB_LAYER
 
 /obj/structure/jungle/vines_heavy
 	name = "vines"
 	desc = "A thick, coiled mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Hvy1"
-	layer = MOB_LAYER+0.1
 	opacity = 1
 
 /obj/structure/jungle/tree/grasscarpet
 	name = "thick grass"
 	desc = "A thick mat of dense grass."
 	icon_state = "grasscarpet"
-	layer = MOB_LAYER-0.1
+	layer = BELOW_MOB_LAYER

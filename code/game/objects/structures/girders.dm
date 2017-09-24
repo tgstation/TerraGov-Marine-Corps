@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = 1
 	density = 1
-	layer = 3
+	layer = OBJ_LAYER
 	var/state = 0
 	var/health = 200
 
@@ -201,7 +201,7 @@
 	icon_state= "cultgirder"
 	anchored = 1
 	density = 1
-	layer = 3 //Used to be 2 but bullets flew over it --MadSnailDisease
+	layer = OBJ_LAYER //Used to be 2 but bullets flew over it --MadSnailDisease
 	var/health = 250
 
 	attackby(obj/item/W as obj, mob/user as mob)

@@ -265,7 +265,7 @@
 	icon = 'icons/Marine/almayer_props96.dmi'
 	icon_state = "dropship1"
 	density = 0
-	layer = 2.1
+	layer = ABOVE_TURF_LAYER
 
 //------APCs ------//
 

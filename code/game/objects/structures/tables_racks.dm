@@ -17,7 +17,7 @@
 	icon_state = "table"
 	density = 1
 	anchored = 1.0
-	layer = 2.8
+	layer = TABLE_LAYER
 	throwpass = 1	//You can throw objects over this, despite it's density.")
 	climbable = 1
 	breakable = 1
@@ -473,7 +473,7 @@
 
 	dir = direction
 	if(dir != NORTH)
-		layer = 5
+		layer = FLY_LAYER
 	flipped = 1
 	flags_atom |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))

@@ -62,21 +62,21 @@ STI KALY - blind
 				if(H.head)
 					H.drop_inv_item_on_ground(H.head)
 				H.head = new /obj/item/clothing/head/wizard(H)
-				H.head.layer = 20
+				H.head.layer = ABOVE_HUD_LAYER
 			return
 		if(prob(chance))
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/wizrobe))
 				if(H.wear_suit)
 					H.drop_inv_item_on_ground(H.wear_suit)
 				H.wear_suit = new /obj/item/clothing/suit/wizrobe(H)
-				H.wear_suit.layer = 20
+				H.wear_suit.layer = ABOVE_HUD_LAYER
 			return
 		if(prob(chance))
 			if(!istype(H.shoes, /obj/item/clothing/shoes/sandal))
 				if(H.shoes)
 					H.drop_inv_item_on_ground(H.shoes)
 				H.shoes = new /obj/item/clothing/shoes/sandal(H)
-				H.shoes.layer = 20
+				H.shoes.layer = ABOVE_HUD_LAYER
 			return
 	else
 		var/mob/living/carbon/H = affected_mob

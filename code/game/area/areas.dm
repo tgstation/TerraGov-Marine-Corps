@@ -13,7 +13,7 @@
 	..()
 
 	icon_state = "" //Used to reset the icon overlay, I assume.
-	layer = 10
+	layer = AREAS_LAYER
 	master = src //moved outside the spawn(1) to avoid runtimes in lighting.dm when it references loc.loc.master ~Carn
 	uid = ++global_uid
 	related = list(src)

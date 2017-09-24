@@ -227,8 +227,8 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return
-	if(X.layer != TURF_LAYER + 0.75)
-		X.layer = TURF_LAYER + 0.75
+	if(X.layer != XENO_HIDING_LAYER)
+		X.layer = XENO_HIDING_LAYER
 		X << "<span class='notice'>You are now hiding.</span>"
 	else
 		X.layer = MOB_LAYER

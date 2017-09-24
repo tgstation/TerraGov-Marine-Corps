@@ -221,9 +221,6 @@
 			if(!O.up && tinted_weldhelh)
 				client.screen += global_hud.darkMask
 
-		if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && hud_used)
-			hud_used.blind_icon.layer = 18
-
 		if(interactee)
 			interactee.check_eye(src)
 		else

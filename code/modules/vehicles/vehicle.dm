@@ -1,7 +1,7 @@
 /obj/vehicle
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
-	layer = MOB_LAYER + 0.1 //so it sits above objects including mobs
+	layer = ABOVE_MOB_LAYER //so it sits above objects including mobs
 	density = 1
 	anchored = 1
 	animate_movement=1

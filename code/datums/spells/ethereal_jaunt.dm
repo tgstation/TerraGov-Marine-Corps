@@ -30,7 +30,7 @@
 			animation.anchored = 1
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.icon_state = "liquify"
-			animation.layer = 5
+			animation.layer = FLY_LAYER
 			animation.master = holder
 			if(phaseshift == 1)
 				animation.dir = target.dir

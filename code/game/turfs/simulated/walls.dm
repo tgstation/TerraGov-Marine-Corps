@@ -253,7 +253,7 @@
 			O.pixel_y += rand(-10, 10)
 			O.anchored = 1
 			O.density = 1
-			O.layer = 5
+			O.layer = FLY_LAYER
 			O.mouse_opacity = 0
 
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
@@ -266,7 +266,7 @@
 	O.icon_state = "2"
 	O.anchored = 1
 	O.density = 1
-	O.layer = 5
+	O.layer = FLY_LAYER
 
 	ChangeTurf(/turf/simulated/floor/plating)
 

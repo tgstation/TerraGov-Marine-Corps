@@ -6,7 +6,7 @@
 	walltype = "resin"
 	mineral = "resin"
 	damage_cap = 200
-	layer = 3.1
+	layer = RESIN_STRUCTURE_LAYER
 
 	tiles_with = list(/turf/simulated/wall/resin, /turf/simulated/wall/resin/membrane, /obj/structure/mineral_door/resin)
 
@@ -152,7 +152,6 @@
 	opacity = 1
 	anchored = 1
 	health = 200
-	layer = 2.8
 	unacidable = 1
 
 /obj/effect/alien/resin/sticky
@@ -162,7 +161,7 @@
 	density = 0
 	opacity = 0
 	health = 150
-	layer = 2.9
+	layer = RESIN_STRUCTURE_LAYER
 
 	Crossed(atom/movable/AM)
 		if(ishuman(AM))
@@ -189,7 +188,7 @@
 	opacity = 0
 	anchored = 1
 	health = 20
-	layer = 3
+	layer = RESIN_STRUCTURE_LAYER
 	var/hugger = FALSE
 
 /obj/effect/alien/resin/trap/examine(mob/user)
@@ -457,7 +456,7 @@
 
 	anchored = 1
 	density = 0
-	layer = 2.52
+	layer = TURF_LAYER
 	unacidable = 1
 	health = 1
 	var/obj/effect/alien/weeds/node/linked_node = null
@@ -561,7 +560,7 @@
 	icon_state = "weednode"
 	name = "purple sac"
 	desc = "A weird, pulsating node."
-	layer = 2.7
+	layer = RESIN_STRUCTURE_LAYER
 	var/node_range = NODERANGE
 	var/planter_ckey //ckey of the mob who planted it.
 	var/planter_name //nameof the mob who planted it.

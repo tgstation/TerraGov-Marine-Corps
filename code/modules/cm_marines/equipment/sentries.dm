@@ -36,7 +36,7 @@
 	icon_state = "turret-nocable"
 	anchored = 0
 	density = 1
-	layer = 3.4
+	layer = ABOVE_OBJ_LAYER
 	var/has_cable = 0
 	var/has_top = 0
 	var/has_sensor = 0
@@ -223,7 +223,7 @@
 	anchored = 1
 	unacidable = 1
 	density = 1
-	layer = MOB_LAYER+0.1 //So you can't hide it under corpses
+	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
 	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)

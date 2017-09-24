@@ -53,7 +53,7 @@
 /obj/effect/decal/wall_transition
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "transition_s"
-	layer = 2
+	layer = TURF_LAYER
 
 /obj/effect/decal/wall_transition/New()
 	. = ..()
@@ -112,7 +112,7 @@
 		update_turf_overlay()
 
 /turf/simulated/floor/almayer/plating/catwalk/proc/update_turf_overlay()
-	var/image/reusable/I = rnew(/image/reusable, list('icons/turf/almayer.dmi', src, "catwalk", 2.5))
+	var/image/reusable/I = rnew(/image/reusable, list('icons/turf/almayer.dmi', src, "catwalk", CATWALK_LAYER))
 	switch(covered)
 		if(0)
 			overlays -= I

@@ -7,7 +7,7 @@
 	density = 0
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "glowshroomf"
-	layer = 2.1
+	layer = ABOVE_TURF_LAYER
 	l_color = "#003300"
 
 	var/endurance = 30

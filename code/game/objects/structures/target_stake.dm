@@ -28,7 +28,7 @@
 			W.density = 1
 			user.drop_held_item()
 			W.loc = loc
-			W.layer = 3.1
+			W.layer = layer + 0.1
 			pinned_target = W
 			user << "You slide the target into the stake."
 		return

@@ -1,6 +1,6 @@
 /obj/item/stack/sheet
 	name = "sheet"
-	layer = 3.1
+	layer = UPPER_ITEM_LAYER
 	w_class = 3.0
 	force = 5
 	throwforce = 5

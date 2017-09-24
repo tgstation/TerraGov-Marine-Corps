@@ -17,7 +17,7 @@
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
 	density = 1
-	layer = 5
+	layer = FLY_LAYER
 	anchored = 1
 
 /obj/effect/overlay/palmtree_l
@@ -25,7 +25,7 @@
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
 	density = 1
-	layer = 5
+	layer = FLY_LAYER
 	anchored = 1
 
 /obj/effect/overlay/coconut
@@ -37,11 +37,11 @@
 	name = "Danger"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "danger"
-	layer = 6
+	layer = ABOVE_FLY_LAYER
 
 /obj/effect/overlay/temp
 	anchored = 1
-	layer = 5 //above mobs
+	layer = ABOVE_FLY_LAYER //above mobs
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
@@ -60,7 +60,6 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "arrow"
-	layer = 16
 	anchored = 1
 	effect_duration = 25
 
@@ -71,7 +70,6 @@
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
 	anchored = TRUE
-	layer = MOB_LAYER + 1
 	mouse_opacity = 1
 	luminosity = 2
 	icon = 'icons/obj/projectiles.dmi'
@@ -113,7 +111,6 @@
 /obj/effect/overlay/temp/blinking_laser
 	name = "blinking laser"
 	anchored = TRUE
-	layer = MOB_LAYER + 1
 	luminosity = 2
 	effect_duration = 10
 	mouse_opacity = 0

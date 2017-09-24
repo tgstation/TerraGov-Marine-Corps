@@ -16,7 +16,7 @@ Pipelines + Other Objects -> Pipe network
 	power_channel = ENVIRON
 	var/nodealert = 0
 
-	layer = 2.4 //under wires with their 2.44
+	layer = ATMOS_DEVICE_LAYER
 
 	var/connect_types[] = list(1) //1=regular, 2=supply, 3=scrubber
 	var/connected_to = 1 //same as above, currently not used for anything

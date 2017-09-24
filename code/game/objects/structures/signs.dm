@@ -3,7 +3,7 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	layer = 3.5
+	layer = WALL_OBJ_LAYER
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
@@ -203,7 +203,6 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	layer = 3.5
 
 /obj/structure/sign/safety/airlock
 	name = "\improper Airlock"
