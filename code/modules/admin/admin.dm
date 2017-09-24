@@ -1112,9 +1112,11 @@ var/global/floorIsLava = 0
 	var/mob/M
 	if(istype(whom, /client))
 		C = whom
-	if(istype(whom, /mob))
+	else if(istype(whom, /mob))
 		M = whom
 		C = M.client
+	else
+		return 0
 	if(R_HOST & C.holder.rights)
 		return 1
 	else

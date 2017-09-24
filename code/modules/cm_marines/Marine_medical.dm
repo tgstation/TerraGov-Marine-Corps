@@ -13,10 +13,9 @@
 //Auto-injector Generation Proc (to change the chemicals)
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("tricordrazine", 15)
-			update_icon()
-		return
+		reagents.add_reagent("tricordrazine", 15)
+		update_icon()
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
 	name = "\improper Quick Clot autoinjector"
@@ -27,10 +26,9 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("quickclot", 3)
-			update_icon()
-		return
+		reagents.add_reagent("quickclot", 3)
+		update_icon()
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP
 	name = "\improper Dexalin Plus autoinjector"
@@ -41,10 +39,9 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("dexalinp", 1)
-			update_icon()
-		return
+		reagents.add_reagent("dexalinp", 1)
+		update_icon()
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix  //This may be removable soon, since we don't have cloning.  Holding for now, since it's a genetic/eye damage fixer.
 	name = "Clone-Fix"
@@ -55,11 +52,10 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("alkysine", 5)
-			reagents.add_reagent("ryetalyn", 1)
-			update_icon()
-		return
+		reagents.add_reagent("alkysine", 5)
+		reagents.add_reagent("ryetalyn", 1)
+		update_icon()
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate
 	name = "anesthetic autoinjector"
@@ -70,11 +66,10 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("chloralhydrate", 1)
-			reagents.add_reagent("stoxin", 9)
-			update_icon()
-		return
+		reagents.add_reagent("chloralhydrate", 1)
+		reagents.add_reagent("stoxin", 9)
+		update_icon()
+
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene
@@ -86,10 +81,9 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("anti_toxin", 5)
-			update_icon()
-		return
+		reagents.add_reagent("anti_toxin", 5)
+		update_icon()
+
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone
@@ -101,10 +95,9 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("oxycodone", 5)
-			update_icon()
-		return
+		reagents.add_reagent("oxycodone", 5)
+		update_icon()
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo
 	name = "\improper Kelotane autoinjector"
@@ -115,10 +108,8 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("kelotane", 5)
-			update_icon()
-		return
+		reagents.add_reagent("kelotane", 5)
+		update_icon()
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard
@@ -130,10 +121,9 @@
 
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("bicaridine", 10)
-			update_icon()
-		return
+		reagents.add_reagent("bicaridine", 10)
+		update_icon()
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Inaprovaline
 	name = "\improper Inaprovaline autoinjector"
@@ -145,9 +135,8 @@
 //Auto-injector Generation Proc (to change the chemicals)
 	New()
 		..()
-		spawn(1)
-			reagents.add_reagent("inaprovaline", 15)
-			update_icon()
-		return
+		reagents.add_reagent("inaprovaline", 15)
+		update_icon()
+
 
 

@@ -63,6 +63,7 @@
 			cdel(A)
 		else
 			A.forceMove(target.loc)
+			target.status_flags &= ~XENO_HOST
 
 	affected.createwound(CUT, rand(0,20), 1)
 	target.updatehealth()

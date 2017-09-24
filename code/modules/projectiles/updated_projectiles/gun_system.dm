@@ -105,6 +105,7 @@
 	last_moved_mob 	= null
 	muzzle 			= null
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
+		flags_gun_features &= ~GUN_FLASHLIGHT_ON
 		if(ismob(loc))
 			loc.SetLuminosity(-rail.light_mod)
 		else
