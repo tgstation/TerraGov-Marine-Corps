@@ -29,6 +29,7 @@
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
 		processing_objects.Remove(src)
+		affected_mob = null
 	. = ..()
 
 /obj/item/alien_embryo/process()

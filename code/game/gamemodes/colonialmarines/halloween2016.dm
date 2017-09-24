@@ -753,7 +753,7 @@
 				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/medic(H), WEAR_BACK)
 				else H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/medic(H), WEAR_BACK)
 
-				H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(H), WEAR_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H.back), WEAR_IN_BACK)

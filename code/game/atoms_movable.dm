@@ -257,8 +257,8 @@
 			a = get_area(src.loc)
 
 	//done throwing, either because it hit something or it finished moving
-	if(isobj(src)) src.throw_impact(get_turf(src),speed)
-	if(src)
+	if(isobj(src) && throwing) throw_impact(get_turf(src),speed)
+	if(loc)
 		src.throwing = 0
 		src.thrower = null
 		src.throw_source = null
