@@ -937,6 +937,21 @@ About the new airlock wires panel:
 			if(shock(user, 75))
 				return
 	add_fingerprint(user)
+	if(istype(C, /obj/item/zombie_claws) && (src.welded || src.locked))
+		user.visible_message("<span class='notice'>[user] starts tearing into the door on the [src]!</span>", \
+			"<span class='notice'>You start prying your hand into the gaps of the door with your fingers... This will take about 30 seconds.</span>", \
+			"<span class='notice'>You hear tearing noises!</span>")
+		if(do_after(user, 300, TRUE, 5, BUSY_ICON_CLOCK))
+			user.visible_message("<span class='notice'>[user] slams the door open [src]!</span>", \
+			"<span class='notice'>You slam the door open!</span>", \
+			"<span class='notice'>You hear metal screeching!</span>")
+			src.locked = 0
+			src.welded = 0
+			src.update_icon()
+			src.open()
+			src.locked = 1
+			return
+		return
 	if((istype(C, /obj/item/weapon/weldingtool) && !operating && density))
 		var/obj/item/weapon/weldingtool/W = C
 		if(W.remove_fuel(0,user))

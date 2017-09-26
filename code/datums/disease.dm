@@ -36,11 +36,13 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 	var/severity = null//severity descr
 	var/longevity = 150//time in "ticks" the virus stays in inanimate object (blood stains, corpses, etc). In syringes, bottles and beakers it stays infinitely.
 	var/list/hidden = list(0, 0)
+	// if hidden[1] is true, then virus is hidden from medical scanners
+	// if hidden[2] is true, then virus is hidden from PANDEMIC machine
 	var/can_carry = 1 // If the disease allows "carriers".
 	var/age = 0 // age of the disease in the current mob
 	var/stage_minimum_age = 0 // how old the disease must be to advance per stage
-	// if hidden[1] is true, then virus is hidden from medical scanners
-	// if hidden[2] is true, then virus is hidden from PANDEMIC machine
+	var/survive_mob_death = FALSE //whether the virus continues processing as normal when the affected mob is dead.
+
 
 /datum/disease/proc/stage_act()
 	age++
@@ -150,7 +152,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 					cdel(D) // if there are somehow two viruses of the same kind in the system, delete the other one
 
 	if(holder == affected_mob)
-		if(affected_mob.stat != DEAD) //he's alive
+		if(affected_mob.stat != DEAD || survive_mob_death) //he's alive or disease transcends death.
 			stage_act()
 		else //he's dead.
 			if(spread_type!=SPECIAL)

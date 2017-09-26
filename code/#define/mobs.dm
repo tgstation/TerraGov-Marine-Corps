@@ -312,7 +312,14 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUD_VERSIONS		3
 
 
+//Blood levels
+#define BLOOD_VOLUME_NORMAL		560
+#define BLOOD_VOLUME_SAFE		501
+#define BLOOD_VOLUME_OKAY		336
+#define BLOOD_VOLUME_BAD		224
+#define BLOOD_VOLUME_SURVIVE	122
 
+#define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
 
 //diseases

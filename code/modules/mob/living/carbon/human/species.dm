@@ -91,6 +91,10 @@
 		"eyes" =     /datum/internal_organ/eyes
 		)
 
+	var/knock_down_reduction = 1 //how much the knocked_down effect is reduced per Life call.
+	var/stun_reduction = 1 //how much the stunned effect is reduced per Life call.
+	var/knock_out_reduction = 1 //same thing
+
 /datum/species/New()
 	if(hud_type)
 		hud = new hud_type()
@@ -493,6 +497,104 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
+	knock_down_reduction = 5
+	stun_reduction = 5
+
+
+
+/datum/species/zombie
+	name= "Zombie"
+	name_plural = "Zombies"
+	slowdown = 1
+	blood_color = "#333333"
+	icobase = 'icons/mob/human_races/r_goo_zed.dmi'
+	deform = 'icons/mob/human_races/r_goo_zed.dmi'
+	death_message = "seizes up and falls limp... But is it dead?"
+	language = "Zombie"
+	default_language = "Zombie"
+	flags = NO_PAIN|NO_BREATHE|NO_SCAN|NO_POISON
+	brute_mod = 0.25 //EXTREME BULLET RESISTANCE
+	burn_mod = 2 //IT BURNS
+	speech_chance  = 5
+	warning_low_pressure = 0
+	hazard_low_pressure = 0
+	cold_level_1 = -1  //zombies don't mind the cold
+	cold_level_2 = -1
+	cold_level_3 = -1
+	hud_type = /datum/hud_data/zombie
+	has_fine_manipulation = FALSE
+	knock_down_reduction = 10
+	stun_reduction = 10
+	knock_out_reduction = 5
+	has_organ = list()
+
+
+/datum/species/zombie/handle_post_spawn(var/mob/living/carbon/human/H)
+	if(H.hud_used)
+		cdel(H.hud_used)
+		H.hud_used = null
+//		H.create_mob_hud()
+		if(H.hud_used)
+			H.hud_used.show_hud(H.hud_used.hud_version)
+	if(H.l_hand) H.drop_inv_item_on_ground(H.l_hand, FALSE, TRUE)
+	if(H.r_hand) H.drop_inv_item_on_ground(H.r_hand, FALSE, TRUE)
+	if(H.gloves) cdel(H.gloves)
+	if(H.head) cdel(H.head)
+	if(H.glasses) cdel(H.glasses)
+	if(H.wear_mask) cdel(H.wear_mask)
+	var/obj/item/zombie_claws/ZC = new()
+	ZC.icon_state = "claw_r"
+	H.equip_to_slot_or_del(ZC, WEAR_R_HAND, TRUE)
+	H.equip_to_slot_or_del(new /obj/item/zombie_claws, WEAR_L_HAND, TRUE)
+	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, WEAR_EYES, TRUE)
+	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, WEAR_FACE, TRUE)
+	return ..()
+
+
+
+/datum/species/zombie/handle_unique_behavior(var/mob/living/carbon/human/H)
+	if(prob(5))
+		playsound(H.loc, 'sound/voice/alien_talk3.ogg', 25, 1)
+
+
+/datum/species/zombie/handle_death(var/mob/living/carbon/human/H, gibbed)
+	set waitfor = 0
+	if(gibbed) return
+	if(!H.regenZ) return  //Also in each check, in case they are hit with the stuff to stop the regenerating during timers.
+	sleep(5)
+	if(H && H.loc && H.stat == DEAD && H.regenZ)
+		H << "\green You fall... but your body is slowly regenerating itself."
+	sleep(1200)
+	if(H && H.loc && H.stat == DEAD && H.regenZ)
+		H << "\green Your body is half regenerated..."
+	sleep(1200)
+
+	if(H && H.loc && H.stat == DEAD && H.regenZ)
+		H.revive(TRUE)
+		H.stunned = 4
+		H.make_jittery(500)
+		H.visible_message("<span class = 'warning'>[H] rises!", "\green YOU RISE AGAIN!")
+		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, WEAR_EYES, TRUE)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, WEAR_FEET, TRUE)
+
+		spawn(30)
+			H.jitteriness = 0
+
+
+/datum/hud_data/zombie
+	has_a_intent = 1
+	has_m_intent = 1
+	has_warnings = 1
+	has_pressure = 1
+	has_nutrition = 0
+	has_bodytemp = 1
+	has_hands = 1
+	has_drop = 0
+	has_throw = 0
+	has_resist = 1
+	has_internals = 0
+	gear = list()
+
 
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
 	H.universal_understand = 1
@@ -529,6 +631,10 @@
 		/mob/living/carbon/human/proc/pred_buy,
 		/mob/living/carbon/human/proc/butcher
 		)
+
+	knock_down_reduction = 2
+	stun_reduction = 2
+
 
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment

@@ -5,6 +5,14 @@
 		return 1
 	return 0
 
+/proc/iszombie(A)
+	if(ishuman(A))
+		var/mob/living/carbon/human/Z = A
+		if(Z.species.name == "Zombie")
+			return 1
+		return 0
+	return 0
+
 /proc/ismonkey(A)
 	if(A && istype(A, /mob/living/carbon/monkey))
 		return 1

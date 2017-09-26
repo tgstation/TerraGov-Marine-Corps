@@ -865,3 +865,17 @@
 				else
 					M << "<span class='warning'>Your mind breaks apart...</span>"
 					M.hallucination += 200
+
+/datum/reagent/antized
+	name = "Anti-Zed"
+	id = "antiZed"
+	description = "Destroy the zombie virus in living humans and prevents regeneration for those who have already turned."
+	reagent_state = LIQUID
+	color = "#C8A5DC"
+	custom_metabolism = 0.01
+	data = 0
+
+	on_mob_life(mob/living/carbon/human/M)
+		M.regenZ = 0
+		. = ..()
+

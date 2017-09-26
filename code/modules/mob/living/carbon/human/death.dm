@@ -26,7 +26,7 @@
 	if(stat == DEAD) return
 
 	//Handle species-specific deaths.
-	if(species) species.handle_death(src)
+	if(species) species.handle_death(src, gibbed)
 
 	//callHook("death", list(src, gibbed))
 

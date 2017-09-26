@@ -320,6 +320,9 @@
 /datum/hud/human/hidden_inventory_update()
 	if(!mymob) return
 	var/mob/living/carbon/human/H = mymob
+	if(H.species && H.species.hud && !H.species.hud.gear.len)
+		inventory_shown = FALSE
+		return //species without inv slots don't show items.
 	if(inventory_shown && hud_shown)
 		if(H.shoes)
 			H.shoes.screen_loc = ui_shoes
@@ -365,28 +368,28 @@
 
 
 /datum/hud/human/persistant_inventory_update()
-	if(!mymob)
-		return
+	if(!mymob) return
 	var/mob/living/carbon/human/H = mymob
 	if(hud_shown)
-		if(H.s_store)
-			H.s_store.screen_loc = ui_sstore1
-			H.client.screen += H.s_store
-		if(H.wear_id)
-			H.wear_id.screen_loc = ui_id
-			H.client.screen += H.wear_id
-		if(H.belt)
-			H.belt.screen_loc = ui_belt
-			H.client.screen += H.belt
-		if(H.back)
-			H.back.screen_loc = ui_back
-			H.client.screen += H.back
-		if(H.l_store)
-			H.l_store.screen_loc = ui_storage1
-			H.client.screen += H.l_store
-		if(H.r_store)
-			H.r_store.screen_loc = ui_storage2
-			H.client.screen += H.r_store
+		if(!H.species || !H.species.hud || H.species.hud.gear.len) //species without inv slots don't show items.
+			if(H.s_store)
+				H.s_store.screen_loc = ui_sstore1
+				H.client.screen += H.s_store
+			if(H.wear_id)
+				H.wear_id.screen_loc = ui_id
+				H.client.screen += H.wear_id
+			if(H.belt)
+				H.belt.screen_loc = ui_belt
+				H.client.screen += H.belt
+			if(H.back)
+				H.back.screen_loc = ui_back
+				H.client.screen += H.back
+			if(H.l_store)
+				H.l_store.screen_loc = ui_storage1
+				H.client.screen += H.l_store
+			if(H.r_store)
+				H.r_store.screen_loc = ui_storage2
+				H.client.screen += H.r_store
 	else
 		if(H.s_store)
 			H.s_store.screen_loc = null

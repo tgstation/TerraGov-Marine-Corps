@@ -783,3 +783,32 @@
 	description = "A secondary amine, mildly corrosive."
 	reagent_state = LIQUID
 	color = "#604030" // rgb: 96, 64, 48
+
+
+
+/datum/reagent/blackgoo
+	name = "Black goo"
+	id = "blackgoo"
+	description = "A strange dark liquid of unknown origin and effect."
+	reagent_state = LIQUID
+	color = "#222222"
+	custom_metabolism = 100 //disappears immediately
+
+	on_mob_life(mob/living/M)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.species.name == "Human")
+				H.contract_disease(new /datum/disease/black_goo, 1)
+		. = ..()
+
+	reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.species.name == "Human")
+				H.contract_disease(new /datum/disease/black_goo)
+
+	reaction_turf(var/turf/simulated/T, var/volume)
+		if(!istype(T)) return
+		if(volume < 3) return
+		if(!(locate(/obj/effect/decal/cleanable/blackgoo) in T))
+			new /obj/effect/decal/cleanable/blackgoo(T)

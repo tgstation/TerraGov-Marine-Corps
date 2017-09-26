@@ -49,7 +49,7 @@
 				setHalLoss(99)
 
 		if(knocked_out)
-			AdjustKnockedout(-1)
+			AdjustKnockedout(-species.knock_out_reduction)
 			blinded = 1
 			stat = UNCONSCIOUS
 			if(halloss > 0)
@@ -143,14 +143,10 @@
 
 /mob/living/carbon/human/handle_knocked_down()
 	if(knocked_down && client)
-		var/reduce_amt = 1
-		if(has_species(src,"Yautja")) //predator get up twice as fast from knockdown
-			reduce_amt = 2
-		knocked_down = max(knocked_down-reduce_amt,0)
+		AdjustKnockeddown(-species.knock_down_reduction)
 	return knocked_down
 
 /mob/living/carbon/human/handle_stunned()
 	if(stunned)
-		if(has_species(src,"Yautja")) AdjustStunned(-2)
-		else AdjustStunned(-1)
+		AdjustStunned(-species.stun_reduction)
 	return stunned

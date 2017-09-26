@@ -389,13 +389,15 @@ its easier to just keep the beam vertical.
 		blood_color = M.species.blood_color
 	return
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf) )
-		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
+/atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+	return
 
-		// Make toxins vomit look different
-		if(toxvomit)
-			this.icon_state = "vomittox_[pick(1,4)]"
+/turf/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
+
+	// Make toxins vomit look different
+	if(toxvomit)
+		this.icon_state = "vomittox_[pick(1,4)]"
 
 
 /atom/proc/clean_blood()

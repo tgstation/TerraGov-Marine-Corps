@@ -10,6 +10,7 @@
 	var/count_infectedhumans = 0
 	var/count_aliens = 0
 	var/count_preds = 0
+	var/count_zed = 0
 
 	for(var/client/C in clients)
 		if(isobserver(C.mob))
@@ -17,7 +18,7 @@
 			if(!C.holder)
 				count_nonadmin_observers++
 		if(C.mob.stat != DEAD)
-			if(ishuman(C.mob))
+			if(ishuman(C.mob) && !iszombie(C.mob))
 				count_humans++
 				if(C.mob.job in (ROLES_MARINES))
 					count_marine_humans++
@@ -27,6 +28,8 @@
 				count_aliens++
 			if(isYautja(C.mob))
 				count_preds++
+		if(iszombie(C.mob))
+			count_zed++
 
 
 	var/msg = "<b>Current Players:</b>\n"
@@ -82,7 +85,7 @@
 	if(holder)
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b style='color:#777'>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
-		msg += "<br><b style='color:#2C7EFF'>Humans: [count_humans]</b> <b style='color:#688944'>(Marines: ~[count_marine_humans])</b> <b style='color:#F00'>(Infected: [count_infectedhumans])</b>"
+		msg += "<br><b style='color:#2C7EFF'>Humans: [count_humans]</b> <b style='color:#688944'>(Marines: ~[count_marine_humans])</b> <b style='color:#F00'>(Infected: [count_infectedhumans])</b><br><b style='color:#2C7EFF'>Zeds: [count_zed]</b>"
 		msg += "<br><b style='color:#8200FF'>Aliens: [count_aliens]</b> <b style='color:#4D0096'>(Queen: [living_xeno_queen ? "Alive" : "Dead"])</b>"
 		msg += "<br><b style='color:#7ABA19'>Predators: [count_preds]</b>"
 	else

@@ -586,6 +586,57 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src)
 		if(new_xeno) ticker.mode.transfer_xeno(src, new_xeno)
 
+/mob/dead/verb/join_as_zombie() //Adapted from join as hellhoud
+	set category = "Ghost"
+	set name = "Join as Zombie"
+	set desc = "Select an alive but logged-out Zombie to rejoin the game."
+
+	if (!stat || !client)
+		return
+
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		src << "<span class='warning'>The game hasn't started yet!</span?>"
+		return
+
+	var/list/zombie_list = list()
+	var/mob/L = src
+
+	for(var/mob/living/carbon/human/A in living_mob_list)
+		if(iszombie(A) && !A.client && A.regenZ)
+			zombie_list += A.name
+
+	if(zombie_list.len == 0)
+		src << "\green There are no available zombies or all empty zombies have been fed the cure."
+		return
+
+	var/choice = input("Pick a Zombie:") as null|anything in zombie_list
+	if(isnull(choice) || choice == "Cancel")
+		return
+
+	for(var/mob/living/carbon/human/X in living_mob_list)
+		if(choice == X.name)
+			L = X
+			break
+
+	if(!L || isnull( L ))
+		usr << "Not a valid mob!"
+		return
+
+	if(L.client) // Larva player is still online
+		usr << "\red That player is still connected."
+		return
+
+	var/mob/ghostmob = usr.client.mob
+	message_admins("[usr.ckey] has joined as a [L].")
+	log_admin("[usr.ckey] has joined as a [L].")
+	L.ckey = usr.ckey
+	if( isobserver(ghostmob) )
+		cdel(ghostmob)
+
+	return
+
+
+
 /mob/dead/verb/join_as_hellhound()
 	set category = "Ghost"
 	set name = "Join as Hellhound"
