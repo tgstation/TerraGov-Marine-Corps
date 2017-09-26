@@ -276,7 +276,7 @@
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_hand()
 
-	if(!I) return
+	if(!I || (I.flags_atom & NODROP)) return
 
 	var/spin_throw = TRUE
 

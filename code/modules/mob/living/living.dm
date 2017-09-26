@@ -257,7 +257,7 @@
 
 
 
-/mob/living/proc/revive()
+/mob/living/proc/revive(keep_viruses)
 	rejuvenate()
 
 
@@ -434,17 +434,16 @@
 			if( C.handcuffed )
 				C.next_move = world.time + 100
 				C.last_special = world.time + 100
-				C << "\red You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)"
-				for(var/mob/O in viewers(L))
-					O.show_message("\red <B>[usr] attempts to unbuckle themself!</B>", 1)
-				spawn(0)
-					if(do_after(usr, 1200, FALSE))
-						if(!C.buckled)
-							return
-						for(var/mob/O in viewers(C))
-							O.show_message("\red <B>[usr] manages to unbuckle themself!</B>", 1)
-						C << "\blue You successfully unbuckle yourself."
-						C.buckled.manual_unbuckle(C)
+				C.visible_message("\red <B>[C] attempts to unbuckle themself!</B>",\
+				"\red You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
+				if(do_after(C, 1200, FALSE))
+					if(!C.buckled)
+						return
+					C.visible_message("\red <B>[C] manages to unbuckle themself!</B>",\
+								"\blue You successfully unbuckle yourself.")
+					C.buckled.manual_unbuckle(C)
+			else
+				C.buckled.manual_unbuckle(C)
 		else
 			L.buckled.manual_unbuckle(L)
 
@@ -537,10 +536,25 @@
 			var/can_break_cuffs
 			if(HULK in usr.mutations)
 				can_break_cuffs = 1
+			else if(iszombie(CM))
+				CM.visible_message("<span class='danger'>[CM] is attempting to break out of the cuffs...</span>", \
+				"<span class='notice'>You use your superior zombie strength to start breaking the cuffs...</span>")
+				spawn(0)
+					if(do_after(CM, 100, FALSE))
+						if(!CM.handcuffed || CM.buckled)
+							return
+						CM.visible_message("<span class='danger'>[CM] tears the cuffs in half!</span>", \
+							"<span class='notice'>You tear the cuffs in half!</span>")
+						cdel(CM.handcuffed)
+						CM.handcuffed = null
+						CM.handcuff_update()
+				return
 			else if(istype(CM,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = CM
 				if(H.species.can_shred(H))
 					can_break_cuffs = 1
+
+
 			if(can_break_cuffs) //Don't want to do a lot of logic gating here.
 				usr << "\red You attempt to break your handcuffs. (This will take around 5 seconds and you need to stand still)"
 				for(var/mob/O in viewers(CM))

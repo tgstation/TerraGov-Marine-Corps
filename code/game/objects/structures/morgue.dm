@@ -99,6 +99,10 @@
 			src.name = text("Morgue- '[]'", t)
 		else
 			src.name = "Morgue"
+	if (istype(P, /obj/item/zombie_claws))
+		attack_hand()
+		return
+
 	src.add_fingerprint(user)
 	return
 

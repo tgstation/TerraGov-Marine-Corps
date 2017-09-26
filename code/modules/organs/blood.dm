@@ -1,11 +1,6 @@
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
-//Blood levels
-var/const/BLOOD_VOLUME_SAFE = 501
-var/const/BLOOD_VOLUME_OKAY = 336
-var/const/BLOOD_VOLUME_BAD = 224
-var/const/BLOOD_VOLUME_SURVIVE = 122
 
 /mob/living/carbon/human/var/datum/reagents/vessel	//Container for blood and BLOOD ONLY. Do not transfer other chems here.
 /mob/living/carbon/human/var/pale_max = 0			//Should affect how mob sprite is drawn
@@ -34,7 +29,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 			B.color = B.data["blood_colour"]
 
 	if(!pale_max)
-		pale_max = s_tone + 30
+		pale_max = s_tone + HUMAN_MAX_PALENESS
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/proc/handle_blood()
@@ -45,8 +40,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
 		var/blood_volume = round(vessel.get_reagent_amount("blood"))
 
-		if(blood_volume >= 560 && s_tone != pale_max-30)//Reset
-			s_tone = pale_max-30
+		if(blood_volume >= 560 && s_tone != pale_max-HUMAN_MAX_PALENESS)//Reset
+			s_tone = pale_max-HUMAN_MAX_PALENESS
 			update_body()
 
 		//Blood regeneration if there is some space
@@ -84,7 +79,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		//Effects of bloodloss
 		switch(blood_volume)
 			if(BLOOD_VOLUME_SAFE to 10000)
-				if(s_tone > pale_max-30)
+				if(s_tone > pale_max-HUMAN_MAX_PALENESS)
 					s_tone--
 					if(prob(15))
 						update_body()

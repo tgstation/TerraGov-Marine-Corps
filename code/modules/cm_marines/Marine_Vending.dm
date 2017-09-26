@@ -22,14 +22,12 @@
 					/obj/item/weapon/gun/smg/m39 = 20,
 					/obj/item/weapon/gun/rifle/m41a = 25,
 					/obj/item/weapon/gun/shotgun/pump = 10,
-
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 22,
 					/obj/item/ammo_magazine/shotgun = 8,
 					/obj/item/ammo_magazine/shotgun/buckshot = 8,
-
 					/obj/item/weapon/combat_knife = 20,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/weapon/storage/box/m94 = 5,
@@ -45,16 +43,15 @@
 					/obj/item/clothing/under/marine = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
 					/obj/item/clothing/head/helmet/marine = 10,
-
+					/obj/item/clothing/mask/gas/ = 20,
 					/obj/item/attachable/flashlight = 10,
+					/obj/item/clothing/mask/rebreather/scarf = 10,
 					/obj/item/attachable/bayonet = 10,
-
 					/obj/item/weapon/storage/pouch/general = 10,
 					/obj/item/weapon/storage/pouch/bayonet = 10,
 					/obj/item/weapon/storage/pouch/firstaid/full = 10,
 					/obj/item/weapon/storage/pouch/flare/full = 10,
 					/obj/item/weapon/storage/pouch/magazine/pistol = 10
-
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,

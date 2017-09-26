@@ -26,7 +26,9 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	voice = GetVoice()
-
+	if(stat == DEAD && species.name == "Zombie" && regenZ)
+		handle_chemicals_in_body()
+		return
 	//No need to update all of these procs if the guy is dead.
 	if(!in_stasis)
 		if(stat != DEAD)

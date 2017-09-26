@@ -16,6 +16,8 @@
 #define MODE_INFESTATION_M_MINOR		"Marine Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH		"DRAW: Mutual Annihilation"
 
+#define MODE_INFECTION_ZOMBIE_WIN		"Major Zombie Victory"
+
 #define MODE_BATTLEFIELD_W_MAJOR		"W-Y PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
 #define MODE_BATTLEFIELD_W_MINOR		"W-Y PMC Minor Success"
@@ -149,6 +151,18 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	//We want to make sure that another queen didn't die in the interim.
 	if(xeno_queen_deaths == num_last_deaths && !round_finished && !living_xeno_queen ) round_finished = MODE_INFESTATION_M_MINOR
 
+
+/datum/game_mode/proc/check_win_infection()
+	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/num_humans = living_player_list[1]
+	var/zed = living_player_list[2]
+//	world << "ZED: [zed]"
+//	world << "Humie: [num_humans]"
+
+	if(num_humans <=0 && zed >= 1)
+		round_finished = MODE_INFECTION_ZOMBIE_WIN
+
+
 //===================================================\\
 
 				//ANNOUNCE COMPLETION\\
@@ -192,6 +206,8 @@ of predators), but can be added to include variant game modes (like humans vs. h
 				world << 'sound/misc/Rerun.ogg'
 			if(MODE_GENERIC_DRAW_NUKE)
 				world << "<span class='round_body'>The nuclear explosion changed everything.</span>"
+			if(MODE_INFECTION_ZOMBIE_WIN)
+				world << "<span class='round_body'>The zombies have been victorious!</span>"
 
 			else world << "<span class='round_body'>Whoops, something went wrong with declare_completion(), blame the coders!</span>"
 
@@ -408,11 +424,12 @@ Only checks living mobs with a client attached.
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/space)) //If they have a z var, they are on a turf.
 			A = get_area(M.loc) //Get their area.
 			if(!istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
-				if(ishuman(M) && !(M.status_flags & XENO_HOST))
+				if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
 					var/mob/living/carbon/human/H = M
 					if(H.species && H.species.name == "Human") //only real humans count
 						num_humans++
 				else if(isXeno(M)) num_xenos++
+				else if(iszombie(M)) num_xenos++
 
 	return list(num_humans,num_xenos)
 

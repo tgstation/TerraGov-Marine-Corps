@@ -107,9 +107,19 @@
 /obj/structure/barricade/attack_robot(mob/user as mob)
 	return attack_hand(user)
 
+
 /obj/structure/barricade/attackby(obj/item/W as obj, mob/user)
+	if(istype(W, /obj/item/zombie_claws))
+		user.visible_message("<span class='danger'>The zombie smashed at the [src.barricade_type] barricade!</span>",
+		"<span class='danger'>You smack the [src.barricade_type] barricade!</span>")
+		if(barricade_hitsound)
+			playsound(src, barricade_hitsound, 25, 1)
+		hit_barricade(W)
+		return
+
 	if(istype(W, /obj/item/stack/barbed_wire))
 		var/obj/item/stack/barbed_wire/B = W
+
 
 		if(can_wire)
 			user.visible_message("<span class='notice'>[user] starts setting up [W.name] on [src].</span>",
@@ -191,6 +201,8 @@
 	overlays += wired_overlay
 
 /obj/structure/barricade/proc/hit_barricade(obj/item/I)
+	if(istype(I, /obj/item/zombie_claws))
+		health -= I.force * 0.5
 	health -= I.force * 0.5
 	update_health()
 

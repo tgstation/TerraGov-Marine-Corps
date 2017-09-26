@@ -41,15 +41,9 @@ Bonus
 	return
 
 /datum/symptom/vomit/proc/Vomit(var/mob/living/M)
-
-	M.visible_message("<B>[M]</B> vomits on the floor!")
-
-	M.nutrition -= 20
-	M.adjustToxLoss(-3)
-
-	var/turf/pos = get_turf(M)
-	pos.add_vomit_floor(M)
-	playsound(pos, 'sound/effects/splat.ogg', 25, 1)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.vomit_on_floor()
 /*
 //////////////////////////////////////
 

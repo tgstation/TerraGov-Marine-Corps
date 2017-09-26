@@ -6,6 +6,7 @@
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
+	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
@@ -963,7 +964,8 @@
 	else
 		germ_level += n
 
-/mob/living/carbon/human/revive()
+
+/mob/living/carbon/human/revive(keep_viruses)
 	for (var/datum/limb/O in limbs)
 		if(O.status & LIMB_ROBOT)
 			O.status = LIMB_ROBOT
@@ -990,6 +992,9 @@
 	for(var/datum/internal_organ/I in internal_organs)
 		I.damage = 0
 
+	if(!keep_viruses)
+		for (var/datum/disease/virus in viruses)
+			virus.cure()
 	for (var/datum/disease/virus in viruses)
 		virus.cure()
 
@@ -1316,6 +1321,15 @@
 		if(eyes && istype(eyes) && !eyes.cut_away)
 			return 1
 	return 0
+
+
+/mob/living/carbon/human/proc/vomit_on_floor()
+	var/turf/T = get_turf(src)
+	visible_message("<span class = 'danger'>[src] vomits on the floor!</span>")
+	nutrition -= 20
+	adjustToxLoss(-3)
+	playsound(T, 'sound/effects/splat.ogg', 25, 1)
+	T.add_vomit_floor(src)
 
 /mob/living/carbon/human
 	slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)

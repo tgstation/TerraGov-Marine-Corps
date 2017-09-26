@@ -92,6 +92,8 @@
 			src.name = "body bag"
 			src.overlays.Cut()
 			return
+		else if(istype(W, /obj/item/zombie_claws))
+			open()
 
 
 	close()

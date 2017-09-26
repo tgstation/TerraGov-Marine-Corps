@@ -344,6 +344,18 @@
 	return
 
 /obj/effect/equip_e/human/process()
+	if(iszombie(target))
+		source << "\red You don't want to touch that..."
+		return
+	if(iszombie(source))
+		source << "\green You're too stupid to do that..."
+		return
+
+/*	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.species.name == "Zombie")
+			source << "\red You don't want to touch that..."
+			return*/
 	if (item)
 		item.add_fingerprint(source)
 	else

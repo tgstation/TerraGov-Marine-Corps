@@ -31,11 +31,12 @@
 
 	if(force_species_check)
 		var/fail = 1
-		for(var/name in virus.affected_species)
-			var/mob_type = text2path("/mob/living/carbon/[lowertext(name)]")
-			if(mob_type && istype(src, mob_type))
-				fail = 0
-				break
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			for(var/vuln_species in virus.affected_species)
+				if(H.species.name == vuln_species)
+					fail = 0
+					break
 		if(fail) return
 
 	if(skip_this == 1)

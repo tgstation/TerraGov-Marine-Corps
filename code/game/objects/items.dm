@@ -159,6 +159,8 @@ cases. Override_icon_state should be a list.*/
 
 /obj/item/Dispose()
 	flags_atom &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
+	flags_atom &= ~NODROP //so the item is properly unequipped if on a mob.
+
 	if(ismob(loc))
 		var/mob/M = loc
 		M.temp_drop_inv_item(src, TRUE) //unequip before deletion to clear possible item references on the mob.
