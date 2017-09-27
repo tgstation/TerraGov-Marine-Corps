@@ -649,6 +649,9 @@
 	set name = "Rest"
 	set category = "IC"
 
+	if(is_mob_incapacitated(TRUE))
+		return
+
 	resting = !resting
 	src << "\blue You are now [resting ? "resting" : "getting up"]"
 
