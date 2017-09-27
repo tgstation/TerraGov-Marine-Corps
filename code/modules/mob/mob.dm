@@ -1,6 +1,3 @@
-/mob/Dispose() //Quick and dirty override so we can use cdel() everywhere in the code and then get it polished later.
-	..()
-	return TA_PURGE_ME_NOW
 
 /mob/Dispose()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	mob_list -= src
@@ -8,6 +5,7 @@
 	living_mob_list -= src
 	ghostize()
 	. = ..()
+	return TA_PURGE_ME_NOW
 
 /mob/New()
 	mob_list += src
