@@ -232,6 +232,13 @@
 		reagents.add_reagent("cryoxadone", 30)
 		update_icon()
 
+/obj/item/weapon/reagent_containers/glass/beaker/cryopredmix
+	New()
+		..()
+		reagents.add_reagent("cryoxadone", 30)
+		reagents.add_reagent("clonexadone", 30)
+		update_icon()
+
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
 	New()
 		..()
