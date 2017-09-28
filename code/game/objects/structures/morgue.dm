@@ -25,10 +25,10 @@
 		connected = null
 
 /obj/structure/morgue/update_icon()
-	if (connected)
+	if (morgue_open)
 		icon_state = "[morgue_type]0"
 	else
-		if (contents.len)
+		if (contents.len > 1) //not counting the morgue tray
 			icon_state = "[morgue_type]2"
 		else
 			icon_state = "[morgue_type]1"
@@ -59,6 +59,7 @@
 		for(var/atom/movable/A in connected.loc)
 			if(!A.anchored)
 				A.forceMove(src)
+		connected.loc = src
 	else
 		if(step(connected, dir))
 			connected.dir = dir
@@ -157,32 +158,39 @@
 	var/id = 1
 
 
-/obj/structure/morgue/crematorium/attack_paw(mob/user)
-	return src.attack_hand(user)
-
-/obj/structure/morgue/crematorium/attack_hand(mob/user)
+/obj/structure/morgue/crematorium/toggle_morgue(mob/user)
 	if (cremating)
 		user << "<span class='warning'>It's locked.</span>"
 		return
-	toggle_morgue(user)
+	..()
 
 
 /obj/structure/morgue/crematorium/relaymove(mob/user)
 	if(cremating) return
 	..()
 
-/obj/structure/morgue/crematorium/proc/cremate(atom/A, mob/user)
+
+/obj/structure/morgue/crematorium/update_icon()
+	if(cremating)
+		icon_state = "[morgue_type]_active"
+	else
+		..()
+
+
+/obj/structure/morgue/crematorium/proc/cremate(mob/user)
 	set waitfor = 0
 	if(cremating)
 		return
 
-	if(!contents.len)
+	if(contents.len <= 1) //1 because the tray is inside.
 		visible_message("\red You hear a hollow crackle.")
 	else
 		for (var/mob/M in viewers(src))
 			visible_message("\red You hear a roar as the crematorium activates.", 1)
 
 		cremating = 1
+
+		update_icon()
 
 		for(var/mob/living/M in contents)
 			if (M.stat!=DEAD)
@@ -200,11 +208,13 @@
 			cdel(M)
 
 		for(var/obj/O in contents)
+			if(istype(O, /obj/structure/morgue_tray)) continue
 			cdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
 		sleep(30)
 		cremating = 0
+		update_icon()
 		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 
 
