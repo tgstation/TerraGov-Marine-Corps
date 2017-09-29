@@ -55,7 +55,7 @@
 		if(isYautja(hit_atom) && istype(hit_atom,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = hit_atom
 			if(H.put_in_hands(src))
-				hit_atom.visible_message("[hit_atom] expertly catches the [src] out of the air.","You catch the [src] easily.")
+				hit_atom.visible_message("[hit_atom] expertly catches [src] out of the air.","You catch [src] easily.")
 				return
 			//if(isnull(H.get_active_hand()))
 			//
