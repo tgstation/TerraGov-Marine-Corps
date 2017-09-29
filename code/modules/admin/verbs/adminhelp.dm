@@ -26,11 +26,9 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		msg = input("Please enter your message:", "Admin Help", null, null) as text
 
 	if(selected_type == "Suggestion / Bug Report")
-		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our forum.",,"Go to Suggestions forum","Go to Bugs forum","Cancel"))
-			if("Go to Suggestions forum")
-				src << link("http://www.colonial-marines.com/viewforum.php?f=59")
-			if("Go to Bugs forum")
-				src << link("http://www.colonial-marines.com/viewforum.php?f=116")
+		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our Gitlab.",,"Go to Gitlab","Cancel"))
+			if("Go to Gitlab")
+				src << link("https://gitlab.com/cmdevs/ColonialMarines/issues")
 			else
 				return
 
