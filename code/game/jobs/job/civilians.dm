@@ -50,8 +50,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	comm_title = "Doc"
 	paygrade = "CD"
 	flag = ROLE_CIVILIAN_DOCTOR
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 6
+	spawn_positions = 6
 	supervisors = "the chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
