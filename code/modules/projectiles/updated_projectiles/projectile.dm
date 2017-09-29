@@ -155,13 +155,15 @@
 			cdel(src)
 			return
 
-		if(!current_turf.Adjacent(next_turf)) //we can't reach the next turf
-			ammo.on_hit_turf(current_turf,src)
-			current_turf.bullet_act(src)
-			in_flight = 0
-			sleep(0)
-			cdel(src)
-			return
+		var/proj_dir = get_dir(current_turf, next_turf)
+		if(proj_dir & (proj_dir-1)) //diagonal direction
+			if(!current_turf.Adjacent(next_turf)) //we can't reach the next turf
+				ammo.on_hit_turf(current_turf,src)
+				current_turf.bullet_act(src)
+				in_flight = 0
+				sleep(0)
+				cdel(src)
+				return
 
 		if(scan_a_turf(next_turf)) //We hit something! Get out of all of this.
 			in_flight = 0
