@@ -7,13 +7,13 @@
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER
+	flags_atom = ON_BORDER|FPRINT
 	var/health = 15
 	var/state = 2
 	var/reinf = 0
 	var/basestate = "window"
 	var/shardtype = /obj/item/weapon/shard
-	var/obj/structure/window_frame/window_frame //For perspective windows,so the window frame doesn't magically dissapear
+	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/windowknock_cooldown = 0
 	var/static_frame = 0 //True/false. If true, can't move the window
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
@@ -49,7 +49,6 @@
 			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
-
 	//Tasers and the like should not damage windows.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
 		return 0
@@ -434,3 +433,77 @@
 	playsound(src, "shatter", 70, 1)
 	update_nearby_icons()
 	. = ..()
+
+
+
+
+//Almayer windows
+
+/obj/structure/window/reinforced/almayer
+	name = "reinforced window"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "rwindow0"
+	basestate = "rwindow"
+	health = 100 //Was 600
+	reinf = 1
+	dir = 5
+	flags_atom = FPRINT
+	window_frame = /obj/structure/window_frame/almayer
+	static_frame = 1
+
+	tiles_with = list(
+		/turf/simulated/wall)
+
+	var/tiles_special[] = list(/obj/machinery/door/airlock,
+		/obj/structure/window/reinforced/almayer,
+		/obj/structure/girder,
+		/obj/structure/window_frame/almayer)
+
+/obj/structure/window/reinforced/almayer/New()
+	spawn(10)
+		relativewall()
+		relativewall_neighbours()
+
+/obj/structure/window/reinforced/almayer/update_nearby_icons()
+	relativewall_neighbours()
+
+/obj/structure/window/reinforced/almayer/update_icon()
+	relativewall()
+
+/obj/structure/window/reinforced/almayer/Dispose()
+	density = 0
+	update_nearby_tiles()
+	update_nearby_icons()
+	. = ..()
+
+/obj/structure/window/reinforced/almayer/hull
+	name = "hull window"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
+	not_damageable = 1
+	not_deconstructable = 1
+	unacidable = 1
+	health = 1000000 //Failsafe, shouldn't matter
+
+/obj/structure/window/reinforced/almayer/colony
+	icon_state = "cwindow0"
+	basestate = "cwindow"
+	window_frame = /obj/structure/window_frame/almayer/colony
+
+	tiles_with = list(
+		/turf/simulated/wall)
+
+	tiles_special = list(/obj/machinery/door/airlock,
+		/obj/structure/window/reinforced/almayer/colony,
+		/obj/structure/window_frame/almayer/colony)
+
+/obj/structure/window/reinforced/almayer/colony/reinforced
+	icon_state = "crwindow0"
+	basestate = "crwindow"
+	window_frame = /obj/structure/window_frame/almayer/colony/reinforced
+
+/obj/structure/window/reinforced/almayer/colony/reinforced/tinted
+	name =  "tinted reinforced window"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
+	opacity = 1
