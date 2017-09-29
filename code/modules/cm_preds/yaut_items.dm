@@ -598,7 +598,7 @@
 		set category = "Yautja"
 		set desc = "Call back your smart-disc, if it's in range. If not you'll have to go retrieve it."
 
-		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+		if(usr.is_mob_incapacitated())
 			return 0
 
 		if(!isYautja(usr))
