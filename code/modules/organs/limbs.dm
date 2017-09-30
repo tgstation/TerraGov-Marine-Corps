@@ -859,6 +859,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	status &= ~LIMB_MUTATED
 	status |= LIMB_ROBOT
 	has_dropped_limb = 0
+	perma_injury = 0
 	for (var/datum/limb/T in children)
 		if(T)
 			T.robotize()
