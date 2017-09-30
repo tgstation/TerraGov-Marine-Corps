@@ -8,10 +8,10 @@
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
-	var totalXenos = 0.0 //total number of Xenos
+	var totalXenos = 0 //total number of Xenos
 	// var tierA = 0.0 //Tier 1 - Not used in calculation of Tier maximums
-	var tierB = 0.0 //Tier 2
-	var tierC = 0.0 //Tier 3
+	var tierB = 0 //Tier 2
+	var tierC = 0 //Tier 3
 
 	if(is_ventcrawling)
 		src << "<span class='warning'>This place is too constraining to evolve.</span>"
@@ -139,6 +139,18 @@
 				evolve_busy = 0
 				continue
 		totalXenos++
+
+	if(!totalXenos)
+		var/totX = 0
+		var/totlarva = 0
+		for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
+			if(istype(M, /mob/living/carbon/Xenomorph/Larva))
+				totlarva++
+			totX++
+		message_admins("A bug has occured (XE02), show this to devs: [src]:[tier] , [tierB], [tierC], totalX:[totX], totalL:[totlarva].", 1)
+		src << "<span class='warning'>Something went wrong, try again.</span>"
+		evolve_busy = 0
+		return
 
 	if(tier == 1 && ((tierB + tierC) / totalXenos)> 0.5 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 2, either upgrade or wait for either more aliens to be born or someone to die.</span>"

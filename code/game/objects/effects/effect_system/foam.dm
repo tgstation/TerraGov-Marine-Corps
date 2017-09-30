@@ -205,13 +205,6 @@
 
 	attackby(var/obj/item/I, var/mob/user)
 
-		if (istype(I, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = I
-			if(ismob(G.grabbed_thing))
-				G.grabbed_thing.forceMove(loc)
-				user.visible_message("<span class='danger'>[user] smashes [G.grabbed_thing] through the foamed metal wall.</span>")
-			return
-
 		if(prob(I.force*20 - metal*25))
 			user << "\blue You smash through the foamed metal with \the [I]."
 			for(var/mob/O in oviewers(user))

@@ -587,6 +587,9 @@
 /obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M)
 	return attack_hand(M)
 
+/obj/structure/ladder/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	return attack_hand(M)
+
 /obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
 	return attack_hand(M)
 

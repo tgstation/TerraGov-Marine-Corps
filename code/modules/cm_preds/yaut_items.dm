@@ -30,11 +30,11 @@
 	unacidable = 1
 	anti_hug = 100
 
-	New(location, mask_number = rand(1,8), elder_restricted = 0)
+	New(location, mask_number = rand(1,7), elder_restricted = 0)
 		..()
 		loc = location
 
-		var/mask_input[] = list(1,2,3,4,5,6,7,8,231,334,732,928)
+		var/mask_input[] = list(1,2,3,4,5,6,7,231,334,732,928)
 		if(mask_number in mask_input) icon_state = "pred_mask[mask_number]"
 		if(elder_restricted) //Not possible for non-elders.
 			switch(mask_number)

@@ -3,6 +3,7 @@
 /datum/surgery_step/head
 	priority = 1
 	can_infect = 0
+	allowed_species = list("Synthetic")
 
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!hasorgans(target))
@@ -12,10 +13,8 @@
 		return 0
 	if(!(affected.status & LIMB_DESTROYED))
 		return 0
-	if(affected.parent)
-		if(affected.parent.status & LIMB_DESTROYED)
-			return 0
-	return affected.name == "head"
+	if(affected.body_part == HEAD)
+		return 1
 
 /datum/surgery_step/head/peel
 	allowed_tools = list(
@@ -181,7 +180,7 @@
 		target.updatehealth()
 
 /datum/surgery_step/head/attach
-	allowed_tools = list(/obj/item/limb/head = 100)
+	allowed_tools = list(/obj/item/limb/head/synth = 100)
 	can_infect = 0
 
 	min_duration = 60
@@ -208,12 +207,9 @@
 
 	//Update our dear victim to have a head again
 
-	var/obj/item/limb/head/B = tool
+	var/obj/item/limb/head/synth/B = tool
 
-	if(istype(B, /obj/item/limb/head/synth))
-		affected.status = LIMB_ROBOT
-	else
-		affected.status = NOFLAGS
+	affected.status = LIMB_ROBOT
 	affected.has_dropped_limb = 0
 	target.updatehealth()
 	target.update_body()
