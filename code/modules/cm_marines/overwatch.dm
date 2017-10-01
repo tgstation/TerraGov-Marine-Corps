@@ -33,7 +33,7 @@
 	if(..())  //Checks for power outages
 		return
 
-	if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_OVERWATCH)
+	if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_EXPERT)
 		user << "<span class='warning'>You don't have the training to use [src].</span>"
 		return
 
@@ -600,7 +600,7 @@
 			user << "It doesn't seem to do anything for you."
 			return
 
-		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_BINOCS)
+		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_BEGINEER)
 			user << "<span class='warning'>You don't have the training to use [src].</span>"
 			return
 
@@ -652,7 +652,7 @@
 			user << "It doesn't seem to do anything for you."
 			return
 
-		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_SL)
+		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_TRAINED)
 			user << "<span class='warning'>You don't have the training to use [src].</span>"
 			return
 

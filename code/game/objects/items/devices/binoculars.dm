@@ -58,7 +58,7 @@
 
 	var/acquisition_time = target_acquisition_delay
 	if(user.mind.skills_list)
-		if(user.mind.skills_list["leadership"] < SKILL_LEAD_BINOCS)
+		if(user.mind.skills_list["leadership"] < SKILL_LEAD_BEGINEER)
 			user << "<span class='warning'>You don't have the training to use [src].</span>"
 			return
 		acquisition_time = max(20, acquisition_time + 40 - 20*user.mind.skills_list["leadership"])
