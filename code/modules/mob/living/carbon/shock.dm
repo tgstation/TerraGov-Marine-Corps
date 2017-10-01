@@ -26,7 +26,7 @@
 
 
 	//Broken or ripped off organs and limbs will add quite a bit of pain
-	if(istype(src,/mob/living/carbon/human))
+	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		for(var/datum/limb/O in M.limbs)
 			if((O.status & LIMB_DESTROYED) && !(O.status & LIMB_AMPUTATED))	traumatic_shock += 40
@@ -37,6 +37,9 @@
 		for(var/datum/internal_organ/O in M.internal_organs)
 			if(O.damage) 											traumatic_shock += O.damage * 1.5
 			if(O.germ_level >= INFECTION_LEVEL_ONE) 				traumatic_shock += O.germ_level * 0.05
+
+		if(M.protection_aura)
+			traumatic_shock -= M.protection_aura * 10
 
 	traumatic_shock = max(0, traumatic_shock)
 	return traumatic_shock
