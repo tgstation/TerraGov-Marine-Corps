@@ -581,107 +581,161 @@
 	squad = "Delta"
 
 /obj/item/device/squad_beacon
-	name = "Squad Supply Beacon"
+	name = "squad supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
-	var/activated = 0
 	unacidable = 1
 	w_class = 2
+	var/activated = 0
+	var/activation_time = 60
 	var/datum/squad/squad = null
 	var/icon_activated = "motion2"
 
-	attack_self(mob/user)
-		if(activated)
-			user << "It's already been activated. Just leave it."
-			return
-		if(!ishuman(user)) return
-		if(!user.mind)
-			user << "It doesn't seem to do anything for you."
-			return
+/obj/item/device/squad_beacon/attack_self(mob/user)
+	if(activated)
+		user << "<span class='warning'>It's already been activated. Just leave it.</span>"
+		return
 
-		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_BEGINNER)
-			user << "<span class='warning'>You don't have the training to use [src].</span>"
-			return
+	if(!ishuman(user)) return
 
-		if(user.mind.assigned_squad)
-			squad = user.mind.assigned_squad
-		else
-			squad = get_squad_data_from_card(user)
+	if(!user.mind)
+		user << "<span class='warning'>It doesn't seem to do anything for you.</span>"
+		return
 
-		if(!squad)
-			user << "You need to be in a squad for this to do anything."
-			return
-		if(squad.sbeacon)
-			user << "Your squad already has a beacon activated."
-			return
-		var/area/A = get_area(user)
-		var/turf/TU = get_turf(user)
-		var/turf/unsimulated/floor/F = TU
-		if( !istype(A,/area/prison) && (!istype(F) || !F.is_groundmap_turf) )
-			user << "You have to be outside (on a ground map turf) to activate this."
-			return
+	if(user.mind.assigned_squad)
+		squad = user.mind.assigned_squad
+	else
+		squad = get_squad_data_from_card(user)
 
-		if(A && istype(A) && A.is_underground)
-			user << "This won't work if you're standing underground."
-			return
+	if(!squad)
+		user << "<span class='warning'>You need to be in a squad for this to do anything.</span>"
+		return
+	if(squad.sbeacon)
+		user << "<span class='warning'>Your squad already has a beacon activated.</span>"
+		return
+	var/area/A = get_area(user)
+	var/turf/TU = get_turf(user)
+	var/turf/unsimulated/floor/F = TU
+	if(!istype(A, /area/prison) && (!istype(F) || !F.is_groundmap_turf))
+		user << "<span class='warning'>You have to be outside to activate this.</span>"
+		return
+
+	if(A && istype(A) && A.is_underground)
+		user << "<span class='warning'>This won't work if you're standing underground.</span>"
+		return
+
+	var/delay = activation_time
+	if(user.mind.skills_list)
+		delay = max(10, delay - 20*user.mind.skills_list["leadership"])
+
+	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
+	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
+	if(do_after(user, delay, TRUE, 5, BUSY_ICON_CLOCK))
 
 		squad.sbeacon = src
+		forceMove(user.loc)
 		activated = 1
 		anchored = 1
 		w_class = 10
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-		user << "You activate the [src]. Now toss it on the ground and wait for your supply drop."
-		return
+		user.visible_message("[user] activates [src]",
+		"You activate [src]")
 
 /obj/item/device/squad_beacon/bomb
-	name = "Orbital Beacon"
+	name = "orbital beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion4"
 	w_class = 2
+	activation_time = 80
 	icon_activated = "motion1"
 
-	attack_self(mob/user)
-		if(activated)
-			user << "It's already been activated. Just leave it."
-			return
-		if(!ishuman(user)) return
-		if(!user.mind)
-			user << "It doesn't seem to do anything for you."
-			return
+/obj/item/device/squad_beacon/bomb/attack_self(mob/user)
+	if(activated)
+		user << "<span class='warning'>It's already been activated. Just leave it.</span>"
+		return
+	if(!ishuman(user)) return
+	if(!user.mind)
+		user << "<span class='warning'>It doesn't seem to do anything for you.</span>"
+		return
 
-		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_TRAINED)
-			user << "<span class='warning'>You don't have the training to use [src].</span>"
-			return
+	if(user.mind.assigned_squad)
+		squad = user.mind.assigned_squad
+	else
+		squad = get_squad_data_from_card(user)
 
-		if(user.mind.assigned_squad)
-			squad = user.mind.assigned_squad
-		else
-			squad = get_squad_data_from_card(user)
+	if(!squad)
+		user << "<span class='warning'>You need to be in a squad for this to do anything.</span>"
+		return
+	if(squad.bbeacon)
+		user << "<span class='warning'>Your squad already has a beacon activated.</span>"
+		return
 
-		if(!squad)
-			user << "You need to be in a squad for this to do anything."
-			return
-		if(squad.bbeacon)
-			user << "Your squad already has a beacon activated."
-			return
+	if(user.z != 1)
+		user << "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>"
+		return
 
-		if(user.z != 1)
-			user << "You have to be on the ground to use this or it won't transmit."
-			return
+	var/area/A = get_area(user)
+	if(A && istype(A) && A.is_underground)
+		user << "<span class='warning'>This won't work if you're standing underground.</span>"
 
-		var/area/A = get_area(user)
-		if(A && istype(A) && A.is_underground)
-			user << "This won't work if you're standing underground."
+	var/delay = activation_time
+	if(user.mind.skills_list)
+		delay = max(15, delay - 20*user.mind.skills_list["leadership"])
 
-		message_admins("ALERT: [user] ([user.key]) triggered an orbital strike beacon.")
+	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
+	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
+	if(do_after(user, delay, TRUE, 5, BUSY_ICON_CLOCK))
+
+		message_admins("[user] ([user.key]) set up an orbital strike beacon.")
 		squad.bbeacon = src //Set us up the bomb~
+		forceMove(user.loc)
 		activated = 1
 		anchored = 1
 		w_class = 10
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-		user << "You activate the [src]. Now toss it and get outside of danger close!"
+		user.visible_message("[user] activates [src]",
+		"You activate [src]")
+
+//This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
+
+/mob/living/carbon/human/verb/issue_order()
+
+	set name = "Issue Order"
+	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
+	set category = "IC"
+
+	if(!mind.skills_list || (mind.skills_list && mind.skills_list["leadership"] < SKILL_LEAD_TRAINED))
+		src << "<span class='warning'>You are not competent enough in leadership to issue an order.</span>"
 		return
+
+	if(stat)
+		src << "<span class='warning'>You cannot give an order in your current state.</span>"
+		return
+
+	if(command_aura_cooldown > 0)
+		src << "<span class='warning'>You have recently given an order. Calm down.</span>"
+		return
+
+	var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
+	if(choice == "help")
+		src << "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>"
+		return
+	if(choice == "cancel") return
+	command_aura = choice
+	command_aura_cooldown = 45 //45 ticks
+	command_aura_tick = 10 //10 ticks
+	var/message = ""
+	switch(command_aura)
+		if("move")
+			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
+			say(message)
+		if("hold")
+			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
+			say(message)
+		if("focus")
+			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
+			say(message)

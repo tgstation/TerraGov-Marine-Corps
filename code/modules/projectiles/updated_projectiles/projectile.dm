@@ -339,13 +339,19 @@
 		if( !can_see(shooter_living,src) ) . -= 15 //Can't see the target
 		. -= round((shooter_living.maxHealth - shooter_living.health) / 4) //Less chance to hit when injured.
 
-
+	if(ishuman(P.firer))
+		var/mob/living/carbon/human/shooter_human = P.firer
+		if(shooter_human.marskman_aura)
+			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
+			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled
 
 /mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
 	. = ..()
 	if(.)
 		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(P.ammo.iff_signal))
 			return 0
+		if(mobility_aura)
+			. -= mobility_aura * 5
 		var/mob/living/carbon/human/shooter_human = P.firer
 		if(istype(shooter_human))
 			if(shooter_human.faction == faction || m_intent == "walk")

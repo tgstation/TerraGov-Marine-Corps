@@ -34,6 +34,10 @@
 	prev_gender = gender // Debug for plural genders
 	make_blood()
 
+	//Sorry, not sorry
+	if(mind && mind.skills_list && mind.skills_list["leadership"] >= SKILL_LEAD_TRAINED)
+		verbs += /mob/living/carbon/human/verb/issue_order
+
 
 /mob/living/carbon/human/prepare_huds()
 	..()
@@ -70,7 +74,7 @@
 			if(eta_status)
 				stat(null, eta_status)
 
-		if (internal)
+		if(internal)
 			if (!internal.air_contents)
 				cdel(internal)
 				internal = null
@@ -78,24 +82,20 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
-	/*
-			var/datum/internal_organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
-			if(P)
-				stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
-			if(mind)
-				if(mind.changeling)
-					stat("Chemical Storage", mind.changeling.chem_charges)
-					stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
-			if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
-				stat("Energy Charge", round(wear_suit:cell:charge/100))
-	*/
 		if(mind)
 			if(mind.assigned_squad)
 				if(mind.assigned_squad.primary_objective)
 					stat("Primary Objective: ", mind.assigned_squad.primary_objective)
 				if(mind.assigned_squad.secondary_objective)
 					stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
+
+		if(mobility_aura)
+			stat(null, "You have been ordered by a MOVE order.")
+		if(protection_aura)
+			stat(null, "You are affected by a HOLD order.")
+		if(marskman_aura)
+			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded && hud_used)
