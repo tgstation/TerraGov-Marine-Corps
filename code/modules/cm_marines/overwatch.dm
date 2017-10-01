@@ -600,7 +600,7 @@
 			user << "It doesn't seem to do anything for you."
 			return
 
-		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_BEGINEER)
+		if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_BEGINNER)
 			user << "<span class='warning'>You don't have the training to use [src].</span>"
 			return
 
