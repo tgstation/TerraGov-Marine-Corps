@@ -140,6 +140,8 @@
 				continue
 		totalXenos++
 
+	/*
+	 * This is broken at roundstart, gg no re
 	if(!totalXenos)
 		var/totX = 0
 		var/totlarva = 0
@@ -151,12 +153,13 @@
 		src << "<span class='warning'>Something went wrong, try again.</span>"
 		evolve_busy = 0
 		return
+	 */
 
-	if(tier == 1 && ((tierB + tierC) / totalXenos)> 0.5 && castepick != "Queen")
+	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 2, either upgrade or wait for either more aliens to be born or someone to die.</span>"
 		evolve_busy = 0
 		return
-	else if(tier == 2 && (tierC / totalXenos)> 0.25 && castepick != "Queen")
+	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 3, either upgrade or wait for either more aliens to be born or someone to die.</span>"
 		evolve_busy = 0
 		return
