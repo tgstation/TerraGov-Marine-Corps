@@ -78,11 +78,11 @@
 
 
 //leadership skill
-#define SKILL_LEAD_DEFAULT			0
-#define SKILL_LEAD_BINOCS			1 //use of supply beacon, tactical binocs (all marines except standard)
-#define SKILL_LEAD_SL				2 //use of orbital beacons, faster use of tactical binocs (SL)
-#define SKILL_LEAD_OVERWATCH		3 //bridge console use (SO, CO, XO)
-//level above: even faster binoc targeting use
+#define SKILL_LEAD_NOVICE			0 //Anyone but the above. Using SL items is possible but painfully slow
+#define SKILL_LEAD_BEGINEER			1 //All non-Standard Marines
+#define SKILL_LEAD_TRAINED			2 //SL
+#define SKILL_LEAD_EXPERT			3 //SOs
+#define SKILL_LEAD_MASTER			4 //XO, CO
 
 
 //melee_weapons skill
