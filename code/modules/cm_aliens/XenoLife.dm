@@ -44,31 +44,40 @@
 		return 0
 
 	if(on_fire)
-		if(stat != DEAD && !fire_immune)
+		if(!fire_immune)
 			adjustFireLoss(fire_stacks + 3)
-			updatehealth()
-	if(health > -100 && health < 0) //Unconscious
-		if(readying_tail)
-			readying_tail = 0
-			selected_ability.button.icon_state = "template"
-			selected_ability = null
-		blinded = 1
-		see_in_dark = 5
-		KnockOut(4)
-		if(isXenoRunner(src) && layer != initial(layer)) //Unhide
-			layer = MOB_LAYER
+
+	if(stat == UNCONSCIOUS)
 		var/turf/T = loc
 		if(istype(T))
 			if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
 				adjustBruteLoss(-warding_aura) //You can reduce and even stop crit loss above 2.5 aura_strength //Can now heal damage outright
-				updatehealth()
-	else						//Alive! Yey! Turn on their vision.
+
+	updatehealth()
+
+	if(health <= crit_health) //dead
+		if(prob(gib_chance + 0.5*(crit_health - health)))
+			gib()
+		else
+			death()
+		return
+
+	else if(health <= 0) //in crit
+		if(readying_tail)
+			readying_tail = 0
+			selected_ability.button.icon_state = "template"
+			selected_ability = null
+		stat = UNCONSCIOUS
+		blinded = 1
+		see_in_dark = 5
+		if(isXenoRunner(src) && layer != initial(layer)) //Unhide
+			layer = MOB_LAYER
+
+	else						//alive and not in crit! Turn on their vision.
 		if(isXenoBoiler(src))
 			see_in_dark = 20
 		else
 			see_in_dark = 8
-
-		updatehealth()
 
 		if(readying_tail && readying_tail < 20)
 			readying_tail += rand(1, 2)
@@ -78,39 +87,35 @@
 				readying_tail = 20
 				src << "<span class='notice'>Your tail is now fully poised to impale some unfortunate target.</span>"
 
-		if(stat != DEAD)
-			if(health > 0) //Just to be safe
-				blinded = 0
+		ear_deaf = 0 //All this stuff is prob unnecessary
+		ear_damage = 0
+		eye_blind = 0
+		eye_blurry = 0
 
-			ear_deaf = 0 //All this stuff is prob unnecessary
-			ear_damage = 0
-			eye_blind = 0
-			eye_blurry = 0
-
-			if(knocked_out) //If they're down, make sure they are actually down.
-				AdjustKnockedout(-3)
-				blinded = 1
-				stat = UNCONSCIOUS
-				if(halloss > 0)
-					adjustHalLoss(-3)
-			else if(sleeping)
+		if(knocked_out) //If they're down, make sure they are actually down.
+			AdjustKnockedout(-3)
+			blinded = 1
+			stat = UNCONSCIOUS
+			if(halloss > 0)
 				adjustHalLoss(-3)
-				if(mind)
-					if((mind.active && client != null) || immune_to_ssd)
-						sleeping = max(sleeping - 1, 0)
-				blinded = 1
-				stat = UNCONSCIOUS
-			else if(resting)
-				blinded = 0
-				if(halloss > 0)
+		else if(sleeping)
+			if(halloss > 0)
+				adjustHalLoss(-3)
+			if(mind)
+				if((mind.active && client != null) || immune_to_ssd)
+					sleeping = max(sleeping - 1, 0)
+			blinded = 1
+			stat = UNCONSCIOUS
+		else
+			blinded = 0
+			stat = CONSCIOUS
+			if(halloss > 0)
+				if(resting)
 					adjustHalLoss(-3)
-			else
-				stat = CONSCIOUS
-				blinded = 0
-				if(halloss > 0)
+				else
 					adjustHalLoss(-1)
 
-			handle_statuses()//natural decrease of stunned, knocked_down, etc...
+		handle_statuses()//natural decrease of stunned, knocked_down, etc...
 
 		if(isXenoCrusher(src) && !stat) //Handle crusher stuff.
 			var/mob/living/carbon/Xenomorph/Crusher/X = src
@@ -496,8 +501,7 @@ updatehealth()
 		hud_used.locate_queen.dir = get_dir(src,target)
 		hud_used.locate_queen.icon_state = "trackon"
 
-/mob/living/carbon/Xenomorph/updatehealth(gib_bonus = 0)
-	var/gib_prob = gib_chance + gib_bonus
+/mob/living/carbon/Xenomorph/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
 		stat = CONSCIOUS
@@ -505,9 +509,6 @@ updatehealth()
 
 	med_hud_set_health()
 
-	if(health <= crit_health)
-		if(prob(gib_prob)) 	gib()
-		else 				death()
 
 
 
