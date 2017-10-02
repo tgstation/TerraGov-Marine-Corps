@@ -22,7 +22,7 @@
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
-	var/target_acquisition_delay = 70 //7 seconds
+	var/target_acquisition_delay = 100 //10 seconds
 	var/busy = FALSE
 
 	New()
@@ -58,10 +58,7 @@
 
 	var/acquisition_time = target_acquisition_delay
 	if(user.mind.skills_list)
-		if(user.mind.skills_list["leadership"] < SKILL_LEAD_BINOCS)
-			user << "<span class='warning'>You don't have the training to use [src].</span>"
-			return
-		acquisition_time = max(20, acquisition_time + 40 - 20*user.mind.skills_list["leadership"])
+		acquisition_time = max(15, acquisition_time - 25*user.mind.skills_list["leadership"])
 
 	var/datum/squad/S
 	if(user.mind.assigned_squad)

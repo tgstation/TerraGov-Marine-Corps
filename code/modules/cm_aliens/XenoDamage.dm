@@ -89,7 +89,7 @@
 		if(BURN)
 			adjustFireLoss(damage)
 
-	updatehealth(damage*0.65) //Seems to affect gibbing chance
+	updatehealth()
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)

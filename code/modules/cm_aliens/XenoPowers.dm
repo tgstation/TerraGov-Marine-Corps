@@ -4,6 +4,10 @@
 
 	if(!T) return
 
+	if(!isturf(loc))
+		src << "<span class='warning'>You can't pounce from here!</span>"
+		return
+
 	if(!check_state())
 		return
 
@@ -57,6 +61,10 @@
 	if(!check_state())
 		return
 
+	if(!isturf(loc))
+		src << "<span class='warning'>You can't transfer plasma from here!</span>"
+		return
+
 	if(get_dist(src, target) > max_range)
 		src << "<span class='warning'>You need to be closer to [target].</span>"
 		return
@@ -66,6 +74,10 @@
 		return
 
 	if(!check_state())
+		return
+
+	if(!isturf(loc))
+		src << "<span class='warning'>You can't transfer plasma from here!</span>"
 		return
 
 	if(get_dist(src, target) > max_range)
@@ -91,6 +103,11 @@
 
 	if(!readying_tail)
 		return 0 //Tail attack not prepared, or not available.
+
+
+	if(!isturf(loc))
+		src << "<span class='warning'>You can't attack [M] from here!</span>"
+		return
 
 	if(get_dist(src, M) > 1)
 		return
@@ -337,6 +354,10 @@
 
 	if(!O.Adjacent(src))
 		src << "<span class='warning'>\The [O] is too far away.</span>"
+		return
+
+	if(!isturf(loc))
+		src << "<span class='warning'>You can't melt [O] from here!</span>"
 		return
 
 	face_atom(O)

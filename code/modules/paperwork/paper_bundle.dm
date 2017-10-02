@@ -52,8 +52,6 @@
 	attack_self(user) //Update the browsed page.
 	add_fingerprint(user)
 
-
-
 /obj/item/weapon/paper_bundle/proc/burnpaper(obj/item/weapon/P, mob/user)
 	var/class = "<span class='warning'>"
 
@@ -78,7 +76,6 @@
 			else
 				user << "\red You must hold \the [P] steady to burn \the [src]."
 
-
 /obj/item/weapon/paper_bundle/examine(mob/user)
 	user << desc
 	if(in_range(user, src))
@@ -86,27 +83,25 @@
 	else
 		user << "<span class='notice'>It is too far away.</span>"
 
-
 /obj/item/weapon/paper_bundle/attack_self(mob/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
-		var/obj/item/weapon/W = contents[page]
 		switch(screen)
 			if(0)
 				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/weapon/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/weapon/paper)) ? "paper" : "photo"]</A></DIV>"
 				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(1)
 				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/weapon/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/weapon/paper)) ? "paper" : "photo"]</A></DIV>"
 				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(2)
 				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/weapon/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/weapon/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
 				dat+= "<DIV STYLE='float;left; text-align:right; with:33.33333%'></DIV>"
 		if(istype(src[page], /obj/item/weapon/paper))
-			var/obj/item/weapon/paper/P = W
+			var/obj/item/weapon/paper/P = src[page]
 			if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
 				dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 			else
@@ -114,7 +109,7 @@
 			human_user << browse(dat, "window=[name]")
 			P.add_fingerprint(usr)
 		else if(istype(src[page], /obj/item/weapon/photo))
-			var/obj/item/weapon/photo/P = W
+			var/obj/item/weapon/photo/P = src[page]
 			human_user << browse_rsc(P.img, "tmp_photo.png")
 			human_user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 			+ "<body style='overflow:hidden'>" \
@@ -125,7 +120,6 @@
 		add_fingerprint(usr)
 		update_icon()
 	return
-
 
 /obj/item/weapon/paper_bundle/Topic(href, href_list)
 	..()
@@ -152,26 +146,25 @@
 			var/obj/item/weapon/W = contents[page]
 			usr.put_in_hands(W)
 			usr << "<span class='notice'>You remove the [W.name] from the bundle.</span>"
+			amount--
 			if(amount == 1)
 				var/obj/item/weapon/paper/P = contents[1]
+				P.loc = usr.loc
 				usr.drop_inv_item_on_ground(src)
-				usr.put_in_hands(P)
 				cdel(src)
+				usr.put_in_hands(P)
 				return
-			else if(page == amount)
+			else if(page >= amount)
 				screen = 2
-				page--
+				if(page > amount)
+					page--
 
-			amount--
 			update_icon()
 
 		src.attack_self(src.loc)
 		updateUsrDialog()
 	else
 		usr << "<span class='notice'>You need to hold it in hands!</span>"
-
-
-
 
 /obj/item/weapon/paper_bundle/verb/rename()
 	set name = "Rename bundle"
@@ -182,8 +175,6 @@
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
 	add_fingerprint(usr)
-
-
 
 /obj/item/weapon/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
@@ -196,7 +187,6 @@
 		O.add_fingerprint(usr)
 	usr.drop_inv_item_on_ground(src)
 	cdel(src)
-
 
 /obj/item/weapon/paper_bundle/update_icon()
 	if(contents.len)
@@ -240,4 +230,3 @@
 	if(screen == 2)
 		screen = 1
 	update_icon()
-

@@ -140,23 +140,11 @@
 				continue
 		totalXenos++
 
-	if(!totalXenos)
-		var/totX = 0
-		var/totlarva = 0
-		for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
-			if(istype(M, /mob/living/carbon/Xenomorph/Larva))
-				totlarva++
-			totX++
-		message_admins("A bug has occured (XE02), show this to devs: [src]:[tier] , [tierB], [tierC], totalX:[totX], totalL:[totlarva].", 1)
-		src << "<span class='warning'>Something went wrong, try again.</span>"
-		evolve_busy = 0
-		return
-
-	if(tier == 1 && ((tierB + tierC) / totalXenos)> 0.5 && castepick != "Queen")
+	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 2, either upgrade or wait for either more aliens to be born or someone to die.</span>"
 		evolve_busy = 0
 		return
-	else if(tier == 2 && (tierC / totalXenos)> 0.25 && castepick != "Queen")
+	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 3, either upgrade or wait for either more aliens to be born or someone to die.</span>"
 		evolve_busy = 0
 		return

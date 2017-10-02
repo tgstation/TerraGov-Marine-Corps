@@ -247,7 +247,7 @@ var/list/slot_equipment_priority = list( \
 	next_move = world.time + 2
 
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(!mind || !mind.skills_list || mind.skills_list["leadership"] < SKILL_LEAD_SL)
+	if(!mind || !mind.skills_list || mind.skills_list["leadership"] < SKILL_LEAD_TRAINED)
 		recently_pointed_to = world.time + 50
 		new /obj/effect/overlay/temp/point(tile)
 
