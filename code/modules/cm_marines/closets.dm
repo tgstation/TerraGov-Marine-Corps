@@ -334,6 +334,12 @@
 		new /obj/item/clothing/gloves/yellow(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 
+	select_gamemode_equipment(gamemode)
+		switch(gamemode)
+			if(/datum/game_mode/ice_colony)
+				new /obj/item/clothing/mask/rebreather/scarf(src)
+				new /obj/item/clothing/mask/rebreather/scarf(src)
+
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/military_police
 	name = "military police's locker"
