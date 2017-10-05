@@ -46,6 +46,8 @@
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/real_rank = t.fields["real_rank"]
+		var/squad_name = t.fields["squad"]
+
 		if(OOC)
 			var/active = 0
 			for(var/mob/M in player_list)
@@ -68,10 +70,7 @@
 			med[name] = rank
 			department = 1
 		if(real_rank in ROLES_MARINES)
-			for(var/mob/M in player_list)
-				if(M.real_name == name && M.mind)
-					squads[name] = M.mind.assigned_squad.name
-					break
+			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
 		if(!department && !(name in heads))
@@ -232,6 +231,7 @@ var/global/list/PDA_Manifest = list()
 		G.fields["name"]		= H.real_name
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
+		G.fields["squad"]		= H.mind.assigned_squad ? H.mind.assigned_squad.name : null
 		G.fields["age"]			= H.age
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["p_stat"]		= "Active"

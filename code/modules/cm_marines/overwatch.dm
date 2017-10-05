@@ -119,14 +119,15 @@
 								area_name = sanitize(A.name)
 
 							if(current_squad.squad_leader)
-								if(H == current_squad.squad_leader)
-									dist = "Leader"
-								else if(H.z == current_squad.squad_leader.z && H.z != 0)
+								if(H.z == current_squad.squad_leader.z && H.z != 0)
 									dist = "[get_dist(H, current_squad.squad_leader)]"
 
 							if(H.mind)
 								if(H.mind.assigned_role)
 									role = H.mind.assigned_role
+							else if(istype(H.wear_id, /obj/item/weapon/card/id)) //decapitated marine is mindless,
+								var/obj/item/weapon/card/id/ID = H.wear_id		//we use their ID to get their role.
+								if(ID.rank) role = ID.rank
 							switch(H.stat)
 								if(CONSCIOUS) mob_state = "Conscious"
 								if(UNCONSCIOUS) mob_state = "<b>Unconscious</b>"
@@ -501,7 +502,7 @@
 	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in current_squad.marines_list
 	if(!new_lead || new_lead == "Cancel") return
 	var/mob/living/carbon/human/H = new_lead
-	if(!istype(H) || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
+	if(!istype(H) || !H.mind || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
 		usr << "\icon[src] [H] is KIA!"
 		return
 	if(H == current_squad.squad_leader)
@@ -582,7 +583,7 @@
 		return
 	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.marines_list
 	if(!transfer_marine || transfer_marine == "Cancel") return
-	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
+	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
 		usr << "\icon[src] [transfer_marine] is KIA."
 		return
 
@@ -592,8 +593,12 @@
 	var/datum/squad/new_squad = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
 	if(!new_squad || new_squad == "Cancel") return
 
-	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
+	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
 		usr << "\icon[src] [transfer_marine] is KIA."
+		return
+
+	if(transfer_marine.mind.assigned_role == "Squad Leader")
+		usr << "\icon[src] You can't transfer a Squad Leader!"
 		return
 
 	var/datum/squad/old_squad = transfer_marine.mind.assigned_squad
@@ -625,6 +630,11 @@
 
 	old_squad.remove_marine_from_squad(transfer_marine)
 	new_squad.put_marine_in_squad(transfer_marine)
+
+	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
+		if(t.fields["name"] == transfer_marine.real_name)
+			t.fields["squad"] = new_squad.name
+			break
 
 	transfer_marine.mind.assigned_fireteam = 0 //reset fireteam assignment
 
