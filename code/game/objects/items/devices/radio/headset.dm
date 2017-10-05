@@ -227,6 +227,11 @@
 		if(headset_hud_on)
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			H.add_hud_to(user)
+			//squad leader locator is no longer invisible on our player HUD.
+			if(user.mind && user.mind.assigned_squad && user.hud_used && user.hud_used.locate_leader)
+				user.hud_used.locate_leader.alpha = 255
+				user.hud_used.locate_leader.mouse_opacity = 1
+
 	..()
 
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
@@ -234,6 +239,10 @@
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			H.remove_hud_from(user)
+			//squad leader locator is invisible again
+			if(user.hud_used && user.hud_used.locate_leader)
+				user.hud_used.locate_leader.alpha = 0
+				user.hud_used.locate_leader.mouse_opacity = 0
 	..()
 
 
@@ -251,8 +260,14 @@
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			if(headset_hud_on)
 				H.add_hud_to(usr)
+				if(user.mind && user.mind.assigned_squad && user.hud_used && user.hud_used.locate_leader)
+					user.hud_used.locate_leader.alpha = 255
+					user.hud_used.locate_leader.mouse_opacity = 1
 			else
 				H.remove_hud_from(usr)
+				if(user.hud_used && user.hud_used.locate_leader)
+					user.hud_used.locate_leader.alpha = 0
+					user.hud_used.locate_leader.mouse_opacity = 0
 	usr << "<span class='notice'>You toggle [src]'s headset HUD [headset_hud_on ? "on":"off"].</span>"
 	playsound(src,'sound/machines/click.ogg', 20, 1)
 

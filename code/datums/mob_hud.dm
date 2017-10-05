@@ -441,26 +441,22 @@ var/datum/mob_hud/huds = list(
 	var/image/holder = hud_list[SQUAD_HUD]
 	holder.icon_state = "hudblank"
 	holder.overlays.Cut()
-	var/squad_nbr = get_squad_from_card(src)
-	if(squad_nbr)
-		var/squad_clr = squad_colors[squad_nbr]
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
-				var/marine_rk
-				switch(I.rank)
-					if("Squad Engineer") marine_rk = "engi"
-					if("Squad Leader") marine_rk = "leader"
-					if("Squad Specialist") marine_rk = "spec"
-					if("Squad Medic") marine_rk = "med"
-					if("Squad Smartgunner") marine_rk = "gun"
-				if(marine_rk)
-					var/image/IMG = image('icons/mob/hud.dmi',src, "hudmarinesquad")
-					IMG.color = squad_clr
-					holder.overlays += IMG
-					holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquad[marine_rk]")
-				if(I.fire_team)
-					var/image/IMG2 = image('icons/mob/hud.dmi',src, "hudmarinesquadft[I.fire_team]")
-					IMG2.color = squad_clr
-					holder.overlays += IMG2
+	if(mind && mind.assigned_squad)
+		var/squad_clr = squad_colors[mind.assigned_squad.color]
+		var/marine_rk
+		switch(mind.assigned_role)
+			if("Squad Engineer") marine_rk = "engi"
+			if("Squad Leader") marine_rk = "leader"
+			if("Squad Specialist") marine_rk = "spec"
+			if("Squad Medic") marine_rk = "med"
+			if("Squad Smartgunner") marine_rk = "gun"
+		if(marine_rk)
+			var/image/IMG = image('icons/mob/hud.dmi',src, "hudmarinesquad")
+			IMG.color = squad_clr
+			holder.overlays += IMG
+			holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquad[marine_rk]")
+		if(mind.assigned_fireteam)
+			var/image/IMG2 = image('icons/mob/hud.dmi',src, "hudmarinesquadft[mind.assigned_fireteam]")
+			IMG2.color = squad_clr
+			holder.overlays += IMG2
 	hud_list[SQUAD_HUD] = holder

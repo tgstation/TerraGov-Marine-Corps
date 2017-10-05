@@ -229,16 +229,14 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/command = 0 //Is this a commander? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
 
 	if(M)
-		if(istype(M,/mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.wear_id)
-				var/obj/item/weapon/card/id/card = H.wear_id.GetID()
-				if(istype(card))
-					if(card.chat_message_size)
-						command = card.chat_message_size
+			if(H.mind)
+				if(H.mind.skills_list && H.mind.skills_list["leadership"] >= SKILL_LEAD_TRAINED)
+					command = 3
 
-			if(H.mind && H.mind.role_comm_title)
-				comm_title = H.mind.role_comm_title //Set up [CO] and stuff after frequency
+				if(H.mind.role_comm_title)
+					comm_title = H.mind.role_comm_title //Set up [CO] and stuff after frequency
 		else if(istype(M,/mob/living/silicon/decoy/ship_ai)) command = 3
 
 	for (var/mob/R in receive)

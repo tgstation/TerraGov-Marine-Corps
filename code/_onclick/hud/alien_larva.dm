@@ -14,8 +14,8 @@
 	healths = new /obj/screen/healths/alien()
 	infodisplay += healths
 
-	locate_queen = new /obj/screen/queen_locator()
-	infodisplay += locate_queen
+	locate_leader = new /obj/screen/queen_locator()
+	infodisplay += locate_leader
 
 	blind_icon = new /obj/screen/blind()
 	screenoverlays += blind_icon

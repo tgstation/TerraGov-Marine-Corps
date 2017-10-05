@@ -19,7 +19,7 @@
 	var/obj/screen/action_intent
 	var/obj/screen/move_intent
 	var/obj/screen/alien_plasma_display
-	var/obj/screen/locate_queen
+	var/obj/screen/locate_leader
 	var/obj/screen/pred_power_icon
 
 	var/obj/screen/module_store_icon
@@ -99,7 +99,7 @@
 	action_intent = null
 	move_intent = null
 	alien_plasma_display = null
-	locate_queen = null
+	locate_leader = null
 	pred_power_icon = null
 
 	module_store_icon = null

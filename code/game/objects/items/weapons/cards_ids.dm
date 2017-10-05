@@ -138,9 +138,7 @@
 	var/dorm = 0		// determines if this ID has claimed a dorm already
 	var/paygrade = 0  // Marine's paygrade
 
-	var/squad_name = "" //which squad this ID belongs to, only used by squad marines.
-	var/fire_team = "" //which fire team this ID belongs to, only used by squad marines.
-	var/chat_message_size //how big our radio messages appear in chat (e.g. commander)
+//	var/squad_name = "" //which squad this ID belongs to, only used by squad marines.
 
 /obj/item/weapon/card/id/New()
 	..()
@@ -296,9 +294,8 @@
 		..()
 
 
-/obj/item/weapon/card/id/equipped(var/mob/living/carbon/human/M, slot)
+/obj/item/weapon/card/id/equipped(mob/living/carbon/human/M, slot)
 	if(istype(M))
-		get_squad_from_card(M)	//This normally returns a squad # but also sets unsquadded people, so we can use it.
 		M.update_inv_head() //Don't do a full update yet
 		M.update_inv_wear_suit()
 	..()

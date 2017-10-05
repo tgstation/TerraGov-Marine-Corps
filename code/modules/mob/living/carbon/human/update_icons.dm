@@ -732,13 +732,13 @@ var/global/list/damage_icon_parts = list()
 		else
 			standing = image("icon" = head.sprite_sheet_id?'icons/mob/head_1.dmi':'icons/mob/head_0.dmi', "icon_state" = "[head.icon_state]", "layer" =-HEAD_LAYER)
 
-		if(istype(head,/obj/item/clothing/head/helmet/marine))
+		if(istype(head,/obj/item/clothing/head/helmet/marine) && mind)
 			var/obj/item/clothing/head/helmet/marine/marine_helmet = head
 			if(marine_helmet.flags_marine_helmet & HELMET_SQUAD_OVERLAY)
-				var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
-				var/leader = is_leader_from_card(src)
-				switch(squad)
-					if(1 to 4) standing.overlays += leader? helmetmarkings_sql[squad] : helmetmarkings[squad]
+				var/datum/squad/S = mind.assigned_squad
+				var/leader = S.squad_leader == src
+				switch(S.color)
+					if(1 to 4) standing.overlays += leader? helmetmarkings_sql[S.color] : helmetmarkings[S.color]
 
 			var/image/I
 			for(var/i in marine_helmet.helmet_overlays)
@@ -790,13 +790,13 @@ var/global/list/damage_icon_parts = list()
 		else
 			standing = image("icon" = wear_suit.sprite_sheet_id?'icons/mob/suit_1.dmi':'icons/mob/suit_0.dmi', "icon_state" = "[wear_suit.icon_state]", "layer" =-SUIT_LAYER)
 
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine) && mind)
 			var/obj/item/clothing/suit/storage/marine/marine_armor = wear_suit
 			if(marine_armor.flags_marine_armor & ARMOR_SQUAD_OVERLAY)
-				var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
-				var/leader = is_leader_from_card(src)
-				switch(squad)
-					if(1 to 4) standing.overlays += leader? armormarkings_sql[squad] : armormarkings[squad]
+				var/datum/squad/S = mind.assigned_squad
+				var/leader = S.squad_leader == src
+				switch(S.color)
+					if(1 to 4) standing.overlays += leader? armormarkings_sql[S.color] : armormarkings[S.color]
 
 			if(marine_armor.overlays.len)
 				var/image/I

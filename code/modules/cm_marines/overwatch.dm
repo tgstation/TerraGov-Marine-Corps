@@ -56,13 +56,14 @@
 					dat += "Current Squad: [current_squad.name] Squad</A>   "
 					dat += "<A href='?src=\ref[src];operation=message'>\[Message Squad\]</a><br><br>"
 					dat += "----------------------<BR><BR>"
-					if(current_squad.squad_leader && istype(current_squad.squad_leader))
+					if(current_squad.squad_leader)
 						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=get_info;info_from=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
 						dat += "<A href='?src=\ref[src];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>\[CAM\]</a> "
 						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
-						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE\]</a><BR><BR>"
+						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
-						dat += "<B>Squad Leader:</B> <font color=red>NONE</font><br> <A href='?src=\ref[src];operation=change_lead'>\[SCAN\]</a><BR>"
+						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
+
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "<A href='?src=\ref[src];operation=check_primary'>\[Check\]</A> <A href='?src=\ref[src];operation=set_primary'>\[Set\]</A><BR>"
@@ -74,6 +75,9 @@
 					else
 						dat += "<B><font color=red>NONE!</font></B> <A href='?src=\ref[src];operation=set_secondary'>\[Set\]</A><BR>"
 					dat += "<BR>"
+					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
+					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
+
 					dat += "<A href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><BR>"
 					dat += "<A href='?src=\ref[src];operation=bombs'>Orbital Bombardment Control</a><BR>"
 					dat += "<A href='?src=\ref[src];operation=monitor'>Squad Monitor</a><BR>"
@@ -99,46 +103,64 @@
 					var/marine_count = 0
 					var/misc_text = ""
 
-					for(var/mob/living/carbon/human/H in mob_list)
-						if(!H.mind) continue
-						var/datum/squad/H_squad = H.mind.assigned_squad //This should be set always for squaddies.
-						if(!H || !H_squad || H_squad != current_squad || H.z == 0) continue
-						var/area/A = get_area(H)
+					for(var/X in current_squad.marines_list)
+						if(!X) continue //just to be safe
+						var/mob_name = "unknown"
 						var/mob_state = ""
-						var/role = ""
-						var/dist = ""
+						var/role = "unknown"
+						var/dist = "<b>???</b>"
+						var/area_name = "<b>???</b>"
+						var/mob/living/carbon/human/H
+						if(ishuman(X))
+							H = X
+							mob_name = H.real_name
+							var/area/A = get_area(H)
+							if(A)
+								area_name = sanitize(A.name)
 
-						if(current_squad.squad_leader && H.z == current_squad.squad_leader.z && H.z != 0)
-							dist = "[get_dist(H, current_squad.squad_leader)]"
-						else
-							dist = "<b>???</b>"
-						if(H.mind)
-							if(H.mind.assigned_role) role = H.mind.assigned_role
-						if(H.stat == CONSCIOUS) mob_state = "Conscious"
-						if(H.stat == UNCONSCIOUS) mob_state = "<b>Unconscious</b>"
-						if(H.stat == DEAD) mob_state = "<font color='red'>DEAD</font>"
+							if(current_squad.squad_leader)
+								if(H == current_squad.squad_leader)
+									dist = "Leader"
+								else if(H.z == current_squad.squad_leader.z && H.z != 0)
+									dist = "[get_dist(H, current_squad.squad_leader)]"
+
+							if(H.mind)
+								if(H.mind.assigned_role)
+									role = H.mind.assigned_role
+							switch(H.stat)
+								if(CONSCIOUS) mob_state = "Conscious"
+								if(UNCONSCIOUS) mob_state = "<b>Unconscious</b>"
+								if(DEAD) mob_state = "<font color='red'>DEAD</font>"
+
+						else //listed marine was deleted or gibbed, all we have is their name
+							for(var/datum/data/record/t in data_core.general)
+								if(t.fields["name"] == X)
+									role = t.fields["real_rank"]
+							mob_state = "<font color='red'>DEAD</font>"
+							mob_name = X
+
 
 						switch(role)
 							if("Squad Leader")
-								leader_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td><b>N/A</b></td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								leader_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td><b>N/A</b></td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								leader_count++
 							if("Squad Specialist")
-								spec_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								spec_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								spec_count++
 							if("Squad Medic")
-								medic_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								medic_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								medic_count++
 							if("Squad Engineer")
-								engi_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								engi_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								engi_count++
 							if("Squad Smartgunner")
-								smart_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								smart_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								smart_count++
 							if("Squad Marine")
-								marine_text += "<tr><td>[H.name]</td><td>[role]</td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								marine_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								marine_count++
 							else
-								misc_text += "<tr><td>[H.name]</td><td><i>[role]</i></td><td>[mob_state]</td><td>[sanitize(A.name)]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr></tr>"
+								misc_text += "<tr><td>[mob_name]</td><td><i>[role]</i></td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr></tr>"
 
 					dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><BR>"
 					dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><BR>"
@@ -207,7 +229,7 @@
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
 				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
 
-	user << browse(dat, "window=overwatch;size=500x500")
+	user << browse(dat, "window=overwatch;size=550x550")
 	onclose(user, "overwatch")
 	return
 
@@ -333,6 +355,10 @@
 			src.attack_hand(usr)
 		if("change_lead")
 			change_lead()
+		if("insubordination")
+			mark_insubordination()
+		if("squad_transfer")
+			transfer_squad()
 		if("dropsupply")
 			if(current_squad)
 				if(current_squad.supply_timer)
@@ -397,12 +423,12 @@
 	if(plus_name)
 		nametext = "[usr.name] transmits: "
 
-	for(var/mob/living/carbon/human/M in living_mob_list)
-		if(M && istype(M) && !M.stat && M.client && M.mind && (M.mind.assigned_squad == current_squad || M == usr)) //Only living and connected people in our squad
+	for(var/mob/living/carbon/human/M in current_squad.marines_list)
+		if(istype(M) && !M.stat && M.client && M.mind && (M.mind.assigned_squad == current_squad || M == usr)) //Only living and connected people in our squad
 			if(!only_leader)
 				M << "\icon[src] <font color='blue'><B>\[Overwatch\]:</b> [nametext][text]</font>"
 			else
-				if(is_leader_from_card(M))
+				if(current_squad.squad_leader == M)
 					M << "\icon[src] <font color='blue'><B>\[SL Overwatch\]:</b> [nametext][text]</font>"
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
@@ -417,7 +443,7 @@
 		usr << "\icon[src] Beacon is not transmitting from the ground."
 		return
 	var/area/A = get_area(current_squad.bbeacon)
-	if(A && istype(A,/area/lv624/ground/caves) || istype(A, /area/ice_colony/underground) || istype(A, /area/bigred/uground/))
+	if(istype(A) && A.is_underground)
 		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return
 
@@ -472,15 +498,141 @@
 	if(!current_squad)
 		usr << "\icon[src] No squad selected!"
 		return
-	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(is_leader_from_card(H) && get_squad_data_from_card(H) == current_squad && current_squad.squad_leader != H)
-			current_squad.squad_leader = H
-			usr << "\icon[src] New leader found and linked!"
-			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
-			return
+	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in current_squad.marines_list
+	if(!new_lead || new_lead == "Cancel") return
+	var/mob/living/carbon/human/H = new_lead
+	if(!istype(H) || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
+		usr << "\icon[src] [H] is KIA!"
+		return
+	if(H == current_squad.squad_leader)
+		usr << "\icon[src] [H] is already the Squad Leader!"
+		return
+	if(jobban_isbanned(H,"Squad Leader"))
+		usr << "\icon[src] [H] is unfit to lead!"
+		return
+	if(current_squad.squad_leader && current_squad.squad_leader.stat != DEAD)
+		send_to_squad("Attention: [current_squad.squad_leader] is demoted. A new squad leader has been set: [H.real_name].")
+		current_squad.demote_squad_leader()
+	else
+		send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
 
-	usr << "\icon[src] No new leaders found for this squad. They must have a squad set using the squad consoles."
-	return
+	H << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been promoted to \'SQUAD LEADER\' for [current_squad.name]. Your headset has access to the command channel (:v).</font>"
+	usr << "\icon[src] [H.real_name] is [current_squad]'s new leader!"
+	current_squad.squad_leader = H
+	if(H.mind.assigned_role != "Squad Leader")//not a real SL, a field promotion
+		H.mind.previous_squad_role = H.mind.assigned_role // we remember what we were before
+		H.mind.assigned_role = "Squad Leader"
+		H.mind.role_comm_title = "SL"
+		H.mind.skills_list["leadership"] = max(SKILL_LEAD_TRAINED, H.mind.skills_list["leadership"])
+
+	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+		var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
+		if(!R.keyslot1)
+			R.keyslot1 = new /obj/item/device/encryptionkey/squadlead (src)
+		else if(!R.keyslot2)
+			R.keyslot2 = new /obj/item/device/encryptionkey/squadlead (src)
+		else if(!R.keyslot3)
+			R.keyslot3 = new /obj/item/device/encryptionkey/squadlead (src)
+		R.recalculateChannels()
+	if(istype(H.wear_id, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/ID = H.wear_id
+		ID.access += ACCESS_MARINE_LEADER
+		ID.rank = "Squad Leader"
+		ID.assignment = "[current_squad] Squad Leader"
+		ID.name = "[ID.registered_name]'s ID Card ([ID.assignment])"
+	H.hud_set_squad()
+	H.sec_hud_set_ID()
+
+/obj/machinery/computer/overwatch/proc/mark_insubordination()
+	if(!usr || usr != operator)
+		return
+	if(!current_squad)
+		usr << "\icon[src] No squad selected!"
+		return
+	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.marines_list
+	if(!wanted_marine || wanted_marine == "Cancel") return
+	if(!istype(wanted_marine))//gibbed/deleted, all we have is a name.
+		usr << "\icon[src] [wanted_marine] is missing in action."
+		return
+
+	for (var/datum/data/record/E in data_core.general)
+		if(E.fields["name"] == wanted_marine.real_name)
+			for (var/datum/data/record/R in data_core.security)
+				if (R.fields["id"] == E.fields["id"])
+					if(!findtext(R.fields["ma_crim"],"Insubordination."))
+						R.fields["criminal"] = "*Arrest*"
+						if(R.fields["ma_crim"] == "None")
+							R.fields["ma_crim"]	= "Insubordination."
+						else
+							R.fields["ma_crim"] += "Insubordination."
+						usr << "\icon[src] You reported [wanted_marine] for insubordination."
+						wanted_marine << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been reported for insubordination by your overwatch officer.</font>"
+						wanted_marine.sec_hud_set_security_status()
+					return
+
+
+
+
+
+/obj/machinery/computer/overwatch/proc/transfer_squad()
+	if(!usr || usr != operator)
+		return
+	if(!current_squad)
+		usr << "\icon[src] No squad selected!"
+		return
+	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.marines_list
+	if(!transfer_marine || transfer_marine == "Cancel") return
+	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
+		usr << "\icon[src] [transfer_marine] is KIA."
+		return
+
+	if(transfer_marine.mind.assigned_role == "Squad Leader")
+		usr << "\icon[src] You can't transfer a Squad Leader!"
+		return
+	var/datum/squad/new_squad = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
+	if(!new_squad || new_squad == "Cancel") return
+
+	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
+		usr << "\icon[src] [transfer_marine] is KIA."
+		return
+
+	var/datum/squad/old_squad = transfer_marine.mind.assigned_squad
+	if(new_squad == old_squad)
+		usr << "\icon[src] [transfer_marine] is already in [new_squad]!"
+		return
+	if(!istype(transfer_marine.wear_id, /obj/item/weapon/card/id))
+		usr << "\icon[src] Transfer aborted. [transfer_marine] isn't wearing an ID."
+		return
+
+	var/no_place = FALSE
+	switch(transfer_marine.mind.assigned_role)
+		if("Squad Specialist")
+			if(new_squad.num_specialists == new_squad.max_specialists)
+				no_place = TRUE
+		if("Squad Engineer")
+			if(new_squad.num_engineers == new_squad.max_engineers)
+				no_place = TRUE
+		if("Squad Medic")
+			if(new_squad.num_medics == new_squad.max_medics)
+				no_place = TRUE
+		if("Squad Smartgunner")
+			if(new_squad.num_smartgun == new_squad.max_smartgun)
+				no_place = TRUE
+
+	if(no_place)
+		usr << "\icon[src] Transfer aborted. [new_squad] can't have another [transfer_marine.mind.assigned_role]."
+		return
+
+	old_squad.remove_marine_from_squad(transfer_marine)
+	new_squad.put_marine_in_squad(transfer_marine)
+
+	transfer_marine.mind.assigned_fireteam = 0 //reset fireteam assignment
+
+	transfer_marine.hud_set_squad()
+	usr << "\icon[src] [transfer_marine] transfered to [new_squad]."
+	transfer_marine << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>"
+
+
 
 /obj/machinery/computer/overwatch/proc/handle_supplydrop()
 	if(!usr || usr != operator)
@@ -605,8 +757,6 @@
 
 	if(user.mind.assigned_squad)
 		squad = user.mind.assigned_squad
-	else
-		squad = get_squad_data_from_card(user)
 
 	if(!squad)
 		user << "<span class='warning'>You need to be in a squad for this to do anything.</span>"
@@ -663,8 +813,6 @@
 
 	if(user.mind.assigned_squad)
 		squad = user.mind.assigned_squad
-	else
-		squad = get_squad_data_from_card(user)
 
 	if(!squad)
 		user << "<span class='warning'>You need to be in a squad for this to do anything.</span>"

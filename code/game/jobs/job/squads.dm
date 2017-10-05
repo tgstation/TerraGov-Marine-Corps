@@ -27,7 +27,7 @@
 	var/num_engineers = 0
 	var/num_medics = 0
 	var/count = 0 //Current # in the squad
-	var/list/current_squads = list()
+	var/list/marines_list = list() // list of mobs (or name, not always a mob ref) in that squad.
 
 	var/mob/living/carbon/human/overwatch_officer = null //Who's overwatching this squad?
 	var/supply_timer = 0 //Timer for supply drops
@@ -82,23 +82,91 @@
 	if(!C) C = M.get_active_hand()
 	if(!C) return 0//Abort, no ID found
 
-	if(M.mind.assigned_role == "Squad Engineer") src.num_engineers++
-	if(M.mind.assigned_role == "Squad Medic") src.num_medics++
-	if(M.mind.assigned_role == "Squad Specialist") src.num_specialists++
-	if(M.mind.assigned_role == "Squad Smartgunner") src.num_smartgun++
-	if(M.mind.assigned_role == "Squad Leader") //If more than one leader are somehow added, it will replace the old with new.
-		src.squad_leader = M
-		src.num_leaders++
+	switch(M.mind.assigned_role)
+		if("Squad Engineer") num_engineers++
+		if("Squad Medic") num_medics++
+		if("Squad Specialist") num_specialists++
+		if("Squad Smartgunner") num_smartgun++
+		if("Squad Leader")
+			if(squad_leader && squad_leader.mind.previous_squad_role) //field promoted SL
+				demote_squad_leader() //replaced by the real one
+			squad_leader = M
+			num_leaders++
 
 	src.count++ //Add up the tally. This is important in even squad distribution.
+
+	marines_list += M
 
 	M.mind.assigned_squad = src //Add them to the squad
 	var/c_oldass = C.assignment
 	C.access += src.access //Add their squad access to their ID
 	C.assignment = "[name] [c_oldass]"
-	C.squad_name = name
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 	return 1
+
+
+//proc used by the overwatch console to transfer marine to another squad
+/datum/squad/proc/remove_marine_from_squad(mob/living/carbon/human/M)
+	if(!M.mind || !M.mind.assigned_squad) return 0
+	M.mind.assigned_squad = null
+	count--
+	marines_list -= M
+	switch(M.mind.assigned_role)
+		if("Squad Engineer") num_engineers--
+		if("Squad Medic") num_medics--
+		if("Squad Specialist") num_specialists--
+		if("Squad Smartgunner") num_smartgun--
+		if("Squad Leader")
+			squad_leader = null
+			if(!M.mind.previous_squad_role)//not a field promoted SL
+				num_leaders--
+	var/obj/item/weapon/card/id/ID = M.wear_id
+	if(istype(ID))
+		ID.access -= src.access
+		ID.assignment = M.mind.assigned_role
+		ID.name = "[ID.registered_name]'s ID Card ([ID.assignment])"
+
+
+/datum/squad/proc/demote_squad_leader()
+	var/mob/living/carbon/human/old_lead = squad_leader
+	squad_leader = null
+	var/new_role = "Squad Marine"
+	if(!old_lead.mind.previous_squad_role)//not a field promoted SL, a real one
+		num_leaders--
+	else
+		new_role = old_lead.mind.previous_squad_role //we get back our old role
+		old_lead.mind.previous_squad_role = null
+	old_lead.mind.assigned_role = new_role
+	old_lead.mind.skills_list["leadership"] = SKILL_LEAD_BEGINNER
+	switch(new_role)
+		if("Squad Specialist") old_lead.mind.role_comm_title = "Sgt"
+		if("Squad Engineer") old_lead.mind.role_comm_title = "Cpl"
+		if("Squad Medic") old_lead.mind.role_comm_title = "Cpl"
+		if("Squad Smartgunner") old_lead.mind.role_comm_title = "LCpl"
+		else old_lead.mind.role_comm_title = "Mar"
+
+	if(istype(old_lead.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+		var/obj/item/device/radio/headset/almayer/marine/R = old_lead.wear_ear
+		if(istype(R.keyslot1, /obj/item/device/encryptionkey/squadlead))
+			cdel(R.keyslot1)
+			R.keyslot1 = null
+		else if(istype(R.keyslot2, /obj/item/device/encryptionkey/squadlead))
+			cdel(R.keyslot2)
+			R.keyslot2 = null
+		else if(istype(R.keyslot3, /obj/item/device/encryptionkey/squadlead))
+			cdel(R.keyslot3)
+			R.keyslot3 = null
+		R.recalculateChannels()
+	if(istype(old_lead.wear_id, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/ID = old_lead.wear_id
+		ID.access -= ACCESS_MARINE_LEADER
+		ID.rank = new_role
+		ID.assignment = "[src] [new_role]"
+		ID.name = "[ID.registered_name]'s ID Card ([ID.assignment])"
+	old_lead.hud_set_squad()
+	old_lead.sec_hud_set_ID()
+	old_lead << "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>"
+
 
 //Not a safe proc. Returns null if squads or jobs aren't set up.
 //Mostly used in the marine squad console in marine_consoles.dm.
@@ -113,19 +181,6 @@
 
 	return null
 
-//Slightly different, returns the squad itself via the ID.
-/proc/get_squad_data_from_card(var/mob/living/carbon/human/H)
-	if(!istype(H))	return null
-
-	var/obj/item/I = H.wear_id
-	var/obj/item/weapon/card/id/card = null
-
-	if(I)
-		card = I.GetID()
-
-	if(!card || !istype(card))
-		return null
-	return get_squad_by_name(card.squad_name)
 
 //These are to handle the tick timers on the supply drops, so they aren't reset if Overwatch changes squads.
 /datum/squad/proc/handle_stimer(var/ticks)
@@ -139,56 +194,3 @@
 	spawn(ticks)
 		bomb_timer = 0
 	return
-
-/proc/get_squad_from_card(var/mob/living/carbon/human/H)
-	if(!istype(H))	return 0
-
-	var/squad = 0
-	var/obj/item/I = H.wear_id
-	var/obj/item/weapon/card/id/card
-	if(I) card = I.GetID()
-
-	if(!card || !istype(card))
-		return 0
-
-	switch(card.squad_name)
-		if("Alpha")
-			squad = 1 //Returns the card's numeric squad so we can pull the armor colors.
-			if(H.mind)
-				H.mind.assigned_squad = get_squad_by_name("Alpha") //Sets their assigned squad so Overwatch can grab it.
-		if("Bravo")
-			squad = 2
-			if(H.mind)
-				H.mind.assigned_squad = get_squad_by_name("Bravo")
-		if("Charlie")
-			squad = 3
-			if(H.mind)
-				H.mind.assigned_squad = get_squad_by_name("Charlie")
-		if("Delta")
-			squad = 4
-			if(H.mind)
-				H.mind.assigned_squad = get_squad_by_name("Delta")
-		else
-			return 0
-
-	return squad
-
-/proc/is_leader_from_card(var/mob/living/carbon/human/H)
-	if(!istype(H)) return 0
-
-	var/obj/item/device/pda/I = H.wear_id
-	var/obj/item/weapon/card/id/card = null
-
-	if(I && istype(I))
-		if(I.id)
-			card = I.id
-	else
-		card = H.wear_id
-
-	if(!card || !istype(card))
-		return 0
-
-	if(findtext(card.assignment, "Leader"))
-		return 1
-
-	return 0

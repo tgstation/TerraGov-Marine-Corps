@@ -657,3 +657,10 @@
 
 /obj/item/device/radio/off
 	listening = 0
+
+
+
+//MARINE RADIO
+
+/obj/item/device/radio/marine
+	frequency = PUB_FREQ
