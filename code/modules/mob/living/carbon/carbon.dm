@@ -50,6 +50,7 @@
 			if(prob(max(getBruteLoss() - 80,0)))
 				for(var/atom/movable/A in stomach_contents)
 					A.loc = loc
+					A.acid_damage = 0 //Reset the acid damage
 					stomach_contents.Remove(A)
 				gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
@@ -59,6 +60,7 @@
 /mob/living/carbon/gib(anim, do_gibs, f_icon)
 	for(var/mob/M in src)
 		if(M in stomach_contents)
+			M.acid_damage = 0 //Reset the acid damage
 			stomach_contents -= M
 		M.loc = loc
 		for(var/mob/N in viewers(src, null))
