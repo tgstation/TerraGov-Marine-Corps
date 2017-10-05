@@ -88,10 +88,11 @@
 		if("Squad Specialist") num_specialists++
 		if("Squad Smartgunner") num_smartgun++
 		if("Squad Leader")
-			if(squad_leader && squad_leader.mind.previous_squad_role) //field promoted SL
+			if(squad_leader && (!squad_leader.mind || squad_leader.mind.previous_squad_role)) //field promoted SL
 				demote_squad_leader() //replaced by the real one
 			squad_leader = M
-			num_leaders++
+			if(!M.mind.previous_squad_role) //field promoted SL don't count as real ones
+				num_leaders++
 
 	src.count++ //Add up the tally. This is important in even squad distribution.
 
@@ -118,7 +119,7 @@
 		if("Squad Smartgunner") num_smartgun--
 		if("Squad Leader")
 			squad_leader = null
-			if(!M.mind.previous_squad_role)//not a field promoted SL
+			if(!M.mind.previous_squad_role)//not a field promoted SL, a real one
 				num_leaders--
 	var/obj/item/weapon/card/id/ID = M.wear_id
 	if(istype(ID))
@@ -131,19 +132,18 @@
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
 	var/new_role = "Squad Marine"
-	if(!old_lead.mind.previous_squad_role)//not a field promoted SL, a real one
-		num_leaders--
-	else
-		new_role = old_lead.mind.previous_squad_role //we get back our old role
-		old_lead.mind.previous_squad_role = null
-	old_lead.mind.assigned_role = new_role
-	old_lead.mind.skills_list["leadership"] = SKILL_LEAD_BEGINNER
-	switch(new_role)
-		if("Squad Specialist") old_lead.mind.role_comm_title = "Sgt"
-		if("Squad Engineer") old_lead.mind.role_comm_title = "Cpl"
-		if("Squad Medic") old_lead.mind.role_comm_title = "Cpl"
-		if("Squad Smartgunner") old_lead.mind.role_comm_title = "LCpl"
-		else old_lead.mind.role_comm_title = "Mar"
+	if(old_lead.mind)
+		if(old_lead.mind.previous_squad_role)//field promoted SL
+			new_role = old_lead.mind.previous_squad_role //we get back our old role
+			old_lead.mind.previous_squad_role = null
+		old_lead.mind.assigned_role = new_role
+		old_lead.mind.skills_list["leadership"] = SKILL_LEAD_BEGINNER
+		switch(new_role)
+			if("Squad Specialist") old_lead.mind.role_comm_title = "Sgt"
+			if("Squad Engineer") old_lead.mind.role_comm_title = "Cpl"
+			if("Squad Medic") old_lead.mind.role_comm_title = "Cpl"
+			if("Squad Smartgunner") old_lead.mind.role_comm_title = "LCpl"
+			else old_lead.mind.role_comm_title = "Mar"
 
 	if(istype(old_lead.wear_ear, /obj/item/device/radio/headset/almayer/marine))
 		var/obj/item/device/radio/headset/almayer/marine/R = old_lead.wear_ear
