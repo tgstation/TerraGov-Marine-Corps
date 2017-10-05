@@ -213,6 +213,11 @@
 		pred_power_icon.screen_loc = ui_predator_power
 		infodisplay += pred_power_icon
 
+	else
+		//squad leader locator
+		locate_leader = new /obj/screen/squad_leader_locator()
+		infodisplay += locate_leader
+
 	use_attachment = new /obj/screen()
 	use_attachment.icon = ui_style
 	use_attachment.icon_state = "gun_attach"

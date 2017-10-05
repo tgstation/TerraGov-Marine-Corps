@@ -483,23 +483,17 @@ updatehealth()
 
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
-	var/mob/living/carbon/Xenomorph/Queen/target = null
+	if(!hud_used || !hud_used.locate_leader) return
 
-	if(hud_used && hud_used.locate_queen)
-		for(var/mob/living/carbon/Xenomorph/Queen/M in living_mob_list)
-			if(M && !M.stat)
-				target = M
-				break
-
-	if(!target || !istype(target) || is_intelligent)
-		hud_used.locate_queen.icon_state = "trackoff"
+	if(!living_xeno_queen || is_intelligent)
+		hud_used.locate_leader.icon_state = "trackoff"
 		return
 
-	if(target.z != src.z || get_dist(src,target) < 1 || src == target)
-		hud_used.locate_queen.icon_state = "trackondirect"
+	if(living_xeno_queen.z != src.z || get_dist(src,living_xeno_queen) < 1 || src == living_xeno_queen)
+		hud_used.locate_leader.icon_state = "trackondirect"
 	else
-		hud_used.locate_queen.dir = get_dir(src,target)
-		hud_used.locate_queen.icon_state = "trackon"
+		hud_used.locate_leader.dir = get_dir(src,living_xeno_queen)
+		hud_used.locate_leader.icon_state = "trackon"
 
 /mob/living/carbon/Xenomorph/updatehealth()
 	if(status_flags & GODMODE)

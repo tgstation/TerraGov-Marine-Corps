@@ -192,59 +192,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		var/datum/action/A = X
 		A.update_button_icon()
 
-/obj/item/clothing/suit/storage/marine/verb/locate_squad_tracking_beacon()
-	set name = "Locate Squad Tracking Beacon"
-	set category = "Object"
-	set src in usr
-	var/user_squad
-	var/target
-
-	var/range_limit = 30
-	var/uncertainity = 2
-	var/range_error_message = "<span class='notice'>ERROR: No valid squad tracking beacon in [range_limit]m range</span>"
-
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
-		return 0
-
-	if(locate_cooldown > world.time)
-		usr << "<span class='notice'>RECALIBRATING: [round((locate_cooldown-world.time)/10)+1] seconds remaining"
-		return
-	locate_cooldown = world.time + 50 //5 second cooldown
-
-	user_squad = get_squad_data_from_card(usr)
-	if(!user_squad)
-		usr << "<span class='notice'>ERROR: No valid user squad ID</span>"
-		return
-
-
-	for(var/obj/item/device/squad_tracking_beacon/B in active_tracking_beacons)
-		if(B.squad == user_squad)
-			target = B
-			continue
-
-	if (!target)
-		usr << "[range_error_message]"
-		return
-
-	var/turf/user_turf = get_turf(usr)
-	var/turf/target_turf = get_turf(target)
-
-	if (user_turf.z != target_turf.z)
-		usr << "[range_error_message]"
-		return
-	var/distance = get_dist(user_turf,target_turf)
-	if(distance < 1)
-		usr << "<span class='notice'>DIRECTION: DOWN | DISTANCE: 0m</span>"
-		return
-	if(distance > range_limit || !distance)
-		usr << "[range_error_message]"
-		return
-
-	distance = Clamp(distance + rand(-uncertainity,uncertainity), 0, range_limit)
-
-	usr << "<span class='notice'>DIRECTION: [uppertext(dir2text(Get_Compass_Dir(user_turf, target_turf)))] | DISTANCE: [max(0, distance-uncertainity)]-[min(range_limit, distance+uncertainity)]m</span>"
-
-
 
 
 

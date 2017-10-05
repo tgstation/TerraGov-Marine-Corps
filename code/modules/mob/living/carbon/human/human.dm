@@ -34,9 +34,6 @@
 	prev_gender = gender // Debug for plural genders
 	make_blood()
 
-	//Sorry, not sorry
-	if(mind && mind.skills_list && mind.skills_list["leadership"] >= SKILL_LEAD_TRAINED)
-		verbs += /mob/living/carbon/human/verb/issue_order
 
 
 /mob/living/carbon/human/prepare_huds()
@@ -55,6 +52,14 @@
 
 /mob/living/carbon/human/Dispose()
 	. = ..()
+	if(mind && mind.assigned_squad)
+		var/datum/squad/S = mind.assigned_squad
+		var/n = S.marines_list.Find(src)
+		if(n)
+			S.marines_list[n] = name //mob reference replaced by name string
+		if(S.squad_leader == src)
+			S.squad_leader = null
+		mind.assigned_squad = null
 	remove_from_all_mob_huds()
 
 
@@ -398,21 +403,20 @@
 	if (href_list["squadfireteam"])
 		if(!usr.is_mob_incapacitated() && get_dist(usr, src) <= 7 && hasHUD(usr,"squadleader"))
 			var/mob/living/carbon/human/H = usr
-			var/obj/item/weapon/card/id/ID = get_idcard()
-			if(ID && (ID.rank in ROLES_MARINES)) //still a marine
-				if(get_squad_from_card(src) == get_squad_from_card(H)) //still same squad
-					var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3", "Cancel")
-					if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
-					ID = get_idcard()
-					if(ID && (ID.rank in ROLES_MARINES)) //still a marine
-						if(get_squad_from_card(src) == get_squad_from_card(H)) //still same squad
-							switch(newfireteam)
-								if("None") ID.fire_team = 0
-								if("Fire Team 1") ID.fire_team = 1
-								if("Fire Team 2") ID.fire_team = 2
-								if("Fire Team 3") ID.fire_team = 3
-								else return
-							hud_set_squad()
+			if(mind)
+				if(mind.assigned_role in ROLES_MARINES)//still a marine
+					if(mind.assigned_squad == H.mind.assigned_squad) //still same squad
+						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
+						if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
+						if(mind.assigned_role in ROLES_MARINES)//still a marine
+							if(mind.assigned_squad == H.mind.assigned_squad) //still same squad
+								switch(newfireteam)
+									if("None") mind.assigned_fireteam = 0
+									if("Fire Team 1") mind.assigned_fireteam = 1
+									if("Fire Team 2") mind.assigned_fireteam = 2
+									if("Fire Team 3") mind.assigned_fireteam = 3
+									else return
+								hud_set_squad()
 
 
 	if (href_list["criminal"])
@@ -1331,15 +1335,30 @@
 	playsound(T, 'sound/effects/splat.ogg', 25, 1)
 	T.add_vomit_floor(src)
 
-/mob/living/carbon/human
-	slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-		if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
-			return FALSE
-		. = ..()
+/mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+	if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
+		return FALSE
+	. = ..()
 
-	has_legs()
-		. = 0
-		if(has_limb("r_foot") && has_limb("r_leg"))
-			.++
-		if(has_limb("l_foot") && has_limb("l_leg"))
-			.++
+/mob/living/carbon/human/has_legs()
+	. = 0
+	if(has_limb("r_foot") && has_limb("r_leg"))
+		.++
+	if(has_limb("l_foot") && has_limb("l_leg"))
+		.++
+
+
+//very similar to xeno's queen_locator() but this is for locating squad leader.
+/mob/living/carbon/human/proc/locate_squad_leader()
+	if(!mind || !mind.assigned_squad) return
+	var/datum/squad/S = mind.assigned_squad
+	var/mob/living/carbon/human/H = S.squad_leader
+	if(!H)
+		hud_used.locate_leader.icon_state = "trackoff"
+		return
+
+	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
+		hud_used.locate_leader.icon_state = "trackondirect"
+	else
+		hud_used.locate_leader.dir = get_dir(src,H)
+		hud_used.locate_leader.icon_state = "trackon"

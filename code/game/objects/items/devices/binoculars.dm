@@ -60,11 +60,7 @@
 	if(user.mind.skills_list)
 		acquisition_time = max(15, acquisition_time - 25*user.mind.skills_list["leadership"])
 
-	var/datum/squad/S
-	if(user.mind.assigned_squad)
-		S = user.mind.assigned_squad
-	else
-		S = get_squad_data_from_card(user)
+	var/datum/squad/S = user.mind.assigned_squad
 
 	var/laz_name = ""
 	if(S) laz_name = S.name

@@ -112,8 +112,6 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/beacons
 	name = "Squad Beacons crate"
 	contains = list(
-					/obj/item/device/squad_tracking_beacon,
-					/obj/item/device/squad_tracking_beacon,
 					/obj/item/device/squad_beacon,
 					/obj/item/device/squad_beacon,
 					/obj/item/device/squad_beacon/bomb,

@@ -456,9 +456,8 @@
 
 	if(hasHUD(user,"squadleader"))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/weapon/card/id/ID = get_idcard()
-		if(ID && (ID.rank in ROLES_MARINES)) //examined mob is a marine
-			if(get_squad_from_card(src) == get_squad_from_card(H)) //same squad
+		if(mind && mind.assigned_role in ROLES_MARINES)//examined mob is a marine
+			if(mind.assigned_squad == H.mind.assigned_squad) //same squad
 				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 
@@ -473,7 +472,7 @@
 	user << msg
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
-/proc/hasHUD(mob/M as mob, hudtype)
+/proc/hasHUD(mob/M, hudtype)
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		switch(hudtype)
@@ -482,7 +481,7 @@
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			if("squadleader")
-				return istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/leader)
+				return H.mind && H.mind.assigned_squad && H.mind.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
 			else
 				return 0
 	else if(istype(M, /mob/living/silicon/robot))

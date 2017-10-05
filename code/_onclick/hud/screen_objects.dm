@@ -665,6 +665,14 @@
 	layer = FULLSCREEN_DAMAGE_LAYER
 
 
+/obj/screen/squad_leader_locator
+	icon = 'icons/mob/screen1_Midnight.dmi'
+	icon_state = "trackoff"
+	name = "squad leader locator"
+	alpha = 0 //invisible
+	mouse_opacity = 0
+	screen_loc = ui_sl_locator
+
 /obj/screen/queen_locator
 	icon = 'icons/mob/screen1_alien.dmi'
 	icon_state = "trackoff"

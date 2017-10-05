@@ -570,8 +570,8 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 
 		//Find their squad
-	var/squad = get_squad_from_card(H)
-	var/leader = is_leader_from_card(H)
+	var/squad = H.mind.assigned_squad.color
+	var/leader = H.mind.assigned_squad.squad_leader == H
 
 		//Squad Gloves and radio headsets
 	switch(squad)

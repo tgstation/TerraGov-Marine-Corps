@@ -82,8 +82,8 @@
 	alien_plasma_display.screen_loc = ui_alienplasmadisplay
 	infodisplay += alien_plasma_display
 
-	locate_queen = new /obj/screen/queen_locator()
-	infodisplay += locate_queen
+	locate_leader = new /obj/screen/queen_locator()
+	infodisplay += locate_leader
 
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = 'icons/mob/screen1_alien.dmi'

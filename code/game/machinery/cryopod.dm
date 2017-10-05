@@ -231,10 +231,11 @@ var/global/list/frozen_items = list()
 					if(occupant.mind.assigned_role == "Squad Specialist") S.num_specialists--
 					if(occupant.mind.assigned_role == "Squad Smartgunner") S.num_smartgun--
 					if(occupant.mind.assigned_role == "Squad Leader")
-						S.squad_leader = null
-						S.num_leaders--
+						if(!occupant.mind.previous_squad_role) //not a field promoted SL
+							S.num_leaders--
+						if(S.squad_leader == occupant)
+							S.squad_leader = null
 					S.count--
-					occupant.mind.assigned_squad = null
 
 			//Handle job slot/tater cleanup.
 			if(occupant.mind)
