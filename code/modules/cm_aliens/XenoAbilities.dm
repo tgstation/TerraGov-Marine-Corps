@@ -112,6 +112,7 @@
 			if(M in X.stomach_contents)
 				X.stomach_contents.Remove(M)
 				M.forceMove(X.loc)
+				M.acid_damage = 0 //Reset the acid damage
 		X.visible_message("<span class='xenowarning'>\The [X] hurls out the contents of their stomach!</span>", \
 		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>")
 	else

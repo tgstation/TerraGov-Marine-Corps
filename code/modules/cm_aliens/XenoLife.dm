@@ -476,6 +476,7 @@ updatehealth()
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A
+		A.acid_damage = 0 //Reset the acid damage
 		A.loc = loc
 
 	round_statistics.total_xeno_deaths++

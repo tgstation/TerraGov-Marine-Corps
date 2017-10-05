@@ -4,6 +4,7 @@
 	spawn(0)
 		for(var/mob/living/M in stomach_contents)
 			if(M.loc != src)
+				M.acid_damage = 0 //Reset the acid damage
 				stomach_contents.Remove(M)
 				continue
 			if(iscarbon(M) && stat != DEAD)

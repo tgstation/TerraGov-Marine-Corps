@@ -189,6 +189,7 @@
 		for(var/mob/M in src)
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
+				M.acid_damage = 0 //Reset the acid damage
 				M.loc = loc
 		src.visible_message("\red <B>[src] hurls out the contents of their stomach!</B>")
 	return
