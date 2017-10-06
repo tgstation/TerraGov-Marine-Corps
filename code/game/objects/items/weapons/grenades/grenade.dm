@@ -18,15 +18,7 @@
 
 	..()
 
-	det_time = rand(det_time - 10, det_time)
-
-/obj/item/weapon/grenade/examine(mob/user)
-	..()
-	if(det_time > 1)
-		user << "The timer is set to [det_time/10] seconds."
-	else
-		user << "\The [src] is set for instant detonation."
-
+	det_time = rand(det_time - 10, det_time + 10)
 
 /obj/item/weapon/grenade/attack_self(mob/user)
 	if(!active)
