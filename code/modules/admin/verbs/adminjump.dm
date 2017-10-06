@@ -162,7 +162,7 @@
 	if(!src.holder)
 		src << "Only administrators may use this command."
 		return
-	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()
+	var/area/A = input(usr, "Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 	if(A)
 		if(config.allow_admin_jump)
 			M.on_mob_jump()

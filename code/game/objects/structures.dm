@@ -79,9 +79,10 @@
 		return 0
 
 	var/turf/T = src.loc
-	if(!T || !istype(T)) return 0
+	var/turf/U = get_turf(user)
+	if(!istype(T) || !istype(U)) return 0
 	if(T.density) return 0 //src is on top of a dense turf.
-	if(!user.Adjacent(src))	return 0
+	if(!user.Adjacent(src))	return 0 //this catches border objects that don't let you throw things over them, but not barricades
 
 	for(var/obj/O in T.contents)
 		if(istype(O, /obj/structure))
@@ -89,16 +90,27 @@
 			if(S.climbable)
 				continue
 
-		if(O && O.density && !(O.flags_atom & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
+		//dense obstacles (border or not) on the structure's tile
+		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir & get_dir(src,user)))
+			user << "<span class='warning'>There's \a [O.name] in the way.</span>"
+			return 0
+
+	for(var/obj/O in U.contents)
+		if(istype(O, /obj/structure))
+			var/obj/structure/S = O
+			if(S.climbable)
+				continue
+		//dense border obstacles on our tile
+		if(O.density && (O.flags_atom & ON_BORDER) && O.dir & get_dir(user, src))
 			user << "<span class='warning'>There's \a [O.name] in the way.</span>"
 			return 0
 
 	if((flags_atom & ON_BORDER))
-		if(user.loc != loc && user.loc != get_step(get_turf(src), dir))
+		if(user.loc != loc && user.loc != get_step(T, dir))
 			user << "<span class='warning'>You need to be up against [src] to leap over.</span>"
 			return
 		if(user.loc == loc)
-			var/turf/target = get_step(get_turf(src), dir)
+			var/turf/target = get_step(T, dir)
 			if(target.density) //Turf is dense, not gonna work
 				user << "<span class='warning'>You cannot leap this way.</span>"
 				return

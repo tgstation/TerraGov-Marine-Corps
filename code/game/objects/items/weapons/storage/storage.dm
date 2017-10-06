@@ -547,6 +547,8 @@
 	closer.master = src
 
 /obj/item/weapon/storage/Dispose()
+	for(var/atom/movable/I in contents)
+		cdel(I)
 	for(var/mob/M in content_watchers)
 		hide_from(M)
 	if(boxes)
@@ -672,3 +674,7 @@
 		return -1	//inside something with a null loc.
 
 	return depth
+
+
+/obj/item/weapon/storage/on_stored_item_del(obj/item/I)
+	remove_from_storage(I)

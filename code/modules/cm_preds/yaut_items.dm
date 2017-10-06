@@ -833,21 +833,21 @@
 		if(do_after(user,100, TRUE, 5, BUSY_ICON_CLOCK))
 			// Teleport self.
 			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
-			sleep(animation_teleport_quick_out(user))
-			user.loc = pick(pred_spawn)
-			animation_teleport_quick_in(user)
-			timer = 0
-
-			// Teleport whoever you're pulling.
+			var/tele_time = animation_teleport_quick_out(user)
+			// Also teleport whoever you're pulling.
 			var/mob/living/M = user.pulling
-
-			if(M)
+			if(istype(M))
 				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
-				sleep(animation_teleport_quick_out(M))
-				if(M && M.loc && M == user.pulling)
-					M.forceMove(pick(pred_spawn))
-					animation_teleport_quick_in(M)
+				animation_teleport_quick_out(M)
+			sleep(tele_time)
 
+			var/turf/end_turf = pick(pred_spawn)
+			user.forceMove(end_turf)
+			animation_teleport_quick_in(user)
+			if(M && M.loc)
+				M.forceMove(end_turf)
+				animation_teleport_quick_in(M)
+			timer = 0
 		else
 			sleep(10)
 			if(loc) timer = 0

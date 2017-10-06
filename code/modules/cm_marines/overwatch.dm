@@ -653,7 +653,7 @@
 		return
 
 	var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
-	if(!C || !istype(C))
+	if(!istype(C))
 		usr << "\icon[src] No crate was detected on the drop pad. Get Requisitions on the line!"
 		return
 
@@ -677,20 +677,26 @@
 	y_offset += rand(-2,2)
 
 	C.visible_message("The [C] begins to load into a launch tube. Stand clear!")
-	current_squad.handle_stimer(5000)
+	C.anchored = TRUE //to avoid accidental pushes
 	send_to_squad("Supply Drop Incoming!")
 	current_squad.sbeacon.visible_message("\blue The beacon begins to beep!")
+	var/datum/squad/S = current_squad //in case the operator changes the overwatched squad mid-drop
 	spawn(100)
-		if(!current_squad) return
-		if(current_squad.sbeacon)
-			cdel(current_squad.sbeacon) //Wipe the beacon. It's only good for one use.
-			current_squad.sbeacon = null
+		if(!C || C.loc != S.drop_pad.loc) //Crate no longer on pad somehow, abort.
+			if(C) C.anchored = FALSE
+			usr << "\icon[src] Launch aborted! No crate detected on the drop pad."
+			return
+		S.handle_stimer(5000)
+
+		if(S.sbeacon)
+			cdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
+			S.sbeacon = null
 		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
+		C.anchored = FALSE
 		C.z = T.z
 		C.x = T.x + x_offset
 		C.y = T.y + x_offset
-		spawn(0)
-			playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
+		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
 		C.visible_message("\icon[C] The [C] falls from the sky!")
 		usr << "\icon[src] [C] launched! Another launch will be available in <b>5</b> minutes."
 
@@ -794,7 +800,7 @@
 	if(do_after(user, delay, TRUE, 5, BUSY_ICON_CLOCK))
 
 		squad.sbeacon = src
-		forceMove(user.loc)
+		user.drop_inv_item_to_loc(src, user.loc)
 		activated = 1
 		anchored = 1
 		w_class = 10
@@ -849,7 +855,7 @@
 
 		message_admins("[user] ([user.key]) set up an orbital strike beacon.")
 		squad.bbeacon = src //Set us up the bomb~
-		forceMove(user.loc)
+		user.drop_inv_item_to_loc(src, user.loc)
 		activated = 1
 		anchored = 1
 		w_class = 10
