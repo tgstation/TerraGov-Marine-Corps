@@ -14,6 +14,11 @@
 	var/dangerous = 0		//Make an danger overlay for humans?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 
+/obj/item/weapon/grenade/New()
+
+	..()
+
+	det_time = rand(det_time - 10, det_time)
 
 /obj/item/weapon/grenade/examine(mob/user)
 	..()
@@ -37,7 +42,8 @@
 			spawn(5) prime()
 
 		else
-			user << "<span class='warning'>You prime \the [name]! [det_time/10] seconds!</span>"
+			user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
+			"<span class='warning'>You prime \a [name]!</span>")
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
