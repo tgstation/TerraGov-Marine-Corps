@@ -1103,3 +1103,7 @@ mob/proc/yank_out_object()
 //returns how many non-destroyed legs the mob has (currently only useful for humans)
 /mob/proc/has_legs()
 	return 2
+
+/mob/on_stored_item_del(obj/item/I)
+	temp_drop_inv_item(I, TRUE) //unequip before deletion to clear possible item references on the mob.
+

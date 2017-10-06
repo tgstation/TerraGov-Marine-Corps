@@ -69,14 +69,27 @@
 	*/
 	var/list/sprite_sheets_obj = null
 
-/obj/item/New()
+/obj/item/New(loc)
 	..()
 	item_list += src
+	for(var/path in actions_types)
+		new path(src)
+	if(w_class <= 3) //pulling small items doesn't slow you down much
+		drag_delay = 1
 
 
 /obj/item/Dispose()
-	. = ..()
+	flags_atom &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
+	flags_atom &= ~NODROP //so the item is properly unequipped if on a mob.
+	if(istype(loc, /atom/movable))
+		var/atom/movable/AM = loc
+		AM.on_stored_item_del(src) //things that object need to do when an item inside it is deleted
+	for(var/X in actions)
+		actions -= X
+		cdel(X)
+	master = null
 	item_list -= src
+	. = ..()
 
 
 
@@ -150,25 +163,6 @@ cases. Override_icon_state should be a list.*/
 		item_state = icon_state
 		item_color = icon_state
 
-/obj/item/New(loc)
-	..()
-	for(var/path in actions_types)
-		new path(src)
-	if(w_class <= 3) //pulling small items doesn't slow you down much
-		drag_delay = 1
-
-/obj/item/Dispose()
-	flags_atom &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
-	flags_atom &= ~NODROP //so the item is properly unequipped if on a mob.
-
-	if(ismob(loc))
-		var/mob/M = loc
-		M.temp_drop_inv_item(src, TRUE) //unequip before deletion to clear possible item references on the mob.
-	for(var/X in actions)
-		actions -= X
-		cdel(X)
-	master = null
-	. = ..()
 
 /obj/item/examine(mob/user)
 	var/size

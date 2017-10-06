@@ -331,3 +331,8 @@
 //things the user's machine must do just before we unset the user's machine.
 /atom/movable/proc/on_unset_interaction(mob/user)
 	return
+
+
+//things that object need to do when an item inside it is deleted
+/atom/movable/proc/on_stored_item_del(obj/item/I)
+	return

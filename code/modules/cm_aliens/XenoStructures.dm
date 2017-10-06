@@ -732,23 +732,23 @@
 
 /obj/effect/alien/egg/proc/Burst(kill = 1) //drops and kills the hugger if any is remaining
 	set waitfor = 0
-	if(status == GROWN || status == GROWING)
-		status = BURSTING
-		delete_egg_triggers()
-		sleep(3)
-		if(loc)
-			if(kill) //Make sure it's still there
-				status = DESTROYED
-				icon_state = "Egg Exploded"
-				flick("Egg Exploding", src)
-			else
-				icon_state = "Egg Opened"
-				flick("Egg Opening", src)
-				sleep(10)
-				if(loc)
-					status = BURST
-					var/obj/item/clothing/mask/facehugger/child = new(loc)
-					child.leap_at_nearest_target()
+	if(kill)
+		if(status != DESTROYED)
+			delete_egg_triggers()
+			status = DESTROYED
+			icon_state = "Egg Exploded"
+			flick("Egg Exploding", src)
+	else
+		if(status == GROWN || status == GROWING)
+			status = BURSTING
+			delete_egg_triggers()
+			icon_state = "Egg Opened"
+			flick("Egg Opening", src)
+			sleep(10)
+			if(loc && status != DESTROYED)
+				status = BURST
+				var/obj/item/clothing/mask/facehugger/child = new(loc)
+				child.leap_at_nearest_target()
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
 	..()

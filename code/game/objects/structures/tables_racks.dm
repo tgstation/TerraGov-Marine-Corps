@@ -603,16 +603,15 @@
 		step(O, get_dir(O, src))
 	return
 
-/obj/structure/rack/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/rack/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
 		destroy(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if(isrobot(user))
+	if(W.abstract || isrobot(user))
 		return
-	user.drop_held_item()
-	if(W && W.loc)	W.loc = src.loc
-	return
+	user.drop_inv_item_to_loc(W, loc)
+
 
 /obj/structure/rack/Crossed(atom/movable/O)
 	..()

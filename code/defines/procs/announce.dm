@@ -58,7 +58,7 @@
 
 /datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in player_list)
-		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
+		if((istype(M,/mob/living/carbon/Xenomorph) || has_species(M, "Zombie")) && !to_xenos) //we reuse to_xenos arg for zombies
 			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << "<h2 class='alert'>[title]</h2>"
