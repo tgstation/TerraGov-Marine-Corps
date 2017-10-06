@@ -530,11 +530,11 @@
 	item_state = "grenade"
 	dangerous = 1
 
-	prime()
-		spawn(0)
-			explosion(loc, -1, -1, 3)
-			cdel(src)
-		return
+/obj/item/weapon/grenade/explosive/prime()
+	spawn(0)
+		explosion(loc, -1, -1, 3)
+		cdel(src)
+	return
 
 /obj/item/weapon/grenade/explosive/flamer_fire_act()
 	var/turf/T = loc
