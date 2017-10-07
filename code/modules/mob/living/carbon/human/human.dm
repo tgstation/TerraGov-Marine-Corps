@@ -52,14 +52,13 @@
 
 /mob/living/carbon/human/Dispose()
 	. = ..()
-	if(mind && mind.assigned_squad)
-		var/datum/squad/S = mind.assigned_squad
-		var/n = S.marines_list.Find(src)
+	if(assigned_squad)
+		var/n = assigned_squad.marines_list.Find(src)
 		if(n)
-			S.marines_list[n] = name //mob reference replaced by name string
-		if(S.squad_leader == src)
-			S.squad_leader = null
-		mind.assigned_squad = null
+			assigned_squad.marines_list[n] = name //mob reference replaced by name string
+		if(assigned_squad.squad_leader == src)
+			assigned_squad.squad_leader = null
+		assigned_squad = null
 	remove_from_all_mob_huds()
 
 
@@ -88,12 +87,11 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		if(mind)
-			if(mind.assigned_squad)
-				if(mind.assigned_squad.primary_objective)
-					stat("Primary Objective: ", mind.assigned_squad.primary_objective)
-				if(mind.assigned_squad.secondary_objective)
-					stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
+		if(assigned_squad)
+			if(assigned_squad.primary_objective)
+				stat("Primary Objective: ", assigned_squad.primary_objective)
+			if(assigned_squad.secondary_objective)
+				stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
 		if(mobility_aura)
 			stat(null, "You have been ordered by a MOVE order.")
@@ -404,17 +402,19 @@
 		if(!usr.is_mob_incapacitated() && get_dist(usr, src) <= 7 && hasHUD(usr,"squadleader"))
 			var/mob/living/carbon/human/H = usr
 			if(mind)
-				if(mind.assigned_role in ROLES_MARINES)//still a marine
-					if(mind.assigned_squad == H.mind.assigned_squad) //still same squad
+				var/obj/item/weapon/card/id/ID = get_idcard()
+				if(ID && (ID.rank in ROLES_MARINES))//still a marine, with an ID.
+					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
-						if(mind.assigned_role in ROLES_MARINES)//still a marine
-							if(mind.assigned_squad == H.mind.assigned_squad) //still same squad
+						ID = get_idcard()
+						if(ID && ID.rank in ROLES_MARINES)//still a marine with an ID
+							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
-									if("None") mind.assigned_fireteam = 0
-									if("Fire Team 1") mind.assigned_fireteam = 1
-									if("Fire Team 2") mind.assigned_fireteam = 2
-									if("Fire Team 3") mind.assigned_fireteam = 3
+									if("None") ID.assigned_fireteam = 0
+									if("Fire Team 1") ID.assigned_fireteam = 1
+									if("Fire Team 2") ID.assigned_fireteam = 2
+									if("Fire Team 3") ID.assigned_fireteam = 3
 									else return
 								hud_set_squad()
 
@@ -1350,9 +1350,8 @@
 
 //very similar to xeno's queen_locator() but this is for locating squad leader.
 /mob/living/carbon/human/proc/locate_squad_leader()
-	if(!mind || !mind.assigned_squad) return
-	var/datum/squad/S = mind.assigned_squad
-	var/mob/living/carbon/human/H = S.squad_leader
+	if(!assigned_squad) return
+	var/mob/living/carbon/human/H = assigned_squad.squad_leader
 	if(!H)
 		hud_used.locate_leader.icon_state = "trackoff"
 		return

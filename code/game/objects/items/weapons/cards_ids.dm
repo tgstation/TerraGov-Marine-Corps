@@ -138,7 +138,8 @@
 	var/dorm = 0		// determines if this ID has claimed a dorm already
 	var/paygrade = 0  // Marine's paygrade
 
-//	var/squad_name = "" //which squad this ID belongs to, only used by squad marines.
+	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
+
 
 /obj/item/weapon/card/id/New()
 	..()
@@ -294,10 +295,10 @@
 		..()
 
 
-/obj/item/weapon/card/id/equipped(mob/living/carbon/human/M, slot)
-	if(istype(M))
-		M.update_inv_head() //Don't do a full update yet
-		M.update_inv_wear_suit()
+/obj/item/weapon/card/id/equipped(mob/living/carbon/human/H, slot)
+	if(istype(H))
+		H.update_inv_head() //updating marine helmet squad coloring
+		H.update_inv_wear_suit()
 	..()
 
 /obj/item/weapon/card/id/dropped(mob/user)

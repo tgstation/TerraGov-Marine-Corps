@@ -13,8 +13,8 @@
 /datum/job/marine
 
 	generate_entry_message(mob/living/carbon/human/H)
-		if(H.mind)
-			. = "You have been assigned to: <b>[lowertext(H.mind.assigned_squad.name)] squad</b>.[flags_startup_parameters & ROLE_ADD_TO_MODE ? " Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room." : ""]"
+		if(H.assigned_squad)
+			. = "You have been assigned to: <b>[lowertext(H.assigned_squad.name)] squad</b>.[flags_startup_parameters & ROLE_ADD_TO_MODE ? " Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room." : ""]"
 
 	generate_entry_conditions(mob/living/carbon/human/H)
 		. = ..()

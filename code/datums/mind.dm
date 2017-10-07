@@ -49,10 +49,6 @@ datum/mind
 
 //	var/datum/job/assigned_job
 
-	var/datum/squad/assigned_squad
-	var/assigned_fireteam = 0
-	var/previous_squad_role = "" //to be remember someone' previous assigned role when promoted to SL.
-
 	var/list/datum/objective/objectives = list()
 	var/list/datum/objective/special_verbs = list()
 

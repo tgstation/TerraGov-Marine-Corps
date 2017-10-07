@@ -735,8 +735,8 @@ var/global/list/damage_icon_parts = list()
 		if(istype(head,/obj/item/clothing/head/helmet/marine))
 			var/obj/item/clothing/head/helmet/marine/marine_helmet = head
 			if(marine_helmet.flags_marine_helmet & HELMET_SQUAD_OVERLAY)
-				if(mind && mind.assigned_squad)
-					var/datum/squad/S = mind.assigned_squad
+				if(assigned_squad)
+					var/datum/squad/S = assigned_squad
 					var/leader = S.squad_leader == src
 					switch(S.color)
 						if(1 to 4) standing.overlays += leader? helmetmarkings_sql[S.color] : helmetmarkings[S.color]
@@ -794,8 +794,8 @@ var/global/list/damage_icon_parts = list()
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/obj/item/clothing/suit/storage/marine/marine_armor = wear_suit
 			if(marine_armor.flags_marine_armor & ARMOR_SQUAD_OVERLAY)
-				if(mind && mind.assigned_squad)
-					var/datum/squad/S = mind.assigned_squad
+				if(assigned_squad)
+					var/datum/squad/S = assigned_squad
 					var/leader = S.squad_leader == src
 					switch(S.color)
 						if(1 to 4) standing.overlays += leader? armormarkings_sql[S.color] : armormarkings[S.color]

@@ -223,18 +223,16 @@ var/global/list/frozen_items = list()
 								O.owner.objectives -= O
 								cdel(O)
 
-			if(occupant.mind && occupant.mind.assigned_squad)
-				var/datum/squad/S = occupant.mind.assigned_squad
-				if(!isnull(S) && istype(S))
-					if(occupant.mind.assigned_role == "Squad Engineer") S.num_engineers--
-					if(occupant.mind.assigned_role == "Squad Medic") S.num_medics--
-					if(occupant.mind.assigned_role == "Squad Specialist") S.num_specialists--
-					if(occupant.mind.assigned_role == "Squad Smartgunner") S.num_smartgun--
-					if(occupant.mind.assigned_role == "Squad Leader")
-						if(!occupant.mind.previous_squad_role) //not a field promoted SL
-							S.num_leaders--
-						if(S.squad_leader == occupant)
-							S.squad_leader = null
+			if(ishuman(occupant))
+				var/mob/living/carbon/human/H = occupant
+				if(H.mind && H.assigned_squad)
+					var/datum/squad/S = H.assigned_squad
+					switch(H.mind.assigned_role)
+						if("Squad Engineer") S.num_engineers--
+						if("Squad Medic") S.num_medics--
+						if("Squad Specialist") S.num_specialists--
+						if("Squad Smartgunner") S.num_smartgun--
+						if("Squad Leader") S.num_leaders--
 					S.count--
 
 			//Handle job slot/tater cleanup.

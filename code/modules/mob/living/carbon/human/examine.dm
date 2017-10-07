@@ -456,8 +456,8 @@
 
 	if(hasHUD(user,"squadleader"))
 		var/mob/living/carbon/human/H = user
-		if(mind && mind.assigned_role in ROLES_MARINES)//examined mob is a marine
-			if(mind.assigned_squad == H.mind.assigned_squad) //same squad
+		if(assigned_squad) //examined mob is a marine in a squad
+			if(assigned_squad == H.assigned_squad) //same squad
 				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 
@@ -481,7 +481,7 @@
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			if("squadleader")
-				return H.mind && H.mind.assigned_squad && H.mind.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
+				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
 			else
 				return 0
 	else if(istype(M, /mob/living/silicon/robot))

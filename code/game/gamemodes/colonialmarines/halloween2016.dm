@@ -681,14 +681,6 @@
 	else
 		if(marine_spawns.len) picked = pick(marine_spawns)
 
-		//Find their squad
-//		var/squad = H.mind.assigned_squad ? lowertext(H.mind.assigned_squad.name) : "alpha"
-
-//		var/item_path = text2path("/obj/item/device/radio/headset/m[squad][given_role == "Squad Leader"? "l" : ""]")
-//		H.equip_to_slot_or_del(new item_path(H), WEAR_EAR)
-//		item_path = text2path("/obj/item/clothing/gloves/marine/[squad]")
-//		H.equip_to_slot_or_del(new item_path(H), WEAR_HANDS)
-
 		var/obj/item/clothing/tie/storage/webbing/W
 		var/obj/item/clothing/under/U
 

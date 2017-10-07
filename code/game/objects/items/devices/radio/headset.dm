@@ -228,7 +228,7 @@
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			H.add_hud_to(user)
 			//squad leader locator is no longer invisible on our player HUD.
-			if(user.mind && user.mind.assigned_squad && user.hud_used && user.hud_used.locate_leader)
+			if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
 				user.hud_used.locate_leader.alpha = 255
 				user.hud_used.locate_leader.mouse_opacity = 1
 
@@ -260,7 +260,7 @@
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			if(headset_hud_on)
 				H.add_hud_to(usr)
-				if(user.mind && user.mind.assigned_squad && user.hud_used && user.hud_used.locate_leader)
+				if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
 					user.hud_used.locate_leader.alpha = 255
 					user.hud_used.locate_leader.mouse_opacity = 1
 			else
