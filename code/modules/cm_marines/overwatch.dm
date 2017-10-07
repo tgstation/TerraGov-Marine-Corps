@@ -108,6 +108,7 @@
 						var/mob_name = "unknown"
 						var/mob_state = ""
 						var/role = "unknown"
+						var/act_sl = ""
 						var/dist = "<b>???</b>"
 						var/area_name = "<b>???</b>"
 						var/mob/living/carbon/human/H
@@ -118,16 +119,19 @@
 							if(A)
 								area_name = sanitize(A.name)
 
-							if(current_squad.squad_leader)
-								if(H.z == current_squad.squad_leader.z && H.z != 0)
-									dist = "[get_dist(H, current_squad.squad_leader)]"
-
-							if(H.mind)
-								if(H.mind.assigned_role)
-									role = H.mind.assigned_role
+							if(H.mind && H.mind.assigned_role)
+								role = H.mind.assigned_role
 							else if(istype(H.wear_id, /obj/item/weapon/card/id)) //decapitated marine is mindless,
 								var/obj/item/weapon/card/id/ID = H.wear_id		//we use their ID to get their role.
 								if(ID.rank) role = ID.rank
+
+							if(current_squad.squad_leader)
+								if(H.z == current_squad.squad_leader.z && H.z != 0)
+									dist = "[get_dist(H, current_squad.squad_leader)]"
+								if(H == current_squad.squad_leader && H.mind && H.mind.assigned_role != "Squad Leader")
+									act_sl = " (acting SL)"
+									dist = "N/A"
+
 							switch(H.stat)
 								if(CONSCIOUS) mob_state = "Conscious"
 								if(UNCONSCIOUS) mob_state = "<b>Unconscious</b>"
@@ -146,22 +150,22 @@
 								leader_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td><b>N/A</b></td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								leader_count++
 							if("Squad Specialist")
-								spec_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								spec_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								spec_count++
 							if("Squad Medic")
-								medic_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								medic_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								medic_count++
 							if("Squad Engineer")
-								engi_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								engi_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								engi_count++
 							if("Squad Smartgunner")
-								smart_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								smart_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								smart_count++
 							if("Squad Marine")
-								marine_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+								marine_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
 								marine_count++
 							else
-								misc_text += "<tr><td>[mob_name]</td><td><i>[role]</i></td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr></tr>"
+								misc_text += "<tr><td>[mob_name]</td><td><i>[role][act_sl]</i></td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr></tr>"
 
 					dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><BR>"
 					dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><BR>"
@@ -275,31 +279,28 @@
 					usr << "<span class='warning'>\icon[src] You are already selecting a squad.</span>"
 				else
 					var/list/squad_list = list()
-					var/datum/squad/selected = null
-					var/name_sel = "Cancel" //default
 					for(var/datum/squad/S in RoleAuthority.squads)
 						if(S.usable && !S.overwatch_officer)
 							squad_list += S.name
 
-					squad_list += "Cancel"
-					name_sel = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_list
-					if(name_sel != "Cancel" && !isnull(name_sel))
-						if(current_squad)
-							usr << "<span class='warning'>\icon[src] You are already selecting a squad..</span>"
-							return
-						selected = get_squad_by_name(name_sel)
-						if(selected)
-							selected.overwatch_officer = usr //Link everything together, squad, console, and officer
-							current_squad = selected
-							send_to_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
-							send_to_squad("Your Overwatch officer is: [operator.name].")
-							src.attack_hand(usr)
-							if(!current_squad.drop_pad) //Why the hell did this not link?
-								for(var/obj/item/effect/supply_drop/S in item_list)
-									S.force_link() //LINK THEM ALL!
+					var/name_sel = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_list
+					if(!name_sel) return
+					if(current_squad)
+						usr << "<span class='warning'>\icon[src] You are already selecting a squad..</span>"
+						return
+					var/datum/squad/selected = get_squad_by_name(name_sel)
+					if(selected)
+						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
+						current_squad = selected
+						send_to_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
+						send_to_squad("Your Overwatch officer is: [operator.name].")
+						src.attack_hand(usr)
+						if(!current_squad.drop_pad) //Why the hell did this not link?
+							for(var/obj/item/effect/supply_drop/S in item_list)
+								S.force_link() //LINK THEM ALL!
 
-						else
-							usr << "<span class='warning'>\icon[src] Invalid input. Aborting.</span>"
+					else
+						usr << "<span class='warning'>\icon[src] Invalid input. Aborting.</span>"
 		if("message")
 			if(current_squad && operator == usr)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")
@@ -425,7 +426,7 @@
 		nametext = "[usr.name] transmits: "
 
 	for(var/mob/living/carbon/human/M in current_squad.marines_list)
-		if(istype(M) && !M.stat && M.client && M.mind && (M.mind.assigned_squad == current_squad || M == usr)) //Only living and connected people in our squad
+		if(!M.stat && M.client) //Only living and connected people in our squad
 			if(!only_leader)
 				M << "\icon[src] <font color='blue'><B>\[Overwatch\]:</b> [nametext][text]</font>"
 			else
@@ -517,14 +518,15 @@
 	else
 		send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
 
-	H << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been promoted to \'SQUAD LEADER\' for [current_squad.name]. Your headset has access to the command channel (:v).</font>"
+	H << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</font>"
 	usr << "\icon[src] [H.real_name] is [current_squad]'s new leader!"
 	current_squad.squad_leader = H
-	if(H.mind.assigned_role != "Squad Leader")//not a real SL, a field promotion
-		H.mind.previous_squad_role = H.mind.assigned_role // we remember what we were before
-		H.mind.assigned_role = "Squad Leader"
+	if(H.mind.assigned_role == "Squad Leader")//a real SL
 		H.mind.role_comm_title = "SL"
-		H.mind.skills_list["leadership"] = max(SKILL_LEAD_TRAINED, H.mind.skills_list["leadership"])
+	else //an acting SL
+		H.mind.role_comm_title = "aSL"
+		if(H.mind.skills_list)
+			H.mind.skills_list["leadership"] = max(SKILL_LEAD_TRAINED, H.mind.skills_list["leadership"])
 
 	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
 		var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
@@ -538,11 +540,10 @@
 	if(istype(H.wear_id, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = H.wear_id
 		ID.access += ACCESS_MARINE_LEADER
-		ID.rank = "Squad Leader"
-		ID.assignment = "[current_squad] Squad Leader"
-		ID.name = "[ID.registered_name]'s ID Card ([ID.assignment])"
 	H.hud_set_squad()
-	H.sec_hud_set_ID()
+	H.update_inv_head() //updating marine helmet leader overlays
+	H.update_inv_wear_suit()
+
 
 /obj/machinery/computer/overwatch/proc/mark_insubordination()
 	if(!usr || usr != operator)
@@ -551,7 +552,7 @@
 		usr << "\icon[src] No squad selected!"
 		return
 	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.marines_list
-	if(!wanted_marine || wanted_marine == "Cancel") return
+	if(!wanted_marine) return
 	if(!istype(wanted_marine))//gibbed/deleted, all we have is a name.
 		usr << "\icon[src] [wanted_marine] is missing in action."
 		return
@@ -581,36 +582,42 @@
 	if(!current_squad)
 		usr << "\icon[src] No squad selected!"
 		return
+	var/datum/squad/S = current_squad
 	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.marines_list
-	if(!transfer_marine || transfer_marine == "Cancel") return
+	if(!transfer_marine) return
+	if(S != current_squad) return //don't change overwatched squad, idiot.
+
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
 		usr << "\icon[src] [transfer_marine] is KIA."
 		return
 
-	if(transfer_marine.mind.assigned_role == "Squad Leader")
-		usr << "\icon[src] You can't transfer a Squad Leader!"
+	if(!istype(transfer_marine.wear_id, /obj/item/weapon/card/id))
+		usr << "\icon[src] Transfer aborted. [transfer_marine] isn't wearing an ID."
 		return
+
 	var/datum/squad/new_squad = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
-	if(!new_squad || new_squad == "Cancel") return
+	if(!new_squad) return
+	if(S != current_squad) return
 
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
 		usr << "\icon[src] [transfer_marine] is KIA."
 		return
 
-	if(transfer_marine.mind.assigned_role == "Squad Leader")
-		usr << "\icon[src] You can't transfer a Squad Leader!"
-		return
-
-	var/datum/squad/old_squad = transfer_marine.mind.assigned_squad
-	if(new_squad == old_squad)
-		usr << "\icon[src] [transfer_marine] is already in [new_squad]!"
-		return
 	if(!istype(transfer_marine.wear_id, /obj/item/weapon/card/id))
 		usr << "\icon[src] Transfer aborted. [transfer_marine] isn't wearing an ID."
 		return
 
+	var/datum/squad/old_squad = transfer_marine.assigned_squad
+	if(new_squad == old_squad)
+		usr << "\icon[src] [transfer_marine] is already in [new_squad]!"
+		return
+
+
 	var/no_place = FALSE
 	switch(transfer_marine.mind.assigned_role)
+		if("Squad Leader")
+			if(new_squad.num_leaders == new_squad.max_leaders)
+				no_place = TRUE
 		if("Squad Specialist")
 			if(new_squad.num_specialists == new_squad.max_specialists)
 				no_place = TRUE
@@ -636,7 +643,8 @@
 			t.fields["squad"] = new_squad.name
 			break
 
-	transfer_marine.mind.assigned_fireteam = 0 //reset fireteam assignment
+	var/obj/item/weapon/card/id/ID = transfer_marine.wear_id
+	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	transfer_marine.hud_set_squad()
 	usr << "\icon[src] [transfer_marine] transfered to [new_squad]."
@@ -766,13 +774,13 @@
 		return
 
 	if(!ishuman(user)) return
+	var/mob/living/carbon/human/H = user
 
 	if(!user.mind)
 		user << "<span class='warning'>It doesn't seem to do anything for you.</span>"
 		return
 
-	if(user.mind.assigned_squad)
-		squad = user.mind.assigned_squad
+	squad = H.assigned_squad
 
 	if(!squad)
 		user << "<span class='warning'>You need to be in a squad for this to do anything.</span>"
@@ -823,12 +831,13 @@
 		user << "<span class='warning'>It's already been activated. Just leave it.</span>"
 		return
 	if(!ishuman(user)) return
+	var/mob/living/carbon/human/H = user
+
 	if(!user.mind)
 		user << "<span class='warning'>It doesn't seem to do anything for you.</span>"
 		return
 
-	if(user.mind.assigned_squad)
-		squad = user.mind.assigned_squad
+	squad = H.assigned_squad
 
 	if(!squad)
 		user << "<span class='warning'>You need to be in a squad for this to do anything.</span>"

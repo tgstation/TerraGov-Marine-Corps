@@ -75,12 +75,13 @@
 	if(!M || !istype(M,/mob/living/carbon/human)) return 0//Logic
 	if(!src.usable) return 0
 	if(!M.mind) return 0
-	if(!M.mind.assigned_role || M.mind.assigned_squad) return 0//Not yet
+	if(!M.mind.assigned_role) return 0//Not yet
+	if(M.assigned_squad) return 0 //already in a squad
 
 	var/obj/item/weapon/card/id/C = null
 	C = M.wear_id
 	if(!C) C = M.get_active_hand()
-	if(!C) return 0//Abort, no ID found
+	if(!istype(C)) return 0//Abort, no ID found
 
 	switch(M.mind.assigned_role)
 		if("Squad Engineer") num_engineers++
@@ -88,17 +89,17 @@
 		if("Squad Specialist") num_specialists++
 		if("Squad Smartgunner") num_smartgun++
 		if("Squad Leader")
-			if(squad_leader && (!squad_leader.mind || squad_leader.mind.previous_squad_role)) //field promoted SL
+			if(squad_leader && (!squad_leader.mind || squad_leader.mind.assigned_role != "Squad Leader")) //field promoted SL
 				demote_squad_leader() //replaced by the real one
 			squad_leader = M
-			if(!M.mind.previous_squad_role) //field promoted SL don't count as real ones
+			if(M.mind.assigned_role == "Squad Leader") //field promoted SL don't count as real ones
 				num_leaders++
 
 	src.count++ //Add up the tally. This is important in even squad distribution.
 
 	marines_list += M
+	M.assigned_squad = src //Add them to the squad
 
-	M.mind.assigned_squad = src //Add them to the squad
 	var/c_oldass = C.assignment
 	C.access += src.access //Add their squad access to their ID
 	C.assignment = "[name] [c_oldass]"
@@ -108,37 +109,45 @@
 
 //proc used by the overwatch console to transfer marine to another squad
 /datum/squad/proc/remove_marine_from_squad(mob/living/carbon/human/M)
-	if(!M.mind || !M.mind.assigned_squad) return 0
-	M.mind.assigned_squad = null
+	if(!M.mind) return 0
+	if(!M.assigned_squad) return //not assigned to a squad
+	var/obj/item/weapon/card/id/C
+	C = M.wear_id
+	if(!istype(C)) return 0//Abort, no ID found
+
+	C.access -= src.access
+	C.assignment = M.mind.assigned_role
+	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
+
 	count--
 	marines_list -= M
+
+	if(M.assigned_squad.squad_leader == M)
+		if(M.mind.assigned_role != "Squad Leader") //a field promoted SL, not a real one
+			demote_squad_leader()
+		else
+			M.assigned_squad.squad_leader = null
+
+	M.assigned_squad = null
+
 	switch(M.mind.assigned_role)
 		if("Squad Engineer") num_engineers--
 		if("Squad Medic") num_medics--
 		if("Squad Specialist") num_specialists--
 		if("Squad Smartgunner") num_smartgun--
-		if("Squad Leader")
-			squad_leader = null
-			if(!M.mind.previous_squad_role)//not a field promoted SL, a real one
-				num_leaders--
-	var/obj/item/weapon/card/id/ID = M.wear_id
-	if(istype(ID))
-		ID.access -= src.access
-		ID.assignment = M.mind.assigned_role
-		ID.name = "[ID.registered_name]'s ID Card ([ID.assignment])"
+		if("Squad Leader") num_leaders--
+
+
+
 
 
 /datum/squad/proc/demote_squad_leader()
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
-	var/new_role = "Squad Marine"
 	if(old_lead.mind)
-		if(old_lead.mind.previous_squad_role)//field promoted SL
-			new_role = old_lead.mind.previous_squad_role //we get back our old role
-			old_lead.mind.previous_squad_role = null
-		old_lead.mind.assigned_role = new_role
-		old_lead.mind.skills_list["leadership"] = SKILL_LEAD_BEGINNER
-		switch(new_role)
+		if(old_lead.mind.skills_list)
+			old_lead.mind.skills_list["leadership"] = SKILL_LEAD_BEGINNER
+		switch(old_lead.mind.assigned_role)
 			if("Squad Specialist") old_lead.mind.role_comm_title = "Sgt"
 			if("Squad Engineer") old_lead.mind.role_comm_title = "Cpl"
 			if("Squad Medic") old_lead.mind.role_comm_title = "Cpl"
@@ -160,11 +169,9 @@
 	if(istype(old_lead.wear_id, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = old_lead.wear_id
 		ID.access -= ACCESS_MARINE_LEADER
-		ID.rank = new_role
-		ID.assignment = "[src] [new_role]"
-		ID.name = "[ID.registered_name]'s ID Card ([ID.assignment])"
 	old_lead.hud_set_squad()
-	old_lead.sec_hud_set_ID()
+	old_lead.update_inv_head() //updating marine helmet leader overlays
+	old_lead.update_inv_wear_suit()
 	old_lead << "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>"
 
 

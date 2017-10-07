@@ -446,7 +446,7 @@ roles willy nilly.
 		J.equip_identification(H, J)
 
 		if(J.flags_startup_parameters & ROLE_ADD_TO_SQUAD) //Are we a muhreen? Randomize our squad. This should go AFTER IDs. //TODO Robust this later.
-			if(H.mind && !H.mind.assigned_squad) randomize_squad(H)
+			randomize_squad(H)
 
 		J.announce_entry_message(H, A) //Tell them their spawn info.
 		J.generate_entry_conditions(H) //Do any other thing that relates to their spawn.
@@ -509,7 +509,7 @@ roles willy nilly.
 		H << "Something went wrong with your squad randomizer! Tell a coder!"
 		return //Shit, where's our squad data
 
-	if(H.mind.assigned_squad) //Wait, we already have a squad. Get outta here!
+	if(H.assigned_squad) //Wait, we already have a squad. Get outta here!
 		return
 
 	//Deal with non-standards first.
