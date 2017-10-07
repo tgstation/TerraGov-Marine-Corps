@@ -50,8 +50,10 @@
 	if(stat == UNCONSCIOUS)
 		var/turf/T = loc
 		if(istype(T))
-			if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
-				adjustBruteLoss(-warding_aura) //You can reduce and even stop crit loss above 2.5 aura_strength //Can now heal damage outright
+			if(!locate(/obj/effect/alien/weeds) in T) //In crit, damage is maximal if you're caught off weeds
+				adjustBruteLoss(2.5 - warding_aura/2) //You can reduce and even stop crit loss above 2.5 aura_strength //Can now heal damage outright
+			else
+				adjustBruteLoss(-warding_aura) //You can at best stop it, if you have full warding pheromones. Get to weeds fast
 
 	updatehealth()
 
