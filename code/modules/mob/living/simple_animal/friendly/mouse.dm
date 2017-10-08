@@ -32,8 +32,7 @@
 /mob/living/simple_animal/mouse/Life()
 	..()
 	if(!stat && prob(speak_chance))
-		for(var/mob/M in view())
-			M << 'sound/effects/mousesqueek.ogg'
+		playsound(src,'sound/effects/mousesqueek.ogg',25,1)
 
 	if(!ckey && stat == CONSCIOUS && prob(0.5))
 		stat = UNCONSCIOUS
@@ -81,7 +80,7 @@
 		if(!stat)
 			var/mob/M = AM
 			M << "\blue \icon[src] Squeek!"
-			M << 'sound/effects/mousesqueek.ogg'
+			playsound(src,'sound/effects/mousesqueek.ogg',25,1)
 	..()
 
 /mob/living/simple_animal/mouse/death()

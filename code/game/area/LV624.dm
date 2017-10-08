@@ -4,6 +4,7 @@
 
 /area/lv624/ground
 	name = "Ground"
+	sound_env = FOREST
 	icon_state = "green"
 	always_unpowered = 1 //Will this mess things up? God only knows
 
@@ -51,46 +52,55 @@
 //Sand
 /area/lv624/ground/sand1
 	name = "\improper Western Barrens"
+	sound_env = QUARRY
 	icon_state = "west"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand2
 	name = "\improper Central Barrens"
+	sound_env = QUARRY
 	icon_state = "red"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand3
 	name = "\improper Eastern Barrens"
+	sound_env = QUARRY
 	icon_state = "east"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand4
 	name = "\improper North Western Barrens"
+	sound_env = QUARRY
 	icon_state = "northwest"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand5
 	name = "\improper North Central Barrens"
+	sound_env = QUARRY
 	icon_state = "blue-red"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand6
 	name = "\improper North Eastern Barrens"
+	sound_env = QUARRY
 	icon_state = "northeast"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand7
 	name = "\improper South Western Barrens"
+	sound_env = QUARRY
 	icon_state = "southwest"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand8
 	name = "\improper South Central Barrens"
+	sound_env = QUARRY
 	icon_state = "away1"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/lv624/ground/sand9
 	name = "\improper South Eastern Barrens"
+	sound_env = QUARRY
 	icon_state = "southeast"
 //	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
@@ -111,11 +121,13 @@
 
 /area/lv624/ground/compound
 	name = "\improper Weyland Yutani Compound"
+	sound_env = CITY
 	icon_state = "green"
 //	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/caves //Does not actually exist
 	name ="\improper Caves"
+	sound_env = CAVE
 	icon_state = "cave"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
 	is_underground = TRUE
@@ -152,6 +164,7 @@
 //Lazarus landing
 /area/lv624/lazarus
 	name = "\improper Lazarus"
+	dynamic_sound_env = "ENCLOSED"
 	icon_state = "green"
 
 /area/lv624/lazarus/atmos
@@ -183,11 +196,13 @@
 
 /area/lv624/lazarus/captain
 	name = "\improper Commandant's Quarters"
+	dynamic_sound_env = "SOFTFLOOR"
 	icon_state = "captain"
 	can_hellhound_enter = 0
 
 /area/lv624/lazarus/hop
 	name = "\improper Head of Personnel's Office"
+	dynamic_sound_env = "SOFTFLOOR"
 	icon_state = "head_quarters"
 	can_hellhound_enter = 0
 
@@ -203,6 +218,7 @@
 
 /area/lv624/lazarus/main_hall
 	name = "\improper Main Hallway"
+	dynamic_sound_env = "ENCLOSED_HALLWAY"
 	icon_state = "hallC1"
 	can_hellhound_enter = 0
 

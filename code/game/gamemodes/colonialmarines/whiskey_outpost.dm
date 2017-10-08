@@ -111,7 +111,7 @@
 	world << "<span class='round_body'>Whiskey Outpost, one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>"
 	world << "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at Whiskey outpost must survive for an hour to alert the rest of their battalion in the sector</span>"
 	world << "<span class='round_body'>Hold out for as long as you can.</span>"
-	world << sound('sound/effects/siren.ogg')
+	sound_to(world,'sound/effects/siren.ogg')
 
 	sleep(50)
 	switch(map_locale) //Switching it up.
@@ -658,7 +658,7 @@
 			world << "<br><br>"
 
 			if(xeno_wave != (1 || 8 || 9)) // Make sure to not xeno roar over our story sounds.
-				world << sound(pick('sound/voice/alien_distantroar_3.ogg','sound/voice/xenos_roaring.ogg', 'sound/voice/4_xeno_roars.ogg'))
+				sound_to(world,sound(pick('sound/voice/alien_distantroar_3.ogg','sound/voice/xenos_roaring.ogg', 'sound/voice/4_xeno_roars.ogg')))
 
 			wave_ticks_passed = 0
 			if(xeno_wave == next_xeno_cleanup)
@@ -678,7 +678,7 @@
 				if(8)
 					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
 				if(9)
-					world << sound('sound/voice/alien_queen_command.ogg')
+					sound_to(world,'sound/voice/alien_queen_command.ogg')
 					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on LV-624. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
 				if(12)
 					command_announcement.Announce("This is Captain Naiche, we are picking up large signatures inbound, we'll see what we can do to delay them.", "Captain Naich, 3rd Battalion Command, LV-624")
@@ -771,7 +771,7 @@
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner)
 			spawn_xeno_num = (humans_alive * 0.5) //Reset
 			spawn_next_wave = 90
-			world << sound('sound/effects/siren.ogg') //Mark the first wave
+			sound_to(world,'sound/effects/siren.ogg') //Mark the first wave
 
 
 		if(2)//Sentinels and drones are more common
@@ -1033,7 +1033,7 @@
 		world << "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>"
 		world << "<span class='round_body'>It will be another five years before the USCM returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the USS Almayer.</span>"
 		world << "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>"
-		world << sound('sound/misc/Game_Over_Man.ogg')
+		sound_to(world,'sound/misc/Game_Over_Man.ogg')
 
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner:)"
@@ -1044,7 +1044,7 @@
 		world << "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>"
 		world << "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>"
 		world << "<span class='round_body'>The USS Almayer and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>"
-		world << sound('sound/misc/hell_march.ogg')
+		sound_to(world,'sound/misc/hell_march.ogg')
 
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
@@ -1052,7 +1052,7 @@
 		feedback_set_details("round_end_result","no winners")
 		world << "<span class='round_header'>NOBODY WON!</span>"
 		world << "<span class='round_body'>How? Don't ask me...</span>"
-		world << 'sound/misc/sadtrombone.ogg'
+		sound_to(world,'sound/misc/sadtrombone.ogg')
 
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]"

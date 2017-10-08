@@ -12,7 +12,7 @@
 		if("Global")
 			for(var/mob/M in player_list)
 				if(M.client.prefs.toggles_sound & SOUND_MIDI)
-					M << uploaded_sound
+					sound_to(M,uploaded_sound)
 					heard ++
 		if("Local")
 			playsound(get_turf(src.mob), uploaded_sound, 50, 0)

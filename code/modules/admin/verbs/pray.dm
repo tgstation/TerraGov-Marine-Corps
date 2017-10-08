@@ -43,7 +43,7 @@
 	for(var/client/C in admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			C << msg
-			C << 'sound/effects/sos-morse-code.ogg'
+			sound_to(C,'sound/effects/sos-morse-code.ogg')
 
 /proc/Syndicate_announce(var/text , var/mob/Sender)
 	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
