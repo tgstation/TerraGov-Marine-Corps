@@ -66,7 +66,7 @@
 					// check if the mob can hear
 					if(M.ear_deaf <= 0 || !M.ear_deaf)
 						if(!istype(M.loc, /turf/space))
-							M << 'sound/effects/explosionfar.ogg'
+							sound_to(M,'sound/effects/explosionfar.ogg')
 		if(adminlog)
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")

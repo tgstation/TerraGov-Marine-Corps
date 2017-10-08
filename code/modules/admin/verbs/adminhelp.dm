@@ -128,12 +128,12 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		if(mentorholders.len)
 			for(var/client/X in mentorholders) // Mentors get a message without buttons and no character name
 				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-					X << 'sound/effects/adminhelp_new.ogg'
+					sound_to(X,'sound/effects/adminhelp_new.ogg')
 				X << mentor_msg
 		if(adminholders.len)
 			for(var/client/X in adminholders) // Admins get the full monty
 				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-					X << 'sound/effects/adminhelp_new.ogg'
+					sound_to(X,'sound/effects/adminhelp_new.ogg')
 				X << msg
 
 	//show it to the person adminhelping too

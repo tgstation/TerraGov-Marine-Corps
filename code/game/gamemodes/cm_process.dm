@@ -184,26 +184,26 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			if(MODE_INFESTATION_X_MINOR) musical_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
 			if(MODE_INFESTATION_M_MINOR) musical_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 			if(MODE_INFESTATION_DRAW_DEATH) musical_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') //This one is unlikely to play.
-		world << musical_track
+		sound_to(world, musical_track)
 	else
 		switch(round_finished)
 			if(MODE_BATTLEFIELD_W_MAJOR)
 				world << "<span class='round_body'>The W-Y PMCs have successfully repelled the USCM assault and completed their objectives!</span>"
-				world << 'sound/misc/good_is_dumb.ogg'
+				sound_to(world, 'sound/misc/good_is_dumb.ogg')
 			if(MODE_BATTLEFIELD_M_MAJOR)
 				world << "<span class='round_body'>The marines have wiped out the PMC garrison and completed their objective! Hooah!</span>"
-				world << 'sound/misc/outstanding_marines.ogg'
+				sound_to(world, 'sound/misc/outstanding_marines.ogg')
 			if(MODE_BATTLEFIELD_W_MINOR)
 				world << "<span class='round_body'>The W-Y PMCs wiped out the marines, but they failed to complete their objective! W-Y won't be happy!</span>"
-				world << 'sound/misc/gone_to_plaid.ogg'
+				sound_to(world, 'sound/misc/gone_to_plaid.ogg')
 			if(MODE_BATTLEFIELD_M_MINOR)
 				world << "<span class='round_body'>The marines glassed the W-Y mercs, but they failed to complete their objective! Incompetent baldies!</span>"
-				world << 'sound/misc/apcdestroyed.ogg'
+				sound_to(world, 'sound/misc/apcdestroyed.ogg')
 			if(MODE_BATTLEFIELD_DRAW_STALEMATE)
 				world << "<span class='round_body'>The marines completed their objective, but they failed to destroy the PMCs! W-Y will be coming back!</span>"
 			if(MODE_BATTLEFIELD_DRAW_DEATH)
 				world << "<span class='round_body'>Both the marines and the W-Y PMCs were annihilated! The nightmare continues!</span>"
-				world << 'sound/misc/Rerun.ogg'
+				sound_to(world, 'sound/misc/Rerun.ogg')
 			if(MODE_GENERIC_DRAW_NUKE)
 				world << "<span class='round_body'>The nuclear explosion changed everything.</span>"
 			if(MODE_INFECTION_ZOMBIE_WIN)
