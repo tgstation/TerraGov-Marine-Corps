@@ -111,7 +111,7 @@
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this
 	if(C.prefs && C.prefs.toggles_sound & SOUND_ADMINHELP)
-		sound_to(C,'sound/effects/adminhelp-reply.ogg')
+		C << 'sound/effects/adminhelp-reply.ogg'
 
 	log_admin("PM: [key_name(src)]->[key_name(C)]: [msg]")
 

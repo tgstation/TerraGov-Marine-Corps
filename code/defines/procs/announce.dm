@@ -113,14 +113,14 @@
 		if(isXeno(M) && !to_xenos)
 			continue
 		if(!istype(M, /mob/new_player) && !isdeaf(M))
-			sound_to(M,message_sound)
+			M << message_sound
 
 /datum/announcement/proc/Sound(var/message_sound)
 	PlaySound(message_sound)
 
 /datum/announcement/priority/Sound(var/message_sound)
 	if(sound)
-		sound_to(world,sound)
+		world << sound
 
 /datum/announcement/priority/command/Sound(var/message_sound, var/to_xenos = 0)
 	PlaySound(message_sound, to_xenos)

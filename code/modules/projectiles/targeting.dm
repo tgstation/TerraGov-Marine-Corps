@@ -145,7 +145,7 @@
 	else
 		return
 	for(var/mob/living/K in viewers(usr))
-		sound_to(K,'sound/weapons/TargetOn.ogg')
+		K << 'sound/weapons/TargetOn.ogg'
 
 	if(!targeted_by) targeted_by = list()
 	targeted_by += I
@@ -208,7 +208,7 @@
 /mob/living/proc/NotTargeted(var/obj/item/weapon/gun/I)
 	if( !(I.flags_gun_features & GUN_SILENCED) )
 		for(var/mob/living/M in viewers(src))
-			sound_to(M,'sound/weapons/TargetOff.ogg')
+			M << 'sound/weapons/TargetOff.ogg'
 	if(!isnull(targeted_by))
 		targeted_by -= I
 

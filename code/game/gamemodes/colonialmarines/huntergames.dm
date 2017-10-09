@@ -175,7 +175,7 @@ var/waiting_for_drop_votes = 0
 		world << "And you are both the hunter and the hunted!"
 		world << "Be the <B>last survivor</b> and <B>win glory</B>! Fight in any way you can! Team up or be a loner, it's up to you."
 		world << "Be warned though - if someone hasn't died in 3 minutes, the watching Predators get irritated!"
-		sound_to(world,'sound/effects/siren.ogg')
+		world << sound('sound/effects/siren.ogg')
 
 	spawn(1000)
 		loop_package()
@@ -288,7 +288,7 @@ var/waiting_for_drop_votes = 0
 			world << "<span class='round_body'>One lucky contestant should prepare for a supply drop in 60 seconds.</span>"
 			for(var/mob/dead/D in dead_mob_list)
 				D << "<span class='round_body'>Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</span>"
-			sound_to(world,'sound/effects/alert.ogg')
+			world << sound('sound/effects/alert.ogg')
 			last_drop = world.time
 			waiting_for_drop_votes = 1
 			sleep(600)
@@ -300,7 +300,7 @@ var/waiting_for_drop_votes = 0
 				var/mob/living/carbon/human/winner = pick(supply_votes) //Way it works is, more votes = more odds of winning. But not guaranteed.
 				if(istype(winner) && !winner.stat)
 					world << "<span class='round_body'>The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!</span>"
-					sound_to(world,'sound/effects/alert.ogg')
+					world << sound('sound/effects/alert.ogg')
 					world << "<span class='round_body'>The package will shortly be dropped off at: [get_area(winner.loc)].</span>"
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
 					if(istype(drop_zone))
@@ -308,7 +308,7 @@ var/waiting_for_drop_votes = 0
 						place_drop(drop_zone,"god", 1)
 				else
 					world << "<span class='round_body'>The spectator and Predator votes have been talled, and the supply drop recipient is dead or dying<B>. Bummer.</b></span>"
-					sound_to(world,'sound/misc/sadtrombone.ogg')
+					world << sound('sound/misc/sadtrombone.ogg')
 				supply_votes = list()
 				waiting_for_drop_votes = 0
 		sleep(5000)
@@ -333,11 +333,11 @@ var/waiting_for_drop_votes = 0
 	if(C < last_tally)
 		if(last_tally - C == 1)
 			world << "<span class='round_body'>A contestant has died! There are now [C] contestants remaining!</span>"
-			sound_to(world,'sound/effects/explosionfar.ogg')
+			world << sound('sound/effects/explosionfar.ogg')
 		else
 			var/diff = last_tally - C
 			world << "<span class='round_body'>Multiple contestants have died! [diff] in fact. [C] are left!</span>"
-			spawn(7) sound_to(world,'sound/effects/explosionfar.ogg')
+			spawn(7) world << sound('sound/effects/explosionfar.ogg')
 
 	last_tally = C
 	if(last_tally == 1 || ismob(last_tally))
@@ -390,7 +390,7 @@ var/waiting_for_drop_votes = 0
 		feedback_set_details("round_end_result","no winners")
 		world << "\red <FONT size = 4><B>NOBODY WON!?</B></FONT>"
 		world << "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>"
-		sound_to(world,'sound/misc/sadtrombone.ogg')
+		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
@@ -398,7 +398,7 @@ var/waiting_for_drop_votes = 0
 		feedback_set_details("round_end_result","no winners")
 		world << "\red <FONT size = 4><B>NOBODY WON!</B></FONT>"
 		world << "<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>"
-		sound_to(world,'sound/misc/sadtrombone.ogg')
+		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
