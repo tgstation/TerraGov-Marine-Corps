@@ -29,7 +29,6 @@
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	sound_env = MOUNTAINS
 	ambience = list('sound/ambience/ambispace.ogg')
 
 /*
@@ -54,26 +53,22 @@
 /area/ice_colony/exterior/surface/landing_pad
 	name = "\improper Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-	sound_env = PARKING_LOT
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad2
 	name = "\improper Emergency Landing Pad"
 	icon_state = "landing_pad"
-	sound_env = PARKING_LOT
 
 
 //Everything around the physical landing pad
 /area/ice_colony/exterior/surface/landing_pad_external
 	name = "\improper Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
-	sound_env = PARKING_LOT
 
 //Aerodrome Container Yard
 /area/ice_colony/exterior/surface/container_yard
 	name = "\improper Aerodrome Container Yard"
 	icon_state = "container_yard"
-	sound_env = PARKING_LOT
 
 //
 // Valleys
@@ -145,7 +140,6 @@
 /area/ice_colony/exterior/underground
 	name = "\improper Ice Colony - Exterior Underground"
 	icon_state = "cave"
-	sound_env = CAVE
 
 //
 // Caves
@@ -174,7 +168,7 @@
 /area/ice_colony/surface
 	name = "\improper Ice Colony - Built Surface"
 	icon_state = "clear"
-	dynamic_sound_env = "ENCLOSED"
+
 /*
  * Surface - Bar
  */
@@ -183,7 +177,6 @@
 /area/ice_colony/surface/bar
 	name = "\improper Anti-Freeze"
 	icon_state = "bar"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/surface/bar/bar
 	name = "\improper Anti-Freeze Bar"
@@ -191,7 +184,6 @@
 /area/ice_colony/surface/bar/canteen
 	name = "\improper Anti-Freeze Canteen"
 	icon_state = "kitchen"
-	dynamic_sound_env = "ENCLOSED"
 
 /*
  * Surface - Clinic
@@ -235,17 +227,14 @@
 /area/ice_colony/surface/command/control/pv1
 	name = "\improper Colony Control Private Office"
 	icon_state = "yellow"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/surface/command/control/pv2
 	name = "\improper Colony Control Private Office"
 	icon_state = "green"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/surface/command/crisis
 	name = "\improper Colony Crisis Room"
 	icon_state = "head_quarters"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /*
  * Surface - Disposals
@@ -262,27 +251,22 @@
 /area/ice_colony/surface/dorms
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
 
 /area/ice_colony/surface/dorms/canteen
 	name = "\improper Dormitories Canteen"
 	icon_state = "kitchen"
-	dynamic_sound_env = "ENCLOSED"
 
 /area/ice_colony/surface/dorms/lavatory
 	name = "\improper Dormitories Lavatory"
 	icon_state = "janitor"
-	dynamic_sound_env = "ENCLOSED"
 
 /area/ice_colony/surface/dorms/restroom_w
 	name = "\improper Dormitories West Restroom"
 	icon_state = "toilet"
-	dynamic_sound_env = "ENCLOSED"
 
 /area/ice_colony/surface/dorms/restroom_e
 	name = "\improper Dormitories East Restroom"
 	icon_state = "toilet"
-	dynamic_sound_env = "ENCLOSED"
 
 /*
  * Surface - Engineering
@@ -406,8 +390,6 @@
 /area/ice_colony/surface/requesitions
 	name = "\improper Surface Requesition Warehouse"
 	icon_state = "quartstorage"
-	dynamic_sound_env = null
-	sound_env = ALLEY
 
 /*
  * Surface - Research
@@ -457,8 +439,6 @@
 /area/ice_colony/surface/tcomms
 	name = "\improper Colony Telecommunications"
 	icon_state = "tcomsatcham"
-	dynamic_sound_env = null
-	sound_env = ALLEY
 
 /*
  *  -------------------------
@@ -470,7 +450,6 @@
 	name = "\improper Ice Colony - Built Underground"
 	icon_state = "explored"
 	is_underground = TRUE
-	dynamic_sound_env = "ENCLOSED"
 
 /*
  * Underground - Crew Areas
@@ -483,12 +462,10 @@
 /area/ice_colony/underground/crew/dorm_l
 	name = "\improper West Dormitory"
 	icon_state = "Sleep"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/crew/dorm_r
 	name = "\improper East Dormitory"
 	icon_state = "Sleep"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/crew/canteen
 	name = "\improper Underground Canteen"
@@ -504,19 +481,16 @@
 
 /area/ice_colony/underground/crew/leisure
 	name = "\improper Underground Leisure Area"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/crew/bball
 	name = "\improper Underground Sports Center"
 
 /area/ice_colony/underground/crew/chapel
 	name = "\improper Underground Chapel"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/crew/library
 	name = "\improper Underground Library"
 	icon_state = "library"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/crew/morgue
 	name = "\improper Underground Morgue"
@@ -541,12 +515,10 @@
 /area/ice_colony/underground/command/pv1
 	name = "\improper Underground Colonial Administration Private Office"
 	icon_state = "yellow"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/command/pv2
 	name = "\improper Underground Colonial Administration Private Office"
 	icon_state = "green"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /*
  * Underground - Engineering
@@ -572,7 +544,6 @@
 /area/ice_colony/underground/hallway
 	name = "\improper Underground Hallway"
 	icon_state = "hallC1"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
 
 /area/ice_colony/underground/hallway/north_west
 	name = "\improper Underground Hallway NW"
@@ -588,7 +559,6 @@
 /area/ice_colony/underground/maintenance
 	name = "\improper Underground Maintenance"
 	icon_state = "maintcentral"
-	dynamic_sound_env = "ENCLOSED_HALLWAY"
 
 /area/ice_colony/underground/maintenance/central
 	name = "\improper Underground Central Maintenance"
@@ -723,12 +693,10 @@
 /area/ice_colony/underground/security/marshal
 	name = "\improper Marshal's Office"
 	icon_state = "sec_hos"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/security/detective
 	name = "\improper Detective's Office"
 	icon_state = "detective"
-	dynamic_sound_env = "SOFTFLOOR"
 
 /area/ice_colony/underground/security/interrogation
 	name = "\improper Interrogation Office"

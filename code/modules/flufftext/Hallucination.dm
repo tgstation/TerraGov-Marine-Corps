@@ -112,27 +112,27 @@ mob/living/carbon/proc/handle_hallucinations()
 				//Strange audio
 				//src << "Strange Audio"
 				switch(rand(1,12))
-					if(1) sound_to(src,'sound/machines/airlock.ogg')
+					if(1) src << 'sound/machines/airlock.ogg'
 					if(2)
-						if(prob(50)) sound_to(src,'sound/effects/Explosion1.ogg',PSYCHOTIC)
-						else sound_to(src,'sound/effects/Explosion2.ogg',PSYCHOTIC)
-					if(3) sound_to(src,'sound/effects/explosionfar.ogg',PSYCHOTIC)
-					if(4) sound_to(src,'sound/effects/Glassbr1.ogg',PSYCHOTIC)
-					if(5) sound_to(src,'sound/effects/Glassbr2.ogg',PSYCHOTIC)
-					if(6) sound_to(src,'sound/effects/Glassbr3.ogg',PSYCHOTIC)
-					if(7) sound_to(src,'sound/machines/twobeep.ogg',PSYCHOTIC)
-					if(8) sound_to(src,'sound/machines/windowdoor.ogg',PSYCHOTIC)
+						if(prob(50))src << 'sound/effects/Explosion1.ogg'
+						else src << 'sound/effects/Explosion2.ogg'
+					if(3) src << 'sound/effects/explosionfar.ogg'
+					if(4) src << 'sound/effects/Glassbr1.ogg'
+					if(5) src << 'sound/effects/Glassbr2.ogg'
+					if(6) src << 'sound/effects/Glassbr3.ogg'
+					if(7) src << 'sound/machines/twobeep.ogg'
+					if(8) src << 'sound/machines/windowdoor.ogg'
 					if(9)
 						//To make it more realistic, I added two gunshots (enough to kill)
-						sound_to(src,'sound/weapons/Gunshot.ogg',PSYCHOTIC)
+						src << 'sound/weapons/Gunshot.ogg'
 						spawn(rand(10,30))
-							sound_to(src,'sound/weapons/Gunshot.ogg',PSYCHOTIC)
-					if(10) sound_to(src,'sound/weapons/smash.ogg',PSYCHOTIC)
+							src << 'sound/weapons/Gunshot.ogg'
+					if(10) src << 'sound/weapons/smash.ogg'
 					if(11)
 						//Same as above, but with tasers.
-						sound_to(src,'sound/weapons/Taser.ogg',PSYCHOTIC)
+						src << 'sound/weapons/Taser.ogg'
 						spawn(rand(10,30))
-							sound_to(src,'sound/weapons/Taser.ogg',PSYCHOTIC)
+							src << 'sound/weapons/Taser.ogg'
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source
