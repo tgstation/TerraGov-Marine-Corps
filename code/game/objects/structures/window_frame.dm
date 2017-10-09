@@ -108,3 +108,13 @@
 /obj/structure/window_frame/almayer/colony/reinforced
 	icon_state = "crwindow0_frame"
 	basestate = "crwindow"
+
+/obj/structure/window_frame/chigusa
+	icon = 'icons/turf/chigusa.dmi'
+	icon_state ="rwindow0_frame"
+
+/obj/structure/window/reingforced/chigusa
+	icon = 'icons/turf/chigusa.dmi'
+	icon_state = "rwindow0"
+	basestate = "rwindow"
+	window_frame = /obj/structure/window_frame/chigusa
