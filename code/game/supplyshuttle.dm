@@ -92,7 +92,8 @@ var/list/mechtoys = list(
 		. = ..()
 
 /obj/machinery/computer/supplycomp
-	name = "Supply shuttle console"
+	name = "ASRS console"
+	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
@@ -145,7 +146,6 @@ var/list/mechtoys = list(
 	var/list/requestlist = list()
 	var/list/supply_packs = list()
 	//shuttle movement
-	var/movetime = 1000
 	var/datum/shuttle/ferry/supply/shuttle
 
 	New()
@@ -256,7 +256,7 @@ var/list/mechtoys = list(
 			//supply manifest generation begin
 
 			var/obj/item/weapon/paper/manifest/slip = new /obj/item/weapon/paper/manifest(A)
-			slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
+			slip.info = "<h3>[command_name()] Storage Retrieval Manifest</h3><hr><br>"
 			slip.info +="Order #[SO.ordernum]<br>"
 			slip.info +="Destination: [station_name]<br>"
 			slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
@@ -316,8 +316,8 @@ var/list/mechtoys = list(
 	else
 		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
-			dat += {"<BR><B>Supply shuttle</B><HR>
-			Location: [shuttle.has_arrive_time() ? "Moving to station ([shuttle.eta_minutes()] Mins.)":shuttle.at_station() ? "Docked":"Away"]<BR>
+			dat += {"<BR><B>Automated Storage and Retrieval System</B><HR>
+			Location: [shuttle.has_arrive_time() ? "Raising platform":shuttle.at_station() ? "Raised":"Lowered"]<BR>
 			<HR>Supply points: [supply_controller.points]<BR>
 		<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
@@ -443,36 +443,36 @@ var/list/mechtoys = list(
 	else
 		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
-			dat += "<BR><B>Supply shuttle</B><HR>"
-			dat += "\nLocation: "
+			dat += "<BR><B>Automated Storage and Retrieval System</B><HR>"
+			dat += "\nPlatform position: "
 			if (shuttle.has_arrive_time())
-				dat += "In transit ([shuttle.eta_minutes()] Mins.)<BR>"
+				dat += "Moving<BR>"
 			else
 				if (shuttle.at_station())
 					if (shuttle.docking_controller)
 						switch(shuttle.docking_controller.get_docking_status())
-							if ("docked") dat += "Docked at station<BR>"
-							if ("undocked") dat += "Undocked from station<BR>"
-							if ("docking") dat += "Docking with station [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>" : ""]<BR>"
-							if ("undocking") dat += "Undocking from station [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>" : ""]<BR>"
+							if ("docked") dat += "Raised<BR>"
+							if ("undocked") dat += "Lowered<BR>"
+							if ("docking") dat += "Raising [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
+							if ("undocking") dat += "Lowering [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
 					else
-						dat += "Station<BR>"
+						dat += "Raised<BR>"
 
 					if (shuttle.can_launch())
-						dat += "<A href='?src=\ref[src];send=1'>Send away</A>"
+						dat += "<A href='?src=\ref[src];send=1'>Lower platform</A>"
 					else if (shuttle.can_cancel())
-						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel launch</A>"
+						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel</A>"
 					else
-						dat += "*Shuttle is busy*"
+						dat += "*ASRS is busy*"
 					dat += "<BR>\n<BR>"
 				else
-					dat += "Away<BR>"
+					dat += "Lowered<BR>"
 					if (shuttle.can_launch())
-						dat += "<A href='?src=\ref[src];send=1'>Request supply shuttle</A>"
+						dat += "<A href='?src=\ref[src];send=1'>Raise platform</A>"
 					else if (shuttle.can_cancel())
-						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel request</A>"
+						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel</A>"
 					else
-						dat += "*Shuttle is busy*"
+						dat += "*ASRS is busy*"
 					dat += "<BR>\n<BR>"
 
 
@@ -514,13 +514,13 @@ var/list/mechtoys = list(
 	if(href_list["send"])
 		if(shuttle.at_station())
 			if (shuttle.forbidden_atoms_check())
-				temp = "For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+				temp = "For safety reasons, the Automated Storage and Retrieval System cannot store live organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			else
 				shuttle.launch(src)
-				temp = "Initiating launch sequence. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+				temp = "Lowering platform. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		else
 			shuttle.launch(src)
-			temp = "The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+			temp = "Raising platform.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			post_signal("supply")
 
 	if (href_list["force_send"])
@@ -570,7 +570,8 @@ var/list/mechtoys = list(
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
-		var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
+		//var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
+		var/reason = "*None Provided*"
 		if(world.time > timeout)	return
 		if(!reason)	return
 
@@ -620,7 +621,7 @@ var/list/mechtoys = list(
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 		if(supply_controller.shoppinglist.len > 20)
-			usr << "\red Current shipment has reached maximum capacity."
+			usr << "\red Current retrieval load has reached maximum capacity."
 			return
 
 		for(var/i=1, i<=supply_controller.requestlist.len, i++)
@@ -632,7 +633,7 @@ var/list/mechtoys = list(
 					supply_controller.requestlist.Cut(i,i+1)
 					supply_controller.points -= P.cost
 					supply_controller.shoppinglist += O
-					temp = "Thanks for your order.<BR>"
+					temp = "Thank you for your order.<BR>"
 					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 				else
 					temp = "Not enough supply points.<BR>"

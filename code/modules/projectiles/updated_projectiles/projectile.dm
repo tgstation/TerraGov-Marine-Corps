@@ -300,6 +300,16 @@
 		return FALSE
 	. = ..()
 
+/obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
+	if(!density)
+		return FALSE
+	if(P.distance_travelled <= 1)
+		return FALSE
+	if(P.dir & dir)
+		return prob(10)
+	if(P.dir & reverse_direction(dir))
+		return prob(10)
+
 /obj/effect/alien/egg/get_projectile_hit_chance(obj/item/projectile/P)
 	return src == P.original
 

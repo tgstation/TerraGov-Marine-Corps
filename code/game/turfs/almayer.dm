@@ -125,6 +125,37 @@
 			return
 	..()
 
+//Cargo elevator
+/turf/simulated/floor/gm/empty_cargo
+	name = "empty space"
+	desc = "There seems to be an awful lot of machinery down below"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "black"
+
+	Entered(var/atom/movable/AM)
+		..()
+		spawn(2)
+			if(AM.throwing == 0 && istype(get_turf(AM), /turf/simulated/floor/gm/empty_cargo))
+				AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
+
+				for(var/obj/structure/disposaloutlet/retrieval/R in world)
+					if(R.z != src.z)	continue
+					var/obj/structure/disposalholder/H = new()
+					H.loc = src
+					AM.loc = H
+					sleep(10)
+					for(var/mob/living/M in H)
+						M.take_overall_damage(100, 0, "Blunt Trauma")
+					sleep(20)
+					for(var/mob/living/M in H)
+						M.take_overall_damage(20, 0, "Blunt Trauma")
+					H.loc = R
+					for(var/obj/effect/decal/cleanable/C in src.contents) //get rid of blood
+						cdel(C)
+					R.expel(H)
+					return
+				cdel(AM)
+
 
 
 //Outerhull
