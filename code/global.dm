@@ -140,6 +140,7 @@ var/shuttle_z = 2	//default
 var/airtunnel_start = 68 // default
 var/airtunnel_stop = 68 // default
 var/airtunnel_bottom = 72 // default
+var/SupplyElevator
 var/list/monkeystart = list()
 var/list/wizardstart = list()
 var/list/newplayer_start = list()

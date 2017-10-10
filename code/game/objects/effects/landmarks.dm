@@ -45,6 +45,10 @@
 			latejoin_cryo += loc
 			cdel(src)
 
+		if("SupplyElevator")
+			SupplyElevator = loc
+			cdel(src)
+
 		//prisoners
 		if("prisonwarp")
 			prisonwarp += loc

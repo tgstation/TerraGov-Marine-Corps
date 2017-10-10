@@ -205,7 +205,10 @@
 	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
 		if(iselevator)
 			if(istype(T,/turf/space))
-				new /turf/simulated/floor/gm/empty(T)
+				if(T.z == 3)
+					new /turf/simulated/floor/gm/empty_cargo(T)
+				else
+					new /turf/simulated/floor/gm/empty(T)
 		else if(istype(T,/turf/space))
 			new /turf/simulated/floor/plating(T)
 

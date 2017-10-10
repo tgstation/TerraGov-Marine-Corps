@@ -1467,6 +1467,13 @@
 				user << "You need more welding fuel to complete this task."
 				return
 
+/obj/structure/disposaloutlet/retrieval
+	name = "retrieval outlet"
+	desc = "An outlet for the pneumatic disposal system."
+	unacidable = 1
+
+	attackby(var/obj/item/I, var/mob/user)
+		return
 
 
 // called when movable is expelled from a disposal pipe or outlet

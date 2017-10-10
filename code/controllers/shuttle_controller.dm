@@ -23,7 +23,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Supply shuttle
 	shuttle = new/datum/shuttle/ferry/supply()
 	shuttle.location = 1
-	shuttle.warmup_time = 10
+	shuttle.warmup_time = 3
+	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
 	shuttle.area_offsite = locate(/area/supply/dock)
 	shuttle.area_station = locate(/area/supply/station)
 	shuttles["Supply"] = shuttle
