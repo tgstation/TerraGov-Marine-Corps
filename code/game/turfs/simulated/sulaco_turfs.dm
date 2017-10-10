@@ -47,3 +47,6 @@
 
 	attackby() //This should fix everything else. No cables, etc
 		return
+
+	can_be_dissolved()
+		return 0

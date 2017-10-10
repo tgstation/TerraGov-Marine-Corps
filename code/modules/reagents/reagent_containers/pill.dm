@@ -29,10 +29,11 @@ var/global/list/randomized_pill_icons
 
 	examine(mob/user)
 		..()
-		if(!user.mind || !user.mind.skills_list || user.mind.skills_list["medical"] >= SKILL_MEDICAL_CHEM)
-			user << pill_desc
-		else
-			user << "You don't know what's in it."
+		if(pill_desc)
+			if(!user.mind || !user.mind.skills_list || user.mind.skills_list["medical"] >= SKILL_MEDICAL_CHEM)
+				user << pill_desc
+			else
+				user << "You don't know what's in it."
 
 	attack_self(mob/user as mob)
 		return
@@ -127,7 +128,8 @@ var/global/list/randomized_pill_icons
 		reagents.add_reagent("toxin", 50)
 
 /obj/item/weapon/reagent_containers/pill/cyanide
-	pill_desc = "A cyanide pill, don't swallow this!"
+	desc = "A cyanide pill, don't swallow this!"
+	pill_desc = null//so even non medics can see what this pill is.
 	New()
 		..()
 		icon_state = randomized_pill_icons[2]

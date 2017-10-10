@@ -173,7 +173,12 @@
 
 	New()
 		..()
+		cargo_guns_vendors.Add(src)
 		marine_vendors.Remove(src)
+
+	Dispose()
+		. = ..()
+		cargo_guns_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_ammo
 	name = "\improper ColMarTech automated munition vendor"

@@ -734,6 +734,60 @@ datum/game_mode/proc/initialize_special_clamps()
 		CA.build_inventory(CA.products)
 
 
+	for(var/X in cargo_guns_vendors)
+		var/obj/machinery/vending/marine/cargo_guns/CG = X
+
+		//Forcefully reset the product list
+		CG.product_records = list()
+
+		CG.products = list(
+						/obj/item/weapon/storage/backpack/marine = round(scale * 10),
+						/obj/item/weapon/storage/belt/marine = round(scale * 10),
+						/obj/item/weapon/storage/belt/shotgun = round(scale * 6),
+						/obj/item/clothing/tie/storage/webbing = round(scale * 3),
+						/obj/item/clothing/tie/storage/brown_vest = 0,
+						/obj/item/clothing/tie/holster = 0,
+						/obj/item/weapon/storage/belt/gun/m4a3 = round(scale * 5),
+						/obj/item/weapon/storage/belt/gun/m44 = round(scale * 3),
+						/obj/item/weapon/storage/large_holster/m39 = round(scale * 3),
+						/obj/item/weapon/storage/pouch/general/medium = round(scale * 1),
+						/obj/item/weapon/storage/pouch/construction = round(scale * 1),
+						/obj/item/weapon/storage/pouch/explosive = round(scale * 1),
+						/obj/item/weapon/storage/pouch/syringe = round(scale * 1),
+						/obj/item/weapon/storage/pouch/medical = round(scale * 1),
+						/obj/item/weapon/storage/pouch/medkit = round(scale * 1),
+						/obj/item/weapon/storage/pouch/magazine = round(scale * 1),
+						/obj/item/weapon/storage/pouch/flare/full = round(scale * 3),
+						/obj/item/weapon/storage/pouch/firstaid/full = round(scale * 3),
+						/obj/item/weapon/storage/pouch/pistol = round(scale * 10),
+						/obj/item/weapon/storage/pouch/magazine/pistol/large = round(scale * 1),
+						/obj/item/weapon/gun/pistol/m4a3 = round(scale * 5),
+						/obj/item/weapon/gun/pistol/m1911 = round(scale * 1),
+						/obj/item/weapon/gun/revolver/m44 = round(scale * 5),
+						/obj/item/weapon/gun/smg/m39 = round(scale * 10),
+						/obj/item/weapon/gun/smg/m39/elite = 0,
+						/obj/item/weapon/gun/rifle/m41aMK1 = 0,
+						/obj/item/weapon/gun/rifle/m41a = round(scale * 10),
+						/obj/item/weapon/gun/rifle/m41a/scoped = 0,
+						/obj/item/weapon/gun/rifle/m41a/elite = 0,
+						/obj/item/weapon/gun/rifle/lmg = 0,
+						/obj/item/weapon/gun/shotgun/pump = round(scale * 5),
+						/obj/item/weapon/gun/shotgun/combat = 0,
+						/obj/item/device/mine = round(scale * 1),
+						/obj/item/weapon/storage/box/nade_box = round(scale * 1),
+						/obj/item/weapon/grenade/explosive = round(scale * 1),
+						/obj/item/weapon/grenade/explosive/m15 = round(scale * 1),
+						/obj/item/weapon/grenade/incendiary = round(scale * 1),
+						/obj/item/weapon/grenade/smokebomb = round(scale * 1),
+						/obj/item/weapon/grenade/phosphorus = 0,
+						/obj/item/weapon/storage/box/m94 = round(scale * 8),
+						/obj/item/device/flashlight/combat = round(scale * 5)
+						)
+
+		CG.build_inventory(CG.products)
+
+
+
 	for(var/obj/machinery/vending/marine/M in marine_vendors)
 
 		//Forcefully reset the product list

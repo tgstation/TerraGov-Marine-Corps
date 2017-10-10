@@ -374,23 +374,23 @@
 			src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
 			return
 	//TURF CHECK
-	else if(istype(O, /turf/simulated) || istype(O, /turf/unsimulated))
+	else if(isturf(O))
 		var/turf/T = O
-		//R WALL
-		if(istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable) || istype(T,/turf/simulated/wall/sulaco/unmeltable) || istype(T, /turf/simulated/wall/almayer/outer) || istype(T, /turf/simulated/wall/almayer/research))
-			src << "<span class='warning'>You cannot dissolve \the [T].</span>"
-			return
-		if(istype(T, /turf/simulated/wall/r_wall) && acid_type != /obj/effect/xenomorph/acid/strong)
-			src << "<span class='warning'>This [T.name] is too tough to be melted by your weak acid.</span>"
-			return
-
-		if (istype(T, /turf/simulated/wall/r_wall))
-			src << "<span class='xenowarning'>You begin generating enough acid to melt through \the [T].</span>"
-			wait_time = 100
-		else if (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall))
-			src << "<span class='xenowarning'>You begin generating enough acid to melt through \the [T].</span>"
-			wait_time = 50
-
+		var/dissolvability = T.can_be_dissolved()
+		switch(dissolvability)
+			if(0)
+				src << "<span class='warning'>You cannot dissolve \the [T].</span>"
+				return
+			if(1)
+				wait_time = 50
+			if(2)
+				if(acid_type != /obj/effect/xenomorph/acid/strong)
+					src << "<span class='warning'>This [T.name] is too tough to be melted by your weak acid.</span>"
+					return
+				wait_time = 100
+			else
+				return
+		src << "<span class='xenowarning'>You begin generating enough acid to melt through \the [T].</span>"
 	else
 		src << "<span class='warning'>You cannot dissolve \the [O].</span>"
 		return

@@ -413,3 +413,9 @@
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 	else if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)
+
+
+//for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
+/turf/proc/can_be_dissolved()
+	return 0
+
