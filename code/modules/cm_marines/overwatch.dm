@@ -525,8 +525,8 @@
 		H.mind.role_comm_title = "SL"
 	else //an acting SL
 		H.mind.role_comm_title = "aSL"
-		if(H.mind.skills_list)
-			H.mind.skills_list["leadership"] = max(SKILL_LEAD_TRAINED, H.mind.skills_list["leadership"])
+	if(H.mind.skills_list)
+		H.mind.skills_list["leadership"] = max(SKILL_LEAD_TRAINED, H.mind.skills_list["leadership"])
 
 	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
 		var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear

@@ -384,8 +384,9 @@
 					unknown_body++
 		if(e.hidden)
 			unknown_body++
-		if(locate(/obj/item/alien_embryo) in connected.occupant)
-			unknown_body++
+		if(e.body_part == UPPER_TORSO) //embryo in chest?
+			if(locate(/obj/item/alien_embryo) in connected.occupant)
+				unknown_body++
 		if(unknown_body)
 			if(unknown_body > 1)
 				imp += "Unknown bodies present:<br>"
