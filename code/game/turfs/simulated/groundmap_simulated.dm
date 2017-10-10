@@ -52,6 +52,9 @@
 	attackby() //Put machete-cutting here later
 		return
 
+/turf/simulated/wall/gm/can_be_dissolved()
+	return 0
+
 
 /turf/simulated/wall/gm/dense
 	name = "dense jungle wall"

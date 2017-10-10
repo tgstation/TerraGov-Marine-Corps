@@ -575,3 +575,6 @@
 				return
 
 	return attack_hand(user)
+
+/turf/simulated/wall/can_be_dissolved()
+	return !hull

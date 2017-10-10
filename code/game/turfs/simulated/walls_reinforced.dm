@@ -297,6 +297,15 @@
 
 	return
 
+
+
+/turf/simulated/wall/r_wall/can_be_dissolved()
+	if(hull)
+		return 0
+	else
+		return 2
+
+
 //Just different looking wall
 /turf/simulated/wall/r_wall/research
 	icon_state = "research"
