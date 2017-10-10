@@ -309,12 +309,14 @@
 		else
 			unset_interaction()
 	interactee = AM
-	interactee.on_set_interaction(src)
+	if(istype(interactee)) //some stupid code is setting datums as interactee...
+		interactee.on_set_interaction(src)
 
 
 /mob/proc/unset_interaction()
 	if(interactee)
-		interactee.on_unset_interaction(src)
+		if(istype(interactee))
+			interactee.on_unset_interaction(src)
 		interactee = null
 
 

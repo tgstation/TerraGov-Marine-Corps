@@ -444,7 +444,13 @@ var/datum/mob_hud/huds = list(
 	if(assigned_squad)
 		var/squad_clr = squad_colors[assigned_squad.color]
 		var/marine_rk
-		switch(mind.assigned_role)
+		var/obj/item/weapon/card/id/I = get_idcard()
+		var/_role
+		if(mind)
+			_role = mind.assigned_role
+		else if(I)
+			_role = I.rank
+		switch(_role)
 			if("Squad Engineer") marine_rk = "engi"
 			if("Squad Specialist") marine_rk = "spec"
 			if("Squad Medic") marine_rk = "med"
@@ -456,7 +462,6 @@ var/datum/mob_hud/huds = list(
 			IMG.color = squad_clr
 			holder.overlays += IMG
 			holder.overlays += image('icons/mob/hud.dmi',src, "hudmarinesquad[marine_rk]")
-		var/obj/item/weapon/card/id/I = get_idcard()
 		if(I && I.assigned_fireteam)
 			var/image/IMG2 = image('icons/mob/hud.dmi',src, "hudmarinesquadft[I.assigned_fireteam]")
 			IMG2.color = squad_clr
