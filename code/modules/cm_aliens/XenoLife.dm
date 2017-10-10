@@ -47,7 +47,7 @@
 		if(!fire_immune)
 			adjustFireLoss(fire_stacks + 3)
 
-	if(stat == UNCONSCIOUS)
+	if(health <= 0) //Sleeping Xenos are also unconscious, but all crit Xenos are under 0 HP. Go figure
 		var/turf/T = loc
 		if(istype(T))
 			if(!locate(/obj/effect/alien/weeds) in T) //In crit, damage is maximal if you're caught off weeds
