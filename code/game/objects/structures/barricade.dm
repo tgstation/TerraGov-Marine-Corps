@@ -128,9 +128,9 @@
 				user.visible_message("<span class='notice'>[user] sets up [W.name] on [src].</span>",
 				"<span class='notice'>You set up [W.name] on [src].</span>")
 				if(!closed)
-					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire", dir = src.dir)
+					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
 				else
-					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire", dir = src.dir)
+					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 				B.use(1)
 				overlays += wired_overlay
 				maxhealth += 50
