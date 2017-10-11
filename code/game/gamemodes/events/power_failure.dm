@@ -19,6 +19,8 @@
 		if(C.cell && C.z == 3)
 			C.cell.charge = 0
 
+	playsound_z(3, 'sound/effects/powerloss.ogg')
+
 	sleep(100)
 	if(announce)
 		command_announcement.Announce("Abnormal activity detected in the ship power system. As a precaution, power must be shut down for an indefinite duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
