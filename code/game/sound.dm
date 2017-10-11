@@ -107,6 +107,15 @@
 	if(prefs.toggles_sound & SOUND_LOBBY)
 		src << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
 
+
+/proc/playsound_z(atom/z, soundin, volume) // Play sound for all online mobs on a given Z-level. Good for ambient sounds.
+	soundin = get_sfx(soundin)
+
+	for(var/mob/M in player_list)
+		if (M.z)
+			M << sound(soundin, volume)
+
+
 #define SOUND_PLAY_SHATTER pick('sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg')
 #define SOUND_PLAY_EXPLODE pick('sound/effects/Explosion1.ogg','sound/effects/Explosion2.ogg')
 #define SOUND_PLAY_SPARK pick('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg','sound/effects/sparks4.ogg')

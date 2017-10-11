@@ -2320,10 +2320,12 @@
 			usr << "<b>This Adminhelp is already being handled, but continue if you wish.</b>"
 			usr << sound('sound/effects/adminhelp-error.ogg')
 
-		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "Being Handled", "Fixed", "Thanks", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen")
+		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "IC Issue", "Being Handled", "Fixed", "Thanks", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen", "A: Devour as Xeno")
 
 		var/msgplayer
 		switch(choice)
+			if("IC Issue")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. This issue has been deemed an IC (In-Character) issue, and will not be handled by staff. In case it's relevant, you may wish to use your <a href='http://www.colonial-marines.com/wiki/Rank'>Chain Of Command</a> about your issue if you believe <a href='http://www.colonial-marines.com/wiki/Marine_Law'>Marine Law</a> has been broken.</b>"
 			if("Being Handled")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The issue is already being dealt with.</b>"
 			if("Fixed")
@@ -2338,6 +2340,8 @@
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you need a map to the current game, you can (usually) find them on the front page of our wiki in the 'Maps' section. <a href='http://www.colonial-marines.com/wiki/Main_Page'>Check it out here.</a> If the map is not listed, it's a new or rare map and the overview hasn't been finished yet.</b>"
 			if("A: No plasma regen")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you have low/no plasma regen, it's most likely because you're injured or are currently using a passive ability, such as the Runner's 'Hide', readying a tail attack, or emitting a pheromone.</b>"
+			if("A: Devour as Xeno")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Devouring can be useful for quickly transporting incapacitated hosts from one place to another. In order to devour a host as a Xeno, grab/pull the mob (CTRL+Click) and then click on yourself to begin devouring. The host can eventually resist by breaking out of your belly, so make sure your target is completely incapacitated or only have them devoured for a short time. Also, the devoured host will continously take damage while devoured and will eventually be digested (~5 minutes), which may result in you killing a viable host to grow the hive. To release your devoured target, click the 'Regurgitate' button on the HUD to throw them back up.</b>"
 			else return
 
 		message_staff("[usr.key] is autoresponding to [ref_person] with <font color='#009900'>'[choice]'</font>. They have been shown the following:\n[msgplayer]", 1)
