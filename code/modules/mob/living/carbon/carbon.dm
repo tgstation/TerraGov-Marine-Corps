@@ -8,6 +8,27 @@
 	handle_fire() //Check if we're on fire
 
 
+/mob/living/carbon/New()
+	..()
+	generate_static_overlay()
+	if(static_overlay)
+		for(var/mob/living/carbon/Xenomorph/X in player_list)
+			X.static_overlays_list |= static_overlay
+			X.client.images |= static_overlay
+
+
+
+/mob/living/carbon/Dispose()
+	. = ..()
+	if(static_overlay)
+		for(var/mob/living/carbon/Xenomorph/X in player_list)
+			X.static_overlays_list.Remove(static_overlay)
+			X.client.images.Remove(static_overlay)
+		cdel(static_overlay)
+		static_overlay = null
+
+
+
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -409,4 +430,18 @@
 			if(!lying)
 				break
 
+
+/mob/living/carbon/proc/generate_static_overlay()
+	var/icon/base_icon = new/icon(icon,icon_state)
+	base_icon.Blend(rgb(255,255,255))
+	base_icon.SwapColor(null, "#000000ff")	// don't let transparent become gray
+	base_icon.MapColors(0,0,0,0.3, 0,0,0,0.59, 0,0,0,0.11, 0,0,0,0, 1,1,1,0)
+
+	var/icon/static_icon = new/icon('icons/effects/effects.dmi', "static_base")
+	base_icon.Blend("#ffffff", ICON_SUBTRACT)
+	static_icon.Blend(base_icon, ICON_ADD)
+
+	var/image/I = image(static_icon, loc = src)
+	I.override = 1
+	static_overlay = I
 
