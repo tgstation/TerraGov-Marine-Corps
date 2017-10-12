@@ -18,3 +18,4 @@
 	var/pulse = PULSE_NORM	//current pulse level
 	var/butchery_progress = 0
 	var/list/internal_organs = list()
+	var/image/static_overlay //the static effect used by xenos
