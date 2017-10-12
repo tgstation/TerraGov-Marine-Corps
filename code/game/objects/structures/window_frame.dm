@@ -91,11 +91,6 @@
 /obj/structure/window_frame/almayer
 	icon_state = "rwindow0_frame"
 
-/obj/structure/window/reinforced/almayer/white
-	icon_state = "rwwindow0"
-	basestate = "rwwindow"
-	window_frame = /obj/structure/window_frame/almayer/white
-
 /obj/structure/window_frame/almayer/white
 	icon_state = "wwindow0_frame"
 	basestate = "wwindow"
@@ -113,8 +108,3 @@
 	icon = 'icons/turf/chigusa.dmi'
 	icon_state ="rwindow0_frame"
 
-/obj/structure/window/reingforced/chigusa
-	icon = 'icons/turf/chigusa.dmi'
-	icon_state = "rwindow0"
-	basestate = "rwindow"
-	window_frame = /obj/structure/window_frame/chigusa
