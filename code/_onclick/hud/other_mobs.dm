@@ -17,12 +17,12 @@
 
 //BRAIN
 
-/datum/hud/brain/New(mob/living/carbon/brain/owner, ui_style='icons/mob/screen1_Midnight.dmi')
+/datum/hud/brain/New(mob/living/brain/owner, ui_style='icons/mob/screen1_Midnight.dmi')
 	..()
 	blind_icon = new /obj/screen/blind()
 	screenoverlays += blind_icon
 
-/mob/living/carbon/brain/create_hud()
+/mob/living/brain/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/brain(src)
 

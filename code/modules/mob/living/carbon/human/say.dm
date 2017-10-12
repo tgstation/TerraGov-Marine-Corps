@@ -153,7 +153,7 @@
 	if (!speaking)
 		if (istype(other, /mob/living/silicon))
 			return 1
-		if (istype(other, /mob/living/carbon/brain))
+		if (istype(other, /mob/living/brain))
 			return 1
 
 	//This is already covered by mob/say_understands()
