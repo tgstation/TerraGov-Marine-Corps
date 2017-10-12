@@ -512,7 +512,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 		return
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/brain)))//Is humanoid, and is not a brain
 		usr << "\red You can't pick things up!"
 		return
 	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained

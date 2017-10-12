@@ -14,7 +14,7 @@
 	organ_type = /datum/internal_organ/brain
 	organ_tag = "brain"
 
-	var/mob/living/carbon/brain/brainmob = null
+	var/mob/living/brain/brainmob = null
 
 /obj/item/organ/brain/xeno
 	name = "thinkpan"

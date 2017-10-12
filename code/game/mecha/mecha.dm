@@ -1166,8 +1166,8 @@
 	var/atom/movable/mob_container
 	if(ishuman(occupant))
 		mob_container = src.occupant
-	else if(istype(occupant, /mob/living/carbon/brain))
-		var/mob/living/carbon/brain/brain = occupant
+	else if(istype(occupant, /mob/living/brain))
+		var/mob/living/brain/brain = occupant
 		mob_container = brain.container
 	else
 		return
@@ -1641,7 +1641,7 @@
 		return
 	if(href_list["dna_lock"])
 		if(usr != src.occupant)	return
-		if(istype(occupant, /mob/living/carbon/brain))
+		if(istype(occupant, /mob/living/brain))
 			occupant_message("You are a brain. No.")
 			return
 		if(src.occupant)

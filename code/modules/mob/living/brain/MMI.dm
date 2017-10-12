@@ -17,7 +17,7 @@
 	//Revised. Brainmob is now contained directly within object of transfer. MMI in this case.
 
 	var/locked = 0
-	var/mob/living/carbon/brain/brainmob = null//The current occupant.
+	var/mob/living/brain/brainmob = null//The current occupant.
 	var/mob/living/silicon/robot = null//Appears unused.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
