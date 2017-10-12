@@ -224,6 +224,9 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 	var/mob/living/carbon/victim = A
 
+	if(get_dist(src, victim) > 1)
+		return
+
 	if(!check_state())
 		return
 
