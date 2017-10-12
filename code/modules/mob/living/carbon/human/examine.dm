@@ -3,31 +3,6 @@
 		user << "<span class='notice'>Something is there but you can't see it.</span>"
 		return
 
-	if (isXeno(user))
-		var/msg = "<span class='info'>*---------*\nThis is "
-		if(icon)
-			msg += "\icon[icon] "
-		msg += "<EM>a tall host</EM>.\n"
-
-		if(species.flags & IS_SYNTHETIC)
-			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
-		if(status_flags & XENO_HOST)
-			msg += "This creature is impregnated.\n"
-		else if(chestburst == 2)
-			msg += "A larva escaped from this creature.\n"
-
-		if(on_fire)
-			msg += "It is on fire!\n"
-
-		if(stat == DEAD)
-			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
-		else if(stat || !client)
-			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
-
-		msg += "*---------*</span>"
-		user << msg
-		return
-
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
@@ -417,6 +392,11 @@
 
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
+
+	if (isXeno(user))
+		if(stat == DEAD)
+			msg += "\n<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
+		else if(species.flags & IS_SYNTHETIC) msg += "\n<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
 
 	for(var/implant in get_visible_implants(0))
 		msg += "<span class='warning'><b>[t_He] has \a [implant] sticking out of [t_his] flesh!</span>\n"

@@ -49,6 +49,3 @@
 		use_me = 1 //If it can move, let it emote
 	else							canmove = 0
 	return canmove
-
-/mob/living/carbon/brain/generate_static_overlay()
-	return
