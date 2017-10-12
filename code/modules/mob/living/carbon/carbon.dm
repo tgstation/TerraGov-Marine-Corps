@@ -47,7 +47,7 @@
 					M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
 			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
-			if(prob(max(getBruteLoss() - 80,0)))
+			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health
 				for(var/atom/movable/A in stomach_contents)
 					A.loc = loc
 					A.acid_damage = 0 //Reset the acid damage
