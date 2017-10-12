@@ -438,7 +438,7 @@
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
 	if(istype(usr,/mob/dead) || istype(usr,/mob/new_player))
-		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Military Police"))
+		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
 			usr << "<span class='danger'>You are jobbanned from the emergency reponse team!</span>"
 			return
 		if(!ticker || !ticker.mode || isnull(ticker.mode.picked_call))
