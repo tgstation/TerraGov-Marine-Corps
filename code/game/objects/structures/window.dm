@@ -507,3 +507,21 @@
 	name =  "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
 	opacity = 1
+
+/obj/structure/window/reinforced/almayer/white
+	icon_state = "rwwindow0"
+	basestate = "rwwindow"
+	window_frame = /obj/structure/window_frame/almayer/white
+
+
+
+
+//Chigusa windows
+
+/obj/structure/window/reingforced/chigusa
+	icon = 'icons/turf/chigusa.dmi'
+	icon_state = "rwindow0"
+	basestate = "rwindow"
+	window_frame = /obj/structure/window_frame/chigusa
+
+
