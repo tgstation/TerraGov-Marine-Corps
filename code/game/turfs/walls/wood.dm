@@ -1,8 +1,8 @@
 /turf/simulated/wall/wood
-	name = "facility wall"
-	icon = 'icons/turf/chigusa.dmi'
-	icon_state = "chigusa0"
-	walltype = "chigusa"
+	name = "wood wall"
+	icon = 'icons/turf/wood.dmi'
+	icon_state = "wood0"
+	walltype = "wood"
 
 /turf/simulated/wall/wood/handle_icon_junction(junction)
 	if (!walltype)
