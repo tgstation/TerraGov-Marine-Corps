@@ -513,15 +513,23 @@
 	basestate = "rwwindow"
 	window_frame = /obj/structure/window_frame/almayer/white
 
-
-
-
 //Chigusa windows
 
-/obj/structure/window/reingforced/chigusa
+/obj/structure/window/reinforced/chigusa
 	icon = 'icons/turf/chigusa.dmi'
 	icon_state = "rwindow0"
 	basestate = "rwindow"
 	window_frame = /obj/structure/window_frame/chigusa
 
+/obj/structure/window/wood
+	icon = 'icons/turf/wood.dmi'
+	icon_state = "window0"
+	basestate = "window"
+	window_frame = /obj/structure/window_frame/wood
+
+/obj/structure/window/reinforced/wood
+	icon = 'icons/turf/wood.dmi'
+	icon_state = "rwindow0"
+	basestate = "rwindow"
+	window_frame = /obj/structure/window_frame/wood
 

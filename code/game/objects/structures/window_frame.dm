@@ -106,5 +106,9 @@
 
 /obj/structure/window_frame/chigusa
 	icon = 'icons/turf/chigusa.dmi'
-	icon_state ="rwindow0_frame"
+	icon_state = "rwindow0_frame"
 
+/obj/structure/window_frame/wood
+	icon = 'icons/turf/wood.dmi'
+	icon_state = "window0_frame"
+	basestate = "window"
