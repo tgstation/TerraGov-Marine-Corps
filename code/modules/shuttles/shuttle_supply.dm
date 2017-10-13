@@ -71,22 +71,22 @@
 
 		//If we are at the away_area then we are just pretending to move, otherwise actually do the move
 		if (origin != away_area)
-			playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_move.ogg', 75, 0)
+			playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_move.ogg', 50, 0)
 			move(origin, away_area)
 			lower_elevator_effect()
 			start_gears(SOUTH)
 			sleep(91)
 		else
-			playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_move.ogg', 75, 0)
+			playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_move.ogg', 50, 0)
 			start_gears(NORTH)
 			sleep(70)
 			raise_elevator_effect()
 			sleep(21)
 			move(away_area, destination)
-			cdel(SW)
-			cdel(SE)
-			cdel(NW)
-			cdel(NE)
+			SW.loc = null
+			SE.loc = null
+			NW.loc = null
+			NE.loc = null
 
 		moving_status = SHUTTLE_IDLE
 		stop_gears()
@@ -140,18 +140,18 @@
 		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/hydraulics_1.ogg', 50, 0)
 
 /datum/shuttle/ferry/supply/proc/lower_elevator_effect()
-	SW = new /obj/effect/elevator/supply(locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z))
-	SE = new /obj/effect/elevator/supply(locate(SupplyElevator_x+2,SupplyElevator_y-2,SupplyElevator_z))
-	SE.pixel_x = -128
-	NW = new /obj/effect/elevator/supply(locate(SupplyElevator_x-2,SupplyElevator_y+2,SupplyElevator_z))
-	NW.pixel_y = -128
-	NE = new /obj/effect/elevator/supply(locate(SupplyElevator_x+2,SupplyElevator_y+2,SupplyElevator_z))
-	NE.pixel_x = -128
-	NE.pixel_y = -128
+	SW.loc = locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z)
+	SE.loc = locate(SupplyElevator_x+2,SupplyElevator_y-2,SupplyElevator_z)
+	NW.loc = locate(SupplyElevator_x-2,SupplyElevator_y+2,SupplyElevator_z)
+	NE.loc = locate(SupplyElevator_x+2,SupplyElevator_y+2,SupplyElevator_z)
 	flick("supply_elevator_lowering", SW)
 	flick("supply_elevator_lowering", SE)
 	flick("supply_elevator_lowering", NW)
 	flick("supply_elevator_lowering", NE)
+	SW.icon_state = "supply_elevator_lowered"
+	SE.icon_state = "supply_elevator_lowered"
+	NW.icon_state = "supply_elevator_lowered"
+	NE.icon_state = "supply_elevator_lowered"
 
 /datum/shuttle/ferry/supply/proc/raise_elevator_effect()
 	flick("supply_elevator_raising", SW)
