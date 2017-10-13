@@ -19,7 +19,7 @@
 	return 0
 
 /proc/isbrain(A)
-	if(A && istype(A, /mob/living/carbon/brain))
+	if(A && istype(A, /mob/living/brain))
 		return 1
 	return 0
 

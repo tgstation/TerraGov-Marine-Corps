@@ -10,8 +10,10 @@
 	set category = "Alien"
 	var totalXenos = 0 //total number of Xenos
 	// var tierA = 0.0 //Tier 1 - Not used in calculation of Tier maximums
-	var tierB = 0 //Tier 2
-	var tierC = 0 //Tier 3
+	var/tierB = 0 //Tier 2
+	var/tierC = 0 //Tier 3
+	var/potential_queens = 0
+
 
 	if(is_ventcrawling)
 		src << "<span class='warning'>This place is too constraining to evolve.</span>"
@@ -73,12 +75,12 @@
 
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()
-	for(var/Q in evolves_to) //Populate our evolution list
-		if(caste == "Drone" && upgrade > 0)
-			pop_list += "Queen"
-		else
+
+	if(caste == "Drone" && upgrade > 0)
+		pop_list += "Queen"
+	else
+		for(var/Q in evolves_to) //Populate our evolution list
 			pop_list += Q
-	pop_list += "Cancel"
 
 	//I'd really like to turn all this into an href popup window but dang I am really bad at html
 	//--Abby
@@ -86,7 +88,7 @@
 	evolve_busy = 1
 
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
-	if(castepick == "Cancel" || isnull(castepick) || castepick == "") //Changed my mind
+	if(!castepick) //Changed my mind
 		evolve_busy = 0
 		return
 
@@ -130,8 +132,13 @@
 	//Should count mindless as well so people don't cheat
 	for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
 		switch(M.tier)
-			if(0) continue
+			if(0)
+				if(caste == "Bloody Larva")
+					potential_queens++
+				continue
 			if(1)
+				if(caste == "Drone")
+					potential_queens++
 			if(2) tierB++
 			if(3) tierC++
 			else
@@ -146,6 +153,10 @@
 		return
 	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 3, either upgrade or wait for either more aliens to be born or someone to die.</span>"
+		evolve_busy = 0
+		return
+	else if(!living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && castepick != "Drone")
+		src << "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>"
 		evolve_busy = 0
 		return
 	else

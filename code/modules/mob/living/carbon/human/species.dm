@@ -538,6 +538,7 @@
 			H.hud_used.show_hud(H.hud_used.hud_version)
 	if(H.l_hand) H.drop_inv_item_on_ground(H.l_hand, FALSE, TRUE)
 	if(H.r_hand) H.drop_inv_item_on_ground(H.r_hand, FALSE, TRUE)
+	if(H.wear_id) cdel(H.wear_id)
 	if(H.gloves) cdel(H.gloves)
 	if(H.head) cdel(H.head)
 	if(H.glasses) cdel(H.glasses)

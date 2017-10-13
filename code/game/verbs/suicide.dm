@@ -86,7 +86,7 @@
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
-/mob/living/carbon/brain/verb/suicide()
+/mob/living/brain/verb/suicide()
 	set hidden = 1
 
 	if (stat == 2)

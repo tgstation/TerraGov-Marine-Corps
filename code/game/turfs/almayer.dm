@@ -219,6 +219,11 @@
 /turf/simulated/floor/almayer/research/containment/corner_var2
 	icon_state = "containment_corner_variant_2"
 
+
+
+/turf/simulated/wall/almayer/research/can_be_dissolved()
+	return 0
+
 /turf/simulated/wall/almayer/research/containment/wall
 	name = "cell wall"
 	tiles_with = null

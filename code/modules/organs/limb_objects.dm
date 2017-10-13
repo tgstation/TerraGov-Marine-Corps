@@ -68,7 +68,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	name = "head"
 	icon_state = "head_m"
 	unacidable = 1
-	var/mob/living/carbon/brain/brainmob
+	var/mob/living/brain/brainmob
 	var/brain_op_stage = 0
 	var/brain_item_type = /obj/item/organ/brain
 	var/braindeath_on_decap = 1 //whether the brainmob dies when head is decapitated (used by synthetics)

@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/mob/living/carbon/brain
+/mob/living/brain
 	var/obj/item/container = null
 	var/timeofhostdeath = 0
 	var/emp_damage = 0//Handles a type of MMI damage
@@ -43,7 +43,7 @@
 		return ..()
 
 
-/mob/living/carbon/brain/update_canmove()
+/mob/living/brain/update_canmove()
 	if(in_contents_of(/obj/mecha))
 		canmove = 1
 		use_me = 1 //If it can move, let it emote
