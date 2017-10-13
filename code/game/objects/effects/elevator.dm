@@ -6,3 +6,6 @@
 	unacidable = 1
 	mouse_opacity = 0
 	layer = ABOVE_TURF_LAYER
+
+	ex_act(severity)
+		return

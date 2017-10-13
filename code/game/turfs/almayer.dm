@@ -126,35 +126,48 @@
 	..()
 
 //Cargo elevator
-/turf/simulated/floor/gm/empty_cargo
+/turf/simulated/floor/almayer/empty
 	name = "empty space"
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "black"
 
+	ex_act(severity) //Should make it indestructable
+		return
+
+	fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+		return
+
+	attackby() //This should fix everything else. No cables, etc
+		return
+
 	Entered(var/atom/movable/AM)
 		..()
 		spawn(2)
-			if(AM.throwing == 0 && istype(get_turf(AM), /turf/simulated/floor/gm/empty_cargo))
+			if(AM.throwing == 0 && istype(get_turf(AM), /turf/simulated/floor/almayer/empty))
 				AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
 
-				for(var/obj/structure/disposaloutlet/retrieval/R in world)
+				for(var/obj/structure/disposaloutlet/retrieval/R in structure_list)
 					if(R.z != src.z)	continue
 					var/obj/structure/disposalholder/H = new()
-					H.loc = src
 					AM.loc = H
 					sleep(10)
+					H.loc = R
 					for(var/mob/living/M in H)
 						M.take_overall_damage(100, 0, "Blunt Trauma")
 					sleep(20)
 					for(var/mob/living/M in H)
 						M.take_overall_damage(20, 0, "Blunt Trauma")
-					H.loc = R
-					for(var/obj/effect/decal/cleanable/C in src.contents) //get rid of blood
+					for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
 						cdel(C)
 					R.expel(H)
 					return
+
 				cdel(AM)
+
+			else
+				for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
+					cdel(C)
 
 
 

@@ -206,7 +206,7 @@
 		if(iselevator)
 			if(istype(T,/turf/space))
 				if(T.z == 3)
-					new /turf/simulated/floor/gm/empty_cargo(T)
+					new /turf/simulated/floor/almayer/empty(T)
 				else
 					new /turf/simulated/floor/gm/empty(T)
 		else if(istype(T,/turf/space))
