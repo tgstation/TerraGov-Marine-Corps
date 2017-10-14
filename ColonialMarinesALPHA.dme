@@ -225,6 +225,7 @@
 #include "code\game\area\almayer.dm"
 #include "code\game\area\areas.dm"
 #include "code\game\area\BigRed.dm"
+#include "code\game\area\ChigusaShipyard.dm"
 #include "code\game\area\HauntedHouse.dm"
 #include "code\game\area\IceColony.dm"
 #include "code\game\area\LV624.dm"
