@@ -414,7 +414,8 @@ cdel(src)
 		var/turf/T_trg = locate(trg.x + C.x_pos, trg.y + C.y_pos, trg.z)
 
 		for(var/obj/O in T_trg)
-			cdel(O)
+			if(O.loc == T_trg)
+				cdel(O)
 
 		var/mob/living/carbon/MLC
 		for(i in T_trg)

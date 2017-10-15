@@ -251,7 +251,18 @@
 			if (w_uniform)
 				w_uniform.add_fingerprint(M)
 
-			if(lying || sleeping)
+
+			if(on_fire)
+				fire_stacks = max(fire_stacks - 1, 0)
+
+				M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
+					"<span class='warning'>You try to put out the fire on [src]!</span>")
+				if(fire_stacks <= 0)
+					M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
+						"<span class='notice'>You extinguished the fire on [src].</span>")
+					ExtinguishMob()
+
+			else if(lying || sleeping)
 				if(client)
 					sleeping = max(0,src.sleeping-5)
 				if(!sleeping)

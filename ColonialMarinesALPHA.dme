@@ -1037,6 +1037,7 @@
 #include "code\modules\mob\living\carbon\monkey\life.dm"
 #include "code\modules\mob\living\carbon\monkey\monkey.dm"
 #include "code\modules\mob\living\carbon\monkey\update_icons.dm"
+#include "code\modules\mob\living\carbon\monkey\yiren.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Abilities.dm"
 #include "code\modules\mob\living\carbon\xenomorph\attack_alien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\damage_procs.dm"
