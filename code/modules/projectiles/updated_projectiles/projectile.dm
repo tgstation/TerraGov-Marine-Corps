@@ -248,7 +248,7 @@
 				else if (!L.lying)
 					animatation_displace_reset(L)
 					if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
-					L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>")
+					L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 			else if(isobj(A))
 				ammo.on_hit_obj(A,src)
@@ -687,7 +687,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		src << "[isXeno(src) ? "<span class='xenodanger'>" : "<span class='highdanger'>" ]You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>"
 	else
-		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>")
+		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", \
+						"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
 
 	if(ismob(P.firer))
 		var/mob/firingMob = P.firer

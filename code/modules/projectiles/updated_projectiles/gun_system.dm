@@ -702,7 +702,7 @@ and you're good to go.
 			user.visible_message(
 			"<span class='danger'>[user] fires [active_attachable][reflex ? " by reflex":""]!</span>", \
 			"<span class='warning'>You fire [active_attachable][reflex ? "by reflex":""]!</span>", \
-			"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>"
+			"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
 			)
 		else
 			if(!(flags_gun_features & GUN_SILENCED))
@@ -711,7 +711,7 @@ and you're good to go.
 					user.visible_message(
 					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
 					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
-					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>"
+					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
 					)
 			else
 				playsound(user, actual_sound, 25)

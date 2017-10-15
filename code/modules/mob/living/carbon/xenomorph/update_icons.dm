@@ -30,7 +30,7 @@
 	if(stat == DEAD)
 		icon_state = "[caste] Dead"
 	else if(lying)
-		if(resting || sleeping)
+		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
 			icon_state = "[caste] Sleeping"
 		else
 			icon_state = "[caste] Knocked Down"
