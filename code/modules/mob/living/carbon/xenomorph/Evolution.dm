@@ -19,15 +19,8 @@
 		src << "<span class='warning'>This place is too constraining to evolve.</span>"
 		return
 
-	/*
-	var/area/A = get_area(loc)
-	if(istype(A, /area/sulaco/hub))
-		src << "<span class='warning'>This seems like a bad idea, you might get stuck in here.</span>"
-		return
-	 */
-
-	if(evolve_busy)
-		src << "<span class='warning'>You are already evolving.</span>"
+	if(!isturf(loc))
+		src << "<span class='warning'>You can't evolve here.</span>"
 		return
 
 	if(hardcore)
@@ -38,8 +31,8 @@
 		src << "<span class='warning'>You are jobbanned from aliens and cannot evolve. How did you even become an alien?</span>"
 		return
 
-	if(stat != CONSCIOUS)
-		src << "<span class='warning'>You have to be conscious to evolve.</span>"
+	if(is_mob_incapacitated(TRUE))
+		src << "<span class='warning'>You can't evolve in your current state.</span>"
 		return
 
 	if(handcuffed || legcuffed)
@@ -82,29 +75,24 @@
 		for(var/Q in evolves_to) //Populate our evolution list
 			pop_list += Q
 
-	//I'd really like to turn all this into an href popup window but dang I am really bad at html
-	//--Abby
-
-	evolve_busy = 1
 
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
 	if(!castepick) //Changed my mind
-		evolve_busy = 0
+		return
+
+	if(!isturf(loc)) //cdel'd or inside something
+		return
+
+	if(is_mob_incapacitated(TRUE))
+		src << "<span class='warning'>You can't evolve in your current state.</span>"
 		return
 
 	if(!living_xeno_queen && castepick != "Queen" && !isXenoLarva(src))
 		src << "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>"
-		evolve_busy = 0
-		return
-
-	if(stat != CONSCIOUS)
-		src << "<span class='warning'>You have to be conscious to evolve.</span>"
-		evolve_busy = 0
 		return
 
 	if(handcuffed || legcuffed)
 		src << "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>"
-		evolve_busy = 0
 		return
 
 	if(castepick == "Queen") //Special case for dealing with queenae
@@ -112,20 +100,16 @@
 			if(storedplasma >= 500)
 				if(living_xeno_queen)
 					src << "<span class='warning'>There already is a living Queen.</span>"
-					evolve_busy = 0
 					return
 			else
 				src << "<span class='warning'>You require more plasma! Currently at: [storedplasma] / 500.</span>"
-				evolve_busy = 0
 				return
 
 			if(ticker && ticker.mode && ticker.mode.xeno_queen_timer)
 				src << "<span class='warning'>You must wait about [round(ticker.mode.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>"
-				evolve_busy = 0
 				return
 		else
 			src << "<span class='warning'>Nuh-uhh.</span>"
-			evolve_busy = 0
 			return
 
 	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
@@ -143,21 +127,19 @@
 			if(3) tierC++
 			else
 				src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
-				evolve_busy = 0
+
 				continue
 		totalXenos++
 
 	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 2, either upgrade or wait for either more aliens to be born or someone to die.</span>"
-		evolve_busy = 0
 		return
 	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 3, either upgrade or wait for either more aliens to be born or someone to die.</span>"
-		evolve_busy = 0
+
 		return
 	else if(!living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && castepick != "Drone")
 		src << "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>"
-		evolve_busy = 0
 		return
 	else
 		src << "<span class='xenonotice'>It looks like the hive can support your evolution!</span>"
@@ -197,26 +179,24 @@
 
 	if(isnull(M))
 		usr << "<span class='warning'>[castepick] is not a valid caste! If you're seeing this message, tell a coder!</span>"
-		evolve_busy = 0
 		return
 
 	if(evolution_threshold && castepick != "Queen") //Does the caste have an evolution timer? Then check it
 		if(evolution_stored < evolution_threshold)
 			src << "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [evolution_threshold].</span>"
-			evolve_busy = 0
 			return
 
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	if(do_after(src, 25, FALSE))
+		if(!isturf(loc)) //cdel'd or moved into something
+			return
 		if(castepick == "Queen") //Do another check after the tick.
 			if(jobban_isbanned(src, "Queen"))
 				src << "<span class='warning'>You are jobbanned from the Queen role.</span>"
-				evolve_busy = 0
 				return
 			if(living_xeno_queen)
 				src << "<span class='warning'>There already is a Queen.</span>"
-				evolve_busy = 0
 				return
 
 		//From there, the new xeno exists, hopefully
@@ -227,7 +207,6 @@
 			usr << "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>"
 			if(new_xeno)
 				cdel(new_xeno)
-			evolve_busy = 0
 			return
 
 		if(mind)
@@ -261,9 +240,9 @@
 		empty_gut()
 		new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.caste] emerges from the husk of \the [src].</span>", \
 		"<span class='xenodanger'>You emerge in a greater form from the husk of your old body. For the hive!</span>")
-		evolve_busy = 0
+
 		round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 		cdel(src)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"
-		evolve_busy = 0
+
