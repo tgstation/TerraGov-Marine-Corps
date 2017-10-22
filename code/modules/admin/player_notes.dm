@@ -124,7 +124,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	info << infos
 
 	message_admins("\blue [key_name_admin(usr)] has edited [key]'s notes: [note]")
-	log_admin("[key_name(usr)] has edited [key]'s notes: [note]")
+	log_admin("[key_name_admin(usr)] has edited [key]'s notes: [note]")
 
 	cdel(info)
 
@@ -149,7 +149,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	info << infos
 
 	message_admins("\blue [key_name_admin(usr)] deleted one of [key]'s notes.")
-	log_admin("[key_name(usr)] deleted one of [key]'s notes.")
+	log_admin("[key_name_admin(usr)] deleted one of [key]'s notes.")
 
 	cdel(info)
 

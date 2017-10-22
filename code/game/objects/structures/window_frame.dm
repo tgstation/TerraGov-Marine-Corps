@@ -3,6 +3,9 @@
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "rwindow0_frame"
+	layer = TABLE_LAYER
+	density = 1
+	throwpass = TRUE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced

@@ -53,19 +53,25 @@
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
-/mob/visible_message(var/message, var/self_message, var/blind_message)
+/mob/visible_message(message, self_message, blind_message, max_distance)
 	for(var/mob/M in viewers(src))
 		var/msg = message
 		if(self_message && M==src)
 			msg = self_message
+		else if(max_distance)
+			if(get_dist(M, src) > max_distance)//too far away
+				continue
 		M.show_message( msg, 1, blind_message, 2)
 
 // Show a message to all mobs in sight of this atom
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message)
+/atom/proc/visible_message(message, blind_message, max_distance)
 	for(var/mob/M in viewers(src))
+		if(max_distance)
+			if(get_dist(M, src) > max_distance)//too far away
+				continue
 		M.show_message( message, 1, blind_message, 2)
 
 
@@ -795,7 +801,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || sleeping || (status_flags & FAKEDEATH))
+	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH))
 	if(laid_down)
 		lying = 1
 	else

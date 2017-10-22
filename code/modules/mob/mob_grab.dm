@@ -93,7 +93,7 @@
 		X.visible_message("<span class='danger'>[X] starts to devour [pulled]!</span>", \
 		"<span class='danger'>You start to devour [pulled]!</span>")
 		if(do_after(X, 50, FALSE))
-			if(X.pulling == pulled && pulled.stat != DEAD) //make sure you've still got them in your claws, and alive
+			if(X.pulling == pulled && pulled.stat != DEAD && !X.stomach_contents.len) //make sure you've still got them in your claws, and alive
 				X.visible_message("<span class='warning'>[X] devours [pulled]!</span>", \
 				"<span class='warning'>You devour [pulled]!</span>")
 

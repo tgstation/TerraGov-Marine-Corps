@@ -27,6 +27,10 @@
 	name = "grass"
 	icon_state = "grass1"
 
+/turf/simulated/floor/gm/dirt2
+	name = "dirt"
+	icon_state = "dirt"
+
 //Ground map walls
 /turf/simulated/wall/gm
 	name = "dense jungle"
@@ -70,10 +74,13 @@
 			else
 				icon_state = "wall2"
 
-
 /turf/simulated/floor/gm/dirtgrassborder
 	name = "grass"
 	icon_state = "grassdirt_edge"
+
+/turf/simulated/floor/gm/dirtgrassborder2
+	name = "grass"
+	icon_state = "grassdirt2_edge"
 
 /turf/simulated/floor/gm/river
 	name = "river"

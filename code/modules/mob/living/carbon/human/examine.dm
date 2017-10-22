@@ -3,6 +3,32 @@
 		user << "<span class='notice'>Something is there but you can't see it.</span>"
 		return
 
+	if (isXeno(user))
+		var/msg = "<span class='info'>*---------*\nThis is "
+
+		if(icon)
+			msg += "\icon[icon] "
+		msg += "<EM>[src.name]</EM>!\n"
+
+		if(species.flags & IS_SYNTHETIC)
+			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
+
+		if(status_flags & XENO_HOST)
+			msg += "This creature is impregnated.\n"
+		else if(chestburst == 2)
+			msg += "A larva escaped from this creature.\n"
+		if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
+			msg += "It has a little one on its face.\n"
+		if(on_fire)
+			msg += "It is on fire!\n"
+		if(stat == DEAD)
+			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
+		else if(stat || !client)
+			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
+		msg += "*---------*</span>"
+		user << msg
+		return
+
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
@@ -207,7 +233,7 @@
 	var/distance = get_dist(user,src)
 	if(istype(user, /mob/dead/observer) || user.stat == DEAD) // ghosts can see anything
 		distance = 1
-	if (src.stat && !isXeno(user))
+	if (stat)
 		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
 		if((stat == 2 || src.health < config.health_threshold_crit) && distance <= 3)
 			msg += "<span class='warning'>[t_He] does not appear to be breathing.</span>\n"
@@ -392,11 +418,6 @@
 
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
-
-	if (isXeno(user))
-		if(stat == DEAD)
-			msg += "\n<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
-		else if(species.flags & IS_SYNTHETIC) msg += "\n<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
 
 	for(var/implant in get_visible_implants(0))
 		msg += "<span class='warning'><b>[t_He] has \a [implant] sticking out of [t_his] flesh!</span>\n"
