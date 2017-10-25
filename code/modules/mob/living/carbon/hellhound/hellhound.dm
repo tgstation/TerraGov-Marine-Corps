@@ -229,38 +229,26 @@
 /mob/living/carbon/hellhound/ex_act(severity)
 	if(!blinded && hud_used)
 		flick("flash", hud_used.flash_icon)
-
 	switch(severity)
-		if(1.0)
-			if (stat != 2)
+		if(1)
+			if (stat != DEAD)
 				adjustBruteLoss(500)
-				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-			return
-		if(2.0)
-			if (stat != 2)
+				updatehealth()
+		if(2)
+			if (stat != DEAD)
 				adjustBruteLoss(rand(60,200))
-				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
+				updatehealth()
 				KnockOut(12)
-			return
-		if(3.0)
-			if (stat != 2)
+		if(3)
+			if (stat != DEAD)
 				adjustBruteLoss(rand(30,100))
-				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
+				updatehealth()
 				KnockOut(5)
-			return
+
 
 /mob/living/carbon/hellhound/IsAdvancedToolUser()
 	return 0
 
-/mob/living/carbon/hellhound/gib()
-	..(null,1)
-
-/mob/living/carbon/hellhound/dust()
-	..("dust-m")
-
-/mob/living/carbon/hellhound/death(gibbed)
-	emote("roar")
-	..(gibbed,"lets out a horrible roar as it collapses and stops moving...")
 
 /mob/living/carbon/hellhound/say(var/message)
 	if(client)
@@ -307,22 +295,3 @@
 
 	. += speed
 
-
-/mob/living/carbon/hellhound/update_icons()
-	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	overlays.Cut()
-
-	if(stat == DEAD)
-		icon_state = "hellhound_dead"
-	else
-		if(lying)
-			if(resting)
-				icon_state = "hellhound_sleeping"
-			else
-				icon_state = "hellhound_ko"
-		else
-			icon_state = "hellhound"
-
-		if(src.health < 30)
-			var/image/bloody = image("icon" = src.icon, "icon_state" = "bloodsmear")
-			overlays += bloody

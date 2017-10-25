@@ -591,7 +591,27 @@
 	return attack_hand(M)
 
 /obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
-	return attack_hand(M)
+	if(!is_lit)
+		M << "Why bother? It's just some weird metal thing."
+		return 0
+	else if(damaged)
+		M << "It's already damaged."
+		return 0
+	else
+		M.visible_message("[M] starts to slash away at [src]!","In a rage, you start to slash and claw at the bright light! <b>You only need to claw once and then stand still!</b>")
+		if(do_after(M, 50) && !damaged) //Not when it's already damaged.
+			damaged = 1
+			if(is_lit)
+				SetLuminosity(0)
+			M << "You slash up the light! Raar!"
+			playsound(src, 'sound/weapons/blade1.ogg', 25, 1)
+			update_icon()
+			return 0
+
+/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!")
+
+
 
 //Digging up snow
 /turf/unsimulated/floor/snow/attack_alien(mob/living/carbon/Xenomorph/M)

@@ -40,7 +40,7 @@
 	else
 		dizziness = max(0, dizziness - 1)
 
-	return
+
 
 /mob/living/carbon/hellhound/proc/handle_regular_status_updates()
 	if(stat == DEAD)	//DEAD

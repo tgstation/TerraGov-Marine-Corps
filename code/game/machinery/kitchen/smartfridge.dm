@@ -18,6 +18,7 @@
 	var/item_quants = list()
 	var/ispowered = 1 //starts powered
 	var/isbroken = 0
+	var/is_secure_fridge = 0
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
 	var/locked = 0
@@ -32,71 +33,6 @@
 	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return 1
 	return 0
-
-/obj/machinery/smartfridge/seeds
-	name = "\improper MegaSeed Servitor"
-	desc = "When you need seeds fast!"
-	icon = 'icons/obj/vending.dmi'
-	icon_state = "seeds"
-	icon_on = "seeds"
-	icon_off = "seeds-off"
-
-/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/seeds/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/medbay
-	name = "\improper Refrigerated Medicine Storage"
-	desc = "A refrigerated storage unit for storing medicine and chemicals."
-	icon_state = "smartfridge" //To fix the icon in the map editor.
-	icon_on = "smartfridge_chem"
-	req_one_access_txt = "5;33"
-
-/obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/))
-		return 1
-	if(istype(O,/obj/item/weapon/storage/pill_bottle/))
-		return 1
-	if(istype(O,/obj/item/weapon/reagent_containers/pill/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/virology
-	name = "\improper Refrigerated Virus Storage"
-	desc = "A refrigerated storage unit for storing viral material."
-	req_access_txt = "39"
-	icon_state = "smartfridge_virology"
-	icon_on = "smartfridge_virology"
-	icon_off = "smartfridge_virology-off"
-
-/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/chemistry
-	name = "\improper Smart Chemical Storage"
-	desc = "A refrigerated storage unit for medicine and chemical storage."
-	req_one_access_txt = "5;20"
-
-/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/chemistry/virology
-	name = "\improper Smart Virus Storage"
-	desc = "A refrigerated storage unit for volatile sample storage."
-
-
-/obj/machinery/smartfridge/drinks
-	name = "\improper Drink Showcase"
-	desc = "A refrigerated storage unit for tasty tasty alcohol."
-
-/obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
-		return 1
 
 /obj/machinery/smartfridge/process()
 	if(!src.ispowered)
@@ -123,6 +59,12 @@
 ********************/
 
 /obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if (istype(O, /obj/item/weapon/card/emag))
+		if(is_secure_fridge && !emagged)
+			emagged = 1
+			locked = -1
+			user << "You short out the product lock on [src]."
+		return
 	if(istype(O, /obj/item/weapon/screwdriver))
 		panel_open = !panel_open
 		user << "You [panel_open ? "open" : "close"] the maintenance panel."
@@ -191,23 +133,16 @@
 		user << "<span class='notice'>\The [src] smartly refuses [O].</span>"
 		return 1
 
-/obj/machinery/smartfridge/secure/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (istype(O, /obj/item/weapon/card/emag))
-		emagged = 1
-		locked = -1
-		user << "You short out the product lock on [src]."
-		return
-
-	..()
-
-/obj/machinery/smartfridge/attack_paw(mob/user as mob)
+/obj/machinery/smartfridge/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/smartfridge/attack_ai(mob/user as mob)
+/obj/machinery/smartfridge/attack_ai(mob/user)
 	return 0
 
-/obj/machinery/smartfridge/attack_hand(mob/user as mob)
-	if(!ispowered) return
+/obj/machinery/smartfridge/attack_hand(mob/user)
+	if(!ispowered)
+		user << "<span class='warning'>[src] has no power.</span>"
+		return
 	if(seconds_electrified != 0)
 		if(shock(user, 100))
 			return
@@ -221,8 +156,6 @@
 /obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_interaction(src)
 
-	var/is_secure = istype(src,/obj/machinery/smartfridge/secure)
-
 	var/data[0]
 	data["contents"] = null
 	data["wires"] = null
@@ -230,7 +163,7 @@
 	data["electrified"] = seconds_electrified > 0
 	data["shoot_inventory"] = shoot_inventory
 	data["locked"] = locked
-	data["secure"] = is_secure
+	data["secure"] = is_secure_fridge
 
 	var/list/items[0]
 	for (var/i=1 to length(item_quants))
@@ -243,7 +176,7 @@
 		data["contents"] = items
 
 	var/list/vendwires = null
-	if (is_secure)
+	if (is_secure_fridge)
 		vendwires = list(
 			"Violet" = 1,
 			"Orange" = 2,
@@ -282,6 +215,15 @@
 		return 0
 
 	if (href_list["vend"])
+		if(!ispowered)
+			usr << "<span class='warning'>[src] has no power.</span>."
+			return 0
+		if (!in_range(src, usr))
+			return 0
+		if(is_secure_fridge)
+			if(!allowed(usr) && !emagged && locked != -1)
+				usr << "\red Access denied."
+				return 0
 		var/index = text2num(href_list["vend"])
 		var/amount = text2num(href_list["amount"])
 		var/K = item_quants[index]
@@ -409,14 +351,81 @@
 	src.visible_message("\red <b>[src] launches [throw_item.name] at [target.name]!</b>")
 	return 1
 
-/************************
-*   Secure SmartFridges
-*************************/
 
-/obj/machinery/smartfridge/secure/Topic(href, href_list)
-	if(!ispowered) return 0
-	if (usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf)))
-		if (!allowed(usr) && !emagged && locked != -1 && href_list["vend"])
-			usr << "\red Access denied."
-			return 0
-	return ..()
+
+
+/********************
+*	Smartfridge types
+*********************/
+
+/obj/machinery/smartfridge/seeds
+	name = "\improper MegaSeed Servitor"
+	desc = "When you need seeds fast!"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "seeds"
+	icon_on = "seeds"
+	icon_off = "seeds-off"
+
+/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/seeds/))
+		return 1
+	return 0
+
+//the secure subtype does nothing, I'm only keeping it to avoid conflicts with maps.
+/obj/machinery/smartfridge/secure/medbay
+	name = "\improper Refrigerated Medicine Storage"
+	desc = "A refrigerated storage unit for storing medicine and chemicals."
+	icon_state = "smartfridge" //To fix the icon in the map editor.
+	icon_on = "smartfridge_chem"
+	is_secure_fridge = TRUE
+	req_one_access_txt = "5;33"
+
+/obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/weapon/reagent_containers/glass/))
+		return 1
+	if(istype(O,/obj/item/weapon/storage/pill_bottle/))
+		return 1
+	if(istype(O,/obj/item/weapon/reagent_containers/pill/))
+		return 1
+	return 0
+
+
+/obj/machinery/smartfridge/secure/virology
+	name = "\improper Refrigerated Virus Storage"
+	desc = "A refrigerated storage unit for storing viral material."
+	is_secure_fridge = TRUE
+	req_access_txt = "39"
+	icon_state = "smartfridge_virology"
+	icon_on = "smartfridge_virology"
+	icon_off = "smartfridge_virology-off"
+
+/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
+		return 1
+	return 0
+
+
+/obj/machinery/smartfridge/chemistry
+	name = "\improper Smart Chemical Storage"
+	desc = "A refrigerated storage unit for medicine and chemical storage."
+	is_secure_fridge = TRUE
+	req_one_access_txt = "5;20"
+
+/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers))
+		return 1
+	return 0
+
+
+/obj/machinery/smartfridge/chemistry/virology
+	name = "\improper Smart Virus Storage"
+	desc = "A refrigerated storage unit for volatile sample storage."
+
+
+/obj/machinery/smartfridge/drinks
+	name = "\improper Drink Showcase"
+	desc = "A refrigerated storage unit for tasty tasty alcohol."
+
+/obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
+		return 1
