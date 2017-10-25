@@ -71,22 +71,23 @@
 /obj/item/weapon/shard/Crossed(AM as mob|obj)
 	if(ismob(AM))
 		var/mob/M = AM
-		M << "\red <B>You step on \the [src]!</B>"
 		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+		if(!M.buckled)
+			M << "\red <B>You step on \the [src]!</B>"
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
 
-			if(H.species.flags & IS_SYNTHETIC || H.species.insulated)
-				return
-
-			if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.flags_armor_protection & FEET) ) )
-				var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
-				if(affecting.status & LIMB_ROBOT)
+				if(H.species.flags & IS_SYNTHETIC || H.species.insulated)
 					return
-				H.KnockDown(3)
-				if(affecting.take_damage(5, 0))
-					H.UpdateDamageIcon()
-				H.updatehealth()
+
+				if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.flags_armor_protection & FEET) ) )
+					var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
+					if(affecting.status & LIMB_ROBOT)
+						return
+					H.KnockDown(3)
+					if(affecting.take_damage(5, 0))
+						H.UpdateDamageIcon()
+					H.updatehealth()
 	..()
 
 // Shrapnel
