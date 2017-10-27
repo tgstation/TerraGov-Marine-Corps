@@ -119,12 +119,11 @@
 
 	if(istype(W, /obj/item/stack/barbed_wire))
 		var/obj/item/stack/barbed_wire/B = W
-
-
 		if(can_wire)
 			user.visible_message("<span class='notice'>[user] starts setting up [W.name] on [src].</span>",
 			"<span class='notice'>You start setting up [W.name] on [src].</span>")
 			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && can_wire)
+				playsound(src.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] sets up [W.name] on [src].</span>",
 				"<span class='notice'>You set up [W.name] on [src].</span>")
 				if(!closed)
@@ -139,6 +138,24 @@
 				can_wire = 0
 				is_wired = 1
 				climbable = FALSE
+		return
+
+	if(istype(W, /obj/item/weapon/wirecutters))
+		if(is_wired)
+			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
+			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
+				"<span class='notice'>You remove the barbed wire on [src].</span>")
+				overlays -= wired_overlay
+				maxhealth -= 50
+				health -= 50
+				update_health()
+				can_wire = 1
+				is_wired = 0
+				climbable = TRUE
+				new/obj/item/stack/barbed_wire( src.loc )
 		return
 
 	if(W.force > barricade_resistance)
@@ -762,4 +779,3 @@
 	update_health()
 
 	return 1
-

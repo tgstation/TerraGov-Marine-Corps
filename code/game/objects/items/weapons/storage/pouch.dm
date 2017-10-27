@@ -382,12 +382,15 @@
 
 /obj/item/weapon/storage/pouch/construction
 	name = "contruction pouch"
-	desc = "It's designed to hold construction materials."
+	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool."
 	storage_slots = 3
 	max_w_class = 3
 	icon_state = "construction"
 	can_hold = list(
-					"/obj/item/barbed_wire",
+					"/obj/item/stack/barbed_wire",
 					"/obj/item/stack/sheet",
+					"/obj/item/stack/rods",
+					"/obj/item/stack/cable_coil",
+					"/obj/item/weapon/etool",
 					"/obj/item/stack/sandbags_empty"
 					)
