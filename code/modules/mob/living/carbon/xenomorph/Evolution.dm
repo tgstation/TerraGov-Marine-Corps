@@ -219,17 +219,15 @@
 		new_xeno.nicknumber = nicknumber
 		generate_name()
 
-		//Clear verbs
-		remove_inherent_verbs()
-
-
 		if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 			new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
 			new_xeno.fireloss = src.fireloss //Transfers the damage over.
 			new_xeno.updatehealth()
 
-		new_xeno.add_inherent_verbs()
-		new_xeno.evolution_stored = 0
+		if(xeno_mobhud)
+			var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+			H.add_hud_to(new_xeno) //keep our mobhud choice
+
 		if(evolution_allowed)
 			new_xeno.evolution_allowed = evolution_allowed
 		new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state

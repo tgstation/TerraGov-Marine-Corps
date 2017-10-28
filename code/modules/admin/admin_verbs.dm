@@ -92,6 +92,7 @@ var/list/admin_verbs_sounds = list(
 var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
+	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/cmd_admin_add_freeform_ai_law,
@@ -141,6 +142,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
+	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
 	/client/proc/spawn_predators,
 	/datum/proc/ta_diagnose,
@@ -153,6 +155,7 @@ var/list/admin_verbs_debug = list(
 
 var/list/admin_verbs_paranoid_debug = list(
 	/client/proc/callproc,
+	/client/proc/callatomproc,
 	/client/proc/debug_controller
 	)
 
@@ -189,6 +192,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/play_imported_sound,
 	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
+	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/cmd_admin_add_freeform_ai_law,
@@ -211,6 +215,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/callproc,
+	/client/proc/callatomproc,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/reload_whitelist,

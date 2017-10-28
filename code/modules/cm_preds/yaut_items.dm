@@ -497,7 +497,7 @@
 	proc/explodey(var/mob/living/carbon/victim)
 		set waitfor = 0
 		exploding = 1
-		playsound(src.loc,'sound/effects/pred_countdown.ogg', 25, 0)
+		playsound(src.loc,'sound/effects/pred_countdown.ogg', 40, 0)
 		sleep(rand(65,85))
 		var/turf/T = get_turf(victim)
 		if(istype(T) && exploding)

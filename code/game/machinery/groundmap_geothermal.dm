@@ -222,14 +222,13 @@
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights()
 	for(var/obj/machinery/colony_floodlight/F in floodlist)
-		if(!istype(F) || isnull(F) || F.damaged) continue //Missing or damaged, skip it
-
 		spawn(rand(0,50))
-			if(F.is_lit) //Shut it down
-				F.SetLuminosity(0)
-			else
-				F.SetLuminosity(F.lum_value)
-			F.is_lit = !(F.is_lit)
+			F.is_lit = !F.is_lit
+			if(!F.damaged)
+				if(F.is_lit) //Shut it down
+					F.SetLuminosity(F.lum_value)
+				else
+					F.SetLuminosity(0)
 			F.update_icon()
 	return 0
 
@@ -257,16 +256,19 @@
 	density = 1
 	anchored = 1
 	var/damaged = 0 //Can be smashed by xenos
-	var/is_lit = 0
+	var/is_lit = 0 //whether the floodlight is switched to on or off. Does not necessarily mean it emits light.
 	unacidable = 1
 	var/power_tick = 800 // power each floodlight takes up per process
 	use_power = 0 //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
 
-	Dispose()
-		SetLuminosity(0)
-		. = ..()
+/obj/machinery/colony_floodlight/Dispose()
+	SetLuminosity(0)
+	if(fswitch)
+		fswitch.floodlist -= src
+		fswitch = null
+	. = ..()
 
 /obj/machinery/colony_floodlight/update_icon()
 	if(damaged)
@@ -302,32 +304,9 @@
 	..()
 	return 0
 
-/obj/machinery/colony_floodlight/attack_hand(mob/user as mob)
+/obj/machinery/colony_floodlight/attack_hand(mob/user)
 	if(ishuman(user))
 		user << "Nothing happens. Looks like it's powered elsewhere."
 		return 0
-	else if(!is_lit)
-		user << "Why bother? It's just some weird metal thing."
-		return 0
-	else
-		if(damaged)
-			user << "It's already damaged."
-			return 0
-		else
-			if(isXenoLarva(user))
-				user.visible_message("[user.name] starts biting the [src.name]!","In a rage, you start biting the bright light, but with no effect!")
-				return //Larvae can't do shit
-			if(user.get_active_hand())
-				user << "<span class='xenowarning'>You need your claws empty for this!</span>"
-				r_FAL
-			user.visible_message("[user.name] starts to slash away at [src.name]!","In a rage, you start to slash and claw at the bright light! <b>You only need to claw once and then stand still!</b>")
-			if(do_after(user, 50) && !damaged) //Not when it's already damaged.
-				if(!src) return 0
-				damaged = 1
-				SetLuminosity(0)
-				user << "You slash up the light! Raar!"
-				playsound(src, 'sound/weapons/blade1.ogg', 25, 1)
-				update_icon()
-				return 0
 	..()
-	return
+
