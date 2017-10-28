@@ -274,8 +274,8 @@
 /obj/machinery/vending/MarineMed
 	name = "\improper MarineMed"
 	desc = "Marine Medical Drug Dispenser - Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
-	icon_state = "med"
-	icon_deny = "med-deny"
+	icon_state = "marinemed"
+	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	wrenchable = FALSE
@@ -311,8 +311,8 @@
 /obj/machinery/vending/MarineMed/Blood
 	name = "\improper MM Blood Dispenser"
 	desc = "Marine Med brand Blood Pack Dispensery"
-	icon_state = "med"
-	icon_deny = "med-deny"
+	icon_state = "bloodvendor"
+	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	products = list(/obj/item/weapon/reagent_containers/blood/APlus = 5, /obj/item/weapon/reagent_containers/blood/AMinus = 5,
@@ -383,8 +383,8 @@
 	desc = "A marine medic equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	icon_state = "med"
-	icon_deny = "med-deny"
+	icon_state = "medicprepvendor"
+	icon_deny = "medicprepvendor-deny"
 	wrenchable = FALSE
 
 	products = list(
