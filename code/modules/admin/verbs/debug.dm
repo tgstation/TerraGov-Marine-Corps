@@ -28,119 +28,196 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /client/proc/callproc()
 	set category = "Debug"
 	set name = "Advanced ProcCall"
+	set waitfor = 0
 
 	if(!check_rights(R_DEBUG)) return
 	if(config.debugparanoid && !check_rights(R_ADMIN)) return
 
-	spawn(0)
-		var/target = null
-		var/targetselected = 0
-		var/lst[] // List reference
-		lst = new/list() // Make the list
-		var/returnval = null
-		var/class = null
+	var/target = null
+	var/targetselected = 0
+	var/lst[] // List reference
+	lst = new/list() // Make the list
+	var/returnval = null
+	var/class = null
 
-		switch(alert("Proc owned by something?",,"Yes","No"))
-			if("Yes")
-				targetselected = 1
-				class = input("Proc owned by...","Owner",null) as null|anything in list("Obj","Mob","Area or Turf","Client")
-				switch(class)
-					if("Obj")
-						target = input("Enter target:","Target",usr) as obj in object_list
-					if("Mob")
-						target = input("Enter target:","Target",usr) as mob in mob_list
-					if("Area or Turf")
-						target = input("Enter target:","Target",usr.loc) as area|turf in world
-					if("Client")
-						var/list/keys = list()
-						for(var/client/C)
-							keys += C
-						target = input("Please, select a player!", "Selection", null, null) as null|anything in keys
-					else
-						return
-			if("No")
-				target = null
-				targetselected = 0
-
-		var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
-		if(!procname)	return
-
-		var/argnum = input("Number of arguments","Number:",0) as num|null
-		if(!argnum && (argnum!=0))	return
-
-		lst.len = argnum // Expand to right length
-		//TODO: make a list to store whether each argument was initialised as null.
-		//Reason: So we can abort the proccall if say, one of our arguments was a mob which no longer exists
-		//this will protect us from a fair few errors ~Carn
-
-		var/i
-		for(i=1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
-
-			// Make a list with each index containing one variable, to be given to the proc
-			class = input("What kind of variable?","Variable Type") in list("text","num","type","reference","mob reference","icon","file","client","mob's area","CANCEL")
+	switch(alert("Proc owned by something?",,"Yes","No"))
+		if("Yes")
+			targetselected = 1
+			class = input("Proc owned by...","Owner",null) as null|anything in list("Obj","Mob","Area or Turf","Client")
 			switch(class)
-				if("CANCEL")
-					return
-
-				if("text")
-					lst[i] = input("Enter new text:","Text",null) as text
-
-				if("num")
-					lst[i] = input("Enter new number:","Num",0) as num
-
-				if("type")
-					lst[i] = input("Enter type:","Type") in typesof(/obj,/mob,/area,/turf)
-
-				if("reference")
-					lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
-
-				if("mob reference")
-					lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
-
-				if("file")
-					lst[i] = input("Pick file:","File") as file
-
-				if("icon")
-					lst[i] = input("Pick icon:","Icon") as icon
-
-				if("client")
+				if("Obj")
+					target = input("Enter target:","Target",usr) as obj in object_list
+				if("Mob")
+					target = input("Enter target:","Target",usr) as mob in mob_list
+				if("Area or Turf")
+					target = input("Enter target:","Target",usr.loc) as area|turf in world
+				if("Client")
 					var/list/keys = list()
-					for(var/mob/M in player_list)
-						keys += M.client
-					lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
+					for(var/client/C)
+						keys += C
+					target = input("Please, select a player!", "Selection", null, null) as null|anything in keys
+				else
+					return
+		if("No")
+			target = null
+			targetselected = 0
 
-				if("mob's area")
-					var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
-					lst[i] = temp.loc
+	var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
+	if(!procname)	return
 
-		if(targetselected)
-			if(!target)
-				usr << "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>"
+	var/argnum = input("Number of arguments","Number:",0) as num|null
+	if(!argnum && (argnum!=0))	return
+
+	lst.len = argnum // Expand to right length
+	//TODO: make a list to store whether each argument was initialised as null.
+	//Reason: So we can abort the proccall if say, one of our arguments was a mob which no longer exists
+	//this will protect us from a fair few errors ~Carn
+
+	var/i
+	for(i=1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
+
+		// Make a list with each index containing one variable, to be given to the proc
+		class = input("What kind of variable?","Variable Type") in list("text","num","type","reference","mob reference","icon","file","client","mob's area","CANCEL")
+		switch(class)
+			if("CANCEL")
 				return
 
-			var/actual_name = procname
-			//Remove the "/proc/" in front of the actual name
-			if(findtext(procname, "/proc/"))
-				actual_name = replacetext(procname, "/proc/", "")
-			else if(findtext(procname, "/proc"))
-				actual_name = replacetext(procname, "/proc", "")
-			else if(findtext(procname, "proc/"))
-				actual_name = replacetext(procname, "proc/", "")
-			//Remove Parenthesis if any
-			actual_name = replacetext(actual_name, "()", "")
+			if("text")
+				lst[i] = input("Enter new text:","Text",null) as text
 
-			if(!hascall(target,actual_name))
-				usr << "<font color='red'>Error: callproc(): target has no such call [procname].</font>"
+			if("num")
+				lst[i] = input("Enter new number:","Num",0) as num
+
+			if("type")
+				lst[i] = input("Enter type:","Type") in typesof(/obj,/mob,/area,/turf)
+
+			if("reference")
+				lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
+
+			if("mob reference")
+				lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
+
+			if("file")
+				lst[i] = input("Pick file:","File") as file
+
+			if("icon")
+				lst[i] = input("Pick icon:","Icon") as icon
+
+			if("client")
+				var/list/keys = list()
+				for(var/mob/M in player_list)
+					keys += M.client
+				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
+
+			if("mob's area")
+				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
+				lst[i] = temp.loc
+
+	if(targetselected)
+		if(!target)
+			usr << "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>"
+			return
+
+		var/actual_name = procname
+		//Remove the "/proc/" in front of the actual name
+		if(findtext(procname, "/proc/"))
+			actual_name = replacetext(procname, "/proc/", "")
+		else if(findtext(procname, "/proc"))
+			actual_name = replacetext(procname, "/proc", "")
+		else if(findtext(procname, "proc/"))
+			actual_name = replacetext(procname, "proc/", "")
+		//Remove Parenthesis if any
+		actual_name = replacetext(actual_name, "()", "")
+
+		if(!hascall(target,actual_name))
+			usr << "<font color='red'>Error: callproc(): target has no such call [procname].</font>"
+			return
+		log_admin("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		returnval = call(target,actual_name)(arglist(lst)) // Pass the lst as an argument list to the proc
+	else
+		//this currently has no hascall protection. wasn't able to get it working.
+		log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		returnval = call(procname)(arglist(lst)) // Pass the lst as an argument list to the proc
+
+	usr << "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>"
+	feedback_add_details("admin_verb","APC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+
+/client/proc/callatomproc(atom/A)
+	set category = "Debug"
+	set name = "Atom ProcCall"
+	set waitfor = 0
+
+	if(!check_rights(R_DEBUG)) return
+	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+
+	var/lst[] // List reference
+	lst = new/list() // Make the list
+	var/returnval = null
+	var/class = null
+
+	var/procname = input("Proc name, eg: attack_hand","Proc:", null) as text|null
+	if(!procname)
+		return
+
+	if(!hascall(A,procname))
+		usr << "<font color='red'>Error: callatomproc(): type [A.type] has no proc named [procname].</font>"
+		return
+
+	var/argnum = input("Number of arguments","Number:",0) as num|null
+	if(!argnum && (argnum!=0))	return
+
+	lst.len = argnum
+
+	var/i
+	for(i=1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
+
+		// Make a list with each index containing one variable, to be given to the proc
+		class = input("What kind of variable?","Variable Type") in list("text","num","type","reference","mob reference","icon","file","client","mob's area","CANCEL")
+		switch(class)
+			if("CANCEL")
 				return
-			log_admin("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-			returnval = call(target,actual_name)(arglist(lst)) // Pass the lst as an argument list to the proc
-		else
-			//this currently has no hascall protection. wasn't able to get it working.
-			log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-			returnval = call(procname)(arglist(lst)) // Pass the lst as an argument list to the proc
 
-		usr << "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>"
-		feedback_add_details("admin_verb","APC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			if("text")
+				lst[i] = input("Enter new text:","Text",null) as text
+
+			if("num")
+				lst[i] = input("Enter new number:","Num",0) as num
+
+			if("type")
+				lst[i] = input("Enter type:","Type") in typesof(/obj,/mob,/area,/turf)
+
+			if("reference")
+				lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
+
+			if("mob reference")
+				lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
+
+			if("file")
+				lst[i] = input("Pick file:","File") as file
+
+			if("icon")
+				lst[i] = input("Pick icon:","Icon") as icon
+
+			if("client")
+				var/list/keys = list()
+				for(var/mob/M in player_list)
+					keys += M.client
+				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
+
+			if("mob's area")
+				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
+				lst[i] = temp.loc
+
+	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+	message_admins("\blue [key_name_admin(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+	returnval = call(A,procname)(arglist(lst)) // Pass the lst as an argument list to the proc
+	usr << "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>"
+	feedback_add_details("admin_verb","AAPC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+
 
 /client/proc/Cell()
 	set category = "Debug"
@@ -410,6 +487,78 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
+/client/proc/cmd_admin_select_mob_rank(var/mob/living/carbon/human/H in mob_list)
+	set category = "Fun"
+	set name = "Select Rank"
+	if(!istype(H))
+		alert("Invalid mob")
+		return
+
+	var/rank_list = list("Custom") + RoleAuthority.roles_by_name
+
+	var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in rank_list
+	if (!newrank)
+		return
+	if(!H || !H.mind)
+		return
+	var/obj/item/weapon/card/id/I = H.wear_id
+	feedback_add_details("admin_verb","SMRK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	if(newrank != "Custom")
+		var/datum/job/J = RoleAuthority.roles_by_name[newrank]
+		H.mind.role_comm_title = J.comm_title
+		H.mind.skills_list = J.skills_list
+		if(istype(I))
+			I.access = J.get_access()
+			I.rank = J.title
+			I.assignment = J.disp_title
+			I.name = "[I.registered_name]'s ID Card ([I.assignment])"
+			I.paygrade = J.paygrade
+	else
+		var/newcommtitle = input("Write the custom title appearing on comms chat (e.g. Spc)", "Comms title") as null|text
+		if(!newcommtitle)
+			return
+		if(!H || !H.mind)
+			return
+
+		H.mind.role_comm_title = newcommtitle
+
+		if(!istype(I) || I != H.wear_id)
+			usr << "The mob has no id card, unable to modify ID and chat title."
+		else
+			var/newchattitle = input("Write the custom title appearing in chat (e.g. SGT)", "Chat title") as null|text
+			if(!newchattitle)
+				return
+			if(!H || I != H.wear_id)
+				return
+
+			I.paygrade = newchattitle
+
+			var/IDtitle = input("Write the custom title on your ID (e.g. Squad Specialist)", "ID title") as null|text
+			if(!IDtitle)
+				return
+			if(!H || I != H.wear_id)
+				return
+
+			I.rank = IDtitle
+			I.assignment = IDtitle
+			I.name = "[I.registered_name]'s ID Card ([I.assignment])"
+
+		if(!H.mind)
+			usr << "The mob has no mind, unable to modify skills."
+		else
+			var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+			if(!newskillset)
+				return
+
+			if(!H || !H.mind)
+				return
+
+			var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+			H.mind.skills_list = J.skills_list
+
+
+
+
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
@@ -485,8 +634,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Squad Marine"
 			W.rank = "Squad Marine"
 			W.registered_name = M.real_name
+			W.paygrade = "E2"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "Mar"
 				M.mind.assigned_role = "Squad Marine"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -507,8 +658,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Squad Marine"
 			W.rank = "Squad Marine"
 			W.registered_name = M.real_name
+			W.paygrade = "E2"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "Mar"
 				M.mind.assigned_role = "Squad Marine"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -530,8 +683,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Squad Smartgunner"
 			W.rank = "Squad Smartgunner"
 			W.registered_name = M.real_name
+			W.paygrade = "E3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "LCpl"
 				M.mind.assigned_role = "Squad Smartgunner"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -562,9 +717,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Squad Smartgunner"
 			W.rank = "Squad Smartgunner"
 			W.registered_name = M.real_name
+			W.paygrade = "E3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.set_species("Machine")
 			if(M.mind)
+				M.mind.role_comm_title = "LCpl"
 				M.mind.assigned_role = "Squad Smartgunner"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -586,8 +743,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Squad Specialist"
 			W.rank = "Squad Specialist"
 			W.registered_name = M.real_name
+			W.paygrade = "E5"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "Spc"
 				M.mind.assigned_role = "Squad Specialist"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -607,8 +766,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Second Lieutenant"
 			W.rank = "Staff Officer"
 			W.registered_name = M.real_name
+			W.paygrade = "O2"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "SO"
 				M.mind.assigned_role = "Staff Officer"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_EXPERT,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -629,8 +790,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "USCM Executive Officer"
 			W.rank = "Executive Officer"
 			W.registered_name = M.real_name
+			W.paygrade = "O3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "XO"
 				M.mind.assigned_role = "Executive Officer"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_MASTER,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_FLASH,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
@@ -651,8 +814,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "USCM Commanding Officer"
 			W.rank = "Commander"
 			W.registered_name = M.real_name
+			W.paygrade = "O4"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "CO"
 				M.mind.assigned_role = "Commander"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_MASTER,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_FLASH,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
@@ -696,6 +861,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
+			W.paygrade = "PMC1"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
@@ -729,9 +895,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
+			W.paygrade = "PMC4"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
+				M.mind.role_comm_title = "SL"
 				M.mind.assigned_role = "PMC Leader"
 				M.mind.special_role = "MODE"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_TRAINED,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_MP,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -759,9 +927,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
+			W.paygrade = "PMC3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
+				M.mind.role_comm_title = "Spc"
 				M.mind.assigned_role = "PMC"
 				M.mind.special_role = "MODE"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -791,9 +961,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
+			W.paygrade = "PMC3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
+				M.mind.role_comm_title = "Spc"
 				M.mind.assigned_role = "PMC"
 				M.mind.special_role = "MODE"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -857,8 +1029,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "USCM Officer"
 			W.registered_name = M.real_name
+			W.paygrade = "O5"
 			M.equip_if_possible(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "Cpt"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_MASTER,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_FLASH,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
 		if("USCM Admiral (USCM Command)")
@@ -899,8 +1073,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "USCM Admiral"
 			W.registered_name = M.real_name
+			W.paygrade = "O7"
 			M.equip_if_possible(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "ADM"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_MASTER,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_FLASH,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
 
@@ -930,9 +1106,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "UPP Soldier"
 			W.registered_name = M.real_name
+			W.access = get_antagonist_access()
+			W.paygrade = "E1"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
-			W.access = get_antagonist_access()
 
 			if(M.mind)
 				M.mind.assigned_role = "MODE"
@@ -970,11 +1147,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "UPP Medic"
 			W.registered_name = M.real_name
+			W.paygrade = "E4"
+			W.access = get_antagonist_access()
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
-			W.access = get_antagonist_access()
+
 
 			if(M.mind)
+				M.mind.role_comm_title = "Cpl"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "UPP"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -1009,11 +1189,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "UPP Specialist"
 			W.registered_name = M.real_name
+			W.paygrade = "E5"
+			W.access = get_antagonist_access()
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
-			W.access = get_antagonist_access()
+
 
 			if(M.mind)
+				M.mind.role_comm_title = "Spc"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "UPP"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -1046,11 +1229,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "UPP Leader"
 			W.registered_name = M.real_name
+			W.paygrade = "E6"
+			W.access = get_antagonist_access()
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
-			W.access = get_antagonist_access()
 
 			if(M.mind)
+				M.mind.role_comm_title = "SL"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "UPP"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_TRAINED,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -1092,9 +1277,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "UPP Commando"
 			W.registered_name = M.real_name
+			W.paygrade = "E2"
+			W.access = get_antagonist_access()
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
-			W.access = get_antagonist_access()
 
 			if(M.mind)
 				M.mind.assigned_role = "MODE"
@@ -1137,11 +1323,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "UPP Commando Medic"
 			W.registered_name = M.real_name
+			W.paygrade = "E4"
+			W.access = get_antagonist_access()
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
-			W.access = get_antagonist_access()
 
 			if(M.mind)
+				M.mind.role_comm_title = "Cpl"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "UPP"
 				M.mind.skills_list = list("cqc"=3,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -1181,11 +1369,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "UPP Commando Leader"
 			W.registered_name = M.real_name
+			W.paygrade = "E6"
+			W.access = get_antagonist_access()
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
-			W.access = get_antagonist_access()
+
 
 			if(M.mind)
+				M.mind.role_comm_title = "SL"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "UPP"
 				M.mind.skills_list = list("cqc"=3,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_TRAINED,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -1287,6 +1478,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = get_all_accesses()
 
 			if(M.mind)
+				M.mind.role_comm_title = "Lead"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "CLF"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_TRAINED,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -1385,6 +1577,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = get_all_accesses()
 
 			if(M.mind)
+				M.mind.role_comm_title = "Lead"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "FREELANCERS"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_TRAINED,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
@@ -1432,9 +1625,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list(ACCESS_MARINE_ENGINEERING)
 			W.assignment = "Maintenance Tech"
 			W.registered_name = M.real_name
+			W.paygrade = "E6E"
 			M.equip_if_possible(W, WEAR_ID)
 
 			if(M.mind)
+				M.mind.role_comm_title = "MT"
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "UPP"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=1)
@@ -1472,8 +1667,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "Fleet Admiral"
 			W.registered_name = M.real_name
+			W.paygrade = "O8"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
+				M.mind.role_comm_title = "FADM"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_MASTER,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_FLASH,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
 

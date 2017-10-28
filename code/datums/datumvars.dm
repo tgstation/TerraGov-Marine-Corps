@@ -276,6 +276,7 @@ client
 			body += "<option value='?_src_=vars;remverb=\ref[D]'>Remove Verb</option>"
 			if(ishuman(D))
 				body += "<option value>---</option>"
+				body += "<option value='?_src_=vars;edit_skill=\ref[D]'>Edit Skills</option>"
 				body += "<option value='?_src_=vars;setmutantrace=\ref[D]'>Set Mutantrace</option>"
 				body += "<option value='?_src_=vars;setspecies=\ref[D]'>Set Species</option>"
 				body += "<option value='?_src_=vars;makeai=\ref[D]'>Make AI</option>"
@@ -754,6 +755,49 @@ client
 			usr << "Set species of [H] to [H.species]."
 		else
 			usr << "Failed! Something went wrong."
+
+	else if(href_list["edit_skill"])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/human/H = locate(href_list["edit_skill"])
+		if(!istype(H))
+			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			return
+
+		if(!H.mind)
+			usr << "This can't be used on humans without a mind."
+			return
+
+		if(!H.mind.skills_list)
+			H.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+
+		var/selected_skill = input("Please choose a skill to edit.","Skills",null) as null|anything in list("cqc","endurance","engineer","firearms","smartgun","heavy_weapons","leadership","medical","melee_weapons","pilot","pistols","police","powerloader")
+		if(!selected_skill)
+			return
+
+		if(!H)
+			usr << "Mob doesn't exist anymore"
+			return
+
+		if(!H.mind)
+			usr << "Mob lost its mind."
+			return
+
+		var/new_skill_level = input("Select a new level for the [selected_skill] skill ","New Skill Level", H.mind.skills_list[selected_skill]) as null|num
+		if(!new_skill_level && new_skill_level != 0)
+			return
+
+		if(!H)
+			usr << "Mob doesn't exist anymore"
+			return
+
+		if(!H.mind)
+			usr << "Mob lost its mind."
+			return
+
+		H.mind.skills_list[selected_skill] = new_skill_level
+		usr << "[H]'s [selected_skill] skill is now set to [new_skill_level]."
+
 
 	else if(href_list["addlanguage"])
 		if(!check_rights(R_SPAWN))	return
