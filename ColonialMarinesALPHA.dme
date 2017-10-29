@@ -1452,4 +1452,5 @@
 #include "maps\Z.02.Admin_Level.dmm"
 #include "maps\Z.03.USS_Almayer.dmm"
 #include "maps\Z.05.Space.dmm"
+#include "maps\_WIP\ChigusaShipyardV.2.dmm"
 // END_INCLUDE

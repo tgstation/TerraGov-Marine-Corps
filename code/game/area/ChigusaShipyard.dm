@@ -8,6 +8,10 @@
 	icon_state = "chigusashipyard"
 
 //Guard or Secure Buildings-----------------------------------------//
+/area/shipyard/guard/barracks
+	name = "\improper Barracks"
+	icon_state = "guardbarracks"
+
 /area/shipyard/guard/barracks/one
 	name = "\improper Barracks One"
 	icon_state = "guardbarracksone"
@@ -108,6 +112,10 @@
 /area/shipyard/entertainment/bar
 	name = "\improper Bar"
 	icon_state = "bar"
+
+/area/shipyard/entertainment/bar/commons
+	name = "\improper Bar Commons"
+	icon_state = "barcommons"
 
 /area/shipyard/entertainment/bar/residence
 	name = "\improper Bar Dorm"
