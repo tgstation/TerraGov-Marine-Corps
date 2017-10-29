@@ -165,6 +165,7 @@
 	name = "\improper Hangar-Barracks Maintenance"
 	icon_state = "maint_e_shuttle"
 
+
 /area/prison/canteen
 	name = "\improper Canteen"
 	icon_state = "cafeteria"
@@ -362,6 +363,27 @@
 /area/prison/research/secret/testing
 	name = "\improper Biological Testing"
 	icon_state = "toxtest"
+
+/area/prison/residential/central
+	name = "\improper Civillian Residences Central"
+	icon_state = "blue-red2"
+
+/area/prison/residential/north
+	name = "\improper Civillian Residences North"
+	icon_state = "blue2"
+
+/area/prison/residential/south
+	name = "\improper Civillian Residences South"
+	icon_state = "red2"
+
+/area/prison/monorail
+	icon_state = "purple"
+
+/area/prison/monorail/east
+	name = "\improper Monorail Station East"
+
+/area/prison/monorail/west
+	name = "\improper Monorail Station West"
 
 /area/prison/hanger/main
 	name = "\improper Main Hanger"
