@@ -3,9 +3,9 @@
 /mob/living/simple_animal/shyguy
 	name = "???"
 	desc = "No, no, you know not to look closely at it" //for non-humans
-	icon_state = "shyguy"
-	icon_living = "shyguy"
-	icon_dead = "shyguy"
+	icon_state = "shyguy_dam0"
+	icon_living = "shyguy_dam0"
+	icon_dead = "shyguy_dam0"
 	emote_hear = list("makes a faint groaning sound")
 	emote_see = list("shuffles around aimlessly", "shivers")
 	response_help  = "touches the"
@@ -13,6 +13,11 @@
 	response_harm   = "hits the"
 	see_in_dark = 8 //Needs to see in darkness to snap in darkness
 	flags_pass = PASSTABLE
+	layer = BELOW_MOB_LAYER
+
+	health = 300
+	maxHealth = 300
+
 	var/murder_sound = list('sound/voice/scream_horror2.ogg')
 	var/scare_sound = list('sound/scp/scare1.ogg','sound/scp/scare2.ogg','sound/scp/scare3.ogg','sound/scp/scare4.ogg')	//Boo
 	var/hibernate = 0 //Disables SCP until toggled back to 0
@@ -23,12 +28,21 @@
 	var/target //current dude this guy is targeting
 	var/screaming = 0 //are we currently screaming?
 	var/will_scream = 1 //will we scream when examined?
+	var/staggered = 0
+	var/murdering = 0 //are we in the middle of murdering a dude
+
+	var/chasing_message_played = 0 //preferably, these only play once to each target
+	var/doom_message_played = 0
+
+	var/damage_state = 0
 
 /mob/living/simple_animal/shyguy/Life()
 	if(hibernate)
 		return
 
 	check_los()
+	staggered = max(staggered-1, 0)
+	update_damage(3)
 
 	if(screaming) //we're still screaming
 		return
@@ -40,15 +54,24 @@
 			H = shitlist[1]
 			if(!H || H.stat == DEAD)
 				shitlist -= H
+				chasing_message_played = 0
+				doom_message_played = 0
+				murdering = 0
 			else
 				target = H
 				continue
 	else
 		will_scream = 1
+		chasing_message_played = 0
+		doom_message_played = 0
+		murdering = 0
 
-	if(target && shitlist.len) //check for shitlist length because target was somehow not resetting to null
+	if(target)
 		handle_target(target)
 	else
+		chasing_message_played = 0
+		doom_message_played = 0
+		murdering = 0
 		will_scream = 1
 		handle_idle()
 
@@ -67,31 +90,73 @@
 			continue
 		if(H.stat || H.blinded)
 			continue
-		if(H.examine_urge >= 10)
-			H << "Unable to resist the urge, you look closely..."
-			examine(H)
-			continue
-		switch(H.examine_urge)
-			if(3)
-				H << "You feel the urge to examine it..."
-			if(8)
-				H << "It is becoming difficult to resist the urge to examine it ..."
-		H.examine_urge++
-		H.reduce_examine_urge()
+
+		var/observed = 0
+		var/eye_contact = 0
+
+		var/x_diff = H.x - src.x
+		var/y_diff = H.y - src.y
+		if(y_diff != 0) //If we are not on the same vertical plane (up/down), mob is either above or below src
+			if(y_diff < 0 && H.dir == NORTH) //Mob is below src and looking up
+				observed = 1
+				if(dir == SOUTH) //src is looking down
+					eye_contact = 1
+			else if(y_diff > 0 && H.dir == SOUTH) //Mob is above src and looking down
+				observed = 1
+				if(dir == NORTH) //src is looking up
+					eye_contact = 1
+		if(x_diff != 0) //If we are not on the same horizontal plane (left/right), mob is either left or right of src
+			if(x_diff < 0 && H.dir == EAST) //Mob is left of src and looking right
+				observed = 1
+				if(dir == WEST) //src is looking left
+					eye_contact = 1
+			else if(x_diff > 0 && H.dir == WEST) //Mob is right of src and looking left
+				observed = 1
+				if(dir == EAST) //src is looking right
+					eye_contact = 1
+
+		if(observed)
+			add_examine_urge(H)
+		if(eye_contact)
+			H << "<span class='alert'>You are facing it, and it is facing you...</span>"
+			add_examine_urge(H)
 
 	return
 
+/mob/living/simple_animal/shyguy/proc/add_examine_urge(var/mob/living/carbon/human/H)
+
+	switch(H.examine_urge)
+		if(1)
+			H << "<span class='alert'>You feel the urge to examine it...</span>"
+		if(3)
+			H << "<span class='alert'>It is becoming difficult to resist the urge to examine it ...</span>"
+		if(5)
+			H << "<span class='alert'>Unable to resist the urge, you look closely...</span>"
+
+	if(H.examine_urge >= 5)
+		examine(H)
+
+	H.examine_urge++
+	H.reduce_examine_urge()
+
 /mob/living/carbon/human/proc/reduce_examine_urge()
 	spawn(600)
-		if(src) examine_urge--
+		if(src) examine_urge = max(examine_urge-1, 0)
 
 
 /mob/living/simple_animal/shyguy/examine(var/userguy)
 	if (istype(userguy, /mob/living/carbon/human))
-		userguy << "<span class='alert'>What the hell is that thing?</span>"
+		userguy << "<span class='danger'>What the hell is that thing?</span>"
 		if (!(userguy in shitlist))
 			shitlist += userguy
+			spawn(20)
+				if(userguy)
+					userguy << "<span class='alert'>That was a mistake. Run</span>"
+			spawn(30)
+				if(userguy)
+					userguy << "<span class='danger'>RUN</span>"
 		if(will_scream)
+			if(!buckled) dir = 2
 			visible_message("<span class='danger'>[src] SCREAMS!</span>")
 			playsound(get_turf(src), 'sound/voice/scream_horror1.ogg', 50, 1)
 			screaming = 1
@@ -117,13 +182,18 @@
 		target = null
 		return
 
+	if(buckled)
+		visible_message("<span class='danger'>[src] breaks out of its restraints!</span>")
+		buckled.unbuckle()
+
 	var/turf/target_turf
-	var/doom_message_played = 0
 
 	//Send the warning that we are is homing in
 	target_turf = get_turf(target)
 
-	target << "<span class='alert'>You saw its face</span>"
+	if(!chasing_message_played)
+		target << "<span class='danger'>You saw its face</span>"
+		chasing_message_played = 1
 
 	if(!scare_played) //Let's minimize the spam
 		playsound(get_turf(src), pick(scare_sound), 50, 1)
@@ -133,52 +203,54 @@
 
 	if(target_turf.z != z) //if z-level is different, teleport
 		loc = target_turf
-		target << "<span class='alert'>DID YOU THINK YOU COULD RUN?</span>"
+		if(!doom_message_played)
+			target << "<span class='danger'>DID YOU THINK YOU COULD HIDE?</span>"
 		doom_message_played = 1
+		check_murder()
 
 	//Rampage along a path to get to them, in the blink of an eye
 	var/turf/next_turf = get_step_towards(src, target)
-	var/num_turfs = get_dist(src,target)
-	var/doom_message_distance = min(6, round(num_turfs/2))
+	var/limit = 100
 	spawn()
-		while(get_turf(src) != get_turf(target) && num_turfs > -10)
+		while(get_turf(src) != get_turf(target) && limit > 0)
 			//if(!check_los()) //Something is looking at us now
 			//	break
 			//if(!next_turf.CanPass(src, next_turf)) //We can't pass through our planned path
 			//	break
-			for(var/obj/structure/window/W in next_turf)
-				W.health -= 1000
-				W.healthcheck(1, 1, 1, src)
-				sleep(1)
-			for(var/obj/structure/table/O in next_turf)
-				O.ex_act(1)
-				sleep(1)
-			for(var/obj/structure/closet/C in next_turf)
-				C.ex_act(1)
-				sleep(1)
-			for(var/obj/structure/grille/G in next_turf)
-				G.ex_act(1)
-				sleep(1)
-			for(var/obj/machinery/door/airlock/A in next_turf)
-				//if(A.welded || A.locked) //Snowflakey code to take in account bolts and welding
-				//	break
-				A.open()
-				sleep(1)
-			for(var/obj/machinery/door/D in next_turf)
-				D.open()
-				sleep(1)
-			//if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
-			//	break
+			if(staggered <= 0 && murdering <= 0)
+				for(var/obj/structure/window/W in next_turf)
+					W.health -= 1000
+					W.healthcheck(1, 1, 1, src)
+					sleep(2)
+				for(var/obj/structure/table/O in next_turf)
+					O.ex_act(1)
+					sleep(2)
+				for(var/obj/structure/closet/C in next_turf)
+					C.ex_act(1)
+					sleep(2)
+				for(var/obj/structure/grille/G in next_turf)
+					G.ex_act(1)
+					sleep(2)
+				for(var/obj/machinery/door/airlock/A in next_turf)
+					//if(A.welded || A.locked) //Snowflakey code to take in account bolts and welding
+					//	break
+					A.open()
+					sleep(2)
+				for(var/obj/machinery/door/D in next_turf)
+					D.open()
+					sleep(2)
+				if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
+					sleep(5)
 
-			if(num_turfs == doom_message_distance && doom_message_played == 0)
-				target << "<span class='alert'>YOU SAW ITS FACE</span>"
-				doom_message_played = 1
+				if(doom_message_played == 0 && get_dist(src,target) < 7)
+					target << "<span class='danger'>YOU SAW ITS FACE</span>"
+					doom_message_played = 1
 
-			forceMove(next_turf)
-			dir = get_dir(src, target)
-			next_turf = get_step(src, get_dir(next_turf,target))
-			num_turfs--
-			sleep(1)
+				forceMove(next_turf)
+				dir = get_dir(src, target)
+				next_turf = get_step(src, get_dir(next_turf,target))
+			limit--
+			sleep(3)
 
 //This performs an immediate murder check, meant to avoid people cheesing us by just running faster than Life() refresh
 /mob/living/simple_animal/shyguy/proc/check_murder()
@@ -194,23 +266,40 @@
 	..()
 	check_murder()
 
-/mob/living/simple_animal/shyguy/proc/murder(var/mob/living/target)
+/mob/living/simple_animal/shyguy/proc/murder(var/mob/living/T)
 
-	if(target && ishuman(target))
-		target.emote("scream")
-		playsound(target.loc, pick(murder_sound), 50, 1)
+	if(T && ishuman(T))
+		visible_message("<span class='danger'>[src] grabs [T]!</span>")
+		dir = 2
+		T.KnockDown(10)
+		T.anchored = 1
+		var/original_y = T.pixel_y
+		T.pixel_y = 10
+		murdering = 1
+
+		sleep(20)
+
+		T.anchored = 0
+		T.pixel_y = original_y
+		T.emote("scream")
+		playsound(T.loc, pick(murder_sound), 50, 1)
+		murdering = 0
 
 		//Warn everyone
-		visible_message("<span class='danger'>[src] tears [target] apart!</span>")
+		visible_message("<span class='danger'>[src] tears [T] apart!</span>")
 
-		target.gib()
+		T.gib()
 
 		//Logging stuff
-		target.attack_log += text("\[[time_stamp()]\] <font color='red'>has been torn apart by [src]!</font>")
-		log_admin("[target] ([target.ckey]) has been torn apart by an active [src].")
-		message_admins("ALERT: <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>[target.real_name]</a> has had his neck snapped by an active [src].")
-		shitlist -= target
-		target = null
+		T.attack_log += text("\[[time_stamp()]\] <font color='red'>has been torn apart by [src]!</font>")
+		log_admin("[T] ([T.ckey]) has been torn apart by an active [src].")
+		message_admins("ALERT: <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[T.real_name]</a> has been torn apart by an active [src].")
+		shitlist -= T
+
+		if (target == T)
+			target = null
+			chasing_message_played = 0
+			doom_message_played = 0
 
 /mob/living/simple_animal/shyguy/proc/handle_idle()
 
@@ -258,6 +347,7 @@
 						emote(pick(emote_hear),2)
 
 	//Do we have a vent ? Good, let's take a look
+	if(buckled) return
 	for(entry_vent in view(1, src))
 		if(prob(90)) //10 % chance to consider a vent, to try and avoid constant vent switching
 			return
@@ -288,6 +378,36 @@
 					visible_message("<span class='danger'>\The [src] suddenly appears from the vent!</span>")
 		else
 			entry_vent = null
+
+/mob/living/simple_animal/shyguy/bullet_act(var/obj/item/projectile/Proj)
+	if(!Proj || Proj.damage <= 0)
+		return 0
+
+	staggered++
+	visible_message("<span class='danger'>[src] is staggered by [Proj]!</span>")
+	update_damage(-Proj.damage)
+	spawn(round(Proj.damage/5))
+		staggered = max(staggered-1, 0)
+	return 1
+
+/mob/living/simple_animal/shyguy/proc/update_damage(var/change)
+
+	if (change > 0) //regeneration
+		health = min(maxHealth, health+change)
+	else if (change < 0) //damage
+		health = max(0, health+change)
+
+	var/old_damage_state = damage_state
+
+	damage_state = round( (1-health/maxHealth) * 3.99 )
+
+	icon_state = "shyguy_dam[damage_state]"
+
+	if(old_damage_state < damage_state)
+		visible_message("<span class='danger'>Chunks of flesh and bone are torn out of [src]!</span>")
+	else if(old_damage_state > damage_state)
+		visible_message("<span class='danger'>[src] regenerates some of its missing pieces!</span>")
+
 
 
 /mob/living/simple_animal/shyguy/Bump(atom/movable/AM as mob)
