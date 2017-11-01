@@ -888,10 +888,10 @@
 				else
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer(H), WEAR_J_STORE)
 					if(istype(H.back, /obj/item/storage/backpack/marine))
-						H.equip_to_slot_or_del(new /obj/item/tank/phoron/m240(H.back), WEAR_IN_BACK)
-						H.equip_to_slot_or_del(new /obj/item/tank/phoron/m240(H.back), WEAR_IN_BACK)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(H.back), WEAR_IN_BACK)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(H.back), WEAR_IN_BACK)
 					else
-						H.equip_to_slot_or_del(new /obj/item/tank/phoron/m240(H), WEAR_R_HAND)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank(H), WEAR_R_HAND)
 					if(W)
 						new /obj/item/explosive/grenade/phosphorus(W.hold)
 						new /obj/item/explosive/grenade/phosphorus(W.hold)
@@ -1273,7 +1273,7 @@
 
 	supply_manifest=list(
 		/obj/item/weapon/gun/flamer = 2,
-		/obj/item/tank/phoron/m240 = 6
+		/obj/item/ammo_magazine/flamer_tank = 6
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"\improper M240 Incinerator crate", "A crate containing a functional flamethrower with spare fuel tanks.")
 
