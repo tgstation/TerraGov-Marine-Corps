@@ -245,7 +245,7 @@
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/explosive/grenade",
-		"/obj/item/device/mine",
+		"/obj/item/explosive/mine",
 		"/obj/item/reagent_container/food/snacks"
 		)
 

@@ -773,7 +773,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/weapon/gun/rifle/lmg = 0,
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 5),
 						/obj/item/weapon/gun/shotgun/combat = 0,
-						/obj/item/device/mine = round(scale * 1),
+						/obj/item/explosive/mine = round(scale * 1),
 						/obj/item/storage/box/nade_box = round(scale * 1),
 						/obj/item/explosive/grenade/frag = round(scale * 1),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 1),

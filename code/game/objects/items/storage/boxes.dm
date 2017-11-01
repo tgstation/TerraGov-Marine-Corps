@@ -544,14 +544,14 @@
 	w_class = 3
 	max_storage_space = 8
 	can_hold = list(
-		"/obj/item/device/mine"
+		"/obj/item/explosive/mine"
 		)
 
 	New()
 		..()
 		contents = list()
 		sleep(1)
-		var/I = type == /obj/item/storage/box/explosive_mines/pmc ? /obj/item/device/mine/pmc : /obj/item/device/mine
+		var/I = type == /obj/item/storage/box/explosive_mines/pmc ? /obj/item/explosive/mine/pmc : /obj/item/explosive/mine
 		var/i = 0
 		while(++i < 5)
 			new I(src)

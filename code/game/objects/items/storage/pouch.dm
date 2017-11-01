@@ -250,7 +250,7 @@
 	storage_slots = 3
 	can_hold = list(
 					"/obj/item/explosive/plastique",
-					"/obj/item/device/mine",
+					"/obj/item/explosive/mine",
 					"/obj/item/explosive/grenade"
 					)
 

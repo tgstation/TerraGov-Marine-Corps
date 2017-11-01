@@ -41,7 +41,7 @@
 
 /turf/simulated/wall/New()
 	..()
-	for(var/obj/item/device/mine/M in src)
+	for(var/obj/item/explosive/mine/M in src)
 		if(M)
 			visible_message("<span class='warning'>\The [M] is sealed inside the wall as it is built</span>")
 			cdel(M)
