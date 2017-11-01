@@ -395,9 +395,9 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				reset_announce()
 				user << "\red You are not authorized to send announcements."
 			updateUsrDialog()
-	if (istype(O, /obj/item/stamp))
+	if (istype(O, /obj/item/tool/stamp))
 		if(screen == 9)
-			var/obj/item/stamp/T = O
+			var/obj/item/tool/stamp/T = O
 			msgStamped = text("<font color='blue'><b>Stamped with the [T.name]</b></font>")
 			updateUsrDialog()
 	return

@@ -1502,7 +1502,7 @@
 						stampoverlay.icon_state = "paper_stamp-uscm"
 						if(!P.stamped)
 							P.stamped = new
-						P.stamped += /obj/item/stamp
+						P.stamped += /obj/item/tool/stamp
 						P.overlays += stampoverlay
 						P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
 
@@ -1544,7 +1544,7 @@
 						stampoverlay.icon_state = "paper_stamp-cent"
 						if(!P.stamped)
 							P.stamped = new
-						P.stamped += /obj/item/stamp
+						P.stamped += /obj/item/tool/stamp
 						P.overlays += stampoverlay
 						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Weyland Yutani Quantum Relay (tm).</i>"
 

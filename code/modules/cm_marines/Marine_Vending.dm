@@ -139,7 +139,7 @@
 					/obj/item/weapon/gun/rifle/lmg = 0,
 					/obj/item/weapon/gun/shotgun/pump = 5,
 					/obj/item/weapon/gun/shotgun/combat = 0,
-					/obj/item/device/mine = 1,
+					/obj/item/explosive/mine = 1,
 					/obj/item/storage/box/nade_box = 4,
 					/obj/item/explosive/grenade/frag = 1,
 					/obj/item/explosive/grenade/frag/m15 = 1,

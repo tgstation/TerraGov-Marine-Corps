@@ -393,7 +393,7 @@
 		//openhelp(user)
 		return
 
-	else if(istype(P, /obj/item/stamp))
+	else if(istype(P, /obj/item/tool/stamp))
 		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
 			return
 
@@ -401,7 +401,7 @@
 
 		var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 		var/{x; y;}
-		if(istype(P, /obj/item/stamp/captain) || istype(P, /obj/item/stamp/centcomm))
+		if(istype(P, /obj/item/tool/stamp/captain) || istype(P, /obj/item/tool/stamp/centcomm))
 			x = rand(-2, 0)
 			y = rand(-1, 2)
 		else
@@ -412,7 +412,7 @@
 		stampoverlay.pixel_x = x
 		stampoverlay.pixel_y = y
 
-		if(istype(P, /obj/item/stamp/clown))
+		if(istype(P, /obj/item/tool/stamp/clown))
 			if(!clown)
 				user << "<span class='notice'>You are totally unable to use the stamp. HONK!</span>"
 				return

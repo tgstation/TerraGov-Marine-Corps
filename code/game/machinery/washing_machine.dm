@@ -58,8 +58,8 @@
 		if(istype(crayon,/obj/item/toy/crayon))
 			var/obj/item/toy/crayon/CR = crayon
 			wash_color = CR.colourName
-		else if(istype(crayon,/obj/item/stamp))
-			var/obj/item/stamp/ST = crayon
+		else if(istype(crayon,/obj/item/tool/stamp))
+			var/obj/item/tool/stamp/ST = crayon
 			wash_color = ST.item_color
 
 		if(wash_color)
@@ -197,7 +197,7 @@
 	/*if(istype(W,/obj/item/tool/screwdriver))
 		panel = !panel
 		user << "\blue you [panel ? "open" : "close"] the [src]'s maintenance panel"*/
-	if(istype(W,/obj/item/toy/crayon) ||istype(W,/obj/item/stamp))
+	if(istype(W,/obj/item/toy/crayon) ||istype(W,/obj/item/tool/stamp))
 		if( state in list(	1, 3, 6 ) )
 			if(!crayon)
 				if(user.drop_inv_item_to_loc(crayon, src))
