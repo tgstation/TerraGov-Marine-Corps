@@ -59,7 +59,7 @@
 		fresh.fields["label"] = old.fields["label"]
 	files[fresh.uid] = fresh
 
-/obj/machinery/computer/forensic_scanning/proc/process_card(var/obj/item/weapon/f_card/card)
+/obj/machinery/computer/forensic_scanning/proc/process_card(var/obj/item/f_card/card)
 	if(card.fingerprints)
 		usr << "<span class='notice'>\The [src] sucks in \the [card] and whirrs, scanning it.</span>"
 		var/found = 0
@@ -247,7 +247,7 @@
 				var/mob/M = usr
 				var/obj/item/I = M.get_active_hand()
 				if(I && istype(I))
-					if(istype(I, /obj/item/weapon/evidencebag))
+					if(istype(I, /obj/item/evidencebag))
 						scanning = I.contents[1]
 						scanning.loc = src
 						I.overlays.Cut()
@@ -267,7 +267,7 @@
 		if("card")
 			var/mob/M = usr
 			var/obj/item/I = M.get_active_hand()
-			if(istype(I, /obj/item/weapon/f_card))
+			if(istype(I, /obj/item/f_card))
 				if(process_card(I))
 					M.drop_held_item()
 					cdel(I)
@@ -275,13 +275,13 @@
 				usr << "<spawn class='warning'>Invalid fingerprint card, rejected.</span>"
 		if("print")
 			if(current)
-				var/obj/item/weapon/paper/P = new(loc)
+				var/obj/item/paper/P = new(loc)
 				P.name = "\improper Forensics Data ([current.fields["name"]])"
 				P.icon_state = "paper_words"
 				P.info = "<b>Forensics Database</b> - [worldtime2text(world.time)]<br><br>"
 				P.info += get_printable_data(current)
 		if("printall")
-			var/obj/item/weapon/paper/P = new(loc)
+			var/obj/item/paper/P = new(loc)
 			P.name = "\improper Forensics Data"
 			P.icon_state = "paper_words"
 			P.info = "<b>Forensics Database</b> - [worldtime2text(world.time)]<br><br>"

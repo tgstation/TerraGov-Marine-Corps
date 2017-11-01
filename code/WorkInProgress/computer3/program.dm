@@ -200,9 +200,9 @@ Programs are a file that can be executed
 				dat += "<i>No files</i><br>"
 			dat += "<br>"
 
-	if(computer.cardslot && istype(computer.cardslot.reader,/obj/item/weapon/card/data))
+	if(computer.cardslot && istype(computer.cardslot.reader,/obj/item/card/data))
 		dat += "<h3>[computer.cardslot.reader] - [topic_link(src,"eject_card=reader","Eject")]</h3>"
-		var/obj/item/weapon/card/data/D = computer.cardslot.reader
+		var/obj/item/card/data/D = computer.cardslot.reader
 		for(var/datum/file/F in D.files)
 			dat += topic_link(src,"[linkop]=\ref[F]",F.name) + "<br>"
 		if(D.files.len == 0)

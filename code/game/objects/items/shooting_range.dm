@@ -33,8 +33,8 @@
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if (istype(W, /obj/item/tool/weldingtool))
+			var/obj/item/tool/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				overlays.Cut()
 				usr << "You slice off [src]'s uneven chunks of aluminum and scorch marks."

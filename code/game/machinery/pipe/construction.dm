@@ -57,7 +57,7 @@ Buildable meters
 	var/pipename
 	var/connect_types[] = list(1) //1=regular, 2=supply, 3=scrubber
 	force = 7
-	icon = 'icons/obj/pipe-item.dmi'
+	icon = 'icons/obj/items/pipe_item.dmi'
 	icon_state = "simple"
 	item_state = "buildpipe"
 	flags_atom = FPRINT|CONDUCT
@@ -420,10 +420,10 @@ Buildable meters
 /obj/item/pipe/attack_self(mob/user as mob)
 	return rotate()
 
-/obj/item/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/item/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()
 	//*
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	if (!isturf(src.loc))
 		return 1
@@ -1132,16 +1132,16 @@ Buildable meters
 /obj/item/pipe_meter
 	name = "meter"
 	desc = "A meter that can be laid on pipes"
-	icon = 'icons/obj/pipe-item.dmi'
+	icon = 'icons/obj/items/pipe_item.dmi'
 	icon_state = "meter"
 	item_state = "buildpipe"
 	flags_atom = FPRINT|CONDUCT
 	w_class = 4
 
-/obj/item/pipe_meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
 		user << "\red You need to fasten it to a pipe"

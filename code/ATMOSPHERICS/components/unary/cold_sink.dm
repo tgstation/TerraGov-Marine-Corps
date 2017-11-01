@@ -31,11 +31,11 @@
 	initialize_directions = dir
 
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/unary_atmos/cooler(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/circuitboard/machine/unary_atmos/cooler(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
 
 	active_power_usage = max_power_usage * (power_setting/100)
 
@@ -160,14 +160,14 @@
 	var/bin_rating = 0
 	var/bin_count = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating
 			cap_count++
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/stock_parts/manipulator))
 			manip_rating += P.rating
 			manip_count++
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+		if(istype(P, /obj/item/stock_parts/matter_bin))
 			bin_rating += P.rating
 			bin_count++
 	cap_rating /= cap_count
@@ -190,12 +190,12 @@
 
 //dismantling code. copied from autolathe
 /obj/machinery/atmospherics/unary/freezer/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/tool/screwdriver))
 		opened = !opened
 		user << "You [opened ? "open" : "close"] the maintenance hatch of [src]."
 		return
 
-	if (opened && istype(O, /obj/item/weapon/crowbar))
+	if (opened && istype(O, /obj/item/tool/crowbar))
 		dismantle()
 		return
 

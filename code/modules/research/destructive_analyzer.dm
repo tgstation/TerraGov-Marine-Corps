@@ -10,7 +10,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer
 	name = "Destructive Analyzer"
 	icon_state = "d_analyzer"
-	var/obj/item/weapon/loaded_item = null
+	var/obj/item/loaded_item = null
 	var/decon_mod = 1
 
 	use_power = 1
@@ -20,15 +20,15 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/destructive_analyzer(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	component_parts += new /obj/item/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/micro_laser(src)
 	RefreshParts()
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/stock_parts/S in src)
+	for(var/obj/item/stock_parts/S in src)
 		T += S.rating * 0.1
 	T = between (0, T, 1)
 	decon_mod = T
@@ -43,7 +43,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/O as obj, var/mob/user as mob)
 	if (shocked)
 		shock(user,50)
-	if (istype(O, /obj/item/weapon/screwdriver))
+	if (istype(O, /obj/item/tool/screwdriver))
 		if (!opened)
 			opened = 1
 			if(linked_console)
@@ -57,7 +57,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			user << "You close the maintenance hatch of [src]."
 		return
 	if (opened)
-		if(istype(O, /obj/item/weapon/crowbar))
+		if(istype(O, /obj/item/tool/crowbar))
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
@@ -102,10 +102,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 	return
 
 //For testing purposes only.
-/*/obj/item/weapon/deconstruction_test
+/*/obj/item/deconstruction_test
 	name = "Test Item"
 	desc = "WTF?"
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "d20"
 	g_amt = 5000
 	m_amt = 5000

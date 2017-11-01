@@ -1,7 +1,7 @@
 //Seed packet object/procs.
 /obj/item/seeds
 	name = "packet of seeds"
-	icon = 'icons/obj/seeds.dmi'
+	icon = 'icons/obj/items/seeds.dmi'
 	icon_state = "seed"
 	flags_atom = NOFLAGS
 	w_class = 1

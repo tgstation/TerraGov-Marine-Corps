@@ -9,11 +9,11 @@
 	active_power_usage = 15000
 	bound_height = 32
 	bound_width = 32
-	var/obj/item/weapon/fuelCell/cell_left = null
-	var/obj/item/weapon/fuelCell/cell_right = null
+	var/obj/item/fuelCell/cell_left = null
+	var/obj/item/fuelCell/cell_right = null
 
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/fuelCell))
+	if(istype(I, /obj/item/fuelCell))
 		if(!cell_left)
 			if(user.drop_inv_item_to_loc(I, src))
 				cell_left = I

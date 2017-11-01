@@ -112,7 +112,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 				//Success multiplers!
 				var/multipler = 1 //1 = 100%
-				if(locate(/obj/structure/stool/bed/roller, M.loc))
+				if(locate(/obj/structure/bed/roller, M.loc))
 					multipler -= 0.10
 				else if(locate(/obj/structure/table/, M.loc))
 					multipler -= 0.20

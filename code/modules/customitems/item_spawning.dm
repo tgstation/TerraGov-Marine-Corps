@@ -30,15 +30,15 @@
 				if(!path) continue
 
 				var/obj/item/Item = new path()
-				if(istype(Item,/obj/item/weapon/card/id))
+				if(istype(Item,/obj/item/card/id))
 					//id card needs to replace the original ID
 					if(M.ckey == "nerezza" && M.real_name == "Asher Spock" && M.mind.role_alt_title && M.mind.role_alt_title != "Emergency Physician")
 						//only spawn ID if asher is joining as an emergency physician
 						ok = 1
 						cdel(Item)
 						goto skip
-					var/obj/item/weapon/card/id/I = Item
-					for(var/obj/item/weapon/card/id/C in M)
+					var/obj/item/card/id/I = Item
+					for(var/obj/item/card/id/C in M)
 						//default settings
 						I.name = "[M.real_name]'s ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
 						I.registered_name = M.real_name
@@ -62,14 +62,14 @@
 						cdel(C)
 						ok = M.equip_if_possible(I, WEAR_ID, 0)	//if 1, last argument deletes on fail
 						break
-				else if(istype(Item,/obj/item/weapon/storage/belt))
+				else if(istype(Item,/obj/item/storage/belt))
 					if(M.ckey == "jakksergal" && M.real_name == "Nashi Ra'hal" && M.mind.role_alt_title && M.mind.role_alt_title != "Nurse" && M.mind.role_alt_title != "Chemist")
 						ok = 1
 						cdel(Item)
 						goto skip
-					var/obj/item/weapon/storage/belt/medical/fluff/nashi_belt/I = Item
-					if(istype(M.belt,/obj/item/weapon/storage/belt))
-						for(var/obj/item/weapon/storage/belt/B in M)
+					var/obj/item/storage/belt/medical/fluff/nashi_belt/I = Item
+					if(istype(M.belt,/obj/item/storage/belt))
+						for(var/obj/item/storage/belt/B in M)
 							cdel(B)
 							M.belt=null
 						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
@@ -80,7 +80,7 @@
 							M.equip_if_possible(Pda, WEAR_L_STORE, 0)
 						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
 				else
-					for(var/obj/item/weapon/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
+					for(var/obj/item/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
 						if (S.can_be_inserted(Item)) // Try to place it in something on the mob's back
 							Item.loc = S
 							ok = 1

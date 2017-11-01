@@ -5,17 +5,17 @@
 	desc = "You can use this to change ID's."
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
-	circuit = "/obj/item/weapon/circuitboard/card"
-	var/obj/item/weapon/card/id/scan = null
-	var/obj/item/weapon/card/id/modify = null
+	circuit = "/obj/item/circuitboard/computer/card"
+	var/obj/item/card/id/scan = null
+	var/obj/item/card/id/modify = null
 	var/authenticated = 0.0
 	var/mode = 0.0
 	var/printing = null
 
 
 /obj/machinery/computer/marine_card/attackby(O as obj, user as mob)//TODO:SANITY
-	if(istype(O, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/idcard = O
+	if(istype(O, /obj/item/card/id))
+		var/obj/item/card/id/idcard = O
 		if(ACCESS_MARINE_LOGISTICS in idcard.access)
 			if(!scan)
 				usr.drop_held_item()
@@ -239,7 +239,7 @@
 					modify = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
 					modify = I
@@ -256,7 +256,7 @@
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
 					scan = I
@@ -334,7 +334,7 @@
 			if (!( printing ))
 				printing = 1
 				sleep(50)
-				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( loc )
+				var/obj/item/paper/P = new /obj/item/paper( loc )
 				/*var/t1 = "<B>Crew Manifest:</B><BR>"
 				var/list/L = list()
 				for (var/datum/data/record/t in data_core.general)
@@ -367,13 +367,13 @@
 	desc = "You can use this to change someone's squad."
 	icon_state = "guest"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
-	var/obj/item/weapon/card/id/modify = null
+	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 
 /obj/machinery/computer/squad_changer/attackby(O as obj, user as mob)//TODO:SANITY
 	if(user) add_fingerprint(user)
-	if(istype(O, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/idcard = O
+	if(istype(O, /obj/item/card/id))
+		var/obj/item/card/id/idcard = O
 		if(!modify)
 			usr.drop_held_item()
 			idcard.loc = src
@@ -443,7 +443,7 @@
 				modify = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
 					modify = I
@@ -491,7 +491,7 @@
 	use_power = 1
 	idle_power_usage = 250
 	active_power_usage = 500
-//	circuit = "/obj/item/weapon/circuitboard/crew"
+//	circuit = "/obj/item/circuitboard/computer/crew"
 	var/list/tracked = list(  )
 
 
@@ -570,8 +570,8 @@
 
 				crewmemberData["name"] = "Unknown"
 				crewmemberData["rank"] = "Unknown"
-				if(H.wear_id && istype(H.wear_id, /obj/item/weapon/card/id) )
-					var/obj/item/weapon/card/id/I = H.wear_id
+				if(H.wear_id && istype(H.wear_id, /obj/item/card/id) )
+					var/obj/item/card/id/I = H.wear_id
 					crewmemberData["name"] = I.name
 					crewmemberData["rank"] = I.rank
 				else if(H.wear_id && istype(H.wear_id, /obj/item/device/pda) )

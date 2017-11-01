@@ -2,7 +2,7 @@
 */
 /obj/machinery/smartfridge
 	name = "\improper SmartFridge"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
 	density = 1
@@ -30,7 +30,7 @@
 
 
 /obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+	if(istype(O,/obj/item/reagent_container/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 
@@ -59,13 +59,13 @@
 ********************/
 
 /obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (istype(O, /obj/item/weapon/card/emag))
+	if (istype(O, /obj/item/card/emag))
 		if(is_secure_fridge && !emagged)
 			emagged = 1
 			locked = -1
 			user << "You short out the product lock on [src]."
 		return
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/tool/screwdriver))
 		panel_open = !panel_open
 		user << "You [panel_open ? "open" : "close"] the maintenance panel."
 		overlays.Cut()
@@ -74,7 +74,7 @@
 		nanomanager.update_uis(src)
 		return
 
-	if(istype(O, /obj/item/device/multitool)||istype(O, /obj/item/weapon/wirecutters))
+	if(istype(O, /obj/item/device/multitool)||istype(O, /obj/item/tool/wirecutters))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -91,8 +91,8 @@
 			if(user.drop_held_item())
 				O.forceMove(src)
 				var/display_name = O.name
-				if(istype(O, /obj/item/weapon/storage/pill_bottle)) //pill bottles all have the same name,
-					var/obj/item/weapon/storage/pill_bottle/PB = O	//we add the label so they are unique.
+				if(istype(O, /obj/item/storage/pill_bottle)) //pill bottles all have the same name,
+					var/obj/item/storage/pill_bottle/PB = O	//we add the label so they are unique.
 					if(PB.pillbottle_label)
 						display_name += " ([PB.pillbottle_label])"
 				if(item_quants[display_name])
@@ -104,8 +104,8 @@
 
 			nanomanager.update_uis(src)
 
-	else if(istype(O, /obj/item/weapon/storage/bag/plants))
-		var/obj/item/weapon/storage/bag/plants/P = O
+	else if(istype(O, /obj/item/storage/bag/plants))
+		var/obj/item/storage/bag/plants/P = O
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
 			if(accept_check(G))
@@ -236,8 +236,8 @@
 			var/i = amount
 			for(var/obj/O in contents)
 				//this is hacky, I'm sorry
-				if(istype(O, /obj/item/weapon/storage/pill_bottle))
-					var/obj/item/weapon/storage/pill_bottle/PB = O
+				if(istype(O, /obj/item/storage/pill_bottle))
+					var/obj/item/storage/pill_bottle/PB = O
 					var/disp_name = O.name + " ([PB.pillbottle_label])"
 					if(disp_name == K)
 						O.loc = loc
@@ -254,7 +254,7 @@
 
 	if (panel_open)
 		if (href_list["cutwire"])
-			if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
+			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
 				user << "You need wirecutters!"
 				return 1
 
@@ -361,7 +361,7 @@
 /obj/machinery/smartfridge/seeds
 	name = "\improper MegaSeed Servitor"
 	desc = "When you need seeds fast!"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "seeds"
 	icon_on = "seeds"
 	icon_off = "seeds-off"
@@ -381,11 +381,11 @@
 	req_one_access_txt = "5;33"
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/))
+	if(istype(O,/obj/item/reagent_container/glass/))
 		return 1
-	if(istype(O,/obj/item/weapon/storage/pill_bottle/))
+	if(istype(O,/obj/item/storage/pill_bottle/))
 		return 1
-	if(istype(O,/obj/item/weapon/reagent_containers/pill/))
+	if(istype(O,/obj/item/reagent_container/pill/))
 		return 1
 	return 0
 
@@ -400,7 +400,7 @@
 	icon_off = "smartfridge_virology-off"
 
 /obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
+	if(istype(O,/obj/item/reagent_container/glass/beaker/vial/))
 		return 1
 	return 0
 
@@ -412,7 +412,7 @@
 	req_one_access_txt = "5;20"
 
 /obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_container))
 		return 1
 	return 0
 
@@ -427,5 +427,5 @@
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
+	if(istype(O,/obj/item/reagent_container/glass) || istype(O,/obj/item/reagent_container/food/drinks) || istype(O,/obj/item/reagent_container/food/condiment))
 		return 1

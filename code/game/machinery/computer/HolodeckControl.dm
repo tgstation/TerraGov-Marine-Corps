@@ -109,8 +109,8 @@ var/global/list/holodeck_programs = list(
 		return
 
 
-/obj/machinery/computer/HolodeckControl/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
-	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
+/obj/machinery/computer/HolodeckControl/attackby(var/obj/item/D as obj, var/mob/user as mob)
+	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
 		user << "\blue You vastly increase projector power and override the safety and security protocols."
@@ -303,7 +303,7 @@ var/global/list/holodeck_programs = list(
 					var/turf/simulated/floor/FF = get_step(src,direction)
 					FF.update_icon() //so siding get updated properly
 
-/turf/simulated/floor/holofloor/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
@@ -319,7 +319,6 @@ var/global/list/holodeck_programs = list(
 /obj/structure/table/holotable
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
-	icon = 'icons/obj/structures.dmi'
 	icon_state = "table"
 	density = 1
 	anchored = 1.0
@@ -336,9 +335,9 @@ var/global/list/holodeck_programs = list(
 	return // HOLOTABLE DOES NOT GIVE A FUCK
 
 
-/obj/structure/table/holotable/attackby(obj/item/weapon/W, mob/user)
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<=1)
-		var/obj/item/weapon/grab/G = W
+/obj/structure/table/holotable/attackby(obj/item/W, mob/user)
+	if (istype(W, /obj/item/grab) && get_dist(src,user)<=1)
+		var/obj/item/grab/G = W
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
 			if(user.grab_level < GRAB_AGGRESSIVE)
@@ -349,7 +348,7 @@ var/global/list/holodeck_programs = list(
 			user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
 		return
 
-	if (istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/tool/wrench))
 		user << "It's a holotable!  There are no bolts!"
 		return
 
@@ -361,7 +360,6 @@ var/global/list/holodeck_programs = list(
 /obj/structure/table/holotable/wood
 	name = "table"
 	desc = "A square piece of wood standing on four wooden legs. It can not move."
-	icon = 'icons/obj/structures.dmi'
 	icon_state = "wood_table"
 
 /obj/structure/holostool
@@ -382,7 +380,7 @@ var/global/list/holodeck_programs = list(
 
 /obj/structure/holowindow
 	name = "reinforced window"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
 	density = 1
@@ -393,65 +391,10 @@ var/global/list/holodeck_programs = list(
 
 
 
-/obj/item/weapon/holo
-	damtype = HALLOSS
-
-/obj/item/weapon/holo/esword
-	desc = "May the force be within you. Sorta."
-	icon_state = "sword0"
-	force = 3.0
-	throw_speed = 1
-	throw_range = 5
-	throwforce = 0
-	w_class = 2.0
-	flags_atom = FPRINT|NOBLUDGEON|NOSHIELD
-	var/active = 0
-
-/obj/item/weapon/holo/esword/green
-	New()
-		item_color = "green"
-
-/obj/item/weapon/holo/esword/red
-	New()
-		item_color = "red"
-
-/obj/item/weapon/holo/esword/IsShield()
-	if(active)
-		return 1
-	return 0
-
-/obj/item/weapon/holo/esword/attack(target as mob, mob/user as mob)
-	..()
-
-/obj/item/weapon/holo/esword/New()
-	item_color = pick("red","blue","green","purple")
-
-/obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
-	active = !active
-	if (active)
-		force = 30
-		icon_state = "sword[item_color]"
-		w_class = 4
-		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		user << "\blue [src] is now active."
-	else
-		force = 3
-		icon_state = "sword0"
-		w_class = 2
-		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		user << "\blue [src] can now be concealed."
-
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand(0)
-		H.update_inv_r_hand()
-
-	add_fingerprint(user)
-	return
 
 //BASKETBALL OBJECTS
 
-/obj/item/weapon/beach_ball/holoball
+/obj/item/toy/beach_ball/holoball
 	icon = 'icons/obj/basketball.dmi'
 	icon_state = "basketball"
 	name = "basketball"
@@ -468,9 +411,9 @@ var/global/list/holodeck_programs = list(
 	density = 1
 	throwpass = 1
 
-/obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<=1)
-		var/obj/item/weapon/grab/G = W
+/obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/grab) && get_dist(src,user)<=1)
+		var/obj/item/grab/G = W
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
 			if(user.grab_level < GRAB_AGGRESSIVE)
@@ -527,7 +470,7 @@ var/global/list/holodeck_programs = list(
 	..()
 
 
-/obj/machinery/readybutton/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user as mob)
 	user << "The device is a solid button, there's nothing you can do with it!"
 
 /obj/machinery/readybutton/attack_hand(mob/user as mob)
@@ -585,7 +528,7 @@ var/global/list/holodeck_programs = list(
 /obj/structure/rack/holorack/attack_hand(mob/user as mob)
 	return
 
-/obj/structure/rack/holorack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
+/obj/structure/rack/holorack/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/tool/wrench))
 		user << "It's a holorack!  You can't unwrench it!"
 		return

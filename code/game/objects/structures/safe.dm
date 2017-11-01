@@ -6,11 +6,11 @@ FLOOR SAFES
 
 //SAFES
 
-/obj/item/weapon/paper/safe_key
+/obj/item/paper/safe_key
 	name = "Secure Safe Combination"
 	var/obj/structure/safe/safe = null
 
-/obj/item/weapon/paper/safe_key/New()
+/obj/item/paper/safe_key/New()
 	..()
 	spawn(10)
 		for(var/obj/structure/safe/safe in loc)
@@ -23,7 +23,7 @@ FLOOR SAFES
 /obj/structure/safe
 	name = "safe"
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "safe"
 	anchored = 1
 	density = 1
@@ -51,11 +51,11 @@ FLOOR SAFES
 
 	spawn(5)
 		if(loc && spawnkey)
-			new /obj/item/weapon/paper/safe_key(loc) //Spawn the key on top of the safe.
+			new /obj/item/paper/safe_key(loc) //Spawn the key on top of the safe.
 
 /obj/structure/safe/initialize()
 	for(var/obj/item/I in loc)
-		if(istype(I,/obj/item/weapon/paper/safe_key))
+		if(istype(I,/obj/item/paper/safe_key))
 			continue
 		if(space >= maxspace)
 			return

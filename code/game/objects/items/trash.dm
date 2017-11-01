@@ -1,76 +1,126 @@
 //Items labled as 'trash' for the trash bag.
-//TODO: Make this an item var or something...
 
-//Added by Jack Rost
 /obj/item/trash
-	icon = 'icons/obj/trash.dmi'
-	w_class = 2.0
+	icon = 'icons/obj/items/trash.dmi'
+	w_class = 2
 	desc = "This is rubbish."
-	raisins
-		name = "4no raisins"
-		icon_state= "4no_raisins"
-	candy
-		name = "Candy"
-		icon_state= "candy"
-	cheesie
-		name = "Cheesie honkers"
-		icon_state = "cheesie_honkers"
-	chips
-		name = "Chips"
-		icon_state = "chips"
-	popcorn
-		name = "Popcorn"
-		icon_state = "popcorn"
-	sosjerky
-		name = "Scaredy's Private Reserve Beef Jerky"
-		icon_state = "sosjerky"
-	syndi_cakes
-		name = "Syndi cakes"
-		icon_state = "syndi_cakes"
-	waffles
-		name = "Waffles"
-		icon_state = "waffles"
-	plate
-		name = "Plate"
-		icon_state = "plate"
-	snack_bowl
-		name = "Snack bowl"
-		icon_state	= "snack_bowl"
-	pistachios
-		name = "Pistachios pack"
-		icon_state = "pistachios_pack"
-	semki
-		name = "Semki pack"
-		icon_state = "semki_pack"
-	tray
-		name = "Tray"
-		icon_state = "tray"
-	candle
-		name = "candle"
-		icon = 'icons/obj/candle.dmi'
-		icon_state = "candle4"
-	liquidfood
-		name = "\improper \"LiquidFood\" ration"
-		icon_state = "liquidfood"
-	burger
-		name = "Burger wrapper"
-		icon_state = "burger"
-		desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Weyland-Yutani Corporation."
-	buritto
-		name = "Burrito wrapper"
-		icon_state = "burrito"
-		desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Weyland-Yutani Corporation."
-	hotdog
-		name = "Hotdog wrapper"
-		icon_state = "hotdog"
-		desc = "A musty plastic film that once held a hotdog. Packaged by the Weyland-Yutani Corporation."
-	kepler
-		name = "Kepler wrapper"
-		icon_state = "kepler"
-	eat
-		name = "EAT bar wrapper"
-		icon_state = "eat"
+
+/obj/item/trash/raisins
+	name = "4no raisins"
+	icon_state= "4no_raisins"
+
+/obj/item/trash/candy
+	name = "Candy"
+	icon_state= "candy"
+
+/obj/item/trash/cheesie
+	name = "Cheesie honkers"
+	icon_state = "cheesie_honkers"
+
+/obj/item/trash/chips
+	name = "Chips"
+	icon_state = "chips"
+
+/obj/item/trash/popcorn
+	name = "Popcorn"
+	icon_state = "popcorn"
+
+/obj/item/trash/sosjerky
+	name = "Scaredy's Private Reserve Beef Jerky"
+	icon_state = "sosjerky"
+
+/obj/item/trash/syndi_cakes
+	name = "Syndi cakes"
+	icon_state = "syndi_cakes"
+
+/obj/item/trash/waffles
+	name = "Waffles"
+	icon_state = "waffles"
+
+/obj/item/trash/plate
+	name = "Plate"
+	icon_state = "plate"
+
+/obj/item/trash/snack_bowl
+	name = "Snack bowl"
+	icon_state	= "snack_bowl"
+
+/obj/item/trash/pistachios
+	name = "Pistachios pack"
+	icon_state = "pistachios_pack"
+
+/obj/item/trash/semki
+	name = "Semki pack"
+	icon_state = "semki_pack"
+
+/obj/item/trash/tray
+	name = "Tray"
+	icon_state = "tray"
+
+/obj/item/trash/candle
+	name = "candle"
+	icon = 'icons/obj/items/candle.dmi'
+	icon_state = "candle4"
+
+/obj/item/trash/liquidfood
+	name = "\improper \"LiquidFood\" ration"
+	icon_state = "liquidfood"
+
+/obj/item/trash/burger
+	name = "Burger wrapper"
+	icon_state = "burger"
+	desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Weyland-Yutani Corporation."
+
+/obj/item/trash/buritto
+	name = "Burrito wrapper"
+	icon_state = "burrito"
+	desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Weyland-Yutani Corporation."
+
+/obj/item/trash/hotdog
+	name = "Hotdog wrapper"
+	icon_state = "hotdog"
+	desc = "A musty plastic film that once held a hotdog. Packaged by the Weyland-Yutani Corporation."
+
+/obj/item/trash/kepler
+	name = "Kepler wrapper"
+	icon_state = "kepler"
+
+/obj/item/trash/eat
+	name = "EAT bar wrapper"
+	icon_state = "eat"
+
+/obj/item/trash/c_tube
+	name = "cardboard tube"
+	desc = "A tube... of cardboard."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "c_tube"
+	throwforce = 1
+	w_class = 2
+	throw_speed = 4
+	throw_range = 5
 
 
-/obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
-	return
+/obj/item/trash/cigbutt
+	name = "cigarette butt"
+	desc = "A manky old cigarette butt."
+	icon = 'icons/obj/clothing/masks.dmi'
+	icon_state = "cigbutt"
+	w_class = 1
+	throwforce = 1
+
+/obj/item/trash/cigbutt/New()
+	..()
+	pixel_x = rand(-10,10)
+	pixel_y = rand(-10,10)
+	transform = turn(transform,rand(0,360))
+
+/obj/item/trash/cigbutt/cigarbutt
+	name = "cigar butt"
+	desc = "A manky old cigar butt."
+	icon_state = "cigarbutt"
+
+
+/obj/item/trash/USCMtray
+	name = "\improper USCM Tray"
+	desc = "Finished with its tour of duty"
+	icon_state = "MREtray"

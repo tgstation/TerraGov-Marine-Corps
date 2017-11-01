@@ -7,9 +7,9 @@
 
 						/datum/file/camnet_key,/datum/file/camnet_key/mining,/datum/file/camnet_key/entertainment,/datum/file/camnet_key/research,
 						/datum/file/camnet_key/bombrange,/datum/file/camnet_key/xeno,/datum/file/camnet_key/singulo,/datum/file/camnet_key/prison)
-	spawn_parts =	list(/obj/item/part/computer/storage/hdd/big,/obj/item/part/computer/storage/removable,/obj/item/part/computer/ai_holder,
-						/obj/item/part/computer/networking/radio/subspace,/obj/item/part/computer/networking/cameras,
-						/obj/item/part/computer/cardslot/dual,/obj/item/part/computer/networking/area)
+	spawn_parts =	list(/obj/item/computer3_part/storage/hdd/big,/obj/item/computer3_part/storage/removable,/obj/item/computer3_part/ai_holder,
+						/obj/item/computer3_part/networking/radio/subspace,/obj/item/computer3_part/networking/cameras,
+						/obj/item/computer3_part/cardslot/dual,/obj/item/computer3_part/networking/area)
 	New(var/L,var/built=0)
 		if(!built && !battery)
 			battery = new /obj/item/weapon/cell(src)
@@ -23,9 +23,9 @@
 
 						/datum/file/camnet_key,/datum/file/camnet_key/mining,/datum/file/camnet_key/entertainment,/datum/file/camnet_key/research,
 						/datum/file/camnet_key/bombrange,/datum/file/camnet_key/xeno,/datum/file/camnet_key/singulo,/datum/file/camnet_key/prison)
-	spawn_parts =	list(/obj/item/part/computer/storage/hdd/big,/obj/item/part/computer/storage/removable,/obj/item/part/computer/ai_holder,
-						/obj/item/part/computer/networking/radio/subspace,/obj/item/part/computer/networking/cameras,
-						/obj/item/part/computer/cardslot/dual,/obj/item/part/computer/networking/area)
+	spawn_parts =	list(/obj/item/computer3_part/storage/hdd/big,/obj/item/computer3_part/storage/removable,/obj/item/computer3_part/ai_holder,
+						/obj/item/computer3_part/networking/radio/subspace,/obj/item/computer3_part/networking/cameras,
+						/obj/item/computer3_part/cardslot/dual,/obj/item/computer3_part/networking/area)
 	New(var/L,var/built=0)
 		if(!built && !battery)
 			battery = new /obj/item/weapon/cell/super(src)
@@ -39,9 +39,9 @@
 
 						/datum/file/camnet_key,/datum/file/camnet_key/mining,/datum/file/camnet_key/entertainment,/datum/file/camnet_key/research,
 						/datum/file/camnet_key/bombrange,/datum/file/camnet_key/xeno,/datum/file/camnet_key/singulo,/datum/file/camnet_key/prison)
-	spawn_parts =	list(/obj/item/part/computer/storage/hdd/big,/obj/item/part/computer/storage/removable,/obj/item/part/computer/ai_holder,
-						/obj/item/part/computer/networking/radio/subspace,/obj/item/part/computer/networking/cameras,
-						/obj/item/part/computer/cardslot/dual,/obj/item/part/computer/networking/area)
+	spawn_parts =	list(/obj/item/computer3_part/storage/hdd/big,/obj/item/computer3_part/storage/removable,/obj/item/computer3_part/ai_holder,
+						/obj/item/computer3_part/networking/radio/subspace,/obj/item/computer3_part/networking/cameras,
+						/obj/item/computer3_part/cardslot/dual,/obj/item/computer3_part/networking/area)
 	New(var/L,var/built=0)
 		if(!built && !battery)
 			battery = new /obj/item/weapon/cell(src)
@@ -55,9 +55,9 @@
 
 						/datum/file/camnet_key,/datum/file/camnet_key/mining,/datum/file/camnet_key/entertainment,/datum/file/camnet_key/research,
 						/datum/file/camnet_key/bombrange,/datum/file/camnet_key/xeno,/datum/file/camnet_key/singulo,/datum/file/camnet_key/prison)
-	spawn_parts =	list(/obj/item/part/computer/storage/hdd/big,/obj/item/part/computer/storage/removable,/obj/item/part/computer/ai_holder,
-						/obj/item/part/computer/networking/radio/subspace,/obj/item/part/computer/networking/cameras,
-						/obj/item/part/computer/cardslot/dual,/obj/item/part/computer/networking/area)
+	spawn_parts =	list(/obj/item/computer3_part/storage/hdd/big,/obj/item/computer3_part/storage/removable,/obj/item/computer3_part/ai_holder,
+						/obj/item/computer3_part/networking/radio/subspace,/obj/item/computer3_part/networking/cameras,
+						/obj/item/computer3_part/cardslot/dual,/obj/item/computer3_part/networking/area)
 	New(var/L,var/built=0)
 		if(!built && !battery)
 			battery = new /obj/item/weapon/cell(src)
@@ -71,9 +71,9 @@
 
 						/datum/file/camnet_key,/datum/file/camnet_key/mining,/datum/file/camnet_key/entertainment,/datum/file/camnet_key/research,
 						/datum/file/camnet_key/bombrange,/datum/file/camnet_key/xeno,/datum/file/camnet_key/singulo,/datum/file/camnet_key/prison)
-	spawn_parts =	list(/obj/item/part/computer/storage/hdd/big,/obj/item/part/computer/storage/removable,/obj/item/part/computer/ai_holder,
-						/obj/item/part/computer/networking/radio/subspace,/obj/item/part/computer/networking/cameras,
-						/obj/item/part/computer/cardslot/dual,/obj/item/part/computer/networking/area)
+	spawn_parts =	list(/obj/item/computer3_part/storage/hdd/big,/obj/item/computer3_part/storage/removable,/obj/item/computer3_part/ai_holder,
+						/obj/item/computer3_part/networking/radio/subspace,/obj/item/computer3_part/networking/cameras,
+						/obj/item/computer3_part/cardslot/dual,/obj/item/computer3_part/networking/area)
 	New(var/L,var/built=0)
 		if(!built && !battery)
 			battery = new /obj/item/weapon/cell(src)

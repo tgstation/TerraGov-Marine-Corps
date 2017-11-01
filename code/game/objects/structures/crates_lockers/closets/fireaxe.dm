@@ -14,7 +14,7 @@
 	var/locked = 1
 	var/smashed = 0
 
-	attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
+	attackby(obj/item/O, var/mob/user)  //Marker -Agouri
 		//..() //That's very useful, Erro
 
 		var/hasaxe = 0       //gonna come in handy later~
@@ -30,8 +30,8 @@
 					user << "<span class = 'caution'> You disable the locking modules.</span>"
 					update_icon()
 				return
-			else if(istype(O, /obj/item/weapon))
-				var/obj/item/weapon/W = O
+			else if(!(O.flags_atom & NOBLUDGEON) && O.force)
+				var/obj/item/W = O
 				if(src.smashed || src.localopened)
 					if(localopened)
 						localopened = 0

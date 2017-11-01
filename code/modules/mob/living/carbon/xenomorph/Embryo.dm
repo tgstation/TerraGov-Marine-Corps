@@ -75,7 +75,7 @@
 			counter += 0.33
 		else if(stage == 4)
 			counter += 0.11
-	else if(istype(affected_mob.buckled, /obj/structure/stool/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster
+	else if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster
 		counter += 1.5 //Currently twice as much, can be changed
 	else
 		if(stage <= 4)

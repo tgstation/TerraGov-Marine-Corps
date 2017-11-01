@@ -1,9 +1,9 @@
 /obj/machinery/computer3/card
 	default_prog = /datum/file/program/card_comp
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/cardslot/dual)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/cardslot/dual)
 /obj/machinery/computer3/card/hop
 	default_prog = /datum/file/program/card_comp
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/cardslot/dual)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/cardslot/dual)
 	spawn_files = list(/datum/file/program/arcade, /datum/file/program/security, /datum/file/camnet_key/mining, /datum/file/camnet_key/entertainment,/datum/file/camnet_key/prison)
 
 
@@ -16,8 +16,8 @@
 	image			= 'icons/ntos/cardcomp.png'
 	active_state	= "id"
 
-	var/obj/item/weapon/card/id/reader = null
-	var/obj/item/weapon/card/id/writer = null
+	var/obj/item/card/id/reader = null
+	var/obj/item/card/id/writer = null
 
 	var/mode = 0
 	var/auth = 0
@@ -244,7 +244,7 @@
 			auth = 0
 
 		if("insert" in href_list)
-			var/obj/item/weapon/card/card = usr.get_active_hand()
+			var/obj/item/card/card = usr.get_active_hand()
 			if(!istype(card)) return
 
 			var/which = href_list["insert"]
@@ -259,7 +259,7 @@
 
 			printing = 1
 			sleep(50)
-			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( computer.loc )
+			var/obj/item/paper/P = new /obj/item/paper( computer.loc )
 			P.info = "<B>Crew Manifest:</B><BR>"
 			var/list/L = list()
 			for (var/datum/data/record/t in data_core.general)

@@ -286,7 +286,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 	ex_act(severity) r_FAL
 
-	attackby(obj/item/weapon/grab/G, mob/user)
+	attackby(obj/item/grab/G, mob/user)
 		if(istype(G))
 			if(being_forced)
 				user << "<span class='warning'>There's something forcing it open!</span>"

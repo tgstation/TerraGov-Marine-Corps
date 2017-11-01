@@ -51,7 +51,7 @@
 		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
 		. += G.slowdown
 
-	if(istype(buckled, /obj/structure/stool/bed/chair/wheelchair))
+	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm","chest","groin","head"))
 			var/datum/limb/E = get_limb(organ_name)
 			if(!E || (E.status & LIMB_DESTROYED))
@@ -87,8 +87,8 @@
 	if(is_mob_restrained())	return 0
 
 	//Do we have a working jetpack
-	if(istype(back, /obj/item/weapon/tank/jetpack))
-		var/obj/item/weapon/tank/jetpack/J = back
+	if(istype(back, /obj/item/tank/jetpack))
+		var/obj/item/tank/jetpack/J = back
 		if(((!check_drift) || (check_drift && J.stabilization_on)) && (!lying) && (J.allow_thrust(0.01, src)))
 			inertia_dir = 0
 			return 1

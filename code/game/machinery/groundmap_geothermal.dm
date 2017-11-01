@@ -129,12 +129,12 @@
 	return 1
 
 /obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/weldingtool))
+	if(istype(O, /obj/item/tool/weldingtool))
 		if(buildstate == 1 && !is_on)
 			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
 				return 0
-			var/obj/item/weapon/weldingtool/WT = O
+			var/obj/item/tool/weldingtool/WT = O
 			if(WT.remove_fuel(0, user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to weld the damage to [src].</span>","<span class='notice'>You start to weld the damage to [name]. Stand still!</span>")
@@ -147,7 +147,7 @@
 			else
 				user << "\red You need more welding fuel to complete this task."
 				return
-	else if(istype(O,/obj/item/weapon/wirecutters))
+	else if(istype(O,/obj/item/tool/wirecutters))
 		if(buildstate == 2 && !is_on)
 			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
@@ -160,7 +160,7 @@
 				user << "You finish securing the wires."
 				update_icon()
 				return
-	else if(istype(O,/obj/item/weapon/wrench))
+	else if(istype(O,/obj/item/tool/wrench))
 		if(buildstate == 3 && !is_on)
 			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
@@ -283,8 +283,8 @@
 	if(!fswitch.ispowered || !fswitch.turned_on) return 0
 	fswitch.use_power(power_tick) //Make the switch use up the power, not the floodlight, since they don't have areas
 
-/obj/machinery/colony_floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/obj/item/weapon/weldingtool/WT = W
+/obj/machinery/colony_floodlight/attackby(obj/item/W as obj, mob/user as mob)
+	var/obj/item/tool/weldingtool/WT = W
 	if(istype(WT))
 		if(!damaged) return
 		if(WT.remove_fuel(0, user))

@@ -27,46 +27,46 @@ var/list/name_to_mineral
 	name = "Uranium"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/uranium
+	ore = /obj/item/ore/uranium
 
 /mineral/platinum
 	name = "Platinum"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/osmium
+	ore = /obj/item/ore/osmium
 
 /mineral/iron
 	name = "Iron"
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/iron
+	ore = /obj/item/ore/iron
 
 /mineral/coal
 	name = "Coal"
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/coal
+	ore = /obj/item/ore/coal
 
 /mineral/diamond
 	name = "Diamond"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/diamond
+	ore = /obj/item/ore/diamond
 
 /mineral/gold
 	name = "Gold"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/gold
+	ore = /obj/item/ore/gold
 
 /mineral/silver
 	name = "Silver"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/silver
+	ore = /obj/item/ore/silver
 
 /mineral/phoron
 	name = "Phoron"
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/phoron
+	ore = /obj/item/ore/phoron

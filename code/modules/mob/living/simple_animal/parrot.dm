@@ -42,7 +42,7 @@
 
 	speak_chance = 1//1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
 	turns_per_move = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/cracker/
+	meat_type = /obj/item/reagent_container/food/snacks/cracker/
 
 	response_help  = "pets the"
 	response_disarm = "gently moves aside the"
@@ -652,8 +652,8 @@
 		return 0
 
 	if(!drop_gently)
-		if(istype(held_item, /obj/item/weapon/grenade))
-			var/obj/item/weapon/grenade/G = held_item
+		if(istype(held_item, /obj/item/explosive/grenade))
+			var/obj/item/explosive/grenade/G = held_item
 			G.loc = src.loc
 			G.prime()
 			src << "You let go of the [held_item]!"

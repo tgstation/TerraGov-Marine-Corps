@@ -311,11 +311,11 @@
 		fire_delay = config.max_fire_delay*3
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		sleep(1)
-		grenades += new /obj/item/weapon/grenade/explosive(src)
-		grenades += new /obj/item/weapon/grenade/explosive(src)
-		grenades += new /obj/item/weapon/grenade/incendiary(src)
-		grenades += new /obj/item/weapon/grenade/explosive(src)
-		grenades += new /obj/item/weapon/grenade/explosive(src)
+		grenades += new /obj/item/explosive/grenade/frag(src)
+		grenades += new /obj/item/explosive/grenade/frag(src)
+		grenades += new /obj/item/explosive/grenade/incendiary(src)
+		grenades += new /obj/item/explosive/grenade/frag(src)
+		grenades += new /obj/item/explosive/grenade/frag(src)
 
 	examine(mob/user)
 		..()
@@ -324,7 +324,7 @@
 			user << "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades."
 
 	attackby(obj/item/I, mob/user)
-		if((istype(I, /obj/item/weapon/grenade)))
+		if((istype(I, /obj/item/explosive/grenade)))
 			if(grenades.len < max_grenades)
 				if(user.drop_inv_item_to_loc(I, src))
 					grenades += I
@@ -355,7 +355,7 @@
 
 	unload(mob/user)
 		if(grenades.len)
-			var/obj/item/weapon/grenade/nade = grenades[grenades.len] //Grab the last one.
+			var/obj/item/explosive/grenade/nade = grenades[grenades.len] //Grab the last one.
 			if(user)
 				user.put_in_hands(nade)
 				playsound(user, unload_sound, 25, 1)
@@ -375,7 +375,7 @@
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
 	user << "<span class='warning'>You fire the grenade launcher!</span>"
-	var/obj/item/weapon/grenade/F = grenades[1]
+	var/obj/item/explosive/grenade/F = grenades[1]
 	grenades -= F
 	F.loc = user.loc
 	F.throw_range = 20
@@ -416,7 +416,7 @@
 		fire_delay = config.max_fire_delay * 1.5
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		sleep(1)
-		grenade = new /obj/item/weapon/grenade/explosive(src)
+		grenade = new /obj/item/explosive/grenade/frag(src)
 
 	examine(mob/user)
 		..()
@@ -425,7 +425,7 @@
 			user << "\blue It is loaded with a grenade."
 
 	attackby(obj/item/I, mob/user)
-		if((istype(I, /obj/item/weapon/grenade)))
+		if((istype(I, /obj/item/explosive/grenade)))
 			if(!grenade)
 				if(user.drop_inv_item_to_loc(I, src))
 					grenade = I
@@ -455,7 +455,7 @@
 
 	unload(mob/user)
 		if(grenade)
-			var/obj/item/weapon/grenade/nade = grenade
+			var/obj/item/explosive/grenade/nade = grenade
 			if(user)
 				user.put_in_hands(nade)
 				playsound(user, unload_sound, 25, 1)
@@ -475,7 +475,7 @@
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
 	user << "<span class='warning'>You fire the grenade launcher!</span>"
-	var/obj/item/weapon/grenade/F = grenade
+	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc
 	F.throw_range = 20

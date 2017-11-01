@@ -46,8 +46,8 @@
 	return
 
 // temporary fix for broken icon until somebody gets around to make these player-buildable
-/turf/simulated/floor/mech_bay_recharge_floor/attackby(obj/item/C as obj, mob/user as mob)	
-	..()	
+/turf/simulated/floor/mech_bay_recharge_floor/attackby(obj/item/C as obj, mob/user as mob)
+	..()
 	if(floor_tile)
 		icon_state = "recharge_floor"
 	else
@@ -139,7 +139,7 @@
 	anchored = 1
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "recharge_comp"
-	circuit = "/obj/item/weapon/circuitboard/mech_bay_power_console"
+	circuit = "/obj/item/circuitboard/computer/mech_bay_power_console"
 	var/autostart = 1
 	var/voltage = 45
 	var/turf/simulated/floor/mech_bay_recharge_floor/recharge_floor
@@ -190,7 +190,7 @@
 		var/turf/simulated/floor/mech_bay_recharge_floor/F = locate() in range(1,src)
 		if(F)
 			F.init_devices()
-	
+
 	var/output = "<html><head><title>[src.name]</title></head><body>"
 	if(!recharge_floor)
 		output += "<font color='red'>Mech Bay Recharge Station not initialized.</font><br>"
@@ -221,7 +221,7 @@
 	return
 
 // unused at the moment, also lacks any kind of exploit prevention
-/* 
+/*
 /obj/machinery/computer/mech_bay_power_console/Topic(href, href_list)
 	if(href_list["autostart"])
 		autostart = !autostart

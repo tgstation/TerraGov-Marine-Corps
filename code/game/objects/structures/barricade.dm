@@ -109,7 +109,7 @@
 
 
 /obj/structure/barricade/attackby(obj/item/W as obj, mob/user)
-	if(istype(W, /obj/item/zombie_claws))
+	if(istype(W, /obj/item/weapon/zombie_claws))
 		user.visible_message("<span class='danger'>The zombie smashed at the [src.barricade_type] barricade!</span>",
 		"<span class='danger'>You smack the [src.barricade_type] barricade!</span>")
 		if(barricade_hitsound)
@@ -140,7 +140,7 @@
 				climbable = FALSE
 		return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/tool/wirecutters))
 		if(is_wired)
 			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
@@ -218,7 +218,7 @@
 	overlays += wired_overlay
 
 /obj/structure/barricade/proc/hit_barricade(obj/item/I)
-	if(istype(I, /obj/item/zombie_claws))
+	if(istype(I, /obj/item/weapon/zombie_claws))
 		health -= I.force * 0.5
 	health -= I.force * 0.5
 	update_health()
@@ -264,8 +264,8 @@
 //Item Attack
 /obj/structure/barricade/snow/attackby(obj/item/W as obj, mob/user as mob)
 	//Removing the barricades
-	if(istype(W, /obj/item/snow_shovel))
-		var/obj/item/snow_shovel/S = W
+	if(istype(W, /obj/item/tool/snow_shovel))
+		var/obj/item/tool/snow_shovel/S = W
 		if(S.mode == 2)
 			if(S.working)
 				user  << "\red You are already shoveling!"
@@ -402,7 +402,7 @@
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 			user << "<span class='warning'>You're not trained to repair [src]...</span>"
 			return
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/tool/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
 			user << "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>"
 			return
@@ -575,7 +575,7 @@
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
 			user << "<span class='warning'>You're not trained to repair [src]...</span>"
 			return
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/tool/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
 			user << "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>"
 			return
@@ -756,8 +756,8 @@
 			pixel_y = 7
 
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/etool) && user.a_intent != "harm")
-		var/obj/item/weapon/etool/ET = W
+	if(istype(W, /obj/item/tool/etool) && user.a_intent != "harm")
+		var/obj/item/tool/etool/ET = W
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 			"<span class='notice'>You start disassembling [src].</span>")

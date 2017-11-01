@@ -2,7 +2,7 @@
 	name = "Teleporter"
 	desc = "Used to control a linked teleportation Hub and Station."
 	icon_state = "teleport"
-	circuit = "/obj/item/weapon/circuitboard/teleporter"
+	circuit = "/obj/item/circuitboard/computer/teleporter"
 	dir = 4
 	var/obj/item/locked = null
 	var/id = null
@@ -32,8 +32,8 @@
 		hub.dir = dir
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/card/data/))
-		var/obj/item/weapon/card/data/C = I
+	if(istype(I, /obj/item/card/data/))
+		var/obj/item/card/data/C = I
 		if(stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
 			src.attack_hand()
 
@@ -103,7 +103,7 @@
 			areaindex[tmpname] = 1
 		L[tmpname] = R
 
-	for (var/obj/item/weapon/implant/tracking/I in item_list)
+	for (var/obj/item/implant/tracking/I in item_list)
 		if (!I.implanted || !ismob(I.loc))
 			continue
 		else
@@ -214,30 +214,30 @@
 	if(istype(M, /obj/effect))
 		cdel(M)
 		return
-	if (istype(M, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
+	if (istype(M, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("\red <B>The [] bounces off of the portal!</B>", M.name), 1)
 		return
 	if (istype(M, /mob/living))
 		var/mob/living/MM = M
-		if(MM.check_contents_for(/obj/item/weapon/disk/nuclear))
+		if(MM.check_contents_for(/obj/item/disk/nuclear))
 			MM << "\red Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through."
 			return
 	var/disky = 0
 	for (var/atom/O in M.contents) //I'm pretty sure this accounts for the maximum amount of container in container stacking. --NeoFite
-		if (istype(O, /obj/item/weapon/storage) || istype(O, /obj/item/weapon/gift))
+		if (istype(O, /obj/item/storage) || istype(O, /obj/item/gift))
 			for (var/obj/OO in O.contents)
-				if (istype(OO, /obj/item/weapon/storage) || istype(OO, /obj/item/weapon/gift))
+				if (istype(OO, /obj/item/storage) || istype(OO, /obj/item/gift))
 					for (var/obj/OOO in OO.contents)
-						if (istype(OOO, /obj/item/weapon/disk/nuclear))
+						if (istype(OOO, /obj/item/disk/nuclear))
 							disky = 1
-				if (istype(OO, /obj/item/weapon/disk/nuclear))
+				if (istype(OO, /obj/item/disk/nuclear))
 					disky = 1
-		if (istype(O, /obj/item/weapon/disk/nuclear))
+		if (istype(O, /obj/item/disk/nuclear))
 			disky = 1
 		if (istype(O, /mob/living))
 			var/mob/living/MM = O
-			if(MM.check_contents_for(/obj/item/weapon/disk/nuclear))
+			if(MM.check_contents_for(/obj/item/disk/nuclear))
 				disky = 1
 	if (disky)
 		for(var/mob/P in viewers(M, null))
@@ -247,25 +247,25 @@
 //Bags of Holding cause bluespace teleportation to go funky. --NeoFite
 	if (istype(M, /mob/living))
 		var/mob/living/MM = M
-		if(MM.check_contents_for(/obj/item/weapon/storage/backpack/holding))
+		if(MM.check_contents_for(/obj/item/storage/backpack/holding))
 			MM << "\red The Bluespace interface on your Bag of Holding interferes with the teleport!"
 			precision = rand(1,100)
-	if (istype(M, /obj/item/weapon/storage/backpack/holding))
+	if (istype(M, /obj/item/storage/backpack/holding))
 		precision = rand(1,100)
 	for (var/atom/O in M.contents) //I'm pretty sure this accounts for the maximum amount of container in container stacking. --NeoFite
-		if (istype(O, /obj/item/weapon/storage) || istype(O, /obj/item/weapon/gift))
+		if (istype(O, /obj/item/storage) || istype(O, /obj/item/gift))
 			for (var/obj/OO in O.contents)
-				if (istype(OO, /obj/item/weapon/storage) || istype(OO, /obj/item/weapon/gift))
+				if (istype(OO, /obj/item/storage) || istype(OO, /obj/item/gift))
 					for (var/obj/OOO in OO.contents)
-						if (istype(OOO, /obj/item/weapon/storage/backpack/holding))
+						if (istype(OOO, /obj/item/storage/backpack/holding))
 							precision = rand(1,100)
-				if (istype(OO, /obj/item/weapon/storage/backpack/holding))
+				if (istype(OO, /obj/item/storage/backpack/holding))
 					precision = rand(1,100)
-		if (istype(O, /obj/item/weapon/storage/backpack/holding))
+		if (istype(O, /obj/item/storage/backpack/holding))
 			precision = rand(1,100)
 		if (istype(O, /mob/living))
 			var/mob/living/MM = O
-			if(MM.check_contents_for(/obj/item/weapon/storage/backpack/holding))
+			if(MM.check_contents_for(/obj/item/storage/backpack/holding))
 				precision = rand(1,100)
 
 
@@ -313,7 +313,7 @@
 	overlays.Cut()
 	overlays += image('icons/obj/stationobjs.dmi', icon_state = "controller-wires")
 
-/obj/machinery/teleport/station/attackby(var/obj/item/weapon/W)
+/obj/machinery/teleport/station/attackby(var/obj/item/W)
 	src.attack_hand()
 
 /obj/machinery/teleport/station/attack_paw()
@@ -384,6 +384,16 @@
 			com.icon_state = "tele0"
 	else
 		icon_state = "controller"
+
+
+
+
+/obj/effect/laser
+	name = "laser"
+	desc = "IT BURNS!!!"
+	icon = 'icons/obj/projectiles.dmi'
+	var/damage = 0.0
+	var/range = 10.0
 
 
 /obj/effect/laser/Bump()

@@ -373,7 +373,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
 	name = "Syringe Gun"
 	desc = "Exosuit-mounted chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur. (Can be attached to: Medical Exosuits)"
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/items/gun.dmi'
 	icon_state = "syringegun"
 	var/list/syringes
 	var/list/known_reagents
@@ -418,10 +418,10 @@
 	action(atom/movable/target)
 		if(!action_checks(target))
 			return
-		if(istype(target,/obj/item/weapon/reagent_containers/syringe))
+		if(istype(target,/obj/item/reagent_container/syringe))
 			return load_syringe(target)
-		if(istype(target,/obj/item/weapon/storage))//Loads syringes from boxes
-			for(var/obj/item/weapon/reagent_containers/syringe/S in target.contents)
+		if(istype(target,/obj/item/storage))//Loads syringes from boxes
+			for(var/obj/item/reagent_container/syringe/S in target.contents)
 				load_syringe(S)
 			return
 		if(mode)
@@ -435,11 +435,11 @@
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		var/turf/trg = get_turf(target)
-		var/obj/item/weapon/reagent_containers/syringe/S = syringes[1]
+		var/obj/item/reagent_container/syringe/S = syringes[1]
 		S.forceMove(get_turf(chassis))
 		reagents.trans_to(S, min(S.volume, reagents.total_volume))
 		syringes -= S
-		S.icon = 'icons/obj/chemical.dmi'
+		S.icon = 'icons/obj/items/chemistry.dmi'
 		S.icon_state = "syringeproj"
 		playsound(chassis, 'sound/items/syringeproj.ogg', 25, 1)
 		log_message("Launched [S] from [src], targeting [target].")
@@ -572,7 +572,7 @@
 			output += "Total: [round(reagents.total_volume,0.001)]/[reagents.maximum_volume] - <a href=\"?src=\ref[src];purge_all=1\">Purge All</a>"
 		return output || "None"
 
-	proc/load_syringe(obj/item/weapon/reagent_containers/syringe/S)
+	proc/load_syringe(obj/item/reagent_container/syringe/S)
 		if(syringes.len<max_syringes)
 			if(get_dist(src,S) >= 2)
 				occupant_message("The syringe is too far away.")

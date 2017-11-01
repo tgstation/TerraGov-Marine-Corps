@@ -6,7 +6,7 @@
 	use_power = 1
 	idle_power_usage = 250
 	active_power_usage = 500
-	circuit = "/obj/item/weapon/circuitboard/crew"
+	circuit = "/obj/item/circuitboard/computer/crew"
 	var/list/tracked = list(  )
 
 
@@ -90,8 +90,8 @@
 
 				crewmemberData["name"] = "Unknown"
 				crewmemberData["rank"] = "Unknown"
-				if(H.wear_id && istype(H.wear_id, /obj/item/weapon/card/id) )
-					var/obj/item/weapon/card/id/I = H.wear_id
+				if(H.wear_id && istype(H.wear_id, /obj/item/card/id) )
+					var/obj/item/card/id/I = H.wear_id
 					crewmemberData["name"] = I.name
 					crewmemberData["rank"] = I.rank
 				else if(H.wear_id && istype(H.wear_id, /obj/item/device/pda) )

@@ -127,8 +127,8 @@
 
 							if(H.mind && H.mind.assigned_role)
 								role = H.mind.assigned_role
-							else if(istype(H.wear_id, /obj/item/weapon/card/id)) //decapitated marine is mindless,
-								var/obj/item/weapon/card/id/ID = H.wear_id		//we use their ID to get their role.
+							else if(istype(H.wear_id, /obj/item/card/id)) //decapitated marine is mindless,
+								var/obj/item/card/id/ID = H.wear_id		//we use their ID to get their role.
 								if(ID.rank) role = ID.rank
 
 							if(current_squad.squad_leader)
@@ -326,7 +326,7 @@
 						send_to_squad("Your Overwatch officer is: [operator.name].")
 						src.attack_hand(usr)
 						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/item/effect/supply_drop/S in item_list)
+							for(var/obj/structure/supply_drop/S in item_list)
 								S.force_link() //LINK THEM ALL!
 
 					else
@@ -573,8 +573,8 @@
 		else if(!R.keyslot3)
 			R.keyslot3 = new /obj/item/device/encryptionkey/squadlead (src)
 		R.recalculateChannels()
-	if(istype(H.wear_id, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = H.wear_id
+	if(istype(H.wear_id, /obj/item/card/id))
+		var/obj/item/card/id/ID = H.wear_id
 		ID.access += ACCESS_MARINE_LEADER
 	H.hud_set_squad()
 	H.update_inv_head() //updating marine helmet leader overlays
@@ -627,7 +627,7 @@
 		usr << "\icon[src] [transfer_marine] is KIA."
 		return
 
-	if(!istype(transfer_marine.wear_id, /obj/item/weapon/card/id))
+	if(!istype(transfer_marine.wear_id, /obj/item/card/id))
 		usr << "\icon[src] Transfer aborted. [transfer_marine] isn't wearing an ID."
 		return
 
@@ -639,7 +639,7 @@
 		usr << "\icon[src] [transfer_marine] is KIA."
 		return
 
-	if(!istype(transfer_marine.wear_id, /obj/item/weapon/card/id))
+	if(!istype(transfer_marine.wear_id, /obj/item/card/id))
 		usr << "\icon[src] Transfer aborted. [transfer_marine] isn't wearing an ID."
 		return
 
@@ -679,7 +679,7 @@
 			t.fields["squad"] = new_squad.name
 			break
 
-	var/obj/item/weapon/card/id/ID = transfer_marine.wear_id
+	var/obj/item/card/id/ID = transfer_marine.wear_id
 	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	transfer_marine.hud_set_squad()
@@ -754,7 +754,7 @@
 
 
 
-/obj/item/effect/supply_drop
+/obj/structure/supply_drop
 	name = "Supply Drop Pad"
 	desc = "Place a crate on here to allow bridge Overwatch officers to drop them on people's heads."
 	icon = 'icons/effects/warning_stripes.dmi'
@@ -776,26 +776,25 @@
 		else
 			world << "Alert! Supply drop pads did not initialize properly."
 
-/obj/item/effect/supply_drop/alpha
+/obj/structure/supply_drop/alpha
 	icon_state = "alphadrop"
 	squad = "Alpha"
 
-/obj/item/effect/supply_drop/bravo
+/obj/structure/supply_drop/bravo
 	icon_state = "bravodrop"
 	squad = "Bravo"
 
-/obj/item/effect/supply_drop/charlie
+/obj/structure/supply_drop/charlie
 	icon_state = "charliedrop"
 	squad = "Charlie"
 
-/obj/item/effect/supply_drop/delta
+/obj/structure/supply_drop/delta
 	icon_state = "deltadrop"
 	squad = "Delta"
 
 /obj/item/device/squad_beacon
 	name = "squad supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
-	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
 	unacidable = 1
 	w_class = 2
@@ -856,7 +855,6 @@
 /obj/item/device/squad_beacon/bomb
 	name = "orbital beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
-	icon = 'icons/obj/device.dmi'
 	icon_state = "motion4"
 	w_class = 2
 	activation_time = 80

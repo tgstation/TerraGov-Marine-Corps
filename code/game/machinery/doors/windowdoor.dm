@@ -9,7 +9,7 @@
 	use_power = 0
 	flags_atom = ON_BORDER
 	opacity = 0
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/circuitboard/airlock/electronics = null
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
@@ -116,12 +116,12 @@
 /obj/machinery/door/window/proc/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
-		new /obj/item/weapon/shard(src.loc)
+		new /obj/item/shard(src.loc)
 		var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
 		CC.amount = 2
-		var/obj/item/weapon/airlock_electronics/ae
+		var/obj/item/circuitboard/airlock/ae
 		if(!electronics)
-			ae = new/obj/item/weapon/airlock_electronics( src.loc )
+			ae = new/obj/item/circuitboard/airlock( src.loc )
 			if(!src.req_access)
 				src.check_access()
 			if(src.req_access.len)
@@ -181,7 +181,7 @@
 		return
 
 	//Emags and ninja swords? You may pass.
-	if (density && istype(I, /obj/item/weapon/card/emag))
+	if (density && istype(I, /obj/item/card/emag))
 		operating = -1
 		flick("[src.base_state]spark", src)
 		sleep(6)
@@ -189,7 +189,7 @@
 		return 1
 
 	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && istype(I, /obj/item/weapon/crowbar))
+	if (src.operating == -1 && istype(I, /obj/item/tool/crowbar))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
@@ -207,9 +207,9 @@
 			wa.state = "02"
 			wa.update_icon()
 
-			var/obj/item/weapon/airlock_electronics/ae
+			var/obj/item/circuitboard/airlock/ae
 			if(!electronics)
-				ae = new/obj/item/weapon/airlock_electronics( src.loc )
+				ae = new/obj/item/circuitboard/airlock( src.loc )
 				if(!src.req_access)
 					src.check_access()
 				if(src.req_access.len)

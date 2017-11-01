@@ -11,7 +11,7 @@
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 	siemens_coefficient = 0.7
-	var/obj/item/weapon/knife
+	var/obj/item/knife
 	var/armor_stage = 0
 
 	attack_hand(var/mob/living/M)

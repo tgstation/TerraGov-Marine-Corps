@@ -1,7 +1,7 @@
 /obj/structure/window
 	name = "window"
 	desc = "A glass window. It looks thin and flimsy. A few knocks with anything should shatter it."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "window"
 	density = 1
 	pressure_resistance = 4*ONE_ATMOSPHERE
@@ -12,8 +12,7 @@
 	var/state = 2
 	var/reinf = 0
 	var/basestate = "window"
-	var/shardtype = /obj/item/weapon/shard
-	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
+	var/shardtype = /obj/item/shard
 	var/windowknock_cooldown = 0
 	var/static_frame = 0 //True/false. If true, can't move the window
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
@@ -34,16 +33,7 @@
 			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? "with [AM]":""]!</span>")
 		if(make_shatter_sound)
 			playsound(src, "shatter", 50, 1)
-		if(create_debris)
-			new shardtype(loc)
-			if(is_full_window())
-				new shardtype(loc)
-			if(reinf) new /obj/item/stack/rods(loc)
-			if(window_frame)
-				var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
-				new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
-				new_window_frame.dir = dir
-		cdel(src)
+		shatter_window(create_debris)
 	else
 		if(make_hit_sound)
 			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
@@ -168,8 +158,8 @@
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/window/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
+		var/obj/item/grab/G = W
 		if(istype(G.grabbed_thing, /mob/living))
 			var/mob/living/M = G.grabbed_thing
 			var/state = user.grab_level
@@ -198,29 +188,24 @@
 
 	if(W.flags_atom & NOBLUDGEON) return
 
-	if(istype(W, /obj/item/weapon/screwdriver) && !not_deconstructable)
+	if(istype(W, /obj/item/tool/screwdriver) && !not_deconstructable)
 		if(reinf && state >= 1)
 			state = 3 - state
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>")
-		else if(reinf && state == 0 && !static_frame && !not_deconstructable)
+		else if(reinf && state == 0 && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>")
-		else if(!reinf && !static_frame && !not_deconstructable)
+		else if(!reinf && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
-		else if(static_frame && state == 0 && !not_deconstructable)
-			var/obj/item/stack/sheet/glass/reinforced/G = new /obj/item/stack/sheet/glass/reinforced(loc)
-			G.amount = 2
-			var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
-			new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
-			new_window_frame.dir = dir
-			cdel(src)
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1 && !not_deconstructable)
+		else if(static_frame && state == 0)
+			disassemble_window()
+	else if(istype(W, /obj/item/tool/crowbar) && reinf && state <= 1 && !not_deconstructable)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
@@ -234,6 +219,25 @@
 		healthcheck(1, 1, 1, user, W)
 		..()
 	return
+
+
+/obj/structure/window/proc/disassemble_window()
+	if(reinf)
+		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
+	else
+		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
+	cdel(src)
+
+
+/obj/structure/window/proc/shatter_window(create_debris)
+	if(create_debris)
+		new shardtype(loc)
+		if(is_full_window())
+			new shardtype(loc)
+		if(reinf)
+			new /obj/item/stack/rods(loc)
+	cdel(src)
+
 
 /obj/structure/window/verb/rotate()
 	set name = "Rotate Window Counter-Clockwise"
@@ -342,7 +346,7 @@
 	desc = "A phoron-glass alloy window. It looks insanely tough to break. It appears it's also insanely tough to burn through."
 	basestate = "phoronwindow"
 	icon_state = "phoronwindow"
-	shardtype = /obj/item/weapon/shard/phoron
+	shardtype = /obj/item/shard/phoron
 	health = 120
 
 /obj/structure/window/phoronbasic/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -356,7 +360,7 @@
 	desc = "A phoron-glass alloy window with a rod matrice. It looks hopelessly tough to break. It also looks completely fireproof, considering how basic phoron windows are insanely fireproof."
 	basestate = "phoronrwindow"
 	icon_state = "phoronrwindow"
-	shardtype = /obj/item/weapon/shard/phoron
+	shardtype = /obj/item/shard/phoron
 	reinf = 1
 	health = 160
 
@@ -428,23 +432,57 @@
 /obj/structure/window/reinforced/pressure/Dispose()
 	for(var/obj/machinery/door/poddoor/shutters/pressure/P in src.loc )
 		P.close(0)
-	density = 0
-	update_nearby_tiles()
 	playsound(src, "shatter", 70, 1)
-	update_nearby_icons()
 	. = ..()
 
 
 
 
-//Almayer windows
+//Framed windows
 
-/obj/structure/window/reinforced/almayer
+/obj/structure/window/framed
+	name = "theoretical window"
+	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
+	var/list/tiles_special = list(/obj/machinery/door/airlock,
+		/obj/structure/window/framed,
+		/obj/structure/girder,
+		/obj/structure/window_frame)
+	tiles_with = list(
+		/turf/simulated/wall)
+
+/obj/structure/window/framed/New()
+	spawn(10)
+		relativewall()
+		relativewall_neighbours()
+	..()
+
+/obj/structure/window/framed/update_nearby_icons()
+	relativewall_neighbours()
+
+/obj/structure/window/framed/update_icon()
+	relativewall()
+
+
+/obj/structure/window/framed/disassemble_window()
+	if(window_frame)
+		var/obj/structure/window_frame/WF = new window_frame(loc)
+		WF.icon_state = "[WF.basestate][junction]_frame"
+		WF.dir = dir
+	..()
+
+/obj/structure/window/framed/shatter_window(create_debris)
+	if(window_frame)
+		var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
+		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
+		new_window_frame.dir = dir
+	..()
+
+
+/obj/structure/window/framed/almayer
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	icon = 'icons/turf/almayer.dmi'
-	icon_state = "rwindow0"
-	basestate = "rwindow"
+	icon_state = "alm_rwindow0"
+	basestate = "alm_rwindow"
 	health = 100 //Was 600
 	reinf = 1
 	dir = 5
@@ -452,32 +490,7 @@
 	window_frame = /obj/structure/window_frame/almayer
 	static_frame = 1
 
-	tiles_with = list(
-		/turf/simulated/wall)
-
-	var/tiles_special[] = list(/obj/machinery/door/airlock,
-		/obj/structure/window/reinforced/almayer,
-		/obj/structure/girder,
-		/obj/structure/window_frame/almayer)
-
-/obj/structure/window/reinforced/almayer/New()
-	spawn(10)
-		relativewall()
-		relativewall_neighbours()
-
-/obj/structure/window/reinforced/almayer/update_nearby_icons()
-	relativewall_neighbours()
-
-/obj/structure/window/reinforced/almayer/update_icon()
-	relativewall()
-
-/obj/structure/window/reinforced/almayer/Dispose()
-	density = 0
-	update_nearby_tiles()
-	update_nearby_icons()
-	. = ..()
-
-/obj/structure/window/reinforced/almayer/hull
+/obj/structure/window/framed/almayer/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
@@ -486,50 +499,61 @@
 	unacidable = 1
 	health = 1000000 //Failsafe, shouldn't matter
 
-/obj/structure/window/reinforced/almayer/colony
-	icon_state = "cwindow0"
-	basestate = "cwindow"
-	window_frame = /obj/structure/window_frame/almayer/colony
+/obj/structure/window/framed/almayer/white
+	icon_state = "white_rwindow0"
+	basestate = "white_rwindow"
+	window_frame = /obj/structure/window_frame/almayer/white
 
-	tiles_with = list(
-		/turf/simulated/wall)
 
-	tiles_special = list(/obj/machinery/door/airlock,
-		/obj/structure/window/reinforced/almayer/colony,
-		/obj/structure/window_frame/almayer/colony)
 
-/obj/structure/window/reinforced/almayer/colony/reinforced
-	icon_state = "crwindow0"
-	basestate = "crwindow"
-	window_frame = /obj/structure/window_frame/almayer/colony/reinforced
+/obj/structure/window/framed/colony
+	name = "window"
+	icon_state = "col_window0"
+	basestate = "col_window"
+	window_frame = /obj/structure/window_frame/colony
 
-/obj/structure/window/reinforced/almayer/colony/reinforced/tinted
+/obj/structure/window/framed/colony/reinforced
+	name = "reinforced window"
+	icon_state = "col_rwindow0"
+	basestate = "col_rwindow"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
+	health = 100
+	reinf = 1
+	window_frame = /obj/structure/window_frame/colony/reinforced
+
+/obj/structure/window/framed/colony/reinforced/tinted
 	name =  "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
 	opacity = 1
 
-/obj/structure/window/reinforced/almayer/white
-	icon_state = "rwwindow0"
-	basestate = "rwwindow"
-	window_frame = /obj/structure/window_frame/almayer/white
+
 
 //Chigusa windows
 
-/obj/structure/window/reinforced/chigusa
-	icon = 'icons/turf/chigusa.dmi'
-	icon_state = "rwindow0"
-	basestate = "rwindow"
+/obj/structure/window/framed/chigusa
+	name = "reinforced window"
+	icon_state = "chig_rwindow0"
+	basestate = "chig_rwindow"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
+	health = 100
+	reinf = 1
 	window_frame = /obj/structure/window_frame/chigusa
 
-/obj/structure/window/wood
-	icon = 'icons/turf/wood.dmi'
-	icon_state = "window0"
-	basestate = "window"
+
+
+/obj/structure/window/framed/wood
+	name = "window"
+	icon_state = "wood_window0"
+	basestate = "wood_window"
 	window_frame = /obj/structure/window_frame/wood
 
-/obj/structure/window/reinforced/wood
-	icon = 'icons/turf/wood.dmi'
-	icon_state = "rwindow0"
-	basestate = "rwindow"
+/obj/structure/window/framed/wood/reinforced
+	name = "reinforced window"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
+	health = 100
+	reinf = 1
+	icon_state = "wood_rwindow0"
+	basestate = "wood_rwindow"
 	window_frame = /obj/structure/window_frame/wood
+
 

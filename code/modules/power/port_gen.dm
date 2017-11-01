@@ -26,7 +26,7 @@
 /obj/machinery/power/port_gen/process()
 ideally we're looking to generate 5000
 
-/obj/machinery/power/port_gen/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/power/port_gen/attackby(obj/item/W, mob/user)
 tank [un]loading stuff
 
 /obj/machinery/power/port_gen/attack_hand(mob/user)
@@ -103,7 +103,7 @@ display round(lastgen) and phorontank amount
 	var/max_sheets = 100
 	var/sheet_name = ""
 	var/sheet_path = /obj/item/stack/sheet/mineral/phoron
-	var/board_path = "/obj/item/weapon/circuitboard/pacman"
+	var/board_path = "/obj/item/circuitboard/machine/pacman"
 	var/sheet_left = 0 // How much is left of the sheet
 	var/time_per_sheet = 40
 	var/heat = 0
@@ -116,11 +116,11 @@ display round(lastgen) and phorontank amount
 /obj/machinery/power/port_gen/pacman/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/micro_laser(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stock_parts/capacitor(src)
 	component_parts += new board_path(src)
 	var/obj/sheet = new sheet_path(null)
 	sheet_name = sheet.name
@@ -133,12 +133,12 @@ display round(lastgen) and phorontank amount
 /obj/machinery/power/port_gen/pacman/RefreshParts()
 	var/temp_rating = 0
 	var/temp_reliability = 0
-	for(var/obj/item/weapon/stock_parts/SP in component_parts)
-		if(istype(SP, /obj/item/weapon/stock_parts/matter_bin))
+	for(var/obj/item/stock_parts/SP in component_parts)
+		if(istype(SP, /obj/item/stock_parts/matter_bin))
 			max_sheets = SP.rating * SP.rating * 50
-		else if(istype(SP, /obj/item/weapon/stock_parts/micro_laser) || istype(SP, /obj/item/weapon/stock_parts/capacitor))
+		else if(istype(SP, /obj/item/stock_parts/micro_laser) || istype(SP, /obj/item/stock_parts/capacitor))
 			temp_rating += SP.rating
-	for(var/obj/item/weapon/CP in component_parts)
+	for(var/obj/item/CP in component_parts)
 		temp_reliability += CP.reliability
 	reliability = min(round(temp_reliability / 4), 100)
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
@@ -215,12 +215,12 @@ display round(lastgen) and phorontank amount
 		addstack.use(amount)
 		updateUsrDialog()
 		return
-	else if (istype(O, /obj/item/weapon/card/emag))
+	else if (istype(O, /obj/item/card/emag))
 		emagged = 1
 		emp_act(1)
 	else if(!active)
 
-		if(istype(O, /obj/item/weapon/wrench))
+		if(istype(O, /obj/item/tool/wrench))
 
 			if(!anchored)
 				connect_to_network()
@@ -232,14 +232,14 @@ display round(lastgen) and phorontank amount
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			anchored = !anchored
 
-		else if(istype(O, /obj/item/weapon/screwdriver))
+		else if(istype(O, /obj/item/tool/screwdriver))
 			open = !open
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(open)
 				user << "\blue You open the access panel."
 			else
 				user << "\blue You close the access panel."
-		else if(istype(O, /obj/item/weapon/crowbar) && open)
+		else if(istype(O, /obj/item/tool/crowbar) && open)
 			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			for(var/obj/item/I in component_parts)
 				if(I.reliability < 100)
@@ -337,7 +337,7 @@ display round(lastgen) and phorontank amount
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
 	power_gen = 15000
 	time_per_sheet = 65
-	board_path = "/obj/item/weapon/circuitboard/pacman/super"
+	board_path = "/obj/item/circuitboard/machine/pacman/super"
 	overheat()
 		explosion(src.loc, 3, 3, 3, -1)
 
@@ -347,6 +347,6 @@ display round(lastgen) and phorontank amount
 	sheet_path = /obj/item/stack/sheet/mineral/tritium
 	power_gen = 40000
 	time_per_sheet = 80
-	board_path = "/obj/item/weapon/circuitboard/pacman/mrs"
+	board_path = "/obj/item/circuitboard/machine/pacman/mrs"
 	overheat()
 		explosion(src.loc, 4, 4, 4, -1)

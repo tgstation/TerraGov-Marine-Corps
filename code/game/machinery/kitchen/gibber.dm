@@ -79,12 +79,12 @@
 	else
 		src.startgibbing(user)
 
-/obj/machinery/gibber/attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
+/obj/machinery/gibber/attackby(obj/item/grab/G as obj, mob/user as mob)
 	if(src.occupant)
 		user << "<span class='warning'>The gibber is full, empty it first!</span>"
 		return
 
-	if( !(istype(G, /obj/item/weapon/grab)) )
+	if( !(istype(G, /obj/item/grab)) )
 		user << "<span class='warning'>This item is not suitable for the gibber!</span>"
 		return
 
@@ -145,7 +145,7 @@
 	update_icon()
 
 	var/totalslabs = 3
-	var/obj/item/weapon/reagent_containers/food/snacks/meat/allmeat[totalslabs]
+	var/obj/item/reagent_container/food/snacks/meat/allmeat[totalslabs]
 
 	if( istype(src.occupant, /mob/living/carbon/human/) )
 		var/sourcename = src.occupant.real_name
@@ -154,7 +154,7 @@
 		var/sourcetotalreagents = src.occupant.reagents.total_volume
 
 		for(var/i=1 to totalslabs)
-			var/obj/item/weapon/reagent_containers/food/snacks/meat/human/newmeat = new
+			var/obj/item/reagent_container/food/snacks/meat/human/newmeat = new
 			newmeat.name = sourcename + newmeat.name
 			newmeat.subjectname = sourcename
 			newmeat.subjectjob = sourcejob
@@ -185,7 +185,7 @@
 			sourcenutriment = src.occupant.nutrition / 30 // small animals don't have as much nutrition
 
 		for(var/i=1 to totalslabs)
-			var/obj/item/weapon/reagent_containers/food/snacks/meat/newmeat = new
+			var/obj/item/reagent_container/food/snacks/meat/newmeat = new
 			newmeat.name = "[sourcename]-[newmeat.name]"
 
 			newmeat.reagents.add_reagent("nutriment", sourcenutriment / totalslabs)

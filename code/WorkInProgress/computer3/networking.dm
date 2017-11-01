@@ -1,4 +1,4 @@
-/obj/item/part/computer/networking
+/obj/item/computer3_part/networking
 	name = "Computer networking component"
 
 	/*
@@ -59,7 +59,7 @@
 	network-connects to anything on the same z-level
 	which is tuned to the same frequency.
 */
-/obj/item/part/computer/networking/radio
+/obj/item/computer3_part/networking/radio
 	name = "Wireless networking component"
 	desc = "Radio module for computers"
 
@@ -123,7 +123,7 @@
 /*
 	Subspace networking: Communicates off-station.  Allows centcom communications.
 */
-/obj/item/part/computer/networking/radio/subspace
+/obj/item/computer3_part/networking/radio/subspace
 	name = "subspace networking terminal"
 	desc = "Communicates long distances and through spatial anomalies."
 	subspace = 1
@@ -132,7 +132,7 @@
 	APC (/area) networking
 */
 
-/obj/item/part/computer/networking/area
+/obj/item/computer3_part/networking/area
 	name = "short-wave networking terminal"
 	desc = "Connects to nearby computers through the area power network"
 
@@ -158,7 +158,7 @@
 /*
 	Proximity networking: Connects to machines or computers adjacent to this device
 */
-/obj/item/part/computer/networking/prox
+/obj/item/computer3_part/networking/prox
 	name = "proximity networking terminal"
 	desc = "Connects a computer to adjacent machines"
 
@@ -186,7 +186,7 @@
 	Cable networking: Not currently used
 */
 
-/obj/item/part/computer/networking/cable
+/obj/item/computer3_part/networking/cable
 	name = "cable networking terminal"
 	desc = "Connects to other machines on the same cable network."
 

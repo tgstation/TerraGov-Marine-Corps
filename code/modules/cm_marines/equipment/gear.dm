@@ -48,12 +48,12 @@
 
 
 
-/obj/item/weapon/coin/marine
+/obj/item/coin/marine
 	name = "marine specialist weapon token"
 	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
 	icon_state = "coin_adamantine"
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob) //To remove attaching a string functionality
+	attackby(obj/item/W as obj, mob/user as mob) //To remove attaching a string functionality
 		return
 
 /obj/structure/broken_apc
@@ -69,17 +69,17 @@
 /obj/structure/largecrate/random
 	name = "supply crate"
 	var/num_things = 0
-	var/list/stuff = list(/obj/item/weapon/cell/high,
-						/obj/item/weapon/storage/belt/utility/full,
+	var/list/stuff = list(/obj/item/cell/high,
+						/obj/item/storage/belt/utility/full,
 						/obj/item/device/multitool,
-						/obj/item/weapon/crowbar,
+						/obj/item/tool/crowbar,
 						/obj/item/device/flashlight,
-						/obj/item/weapon/reagent_containers/food/snacks/donkpocket,
-						/obj/item/weapon/grenade/smokebomb,
-						/obj/item/weapon/airlock_electronics,
+						/obj/item/reagent_container/food/snacks/donkpocket,
+						/obj/item/explosive/grenade/smokebomb,
+						/obj/item/circuitboard/airlock,
 						/obj/item/device/assembly/igniter,
-						/obj/item/weapon/weldingtool,
-						/obj/item/weapon/wirecutters,
+						/obj/item/tool/weldingtool,
+						/obj/item/tool/wirecutters,
 						/obj/item/device/analyzer,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine)
@@ -156,7 +156,7 @@
 					/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90
 				)
 
-/obj/item/weapon/storage/box/uscm_mre
+/obj/item/storage/box/uscm_mre
 	name = "\improper USCM meal ready to eat"
 	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
@@ -168,22 +168,22 @@
 		for(var/i = 0,i < 5,i++)
 			var/rand_type = rand(0,8)
 			if(rand_type <= 2)
-				new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+				new /obj/item/reagent_container/food/snacks/protein_pack(src)
 			else if(rand_type == 3)
-				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1(src)
+				new /obj/item/reagent_container/food/snacks/mre_pack/meal1(src)
 			else if(rand_type == 4)
-				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2(src)
+				new /obj/item/reagent_container/food/snacks/mre_pack/meal2(src)
 			else if(rand_type == 5)
-				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3(src)
+				new /obj/item/reagent_container/food/snacks/mre_pack/meal3(src)
 			else if(rand_type == 6)
-				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4(src)
+				new /obj/item/reagent_container/food/snacks/mre_pack/meal4(src)
 			else if(rand_type == 7)
-				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5(src)
+				new /obj/item/reagent_container/food/snacks/mre_pack/meal5(src)
 			else if(rand_type == 8)
-				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6(src)
+				new /obj/item/reagent_container/food/snacks/mre_pack/meal6(src)
 
 
-/obj/item/weapon/reagent_containers/food/snacks/protein_pack
+/obj/item/reagent_container/food/snacks/protein_pack
 	name = "stale USCM protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
@@ -195,20 +195,14 @@
 		reagents.add_reagent("nutriment", 8)
 		bitesize = 4
 
-/obj/item/trash/USCMtray
-	name = "\improper USCM Tray"
-	desc = "Finished with its tour of duty"
-	icon = 'icons/obj/trash.dmi'
-	icon_state = "MREtray"
 
-
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack
+/obj/item/reagent_container/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
 	//trash = /obj/item/trash/USCMtray
 	trash = null
 	w_class = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1
+/obj/item/reagent_container/food/snacks/mre_pack/meal1
 	name = "\improper USCM Prepared Meal (cornbread)"
 	desc = "A tray of standard USCM food. Stale cornbread, tomato paste and some green goop fill this tray."
 	icon_state = "MREa"
@@ -219,7 +213,7 @@
 		reagents.add_reagent("nutriment", 9)
 		bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2
+/obj/item/reagent_container/food/snacks/mre_pack/meal2
 	name = "\improper USCM Prepared Meal (pork)"
 	desc = "A tray of standard USCM food. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
 	icon_state = "MREb"
@@ -229,7 +223,7 @@
 		reagents.add_reagent("nutriment", 9)
 		bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3
+/obj/item/reagent_container/food/snacks/mre_pack/meal3
 	name = "\improper USCM Prepared Meal (pasta)"
 	desc = "A tray of standard USCM food. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
 	icon_state = "MREc"
@@ -239,7 +233,7 @@
 		reagents.add_reagent("nutriment", 9)
 		bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4
+/obj/item/reagent_container/food/snacks/mre_pack/meal4
 	name = "\improper USCM Prepared Meal (pizza)"
 	desc = "A tray of standard USCM food. Cold pizza, wet greenbeans and a shitty egg fill this tray. Get something other than pizza, lardass."
 	icon_state = "MREd"
@@ -249,7 +243,7 @@
 		reagents.add_reagent("nutriment", 8)
 		bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5
+/obj/item/reagent_container/food/snacks/mre_pack/meal5
 	name = "\improper USCM Prepared Meal (chicken)"
 	desc = "A tray of standard USCM food. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
 	icon_state = "MREe"
@@ -259,7 +253,7 @@
 		reagents.add_reagent("nutriment", 10)
 		bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6
+/obj/item/reagent_container/food/snacks/mre_pack/meal6
 	name = "\improper USCM Prepared Meal (tofu)"
 	desc = "The USCM doesn't serve tofu you grass sucking hippie. The flag signifies your defeat."
 	icon_state = "MREf"
@@ -269,7 +263,7 @@
 		reagents.add_reagent("nutriment", 2)
 		bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1
+/obj/item/reagent_container/food/snacks/mre_pack/xmas1
 	name = "\improper Xmas Prepared Meal:sugar cookies"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
@@ -279,7 +273,7 @@
 		reagents.add_reagent("nutriment", 10)
 		bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2
+/obj/item/reagent_container/food/snacks/mre_pack/xmas2
 	name = "\improper Xmas Prepared Meal:gingerbread cookie"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
@@ -289,7 +283,7 @@
 		reagents.add_reagent("nutriment", 10)
 		bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3
+/obj/item/reagent_container/food/snacks/mre_pack/xmas3
 	name = "\improper Xmas Prepared Meal:fruitcake"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
@@ -299,7 +293,7 @@
 		reagents.add_reagent("nutriment", 10)
 		bitesize = 2
 
-/obj/item/weapon/storage/box/pizza
+/obj/item/storage/box/pizza
 	name = "food delivery box"
 	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
 
@@ -307,59 +301,59 @@
 		..()
 		pixel_y = rand(-3,3)
 		pixel_x = rand(-3,3)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
+		new /obj/item/reagent_container/food/snacks/donkpocket(src)
+		new /obj/item/reagent_container/food/snacks/donkpocket(src)
 		var/randsnack
 		for(var/i = 1 to 3)
 			randsnack = rand(0,5)
 			switch(randsnack)
 				if(0)
-					new /obj/item/weapon/reagent_containers/food/snacks/fries(src)
+					new /obj/item/reagent_container/food/snacks/fries(src)
 				if(1)
-					new /obj/item/weapon/reagent_containers/food/snacks/cheesyfries(src)
+					new /obj/item/reagent_container/food/snacks/cheesyfries(src)
 				if(2)
-					new /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger(src)
+					new /obj/item/reagent_container/food/snacks/bigbiteburger(src)
 				if(4)
-					new /obj/item/weapon/reagent_containers/food/snacks/taco(src)
+					new /obj/item/reagent_container/food/snacks/taco(src)
 				if(5)
-					new /obj/item/weapon/reagent_containers/food/snacks/hotdog(src)
+					new /obj/item/reagent_container/food/snacks/hotdog(src)
 
-/obj/item/weapon/paper/janitor
+/obj/item/paper/janitor
 	name = "crumbled paper"
 	icon_state = "pamphlet"
 	info = "In loving memory of Cub Johnson."
 
 
 
-/obj/item/weapon/storage/box/wy_mre
+/obj/item/storage/box/wy_mre
 	name = "\improper Weyland-Yutani brand MRE"
 	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
-	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks")
+	can_hold = list("/obj/item/reagent_container/food/snacks")
 	w_class = 4
 
 	New()
 		..()
 		pixel_y = rand(-3,3)
 		pixel_x = rand(-3,3)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/drinks/coffee(src)
+		new /obj/item/reagent_container/food/snacks/donkpocket(src)
+		new /obj/item/reagent_container/food/snacks/donkpocket(src)
+		new /obj/item/reagent_container/food/snacks/donkpocket(src)
+		new /obj/item/reagent_container/food/drinks/coffee(src)
 		var/randsnack = rand(0,5)
 		switch(randsnack)
 			if(0)
-				new /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers(src)
+				new /obj/item/reagent_container/food/snacks/cheesiehonkers(src)
 			if(1)
-				new /obj/item/weapon/reagent_containers/food/snacks/no_raisin(src)
+				new /obj/item/reagent_container/food/snacks/no_raisin(src)
 			if(2)
-				new /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie(src)
+				new /obj/item/reagent_container/food/snacks/spacetwinkie(src)
 			if(4)
-				new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
+				new /obj/item/reagent_container/food/snacks/cookie(src)
 			if(5)
-				new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
+				new /obj/item/reagent_container/food/snacks/chocolatebar(src)
 
-/obj/item/weapon/book/manual/lazarus_landing_map
+/obj/item/book/manual/lazarus_landing_map
 	name = "\improper Lazarus landing map"
 	desc = "A satellite printout of the Lazarus Landing colony."
 	icon = 'icons/Marine/marine-items.dmi'
@@ -382,7 +376,7 @@
 
 		"}
 
-/obj/item/weapon/book/manual/ice_colony_map
+/obj/item/book/manual/ice_colony_map
 	name = "\improper Ice Colony map"
 	desc = "A satellite printout of the Ice Colony."
 	icon = 'icons/Marine/marine-items.dmi'
@@ -406,7 +400,7 @@
 
 		"}
 
-/obj/item/weapon/book/manual/whiskey_outpost_map
+/obj/item/book/manual/whiskey_outpost_map
 	name = "\improper Whiskey Outpost map"
 	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
 	icon = 'icons/Marine/marine-items.dmi'
@@ -430,7 +424,7 @@
 
 		"}
 
-/obj/item/weapon/book/manual/big_red_map
+/obj/item/book/manual/big_red_map
 	name = "\improper Solaris Ridge Map"
 	desc = "A censored blueprint of the Solaris Ridge facility"
 	icon = 'icons/Marine/marine-items.dmi'
@@ -454,7 +448,7 @@
 
 		"}
 
-/obj/item/weapon/book/manual/FOP_map
+/obj/item/book/manual/FOP_map
 	name = "\improper Fiorina Orbital Penitentiary Map"
 	desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
 	icon = 'icons/Marine/marine-items.dmi'

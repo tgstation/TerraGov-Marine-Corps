@@ -209,7 +209,7 @@
 			src.spark_system.start()
 
 		if("law")
-			if (istype(module,/obj/item/weapon/robot_module/security))
+			if (istype(module,/obj/item/circuitboard/robot_module/security))
 				message = "<B>[src]</B> shows its legal authorization barcode."
 
 				playsound(src.loc, 'sound/voice/biamthelaw.ogg', 25, 0)
@@ -218,7 +218,7 @@
 				src << "You are not THE LAW, pal."
 
 		if("halt")
-			if (istype(module,/obj/item/weapon/robot_module/security))
+			if (istype(module,/obj/item/circuitboard/robot_module/security))
 				message = "<B>[src]</B>'s speakers skreech, \"Halt! Security!\"."
 
 				playsound(src.loc, 'sound/voice/halt.ogg', 25, 0)

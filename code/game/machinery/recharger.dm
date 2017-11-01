@@ -10,9 +10,9 @@ obj/machinery/recharger
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
 	var/percent_charge_complete = 0
-	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/gun/energy/taser, /obj/item/weapon/melee/defibrillator)
+	var/list/allowed_devices = list(/obj/item/weapon/baton, /obj/item/device/laptop, /obj/item/cell, /obj/item/weapon/gun/energy/taser, /obj/item/device/defibrillator)
 
-obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 	if(istype(user,/mob/living/silicon))
 		return
 
@@ -34,15 +34,15 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			if(!L.stored_computer.battery)
 				user << "There's no battery in it!"
 				return
-		if(istype(G, /obj/item/weapon/melee/defibrillator))
-			var/obj/item/weapon/melee/defibrillator/D = G
+		if(istype(G, /obj/item/device/defibrillator))
+			var/obj/item/device/defibrillator/D = G
 			if(D.ready)
 				user << "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>"
 				return
 		if(user.drop_inv_item_to_loc(G, src))
 			charging = G
 			update_icon()
-	else if(istype(G, /obj/item/weapon/wrench))
+	else if(istype(G, /obj/item/tool/wrench))
 		if(charging)
 			user << "\red Remove [charging] first!"
 			return
@@ -90,8 +90,8 @@ obj/machinery/recharger/process()
 				update_icon()
 			return
 
-		if(istype(charging, /obj/item/weapon/melee/baton))
-			var/obj/item/weapon/melee/baton/B = charging
+		if(istype(charging, /obj/item/weapon/baton))
+			var/obj/item/weapon/baton/B = charging
 			if(B.bcell)
 				if(!B.bcell.fully_charged())
 					B.bcell.give(active_power_usage*CELLRATE)
@@ -121,8 +121,8 @@ obj/machinery/recharger/process()
 				update_icon()
 			return
 
-		if(istype(charging, /obj/item/weapon/melee/defibrillator))
-			var/obj/item/weapon/melee/defibrillator/D = charging
+		if(istype(charging, /obj/item/device/defibrillator))
+			var/obj/item/device/defibrillator/D = charging
 			if(!D.dcell.fully_charged())
 				D.dcell.give(active_power_usage*CELLRATE)
 				percent_charge_complete = D.dcell.percent()
@@ -134,8 +134,8 @@ obj/machinery/recharger/process()
 				update_icon()
 			return
 
-		if(istype(charging, /obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = charging
+		if(istype(charging, /obj/item/cell))
+			var/obj/item/cell/C = charging
 			if(!C.fully_charged())
 				C.give(active_power_usage*CELLRATE)
 				percent_charge_complete = C.percent()
@@ -148,8 +148,8 @@ obj/machinery/recharger/process()
 			return
 
 		/* Disable defib recharging
-		if(istype(charging, /obj/item/weapon/melee/defibrillator))
-			var/obj/item/weapon/melee/defibrillator/D = charging
+		if(istype(charging, /obj/item/device/defibrillator))
+			var/obj/item/device/defibrillator/D = charging
 			if(D.dcell)
 				if(!D.dcell.fully_charged())
 					icon_state = icon_state_charging
@@ -178,8 +178,8 @@ obj/machinery/recharger/emp_act(severity)
 		if(E.power_supply)
 			E.power_supply.emp_act(severity)
 */
-	if(istype(charging, /obj/item/weapon/melee/baton))
-		var/obj/item/weapon/melee/baton/B = charging
+	if(istype(charging, /obj/item/weapon/baton))
+		var/obj/item/weapon/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0
 	..(severity)
@@ -205,7 +205,7 @@ obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to 
 
 	if(istype(charging, /obj/item/weapon/gun/energy/taser))
 		overlays += "recharger-taser"
-	else if(istype(charging, /obj/item/weapon/melee/baton))
+	else if(istype(charging, /obj/item/weapon/baton))
 		overlays += "recharger-baton"
 
 /*
@@ -214,7 +214,7 @@ obj/machinery/recharger/wallcharger
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
 	active_power_usage = 25000	//25 kW , It's more specialized than the standalone recharger (guns and batons only) so make it more powerful
-	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton)
+	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/baton)
 	icon_state_charged = "wrecharger2"
 	icon_state_idle = "wrecharger0"
 	icon_state_charging = "wrecharger1"

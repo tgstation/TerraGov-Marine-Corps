@@ -17,7 +17,7 @@ var/global/list/frozen_items = list()
 	desc = "An interface between crew and the cryogenic storage oversight systems."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole"
-	circuit = "/obj/item/weapon/circuitboard/cryopodcontrol"
+	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
 	exproof = TRUE
 	var/mode = null
 
@@ -110,10 +110,6 @@ var/global/list/frozen_items = list()
 	src.updateUsrDialog()
 	return
 
-/obj/item/weapon/circuitboard/cryopodcontrol
-	name = "Circuit board (Cryogenic Oversight Console)"
-	build_path = "/obj/machinery/computer/cryopod"
-	origin_tech = "programming=3"
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -186,7 +182,7 @@ var/global/list/frozen_items = list()
 			items -= announce // or the autosay radio.
 
 			for(var/obj/item/W in items)
-				if(istype(W, /obj/item/weapon/card/id)) continue //don't keep id, to avoid abuse
+				if(istype(W, /obj/item/card/id)) continue //don't keep id, to avoid abuse
 				if(W.flags_inventory & CANTSTRIP) // we don't keep donor items
 					if(istype(W, /obj/item/clothing/suit/storage))
 						var/obj/item/clothing/suit/storage/SS = W
@@ -194,8 +190,8 @@ var/global/list/frozen_items = list()
 							SS.pockets.remove_from_storage(I, loc)
 							frozen_items += I
 							I.loc = null
-					if(istype(W, /obj/item/weapon/storage))
-						var/obj/item/weapon/storage/S = W
+					if(istype(W, /obj/item/storage))
+						var/obj/item/storage/S = W
 						for(var/obj/item/I in S)
 							S.remove_from_storage(I, loc)
 							frozen_items += I
@@ -284,10 +280,10 @@ var/global/list/frozen_items = list()
 	return
 
 
-/obj/machinery/cryopod/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/cryopod/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		if(occupant)
 			user << "<span class='warning'>The cryo pod is in use.</span>"
 			return

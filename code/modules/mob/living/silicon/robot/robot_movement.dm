@@ -1,12 +1,12 @@
 /mob/living/silicon/robot/Process_Spaceslipping(var/prob_slip)
-	if(module && (istype(module,/obj/item/weapon/robot_module/drone)))
+	if(module && (istype(module,/obj/item/circuitboard/robot_module/drone)))
 		return 0
 	..(prob_slip)
 
 /mob/living/silicon/robot/Process_Spacemove()
 	if(module)
-		for(var/obj/item/weapon/tank/jetpack/J in module.modules)
-			if(J && istype(J, /obj/item/weapon/tank/jetpack))
+		for(var/obj/item/tank/jetpack/J in module.modules)
+			if(J && istype(J, /obj/item/tank/jetpack))
 				if(J.allow_thrust(0.01))	return 1
 	if(..())	return 1
 	return 0

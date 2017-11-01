@@ -1374,10 +1374,10 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), WEAR_L_HAND )
-		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), WEAR_R_HAND )
-			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
+		H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), WEAR_L_HAND )
+		if(!(istype(H.l_hand,/obj/item/reagent_container/food/snacks/cookie)))
+			H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), WEAR_R_HAND )
+			if(!(istype(H.r_hand,/obj/item/reagent_container/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
@@ -1490,7 +1490,7 @@
 
 					// give the sprite some time to flick
 					spawn(20)
-						var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
+						var/obj/item/paper/P = new /obj/item/paper( F.loc )
 						P.name = "USCM High Command - [customname]"
 						P.info = input
 						P.update_icon()
@@ -1498,11 +1498,11 @@
 						playsound(F.loc, "sound/machines/fax.ogg", 15)
 
 						// Stamps
-						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+						var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 						stampoverlay.icon_state = "paper_stamp-uscm"
 						if(!P.stamped)
 							P.stamped = new
-						P.stamped += /obj/item/weapon/stamp
+						P.stamped += /obj/item/stamp
 						P.overlays += stampoverlay
 						P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
 
@@ -1532,7 +1532,7 @@
 
 					// give the sprite some time to flick
 					spawn(20)
-						var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
+						var/obj/item/paper/P = new /obj/item/paper( F.loc )
 						P.name = "Weyland Yutani - [customname]"
 						P.info = input
 						P.update_icon()
@@ -1540,11 +1540,11 @@
 						playsound(F.loc, "sound/machines/fax.ogg", 15)
 
 						// Stamps
-						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+						var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 						stampoverlay.icon_state = "paper_stamp-cent"
 						if(!P.stamped)
 							P.stamped = new
-						P.stamped += /obj/item/weapon/stamp
+						P.stamped += /obj/item/stamp
 						P.overlays += stampoverlay
 						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Weyland Yutani Quantum Relay (tm).</i>"
 

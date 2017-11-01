@@ -182,12 +182,12 @@
 				nextstate = CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = C
+	if(istype(C, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			blocked = !blocked
 			user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
@@ -225,7 +225,7 @@
 		if(blocked)
 			user << "<span class='danger'>\The [src] is welded solid!</span>"
 			return
-	if(istype(C, /obj/item/zombie_claws))
+	if(istype(C, /obj/item/weapon/zombie_claws))
 		if(operating)
 			return
 		user.visible_message("<span class='danger'>\The zombie starts to force \the [src] [density ? "open" : "closed"] with it's claws!!!</span>",\

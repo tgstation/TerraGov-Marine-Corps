@@ -1,13 +1,12 @@
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/items/storage.dmi'
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
 	density = 1
 	var/sortTag = null
 	flags_atom = FPRINT|NOBLUDGEON
-	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	var/examtext = null
 	var/nameset = 0
 	var/label_y
@@ -40,7 +39,7 @@
 			else
 				user << "<span class='warning'>You need to set a destination first!</span>"
 
-		else if(istype(W, /obj/item/weapon/pen))
+		else if(istype(W, /obj/item/tool/pen))
 			switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 				if("Title")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_NAME_LEN))
@@ -74,7 +73,7 @@
 	update_icon()
 		overlays = new()
 		if(nameset || examtext)
-			var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
+			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_label")
 			if(icon_state == "deliverycloset")
 				I.pixel_x = 2
 				if(label_y == null)
@@ -87,7 +86,7 @@
 				I.pixel_y = -3
 			overlays += I
 		if(src.sortTag)
-			var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
+			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_tag")
 			if(icon_state == "deliverycloset")
 				if(tag_x == null)
 					tag_x = rand(-2, 3)
@@ -112,7 +111,7 @@
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
 	name = "small parcel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/items/storage.dmi'
 	icon_state = "deliverycrate3"
 	var/obj/item/wrapped = null
 	var/sortTag = null
@@ -149,7 +148,7 @@
 			else
 				user << "<span class='warning'>You need to set a destination first!</span>"
 
-		else if(istype(W, /obj/item/weapon/pen))
+		else if(istype(W, /obj/item/tool/pen))
 			switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 				if("Title")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_NAME_LEN))
@@ -184,12 +183,12 @@
 	update_icon()
 		overlays = new()
 		if((nameset || examtext) && icon_state != "deliverycrate1")
-			var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
+			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_label")
 			if(icon_state == "deliverycrate5")
 				I.pixel_y = -1
 			overlays += I
 		if(src.sortTag)
-			var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
+			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_tag")
 			switch(icon_state)
 				if("deliverycrate1")
 					I.pixel_y = -5
@@ -214,9 +213,9 @@
 			if(examtext)
 				user << "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
 
-/obj/item/weapon/packageWrap
+/obj/item/packageWrap
 	name = "package wrapper"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "deliveryPaper"
 	w_class = 3.0
 	var/amount = 25.0
@@ -227,7 +226,7 @@
 		if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 			return
 		if(istype(target, /obj/item/smallDelivery) || istype(target,/obj/structure/bigDelivery) \
-		|| istype(target, /obj/item/weapon/gift) || istype(target, /obj/item/weapon/evidencebag))
+		|| istype(target, /obj/item/gift) || istype(target, /obj/item/evidencebag))
 			return
 		if(target.anchored)
 			return
@@ -239,7 +238,7 @@
 		user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
 
 
-		if (istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target,/obj/item/weapon/storage/box)))
+		if (istype(target, /obj/item) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
 			var/obj/item/O = target
 			if (src.amount > 1)
 				var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!
@@ -298,7 +297,7 @@
 		else
 			user << "\blue The object you are trying to wrap is unsuitable for the sorting machinery!"
 		if (src.amount <= 0)
-			new /obj/item/weapon/c_tube( src.loc )
+			new /obj/item/trash/c_tube( src.loc )
 			cdel(src)
 			return
 		return
@@ -412,7 +411,7 @@
 		if(!I || !user)
 			return
 
-		if(istype(I, /obj/item/weapon/screwdriver))
+		if(istype(I, /obj/item/tool/screwdriver))
 			if(c_mode==0)
 				c_mode=1
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -423,8 +422,8 @@
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "You attach the screws around the power connection."
 				return
-		else if(istype(I,/obj/item/weapon/weldingtool) && c_mode==1)
-			var/obj/item/weapon/weldingtool/W = I
+		else if(istype(I,/obj/item/tool/weldingtool) && c_mode==1)
+			var/obj/item/tool/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 				user << "You start slicing the floorweld off the delivery chute."

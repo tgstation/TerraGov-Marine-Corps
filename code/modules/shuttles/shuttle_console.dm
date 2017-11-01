@@ -226,9 +226,9 @@
 	ui_interact(usr)
 
 
-/obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/computer/shuttle_control/attackby(obj/item/W as obj, mob/user as mob)
 
-	if (istype(W, /obj/item/weapon/card/emag))
+	if (istype(W, /obj/item/card/emag))
 		src.req_access = list()
 		src.req_one_access = list()
 		hacked = 1

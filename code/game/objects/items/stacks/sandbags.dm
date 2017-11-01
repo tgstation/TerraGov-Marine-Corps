@@ -17,8 +17,8 @@
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/weapon/etool))
-		var/obj/item/weapon/etool/ET = W
+	if (istype(W, /obj/item/tool/etool))
+		var/obj/item/tool/etool/ET = W
 		if(ET.has_dirt)
 			var/obj/item/stack/sandbags/new_bags = new(user.loc)
 			new_bags.add_to_stacks(user)

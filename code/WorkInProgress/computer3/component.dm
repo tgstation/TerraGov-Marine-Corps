@@ -8,7 +8,7 @@
 
 
 
-/obj/item/part/computer
+/obj/item/computer3_part
 	name = "computer part"
 	desc = "Holy jesus you donnit now"
 	gender = PLURAL
@@ -41,7 +41,7 @@
 	For networking parts, see
 */
 
-/obj/item/part/computer/ai_holder
+/obj/item/computer3_part/ai_holder
 	name = "intelliCard computer module"
 	desc = "Contains a specialized nacelle for dealing with highly sensitive equipment without interference."
 
@@ -75,18 +75,18 @@
 	ID computer cardslot - reading and writing slots
 */
 
-/obj/item/part/computer/cardslot
+/obj/item/computer3_part/cardslot
 	name = "magnetic card slot"
 	desc = "Contains a slot for reading magnetic swipe cards."
 
-	var/obj/item/weapon/card/reader	= null
-	var/obj/item/weapon/card/writer	= null	// so that you don't need to typecast dual cardslots, but pretend it's not here
+	var/obj/item/card/reader	= null
+	var/obj/item/card/writer	= null	// so that you don't need to typecast dual cardslots, but pretend it's not here
 											// alternately pretend they did it to save money on manufacturing somehow
 	var/dualslot = 0 // faster than typechecking
-	attackby_types = list(/obj/item/weapon/card)
+	attackby_types = list(/obj/item/card)
 
 	attackby(var/obj/item/I as obj, var/mob/user as mob)
-		if(istype(I,/obj/item/weapon/card))
+		if(istype(I,/obj/item/card))
 			insert(I)
 			return
 		..(I,user)
@@ -94,7 +94,7 @@
 	// cardslot.insert(card, slot)
 	// card: The card obj you want to insert (usually your ID)
 	// slot: Which slot to insert into (1: reader, 2: writer, 3: auto), 3 default
-	proc/insert(var/obj/item/weapon/card/card, var/slot = 3)
+	proc/insert(var/obj/item/card/card, var/slot = 3)
 		if(!computer)
 			return 0
 		// This shouldn't happen, just in case..
@@ -102,7 +102,7 @@
 			usr << "This device has only one card slot"
 			return 0
 
-		if(istype(card,/obj/item/weapon/card/emag)) // emag reader slot
+		if(istype(card,/obj/item/card/emag)) // emag reader slot
 			if(!writer)
 				usr << "You insert \the [card], and the computer grinds, sparks, and beeps.  After a moment, the card ejects itself."
 				computer.emagged = 1
@@ -134,14 +134,14 @@
 
 
 	// Usage of insert() preferred, as it also tells result to the user.
-	proc/equip_to_reader(var/obj/item/weapon/card/card, var/mob/living/L)
+	proc/equip_to_reader(var/obj/item/card/card, var/mob/living/L)
 		if(!reader)
 			L.drop_inv_item_to_loc(card, src)
 			reader = card
 			return 1
 		return 0
 
-	proc/equip_to_writer(var/obj/item/weapon/card/card, var/mob/living/L)
+	proc/equip_to_writer(var/obj/item/card/card, var/mob/living/L)
 		if(!writer && dualslot)
 			L.drop_inv_item_to_loc(card, src)
 			writer = card
@@ -219,15 +219,15 @@
 		return computer.check_access(reader)
 
 	proc/addfile(var/datum/file/F)
-		if(!dualslot || !istype(writer,/obj/item/weapon/card/data))
+		if(!dualslot || !istype(writer,/obj/item/card/data))
 			return 0
-		var/obj/item/weapon/card/data/D = writer
+		var/obj/item/card/data/D = writer
 		if(D.files.len > 3)
 			return 0
 		D.files += F
 		return 1
 
-/obj/item/part/computer/cardslot/dual
+/obj/item/computer3_part/cardslot/dual
 	name	= "magnetic card reader"
 	desc	= "Contains slots for inserting magnetic swipe cards for reading and writing."
 	dualslot = 1
@@ -239,11 +239,11 @@
 	// Both is handled in single-slot reader code now, thanks to the "dualslot" var.
 	// Leaving this code here if someone wants to somehow use it, just uncomment.
 
-	insert(var/obj/item/weapon/card/card,var/slot = 0)
+	insert(var/obj/item/card/card,var/slot = 0)
 		if(!computer)
 			return 0
 
-		if(istype(card,/obj/item/weapon/card/emag) && !reader) // emag reader slot
+		if(istype(card,/obj/item/card/emag) && !reader) // emag reader slot
 			usr.visible_message("[computer]'s screen flickers for a moment.","You insert \the [card].  After a moment, the card ejects itself, and [computer] beeps.","[computer] beeps.")
 			computer.emagged = 1
 			return 1
@@ -274,7 +274,7 @@
 				writer = card
 				computer.updateUsrDialog()
 				return 1
-			if(istype(card,/obj/item/weapon/card/id) && !(access_change_ids in card:access) && !writer) // not authorized
+			if(istype(card,/obj/item/card/id) && !(access_change_ids in card:access) && !writer) // not authorized
 				writer = card
 				computer.updateUsrDialog()
 				return 1
@@ -284,7 +284,7 @@
 				return 1
 			return 0
 
-	remove(var/obj/item/weapon/card/card)
+	remove(var/obj/item/card/card)
 		if(card != reader && card != writer)
 			return
 

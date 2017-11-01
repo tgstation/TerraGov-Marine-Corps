@@ -21,7 +21,7 @@
 
 	var/default_prog		= null											// the program running when spawned
 	var/list/spawn_files	= list()										// files added when spawned
-	var/list/spawn_parts	= list(/obj/item/part/computer/storage/hdd/big)	// peripherals to spawn
+	var/list/spawn_parts	= list(/obj/item/computer3_part/storage/hdd/big)	// peripherals to spawn
 
 	// Computer3 components - put an object in them in New() when not built
 	// I used to have a more pliable /list, but the ambiguities
@@ -29,22 +29,22 @@
 	// when you had to search the list to find what you had.
 
 	// Mostly decorative, holds the OS rom
-	var/obj/item/part/computer/circuitboard/circuit
+	var/obj/item/computer3_part/circuitboard/circuit
 
 	// Storage
-	var/obj/item/part/computer/storage/hdd/hdd				= null
-	var/obj/item/part/computer/storage/removable/floppy		= null
+	var/obj/item/computer3_part/storage/hdd/hdd				= null
+	var/obj/item/computer3_part/storage/removable/floppy		= null
 	// Networking
-	var/obj/item/part/computer/networking/radio/radio		= null	// not handled the same as other networks
-	var/obj/item/part/computer/networking/cameras/camnet	= null	// just plain special
-	var/obj/item/part/computer/networking/net				= null	// Proximity, area, or cable network
+	var/obj/item/computer3_part/networking/radio/radio		= null	// not handled the same as other networks
+	var/obj/item/computer3_part/networking/cameras/camnet	= null	// just plain special
+	var/obj/item/computer3_part/networking/net				= null	// Proximity, area, or cable network
 
 	// Card reader - note the HoP reader is a subtype
-	var/obj/item/part/computer/cardslot/cardslot			= null
+	var/obj/item/computer3_part/cardslot/cardslot			= null
 
 	// Misc & special purpose
-	var/obj/item/part/computer/ai_holder/cradle				= null
-	var/obj/item/part/computer/toybox/toybox				= null
+	var/obj/item/computer3_part/ai_holder/cradle				= null
+	var/obj/item/computer3_part/toybox/toybox				= null
 	var/mob/living/silicon/ai/occupant						= null
 
 
@@ -68,7 +68,7 @@
 	// the comms computer, solar trackers, etc, that should function when all else is off.
 	// Laptops will require batteries and have no mains power.
 
-	var/obj/item/weapon/cell/battery	= null // uninterruptible power supply aka battery
+	var/obj/item/cell/battery	= null // uninterruptible power supply aka battery
 
 
 	verb/ResetComputer()
@@ -143,49 +143,49 @@
 	proc/spawn_parts()
 		for(var/typekey in spawn_parts)
 
-			if(ispath(typekey,/obj/item/part/computer/storage/removable))
+			if(ispath(typekey,/obj/item/computer3_part/storage/removable))
 				if(floppy) continue
 				floppy = new typekey(src)
 				floppy.init(src)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/storage/hdd))
+			if(ispath(typekey,/obj/item/computer3_part/storage/hdd))
 				if(hdd) continue
 				hdd = new typekey(src)
 				hdd.init(src)
 				continue
 
-			if(ispath(typekey,/obj/item/part/computer/networking/cameras))
+			if(ispath(typekey,/obj/item/computer3_part/networking/cameras))
 				if(camnet) continue
 				camnet = new typekey(src)
 				camnet.init(src)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/networking/radio))
+			if(ispath(typekey,/obj/item/computer3_part/networking/radio))
 				if(radio) continue
 				radio = new typekey(src)
 				radio.init(src)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/networking))
+			if(ispath(typekey,/obj/item/computer3_part/networking))
 				if(net) continue
 				net = new typekey(src)
 				net.init(src)
 				continue
 
-			if(ispath(typekey,/obj/item/part/computer/cardslot))
+			if(ispath(typekey,/obj/item/computer3_part/cardslot))
 				if(cardslot) continue
 				cardslot = new typekey(src)
 				cardslot.init(src)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/ai_holder))
+			if(ispath(typekey,/obj/item/computer3_part/ai_holder))
 				if(cradle) continue
 				cradle = new typekey(src)
 				cradle.init(src)
-			if(ispath(typekey,/obj/item/part/computer/toybox))
+			if(ispath(typekey,/obj/item/computer3_part/toybox))
 				if(toybox) continue
 				toybox = new typekey(src)
 				toybox.init(src)
 				continue
 
-			if(ispath(typekey,/obj/item/weapon/cell))
+			if(ispath(typekey,/obj/item/cell))
 				if(battery) continue
 				battery = new typekey(src)
 				continue
@@ -302,7 +302,7 @@
 			os.error = BUSTED_ASS_COMPUTER
 
 	attackby(I as obj, mob/user as mob)
-		if(istype(I, /obj/item/weapon/screwdriver) && allow_disassemble)
+		if(istype(I, /obj/item/tool/screwdriver) && allow_disassemble)
 			disassemble(user)
 			return
 
@@ -314,11 +314,11 @@
 		var/list/peripherals = list(hdd,floppy,radio,net,cardslot,cradle) //camnet, toybox removed
 
 		var/list/p_list = list()
-		for(var/obj/item/part/computer/C in peripherals)
+		for(var/obj/item/computer3_part/C in peripherals)
 			if(!isnull(C) && C.allow_attackby(I,user))
 				p_list += C
 		if(p_list.len)
-			var/obj/item/part/computer/P = null
+			var/obj/item/computer3_part/P = null
 			if(p_list.len == 1)
 				P = p_list[1]
 			else
@@ -436,7 +436,7 @@
 	//Returns percentage of battery charge remaining. Returns -1 if no battery is installed.
 	proc/check_battery_status()
 		if (battery)
-			var/obj/item/weapon/cell/B = battery
+			var/obj/item/cell/B = battery
 			return round(B.charge / (B.maxcharge / 100))
 		else
 			return -1

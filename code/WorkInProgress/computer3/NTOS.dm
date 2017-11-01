@@ -6,7 +6,7 @@
 	name = "YutaniOS Operating System"
 	extension = "prog"
 	active_state = "wyos"
-	var/obj/item/part/computer/storage/current // the drive being viewed, null for desktop/computer
+	var/obj/item/computer3_part/storage/current // the drive being viewed, null for desktop/computer
 	var/fileop = "runfile"
 
 /*
@@ -49,7 +49,7 @@
 	var/dat = "<table border='0' align='left'>"
 	var/i = 0
 	var/list/peripherals = list(computer.hdd,computer.floppy,computer.cardslot)
-	for(var/obj/item/part/computer/C in peripherals)
+	for(var/obj/item/computer3_part/C in peripherals)
 		if(!istype(C)) continue
 		i++
 		if(i==1)
@@ -215,19 +215,19 @@
 		return
 
 	if("viewperipheral" in href_list) // open drive, show status of peripheral
-		var/obj/item/part/computer/C = locate(href_list["viewperipheral"])
+		var/obj/item/computer3_part/C = locate(href_list["viewperipheral"])
 		if(!istype(C) || (C.loc != src.computer))
 			return
 
-		if(istype(C,/obj/item/part/computer/storage))
+		if(istype(C,/obj/item/computer3_part/storage))
 			current = C
 			interact()
 			return
 		// else ???
-		if(istype(C,/obj/item/part/computer/cardslot))
+		if(istype(C,/obj/item/computer3_part/cardslot))
 			if(computer.cardslot.reader != null)
 				computer.cardslot.remove()
-		if(istype(C,/obj/item/part/computer/cardslot/dual))
+		if(istype(C,/obj/item/computer3_part/cardslot/dual))
 			if(computer.cardslot.writer != null)
 				computer.cardslot.remove(computer.cardslot.writer)
 			if(computer.cardslot.reader != null)

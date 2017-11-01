@@ -2,13 +2,13 @@
 // Other harvested materials from plants (that are not food)
 // **********************
 
-/obj/item/weapon/grown // Grown weapons
+/obj/item/grown // Grown things that are not edible
 	name = "grown_weapon"
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items/weapons.dmi'
 	var/plantname
 	var/potency = 1
 
-/obj/item/weapon/grown/New()
+/obj/item/grown/New()
 
 	..()
 
@@ -33,11 +33,11 @@
 					rtotal += round(potency/reagent_data[2])
 				reagents.add_reagent(rid,max(1,rtotal))
 
-/obj/item/weapon/grown/log
+/obj/item/grown/log
 	name = "towercap"
 	name = "tower-cap log"
 	desc = "It's better than bad, it's good!"
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "logs"
 	force = 5
 	flags_atom = NOFLAGS
@@ -48,7 +48,7 @@
 	origin_tech = "materials=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob)
 		if(W.sharp == IS_SHARP_ITEM_BIG)
 			user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 			for(var/i=0,i<2,i++)
@@ -63,11 +63,11 @@
 			cdel(src)
 			return
 
-/obj/item/weapon/grown/sunflower // FLOWER POWER!
+/obj/item/grown/sunflower // FLOWER POWER!
 	plantname = "sunflowers"
 	name = "sunflower"
 	desc = "It's beautiful! A certain person might beat you to death if you trample these."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "sunflower"
 	damtype = "fire"
 	force = 0
@@ -77,14 +77,14 @@
 	throw_speed = 1
 	throw_range = 3
 
-/obj/item/weapon/grown/sunflower/attack(mob/M as mob, mob/user as mob)
+/obj/item/grown/sunflower/attack(mob/M as mob, mob/user as mob)
 	M << "<font color='green'><b> [user] smacks you with a sunflower!</font><font color='yellow'><b>FLOWER POWER<b></font>"
 	user << "<font color='green'> Your sunflower's </font><font color='yellow'><b>FLOWER POWER</b></font><font color='green'> strikes [M]</font>"
 
-/obj/item/weapon/grown/nettle // -- Skie
+/obj/item/grown/nettle // -- Skie
 	plantname = "nettle"
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/items/weapons.dmi'
 	name = "nettle"
 	icon_state = "nettle"
 	damtype = "fire"
@@ -100,12 +100,12 @@
 
 	var/potency_divisior = 5
 
-/obj/item/weapon/grown/nettle/New()
+/obj/item/grown/nettle/New()
 	..()
 	spawn(5)
 		force = round((5+potency/potency_divisior), 1)
 
-/obj/item/weapon/grown/nettle/pickup(mob/living/carbon/human/user as mob)
+/obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	if(istype(user) && !user.gloves)
 		user << "\red The nettle burns your bare hand!"
 		if(istype(user, /mob/living/carbon/human))
@@ -118,7 +118,7 @@
 		return 1
 	return 0
 
-/obj/item/weapon/grown/nettle/proc/lose_leaves(var/mob/user)
+/obj/item/grown/nettle/proc/lose_leaves(var/mob/user)
 	if(force > 0)
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 		force -= rand(1,(force/3)+1) // When you whack someone with it, leaves fall off
@@ -131,7 +131,7 @@
 			user.temp_drop_inv_item(src)
 		cdel(src)
 
-/obj/item/weapon/grown/nettle/death // -- Skie
+/obj/item/grown/nettle/death // -- Skie
 	plantname = "deathnettle"
 	desc = "The \red glowing \black nettle incites \red<B>rage</B>\black in you just from looking at it!"
 	name = "deathnettle"
@@ -139,19 +139,19 @@
 	origin_tech = "combat=3"
 	potency_divisior = 2.5
 
-/obj/item/weapon/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)
+/obj/item/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)
 
 	if(..() && prob(50))
 		user.KnockOut(5)
 		user << "\red You are stunned by the deathnettle when you try picking it up!"
 
-/obj/item/weapon/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
 
 	if(!..()) return
 
 	lose_leaves(user)
 
-/obj/item/weapon/grown/nettle/death/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/grown/nettle/death/attack(mob/living/carbon/M as mob, mob/user as mob)
 
 	if(!..()) return
 
@@ -168,10 +168,10 @@
 			M.KnockDown(force/15)
 		M.drop_held_item()
 
-/obj/item/weapon/corncob
+/obj/item/corncob
 	name = "corn cob"
 	desc = "A reminder of meals gone by."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
 	w_class = 2.0
@@ -179,7 +179,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/weapon/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/corncob/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.sharp == IS_SHARP_ITEM_ACCURATE)
 		user << "<span class='notice'>You use [W] to fashion a pipe out of the corn cob!</span>"
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe (user.loc)

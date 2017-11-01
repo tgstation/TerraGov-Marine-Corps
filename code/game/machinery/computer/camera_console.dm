@@ -9,7 +9,7 @@
 	var/last_pic = 1.0
 	var/list/network = list("military")
 	var/mapping = 0//For the overview file, interesting bit of code.
-	circuit = /obj/item/weapon/circuitboard/security
+	circuit = /obj/item/circuitboard/computer/security
 
 
 	attack_ai(var/mob/user as mob)
@@ -169,14 +169,14 @@
 	desc = "Used to access the various cameras on the outpost."
 	icon_state = "miningcameras"
 	network = list("MINE")
-	circuit = /obj/item/weapon/circuitboard/security/mining
+	circuit = /obj/item/circuitboard/computer/security/mining
 
 /obj/machinery/computer/security/engineering
 	name = "Engineering Cameras"
 	desc = "Used to monitor fires and breaches."
 	icon_state = "engineeringcameras"
 	network = list("Engineering","Power Alarms","Atmosphere Alarms","Fire Alarms")
-	circuit = /obj/item/weapon/circuitboard/security/engineering
+	circuit = /obj/item/circuitboard/computer/security/engineering
 
 /obj/machinery/computer/security/nuclear
 	name = "Mission Monitor"

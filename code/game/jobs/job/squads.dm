@@ -36,8 +36,7 @@
 	var/secondary_objective = null
 	var/obj/item/device/squad_beacon/sbeacon = null
 	var/obj/item/device/squad_beacon/bomb/bbeacon = null
-	var/obj/item/effect/drop_pad = null
-	//^^^
+	var/obj/structure/supply_drop/drop_pad = null
 
 /datum/squad/alpha
 	name = "Alpha"
@@ -78,7 +77,7 @@
 	if(!M.mind.assigned_role) return 0//Not yet
 	if(M.assigned_squad) return 0 //already in a squad
 
-	var/obj/item/weapon/card/id/C = null
+	var/obj/item/card/id/C = null
 	C = M.wear_id
 	if(!C) C = M.get_active_hand()
 	if(!istype(C)) return 0//Abort, no ID found
@@ -111,7 +110,7 @@
 /datum/squad/proc/remove_marine_from_squad(mob/living/carbon/human/M)
 	if(!M.mind) return 0
 	if(!M.assigned_squad) return //not assigned to a squad
-	var/obj/item/weapon/card/id/C
+	var/obj/item/card/id/C
 	C = M.wear_id
 	if(!istype(C)) return 0//Abort, no ID found
 
@@ -166,8 +165,8 @@
 			cdel(R.keyslot3)
 			R.keyslot3 = null
 		R.recalculateChannels()
-	if(istype(old_lead.wear_id, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = old_lead.wear_id
+	if(istype(old_lead.wear_id, /obj/item/card/id))
+		var/obj/item/card/id/ID = old_lead.wear_id
 		ID.access -= ACCESS_MARINE_LEADER
 	old_lead.hud_set_squad()
 	old_lead.update_inv_head() //updating marine helmet leader overlays

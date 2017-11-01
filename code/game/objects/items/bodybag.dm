@@ -41,7 +41,7 @@
 			used = CB.used
 
 
-/obj/item/weapon/storage/box/bodybags
+/obj/item/storage/box/bodybags
 	name = "body bags"
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
@@ -73,7 +73,7 @@
 	drag_delay = 2 //slightly easier than to drag the body directly.
 
 	attackby(W as obj, mob/user as mob)
-		if (istype(W, /obj/item/weapon/pen))
+		if (istype(W, /obj/item/tool/pen))
 			var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
 			if (user.get_active_hand() != W)
 				return
@@ -87,12 +87,12 @@
 				src.name = "body bag"
 		//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 			return
-		else if(istype(W, /obj/item/weapon/wirecutters))
+		else if(istype(W, /obj/item/tool/wirecutters))
 			user << "<span class='notice'>You cut the tag off the bodybag.</span>"
 			src.name = "body bag"
 			src.overlays.Cut()
 			return
-		else if(istype(W, /obj/item/zombie_claws))
+		else if(istype(W, /obj/item/weapon/zombie_claws))
 			open()
 
 
@@ -158,7 +158,7 @@
 			processing_objects.Remove(src)
 		. = ..()
 		if(used > max_uses)
-			new /obj/item/used_stasis_bag(loc)
+			new /obj/item/trash/used_stasis_bag(loc)
 			cdel(src)
 
 	close()
@@ -188,7 +188,7 @@
 			if(1201 to 1800) user << "It looks really used."
 
 
-/obj/item/used_stasis_bag
+/obj/item/trash/used_stasis_bag
 	name = "used stasis bag"
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_used"

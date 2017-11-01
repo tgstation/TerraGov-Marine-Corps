@@ -101,14 +101,14 @@
 		else
 			icon_state = mineralType
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/weapon/pickaxe))
-			var/obj/item/weapon/pickaxe/digTool = W
+	attackby(obj/item/W, mob/user)
+		if(istype(W,/obj/item/tool/pickaxe))
+			var/obj/item/tool/pickaxe/digTool = W
 			user << "You start digging the [name]."
 			if(do_after(user,digTool.digspeed*hardness) && src)
 				user << "You finished digging."
 				Dismantle()
-		else if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
+		else if(!(W.flags_atom & NOBLUDGEON) && W.force)
 			hardness -= W.force/100
 			user << "You hit the [name] with your [W.name]!"
 			CheckHardness()
@@ -186,9 +186,9 @@
 /obj/structure/mineral_door/transparent/phoron
 	mineralType = "phoron"
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+	attackby(obj/item/W as obj, mob/user as mob)
+		if(istype(W,/obj/item/tool/weldingtool))
+			var/obj/item/tool/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				TemperatureAct(100)
 		..()

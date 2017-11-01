@@ -40,7 +40,7 @@
 		if(ishuman(spawnloc))
 			var/mob/living/carbon/human/H = spawnloc
 			H.equip_to_slot_or_del(gun, sidearm? WEAR_L_HAND : WEAR_R_HAND)
-			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
+			if(ammopath && H.back && istype(H.back,/obj/item/storage))
 				new ammopath(H.back)
 				new ammopath(H.back)
 				new ammopath(H.back)
@@ -93,53 +93,53 @@
 
 
 	var/list/rebel_sidearms = list(
-		/obj/item/weapon/storage/large_holster/katana/full = null,
-		/obj/item/weapon/storage/large_holster/katana/full = null,
-		/obj/item/weapon/storage/large_holster/katana/full = null,
-		/obj/item/weapon/storage/large_holster/machete/full = null,
+		/obj/item/storage/large_holster/katana/full = null,
+		/obj/item/storage/large_holster/katana/full = null,
+		/obj/item/storage/large_holster/katana/full = null,
+		/obj/item/storage/large_holster/machete/full = null,
 		/obj/item/weapon/combat_knife = null,
-		/obj/item/weapon/grenade/explosive/stick = null,
-		/obj/item/weapon/grenade/explosive/stick = null,
-		/obj/item/weapon/grenade/explosive/stick = null,
+		/obj/item/explosive/grenade/frag/stick = null,
+		/obj/item/explosive/grenade/frag/stick = null,
+		/obj/item/explosive/grenade/frag/stick = null,
 		/obj/item/weapon/combat_knife/upp = null,
 		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
 		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
 		/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
 		/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
-		/obj/item/weapon/reagent_containers/spray/pepper = null,
-		/obj/item/weapon/reagent_containers/spray/pepper = null,
+		/obj/item/reagent_container/spray/pepper = null,
+		/obj/item/reagent_container/spray/pepper = null,
 		/obj/item/clothing/tie/storage/webbing = null,
 		/obj/item/clothing/tie/storage/webbing = null,
-		/obj/item/weapon/storage/belt/marine = null,
-		/obj/item/weapon/storage/pill_bottle/tramadol = null,
-		/obj/item/weapon/grenade/phosphorus = null,
+		/obj/item/storage/belt/marine = null,
+		/obj/item/storage/pill_bottle/tramadol = null,
+		/obj/item/explosive/grenade/phosphorus = null,
 		/obj/item/clothing/glasses/welding = null,
-		/obj/item/weapon/reagent_containers/ld50_syringe/choral = null,
-		/obj/item/weapon/storage/firstaid/regular = null,
-		/obj/item/weapon/reagent_containers/pill/cyanide = null,
+		/obj/item/reagent_container/ld50_syringe/choral = null,
+		/obj/item/storage/firstaid/regular = null,
+		/obj/item/reagent_container/pill/cyanide = null,
 		/obj/item/device/megaphone = null,
-		/obj/item/weapon/storage/belt/utility/full = null,
-		/obj/item/weapon/storage/belt/utility/full = null,
-		/obj/item/weapon/storage/bible = null,
-		/obj/item/weapon/scalpel = null,
-		/obj/item/weapon/scalpel = null,
+		/obj/item/storage/belt/utility/full = null,
+		/obj/item/storage/belt/utility/full = null,
+		/obj/item/storage/bible = null,
+		/obj/item/tool/surgery/scalpel = null,
+		/obj/item/tool/surgery/scalpel = null,
 		/obj/item/weapon/baseballbat = null,
 		/obj/item/weapon/baseballbat = null,
 		/obj/item/weapon/baseballbat = null,
 		/obj/item/weapon/baseballbat/metal = null,
-		/obj/item/weapon/grenade/empgrenade = null,
-		/obj/item/weapon/grenade/smokebomb = null,
-		/obj/item/weapon/grenade/smokebomb = null,
-		/obj/item/weapon/grenade/smokebomb = null,
-		/obj/item/weapon/grenade/phosphorus/upp = null,
-		/obj/item/weapon/hatchet = null,
-		/obj/item/weapon/hatchet = null,
-		/obj/item/weapon/hatchet = null,
-		/obj/item/weapon/storage/box/MRE = null,
+		/obj/item/explosive/grenade/empgrenade = null,
+		/obj/item/explosive/grenade/smokebomb = null,
+		/obj/item/explosive/grenade/smokebomb = null,
+		/obj/item/explosive/grenade/smokebomb = null,
+		/obj/item/explosive/grenade/phosphorus/upp = null,
+		/obj/item/tool/hatchet = null,
+		/obj/item/tool/hatchet = null,
+		/obj/item/tool/hatchet = null,
+		/obj/item/storage/box/MRE = null,
 		/obj/item/clothing/mask/fluff/balaclava = null,
 		/obj/item/clothing/glasses/night/m42_night_goggles/upp = null,
-		/obj/item/weapon/storage/box/handcuffs = null,
-		/obj/item/weapon/storage/pill_bottle/happy = null,
+		/obj/item/storage/box/handcuffs = null,
+		/obj/item/storage/pill_bottle/happy = null,
 		/obj/item/weapon/twohanded/fireaxe = null,
 		/obj/item/weapon/twohanded/spear = null
 		)
@@ -153,7 +153,7 @@
 		if(ishuman(spawnloc))
 			var/mob/living/carbon/human/H = spawnloc
 			H.equip_to_slot_or_del(gun, sidearm? WEAR_L_HAND : WEAR_R_HAND)
-			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage) && ammopath != null)
+			if(ammopath && H.back && istype(H.back,/obj/item/storage) && ammopath != null)
 				new ammopath(H.back)
 				new ammopath(H.back)
 				new ammopath(H.back)
@@ -199,7 +199,7 @@
 		if(ishuman(spawnloc))
 			var/mob/living/carbon/human/H = spawnloc
 			H.equip_to_slot_or_del(gun, sidearm? WEAR_L_HAND : WEAR_R_HAND)
-			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
+			if(ammopath && H.back && istype(H.back,/obj/item/storage))
 				new ammopath(H.back)
 				new ammopath(H.back)
 		else
@@ -1087,19 +1087,19 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/pizza(M), WEAR_BODY)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/soft/red(M), WEAR_HEAD)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/red(M), WEAR_FEET)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(M), WEAR_BACK)
 	M.equip_to_slot_or_del(new /obj/item/pizzabox/margherita(M), WEAR_R_HAND)
 	M.equip_to_slot_or_del(new /obj/item/device/radio(M), WEAR_R_STORE)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/cans/dr_gibb(M), WEAR_L_STORE)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/pizzabox/vegetable(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/pizzabox/mushroom(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/pizzabox/meat(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/cans/dr_gibb(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/cans/thirteenloko(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(M.back), WEAR_IN_BACK)
 
-	var/obj/item/weapon/card/id/W = new(src)
+	var/obj/item/card/id/W = new(src)
 	W.assignment = "Pizza Deliverer"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
@@ -1140,9 +1140,9 @@
 					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 				if(3)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
 					continue
 				if(4)
 					new /obj/item/weapon/gun/rifle/m41a/elite(drop_spawn)
@@ -1152,18 +1152,18 @@
 					continue
 				if(5)
 					new /obj/item/weapon/gun/launcher/m92(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
 					continue
 				if(6)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
 					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 				if(7)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
 					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 	return
@@ -1198,12 +1198,12 @@
 					new /obj/item/weapon/gun/flamer(drop_spawn)
 					new /obj/item/weapon/gun/flamer(drop_spawn)
 				if(3)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
+					new /obj/item/explosive/grenade/frag/PMC(drop_spawn)
 				if(4)
 					new /obj/item/weapon/gun/rifle/m41a(drop_spawn)
 					new /obj/item/weapon/gun/rifle/m41a(drop_spawn)
@@ -1242,41 +1242,41 @@
 		if(istype(drop_spawn))
 			switch(choice)
 				if(0)
-					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new/obj/item/reagent_container/food/drinks/bottle/vodka(drop_spawn)
+					new/obj/item/reagent_container/food/drinks/bottle/vodka(drop_spawn)
+					//new /obj/item/storage/box/rocket_system(drop_spawn)
 					continue
 				if(1)
 					new /obj/item/weapon/gun/flamer(drop_spawn)
-					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new/obj/item/reagent_container/food/drinks/bottle/vodka(drop_spawn)
 					continue
 				if(2)
-					new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(drop_spawn)
+					new /obj/item/reagent_container/hypospray/tricordrazine(drop_spawn)
 					new /obj/item/weapon/shield/riot(drop_spawn)
-					new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new /obj/item/reagent_container/food/drinks/bottle/vodka(drop_spawn)
 					continue
 				if(3)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
+					new /obj/item/explosive/plastique(drop_spawn)
 					continue
 				if(4)
-					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new/obj/item/reagent_container/food/drinks/bottle/vodka(drop_spawn)
 					new /obj/item/weapon/shield/riot(drop_spawn)
 					continue
 				if(5)
-					new /obj/item/weapon/grenade/explosive(drop_spawn)
-					new /obj/item/weapon/grenade/explosive(drop_spawn)
-					new /obj/item/weapon/grenade/explosive(drop_spawn)
-					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new /obj/item/explosive/grenade/frag(drop_spawn)
+					new /obj/item/explosive/grenade/frag(drop_spawn)
+					new /obj/item/explosive/grenade/frag(drop_spawn)
+					//new /obj/item/storage/box/rocket_system(drop_spawn)
 					continue
 				if(6)
-					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new/obj/item/reagent_container/food/drinks/bottle/vodka(drop_spawn)
 					new /obj/item/weapon/gun/flamer(drop_spawn)
 					continue
 				if(7)
-					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new/obj/item/reagent_container/food/drinks/bottle/vodka(drop_spawn)
+					//new /obj/item/storage/box/rocket_system(drop_spawn)
 					continue
 */
 /datum/emergency_call/colonist/create_member(datum/mind/M) //Blank ERT with only basic items.
@@ -1439,12 +1439,12 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), WEAR_HANDS)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/storage/backpack/commando(M), WEAR_BACK)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), WEAR_FEET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), WEAR_L_STORE)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/explosive/plastique(M), WEAR_R_STORE)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), WEAR_WAIST)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
@@ -1454,7 +1454,7 @@
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_J_STORE)
 
-	var/obj/item/weapon/card/id/W = new(src)
+	var/obj/item/card/id/W = new(src)
 	W.assignment = "Deathsquad"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
@@ -1471,12 +1471,12 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), WEAR_JACKET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), WEAR_HANDS)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), WEAR_HEAD)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/storage/backpack/commando(M), WEAR_BACK)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), WEAR_FEET)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), WEAR_L_STORE)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/explosive/plastique(M), WEAR_R_STORE)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), WEAR_WAIST)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
@@ -1486,7 +1486,7 @@
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_J_STORE)
 
-	var/obj/item/weapon/card/id/W = new(src)
+	var/obj/item/card/id/W = new(src)
 	W.assignment = "Deathsquad Leader"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"

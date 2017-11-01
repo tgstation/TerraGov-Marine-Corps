@@ -55,7 +55,7 @@
 //Windows are weird. The walls technically tile with them, but they don't tile back. At least, not really.
 //They require more states or something to that effect, but this is a workaround to use what we have.
 //I could introduce flags here, but I feel like the faster the better. In this case an override with copy and pasted code is fine for now.
-/obj/structure/window/reinforced/almayer/relativewall()
+/obj/structure/window/framed/relativewall()
 	var/jun_1 = 0 //Junction 1.
 	var/jun_2 = 0 //Junction 2.
 	var/turf/T
@@ -123,7 +123,7 @@
 	else if(junction == 4 || junction == 8)
 		dir = 1
 
-/obj/structure/window/reinforced/almayer/handle_icon_junction(jun_1, jun_2)
+/obj/structure/window/framed/handle_icon_junction(jun_1, jun_2)
 	icon_state = "[basestate][jun_2 ? jun_2 : jun_1]" //Use junction 2 if possible, junction 1 otherwise.
 	if(jun_2)
 		junction = jun_2

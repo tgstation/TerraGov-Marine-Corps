@@ -29,7 +29,7 @@ var/list/robot_verbs_default = list(
 	var/obj/screen/inv3 = null
 
 //3 Modules can be activated at any one time.
-	var/obj/item/weapon/robot_module/module = null
+	var/obj/item/circuitboard/robot_module/module = null
 	var/obj/module_active = null
 	var/obj/module_state_1 = null
 	var/obj/module_state_2 = null
@@ -37,7 +37,7 @@ var/list/robot_verbs_default = list(
 
 	var/obj/item/device/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
 
 	// Components are basically robot organs.
@@ -88,14 +88,14 @@ var/list/robot_verbs_default = list(
 
 	if(syndie)
 		if(!cell)
-			cell = new /obj/item/weapon/cell(src)
+			cell = new /obj/item/cell(src)
 
 		laws = new /datum/ai_laws/antimov()
 		lawupdate = 0
 		scrambledcodes = 1
 		cell.maxcharge = 25000
 		cell.charge = 25000
-		module = new /obj/item/weapon/robot_module/syndicate(src)
+		module = new /obj/item/circuitboard/robot_module/syndicate(src)
 		hands.icon_state = "standard"
 		icon_state = "secborg"
 		modtype = "Security"
@@ -118,7 +118,7 @@ var/list/robot_verbs_default = list(
 		C.wrapped = new C.external_type
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell(src)
+		cell = new /obj/item/cell(src)
 		cell.maxcharge = 25000
 		cell.charge = 25000
 
@@ -177,14 +177,14 @@ var/list/robot_verbs_default = list(
 
 	switch(modtype)
 		if("Standard")
-			module = new /obj/item/weapon/robot_module/standard(src)
+			module = new /obj/item/circuitboard/robot_module/standard(src)
 			module_sprites["Basic"] = "robot_old"
 			module_sprites["Android"] = "droid"
 			module_sprites["Default"] = "robot"
 			module_sprites["Drone"] = "drone-standard"
 
 		if("Service")
-			module = new /obj/item/weapon/robot_module/butler(src)
+			module = new /obj/item/circuitboard/robot_module/butler(src)
 			module_sprites["Waitress"] = "Service"
 			module_sprites["Kent"] = "toiletbot"
 			module_sprites["Bro"] = "Brobot"
@@ -193,7 +193,7 @@ var/list/robot_verbs_default = list(
 			module_sprites["Drone"] = "drone-service" // How does this even work...? Oh well.
 
 		if("Medic")
-			module = new /obj/item/weapon/robot_module/medic(src)
+			module = new /obj/item/circuitboard/robot_module/medic(src)
 			module.channels = list("MedSci" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
@@ -203,7 +203,7 @@ var/list/robot_verbs_default = list(
 			module_sprites["Needles"] = "medicalrobot"
 
 		if("Surgeon")
-			module = new /obj/item/weapon/robot_module/surgeon(src)
+			module = new /obj/item/circuitboard/robot_module/surgeon(src)
 			module.channels = list("MedSci" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
@@ -214,7 +214,7 @@ var/list/robot_verbs_default = list(
 			module_sprites["Drone"] = "drone-medical"
 
 		if("Security")
-			module = new /obj/item/weapon/robot_module/security(src)
+			module = new /obj/item/circuitboard/robot_module/security(src)
 			module.channels = list("MP" = 1)
 			module_sprites["Basic"] = "secborg"
 			module_sprites["Red Knight"] = "Security"
@@ -224,7 +224,7 @@ var/list/robot_verbs_default = list(
 			module_sprites["Drone"] = "drone-sec"
 
 		if("Engineering")
-			module = new /obj/item/weapon/robot_module/engineering(src)
+			module = new /obj/item/circuitboard/robot_module/engineering(src)
 			module.channels = list("Engi" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Engineering")
@@ -235,14 +235,14 @@ var/list/robot_verbs_default = list(
 			module_sprites["Drone"] = "drone-engineer"
 
 		if("Janitor")
-			module = new /obj/item/weapon/robot_module/janitor(src)
+			module = new /obj/item/circuitboard/robot_module/janitor(src)
 			module_sprites["Basic"] = "JanBot2"
 			module_sprites["Mopbot"]  = "janitorrobot"
 			module_sprites["Mop Gear Rex"] = "mopgearrex"
 			module_sprites["Drone"] = "drone-janitor"
 
 		if("Combat")
-			module = new /obj/item/weapon/robot_module/combat(src)
+			module = new /obj/item/circuitboard/robot_module/combat(src)
 			module_sprites["Combat Android"] = "droid-combat"
 			module.channels = list("Security" = 1)
 
@@ -415,7 +415,7 @@ var/list/robot_verbs_default = list(
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
 	// if you have a jetpack, show the internal tank pressure
-	var/obj/item/weapon/tank/jetpack/current_jetpack = installed_jetpack()
+	var/obj/item/tank/jetpack/current_jetpack = installed_jetpack()
 	if (current_jetpack)
 		stat("Internal Atmosphere Info", current_jetpack.name)
 		stat("Tank Pressure", current_jetpack.air_contents.return_pressure())
@@ -424,7 +424,7 @@ var/list/robot_verbs_default = list(
 // this function returns the robots jetpack, if one is installed
 /mob/living/silicon/robot/proc/installed_jetpack()
 	if(module)
-		return (locate(/obj/item/weapon/tank/jetpack) in module.modules)
+		return (locate(/obj/item/tank/jetpack) in module.modules)
 	return 0
 
 
@@ -511,8 +511,8 @@ var/list/robot_verbs_default = list(
 	return has_alarm
 
 
-/mob/living/silicon/robot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
+/mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
 	if(opened) // Are they trying to insert something?
@@ -533,7 +533,7 @@ var/list/robot_verbs_default = list(
 
 				return
 
-	if (istype(W, /obj/item/weapon/weldingtool))
+	if (istype(W, /obj/item/tool/weldingtool))
 		if (src == user)
 			user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
 			return
@@ -541,7 +541,7 @@ var/list/robot_verbs_default = list(
 		if (!getBruteLoss())
 			user << "Nothing to fix here!"
 			return
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/tool/weldingtool/WT = W
 		if (WT.remove_fuel(0))
 			adjustBruteLoss(-30)
 			updatehealth()
@@ -563,7 +563,7 @@ var/list/robot_verbs_default = list(
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
 
-	else if (istype(W, /obj/item/weapon/crowbar))	// crowbar means open or close the cover
+	else if (istype(W, /obj/item/tool/crowbar))	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				user << "You close the cover."
@@ -619,7 +619,7 @@ var/list/robot_verbs_default = list(
 				opened = 1
 				updateicon()
 
-	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+	else if (istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
 			user << "Close the panel first."
@@ -637,18 +637,18 @@ var/list/robot_verbs_default = list(
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/multitool))
+	else if (istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/device/multitool))
 		if (wiresexposed)
 			interact(user)
 		else
 			user << "You can't reach the wiring."
 
-	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !cell)	// haxing
+	else if(istype(W, /obj/item/tool/screwdriver) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
 		updateicon()
 
-	else if(istype(W, /obj/item/weapon/screwdriver) && opened && cell)	// radio
+	else if(istype(W, /obj/item/tool/screwdriver) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
@@ -661,7 +661,7 @@ var/list/robot_verbs_default = list(
 		else
 			user << "Unable to locate a radio."
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			user << "The interface seems slightly damaged"
 		if(opened)
@@ -674,11 +674,11 @@ var/list/robot_verbs_default = list(
 			else
 				user << "\red Access denied."
 
-	else if(istype(W, /obj/item/weapon/card/emag))		// trying to unlock with an emag card
+	else if(istype(W, /obj/item/card/emag))		// trying to unlock with an emag card
 		if(!opened)//Cover is closed
 			if(locked)
 				if(prob(90))
-					var/obj/item/weapon/card/emag/emag = W
+					var/obj/item/card/emag/emag = W
 					emag.uses--
 					user << "You emag the cover lock."
 					locked = 0
@@ -802,18 +802,18 @@ var/list/robot_verbs_default = list(
 	else if(istype(M, /mob/living/carbon/monkey))
 		var/mob/living/carbon/monkey/george = M
 		//they can only hold things :(
-		if(george.get_active_hand() && istype(george.get_active_hand(), /obj/item/weapon/card/id) && check_access(george.get_active_hand()))
+		if(george.get_active_hand() && istype(george.get_active_hand(), /obj/item/card/id) && check_access(george.get_active_hand()))
 			return 1
 	return 0
 
-/mob/living/silicon/robot/proc/check_access(obj/item/weapon/card/id/I)
+/mob/living/silicon/robot/proc/check_access(obj/item/card/id/I)
 	if(!istype(req_access, /list)) //something's very wrong
 		return 1
 
 	var/list/L = req_access
 	if(!L.len) //no requirements
 		return 1
-	if(!I || !istype(I, /obj/item/weapon/card/id) || !I.access) //not ID or no access
+	if(!I || !istype(I, /obj/item/card/id) || !I.access) //not ID or no access
 		return 0
 	for(var/req in req_access)
 		if(req in I.access) //have one of the required accesses
@@ -1002,7 +1002,7 @@ var/list/robot_verbs_default = list(
 	. = ..()
 
 	if(module)
-		if(module.type == /obj/item/weapon/robot_module/janitor)
+		if(module.type == /obj/item/circuitboard/robot_module/janitor)
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()

@@ -30,7 +30,7 @@ datum/design/ChitinPlate
 	req_tech = list("Bio" = 2)
 	build_type = BIOPRINTER
 	materials = list("$blood" = 1, "$chitin" = 2, "$resin" = 2)
-	build_path = "/obj/item/weapon/XenoItem/ChitinPlate"
+	build_path = "/obj/item/XenoItem/ChitinPlate"
 
 
 datum/design/ResinPaste
@@ -40,7 +40,7 @@ datum/design/ResinPaste
 	req_tech = list("Bio" = 2)
 	build_type = BIOPRINTER
 	materials = list("$chitin" = 2, "$resin" = 2)
-	build_path = "/obj/item/weapon/XenoItem/ResinPaste"
+	build_path = "/obj/item/XenoItem/ResinPaste"
 
 datum/design/AntiAcid
 	name = "Anti-Acid Spray"
@@ -49,4 +49,4 @@ datum/design/AntiAcid
 	req_tech = list("Bio" = 2)
 	build_type = BIOPRINTER
 	materials = list("$blood" = 1, "$resin" = 2)
-	build_path = "/obj/item/weapon/XenoItem/AntiAcid"
+	build_path = "/obj/item/XenoItem/AntiAcid"

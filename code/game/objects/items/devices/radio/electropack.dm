@@ -18,25 +18,6 @@
 		return
 	..()
 
-/obj/item/device/radio/electropack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/clothing/head/helmet))
-		if(!b_stat)
-			user << "<span class='notice'>[src] is not ready to be attached!</span>"
-			return
-		var/obj/item/assembly/shock_kit/A = new /obj/item/assembly/shock_kit( user )
-		A.icon = 'icons/obj/assemblies.dmi'
-
-		user.drop_inv_item_to_loc(W, A)
-		W.master = A
-		A.part1 = W
-
-		user.drop_inv_item_to_loc(src, A)
-		master = A
-		A.part2 = src
-
-		user.put_in_hands(A)
-		A.add_fingerprint(user)
 
 /obj/item/device/radio/electropack/Topic(href, href_list)
 	//..()

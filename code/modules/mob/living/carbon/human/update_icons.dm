@@ -886,7 +886,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_inv_legcuffed()
 	remove_overlay(LEGCUFF_LAYER)
 	if(legcuffed)
-		if(istype(legcuffed,/obj/item/weapon/legcuffs/xeno))
+		if(istype(legcuffed,/obj/item/legcuffs/xeno))
 			overlays_standing[LEGCUFF_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "legcuff_xeno", "layer" =-LEGCUFF_LAYER)
 		else
 			overlays_standing[LEGCUFF_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "legcuff1", "layer" =-LEGCUFF_LAYER)

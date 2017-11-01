@@ -88,13 +88,13 @@
 	set name = "Eject ID Card"
 	set src in oview(1)
 
-	var/obj/item/part/computer/cardslot/C = locate() in src.contents
+	var/obj/item/computer3_part/cardslot/C = locate() in src.contents
 
 	if(!C)
 		usr << "There is no card port on the laptop."
 		return
 
-	var/obj/item/weapon/card/id/card
+	var/obj/item/card/id/card
 	if(C.reader)
 		card = C.reader
 	else if(C.writer)
@@ -123,7 +123,7 @@
 
 	New(var/L, var/built = 0)
 		if(!built && !battery)
-			battery = new /obj/item/weapon/cell(src)
+			battery = new /obj/item/cell(src)
 		..(L,built)
 		sleep(0)
 		if(start_closed)

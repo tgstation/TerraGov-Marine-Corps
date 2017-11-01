@@ -18,7 +18,7 @@
 
 /datum/ammo
 	var/name 		= "generic bullet"
-	var/icon 		= 'icons/obj/projectiles.dmi'
+	var/icon 		= 'icons/obj/items/projectiles.dmi'
 	var/icon_state 	= "bullet"
 	var/ping 		= "ping_b" //The icon that is displayed when the bullet bounces off something.
 	var/sound_hit //When it deals damage.

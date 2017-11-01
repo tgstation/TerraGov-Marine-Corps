@@ -150,22 +150,22 @@
 	var/helmet_overlays[]
 	flags_inventory = HIDEEARS|BLOCKSHARPOBJ
 	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
-	var/obj/item/weapon/storage/internal/pockets
+	var/obj/item/storage/internal/pockets
 	var/list/allowed_helmet_items = list(
-						/obj/item/weapon/flame/lighter/random = "helmet_lighter_",
-						/obj/item/weapon/flame/lighter/zippo = "helmet_lighter_zippo",
-						/obj/item/weapon/storage/box/matches = "helmet_matches",
-						/obj/item/weapon/storage/fancy/cigarettes = "helmet_cig_kpack",
-						/obj/item/weapon/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
-						/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = "helmet_cig_ls",
-						/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
-						/obj/item/weapon/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
-						/obj/item/weapon/deck = "helmet_card_card",
-						/obj/item/weapon/handcard = "helmet_card_card",
-						/obj/item/weapon/reagent_containers/food/drinks/flask = "helmet_flask",
-						/obj/item/weapon/reagent_containers/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/weapon/reagent_containers/food/snacks/eat_bar = "helmet_snack_eat",
-						/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
+						/obj/item/tool/lighter/random = "helmet_lighter_",
+						/obj/item/tool/lighter/zippo = "helmet_lighter_zippo",
+						/obj/item/storage/box/matches = "helmet_matches",
+						/obj/item/storage/fancy/cigarettes = "helmet_cig_kpack",
+						/obj/item/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
+						/obj/item/storage/fancy/cigarettes/lucky_strikes = "helmet_cig_ls",
+						/obj/item/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
+						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
+						/obj/item/toy/deck = "helmet_card_card",
+						/obj/item/toy/handcard = "helmet_card_card",
+						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
+						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/reagent_container/food/snacks/eat_bar = "helmet_snack_eat",
+						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/fluff/val_mcneil_1 = "helmet_rosary",
@@ -179,7 +179,7 @@
 		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 		..()
 		helmet_overlays = list("damage","band","item") //To make things simple.
-		pockets = new/obj/item/weapon/storage/internal(src)
+		pockets = new/obj/item/storage/internal(src)
 		pockets.storage_slots = 2
 		pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses.
 		pockets.bypass_w_limit = list("/obj/item/clothing/glasses")
@@ -215,7 +215,7 @@
 			if(!helmet_overlays["item"])
 				var/obj/O = pockets.contents[1]
 				if(O.type in allowed_helmet_items)
-					var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine_armor.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/weapon/flame/lighter/random ? O:clr : ""]"))
+					var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine_armor.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]"))
 					helmet_overlays["item"] = I
 
 		else

@@ -4,7 +4,7 @@
 /obj/item/borg/upgrade
 	name = "borg upgrade module."
 	desc = "Protected by FRM."
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "cyborg_upgrade"
 	var/construction_time = 120
 	var/construction_cost = list("metal"=10000)
@@ -114,7 +114,7 @@
 	if(..()) return 0
 /*
 
-	if(!istype(R.module, /obj/item/weapon/robot_module/security))
+	if(!istype(R.module, /obj/item/circuitboard/robot_module/security))
 		R << "Upgrade mounting error!  No suitable hardpoint detected!"
 		usr << "There's no mounting point for the module!"
 		return 0
@@ -148,8 +148,8 @@
 /obj/item/borg/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	R.module.modules += new/obj/item/weapon/tank/jetpack/carbondioxide
-	for(var/obj/item/weapon/tank/jetpack/carbondioxide in R.module.modules)
+	R.module.modules += new/obj/item/tank/jetpack/carbondioxide
+	for(var/obj/item/tank/jetpack/carbondioxide in R.module.modules)
 		R.internal = src
 	//R.icon_state="Miner+j"
 	return 1

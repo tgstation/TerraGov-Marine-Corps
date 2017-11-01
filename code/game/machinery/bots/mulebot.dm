@@ -46,7 +46,7 @@
 	var/auto_return = 1	// true if auto return to home beacon after unload
 	var/auto_pickup = 1 // true if auto-pickup at beacon
 
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 						// the installed power cell
 
 	// constants for internal wiring bitflags
@@ -120,17 +120,17 @@
 // cell: insert it
 // other: chance to knock rider off bot
 /obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I,/obj/item/weapon/card/emag))
+	if(istype(I,/obj/item/card/emag))
 		locked = !locked
 		user << "\blue You [locked ? "lock" : "unlock"] the mulebot's controls!"
 		flick("mulebot-emagged", src)
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 25, 0)
-	else if(istype(I,/obj/item/weapon/cell) && open && !cell)
-		var/obj/item/weapon/cell/C = I
+	else if(istype(I,/obj/item/cell) && open && !cell)
+		var/obj/item/cell/C = I
 		if(user.drop_inv_item_to_loc(C, src))
 			cell = C
 			updateDialog()
-	else if(istype(I,/obj/item/weapon/screwdriver))
+	else if(istype(I,/obj/item/tool/screwdriver))
 		if(locked)
 			user << "\blue The maintenance hatch cannot be opened or closed while the controls are locked."
 			return
@@ -145,7 +145,7 @@
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/weapon/wrench))
+	else if (istype(I, /obj/item/tool/wrench))
 		if (src.health < maxhealth)
 			src.health = min(maxhealth, src.health+25)
 			user.visible_message(
@@ -325,7 +325,7 @@
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/weapon/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = usr.get_active_hand()
 					if(istype(C))
 						if(usr.drop_held_item())
 							cell = C
@@ -395,13 +395,13 @@
 
 
 			if("wirecut")
-				if(istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+				if(istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
 					var/wirebit = text2num(href_list["wire"])
 					wires &= ~wirebit
 				else
 					usr << "\blue You need wirecutters!"
 			if("wiremend")
-				if(istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+				if(istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
 					var/wirebit = text2num(href_list["wire"])
 					wires |= wirebit
 				else

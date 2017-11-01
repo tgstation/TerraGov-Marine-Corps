@@ -12,7 +12,7 @@
 	icon = 'icons/obj/mainframe.dmi'
 	icon_state = "aimainframe"
 //	icon_state = "rdcomp"  //Temp till i figure out what the shit is going on with the icon file.
-	circuit = /obj/item/weapon/circuitboard/rdconsole  //It will eventually need it's own circuit.
+	circuit = /obj/item/circuitboard/computer/rdconsole  //It will eventually need it's own circuit.
 	var/datum/XenoResearch/files/							//Stores all the data on Le Xenos
 
 
@@ -134,22 +134,22 @@
 	SyncRDevices()
 
 /*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a W-Y DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or W-Y retreival.
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
-	if(istype(D, /obj/item/weapon/disk))
+	if(istype(D, /obj/item/disk))
 		if(t_disk || d_disk)
 			user << "A disk is already loaded into the machine."
 			return
 
-		if(istype(D, /obj/item/weapon/disk/tech_disk)) t_disk = D
-		else if (istype(D, /obj/item/weapon/disk/design_disk)) d_disk = D
+		if(istype(D, /obj/item/disk/tech_disk)) t_disk = D
+		else if (istype(D, /obj/item/disk/design_disk)) d_disk = D
 		else
 			user << "\red Machine cannot accept disks in that format."
 			return
 		user.drop_held_item()
 		D.loc = src
 		user << "\blue You add the disk to the machine!"
-	else if(istype(D, /obj/item/weapon/card/emag) && !emagged)
+	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		user << "\blue You you disable the security protocols"
@@ -323,12 +323,12 @@
 						if(being_built.build_path)
 							var/buildPath = text2path(being_built.build_path)
 							var/obj/new_item = new buildPath(src)
-							if( new_item.type == /obj/item/weapon/storage/backpack/holding )
+							if( new_item.type == /obj/item/storage/backpack/holding )
 								new_item.investigate_log("built by [key]","singulo")
 							new_item.reliability = being_built.reliability
 							if(linked_lathe.hacked) being_built.reliability = max((reliability / 2), 0)
 							/*if(being_built.locked)
-								var/obj/item/weapon/storage/lockbox/L = new/obj/item/weapon/storage/lockbox(linked_lathe.loc)
+								var/obj/item/storage/lockbox/L = new/obj/item/storage/lockbox(linked_lathe.loc)
 								new_item.loc = L
 								L.name += " ([new_item.name])"*/
 							else

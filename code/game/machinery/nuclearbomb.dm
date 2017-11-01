@@ -17,7 +17,7 @@ var/bomb_set
 	var/code = ""
 	var/yes_code = 0.0
 	var/safety = 1.0
-	var/obj/item/weapon/disk/nuclear/auth = null
+	var/obj/item/disk/nuclear/auth = null
 	var/list/wires = list()
 	var/light_wire
 	var/safety_wire
@@ -59,9 +59,9 @@ var/bomb_set
 				src.attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
+/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 
-	if (istype(O, /obj/item/weapon/screwdriver))
+	if (istype(O, /obj/item/tool/screwdriver))
 		src.add_fingerprint(user)
 		if (src.auth)
 			if (src.opened == 0)
@@ -83,13 +83,13 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 		return
-	if (istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/device/multitool))
+	if (istype(O, /obj/item/tool/wirecutters) || istype(O, /obj/item/device/multitool))
 		if (src.opened == 1)
 			nukehack_win(user)
 		return
 
 	if (extended)
-		if (istype(O, /obj/item/weapon/disk/nuclear))
+		if (istype(O, /obj/item/disk/nuclear))
 			if(user.drop_inv_item_to_loc(O, src))
 				auth = O
 				add_fingerprint(user)
@@ -98,9 +98,9 @@ var/bomb_set
 	if (anchored)
 		switch(removal_stage)
 			if(0)
-				if(istype(O,/obj/item/weapon/weldingtool))
+				if(istype(O,/obj/item/tool/weldingtool))
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
 						user << "\red You need more fuel to complete this task."
@@ -115,7 +115,7 @@ var/bomb_set
 				return
 
 			if(1)
-				if(istype(O,/obj/item/weapon/crowbar))
+				if(istype(O,/obj/item/tool/crowbar))
 					user.visible_message("[user] starts forcing open the bolt covers on [src].", "You start forcing open the anchoring bolt covers with [O]...")
 
 					if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
@@ -125,9 +125,9 @@ var/bomb_set
 				return
 
 			if(2)
-				if(istype(O,/obj/item/weapon/weldingtool))
+				if(istype(O,/obj/item/tool/weldingtool))
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
 						user << "\red You need more fuel to complete this task."
@@ -142,7 +142,7 @@ var/bomb_set
 				return
 
 			if(3)
-				if(istype(O,/obj/item/weapon/wrench))
+				if(istype(O,/obj/item/tool/wrench))
 
 					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
 
@@ -153,7 +153,7 @@ var/bomb_set
 				return
 
 			if(4)
-				if(istype(O,/obj/item/weapon/crowbar))
+				if(istype(O,/obj/item/tool/crowbar))
 
 					user.visible_message("[user] begins lifting [src] off of the anchors.", "You begin lifting the device off the anchors...")
 
@@ -272,7 +272,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 							else
 								visible_message("\blue The [src] emits a quiet whirling noise!")
 			if(href_list["act"] == "wire")
-				if (!istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+				if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
 					usr << "You need wirecutters!"
 				else
 					wires[temp_wire] = !wires[temp_wire]
@@ -295,7 +295,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				src.auth = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/disk/nuclear))
+				if (istype(I, /obj/item/disk/nuclear))
 					if(usr.drop_held_item())
 						I.forceMove(src)
 						auth = I
@@ -381,9 +381,9 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	EvacuationAuthority.trigger_self_destruct(list(z), src) //The round ends as soon as this happens, or it should.
 	r_TRU
 
-/obj/item/weapon/disk/nuclear/Dispose()
+/obj/item/disk/nuclear/Dispose()
 	if(blobstart.len > 0)
-		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(blobstart))
+		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
 		message_admins("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 	. = ..()

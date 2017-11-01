@@ -4,8 +4,8 @@
 	var/language = "Xenomorph"
 	var/obj/item/clothing/suit/wear_suit = null
 	var/obj/item/clothing/head/head = null
-	var/obj/item/weapon/r_store = null
-	var/obj/item/weapon/l_store = null
+	var/obj/item/r_store = null
+	var/obj/item/l_store = null
 	var/storedplasma = 0
 	var/maxplasma = 10
 	var/amount_grown = 0

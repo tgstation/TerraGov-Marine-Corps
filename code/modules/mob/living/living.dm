@@ -168,41 +168,41 @@
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/weapon/storage/Storage = null)
+/mob/living/get_contents(var/obj/item/storage/Storage = null)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
 		L += Storage.return_inv()
 
 		//Leave this commented out, it will cause storage items to exponentially add duplicate to the list
-		//for(var/obj/item/weapon/storage/S in Storage.return_inv()) //Check for storage items
+		//for(var/obj/item/storage/S in Storage.return_inv()) //Check for storage items
 		//	L += get_contents(S)
 
-		for(var/obj/item/weapon/gift/G in Storage.return_inv()) //Check for gift-wrapped items
+		for(var/obj/item/gift/G in Storage.return_inv()) //Check for gift-wrapped items
 			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
+			if(istype(G.gift, /obj/item/storage))
 				L += get_contents(G.gift)
 
 		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
 			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
+			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
 				L += get_contents(D.wrapped)
 		return L
 
 	else
 
 		L += src.contents
-		for(var/obj/item/weapon/storage/S in src.contents)	//Check for storage items
+		for(var/obj/item/storage/S in src.contents)	//Check for storage items
 			L += get_contents(S)
 
-		for(var/obj/item/weapon/gift/G in src.contents) //Check for gift-wrapped items
+		for(var/obj/item/gift/G in src.contents) //Check for gift-wrapped items
 			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
+			if(istype(G.gift, /obj/item/storage))
 				L += get_contents(G.gift)
 
 		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
 			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
+			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
 				L += get_contents(D.wrapped)
 		return L
 
@@ -397,8 +397,8 @@
 	usr.next_move = world.time + 20
 
 	//Getting out of someone's inventory.
-	if(istype(src.loc,/obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = src.loc //Get our item holder.
+	if(istype(src.loc,/obj/item/holder))
+		var/obj/item/holder/H = src.loc //Get our item holder.
 		var/mob/M = H.loc                      //Get our mob holder (if any).
 
 		if(istype(M))
@@ -411,7 +411,7 @@
 
 		if(istype(M))
 			for(var/atom/A in M.contents)
-				if(istype(A,/obj/item/weapon/holder))
+				if(istype(A,/obj/item/holder))
 					return
 
 		M.status_flags &= ~PASSEMOTES
@@ -426,7 +426,7 @@
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time) )
 		if(iscarbon(L))
-			if(istype(L.buckled,/obj/structure/stool/bed/nest))
+			if(istype(L.buckled,/obj/structure/bed/nest))
 				L.buckled.manual_unbuckle(L)
 				return
 
@@ -571,10 +571,10 @@
 						CM.handcuffed = null
 						CM.handcuff_update()
 			else
-				var/obj/item/weapon/handcuffs/HC = CM.handcuffed
-				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
+				var/obj/item/handcuffs/HC = CM.handcuffed
+				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/handcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
-				/*if(istype(HC, /obj/item/weapon/handcuffs/xeno))
+				/*if(istype(HC, /obj/item/handcuffs/xeno))
 					breakouttime = 300
 					displaytime = "Half a"
 					CM << "\red You attempt to remove \the [HC]. (This will take around half a minute and you need to stand still)"
@@ -627,8 +627,8 @@
 						cdel(CM.legcuffed)
 						CM.legcuffed = null
 			else
-				var/obj/item/weapon/legcuffs/HC = CM.legcuffed
-				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
+				var/obj/item/legcuffs/HC = CM.legcuffed
+				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/legcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 				if(istype(HC)) //If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
 					breakouttime = HC.breakouttime

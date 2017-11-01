@@ -5,8 +5,8 @@
 	desc = "Used to view personnel's employment records"
 	icon_state = "medlaptop"
 	req_one_access = list(ACCESS_MARINE_BRIDGE)
-	circuit = "/obj/item/weapon/circuitboard/skills"
-	var/obj/item/weapon/card/id/scan = null
+	circuit = "/obj/item/circuitboard/computer/skills"
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -23,7 +23,7 @@
 
 
 /obj/machinery/computer/skills/attackby(obj/item/O as obj, user as mob)
-	if(istype(O, /obj/item/weapon/card/id) && !scan)
+	if(istype(O, /obj/item/card/id) && !scan)
 		if(usr.drop_held_item())
 			O.forceMove(src)
 			scan = O
@@ -186,7 +186,7 @@ What a mess.*/
 					scan = null
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id))
+					if (istype(I, /obj/item/card/id))
 						if(usr.drop_held_item())
 							I.forceMove(src)
 							scan = I
@@ -208,7 +208,7 @@ What a mess.*/
 					var/mob/living/silicon/robot/R = usr
 					src.rank = R.braintype
 					src.screen = 1
-				else if (istype(scan, /obj/item/weapon/card/id))
+				else if (istype(scan, /obj/item/card/id))
 					active1 = null
 					if(check_access(scan))
 						authenticated = scan.registered_name
@@ -272,7 +272,7 @@ What a mess.*/
 				if (!( printing ))
 					printing = 1
 					sleep(50)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( loc )
+					var/obj/item/paper/P = new /obj/item/paper( loc )
 					P.info = "<CENTER><B>Employment Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && data_core.general.Find(active1)))
 						P.info += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<BR>\nSex: [active1.fields["sex"]]<BR>\nAge: [active1.fields["age"]]<BR>\nFingerprint: [active1.fields["fingerprint"]]<BR>\nPhysical Status: [active1.fields["p_stat"]]<BR>\nMental Status: [active1.fields["m_stat"]]<BR>\nEmployment/Skills Summary:<BR>\n[decode(active1.fields["notes"])]<BR>"

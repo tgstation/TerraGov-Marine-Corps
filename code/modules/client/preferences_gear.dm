@@ -645,12 +645,12 @@ var/global/list/gear_datums = list()
 
 /datum/gear/briefcase
 	display_name = "briefcase"
-	path = /obj/item/weapon/storage/briefcase
+	path = /obj/item/storage/briefcase
 	cost = 2
 
 /datum/gear/matchbook
 	display_name = "matchbook"
-	path = /obj/item/weapon/storage/box/matches
+	path = /obj/item/storage/box/matches
 	cost = 2
 
 // The rest of the trash.
@@ -662,47 +662,47 @@ var/global/list/gear_datums = list()
 
 /datum/gear/cane
 	display_name = "cane"
-	path = /obj/item/weapon/cane
+	path = /obj/item/cane
 	cost = 2
 
 /datum/gear/clipboard
 	display_name = "clipboard"
-	path = /obj/item/weapon/clipboard
+	path = /obj/item/clipboard
 	cost = 1
 
 /datum/gear/dice
 	display_name = "d20"
-	path = /obj/item/weapon/dice/d20
+	path = /obj/item/toy/dice/d20
 	cost = 1
 
 /datum/gear/cards
 	display_name = "deck of cards"
-	path = /obj/item/weapon/deck
+	path = /obj/item/toy/deck
 	cost = 1
 
 /datum/gear/blipstick
 	display_name = "lipstick, black"
-	path = /obj/item/weapon/lipstick/black
+	path = /obj/item/lipstick/black
 	cost = 1
 
 /datum/gear/jlipstick
 	display_name = "lipstick, jade"
-	path = /obj/item/weapon/lipstick/jade
+	path = /obj/item/lipstick/jade
 	cost = 1
 
 /datum/gear/plipstick
 	display_name = "lipstick, purple"
-	path = /obj/item/weapon/lipstick/purple
+	path = /obj/item/lipstick/purple
 	cost = 1
 
 /datum/gear/rlipstick
 	display_name = "lipstick, red"
-	path = /obj/item/weapon/lipstick
+	path = /obj/item/lipstick
 	cost = 1
 
 /datum/gear/comb
 	display_name = "purple comb"
-	path = /obj/item/weapon/fluff/cado_keppel_1
+	path = /obj/item/fluff/cado_keppel_1
 	cost = 2
 */
 /datum/gear/cmgoggles

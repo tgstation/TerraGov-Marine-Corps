@@ -279,7 +279,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	//Basic Uniform
 	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), WEAR_BODY)
 	equip_to_slot_or_del(new /obj/item/device/flashlight(src), WEAR_L_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/clipboard(src), WEAR_R_STORE)
+	equip_to_slot_or_del(new /obj/item/clipboard(src), WEAR_R_STORE)
 	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), WEAR_WAIST)
 	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), WEAR_FACE)
 
@@ -295,11 +295,11 @@ proc/trigger_armed_response_team(var/force = 0)
 //	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), WEAR_HEAD)
 
 	//Backpack
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), WEAR_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), WEAR_IN_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/backpack/security(src), WEAR_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/box/engineer(src), WEAR_IN_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(src), WEAR_IN_BACK)
 */
-	var/obj/item/weapon/card/id/W = new(src)
+	var/obj/item/card/id/W = new(src)
 	W.assignment = "Emergency Response Team[leader_selected ? " Leader" : ""]"
 	W.registered_name = real_name
 	W.name = "[real_name]'s ID Card ([W.assignment])"

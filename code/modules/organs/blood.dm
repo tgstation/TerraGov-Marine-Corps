@@ -169,7 +169,7 @@
 ****************************************************/
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/proc/take_blood(obj/item/reagent_container/container, var/amount)
 
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B) B = new /datum/reagent/blood
@@ -200,7 +200,7 @@
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/human/take_blood(obj/item/reagent_container/container, var/amount)
 
 	if(species && species.flags & NO_BLOOD)
 		return null
@@ -212,7 +212,7 @@
 	vessel.remove_reagent("blood",amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
-/mob/living/carbon/proc/inject_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/proc/inject_blood(obj/item/reagent_container/container, var/amount)
 	var/datum/reagent/blood/injected = get_blood(container.reagents)
 	if (!injected)
 		return
@@ -225,7 +225,7 @@
 	container.reagents.remove_reagent("blood", amount)
 
 //Transfers blood from container ot vessels, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/human/inject_blood(obj/item/reagent_container/container, var/amount)
 
 	var/datum/reagent/blood/injected = get_blood(container.reagents)
 

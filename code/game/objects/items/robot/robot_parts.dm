@@ -1,6 +1,6 @@
 /obj/item/robot_parts
 	name = "robot parts"
-	icon = 'icons/obj/robot_parts.dmi'
+	icon = 'icons/obj/items/robot_parts.dmi'
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags_atom = FPRINT|CONDUCT
@@ -49,7 +49,7 @@
 	construction_time = 350
 	construction_cost = list("metal"=40000)
 	var/wires = 0.0
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 
 /obj/item/robot_parts/head
 	name = "robot head"
@@ -210,7 +210,7 @@
 		else
 			user << "\blue The MMI must go in after everything else!"
 
-	if (istype(W, /obj/item/weapon/pen))
+	if (istype(W, /obj/item/tool/pen))
 		var/t = stripped_input(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN)
 		if (!t)
 			return
@@ -223,7 +223,7 @@
 
 /obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/cell))
 		if(src.cell)
 			user << "\blue You have already inserted a cell!"
 			return
@@ -259,7 +259,7 @@
 			user.drop_inv_item_to_loc(W, src)
 			flash1 = W
 			user << "\blue You insert the flash into the eye socket!"
-	else if(istype(W, /obj/item/weapon/stock_parts/manipulator))
+	else if(istype(W, /obj/item/stock_parts/manipulator))
 		user << "\blue You install some manipulators and modify the head, creating a functional spider-bot!"
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.temp_drop_inv_item(W)
@@ -269,7 +269,7 @@
 	return
 
 /obj/item/robot_parts/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/card/emag))
+	if(istype(W,/obj/item/card/emag))
 		if(sabotaged)
 			user << "\red [src] is already sabotaged!"
 		else

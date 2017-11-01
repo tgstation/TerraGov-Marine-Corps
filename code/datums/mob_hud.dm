@@ -341,7 +341,7 @@ var/datum/mob_hud/huds = list(
 	var/image/holder = hud_list[ID_HUD]
 	holder.icon_state = "hudunknown"
 	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
+		var/obj/item/card/id/I = wear_id.GetID()
 		if(I)
 			holder.icon_state = "hud[ckey(I.GetJobName())]"
 
@@ -359,13 +359,13 @@ var/datum/mob_hud/huds = list(
 	holder2.icon_state = "hudblank"
 	holder3.icon_state = "hudblank"
 
-	for(var/obj/item/weapon/implant/I in src)
+	for(var/obj/item/implant/I in src)
 		if(I.implanted)
-			if(istype(I,/obj/item/weapon/implant/tracking))
+			if(istype(I,/obj/item/implant/tracking))
 				holder1.icon_state = "hud_imp_tracking"
-			if(istype(I,/obj/item/weapon/implant/loyalty))
+			if(istype(I,/obj/item/implant/loyalty))
 				holder2.icon_state = "hud_imp_loyal"
-			if(istype(I,/obj/item/weapon/implant/chem))
+			if(istype(I,/obj/item/implant/chem))
 				holder3.icon_state = "hud_imp_chem"
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
@@ -373,7 +373,7 @@ var/datum/mob_hud/huds = list(
 	holder.icon_state = "hudblank"
 	var/perpname = name
 	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
+		var/obj/item/card/id/I = wear_id.GetID()
 		if(I)
 			perpname = I.registered_name
 
@@ -444,7 +444,7 @@ var/datum/mob_hud/huds = list(
 	if(assigned_squad)
 		var/squad_clr = squad_colors[assigned_squad.color]
 		var/marine_rk
-		var/obj/item/weapon/card/id/I = get_idcard()
+		var/obj/item/card/id/I = get_idcard()
 		var/_role
 		if(mind)
 			_role = mind.assigned_role

@@ -1,7 +1,7 @@
 /obj/machinery/optable
 	name = "Operating Table"
 	desc = "Used for advanced medical procedures."
-	icon = 'icons/obj/surgery.dmi'
+	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "table2-idle"
 	density = 1
 	anchored = 1.0
@@ -71,13 +71,13 @@
 		return 0
 
 
-/obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/machinery/optable/MouseDrop_T(obj/item/I, mob/user)
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if (!istype(I) || user.get_active_hand() != I)
 		return
 	if(user.drop_held_item())
-		if (O.loc != src.loc)
-			step(O, get_dir(O, src))
+		if (I.loc != loc)
+			step(I, get_dir(I, src))
 
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, src.loc))
@@ -120,9 +120,9 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
-	if (istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+/obj/machinery/optable/attackby(obj/item/W as obj, mob/living/carbon/user as mob)
+	if (istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		if(iscarbon(G.grabbed_thing) && check_table(G.grabbed_thing))
 			take_victim(G.grabbed_thing,user)
 

@@ -9,7 +9,7 @@
 
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/window/reinforced/almayer,
+		/obj/structure/window/framed/almayer,
 		/obj/structure/window_frame,
 		/obj/structure/girder,
 		/obj/machinery/door)
@@ -342,7 +342,7 @@
 	add_fingerprint(user)
 	return
 
-/turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
@@ -353,8 +353,8 @@
 
 	if(rotting)
 		if(W.heat_source >= 3000)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(istype(W, /obj/item/tool/weldingtool))
+				var/obj/item/tool/weldingtool/WT = W
 				WT.remove_fuel(0,user)
 			user << "<span class='notice'>You burn away the fungi with \the [W].</span>"
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
@@ -373,49 +373,39 @@
 			if(hull)
 				user << "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>."
 			else
-				if(istype(W, /obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = W
+				if(istype(W, /obj/item/tool/weldingtool))
+					var/obj/item/tool/weldingtool/WT = W
 					WT.remove_fuel(0,user)
 				thermitemelt(user)
 			return
 
-	if(istype(W,/obj/item/apc_frame))
-		var/obj/item/apc_frame/AH = W
+	if(istype(W,/obj/item/frame/apc))
+		var/obj/item/frame/apc/AH = W
 		AH.try_build(src)
 		return
 
-	if(istype(W,/obj/item/alarm_frame))
-		var/obj/item/alarm_frame/AH = W
+	if(istype(W,/obj/item/frame/air_alarm))
+		var/obj/item/frame/air_alarm/AH = W
 		AH.try_build(src)
 		return
 
-	if(istype(W,/obj/item/firealarm_frame))
-		var/obj/item/firealarm_frame/AH = W
+	if(istype(W,/obj/item/frame/fire_alarm))
+		var/obj/item/frame/fire_alarm/AH = W
 		AH.try_build(src)
 		return
 
-	if(istype(W,/obj/item/light_fixture_frame))
-		var/obj/item/light_fixture_frame/AH = W
+	if(istype(W,/obj/item/frame/light_fixture))
+		var/obj/item/frame/light_fixture/AH = W
 		AH.try_build(src)
 		return
 
-	if(istype(W,/obj/item/light_fixture_frame/small))
-		var/obj/item/light_fixture_frame/small/AH = W
-		AH.try_build(src)
-		return
-
-	if(istype(W,/obj/item/rust_fuel_compressor_frame))
-		var/obj/item/rust_fuel_compressor_frame/AH = W
-		AH.try_build(src)
-		return
-
-	if(istype(W,/obj/item/rust_fuel_assembly_port_frame))
-		var/obj/item/rust_fuel_assembly_port_frame/AH = W
+	if(istype(W,/obj/item/frame/light_fixture/small))
+		var/obj/item/frame/light_fixture/small/AH = W
 		AH.try_build(src)
 		return
 
 	//Poster stuff
-	if(istype(W,/obj/item/weapon/contraband/poster))
+	if(istype(W,/obj/item/contraband/poster))
 		place_poster(W,user)
 		return
 
@@ -423,8 +413,8 @@
 		user << "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>."
 		return
 
-	if(damage && istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(damage && istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 			"<span class='notice'>You start repairing the damage to [src].</span>")
@@ -443,9 +433,9 @@
 	//DECONSTRUCTION
 	switch(d_state)
 		if(0)
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(istype(W, /obj/item/tool/weldingtool))
 
-				var/obj/item/weapon/weldingtool/WT = W
+				var/obj/item/tool/weldingtool/WT = W
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] begins slicing through the outer plating.</span>",
 				"<span class='notice'>You begin slicing through the outer plating.</span>")
@@ -460,7 +450,7 @@
 				return
 
 		if(1)
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(istype(W, /obj/item/tool/screwdriver))
 
 				user.visible_message("<span class='notice'>[user] begins removing the support lines.</span>",
 				"<span class='notice'>You begin removing the support lines.</span>")
@@ -476,9 +466,9 @@
 				return
 
 		if(2)
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(istype(W, /obj/item/tool/weldingtool))
 
-				var/obj/item/weapon/weldingtool/WT = W
+				var/obj/item/tool/weldingtool/WT = W
 				user.visible_message("<span class='notice'>[user] begins slicing through the metal cover.</span>",
 				"<span class='notice'>You begin slicing through the metal cover.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
@@ -493,7 +483,7 @@
 				return
 
 		if(3)
-			if(istype(W, /obj/item/weapon/crowbar))
+			if(istype(W, /obj/item/tool/crowbar))
 
 				user.visible_message("<span class='notice'>[user] struggles to pry off the cover.</span>",
 				"<span class='notice'>You struggle to pry off the cover.</span>")
@@ -509,7 +499,7 @@
 				return
 
 		if(4)
-			if(istype(W, /obj/item/weapon/wrench))
+			if(istype(W, /obj/item/tool/wrench))
 
 				user.visible_message("<span class='notice'>[user] starts loosening the anchoring bolts securing the support rods.</span>",
 				"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
@@ -525,7 +515,7 @@
 				return
 
 		if(5)
-			if(istype(W, /obj/item/weapon/wirecutters))
+			if(istype(W, /obj/item/tool/wirecutters))
 
 				user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
@@ -541,7 +531,7 @@
 				return
 
 		if(6)
-			if(istype(W, /obj/item/weapon/crowbar))
+			if(istype(W, /obj/item/tool/crowbar))
 
 				user.visible_message("<span class='notice'>[user] struggles to pry off the inner sheath.</span>",
 				"<span class='notice'>You struggle to pry off the inner sheath.</span>")
@@ -557,9 +547,9 @@
 				return
 
 		if(7)
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(istype(W, /obj/item/tool/weldingtool))
 
-				var/obj/item/weapon/weldingtool/WT = W
+				var/obj/item/tool/weldingtool/WT = W
 				user.visible_message("<span class='notice'>[user] begins slicing through the final layer.</span>",
 				"<span class='notice'>You begin slicing through the final layer.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)

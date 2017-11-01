@@ -424,3 +424,9 @@
 		. = ..()
 		if(!.) return
 		M.nutrition += nutriment_factor
+
+/datum/reagent/honey
+	name = "Honey"
+	id = "honey"
+	description = "A golden yellow syrup, loaded with sugary sweetness."
+	color = "#FFFF00"

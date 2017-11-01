@@ -50,29 +50,29 @@ mob/living/carbon/proc/handle_hallucinations()
 						halitem.layer = 50
 						switch(rand(1,6))
 							if(1) //revolver
-								halitem.icon = 'icons/obj/gun.dmi'
+								halitem.icon = 'icons/obj/items/gun.dmi'
 								halitem.icon_state = "revolver"
 								halitem.name = "Revolver"
 							if(2) //c4
-								halitem.icon = 'icons/obj/assemblies.dmi'
+								halitem.icon = 'icons/obj/items/assemblies.dmi'
 								halitem.icon_state = "plastic-explosive0"
 								halitem.name = "Mysterious Package"
 								if(prob(25))
 									halitem.icon_state = "c4small_1"
 							if(3) //sword
-								halitem.icon = 'icons/obj/weapons.dmi'
+								halitem.icon = 'icons/obj/items/weapons.dmi'
 								halitem.icon_state = "sword1"
 								halitem.name = "Sword"
 							if(4) //stun baton
-								halitem.icon = 'icons/obj/weapons.dmi'
+								halitem.icon = 'icons/obj/items/weapons.dmi'
 								halitem.icon_state = "stunbaton"
 								halitem.name = "Stun Baton"
 							if(5) //emag
-								halitem.icon = 'icons/obj/card.dmi'
+								halitem.icon = 'icons/obj/items/card.dmi'
 								halitem.icon_state = "emag"
 								halitem.name = "Cryptographic Sequencer"
 							if(6) //flashbang
-								halitem.icon = 'icons/obj/grenade.dmi'
+								halitem.icon = 'icons/obj/items/grenade.dmi'
 								halitem.icon_state = "flashbang1"
 								halitem.name = "Flashbang"
 						if(client) client.screen += halitem
@@ -99,7 +99,7 @@ mob/living/carbon/proc/handle_hallucinations()
 								halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
 							if(3)
 								//src << "C4"
-								halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
+								halimage = image('icons/obj/items/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
 
 
 						if(client) client.images += halimage
@@ -238,7 +238,7 @@ proc/check_panel(mob/M)
 
 	var/health = 100
 
-	attackby(var/obj/item/weapon/P as obj, mob/user as mob)
+	attackby(var/obj/item/P as obj, mob/user as mob)
 		step_away(src,my_target,2)
 		for(var/mob/M in oviewers(world.view,my_target))
 			M << "\red <B>[my_target] flails around wildly.</B>"
@@ -349,8 +349,8 @@ proc/check_panel(mob/M)
 	return
 
 var/list/non_fakeattack_weapons = list(/obj/item/device/aicard,\
-	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/weapon/disk/nuclear,\
-	/obj/item/clothing/suit/space/uscm, /obj/item/weapon/tank)
+	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
+	/obj/item/clothing/suit/space/uscm, /obj/item/tank)
 
 /proc/fake_attack(var/mob/living/target)
 //	var/list/possible_clones = new/list()

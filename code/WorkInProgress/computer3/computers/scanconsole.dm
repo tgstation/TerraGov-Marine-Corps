@@ -1,6 +1,6 @@
 /obj/machinery/computer3/scan_consolenew
 	default_prog = /datum/file/program/dnascanner
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/storage/removable,/obj/item/part/computer/networking/prox)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/storage/removable,/obj/item/computer3_part/networking/prox)
 
 
 #define MAX_UIBLOCK 13
@@ -31,7 +31,7 @@
 
 	var/bufferlabel = ""
 	var/datum/dna/buffer = null
-	var/obj/item/part/computer/target_drive = null
+	var/obj/item/computer3_part/target_drive = null
 
 	Reset()
 		..()
@@ -120,7 +120,7 @@
 			if(!viable || !buffer)
 				return
 			var/datum/file/data/genome/G = null
-			var/obj/item/part/computer/dest = device
+			var/obj/item/computer3_part/dest = device
 			if(target_drive)
 				dest = target_drive
 

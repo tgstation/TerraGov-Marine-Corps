@@ -1,5 +1,5 @@
 //Define all tape types in policetape.dm
-/obj/item/taperoll
+/obj/item/tool/taperoll
 	name = "tape roll"
 	icon = 'icons/obj/policetape.dmi'
 	icon_state = "rollstart"
@@ -18,7 +18,7 @@
 	var/crumpled = 0
 	var/icon_base
 
-/obj/item/taperoll/police
+/obj/item/tool/taperoll/police
 	name = "police tape"
 	desc = "A roll of police tape used to block off crime scenes from the public."
 	icon_state = "police_start"
@@ -31,7 +31,7 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_base = "police"
 
-/obj/item/taperoll/engineering
+/obj/item/tool/taperoll/engineering
 	name = "engineering tape"
 	desc = "A roll of engineering tape used to block off working areas from the public."
 	icon_state = "engineering_start"
@@ -44,7 +44,7 @@
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP)
 	icon_base = "engineering"
 
-/obj/item/taperoll/attack_self(mob/user as mob)
+/obj/item/tool/taperoll/attack_self(mob/user as mob)
 	if(icon_state == "[icon_base]_start")
 		start = get_turf(src)
 		usr << "\blue You place the first end of the [src]."
@@ -98,7 +98,7 @@
 	//is_blocked_turf(var/turf/T)
 		usr << "\blue You finish placing the [src]."	//Git Test
 
-/obj/item/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/tool/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
 	if (proximity && istype(A, /obj/machinery/door/airlock))
 		var/turf/T = get_turf(A)
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
@@ -122,7 +122,7 @@
 				M << "<span class='warning'>You are not supposed to go past [src]...</span>"
 			crumple()
 
-/obj/item/tape/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/tape/attackby(obj/item/W as obj, mob/user as mob)
 	breaktape(W, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
@@ -136,9 +136,9 @@
 		breaktape(null, user)
 
 /obj/item/tape/attack_paw(mob/user as mob)
-	breaktape(/obj/item/weapon/wirecutters,user)
+	breaktape(/obj/item/tool/wirecutters,user)
 
-/obj/item/tape/proc/breaktape(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/tape/proc/breaktape(obj/item/W as obj, mob/user as mob)
 	if(user.a_intent == "help" && ((!can_puncture(W) && src.allowed(user))))
 		user << "You can't break the [src] with that!"
 		return

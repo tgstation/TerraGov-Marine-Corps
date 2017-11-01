@@ -245,9 +245,9 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))
 			user.visible_message("<span class='notice'>[user] starts welding the scrubber shut.</span>", \
 			"<span class='notice'>You start welding the scrubber shut.</span>", \
@@ -274,7 +274,7 @@
 		else
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 		return
-	if(!istype(W, /obj/item/weapon/wrench))
+	if(!istype(W, /obj/item/tool/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)
 		user << "<span class='warning'>You cannot unwrench this [src], turn it off first.</span>"

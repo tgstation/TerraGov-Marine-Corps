@@ -22,7 +22,7 @@
 	name = "server rack"
 	icon_state = "rackframe"
 
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/radio/subspace)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/networking/radio/subspace)
 
 	update_icon()
 		//overlays.Cut()

@@ -69,8 +69,8 @@
 	src.icon_state = "body_scanner_0"
 	return
 
-/obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if (!istype(G, /obj/item/weapon/grab) || !ismob(G.grabbed_thing))
+/obj/machinery/bodyscanner/attackby(obj/item/grab/G as obj, user as mob)
+	if (!istype(G, /obj/item/grab) || !ismob(G.grabbed_thing))
 		return
 	var/mob/M = G.grabbed_thing
 	if (src.occupant)
@@ -149,7 +149,7 @@
 
 /obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking)
+	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
 	var/delete
 	var/temphtml
 	name = "Body Scanner Console"
@@ -240,7 +240,7 @@
 		if (!istype(occupant,/mob/living/carbon/human))
 			usr << "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>"
 			return
-		var/obj/item/weapon/paper/R = new(src.loc)
+		var/obj/item/paper/R = new(src.loc)
 		R.name = "Body scan report -[src.connected.occupant.real_name]-"
 		R.info = format_occupant_data(src.connected.get_occupant_data())
 

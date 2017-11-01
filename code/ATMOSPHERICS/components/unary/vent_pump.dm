@@ -352,8 +352,8 @@
 	return
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
 			user.visible_message("<span class='notice'>[user] starts working on \the [src] with [WT].</span>", \
 			"<span class='notice'>You start working on \the [src] with [WT].</span>", \
@@ -380,7 +380,7 @@
 			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 			return 1
 
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	if (!(stat & NOPOWER) && on)
 		user << "<span class='warning'>You cannot unwrench this [src], turn it off first.</span>"

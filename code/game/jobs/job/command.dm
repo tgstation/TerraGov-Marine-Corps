@@ -4,7 +4,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	department_flag = ROLEGROUP_MARINE_COMMAND
 	selection_color = "#ddddff"
 	supervisors = "the acting commander"
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/card/id/silver
 	total_positions = 1
 	spawn_positions = 1
 	minimal_player_age = 7
@@ -17,7 +17,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	flag = ROLE_COMMANDING_OFFICER
 	supervisors = "USCM high command"
 	selection_color = "#ccccff"
-	idtype = /obj/item/weapon/card/id/gold
+	idtype = /obj/item/card/id/gold
 	minimal_player_age = 14
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
 	flags_whitelist = WHITELIST_COMMANDER
@@ -29,10 +29,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/command,
 				WEAR_FEET = /obj/item/clothing/shoes/marinechief/commander,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/techofficer/commander,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/mateba/cmateba/full,
+				WEAR_WAIST = /obj/item/storage/belt/gun/mateba/cmateba/full,
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/tan,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/large
 				)
 	generate_stored_equipment()
 		. = list(
@@ -79,10 +79,10 @@ Come hell or high water, you are going to be there for them."}
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/exec,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/vp70,
+				WEAR_WAIST = /obj/item/storage/belt/gun/m4a3/vp70,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/large
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -112,10 +112,10 @@ Make the USCM proud!"}
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/bridge,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/commander,
+				WEAR_WAIST = /obj/item/storage/belt/gun/m4a3/commander,
 				WEAR_HEAD = /obj/item/clothing/head/cmcap/ro,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/large
 				)
 	generate_stored_equipment()
 		. = list(
@@ -145,10 +145,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/pilot,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/gun/m4a3/vp70,
+				WEAR_WAIST = /obj/item/storage/belt/gun/m4a3/vp70,
 				WEAR_JACKET = /obj/item/clothing/suit/armor/vest/pilot,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/large
 				)
 
 	generate_stored_equipment()
@@ -181,7 +181,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	selection_color = "#ffdddd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
-	idtype = /obj/item/weapon/card/id
+	idtype = /obj/item/card/id
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_list = list("cqc"=SKILL_CQC_MP,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_MP,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -198,12 +198,12 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 				WEAR_BODY = /obj/item/clothing/under/marine/mp,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/black,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/security/MP/full,
+				WEAR_WAIST = /obj/item/storage/belt/security/MP/full,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/red,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/security,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium
+				WEAR_BACK = /obj/item/storage/backpack/security,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/medium
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -230,12 +230,12 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/warrant,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/black,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/security/MP/full,
+				WEAR_WAIST = /obj/item/storage/belt/security/MP/full,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP/WO,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/wo,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/security,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/large
+				WEAR_BACK = /obj/item/storage/backpack/security,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/large
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)

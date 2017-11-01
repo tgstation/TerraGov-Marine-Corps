@@ -53,10 +53,10 @@ var/list/obj/effect/death_drop/DEATH_TELEPORT = list()
 	power_environ = 0
 	ambience = list('sound/ambience/ambispace.ogg')
 
-/obj/item/weapon/bananapeel/surface_slip
+/obj/item/bananapeel/surface_slip
 	name = "slippery surface"
 	desc = "A slippery surface, likely from water."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
 	invisibility = 101 		//nope, can't see this

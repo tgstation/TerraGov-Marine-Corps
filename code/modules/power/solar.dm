@@ -35,7 +35,7 @@ var/list/solars_list = list()
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
 
-/obj/machinery/power/solar/New(var/turf/loc, var/obj/item/solar_assembly/S, var/process = 1)
+/obj/machinery/power/solar/New(var/turf/loc, var/obj/item/frame/solar_assembly/S, var/process = 1)
 	..(loc)
 	Make(S)
 	connect_to_network(process)
@@ -51,9 +51,9 @@ var/list/solars_list = list()
 		solars_list.Add(src)
 
 
-/obj/machinery/power/solar/proc/Make(var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/proc/Make(var/obj/item/frame/solar_assembly/S)
 	if(!S)
-		S = new /obj/item/solar_assembly(src)
+		S = new /obj/item/frame/solar_assembly(src)
 		S.glass_type = /obj/item/stack/sheet/glass
 		S.anchored = 1
 	S.loc = src
@@ -61,12 +61,12 @@ var/list/solars_list = list()
 
 
 
-/obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/power/solar/attackby(obj/item/W, mob/user)
 
 	if(iscrowbar(W))
 		playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
-			var/obj/item/solar_assembly/S = locate() in src
+			var/obj/item/frame/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
@@ -85,8 +85,8 @@ var/list/solars_list = list()
 		if(!(stat & BROKEN))
 			broken()
 		else
-			new /obj/item/weapon/shard(src.loc)
-			new /obj/item/weapon/shard(src.loc)
+			new /obj/item/shard(src.loc)
+			new /obj/item/shard(src.loc)
 			cdel(src)
 			return
 	return
@@ -144,11 +144,11 @@ var/list/solars_list = list()
 		if(1.0)
 			cdel(src)
 			if(prob(15))
-				new /obj/item/weapon/shard( src.loc )
+				new /obj/item/shard( src.loc )
 			return
 		if(2.0)
 			if (prob(25))
-				new /obj/item/weapon/shard( src.loc )
+				new /obj/item/shard( src.loc )
 				cdel(src)
 				return
 			if (prob(50))
@@ -158,7 +158,7 @@ var/list/solars_list = list()
 				broken()
 	return
 
-/obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/solar_assembly/S)
+/obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/frame/solar_assembly/S)
 	..(loc, S, 0)
 
 /obj/machinery/power/solar/fake/process()
@@ -170,7 +170,7 @@ var/list/solars_list = list()
 // Solar Assembly - For construction of solar arrays.
 //
 
-/obj/item/solar_assembly
+/obj/item/frame/solar_assembly
 	name = "solar panel assembly"
 	desc = "A solar panel assembly kit, allows constructions of a solar panel, or with a tracking circuit board, a solar tracker"
 	icon = 'icons/obj/power.dmi'
@@ -181,19 +181,19 @@ var/list/solars_list = list()
 	var/tracker = 0
 	var/glass_type = null
 
-/obj/item/solar_assembly/attack_hand(var/mob/user)
+/obj/item/frame/solar_assembly/attack_hand(var/mob/user)
 	if(!anchored && isturf(loc)) // You can't pick it up
 		..()
 
 // Give back the glass type we were supplied with
-/obj/item/solar_assembly/proc/give_glass()
+/obj/item/frame/solar_assembly/proc/give_glass()
 	if(glass_type)
 		var/obj/item/stack/sheet/S = new glass_type(src.loc)
 		S.amount = 2
 		glass_type = null
 
 
-/obj/item/solar_assembly/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/item/frame/solar_assembly/attackby(var/obj/item/W, var/mob/user)
 
 	if(!anchored && isturf(loc))
 		if(iswrench(W))
@@ -223,7 +223,7 @@ var/list/solars_list = list()
 			return 1
 
 	if(!tracker)
-		if(istype(W, /obj/item/weapon/tracker_electronics))
+		if(istype(W, /obj/item/circuitboard/solar_tracker))
 			tracker = 1
 			if(user.temp_drop_inv_item(W))
 				cdel(W)
@@ -231,7 +231,7 @@ var/list/solars_list = list()
 			return 1
 	else
 		if(iscrowbar(W))
-			new /obj/item/weapon/tracker_electronics(src.loc)
+			new /obj/item/circuitboard/solar_tracker(src.loc)
 			tracker = 0
 			user.visible_message("<span class='notice'>[user] takes out the electronics from the solar assembly.</span>")
 			return 1
@@ -311,14 +311,14 @@ var/list/solars_list = list()
 
 
 /obj/machinery/power/solar_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/tool/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			if (src.stat & BROKEN)
 				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/structure/computerframe/A = new( src.loc )
+				new /obj/item/shard( src.loc )
+				var/obj/item/circuitboard/computer/solar_control/M = new( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -328,8 +328,8 @@ var/list/solars_list = list()
 				cdel(src)
 			else
 				user << "\blue You disconnect the monitor."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/structure/computerframe/A = new( src.loc )
+				var/obj/item/circuitboard/computer/solar_control/M = new( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -497,6 +497,6 @@ var/list/solars_list = list()
 // MISC
 //
 
-/obj/item/weapon/paper/solar
+/obj/item/paper/solar
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
 	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or phoron! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"

@@ -45,7 +45,7 @@
 
 				if(O.status_flags & PASSEMOTES)
 
-					for(var/obj/item/weapon/holder/H in O.contents)
+					for(var/obj/item/holder/H in O.contents)
 						H.show_message(message, m_type)
 
 					for(var/mob/living/M in O.contents)
@@ -60,7 +60,7 @@
 
 				if(O.status_flags & PASSEMOTES)
 
-					for(var/obj/item/weapon/holder/H in O.contents)
+					for(var/obj/item/holder/H in O.contents)
 						H.show_message(message, m_type)
 
 					for(var/mob/living/M in O.contents)

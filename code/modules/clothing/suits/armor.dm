@@ -38,20 +38,20 @@
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 50, bullet = 60, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	allowed = list(/obj/item/weapon/gun/,
-		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/grenade,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/handcuffs,
+		/obj/item/explosive/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/large_holster/machete,
-		/obj/item/weapon/storage/belt/gun/m4a3,
-		/obj/item/weapon/storage/belt/gun/m44)
+		/obj/item/storage/sparepouch,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/belt/gun/m4a3,
+		/obj/item/storage/belt/gun/m44)
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
 	New()
 		select_gamemode_skin(/obj/item/clothing/suit/armor/vest/pilot)
@@ -134,7 +134,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
 	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|BLOCKSHARPOBJ|NOPRESSUREDMAGE
@@ -215,7 +215,7 @@
 	item_state = "centcom"
 	w_class = 4//bulky item
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
 	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature

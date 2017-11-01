@@ -16,7 +16,7 @@
 
 /obj/machinery/portable_atmospherics/powered/pump/New()
 	..()
-	cell = new/obj/item/weapon/cell(src)
+	cell = new/obj/item/cell(src)
 
 /obj/machinery/portable_atmospherics/powered/pump/update_icon()
 	src.overlays = 0

@@ -1291,13 +1291,13 @@
 	name = "Black Ops Black Gloves"
 
 
-/obj/item/weapon/storage/backpack/marine/fluff/Sado
+/obj/item/storage/backpack/marine/fluff/Sado
 	name = "Tanya's Backpack"
 	desc = "A large backpack, used by Tanya Edenia. DONOR ITEM"
 	icon_state = "securitypack"
 	item_state = "securitypack"
 
-/obj/item/weapon/storage/backpack/marine/fluff/mitii
+/obj/item/storage/backpack/marine/fluff/mitii
 	name = "Mya's Backpack"
 	desc = "A large security backpack, with a radio booster.  Donor Item"
 	icon_state = "securitypack"
@@ -1315,14 +1315,14 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 	icon_state = "marine-white"
 	item_state = "marine-wgloves"
 
-/obj/item/weapon/storage/belt/marine/fluff/swordbelt
+/obj/item/storage/belt/marine/fluff/swordbelt
 	name = "Omega Sword Belt"
 	desc = "Belt worn by the dreaded Commissars of Omega Team.  UNIQUE DONOR ITEM"
 	icon_state = "swordbelt_u"
 	item_state = "swordbelt_u"
 
 //CUSTOM ITEMS - NO TEMPLATES - ALL UNIQUE ////////////////////////
-/obj/item/weapon/flame/lighter/zippo/fluff/ghost
+/obj/item/tool/lighter/zippo/fluff/ghost
 	name = "Gold zippo lighter"
 	desc = "A Golden Zippo lighter, engraved with the name John Donable... UNIQUE DONOR ITEM."
 	icon = 'icons/obj/custom_items.dmi'
@@ -1340,8 +1340,8 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 
 
 //GHOST CIGAR CODE
-/obj/item/clothing/mask/cigarette/cigar/fluff/ghost/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/flame/lighter/zippo/fluff/ghost))
+/obj/item/clothing/mask/cigarette/cigar/fluff/ghost/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/lighter/zippo/fluff/ghost))
 		..()
 	else
 		user << "<span class='notice'>\The [src] straight out REFUSES to be lit by anything other than a purple zippo.</span>"

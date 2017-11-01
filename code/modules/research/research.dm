@@ -256,7 +256,7 @@ datum/tech/robotics
 */
 
 
-/obj/item/weapon/disk/tech_disk
+/obj/item/disk/tech_disk
 	name = "Technology Disk"
 	desc = "A disk for storing technology data for further research."
 	icon = 'icons/obj/cloning.dmi'
@@ -266,6 +266,6 @@ datum/tech/robotics
 	matter = list("metal" = 30, "glass" = 10)
 	var/datum/tech/stored
 
-/obj/item/weapon/disk/tech_disk/New()
+/obj/item/disk/tech_disk/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)

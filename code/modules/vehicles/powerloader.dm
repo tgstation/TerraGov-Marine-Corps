@@ -18,9 +18,9 @@
 
 	New()
 		..()
-		cell = new /obj/item/weapon/cell/apc
+		cell = new /obj/item/cell/apc
 		for(var/i=1, i<=2, i++)
-			var/obj/item/weapon/powerloader_clamp/PC = new(src)
+			var/obj/item/powerloader_clamp/PC = new(src)
 			PC.linked_powerloader = src
 
 	relaymove(mob/user, direction)
@@ -49,9 +49,9 @@
 				manual_unbuckle(user)
 
 
-	attackby(obj/item/weapon/W, mob/user)
-		if(istype(W, /obj/item/weapon/powerloader_clamp))
-			var/obj/item/weapon/powerloader_clamp/PC = W
+	attackby(obj/item/W, mob/user)
+		if(istype(W, /obj/item/powerloader_clamp))
+			var/obj/item/powerloader_clamp/PC = W
 			if(PC.linked_powerloader == src)
 				unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
 				return 1
@@ -66,7 +66,7 @@
 			if(M.mind && M.mind.skills_list)
 				move_delay = max(4, move_delay - M.mind.skills_list["powerloader"])
 			var/clamp_equipped = 0
-			for(var/obj/item/weapon/powerloader_clamp/PC in contents)
+			for(var/obj/item/powerloader_clamp/PC in contents)
 				if(!M.put_in_hands(PC)) PC.forceMove(src)
 				else clamp_equipped++
 			if(clamp_equipped != 2) unbuckle() //can't use the powerloader without both clamps equipped
@@ -108,7 +108,7 @@
 		..()
 
 
-/obj/item/weapon/powerloader_clamp
+/obj/item/powerloader_clamp
 	name = "\improper Power Loader Clamp"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "loader_clamp"

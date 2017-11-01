@@ -194,7 +194,7 @@ var/list/slot_equipment_priority = list( \
 	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
 	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
 	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
 	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
@@ -444,7 +444,7 @@ var/list/slot_equipment_priority = list( \
 	for(var/obj/O in object_list)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
 		if(!O.loc)
 			continue
-		if(istype(O, /obj/item/weapon/disk/nuclear))
+		if(istype(O, /obj/item/disk/nuclear))
 			var/name = "Nuclear Disk"
 			if (names.Find(name))
 				namecounts[name]++
@@ -553,9 +553,9 @@ var/list/slot_equipment_priority = list( \
 		pulling = null
 		grab_level = 0
 		if(hud_used && hud_used.pull_icon)	hud_used.pull_icon.icon_state = "pull0"
-		if(istype(r_hand, /obj/item/weapon/grab))
+		if(istype(r_hand, /obj/item/grab))
 			temp_drop_inv_item(r_hand)
-		else if(istype(l_hand, /obj/item/weapon/grab))
+		else if(istype(l_hand, /obj/item/grab))
 			temp_drop_inv_item(l_hand)
 
 
@@ -589,7 +589,7 @@ var/list/slot_equipment_priority = list( \
 	pulling = AM
 	AM.pulledby = src
 
-	var/obj/item/weapon/grab/G = new /obj/item/weapon/grab()
+	var/obj/item/grab/G = new /obj/item/grab()
 	G.grabbed_thing = AM
 	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
 		return
@@ -997,7 +997,7 @@ mob/proc/yank_out_object()
 			U << "[src] has nothing stuck in their wounds that is large enough to remove."
 		return
 
-	var/obj/item/weapon/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
+	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
 		if(get_active_hand())
@@ -1028,7 +1028,7 @@ mob/proc/yank_out_object()
 		var/datum/limb/affected
 
 		for(var/datum/limb/E in H.limbs) //Grab the limb holding the implant.
-			for(var/obj/item/weapon/O in E.implants)
+			for(var/obj/item/O in E.implants)
 				if(O == selection)
 					affected = E
 					break

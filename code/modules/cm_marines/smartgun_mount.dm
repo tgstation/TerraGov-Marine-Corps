@@ -2,21 +2,26 @@
 //Mounted MG, Replacment for the current jury rig code.
 
 //Adds a coin for engi vendors
-/obj/item/weapon/coin/marine/engineer
+/obj/item/coin/marine/engineer
 	name = "marine engineer support token"
 	desc = "Insert this into a engineer vendor in order to access a support weapon."
 	icon_state = "coin_adamantine"
 
 // First thing we need is the ammo drum for this thing.
-/obj/item/m56d_ammo
+/obj/item/ammo_magazine/m56d
 	name = "M56D drum magazine (10x28mm Caseless)"
 	desc = "A box of 700, 10x28mm caseless tungsten rounds for the M56D mounted smartgun system. Just click the M56D with this to reload it."
 	w_class = 4
-	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "ammo_drum"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "10x28mm"
+	max_rounds = 700
+	default_ammo = /datum/ammo/bullet/smartgun
+	gun_type = null
+
 
 // Now we need a box for this.
-/obj/item/weapon/storage/box/m56d_hmg
+/obj/item/storage/box/m56d_hmg
 	name = "\improper M56D crate"
 	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a M56D smartgun, it clearly has various labeled warnings. The most major one is that this does not have IFF features due to specialized ammo."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
@@ -29,11 +34,11 @@
 		..()
 		spawn(1)
 			new /obj/item/device/m56d_gun(src) //gun itself
-			new /obj/item/m56d_ammo(src) //ammo for the gun
+			new /obj/item/ammo_magazine/m56d(src) //ammo for the gun
 			new /obj/item/device/m56d_post(src) //post for the gun
-			new /obj/item/weapon/wrench(src) //wrench to hold it down into the ground
-			new /obj/item/weapon/screwdriver(src) //screw the gun onto the post.
-			new /obj/item/m56d_ammo(src)
+			new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
+			new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
+			new /obj/item/ammo_magazine/m56d(src)
 
 // The actual gun itself.
 /obj/item/device/m56d_gun
@@ -69,7 +74,7 @@
 	if(isnull(O))
 		return
 
-	if(istype(O,/obj/item/m56d_ammo)) //lets equip it with ammo
+	if(istype(O,/obj/item/ammo_magazine/m56d)) //lets equip it with ammo
 		if(!rounds)
 			rounds = 700
 			cdel(O)
@@ -135,7 +140,7 @@
 	if(!ishuman(user)) //first make sure theres no funkiness
 		return
 
-	if(istype(O,/obj/item/weapon/wrench)) //rotate the mount
+	if(istype(O,/obj/item/tool/wrench)) //rotate the mount
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>","<span class='notice'>You rotate [src].</span>")
 		switch(dir)
@@ -168,7 +173,7 @@
 			cdel(MG)
 		return
 
-	if(istype(O,/obj/item/weapon/crowbar))
+	if(istype(O,/obj/item/tool/crowbar))
 		if(!gun_mounted)
 			user << "<span class='warning'>There is no gun mounted.</span>"
 			return
@@ -182,7 +187,7 @@
 			icon_state = "M56D_mount"
 		return
 
-	if(istype(O,/obj/item/weapon/screwdriver))
+	if(istype(O,/obj/item/tool/screwdriver))
 		if(gun_mounted)
 			user << "You're securing the M56D into place"
 			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
@@ -285,7 +290,7 @@
 	if(isnull(O))
 		return
 
-	if(istype(O,/obj/item/weapon/wrench)) // Let us rotate this stuff.
+	if(istype(O,/obj/item/tool/wrench)) // Let us rotate this stuff.
 		if(locked)
 			user << "This one is anchored in place and cannot be rotated."
 			return
@@ -303,7 +308,7 @@
 					dir = NORTH
 		return
 
-	if(istype(O, /obj/item/weapon/screwdriver)) // Lets take it apart.
+	if(istype(O, /obj/item/tool/screwdriver)) // Lets take it apart.
 		if(locked)
 			user << "This one cannot be disassembled."
 		else
@@ -317,7 +322,7 @@
 				cdel(src) //Now we clean up the constructed gun.
 				return
 
-	if(istype(O, /obj/item/m56d_ammo)) // RELOADING DOCTOR FREEMAN.
+	if(istype(O, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
 		if(rounds)
 			usr << "There is already a ammo drum in the weapon!"
 			return
@@ -495,7 +500,7 @@
 	if(prob(65))
 		var/img_layer = layer + 0.1
 
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi', src, "muzzle_flash",img_layer))
+		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi', src, "muzzle_flash",img_layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)

@@ -555,7 +555,7 @@
 	if (O.is_open_container())
 		return 0
 
-	if(istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/weapon/scalpel))
+	if(istype(O, /obj/item/tool/wirecutters) || istype(O, /obj/item/tool/surgery/scalpel))
 
 		if(!seed)
 			user << "There is nothing to take a sample from in \the [src]."
@@ -583,9 +583,9 @@
 
 		return
 
-	else if(istype(O, /obj/item/weapon/reagent_containers/syringe))
+	else if(istype(O, /obj/item/reagent_container/syringe))
 
-		var/obj/item/weapon/reagent_containers/syringe/S = O
+		var/obj/item/reagent_container/syringe/S = O
 
 		if (S.mode == 1)
 			if(seed)
@@ -642,7 +642,7 @@
 		else
 			user << "\red \The [src] already has seeds in it!"
 
-	else if (istype(O, /obj/item/weapon/minihoe))  // The minihoe
+	else if (istype(O, /obj/item/tool/minihoe))  // The minihoe
 
 		if(weedlevel > 0)
 			user.visible_message("\red [user] starts uprooting the weeds.", "\red You remove the weeds from the [src].")
@@ -651,19 +651,19 @@
 		else
 			user << "\red This plot is completely devoid of weeds. It doesn't need uprooting."
 
-	else if (istype(O, /obj/item/weapon/storage/bag/plants))
+	else if (istype(O, /obj/item/storage/bag/plants))
 
 		attack_hand(user)
 
-		var/obj/item/weapon/storage/bag/plants/S = O
-		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
+		var/obj/item/storage/bag/plants/S = O
+		for (var/obj/item/reagent_container/food/snacks/grown/G in locate(user.x,user.y,user.z))
 			if(!S.can_be_inserted(G))
 				return
 			S.handle_item_insertion(G, 1)
 
-	else if ( istype(O, /obj/item/weapon/plantspray) )
+	else if ( istype(O, /obj/item/tool/plantspray) )
 
-		var/obj/item/weapon/plantspray/spray = O
+		var/obj/item/tool/plantspray/spray = O
 		user.drop_held_item()
 		toxins += spray.toxicity
 		pestlevel -= spray.pest_kill_str
@@ -675,7 +675,7 @@
 		check_level_sanity()
 		update_icon()
 
-	else if(istype(O, /obj/item/weapon/wrench))
+	else if(istype(O, /obj/item/tool/wrench))
 
 		//If there's a connector here, the portable_atmospherics setup can handle it.
 		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
@@ -685,7 +685,7 @@
 		anchored = !anchored
 		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
 
-	else if(istype(O, /obj/item/apiary))
+	else if(istype(O, /obj/item/frame/apiary))
 
 		if(seed)
 			user << "\red [src] is already occupied!"
@@ -778,10 +778,10 @@
 	draw_warnings = 0
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/shovel))
+	if(istype(O, /obj/item/tool/shovel))
 		user << "You clear up [src]!"
 		cdel(src)
-	else if(istype(O,/obj/item/weapon/shovel) || istype(O,/obj/item/weapon/tank))
+	else if(istype(O,/obj/item/tool/shovel) || istype(O,/obj/item/tank))
 		return
 	else
 		..()

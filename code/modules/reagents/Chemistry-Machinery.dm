@@ -126,7 +126,7 @@
 
 	if(href_list["dispense"])
 		if (dispensable_reagents.Find(href_list["dispense"]) && beaker != null && beaker.is_open_container())
-			var/obj/item/weapon/reagent_containers/B = src.beaker
+			var/obj/item/reagent_container/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
 
@@ -135,21 +135,21 @@
 
 	if(href_list["ejectBeaker"])
 		if(beaker)
-			var/obj/item/weapon/reagent_containers/B = beaker
+			var/obj/item/reagent_container/B = beaker
 			B.loc = loc
 			beaker = null
 
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/chem_dispenser/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
+/obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
 	if(isrobot(user))
 		return
 	if(src.beaker)
 		user << "Something is already loaded into the machine."
 		return
-	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
-		if(!accept_glass && istype(B,/obj/item/weapon/reagent_containers/food))
+	if(istype(B, /obj/item/reagent_container/glass) || istype(B, /obj/item/reagent_container/food))
+		if(!accept_glass && istype(B,/obj/item/reagent_container/food))
 			user << "<span class='notice'>This machine only accepts beakers</span>"
 		if(user.drop_inv_item_to_loc(B, src))
 			beaker =  B
@@ -183,7 +183,7 @@
 	max_energy = 100
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
-/obj/machinery/chem_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/machinery/chem_dispenser/soda/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
 	if(istype(B, /obj/item/device/multitool))
 		if(hackedcheck == 0)
@@ -209,7 +209,7 @@
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","sake","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 
-/obj/machinery/chem_dispenser/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/machinery/chem_dispenser/beer/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
 
 	if(istype(B, /obj/item/device/multitool))
@@ -236,7 +236,7 @@
 	use_power = 1
 	idle_power_usage = 20
 	var/beaker = null
-	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
+	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
 	var/useramount = 30 // Last used amount
@@ -262,9 +262,9 @@
 				cdel(src)
 				return
 
-/obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/machinery/chem_master/attackby(var/obj/item/B as obj, var/mob/user as mob)
 
-	if(istype(B, /obj/item/weapon/reagent_containers/glass))
+	if(istype(B, /obj/item/reagent_container/glass))
 
 		if(src.beaker)
 			user << "A beaker is already loaded into the machine."
@@ -275,7 +275,7 @@
 		updateUsrDialog()
 		icon_state = "mixer1"
 
-	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
+	else if(istype(B, /obj/item/storage/pill_bottle))
 
 		if(src.loaded_pill_bottle)
 			user << "A pill bottle is already loaded into the machine."
@@ -391,7 +391,7 @@
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 			while (count--)
-				var/obj/item/weapon/reagent_containers/pill/P = new/obj/item/weapon/reagent_containers/pill(src.loc)
+				var/obj/item/reagent_container/pill/P = new/obj/item/reagent_container/pill(src.loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.pill_desc = "A [name] pill."
 				P.pixel_x = rand(-7, 7) //random position
@@ -406,7 +406,7 @@
 		else if (href_list["createbottle"])
 			if(!condi)
 				var/name = reject_bad_text(input(usr,"Name:","Name your bottle!",reagents.get_master_reagent_name()))
-				var/obj/item/weapon/reagent_containers/glass/bottle/P = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
+				var/obj/item/reagent_container/glass/bottle/P = new/obj/item/reagent_container/glass/bottle(src.loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] bottle"
 				P.pixel_x = rand(-7, 7) //random position
@@ -415,7 +415,7 @@
 				reagents.trans_to(P,60)
 				P.update_icon()
 			else
-				var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(src.loc)
+				var/obj/item/reagent_container/food/condiment/P = new/obj/item/reagent_container/food/condiment(src.loc)
 				reagents.trans_to(P,50)
 		else if(href_list["change_pill"])
 			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
@@ -455,9 +455,9 @@
 		spawn()
 			has_sprites += user.client
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				usr << browse_rsc(icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
+				usr << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill" + num2text(i)), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
-				usr << browse_rsc(icon('icons/obj/chemical.dmi', "bottle-" + num2text(i)), "bottle-[i].png")
+				usr << browse_rsc(icon('icons/obj/items/chemistry.dmi', "bottle-" + num2text(i)), "bottle-[i].png")
 	var/dat = ""
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
@@ -547,12 +547,12 @@
 	anchored = 1
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
-	circuit = /obj/item/weapon/circuitboard/pandemic
+	circuit = /obj/item/circuitboard/computer/pandemic
 	//use_power = 1
 	//idle_power_usage = 20		//defaults make more sense.
 	var/temphtml = ""
 	var/wait = null
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_container/glass/beaker = null
 
 
 /obj/machinery/computer/pandemic/set_broken()
@@ -583,7 +583,7 @@
 
 	if (href_list["create_vaccine"])
 		if(!src.wait)
-			var/obj/item/weapon/reagent_containers/glass/bottle/B = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
+			var/obj/item/reagent_container/glass/bottle/B = new/obj/item/reagent_container/glass/bottle(src.loc)
 			if(B)
 				var/path = href_list["create_vaccine"]
 				var/vaccine_type = text2path(path)
@@ -615,7 +615,7 @@
 		return
 	else if (href_list["create_virus_culture"])
 		if(!wait)
-			var/obj/item/weapon/reagent_containers/glass/bottle/B = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
+			var/obj/item/reagent_container/glass/bottle/B = new/obj/item/reagent_container/glass/bottle(src.loc)
 			B.icon_state = "bottle3"
 			var/type = text2path(href_list["create_virus_culture"])//the path is received as string - converting
 			var/datum/disease/D = null
@@ -776,7 +776,7 @@
 
 
 /obj/machinery/computer/pandemic/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_container/glass))
 		if(stat & (NOPOWER|BROKEN)) return
 		if(beaker)
 			user << "A beaker is already loaded into the machine."
@@ -805,7 +805,7 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/inuse = 0
-	var/obj/item/weapon/reagent_containers/beaker = null
+	var/obj/item/reagent_container/beaker = null
 	var/limit = 10
 	var/list/blend_items = list (
 
@@ -814,38 +814,38 @@
 		/obj/item/stack/sheet/mineral/uranium = list("uranium" = 20),
 		/obj/item/stack/sheet/mineral/silver = list("silver" = 20),
 		/obj/item/stack/sheet/mineral/gold = list("gold" = 20),
-		/obj/item/weapon/grown/nettle/death = list("pacid" = 0),
-		/obj/item/weapon/grown/nettle = list("sacid" = 0),
+		/obj/item/grown/nettle/death = list("pacid" = 0),
+		/obj/item/grown/nettle = list("sacid" = 0),
 
 		//Blender Stuff
-		/obj/item/weapon/reagent_containers/food/snacks/grown/soybeans = list("soymilk" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato = list("ketchup" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/corn = list("cornoil" = 0),
-		///obj/item/weapon/reagent_containers/food/snacks/grown/wheat = list("flour" = -5),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/ricestalk = list("rice" = -5),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/cherries = list("cherryjelly" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/plastellium = list("plasticide" = 5),
+		/obj/item/reagent_container/food/snacks/grown/soybeans = list("soymilk" = 0),
+		/obj/item/reagent_container/food/snacks/grown/tomato = list("ketchup" = 0),
+		/obj/item/reagent_container/food/snacks/grown/corn = list("cornoil" = 0),
+		///obj/item/reagent_container/food/snacks/grown/wheat = list("flour" = -5),
+		/obj/item/reagent_container/food/snacks/grown/ricestalk = list("rice" = -5),
+		/obj/item/reagent_container/food/snacks/grown/cherries = list("cherryjelly" = 0),
+		/obj/item/reagent_container/food/snacks/grown/plastellium = list("plasticide" = 5),
 
 
 		//All types that you can put into the grinder to transfer the reagents to the beaker. !Put all recipes above this.!
-		/obj/item/weapon/reagent_containers/pill = list(),
-		/obj/item/weapon/reagent_containers/food = list()
+		/obj/item/reagent_container/pill = list(),
+		/obj/item/reagent_container/food = list()
 	)
 
 	var/list/juice_items = list (
 
 		//Juicer Stuff
-		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato = list("tomatojuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot = list("carrotjuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/berries = list("berryjuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/banana = list("banana" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/potato = list("potato" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/lemon = list("lemonjuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/orange = list("orangejuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/lime = list("limejuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/watermelonslice = list("watermelonjuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/grapes = list("grapejuice" = 0),
-		/obj/item/weapon/reagent_containers/food/snacks/grown/poisonberries = list("poisonberryjuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/tomato = list("tomatojuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/carrot = list("carrotjuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/berries = list("berryjuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/banana = list("banana" = 0),
+		/obj/item/reagent_container/food/snacks/grown/potato = list("potato" = 0),
+		/obj/item/reagent_container/food/snacks/grown/lemon = list("lemonjuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/orange = list("orangejuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/lime = list("limejuice" = 0),
+		/obj/item/reagent_container/food/snacks/watermelonslice = list("watermelonjuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/grapes = list("grapejuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/poisonberries = list("poisonberryjuice" = 0),
 	)
 
 
@@ -853,7 +853,7 @@
 
 /obj/machinery/reagentgrinder/New()
 	..()
-	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	beaker = new /obj/item/reagent_container/glass/beaker/large(src)
 	return
 
 /obj/machinery/reagentgrinder/update_icon()
@@ -864,9 +864,9 @@
 /obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 
-	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/shaker))
+	if (istype(O,/obj/item/reagent_container/glass) || \
+		istype(O,/obj/item/reagent_container/food/drinks/drinkingglass) || \
+		istype(O,/obj/item/reagent_container/food/drinks/shaker))
 
 		if (beaker)
 			return 1
@@ -882,9 +882,9 @@
 		return 1
 
 	//Fill machine with the plantbag!
-	if(istype(O, /obj/item/weapon/storage/bag/plants))
+	if(istype(O, /obj/item/storage/bag/plants))
 
-		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in O.contents)
+		for (var/obj/item/reagent_container/food/snacks/grown/G in O.contents)
 			O.contents -= G
 			G.loc = src
 			holdingitems += G
@@ -1001,28 +1001,28 @@
 		holdingitems -= O
 	holdingitems = list()
 
-/obj/machinery/reagentgrinder/proc/is_allowed(var/obj/item/weapon/reagent_containers/O)
+/obj/machinery/reagentgrinder/proc/is_allowed(var/obj/item/reagent_container/O)
 	for (var/i in blend_items)
 		if(istype(O, i))
 			return 1
 	return 0
 
-/obj/machinery/reagentgrinder/proc/get_allowed_by_id(var/obj/item/weapon/grown/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_by_id(var/obj/item/grown/O)
 	for (var/i in blend_items)
 		if (istype(O, i))
 			return blend_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_allowed_snack_by_id(var/obj/item/weapon/reagent_containers/food/snacks/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_snack_by_id(var/obj/item/reagent_container/food/snacks/O)
 	for(var/i in blend_items)
 		if(istype(O, i))
 			return blend_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_allowed_juice_by_id(var/obj/item/weapon/reagent_containers/food/snacks/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_juice_by_id(var/obj/item/reagent_container/food/snacks/O)
 	for(var/i in juice_items)
 		if(istype(O, i))
 			return juice_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_grownweapon_amount(var/obj/item/weapon/grown/O)
+/obj/machinery/reagentgrinder/proc/get_grownweapon_amount(var/obj/item/grown/O)
 	if (!istype(O))
 		return 5
 	else if (O.potency == -1)
@@ -1030,7 +1030,7 @@
 	else
 		return round(O.potency)
 
-/obj/machinery/reagentgrinder/proc/get_juice_amount(var/obj/item/weapon/reagent_containers/food/snacks/grown/O)
+/obj/machinery/reagentgrinder/proc/get_juice_amount(var/obj/item/reagent_container/food/snacks/grown/O)
 	if (!istype(O))
 		return 5
 	else if (O.potency == -1)
@@ -1054,7 +1054,7 @@
 		inuse = 0
 		interact(usr)
 	//Snacks
-	for (var/obj/item/weapon/reagent_containers/food/snacks/O in holdingitems)
+	for (var/obj/item/reagent_container/food/snacks/O in holdingitems)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 
@@ -1087,7 +1087,7 @@
 		inuse = 0
 		interact(usr)
 	//Snacks and Plants
-	for (var/obj/item/weapon/reagent_containers/food/snacks/O in holdingitems)
+	for (var/obj/item/reagent_container/food/snacks/O in holdingitems)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 
@@ -1134,7 +1134,7 @@
 				remove_object(O)
 				break
 	//Plants
-	for (var/obj/item/weapon/grown/O in holdingitems)
+	for (var/obj/item/grown/O in holdingitems)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 		var/allowed = get_allowed_by_id(O)
@@ -1152,7 +1152,7 @@
 		remove_object(O)
 
 	//Everything else - Transfers reagents from it into beaker
-	for (var/obj/item/weapon/reagent_containers/O in holdingitems)
+	for (var/obj/item/reagent_container/O in holdingitems)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 		var/amount = O.reagents.total_volume

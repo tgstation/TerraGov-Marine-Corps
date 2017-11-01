@@ -408,7 +408,7 @@
 				if(!target.w_uniform)
 					cdel(src)
 			if("internal")
-				if((!((istype(target.wear_mask, /obj/item/clothing/mask) && (istype(target.back, /obj/item/weapon/tank) || istype(target.belt, /obj/item/weapon/tank) || istype(target.s_store, /obj/item/weapon/tank)) && !(target.internal))) && !(target.internal)))
+				if((!((istype(target.wear_mask, /obj/item/clothing/mask) && (istype(target.back, /obj/item/tank) || istype(target.belt, /obj/item/tank) || istype(target.s_store, /obj/item/tank)) && !(target.internal))) && !(target.internal)))
 					cdel(src)
 
 	var/list/L = list("syringe", "pill", "drink", "dnainjector", "fuel", "sensor", "internal", "tie")
@@ -716,10 +716,10 @@ It can still be worn/put on as normal.
 				target << "\blue <b>You feel a breath of fresh air enter your lungs. It feels good.</b>"
 				source << "\red Repeat at least every 7 seconds."
 		if("dnainjector")
-			var/obj/item/weapon/dnainjector/S = item
+			var/obj/item/dnainjector/S = item
 			if(S)
 				S.add_fingerprint(source)
-				if (!(istype(S, /obj/item/weapon/dnainjector)))
+				if (!(istype(S, /obj/item/dnainjector)))
 					S.inuse = 0
 					cdel(src)
 				S.inject(target, source)
@@ -754,11 +754,11 @@ It can still be worn/put on as normal.
 				if (!(istype(target.wear_mask, /obj/item/clothing/mask)))
 					return
 				else
-					if (istype(target.back, /obj/item/weapon/tank))
+					if (istype(target.back, /obj/item/tank))
 						target.internal = target.back
-					else if (istype(target.s_store, /obj/item/weapon/tank))
+					else if (istype(target.s_store, /obj/item/tank))
 						target.internal = target.s_store
-					else if (istype(target.belt, /obj/item/weapon/tank))
+					else if (istype(target.belt, /obj/item/tank))
 						target.internal = target.belt
 					if (target.internal)
 						for(var/mob/M in viewers(target, 1))

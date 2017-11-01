@@ -20,7 +20,7 @@
 
 	//almayer Generator Unique Vars
 
-	var/obj/item/weapon/fuelCell/fusion_cell = new/obj/item/weapon/fuelCell //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
+	var/obj/item/fuelCell/fusion_cell = new/obj/item/fuelCell //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
 
 	var/produce_heat = 1 //Fusion is a VERY warm process.  The reactor room should probably be cooled... Probably...
 	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
@@ -142,7 +142,7 @@
 
 
 	attackby(obj/item/O, mob/user)
-		if(istype(O, /obj/item/weapon/fuelCell))
+		if(istype(O, /obj/item/fuelCell))
 			if(is_on)
 				user << "<span class='warning'>The [src] needs to be turned off first...</span>"
 				r_TRU
@@ -159,9 +159,9 @@
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat. "
 			desc += (fusion_cell == null) ? "There is no fuel cell in the receptacle." : "You can see a fuel cell in the receptacle."
 			r_TRU
-		else if(istype(O, /obj/item/weapon/weldingtool))
+		else if(istype(O, /obj/item/tool/weldingtool))
 			if(buildstate == 1 && !is_on)
-				var/obj/item/weapon/weldingtool/WT = O
+				var/obj/item/tool/weldingtool/WT = O
 				if(WT.remove_fuel(0, user))
 					if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 						user << "<span class='warning'>You start fumbling around, examing what's broken...</span>"
@@ -179,7 +179,7 @@
 				else
 					user << "\red You need more welding fuel to complete this task."
 					r_FAL
-		else if(istype(O,/obj/item/weapon/wirecutters))
+		else if(istype(O,/obj/item/tool/wirecutters))
 			if(buildstate == 2 && !is_on)
 				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 					user << "<span class='warning'>You start fumbling around, trying to figure out the wiring...</span>"
@@ -194,7 +194,7 @@
 					icon_state = "wrench"
 	//				update_icon()
 					r_TRU
-		else if(istype(O,/obj/item/weapon/wrench))
+		else if(istype(O,/obj/item/tool/wrench))
 			if(buildstate == 3 && !is_on)
 				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 					user << "<span class='warning'>You start fumbling around, examining the damage on the tubes and plating...</span>"
@@ -210,7 +210,7 @@
 					icon_state = "off"
 //					update_icon
 					r_TRU
-		else if(istype(O,/obj/item/weapon/crowbar))
+		else if(istype(O,/obj/item/tool/crowbar))
 			if(buildstate != 0)
 				user << "<span class='notice'>You must repair the generator before working with its fuel cell.</span>"
 				return
@@ -239,7 +239,7 @@
 
 
 //FUEL CELL
-/obj/item/weapon/fuelCell
+/obj/item/fuelCell
 	name = "\improper WL-6 universal fuel cell"
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "cell-full"
@@ -259,13 +259,13 @@
 		else if(fuel_amount == max_fuel_amount)
 			icon_state = "cell-full"
 
-/obj/item/weapon/fuelCell/proc/percent()
+/obj/item/fuelCell/proc/percent()
 	return 100.0*fuel_amount/max_fuel_amount
 
-/obj/item/weapon/fuelCell/proc/is_regenerated()
+/obj/item/fuelCell/proc/is_regenerated()
 	return (fuel_amount == max_fuel_amount)
 
-/obj/item/weapon/fuelCell/proc/give(amount as num)
+/obj/item/fuelCell/proc/give(amount as num)
 	fuel_amount += amount
 	if(fuel_amount > max_fuel_amount)
 		fuel_amount = max_fuel_amount

@@ -168,7 +168,7 @@
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/amounts = list(5, 10)
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_container/glass/beaker = null
 	var/filtering = 0
 
 	use_power = 1
@@ -177,7 +177,7 @@
 
 	New()
 		..()
-		beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large()
+		beaker = new /obj/item/reagent_container/glass/beaker/large()
 		spawn( 5 )
 			if(orient == "RIGHT")
 				icon_state = "sleeper_0-r"
@@ -205,8 +205,8 @@
 		src.updateUsrDialog()
 		return
 
-	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-		if(istype(W, /obj/item/weapon/reagent_containers/glass))
+	attackby(var/obj/item/W as obj, var/mob/user as mob)
+		if(istype(W, /obj/item/reagent_container/glass))
 			if(!beaker)
 				if(user.drop_inv_item_to_loc(W, src))
 					beaker = W
@@ -217,8 +217,8 @@
 				user << "\red The sleeper has a beaker already."
 				return
 
-		else if(istype(W, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = W
+		else if(istype(W, /obj/item/grab))
+			var/obj/item/grab/G = W
 			if(!ismob(G.grabbed_thing))
 				return
 

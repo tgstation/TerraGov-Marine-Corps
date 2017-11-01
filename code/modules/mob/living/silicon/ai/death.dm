@@ -19,10 +19,10 @@
 		if(istype(commconsole.loc,/turf))
 			break
 
-	for(var/obj/item/weapon/circuitboard/communications/commboard in item_list)
+	for(var/obj/item/circuitboard/computer/communications/commboard in item_list)
 		if(commboard.z == 2)
 			continue
-		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/weapon/storage))
+		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/storage))
 			break
 
 	for(var/mob/living/silicon/ai/shuttlecaller in player_list)

@@ -9,9 +9,9 @@
 	flags_atom = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/weapon/storage/bag/trash/mybag	= null
-	var/obj/item/weapon/mop/mymop = null
-	var/obj/item/weapon/reagent_containers/spray/myspray = null
+	var/obj/item/storage/bag/trash/mybag	= null
+	var/obj/item/tool/mop/mymop = null
+	var/obj/item/reagent_container/spray/myspray = null
 	var/obj/item/device/lightreplacer/myreplacer = null
 	var/signs = 0	//maximum capacity hardcoded below
 
@@ -26,7 +26,7 @@
 
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
+	if(istype(I, /obj/item/storage/bag/trash) && !mybag)
 		user.drop_held_item()
 		mybag = I
 		I.loc = src
@@ -34,7 +34,7 @@
 		updateUsrDialog()
 		user << "<span class='notice'>You put [I] into [src].</span>"
 
-	else if(istype(I, /obj/item/weapon/mop))
+	else if(istype(I, /obj/item/tool/mop))
 		if(I.reagents.total_volume < I.reagents.maximum_volume)	//if it's not completely soaked we assume they want to wet it, otherwise store it
 			if(reagents.total_volume < 1)
 				user << "[src] is out of water!</span>"
@@ -51,7 +51,7 @@
 			updateUsrDialog()
 			user << "<span class='notice'>You put [I] into [src].</span>"
 
-	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
+	else if(istype(I, /obj/item/reagent_container/spray) && !myspray)
 		user.drop_held_item()
 		myspray = I
 		I.loc = src
@@ -67,7 +67,7 @@
 		updateUsrDialog()
 		user << "<span class='notice'>You put [I] into [src].</span>"
 
-	else if(istype(I, /obj/item/weapon/caution))
+	else if(istype(I, /obj/item/tool/wet_sign))
 		if(signs < 4)
 			user.drop_held_item()
 			I.loc = src
@@ -128,7 +128,7 @@
 			myreplacer = null
 	if(href_list["sign"])
 		if(signs)
-			var/obj/item/weapon/caution/Sign = locate() in src
+			var/obj/item/tool/wet_sign/Sign = locate() in src
 			if(Sign)
 				user.put_in_hands(Sign)
 				user << "<span class='notice'>You take \a [Sign] from [src].</span>"
