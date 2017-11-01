@@ -3,6 +3,8 @@
 /mob/living/simple_animal/shyguy
 	name = "???"
 	desc = "No, no, you know not to look closely at it" //for non-humans
+	var/human_desc_1 = "A pale, emanciated figure. Its limbs are long and skinny, and its face is......<span class='danger'>no. NO. NO</span>" //for humans
+	var/human_desc_2 = "<span class='danger'>NO</span>" //on second examine
 	icon_state = "shyguy_dam0"
 	icon_living = "shyguy_dam0"
 	icon_dead = "shyguy_dam0"
@@ -17,6 +19,7 @@
 
 	health = 300
 	maxHealth = 300
+	var/move_to_delay = 2
 
 	var/murder_sound = list('sound/voice/scream_horror2.ogg')
 	var/scare_sound = list('sound/scp/scare1.ogg','sound/scp/scare2.ogg','sound/scp/scare3.ogg','sound/scp/scare4.ogg')	//Boo
@@ -29,6 +32,7 @@
 	var/screaming = 0 //are we currently screaming?
 	var/will_scream = 1 //will we scream when examined?
 	var/staggered = 0
+	var/chasing = 0 //are we chasing a dude
 	var/murdering = 0 //are we in the middle of murdering a dude
 
 	var/chasing_message_played = 0 //preferably, these only play once to each target
@@ -72,6 +76,7 @@
 		chasing_message_played = 0
 		doom_message_played = 0
 		murdering = 0
+		chasing = 0
 		will_scream = 1
 		handle_idle()
 
@@ -80,8 +85,8 @@
 
 	//If we are in darkness, nothing can see us
 	var/turf/T = get_turf(src)
-	//var/in_darkness = 0
-	if(T.lighting_lumcount == 0) //Entirely dark tiles only
+	var/area/A = get_area(src)
+	if(T.lighting_lumcount == 0 && A.lighting_use_dynamic) //Entirely dark tiles only
 		return
 		//in_darkness = 1
 
@@ -146,8 +151,8 @@
 
 /mob/living/simple_animal/shyguy/examine(var/userguy)
 	if (istype(userguy, /mob/living/carbon/human))
-		userguy << "<span class='danger'>What the hell is that thing?</span>"
 		if (!(userguy in shitlist))
+			userguy <<  human_desc_1
 			shitlist += userguy
 			spawn(20)
 				if(userguy)
@@ -155,6 +160,8 @@
 			spawn(30)
 				if(userguy)
 					userguy << "<span class='danger'>RUN</span>"
+		else
+			userguy << human_desc_2
 		if(will_scream)
 			if(!buckled) dir = 2
 			visible_message("<span class='danger'>[src] SCREAMS!</span>")
@@ -175,7 +182,7 @@
 
 /mob/living/simple_animal/shyguy/proc/handle_target(var/mob/living/carbon/human/target)
 
-	if(!target) //Sanity
+	if(!target || chasing) //Sanity
 		return
 
 	if(target.stat == DEAD)
@@ -212,35 +219,28 @@
 	var/turf/next_turf = get_step_towards(src, target)
 	var/limit = 100
 	spawn()
+		chasing = 1
 		while(get_turf(src) != get_turf(target) && limit > 0)
-			//if(!check_los()) //Something is looking at us now
-			//	break
-			//if(!next_turf.CanPass(src, next_turf)) //We can't pass through our planned path
-			//	break
 			if(staggered <= 0 && murdering <= 0)
 				for(var/obj/structure/window/W in next_turf)
 					W.health -= 1000
 					W.healthcheck(1, 1, 1, src)
-					sleep(2)
+					sleep(5)
 				for(var/obj/structure/table/O in next_turf)
 					O.ex_act(1)
-					sleep(2)
+					sleep(5)
 				for(var/obj/structure/closet/C in next_turf)
 					C.ex_act(1)
-					sleep(2)
+					sleep(5)
 				for(var/obj/structure/grille/G in next_turf)
 					G.ex_act(1)
-					sleep(2)
-				for(var/obj/machinery/door/airlock/A in next_turf)
-					//if(A.welded || A.locked) //Snowflakey code to take in account bolts and welding
-					//	break
-					A.open()
-					sleep(2)
-				for(var/obj/machinery/door/D in next_turf)
-					D.open()
-					sleep(2)
-				if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
 					sleep(5)
+				for(var/obj/machinery/door/D in next_turf)
+					if(D.density)
+						D.open()
+						sleep(5)
+				if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
+					sleep(10)
 
 				if(doom_message_played == 0 && get_dist(src,target) < 7)
 					target << "<span class='danger'>YOU SAW ITS FACE</span>"
@@ -250,7 +250,8 @@
 				dir = get_dir(src, target)
 				next_turf = get_step(src, get_dir(next_turf,target))
 			limit--
-			sleep(3)
+			sleep(move_to_delay)
+		chasing = 0
 
 //This performs an immediate murder check, meant to avoid people cheesing us by just running faster than Life() refresh
 /mob/living/simple_animal/shyguy/proc/check_murder()
@@ -269,6 +270,7 @@
 /mob/living/simple_animal/shyguy/proc/murder(var/mob/living/T)
 
 	if(T && ishuman(T))
+		T.loc = src.loc
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
 		dir = 2
 		T.KnockDown(10)
@@ -386,7 +388,7 @@
 	staggered++
 	visible_message("<span class='danger'>[src] is staggered by [Proj]!</span>")
 	update_damage(-Proj.damage)
-	spawn(round(Proj.damage/5))
+	spawn(round(Proj.damage/4))
 		staggered = max(staggered-1, 0)
 	return 1
 
