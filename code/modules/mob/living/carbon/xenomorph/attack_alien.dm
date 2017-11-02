@@ -50,7 +50,7 @@
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
 						r_FAL
 
-				else if(istype(buckled, /obj/structure/stool/bed/nest) && status_flags & XENO_HOST)
+				else if(istype(buckled, /obj/structure/bed/nest) && status_flags & XENO_HOST)
 					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
 					r_FAL
 
@@ -112,7 +112,7 @@
 
 			//Logging, including anti-rulebreak logging
 			if(src.status_flags & XENO_HOST && src.stat != DEAD)
-				if(istype(src.buckled, /obj/structure/stool/bed/nest)) //Host was buckled to nest while infected, this is a rule break
+				if(istype(src.buckled, /obj/structure/bed/nest)) //Host was buckled to nest while infected, this is a rule break
 					src.attack_log += text("\[[time_stamp()]\] <font color='orange'><B>was slashed by [M.name] ([M.ckey]) while they were infected and nested</B></font>")
 					M.attack_log += text("\[[time_stamp()]\] <font color='red'><B>slashed [src.name] ([src.ckey]) while they were infected and nested</B></font>")
 					msg_admin_ff("[key_name(M)] slashed [key_name(src)] while they were infected and nested.") //This is a blatant rulebreak, so warn the admins
@@ -198,7 +198,7 @@
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
 						r_FAL
 
-				else if(istype(buckled, /obj/structure/stool/bed/nest) && status_flags & XENO_HOST)
+				else if(istype(buckled, /obj/structure/bed/nest) && status_flags & XENO_HOST)
 					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
 					r_FAL
 
@@ -303,7 +303,7 @@
 	return 0
 
 //Chairs.
-/obj/structure/stool/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/stool/attack_alien(mob/living/carbon/Xenomorph/M)
 	..()
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
@@ -502,7 +502,7 @@
 				"<span class='danger'>You pry \the [src] open.</span>")
 
 //Beds, nests and chairs - unbuckling
-/obj/structure/stool/bed/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == "hurt")
 		M.animation_attack_on(src)
 		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)

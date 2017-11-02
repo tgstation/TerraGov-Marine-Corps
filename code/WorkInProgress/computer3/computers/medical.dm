@@ -9,11 +9,11 @@
 
 /obj/machinery/computer3/med_data
 	default_prog	= /datum/file/program/med_data
-	spawn_parts		= list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/cardslot,/obj/item/part/computer/networking/radio)
+	spawn_parts		= list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/cardslot,/obj/item/computer3_part/networking/radio)
 
 
 /obj/machinery/computer3/laptop/medical
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/cardslot,/obj/item/part/computer/networking/radio)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/cardslot,/obj/item/computer3_part/networking/radio)
 	spawn_files = list(/datum/file/program/arcade,/datum/file/program/crew,/datum/file/program/med_data)
 
 /datum/file/program/med_data
@@ -22,8 +22,8 @@
 	active_state = "medcomp"
 	req_one_access = list(ACCESS_MARINE_MEDBAY)
 
-	var/obj/item/weapon/card/id/scan = null
-	var/obj/item/weapon/card/id/scan2 = null
+	var/obj/item/card/id/scan = null
+	var/obj/item/card/id/scan2 = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -163,7 +163,7 @@
 				scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if (istype(I, /obj/item/card/id))
 					computer.cardslot.insert(I, 1)
 					scan = I
 
@@ -176,7 +176,7 @@
 				scan2 = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if (istype(I, /obj/item/card/id))
 					computer.cardslot.insert(I, 2)
 					scan2 = I
 
@@ -203,7 +203,7 @@
 				src.rank = "[R.modtype] [R.braintype]"
 				src.screen = 1
 
-			else if (istype(src.scan, /obj/item/weapon/card/id))
+			else if (istype(src.scan, /obj/item/card/id))
 				src.active1 = null
 				src.active2 = null
 
@@ -470,7 +470,7 @@
 					if ((istype(src.active2, /datum/data/record) && data_core.medical.Find(src.active2)))
 						record2 = active2
 					sleep(50)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( computer.loc )
+					var/obj/item/paper/P = new /obj/item/paper( computer.loc )
 					P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
 					if (record1)
 						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", record1.fields["name"], record1.fields["id"], record1.fields["sex"], record1.fields["age"], record1.fields["fingerprint"], record1.fields["p_stat"], record1.fields["m_stat"])

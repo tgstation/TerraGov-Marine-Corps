@@ -1,7 +1,7 @@
 /obj/item/organ
 	name = "organ"
 	desc = "It looks like it probably just plopped out."
-	icon = 'icons/obj/surgery.dmi'
+	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "appendix"
 
 	health = 100                              // Process() ticks before death.
@@ -214,7 +214,7 @@
 
 
 	user.temp_drop_inv_item(src)
-	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
+	var/obj/item/reagent_container/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon_state = dead_icon ? dead_icon : icon_state
 

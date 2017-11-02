@@ -29,7 +29,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	armor_deflection = 20
 	var/is_bombarding = 0
-	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"
+	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/bomb_cooldown = 0
 	var/datum/effect_system/smoke_spread/xeno_acid/smoke
 	var/acid_cooldown = 0

@@ -1,21 +1,21 @@
 
 //########################## CONTRABAND ;3333333333333333333 -Agouri ###################################################
 
-/obj/item/weapon/contraband
+/obj/item/contraband
 	name = "contraband item"
 	desc = "You probably shouldn't be holding this."
 	icon = 'icons/obj/contraband.dmi'
 	force = 0
 
 
-/obj/item/weapon/contraband/poster
+/obj/item/contraband/poster
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
 	icon_state = "rolled_poster"
 	var/serial_number = 0
 
 
-/obj/item/weapon/contraband/poster/New(turf/loc, var/given_serial = 0)
+/obj/item/contraband/poster/New(turf/loc, var/given_serial = 0)
 	if(given_serial == 0)
 		serial_number = rand(1, poster_designs.len)
 	else
@@ -48,8 +48,8 @@ obj/structure/sign/poster/New(var/serial)
 	icon_state = design.icon_state // poster[serial_number]
 	..()
 
-obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wirecutters))
+obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(ruined)
 			user << "<span class='notice'>You remove the remnants of the poster.</span>"
@@ -79,14 +79,14 @@ obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			return
 
 /obj/structure/sign/poster/proc/roll_and_drop(turf/newloc)
-	var/obj/item/weapon/contraband/poster/P = new(src, serial_number)
+	var/obj/item/contraband/poster/P = new(src, serial_number)
 	P.loc = newloc
 	src.loc = P
 	cdel(src)
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/simulated/wall/proc/place_poster(var/obj/item/weapon/contraband/poster/P, var/mob/user)
+/turf/simulated/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
 
 	if(!istype(src,/turf/simulated/wall))
 		user << "\red You can't place this here!"

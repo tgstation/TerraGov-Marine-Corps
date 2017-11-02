@@ -18,7 +18,7 @@
 		flick("forensic0",src)
 		return 0
 	else
-		var/obj/item/weapon/f_card/F = new /obj/item/weapon/f_card( user.loc )
+		var/obj/item/f_card/F = new /obj/item/f_card( user.loc )
 		F.amount = 1
 		F.add_fingerprint(M)
 		F.icon_state = "fingerprint1"
@@ -43,7 +43,7 @@
 		F.sync_data(stored)
 		return
 
-	if(istype(A,/obj/item/weapon/f_card))
+	if(istype(A,/obj/item/f_card))
 		user << "The scanner displays on the screen: \"ERROR 43: Object on Excluded Object List.\""
 		flick("forensic0",src)
 		return

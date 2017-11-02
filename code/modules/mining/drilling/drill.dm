@@ -17,23 +17,23 @@
 	var/open = 0
 
 	var/ore_types = list(
-		"iron" = /obj/item/weapon/ore/iron,
-		"uranium" = /obj/item/weapon/ore/uranium,
-		"gold" = /obj/item/weapon/ore/gold,
-		"silver" = /obj/item/weapon/ore/silver,
-		"diamond" = /obj/item/weapon/ore/diamond,
-		"phoron" = /obj/item/weapon/ore/phoron,
-		"osmium" = /obj/item/weapon/ore/osmium,
-		"hydrogen" = /obj/item/weapon/ore/hydrogen,
-		"silicates" = /obj/item/weapon/ore/glass,
-		"carbonaceous rock" = /obj/item/weapon/ore/coal
+		"iron" = /obj/item/ore/iron,
+		"uranium" = /obj/item/ore/uranium,
+		"gold" = /obj/item/ore/gold,
+		"silver" = /obj/item/ore/silver,
+		"diamond" = /obj/item/ore/diamond,
+		"phoron" = /obj/item/ore/phoron,
+		"osmium" = /obj/item/ore/osmium,
+		"hydrogen" = /obj/item/ore/hydrogen,
+		"silicates" = /obj/item/ore/glass,
+		"carbonaceous rock" = /obj/item/ore/coal
 		)
 
 	//Upgrades
-	var/obj/item/weapon/stock_parts/matter_bin/storage
-	var/obj/item/weapon/stock_parts/micro_laser/cutter
-	var/obj/item/weapon/stock_parts/capacitor/cellmount
-	var/obj/item/weapon/cell/cell
+	var/obj/item/stock_parts/matter_bin/storage
+	var/obj/item/stock_parts/micro_laser/cutter
+	var/obj/item/stock_parts/capacitor/cellmount
+	var/obj/item/cell/cell
 
 	//Flags
 	var/need_update_field = 0
@@ -131,15 +131,15 @@
 /obj/machinery/mining/drill/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/mining/drill/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
+/obj/machinery/mining/drill/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/tool/screwdriver))
 		if(active) return
 		open = !open
 		user << "\blue You [open ? "open" : "close"] the maintenance panel." //TODO: Sprite.
 		return
 	else
 		if(!open || active) return ..()
-		if(istype(W,/obj/item/weapon/crowbar))
+		if(istype(W,/obj/item/tool/crowbar))
 			if(cell)
 				user << "You pry out \the [cell]."
 				cell.loc = get_turf(src)
@@ -159,7 +159,7 @@
 			else
 				user << "There's nothing inside the drilling rig to remove."
 			return
-		else if(istype(W,/obj/item/weapon/stock_parts/matter_bin))
+		else if(istype(W,/obj/item/stock_parts/matter_bin))
 			if(storage)
 				user << "The drill already has a matter bin installed."
 			else
@@ -167,7 +167,7 @@
 					storage = W
 					user << "You install \the [W]."
 			return
-		else if(istype(W,/obj/item/weapon/stock_parts/micro_laser))
+		else if(istype(W,/obj/item/stock_parts/micro_laser))
 			if(cutter)
 				user << "The drill already has a cutting head installed."
 			else
@@ -175,7 +175,7 @@
 					cutter = W
 					user << "You install \the [W]."
 			return
-		else if(istype(W,/obj/item/weapon/stock_parts/capacitor))
+		else if(istype(W,/obj/item/stock_parts/capacitor))
 			if(cellmount)
 				user << "The drill already has a cell capacitor installed."
 			else
@@ -183,7 +183,7 @@
 					cellmount = W
 					user << "You install \the [W]."
 			return
-		else if(istype(W,/obj/item/weapon/cell))
+		else if(istype(W,/obj/item/cell))
 			if(cell)
 				user << "The drill already has a cell installed."
 			else
@@ -297,7 +297,7 @@
 
 	var/obj/structure/ore_box/B = locate() in orange(1)
 	if(B)
-		for(var/obj/item/weapon/ore/O in contents)
+		for(var/obj/item/ore/O in contents)
 			O.loc = B
 		usr << "\red You unload the drill's storage cache into the ore box."
 	else
@@ -310,8 +310,8 @@
 	icon_state = "mining_brace"
 	var/obj/machinery/mining/drill/connected
 
-/obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/wrench))
+/obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/tool/wrench))
 
 		if(istype(get_turf(src),/turf/space))
 			user << "\blue You can't anchor something to empty space. Idiot."

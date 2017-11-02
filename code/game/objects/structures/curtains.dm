@@ -1,5 +1,5 @@
 /obj/structure/curtain
-	icon = 'icons/obj/curtain.dmi'
+	icon = 'icons/obj/structures/curtain.dmi'
 	name = "curtain"
 	icon_state = "closed"
 	layer = ABOVE_MOB_LAYER

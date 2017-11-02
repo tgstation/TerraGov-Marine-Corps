@@ -1,12 +1,11 @@
 //Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
-/obj/item/weapon/wirecutters/clippers
+/obj/item/tool/wirecutters/clippers
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
 
 /obj/item/device/analyzer/plant_analyzer
 	name = "plant analyzer"
-	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
 
@@ -20,15 +19,15 @@
 	var/datum/reagents/grown_reagents
 	if(istype(target,/obj/structure/rack) || istype(target,/obj/structure/table))
 		return ..()
-	else if(istype(target,/obj/item/weapon/reagent_containers/food/snacks/grown))
+	else if(istype(target,/obj/item/reagent_container/food/snacks/grown))
 
-		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = target
+		var/obj/item/reagent_container/food/snacks/grown/G = target
 		grown_seed = seed_types[G.plantname]
 		grown_reagents = G.reagents
 
-	else if(istype(target,/obj/item/weapon/grown))
+	else if(istype(target,/obj/item/grown))
 
-		var/obj/item/weapon/grown/G = target
+		var/obj/item/grown/G = target
 		grown_seed = seed_types[G.plantname]
 		grown_reagents = G.reagents
 
@@ -161,114 +160,16 @@
 
 	return
 
-// *************************************
-// Hydroponics Tools
-// *************************************
-
-/obj/item/weapon/plantspray
-	icon = 'icons/obj/hydroponics.dmi'
-	item_state = "spray"
-	flags_atom = FPRINT|NOBLUDGEON
-	flags_equip_slot = SLOT_WAIST
-	throwforce = 4
-	w_class = 2.0
-	throw_speed = 2
-	throw_range = 10
-	var/toxicity = 4
-	var/pest_kill_str = 0
-	var/weed_kill_str = 0
-
-/obj/item/weapon/plantspray/weeds // -- Skie
-
-	name = "weed-spray"
-	desc = "It's a toxic mixture, in spray form, to kill small weeds."
-	icon_state = "weedspray"
-	weed_kill_str = 6
-
-/obj/item/weapon/plantspray/pests
-	name = "pest-spray"
-	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
-	icon_state = "pestspray"
-	pest_kill_str = 6
-
-/obj/item/weapon/plantspray/pests/old
-	name = "bottle of pestkiller"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle16"
-
-/obj/item/weapon/plantspray/pests/old/carbaryl
-	name = "bottle of carbaryl"
-	icon_state = "bottle16"
-	toxicity = 4
-	pest_kill_str = 2
-
-/obj/item/weapon/plantspray/pests/old/lindane
-	name = "bottle of lindane"
-	icon_state = "bottle18"
-	toxicity = 6
-	pest_kill_str = 4
-
-/obj/item/weapon/plantspray/pests/old/phosmet
-	name = "bottle of phosmet"
-	icon_state = "bottle15"
-	toxicity = 8
-	pest_kill_str = 7
-
-/obj/item/weapon/minihoe // -- Numbers
-	name = "mini hoe"
-	desc = "It's used for removing weeds or scratching your back."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "hoe"
-	item_state = "hoe"
-	flags_atom = FPRINT|CONDUCT|NOBLUDGEON
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0
-	matter = list("metal" = 50)
-	attack_verb = list("slashed", "sliced", "cut", "clawed")
-
-
-// *************************************
-// Weedkiller defines for hydroponics
-// *************************************
-
-/obj/item/weedkiller
-	name = "bottle of weedkiller"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle16"
-	var/toxicity = 0
-	var/weed_kill_str = 0
-
-/obj/item/weedkiller/triclopyr
-	name = "bottle of glyphosate"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle16"
-	toxicity = 4
-	weed_kill_str = 2
-
-/obj/item/weedkiller/lindane
-	name = "bottle of triclopyr"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle18"
-	toxicity = 6
-	weed_kill_str = 4
-
-/obj/item/weedkiller/D24
-	name = "bottle of 2,4-D"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle15"
-	toxicity = 8
-	weed_kill_str = 7
 
 
 // *************************************
 // Nutrient defines for hydroponics
 // *************************************
 
-/obj/item/weapon/reagent_containers/glass/fertilizer
+/obj/item/reagent_container/glass/fertilizer
 	name = "fertilizer bottle"
 	desc = "A small glass bottle. Can hold up to 10 units."
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle16"
 	flags_atom = FPRINT| OPENCONTAINER
 	possible_transfer_amounts = null
@@ -280,7 +181,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 10
 
-/obj/item/weapon/reagent_containers/glass/fertilizer/New()
+/obj/item/reagent_container/glass/fertilizer/New()
 	..()
 
 	src.pixel_x = rand(-5.0, 5)
@@ -289,70 +190,17 @@
 	if(fertilizer)
 		reagents.add_reagent(fertilizer,10)
 
-/obj/item/weapon/reagent_containers/glass/fertilizer/ez
+/obj/item/reagent_container/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"
 	icon_state = "bottle16"
 	fertilizer = "eznutrient"
 
-/obj/item/weapon/reagent_containers/glass/fertilizer/l4z
+/obj/item/reagent_container/glass/fertilizer/l4z
 	name = "bottle of Left 4 Zed"
 	icon_state = "bottle18"
 	fertilizer = "left4zed"
 
-/obj/item/weapon/reagent_containers/glass/fertilizer/rh
+/obj/item/reagent_container/glass/fertilizer/rh
 	name = "bottle of Robust Harvest"
 	icon_state = "bottle15"
 	fertilizer = "robustharvest"
-
-//Hatchets and things to kill kudzu
-/obj/item/weapon/hatchet
-	name = "hatchet"
-	desc = "A sharp hand hatchet, commonly used to cut things apart, be it timber or other objects. Often found in the hands of woodsmen, scouts, and looters."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "hatchet"
-	flags_atom = FPRINT|CONDUCT
-	force = 25.0
-	w_class = 2.0
-	throwforce = 20.0
-	throw_speed = 4
-	throw_range = 4
-	sharp = IS_SHARP_ITEM_BIG
-	edge = 1
-	matter = list("metal" = 15000)
-	origin_tech = "materials=2;combat=1"
-	attack_verb = list("chopped", "torn", "cut")
-
-/obj/item/weapon/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
-
-//If it's a hatchet it goes here. I guess
-/obj/item/weapon/hatchet/unathiknife
-	name = "duelling knife"
-	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "unathiknife"
-	attack_verb = list("ripped", "torn", "cut")
-
-/obj/item/weapon/scythe
-	icon_state = "scythe"
-	item_state = "scythe"
-	name = "scythe"
-	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
-	force = 13.0
-	throwforce = 5.0
-	throw_speed = 1
-	throw_range = 3
-	w_class = 4.0
-	flags_atom = FPRINT|CONDUCT|NOSHIELD
-	flags_equip_slot = SLOT_BACK
-	origin_tech = "materials=2;combat=2"
-	attack_verb = list("chopped", "sliced", "cut", "reaped")
-
-/obj/item/weapon/scythe/afterattack(atom/A, mob/user as mob, proximity)
-	if(!proximity) return
-	if(istype(A, /obj/effect/plantsegment))
-		for(var/obj/effect/plantsegment/B in orange(A,1))
-			if(prob(80))
-				cdel(B)
-		cdel(A)

@@ -204,7 +204,7 @@
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
 	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
 
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(M)
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
 	L.imp_in = M
 	L.implanted = 1
 	var/datum/limb/affected = M.get_limb("head")
@@ -213,7 +213,7 @@
 
 /mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
 	for(var/L in M.contents)
-		if(istype(L, /obj/item/weapon/implant/loyalty))
+		if(istype(L, /obj/item/implant/loyalty))
 			for(var/datum/limb/O in M.limbs)
 				if(L in O.implants)
 					return 1
@@ -250,12 +250,12 @@
 	<BR><B>Left Ear:</B> <A href='?src=\ref[src];item=wear_ear'>[(wear_ear ? wear_ear : "Nothing")]</A>
 	<BR><B>Head:</B> <A href='?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
 	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=shoes'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Belt:</B> <A href='?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=uniform'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? text(" <A href='?src=\ref[];item=sensor'>Sensors</A>", src) : "") :]
 	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=suit'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(wear_id ? wear_id : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=s_store'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=s_store'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR>[(handcuffed ? text("<A href='?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
 	<BR>[(legcuffed ? text("<A href='?src=\ref[src];item=legcuff'>Legcuffed</A>") : text(""))]
 	<BR>[(suit) ? ((suit.hastie) ? text(" <A href='?src=\ref[];item=tie'>Remove Accessory</A>", src) : "") :]
@@ -285,9 +285,9 @@
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
 	var/obj/item/device/pda/pda = wear_id
-	var/obj/item/weapon/card/id/id = wear_id
+	var/obj/item/card/id/id = wear_id
 	if (istype(pda))
-		if (pda.id && istype(pda.id, /obj/item/weapon/card/id))
+		if (pda.id && istype(pda.id, /obj/item/card/id))
 			. = pda.id.assignment
 		else
 			. = pda.ownjob
@@ -303,7 +303,7 @@
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
 	var/obj/item/device/pda/pda = wear_id
-	var/obj/item/weapon/card/id/id = wear_id
+	var/obj/item/card/id/id = wear_id
 	if (istype(pda))
 		if (pda.id)
 			. = pda.id.registered_name
@@ -320,7 +320,7 @@
 /mob/living/carbon/human/proc/get_paygrade(size = 1)
 	switch(species.name)
 		if("Human","Human Hero")
-			var/obj/item/weapon/card/id/id = wear_id
+			var/obj/item/card/id/id = wear_id
 			if(istype(id)) . = get_paygrades(id.paygrade, size, gender)
 			else return ""
 		else return ""
@@ -353,7 +353,7 @@
 		var/obj/item/device/pda/P = wear_id
 		return P.owner
 	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
+		var/obj/item/card/id/I = wear_id.GetID()
 		if(I)
 			return I.registered_name
 	return
@@ -403,7 +403,7 @@
 		if(!usr.is_mob_incapacitated() && get_dist(usr, src) <= 7 && hasHUD(usr,"squadleader"))
 			var/mob/living/carbon/human/H = usr
 			if(mind)
-				var/obj/item/weapon/card/id/ID = get_idcard()
+				var/obj/item/card/id/ID = get_idcard()
 				if(ID && (ID.rank in ROLES_MARINES))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
@@ -426,7 +426,7 @@
 			var/modified = 0
 			var/perpname = "wot"
 			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetID()
+				var/obj/item/card/id/I = wear_id.GetID()
 				if(I)
 					perpname = I.registered_name
 				else
@@ -458,7 +458,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -488,7 +488,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -516,7 +516,7 @@
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -547,7 +547,7 @@
 			var/modified = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -586,7 +586,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -617,7 +617,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -645,7 +645,7 @@
 		if(hasHUD(usr,"medical"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -1074,8 +1074,8 @@
 
 	var/list/visible_implants = list()
 	for(var/datum/limb/organ in limbs)
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && (O.w_class > class) && !istype(O,/obj/item/weapon/shard/shrapnel))
+		for(var/obj/item/O in organ.implants)
+			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/shard/shrapnel))
 				visible_implants += O
 
 	return(visible_implants)
@@ -1085,8 +1085,8 @@
 	for(var/datum/limb/organ in limbs)
 		if(organ.status & LIMB_SPLINTED) //Splints prevent movement.
 			continue
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && prob(4)) //Moving with things stuck in you could be bad.
+		for(var/obj/item/O in organ.implants)
+			if(!istype(O,/obj/item/implant) && prob(4)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				var/msg = null
 				switch(rand(1,3))

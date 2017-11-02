@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/stunprod
+/obj/item/weapon/stunprod
 	name = "electrified prodder"
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
 	icon_state = "stunbaton"
@@ -17,13 +17,13 @@
 		viewers(user) << "\red <b>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</b>"
 		return (FIRELOSS)
 
-/obj/item/weapon/melee/stunprod/update_icon()
+/obj/item/weapon/stunprod/update_icon()
 	if(status)
 		icon_state = "stunbaton_active"
 	else
 		icon_state = "stunbaton"
 
-/obj/item/weapon/melee/stunprod/attack_self(mob/user as mob)
+/obj/item/weapon/stunprod/attack_self(mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "\red You grab the [src] on the wrong side."
 		user.KnockDown(30)
@@ -42,7 +42,7 @@
 		user << "<span class='warning'>\The [src] is out of charge.</span>"
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/stunprod/attack(mob/M, mob/user)
+/obj/item/weapon/stunprod/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
 		user.KnockDown(30)
@@ -81,7 +81,7 @@
 	add_fingerprint(user)
 
 
-/obj/item/weapon/melee/stunprod/emp_act(severity)
+/obj/item/weapon/stunprod/emp_act(severity)
 	switch(severity)
 		if(1)
 			charges = 0
@@ -91,39 +91,3 @@
 		status = 0
 		update_icon()
 
-
-/obj/item/weapon/restraints
-	name = "xeno restraints"
-	desc = "Use this to hold xenomorphic creatures saftely."
-	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
-	icon_state = "handcuff"
-	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_WAIST
-	throwforce = 5
-	w_class = 2.0
-	throw_speed = 2
-	throw_range = 5
-	matter = list("metal" = 500)
-	origin_tech = "materials=1"
-	var/dispenser = 0
-	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
-
-/obj/item/weapon/restraints/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(!istype(C, /mob/living/carbon/Xenomorph))
-		user << "\red The cuffs do not fit!"
-		return
-	if(!C.handcuffed)
-		var/turf/p_loc = user.loc
-		var/turf/p_loc_m = C.loc
-		playsound(src.loc, 'sound/weapons/handcuffs.ogg', 25, 1, 6)
-		for(var/mob/O in viewers(user, null))
-			O.show_message("\red <B>[user] is trying to put restraints on [C]!</B>", 1)
-		spawn(30)
-			if(!C)	return
-			if(p_loc == user.loc && p_loc_m == C.loc)
-				C.handcuffed = new /obj/item/weapon/restraints(C)
-				C.handcuff_update()
-				C.visible_message("\red [C] has been successfully restrained by [user]!")
-				cdel(src)
-	return

@@ -26,8 +26,8 @@
 
 	attackby(obj/item/I, mob/user)
 
-		if(istype(I, /obj/item/weapon/powerloader_clamp))
-			var/obj/item/weapon/powerloader_clamp/PC = I
+		if(istype(I, /obj/item/powerloader_clamp))
+			var/obj/item/powerloader_clamp/PC = I
 			if(PC.linked_powerloader)
 				if(PC.loaded)
 					if(istype(PC.loaded, /obj/structure/ship_ammo))

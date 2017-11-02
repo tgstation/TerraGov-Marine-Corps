@@ -428,7 +428,7 @@
 	return
 
 /obj/structure/device/piano/attackby(obj/item/O as obj, mob/user as mob)
-	if (istype(O, /obj/item/weapon/wrench))
+	if (istype(O, /obj/item/tool/wrench))
 		if (anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user << "\blue You begin to loosen \the [src]'s casters..."

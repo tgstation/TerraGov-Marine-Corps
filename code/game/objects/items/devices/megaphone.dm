@@ -56,7 +56,7 @@
 		return
 
 /obj/item/device/megaphone/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(I, /obj/item/card/emag) && !emagged)
 		user << "\red You overload \the [src]'s voice synthesizer."
 		emagged = 1
 		insults = rand(1, 3)//to prevent dickflooding

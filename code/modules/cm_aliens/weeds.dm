@@ -119,7 +119,7 @@
 			if(prob(50))
 				cdel(src)
 
-/obj/effect/alien/weeds/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/effect/alien/weeds/attackby(obj/item/W as obj, mob/user as mob)
 	if(!W || !user || isnull(W) || (W.flags_atom & NOBLUDGEON))
 		return 0
 
@@ -130,8 +130,8 @@
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

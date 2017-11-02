@@ -1,4 +1,4 @@
-/obj/structure/stool/bed/chair/wheelchair
+/obj/structure/bed/chair/wheelchair
 	name = "wheelchair"
 	desc = "You sit in this. Either by will or force."
 	icon_state = "wheelchair"
@@ -8,14 +8,14 @@
 	var/move_delay = 4
 
 
-/obj/structure/stool/bed/chair/wheelchair/handle_rotation()
+/obj/structure/bed/chair/wheelchair/handle_rotation()
 	overlays.Cut()
 	var/image/O = image(icon = 'icons/obj/objects.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = src.dir)
 	overlays += O
 	if(buckled_mob)
 		buckled_mob.dir = dir
 
-/obj/structure/stool/bed/chair/wheelchair/relaymove(mob/user, direction)
+/obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
 	if(world.time <= l_move_time + move_delay)
 		return
 	// Redundant check?
@@ -47,12 +47,12 @@
 	step(src, direction)
 
 
-/obj/structure/stool/bed/chair/wheelchair/Move()
+/obj/structure/bed/chair/wheelchair/Move()
 	. = ..()
 	if(. && bloodiness)
 		create_track()
 
-/obj/structure/stool/bed/chair/wheelchair/Bump(atom/A)
+/obj/structure/bed/chair/wheelchair/Bump(atom/A)
 	..()
 	if(!buckled_mob)	return
 
@@ -81,7 +81,7 @@
 			victim.apply_damage(10, BRUTE, def_zone)
 		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
 
-/obj/structure/stool/bed/chair/wheelchair/proc/create_track()
+/obj/structure/bed/chair/wheelchair/proc/create_track()
 	var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
 	var/newdir = get_dir(get_step(loc, dir), loc)
 	if(newdir == dir)

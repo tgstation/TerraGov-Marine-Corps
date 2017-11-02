@@ -1,4 +1,4 @@
-/obj/item/weapon/tank/jetpack/verb/moveup()
+/obj/item/tank/jetpack/verb/moveup()
 	set name = "Move Upwards"
 	set category = "Object"
 	if(allow_thrust(0.01, usr))
@@ -24,7 +24,7 @@
 			usr << "There is nothing of interest in this direction."
 	return 1
 
-/obj/item/weapon/tank/jetpack/verb/movedown()
+/obj/item/tank/jetpack/verb/movedown()
 	set name = "Move Downwards"
 	set category = "Object"
 	if(allow_thrust(0.01, usr))

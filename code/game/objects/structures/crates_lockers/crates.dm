@@ -9,7 +9,6 @@
 	icon_closed = "closed_basic"
 	climbable = 1
 	climb_delay = 20 //Doesn't need as long to climb over a crate
-//	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	anchored = 0
 	store_mobs = FALSE
 	var/rigged = 0
@@ -72,8 +71,8 @@
 			break
 		if(O.density || O.anchored || istype(O, /obj/structure/closet))
 			continue
-		if(istype(O, /obj/structure/stool/bed)) //This is only necessary because of rollerbeds and swivel chairs.
-			var/obj/structure/stool/bed/B = O
+		if(istype(O, /obj/structure/bed)) //This is only necessary because of rollerbeds and swivel chairs.
+			var/obj/structure/bed/B = O
 			if(B.buckled_mob)
 				continue
 		O.loc = src
@@ -84,13 +83,13 @@
 	update_icon()
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.abstract) return
 	if(opened)
 		if(isrobot(user))
 			return
 		user.drop_inv_item_to_loc(W, loc)
-	else if(istype(W, /obj/item/weapon/packageWrap))
+	else if(istype(W, /obj/item/packageWrap))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
@@ -107,7 +106,7 @@
 			user.drop_held_item()
 			W.loc = src
 			return
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/tool/wirecutters))
 		if(rigged)
 			user  << "<span class='notice'>You cut away the wiring.</span>"
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
@@ -218,14 +217,14 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/minihoe(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
+		new /obj/item/reagent_container/spray/plantbgone(src)
+		new /obj/item/reagent_container/spray/plantbgone(src)
+		new /obj/item/tool/minihoe(src)
+//		new /obj/item/weedspray(src)
+//		new /obj/item/weedspray(src)
+//		new /obj/item/pestspray(src)
+//		new /obj/item/pestspray(src)
+//		new /obj/item/pestspray(src)
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"
@@ -270,40 +269,40 @@
 
 /obj/structure/closet/crate/rcd/New()
 	..()
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd(src)
+	new /obj/item/ammo_rcd(src)
+	new /obj/item/ammo_rcd(src)
+	new /obj/item/ammo_rcd(src)
+	new /obj/item/device/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
 
 /obj/structure/closet/crate/solar/New()
 	..()
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/weapon/circuitboard/solar_control(src)
-	new /obj/item/weapon/tracker_electronics(src)
-	new /obj/item/weapon/paper/solar(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/frame/solar_assembly(src)
+	new /obj/item/circuitboard/computer/solar_control(src)
+	new /obj/item/circuitboard/solar_tracker(src)
+	new /obj/item/paper/solar(src)
 
 /obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
 	desc = "A crate of emergency rations."
@@ -311,8 +310,8 @@
 
 /obj/structure/closet/crate/freezer/rations/New()
 	..()
-	new /obj/item/weapon/storage/box/donkpockets(src)
-	new /obj/item/weapon/storage/box/donkpockets(src)
+	new /obj/item/storage/box/donkpockets(src)
+	new /obj/item/storage/box/donkpockets(src)
 
 /* CM doesn't use this.
 /obj/structure/closet/crate/bin
@@ -375,3 +374,13 @@
 	icon_state = "closed_weapons"
 	icon_opened = "open_weapons"
 	icon_closed = "closed_weapons"
+
+
+
+/obj/structure/closet/crate/miningcar
+	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
+	name = "Mining car (not for rails)"
+	icon_state = "miningcar"
+	density = 1
+	icon_opened = "miningcaropen"
+	icon_closed = "miningcar"

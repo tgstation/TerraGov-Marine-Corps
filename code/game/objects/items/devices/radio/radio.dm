@@ -1,7 +1,7 @@
 
 
 /obj/item/device/radio
-	icon = 'icons/obj/radio.dmi'
+	icon = 'icons/obj/items/radio.dmi'
 	name = "station bounced radio"
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
@@ -158,7 +158,7 @@
 				channels[chan_name] |= FREQ_LISTENING
 	else if (href_list["wires"])
 		var/t1 = text2num(href_list["wires"])
-		if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
+		if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
 			return
 		if (wires & t1)
 			wires &= ~t1
@@ -477,10 +477,10 @@
 			user << "\blue [src] can not be modified or attached!"
 
 
-/obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/weapon/screwdriver) ))
+	if (!( istype(W, /obj/item/tool/screwdriver) ))
 		return
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
@@ -521,13 +521,13 @@
 		var/datum/robot_component/C = R.components["radio"]
 		R.cell_use_power(C.active_usage)
 
-/obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/weapon/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/tool/screwdriver))
 		if(keyslot)
 
 

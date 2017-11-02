@@ -1,6 +1,6 @@
 /obj/machinery/photocopier
 	name = "photocopier"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "bigscanner"
 	anchored = 1
 	density = 1
@@ -8,9 +8,9 @@
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
-	var/obj/item/weapon/paper/copy = null	//what's in the copier!
-	var/obj/item/weapon/photo/photocopy = null
-	var/obj/item/weapon/paper_bundle/bundle = null
+	var/obj/item/paper/copy = null	//what's in the copier!
+	var/obj/item/photo/photocopy = null
+	var/obj/item/paper_bundle/bundle = null
 	var/copies = 1	//how many copies to print!
 	var/toner = 30 //how much toner is left! woooooo~
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
@@ -65,15 +65,15 @@
 				for(var/i = 0, i < copies, i++)
 					if(toner <= 0)
 						break
-					var/obj/item/weapon/paper_bundle/p = new /obj/item/weapon/paper_bundle (src)
+					var/obj/item/paper_bundle/p = new /obj/item/paper_bundle (src)
 					var/j = 0
-					for(var/obj/item/weapon/W in bundle)
+					for(var/obj/item/W in bundle)
 						if(toner <= 0)
 							usr << "<span class='notice'>The photocopier couldn't finish the printjob.</span>"
 							break
-						else if(istype(W, /obj/item/weapon/paper))
+						else if(istype(W, /obj/item/paper))
 							W = copy(W)
-						else if(istype(W, /obj/item/weapon/photo))
+						else if(istype(W, /obj/item/photo))
 							W = photocopy(W)
 						W.loc = p
 						p.amount++
@@ -126,7 +126,7 @@
 				if (!selection)
 					return
 
-				var/obj/item/weapon/photo/p = new /obj/item/weapon/photo (src.loc)
+				var/obj/item/photo/p = new /obj/item/photo (src.loc)
 				p.construct(selection)
 				if (p.desc == "")
 					p.desc += "Copied by [tempAI.name]"
@@ -137,7 +137,7 @@
 			updateUsrDialog()
 
 	attackby(obj/item/O as obj, mob/user as mob)
-		if(istype(O, /obj/item/weapon/paper))
+		if(istype(O, /obj/item/paper))
 			if(!copy && !photocopy && !bundle)
 				if(user.drop_inv_item_to_loc(O, src))
 					copy = O
@@ -146,7 +146,7 @@
 					updateUsrDialog()
 			else
 				user << "<span class='notice'>There is already something in \the [src].</span>"
-		else if(istype(O, /obj/item/weapon/photo))
+		else if(istype(O, /obj/item/photo))
 			if(!copy && !photocopy && !bundle)
 				if(user.drop_inv_item_to_loc(O, src))
 					photocopy = O
@@ -155,7 +155,7 @@
 					updateUsrDialog()
 			else
 				user << "<span class='notice'>There is already something in \the [src].</span>"
-		else if(istype(O, /obj/item/weapon/paper_bundle))
+		else if(istype(O, /obj/item/paper_bundle))
 			if(!copy && !photocopy && !bundle)
 				if(user.drop_inv_item_to_loc(O, src))
 					bundle = O
@@ -171,7 +171,7 @@
 					updateUsrDialog()
 			else
 				user << "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>"
-		else if(istype(O, /obj/item/weapon/wrench))
+		else if(istype(O, /obj/item/tool/wrench))
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			anchored = !anchored
 			user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
@@ -195,8 +195,8 @@
 						toner = 0
 		return
 
-/obj/machinery/photocopier/proc/copy(obj/item/weapon/paper/original)
-	var/obj/item/weapon/paper/copy = new /obj/item/weapon/paper (loc)
+/obj/machinery/photocopier/proc/copy(obj/item/paper/original)
+	var/obj/item/paper/copy = new /obj/item/paper (loc)
 	if(toner > 10)	//lots of toner, make it dark
 		copy.info = "<font color = #101010>"
 	else			//no toner? shitty copies for you!
@@ -218,11 +218,11 @@
 	var/image/img                                //
 	for (var/j = 1, j <= original.ico.len, j++)
 		if (findtext(original.ico[j], "cap") || findtext(original.ico[j], "cent"))
-			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-circle")
+			img = image('icons/obj/items/paper.dmi', "paper_stamp-circle")
 		else if (findtext(original.ico[j], "deny"))
-			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-x")
+			img = image('icons/obj/items/paper.dmi', "paper_stamp-x")
 		else
-			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-dots")
+			img = image('icons/obj/items/paper.dmi', "paper_stamp-dots")
 		img.pixel_x = original.offset_x[j]
 		img.pixel_y = original.offset_y[j]
 		copy.overlays += img
@@ -231,8 +231,8 @@
 	return copy
 
 
-/obj/machinery/photocopier/proc/photocopy(var/obj/item/weapon/photo/photocopy)
-	var/obj/item/weapon/photo/p = new /obj/item/weapon/photo (src.loc)
+/obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy)
+	var/obj/item/photo/p = new /obj/item/photo (src.loc)
 	var/icon/I = icon(photocopy.icon, photocopy.icon_state)
 	var/icon/img = icon(photocopy.img)
 	var/icon/tiny = icon(photocopy.tiny)

@@ -3,7 +3,7 @@
 /obj/item/device/mmi
 	name = "Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
-	icon = 'icons/obj/assemblies.dmi'
+	icon = 'icons/obj/items/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = 3
 	origin_tech = "biotech=3"
@@ -55,7 +55,7 @@
 
 			return
 
-		if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/pda)) && brainmob)
+		if((istype(O,/obj/item/card/id)||istype(O,/obj/item/device/pda)) && brainmob)
 			if(allowed(user))
 				locked = !locked
 				user << "\blue You [locked ? "lock" : "unlock"] the brain holder."

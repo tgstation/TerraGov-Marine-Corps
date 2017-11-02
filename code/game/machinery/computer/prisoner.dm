@@ -5,7 +5,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "explosive"
 	req_access = list(ACCESS_MARINE_BRIG)
-	circuit = "/obj/item/weapon/circuitboard/prisoner"
+	circuit = "/obj/item/circuitboard/computer/prisoner"
 	var/id = 0.0
 	var/temp = null
 	var/status = 0
@@ -33,7 +33,7 @@
 		else if(screen == 1)
 			dat += "<HR>Chemical Implants<BR>"
 			var/turf/Tr = null
-			for(var/obj/item/weapon/implant/chem/C in item_list)
+			for(var/obj/item/implant/chem/C in item_list)
 				Tr = get_turf(C)
 				if((Tr) && (Tr.z != src.z))	continue//Out of range
 				if(!C.implanted) continue
@@ -43,7 +43,7 @@
 				dat += "<A href='?src=\ref[src];inject10=\ref[C]'>(<font color=red>(10)</font>)</A><BR>"
 				dat += "********************************<BR>"
 			dat += "<HR>Tracking Implants<BR>"
-			for(var/obj/item/weapon/implant/tracking/T in item_list)
+			for(var/obj/item/implant/tracking/T in item_list)
 				Tr = get_turf(T)
 				if((Tr) && (Tr.z != src.z))	continue//Out of range
 				if(!T.implanted) continue
@@ -77,15 +77,15 @@
 			usr.set_interaction(src)
 
 			if(href_list["inject1"])
-				var/obj/item/weapon/implant/I = locate(href_list["inject1"])
+				var/obj/item/implant/I = locate(href_list["inject1"])
 				if(I)	I.activate(1)
 
 			else if(href_list["inject5"])
-				var/obj/item/weapon/implant/I = locate(href_list["inject5"])
+				var/obj/item/implant/I = locate(href_list["inject5"])
 				if(I)	I.activate(5)
 
 			else if(href_list["inject10"])
-				var/obj/item/weapon/implant/I = locate(href_list["inject10"])
+				var/obj/item/implant/I = locate(href_list["inject10"])
 				if(I)	I.activate(10)
 
 			else if(href_list["lock"])
@@ -97,7 +97,7 @@
 			else if(href_list["warn"])
 				var/warning = copytext(sanitize(input(usr,"Message:","Enter your message here!","")),1,MAX_MESSAGE_LEN)
 				if(!warning) return
-				var/obj/item/weapon/implant/I = locate(href_list["warn"])
+				var/obj/item/implant/I = locate(href_list["warn"])
 				if((I)&&(I.imp_in))
 					var/mob/living/carbon/R = I.imp_in
 					R << "\green You hear a voice in your head saying: '[warning]'"

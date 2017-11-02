@@ -12,7 +12,7 @@
 	var/volume = 10 // in KB
 	var/image = 'icons/ntos/file.png' // determines the icon to use, found in icons/ntos
 	var/obj/machinery/computer3/computer // the parent computer, if fixed
-	var/obj/item/part/computer/storage/device // the device that is containing this file
+	var/obj/item/computer3_part/storage/device // the device that is containing this file
 	var/hidden_file = 0 // Prevents file from showing up on NTOS program list.
 	var/drm	= 0			// Copy protection, called by copy() and move()
 	var/readonly = 0	// Edit protection, called by edit(), which is just a failcheck proc
@@ -24,7 +24,7 @@
 	// Copy file to device.
 	// If you overwrite this function, use the return value to make sure it succeeded
 	//
-	proc/copy(var/obj/item/part/computer/storage/dest)
+	proc/copy(var/obj/item/computer3_part/storage/dest)
 		if(!computer || computer.crit_fail) return null
 		if(drm)
 			if(!computer.emagged)
@@ -38,12 +38,12 @@
 	// Move file to device
 	// Returns null on failure even though the existing file doesn't go away
 	//
-	proc/move(var/obj/item/part/computer/storage/dest)
+	proc/move(var/obj/item/computer3_part/storage/dest)
 		if(!computer || computer.crit_fail) return null
 		if(drm)
 			if(!computer.emagged)
 				return null
-		var/obj/item/part/computer/storage/current = device
+		var/obj/item/computer3_part/storage/current = device
 		if(!dest.addfile(src))
 			return null
 		current.removefile(src)

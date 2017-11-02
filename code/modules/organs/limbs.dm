@@ -286,7 +286,7 @@ This function completely restores a damaged organ to perfect condition.
 
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
-		if(!istype(implanted_object,/obj/item/weapon/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
+		if(!istype(implanted_object,/obj/item/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
 			implanted_object.loc = owner.loc
 			implants -= implanted_object
 
@@ -922,7 +922,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				cdel(spark_system)
 				spark_system = null
 
-/datum/limb/proc/embed(var/obj/item/weapon/W, var/silent = 0)
+/datum/limb/proc/embed(var/obj/item/W, var/silent = 0)
 	if(!W || isnull(W) || !W.canremove)
 		return
 	if(!silent)

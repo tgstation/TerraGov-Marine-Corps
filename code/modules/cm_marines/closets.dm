@@ -36,7 +36,7 @@
 	select_gamemode_equipment(gamemode)
 		..()
 		new /obj/item/clothing/suit/storage/marine(src)
-		new /obj/item/weapon/storage/belt/marine(src)
+		new /obj/item/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine(src)
 		new /obj/item/clothing/under/marine(src)
 		new /obj/item/clothing/mask/gas/(src)
@@ -88,7 +88,7 @@
 	select_gamemode_equipment(gamemode)
 		..()
 		new /obj/item/clothing/suit/storage/marine/leader(src)
-		new /obj/item/weapon/storage/belt/marine(src)
+		new /obj/item/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine/leader(src)
 		new /obj/item/clothing/under/marine(src)
 
@@ -139,7 +139,7 @@
 /obj/structure/closet/secure_closet/marine/engi
 	New()
 		..()
-		new /obj/item/weapon/storage/belt/utility/full(src)
+		new /obj/item/storage/belt/utility/full(src)
 		new /obj/item/clothing/glasses/welding(src)
 
 	select_gamemode_equipment(gamemode)
@@ -195,7 +195,7 @@
 
 	New()
 		..()
-		new /obj/item/weapon/storage/belt/medical(src)
+		new /obj/item/storage/belt/medical(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 
 	select_gamemode_equipment(gamemode)
@@ -263,7 +263,7 @@
 
 	New()
 		..()
-		new /obj/item/weapon/storage/backpack/mcommander(src)
+		new /obj/item/storage/backpack/mcommander(src)
 		new /obj/item/clothing/shoes/marinechief/commander(src)
 		new /obj/item/clothing/gloves/marine/techofficer/commander(src)
 		new /obj/item/clothing/under/marine/officer/command(src)
@@ -308,9 +308,9 @@
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/suit/storage/marine/MP/RO(src)
 		new /obj/item/clothing/suit/storage/marine/MP/RO(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
+		new /obj/item/storage/belt/marine(src)
+		new /obj/item/storage/belt/marine(src)
+		new /obj/item/storage/backpack/marine(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"
@@ -329,8 +329,8 @@
 		new /obj/item/clothing/under/marine/officer/pilot(src)
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/suit/armor/vest/pilot(src)
-		new /obj/item/weapon/storage/large_holster/m39(src)
-		new /obj/item/weapon/storage/backpack/marine/satchel(src)
+		new /obj/item/storage/large_holster/m39(src)
+		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/clothing/gloves/yellow(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 
@@ -362,13 +362,13 @@
 		new /obj/item/clothing/under/marine/mp(src)
 		new /obj/item/clothing/suit/armor/riot/marine(src)
 		new /obj/item/clothing/head/helmet/riot(src)
-		new /obj/item/weapon/storage/belt/security/MP(src)
+		new /obj/item/storage/belt/security/MP(src)
 		new /obj/item/device/flashlight(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/almayer/mmpo(src)
 		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/melee/baton(src)
-		new /obj/item/weapon/storage/backpack/security (src)
+		new /obj/item/weapon/baton(src)
+		new /obj/item/storage/backpack/security (src)
 
 /obj/structure/closet/secure_closet/warrant_officer
 	name = "chief MP's locker"
@@ -387,13 +387,13 @@
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/under/marine/officer/warrant(src)
 		new /obj/item/clothing/suit/storage/marine/MP/WO(src)
-		new /obj/item/weapon/storage/belt/security/MP(src)
+		new /obj/item/storage/belt/security/MP(src)
 		new /obj/item/device/flashlight(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/almayer/mcom(src)
 		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/melee/baton(src)
-		new /obj/item/weapon/storage/backpack/security (src)
+		new /obj/item/weapon/baton(src)
+		new /obj/item/storage/backpack/security (src)
 
 /obj/structure/closet/secure_closet/military_officer_spare
 	name = "extra equipment locker"
@@ -408,7 +408,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/holster/armpit(src)
-		new /obj/item/weapon/storage/backpack/security(src)
+		new /obj/item/storage/backpack/security(src)
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/under/marine/mp(src)
 		new /obj/item/clothing/suit/storage/marine/MP(src)
@@ -433,8 +433,8 @@
 
 	New()
 		..()
-		if(prob(50)) new /obj/item/weapon/storage/backpack/medic(src)
-		else new /obj/item/weapon/storage/backpack/satchel/med(src)
+		if(prob(50)) new /obj/item/storage/backpack/medic(src)
+		else new /obj/item/storage/backpack/satchel/med(src)
 		new /obj/item/clothing/under/rank/nursesuit (src)
 		new /obj/item/clothing/head/nursehat (src)
 		var/i = 0
@@ -452,7 +452,7 @@
 		new /obj/item/clothing/suit/storage/fr_jacket(src)
 		new /obj/item/clothing/shoes/white(src)
 		if(z != 1) new /obj/item/device/radio/headset/almayer/doc(src)
-		new /obj/item/weapon/storage/belt/medical(src)
+		new /obj/item/storage/belt/medical(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 
 	select_gamemode_equipment(gamemode)
@@ -480,10 +480,10 @@
 		new /obj/item/device/radio/headset/almayer/mcom(src)
 		new /obj/item/clothing/under/rank/ro_suit(src)
 		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/weapon/storage/belt/marine(src)
+		new /obj/item/storage/belt/marine(src)
 		new /obj/item/clothing/head/cmcap/req(src)
 		new /obj/item/clothing/head/helmet/marine(src)
 		new /obj/item/device/flashlight(src)
 		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/melee/baton(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
+		new /obj/item/weapon/baton(src)
+		new /obj/item/storage/backpack/marine(src)

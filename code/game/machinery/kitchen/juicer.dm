@@ -9,23 +9,23 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
-	var/obj/item/weapon/reagent_containers/beaker = null
+	var/obj/item/reagent_container/beaker = null
 	var/global/list/allowed_items = list (
-		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato  = "tomatojuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot  = "carrotjuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/berries = "berryjuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/banana  = "banana",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/potato = "potato",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/lemon = "lemonjuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/orange = "orangejuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/lime = "limejuice",
-		/obj/item/weapon/reagent_containers/food/snacks/watermelonslice = "watermelonjuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/grapes = "grapejuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/poisonberries = "poisonberryjuice",
+		/obj/item/reagent_container/food/snacks/grown/tomato  = "tomatojuice",
+		/obj/item/reagent_container/food/snacks/grown/carrot  = "carrotjuice",
+		/obj/item/reagent_container/food/snacks/grown/berries = "berryjuice",
+		/obj/item/reagent_container/food/snacks/grown/banana  = "banana",
+		/obj/item/reagent_container/food/snacks/grown/potato = "potato",
+		/obj/item/reagent_container/food/snacks/grown/lemon = "lemonjuice",
+		/obj/item/reagent_container/food/snacks/grown/orange = "orangejuice",
+		/obj/item/reagent_container/food/snacks/grown/lime = "limejuice",
+		/obj/item/reagent_container/food/snacks/watermelonslice = "watermelonjuice",
+		/obj/item/reagent_container/food/snacks/grown/grapes = "grapejuice",
+		/obj/item/reagent_container/food/snacks/grown/poisonberries = "poisonberryjuice",
 	)
 
 /obj/machinery/juicer/New()
-	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	beaker = new /obj/item/reagent_container/glass/beaker/large(src)
 
 /obj/machinery/juicer/update_icon()
 	icon_state = "juicer"+num2text(!isnull(beaker))
@@ -33,8 +33,8 @@
 
 
 /obj/machinery/juicer/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass))
+	if (istype(O,/obj/item/reagent_container/glass) || \
+		istype(O,/obj/item/reagent_container/food/drinks/drinkingglass))
 		if (beaker)
 			return 1
 		else
@@ -129,12 +129,12 @@
 	beaker = null
 	update_icon()
 
-/obj/machinery/juicer/proc/get_juice_id(var/obj/item/weapon/reagent_containers/food/snacks/grown/O)
+/obj/machinery/juicer/proc/get_juice_id(var/obj/item/reagent_container/food/snacks/grown/O)
 	for (var/i in allowed_items)
 		if (istype(O, i))
 			return allowed_items[i]
 
-/obj/machinery/juicer/proc/get_juice_amount(var/obj/item/weapon/reagent_containers/food/snacks/grown/O)
+/obj/machinery/juicer/proc/get_juice_amount(var/obj/item/reagent_container/food/snacks/grown/O)
 	if (!istype(O))
 		return 5
 	else if (O.potency == -1)
@@ -149,7 +149,7 @@
 	if (!beaker || beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 		return
 	playsound(src.loc, 'sound/machines/juicer.ogg', 25, 1)
-	for (var/obj/item/weapon/reagent_containers/food/snacks/O in src.contents)
+	for (var/obj/item/reagent_container/food/snacks/O in src.contents)
 		var/r_id = get_juice_id(O)
 		beaker.reagents.add_reagent(r_id,get_juice_amount(O))
 		cdel(O)
@@ -160,16 +160,16 @@
 	New()
 		..()
 		new/obj/machinery/juicer(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/tomato(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/carrot(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/berries(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/banana(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/tomato(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/carrot(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/berries(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/banana(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/tomato(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/carrot(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/berries(src)
-		new/obj/item/weapon/reagent_containers/food/snacks/grown/banana(src)
+		new/obj/item/reagent_container/food/snacks/grown/tomato(src)
+		new/obj/item/reagent_container/food/snacks/grown/carrot(src)
+		new/obj/item/reagent_container/food/snacks/grown/berries(src)
+		new/obj/item/reagent_container/food/snacks/grown/banana(src)
+		new/obj/item/reagent_container/food/snacks/grown/tomato(src)
+		new/obj/item/reagent_container/food/snacks/grown/carrot(src)
+		new/obj/item/reagent_container/food/snacks/grown/berries(src)
+		new/obj/item/reagent_container/food/snacks/grown/banana(src)
+		new/obj/item/reagent_container/food/snacks/grown/tomato(src)
+		new/obj/item/reagent_container/food/snacks/grown/carrot(src)
+		new/obj/item/reagent_container/food/snacks/grown/berries(src)
+		new/obj/item/reagent_container/food/snacks/grown/banana(src)
 

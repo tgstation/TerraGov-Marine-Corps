@@ -56,9 +56,9 @@
 	else
 		user << "There is not enough materials in the printer."
 
-/obj/machinery/bioprinter/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/bioprinter/attackby(obj/item/W, mob/user)
 //Matter
-	if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
+	if(istype(W, /obj/item/reagent_container/food/snacks/meat))
 		user << "\blue \The [src] processes \the [W]."
 		stored_matter += 50
 		user.drop_held_item()

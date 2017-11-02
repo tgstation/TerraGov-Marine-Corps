@@ -100,7 +100,7 @@
 		attack_generic(M, M.melee_damage_upper)
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob)
 		if(!istype(W)) return
 
 		if (can_puncture(W))
@@ -302,7 +302,7 @@
 		user << "\blue The inflatable door is too torn to be inflated!"
 		add_fingerprint(user)
 */
-/obj/item/weapon/storage/briefcase/inflatable
+/obj/item/storage/briefcase/inflatable
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"

@@ -1,6 +1,7 @@
 /obj/item
 	name = "item"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/items.dmi'
+	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = FALSE
 	var/item_state = null
@@ -190,8 +191,8 @@ cases. Override_icon_state should be a list.*/
 		user << "[src] is anchored to the ground."
 		return
 
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
+	if (istype(src.loc, /obj/item/storage))
+		var/obj/item/storage/S = src.loc
 		S.remove_from_storage(src, user.loc)
 
 	throwing = 0
@@ -217,8 +218,8 @@ cases. Override_icon_state should be a list.*/
 		user << "[src] is anchored to the ground."
 		return
 
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
+	if (istype(src.loc, /obj/item/storage))
+		var/obj/item/storage/S = src.loc
 		S.remove_from_storage(src, user.loc)
 
 	src.throwing = 0
@@ -238,9 +239,9 @@ cases. Override_icon_state should be a list.*/
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = W
+/obj/item/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/storage))
+		var/obj/item/storage/S = W
 		if(S.use_to_pickup)
 			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 				if(isturf(src.loc))
@@ -294,11 +295,11 @@ cases. Override_icon_state should be a list.*/
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
-/obj/item/proc/on_exit_storage(obj/item/weapon/storage/S as obj)
+/obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
-/obj/item/proc/on_enter_storage(obj/item/weapon/storage/S as obj)
+/obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
@@ -450,24 +451,24 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 					if(!disable_warning)
 						usr << "You somehow have a suit with no defined allowed items for suit storage, stop that."
 					return 0
-				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed) )
+				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
 					return 1
 				return 0
 			if(WEAR_HANDCUFFS)
 				if(H.handcuffed)
 					return 0
-				if(!istype(src, /obj/item/weapon/handcuffs))
+				if(!istype(src, /obj/item/handcuffs))
 					return 0
 				return 1
 			if(WEAR_LEGCUFFS)
 				if(H.legcuffed)
 					return 0
-				if(!istype(src, /obj/item/weapon/legcuffs))
+				if(!istype(src, /obj/item/legcuffs))
 					return 0
 				return 1
 			if(WEAR_IN_BACK)
-				if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
-					var/obj/item/weapon/storage/backpack/B = H.back
+				if (H.back && istype(H.back, /obj/item/storage/backpack))
+					var/obj/item/storage/backpack/B = H.back
 					if(B.contents.len < B.storage_slots && w_class <= B.max_w_class)
 						return 1
 				return 0
@@ -641,7 +642,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 	if (!..())
 		return 0
 
-	if(istype(src, /obj/item/weapon/melee/energy))
+	if(istype(src, /obj/item/weapon/energy))
 		return
 
 	//if we haven't made our blood_overlay already
@@ -739,3 +740,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	user.client.pixel_x = 0
 	user.client.pixel_y = 0
+
+
+/*
+/obj/item/Bump(mob/M as mob)
+	spawn(0)
+		..()
+	return
+*/

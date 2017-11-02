@@ -1,34 +1,21 @@
-/obj/structure/stool/bed/chair/e_chair
+/obj/structure/bed/chair/e_chair
 	name = "electric chair"
 	desc = "Looks absolutely SHOCKING!"
 	icon_state = "echair1"
-	var/obj/item/assembly/shock_kit/part = null
 	var/last_time = 1.0
 
-/obj/structure/stool/bed/chair/e_chair/New()
+/obj/structure/bed/chair/e_chair/New()
 	..()
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
-	return
 
-/obj/structure/stool/bed/chair/e_chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		var/obj/structure/stool/bed/chair/C = new /obj/structure/stool/bed/chair(loc)
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-		C.dir = dir
-		part.loc = loc
-		part.master = null
-		part = null
-		cdel(src)
-		return
-	return
 
-/obj/structure/stool/bed/chair/e_chair/rotate()
+/obj/structure/bed/chair/e_chair/rotate()
 	..()
 	overlays.Cut()
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)	//there's probably a better way of handling this, but eh. -Pete
 	return
 
-/obj/structure/stool/bed/chair/e_chair/proc/shock()
+/obj/structure/bed/chair/e_chair/proc/shock()
 	if(last_time + 50 > world.time)
 		return
 	last_time = world.time

@@ -223,7 +223,7 @@
 
 /obj/effect/particle_effect/smoke/xeno_burn/apply_smoke_effect(turf/T)
 	for(var/mob/living/L in T)
-		if(istype(L.buckled, /obj/structure/stool/bed/nest) && L.status_flags & XENO_HOST)
+		if(istype(L.buckled, /obj/structure/bed/nest) && L.status_flags & XENO_HOST)
 			continue //nested infected hosts are not hurt by acid smoke
 		affect(L)
 	for(var/obj/structure/barricade/B in T)

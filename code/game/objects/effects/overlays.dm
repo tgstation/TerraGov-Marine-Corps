@@ -35,7 +35,7 @@
 
 /obj/effect/overlay/danger
 	name = "Danger"
-	icon = 'icons/obj/grenade.dmi'
+	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "danger"
 	layer = ABOVE_FLY_LAYER
 
@@ -72,7 +72,7 @@
 	anchored = TRUE
 	mouse_opacity = 1
 	luminosity = 2
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target2"
 	effect_duration = 600
 	var/target_id
@@ -114,7 +114,7 @@
 	luminosity = 2
 	effect_duration = 10
 	mouse_opacity = 0
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
 

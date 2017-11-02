@@ -22,7 +22,7 @@
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 	var/buckling_y = 0
 
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
 //-------------------------------------------
@@ -42,20 +42,20 @@
 		else
 			. = step(src, direction)
 
-/obj/vehicle/attackby(obj/item/weapon/W, mob/user)
+/obj/vehicle/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/tool/screwdriver))
 		if(!locked)
 			open = !open
 			update_icon()
 			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
-	else if(istype(W, /obj/item/weapon/crowbar) && cell && open)
+	else if(istype(W, /obj/item/tool/crowbar) && cell && open)
 		remove_cell(user)
 
-	else if(istype(W, /obj/item/weapon/cell) && !cell && open)
+	else if(istype(W, /obj/item/cell) && !cell && open)
 		insert_cell(W, user)
-	else if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))
 			if(health < maxhealth)
 				user.visible_message("<span class='notice'>[user] starts to repair [src].</span>","<span class='notice'>You start to repair [src]</span>")
@@ -168,7 +168,7 @@
 		buckled_mob.apply_effects(5, 5)
 		unbuckle()
 
-	new /obj/effect/gibspawner/robot(Tsec)
+	new /obj/effect/spawner/gibspawner/robot(Tsec)
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 
 	cdel(src)
@@ -193,7 +193,7 @@
 		turn_on()
 		return
 
-/obj/vehicle/proc/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/proc/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	if(cell)
 		return
 	if(!istype(C))

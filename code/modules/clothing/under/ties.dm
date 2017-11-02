@@ -372,11 +372,11 @@
 	item_color = "webbing"
 	w_class = 3
 	var/slots = 3
-	var/obj/item/weapon/storage/internal/hold
+	var/obj/item/storage/internal/hold
 
 /obj/item/clothing/tie/storage/New()
 	..()
-	hold = new/obj/item/weapon/storage/internal(src)
+	hold = new/obj/item/storage/internal(src)
 	hold.storage_slots = slots
 
 /obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
@@ -472,7 +472,7 @@
 
 /obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if (istype(O, /obj/item/weapon/card/emag))
+	if (istype(O, /obj/item/card/emag))
 		if (emagged)
 			user << "\red [src] is already cracked."
 			return
@@ -481,11 +481,11 @@
 			user << "\red You swipe [O] and crack the holobadge security checks."
 			return
 
-	else if(istype(O, /obj/item/weapon/card/id) || istype(O, /obj/item/device/pda))
+	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/device/pda))
 
-		var/obj/item/weapon/card/id/id_card = null
+		var/obj/item/card/id/id_card = null
 
-		if(istype(O, /obj/item/weapon/card/id))
+		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
 			var/obj/item/device/pda/pda = O
@@ -505,7 +505,7 @@
 	if(isliving(user))
 		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
 
-/obj/item/weapon/storage/box/holobadge
+/obj/item/storage/box/holobadge
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
 	New()
@@ -528,11 +528,11 @@
 /obj/item/clothing/tie/storage/knifeharness/New()
 	..()
 	hold.max_storage_space = 4
-	hold.can_hold = list("/obj/item/weapon/hatchet/unathiknife",\
-	"/obj/item/weapon/kitchen/utensil/knife",\
-	"/obj/item/weapon/kitchen/utensil/pknife",\
-	"/obj/item/weapon/kitchenknife",\
-	"/obj/item/weapon/kitchenknife/ritual")
+	hold.can_hold = list("/obj/item/weapon/unathiknife",\
+	"/obj/item/tool/kitchen/utensil/knife",\
+	"/obj/item/tool/kitchen/utensil/pknife",\
+	"/obj/item/tool/kitchen/knife",\
+	"/obj/item/tool/kitchen/knife/ritual")
 
-	new /obj/item/weapon/hatchet/unathiknife(hold)
-	new /obj/item/weapon/hatchet/unathiknife(hold)
+	new /obj/item/weapon/unathiknife(hold)
+	new /obj/item/weapon/unathiknife(hold)

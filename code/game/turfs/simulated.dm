@@ -72,7 +72,7 @@
 
 				bloodDNA = null
 
-		if(M.buckled && istype(M.buckled,/obj/structure/stool/bed/chair))
+		if(M.buckled && istype(M.buckled,/obj/structure/bed/chair))
 			return
 
 		switch (src.wet)

@@ -58,14 +58,14 @@
 	return 1
 
 /obj/item/device/flashlight/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/weapon/screwdriver))
+	if(istype(I,/obj/item/tool/screwdriver))
 		if(!raillight_compatible) //No fancy messages, just no
 			return
 		if(on)
 			user << "<span class='warning'>Turn off [src] first.</span>"
 			return
-		if(istype(loc, /obj/item/weapon/storage))
-			var/obj/item/weapon/storage/S = loc
+		if(istype(loc, /obj/item/storage))
+			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
 			user.drop_inv_item_on_ground(src) //This part is important to make sure our light sources update, as it calls dropped()
@@ -277,3 +277,16 @@
 
 /obj/item/device/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.
+
+
+
+
+
+
+/******************************Lantern*******************************/
+
+/obj/item/device/flashlight/lantern
+	name = "lantern"
+	icon_state = "lantern"
+	desc = "A mining lantern."
+	brightness_on = 6			// luminosity when on

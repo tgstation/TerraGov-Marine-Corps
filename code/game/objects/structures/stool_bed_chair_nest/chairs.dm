@@ -1,14 +1,12 @@
-/obj/structure/stool/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
+/obj/structure/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
 	icon_state = "chair"
 	buckle_lying = FALSE
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
-/obj/structure/stool/MouseDrop(atom/over_object)
-	return
 
-/obj/structure/stool/bed/chair/New()
+/obj/structure/bed/chair/New()
 	if(anchored)
 		src.verbs -= /atom/movable/verb/pull
 	..()
@@ -16,30 +14,14 @@
 		handle_rotation()
 	return
 
-/obj/structure/stool/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/assembly/shock_kit))
-		var/obj/item/assembly/shock_kit/SK = W
-		if(!SK.status)
-			user << "<span class='notice'>[SK] is not ready to be attached!</span>"
-			return
-		user.drop_held_item()
-		var/obj/structure/stool/bed/chair/e_chair/E = new /obj/structure/stool/bed/chair/e_chair(src.loc)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		E.dir = dir
-		E.part = SK
-		SK.loc = E
-		SK.master = E
-		cdel(src)
-
-/obj/structure/stool/bed/chair/attack_tk(mob/user as mob)
+/obj/structure/bed/chair/attack_tk(mob/user as mob)
 	if(buckled_mob)
 		..()
 	else
 		rotate()
 	return
 
-/obj/structure/stool/bed/chair/handle_rotation()	//making this into a seperate proc so office chairs can call it on Move()
+/obj/structure/bed/chair/handle_rotation()	//making this into a seperate proc so office chairs can call it on Move()
 	if(src.dir == NORTH)
 		src.layer = FLY_LAYER
 	else
@@ -47,7 +29,7 @@
 	if(buckled_mob)
 		buckled_mob.dir = dir
 
-/obj/structure/stool/bed/chair/verb/rotate()
+/obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
 	set category = "Object"
 	set src in oview(1)
@@ -70,50 +52,51 @@
 
 
 // Chair types
-/obj/structure/stool/bed/chair/wood/normal
+/obj/structure/bed/chair/wood
+	buildstacktype = /obj/item/stack/sheet/wood
+
+/obj/structure/bed/chair/wood/normal
 	icon_state = "wooden_chair"
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 
-/obj/structure/stool/bed/chair/wood/wings
+/obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 
-/obj/structure/stool/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		new /obj/item/stack/sheet/wood(src.loc)
-		cdel(src)
-	else
-		..()
 
-/obj/structure/stool/bed/chair/comfy
+
+/obj/structure/bed/chair/comfy
 	name = "comfy chair"
 	desc = "It looks comfy."
 	icon_state = "comfychair"
 	color = rgb(255,255,255)
+	buildstackamount = 2
 
-/obj/structure/stool/bed/chair/comfy/brown
+/obj/structure/bed/chair/comfy/brown
 	color = rgb(255,113,0)
 
-/obj/structure/stool/bed/chair/comfy/beige
+/obj/structure/bed/chair/comfy/beige
 	color = rgb(255,253,195)
 
-/obj/structure/stool/bed/chair/comfy/teal
+/obj/structure/bed/chair/comfy/teal
 	color = rgb(0,255,255)
 
-/obj/structure/stool/bed/chair/office
-	anchored = 0
-	drag_delay = 1 //pulling something on wheels is easy
-
-/obj/structure/stool/bed/chair/comfy/black
+/obj/structure/bed/chair/comfy/black
 	color = rgb(167,164,153)
 
-/obj/structure/stool/bed/chair/comfy/lime
+/obj/structure/bed/chair/comfy/lime
 	color = rgb(255,251,0)
 
-/obj/structure/stool/bed/chair/office/Bump(atom/A)
+
+
+/obj/structure/bed/chair/office
+	anchored = 0
+	drag_delay = 1 //pulling something on wheels is easy
+	buildstackamount = 3
+
+/obj/structure/bed/chair/office/Bump(atom/A)
 	..()
 	if(!buckled_mob)	return
 
@@ -139,33 +122,34 @@
 			victim.apply_damage(10, BRUTE, def_zone, blocked)
 		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
 
-/obj/structure/stool/bed/chair/office/light
+/obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
 	anchored = 0
 
-/obj/structure/stool/bed/chair/office/dark
+/obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
 	anchored = 0
 
-/obj/structure/stool/bed/chair/dropship/pilot
+
+/obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
 	anchored = 1
 	name = "Pilot's Chair"
 	desc = "A specially designed chair for pilots to sit in."
 
-/obj/structure/stool/bed/chair/dropship/passenger
+/obj/structure/bed/chair/dropship/passenger
 	name = "Passenger Seat"
 	desc = "Holds you in place during high altitude drops."
 	icon_state = "shuttle_chair"
 	var/image/chairbar = null
 
-/obj/structure/stool/bed/chair/dropship/passenger/New()
+/obj/structure/bed/chair/dropship/passenger/New()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER
 
 	return ..()
 
-/obj/structure/stool/bed/chair/dropship/passenger/afterbuckle()
+/obj/structure/bed/chair/dropship/passenger/afterbuckle()
 	if(buckled_mob)
 		icon_state = "shuttle_chair_buckled"
 		overlays += chairbar

@@ -13,7 +13,7 @@
 		H << "<B>You are the traitor.</B>"
 
 		for (var/obj/item/I in H)
-			if (istype(I, /obj/item/weapon/implant))
+			if (istype(I, /obj/item/implant))
 				continue
 			cdel(I)
 
@@ -22,7 +22,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/claymore(H), WEAR_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), WEAR_FEET)
 
-		var/obj/item/weapon/card/id/W = new(H)
+		var/obj/item/card/id/W = new(H)
 		W.name = "[H.real_name]'s ID Card"
 		W.icon_state = "centcom"
 		W.access = get_all_accesses()

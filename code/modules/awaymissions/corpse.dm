@@ -61,7 +61,7 @@
 	if(corpseback)
 		M.equip_to_slot_or_del(new corpseback(M), WEAR_BACK)
 	if(corpseid)
-		var/obj/item/weapon/card/id/W = new(M)
+		var/obj/item/card/id/W = new(M)
 		W.name = "[M.real_name]'s ID Card"
 		var/datum/job/jobdatum
 		for(var/jobtype in typesof(/datum/job))
@@ -93,7 +93,7 @@
 		M.chestburst = 2
 		M.update_burst()
 		//buckle to nest
-		var/obj/structure/stool/bed/nest/N = locate() in get_turf(src)
+		var/obj/structure/bed/nest/N = locate() in get_turf(src)
 		if(N)
 			M.buckled = N
 			M.dir = N.dir
@@ -119,7 +119,7 @@
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
@@ -135,8 +135,8 @@
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/syndicate
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/syndi
-	corpseback = /obj/item/weapon/tank/jetpack/oxygen
-	corpsepocket1 = /obj/item/weapon/tank/emergency_oxygen
+	corpseback = /obj/item/tank/jetpack/oxygen
+	corpsepocket1 = /obj/item/tank/emergency_oxygen
 	corpseid = 1
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
@@ -159,7 +159,7 @@
 	corpsesuit = /obj/item/clothing/suit/chef/classic
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsehelmet = /obj/item/clothing/head/chefhat
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Chef"
 //	corpseidaccess = "Syndicate"
@@ -169,7 +169,7 @@
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
-	corpseback = /obj/item/weapon/storage/backpack/medic
+	corpseback = /obj/item/storage/backpack/medic
 	corpsepocket1 = /obj/item/device/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
@@ -180,9 +180,9 @@
 /obj/effect/landmark/corpse/engineer
 	name = "Engineer"
 	corpseuniform = /obj/item/clothing/under/colonist
-	corpseback = /obj/item/weapon/storage/backpack/industrial
+	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
-	corpsebelt = /obj/item/weapon/storage/belt/utility/full
+	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsegloves = /obj/item/clothing/gloves/yellow
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
@@ -200,8 +200,8 @@
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/weapon/bikehorn
-	corpseback = /obj/item/weapon/storage/backpack/clown
+	corpsepocket1 = /obj/item/toy/bikehorn
+	corpseback = /obj/item/storage/backpack/clown
 	corpseid = 1
 	corpseidjob = "Clown"
 //	corpseidaccess = "Clown"
@@ -210,7 +210,7 @@
 	name = "Scientist"
 	corpseuniform = /obj/item/clothing/under/marine/officer/researcher
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseshoes = /obj/item/clothing/shoes/white
 	corpseid = 1
 	corpseidjob = "Scientist"
@@ -220,7 +220,7 @@
 /obj/effect/landmark/corpse/miner
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsegloves = /obj/item/clothing/gloves/black
-	corpseback = /obj/item/weapon/storage/backpack/industrial
+	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
 	corpseidjob = "Shaft Miner"
@@ -256,7 +256,7 @@
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 
 /////////////////Officers//////////////////////
 
@@ -279,7 +279,7 @@
 	corpsehelmet = /obj/item/clothing/head/centhat
 	corpsegloves = /obj/item/clothing/gloves/swat
 	corpseshoes = /obj/item/clothing/shoes/swat
-	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
+	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
 	corpseidaccess = "Captain"
@@ -293,7 +293,7 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	corpseshoes = /obj/item/clothing/shoes/veteran/PMC
-	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
+	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
 	corpseidaccess = "101"

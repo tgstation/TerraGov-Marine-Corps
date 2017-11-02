@@ -81,13 +81,13 @@
 			/obj/item/weapon/gun,
 			/obj/item/device/flashlight,
 			/obj/item/ammo_magazine/,
-			/obj/item/weapon/storage/fancy/cigarettes,
-			/obj/item/weapon/flame/lighter,
-			/obj/item/weapon/grenade,
+			/obj/item/storage/fancy/cigarettes,
+			/obj/item/tool/lighter,
+			/obj/item/explosive/grenade,
 			/obj/item/device/binoculars,
 			/obj/item/weapon/combat_knife,
-			/obj/item/weapon/storage/sparepouch,
-			/obj/item/weapon/storage/large_holster/machete)
+			/obj/item/storage/sparepouch,
+			/obj/item/storage/large_holster/machete)
 
 //ROBOCOP
 /obj/item/clothing/under/gimmick/robocop

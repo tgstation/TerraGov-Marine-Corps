@@ -10,7 +10,7 @@
 	icon_state = "comm_logs"
 	var/hack_icon = "comm_logsc"
 	var/normal_icon = "comm_logs"
-	circuit = "/obj/item/weapon/circuitboard/message_monitor"
+	circuit = "/obj/item/circuitboard/computer/message_monitor"
 	//Server linked to.
 	var/obj/machinery/message_server/linkedServer = null
 	//Sparks effect - For emag
@@ -34,13 +34,13 @@
 	var/custommessage 	= "This is a test, please ignore."
 
 
-/obj/machinery/computer/message_monitor/attackby(obj/item/weapon/O as obj, mob/living/user as mob)
+/obj/machinery/computer/message_monitor/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		..()
 		return
 	if(!istype(user))
 		return
-	if(istype(O,/obj/item/weapon/card/emag/))
+	if(istype(O,/obj/item/card/emag/))
 		// Will create sparks and print out the console's password. You will then have to wait a while for the console to be back online.
 		// It'll take more time if there's more characters in the password..
 		if(!emag)
@@ -50,7 +50,7 @@
 				screen = 2
 				spark_system.set_up(5, 0, src)
 				src.spark_system.start()
-				var/obj/item/weapon/paper/monitorkey/MK = new/obj/item/weapon/paper/monitorkey
+				var/obj/item/paper/monitorkey/MK = new/obj/item/paper/monitorkey
 				MK.loc = src.loc
 				// Will help make emagging the console not so easy to get away with.
 				MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
@@ -466,7 +466,7 @@
 									H << "\icon[customrecepient] <b>Message from [customsender] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)"
 								log_pda("[usr] (PDA: [customsender]) sent \"[custommessage]\" to [customrecepient.owner]")
 								customrecepient.overlays.Cut()
-								customrecepient.overlays += image('icons/obj/pda.dmi', "pda-r")
+								customrecepient.overlays += image('icons/obj/items/pda.dmi', "pda-r")
 						//Sender is faking as someone who exists
 						else
 
@@ -485,7 +485,7 @@
 									H << "\icon[customrecepient] <b>Message from [PDARec.owner] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[customrecepient];choice=Message;skiprefresh=1;target=\ref[PDARec]'>Reply</a>)"
 								log_pda("[usr] (PDA: [PDARec.owner]) sent \"[custommessage]\" to [customrecepient.owner]")
 								customrecepient.overlays.Cut()
-								customrecepient.overlays += image('icons/obj/pda.dmi', "pda-r")
+								customrecepient.overlays += image('icons/obj/items/pda.dmi', "pda-r")
 						//Finally..
 						ResetMessage()
 
@@ -525,12 +525,12 @@
 	return src.attack_hand(usr)
 
 
-/obj/item/weapon/paper/monitorkey
+/obj/item/paper/monitorkey
 	//..()
 	name = "Monitor Decryption Key"
 	var/obj/machinery/message_server/server = null
 
-/obj/item/weapon/paper/monitorkey/New()
+/obj/item/paper/monitorkey/New()
 	..()
 	spawn(10)
 		if(message_servers)

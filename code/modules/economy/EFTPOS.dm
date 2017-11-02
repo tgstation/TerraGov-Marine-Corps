@@ -1,7 +1,6 @@
 /obj/item/device/eftpos
 	name = "EFTPOS scanner"
 	desc = "Swipe your ID card to make purchases electronically."
-	icon = 'icons/obj/device.dmi'
 	icon_state = "eftpos"
 	var/machine_id = ""
 	var/eftpos_name = "Default EFTPOS scanner"
@@ -20,7 +19,7 @@
 		print_reference()
 
 		//create a short manual as well
-		var/obj/item/weapon/paper/R = new(src.loc)
+		var/obj/item/paper/R = new(src.loc)
 		R.name = "Steps to success: Correct EFTPOS Usage"
 		/*
 		R.info += "<b>When first setting up your EFTPOS device:</b>"
@@ -47,14 +46,14 @@
 
 
 		//stamp the paper
-		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+		var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 		stampoverlay.icon_state = "paper_stamp-cent"
 		if(!R.stamped)
 			R.stamped = new
 		R.offset_x += 0
 		R.offset_y += 0
 		R.ico += "paper_stamp-cent"
-		R.stamped += /obj/item/weapon/stamp
+		R.stamped += /obj/item/tool/stamp
 		R.overlays += stampoverlay
 		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
@@ -63,18 +62,18 @@
 	linked_account = station_account
 
 /obj/item/device/eftpos/proc/print_reference()
-	var/obj/item/weapon/paper/R = new(src.loc)
+	var/obj/item/paper/R = new(src.loc)
 	R.name = "Reference: [eftpos_name]"
 	R.info = "<b>[eftpos_name] reference</b><br><br>"
 	R.info += "Access code: [access_code]<br><br>"
 	R.info += "<b>Do not lose or misplace this code.</b><br>"
 
 	//stamp the paper
-	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+	var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 	stampoverlay.icon_state = "paper_stamp-cent"
 	if(!R.stamped)
 		R.stamped = new
-	R.stamped += /obj/item/weapon/stamp
+	R.stamped += /obj/item/tool/stamp
 	R.overlays += stampoverlay
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)
@@ -111,14 +110,14 @@
 		user << browse(null,"window=eftpos")
 
 /obj/item/device/eftpos/attackby(O as obj, user as mob)
-	if(istype(O, /obj/item/weapon/card))
+	if(istype(O, /obj/item/card))
 		if(linked_account)
-			var/obj/item/weapon/card/I = O
+			var/obj/item/card/I = O
 			scan_card(I)
 		else
 			usr << "\icon[src]<span class='warning'>Unable to connect to linked account.</span>"
-	else if (istype(O, /obj/item/weapon/spacecash/ewallet))
-		var/obj/item/weapon/spacecash/ewallet/E = O
+	else if (istype(O, /obj/item/spacecash/ewallet))
+		var/obj/item/spacecash/ewallet/E = O
 		if (linked_account)
 			if(!linked_account.suspended)
 				if(transaction_locked && !transaction_paid)
@@ -207,27 +206,27 @@
 			if("scan_card")
 				if(linked_account)
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card))
+					if (istype(I, /obj/item/card))
 						scan_card(I)
 				else
 					usr << "\icon[src]<span class='warning'>Unable to link accounts.</span>"
 			if("reset")
 				//reset the access code - requires HoP/captain access
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card))
-					var/obj/item/weapon/card/id/C = I
+				if (istype(I, /obj/item/card))
+					var/obj/item/card/id/C = I
 					if(ACCESS_MARINE_LOGISTICS in C.access)
 						access_code = 0
 						usr << "\icon[src]<span class='info'>Access code reset to 0.</span>"
-				else if (istype(I, /obj/item/weapon/card/emag))
+				else if (istype(I, /obj/item/card/emag))
 					access_code = 0
 					usr << "\icon[src]<span class='info'>Access code reset to 0.</span>"
 
 	src.attack_self(usr)
 
-/obj/item/device/eftpos/proc/scan_card(var/obj/item/weapon/card/I)
-	if (istype(I, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = I
+/obj/item/device/eftpos/proc/scan_card(var/obj/item/card/I)
+	if (istype(I, /obj/item/card/id))
+		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		if(transaction_locked && !transaction_paid)
 			if(linked_account)
@@ -280,7 +279,7 @@
 					usr << "\icon[src]<span class='warning'>Connected account has been suspended.</span>"
 			else
 				usr << "\icon[src]<span class='warning'>EFTPOS is not connected to an account.</span>"
-	else if (istype(I, /obj/item/weapon/card/emag))
+	else if (istype(I, /obj/item/card/emag))
 		if(transaction_locked)
 			if(transaction_paid)
 				usr << "\icon[src]<span class='info'>You stealthily swipe [I] through [src].</span>"

@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/atmoscontrol
+/obj/item/circuitboard/computer/atmoscontrol
 	name = "\improper Central Atmospherics Computer Circuitboard"
 	build_path = /obj/machinery/computer/atmoscontrol
 
@@ -8,7 +8,7 @@
 	icon_state = "computer_generic"
 	density = 1
 	anchored = 1.0
-	circuit = "/obj/item/weapon/circuitboard/atmoscontrol"
+	circuit = "/obj/item/circuitboard/computer/atmoscontrol"
 	var/obj/machinery/alarm/current
 	var/overridden = 0 //not set yet, can't think of a good way to do it
 	req_access = list(ACCESS_MARINE_CE)
@@ -67,7 +67,7 @@
 	user << browse(dat, "window=atmoscontrol")
 
 /obj/machinery/computer/atmoscontrol/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(I, /obj/item/card/emag) && !emagged)
 		user.visible_message("\red \The [user] swipes \a [I] through \the [src], causing the screen to flash!",\
 			"\red You swipe your [I] through \the [src], the screen flashing as you gain full control.",\
 			"You hear the swipe of a card through a reader, and an electronic warble.")

@@ -8,7 +8,7 @@
 	..()
 	layer = PODDOOR_CLOSED_LAYER
 
-/obj/machinery/door/poddoor/shutters/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/poddoor/shutters/attackby(obj/item/C as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(!C.pry_capable)
 		return
@@ -122,7 +122,7 @@
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/window/reinforced/almayer,
+		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
 	New()

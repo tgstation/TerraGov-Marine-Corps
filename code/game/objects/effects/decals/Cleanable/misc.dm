@@ -77,7 +77,7 @@
 	density = 0
 	anchored = 1
 	layer = OBJ_LAYER
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "molten"
 
 /obj/effect/decal/cleanable/cobweb2

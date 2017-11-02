@@ -1,9 +1,9 @@
-/obj/item/weapon/grenade/spawnergrenade/smartdisc
+/obj/item/explosive/grenade/spawnergrenade/smartdisc
 	name = "smart-disc"
 	spawner_type = /mob/living/simple_animal/hostile/smartdisc
 	deliveryamt = 1
 	desc = "A strange piece of alien technology. It has many jagged, whirring blades and bizarre writing."
-	icon = 'icons/Predator/items.dmi'
+	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "disk"
 	force = 15
 	throwforce = 35
@@ -67,7 +67,7 @@
 /mob/living/simple_animal/hostile/smartdisc
 	name = "smart-disc"
 	desc = "A furious, whirling array of blades and alien technology."
-	icon = 'icons/Predator/items.dmi'
+	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "disk_active"
 	icon_living = "disk_active"
 	icon_dead = "disk"
@@ -126,7 +126,7 @@
 
 	death()
 		visible_message("\The [src] stops whirring and spins out onto the floor.")
-		new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
+		new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 		..()
 		spawn(1)
 			if(src) cdel(src)
@@ -183,7 +183,7 @@
 		lifetime--
 		if(lifetime <= 0 || time_idle > 3)
 			visible_message("\The [src] stops whirring and spins out onto the floor.")
-			new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
+			new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 			cdel(src)
 			return
 

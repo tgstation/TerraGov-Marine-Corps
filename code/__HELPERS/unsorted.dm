@@ -282,8 +282,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/search_pda = 1
 
 		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/weapon/card/id) )
-				var/obj/item/weapon/card/id/ID = A
+			if( search_id && istype(A,/obj/item/card/id) )
+				var/obj/item/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
@@ -1309,12 +1309,12 @@ proc/get_mob_with_client_list()
 //Quick type checks for some tools
 var/global/list/common_tools = list(
 /obj/item/stack/cable_coil,
-/obj/item/weapon/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
+/obj/item/tool/wrench,
+/obj/item/tool/weldingtool,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wirecutters,
 /obj/item/device/multitool,
-/obj/item/weapon/crowbar)
+/obj/item/tool/crowbar)
 
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
@@ -1322,12 +1322,12 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iswrench(O)
-	if(istype(O, /obj/item/weapon/wrench))
+	if(istype(O, /obj/item/tool/wrench))
 		return 1
 	return 0
 
 /proc/iswelder(O)
-	if(istype(O, /obj/item/weapon/weldingtool))
+	if(istype(O, /obj/item/tool/weldingtool))
 		return 1
 	return 0
 
@@ -1337,12 +1337,12 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iswirecutter(O)
-	if(istype(O, /obj/item/weapon/wirecutters))
+	if(istype(O, /obj/item/tool/wirecutters))
 		return 1
 	return 0
 
 /proc/isscrewdriver(O)
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/tool/screwdriver))
 		return 1
 	return 0
 
@@ -1352,7 +1352,7 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iscrowbar(O)
-	if(istype(O, /obj/item/weapon/crowbar))
+	if(istype(O, /obj/item/tool/crowbar))
 		return 1
 	return 0
 
@@ -1381,19 +1381,19 @@ proc/is_hot(obj/item/I)
 /proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!istype(W)) return 0
 	return (W.sharp || W.heat_source >= 400 	|| \
-		istype(W, /obj/item/weapon/screwdriver)	 || \
-		istype(W, /obj/item/weapon/pen) 		 || \
-		istype(W, /obj/item/weapon/shovel) \
+		istype(W, /obj/item/tool/screwdriver)	 || \
+		istype(W, /obj/item/tool/pen) 		 || \
+		istype(W, /obj/item/tool/shovel) \
 	)
 
 /proc/is_surgery_tool(obj/item/W as obj)
 	return (	\
-	istype(W, /obj/item/weapon/scalpel)			||	\
-	istype(W, /obj/item/weapon/hemostat)		||	\
-	istype(W, /obj/item/weapon/retractor)		||	\
-	istype(W, /obj/item/weapon/cautery)			||	\
-	istype(W, /obj/item/weapon/bonegel)			||	\
-	istype(W, /obj/item/weapon/bonesetter)
+	istype(W, /obj/item/tool/surgery/scalpel)			||	\
+	istype(W, /obj/item/tool/surgery/hemostat)		||	\
+	istype(W, /obj/item/tool/surgery/retractor)		||	\
+	istype(W, /obj/item/tool/surgery/cautery)			||	\
+	istype(W, /obj/item/tool/surgery/bonegel)			||	\
+	istype(W, /obj/item/tool/surgery/bonesetter)
 	)
 
 
@@ -1439,7 +1439,7 @@ var/list/WALLITEMS = list(
 	"/obj/machinery/status_display", "/obj/machinery/requests_console", "/obj/machinery/light_switch", "/obj/effect/sign",
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",
 	"/obj/machinery/computer/security/telescreen", "/obj/machinery/embedded_controller/radio/simple_vent_controller",
-	"/obj/item/weapon/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
+	"/obj/item/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
 	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment"
 	)
 /proc/gotwallitem(loc, dir)

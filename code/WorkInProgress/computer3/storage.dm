@@ -2,7 +2,7 @@
 	Computer devices that can store programs, files, etc.
 */
 
-/obj/item/part/computer/storage
+/obj/item/computer3_part/storage
 	name			= "Storage Device"
 	desc			= "A device used for storing and retrieving digital information."
 
@@ -25,7 +25,7 @@
 		..()
 		if(islist(spawnfiles))
 			if(removeable && spawnfiles.len)
-				var/obj/item/part/computer/storage/removable/R = src
+				var/obj/item/computer3_part/storage/removable/R = src
 				R.inserted = new(src)
 				if(writeprotect)
 					R.inserted.writeprotect = 1
@@ -71,18 +71,18 @@
 	Standard hard drives for computers. Used in computer construction
 */
 
-/obj/item/part/computer/storage/hdd
+/obj/item/computer3_part/storage/hdd
 	name = "Hard Drive"
 	max_volume = 25000
 	icon_state = "hdd1"
 
 
-/obj/item/part/computer/storage/hdd/big
+/obj/item/computer3_part/storage/hdd/big
 	name = "Big Hard Drive"
 	max_volume = 50000
 	icon_state = "hdd2"
 
-/obj/item/part/computer/storage/hdd/gigantic
+/obj/item/computer3_part/storage/hdd/gigantic
 	name = "Gigantic Hard Drive"
 	max_volume = 75000
 	icon_state = "hdd3"
@@ -91,13 +91,13 @@
 	Removeable hard drives for portable storage
 */
 
-/obj/item/part/computer/storage/removable
+/obj/item/computer3_part/storage/removable
 	name = "Disk Drive"
 	max_volume = 3000
 	removeable = 1
 
-	attackby_types = list(/obj/item/weapon/disk/file, /obj/item/weapon/pen)
-	var/obj/item/weapon/disk/file/inserted = null
+	attackby_types = list(/obj/item/disk/file, /obj/item/tool/pen)
+	var/obj/item/disk/file/inserted = null
 
 	proc/eject_disk(var/forced = 0)
 		if(!forced)
@@ -115,12 +115,12 @@
 
 
 	attackby(obj/O as obj, mob/user as mob)
-		if(inserted && istype(O,/obj/item/weapon/pen))
+		if(inserted && istype(O,/obj/item/tool/pen))
 			usr << "You use [O] to carefully pry [inserted] out of [src]."
 			eject_disk(forced = 1)
 			return
 
-		if(istype(O,/obj/item/weapon/disk/file))
+		if(istype(O,/obj/item/disk/file))
 			if(inserted)
 				usr << "There's already a disk in [src]!"
 				return
@@ -158,8 +158,8 @@
 	removeable disk!
 */
 
-/obj/item/weapon/disk/file
-	//parent_type = /obj/item/part/computer/storage // todon't: do this
+/obj/item/disk/file
+	//parent_type = /obj/item/computer3_part/storage // todon't: do this
 	name = "Data Disk"
 	desc = "A device that can be inserted and removed into computers easily as a form of portable data storage. This one stores 1 Megabyte"
 	var/list/files

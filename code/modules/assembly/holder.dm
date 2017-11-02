@@ -155,7 +155,7 @@
 		return
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob)
 		if(isscrewdriver(W))
 			if(!a_left || !a_right)
 				user << "\red BUG:Assembly part missing, please report this!"
@@ -267,8 +267,8 @@
 
 		if ( !(usr.stat || usr.is_mob_restrained()) )
 			var/obj/item/device/assembly_holder/holder
-			if(istype(src,/obj/item/weapon/grenade/chem_grenade))
-				var/obj/item/weapon/grenade/chem_grenade/gren = src
+			if(istype(src,/obj/item/explosive/grenade/chem_grenade))
+				var/obj/item/explosive/grenade/chem_grenade/gren = src
 				holder=gren.detonator
 			var/obj/item/device/assembly/timer/tmr = holder.a_left
 			if(!istype(tmr,/obj/item/device/assembly/timer))

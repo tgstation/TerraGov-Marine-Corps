@@ -2,14 +2,14 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/weapon/cell/New()
+/obj/item/cell/New()
 	..()
 	charge = maxcharge
 
 	spawn(5)
 		updateicon()
 
-/obj/item/weapon/cell/proc/updateicon()
+/obj/item/cell/proc/updateicon()
 	overlays.Cut()
 
 	if(charge < 0.01)
@@ -19,14 +19,14 @@
 	else
 		overlays += image('icons/obj/power.dmi', "cell-o1")
 
-/obj/item/weapon/cell/proc/percent()		// return % charge of cell
+/obj/item/cell/proc/percent()		// return % charge of cell
 	return 100.0*charge/maxcharge
 
-/obj/item/weapon/cell/proc/fully_charged()
+/obj/item/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // use power from a cell
-/obj/item/weapon/cell/proc/use(var/amount)
+/obj/item/cell/proc/use(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -36,7 +36,7 @@
 	return 1
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(var/amount)
+/obj/item/cell/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -53,7 +53,7 @@
 	return amount_used
 
 
-/obj/item/weapon/cell/examine(mob/user)
+/obj/item/cell/examine(mob/user)
 	if(maxcharge <= 2500)
 		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
 	else
@@ -62,7 +62,7 @@
 		user << "\red This power cell seems to be faulty."
 
 /*
-/obj/item/weapon/cell/attack_self(mob/user as mob)
+/obj/item/cell/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
 //	if(ishuman(user))
 //		var/mob/living/carbon/human/H = user
@@ -72,10 +72,10 @@
 //		SNG.drain("CELL",src,H.wear_suit)
 	return ..()
 */
-/obj/item/weapon/cell/attackby(obj/item/W, mob/user)
+/obj/item/cell/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
-		var/obj/item/weapon/reagent_containers/syringe/S = W
+	if(istype(W, /obj/item/reagent_container/syringe))
+		var/obj/item/reagent_container/syringe/S = W
 
 		user << "You inject the solution into the power cell."
 
@@ -89,7 +89,7 @@
 		S.reagents.clear_reagents()
 
 
-/obj/item/weapon/cell/proc/explode()
+/obj/item/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
@@ -117,13 +117,13 @@
 	spawn(1)
 		cdel(src)
 
-/obj/item/weapon/cell/proc/corrupt()
+/obj/item/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
 		rigged = 1 //broken batterys are dangerous
 
-/obj/item/weapon/cell/emp_act(severity)
+/obj/item/cell/emp_act(severity)
 	charge -= 1000 / severity
 	if (charge < 0)
 		charge = 0
@@ -131,7 +131,7 @@
 		reliability -= 10 / severity
 	..()
 
-/obj/item/weapon/cell/ex_act(severity)
+/obj/item/cell/ex_act(severity)
 
 	switch(severity)
 		if(1.0)
@@ -151,7 +151,7 @@
 				corrupt()
 	return
 
-/obj/item/weapon/cell/proc/get_electrocute_damage()
+/obj/item/cell/proc/get_electrocute_damage()
 	switch (charge)
 		if (1000000 to INFINITY)
 			return min(rand(50,160),rand(50,160))

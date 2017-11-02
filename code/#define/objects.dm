@@ -70,7 +70,7 @@ var/list/liftable_structures = list(
 	/obj/machinery/space_heater,
 	/obj/machinery/recharge_station,
 	/obj/machinery/flasher,
-	/obj/structure/stool,
+	/obj/structure/bed/stool,
 	/obj/structure/closet,
 	/obj/machinery/photocopier,
 	/obj/structure/filingcabinet,

@@ -506,7 +506,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 //check if mob is lying down on something we can operate him on.
 /mob/living/carbon/can_be_operated_on()
 	if(!lying) return FALSE
-	if(locate(/obj/machinery/optable, loc) || locate(/obj/structure/stool/bed/roller, loc))
+	if(locate(/obj/machinery/optable, loc) || locate(/obj/structure/bed/roller, loc))
 		return TRUE
 	var/obj/structure/table/T = locate(/obj/structure/table, loc)
 	if(T && !T.flipped) return TRUE

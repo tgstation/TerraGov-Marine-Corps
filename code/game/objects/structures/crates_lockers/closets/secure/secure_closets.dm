@@ -61,10 +61,10 @@
 	else
 		user << "<span class='notice'>Access Denied</span>"
 
-/obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/secure_closet/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.opened)
-		if(istype(W, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = W
+		if(istype(W, /obj/item/grab))
+			var/obj/item/grab/G = W
 			if(G.grabbed_thing)
 				if(src.large)
 					src.MouseDrop_T(G.grabbed_thing, user)	//act like they were dragged onto the closet
@@ -76,7 +76,7 @@
 		user.drop_held_item()
 		if(W)
 			W.loc = src.loc
-	else if(istype(W, /obj/item/weapon/card/emag))
+	else if(istype(W, /obj/item/card/emag))
 		if(broken) return
 		broken = 1
 		locked = 0
@@ -85,7 +85,7 @@
 		flick(icon_broken, src)
 		for(var/mob/O in viewers(user, 3))
 			O.show_message("<span class='warning'>The locker has been broken by [user] with an electromagnetic card!</span>", 1, "You hear a faint electrical spark.", 2)
-	else if(istype(W,/obj/item/weapon/packageWrap) || istype(W,/obj/item/weapon/weldingtool))
+	else if(istype(W,/obj/item/packageWrap) || istype(W,/obj/item/tool/weldingtool))
 		return ..(W,user)
 	else
 		togglelock(user)

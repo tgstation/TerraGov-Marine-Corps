@@ -1,7 +1,7 @@
 /obj/structure/lattice
 	desc = "A lightweight support lattice."
 	name = "lattice"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "latticefull"
 	density = 0
 	anchored = 1.0
@@ -53,8 +53,8 @@
 		var/turf/T = get_turf(src)
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
-	if (istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
+	if (istype(C, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
 			user << "\blue Slicing lattice joints ..."
 		new /obj/item/stack/rods(src.loc)

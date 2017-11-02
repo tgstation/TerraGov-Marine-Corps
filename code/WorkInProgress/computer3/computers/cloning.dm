@@ -1,6 +1,6 @@
 /obj/machinery/computer3/cloning
 	default_prog = /datum/file/program/cloning
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/storage/removable,/obj/item/part/computer/networking/prox)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/storage/removable,/obj/item/computer3_part/networking/prox)
 
 /datum/file/program/cloning
 	name = "cloning console"

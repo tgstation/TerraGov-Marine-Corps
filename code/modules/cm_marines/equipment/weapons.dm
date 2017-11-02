@@ -1,150 +1,6 @@
-/obj/item/weapon/combat_knife
-	name = "\improper M5 'Night Raider' survival knife"
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "combat_knife"
-	item_state = "combat_knife"
-	desc = "The standard issue survival knife issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
-	flags_atom = FPRINT|CONDUCT
-	sharp = IS_SHARP_ITEM_ACCURATE
-	force = 25
-	w_class = 2
-	throwforce = 20
-	throw_speed = 3
-	throw_range = 6
-	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(istype(I,/obj/item/stack/cable_coil))
-			var/obj/item/stack/cable_coil/CC = I
-			if (CC.use(5))
-				user << "You wrap some cable around the bayonet. It can now be attached to a gun."
-				if(istype(loc, /obj/item/weapon/storage))
-					var/obj/item/weapon/storage/S = loc
-					S.remove_from_storage(src)
-				if(loc == user)
-					user.temp_drop_inv_item(src)
-				var/obj/item/attachable/bayonet/F = new(src.loc)
-				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-					F.loc = get_turf(src)
-				cdel(src) //Delete da old knife
-			else
-				user << "<span class='notice'>You don't have enough cable for that.</span>"
-				return
-		else
-			..()
-
-	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
-		return (BRUTELOSS)
-
-/obj/item/weapon/combat_knife/upp
-	name = "\improper Type 30 survival knife"
-	icon_state = "upp_knife"
-	item_state = "knife"
-	desc = "The standard issue survival knife of the UPP forces, the Type 30 is effective, but humble. It is small enough to be non-cumbersome, but lethal none-the-less."
-	force = 20
-	throwforce = 10
-	throw_speed = 2
-	throw_range = 8
-
-
-/obj/item/weapon/throwing_knife
-	name ="\improper M11 throwing knife"
-	icon='icons/obj/weapons.dmi'
-	icon_state = "throwing_knife"
-	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
-	flags_atom = FPRINT|CONDUCT
-	sharp = IS_SHARP_ITEM_ACCURATE
-	force = 10
-	w_class = 1
-	throwforce = 35
-	throw_speed = 4
-	throw_range = 7
-	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	flags_equip_slot = SLOT_STORE
-
-/obj/item/weapon/claymore
-	name = "claymore"
-	desc = "What are you standing around staring at this for? Get to killing!"
-	icon_state = "claymore"
-	item_state = "claymore"
-	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_WAIST
-	force = 40
-	throwforce = 10
-	sharp = IS_SHARP_ITEM_BIG
-	edge = 1
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return(BRUTELOSS)
-
-/obj/item/weapon/claymore/mercsword
-	name = "combat sword"
-	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "sword"
-	force = 39
-
-/obj/item/weapon/claymore/mercsword/machete
-	name = "\improper M2132 machete"
-	desc = "Latest issue of the USCM Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "machete"
-	item_state = "machete"
-	item_color = "machete"
-	force = 35
-	//flags_equip_slot = SLOT_BACK
-	w_class = 4.0
-
-/obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
-
-/obj/item/weapon/katana
-	name = "katana"
-	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
-	icon_state = "katana"
-	item_state = "katana"
-	flags_atom = FPRINT|CONDUCT
-	//flags_equip_slot = SLOT_WAIST|SLOT_BACK
-	force = 50
-	throwforce = 10
-	sharp = IS_SHARP_ITEM_BIG
-	edge = 1
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>"
-		return(BRUTELOSS)
-
-//To do: replace the toys.
-/obj/item/weapon/katana/replica
-	name = "replica katana"
-	desc = "A cheap knock-off commonly found in regular knife stores. Can still do some damage."
-	force = 27
-	throwforce = 7
-
-/obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
-
-/obj/item/weapon/butterfly/katana
-	name = "katana"
-	desc = "A ancient weapon from Japan."
-	icon_state = "samurai"
-	force = 50
-
-/obj/item/weapon/storage/box/m56_system
+/obj/item/storage/box/m56_system
 	name = "\improper M56 smartgun system"
 	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -172,7 +28,7 @@
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
 	w_class = 5.0
-	var/obj/item/weapon/cell/pcell = null
+	var/obj/item/cell/pcell = null
 	var/rounds_remaining = 250
 	actions_types = list(/datum/action/item_action/toggle)
 	var/reloading = 0
@@ -181,7 +37,7 @@
 		select_gamemode_skin(/obj/item/smartgun_powerpack)
 		item_state = "powerpack"
 		..()
-		pcell = new /obj/item/weapon/cell(src)
+		pcell = new /obj/item/cell(src)
 
 	attack_self(mob/user)
 		if(!ishuman(user) || user.stat) return 0
@@ -231,8 +87,8 @@
 		return 1
 
 	attackby(var/obj/item/A as obj, mob/user as mob)
-		if(istype(A,/obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = A
+		if(istype(A,/obj/item/cell))
+			var/obj/item/cell/C = A
 			visible_message("[user.name] swaps out the power cell in the [src.name].","You swap out the power cell in the [src] and drop the old one.")
 			user << "The new cell contains: [C.charge] power."
 			pcell.loc = get_turf(user)
@@ -263,7 +119,7 @@
 	item_state = "powerpackp"
 	icon_state = "powerpackp"
 
-/obj/item/weapon/storage/box/heavy_armor
+/obj/item/storage/box/heavy_armor
 	name = "\improper B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -280,7 +136,7 @@
 			new /obj/item/clothing/head/helmet/marine/specialist(src)
 		..()
 
-/obj/item/weapon/storage/box/m42c_system
+/obj/item/storage/box/m42c_system
 	name = "\improper M42A scoped rifle system (recon set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -300,7 +156,7 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/device/binoculars(src)
-			new /obj/item/weapon/storage/backpack/marine/smock(src)
+			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -315,10 +171,10 @@
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
 						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/weapon/facepaint/sniper(src)
+						new /obj/item/facepaint/sniper(src)
 		..()
 
-/obj/item/weapon/storage/box/sniper
+/obj/item/storage/box/sniper
 	name = "\improper Sniper equipment"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -338,7 +194,7 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/device/binoculars(src)
-			new /obj/item/weapon/storage/backpack/marine/smock(src)
+			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -352,11 +208,11 @@
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
 						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/weapon/facepaint/sniper(src)
+						new /obj/item/facepaint/sniper(src)
 		..()
 
 // Temporarily the same as the Sniper loadout.
-/obj/item/weapon/storage/box/scout
+/obj/item/storage/box/scout
 	name = "\improper Scout equipment"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -376,7 +232,7 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/device/binoculars/tactical/scout(src)
-			new /obj/item/weapon/storage/backpack/marine/smock(src)
+			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -390,10 +246,10 @@
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
 						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/weapon/facepaint/sniper(src)
+						new /obj/item/facepaint/sniper(src)
 		..()
 
-/obj/item/weapon/storage/box/m42c_system_Jungle
+/obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -421,15 +277,15 @@
 				switch(ticker.mode.name)
 					if("Ice Colony")
 						new /obj/item/clothing/under/marine/sniper(src)
-						new /obj/item/weapon/storage/backpack/marine/satchel(src)
+						new /obj/item/storage/backpack/marine/satchel(src)
 						new /obj/item/bodybag/tarp/snow(src)
 					else
-						new /obj/item/weapon/facepaint/sniper(src)
-						new /obj/item/weapon/storage/backpack/marine/smock(src)
+						new /obj/item/facepaint/sniper(src)
+						new /obj/item/storage/backpack/marine/smock(src)
 						new /obj/item/bodybag/tarp(src)
 		..()
 
-/obj/item/weapon/storage/box/grenade_system
+/obj/item/storage/box/grenade_system
 	name = "\improper M92 grenade launcher case"
 	desc = "A large case containing a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -444,10 +300,10 @@
 		..()
 		spawn(1)
 			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/weapon/storage/belt/grenade(src)
-			new /obj/item/weapon/storage/belt/grenade(src)
+			new /obj/item/storage/belt/grenade(src)
+			new /obj/item/storage/belt/grenade(src)
 
-/obj/item/weapon/storage/box/heavy_grenadier
+/obj/item/storage/box/heavy_grenadier
 	name = "\improper Heavy Grenadier case"
 	desc = "A large case containing M50 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -462,13 +318,13 @@
 		..()
 		spawn(1)
 			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/weapon/storage/belt/grenade(src)
-			new /obj/item/weapon/storage/belt/grenade(src)
+			new /obj/item/storage/belt/grenade(src)
+			new /obj/item/storage/belt/grenade(src)
 			new /obj/item/clothing/gloves/marine/specialist(src)
 			new /obj/item/clothing/suit/storage/marine/specialist(src)
 			new /obj/item/clothing/head/helmet/marine/specialist(src)
 
-/obj/item/weapon/storage/box/rocket_system
+/obj/item/storage/box/rocket_system
 	name = "\improper M83 rocket launcher crate"
 	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -489,7 +345,7 @@
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/wp(src)
 
-/obj/item/weapon/storage/box/demolitionist
+/obj/item/storage/box/demolitionist
 	name = "\improper Demolitionist equipment"
 	desc = "A large case containing a heavy-caliber antitank missile launcher, missiles, C4, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -509,360 +365,7 @@
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/wp(src)
-			new /obj/item/device/mine(src)
-			new /obj/item/device/mine(src)
-			new /obj/item/weapon/plastique(src)
-			new /obj/item/weapon/plastique(src)
-
-/obj/item/weapon/tank/phoron/m240
-	name = "\improper M240 fuel tank"
-	desc = "A fuel tank of powerful sticky-fire chemicals for use in the M240 Incinerator unit. Handle with care."
-	icon_state = "flametank"
-
-
-///***GRENADES***///
-/obj/item/weapon/grenade/explosive
-	name = "\improper M40 HEDP grenade"
-	desc = "A small, but deceptively strong fragmentation grenade that has been phasing out the M15 Fragmentation Grenades. Capable of being loaded in the M92 Launcher, or thrown by hand."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade"
-	det_time = 40
-	item_state = "grenade"
-	dangerous = 1
-
-/obj/item/weapon/grenade/explosive/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 3)
-		cdel(src)
-	return
-
-/obj/item/weapon/grenade/explosive/flamer_fire_act()
-	var/turf/T = loc
-	cdel(src)
-	explosion(T, -1, -1, 3)
-
-
-/obj/item/weapon/grenade/explosive/PMC
-	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
-	icon = 'icons/obj/grenade2.dmi'
-	icon_state = "grenade_ex"
-	item_state = "grenade_ex"
-
-
-	prime()
-		spawn(0)
-			explosion(loc, -1, -1, 4)
-			cdel(src)
-		return
-
-/obj/item/weapon/grenade/explosive/m15
-	name = "\improper M15 fragmentation grenade"
-	desc = "An outdated USCM Fragmentation Grenade. With decades of service in the USCM, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
-	icon_state = "grenade_ex"
-	item_state = "grenade_ex"
-
-	prime()
-		spawn(0)
-			explosion(loc, -1, -1, 4)
-			cdel(src)
-		return
-
-/obj/item/weapon/grenade/explosive/stick
-	name = "\improper Webley Mk15 stick grenade"
-	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_stick"
-	item_state = "grenade_stick"
-	icon = 'icons/obj/grenade.dmi'
-	force = 10
-	w_class = 2
-	throwforce = 15
-	throw_speed = 2
-	throw_range = 7
-	hitsound = 'sound/effects/metalhit.ogg'
-
-	prime()
-		spawn(0)
-			explosion(src.loc,-1,-1,3)
-			del(src)
-		return
-
-/obj/item/weapon/grenade/explosive/upp
-	name = "\improper Type 5 shrapnel grenade"
-	desc = "A fragmentation grenade found within the ranks of the UPP. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_upp"
-	item_state = "grenade_upp"
-	icon = 'icons/obj/grenade.dmi'
-	throw_speed = 2
-	throw_range = 6
-	hitsound = 'sound/effects/metalhit.ogg'
-	prime()
-		spawn(0)
-			explosion(src.loc,-1,-1,3)
-			del(src)
-		return
-
-/obj/item/weapon/grenade/incendiary
-	name = "\improper M40 HIDP incendiary grenade"
-	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_fire"
-	det_time = 40
-	item_state = "grenade_fire"
-	flags_equip_slot = SLOT_WAIST
-	dangerous = 1
-
-	prime()
-		spawn(0)
-			flame_radius(2, get_turf(src))
-			playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
-			cdel(src)
-		return
-
-proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
-	if(!turf || !isturf(turf)) return
-	if(radius < 0) radius = 0
-	if(radius > 5) radius = 5
-
-	for(var/turf/T in range(radius,turf))
-		if(T.density) continue
-		if(istype(T,/turf/space)) continue
-		if(locate(/obj/flamer_fire) in T) continue //No stacking
-		new /obj/flamer_fire(T, 5 + rand(0,11), 15)
-
-
-/obj/item/weapon/grenade/incendiary/molotov
-	name = "\improper improvised firebomb"
-	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
-	icon_state = "molotov"
-	item_state = "molotov"
-	arm_sound = 'sound/items/Welder2.ogg'
-	New()
-		det_time = rand(10,40)//Adds some risk to using this thing.
-		..()
-
-	prime()
-		spawn(0)
-			playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
-			flame_radius(1, get_turf(src))
-			playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 30, 1, 4)
-			cdel(src)
-		return
-
-
-/obj/item/weapon/grenade/smokebomb
-	name = "\improper M40 HSDP smoke grenade"
-	desc = "The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_smoke"
-	det_time = 20
-	item_state = "grenade_smoke"
-	var/datum/effect_system/smoke_spread/bad/smoke
-
-	New()
-		..()
-		smoke = new /datum/effect_system/smoke_spread/bad
-		smoke.attach(src)
-
-	prime()
-		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-		smoke.set_up(3, 0, usr.loc, null, 6)
-		smoke.start()
-		cdel(src)
-
-/obj/item/weapon/grenade/phosphorus
-	name = "\improper M40 HPDP grenade"
-	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_phos"
-	det_time = 20
-	item_state = "grenade_phos"
-	var/datum/effect_system/smoke_spread/phosphorus/smoke
-	dangerous = 1
-
-	New()
-		..()
-		smoke = new /datum/effect_system/smoke_spread/phosphorus
-		smoke.attach(src)
-
-	prime()
-		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-		smoke.set_up(3, 0, usr.loc)
-		smoke.start()
-		cdel(src)
-
-/obj/item/weapon/grenade/phosphorus/upp
-	name = "\improper Type 8 WP grenade"
-	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosporus on the target. It explodes 2 seconds after the pin has been pulled."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_upp_wp"
-	item_state = "grenade_upp_wp"
-	icon = 'icons/obj/grenade.dmi'
-
-///***MINES***///
-//Mines have an invisible "tripwire" atom that explodes when crossed
-//Stepping directly on the mine will also blow it up
-/obj/item/device/mine
-	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the United States Colonial Marines."
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "m20"
-	force = 5.0
-	w_class = 2
-	//layer = MOB_LAYER - 0.1 //You can't just randomly hide claymores under boxes. Booby-trapping bodies is fine though
-	throwforce = 5.0
-	throw_range = 6
-	throw_speed = 3
-	unacidable = 1
-	flags_atom = FPRINT|CONDUCT
-
-	var/iff_signal = ACCESS_IFF_MARINE
-	var/triggered = 0
-	var/armed = 0 //Will the mine explode or not
-	var/trigger_type = "explosive" //Calls that proc
-	var/obj/effect/mine_tripwire/tripwire
-	/*
-		"explosive"
-		//"incendiary" //New bay//
-	*/
-
-	ex_act() trigger_explosion() //We don't care about how strong the explosion was.
-	emp_act() trigger_explosion() //Same here. Don't care about the effect strength.
-
-/obj/item/device/mine/Dispose()
-	if(tripwire)
-		cdel(tripwire)
-		tripwire = null
-	. = ..()
-
-/obj/item/device/mine/pmc
-	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the United States Colonial Marines. It has been modified for use by the W-Y PMC forces."
-	icon_state = "m20p"
-	iff_signal = ACCESS_IFF_PMC
-
-//Arming
-/obj/item/device/mine/attack_self(mob/living/user)
-	if(locate(/obj/item/device/mine) in get_turf(src))
-		user << "<span class='warning'>There already is a mine at this position!</span>"
-		return
-
-	if(user.loc && user.loc.density)
-		user << "<span class='warning'>You can't plant a mine here.</span>"
-		return
-
-	if(user.z == 3 || user.z == 4) // On the Sulaco.
-		user << "<span class='warning'>You can't plant a mine on a spaceship!</span>"
-		return
-
-	if(!armed)
-		user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
-		"<span class='notice'>You start deploying [src].</span>")
-		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
-			user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
-		"<span class='notice'>You stop deploying \the [src].</span>")
-			return
-		user.visible_message("<span class='notice'>[user] finishes deploying [src].</span>", \
-		"<span class='notice'>You finish deploying [src].</span>")
-		anchored = 1
-		armed = 1
-		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
-		icon_state += "_armed"
-		user.drop_held_item()
-		dir = user.dir //The direction it is planted in is the direction the user faces at that time
-		var/tripwire_loc = get_turf(get_step(loc, dir))
-		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)
-		tripwire.linked_claymore = src
-
-//Disarming
-/obj/item/device/mine/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/device/multitool))
-		if(anchored)
-			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
-			"<span class='notice'>You start disarming [src].</span>")
-			if(!do_after(user, 80, TRUE, 5, BUSY_ICON_CLOCK))
-				user.visible_message("<span class='warning'>[user] stops disarming [src].", \
-				"<span class='warning'>You stop disarming [src].")
-				return
-			user.visible_message("<span class='notice'>[user] finishes disarming [src].", \
-			"<span class='notice'>You finish disarming [src].")
-			anchored = 0
-			armed = 0
-			icon_state = copytext(icon_state,1,-6)
-			if(tripwire)
-				cdel(tripwire)
-				tripwire = null
-
-//Mine can also be triggered if you "cross right in front of it" (same tile)
-/obj/item/device/mine/Crossed(atom/A)
-	if(ismob(A)) Bumped(A)
-
-/obj/item/device/mine/Bumped(mob/living/carbon/human/H)
-	if(!armed || triggered) return
-
-	if((istype(H) && H.get_target_lock(iff_signal)) || isrobot(H)) return
-
-	H.visible_message("<span class='danger'>\icon[src] The [name] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>\icon[src] The [name] clicks as you move in front of it.</span>", \
-	"<span class='danger'>You hear a click.</span>")
-
-	triggered = 1
-	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
-	trigger_explosion()
-
-//Note : May not be actual explosion depending on linked method
-/obj/item/device/mine/proc/trigger_explosion()
-	set waitfor = 0
-
-	switch(trigger_type)
-		if("explosive")
-			if(tripwire)
-				explosion(tripwire.loc, -1, -1, 2)
-				cdel(src)
-
-/obj/item/device/mine/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(triggered) //Mine is already set to go off
-		return
-
-	if(M.a_intent == "help") return
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
-	"<span class='danger'>You slash [src]!</span>")
-	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
-
-	//We move the tripwire randomly in either of the four cardinal directions
-	triggered = 1
-	if(tripwire)
-		var/direction = pick(cardinal)
-		var/step_direction = get_step(src, direction)
-		tripwire.forceMove(step_direction)
-	trigger_explosion()
-
-/obj/effect/mine_tripwire
-	name = "claymore tripwire"
-	anchored = 1
-	mouse_opacity = 0
-	invisibility = 101
-	unacidable = 1 //You never know
-	var/obj/item/device/mine/linked_claymore
-
-/obj/effect/mine_tripwire/Dispose()
-	if(linked_claymore)
-		linked_claymore = null
-	. = ..()
-
-/obj/effect/mine_tripwire/Crossed(atom/A)
-	if(!linked_claymore)
-		cdel(src)
-		return
-
-	if(linked_claymore.triggered) //Mine is already set to go off
-		return
-
-	if(linked_claymore && ismob(A))
-		linked_claymore.Bumped(A)
-
-/obj/item/device/mine/flamer_fire_act() //adding mine explosions
-	var/turf/T = loc
-	cdel(src)
-	explosion(T, -1, -1, 2)
+			new /obj/item/explosive/mine(src)
+			new /obj/item/explosive/mine(src)
+			new /obj/item/explosive/plastique(src)
+			new /obj/item/explosive/plastique(src)

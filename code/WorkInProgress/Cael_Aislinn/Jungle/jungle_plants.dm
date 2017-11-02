@@ -68,7 +68,7 @@
 
 /obj/structure/bush/attackby(var/obj/I as obj, var/mob/user as mob)
 	//hatchets and shiet can clear away undergrowth
-	if(I && (istype(I, /obj/item/weapon/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
+	if(I && (istype(I, /obj/item/tool/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
 		var/damage = rand(2,5)
 		if(istype(I,/obj/item/weapon/claymore/mercsword))
 			damage = rand(8,18)
@@ -116,7 +116,7 @@ var/jungle_plants_init = 0
 	fruit_icon_states = shuffle(fruit_icon_states)
 	reagent_effects = shuffle(reagent_effects)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/jungle_fruit
+/obj/item/reagent_container/food/snacks/grown/jungle_fruit
 	name = "jungle fruit"
 	desc = "It smells weird and looks off."
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
@@ -156,7 +156,7 @@ var/jungle_plants_init = 0
 		fruits_left--
 		user << "\blue You pick a fruit off [src]."
 
-		var/obj/item/weapon/reagent_containers/food/snacks/grown/jungle_fruit/J = new (src.loc)
+		var/obj/item/reagent_container/food/snacks/grown/jungle_fruit/J = new (src.loc)
 		J.potency = plant_strength
 		J.icon_state = fruit_icon_states[fruit_type]
 		J.reagents.add_reagent(reagent_effects[fruit_type], 1+round((plant_strength / 20), 1))

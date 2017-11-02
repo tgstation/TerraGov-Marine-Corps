@@ -109,7 +109,7 @@
 
 /turf/simulated/floor/almayer/plating/catwalk/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/weapon/crowbar))
+	if (istype(W, /obj/item/tool/crowbar))
 		if(covered)
 			var/obj/item/stack/catwalk/R = new(usr.loc)
 			R.add_to_stacks(usr)

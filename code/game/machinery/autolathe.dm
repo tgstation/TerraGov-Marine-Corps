@@ -111,7 +111,7 @@
 		user << "\red \The [src] is busy. Please wait for completion of previous operation."
 		return
 
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/tool/screwdriver))
 		opened = !opened
 		icon_state = (opened ? "autolathe_t": "autolathe")
 		user << "You [opened ? "open" : "close"] the maintenance hatch of [src]."
@@ -120,12 +120,12 @@
 
 	if (opened)
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/wirecutters))
+		if(istype(O, /obj/item/device/multitool) || istype(O, /obj/item/tool/wirecutters))
 			attack_hand(user)
 			return
 
 		//Dismantle the frame.
-		if(istype(O, /obj/item/weapon/crowbar))
+		if(istype(O, /obj/item/tool/crowbar))
 			dismantle()
 			return
 
@@ -295,7 +295,7 @@
 
 		else if(href_list["act"] == "wire")
 
-			if (!istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+			if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
 				usr << "You need wirecutters!"
 				return
 
@@ -341,12 +341,12 @@
 
 	//Create parts for lathe.
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/circuitboard/machine/autolathe(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/console_screen(src)
 	RefreshParts()
 
 	//Init wires.
@@ -376,7 +376,7 @@
 /obj/machinery/autolathe/RefreshParts()
 	..()
 	var/tot_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		tot_rating += MB.rating
 
 	storage_capacity["metal"] = tot_rating  * 25000

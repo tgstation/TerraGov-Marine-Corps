@@ -29,15 +29,15 @@
 
 /obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = W
+	if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/C = W
 		if(ACCESS_MARINE_ENGINEERING in C.access || ACCESS_MARINE_CE in C.access)
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
 		else
 			user << "\red Access denied."
-	else if(istype(W, /obj/item/weapon/card/emag))
+	else if(istype(W, /obj/item/card/emag))
 		if(prob(75))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -46,7 +46,7 @@
 		s.set_up(5, 1, src)
 		s.start()
 
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/tool/wrench))
 		src.anchored = !src.anchored
 		src.visible_message("\blue \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].")
 

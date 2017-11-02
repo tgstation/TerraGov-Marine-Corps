@@ -441,7 +441,7 @@ turf/simulated/floor/update_icon()
 	if(!C || !user)
 		return 0
 
-	if(istype(C,/obj/item/weapon/light/bulb)) //only for light tiles
+	if(istype(C,/obj/item/light_bulb/bulb)) //only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(T.state)
@@ -453,7 +453,7 @@ turf/simulated/floor/update_icon()
 			else
 				user << "\blue The lightbulb seems fine, no need to replace it."
 
-	if(istype(C, /obj/item/weapon/crowbar) && (!(is_plating())))
+	if(istype(C, /obj/item/tool/crowbar) && (!(is_plating())))
 		if(broken || burnt)
 			user << "\red You remove the broken plating."
 		else
@@ -468,7 +468,7 @@ turf/simulated/floor/update_icon()
 
 		return
 
-	if(istype(C, /obj/item/weapon/screwdriver) && is_wood_floor())
+	if(istype(C, /obj/item/tool/screwdriver) && is_wood_floor())
 		if(broken || burnt)
 			return
 		else
@@ -537,17 +537,17 @@ turf/simulated/floor/update_icon()
 		else
 			user << "\red You must remove the plating first."
 
-	if(istype(C, /obj/item/weapon/shovel))
+	if(istype(C, /obj/item/tool/shovel))
 		if(is_grass_floor())
-			new /obj/item/weapon/ore/glass(src)
-			new /obj/item/weapon/ore/glass(src) //Make some sand if you shovel grass
+			new /obj/item/ore/glass(src)
+			new /obj/item/ore/glass(src) //Make some sand if you shovel grass
 			user << "\blue You shovel the grass."
 			make_plating()
 		else
 			user << "\red You cannot shovel this."
 
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/welder = C
+	if(istype(C, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/welder = C
 		if(welder.isOn() && (is_plating()))
 			if(broken || burnt)
 				if(welder.remove_fuel(0,user))

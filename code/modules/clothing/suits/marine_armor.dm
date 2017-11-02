@@ -74,19 +74,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(/obj/item/weapon/gun/,
-		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/weapon/grenade,
-		/obj/item/weapon/storage/bible,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/explosive/grenade,
+		/obj/item/storage/bible,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/large_holster/machete,
-		/obj/item/weapon/storage/belt/gun/m4a3,
-		/obj/item/weapon/storage/belt/gun/m44)
+		/obj/item/storage/sparepouch,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/belt/gun/m4a3,
+		/obj/item/storage/belt/gun/m44)
 
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
@@ -202,19 +202,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
-		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/grenade,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/handcuffs,
+		/obj/item/explosive/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch,
+		/obj/item/storage/sparepouch,
 		/obj/item/device/hailer,
-		/obj/item/weapon/storage/belt/gun)
+		/obj/item/storage/belt/gun)
 	uniform_restricted = list(/obj/item/clothing/under/marine/mp)
 
 /obj/item/clothing/suit/storage/marine/MP/WO
@@ -279,13 +279,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen,
+	allowed = list(/obj/item/tank/emergency_oxygen,
 					/obj/item/device/flashlight,
 					/obj/item/ammo_magazine,
-					/obj/item/device/mine,
+					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun,
-					/obj/item/weapon/storage/sparepouch)
+					/obj/item/storage/sparepouch)
 	New()
 		select_gamemode_skin(type)
 		..()
@@ -344,7 +344,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		return 0
 
 	usr << "You feel a faint hiss and an injector drops into your hand."
-	var/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord/O = new(usr)
+	var/obj/item/reagent_container/hypospray/autoinjector/tricord/O = new(usr)
 	usr.put_in_active_hand(O)
 	injections--
 	playsound(src,'sound/machines/click.ogg', 15, 1)
@@ -367,15 +367,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 55, bullet = 62, laser = 42, energy = 38, bomb = 40, bio = 15, rad = 15)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
-		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/weapon/grenade,
-		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/baton,
+		/obj/item/handcuffs,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/explosive/grenade,
+		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/combat_knife)
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/PMC)
@@ -469,14 +469,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(/obj/item/weapon/gun,
-		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine,
-		/obj/item/weapon/grenade,
+		/obj/item/explosive/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/large_holster/machete)
+		/obj/item/storage/sparepouch,
+		/obj/item/storage/large_holster/machete)
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
 	var/locate_cooldown = 0 //Cooldown for SL locator
@@ -629,14 +629,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 40, bullet = 40, laser = 40, energy = 30, bomb = 60, bio = 30, rad = 30)
 	uniform_restricted = list(/obj/item/clothing/under/colonist)
 	allowed = list(/obj/item/weapon/gun,
-		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine,
-		/obj/item/weapon/grenade,
+		/obj/item/explosive/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch,
-		/obj/item/weapon/storage/large_holster/machete,
+		/obj/item/storage/sparepouch,
+		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/baseballbat,
 		/obj/item/weapon/baseballbat/metal)
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS

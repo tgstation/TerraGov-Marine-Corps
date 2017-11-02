@@ -175,7 +175,7 @@
 				usr.put_in_hands(O)
 		O.add_fingerprint(usr)
 		//BubbleWrap - so newly formed boxes are empty
-		if(istype(O, /obj/item/weapon/storage))
+		if(istype(O, /obj/item/storage))
 			for (var/obj/item/I in O)
 				cdel(I)
 		//BubbleWrap END

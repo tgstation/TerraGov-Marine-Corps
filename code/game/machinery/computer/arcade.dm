@@ -3,7 +3,7 @@
 	desc = "Two years after the average high school teenager Josh transformed into the powerful ninja 'Black Donnovan' and defeated the evil forces of Colonel Ranchenko and his UPP experiments to save his captured ninja girlfriend Reino, chaos is unleashed again on the world. Josh's Canadian cousin, transforming into the powerful ninja 'Fury Fuhrer', has created a world in Florida no longer exists. Josh once again transforms into 'Black Donnovan' to fight against Fury Fuhrer's legions of goons and restore the hellscape world to its former glory."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "arcade"
-	circuit = "/obj/item/weapon/circuitboard/arcade"
+	circuit = "/obj/item/circuitboard/computer/arcade"
 	var/enemy_name = "Fury Fuhrer"
 	var/temp = "Sponsored by Weyland-Yutani and the United States Colonial Marines" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
@@ -12,16 +12,16 @@
 	var/enemy_mp = 25
 	var/gameover = 0
 	var/blocked = 0 //Player cannot attack/heal while set
-	var/list/prizes = list(	/obj/item/weapon/storage/box/MRE			    = 3,
-							/obj/item/weapon/spacecash/c10					= 4,
+	var/list/prizes = list(	/obj/item/storage/box/MRE			    = 3,
+							/obj/item/spacecash/c10					= 4,
 							/obj/item/ammo_magazine/flamer_tank			    = 1,
-							/obj/item/weapon/flame/lighter/zippo			= 2,
-							/obj/item/weapon/weldingtool					= 1,
-							/obj/item/weapon/storage/box/uscm_mre			= 2,
+							/obj/item/tool/lighter/zippo			= 2,
+							/obj/item/tool/weldingtool					= 1,
+							/obj/item/storage/box/uscm_mre			= 2,
 							/obj/item/device/camera				        	= 2,
 							/obj/item/device/camera_film					= 4,
-							/obj/item/weapon/cell/crap/empty				= 3,
-							/obj/item/weapon/hand_labeler					= 1
+							/obj/item/cell/crap/empty				= 3,
+							/obj/item/tool/hand_labeler					= 1
 							)
 
 /obj/machinery/computer/arcade
@@ -159,7 +159,7 @@
 				new prizeselect(src.loc)
 
 				if(istype(prizeselect, /obj/item/toy/gun)) //Ammo comes with the gun
-					new /obj/item/toy/ammo/gun(src.loc)
+					new /obj/item/toy/gun_ammo(src.loc)
 
 				else if(istype(prizeselect, /obj/item/clothing/suit/syndicatefake)) //Helmet is part of the suit
 					new	/obj/item/clothing/head/syndicatefake(src.loc)
@@ -214,7 +214,7 @@
 
 
 /obj/machinery/computer/arcade/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(I, /obj/item/card/emag) && !emagged)
 		temp = "If you die in the game, you die for real!"
 		player_hp = 30
 		player_mp = 10

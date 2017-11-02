@@ -340,10 +340,10 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 18
 
 	attackby(obj/item/I, mob/user)
-		if(istype(I,/obj/item/weapon/screwdriver))
+		if(istype(I,/obj/item/tool/screwdriver))
 			user << "<span class='notice'>You modify the bayonet back into a combat knife.</span>"
-			if(istype(loc, /obj/item/weapon/storage))
-				var/obj/item/weapon/storage/S = loc
+			if(istype(loc, /obj/item/storage))
+				var/obj/item/storage/S = loc
 				S.remove_from_storage(src)
 			if(loc == user)
 				user.drop_inv_item_on_ground(src)
@@ -415,10 +415,10 @@ Defined in conflicts.dm of the #defines folder.
 			target.update_attachable(slot)
 
 	attackby(obj/item/I, mob/user)
-		if(istype(I,/obj/item/weapon/screwdriver))
+		if(istype(I,/obj/item/tool/screwdriver))
 			user << "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>"
-			if(istype(loc, /obj/item/weapon/storage))
-				var/obj/item/weapon/storage/S = loc
+			if(istype(loc, /obj/item/storage))
+				var/obj/item/storage/S = loc
 				S.remove_from_storage(src)
 			if(loc == user)
 				user.temp_drop_inv_item(src)
@@ -619,12 +619,12 @@ Defined in conflicts.dm of the #defines folder.
 	activate_attachment(atom/target,mob/living/user)
 		user << "<span class='notice'>You are now using [src].</span>"
 
-	reload_attachment(obj/item/weapon/grenade/explosive/E, mob/user)
+	reload_attachment(obj/item/explosive/grenade/frag/E, mob/user)
 		if(!istype(E))
 			user << "<span class='warning'>[src] only accepts M40 HEDP grenades.</span>"
 			return
 		if(!E.active) //can't load live grenades
-			if(E.type != /obj/item/weapon/grenade/explosive) //we don't want the children
+			if(E.type != /obj/item/explosive/grenade/frag) //we don't want the children
 				user << "<span class='warning'>[src] only accepts M40 HEDP grenades.</span>"
 				return
 			if(current_rounds >= max_rounds)
@@ -645,7 +645,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	set waitfor = 0
-	var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
+	var/obj/item/explosive/grenade/frag/G = new(get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
 	message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
 	log_game("[key_name_admin(user)] used an underslung grenade launcher.")

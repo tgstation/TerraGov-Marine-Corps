@@ -6,7 +6,7 @@ They're all essentially identical when it comes to getting the job done.
 /obj/item/ammo_magazine
 	name = "generic ammo"
 	desc = "A box of ammo."
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = null
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
@@ -72,7 +72,7 @@ They're all essentially identical when it comes to getting the job done.
 					else user << "Try holding [src] before you attempt to restock it."
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
-/obj/item/ammo_magazine/proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,mob/user,transfer_amount = 1)
+/obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, obj/item/ammo_magazine/target, mob/user, transfer_amount = 1)
 	if( target.current_rounds == target.max_rounds ) //Does the target mag actually need reloading?
 		user << "[target] is already full."
 		return
@@ -211,7 +211,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammo_casing
 	name = "spent casing"
 	desc = "Empty and useless now."
-	icon = 'icons/obj/casings.dmi'
+	icon = 'icons/obj/items/casings.dmi'
 	icon_state = "casing_"
 	throwforce = 1
 	w_class = 1.0
@@ -253,3 +253,72 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammo_casing/shell
 	name = "spent shell"
 	icon_state = "shell_"
+
+
+
+
+//Big ammo boxes
+
+/obj/item/ammo_magazine/big_box
+	name = "big ammo box (10x24mm)"
+	desc = "A large ammo box capable of containing hundreds of rounds."
+	w_class = 5
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "big_ammo_box"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 800
+	caliber = "10x24mm"
+	gun_type = null
+	var/base_icon_state = "big_ammo_box"
+
+
+/obj/item/ammo_magazine/big_box/update_icon()
+	if(current_rounds) icon_state = base_icon_state
+	else icon_state = "[base_icon_state]_e"
+
+
+/obj/item/ammo_magazine/big_box/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/AM = I
+		if(AM.flags_magazine & AMMUNITION_REFILLABLE)
+			if(default_ammo != AM.default_ammo)
+				user << "<span class='warning'>Those aren't the same rounds. Better not mix them up.</span>"
+				return
+			if(caliber != AM.caliber)
+				user << "<span class='warning'>The rounds don't match up. Better not mix them up.</span>"
+				return
+			if(AM.current_rounds == AM.max_rounds)
+				user << "<span class='warning'>[AM] is already full.</span>"
+				return
+			if(!current_rounds)
+				user << "<span class='warning'>[src] is empty.</span>"
+				return
+			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+				var/transfered_ammo = AM.transfer_ammo(src, AM, user, AM.max_rounds)
+				if(transfered_ammo)
+					playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+					if(AM.current_rounds == AM.max_rounds)
+						user << "<span class='notice'>You refill [AM].</span>"
+					else
+						user << "<span class='notice'>You put [transfered_ammo] rounds in [AM].</span>"
+
+		else if(AM.flags_magazine & AMMUNITION_HANDFUL)
+			var/transfered_ammo = transfer_ammo(AM, src, user, AM.current_rounds)
+			if(transfered_ammo)
+				playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+				user << "<span class='notice'>You put [transfered_ammo] rounds in [src].</span>"
+
+
+
+/obj/item/ammo_magazine/big_box/ap
+	name = "big ammo box (10x24mm AP)"
+	icon_state = "big_ammo_box_ap"
+	base_icon_state = "big_ammo_box_ap"
+	default_ammo = /datum/ammo/bullet/rifle/ap
+
+/obj/item/ammo_magazine/big_box/smg
+	name = "big ammo box (10x20mm)"
+	caliber = "10x20mm"
+	icon_state = "big_ammo_box_m39"
+	base_icon_state = "big_ammo_box_m39"
+	default_ammo = /datum/ammo/bullet/smg

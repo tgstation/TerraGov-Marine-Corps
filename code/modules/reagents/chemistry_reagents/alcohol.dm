@@ -70,13 +70,13 @@
 				H.adjustToxLoss(0.1)
 
 	reaction_obj(var/obj/O, var/volume)
-		if(istype(O,/obj/item/weapon/paper))
-			var/obj/item/weapon/paper/paperaffected = O
+		if(istype(O,/obj/item/paper))
+			var/obj/item/paper/paperaffected = O
 			paperaffected.clearpaper()
 			usr << "The solution dissolves the ink on the paper."
-		if(istype(O,/obj/item/weapon/book))
+		if(istype(O,/obj/item/book))
 			if(volume >= 5)
-				var/obj/item/weapon/book/affectedbook = O
+				var/obj/item/book/affectedbook = O
 				affectedbook.dat = null
 				usr << "The solution dissolves the ink on the book."
 			else

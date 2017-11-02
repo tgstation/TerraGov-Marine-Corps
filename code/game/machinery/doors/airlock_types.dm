@@ -237,7 +237,7 @@
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/simulated/wall,
-		/obj/structure/window/reinforced/almayer,
+		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
 	New()

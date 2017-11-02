@@ -49,7 +49,7 @@
 			else
 				user << "\blue You insert [O] into [src]. Now it just needs some bees."
 			cdel(O)
-	else if(istype(O, /obj/item/weapon/minihoe))
+	else if(istype(O, /obj/item/tool/minihoe))
 		if(health > 0)
 			user << "\red <b>You begin to dislodge the apiary from the tray, the bees don't like that.</b>"
 			angry_swarm(user)
@@ -57,19 +57,19 @@
 			user << "\blue You begin to dislodge the dead apiary from the tray."
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 			new hydrotray_type(src.loc)
-			new /obj/item/apiary(src.loc)
+			new /obj/item/frame/apiary(src.loc)
 			user << "\red You dislodge the apiary from the tray."
 			cdel(src)
-	else if(istype(O, /obj/item/weapon/bee_net))
-		var/obj/item/weapon/bee_net/N = O
+	else if(istype(O, /obj/item/tool/bee_net))
+		var/obj/item/tool/bee_net/N = O
 		if(N.caught_bees > 0)
 			user << "\blue You empty the bees into the apiary."
 			bees_in_hive += N.caught_bees
 			N.caught_bees = 0
 		else
 			user << "\blue There are no more bees in the net."
-	else if(istype(O, /obj/item/weapon/reagent_containers/glass))
-		var/obj/item/weapon/reagent_containers/glass/G = O
+	else if(istype(O, /obj/item/reagent_container/glass))
+		var/obj/item/reagent_container/glass/G = O
 		if(harvestable_honey > 0)
 			if(health > 0)
 				user << "\red You begin to harvest the honey. The bees don't seem to like it."
@@ -220,7 +220,7 @@
 
 	while(health > 15)
 		health -= 15
-		var/obj/item/weapon/reagent_containers/food/snacks/honeycomb/H = new(src.loc)
+		var/obj/item/reagent_container/food/snacks/honeycomb/H = new(src.loc)
 		if(toxic > 0)
 			H.reagents.add_reagent("toxin", toxic)
 

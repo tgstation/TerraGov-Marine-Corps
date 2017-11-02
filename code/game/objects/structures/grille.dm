@@ -1,7 +1,7 @@
 /obj/structure/grille
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
 	name = "grille"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "grille"
 	density = 1
 	anchored = 1
@@ -33,14 +33,14 @@
 /obj/structure/grille/fence/east_west
 	//width=80
 	//height=42
-	icon='icons/obj/fence-ew.dmi'
+	icon='icons/obj/structures/fence_ew.dmi'
 	icon_state = "fence-ew"
 	dir = 4
 
 /obj/structure/grille/fence/north_south
 	//width=80
 	//height=42
-	icon='icons/obj/fence-ns.dmi'
+	icon='icons/obj/structures/fence_ns.dmi'
 	icon_state = "fence-ns"
 
 /obj/structure/grille/fence/healthcheck()
@@ -124,7 +124,7 @@
 	healthcheck()
 	return 1
 
-/obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
 	if(iswirecutter(W))
 		if(!shock(user, 100))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
@@ -178,7 +178,7 @@
 		return
 //window placing end
 
-	else if(istype(W, /obj/item/weapon/shard))
+	else if(istype(W, /obj/item/shard))
 		health -= W.force * 0.1
 	else if(!shock(user, 70))
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)

@@ -37,7 +37,7 @@ obj/machinery/door/airlock/proc/execute_current_command()
 
 	if (!cur_command)
 		return
-	
+
 	do_command(cur_command)
 	if (command_completed(cur_command))
 		cur_command = null
@@ -70,7 +70,7 @@ obj/machinery/door/airlock/proc/do_command(var/command)
 
 			lock()
 			sleep(2)
-	
+
 	send_status()
 
 obj/machinery/door/airlock/proc/command_completed(var/command)
@@ -92,7 +92,7 @@ obj/machinery/door/airlock/proc/command_completed(var/command)
 
 		if("secure_close")
 			return (locked && density)
-	
+
 	return 1	//Unknown command. Just assume it's completed.
 
 obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
@@ -104,7 +104,7 @@ obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
 
 		signal.data["door_status"] = density?("closed"):("open")
 		signal.data["lock_status"] = locked?("locked"):("unlocked")
-		
+
 		if (bumped)
 			signal.data["bumped_with_access"] = 1
 
@@ -254,7 +254,7 @@ obj/machinery/access_button/update_icon()
 
 obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
-	if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))
+	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/device/pda))
 		attack_hand(user)
 		return
 	..()

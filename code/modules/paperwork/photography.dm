@@ -11,7 +11,7 @@
 *******/
 /obj/item/device/camera_film
 	name = "film cartridge"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
 	item_state = "electropack"
@@ -21,9 +21,9 @@
 /********
 * photo *
 ********/
-/obj/item/weapon/photo
+/obj/item/photo
 	name = "photo"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "photo"
 	item_state = "paper"
 	w_class = 1
@@ -32,25 +32,25 @@
 	var/icon/tiny
 	var/photo_size = 3
 
-/obj/item/weapon/photo/attack_self(mob/user)
+/obj/item/photo/attack_self(mob/user)
 	examine(user)
 
-/obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
+/obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
+	if(istype(P, /obj/item/tool/pen) || istype(P, /obj/item/toy/crayon))
 		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text)
 		txt = copytext(txt, 1, 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
 	..()
 
-/obj/item/weapon/photo/examine(mob/user)
+/obj/item/photo/examine(mob/user)
 	if(in_range(user, src))
 		show(user)
 		user << desc
 	else
 		user << "<span class='notice'>It is too far away.</span>"
 
-/obj/item/weapon/photo/proc/show(mob/user as mob)
+/obj/item/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo.png")
 	user << browse("<html><head><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
@@ -60,7 +60,7 @@
 	onclose(user, "[name]")
 	return
 
-/obj/item/weapon/photo/verb/rename()
+/obj/item/photo/verb/rename()
 	set name = "Rename photo"
 	set category = "Object"
 	set src in usr
@@ -76,14 +76,14 @@
 /**************
 * photo album *
 **************/
-/obj/item/weapon/storage/photo_album
+/obj/item/storage/photo_album
 	name = "Photo album"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
-	can_hold = list("/obj/item/weapon/photo",)
+	can_hold = list("/obj/item/photo",)
 
-/obj/item/weapon/storage/photo_album/MouseDrop(obj/over_object as obj)
+/obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
 
 	if((istype(usr, /mob/living/carbon/human)))
 		var/mob/M = usr
@@ -112,7 +112,7 @@
 *********/
 /obj/item/device/camera
 	name = "camera"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	desc = "A polaroid camera. 10 photos left."
 	icon_state = "camera"
 	item_state = "electropack"
@@ -281,8 +281,8 @@
 
 	var/icon/small_img = icon(photoimage)
 	var/icon/tiny_img = icon(photoimage)
-	var/icon/ic = icon('icons/obj/items.dmi',"photo")
-	var/icon/pc = icon('icons/obj/bureaucracy.dmi', "photo")
+	var/icon/ic = icon('icons/obj/items/items.dmi',"photo")
+	var/icon/pc = icon('icons/obj/items/paper.dmi', "photo")
 	small_img.Scale(8, 8)
 	tiny_img.Scale(4, 4)
 	ic.Blend(small_img,ICON_OVERLAY, 10, 13)
@@ -301,13 +301,13 @@
 	return P
 
 /obj/item/device/camera/proc/printpicture(mob/user, var/datum/picture/P)
-	var/obj/item/weapon/photo/Photo = new/obj/item/weapon/photo()
+	var/obj/item/photo/Photo = new/obj/item/photo()
 	Photo.loc = user.loc
 	if(!user.get_inactive_hand())
 		user.put_in_inactive_hand(Photo)
 	Photo.construct(P)
 
-/obj/item/weapon/photo/proc/construct(var/datum/picture/P)
+/obj/item/photo/proc/construct(var/datum/picture/P)
 	icon = P.fields["icon"]
 	tiny = P.fields["tiny"]
 	img = P.fields["img"]

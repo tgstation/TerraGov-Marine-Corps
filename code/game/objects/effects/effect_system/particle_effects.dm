@@ -31,7 +31,7 @@
 		W.fire_act()
 	for(var/obj/effect/alien/egg/E in loc)//Eggs
 		E.fire_act()
-	for(var/obj/structure/stool/bed/nest/N in loc)//Nests
+	for(var/obj/structure/bed/nest/N in loc)//Nests
 		N.fire_act()
 
 /obj/effect/particle_effect/fire/proc/extinguish()

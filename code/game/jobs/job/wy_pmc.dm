@@ -3,7 +3,7 @@
 	comm_title = "WY"
 	faction = "Weyland-Yutani"
 	supervisors = "the team leader"
-	idtype = /obj/item/weapon/card/id/centcom
+	idtype = /obj/item/card/id/centcom
 	//flag = WY_PMC
 	//department_flag = WY_PMC
 	minimal_player_age = 0
@@ -12,35 +12,35 @@
 /datum/job/pmc/proc/generate_random_pmc_primary(shuffle = rand(1,20))
 	var/L[] = list(
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/webbing,
-				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
-				WEAR_IN_JACKET = /obj/item/weapon/grenade/explosive/PMC
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/quickclot,
+				WEAR_IN_JACKET = /obj/item/explosive/grenade/frag/PMC
 				)
 	switch(shuffle)
 		if(1 to 11)
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/smg/m39/elite,
-					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_m39,
+					WEAR_R_STORE = /obj/item/storage/pouch/magazine/large/pmc_m39,
 					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/m39/ap,
 					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/m39/ap
 					)
 		if(12,15)
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/smg/p90,
-					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_p90,
+					WEAR_R_STORE = /obj/item/storage/pouch/magazine/large/pmc_p90,
 					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/p90,
 					WEAR_IN_BACK = /obj/item/ammo_magazine/smg/p90
 					)
 		if(16,18)
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/rifle/lmg,
-					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_lmg,
+					WEAR_R_STORE = /obj/item/storage/pouch/magazine/large/pmc_lmg,
 					WEAR_IN_BACK = /obj/item/ammo_magazine/rifle/lmg,
 					WEAR_IN_BACK = /obj/item/ammo_magazine/rifle/lmg
 					)
 		else
 			L += list(
 					WEAR_J_STORE = /obj/item/weapon/gun/revolver/mateba,
-					WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_mateba,
+					WEAR_R_STORE = /obj/item/storage/pouch/magazine/pistol/pmc_mateba,
 					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/revolver/mateba,
 					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/revolver/mateba,
 					WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/revolver/mateba
@@ -73,10 +73,10 @@
 		var/L[] = new
 		if(prob(60))
 			L[WEAR_WAIST] = /obj/item/weapon/gun/pistol/vp70
-			L[WEAR_L_STORE] = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_vp70
-		else if(prob(35)) L[WEAR_WAIST] = /obj/item/weapon/storage/belt/knifepouch
-		L[WEAR_IN_JACKET] = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
-		L[WEAR_IN_JACKET] = /obj/item/weapon/grenade/explosive/PMC
+			L[WEAR_L_STORE] = /obj/item/storage/pouch/magazine/pistol/pmc_vp70
+		else if(prob(35)) L[WEAR_WAIST] = /obj/item/storage/belt/knifepouch
+		L[WEAR_IN_JACKET] = /obj/item/reagent_container/hypospray/autoinjector/quickclot
+		L[WEAR_IN_JACKET] = /obj/item/explosive/grenade/frag/PMC
 		return L
 
 	equip(mob/living/carbon/human/H, L[] = generate_wearable_equipment() + generate_stored_equipment() + generate_random_pmc_primary())
@@ -99,10 +99,10 @@
 						WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 						WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 						WEAR_HANDS = /obj/item/clothing/gloves/yellow,
-						SLOW_WAIST = /obj/item/weapon/storage/belt/utility/full,
+						SLOW_WAIST = /obj/item/storage/belt/utility/full,
 						WEAR_JACKET = /obj/item/clothing/suit/storage/marine/veteran/PMC,
 						WEAR_EYES = /obj/item/clothing/glasses/welding,
-						WEAR_BACK = /obj/item/weapon/storage/backpack/satchel/eng
+						WEAR_BACK = /obj/item/storage/backpack/satchel/eng
 						)
 		if(prob(65)) L[WEAR_FACE] = /obj/item/clothing/mask/gas/PMC
 		if(prob(65)) L[WEAR_HEAD] = /obj/item/clothing/head/helmet/marine/veteran/PMC
@@ -110,11 +110,11 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/explosive,
-				WEAR_IN_BACK = /obj/item/weapon/plastique,
+				WEAR_L_STORE = /obj/item/storage/pouch/explosive,
+				WEAR_IN_BACK = /obj/item/explosive/plastique,
 				WEAR_IN_BACK = /obj/item/stack/sheet/plasteel,
-				WEAR_IN_BACK = /obj/item/weapon/grenade/explosive/PMC,
-				WEAR_IN_BACK = /obj/item/weapon/grenade/incendiary,
+				WEAR_IN_BACK = /obj/item/explosive/grenade/frag/PMC,
+				WEAR_IN_BACK = /obj/item/explosive/grenade/incendiary,
 				WEAR_IN_BACK = /obj/item/stack/sheet/plasteel
 				)
 
@@ -138,10 +138,10 @@
 						WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 						WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
 						WEAR_HANDS = /obj/item/clothing/gloves/latex,
-						SLOW_WAIST = /obj/item/weapon/storage/belt/combatLifesaver,
+						SLOW_WAIST = /obj/item/storage/belt/combatLifesaver,
 						WEAR_JACKET = /obj/item/clothing/suit/storage/marine/veteran/PMC,
 						WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-						WEAR_BACK = /obj/item/weapon/storage/backpack/satchel/med
+						WEAR_BACK = /obj/item/storage/backpack/satchel/med
 						)
 		if(prob(65)) L[WEAR_FACE] = /obj/item/clothing/mask/gas/PMC
 		if(prob(65)) L[WEAR_HEAD] = /obj/item/clothing/head/helmet/marine/veteran/PMC
@@ -149,13 +149,13 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/medkit/full,
-				WEAR_IN_BACK = /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone,
-				WEAR_IN_BACK = /obj/item/weapon/storage/firstaid/adv,
-				WEAR_IN_BACK = /obj/item/weapon/melee/defibrillator,
+				WEAR_L_STORE = /obj/item/storage/pouch/medkit/full,
+				WEAR_IN_BACK = /obj/item/reagent_container/hypospray/autoinjector/Oxycodone,
+				WEAR_IN_BACK = /obj/item/storage/firstaid/adv,
+				WEAR_IN_BACK = /obj/item/device/defibrillator,
 				WEAR_IN_BACK = /obj/item/bodybag,
-				WEAR_IN_BACK = /obj/item/weapon/storage/pill_bottle/inaprovaline,
-				WEAR_IN_BACK = /obj/item/weapon/storage/pill_bottle/tramadol
+				WEAR_IN_BACK = /obj/item/storage/pill_bottle/inaprovaline,
+				WEAR_IN_BACK = /obj/item/storage/pill_bottle/tramadol
 				)
 
 	equip(mob/living/carbon/human/H, L[] = generate_wearable_equipment() + generate_stored_equipment() + generate_random_pmc_primary())
@@ -192,14 +192,14 @@
 		. = list(
 				SLOW_WAIST = /obj/item/weapon/gun/pistol/vp70,
 				WEAR_J_STORE = /obj/item/weapon/gun/smartgun/dirty,
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_vp70,
-				WEAR_IN_BACK = /obj/item/weapon/plastique,
+				WEAR_L_STORE = /obj/item/storage/pouch/magazine/pistol/pmc_vp70,
+				WEAR_IN_BACK = /obj/item/explosive/plastique,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/webbing,
-				WEAR_IN_ACCESSORY = /obj/item/weapon/grenade/phosphorus,
-				WEAR_IN_ACCESSORY = /obj/item/weapon/grenade/smokebomb,
+				WEAR_IN_ACCESSORY = /obj/item/explosive/grenade/phosphorus,
+				WEAR_IN_ACCESSORY = /obj/item/explosive/grenade/smokebomb,
 				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/pistol/vp70,
-				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
-				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/quickclot,
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/Oxycodone
 				)
 
 /datum/job/pmc/elite_responder/sharpshooter
@@ -222,13 +222,13 @@
 		. = list(
 				SLOW_WAIST = /obj/item/weapon/gun/pistol/vp70,
 				WEAR_J_STORE = /obj/item/weapon/gun/rifle/sniper/elite,
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_sniper,
+				WEAR_L_STORE = /obj/item/storage/pouch/magazine/large/pmc_sniper,
 				WEAR_IN_BACK = /obj/item/device/flashlight,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/black_vest,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/pistol/vp70,
 				WEAR_IN_ACCESSORY = /obj/item/device/flashlight/flare,
 				WEAR_IN_ACCESSORY = /obj/item/device/flashlight/flare,
-				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/quickclot,
 				WEAR_IN_JACKET = /obj/item/stack/medical/bruise_pack
 				)
 
@@ -243,7 +243,7 @@
 				WEAR_EAR = /obj/item/device/radio/headset/distress/PMC,
 				WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC,
 				WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/knifepouch,
+				WEAR_WAIST = /obj/item/storage/belt/knifepouch,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/veteran/PMC,
 				WEAR_BACK = /obj/item/weapon/katana
 				)
@@ -251,14 +251,14 @@
 	generate_stored_equipment()
 		. = list(
 				WEAR_IN_BACK = /obj/item/device/binoculars,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/large/pmc_rifle,
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/general/large,
+				WEAR_R_STORE = /obj/item/storage/pouch/magazine/large/pmc_rifle,
+				WEAR_L_STORE = /obj/item/storage/pouch/general/large,
 				WEAR_J_STORE = /obj/item/weapon/gun/rifle/m41a/elite,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/black_vest,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/rifle/extended,
-				WEAR_IN_ACCESSORY = /obj/item/weapon/grenade/explosive/PMC,
+				WEAR_IN_ACCESSORY = /obj/item/explosive/grenade/frag/PMC,
 				WEAR_IN_ACCESSORY = /obj/item/device/flashlight,
-				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/quickclot,
 				WEAR_IN_JACKET = /obj/item/stack/medical/advanced/bruise_pack
 				)
 
@@ -273,19 +273,19 @@
 				WEAR_BODY = /obj/item/clothing/under/marine/veteran/PMC/commando,
 				WEAR_FEET = /obj/item/clothing/shoes/veteran/PMC/commando,
 				WEAR_HANDS = /obj/item/clothing/gloves/marine/veteran/PMC/commando,
-				SLOW_WAIST = /obj/item/weapon/storage/belt/grenade,
+				SLOW_WAIST = /obj/item/storage/belt/grenade,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/veteran/PMC/commando,
 				WEAR_FACE = /obj/item/clothing/mask/gas/PMC,
 				WEAR_HEAD = /obj/item/clothing/head/helmet/marine/veteran/PMC/commando,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/commando
+				WEAR_BACK = /obj/item/storage/backpack/commando
 				)
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/bayonet/full,
-				WEAR_IN_BACK = /obj/item/weapon/plastique,
-				WEAR_IN_BACK = /obj/item/weapon/plastique,
-				WEAR_IN_BACK = /obj/item/weapon/storage/firstaid/regular,
+				WEAR_L_STORE = /obj/item/storage/pouch/bayonet/full,
+				WEAR_IN_BACK = /obj/item/explosive/plastique,
+				WEAR_IN_BACK = /obj/item/explosive/plastique,
+				WEAR_IN_BACK = /obj/item/storage/firstaid/regular,
 				WEAR_IN_BACK = /obj/item/device/flashlight
 				)
 
@@ -315,7 +315,7 @@
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_FACE = /obj/item/clothing/mask/gas/PMC/leader,
 				WEAR_HEAD = /obj/item/clothing/head/helmet/marine/veteran/PMC/leader,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/satchel
+				WEAR_BACK = /obj/item/storage/backpack/satchel
 				)
 
 	generate_stored_equipment()
@@ -323,17 +323,17 @@
 				SLOW_WAIST = /obj/item/weapon/gun/pistol/vp78,
 				WEAR_J_STORE = /obj/item/weapon/gun/shotgun/combat,
 				WEAR_IN_BACK = /obj/item/device/binoculars,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/magazine/pistol/pmc_vp78,
+				WEAR_R_STORE = /obj/item/storage/pouch/magazine/pistol/pmc_vp78,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/shotgun,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/shotgun/buckshot,
 				WEAR_IN_BACK = /obj/item/ammo_magazine/shotgun/incendiary,
-				WEAR_IN_BACK = /obj/item/weapon/melee/baton,
+				WEAR_IN_BACK = /obj/item/weapon/baton,
 				WEAR_IN_BACK = /obj/item/device/flashlight,
-				WEAR_IN_BACK = /obj/item/weapon/grenade/explosive/PMC,
+				WEAR_IN_BACK = /obj/item/explosive/grenade/frag/PMC,
 				WEAR_ACCESSORY = /obj/item/clothing/tie/storage/webbing,
 				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/pistol/vp70,
 				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/pistol/vp70,
-				WEAR_IN_ACCESSORY = /obj/item/weapon/grenade/smokebomb,
-				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
-				WEAR_IN_JACKET = /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard
+				WEAR_IN_ACCESSORY = /obj/item/explosive/grenade/smokebomb,
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/quickclot,
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/Bicard
 				)

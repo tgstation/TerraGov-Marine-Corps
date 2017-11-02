@@ -247,30 +247,30 @@ datum/objective/steal
 
 	var/global/possible_items[] = list(
 //		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/laser/captain,
-		"a hand teleporter" = /obj/item/weapon/hand_tele,
-		"an RCD" = /obj/item/weapon/rcd,
-		"a jetpack" = /obj/item/weapon/tank/jetpack,
+		"a hand teleporter" = /obj/item/device/hand_tele,
+		"an RCD" = /obj/item/device/rcd,
+		"a jetpack" = /obj/item/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/uscm,
-		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
-		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
+		"28 moles of phoron (full tank)" = /obj/item/tank,
+		"a piece of corgi meat" = /obj/item/reagent_container/food/snacks/meat/corgi,
 		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
 		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
 		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
 		"a head of security's jumpsuit" = /obj/item/clothing/under/rank/head_of_security,
 		"a head of personnel's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
-		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
+		"the hypospray" = /obj/item/reagent_container/hypospray,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
 	)
 
 	var/global/possible_items_special[] = list(
-		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
-		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
-		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
-		"hyper-capacity cell" = /obj/item/weapon/cell/hyper,
+		/*"nuclear authentication disk" = /obj/item/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
+		"diamond drill" = /obj/item/tool/pickaxe/diamonddrill,
+		"bag of holding" = /obj/item/storage/backpack/holding,
+		"hyper-capacity cell" = /obj/item/cell/hyper,
 		"10 diamonds" = /obj/item/stack/sheet/mineral/diamond,
 		"50 gold bars" = /obj/item/stack/sheet/mineral/gold,
 		"25 refined uranium bars" = /obj/item/stack/sheet/mineral/uranium,
@@ -324,12 +324,12 @@ datum/objective/steal
 				return found_amount>=target_amount
 
 			if("50 coins (in bag)")
-				var/obj/item/weapon/moneybag/B = locate() in all_items
+				var/obj/item/moneybag/B = locate() in all_items
 
 				if(B)
 					var/target = text2num(target_name)
 					var/found_amount = 0.0
-					for(var/obj/item/weapon/coin/C in B)
+					for(var/obj/item/coin/C in B)
 						found_amount++
 					return found_amount>=target
 

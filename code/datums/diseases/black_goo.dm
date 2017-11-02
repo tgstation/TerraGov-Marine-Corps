@@ -101,7 +101,7 @@
 		zombie_transforming = FALSE
 
 
-/obj/item/zombie_claws
+/obj/item/weapon/zombie_claws
 	name = "claws"
 	icon = 'icons/mob/human_races/r_zombie.dmi'
 	icon_state = "claw_l"
@@ -142,7 +142,7 @@
 
 
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/black_goo
+/obj/item/reagent_container/food/drinks/bottle/black_goo
 	name = "strange bottle"
 	desc = "A strange bottle of unknown origin."
 	icon = 'icons/obj/black_goo/black_goo_stuff.dmi'
@@ -152,7 +152,7 @@
 		reagents.add_reagent("blackgoo", 30)
 
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/black_goo_cure
+/obj/item/reagent_container/food/drinks/bottle/black_goo_cure
 	name = "even stranger bottle"
 	desc = "A bottle of black labeled CURE..."
 	icon = 'icons/obj/black_goo/black_goo_stuff.dmi'
@@ -181,14 +181,14 @@
 	overlay = global_hud.nvg
 
 
-/obj/item/weapon/storage/fancy/blackgoo
+/obj/item/storage/fancy/blackgoo
 	icon = 'icons/obj/black_goo/black_goo_stuff.dmi'
 	icon_state = "goobox"
 	icon_type = "goo"
 	name = "strange canister"
 	desc = "A strange looking metal container."
 	storage_slots = 3
-	can_hold = list("/obj/item/weapon/reagent_containers/food/drinks/bottle/black_goo")
+	can_hold = list("/obj/item/reagent_container/food/drinks/bottle/black_goo")
 
 
 	examine(mob/user)
@@ -201,10 +201,10 @@
 			user << "There are [src.contents.len] bottles inside the container."
 
 
-/obj/item/weapon/storage/fancy/blackgoo/New()
+/obj/item/storage/fancy/blackgoo/New()
 	..()
 	for(var/i=1; i <= storage_slots; i++)
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/black_goo(src)
+		new /obj/item/reagent_container/food/drinks/bottle/black_goo(src)
 	return
 
 //zombie ice-proofing

@@ -28,8 +28,8 @@
 		. = ..()
 
 	attackby(obj/item/I, mob/user)
-		if(istype(I, /obj/item/weapon/powerloader_clamp))
-			var/obj/item/weapon/powerloader_clamp/PC = I
+		if(istype(I, /obj/item/powerloader_clamp))
+			var/obj/item/powerloader_clamp/PC = I
 			if(istype(PC.loaded, /obj/structure/dropship_equipment))
 				var/obj/structure/dropship_equipment/SE = PC.loaded
 				if(SE.equip_category != base_category)
@@ -176,8 +176,8 @@
 
 	attackby(obj/item/I, mob/user)
 
-		if(istype(I, /obj/item/weapon/powerloader_clamp))
-			var/obj/item/weapon/powerloader_clamp/PC = I
+		if(istype(I, /obj/item/powerloader_clamp))
+			var/obj/item/powerloader_clamp/PC = I
 			if(PC.loaded)
 				if(ship_base && uses_ammo && !ammo_equipped && istype(PC.loaded, /obj/structure/ship_ammo))
 					var/obj/structure/ship_ammo/SA = PC.loaded

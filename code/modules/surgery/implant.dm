@@ -35,8 +35,8 @@
 
 /datum/surgery_step/cavity/make_space
 	allowed_tools = list(
-	/obj/item/weapon/surgicaldrill = 100, \
-	/obj/item/weapon/pen = 75,            \
+	/obj/item/tool/surgery/surgicaldrill = 100, \
+	/obj/item/tool/pen = 75,            \
 	/obj/item/stack/rods = 50
 	)
 
@@ -75,10 +75,10 @@
 
 /datum/surgery_step/cavity/close_space
 	allowed_tools = list(
-	/obj/item/weapon/cautery = 100,			\
+	/obj/item/tool/surgery/cautery = 100,			\
 	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,    \
-	/obj/item/weapon/weldingtool = 25
+	/obj/item/tool/lighter = 50,    \
+	/obj/item/tool/weldingtool = 25
 	)
 
 	min_duration = 60
@@ -165,9 +165,9 @@
 /datum/surgery_step/cavity/implant_removal
 	priority = 1
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,           \
-	/obj/item/weapon/wirecutters = 75,         \
-	/obj/item/weapon/kitchen/utensil/fork = 20
+	/obj/item/tool/surgery/hemostat = 100,           \
+	/obj/item/tool/wirecutters = 75,         \
+	/obj/item/tool/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 60
@@ -200,8 +200,8 @@
 
 		/*
 		 * We are skilled surgeons and we always find what we are looking for
-		if(istype(obj,/obj/item/weapon/implant))
-			var/obj/item/weapon/implant/imp = obj
+		if(istype(obj,/obj/item/implant))
+			var/obj/item/implant/imp = obj
 			if(imp.islegal())
 				find_prob += 60
 			else
@@ -217,8 +217,8 @@
 			affected.implants -= obj
 
 			obj.loc = get_turf(target)
-			if(istype(obj,/obj/item/weapon/implant))
-				var/obj/item/weapon/implant/imp = obj
+			if(istype(obj,/obj/item/implant))
+				var/obj/item/implant/imp = obj
 				imp.imp_in = null
 				imp.implanted = 0
 
@@ -253,8 +253,8 @@
 		fail_prob += 100 - tool_quality(tool)
 		if(prob(fail_prob))
 			var/obj/item/I = affected.implants[1]
-			if(istype(I,/obj/item/weapon/implant))
-				var/obj/item/weapon/implant/imp = I
+			if(istype(I,/obj/item/implant))
+				var/obj/item/implant/imp = I
 				user.visible_message("<span class='warning'>Something beeps inside [target]'s [affected.display_name]!</span>")
 				playsound(imp.loc, 'sound/items/countdown.ogg', 25, 1)
 				spawn(25)

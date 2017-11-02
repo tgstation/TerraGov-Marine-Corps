@@ -1,5 +1,5 @@
 /obj/structure
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable
 	var/climb_delay = 50
 	var/breakable

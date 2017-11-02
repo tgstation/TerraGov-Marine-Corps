@@ -1,46 +1,16 @@
-/obj/structure/stool
+/obj/structure/bed/stool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/objects.dmi'
 	icon_state = "stool"
-	anchored = 1.0
+	anchored = 1
+	can_buckle = FALSE
 	flags_atom = FPRINT
 	pressure_resistance = 15
-	var/is_stool = TRUE
+	foldabletype = /obj/item/stool
 
-/obj/structure/stool/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			cdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				cdel(src)
-				return
-		if(3.0)
-			if (prob(5))
-				cdel(src)
-				return
-	return
 
-/obj/structure/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		new /obj/item/stack/sheet/metal(src.loc)
-		cdel(src)
-	return
 
-/obj/structure/stool/MouseDrop(atom/over_object)
-	if (is_stool && istype(over_object, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = over_object
-		if (H==usr && !H.is_mob_restrained() && !H.stat && in_range(src, over_object))
-			var/obj/item/weapon/stool/S = new/obj/item/weapon/stool()
-			S.origin = src
-			src.loc = S
-			H.put_in_hands(S)
-			H.visible_message("\red [H] grabs [src] from the floor!", "\red You grab [src] from the floor!")
-
-/obj/item/weapon/stool
+/obj/item/stool
 	name = "stool"
 	desc = "Uh-hoh, bar is heating up."
 	icon = 'icons/obj/objects.dmi'
@@ -48,9 +18,9 @@
 	force = 15
 	throwforce = 12
 	w_class = 5.0
-	var/obj/structure/stool/origin = null
+	var/obj/structure/bed/stool/origin = null
 
-/obj/item/weapon/stool/proc/deploy(var/mob/user)
+/obj/item/stool/proc/deploy(var/mob/user)
 
 	if(!origin)
 		user.temp_drop_inv_item(src)
@@ -63,11 +33,11 @@
 		user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
 		cdel(src)
 
-/obj/item/weapon/stool/attack_self(mob/user as mob)
+/obj/item/stool/attack_self(mob/user as mob)
 	..()
 	deploy(user)
 
-/obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(25) && istype(M,/mob/living))
 		user.visible_message("\red [user] breaks [src] over [M]'s back!")
 		user.temp_drop_inv_item(src)

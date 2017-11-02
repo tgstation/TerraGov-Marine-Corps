@@ -47,7 +47,7 @@ OBSOLETE BITCH
 	if (P.damage_type == BRUTE)
 		var/armor = getarmor_organ(organ, "bullet")
 		if((P.embed && prob(20 + max(P.damage - armor, -10))))
-			var/obj/item/weapon/shard/shrapnel/SP = new()
+			var/obj/item/shard/shrapnel/SP = new()
 			(SP.name) = "[P.name] shrapnel"
 			(SP.desc) = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			(SP.loc) = organ
@@ -189,7 +189,7 @@ OBSOLETE BITCH
 	if((user != src) && check_shields(I.force, "the [I.name]"))
 		return 0
 
-	if(istype(I,/obj/item/weapon/card/emag))
+	if(istype(I,/obj/item/card/emag))
 		if(!(affecting.status & LIMB_ROBOT))
 			user << "\red That limb isn't robotic."
 			return
@@ -197,7 +197,7 @@ OBSOLETE BITCH
 			user << "\red [src]'s [affecting.display_name] is already sabotaged!"
 		else
 			user << "\red You sneakily slide [I] into the dataport on [src]'s [affecting.display_name] and short out the safeties."
-			var/obj/item/weapon/card/emag/emag = I
+			var/obj/item/card/emag/emag = I
 			emag.uses--
 			affecting.sabotaged = 1
 		return 1
@@ -399,7 +399,7 @@ OBSOLETE BITCH
 //Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.
 /mob/living/carbon/human/proc/get_target_lock(unique_access)
 	//Streamlined for faster processing. Needs a unique access, otherwise it will just hit everything.
-	var/obj/item/weapon/card/id/C = wear_id
+	var/obj/item/card/id/C = wear_id
 	if(!istype(C)) C = get_active_hand()
 	if(!istype(C)) return
 	if(!(unique_access in C.access)) return

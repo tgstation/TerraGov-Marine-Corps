@@ -1,16 +1,3 @@
-//Cleanbot assembly
-/obj/item/weapon/bucket_sensor
-	desc = "It's a bucket. With a sensor attached."
-	name = "proxy bucket"
-	icon = 'icons/obj/aibots.dmi'
-	icon_state = "bucket_proxy"
-	force = 3.0
-	throwforce = 10.0
-	throw_speed = 2
-	throw_range = 5
-	w_class = 3.0
-	var/created_name = "Cleanbot"
-
 
 //Cleanbot
 /obj/machinery/bot/cleanbot
@@ -49,7 +36,7 @@
 
 	should_patrol = 1
 
-	src.botcard = new /obj/item/weapon/card/id(src)
+	src.botcard = new /obj/item/card/id(src)
 	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/maint] : new /datum/job/logistics/tech/maint
 	botcard.access = J.get_access()
 
@@ -138,8 +125,8 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 			usr << "<span class='notice'>You press the weird button.</span>"
 			src.updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attackby(obj/item/weapon/W, mob/user as mob)
-	if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+/obj/machinery/bot/cleanbot/attackby(obj/item/W, mob/user as mob)
+	if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if(src.allowed(usr) && !open && !emagged)
 			src.locked = !src.locked
 			user << "<span class='notice'>You [ src.locked ? "lock" : "unlock"] the [src] behaviour controls.</span>"
@@ -329,7 +316,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	src.visible_message("\red <B>[src] blows apart!</B>", 1)
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/weapon/reagent_containers/glass/bucket(Tsec)
+	new /obj/item/reagent_container/glass/bucket(Tsec)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 
@@ -342,22 +329,3 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	cdel(src)
 	return
 
-/obj/item/weapon/bucket_sensor/attackby(var/obj/item/W, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
-		user.drop_held_item()
-		cdel(W)
-		var/turf/T = get_turf(src.loc)
-		var/obj/machinery/bot/cleanbot/A = new /obj/machinery/bot/cleanbot(T)
-		A.name = src.created_name
-		user << "<span class='notice'>You add the robot arm to the bucket and sensor assembly. Beep boop!</span>"
-		user.temp_drop_inv_item(src)
-		cdel(src)
-
-	else if (istype(W, /obj/item/weapon/pen))
-		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
-		if (!t)
-			return
-		if (!in_range(src, usr) && src.loc != usr)
-			return
-		src.created_name = t

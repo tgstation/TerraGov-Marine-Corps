@@ -1,6 +1,6 @@
 /obj/machinery/computer3/station_alert
 	default_prog = /datum/file/program/station_alert
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/radio)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/networking/radio)
 	icon_state = "frame-eng"
 
 

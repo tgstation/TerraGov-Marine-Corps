@@ -123,7 +123,7 @@
 	name = "suit"
 	var/fire_resist = T0C+100
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/tank/emergency_oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_equip_slot = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
@@ -146,7 +146,7 @@
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.50
 	var/wired = 0
-	var/obj/item/weapon/cell/cell = 0
+	var/obj/item/cell/cell = 0
 	var/clipped = 0
 	flags_armor_protection = HANDS
 	flags_equip_slot = SLOT_HANDS
@@ -174,8 +174,8 @@
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/surgery/scalpel))
 		if (clipped)
 			user << "<span class='notice'>The [src] have already been clipped!</span>"
 			update_icon()

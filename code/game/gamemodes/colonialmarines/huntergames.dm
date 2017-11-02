@@ -1,12 +1,12 @@
 #define HUNTER_BEST_ITEM  pick(\
-								75; list(/obj/item/clothing/glasses/night, /obj/item/weapon/storage/backpack/holding, /obj/item/weapon/storage/belt/grenade, /obj/item/weapon/gun/flamer), \
+								75; list(/obj/item/clothing/glasses/night, /obj/item/storage/backpack/holding, /obj/item/storage/belt/grenade, /obj/item/weapon/gun/flamer), \
 								100; list(/obj/item/weapon/twohanded/glaive, /obj/item/clothing/mask/gas/yautja, /obj/item/clothing/suit/armor/yautja,/obj/item/clothing/shoes/yautja), \
-								50; list(/obj/item/weapon/melee/combistick, /obj/item/clothing/mask/gas/yautja, /obj/item/clothing/suit/armor/yautja/full,/obj/item/clothing/shoes/yautja), \
-								150; list(/obj/item/stack/medical/advanced/ointment, /obj/item/stack/medical/advanced/bruise_pack, /obj/item/weapon/storage/belt/combatLifesaver), \
+								50; list(/obj/item/weapon/combistick, /obj/item/clothing/mask/gas/yautja, /obj/item/clothing/suit/armor/yautja/full,/obj/item/clothing/shoes/yautja), \
+								150; list(/obj/item/stack/medical/advanced/ointment, /obj/item/stack/medical/advanced/bruise_pack, /obj/item/storage/belt/combatLifesaver), \
 								50; list(/obj/item/clothing/under/marine/veteran/PMC/commando, /obj/item/clothing/suit/storage/marine/veteran/PMC/commando, /obj/item/clothing/gloves/marine/veteran/PMC/commando, /obj/item/clothing/shoes/veteran/PMC/commando, /obj/item/clothing/head/helmet/marine/veteran/PMC/commando), \
-								125; list(/obj/item/weapon/melee/yautja_chain, /obj/item/weapon/melee/yautja_knife, /obj/item/weapon/melee/yautja_scythe, /obj/item/weapon/legcuffs/yautja, /obj/item/weapon/legcuffs/yautja), \
+								125; list(/obj/item/weapon/yautja_chain, /obj/item/weapon/yautja_knife, /obj/item/weapon/yautja_scythe, /obj/item/legcuffs/yautja, /obj/item/legcuffs/yautja), \
 								75; list(/obj/item/weapon/gun/revolver/mateba/admiral, /obj/item/ammo_magazine/revolver/mateba, /obj/item/ammo_magazine/revolver/mateba, /obj/item/clothing/mask/balaclava/tactical), \
-								50; list(/obj/item/weapon/shield/energy, /obj/item/weapon/melee/energy/axe, /obj/item/clothing/under/gladiator, /obj/item/clothing/head/helmet/gladiator) \
+								50; list(/obj/item/weapon/shield/energy, /obj/item/weapon/energy/axe, /obj/item/clothing/under/gladiator, /obj/item/clothing/head/helmet/gladiator) \
 								)
 
 #define HUNTER_GOOD_ITEM  pick(\
@@ -21,35 +21,35 @@
 								100; /obj/item/device/binoculars, \
 \
 								50; /obj/item/device/flash, \
-								25; /obj/item/weapon/grenade/flashbang, \
-								25; /obj/item/weapon/legcuffs/yautja, \
-								50; /obj/item/weapon/plastique, \
-								100; /obj/item/weapon/grenade/explosive, \
-								100; /obj/item/weapon/grenade/incendiary, \
+								25; /obj/item/explosive/grenade/flashbang, \
+								25; /obj/item/legcuffs/yautja, \
+								50; /obj/item/explosive/plastique, \
+								100; /obj/item/explosive/grenade/frag, \
+								100; /obj/item/explosive/grenade/incendiary, \
 \
 								170; /obj/item/clothing/suit/armor/vest/security, \
 								165; /obj/item/clothing/head/helmet/riot, \
 								160; /obj/item/clothing/gloves/marine/veteran/PMC, \
 \
-								50; /obj/item/weapon/storage/firstaid/regular, \
-								50; /obj/item/weapon/storage/firstaid/fire, \
-								75; /obj/item/weapon/storage/box/wy_mre, \
+								50; /obj/item/storage/firstaid/regular, \
+								50; /obj/item/storage/firstaid/fire, \
+								75; /obj/item/storage/box/wy_mre, \
 \
-								100; /obj/item/weapon/storage/backpack/commando, \
-								100; /obj/item/weapon/storage/backpack/yautja, \
-								100; /obj/item/weapon/storage/belt/knifepouch, \
-								100; /obj/item/weapon/storage/belt/utility/full, \
+								100; /obj/item/storage/backpack/commando, \
+								100; /obj/item/storage/backpack/yautja, \
+								100; /obj/item/storage/belt/knifepouch, \
+								100; /obj/item/storage/belt/utility/full, \
 								100; /obj/item/clothing/tie/storage/webbing, \
 								)
 
 #define HUNTER_OKAY_ITEM  pick(\
-								300; /obj/item/weapon/crowbar, \
+								300; /obj/item/tool/crowbar, \
 								200; /obj/item/weapon/baseballbat, \
 								100; /obj/item/weapon/baseballbat/metal, \
 								100; /obj/item/weapon/butterfly, \
-								300; /obj/item/weapon/hatchet, \
-								100; /obj/item/weapon/scythe, \
-								100; /obj/item/weapon/butch, \
+								300; /obj/item/tool/hatchet, \
+								100; /obj/item/tool/scythe, \
+								100; /obj/item/tool/kitchen/knife/butcher, \
 								50; /obj/item/weapon/katana/replica, \
 								100; /obj/item/weapon/harpoon, \
 								75; /obj/item/weapon/combat_knife, \
@@ -60,24 +60,24 @@
 								75; /obj/item/device/flashlight, \
 								75; /obj/item/device/flashlight/combat, \
 \
-								25; /obj/item/weapon/bananapeel, \
-								25; /obj/item/weapon/soap, \
+								25; /obj/item/bananapeel, \
+								25; /obj/item/tool/soap, \
 \
 								75; /obj/item/stack/medical/bruise_pack, \
 								75; /obj/item/stack/medical/ointment, \
-								75; /obj/item/weapon/reagent_containers/food/snacks/donkpocket, \
+								75; /obj/item/reagent_container/food/snacks/donkpocket, \
 \
-								100; /obj/item/weapon/cell/high, \
-								100; /obj/item/weapon/wirecutters, \
-								100; /obj/item/weapon/weldingtool, \
-								100; /obj/item/weapon/wrench, \
+								100; /obj/item/cell/high, \
+								100; /obj/item/tool/wirecutters, \
+								100; /obj/item/tool/weldingtool, \
+								100; /obj/item/tool/wrench, \
 								100; /obj/item/device/multitool, \
-								75; /obj/item/weapon/storage/pill_bottle/tramadol, \
-								50; /obj/item/weapon/grenade/smokebomb, \
-								50; /obj/item/weapon/grenade/empgrenade, \
-								100; /obj/item/weapon/storage/backpack, \
-								100; /obj/item/weapon/storage/backpack/cultpack, \
-								100; /obj/item/weapon/storage/backpack/satchel, \
+								75; /obj/item/storage/pill_bottle/tramadol, \
+								50; /obj/item/explosive/grenade/smokebomb, \
+								50; /obj/item/explosive/grenade/empgrenade, \
+								100; /obj/item/storage/backpack, \
+								100; /obj/item/storage/backpack/cultpack, \
+								100; /obj/item/storage/backpack/satchel, \
 								75; /obj/item/clothing/gloves/brown, \
 								100; /obj/item/clothing/suit/storage/CMB \
 								)
@@ -271,7 +271,7 @@ var/waiting_for_drop_votes = 0
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET)
 
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/general(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), WEAR_R_STORE)
 
 	H.update_icons()
 

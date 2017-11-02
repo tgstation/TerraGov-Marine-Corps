@@ -42,13 +42,13 @@
 	icon_state = "chitin-chunk"
 	icon = 'icons/Marine/Research/Marine_Research.dmi'
 
-/obj/item/weapon/XenoItem/ResinPaste
+/obj/item/XenoItem/ResinPaste
 	name = "Resin Paste"
 	desc = "This resin paste will fix a broken helmet.  (Use by clicking the glue with the armor)."
 	icon_state = "resin-glue"
 	icon = 'icons/Marine/Research/Marine_Research.dmi'
 
-/obj/item/weapon/XenoItem/ResinPaste/afterattack(obj/item/clothing/head/helmet/marine/A as obj, mob/user as mob)
+/obj/item/XenoItem/ResinPaste/afterattack(obj/item/clothing/head/helmet/marine/A as obj, mob/user as mob)
 	if (!istype(A) || !istype(usr))
 		usr << "Doesn't work that way"
 		return
@@ -62,13 +62,13 @@
 	..()
 	return
 
-/obj/item/weapon/XenoItem/ChitinPlate
+/obj/item/XenoItem/ChitinPlate
 	name = "Chitin Plate"
 	desc = "A plate of Chitin Armor that can be attached to your Marine Armor to make it stronger, but will also slow you down.  (Use by clicking the plate with the armor)."
 	icon_state = "chitin-armor"
 	icon = 'icons/Marine/Research/Marine_Research.dmi'
 
-/obj/item/weapon/XenoItem/ChitinPlate/afterattack(obj/item/clothing/suit/storage/marine/A as obj, mob/user as mob)
+/obj/item/XenoItem/ChitinPlate/afterattack(obj/item/clothing/suit/storage/marine/A as obj, mob/user as mob)
 	if (!istype(A) || !istype(usr))
 		usr << "Doesn't work that way..."
 		return
@@ -85,14 +85,14 @@
 	return
 
 
-/obj/item/weapon/XenoItem/AntiAcid
+/obj/item/XenoItem/AntiAcid
 	name = "Anti-Acid Spray"
 	desc = "A spray that makes whatever it's used on unacidable.  Single use."
 	icon_state = "anti-acid"
 	icon = 'icons/Marine/Research/Marine_Research.dmi'
 
 
-/obj/item/weapon/XenoItem/AntiAcid/afterattack(obj/A as obj, mob/user as mob, proximity)
+/obj/item/XenoItem/AntiAcid/afterattack(obj/A as obj, mob/user as mob, proximity)
 	if (!isobj(A))
 		usr << "Doesn't work that way..."
 		return

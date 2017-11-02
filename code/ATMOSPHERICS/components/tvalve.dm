@@ -354,8 +354,8 @@
 			else
 				go_to_side()
 
-/obj/machinery/atmospherics/tvalve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+/obj/machinery/atmospherics/tvalve/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/tvalve/digital))
 		user << "\red You cannot unwrench this [src], it's too complicated."

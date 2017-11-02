@@ -1,7 +1,7 @@
 /obj/machinery/lapvend
 	name = "Laptop Vendor"
 	desc = "A generic vending machine."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "robotics"
 	layer = BELOW_OBJ_LAYER
 	anchored = 1
@@ -27,15 +27,15 @@
 		return
 	return
 
-/obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
 	if(vendmode == 1)
-		if(istype(W, /obj/item/weapon/card))
-			var/obj/item/weapon/card/I = W
+		if(istype(W, /obj/item/card))
+			var/obj/item/card/I = W
 			scan_card(I)
 			vendmode = 0
 	if(vendmode == 3)
-		if(istype(W,/obj/item/weapon/card))
-			var/obj/item/weapon/card/I = W
+		if(istype(W,/obj/item/card))
+			var/obj/item/card/I = W
 			reimburse(I)
 			vendmode = 0
 	if(vendmode == 0)
@@ -174,33 +174,33 @@
 /obj/machinery/lapvend/proc/vend()
 	if(cardreader > 0)
 		if(cardreader == 1)
-			newlap.spawn_parts += (/obj/item/part/computer/cardslot)
+			newlap.spawn_parts += (/obj/item/computer3_part/cardslot)
 		else
-			newlap.spawn_parts += (/obj/item/part/computer/cardslot/dual)
+			newlap.spawn_parts += (/obj/item/computer3_part/cardslot/dual)
 	if(floppy == 1)
-		newlap.spawn_parts += (/obj/item/part/computer/storage/removable)
+		newlap.spawn_parts += (/obj/item/computer3_part/storage/removable)
 	if(radionet == 1)
-		newlap.spawn_parts += (/obj/item/part/computer/networking/radio)
+		newlap.spawn_parts += (/obj/item/computer3_part/networking/radio)
 	if(camera == 1)
-		newlap.spawn_parts += (/obj/item/part/computer/networking/cameras)
+		newlap.spawn_parts += (/obj/item/computer3_part/networking/cameras)
 	if (network == 1)
-		newlap.spawn_parts += (/obj/item/part/computer/networking/area)
+		newlap.spawn_parts += (/obj/item/computer3_part/networking/area)
 	if (network == 2)
-		newlap.spawn_parts += (/obj/item/part/computer/networking/prox)
+		newlap.spawn_parts += (/obj/item/computer3_part/networking/prox)
 	if (network == 3)
-		newlap.spawn_parts += (/obj/item/part/computer/networking/cable)
+		newlap.spawn_parts += (/obj/item/computer3_part/networking/cable)
 	if (power == 1)
 		cdel(newlap.battery)
-		newlap.battery = new /obj/item/weapon/cell/high(newlap)
+		newlap.battery = new /obj/item/cell/high(newlap)
 	if (power == 2)
 		cdel(newlap.battery)
-		newlap.battery = new /obj/item/weapon/cell/super(newlap)
+		newlap.battery = new /obj/item/cell/super(newlap)
 
 	newlap.spawn_parts()
 
-/obj/machinery/lapvend/proc/scan_card(var/obj/item/weapon/card/I)
-	if (istype(I, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = I
+/obj/machinery/lapvend/proc/scan_card(var/obj/item/card/I)
+	if (istype(I, /obj/item/card/id))
+		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
 		if(!CH || isnull(CH) || !istype(CH))
@@ -221,7 +221,7 @@
 
 
 // Transfers money and vends the laptop.
-/obj/machinery/lapvend/proc/transfer_and_vend(var/datum/money_account/D, var/obj/item/weapon/card/C)
+/obj/machinery/lapvend/proc/transfer_and_vend(var/datum/money_account/D, var/obj/item/card/C)
 	var/transaction_amount = total()
 	if(transaction_amount <= D.money)
 
@@ -292,7 +292,7 @@
 
 	return total
 
-/obj/machinery/lapvend/proc/choose_progs(var/obj/item/weapon/card/id/C)
+/obj/machinery/lapvend/proc/choose_progs(var/obj/item/card/id/C)
 	if(ACCESS_MARINE_BRIG in C.access)
 		newlap.spawn_files += (/datum/file/program/secure_data)
 		newlap.spawn_files += (/datum/file/camnet_key)
@@ -322,32 +322,32 @@
 	newlap.update_spawn_files()
 
 /obj/machinery/lapvend/proc/calc_reimburse(var/obj/item/device/laptop/L)
-	if(istype(L.stored_computer.cardslot,/obj/item/part/computer/cardslot))
+	if(istype(L.stored_computer.cardslot,/obj/item/computer3_part/cardslot))
 		cardreader = 1
-	if(istype(L.stored_computer.cardslot,/obj/item/part/computer/cardslot/dual))
+	if(istype(L.stored_computer.cardslot,/obj/item/computer3_part/cardslot/dual))
 		cardreader = 2
-	if(istype(L.stored_computer.floppy,/obj/item/part/computer/storage/removable))
+	if(istype(L.stored_computer.floppy,/obj/item/computer3_part/storage/removable))
 		floppy = 1
-	if(istype(L.stored_computer.radio,/obj/item/part/computer/networking/radio))
+	if(istype(L.stored_computer.radio,/obj/item/computer3_part/networking/radio))
 		radionet = 1
-	if(istype(L.stored_computer.camnet,/obj/item/part/computer/networking/cameras))
+	if(istype(L.stored_computer.camnet,/obj/item/computer3_part/networking/cameras))
 		camera = 1
-	if(istype(L.stored_computer.net,/obj/item/part/computer/networking/area))
+	if(istype(L.stored_computer.net,/obj/item/computer3_part/networking/area))
 		network = 1
-	if(istype(L.stored_computer.net,/obj/item/part/computer/networking/prox))
+	if(istype(L.stored_computer.net,/obj/item/computer3_part/networking/prox))
 		network = 2
-	if(istype(L.stored_computer.net,/obj/item/part/computer/networking/cable))
+	if(istype(L.stored_computer.net,/obj/item/computer3_part/networking/cable))
 		network = 3
-	if(istype(L.stored_computer.battery, /obj/item/weapon/cell/high))
+	if(istype(L.stored_computer.battery, /obj/item/cell/high))
 		power = 1
-	if(istype(L.stored_computer.battery, /obj/item/weapon/cell/super))
+	if(istype(L.stored_computer.battery, /obj/item/cell/super))
 		power = 2
 
 
 
-/obj/machinery/lapvend/proc/reimburse(var/obj/item/weapon/card/I)
-	if (istype(I, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = I
+/obj/machinery/lapvend/proc/reimburse(var/obj/item/card/I)
+	if (istype(I, /obj/item/card/id))
+		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
 		if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)

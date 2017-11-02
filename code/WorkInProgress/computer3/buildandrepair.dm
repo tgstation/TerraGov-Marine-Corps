@@ -1,10 +1,10 @@
 // Computer3 circuitboard specifically
-/obj/item/part/computer/circuitboard
+/obj/item/computer3_part/circuitboard
 	density = 0
 	anchored = 0
 	w_class = 2.0
 	name = "Circuit board"
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"
 	origin_tech = "programming=2"
@@ -31,7 +31,7 @@
 	icon_state = "0"
 	var/state = 0
 
-	var/obj/item/part/computer/circuitboard/circuit = null
+	var/obj/item/computer3_part/circuitboard/circuit = null
 	var/completed = /obj/machinery/computer
 
 	// Computer3 components - a carbon copy of the list from
@@ -43,25 +43,25 @@
 	var/list/components = list()
 
 	// Storage
-	var/obj/item/part/computer/storage/hdd/hdd				= null
-	var/obj/item/part/computer/storage/removable/floppy		= null
+	var/obj/item/computer3_part/storage/hdd/hdd				= null
+	var/obj/item/computer3_part/storage/removable/floppy		= null
 	// Networking
-	var/obj/item/part/computer/networking/radio/radio		= null	// not handled the same as other networks
-	var/obj/item/part/computer/networking/cameras/camnet	= null	// just plain special
-	var/obj/item/part/computer/networking/net				= null	// Proximity, area, or cable network
-	var/obj/item/part/computer/networking/subspace/centcom	= null	// only for offstation communications
+	var/obj/item/computer3_part/networking/radio/radio		= null	// not handled the same as other networks
+	var/obj/item/computer3_part/networking/cameras/camnet	= null	// just plain special
+	var/obj/item/computer3_part/networking/net				= null	// Proximity, area, or cable network
+	var/obj/item/computer3_part/networking/subspace/centcom	= null	// only for offstation communications
 
 	// Card reader - note the HoP reader is a subtype
-	var/obj/item/part/computer/cardslot/cardslot			= null
+	var/obj/item/computer3_part/cardslot/cardslot			= null
 
 	// Misc & special purpose
-	var/obj/item/part/computer/ai_holder/cradle				= null
-	var/obj/item/part/computer/toybox/toybox				= null
+	var/obj/item/computer3_part/ai_holder/cradle				= null
+	var/obj/item/computer3_part/toybox/toybox				= null
 
 	// Battery must be installed BEFORE wiring the computer.
 	// if installing it in an existing computer, you will have to
 	// get back to this state first.
-	var/obj/item/weapon/cell/battery	= null
+	var/obj/item/cell/battery	= null
 
 /obj/structure/computer3frame/server
 	name = "server frame"
@@ -79,14 +79,14 @@
 /obj/structure/computer3frame/attackby(obj/item/P as obj, mob/user as mob)
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20))
 					user << "\blue You wrench the frame into place."
 					src.anchored = 1
 					src.state = 1
-			if(istype(P, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = P
+			if(istype(P, /obj/item/tool/weldingtool))
+				var/obj/item/tool/weldingtool/WT = P
 				if(!WT.remove_fuel(0, user))
 					user << "[WT] must be on to complete this task."
 					return
@@ -97,28 +97,25 @@
 					new /obj/item/stack/sheet/metal( src.loc, 5 )
 					cdel(src)
 		if(1)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20))
 					user << "\blue You unfasten the frame."
 					src.anchored = 0
 					src.state = 0
-			if(istype(P, /obj/item/weapon/circuitboard) && !circuit)
-				var/obj/item/weapon/circuitboard/B = P
-				if(B.board_type == "computer")
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					user << "\blue You place the circuit board inside the frame."
-					icon_state = "1"
-					circuit = P
-					user.drop_inv_item_to_loc(P, src)
-				else
-					user << "\red This frame does not accept circuit boards of this type!"
-			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(P, /obj/item/circuitboard/computer) && !circuit)
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				user << "\blue You place the circuit board inside the frame."
+				icon_state = "1"
+				circuit = P
+				user.drop_inv_item_to_loc(P, src)
+
+			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "\blue You screw the circuit board into place."
 				src.state = 2
 				src.icon_state = "2"
-			if(istype(P, /obj/item/weapon/crowbar) && circuit)
+			if(istype(P, /obj/item/tool/crowbar) && circuit)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user << "\blue You remove the circuit board."
 				src.state = 1
@@ -126,13 +123,13 @@
 				circuit.loc = src.loc
 				src.circuit = null
 		if(2)
-			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "\blue You unfasten the circuit board."
 				src.state = 1
 				src.icon_state = "1"
 
-			if(istype(P, /obj/item/weapon/crowbar))
+			if(istype(P, /obj/item/tool/crowbar))
 				if(battery)
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					if(do_after(10))
@@ -142,7 +139,7 @@
 				else
 					user << "\red There's no battery to remove!"
 
-			if(istype(P, /obj/item/weapon/cell))
+			if(istype(P, /obj/item/cell))
 				if(!battery)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					if(do_after(5))
@@ -164,7 +161,7 @@
 							src.state = 3
 							src.icon_state = "3"
 		if(3)
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(istype(P, /obj/item/tool/wirecutters))
 				if(components.len)
 					user << "There are parts in the way!"
 					return
@@ -175,7 +172,7 @@
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
 				A.amount = 5
 
-			if(istype(P, /obj/item/weapon/crowbar)) // complicated check
+			if(istype(P, /obj/item/tool/crowbar)) // complicated check
 				remove_peripheral()
 
 			if(istype(P, /obj/item/stack/sheet/glass))
@@ -188,13 +185,13 @@
 							src.state = 4
 							src.icon_state = "4"
 		if(4)
-			if(istype(P, /obj/item/weapon/crowbar))
+			if(istype(P, /obj/item/tool/crowbar))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user << "\blue You remove the glass panel."
 				src.state = 3
 				src.icon_state = "3"
 				new /obj/item/stack/sheet/glass( src.loc, 2 )
-			if(istype(P, /obj/item/weapon/screwdriver))
+			if(istype(P, /obj/item/tool/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "\blue You connect the monitor."
 				var/obj/machinery/computer3/B = new src.circuit.build_path ( src.loc, built=1 )
@@ -202,9 +199,9 @@
 				if(circuit.id) B:id = circuit.id
 				//if(circuit.records) B:records = circuit.records
 				if(circuit.frequency) B:frequency = circuit.frequency
-				if(istype(circuit,/obj/item/weapon/circuitboard/supplycomp))
+				if(istype(circuit,/obj/item/circuitboard/computer/supplycomp))
 					var/obj/machinery/computer/supplycomp/SC = B
-					var/obj/item/weapon/circuitboard/supplycomp/C = circuit
+					var/obj/item/circuitboard/computer/supplycomp/C = circuit
 					SC.can_order_contraband = C.contraband_enabled*/
 				B.circuit = circuit
 				circuit.loc = B
@@ -266,34 +263,34 @@
 		usr << "There isn't room in [src] for another component!"
 		return 0
 	switch(I.type)
-		if(/obj/item/part/computer/storage/hdd)
+		if(/obj/item/computer3_part/storage/hdd)
 			if(hdd)
 				usr << "There is already \an [hdd] in [src]!"
 				return 0
 			hdd = I
 			components += hdd
 			hdd.loc = src
-		if(/obj/item/part/computer/storage/removable)
+		if(/obj/item/computer3_part/storage/removable)
 			if(floppy)
 				usr << "There is already \an [floppy] in [src]!"
 				return 0
 			floppy = I
 			components += floppy
 			floppy.loc = src
-		if(/obj/item/part/computer/networking/radio)
+		if(/obj/item/computer3_part/networking/radio)
 			if(radio)
 				usr << "There is already \an [radio] in [src]!"
 				return 0
 			radio = I
 			components += radio
 			radio.loc = src
-		if(/obj/item/part/computer/networking/cameras)
+		if(/obj/item/computer3_part/networking/cameras)
 			if(camnet)
 				usr << "There is already \an [camnet] in [src]!"
 				return 0
 			camnet = I
 			components += camnet
 			camnet.loc = src
-		if(/obj/item/part/computer/networking)
+		if(/obj/item/computer3_part/networking)
 			if(net)
 				usr << "There is already \an [net] in [src]!"

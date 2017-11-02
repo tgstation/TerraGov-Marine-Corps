@@ -1,6 +1,6 @@
 #define UPGRADE_COOLDOWN	40
 
-/obj/item/weapon/grab
+/obj/item/grab
 	name = "grab"
 	icon_state = "reinforce"
 	icon = 'icons/mob/screen1.dmi'
@@ -13,15 +13,15 @@
 	var/last_upgrade = 0 //used for cooldown between grab upgrades.
 
 
-/obj/item/weapon/grab/New()
+/obj/item/grab/New()
 	..()
 	last_upgrade = world.time
 
-/obj/item/weapon/grab/dropped(mob/user)
+/obj/item/grab/dropped(mob/user)
 	user.stop_pulling()
 	. = ..()
 
-/obj/item/weapon/grab/Dispose()
+/obj/item/grab/Dispose()
 	grabbed_thing = null
 	if(ismob(loc))
 		var/mob/M = loc
@@ -29,7 +29,7 @@
 		M.stop_pulling()
 	. = ..()
 
-/obj/item/weapon/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(user.pulling == user.buckled) return //can't move the thing you're sitting on.
 	if(istype(target, /obj/effect))//if you click a blood splatter with a grab instead of the turf,
 		target = get_turf(target)	//we still try to move the grabbed thing to the turf.
@@ -39,7 +39,7 @@
 			step(user.pulling, get_dir(user.pulling.loc, T))
 
 
-/obj/item/weapon/grab/attack_self(mob/user)
+/obj/item/grab/attack_self(mob/user)
 	if(!ismob(grabbed_thing) || world.time < (last_upgrade + UPGRADE_COOLDOWN))
 		return
 	if(!ishuman(user)) //only humans can reinforce a grab.
@@ -68,7 +68,7 @@
 				user.visible_message("<span class='warning'>[user] has grabbed [victim] aggressively (now hands)!</span>")
 
 
-/obj/item/weapon/grab/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/grab/attack(mob/living/M, mob/living/user, def_zone)
 	if(M == user && user.pulling && isXeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		var/mob/living/carbon/pulled = X.pulling

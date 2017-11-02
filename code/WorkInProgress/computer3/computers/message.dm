@@ -1,6 +1,6 @@
 /obj/machinery/computer3/message_monitor
 	default_prog = /datum/file/program/message_mon
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/prox)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/networking/prox)
 
 
 //BROKEN AS HELL, DON'T USE UNTIL FIXED

@@ -103,7 +103,7 @@
 
 //drop the inventory item on a specific location
 /mob/proc/drop_inv_item_to_loc(obj/item/I, atom/newloc, nomoveupdate, force)
-	if(istype(I, /obj/item/zombie_claws))
+	if(istype(I, /obj/item/weapon/zombie_claws))
 		return 0
 	return u_equip(I, newloc, nomoveupdate, force)
 
@@ -114,7 +114,7 @@
 //Never use this proc directly. nomoveupdate is used when we don't want the item to react to
 // its new loc (e.g.triggering mousetraps)
 /mob/proc/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
-	if(istype(I, /obj/item/zombie_claws))
+	if(istype(I, /obj/item/weapon/zombie_claws))
 		return 0
 
 	if(!I) return TRUE
@@ -255,8 +255,8 @@
 				src.s_store = W
 				equipped = 1
 		if(WEAR_IN_BACK)
-			if (src.back && istype(src.back, /obj/item/weapon/storage/backpack))
-				var/obj/item/weapon/storage/backpack/B = src.back
+			if (src.back && istype(src.back, /obj/item/storage/backpack))
+				var/obj/item/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)
 					W.loc = B
 					equipped = 1

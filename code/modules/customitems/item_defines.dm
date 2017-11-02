@@ -10,18 +10,18 @@
 ////////// Fluff Items ///////////
 //////////////////////////////////
 
-/obj/item/weapon/paper/fluff/sue_donem // aikasan: Sue Donem
+/obj/item/paper/fluff/sue_donem // aikasan: Sue Donem
 	name = "cyborgification waiver"
 	desc = "It's some kind of official-looking contract."
 
-/obj/item/weapon/paper/fluff/sue_donem/New()
+/obj/item/paper/fluff/sue_donem/New()
 	..()
 
 	info = "<B>Organic Carrier AIA and Standard Cyborgification Agreement</B><BR>\n<BR>\nUnder the authority of Nanotrasen Synthetic Intelligence Division, this document hereby authorizes an accredited Roboticist of the NSS Exodus or a deputized authority to perform a regulation lobotomisation upon the person of one '<I>Sue Donem</I>' (hereafter referred to as the Subject) with intent to enact a live Artificial Intelligence Assimilation (AIA) or live Cyborgification proceedure.<BR>\n<BR>\nNo further station authorization is required, and the Subject waives all rights as a human under Nanotrasen internal and external legal protocol. This document is subject to amendment under Nanotrasen internal protocol \[REDACTED\].<BR>\n<BR>\nSigned: <I>Sue Donem</I><BR>\n"
 
 	stamps = (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the NanoTrasen Synthetic Intelligence Division rubber stamp.</i>"
 
-	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+	var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 	stampoverlay.pixel_x = rand(-2, 2)
 	stampoverlay.pixel_y = rand(-3, 2)
 	stampoverlay.icon_state = "paper_stamp-rd"
@@ -85,7 +85,7 @@
 	desc = "A neatly folded handkerchief embroidered with a 'M'."
 	icon_state = "maurice_bedford_1"
 
-/obj/item/weapon/book/fluff/johnathan_falcian_1
+/obj/item/book/fluff/johnathan_falcian_1
 	name = "sketchbook"
 	desc = "A small, well-used sketchbook."
 	icon = 'icons/obj/custom_items.dmi'
@@ -98,7 +98,7 @@
 ////////// Usable Items //////////
 //////////////////////////////////
 
-/obj/item/weapon/folder/blue/fluff/matthew_riebhardt //Matthew Riebhardt - ZekeSulastin
+/obj/item/folder/blue/fluff/matthew_riebhardt //Matthew Riebhardt - ZekeSulastin
 	name = "academic journal"
 	desc = "An academic journal, seemingly pertaining to medical genetics. This issue is for the second quarter of 2557. Paper flags demarcate some articles the owner finds interesting."
 	icon = 'icons/obj/custom_items.dmi'
@@ -106,7 +106,7 @@
 
 /////////////////////// Serveris: Officer's Notebook ////////////////////
 
-/obj/item/weapon/folder/blue/fluff/officer_notebook
+/obj/item/folder/blue/fluff/officer_notebook
 	name = "Officer's Notebook"
 	desc = "A simple, spiral bound notebook. A holographic crescent moon is printed on the cover, as well as 'S. Seto' beneath it. Numerous paper flags divide the pages, titled everything from incident reports to personal notes."
 	icon = 'icons/obj/custom_items.dmi'
@@ -122,31 +122,31 @@
    item_color ="lucystethos"
    icon = 'icons/obj/custom_items.dmi'
 
-/obj/item/weapon/pen/fluff/multi //spaceman96: Trenna Seber
+/obj/item/tool/pen/fluff/multi //spaceman96: Trenna Seber
 	name = "multicolor pen"
 	desc = "It's a cool looking pen. Lots of colors!"
 
 //////////////////////// AIsForAxolotl - Tea Flask - Margaret Stewart //////////
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/margaret
+/obj/item/reagent_container/food/drinks/flask/vacuumflask/fluff/margaret
 	name = "Tea Flask"
 	desc = "A plastic vacuum flask with an ugly tartan pattern. 'M.S.' has been written on the bottom with a silver marker."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "margaret_flask"
 
-/obj/item/weapon/pen/fluff/fancypen //orangebottle: Lillian Levett, Lilliana Reade
+/obj/item/tool/pen/fluff/fancypen //orangebottle: Lillian Levett, Lilliana Reade
 	name = "fancy pen"
 	desc = "A fancy metal pen. It uses blue ink. An inscription on one side reads,\"L.L. - L.R.\""
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "fancypen"
 
-/obj/item/weapon/pen/fluff/eugene_bissegger_1 //metamorp: eugene bisseger
+/obj/item/tool/pen/fluff/eugene_bissegger_1 //metamorp: eugene bisseger
 	name = "Gilded Pen"
 	desc = "A golden pen that is gilded with a meager amount of gold material. The word 'NanoTrasen' is etched on the clip of the pen."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "eugene_pen"
 
-/obj/item/weapon/pen/fluff/fountainpen //paththegreat: Eli Stevens
+/obj/item/tool/pen/fluff/fountainpen //paththegreat: Eli Stevens
 	name = "Engraved Fountain Pen"
 	desc = "An expensive looking pen with the initials E.S. engraved into the side."
 	icon = 'icons/obj/custom_items.dmi'
@@ -177,46 +177,46 @@
 	if(isliving(user))
 		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
 
-/obj/item/weapon/soap/fluff/azare_siraj_1 //mister fox: Azare Siraj
+/obj/item/tool/soap/fluff/azare_siraj_1 //mister fox: Azare Siraj
 	name = "S'randarr's Tongue Leaf"
 	desc = "A waxy, scentless leaf."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "siraj_tongueleaf"
 	item_state = "siraj_tongueleaf"
 
-/obj/item/weapon/clipboard/fluff/smallnote //lexusjjss: Lexus Langg, Zachary Tomlinson
+/obj/item/clipboard/fluff/smallnote //lexusjjss: Lexus Langg, Zachary Tomlinson
 	name = "small notebook"
 	desc = "A generic small spiral notebook that flips upwards."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "smallnotetext"
 	item_state = "smallnotetext"
 
-/obj/item/weapon/storage/fluff/maye_daye_1 //morrinn: Maye Day
+/obj/item/storage/fluff/maye_daye_1 //morrinn: Maye Day
 	name = "pristine lunchbox"
 	desc = "A pristine stainless steel lunch box. The initials M.D. are engraved on the inside of the lid."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "maye_daye_1"
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/fluff/william_hackett
+/obj/item/reagent_container/food/drinks/flask/fluff/william_hackett
 	name = "handmade flask"
 	desc = "A wooden flask with a silver lid and bottom. It has a matte, dark blue paint on it with the initials \"W.H.\" etched in black."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "williamhackett"
 
-/obj/item/weapon/storage/firstaid/fluff/asus_rose //Kerbal22 - Asus Rose
+/obj/item/storage/firstaid/fluff/asus_rose //Kerbal22 - Asus Rose
 	name = "rugged medkit"
 	desc = "A dinged up medkit, it seems to have seen quite a bit of use."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "asusrose"
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/fluff/johann_erzatz_1 //leonheart11:  Johann Erzatz
+/obj/item/reagent_container/food/drinks/flask/fluff/johann_erzatz_1 //leonheart11:  Johann Erzatz
 	name = "vintage thermos"
 	desc = "An older thermos with a faint shine."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "johann_erzatz_1"
 	volume = 50
 
-/obj/item/weapon/flame/lighter/zippo/fluff/li_matsuda_1 //mangled: Li Matsuda
+/obj/item/tool/lighter/zippo/fluff/li_matsuda_1 //mangled: Li Matsuda
 	name = "blue zippo lighter"
 	desc = "A zippo lighter made of some blue metal."
 	icon = 'icons/obj/custom_items.dmi'
@@ -224,7 +224,7 @@
 	icon_on = "bluezippoon"
 	icon_off = "bluezippo"
 
-/obj/item/weapon/flame/lighter/zippo/fluff/michael_guess_1 //Dragor23: Michael Guess
+/obj/item/tool/lighter/zippo/fluff/michael_guess_1 //Dragor23: Michael Guess
 	name = "engraved lighter"
 	desc = "A golden lighter, engraved with some ornaments and a G."
 	icon = 'icons/obj/custom_items.dmi'
@@ -234,7 +234,7 @@
 
 ///////////////////////////// Jarcolr - Uberto Dandolo - Painted secure briefcase /////////////
 
-/obj/item/weapon/storage/secure/briefcase/fluff/uberto_dandolo
+/obj/item/storage/secure/briefcase/fluff/uberto_dandolo
 	name = "painted secure briefcase"
 	desc = "A bulky briefcase with a combination lock. It features the color green, white and red, and a golden eagle in the middle."
 	icon = 'icons/obj/custom_items.dmi'
@@ -243,7 +243,7 @@
 
 ///////////////////////////// Ziepes - Janis Godmanis - Red Zippo //////////////////////
 
-/obj/item/weapon/flame/lighter/zippo/fluff/janis_godmanis
+/obj/item/tool/lighter/zippo/fluff/janis_godmanis
 	name = "Red-White-Red Zippo"
 	desc = "A badass zippo that looks like the Austrian flag. Upon closer inspection it is revealed that it's a different shade of red than the Austrian flag.."
 	icon = 'icons/obj/custom_items.dmi'
@@ -253,7 +253,7 @@
 
 ////////////////////////////// Vivallion - Isaac Jachym - Butterfly Lighter ////////////
 
-/obj/item/weapon/flame/lighter/zippo/fluff/isaac_jachym
+/obj/item/tool/lighter/zippo/fluff/isaac_jachym
 	name = "Butterfly lighter"
 	desc = "A custom-made zippo lighter, looks rather expensive. On one of it's sides, a clean inscription has been made, 'Butterfly, what is your wisdom?' And I looked down at it's majestic form, flexing it's wings as if to show it's strength. 'Fuck chechenya.' Had it whispered, before fluttering away, and so we went to war."
 	icon = 'icons/obj/custom_items.dmi'
@@ -261,7 +261,7 @@
 	icon_on = "che_zippoon"
 	icon_off = "che_zippo"
 
-/obj/item/weapon/flame/lighter/zippo/fluff/riley_rohtin_1 //rawrtaicho: Riley Rohtin
+/obj/item/tool/lighter/zippo/fluff/riley_rohtin_1 //rawrtaicho: Riley Rohtin
 	name = "Riley's black zippo"
 	desc = "A black zippo lighter, which holds some form of sentimental value."
 	icon = 'icons/obj/custom_items.dmi'
@@ -269,7 +269,7 @@
 	icon_on = "blackzippoon"
 	icon_off = "blackzippo"
 
-/obj/item/weapon/flame/lighter/zippo/fluff/fay_sullivan_1 //furohman: Fay Sullivan
+/obj/item/tool/lighter/zippo/fluff/fay_sullivan_1 //furohman: Fay Sullivan
 	name = "Graduation Lighter"
 	desc = "A silver engraved lighter with 41 on one side and Tharsis University on the other. The lid reads Fay Sullivan, Cybernetic Engineering, 2541"
 	icon = 'icons/obj/custom_items.dmi'
@@ -277,7 +277,7 @@
 	icon_on = "gradzippoon"
 	icon_off = "gradzippo"
 
-/obj/item/weapon/flame/lighter/zippo/fluff/executivekill_1 //executivekill: Hunter Duke
+/obj/item/tool/lighter/zippo/fluff/executivekill_1 //executivekill: Hunter Duke
 	name = "Gonzo Fist zippo"
 	desc = "A Zippo lighter with the iconic Gonzo Fist on a matte black finish."
 	icon = 'icons/obj/custom_items.dmi'
@@ -285,7 +285,7 @@
 	icon_on = "gonzozippoon"
 	icon_off = "gonzozippo"
 
-/obj/item/weapon/flame/lighter/zippo/fluff/naples_1 //naples: Russell Vierson
+/obj/item/tool/lighter/zippo/fluff/naples_1 //naples: Russell Vierson
 	name = "Engraved zippo"
 	desc = "A intricately engraved Zippo lighter."
 	icon = 'icons/obj/custom_items.dmi'
@@ -293,7 +293,7 @@
 	icon_on = "engravedzippoon"
 	icon_off = "engravedzippo"
 
-/obj/item/weapon/fluff/cado_keppel_1 //sparklysheep: Cado Keppel
+/obj/item/fluff/cado_keppel_1 //sparklysheep: Cado Keppel
 	name = "purple comb"
 	desc = "A pristine purple comb made from flexible plastic. It has a small K etched into its side."
 	w_class = 1.0
@@ -307,7 +307,7 @@
 				O.show_message(text("\red [] uses [] to comb their hair with incredible style and sophistication. What a [].", user, src, user.gender == FEMALE ? "lady" : "guy"), 1)
 		return
 
-/obj/item/weapon/fluff/hugo_cinderbacth_1 //thatoneguy: Hugo Cinderbatch
+/obj/item/fluff/hugo_cinderbacth_1 //thatoneguy: Hugo Cinderbatch
 	name = "Old Cane"
 	desc = "An old brown cane made from wood. It has a a large, itallicized H on it's handle."
 	icon = 'icons/obj/custom_items.dmi'
@@ -331,42 +331,42 @@
 	icon_off = "oldcamera_off"
 	pictures_left = 30
 
-/obj/item/weapon/id_wallet/fluff/reese_mackenzie  //Reese MacKenzie - ThoseDernSquirrels
+/obj/item/id_wallet/fluff/reese_mackenzie  //Reese MacKenzie - ThoseDernSquirrels
 
 	name = "ID wallet"
 	desc = "A wallet made of black leather, holding an ID and a gold badge that reads 'NT.' The ID has a small picture of a man, with the caption Reese James MacKenzie, with other pieces of information to the right of the picture."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "reesemackenzie"
 
-/obj/item/weapon/card/id/fluff/lifetime	//fastler: Fastler Greay; it seemed like something multiple people would have
+/obj/item/card/id/fluff/lifetime	//fastler: Fastler Greay; it seemed like something multiple people would have
 	name = "Lifetime ID Card"
 	desc = "A modified ID card given only to those people who have devoted their lives to the better interests of NanoTrasen. It sparkles blue."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "lifetimeid"
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/fluff/shinyflask //lexusjjss: Lexus Langg & Zachary Tomlinson
+/obj/item/reagent_container/food/drinks/flask/fluff/shinyflask //lexusjjss: Lexus Langg & Zachary Tomlinson
 	name = "shiny flask"
 	desc = "A shiny metal flask. It appears to have a Greek symbol inscribed on it."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "shinyflask"
 	volume = 50
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/fluff/lithiumflask //mcgulliver: Wox Derax
+/obj/item/reagent_container/food/drinks/flask/fluff/lithiumflask //mcgulliver: Wox Derax
 	name = "Lithium Flask"
 	desc = "A flask with a Lithium Atom symbol on it."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "lithiumflask"
 	volume = 50
 
-/obj/item/weapon/reagent_containers/glass/beaker/large/fluff/nashida_bishara_1 //rukral:Nashida Bisha'ra
+/obj/item/reagent_container/glass/beaker/large/fluff/nashida_bishara_1 //rukral:Nashida Bisha'ra
 	name = "Nashida's Etched Beaker"
 	desc = "The message: 'Please do not be removing this beaker from the chemistry lab. If lost, return to Nashida Bisha'ra' can be seen etched into the side of this 100 unit beaker."
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "beakerlarge"
 	matter = list("glass" = 5000)
 	volume = 100
 
-/obj/item/weapon/reagent_containers/glass/beaker/fluff/eleanor_stone //Rkf45: Eleanor Stone
+/obj/item/reagent_container/glass/beaker/fluff/eleanor_stone //Rkf45: Eleanor Stone
 	name = "teapot"
 	desc = "An elegant teapot. The engraving on the bottom reads 'ENS'"
 	icon = 'icons/obj/custom_items.dmi'
@@ -377,20 +377,20 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,50,150)
 
-/obj/item/weapon/storage/pill_bottle/fluff/listermedbottle //compactninja: Lister Black
+/obj/item/storage/pill_bottle/fluff/listermedbottle //compactninja: Lister Black
 	name = "Pill bottle (anti-depressants)"
 	desc = "Contains pills used to deal with depression. They appear to be prescribed to Lister Black"
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+		new /obj/item/reagent_container/pill/fluff/listermed( src )
+		new /obj/item/reagent_container/pill/fluff/listermed( src )
+		new /obj/item/reagent_container/pill/fluff/listermed( src )
+		new /obj/item/reagent_container/pill/fluff/listermed( src )
+		new /obj/item/reagent_container/pill/fluff/listermed( src )
+		new /obj/item/reagent_container/pill/fluff/listermed( src )
+		new /obj/item/reagent_container/pill/fluff/listermed( src )
 
-/obj/item/weapon/reagent_containers/pill/fluff/listermed
+/obj/item/reagent_container/pill/fluff/listermed
 	name = "anti-depressant pill"
 	desc = "Used to deal with depression."
 	icon_state = "pill9"
@@ -412,7 +412,7 @@
 
 //Strange penlight, Nerezza: Asher Spock
 
-/obj/item/weapon/reagent_containers/hypospray/fluff/asher_spock_1
+/obj/item/reagent_container/hypospray/fluff/asher_spock_1
 	name = "strange penlight"
 	desc = "Besides the coloring, this penlight looks rather normal and innocent. However, you get a nagging feeling whenever you see it..."
 	icon = 'icons/obj/custom_items.dmi'
@@ -420,17 +420,17 @@
 	amount_per_transfer_from_this = 5
 	volume = 15
 
-/obj/item/weapon/reagent_containers/hypospray/fluff/asher_spock_1/New()
+/obj/item/reagent_container/hypospray/fluff/asher_spock_1/New()
 	..()
 	reagents.remove_reagent("tricordrazine", 30)
 	reagents.add_reagent("oxycodone", 15)
 	update_icon()
 	return
 
-/obj/item/weapon/reagent_containers/hypospray/fluff/asher_spock_1/attack_self(mob/user as mob)
+/obj/item/reagent_container/hypospray/fluff/asher_spock_1/attack_self(mob/user as mob)
 	user << "\blue You click \the [src] but get no reaction. Must be dead."
 
-/obj/item/weapon/reagent_containers/hypospray/fluff/asher_spock_1/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_container/hypospray/fluff/asher_spock_1/attack(mob/M as mob, mob/user as mob)
 	if (user.ckey != "nerezza") //Because this can end up in the wrong hands, let's make it useless for them!
 		user << "\blue You click \the [src] but get no reaction. Must be dead."
 		return
@@ -454,7 +454,7 @@
 			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in \the [src]."
 	return
 
-/obj/item/weapon/reagent_containers/hypospray/fluff/asher_spock_1/examine(mob/user as mob)
+/obj/item/reagent_container/hypospray/fluff/asher_spock_1/examine(mob/user as mob)
 	..()
 	if(user.ckey != "nerezza") return //Only the owner knows how to examine the contents.
 	if(reagents && reagents.reagent_list.len)
@@ -465,13 +465,13 @@
 
 //End strange penlight
 
-/obj/item/weapon/card/id/fluff/asher_spock_2 //Nerezza: Asher Spock
+/obj/item/card/id/fluff/asher_spock_2 //Nerezza: Asher Spock
 	name = "Odysses Specialist ID card"
 	desc = "A special identification card with a red cross signifying an emergency physician has specialised in Odysseus operations and maintenance.\nIt grants the owner recharge bay access."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "odysseus_spec_id"
 
-/obj/item/weapon/clipboard/fluff/mcreary_journal //sirribbot: James McReary
+/obj/item/clipboard/fluff/mcreary_journal //sirribbot: James McReary
 	name = "McReary's journal"
 	desc = "A journal with a warning sticker on the front cover. The initials \"J.M.\" are written on the back."
 	icon = 'icons/obj/custom_items.dmi'
@@ -485,7 +485,7 @@
 	icon_state = "wolfflight"
 	item_state = "wolfflight"
 
-/obj/item/weapon/crowbar/fluff/zelda_creedy_1 //daaneesh: Zelda Creedy
+/obj/item/tool/crowbar/fluff/zelda_creedy_1 //daaneesh: Zelda Creedy
 	name = "Zelda's Crowbar"
 	desc = "A pink crow bar that has an engraving that reads, 'To Zelda. Love always, Dawn'"
 	icon = 'icons/obj/custom_items.dmi'
@@ -494,7 +494,7 @@
 
 ////// Ripley customisation kit - Butchery Royce - MayeDay
 
-/obj/item/weapon/paintkit/fluff/butcher_royce_1
+/obj/item/paintkit/fluff/butcher_royce_1
 	name = "Ripley customisation kit"
 	desc = "A kit containing all the needed tools and parts to turn an APLU Ripley into a Titan's Fist worker mech."
 	icon = 'icons/obj/custom_items.dmi'
@@ -507,7 +507,7 @@
 
 ////// Ripley customisation kit - Sven Fjeltson - Mordeth221
 
-/obj/item/weapon/paintkit/fluff/sven_fjeltson_1
+/obj/item/paintkit/fluff/sven_fjeltson_1
 	name = "Mercenary APLU kit"
 	desc = "A kit containing all the needed tools and parts to turn an APLU Ripley into an old Mercenaries APLU."
 	icon = 'icons/obj/custom_items.dmi'
@@ -618,7 +618,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "hook_kit"
 
-/obj/item/weapon/kitchenknife/attackby(var/obj/item/O as obj, mob/user as mob)
+/obj/item/tool/kitchen/knife/attackby(var/obj/item/O as obj, mob/user as mob)
 	..()
 
 	if(istype(O,/obj/item/device/kit/weapon/fluff/hook))
@@ -628,7 +628,7 @@
 		icon_state = "hook_knife"
 		item_state = "hook_knife"
 
-/obj/item/weapon/butch/attackby(var/obj/item/O as obj, mob/user as mob)
+/obj/item/tool/kitchen/knife/butcher/attackby(var/obj/item/O as obj, mob/user as mob)
 	..()
 
 	if(istype(O,/obj/item/device/kit/weapon/fluff/hook))
@@ -806,21 +806,21 @@
 ///////////////////// Belts //////////////////////////////
 //////////////////////////////////////////////////////////
 
-/obj/item/weapon/storage/belt/medical/fluff/ems
+/obj/item/storage/belt/medical/fluff/ems
 	name = "EMS utility belt"
 	desc = "A sturdy black webbing belt with attached pouches. H. ISHIMARU is scratched on the interior of the buckle."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "emsbelt"
 	item_state = "emsbelt"
 
-/obj/item/weapon/storage/belt/utility/full/fluff/sophie
+/obj/item/storage/belt/utility/full/fluff/sophie
 	name = "Sophie's belt"
 	desc = "A tool-belt in Atmos colours."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "sophie_belt"
 	item_state = "sophie_belt"
 
-/obj/item/weapon/storage/belt/medical/fluff/nashi_belt
+/obj/item/storage/belt/medical/fluff/nashi_belt
 	name = "rainbow medical belt"
 	desc = "A somewhat-worn, modified, rainbow belt."
 	icon = 'icons/obj/custom_items.dmi'
@@ -829,16 +829,16 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 14, "Bicaridine")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 15, "Dermaline")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 16, "Dylovene")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
-		new /obj/item/weapon/reagent_containers/syringe/(src)
+		new /obj/item/reagent_container/glass/bottle/fluff/nashi_bottle(src, 14, "Bicaridine")
+		new /obj/item/reagent_container/glass/bottle/fluff/nashi_bottle(src, 15, "Dermaline")
+		new /obj/item/reagent_container/glass/bottle/fluff/nashi_bottle(src, 16, "Dylovene")
+		new /obj/item/reagent_container/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
+		new /obj/item/reagent_container/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
+		new /obj/item/reagent_container/syringe/(src)
 		new /obj/item/device/healthanalyzer(src)
 
-/obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle
-	icon = 'icons/obj/chemical.dmi'
+/obj/item/reagent_container/glass/bottle/fluff/nashi_bottle
+	icon = 'icons/obj/items/chemistry.dmi'
 	flags_atom = FPRINT //Starting them with lids on them.  Safety first!
 	New(loc, var/color, var/labeled)
 		..()
@@ -1200,7 +1200,7 @@
 		src.held = null
 
 /obj/item/clothing/tie/fluff/konaa_hirano/attackby(var/obj/item/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/weapon/paper))
+	if(istype(O,/obj/item/paper))
 		if(held)
 			usr << "[src] already has something inside it."
 		else
@@ -1317,7 +1317,7 @@
 
 ///// Well-used baton - Oen'g Issek - Donofnyc3
 
-/obj/item/weapon/melee/baton/fluff/oeng_baton
+/obj/item/weapon/baton/fluff/oeng_baton
 	name = "well-used stun baton"
 	desc = "A stun baton used for incapacitating targets; there seems to be a bunch of tally marks set into the handle."
 /*
@@ -1342,7 +1342,7 @@
 		flick("leamas-reloading",src)
 	..()
 */
-/obj/item/weapon/reagent_containers/food/drinks/flask/fluff/yuri_kornienkovich_flask
+/obj/item/reagent_container/food/drinks/flask/fluff/yuri_kornienkovich_flask
 	name = "Yuri's Flask"
 	desc = "An old gold plated flask. Nothing noteworthy about it besides it being gold and the red star on the worn out leather around it. There is also an engraving on the cap that is rather hard to see but it looks like \"Kornienkovich\" "
 	icon = 'icons/obj/custom_items.dmi'
@@ -1367,7 +1367,7 @@
 
 ///////////////////////////// Astronovus - Harold's Cane ////////////////////////////
 
-/obj/item/weapon/cane/fluff/harold
+/obj/item/cane/fluff/harold
 	name = "Harold's Cane"
 	desc = "A cane with a wooden handle and a plastic frame capable of folding itself to make it more storable."
 	w_class = 1.0
@@ -1378,7 +1378,7 @@
 
 //////////////////////////// Footman - Farwa  Plush Doll //////////////////////////////////
 
-/obj/item/weapon/fluff/farwadoll
+/obj/item/fluff/farwadoll
 	name = "Farwa plush doll"
 	desc = "A Farwa plush doll. It's soft and comforting!"
 	w_class = 1.0
@@ -1386,13 +1386,13 @@
 	item_state = "farwaplush"
 	icon_state = "farwaplush"
 
-/obj/item/weapon/fluff/farwadoll/attack_self(mob/user as mob)
+/obj/item/fluff/farwadoll/attack_self(mob/user as mob)
 	user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
 						 "<span class='notice'>You hug [src]. Dawwww... </span>")
 
 ////////////////////////////// Meyar - Cane /////////////////////////////////////////////////
 
-/obj/item/weapon/cane/fluff/ryals
+/obj/item/cane/fluff/ryals
 	 name = "cane"
 	 desc = "This cane seems to have 'Ryals' engraved on its handle."
 	 icon_state = "cane"

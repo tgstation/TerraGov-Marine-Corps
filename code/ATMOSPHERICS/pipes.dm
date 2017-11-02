@@ -64,7 +64,7 @@
 		loc.assume_air(air_temporary)
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
@@ -73,7 +73,7 @@
 	if(istype(W,/obj/item/device/pipe_painter))
 		return 0
 
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	var/turf/T = src.loc
 	if (level==1 && isturf(T) && T.intact)

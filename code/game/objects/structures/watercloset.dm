@@ -44,7 +44,7 @@
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/crowbar))
+	if(istype(I, /obj/item/tool/crowbar))
 		user << "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>"
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
@@ -53,8 +53,8 @@
 			update_icon()
 			return
 
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 
 		if(isliving(G.grabbed_thing))
 			var/mob/living/GM = G.grabbed_thing
@@ -101,8 +101,8 @@
 	anchored = 1
 
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		if(isliving(G.grabbed_thing))
 			var/mob/living/GM = G.grabbed_thing
 			if(user.grab_level > GRAB_PASSIVE)
@@ -158,7 +158,7 @@
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
 		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
-	if(istype(I, /obj/item/weapon/wrench))
+	if(istype(I, /obj/item/tool/wrench))
 		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 			switch(watertemp)
@@ -329,7 +329,7 @@
 
 
 
-/obj/item/weapon/bikehorn/rubberducky
+/obj/item/toy/bikehorn/rubberducky
 	name = "rubber ducky"
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
@@ -377,14 +377,14 @@
 		user << "\red Someone's already washing here."
 		return
 
-	var/obj/item/weapon/reagent_containers/RG = O
+	var/obj/item/reagent_container/RG = O
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("\blue [user] fills \the [RG] using \the [src].","\blue You fill \the [RG] using \the [src].")
 		return
 
-	else if (istype(O, /obj/item/weapon/melee/baton))
-		var/obj/item/weapon/melee/baton/B = O
+	else if (istype(O, /obj/item/weapon/baton))
+		var/obj/item/weapon/baton/B = O
 		if(B.bcell)
 			if(B.bcell.charge > 0 && B.status == 1)
 				flick("baton_active", src)

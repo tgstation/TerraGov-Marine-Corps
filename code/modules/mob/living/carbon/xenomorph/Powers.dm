@@ -341,7 +341,7 @@
 				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane)
 
 		if("resin nest")
-			new /obj/structure/stool/bed/nest(current_turf)
+			new /obj/structure/bed/nest(current_turf)
 		if("sticky resin")
 			new /obj/effect/alien/resin/sticky(current_turf)
 
@@ -370,7 +370,7 @@
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			src << "<span class='warning'>You cannot dissolve \the [I].</span>" // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
-		if(istype(O, /obj/structure/window_frame/almayer/colony/reinforced) && acid_type != /obj/effect/xenomorph/acid/strong)
+		if(istype(O, /obj/structure/window_frame/colony/reinforced) && acid_type != /obj/effect/xenomorph/acid/strong)
 			src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
 			return
 	//TURF CHECK

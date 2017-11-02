@@ -186,15 +186,15 @@
 //gets the actual job rank (ignoring alt titles)
 //this is used solely for sechuds
 /obj/proc/GetJobRealName()
-	if (!istype(src,/obj/item/weapon/card/id)) return
-	var/obj/item/weapon/card/id/I = src
+	if (!istype(src,/obj/item/card/id)) return
+	var/obj/item/card/id/I = src
 	if(I.rank in joblist) return I.rank
 	if(I.assignment in joblist) return I.assignment
 	return "Unknown"
 
 proc/FindNameFromID(mob/living/carbon/human/H)
 	ASSERT(istype(H))
-	var/obj/item/weapon/card/id/I = H.wear_id
+	var/obj/item/card/id/I = H.wear_id
 	if(istype(I)) return I.registered_name
 	I = H.get_active_hand()
 	if(istype(I)) return I.registered_name
@@ -202,7 +202,7 @@ proc/FindNameFromID(mob/living/carbon/human/H)
 proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD icons
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/weapon/card/id/I = src
+	var/obj/item/card/id/I = src
 	if(istype(I))
 		var/job_icons = get_all_job_icons()
 		var/centcom = get_all_centcom_jobs()

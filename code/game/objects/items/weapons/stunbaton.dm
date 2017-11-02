@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/baton
+/obj/item/weapon/baton
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
@@ -15,27 +15,27 @@
 	var/stunforce = 10
 	var/agonyforce = 80
 	var/status = 0		//whether the thing is on or not
-	var/obj/item/weapon/cell/bcell = null
+	var/obj/item/cell/bcell = null
 	var/hitcost = 1000	//oh god why do power cells carry so much charge? We probably need to make a distinction between "industrial" sized power cells for APCs and power cells for everything else.
 	var/has_user_lock = TRUE //whether the baton prevents people without correct access from using it.
 
-/obj/item/weapon/melee/baton/suicide_act(mob/user)
+/obj/item/weapon/baton/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
 	return (FIRELOSS)
 
-/obj/item/weapon/melee/baton/New()
+/obj/item/weapon/baton/New()
 	..()
-	bcell = new/obj/item/weapon/cell/high(src) //Fuckit lets givem all the good cells
+	bcell = new/obj/item/cell/high(src) //Fuckit lets givem all the good cells
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
+/obj/item/weapon/baton/loaded/New() //this one starts with a cell pre-installed.
 	..()
-	bcell = new/obj/item/weapon/cell/high(src)
+	bcell = new/obj/item/cell/high(src)
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
+/obj/item/weapon/baton/proc/deductcharge(var/chrgdeductamt)
 	if(bcell)
 		if(bcell.use(chrgdeductamt))
 			return 1
@@ -44,7 +44,7 @@
 			update_icon()
 			return 0
 
-/obj/item/weapon/melee/baton/update_icon()
+/obj/item/weapon/baton/update_icon()
 	if(status)
 		icon_state = "[initial(name)]_active"
 	else if(!bcell)
@@ -52,22 +52,22 @@
 	else
 		icon_state = "[initial(name)]"
 
-/obj/item/weapon/melee/baton/examine(mob/user)
+/obj/item/weapon/baton/examine(mob/user)
 	..()
 	if(bcell)
 		user <<"<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
 	else
 		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
-/obj/item/weapon/melee/baton/attack_hand(mob/user)
+/obj/item/weapon/baton/attack_hand(mob/user)
 	if(!has_user_lock || check_user_auth(user))
 		..()
 
 //checks if the mob touching the baton has proper access
-/obj/item/weapon/melee/baton/proc/check_user_auth(mob/user)
+/obj/item/weapon/baton/proc/check_user_auth(mob/user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
-		var/obj/item/weapon/card/id/I = H.wear_id
+		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || !check_access(I))
 			H.visible_message("\blue [src] beeeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
 			H.KnockDown(20)
@@ -77,13 +77,13 @@
 			return FALSE
 	return TRUE
 
-/obj/item/weapon/melee/baton/pull_response(mob/puller)
+/obj/item/weapon/baton/pull_response(mob/puller)
 	if(has_user_lock)
 		check_user_auth(puller)
 
-/obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
+/obj/item/weapon/baton/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/cell))
 		if(!bcell)
 			if(user.drop_held_item())
 				W.forceMove(src)
@@ -93,7 +93,7 @@
 		else
 			user << "<span class='notice'>[src] already has a cell.</span>"
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(istype(W, /obj/item/tool/screwdriver))
 		if(bcell)
 			bcell.updateicon()
 			bcell.loc = get_turf(src.loc)
@@ -104,7 +104,7 @@
 			return
 		..()
 
-/obj/item/weapon/melee/baton/attack_self(mob/user)
+/obj/item/weapon/baton/attack_self(mob/user)
 	if(has_user_lock && user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
@@ -122,7 +122,7 @@
 	add_fingerprint(user)
 
 
-/obj/item/weapon/melee/baton/attack(mob/M, mob/user)
+/obj/item/weapon/baton/attack(mob/M, mob/user)
 	if(has_user_lock && user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
@@ -188,24 +188,24 @@
 
 	return 1
 
-/obj/item/weapon/melee/baton/emp_act(severity)
+/obj/item/weapon/baton/emp_act(severity)
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
 //secborg stun baton module
-/obj/item/weapon/melee/baton/robot/attack_self(mob/user)
+/obj/item/weapon/baton/robot/attack_self(mob/user)
 	//try to find our power cell
 	var/mob/living/silicon/robot/R = loc
 	if (istype(R))
 		bcell = R.cell
 	return ..()
 
-/obj/item/weapon/melee/baton/robot/attackby(obj/item/weapon/W, mob/user)
+/obj/item/weapon/baton/robot/attackby(obj/item/W, mob/user)
 	return
 
 //Makeshift stun baton. Replacement for stun gloves.
-/obj/item/weapon/melee/baton/cattleprod
+/obj/item/weapon/baton/cattleprod
 	name = "stunprod"
 	desc = "An improvised stun baton."
 	icon_state = "stunprod_nocell"

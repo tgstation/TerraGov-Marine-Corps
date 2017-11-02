@@ -22,7 +22,7 @@
 	desc = "This can be used for various important functions."
 	icon_state = "comm"
 	req_access = list(ACCESS_MARINE_BRIDGE)
-	circuit = "/obj/item/weapon/circuitboard/communications"
+	circuit = "/obj/item/circuitboard/computer/communications"
 	var/prints_intercept = 1
 	var/authenticated = 0
 	var/list/messagetitle = list()
@@ -61,7 +61,7 @@
 
 		if("login")
 			var/mob/living/carbon/human/C = usr
-			var/obj/item/weapon/card/id/I = C.get_active_hand()
+			var/obj/item/card/id/I = C.get_active_hand()
 			if(istype(I))
 				if(check_access(I)) authenticated = 1
 				if(ACCESS_MARINE_COMMANDER in I.access)
@@ -80,7 +80,7 @@
 
 		if("swipeidseclevel")
 			var/mob/M = usr
-			var/obj/item/weapon/card/id/I = M.get_active_hand()
+			var/obj/item/card/id/I = M.get_active_hand()
 			if(istype(I))
 				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)

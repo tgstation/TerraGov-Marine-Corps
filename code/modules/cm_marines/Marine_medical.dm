@@ -3,7 +3,7 @@
 //Auto-injectors Items
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord
+/obj/item/reagent_container/hypospray/autoinjector/tricord
 	name = "\improper Tricordrazine autoinjector"
 	desc = "An auto-injector loaded with Tricordrazine."
 	amount_per_transfer_from_this = 15
@@ -17,7 +17,7 @@
 		update_icon()
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
+/obj/item/reagent_container/hypospray/autoinjector/quickclot
 	name = "\improper Quick Clot autoinjector"
 	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every 5 seconds."
 	amount_per_transfer_from_this = 3
@@ -30,7 +30,7 @@
 		update_icon()
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP
+/obj/item/reagent_container/hypospray/autoinjector/dexP
 	name = "\improper Dexalin Plus autoinjector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	amount_per_transfer_from_this = 1
@@ -43,7 +43,7 @@
 		update_icon()
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix  //This may be removable soon, since we don't have cloning.  Holding for now, since it's a genetic/eye damage fixer.
+/obj/item/reagent_container/hypospray/autoinjector/clonefix  //This may be removable soon, since we don't have cloning.  Holding for now, since it's a genetic/eye damage fixer.
 	name = "Clone-Fix"
 	desc = "An auto-injector loaded with special chemicals to aid in recovery after cloning, to be used in conjunction with Cryo."
 	amount_per_transfer_from_this = 6
@@ -57,7 +57,7 @@
 		update_icon()
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate
+/obj/item/reagent_container/hypospray/autoinjector/chloralhydrate
 	name = "anesthetic autoinjector"
 	desc = "An anesthetic autoinjector, to aid with surgery"
 	amount_per_transfer_from_this = 10
@@ -72,7 +72,7 @@
 
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene
+/obj/item/reagent_container/hypospray/autoinjector/Dylovene
 	name = "\improper Dylovene (anti-tox) autoinjector"
 	desc = "An auto-injector loaded with 5u of Dylovene."
 	amount_per_transfer_from_this = 5
@@ -86,7 +86,7 @@
 
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone
+/obj/item/reagent_container/hypospray/autoinjector/Oxycodone
 	name = "\improper Oxycodone (EXTREME PAINKILLER) autoinjector"
 	desc = "An auto-injector loaded with 5u of Oxycodone."
 	amount_per_transfer_from_this = 5
@@ -99,7 +99,7 @@
 		update_icon()
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo
+/obj/item/reagent_container/hypospray/autoinjector/Kelo
 	name = "\improper Kelotane autoinjector"
 	desc = "An auto-injector loaded with 5u of Kelotane."
 	amount_per_transfer_from_this = 5
@@ -112,7 +112,7 @@
 		update_icon()
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard
+/obj/item/reagent_container/hypospray/autoinjector/Bicard
 	name = "\improper Bicaridine autoinjector"
 	desc = "An auto-injector loaded with 10u of Bicaridine."
 	amount_per_transfer_from_this = 10
@@ -125,7 +125,7 @@
 		update_icon()
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/Inaprovaline
+/obj/item/reagent_container/hypospray/autoinjector/Inaprovaline
 	name = "\improper Inaprovaline autoinjector"
 	desc = "An auto-injector loaded with Inaprovaline."
 	amount_per_transfer_from_this = 15

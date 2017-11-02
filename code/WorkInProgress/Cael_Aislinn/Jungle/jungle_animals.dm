@@ -58,7 +58,7 @@
 	icon_gib = "panther_dead"
 	speak_chance = 0
 	turns_per_move = 3
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_container/food/snacks/meat
 	response_help = "pets the"
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
@@ -116,7 +116,7 @@
 	icon_gib = "snake_dead"
 	speak_chance = 0
 	turns_per_move = 1
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_container/food/snacks/meat
 	response_help = "pets the"
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"

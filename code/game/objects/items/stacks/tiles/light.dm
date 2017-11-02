@@ -26,7 +26,7 @@
 
 /obj/item/stack/tile/light/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
-	if(istype(O,/obj/item/weapon/crowbar))
+	if(istype(O,/obj/item/tool/crowbar))
 		new/obj/item/stack/sheet/metal(user.loc)
 		amount--
 		new/obj/item/stack/light_w(user.loc)

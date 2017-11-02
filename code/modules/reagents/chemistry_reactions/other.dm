@@ -19,13 +19,13 @@
 					e.amount *= 0.5
 			if(e.start()) //Gets rid of doubling down on explosives for gameplay purposes. Hacky, but enough for now.
 			//Should be removed when we actually balance out chemistry.
-				var/obj/item/weapon/grenade/g
-				var/obj/item/weapon/storage/s
+				var/obj/item/explosive/grenade/g
+				var/obj/item/storage/s
 				for(g in location) cdel(g) //Grab anything on our turf/something.
-				if(istype(location, /obj/item/weapon/storage) || ismob(location)) //If we're in a bag or person.
+				if(istype(location, /obj/item/storage) || ismob(location)) //If we're in a bag or person.
 					for(s in location) //Find all other containers.
 						for(g in s) cdel(g) //Delete all the grenades.
-				if(istype(location.loc, /obj/item/weapon/storage) || ismob(location.loc)) //If the container is in another container.
+				if(istype(location.loc, /obj/item/storage) || ismob(location.loc)) //If the container is in another container.
 					for(g in location.loc) cdel(g) //Delete all the grenades inside.
 					for(s in location.loc) //Search for more containers.
 						if(s == location) continue //Don't search the container we're in.

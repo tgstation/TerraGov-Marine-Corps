@@ -32,9 +32,9 @@
 		master.growth_queue -= src
 	. = ..()
 
-/obj/effect/plantsegment/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+/obj/effect/plantsegment/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			cdel(src)
 	else if(W.heat_source >= 3500)

@@ -100,7 +100,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/justzap = 0
 	var/safe = 1
 	normalspeed = 1
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/circuitboard/airlock/electronics = null
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0	//for mapping use
 	var/list/airlockIndexToFlag
@@ -705,7 +705,7 @@ About the new airlock wires panel:
 			return 0
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if(!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
+			if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
 				usr << "You need wirecutters!"
 				return
 			if(src.isWireColorCut(t1))
@@ -937,7 +937,7 @@ About the new airlock wires panel:
 			if(shock(user, 75))
 				return
 	add_fingerprint(user)
-	if(istype(C, /obj/item/zombie_claws) && (src.welded || src.locked))
+	if(istype(C, /obj/item/weapon/zombie_claws) && (src.welded || src.locked))
 		user.visible_message("<span class='notice'>[user] starts tearing into the door on the [src]!</span>", \
 			"<span class='notice'>You start prying your hand into the gaps of the door with your fingers... This will take about 30 seconds.</span>", \
 			"<span class='notice'>You hear tearing noises!</span>")
@@ -952,8 +952,8 @@ About the new airlock wires panel:
 			src.locked = 1
 			return
 		return
-	if((istype(C, /obj/item/weapon/weldingtool) && !operating && density))
-		var/obj/item/weapon/weldingtool/W = C
+	if((istype(C, /obj/item/tool/weldingtool) && !operating && density))
+		var/obj/item/tool/weldingtool/W = C
 		if(W.remove_fuel(0,user))
 			user.visible_message("<span class='notice'>[user] starts working on \the [src] with [W].</span>", \
 			"<span class='notice'>You start working on \the [src] with [W].</span>", \
@@ -966,10 +966,10 @@ About the new airlock wires panel:
 					src.welded = null
 				src.update_icon()
 		return
-	else if(istype(C, /obj/item/weapon/screwdriver))
+	else if(istype(C, /obj/item/tool/screwdriver))
 		p_open = !p_open
 		update_icon()
-	else if(istype(C, /obj/item/weapon/wirecutters))
+	else if(istype(C, /obj/item/tool/wirecutters))
 		return src.attack_hand(user)
 	else if(istype(C, /obj/item/device/multitool))
 		return src.attack_hand(user)
@@ -999,9 +999,9 @@ About the new airlock wires panel:
 				da.created_name = src.name
 				da.update_state()
 
-				var/obj/item/weapon/airlock_electronics/ae
+				var/obj/item/circuitboard/airlock/ae
 				if(!electronics)
-					ae = new/obj/item/weapon/airlock_electronics( src.loc )
+					ae = new/obj/item/circuitboard/airlock( src.loc )
 					if(!src.req_access)
 						src.check_access()
 					if(src.req_access.len)

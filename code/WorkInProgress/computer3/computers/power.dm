@@ -1,6 +1,6 @@
 /obj/machinery/computer3/powermonitor
 	default_prog = /datum/file/program/powermon
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/cable)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/networking/cable)
 	icon_state = "frame-eng"
 
 /datum/file/program/powermon

@@ -17,8 +17,8 @@
 /obj/machinery/r_n_d/server/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/rdserver(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/circuitboard/machine/rdserver(src)
+	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
@@ -30,7 +30,7 @@
 
 /obj/machinery/r_n_d/server/RefreshParts()
 	var/tot_rating = 0
-	for(var/obj/item/weapon/stock_parts/SP in src)
+	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
 	idle_power_usage /= max(1, tot_rating)
 
@@ -116,7 +116,7 @@
 		return
 	if (shocked)
 		shock(user,50)
-	if (istype(O, /obj/item/weapon/screwdriver))
+	if (istype(O, /obj/item/tool/screwdriver))
 		if (!opened)
 			opened = 1
 			icon_state = "server_o"
@@ -127,7 +127,7 @@
 			user << "You close the maintenance hatch of [src]."
 		return
 	if (opened)
-		if(istype(O, /obj/item/weapon/crowbar))
+		if(istype(O, /obj/item/tool/crowbar))
 			griefProtection()
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
@@ -184,7 +184,7 @@
 /obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"
 	icon_state = "rdcomp"
-	circuit = /obj/item/weapon/circuitboard/rdservercontrol
+	circuit = /obj/item/circuitboard/computer/rdservercontrol
 	var/screen = 0
 	var/obj/machinery/r_n_d/server/temp_server
 	var/list/servers = list()
@@ -323,8 +323,8 @@
 	onclose(user, "server_control")
 	return
 
-/obj/machinery/computer/rdservercontrol/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
-	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
+/obj/machinery/computer/rdservercontrol/attackby(var/obj/item/D as obj, var/mob/user as mob)
+	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
 		user << "\blue You you disable the security protocols"

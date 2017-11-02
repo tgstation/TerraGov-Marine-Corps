@@ -1,7 +1,7 @@
 /obj/structure/ladder
 	name = "ladder"
 	desc = "A sturdy metal ladder."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "ladder11"
 	var/id = null
 	var/height = 0							//the 'height' of the ladder. higher numbers are considered physically higher
@@ -186,10 +186,10 @@
 	return
 
 //Throwing Shiet
-/obj/structure/ladder/attackby(obj/item/weapon/W, mob/user)
+/obj/structure/ladder/attackby(obj/item/W, mob/user)
 	//Throwing Grenades
-	if(istype(W,/obj/item/weapon/grenade))
-		var/obj/item/weapon/grenade/G = W
+	if(istype(W,/obj/item/explosive/grenade))
+		var/obj/item/explosive/grenade/G = W
 		var/ladder_dir_name
 		var/obj/structure/ladder/ladder_dest
 		if(up && down)

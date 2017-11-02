@@ -7,7 +7,7 @@
 //The actual bullet objects.
 /obj/item/projectile
 	name = "projectile"
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "bullet"
 	density = 0
 	unacidable = 1
@@ -326,7 +326,7 @@
 		return 0
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/stool/bed/nest))
+		if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
 			return 0
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
@@ -509,7 +509,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
 		P.play_damage_effect(src)
 		if(P.ammo.shrapnel_chance > 0 && prob(P.ammo.shrapnel_chance + round(damage / 10) ) )
-			var/obj/item/weapon/shard/shrapnel/shrap = new()
+			var/obj/item/shard/shrapnel/shrap = new()
 			shrap.name = "[P.name] shrapnel"
 			shrap.desc = "[shrap.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
 			shrap.loc = organ
@@ -670,7 +670,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(!P || !P.ammo.ping) return
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,P.ammo.ping,10))
+		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10))
 		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
 		I.pixel_x += rand(-6,6)
 		I.pixel_y += rand(-6,6)

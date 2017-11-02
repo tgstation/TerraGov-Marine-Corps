@@ -543,10 +543,10 @@
 	if(H.head) cdel(H.head)
 	if(H.glasses) cdel(H.glasses)
 	if(H.wear_mask) cdel(H.wear_mask)
-	var/obj/item/zombie_claws/ZC = new()
+	var/obj/item/weapon/zombie_claws/ZC = new()
 	ZC.icon_state = "claw_r"
 	H.equip_to_slot_or_del(ZC, WEAR_R_HAND, TRUE)
-	H.equip_to_slot_or_del(new /obj/item/zombie_claws, WEAR_L_HAND, TRUE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claws, WEAR_L_HAND, TRUE)
 	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, WEAR_EYES, TRUE)
 	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, WEAR_FACE, TRUE)
 	return ..()
@@ -642,7 +642,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), WEAR_HANDS)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/yautja_knife(H), WEAR_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),WEAR_L_STORE)
 
 	H.universal_understand = 1

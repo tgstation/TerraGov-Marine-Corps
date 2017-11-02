@@ -54,7 +54,7 @@
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return
-	if(buckled && lying && istype(buckled,/obj/structure/stool/bed/nest)) //Stops nesting stuff, mostly.
+	if(buckled && lying && istype(buckled,/obj/structure/bed/nest)) //Stops nesting stuff, mostly.
 		RestrainedClickOn(A)
 		return
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)

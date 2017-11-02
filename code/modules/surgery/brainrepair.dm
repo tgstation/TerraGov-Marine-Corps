@@ -5,9 +5,9 @@
 /datum/surgery_step/brain/bone_chips
 	priority = 3
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100, 		   \
-	/obj/item/weapon/wirecutters = 75, 		   \
-	/obj/item/weapon/kitchen/utensil/fork = 20
+	/obj/item/tool/surgery/hemostat = 100, 		   \
+	/obj/item/tool/wirecutters = 75, 		   \
+	/obj/item/tool/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 40
@@ -45,7 +45,7 @@
 /datum/surgery_step/brain/hematoma
 	priority = 3
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/tool/surgery/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 

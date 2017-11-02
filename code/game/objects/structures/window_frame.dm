@@ -1,15 +1,15 @@
 /obj/structure/window_frame
 	name = "window frame"
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
-	icon = 'icons/turf/almayer.dmi'
-	icon_state = "rwindow0_frame"
+	icon = 'icons/obj/structures/window_frames.dmi'
+	icon_state = "window0_frame"
 	layer = TABLE_LAYER
 	density = 1
 	throwpass = TRUE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
-	var/obj/structure/window/reinforced/almayer/window_type = /obj/structure/window/reinforced/almayer
+	var/obj/structure/window/framed/almayer/window_type = /obj/structure/window/framed/almayer
 	var/basestate = "window"
 	var/junction = 0
 
@@ -17,9 +17,9 @@
 		/turf/simulated/wall)
 
 	var/tiles_special[] = list(/obj/machinery/door/airlock,
-		/obj/structure/window/reinforced/almayer,
+		/obj/structure/window/framed,
 		/obj/structure/girder,
-		/obj/structure/window_frame/almayer)
+		/obj/structure/window_frame)
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0)) return 1 //Air can pass through a window-sized hole
@@ -52,7 +52,7 @@
 	update_nearby_icons()
 	. = ..()
 
-/obj/structure/window_frame/attackby(obj/item/weapon/W, mob/user)
+/obj/structure/window_frame/attackby(obj/item/W, mob/user)
 	if(istype(W, sheet_type))
 		var/obj/item/stack/sheet/sheet = W
 		if(sheet.get_amount() < 2)
@@ -68,8 +68,8 @@
 			new window_type(loc) //This only works on Almayer windows!
 			cdel(src)
 
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	else if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			if(user.grab_level >= GRAB_AGGRESSIVE)
@@ -92,26 +92,26 @@
 
 
 /obj/structure/window_frame/almayer
-	icon_state = "rwindow0_frame"
+	icon_state = "alm_window0_frame"
+	basestate = "alm_window"
 
 /obj/structure/window_frame/almayer/white
-	icon_state = "wwindow0_frame"
-	basestate = "wwindow"
-	window_type = /obj/structure/window/reinforced/almayer/white
+	icon_state = "white_window0_frame"
+	basestate = "white_window"
+	window_type = /obj/structure/window/framed/almayer/white
 
-/obj/structure/window_frame/almayer/colony
-	icon_state = "cwindow0_frame"
-	basestate = "cwindow"
+/obj/structure/window_frame/colony
+	icon_state = "col_window0_frame"
+	basestate = "col_window"
 
-/obj/structure/window_frame/almayer/colony/reinforced
-	icon_state = "crwindow0_frame"
-	basestate = "crwindow"
+/obj/structure/window_frame/colony/reinforced
+	icon_state = "col_rwindow0_frame"
+	basestate = "col_rwindow"
 
 /obj/structure/window_frame/chigusa
-	icon = 'icons/turf/chigusa.dmi'
-	icon_state = "rwindow0_frame"
+	icon_state = "chig_window0_frame"
+	basestate = "chig_window"
 
 /obj/structure/window_frame/wood
-	icon = 'icons/turf/wood.dmi'
-	icon_state = "window0_frame"
-	basestate = "window"
+	icon_state = "wood_window0_frame"
+	basestate = "wood_window"

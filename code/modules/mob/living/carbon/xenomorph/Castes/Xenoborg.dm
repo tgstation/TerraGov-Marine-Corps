@@ -85,8 +85,8 @@
 
 /mob/living/carbon/Xenomorph/Xenoborg/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(user && O && stat != DEAD)
-		if(istype(O, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = O
+		if(istype(O, /obj/item/tool/weldingtool))
+			var/obj/item/tool/weldingtool/WT = O
 			updatehealth()
 			if(health < maxHealth)
 				if(!WT.remove_fuel(10))
@@ -101,8 +101,8 @@
 			else
 				user << "<span class='warning'>\The [src] is not damaged.</span>"
 				return
-		if(istype(O, /obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = O
+		if(istype(O, /obj/item/cell))
+			var/obj/item/cell/C = O
 			if(storedplasma >= maxplasma)
 				user << "<span class='warning'>\The [src] does not need a new cell right now.</span>"
 				return

@@ -1,6 +1,6 @@
 /obj/machinery/computer3/crew
 	default_prog		= /datum/file/program/crew
-	spawn_parts			= list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/radio)
+	spawn_parts			= list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/networking/radio)
 	icon_state			= "frame-med"
 
 /datum/file/program/crew

@@ -12,7 +12,7 @@
 	spawn_positions = 1
 	supervisors = "the acting commander"
 	selection_color = "#99FF99"
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/card/id/silver
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
@@ -26,16 +26,16 @@
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/officer,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/medical,
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/syringe
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/medical,
+				WEAR_L_STORE = /obj/item/storage/pouch/syringe
 				)
 
 	generate_stored_equipment()
 		. = list(
 				WEAR_WAIST = /obj/item/device/pda/heads/cmo,
 				WEAR_J_STORE = /obj/item/device/flashlight/pen,
-				WEAR_L_HAND = /obj/item/weapon/storage/firstaid/adv
+				WEAR_L_HAND = /obj/item/storage/firstaid/adv
 				)
 
 	generate_entry_message()
@@ -68,15 +68,15 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/medical,
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/syringe
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/medical,
+				WEAR_L_STORE = /obj/item/storage/pouch/syringe
 				)
 
 	generate_stored_equipment()
 		. = list(
 				WEAR_WAIST = /obj/item/device/pda/medical,
-				WEAR_L_HAND = /obj/item/weapon/storage/firstaid/adv
+				WEAR_L_HAND = /obj/item/storage/firstaid/adv
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
@@ -108,9 +108,9 @@ You are also an expert when it comes to medication and treatment. If you do not 
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/medical,
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/syringe
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/medical,
+				WEAR_L_STORE = /obj/item/storage/pouch/syringe
 				)
 
 	generate_stored_equipment()
@@ -137,7 +137,7 @@ Your role involves a lot of roleplaying, but you can perform the function of a r
 	selection_color = "#ffeedd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_WY_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_WY_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/card/id/silver
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -146,7 +146,7 @@ Your role involves a lot of roleplaying, but you can perform the function of a r
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/liaison_suit,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/satchel
+				WEAR_BACK = /obj/item/storage/backpack/satchel
 				)
 
 
@@ -185,7 +185,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	spawn_positions = 1
 	supervisors = "the acting commander"
 	selection_color = "#aaee55"
-	idtype = /obj/item/weapon/card/id/gold
+	idtype = /obj/item/card/id/gold
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
 	flags_whitelist = WHITELIST_SYNTHETIC
 	skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_MT,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_EXPERT,"medical"=SKILL_MEDICAL_CMO,"melee_weapons"=SKILL_MELEE_SUPER,"pilot"=SKILL_PILOT_TRAINED,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_MP,"powerloader"=SKILL_POWERLOADER_MASTER)
@@ -199,11 +199,11 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/rank/synthetic,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
-				WEAR_WAIST = /obj/item/weapon/storage/belt/utility/full,
+				WEAR_WAIST = /obj/item/storage/belt/utility/full,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
-				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/weapon/storage/pouch/general/medium,
-				WEAR_L_STORE = /obj/item/weapon/storage/pouch/general/medium
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/medium,
+				WEAR_L_STORE = /obj/item/storage/pouch/general/medium
 				)
 
 	generate_entry_conditions(mob/living/carbon/human/H)
@@ -221,7 +221,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 
 		//update id with new name
 		if(H.wear_id)
-			var/obj/item/weapon/card/id/I = H.wear_id
+			var/obj/item/card/id/I = H.wear_id
 			I.registered_name = H.real_name
 			I.name = "[I.registered_name]'s ID Card ([I.assignment])"
 

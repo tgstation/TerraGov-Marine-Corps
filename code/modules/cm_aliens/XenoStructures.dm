@@ -657,8 +657,8 @@
 		visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
@@ -782,7 +782,7 @@
 				health -= 25
 	healthcheck()
 
-/obj/structure/tunnel/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/tunnel/attackby(obj/item/W as obj, mob/user as mob)
 	if(!isXeno(user))
 		return ..()
 	attack_alien(user)
@@ -836,28 +836,7 @@
 	return attack_hand()
 
 
-//COMMENTED BY APOP
-/*/obj/item/weapon/handcuffs/xeno
-	name = "hardened resin"
-	desc = "A thick, nasty resin. You could probably resist out of this."
-	breakouttime = 200
-	cuff_sound = 'sound/effects/blobattack.ogg'
-	icon = 'icons/xeno/effects.dmi'
-	icon_state = "sticky2"
 
-	dropped()
-		cdel(src)
-		return*/
-
-/obj/item/weapon/legcuffs/xeno
-	name = "sticky resin"
-	desc = "A thick, nasty resin. You could probably resist out of this."
-	breakouttime = 100
-	icon = 'icons/xeno/effects.dmi'
-	icon_state = "sticky2"
-
-/obj/item/weapon/legcuffs/xeno/dropped()
-	cdel(src)
 
 //Alien blood effects.
 /obj/effect/decal/cleanable/blood/xeno

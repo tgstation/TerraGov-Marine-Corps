@@ -122,8 +122,8 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 
-/obj/item/limb/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/scalpel))
+/obj/item/limb/head/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/tool/surgery/scalpel))
 		switch(brain_op_stage)
 			if(0)
 				user.visible_message("<span class='warning'>[brainmob] is beginning to have \his head cut open with [W] by [user].</span>", \
@@ -140,7 +140,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 				brain_op_stage = 3.0
 			else
 				..()
-	else if(istype(W,/obj/item/weapon/circular_saw))
+	else if(istype(W,/obj/item/tool/surgery/circular_saw))
 		switch(brain_op_stage)
 			if(1)
 				user.visible_message("<span class='warning'>[brainmob] has \his head sawed open with [W] by [user].</span>", \

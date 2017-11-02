@@ -13,7 +13,7 @@
 /obj/structure/table
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "table"
 	density = 1
 	anchored = 1.0
@@ -21,7 +21,7 @@
 	throwpass = 1	//You can throw objects over this, despite it's density.")
 	climbable = 1
 	breakable = 1
-	parts = /obj/item/weapon/table_parts
+	parts = /obj/item/frame/table
 
 	var/flipped = 0
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
@@ -316,22 +316,22 @@
 	else
 		do_flip()
 
-/obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/table/MouseDrop_T(obj/item/I, mob/user)
 
-	if(!istype(O, /obj/item/weapon) || !user.get_active_hand() != O)
-		return ..()
+	if (!istype(I) || user.get_active_hand() != I)
+		return
 	if(isrobot(user))
 		return
 	user.drop_held_item()
-	if(O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
+	if(I.loc != loc)
+		step(I, get_dir(I, src))
+
 
 
 /obj/structure/table/attackby(obj/item/W, mob/user)
 	if(!W) return
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) <= 1)
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = W
 		if(istype(G.grabbed_thing, /mob/living))
 			var/mob/living/M = G.grabbed_thing
 			if(user.a_intent == "hurt")
@@ -351,7 +351,7 @@
 				"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/tool/wrench))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -510,7 +510,7 @@
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon_state = "wood_table"
-	parts = /obj/item/weapon/table_parts/wood
+	parts = /obj/item/frame/table/wood
 	health = 50
 /*
  * Gambling tables
@@ -519,7 +519,7 @@
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
 	icon_state = "gamble_table"
-	parts = /obj/item/weapon/table_parts/gambling
+	parts = /obj/item/frame/table/gambling
 	health = 50
 /*
  * Reinforced tables
@@ -530,14 +530,14 @@
 	icon_state = "reinf_table"
 	health = 200
 	var/status = 2
-	parts = /obj/item/weapon/table_parts/reinforced
+	parts = /obj/item/frame/table/reinforced
 
 /obj/structure/table/reinforced/flip(var/direction)
 	return 0 //No, just no. It's a full desk, you can't flip that
 
-/obj/structure/table/reinforced/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+/obj/structure/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if(status == 2)
 				user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
@@ -560,7 +560,7 @@
 			return
 		return
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/tool/wrench))
 		if(status == 2)
 			return
 	..()
@@ -579,7 +579,7 @@
 	throwpass = 1	//You can throw objects over this, despite it's density.
 	breakable = 1
 	climbable = 1
-	parts = /obj/item/weapon/rack_parts
+	parts = /obj/item/frame/rack
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0)) return 1
@@ -593,18 +593,18 @@
 	else
 		return 0
 
-/obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if(!istype(O, /obj/item/weapon) || !user.get_active_hand() != O)
+/obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
+	if (!istype(I) || user.get_active_hand() != I)
 		return
 	if(isrobot(user))
 		return
 	user.drop_held_item()
-	if(O.loc != loc)
-		step(O, get_dir(O, src))
-	return
+	if(I.loc != loc)
+		step(I, get_dir(I, src))
 
-/obj/structure/rack/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/wrench))
+
+/obj/structure/rack/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/tool/wrench))
 		destroy(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return

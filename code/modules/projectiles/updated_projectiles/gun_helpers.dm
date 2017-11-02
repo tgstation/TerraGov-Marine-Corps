@@ -259,8 +259,8 @@ should be alright.
 				user << "<span class='notice'>You start a tactical reload.</span>"
 			var/old_mag_loc = AM.loc
 			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK) && AM.loc == old_mag_loc && !current_mag)
-				if(istype(AM.loc, /obj/item/weapon/storage))
-					var/obj/item/weapon/storage/S = AM.loc
+				if(istype(AM.loc, /obj/item/storage))
+					var/obj/item/storage/S = AM.loc
 					S.remove_from_storage(AM)
 				reload(user, AM)
 	else
@@ -554,7 +554,7 @@ should be alright.
 	//This works, but it's also pretty slow in comparison to the updated method.
 	var/turf/current_turf = get_turf(src)
 	var/obj/item/ammo_casing/casing = locate() in current_turf
-	var/icon/I = new( 'icons/obj/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
+	var/icon/I = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
 	I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
 	if(casing) //If there is already something on the ground, takes the firs thing it finds. Can take a long time if there are a lot of things.
 		//Still better than making a billion casings.
@@ -580,7 +580,7 @@ if(current_mag.casings_to_eject.len && casing_override) //We have some spent cas
 
 	if(!casing)
 		//Feeding dir is faster than doing Turn().
-		G = new( 'icons/obj/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
+		G = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
 		G.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11)) //Shift it randomy.
 		var/obj/item/ammo_casing/new_casing = new(current_turf) //Then we create a new casing.
 		new_casing.icon = G //We give this new casing the icon we just generated.
@@ -591,7 +591,7 @@ if(current_mag.casings_to_eject.len && casing_override) //We have some spent cas
 	G = casing.icon //Get the icon from the casing icon if it spawned or was there previously.
 	var/i
 	for(i = 1 to current_mag.casings_to_eject.len) //We want to run this for each item in the list.
-		var/icon/I = new( 'icons/obj/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) )
+		var/icon/I = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) )
 		I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
 		G.Blend(I,ICON_OVERLAY) //<---- Crashes the client. //Blend them two in, with I overlaying what's already there.
 		playsound(current_turf, sound_to_play, 20, 1)

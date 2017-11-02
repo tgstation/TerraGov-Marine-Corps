@@ -1,11 +1,12 @@
 
 //Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
-/obj/structure/stool/bed/nest
+/obj/structure/bed/nest
 	name = "alien nest"
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "nest"
 	buckling_y = 6
+	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	var/health = 100
 	var/on_fire = 0
 	var/resisting = 0
@@ -17,9 +18,9 @@
 		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
-/obj/structure/stool/bed/nest/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+/obj/structure/bed/nest/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
 			user << "<span class='notice'>You place [M] on [src].</span>"
@@ -36,7 +37,8 @@
 
 
 
-/obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
+
+/obj/structure/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
@@ -87,7 +89,7 @@
 	sleep(50)
 	recently_unbuckled = 0
 
-/obj/structure/stool/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
+/obj/structure/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
 
 	if(!ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.is_mob_restrained() || usr.stat || M.buckled || !iscarbon(user))
 		return
@@ -126,16 +128,16 @@
 	do_buckle(M, user)
 
 
-/obj/structure/stool/bed/nest/send_buckling_message(mob/M, mob/user)
+/obj/structure/bed/nest/send_buckling_message(mob/M, mob/user)
 	M.visible_message("<span class='xenonotice'>[user] secretes a thick, vile resin, securing [M] into [src]!</span>", \
 	"<span class='xenonotice'>[user] drenches you in a foul-smelling resin, trapping you in [src]!</span>", \
 	"<span class='notice'>You hear squelching.</span>")
 
-/obj/structure/stool/bed/nest/afterbuckle(mob/M)
+/obj/structure/bed/nest/afterbuckle(mob/M)
 	. = ..()
 	update_icon()
 
-/obj/structure/stool/bed/nest/unbuckle(mob/user as mob)
+/obj/structure/bed/nest/unbuckle(mob/user as mob)
 	if(!buckled_mob)
 		return
 	resisting = 0
@@ -144,7 +146,7 @@
 	..()
 
 
-/obj/structure/stool/bed/nest/update_icon()
+/obj/structure/bed/nest/update_icon()
 	overlays.Cut()
 	if(on_fire)
 		overlays += "alien_fire"
@@ -152,12 +154,12 @@
 		overlays += image("icon_state"="nest_overlay","layer"=LYING_MOB_LAYER + 0.1)
 
 
-/obj/structure/stool/bed/nest/proc/healthcheck()
+/obj/structure/bed/nest/proc/healthcheck()
 	if(health <= 0)
 		density = 0
 		cdel(src)
 
-/obj/structure/stool/bed/nest/fire_act()
+/obj/structure/bed/nest/fire_act()
 	on_fire = 1
 	if(on_fire)
 		update_icon()
@@ -165,7 +167,7 @@
 			cdel(src)
 
 
-/obj/structure/stool/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return
 	if(M.a_intent == "hurt")
@@ -177,12 +179,12 @@
 	else
 		attack_hand(M)
 
-/obj/structure/stool/bed/nest/attack_animal(mob/living/M as mob)
+/obj/structure/bed/nest/attack_animal(mob/living/M as mob)
 	M.visible_message("<span class='danger'>\The [M] tears at \the [src]!", \
 	"<span class='danger'>You tear at \the [src].")
 	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 	health -= 40
 	healthcheck()
 
-/obj/structure/stool/bed/nest/flamer_fire_act()
+/obj/structure/bed/nest/flamer_fire_act()
 	cdel(src)

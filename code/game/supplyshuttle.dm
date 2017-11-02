@@ -50,8 +50,8 @@ var/list/mechtoys = list(
 	if(istype(A) && A.checkpass(PASSGLASS))
 		return prob(60)
 
-	var/obj/structure/stool/bed/B = A
-	if (istype(A, /obj/structure/stool/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
+	var/obj/structure/bed/B = A
+	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
 		return 0
 
 	if(istype(A, /obj/vehicle))	//no vehicles
@@ -97,7 +97,7 @@ var/list/mechtoys = list(
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
-	circuit = "/obj/item/weapon/circuitboard/supplycomp"
+	circuit = "/obj/item/circuitboard/computer/supplycomp"
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/hacked = 0
@@ -108,7 +108,7 @@ var/list/mechtoys = list(
 	name = "Supply ordering console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "request"
-	circuit = "/obj/item/weapon/circuitboard/ordercomp"
+	circuit = "/obj/item/circuitboard/computer/ordercomp"
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
@@ -170,7 +170,7 @@ var/list/mechtoys = list(
 	proc/forbidden_atoms_check(atom/A)
 		if(istype(A,/mob/living))
 			return 1
-		if(istype(A,/obj/item/weapon/disk/nuclear))
+		if(istype(A,/obj/item/disk/nuclear))
 			return 1
 		if(istype(A,/obj/item/device/radio/beacon))
 			return 1
@@ -203,8 +203,8 @@ var/list/mechtoys = list(
 				for(var/atom in MA)
 					// Sell manifests
 					var/atom/A = atom
-					if(find_slip && istype(A,/obj/item/weapon/paper/manifest))
-						var/obj/item/weapon/paper/slip = A
+					if(find_slip && istype(A,/obj/item/paper/manifest))
+						var/obj/item/paper/slip = A
 						if(slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
 							points += points_per_slip
 							find_slip = 0
@@ -255,7 +255,7 @@ var/list/mechtoys = list(
 
 			//supply manifest generation begin
 
-			var/obj/item/weapon/paper/manifest/slip = new /obj/item/weapon/paper/manifest(A)
+			var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(A)
 			slip.info = "<h3>[command_name()] Storage Retrieval Manifest</h3><hr><br>"
 			slip.info +="Order #[SO.ordernum]<br>"
 			slip.info +="Destination: [station_name]<br>"
@@ -290,7 +290,7 @@ var/list/mechtoys = list(
 		shoppinglist.Cut()
 		return
 
-/obj/item/weapon/paper/manifest
+/obj/item/paper/manifest
 	name = "Supply Manifest"
 
 
@@ -380,7 +380,7 @@ var/list/mechtoys = list(
 			idname = usr.real_name
 
 		supply_controller.ordernum++
-		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
 		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
@@ -488,7 +488,7 @@ var/list/mechtoys = list(
 	return
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
-	if(istype(I,/obj/item/weapon/card/emag) && !hacked)
+	if(istype(I,/obj/item/card/emag) && !hacked)
 		user << "\blue Special supplies unlocked."
 		hacked = 1
 		return
@@ -585,7 +585,7 @@ var/list/mechtoys = list(
 			idname = usr.real_name
 
 		supply_controller.ordernum++
-		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
 		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"

@@ -133,7 +133,7 @@
 	var/obj/item/clothing/Cl
 	switch(target_zone)
 		if(1)
-			if(isobj(head) && !istype(head, /obj/item/weapon/paper))
+			if(isobj(head) && !istype(head, /obj/item/paper))
 				Cl = head
 				. = prob((Cl.permeability_coefficient*100) - 1)
 			if(. && wear_mask)

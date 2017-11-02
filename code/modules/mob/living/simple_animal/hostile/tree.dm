@@ -8,7 +8,7 @@
 	icon_gib = "pine_1"
 	speak_chance = 0
 	turns_per_move = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
+	meat_type = /obj/item/reagent_container/food/snacks/carpmeat
 	response_help = "brushes the"
 	response_disarm = "pushes the"
 	response_harm = "hits the"

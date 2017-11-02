@@ -13,7 +13,7 @@
 /obj/structure/lamarr/ex_act(severity)
 	switch(severity)
 		if (1)
-			new /obj/item/weapon/shard( src.loc )
+			new /obj/item/shard( src.loc )
 			Break()
 			cdel(src)
 		if (2)
@@ -37,7 +37,7 @@
 		if (!( src.destroyed ))
 			src.density = 0
 			src.destroyed = 1
-			new /obj/item/weapon/shard( src.loc )
+			new /obj/item/shard( src.loc )
 			playsound(src, "shatter", 25, 1)
 			Break()
 	else
@@ -52,7 +52,7 @@
 	return
 
 
-/obj/structure/lamarr/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/lamarr/attackby(obj/item/W as obj, mob/user as mob)
 	src.health -= W.force
 	src.healthcheck()
 	..()

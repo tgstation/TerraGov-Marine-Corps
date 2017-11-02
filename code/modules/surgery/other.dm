@@ -6,7 +6,7 @@
 
 /datum/surgery_step/fix_vein
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/tool/surgery/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 	can_infect = 1
@@ -61,9 +61,9 @@
 /datum/surgery_step/fix_dead_tissue //Debridement
 	priority = 1
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,		\
-		/obj/item/weapon/kitchenknife = 75,	\
-		/obj/item/weapon/shard = 50, 		\
+		/obj/item/tool/surgery/scalpel = 100,		\
+		/obj/item/tool/kitchen/knife = 75,	\
+		/obj/item/shard = 50, 		\
 	)
 
 	can_infect = 1

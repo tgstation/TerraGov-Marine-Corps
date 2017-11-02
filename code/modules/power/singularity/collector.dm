@@ -11,7 +11,7 @@ var/global/list/rad_collectors = list()
 	directwired = 1
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 //	use_power = 0
-	var/obj/item/weapon/tank/phoron/P = null
+	var/obj/item/tank/phoron/P = null
 	var/last_power = 0
 	var/last_power_new = 0
 	var/active = 0
@@ -56,7 +56,7 @@ var/global/list/rad_collectors = list()
 
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/tank/phoron))
+	if(istype(W, /obj/item/tank/phoron))
 		if(!src.anchored)
 			user << "\red The [src] needs to be secured to the floor first."
 			return 1
@@ -67,11 +67,11 @@ var/global/list/rad_collectors = list()
 			P = W
 			update_icons()
 		return 1
-	else if(istype(W, /obj/item/weapon/crowbar))
+	else if(istype(W, /obj/item/tool/crowbar))
 		if(P && !src.locked)
 			eject()
 			return 1
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/tool/wrench))
 		if(P)
 			user << "\blue Remove the phoron tank first."
 			return 1
@@ -85,7 +85,7 @@ var/global/list/rad_collectors = list()
 		else
 			disconnect_from_network()
 		return 1
-	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if (src.allowed(user))
 			if(active)
 				src.locked = !src.locked
@@ -112,7 +112,7 @@ var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector/proc/eject()
 	locked = 0
-	var/obj/item/weapon/tank/phoron/Z = src.P
+	var/obj/item/tank/phoron/Z = src.P
 	if (!Z)
 		return
 	Z.loc = get_turf(src)

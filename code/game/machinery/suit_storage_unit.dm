@@ -479,14 +479,14 @@
 /obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
 	if(!src.ispowered)
 		return
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/tool/screwdriver))
 		src.panelopen = !src.panelopen
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(src.panelopen ? "open up" : "close") )
 		src.updateUsrDialog()
 		return
-	if ( istype(I, /obj/item/weapon/grab) )
-		var/obj/item/weapon/grab/G = I
+	if ( istype(I, /obj/item/grab) )
+		var/obj/item/grab/G = I
 		if( !(ismob(G.grabbed_thing)) )
 			return
 		if (!src.isopen)
@@ -665,13 +665,13 @@
 			return
 
 	//Hacking init.
-	if(istype(I, /obj/item/device/multitool) || istype(I, /obj/item/weapon/wirecutters))
+	if(istype(I, /obj/item/device/multitool) || istype(I, /obj/item/tool/wirecutters))
 		if(panel_open)
 			attack_hand(user)
 		return
 	//Other interface stuff.
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 
 		if(!(ismob(G.grabbed_thing)))
 			return
@@ -694,20 +694,20 @@
 			add_fingerprint(user)
 			updateUsrDialog()
 			return
-	else if(istype(I,/obj/item/weapon/screwdriver))
+	else if(istype(I,/obj/item/tool/screwdriver))
 
 		panel_open = !panel_open
 		user << "You [panel_open ?  "open" : "close"] the maintenance panel."
 		src.updateUsrDialog()
 		return
 
-	else if(istype(I,/obj/item/weapon/card/emag))
+	else if(istype(I,/obj/item/card/emag))
 
 		if(emagged)
 			user << "\red The cycler has already been subverted."
 			return
 
-		var/obj/item/weapon/card/emag/E = I
+		var/obj/item/card/emag/E = I
 		src.updateUsrDialog()
 		E.uses--
 
@@ -906,7 +906,7 @@
 
 	else if ((href_list["cutwire"]) && (src.panel_open))
 		var/twire = text2num(href_list["cutwire"])
-		if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
+		if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
 			usr << "You need wirecutters!"
 			return
 		if (src.isWireColorCut(twire))

@@ -99,8 +99,8 @@
 	if(!fswitch.ispowered || !fswitch.turned_on) return 0
 	fswitch.use_power(power_tick) //Make the switch use up the power, not the floodlight, since they don't have areas
 
-/obj/machinery/hydro_floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/obj/item/weapon/weldingtool/WT = W
+/obj/machinery/hydro_floodlight/attackby(obj/item/W as obj, mob/user as mob)
+	var/obj/item/tool/weldingtool/WT = W
 	if(istype(WT))
 		if(!damaged) return
 		if(WT.remove_fuel(0, user))

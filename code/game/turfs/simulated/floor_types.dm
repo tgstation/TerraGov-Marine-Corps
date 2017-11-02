@@ -69,12 +69,12 @@
 /turf/simulated/floor/engine/nitrogen
 	oxygen = 0
 
-/turf/simulated/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/turf/simulated/floor/engine/attackby(obj/item/C as obj, mob/user as mob)
 	if(!C)
 		return
 	if(!user)
 		return
-	if(istype(C, /obj/item/weapon/wrench))
+	if(istype(C, /obj/item/tool/wrench))
 		user << "\blue Removing rods..."
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))

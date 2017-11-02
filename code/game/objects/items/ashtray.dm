@@ -1,5 +1,5 @@
 /obj/item/ashtray
-	icon = 'icons/obj/ashtray.dmi'
+	icon = 'icons/obj/items/ashtray.dmi'
 	var/
 		max_butts 	= 0
 		empty_desc 	= ""
@@ -14,10 +14,10 @@
 	src.pixel_x = rand(-6, 6)
 	return
 
-/obj/item/ashtray/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ashtray/attackby(obj/item/W as obj, mob/user as mob)
 	if (health < 1)
 		return
-	if (istype(W,/obj/item/weapon/cigbutt) || istype(W,/obj/item/clothing/mask/cigarette) || istype(W, /obj/item/weapon/flame/match))
+	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/cigarette) || istype(W, /obj/item/tool/match))
 		if (contents.len >= max_butts)
 			user << "This ashtray is full."
 			return

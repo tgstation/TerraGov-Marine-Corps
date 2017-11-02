@@ -64,7 +64,7 @@ Items and objects that are very hard to get to and do not affect balance.
 //NO BUGS
 /obj/structure/nobugs
 	name = "metal pad"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "implant_melted"
 	desc = "A strange small metal object with a button in the middle and rectangular hole on the side..."
 	var/state = 0 //0 = hidden, 1 = shown
@@ -72,7 +72,7 @@ Items and objects that are very hard to get to and do not affect balance.
 	unacidable = 1
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/weapon/coin))
+		if(istype(W,/obj/item/coin))
 			if(coins < 4 && !state)
 				user.visible_message("[user] inserts \the [W] into \the [src].","\blue You insert \the [W] inside \the [src].")
 				coins++
@@ -104,16 +104,16 @@ Items and objects that are very hard to get to and do not affect balance.
 							for(var/mob/living/carbon/human/H in range(9))
 								if(!H || isnull(H) || H.stat) continue
 								H << "<font size=6 color=red>NO - BUGS</font>"
-								new /obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake(get_turf(H.loc))
+								new /obj/item/reagent_container/food/snacks/sliceable/braincake(get_turf(H.loc))
 
 						if(3)
 							for(var/mob/living/carbon/human/H in range(10))
 								if(!H || isnull(H) || H.stat) continue
 								H << "<font size=7 color=red><b>NO<br>BUGS</b></font>"
-								new /obj/item/weapon/reagent_containers/pill/happy(get_turf(H.loc))
-								new /obj/item/weapon/reagent_containers/pill/happy(get_turf(H.loc))
-								new /obj/item/weapon/reagent_containers/pill/happy(get_turf(H.loc))
-								new /obj/item/weapon/reagent_containers/pill/happy(get_turf(H.loc))
+								new /obj/item/reagent_container/pill/happy(get_turf(H.loc))
+								new /obj/item/reagent_container/pill/happy(get_turf(H.loc))
+								new /obj/item/reagent_container/pill/happy(get_turf(H.loc))
+								new /obj/item/reagent_container/pill/happy(get_turf(H.loc))
 
 						if(4)
 							for(var/mob/living/carbon/human/H in range(12))
@@ -130,7 +130,7 @@ Items and objects that are very hard to get to and do not affect balance.
 					icon_state = "nobugs"
 					layer = ABOVE_HUD_LAYER
 					spawn(100)
-						icon = 'icons/obj/device.dmi'
+						icon = 'icons/obj/items/devices.dmi'
 						icon_state = "implant_melted"
 						state = 0
 						layer = 2

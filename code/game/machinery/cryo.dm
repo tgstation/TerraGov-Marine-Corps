@@ -15,7 +15,7 @@
 
 	var/temperature_archived
 	var/mob/living/carbon/occupant = null
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_container/glass/beaker = null
 
 	var/current_heat_capacity = 50
 
@@ -166,8 +166,8 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/reagent_containers/glass))
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/reagent_container/glass))
 		if(beaker)
 			user << "\red A beaker is already loaded into the machine."
 			return
@@ -175,8 +175,8 @@
 		beaker =  W
 		if(user.drop_inv_item_to_loc(W, src))
 			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	else if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		if(!ismob(G.grabbed_thing))
 			return
 		var/mob/M = G.grabbed_thing

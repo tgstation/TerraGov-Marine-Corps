@@ -3,7 +3,7 @@ var/list/alldepartments = list()
 
 /obj/machinery/faxmachine
 	name = "fax machine"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "fax"
 //	req_one_access = list(ACCESS_MARINE_BRIDGE) //Warden needs to be able to Fax solgov too.
 	anchored = 1
@@ -13,10 +13,10 @@ var/list/alldepartments = list()
 	active_power_usage = 200
 	power_channel = EQUIP
 
-	var/obj/item/weapon/card/id/scan = null // identification
+	var/obj/item/card/id/scan = null // identification
 	var/authenticated = 0
 
-	var/obj/item/weapon/paper/tofax = null // what we're sending
+	var/obj/item/paper/tofax = null // what we're sending
 	var/sendcooldown = 0 // to avoid spamming fax messages
 
 	var/department = "Liaison" // our department
@@ -137,7 +137,7 @@ var/list/alldepartments = list()
 				scan = null
 		else
 			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/weapon/card/id))
+			if (istype(I, /obj/item/card/id))
 				usr.drop_inv_item_to_loc(I, src)
 				scan = I
 		authenticated = 0
@@ -159,7 +159,7 @@ var/list/alldepartments = list()
 
 /obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 
-	if(istype(O, /obj/item/weapon/paper))
+	if(istype(O, /obj/item/paper))
 		if(!tofax)
 			user.drop_inv_item_to_loc(O, src)
 			tofax = O
@@ -169,14 +169,14 @@ var/list/alldepartments = list()
 		else
 			user << "<span class='notice'>There is already something in \the [src].</span>"
 
-	else if(istype(O, /obj/item/weapon/card/id))
+	else if(istype(O, /obj/item/card/id))
 
-		var/obj/item/weapon/card/id/idcard = O
+		var/obj/item/card/id/idcard = O
 		if(!scan)
 			user.drop_inv_item_to_loc(idcard, src)
 			scan = idcard
 
-	else if(istype(O, /obj/item/weapon/wrench))
+	else if(istype(O, /obj/item/tool/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
@@ -206,7 +206,7 @@ proc/SendFax(var/sent, var/sentname, var/mob/Sender, var/dpt)
 
 				// give the sprite some time to flick
 				spawn(20)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
+					var/obj/item/paper/P = new /obj/item/paper( F.loc )
 					P.name = "[sentname]"
 					P.info = "[sent]"
 					P.update_icon()

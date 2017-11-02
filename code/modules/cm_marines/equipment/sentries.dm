@@ -1,14 +1,18 @@
 //Deployable turrets. They can be either automated, manually fired, or installed with a pAI.
 //They are built in stages, and only engineers have access to them.
 
-/obj/item/sentry_ammo
+/obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of three hundred 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "ua571c" //PLACEHOLDER
+	icon_state = "ua571c"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "10x28mm"
+	max_rounds = 300
+	default_ammo = /datum/ammo/bullet/smartgun
+	gun_type = null
 
-/obj/item/weapon/storage/box/sentry
+/obj/item/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry, minus the tools."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -26,8 +30,8 @@
 			metal_stack.amount = 10
 			new /obj/item/device/turret_top(src)
 			new /obj/item/device/turret_sensor(src)
-			new /obj/item/weapon/cell(src)
-			new /obj/item/sentry_ammo(src)
+			new /obj/item/cell(src)
+			new /obj/item/ammo_magazine/sentry(src)
 
 /obj/machinery/marine_turret_frame
 	name = "\improper UA 571-C turret frame"
@@ -61,7 +65,7 @@
 		if(isnull(O))
 			return
 
-		if(istype(O,/obj/item/weapon/wrench))
+		if(istype(O,/obj/item/tool/wrench))
 			if(anchored)
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] rotates [src].</span>",
@@ -175,11 +179,11 @@
 				else
 					user << "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>"
 					return
-		if(istype(O, /obj/item/weapon/weldingtool))
+		if(istype(O, /obj/item/tool/weldingtool))
 			if(!has_plates)
 				user << "<span class='warning'>You must install [src]'s plating first.</span>"
 				return
-			var/obj/item/weapon/weldingtool/WT = O
+			var/obj/item/tool/weldingtool/WT = O
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] begins welding [src]'s parts together.</span>",
 			"<span class='notice'>You begin welding [src]'s parts together.</span>")
@@ -240,7 +244,7 @@
 	var/health_max = 200
 	stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system // the spark system, used for generating... sparks?
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/burst_fire = 0
 	var/obj/machinery/camera/camera = null
 	var/fire_delay = 5
@@ -475,7 +479,7 @@
 
 	if(isnull(O)) return
 
-	if(istype(O, /obj/item/weapon/card/id))
+	if(istype(O, /obj/item/card/id))
 		if(allowed(user))
 			locked = !locked
 			user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s panel.</span>",
@@ -540,8 +544,8 @@
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		return
 
-	if(istype(O, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = O
+	if(istype(O, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = O
 		if(health < 0 || stat)
 			user << "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>"
 			return
@@ -560,7 +564,7 @@
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 		return
 
-	if(istype(O, /obj/item/weapon/cell))
+	if(istype(O, /obj/item/cell))
 		user << "You begin the new power cell installation.."
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
 			user.drop_inv_item_to_loc(O, src)
@@ -574,7 +578,7 @@
 				"<span class='notice'>You install a new power cell into [src].</span>")
 				cell = O
 		return
-	if(istype(O, /obj/item/sentry_ammo))
+	if(istype(O, /obj/item/ammo_magazine/sentry))
 		if(rounds)
 			user << "<span class='warning'>You can only swap the box magazine when it's empty.</span>"
 			return
@@ -819,7 +823,7 @@
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
 
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,"muzzle_flash",layer))
+		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',src,"muzzle_flash",layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0, 5)
 		rotate.Turn(angle)
@@ -959,7 +963,7 @@
 		spark_system = new /datum/effect_system/spark_spread
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
-		var/obj/item/weapon/cell/super/H = new(src) //Better cells in these ones.
+		var/obj/item/cell/super/H = new(src) //Better cells in these ones.
 		cell = H
 		camera = new (src)
 		camera.network = list("military")

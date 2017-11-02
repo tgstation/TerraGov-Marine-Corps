@@ -8,7 +8,7 @@
 
 /obj/machinery/computer3/security
 	default_prog		= /datum/file/program/security
-	spawn_parts			= list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/cameras)
+	spawn_parts			= list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/networking/cameras)
 	spawn_files 		= list(/datum/file/camnet_key)
 	icon_state			= "frame-sec"
 
@@ -39,7 +39,7 @@
 */
 /obj/machinery/computer3/wall_comp/telescreen
 	default_prog		= /datum/file/program/security
-	spawn_parts			= list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/cameras)
+	spawn_parts			= list(/obj/item/computer3_part/storage/hdd,/obj/item/computer3_part/networking/cameras)
 	spawn_files 		= list(/datum/file/camnet_key)
 
 /obj/machinery/computer3/wall_comp/telescreen/entertainment
@@ -66,7 +66,7 @@
 			prog.camera_list = null
 			return
 		if(istype(source,/datum/file/program/ntos))
-			for(var/obj/item/part/computer/storage/S in list(computer.hdd,computer.floppy))
+			for(var/obj/item/computer3_part/storage/S in list(computer.hdd,computer.floppy))
 				for(var/datum/file/F in S.files)
 					if(istype(F,/datum/file/program/security))
 						var/datum/file/program/security/Sec = F
@@ -129,7 +129,7 @@
 	Computer part needed to connect to cameras
 */
 
-/obj/item/part/computer/networking/cameras
+/obj/item/computer3_part/networking/cameras
 	name = "camera network access module"
 	desc = "Connects a computer to the camera network."
 

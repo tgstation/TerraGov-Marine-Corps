@@ -152,7 +152,7 @@
 
 
 /obj/machinery/door/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/card/emag))
+	if(istype(I, /obj/item/card/emag))
 		if(!operating && density && operable())
 			flick("door_spark", src)
 			sleep(6)

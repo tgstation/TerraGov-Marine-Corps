@@ -17,7 +17,7 @@
 	var/current_positions 	= 0 //How many players have this job
 	var/supervisors 		= "" //Supervisors, who this person answers to directly. Should be a string, shown to the player when they enter the game.
 	var/selection_color 	= "#ffffff" //Sellection screen color.
-	var/idtype 				= /obj/item/weapon/card/id //The type of the ID the player will have.
+	var/idtype 				= /obj/item/card/id //The type of the ID the player will have.
 	var/list/alt_titles 	//List of alternate titles, if any.
 	//If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/minimal_player_age 	= 0
@@ -103,7 +103,7 @@
 	var/datum/limb/l_foot = H.get_limb("l_foot")
 	var/datum/limb/r_foot = H.get_limb("r_foot")
 	if((!l_foot || l_foot.status & LIMB_DESTROYED) && (!r_foot || r_foot.status & LIMB_DESTROYED))
-		var/obj/structure/stool/bed/chair/wheelchair/W = new (H.loc)
+		var/obj/structure/bed/chair/wheelchair/W = new (H.loc)
 		H.buckled = W
 		H.update_canmove()
 		W.dir = H.dir
@@ -118,7 +118,7 @@
 
 /datum/job/proc/equip_identification(mob/living/carbon/human/H)
 	if(!istype(H))	return
-	var/obj/item/weapon/card/id/C
+	var/obj/item/card/id/C
 	var/title_alt
 	title_alt = get_alternative_title(H)
 

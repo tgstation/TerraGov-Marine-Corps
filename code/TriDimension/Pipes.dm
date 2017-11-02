@@ -2,7 +2,7 @@
 // parent class for pipes //
 ////////////////////////////
 obj/machinery/atmospherics/pipe/zpipe
-		icon = 'icons/obj/structures.dmi'
+		icon = 'icons/obj/structures/structures.dmi'
 		icon_state = "up"
 
 		name = "upwards pipe"
@@ -117,7 +117,7 @@ obj/machinery/atmospherics/pipe/zpipe/disconnect(obj/machinery/atmospherics/refe
 // the elusive up pipe //
 /////////////////////////
 obj/machinery/atmospherics/pipe/zpipe/up
-		icon = 'icons/obj/structures.dmi'
+		icon = 'icons/obj/structures/structures.dmi'
 		icon_state = "up"
 
 		name = "upwards pipe"
@@ -164,7 +164,7 @@ obj/machinery/atmospherics/pipe/zpipe/up/initialize()
 ///////////////////////
 
 obj/machinery/atmospherics/pipe/zpipe/down
-		icon = 'icons/obj/structures.dmi'
+		icon = 'icons/obj/structures/structures.dmi'
 		icon_state = "down"
 
 		name = "downwards pipe"

@@ -3,7 +3,7 @@
 #define MOTION_DETECTOR_SHORT	1
 
 
-/obj/detector_blip
+/obj/effect/detector_blip
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "detector_blip"
 	layer = BELOW_FULLSCREEN_LAYER
@@ -108,9 +108,9 @@
 	if(user.client)
 
 		if(!blip_pool[target])
-			blip_pool[target] = rnew(/obj/detector_blip)
+			blip_pool[target] = rnew(/obj/effect/detector_blip)
 
-		var/obj/detector_blip/DB = blip_pool[target]
+		var/obj/effect/detector_blip/DB = blip_pool[target]
 		var/c_view = user.client.view
 		var/view_x_offset = 0
 		var/view_y_offset = 0

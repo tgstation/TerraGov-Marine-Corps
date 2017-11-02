@@ -42,16 +42,16 @@
 
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
 /obj/machinery/power/apc/weak
-	cell_type = /obj/item/weapon/cell
+	cell_type = /obj/item/cell
 
 /obj/machinery/power/apc/high
-	cell_type = /obj/item/weapon/cell/high
+	cell_type = /obj/item/cell/high
 
 /obj/machinery/power/apc/super
-	cell_type = /obj/item/weapon/cell/super
+	cell_type = /obj/item/cell/super
 
 /obj/machinery/power/apc/hyper
-	cell_type = /obj/item/weapon/cell/hyper
+	cell_type = /obj/item/cell/hyper
 
 /obj/machinery/power/apc
 	name = "area power controller"
@@ -63,9 +63,9 @@
 	unacidable = 1
 	var/area/area
 	var/areastring = null
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/start_charge = 90				// initial cell charge %
-	var/cell_type = /obj/item/weapon/cell/apc				// 0=no cell, 1=regular, 2=high-cap (x5) <- old, now it's just 0=no cell, otherwise dictate cellcapacity by changing this value. 1 used to be 1000, 2 was 2500
+	var/cell_type = /obj/item/cell/apc				// 0=no cell, 1=regular, 2=high-cap (x5) <- old, now it's just 0=no cell, otherwise dictate cellcapacity by changing this value. 1 used to be 1000, 2 was 2500
 	var/opened = 0 //0=closed, 1=opened, 2=cover removed
 	var/shorted = 0
 	var/lighting = 3
@@ -395,7 +395,7 @@
 	if(istype(user, /mob/living/silicon) && get_dist(src, user) > 1)
 		return src.attack_hand(user)
 	src.add_fingerprint(user)
-	if (istype(W, /obj/item/weapon/crowbar) && opened)
+	if (istype(W, /obj/item/tool/crowbar) && opened)
 		if (has_electronics==1)
 			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no idea how to deconstruct [src]...</span>"
@@ -415,18 +415,18 @@
 					user.visible_message(\
 						"\red [user.name] has removed the power control board from [src.name]!",\
 						"You remove the power control board.")
-					new /obj/item/weapon/module/power_control(loc)
+					new /obj/item/circuitboard/apc(loc)
 		else if (opened!=2) //cover isn't removed
 			opened = 0
 			update_icon()
-	else if (istype(W, /obj/item/weapon/crowbar) && !((stat & BROKEN)))
+	else if (istype(W, /obj/item/tool/crowbar) && !((stat & BROKEN)))
 		if(coverlocked && !(stat & MAINT))
 			user << "\red The cover is locked and cannot be opened."
 			return
 		else
 			opened = 1
 			update_icon()
-	else if	(istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+	else if	(istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea how to fit [W] in [src]...</span>"
 			return
@@ -444,7 +444,7 @@
 					"You insert the power cell.")
 				chargecount = 0
 				update_icon()
-	else if	(istype(W, /obj/item/weapon/screwdriver))	// haxing
+	else if	(istype(W, /obj/item/tool/screwdriver))	// haxing
 		if(opened)
 			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>[src]'s wiring confuses you...</span>"
@@ -474,7 +474,7 @@
 			user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
 			update_icon()
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You're not sure where to swipe [W] on [src]...</span>"
 			return
@@ -493,7 +493,7 @@
 				update_icon()
 			else
 				user << "\red Access denied."
-	else if (istype(W, /obj/item/weapon/card/emag) && !(emagged)) // trying to unlock with an emag card
+	else if (istype(W, /obj/item/card/emag) && !(emagged)) // trying to unlock with an emag card
 		if(opened)
 			user << "You must close the cover to swipe an ID card."
 		else if(wiresexposed)
@@ -537,7 +537,7 @@
 					"You add cables to the APC frame.")
 				make_terminal()
 				terminal.connect_to_network()
-	else if (istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics!=2)
+	else if (istype(W, /obj/item/tool/wirecutters) && terminal && opened && has_electronics!=2)
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
 			return
@@ -558,7 +558,7 @@
 				"You cut the cables and dismantle the power terminal.")
 			cdel(terminal)
 			terminal = null
-	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == 0 && !(stat & BROKEN))
+	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && !(stat & BROKEN))
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
 			return
@@ -568,17 +568,17 @@
 			has_electronics = 1
 			user << "You place the power control board inside the frame."
 			cdel(W)
-	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && (stat & BROKEN))
+	else if (istype(W, /obj/item/circuitboard/apc) && opened && has_electronics==0 && (stat & BROKEN))
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
 			return
 		user << "\red You cannot put the board inside, the frame is damaged."
 		return
-	else if (istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics==0 && !terminal)
+	else if (istype(W, /obj/item/tool/weldingtool) && opened && has_electronics==0 && !terminal)
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
 			return
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/tool/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
 			user << "\blue You need more welding fuel to complete this task."
 			return
@@ -593,14 +593,14 @@
 					"You disassembled the broken APC frame.",\
 					"\red You hear welding.")
 			else
-				new /obj/item/apc_frame(loc)
+				new /obj/item/frame/apc(loc)
 				user.visible_message(\
 					"\red [src] has been cut from the wall by [user.name] with the weldingtool.",\
 					"You cut the APC frame from the wall.",\
 					"\red You hear welding.")
 			cdel(src)
 			return
-	else if (istype(W, /obj/item/apc_frame) && opened && emagged)
+	else if (istype(W, /obj/item/frame/apc) && opened && emagged)
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
 			return
@@ -612,7 +612,7 @@
 			"You replace the damaged APC frontal panel with a new one.")
 		cdel(W)
 		update_icon()
-	else if (istype(W, /obj/item/apc_frame) && opened && (stat & BROKEN))
+	else if (istype(W, /obj/item/frame/apc) && opened && (stat & BROKEN))
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [W]...</span>"
 			return
@@ -641,7 +641,7 @@
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
 				(istype(W, /obj/item/device/multitool) || \
-				istype(W, /obj/item/weapon/wirecutters)))
+				istype(W, /obj/item/tool/wirecutters)))
 				return src.attack_hand(user)
 			user.visible_message("\red The [src.name] has been hit with the [W.name] by [user.name]!", \
 				"\red You hit the [src.name] with your [W.name]!", \
@@ -981,7 +981,7 @@
 
 	if (href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])
-		if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
+		if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
 			usr << "You need wirecutters!"
 			return 0
 		if (src.isWireColorCut(t1))

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "mecha"
 	req_access = list(ACCESS_MARINE_ENGINEERING)
-	circuit = "/obj/item/weapon/circuitboard/mecha_control"
+	circuit = "/obj/item/circuitboard/computer/mecha_control"
 	var/list/located = list()
 	var/screen = 0
 	var/stored_data
@@ -68,7 +68,7 @@
 /obj/item/mecha_parts/mecha_tracking
 	name = "Exosuit tracking beacon"
 	desc = "Device used to transmit exosuit data."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "motion2"
 	origin_tech = "programming=2;magnets=2"
 	construction_time = 50
@@ -118,7 +118,7 @@
 		return M.get_log_html()
 
 
-/obj/item/weapon/storage/box/mechabeacons
+/obj/item/storage/box/mechabeacons
 	name = "Exosuit Tracking Beacons"
 	New()
 		..()

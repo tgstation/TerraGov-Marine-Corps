@@ -448,7 +448,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(0) //assistant
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if(1) //civilian in pajamas
@@ -460,49 +460,49 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/tox(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(new_survivor), WEAR_BACK)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if(3) //Doctor
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(new_survivor), WEAR_L_HAND)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/med(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/belt/medical(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(new_survivor), WEAR_BACK)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_SURGERY,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if(4) //Chef!
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(new_survivor), WEAR_L_HAND)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if(5) //Botanist
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/hatchet(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/hatchet(new_survivor), WEAR_L_HAND)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if(6)//Atmos
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(new_survivor), WEAR_L_HAND)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if(7) //Chaplain
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/bible/booze(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/bible/booze(new_survivor), WEAR_L_HAND)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(new_survivor), WEAR_WAIST)
 			new_survivor.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(new_survivor), WEAR_R_HAND)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if(8) //Miner
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/pickaxe(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/pickaxe(new_survivor), WEAR_L_HAND)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_TRAINED)
 
@@ -510,7 +510,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/storage/briefcase(new_survivor), WEAR_L_HAND)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(new_survivor), WEAR_WAIST)
 			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
@@ -541,28 +541,28 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(0)
 			new_survivor.equip_to_slot_or_del(new /obj/item/device/camera/fluff/oldcamera(new_survivor), WEAR_R_HAND)
 		if(1)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/crowbar(new_survivor), WEAR_R_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/crowbar(new_survivor), WEAR_R_HAND)
 		if(2)
 			new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(new_survivor), WEAR_R_HAND)
 		if(3)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/wrench(new_survivor), WEAR_R_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/wrench(new_survivor), WEAR_R_HAND)
 		if(4)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/surgicaldrill(new_survivor), WEAR_R_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/surgery/surgicaldrill(new_survivor), WEAR_R_HAND)
 		if(5)
 			new_survivor.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(new_survivor), WEAR_R_HAND)
 		if(6)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(new_survivor), WEAR_R_HAND)
 		if(7)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(new_survivor), WEAR_R_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/kitchen/knife(new_survivor), WEAR_R_HAND)
 		if(8)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice(new_survivor), WEAR_R_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/lemoncakeslice(new_survivor), WEAR_R_HAND)
 		if(9)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(new_survivor), WEAR_R_HAND)
 		if(10)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/weldingtool/largetank(new_survivor), WEAR_R_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank(new_survivor), WEAR_R_HAND)
 
 	new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight(new_survivor), WEAR_R_STORE)
-	new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/survival/full(new_survivor), WEAR_L_STORE)
+	new_survivor.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(new_survivor), WEAR_L_STORE)
 
 	new_survivor.update_icons()
 
@@ -704,7 +704,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 		CA.products = list(
 						///obj/item/weapon/claymore/mercsword/machete = 5,
-						/obj/item/weapon/storage/large_holster/machete/full = round(scale * 6),
+						/obj/item/storage/large_holster/machete/full = round(scale * 6),
 						/obj/item/ammo_magazine/pistol = round(scale * 10),
 						/obj/item/ammo_magazine/pistol/hp = 0,
 						/obj/item/ammo_magazine/pistol/ap = round(scale * 3),
@@ -741,26 +741,26 @@ datum/game_mode/proc/initialize_special_clamps()
 		CG.product_records = list()
 
 		CG.products = list(
-						/obj/item/weapon/storage/backpack/marine = round(scale * 10),
-						/obj/item/weapon/storage/belt/marine = round(scale * 10),
-						/obj/item/weapon/storage/belt/shotgun = round(scale * 6),
+						/obj/item/storage/backpack/marine = round(scale * 10),
+						/obj/item/storage/belt/marine = round(scale * 10),
+						/obj/item/storage/belt/shotgun = round(scale * 6),
 						/obj/item/clothing/tie/storage/webbing = round(scale * 3),
 						/obj/item/clothing/tie/storage/brown_vest = 0,
 						/obj/item/clothing/tie/holster = 0,
-						/obj/item/weapon/storage/belt/gun/m4a3 = round(scale * 5),
-						/obj/item/weapon/storage/belt/gun/m44 = round(scale * 3),
-						/obj/item/weapon/storage/large_holster/m39 = round(scale * 3),
-						/obj/item/weapon/storage/pouch/general/medium = round(scale * 1),
-						/obj/item/weapon/storage/pouch/construction = round(scale * 1),
-						/obj/item/weapon/storage/pouch/explosive = round(scale * 1),
-						/obj/item/weapon/storage/pouch/syringe = round(scale * 1),
-						/obj/item/weapon/storage/pouch/medical = round(scale * 1),
-						/obj/item/weapon/storage/pouch/medkit = round(scale * 1),
-						/obj/item/weapon/storage/pouch/magazine = round(scale * 1),
-						/obj/item/weapon/storage/pouch/flare/full = round(scale * 3),
-						/obj/item/weapon/storage/pouch/firstaid/full = round(scale * 3),
-						/obj/item/weapon/storage/pouch/pistol = round(scale * 10),
-						/obj/item/weapon/storage/pouch/magazine/pistol/large = round(scale * 1),
+						/obj/item/storage/belt/gun/m4a3 = round(scale * 5),
+						/obj/item/storage/belt/gun/m44 = round(scale * 3),
+						/obj/item/storage/large_holster/m39 = round(scale * 3),
+						/obj/item/storage/pouch/general/medium = round(scale * 1),
+						/obj/item/storage/pouch/construction = round(scale * 1),
+						/obj/item/storage/pouch/explosive = round(scale * 1),
+						/obj/item/storage/pouch/syringe = round(scale * 1),
+						/obj/item/storage/pouch/medical = round(scale * 1),
+						/obj/item/storage/pouch/medkit = round(scale * 1),
+						/obj/item/storage/pouch/magazine = round(scale * 1),
+						/obj/item/storage/pouch/flare/full = round(scale * 3),
+						/obj/item/storage/pouch/firstaid/full = round(scale * 3),
+						/obj/item/storage/pouch/pistol = round(scale * 10),
+						/obj/item/storage/pouch/magazine/pistol/large = round(scale * 1),
 						/obj/item/weapon/gun/pistol/m4a3 = round(scale * 5),
 						/obj/item/weapon/gun/pistol/m1911 = round(scale * 1),
 						/obj/item/weapon/gun/revolver/m44 = round(scale * 5),
@@ -773,14 +773,14 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/weapon/gun/rifle/lmg = 0,
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 5),
 						/obj/item/weapon/gun/shotgun/combat = 0,
-						/obj/item/device/mine = round(scale * 1),
-						/obj/item/weapon/storage/box/nade_box = round(scale * 1),
-						/obj/item/weapon/grenade/explosive = round(scale * 1),
-						/obj/item/weapon/grenade/explosive/m15 = round(scale * 1),
-						/obj/item/weapon/grenade/incendiary = round(scale * 1),
-						/obj/item/weapon/grenade/smokebomb = round(scale * 1),
-						/obj/item/weapon/grenade/phosphorus = 0,
-						/obj/item/weapon/storage/box/m94 = round(scale * 8),
+						/obj/item/explosive/mine = round(scale * 1),
+						/obj/item/storage/box/nade_box = round(scale * 1),
+						/obj/item/explosive/grenade/frag = round(scale * 1),
+						/obj/item/explosive/grenade/frag/m15 = round(scale * 1),
+						/obj/item/explosive/grenade/incendiary = round(scale * 1),
+						/obj/item/explosive/grenade/smokebomb = round(scale * 1),
+						/obj/item/explosive/grenade/phosphorus = 0,
+						/obj/item/storage/box/m94 = round(scale * 8),
 						/obj/item/device/flashlight/combat = round(scale * 5)
 						)
 
@@ -810,15 +810,15 @@ datum/game_mode/proc/initialize_special_clamps()
 
 						/obj/item/weapon/combat_knife = round(scale * 20),
 						/obj/item/weapon/throwing_knife = round(scale * 5),
-						/obj/item/weapon/storage/box/m94 = round(scale * 5),
-						/obj/item/weapon/storage/backpack/marine = round(scale * 10),
-						/obj/item/weapon/storage/backpack/marine/satchel = round(scale * 10),
+						/obj/item/storage/box/m94 = round(scale * 5),
+						/obj/item/storage/backpack/marine = round(scale * 10),
+						/obj/item/storage/backpack/marine/satchel = round(scale * 10),
 						/obj/item/device/radio/headset/almayer = round(scale * 5),
-						/obj/item/weapon/storage/belt/marine = round(scale * 5),
-						/obj/item/weapon/storage/belt/shotgun = round(scale * 3),
-						/obj/item/weapon/storage/belt/knifepouch = round(scale * 5),
-						/obj/item/weapon/storage/belt/gun/m4a3 = round(scale * 5),
-						/obj/item/weapon/storage/large_holster/m37 = round(scale * 5),
+						/obj/item/storage/belt/marine = round(scale * 5),
+						/obj/item/storage/belt/shotgun = round(scale * 3),
+						/obj/item/storage/belt/knifepouch = round(scale * 5),
+						/obj/item/storage/belt/gun/m4a3 = round(scale * 5),
+						/obj/item/storage/large_holster/m37 = round(scale * 5),
 						/obj/item/clothing/shoes/marine = round(scale * 5),
 						/obj/item/clothing/under/marine = round(scale * 10),
 						/obj/item/clothing/suit/storage/marine = round(scale * 10),
@@ -827,11 +827,11 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/attachable/flashlight = round(scale * 10),
 						/obj/item/attachable/bayonet = round(scale * 10),
 
-						/obj/item/weapon/storage/pouch/general = round(scale * 10),
-						/obj/item/weapon/storage/pouch/bayonet = round(scale * 10),
-						/obj/item/weapon/storage/pouch/firstaid/full = round(scale * 10),
-						/obj/item/weapon/storage/pouch/flare/full = round(scale * 10),
-						/obj/item/weapon/storage/pouch/magazine/pistol = round(scale * 10)
+						/obj/item/storage/pouch/general = round(scale * 10),
+						/obj/item/storage/pouch/bayonet = round(scale * 10),
+						/obj/item/storage/pouch/firstaid/full = round(scale * 10),
+						/obj/item/storage/pouch/flare/full = round(scale * 10),
+						/obj/item/storage/pouch/magazine/pistol = round(scale * 10)
 						)
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),

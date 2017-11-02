@@ -123,8 +123,8 @@
 			lowertemp.react()
 			T.assume_air(lowertemp)
 			cdel(hotspot)
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/monkeycube))
-			var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
+		if(istype(O,/obj/item/reagent_container/food/snacks/monkeycube))
+			var/obj/item/reagent_container/food/snacks/monkeycube/cube = O
 			if(!cube.wrapped)
 				cube.Expand()
 

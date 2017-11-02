@@ -89,10 +89,10 @@
 		if(do_after(src,65, FALSE, 5, BUSY_ICON_CLOCK) && Adjacent(T))
 			visible_message("[src] hacks away at \the [T]'s limbs and slices off strips of dripping meat.","You slice off a few of \the [T]'s limbs, making sure to get the finest cuts.")
 			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
-				new /obj/item/weapon/reagent_containers/food/snacks/xenomeat(T.loc)
+				new /obj/item/reagent_container/food/snacks/xenomeat(T.loc)
 			else if(istype(T,/mob/living/carbon/human) && isturf(T.loc))
 				T.apply_damage(100,BRUTE,pick("r_leg","l_leg","r_arm","l_arm"),0,1,1) //Basically just rips off a random limb.
-				new /obj/item/weapon/reagent_containers/food/snacks/meat(T.loc)
+				new /obj/item/reagent_container/food/snacks/meat(T.loc)
 			T.butchery_progress = 3
 			playsound(loc, 'sound/weapons/bladeslice.ogg', 25)
 		else
@@ -102,9 +102,9 @@
 		if(do_after(src,70, FALSE, 5, BUSY_ICON_CLOCK) && Adjacent(T))
 			visible_message("[src] tears apart \the [T]'s ribcage and begins chopping off bit and pieces.","You rip open \the [T]'s ribcage and start tearing the tastiest bits out.")
 			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
-				new /obj/item/weapon/reagent_containers/food/snacks/xenomeat(T.loc)
+				new /obj/item/reagent_container/food/snacks/xenomeat(T.loc)
 			else if(istype(T,/mob/living/carbon/human) && isturf(T.loc))
-				new /obj/item/weapon/reagent_containers/food/snacks/meat(T.loc)
+				new /obj/item/reagent_container/food/snacks/meat(T.loc)
 			T.apply_damage(100,BRUTE,"chest",0,0,0) //Does random serious damage, so we make sure they're dead.
 			T.butchery_progress = 4
 			playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25)
@@ -123,7 +123,7 @@
 				if(H.get_limb("head"))
 					H.apply_damage(150,BRUTE,"head",0,1,1)
 				else
-					new /obj/item/weapon/reagent_containers/food/snacks/meat(T.loc)
+					new /obj/item/reagent_container/food/snacks/meat(T.loc)
 				new /obj/item/stack/sheet/animalhide/human(T.loc)
 				new /obj/effect/decal/remains/human(T.loc)
 			T.butchery_progress = 5 //Won't really matter.
@@ -181,13 +181,13 @@
 			if("The Lumbering Glaive")
 				new /obj/item/weapon/twohanded/glaive(src.loc)
 			if("The Rending Chain-Whip")
-				new /obj/item/weapon/melee/yautja_chain(src.loc)
+				new /obj/item/weapon/yautja_chain(src.loc)
 			if("The Piercing Hunting Sword")
-				new /obj/item/weapon/melee/yautja_sword(src.loc)
+				new /obj/item/weapon/yautja_sword(src.loc)
 			if("The Cleaving War-Scythe")
-				new /obj/item/weapon/melee/yautja_scythe(src.loc)
+				new /obj/item/weapon/yautja_scythe(src.loc)
 			if("The Adaptive Combi-Stick")
-				new /obj/item/weapon/melee/combistick(src.loc)
+				new /obj/item/weapon/combistick(src.loc)
 
 		var/choice = mother_0
 		var/i = 0
@@ -198,7 +198,7 @@
 				if("The Brutal Plasma Rifle")
 					new /obj/item/weapon/gun/energy/plasmarifle(src.loc)
 				if("The Purifying Smart-Disc")
-					new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
+					new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 				if("The Formidable Plate Armor")
 					new /obj/item/clothing/suit/armor/yautja/full(src.loc)
 				if("The Enhanced Bracer")

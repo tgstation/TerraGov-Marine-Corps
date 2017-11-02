@@ -7,7 +7,7 @@
 	density = 1
 	anchored = 1
 	var/on = 0
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/use = 0
 	var/unlocked = 0
 	var/open = 0
@@ -17,7 +17,7 @@
 	New()
 		..()
 		spawn(1)
-			cell = new /obj/item/weapon/cell(src)
+			cell = new /obj/item/cell(src)
 
 	Dispose()
 		SetLuminosity(0)
@@ -72,11 +72,11 @@
 	updateicon()
 
 
-/obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/floodlight/attackby(obj/item/W as obj, mob/user as mob)
 	if(!ishuman(user))
 		return
 
-	if (istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/tool/wrench))
 		if (!anchored)
 			anchored = 1
 			user << "You anchor the [src] in place."
@@ -84,7 +84,7 @@
 			anchored = 0
 			user << "You remove the bolts from the [src]."
 
-	if (istype(W, /obj/item/weapon/screwdriver))
+	if (istype(W, /obj/item/tool/screwdriver))
 		if (!open)
 			if(unlocked)
 				unlocked = 0
@@ -93,7 +93,7 @@
 				unlocked = 1
 				user << "You unscrew the battery panel."
 
-	if (istype(W, /obj/item/weapon/crowbar))
+	if (istype(W, /obj/item/tool/crowbar))
 		if(unlocked)
 			if(open)
 				open = 0
@@ -104,7 +104,7 @@
 					open = 1
 					user << "You remove the battery panel."
 
-	if (istype(W, /obj/item/weapon/cell))
+	if (istype(W, /obj/item/cell))
 		if(open)
 			if(cell)
 				user << "There is a power cell already installed."

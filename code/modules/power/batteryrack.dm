@@ -1,20 +1,4 @@
-//Boards
-/obj/item/weapon/circuitboard/batteryrack
-	name = "Circuit board (Battery rack PSU)"
-	build_path = "/obj/machinery/power/smes/batteryrack"
-	board_type = "machine"
-	origin_tech = "powerstorage=3;engineering=2"
-	frame_desc = "Requires 3 power cells."
-	req_components = list("/obj/item/weapon/cell" = 3)
 
-
-/obj/item/weapon/circuitboard/ghettosmes
-	name = "Circuit board (makeshift PSU)"
-	desc = "An APC circuit repurposed into some power storage device controller"
-	build_path = "/obj/machinery/power/smes/batteryrack/makeshift"
-	board_type = "machine"
-	frame_desc = "Requires 3 power cells."
-	req_components = list("/obj/item/weapon/cell" = 3)
 
 
 //Machines
@@ -45,15 +29,15 @@
 	// Also five basic capacitors. Again, upgradeable.
 /obj/machinery/power/smes/batteryrack/substation/add_parts()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/batteryrack
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell
-	component_parts += new /obj/item/weapon/cell
-	component_parts += new /obj/item/weapon/stock_parts/capacitor
-	component_parts += new /obj/item/weapon/stock_parts/capacitor
-	component_parts += new /obj/item/weapon/stock_parts/capacitor
-	component_parts += new /obj/item/weapon/stock_parts/capacitor
-	component_parts += new /obj/item/weapon/stock_parts/capacitor
+	component_parts += new /obj/item/circuitboard/machine/batteryrack
+	component_parts += new /obj/item/cell/high
+	component_parts += new /obj/item/cell
+	component_parts += new /obj/item/cell
+	component_parts += new /obj/item/stock_parts/capacitor
+	component_parts += new /obj/item/stock_parts/capacitor
+	component_parts += new /obj/item/stock_parts/capacitor
+	component_parts += new /obj/item/stock_parts/capacitor
+	component_parts += new /obj/item/stock_parts/capacitor
 
 /obj/machinery/power/smes/batteryrack/New()
 	..()
@@ -65,10 +49,10 @@
 //Maybe this should be moved up to obj/machinery
 /obj/machinery/power/smes/batteryrack/proc/add_parts()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/batteryrack
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
+	component_parts += new /obj/item/circuitboard/machine/batteryrack
+	component_parts += new /obj/item/cell/high
+	component_parts += new /obj/item/cell/high
+	component_parts += new /obj/item/cell/high
 	return
 
 
@@ -76,14 +60,14 @@
 	capacitors_amount = 0
 	cells_amount = 0
 	var/max_level = 0 //for both input and output
-	for(var/obj/item/weapon/stock_parts/capacitor/CP in component_parts)
+	for(var/obj/item/stock_parts/capacitor/CP in component_parts)
 		max_level += CP.rating
 		capacitors_amount++
 	input_level_max = 50000 + max_level * 20000
 	output_level_max = 50000 + max_level * 20000
 
 	var/C = 0
-	for(var/obj/item/weapon/cell/PC in component_parts)
+	for(var/obj/item/cell/PC in component_parts)
 		C += PC.maxcharge
 		cells_amount++
 	capacity = C * 40   //Basic cells are such crap. Hyper cells needed to get on normal SMES levels.
@@ -108,10 +92,10 @@
 	return round(4 * charge/(capacity ? capacity : 5e6))
 
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
+/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
 	if(open_hatch)
-		if(istype(W, /obj/item/weapon/crowbar))
+		if(istype(W, /obj/item/tool/crowbar))
 			if (charge < (capacity / 100))
 				if (!online && !chargemode)
 					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 25, 1)
@@ -128,7 +112,7 @@
 					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
 			else
 				user << "<span class='warning'>Better let [src] discharge before dismantling it.</span>"
-		else if ((istype(W, /obj/item/weapon/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell) && (cells_amount < 5)))
+		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!online && !chargemode)
 					if(user.drop_inv_item_to_loc(W, src))
@@ -155,11 +139,11 @@
 
 /obj/machinery/power/smes/batteryrack/makeshift/add_parts()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/ghettosmes
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
-	return
+	component_parts += new /obj/item/circuitboard/machine/ghettosmes
+	component_parts += new /obj/item/cell/high
+	component_parts += new /obj/item/cell/high
+	component_parts += new /obj/item/cell/high
+
 
 
 /obj/machinery/power/smes/batteryrack/makeshift/updateicon()

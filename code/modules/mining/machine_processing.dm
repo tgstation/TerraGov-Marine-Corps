@@ -148,7 +148,7 @@
 
 	//Grab some more ore to process this tick.
 	for(var/i = 0,i<sheets_per_tick,i++)
-		var/obj/item/weapon/ore/O = locate() in input.loc
+		var/obj/item/ore/O = locate() in input.loc
 		if(!O) break
 		if(!isnull(ores_stored[O.oretag])) ores_stored[O.oretag]++
 		O.loc = null
@@ -227,7 +227,7 @@
 			else
 				ores_stored[metal]--
 				sheets++
-				new /obj/item/weapon/ore/slag(output.loc)
+				new /obj/item/ore/slag(output.loc)
 		else
 			continue
 

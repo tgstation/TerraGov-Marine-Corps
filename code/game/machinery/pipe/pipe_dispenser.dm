@@ -107,7 +107,7 @@
 		user.drop_held_item()
 		cdel(W)
 		return
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if (istype(W, /obj/item/tool/wrench))
 		if (unwrenched==0)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user << "\blue You begin to unfasten \the [src] from the floor..."

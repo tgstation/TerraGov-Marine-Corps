@@ -119,7 +119,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/pouch/survival/full(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), WEAR_L_STORE)
 
 
 	H.update_icons()

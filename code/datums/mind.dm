@@ -401,7 +401,7 @@ datum/mind
 
 		if(istype(T.loc,/area/sulaco/brig))
 			is_currently_brigged = 1
-			for(var/obj/item/weapon/card/id/card in current)
+			for(var/obj/item/card/id/card in current)
 				is_currently_brigged = 0
 				break // if they still have ID they're not brigged
 			for(var/obj/item/device/pda/P in current)
@@ -435,7 +435,7 @@ datum/mind
 	if(..()) //new mind created
 		//if we find an ID with assignment, we give the new mind the info linked to that job.
 		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
+			var/obj/item/card/id/I = wear_id.GetID()
 			if(I && I.assignment)
 				for(var/datum/job/J in get_all_jobs())
 					if(J.title == I.rank)

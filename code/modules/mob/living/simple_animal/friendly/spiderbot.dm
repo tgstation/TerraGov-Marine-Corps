@@ -8,7 +8,7 @@
 
 	var/obj/item/device/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
 	var/obj/item/device/mmi/mmi = null
 	var/list/req_access = list(ACCESS_MARINE_RESEARCH) //Access needed to pop out the brain.
@@ -80,8 +80,8 @@
 		update_icon()
 		return 1
 
-	if (istype(O, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = O
+	if (istype(O, /obj/item/tool/weldingtool))
+		var/obj/item/tool/weldingtool/WT = O
 		if (WT.remove_fuel(0))
 			if(health < maxHealth)
 				health += pick(1,1,1,2,2,3)
@@ -95,14 +95,14 @@
 		else
 			user << "Need more welding fuel!"
 			return
-	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/device/pda))
+	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/device/pda))
 		if (!mmi)
 			user << "\red There's no reason to swipe your ID - the spiderbot has no brain to remove."
 			return 0
 
-		var/obj/item/weapon/card/id/id_card
+		var/obj/item/card/id/id_card
 
-		if(istype(O, /obj/item/weapon/card/id))
+		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
 			var/obj/item/device/pda/pda = O
@@ -120,12 +120,12 @@
 		else
 			user << "\red You swipe your card, with no effect."
 			return 0
-	else if (istype(O, /obj/item/weapon/card/emag))
+	else if (istype(O, /obj/item/card/emag))
 		if (emagged)
 			user << "\red [src] is already overloaded - better run."
 			return 0
 		else
-			var/obj/item/weapon/card/emag/emag = O
+			var/obj/item/card/emag/emag = O
 			emag.uses--
 			emagged = 1
 			user << "\blue You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."
@@ -223,9 +223,9 @@
 		usr << "\red You have nothing to drop!"
 		return 0
 
-	if(istype(held_item, /obj/item/weapon/grenade))
+	if(istype(held_item, /obj/item/explosive/grenade))
 		visible_message("\red [src] launches \the [held_item]!", "\red You launch \the [held_item]!", "You hear a skittering noise and a thump!")
-		var/obj/item/weapon/grenade/G = held_item
+		var/obj/item/explosive/grenade/G = held_item
 		G.forceMove(loc)
 		G.prime()
 		held_item = null

@@ -1,6 +1,6 @@
 /obj/machinery/computer3/aifixer
 	default_prog = /datum/file/program/aifixer
-	spawn_parts = list(/obj/item/part/computer/storage/hdd/big,/obj/item/part/computer/ai_holder)
+	spawn_parts = list(/obj/item/computer3_part/storage/hdd/big,/obj/item/computer3_part/ai_holder)
 	icon_state = "frame-rnd"
 
 
