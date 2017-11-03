@@ -295,7 +295,7 @@
 				user << "<span class='warning'>[src] is busy.</span>"
 				return //prevents spamming deployment/undeployment
 			if(deployed_turret.loc == src) //not deployed
-				if(z == ADMIN_Z_LEVEL)
+				if(z == LOW_ORBIT_Z_LEVEL)
 					user << "<span class='warning'>[src] can't deploy mid-flight.</span>"
 				else
 					user << "<span class='notice'>You deploy [src].</span>"

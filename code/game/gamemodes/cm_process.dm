@@ -418,33 +418,27 @@ Only checks living mobs with a client attached.
 /datum/game_mode/proc/count_humans_and_xenos(list/z_levels = GAME_PLAY_Z_LEVELS)
 	var/num_humans = 0
 	var/num_xenos = 0
-	var/area/A
 
 	for(var/mob/M in player_list)
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/space)) //If they have a z var, they are on a turf.
-			A = get_area(M.loc) //Get their area.
-			if(!istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
-				if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
-					var/mob/living/carbon/human/H = M
-					if(H.species && H.species.name == "Human") //only real humans count
-						num_humans++
-				else if(isXeno(M)) num_xenos++
-				else if(iszombie(M)) num_xenos++
+			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
+				var/mob/living/carbon/human/H = M
+				if(H.species && H.species.name == "Human") //only real humans count
+					num_humans++
+			else if(isXeno(M)) num_xenos++
+			else if(iszombie(M)) num_xenos++
 
 	return list(num_humans,num_xenos)
 
 /datum/game_mode/proc/count_marines_and_pmcs(list/z_levels = GAME_PLAY_Z_LEVELS)
 	var/num_marines = 0
 	var/num_pmcs = 0
-	var/area/A
 
 	for(var/mob/M in player_list)
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/space))
-			A = get_area(M.loc)
-			if(!istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/almayer/evacuation/stranded))
-				if(ishuman(M) && !isYautja(M))
-					if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
-					else if(M.mind && !M.mind.special_role)		num_marines++
+			if(ishuman(M) && !isYautja(M))
+				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
+				else if(M.mind && !M.mind.special_role)		num_marines++
 
 	return list(num_marines,num_pmcs)
 
