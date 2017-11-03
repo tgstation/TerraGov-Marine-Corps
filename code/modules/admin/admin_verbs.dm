@@ -71,6 +71,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
 	/datum/admins/proc/admin_force_distress,
+	/datum/admins/proc/admin_force_ERT_shuttle,
 	/client/proc/cmd_admin_changekey,
 	/client/proc/response_team, // Response Teams admin verb
 	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
