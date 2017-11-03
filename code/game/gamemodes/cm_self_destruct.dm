@@ -79,7 +79,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
 /datum/authority/branch/evacuation/proc/get_affected_zlevels() //This proc returns the ship's z level list (or whatever specified), when an evac/self destruct happens.
-	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS && evac_status == EVACUATION_STATUS_COMPLETE) . = MAIN_SHIP_Z_LEVEL//Nuke is not in progress and evacuation finished, end the round on ship only.
+	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS && evac_status == EVACUATION_STATUS_COMPLETE) //Nuke is not in progress and evacuation finished, end the round on ship and low orbit (dropships in transit) only.
+		. = MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS
 
 #undef SELF_DESTRUCT_ROD_STARTUP_TIME
 //=========================================================================================
