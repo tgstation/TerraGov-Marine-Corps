@@ -1149,10 +1149,9 @@ var/global/floorIsLava = 0
 			list_of_calls += L.name
 
 	list_of_calls += "Randomize"
-	list_of_calls += "Cancel"
 
 	var/choice = input("Which distress call?") as null|anything in list_of_calls
-	if(choice == "Cancel" || isnull(choice) || choice == "")
+	if(!choice)
 		return
 
 	if(choice == "Randomize")
@@ -1166,18 +1165,46 @@ var/global/floorIsLava = 0
 	if(!istype(ticker.mode.picked_call))
 		return
 
-	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
 
+	var/is_announcing = TRUE
+	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
 	if(announce == "No")
-		ticker.mode.picked_call.activate(0)
-	else
-		ticker.mode.picked_call.activate()
+		is_announcing = FALSE
+
+	var/no_shuttle_launch = FALSE //whether the ERT shuttle launches automatically
+	if(alert(src, "Would you like the ERT shuttle to not auto launch (manual launch via admin verb)?", "ERT manual launch?", "Yes", "No") == "Yes")
+		no_shuttle_launch = TRUE
+
+	ticker.mode.picked_call.activate(is_announcing, no_shuttle_launch)
 
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]")
 	message_admins("\blue [key_name_admin(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]", 1)
 
-	return
+
+
+/datum/admins/proc/admin_force_ERT_shuttle()
+	set category = "Admin"
+	set name = "Force ERT Shuttle"
+	set desc = "Force Launch the ERT Shuttle."
+
+	if (!ticker  || !ticker.mode) return
+	if(!check_rights(R_ADMIN))	return
+
+	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
+	if(!shuttle || !istype(shuttle))
+		message_admins("Warning: Distress shuttle not found. Aborting.")
+		return
+	var/confirm = alert(src, "Are you sure you want to move the Distress Shuttle?", "ERT manual launch?", "Yes", "No")
+	if(confirm == "Yes")
+		shuttle.launch()
+
+		feedback_add_details("admin_verb","LNCHERTSHTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		log_admin("[key_name(usr)] force launched the distress shuttle")
+		message_admins("\blue [key_name_admin(usr)] force launched the distress shuttle", 1)
+
+
+
 
 /datum/admins/proc/fix_breach()
 	set category = "Debug"

@@ -121,7 +121,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.name == "Human")
-				for(var/datum/disease/black_goo in H.viruses)
+				for(var/datum/disease/black_goo/BG in H.viruses)
 					user.show_message(text("\green <B> You sense your target is infected</B>"))
 					return
 				if(prob(75))
@@ -170,11 +170,12 @@
 
 
 /obj/item/clothing/glasses/zombie_eyes
-	name = "glasses"
+	name = "zombie eyes"
 	icon = null
 	w_class = 2.0
 	vision_flags = SEE_MOBS
 	darkness_view = 7
+	flags_atom = NODROP|DELONDROP
 
 /obj/item/clothing/glasses/zombie_eyes/New()
 	..()
@@ -209,8 +210,8 @@
 
 //zombie ice-proofing
 /obj/item/clothing/mask/rebreather/scarf/zombie
-	..()
+	name = "zombie mouth"
 	icon_state = "BLANK"
-	name = "Zombie Mouth"
 	item_state = "BLANK"
+	flags_atom = NODROP|DELONDROP
 
