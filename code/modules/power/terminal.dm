@@ -12,6 +12,7 @@
 	anchored = 1
 	directwired = 0		// must have a cable on same turf connecting to terminal
 	layer = WIRE_TERMINAL_LAYER
+	unacidable = TRUE //so xenos can't melt visible SMES terminals on the planet to break the SMES
 
 
 /obj/machinery/power/terminal/New()
