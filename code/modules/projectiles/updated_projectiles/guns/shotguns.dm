@@ -468,7 +468,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper HG 37-12 pump shotgun"
-	desc = "A four-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
+	desc = "A nine-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
 	icon_state = "hg3712"
 	item_state = "hg3712"
 	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
