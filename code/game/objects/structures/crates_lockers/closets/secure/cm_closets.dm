@@ -464,10 +464,10 @@
 			new /obj/item/clothing/mask/gas/(src)
 
 
-
+//ALAMAYER CARGO CLOSET
 /obj/structure/closet/secure_closet/req_officer
-	name = "\improper RO's extra locker"
-	req_access = list(ACCESS_MARINE_CARGO)
+	name = "\improper RO's Locker"
+	req_access = list(ACCESS_MARINE_RO)
 	icon_state = "securecargo1"
 	icon_closed = "securecargo"
 	icon_locked = "securecargo1"
@@ -482,8 +482,26 @@
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/storage/belt/marine(src)
 		new /obj/item/clothing/head/cmcap/req(src)
-		new /obj/item/clothing/head/helmet/marine(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/baton(src)
-		new /obj/item/storage/backpack/marine(src)
+		new /obj/item/storage/backpack/marine/satchel(src)
+
+/obj/structure/closet/secure_closet/cargotech
+	name = "Cargo Technician's Locker"
+	req_access = list(ACCESS_MARINE_CARGO)
+	icon_state = "securecargo1"
+	icon_closed = "securecargo"
+	icon_locked = "securecargo1"
+	icon_opened = "securecargoopen"
+	icon_broken = "securecargobroken"
+	icon_off = "securecargooff"
+
+	New()
+		..()
+		new /obj/item/clothing/under/rank/cargotech(src)
+		new /obj/item/clothing/shoes/marine(src)
+		new /obj/item/device/radio/headset/almayer/ct(src)
+		new /obj/item/clothing/gloves/yellow(src)
+		new /obj/item/clothing/head/beanie(src)
+		new /obj/item/device/flashlight(src)
+		new /obj/item/storage/backpack/marine/satchel(src)
+		return

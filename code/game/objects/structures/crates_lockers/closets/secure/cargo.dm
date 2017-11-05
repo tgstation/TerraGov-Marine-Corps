@@ -1,24 +1,3 @@
-/obj/structure/closet/secure_closet/cargotech
-	name = "Cargo Technician's Locker"
-	req_access = list(ACCESS_CIVILIAN_PUBLIC)
-	icon_state = "securecargo1"
-	icon_closed = "securecargo"
-	icon_locked = "securecargo1"
-	icon_opened = "securecargoopen"
-	icon_broken = "securecargobroken"
-	icon_off = "securecargooff"
-
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/under/rank/cargotech(src)
-		new /obj/item/clothing/shoes/black(src)
-//		new /obj/item/device/radio/headset/almayer/ct(src)
-		new /obj/item/clothing/gloves/black(src)
-		new /obj/item/clothing/head/soft(src)
-//		new /obj/item/cartridge/quartermaster(src)
-		return
-
 /obj/structure/closet/secure_closet/quartermaster
 	name = "Quartermaster's Locker"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
