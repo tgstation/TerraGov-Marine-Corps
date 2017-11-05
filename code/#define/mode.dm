@@ -177,6 +177,7 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_MARINE_DROPSHIP 		22
 #define ACCESS_MARINE_PILOT 		23
 #define ACCESS_MARINE_WO			24
+#define ACCESS_MARINE_RO			26
 
 //Surface access levels
 #define ACCESS_CIVILIAN_PUBLIC 		100
