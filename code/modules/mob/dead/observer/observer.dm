@@ -487,7 +487,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 */
 /mob/dead/observer/verb/view_manfiest()
 	set name = "View Crew Manifest"
-	set category = "Ghost"
+	set category = "IC"
 
 	var/dat
 	dat += "<h4>Crew Manifest</h4>"
