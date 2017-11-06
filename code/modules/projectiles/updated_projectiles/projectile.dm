@@ -292,7 +292,6 @@
 	else
 		return FALSE
 
-
 /obj/structure/table/get_projectile_hit_chance(obj/item/projectile/P)
 	if(flags_atom & ON_BORDER) //flipped table
 		if(src == P.original)
@@ -305,7 +304,8 @@
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)
 		return FALSE
-	. = ..()
+	else if(!(flags_atom & ON_BORDER) || (P.dir & dir) || (P.dir & reverse_direction(dir)))
+		return TRUE
 
 /obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
 	if(!density)
