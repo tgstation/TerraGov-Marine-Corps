@@ -171,6 +171,7 @@
 
 
 /obj/effect/alien/weeds/weedwall
+	layer = RESIN_STRUCTURE_LAYER
 	icon_state = "weedwall"
 
 /obj/effect/alien/weeds/weedwall/update_sprite()
