@@ -931,7 +931,7 @@
 	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricord = 4,
 					/obj/item/stack/medical/bruise_pack = 2,
 					/obj/item/stack/medical/ointment = 2,
-					/obj/item/device/healthanalyzer = 1
+					/obj/item/device/healthanalyzer = 1,
 					/obj/item/stack/medical/splint = 1)
 	contraband = list(/obj/item/reagent_container/syringe/antitoxin = 2,
 						/obj/item/reagent_container/syringe/antiviral = 2)
@@ -946,7 +946,7 @@
 					/obj/item/reagent_container/syringe/antitoxin = 3,
 					/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,
-					/obj/item/device/healthanalyzer = 3
+					/obj/item/device/healthanalyzer = 3,
 					/obj/item/stack/medical/splint = 1)
 	contraband = list(/obj/item/reagent_container/pill/tox = 3)
 
