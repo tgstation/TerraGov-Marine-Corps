@@ -11,39 +11,41 @@
 	layer = TURF_LAYER
 	unacidable = 1
 	health = 1
-	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
 
-	New(pos, node)
-		..()
-		if(istype(loc, /turf/space))
-			cdel(src)
-			return
-
-		linked_node = node
-		if(!linked_node || !linked_node.loc || (get_dist(linked_node, src) > linked_node.node_range))
-			linked_node = null
-			cdel(src)
-			return
-
-		spawn(rand(150, 200))
-			if(src)
-				Life()
-
-	Crossed(atom/movable/AM)
-		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			if(!has_species(H,"Yautja")) //predators are immune to weed slowdown effect
-				H.next_move_slowdown += 1
-
-/obj/effect/alien/weeds/proc/Life()
-	var/turf/U = get_turf(src)
-
-	if(istype(U, /turf/space) || isnull(U))
+/obj/effect/alien/weeds/New(pos, obj/effect/alien/weeds/node/node)
+	..()
+	if(istype(loc, /turf/space))
 		cdel(src)
 		return
 
-	var/list/weeds_to_update = list(src)
+	update_sprite()
+	update_neighbours()
+	if(node && node.loc && (get_dist(node, src) < node.node_range))
+		spawn(rand(150, 200))
+			if(loc && node && node.loc)
+				weed_expand(node)
+
+
+/obj/effect/alien/weeds/Dispose()
+	var/oldloc = loc
+	. = ..()
+	update_neighbours(oldloc)
+
+
+
+/obj/effect/alien/weeds/Crossed(atom/movable/AM)
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		if(!has_species(H,"Yautja")) //predators are immune to weed slowdown effect
+			H.next_move_slowdown += 1
+
+
+/obj/effect/alien/weeds/proc/weed_expand(obj/effect/alien/weeds/node/node)
+	var/turf/U = get_turf(src)
+
+	if(!istype(U))
+		return
 
 	direction_loop:
 		for (var/dirn in cardinal)
@@ -52,44 +54,48 @@
 			if (!istype(T))
 				continue
 
-			if (T.density)
-				//TODO: Wall/Window check and overlay apply.
+			if (!T.is_weedable())
 				continue
 
 			var/obj/effect/alien/weeds/W = locate() in T
 			if (W)
-				weeds_to_update |= W
+				continue
+
+			if(istype(T, /turf/simulated/wall))
+				new /obj/effect/alien/weeds/weedwall(T)
 				continue
 
 			if (istype(T.loc, /area/arrival))
 				continue
 
-			if (!T.is_weedable())
-				continue
-
 			for (var/obj/O in T)
-				if (O.density)
+				if(istype(O, /obj/structure/window/framed) || istype(O, /obj/structure/window_frame))
+					new /obj/effect/alien/weeds/weedwall/window(T)
+					continue direction_loop
+				else if(istype(O, /obj/machinery/door) && O.density && (!(O.flags_atom & ON_BORDER) || O.dir != dirn))
 					continue direction_loop
 
-			for (var/check_dir in cardinal)
-				var/turf/check = get_step(T, check_dir)
+			new /obj/effect/alien/weeds(T, node)
 
-				if (!istype(check))
-					continue
 
-				var/obj/effect/alien/weeds/Y = locate() in check
-				if (Y)
-					weeds_to_update |= Y
+/obj/effect/alien/weeds/proc/update_neighbours(turf/U)
+	if(!U)
+		U = loc
+	if(istype(U))
+		for (var/dirn in cardinal)
+			var/turf/T = get_step(U, dirn)
 
-			var/obj/effect/alien/weeds/NW = new /obj/effect/alien/weeds(T, linked_node)
-			weeds_to_update |= NW
+			if (!istype(T))
+				continue
 
-	for (var/W in weeds_to_update)
-		var/obj/effect/alien/weeds/Z = W
-		Z.update_sprite()
+			var/obj/effect/alien/weeds/W = locate() in T
+			if(W)
+				W.update_sprite()
+
 
 /obj/effect/alien/weeds/proc/update_sprite()
-	if (linked_node && loc == linked_node.loc)
+	if(locate(/obj/effect/alien/weeds/node) in loc)
+		icon_state = "base"
 		return
 
 	var/my_dir = 0
@@ -102,11 +108,12 @@
 		if (locate(/obj/effect/alien/weeds) in check)
 			my_dir |= check_dir
 
-	if (my_dir == 15)
+	if (my_dir == 15 || my_dir == 0) //weeds in all four directions or in none
 		icon_state = "weed[rand(0,15)]"
 		return
+	else
+		icon_state = "weed_dir[my_dir]"
 
-	icon_state = "weed_dir[my_dir]"
 
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
@@ -119,7 +126,7 @@
 			if(prob(50))
 				cdel(src)
 
-/obj/effect/alien/weeds/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/alien/weeds/attackby(obj/item/W, mob/living/user)
 	if(!W || !user || isnull(W) || (W.flags_atom & NOBLUDGEON))
 		return 0
 
@@ -136,6 +143,10 @@
 		if(WT.remove_fuel(0, user))
 			damage = 15
 			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+
+	else
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	user.animation_attack_on(src)
 
 	health -= damage
 	healthcheck()
@@ -156,6 +167,33 @@
 		spawn(rand(100,175))
 			cdel(src)
 
+
+/obj/effect/alien/weeds/weedwall
+	icon_state = "weedwall"
+
+/obj/effect/alien/weeds/weedwall/update_sprite()
+	if(istype(loc, /turf/simulated/wall))
+		var/turf/simulated/wall/W = loc
+		if(W.junctiontype)
+			icon_state = "weedwall[W.junctiontype]"
+
+
+
+/obj/effect/alien/weeds/weedwall/window
+	layer = ABOVE_TABLE_LAYER
+
+/obj/effect/alien/weeds/weedwall/window/update_sprite()
+	var/obj/structure/window/framed/F = locate() in loc
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(F)
+		if(F.junction)
+			icon_state = "weedwall[F.junction]"
+	else if(WF)
+		if(WF.junction)
+			icon_state = "weedwall[WF.junction]"
+
+
+
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
 	name = "purple sac"
@@ -166,8 +204,15 @@
 	var/planter_name //nameof the mob who planted it.
 	health = 15
 
-/obj/effect/alien/weeds/node/New(loc, mob/living/carbon/Xenomorph/X)
-	..(loc, src)
+/obj/effect/alien/weeds/node/update_sprite()
+	return
+
+/obj/effect/alien/weeds/node/update_neighbours()
+	return
+
+
+/obj/effect/alien/weeds/node/New(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/Xenomorph/X)
+	..()
 	if(X)
 		planter_ckey = X.ckey
 		planter_name = X.real_name
