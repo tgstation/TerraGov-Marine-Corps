@@ -104,8 +104,10 @@
 
 		if (!istype(check))
 			continue
+		if(istype(check, turf/simulated/wall/resin))
+			my_dir |= check_dir
 
-		if (locate(/obj/effect/alien/weeds) in check)
+		else if (locate(/obj/effect/alien/weeds) in check)
 			my_dir |= check_dir
 
 	if (my_dir == 15 || my_dir == 0) //weeds in all four directions or in none
