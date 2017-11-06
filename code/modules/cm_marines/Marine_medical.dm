@@ -85,6 +85,17 @@
 		update_icon()
 
 
+/obj/item/reagent_container/hypospray/autoinjector/Tramadol
+	name = "\improper Tramadol autoinjector"
+	desc = "An auto-injector loaded with 15u of Tramadol."
+	amount_per_transfer_from_this = 15
+	volume = 15
+	icon_state = "oxycodine"
+
+	New()
+		..()
+		reagents.add_reagent("tramadol", 15)
+		update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Oxycodone
 	name = "\improper Oxycodone (EXTREME PAINKILLER) autoinjector"

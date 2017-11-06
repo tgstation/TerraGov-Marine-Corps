@@ -27,7 +27,7 @@
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_CHEM)
 			for(var/A in reagents.reagent_list)
 				var/datum/reagent/R = A
-				if(R.id != "tricordrazine")
+				if(R.id != "tricordrazine" && R.id != "tramadol" )
 					user << "<span class='warning'>[src] contains chemicals you don't recognize, better not use it...</span>"
 					return 0
 		user << "\blue You inject [M] with [src]."
