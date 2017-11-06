@@ -17,8 +17,8 @@
 	flags_pass = PASSTABLE
 	layer = BELOW_MOB_LAYER
 
-	health = 300
-	maxHealth = 300
+	health = 600
+	maxHealth = 600
 	var/move_to_delay = 2
 
 	var/murder_sound = list('sound/voice/scream_horror2.ogg')
@@ -28,6 +28,8 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent //Graciously stolen from spider code
 
 	var/list/shitlist = list() //list of folks this guy is about to murder
+	var/list/examine_urge_list = list() //tracks human urge to examine
+	var/list/examine_urge_values = list()
 	var/target //current dude this guy is targeting
 	var/screaming = 0 //are we currently screaming?
 	var/will_scream = 1 //will we scream when examined?
@@ -45,8 +47,8 @@
 		return
 
 	check_los()
-	staggered = max(staggered-1, 0)
-	update_damage(3)
+	staggered = max(staggered/8 - 1, 0)
+	adjustBruteLoss(-5)
 
 	if(screaming) //we're still screaming
 		return
@@ -130,24 +132,49 @@
 
 /mob/living/simple_animal/shyguy/proc/add_examine_urge(var/mob/living/carbon/human/H)
 
-	switch(H.examine_urge)
+	var/index
+	var/examine_urge
+
+	if(H in examine_urge_list)
+		index = examine_urge_list.Find(H)
+		examine_urge = examine_urge_values[index]
+	else
+		examine_urge_list += H
+		index = examine_urge_list.Find(H)
+		examine_urge = 1
+		examine_urge_values += examine_urge
+
+	switch(examine_urge)
 		if(1)
 			H << "<span class='alert'>You feel the urge to examine it...</span>"
 		if(3)
 			H << "<span class='alert'>It is becoming difficult to resist the urge to examine it ...</span>"
 		if(5)
 			H << "<span class='alert'>Unable to resist the urge, you look closely...</span>"
+			examine(H)
 
-	if(H.examine_urge >= 5)
-		examine(H)
+	examine_urge = min(examine_urge+1, 5)
+	examine_urge_values[index] = examine_urge
 
-	H.examine_urge++
-	H.reduce_examine_urge()
+	spawn(300)
+		if(H)
+			reduce_examine_urge(H)
 
-/mob/living/carbon/human/proc/reduce_examine_urge()
-	spawn(600)
-		if(src) examine_urge = max(examine_urge-1, 0)
+/mob/living/simple_animal/shyguy/proc/reduce_examine_urge(var/mob/living/carbon/human/H)
+	var/index
+	var/examine_urge
 
+	if(H in examine_urge_list)
+		index = examine_urge_list.Find(H)
+		examine_urge = examine_urge_values[index]
+	else return
+
+	if (examine_urge == 1 && !(H in shitlist))
+		H << "<span class='notice'>The urge fades away...</span>"
+
+	examine_urge = max(examine_urge-1, 0)
+
+	examine_urge_values[index] = examine_urge
 
 /mob/living/simple_animal/shyguy/examine(var/userguy)
 	if (istype(userguy, /mob/living/carbon/human))
@@ -221,7 +248,7 @@
 	spawn()
 		chasing = 1
 		while(get_turf(src) != get_turf(target) && limit > 0)
-			if(staggered <= 0 && murdering <= 0)
+			if(murdering <= 0)
 				for(var/obj/structure/window/W in next_turf)
 					W.health -= 1000
 					W.healthcheck(1, 1, 1, src)
@@ -250,7 +277,7 @@
 				dir = get_dir(src, target)
 				next_turf = get_step(src, get_dir(next_turf,target))
 			limit--
-			sleep(move_to_delay)
+			sleep(move_to_delay + round(staggered/8))
 		chasing = 0
 
 //This performs an immediate murder check, meant to avoid people cheesing us by just running faster than Life() refresh
@@ -385,24 +412,19 @@
 	if(!Proj || Proj.damage <= 0)
 		return 0
 
-	staggered++
 	visible_message("<span class='danger'>[src] is staggered by [Proj]!</span>")
-	update_damage(-Proj.damage)
-	spawn(round(Proj.damage/4))
-		staggered = max(staggered-1, 0)
+	adjustBruteLoss(Proj.damage)
 	return 1
 
-/mob/living/simple_animal/shyguy/proc/update_damage(var/change)
+/mob/living/simple_animal/shyguy/adjustBruteLoss(var/damage)
 
-	if (change > 0) //regeneration
-		health = min(maxHealth, health+change)
-	else if (change < 0) //damage
-		health = max(0, health+change)
+	health = Clamp(health - damage, 0, maxHealth)
+
+	if(damage > 0)
+		staggered += damage
 
 	var/old_damage_state = damage_state
-
 	damage_state = round( (1-health/maxHealth) * 3.99 )
-
 	icon_state = "shyguy_dam[damage_state]"
 
 	if(old_damage_state < damage_state)
@@ -420,3 +442,20 @@
 
 //You cannot destroy us, fool!
 /mob/living/simple_animal/shyguy/ex_act(var/severity)
+	var/damage = 0
+	switch (severity)
+		if (1.0)
+			damage = 500
+		if (2.0)
+			damage = 60
+		if(3.0)
+			damage = 30
+	visible_message("<span class='danger'>[src] is staggered by the explosion!</span>")
+	adjustBruteLoss(damage)
+	return 1
+
+/mob/living/simple_animal/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
+	..()
+	if(O.force)
+		visible_message("<span class='danger'>[src] is staggered by [O]!</span>")
+		adjustBruteLoss(O.force)
