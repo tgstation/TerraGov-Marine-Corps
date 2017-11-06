@@ -113,17 +113,17 @@
 	storage_slots = 3
 	can_hold = list(
 					"/obj/item/stack/medical/ointment",
-					"/obj/item/reagent_container/hypospray/autoinjector/Oxycodone",
+					"/obj/item/reagent_container/hypospray/autoinjector",
 					"/obj/item/stack/medical/bruise_pack"
 					)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains an oxycodone autoinjector, some ointment, and some bandages."
+	desc = "Contains a tramadol autoinjector, some ointment, and some bandages."
 
 /obj/item/storage/pouch/firstaid/full/New()
 	..()
 	new /obj/item/stack/medical/ointment (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Oxycodone (src)
+	new /obj/item/reagent_container/hypospray/autoinjector/Tramadol (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 
 
