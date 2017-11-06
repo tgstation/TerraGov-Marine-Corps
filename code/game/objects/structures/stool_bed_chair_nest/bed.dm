@@ -14,6 +14,7 @@
 	icon = 'icons/obj/objects.dmi'
 	can_buckle = TRUE
 	buckle_lying = TRUE
+	throwpass = TRUE
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
 	var/foldabletype //to fold into an item (e.g. roller bed item)
@@ -65,6 +66,13 @@
 			cdel(src)
 	else
 		. = ..()
+
+
+
+/obj/structure/bed/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return TRUE
+	. = ..()
 
 
 

@@ -286,6 +286,13 @@
 		if(P.dir & reverse_direction(dir))
 			return prob(95)
 
+/obj/structure/bed/get_projectile_hit_chance(obj/item/projectile/P)
+	if(density && src == P.original)
+		return TRUE
+	else
+		return FALSE
+
+
 /obj/structure/table/get_projectile_hit_chance(obj/item/projectile/P)
 	if(flags_atom & ON_BORDER) //flipped table
 		if(src == P.original)
