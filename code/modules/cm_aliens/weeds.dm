@@ -104,7 +104,7 @@
 
 		if (!istype(check))
 			continue
-		if(istype(check, turf/simulated/wall/resin))
+		if(istype(check, /turf/simulated/wall/resin))
 			my_dir |= check_dir
 
 		else if (locate(/obj/effect/alien/weeds) in check)
