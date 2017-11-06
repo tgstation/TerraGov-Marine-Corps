@@ -457,6 +457,9 @@
 		relativewall_neighbours()
 	..()
 
+/obj/structure/window/framed/is_full_window()
+	return TRUE
+
 /obj/structure/window/framed/update_nearby_icons()
 	relativewall_neighbours()
 
