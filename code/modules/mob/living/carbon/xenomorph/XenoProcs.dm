@@ -120,6 +120,13 @@
 /turf/simulated/floor/gm/river/is_weedable()
 	return FALSE
 
+/turf/simulated/wall/is_weedable()
+	return TRUE //so we can spawn weeds on the walls
+
+/turf/simulated/wall/resin/is_weedable()
+	return FALSE //no weeds on top of resin walls, that's redundant.
+
+
 
 
 

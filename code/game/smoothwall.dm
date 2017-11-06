@@ -139,6 +139,7 @@
 
 /turf/simulated/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
+	junctiontype = junction
 
 /obj/structure/grille/almayer/handle_icon_junction(junction)
 	icon_state = "grille[junction]"

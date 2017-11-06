@@ -442,6 +442,7 @@
 
 /obj/structure/window/framed
 	name = "theoretical window"
+	layer = TABLE_LAYER
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,

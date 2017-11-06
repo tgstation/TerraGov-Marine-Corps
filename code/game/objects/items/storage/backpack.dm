@@ -415,6 +415,7 @@
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
 	item_state = "ERT_satchel"
+	worn_accessible = TRUE
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"

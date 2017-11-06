@@ -33,6 +33,7 @@
 				icon_state = "almayer_deco_wall[r2]"
 	else
 		icon_state = "[walltype][junction]"
+	junctiontype = junction
 
 /turf/simulated/wall/almayer/outer
 	name = "outer hull"

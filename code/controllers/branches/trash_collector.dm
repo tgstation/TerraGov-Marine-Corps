@@ -151,6 +151,7 @@ TO DO: Implement more support for /mob.
 */
 /datum/proc/Dispose(override = 0) //This is the proc parent of how atoms get rid of trash.
 	tag = null //Can't have one of these and still be garbage collected. Same for key in mobs, which will be added to that subtype.
+	disposed = TRUE
 	return TA_TRASH_ME
 
 //======================================================
