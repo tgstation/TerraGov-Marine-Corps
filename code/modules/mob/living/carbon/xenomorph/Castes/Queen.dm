@@ -57,11 +57,11 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		)
 
 /mob/living/carbon/Xenomorph/Queen/New()
-
 	..()
-	if(!living_xeno_queen)
-		living_xeno_queen = src
-	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
+	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
+		if(!living_xeno_queen)
+			living_xeno_queen = src
+		xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
 /mob/living/carbon/Xenomorph/Queen/Dispose()

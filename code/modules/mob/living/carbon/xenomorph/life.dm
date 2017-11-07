@@ -456,25 +456,27 @@ updatehealth()
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 		update_icons()
 
-	switch(caste)
-		if("Queen")
-			playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
-			xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
-			xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
-			slashing_allowed = 1
-			if(living_xeno_queen == src)
-				living_xeno_queen = null
-				//on the off chance there was somehow two queen alive
-				for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
-					if(!isnull(Q) && Q != src && Q.stat != DEAD)
-						living_xeno_queen = Q
-						break
-			if(ticker && ticker.mode) ticker.mode.check_queen_status(queen_time)
-		else
-			if(caste == "Predalien") playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
-			else playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
-			var/area/A = get_area(src)
-			xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
+	if(z != ADMIN_Z_LEVEL) //so xeno players don't get death messages from admin tests
+		switch(caste)
+			if("Queen")
+				playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
+				if(living_xeno_queen == src)
+					xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
+					xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
+					slashing_allowed = 1
+					living_xeno_queen = null
+					//on the off chance there was somehow two queen alive
+					for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
+						if(!isnull(Q) && Q != src && Q.stat != DEAD)
+							living_xeno_queen = Q
+							break
+					if(ticker && ticker.mode)
+						ticker.mode.check_queen_status(queen_time)
+			else
+				if(caste == "Predalien") playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
+				else playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
+				var/area/A = get_area(src)
+				xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A
