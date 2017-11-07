@@ -87,14 +87,14 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/Tramadol
 	name = "\improper Tramadol autoinjector"
-	desc = "An auto-injector loaded with 15u of Tramadol."
-	amount_per_transfer_from_this = 15
-	volume = 15
-	icon_state = "oxycodine"
+	desc = "An auto-injector loaded with 10u of Tramadol."
+	amount_per_transfer_from_this = 10
+	volume = 10
+	icon_state = "tramadol"
 
 	New()
 		..()
-		reagents.add_reagent("tramadol", 15)
+		reagents.add_reagent("tramadol", 10)
 		update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Oxycodone
@@ -102,7 +102,7 @@
 	desc = "An auto-injector loaded with 5u of Oxycodone."
 	amount_per_transfer_from_this = 5
 	volume = 5
-	icon_state = "oxycodine"
+	icon_state = "oxycodone"
 
 	New()
 		..()

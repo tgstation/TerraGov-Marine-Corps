@@ -18,9 +18,6 @@
 	if(reagents.has_reagent("alkysine")) 		traumatic_shock -= 10
 	if(reagents.has_reagent("inaprovaline")) 	traumatic_shock -= 25
 	if(reagents.has_reagent("synaptizine")) 	traumatic_shock -= 40
-	if(reagents.has_reagent("paracetamol")) 	traumatic_shock -= 50
-	if(reagents.has_reagent("tramadol")) 		traumatic_shock -= 80
-	if(reagents.has_reagent("oxycodone")) 		traumatic_shock -= 200
 	if(slurring) 								traumatic_shock -= 20
 	if(analgesic) 								traumatic_shock = 0
 
@@ -41,7 +38,12 @@
 		if(M.protection_aura)
 			traumatic_shock -= M.protection_aura * 10
 
-	traumatic_shock = max(0, traumatic_shock)
+	traumatic_shock = max(0, traumatic_shock)	//reagents below this have the potential to mask damage
+
+	if(reagents.has_reagent("paracetamol")) 	traumatic_shock -= 50
+	if(reagents.has_reagent("tramadol")) 		traumatic_shock -= 80
+	if(reagents.has_reagent("oxycodone")) 		traumatic_shock -= 200
+
 	return traumatic_shock
 
 /mob/living/carbon/proc/handle_shock()
