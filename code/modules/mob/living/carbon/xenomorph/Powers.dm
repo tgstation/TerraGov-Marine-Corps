@@ -468,6 +468,7 @@
 	var/larva_list = ""
 	var/larva_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+		if(X.z == ADMIN_Z_LEVEL) continue //don't show xenos in the thunderdome when admins test stuff.
 		var/area/A = get_area(X)
 		var/xenoinfo = "<tr><td>[X.name] "
 		if(!X.client) xenoinfo += " <i>(SSD)</i>"
