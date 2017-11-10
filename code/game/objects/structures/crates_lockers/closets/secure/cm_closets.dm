@@ -468,12 +468,12 @@
 /obj/structure/closet/secure_closet/req_officer
 	name = "\improper RO's Locker"
 	req_access = list(ACCESS_MARINE_RO)
-	icon_state = "securecargo1"
-	icon_closed = "securecargo"
-	icon_locked = "securecargo1"
-	icon_opened = "securecargoopen"
-	icon_broken = "securecargobroken"
-	icon_off = "securecargooff"
+	icon_state = "secure_locked_cargo"
+	icon_closed = "secure_unlocked_cargo"
+	icon_locked = "secure_locked_cargo"
+	icon_opened = "secure_open_cargo"
+	icon_broken = "secure_broken_cargo"
+	icon_off = "secure_off_cargo"
 
 	New()
 		..()
@@ -488,12 +488,12 @@
 /obj/structure/closet/secure_closet/cargotech
 	name = "Cargo Technician's Locker"
 	req_access = list(ACCESS_MARINE_CARGO)
-	icon_state = "securecargo1"
-	icon_closed = "securecargo"
-	icon_locked = "securecargo1"
-	icon_opened = "securecargoopen"
-	icon_broken = "securecargobroken"
-	icon_off = "securecargooff"
+	icon_state = "secure_locked_cargo"
+	icon_closed = "secure_unlocked_cargo"
+	icon_locked = "secure_locked_cargo"
+	icon_opened = "secure_open_cargo"
+	icon_broken = "secure_broken_cargo"
+	icon_off = "secure_off_cargo"
 
 	New()
 		..()

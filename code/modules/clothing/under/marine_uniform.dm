@@ -242,8 +242,31 @@
 	item_state = "dutch_jumpsuit2"
 	item_color = "dutch_jumpsuit2"
 
+//===========================//HELGHAST - MERCENARY\\================================\\
+//=====================================================================\\
 
+/obj/item/clothing/under/marine/veteran/mercenary
+	name = "\improper Mercenary fatigues"
+	desc = "A thick, beige suit with a red armband. There is an unknown symbol is emblazed on the suit."
+	icon = 'icons/PMC/PMC.dmi'
+	//icon_override = 'icons/PMC/PMC.dmi'
+	icon_state = "mercenary_heavy_armor"
+	item_state = "armor"
+	item_color = "mercenary_heavy_armor"
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
+/obj/item/clothing/under/marine/veteran/mercenary/miner
+	name = "\improper Mercenary miner fatigues"
+	desc = "A beige suit with a red armband. It looks a little thin, like it wasn't designed for protection. There is an unknown symbol is emblazed on the suit."
+	item_state = "mercenary_miner_uniform"
+	item_color = "mercenary_miner_uniform"
+
+/obj/item/clothing/under/marine/veteran/mercenary/engineer
+	name = "\improper Mercenary engineer fatigues"
+	desc = "A blue suit with yellow accents, used by engineers. There is an unknown symbol is emblazed on the suit."
+	item_state = "mercenary_engineer_uniform"
+	item_color = "mercenary_engineer_uniform"
 
 
 ////// Civilians /////////

@@ -163,7 +163,146 @@
 	w_class = 2.0
 	attack_verb = list("attacked", "hit", "bludgeoned")
 
+// Predator Surgery Tools
 
+/obj/item/tool/surgery/predator
+	icon = 'icons/obj/items/surgery_tools.dmi'
+
+/*
+ * Predator Retractor
+ */
+/obj/item/tool/surgery/predator/retractor
+	name = "retractor"
+	desc = "Retracts stuff."
+	icon_state = "predator_retractor"
+	matter = list("metal" = 10000, "glass" = 5000)
+	flags_atom = FPRINT|CONDUCT
+	w_class = 2.0
+	origin_tech = "materials=1;biotech=1"
+
+/*
+ * Predator Hemostat
+ */
+/obj/item/tool/surgery/predator/hemostat
+	name = "hemostat"
+	desc = "You think you have seen this before."
+	icon_state = "predator_hemostat"
+	matter = list("metal" = 5000, "glass" = 2500)
+	flags_atom = FPRINT|CONDUCT
+	w_class = 2.0
+	origin_tech = "materials=1;biotech=1"
+	attack_verb = list("attacked", "pinched")
+
+/*
+ * Predator Cautery
+ */
+/obj/item/tool/surgery/predator/cautery
+	name = "cautery"
+	desc = "This stops bleeding."
+	icon_state = "predator_cautery"
+	matter = list("metal" = 5000, "glass" = 2500)
+	flags_atom = FPRINT|CONDUCT
+	w_class = 1
+	origin_tech = "materials=1;biotech=1"
+	attack_verb = list("burnt")
+
+/*
+ * Predator Surgical Drill
+ */
+/obj/item/tool/surgery/predator/surgicaldrill
+	name = "surgical drill"
+	desc = "You can drill using this item. You dig?"
+	icon_state = "predator_drill"
+	matter = list("metal" = 15000, "glass" = 10000)
+	flags_atom = FPRINT|CONDUCT
+	force = 15.0
+	w_class = 2.0
+	origin_tech = "materials=1;biotech=1"
+	attack_verb = list("drilled")
+
+	suicide_act(mob/user)
+		viewers(user) << pick("\red <b>[user] is pressing the [src.name] to \his temple and activating it! It looks like \he's trying to commit suicide.</b>", \
+							"\red <b>[user] is pressing [src.name] to \his chest and activating it! It looks like \he's trying to commit suicide.</b>")
+		return (BRUTELOSS)
+
+/*
+ * Predator Scalpel
+ */
+/obj/item/tool/surgery/predator/scalpel
+	name = "scalpel"
+	desc = "Cut, cut, and once more cut."
+	icon_state = "predator_scalpel"
+	flags_atom = FPRINT|CONDUCT
+	force = 10.0
+	sharp = IS_SHARP_ITEM_ACCURATE
+	edge = 1
+	w_class = 1
+	throwforce = 5.0
+	throw_speed = 3
+	throw_range = 5
+	matter = list("metal" = 10000, "glass" = 5000)
+	origin_tech = "materials=1;biotech=1"
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+	suicide_act(mob/user)
+		viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
+							"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
+							"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
+		return (BRUTELOSS)
+
+/*
+ * Predator Saw
+ */
+/obj/item/tool/surgery/predator/bonesaw
+	name = "circular saw"
+	desc = "For heavy duty cutting."
+	icon_state = "predator_bonesaw"
+	flags_atom = FPRINT|CONDUCT
+	force = 15.0
+	w_class = 2.0
+	throwforce = 9.0
+	throw_speed = 3
+	throw_range = 5
+	matter = list("metal" = 20000,"glass" = 10000)
+	origin_tech = "materials=1;biotech=1"
+	attack_verb = list("attacked", "slashed", "sawed", "cut")
+	sharp = IS_SHARP_ITEM_BIG
+	edge = 1
+
+/*
+ * Predator Bonegel
+ */
+/obj/item/tool/surgery/predator/bonegel
+	name = "bone gel"
+	icon_state = "predator_bone-gel"
+	force = 0
+	w_class = 2.0
+	throwforce = 1.0
+
+/*
+ * Predator FixOVein
+ */
+/obj/item/tool/surgery/predator/FixOVein
+	name = "FixOVein"
+	icon_state = "predator_fixovein"
+	force = 0
+	throwforce = 1.0
+	origin_tech = "materials=1;biotech=3"
+	w_class = 2.0
+	var/usage_amount = 10
+
+/*
+ * Predator Bonesetter
+ */
+/obj/item/tool/surgery/predator/bonesetter
+	name = "bone setter"
+	icon_state = "predator_bonesetter"
+	force = 8.0
+	throwforce = 9.0
+	throw_speed = 3
+	throw_range = 5
+	w_class = 2.0
+	attack_verb = list("attacked", "hit", "bludgeoned")
 
 //XENO AUTOPSY TOOL
 
