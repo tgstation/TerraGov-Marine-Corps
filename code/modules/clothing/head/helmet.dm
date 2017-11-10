@@ -466,3 +466,36 @@
 			if("s_duragm")
 				desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
 				flags_inventory = HIDEEARS|HIDEALLHAIR|BLOCKSHARPOBJ
+
+//===========================//HELGHAST - MERCENARY\\================================\\
+//=====================================================================\\
+
+/obj/item/clothing/head/helmet/marine/veteran/mercenary
+	name = "\improper K12 ceramic helmet"
+	desc = "A sturdy helmet worn by an unknown mercenary group."
+	item_state = "mercenary_heavy_helmet"
+	icon_state = "mercenary_heavy_helmet"
+	flags_armor_protection = HEAD|FACE|EYES
+	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
+	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
+
+/obj/item/clothing/head/helmet/marine/veteran/mercenary/miner
+	name = "\improper Y8 miner helmet"
+	desc = "A sturdy helmet worn by an unknown mercenary group."
+	item_state = "mercenary_miner_helmet"
+	icon_state = "mercenary_miner_helmet"
+	flags_armor_protection = HEAD|FACE|EYES
+	armor = list(melee = 55, bullet = 55, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
+	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
+
+/obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer
+	name = "\improper Z7 engineer helmet"
+	desc = "A sturdy helmet worn by an unknown mercenary group."
+	item_state = "mercenary_engineer_helmet"
+	icon_state = "mercenary_engineer_helmet"
+	flags_armor_protection = HEAD|FACE|EYES
+	armor = list(melee = 55, bullet = 60, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
+	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
