@@ -38,6 +38,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	xeno_explosion_resistance = 1 //some resistance against explosion stuns.
 	var/breathing_counter = 0
 	actions = list(
+		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/plant_weeds,

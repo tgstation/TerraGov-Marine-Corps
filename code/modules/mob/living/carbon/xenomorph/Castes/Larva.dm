@@ -25,6 +25,7 @@
 	gib_chance = 25
 	innate_healing = TRUE //heals even outside weeds so you're not stuck unable to evolve when hiding on the ship wounded.
 	actions = list(
+		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/xenohide,
 		)
 	inherent_verbs = list(
