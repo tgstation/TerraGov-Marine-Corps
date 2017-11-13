@@ -3258,7 +3258,7 @@
 "bkH" = (/obj/machinery/optable,/turf/simulated/floor/almayer{icon_state = "dark_sterile"; tag = "icon-sterile"},/area/almayer/shipboard/brig_cells)
 "bkI" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/almayer{tag = "icon-redfull"; icon_state = "redfull"},/area/almayer/shipboard/brig_cells)
 "bkJ" = (/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/almayer,/area/almayer/shipboard/brig_cells)
-"bkK" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk,/obj/structure/disposalpipe/trunk{dir = 8},/turf/simulated/floor/almayer{tag = "icon-redfull"; icon_state = "redfull"},/area/almayer/shipboard/brig_cells)
+"bkK" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 8},/turf/simulated/floor/almayer{tag = "icon-redfull"; icon_state = "redfull"},/area/almayer/shipboard/brig_cells)
 "bkL" = (/obj/effect/attach_point/weapon/dropship2{dir = 8; icon_state = "equip_base_l_wing"},/turf/simulated/shuttle/wall/dropship2/transparent{icon_state = "61"},/area/shuttle/drop2/sulaco)
 "bkM" = (/turf/simulated/shuttle/wall/dropship2{icon_state = "62"},/area/shuttle/drop2/sulaco)
 "bkN" = (/turf/simulated/shuttle/wall/dropship2{icon_state = "63"},/area/shuttle/drop2/sulaco)
