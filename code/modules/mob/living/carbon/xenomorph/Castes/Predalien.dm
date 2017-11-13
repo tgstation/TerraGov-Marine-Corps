@@ -46,6 +46,7 @@
 	#define PREDALIEN_BUTCHER_COOLDOWN 140 //14 seconds.
 	#define PREDALIEN_BUTCHER_WAIT_TIME 120 //12 seconds.
 	actions = list(
+		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/activable/pounce,

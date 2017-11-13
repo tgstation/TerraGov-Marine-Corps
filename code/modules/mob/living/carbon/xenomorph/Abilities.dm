@@ -37,6 +37,25 @@
 
 
 
+/datum/action/xeno_action/xeno_resting
+	name = "Rest"
+	action_icon_state = "resting"
+
+//resting action can be done even when lying down
+/datum/action/xeno_action/xeno_resting/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X && !X.is_mob_incapacitated(TRUE) && !X.buckled)
+		return TRUE
+
+/datum/action/xeno_action/xeno_resting/action_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X.is_mob_incapacitated(TRUE))
+		return
+
+	X.resting = !X.resting
+	X << "\blue You are now [X.resting ? "resting" : "getting up"]"
+
+
 
 /datum/action/xeno_action/activable/tail_attack
 	name = "Tail Attack (20)(drain while active)"

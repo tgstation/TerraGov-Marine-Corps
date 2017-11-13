@@ -26,6 +26,7 @@
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	var/gun_on = 0
 	actions = list(
+		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/activable/corrosive_acid,
