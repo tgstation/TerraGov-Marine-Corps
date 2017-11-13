@@ -185,8 +185,7 @@
 	if(contents.len <= 1) //1 because the tray is inside.
 		visible_message("\red You hear a hollow crackle.")
 	else
-		for (var/mob/M in viewers(src))
-			visible_message("\red You hear a roar as the crematorium activates.", 1)
+		visible_message("\red You hear a roar as the crematorium activates.")
 
 		cremating = 1
 
