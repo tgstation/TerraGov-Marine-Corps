@@ -738,6 +738,7 @@ var/list/admin_verbs_mentor = list(
 	if (new_tone)
 		M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
 		M.s_tone =  -M.s_tone + 35
+		M.pale_max = M.s_tone + HUMAN_MAX_PALENESS
 
 	// hair
 	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list

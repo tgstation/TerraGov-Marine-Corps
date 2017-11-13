@@ -720,7 +720,7 @@
 	x_offset += rand(-2,2) //Randomize the drop zone a little bit.
 	y_offset += rand(-2,2)
 
-	C.visible_message("The [C] begins to load into a launch tube. Stand clear!")
+	C.visible_message("\The [C] begins to load into a launch tube. Stand clear!")
 	C.anchored = TRUE //to avoid accidental pushes
 	send_to_squad("Supply Drop Incoming!")
 	current_squad.sbeacon.visible_message("\blue The beacon begins to beep!")
