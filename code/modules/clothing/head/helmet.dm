@@ -473,6 +473,8 @@
 /obj/item/clothing/head/helmet/marine/veteran/mercenary
 	name = "\improper K12 ceramic helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "mercenary_heavy_helmet"
 	icon_state = "mercenary_heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES

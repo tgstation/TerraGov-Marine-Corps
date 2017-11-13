@@ -108,6 +108,9 @@
 		"Freelancer (Standard)",
 		"Freelancer (Medic)",
 		"Freelancer (Leader)",
+		"Mercenary (Heavy)",
+		"Mercenary (Miner)",
+		"Mercenary (Engineer)",
 		"Weyland-Yutani Deathsquad",
 		"Business Person",
 		"UPP Spy",
@@ -1094,6 +1097,79 @@
 				M.mind.assigned_role = "MODE"
 				M.mind.special_role = "FREELANCERS"
 				M.mind.skills_list = list("cqc"=SKILL_CQC_TRAINED,"endurance"=0,"engineer"=SKILL_ENGINEER_PLASTEEL,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_TRAINED,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+
+
+		if("Mercenary (Heavy)")
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/explosive/plastique(M.back), WEAR_IN_BACK)
+
+			var/obj/item/card/id/W = new(M)
+			W.assignment = "Mercenary"
+			W.rank = "Mercenary Enforcer"
+			W.registered_name = M.real_name
+			W.name = "[M.real_name]'s ID Card ([W.assignment])"
+			W.icon_state = "centcom"
+			W.access = get_antagonist_pmc_access()
+			M.equip_to_slot_or_del(W, WEAR_ID)
+
+			if(M.mind)
+				M.mind.skills_list = list("cqc"=3,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+
+
+		if("Mercenary (Miner)")
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary/miner(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/explosive/plastique(M.back), WEAR_IN_BACK)
+
+			var/obj/item/card/id/W = new(M)
+			W.assignment = "Mercenary"
+			W.rank = "Mercenary Worker"
+			W.registered_name = M.real_name
+			W.name = "[M.real_name]'s ID Card ([W.assignment])"
+			W.icon_state = "centcom"
+			W.access = get_antagonist_pmc_access()
+			M.equip_to_slot_or_del(W, WEAR_ID)
+
+			if(M.mind)
+				M.mind.skills_list = list("cqc"=3,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+
+
+		if("Mercenary (Engineer)")
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary/engineer(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/engineer(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/explosive/plastique(M.back), WEAR_IN_BACK)
+
+			var/obj/item/card/id/W = new(M)
+			W.assignment = "Mercenary"
+			W.rank = "Mercenary Engineer"
+			W.registered_name = M.real_name
+			W.name = "[M.real_name]'s ID Card ([W.assignment])"
+			W.icon_state = "centcom"
+			W.access = get_antagonist_pmc_access()
+			M.equip_to_slot_or_del(W, WEAR_ID)
+
+			if(M.mind)
+				M.mind.skills_list = list("cqc"=3,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_TRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_BEGINNER,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 		if("Business Person")
 			M.equip_if_possible(new /obj/item/clothing/under/lawyer/bluesuit(M), WEAR_BODY)
