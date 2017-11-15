@@ -160,6 +160,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/storage/pouch/flare,
 					/obj/item/storage/pouch/electronics,
 					/obj/item/storage/pouch/construction,
+					/obj/item/storage/pouch/tools,
 					/obj/item/storage/pouch/radio,
 					/obj/item/storage/pouch/survival
 					)

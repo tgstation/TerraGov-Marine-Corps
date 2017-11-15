@@ -756,6 +756,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/storage/large_holster/m39 = round(scale * 3),
 						/obj/item/storage/pouch/general/medium = round(scale * 1),
 						/obj/item/storage/pouch/construction = round(scale * 1),
+						/obj/item/storage/pouch/tools = round(scale * 1),
 						/obj/item/storage/pouch/explosive = round(scale * 1),
 						/obj/item/storage/pouch/syringe = round(scale * 1),
 						/obj/item/storage/pouch/medical = round(scale * 1),

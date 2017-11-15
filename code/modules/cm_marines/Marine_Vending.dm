@@ -118,6 +118,7 @@
 					/obj/item/storage/large_holster/m39 = 3,
 					/obj/item/storage/pouch/general/medium = 1,
 					/obj/item/storage/pouch/construction = 1,
+					/obj/item/storage/pouch/tools = 1,
 					/obj/item/storage/pouch/explosive = 1,
 					/obj/item/storage/pouch/syringe = 1,
 					/obj/item/storage/pouch/medical = 1,
@@ -368,6 +369,7 @@
 						/obj/item/tool/etool = 3,
 						/obj/item/storage/pouch/explosive = 2,
 						/obj/item/storage/pouch/construction = 2,
+						/obj/item/storage/pouch/tools = 2,
 						/obj/item/storage/pouch/electronics = 2,
 						/obj/item/storage/pouch/magazine = 2
 					)
