@@ -318,8 +318,8 @@
 /turf/simulated/wall/r_wall/unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
-	icon_state = "hr_wall"
-	walltype = "hrwall"
+	icon_state = "r_wall"
+	walltype = "rwall"
 	hull = 1
 
 	ex_act(severity) //Should make it indestructable

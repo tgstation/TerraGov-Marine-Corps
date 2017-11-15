@@ -111,6 +111,10 @@
 /turf/unsimulated/floor/mars/is_weedable()
 	return FALSE
 
+/turf/simulated/floor/is_weedable()
+	var/area/A = get_area(src)
+	return A.is_weedable
+
 /turf/simulated/floor/gm/grass/is_weedable()
 	return FALSE
 

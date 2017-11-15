@@ -209,6 +209,10 @@
 /area/prison/yard
 	name = "\improper Yard"
 	icon_state = "thunder"
+	is_weedable = 0
+
+/area/prison/hallway
+	is_weedable = 0
 
 /area/prison/hallway/entrance
 	name = "\improper Entrance Hallway"
@@ -365,25 +369,25 @@
 	icon_state = "toxtest"
 
 /area/prison/residential/central
-	name = "\improper Civillian Residences Central"
+	name = "\improper Civilian Residences Central"
 	icon_state = "blue-red2"
 
 /area/prison/residential/north
-	name = "\improper Civillian Residences North"
+	name = "\improper Civilian Residences North"
 	icon_state = "blue2"
 
 /area/prison/residential/south
-	name = "\improper Civillian Residences South"
+	name = "\improper Civilian Residences South"
 	icon_state = "red2"
 
 /area/prison/monorail
 	icon_state = "purple"
 
 /area/prison/monorail/east
-	name = "\improper Monorail Station East"
+	name = "\improper East Monorail Station"
 
 /area/prison/monorail/west
-	name = "\improper Monorail Station West"
+	name = "\improper West Monorail Station"
 
 /area/prison/hanger/main
 	name = "\improper Main Hanger"
