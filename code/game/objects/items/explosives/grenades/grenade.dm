@@ -36,6 +36,11 @@
 		else
 			user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
 			"<span class='warning'>You prime \a [name]!</span>")
+			if(has_species(user, "Human"))
+				var/nade_sound = user.gender == FEMALE ? get_sfx("fragout_female") : get_sfx("fragout_male")
+
+				for(var/mob/living/carbon/human/H in hearers(6,user))
+					H.playsound_local(user, nade_sound, 35)
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()

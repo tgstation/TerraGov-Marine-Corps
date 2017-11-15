@@ -144,6 +144,9 @@
 #define SOUND_PLAY_GUN_SILENCED pick('sound/weapons/gun_silenced_shot1.ogg','sound/weapons/gun_silenced_shot2.ogg')
 #define SOUND_PLAY_GUN_PULSE pick('sound/weapons/gun_m41a_1.ogg','sound/weapons/gun_m41a_2.ogg','sound/weapons/gun_m41a_3.ogg','sound/weapons/gun_m41a_4.ogg','sound/weapons/gun_m41a_5.ogg','sound/weapons/gun_m41a_6.ogg')
 #define SOUND_PLAY_GUN_SMARTGUN pick('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')
+#define SOUND_PLAY_FRAGOUT_MALE pick('sound/voice/grenadethrow_male_1.ogg', 'sound/voice/grenadethrow_male_2.ogg', 'sound/voice/grenadethrow_male_3.ogg')
+#define SOUND_PLAY_FRAGOUT_FEMALE pick("sound/voice/grenadethrow_female_1.ogg", 'sound/voice/grenadethrow_female_2.ogg', 'sound/voice/grenadethrow_female_3.ogg')
+
 
 /proc/get_sfx(S)
 	. = S
@@ -177,3 +180,5 @@
 			if("gun_silenced") . = SOUND_PLAY_GUN_SILENCED
 			if("gun_pulse") . = SOUND_PLAY_GUN_PULSE
 			if("gun_smartgun") . = SOUND_PLAY_GUN_SMARTGUN
+			if("fragout_male") . = SOUND_PLAY_FRAGOUT_MALE
+			if("fragout_female") . = SOUND_PLAY_FRAGOUT_FEMALE
