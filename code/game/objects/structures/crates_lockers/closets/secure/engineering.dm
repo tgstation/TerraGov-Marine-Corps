@@ -39,6 +39,7 @@
 		new /obj/item/storage/pouch/electronics(src)
 		new /obj/item/storage/pouch/general/medium(src)
 		new /obj/item/storage/pouch/construction(src)
+		new /obj/item/storage/pouch/tools(src)
 
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -107,7 +108,6 @@
 
 	New()
 		..()
-		sleep(2)
 		if(prob(50)) new /obj/item/storage/backpack/industrial(src)
 		else new /obj/item/storage/backpack/satchel/eng(src)
 		if (prob(70)) new /obj/item/clothing/tie/storage/brown_vest(src)
@@ -122,6 +122,7 @@
 		new /obj/item/storage/pouch/electronics(src)
 		new /obj/item/storage/pouch/construction(src)
 		new /obj/item/storage/pouch/medkit(src)
+		new /obj/item/storage/pouch/tools(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/device/flashlight(src)
 

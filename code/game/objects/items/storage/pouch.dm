@@ -391,3 +391,21 @@
 					"/obj/item/tool/etool",
 					"/obj/item/stack/sandbags_empty"
 					)
+
+/obj/item/storage/pouch/tools
+	name = "tools pouch"
+	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
+	storage_slots = 4
+	max_w_class = 3
+	icon_state = "tools"
+	can_hold = list(
+					"/obj/item/tool/wirecutters",
+					"/obj/item/tool/etool",
+					"/obj/item/tool/screwdriver",
+					"/obj/item/tool/crowbar",
+					"/obj/item/tool/weldingtool",
+					"/obj/item/tool/multitool",
+					"/obj/item/tool/wrench",
+					"/obj/item/stack/cable_coil",
+					"/obj/item/tool/extinguisher/mini"
+					)
