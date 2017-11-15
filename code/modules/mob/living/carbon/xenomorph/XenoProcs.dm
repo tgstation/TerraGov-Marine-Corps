@@ -344,7 +344,7 @@
 /mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
 	var/obj/structure/mineral_door/alien_door = locate() in current_turf
 	var/obj/effect/alien/resin/alien_construct = locate() in current_turf
-	var/obj/structure/bed/stool/chair = locate() in current_turf
+	var/obj/structure/bed/chair = locate() in current_turf
 
 	if(alien_door || alien_construct || chair || istype(current_turf, /turf/simulated/wall/resin))
 		src << "<span class='warning'>There's something built here already.</span>"

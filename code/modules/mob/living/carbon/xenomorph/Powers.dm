@@ -293,6 +293,21 @@
 	if(!check_alien_construction(current_turf))
 		return
 
+	if(selected_resin == "resin door")
+		var/wall_support = FALSE
+		for(var/D in cardinal)
+			var/turf/T = get_step(current_turf,D)
+			if(T)
+				if(T.density)
+					wall_support = TRUE
+					break
+				else if(locate(/obj/structure/mineral_door/resin) in T)
+					wall_support = TRUE
+					break
+		if(!wall_support)
+			src << "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>"
+			return
+
 	var/wait_time = 5
 	if(caste == "Drone")
 		wait_time = 10
@@ -317,6 +332,21 @@
 
 	if(!check_alien_construction(current_turf))
 		return
+
+	if(selected_resin == "resin door")
+		var/wall_support = FALSE
+		for(var/D in cardinal)
+			var/turf/T = get_step(current_turf,D)
+			if(T)
+				if(T.density)
+					wall_support = TRUE
+					break
+				else if(locate(/obj/structure/mineral_door/resin) in T)
+					wall_support = TRUE
+					break
+		if(!wall_support)
+			src << "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>"
+			return
 
 	use_plasma(resin_plasma_cost)
 	visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and shapes it into \a [selected_resin]!</span>", \

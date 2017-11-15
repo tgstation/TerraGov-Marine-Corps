@@ -202,6 +202,22 @@
 		..()
 
 
+/obj/effect/alien/resin/trap/flamer_fire_act()
+	if(hugger)
+		var/obj/item/clothing/mask/facehugger/FH = new (loc)
+		FH.Die()
+		hugger = FALSE
+		icon_state = "trap0"
+	..()
+
+/obj/effect/alien/resin/trap/fire_act()
+	if(hugger)
+		var/obj/item/clothing/mask/facehugger/FH = new (loc)
+		FH.Die()
+		hugger = FALSE
+		icon_state = "trap0"
+	..()
+
 /obj/effect/alien/resin/trap/bullet_act(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
 		return
@@ -352,10 +368,10 @@
 	var/health = 80
 	var/close_delay = 100
 
-	tiles_with = list(/turf/simulated/wall/resin, /turf/simulated/wall/resin/membrane, /obj/structure/mineral_door/resin)
+	tiles_with = list(/turf/simulated/wall/resin, /obj/structure/mineral_door/resin)
 
 	New()
-		spawn(10)
+		spawn(0)
 			relativewall()
 			relativewall_neighbours()
 			if(!locate(/obj/effect/alien/weeds) in loc)

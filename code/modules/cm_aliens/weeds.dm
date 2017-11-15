@@ -94,10 +94,6 @@
 
 
 /obj/effect/alien/weeds/proc/update_sprite()
-	if(locate(/obj/effect/alien/weeds/node) in loc)
-		icon_state = "base"
-		return
-
 	var/my_dir = 0
 	for (var/check_dir in cardinal)
 		var/turf/check = get_step(src, check_dir)
@@ -198,9 +194,9 @@
 
 
 /obj/effect/alien/weeds/node
-	icon_state = "weednode"
 	name = "purple sac"
 	desc = "A weird, pulsating node."
+	icon_state = "weednode"
 	layer = RESIN_STRUCTURE_LAYER
 	var/node_range = NODERANGE
 	var/planter_ckey //ckey of the mob who planted it.
@@ -210,16 +206,11 @@
 /obj/effect/alien/weeds/node/update_sprite()
 	return
 
-/obj/effect/alien/weeds/node/update_neighbours()
-	return
-
-
 /obj/effect/alien/weeds/node/New(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/Xenomorph/X)
-	..()
+	..(loc, src)
 	if(X)
 		planter_ckey = X.ckey
 		planter_name = X.real_name
-	new /obj/effect/alien/weeds(loc, src)
 
 /obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
