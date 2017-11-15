@@ -12,6 +12,9 @@
 	listening_level = 1
 	autolinkers = list("s_relay")
 
+/obj/machinery/telecomms/relay/preset/station/prison
+	unacidable = 1
+
 /obj/machinery/telecomms/relay/preset/ice_colony
 	icon = 'icons/obj/comm_tower.dmi'
 	icon_state = "comm_tower"
