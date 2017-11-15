@@ -226,6 +226,7 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	var/being_applied = FALSE
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
 	if(..()) return 1

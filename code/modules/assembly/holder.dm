@@ -215,7 +215,7 @@
 		if((normal) && (a_right) && (a_left))
 			if(a_right != D)
 				a_right.pulsed(0)
-			if(a_left != D)
+			if(a_left && a_left != D) //check a_left again, a_right.pulsed() might've cdel'd the assembly
 				a_left.pulsed(0)
 		if(master)
 			master.receive_signal()

@@ -373,6 +373,8 @@
 		if(istype(O, /obj/structure/window_frame/colony/reinforced) && acid_type != /obj/effect/xenomorph/acid/strong)
 			src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
 			return
+		if(O.density)
+			wait_time = 40 //dense objects are big, so takes longer to melt.
 	//TURF CHECK
 	else if(isturf(O))
 		var/turf/T = O

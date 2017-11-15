@@ -238,7 +238,9 @@
 				//this is hacky, I'm sorry
 				if(istype(O, /obj/item/storage/pill_bottle))
 					var/obj/item/storage/pill_bottle/PB = O
-					var/disp_name = O.name + " ([PB.pillbottle_label])"
+					var/disp_name = O.name
+					if(PB.pillbottle_label)
+						disp_name += " ([PB.pillbottle_label])"
 					if(disp_name == K)
 						O.loc = loc
 						i--

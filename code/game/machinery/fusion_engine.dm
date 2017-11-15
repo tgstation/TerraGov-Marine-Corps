@@ -227,7 +227,7 @@
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to pry open the fuel receptacle on [src].</span>","<span class='notice'>You start to pry open the cover. Stand still!</span>")
 				if(do_after(user, 100, TRUE, 15, BUSY_ICON_CLOCK))
-					if(buildstate != 0 || is_on) r_FAL
+					if(buildstate != 0 || is_on || !fusion_cell) r_FAL
 					user << "You pop open the cover and pull out the fuel cell."
 					fusion_cell.update_icon()
 					user.put_in_hands(fusion_cell)

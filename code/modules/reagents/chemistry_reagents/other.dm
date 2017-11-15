@@ -125,7 +125,7 @@
 			cdel(hotspot)
 		if(istype(O,/obj/item/reagent_container/food/snacks/monkeycube))
 			var/obj/item/reagent_container/food/snacks/monkeycube/cube = O
-			if(!cube.wrapped)
+			if(!cube.package)
 				cube.Expand()
 
 	reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with water can help put them out!

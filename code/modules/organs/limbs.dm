@@ -938,6 +938,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.forceMove(owner)
 
 /datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
+	if(S.being_applied)
+		return
+	S.being_applied = TRUE
 	if(do_mob(user, target, 50, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 		if(!(status & LIMB_DESTROYED) && !(status & LIMB_SPLINTED))
 			if(target != user)
@@ -957,6 +960,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 					user.visible_message(
 					"<span class='warning'>[user] fumbles with [S].</span>",
 					"<span class='warning'>You fumble with [S].</span>")
+	S.being_applied = FALSE
 
 
 /****************************************************

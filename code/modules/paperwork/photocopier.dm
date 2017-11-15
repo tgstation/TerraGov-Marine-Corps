@@ -47,7 +47,7 @@
 		if(href_list["copy"])
 			if(copy)
 				for(var/i = 0, i < copies, i++)
-					if(toner > 0)
+					if(toner > 0 && copy)
 						copy(copy)
 						sleep(15)
 					else
@@ -55,7 +55,7 @@
 				updateUsrDialog()
 			else if(photocopy)
 				for(var/i = 0, i < copies, i++)
-					if(toner > 0)
+					if(toner > 0 && photocopy)
 						photocopy(photocopy)
 						sleep(15)
 					else
@@ -63,7 +63,7 @@
 				updateUsrDialog()
 			else if(bundle)
 				for(var/i = 0, i < copies, i++)
-					if(toner <= 0)
+					if(toner <= 0 || !bundle)
 						break
 					var/obj/item/paper_bundle/p = new /obj/item/paper_bundle (src)
 					var/j = 0
@@ -231,7 +231,15 @@
 	return copy
 
 
-/obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy)
+/obj/machinery/photocopier/on_stored_item_del(obj/item/I)
+	if(I == copy)
+		copy = null
+	else if(I == photocopy)
+		photocopy = null
+	else if(I == bundle)
+		bundle = null
+
+/obj/machinery/photocopier/proc/photocopy(obj/item/photo/photocopy)
 	var/obj/item/photo/p = new /obj/item/photo (src.loc)
 	var/icon/I = icon(photocopy.icon, photocopy.icon_state)
 	var/icon/img = icon(photocopy.img)

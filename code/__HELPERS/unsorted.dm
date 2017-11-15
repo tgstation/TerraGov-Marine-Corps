@@ -801,10 +801,12 @@ var/global/image/busy_indicator_med
 	if(busy_type == BUSY_ICON_CLOCK)
 		if(!busy_indicator_clock)
 			busy_indicator_clock = image('icons/mob/mob.dmi',null,"busy_clock", "pixel_y" = 22)
+			busy_indicator_clock.layer = FLY_LAYER
 		return busy_indicator_clock
 	else if(busy_type == BUSY_ICON_MED)
 		if(!busy_indicator_med)
 			busy_indicator_med = image('icons/mob/mob.dmi',null,"busy_med", "pixel_y" = 22)
+			busy_indicator_med.layer = FLY_LAYER
 		return busy_indicator_med
 
 

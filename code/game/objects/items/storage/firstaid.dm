@@ -219,10 +219,11 @@ var/global/list/randomized_pillbottle_icons
 
 	examine(mob/user)
 		..()
-		if(!user.mind || !user.mind.skills_list || user.mind.skills_list["medical"] >= SKILL_MEDICAL_CHEM)
-			user << "Label reads: [pillbottle_label]."
-		else
-			user << "You don't understand what the label says."
+		if(pillbottle_label)
+			if(!user.mind || !user.mind.skills_list || user.mind.skills_list["medical"] >= SKILL_MEDICAL_CHEM)
+				user << "Label reads: [pillbottle_label]."
+			else
+				user << "You don't understand what the label says."
 
 /obj/item/storage/pill_bottle/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/hand_labeler) || istype(W, /obj/item/tool/pen))

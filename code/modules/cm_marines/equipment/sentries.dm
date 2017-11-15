@@ -334,7 +334,7 @@
 		"health_max" = health_max,
 		"has_cell" = (cell ? 1 : 0),
 		"cell_charge" = cell ? cell.charge : 0,
-		"cell_maxcharge" = cell.maxcharge,
+		"cell_maxcharge" = cell ? cell.maxcharge : 0,
 		"dir_locked" = dir_locked,
 		"dir" = dir,
 		"burst_fire" = burst_fire,
