@@ -44,7 +44,7 @@
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
-		if(!worn_accessible)
+		if(!worn_accessible && user.s_active == src) //currently looking into the backpack
 			close(user)
 	..()
 

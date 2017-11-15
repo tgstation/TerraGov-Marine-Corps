@@ -154,10 +154,8 @@
 
 /obj/item/tool/weldingtool/New()
 //	var/random_fuel = min(rand(10,20),max_fuel)
-	var/datum/reagents/R = new/datum/reagents(max_fuel)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	create_reagents(max_fuel)
+	reagents.add_reagent("fuel", max_fuel)
 	return
 
 
@@ -167,6 +165,7 @@
 			loc.SetLuminosity(-2)
 		else
 			SetLuminosity(0)
+		processing_objects.Remove(src)
 	. = ..()
 
 /obj/item/tool/weldingtool/examine(mob/user)
@@ -176,6 +175,9 @@
 
 
 /obj/item/tool/weldingtool/process()
+	if(disposed)
+		processing_objects.Remove(src)
+		return
 	if(welding)
 		if(++weld_tick >= 20)
 			weld_tick = 0

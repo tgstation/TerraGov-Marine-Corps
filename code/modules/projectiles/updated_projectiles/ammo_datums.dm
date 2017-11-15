@@ -1022,7 +1022,12 @@
 		drop_nade(get_turf(P))
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_nade(T)
+		if(T.density && isturf(P.loc))
+			drop_nade(P.loc) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
+		else
+			drop_nade(T)
+
+
 
 	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))

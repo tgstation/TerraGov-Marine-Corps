@@ -70,11 +70,13 @@
 /obj/effect/particle_effect/smoke/proc/spread_smoke(direction)
 	set waitfor = 0
 	sleep(spread_speed)
+	if(disposed) return
+	var/turf/U = get_turf(src)
 	for(var/i in cardinal)
 		if(direction && i != direction)
 			continue
-		var/turf/T = get_step(src, i)
-		if(!Adjacent(T)) //can't spread that way
+		var/turf/T = get_step(U, i)
+		if(T.c_airblock(U)) //smoke can't spread that way
 			continue
 		var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 		if(foundsmoke)

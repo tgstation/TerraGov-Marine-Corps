@@ -16,7 +16,9 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 
-/obj/item/handcuffs/attack(mob/living/carbon/C as mob, mob/user as mob)
+/obj/item/handcuffs/attack(mob/living/carbon/C, mob/user)
+	if(!istype(C))
+		return ..()
 	if (!istype(user, /mob/living/carbon/human))
 		user << "\red You don't have the dexterity to do this!"
 		return

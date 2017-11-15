@@ -16,7 +16,7 @@
 	var/max_energy = 100
 	var/amount = 30
 	var/accept_glass = 0 //At 0 ONLY accepts glass containers. Kinda misleading varname.
-	var/atom/beaker = null
+	var/obj/item/reagent_container/beaker = null
 	var/recharged = 0
 	var/hackedcheck = 0
 	var/list/dispensable_reagents = list("hydrogen","lithium","carbon","nitrogen","oxygen","fluorine",
@@ -58,6 +58,11 @@
 			if (prob(50))
 				cdel(src)
 				return
+
+
+/obj/machinery/chem_dispenser/on_stored_item_del(obj/item/I)
+	if(I == beaker)
+		beaker = null
 
  /**
   * The ui_interact proc is used to open and update Nano UIs

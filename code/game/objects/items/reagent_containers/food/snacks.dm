@@ -9,7 +9,7 @@
 	var/trash = null
 	var/slice_path
 	var/slices_num
-	var package = 0
+	var/package = 0
 	center_of_mass = list("x"=15, "y"=15)
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
@@ -34,14 +34,14 @@
 /obj/item/reagent_container/food/snacks/attack_self(mob/user as mob)
 	return
 
-/obj/item/reagent_container/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_container/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		user << "\red None of [src] left, oh no!"
 		M.drop_inv_item_on_ground(src)	//so icons update :[
 		cdel(src)
 		return 0
 
-	if(package == 1)
+	if(package)
 		M << "\red How do you expect to eat this with the package still on?"
 		return 0
 
@@ -717,12 +717,12 @@
 
 	var/warm = 0
 	proc/cooltime() //Not working, derp?
-		if (src.warm)
+		if(warm)
 			spawn( 4200 )
-				src.warm = 0
-				src.reagents.del_reagent("tricordrazine")
-				src.name = "donk-pocket"
-		return
+				if(!disposed) //not cdel'd
+					warm = 0
+					reagents.del_reagent("tricordrazine")
+					name = "donk-pocket"
 
 /obj/item/reagent_container/food/snacks/brainburger
 	name = "brainburger"
@@ -1491,25 +1491,26 @@
 	icon_state = "monkeycube"
 	bitesize = 12
 	filling_color = "#ADAC7F"
-
-	var/wrapped = 0
 	var/monkey_type = /mob/living/carbon/monkey
 
 	New()
 		..()
 		reagents.add_reagent("nutriment",10)
 
-	afterattack(obj/O as obj, mob/user as mob, proximity)
+	afterattack(obj/O, mob/user, proximity)
 		if(!proximity) return
-		if(istype(O,/obj/structure/sink) && !wrapped)
+		if(istype(O,/obj/structure/sink) && !package)
 			user << "You place \the [name] under a stream of water..."
-			loc = get_turf(O)
+			user.drop_held_item()
 			return Expand()
 		..()
 
-	attack_self(mob/user as mob)
-		if(wrapped)
-			Unwrap(user)
+	attack_self(mob/user)
+		if(package)
+			icon_state = "monkeycube"
+			desc = "Just add water!"
+			user << "You unwrap the cube."
+			package = 0
 
 	On_Consume(var/mob/M)
 		M << "<span class = 'warning'>Something inside of you suddently expands!</span>"
@@ -1548,20 +1549,16 @@
 	proc/Expand()
 		for(var/mob/M in viewers(src,7))
 			M << "\red \The [src] expands!"
-		new monkey_type(src)
+		var/turf/T = get_turf(src)
+		if(T)
+			new monkey_type(T)
 		cdel(src)
 
-	proc/Unwrap(mob/user as mob)
-		icon_state = "monkeycube"
-		desc = "Just add water!"
-		user << "You unwrap the cube."
-		wrapped = 0
-		return
 
 /obj/item/reagent_container/food/snacks/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
-	wrapped = 1
+	package = 1
 
 
 /obj/item/reagent_container/food/snacks/monkeycube/farwacube
@@ -2920,7 +2917,7 @@
 		reagents.add_reagent("nutriment", 5)
 
 	attack_self(mob/user as mob)
-		if (package == 1)
+		if(package)
 			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 			user << "<span class='notice'>You pull off the wrapping from the squishy burrito!</span>"
 			package = 0
@@ -2939,7 +2936,7 @@
 
 
 	attack_self(mob/user as mob)
-		if (package == 1)
+		if (package)
 			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 			user << "<span class='notice'>You pull off the wrapping from the squishy hamburger!</span>"
 			package = 0
@@ -2957,7 +2954,7 @@
 		reagents.add_reagent("sodiumchloride", 2)
 
 	attack_self(mob/user as mob)
-		if (package == 1)
+		if (package)
 			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 			user << "<span class='notice'>You pull off the wrapping from the squishy hotdog!</span>"
 			package = 0
@@ -2975,7 +2972,7 @@
 		reagents.add_reagent("sodiumchloride", 3)
 
 	attack_self(mob/user as mob)
-		if (package == 1)
+		if (package)
 			playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 			user << "<span class='notice'>You tear off the ration seal and pull out the contents!</span>"
 			package = 0
@@ -2996,21 +2993,24 @@
 	icon_state = "eat_bar"
 	bitesize = 2
 	w_class = 1
+	trash = /obj/item/trash/eat
 
 	New()
 		..()
 		reagents.add_reagent("nutriment", 3)
-	trash = /obj/item/trash/eat
+
 
 /obj/item/reagent_container/food/snacks/kepler_crisps
 	name = "Kepler Crisps"
 	desc = "'They're disturbingly good!' Now with 0% trans fat."
 	icon_state = "kepler"
 	bitesize = 2
+	trash = /obj/item/trash/kepler
+
 	New()
 		..()
 		reagents.add_reagent("nutriment", 3)
-	trash = /obj/item/trash/kepler
+
 
 //MREs
 
@@ -3027,7 +3027,7 @@
 		determinetype(newflavor)
 
 	attack_self(mob/user as mob)
-		if (package == 1)
+		if (package)
 			user << "<span class='notice'>You pull open the package of the meal!</span>"
 			playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 

@@ -121,7 +121,7 @@
 		var/datum/limb/head = H.get_limb("head")
 		var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
 
-		if(prob(25))
+		if(heart && prob(25))
 			heart.damage += 5 //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 		if(!head || !heart || heart.is_broken() || !H.has_brain() || H.chestburst || (HUSK in H.mutations))

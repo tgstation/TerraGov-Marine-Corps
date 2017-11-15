@@ -315,6 +315,8 @@
 
 					var/name_sel = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_list
 					if(!name_sel) return
+					if(operator != usr)
+						return
 					if(current_squad)
 						usr << "<span class='warning'>\icon[src] You are already selecting a squad..</span>"
 						return

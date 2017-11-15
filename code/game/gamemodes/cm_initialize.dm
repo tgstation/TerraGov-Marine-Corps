@@ -346,6 +346,9 @@ datum/game_mode/proc/initialize_special_clamps()
 			xeno_candidate << "<span class='warning'>That xenomorph has been occupied.</span>"
 			return
 
+		if(!xeno_candidate.client) //the runtime logs say this can happen.
+			return
+
 		if(!xeno_bypass_timer)
 			var/deathtime = world.time - xeno_candidate.timeofdeath
 			if(istype(xeno_candidate, /mob/new_player))
