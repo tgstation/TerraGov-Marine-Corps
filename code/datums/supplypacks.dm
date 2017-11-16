@@ -420,7 +420,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 
 
 /datum/supply_packs/explosive_ammo_crate
-	name = "SADAR Rocket Ammo crate"
+	name = "M5 RPG Rocket Ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/rocket,
 					/obj/item/ammo_magazine/rocket,
@@ -431,7 +431,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 				)
 	cost = 30
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "SADAR ammo crate"
+	containername = "M5 RPG ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sentry

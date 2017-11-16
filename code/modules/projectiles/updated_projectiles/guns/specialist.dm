@@ -491,11 +491,11 @@
 		if(F && F.loc) F.prime()
 
 //-------------------------------------------------------
-//SADAR
+//M5 RPG
 
 /obj/item/ammo_magazine/rocket
 	name = "\improper 84mm high-explosive rocket"
-	desc = "A rocket tube for an M83 SADAR rocket."
+	desc = "A rocket tube for an M5 RPG rocket."
 	caliber = "rocket"
 	icon_state = "rocket"
 	origin_tech = "combat=3;materials=3"
@@ -538,17 +538,17 @@
 
 /obj/item/ammo_magazine/internal/launcher/rocket
 	name = "\improper 84mm internal tube"
-	desc = "The internal tube of a M83 SADAR."
+	desc = "The internal tube of a M5 RPG."
 	caliber = "rocket"
 	default_ammo = /datum/ammo/rocket
 	max_rounds = 1
 	reload_delay = 60
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper M83 SADAR rocket launcher"
-	desc = "The M83 SADAR is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the SADAR is a dangerous weapon with a variety of combat uses."
-	icon_state = "m83"
-	item_state = "m83"
+	name = "\improper M5 RPG"
+	desc = "The M5 RPG is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
+	icon_state = "m5"
+	item_state = "m5"
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket
@@ -660,7 +660,7 @@
 		..()
 
 //-------------------------------------------------------
-//SADARS MEAN FUCKING COUSIN
+//M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"

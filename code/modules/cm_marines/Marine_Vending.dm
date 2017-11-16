@@ -436,8 +436,8 @@
 			)
 	contraband = list()
 	premium = list(
-					/obj/item/storage/box/rocket_system = 1,
-					/obj/item/storage/box/grenade_system = 1,
+					/obj/item/storage/box/demolitionist = 1,
+					/obj/item/storage/box/heavy_grenadier = 1,
 					/obj/item/storage/box/m42c_system = 1,
 					/obj/item/storage/box/m42c_system_Jungle = 1,
 					/obj/item/storage/box/heavy_armor = 1
@@ -461,7 +461,7 @@
 						/obj/item/storage/pouch/general/medium = 1
 			)
 	contraband = list()
-	premium = list(/obj/item/weapon/shield/riot = 1)
+	premium = list(/obj/item/weapon/shield/riot = 1)	//NOTE: This needs to be re-worked so we don't have to have a riot shield in here at all. ~Bmc777
 	shared = list(
 					/obj/item/storage/box/demolitionist = 1,
 					/obj/item/storage/box/heavy_grenadier = 1,
