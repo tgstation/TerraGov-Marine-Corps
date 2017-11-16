@@ -249,6 +249,13 @@
 	update_icon()
 	return 1
 
+
+#define FLOODLIGHT_REPAIR_UNSCREW 	0
+#define FLOODLIGHT_REPAIR_CROWBAR 	1
+#define FLOODLIGHT_REPAIR_WELD 		2
+#define FLOODLIGHT_REPAIR_CABLE 	3
+#define FLOODLIGHT_REPAIR_SCREW 	4
+
 /obj/machinery/colony_floodlight
 	name = "Colony Floodlight"
 	icon = 'icons/turf/ground_map.dmi'
@@ -262,6 +269,8 @@
 	use_power = 0 //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
+	var/repair_state = 0
+	var/health = 120
 
 /obj/machinery/colony_floodlight/Dispose()
 	SetLuminosity(0)
@@ -283,30 +292,129 @@
 	if(!fswitch.ispowered || !fswitch.turned_on) return 0
 	fswitch.use_power(power_tick) //Make the switch use up the power, not the floodlight, since they don't have areas
 
-/obj/machinery/colony_floodlight/attackby(obj/item/W as obj, mob/user as mob)
-	var/obj/item/tool/weldingtool/WT = W
-	if(istype(WT))
-		if(!damaged) return
-		if(WT.remove_fuel(0, user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			user.visible_message("[user.name] starts to weld the damage to [src.name].","You start to weld the damage to [src.name].")
-			if (do_after(user,200, TRUE, 5, BUSY_ICON_CLOCK))
-				if(!src || !WT.isOn()) return
-				damaged = 0
-				user << "You finish welding."
-				if(is_lit)
-					SetLuminosity(lum_value)
-				update_icon()
-				return 1
-		else
-			user << "\red You need more welding fuel to complete this task."
-			return 0
+/obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
+	if(damaged)
+		if(istype(I, /obj/item/tool/screwdriver))
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
+				return 0
+
+			if(repair_state == FLOODLIGHT_REPAIR_UNSCREW)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				user.visible_message("[user] starts unscrewing [src]'s maintenance hatch.", \
+								"You start to unscrew [src]'s maintenance hatch.")
+				if (do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+					if(disposed || repair_state != FLOODLIGHT_REPAIR_UNSCREW)
+						return
+					repair_state = FLOODLIGHT_REPAIR_CROWBAR
+					user << "<span class='notice'>You unscrew the maintenance hatch.</span>"
+
+			else if(repair_state == FLOODLIGHT_REPAIR_SCREW)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				user.visible_message("[user] starts screwing [src]'s maintenance hatch closed.", \
+								"You start to screw [src]'s maintenance hatch closed.")
+				if (do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+					if(disposed || repair_state != FLOODLIGHT_REPAIR_SCREW)
+						return
+					damaged = 0
+					repair_state = FLOODLIGHT_REPAIR_UNSCREW
+					health = initial(health)
+					user << "<span class='notice'>You screw the maintenance hatch closed.</span>"
+					if(is_lit)
+						SetLuminosity(lum_value)
+					update_icon()
+			return TRUE
+
+		else if(istype(I, /obj/item/tool/crowbar))
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
+				return 0
+
+			if(repair_state == FLOODLIGHT_REPAIR_CROWBAR)
+				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
+				user.visible_message("[user.name] starts prying open [src]'s maintenance hatch.",\
+								"You start prying open [src]'s maintenance hatch.")
+				if (do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+					if(disposed || repair_state != FLOODLIGHT_REPAIR_CROWBAR)
+						return
+					repair_state = FLOODLIGHT_REPAIR_WELD
+					user << "<span class='notice'>You pry open the maintenance hatch.</pan>"
+			return TRUE
+
+		else if(istype(I, /obj/item/tool/weldingtool))
+			var/obj/item/tool/weldingtool/WT = I
+
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
+				return 0
+
+			if(repair_state == FLOODLIGHT_REPAIR_WELD)
+				if(WT.remove_fuel(0, user))
+					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+					user.visible_message("[user.name] starts to weld the damage to [src.name].","You start to weld the damage to [src.name].")
+					if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+						if(disposed || !WT.isOn() || repair_state != FLOODLIGHT_REPAIR_WELD)
+							return
+						repair_state = FLOODLIGHT_REPAIR_CABLE
+						user << "<span class='notice'>You finish welding.</span>"
+						return 1
+				else
+					user << "\red You need more welding fuel to complete this task."
+			return TRUE
+
+		else if(istype(I, /obj/item/stack/cable_coil))
+			var/obj/item/stack/cable_coil/C = I
+			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
+				return 0
+
+			if(repair_state == FLOODLIGHT_REPAIR_CABLE)
+				if (C.get_amount() < 2)
+					user << "<span class='warning'>You need two coils of wire to replace the damaged cables.</span>"
+					return
+				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				user.visible_message("[user] starts replacing [src]'s damaged cables.",\
+								"You start replacing [src]'s damaged cables.")
+				if (do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+					if(disposed || repair_state != FLOODLIGHT_REPAIR_CABLE)
+						return
+					if (C.use(2))
+						repair_state = FLOODLIGHT_REPAIR_SCREW
+						user << "<span class='notice'>You replace the damaged cables.</span>"
+			return TRUE
+
+
 	..()
 	return 0
 
 /obj/machinery/colony_floodlight/attack_hand(mob/user)
 	if(ishuman(user))
-		user << "Nothing happens. Looks like it's powered elsewhere."
+		if(damaged)
+			user << "\red [src] is damaged."
+		else if(!is_lit)
+			user << "Nothing happens. Looks like it's powered elsewhere."
 		return 0
 	..()
 
+/obj/machinery/colony_floodlight/examine(mob/user)
+	..()
+	if(ishuman(user))
+		if(damaged)
+			user << "\red It is damaged."
+			if(!user.mind || !user.mind.skills_list || user.mind.skills_list["engineer"] >= SKILL_ENGINEER_ENGI)
+				switch(repair_state)
+					if(FLOODLIGHT_REPAIR_UNSCREW) user << "You must first unscrew its maintenance hatch."
+					if(FLOODLIGHT_REPAIR_CROWBAR) user << "You must crowbar its maintenance hatch open."
+					if(FLOODLIGHT_REPAIR_WELD) user << "You must weld the damage to it."
+					if(FLOODLIGHT_REPAIR_CABLE) user << "You must replace its damaged cables."
+					if(FLOODLIGHT_REPAIR_SCREW) user << "You must screw its maintenance hatch closed."
+		else if(!is_lit)
+			user << "It doesn't seem powered."
+
+
+
+#undef FLOODLIGHT_REPAIR_UNSCREW
+#undef FLOODLIGHT_REPAIR_CROWBAR
+#undef FLOODLIGHT_REPAIR_WELD
+#undef FLOODLIGHT_REPAIR_CABLE
+#undef FLOODLIGHT_REPAIR_SCREW
