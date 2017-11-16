@@ -241,32 +241,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		select_gamemode_skin(/obj/item/clothing/suit/storage/marine/MP/RO)
 		..()
 
-/obj/item/clothing/suit/storage/marine/sniper
-	name = "\improper M3 pattern recon armor"
-	desc = "A custom modified set of M3 Armor designed for recon missions."
-	icon_state = "marine_sniper"
-	item_state = "marine_sniper"
-	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
-	slowdown = SLOWDOWN_ARMOR_LIGHT
-	//uniform_restricted = list(/obj/item/clothing/under/marine/sniper) //TODO : This item exists, but isn't implemented yet. Makes sense otherwise
-
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern sniper snow armor"))
-		..(loc,expected_type,,new_name)
-
-/obj/item/clothing/suit/storage/marine/sniper/jungle
-	name = "\improper M3 pattern marksman armor"
-	icon_state = "marine_sniperm"
-	item_state = "marine_sniperm"
-	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern marksman snow armor"))
-		..(loc,expected_type,,new_name)
-
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M56 combat harness"
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
@@ -305,6 +279,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper B12 pattern leader snow armor"))
 		..(loc,expected_type,new_name)
+
+//===========================//SPECIALIST\\================================\\
+//=======================================================================\\
 
 /obj/item/clothing/suit/storage/marine/specialist
 	name = "\improper B18 defensive armor"
@@ -349,6 +326,43 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	injections--
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	return
+
+/obj/item/clothing/suit/storage/marine/M3T
+	name = "\improper M3-T light armor"
+	desc = "A custom set of M3 armor designed for users of long ranged explosive weaponry."
+	icon_state = "demolitionist"
+	item_state = "demolitionist"
+	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 35, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	allowed = list(/obj/item/weapon/gun/launcher/rocket)
+
+/obj/item/clothing/suit/storage/marine/sniper
+	name = "\improper M3 pattern recon armor"
+	desc = "A custom modified set of M3 armor designed for recon missions."
+	icon_state = "marine_sniper"
+	item_state = "marine_sniper"
+	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	//uniform_restricted = list(/obj/item/clothing/under/marine/sniper) //TODO : This item exists, but isn't implemented yet. Makes sense otherwise
+
+	New(loc,expected_type 	= type,
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern sniper snow armor"))
+		..(loc,expected_type,,new_name)
+
+/obj/item/clothing/suit/storage/marine/sniper/jungle
+	name = "\improper M3 pattern marksman armor"
+	icon_state = "marine_sniperm"
+	item_state = "marine_sniperm"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+
+	New(loc,expected_type 	= type,
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern marksman snow armor"))
+		..(loc,expected_type,,new_name)
+
+
 
 
 //=============================//PMCS\\==================================\\
