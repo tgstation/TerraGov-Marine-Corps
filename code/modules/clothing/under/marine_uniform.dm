@@ -167,7 +167,7 @@
 	icon = 'icons/PMC/PMC.dmi'
 	//icon_override = 'icons/PMC/PMC.dmi'
 	icon_state = "pmc_jumpsuit"
-	item_state = "pmc_jumpsuit"
+	item_state = "armor"
 	item_color = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
