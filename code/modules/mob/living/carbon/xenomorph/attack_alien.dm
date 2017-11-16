@@ -598,15 +598,17 @@
 		M << "It's already damaged."
 		return 0
 	else
-		M.visible_message("[M] starts to slash away at [src]!","In a rage, you start to slash and claw at the bright light! <b>You only need to claw once and then stand still!</b>")
-		if(do_after(M, 50) && !damaged) //Not when it's already damaged.
-			damaged = 1
+		M.animation_attack_on(src)
+		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!")
+		health  = max(health - rand(M.melee_damage_lower, M.melee_damage_upper), 0)
+		if(!health)
+			playsound(src, "shatter", 70, 1)
+			damaged = TRUE
 			if(is_lit)
 				SetLuminosity(0)
-			M << "You slash up the light! Raar!"
-			playsound(src, 'sound/weapons/blade1.ogg', 25, 1)
 			update_icon()
-			return 0
+		else
+			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!")

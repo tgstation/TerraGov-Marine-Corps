@@ -72,6 +72,7 @@
 	sleep(spread_speed)
 	if(disposed) return
 	var/turf/U = get_turf(src)
+	if(!U) return
 	for(var/i in cardinal)
 		if(direction && i != direction)
 			continue
