@@ -493,6 +493,16 @@
 		for (var/i; i < 7; i++)
 			new /obj/item/reagent_container/hypospray/autoinjector/tricord(src)
 
+/obj/item/storage/box/quickclot
+	name = "box of quickclot injectors"
+	desc = "Contains quickclot autoinjectors."
+	icon_state = "syringe"
+	can_hold = list("/obj/item/reagent_container/hypospray/autoinjector")
+	New()
+		..()
+		for (var/i; i < 7; i++)
+			new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
+
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
 	icon = 'icons/obj/items/storage.dmi'
