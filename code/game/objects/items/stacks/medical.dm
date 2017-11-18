@@ -65,7 +65,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
-		if(affecting.open == 0)
+		if(affecting.surgery_open_stage == 0)
 			if(!affecting.bandage())
 				user << "\red The wounds on [M]'s [affecting.display_name] have already been bandaged."
 				return 1
@@ -108,7 +108,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
-		if(affecting.open == 0)
+		if(affecting.surgery_open_stage == 0)
 			if(!affecting.salve())
 				user << "\red The wounds on [M]'s [affecting.display_name] have already been salved."
 				return 1
@@ -156,7 +156,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
-		if(affecting.open == 0)
+		if(affecting.surgery_open_stage == 0)
 			var/bandaged = affecting.bandage()
 			var/disinfected = affecting.disinfect()
 
@@ -204,7 +204,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
-		if(affecting.open == 0)
+		if(affecting.surgery_open_stage == 0)
 			if(!affecting.salve())
 				user << "\red The wounds on [M]'s [affecting.display_name] have already been salved."
 				return 1
@@ -226,10 +226,12 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
-	var/being_applied = FALSE
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
 	if(..()) return 1
+
+	if(user.action_busy)
+		return
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -260,4 +262,5 @@
 			"<span class='warning'>[user] starts to apply [src] to their [limb].</span>",
 			"<span class='notice'>You start to apply [src] to your [limb], hold still...</span>")
 
-		if(affecting.apply_splints(src,user,M)) use(1)//Referenced in external organ helpers.
+		if(affecting.apply_splints(src,user,M))//Referenced in external organ helpers.
+			use(1)

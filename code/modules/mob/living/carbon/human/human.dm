@@ -976,8 +976,11 @@
 		else
 			O.status = NOFLAGS
 		O.has_dropped_limb = 0
+		O.perma_injury = 0
+		O.germ_level = 0
 		O.wounds.Cut()
 		O.heal_damage(1000,1000,1,1)
+		O.reset_limb_surgeries()
 
 	var/datum/limb/head/h = get_limb("head")
 	h.disfigured = 0

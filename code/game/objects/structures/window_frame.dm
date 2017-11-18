@@ -76,6 +76,8 @@
 				if(get_dist(src, M) > 1)
 					user << "<span class='warning'>[M] needs to be next to [src].</span>"
 				else
+					if(user.action_busy)
+						return
 					user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src]...</span>",
 					"<span class='notice'>You start pulling [M] onto [src]!</span>")
 					var/oldloc = loc

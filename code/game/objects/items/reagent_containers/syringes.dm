@@ -162,16 +162,14 @@
 						if(!M.can_inject(user, 1))
 							return
 
-					for(var/mob/O in viewers(world.view, user))
-						if(injection_time != 60)
-							O.show_message(text("\red <B>[] is trying to inject []!</B>", user, target), 1)
-						else
-							O.show_message(text("\red <B>[] begins hunting for an injection port on []'s suit!</B>", user, target), 1)
+					if(injection_time != 60)
+						user.visible_message("\red <B>[user] is trying to inject [target]!</B>")
+					else
+						user.visible_message("\red <B>[user] begins hunting for an injection port on [target]'s suit!</B>")
 
 					if(!do_mob(user, target, injection_time, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
 
-					for(var/mob/O in viewers(world.view, user))
-						O.show_message(text("\red [] injects [] with the syringe!", user, target), 1)
+					user.visible_message("\red [user] injects [target] with the syringe!")
 
 					if(istype(target,/mob/living))
 						var/mob/living/M = target
@@ -362,11 +360,9 @@
 					return
 
 				if(ismob(target) && target != user)
-					for(var/mob/O in viewers(world.view, user))
-						O.show_message(text("\red <B>[] is trying to inject [] with a giant syringe!</B>", user, target), 1)
+					user.visible_message("\red <B>[user] is trying to inject [target] with a giant syringe!</B>")
 					if(!do_mob(user, target, 300, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
-					for(var/mob/O in viewers(world.view, user))
-						O.show_message(text("\red [] injects [] with a giant syringe!", user, target), 1)
+					user.visible_message("\red [user] injects [target] with a giant syringe!")
 					src.reagents.reaction(target, INGEST)
 				if(ismob(target) && target == user)
 					src.reagents.reaction(target, INGEST)

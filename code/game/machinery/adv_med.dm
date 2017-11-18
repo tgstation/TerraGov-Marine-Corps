@@ -337,8 +337,9 @@
 
 		dat += "<tr>"
 
-		for(var/datum/wound/W in e.wounds) if(W.internal)
-			internal_bleeding = "Internal bleeding<br>"
+		for(var/datum/wound/W in e.wounds)
+			if(W.internal)
+				internal_bleeding = "Internal bleeding<br>"
 			break
 		if(istype(e, /datum/limb/chest) && occ["lung_ruptured"])
 			lung_ruptured = "Lung ruptured:<br>"
@@ -352,7 +353,7 @@
 			necrosis = "Necrotizing:<br>"
 		if(e.status & LIMB_ROBOT)
 			robot = "Prosthetic:<br>"
-		if(e.open)
+		if(e.surgery_open_stage)
 			open = "Open:<br>"
 
 		switch (e.germ_level)
