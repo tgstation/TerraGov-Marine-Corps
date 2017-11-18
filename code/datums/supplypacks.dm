@@ -943,6 +943,96 @@ AMMO
 	containername = "M39 armor piercing ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammo_sniper_regular
+	name = "M42A Sniper Ammo crate (Regular x6)"
+	contains = list(
+					/obj/item/ammo_magazine/sniper,
+					/obj/item/ammo_magazine/sniper,
+					/obj/item/ammo_magazine/sniper,
+					/obj/item/ammo_magazine/sniper,
+					/obj/item/ammo_magazine/sniper,
+					/obj/item/ammo_magazine/sniper
+					)
+	cost = 20
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "regular sniper ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_sniper_flak
+	name = " - M42A Sniper Ammo crate (Flak x6)"
+	contains = list(
+					/obj/item/ammo_magazine/sniper/flak,
+					/obj/item/ammo_magazine/sniper/flak,
+					/obj/item/ammo_magazine/sniper/flak,
+					/obj/item/ammo_magazine/sniper/flak,
+					/obj/item/ammo_magazine/sniper/flak,
+					/obj/item/ammo_magazine/sniper/flak
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "flak sniper ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_sniper_incendiary
+	name = " - M42A Sniper Ammo crate (Incendiary x6)"
+	contains = list(
+					/obj/item/ammo_magazine/sniper/incendiary,
+					/obj/item/ammo_magazine/sniper/incendiary,
+					/obj/item/ammo_magazine/sniper/incendiary,
+					/obj/item/ammo_magazine/sniper/incendiary,
+					/obj/item/ammo_magazine/sniper/incendiary,
+					/obj/item/ammo_magazine/sniper/incendiary
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "incendiary sniper ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_rpg_regular
+	name = "M5 RPG Rocket Ammo crate (Regular x6)"
+	contains = list(
+					/obj/item/ammo_magazine/rocket,
+					/obj/item/ammo_magazine/rocket,
+					/obj/item/ammo_magazine/rocket,
+					/obj/item/ammo_magazine/rocket,
+					/obj/item/ammo_magazine/rocket,
+					/obj/item/ammo_magazine/rocket
+					)
+	cost = 20
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "regular M5 RPG ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_rpg_ap
+	name = " - M5 RPG Rocket Ammo crate (Armor Piercing x6)"
+	contains = list(
+					/obj/item/ammo_magazine/rocket/ap,
+					/obj/item/ammo_magazine/rocket/ap,
+					/obj/item/ammo_magazine/rocket/ap,
+					/obj/item/ammo_magazine/rocket/ap,
+					/obj/item/ammo_magazine/rocket/ap,
+					/obj/item/ammo_magazine/rocket/ap
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "armor piercing M5 RPG ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_rpg_wp
+	name = " - M5 RPG Rocket Ammo crate (White Phosphorus x6)"
+	contains = list(
+					/obj/item/ammo_magazine/rocket/wp,
+					/obj/item/ammo_magazine/rocket/wp,
+					/obj/item/ammo_magazine/rocket/wp,
+					/obj/item/ammo_magazine/rocket/wp,
+					/obj/item/ammo_magazine/rocket/wp,
+					/obj/item/ammo_magazine/rocket/wp
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "white phosphorus M5 RPG ammo crate"
+	group = "Ammo"
+
 /datum/supply_packs/ammo_box_rifle
 	name = "Large Ammo Box crate (M41A x800 rounds)"
 	contains = list(/obj/item/ammo_magazine/big_box)
@@ -1051,36 +1141,6 @@ AMMO
 	cost = 25
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "smartgun powerpack crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_sniper
-	name = "M42A Sniper Ammo crate (x2 each)"
-	contains = list(
-					/obj/item/ammo_magazine/sniper,
-					/obj/item/ammo_magazine/sniper,
-					/obj/item/ammo_magazine/sniper/flak,
-					/obj/item/ammo_magazine/sniper/flak,
-					/obj/item/ammo_magazine/sniper/incendiary,
-					/obj/item/ammo_magazine/sniper/incendiary
-					)
-	cost = 25
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "sniper ammo crate"
-	group = "Ammo"
-
-/datum/supply_packs/explosive_ammo_crate
-	name = "M5 RPG Rocket Ammo crate (x2 each)"
-	contains = list(
-					/obj/item/ammo_magazine/rocket,
-					/obj/item/ammo_magazine/rocket,
-					/obj/item/ammo_magazine/rocket/ap,
-					/obj/item/ammo_magazine/rocket/ap,
-					/obj/item/ammo_magazine/rocket/wp,
-					/obj/item/ammo_magazine/rocket/wp
-					)
-	cost = 30
-	containertype = /obj/structure/closet/crate/explosives
-	containername = "M5 RPG ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sentry
@@ -1360,7 +1420,7 @@ MEDICAL
 	access = ACCESS_MARINE_MEDBAY
 	group = "Medical"
 
-/datum/supply_packs/surgery
+/datum/supply_packs/anesthetic
 	name = "Anesthetic crate (x4 masks, x4 tanks)"
 	contains = list(
 					/obj/item/clothing/mask/breath/medical,
@@ -1391,7 +1451,7 @@ MEDICAL
 	containername = "sterile equipment crate"
 	group = "Medical"
 
-/datum/supply_packs/sterile
+/datum/supply_packs/quickclot
 	name = "Quickclot autoinjectors (x14)"
 	contains = list(
 					/obj/item/storage/box/quickclot,
@@ -1399,7 +1459,7 @@ MEDICAL
 					)
 	cost = 25
 	containertype = /obj/structure/closet/crate/medical
-	containername = "sterile equipment crate"
+	containername = "quickclot equipment crate"
 	group = "Medical"
 
 
