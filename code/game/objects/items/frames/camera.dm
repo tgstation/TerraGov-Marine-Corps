@@ -12,7 +12,7 @@
 	var/list/obj/item/possible_upgrades = list(/obj/item/device/assembly/prox_sensor, /obj/item/stack/sheet/mineral/osmium, /obj/item/stock_parts/scanning_module)
 	var/list/upgrades = list()
 	var/state = 0
-	var/busy = 0
+
 	/*
 				0 = Nothing done to it
 				1 = Wrenched in place
@@ -156,7 +156,7 @@
 
 /obj/item/frame/camera/proc/weld(var/obj/item/tool/weldingtool/WT, var/mob/user)
 
-	if(busy)
+	if(user.action_busy)
 		return 0
 	if(!WT.isOn())
 		return 0
@@ -164,11 +164,8 @@
 	user << "<span class='notice'>You start to weld the [src]..</span>"
 	playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 	WT.eyecheck(user)
-	busy = 1
 	if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
-		busy = 0
 		if(!WT.isOn())
 			return 0
 		return 1
-	busy = 0
 	return 0

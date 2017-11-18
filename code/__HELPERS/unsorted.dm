@@ -810,7 +810,7 @@ var/global/image/busy_indicator_med
 		return busy_indicator_med
 
 
-/proc/do_mob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon)
+/proc/do_mob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon, selected_zone_check)
 	if(!user || !target) return 0
 
 	var/image/busy_icon
@@ -824,6 +824,12 @@ var/global/image/busy_indicator_med
 		target_icon = get_busy_icon(show_target_icon)
 		if(target_icon)
 			target.overlays += target_icon
+
+	user.action_busy = TRUE
+
+	var/cur_zone_sel
+	if(selected_zone_check)
+		cur_zone_sel = user.zone_selected
 
 	var/user_loc = user.loc
 	var/target_loc = target.loc
@@ -845,14 +851,19 @@ var/global/image/busy_indicator_med
 		if(user.is_mob_incapacitated(TRUE) || user.lying)
 			. = FALSE
 			break
+		if(selected_zone_check && cur_zone_sel != user.zone_selected)
+			. = FALSE
+			break
 
 	if(user && busy_icon)
 		user.overlays -= busy_icon
 	if(target && target_icon)
 		target.overlays -= target_icon
 
+	user.action_busy = FALSE
 
-/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon) //hacky, will suffice for now.
+
+/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check) //hacky, will suffice for now.
 	if(!istype(user) || delay <= 0) r_FAL
 
 	var/mob/living/L
@@ -863,6 +874,12 @@ var/global/image/busy_indicator_med
 		busy_icon = get_busy_icon(show_busy_icon)
 		if(busy_icon)
 			user.overlays += busy_icon
+
+	user.action_busy = TRUE
+
+	var/cur_zone_sel
+	if(selected_zone_check)
+		cur_zone_sel = user.zone_selected
 
 	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
@@ -886,8 +903,14 @@ var/global/image/busy_indicator_med
 				. = FALSE
 				break
 
+		if(selected_zone_check && cur_zone_sel != user.zone_selected) //changed the selected zone
+			. = FALSE
+			break
+
 	if(user && busy_icon)
 		user.overlays -= busy_icon
+
+	user.action_busy = FALSE
 
 
 //Takes: Anything that could possibly have variables and a varname to check.

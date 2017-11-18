@@ -34,9 +34,15 @@
 	var/damage_msg = "\red You feel an intense pain"
 	var/broken_description
 
-	var/open = 0
-	var/stage = 0
+	var/surgery_open_stage = 0
+	var/bone_repair_stage = 0
+	var/limb_replacement_stage = 0
+	var/necro_surgery_stage = 0
 	var/cavity = 0
+
+	var/in_surgery_op = FALSE //whether someone is currently doing a surgery step to this limb
+	var/surgery_organ //name of the organ currently being surgically worked on (detach/remove/etc)
+
 	var/sabotaged = 0 // If a prosthetic limb is emagged, it will detonate when it fails.
 	var/encased       // Needs to be opened with a saw to access the organs.
 
@@ -603,8 +609,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		number_wounds += W.amount
 
-	if (open && !clamped && (H && !(H.species.flags & NO_BLOOD)))	//things tend to bleed if they are CUT OPEN
+	if (surgery_open_stage && !clamped && (H && !(H.species.flags & NO_BLOOD)))	//things tend to bleed if they are CUT OPEN
 		status |= LIMB_BLEEDING
+
 
 
 // new damage icon system
@@ -670,6 +677,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 			cdel(i)
 
 		germ_level = 0
+		if(hidden)
+			hidden.forceMove(owner.loc)
+			hidden = null
 
 		// If any organs are attached to this, destroy them
 		for(var/datum/limb/O in children) O.droplimb(1, no_explode, amputation)
@@ -684,6 +694,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 			parent.wounds += W
 			parent.update_damages()
 		update_damages()
+
+		//we reset the surgery related variables
+		reset_limb_surgeries()
 
 		var/obj/organ	//Dropped limb object
 		switch(body_part)
@@ -848,16 +861,18 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return
 
 /datum/limb/proc/robotize()
-	status &= ~LIMB_CUT_AWAY
 	status &= ~LIMB_BROKEN
 	status &= ~LIMB_BLEEDING
 	status &= ~LIMB_SPLINTED
-	status &= ~LIMB_ATTACHABLE
 	status &= ~LIMB_AMPUTATED
 	status &= ~LIMB_DESTROYED
 	status &= ~LIMB_NECROTIZED
 	status &= ~LIMB_MUTATED
 	status |= LIMB_ROBOT
+
+	reset_limb_surgeries()
+
+	germ_level = 0
 	has_dropped_limb = 0
 	perma_injury = 0
 	for (var/datum/limb/T in children)
@@ -938,9 +953,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.forceMove(owner)
 
 /datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
-	if(S.being_applied)
-		return
-	S.being_applied = TRUE
 	if(do_mob(user, target, 50, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 		if(!(status & LIMB_DESTROYED) && !(status & LIMB_SPLINTED))
 			if(target != user)
@@ -960,7 +972,19 @@ Note that amputating the affected organ does in fact remove the infection from t
 					user.visible_message(
 					"<span class='warning'>[user] fumbles with [S].</span>",
 					"<span class='warning'>You fumble with [S].</span>")
-	S.being_applied = FALSE
+
+
+
+//called when limb is removed or robotized, any ongoing surgery and related vars are reset
+/datum/limb/proc/reset_limb_surgeries()
+	surgery_open_stage = 0
+	bone_repair_stage = 0
+	limb_replacement_stage = 0
+	necro_surgery_stage = 0
+	surgery_organ = null
+	cavity = 0
+
+
 
 
 /****************************************************
@@ -1077,9 +1101,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 60
 	min_broken_damage = 40
 	body_part = HEAD
-	var/disfigured = 0
 	vital = 1
 	encased = "skull"
+	var/disfigured = 0 //whether the head is disfigured.
+	var/face_surgery_stage = 0
 
 /datum/limb/head/get_icon(var/icon/race_icon, var/icon/deform_icon)
 	if (!owner)
@@ -1112,4 +1137,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"\red <b>Your face melts off!</b>",	\
 		"\red You hear a sickening sizzle.")
 	disfigured = 1
+
+/datum/limb/head/reset_limb_surgeries()
+	..()
+	face_surgery_stage = 0
 

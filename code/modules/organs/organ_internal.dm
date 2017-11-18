@@ -327,6 +327,7 @@
 	parent_limb = "head"
 	removed_type = /obj/item/organ/eyes
 	robotic_type = /obj/item/organ/eyes/prosthetic
+	var/eye_surgery_stage = 0 //stores which stage of the eye surgery the eye is at
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()

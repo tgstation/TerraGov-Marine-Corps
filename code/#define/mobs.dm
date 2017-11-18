@@ -224,16 +224,14 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 ///////////////////LIMB DEFINES///////////////////
 
-#define LIMB_CUT_AWAY 1 //limb is cut away, first step toward an amputation.
-#define LIMB_ATTACHABLE 2 //prepared limb stump, ready to receive a replacement limb.
-#define LIMB_BLEEDING 4
-#define LIMB_BROKEN 8
-#define LIMB_DESTROYED 16 //limb is missing
-#define LIMB_ROBOT 32
-#define LIMB_SPLINTED 64
-#define LIMB_NECROTIZED 128 //necrotizing limb, nerves are dead.
-#define LIMB_MUTATED 256 //limb is deformed by mutations
-#define LIMB_AMPUTATED 512 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_BLEEDING 1
+#define LIMB_BROKEN 2
+#define LIMB_DESTROYED 4 //limb is missing
+#define LIMB_ROBOT 8
+#define LIMB_SPLINTED 16
+#define LIMB_NECROTIZED 32 //necrotizing limb, nerves are dead.
+#define LIMB_MUTATED 64 //limb is deformed by mutations
+#define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 

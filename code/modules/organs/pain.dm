@@ -92,7 +92,7 @@ mob/living/carbon/human/proc/handle_pain()
 		Amputated, dead, or missing limbs don't cause pain messages.
 		Broken limbs that are also splinted do not cause pain messages either.
 		*/
-		if(E.status & (LIMB_NECROTIZED|LIMB_DESTROYED|LIMB_AMPUTATED)) continue
+		if(E.status & (LIMB_NECROTIZED|LIMB_DESTROYED)) continue
 
 		dam = E.get_damage()
 		if(E.status & LIMB_BROKEN)

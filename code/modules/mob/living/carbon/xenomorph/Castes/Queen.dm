@@ -251,6 +251,9 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(!istype(cur_loc))
 		return
 
+	if(action_busy)
+		return
+
 	if(!check_plasma(200))
 		return
 	use_plasma(200)

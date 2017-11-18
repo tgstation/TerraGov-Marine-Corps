@@ -27,7 +27,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
-		if(S.open == 1)
+		if(S.surgery_open_stage == 0)
 			if (S && (S.status & LIMB_ROBOT))
 				if(S.get_damage())
 					S.heal_damage(15, 15, robo_repair = 1)

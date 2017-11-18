@@ -14,6 +14,8 @@
 	var/list/allowed_species = null //List of names referencing mutantraces that this step applies to.
 	var/list/disallowed_species = null
 
+
+
 	var/min_duration = 0 //Minimum duration of the step
 	var/max_duration = 0 //Maximum duration of the step
 
@@ -29,8 +31,6 @@
 
 //Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/target)
-	if(isXeno(target))
-		return 1
 	if(!hasorgans(target))
 		return 0
 	if(allowed_species)
@@ -46,12 +46,11 @@
 
 
 //Checks whether this step can be applied with the given user and target
-/datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/limb/affected, only_checks)
 	return 0
 
 //Does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
-/datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/datum/limb/affected = target.get_limb(target_zone)
+/datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(can_infect && affected)
 		spread_germs_to_organ(affected, user)
 	if(ishuman(user) && prob(60))
@@ -63,11 +62,11 @@
 	return
 
 //Does stuff to end the step, which is normally print a message + do whatever this step changes
-/datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	return
 
 //Stuff that happens when the step fails
-/datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	return null
 
 proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
@@ -92,22 +91,27 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if(user.a_intent == "harm") //Check for Hippocratic Oath
 		return 0
+	if(user.action_busy) //already doing an action
+		return 1
 	if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_SURGERY)
 		user << "<span class='warning'>You have no idea how to do surgery...</span>"
 		return 1
-	if(M.op_stage.in_progress) //Can't operate on someone repeatedly.
-		user << "<span class='warning'>You can't operate on the patient while surgery is already in progress.</span>"
+	var/datum/limb/affected = M.get_limb(user.zone_selected)
+	if(!affected)
+		return 0
+	if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
+		user << "<span class='warning'>You can't operate on the patient's [affected.display_name] while it's already being operated on.</span>"
 		return 1
 
 	for(var/datum/surgery_step/S in surgery_steps)
-		//Check if tool is right or close enough and if this step is possible
-		if(S.tool_quality(tool))
-			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool)
-			if(step_is_valid && S.is_valid_target(M))
+		//Check if tool is right or close enough, and the target mob valid, and if this step is possible
+		if(S.tool_quality(tool) && S.is_valid_target(M))
+			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool, affected)
+			if(step_is_valid)
 				if(step_is_valid == SPECIAL_SURGERY_INVALID) //This is a failure that already has a message for failing.
 					return 1
-				M.op_stage.in_progress = 1
-				S.begin_step(user, M, user.zone_selected, tool) //Start on it
+				affected.in_surgery_op = TRUE
+				S.begin_step(user, M, user.zone_selected, tool, affected) //Start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 
 				//Success multiplers!
@@ -137,18 +141,19 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					step_duration = max(5, step_duration - 10*(user.mind.skills_list["medical"] - SKILL_MEDICAL_SURGERY))
 
 				//Multiply tool success rate with multipler
-				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_CLOCK, BUSY_ICON_MED))
-					S.end_step(user, M, user.zone_selected, tool) //Finish successfully
+				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_CLOCK, BUSY_ICON_MED, TRUE))
+					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
+						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
 
 				else if((tool in user.contents) && user.Adjacent(M)) //Or
 					if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
 						M.emote("scream")
 						user << "<span class='danger'>[M] moved during the surgery! Use anesthetics!</span>"
-					S.fail_step(user, M, user.zone_selected, tool) //Malpractice
+					S.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
 				else //This failing silently was a pain.
 					user << "<span class='warning'>You must remain close to your patient to conduct surgery.</span>"
-				M.op_stage.in_progress = 0 //Clear the in-progress flag.
-				return	1				   //Don't want to do weapony things after surgery
+				affected.in_surgery_op = FALSE
+				return 1				   //Don't want to do weapony things after surgery
 
 	if(user.a_intent == "help")
 		user << "<span class='warning'>You can't see any useful way to use \the [tool] on [M].</span>"

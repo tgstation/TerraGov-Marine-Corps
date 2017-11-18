@@ -26,9 +26,15 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		for(var/datum/limb/O in M.limbs)
-			if((O.status & LIMB_DESTROYED) && !(O.status & LIMB_AMPUTATED))	traumatic_shock += 40
-			else if(O.status & LIMB_BROKEN || O.open) 				traumatic_shock += O.status & LIMB_SPLINTED ? 15 : 30
-			if(O.status && O.germ_level >= INFECTION_LEVEL_ONE) 	traumatic_shock += O.germ_level * 0.05
+			if((O.status & LIMB_DESTROYED) && !(O.status & LIMB_AMPUTATED))
+				traumatic_shock += 40
+			else if(O.status & LIMB_BROKEN || O.surgery_open_stage)
+				if(O.status & LIMB_SPLINTED)
+					traumatic_shock += 15
+				else
+					traumatic_shock += 30
+			if(O.germ_level >= INFECTION_LEVEL_ONE)
+				traumatic_shock += O.germ_level * 0.05
 
 		//Internal organs hurt too
 		for(var/datum/internal_organ/O in M.internal_organs)

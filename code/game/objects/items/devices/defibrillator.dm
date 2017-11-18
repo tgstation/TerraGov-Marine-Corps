@@ -9,7 +9,6 @@
 	throwforce = 5
 	w_class = 3
 
-	var/busy
 	var/ready = 0
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
@@ -75,7 +74,7 @@
 		return
 	defib_cooldown = world.time + 20 //2 second cooldown before you can try shocking again
 
-	if(busy) //Currently deffibing
+	if(user.action_busy) //Currently deffibing
 		return
 
 	//job knowledge requirement
@@ -99,11 +98,9 @@
 	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
 	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
-	busy = 1
 
 	if(do_mob(user, H, 70, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 
-		busy = 0
 		//Do this now, order doesn't matter
 		sparks.start()
 		dcell.use(charge_cost)
@@ -179,4 +176,4 @@
 	else
 		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest</span>", \
 		"<span class='warning'>You stop setting up the paddles on [H]'s chest</span>")
-		busy = 0
+

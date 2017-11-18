@@ -144,11 +144,12 @@
 		for(var/datum/limb/temp in limbs)
 			if(!(temp.status & LIMB_BLEEDING) || temp.status & LIMB_ROBOT)
 				continue
-			for(var/datum/wound/W in temp.wounds) if(W.bleeding())
-				blood_max += (W.damage / 40)
+			for(var/datum/wound/W in temp.wounds)
+				if(W.bleeding())
+					blood_max += (W.damage / 40)
 			if(temp.status & LIMB_DESTROYED && !(temp.status & LIMB_AMPUTATED))
 				blood_max += 5 //Yer missing a fucking limb.
-			if (temp.open)
+			if (temp.surgery_open_stage)
 				blood_max += 0.6  //Yer stomach is cut open
 		drip(blood_max)
 

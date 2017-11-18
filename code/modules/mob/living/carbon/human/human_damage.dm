@@ -172,7 +172,7 @@
 		if (prob(mut_prob))
 			var/list/datum/limb/candidates = list()
 			for (var/datum/limb/O in limbs)
-				if(O.status & (LIMB_CUT_AWAY|LIMB_ROBOT|LIMB_DESTROYED|LIMB_MUTATED)) continue
+				if(O.status & (LIMB_ROBOT|LIMB_DESTROYED|LIMB_MUTATED)) continue
 				candidates |= O
 			if (candidates.len)
 				var/datum/limb/O = pick(candidates)
@@ -340,8 +340,10 @@ This function restores all limbs.
 		UpdateDamageIcon()
 
 
+/mob/living/carbon/proc/get_limb(zone)
+	return
 
-/mob/living/carbon/human/proc/get_limb(zone)
+/mob/living/carbon/human/get_limb(zone)
 	zone = check_zone(zone)
 	for(var/X in limbs)
 		var/datum/limb/EO = X

@@ -987,6 +987,9 @@ client
 
 		EO.status = NOFLAGS
 		EO.has_dropped_limb = 0
+		EO.perma_injury = 0
+		EO.germ_level = 0
+		EO.reset_limb_surgeries()
 		M.update_body(0)
 		M.updatehealth()
 		M.UpdateDamageIcon()
@@ -1008,7 +1011,7 @@ client
 		var/datum/limb/EO = locate(rem_limb) in M.limbs
 		if(!EO)
 			return
-		if((EO.status & (LIMB_DESTROYED|LIMB_CUT_AWAY)))
+		if(EO.status & LIMB_DESTROYED)
 			usr << "Mob doesn't have that limb."
 			return
 		EO.droplimb(1,1,1)
