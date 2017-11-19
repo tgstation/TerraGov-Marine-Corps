@@ -170,6 +170,7 @@
 	else victim.emote("scream")
 	forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
+	round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
 	if(AE)
 		cdel(AE)

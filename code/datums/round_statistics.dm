@@ -13,3 +13,4 @@ var/datum/round_statistics/round_statistics = new()
 	var/total_humans_created = 0
 	var/total_bullet_hits_on_humans = 0
 	var/total_bullet_hits_on_xenos = 0
+	var/total_larva_burst = 0
