@@ -378,10 +378,7 @@
 	barricade_hitsound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
 	can_wire = 1
-
 	var/build_state = 2 //2 is fully secured, 1 is after screw, 0 is after wrench. Crowbar disassembles
-	var/tool_cooldown = 0 //Delay to apply tools to prevent spamming
-	var/busy = 0 //Standard busy check
 
 /obj/structure/barricade/metal/examine(mob/user)
 	..()
@@ -396,9 +393,8 @@
 /obj/structure/barricade/metal/attackby(obj/item/W, mob/user)
 
 	if(iswelder(W))
-		if(busy || tool_cooldown > world.time)
+		if(user.action_busy)
 			return
-		tool_cooldown = world.time + 10
 		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 			user << "<span class='warning'>You're not trained to repair [src]...</span>"
 			return
@@ -415,64 +411,58 @@
 			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			busy = 1
 			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
-				busy = 0
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
 				health += 150
 				update_health()
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			else busy = 0
 		return
 
 	switch(build_state)
 		if(2) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(isscrewdriver(W))
-				if(busy || tool_cooldown > world.time)
+				if(user.action_busy)
 					return
-				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				build_state = 1
 				return
 		if(1) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(isscrewdriver(W))
-				if(busy || tool_cooldown > world.time)
+				if(user.action_busy)
 					return
-				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				build_state = 2
 				return
 			if(iswrench(W))
-				if(busy || tool_cooldown > world.time)
+				if(user.action_busy)
 					return
-				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				anchored = FALSE
 				build_state = 0
 				return
 		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 			if(iswrench(W))
-				if(busy || tool_cooldown > world.time)
+				if(user.action_busy)
 					return
-				tool_cooldown = world.time + 10
-
-
 				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
@@ -480,30 +470,27 @@
 					if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
 						user << "<span class='warning'>There's already a barricade here.</span>"
 						return
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				build_state = 1
 				anchored = TRUE
 				return
 			if(iscrowbar(W))
-				if(busy || tool_cooldown > world.time)
+				if(user.action_busy)
 					return
-				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				busy = 1
 				if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
-					busy = 0
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					destroy(TRUE) //Note : Handles deconstruction too !
-				else busy = 0
 				return
 
 	. = ..()

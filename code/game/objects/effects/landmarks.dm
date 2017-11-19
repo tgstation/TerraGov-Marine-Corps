@@ -8,7 +8,7 @@
 /obj/effect/landmark/New()
 
 	..()
-	tag = text("landmark*[]", name)
+	tag = "landmark*[name]"
 	invisibility = 101
 
 	switch(name)			//some of these are probably obsolete
@@ -54,23 +54,25 @@
 			prisonwarp += loc
 			cdel(src)
 
-	//	if("mazewarp")
-	//		mazewarp += loc
-
 		if("Holding Facility")
 			holdingfacility += loc
+			cdel(src)
 
 		if("tdome1")
 			tdome1	+= loc
+			cdel(src)
 
 		if("tdome2")
 			tdome2 += loc
+			cdel(src)
 
 		if("tdomeadmin")
 			tdomeadmin	+= loc
+			cdel(src)
 
 		if("tdomeobserve")
 			tdomeobserve += loc
+			cdel(src)
 
 		//not prisoners
 		if("prisonsecuritywarp")
@@ -83,22 +85,6 @@
 
 		if("xeno_spawn")
 			xeno_spawn += loc
-			cdel(src)
-
-		if ("xeno_spawn_prison")
-			xeno_spawn_prison += loc
-			cdel(src)
-
-		if ("xeno_spawn_ice_colony")
-			xeno_spawn_ice_colony += loc
-			cdel(src)
-
-		if ("xeno_spawn_bigred")
-			xeno_spawn_bigred += loc
-			cdel(src)
-
-		if("xeno_spawn_HH")
-			xeno_spawn_HH += loc
 			cdel(src)
 
 		if("surv_spawn")
@@ -117,13 +103,6 @@
 			yautja_teleport_loc += loc
 			cdel(src)
 
-		if("surv_spawn_prison")
-			surv_spawn_prison += loc
-			cdel(src)
-
-		if("surv_spawn_ice_colony")
-			surv_spawn_ice_colony += loc
-			cdel(src)
 
 	landmarks_list += src
 	return 1

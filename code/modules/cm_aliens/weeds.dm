@@ -197,7 +197,6 @@
 	name = "purple sac"
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
-	layer = RESIN_STRUCTURE_LAYER
 	var/node_range = NODERANGE
 	var/planter_ckey //ckey of the mob who planted it.
 	var/planter_name //nameof the mob who planted it.

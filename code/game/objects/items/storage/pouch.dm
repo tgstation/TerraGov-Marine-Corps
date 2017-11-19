@@ -86,22 +86,24 @@
 
 /obj/item/storage/pouch/survival
 	name = "survival pouch"
-	desc = "It can contain a flare, a pill, a crowbar, and some bandages."
+	desc = "It can contain flashlights, a pill, a crowbar, metal sheets, and some bandages."
 	icon_state = "survival"
-	storage_slots = 4
+	storage_slots = 5
 	can_hold = list(
-					"/obj/item/device/flashlight/flare",
+					"/obj/item/device/flashlight",
 					"/obj/item/tool/crowbar",
 					"/obj/item/reagent_container/pill",
-					"/obj/item/stack/medical/bruise_pack"
+					"/obj/item/stack/medical/bruise_pack",
+					"/obj/item/stack/sheet/metal"
 					)
 
 /obj/item/storage/pouch/survival/full/New()
 	..()
-	new /obj/item/device/flashlight/flare (src)
+	new /obj/item/device/flashlight (src)
 	new /obj/item/tool/crowbar/red (src)
 	new /obj/item/reagent_container/pill/tramadol (src)
 	new /obj/item/stack/medical/bruise_pack (src, 3)
+	new /obj/item/stack/sheet/metal(src, 20)
 
 
 
@@ -404,8 +406,15 @@
 					"/obj/item/tool/screwdriver",
 					"/obj/item/tool/crowbar",
 					"/obj/item/tool/weldingtool",
-					"/obj/item/tool/multitool",
+					"/obj/item/device/multitool",
 					"/obj/item/tool/wrench",
 					"/obj/item/stack/cable_coil",
 					"/obj/item/tool/extinguisher/mini"
 					)
+
+/obj/item/storage/pouch/tools/full/New()
+	..()
+	new /obj/item/tool/screwdriver (src)
+	new /obj/item/tool/wirecutters (src)
+	new /obj/item/device/multitool (src)
+	new /obj/item/tool/wrench (src)
