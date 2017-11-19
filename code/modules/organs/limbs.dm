@@ -137,11 +137,9 @@
 	else
 		take_damage(damage, 0, 1, 1, used_weapon = "EMP")
 
-/datum/limb/proc/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
+/datum/limb/proc/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), no_limb_loss)
 	if((brute <= 0) && (burn <= 0))
 		return 0
-
-	var/archived_brute = brute //This is terrible, but I need this. Might not even be neccesary, but the code fucks with brute below, so I'm gonna stay safe
 
 	if(status & LIMB_DESTROYED)
 		return 0
@@ -185,10 +183,9 @@
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		//var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
-		var/can_inflict = INFINITY //TODO: YES, THIS IS STUPID. BUT I DON'T WANT TO REWRITE THIS GOD-FORSAKEN CODE FOR A HOTFIX TO MAGIC HEAD REMOVAL
-		//FOR NOW, 20 % OF DAMAGE SPREADS DOWN THROUGH THE PARENT
-		//WE NEED SOMETHING MUCH BETTER IN THE FUTURE
+		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
+		var/remain_brute = brute
+		var/remain_burn = burn
 		if(can_inflict)
 			if(brute > 0)
 				//Inflict all brute damage we can
@@ -200,41 +197,37 @@
 				//How much more damage can we inflict
 				can_inflict = max(0, can_inflict - brute)
 				//How much brute damage is left to inflict
-				brute = max(0, brute - temp)
+				remain_brute = max(0, brute - temp)
 
 			if(burn > 0 && can_inflict)
 				//Inflict all burn damage we can
 				createwound(BURN, min(burn,can_inflict))
 				//How much burn damage is left to inflict
-				burn = max(0, burn - can_inflict)
-		/*
+				remain_burn = max(0, burn - can_inflict)
+
 		//If there are still hurties to dispense
-		if(burn || brute)
-			if(status & LIMB_ROBOT)
-				droplimb(1) //Robot limbs just kinda fail at full damage.
-			else
-				//List organs we can pass it to
-				var/list/datum/limb/possible_points = list()
-				if(parent)
-					possible_points += parent
-				if(children)
-					possible_points += children
-				if(forbidden_limbs.len)
-					possible_points -= forbidden_limbs
-				if(possible_points.len)
-					//And pass the pain around
-					var/datum/limb/target = pick(possible_points)
-					target.take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs + src)
-		 */
+		if(remain_burn || remain_brute)
+			//List organs we can pass it to
+			var/list/datum/limb/possible_points = list()
+			if(parent)
+				possible_points += parent
+			if(children)
+				possible_points += children
+			if(forbidden_limbs.len)
+				possible_points -= forbidden_limbs
+			if(possible_points.len)
+				//And pass the damage around, but not the chance to cut the limb off.
+				var/datum/limb/target = pick(possible_points)
+				target.take_damage(remain_brute, remain_burn, sharp, edge, used_weapon, forbidden_limbs + src, TRUE)
+
 
 	//Sync the organ's damage with its wounds
 	src.update_damages()
 
 	//If limb took enough damage, try to cut or tear it off
-	if(body_part != UPPER_TORSO && body_part != LOWER_TORSO) //As hilarious as it is, getting hit on the chest too much shouldn't effectively gib you.
+	if(body_part != UPPER_TORSO && body_part != LOWER_TORSO && !no_limb_loss)
 		if(config.limbs_can_break && brute_dam >= max_damage * config.organ_health_multiplier)
-			//Probablity to delimb is 20 % of the damage past limb damage threshold and 80 % of the ratio of damage to limb damage threshold. This is then divided by four
-			var/cut_prob = ((brute_dam - max_damage) * 0.2 + (archived_brute/max_damage * 100) * 0.8) / 8
+			var/cut_prob = brute/max_damage * 10
 			if(prob(cut_prob))
 				droplimb(1)
 				return
