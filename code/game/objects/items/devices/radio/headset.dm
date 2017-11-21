@@ -367,7 +367,7 @@
 /obj/item/device/radio/headset/almayer/marine/charlie
 	name = "marine charlie radio headset"
 	desc = "This is used by charlie squad members. Channels are as follows: :c - charlie squad."
-	icon_state = "rob_headset"
+	icon_state = "charlie_headset"
 	keyslot1 = new /obj/item/device/encryptionkey/charlie
 
 /obj/item/device/radio/headset/almayer/marine/charlie/lead
