@@ -108,7 +108,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/list/airlockIndexToWireColor
 	var/list/airlockWireColorToIndex
 
-
+	tiles_with = list(
+		/turf/simulated/wall)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(!issilicon(usr))
@@ -1138,6 +1139,9 @@ About the new airlock wires panel:
 				if(A.closeOtherId == src.closeOtherId && A != src)
 					src.closeOther = A
 					break
+	// fix smoothing
+	spawn(10)
+		relativewall_neighbours()
 
 /obj/machinery/door/airlock/proc/randomize_wires()
 	var/wire_assignments = CreateRandomAirlockWires()
@@ -1151,3 +1155,7 @@ About the new airlock wires panel:
 	src.open()
 	src.lock()
 	return
+
+
+/obj/machinery/door/airlock/proc/update_nearby_icons()
+	relativewall_neighbours()

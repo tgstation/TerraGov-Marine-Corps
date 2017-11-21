@@ -535,3 +535,16 @@
 /obj/machinery/door/airlock/dropship_hatch/two
 	icon = 'icons/obj/doors/almayer/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship2"
+
+
+//PRISON AIRLOCKS
+/obj/machinery/door/airlock/prison/medical/glass
+	name = "\improper Cell Door"
+	icon = 'icons/obj/doors/prison/celldoor.dmi'
+	opacity = 0
+	glass = 0
+	req_access_txt = "0"
+	req_one_access_txt =  "2;8;19"
+
+/obj/machinery/door/airlock/prison/medical/glass/horizontal
+	dir = 2
