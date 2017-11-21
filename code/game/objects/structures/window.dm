@@ -569,4 +569,40 @@
 	basestate = "wood_rwindow"
 	window_frame = /obj/structure/window_frame/wood
 
+//Prison windows
 
+
+/obj/structure/window/framed/prison
+	name = "window"
+	icon_state = "wood_window0"
+	basestate = "wood_window"
+	window_frame = /obj/structure/window_frame/wood
+
+/obj/structure/window/framed/prison/reinforced
+	name = "reinforced window"
+	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
+	health = 100
+	reinf = 1
+	icon_state = "prison_rwindow0"
+	basestate = "prison_rwindow"
+	window_frame = /obj/structure/window_frame/wood
+
+/obj/structure/window/framed/prison/reinforced/hull
+	name = "hull window"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
+	not_damageable = 1
+	not_deconstructable = 1
+	unacidable = 1
+	health = 1000000 //Failsafe, shouldn't matter
+
+/obj/structure/window/framed/prison/cell
+	name = "cell window"
+	icon_state = "prison_cellwindow0"
+	basestate = "prison_cellwindow"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
+	not_damageable = 1
+	not_deconstructable = 1
+	unacidable = 1
+	health = 1000000 //Failsafe, shouldn't matter

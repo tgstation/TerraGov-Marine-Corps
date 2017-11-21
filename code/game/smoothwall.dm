@@ -115,6 +115,54 @@
 					break
 
 	handle_icon_junction(jun_1, jun_2)
+	
+// Special case for smoothing walls around multi-tile doors.
+/obj/machinery/door/airlock/multi_tile/relativewall_neighbours()
+	var/turf/T //The turf we are checking
+	var/atom/k
+	var/j
+
+	if (dir == SOUTH)
+		T = locate(x, y+2, z)
+		for(j in tiles_with)
+			if(istype(T, j))
+				T.relativewall()
+				break
+			for(k in T)
+				if(istype(k, j))
+					k.relativewall()
+					break
+
+		T = locate(x, y-1, z)
+		for(j in tiles_with)
+			if(istype(T, j))
+				T.relativewall()
+				break
+			for(k in T)
+				if(istype(k, j))
+					k.relativewall()
+					break
+
+	else if (dir == EAST)
+		T = locate(x+2, y, z)
+		for(j in tiles_with)
+			if(istype(T, j))
+				T.relativewall()
+				break
+			for(k in T)
+				if(istype(k, j))
+					k.relativewall()
+					break
+
+		T = locate(x-1, y, z)
+		for(j in tiles_with)
+			if(istype(T, j))
+				T.relativewall()
+				break
+			for(k in T)
+				if(istype(k, j))
+					k.relativewall()
+					break
 
 // Not proud of this.
 /obj/structure/mineral_door/resin/handle_icon_junction(junction)

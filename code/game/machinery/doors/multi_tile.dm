@@ -2,6 +2,7 @@
 /obj/machinery/door/airlock/multi_tile
 	width = 2
 
+
 /obj/machinery/door/airlock/multi_tile/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Door2x1glass.dmi'
@@ -67,7 +68,6 @@
 
 // ALMAYER
 
-
 /obj/machinery/door/airlock/multi_tile/almayer
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/almayer/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
@@ -78,9 +78,12 @@
 		/obj/machinery/door/airlock)
 
 	New()
-		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
+		spawn(0) //
 			relativewall_neighbours()
 		..()
+
+
+
 
 /obj/machinery/door/airlock/multi_tile/almayer/generic
 	name = "\improper Airlock"
@@ -140,7 +143,6 @@
 /obj/machinery/door/airlock/multi_tile/almayer/close()
 	. = ..()
 	update_filler_turfs()
-
 
 //------Dropship Cargo Doors -----//
 

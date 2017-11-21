@@ -295,3 +295,56 @@
 	icon_state = "catwalk0"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
+
+// Start Prison tiles
+
+/turf/simulated/floor/prison
+	icon = 'icons/turf/prison.dmi'
+	icon_state = "floor"
+
+/turf/simulated/floor/prison/trim/red
+	icon_state = "darkred2"
+
+/turf/simulated/floor/prison/plating
+	name = "plating"
+	icon_state = "plating"
+	floor_tile = null
+	intact = 0
+
+/turf/simulated/floor/prison/plating/prison_catwalk
+	icon_state = "catwalk"
+	name = "catwalk"
+	desc = "Cats really don't like these things."
+	var/base_state = "plating" //Post mapping
+	var/covered = 1 //1 for theres the cover, 0 if there isn't.
+
+	New()
+		..()
+		icon_state = base_state
+		update_turf_overlay()
+
+/turf/simulated/floor/prison/plating/prison_catwalk/proc/update_turf_overlay()
+	var/image/reusable/I = rnew(/image/reusable, list('icons/turf/prison.dmi', src, "catwalk", CATWALK_LAYER))
+	switch(covered)
+		if(0)
+			overlays -= I
+			cdel(I)
+		if(1) overlays += I
+
+/turf/simulated/floor/prison/plating/prison_catwalk/attackby(obj/item/W as obj, mob/user as mob)
+	..()
+	if (istype(W, /obj/item/tool/crowbar))
+		if(covered)
+			var/obj/item/stack/catwalk/R = new(usr.loc)
+			R.add_to_stacks(usr)
+			covered = 0
+			update_turf_overlay()
+			return
+	if(istype(W, /obj/item/stack/catwalk))
+		if(!covered)
+			var/obj/item/stack/catwalk/E = W
+			E.use(1)
+			covered = 1
+			update_turf_overlay()
+			return
+	..()
