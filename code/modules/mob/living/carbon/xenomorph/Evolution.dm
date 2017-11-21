@@ -14,7 +14,6 @@
 	var/tierC = 0 //Tier 3
 	var/potential_queens = 0
 
-
 	if(is_ventcrawling)
 		src << "<span class='warning'>This place is too constraining to evolve.</span>"
 		return
@@ -74,7 +73,6 @@
 	else
 		for(var/Q in evolves_to) //Populate our evolution list
 			pop_list += Q
-
 
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
 	if(!castepick) //Changed my mind
@@ -142,7 +140,7 @@
 		src << "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>"
 		return
 	else
-		src << "<span class='xenonotice'>It looks like the hive can support your evolution!</span>"
+		src << "<span class='xenonotice'>It looks like the hive can support your evolution to <span style='font-weight: bold'>[castepick]!</span></span>"
 
 	var/mob/living/carbon/Xenomorph/M = null
 
@@ -243,4 +241,3 @@
 		cdel(src)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"
-
