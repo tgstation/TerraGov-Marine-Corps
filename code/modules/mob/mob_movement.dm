@@ -161,20 +161,16 @@
 						break
 
 
-
-	if(Process_Grab()) return
-
-	if(isturf(mob.loc))
-
-		if(mob.is_mob_restrained())//Why being pulled while cuffed prevents you from moving
-			for(var/mob/M in range(mob, 1))
-				if(M.pulling == mob)
-					if(!M.is_mob_restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
-						src << "\blue You're restrained! You can't move!"
-						return 0
-					else
-						M.stop_pulling()
-
+	//Check if you are being grabbed and if so attemps to break it
+	if(mob.pulledby)
+		if(mob.is_mob_incapacitated(TRUE))
+			return
+		else if(mob.is_mob_restrained())
+			move_delay = world.time + 10
+			src << "<span class='warning'>You're restrained! You can't move!</span>"
+			return
+		else if(!mob.resist_grab(TRUE))
+			return
 
 	if(mob.buckled) return mob.buckled.relaymove(mob,direct)
 
@@ -224,19 +220,6 @@
 	return Move(n, direct)
 
 
-///Process_Grab()
-///Called by client/Move()
-///Checks to see if you are being grabbed and if so attemps to break it
-/client/proc/Process_Grab()
-	if(mob.pulledby)
-		if(mob.is_mob_incapacitated(TRUE))
-			return 1
-		else if(mob.is_mob_restrained())
-			move_delay = world.time + 10
-			src << "<span class='warning'>You're restrained! You can't move!</span>"
-			return 1
-		else
-			return mob.resist_grab(TRUE)
 
 
 ///Process_Incorpmove

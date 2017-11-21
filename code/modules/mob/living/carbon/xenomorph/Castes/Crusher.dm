@@ -230,7 +230,7 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 		else
 			if(X.momentum > 5)
 				if(buckled_mob)
-					manual_unbuckle()
+					unbuckle()
 				X.visible_message(
 				"<span class='warning'>[X] knocks aside [src]</span>!",
 				"<span class='xenowarning'>You casually knock aside [src].</span>") //Canisters, crates etc. go flying.

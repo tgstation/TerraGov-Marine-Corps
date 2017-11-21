@@ -110,7 +110,7 @@
 /turf/simulated/wall/resin/attackby(obj/item/W, mob/living/user)
 	if(!(W.flags_atom & NOBLUDGEON))
 		user.animation_attack_on(src)
-		take_damage(damage_cap - W.force)
+		take_damage(W.force)
 		playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
 	return ..()
 

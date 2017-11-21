@@ -368,20 +368,19 @@
 
 
 /mob/proc/resist_grab(moving_resist)
-	return 1 //returning 0 means we successfully broke free
+	return //returning 1 means we successfully broke free
 
 /mob/living/resist_grab(moving_resist)
-	. = 1
 	if(pulledby.grab_level)
 		if(prob(30/pulledby.grab_level))
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
 			pulledby.stop_pulling()
-			return 0
+			return 1
 		if(moving_resist && client) //we resisted by trying to move
 			client.move_delay = world.time + 20
 	else
 		pulledby.stop_pulling()
-		return 0
+		return 1
 
 
 /mob/living/verb/resist()

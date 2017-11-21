@@ -174,7 +174,7 @@ var/global/hive_orders = "" //What orders should the hive have
 		if(pulledby.grab_level)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
 		pulledby.stop_pulling()
-		. = 0
+		. = 1
 
 
 
