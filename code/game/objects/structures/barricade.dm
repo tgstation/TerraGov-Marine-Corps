@@ -248,6 +248,33 @@
 	health -= 10
 	update_health()
 
+/obj/structure/barricade/verb/rotate()
+	set name = "Rotate Barricade Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if(anchored)
+		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
+		return 0
+
+	dir = turn(dir, 90)
+	update_icon()
+	return
+
+/obj/structure/barricade/verb/revrotate()
+	set name = "Rotate Barricade Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if(anchored)
+		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
+		return 0
+
+	dir = turn(dir, 270)
+	update_icon()
+	return
+
+
 /*----------------------*/
 // SNOW
 /*----------------------*/
