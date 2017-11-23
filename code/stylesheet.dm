@@ -35,13 +35,13 @@ em						{font-style: normal;	font-weight: bold;}
 
 .secradio				{color: #A30000;}
 .engradio				{color: #A66300;}
-.medradio				{color: #9632C8;}
+.medradio				{color: #008160;}
 .sciradio				{color: #993399;}
 .supradio				{color: #5F4519;}
 
 .alpharadio				{color: #EA0000;}
 .bravoradio				{color: #C68610;}
-.charlieradio			{color: #009E73;}
+.charlieradio			{color: #AA55AA;}
 .deltaradio				{color: #007FCF;}
 
 .alert					{color: #ff0000;}
