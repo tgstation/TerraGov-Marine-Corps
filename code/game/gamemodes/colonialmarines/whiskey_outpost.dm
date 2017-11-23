@@ -1680,21 +1680,8 @@
 	for(var/path in spawnitems)
 		new path(crate)
 
-////////////////////////////////////////
-// Whiskey Outpost V2 Big Red Edition //
-////////////////////////////////////////
 
 
-// Lets make our desert/sand edition.
-/turf/unsimulated/floor/mars
-	name = "dirt"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "mars_tile_1"
-	is_groundmap_turf = TRUE
-
-	New()
-		..()
-		icon_state = "mars_tile_[rand(1,5)]"
 
 ////////////////////////////////////////////////////////////
 

@@ -643,6 +643,8 @@
 /turf/unsimulated/floor/mars/can_dig_xeno_tunnel()
 	return TRUE
 
+/turf/unsimulated/floor/mars_cave/can_dig_xeno_tunnel()
+	return TRUE
 
 
 

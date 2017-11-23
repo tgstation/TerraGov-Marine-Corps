@@ -249,10 +249,29 @@
 
 
 
+
+/turf/unsimulated/floor/mars
+	name = "sand"
+	icon = 'icons/turf/bigred.dmi'
+	icon_state = "mars_sand_1"
+	is_groundmap_turf = TRUE
+
+/turf/unsimulated/floor/mars_cave
+	name = "dirt"
+	icon = 'icons/turf/bigred.dmi'
+	icon_state = "mars_cave_1"
+
+/turf/unsimulated/floor/mars_cave/dirt
+	name = "dirt"
+	icon_state = "mars_dirt_1"
+
+
+
 /turf/simulated/floor/plating/ironsand/New()
 	..()
 	name = "Iron Sand"
 	icon_state = "ironsand[rand(1,15)]"
+
 
 /turf/simulated/floor/plating/snow
 	name = "snow"
@@ -262,33 +281,7 @@
 /turf/simulated/floor/plating/snow/ex_act(severity)
 	return
 
-/*
-/turf/simulated/floor/plating/mars
-	name = "dirt"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "mars_tile_1"
 
-	New()
-		..()
-		icon_state = "mars_tile_[rand(1,5)]"
-
-/turf/simulated/floor/plating/mars/ex_act(severity)
-	return
- */
-
-//Needs to be moved to a proper, dedicated file later
-
-/turf/unsimulated/floor/plating/mars
-	name = "dirt"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "mars_tile_1"
-
-	New()
-		..()
-		icon_state = "mars_tile_[rand(1,5)]"
-
-/turf/unsimulated/floor/plating/mars/ex_act(severity)
-	return
 
 /turf/simulated/floor/plating/catwalk
 	icon = 'icons/turf/catwalks.dmi'
