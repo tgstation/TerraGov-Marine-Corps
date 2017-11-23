@@ -39,8 +39,8 @@
 
 /obj/item/clothing/gloves/marine/charlie
 	name = "charlie squad gloves"
-	icon_state = "emerald"
-	item_state = "emeraldgloves"
+	icon_state = "purple"
+	item_state = "purplegloves"
 
 /obj/item/clothing/gloves/marine/charlie/insulated
 	name = "insulated charlie squad gloves"
