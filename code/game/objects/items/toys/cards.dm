@@ -17,40 +17,29 @@
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 
-		var/colour
-		if(suit == "spades" || suit == "clubs")
-			colour = "black_"
-		else
-			colour = "red_"
-
-		for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten"))
+		for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten","jack","queen","king"))
 			P = new()
 			P.name = "[number] of [suit]"
-			P.card_icon = "[colour]num"
-			cards += P
-
-		for(var/number in list("jack","queen","king"))
-			P = new()
-			P.name = "[number] of [suit]"
-			P.card_icon = "[colour]col"
+			P.card_icon = "[suit]_[number]"
 			cards += P
 
 
-	for(var/i = 0,i<2,i++)
-		P = new()
-		P.name = "joker"
-		P.card_icon = "joker"
-		cards += P
-
-/obj/item/toy/deck/attackby(obj/O as obj, mob/user as mob)
+/obj/item/toy/deck/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/toy/handcard))
 		var/obj/item/toy/handcard/H = O
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
+		update_icon()
 		cdel(O)
 		user << "You place your cards on the bottom of the deck."
 		return
 	..()
+
+/obj/item/toy/deck/update_icon()
+	switch(cards.len)
+		if(52) icon_state = "deck"
+		if(1 to 51) icon_state = "deck_open"
+		if(0) icon_state = "deck_empty"
 
 /obj/item/toy/deck/verb/draw_card()
 
@@ -85,6 +74,7 @@
 	H.cards += P
 	cards -= P
 	H.update_icon()
+	update_icon()
 	user.visible_message("\The [user] draws a card.")
 	user << "It's the [P]."
 
@@ -119,23 +109,12 @@
 	cards -= cards[1]
 	H.concealed = 1
 	H.update_icon()
+	update_icon()
 	if(user==target)
 		user.visible_message("\The [user] deals a card to \himself.")
 	else
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target,target.dir),10,1,H)
-
-/obj/item/toy/handcard/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/toy/handcard))
-		var/obj/item/toy/handcard/H = O
-		for(var/datum/playingcard/P in H.cards)
-			cards += P
-		src.concealed = H.concealed
-		cdel(O)
-		user.put_in_hands(src)
-		update_icon()
-		return
-	..()
 
 /obj/item/toy/deck/attack_self(var/mob/user as mob)
 
@@ -170,6 +149,19 @@
 
 	var/concealed = 0
 	var/list/cards = list()
+
+
+/obj/item/toy/handcard/attackby(obj/item/O, mob/user)
+	if(istype(O,/obj/item/toy/handcard))
+		var/obj/item/toy/handcard/H = O
+		for(var/datum/playingcard/P in H.cards)
+			cards += P
+		src.concealed = H.concealed
+		cdel(O)
+		user.put_in_hands(src)
+		update_icon()
+		return
+	..()
 
 /obj/item/toy/handcard/verb/discard()
 
@@ -206,10 +198,12 @@
 
 /obj/item/toy/handcard/examine(mob/user)
 	..()
-	if((!concealed || loc == user) && cards.len)
-		user << "It contains: "
-		for(var/datum/playingcard/P in cards)
-			user << "The [P.name]."
+	if(cards.len)
+		user << "It has [cards.len] cards."
+		if((!concealed || loc == user))
+			user << "The cards are: "
+			for(var/datum/playingcard/P in cards)
+				user << "The [P.name]."
 
 /obj/item/toy/handcard/update_icon(var/direction = 0)
 	if(cards.len > 1)
