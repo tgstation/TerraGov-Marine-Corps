@@ -7,6 +7,7 @@
 	det_time = 40
 	item_state = "grenade"
 	dangerous = 1
+	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
 	spawn(0)
@@ -20,10 +21,34 @@
 	explosion(T, -1, -1, 3)
 
 
+
+/obj/item/explosive/grenade/frag/training
+	name = "M07 training grenade"
+	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	icon_state = "training_grenade"
+	item_state = "grenade"
+	dangerous = 0
+
+/obj/item/explosive/grenade/frag/training/prime()
+	spawn(0)
+		playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
+		active = 0 //so we can reuse it
+		overlays.Cut()
+		icon_state = initial(icon_state)
+		det_time = initial(det_time) //these can be modified when fired by UGL
+		throw_range = initial(throw_range)
+
+
+/obj/item/explosive/grenade/frag/training/flamer_fire_act()
+	return
+
+
+
 /obj/item/explosive/grenade/frag/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_ex"
+	underslug_launchable = FALSE
 
 
 	prime()
@@ -37,6 +62,7 @@
 	desc = "An outdated USCM Fragmentation Grenade. With decades of service in the USCM, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
+	underslug_launchable = FALSE
 
 	prime()
 		spawn(0)
@@ -55,6 +81,7 @@
 	throw_speed = 2
 	throw_range = 7
 	hitsound = 'sound/effects/metalhit.ogg'
+	underslug_launchable = FALSE
 
 	prime()
 		spawn(0)
@@ -70,6 +97,8 @@
 	throw_speed = 2
 	throw_range = 6
 	hitsound = 'sound/effects/metalhit.ogg'
+	underslug_launchable = FALSE
+
 	prime()
 		spawn(0)
 			explosion(src.loc,-1,-1,3)
@@ -84,6 +113,7 @@
 	item_state = "grenade_fire"
 	flags_equip_slot = SLOT_WAIST
 	dangerous = 1
+	underslug_launchable = TRUE
 
 	prime()
 		spawn(0)
@@ -110,6 +140,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	icon_state = "molotov"
 	item_state = "molotov"
 	arm_sound = 'sound/items/Welder2.ogg'
+	underslug_launchable = FALSE
 	New()
 		det_time = rand(10,40)//Adds some risk to using this thing.
 		..()
@@ -129,6 +160,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	icon_state = "grenade_smoke"
 	det_time = 20
 	item_state = "grenade_smoke"
+	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/bad/smoke
 
 	New()
@@ -148,6 +180,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	icon_state = "grenade_phos"
 	det_time = 20
 	item_state = "grenade_phos"
+	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	dangerous = 1
 

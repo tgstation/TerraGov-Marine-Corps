@@ -604,10 +604,12 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+	var/list/loaded_grenades //list of grenade types loaded in the UGL
 
 	New()
 		..()
 		attachment_firing_delay = config.max_fire_delay * 3
+		loaded_grenades = list()
 
 	examine(mob/user)
 		..()
@@ -619,22 +621,23 @@ Defined in conflicts.dm of the #defines folder.
 	activate_attachment(atom/target,mob/living/user)
 		user << "<span class='notice'>You are now using [src].</span>"
 
-	reload_attachment(obj/item/explosive/grenade/frag/E, mob/user)
-		if(!istype(E))
-			user << "<span class='warning'>[src] only accepts M40 HEDP grenades.</span>"
+	reload_attachment(obj/item/explosive/grenade/G, mob/user)
+		if(!istype(G))
+			user << "<span class='warning'>[src] doesn't accept that type of grenade.</span>"
 			return
-		if(!E.active) //can't load live grenades
-			if(E.type != /obj/item/explosive/grenade/frag) //we don't want the children
-				user << "<span class='warning'>[src] only accepts M40 HEDP grenades.</span>"
+		if(!G.active) //can't load live grenades
+			if(!G.underslug_launchable)
+				user << "<span class='warning'>[src] doesn't accept that type of grenade.</span>"
 				return
 			if(current_rounds >= max_rounds)
 				user << "<span class='warning'>[src] is full.</span>"
 			else
 				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 				current_rounds++
-				user << "<span class='notice'>You load [E] in [src].</span>"
-				user.temp_drop_inv_item(E)
-				cdel(E)
+				loaded_grenades += G.type
+				user << "<span class='notice'>You load [G] in [src].</span>"
+				user.temp_drop_inv_item(G)
+				cdel(G)
 
 	fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 		if(get_dist(user,target) > max_range)
@@ -645,17 +648,18 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	set waitfor = 0
-	var/obj/item/explosive/grenade/frag/G = new(get_turf(gun))
+	var/nade_type = loaded_grenades[1]
+	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
 	message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
 	log_game("[key_name_admin(user)] used an underslung grenade launcher.")
-	G.active = 1
-	G.icon_state = "grenade_active"
+	G.det_time = 15
 	G.throw_range = max_range
+	G.activate()
 	G.throw_at(target, max_range, 2, user)
 	current_rounds--
-	sleep(15)
-	if(G && G.loc) G.prime()
+	loaded_grenades.Cut(1,2)
+
 
 //"ammo/flamethrower" is a bullet, but the actual process is handled through fire_attachment, linked through Fire().
 /obj/item/attachable/flamer

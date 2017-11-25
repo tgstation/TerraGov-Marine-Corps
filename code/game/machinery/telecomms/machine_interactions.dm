@@ -13,6 +13,7 @@
 /obj/machinery/telecomms
 	var/temp = "" // output message
 	var/construct_op = 0
+	var/deconstructable = FALSE
 
 
 /obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
@@ -40,7 +41,7 @@
 
 	switch(construct_op)
 		if(0)
-			if(istype(P, /obj/item/tool/screwdriver))
+			if(istype(P, /obj/item/tool/screwdriver) && deconstructable)
 				user << "You unfasten the bolts."
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				construct_op ++

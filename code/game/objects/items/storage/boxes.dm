@@ -601,22 +601,29 @@
 	icon_state = "nade_placeholder"
 	w_class = 4
 	storage_slots = 25
+	can_hold = list("/obj/item/explosive/grenade/frag")
 	var/nade_box_icon
-	can_hold = list(
-		"/obj/item/explosive/grenade/frag"
-		)
+	var/grenade_type = /obj/item/explosive/grenade/frag
 
 	New()
 		..()
-		contents = list()
 		select_gamemode_skin(/obj/item/storage/box/nade_box)
 		nade_box_icon = icon_state
 		var/i = 0
-		while(++i < 25)
-			new /obj/item/explosive/grenade/frag(src)
+		while(++i < storage_slots)
+			new grenade_type(src)
 
 	update_icon()
 		if(!contents.len)
 			icon_state = "[nade_box_icon]_e"
 		else
 			icon_state = nade_box_icon
+
+/obj/item/storage/box/nade_box/training
+	name = "\improper M07 training grenade box"
+	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
+	icon_state = "train_nade_placeholder"
+	grenade_type = /obj/item/explosive/grenade/frag/training
+	can_hold = list(
+		"/obj/item/explosive/grenade/frag/training"
+		)

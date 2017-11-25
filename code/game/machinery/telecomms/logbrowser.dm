@@ -55,6 +55,8 @@
 
 				dat += "Stored Logs: <ol>"
 
+//removed due to being abusable since refreshing 400 log entries is laggy, and the refreshing can be spammed.
+/*
 				var/i = 0
 				for(var/datum/comm_log_entry/C in SelectedServer.log_entries)
 					i++
@@ -118,7 +120,7 @@
 						dat += "<li><font color = #990000>[C.name]</font color>  <font color = #FF0000><a href='?src=\ref[src];delete=[i]'>\[X\]</a></font color><br>"
 						dat += "<u><font color = #787700>Output</font color></u>: \"[C.parameters["message"]]\"<br>"
 						dat += "</li><br>"
-
+*/
 
 				dat += "</ol>"
 

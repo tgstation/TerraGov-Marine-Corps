@@ -740,11 +740,11 @@
 
 
 /obj/item/book/manual/medical_diagnostics_manual
-	name = "NT Medical Diagnostics Manual"
+	name = "WY Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
-	author = "NanoTrasen Medicine Department"
-	title = "NT Medical Diagnostics Manual"
+	author = "Weyland Yutani Medicine Department"
+	title = "WY Medical Diagnostics Manual"
 
 	dat = {"<html>
 				<head>
@@ -761,7 +761,7 @@
 				<br>
 				<h1>The Oath</h1>
 
-				<i>The Medical Oath sworn by recognised medical practitioners in the employ of NanoTrasen</i><br>
+				<i>The Medical Oath sworn by recognised medical practitioners in the employ of Weyland Yutani</i><br>
 
 				<ol>
 					<li>Now, as a new doctor, I solemnly promise that I will, to the best of my ability, serve humanity-caring for the sick, promoting good health, and alleviating pain and suffering.</li>
