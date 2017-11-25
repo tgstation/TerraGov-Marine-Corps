@@ -3,7 +3,7 @@
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
 	icon = 'icons/obj/structures/window_frames.dmi'
 	icon_state = "window0_frame"
-	layer = TABLE_LAYER
+	layer = WINDOW_FRAME_LAYER
 	density = 1
 	throwpass = TRUE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
