@@ -47,7 +47,6 @@
 // ZONE_BLOCKED - Not blocked, but zone boundaries will not cross.
 // BLOCKED - Blocked, zone boundaries will not cross even if opened.
 atom/proc/c_airblock(turf/other)
-	world.log << "c_airblock() called by [src]. Location: x=[x], y=[y], z=[z]"
 	#ifdef ZASDBG
 	ASSERT(isturf(other))
 	#endif
@@ -55,7 +54,6 @@ atom/proc/c_airblock(turf/other)
 
 
 turf/c_airblock(turf/other)
-	world.log << "c_airblock() called by [src]. Location: x=[x], y=[y], z=[z]"
 	#ifdef ZASDBG
 	ASSERT(isturf(other))
 	#endif
