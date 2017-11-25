@@ -152,6 +152,13 @@
 	name = "\improper Staff Restooms"
 
 /area/prison/maintenance
+	icon_state = "asmaint"
+
+/area/prison/maintenance/civ_access/north
+	name = "\improper North Civilian Residences Access"
+
+/area/prison/maintenance/civ_access/south
+	name = "\improper South Civilian Residences Access"
 
 /area/prison/maintenance/staff_research
 	name = "\improper Staff-Research Maintenance"
@@ -164,7 +171,6 @@
 /area/prison/maintenance/hangar_barracks
 	name = "\improper Hangar-Barracks Maintenance"
 	icon_state = "maint_e_shuttle"
-
 
 /area/prison/canteen
 	name = "\improper Canteen"
