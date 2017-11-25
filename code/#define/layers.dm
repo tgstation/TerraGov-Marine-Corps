@@ -42,6 +42,7 @@
 
 #define LADDER_LAYER 2.7
 
+#define WINDOW_FRAME_LAYER 2.72
 
 #define XENO_HIDING_LAYER 2.75
 
