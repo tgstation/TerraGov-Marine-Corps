@@ -13,6 +13,7 @@
 	var/det_time = 50
 	var/dangerous = 0		//Make an danger overlay for humans?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
+	var/underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/New()
 
@@ -36,7 +37,7 @@
 		else
 			user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
 			"<span class='warning'>You prime \a [name]!</span>")
-			if(has_species(user, "Human"))
+			if(initial(dangerous) && has_species(user, "Human"))
 				var/nade_sound = user.gender == FEMALE ? get_sfx("fragout_female") : get_sfx("fragout_male")
 
 				for(var/mob/living/carbon/human/H in hearers(6,user))

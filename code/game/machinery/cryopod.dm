@@ -177,12 +177,15 @@ var/global/list/frozen_items = list()
 				occupant.drop_inv_item_to_loc(W, src)
 
 			//Delete all items not on the preservation list.
-			var/list/items = src.contents
+
+			var/list/items = contents.Copy()
 			items -= occupant // Don't delete the occupant
 			items -= announce // or the autosay radio.
 
 			for(var/obj/item/W in items)
-				if(istype(W, /obj/item/card/id)) continue //don't keep id, to avoid abuse
+				if(istype(W, /obj/item/card/id))
+					cdel(W)
+					continue //don't keep id, to avoid abuse
 				if(W.flags_inventory & CANTSTRIP) // we don't keep donor items
 					if(istype(W, /obj/item/clothing/suit/storage))
 						var/obj/item/clothing/suit/storage/SS = W
@@ -196,6 +199,7 @@ var/global/list/frozen_items = list()
 							S.remove_from_storage(I, loc)
 							frozen_items += I
 							I.loc = null
+					cdel(W)
 					continue
 				frozen_items += W
 				W.loc = null
@@ -365,7 +369,7 @@ var/global/list/frozen_items = list()
 
 	visible_message("[usr] starts climbing into the cryo pod.", 3)
 
-	if(do_after(usr, 20, FALSE, TRUE, 5, BUSY_ICON_CLOCK))
+	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
 
 		if(!usr || !usr.client)
 			return
