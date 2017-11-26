@@ -6,6 +6,7 @@
 	anchored = 0
 	density = 1
 	drag_delay = 1
+	throwpass = TRUE
 	flags_atom = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite

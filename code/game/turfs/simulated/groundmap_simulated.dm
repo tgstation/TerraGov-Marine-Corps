@@ -85,6 +85,7 @@
 /turf/simulated/floor/gm/river
 	name = "river"
 	icon_state = "seashallow"
+	can_bloody = FALSE
 
 /turf/simulated/floor/gm/river/New()
 	..()
