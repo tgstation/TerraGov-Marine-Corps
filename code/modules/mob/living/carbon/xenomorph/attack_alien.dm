@@ -445,6 +445,9 @@
 		M << "<span class='warning'>\The [src] is already open!</span>"
 		return 0
 
+	if(M.action_busy)
+		return 0
+
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>")
