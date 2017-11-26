@@ -386,8 +386,6 @@
 	if(!can_bloody)
 		return 0
 
-	if(istype(src,/turf/unsimulated/floor/gm/river)) return 0//Not in the river
-
 	if (!..())
 		return 0
 
