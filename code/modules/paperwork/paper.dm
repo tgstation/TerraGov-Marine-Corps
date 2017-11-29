@@ -487,7 +487,7 @@
 
 /obj/item/paper/prison_station/warden_note
 	name = "paper- 'Final note'"
-	info = "<p>Not much time left. Note to whoever may respond to the distress signal</p><p>Initially, there was a collision into the south high-security cellblock. We thought it was a pirate attack</p><p>It was, but something happened in the civilian residences. We were too tied up with the pirates to respond</p><p>Half the guards are dead. Most of the remainder not accounted for</p><p>Many likely trapped in yard when yard lockdown activated. Timed lockdown of civilian residences also activated</p><p>Lockdown of civilian residences will automatically lift at 12:45</p><p>Lockdown of yard at 13:00</p><p>something comes</p>"
+	info = "<p>Not much time left. Note to whoever may respond to the distress signal</p><p>Initially, there was a collision into the south high-security cellblock. We thought it was a pirate attack</p><p>It was, but something happened in the civilian residences. We were too tied up with the pirates to respond</p><p>Half the guards are dead. Most of the remainder not accounted for</p><p>Many likely trapped in yard when central lockdown activated. Timed lockdown of civilian residences also activated</p><p>Lockdown of civilian residences will automatically lift at 12:45</p><p>Central lockdown at 13:00</p><p>something comes</p>"
 
 /obj/item/paper/prison_station/chapel_program
 	name = "paper= 'Chapel service program'"
@@ -499,7 +499,7 @@
 
 /obj/item/paper/prison_station/pirate_note
 	name = "paper= 'Captain's log'"
-	info = "We found him.<BR>\n<BR>\nHis location, anyway. Figures that he'd end up in the Fop, given our reputation. As good an escape artist he is, he ain't getting out by himself; too many guards, and no way off without a ship. Those fuckers are prepared for anything coming from inside.<BR>\n<BR>\nWhat they AREN'T prepared for is a freighter ramming straight through their hull.<BR>\n<BR>\nHang tight, Jack. We're coming for you."
+	info = "<p>We found him.</p><p>His location, anyway. Figures that he'd end up in the Fop, given our reputation.</p><p>As good an escape artist he is, he ain't getting out by himself. Too many security measures, and no way off without a ship. They're prepared for anything coming from inside.</p><p>They AREN'T prepared for a \"tramp freighter\" ramming straight through their hull.</p><p>Hang tight, Jack. We're coming for you."
 
 /obj/item/paper/prison_station/nursery_rhyme
 	info = "<p>Mary had a little lamb,<BR>\nits fleece was white as snow;<BR>\nAnd everywhere that Mary went,<BR>\nthe lamb was sure to go.</p><p>It followed her to school one day,<BR>\nwhich was against the rule;<BR>\nIt made the children laugh and play,<BR>\nto see a lamb at school.</p><p>And so the teacher turned it out,<BR>\nbut still it lingered near,<BR>\nAnd waited patiently about,<BR>\ntill Mary did appear.</p><p>\"Why does the lamb love Mary so?\"<BR>\nthe eager children cry;<BR>\n\"Why, Mary loves the lamb, you know\",<BR>\nthe teacher did reply."
