@@ -99,23 +99,27 @@
 		if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
 			if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
 				replace_ammo(user, magazine) //We are going to replace the ammo just in case.
-				current_mag.match_ammo(magazine,current_mag)
-				current_mag.transfer_ammo(magazine,current_mag,user,1) //Handful can get deleted, so we can't check through it.
+				current_mag.match_ammo(magazine)
+				current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
 				add_to_cylinder(user)
 			//If bullets still remain in the gun, we want to check if the actual ammo matches.
 			else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
-				if(current_mag.transfer_ammo(magazine,current_mag,user,1)) add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-			else 		user << "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]"//Not the right kind of ammo.
+				if(current_mag.transfer_ammo(magazine,user,1))
+					add_to_cylinder(user)//If the magazine is deleted, we're still fine.
+			else
+				user << "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]"//Not the right kind of ammo.
 		else //So if it's not a handful, it's an actual speedloader.
 			if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
 				if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
-					if(current_mag.transfer_ammo(magazine,current_mag,user,magazine.current_rounds))//Make sure we're successful.
+					if(current_mag.transfer_ammo(magazine,user,magazine.current_rounds))//Make sure we're successful.
 						replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
-						current_mag.match_ammo(magazine,current_mag)
+						current_mag.match_ammo(magazine)
 						replace_cylinder(current_mag.current_rounds)
 						playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
-				else 	user << "<span class='warning'>That [magazine] doesn't fit!</span>"
-			else 		user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
+				else
+					user << "<span class='warning'>That [magazine] doesn't fit!</span>"
+			else
+				user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
 
 	unload(mob/user)
 		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
