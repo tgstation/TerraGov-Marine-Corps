@@ -179,6 +179,20 @@ proc/isXenoSpitter(A)
 		return 1
 	return 0
 
+proc/isXenoSmall(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Spitter))
+		return 1
+	if(istype(A, /mob/living/carbon/Xenomorph/Sentinel))
+		return 1
+	if(istype(A, /mob/living/carbon/Xenomorph/Larva))
+		return 1
+	if(istype(A, /mob/living/carbon/Xenomorph/Hunter))
+		return 1
+	if(istype(A, /mob/living/carbon/Xenomorph/Drone))
+		return 1
+	return 0
+
+
 proc/isYautja(A)
 	if(istype(A,/mob/living/carbon/hellhound)) return 1 //They are always considered Yautja.
 	if(!ishuman(A) || !ismob(A)) return 0
