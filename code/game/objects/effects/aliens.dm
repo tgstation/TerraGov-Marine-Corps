@@ -139,16 +139,20 @@
 		if(istype(acid_t, /turf))
 			if(istype(acid_t, /turf/simulated/wall))
 				var/turf/simulated/wall/W = acid_t
-				W.dismantle_wall(1)
+				new /obj/effects/acid_hole (W)
 			else
 				var/turf/T = acid_t
 				T.ChangeTurf(/turf/simulated/floor/plating)
+		else if (istype(acid_t, /obj/structure/girder))
+			var/obj/structure/girder/G = acid_t
+			G.dismantle()
 		else
 			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
 				for(var/mob/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
 			cdel(acid_t)
 			acid_t = null
+
 		cdel(src)
 		return
 
@@ -158,5 +162,5 @@
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
 
-	sleep(rand(200,300) * acid_strength)
+	sleep(rand(20,30) * (acid_strength*8))
 	.()
