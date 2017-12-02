@@ -67,29 +67,29 @@ They're all essentially identical when it comes to getting the job done.
 					var/obj/item/ammo_magazine/handful/transfer_from = I
 					if(src == user.get_inactive_hand() ) //It has to be held.
 						if(default_ammo == transfer_from.default_ammo)
-							transfer_ammo(transfer_from,src,user,transfer_from.current_rounds) // This takes care of the rest.
+							transfer_ammo(transfer_from,user,transfer_from.current_rounds) // This takes care of the rest.
 						else user << "Those aren't the same rounds. Better not mix them up."
 					else user << "Try holding [src] before you attempt to restock it."
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
-/obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, obj/item/ammo_magazine/target, mob/user, transfer_amount = 1)
-	if( target.current_rounds == target.max_rounds ) //Does the target mag actually need reloading?
-		user << "[target] is already full."
+/obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
+	if(current_rounds == max_rounds) //Does the mag actually need reloading?
+		user << "[src] is already full."
 		return
 
-	if(source.caliber != target.caliber) //Are they the same caliber?
+	if(source.caliber != caliber) //Are they the same caliber?
 		user << "The rounds don't match up. Better not mix them up."
 		return
 
-	var/S = min(transfer_amount, target.max_rounds - target.current_rounds)
+	var/S = min(transfer_amount, max_rounds - current_rounds)
 	source.current_rounds -= S
-	target.current_rounds += S
+	current_rounds += S
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
 			user.temp_drop_inv_item(source)
 		cdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 	else source.update_icon()
-	target.update_icon(S)
+	update_icon(S)
 	return S // We return the number transferred if it was successful.
 
 //This will attempt to place the ammo in the user's hand if possible.
@@ -110,10 +110,11 @@ They're all essentially identical when it comes to getting the job done.
 		update_icon(-R) //Update the other one.
 	return R //Give the number created.
 
-/obj/item/ammo_magazine/proc/match_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target)
-	target.caliber = source.caliber
-	target.default_ammo = source.default_ammo
-	target.gun_type = source.gun_type
+//our magazine inherits ammo info from a source magazine
+/obj/item/ammo_magazine/proc/match_ammo(obj/item/ammo_magazine/source)
+	caliber = source.caliber
+	default_ammo = source.default_ammo
+	gun_type = source.gun_type
 
 //~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act()
@@ -178,7 +179,7 @@ bullets/shells. ~N
 	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user as mob)
 		if(istype(transfer_from)) // We have a handful. They don't need to hold it.
 			if(default_ammo == transfer_from.default_ammo) //Has to match.
-				transfer_ammo(transfer_from,src,user) // Transfer it from currently held to src, this item, message user.
+				transfer_ammo(transfer_from,user) // Transfer it from currently held to src
 			else user << "Those aren't the same rounds. Better not mix them up."
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
@@ -294,7 +295,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				user << "<span class='warning'>[src] is empty.</span>"
 				return
 			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
-				var/transfered_ammo = AM.transfer_ammo(src, AM, user, AM.max_rounds)
+				var/transfered_ammo = AM.transfer_ammo(src, user, min(current_rounds,AM.max_rounds))
 				if(transfered_ammo)
 					playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
 					if(AM.current_rounds == AM.max_rounds)
@@ -303,7 +304,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 						user << "<span class='notice'>You put [transfered_ammo] rounds in [AM].</span>"
 
 		else if(AM.flags_magazine & AMMUNITION_HANDFUL)
-			var/transfered_ammo = transfer_ammo(AM, src, user, AM.current_rounds)
+			var/transfered_ammo = transfer_ammo(AM, user, AM.current_rounds)
 			if(transfered_ammo)
 				playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
 				user << "<span class='notice'>You put [transfered_ammo] rounds in [src].</span>"

@@ -152,7 +152,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		//Makes some of this a lot easier to determine.
 
 		var/mag_caliber = magazine.default_ammo //Handfuls can get deleted, so we need to keep this on hand for later.
-		if(current_mag.transfer_ammo(magazine,current_mag,user,1))
+		if(current_mag.transfer_ammo(magazine,user,1))
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
 
 	unload(mob/user)
