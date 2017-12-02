@@ -32,6 +32,8 @@
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
 	var/d_sleep = 60 //The time in deciseconds it takes for each step of wall deconstruction
 
+	var/hole = FALSE
+
 	opacity = 1
 	density = 1
 	blocks_air = 1
@@ -173,48 +175,50 @@
 
 	return ..()
 
+/turf/simulated/wall/proc/make_girder(destroyed_girder = FALSE)
+	var/obj/structure/girder/G = new /obj/structure/girder(src)
+	G.icon_state = "girder[junctiontype]"
+	G.original = src.type
+	/*
+	var/obj/item/stack/sheet/metal/M_spawned = new /obj/item/stack/sheet/metal(src)
+	// I'm sorry but the step_rand function sucked.
+	var dirs[] = list(NORTH, NORTHEAST, NORTHWEST, SOUTH, SOUTHEAST, SOUTHWEST, WEST, EAST)
+	var dir = dirs[rand(0,dirs.len)]
+	step(M_spawned, dir)
+	*/
+	if (destroyed_girder)
+		G.dismantle()
+
 /turf/simulated/wall/proc/dismantle_wall(devastated = 0, explode = 0)
 	if(hull) //Hull is literally invincible
 		return
 	if(istype(src, /turf/simulated/wall/r_wall))
 		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			new /obj/structure/girder/reinforced(src)
-			new /obj/item/stack/sheet/plasteel(src)
+			make_girder(FALSE)
 		else
-			new /obj/item/stack/sheet/metal(src)
-			new /obj/item/stack/sheet/metal(src)
-			new /obj/item/stack/sheet/plasteel(src)
+			make_girder(TRUE)
 	else if(istype(src,/turf/simulated/wall/cult))
 		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			new /obj/effect/decal/cleanable/blood(src)
-			new /obj/structure/cultgirder(src)
+			make_girder(FALSE)
 		else
-			new /obj/effect/decal/cleanable/blood(src)
-			new /obj/effect/decal/remains/human(src)
+			make_girder(TRUE)
 
 	else
-		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			new /obj/structure/girder(src)
+		if(!devastated && !explode)
 			if(mineral == "metal")
-				new /obj/item/stack/sheet/metal(src)
-				new /obj/item/stack/sheet/metal(src)
+				make_girder(FALSE)
 			else
-				var/M = text2path("/obj/item/stack/sheet/mineral/[mineral]")
-				new M(src)
-				new M(src)
+				make_girder(TRUE)
+		else if (!devastated && explode)
+			if(mineral == "metal")
+				make_girder(TRUE)
+			else
+				make_girder(TRUE)
 		else
 			if(mineral == "metal")
-				new /obj/item/stack/sheet/metal(src)
-				new /obj/item/stack/sheet/metal(src)
-				new /obj/item/stack/sheet/metal(src)
+				make_girder(FALSE)
 			else
-				var/M = text2path("/obj/item/stack/sheet/mineral/[mineral]")
-				new M(src)
-				new M(src)
-				new /obj/item/stack/sheet/metal(src)
+				make_girder(FALSE)
 
 	for(var/obj/O in contents) //Eject contents!
 		if(istype(O, /obj/structure/sign/poster))
@@ -229,7 +233,7 @@
 		return
 	switch(severity)
 		if(1)
-			ChangeTurf(/turf/simulated/floor/plating)
+			dismantle_wall(0,1)
 		if(2)
 			if(prob(75))
 				take_damage(rand(150, 250))
@@ -270,14 +274,11 @@
 	O.density = 1
 	O.layer = FLY_LAYER
 
-	ChangeTurf(/turf/simulated/floor/plating)
-
-	var/turf/simulated/floor/F = src
-	F.burn_tile()
-	F.icon_state = "wall_thermite"
 	user << "<span class='warning'>The thermite starts melting through [src].</span>"
+	spawn(50)
+		dismantle_wall()
 
-	spawn(100)
+	spawn(50)
 		if(O) cdel(O)
 	return
 
@@ -338,6 +339,21 @@
 		user << "<span class='warning'>[src] crumbles under your touch.</span>"
 		dismantle_wall()
 		return
+
+	var/obj/effects/acid_hole/Hole = GetHole()
+
+	if (Hole)
+		if (isXeno(user) && !isXenoSmall(user) && !Hole.busy)
+			Hole.busy = TRUE
+			playsound(Hole.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+			if(do_after(user,60, FALSE, 5, BUSY_ICON_CLOCK))
+				Hole.busy = FALSE
+				take_damage(rand(2000,3500))
+				user.emote("roar")
+				return
+			else
+				Hole.busy = FALSE
+				return
 
 	user << "<span class='notice'>You push [src] but nothing happens!</span>"
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
@@ -565,6 +581,63 @@
 						"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
 						dismantle_wall()
 				return
+
+	var/obj/effects/acid_hole/Hole = GetHole()
+
+	if (Hole)
+		if (!isXeno(user))
+			var/Target
+			//Throwing Grenades
+			var/_dir = get_dir(user, src)
+			if(Hole.icon_state == "hole_0")
+				if (_dir == NORTH || _dir == NORTHEAST || _dir == NORTHWEST)
+					Target = get_step(src, NORTH)
+				else if (_dir == SOUTH || _dir == SOUTHWEST || _dir == SOUTHEAST)
+					Target = get_step(src, SOUTH)
+			else if (Hole.icon_state == "hole_1")
+				if (_dir == EAST || _dir == SOUTHEAST || _dir == NORTHEAST )
+					Target = get_step(src, EAST)
+				else if (_dir == WEST || _dir == SOUTHWEST || _dir == NORTHWEST)
+					Target = get_step(src, WEST)
+
+			if(istype(W,/obj/item/explosive/grenade))
+				var/obj/item/explosive/grenade/G = W
+
+				user << "You take the position to throw the [G]."
+				if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+					user.visible_message("<span class='warning'>[user] throws [G] through the [src]!</span>", \
+										 "<span class='warning'>You throw [G] through the [src]</span>")
+					user.drop_held_item()
+					G.loc = get_turf(Target)
+					G.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+					step_away(G,src,rand(1,5))
+					if(!G.active)
+						G.activate(user)
+
+			//Throwing Flares and flashlights
+			else if(istype(W,/obj/item/device/flashlight))
+				var/obj/item/device/flashlight/F = W
+
+				user << "You take the position to throw the [F]."
+				if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+					user.visible_message("<span class='warning'>[user] throws [F] through the [src]!</span>", \
+										 "<span class='warning'>You throw [F] through the [src]</span>")
+					user.drop_held_item()
+					F.loc = get_turf(Target)
+					F.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+					step_away(F,src,rand(1,5))
+					F.SetLuminosity(0)
+					if(F.on && loc != user)
+						F.SetLuminosity(F.brightness_on)
+			else
+				return attack_hand(user)
+			return
+		else if (isXeno(user) && !isXenoSmall(user))
+			user << "HERPIDERP!"
+			if(do_after(user,40, FALSE, 5, BUSY_ICON_CLOCK))
+				user << "DORP!"
+				damage += 250
+				user.emote("roar")
 
 	return attack_hand(user)
 
