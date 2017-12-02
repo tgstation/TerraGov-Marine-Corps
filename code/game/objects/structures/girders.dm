@@ -3,8 +3,14 @@
 	anchored = 1
 	density = 1
 	layer = OBJ_LAYER
+	unacidable = 0
 	var/state = 0
+	var/buildctr = 0
 	var/health = 200
+	var/repair_state = 0
+	// To store what type of wall it used to be
+	var/original
+
 
 
 	bullet_act(var/obj/item/projectile/Proj)
@@ -15,14 +21,12 @@
 		if(Proj.ammo.damage_type == BURN)
 			health -= Proj.damage
 			if(health <= 0)
-				new /obj/item/stack/sheet/metal(get_turf(src))
-				cdel(src)
+				update_state()
 		else
 			if(prob(50))
 				health -= round(Proj.ammo.damage / 2)
 				if(health <= 0)
-					new /obj/item/stack/sheet/metal(get_turf(src))
-					cdel(src)
+					update_state()
 		return 1
 
 
@@ -31,126 +35,196 @@
 			if(A.acid_t == src)
 				user << "You can't get near that, it's melting!"
 				return
+		if(health > 0)
+			if(istype(W, /obj/item/tool/wrench) && state == 0)
+				if(anchored && !istype(src,/obj/structure/girder/displaced))
+					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+					user << "\blue Now disassembling the girder"
+					if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+						if(!src) return
+						user << "\blue You dissasembled the girder!"
+						dismantle()
+				else if(!anchored)
+					if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
+						user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+						return
+					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+					user << "\blue Now securing the girder"
+					if(do_after(user, 40))
+						user << "\blue You secured the girder!"
+						new/obj/structure/girder( src.loc )
+						cdel(src)
 
-		if(istype(W, /obj/item/tool/wrench) && state == 0)
-			if(anchored && !istype(src,/obj/structure/girder/displaced))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				user << "\blue Now disassembling the girder"
+			else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
+				user << "\blue Now slicing apart the girder"
+				if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+					if(!src) return
+					user << "\blue You slice apart the girder!"
+					health = 0
+					update_state()
+			else if(istype(W, /obj/item/tool/pickaxe/diamonddrill))
+				user << "\blue You drill through the girder!"
+				dismantle()
+
+			else if(istype(W, /obj/item/tool/screwdriver) && state == 2 && istype(src,/obj/structure/girder/reinforced))
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				user << "\blue Now unsecuring support struts"
 				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
 					if(!src) return
-					user << "\blue You dissasembled the girder!"
-					dismantle()
-			else if(!anchored)
-				if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
-					user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
-					return
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				user << "\blue Now securing the girder"
-				if(do_after(user, 40))
-					user << "\blue You secured the girder!"
+					user << "\blue You unsecured the support struts!"
+					state = 1
+
+			else if(istype(W, /obj/item/tool/wirecutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
+				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+				user << "\blue Now removing support struts"
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+					if(!src) return
+					user << "\blue You removed the support struts!"
 					new/obj/structure/girder( src.loc )
 					cdel(src)
 
-		else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-			user << "\blue Now slicing apart the girder"
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
-				if(!src) return
-				user << "\blue You slice apart the girder!"
-				dismantle()
+			else if(istype(W, /obj/item/tool/crowbar) && state == 0 && anchored )
+				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
+				user << "\blue Now dislodging the girder..."
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
+					if(!src) return
+					user << "\blue You dislodged the girder!"
+					new/obj/structure/girder/displaced( src.loc )
+					cdel(src)
 
-		else if(istype(W, /obj/item/tool/pickaxe/diamonddrill))
-			user << "\blue You drill through the girder!"
-			dismantle()
+			else if(istype(W, /obj/item/stack/sheet) && buildctr %2 == 0)
+				if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
+					user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+					return
 
-		else if(istype(W, /obj/item/tool/screwdriver) && state == 2 && istype(src,/obj/structure/girder/reinforced))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			user << "\blue Now unsecuring support struts"
-			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
-				if(!src) return
-				user << "\blue You unsecured the support struts!"
-				state = 1
+				var/obj/item/stack/sheet/S = W
+				switch(S.type)
+					if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
+						if (anchored)
+							if(S.get_amount() < 1) return ..()
+							user << "<span class='notice'>Now adding plating...</span>"
+							if (do_after(user,60, TRUE, 5, BUSY_ICON_CLOCK))
+								if(!S) return
+								if (S.use(1))
+									user << "<span class='notice'>You added the plating!</span>"
+									buildctr++
+							return
 
-		else if(istype(W, /obj/item/tool/wirecutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			user << "\blue Now removing support struts"
-			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
-				if(!src) return
-				user << "\blue You removed the support struts!"
-				new/obj/structure/girder( src.loc )
-				cdel(src)
+					if(/obj/item/stack/sheet/plasteel)
+						if (anchored)
+							if(S.get_amount() < 1)
+								return ..()
 
-		else if(istype(W, /obj/item/tool/crowbar) && state == 0 && anchored )
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			user << "\blue Now dislodging the girder..."
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
-				if(!src) return
-				user << "\blue You dislodged the girder!"
-				new/obj/structure/girder/displaced( src.loc )
-				cdel(src)
+							user << "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>"
+							return
 
-		else if(istype(W, /obj/item/stack/sheet))
+				if(S.sheettype)
+					var/M = S.sheettype
+					if (anchored)
+						if(S.amount < 2)
+							return ..()
+						user << "<span class='notice'>Now adding plating...</span>"
+						if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+							if(!src || !S || S.amount < 2) return
+							S.use(2)
+							user << "<span class='notice'>You added the plating!</span>"
+							var/turf/Tsrc = get_turf(src)
+							Tsrc.ChangeTurf(text2path("/turf/simulated/wall/mineral/[M]"))
+							for(var/turf/simulated/wall/mineral/X in Tsrc.loc)
+								if(X)	X.add_hiddenprint(usr)
+							cdel(src)
+						return
 
-			if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
-				user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+				add_hiddenprint(usr)
+
+			if(istype(W, /obj/item/tool/weldingtool) && buildctr %2 != 0)
+				if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+					if (buildctr == 5)
+						build_wall()
+						return
+					buildctr++
+					user << "\blue You weld the metal to the girder!"
+
 				return
 
-			var/obj/item/stack/sheet/S = W
-			switch(S.type)
+			else if(istype(W, /obj/item/pipe))
+				var/obj/item/pipe/P = W
+				if (P.pipe_type in list(0, 1, 5))	//simple pipes, simple bends, and simple manifolds.
+					user.drop_held_item()
+					P.loc = src.loc
+					user << "\blue You fit the pipe into the [src]!"
+			else
+		else
+			if (repair_state == 0 && health <= 0)
+				if(istype(W, /obj/item/stack/sheet/metal))
 
-				if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
-					if (anchored)
-						if(S.get_amount() < 2) return ..()
-						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,80, TRUE, 5, BUSY_ICON_CLOCK))
-							if(!S) return
-							if (S.use(2))
-								user << "<span class='notice'>You added the plating!</span>"
-								var/turf/Tsrc = get_turf(src)
-								Tsrc.ChangeTurf(/turf/simulated/wall)
-								for(var/turf/simulated/wall/X in Tsrc.loc)
-									if(X)	X.add_hiddenprint(usr)
-								cdel(src)
-						return
-
-				if(/obj/item/stack/sheet/plasteel)
-					if (anchored)
-						if(S.get_amount() < 1)
-							return ..()
-
-						user << "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>"
-						return
-
-			if(S.sheettype)
-				var/M = S.sheettype
-				if (anchored)
-					if(S.amount < 2)
+					var/obj/item/stack/sheet/metal/M = W
+					if(M.amount < 2)
 						return ..()
 					user << "<span class='notice'>Now adding plating...</span>"
 					if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
-						if(!src || !S || S.amount < 2) return
-						S.use(2)
-						user << "<span class='notice'>You added the plating!</span>"
-						var/turf/Tsrc = get_turf(src)
-						Tsrc.ChangeTurf(text2path("/turf/simulated/wall/mineral/[M]"))
-						for(var/turf/simulated/wall/mineral/X in Tsrc.loc)
-							if(X)	X.add_hiddenprint(usr)
-						cdel(src)
+						if(!src || !M || M.amount < 2) return
+						M.use(2)
+						user << "<span class='notice'>You added the metal to the girder!</span>"
+						repair_state = 1
 					return
-
-			add_hiddenprint(usr)
-
-		else if(istype(W, /obj/item/pipe))
-			var/obj/item/pipe/P = W
-			if (P.pipe_type in list(0, 1, 5))	//simple pipes, simple bends, and simple manifolds.
-				user.drop_held_item()
-				P.loc = src.loc
-				user << "\blue You fit the pipe into the [src]!"
-		else
+			if (repair_state == 1)
+				if(istype(W, /obj/item/tool/weldingtool))
+					if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+						if(!src) return
+						user << "\blue You weld the girder together!"
+						repair()
+					return
 			..()
 
+	proc/build_wall()
+		if (buildctr == 5)
+			var/turf/Tsrc = get_turf(src)
+			if (original)
+				Tsrc.ChangeTurf(text2path("[original]"))
+			else
+				Tsrc.ChangeTurf(/turf/simulated/wall)
+			for(var/turf/simulated/wall/X in Tsrc.loc)
+				if(X)	X.add_hiddenprint(usr)
+			cdel(src)
+
+	examine(mob/user)
+		..()
+		if (health <= 0)
+			user << "It's broken, but can be mended by applying a metal plate then welding it together."
+		else
+			if (buildctr%2 == 0)
+				user << "To continue building the wall, add a metal plate to the girder."
+			else if (buildctr%2 != 0)
+				user << "Secure the metal plates to the wall by welding."
+			if (buildctr < 1)
+				user << "It needs 3 more metal plates."
+			else if (buildctr < 3)
+				user << "It needs 2 more metal plates."
+			else if (buildctr < 5)
+				user << "It needs 1 more metal plate."
+
 	proc/dismantle()
-		new /obj/item/stack/sheet/metal(get_turf(src))
-		cdel(src)
+		health = 0
+		update_state()
+
+	proc/repair()
+		health = 200
+		update_state()
+
+	proc/update_state()
+		if (health <= 0)
+			icon_state = "[icon_state]_damaged"
+			unacidable = 1
+			density = 0
+		else
+			var/underscore_position =  findtext(icon_state,"_")
+			var/new_state = copytext(icon_state, 1, underscore_position)
+			icon_state = new_state
+			unacidable = 0
+			density = 1
+		buildctr = 0
+		repair_state = 0
 
 	attack_hand(mob/user as mob)
 		if (HULK in user.mutations)
@@ -169,22 +243,23 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				cdel(src)
+				health = 0
+				update_state()
 				return
 			if(2.0)
 				if (prob(30))
-					var/remains = pick(/obj/item/stack/rods,/obj/item/stack/sheet/metal)
-					new remains(loc)
-					cdel(src)
+					health = 0
+					update_state()
 				return
 			if(3.0)
 				if (prob(5))
-					var/remains = pick(/obj/item/stack/rods,/obj/item/stack/sheet/metal)
-					new remains(loc)
-					cdel(src)
+					health = 0
+					update_state()
 				return
 			else
 		return
+
+
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
