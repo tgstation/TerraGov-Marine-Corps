@@ -1460,9 +1460,9 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.01.BigRed_v2.dmm"
 #include "maps\Z.02.Admin_Level.dmm"
 #include "maps\Z.03.USS_Almayer.dmm"
 #include "maps\Z.04.Low_Orbit.dmm"
 #include "maps\Z.05.Space.dmm"
+#include "maps\_WIP\Z.01.Gorgtest.dmm"
 // END_INCLUDE
