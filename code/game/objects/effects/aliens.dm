@@ -1,6 +1,5 @@
 
 
-
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
 //Also need to change the icons
@@ -162,5 +161,5 @@
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
 
-	sleep(rand(20,30) * (acid_strength*8))
+	sleep(rand(20,30) * (acid_strength))
 	.()
