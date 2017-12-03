@@ -1,5 +1,5 @@
 /obj/effects/acid_hole
-	name = "A hole"
+	name = "hole"
 	desc = "What could have done this?"
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_1"
@@ -21,38 +21,35 @@
 /obj/effects/acid_hole/proc/update_hole_icon()
 	var/turf/simulated/wall/W =  loc
 	var/jt = W.junctiontype
-	world << "[jt]"
 
 	if(jt == 12 || jt == 4 || jt == 8)
 		icon_state = "hole_0"
-		W.overlays += image("icon"='icons/effects/new_acid.dmi',"icon_state"="hole_0","layer"=MOB_LAYER+0.1)
+		W.overlays += image("icon"='icons/effects/new_acid.dmi',"icon_state"="hole_0","layer"=MOB_LAYER-0.1)
 	else if (jt == 1 || jt == 2 || jt == 3)
 		icon_state = "hole_1"
-		W.overlays += image("icon"='icons/effects/new_acid.dmi',"icon_state"="hole_1","layer"=MOB_LAYER+0.1)
+		W.overlays += image("icon"='icons/effects/new_acid.dmi',"icon_state"="hole_1","layer"=MOB_LAYER-0.1)
 
 /turf/simulated/wall/proc/GetHole()
 	var/obj/effects/acid_hole/toReturn
-	for (var/x in src.contents)
-		if (istype(x, /obj/effects/acid_hole))
-			toReturn = x
+	for (var/obj/effects/acid_hole/x in contents)
+		toReturn = x
 	return toReturn
 
 
 /turf/simulated/wall/MouseDrop_T(mob/I, mob/user)
+	var/obj/effects/acid_hole/Hole = GetHole()
+	if (!Hole)
+		return
+
 	var/Target
 	var/Entry
 
 	if (!istype(I, /mob) || !isXeno(user))
 		return
 
-	var/obj/effects/acid_hole/Hole = GetHole()
-
 	if (Hole.size == 1)
-		if (!isXenoSmall(I))
+		if (I.mob_size == MOB_SIZE_BIG)
 			return
-
-	if (!Hole)
-		return
 
 	var/_dir = get_dir(I, src)
 	if(Hole.icon_state == "hole_0")
@@ -72,15 +69,22 @@
 
 	step(I, get_dir(I, Entry))
 	Hole.busy = TRUE
+
+	if (Hole.userLooking)
+		Hole.userLooking << "Something is coming through the tunnel!"
+		Hole.userLooking.reset_view(null)
+		Hole.userLooking = null
+
 	if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
 		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.blinded && !user.lying && !user.buckled)
-			if (Hole.userLooking)
-				Hole.userLooking << "Something is coming through the tunnel!"
-				Hole.userLooking.reset_view(null)
-				Hole.userLooking = null
-
 			I.loc = Target
 			if(I.pulling && get_dist(src, user.pulling) <= 2)
+				if(ismob(I.pulling))
+					var/mob/pulled_mob = I.pulling
+					if (pulled_mob && pulled_mob.mob_size == MOB_SIZE_BIG)
+						user << "The thing you were pulling was too big for the tunnel!"
+						Hole.busy = FALSE
+						return
 				user.pulling.loc = Target
 				if(isobj(I.pulling))
 					var/obj/O = I.pulling
@@ -110,8 +114,8 @@
 				Target = get_step(src, WEST)
 
 		if(do_after(usr, 10, FALSE, 5, BUSY_ICON_CLOCK))
-			usr.visible_message("<span class='notice'>[usr] looks through \the [src]!</span>", \
-			"<span class='notice'>You look through \the [src]!</span>")
+			usr.visible_message("<span class='notice'>[usr] looks through [src]!</span>", \
+			"<span class='notice'>You look through [src]!</span>")
 			usr.set_interaction(src)
 			Hole.cam.loc = Target
 			usr.reset_view(Hole.cam)
@@ -138,8 +142,8 @@
 
 		user << "You take the position to throw the [G]."
 		if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
-			user.visible_message("<span class='warning'>[user] throws [G] through the [src]!</span>", \
-								 "<span class='warning'>You throw [G] through the [src]</span>")
+			user.visible_message("<span class='warning'>[user] throws [G] through [src]!</span>", \
+								 "<span class='warning'>You throw [G] through [src]</span>")
 			user.drop_held_item()
 			G.loc = get_turf(Target)
 			G.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
@@ -153,8 +157,8 @@
 
 		user << "You take the position to throw the [F]."
 		if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
-			user.visible_message("<span class='warning'>[user] throws [F] through the [src]!</span>", \
-								 "<span class='warning'>You throw [F] through the [src]</span>")
+			user.visible_message("<span class='warning'>[user] throws [F] through [src]!</span>", \
+								 "<span class='warning'>You throw [F] through [src]</span>")
 			user.drop_held_item()
 			F.loc = get_turf(Target)
 			F.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
