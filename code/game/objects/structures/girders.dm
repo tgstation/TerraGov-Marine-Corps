@@ -5,8 +5,9 @@
 	layer = OBJ_LAYER
 	unacidable = 0
 	var/state = 0
+	var/dismantlectr = 0
 	var/buildctr = 0
-	var/health = 200
+	var/health = 125
 	var/repair_state = 0
 	// To store what type of wall it used to be
 	var/original
@@ -36,15 +37,8 @@
 				user << "You can't get near that, it's melting!"
 				return
 		if(health > 0)
-			if(istype(W, /obj/item/tool/wrench) && state == 0)
-				if(anchored && !istype(src,/obj/structure/girder/displaced))
-					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-					user << "\blue Now disassembling the girder"
-					if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
-						if(!src) return
-						user << "\blue You dissasembled the girder!"
-						dismantle()
-				else if(!anchored)
+			if(istype(W, /obj/item/tool/wrench))
+				if(!anchored)
 					if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
 						user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 						return
@@ -54,6 +48,13 @@
 						user << "\blue You secured the girder!"
 						new/obj/structure/girder( src.loc )
 						cdel(src)
+				else if (dismantlectr %2 == 0)
+					if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+						dismantlectr++
+						health -= 15
+						user << "\blue You unfasten a bolt from the girder!"
+					return
+
 
 			else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 				user << "\blue Now slicing apart the girder"
@@ -137,14 +138,23 @@
 
 				add_hiddenprint(usr)
 
-			if(istype(W, /obj/item/tool/weldingtool) && buildctr %2 != 0)
+			else if(istype(W, /obj/item/tool/weldingtool) && buildctr %2 != 0)
 				if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
 					if (buildctr == 5)
 						build_wall()
 						return
 					buildctr++
 					user << "\blue You weld the metal to the girder!"
-
+				return
+			else if(istype(W, /obj/item/tool/wirecutters) && dismantlectr %2 != 0)
+				if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+					if (dismantlectr == 5)
+						dismantle()
+						dismantlectr = 0
+						return
+					health -= 15
+					dismantlectr++
+					user << "\blue You cut away from structural piping!"
 				return
 
 			else if(istype(W, /obj/item/pipe))
@@ -193,6 +203,7 @@
 		if (health <= 0)
 			user << "It's broken, but can be mended by applying a metal plate then welding it together."
 		else
+		//Build wall
 			if (buildctr%2 == 0)
 				user << "To continue building the wall, add a metal plate to the girder."
 			else if (buildctr%2 != 0)
@@ -203,6 +214,17 @@
 				user << "It needs 2 more metal plates."
 			else if (buildctr < 5)
 				user << "It needs 1 more metal plate."
+		//Decon girder
+			if (dismantlectr%2 == 0)
+				user << "To continue dismantling the girder, unbolt a nut with the wrench."
+			else if (dismantlectr%2 != 0)
+				user << "To continue dismantling the girder, cut through some of structural piping with a wirecutter."
+			if (dismantlectr < 1)
+				user << "It needs 3 bolts removed."
+			else if (dismantlectr < 3)
+				user << "It needs 2 bolts removed."
+			else if (dismantlectr < 5)
+				user << "It needs 1 bolt removed."
 
 	proc/dismantle()
 		health = 0
