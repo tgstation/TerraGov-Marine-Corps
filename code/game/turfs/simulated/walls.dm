@@ -62,6 +62,9 @@
 /turf/simulated/wall/examine(mob/user)
 	. = ..()
 
+	if (GetHole())
+		user << "There's a hole running through the wall, looks like it could be caused by some type of acid."
+
 	if(!damage)
 		user << "<span class='notice'>It looks fully intact.</span>"
 	else
@@ -161,12 +164,19 @@
 /turf/simulated/wall/proc/take_damage(dam)
 	if(hull) //Hull is literally invincible
 		return
-	if(dam) damage = max(0, damage + dam)
+	if(dam)
+		damage = max(0, damage + dam)
 	var/cap = damage_cap
-	if(rotting) cap = cap / 10
-	if(damage >= cap) dismantle_wall()
-	else if(dam) update_icon()
-
+	if(rotting)
+		cap = cap / 10
+	if(damage >= cap)
+		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
+		if (GetHole())
+			dismantle_wall(1)
+		else
+			dismantle_wall()
+	else if(dam)
+		update_icon()
 	return
 
 /turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
@@ -189,36 +199,18 @@
 	if (destroyed_girder)
 		G.dismantle()
 
+// Devastated and Explode causes the wall to spawn a damaged girder
+// Walls no longer spawn a metal sheet when destroyed to reduce clutter and
+// improve visual readability.
 /turf/simulated/wall/proc/dismantle_wall(devastated = 0, explode = 0)
 	if(hull) //Hull is literally invincible
 		return
-	if(istype(src, /turf/simulated/wall/r_wall))
-		if(!devastated)
-			make_girder(FALSE)
-		else
-			make_girder(TRUE)
-	else if(istype(src,/turf/simulated/wall/cult))
-		if(!devastated)
-			make_girder(FALSE)
-		else
-			make_girder(TRUE)
-
+	if(devastated)
+		make_girder(TRUE)
+	else if (explode)
+		make_girder(TRUE)
 	else
-		if(!devastated && !explode)
-			if(mineral == "metal")
-				make_girder(FALSE)
-			else
-				make_girder(TRUE)
-		else if (!devastated && explode)
-			if(mineral == "metal")
-				make_girder(TRUE)
-			else
-				make_girder(TRUE)
-		else
-			if(mineral == "metal")
-				make_girder(FALSE)
-			else
-				make_girder(FALSE)
+		make_girder(FALSE)
 
 	for(var/obj/O in contents) //Eject contents!
 		if(istype(O, /obj/structure/sign/poster))
@@ -343,7 +335,7 @@
 	var/obj/effects/acid_hole/Hole = GetHole()
 
 	if (Hole)
-		if (isXeno(user) && !isXenoSmall(user) && !Hole.busy)
+		if (isXeno(user) && user.mob_size == MOB_SIZE_BIG && !Hole.busy)
 			Hole.busy = TRUE
 			playsound(Hole.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 			if(do_after(user,60, FALSE, 5, BUSY_ICON_CLOCK))
