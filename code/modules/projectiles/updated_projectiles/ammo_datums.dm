@@ -1038,7 +1038,7 @@
 	proc/drop_nade(turf/T)
 		smoke_system.set_up(3, 0, T)
 		smoke_system.start()
-		T.visible_message("<span class='danger'>A glob of gas falls from the sky!</span>")
+		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>")
 
 
 /datum/ammo/xeno/boiler_gas/corrosive
@@ -1064,7 +1064,7 @@
 	drop_nade(turf/T)
 		smoke_system.set_up(2, 0, T)
 		smoke_system.start()
-		T.visible_message("<span class='danger'>A glob of acid falls from the sky!</span>")
+		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
 
 
 /*

@@ -64,3 +64,9 @@
 	desc = "It's a cat. Meow."
 	icon_state = "cat"
 	origin_tech = null
+
+/obj/item/holder/Jones
+	name = "Jones"
+	desc = "A tough, old stray whose origin no one seems to know."
+	icon_state = "cat2"
+	origin_tech = null
