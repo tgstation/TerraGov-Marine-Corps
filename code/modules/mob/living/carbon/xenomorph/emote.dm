@@ -66,6 +66,11 @@
 						playsound(loc, 'sound/voice/alien_hiss_small.ogg', 25, 1)
 					else
 						playsound(loc, 'sound/voice/alien_hiss_large.ogg', 25, 1)
+		if("plasma")
+			if (!muzzled)
+				m_type = 2
+				message = "<B>The [src.name]</B> needs plasma!"
+				playsound(loc, 'sound/voice/alien_needplasma.ogg', 25, 1)
 		if("tail")
 			if(!muzzled)
 				m_type = 2
@@ -88,6 +93,7 @@
 			<span style='color: green;'>growl</span>, \
 			<span style='color: green;'>hiss</span>, \
 			me, \
+			<span style='color: green;'>plasma</span>, \
 			<span style='color: green;'>roar</span>, \
 			<span style='color: green;'>tail</span></b><br>"
 		else

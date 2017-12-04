@@ -243,11 +243,11 @@
 					m_type = 2
 					if(src.gender == "male")
 						if(rand(0,100) < 95)
-							playsound(src.loc, 'sound/misc/medic_male.ogg', 25, 0)
+							playsound(src.loc, 'sound/voice/human_medic_male.ogg', 25, 0)
 						else
-							playsound(src.loc, 'sound/misc/medic_male2.ogg', 25, 0)
+							playsound(src.loc, 'sound/voice/human_medic_male2.ogg', 25, 0)
 					else
-						playsound(src.loc, 'sound/misc/medic_female.ogg', 25, 0)
+						playsound(src.loc, 'sound/voice/human_medic_female.ogg', 25, 0)
 					if(player_caused)
 						start_audio_emote_cooldown()
 			else

@@ -126,8 +126,8 @@
 #define SOUND_PLAY_HISS pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
 #define SOUND_PLAY_PAGE pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 #define SOUND_PLAY_QUEEN pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
-#define SOUND_PLAY_SCREAM_MALE pick('sound/voice/scream_male_1.ogg','sound/voice/scream_male_2.ogg','sound/voice/scream_male_3.ogg','sound/voice/scream_male_4.ogg','sound/voice/scream_male_5.ogg')
-#define SOUND_PLAY_SCREAM_FEMALE pick('sound/voice/scream_female_1.ogg','sound/voice/scream_female_2.ogg','sound/voice/scream_female_3.ogg','sound/voice/scream_female_4.ogg','sound/voice/scream_female_5.ogg')
+#define SOUND_PLAY_SCREAM_MALE pick('sound/voice/human_scream_male_1.ogg','sound/voice/human_scream_male_2.ogg','sound/voice/human_scream_male_3.ogg','sound/voice/human_scream_male_4.ogg','sound/voice/human_scream_male_5.ogg')
+#define SOUND_PLAY_SCREAM_FEMALE pick('sound/voice/human_scream_female_1.ogg','sound/voice/human_scream_female_2.ogg','sound/voice/human_scream_female_3.ogg','sound/voice/human_scream_female_4.ogg','sound/voice/human_scream_female_5.ogg')
 #define SOUND_PLAY_BALLISTIC_HIT pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact1.ogg')
 #define SOUND_PLAY_BALLISTIC_ARMOR pick('sound/bullets/bullet_armor1.ogg','sound/bullets/bullet_armor2.ogg','sound/bullets/bullet_armor3.ogg','sound/bullets/bullet_armor4.ogg')
 #define SOUND_PLAY_BALLISTIC_MISS pick('sound/bullets/bullet_miss1.ogg','sound/bullets/bullet_miss2.ogg','sound/bullets/bullet_miss3.ogg','sound/bullets/bullet_miss3.ogg')
@@ -144,8 +144,8 @@
 #define SOUND_PLAY_GUN_SILENCED pick('sound/weapons/gun_silenced_shot1.ogg','sound/weapons/gun_silenced_shot2.ogg')
 #define SOUND_PLAY_GUN_PULSE pick('sound/weapons/gun_m41a_1.ogg','sound/weapons/gun_m41a_2.ogg','sound/weapons/gun_m41a_3.ogg','sound/weapons/gun_m41a_4.ogg','sound/weapons/gun_m41a_5.ogg','sound/weapons/gun_m41a_6.ogg')
 #define SOUND_PLAY_GUN_SMARTGUN pick('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')
-#define SOUND_PLAY_FRAGOUT_MALE pick('sound/voice/grenadethrow_male_1.ogg', 'sound/voice/grenadethrow_male_2.ogg', 'sound/voice/grenadethrow_male_3.ogg')
-#define SOUND_PLAY_FRAGOUT_FEMALE pick("sound/voice/grenadethrow_female_1.ogg", 'sound/voice/grenadethrow_female_2.ogg', 'sound/voice/grenadethrow_female_3.ogg')
+#define SOUND_PLAY_FRAGOUT_MALE pick('sound/voice/human_grenadethrow_male_1.ogg', 'sound/voice/human_grenadethrow_male_2.ogg', 'sound/voice/human_grenadethrow_male_3.ogg')
+#define SOUND_PLAY_FRAGOUT_FEMALE pick("sound/voice/human_grenadethrow_female_1.ogg", 'sound/voice/human_grenadethrow_female_2.ogg', 'sound/voice/human_grenadethrow_female_3.ogg')
 
 
 /proc/get_sfx(S)
