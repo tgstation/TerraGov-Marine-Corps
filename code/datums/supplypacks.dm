@@ -55,7 +55,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/beacons_supply
-	name = "Supply Beacons x4 crate"
+	name = "Supply Beacons crate (x4)"
 	contains = list(
 			/obj/item/device/squad_beacon,
 			/obj/item/device/squad_beacon,
@@ -68,7 +68,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/beacons_orbital
-	name = "Orbital Beacons x4 crate"
+	name = "Orbital Beacons crate (x4)"
 	contains = list(
 					/obj/item/device/squad_beacon/bomb,
 					/obj/item/device/squad_beacon/bomb,
@@ -125,7 +125,7 @@ WEAPONS
 
 
 /datum/supply_packs/flamethrower
-	name = "M240 Flamethrower crate"
+	name = "M240 Flamethrower crate (x3)"
 	contains = list(
 					/obj/item/weapon/gun/flamer,
 					/obj/item/weapon/gun/flamer,
@@ -134,13 +134,13 @@ WEAPONS
 					/obj/item/ammo_magazine/flamer_tank,
 					/obj/item/ammo_magazine/flamer_tank
 					)
-	cost = 50
+	cost = 150
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M240 Incinerator crate"
 	group = "Weapons"
 
 /datum/supply_packs/weapons_sentry
-	name = "UA 571-C sentry crate"
+	name = "UA 571-C sentry crate (x1)"
 	contains = list()
 	cost = 120
 	containertype = /obj/item/storage/box/sentry
