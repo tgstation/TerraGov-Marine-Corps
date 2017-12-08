@@ -268,6 +268,7 @@
 #include "code\game\gamemodes\colonialmarines\halloween2016.dm"
 #include "code\game\gamemodes\colonialmarines\huntergames.dm"
 #include "code\game\gamemodes\colonialmarines\ice_colony.dm"
+#include "code\game\gamemodes\colonialmarines\prison.dm"
 #include "code\game\gamemodes\colonialmarines\whiskey_outpost.dm"
 #include "code\game\gamemodes\events\power_failure.dm"
 #include "code\game\gamemodes\extended\extended.dm"
