@@ -137,3 +137,7 @@
 /area/prison/relay
 	name = "\improper Communications Relay"
 	icon_state = "tcomsatcham"
+
+/area/prison/console
+	name = "\improper Shuttle Console"
+	icon_state = "tcomsatcham"
