@@ -96,7 +96,8 @@
 	if((over_object == usr && (in_range(src, usr))))
 		var/Target
 		var/obj/effects/acid_hole/Hole = GetHole()
-
+        if (isXeno(usr))
+            return
 		if (!Hole)
 			return
 
