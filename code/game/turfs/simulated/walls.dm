@@ -624,10 +624,8 @@
 			else
 				return attack_hand(user)
 			return
-		else if (isXeno(user) && !isXenoSmall(user))
-			user << "HERPIDERP!"
+		else if (isXeno(user) && user.mob_size == MOB_SIZE_BIG)
 			if(do_after(user,40, FALSE, 5, BUSY_ICON_CLOCK))
-				user << "DORP!"
 				damage += 250
 				user.emote("roar")
 
