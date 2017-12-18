@@ -130,7 +130,7 @@
 	if(istype(user,/mob/living/carbon/Xenomorph))
 		return
 	if(stat & (NOPOWER|BROKEN))
-		user << "<span class='warning>[src] doesn't seem to be working.</span>"
+		user << "<span class='warning'>[src] doesn't seem to be working.</span>"
 		return
 
 	if(!allowed(user) && (wires & 1))

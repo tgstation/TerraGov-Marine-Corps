@@ -978,6 +978,41 @@
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
 
+	attack_hand(mob/user as mob)
+
+		if(isYautja(user))
+			user << "<span class='warning'>You punch [src] but nothing happens.</span>"
+			return
+		src.add_fingerprint(user)
+
+		if(!cell || cell.charge <= 0)
+			user << "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>"
+			return
+
+		if(!anchored)
+			user << "<span class='warning'>It must be anchored to the ground before you can activate it.</span>"
+			return
+
+		if(!on)
+			user << "You turn on the [src]."
+			visible_message("\blue [src] hums to life and emits several beeps.")
+			visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
+			dir_locked = 1
+			target = null
+			on = 1
+			SetLuminosity(7)
+			if(!camera)
+				camera = new /obj/machinery/camera(src)
+				camera.network = list("military")
+				camera.c_tag = src.name
+			update_icon()
+		else
+			on = 0
+			user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
+			"<span class='notice'>You deactivate [src].</span>")
+			visible_message("\icon[src] <span class='notice'>The [name] powers down and goes silent.</span>")
+			update_icon()
+
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
 	density = 0
