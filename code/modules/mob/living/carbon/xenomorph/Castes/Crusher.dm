@@ -17,6 +17,7 @@
 	evolution_threshold = 800
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.1
+	tail_chance = 0 //Inherited from old code. Tail's too big
 	evolves_to = list()
 	armor_deflection = 75
 	tier = 3

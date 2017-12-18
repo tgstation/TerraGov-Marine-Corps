@@ -30,6 +30,7 @@
 
 	pslash_delay = 0
 	bite_chance = 25
+	tail_chance = 25
 	evo_points = 0
 
 	pixel_x = -16
@@ -48,7 +49,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/tail_attack,
 		/datum/action/xeno_action/activable/pounce,
 		)
 	inherent_verbs = list(
