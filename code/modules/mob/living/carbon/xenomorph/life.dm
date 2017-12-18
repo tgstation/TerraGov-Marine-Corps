@@ -65,10 +65,6 @@
 		return
 
 	else if(health <= 0) //in crit
-		if(readying_tail)
-			readying_tail = 0
-			selected_ability.button.icon_state = "template"
-			selected_ability = null
 		stat = UNCONSCIOUS
 		blinded = 1
 		see_in_dark = 5
@@ -80,14 +76,6 @@
 			see_in_dark = 20
 		else
 			see_in_dark = 8
-
-		if(readying_tail && readying_tail < 20)
-			readying_tail += rand(1, 2)
-			if(isXenoHunter(src))
-				readying_tail++ //Hunters get a speed bonus.
-			if(readying_tail >= 20)
-				readying_tail = 20
-				src << "<span class='notice'>Your tail is now fully poised to impale some unfortunate target.</span>"
 
 		ear_deaf = 0 //All this stuff is prob unnecessary
 		ear_damage = 0
@@ -323,10 +311,9 @@ updatehealth()
 
 	if(!is_robotic && !hardcore) //Robot no heal
 		if(innate_healing || (locate(/obj/effect/alien/weeds) in T))
-			if(!readying_tail) //Readying tail = no plasma increase.
-				storedplasma += plasma_gain
-				if(recovery_aura)
-					storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
+			storedplasma += plasma_gain
+			if(recovery_aura)
+				storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
 			if(health < maxHealth)
 				if(lying || resting)
 					if(health > -100 && health < 0) //Unconscious
@@ -342,7 +329,7 @@ updatehealth()
 				updatehealth()
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
-			if(prob(50) && !is_runner_hiding && !readying_tail && !current_aura)
+			if(prob(50) && !is_runner_hiding && !current_aura)
 				storedplasma++
 
 		if(isXenoHivelord(src))
@@ -353,8 +340,6 @@ updatehealth()
 					H.speed_activated = 0
 					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
 
-		if(readying_tail)
-			storedplasma -= 3
 		if(current_aura)
 			storedplasma -= 5
 
@@ -362,10 +347,9 @@ updatehealth()
 	else if(!is_robotic && hardcore)//Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health > 0)
-				if(!readying_tail) //Readying tail = no plasma increase.
-					storedplasma += plasma_gain
-					if(recovery_aura)
-						storedplasma += (recovery_aura * 2)
+				storedplasma += plasma_gain
+				if(recovery_aura)
+					storedplasma += (recovery_aura * 2)
 			if(health < 35) //Barely enough to stay near critical if saved
 				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 				if(recovery_aura)
@@ -376,7 +360,7 @@ updatehealth()
 				updatehealth() //Make sure their actual health updates immediately.
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
-			if(prob(50) && !is_runner_hiding && !readying_tail && !current_aura)
+			if(prob(50) && !is_runner_hiding && !current_aura)
 				storedplasma++
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
@@ -391,8 +375,6 @@ updatehealth()
 					H.speed_activated = 0
 					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
 
-		if(readying_tail)
-			storedplasma -= 3
 		if(current_aura)
 			storedplasma -= 5
 		//END HARDCORE
@@ -404,11 +386,6 @@ updatehealth()
 		if(current_aura)
 			current_aura = null
 			src << "<span class='warning'>You have run out of pheromones and stopped emitting pheromones.</span>"
-		if(readying_tail)
-			readying_tail = 0
-			selected_ability.button.icon_state = "template"
-			selected_ability = null
-			src << "<span class='warning'>You feel your tail relax.</span>"
 
 	for(var/X in actions)
 		var/datum/action/A = X

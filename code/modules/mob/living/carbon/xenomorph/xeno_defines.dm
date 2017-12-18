@@ -35,7 +35,7 @@
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
 	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
-	var/readying_tail = 0 //'charges' up to 10.
+	var/tail_chance = 5 //Chance of doing a special tail attack in place of a claw. Set to 0 to disable.
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 	var/is_robotic = 0 //Robots use charge, not plasma (same thing sort of), and can only be healed with welders.

@@ -55,38 +55,6 @@
 	X.resting = !X.resting
 	X << "\blue You are now [X.resting ? "resting" : "getting up"]"
 
-
-
-/datum/action/xeno_action/activable/tail_attack
-	name = "Tail Attack (20)(drain while active)"
-	action_icon_state = "tail_attack"
-	plasma_cost = 20
-	ability_name = "ready tail attack"
-
-/datum/action/xeno_action/activable/tail_attack/can_use_action()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.readying_tail || X.storedplasma >= plasma_cost))
-		return TRUE
-
-/datum/action/xeno_action/activable/tail_attack/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.tail_attack(A)
-
-/datum/action/xeno_action/activable/tail_attack/on_activation()
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.readying_tail = 1
-	X.visible_message("<span class='warning'>\The [X]'s tail starts to coil like a spring.</span>", \
-	"<span class='notice'>You begin to ready your tail for a vicious attack. This will drain plasma to keep active.</span>")
-
-
-/datum/action/xeno_action/activable/tail_attack/on_deactivation()
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.readying_tail = 0
-	X.visible_message("<span class='notice'>\The [X]'s tail relaxes.</span>", \
-	"<span class='notice'>You relax your tail. You are no longer readying a tail attack.</span>")
-
-
-
 /datum/action/xeno_action/shift_spits
 	name = "Toggle Spit Type"
 	action_icon_state = "shift_spit_neurotoxin"

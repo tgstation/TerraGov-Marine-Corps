@@ -266,42 +266,58 @@
 
 //Random bite attack. Procs more often on downed people. Returns 0 if the check fails.
 //Does a LOT of damage.
-/mob/living/carbon/Xenomorph/proc/check_bite(var/mob/living/carbon/human/M)
-	if(!M || !istype(M))
-		return 0
-	if(!bite_chance)
-		return 0 //Does not have a bite attack
+/mob/living/carbon/Xenomorph/proc/bite_attack(var/mob/living/carbon/human/M, var/damage)
 
-	var/chance = bite_chance
-	var/dmg = rand(melee_damage_lower,melee_damage_upper) + 20
+	damage += 20
 
-	if(M.lying)
-		chance += 10
-	if(M.head)
-		chance -= 5 //Helmet? Less likely to bite, even if not all bites target head.
-
-	if(rand(0, 100) > chance)
-		return 0 //Failed the check, get out
+	if(mob_size == MOB_SIZE_BIG)
+		damage += 10
 
 	var/datum/limb/affecting
 	affecting = M.get_limb(ran_zone("head", 50))
 	if(!affecting) //No head? Just get a random one
-		affecting = M.get_limb(ran_zone(null,0))
+		affecting = M.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
 		affecting = M.get_limb("chest") //Gotta have a torso?!
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
+	flick_attack_overlay(M, "slash") //TODO: Special bite attack overlay ?
 	playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	visible_message("<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>", \
 	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was bitten by [M.name] ([M.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was bitten by [M.name] ([M.ckey])</font>")
 
-	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp = 1) //This should slicey dicey
+	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1) //This should slicey dicey
 	M.updatehealth()
 
-	return 1
+//Tail stab. Checked during a slash, after the above.
+//Deals a monstrous amount of damage based on how long it's been charging, but charging it drains plasma.
+//Toggle is in XenoPowers.dm.
+/mob/living/carbon/Xenomorph/proc/tail_attack(mob/living/carbon/human/M, var/damage)
 
+	damage += 20
+
+	if(mob_size == MOB_SIZE_BIG)
+		damage += 10
+
+	var/datum/limb/affecting
+	affecting = M.get_limb(ran_zone(zone_selected, 75))
+	if(!affecting) //No organ, just get a random one
+		affecting = M.get_limb(ran_zone(null, 0))
+	if(!affecting) //Still nothing??
+		affecting = M.get_limb("chest") // Gotta have a torso?!
+	var/armor_block = M.run_armor_check(affecting, "melee")
+
+	flick_attack_overlay(M, "tail")
+	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
+	visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
+	"<span class='danger'>You violently impale \the [M] with your tail!</span>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
+
+	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
+	M.updatehealth()
 
 /mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
 	if(stat || resting)
