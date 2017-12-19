@@ -904,6 +904,7 @@
 		activated = 1
 		anchored = 1
 		w_class = 10
+		layer = ABOVE_FLY_LAYER
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		user.visible_message("[user] activates [src]",
