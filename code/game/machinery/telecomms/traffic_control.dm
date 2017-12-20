@@ -162,6 +162,8 @@
 						screen = 0
 
 				if("editcode")
+					return
+					/*
 					if(editingcode == usr) return
 					if(usr in viewingcode) return
 
@@ -184,9 +186,11 @@
 						winset(editingcode, "tcscode", "text=\"\"")
 						var/showcode = oldreplacetext(storedcode, "\"", "\\\"")
 						winset(usr, "tcscode", "text=\"[showcode]\"")
+					*/
 
 				if("togglerun")
-					SelectedServer.autoruncode = !(SelectedServer.autoruncode)
+					return
+					//SelectedServer.autoruncode = !(SelectedServer.autoruncode)
 
 		if(href_list["network"])
 
