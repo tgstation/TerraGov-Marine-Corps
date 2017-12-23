@@ -321,3 +321,8 @@
 			update_turf_overlay()
 			return
 	..()
+// Colony tiles
+/turf/unsimulated/floor/colony/asphalt
+	name = "asphalt"
+	icon = 'icons/turf/asphalt.dmi'
+	icon_state = "asphalt"

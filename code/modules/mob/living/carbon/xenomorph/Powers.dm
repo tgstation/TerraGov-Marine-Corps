@@ -309,6 +309,7 @@
 	//OBJ CHECK
 	if(isobj(O))
 		var/obj/I = O
+
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			src << "<span class='warning'>You cannot dissolve \the [I].</span>" // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
@@ -320,6 +321,13 @@
 	//TURF CHECK
 	else if(isturf(O))
 		var/turf/T = O
+
+		if(istype(O, /turf/simulated/wall))
+			var/turf/simulated/wall/wall_target = O
+			if (wall_target.GetHole())
+				src << "<span class='warning'>[O] is already weakened.</span>"
+				return
+
 		var/dissolvability = T.can_be_dissolved()
 		switch(dissolvability)
 			if(0)

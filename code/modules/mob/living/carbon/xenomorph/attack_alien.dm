@@ -679,7 +679,7 @@
 		return attack_paw(M)
 
 /obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.melee_damage_lower < 28 || unacidable)
+	if(M.mob_size == MOB_SIZE_BIG || unacidable)
 		M << "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>"
 		return 0
 	else
