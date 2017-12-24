@@ -21,7 +21,7 @@
 	var exFancy = rand(1,10) // Checks if it might be one of the ULTRA fancy presents.
 	var gift_type = /obj/item/storage/fancy/crayons   //Default, just in case
 
-	if(fancy > 10)
+	if(fancy > 80)
 		if(exFancy == 1)
 			M << "\blue It's a brand new, un-restricted, THERMOBARIC ROCKET LAUNCHER!!!!!!  What are the chances???"
 			gift_type = /obj/item/weapon/gun/launcher/rocket/m57a4/XMAS
