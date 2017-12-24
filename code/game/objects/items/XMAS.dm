@@ -18,7 +18,7 @@
 
 /obj/item/m_gift/attack_self(mob/M as mob)
 	var fancy = rand(1,100) //Check if it has the possibility of being a FANCY present
-	var exFancy = rand(1,10) // Checks if it might be one of the ULTRA fancy presents.
+	var exFancy = rand(1,20) // Checks if it might be one of the ULTRA fancy presents.
 	var gift_type = /obj/item/storage/fancy/crayons   //Default, just in case
 
 	if(fancy > 80)
@@ -40,7 +40,7 @@
 			I.add_fingerprint(M)
 			cdel(src)
 			return
-		else if(exFancy == 5)
+		else if(exFancy == 20)
 			M << "\blue Just what the fuck is it???"
 			gift_type = /obj/item/clothing/mask/facehugger/lamarr
 			var/obj/item/I = new gift_type(M)
@@ -132,7 +132,13 @@
 	..()
 	flags_gun_features = GUN_INTERNAL_MAG
 	able_to_fire(mob/living/user)
-		return 1
+		var/turf/current_turf = get_turf(user)
+		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
+			click_empty(user)
+			user << "<span class='warning'>You can't fire that here!</span>"
+			return 0
+		else
+			return 1
 
 /obj/item/weapon/gun/rifle/sniper/elite/XMAS
 	..()
