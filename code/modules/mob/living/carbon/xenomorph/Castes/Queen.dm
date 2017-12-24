@@ -189,8 +189,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		for(var/Z in actions)
 			var/datum/action/A = Z
 			A.update_button_icon()
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	// playsound(loc, 'sound/voice/alien_cena.ogg', 75, 0)  //XMAS ONLY
+	playsound(loc, 'sound/voice/alien_queen_xmas.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 
