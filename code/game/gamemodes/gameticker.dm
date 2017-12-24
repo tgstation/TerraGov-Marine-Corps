@@ -50,18 +50,18 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/Red_White_and_Blue.ogg')
 */
 
-	login_music = pick('sound/music/good_day_to_die.ogg',//It's a Good Day to Die
+	login_music = pick(//'sound/music/good_day_to_die.ogg',//It's a Good Day to Die
 //	'sound/music/ColonialHalloween.ogg'
 //	'sound/music/Suspense_Explore.ogg',
-	'sound/music/Aliens_Main_Theme.ogg',
+//	'sound/music/Aliens_Main_Theme.ogg',
 //	'sound/music/DeadSpace_Ring_Around_the_Rosie.ogg',
 //	'sound/music/DeadSpace_Twinkle_Twinkle_Little_Star.ogg'
-	'sound/music/fortunate_son.ogg',
+//	'sound/music/fortunate_son.ogg',
 //	'sound/music/buffalo_springfield.ogg',
-	'sound/music/warrior_song.ogg')//The Warrior Song
-//	'sound/music/NeilDiamondChanukah.ogg',
-//	'sound/music/WeirdAlGroundZeroXmas.ogg',
-//	'sound/music/WeirdAlSantaCrazy.ogg')
+//	'sound/music/warrior_song.ogg')//The Warrior Song
+	'sound/music/NeilDiamondChanukah.ogg',
+	'sound/music/WeirdAlGroundZeroXmas.ogg',
+	'sound/music/WeirdAlSantaCrazy.ogg')
 
 	do
 		pregame_timeleft = 180

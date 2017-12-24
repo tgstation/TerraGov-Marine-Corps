@@ -18,7 +18,8 @@
 turf/unsimulated/wall/splashscreen
 	name = "Space Station 13"
 	icon = 'icons/misc/title.dmi'
-	icon_state = "title_painting"
+//	icon_state = "title_painting"
+	icon_state = "title_holiday"
 	layer = FLY_LAYER
 
 /turf/unsimulated/wall/other
