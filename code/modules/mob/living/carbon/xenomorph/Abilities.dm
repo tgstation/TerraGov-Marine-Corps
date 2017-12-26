@@ -614,6 +614,9 @@
 /turf/unsimulated/floor/mars_cave/can_dig_xeno_tunnel()
 	return TRUE
 
+/turf/simulated/floor/prison/can_dig_xeno_tunnel()
+	return TRUE
+
 
 
 //Queen Abilities
