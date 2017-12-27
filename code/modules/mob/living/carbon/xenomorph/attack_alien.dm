@@ -66,11 +66,18 @@
 			if(M.frenzy_aura > 0)
 				damage += (M.frenzy_aura * 2)
 
+			M.animation_attack_on(src)
+
 			//Check for a special bite attack
-			if(M.check_bite(src))
+			if(prob(M.bite_chance))
+				M.bite_attack(src, damage)
 				return 1
 
-			M.animation_attack_on(src)
+			//Check for a special bite attack
+			if(prob(M.tail_chance))
+				M.tail_attack(src, damage)
+				return 1
+
 			//Somehow we will deal no damage on this attack
 			if(!damage)
 				playsound(M.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
@@ -672,7 +679,7 @@
 		return attack_paw(M)
 
 /obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.melee_damage_lower < 28 || unacidable)
+	if(M.mob_size == MOB_SIZE_BIG || unacidable)
 		M << "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>"
 		return 0
 	else

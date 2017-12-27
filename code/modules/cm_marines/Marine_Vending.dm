@@ -245,26 +245,26 @@
 
 
 
-//MARINE FOOD VENDOR APOPHIS775 22DEC2015
+//MARINE FOOD VENDOR APOPHIS775 23DEC2017
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "generic"
 	icon_deny = "generic-deny"
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_container/food/snacks/protein_pack = 50,
+	products = list(/*/obj/item/reagent_container/food/snacks/protein_pack = 50,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal2 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal5 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal6 = 15,
-					/obj/item/reagent_container/food/drinks/flask = 5)
+					/obj/item/reagent_container/food/drinks/flask = 5)*/
 //Christmas inventory
-/*					/obj/item/reagent_container/food/snacks/mre_pack/xmas1 = 25,
+					/obj/item/reagent_container/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas3 = 25)
-	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10)*/
+	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."

@@ -28,7 +28,7 @@
 	if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
-	if(istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/structure/ladder) || istype(target,/obj/item))
+	if(istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/simulated/floor))
 		r_FAL
 	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target

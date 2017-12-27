@@ -91,94 +91,6 @@
 	target << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.storedplasma].</span>"
 	src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [storedplasma].</span>"
 
-
-
-
-//Tail stab. Checked during a slash, after the above.
-//Deals a monstrous amount of damage based on how long it's been charging, but charging it drains plasma.
-//Toggle is in XenoPowers.dm.
-/mob/living/carbon/Xenomorph/proc/tail_attack(mob/living/carbon/human/M)
-	if(!ismob(M))
-		return
-
-	if(!readying_tail)
-		return 0 //Tail attack not prepared, or not available.
-
-
-	if(!isturf(loc))
-		src << "<span class='warning'>You can't attack [M] from here!</span>"
-		return
-
-	if(get_dist(src, M) > 1)
-		return
-
-	if(!istype(M))
-		src << "<span class='xenowarning'>Tail attacks only work on humans.</span>"
-		return 0
-
-	if(M.stat == DEAD)
-		src << "<span class='warning'>[M] is dead, why would you want to touch it?</span>"
-		return 0
-
-	next_move = world.time + 3 //so you can't instantly combo tail+slash
-
-	var/dmg = (round(readying_tail * 2.5)) + rand(5, 10) //Ready max is 20
-	if(mob_size == MOB_SIZE_BIG)
-		dmg += 10
-	var/datum/limb/affecting
-	var/tripped = 0
-
-	if(M.lying)
-		dmg += 10 //More damage when hitting downed people.
-
-	affecting = M.get_limb(ran_zone(zone_selected,75))
-	if(!affecting) //No organ, just get a random one
-		affecting = M.get_limb(ran_zone(null, 0))
-	if(!affecting) //Still nothing??
-		affecting = M.get_limb("chest") // Gotta have a torso?!
-	var/armor_block = M.run_armor_check(affecting, "melee")
-
-	var/miss_chance = 15
-	if(isXenoHivelord(src))
-		miss_chance += 20 //Fuck hivelords
-
-	animation_attack_on(M)
-	if(prob(miss_chance))
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-		visible_message("<span class='danger'>\The [src] lashes out with its tail but misses \the [M]!", \
-		"<span class='danger'>You snap your tail out but miss \the [M]!</span>")
-		readying_tail = 0
-		selected_ability.button.icon_state = "template"
-		selected_ability = null
-		return
-
-	//Selecting feet? Drop the damage and trip them.
-	if(zone_selected == "r_leg" || zone_selected == "l_leg" || zone_selected == "l_foot" || zone_selected == "r_foot")
-		if(prob(60) && !M.lying)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-			visible_message("<span class='danger'>\The [src] lashes out with its tail and \the [M] goes down!</span>", \
-			"<span class='danger'>You snap your tail out and trip \the [M]!</span>")
-			M.KnockDown(5)
-			dmg = dmg / 2 //Half damage for a tail strike.
-			tripped = 1
-
-
-	flick_attack_overlay(M, "tail")
-	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
-	if(!tripped)
-		visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
-		"<span class='danger'>You violently impale \the [M] with your tail!</span>")
-	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
-
-	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
-	M.updatehealth()
-	readying_tail = 0
-	selected_ability.button.icon_state = "template"
-	selected_ability = null
-	return 1
-
-
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/xeno_spit(atom/T)
 
@@ -397,6 +309,7 @@
 	//OBJ CHECK
 	if(isobj(O))
 		var/obj/I = O
+
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			src << "<span class='warning'>You cannot dissolve \the [I].</span>" // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
@@ -408,6 +321,13 @@
 	//TURF CHECK
 	else if(isturf(O))
 		var/turf/T = O
+
+		if(istype(O, /turf/simulated/wall))
+			var/turf/simulated/wall/wall_target = O
+			if (wall_target.GetHole())
+				src << "<span class='warning'>[O] is already weakened.</span>"
+				return
+
 		var/dissolvability = T.can_be_dissolved()
 		switch(dissolvability)
 			if(0)
