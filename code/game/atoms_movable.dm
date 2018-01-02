@@ -21,9 +21,10 @@
 //===========================================================================
 /atom/movable/Dispose()
 	. = ..()
-	loc = null //First thing to do so we move into null space.
 	for(var/atom/movable/I in contents) cdel(I)
 	if(pulledby) pulledby.stop_pulling()
+	loc = null //so we move into null space.
+
 
 /atom/movable/Recycle()
 	return

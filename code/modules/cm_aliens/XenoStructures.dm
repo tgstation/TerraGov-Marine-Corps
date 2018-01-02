@@ -737,6 +737,7 @@
 	opacity = 0
 	anchored = 1
 	unacidable = 1
+	layer = RESIN_STRUCTURE_LAYER
 
 	var/tunnel_desc = "" //description added by the hivelord.
 

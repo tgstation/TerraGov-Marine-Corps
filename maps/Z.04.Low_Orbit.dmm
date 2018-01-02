@@ -20,8 +20,8 @@
 "t" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns4,/area/space)
 "u" = (/turf/space/transit/north/shuttlespace_ns2,/area/shuttle/drop2/transit)
 "v" = (/turf/space/transit/north/shuttlespace_ns2,/area/shuttle/drop1/transit)
-"w" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "1"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
-"x" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "2"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"w" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "2"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"x" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "1"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

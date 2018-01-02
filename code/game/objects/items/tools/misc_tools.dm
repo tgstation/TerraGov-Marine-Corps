@@ -12,7 +12,6 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
-	var/working = 0
 	var/mode = 0
 		//0 = remove
 		//1 = take/put
@@ -20,8 +19,8 @@
 	var/has_snow = 0//Do we have snow on it?
 
 	//Switch modes
-	attack_self(mob/user as mob)
-		if(working)
+	attack_self(mob/user)
+		if(user.action_busy)
 			user  << "\red Finish the task first!"
 			return
 		has_snow = 0

@@ -396,7 +396,7 @@
 			M.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(M), WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/weapon/baton(M.back), WEAR_IN_BACK)
 
-			M.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp78(M), WEAR_WAIST)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_R_HAND)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_rifle(M), WEAR_L_STORE)

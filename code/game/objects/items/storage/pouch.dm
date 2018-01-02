@@ -89,6 +89,7 @@
 	desc = "It can contain flashlights, a pill, a crowbar, metal sheets, and some bandages."
 	icon_state = "survival"
 	storage_slots = 5
+	max_w_class = 3
 	can_hold = list(
 					"/obj/item/device/flashlight",
 					"/obj/item/tool/crowbar",
@@ -168,7 +169,7 @@
 	desc = "It can contain pistol and revolver ammo magazines."
 	max_w_class = 2
 	icon_state = "pistol_mag"
-	storage_slots = 2
+	storage_slots = 3
 
 	can_hold = list(
 					"/obj/item/ammo_magazine/pistol",
@@ -177,7 +178,7 @@
 
 /obj/item/storage/pouch/magazine/pistol/large
 	name = "large pistol magazine pouch"
-	storage_slots = 4
+	storage_slots = 6
 	icon_state = "large_pistol_mag"
 
 
@@ -185,14 +186,17 @@
 	..()
 	new /obj/item/ammo_magazine/revolver/mateba (src)
 	new /obj/item/ammo_magazine/revolver/mateba (src)
+	new /obj/item/ammo_magazine/revolver/mateba (src)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp70/New()
 	..()
 	new /obj/item/ammo_magazine/pistol/vp70 (src)
 	new /obj/item/ammo_magazine/pistol/vp70 (src)
+	new /obj/item/ammo_magazine/pistol/vp70 (src)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp78/New()
 	..()
+	new /obj/item/ammo_magazine/pistol/vp78 (src)
 	new /obj/item/ammo_magazine/pistol/vp78 (src)
 	new /obj/item/ammo_magazine/pistol/vp78 (src)
 
@@ -380,7 +384,7 @@
 
 
 /obj/item/storage/pouch/construction
-	name = "contruction pouch"
+	name = "construction pouch"
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool."
 	storage_slots = 3
 	max_w_class = 3
