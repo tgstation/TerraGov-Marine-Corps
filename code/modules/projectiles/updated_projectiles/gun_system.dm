@@ -313,7 +313,17 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(in_chamber)
 		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>")
-		make_casing(type_of_casings)
+		var/found_handful
+		for(var/obj/item/ammo_magazine/handful/H in user.loc)
+			if(H.default_ammo == current_mag.default_ammo && H.caliber == current_mag.caliber && H.current_rounds < H.max_rounds)
+				found_handful = TRUE
+				H.current_rounds++
+				H.update_icon()
+				break
+		if(!found_handful)
+			var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
+			new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
+			new_handful.loc = get_turf(src)
 		in_chamber = null
 	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
