@@ -96,7 +96,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
-	drag_delay = 1 //pulling something on wheels is easy
+	drag_delay = 0 //pulling something on wheels is easy
 	buckling_y = 6
 	foldabletype = /obj/item/roller
 

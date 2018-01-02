@@ -39,27 +39,25 @@
 	. = ..()
 
 /obj/item/tank/examine(mob/user)
-	if (!in_range(src, user))
-		if (icon == src) user << "\blue It's \a \icon[src][src]! If you want any more information you'll need to get closer."
-		return
+	..()
+	if (in_range(src, user))
+		var/celsius_temperature = src.air_contents.temperature-T0C
+		var/descriptive
+		switch(celsius_temperature)
+			if (-280 to 20)
+				descriptive = "cold"
+			if(20 to 40)
+				descriptive = "room temperature"
+			if(40 to 80)
+				descriptive = "lukewarm"
+			if(80 to 100)
+				descriptive = "warm"
+			if(100 to 300)
+				descriptive = "hot"
+			else
+				descriptive = "furiously hot"
 
-	var/celsius_temperature = src.air_contents.temperature-T0C
-	var/descriptive
-
-	if (celsius_temperature < 20)
-		descriptive = "cold"
-	else if (celsius_temperature < 40)
-		descriptive = "room temperature"
-	else if (celsius_temperature < 80)
-		descriptive = "lukewarm"
-	else if (celsius_temperature < 100)
-		descriptive = "warm"
-	else if (celsius_temperature < 300)
-		descriptive = "hot"
-	else
-		descriptive = "furiously hot"
-
-	user << "\blue \The \icon[icon][src] feels [descriptive]"
+		user << "\blue \The \icon[src][src] feels [descriptive]"
 
 
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)

@@ -889,6 +889,7 @@
 	var/area/A = get_area(user)
 	if(A && istype(A) && A.is_underground)
 		user << "<span class='warning'>This won't work if you're standing underground.</span>"
+		return
 
 	var/delay = activation_time
 	if(user.mind.skills_list)

@@ -969,6 +969,7 @@ About the new airlock wires panel:
 		return
 	else if(istype(C, /obj/item/tool/screwdriver))
 		p_open = !p_open
+		user << "<span class='notice'>You [p_open ? "open" : "close"] [src]'s panel.</span>"
 		update_icon()
 	else if(istype(C, /obj/item/tool/wirecutters))
 		return src.attack_hand(user)
