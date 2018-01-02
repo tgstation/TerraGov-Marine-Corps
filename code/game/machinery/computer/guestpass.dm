@@ -117,11 +117,11 @@
 	if (href_list["choice"])
 		switch(href_list["choice"])
 			if ("giv_name")
-				var/nam = strip_html_simple(input("Person pass is issued to", "Name", giv_name) as text|null)
+				var/nam = stripped_input("Person pass is issued to", "Name", giv_name)
 				if (nam)
 					giv_name = nam
 			if ("reason")
-				var/reas = strip_html_simple(input("Reason why pass is issued", "Reason", reason) as text|null)
+				var/reas = stripped_input(usr,"Reason why pass is issued", "Reason", reason)
 				if(reas)
 					reason = reas
 			if ("duration")
