@@ -12,12 +12,13 @@
 
 	..()
 
-	if(zoom_turf)
-		if(loc != zoom_turf && is_zoomed)
-			zoom_out()
+	if(is_zoomed)
+		if(zoom_turf)
+			if(loc != zoom_turf)
+				zoom_out()
 
-	if(stat || lying)
-		zoom_out()
+		if(stat || lying)
+			zoom_out()
 
 	if(stat != DEAD) //Stop if dead. Performance boost
 
