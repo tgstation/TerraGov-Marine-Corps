@@ -583,9 +583,14 @@
 	description = "Used to stabilize internal organs while waiting for surgery. Medicate cautiously."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = REAGENTS_OVERDOSE/3
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/3
+	overdose = REAGENTS_OVERDOSE/2
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
+	custom_metabolism = 0.05
 	scannable = 1
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
+		M.take_organ_damage(1*REM, 0)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(2, BRUTE)
@@ -622,10 +627,10 @@
 	description = "A chemical designed to quickly stop all sorts of bleeding by encouraging coagulation."
 	reagent_state = LIQUID
 	color = "#CC00FF"
-	overdose = REAGENTS_OVERDOSE //Was 4, now 6 //Now 15
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+	overdose = REAGENTS_OVERDOSE/2 //Was 4, now 6 //Now 15
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = 1 //scannable now.  HUZZAH.
-	custom_metabolism = 0.1
+	custom_metabolism = 0.05
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
