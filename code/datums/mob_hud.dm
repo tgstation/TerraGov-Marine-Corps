@@ -60,12 +60,6 @@ var/datum/mob_hud/huds = list(
 /datum/mob_hud/medical
 	hud_icons = list(HEALTH_HUD, STATUS_HUD)
 
-/datum/mob_hud/medical/add_to_single_hud(mob/user, mob/living/carbon/human/target)
-	if(istype(target))
-		if(target.species && target.species.name == "Yautja") //so we don't bust cloaked predators
-			return
-	..()
-
 //med hud used by silicons, only shows humans with a uniform with sensor mode activated.
 /datum/mob_hud/medical/basic
 
@@ -89,6 +83,12 @@ var/datum/mob_hud/huds = list(
 
 //med hud used by medical hud glasses
 /datum/mob_hud/medical/advanced
+
+/datum/mob_hud/medical/advanced/add_to_single_hud(mob/user, mob/living/carbon/human/target)
+	if(istype(target))
+		if(target.species && target.species.name == "Yautja") //so you can't tell a pred's health with hud glasses.
+			return
+	..()
 
 //medical hud used by ghosts
 /datum/mob_hud/medical/observer
