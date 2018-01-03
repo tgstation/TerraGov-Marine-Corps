@@ -622,8 +622,8 @@
 	description = "A chemical designed to quickly stop all sorts of bleeding by encouraging coagulation."
 	reagent_state = LIQUID
 	color = "#CC00FF"
-	overdose = REAGENTS_OVERDOSE/5 //Was 4, now 6
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/5
+	overdose = REAGENTS_OVERDOSE //Was 4, now 6 //Now 15
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1 //scannable now.  HUZZAH.
 	custom_metabolism = 0.1
 	on_mob_life(mob/living/M)

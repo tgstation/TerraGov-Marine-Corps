@@ -19,14 +19,14 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/quickclot
 	name = "\improper Quick Clot autoinjector"
-	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every 5 seconds."
-	amount_per_transfer_from_this = 3
-	volume = 3
+	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every minute."
+	amount_per_transfer_from_this = 15
+	volume = 15
 	icon_state = "quickclot"
 
 	New()
 		..()
-		reagents.add_reagent("quickclot", 3)
+		reagents.add_reagent("quickclot", 15)
 		update_icon()
 
 
