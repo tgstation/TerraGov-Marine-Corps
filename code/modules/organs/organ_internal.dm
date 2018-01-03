@@ -47,10 +47,10 @@
 	damage=0
 
 /datum/internal_organ/proc/is_bruised()
-	return damage >= min_bruised_damage
+	return (damage >= min_bruised_damage && !owner.reagents.get_reagent_amount("peridaxon") >= 1)
 
 /datum/internal_organ/proc/is_broken()
-	return damage >= min_broken_damage || cut_away
+	return ((damage >= min_broken_damage || cut_away) && !owner.reagents.get_reagent_amount("peridaxon") >= 1)
 
 /datum/internal_organ/New(mob/living/carbon/M)
 	..()
