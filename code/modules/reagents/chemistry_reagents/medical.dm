@@ -580,23 +580,12 @@
 /datum/reagent/peridaxon
 	name = "Peridaxon"
 	id = "peridaxon"
-	description = "Used to encourage recovery of internal organs and nervous systems. Medicate cautiously."
+	description = "Used to stabilize internal organs while waiting for surgery. Medicate cautiously."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE/3
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/3
 	scannable = 1
-
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-
-			//Peridaxon heals only non-robotic organs
-			for(var/datum/internal_organ/I in H.internal_organs)
-				if((I.damage > 0) && (I.robotic != 2))
-					I.damage = max(I.damage - 1, 0)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(2, BRUTE)
@@ -630,7 +619,7 @@
 /datum/reagent/quickclot
 	name = "Quick Clot"
 	id = "quickclot"
-	description = "A chemical designed to quickly stop internal bleeding"
+	description = "A chemical designed to quickly stop all sorts of bleeding by encouraging coagulation."
 	reagent_state = LIQUID
 	color = "#CC00FF"
 	overdose = REAGENTS_OVERDOSE/5 //Was 4, now 6

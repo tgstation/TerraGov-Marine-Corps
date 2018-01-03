@@ -297,6 +297,7 @@
 					/obj/item/storage/pill_bottle/inaprovaline = 3,
 					/obj/item/storage/pill_bottle/tramadol = 3,
 					/obj/item/storage/pill_bottle/russianRed = 5,
+					/obj/item/storage/pill_bottle/peridaxon = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 4,
 					/obj/item/stack/medical/bruise_pack = 8,
 					/obj/item/stack/medical/advanced/ointment = 4,

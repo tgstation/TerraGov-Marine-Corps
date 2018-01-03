@@ -69,6 +69,8 @@
 
 			if(!heart)
 				blood_volume = 0
+			if(owner.reagents.get_reagent_amount("peridaxon") >= 1)
+				blood_volume *= 1
 			else if(heart.damage > 1 && heart.damage < heart.min_bruised_damage)
 				blood_volume *= 0.8
 			else if(heart.damage >= heart.min_bruised_damage && heart.damage < heart.min_broken_damage)
@@ -162,7 +164,10 @@
 	if(!amt)
 		return
 
-	vessel.remove_reagent("blood",amt)
+	if(reagents.get_reagent_amount("quickclot") >= 1) //Quickclot stops bleeding, magic!
+		return
+
+	vessel.remove_reagent("blood", amt)
 	blood_splatter(src,src)
 
 /****************************************************
