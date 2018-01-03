@@ -69,7 +69,7 @@
 
 			if(!heart)
 				blood_volume = 0
-			if(owner.reagents.get_reagent_amount("peridaxon") >= 1)
+			if(reagents.get_reagent_amount("peridaxon") >= 1)
 				blood_volume *= 1
 			else if(heart.damage > 1 && heart.damage < heart.min_bruised_damage)
 				blood_volume *= 0.8
