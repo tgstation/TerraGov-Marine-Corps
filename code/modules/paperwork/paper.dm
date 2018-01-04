@@ -317,7 +317,7 @@
 
 	if(href_list["write"])
 		var/id = href_list["write"]
-		var/t =  stripped_input("Enter what you want to write:", "Write", MAX_MESSAGE_LEN)
+		var/t =  stripped_input(usr, "Enter what you want to write:", "Write", "", MAX_MESSAGE_LEN)
 		var/shortened_t = copytext(t,1,100)
 		log_admin("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
 		message_admins("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
