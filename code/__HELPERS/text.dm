@@ -81,7 +81,12 @@
 
 // Used to get a sanitized input.
 /proc/stripped_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
-	var/name = input(user, message, title, default)
+	var/name = input(user, message, title, default) as text|null
+	return html_encode(trim(name, max_length))
+
+// Used to get a properly sanitized multiline input, of max_length
+/proc/stripped_multiline_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
+	var/name = input(user, message, title, default) as message|null
 	return html_encode(trim(name, max_length))
 
 //Filters out undesirable characters from names
