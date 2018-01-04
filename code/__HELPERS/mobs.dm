@@ -1,5 +1,5 @@
 proc/random_hair_style(gender, species = "Human")
-	var/h_style = "Bald"
+	var/h_style = "Crewcut"
 
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in hair_styles_list)
