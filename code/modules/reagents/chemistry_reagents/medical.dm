@@ -587,10 +587,6 @@
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 	custom_metabolism = 0.05
 	scannable = 1
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.take_organ_damage(1*REM, 0)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(2, BRUTE)
@@ -631,10 +627,6 @@
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = 1 //scannable now.  HUZZAH.
 	custom_metabolism = 0.05
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.take_organ_damage(1*REM, 0)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(3, BRUTE)
