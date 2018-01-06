@@ -321,7 +321,7 @@ roles willy nilly.
 	if(ismob(M) && M.mind && istype(J))
 		if(check_role_entry(M, J, latejoin))
 			M.mind.assigned_role 		= J.title
-			M.mind.skills_list	= J.skills_list
+			M.mind.skills_list	= J.skills_list.Copy()
 			M.mind.special_role 		= J.special_role
 			M.mind.role_alt_title 		= J.get_alternative_title(M)
 			M.mind.role_comm_title 		= J.comm_title

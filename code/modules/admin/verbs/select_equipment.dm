@@ -19,7 +19,7 @@
 	if(newrank != "Custom")
 		var/datum/job/J = RoleAuthority.roles_by_name[newrank]
 		H.mind.role_comm_title = J.comm_title
-		H.mind.skills_list = J.skills_list
+		H.mind.skills_list = J.skills_list.Copy()
 		if(istype(I))
 			I.access = J.get_access()
 			I.rank = J.title
@@ -67,7 +67,7 @@
 				return
 
 			var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
-			H.mind.skills_list = J.skills_list
+			H.mind.skills_list = J.skills_list.Copy()
 
 
 
