@@ -424,6 +424,11 @@
 				O.show_message("[M] vanishes into thin air!",1)
 			playsound(M.loc,'sound/effects/cloakon.ogg', 15, 1)
 			M.alpha = 10
+
+			var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+			SA.remove_from_hud(M)
+			var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+			XI.remove_from_hud(M)
 			spawn(1)
 				anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
@@ -438,6 +443,12 @@
 		playsound(user.loc,'sound/effects/cloakoff.ogg', 15, 1)
 		user.alpha = initial(user.alpha)
 		cloak_timer = 10
+
+		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+		SA.add_to_hud(user)
+		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+		XI.add_to_hud(user)
+
 		spawn(1)
 			if(user)
 				anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
@@ -728,7 +739,6 @@
 	New()
 		..()
 		spawn(1)
-			reagents.add_reagent("quickclot", 3)
 			reagents.add_reagent("thwei", 30)
 		return
 

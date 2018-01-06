@@ -234,7 +234,7 @@
  */
 /obj/item/tool/kitchen/tray
 	name = "tray"
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/kitchen_tools.dmi'
 	icon_state = "tray"
 	desc = "A metal tray to lay food on."
 	throwforce = 12.0

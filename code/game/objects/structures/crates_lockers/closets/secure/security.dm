@@ -194,7 +194,7 @@
 	icon_locked = "secure_locked_police"
 	icon_opened = "secure_open_police"
 	icon_broken = "secure_broken_police"
-	icon_off = "secoff"
+	icon_off = "secure_closed_police"
 
 	New()
 		..()

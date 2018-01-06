@@ -96,28 +96,7 @@
 
 			if (prob(3))	//about once every 30 seconds
 				take_damage(1,silent=prob(30))
-/*
-		// Process unsuitable transplants. TODO: consider some kind of
-		// immunosuppressant that changes transplant data to make it match.
-		if(transplant_data)
-			if(!rejecting && prob(20) && owner.dna && blood_incompatible(transplant_data["blood_type"],owner.dna.b_type,owner.species,transplant_data["species"]))
-				rejecting = 1
-			else
-				rejecting++ //Rejection severity increases over time.
-				if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
-					switch(rejecting)
-						if(1 to 50)
-							take_damage(1)
-						if(51 to 200)
-							owner.reagents.add_reagent("toxin", 1)
-							take_damage(1)
-						if(201 to 500)
-							take_damage(rand(2,3))
-							owner.reagents.add_reagent("toxin", 2)
-						if(501 to INFINITY)
-							take_damage(4)
-							owner.reagents.add_reagent("toxin", rand(3,5))
-*/
+
 /datum/internal_organ/proc/take_damage(amount, var/silent=0)
 	if(src.robotic == ORGAN_ROBOT)
 		src.damage += (amount * 0.8)
@@ -192,13 +171,14 @@
 		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-	if(is_bruised())
-		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
-			owner.losebreath += 15
+	if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+		if(is_bruised())
+			if(prob(2))
+				spawn owner.emote("me", 1, "coughs up blood!")
+				owner.drip(10)
+			if(prob(4))
+				spawn owner.emote("me", 1, "gasps for air!")
+				owner.losebreath += 15
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -243,10 +223,11 @@
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
-		if(is_bruised())
-			filter_effect -= 1
-		if(is_broken())
-			filter_effect -= 2
+		if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+			if(is_bruised())
+				filter_effect -= 1
+			if(is_broken())
+				filter_effect -= 2
 
 		// Do some reagent filtering/processing.
 		for(var/datum/reagent/R in owner.reagents.reagent_list)
@@ -268,10 +249,11 @@
 			owner.adjustToxLoss(-0.5)
 
 		//Deal toxin damage if damaged
-		if(is_bruised() && prob(25))
-			owner.adjustToxLoss(0.1 * (damage/2))
-		else if(is_broken() && prob(50))
-			owner.adjustToxLoss(0.3 * (damage/2))
+		if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+			if(is_bruised() && prob(25))
+				owner.adjustToxLoss(0.1 * (damage/2))
+			else if(is_broken() && prob(50))
+				owner.adjustToxLoss(0.3 * (damage/2))
 
 /datum/internal_organ/liver/prosthetic
 	robotic = ORGAN_ROBOT
@@ -290,17 +272,18 @@
 	// This should probably be expanded in some way, but fucked if I know
 	// what else kidneys can process in our reagent list.
 	var/datum/reagent/coffee = locate(/datum/reagent/drink/coffee) in owner.reagents.reagent_list
-	if(coffee)
+	if(coffee && !owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
 		if(is_bruised())
 			owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
 		else if(is_broken())
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
 	//Deal toxin damage if damaged
-	if(is_bruised() && prob(25))
-		owner.adjustToxLoss(0.1 * (damage/3))
-	else if(is_broken() && prob(50))
-		owner.adjustToxLoss(0.2 * (damage/3))
+	if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+		if(is_bruised() && prob(25))
+			owner.adjustToxLoss(0.1 * (damage/3))
+		else if(is_broken() && prob(50))
+			owner.adjustToxLoss(0.2 * (damage/3))
 
 /datum/internal_organ/kidneys/prosthetic
 	robotic = ORGAN_ROBOT
@@ -331,10 +314,11 @@
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(is_bruised())
-		owner.eye_blurry = 20
-	if(is_broken())
-		owner.eye_blind = 20
+	if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+		if(is_bruised())
+			owner.eye_blurry = 20
+		if(is_broken())
+			owner.eye_blind = 20
 
 /datum/internal_organ/eyes/prosthetic
 	robotic = ORGAN_ROBOT

@@ -54,6 +54,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_infrared = 1
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD)
+	unacidable = TRUE
 
 
 /mob/living/carbon/Xenomorph/New()

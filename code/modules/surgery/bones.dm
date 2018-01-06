@@ -56,23 +56,21 @@
 	else
 		user.visible_message("<span class='notice'>[user] is beginning to set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>" , \
 		"<span class='notice'>You are beginning to set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
-		target.custom_pain("The pain in your [affected.display_name] is going to make you pass out!",1)
+		target.custom_pain("The pain in your [affected.display_name] is going to make you pass out!", 1)
 	..()
 
 /datum/surgery_step/bone/set_bone/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.body_part == HEAD)
 		user.visible_message("<span class='notice'>[user] sets [target]'s skull with \the [tool].</span>" , \
 		"<span class='notice'>You set [target]'s skull with \the [tool].</span>")
-		affected.bone_repair_stage = 2
 	else
-		if(affected.status & LIMB_BROKEN)
-			user.visible_message("<span class='notice'>[user] sets the bone in [target]'s [affected.display_name] in place with \the [tool].</span>", \
-			"<span class='notice'>You set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
-			affected.bone_repair_stage = 2
-		else
-			user.visible_message("<span class='notice'>[user] sets the bone in [target]'s [affected.display_name]\red in the WRONG place with \the [tool].</span>", \
-			"<span class='notice'>You set the bone in [target]'s [affected.display_name]\red in the WRONG place with \the [tool].</span>")
-			affected.fracture()
+		user.visible_message("<span class='notice'>[user] sets the bone in [target]'s [affected.display_name] in place with \the [tool].</span>", \
+		"<span class='notice'>You set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
+	affected.bone_repair_stage = 0
+	affected.status &= ~LIMB_BROKEN
+	affected.status &= ~LIMB_SPLINTED
+	affected.bone_repair_stage = 0
+	affected.perma_injury = 0
 
 /datum/surgery_step/bone/set_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.body_part == HEAD)
@@ -87,35 +85,3 @@
 		"<span class='warning'>Your hand slips, damaging the bone in [target]'s [affected.display_name] with \the [tool]!</span>")
 		affected.createwound(BRUISE, 5)
 		affected.update_wounds()
-
-
-
-/datum/surgery_step/bone/finish_bone
-	allowed_tools = list(
-	/obj/item/tool/surgery/bonegel = 100,	  \
-	/obj/item/tool/screwdriver = 75
-	)
-	can_infect = 1
-	blood_level = 1
-
-	min_duration = 40
-	max_duration = 60
-	bone_step = 2
-
-/datum/surgery_step/bone/finish_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts to finish mending the damaged bones in [target]'s [affected.display_name] with \the [tool].</span>", \
-	"<span class='notice'>You start to finish mending the damaged bones in [target]'s [affected.display_name] with \the [tool].</span>")
-	..()
-
-/datum/surgery_step/bone/finish_bone/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has mended the damaged bones in [target]'s [affected.display_name] with \the [tool].</span>"  , \
-		"<span class='notice'>You have mended the damaged bones in [target]'s [affected.display_name] with \the [tool].</span>" )
-	affected.status &= ~LIMB_BROKEN
-	affected.status &= ~LIMB_SPLINTED
-	affected.bone_repair_stage = 0
-	affected.perma_injury = 0
-
-/datum/surgery_step/bone/finish_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>" , \
-	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
-

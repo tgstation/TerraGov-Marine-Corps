@@ -52,6 +52,18 @@
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
 		if("help")
+
+			if(on_fire && M != src)
+				fire_stacks = max(fire_stacks - 1, 0)
+
+				M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
+					"<span class='warning'>You try to put out the fire on [src]!</span>")
+				if(fire_stacks <= 0)
+					M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
+						"<span class='notice'>You extinguished the fire on [src].</span>")
+					ExtinguishMob()
+				return 1
+
 			if(health >= config.health_threshold_crit)
 				help_shake_act(M)
 				return 1
@@ -252,17 +264,7 @@
 				w_uniform.add_fingerprint(M)
 
 
-			if(on_fire)
-				fire_stacks = max(fire_stacks - 1, 0)
-
-				M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
-					"<span class='warning'>You try to put out the fire on [src]!</span>")
-				if(fire_stacks <= 0)
-					M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
-						"<span class='notice'>You extinguished the fire on [src].</span>")
-					ExtinguishMob()
-
-			else if(lying || sleeping)
+			if(lying || sleeping)
 				if(client)
 					sleeping = max(0,src.sleeping-5)
 				if(!sleeping)

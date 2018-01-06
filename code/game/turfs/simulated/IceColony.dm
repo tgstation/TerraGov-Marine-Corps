@@ -47,135 +47,116 @@
 		//Snow Shovel
 		if(istype(I, /obj/item/tool/snow_shovel))
 			var/obj/item/tool/snow_shovel/S = I
-			//Mode 0 -Removing snow
-			if(S.mode == 0)
-				if(S.working)
-					user  << "\red You are already shoveling!"
-					return
-
-				if(!slayer)
-					user  << "\red You can't shovel beyond this layer, the shovel will break!"
-					return
-
-				user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
-				S.working = 1
-				playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-				if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
-					user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
-					S.working = 0
-					return
-
-				if(!slayer)
-					user  << "\red You can't shovel beyond this layer, the shovel will break!"
-					return
-
-				user.visible_message("\blue \The [user] clears out \the [src].")
-				slayer -= 1
-				update_icon(1,0)
-				S.working = 0
-
-			//Mode 1 -Taking/Placing snow
-			if(S.mode == 1)
-				if(S.working)
-					user  << "\red You are already shoveling!"
-					return
-
-				//Placing
-				if(S.has_snow)
-					if(slayer > 2)
-						user  << "\red You can't add any more snow here!"
-						return
-
-					if(locate(/obj/structure/barricade/snow) in get_turf(src))
-						user  << "\red You can't place more snow on top of that barricade, deconstruct it first!"
-						return
-
-					user.visible_message("[user.name] starts throwing out the snow to the ground.","You start throwing out the snow to the ground.")
-					S.working = 1
-					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-					if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
-						user.visible_message("\red \The [user] decides not to add any more snow to [S].")
-						S.working = 0
-						return
-
-					if(slayer > 2)
-						user  << "\red You can't add any more snow here!"
-						S.working = 0
-						return
-
-					user.visible_message("\blue \The [user] clears out \the [src].")
-					slayer += 1
-					S.has_snow = 0 //Remove snow from the shovel
-					S.update_icon()
-					update_icon(1,0)
-					S.working = 0
-
-				//Taking
-				else
-					if(slayer < 1)
-						user  << "\red There is no more snow to pick up!"
+			if(user.action_busy)
+				user  << "\red You are already shoveling!"
+				return
+			switch(S.mode)
+				if(0)//Mode 0 -Removing snow
+					if(!slayer)
+						user  << "\red You can't shovel beyond this layer, the shovel will break!"
 						return
 
 					user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
-					S.working = 1
 					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 					if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
 						user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
-						S.working = 0
 						return
 
-					if(slayer < 1)
-						user  << "\red There is no more snow to pick up!"
-						S.working = 0
+					if(!slayer)
+						user  << "\red You can't shovel beyond this layer, the shovel will break!"
 						return
 
 					user.visible_message("\blue \The [user] clears out \the [src].")
 					slayer -= 1
-					S.has_snow = 1
-					S.update_icon()
 					update_icon(1,0)
-					S.working = 0
 
-			//Mode 2 -Making barricades
-			if(S.mode == 2)
-				if(S.working)//If adding snow
-					user  << "\red You are already shoveling!"
-					return
 
-				if(!slayer || slayer == 0)
-					user  << "\red You can't build the barricade here, there must be more snow on that area!"
-					return
+				if(1) //Mode 1 -Taking/Placing snow
+					if(user.action_busy)
+						user  << "\red You are already shoveling!"
+						return
 
-				if(locate(/obj/structure/barricade/snow) in get_turf(src))
-					user  << "\red You can't build another barricade on the same spot!"
-					return
+					//Placing
+					if(S.has_snow)
+						if(slayer > 2)
+							user  << "\red You can't add any more snow here!"
+							return
 
-				user.visible_message("[user.name] starts shaping the barricade.","You start shaping the barricade")
-				S.working = 1
-				playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-				if(!do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))
-					user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
-					S.working = 0
-					return
+						if(locate(/obj/structure/barricade/snow) in get_turf(src))
+							user  << "\red You can't place more snow on top of that barricade, deconstruct it first!"
+							return
 
-				if(!slayer || slayer == 0)
-					user  << "\red You can't build the barricade here, there must be more snow on that area!"
-					S.working = 0
-					return
+						user.visible_message("[user.name] starts throwing out the snow to the ground.","You start throwing out the snow to the ground.")
+						playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+						if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+							user.visible_message("\red \The [user] decides not to add any more snow to [S].")
+							return
 
-				if(locate(/obj/structure/barricade/snow) in get_turf(src))
-					user  << "\red You can't build another barricade on the same spot!"
-					S.working = 0
-					return
+						if(slayer > 2)
+							user  << "\red You can't add any more snow here!"
+							return
 
-				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
-				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B.name].")
-				B.icon_state = "barricade_[slayer]"
-				B.health = slayer * 25
-				B.dir = user.dir
-				slayer = 0
-				update_icon(1,0)
-				S.working = 0
+						user.visible_message("\blue \The [user] clears out \the [src].")
+						slayer += 1
+						S.has_snow = 0 //Remove snow from the shovel
+						S.update_icon()
+						update_icon(1,0)
+
+					//Taking
+					else
+						if(slayer < 1)
+							user  << "\red There is no more snow to pick up!"
+							return
+
+						user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
+						playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+						if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+							user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
+							return
+
+						if(slayer < 1)
+							user  << "\red There is no more snow to pick up!"
+							return
+
+						user.visible_message("\blue \The [user] clears out \the [src].")
+						slayer -= 1
+						S.has_snow = 1
+						S.update_icon()
+						update_icon(1,0)
+
+
+				if(2)//Mode 2 -Making barricades
+
+					if(!slayer || slayer == 0)
+						user  << "\red You can't build the barricade here, there must be more snow on that area!"
+						return
+
+					if(locate(/obj/structure/barricade/snow) in get_turf(src))
+						user  << "\red You can't build another barricade on the same spot!"
+						return
+
+					user.visible_message("[user.name] starts shaping the barricade.","You start shaping the barricade")
+					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+					if(!do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))
+						user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
+						return
+
+					if(!slayer || slayer == 0)
+						user  << "\red You can't build the barricade here, there must be more snow on that area!"
+						return
+
+					if(locate(/obj/structure/barricade/snow) in get_turf(src))
+						user  << "\red You can't build another barricade on the same spot!"
+						return
+
+					var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
+					user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B.name].")
+					B.icon_state = "barricade_[slayer]"
+					B.health = slayer * 25
+					B.dir = user.dir
+					slayer = 0
+					update_icon(1,0)
+
 
 
 	//Update icon and sides on start, but skip nearby check for turfs.

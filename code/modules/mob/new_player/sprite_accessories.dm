@@ -47,6 +47,11 @@
 
 	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
 
+	crew
+		name = "Crewcut"
+		icon_state = "hair_crewcut"
+		gender = MALE
+
 	bald
 		name = "Bald"
 		icon_state = "bald"
@@ -84,9 +89,11 @@
 		name = "Long Hair Alt"
 		icon_state = "hair_vlongfringe"
 
+	/*
 	longest
 		name = "Very Long Hair"
 		icon_state = "hair_longest"
+	*/
 
 	longfringe
 		name = "Long Fringe"
@@ -117,6 +124,7 @@
 		name = "Ponytail 3"
 		icon_state = "hair_ponytail3"
 
+	/*
 	ponytail4
 		name = "Ponytail 4"
 		icon_state = "hair_ponytail4"
@@ -126,11 +134,12 @@
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
 		gender = FEMALE
+	*/
 
 	parted
 		name = "Parted"
 		icon_state = "hair_parted"
-
+	/*
 	pompadour
 		name = "Pompadour"
 		icon_state = "hair_pompadour"
@@ -162,6 +171,7 @@
 		name = "Beehive 2"
 		icon_state = "hair_beehive2"
 		gender = FEMALE
+	*/
 
 	bobcurl
 		name = "Bobcurl"
@@ -183,16 +193,12 @@
 		icon_state = "hair_buzzcut"
 		gender = MALE
 
-	crew
-		name = "Crewcut"
-		icon_state = "hair_crewcut"
-		gender = MALE
-
 	combover
 		name = "Combover"
 		icon_state = "hair_combover"
 		gender = MALE
 
+	/*
 	father
 		name = "Father"
 		icon_state = "hair_father"
@@ -210,11 +216,13 @@
 	dreadlocks
 		name = "Dreadlocks"
 		icon_state = "hair_dreads"
+	*/
 
 	curls
 		name = "Curls"
 		icon_state = "hair_curls"
 
+	/*
 	afro
 		name = "Afro"
 		icon_state = "hair_afro"
@@ -232,6 +240,7 @@
 		name = "Flat Top"
 		icon_state = "hair_sargeant"
 		gender = MALE
+	*/
 
 	emo
 		name = "Emo"
@@ -246,26 +255,32 @@
 		name = "Overeye Short"
 		icon_state = "hair_shortovereye"
 
+	/*
 	longovereye
 		name = "Overeye Long"
 		icon_state = "hair_longovereye"
+	*/
 
 	fag
 		name = "Flow Hair"
 		icon_state = "hair_f"
 
+	/*
 	feather
 		name = "Feather"
 		icon_state = "hair_feather"
+	*/
 
 	hitop
 		name = "Hitop"
 		icon_state = "hair_hitop"
 		gender = MALE
 
+	/*
 	mohawk
 		name = "Mohawk"
 		icon_state = "hair_d"
+	*/
 
 	jensen
 		name = "Adam Jensen Hair"
@@ -282,24 +297,29 @@
 		icon_state = "hair_gentle"
 		gender = FEMALE
 
+	/*
 	spiky
 		name = "Spiky"
 		icon_state = "hair_spikey"
+	*/
 
 	kusangi
 		name = "Kusanagi Hair"
 		icon_state = "hair_kusanagi"
 
+	/*
 	kagami
 		name = "Pigtails"
 		icon_state = "hair_kagami"
 		gender = FEMALE
+	*/
 
 	himecut
 		name = "Hime Cut"
 		icon_state = "hair_himecut"
 		gender = FEMALE
 
+	/*
 	braid
 		name = "Floorlength Braid"
 		icon_state = "hair_braid"
@@ -319,16 +339,19 @@
 		name = "Odango"
 		icon_state = "hair_odango"
 		gender = FEMALE
+	*/
 
 	ombre
 		name = "Ombre"
 		icon_state = "hair_ombre"
 		gender = FEMALE
 
+	/*
 	updo
 		name = "Updo"
 		icon_state = "hair_updo"
 		gender = FEMALE
+	*/
 
 	skinhead
 		name = "Skinhead"
@@ -339,6 +362,7 @@
 		icon_state = "hair_e"
 		gender = MALE // turnoff!
 
+	/*
 	familyman
 		name = "The Family Man"
 		icon_state = "hair_thefamilyman"
@@ -368,6 +392,7 @@
 		name = "Vegeta"
 		icon_state = "hair_toriyama2"
 		gender = MALE
+	*/
 
 	cia
 		name = "CIA"
@@ -389,10 +414,12 @@
 		icon_state = "hair_nitori"
 		gender = FEMALE
 
+	/*
 	joestar
 		name = "Joestar"
 		icon_state = "hair_joestar"
 		gender = MALE
+	*/
 
 	flat_top_fade
 		name = "Flat Top Fade"
@@ -629,22 +656,27 @@
 		name = "Van Dyke Mustache"
 		icon_state = "facial_vandyke"
 
+	/*
 	chaplin
 		name = "Square Mustache"
 		icon_state = "facial_chaplin"
+	*/
 
 	selleck
 		name = "Selleck Mustache"
 		icon_state = "facial_selleck"
 
+	/*
 	neckbeard
 		name = "Neckbeard"
 		icon_state = "facial_neckbeard"
+	*/
 
 	fullbeard
 		name = "Full Beard"
 		icon_state = "facial_fullbeard"
 
+	/*
 	longbeard
 		name = "Long Beard"
 		icon_state = "facial_longbeard"
@@ -652,6 +684,7 @@
 	vlongbeard
 		name = "Very Long Beard"
 		icon_state = "facial_wise"
+	*/
 
 	elvis
 		name = "Elvis Sideburns"
@@ -666,9 +699,11 @@
 		name = "Chinstrap"
 		icon_state = "facial_chin"
 
+	/*
 	hip
 		name = "Hipster Beard"
 		icon_state = "facial_hip"
+	*/
 
 	gt
 		name = "Goatee"

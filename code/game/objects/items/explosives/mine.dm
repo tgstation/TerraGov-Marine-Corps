@@ -96,7 +96,10 @@
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
 /obj/item/explosive/mine/Crossed(atom/A)
-	if(ismob(A)) Bumped(A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if(!L.lying)//so dragged corpses don't trigger mines.
+			Bumped(A)
 
 /obj/item/explosive/mine/Bumped(mob/living/carbon/human/H)
 	if(!armed || triggered) return

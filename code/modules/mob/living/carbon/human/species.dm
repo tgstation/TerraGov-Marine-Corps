@@ -153,6 +153,10 @@
 	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
 
+//special things to change after we're no longer that species
+/datum/species/proc/post_species_loss(mob/living/carbon/human/H)
+	return
+
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
@@ -637,6 +641,10 @@
 	stun_reduction = 2
 
 
+/datum/species/yautja/post_species_loss(mob/living/carbon/human/H)
+	var/datum/mob_hud/medical/advanced/A = huds[MOB_HUD_MEDICAL_ADVANCED]
+	A.add_to_hud(H)
+
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), WEAR_BODY)
@@ -646,6 +654,10 @@
 	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),WEAR_L_STORE)
 
 	H.universal_understand = 1
+
+	var/datum/mob_hud/medical/advanced/A = huds[MOB_HUD_MEDICAL_ADVANCED]
+	A.remove_from_hud(H)
+
 	return ..()
 
 // Called when using the shredding behavior.

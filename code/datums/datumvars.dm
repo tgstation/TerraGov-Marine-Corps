@@ -747,6 +747,8 @@ client
 
 		var/new_species = input("Please choose a new species.","Species",null) as null|anything in all_species
 
+		if(!new_species) return
+
 		if(!H)
 			usr << "Mob doesn't exist anymore"
 			return

@@ -294,17 +294,14 @@
 	if(istype(W, /obj/item/tool/snow_shovel))
 		var/obj/item/tool/snow_shovel/S = W
 		if(S.mode == 2)
-			if(S.working)
+			if(user.action_busy)
 				user  << "\red You are already shoveling!"
 				return
 			user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
-			S.working = 1
 			if(!do_after(user, 100, TRUE, 5, BUSY_ICON_CLOCK))
 				user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
-				S.working = 0
 				return
 			user.visible_message("\blue \The [user] clears out \the [src].")
-			S.working = 0
 			cdel(src)
 		return
 
