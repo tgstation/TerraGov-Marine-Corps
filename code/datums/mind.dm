@@ -184,7 +184,7 @@ datum/mind
 				if(H.mind)
 					for(var/datum/job/J in get_all_jobs())
 						if(J.title == new_role)
-							H.mind.skills_list = J.skills_list //give new role's job_knowledge to us.
+							H.mind.skills_list = J.skills_list.Copy() //give new role's job_knowledge to us.
 							H.mind.special_role = J.special_role
 							H.mind.role_alt_title = J.get_alternative_title(src)
 							H.mind.role_comm_title = J.comm_title
@@ -443,7 +443,7 @@ datum/mind
 				for(var/datum/job/J in get_all_jobs())
 					if(J.title == I.rank)
 						mind.assigned_role = J.title
-						mind.skills_list = J.skills_list
+						mind.skills_list = J.skills_list.Copy()
 						mind.special_role = J.special_role
 						mind.role_alt_title = J.get_alternative_title(src)
 						mind.role_comm_title = J.comm_title
