@@ -36,14 +36,7 @@
 			icon_state = "[caste] Knocked Down"
 	else
 		if(m_intent == "run")
-			if(isXenoCrusher(src))
-				var/mob/living/carbon/Xenomorph/Crusher/crusher = src
-				if(crusher.momentum > 2) //Let it build up a bit so we're not changing icons every single turf
-					icon_state = "[caste] Charging"
-				else
-					icon_state = "[caste] Running"
-			else
-				icon_state = "[caste] Running"
+			icon_state = "[caste] Running"
 		else
 			icon_state = "[caste] Walking"
 
@@ -112,7 +105,7 @@
 		apply_overlay(X_LEGCUFF_LAYER)
 
 /mob/living/carbon/Xenomorph/proc/create_shriekwave()
-	overlays_standing[X_SUIT_LAYER] = image("icon" = src.icon, "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
+	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
 	apply_overlay(X_SUIT_LAYER)
 	spawn(30)
 		remove_overlay(X_SUIT_LAYER)

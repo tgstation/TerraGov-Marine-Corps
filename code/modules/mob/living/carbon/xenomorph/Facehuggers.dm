@@ -336,6 +336,7 @@
 				visible_message("<span class='xenowarning'>[src] crawls back into [E]!</span>")
 				E.status = GROWN
 				E.icon_state = "Egg"
+				E.deploy_egg_triggers()
 				cdel(src)
 				return
 			var/obj/effect/alien/resin/trap/T = locate() in loc

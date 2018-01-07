@@ -24,7 +24,7 @@
 
 		update_progression()
 
-		if(evolution_allowed && evolution_stored < evolution_threshold && living_xeno_queen)
+		if(evolution_allowed && evolution_stored < evolution_threshold && living_xeno_queen && living_xeno_queen.ovipositor)
 			evolution_stored = min(evolution_stored + 1, evolution_threshold)
 			if(evolution_stored == evolution_threshold - 1)
 				src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
@@ -123,19 +123,31 @@
 		//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
 
 		if(current_aura && !stat && storedplasma > 5)
-			var/pheromone_range = round(6 + aura_strength * 2)
-			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-				if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
-					Z.frenzy_new = aura_strength
-				if(current_aura == "warding" && aura_strength > Z.warding_new)
-					Z.warding_new = aura_strength
-				if(current_aura == "recovery" && aura_strength > Z.recovery_new)
-					Z.recovery_new = aura_strength
+			if(caste == "Queen" && anchored) //stationary queen covers all xenos
+				var/ovi_aura_strength = aura_strength + 1
+				for(var/mob/living/carbon/Xenomorph/Z in living_mob_list)
+					if(Z.z == z) //same z level
+						if(current_aura == "frenzy" && ovi_aura_strength > Z.frenzy_new)
+							Z.frenzy_new = ovi_aura_strength
+						if(current_aura == "warding" && ovi_aura_strength > Z.warding_new)
+							Z.warding_new = ovi_aura_strength
+						if(current_aura == "recovery" && ovi_aura_strength > Z.recovery_new)
+							Z.recovery_new = ovi_aura_strength
+			else
+				var/pheromone_range = round(6 + aura_strength * 2)
+				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+						Z.frenzy_new = aura_strength
+					if(current_aura == "warding" && aura_strength > Z.warding_new)
+						Z.warding_new = aura_strength
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+						Z.recovery_new = aura_strength
 
-		frenzy_aura = frenzy_new
-		warding_aura = warding_new
-		recovery_aura = recovery_new
-		hud_set_pheromone()
+		if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
+			frenzy_aura = frenzy_new
+			warding_aura = warding_new
+			recovery_aura = recovery_new
+			hud_set_pheromone()
 
 		frenzy_new = 0
 		warding_new = 0
@@ -418,51 +430,6 @@ updatehealth()
 	..(to_flick, 0, icon) //We're spawning our own gibs, no need to do the human kind.
 	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
 	xgibs(get_turf(src))
-
-/mob/living/carbon/Xenomorph/death(gibbed)
-	var/msg = !is_robotic ? "lets out a waning guttural screech, green blood bubbling from its maw." : "begins to shudder, and the lights go out in its eyes as it lies still."
-	. = ..(gibbed,msg)
-	if(!.) return //If they're already dead, it will return.
-
-	if(is_zoomed)
-		zoom_out()
-
-	if(!gibbed)
-		if(hud_used && hud_used.healths)
-			hud_used.healths.icon_state = "health_dead"
-		if(hud_used && hud_used.alien_plasma_display)
-			hud_used.alien_plasma_display.icon_state = "power_display_empty"
-		update_icons()
-
-	if(z != ADMIN_Z_LEVEL) //so xeno players don't get death messages from admin tests
-		switch(caste)
-			if("Queen")
-				playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
-				if(living_xeno_queen == src)
-					xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
-					xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
-					slashing_allowed = 1
-					living_xeno_queen = null
-					//on the off chance there was somehow two queen alive
-					for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
-						if(!isnull(Q) && Q != src && Q.stat != DEAD)
-							living_xeno_queen = Q
-							break
-					if(ticker && ticker.mode)
-						ticker.mode.check_queen_status(queen_time)
-			else
-				if(caste == "Predalien") playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
-				else playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
-				var/area/A = get_area(src)
-				xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
-
-	for(var/atom/movable/A in stomach_contents)
-		stomach_contents -= A
-		A.acid_damage = 0 //Reset the acid damage
-		A.loc = loc
-
-	round_statistics.total_xeno_deaths++
-
 
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()

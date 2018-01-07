@@ -146,6 +146,9 @@ var/global/hive_orders = "" //What orders should the hive have
 /mob/living/carbon/Xenomorph/Dispose()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
+	if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
+		living_xeno_queen.observed_xeno = null
+		living_xeno_queen.reset_view()
 	. = ..()
 
 
