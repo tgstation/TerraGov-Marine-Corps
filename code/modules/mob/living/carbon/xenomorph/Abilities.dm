@@ -430,7 +430,7 @@
 		return
 	var/turf/T = get_turf(X)
 
-	if(!istype(T) || !T.is_weedable())
+	if(!istype(T) || !T.is_weedable() || T.density)
 		X << "<span class='warning'>You can't do that here.</span>"
 		return
 
@@ -621,13 +621,12 @@
 
 //Queen Abilities
 
-/datum/action/xeno_action/lay_egg
-	name = "Lay Egg (400)"
-	action_icon_state = "lay_egg"
-	plasma_cost = 400
+/datum/action/xeno_action/grow_ovipositor
+	name = "Grow Ovipositor (700)"
+	action_icon_state = "grow_ovipositor"
+	plasma_cost = 700
 
-
-/datum/action/xeno_action/lay_egg/action_activate()
+/datum/action/xeno_action/grow_ovipositor/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	if(!X.check_state())
 		return
@@ -636,21 +635,63 @@
 	if(!current_turf || !istype(current_turf))
 		return
 
+	if(X.ovipositor_cooldown > world.time)
+		X << "<span class='xenowarning'>You're still recovering from detaching your old ovipositor. Wait [round((X.ovipositor_cooldown-world.time)*0.1)] seconds</span>"
+		return
+
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
 	if(!alien_weeds)
-		src << "<span class='warning'>Your eggs wouldn't grow well enough here. Lay them on resin.</span>"
+		X << "<span class='xenowarning'>You need to be on resin to grow an ovipositor.</span>"
 		return
 
 	if(!X.check_alien_construction(current_turf))
 		return
 
-	if(X.check_plasma(plasma_cost))
-		X.use_plasma(plasma_cost)
-		X.visible_message("<span class='xenowarning'>\The [X] has laid an egg!</span>", \
-		"<span class='xenowarning'>You have laid an egg!</span>")
-		new /obj/effect/alien/egg(current_turf)
+	if(X.action_busy)
+		return
 
+	if(X.check_plasma(plasma_cost))
+		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
+		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
+		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_CLOCK) && X.check_plasma(plasma_cost))
+			return
+		if(!X.check_state()) return
+		if(!locate(/obj/effect/alien/weeds) in current_turf)
+			return
+
+		X.use_plasma(plasma_cost)
+		X.visible_message("<span class='xenowarning'>\The [X] has grown an ovipositor!</span>", \
+		"<span class='xenowarning'>You have grown an ovipositor!</span>")
+		X.mount_ovipositor()
+
+
+/datum/action/xeno_action/remove_eggsac
+	name = "Remove Eggsac"
+	action_icon_state = "grow_ovipositor"
+	plasma_cost = 0
+
+/datum/action/xeno_action/remove_eggsac/action_activate()
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state())
+		return
+
+	if(X.action_busy) return
+	var/answer = alert(X, "Are you sure you want to remove your ovipositor? (5min cooldown to grow a new one)", , "Yes", "No")
+	if(answer != "Yes")
+		return
+	if(!X.check_state())
+		return
+	if(!X.ovipositor)
+		return
+	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
+		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
+	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_CLOCK)) return
+	if(!X.check_state())
+		return
+	if(!X.ovipositor)
+		return
+	X.dismount_ovipositor()
 
 
 /datum/action/xeno_action/activable/screech
@@ -703,6 +744,48 @@
 		log_say("PsychicWhisper: [key_name(X)]->[M.key] : [msg]")
 		M << "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>"
 		X << "<span class='xenonotice'>You said: \"[msg]\" to [M]</span>"
+
+
+/datum/action/xeno_action/watch_xeno
+	name = "Watch Xeno"
+	action_icon_state = "watch_xeno"
+	plasma_cost = 0
+
+/datum/action/xeno_action/watch_xeno/action_activate()
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state())
+		return
+	var/list/possible_xenos = list()
+	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
+		if(T.z == X.z && T.caste != "Queen")
+			possible_xenos += T
+
+	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+	if(!selected_xeno || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
+		X.observed_xeno = null
+	else
+		X.observed_xeno = selected_xeno
+	X.reset_view()
+
+
+/datum/action/xeno_action/toggle_queen_zoom
+	name = "Toggle Queen Zoom"
+	action_icon_state = "toggle_queen_zoom"
+	plasma_cost = 0
+
+/datum/action/xeno_action/toggle_queen_zoom/action_activate()
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state())
+		return
+	if(X.is_zoomed)
+		X.zoom_out()
+	else
+		X.zoom_in(0,12)
+
+
+
+
+
 
 
 

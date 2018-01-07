@@ -166,7 +166,7 @@ proc/animation_destruction_long_fade(atom/A, speed = 4, x_n = 4, y_n = 4)
 
 
 /mob/living/proc/animation_attack_on(atom/A)
-	if(buckled) return //it would look silly.
+	if(buckled || anchored) return //it would look silly.
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
 	var/direction = get_dir(src, A)

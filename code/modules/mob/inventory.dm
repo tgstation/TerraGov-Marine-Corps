@@ -3,13 +3,8 @@
 
 //Returns the thing in our active hand
 /mob/proc/get_active_hand()
-	if(issilicon(src))
-		if(isrobot(src))
-			if(src:module_active)
-				return src:module_active
-	else
-		if(hand)	return l_hand
-		else		return r_hand
+	if(hand)	return l_hand
+	else		return r_hand
 
 //Returns the thing in our inactive hand
 /mob/proc/get_inactive_hand()

@@ -62,3 +62,13 @@
 //Larva attack, will default to attack_alien behaviour unless overriden
 /atom/proc/attack_larva(mob/living/carbon/Xenomorph/Larva/user)
 	return attack_alien(user)
+
+
+
+/mob/living/carbon/Xenomorph/Queen/DblClickOn(var/atom/A, var/params)
+	if(ovipositor)
+		if(isXeno(A))
+			observed_xeno = A
+			reset_view()
+			return
+	ClickOn(A,params)
