@@ -120,11 +120,30 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/W as obj, mob/living/carbon/user as mob)
+/obj/machinery/optable/attackby(obj/item/W, mob/living/user)
 	if (istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
-		if(iscarbon(G.grabbed_thing) && check_table(G.grabbed_thing))
-			take_victim(G.grabbed_thing,user)
+		if(victim)
+			user << "<span class='warning'>The table is already occupied!</span>"
+			return
+		var/mob/living/carbon/M
+		if(iscarbon(G.grabbed_thing))
+			M = G.grabbed_thing
+			if(M.buckled)
+				user << "<span class='warning'>Unbuckle first!</span>"
+				return
+		else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
+			if(!C.stasis_mob)
+				return
+			M = C.stasis_mob
+			C.open()
+			user.stop_pulling()
+			user.start_pulling(M)
+		else
+			return
+
+		take_victim(M,user)
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(src.victim)
