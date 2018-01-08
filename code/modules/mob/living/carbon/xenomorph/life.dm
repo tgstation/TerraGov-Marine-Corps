@@ -124,15 +124,14 @@
 
 		if(current_aura && !stat && storedplasma > 5)
 			if(caste == "Queen" && anchored) //stationary queen covers all xenos
-				var/ovi_aura_strength = aura_strength + 1
 				for(var/mob/living/carbon/Xenomorph/Z in living_mob_list)
 					if(Z.z == z) //same z level
-						if(current_aura == "frenzy" && ovi_aura_strength > Z.frenzy_new)
-							Z.frenzy_new = ovi_aura_strength
-						if(current_aura == "warding" && ovi_aura_strength > Z.warding_new)
-							Z.warding_new = ovi_aura_strength
-						if(current_aura == "recovery" && ovi_aura_strength > Z.recovery_new)
-							Z.recovery_new = ovi_aura_strength
+						if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+							Z.frenzy_new = aura_strength
+						if(current_aura == "warding" && aura_strength > Z.warding_new)
+							Z.warding_new = aura_strength
+						if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+							Z.recovery_new = aura_strength
 			else
 				var/pheromone_range = round(6 + aura_strength * 2)
 				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
