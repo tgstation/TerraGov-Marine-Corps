@@ -333,13 +333,13 @@
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	X << "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>"
+	X << "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas/smoke ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>"
 	button.overlays.Cut()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/smoke)
 		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
 	else
-		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
+		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas/smoke]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
 
 
