@@ -94,7 +94,7 @@
 				stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
 		if(mobility_aura)
-			stat(null, "You have been ordered by a MOVE order.")
+			stat(null, "You are affected by a MOVE order.")
 		if(protection_aura)
 			stat(null, "You are affected by a HOLD order.")
 		if(marskman_aura)
