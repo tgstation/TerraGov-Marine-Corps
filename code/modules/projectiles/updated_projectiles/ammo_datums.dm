@@ -1001,7 +1001,7 @@
 	name = "glob of gas"
 	icon_state = "boiler_gas"
 	ping = "ping_x"
-	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST|AMMO_SKIPS_BARRICADES
+	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
 
 	New()
 		..()
@@ -1054,7 +1054,7 @@
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
-	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR|AMMO_INCENDIARY|AMMO_SKIPS_BARRICADES
+	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR|AMMO_INCENDIARY
 	var/splash_damage
 
 	New()
