@@ -899,6 +899,7 @@
 #include "code\modules\clothing\under\jobs\engineering.dm"
 #include "code\modules\clothing\under\jobs\medsci.dm"
 #include "code\modules\clothing\under\jobs\security.dm"
+#include "code\modules\cm_aliens\Ovipositor.dm"
 #include "code\modules\cm_aliens\weeds.dm"
 #include "code\modules\cm_aliens\XenoStructures.dm"
 #include "code\modules\cm_marines\Donor_Items.dm"
@@ -1102,6 +1103,8 @@
 #include "code\modules\mob\living\carbon\xenomorph\Abilities.dm"
 #include "code\modules\mob\living\carbon\xenomorph\attack_alien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\damage_procs.dm"
+#include "code\modules\mob\living\carbon\xenomorph\death.dm"
+#include "code\modules\mob\living\carbon\xenomorph\egg_item.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Embryo.dm"
 #include "code\modules\mob\living\carbon\xenomorph\emote.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Evolution.dm"
@@ -1465,5 +1468,4 @@
 #include "maps\Z.02.Admin_Level.dmm"
 #include "maps\Z.03.USS_Almayer.dmm"
 #include "maps\Z.04.Low_Orbit.dmm"
-#include "maps\Z.05.Space.dmm"
 // END_INCLUDE
