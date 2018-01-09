@@ -19,6 +19,8 @@
 			if("Queen")
 				var/mob/living/carbon/Xenomorph/Queen/XQ = src
 				playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
+				if(XQ.observed_xeno)
+					XQ.set_queen_overwatch(XQ.observed_xeno, TRUE)
 				if(XQ.ovipositor)
 					XQ.dismount_ovipositor(TRUE)
 
@@ -36,8 +38,10 @@
 						ticker.mode.check_queen_status(queen_time)
 			else
 				if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
-					living_xeno_queen.observed_xeno = null
-					living_xeno_queen.observed_xeno.reset_view()
+					living_xeno_queen.set_queen_overwatch(src, TRUE)
+				if(queen_chosen_lead)
+					queen_chosen_lead = FALSE
+					hud_set_queen_overwatch()
 				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
 				else

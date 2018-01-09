@@ -61,15 +61,46 @@
 	if(.)
 		stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
 
+
+/mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F)
+	if(huggers_cur < huggers_max)
+		if(stat == CONSCIOUS && !F.sterile)
+			huggers_cur++
+			src << "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [huggers_max].</span>"
+			cdel(F)
+		else
+			src << "<span class='warning'>This [F.name] looks too unhealthy.</span>"
+	else
+		src << "<span class='warning'>You can't carry more facehuggers on you.</span>"
+
+
 /mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger(atom/T)
 	if(!T) return
 
 	if(!check_state())
 		return
-	//This shit didn't wanna go into the upgrade area...
 
-	if(huggers_cur <= 0)
-		src << "<span class='warning'>You don't have any facehuggers to throw!</span>"
+	//target a hugger on the ground to store it directly
+	if(istype(T, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/F = T
+		if(isturf(F.loc) && Adjacent(F))
+			store_hugger(F)
+			return
+
+	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	if(!F) //empty active hand
+		//if no hugger in active hand, we take one from our storage
+		if(huggers_cur <= 0)
+			src << "<span class='warning'>You don't have any facehuggers to use!</span>"
+			return
+		F = new()
+		huggers_cur--
+		put_in_active_hand(F)
+		src << "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers_cur] / [huggers_max].</span>"
+		return
+
+	if(!istype(F)) //something else in our hand
+		src << "<span class='warning'>You need a facehugger in your hand to throw one!</span>"
 		return
 
 	if(!threw_a_hugger)
@@ -77,10 +108,8 @@
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.update_button_icon()
-		var/obj/item/clothing/mask/facehugger/newthrow = new()
-		huggers_cur--
-		newthrow.loc = loc
-		newthrow.throw_at(T, 4, throwspeed)
+		drop_inv_item_on_ground(F)
+		F.throw_at(T, 4, throwspeed)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
 		spawn(hugger_delay)

@@ -75,28 +75,6 @@ steam.start() -- spawns the effect
 				spawn(20)
 					cdel(steam)
 
-/datum/effect_system/steam_spread/acid
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/particle_effect/steam/acid/A = new /obj/effect/particle_effect/steam/acid(src.location)
-				var/direction
-				if(src.cardinals)
-					direction = pick(cardinal)
-				else
-					direction = pick(alldirs)
-				for(i=0, i<pick(1,2,3), i++)
-					sleep(5)
-					step(A,direction)
-				spawn(20)
-					cdel(A)
-
-/obj/effect/particle_effect/steam/acid
-	name = "acid"
-	icon_state = "acidsplatter"
 
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)

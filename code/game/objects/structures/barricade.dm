@@ -245,7 +245,7 @@
 
 
 /obj/structure/barricade/proc/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S)
-	health -= 10
+	health -= 15
 	update_health()
 
 /obj/structure/barricade/verb/rotate()

@@ -238,6 +238,14 @@
 		"<span class='xenodanger'>You emerge in a greater form from the husk of your old body. For the hive!</span>")
 
 		round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+
+		if(queen_chosen_lead)
+			new_xeno.queen_chosen_lead = TRUE
+			new_xeno.hud_set_queen_overwatch()
+
+		if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
+			living_xeno_queen.set_queen_overwatch(src, TRUE)
+			living_xeno_queen.set_queen_overwatch(new_xeno)
 		cdel(src)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"

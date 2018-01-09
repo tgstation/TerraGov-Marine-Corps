@@ -268,7 +268,7 @@
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno_weak
 	time_to_live = 6
-	color = "#90dd00" //Mostly light green?
+	color = "#ffbf58" //Mustard orange?
 	spread_speed = 10
 
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)

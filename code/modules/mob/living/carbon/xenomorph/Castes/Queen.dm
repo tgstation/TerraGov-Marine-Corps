@@ -70,7 +70,8 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 /mob/living/carbon/Xenomorph/Queen/Dispose()
 	. = ..()
-	observed_xeno = null
+	if(observed_xeno)
+		set_queen_overwatch(observed_xeno, TRUE)
 	if(living_xeno_queen == src)
 		living_xeno_queen = null
 
@@ -84,17 +85,15 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 		if(observed_xeno)
 			if(observed_xeno.stat == DEAD || observed_xeno.z != z || observed_xeno.disposed)
-				observed_xeno = null
-				reset_view()
+				set_queen_overwatch(observed_xeno, TRUE)
 
 		if(ovipositor && !is_mob_incapacitated(TRUE))
 			egg_amount += 0.07 //one egg approximately every 30 seconds
-			if(egg_amount >= 1 && storedplasma > 200)
+			if(egg_amount >= 1)
 				if(isturf(loc))
 					var/turf/T = loc
 					if(T.contents.len <= 25) //so we don't end up with a million object on that turf.
 						egg_amount--
-						use_plasma(200)
 						new /obj/item/xeno_egg(loc)
 
 
@@ -137,8 +136,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(health <= 0)
 		src << "<span class='warning'>You can't do that while unconcious.</span>"
 		return 0
-	var/input = input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "") as message|null
-	input = html_encode(input)
+	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "")
 	if(!input)
 		return
 
@@ -309,6 +307,11 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		/datum/action/xeno_action/psychic_whisper,\
 		/datum/action/xeno_action/watch_xeno,\
 		/datum/action/xeno_action/toggle_queen_zoom,\
+		/datum/action/xeno_action/set_xeno_lead,\
+		/datum/action/xeno_action/queen_heal,\
+		/datum/action/xeno_action/queen_give_plasma,\
+		/datum/action/xeno_action/queen_order,\
+		/datum/action/xeno_action/deevolve, \
 		)
 
 	for(var/path in immobile_abilities)
@@ -325,8 +328,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	set waitfor = 0
 	if(!instant_dismount)
 		if(observed_xeno)
-			observed_xeno = null
-			reset_view()
+			set_queen_overwatch(observed_xeno, TRUE)
 		flick("ovipositor_dismount", src)
 		sleep(5)
 	else
@@ -339,8 +341,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		new /obj/ovipositor(loc)
 
 		if(observed_xeno)
-			observed_xeno = null
-			reset_view()
+			set_queen_overwatch(observed_xeno, TRUE)
 		zoom_out()
 
 		for(var/datum/action/A in actions)
@@ -432,10 +433,21 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
 			if(X.z == z && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
-					observed_xeno = null
+					set_queen_overwatch(X, TRUE)
 				else
-					observed_xeno = X
-				X.reset_view()
+					set_queen_overwatch(X)
 				break
 		return
 	..()
+
+
+
+//proc to modify which xeno, if any, the queen is observing.
+/mob/living/carbon/Xenomorph/Queen/proc/set_queen_overwatch(mob/living/carbon/Xenomorph/target, stop_overwatch)
+	if(stop_overwatch)
+		observed_xeno = null
+	else
+		observed_xeno = target
+	if(!target.disposed) //not cdel'd
+		target.hud_set_queen_overwatch()
+	reset_view()

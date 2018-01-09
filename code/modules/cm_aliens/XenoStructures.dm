@@ -190,6 +190,12 @@
 	health = 20
 	layer = RESIN_STRUCTURE_LAYER
 	var/hugger = FALSE
+	var/carrier_number //the nicknumber of the carrier that placed us.
+
+/obj/effect/alien/resin/trap/New(loc, mob/living/carbon/Xenomorph/Carrier/C)
+	if(C)
+		carrier_number = C.nicknumber
+	..()
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	if(isXeno(user))
@@ -226,6 +232,18 @@
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
 	if(hugger)
 		if(CanHug(AM) && !isYautja(AM))
+			var/mob/living/L = AM
+			L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
+							"<span class='danger'>You trip on [src]!</span>")
+			L.KnockDown(1)
+			if(carrier_number)
+				for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+					if(X.nicknumber == carrier_number)
+						if(!X.stat)
+							var/area/A = get_area(src)
+							if(A)
+								X << "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>"
+						break
 			drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
@@ -241,24 +259,14 @@
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent != "hurt")
 		var/list/allowed_castes = list("Queen","Drone","Hivelord","Carrier")
-		if(istype(M, /mob/living/carbon/Xenomorph/Carrier) && !hugger)
-			var/mob/living/carbon/Xenomorph/Carrier/C = M
-			if(C.huggers_cur > 0)
-				C.huggers_cur--
-				hugger = TRUE
-				icon_state = "trap1"
-				C << "<span class='xenonotice'>You place a facehugger in [src].</span>"
-			else
-				C << "<span class='warning'>You don't have any facehugger to place in [src].</span>"
-			return
-
-		else if(allowed_castes.Find(M.caste))
+		if(allowed_castes.Find(M.caste))
 			if(!hugger)
 				M << "<span class='warning'>[src] is empty.</span>"
 			else
 				hugger = FALSE
 				icon_state = "trap0"
-				new /obj/item/clothing/mask/facehugger(loc)
+				var/obj/item/clothing/mask/facehugger/F = new ()
+				M.put_in_active_hand(F)
 				M << "<span class='xenonotice'>You remove the facehugger from [src].</span>"
 		return
 	..()

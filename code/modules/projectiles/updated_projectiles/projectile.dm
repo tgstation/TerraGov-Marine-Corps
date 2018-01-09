@@ -278,8 +278,6 @@
 		return TRUE
 
 /obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
-	if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_BARRICADES)
-		return FALSE
 	if(flags_atom & ON_BORDER)
 		if(src == P.original)
 			return TRUE
@@ -295,8 +293,6 @@
 		return FALSE
 
 /obj/structure/table/get_projectile_hit_chance(obj/item/projectile/P)
-	if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_BARRICADES)
-		return FALSE
 	if(flags_atom & ON_BORDER) //flipped table
 		if(src == P.original)
 			return TRUE
@@ -315,8 +311,6 @@
 	if(!density)
 		return FALSE
 	if(P.distance_travelled <= 1)
-		return FALSE
-	if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_BARRICADES)
 		return FALSE
 	if(P.dir & dir)
 		return prob(10)
