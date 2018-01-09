@@ -296,7 +296,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper B18 defensive snow armor"))
 		..(loc,expected_type,new_name)
 
-
 /obj/item/clothing/suit/storage/marine/specialist/mob_can_equip(mob/M, slot, disable_warning = 0)
 	. = ..()
 	if(.)
@@ -335,6 +334,22 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 35, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
+/obj/item/clothing/suit/storage/marine/M3S
+	name = "\improper M3-S light armor"
+	desc = "A custom set of M3 armor designed for USCM Scouts."
+	icon_state = "scout_armor"
+	item_state = "scout_armor"
+	armor = list(melee = 75, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+
+	New()
+		select_gamemode_skin(type)
+		..()
 
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "\improper M3 pattern recon armor"

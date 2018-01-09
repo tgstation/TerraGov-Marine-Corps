@@ -14,6 +14,22 @@
 	overlay = global_hud.nvg
 
 
+/obj/item/clothing/glasses/night/M4RA
+	name = "\improper M4RA Battle sight"
+	desc = "A headset and night vision goggles system for the M4RA Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "m56_goggles"
+	item_state = "m56_goggles"
+	deactive_state = "m56_goggles_0"
+	vision_flags = SEE_TURFS
+	darkness_view = 12
+	toggleable = 1
+	actions_types = list(/datum/action/item_action/toggle)
+
+	New()
+		..()
+		overlay = null
+
 /obj/item/clothing/glasses/night/m42_night_goggles
 	name = "\improper M42 scout sight"
 	desc = "A headset and night vision goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
