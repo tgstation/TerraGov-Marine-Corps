@@ -208,14 +208,14 @@ WEAPONS
 /datum/supply_packs/gun/heavyweapons
 	contains = list(
 					/obj/item/weapon/gun/rifle/lmg,
-					/obj/item/weapon/gun/rifle/m41a/scoped,
+					/obj/item/weapon/gun/rifle/lmg,
 					/obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/marksman
+					/obj/item/ammo_magazine/rifle/lmg
 					)
-	name = "Heavy Weapons crate"
+	name = "LMG crate"
 	cost = 40
 	containertype = /obj/structure/closet/crate
-	containername = "\improper heavy weapons crate"
+	containername = "\improper LMG crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/merc
@@ -941,6 +941,21 @@ AMMO
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "M39 armor piercing ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_scout_regular
+	name = "M4RA Scout Ammo crate (Regular x6)"
+	contains = list(
+					/obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/ammo_magazine/rifle/marksman
+					)
+	cost = 20
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "regular scout ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sniper_regular
