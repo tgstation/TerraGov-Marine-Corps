@@ -1,7 +1,6 @@
 /obj/item/clothing
 	name = "clothing"
 	var/list/species_restricted = null //Only these species can wear this kit.
-	var/list/uniform_restricted = list() //Need to wear this uniform to equip this
 
 	/*
 		Sprites used when the clothing item is refit. This is done by setting icon_override.

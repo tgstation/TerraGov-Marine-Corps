@@ -99,48 +99,7 @@
 	starting_attachment_types = null
 
 
-//-------------------------------------------------------
-//M41A MARKSMAN VARIANT
 
-/obj/item/ammo_magazine/rifle/marksman
-	name = "\improper A19 high velocity magazine (10x24mm)"
-	desc = "A magazine of A19 high velocity rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
-	default_ammo = /datum/ammo/bullet/rifle/marksman
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
-
-/obj/item/weapon/gun/rifle/m41a/scoped
-	name = "\improper M4RA battle rifle"
-	desc = "The M4RA battle rifle is a designated rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and can take the 10x24mm marksman magazine in addition to regular MK2 magazines."
-	icon_state = "m41b"
-	item_state = "m4ra" //PLACEHOLDER
-	origin_tech = "combat=5;materials=4"
-	fire_sound = list('sound/weapons/gun_m4ra.ogg')
-	current_mag = /obj/item/ammo_magazine/rifle/marksman
-	force = 16
-	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/foregrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly)
-
-	New()
-		..()
-		accuracy += config.med_hit_accuracy_mult
-		recoil = config.min_recoil_value
-		fire_delay = config.high_fire_delay
-		var/obj/item/attachable/scope/S = new(src)
-		S.icon_state = null //Rifle already has a nice looking scope sprite.
-		S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
-		S.Attach(src)
-		var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.
-		Q.Attach(src)
-		var/obj/item/attachable/G = under //We'll need this in a sec.
-		G.Detach(src) //This will null the attachment slot.
-		cdel(G) //So without a temp variable, this wouldn't work.
-		update_attachables()
 
 //-------------------------------------------------------
 //M41A PMC VARIANT
