@@ -15,11 +15,10 @@
 #define AMMO_INCENDIARY			64
 #define AMMO_SKIPS_HUMANS		128
 #define AMMO_SKIPS_ALIENS 		256
-#define AMMO_SKIPS_BARRICADES	512
-#define AMMO_IS_SILENCED 		1024 //Unused right now.
-#define AMMO_IGNORE_ARMOR		2048
-#define AMMO_IGNORE_RESIST		4096
-#define AMMO_BALLISTIC			8192
+#define AMMO_IS_SILENCED 		512 //Unused right now.
+#define AMMO_IGNORE_ARMOR		1024
+#define AMMO_IGNORE_RESIST		2048
+#define AMMO_BALLISTIC			4096
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1

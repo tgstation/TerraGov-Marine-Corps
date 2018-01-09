@@ -1,20 +1,19 @@
 //Bitflag defines are in setup.dm. Referenced here.
 /*
-#define AMMO_REGULAR 			0
-#define AMMO_EXPLOSIVE 			1
-#define AMMO_XENO_ACID 			2
-#define AMMO_XENO_TOX			4
-#define AMMO_ENERGY 			8
-#define AMMO_ROCKET				16
-#define AMMO_SNIPER				32
-#define AMMO_INCENDIARY			64
-#define AMMO_SKIPS_HUMANS		128
-#define AMMO_SKIPS_ALIENS 		256
-#define AMMO_SKIPS_BARRICADES	512
-#define AMMO_IS_SILENCED 		1024
-#define AMMO_IGNORE_ARMOR		2048
-#define AMMO_IGNORE_RESIST		4096
-#define AMMO_BALLISTIC			8192
+#define AMMO_REGULAR 		0
+#define AMMO_EXPLOSIVE 		1
+#define AMMO_XENO_ACID 		2
+#define AMMO_XENO_TOX		4
+#define AMMO_ENERGY 		8
+#define AMMO_ROCKET			16
+#define AMMO_SNIPER			32
+#define AMMO_INCENDIARY		64
+#define AMMO_SKIPS_HUMANS	128
+#define AMMO_SKIPS_ALIENS 	256
+#define AMMO_IS_SILENCED 	512
+#define AMMO_IGNORE_ARMOR	1024
+#define AMMO_IGNORE_RESIST	2048
+#define AMMO_BALLISTIC		4096
 */
 
 /datum/ammo
@@ -999,14 +998,22 @@
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
-	icon_state = "boiler_gas"
+	icon_state = "boiler_gas2"
 	ping = "ping_x"
+	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
+	var/datum/effect_system/smoke_spread/smoke_system
 
 	New()
 		..()
+		set_xeno_smoke()
 		accuracy_var_high = config.max_proj_variance
 		max_range = config.long_shell_range
+
+	Dispose()
+		cdel(smoke_system)
+		smoke_system = null
+		. = ..()
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -1020,30 +1027,15 @@
 		else
 			drop_nade(T)
 
+
+
 	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))
-
-	proc/drop_nade(turf/T)
-		return
-
-
-/datum/ammo/xeno/boiler_gas/smoke
-	debilitate = list(19,21,0,0,11,12,0,0)
-	var/datum/effect_system/smoke_spread/smoke_system
-
-	New()
-		..()
-		set_xeno_smoke()
-
-	Dispose()
-		cdel(smoke_system)
-		smoke_system = null
-		. = ..()
 
 	proc/set_xeno_smoke()
 		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
 
-	drop_nade(turf/T)
+	proc/drop_nade(turf/T)
 		smoke_system.set_up(3, 0, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>")
@@ -1051,38 +1043,28 @@
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
+	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR|AMMO_INCENDIARY
-	var/splash_damage
 
 	New()
 		..()
 		damage = config.med_hit_damage
 		damage_var_high = config.max_proj_variance
 		damage_type = BURN
-		splash_damage = config.low_hit_damage
 
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
 
+	set_xeno_smoke()
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
+
+
 	drop_nade(turf/T)
-		for(var/mob/living/M in range(2,T))
-			M.apply_damage(splash_damage, damage_type, null, 0, 0, 0, null)
-			M.KnockDown(1)
-			M.flash_weak_pain()
-			animation_flash_color(M)
-		for(var/obj/structure/barricade/B in range(2,T))
-			B.health -= 25
-			B.update_health()
-		//for(var/obj/structure/table/TA in range(2))
-	//		TA.health -= 25
-		//	TA.update_health()
-		var/datum/effect_system/steam_spread/acid/A = new /datum/effect_system/steam_spread/acid()
-		A.set_up(10, 0, T)
-		//steam.attach(T)
-		A.start()
+		smoke_system.set_up(2, 0, T)
+		smoke_system.start()
 		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
 
 
