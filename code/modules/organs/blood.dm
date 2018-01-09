@@ -156,12 +156,15 @@
 		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/proc/drip(var/amt as num)
+/mob/living/carbon/human/proc/drip(var/amt)
 
 	if(species && species.flags & NO_BLOOD) //TODO: Make drips come from the reagents instead.
 		return
 
 	if(!amt)
+		return
+
+	if(in_stasis) // stasis now stops bloodloss
 		return
 
 	if(reagents.get_reagent_amount("quickclot") >= 0.05) //Quickclot stops bleeding, magic!
