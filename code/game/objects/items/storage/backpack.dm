@@ -422,7 +422,7 @@
 
 	for (var/mob/O in oviewers(M))
 		O.show_message("[M] vanishes into thin air!", 1)
-	playsound(M.loc,'sound/effects/cloakon.ogg', 15, 1)
+	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
 	M.alpha = 10
 
@@ -447,7 +447,7 @@
 
 	for (var/mob/O in oviewers(user))
 		O.show_message("[user.name] shimmers into existence!",1)
-	playsound(user.loc,'sound/effects/cloakoff.ogg', 15, 1)
+	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
 	var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
