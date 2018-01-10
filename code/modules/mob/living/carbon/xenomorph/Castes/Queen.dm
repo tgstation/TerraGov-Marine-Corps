@@ -447,7 +447,10 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(stop_overwatch)
 		observed_xeno = null
 	else
+		var/mob/living/carbon/Xenomorph/old_xeno = observed_xeno
 		observed_xeno = target
+		if(old_xeno)
+			old_xeno.hud_set_queen_overwatch()
 	if(!target.disposed) //not cdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()

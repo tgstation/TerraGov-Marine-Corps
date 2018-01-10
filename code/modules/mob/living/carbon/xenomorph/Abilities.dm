@@ -1021,10 +1021,7 @@
 			new_xeno.hud_set_queen_overwatch()
 
 		if(living_xeno_queen && living_xeno_queen.observed_xeno == T)
-			living_xeno_queen.set_queen_overwatch(T, TRUE)
 			living_xeno_queen.set_queen_overwatch(new_xeno)
-
-		new_xeno.upgrade_xeno(TRUE, T.upgrade) //a young Crusher de-evolves into a MATURE Hunter
 
 		log_admin("[key_name(src)] has deevolved [T].")
 		message_admins("[key_name_admin(X)] has deevolved [T].", 1)

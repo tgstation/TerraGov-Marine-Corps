@@ -68,8 +68,6 @@
 /mob/living/carbon/Xenomorph/Queen/DblClickOn(var/atom/A, var/params)
 	if(ovipositor)
 		if(isXeno(A) && A != src)
-			if(observed_xeno)
-				set_queen_overwatch(observed_xeno, TRUE)
 			set_queen_overwatch(A)
 			return
 	ClickOn(A,params)
