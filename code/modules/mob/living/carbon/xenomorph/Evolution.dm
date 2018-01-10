@@ -244,7 +244,6 @@
 			new_xeno.hud_set_queen_overwatch()
 
 		if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
-			living_xeno_queen.set_queen_overwatch(src, TRUE)
 			living_xeno_queen.set_queen_overwatch(new_xeno)
 		cdel(src)
 	else
