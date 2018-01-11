@@ -357,11 +357,14 @@
 	is_zoomed = 0
 	zoom_turf = null
 
-/mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
+/mob/living/carbon/proc/check_alien_construction(var/turf/current_turf)
 	var/has_obstacle
 	for(var/obj/O in current_turf)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
-			src << "<span class='warning'>There is a little one here already. Best move it.</span>"
+			if(isXeno(src))
+				src << "<span class='warning'>There is a little one here already. Best move it.</span>"
+			else
+				src << "<span class='warning'>There is some weird thing in the way.</span>" // human planting
 			return
 		if(istype(O, /obj/effect/alien/egg))
 			src << "<span class='warning'>There's already an egg.</span>"
