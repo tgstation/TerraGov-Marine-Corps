@@ -33,18 +33,24 @@
 		plant_egg_in_containment(user, T)
 
 /obj/item/xeno_egg/proc/plant_egg_in_containment(mob/living/carbon/human/user, turf/T)
-	if(!user.check_alien_construction(T))
-		return
 	if(!istype(T, /turf/simulated/floor/almayer/research/containment))
 		user << "<span class='warning'>Best not to plant this thing outside of a containment cell.</span>"
 		return
+	for (var/obj/O in T)
+		if (O == /obj/machinery/light/small)
+			continue
+		else
+			user << "<span class='warning'>The floor needs to be clear to plant this!</span>"
+			return
 	user.visible_message("<span class='notice'>[user] starts planting [src].</span>", \
 					"<span class='notice'>You start planting [src].</span>")
-	var/plant_time = 50 // seems reasonable
-	if(!do_after(user, plant_time, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 		return
-	if(!user.check_alien_construction(T))
-		return
+	for (var/obj/O in T)
+		if (O == /obj/machinery/light/small)
+			continue
+		else
+			return
 	new /obj/effect/alien/egg(T)
 	playsound(T, 'sound/effects/splat.ogg', 15, 1)
 	cdel(src)
