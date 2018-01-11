@@ -37,9 +37,7 @@
 		user << "<span class='warning'>Best not to plant this thing outside of a containment cell.</span>"
 		return
 	for (var/obj/O in T)
-		if (O == /obj/machinery/light/small)
-			continue
-		else
+		if (!istype(O,/obj/machinery/light/small))
 			user << "<span class='warning'>The floor needs to be clear to plant this!</span>"
 			return
 	user.visible_message("<span class='notice'>[user] starts planting [src].</span>", \
@@ -47,9 +45,7 @@
 	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
 		return
 	for (var/obj/O in T)
-		if (O == /obj/machinery/light/small)
-			continue
-		else
+		if (!istype(O,/obj/machinery/light/small))
 			return
 	new /obj/effect/alien/egg(T)
 	playsound(T, 'sound/effects/splat.ogg', 15, 1)
