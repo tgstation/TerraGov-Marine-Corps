@@ -998,7 +998,7 @@
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
-	icon_state = "boiler_gas"
+	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
@@ -1043,6 +1043,7 @@
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
+	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)

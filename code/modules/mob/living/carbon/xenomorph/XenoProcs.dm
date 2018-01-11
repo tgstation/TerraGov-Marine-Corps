@@ -330,8 +330,6 @@
 		return
 	if(!client)
 		return
-	if(hud_used)
-		hud_used.show_hud(HUD_STYLE_REDUCED)
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
 	client.view = viewsize
@@ -353,8 +351,6 @@
 /mob/living/carbon/Xenomorph/proc/zoom_out()
 	if(!client)
 		return
-	if(hud_used)
-		hud_used.show_hud(HUD_STYLE_STANDARD)
 	client.view = world.view
 	client.pixel_x = 0
 	client.pixel_y = 0
@@ -362,23 +358,23 @@
 	zoom_turf = null
 
 /mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
-	var/obj/structure/mineral_door/alien_door = locate() in current_turf
-	var/obj/effect/alien/resin/alien_construct = locate() in current_turf
-	var/obj/structure/bed/chair = locate() in current_turf
+	var/has_obstacle
+	for(var/obj/O in current_turf)
+		if(istype(O, /obj/item/clothing/mask/facehugger))
+			src << "<span class='warning'>There is a little one here already. Best move it.</span>"
+			return
+		if(istype(O, /obj/effect/alien/egg))
+			src << "<span class='warning'>There's already an egg.</span>"
+			return
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed))
+			has_obstacle = TRUE
+			break
+		if(O.density && !(O.flags_atom & ON_BORDER))
+			has_obstacle = TRUE
+			break
 
-	if(alien_door || alien_construct || chair || istype(current_turf, /turf/simulated/wall/resin))
+	if(current_turf.density || has_obstacle)
 		src << "<span class='warning'>There's something built here already.</span>"
-		return
-
-	var/obj/effect/alien/egg/alien_egg = locate() in current_turf
-
-	if(alien_egg)
-		src << "<span class='warning'>There's already an egg.</span>"
-		return
-
-	var/obj/item/clothing/mask/facehugger/alien_hugger = locate() in current_turf
-	if(alien_hugger)
-		src << "<span class='warning'>There is a little one here already. Best move it.</span>"
 		return
 
 	return 1

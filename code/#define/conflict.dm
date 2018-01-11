@@ -5,20 +5,20 @@
 #define GRAB_KILL		3
 
 //Ammo defines for gun/projectile related things.
-#define AMMO_REGULAR 		0 //Just as a reminder.
-#define AMMO_EXPLOSIVE 		1
-#define AMMO_XENO_ACID 		2
-#define AMMO_XENO_TOX		4
-#define AMMO_ENERGY 		8
-#define AMMO_ROCKET			16
-#define AMMO_SNIPER			32
-#define AMMO_INCENDIARY		64
-#define AMMO_SKIPS_HUMANS	128
-#define AMMO_SKIPS_ALIENS 	256
-#define AMMO_IS_SILENCED 	512 //Unused right now.
-#define AMMO_IGNORE_ARMOR	1024
-#define AMMO_IGNORE_RESIST	2048
-#define AMMO_BALLISTIC		4096
+#define AMMO_REGULAR 			0 //Just as a reminder.
+#define AMMO_EXPLOSIVE 			1
+#define AMMO_XENO_ACID 			2
+#define AMMO_XENO_TOX			4
+#define AMMO_ENERGY 			8
+#define AMMO_ROCKET				16
+#define AMMO_SNIPER				32
+#define AMMO_INCENDIARY			64
+#define AMMO_SKIPS_HUMANS		128
+#define AMMO_SKIPS_ALIENS 		256
+#define AMMO_IS_SILENCED 		512 //Unused right now.
+#define AMMO_IGNORE_ARMOR		1024
+#define AMMO_IGNORE_RESIST		2048
+#define AMMO_BALLISTIC			4096
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1

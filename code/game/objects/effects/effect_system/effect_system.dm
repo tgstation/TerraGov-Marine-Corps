@@ -75,6 +75,7 @@ steam.start() -- spawns the effect
 				spawn(20)
 					cdel(steam)
 
+
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)
 // The attach(atom/atom) proc is optional, and can be called to attach the effect

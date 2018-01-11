@@ -37,13 +37,17 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	xeno_explosion_resistance = 1 //some resistance against explosion stuns.
 	var/breathing_counter = 0
+	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor
+	var/ovipositor_cooldown = 0
+	var/mob/living/carbon/Xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
+	var/egg_amount = 0 //amount of eggs inside the queen
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/grow_ovipositor,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/emit_pheromones,
@@ -66,19 +70,35 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 /mob/living/carbon/Xenomorph/Queen/Dispose()
 	. = ..()
+	if(observed_xeno)
+		set_queen_overwatch(observed_xeno, TRUE)
 	if(living_xeno_queen == src)
 		living_xeno_queen = null
 
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
 
-	if(stat != DEAD && ++breathing_counter >= rand(12, 17)) //Increase the breathing variable each tick. Play it at random intervals.
-		playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 15, 1, 4)
-		breathing_counter = 0 //Reset the counter
+	if(stat != DEAD)
+		if(++breathing_counter >= rand(12, 17)) //Increase the breathing variable each tick. Play it at random intervals.
+			playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 15, 1, 4)
+			breathing_counter = 0 //Reset the counter
+
+		if(observed_xeno)
+			if(observed_xeno.stat == DEAD || observed_xeno.z != z || observed_xeno.disposed)
+				set_queen_overwatch(observed_xeno, TRUE)
+
+		if(ovipositor && !is_mob_incapacitated(TRUE))
+			egg_amount += 0.07 //one egg approximately every 30 seconds
+			if(egg_amount >= 1)
+				if(isturf(loc))
+					var/turf/T = loc
+					if(T.contents.len <= 25) //so we don't end up with a million object on that turf.
+						egg_amount--
+						new /obj/item/xeno_egg(loc)
+
 
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //Prevents resetting queen death timer.
-
 
 
 
@@ -116,8 +136,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(health <= 0)
 		src << "<span class='warning'>You can't do that while unconcious.</span>"
 		return 0
-	var/input = input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "") as message|null
-	input = html_encode(input)
+	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "")
 	if(!input)
 		return
 
@@ -270,3 +289,168 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [victim.name] ([victim.ckey])</font>")
 		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>was gibbed by [name] ([ckey])</font>")
 		victim.gib() //Splut
+
+
+
+/mob/living/carbon/Xenomorph/Queen/proc/mount_ovipositor()
+	if(ovipositor) return //sanity check
+	ovipositor = TRUE
+
+	for(var/datum/action/A in actions)
+		cdel(A)
+
+	var/list/immobile_abilities = list(\
+		/datum/action/xeno_action/regurgitate,\
+		/datum/action/xeno_action/remove_eggsac,\
+		/datum/action/xeno_action/activable/screech,\
+		/datum/action/xeno_action/emit_pheromones,\
+		/datum/action/xeno_action/psychic_whisper,\
+		/datum/action/xeno_action/watch_xeno,\
+		/datum/action/xeno_action/toggle_queen_zoom,\
+		/datum/action/xeno_action/set_xeno_lead,\
+		/datum/action/xeno_action/queen_heal,\
+		/datum/action/xeno_action/queen_give_plasma,\
+		/datum/action/xeno_action/queen_order,\
+		/datum/action/xeno_action/deevolve, \
+		)
+
+	for(var/path in immobile_abilities)
+		var/datum/action/xeno_action/A = new path()
+		A.give_action(src)
+
+	anchored = TRUE
+	resting = FALSE
+	update_canmove()
+	update_icons()
+
+
+/mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
+	set waitfor = 0
+	if(!instant_dismount)
+		if(observed_xeno)
+			set_queen_overwatch(observed_xeno, TRUE)
+		flick("ovipositor_dismount", src)
+		sleep(5)
+	else
+		flick("ovipositor_dismount_destroyed", src)
+		sleep(5)
+
+	if(ovipositor)
+		ovipositor = FALSE
+		update_icons()
+		new /obj/ovipositor(loc)
+
+		if(observed_xeno)
+			set_queen_overwatch(observed_xeno, TRUE)
+		zoom_out()
+
+		for(var/datum/action/A in actions)
+			cdel(A)
+
+		var/list/mobile_abilities = list(
+			/datum/action/xeno_action/xeno_resting,
+			/datum/action/xeno_action/regurgitate,
+			/datum/action/xeno_action/plant_weeds,
+			/datum/action/xeno_action/choose_resin,
+			/datum/action/xeno_action/activable/secrete_resin,
+			/datum/action/xeno_action/grow_ovipositor,
+			/datum/action/xeno_action/activable/screech,
+			/datum/action/xeno_action/activable/corrosive_acid,
+			/datum/action/xeno_action/emit_pheromones,
+			/datum/action/xeno_action/activable/gut,
+			/datum/action/xeno_action/psychic_whisper,
+			)
+
+		for(var/path in mobile_abilities)
+			var/datum/action/xeno_action/A = new path()
+			A.give_action(src)
+
+
+		egg_amount = 0
+		ovipositor_cooldown = world.time + 3000 //5 minutes
+		anchored = FALSE
+		update_canmove()
+
+
+
+/mob/living/carbon/Xenomorph/Queen/update_canmove()
+	. = ..()
+	if(ovipositor)
+		lying = FALSE
+		density = TRUE
+		canmove = FALSE
+		return canmove
+
+
+/mob/living/carbon/Xenomorph/Queen/reset_view(atom/A)
+	if (client)
+		if(ovipositor && observed_xeno && !stat)
+			client.perspective = EYE_PERSPECTIVE
+			client.eye = observed_xeno
+		else
+			if (istype(A, /atom/movable))
+				client.perspective = EYE_PERSPECTIVE
+				client.eye = A
+			else
+				if (isturf(loc))
+					client.eye = client.mob
+					client.perspective = MOB_PERSPECTIVE
+				else
+					client.perspective = EYE_PERSPECTIVE
+					client.eye = loc
+
+
+
+/mob/living/carbon/Xenomorph/Queen/update_icons()
+	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
+	icon = initial(icon)
+	if(stat == DEAD)
+		icon_state = "Queen Dead"
+	else if(ovipositor)
+		icon = 'icons/Xeno/Ovipositor.dmi'
+		icon_state = "Queen Ovipositor"
+	else if(lying)
+		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+			icon_state = "Queen Sleeping"
+		else
+			icon_state = "Queen Knocked Down"
+	else
+		if(m_intent == "run")
+			icon_state = "Queen Running"
+		else
+			icon_state = "Queen Walking"
+
+	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+
+
+
+
+/mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
+	if (href_list["watch_xeno_number"])
+		if(!check_state())
+			return
+		var/xeno_num = text2num(href_list["watch_xeno_number"])
+		for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+			if(X.z == z && X.nicknumber == xeno_num)
+				if(observed_xeno == X)
+					set_queen_overwatch(X, TRUE)
+				else
+					set_queen_overwatch(X)
+				break
+		return
+	..()
+
+
+
+//proc to modify which xeno, if any, the queen is observing.
+/mob/living/carbon/Xenomorph/Queen/proc/set_queen_overwatch(mob/living/carbon/Xenomorph/target, stop_overwatch)
+	if(stop_overwatch)
+		observed_xeno = null
+	else
+		var/mob/living/carbon/Xenomorph/old_xeno = observed_xeno
+		observed_xeno = target
+		if(old_xeno)
+			old_xeno.hud_set_queen_overwatch()
+	if(!target.disposed) //not cdel'd
+		target.hud_set_queen_overwatch()
+	reset_view()

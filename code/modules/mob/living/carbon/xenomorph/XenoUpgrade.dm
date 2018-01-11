@@ -696,6 +696,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 
 	generate_name() //Give them a new name now
 
+	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
+
 
 //Tiered spawns.
 /mob/living/carbon/Xenomorph/Runner/mature/New()

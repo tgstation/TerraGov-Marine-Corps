@@ -472,7 +472,18 @@
 */
 		var/cardcolor = holo_card_color
 		if(!cardcolor) cardcolor = "none"
-		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=\ref[src];medholocard=1'>\[[cardcolor]\]</a>\n"
+		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=\ref[src];medholocard=1'>\[[cardcolor]\]</a> - "
+
+		// scan reports
+		var/datum/data/record/N = null
+		for(var/datum/data/record/R in data_core.medical)
+			if (R.fields["name"] == real_name)
+				N = R
+		if(!isnull(N))
+			if(!(N.fields["last_scan_time"]))
+				msg += "<span class = 'deptradio'>No scan report on record</span>\n"
+			else
+				msg += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
 
 
 	if(hasHUD(user,"squadleader"))

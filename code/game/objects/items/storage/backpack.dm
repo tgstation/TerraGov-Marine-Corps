@@ -39,6 +39,28 @@
 		playsound(src.loc, src.use_sound, 15, 1, 6)
 	..()
 
+/obj/item/storage/backpack/mob_can_equip(M as mob, slot)
+	if (!..())
+		return 0
+
+	if (!uniform_restricted.len)
+		return 1
+
+	if (!ishuman(M))
+		return 0
+
+	var/mob/living/carbon/human/H = M
+	var/list/equipment = list(H.wear_suit, H.w_uniform, H.shoes, H.belt, H.gloves, H.glasses, H.head, H.wear_ear, H.wear_id, H.r_store, H.l_store, H.s_store)
+
+	for (var/type in uniform_restricted)
+		if (!(locate(type) in equipment))
+			H << "<span class='warning'>You must be wearing [initial(type:name)] to equip [name]!"
+			equipment = null
+			return 0
+
+	equipment = null
+	return 1
+
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == WEAR_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
@@ -355,6 +377,109 @@
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
 	worn_accessible = TRUE
+
+#define SCOUT_CLOAK_COOLDOWN 100
+#define SCOUT_CLOAK_TIMER 50
+// Scout Cloak
+/obj/item/storage/backpack/marine/satchel/scout_cloak
+	name = "\improper M68 Thermal Cloak"
+	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard USCM ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
+	icon_state = "scout_cloak"
+	item_state = "scout_cloak"
+	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S, /obj/item/clothing/head/helmet/marine/scout) //Need to wear Scout armor and helmet to equip this.
+	var/camo_active = 0
+	var/camo_active_timer = 0
+	var/camo_cooldown_timer = 0
+	var/camo_ready = 1
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/verb/camouflage()
+	set name = "Toggle M68 Thermal Camouflage"
+	set desc = "Activate your cloak's camouflage."
+	set category = "Scout"
+
+	if (!usr || usr.stat)
+		return
+
+	var/mob/living/carbon/human/M = usr
+	if (!istype(M))
+		return
+
+	if (M.back != src)
+		M << "<span class='warning'>You must be wearing the cloak to activate it!"
+		return
+
+	if (camo_active)
+		camo_off(usr)
+		return
+
+	if (!camo_ready)
+		M << "<span class='warning'>Your thermal dampeners are still recharging!"
+		return
+
+	camo_ready = 0
+	camo_active = 1
+	M << "<span class='notice'>You activate your cloak's camouflage.</span>"
+
+	for (var/mob/O in oviewers(M))
+		O.show_message("[M] vanishes into thin air!", 1)
+	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
+
+	M.alpha = 10
+
+	var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+	SA.remove_from_hud(M)
+	var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+	XI.remove_from_hud(M)
+
+	spawn(1)
+		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
+
+	camo_active_timer = world.timeofday + SCOUT_CLOAK_TIMER
+	process_active_camo(usr)
+	return 1
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(var/mob/user)
+	if (!user)
+		return 0
+
+	user << "<span class='warning'>Your cloak's camouflage has deactivated!</span>"
+	camo_active = 0
+
+	for (var/mob/O in oviewers(user))
+		O.show_message("[user.name] shimmers into existence!",1)
+	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
+	user.alpha = initial(user.alpha)
+
+	var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+	SA.add_to_hud(user)
+	var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+	XI.add_to_hud(user)
+
+	spawn(1)
+		anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
+
+	camo_cooldown_timer = world.timeofday + SCOUT_CLOAK_COOLDOWN
+	process_camo_cooldown(user)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(var/mob/user)
+	set background = 1
+
+	spawn while (!camo_ready && !camo_active)
+		if (world.timeofday > camo_cooldown_timer)
+			user << "<span class='notice'>Your cloak's thermal dampeners have recharged!"
+			camo_ready = 1
+
+		sleep(10)	// Process every second.
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_active_camo(var/mob/user)
+	set background = 1
+
+	spawn while (camo_active)
+		if (world.timeofday > camo_active_timer)
+			camo_active = 0
+			camo_off(user)
+
+		sleep(10)	// Process every second.
 
 
 

@@ -69,24 +69,38 @@
 	src.icon_state = "body_scanner_0"
 	return
 
-/obj/machinery/bodyscanner/attackby(obj/item/grab/G as obj, user as mob)
-	if (!istype(G, /obj/item/grab) || !ismob(G.grabbed_thing))
-		return
-	var/mob/M = G.grabbed_thing
-	if (src.occupant)
-		user << "\blue <B>The scanner is already occupied!</B>"
+/obj/machinery/bodyscanner/attackby(obj/item/I, mob/living/user)
+	var/mob/M
+	if (istype(I, /obj/item/grab))
+		if (occupant)
+			user << "<span class='warning'>The scanner is already occupied!</span>"
+			return
+		var/obj/item/grab/G = I
+		if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
+			if(!C.stasis_mob)
+				user << "<span class='warning'>The stasis bag is empty!</span>"
+				return
+			M = C.stasis_mob
+			C.open()
+			user.start_pulling(M)
+		else if(ismob(G.grabbed_thing))
+			M = G.grabbed_thing
+		else
+			return
+	else
 		return
 	if (M.abiotic())
-		user << "\blue <B>Subject cannot have abiotic items on.</B>"
+		user << "<span class='warning'>Subject cannot have abiotic items on.</span>"
 		return
 	M.forceMove(src)
-	src.occupant = M
+	occupant = M
 	update_use_power(2)
-	src.icon_state = "body_scanner_1"
+	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.loc = loc
 		//Foreach goto(154)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	//G = null
 
 
@@ -196,26 +210,36 @@
 /obj/machinery/body_scanconsole/attack_ai(user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/body_scanconsole/attack_hand(user as mob)
+/obj/machinery/body_scanconsole/attack_hand(var/mob/living/user)
 	if(..())
 		return
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
-		user << "\red This console is not connected to a functioning body scanner."
+		user << "<span class='warning'>This console is not connected to a functioning body scanner.</span>"
 		return
 	if(!ishuman(connected.occupant))
-		user << "\red This device can only scan compatible lifeforms."
+		user << "<span class='warning'>This device can only scan compatible lifeforms.</span>"
 		return
 
 	var/dat
-	if (src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing
-		src.delete = src.delete
-	else if (!src.delete && src.temphtml) //Window in buffer - its a menu, dont add clear message
-		dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Main Menu</A>", src.temphtml, src)
+	if (delete && temphtml) //Window in buffer but its just simple message, so nothing
+		delete = delete
+	else if (!delete && temphtml) //Window in buffer - its a menu, dont add clear message
+		dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Main Menu</A>", temphtml, src)
 	else
-		if (src.connected) //Is something connected?
-			dat = format_occupant_data(src.connected.get_occupant_data())
+		if (connected) //Is something connected?
+			var/mob/living/carbon/human/H = connected.occupant
+			var/datum/data/record/N = null
+			for(var/datum/data/record/R in data_core.medical)
+				if (R.fields["name"] == H.real_name)
+					N = R
+			if(isnull(N))
+				N = create_medical_record(H)
+			var/list/od = connected.get_occupant_data()
+			dat = format_occupant_data(od)
+			N.fields["last_scan_time"] = od["stationtime"]
+			N.fields["last_scan_result"] = dat
 			dat += "<HR><A href='?src=\ref[src];print=1'>Print</A><BR>"
 		else
 			dat = "<font color='red'> Error: No Body Scanner connected.</font>"

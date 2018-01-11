@@ -75,17 +75,6 @@
 
 	switch(user.caste)
 		if("Queen","Drone","Hivelord","Carrier")
-			if(isturf(loc) && isXenoCarrier(user)) //Deal with carriers grabbing huggies on the ground
-				var/mob/living/carbon/Xenomorph/Carrier/C = user
-				if(C.huggers_cur < C.huggers_max)
-					if(stat == CONSCIOUS && !sterile)
-						C.huggers_cur++
-						user.visible_message("<span class='warning'>\The [user] scoops up the facehugger.</span>", \
-						"<span class='notice'>You scoop up the facehugger and carry it for safekeeping. Now sheltering: [C.huggers_cur] / [C.huggers_max].</span>")
-						cdel(src)
-					else
-						user << "<span class='warning'>This [src] looks too unhealthy.</span>"
-					return
 			attack_hand(user)//Not a carrier, or already full? Just pick it up.
 
 /obj/item/clothing/mask/facehugger/attack(mob/M, mob/user)
@@ -95,6 +84,11 @@
 	else
 		user << "<span class='warning'>The facehugger refuses to attach.</span>"
 		..()
+
+/obj/item/clothing/mask/facehugger/attack_self(mob/user)
+	if(isXenoCarrier(user))
+		var/mob/living/carbon/Xenomorph/Carrier/C = user
+		C.store_hugger(src)
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	..()
@@ -336,6 +330,7 @@
 				visible_message("<span class='xenowarning'>[src] crawls back into [E]!</span>")
 				E.status = GROWN
 				E.icon_state = "Egg"
+				E.deploy_egg_triggers()
 				cdel(src)
 				return
 			var/obj/effect/alien/resin/trap/T = locate() in loc

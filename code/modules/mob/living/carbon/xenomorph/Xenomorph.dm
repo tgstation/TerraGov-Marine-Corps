@@ -53,7 +53,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_in_dark = 8
 	see_infrared = 1
 	see_invisible = SEE_INVISIBLE_MINIMUM
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
 
 
@@ -146,6 +146,8 @@ var/global/hive_orders = "" //What orders should the hive have
 /mob/living/carbon/Xenomorph/Dispose()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
+	if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
+		living_xeno_queen.set_queen_overwatch(src, TRUE)
 	. = ..()
 
 

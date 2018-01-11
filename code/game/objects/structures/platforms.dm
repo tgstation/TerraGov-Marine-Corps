@@ -10,16 +10,26 @@
 	anchored = TRUE
 	density = 1
 	throwpass = TRUE //You can throw objects over this, despite its density.
-	layer = 3
+	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	breakable = FALSE
 	flags_atom = ON_BORDER
 	unacidable = TRUE
 
 /obj/structure/platform/New()
-	if (dir == 2)
-		layer = 5
-	.. ()
+	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
+	switch(dir)
+		if(SOUTH)
+			layer = ABOVE_MOB_LAYER
+			I.pixel_y = -16
+		if(NORTH)
+			I.pixel_y = 16
+		if(EAST)
+			I.pixel_x = 16
+		if(WEST)
+			I.pixel_x = -16
+	overlays += I
+	..()
 
 /obj/structure/platform/CheckExit(atom/movable/O, turf/target)
 	if(O && O.throwing)
@@ -59,12 +69,13 @@ obj/structure/platform_decoration
 	unacidable = TRUE
 
 /obj/structure/platform_decoration/New()
-	if (dir == 1)
-		layer = 5.5
-	else if (dir == 2)
-		layer = 5.5
-	else if (dir == 10)
-		layer = 5.5
-	else if (dir == 6)
-		layer = 5.5
+	switch(dir)
+		if (NORTH)
+			layer = ABOVE_MOB_LAYER
+		if (SOUTH)
+			layer = ABOVE_MOB_LAYER
+		if (SOUTHEAST)
+			layer = ABOVE_MOB_LAYER
+		if (SOUTHWEST)
+			layer = ABOVE_MOB_LAYER
 	.. ()

@@ -142,6 +142,16 @@
 		if(CB)
 			used = CB.used
 
+	attackby(obj/item/I, mob/living/user)
+		if(!istype(I, /obj/item/device/healthanalyzer))
+			return
+		var/obj/item/device/healthanalyzer/J = I
+		if(!stasis_mob)
+			user << "<span class='warning'>The stasis bag is empty!</span>"
+			return
+		J.attack(stasis_mob, user)
+		return
+
 	Dispose()
 		var/mob/living/L = locate() in contents
 		if(L)

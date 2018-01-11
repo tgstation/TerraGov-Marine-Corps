@@ -69,7 +69,7 @@
 
 			if(!heart)
 				blood_volume = 0
-			if(reagents.get_reagent_amount("peridaxon") >= 0.05)
+			else if(reagents.get_reagent_amount("peridaxon") >= 0.05)
 				blood_volume *= 1
 			else if(heart.damage > 1 && heart.damage < heart.min_bruised_damage)
 				blood_volume *= 0.8
@@ -156,12 +156,15 @@
 		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/proc/drip(var/amt as num)
+/mob/living/carbon/human/proc/drip(var/amt)
 
 	if(species && species.flags & NO_BLOOD) //TODO: Make drips come from the reagents instead.
 		return
 
 	if(!amt)
+		return
+
+	if(in_stasis) // stasis now stops bloodloss
 		return
 
 	if(reagents.get_reagent_amount("quickclot") >= 0.05) //Quickclot stops bleeding, magic!

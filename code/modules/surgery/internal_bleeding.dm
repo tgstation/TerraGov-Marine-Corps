@@ -31,9 +31,10 @@
 	user.visible_message("<span class='notice'>[user] has patched the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>", \
 		"<span class='notice'>You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>")
 
-	for(var/datum/wound/W in affected.wounds) if(W.internal)
-		affected.wounds -= W
-		affected.update_damages()
+	for(var/datum/wound/W in affected.wounds)
+		if(W.internal)
+			affected.wounds -= W
+			affected.update_damages()
 	if(ishuman(user) && prob(40))
 		user:bloody_hands(target, 0)
 

@@ -359,6 +359,10 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 /mob/living/carbon/Xenomorph/crusher_act(mob/living/carbon/Xenomorph/Crusher/X)
 	if(X.momentum > 6)
 		playsound(loc, "punch", 25, 1)
+		if(anchored)//ovipositor queen can't be pushed
+			X.momentum = 0
+			r_TRU
+
 		diagonal_step(src, X.dir, 100)
 		step_away(src, X)
 
@@ -414,3 +418,25 @@ proc/diagonal_step(atom/movable/A, direction, P = 75)
 	if(severity == 1)
 		adjustBruteLoss(rand(200, 300))
 		updatehealth()
+
+
+/mob/living/carbon/Xenomorph/Crusher/update_icons()
+	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
+	if(stat == DEAD)
+		icon_state = "Crusher Dead"
+	else if(lying)
+		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+			icon_state = "Crusher Sleeping"
+		else
+			icon_state = "Crusher Knocked Down"
+	else
+		if(m_intent == "run")
+			if(momentum > 2) //Let it build up a bit so we're not changing icons every single turf
+				icon_state = "Crusher Charging"
+			else
+				icon_state = "Crusher Running"
+
+		else
+			icon_state = "Crusher Walking"
+
+	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.

@@ -39,7 +39,6 @@
 		new /obj/item/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine(src)
 		new /obj/item/clothing/under/marine(src)
-		new /obj/item/clothing/mask/gas/(src)
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
 	name = "alpha equipment locker"

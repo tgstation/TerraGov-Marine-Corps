@@ -297,6 +297,17 @@
 		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
 		..(loc,expected_type,new_name,new_protection)
 
+/obj/item/clothing/head/helmet/marine/scout
+	name = "\improper M3-S helmet"
+	icon_state = "scout_helmet"
+	desc = "A custom helmet designed for USCM Scouts."
+	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Rasputin dropship manually and in safety."

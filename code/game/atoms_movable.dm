@@ -299,7 +299,7 @@
 //when a mob interact with something that gives them a special view,
 //check_eye() is called to verify that they're still eligible.
 //if they are not check_eye() usually reset the mob's view.
-/atom/movable/proc/check_eye(mob/user)
+/atom/proc/check_eye(mob/user)
 	return
 
 

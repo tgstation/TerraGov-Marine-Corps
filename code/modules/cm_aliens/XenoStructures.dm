@@ -190,6 +190,12 @@
 	health = 20
 	layer = RESIN_STRUCTURE_LAYER
 	var/hugger = FALSE
+	var/carrier_number //the nicknumber of the carrier that placed us.
+
+/obj/effect/alien/resin/trap/New(loc, mob/living/carbon/Xenomorph/Carrier/C)
+	if(C)
+		carrier_number = C.nicknumber
+	..()
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	if(isXeno(user))
@@ -226,6 +232,18 @@
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
 	if(hugger)
 		if(CanHug(AM) && !isYautja(AM))
+			var/mob/living/L = AM
+			L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
+							"<span class='danger'>You trip on [src]!</span>")
+			L.KnockDown(1)
+			if(carrier_number)
+				for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+					if(X.nicknumber == carrier_number)
+						if(!X.stat)
+							var/area/A = get_area(src)
+							if(A)
+								X << "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>"
+						break
 			drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
@@ -241,24 +259,14 @@
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent != "hurt")
 		var/list/allowed_castes = list("Queen","Drone","Hivelord","Carrier")
-		if(istype(M, /mob/living/carbon/Xenomorph/Carrier) && !hugger)
-			var/mob/living/carbon/Xenomorph/Carrier/C = M
-			if(C.huggers_cur > 0)
-				C.huggers_cur--
-				hugger = TRUE
-				icon_state = "trap1"
-				C << "<span class='xenonotice'>You place a facehugger in [src].</span>"
-			else
-				C << "<span class='warning'>You don't have any facehugger to place in [src].</span>"
-			return
-
-		else if(allowed_castes.Find(M.caste))
+		if(allowed_castes.Find(M.caste))
 			if(!hugger)
 				M << "<span class='warning'>[src] is empty.</span>"
 			else
 				hugger = FALSE
 				icon_state = "trap0"
-				new /obj/item/clothing/mask/facehugger(loc)
+				var/obj/item/clothing/mask/facehugger/F = new ()
+				M.put_in_active_hand(F)
 				M << "<span class='xenonotice'>You remove the facehugger from [src].</span>"
 		return
 	..()
@@ -516,29 +524,24 @@
 /var/const //for the status var
 	BURST = 0
 	BURSTING = 1
-	GROWING = 2
 	GROWN = 3
 	DESTROYED = 4
-
-	MIN_GROWTH_TIME = 1800 //time it takes to grow a hugger
-	MAX_GROWTH_TIME = 3000
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
-	icon_state = "Egg Growing"
+	icon_state = "Egg"
 	density = 0
 	anchored = 1
 
 	health = 80
 	var/list/egg_triggers = list()
-	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
+	var/status = GROWN
 	var/on_fire = 0
 
 	New()
 		..()
-		create_egg_triggers()
-		Grow()
+		deploy_egg_triggers()
 
 	Dispose()
 		. = ..()
@@ -556,7 +559,7 @@
 
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
 
-	if(!istype(M) || !isXeno(M))
+	if(!istype(M))
 		return attack_hand(M)
 
 	switch(status)
@@ -567,8 +570,6 @@
 					"<span class='xenonotice'>You clear the hatched egg.</span>")
 					M.storedplasma++
 					cdel(src)
-		if(GROWING)
-			M << "<span class='xenowarning'>The child is not developed yet.</span>"
 		if(GROWN)
 			if(isXenoLarva(M))
 				M << "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>"
@@ -576,19 +577,10 @@
 			M << "<span class='xenonotice'>You retrieve the child.</span>"
 			Burst(0)
 
-/obj/effect/alien/egg/proc/Grow()
-	set waitfor = 0
-	sleep(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-	if(status == GROWING)
-		icon_state = "Egg"
-		status = GROWN
-		deploy_egg_triggers()
-
-/obj/effect/alien/egg/proc/create_egg_triggers()
-	for(var/i=1, i<=8, i++)
-		egg_triggers += new /obj/effect/egg_trigger(src, src)
 
 /obj/effect/alien/egg/proc/deploy_egg_triggers()
+	for(var/i=1, i<=8, i++)
+		egg_triggers += new /obj/effect/egg_trigger(src, src)
 	var/i = 1
 	var/x_coords = list(-1,-1,-1,0,0,1,1,1)
 	var/y_coords = list(1,0,-1,1,-1,1,0,-1)
@@ -614,7 +606,7 @@
 			icon_state = "Egg Exploded"
 			flick("Egg Exploding", src)
 	else
-		if(status == GROWN || status == GROWING)
+		if(status == GROWN)
 			status = BURSTING
 			delete_egg_triggers()
 			icon_state = "Egg Opened"
@@ -661,9 +653,10 @@
 						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
 					status = GROWN
 					icon_state = "Egg"
+					deploy_egg_triggers()
 					cdel(F)
 				if(DESTROYED) user << "<span class='xenowarning'>This egg is no longer usable.</span>"
-				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
+				if(GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
 		else user << "<span class='xenowarning'>This child is dead.</span>"
 		return
 
@@ -722,9 +715,11 @@
 
 
 
+/*
 
+TUNNEL
 
-
+*/
 
 
 /obj/structure/tunnel

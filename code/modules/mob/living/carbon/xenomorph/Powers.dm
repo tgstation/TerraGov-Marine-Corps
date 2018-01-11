@@ -385,10 +385,13 @@
 	set desc = "Check the status of your current hive."
 	set category = "Alien"
 
-	check_hive_status()
+	if(caste == "Queen" && anchored)
+		check_hive_status(src)
+	else
+		check_hive_status()
 
 
-/proc/check_hive_status()
+/proc/check_hive_status(mob/living/carbon/Xenomorph/Queen/user)
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
 	var/count = 0
@@ -422,13 +425,15 @@
 	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
 		if(X.z == ADMIN_Z_LEVEL) continue //don't show xenos in the thunderdome when admins test stuff.
 		var/area/A = get_area(X)
-		var/xenoinfo = "<tr><td>[X.name] "
-		if(!X.client) xenoinfo += " <i>(SSD)</i>"
-		if(X.stat == DEAD)
-			xenoinfo += " <b><font color=red>(DEAD)</font></b></td></tr>"
+		var/xenoinfo
+		if(user && X != user)
+			xenoinfo = "<tr><td><a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
 		else
-			count++ //Dead players shouldn't be on this list
-			xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+			xenoinfo = "<tr><td>[X.name] "
+		if(!X.client) xenoinfo += " <i>(SSD)</i>"
+
+		count++ //Dead players shouldn't be on this list
+		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
 
 		if(isXenoQueen(X))
 			queen_list += xenoinfo

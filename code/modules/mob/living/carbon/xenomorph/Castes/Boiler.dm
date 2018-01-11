@@ -132,6 +132,11 @@
 		P.generate_bullet(ammo)
 		P.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 25, 1)
+		if(ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+			round_statistics.boiler_acid_smokes++
+		else
+			round_statistics.boiler_neuro_smokes++
+
 
 		spawn(200) //20 seconds cooldown.
 			bomb_cooldown = 0
@@ -252,6 +257,8 @@
 		processing_objects.Add(S)
 		for(var/mob/living/carbon/M in target)
 			if(ishuman(M) || ismonkey(M))
+				if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))
+					continue //nested infected hosts are not hurt by acid spray
 				M.adjustFireLoss(rand(15, 30))
 				M << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
 				M.radiation += rand(5, 50)

@@ -211,14 +211,13 @@
 						new /obj/item/facepaint/sniper(src)
 		..()
 
-// Temporarily the same as the Sniper loadout.
 /obj/item/storage/box/scout
 	name = "\improper Scout equipment"
-	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing Scout equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 11
+	storage_slots = 14
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -226,28 +225,20 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/ammo_magazine/sniper/flak(src)
+			new /obj/item/clothing/suit/storage/marine/M3S(src)
+			new /obj/item/clothing/head/helmet/marine/scout(src)
+			new /obj/item/clothing/glasses/night/M4RA(src)
+			new /obj/item/ammo_magazine/rifle/marksman(src)
+			new /obj/item/ammo_magazine/rifle/marksman(src)
+			new /obj/item/ammo_magazine/rifle/marksman(src)
 			new /obj/item/device/binoculars/tactical/scout(src)
-			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-
-	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
-		if(!opened) //First time opening it, so add the round-specific items
-			if(ticker && ticker.mode)
-				switch(ticker.mode.name)
-					if("Ice Colony")
-						new /obj/item/clothing/head/helmet/marine(src)
-					else
-						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/facepaint/sniper(src)
-		..()
+			new /obj/item/weapon/gun/rifle/m41a/scoped(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+			new /obj/item/explosive/plastique(src)
+			new /obj/item/explosive/plastique(src)
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"

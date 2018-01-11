@@ -94,7 +94,7 @@
 				stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
 		if(mobility_aura)
-			stat(null, "You have been ordered by a MOVE order.")
+			stat(null, "You are affected by a MOVE order.")
 		if(protection_aura)
 			stat(null, "You are affected by a HOLD order.")
 		if(marskman_aura)
@@ -690,7 +690,24 @@
 			usr << "<span class='notice'>You add a [newcolor] holo card on [src].</span>"
 		update_targeted()
 
+	if (href_list["scanreport"])
+		if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+			usr << "<span class='warning'>You're not trained to use this.</span>"
+			return
+		if(!has_species(src, "Human"))
+			usr << "<span class='warning'>This only works on humans.</span>"
+			return
+		if(get_dist(usr, src) > 7)
+			usr << "<span class='warning'>[src] is too far away.</span>"
+			return
 
+		var/datum/data/record/N = null
+		for(var/datum/data/record/R in data_core.medical)
+			if (R.fields["name"] == real_name)
+				N = R
+		if(!isnull(N))
+			if(N.fields["last_scan_time"] && N.fields["last_scan_result"])
+				usr << browse(N.fields["last_scan_result"], "window=scanresults;size=430x600")
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])

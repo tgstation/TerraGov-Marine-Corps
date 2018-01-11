@@ -152,32 +152,13 @@
 	var/teleport_z_offset = 0
 
 	Trigger(var/atom/movable/A)
-		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
+		if(!istype(A, /obj) && !istype(A, /mob)) //mobs and objects only.
 			return
-		if(istype(A,/obj/effect)) return
+		if(istype(A, /obj/effect)) return
 
-		if(teleport_x && teleport_y && teleport_z)
-			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
-
-				A.x = rand(teleport_x, teleport_x_offset)
-				A.y = rand(teleport_y, teleport_y_offset)
-				A.z = rand(teleport_z, teleport_z_offset)
-
-				if(A.z == 1 && isliving(A)) //Ground map Z-level
-					var/mob/living/carbon/M = A
-					if(!istype(M)) return
-					var/dmg = rand(150,400)
-					M.KnockDown(10)
-					M.inertia_dir = 0
-					M.make_floating(0)
-					M.visible_message("<span class='danger'>[M] falls from the sky and crashes into the ground!</span>","<span class='danger'>You fall from the sky and crash into the ground.</span>")
-					M.apply_damage(dmg, BRUTE)
-
-				if(A.z == 4 && isliving(A)) //Space map Z-level
-					var/mob/living/carbon/M = A
-					if(!istype(M)) return
-					M.KnockDown(10)
-					M.inertia_dir = 0
-					M.make_floating(1)
-					M << "<span class='danger'>You are lost into the depths of space.</span>"
-					M.death()
+		//Hacked it up so it just deletes it
+		if(isliving(A))
+			A << "<span class='danger'>You get lost into the depths of space, never to be seen again.</span>"
+			cdel(A)
+		else
+			cdel(A)

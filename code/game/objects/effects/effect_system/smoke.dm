@@ -268,7 +268,7 @@
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno_weak
 	time_to_live = 6
-	color = "#90dd00" //Mostly light green?
+	color = "#ffbf58" //Mustard orange?
 	spread_speed = 10
 
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
@@ -292,9 +292,12 @@
 			spawn(15)
 				M.coughedtime = 0
 		var/effect_amt = 8 + amount*2
-		M.KnockDown(effect_amt)
-		M.Stun(effect_amt+2)
-		M << "<span class='danger'>You collapse as the gas scalds your nerves.</span>"
+		//M.KnockDown(effect_amt)
+		//M.Stun(effect_amt+2)
+		if(!M.eye_blind)
+			M << "<span class='danger'>Your eyes sting. You can't see!</span>"
+		M.eye_blurry = max(M.eye_blurry, effect_amt*2)
+		M.eye_blind = max(M.eye_blind, round(effect_amt))
 
 
 

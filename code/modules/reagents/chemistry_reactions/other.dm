@@ -88,15 +88,17 @@
 	name = "Water"
 	id = "water"
 	result = "water"
-	required_reagents = list("oxygen" = 2, "hydrogen" = 1)
+	required_reagents = list("oxygen" = 1, "hydrogen" = 2)
 	result_amount = 1
 
+/*
 /datum/chemical_reaction/thermite
 	name = "Thermite"
 	id = "thermite"
 	result = "thermite"
 	required_reagents = list("aluminum" = 1, "iron" = 1, "oxygen" = 1)
 	result_amount = 3
+*/
 
 /datum/chemical_reaction/lexorin
 	name = "Lexorin"

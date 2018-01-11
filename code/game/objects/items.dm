@@ -54,6 +54,8 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
+	var/list/uniform_restricted = list() //Need to wear this uniform to equip this
+
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -321,9 +323,10 @@ cases. Override_icon_state should be a list.*/
 obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
-//the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
-//If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
-//Set disable_warning to 1 if you wish it to not give you outputs.
+// The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
+// If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
+// Set disable_warning to 1 if you wish it to not give you outputs.
+// warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
 /obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
 	if(!slot) return 0
 	if(!M) return 0
@@ -706,8 +709,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
 	else //Otherwise we want to zoom in.
-		if(user.hud_used)
-			user.hud_used.show_hud(HUD_STYLE_REDUCED)
 		user.client.view = viewsize
 
 		var/tilesize = 32
@@ -735,9 +736,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
 	user.client.view = world.view
-	if(user.hud_used)
-		user.hud_used.show_hud(HUD_STYLE_STANDARD)
-
 	user.client.pixel_x = 0
 	user.client.pixel_y = 0
 
