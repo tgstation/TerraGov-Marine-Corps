@@ -36,8 +36,7 @@
 	if(!user.check_alien_construction(T))
 		return
 	if(!istype(T, /turf/simulated/floor/almayer/research/containment))
-		user << "[T]"
-		user << "<span class='warning'>Best not to plant this thing outside of a containment cell</span>"
+		user << "<span class='warning'>Best not to plant this thing outside of a containment cell.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] starts planting [src].</span>", \
 					"<span class='notice'>You start planting [src].</span>")
