@@ -57,17 +57,22 @@
 
 /obj/item/xeno_egg/attack_self(mob/user)
 	if(isXeno(user))
-		var/turf/T = get_turf(user)
-		plant_egg(user, T)
+		var/mob/living/carbon/Xenomorph/X = user
+		if(X.caste == "Carrier")
+			var/mob/living/carbon/Xenomorph/Carrier/C = X
+			C.store_egg(src)
+		else
+			var/turf/T = get_turf(user)
+			plant_egg(user, T)
 
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/xeno_egg/attack_alien(mob/living/carbon/Xenomorph/user)
 	switch(user.caste)
-		if("Queen","Hivelord","Carrier")
+		if("Queen","Carrier")
 			attack_hand(user)
-		if("Drone")
+		if("Drone","Hivelord")
 			if(user.r_hand || user.l_hand)
 				user << "<span class='xenowarning'>You need two hands to hold [src].</span>"
 			else

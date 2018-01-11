@@ -11,10 +11,9 @@
 	storedplasma = 1500
 	plasma_gain = 0
 	maxplasma = 1500
-	evolution_threshold = 0
 	caste_desc = "Oh dear god!"
 	speed = -2.1
-	evolves_to = list() //Cannot evolve.
+	evolution_allowed = FALSE
 	charge_type = 1 //Pounce
 	is_intelligent = 1
 	universal_speak = 1

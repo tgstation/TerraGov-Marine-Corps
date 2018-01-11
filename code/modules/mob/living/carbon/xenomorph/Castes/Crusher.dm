@@ -14,11 +14,11 @@
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
-	evolution_threshold = 800
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.1
 	tail_chance = 0 //Inherited from old code. Tail's too big
-	evolves_to = list()
 	armor_deflection = 75
 	tier = 3
 	upgrade = 0
@@ -55,11 +55,11 @@
 // This is depricated. Use handle_collision() for all future momentum changes. ~Bmc777
 /mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(direction, stunned)
 	if(!lastturf) r_FAL //Not charging.
-	momentum = 0
 	if(stunned && momentum > 24)
 		visible_message(
 		"<span class='danger'>[src] skids to a halt!</span>",
 		"<span class='xenowarning'>You skid to a halt.</span>")
+	momentum = 0
 	lastturf = null
 	flags_pass = 0
 	speed = initial(speed) //TODO This doesn't take into account other speed upgrades, reseting after evolve.
@@ -96,17 +96,17 @@
 	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
 	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
 	"<span class='xenodanger'>You smash into the ground!</span>")
-	create_shriekwave() //Adds the visual effect. Wom wom wom
-	var/mob/living/L
+	create_stomp() //Adds the visual effect. Wom wom wom
+
 	var/i = 5
-	for(var/mob/M in loc)
+	for(var/mob/living/M in range(1,loc))
 		if(!i) break
-		if(!isXeno(M) && isliving(M))
-			L = M
-			L.take_overall_damage(40) //The same as a full charge, but no more than that.
-			L.KnockDown(rand(2, 3))
-			L << "<span class='highdanger'>You are stomped on by [src]!</span>"
-			shake_camera(L, 2, 2)
+		if(!isXeno(M))
+			if(M.loc == loc)
+				M.take_overall_damage(40) //The same as a full charge, but no more than that.
+				M.KnockDown(rand(2, 3))
+				M << "<span class='highdanger'>You are stomped on by [src]!</span>"
+			shake_camera(M, 2, 2)
 		i--
 
 
@@ -159,16 +159,21 @@
 		playsound(loc, 'sound/mecha/mechstep.ogg', 15 + (momentum/2), 0)
 
 	if(momentum > 6)
-		for(var/mob/living/carbon/M in view(8))
-			if(M && M.client && get_dist(M, src) <= round(momentum / 5) && src != M)
-				if(!isXeno(M)) shake_camera(M, 1, 1)
 
-			if(M && M.lying && M.loc == src.loc && !isXeno(M) && M.stat != DEAD)
+		for(var/mob/living/carbon/M in loc)
+			if(M.lying && !isXeno(M) && M.stat != DEAD)
 				visible_message(
 				"<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>")
 				M.take_overall_damage(momentum * 2)
 				animation_flash_color(M)
+
+		var/shake_dist = min(round(momentum / 5),8)
+		for(var/mob/living/carbon/M in range(shake_dist))
+			if(M.client && !isXeno(M))
+				shake_camera(M, 1, 1)
+
+
 
 	lastturf = isturf(loc) && !istype(loc, /turf/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 

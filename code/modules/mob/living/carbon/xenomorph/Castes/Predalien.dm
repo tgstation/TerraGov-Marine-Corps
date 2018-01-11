@@ -13,9 +13,7 @@
 	amount_grown = 0
 	max_grown = 200
 	plasma_gain = 25
-	evolution_allowed = 0 //Predaliens are already in their ultimate form, they don't get even better
-	evolution_stored = 0
-	evolution_threshold = 0
+	evolution_allowed = FALSE
 	tacklemin = 6
 	tacklemax = 10
 	tackle_chance = 80
@@ -39,7 +37,7 @@
 	attack_delay = -2
 	speed = -2.1
 	tier = 1
-	upgrade = -1
+	upgrade = -1 //Predaliens are already in their ultimate form, they don't get even better
 
 	var/butchered_last //world.time to prevent spam.
 	var/butchered_sum = 0 //The number of people butchered. Lowers the health gained.

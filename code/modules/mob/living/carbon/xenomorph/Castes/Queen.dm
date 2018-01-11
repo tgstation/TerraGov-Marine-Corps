@@ -25,7 +25,8 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	plasma_gain = 30
 	is_intelligent = 1
 	speed = 0.3
-	evolution_threshold = 800
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	pixel_x = -16
 	fire_immune = 1
 	mob_size = MOB_SIZE_BIG
@@ -84,7 +85,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 			breathing_counter = 0 //Reset the counter
 
 		if(observed_xeno)
-			if(observed_xeno.stat == DEAD || observed_xeno.z != z || observed_xeno.disposed)
+			if(observed_xeno.stat == DEAD || observed_xeno.disposed)
 				set_queen_overwatch(observed_xeno, TRUE)
 
 		if(ovipositor && !is_mob_incapacitated(TRUE))

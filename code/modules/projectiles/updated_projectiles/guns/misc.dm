@@ -22,9 +22,9 @@
 
 	update_icon()
 		if(!cell || cell.charge - charge_cost < 0)
-			icon_state = initial(icon_state) + "_e"
+			icon_state = base_gun_icon + "_e"
 		else
-			icon_state = initial(icon_state)
+			icon_state = base_gun_icon
 
 	emp_act(severity)
 		cell.use(round(cell.maxcharge / severity))
@@ -110,9 +110,9 @@
 
 	update_icon()
 		if(num_flares)
-			icon_state = initial(icon_state)
+			icon_state = base_gun_icon
 		else
-			icon_state = initial(icon_state) + "_e"
+			icon_state = base_gun_icon + "_e"
 
 	load_into_chamber()
 		if(num_flares)

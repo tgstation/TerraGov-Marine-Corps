@@ -16,10 +16,10 @@
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
-	evolution_threshold = 800
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	caste_desc = "A brutal, devastating front-line attacker."
 	speed = -0.7 //Not as fast as runners, but faster than other xenos.
-	evolves_to = list()
 	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
 	var/CHARGESPEED = 2
 	var/CHARGESTRENGTH = 2
@@ -104,7 +104,6 @@
 	New()
 		..()
 		verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
-		verbs -= /mob/living/carbon/Xenomorph/verb/Upgrade
 		spawn(15) name = "Ravenger"
 
 
