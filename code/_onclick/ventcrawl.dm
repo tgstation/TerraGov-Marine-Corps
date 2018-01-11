@@ -125,6 +125,8 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	for(var/datum/pipeline/pipeline in network.line_members)
 		for(var/atom/A in (pipeline.members || pipeline.edges))
 			var/image/new_image = image(A, A.loc, dir = A.dir)
+			new_image.layer = BELOW_MOB_LAYER
+			new_image.alpha = 180
 			pipes_shown += new_image
 			client.images += new_image
 

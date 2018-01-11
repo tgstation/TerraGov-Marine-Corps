@@ -23,9 +23,9 @@
 		if(evolution_allowed && living_xeno_queen)
 			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 		else if(!living_xeno_queen)
-			stat(null, "Evolve Progress (HALTED - NO QUEEN): [evolution_stored]/[evolution_threshold]")
+			stat(null, "Evolve Progress (HALTED - NO QUEEN)")
 		else
-			stat(null, "Evolve Progress (FINISHED): [evolution_stored]/[evolution_threshold]")
+			stat(null, "Evolve Progress (FINISHED)")
 
 		if(maxplasma > 0)
 			if(is_robotic)
@@ -164,9 +164,14 @@
 	return 0
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
-	return
+	if(upgrade != -1 && upgrade != 3) //upgrade possible
+		if(upgrade_stored >= upgrade_threshold)
+			if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
+				upgrade_xeno(upgrade+1)
+		else
+			upgrade_stored = min(upgrade_stored + 1, upgrade_threshold)
 
-/mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
+/mob/living/carbon/Xenomorph/show_inv(mob/user)
 	return
 
 

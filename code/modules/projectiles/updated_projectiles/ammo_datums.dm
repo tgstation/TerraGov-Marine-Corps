@@ -949,11 +949,18 @@
 		drop_resin(get_turf(P))
 
 	proc/drop_resin(turf/T)
-		for(var/obj/O in T.contents)
-			if(istype(O, /obj/effect/alien/resin/sticky))
-				return
 
-			if(O.density && !(O.flags_atom & ON_BORDER)) //We can't grow if something dense is here
+		if(T.density)
+			return
+
+		for(var/obj/O in T.contents)
+			if(istype(O, /obj/item/clothing/mask/facehugger))
+				return
+			if(istype(O, /obj/effect/alien/egg))
+				return
+			if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed))
+				return
+			if(O.density && !(O.flags_atom & ON_BORDER))
 				return
 
 		new /obj/effect/alien/resin/sticky/thin(T)

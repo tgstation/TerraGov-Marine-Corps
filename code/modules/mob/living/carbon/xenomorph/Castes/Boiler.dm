@@ -16,12 +16,12 @@
 	storedplasma = 450
 	plasma_gain = 30
 	maxplasma = 800
-	evolution_threshold = 800
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	spit_delay = 40
 	speed = 0.5
 	pixel_x = -16
 	caste_desc = "Gross!"
-	evolves_to = list()
 	mob_size = MOB_SIZE_BIG
 	tier = 3
 	upgrade = 0

@@ -26,17 +26,19 @@ They're all essentially identical when it comes to getting the job done.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
+	var/base_mag_icon //the default mag icon state.
 
 	New(loc, spawn_empty)
 		..()
+		base_mag_icon = icon_state
 		if(spawn_empty) current_rounds = 0
 		switch(current_rounds)
 			if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
 			if(0) icon_state += "_e" //In case it spawns empty instead.
 
 	update_icon(var/round_diff = 0)
-		if(current_rounds <= 0) 					icon_state = initial(icon_state) + "_e"
-		else if(current_rounds - round_diff <= 0) 	icon_state = initial(icon_state)
+		if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
+		else if(current_rounds - round_diff <= 0) 	icon_state = base_mag_icon
 
 	examine(mob/user)
 		..()

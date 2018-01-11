@@ -12,6 +12,7 @@
 	storedplasma = 350
 	maxplasma = 750
 	evolution_threshold = 500
+	upgrade_threshold = 500
 	plasma_gain = 12
 	tier = 1
 	upgrade = 0

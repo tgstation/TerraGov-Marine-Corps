@@ -518,30 +518,36 @@
 /obj/effect/alien/acid/flamer_fire_act()
 	return //this prevents any acid trickery.
 
+
 /*
  * Egg
  */
 /var/const //for the status var
 	BURST = 0
 	BURSTING = 1
+	GROWING = 2
 	GROWN = 3
 	DESTROYED = 4
+
+	MIN_GROWTH_TIME = 100 //time it takes for the egg to mature once planted
+	MAX_GROWTH_TIME = 150
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
-	icon_state = "Egg"
+	icon_state = "Egg Growing"
 	density = 0
 	anchored = 1
 
 	health = 80
 	var/list/egg_triggers = list()
-	var/status = GROWN
+	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
 
 	New()
 		..()
-		deploy_egg_triggers()
+		create_egg_triggers()
+		Grow()
 
 	Dispose()
 		. = ..()
@@ -570,6 +576,8 @@
 					"<span class='xenonotice'>You clear the hatched egg.</span>")
 					M.storedplasma++
 					cdel(src)
+		if(GROWING)
+			M << "<span class='xenowarning'>The child is not developed yet.</span>"
 		if(GROWN)
 			if(isXenoLarva(M))
 				M << "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>"
@@ -577,10 +585,19 @@
 			M << "<span class='xenonotice'>You retrieve the child.</span>"
 			Burst(0)
 
+/obj/effect/alien/egg/proc/Grow()
+	set waitfor = 0
+	sleep(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
+	if(status == GROWING)
+		icon_state = "Egg"
+		status = GROWN
+		deploy_egg_triggers()
 
-/obj/effect/alien/egg/proc/deploy_egg_triggers()
+/obj/effect/alien/egg/proc/create_egg_triggers()
 	for(var/i=1, i<=8, i++)
 		egg_triggers += new /obj/effect/egg_trigger(src, src)
+
+/obj/effect/alien/egg/proc/deploy_egg_triggers()
 	var/i = 1
 	var/x_coords = list(-1,-1,-1,0,0,1,1,1)
 	var/y_coords = list(1,0,-1,1,-1,1,0,-1)
@@ -606,7 +623,7 @@
 			icon_state = "Egg Exploded"
 			flick("Egg Exploding", src)
 	else
-		if(status == GROWN)
+		if(status == GROWN || status == GROWING)
 			status = BURSTING
 			delete_egg_triggers()
 			icon_state = "Egg Opened"
@@ -653,10 +670,9 @@
 						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
 					status = GROWN
 					icon_state = "Egg"
-					deploy_egg_triggers()
 					cdel(F)
 				if(DESTROYED) user << "<span class='xenowarning'>This egg is no longer usable.</span>"
-				if(GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
+				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
 		else user << "<span class='xenowarning'>This child is dead.</span>"
 		return
 
@@ -712,6 +728,7 @@
 	else if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		linked_egg.HasProximity(C)
+
 
 
 

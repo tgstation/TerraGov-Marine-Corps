@@ -15,9 +15,9 @@
 	maxHealth = 175
 	storedplasma = 50
 	maxplasma = 250
-	evolution_threshold = 800
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	plasma_gain = 8
-	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."
 	drag_delay = 6 //pulling a big dead xeno is hard
 	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
@@ -28,6 +28,8 @@
 	var/throwspeed = 1
 	var/threw_a_hugger = 0
 	var/hugger_delay = 30
+	var/eggs_cur = 0
+	var/eggs_max = 3
 	tier = 3
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
@@ -38,6 +40,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/throw_hugger,
+		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		)
 
@@ -60,6 +63,7 @@
 	. = ..()
 	if(.)
 		stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
+		stat(null, "Stored Eggs: [eggs_cur] / [eggs_max]")
 
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F)
@@ -117,3 +121,47 @@
 			for(var/X in actions)
 				var/datum/action/A = X
 				A.update_button_icon()
+
+
+
+/mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
+	if(eggs_cur < eggs_max)
+		if(stat == CONSCIOUS)
+			eggs_cur++
+			src << "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [eggs_max].</span>"
+			cdel(E)
+		else
+			src << "<span class='warning'>This [E.name] looks too unhealthy.</span>"
+	else
+		src << "<span class='warning'>You can't carry more eggs on you.</span>"
+
+
+/mob/living/carbon/Xenomorph/Carrier/proc/retrieve_egg(atom/T)
+	if(!T) return
+
+	if(!check_state())
+		return
+
+	//target a hugger on the ground to store it directly
+	if(istype(T, /obj/item/xeno_egg))
+		var/obj/item/xeno_egg/E = T
+		if(isturf(E.loc) && Adjacent(E))
+			store_egg(E)
+			return
+
+	var/obj/item/xeno_egg/E = get_active_hand()
+	if(!E) //empty active hand
+		//if no hugger in active hand, we take one from our storage
+		if(eggs_cur <= 0)
+			src << "<span class='warning'>You don't have any egg to use!</span>"
+			return
+		E = new()
+		eggs_cur--
+		put_in_active_hand(E)
+		src << "<span class='xenonotice'>You grab one of the eggs in your storage. Now sheltering: [eggs_cur] / [eggs_max].</span>"
+		return
+
+	if(!istype(E)) //something else in our hand
+		src << "<span class='warning'>You need an empty hand to grab one of your stored eggs!</span>"
+		return
+

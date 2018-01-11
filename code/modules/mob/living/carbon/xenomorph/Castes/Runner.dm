@@ -14,6 +14,7 @@
 	plasma_gain = 1
 	maxplasma = 100
 	evolution_threshold = 200
+	upgrade_threshold = 200
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -1.8
 	evolves_to = list("Hunter")
