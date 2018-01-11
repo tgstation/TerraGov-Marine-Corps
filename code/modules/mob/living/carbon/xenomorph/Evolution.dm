@@ -47,10 +47,6 @@
 		src << "<span class='warning'>You are already the apex of form and function. Go forth and spread the hive!</span>"
 		return
 
-	if(upgrade > 0 && caste != "Drone")
-		src << "<span class='warning'>You gave up evolving in exchange for more power.</span>"
-		return
-
 	if(health < maxHealth)
 		src << "<span class='warning'>You must be at full health to evolve.</span>"
 		return
@@ -65,16 +61,7 @@
 	// world << "[tierC] Tier 3"
 	// world << "[totalXenos] Total"
 
-	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
-	var/list/pop_list = list()
-
-	if(caste == "Drone" && upgrade > 0)
-		pop_list += "Queen"
-	else
-		for(var/Q in evolves_to) //Populate our evolution list
-			pop_list += Q
-
-	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
+	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in evolves_to
 	if(!castepick) //Changed my mind
 		return
 
@@ -130,10 +117,10 @@
 		totalXenos++
 
 	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5 && castepick != "Queen")
-		src << "<span class='warning'>The hive cannot support another Tier 2, either upgrade or wait for either more aliens to be born or someone to die.</span>"
+		src << "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>"
 		return
 	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25 && castepick != "Queen")
-		src << "<span class='warning'>The hive cannot support another Tier 3, either upgrade or wait for either more aliens to be born or someone to die.</span>"
+		src << "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>"
 
 		return
 	else if(!living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && castepick != "Drone")
@@ -225,9 +212,8 @@
 		if(xeno_mobhud)
 			var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
 			H.add_hud_to(new_xeno) //keep our mobhud choice
+			new_xeno.xeno_mobhud = TRUE
 
-		if(evolution_allowed)
-			new_xeno.evolution_allowed = evolution_allowed
 		new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
 
 		for(var/obj/item/W in contents) //Drop stuff

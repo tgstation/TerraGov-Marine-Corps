@@ -276,12 +276,6 @@
 				current_turf.ChangeTurf(/turf/simulated/wall/resin/thick)
 			else
 				current_turf.ChangeTurf(/turf/simulated/wall/resin)
-		if("resin membrane")
-			if (caste == "Hivelord")
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane/thick)
-			else
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/membrane)
-
 		if("resin nest")
 			new /obj/structure/bed/nest(current_turf)
 		if("sticky resin")

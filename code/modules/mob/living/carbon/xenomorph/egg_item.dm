@@ -28,6 +28,28 @@
 	if(isXeno(user))
 		var/turf/T = get_turf(target)
 		plant_egg(user, T)
+	if(ishuman(user))
+		var/turf/T = get_turf(target)
+		plant_egg_in_containment(user, T)
+
+/obj/item/xeno_egg/proc/plant_egg_in_containment(mob/living/carbon/human/user, turf/T)
+	if(!istype(T, /turf/simulated/floor/almayer/research/containment))
+		user << "<span class='warning'>Best not to plant this thing outside of a containment cell.</span>"
+		return
+	for (var/obj/O in T)
+		if (!istype(O,/obj/machinery/light/small))
+			user << "<span class='warning'>The floor needs to be clear to plant this!</span>"
+			return
+	user.visible_message("<span class='notice'>[user] starts planting [src].</span>", \
+					"<span class='notice'>You start planting [src].</span>")
+	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+		return
+	for (var/obj/O in T)
+		if (!istype(O,/obj/machinery/light/small))
+			return
+	new /obj/effect/alien/egg(T)
+	playsound(T, 'sound/effects/splat.ogg', 15, 1)
+	cdel(src)
 
 /obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/Xenomorph/user, turf/T)
 	if(!user.check_alien_construction(T))
@@ -57,17 +79,22 @@
 
 /obj/item/xeno_egg/attack_self(mob/user)
 	if(isXeno(user))
-		var/turf/T = get_turf(user)
-		plant_egg(user, T)
+		var/mob/living/carbon/Xenomorph/X = user
+		if(X.caste == "Carrier")
+			var/mob/living/carbon/Xenomorph/Carrier/C = X
+			C.store_egg(src)
+		else
+			var/turf/T = get_turf(user)
+			plant_egg(user, T)
 
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/xeno_egg/attack_alien(mob/living/carbon/Xenomorph/user)
 	switch(user.caste)
-		if("Queen","Hivelord","Carrier")
+		if("Queen","Carrier")
 			attack_hand(user)
-		if("Drone")
+		if("Drone","Hivelord")
 			if(user.r_hand || user.l_hand)
 				user << "<span class='xenowarning'>You need two hands to hold [src].</span>"
 			else

@@ -118,16 +118,22 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return
-	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door", "resin wall", "resin membrane", "resin nest", "sticky resin", "cancel")
-	if(!choice || choice == "cancel")
-		return
-	if(!X.check_state())
-		return
-	X.selected_resin = choice
+	switch(X.selected_resin)
+		if("resin door")
+			X.selected_resin = "resin wall"
+		if("resin wall")
+			X.selected_resin = "resin nest"
+		if("resin nest")
+			X.selected_resin = "sticky resin"
+		if("sticky resin")
+			X.selected_resin = "resin door"
+		else
+			return //something went wrong
+
+	X << "<span class='notice'>You will now build <b>[X.selected_resin]\s</b> when secreting resin.</span>"
 	//update the button's overlay with new choice
 	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, choice)
-	X << "<span class='notice'>You will now build [X.selected_resin]\s when secreting resin.</span>"
+	button.overlays += image('icons/mob/actions.dmi', button, X.selected_resin)
 
 
 
@@ -415,6 +421,16 @@
 /datum/action/xeno_action/activable/throw_hugger/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	return !X.threw_a_hugger
+
+
+/datum/action/xeno_action/activable/retrieve_egg
+	name = "Retrieve Egg"
+	action_icon_state = "retrieve_egg"
+	ability_name = "retrieve egg"
+
+/datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	X.retrieve_egg(A)
 
 
 /datum/action/xeno_action/place_trap
@@ -758,11 +774,11 @@
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-		if(T.z == X.z && T.caste != "Queen")
+		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen")
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
+	if(!selected_xeno || selected_xeno.disposed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
@@ -1006,6 +1022,7 @@
 		if(T.xeno_mobhud)
 			var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
 			H.add_hud_to(new_xeno) //keep our mobhud choice
+			new_xeno.xeno_mobhud = TRUE
 
 		new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
 
@@ -1022,6 +1039,8 @@
 
 		if(living_xeno_queen && living_xeno_queen.observed_xeno == T)
 			living_xeno_queen.set_queen_overwatch(new_xeno)
+
+		new_xeno.upgrade_xeno(TRUE, min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
 
 		log_admin("[key_name(src)] has deevolved [T].")
 		message_admins("[key_name_admin(X)] has deevolved [T].", 1)

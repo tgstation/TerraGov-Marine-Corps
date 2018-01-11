@@ -12,9 +12,15 @@
 	var/max_grown = 200
 	var/time_of_birth
 	var/plasma_gain = 5
+
 	var/evolution_allowed = 1 //Are they allowed to evolve (and have their evolution progress group)
 	var/evolution_stored = 0 //How much evolution they have stored
 	var/evolution_threshold = 0 //Threshold to next evolution
+
+	var/upgrade_stored = 0 //How much upgrade points they have stored.
+	var/upgrade = -1  //This will track their upgrade level. -1 means cannot upgrade
+	var/upgrade_threshold = 0
+
 	var/list/evolves_to = list() //This is where you add castes to evolve into. "Seperated", "by", "commas"
 	var/tacklemin = 2
 	var/tacklemax = 4
@@ -54,7 +60,6 @@
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
-	var/upgrade = -1  //This will track their upgrade level.  Once they can no longer upgrade, it will set to -1
 	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
 	var/crit_health = -100 // What negative healthy they die in.
 	var/gib_chance  = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.

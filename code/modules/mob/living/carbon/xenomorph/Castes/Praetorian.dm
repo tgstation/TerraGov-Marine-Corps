@@ -16,13 +16,13 @@
 	storedplasma = 200
 	plasma_gain = 25
 	maxplasma = 800
-	evolution_threshold = 800
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	spit_delay = 20
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 	speed = 0.1
 	pixel_x = -16
 	caste_desc = "Ptui!"
-	evolves_to = list()
 	armor_deflection = 35
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard

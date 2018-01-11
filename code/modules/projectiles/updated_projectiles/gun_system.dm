@@ -71,6 +71,8 @@
 
 	var/gun_skill_category = GUN_SKILL_FIREARMS //used to know which job knowledge this gun is linked to
 
+	var/base_gun_icon //the default gun icon_state. change to reskin the gun
+
 
 //----------------------------------------------------------
 				//				    \\
@@ -81,6 +83,7 @@
 
 	New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 		..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
+		base_gun_icon = initial(icon_state)
 		attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 		if(current_mag)
 			if(spawn_empty && !ispath(current_mag, /obj/item/ammo_magazine/internal)) //Internal mags will still spawn, but they won't be filled.
@@ -132,9 +135,9 @@
 
 /obj/item/weapon/gun/update_icon()
 	if(!current_mag || current_mag.current_rounds <= 0)
-		icon_state = initial(icon_state) + "_e"
+		icon_state = base_gun_icon + "_e"
 	else
-		icon_state = initial(icon_state)
+		icon_state = base_gun_icon
 	update_mag_overlay()
 
 /obj/item/weapon/gun/examine(mob/user)
@@ -313,17 +316,20 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(in_chamber)
 		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>")
-		var/found_handful
-		for(var/obj/item/ammo_magazine/handful/H in user.loc)
-			if(H.default_ammo == current_mag.default_ammo && H.caliber == current_mag.caliber && H.current_rounds < H.max_rounds)
-				found_handful = TRUE
-				H.current_rounds++
-				H.update_icon()
-				break
-		if(!found_handful)
-			var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
-			new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
-			new_handful.loc = get_turf(src)
+		if(current_mag)
+			var/found_handful
+			for(var/obj/item/ammo_magazine/handful/H in user.loc)
+				if(H.default_ammo == current_mag.default_ammo && H.caliber == current_mag.caliber && H.current_rounds < H.max_rounds)
+					found_handful = TRUE
+					H.current_rounds++
+					H.update_icon()
+					break
+			if(!found_handful)
+				var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
+				new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
+				new_handful.loc = get_turf(src)
+		else
+			make_casing(type_of_casings)
 		in_chamber = null
 	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",

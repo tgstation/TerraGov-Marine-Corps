@@ -12,9 +12,9 @@
 	maxHealth = 220
 	storedplasma = 200
 	maxplasma = 800
-	evolution_threshold = 800
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	plasma_gain = 35
-	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	pixel_x = -16
 	speed = 0.4

@@ -203,7 +203,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
 	if(!client)	return
-	if(!(mind && mind.current && can_reenter_corpse))
+	if(!mind || !mind.current || mind.current.disposed || !can_reenter_corpse)
 		src << "<span class='warning'>You have no body.</span>"
 		return
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients

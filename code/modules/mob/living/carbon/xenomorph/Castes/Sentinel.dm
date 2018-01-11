@@ -13,6 +13,7 @@
 	plasma_gain = 10
 	maxplasma = 300
 	evolution_threshold = 200
+	upgrade_threshold = 200
 	spit_delay = 30
 	spit_types = list(/datum/ammo/xeno/toxin)
 	caste_desc = "A weak ranged combat alien."

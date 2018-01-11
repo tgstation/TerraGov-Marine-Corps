@@ -20,7 +20,7 @@
 	speed = -1.6 //Zoom!
 	away_timer = 300
 	tier = 0  //Larva's don't count towards Pop limits
-	upgrade = -2
+	upgrade = -1
 	crit_health = -25
 	gib_chance = 25
 	innate_healing = TRUE //heals even outside weeds so you're not stuck unable to evolve when hiding on the ship wounded.
@@ -48,13 +48,12 @@
 
 //Larva Progression.. Most of this stuff is obsolete.
 /mob/living/carbon/Xenomorph/Larva/update_progression()
-	..()
 	if(amount_grown < max_grown)
 		amount_grown++
 	if(!isnull(src.loc) && amount_grown < max_grown)
 		if(locate(/obj/effect/alien/weeds) in loc)
 			amount_grown++ //Double growth on weeds.
-	return
+
 
 //Larva code is just a mess, so let's get it over with
 /mob/living/carbon/Xenomorph/Larva/update_icons()

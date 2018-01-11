@@ -337,15 +337,16 @@ var/datum/mob_hud/huds = list(
 	var/image/holder = hud_list[QUEEN_OVERWATCH_HUD]
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
-	if(living_xeno_queen)
-		if(living_xeno_queen.observed_xeno == src)
-			holder.icon_state = "queen_overwatch"
-		if(queen_chosen_lead)
-			var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
-			holder.overlays += I
-	if(upgrade)
-		var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade]")
-		holder.overlays += J
+	if(stat != DEAD)
+		if(living_xeno_queen)
+			if(living_xeno_queen.observed_xeno == src)
+				holder.icon_state = "queen_overwatch"
+			if(queen_chosen_lead)
+				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
+				holder.overlays += I
+		if(upgrade)
+			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade]")
+			holder.overlays += J
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
 
