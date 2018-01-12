@@ -151,33 +151,33 @@ var/global/hive_orders = "" //What orders should the hive have
 	. = ..()
 
 
-/mob/living/carbon/Xenomorph
-	slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-		return FALSE
 
-	can_ventcrawl()
-		return (mob_size != MOB_SIZE_BIG)
+/mob/living/carbon/Xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+	return FALSE
 
-	ventcrawl_carry()
-		return 1
+/mob/living/carbon/Xenomorph/can_ventcrawl()
+	return (mob_size != MOB_SIZE_BIG)
 
-	start_pulling(var/atom/movable/AM)
-		if(isobj(AM))
-			return
-		..()
+/mob/living/carbon/Xenomorph/ventcrawl_carry()
+	return 1
 
-	pull_response(mob/puller)
-		if(stat != DEAD && has_species(puller,"Human")) // If the Xeno is alive, fight back against a grab/pull
-			puller.KnockDown(rand(tacklemin,tacklemax))
-			playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
-			puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
-			puller.stop_pulling()
+/mob/living/carbon/Xenomorph/start_pulling(var/atom/movable/AM)
+	if(isobj(AM))
+		return
+	..()
 
-	resist_grab(moving_resist)
-		if(pulledby.grab_level)
-			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
-		pulledby.stop_pulling()
-		. = 1
+/mob/living/carbon/Xenomorph/pull_response(mob/puller)
+	if(stat != DEAD && has_species(puller,"Human")) // If the Xeno is alive, fight back against a grab/pull
+		puller.KnockDown(rand(tacklemin,tacklemax))
+		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
+		puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
+		puller.stop_pulling()
+
+/mob/living/carbon/Xenomorph/resist_grab(moving_resist)
+	if(pulledby.grab_level)
+		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
+	pulledby.stop_pulling()
+	. = 1
 
 
 
@@ -193,3 +193,5 @@ var/global/hive_orders = "" //What orders should the hive have
 	MH.add_hud_to(src)
 
 
+/mob/living/carbon/Xenomorph/can_inject()
+	return FALSE
