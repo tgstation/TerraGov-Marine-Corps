@@ -1465,7 +1465,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.01.Ice_Colony_v2.dmm"
+#include "maps\Z.01.LV624.dmm"
 #include "maps\Z.02.Admin_Level.dmm"
 #include "maps\Z.03.USS_Almayer.dmm"
 #include "maps\Z.04.Low_Orbit.dmm"
