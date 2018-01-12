@@ -600,41 +600,71 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/list/zombie_list = list()
-	var/mob/L = src
 
 	for(var/mob/living/carbon/human/A in living_mob_list)
 		if(iszombie(A) && !A.client && A.regenZ)
-			zombie_list += A.name
+			var/player_in_decap_head
+			//when decapitated the human mob is clientless,
+			//we must check whether the player is still manning the brain in the decap'd head,
+			//so their body isn't stolen by another player.
+			var/datum/limb/head/h = A.get_limb("head")
+			if(h && (h.status & LIMB_DESTROYED))
+				for (var/obj/item/limb/head/HD in item_list)
+					if(HD.brainmob)
+						if(HD.brainmob.real_name == A.real_name)
+							if(HD.brainmob.client)
+								player_in_decap_head = TRUE
+								break
+			if(!player_in_decap_head)
+				zombie_list += A.real_name
+
 
 	if(zombie_list.len == 0)
 		src << "\green There are no available zombies or all empty zombies have been fed the cure."
 		return
 
 	var/choice = input("Pick a Zombie:") as null|anything in zombie_list
-	if(isnull(choice) || choice == "Cancel")
+	if(!choice || choice == "Cancel")
 		return
 
-	for(var/mob/living/carbon/human/X in living_mob_list)
-		if(choice == X.name)
-			L = X
-			break
-
-	if(!L || isnull( L ))
-		usr << "Not a valid mob!"
+	if(!client)
 		return
 
-	if(L.client) // Larva player is still online
-		usr << "\red That player is still connected."
-		return
+	for(var/mob/living/carbon/human/Z in living_mob_list)
+		if(choice == Z.real_name)
+			if(Z.disposed) //should never occur,just to be sure.
+				return
+			if(!Z.regenZ)
+				src << "<span class='warning'>That zombie has been cured!</span>"
+				return
+			if(Z.client)
+				src << "<span class='warning'>That player is still connected.</span>"
+				return
 
-	var/mob/ghostmob = usr.client.mob
-	message_admins("[usr.ckey] has joined as a [L].")
-	log_admin("[usr.ckey] has joined as a [L].")
-	L.ckey = usr.ckey
-	if( isobserver(ghostmob) )
-		cdel(ghostmob)
+			var/datum/limb/head/h = Z.get_limb("head")
+			if(h && (h.status & LIMB_DESTROYED))
+				for (var/obj/item/limb/head/HD in item_list)
+					if(HD.brainmob)
+						if(HD.brainmob.real_name == Z.real_name)
+							if(HD.brainmob.client)
+								src << "<span class='warning'>That player is still connected!</span>"
+								return
 
-	return
+			var/mob/ghostmob = client.mob
+
+			Z.ghostize(0) //Make sure previous owner does not get a free respawn.
+			Z.ckey = usr.ckey
+			if(Z.client) //so players don't keep their ghost zoom view.
+				Z.client.view = world.view
+
+			message_admins("[ckey] has joined as a [Z].")
+			log_admin("[ckey] has joined as a [Z].")
+
+			if(isobserver(ghostmob) )
+				cdel(ghostmob)
+			return
+
+
 
 
 
@@ -665,7 +695,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	for(var/mob/living/carbon/hellhound/A in living_mob_list)
 		if(istype(A) && !A.client)
-			hellhound_list += A.name
+			hellhound_list += A.real_name
 
 	if(hellhound_list.len == 0)
 		usr << "\red There aren't any available Hellhounds."
@@ -676,7 +706,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	for(var/mob/living/carbon/hellhound/X in living_mob_list)
-		if(choice == X.name)
+		if(choice == X.real_name)
 			L = X
 			break
 
