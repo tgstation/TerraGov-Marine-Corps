@@ -383,14 +383,14 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(M.stat != DEAD)
 			if(isXeno(M))
 				switch(M.z)
-					if(3, 4) numXenosShip++ //On the ship.
-					else	 numXenosPlanet++ //Elsewhere.
+					if(3) numXenosShip++ //On the ship.
+					else numXenosPlanet++ //Elsewhere.
 				activeXenos += M
 
 			if(ishuman(M) && !isYautja(M))
 				switch(M.z)
-					if(3, 4) numHostsShip++ //On the ship.
-					else	 numHostsPlanet++ //Elsewhere.
+					if(3) numHostsShip++ //On the ship.
+					else numHostsPlanet++ //Elsewhere.
 
 	//Adjust the randomness there so everyone gets the same thing
 	numHostsShip = max(0, numHostsShip + rand(-delta, delta))
