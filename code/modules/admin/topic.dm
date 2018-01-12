@@ -1433,7 +1433,7 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		unanswered_distress -= H
+		//unanswered_distress -= H
 
 		if(!istype(H.wear_ear, /obj/item/device/radio/headset))
 			usr << "The person you are trying to contact is not wearing a headset"
@@ -2382,11 +2382,21 @@
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				X << msg
 
-		unanswered_distress -= ref_person
+		//unanswered_distress -= ref_person
+
+	if(href_list["ccdeny"]) // CentComm-deny. The distress call is denied, without any further conditions
+		var/mob/ref_person = locate(href_list["ccdeny"])
+		log_game("[key_name_admin(usr)] has denied a distress beacon, requested by [key_name_admin(ref_person)]")
+		message_admins("[key_name_admin(usr)] has denied a distress beacon, requested by [key_name_admin(ref_person)]", 1)
+
+		command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
+
+		//unanswered_distress -= ref_person
 
 	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
 		var/mob/ref_person = locate(href_list["distress"])
 		ticker.mode.activate_distress()
-		log_game("[key_name_admin(usr)] has sent a distress beacon, requested by [key_name_admin(ref_person)]")
-		message_admins("[key_name_admin(usr)] has sent a distress beacon, requested by [key_name_admin(ref_person)]", 1)
-		unanswered_distress -= ref_person
+		log_game("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]")
+		message_admins("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]", 1)
+
+		//unanswered_distress -= ref_person

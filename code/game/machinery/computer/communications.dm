@@ -196,7 +196,7 @@
 				//Currently only counts aliens, but this will likely need to change with human opponents.
 				//I think this should instead count human losses, so that a distress beacon is available when a certain number of dead pile up.
 				//Comment block to test
-				var/L[] = ticker.mode.count_humans_and_xenos()
+				var/L[] = ticker.mode.count_humans_and_xenos(3) //3 is ship Z-level
 
 				if(L[2] < round(L[1] * 0.5))
 					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat on the ship.")
@@ -206,17 +206,17 @@
 
 				for(var/client/C in admins)
 					if((R_ADMIN|R_MOD) & C.holder.rights)
-						C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Distress Beacon\"</span> <span class='name'>(<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>Distress Beacon</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
+						C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Distress Beacon\"</span> <span class='name'>(<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>Distress Beacon</A>) (<A HREF='?_src_=holder;ccdeny=\ref[usr]'>DENY</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
 						C << 'sound/effects/sos-morse-code.ogg'
 						usr << "<span class='notice'>A distress beacon request has been sent to USCM Central Command.</span>"
-						unanswered_distress += usr
+						//unanswered_distress += usr
 
-				spawn(600) //1 minute in deciseconds
-					if(usr in unanswered_distress)
-						unanswered_distress -= usr
-						ticker.mode.activate_distress()
-						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.")
-						message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.", 1)
+				//spawn(600) //1 minute in deciseconds
+					//if(usr in unanswered_distress)
+						//unanswered_distress -= usr
+						//ticker.mode.activate_distress()
+						//log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.")
+						//message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.", 1)
 
 				cooldown_request = world.time
 				r_TRU
@@ -290,42 +290,6 @@
 
 		if("changeseclevel")
 			state = STATE_ALERT_LEVEL
-/*
-		//AI interface
-		if("ai-main")
-			aicurrmsg = 0
-			aistate = STATE_DEFAULT
-		if("ai-callshuttle")
-			aistate = STATE_CALLSHUTTLE
-		if("ai-callshuttle2")
-			call_shuttle_proc(usr)
-			aistate = STATE_DEFAULT
-		if("ai-messagelist")
-			aicurrmsg = 0
-			aistate = STATE_MESSAGELIST
-		if("ai-viewmessage")
-			aistate = STATE_VIEWMESSAGE
-			if (!aicurrmsg)
-				if(href_list["message-num"])
-					aicurrmsg = text2num(href_list["message-num"])
-				else
-					aistate = STATE_MESSAGELIST
-		if("ai-delmessage")
-			aistate = (aicurrmsg) ? STATE_DELMESSAGE : STATE_MESSAGELIST
-		if("ai-delmessage2")
-			if(aicurrmsg)
-				var/title = messagetitle[aicurrmsg]
-				var/text  = messagetext[aicurrmsg]
-				messagetitle.Remove(title)
-				messagetext.Remove(text)
-				if(currmsg == aicurrmsg)
-					currmsg = 0
-				aicurrmsg = 0
-			aistate = STATE_MESSAGELIST
-		if("ai-status")
-			aistate = STATE_STATUSDISPLAY
-			state = STATE_CONFIRM_LEVEL
-*/
 
 		else r_FAL
 
