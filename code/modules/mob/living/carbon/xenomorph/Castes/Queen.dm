@@ -324,6 +324,8 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	update_canmove()
 	update_icons()
 
+	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution and upgrade progress resumed.</span>",3)
+
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
 	set waitfor = 0
@@ -371,6 +373,8 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		ovipositor_cooldown = world.time + 3000 //5 minutes
 		anchored = FALSE
 		update_canmove()
+		if(!instant_dismount)
+			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution and upgrade progress paused.</span>",3)
 
 
 

@@ -240,6 +240,8 @@
 			dat = format_occupant_data(od)
 			N.fields["last_scan_time"] = od["stationtime"]
 			N.fields["last_scan_result"] = dat
+			visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [connected.occupant.real_name]</span>")
+			playsound(src.loc, 'sound/machines/ping.ogg', 25, 1)
 			dat += "<HR><A href='?src=\ref[src];print=1'>Print</A><BR>"
 		else
 			dat = "<font color='red'> Error: No Body Scanner connected.</font>"
