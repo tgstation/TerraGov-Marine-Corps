@@ -19,14 +19,14 @@
 	. = ..()
 
 	if (.) //Only update when looking at the Status panel.
-			 if(!living_xeno_queen)
-					 stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-			 else if(!living_xeno_queen.ovipositor)
-					 stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
-			 else if(!evolution_allowed)
-					 stat(null, "Evolve Progress (FINISHED)")
-			 else
-					 stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
+		if(!living_xeno_queen)
+			stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+		else if(!living_xeno_queen.ovipositor)
+			stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
+		else if(!evolution_allowed)
+			stat(null, "Evolve Progress (FINISHED)")
+		else
+			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 
 		if(maxplasma > 0)
 			if(is_robotic)
