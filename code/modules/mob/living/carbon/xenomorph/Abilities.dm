@@ -960,7 +960,7 @@
 			if("Spitter")
 				newcaste = "Sentinel"
 			if("Hunter")
-				newcaste = "Hunter"
+				newcaste = "Runner"
 
 		if(!newcaste)
 			X << "<span class='xenowarning'>[T] can't be deevolved.</span>"
@@ -968,6 +968,11 @@
 
 		var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.caste] to [newcaste]?", , "Yes", "No")
 		if(confirm == "No")
+			return
+
+		var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
+		if(isnull(reason))
+			X << "<span class='xenowarning'>You must provide a reason for deevolving [T].</span>"
 			return
 
 		if(!X.check_state() || !X.check_plasma(600) || X.observed_xeno != T)
@@ -981,6 +986,8 @@
 
 		if(T.health <= 0)
 			return
+
+		T << "<span class='xenowarning'>The queen is deevolving you for the following reason: [reason]</span>"
 
 		var/xeno_type
 
@@ -1042,8 +1049,8 @@
 
 		new_xeno.upgrade_xeno(TRUE, min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
 
-		log_admin("[key_name(src)] has deevolved [T].")
-		message_admins("[key_name_admin(X)] has deevolved [T].", 1)
+		message_admins("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
+		log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
 
 		round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 		cdel(T)
