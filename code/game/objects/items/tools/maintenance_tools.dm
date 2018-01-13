@@ -80,13 +80,13 @@
 		src.pixel_y = rand(0, 16)
 	return
 
-/obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/*/obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))	return ..()
-	if(user.zone_selected != "eyes" && user.zone_selected != "head")
+	if(user.zone_selected != "eyes") // && user.zone_selected != "head")
 		return ..()
 	if((CLUMSY in user.mutations) && prob(50))
 		M = user
-	return eyestab(M,user)
+	return eyestab(M,user)*/
 
 /*
  * Wirecutters
