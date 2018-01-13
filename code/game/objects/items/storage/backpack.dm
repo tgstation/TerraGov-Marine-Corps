@@ -502,16 +502,17 @@
 	..()
 	return
 
-/obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding)
-			user << "\red That was close! However you realized you had the welder on and prevented disaster"
+			user << "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>"
 			return
-		src.reagents.trans_to(W, T.max_fuel)
-		user << "\blue Welder refilled!"
-		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		return
+		if(!(T.get_fuel()==T.max_fuel) && reagents.total_volume)
+			reagents.trans_to(W, T.max_fuel)
+			user << "<span class='notice'>Welder refilled!</span>"
+			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+			return
 	. = ..()
 
 /obj/item/storage/backpack/marine/engineerpack/afterattack(obj/O as obj, mob/user as mob, proximity)
