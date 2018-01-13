@@ -196,7 +196,7 @@
 				//Currently only counts aliens, but this will likely need to change with human opponents.
 				//I think this should instead count human losses, so that a distress beacon is available when a certain number of dead pile up.
 				//Comment block to test
-				var/L[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL)) //3 is ship Z-level
+				var/L[] = ticker.mode.count_humans_and_xenos(MAIN_SHIP_Z_LEVEL) //3 is ship Z-level
 
 				if(L[2] < round(L[1] * 0.5))
 					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat on the ship.")
