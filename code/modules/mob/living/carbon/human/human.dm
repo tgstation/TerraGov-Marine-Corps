@@ -1006,12 +1006,14 @@
 		vessel.add_reagent("blood",560-vessel.total_volume)
 		fixblood()
 
-	for (var/obj/item/limb/head/H in item_list)
-		if(H.brainmob)
-			if(H.brainmob.real_name == src.real_name)
-				if(H.brainmob.mind)
-					H.brainmob.mind.transfer_to(src)
-					cdel(H)
+	//try to find the brain player in the decapitated head and put them back in control of the human
+	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
+		for (var/obj/item/limb/head/H in item_list)
+			if(H.brainmob)
+				if(H.brainmob.real_name == src.real_name)
+					if(H.brainmob.mind)
+						H.brainmob.mind.transfer_to(src)
+						cdel(H)
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.damage = 0

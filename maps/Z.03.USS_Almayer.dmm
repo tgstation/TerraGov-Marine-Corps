@@ -2397,7 +2397,7 @@
 "aUe" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{tag = "icon-intact-supply (EAST)"; icon_state = "intact-supply"; dir = 4},/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/almayer{tag = "icon-green (NORTH)"; icon_state = "green"; dir = 1},/area/almayer/living/offices)
 "aUf" = (/obj/structure/bed/chair{dir = 1},/obj/machinery/atmospherics/unary/vent_pump{dir = 8; on = 1},/obj/structure/disposalpipe/segment,/turf/simulated/floor/almayer{tag = "icon-green (NORTH)"; icon_state = "green"; dir = 1},/area/almayer/living/offices)
 "aUg" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/almayer{tag = "icon-green (SOUTHWEST)"; icon_state = "green"; dir = 10},/area/almayer/living/offices)
-"aUh" = (/obj/structure/table/almayer,/obj/item/trash/popcorn,/obj/effect/landmark/shuttle_loc/marine_crs/dropship,/turf/simulated/floor/almayer,/area/almayer/living/offices)
+"aUh" = (/obj/structure/table/almayer,/obj/item/trash/popcorn,/turf/simulated/floor/almayer,/area/almayer/living/offices)
 "aUi" = (/obj/structure/closet,/obj/item/storage/belt/marine,/turf/simulated/floor/almayer{icon_state = "plate"; tag = "icon-sterile"},/area/almayer/living/starboard_emb)
 "aUj" = (/obj/structure/closet,/obj/machinery/light,/turf/simulated/floor/almayer{icon_state = "plate"; tag = "icon-sterile"},/area/almayer/living/starboard_emb)
 "aUk" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/almayer,/area/almayer/hallways/starboard_hallway)
