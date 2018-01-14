@@ -280,8 +280,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	else icon_state = "[base_icon_state]_e"
 
 
-/obj/item/ammo_magazine/big_box/attackby(obj/item/I, mob/user)
+/obj/item/ammo_magazine/big_box/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/ammo_magazine))
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.s_store == src || H.belt == src || H.l_hand == src || H.r_hand == src)
+				user << "<span class='warning'>You won't be able to reload this unless the box is on the ground.</span>"
+				return
 		var/obj/item/ammo_magazine/AM = I
 		if(AM.flags_magazine & AMMUNITION_REFILLABLE)
 			if(default_ammo != AM.default_ammo)

@@ -1427,7 +1427,8 @@ MEDICAL
 					/obj/item/tool/surgery/bonegel,
 					/obj/item/tool/surgery/retractor,
 					/obj/item/tool/surgery/bonesetter,
-					/obj/item/tool/surgery/circular_saw
+					/obj/item/tool/surgery/circular_saw,
+					/obj/item/tool/surgery/scalpel/manager
 					)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/surgery
