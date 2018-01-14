@@ -159,11 +159,6 @@
 		. -= (frenzy_aura * 0.1)
 
 
-
-//These don't do much currently. Or anything? Only around for legacy code.
-/mob/living/carbon/Xenomorph/is_mob_restrained()
-	return 0
-
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
 		if(upgrade_stored >= upgrade_threshold)

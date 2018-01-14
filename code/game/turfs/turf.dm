@@ -100,16 +100,6 @@
 		usr << "\red Movement is admin-disabled." //This is to identify lag problems
 		return
 	..()
-//vvvvv Infared beam stuff vvvvv
-
-	if ((atom && atom.density && !( istype(atom, /obj/effect/beam) )))
-		for(var/obj/effect/beam/i_beam/I in src)
-			spawn( 0 )
-				if (I)
-					I.hit()
-				break
-
-//^^^^^ Infared beam stuff ^^^^^
 
 	if(!istype(atom, /atom/movable))
 		return

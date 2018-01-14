@@ -91,12 +91,6 @@
 		away_timer = 0
 	return
 
-/mob/proc/is_mob_restrained()
-	return
-
-/mob/proc/is_mob_incapacitated(ignore_restrained)
-	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && is_mob_restrained()))
-
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
 	var/obj/item/W = get_active_hand()
@@ -205,97 +199,19 @@ var/list/slot_equipment_priority = list( \
 	return
 
 
-/mob/verb/mode()
-	set name = "Activate Held Object"
-	set category = "Object"
-	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
-
-	if(hand)
-		var/obj/item/W = l_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_l_hand()
-	else
-		var/obj/item/W = r_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_r_hand()
-	if(next_move < world.time)
-		next_move = world.time + 2
-	return
-
-/mob/verb/point_to(atom/A in view())
-	set name = "Point To"
-	set category = "Object"
-
-	if(!isturf(src.loc) || !(A in view(src.loc)))//target is no longer visible to us
-		return 0
-
-	if(!A.mouse_opacity)//can't click it? can't point at it.
-		return 0
-
-	if(is_mob_incapacitated() || (status_flags & FAKEDEATH)) //incapacitated, can't point
-		return 0
-
-	var/tile = get_turf(A)
-	if (!tile)
-		return 0
-
-
-	if(next_move > world.time)
-		return 0
-
-	if(recently_pointed_to > world.time)
-		return 0
-
-	next_move = world.time + 2
-
+/mob/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(!mind || !mind.skills_list || mind.skills_list["leadership"] < SKILL_LEAD_TRAINED)
 		recently_pointed_to = world.time + 50
-		new /obj/effect/overlay/temp/point(tile)
+		new /obj/effect/overlay/temp/point(T)
 
 	else
 		recently_pointed_to = world.time + 10
-		new /obj/effect/overlay/temp/point/big(tile)
+		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return 1
 
-/mob/verb/memory()
-	set name = "Notes"
-	set category = "IC"
-	if(mind)
-		mind.show_memory(src)
-	else
-		src << "The game appears to have misplaced your mind datum, so we can't show you your notes."
-
-/mob/verb/add_memory(msg as message)
-	set name = "Add Note"
-	set category = "IC"
-
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-	msg = sanitize(msg)
-
-	if(mind)
-		mind.store_memory(msg)
-	else
-		src << "The game appears to have misplaced your mind datum, so we can't show you your notes."
-
-/mob/proc/store_memory(msg as message, popup, sane = 1)
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-
-	if (sane)
-		msg = sanitize(msg)
-
-	if (length(memory) == 0)
-		memory += msg
-	else
-		memory += "<BR>[msg]"
-
-	if (popup)
-		memory()
 
 /mob/proc/update_flavor_text()
 	set src in usr
@@ -322,76 +238,7 @@ var/list/slot_equipment_priority = list( \
 		else
 			return "\blue [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
 
-/*
-/mob/verb/help()
-	set name = "Help"
-	src << browse('html/help.html', "window=help")
-	return
-*/
 
-/mob/verb/abandon_mob()
-	set name = "Respawn"
-	set category = "OOC"
-
-	var/is_admin = 0
-	if(client.holder && (client.holder.rights & R_ADMIN))
-		is_admin = 1
-
-	if (!( abandon_allowed ) && !is_admin)
-		usr << "\blue Respawn is disabled."
-		return
-	if ((stat != 2 || !( ticker )))
-		usr << "\blue <B>You must be dead to use this!</B>"
-		return
-	if (ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-		usr << "\blue Respawn is disabled for this roundtype."
-		return
-	else
-		var/deathtime = world.time - src.timeofdeath
-//		if(istype(src,/mob/dead/observer))
-//			var/mob/dead/observer/G = src
-//			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-//				usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"
-//				return
-		var/deathtimeminutes = round(deathtime / 600)
-		var/pluralcheck = "minute"
-		if(deathtimeminutes == 0)
-			pluralcheck = ""
-		else if(deathtimeminutes == 1)
-			pluralcheck = " [deathtimeminutes] minute and"
-		else if(deathtimeminutes > 1)
-			pluralcheck = " [deathtimeminutes] minutes and"
-		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-
-		if (deathtime < 18000 && !is_admin)
-			usr << "You must wait 30 minutes to respawn!"
-			return
-		else
-			usr << "You can respawn now, enjoy your new life!"
-
-	log_game("[usr.name]/[usr.key] used abandon mob.")
-
-	usr << "\blue <B>Make sure to play a different character, and please roleplay correctly!</B>"
-
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-	client.screen.Cut()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-
-	var/mob/new_player/M = new /mob/new_player()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		cdel(M)
-		return
-
-	M.key = key
-	if(M.client) M.client.view = world.view
-//	M.Login()	//wat
-	return
 
 /client/verb/changes()
 	set name = "Changelog"
@@ -423,99 +270,6 @@ var/list/slot_equipment_priority = list( \
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
-/mob/verb/observe()
-	set name = "Observe"
-	set category = "OOC"
-	var/is_admin = 0
-
-	if(client.holder && (client.holder.rights & R_ADMIN))
-		is_admin = 1
-	else if(stat != DEAD || istype(src, /mob/new_player))
-		usr << "\blue You must be observing to use this!"
-		return
-
-	if(is_admin && stat == DEAD)
-		is_admin = 0
-
-	var/list/names = list()
-	var/list/namecounts = list()
-	var/list/creatures = list()
-
-	for(var/obj/O in object_list)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
-		if(!O.loc)
-			continue
-		if(istype(O, /obj/item/disk/nuclear))
-			var/name = "Nuclear Disk"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
-
-		if(istype(O, /obj/machinery/singularity))
-			var/name = "Singularity"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
-
-		if(istype(O, /obj/machinery/bot))
-			var/name = "BOT: [O.name]"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
-
-
-	for(var/mob/M in sortAtom(mob_list))
-		var/name = M.name
-		if (names.Find(name))
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-
-		creatures[name] = M
-
-
-	client.perspective = EYE_PERSPECTIVE
-
-	var/eye_name = null
-
-	var/ok = "[is_admin ? "Admin Observe" : "Observe"]"
-	eye_name = input("Please, select a player!", ok, null, null) as null|anything in creatures
-
-	if (!eye_name)
-		return
-
-	var/mob/mob_eye = creatures[eye_name]
-
-	if(client && mob_eye)
-		client.eye = mob_eye
-		if (is_admin)
-			client.adminobs = 1
-			if(mob_eye == client.mob || client.eye == client.mob)
-				client.adminobs = 0
-
-/mob/verb/cancel_camera()
-	set name = "Cancel Camera View"
-	set category = "OOC"
-	reset_view(null)
-	unset_interaction()
-	if(istype(src, /mob/living))
-		var/mob/living/M = src
-		if(M.cameraFollow)
-			M.cameraFollow = null
-
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
@@ -542,21 +296,6 @@ var/list/slot_equipment_priority = list( \
 	if((istype(M,/mob/living/carbon/Xenomorph) || istype(src,/mob/living/carbon/Xenomorph)) && src != M) return
 	show_inv(usr)
 
-
-/mob/verb/stop_pulling()
-
-	set name = "Stop Pulling"
-	set category = "IC"
-
-	if(pulling)
-		pulling.pulledby = null
-		pulling = null
-		grab_level = 0
-		if(hud_used && hud_used.pull_icon)	hud_used.pull_icon.icon_state = "pull0"
-		if(istype(r_hand, /obj/item/grab))
-			temp_drop_inv_item(r_hand)
-		else if(istype(l_hand, /obj/item/grab))
-			temp_drop_inv_item(l_hand)
 
 
 /mob/proc/start_pulling(atom/movable/AM)
@@ -612,35 +351,12 @@ var/list/slot_equipment_priority = list( \
 /atom/movable/proc/pull_response(mob/puller)
 	return
 
-/mob/proc/can_use_hands()
-	return
-
-/mob/proc/is_active()
-	return (0 >= usr.stat)
-
-/mob/proc/is_dead()
-	return stat == DEAD
-
-/mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
-		return 1
-	return istype(src, /mob/living/silicon) || get_species() == "Machine"
-
-/mob/proc/is_ready()
-	return client && !!mind
-
-/mob/proc/get_gender()
-	return gender
-
-/mob/proc/see(message)
-	if(!is_active())
-		return 0
-	src << message
-	return 1
 
 /mob/proc/show_viewers(message)
 	for(var/mob/M in viewers())
-		M.see(message)
+		if(!M.stat)
+			src << message
+
 
 /*
 adds a dizziness amount to a mob
@@ -853,101 +569,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return 1
 
 
-/mob/verb/eastface()
-	set hidden = 1
-	return facedir(EAST)
-
-
-/mob/verb/westface()
-	set hidden = 1
-	return facedir(WEST)
-
-
-/mob/verb/northface()
-	set hidden = 1
-	return facedir(NORTH)
-
-
-/mob/verb/southface()
-	set hidden = 1
-	return facedir(SOUTH)
 
 
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
 	return 0
 
-
-/mob/proc/Stun(amount)
-	if(status_flags & CANSTUN)
-		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
-	return
-
-/mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
-	if(status_flags & CANSTUN)
-		stunned = max(amount,0)
-	return
-
-/mob/proc/AdjustStunned(amount)
-	if(status_flags & CANSTUN)
-		stunned = max(stunned + amount,0)
-	return
-
-/mob/proc/KnockDown(amount, force)
-	if((status_flags & CANKNOCKDOWN) || force)
-		knocked_down = max(max(knocked_down,amount),0)
-		update_canmove()	//updates lying, canmove and icons
-	return
-
-/mob/proc/SetKnockeddown(amount)
-	if(status_flags & CANKNOCKDOWN)
-		knocked_down = max(amount,0)
-		update_canmove()	//updates lying, canmove and icons
-	return
-
-/mob/proc/AdjustKnockeddown(amount)
-	if(status_flags & CANKNOCKDOWN)
-		knocked_down = max(knocked_down + amount,0)
-		update_canmove()	//updates lying, canmove and icons
-	return
-
-/mob/proc/KnockOut(amount)
-	if(status_flags & CANKNOCKOUT)
-		knocked_out = max(max(knocked_out,amount),0)
-	return
-
-/mob/proc/SetKnockedout(amount)
-	if(status_flags & CANKNOCKOUT)
-		knocked_out = max(amount,0)
-	return
-
-/mob/proc/AdjustKnockedout(amount)
-	if(status_flags & CANKNOCKOUT)
-		knocked_out = max(knocked_out + amount,0)
-	return
-
-/mob/proc/Sleeping(amount)
-	sleeping = max(max(sleeping,amount),0)
-	return
-
-/mob/proc/SetSleeping(amount)
-	sleeping = max(amount,0)
-	return
-
-/mob/proc/AdjustSleeping(amount)
-	sleeping = max(sleeping + amount,0)
-	return
-
-/mob/proc/Resting(amount)
-	resting = max(max(resting,amount),0)
-	return
-
-/mob/proc/SetResting(amount)
-	resting = max(amount,0)
-	return
-
-/mob/proc/AdjustResting(amount)
-	resting = max(resting + amount,0)
-	return
 
 /mob/proc/get_species()
 	return ""
@@ -1105,10 +731,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
-
-//returns how many non-destroyed legs the mob has (currently only useful for humans)
-/mob/proc/has_legs()
-	return 2
 
 /mob/on_stored_item_del(obj/item/I)
 	temp_drop_inv_item(I, TRUE) //unequip before deletion to clear possible item references on the mob.

@@ -64,10 +64,13 @@ var/global/list/randomized_pill_icons
 				H << "\red They have a monitor for a head, where do you think you're going to put that?"
 				return
 
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message("\red [user] attempts to force [M] to swallow [src].", 1)
+			user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
 
-			if(!do_mob(user, M, 30, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
+			var/ingestion_time = 30
+			if(user.mind && user.mind.skills_list)
+				ingestion_time = max(10, 30 - 10*user.mind.skills_list["medical"])
+
+			if(!do_mob(user, M, ingestion_time, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
 
 			user.drop_inv_item_on_ground(src) //icon update
 			for(var/mob/O in viewers(world.view, user))

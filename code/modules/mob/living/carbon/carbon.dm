@@ -215,8 +215,6 @@
 
 
 
-/mob/living/carbon/proc/eyecheck()
-	return 0
 
 // ++++ROCKDTBEN++++ MOB PROCS -- Ask me before touching.
 // Stop! ... Hammertime! ~Carn
@@ -321,17 +319,6 @@
 	..()
 	bodytemperature = max(bodytemperature, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
 
-/mob/living/carbon/can_use_hands()
-	if(handcuffed)
-		return 0
-	if(buckled && ! istype(buckled, /obj/structure/bed/chair)) // buckling does not restrict hands
-		return 0
-	return 1
-
-/mob/living/carbon/is_mob_restrained()
-	if (handcuffed)
-		return 1
-	return
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)
 	user.set_interaction(src)

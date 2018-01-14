@@ -50,6 +50,12 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
+
+		if(user.mind && user.mind.skills_list)
+			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+				if(!do_mob(user, M, 10, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+					return 1
+
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.surgery_open_stage == 0)
@@ -92,6 +98,12 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
+
+		if(user.mind && user.mind.skills_list)
+			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+				if(!do_mob(user, M, 10, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+					return 1
+
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.surgery_open_stage == 0)
@@ -134,12 +146,21 @@
 	heal_brute = 12
 	origin_tech = "biotech=1"
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/user)
 	if(..())
 		return 1
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
+
+		var/heal_amt = heal_brute
+		if(user.mind && user.mind.skills_list)
+			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
+				user << "<span class='warning'>You start fumbling with [src]...</span>"
+				if(!do_mob(user, M, 30, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+					return
+				heal_amt = 3 //non optimal application means less healing
+
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.surgery_open_stage == 0)
@@ -163,7 +184,7 @@
 						user.visible_message("<span class='notice'>[user] smears some bioglue over [W.desc] on [M]'s [affecting.display_name].</span>",
 						"<span class='notice'>You smear some bioglue over [W.desc] on [M]'s [affecting.display_name].</span>")
 				if(bandaged)
-					affecting.heal_damage(heal_brute, 0)
+					affecting.heal_damage(heal_amt, 0)
 				use(1)
 		else
 			if(H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
@@ -186,6 +207,15 @@
 
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
+
+		var/heal_amt = heal_burn
+		if(user.mind && user.mind.skills_list)
+			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
+				user << "<span class='warning'>You start fumbling with [src]...</span>"
+				if(!do_mob(user, M, 30, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+					return
+				heal_amt = 3 //non optimal application means less healing
+
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
 		if(affecting.surgery_open_stage == 0)
@@ -195,7 +225,7 @@
 			else
 				user.visible_message("<span class='notice'>[user] covers wounds on [M]'s [affecting.display_name] with regenerative membrane.</span>",
 				"<span class='notice'>You cover wounds on [M]'s [affecting.display_name] with regenerative membrane.</span>")
-				affecting.heal_damage(0, heal_burn)
+				affecting.heal_damage(0, heal_amt)
 				use(1)
 		else
 			if(H.can_be_operated_on()) //Checks if mob is lying down on table for surgery
