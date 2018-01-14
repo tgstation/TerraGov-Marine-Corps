@@ -235,7 +235,7 @@
 /mob/living/carbon/human/proc/get_damaged_limbs(var/brute, var/burn)
 	var/list/datum/limb/parts = list()
 	for(var/datum/limb/O in limbs)
-		if((brute && O.brute_dam) || (burn && O.burn_dam) || !(org.surgery_open_stage == 0))
+		if((brute && O.brute_dam) || (burn && O.burn_dam) || !(O.surgery_open_stage == 0))
 			parts += O
 	return parts
 

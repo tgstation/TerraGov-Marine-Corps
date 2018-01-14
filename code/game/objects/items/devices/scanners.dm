@@ -139,8 +139,8 @@ REAGENT SCANNER
 				var/open_incision = 1
 				if(org.surgery_open_stage == 0)
 					open_incision = 0
-					var/bandaged = org.bandage()
-					var/disinfected = org.disinfect()
+					var/bandaged = org.is_bandaged()
+					var/disinfected = org.is_disinfected()
 					if(!(bandaged || disinfected))
 						brute_treated = 1
 					if(!org.salve())
