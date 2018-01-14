@@ -290,6 +290,7 @@
 #include "code\game\machinery\ai_slipper.dm"
 #include "code\game\machinery\air_sensor.dm"
 #include "code\game\machinery\alarm.dm"
+#include "code\game\machinery\autodoc.dm"
 #include "code\game\machinery\autolathe.dm"
 #include "code\game\machinery\autolathe_datums.dm"
 #include "code\game\machinery\Beacon.dm"
