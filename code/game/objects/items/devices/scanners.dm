@@ -143,7 +143,7 @@ REAGENT SCANNER
 					var/disinfected = org.is_disinfected()
 					if(!(bandaged || disinfected))
 						brute_treated = 1
-					if(!org.salve())
+					if(!org.is_salved())
 						burn_treated = 1
 
 				var/org_nam = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"

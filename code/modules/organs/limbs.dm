@@ -829,6 +829,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.salved = 1
 	return rval
 
+/datum/limb/proc/is_salved()
+	var/rval = 1
+	for(var/datum/wound/W in wounds)
+		rval |= !W.salved
+	return rval
+
 /datum/limb/proc/fracture()
 
 	if(status & LIMB_BROKEN)
