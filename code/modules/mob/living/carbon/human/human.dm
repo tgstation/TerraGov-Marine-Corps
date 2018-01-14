@@ -219,15 +219,6 @@
 	return 0
 
 
-/mob/living/carbon/human/is_mob_restrained()
-	if (handcuffed)
-		return 1
-	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
-		return 1
-	return 0
-
-
-
 /mob/living/carbon/human/var/co2overloadtime = null
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
 
@@ -737,19 +728,21 @@
 	..()
 	return
 
-///eyecheck()
+///get_eye_protection()
 ///Returns a number between -1 to 2
-/mob/living/carbon/human/eyecheck()
+/mob/living/carbon/human/get_eye_protection()
 	var/number = 0
 
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
-
-	if(internal_organs_by_name["eyes"]) // Eyes are fucked, not a 'weak point'.
-		var/datum/internal_organ/I = internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
+	if(I)
 		if(I.cut_away)
 			return 2
-	else return 2
+		if(I.robotic == ORGAN_ROBOT)
+			return 2
+	else
+		return 2
 
 	if(istype(head, /obj/item/clothing))
 		var/obj/item/clothing/C = head
@@ -760,10 +753,6 @@
 		number += glasses.eye_protection
 
 	return number
-
-
-/mob/living/carbon/human/IsAdvancedToolUser()
-	return species.has_fine_manipulation
 
 
 /mob/living/carbon/human/abiotic(var/full_body = 0)
@@ -1038,38 +1027,9 @@
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
 		L.damage = L.min_bruised_damage
 
-/*
-/mob/living/carbon/human/verb/simulate()
-	set name = "sim"
-	set background = 1
 
-	var/damage = input("Wound damage","Wound damage") as num
 
-	var/germs = 0
-	var/tdamage = 0
-	var/ticks = 0
-	while (germs < 2501 && ticks < 100000 && round(damage/10)*20)
-		log_misc("VIRUS TESTING: [ticks] : germs [germs] tdamage [tdamage] prob [round(damage/10)*20]")
-		ticks++
-		if (prob(round(damage/10)*20))
-			germs++
-		if (germs == 100)
-			world << "Reached stage 1 in [ticks] ticks"
-		if (germs > 100)
-			if (prob(10))
-				damage++
-				germs++
-		if (germs == 1000)
-			world << "Reached stage 2 in [ticks] ticks"
-		if (germs > 1000)
-			damage++
-			germs++
-		if (germs == 2500)
-			world << "Reached stage 3 in [ticks] ticks"
-	world << "Mob took [tdamage] tox damage"
-*/
 //returns 1 if made bloody, returns 0 otherwise
-
 /mob/living/carbon/human/add_blood(mob/living/carbon/human/M as mob)
 	if (!..())
 		return 0
@@ -1283,25 +1243,6 @@
 		W.message = message
 		W.add_fingerprint(src)
 
-/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
-	. = 1
-
-	if(!user)
-		target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
-	else if(!target_zone)
-		target_zone = user.zone_selected
-
-	switch(target_zone)
-		if("head")
-			if(head && head.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
-		else
-			if(wear_suit && wear_suit.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
-	if(!. && error_msg && user)
- 		// Might need re-wording.
-		user << "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>"
-
 /mob/living/carbon/human/print_flavor_text()
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
 	var/head_exposed = 1
@@ -1350,19 +1291,6 @@
 		return
 	..()
 
-/mob/living/carbon/human/has_brain()
-	if(internal_organs_by_name["brain"])
-		var/datum/internal_organ/brain = internal_organs_by_name["brain"]
-		if(brain && istype(brain))
-			return 1
-	return 0
-
-/mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name["eyes"])
-		var/datum/internal_organ/eyes = internal_organs_by_name["eyes"]
-		if(eyes && istype(eyes) && !eyes.cut_away)
-			return 1
-	return 0
 
 
 /mob/living/carbon/human/proc/vomit_on_floor()
@@ -1378,12 +1306,6 @@
 		return FALSE
 	. = ..()
 
-/mob/living/carbon/human/has_legs()
-	. = 0
-	if(has_limb("r_foot") && has_limb("r_leg"))
-		.++
-	if(has_limb("l_foot") && has_limb("l_leg"))
-		.++
 
 
 //very similar to xeno's queen_locator() but this is for locating squad leader.
