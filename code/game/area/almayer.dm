@@ -254,6 +254,10 @@
 	name = "\improper Almayer Operating Room 3"
 	icon_state = "operating"
 
+/area/almayer/medical/operating_room_four
+	name = "\improper Almayer Operating Room 4"
+	icon_state = "operating"
+
 /area/almayer/medical/medical_science
 	name = "\improper Almayer Medical Science"
 	icon_state = "science"
