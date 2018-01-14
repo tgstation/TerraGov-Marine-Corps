@@ -134,12 +134,24 @@ REAGENT SCANNER
 		var/list/damaged = H.get_damaged_limbs(1,1)
 		if(length(damaged))
 			for(var/datum/limb/org in damaged)
+				var/brute_treated = false
+				var/burn_treated = false
+				var/open_incision = true
+				if(org.surgery_open_stage == 0)
+					open_incision = false
+					var/bandaged = org.bandage()
+					var/disinfected = org.disinfect()
+					if(!(bandaged || disinfected))
+						brute_treated = true
+					if(!org.salve())
+						burn_treated = true
+
 				var/org_nam = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
 				var/burn_info = org.burn_dam > 0 ? "<font color='#FFA500'><b>[org.burn_dam]</b></font>" : "<font color='#FFA500'>0</font>"
 				var/brute_info =  org.brute_dam > 0 ? "\red <b>[org.brute_dam]</b>" : "<font color='red'>0</font>"
 				var/org_bleed = (org.status & LIMB_BLEEDING) ? "\red <b>(Bleeding)</b>" : ""
 				var/org_necro = (org.status & LIMB_NECROTIZED) ? "\red <b>(Necrotizing)</b>" : ""
-				user.show_message("\t\t [org_nam]: [burn_info] - [brute_info] [org_bleed][org_necro]",1)
+				user.show_message("\t\t [org_nam]: [burn_info][(burn_treated?"":"*")] - [brute_info][(brute_treated?"":"*")] [org_bleed][org_necro][(open_incision?" <span class='warning'>Open surgical incision</span>":"")]",1)
 		for(var/datum/limb/temp in H.limbs) // display missing limbs
 			if(temp)
 				if(temp.status & LIMB_DESTROYED)
