@@ -1,7 +1,7 @@
 /obj/item/reagent_container/spray
 	name = "spray bottle"
 	desc = "A spray bottle, with an unscrewable top."
-	icon = 'icons/obj/janitor.dmi'
+	icon = 'icons/obj/items/spray.dmi'
 	icon_state = "cleaner"
 	item_state = "cleaner"
 	flags_atom = OPENCONTAINER|FPRINT|NOBLUDGEON
@@ -129,7 +129,6 @@
 /obj/item/reagent_container/spray/pepper
 	name = "pepperspray"
 	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
 	possible_transfer_amounts = null
@@ -169,7 +168,6 @@
 /obj/item/reagent_container/spray/chemsprayer
 	name = "chem sprayer"
 	desc = "A utility used to spray large amounts of reagent in a given area."
-	icon = 'icons/obj/items/gun.dmi'
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	throwforce = 3
@@ -221,7 +219,6 @@
 /obj/item/reagent_container/spray/plantbgone // -- Skie
 	name = "Plant-B-Gone"
 	desc = "Kills those pesky weeds!"
-	icon = 'icons/obj/hydroponics.dmi'
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	volume = 100

@@ -94,7 +94,7 @@ var/list/mechtoys = list(
 /obj/machinery/computer/supplycomp
 	name = "ASRS console"
 	desc = "A console for an Automated Storage and Retrieval System"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = "/obj/item/circuitboard/computer/supplycomp"
@@ -106,7 +106,7 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "request"
 	circuit = "/obj/item/circuitboard/computer/ordercomp"
 	var/temp = null

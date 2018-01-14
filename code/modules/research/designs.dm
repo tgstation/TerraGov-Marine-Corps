@@ -1733,7 +1733,6 @@ datum/design/security_hud
 /obj/item/disk/design_disk
 	name = "Component Design Disk"
 	desc = "A disk for storing device design data for construction in lathes."
-	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	item_state = "card-id"
 	w_class = 1

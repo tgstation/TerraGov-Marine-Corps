@@ -78,7 +78,7 @@
 /obj/effect/spawner/random/toolbox
 	name = "Random Toolbox"
 	desc = "This is a random toolbox."
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "red"
 	item_to_spawn()
 		return pick(prob(3);/obj/item/storage/toolbox/mechanical,\

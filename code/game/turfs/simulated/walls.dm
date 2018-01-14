@@ -236,24 +236,6 @@
 		else
 	return
 
-//Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
-	if(!rotting && !hull)
-		rotting = 1
-
-		var/number_rots = rand(2, 3)
-		for(var/i = 0, i < number_rots, i++)
-			var/obj/effect/overlay/O = new/obj/effect/overlay(src)
-			O.name = "Wallrot"
-			O.desc = "Yuck"
-			O.icon = 'icons/effects/wallrot.dmi'
-			O.pixel_x += rand(-10, 10)
-			O.pixel_y += rand(-10, 10)
-			O.anchored = 1
-			O.density = 1
-			O.layer = FLY_LAYER
-			O.mouse_opacity = 0
-
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(mineral == "diamond" || hull)
 		return

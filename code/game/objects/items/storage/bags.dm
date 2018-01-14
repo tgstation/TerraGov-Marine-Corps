@@ -87,7 +87,7 @@
 // -----------------------------
 
 /obj/item/storage/bag/plants
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "plantbag"
 	name = "Plant Bag"
 	storage_slots = 50; //the number of plant pieces it can carry.
@@ -240,7 +240,7 @@
 // -----------------------------
 
 /obj/item/storage/bag/cash
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "cashbag"
 	name = "Cash bag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."

@@ -1,7 +1,7 @@
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
 	density = 1
@@ -73,7 +73,7 @@
 	update_icon()
 		overlays = new()
 		if(nameset || examtext)
-			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_label")
+			var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
 			if(icon_state == "deliverycloset")
 				I.pixel_x = 2
 				if(label_y == null)
@@ -86,7 +86,7 @@
 				I.pixel_y = -3
 			overlays += I
 		if(src.sortTag)
-			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_tag")
+			var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
 			if(icon_state == "deliverycloset")
 				if(tag_x == null)
 					tag_x = rand(-2, 3)
@@ -111,7 +111,7 @@
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
 	name = "small parcel"
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "deliverycrate3"
 	var/obj/item/wrapped = null
 	var/sortTag = null
@@ -183,12 +183,12 @@
 	update_icon()
 		overlays = new()
 		if((nameset || examtext) && icon_state != "deliverycrate1")
-			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_label")
+			var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
 			if(icon_state == "deliverycrate5")
 				I.pixel_y = -1
 			overlays += I
 		if(src.sortTag)
-			var/image/I = new/image('icons/obj/items/storage.dmi',"delivery_tag")
+			var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
 			switch(icon_state)
 				if("deliverycrate1")
 					I.pixel_y = -5

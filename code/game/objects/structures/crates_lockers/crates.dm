@@ -3,7 +3,7 @@
 /obj/structure/closet/crate
 	name = "crate"
 	desc = "A rectangular steel crate."
-	icon = 'icons/obj/crates.dmi'
+	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "closed_basic"
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"

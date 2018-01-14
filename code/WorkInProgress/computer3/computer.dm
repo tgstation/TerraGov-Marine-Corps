@@ -1,6 +1,6 @@
 /obj/machinery/computer3
 	name = "computer"
-	icon = 'icons/obj/computer3.dmi'
+	icon = 'icons/obj/machines/computer3.dmi'
 	icon_state = "frame"
 	density = 1
 	anchored = 1.0
@@ -93,7 +93,7 @@
 
 		if(show_keyboard)
 			var/kb_state = "kb[rand(1,15)]"
-			kb = image('icons/obj/computer3.dmi',icon_state=kb_state)
+			kb = image('icons/obj/machines/computer3.dmi',icon_state=kb_state)
 			overlays += kb
 
 		if(!built)
@@ -427,7 +427,7 @@
 				overlays += kb
 			name = initial(name)
 		else
-			var/global/image/generic = image('icons/obj/computer3.dmi',icon_state="osod") // orange screen of death
+			var/global/image/generic = image('icons/obj/machines/computer3.dmi',icon_state="osod") // orange screen of death
 			overlays = list(generic)
 			if(show_keyboard)
 				overlays += kb
@@ -445,7 +445,7 @@
 
 /obj/machinery/computer3/wall_comp
 	name			= "terminal"
-	icon			= 'icons/obj/computer3.dmi'
+	icon			= 'icons/obj/machines/computer3.dmi'
 	icon_state		= "wallframe"
 	density			= 0
 	pixel_y			= -3

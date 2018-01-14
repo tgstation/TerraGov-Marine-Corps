@@ -16,7 +16,7 @@
 	unacidable = 1
 
 /obj/machinery/telecomms/relay/preset/ice_colony
-	icon = 'icons/obj/comm_tower.dmi'
+	icon = 'icons/obj/machines/comm_tower.dmi'
 	icon_state = "comm_tower"
 	id = "Station Relay"
 	listening_level = 1

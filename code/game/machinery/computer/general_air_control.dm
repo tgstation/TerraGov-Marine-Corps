@@ -74,7 +74,7 @@
 
 
 /obj/machinery/computer/general_air_control/large_tank_control
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "tank"
 
 	frequency = 1441
@@ -188,7 +188,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 		src.updateUsrDialog()
 
 /obj/machinery/computer/general_air_control/supermatter_core
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "tank"
 
 	frequency = 1438
@@ -302,7 +302,7 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 		src.updateUsrDialog()
 
 /obj/machinery/computer/general_air_control/fuel_injection
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "atmos"
 
 	var/device_tag

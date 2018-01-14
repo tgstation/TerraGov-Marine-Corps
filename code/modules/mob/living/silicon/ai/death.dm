@@ -3,10 +3,7 @@
 	if(stat == DEAD)
 		return
 
-	if (src.custom_sprite == 1)//check for custom AI sprite, defaulting to blue screen if no.
-		icon_state = "[ckey]-ai-crash"
-	else
-		icon_state = "ai-crash"
+	icon_state = "ai-crash"
 
 	if(src.eyeobj)
 		src.eyeobj.setLoc(get_turf(src))

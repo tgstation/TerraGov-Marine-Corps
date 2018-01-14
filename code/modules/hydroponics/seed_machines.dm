@@ -1,9 +1,9 @@
 /obj/item/disk/botany
 	name = "flora data disk"
 	desc = "A small disk used for carrying data on plant genetics."
-	icon = 'icons/obj/hydroponics.dmi'
-	icon_state = "disk"
-	w_class = 1.0
+	icon = 'icons/obj/items/disk.dmi'
+	icon_state = "botanydisk"
+	w_class = 1
 
 	var/list/genes = list()
 	var/genesource = "unknown"
@@ -33,7 +33,7 @@
 		new /obj/item/disk/botany(src)
 
 /obj/machinery/botany
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1

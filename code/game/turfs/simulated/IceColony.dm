@@ -712,7 +712,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator1
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 1"
 	unacidable = 1
@@ -722,7 +722,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator2
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 2"
 	unacidable = 1
@@ -732,7 +732,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator3
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 3"
 	unacidable = 1
@@ -742,7 +742,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator4
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 4"
 	unacidable = 1
