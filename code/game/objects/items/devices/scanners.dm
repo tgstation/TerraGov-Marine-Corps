@@ -134,17 +134,17 @@ REAGENT SCANNER
 		var/list/damaged = H.get_damaged_limbs(1,1)
 		if(length(damaged))
 			for(var/datum/limb/org in damaged)
-				var/brute_treated = false
-				var/burn_treated = false
-				var/open_incision = true
+				var/brute_treated = 0
+				var/burn_treated = 0
+				var/open_incision = 1
 				if(org.surgery_open_stage == 0)
-					open_incision = false
+					open_incision = 0
 					var/bandaged = org.bandage()
 					var/disinfected = org.disinfect()
 					if(!(bandaged || disinfected))
-						brute_treated = true
+						brute_treated = 1
 					if(!org.salve())
-						burn_treated = true
+						burn_treated = 1
 
 				var/org_nam = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
 				var/burn_info = org.burn_dam > 0 ? "<font color='#FFA500'><b>[org.burn_dam]</b></font>" : "<font color='#FFA500'>0</font>"
