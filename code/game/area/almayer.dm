@@ -262,6 +262,10 @@
 	name = "\improper Almayer Chemistry"
 	icon_state = "chemistry"
 
+/area/almayer/medical/cryo_tubes
+	name = "\improper Almayer Medical Cryo"
+	icon_state = "medical"
+
 /area/almayer/squads/alpha
 	name = "\improper Almayer Alpha Preparation"
 	icon_state = "alpha"
