@@ -782,11 +782,19 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/bandage()
 	var/rval = 0
-	src.status &= ~LIMB_BLEEDING
+	status &= ~LIMB_BLEEDING
 	for(var/datum/wound/W in wounds)
 		if(W.internal) continue
 		rval |= !W.bandaged
 		W.bandaged = 1
+	return rval
+
+/datum/limb/proc/is_bandaged()
+	var/rval = 0
+	status &= ~LIMB_BLEEDING
+	for(var/datum/wound/W in wounds)
+		if(W.internal) continue
+		rval |= !W.bandaged
 	return rval
 
 /datum/limb/proc/disinfect()
@@ -796,6 +804,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 		rval |= !W.disinfected
 		W.disinfected = 1
 		W.germ_level = 0
+	return rval
+
+/datum/limb/proc/is_disinfected()
+	var/rval = 0
+	for(var/datum/wound/W in wounds)
+		if(W.internal) continue
+		rval |= !W.disinfected
 	return rval
 
 /datum/limb/proc/clamp()
@@ -812,6 +827,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	for(var/datum/wound/W in wounds)
 		rval |= !W.salved
 		W.salved = 1
+	return rval
+
+/datum/limb/proc/is_salved()
+	var/rval = 1
+	for(var/datum/wound/W in wounds)
+		rval |= !W.salved
 	return rval
 
 /datum/limb/proc/fracture()
