@@ -110,7 +110,7 @@
 	var/random_gear = rand(0,20)
 	switch(random_gear)
 		if(0)
-			H.equip_to_slot_or_del(new /obj/item/device/camera/fluff/oldcamera(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/camera/oldcamera(H), WEAR_R_HAND)
 		if(1)
 			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_R_HAND)
 		if(2)

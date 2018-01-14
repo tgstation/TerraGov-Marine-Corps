@@ -12,7 +12,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 /obj/machinery/computer3/syndicate_elite_shuttle
 	name = "Elite Syndicate Squad Shuttle Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "syndishuttle"
 	req_access = list(access_cent_specops)
 	var/temp = null

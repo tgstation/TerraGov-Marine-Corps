@@ -1690,7 +1690,7 @@
 /obj/machinery/autodoc
 	name = "Med-Pod"
 	desc = "A fancy machine developed to be capable of operating on people. Complex machinery however, only a doctor or a medically trained offical would know how to operate one of these."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
 	density = 1
 	anchored = 1
@@ -1886,7 +1886,7 @@
 //Auto Doc console that links up to it.
 /obj/machinery/autodoc_console
 	name = "Med-Pod Console"
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/autodoc/connected = null
 	anchored = 1 //About time someone fixed this.

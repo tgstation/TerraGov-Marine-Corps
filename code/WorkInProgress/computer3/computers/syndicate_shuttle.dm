@@ -3,7 +3,7 @@
 
 /obj/machinery/computer3/syndicate_station
 	name = "syndicate shuttle terminal"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "syndishuttle"
 	req_access = list(access_syndicate)
 	var/area/curr_location

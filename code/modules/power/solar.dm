@@ -244,7 +244,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar_control
 	name = "solar panel control"
 	desc = "A controller for solar panel arrays."
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "solar"
 	anchored = 1
 	density = 1
@@ -294,7 +294,7 @@ var/list/solars_list = list()
 	icon_state = "solar"
 	overlays.Cut()
 	if(cdir > 0)
-		overlays += image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir))
+		overlays += image('icons/obj/machines/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir))
 	return
 
 

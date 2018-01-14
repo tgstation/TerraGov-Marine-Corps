@@ -243,7 +243,7 @@
  */
 
 /obj/item/storage/fancy/vials
-	icon = 'icons/obj/vialbox.dmi'
+	icon = 'icons/obj/items/storage/vialbox.dmi'
 	icon_state = "vialbox6"
 	icon_type = "vial"
 	name = "vial storage box"
@@ -260,7 +260,7 @@
 /obj/item/storage/lockbox/vials
 	name = "secure vial storage box"
 	desc = "A locked box for keeping things away from children."
-	icon = 'icons/obj/vialbox.dmi'
+	icon = 'icons/obj/items/storage/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
 	max_w_class = 3

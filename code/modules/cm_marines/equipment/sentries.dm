@@ -931,7 +931,7 @@
 	name = "UA 571-C Turret Control Laptop"
 	desc = "A small device used for remotely controlling sentry turrets."
 	w_class = 4
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turret_off"
 	unacidable = 1
 	var/linked_turret = null

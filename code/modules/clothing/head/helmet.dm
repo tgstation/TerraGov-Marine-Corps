@@ -167,9 +167,7 @@
 						/obj/item/reagent_container/food/snacks/eat_bar = "helmet_snack_eat",
 						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
-						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
-						/obj/item/fluff/val_mcneil_1 = "helmet_rosary",
-						/obj/item/clothing/mask/mara_kilpatrick_1 = "helmet_rosary")
+						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 
 	New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,

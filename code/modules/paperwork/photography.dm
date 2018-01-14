@@ -307,6 +307,16 @@
 		user.put_in_inactive_hand(Photo)
 	Photo.construct(P)
 
+
+/obj/item/device/camera/oldcamera
+	name = "Old Camera"
+	desc = "An old, slightly beat-up digital camera, with a cheap photo printer taped on. It's a nice shade of blue."
+	icon_state = "oldcamera"
+	icon_on = "oldcamera"
+	icon_off = "oldcamera_off"
+	pictures_left = 30
+
+
 /obj/item/photo/proc/construct(var/datum/picture/P)
 	icon = P.fields["icon"]
 	tiny = P.fields["tiny"]

@@ -82,7 +82,7 @@
 			if(!occupant) return
 
 			computer.cradle.busy = 1
-			computer.overlays += image('icons/obj/computer.dmi', "ai-fixer-on")
+			computer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-on")
 
 			var/i = 0
 			while (occupant.health < 100)
@@ -111,7 +111,7 @@
 
 				sleep(10)
 			computer.cradle.busy = 0
-			computer.overlays -= image('icons/obj/computer.dmi', "ai-fixer-on")
+			computer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-on")
 
 		computer.updateUsrDialog()
 		return

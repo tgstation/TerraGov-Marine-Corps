@@ -1,7 +1,7 @@
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
-	icon = 'icons/obj/closet.dmi'
+	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
 	density = 1
 	flags_atom = FPRINT

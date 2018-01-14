@@ -38,10 +38,10 @@
 		if(locked)
 			if(istype(W, /obj/item/card/emag) && !emagged)
 				emagged = 1
-				src.overlays += image('icons/obj/items/storage.dmi', icon_sparking)
+				src.overlays += image('icons/obj/items/storage/storage.dmi', icon_sparking)
 				sleep(6)
 				src.overlays = null
-				overlays += image('icons/obj/items/storage.dmi', icon_locking)
+				overlays += image('icons/obj/items/storage/storage.dmi', icon_locking)
 				locked = 0
 				user << "You short out the lock on [src]."
 				return
@@ -110,7 +110,7 @@
 				else if ((src.code == src.l_code) && (src.emagged == 0) && (src.l_set == 1))
 					src.locked = 0
 					src.overlays = null
-					overlays += image('icons/obj/items/storage.dmi', icon_opened)
+					overlays += image('icons/obj/items/storage/storage.dmi', icon_opened)
 					src.code = null
 				else
 					src.code = "ERROR"
@@ -136,7 +136,7 @@
 // -----------------------------
 /obj/item/storage/secure/briefcase
 	name = "secure briefcase"
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
@@ -205,7 +205,7 @@
 
 /obj/item/storage/secure/safe
 	name = "secure safe"
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "safe"
 	icon_opened = "safe0"
 	icon_locking = "safeb"
