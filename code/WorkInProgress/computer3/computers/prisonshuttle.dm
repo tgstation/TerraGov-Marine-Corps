@@ -12,7 +12,7 @@ var/prison_shuttle_timeleft = 0
 
 /obj/machinery/computer3/prison_shuttle
 	name = "Prison Shuttle Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 	req_access = list(access_sulaco_brig)
 	circuit = "/obj/item/part/board/circuit/prison_shuttle"

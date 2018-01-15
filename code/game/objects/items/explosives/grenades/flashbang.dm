@@ -45,7 +45,7 @@
 	var/eye_safety = 0
 	var/ear_safety = 0
 	if(iscarbon(M))
-		eye_safety = M.eyecheck()
+		eye_safety = M.get_eye_protection()
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))

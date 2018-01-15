@@ -133,20 +133,6 @@
 			break
 
 
-/mob/living/carbon/human/Stun(amount)
-	if(HULK in mutations)	return
-	if (isYautja(src)) amount *= 0.5
-	..()
-
-/mob/living/carbon/human/KnockDown(amount)
-	if(HULK in mutations)	return
-	if (isYautja(src)) amount *= 0.5
-	..()
-
-/mob/living/carbon/human/KnockOut(amount)
-	if(HULK in mutations)	return
-	if (isYautja(src)) amount *= 0.5
-	..()
 
 /mob/living/carbon/human/getCloneLoss()
 	if(species.flags & (IS_SYNTHETIC|NO_SCAN))
@@ -235,7 +221,7 @@
 /mob/living/carbon/human/proc/get_damaged_limbs(var/brute, var/burn)
 	var/list/datum/limb/parts = list()
 	for(var/datum/limb/O in limbs)
-		if((brute && O.brute_dam) || (burn && O.burn_dam))
+		if((brute && O.brute_dam) || (burn && O.burn_dam) || !(O.surgery_open_stage == 0))
 			parts += O
 	return parts
 

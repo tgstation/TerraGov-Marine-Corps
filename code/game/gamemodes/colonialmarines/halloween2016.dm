@@ -1482,7 +1482,7 @@
 	name = "statuette"
 	desc = "An odd looking statuette made up of what appears to be carved from crimson stone. It's grinning..."
 	icon_state = "statuette1"
-	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon = 'icons/obj/items/misc.dmi'
 	var/stored_blood = 0
 	var/maximum_blood = 0 //How much blood is needed before the thing despawns. 100 for right now.
 	var/current_bloodcall = 0

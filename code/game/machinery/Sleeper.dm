@@ -4,7 +4,7 @@
 
 /obj/machinery/sleep_console
 	name = "Sleeper Console"
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
 	anchored = 1 //About time someone fixed this.
@@ -160,7 +160,7 @@
 /obj/machinery/sleeper
 	name = "Sleeper"
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
 	density = 1
 	anchored = 1

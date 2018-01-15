@@ -1,7 +1,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper
 	name = "Mounted Sleeper"
 	desc = "Mounted Sleeper. (Can be attached to: Medical Exosuits)"
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
 	origin_tech = "programming=2;biotech=3"
 	energy_drain = 20

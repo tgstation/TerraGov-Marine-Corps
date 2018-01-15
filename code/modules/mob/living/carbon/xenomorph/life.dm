@@ -52,9 +52,9 @@
 		var/turf/T = loc
 		if(istype(T))
 			if(!locate(/obj/effect/alien/weeds) in T) //In crit, damage is maximal if you're caught off weeds
-				adjustBruteLoss(2.5 - warding_aura/2) //You can reduce and even stop crit loss above 2.5 aura_strength //Can now heal damage outright
+				adjustBruteLoss(2.5 - warding_aura*0.5) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 			else
-				adjustBruteLoss(-warding_aura) //You can at best stop it, if you have full warding pheromones. Get to weeds fast
+				adjustBruteLoss(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
 
 	updatehealth()
 
@@ -123,15 +123,19 @@
 		//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
 
 		if(current_aura && !stat && storedplasma > 5)
-			if(caste == "Queen" && anchored) //stationary queen covers all xenos
-				for(var/mob/living/carbon/Xenomorph/Z in living_mob_list)
-					if(Z.z == z) //same z level
-						if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
-							Z.frenzy_new = aura_strength
-						if(current_aura == "warding" && aura_strength > Z.warding_new)
-							Z.warding_new = aura_strength
-						if(current_aura == "recovery" && aura_strength > Z.recovery_new)
-							Z.recovery_new = aura_strength
+			if(caste == "Queen" && anchored) //stationary queen's pheromone apply around the observed xeno.
+				var/mob/living/carbon/Xenomorph/Queen/Q = src
+				var/atom/phero_center = Q
+				if(Q.observed_xeno)
+					phero_center = Q.observed_xeno
+				var/pheromone_range = round(6 + aura_strength * 2)
+				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+						Z.frenzy_new = aura_strength
+					if(current_aura == "warding" && aura_strength > Z.warding_new)
+						Z.warding_new = aura_strength
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+						Z.recovery_new = aura_strength
 			else
 				var/pheromone_range = round(6 + aura_strength * 2)
 				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
@@ -292,10 +296,10 @@ hmmmm, this is probably unnecessary
 Make sure their actual health updates immediately.*/
 
 #define XENO_HEAL_WOUNDS(m) \
-adjustBruteLoss(-((maxHealth / 70) + 1 + (maxHealth / 70) * recovery_aura)*(m)); \
-adjustFireLoss(-(maxHealth / 60 + (maxHealth / 60) * recovery_aura)*(m)); \
-adjustOxyLoss(-(maxHealth * 0.1 + (maxHealth * 0.1) * recovery_aura)*(m)); \
-adjustToxLoss(-(maxHealth / 5 + (maxHealth / 5) * recovery_aura)*(m)); \
+adjustBruteLoss(-((maxHealth / 70) + 0.5 + (maxHealth / 70) * recovery_aura/2)*(m)); \
+adjustFireLoss(-(maxHealth / 60 + 0.5 + (maxHealth / 60) * recovery_aura/2)*(m)); \
+adjustOxyLoss(-(maxHealth * 0.1 + 0.5 + (maxHealth * 0.1) * recovery_aura/2)*(m)); \
+adjustToxLoss(-(maxHealth / 5 + 0.5 + (maxHealth / 5) * recovery_aura/2)*(m)); \
 updatehealth()
 
 
@@ -325,14 +329,14 @@ updatehealth()
 		if(innate_healing || (locate(/obj/effect/alien/weeds) in T))
 			storedplasma += plasma_gain
 			if(recovery_aura)
-				storedplasma += round(plasma_gain * recovery_aura/2) //Divided by two because it gets massive fast. Even 1 is equivalent to weed regen!
+				storedplasma += round(plasma_gain * recovery_aura/4) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
 			if(health < maxHealth)
 				if(lying || resting)
 					if(health > -100 && health < 0) //Unconscious
 						XENO_HEAL_WOUNDS(0.33) //Healing is much slower. Warding pheromones make up for the rest if you're curious
 					else
 						XENO_HEAL_WOUNDS(1)
-				else if (isXenoCrusher() || isXenoRavager())
+				else if(isXenoCrusher() || isXenoRavager())
 					XENO_HEAL_WOUNDS(0.66)
 				else
 					XENO_HEAL_WOUNDS(0.33) //Major healing nerf if standing

@@ -31,12 +31,6 @@
 
 				var/obj/item/Item = new path()
 				if(istype(Item,/obj/item/card/id))
-					//id card needs to replace the original ID
-					if(M.ckey == "nerezza" && M.real_name == "Asher Spock" && M.mind.role_alt_title && M.mind.role_alt_title != "Emergency Physician")
-						//only spawn ID if asher is joining as an emergency physician
-						ok = 1
-						cdel(Item)
-						goto skip
 					var/obj/item/card/id/I = Item
 					for(var/obj/item/card/id/C in M)
 						//default settings
@@ -47,27 +41,12 @@
 						I.blood_type = C.blood_type
 						I.dna_hash = C.dna_hash
 						I.fingerprint_hash = C.fingerprint_hash
-						//I.pin = C.pin
-
-						//custom stuff
-						if(M.ckey == "fastler" && M.real_name == "Fastler Greay") //This is a Lifetime ID
-							I.name = "[M.real_name]'s Lifetime ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
-						else if(M.ckey == "nerezza" && M.real_name == "Asher Spock") //This is an Odysseus Specialist ID
-							I.name = "[M.real_name]'s Odysseus Specialist ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
-							I.access += list(ACCESS_MARINE_RESEARCH) //Station-based mecha pilots need this to access the recharge bay.
-						else if(M.ckey == "roaper" && M.real_name == "Ian Colm") //This is a Technician ID
-							I.name = "[M.real_name]'s Technician ID ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
-
 						//replace old ID
 						cdel(C)
 						ok = M.equip_if_possible(I, WEAR_ID, 0)	//if 1, last argument deletes on fail
 						break
 				else if(istype(Item,/obj/item/storage/belt))
-					if(M.ckey == "jakksergal" && M.real_name == "Nashi Ra'hal" && M.mind.role_alt_title && M.mind.role_alt_title != "Nurse" && M.mind.role_alt_title != "Chemist")
-						ok = 1
-						cdel(Item)
-						goto skip
-					var/obj/item/storage/belt/medical/fluff/nashi_belt/I = Item
+					var/obj/item/storage/belt/I = Item
 					if(istype(M.belt,/obj/item/storage/belt))
 						for(var/obj/item/storage/belt/B in M)
 							cdel(B)
@@ -85,6 +64,5 @@
 							ok = 1
 							break
 
-				skip:
 				if (ok == 0) // Finally, since everything else failed, place it on the ground
 					Item.loc = get_turf(M.loc)

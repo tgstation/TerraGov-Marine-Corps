@@ -80,8 +80,8 @@
 
 	if(stat == DEAD) return
 
-	if(warding_aura && damage > 0) //Damage reduction. Goes from 9.5/15 for Young Drone to 2/3 for Ancient Empress. Used to be out of 10
-		damage = round(damage * ((15 - warding_aura) / 15))
+	if(warding_aura && damage > 0) //Damage reduction. Every half point of warding decreases damage by 2.5 %. Maximum is 25 % at 5 pheromone strength.
+		damage = round(damage * ((100 - (warding_aura * 5)) / 100))
 
 	if(def_zone == "head" || def_zone == "eyes" || def_zone == "mouth") //Little more damage vs the head
 		damage = round(damage * 8 / 7)

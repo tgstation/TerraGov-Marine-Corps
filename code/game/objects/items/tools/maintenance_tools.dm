@@ -80,13 +80,13 @@
 		src.pixel_y = rand(0, 16)
 	return
 
-/obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/*/obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))	return ..()
-	if(user.zone_selected != "eyes" && user.zone_selected != "head")
+	if(user.zone_selected != "eyes") // && user.zone_selected != "head")
 		return ..()
 	if((CLUMSY in user.mutations) && prob(50))
 		M = user
-	return eyestab(M,user)
+	return eyestab(M,user)*/
 
 /*
  * Wirecutters
@@ -113,9 +113,9 @@
 		icon_state = "cutters-y"
 		item_state = "cutters_yellow"
 
-/obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+/obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
 	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
-		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
+		user.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
 		C.handcuffed = null
@@ -337,12 +337,11 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/tool/weldingtool/proc/eyecheck(mob/user as mob)
+/obj/item/tool/weldingtool/proc/eyecheck(mob/user)
 	if(!iscarbon(user))	return 1
-	var/mob/living/carbon/C = user
-	var/safety = C.eyecheck()
-	if(istype(C, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = C
+	var/safety = user.get_eye_protection()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(!E)
 			return
@@ -350,17 +349,17 @@
 			return
 		switch(safety)
 			if(1)
-				usr << "<span class='danger'>Your eyes sting a little.</span>"
+				user << "<span class='danger'>Your eyes sting a little.</span>"
 				E.damage += rand(1, 2)
 				if(E.damage > 12)
 					H.eye_blurry += rand(3,6)
 			if(0)
-				usr << "<span class='warning'>Your eyes burn.</span>"
+				user << "<span class='warning'>Your eyes burn.</span>"
 				E.damage += rand(2, 4)
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(-1)
-				usr << "<span class='warning'>Your thermals intensify [src]'s glow. Your eyes itch and burn severely.</span>"
+				user << "<span class='warning'>Your thermals intensify [src]'s glow. Your eyes itch and burn severely.</span>"
 				H.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<2)
@@ -378,7 +377,7 @@
 				H.disabilities |= NEARSIGHTED
 				spawn(100)
 					H.disabilities &= ~NEARSIGHTED
-	return
+
 
 
 

@@ -2,7 +2,7 @@
 /obj/machinery/holosign
 	name = "holosign"
 	desc = "Small wall-mounted holographic projector"
-	icon = 'icons/obj/holosign.dmi'
+	icon = 'icons/obj/machines/holosign.dmi'
 	icon_state = "sign_off"
 	layer = MOB_LAYER
 	anchored = 1

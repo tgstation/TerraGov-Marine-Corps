@@ -283,7 +283,7 @@
 	playsound(usr.loc, 'sound/weapons/taser2.ogg', 25, 1)
 
 	LE.firer = src
-	LE.def_zone = get_organ_target()
+	LE.def_zone = get_limbzone_target()
 	LE.original = A
 	LE.current = T
 	LE.yo = U.y - T.y

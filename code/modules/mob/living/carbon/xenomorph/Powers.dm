@@ -121,7 +121,7 @@
 	var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
 	A.generate_bullet(ammo)
 	A.permutated += src
-	A.def_zone = get_organ_target()
+	A.def_zone = get_limbzone_target()
 	A.fire_at(T, src, null, ammo.max_range, ammo.shell_speed)
 	has_spat = world.time + spit_delay + ammo.added_spit_delay
 	use_plasma(ammo.spit_cost)

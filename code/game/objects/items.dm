@@ -556,7 +556,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 		L = L.loc
 	return loc
 
-/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/*/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H) && ( \
@@ -630,7 +630,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 	else
 		M.take_organ_damage(7)
 	M.eye_blurry += rand(3,4)
-	return
+	return*/
 
 /obj/item/clean_blood()
 	. = ..()

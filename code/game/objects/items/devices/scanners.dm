@@ -81,13 +81,13 @@ REAGENT SCANNER
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
 	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
-		user << text("\red You try to analyze the floor's vitals!")
+		user << "<span class='warning'>You try to analyze the floor's vitals!</span>"
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
-		user.show_message(text("\blue Health Analyzer results for The floor:\n\t Overall Status: Healthy"), 1)
-		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
-		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
-		user.show_message("\blue Body Temperature: ???", 1)
+			O.show_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>", 1)
+		user.show_message("<span class='notice'>Health Analyzer results for The floor:\n\t Overall Status: Healthy</span>", 1)
+		user.show_message("<span class='notice'>\t Damage Specifics: [0]-[0]-[0]-[0]</span>", 1)
+		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
+		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
 	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
@@ -134,13 +134,29 @@ REAGENT SCANNER
 		var/list/damaged = H.get_damaged_limbs(1,1)
 		if(length(damaged))
 			for(var/datum/limb/org in damaged)
+				var/brute_treated = 0
+				var/burn_treated = 0
+				var/open_incision = 1
+				if(org.surgery_open_stage == 0)
+					open_incision = 0
+					var/bandaged = org.is_bandaged()
+					var/disinfected = org.is_disinfected()
+					if(!(bandaged || disinfected))
+						brute_treated = 1
+					if(!org.is_salved())
+						burn_treated = 1
+
 				var/org_nam = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
 				var/burn_info = org.burn_dam > 0 ? "<font color='#FFA500'><b>[org.burn_dam]</b></font>" : "<font color='#FFA500'>0</font>"
 				var/brute_info =  org.brute_dam > 0 ? "\red <b>[org.brute_dam]</b>" : "<font color='red'>0</font>"
 				var/org_bleed = (org.status & LIMB_BLEEDING) ? "\red <b>(Bleeding)</b>" : ""
 				var/org_necro = (org.status & LIMB_NECROTIZED) ? "\red <b>(Necrotizing)</b>" : ""
-				user.show_message("\t\t [org_nam]: [burn_info] - [brute_info] [org_bleed][org_necro]",1)
-
+				user.show_message("\t\t [org_nam]: [burn_info][(burn_treated?"":"*")] - [brute_info][(brute_treated?"":"*")] [org_bleed][org_necro][(open_incision?" <span class='warning'>Open surgical incision</span>":"")]",1)
+		for(var/datum/limb/temp in H.limbs) // display missing limbs
+			if(temp)
+				if(temp.status & LIMB_DESTROYED)
+					user.show_message("\t\t [capitalize(temp.display_name)]: <span class='warning'><b>Missing!</b></span>",1)
+					continue
 
 	// Show red messages - broken bokes, infection, etc
 	if (M.getCloneLoss())
@@ -154,6 +170,13 @@ REAGENT SCANNER
 		user.show_message("\t\red *<b>Severe brain damage</b> detected. Subject likely to have mental retardation.")
 	else if (M.getBrainLoss() >= 10)
 		user.show_message("\t\red *<b>Significant brain damage</b> detected. Subject may have had a concussion.")
+
+	if(M.has_brain() && M.stat != DEAD && ishuman(M))
+		if(!M.key)
+			user.show_message("<span class='deadsay'>\tNo soul detected.</span>\n") // they ghosted
+		else if(!M.client)
+			user.show_message("<span class='warning'>\tSSD detected.</span>\n") // SSD
+
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/X in H.limbs)
