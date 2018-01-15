@@ -123,4 +123,6 @@
 	return
 
 /obj/machinery/computer/attack_hand()
-	pick(playsound(src, 'sound/machines/console_open.ogg', 15, 1), playsound(src, 'sound/machines/console_open2.ogg', 15, 1), playsound(src, 'sound/machines/console_open3.ogg', 15, 1))
+	. = ..()
+	if(!.) //not broken or unpowered
+		pick(playsound(src, 'sound/machines/console_open.ogg', 15, 1), playsound(src, 'sound/machines/console_open2.ogg', 15, 1), playsound(src, 'sound/machines/console_open3.ogg', 15, 1))
