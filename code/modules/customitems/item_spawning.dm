@@ -81,8 +81,7 @@
 						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
 				else
 					for(var/obj/item/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
-						if (S.can_be_inserted(Item)) // Try to place it in something on the mob's back
-							Item.loc = S
+						if (S.handle_item_insertion(Item))
 							ok = 1
 							break
 

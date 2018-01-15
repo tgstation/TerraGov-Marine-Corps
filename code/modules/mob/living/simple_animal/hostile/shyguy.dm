@@ -1,10 +1,10 @@
 //sculpture
-//SCP-173, nothing more need be said
+//SCP-096, nothing more need be said
 /mob/living/simple_animal/shyguy
 	name = "???"
-	desc = "No, no, you know not to look closely at it" //for non-humans
-	var/human_desc_1 = "A pale, emanciated figure. Its limbs are long and skinny, and its face is......<span class='danger'>no. NO. NO</span>" //for humans
-	var/human_desc_2 = "<span class='danger'>NO</span>" //on second examine
+	desc = "No, no, you know not to look closely at it" //for non-targets
+	var/target_desc_1 = "A pale, emanciated figure. It looks almost human, but its limbs are long and skinny, and its face is......<span class='danger'>no. NO. NO</span>" //for targets
+	var/target_desc_2 = "<span class='danger'>NO</span>" //on second examine
 	icon_state = "shyguy_dam0"
 	icon_living = "shyguy_dam0"
 	icon_dead = "shyguy_dam0"
@@ -13,7 +13,6 @@
 	response_help  = "touches the"
 	response_disarm = "pushes the"
 	response_harm   = "hits the"
-	see_in_dark = 8 //Needs to see in darkness to snap in darkness
 	flags_pass = PASSTABLE
 	layer = BELOW_MOB_LAYER
 
@@ -28,7 +27,7 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent //Graciously stolen from spider code
 
 	var/list/shitlist = list() //list of folks this guy is about to murder
-	var/list/examine_urge_list = list() //tracks human urge to examine
+	var/list/examine_urge_list = list() //tracks urge to examine
 	var/list/examine_urge_values = list()
 	var/target //current dude this guy is targeting
 	var/screaming = 0 //are we currently screaming?
@@ -55,7 +54,7 @@
 
 	//Pick the next target
 	if(shitlist.len)
-		var/mob/living/carbon/human/H
+		var/mob/living/carbon/H
 		for(var/i = 1, i <= shitlist.len, i++) //start from the first guy
 			H = shitlist[1]
 			if(!H || H.stat == DEAD)
@@ -82,17 +81,10 @@
 		will_scream = 1
 		handle_idle()
 
-//Check if any human mob can see us, including darkness exception
+//Check if any carbon mob can see us
 /mob/living/simple_animal/shyguy/proc/check_los()
 
-	//If we are in darkness, nothing can see us
-	var/turf/T = get_turf(src)
-	var/area/A = get_area(src)
-	if(T.lighting_lumcount == 0 && A.lighting_use_dynamic) //Entirely dark tiles only
-		return
-		//in_darkness = 1
-
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/H in viewers(src, null))
 		if(H in shitlist)
 			continue
 		if(H.stat || H.blinded)
@@ -130,7 +122,7 @@
 
 	return
 
-/mob/living/simple_animal/shyguy/proc/add_examine_urge(var/mob/living/carbon/human/H)
+/mob/living/simple_animal/shyguy/proc/add_examine_urge(var/mob/living/carbon/H)
 
 	var/index
 	var/examine_urge
@@ -151,7 +143,8 @@
 			H << "<span class='alert'>It is becoming difficult to resist the urge to examine it ...</span>"
 		if(5)
 			H << "<span class='alert'>Unable to resist the urge, you look closely...</span>"
-			examine(H)
+			spawn(10)
+				examine(H)
 
 	examine_urge = min(examine_urge+1, 5)
 	examine_urge_values[index] = examine_urge
@@ -160,7 +153,7 @@
 		if(H)
 			reduce_examine_urge(H)
 
-/mob/living/simple_animal/shyguy/proc/reduce_examine_urge(var/mob/living/carbon/human/H)
+/mob/living/simple_animal/shyguy/proc/reduce_examine_urge(var/mob/living/carbon/H)
 	var/index
 	var/examine_urge
 
@@ -177,9 +170,9 @@
 	examine_urge_values[index] = examine_urge
 
 /mob/living/simple_animal/shyguy/examine(var/userguy)
-	if (istype(userguy, /mob/living/carbon/human))
+	if (istype(userguy, /mob/living/carbon))
 		if (!(userguy in shitlist))
-			userguy <<  human_desc_1
+			userguy <<  target_desc_1
 			shitlist += userguy
 			spawn(20)
 				if(userguy)
@@ -188,7 +181,7 @@
 				if(userguy)
 					userguy << "<span class='danger'>RUN</span>"
 		else
-			userguy << human_desc_2
+			userguy << target_desc_2
 		if(will_scream)
 			if(!buckled) dir = 2
 			visible_message("<span class='danger'>[src] SCREAMS!</span>")
@@ -207,7 +200,7 @@
 	..()
 
 
-/mob/living/simple_animal/shyguy/proc/handle_target(var/mob/living/carbon/human/target)
+/mob/living/simple_animal/shyguy/proc/handle_target(var/mob/living/carbon/target)
 
 	if(!target || chasing) //Sanity
 		return
@@ -235,20 +228,15 @@
 		spawn(50)
 			scare_played = 0
 
-	if(target_turf.z != z) //if z-level is different, teleport
-		loc = target_turf
-		if(!doom_message_played)
-			target << "<span class='danger'>DID YOU THINK YOU COULD HIDE?</span>"
-		doom_message_played = 1
-		check_murder()
-
-	//Rampage along a path to get to them, in the blink of an eye
+	//Rampage along a path to get to them,
 	var/turf/next_turf = get_step_towards(src, target)
 	var/limit = 100
 	spawn()
 		chasing = 1
-		while(get_turf(src) != get_turf(target) && limit > 0)
+		while(get_turf(src) != target_turf && limit > 0)
 			if(murdering <= 0)
+				target_turf = get_turf(target)
+
 				for(var/obj/structure/window/W in next_turf)
 					W.health -= 1000
 					W.healthcheck(1, 1, 1, src)
@@ -274,17 +262,46 @@
 					doom_message_played = 1
 
 				forceMove(next_turf)
-				dir = get_dir(src, target)
-				next_turf = get_step(src, get_dir(next_turf,target))
+
+				if(is_different_level(target_turf))
+					next_turf = target_turf
+					target << "<span class='danger'>DID YOU THINK YOU COULD HIDE?</span>"
+				else
+					dir = get_dir(src, target)
+					next_turf = get_step(src, get_dir(next_turf,target))
 			limit--
 			sleep(move_to_delay + round(staggered/8))
 		chasing = 0
+
+/mob/living/simple_animal/shyguy/proc/is_different_level(var/turf/target_turf)
+	if(target_turf.z != z)
+		return 1
+
+	var/source_level = 0 //0 means lower level or left side, depending on map, 1 means upper level or right side
+	var/target_level = 0
+
+	switch(z)
+		if(MAIN_SHIP_Z_LEVEL) //on the Almayer
+			if(y > 101)
+				source_level = 1
+			if(target_turf.y > 101)
+				target_level = 1
+		if(LOW_ORBIT_Z_LEVEL) //dropships
+			if(x > 44)
+				source_level = 1
+			if(target_turf.x > 44)
+				target_level = 1
+
+	if(source_level != target_level)
+		return 1
+
+	return 0
 
 //This performs an immediate murder check, meant to avoid people cheesing us by just running faster than Life() refresh
 /mob/living/simple_animal/shyguy/proc/check_murder()
 
 	//See if we're able to murder anyone
-	for(var/mob/living/carbon/human/M in get_turf(src))
+	for(var/mob/living/carbon/M in get_turf(src))
 		if(M in shitlist)
 			murder(M)
 			break
@@ -296,7 +313,7 @@
 
 /mob/living/simple_animal/shyguy/proc/murder(var/mob/living/T)
 
-	if(T && ishuman(T))
+	if(T)
 		T.loc = src.loc
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
 		dir = 2
@@ -306,11 +323,15 @@
 		T.pixel_y = 10
 		murdering = 1
 
+		for(var/mob/living/L in viewers(src, null))
+			shake_camera(L, 19, 1)
+
 		sleep(20)
 
 		T.anchored = 0
 		T.pixel_y = original_y
-		T.emote("scream")
+		if(ishuman(T))
+			T.emote("scream")
 		playsound(T.loc, pick(murder_sound), 50, 1)
 		murdering = 0
 
