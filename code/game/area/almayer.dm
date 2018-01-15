@@ -271,8 +271,8 @@
 	icon_state = "medical"
 
 /area/almayer/medical/surgery_hallway
-		name = "\improper Almayer Medical Surgery"
-		icon_state = "medical"
+	name = "\improper Almayer Medical Surgery"
+	icon_state = "medical"
 
 /area/almayer/squads/alpha
 	name = "\improper Almayer Alpha Preparation"
