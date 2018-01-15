@@ -254,6 +254,10 @@
 	name = "\improper Almayer Operating Room 3"
 	icon_state = "operating"
 
+/area/almayer/medical/operating_room_four
+	name = "\improper Almayer Operating Room 4"
+	icon_state = "operating"
+
 /area/almayer/medical/medical_science
 	name = "\improper Almayer Medical Science"
 	icon_state = "science"
@@ -261,6 +265,14 @@
 /area/almayer/medical/chemistry
 	name = "\improper Almayer Chemistry"
 	icon_state = "chemistry"
+
+/area/almayer/medical/cryo_tubes
+	name = "\improper Almayer Medical Cryo"
+	icon_state = "medical"
+
+/area/almayer/medical/surgery_hallway
+	name = "\improper Almayer Medical Surgery"
+	icon_state = "medical"
 
 /area/almayer/squads/alpha
 	name = "\improper Almayer Alpha Preparation"
