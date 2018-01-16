@@ -281,6 +281,8 @@
 	if(flags_atom & ON_BORDER)
 		if(src == P.original)
 			return TRUE
+		if(!density) //barricade is open
+			return FALSE
 		if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
 			return FALSE
 		if(P.dir & reverse_direction(dir))
