@@ -11,6 +11,7 @@
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 5, bomb = 5, bio = 5, rad = 5)
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine)
 
 	New(loc,expected_type 		= /obj/item/clothing/under/marine,
 		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM snow uniform"),
@@ -161,6 +162,8 @@
 //=========================//RESPONDERS\\================================\\
 //=======================================================================\\
 
+/obj/item/clothing/under/marine/veteran
+
 /obj/item/clothing/under/marine/veteran/PMC
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit."
@@ -171,6 +174,7 @@
 	item_color = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/PMC, /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
 	name = "\improper PMC command fatigues"
@@ -197,6 +201,8 @@
 	item_color = "bear_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/bear)
+
 
 /obj/item/clothing/under/marine/veteran/UPP
 	name = "\improper UPP fatigues"
@@ -207,6 +213,7 @@
 	item_color = "upp_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
+	suit_restricted = list(/obj/item/clothing/suit/storage/faction/UPP, /obj/item/clothing/suit/storage/marine/smartgunner/UPP)
 
 /obj/item/clothing/under/marine/veteran/UPP/medic
 	name = "\improper UPP medic fatigues"
@@ -223,6 +230,7 @@
 	item_color = "freelancer_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
+	suit_restricted = list(/obj/item/clothing/suit/storage/faction/freelancer)
 
 /obj/item/clothing/under/marine/veteran/dutch
 	name = "\improper Dutch's Dozen uniform"
@@ -235,6 +243,8 @@
 	item_state = "dutch_jumpsuit"
 	item_color = "dutch_jumpsuit"
 	has_sensor = 0
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/dutch)
+
 
 /obj/item/clothing/under/marine/veteran/dutch/ranger
 	icon = 'icons/PMC/PMC.dmi'
@@ -255,6 +265,7 @@
 	item_color = "mercenary_heavy_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/mercenary)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner
 	name = "\improper Mercenary miner fatigues"

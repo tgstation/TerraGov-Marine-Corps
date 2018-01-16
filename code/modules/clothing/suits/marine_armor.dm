@@ -617,7 +617,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 85, bullet = 85, laser = 50, energy = 60, bomb = 60, bio = 10, rad = 10)
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/UPP)
 
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP
 	name = "\improper UH7 heavy plated armor"
@@ -646,6 +645,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 60, bullet = 60, laser = 50, energy = 60, bomb = 40, bio = 10, rad = 10)
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/freelancer)
 
+//this one is for CLF
 /obj/item/clothing/suit/storage/militia
 	name = "\improper colonial militia hauberk"
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops."

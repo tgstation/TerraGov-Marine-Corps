@@ -21,6 +21,7 @@
 	var/obj/item/clothing/tie/hastie = null
 	var/displays_id = 1
 	var/base_color
+	var/list/suit_restricted //for uniforms that only accept to be combined with certain suits
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 
 	New()

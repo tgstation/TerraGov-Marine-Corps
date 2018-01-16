@@ -43,7 +43,7 @@
 	if (!..())
 		return 0
 
-	if (!uniform_restricted.len)
+	if (!uniform_restricted)
 		return 1
 
 	if (!ishuman(M))
@@ -55,10 +55,7 @@
 	for (var/type in uniform_restricted)
 		if (!(locate(type) in equipment))
 			H << "<span class='warning'>You must be wearing [initial(type:name)] to equip [name]!"
-			equipment = null
 			return 0
-
-	equipment = null
 	return 1
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
