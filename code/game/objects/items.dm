@@ -54,7 +54,7 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
-	var/list/uniform_restricted = list() //Need to wear this uniform to equip this
+	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
