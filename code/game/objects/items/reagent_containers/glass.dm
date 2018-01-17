@@ -258,15 +258,23 @@
 	volume = 120
 	flags_atom = FPRINT|OPENCONTAINER
 
-/obj/item/reagent_container/glass/bucket/attackby(var/obj/D, mob/user as mob)
-
-	..()
-	if(isprox(D))
-		user << "You add [D] to [src]."
-		cdel(D)
+/obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user)
+	if(isprox(I))
+		user << "You add [I] to [src]."
+		cdel(I)
 		user.put_in_hands(new /obj/item/frame/bucket_sensor)
 		user.drop_inv_item_on_ground(src)
 		cdel(src)
+	else if(istype(I, /obj/item/tool/mop))
+		if(reagents.total_volume < 1)
+			user << "[src] is out of water!</span>"
+		else
+			reagents.trans_to(I, 5)
+			user << "<span class='notice'>You wet [I] in [src].</span>"
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		return
+	else
+		..()
 
 /obj/item/reagent_container/glass/bucket/update_icon()
 	overlays.Cut()
@@ -274,3 +282,24 @@
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
+
+/obj/item/reagent_container/glass/bucket/janibucket
+	name = "janitorial bucket"
+	desc = "It's a large bucket that fits in a janitorial cart."
+	icon_state = "janibucket"
+
+/obj/item/reagent_container/glass/bucket/janibucket/on_reagent_change()
+	update_icon()
+
+
+/obj/item/reagent_container/glass/bucket/janibucket/update_icon()
+	..()
+	if(reagents.total_volume)
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9)			icon_state = "janibucket"
+			if(10 to 65) 		icon_state = "janibucket_half"
+			if(66 to INFINITY)	icon_state = "janibucket_full"
+	else
+		icon_state = "janibucket"
+

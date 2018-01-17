@@ -7,23 +7,27 @@
 	density = 1
 	drag_delay = 1
 	throwpass = TRUE
-	flags_atom = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
-	var/obj/item/tool/mop/mymop = null
-	var/obj/item/reagent_container/spray/myspray = null
-	var/obj/item/device/lightreplacer/myreplacer = null
+	var/obj/item/storage/bag/trash/mybag
+	var/obj/item/tool/mop/mymop
+	var/obj/item/reagent_container/spray/myspray
+	var/obj/item/device/lightreplacer/myreplacer
+	var/obj/item/reagent_container/glass/bucket/janibucket/mybucket
 	var/signs = 0	//maximum capacity hardcoded below
 
 
 /obj/structure/janitorialcart/New()
 	..()
-	create_reagents(100)
+	mybucket = new(src)
+	update_icon()
 
 /obj/structure/janitorialcart/examine(mob/user)
 	..()
-	user << "It contains [reagents.total_volume] unit\s of liquid!"
+	if(mybucket)
+		user << "Its bucket contains [mybucket.reagents.total_volume] unit\s of liquid."
+	else
+		user << "It has no bucket."
 
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
@@ -36,14 +40,14 @@
 		user << "<span class='notice'>You put [I] into [src].</span>"
 
 	else if(istype(I, /obj/item/tool/mop))
-		if(I.reagents.total_volume < I.reagents.maximum_volume)	//if it's not completely soaked we assume they want to wet it, otherwise store it
-			if(reagents.total_volume < 1)
-				user << "[src] is out of water!</span>"
+		if(I.reagents.total_volume < I.reagents.maximum_volume && mybucket)	//if it's not completely soaked we assume they want to wet it, otherwise store it
+			if(mybucket.reagents.total_volume < 1)
+				user << "[mybucket] is out of water!</span>"
 			else
-				reagents.trans_to(I, 5)	//
-				user << "<span class='notice'>You wet [I] in [src].</span>"
+				mybucket.reagents.trans_to(I, 5)	//
+				user << "<span class='notice'>You wet [I] in [mybucket].</span>"
 				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-				return
+			return
 		if(!mymop)
 			user.drop_held_item()
 			mymop = I
@@ -79,8 +83,20 @@
 		else
 			user << "<span class='notice'>[src] can't hold any more signs.</span>"
 
+	else if(istype(I, /obj/item/reagent_container/glass/bucket/janibucket))
+		user.drop_held_item()
+		mybucket = I
+		I.loc = src
+		update_icon()
+		updateUsrDialog()
+		user << "<span class='notice'>You put [I] into [src].</span>"
+		return TRUE //no afterattack
+
 	else if(mybag)
 		mybag.attackby(I, user)
+
+
+
 
 
 /obj/structure/janitorialcart/attack_hand(mob/user)
@@ -94,6 +110,8 @@
 		dat += "<a href='?src=\ref[src];spray=1'>[myspray.name]</a><br>"
 	if(myreplacer)
 		dat += "<a href='?src=\ref[src];replacer=1'>[myreplacer.name]</a><br>"
+	if(mybucket)
+		dat += "<a href='?src=\ref[src];bucket=1'>[mybucket.name]</a><br>"
 	if(signs)
 		dat += "<a href='?src=\ref[src];sign=1'>[signs] sign\s</a><br>"
 	var/datum/browser/popup = new(user, "janicart", name, 240, 160)
@@ -127,6 +145,11 @@
 			user.put_in_hands(myreplacer)
 			user << "<span class='notice'>You take [myreplacer] from [src].</span>"
 			myreplacer = null
+	if(href_list["bucket"])
+		if(mybucket)
+			user.put_in_hands(mybucket)
+			user << "<span class='notice'>You take [mybucket] from [src].</span>"
+			mybucket = null
 	if(href_list["sign"])
 		if(signs)
 			var/obj/item/tool/wet_sign/Sign = locate() in src
@@ -152,5 +175,7 @@
 		overlays += "cart_spray"
 	if(myreplacer)
 		overlays += "cart_replacer"
+	if(mybucket)
+		overlays += "cart_bucket"
 	if(signs)
 		overlays += "cart_sign[signs]"
