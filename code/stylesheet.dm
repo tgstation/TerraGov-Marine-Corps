@@ -55,6 +55,10 @@ h1.alert, h2.alert		{color: #000000;}
 .disarm					{color: #990000;}
 .passive				{color: #660000;}
 
+.scanner			{color: #ff0000;}
+.scannerb			{color: #ff0000;	font-weight: bold;}
+.scannerburn	{color: #ffa500;}
+.scannerburnb	{color: #ffa500;	font-weight: bold;}
 .rose					{color: #ff5050;}
 .info					{color: #0000CC;}
 .debuginfo				{color: #493D26;	font-style: italic;}
