@@ -149,11 +149,12 @@
 						user  << "\red You can't build another barricade on the same spot!"
 						return
 
-					var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
+					var/obj/structure/barricade/snow/B = new(src)
 					user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B.name].")
 					B.icon_state = "barricade_[slayer]"
 					B.health = slayer * 25
 					B.dir = user.dir
+					B.update_icon()
 					slayer = 0
 					update_icon(1,0)
 

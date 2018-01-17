@@ -88,6 +88,7 @@
 			T.remove_from_storage(O, src)
 		T.update_icon()
 		update()
+		return
 
 	var/obj/item/grab/G = I
 	if(istype(G)) //Handle grabbed mob

@@ -61,13 +61,15 @@
 	icon_state = "MP_jumpsuit"
 	item_state = "MP_jumpsuit"
 	item_color = "MP_jumpsuit"
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine, /obj/item/clothing/suit/armor/riot/marine)
 
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
-	icon_state = "milohachert"
-	item_state = "milohachert"
-	item_color = "milohachert"
+	icon_state = "officertanclothes"
+	item_state = "officertanclothes"
+	item_color = "officertanclothes"
+	suit_restricted = null //so most officers can wear whatever suit they want
 
 /obj/item/clothing/under/marine/officer/warrant
 	name = "\improper chief MP uniform"
@@ -75,6 +77,8 @@
 	icon_state = "WO_jumpsuit"
 	item_state = "WO_jumpsuit"
 	item_color = "WO_jumpsuit"
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine, /obj/item/clothing/suit/armor/riot/marine)
+
 
 /obj/item/clothing/under/marine/officer/technical
 	name = "technical officer uniform"
@@ -94,6 +98,8 @@
 	item_state = "pilot_flightsuit"
 	item_color = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature
+	suit_restricted = list(/obj/item/clothing/suit/armor/vest/pilot)
+
 	New()
 		select_gamemode_skin(/obj/item/clothing/under/marine/officer/pilot)
 		..()
@@ -243,7 +249,7 @@
 	item_state = "dutch_jumpsuit"
 	item_color = "dutch_jumpsuit"
 	has_sensor = 0
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/dutch)
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/dutch, /obj/item/clothing/suit/armor/vest/dutch)
 
 
 /obj/item/clothing/under/marine/veteran/dutch/ranger
