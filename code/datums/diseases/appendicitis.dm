@@ -7,6 +7,7 @@
 	agent = "Appendix"
 	affected_species = list("Human")
 	permeability_mod = 1
+	can_carry = 0
 	contagious_period = 9001 //slightly hacky, but hey! whatever works, right?
 	desc = "If left untreated the subject will become very weak, and may vomit often."
 	severity = "Medium"

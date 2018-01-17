@@ -299,9 +299,13 @@
 				return
 			user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
 			if(!do_after(user, 100, TRUE, 5, BUSY_ICON_CLOCK))
-				user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
+				user.visible_message("\red \The [user] decides not to remove \the [src] anymore.")
 				return
-			user.visible_message("\blue \The [user] clears out \the [src].")
+			user.visible_message("\blue \The [user] removes \the [src].")
+			if(istype(loc, /turf/unsimulated/floor/snow)) //put the snow back on the turf
+				var/turf/unsimulated/floor/snow/T = loc
+				T.slayer = min(T.slayer + round(health/25), 3)
+				T.update_icon(1,0)
 			cdel(src)
 		return
 
