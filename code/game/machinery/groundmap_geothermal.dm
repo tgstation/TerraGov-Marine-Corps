@@ -102,7 +102,7 @@
 
 	add_fingerprint(user)
 
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 		user << "<span class='warning'>You have no clue how this thing works...</span>"
 		return 0
 
@@ -131,7 +131,7 @@
 /obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/tool/weldingtool))
 		if(buildstate == 1 && !is_on)
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
 				return 0
 			var/obj/item/tool/weldingtool/WT = O
@@ -149,7 +149,7 @@
 				return
 	else if(istype(O,/obj/item/tool/wirecutters))
 		if(buildstate == 2 && !is_on)
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
 				return 0
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
@@ -162,7 +162,7 @@
 				return
 	else if(istype(O,/obj/item/tool/wrench))
 		if(buildstate == 3 && !is_on)
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair this thing...</span>"
 				return 0
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -295,7 +295,7 @@
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
 	if(damaged)
 		if(istype(I, /obj/item/tool/screwdriver))
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
 				return 0
 
@@ -326,7 +326,7 @@
 			return TRUE
 
 		else if(istype(I, /obj/item/tool/crowbar))
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
 				return 0
 
@@ -344,7 +344,7 @@
 		else if(istype(I, /obj/item/tool/weldingtool))
 			var/obj/item/tool/weldingtool/WT = I
 
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
 				return 0
 
@@ -364,7 +364,7 @@
 
 		else if(istype(I, /obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/C = I
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no clue how to repair [src]...</span>"
 				return 0
 
@@ -401,7 +401,7 @@
 	if(ishuman(user))
 		if(damaged)
 			user << "\red It is damaged."
-			if(!user.mind || !user.mind.skills_list || user.mind.skills_list["engineer"] >= SKILL_ENGINEER_ENGI)
+			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_ENGI)
 				switch(repair_state)
 					if(FLOODLIGHT_REPAIR_UNSCREW) user << "You must first unscrew its maintenance hatch."
 					if(FLOODLIGHT_REPAIR_CROWBAR) user << "You must crowbar its maintenance hatch open."

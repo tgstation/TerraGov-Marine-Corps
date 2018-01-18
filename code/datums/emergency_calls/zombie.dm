@@ -25,7 +25,7 @@
 	H.mind.assigned_role = "Zombie"
 	H.mind.special_role = "MODE"
 	ticker.mode.traitors += H.mind
-	H.mind.skills_list = null //no restriction
+	H.mind.cm_skills = null //no restriction
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 	H.set_species("Zombie")

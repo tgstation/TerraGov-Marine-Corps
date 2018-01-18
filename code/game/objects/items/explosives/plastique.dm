@@ -12,7 +12,7 @@
 	var/atom/target = null
 
 /obj/item/explosive/plastique/attack_self(mob/user)
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
@@ -25,7 +25,7 @@
 
 /obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)
 	if(!flag) r_FAL
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 	if(istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/simulated/floor))

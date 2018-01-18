@@ -27,11 +27,12 @@
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	able_to_fire(mob/living/user)
 		. = ..()
 		if(. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SNIPER)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -96,6 +97,7 @@
 						/obj/item/attachable/burstfire_assembly)
 
 	flags_gun_features = GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	New()
 		..()
@@ -116,7 +118,7 @@
 	able_to_fire(mob/living/user)
 		. = ..()
 		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SCOUT)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -268,7 +270,7 @@
 		if(.)
 			if(!ishuman(user)) return 0
 			var/mob/living/carbon/human/H = user
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["smartgun"] < SKILL_SMART_USE)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun < SKILL_SMART_USE)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 			if ( !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
@@ -350,6 +352,7 @@
 
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	New()
 		set waitfor = 0
@@ -412,7 +415,7 @@
 	able_to_fire(mob/living/user)
 		. = ..()
 		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_ROCKET)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -455,6 +458,7 @@
 
 	flags_atom = FPRINT|CONDUCT
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	New()
 		set waitfor = 0
@@ -512,7 +516,7 @@
 	able_to_fire(mob/living/user)
 		. = ..()
 		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -608,6 +612,7 @@
 
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 	var/datum/effect_system/smoke_spread/smoke
 
 	New()
@@ -633,7 +638,7 @@
 				click_empty(user)
 				user << "<span class='warning'>You can't fire that here!</span>"
 				return 0
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_ROCKET)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 

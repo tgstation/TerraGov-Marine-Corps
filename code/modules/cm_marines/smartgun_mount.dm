@@ -323,16 +323,24 @@
 				return
 
 	if(istype(O, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
+		var/obj/item/ammo_magazine/m56d/M = O
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+			if(rounds)
+				user << "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>"
+				return
+			if(user.action_busy) return
+			if(!do_after(user, 25, TRUE, 5, BUSY_ICON_CLOCK))
+				return
+		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
+		playsound(loc, 'sound/weapons/gun_minigun_cocked.ogg', 25, 1)
 		if(rounds)
-			usr << "There is already a ammo drum in the weapon!"
-			return
-		if(do_after(user,5, TRUE, 5, BUSY_ICON_CLOCK))
-			user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
-			rounds = 700
-			update_icon()
-			user.temp_drop_inv_item(O)
-			cdel(O)
-			return
+			var/obj/item/ammo_magazine/m56d/D = new(user.loc)
+			D.current_rounds = rounds
+		rounds = min(rounds + M.current_rounds, rounds_max)
+		update_icon()
+		user.temp_drop_inv_item(O)
+		cdel(O)
+		return
 	return ..()
 
 /obj/machinery/m56d_hmg/proc/update_health(var/damage) //Negative damage restores health.

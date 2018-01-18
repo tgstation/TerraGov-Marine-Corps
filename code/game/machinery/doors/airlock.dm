@@ -701,7 +701,7 @@ About the new airlock wires panel:
 
 	if((in_range(src, usr) && istype(src.loc, /turf)) && src.p_open)
 		usr.set_interaction(src)
-		if(ishuman(usr) && usr.mind && usr.mind.skills_list && usr.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+		if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			usr << "<span class='warning'>You don't understand anything about [src]'s wiring...</span>"
 			return 0
 		if(href_list["wires"])
@@ -979,7 +979,7 @@ About the new airlock wires panel:
 		return src.attack_hand(user)
 	else if(C.pry_capable)
 		if(C.pry_capable == IS_PRY_CAPABLE_CROWBAR && src.p_open && (operating == -1 || (density && welded && operating != 1 && !src.arePowerSystemsOn() && !src.locked)) )
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You don't seem to know how to deconstruct machines.</span>"
 				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)

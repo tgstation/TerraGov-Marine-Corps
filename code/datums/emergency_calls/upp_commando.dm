@@ -77,19 +77,19 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind
-	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
-		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,
-		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
+			mob.mind.set_cm_skills(/datum/skills/commando/leader)
 			mob.arm_equipment(mob, "UPP Commando (Leader)")
 			mob << "<font size='3'>\red You are a commando officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
 		else if(medics < max_medics)
+			mob.mind.set_cm_skills(/datum/skills/commando/medic)
 			mob << "<font size='3'>\red You are a commando medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
 			mob.arm_equipment(mob, "UPP Commando (Medic)")
 			medics++
 		else
+			mob.mind.set_cm_skills(/datum/skills/commando)
 			mob << "<font size='3'>\red You are a commando of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
 			mob.arm_equipment(mob, "UPP Commando (Standard)")
 		print_backstory(mob)

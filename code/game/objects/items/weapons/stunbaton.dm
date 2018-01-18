@@ -105,7 +105,7 @@
 		..()
 
 /obj/item/weapon/baton/attack_self(mob/user)
-	if(has_user_lock && user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
+	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 	if(bcell && bcell.charge > hitcost)
@@ -123,7 +123,7 @@
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
-	if(has_user_lock && user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
+	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 	if(status && (CLUMSY in user.mutations) && prob(50))

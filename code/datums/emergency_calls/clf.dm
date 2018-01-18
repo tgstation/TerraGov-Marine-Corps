@@ -60,19 +60,19 @@
 	mob.g_eyes = 62
 	mob.b_eyes = 19
 	mob.s_tone = rand(0,90)
-	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
-		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,
-		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
+			mob.mind.set_cm_skills(/datum/skills/pfc)
 			mob << "<font size='4'>\red You are a leader of the local resistance group, the Colonial Liberation Front."
 			mob.arm_equipment(mob, "CLF Fighter (Leader)")
 			leader = mob
 		else if(medics < max_medics)
+			mob.mind.set_cm_skills(/datum/skills/combat_medic)
 			mob << "<font size='4'>\red You are a medic of the local resistance group, the Colonial Liberation Front."
 			mob.arm_equipment(mob, "CLF Fighter (Medic)")
 			medics++
 		else
+			mob.mind.set_cm_skills(/datum/skills/SL)
 			mob << "<font size='4'>\red You are a member of the local resistance group, the Colonial Liberation Front."
 			mob.arm_equipment(mob, "CLF Fighter (Standard)")
 		print_backstory(mob)

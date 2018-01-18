@@ -220,7 +220,7 @@ var/global/list/randomized_pillbottle_icons
 	examine(mob/user)
 		..()
 		if(pillbottle_label)
-			if(!user.mind || !user.mind.skills_list || user.mind.skills_list["medical"] >= SKILL_MEDICAL_CHEM)
+			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM)
 				user << "Label reads: [pillbottle_label]."
 			else
 				user << "You don't understand what the label says."
@@ -228,7 +228,7 @@ var/global/list/randomized_pillbottle_icons
 /obj/item/storage/pill_bottle/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/hand_labeler) || istype(W, /obj/item/tool/pen))
 		//pill bottle label can only be read by the medically trained, this is to prevent you from not understanding your own label.
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_CHEM)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
 			user << "<span class='warning'>Better not label what you don't understand.</span>"
 			return TRUE //no afterattack call
 		var/newlabel = copytext(reject_bad_text(input(user,"What should the label read?","Set label","")),1,MAX_NAME_LEN)

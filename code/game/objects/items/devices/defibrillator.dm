@@ -56,7 +56,7 @@
 
 	//Job knowledge requirement
 	if (istype(user))
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
 			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 			return
 
@@ -77,10 +77,15 @@
 	if(user.action_busy) //Currently deffibing
 		return
 
+	var/defib_heal_amt = damage_threshold
+
 	//job knowledge requirement
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
-		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-		return
+	if(user.mind && user.mind.cm_skills)
+		if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+			return
+		else
+			defib_heal_amt *= user.mind.cm_skills.medical*0.5 //more healing power when used by a doctor
 
 	if(!ishuman(H))
 		user << "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>"
@@ -148,10 +153,10 @@
 			return
 
 		//At this point, the defibrillator is ready to work
-		H.adjustBruteLoss(-damage_threshold)
-		H.adjustFireLoss(-damage_threshold)
-		H.adjustToxLoss(-damage_threshold)
-		H.adjustCloneLoss(-damage_threshold)
+		H.adjustBruteLoss(-defib_heal_amt)
+		H.adjustFireLoss(-defib_heal_amt)
+		H.adjustToxLoss(-defib_heal_amt)
+		H.adjustCloneLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
 		if(H.health > config.health_threshold_dead)

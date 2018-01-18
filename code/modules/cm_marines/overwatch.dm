@@ -34,7 +34,7 @@
 	if(..())  //Checks for power outages
 		return
 
-	if(user.mind.skills_list && user.mind.skills_list["leadership"] < SKILL_LEAD_EXPERT)
+	if(user.mind.cm_skills && user.mind.cm_skills.leadership < SKILL_LEAD_EXPERT)
 		user << "<span class='warning'>You don't have the training to use [src].</span>"
 		return
 
@@ -563,8 +563,8 @@
 		H.mind.role_comm_title = "SL"
 	else //an acting SL
 		H.mind.role_comm_title = "aSL"
-	if(H.mind.skills_list)
-		H.mind.skills_list["leadership"] = max(SKILL_LEAD_TRAINED, H.mind.skills_list["leadership"])
+	if(H.mind.cm_skills)
+		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
 
 	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
 		var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
@@ -837,8 +837,8 @@
 		return
 
 	var/delay = activation_time
-	if(user.mind.skills_list)
-		delay = max(10, delay - 20*user.mind.skills_list["leadership"])
+	if(user.mind.cm_skills)
+		delay = max(10, delay - 20*user.mind.cm_skills.leadership)
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
@@ -892,8 +892,8 @@
 		return
 
 	var/delay = activation_time
-	if(user.mind.skills_list)
-		delay = max(15, delay - 20*user.mind.skills_list["leadership"])
+	if(user.mind.cm_skills)
+		delay = max(15, delay - 20*user.mind.cm_skills.leadership)
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
@@ -919,7 +919,7 @@
 	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
 	set category = "IC"
 
-	if(!mind.skills_list || (mind.skills_list && mind.skills_list["leadership"] < SKILL_LEAD_TRAINED))
+	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
 		src << "<span class='warning'>You are not competent enough in leadership to issue an order.</span>"
 		return
 

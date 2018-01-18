@@ -30,9 +30,7 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Pizza"
 	ticker.mode.traitors += mob.mind
-	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
-		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,
-		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+	mob.mind.set_cm_skills(/datum/skills/civilian)
 	spawn(0)
 		spawn_pizza(mob)
 		var/pizzatxt = pick("Discount Pizza","Pizza Kingdom","Papa Pizza")

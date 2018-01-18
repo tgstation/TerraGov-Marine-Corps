@@ -80,23 +80,24 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind
-	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
-		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,
-		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
+			mob.mind.set_cm_skills(/datum/skills/SL/upp)
 			mob.arm_equipment(mob, "UPP Soldier (Leader)")
 			mob << "<font size='3'>\red You are an officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
 		else if(medics < max_medics)
+			mob.mind.set_cm_skills(/datum/skills/combat_medic/crafty)
 			mob << "<font size='3'>\red You are a medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
 			mob.arm_equipment(mob, "UPP Soldier (Medic)")
 			medics++
 		else if(heavies < max_heavies)
+			mob.mind.set_cm_skills(/datum/skills/specialist/upp)
 			mob << "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
 			mob.arm_equipment(mob, "UPP Soldier (Heavy)")
 			heavies++
 		else
+			mob.mind.set_cm_skills(/datum/skills/pfc/crafty)
 			mob << "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>"
 			mob.arm_equipment(mob, "UPP Soldier (Standard)")
 

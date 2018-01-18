@@ -58,20 +58,21 @@
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Mercenary"
 	ticker.mode.traitors += mob.mind
-	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
-		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,
-		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
+			mob.mind.set_cm_skills(/datum/skills/SL)
 			mob.arm_equipment(mob, "Freelancer (Leader)")
 			mob << "<font size='3'>\red You are the Freelancer leader!</font>"
 
 		else if(medics < max_medics)
+			mob.mind.set_cm_skills(/datum/skills/combat_medic)
 			mob.arm_equipment(mob, "Freelancer (Medic)")
 			medics++
 			mob << "<font size='3'>\red You are a Freelancer medic!</font>"
 		else
+			mob.mind.set_cm_skills(/datum/skills/pfc)
 			mob.arm_equipment(mob, "Freelancer (Standard)")
 			mob << "<font size='3'>\red You are a Freelancer mercenary!</font>"
 		print_backstory(mob)

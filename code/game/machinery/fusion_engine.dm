@@ -152,9 +152,8 @@
 					user << "<span class='notice'>You load the [src] with the [O].</span>"
 				r_TRU
 			else
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
-					user << "<span class='warning'>You need to remove the fuel cell from the [src] first.</span>"
-					r_TRU
+				user << "<span class='warning'>You need to remove the fuel cell from the [src] first.</span>"
+				r_TRU
 			icon_track = 100
 			desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat. "
 			desc += (fusion_cell == null) ? "There is no fuel cell in the receptacle." : "You can see a fuel cell in the receptacle."
@@ -163,9 +162,9 @@
 			if(buildstate == 1 && !is_on)
 				var/obj/item/tool/weldingtool/WT = O
 				if(WT.remove_fuel(0, user))
-					if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
-						user << "<span class='warning'>You start fumbling around, examing what's broken...</span>"
-						var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+					if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+						user << "<span class='warning'>You start fumbling around, examining what's broken...</span>"
+						var/fumbling_time = 100 - 20*user.mind.cm_skills.engineer
 						if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts to weld the damage to [src].</span>","<span class='notice'>You start to weld the damage to [name]. Stand still!</span>")
@@ -181,9 +180,9 @@
 					r_FAL
 		else if(istype(O,/obj/item/tool/wirecutters))
 			if(buildstate == 2 && !is_on)
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 					user << "<span class='warning'>You start fumbling around, trying to figure out the wiring...</span>"
-					var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+					var/fumbling_time = 100 - 20*user.mind.cm_skills.engineer
 					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to secure the wiring on [src].</span>","<span class='notice'>You start to secure the wiring. Stand still!</span>")
@@ -196,9 +195,9 @@
 					r_TRU
 		else if(istype(O,/obj/item/tool/wrench))
 			if(buildstate == 3 && !is_on)
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 					user << "<span class='warning'>You start fumbling around, examining the damage on the tubes and plating...</span>"
-					var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+					var/fumbling_time = 100 - 20*user.mind.cm_skills.engineer
 					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to repair the tubes and plating on [src].</span>","<span class='notice'>You start to repair the plating. Stand still!</span>")
@@ -220,9 +219,9 @@
 			if(!fusion_cell)
 				user << "<span class='notice'>There is no cell to remove.</span>"
 			else
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 					user << "<span class='warning'>You start to jam the head of the crowbar under the fuel cell's safety cover...</span>"
-					var/fumbling_time = 100 - 2*user.mind.skills_list["engineer"]
+					var/fumbling_time = 100 - 20*user.mind.cm_skills.engineer
 					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_CLOCK)) return
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts to pry open the fuel receptacle on [src].</span>","<span class='notice'>You start to pry open the cover. Stand still!</span>")

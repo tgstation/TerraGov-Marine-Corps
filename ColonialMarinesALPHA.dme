@@ -142,6 +142,7 @@
 #include "code\datums\modules.dm"
 #include "code\datums\recipe.dm"
 #include "code\datums\round_statistics.dm"
+#include "code\datums\skills.dm"
 #include "code\datums\spell.dm"
 #include "code\datums\sun.dm"
 #include "code\datums\supplypacks.dm"

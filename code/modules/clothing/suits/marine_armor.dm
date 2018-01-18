@@ -299,7 +299,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/specialist/mob_can_equip(mob/M, slot, disable_warning = 0)
 	. = ..()
 	if(.)
-		if(M.mind && M.mind.skills_list && M.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+		if(M.mind && M.mind.cm_skills && M.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && M.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
 			M << "<span class='warning'>You are not trained to use [src]!</span>"
 			return 0
 
@@ -350,6 +350,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	New()
 		select_gamemode_skin(type)
 		..()
+
+/obj/item/clothing/suit/storage/marine/M3S/mob_can_equip(mob/M, slot, disable_warning = 0)
+	. = ..()
+	if(.)
+		if(M.mind && M.mind.cm_skills && M.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && M.mind.cm_skills.spec_weapons != SKILL_SPEC_SCOUT)
+			M << "<span class='warning'>You are not trained to use [src]!</span>"
+			return 0
 
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "\improper M3 pattern recon armor"

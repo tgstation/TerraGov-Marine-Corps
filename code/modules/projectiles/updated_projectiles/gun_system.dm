@@ -69,7 +69,7 @@
 	flags_atom 			 = FPRINT|CONDUCT
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	var/gun_skill_category = GUN_SKILL_FIREARMS //used to know which job knowledge this gun is linked to
+	var/gun_skill_category //used to know which job knowledge this gun is linked to
 
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
@@ -188,8 +188,26 @@
 	place_offhand(user, initial(name))
 	wield_time = world.time + wield_delay
 	//slower or faster wield delay depending on skill.
-	if(user.mind && user.mind.skills_list && user.mind.skills_list[gun_skill_category])
-		wield_time -= 2*user.mind.skills_list[gun_skill_category]
+	if(user.mind && user.mind.cm_skills)
+		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+			wield_time += 3
+		else
+			var/skill_value = 0
+			switch(gun_skill_category)
+				if(GUN_SKILL_PISTOLS)
+					skill_value = user.mind.cm_skills.pistols
+				if(GUN_SKILL_SMGS)
+					skill_value = user.mind.cm_skills.smgs
+				if(GUN_SKILL_RIFLES)
+					skill_value = user.mind.cm_skills.rifles
+				if(GUN_SKILL_SHOTGUNS)
+					skill_value = user.mind.cm_skills.shotguns
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					skill_value = user.mind.cm_skills.heavy_weapons
+				if(GUN_SKILL_SMARTGUN)
+					skill_value = user.mind.cm_skills.smartgun
+			if(skill_value)
+				wield_time -= 2*skill_value
 	return 1
 
 /obj/item/weapon/gun/unwield(var/mob/user)
@@ -672,11 +690,23 @@ and you're good to go.
 		//Can also set last_fired through New(), but honestly there's not much point to it.
 
 		var/added_delay = fire_delay
-		if(active_attachable && active_attachable.attachment_firing_delay)
-			added_delay = active_attachable.attachment_firing_delay
-		if(user && user.mind && user.mind.skills_list && user.mind.skills_list[gun_skill_category] < 0) //no training for such weapon
-			added_delay += config.low_fire_delay //untrained humans fire more slowly.
-		if(world.time >= last_fired + max(0, added_delay) + extra_delay) //check the last time it was fired.
+		if(active_attachable)
+			if(active_attachable.attachment_firing_delay)
+				added_delay = active_attachable.attachment_firing_delay
+		else
+			if(user && user.mind && user.mind.cm_skills)
+				if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+					added_delay += config.low_fire_delay //untrained humans fire more slowly.
+				else
+					switch(gun_skill_category)
+						if(GUN_SKILL_HEAVY_WEAPONS)
+							if(fire_delay > 10) //long delay to fire
+								added_delay = max(fire_delay - 3*user.mind.cm_skills.heavy_weapons, 6)
+						if(GUN_SKILL_SMARTGUN)
+							if(user.mind.cm_skills.smartgun < 0)
+								added_delay += 2*user.mind.cm_skills.smartgun
+
+		if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
 			extra_delay = 0
 			last_fired = world.time
 		else
@@ -698,8 +728,24 @@ and you're good to go.
 
 	var/gun_accuracy = accuracy
 
-	if(user && user.mind && user.mind.skills_list)
-		var/acc_tweak = user.mind.skills_list[gun_skill_category]
+	if(user && user.mind && user.mind.cm_skills)
+		var/acc_tweak = 0
+		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+			acc_tweak = -1
+		else
+			switch(gun_skill_category)
+				if(GUN_SKILL_PISTOLS)
+					acc_tweak = user.mind.cm_skills.pistols
+				if(GUN_SKILL_SMGS)
+					acc_tweak = user.mind.cm_skills.smgs
+				if(GUN_SKILL_RIFLES)
+					acc_tweak = user.mind.cm_skills.rifles
+				if(GUN_SKILL_SHOTGUNS)
+					acc_tweak = user.mind.cm_skills.shotguns
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					acc_tweak = user.mind.cm_skills.heavy_weapons
+				if(GUN_SKILL_SMARTGUN)
+					acc_tweak = user.mind.cm_skills.smartgun
 		if(acc_tweak)
 			gun_accuracy = accuracy + acc_tweak*config.low_hit_accuracy_mult //accuracy increase/decrease per level is equal to attaching/removing a red dot sight.
 
@@ -741,10 +787,27 @@ and you're good to go.
 	if(total_scatter_chance > 0 && ( prob(5) || (flags_gun_features & GUN_BURST_ON && burst_amount > 1) ) ) //Only 5% chance to scatter, and then still unlikely on single fire.
 		total_scatter_chance += (burst_amount * 3) //Much higher chance on a burst.
 
-		if(user && user.mind && user.mind.skills_list)
-			var/scatter_tweak = user.mind.skills_list[gun_skill_category]
-			if(scatter_tweak)
-				total_scatter_chance -= scatter_tweak*config.low_scatter_value
+		if(user && user.mind && user.mind.cm_skills)
+
+			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+				total_scatter_chance += config.low_scatter_value
+			else
+				var/scatter_tweak = 0
+				switch(gun_skill_category)
+					if(GUN_SKILL_PISTOLS)
+						scatter_tweak = user.mind.cm_skills.pistols
+					if(GUN_SKILL_SMGS)
+						scatter_tweak = user.mind.cm_skills.smgs
+					if(GUN_SKILL_RIFLES)
+						scatter_tweak = user.mind.cm_skills.rifles
+					if(GUN_SKILL_SHOTGUNS)
+						scatter_tweak = user.mind.cm_skills.shotguns
+					if(GUN_SKILL_HEAVY_WEAPONS)
+						scatter_tweak = user.mind.cm_skills.heavy_weapons
+					if(GUN_SKILL_SMARTGUN)
+						scatter_tweak = user.mind.cm_skills.smartgun
+				if(scatter_tweak)
+					total_scatter_chance -= scatter_tweak*config.low_scatter_value
 
 		if(prob(total_scatter_chance)) //Scattered!
 			var/scatter_x = rand(-1,1)
@@ -756,10 +819,28 @@ and you're good to go.
 	return target
 
 /obj/item/weapon/gun/proc/simulate_recoil(total_recoil = 0, mob/user, atom/target)
-	if(user && user.mind && user.mind.skills_list)
-		var/recoil_tweak = user.mind.skills_list[gun_skill_category]
-		if(recoil_tweak)
-			total_recoil -= recoil_tweak*config.min_recoil_value
+	if(user && user.mind && user.mind.cm_skills)
+
+		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+			total_recoil += config.min_recoil_value
+		else
+			var/recoil_tweak
+			switch(gun_skill_category)
+				if(GUN_SKILL_PISTOLS)
+					recoil_tweak = user.mind.cm_skills.pistols
+				if(GUN_SKILL_SMGS)
+					recoil_tweak = user.mind.cm_skills.smgs
+				if(GUN_SKILL_RIFLES)
+					recoil_tweak = user.mind.cm_skills.rifles
+				if(GUN_SKILL_SHOTGUNS)
+					recoil_tweak = user.mind.cm_skills.shotguns
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					recoil_tweak = user.mind.cm_skills.heavy_weapons
+				if(GUN_SKILL_SMARTGUN)
+					recoil_tweak = user.mind.cm_skills.smartgun
+
+			if(recoil_tweak)
+				total_recoil -= recoil_tweak*config.min_recoil_value
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return 1

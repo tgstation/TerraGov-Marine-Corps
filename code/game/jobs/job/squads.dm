@@ -144,8 +144,8 @@
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
 	if(old_lead.mind)
-		if(old_lead.mind.skills_list)
-			old_lead.mind.skills_list["leadership"] = SKILL_LEAD_BEGINNER
+		if(old_lead.mind.cm_skills)
+			old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
 		switch(old_lead.mind.assigned_role)
 			if("Squad Specialist") old_lead.mind.role_comm_title = "Sgt"
 			if("Squad Engineer") old_lead.mind.role_comm_title = "Cpl"

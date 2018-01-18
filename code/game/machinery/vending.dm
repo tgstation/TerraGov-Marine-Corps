@@ -458,7 +458,7 @@
 
 		else if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
-			if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				usr << "<span class='warning'>You don't understand anything about this wiring...</span>"
 				return 0
 			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
@@ -471,7 +471,7 @@
 
 		else if ((href_list["pulsewire"]) && (src.panel_open))
 			var/twire = text2num(href_list["pulsewire"])
-			if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				usr << "<span class='warning'>You don't understand anything about this wiring...</span>"
 				return 0
 			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))

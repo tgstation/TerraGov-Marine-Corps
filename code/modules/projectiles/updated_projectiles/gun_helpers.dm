@@ -250,7 +250,7 @@ should be alright.
 			user << "<span class='warning'>Can't do tactical reloads with [src].</span>"
 			return
 		//no tactical reload for the untrained.
-		if(user.mind && user.mind.skills_list && user.mind.skills_list[gun_skill_category] < 0)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.firearms == 0)
 			user << "<span class='warning'>You don't know how to do tactical reloads.</span>"
 			return
 		if(istype(src, AM.gun_type))
@@ -258,7 +258,8 @@ should be alright.
 				unload(user,0,1)
 				user << "<span class='notice'>You start a tactical reload.</span>"
 			var/old_mag_loc = AM.loc
-			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK) && AM.loc == old_mag_loc && !current_mag)
+			var/tac_reload_time = max(15 - 5*user.mind.cm_skills.firearms, 5)
+			if(do_after(user,tac_reload_time, TRUE, 5, BUSY_ICON_CLOCK) && AM.loc == old_mag_loc && !current_mag)
 				if(istype(AM.loc, /obj/item/storage))
 					var/obj/item/storage/S = AM.loc
 					S.remove_from_storage(AM)
