@@ -268,6 +268,7 @@
 	name = "Squad Specialist"
 	cqc = SKILL_CQC_TRAINED
 	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL //to use c4 in scout set.
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
 	spec_weapons = SKILL_SPEC_TRAINED
