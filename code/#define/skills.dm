@@ -2,53 +2,95 @@
 //skill defines
 
 
-//firearms skill
+//firearms skill (general knowledge of guns) (hidden skill)
 //increase or decrase accuracy, recoil, and firing delay of rifles and smgs.
-#define SKILL_FIREARMS_UNTRAINED -1	//civilian
-#define SKILL_FIREARMS_DEFAULT 	0	//marines
-#define SKILL_FIREARMS_TRAINED	1	//special training
+#define SKILL_FIREARMS_UNTRAINED 0	//civilian
+#define SKILL_FIREARMS_DEFAULT 	1	//marines (allow tactical reloads)
+#define SKILL_FIREARMS_TRAINED	2	//special training
 
 //pistols skill
 //increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
-#define SKILL_PISTOLS_UNTRAINED -1	//civilian
 #define SKILL_PISTOLS_DEFAULT 	0	//marines
 #define SKILL_PISTOLS_TRAINED	1	//special training
+
+//smgs skill
+//increase or decrase accuracy, recoil, and firing delay of submachineguns.
+#define SKILL_SMGS_DEFAULT 	0	//marines
+#define SKILL_SMGS_TRAINED	1	//special training
+
+//rifles skill
+//increase or decrase accuracy, recoil, and firing delay of rifles.
+#define SKILL_RIFLES_DEFAULT 	0	//marines
+#define SKILL_RIFLES_TRAINED	1	//special training
+
+//shotguns skill
+//increase or decrase accuracy, recoil, and firing delay of shotguns.
+#define SKILL_SHOTGUNS_DEFAULT 	0	//marines
+#define SKILL_SHOTGUNS_TRAINED	1	//special training
+
+//heavy weapons skill
+//increase or decrase accuracy, recoil, and firing delay of heavy weapons (non spec weapons, e.g. flamethrower).
+#define SKILL_HEAVY_WEAPONS_DEFAULT 	0	//marines
+#define SKILL_HEAVY_WEAPONS_TRAINED		1	//special training
+
 
 
 //smartgun skill
 //increase or decrase accuracy, recoil, and firing delay for smartgun, and whether we can use smartguns at all.
 #define SKILL_SMART_DEFAULT 		-4 //big negative so the effects are far worse than pistol/rifle untrained
 #define SKILL_SMART_USE				-3 //can use smartgun
-#define SKILL_SMART_TRAINED			0
-#define SKILL_SMART_TRAINED_PLUS	1
+#define SKILL_SMART_TRAINED			0 //default for smartgunner
+#define SKILL_SMART_EXPERT			1
+#define SKILL_SMART_MASTER			2
 
 
 
-
-//heavy_weapons skill
+//spec_weapons skill
 //hidden. who can and can't use specialist weapons
-#define SKILL_HEAVY_DEFAULT	0
-#define SKILL_HEAVY_TRAINED	1
+#define SKILL_SPEC_DEFAULT		0
+#define SKILL_SPEC_ROCKET		1 //can use the demolitionist specialist gear
+#define SKILL_SPEC_SCOUT		2
+#define SKILL_SPEC_SNIPER		3
+#define SKILL_SPEC_GRENADIER	4
+#define SKILL_SPEC_TRAINED		5 //can use all specialist gear
+
+
+
+//construction skill
+#define SKILL_CONSTRUCTION_DEFAULT	0
+#define SKILL_CONSTRUCTION_METAL 	1	//metal barricade construction (CT)
+#define SKILL_CONSTRUCTION_PLASTEEL 2	//plasteel barricade,(Req)(combat engi)
+#define SKILL_CONSTRUCTION_ADVANCED	3	//windows and girder construction
+#define SKILL_CONSTRUCTION_MASTER	4	//building machine&computer frames (MT, CE)
+
 
 
 
 // engineer skill
 #define SKILL_ENGINEER_DEFAULT	0
-#define SKILL_ENGINEER_METAL 	1	//metal barricade construction&repair,c4 use (CT)
-#define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade&repair, girder construction (Req)
+#define SKILL_ENGINEER_METAL 	1	//metal barricade repair && c4 use
+#define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
 #define SKILL_ENGINEER_ENGI 	3	//hacking&&planet engine fixing&&apc building (combat engi)
-#define SKILL_ENGINEER_MT 		4	//building machine&computer frames, faster engine fixing (MT)
+#define SKILL_ENGINEER_MT 		4	//Telecomms fixing, faster engine fixing (MT)
 //higher levels give faster Almayer engine repair.
 
 
 //medical skill
 #define SKILL_MEDICAL_DEFAULT	0
-#define SKILL_MEDICAL_CHEM		1 // using autoinjectors & hyposprays with any chemicals (SL)
+#define SKILL_MEDICAL_CHEM		1 // recognizing chemicals, using autoinjectors & hyposprays with any chemicals (SL)
 #define SKILL_MEDICAL_MEDIC		2 //syringe use & defib use (Combat Medic)
-//level 3 currently does nothing.
-#define SKILL_MEDICAL_SURGERY	4 //can do surgery (Doctor)
-#define SKILL_MEDICAL_CMO		5 //faster surgery (CMO)
-//higher levels means faster syringe use and surgery.
+#define SKILL_MEDICAL_DOCTOR	3
+#define SKILL_MEDICAL_CMO		4
+//higher levels means faster syringe use and better defibrillation
+
+
+//surgery skill
+#define SKILL_SURGERY_DEFAULT	0
+#define SKILL_SURGERY_TRAINED	1 //can do surgery (Doctor)
+#define SKILL_SURGERY_EXPERT	2 //faster surgery (CMO)
+//higher levels means faster surgery.
+
+
 
 
 
@@ -94,7 +136,7 @@
 
 
 //pilot skill, hidden
-#define SKILL_PILOT_NONE		0
+#define SKILL_PILOT_DEFAULT		0
 #define SKILL_PILOT_TRAINED		1 //Pilot
 
 
@@ -105,6 +147,11 @@
 ////////////////////////////////////////////////
 
 //gun skill categories, matches the name of the job knowledge types for gun proficiency.
-#define GUN_SKILL_FIREARMS	"firearms"
-#define GUN_SKILL_PISTOLS	"pistols"
-#define GUN_SKILL_SMARTGUN	"smartgun"
+#define GUN_SKILL_FIREARMS		"firearms"
+#define GUN_SKILL_PISTOLS		"pistols"
+#define GUN_SKILL_SHOTGUNS		"shotguns"
+#define GUN_SKILL_SMGS			"smgs"
+#define GUN_SKILL_RIFLES		"rifles"
+#define GUN_SKILL_HEAVY_WEAPONS	"heavy_weapons"
+#define GUN_SKILL_SMARTGUN		"smartgun"
+#define GUN_SKILL_SPEC			"spec_weapons"

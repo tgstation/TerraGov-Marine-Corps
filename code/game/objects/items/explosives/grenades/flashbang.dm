@@ -7,7 +7,7 @@
 
 
 /obj/item/explosive/grenade/flashbang/attack_self(mob/user)
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_MP)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 	..()

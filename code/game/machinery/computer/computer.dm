@@ -93,7 +93,7 @@
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tool/screwdriver) && circuit)
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_MT)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 			user << "<span class='warning'>You don't know how to deconstruct [src]...</span>"
 			return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)

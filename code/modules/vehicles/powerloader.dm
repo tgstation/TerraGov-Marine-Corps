@@ -63,8 +63,8 @@
 		if(.)
 			icon_state = "powerloader"
 			overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-			if(M.mind && M.mind.skills_list)
-				move_delay = max(4, move_delay - M.mind.skills_list["powerloader"])
+			if(M.mind && M.mind.cm_skills)
+				move_delay = max(4, move_delay - M.mind.cm_skills.powerloader)
 			var/clamp_equipped = 0
 			for(var/obj/item/powerloader_clamp/PC in contents)
 				if(!M.put_in_hands(PC)) PC.forceMove(src)
@@ -79,7 +79,7 @@
 		if(M != user) return
 		if(!ishuman(M))	return
 		var/mob/living/carbon/human/H = M
-		if(H.mind && user.mind.skills_list && !user.mind.skills_list["powerloader"])
+		if(H.mind && user.mind.cm_skills && !user.mind.cm_skills.powerloader)
 			H << "<span class='warning'>You don't seem to know how to operate [src].</span>"
 			return
 		if(H.r_hand || H.l_hand)

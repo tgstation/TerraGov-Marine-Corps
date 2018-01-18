@@ -40,9 +40,6 @@
 	if(mob.client) mob.client.view = world.view
 
 //	M.transfer_to(mob)
-	mob.mind.skills_list = list("cqc"=SKILL_CQC_MASTER,"endurance"=0,"engineer"=SKILL_ENGINEER_METAL,"firearms"=SKILL_FIREARMS_TRAINED,
-		"smartgun"=SKILL_SMART_TRAINED,"heavy_weapons"=SKILL_HEAVY_TRAINED,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,
-		"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_TRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
 
 
 	mob.mind.assigned_role = "PMC"
@@ -50,19 +47,23 @@
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
+			mob.mind.set_cm_skills(/datum/skills/SL/pmc)
 			mob.arm_equipment(mob, "Weyland-Yutani PMC (Leader)")
 			mob.mind.special_role = "MODE"
 			mob.mind.assigned_role = "PMC Leader"
 		else
 			mob.mind.special_role = "MODE"
 			if(prob(55)) //Randomize the heavy commandos and standard PMCs.
+				mob.mind.set_cm_skills(/datum/skills/pfc/pmc)
 				mob.arm_equipment(mob, "Weyland-Yutani PMC (Standard)")
 				mob << "<font size='3'>\red You are a Weyland Yutani mercenary!</font>"
 			else
 				if(prob(30))
+					mob.mind.set_cm_skills(/datum/skills/specialist/pmc)
 					mob.arm_equipment(mob, "Weyland-Yutani PMC (Sniper)")
 					mob << "<font size='3'>\red You are a Weyland Yutani sniper!</font>"
 				else
+					mob.mind.set_cm_skills(/datum/skills/smartgunner/pmc)
 					mob.arm_equipment(mob, "Weyland-Yutani PMC (Gunner)")
 					mob << "<font size='3'>\red You are a Weyland Yutani heavy gunner!</font>"
 		print_backstory(mob)

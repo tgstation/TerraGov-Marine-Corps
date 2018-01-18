@@ -23,7 +23,7 @@
 		attack_hand(user)
 
 	else
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_MT)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 			user << "<span class='warning'>You stare at [src] cluelessly...</span>"
 			return 0
 
@@ -116,7 +116,7 @@
 
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_MT)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 			user << "<span class='warning'>You stare at [src] cluelessly...</span>"
 			return
 		// istype returns false if the value is null

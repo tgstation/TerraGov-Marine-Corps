@@ -579,18 +579,26 @@
 				cell = O
 		return
 	if(istype(O, /obj/item/ammo_magazine/sentry))
-		if(rounds)
-			user << "<span class='warning'>You can only swap the box magazine when it's empty.</span>"
-			return
-		user.visible_message("<span class='notice'>[user] begins fitting a new box magazine into [src].</span>",
-		"<span class='notice'>You begin fitting a new box magazine into [src].</span>")
-		if(do_after(user, 70, TRUE, 5, BUSY_ICON_CLOCK))
-			playsound(src.loc, 'sound/weapons/unload.ogg', 25, 1)
-			user.visible_message("<span class='notice'>[user] fits a new box magazine into [src].</span>",
+		var/obj/item/ammo_magazine/sentry/M = O
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+			if(rounds)
+				user << "<span class='warning'>You only know how to swap the box magazine when it's empty.</span>"
+				return
+			user.visible_message("<span class='notice'>[user] begins fitting a new box magazine into [src].</span>",
+					"<span class='notice'>You begin fitting a new box magazine into [src].</span>")
+			if(user.action_busy) return
+			if(!do_after(user, 70, TRUE, 5, BUSY_ICON_CLOCK))
+				return
+
+		playsound(src.loc, 'sound/weapons/unload.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] fits a new box magazine into [src].</span>",
 			"<span class='notice'>You fit a new box magazine into [src].</span>")
-			user.drop_held_item()
-			rounds = rounds_max
-			cdel(O)
+		user.drop_held_item()
+		if(rounds)
+			var/obj/item/ammo_magazine/sentry/S = new(user.loc)
+			S.current_rounds = rounds
+		rounds = min(rounds + M.current_rounds, rounds_max)
+		cdel(O)
 		return
 
 	if(O.force)

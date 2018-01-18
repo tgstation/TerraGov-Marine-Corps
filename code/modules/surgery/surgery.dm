@@ -93,7 +93,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if(user.action_busy) //already doing an action
 		return 1
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_SURGERY)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
 		user << "<span class='warning'>You have no idea how to do surgery...</span>"
 		return 1
 	var/datum/limb/affected = M.get_limb(user.zone_selected)
@@ -136,9 +136,9 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 				//calculate step duration
 				var/step_duration = rand(S.min_duration, S.max_duration)
-				if(user.mind && user.mind.skills_list)
+				if(user.mind && user.mind.cm_skills)
 					//1 second reduction per level above minimum for performing surgery
-					step_duration = max(5, step_duration - 10*(user.mind.skills_list["medical"] - SKILL_MEDICAL_SURGERY))
+					step_duration = max(5, step_duration - 10*user.mind.cm_skills.surgery)
 
 				//Multiply tool success rate with multipler
 				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_CLOCK, BUSY_ICON_MED, TRUE))

@@ -423,7 +423,7 @@
 	if(iswelder(W))
 		if(user.action_busy)
 			return
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user << "<span class='warning'>You're not trained to repair [src]...</span>"
 			return
 		var/obj/item/tool/weldingtool/WT = W
@@ -452,7 +452,7 @@
 			if(isscrewdriver(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -465,7 +465,7 @@
 			if(isscrewdriver(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -477,7 +477,7 @@
 			if(iswrench(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -491,7 +491,7 @@
 			if(iswrench(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				for(var/obj/structure/barricade/B in loc)
@@ -508,7 +508,7 @@
 			if(iscrowbar(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
@@ -587,7 +587,7 @@
 		if(busy || tool_cooldown > world.time)
 			return
 		tool_cooldown = world.time + 10
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 			user << "<span class='warning'>You're not trained to repair [src]...</span>"
 			return
 		var/obj/item/tool/weldingtool/WT = W
@@ -620,7 +620,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 
@@ -640,7 +640,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
@@ -652,7 +652,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
@@ -667,7 +667,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
@@ -680,7 +680,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",

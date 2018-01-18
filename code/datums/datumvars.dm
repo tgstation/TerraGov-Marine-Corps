@@ -770,10 +770,10 @@ client
 			usr << "This can't be used on humans without a mind."
 			return
 
-		if(!H.mind.skills_list)
-			H.mind.skills_list = list("cqc"=SKILL_CQC_DEFAULT,"endurance"=0,"engineer"=SKILL_ENGINEER_DEFAULT,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_DEFAULT,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+		if(!H.mind.cm_skills)
+			H.mind.cm_skills = new /datum/skills/pfc()
 
-		var/selected_skill = input("Please choose a skill to edit.","Skills",null) as null|anything in list("cqc","endurance","engineer","firearms","smartgun","heavy_weapons","leadership","medical","melee_weapons","pilot","pistols","police","powerloader")
+		var/selected_skill = input("Please choose a skill to edit.","Skills",null) as null|anything in list("cqc","endurance","engineer", "construction","firearms", "pistols", "rifles", "smgs", "shotguns", "heavy_weapons","smartgun","spec_weapons","leadership","medical", "surgery","melee_weapons","pilot","police","powerloader")
 		if(!selected_skill)
 			return
 
@@ -785,8 +785,8 @@ client
 			usr << "Mob lost its mind."
 			return
 
-		var/new_skill_level = input("Select a new level for the [selected_skill] skill ","New Skill Level", H.mind.skills_list[selected_skill]) as null|num
-		if(!new_skill_level && new_skill_level != 0)
+		var/new_skill_level = input("Select a new level for the [selected_skill] skill ","New Skill Level") as null|num
+		if(isnull(new_skill_level))
 			return
 
 		if(!H)
@@ -797,7 +797,46 @@ client
 			usr << "Mob lost its mind."
 			return
 
-		H.mind.skills_list[selected_skill] = new_skill_level
+		switch(selected_skill)
+			if("cqc")
+				H.mind.cm_skills.cqc = new_skill_level
+			if("melee_weapons")
+				H.mind.cm_skills.melee_weapons = new_skill_level
+			if("firearms")
+				H.mind.cm_skills.firearms = new_skill_level
+			if("pistols")
+				H.mind.cm_skills.pistols = new_skill_level
+			if("rifles")
+				H.mind.cm_skills.rifles = new_skill_level
+			if("smgs")
+				H.mind.cm_skills.smgs = new_skill_level
+			if("shotguns")
+				H.mind.cm_skills.shotguns = new_skill_level
+			if("heavy_weapons")
+				H.mind.cm_skills.heavy_weapons = new_skill_level
+			if("smartgun")
+				H.mind.cm_skills.smartgun = new_skill_level
+			if("spec_weapons")
+				H.mind.cm_skills.spec_weapons = new_skill_level
+			if("leadership")
+				H.mind.cm_skills.leadership = new_skill_level
+			if("medical")
+				H.mind.cm_skills.medical = new_skill_level
+			if("surgery")
+				H.mind.cm_skills.surgery = new_skill_level
+			if("pilot")
+				H.mind.cm_skills.pilot = new_skill_level
+			if("endurance")
+				H.mind.cm_skills.endurance = new_skill_level
+			if("engineer")
+				H.mind.cm_skills.engineer = new_skill_level
+			if("construction")
+				H.mind.cm_skills.construction = new_skill_level
+			if("police")
+				H.mind.cm_skills.police = new_skill_level
+			if("powerloader")
+				H.mind.cm_skills.powerloader = new_skill_level
+
 		usr << "[H]'s [selected_skill] skill is now set to [new_skill_level]."
 
 

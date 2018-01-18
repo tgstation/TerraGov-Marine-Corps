@@ -68,7 +68,7 @@
 	if(!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
 		return 0
-	if(ishuman(user) && user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_ENGI)
+	if(ishuman(user) && user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
 		user << "<span class='warning'>You are not trained to build with [src]...</span>"
 		return 0
 	var/title = "Sheet-[name]"
