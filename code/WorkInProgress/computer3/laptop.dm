@@ -20,7 +20,7 @@
 /obj/item/device/laptop
 	name		= "Laptop Computer"
 	desc		= "A clamshell portable computer.  It is closed."
-	icon		= 'icons/obj/computer3.dmi'
+	icon		= 'icons/obj/machines/computer3.dmi'
 	icon_state	=  "laptop-closed"
 	item_state	=  "laptop-inhand"
 	pixel_x		= 2

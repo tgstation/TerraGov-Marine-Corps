@@ -162,16 +162,6 @@
 /obj/item/card/id/GetID()
 	return src
 
-/obj/item/card/id/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W,/obj/item/id_wallet))
-		user << "You slip [src] into [W]."
-		src.name = "[src.registered_name]'s [W.name] ([src.assignment])"
-		src.desc = W.desc
-		src.icon = W.icon
-		src.icon_state = W.icon_state
-		cdel(W)
-		return
 
 /obj/item/card/id/verb/read()
 	set name = "Read ID Card"

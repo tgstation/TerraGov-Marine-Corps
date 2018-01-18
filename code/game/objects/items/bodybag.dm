@@ -29,7 +29,7 @@
 
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
-	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant at the cost of genetic damage."
+	desc = "A folded, reusable bag designed to prevent additional damage to an occupant."
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	unfolded_path = /obj/structure/closet/bodybag/cryobag
@@ -128,7 +128,7 @@
 
 /obj/structure/closet/bodybag/cryobag
 	name = "stasis bag"
-	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant at the cost of genetic damage."
+	desc = "A reusable plastic bag designed to prevent additional damage to an occupant."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_items = FALSE

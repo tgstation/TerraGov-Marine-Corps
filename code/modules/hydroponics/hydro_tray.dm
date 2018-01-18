@@ -2,7 +2,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics
 	name = "hydroponics tray"
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1
@@ -771,7 +771,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/soil
 	name = "soil"
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "soil"
 	density = 0
 	use_power = 0

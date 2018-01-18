@@ -16,7 +16,6 @@ var/list/robot_verbs_default = list(
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
 	var/custom_name = ""
-	var/custom_sprite = 0 //Due to all the sprites involved, a var for our custom borgs may be best
 	var/crisis //Admin-settable for combat module use.
 	var/crisis_override = 0
 	var/integrated_light_power = 6
@@ -249,10 +248,6 @@ var/list/robot_verbs_default = list(
 	//languages
 	module.add_languages(src)
 
-	//Custom_sprite check and entry
-	if (custom_sprite == 1)
-		module_sprites["Custom"] = "[src.ckey]-[modtype]"
-
 	hands.icon_state = lowertext(modtype)
 	feedback_inc("cyborg_[lowertext(modtype)]",1)
 	updatename()
@@ -286,24 +281,6 @@ var/list/robot_verbs_default = list(
 	if (camera)
 		camera.c_tag = changed_name
 
-	if(!custom_sprite) //Check for custom sprite
-		var/file = file2text("config/custom_sprites.txt")
-		var/lines = text2list(file, "\n")
-
-		for(var/line in lines)
-		// split & clean up
-			var/list/Entry = text2list(line, "-")
-			for(var/i = 1 to Entry.len)
-				Entry[i] = trim(Entry[i])
-
-			if(Entry.len < 2)
-				continue;
-
-			if(Entry[1] == src.ckey && Entry[2] == src.real_name) //They're in the list? Custom sprite time, var and icon change required
-				custom_sprite = 1
-				icon = 'icons/mob/custom-synthetic.dmi'
-				if(icon_state == "robot")
-					icon_state = "[src.ckey]-Standard"
 
 /mob/living/silicon/robot/verb/Namepick()
 	set category = "Robot Commands"
@@ -830,14 +807,6 @@ var/list/robot_verbs_default = list(
 	else
 		overlays -= "eyes"
 
-	if(opened && custom_sprite == 1) //Custom borgs also have custom panels, heh
-		if(wiresexposed)
-			overlays += "[src.ckey]-openpanel +w"
-		else if(cell)
-			overlays += "[src.ckey]-openpanel +c"
-		else
-			overlays += "[src.ckey]-openpanel -c"
-
 	if(opened)
 		if(wiresexposed)
 			overlays += "ov-openpanel +w"
@@ -1082,13 +1051,7 @@ var/list/robot_verbs_default = list(
 	else
 		triesleft--
 
-	var/icontype
-
-	if (custom_sprite == 1)
-		icontype = "Custom"
-		triesleft = 0
-	else
-		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chances." : "This is your last try."]", "Robot", null, null) in module_sprites
+	var/icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chances." : "This is your last try."]", "Robot", null, null) in module_sprites
 
 	if(icontype)
 		icon_state = module_sprites[icontype]

@@ -764,27 +764,27 @@ TUNNEL
 				for(var/obj/structure/tunnel/T in structure_list)
 					if(T.id == id && T != src && T.other == null) //Found a matching tunnel
 						T.other = src
-						src.other = T //Link them!
+						other = T //Link them!
 						break
 
-	Dispose()
-		if(other)
-			other.other = null
-			other = null
-		. = ..()
+/obj/structure/tunnel/Dispose()
+	if(other)
+		other.other = null
+		other = null
+	. = ..()
 
-	examine(mob/user)
-		..()
-		if(!isXeno(user))
-			return
+/obj/structure/tunnel/examine(mob/user)
+	..()
+	if(!isXeno(user))
+		return
 
-		if(!other)
-			user << "It does not seem to lead anywhere."
-		else
-			var/area/A = get_area(other)
-			user << "It seems to lead to <b>[A.name]</b>."
-			if(tunnel_desc)
-				user << "The Hivelord scent reads: \'[tunnel_desc]\'"
+	if(!other)
+		user << "<span class='warning'>It does not seem to lead anywhere.</span>"
+	else
+		var/area/A = get_area(other)
+		user << "<span class='info'>It seems to lead to <b>[A.name]</b>.</span>"
+		if(tunnel_desc)
+			user << "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>"
 
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)
@@ -817,15 +817,15 @@ TUNNEL
 	attack_alien(user)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(!istype(M) || M.stat)
+	if(!istype(M) || M.stat || M.lying)
 		return
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
 		if(!living_xeno_queen)
-			M << "<span class='xenowarning'>There is no queen. You must choose a queen first.</span>"
+			M << "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>"
 			r_FAL
-		else if(istype(M, /mob/living/carbon/Xenomorph/Queen))
+		else if(isXenoQueen(M))
 			M << "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>"
 			r_FAL
 
@@ -856,16 +856,6 @@ TUNNEL
 			M << "<span class='warning'>\The [src] ended unexpectedly, so you return back up.</span>"
 	else
 		M << "<span class='warning'>Your crawling was interrupted!</span>"
-
-
-/obj/structure/tunnel/attack_hand()
-	usr << "<span class='notice'>No way are you going down there! 2spooky!</span>"
-
-/obj/structure/tunnel/attack_paw()
-	return attack_hand()
-
-
-
 
 //Alien blood effects.
 /obj/effect/decal/cleanable/blood/xeno

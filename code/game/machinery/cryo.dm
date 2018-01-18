@@ -2,7 +2,7 @@
 
 /obj/machinery/atmospherics/unary/cryo_cell
 	name = "cryo cell"
-	icon = 'icons/obj/cryogenics.dmi'
+	icon = 'icons/obj/machines/cryogenics2.dmi'
 	icon_state = "cell-off"
 	density = 0
 	anchored = 1.0

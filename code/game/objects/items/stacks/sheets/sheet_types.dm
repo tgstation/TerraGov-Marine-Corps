@@ -63,8 +63,6 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2), \
 	new/datum/stack_recipe("air alarm frame", /obj/item/frame/air_alarm, 2), \
 	new/datum/stack_recipe("fire alarm frame", /obj/item/frame/fire_alarm, 2), \
-	null, \
-	new/datum/stack_recipe("knife blade", /obj/item/weapon/butterflyblade, 6, time = 20, one_per_turf = 0, on_floor = 1) \
 )
 
 /obj/item/stack/sheet/metal
@@ -89,7 +87,6 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
  */
 var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 50, one_per_turf = 1), \
-	new/datum/stack_recipe("knife grip", /obj/item/weapon/butterflyhandle, 2, time = 20, one_per_turf = 0, on_floor = 1),
 	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 80, one_per_turf = 1, on_floor = 1, engi_req =  SKILL_ENGINEER_PLASTEEL),
 	new/datum/stack_recipe("sentry turret frame", /obj/machinery/marine_turret_frame, 20, time = 60, one_per_turf = 1, on_floor = 1, engi_req = SKILL_ENGINEER_PLASTEEL),
 	)

@@ -9,9 +9,6 @@
 	var/chatWarn = 0 //Tracks how many times someone has spammed and gives them a no-no timer
 	var/talked = 0 //Won't let someone say something again in under a second.
 
-	//Not in use yet
-	var/obj/effect/organstructure/organStructure = null
-
 	var/obj/screen/hands = null //robot
 
 	var/adminhelp_marked = 0 // Prevents marking an Adminhelp more than once. Making this a client define will cause runtimes and break some Adminhelps
@@ -26,20 +23,17 @@
 
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
-	var/computer_id = null
+	var/computer_id = null //to track the players
 	var/lastattacker = null
 	var/lastattacked = null
 	var/attack_log = list( )
-	var/already_placed = 0.0
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
-	var/memory = ""
 	var/poll_answer = 0.0
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 	var/atom/movable/pulling = null
 	var/next_move = null
 	var/monkeyizing = null	//Carbon
-	var/other = 0.0
 	var/hand = null
 	var/eye_blind = null	//Carbon
 	var/eye_blurry = null	//Carbon
@@ -54,11 +48,9 @@
 	var/gen_record = ""
 	var/exploit_record = ""
 	var/blinded = null
-	var/bhunger = 0			//Carbon
 	var/druggy = 0			//Carbon
 	var/confused = 0		//Carbon
 	var/antitoxs = null
-	var/phoron = null
 	var/sleeping = 0		//Carbon
 	var/resting = 0			//Carbon
 	var/lying = 0
@@ -141,26 +133,8 @@
 
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
 
-//Generic list for proc holders. Only way I can see to enable certain verbs/procs. Should be modified if needed.
-	var/proc_holder_list[] = list()//Right now unused.
-	//Also unlike the spell list, this would only store the object in contents, not an object in itself.
-
-	/* Add this line to whatever stat module you need in order to use the proc holder list.
-	Unlike the object spell system, it's also possible to attach verb procs from these objects to right-click menus.
-	This requires creating a verb for the object proc holder.
-
-	if (proc_holder_list.len)//Generic list for proc_holder objects.
-		for(var/obj/effect/proc_holder/P in proc_holder_list)
-			statpanel("[P.panel]","",P)
-	*/
-
 //Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
 	var/obj/effect/proc_holder/spell/list/spell_list = list()
-
-//Changlings, but can be used in other modes
-//	var/obj/effect/proc_holder/changpower/list/power_list = list()
-
-
 
 	var/list/viruses = list() //List of active diseases
 

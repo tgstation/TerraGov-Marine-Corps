@@ -127,17 +127,3 @@
 	..()
 
 
-
-
-
-//XENO LEGGCUFFS
-
-/obj/item/legcuffs/xeno
-	name = "sticky resin"
-	desc = "A thick, nasty resin. You could probably resist out of this."
-	breakouttime = 100
-	icon = 'icons/xeno/effects.dmi'
-	icon_state = "sticky2"
-
-/obj/item/legcuffs/xeno/dropped()
-	cdel(src)

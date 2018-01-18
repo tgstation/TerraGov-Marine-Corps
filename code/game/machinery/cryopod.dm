@@ -15,7 +15,7 @@ var/global/list/frozen_items = list()
 /obj/machinery/computer/cryopod
 	name = "cryogenic oversight console"
 	desc = "An interface between crew and the cryogenic storage oversight systems."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "cellconsole"
 	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
 	exproof = TRUE
@@ -116,7 +116,7 @@ var/global/list/frozen_items = list()
 
 	name = "\improper cryogenic feed"
 	desc = "A bewildering tangle of machinery and pipes."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "cryo_rear"
 	anchored = 1
 
@@ -138,7 +138,7 @@ var/global/list/frozen_items = list()
 /obj/machinery/cryopod
 	name = "\improper cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
 	density = 1
 	anchored = 1

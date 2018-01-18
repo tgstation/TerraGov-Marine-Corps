@@ -40,12 +40,7 @@
 		return ..()
 
 	if(user.a_intent != "help")
-		if(user.zone_selected == "head" || user.zone_selected == "eyes")
-			if((CLUMSY in user.mutations) && prob(50))
-				M = user
-			return eyestab(M,user)
-		else
-			return ..()
+		return ..()
 
 	if (reagents.total_volume > 0)
 		reagents.trans_to_ingest(M, reagents.total_volume)

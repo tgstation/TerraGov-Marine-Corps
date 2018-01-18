@@ -381,9 +381,8 @@
 
 
 /obj/item/toy/beach_ball
-	icon = 'icons/misc/beach.dmi'
-	icon_state = "ball"
 	name = "beach ball"
+	icon_state = "beachball"
 	item_state = "beachball"
 	density = 0
 	anchored = 0
@@ -454,53 +453,16 @@
 			spam_flag = 0
 
 
-/*
-/obj/item/toy/latexballon
-	name = "Latex glove"
-	desc = "" //todo
-	icon_state = "latexballon"
-	item_state = "lgloves"
-	force = 0
-	throwforce = 0
-	w_class = 2.0
-	throw_speed = 1
-	throw_range = 15
-	var/state
-	var/datum/gas_mixture/air_contents = null
 
-/obj/item/toy/latexballon/proc/blow(obj/item/tank/tank)
-	if (icon_state == "latexballon_bursted")
-		return
-	src.air_contents = tank.remove_air_volume(3)
-	icon_state = "latexballon_blow"
-	item_state = "latexballon"
+/obj/item/toy/farwadoll
+	name = "Farwa plush doll"
+	desc = "A Farwa plush doll. It's soft and comforting!"
+	w_class = 1
+	icon_state = "farwaplush"
+	var/last_hug_time
 
-/obj/item/toy/latexballon/proc/burst()
-	if (!air_contents)
-		return
-	playsound(src, 'sound/weapons/Gunshot.ogg', 15, 1)
-	icon_state = "latexballon_bursted"
-	item_state = "lgloves"
-	loc.assume_air(air_contents)
-
-/obj/item/toy/latexballon/ex_act(severity)
-	burst()
-	switch(severity)
-		if (1)
-			cdel(src)
-		if (2)
-			if (prob(50))
-				cdel(src)
-
-/obj/item/toy/latexballon/bullet_act()
-	burst()
-
-/obj/item/toy/latexballon/fire_act(datum/gas_mixture/air, temperature, volume)
-	if(temperature > T0C+100)
-		burst()
-	return
-
-/obj/item/toy/latexballon/attackby(obj/item/W as obj, mob/user as mob)
-	if (can_puncture(W))
-		burst()
-	*/
+/obj/item/toy/farwadoll/attack_self(mob/user)
+	if(world.time > last_hug_time)
+		user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
+							 "<span class='notice'>You hug [src]. Dawwww... </span>")
+		last_hug_time = world.time + 50 //5 second cooldown

@@ -14,7 +14,7 @@
 
 /obj/machinery/computer3/server
 	name			= "server"
-	icon			= 'icons/obj/computer3.dmi'
+	icon			= 'icons/obj/machines/computer3.dmi'
 	icon_state		= "serverframe"
 	show_keyboard	= 0
 

@@ -16,7 +16,7 @@
 /obj/machinery/computer3/security/wooden_tv
 	name				= "security cameras"
 	desc				= "An old TV hooked into the stations camera network."
-	icon				= 'icons/obj/computer.dmi'
+	icon				= 'icons/obj/machines/computer.dmi'
 	icon_state			= "security_det"
 
 	legacy_icon			= 1

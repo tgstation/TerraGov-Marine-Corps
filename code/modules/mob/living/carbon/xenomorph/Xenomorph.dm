@@ -155,11 +155,7 @@ var/global/hive_orders = "" //What orders should the hive have
 /mob/living/carbon/Xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/Xenomorph/can_ventcrawl()
-	return (mob_size != MOB_SIZE_BIG)
 
-/mob/living/carbon/Xenomorph/ventcrawl_carry()
-	return 1
 
 /mob/living/carbon/Xenomorph/start_pulling(var/atom/movable/AM)
 	if(isobj(AM))
@@ -193,5 +189,14 @@ var/global/hive_orders = "" //What orders should the hive have
 	MH.add_hud_to(src)
 
 
-/mob/living/carbon/Xenomorph/can_inject()
-	return FALSE
+
+/mob/living/carbon/Xenomorph/point_to_atom(atom/A, turf/T)
+	//xeno leader get a bit arrow and less cooldown
+	if(queen_chosen_lead || caste == "Queen")
+		recently_pointed_to = world.time + 10
+		new /obj/effect/overlay/temp/point/big(T)
+	else
+		recently_pointed_to = world.time + 50
+		new /obj/effect/overlay/temp/point(T)
+	visible_message("<b>[src]</b> points to [A]")
+	return 1

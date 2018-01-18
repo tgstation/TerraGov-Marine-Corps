@@ -395,9 +395,8 @@ var/global/list/holodeck_programs = list(
 //BASKETBALL OBJECTS
 
 /obj/item/toy/beach_ball/holoball
-	icon = 'icons/obj/basketball.dmi'
-	icon_state = "basketball"
 	name = "basketball"
+	icon_state = "basketball"
 	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = 4 //Stops people from hiding it in their bags/pockets
@@ -405,7 +404,7 @@ var/global/list/holodeck_programs = list(
 /obj/structure/holohoop
 	name = "basketball hoop"
 	desc = "Boom, Shakalaka!"
-	icon = 'icons/obj/basketball.dmi'
+	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "hoop"
 	anchored = 1
 	density = 1

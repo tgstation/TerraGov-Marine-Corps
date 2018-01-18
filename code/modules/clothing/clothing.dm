@@ -28,7 +28,8 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/clothing/under/U = H.w_uniform
 
-		if(uniform_restricted.len && (!is_type_in_list(U, uniform_restricted) || !U))
+		//some clothes can only be worn when wearing specific uniforms
+		if(uniform_restricted && (!is_type_in_list(U, uniform_restricted) || !U))
 			H << "<span class='warning'>Your [U ? "[U.name]":"naked body"] doesn't allow you to wear this [name].</span>" //Note : Duplicate warning, commenting
 			return 0
 
@@ -134,6 +135,19 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
 
+/obj/item/clothing/suit/mob_can_equip(mob/M, slot, disable_warning = 0)
+	//if we can't equip the item anyway, don't bother with other checks.
+	if (!..())
+		return 0
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/clothing/under/U = H.w_uniform
+		//some uniforms prevent you from wearing any suits but certain types
+		if(U && U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
+			H << "<span class='warning'>[src] can't be worn with [U].</span>"
+			return 0
+	return 1
 
 
 /////////////////////////////////////////////////////////

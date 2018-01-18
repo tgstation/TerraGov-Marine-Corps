@@ -121,42 +121,6 @@
 	icon_state = "samurai"
 	force = 50
 
-/obj/item/weapon/butterflyconstruction
-	name = "unfinished concealed knife"
-	desc = "An unfinished concealed knife, it looks like the screws need to be tightened."
-	icon = 'icons/obj/buildingobject.dmi'
-	icon_state = "butterflystep1"
-
-/obj/item/weapon/butterflyconstruction/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/tool/screwdriver))
-		user << "You finish the concealed blade weapon."
-		new /obj/item/weapon/butterfly(user.loc)
-		cdel(src)
-		return
-
-/obj/item/weapon/butterflyblade
-	name = "knife blade"
-	desc = "A knife blade. Unusable as a weapon without a grip."
-	icon = 'icons/obj/buildingobject.dmi'
-	icon_state = "butterfly2"
-	matter = list("metal" = 5000)
-
-/obj/item/weapon/butterflyhandle
-	name = "concealed knife grip"
-	desc = "A plasteel grip with screw fittings for a blade."
-	icon = 'icons/obj/buildingobject.dmi'
-	icon_state = "butterfly1"
-	matter = list("metal" = 4000)
-
-/obj/item/weapon/butterflyhandle/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/butterflyblade))
-		user << "You attach the two concealed blade parts."
-		new /obj/item/weapon/butterflyconstruction(user.loc)
-		cdel(W)
-		cdel(src)
-		return
-	update_icon(user)
-
 
 
 

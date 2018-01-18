@@ -12,7 +12,7 @@ var/specops_shuttle_timeleft = 0
 
 /obj/machinery/computer3/specops_shuttle
 	name = "Spec. Ops. Shuttle Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 	req_access = list(access_cent_specops)
 	var/temp = null

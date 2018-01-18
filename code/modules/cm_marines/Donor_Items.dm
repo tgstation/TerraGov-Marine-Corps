@@ -1325,7 +1325,7 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 /obj/item/tool/lighter/zippo/fluff/ghost
 	name = "Gold zippo lighter"
 	desc = "A Golden Zippo lighter, engraved with the name John Donable... UNIQUE DONOR ITEM."
-	icon = 'icons/obj/custom_items.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "bluezippo"
 
 /obj/item/clothing/mask/cigarette/fluff/ghost

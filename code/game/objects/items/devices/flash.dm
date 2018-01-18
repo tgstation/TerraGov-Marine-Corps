@@ -72,8 +72,7 @@
 	var/flashfail = 0
 
 	if(iscarbon(M))
-		var/safety = M:eyecheck()
-		if(safety <= 0)
+		if(M.get_eye_protection() <= 0)
 			M.KnockDown(10)
 			if(M.hud_used)
 				flick("e_flash", M.hud_used.flash_icon)
@@ -158,8 +157,7 @@
 				for(var/obj/item/device/cloaking_device/S in M)
 					S.active = 0
 					S.icon_state = "shield0"
-		var/safety = M:eyecheck()
-		if(!safety)
+		if(!M.get_eye_protection())
 			if(!M.blinded && M.hud_used)
 				flick("flash", M.hud_used.flash_icon)
 
@@ -177,8 +175,7 @@
 			times_used++
 			if(istype(loc, /mob/living/carbon))
 				var/mob/living/carbon/M = loc
-				var/safety = M.eyecheck()
-				if(safety <= 0)
+				if(!M.get_eye_protection())
 					M.KnockDown(10)
 					if(M.hud_used)
 						flick("e_flash", M.hud_used.flash_icon)

@@ -1,7 +1,7 @@
 /obj/item/changestone
 	name = "An uncut ruby"
 	desc = "The ruby shines and catches the light, despite being uncut"
-	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon = 'icons/obj/items/misc.dmi'
 	icon_state = "changerock"
 
 obj/item/changestone/attack_hand(var/mob/user as mob)

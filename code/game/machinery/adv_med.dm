@@ -5,7 +5,7 @@
 	var/mob/living/carbon/occupant
 	var/locked
 	name = "Body Scanner"
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
 	density = 1
 	anchored = 1
@@ -167,7 +167,7 @@
 	var/delete
 	var/temphtml
 	name = "Body Scanner Console"
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
 	density = 1
 	anchored = 1
@@ -366,7 +366,7 @@
 		for(var/datum/wound/W in e.wounds)
 			if(W.internal)
 				internal_bleeding = "Internal bleeding<br>"
-			break
+				break
 		if(istype(e, /datum/limb/chest) && occ["lung_ruptured"])
 			lung_ruptured = "Lung ruptured:<br>"
 		if(e.status & LIMB_SPLINTED)
@@ -420,7 +420,7 @@
 			else
 				imp += "Unknown body present:<br>"
 
-		if(!AN && !open && !infected & !imp && !necrosis)
+		if(!AN && !open && !infected & !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
 			AN = "None:"
 		if(!(e.status & LIMB_DESTROYED))
 			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"

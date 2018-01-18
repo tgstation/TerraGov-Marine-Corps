@@ -41,13 +41,14 @@
 					living_xeno_queen.set_queen_overwatch(src, TRUE)
 				if(queen_chosen_lead)
 					queen_chosen_lead = FALSE
-					hud_set_queen_overwatch()
 				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
 				else
 					playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 				var/area/A = get_area(src)
 				xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
+
+	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A

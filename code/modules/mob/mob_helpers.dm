@@ -197,6 +197,28 @@ proc/hasorgans(A)
 /proc/hsl2rgb(h, s, l)
 	return //TODO: Implement
 
+
+
+/mob/proc/can_use_hands()
+	return
+
+/mob/proc/is_dead()
+	return stat == DEAD
+
+/mob/proc/is_mechanical()
+	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
+		return 1
+	return istype(src, /mob/living/silicon) || get_species() == "Machine"
+
+/mob/proc/is_ready()
+	return client && !!mind
+
+/mob/proc/get_gender()
+	return gender
+
+
+
+
 /*
 	Miss Chance
 */
@@ -517,3 +539,17 @@ var/list/intents = list("help","disarm","grab","hurt")
 /mob/living/carbon/Xenomorph/can_be_operated_on()
 	return FALSE
 
+
+/mob/proc/is_mob_restrained()
+	return
+
+/mob/proc/is_mob_incapacitated(ignore_restrained)
+	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && is_mob_restrained()))
+
+
+//returns how many non-destroyed legs the mob has (currently only useful for humans)
+/mob/proc/has_legs()
+	return 2
+
+/mob/proc/get_eye_protection()
+	return 0

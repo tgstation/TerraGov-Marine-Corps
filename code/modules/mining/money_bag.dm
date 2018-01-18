@@ -1,7 +1,7 @@
 /*****************************Money bag********************************/
 
 /obj/item/moneybag
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/storage.dmi'
 	name = "Money bag"
 	icon_state = "moneybag"
 	flags_atom = FPRINT

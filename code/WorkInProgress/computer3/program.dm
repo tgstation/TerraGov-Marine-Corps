@@ -32,7 +32,7 @@ Programs are a file that can be executed
 	..()
 	if(!active_state)
 		active_state = "generic"
-	overlay = image('icons/obj/computer3.dmi',icon_state = active_state)
+	overlay = image('icons/obj/machines/computer3.dmi',icon_state = active_state)
 
 
 /datum/file/program/proc/decode(text)

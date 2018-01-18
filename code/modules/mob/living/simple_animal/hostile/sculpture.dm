@@ -31,20 +31,20 @@
 		return
 
 	//See if we're able to strangle anyone
-	for(var/mob/living/carbon/human/M in get_turf(src))
+	for(var/mob/living/carbon/M in get_turf(src))
 		if(M.stat == CONSCIOUS && check_los())
 			snap_neck(M)
 			break
 
 	//Find out what mobs we can see for targetting purposes
 	var/list/conscious = list()
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/H in view(7, src))
 		if(H.stat == CONSCIOUS) //He's up and running
 			conscious.Add(H)
 
 	//Pick the nearest valid conscious target
-	var/mob/living/carbon/human/target
-	for(var/mob/living/carbon/human/H in conscious)
+	var/mob/living/carbon/target
+	for(var/mob/living/carbon/H in conscious)
 		if(!target || get_dist(src, H) < get_dist(src, target))
 			target = H
 
@@ -54,20 +54,14 @@
 		handle_idle()
 
 
-//Check if any human mob can see SPC-173, including darkness exception
+//Check if any mob can see SPC-173
 /mob/living/simple_animal/sculpture/proc/check_los()
 
 	var/observed = 0
 
-	//If SCP-173 is in darkness, nothing can see it
-	var/turf/T = get_turf(src)
-	var/in_darkness = 0
-	if(T.lighting_lumcount == 0) //Entirely dark tiles only
-		in_darkness = 1
-
 	//Humans can observe SCP-173. If a single human observes him, he's observed for everyone
 	//Note that humans have a 180 degrees field of vision for the purposes of this proc
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/H in viewers(src, null))
 		if(H.stat)
 			continue
 		var/x_diff = H.x - src.x
@@ -87,11 +81,11 @@
 				observed = 1
 				break
 
-	if(observed && !in_darkness) //Is someone looking at us, given that they can see us ?
+	if(observed) //Is someone looking at us, given that they can see us ?
 		return 0 //Try again when we get a chance
 	return 1 //Success, let's move
 
-/mob/living/simple_animal/sculpture/proc/handle_target(var/mob/living/carbon/human/target)
+/mob/living/simple_animal/sculpture/proc/handle_target(var/mob/living/carbon/target)
 
 	if(!target) //Sanity
 		return
@@ -238,7 +232,7 @@
 /mob/living/simple_animal/sculpture/proc/check_snap_neck()
 
 	//See if we're able to strangle anyone
-	for(var/mob/living/carbon/human/M in get_turf(src))
+	for(var/mob/living/carbon/M in get_turf(src))
 		if(M.stat == CONSCIOUS && check_los())
 			snap_neck(M)
 			break
@@ -253,7 +247,7 @@
 	if(!check_los())
 		return
 
-	if(target && ishuman(target))
+	if(target)
 		//To prevent movement cheese, SCP snaps necks the second it ends up on the same turf as someone
 		//Or in other terms, if SCP decides it had a clean shot for a neck snap at the moment this proc fired, you're good as dead
 		target.apply_damage(rand(120, 150), BRUTE, "head")

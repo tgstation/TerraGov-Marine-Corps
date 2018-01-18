@@ -1178,10 +1178,8 @@ var/global/floorIsLava = 0
 	ticker.mode.picked_call.activate(is_announcing, no_shuttle_launch)
 
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]")
-	message_admins("\blue [key_name_admin(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]", 1)
-
-
+	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
+	message_admins("\blue [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]", 1)
 
 /datum/admins/proc/admin_force_ERT_shuttle()
 	set category = "Admin"

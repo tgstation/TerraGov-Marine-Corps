@@ -6,7 +6,7 @@
 	name = "chem dispenser"
 	density = 1
 	anchored = 1
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "dispenser"
 	use_power = 0
 	idle_power_usage = 40
@@ -236,7 +236,7 @@
 	name = "ChemMaster 3000"
 	density = 1
 	anchored = 1
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
 	use_power = 1
 	idle_power_usage = 20
@@ -540,7 +540,7 @@
 //this machine does nothing
 /obj/machinery/disease2/diseaseanalyser
 	name = "Disease Analyser"
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "analyser"
 	anchored = 1
 	density = 1
@@ -550,7 +550,7 @@
 	name = "PanD.E.M.I.C 2200"
 	density = 1
 	anchored = 1
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
 	circuit = /obj/item/circuitboard/computer/pandemic
 	//use_power = 1

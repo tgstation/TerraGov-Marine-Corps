@@ -149,11 +149,12 @@
 						user  << "\red You can't build another barricade on the same spot!"
 						return
 
-					var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
+					var/obj/structure/barricade/snow/B = new(src)
 					user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B.name].")
 					B.icon_state = "barricade_[slayer]"
 					B.health = slayer * 25
 					B.dir = user.dir
+					B.update_icon()
 					slayer = 0
 					update_icon(1,0)
 
@@ -712,7 +713,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator1
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 1"
 	unacidable = 1
@@ -722,7 +723,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator2
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 2"
 	unacidable = 1
@@ -732,7 +733,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator3
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 3"
 	unacidable = 1
@@ -742,7 +743,7 @@
 
 /obj/machinery/computer/shuttle_control/elevator4
 	name = "Elevator Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator"
 	shuttle_tag = "Elevator 4"
 	unacidable = 1

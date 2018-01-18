@@ -199,6 +199,8 @@
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t
+						message_admins("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+						log_admin("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 				else
 					var/list/access = list()
 					if(is_centcom())
@@ -277,6 +279,8 @@
 			if (is_authenticated())
 				modify.assignment = "Terminated"
 				modify.access = list()
+				message_admins("[key_name_admin(usr)] terminated the ID of [modify.registered_name].")
+				log_admin("[key_name_admin(usr)] terminated the ID of [modify.registered_name].")
 
 				callHook("terminate_employee", list(modify))
 

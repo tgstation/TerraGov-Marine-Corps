@@ -4,7 +4,7 @@
 // *************************************
 
 /obj/item/tool/plantspray
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/items/spray.dmi'
 	item_state = "spray"
 	flags_atom = FPRINT|NOBLUDGEON
 	flags_equip_slot = SLOT_WAIST
