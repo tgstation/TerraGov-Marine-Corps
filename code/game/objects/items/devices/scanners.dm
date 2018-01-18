@@ -133,32 +133,33 @@ REAGENT SCANNER
 	// Show specific limb damage
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
 		var/mob/living/carbon/human/H = M
-		var/list/damaged = H.get_damaged_limbs(1,1)
-		if(length(damaged))
-			for(var/datum/limb/org in damaged)
-				var/brute_treated = 0
-				var/burn_treated = 0
-				var/open_incision = 1
-				if(org.surgery_open_stage == 0)
-					open_incision = 0
-					var/bandaged = org.is_bandaged()
-					var/disinfected = org.is_disinfected()
-					if(!(bandaged || disinfected))
-						brute_treated = 1
-					if(!org.is_salved())
-						burn_treated = 1
+		for(var/datum/limb/org in H.limbs)
+			var/brute_treated = 0
+			var/burn_treated = 0
+			var/open_incision = 1
+			if(org.surgery_open_stage == 0)
+				open_incision = 0
+			var/bandaged = org.is_bandaged()
+			var/disinfected = org.is_disinfected()
+			if(!(bandaged || disinfected ) || open_incision)
+				brute_treated = 1
+			if(!org.is_salved() || org.burn_dam == 0)
+				burn_treated = 1
 
+			if(org.status & LIMB_DESTROYED)
+				dat += "\t\t [capitalize(org.display_name)]: <span class='scannerb'>Missing!</span>\n"
+				continue
+
+			if(org.burn_dam > 0 || org.brute_dam > 0 || (org.status & (LIMB_BLEEDING | LIMB_NECROTIZED | LIMB_SPLINTED)) || open_incision)
 				var/org_nam = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
-				var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'>[org.burn_dam]</span>" : "<span class='scannerburn'>0</font>"
+				var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'>[org.burn_dam]</span>" : "<span class='scannerburn'>0</span>"
 				var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [org.brute_dam]</span>" : "<span class='scanner'>0</span>"
 				var/org_bleed = (org.status & LIMB_BLEEDING) ? "<span class='scannerb'>(Bleeding)</span>" : ""
 				var/org_necro = (org.status & LIMB_NECROTIZED) ? "<span class='scannerb'>(Necrotizing)</span>" : ""
-				dat += "\t\t [org_nam]: [burn_info][(burn_treated?"":"*")] - [brute_info][(brute_treated?"":"*")] [org_bleed][org_necro][(open_incision?" <span class='scanner'>Open surgical incision</span>":"")]\n"
-		for(var/datum/limb/temp in H.limbs) // display missing limbs
-			if(temp)
-				if(temp.status & LIMB_DESTROYED)
-					dat += "\t\t [capitalize(temp.display_name)]: <span class='scannerb'>Missing!</span>\n"
-					continue
+				dat += "\t\t [org_nam]: [burn_info][((burn_treated)?"":"*")] - [brute_info][(brute_treated?"":"*")] [org_bleed][org_necro][(open_incision?" <span class='scanner'>Open surgical incision</span>":"")]"
+				if(org.status & LIMB_SPLINTED)
+					dat += "(Splinted)"
+				dat += "\n"
 
 	// Show red messages - broken bokes, infection, etc
 	if (M.getCloneLoss())
@@ -238,9 +239,9 @@ REAGENT SCANNER
 			var/blood_type = H.dna.b_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
-				dat += "\t\red <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.\blue Type: [blood_type]\n"
+				dat += "\t<span class='scanner'> <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span>\blue Type: [blood_type]\n"
 			else if(blood_volume <= 336)
-				dat += "\t\red <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.\blue Type: [blood_type]\n"
+				dat += "\t<span class='scanner'> <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</span>\blue Type: [blood_type]\n"
 			else
 				dat += "\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]\n"
 		// Show pulse
