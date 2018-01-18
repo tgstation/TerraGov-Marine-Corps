@@ -202,7 +202,41 @@
 				message = "<B>[src]</B> sounds an alert at [param]!"
 			else
 				message = "<B>[src]</B> sounds an alert!"
-			playsound(src.loc, 'sound/machines/alert.ogg', 25, 0)
+			playsound(src.loc, 'sound/machines/beepalert.ogg', 25, 0)
+			m_type = 1
+
+		if("sad")
+			var/M = null
+			if(param)
+				for (var/mob/A in view(null, null))
+					if (param == A.name)
+						M = A
+						break
+			if(!M)
+				param = null
+
+			if (param)
+				message = "<B>[src]</B> makes a sad beep at [param] :("
+			else
+				message = "<B>[src]</B> makes a sad beep :("
+			playsound(src.loc, 'sound/machines/beepsad.ogg', 25, 0)
+			m_type = 1
+
+		if("confused")
+			var/M = null
+			if(param)
+				for (var/mob/A in view(null, null))
+					if (param == A.name)
+						M = A
+						break
+			if(!M)
+				param = null
+
+			if (param)
+				message = "<B>[src]</B> makes a confused beep at [param]."
+			else
+				message = "<B>[src]</B> makes a confused beep."
+			playsound(src.loc, 'sound/machines/beepconfused.ogg', 25, 0)
 			m_type = 1
 
 		if("spark")
