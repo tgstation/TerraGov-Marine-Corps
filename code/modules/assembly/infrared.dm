@@ -39,7 +39,9 @@
 			processing_objects.Add(src)
 		else
 			on = 0
-			if(first)	cdel(first)
+			if(first)
+				cdel(first)
+				first = null
 			processing_objects.Remove(src)
 		update_icon()
 		return secured
@@ -61,6 +63,7 @@
 		if(!on)
 			if(first)
 				cdel(first)
+				first = null
 				return
 
 		if((!(first) && (secured && (istype(loc, /turf) || (holder && istype(holder.loc, /turf))))))
@@ -84,9 +87,10 @@
 
 
 	attack_hand()
-		cdel(first)
+		if(first)
+			cdel(first)
+			first = null
 		..()
-		return
 
 
 	Move()
@@ -94,6 +98,7 @@
 		..()
 		dir = t
 		cdel(first)
+		first = null
 		return
 
 
@@ -101,6 +106,7 @@
 		if(!holder)	return 0
 //		dir = holder.dir
 		cdel(first)
+		first = null
 		return 1
 
 
@@ -248,6 +254,7 @@
 	else
 		//world << "step failed, deleting \ref[next]"
 		cdel(next)
+		next = null
 	spawn(10)
 		process()
 		return

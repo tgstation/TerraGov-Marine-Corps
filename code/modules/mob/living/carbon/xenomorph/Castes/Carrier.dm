@@ -68,7 +68,7 @@
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F)
 	if(huggers_cur < huggers_max)
-		if(stat == CONSCIOUS && !F.sterile)
+		if(F.stat == CONSCIOUS && !F.sterile)
 			huggers_cur++
 			src << "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [huggers_max].</span>"
 			cdel(F)
