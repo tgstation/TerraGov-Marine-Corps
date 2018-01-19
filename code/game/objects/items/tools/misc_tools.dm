@@ -86,6 +86,9 @@
 	if(istype(A, /obj/item/reagent_container/glass))
 		user << "<span class='notice'>The label will not stick to [A]. Use a pen instead.</span>"
 		return
+	if(istype(A, /obj/item/tool/surgery))
+		user << "<span class='notice'>That wouldn't be sanitary.</span>"
+		return
 
 	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
 						 "<span class='notice'>You label [A] as \"[label]\".</span>")
