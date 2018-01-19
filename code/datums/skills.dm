@@ -134,6 +134,7 @@
 	spec_weapons = SKILL_SPEC_TRAINED
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_CMO
+	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_SUPER
 	pilot = SKILL_PILOT_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
