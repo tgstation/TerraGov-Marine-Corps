@@ -88,7 +88,7 @@
 /datum/skills/combat_engineer
 	name = "Combat Engineer"
 	engineer = SKILL_ENGINEER_ENGI
-	construction = SKILL_CONSTRUCTION_PLASTEEL
+	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
 
 
@@ -209,7 +209,7 @@
 /datum/skills/MT
 	name = "Maintenance Technician"
 	engineer = SKILL_ENGINEER_MT
-	construction = SKILL_CONSTRUCTION_PLASTEEL
+	construction = SKILL_CONSTRUCTION_MASTER
 	powerloader = SKILL_POWERLOADER_PRO
 
 /datum/skills/CT
