@@ -374,7 +374,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		anchored = FALSE
 		update_canmove()
 		if(!instant_dismount)
-			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution and upgrade progress paused.</span>",3)
+			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>",3)
 
 
 
