@@ -70,14 +70,15 @@
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] rotates [src].</span>",
 				"<span class='notice'>You rotate [src].</span>")
-				if(dir == NORTH)
-					dir = EAST
-				else if(dir == EAST)
-					dir = SOUTH
-				else if(dir == SOUTH)
-					dir = WEST
-				else if(dir == WEST)
-					dir = NORTH
+				switch(dir)
+					if(SOUTH)
+						dir = WEST
+					if(NORTH)
+						dir = EAST
+					if(EAST)
+						dir = SOUTH
+					if(WEST)
+						dir = NORTH
 			else
 				if(locate(/obj/machinery/marine_turret) in loc)
 					user << "<span class='warning'>There already is a turret in this position.</span>"
@@ -375,7 +376,7 @@
 				usr.visible_message("<span class='notice'>[usr] activates [src]'s direction lock.</span>",
 				"<span class='notice'>You activate [src]'s direction lock.</span>")
 				visible_message("\icon[src] <span class='notice'>The [name]'s turret stops rotating.</span>")
-
+			update_icon()
 
 		if("burst")
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
@@ -610,7 +611,10 @@
 		icon_state = "turret-fallen"
 	else
 		if(on)
-			icon_state = "turret-1"
+			if(!dir_locked)
+				icon_state = "turret-360"
+			else
+				icon_state = "turret-1"
 		else
 			icon_state = "turret-0"
 
