@@ -863,16 +863,10 @@
 
 		if(dir_locked) //We're dir locked and facing the right way.
 			var/angle = get_dir(src,M)
-			if(dir == NORTH && (angle == NORTHEAST || angle == NORTHWEST)) //There's probably an easier way to do this. MEH
-				angle = NORTH
-			if(dir == SOUTH && (angle == SOUTHEAST || angle == SOUTHWEST))
-				angle = SOUTH
-			if(dir == EAST && (angle == NORTHEAST || angle == SOUTHEAST))
-				angle = EAST
-			if(dir == WEST && (angle == NORTHWEST || angle == SOUTHWEST))
-				angle = WEST
-
-			if(angle == dir) path = getline2(src,M)
+			if(angle & dir)
+				path = getline2(src,M)
+			else
+				continue
 
 		else path = getline2(src,M) //Otherwise grab everyone around us.
 
