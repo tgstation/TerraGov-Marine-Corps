@@ -185,17 +185,52 @@
 			processing_objects.Remove(src)
 			open()
 			return
+		if(stasis_mob.stat == DEAD)// || !stasis_mob.key || !stasis_mob.client) // stop using cryobags for corpses and SSD/Ghosted
+			processing_objects.Remove(src)
+			open()
+			visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
+			return
 		if(used > last_use) //cryostasis takes a couple seconds to kick in.
 			if(!stasis_mob.in_stasis) stasis_mob.in_stasis = STASIS_IN_BAG
 		if(used > max_uses)
 			open()
 
-	examine(mob/user)
+	examine(mob/living/user)
 		..()
+		if(stasis_mob)
+			if(ishuman(stasis_mob))
+				if(hasHUD(user,"medical"))
+					var/mob/living/carbon/human/H = stasis_mob
+					for(var/datum/data/record/R in data_core.medical)
+						if (R.fields["name"] == H.real_name)
+							if(!(R.fields["last_scan_time"]))
+								user << "<span class = 'deptradio'>No scan report on record</span>\n"
+							else
+								user << "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n"
+						break
+
 		switch(used)
 			if(0 to 600) user << "It looks new."
 			if(601 to 1200) user << "It looks a bit used."
 			if(1201 to 1800) user << "It looks really used."
+
+	Topic(href, href_list)
+		if (href_list["scanreport"])
+			if(hasHUD(usr,"medical"))
+				if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+					usr << "<span class='warning'>You're not trained to use this.</span>"
+					return
+				if(get_dist(usr, src) > 7)
+					usr << "<span class='warning'>[src] is too far away.</span>"
+					return
+				if(ishuman(stasis_mob))
+					var/mob/living/carbon/human/H = stasis_mob
+					for(var/datum/data/record/R in data_core.medical)
+						if (R.fields["name"] == H.real_name)
+							if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
+								usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+						break
+
 
 
 /obj/item/trash/used_stasis_bag

@@ -69,6 +69,9 @@
 	src.icon_state = "body_scanner_0"
 	return
 
+/obj/machinery/bodyscanner/attack_hand(mob/living/user)
+	go_out()
+
 /obj/machinery/bodyscanner/attackby(obj/item/I, mob/living/user)
 	var/mob/M
 	if (istype(I, /obj/item/grab))
@@ -169,7 +172,7 @@
 	name = "Body Scanner Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
-	density = 1
+	density = 0
 	anchored = 1
 
 
@@ -242,7 +245,7 @@
 			N.fields["last_scan_result"] = dat
 			visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [connected.occupant.real_name]</span>")
 			playsound(src.loc, 'sound/machines/ping.ogg', 25, 1)
-			dat += "<HR><A href='?src=\ref[src];print=1'>Print</A><BR>"
+			//dat += "<HR><A href='?src=\ref[src];print=1'>Print</A><BR>" // no more printing
 		else
 			dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 
