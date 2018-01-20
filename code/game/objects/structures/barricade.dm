@@ -452,7 +452,7 @@
 			if(isscrewdriver(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -465,7 +465,7 @@
 			if(isscrewdriver(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -477,7 +477,7 @@
 			if(iswrench(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -491,7 +491,7 @@
 			if(iswrench(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				for(var/obj/structure/barricade/B in loc)
@@ -508,7 +508,7 @@
 			if(iscrowbar(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_CONSTRUCTION_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
