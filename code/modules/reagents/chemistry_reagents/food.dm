@@ -14,7 +14,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(prob(50)) M.heal_organ_damage(1,0)
+		if(prob(50)) M.heal_limb_damage(1,0)
 		M.nutrition += nutriment_factor	// For hunger and fatness
 
 

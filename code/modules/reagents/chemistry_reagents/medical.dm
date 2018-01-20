@@ -187,7 +187,7 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		M.heal_organ_damage(0, 2 * REM)
+		M.heal_limb_damage(0, 2 * REM)
 
 	on_overdose(mob/living/M)
 		M.apply_damages(1, 0, 1) //Mixed brute/tox damage
@@ -211,7 +211,7 @@
 		if(M.stat == DEAD) //THE GUY IS **DEAD**! BEREFT OF ALL LIFE HE RESTS IN PEACE etc etc. He does NOT metabolise shit anymore, god DAMN
 			return
 		if(!alien)
-			M.heal_organ_damage(0, 3 * REM)
+			M.heal_limb_damage(0, 3 * REM)
 
 	on_overdose(mob/living/M)
 		M.apply_damages(1, 0, 1) //Mixed brute/tox damage
@@ -294,8 +294,8 @@
 			return
 		if(!alien)
 			if(M.getOxyLoss()) M.adjustOxyLoss(-REM)
-			if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(REM, 0)
-			if(M.getFireLoss() && prob(80)) M.heal_organ_damage(0, REM)
+			if(M.getBruteLoss() && prob(80)) M.heal_limb_damage(REM, 0)
+			if(M.getFireLoss() && prob(80)) M.heal_limb_damage(0, REM)
 			if(M.getToxLoss() && prob(80)) M.adjustToxLoss(-REM)
 
 	on_overdose(mob/living/M)
@@ -359,7 +359,7 @@
 		M.setCloneLoss(0)
 		M.setOxyLoss(0)
 		M.radiation = 0
-		M.heal_organ_damage(5,5)
+		M.heal_limb_damage(5,5)
 		M.adjustToxLoss(-5)
 		M.hallucination = 0
 		M.setBrainLoss(0)
@@ -395,8 +395,8 @@
 		if(!.) return
 		if(alien != IS_YAUTJA) return
 
-		if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(1*REM,0)
-		if(M.getFireLoss() && prob(80)) M.heal_organ_damage(0,1*REM)
+		if(M.getBruteLoss() && prob(80)) M.heal_limb_damage(1*REM,0)
+		if(M.getFireLoss() && prob(80)) M.heal_limb_damage(0,1*REM)
 		if(M.getToxLoss() && prob(80)) M.adjustToxLoss(-1*REM)
 		M.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
 		M.setCloneLoss(0)
@@ -492,7 +492,7 @@
 		M.radiation = max(M.radiation-7*REM,0)
 		M.adjustToxLoss(-1*REM)
 		if(prob(15))
-			M.take_organ_damage(1, 0)
+			M.take_limb_damage(1, 0)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(2, TOX)
@@ -519,7 +519,7 @@
 		M.radiation = max(M.radiation - 10 * REM, 0)
 		M.adjustToxLoss(-1*REM)
 		if(prob(50))
-			M.take_organ_damage(3, 0)
+			M.take_limb_damage(3, 0)
 
 	on_overdose(mob/living/M)
 		M.apply_damages(1, 0, 0)
@@ -609,7 +609,7 @@
 		if(!.) return
 		if(M.stat == DEAD)
 			return
-		M.heal_organ_damage(2*REM,0)
+		M.heal_limb_damage(2*REM,0)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(1, BURN)
@@ -688,7 +688,7 @@
 		if(M.bodytemperature < 170)
 			M.adjustCloneLoss(-1)
 			M.adjustOxyLoss(-1)
-			M.heal_organ_damage(1,1)
+			M.heal_limb_damage(1,1)
 			M.adjustToxLoss(-1)
 
 /datum/reagent/clonexadone
@@ -705,7 +705,7 @@
 		if(M.bodytemperature < 170)
 			M.adjustCloneLoss(-3)
 			M.adjustOxyLoss(-3)
-			M.heal_organ_damage(3,3)
+			M.heal_limb_damage(3,3)
 			M.adjustToxLoss(-3)
 
 /datum/reagent/rezadone
@@ -726,10 +726,10 @@
 		switch(data)
 			if(1 to 15)
 				M.adjustCloneLoss(-1)
-				M.heal_organ_damage(1,1)
+				M.heal_limb_damage(1,1)
 			if(15 to 35)
 				M.adjustCloneLoss(-2)
-				M.heal_organ_damage(2,1)
+				M.heal_limb_damage(2,1)
 				M.status_flags &= ~DISFIGURED
 			if(35 to INFINITY)
 				M.adjustToxLoss(1)
@@ -864,4 +864,3 @@
 	on_mob_life(mob/living/carbon/human/M)
 		M.regenZ = 0
 		. = ..()
-

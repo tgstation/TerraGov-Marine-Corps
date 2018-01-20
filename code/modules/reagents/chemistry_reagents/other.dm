@@ -357,7 +357,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.take_organ_damage(REM, 0)
+		M.take_limb_damage(REM, 0)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(1, TOX) //Overdose starts getting bad

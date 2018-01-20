@@ -67,11 +67,11 @@
 		surgery = 1
 		//Give our first boost of healing, mainly so they don't die instantly
 		M.setOxyLoss(0) //Fix our breathing issues
-		M.heal_organ_damage(25,25)
+		M.heal_limb_damage(25,25)
 		sleep(surgery_t * 0.5) //Fix their organs now  so it makes sense halfway through
 		if(!occupant) return
 		M.setOxyLoss(0) //Fix our breathing issues
-		M.heal_organ_damage(25,25)
+		M.heal_limb_damage(25,25)
 		for(var/datum/internal_organ/I in M.internal_organs) //Fix the organs
 			I.damage = 0
 		for(var/datum/limb/O in occupant.limbs) //Remove all the friendly fire.
@@ -89,8 +89,8 @@
 		M.adjustToxLoss(-70) // Help out with toxins
 		M.eye_blurry = 0 //fix our eyes
 		M.eye_blind = 0 //fix our eyes
-		M.heal_organ_damage(25,25) // I think it caps out at like roughly 25, its really werid.
-		M.heal_organ_damage(25,25)
+		M.heal_limb_damage(25,25) // I think it caps out at like roughly 25, its really werid.
+		M.heal_limb_damage(25,25)
 		M.restore_all_organs()
 		M.UpdateDamageIcon()
 		sleep(5)

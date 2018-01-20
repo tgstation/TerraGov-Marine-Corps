@@ -457,7 +457,7 @@
 						S.icon_state = initial(S.icon_state)
 						S.icon = initial(S.icon)
 						S.reagents.trans_to(M, S.reagents.total_volume)
-						M.take_organ_damage(2)
+						M.take_limb_damage(2)
 						S.visible_message("<span class=\"attack\"> [M] was hit by the syringe!</span>")
 						break
 					else if(S.loc == trg)

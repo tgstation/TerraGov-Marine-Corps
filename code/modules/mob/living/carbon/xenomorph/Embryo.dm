@@ -98,7 +98,7 @@
 			else if(prob(1))
 				affected_mob << "<span class='warning'>Your muscles ache.</span>"
 				if(prob(20))
-					affected_mob.take_organ_damage(1)
+					affected_mob.take_limb_damage(1)
 			else if(prob(2))
 				affected_mob.emote("[pick("sneeze", "cough")]")
 		if(4)
@@ -108,7 +108,7 @@
 												 "<span class='danger'>You start shaking uncontrollably!</span>")
 					affected_mob.KnockOut(10)
 					affected_mob.make_jittery(105)
-					affected_mob.take_organ_damage(1)
+					affected_mob.take_limb_damage(1)
 			if(prob(2))
 				affected_mob << "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>"
 		if(5)

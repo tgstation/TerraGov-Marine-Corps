@@ -75,7 +75,7 @@
 	H.loc = pick(surv_spawn)
 
 	//Damage them for realism purposes
-	H.take_organ_damage(rand(0,15), rand(0,15))
+	H.take_limb_damage(rand(0,15), rand(0,15))
 
 	var/id_assignment = ""
 

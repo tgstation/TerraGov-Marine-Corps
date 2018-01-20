@@ -181,7 +181,7 @@
 	..()
 	if((CLUMSY in user.mutations) && (flags_atom & WIELDED) &&prob(40))
 		user << "<span class='highdanger'>You twirl around a bit before losing your balance and impaling yourself on [src].</span>"
-		user.take_organ_damage(20,25)
+		user.take_limb_damage(20,25)
 		return
 	if((flags_atom & WIELDED) && prob(50))
 		spawn(0)

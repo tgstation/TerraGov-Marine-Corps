@@ -444,7 +444,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_survivor.loc = pick(surv_spawn)
 
 	//Damage them for realism purposes
-	new_survivor.take_organ_damage(rand(0,15), rand(0,15))
+	new_survivor.take_limb_damage(rand(0,15), rand(0,15))
 
 	var/id_assignment = ""
 

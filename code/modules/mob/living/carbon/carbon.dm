@@ -41,7 +41,7 @@
 						H.UpdateDamageIcon()
 				H.updatehealth()
 			else
-				src.take_organ_damage(d)
+				src.take_limb_damage(d)
 			for(var/mob/M in viewers(user, null))
 				if(M.client)
 					M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)

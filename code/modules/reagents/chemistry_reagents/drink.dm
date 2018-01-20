@@ -51,7 +51,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(M.getFireLoss() && prob(20)) M.heal_organ_damage(0,1)
+		if(M.getFireLoss() && prob(20)) M.heal_limb_damage(0,1)
 
 
 /datum/reagent/drink/limejuice
@@ -177,7 +177,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(M.getBruteLoss() && prob(20)) M.heal_organ_damage(1,0)
+		if(M.getBruteLoss() && prob(20)) M.heal_limb_damage(1,0)
 		holder.remove_reagent("capsaicin", 10*REAGENTS_METABOLISM)
 
 /datum/reagent/drink/milk/soymilk
@@ -271,7 +271,7 @@
 		. = ..()
 		if(!.) return
 		M.sleeping = 0
-		if(M.getBruteLoss() && prob(20)) M.heal_organ_damage(1,0)
+		if(M.getBruteLoss() && prob(20)) M.heal_limb_damage(1,0)
 
 /datum/reagent/drink/coffee/cafe_latte
 	name = "Cafe Latte"
@@ -285,7 +285,7 @@
 		. = ..()
 		if(!.) return
 		M.sleeping = 0
-		if(M.getBruteLoss() && prob(20)) M.heal_organ_damage(1,0)
+		if(M.getBruteLoss() && prob(20)) M.heal_limb_damage(1,0)
 
 /datum/reagent/drink/tea
 	name = "Tea"
@@ -452,8 +452,8 @@
 		M:nutrition += nutriment_factor
 		holder.remove_reagent(src.id, FOOD_METABOLISM)
 		if(M:getOxyLoss() && prob(50)) M:adjustOxyLoss(-2)
-		if(M:getBruteLoss() && prob(60)) M:heal_organ_damage(2,0)
-		if(M:getFireLoss() && prob(50)) M:heal_organ_damage(0,2)
+		if(M:getBruteLoss() && prob(60)) M:heal_limb_damage(2,0)
+		if(M:getFireLoss() && prob(50)) M:heal_limb_damage(0,2)
 		if(M:getToxLoss() && prob(50)) M:adjustToxLoss(-2)
 		if(M.dizziness !=0) M.dizziness = max(0,M.dizziness-15)
 		if(M.confused !=0) M.confused = max(0,M.confused - 5)
