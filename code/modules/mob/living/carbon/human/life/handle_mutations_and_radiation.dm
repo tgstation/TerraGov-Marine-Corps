@@ -7,7 +7,7 @@
 
 	if(getFireLoss())
 		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0, 1)
+			heal_limb_damage(0, 1)
 
 	//DNA2 - Gene processing.
 	//The HULK stuff that was here is now in the hulk gene.

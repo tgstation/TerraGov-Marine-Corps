@@ -73,7 +73,7 @@
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red You accidentally cut yourself with [src]."
-		user.take_organ_damage(5,5)
+		user.take_limb_damage(5,5)
 	active = !active
 	if (active)
 		force = 30

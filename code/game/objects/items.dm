@@ -628,7 +628,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()
 	else
-		M.take_organ_damage(7)
+		M.take_limb_damage(7)
 	M.eye_blurry += rand(3,4)
 	return*/
 
