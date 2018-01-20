@@ -101,7 +101,7 @@
 		else
 			icon_state = mineralType
 
-	attackby(obj/item/W, mob/user)
+	attackby(obj/item/W, mob/living/user)
 		if(istype(W,/obj/item/tool/pickaxe))
 			var/obj/item/tool/pickaxe/digTool = W
 			user << "You start digging the [name]."
@@ -109,6 +109,7 @@
 				user << "You finished digging."
 				Dismantle()
 		else if(!(W.flags_atom & NOBLUDGEON) && W.force)
+			user.animation_attack_on(src)
 			hardness -= W.force/100
 			user << "You hit the [name] with your [W.name]!"
 			CheckHardness()

@@ -160,7 +160,7 @@
 	icon_state = "sticky"
 	density = 0
 	opacity = 0
-	health = 150
+	health = 36
 	layer = RESIN_STRUCTURE_LAYER
 
 	Crossed(atom/movable/AM)
@@ -172,7 +172,7 @@
 /obj/effect/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
-	health = 30
+	health = 7
 
 	Crossed(atom/movable/AM)
 		if(ishuman(AM))
@@ -187,7 +187,7 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	health = 20
+	health = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/hugger = FALSE
 	var/carrier_number //the nicknumber of the carrier that placed us.
@@ -355,7 +355,10 @@
 
 /obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
 	if(!(W.flags_atom & NOBLUDGEON))
-		health = health - W.force
+		var/damage = W.force
+		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+			damage /= 4
+		health -= damage
 		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
 		healthcheck()
 	return ..(W, user)
@@ -680,7 +683,9 @@
 		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
 	else
 		visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
-	var/damage = W.force / 4.0
+	var/damage = W.force
+	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+		damage /= 4
 
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
