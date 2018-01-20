@@ -134,4 +134,4 @@
 				"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
 				if(prob(60) && !victim.stat)
 					victim.emote("scream") //Topkek
-				victim.take_organ_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.
+				victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

@@ -83,7 +83,7 @@
 
 			if(2) //lube
 				if(M.slip(null, 10, 10, FALSE, TRUE, 4))
-					M.take_organ_damage(2)
+					M.take_limb_damage(2)
 
 			if(3) // Ice
 				if(!M.slip("icy floor", 4, 3, FALSE, TRUE, 1))

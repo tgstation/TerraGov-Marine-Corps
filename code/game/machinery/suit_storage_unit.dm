@@ -336,12 +336,12 @@
 		if(src.OCCUPANT)
 			if(src.issuperUV)
 				var/burndamage = rand(28,35)
-				OCCUPANT.take_organ_damage(0,burndamage)
+				OCCUPANT.take_limb_damage(0,burndamage)
 				if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
 					OCCUPANT.emote("scream")
 			else
 				var/burndamage = rand(6,10)
-				OCCUPANT.take_organ_damage(0,burndamage)
+				OCCUPANT.take_limb_damage(0,burndamage)
 				if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
 					OCCUPANT.emote("scream")
 		if(i==3) //End of the cycle
@@ -385,10 +385,10 @@
 		spawn(50)
 			if(src.OCCUPANT)
 				if(src.issuperUV)
-					OCCUPANT.take_organ_damage(0,40)
+					OCCUPANT.take_limb_damage(0,40)
 					user << "Test. You gave him 40 damage"
 				else
-					OCCUPANT.take_organ_damage(0,8)
+					OCCUPANT.take_limb_damage(0,8)
 					user << "Test. You gave him 8 damage"
 	return*/
 
@@ -952,9 +952,9 @@
 	if(occupant)
 		if(prob(radiation_level*2)) occupant.emote("scream")
 		if(radiation_level > 2)
-			occupant.take_organ_damage(0,radiation_level*2 + rand(1,3))
+			occupant.take_limb_damage(0,radiation_level*2 + rand(1,3))
 		if(radiation_level > 1)
-			occupant.take_organ_damage(0,radiation_level + rand(1,3))
+			occupant.take_limb_damage(0,radiation_level + rand(1,3))
 		occupant.radiation += radiation_level*10
 
 /obj/machinery/suit_cycler/proc/finished_job()

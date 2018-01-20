@@ -33,7 +33,7 @@
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, "head")
 		else
-			user.take_organ_damage(2*force)
+			user.take_limb_damage(2*force)
 		return
 /*this is already called in ..()
 	src.add_fingerprint(user)
@@ -113,7 +113,7 @@
 				var/mob/living/carbon/human/H = user
 				H.apply_damage(2*force, BRUTE, "head")
 			else
-				user.take_organ_damage(2*force)
+				user.take_limb_damage(2*force)
 			return
 		if(..())
 			//playsound(src.loc, "swing_hit", 25, 1, 6)
@@ -135,7 +135,7 @@
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red You beat yourself in the head with [src]."
-		user.take_organ_damage(5)
+		user.take_limb_damage(5)
 	active = !active
 	if (active)
 		force = 10
