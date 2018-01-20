@@ -354,12 +354,12 @@
 		if("set_primary")
 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
 			if(input)
-				current_squad.primary_objective = input
+				current_squad.primary_objective = input + " ([worldtime2text()])"
 				send_to_squad("Your primary objective has changed. See Status pane for details.")
 		if("set_secondary")
 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
 			if(input)
-				current_squad.secondary_objective = input
+				current_squad.secondary_objective = input + " ([worldtime2text()])"
 				send_to_squad("Your secondary objective has changed. See Status pane for details.")
 		if("supply_x")
 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
