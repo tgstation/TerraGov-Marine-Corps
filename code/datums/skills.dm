@@ -176,7 +176,7 @@
 /datum/skills/pilot
 	name = "Pilot Officer"
 	pilot = SKILL_PILOT_TRAINED
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_DABBLING
 
 
 /datum/skills/MP
@@ -197,7 +197,7 @@
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_TRAINED
 	police = SKILL_POLICE_FLASH
-	powerloader = SKILL_POWERLOADER_MASTER
+	powerloader = SKILL_POWERLOADER_TRAINED
 
 
 /datum/skills/RO
@@ -210,12 +210,12 @@
 	name = "Maintenance Technician"
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
-	powerloader = SKILL_POWERLOADER_PRO
+	powerloader = SKILL_POWERLOADER_MASTER
 
 /datum/skills/CT
 	name = "Cargo Technician"
 	construction = SKILL_CONSTRUCTION_METAL
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_PRO
 
 
 
