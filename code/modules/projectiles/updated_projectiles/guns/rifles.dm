@@ -293,6 +293,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ON_MERCS
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
 	New()
 		..()

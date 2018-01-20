@@ -834,6 +834,7 @@ TUNNEL
 			M << "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>"
 			r_FAL
 
+
 	var/tunnel_time = 40
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take WAY longer
@@ -845,14 +846,17 @@ TUNNEL
 	if(!other || !isturf(other.loc))
 		M << "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>"
 		return
+
+	var/area/A = get_area(other)
+
 	if(tunnel_time <= 50)
 		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='xenonotice'>You begin crawling down into \the [src].</span>")
+		"<span class='xenonotice'>You begin crawling down into \the [src] to <b>[A.name]</b>.</span>")
 	else
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src].</span>")
+		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src] to <b>[A.name]</b>.</span>")
 
-	if(do_after(M, tunnel_time, FALSE))
+	if(do_after(M, tunnel_time, FALSE, 5, BUSY_ICON_CLOCK))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.forceMove(other.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \

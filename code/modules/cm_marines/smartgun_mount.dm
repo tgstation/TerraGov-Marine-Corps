@@ -160,7 +160,7 @@
 			user << "<span class='warning'>[src] must be anchored! Use a screwdriver!</span>"
 			return
 		user << "You begin mounting [MG].."
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && !gun_mounted)
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && !gun_mounted && anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("\blue [user] installs [MG] into place.","\blue You install [MG] into place.")
 			gun_mounted = 1

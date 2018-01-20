@@ -418,34 +418,69 @@ should be alright.
 	set desc = "Remove all attachables from a weapon."
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G) return
-	src = G
+	if(get_active_firearm(usr) != src)
+		return
 
-	if(!rail && !muzzle && !under && !stock)
-		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
+	if(usr.action_busy)
 		return
 
 	if(zoom)
 		usr << "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>"
 		return
 
-	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
-	if(!do_after(usr,40, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!rail && !muzzle && !under && !stock)
+		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
 		return
 
-	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove [src]'s [rail].</span>"
-		rail.Detach(src)
-	if(muzzle && (muzzle.flags_attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove [src]'s [muzzle].</span>"
-		muzzle.Detach(src)
-	if(under && (under.flags_attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove [src]'s [under].</span>"
-		under.Detach(src)
+	var/list/possible_attachments = list()
+
+	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE))
+		possible_attachments += rail
+	if(muzzle && (muzzle.flags_attach_features & ATTACH_REMOVABLE))
+		possible_attachments += muzzle
+	if(under && (under.flags_attach_features & ATTACH_REMOVABLE))
+		possible_attachments += under
 	if(stock && (stock.flags_attach_features & ATTACH_REMOVABLE))
-		usr << "<span class='notice'>You remove [src]'s [stock].</span>"
-		stock.Detach(src)
+		possible_attachments += stock
+
+	if(!possible_attachments.len)
+		usr << "<span class='warning'>[src] has no removable attachments.</span>"
+		return
+
+	var/obj/item/attachable/A = input("Which attachment to remove?") as null|anything in possible_attachments
+
+	if(!A)
+		return
+
+	if(get_active_firearm(usr) != src)//dropped the gun
+		return
+
+	if(usr.action_busy)
+		return
+
+	if(zoom)
+		return
+
+	if(A != rail && A != muzzle && A != under && A != stock)
+		return
+	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
+		return
+
+	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
+
+	if(!do_after(usr,35, TRUE, 5, BUSY_ICON_CLOCK))
+		return
+
+	if(A != rail && A != muzzle && A != under && A != stock)
+		return
+	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
+		return
+
+	if(zoom)
+		return
+
+	usr << "<span class='notice'>You remove [src]'s [stock].</span>"
+	A.Detach(src)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1)
 	update_attachables()
