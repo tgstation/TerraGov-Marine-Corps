@@ -601,6 +601,7 @@
 	icon_state = "nade_placeholder"
 	w_class = 4
 	storage_slots = 25
+	max_storage_space = 50
 	can_hold = list("/obj/item/explosive/grenade/frag")
 	var/nade_box_icon
 	var/grenade_type = /obj/item/explosive/grenade/frag
@@ -609,8 +610,7 @@
 		..()
 		select_gamemode_skin(/obj/item/storage/box/nade_box)
 		nade_box_icon = icon_state
-		var/i = 0
-		while(++i < storage_slots)
+		for(var/i = 1 to storage_slots)
 			new grenade_type(src)
 
 	update_icon()
