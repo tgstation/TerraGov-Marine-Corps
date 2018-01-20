@@ -201,6 +201,17 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(!check_plasma(250))
 		return
 
+	//screech is so powerful it kills huggers in our hands
+	if(istype(r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = r_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
+	if(istype(l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = l_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
 	has_screeched = 1
 	use_plasma(250)
 	spawn(500)
