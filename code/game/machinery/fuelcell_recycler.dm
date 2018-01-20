@@ -46,7 +46,7 @@
 		cell_right = null
 		update_icon()
 	else
-		if(cell_left.percent() > cell_right.percent())
+		if(cell_left.get_fuel_percent() > cell_right.get_fuel_percent())
 			cell_left.update_icon()
 			M.put_in_hands(cell_left)
 			cell_left = null
