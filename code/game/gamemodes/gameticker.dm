@@ -264,8 +264,6 @@ var/global/datum/controller/gameticker/ticker
 					feedback_set_details("end_proper","nuke")
 				else
 					feedback_set_details("end_proper","proper completion")
-				if(!delay_end)
-					world << "\blue <B>Restarting in [restart_timeout/10] seconds</B>"
 
 				if(config.autooocmute && !ooc_allowed)
 					world << "\red <B>The OOC channel has been globally enabled due to round end!</B>"

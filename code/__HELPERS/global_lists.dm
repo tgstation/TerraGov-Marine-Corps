@@ -6,6 +6,13 @@ var/list/CLFaxes = list()							//List of all CL faxes sent this round
 var/list/USCMFaxes = list()							//List of all USCM faxes sent this round
 var/list/active_tracking_beacons = list()			//List of all active squad tracking beacons
 
+//Names of maps that can be compiled on
+var/list/DEFAULT_NEXT_MAP_CANDIDATES = list("LV-624", "Ice Colony", "Big-Red", "Prison Station")
+var/list/NEXT_MAP_CANDIDATES = DEFAULT_NEXT_MAP_CANDIDATES.Copy()
+
+//List of player votes. Name of the map from NEXT_MAP_CANDIADATES indexed by ckey
+var/list/player_votes = list()
+
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 

@@ -120,6 +120,11 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
+	/client/proc/forceNextMap,
+	/client/proc/cancelMapVote,
+	/client/proc/killMapDaemon,
+	/client/proc/editVotableMaps,
+	/client/proc/showVotableMaps
 	)
 var/list/admin_verbs_debug = list(
         /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
