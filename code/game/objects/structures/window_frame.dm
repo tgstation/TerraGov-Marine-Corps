@@ -117,3 +117,11 @@
 /obj/structure/window_frame/wood
 	icon_state = "wood_window0_frame"
 	basestate = "wood_window"
+
+/obj/structure/window_frame/prison
+	icon_state = "prison_rwindow0_frame"
+	basestate = "prison_rwindow"
+
+/obj/structure/window_frame/prison/reinforced
+	icon_state = "prison_rwindow0_frame"
+	basestate = "prison_rwindow"
