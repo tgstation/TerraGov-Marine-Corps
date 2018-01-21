@@ -693,11 +693,15 @@
 				usr << "<span class='warning'>[src] is too far away.</span>"
 				return
 
+			var/datum/data/record/N = null
 			for(var/datum/data/record/R in data_core.medical)
 				if (R.fields["name"] == real_name)
-					if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-						usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
-				break
+					N = R
+					break
+			if(!isnull(N))
+				if(N.fields["last_scan_time"] && N.fields["last_scan_result"])
+					usr << browse(N.fields["last_scan_result"], "window=scanresults;size=430x600")
+
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])

@@ -58,6 +58,15 @@
 					C.visible_message("\red <B>[C] manages to unbuckle themself!</B>",\
 								"\blue You successfully unbuckle yourself.")
 					C.buckled.manual_unbuckle(C)
+			else if ( C.in_stasis == STASIS_IN_BAG )
+				C.visible_message("\red <B>[C] attempts to unzip the bag from the inside!</B>",\
+				"\red You attempt to unzip the bag from the inside. (This will take around 10 seconds)")
+				if(do_after(C, 100, FALSE))
+					C.visible_message("\red <B>[C] manages to unzip the bag from the inside!</B>",\
+								"\blue You successfully unzip the bag from the inside.")
+					if(istype(C.loc, /obj/structure/closet/bodybag/cryobag))
+						var/obj/structure/closet/bodybag/cryobag/A = C.loc
+						A.open()
 			else
 				C.buckled.manual_unbuckle(C)
 		else

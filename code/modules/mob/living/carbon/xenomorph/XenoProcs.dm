@@ -223,7 +223,9 @@
 					canmove = FALSE
 					frozen = TRUE
 					if(!is_robotic) playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					spawn(charge_type == 1 ? 1 : 15) frozen = FALSE
+					spawn(charge_type == 1 ? 5 : 15)
+						frozen = FALSE
+						update_canmove()
 
 				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
 					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) / (4 - upgrade)) //About 12.5 to 80 extra damage depending on upgrade level.

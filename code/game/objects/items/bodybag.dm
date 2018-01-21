@@ -164,6 +164,7 @@
 		var/mob/living/L = locate() in contents
 		if(L)
 			L.in_stasis = FALSE
+			stasis_mob.buckled = null
 			stasis_mob = null
 			processing_objects.Remove(src)
 		. = ..()
@@ -179,6 +180,11 @@
 			stasis_mob = L
 			processing_objects.Add(src)
 
+	relaymove(mob/living/user)
+		if(user.in_stasis == STASIS_IN_BAG)
+			return
+		. = ..()
+
 	process()
 		used++
 		if(!stasis_mob)
@@ -191,7 +197,10 @@
 			visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
 			return
 		if(used > last_use) //cryostasis takes a couple seconds to kick in.
-			if(!stasis_mob.in_stasis) stasis_mob.in_stasis = STASIS_IN_BAG
+			if(!stasis_mob.in_stasis)
+				stasis_mob.in_stasis = STASIS_IN_BAG
+				stasis_mob.buckled = src
+				stasis_mob.visible_message("<span class='notice'>You feel your biological processes have slowed.</span>")
 		if(used > max_uses)
 			open()
 
@@ -201,13 +210,17 @@
 			if(ishuman(stasis_mob))
 				if(hasHUD(user,"medical"))
 					var/mob/living/carbon/human/H = stasis_mob
+					var/datum/data/record/N = null
 					for(var/datum/data/record/R in data_core.medical)
 						if (R.fields["name"] == H.real_name)
-							if(!(R.fields["last_scan_time"]))
-								user << "<span class = 'deptradio'>No scan report on record</span>\n"
-							else
-								user << "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n"
-						break
+							N = R
+							break
+					if(!isnull(N))
+						if(!(N.fields["last_scan_time"]))
+							user << "<span class = 'deptradio'>No scan report on record</span>\n"
+						else
+							user << "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
+
 
 		switch(used)
 			if(0 to 600) user << "It looks new."
@@ -225,11 +238,15 @@
 					return
 				if(ishuman(stasis_mob))
 					var/mob/living/carbon/human/H = stasis_mob
+					var/datum/data/record/N = null
 					for(var/datum/data/record/R in data_core.medical)
 						if (R.fields["name"] == H.real_name)
-							if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-								usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
-						break
+							N = R
+							break
+					if(!isnull(N))
+						if(N.fields["last_scan_time"] && N.fields["last_scan_result"])
+							usr << browse(N.fields["last_scan_result"], "window=scanresults;size=430x600")
+
 
 
 
