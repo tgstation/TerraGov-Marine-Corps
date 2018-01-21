@@ -8,12 +8,13 @@
 			// Override the current limb status and don't cause an explosion
 			E.droplimb(1,1)
 
-	..(species ? species.gibbed_anim : "gibbed-h")
-
 	if(species)
 		hgibs(loc, viruses, dna, species.flesh_color, species.blood_color)
 	else
 		hgibs(loc, viruses, dna)
+
+	..(species ? species.gibbed_anim : "gibbed-h")
+
 
 /mob/living/carbon/human/dust()
 	if(species)
