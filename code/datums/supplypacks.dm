@@ -213,7 +213,7 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/lmg
 					)
 	name = "LMG crate"
-	cost = 40
+	cost = 75
 	containertype = /obj/structure/closet/crate
 	containername = "\improper LMG crate"
 	group = "Weapons"
