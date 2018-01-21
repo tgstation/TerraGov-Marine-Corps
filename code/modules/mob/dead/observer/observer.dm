@@ -130,6 +130,8 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
+		if(!can_reenter_corpse)
+			away_timer = 300 //they'll never come back, so we can max out the timer right away.
 		if(ghost.client)
 			ghost.client.view = world.view //reset view range to default
 			ghost.client.pixel_x = 0 //recenters our view
