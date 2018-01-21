@@ -164,6 +164,7 @@
 		var/mob/living/L = locate() in contents
 		if(L)
 			L.in_stasis = FALSE
+			stasis_mob.buckled = null
 			stasis_mob = null
 			processing_objects.Remove(src)
 		. = ..()
@@ -179,6 +180,11 @@
 			stasis_mob = L
 			processing_objects.Add(src)
 
+	relaymove(mob/living/user)
+		if(user.in_stasis == STASIS_IN_BAG)
+			return
+		. = ..()
+
 	process()
 		used++
 		if(!stasis_mob)
@@ -191,7 +197,10 @@
 			visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
 			return
 		if(used > last_use) //cryostasis takes a couple seconds to kick in.
-			if(!stasis_mob.in_stasis) stasis_mob.in_stasis = STASIS_IN_BAG
+			if(!stasis_mob.in_stasis)
+				stasis_mob.in_stasis = STASIS_IN_BAG
+				stasis_mob.buckled = src
+				stasis_mob.visible_message("<span class='notice'>You feel your biological processes have slowed.</span>")
 		if(used > max_uses)
 			open()
 
