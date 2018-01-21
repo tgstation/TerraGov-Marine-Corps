@@ -576,7 +576,7 @@
 	name = "window"
 	icon_state = "wood_window0"
 	basestate = "wood_window"
-	window_frame = /obj/structure/window_frame/wood
+	window_frame = /obj/structure/window_frame/prison
 
 /obj/structure/window/framed/prison/reinforced
 	name = "reinforced window"
@@ -585,7 +585,7 @@
 	reinf = 1
 	icon_state = "prison_rwindow0"
 	basestate = "prison_rwindow"
-	window_frame = /obj/structure/window_frame/wood
+	window_frame = /obj/structure/window_frame/prison/reinforced
 
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"
