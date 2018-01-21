@@ -599,7 +599,7 @@ var/list/robot_verbs_default = list(
 	else if (istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
-			user << "Close the panel first."
+			user << "Secure the wiring with a screwdriver first."
 		else if(cell)
 			user << "There is a power cell already installed."
 		else
@@ -730,6 +730,20 @@ var/list/robot_verbs_default = list(
 			spark_system.start()
 		return ..()
 
+/mob/living/silicon/robot/verb/unlock_own_cover()
+	set category = "Robot Commands"
+	set name = "Toggle Cover"
+	set desc = "Toggle your cover open and closed."
+	if(stat == DEAD)
+		return //won't work if dead
+	if(!opened)
+		opened = 1
+		update_icons()
+		usr << "You open your cover."
+	else
+		opened = 0
+		update_icons()
+		usr << "You close your cover."
 
 /mob/living/silicon/robot/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
