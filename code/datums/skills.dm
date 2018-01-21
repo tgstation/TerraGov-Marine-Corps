@@ -107,7 +107,6 @@
 	name = "Doctor"
 	cqc = SKILL_CQC_WEAK
 	firearms = SKILL_FIREARMS_UNTRAINED
-	leadership = SKILL_LEAD_TRAINED
 	medical = SKILL_MEDICAL_DOCTOR
 	melee_weapons = SKILL_MELEE_WEAK
 	surgery = SKILL_SURGERY_TRAINED
@@ -122,6 +121,7 @@
 	medical = SKILL_MEDICAL_CMO
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_WEAK
+	police = SKILL_POLICE_FLASH
 
 
 /datum/skills/synthetic
@@ -195,7 +195,7 @@
 	name = "Chief Engineer"
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
-	leadership = SKILL_LEAD_TRAINED
+	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
 

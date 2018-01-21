@@ -22,6 +22,10 @@
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
+	if(!affecting)
+		user << "<span class='warning'>[H] has no [parse_zone(user.zone_selected)]!</span>"
+		return 1
+
 	if(affecting.display_name == "head")
 		if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 			user << "<span class='warning'>You can't apply [src] through [H.head]!</span>"

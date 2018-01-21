@@ -258,7 +258,9 @@ should be alright.
 				unload(user,0,1)
 				user << "<span class='notice'>You start a tactical reload.</span>"
 			var/old_mag_loc = AM.loc
-			var/tac_reload_time = max(15 - 5*user.mind.cm_skills.firearms, 5)
+			var/tac_reload_time = 15
+			if(user.mind && user.mind.cm_skills)
+				tac_reload_time = max(15 - 5*user.mind.cm_skills.firearms, 5)
 			if(do_after(user,tac_reload_time, TRUE, 5, BUSY_ICON_CLOCK) && AM.loc == old_mag_loc && !current_mag)
 				if(istype(AM.loc, /obj/item/storage))
 					var/obj/item/storage/S = AM.loc

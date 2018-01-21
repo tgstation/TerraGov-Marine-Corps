@@ -805,6 +805,15 @@
 	var/datum/squad/squad = null
 	var/icon_activated = "motion2"
 
+/obj/item/device/squad_beacon/Dispose()
+	if(squad)
+		if(squad.sbeacon)
+			squad.sbeacon = null
+		if(squad.bbeacon)
+			squad.bbeacon = null
+		squad = null
+	. = ..()
+
 /obj/item/device/squad_beacon/attack_self(mob/user)
 	if(activated)
 		user << "<span class='warning'>It's already been activated. Just leave it.</span>"
