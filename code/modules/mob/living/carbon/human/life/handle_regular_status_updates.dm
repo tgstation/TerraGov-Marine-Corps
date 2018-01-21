@@ -69,7 +69,7 @@
 		else
 			stat = CONSCIOUS
 
-		if(in_stasis) blinded = TRUE //Always blinded while in stasis.
+		if(in_stasis == STASIS_IN_CRYO_CELL) blinded = TRUE //Always blinded while in stasisTUBES
 
 		//Periodically double-check embedded_flag
 		if(embedded_flag && !(life_tick % 10))
