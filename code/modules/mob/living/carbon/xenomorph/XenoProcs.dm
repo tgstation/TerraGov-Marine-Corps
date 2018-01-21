@@ -433,7 +433,7 @@
 	if(throwing)
 		r_FAL
 
-	if(last_charge_move && last_charge_move < world.time - 10) //If we haven't moved in the last second, break charge on next move
+	if(last_charge_move && last_charge_move < world.time - 5) //If we haven't moved in the last 500 ms, break charge on next move
 		stop_momentum(charge_dir)
 
 	if(stat || pulledby || !loc || !isturf(loc))
