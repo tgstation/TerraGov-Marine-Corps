@@ -15,7 +15,7 @@
 		user << "\red \The [src] cannot be applied to [M]!"
 		return 1
 
-	if(!ishuman(user))
+	if(!ishuman(user) && !isrobot(user))
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return 1
 
