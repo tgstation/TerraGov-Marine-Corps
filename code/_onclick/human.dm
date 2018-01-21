@@ -42,7 +42,6 @@
 		if (H.zone_selected != "mouth") return
 		if (H.wear_mask) return
 		if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
-		if (istype(H.loc, /obj/structure/closet/bodybag/cryobag)) return
 
 		var/datum/limb/O = H.get_limb(H.hand?"l_hand":"r_hand")
 		if (!O) return

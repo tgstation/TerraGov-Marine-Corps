@@ -44,8 +44,6 @@
 		return 1
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 		return 1
-	if (istype(loc, /obj/structure/closet/bodybag/cryobag) && in_stasis == STASIS_IN_BAG)
-		return 1
 	return 0
 
 
