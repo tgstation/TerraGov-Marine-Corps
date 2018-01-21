@@ -479,6 +479,7 @@
 		for(var/datum/data/record/R in data_core.medical)
 			if (R.fields["name"] == real_name)
 				N = R
+				break
 		if(!isnull(N))
 			if(!(N.fields["last_scan_time"]))
 				msg += "<span class = 'deptradio'>No scan report on record</span>\n"
