@@ -155,16 +155,6 @@
 
 		handle_statuses()//natural decrease of stunned, knocked_down, etc...
 
-		if(isXenoCrusher(src) && !stat) //Handle crusher stuff.
-			var/mob/living/carbon/Xenomorph/Crusher/X = src
-			if(X.momentum > 2 && X.charge_dir != dir)
-				X.charge_timer = 0
-				X.stop_momentum()
-			if(X.charge_timer)
-				X.charge_timer--
-				if(X.charge_timer == 0 && X.momentum > 2)
-					X.stop_momentum()
-
 		//Deal with dissolving/damaging stuff in stomach.
 		if(stomach_contents.len)
 			for(var/atom/movable/M in stomach_contents)

@@ -45,9 +45,9 @@
 
 /mob/living/carbon/Xenomorph/Crusher
 
-	ClickOn( var/atom/A, var/params)
+	ClickOn(var/atom/A, var/params)
 		if(!istype(A,/obj/screen))
-			if(momentum > 1)
+			if(is_charging)
 				stop_momentum(charge_dir)
 		..()
 

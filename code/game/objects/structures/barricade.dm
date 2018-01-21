@@ -49,7 +49,7 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.momentum < 20)
+		if(C.charge_speed < C.charge_speed_max/2)
 			return
 
 		if(crusher_resistant)
@@ -57,7 +57,7 @@
 			update_health()
 
 		else if(!C.stat)
-			visible_message("<span class='danger'>[C] steamrolls through [src]!</span>")
+			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
 			destroy()
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)

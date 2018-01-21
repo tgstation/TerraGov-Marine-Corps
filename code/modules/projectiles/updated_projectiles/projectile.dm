@@ -552,16 +552,16 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
 	#endif
 
-	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
+	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
 		var/armor = armor_deflection
-		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances. Crushers get a lot of armor, with a base of 95 at ancient status.
-			var/mob/living/carbon/Xenomorph/Crusher/current_crusher = src
-			armor += round(current_crusher.momentum / 3) //Some armor deflection when charging.
-			if(P.dir == current_crusher.dir) armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_low) ) //Both facing same way -- ie. shooting from behind.
-			else if(P.dir == reverse_direction(current_crusher.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+		if(isXenoQueen(src) || isXenoCrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
+			var/mob/living/carbon/Xenomorph/charger = src
+			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
+			if(P.dir == charger.dir) armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind.
+			else if(P.dir == reverse_direction(charger.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
-			world << "<span class='debuginfo'>Adjusted crusher armor is: <b>[armor]</b></span>"
+			world << "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>"
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0

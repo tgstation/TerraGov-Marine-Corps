@@ -37,6 +37,9 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	xeno_explosion_resistance = 1 //some resistance against explosion stuns.
+
+	is_charging = 1 //Queens start with charging enabled
+
 	var/breathing_counter = 0
 	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor
 	var/ovipositor_cooldown = 0
@@ -54,6 +57,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/gut,
 		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/ready_charge,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -97,12 +101,33 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 						egg_amount--
 						new /obj/item/xeno_egg(loc)
 
+//Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
+/mob/living/carbon/Xenomorph/Queen/Bump(atom/A, yes)
+	set waitfor = 0
+
+	if(charge_speed < charge_speed_buildup * charge_turfs_to_charge || !is_charging) return ..()
+
+	if(stat || !A || !istype(A) || A == src || !yes) r_FAL
+
+	if(now_pushing) r_FAL//Just a plain ol turf, let's return.
+
+	if(dir != charge_dir) //We aren't facing the way we're charging.
+		stop_momentum()
+		return ..()
+
+	if(!handle_collision(A))
+		if(!A.charge_act(src)) //charge_act is depricated and only here to handle cases that have not been refactored as of yet.
+			return ..()
+
+	var/turf/T = get_step(src, dir)
+	if(!T || !get_step_to(src, T)) //If it still exists, try to push it.
+		return ..()
+
+	lastturf = null //Reset this so we can properly continue with momentum.
+	r_TRU
 
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //Prevents resetting queen death timer.
-
-
-
 
 /mob/living/carbon/Xenomorph/Queen/proc/set_orders()
 	set category = "Alien"
@@ -335,7 +360,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	update_canmove()
 	update_icons()
 
-	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution and upgrade progress resumed.</span>",3)
+	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution and upgrade progress resumed.</span>", 3)
 
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
@@ -373,6 +398,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 			/datum/action/xeno_action/emit_pheromones,
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
+			/datum/action/xeno_action/ready_charge,
 			)
 
 		for(var/path in mobile_abilities)
@@ -385,9 +411,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		anchored = FALSE
 		update_canmove()
 		if(!instant_dismount)
-			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>",3)
-
-
+			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3)
 
 /mob/living/carbon/Xenomorph/Queen/update_canmove()
 	. = ..()
