@@ -210,16 +210,14 @@
 			if(ishuman(stasis_mob))
 				if(hasHUD(user,"medical"))
 					var/mob/living/carbon/human/H = stasis_mob
-					var/datum/data/record/N = null
 					for(var/datum/data/record/R in data_core.medical)
 						if (R.fields["name"] == H.real_name)
-							N = R
+							if(!(R.fields["last_scan_time"]))
+								user << "<span class = 'deptradio'>No scan report on record</span>\n"
+							else
+								user << "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n"
 							break
-					if(!isnull(N))
-						if(!(N.fields["last_scan_time"]))
-							user << "<span class = 'deptradio'>No scan report on record</span>\n"
-						else
-							user << "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
+
 
 
 		switch(used)
@@ -238,15 +236,11 @@
 					return
 				if(ishuman(stasis_mob))
 					var/mob/living/carbon/human/H = stasis_mob
-					var/datum/data/record/N = null
 					for(var/datum/data/record/R in data_core.medical)
 						if (R.fields["name"] == H.real_name)
-							N = R
+							if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
+								usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
 							break
-					if(!isnull(N))
-						if(N.fields["last_scan_time"] && N.fields["last_scan_result"])
-							usr << browse(N.fields["last_scan_result"], "window=scanresults;size=430x600")
-
 
 
 
