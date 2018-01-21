@@ -418,8 +418,12 @@ should be alright.
 	set desc = "Remove all attachables from a weapon."
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
-	if(get_active_firearm(usr) != src)
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+
+	if(!G)
 		return
+
+	src = G
 
 	if(usr.action_busy)
 		return
