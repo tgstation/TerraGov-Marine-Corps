@@ -497,7 +497,7 @@
 	plasma_cost = 0
 
 /datum/action/xeno_action/ready_charge/action_activate()
-	var/mob/living/carbon/Xenomorph/Crusher/X = owner
+	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state()) r_FAL
 	X.is_charging = !X.is_charging
 	X << "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>"
