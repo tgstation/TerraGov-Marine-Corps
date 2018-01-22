@@ -254,8 +254,6 @@ var/world_topic_spam_protect_time = world.timeofday
 			else if(enable_map_vote && forced)
 				next_map = force_result
 
-			save_mode(next_map)
-
 			var/text = ""
 			text += "<font color='#00CC00'>"
 
