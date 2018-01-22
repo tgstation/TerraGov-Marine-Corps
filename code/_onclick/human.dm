@@ -12,9 +12,9 @@
 /mob/living/carbon/human/click(var/atom/A, var/list/mods)
 	if (interactee && (interactee.flags_atom & RELAY_CLICK)) //Fix works, should just normally allow you click on world objects, at worst a second click. Also no longer spams runtime errors.
 		interactee.handle_click(src, A, mods)
-		return
+		return 1
 
-	..()
+	return ..()
 
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A) //chewing your handcuffs
 	if (A != src) return ..()

@@ -248,10 +248,10 @@
 	return
 
 /obj/screen/storage/clicked(var/mob/user, var/list/mods)
+
 	var/obj/item/storage/S = master
 	if(S.storage_slots)
-		..()
-		return
+		return ..()
 
 	var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
 	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
@@ -260,9 +260,9 @@
 	for(var/i=1,i<=S.click_border_start.len,i++)
 		if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
 			user.click(S.contents[i], mods)
-			return
-	..()
-	return
+
+	return ..()
+
 
 /datum/numbered_display
 	var/obj/item/sample_object

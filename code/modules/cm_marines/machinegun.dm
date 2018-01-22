@@ -8,8 +8,10 @@
 					mounted.shoot(get_turf(A))
 			else
 				mounted = null
+
+			return 1
 		else
-			..()
+			return ..()
 
 
 /obj/structure/machinegun

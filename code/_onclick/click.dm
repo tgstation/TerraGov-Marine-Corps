@@ -22,9 +22,81 @@
 
 	var/mob/user = usr
 
-	user.click(A, params2list(params))
+	var/list/mods = params2list(params)
 
+	if (user.click(A, mods))
+		return
 
+	if (user.is_mob_incapacitated(TRUE))
+		return
+
+	user.face_atom(A)
+
+	if (user.next_move > world.time)
+		return
+
+	if (user.is_mob_restrained())
+		user.RestrainedClickOn(A)
+		return
+
+	if (user.in_throw_mode)
+		user.throw_item(A)
+		return
+
+	if(!istype(A,/obj/item/weapon/gun) && !isturf(A) && !istype(A,/obj/screen))
+		user.last_target_click = world.time
+
+	var/obj/item/W = user.get_active_hand()
+
+	if(W == A)
+		user.mode()
+		return
+
+		// operate two STORAGE levels deep here (item in backpack in src; NOT item in box in backpack in src)
+	var/sdepth = A.storage_depth(user)
+	if(A == user.loc || (A in user.loc) || (sdepth != -1 && sdepth <= 1))
+
+		// faster access to objects already on you
+		if(A in user.contents)
+			user.next_move = world.time + 6 // on your person
+		else
+			user.next_move = world.time + 8 // in a box/bag or in your square
+
+		// No adjacency needed
+		if(W)
+			var/resolved = A.attackby(W, user)
+			if(!resolved && A && W)
+				W.afterattack(A, user, 1, mods) // 1 indicates adjacency
+		else
+			user.UnarmedAttack(A, 1)
+		return
+
+	if(!isturf(user.loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
+		return
+
+	// Allows you to click on a box's contents, if that box is on the ground, but no deeper than that
+	sdepth = A.storage_depth_turf()
+	if(isturf(A) || isturf(user.loc) || (sdepth != -1 && sdepth <= 1))
+		user.next_move = world.time + 3
+
+		if(A.Adjacent(user)) // see adjacent.dm
+			if(W)
+				if(W.attack_speed)
+					user.next_move += W.attack_speed
+
+				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
+				var/resolved = A.attackby(W, user)
+				if(!resolved && A && W)
+					W.afterattack(A, user, 1, mods) // 1: clicking something Adjacent
+			else
+				user.UnarmedAttack(A, 1)
+			return
+		else // non-adjacent click
+			if(W)
+				W.afterattack(A, user, 0, mods) // 0: not Adjacent
+			else
+				user.RangedAttack(A, mods)
+	return
 
 
 
@@ -43,78 +115,9 @@
 */
 
 /mob/proc/click(var/atom/A, var/list/mods)
-	A.clicked(src, mods)
-
-	if (is_mob_incapacitated(TRUE))
-		return
-
-	face_atom(A)
-
-	if (next_move > world.time)
-		return
-
-	if (is_mob_restrained())
-		RestrainedClickOn(A)
-		return
-
-	if (in_throw_mode)
-		throw_item(A)
-		return
-
-	if(!istype(A,/obj/item/weapon/gun) && !isturf(A) && !istype(A,/obj/screen))
-		last_target_click = world.time
-
-	var/obj/item/W = get_active_hand()
-
-	if(W == A)
-		mode()
-		return
-
-		// operate two STORAGE levels deep here (item in backpack in src; NOT item in box in backpack in src)
-	var/sdepth = A.storage_depth(src)
-	if(A == loc || (A in loc) || (sdepth != -1 && sdepth <= 1))
-
-		// faster access to objects already on you
-		if(A in contents)
-			next_move = world.time + 6 // on your person
-		else
-			next_move = world.time + 8 // in a box/bag or in your square
-
-		// No adjacency needed
-		if(W)
-			var/resolved = A.attackby(W,src)
-			if(!resolved && A && W)
-				W.afterattack(A, src, 1, mods) // 1 indicates adjacency
-		else
-			UnarmedAttack(A, 1)
-		return
-
-	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
-		return
-
-	// Allows you to click on a box's contents, if that box is on the ground, but no deeper than that
-	sdepth = A.storage_depth_turf()
-	if(isturf(A) || isturf(loc) || (sdepth != -1 && sdepth <= 1))
-		next_move = world.time + 3
-
-		if(A.Adjacent(src)) // see adjacent.dm
-			if(W)
-				if(W.attack_speed)
-					next_move += W.attack_speed
-
-				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = A.attackby(W, src)
-				if(!resolved && A && W)
-					W.afterattack(A, src, 1, mods) // 1: clicking something Adjacent
-			else
-				UnarmedAttack(A, 1)
-			return
-		else // non-adjacent click
-			if(W)
-				W.afterattack(A, src, 0, mods) // 0: not Adjacent
-			else
-				RangedAttack(A, mods)
-	return
+	if (A.clicked(src, mods))
+		return 1
+	return 0
 
 /atom/proc/clicked(var/mob/user, var/list/mods)
 
@@ -122,7 +125,7 @@
 		if(user.client && user.client.eye == user)
 			examine(user)
 			user.face_atom(src)
-		return
+		return 1
 
 	if (mods["alt"])
 		var/turf/T = get_turf(src)
@@ -132,16 +135,18 @@
 			else
 				user.listed_turf = T
 				user.client.statpanel = T.name
-		return
+		return 1
+	return 0
 
 /atom/movable/clicked(var/mob/user, var/list/mods)
-	..()
+	if (..())
+		return 1
 
 	if (mods["ctrl"])
 		if (Adjacent(user))
 			user.start_pulling(src)
-		return
-	return
+		return 1
+	return 0
 
 /*
 	Translates into attack_hand, etc.

@@ -567,12 +567,12 @@
 			visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			burst_fire = 1
-			return
-		else
-			visible_message("\icon[src] <span class='notice'> emits a audiable soft click </span>")
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			burst_fire = 0
-			return
+			return 1
+
+		visible_message("\icon[src] <span class='notice'> emits a audiable soft click </span>")
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		burst_fire = 0
+		return 1
 	..()
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.

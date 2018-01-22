@@ -74,10 +74,8 @@
 	if (mods["alt"])
 		if(Adjacent(usr))
 			open_computer()
-
-		return
-
-	..()
+		return 1
+	return ..()
 
 //Quickfix until Snapshot works out how he wants to redo power. ~Z
 /obj/item/device/laptop/verb/eject_id()

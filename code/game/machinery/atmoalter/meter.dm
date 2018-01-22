@@ -90,7 +90,7 @@
 	user << t
 
 /obj/machinery/meter/clicked(var/mob/user)
-	. = ..()
+	..()
 
 	if(istype(user, /mob/living/silicon/ai)) // ghosts can call ..() for examine
 		examine(user)

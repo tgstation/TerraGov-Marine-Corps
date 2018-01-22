@@ -8,27 +8,27 @@
 
 /mob/living/silicon/robot/click(var/atom/A, var/mods)
 	if(lockcharge || is_mob_incapacitated(TRUE))
-		return
+		return 1
 
 	if(mods["middle"])
 		cycle_modules()
-		return
+		return 1
 
 	if (mods["ctrl"] && mods["shift"])
 		if (!A.BorgCtrlShiftClick(src))
-			return
+			return 1
 
 	else if (mods["ctrl"])
 		if (!A.BorgCtrlClick(src))
-			return
+			return 1
 
 	else if(mods["shift"])
 		if (!A.BorgShiftClick(src))
-			return
+			return 1
 
 	if(mods["alt"]) // alt and alt-gr (rightalt)
 		if (!A.BorgAltClick(src))
-			return
+			return 1
 
 
 	if(aiCamera.in_camera_mode)
@@ -37,7 +37,7 @@
 			aiCamera.captureimage(A, usr)
 		else
 			src << "<span class='userdanger'>Your camera isn't functional.</span>"
-		return
+		return 1
 
 	var/obj/item/W = get_active_hand()
 
@@ -45,11 +45,11 @@
 	if(!W)
 		A.add_hiddenprint(src)
 		A.attack_robot(src)
-		return
+		return 1
 
 	// buckled cannot prevent machine interlinking but stops arm movement
 	if( buckled )
-		return
+		return 1
 
 	if(W == A)
 		next_move = world.time + 8
@@ -57,7 +57,7 @@
 			next_move += 5
 
 		W.attack_self(src)
-		return
+		return 1
 
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc in contents)
 	if(A == loc || (A in loc) || (A in contents))
@@ -69,10 +69,10 @@
 		var/resolved = A.attackby(W,src)
 		if(!resolved && A && W)
 			W.afterattack(A, src, 1, mods)
-		return
+		return 1
 
 	if(!isturf(loc))
-		return
+		return 1
 
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc && isturf(A.loc.loc))
 	if(isturf(A) || isturf(A.loc))
@@ -84,12 +84,12 @@
 			var/resolved = A.attackby(W, src)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, mods)
-			return
+			return 1
 		else
 			next_move = world.time + 10
 			W.afterattack(A, src, 0, mods)
-			return
-	return
+			return 1
+	return 0
 
 
 
