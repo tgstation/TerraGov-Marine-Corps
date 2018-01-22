@@ -6,39 +6,30 @@
 	adjacency code.
 */
 
-/mob/living/silicon/robot/ClickOn(var/atom/A, var/params)
-	if(world.time <= next_click)
-		return
-	next_click = world.time + 1
-
-	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
-		build_click(src, client.buildmode, params, A)
-		return
-
-	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(A)
-		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
-		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
-		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
-		return
-	if(modifiers["ctrl"])
-		CtrlClickOn(A)
-		return
-
+/mob/living/silicon/robot/click(var/atom/A, var/mods)
 	if(lockcharge || is_mob_incapacitated(TRUE))
 		return
 
-	if(next_move >= world.time)
+	if(mods["middle"])
+		cycle_modules()
 		return
 
-	face_atom(A) // change direction to face what you clicked on
+	if (mods["ctrl"] && mods["shift"])
+		if (!A.BorgCtrlShiftClick(src))
+			return
+
+	else if (mods["ctrl"])
+		if (!A.BorgCtrlClick(src))
+			return
+
+	else if(mods["shift"])
+		if (!A.BorgShiftClick(src))
+			return
+
+	if(mods["alt"]) // alt and alt-gr (rightalt)
+		if (!A.BorgAltClick(src))
+			return
+
 
 	if(aiCamera.in_camera_mode)
 		aiCamera.camera_mode_off()
@@ -47,13 +38,6 @@
 		else
 			src << "<span class='userdanger'>Your camera isn't functional.</span>"
 		return
-
-	/*
-	cyborg is_mob_restrained() currently does nothing
-	if(is_mob_restrained())
-		RestrainedClickOn(A)
-		return
-	*/
 
 	var/obj/item/W = get_active_hand()
 
@@ -84,7 +68,7 @@
 
 		var/resolved = A.attackby(W,src)
 		if(!resolved && A && W)
-			W.afterattack(A,src,1,params)
+			W.afterattack(A, src, 1, mods)
 		return
 
 	if(!isturf(loc))
@@ -99,48 +83,34 @@
 
 			var/resolved = A.attackby(W, src)
 			if(!resolved && A && W)
-				W.afterattack(A, src, 1, params)
+				W.afterattack(A, src, 1, mods)
 			return
 		else
 			next_move = world.time + 10
-			W.afterattack(A, src, 0, params)
+			W.afterattack(A, src, 0, mods)
 			return
 	return
 
-//Middle click cycles through selected modules.
-/mob/living/silicon/robot/MiddleClickOn(var/atom/A)
-	cycle_modules()
-	return
+
 
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
-/mob/living/silicon/robot/CtrlShiftClickOn(var/atom/A)
-	A.BorgCtrlShiftClick(src)
-
-/mob/living/silicon/robot/ShiftClickOn(var/atom/A)
-	A.BorgShiftClick(src)
-
-/mob/living/silicon/robot/CtrlClickOn(var/atom/A)
-	A.BorgCtrlClick(src)
-
-/mob/living/silicon/robot/AltClickOn(var/atom/A)
-	A.BorgAltClick(src)
 
 /atom/proc/BorgCtrlShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	CtrlShiftClick(user)
+	return 1
 
 /obj/machinery/door/airlock/BorgCtrlShiftClick()
 	AICtrlShiftClick()
 
 /atom/proc/BorgShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	ShiftClick(user)
+	return 1
 
 /obj/machinery/door/airlock/BorgShiftClick()  // Opens and closes doors! Forwards to AI code.
 	AIShiftClick()
 
 
 /atom/proc/BorgCtrlClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	CtrlClick(user)
+	return 1
 
 /obj/machinery/door/airlock/BorgCtrlClick() // Bolts doors. Forwards to AI code.
 	AICtrlClick()
@@ -152,8 +122,7 @@
 	AICtrlClick()
 
 /atom/proc/BorgAltClick(var/mob/living/silicon/robot/user)
-	AltClick(user)
-	return
+	return 1
 
 /obj/machinery/door/airlock/BorgAltClick() // Eletrifies doors. Forwards to AI code.
 	AIAltClick()

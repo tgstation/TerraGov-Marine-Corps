@@ -1,7 +1,7 @@
 /mob/living/carbon/human
 	var/obj/structure/machinegun/mounted
 
-	ClickOn(var/atom/A, params)
+/mob/living/carbon/human/click(var/atom/A)
 		if(mounted)
 			if(mounted.loc == src.loc)
 				if(A && mounted.nextshot <= world.time && mounted.anchored)

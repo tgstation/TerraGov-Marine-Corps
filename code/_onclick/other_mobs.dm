@@ -3,14 +3,16 @@
 	Carbon
 */
 
-/mob/living/carbon
-
-	MiddleClickOn(var/atom/A) //used for swapping hands
-		swap_hand()
-
-	ShiftMiddleClickOn(atom/A)
+/mob/living/carbon/click(var/atom/A, var/list/mods)
+	if (mods["shift"] && mods["middle"])
 		point_to(A)
+		return
 
+	if (mods["middle"])
+		swap_hand()
+		return
+
+	..()
 
 
 /*
@@ -63,7 +65,7 @@
 	New Players:
 	Have no reason to click on anything at all.
 */
-/mob/new_player/ClickOn()
+/mob/new_player/click()
 	return
 
 
@@ -72,11 +74,7 @@
 	Hell Hound
 */
 
-/mob/living/carbon/hellhound/ClickOn(atom/A, params)
-	if(world.time <= next_click)
-		return
-	next_click = world.time + 2
-
+/mob/living/carbon/hellhound/click(atom/A)
 	if(stat > 0)
 		return //Can't click on shit buster!
 

@@ -9,64 +9,50 @@
 
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
-/mob/living/silicon/ai/DblClickOn(var/atom/A, params)
-	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
-		build_click(src, client.buildmode, params, A)
-		return
 
-	if(control_disabled || stat) return
-	next_move = world.time + 9
-
-	if(ismob(A))
-		ai_actual_track(A)
-	else
-		A.move_camera_by_click()
-
-
-/mob/living/silicon/ai/ClickOn(var/atom/A, params)
-	if(world.time <= next_click)
-		return
-	next_click = world.time + 1
-
-	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
-		build_click(src, client.buildmode, params, A)
-		return
+/mob/living/silicon/ai/click(var/atom/A, var/list/mods)
+	..()
 
 	if(control_disabled || stat)
 		return
 
-	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(A)
-		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
-		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
-		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
-		return
-	if(modifiers["ctrl"])
-		CtrlClickOn(A)
+	if (mods["ctrl"] && mods["middle"])
+		if(control_disabled || stat)
+			return
+
+		if(ismob(A))
+			ai_actual_track(A)
+		else
+			A.move_camera_by_click()
 		return
 
-	if(world.time <= next_move)
+	if (mods["middle"])
+		A.AIMiddleClick(src)
 		return
-	next_move = world.time + 9
+
+	if (mods["shift"])
+		A.AIShiftClick(src)
+		return
+
+	if (mods["alt"])
+		A.AIAltClick(src)
+		return
+
+	if (mods["ctrl"])
+		A.AICtrlClick(src)
+		return
+
+	if (world.time <= next_move)
+		return
 
 	if(aiCamera.in_camera_mode)
 		aiCamera.camera_mode_off()
 		aiCamera.captureimage(A, usr)
 		return
 
-	/*
-		AI is_mob_restrained() currently does nothing
-	if(is_mob_restrained())
-		RestrainedClickOn(A)
-	else
-	*/
+	next_move = world.time + 9
+
+
 	A.add_hiddenprint(src)
 	A.attack_ai(src)
 
@@ -83,21 +69,6 @@
 
 /atom/proc/attack_ai(mob/user as mob)
 	return
-
-/*
-	Since the AI handles shift, ctrl, and alt-click differently
-	than anything else in the game, atoms have separate procs
-	for AI shift, ctrl, and alt clicking.
-*/
-
-/mob/living/silicon/ai/ShiftClickOn(var/atom/A)
-	A.AIShiftClick(src)
-/mob/living/silicon/ai/CtrlClickOn(var/atom/A)
-	A.AICtrlClick(src)
-/mob/living/silicon/ai/AltClickOn(var/atom/A)
-	A.AIAltClick(src)
-/mob/living/silicon/ai/MiddleClickOn(var/atom/A)
-    A.AIMiddleClick(src)
 
 /*
 	The following criminally helpful code is just the previous code cleaned up;
@@ -125,6 +96,9 @@
 /atom/proc/AICtrlClick()
 	return
 
+atom/proc/AIAltClick()
+	return
+
 /obj/machinery/door/airlock/AICtrlClick() // Bolts doors
 	if(locked)
 		Topic("aiEnable=4", list("aiEnable"="4"), 1)// 1 meaning no window (consistency!)
@@ -136,9 +110,6 @@
 
 /obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
 	Topic("toggleOn", list("toggleOn" = 1), 1) // 1 meaning no window (consistency!)
-
-/atom/proc/AIAltClick(var/atom/A)
-	AltClick(A)
 
 /obj/machinery/door/airlock/AIAltClick() // Electrifies doors.
 	if(!secondsElectrified)

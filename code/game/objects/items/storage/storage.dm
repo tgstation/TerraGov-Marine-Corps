@@ -247,20 +247,19 @@
 	src.closer.screen_loc = "4:[storage_width+19],2:16"
 	return
 
-/obj/screen/storage/Click(location,control,params)
+/obj/screen/storage/clicked(var/mob/user, var/list/mods)
 	var/obj/item/storage/S = master
 	if(S.storage_slots)
 		..()
 		return
 
-	var/list/mouse_control = params2list(params)
-	var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
+	var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
 	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
 	var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
 
 	for(var/i=1,i<=S.click_border_start.len,i++)
 		if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
-			usr.ClickOn(S.contents[i], params)
+			user.click(S.contents[i], mods)
 			return
 	..()
 	return

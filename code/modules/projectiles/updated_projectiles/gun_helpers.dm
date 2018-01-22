@@ -116,21 +116,23 @@ DEFINES in setup.dm, referenced here.
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/AltClick(mob/user)
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & GUN_UNUSUAL_DESIGN) return
+/obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
+	if (mods["alt"])
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & GUN_UNUSUAL_DESIGN) return
 
-	if(!ishuman(user)) return
+		if(!ishuman(user)) return
 
-	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(user.loc))
-		user << "Not right now."
+		if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(user.loc))
+			user << "Not right now."
+			return
+
+		if(!(src in user)) return //No telekinetic toggling.
+
+		user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
+		playsound(user, 'sound/machines/click.ogg', 15, 1)
+		flags_gun_features ^= GUN_TRIGGER_SAFETY
 		return
-
-	if(!(src in user)) return //No telekinetic toggling.
-
-	user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
-	playsound(user, 'sound/machines/click.ogg', 15, 1)
-	flags_gun_features ^= GUN_TRIGGER_SAFETY
-	return
+	..()
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.

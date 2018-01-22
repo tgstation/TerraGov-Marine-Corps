@@ -233,7 +233,7 @@ Class Procs:
 		usr << "\red You don't have the dexterity to do this!"
 		return 1
 /*
-	//distance checks are made by atom/proc/DblClick
+	//distance checks are made by atom/proc/clicked()
 	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
 		return 1
 */
