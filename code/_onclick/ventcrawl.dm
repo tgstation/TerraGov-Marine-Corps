@@ -15,7 +15,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0"
 
 /mob/living/click(var/atom/A, var/list/mods)
-	if (.. ())
+	if (..())
 		return 1
 	if (mods["alt"])
 		if(is_type_in_list(A, ventcrawl_machinery) && can_ventcrawl())
