@@ -4,9 +4,6 @@
 */
 
 /mob/living/carbon/click(var/atom/A, var/list/mods)
-	if (..())
-		return 1
-
 	if (mods["shift"] && mods["middle"])
 		point_to(A)
 		return 1
@@ -14,6 +11,8 @@
 	if (mods["middle"])
 		swap_hand()
 		return 1
+
+	return ..()
 
 
 /*

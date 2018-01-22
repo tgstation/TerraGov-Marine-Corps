@@ -21,10 +21,13 @@
 		return
 
 	var/mob/user = usr
-
 	var/list/mods = params2list(params)
+	var/click_handled = 0
 
-	if (user.click(A, mods))
+	click_handled = user.click(A, mods)
+	click_handled |= A.clicked(user, mods)
+
+	if (click_handled)
 		return
 
 	if (user.is_mob_incapacitated(TRUE))
@@ -115,8 +118,6 @@
 */
 
 /mob/proc/click(var/atom/A, var/list/mods)
-	if (A.clicked(src, mods))
-		return 1
 	return 0
 
 /atom/proc/clicked(var/mob/user, var/list/mods)

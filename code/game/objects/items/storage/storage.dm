@@ -248,20 +248,30 @@
 	return
 
 /obj/screen/storage/clicked(var/mob/user, var/list/mods)
+	if(user.is_mob_incapacitated(TRUE))
+		return 1
+	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+		return 1
 
-	var/obj/item/storage/S = master
-	if(S.storage_slots)
-		return ..()
+	// Placing something in the storage screen
+	if(master)
+		var/obj/item/storage/S = master
+		var/obj/item/I = user.get_active_hand()
+		if(I)
+			if (master.attackby(I, user))
+				user.next_move = world.time + 2
+			return 1
 
-	var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
-	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
-	var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
+		// Taking something out of the storage screen
+		var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
+		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+		var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
 
-	for(var/i=1,i<=S.click_border_start.len,i++)
-		if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
-			user.click(S.contents[i], mods)
+		for(var/i=1,i<=S.click_border_start.len,i++)
+			if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
+				return (user.click(S.contents[i], mods))
 
-	return ..()
+	return 0
 
 
 /datum/numbered_display
