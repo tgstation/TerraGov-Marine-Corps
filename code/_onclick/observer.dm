@@ -11,12 +11,14 @@
 		src << "\blue You will no longer examine things you click on."
 
 /mob/dead/observer/click(var/atom/A, var/list/mods)
-	..()
+	if (..())
+		return 1
+
 	if (mods["ctrl"] && mods["middle"])
 		if(can_reenter_corpse && mind && mind.current)
 			if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
 				reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
-				return									// seems legit.
+				return 1								// seems legit.
 
 		// Things you might plausibly want to follow
 		if((ismob(A) && A != src) || istype(A,/obj/machinery/bot) || istype(A,/obj/machinery/singularity))
@@ -27,11 +29,16 @@
 			following = null
 			loc = get_turf(A)
 
-	if(world.time <= next_move) return
+		return 1
+
+	if(world.time <= next_move)
+		return 1
+
 	next_move = world.time + 8
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
 	A.attack_ghost(src)
+	return 1
 
 // Oh by the way this didn't work with old click code which is why clicking shit didn't spam you
 /atom/proc/attack_ghost(mob/dead/observer/user)

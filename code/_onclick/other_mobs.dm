@@ -4,15 +4,16 @@
 */
 
 /mob/living/carbon/click(var/atom/A, var/list/mods)
+	if (..())
+		return 1
+
 	if (mods["shift"] && mods["middle"])
 		point_to(A)
-		return
+		return 1
 
 	if (mods["middle"])
 		swap_hand()
-		return
-
-	..()
+		return 1
 
 
 /*
@@ -66,7 +67,7 @@
 	Have no reason to click on anything at all.
 */
 /mob/new_player/click()
-	return
+	return 1
 
 
 
@@ -75,13 +76,16 @@
 */
 
 /mob/living/carbon/hellhound/click(atom/A)
+	..()
+
 	if(stat > 0)
-		return //Can't click on shit buster!
+		return 1 //Can't click on shit buster!
 
 	if(attack_timer)
-		return
+		return 1
 
-	if(get_dist(src,A) > 1) return
+	if(get_dist(src,A) > 1)
+		return 1
 
 	if(istype(A,/mob/living/carbon/human))
 		bite_human(A)
@@ -96,4 +100,4 @@
 	spawn(12)
 		attack_timer = 0
 
-
+	return 1

@@ -14,47 +14,48 @@
 	..()
 
 	if(control_disabled || stat)
-		return
+		return 1
 
 	if (mods["ctrl"] && mods["middle"])
 		if(control_disabled || stat)
-			return
+			return 1
 
 		if(ismob(A))
 			ai_actual_track(A)
 		else
 			A.move_camera_by_click()
-		return
+		return 1
 
 	if (mods["middle"])
 		A.AIMiddleClick(src)
-		return
+		return 1
 
 	if (mods["shift"])
 		A.AIShiftClick(src)
-		return
+		return 1
 
 	if (mods["alt"])
 		A.AIAltClick(src)
-		return
+		return 1
 
 	if (mods["ctrl"])
 		A.AICtrlClick(src)
-		return
+		return 1
 
 	if (world.time <= next_move)
-		return
+		return 1
 
 	if(aiCamera.in_camera_mode)
 		aiCamera.camera_mode_off()
 		aiCamera.captureimage(A, usr)
-		return
+		return 1
 
 	next_move = world.time + 9
 
 
 	A.add_hiddenprint(src)
 	A.attack_ai(src)
+	return 1
 
 /*
 	AI has no need for the UnarmedAttack() and RangedAttack() procs,

@@ -134,7 +134,7 @@
 	if (mods["ctrl"] && mods["middle"])
 		if (src == user.interactee)
 			jump_on_click(user, src)
-		return
+		return 1
 
 	..()
 

@@ -118,20 +118,20 @@ DEFINES in setup.dm, referenced here.
 
 /obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
 	if (mods["alt"])
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & GUN_UNUSUAL_DESIGN) return
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & GUN_UNUSUAL_DESIGN) return 1
 
-		if(!ishuman(user)) return
+		if(!ishuman(user)) return 1
 
 		if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(user.loc))
 			user << "Not right now."
-			return
+			return 1
 
-		if(!(src in user)) return //No telekinetic toggling.
+		if(!(src in user)) return 1 //No telekinetic toggling.
 
 		user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
 		playsound(user, 'sound/machines/click.ogg', 15, 1)
 		flags_gun_features ^= GUN_TRIGGER_SAFETY
-		return
+		return 1
 	..()
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)

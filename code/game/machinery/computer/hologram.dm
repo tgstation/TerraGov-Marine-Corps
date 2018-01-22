@@ -23,9 +23,9 @@
 /obj/machinery/computer/hologram_comp/clicked(var/mob/user, var/list/mods)
 	if (mods["ctrl"] && mods["middle"])
 		if (!in_range(src, user))
-			return
+			return 1
 		show_console(user)
-		return
+		return 1
 
 	..()
 

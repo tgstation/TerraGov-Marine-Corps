@@ -13,17 +13,17 @@
 
 
 /mob/living/carbon/Xenomorph/click(var/atom/A, var/list/mods)
+	..()
+
 	if (mods["middle"])
 		if (selected_ability && middle_mouse_toggle)
 			selected_ability.use_ability(A)
-			return
+			return 1
 
 	if (mods["shift"])
 		if (selected_ability && !middle_mouse_toggle)
 			selected_ability.use_ability(A)
-			return
-
-	.. ()
+			return 1
 
 
 /mob/living/carbon/Xenomorph/Boiler/click(var/atom/A)
@@ -38,7 +38,7 @@
 				bomb_turf(get_turf(A))
 			if(client)
 				client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-			return
+			return 1
 
 	..()
 
@@ -47,6 +47,7 @@
 	if(!istype(A,/obj/screen))
 		if(is_charging)
 			stop_momentum(charge_dir)
+			return 1
 
 	..()
 
@@ -65,10 +66,11 @@
 
 
 /mob/living/carbon/Xenomorph/Queen/click(var/atom/A, var/list/mods)
+	if (..())
+		return 1
+
 	if (mods["ctrl"] && mods["middle"])
 		if(ovipositor)
 			if(isXeno(A) && A != src)
 				set_queen_overwatch(A)
-				return
-
-	..()
+				return 1
