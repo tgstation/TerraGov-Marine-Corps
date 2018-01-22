@@ -31,7 +31,7 @@
 	icon_state = "m41a"
 	w_class = 3
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 32
+	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/m41a
 
 /obj/item/ammo_magazine/rifle/extended
