@@ -39,7 +39,7 @@
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10x20mm"
 	icon_state = "m39"
-	max_rounds = 40
+	max_rounds = 48
 	w_class = 3
 	gun_type = /obj/item/weapon/gun/smg/m39
 
