@@ -20,11 +20,14 @@
 		return
 	return
 
-/obj/machinery/computer/hologram_comp/DblClick()
-	if (!in_range(src, usr))
-		return 0
-	src.show_console(usr)
-	return
+/obj/machinery/computer/hologram_comp/clicked(var/mob/user, var/list/mods)
+	if (mods["ctrl"] && mods["middle"])
+		if (!in_range(src, user))
+			return
+		show_console(user)
+		return
+
+	..()
 
 /obj/machinery/computer/hologram_comp/proc/render()
 	var/icon/I = new /icon('icons/mob/human.dmi', "body_m_s")

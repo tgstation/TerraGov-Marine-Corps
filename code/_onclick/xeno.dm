@@ -12,44 +12,43 @@
 	return attack_paw(user)
 
 
+/mob/living/carbon/Xenomorph/click(var/atom/A, var/list/mods)
+	if (mods["middle"])
+		if (selected_ability && middle_mouse_toggle)
+			selected_ability.use_ability(A)
+			return
 
-/mob/living/carbon/Xenomorph/MiddleClickOn(atom/A)
-	if(selected_ability && middle_mouse_toggle)
-		selected_ability.use_ability(A)
-		return
+	if (mods["shift"])
+		if (selected_ability && !middle_mouse_toggle)
+			selected_ability.use_ability(A)
+			return
+
+	.. ()
+
+
+/mob/living/carbon/Xenomorph/Boiler/click(var/atom/A)
+	if(!istype(A,/obj/screen))
+		if(is_zoomed && !is_bombarding)
+			zoom_out()
+
+		if(is_bombarding)
+			if(isturf(A))
+				bomb_turf(A)
+			else if(isturf(get_turf(A)))
+				bomb_turf(get_turf(A))
+			if(client)
+				client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+			return
+
 	..()
 
-/mob/living/carbon/Xenomorph/ShiftClickOn(atom/A)
-	if(selected_ability && !middle_mouse_toggle)
-		selected_ability.use_ability(A)
-		return
+
+/mob/living/carbon/Xenomorph/Crusher/click(var/atom/A)
+	if(!istype(A,/obj/screen))
+		if(is_charging)
+			stop_momentum(charge_dir)
+
 	..()
-
-/mob/living/carbon/Xenomorph/Boiler
-
-	ClickOn(var/atom/A, params)
-		if(!istype(A,/obj/screen))
-			if(is_zoomed && !is_bombarding)
-				zoom_out()
-
-			if(is_bombarding)
-				if(isturf(A))
-					bomb_turf(A)
-				else if(isturf(get_turf(A)))
-					bomb_turf(get_turf(A))
-				if(client)
-					client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-				return
-		..()
-
-
-/mob/living/carbon/Xenomorph/Crusher
-
-	ClickOn(var/atom/A, var/params)
-		if(!istype(A,/obj/screen))
-			if(is_charging)
-				stop_momentum(charge_dir)
-		..()
 
 
 
@@ -65,10 +64,11 @@
 
 
 
-/mob/living/carbon/Xenomorph/Queen/DblClickOn(var/atom/A, var/params)
-	if(ovipositor)
-		if(isXeno(A) && A != src)
-			set_queen_overwatch(A)
-			return
-	ClickOn(A,params)
+/mob/living/carbon/Xenomorph/Queen/click(var/atom/A, var/list/mods)
+	if (mods["ctrl"] && mods["middle"])
+		if(ovipositor)
+			if(isXeno(A) && A != src)
+				set_queen_overwatch(A)
+				return
 
+	..()

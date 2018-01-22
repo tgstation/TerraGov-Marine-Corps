@@ -251,6 +251,10 @@
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
 
+/client/Stat()
+	. = ..()
+	sleep(1) // No more updating every tick.
+
 //checks if a client is afk
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration=3000)

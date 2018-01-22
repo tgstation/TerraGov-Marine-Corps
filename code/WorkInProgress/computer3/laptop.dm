@@ -70,9 +70,14 @@
 			usr << "\red You are already opening the computer!"
 
 
-	AltClick()
+/obj/item/device/laptop/clicked(var/mob/user, var/list/mods)
+	if (mods["alt"])
 		if(Adjacent(usr))
 			open_computer()
+
+		return
+
+	..()
 
 //Quickfix until Snapshot works out how he wants to redo power. ~Z
 /obj/item/device/laptop/verb/eject_id()
@@ -206,6 +211,9 @@
 		. = ..()
 
 
-	AltClick()
-		if(Adjacent(usr))
+/obj/machinery/computer3/laptop/clicked(var/mob/user, var/list/mods)
+	if (mods["alt"])
+		if(Adjacent(user))
 			close_computer()
+		return
+	..()

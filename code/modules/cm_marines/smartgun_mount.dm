@@ -561,17 +561,19 @@
 	if(user.lying || get_dist(user,src) > 1 || user.is_mob_incapacitated() || !user.client)
 		user.unset_interaction()
 
-/obj/machinery/m56d_hmg/CtrlClick(var/mob/user) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
-	if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
-		visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		burst_fire = 1
-		return
-	else
-		visible_message("\icon[src] <span class='notice'> emits a audiable soft click </span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		burst_fire = 0
-		return
+/obj/machinery/m56d_hmg/clicked(var/mob/user, var/list/mods) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
+	if (mods["ctrl"])
+		if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
+			visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			burst_fire = 1
+			return
+		else
+			visible_message("\icon[src] <span class='notice'> emits a audiable soft click </span>")
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			burst_fire = 0
+			return
+	..()
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
 	name = "M56D Smartgun Nest"
