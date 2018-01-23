@@ -25,6 +25,10 @@
 	var/list/mods = params2list(params)
 	var/click_handled = 0
 
+	// Time between clicks.
+	if (user.next_move > world.time)
+		return
+
 	// Click handled elsewhere.
 	click_handled = user.click(A, mods)
 	click_handled |= A.clicked(user, mods)
@@ -38,10 +42,6 @@
 		return
 
 	user.face_atom(A)
-
-	// If we're somehow in the future.
-	if (user.next_move > world.time)
-		return
 
 	// Special type of click.
 	if (user.is_mob_restrained())
@@ -70,6 +70,7 @@
 
 	// If standing next to the atom clicked.
 	if (A.Adjacent(user))
+		user.next_move += 6
 		if (W)
 			if (W.attack_speed)
 				user.next_move += W.attack_speed
