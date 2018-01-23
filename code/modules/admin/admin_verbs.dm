@@ -401,12 +401,13 @@ var/list/admin_verbs_mentor = list(
 			mob.invisibility = initial(mob.invisibility)
 			mob << "\red <b>Invisimin off. Invisibility reset.</b>"
 			mob.alpha = max(mob.alpha + 100, 255)
-			mob.remove_from_all_mob_huds()
+			mob.add_to_all_mob_huds()
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
 			mob << "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>"
 			mob.alpha = max(mob.alpha - 100, 0)
-			mob.add_to_all_mob_huds()
+			mob.remove_from_all_mob_huds()
+
 
 /*
 /client/proc/player_panel()

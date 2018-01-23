@@ -242,6 +242,11 @@
 				M.mind.set_cm_skills(/datum/skills/smartgunner)
 
 		if("USCM Specialist (Armor)")
+			if(M.mind)
+				M.mind.role_comm_title = "Spc"
+				M.mind.assigned_role = "Squad Specialist"
+				M.mind.set_cm_skills(/datum/skills/specialist) //skills are set before equipment because of skill restrictions on certain clothes.
+
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), WEAR_BODY)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(M), WEAR_JACKET)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(M), WEAR_HEAD)
@@ -261,10 +266,7 @@
 			W.registered_name = M.real_name
 			W.paygrade = "E5"
 			M.equip_to_slot_or_del(W, WEAR_ID)
-			if(M.mind)
-				M.mind.role_comm_title = "Spc"
-				M.mind.assigned_role = "Squad Specialist"
-				M.mind.set_cm_skills(/datum/skills/specialist)
+
 
 
 		if("USCM Second-Lieutenant (SO)")
@@ -421,6 +423,12 @@
 				M.mind.set_cm_skills(/datum/skills/SL/pmc)
 
 		if("Weyland-Yutani PMC (Gunner)")
+			if(M.mind)
+				M.mind.role_comm_title = "Spc"
+				M.mind.assigned_role = "PMC"
+				M.mind.special_role = "MODE"
+				M.mind.set_cm_skills(/datum/skills/smartgunner/pmc)
+
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
@@ -446,13 +454,14 @@
 			W.paygrade = "PMC3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
+
+		if("Weyland-Yutani PMC (Sniper)")
 			if(M.mind)
 				M.mind.role_comm_title = "Spc"
 				M.mind.assigned_role = "PMC"
 				M.mind.special_role = "MODE"
-				M.mind.set_cm_skills(/datum/skills/smartgunner/pmc)
+				M.mind.set_cm_skills(/datum/skills/specialist/pmc)
 
-		if("Weyland-Yutani PMC (Sniper)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), WEAR_JACKET)
@@ -480,11 +489,6 @@
 			W.paygrade = "PMC3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
-			if(M.mind)
-				M.mind.role_comm_title = "Spc"
-				M.mind.assigned_role = "PMC"
-				M.mind.special_role = "MODE"
-				M.mind.set_cm_skills(/datum/skills/specialist/pmc)
 
 		if("Weyland-Yutani Deathsquad")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_EAR)
