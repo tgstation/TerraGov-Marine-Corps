@@ -1,22 +1,23 @@
-/*
-	Click code cleanup
-	~Sayu
-*/
 
 // 1 decisecond click delay (above and beyond mob/next_move)
-/mob/var/next_click	= 0
+/mob/var/next_click	= 0 // Not really used anymore, needs to be removed.
 
 /*
-	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
-	remove istype() spaghetti code, but requires the addition of other handler procs to simplify it.
+	client/Click is called every time a client clicks anywhere, it should never be overridden.
 
-	Alternately, you could hardcode every mob's variation in a flat ClickOn() proc; however,
-	that's a lot of code duplication and is hard to maintain.
+	For all mobs that should have a specific click function and/or a modified click function
+	(modified means click+shift, click+ctrl, etc.) add a custom mob/click() proc.
 
-	Note that this proc can be overridden, and is in the case of screen objects.
+	For anything being clicked by a mob that should have a specific or modified click function,
+	add a custom atom/clicked() proc.
+
+	For both click() and clicked(), make sure they return 1 if the click is resolved,
+	if not, return 0 to perform regular click functions like picking up items off the ground.
+	~ BMC777
 */
 
 /client/Click(atom/A, location, control, params)
+	// No .click macros allowed, no clicking on atoms with the NOINTERACT flag.
 	if (!control || (A.flags_atom & NOINTERACT))
 		return
 
@@ -24,84 +25,69 @@
 	var/list/mods = params2list(params)
 	var/click_handled = 0
 
+	// Click handled elsewhere.
 	click_handled = user.click(A, mods)
 	click_handled |= A.clicked(user, mods)
 
 	if (click_handled)
 		return
 
+	// Default click functions from here on.
+
 	if (user.is_mob_incapacitated(TRUE))
 		return
 
 	user.face_atom(A)
 
+	// If we're somehow in the future.
 	if (user.next_move > world.time)
 		return
 
+	// Special type of click.
 	if (user.is_mob_restrained())
 		user.RestrainedClickOn(A)
 		return
 
+	// Throwing stuff.
 	if (user.in_throw_mode)
 		user.throw_item(A)
 		return
 
+	// Last thing clicked is tracked for something somewhere.
 	if(!istype(A,/obj/item/weapon/gun) && !isturf(A) && !istype(A,/obj/screen))
 		user.last_target_click = world.time
 
 	var/obj/item/W = user.get_active_hand()
 
+	// Special gun mode stuff.
 	if(W == A)
 		user.mode()
 		return
 
-		// operate two STORAGE levels deep here (item in backpack in src; NOT item in box in backpack in src)
-	var/sdepth = A.storage_depth(user)
-	if(A == user.loc || (A in user.loc) || (sdepth != -1 && sdepth <= 1))
+	// Don't allow doing anything else if inside a container of some sort, like a locker.
+	if (!isturf(user.loc))
+		return
 
-		// faster access to objects already on you
-		if(A in user.contents)
-			user.next_move = world.time + 6 // on your person
-		else
-			user.next_move = world.time + 8 // in a box/bag or in your square
+	// If standing next to the atom clicked.
+	if (A.Adjacent(user))
+		if (W)
+			if (W.attack_speed)
+				user.next_move += W.attack_speed
 
-		// No adjacency needed
-		if(W)
-			var/resolved = A.attackby(W, user)
-			if(!resolved && A && W)
-				W.afterattack(A, user, 1, mods) // 1 indicates adjacency
+			if (!A.attackby(W, user) && A)
+				W.afterattack(A, user, 1, mods)
 		else
 			user.UnarmedAttack(A, 1)
+
 		return
 
-	if(!isturf(user.loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
+	// If not standing next to the atom clicked.
+	if (W)
+		W.afterattack(A, user, 0, mods)
 		return
 
-	// Allows you to click on a box's contents, if that box is on the ground, but no deeper than that
-	sdepth = A.storage_depth_turf()
-	if(isturf(A) || isturf(user.loc) || (sdepth != -1 && sdepth <= 1))
-		user.next_move = world.time + 3
-
-		if(A.Adjacent(user)) // see adjacent.dm
-			if(W)
-				if(W.attack_speed)
-					user.next_move += W.attack_speed
-
-				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = A.attackby(W, user)
-				if(!resolved && A && W)
-					W.afterattack(A, user, 1, mods) // 1: clicking something Adjacent
-			else
-				user.UnarmedAttack(A, 1)
-			return
-		else // non-adjacent click
-			if(W)
-				W.afterattack(A, user, 0, mods) // 0: not Adjacent
-			else
-				user.RangedAttack(A, mods)
+	user.RangedAttack(A, mods)
 	return
-
-
 
 /*
 	Standard mob ClickOn()

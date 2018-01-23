@@ -10,9 +10,8 @@
 	var/last_chew = 0
 
 /mob/living/carbon/human/click(var/atom/A, var/list/mods)
-	if (interactee && (interactee.flags_atom & RELAY_CLICK)) //Fix works, should just normally allow you click on world objects, at worst a second click. Also no longer spams runtime errors.
-		interactee.handle_click(src, A, mods)
-		return 1
+	if (interactee && istype(interactee, /obj/item/device/binoculars/tactical))
+		return interactee.handle_click(src, A, mods)
 
 	return ..()
 

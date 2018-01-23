@@ -14,28 +14,18 @@
 	//matter = list("metal" = 50,"glass" = 50)
 
 /obj/item/device/binoculars/attack_self(mob/user)
-	user.set_interaction(src)
+	zoom(user, 11, 12)
 
 /obj/item/device/binoculars/on_set_interaction(var/mob/user)
 	flags_atom |= RELAY_CLICK
-	zoom(user)
 
-/*
-/obj/item/device/binoculars/clicked(var/mob/user, var/list/mods)
-	if (mods["ctrl"] && mods["middle"])
-		user.interactee = src
-		flags_atom |= RELAY_CLICK
-		zoom(user)
-		return
 
-	..()
-*/
 /obj/item/device/binoculars/on_unset_interaction(var/mob/user)
 	flags_atom &= ~RELAY_CLICK
 
 /obj/item/device/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Double click to target something."
+	desc = "A pair of binoculars, with a laser targeting function. Ctrl+Click to target something."
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -52,17 +42,18 @@
 		laser = null
 	. = ..()
 
-/obj/item/device/binoculars/tactical/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
-	if (mods["middle"])
-		acquire_target(A, user)
-		return
-
-/obj/item/device/binoculars/tactical/zoom(mob/living/user, tileoffset = 11, viewsize = 12)
+/obj/item/device/binoculars/tactical/on_unset_interaction(var/mob/user)
 	..()
-	if(user && laser)
-		if(!zoom)
+
+	if (user && laser)
+		if (!zoom)
 			cdel(laser)
-			laser = null
+
+/obj/item/device/binoculars/tactical/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
+	if (mods["ctrl"])
+		acquire_target(A, user)
+		return 1
+	return 0
 
 /obj/item/device/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
@@ -124,6 +115,6 @@
 
 /obj/item/device/binoculars/tactical/scout
 	name = "scout tactical binoculars"
-	desc = "A modified version of tactical binoculars with an advanced laser targeting function. Middle click to target something."
+	desc = "A modified version of tactical binoculars with an advanced laser targeting function. Ctrl+Click to target something."
 	cooldown_duration = 80
 	target_acquisition_delay = 30
