@@ -1,7 +1,7 @@
 
 // 1 decisecond click delay (above and beyond mob/next_move)
-/mob/var/next_click	= 0 // Not really used anymore, needs to be removed.
-
+/mob/var/next_click = 0
+/client/var/next_click	= 0 // Not really used anymore, needs to be removed.
 /*
 	client/Click is called every time a client clicks anywhere, it should never be overridden.
 
@@ -17,6 +17,14 @@
 */
 
 /client/Click(atom/A, location, control, params)
+	if (world.time <= next_click)
+		return
+
+	next_click = world.time + 2
+	do_click(A, location, control, params)
+
+
+/client/proc/do_click(atom/A, location, control, params)
 	// No .click macros allowed, no clicking on atoms with the NOINTERACT flag.
 	if (!control || (A.flags_atom & NOINTERACT))
 		return
@@ -28,6 +36,7 @@
 	// Time between clicks.
 	if (user.next_move > world.time)
 		return
+
 
 	// Click handled elsewhere.
 	click_handled = user.click(A, mods)
@@ -88,7 +97,7 @@
 		return
 
 	user.RangedAttack(A, mods)
-	return
+
 
 /*
 	Standard mob ClickOn()
