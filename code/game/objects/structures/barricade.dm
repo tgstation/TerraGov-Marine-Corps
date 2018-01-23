@@ -41,6 +41,17 @@
 		if(2) user << "<span class='warning'>It's quite beat up, but it's holding together.</span>"
 		if(3) user << "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>"
 
+/obj/structure/barricade/hitby(atom/movable/AM)
+	if(AM.throwing && is_wired)
+		if(iscarbon(AM))
+			var/mob/living/carbon/C = AM
+			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
+			"<span class='danger'>The barbed wire slices into you!</span>")
+			C.apply_damage(10)
+			C.KnockDown(2) //Leaping into barbed wire is VERY bad
+	..()
+
+
 
 /obj/structure/barricade/Bumped(atom/A)
 	..()
@@ -64,17 +75,13 @@
 	if(closed)
 		return 1
 
-	if(O && O.throwing)
+	if(O.throwing)
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
-			var/mob/living/carbon/C = O
-			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
-			"<span class='danger'>The barbed wire slices into you!</span>")
-			C.apply_damage(10)
-			C.KnockDown(2) //Leaping into barbed wire is VERY bad
-			return 0
+			if(get_dir(loc, target) == dir)
+				return 0
 		return 1
 
-	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir)) //Barbed wires blocks movement
+	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir))
 		return 0
 	else
 		return 1
@@ -86,12 +93,8 @@
 
 	if(mover && mover.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			var/mob/living/carbon/C = mover
-			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
-			"<span class='danger'>The barbed wire slices into you!</span>")
-			C.apply_damage(10)
-			C.KnockDown(2) //Leaping into barbed wire is VERY bad
-			return 0
+			if(get_dir(loc, target) == dir)
+				return 0
 		return 1
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)

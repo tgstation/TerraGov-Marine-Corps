@@ -169,23 +169,32 @@ can cause issues with ammo types getting mixed up during the burst.
 		current_mag.chamber_position--
 		return in_chamber
 
-/obj/item/weapon/gun/shotgun
-	ready_in_chamber()
-		return ready_shotgun_tube()
 
-	reload_into_chamber(mob/user)
-		if(active_attachable) make_casing(active_attachable.type_of_casings)
-		else
-			make_casing(type_of_casings)
-			in_chamber = null
+/obj/item/weapon/gun/shotgun/ready_in_chamber()
+	return ready_shotgun_tube()
 
-		if(!active_attachable) //Time to move the tube position.
-			ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
-			if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
-				update_icon()
-		else
-			if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
-		return 1
+/obj/item/weapon/gun/shotgun/reload_into_chamber(mob/user)
+	if(active_attachable) make_casing(active_attachable.type_of_casings)
+	else
+		make_casing(type_of_casings)
+		in_chamber = null
+
+	if(!active_attachable) //Time to move the tube position.
+		ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
+		if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
+			update_icon()
+	else
+		if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
+	return 1
+
+
+/obj/item/weapon/gun/shotgun/able_to_fire(mob/living/user)
+	. = ..()
+	if (. && istype(user)) //Let's check all that other stuff first.
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_SCOUT)
+			user << "<span class='warning'>Scout specialists can't use shotguns...</span>"
+			return 0
+
 
 //-------------------------------------------------------
 //GENERIC MERC SHOTGUN //Not really based on anything.
