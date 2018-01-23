@@ -132,7 +132,7 @@ DEFINES in setup.dm, referenced here.
 		playsound(user, 'sound/machines/click.ogg', 15, 1)
 		flags_gun_features ^= GUN_TRIGGER_SAFETY
 		return 1
-	..()
+	return (..())
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.

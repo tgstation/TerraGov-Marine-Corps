@@ -100,21 +100,6 @@
 /obj/screen/storage
 	name = "storage"
 
-/*
-/obj/screen/storage/clicked(var/mob/user, var/list/mods)
-	if(world.time <= user.next_move)
-		return 1
-	if(user.is_mob_incapacitated(TRUE))
-		return 1
-	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
-	if(master)
-		var/obj/item/I = user.get_active_hand()
-		if(I)
-			return (user.click(master, mods))
-			//user.next_move = world.time+2
-	return 0
-*/
 
 /obj/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!S.contents.len)
@@ -424,11 +409,7 @@
 
 
 /obj/screen/inventory/clicked(var/mob/user)
-	// At this point in client Click() code we have passed the 1/10 sec check and little else
-	// We don't even know if it's a middle click
 	if (..())
-		return 1
-	if(world.time <= user.next_move)
 		return 1
 	if(user.is_mob_incapacitated(TRUE))
 		return 1

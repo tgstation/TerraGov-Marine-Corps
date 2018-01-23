@@ -262,15 +262,20 @@
 				user.next_move = world.time + 2
 			return 1
 
-		// Taking something out of the storage screen
+		// Taking something out of the storage screen (including clicking on item border overlay)
 		var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
 		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
 		var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
 
 		for(var/i=1,i<=S.click_border_start.len,i++)
 			if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
-				return (user.click(S.contents[i], mods))
+				I = S.contents[i]
+				if (I)
+					if (I.clicked(user, mods))
+						return 1
 
+					I.attack_hand(user)
+					return 1
 	return 0
 
 
