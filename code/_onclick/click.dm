@@ -16,12 +16,8 @@
 */
 
 /client/Click(atom/A, location, control, params)
-	if (src && control)
+	if (control)
 		return usr.do_click(A, location, params)
-
-	return usr.do_click(A, location, control, params)
-	//next_click = world.time + 2
-	//do_click(A, location, control, params)
 
 
 /mob/proc/do_click(atom/A, location, params)
