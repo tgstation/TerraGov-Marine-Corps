@@ -104,7 +104,6 @@
 	if(!blinded && hud_used)
 		flick("flash", hud_used.flash_icon)
 
-	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
 	switch(severity)
@@ -117,9 +116,7 @@
 				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(target, 200, 4)
 		if(2)
-			if(!shielded)
-				b_loss += rand(50, 70)
-
+			b_loss += rand(50, 70)
 			f_loss += rand(50, 70)
 
 			if(prob(getarmor(null, "bomb")))
@@ -129,7 +126,7 @@
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
 				ear_deaf += 120
-			if(prob(70) && !shielded)
+			if(prob(70))
 				KnockOut(10)
 
 		if(3)
@@ -139,7 +136,7 @@
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
-			if(prob(50) && !shielded)
+			if(prob(50))
 				KnockOut(10)
 
 	var/update = 0
