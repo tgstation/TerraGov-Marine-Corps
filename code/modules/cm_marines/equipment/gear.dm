@@ -108,7 +108,6 @@
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
 					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
-					// /obj/item/weapon/gun/rifle/m41a/scoped = /obj/item/ammo_magazine/rifle/marksman,
 					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg
 				)
 	New()

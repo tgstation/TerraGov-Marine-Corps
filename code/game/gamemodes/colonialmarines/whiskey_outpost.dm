@@ -223,35 +223,15 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK) // Make sure we get a backpack now.
 
-			switch(rand_wep) //Give them some additional protection for the ground commander.
-				if(0 to 5) //Give them the Marksman rifle, longer range.
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/scoped(H), WEAR_R_HAND)
-					var/obj/item/storage/belt/marine/B = new/obj/item/storage/belt/marine(H)
-					new /obj/item/ammo_magazine/rifle/marksman(B)
-					new /obj/item/ammo_magazine/rifle/marksman(B)
-					new /obj/item/ammo_magazine/rifle/marksman(B)
-					new /obj/item/ammo_magazine/rifle/marksman(B)
-					new /obj/item/ammo_magazine/rifle/marksman(B)
-					new /obj/item/ammo_magazine/rifle/marksman(B)
-					H.equip_to_slot_or_del(B, WEAR_WAIST)
-
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), WEAR_IN_BACK)
-				if(6 to 10) //CQC Specialist
-					H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), WEAR_WAIST)
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), WEAR_IN_BACK)
 
 			var/obj/item/card/id/silver/W = new(H)
 			W.name = "[M.real_name]'s ID Card (Honor Guard)"

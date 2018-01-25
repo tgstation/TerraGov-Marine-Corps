@@ -1414,8 +1414,7 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"specialist ammo crate", "A crate containing ammunition for specialist weapons. A special gift indeed.")
 
 	supply_manifest=list(
-		/obj/item/weapon/gun/rifle/m41a/scoped = 2,
-		/obj/item/ammo_magazine/rifle/marksman = 6,
+		/obj/item/ammo_magazine/rifle/m4ra = 6,
 		/obj/item/weapon/gun/rifle/lmg = 2,
 		/obj/item/ammo_magazine/rifle/lmg = 2,
 		/obj/item/weapon/gun/launcher/m92 = 1

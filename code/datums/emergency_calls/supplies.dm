@@ -58,13 +58,7 @@
 					new /obj/item/weapon/gun/shotgun/combat(drop_spawn)
 					new /obj/item/ammo_magazine/shotgun/incendiary(drop_spawn)
 					new /obj/item/ammo_magazine/shotgun/incendiary(drop_spawn)
-				/*if(6)
-					new /obj/item/weapon/gun/rifle/m41a/scoped(drop_spawn)
-					new /obj/item/weapon/gun/rifle/m41a/scoped(drop_spawn)
-					new /obj/item/ammo_magazine/rifle/marksman(drop_spawn)
-					new /obj/item/ammo_magazine/rifle/marksman(drop_spawn)*/
 				if(6)
-					new /obj/item/weapon/gun/rifle/lmg(drop_spawn)
 					new /obj/item/weapon/gun/rifle/lmg(drop_spawn)
 					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
 					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
