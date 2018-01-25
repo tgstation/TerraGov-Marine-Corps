@@ -32,7 +32,7 @@
 	var/type_of_casings = null					//Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
 
 	//Basic stats.
-	var/accuracy 		= 0						//Miltiplier. Increased and decreased through attachments. Multiplies the damage by this number.
+	var/accuracy 		= 0						//Miltiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage 			= 0						//Same as above.
 	var/recoil 			= 0						//Screen shake when the weapon is fired.
 	var/scatter			= 0						//How much the bullet scatters when fired.
@@ -728,29 +728,30 @@ and you're good to go.
 
 	var/gun_accuracy = accuracy
 
+	// Apply any skill-based bonuses to accuracy
 	if(user && user.mind && user.mind.cm_skills)
-		var/acc_tweak = 0
+		var/skill_accuracy = 0
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			acc_tweak = -1
+			skill_accuracy = -1
 		else
 			switch(gun_skill_category)
 				if(GUN_SKILL_PISTOLS)
-					acc_tweak = user.mind.cm_skills.pistols
+					skill_accuracy = user.mind.cm_skills.pistols
 				if(GUN_SKILL_SMGS)
-					acc_tweak = user.mind.cm_skills.smgs
+					skill_accuracy = user.mind.cm_skills.smgs
 				if(GUN_SKILL_RIFLES)
-					acc_tweak = user.mind.cm_skills.rifles
+					skill_accuracy = user.mind.cm_skills.rifles
 				if(GUN_SKILL_SHOTGUNS)
-					acc_tweak = user.mind.cm_skills.shotguns
+					skill_accuracy = user.mind.cm_skills.shotguns
 				if(GUN_SKILL_HEAVY_WEAPONS)
-					acc_tweak = user.mind.cm_skills.heavy_weapons
+					skill_accuracy = user.mind.cm_skills.heavy_weapons
 				if(GUN_SKILL_SMARTGUN)
-					acc_tweak = user.mind.cm_skills.smartgun
-		if(acc_tweak)
-			gun_accuracy = accuracy + acc_tweak*config.low_hit_accuracy_mult //accuracy increase/decrease per level is equal to attaching/removing a red dot sight.
+					skill_accuracy = user.mind.cm_skills.smartgun
+		if(skill_accuracy)
+			gun_accuracy = accuracy + skill_accuracy * config.low_hit_accuracy_mult // Accuracy increase/decrease per level is equal to attaching/removing a red dot sight
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy) //We're going to throw in the gun's accuracy.
-	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.
+	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 		// Apply gun damage multiplier to projectile damage
 	projectile_to_fire.shot_from = src
 
 	if(user) //The gun only messages when fired by a user.

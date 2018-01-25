@@ -223,7 +223,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 14
+	storage_slots = 15
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -234,14 +234,19 @@
 			new /obj/item/clothing/suit/storage/marine/M3S(src)
 			new /obj/item/clothing/head/helmet/marine/scout(src)
 			new /obj/item/clothing/glasses/night/M4RA(src)
-			new /obj/item/ammo_magazine/rifle/marksman(src)
-			new /obj/item/ammo_magazine/rifle/marksman(src)
-			new /obj/item/ammo_magazine/rifle/marksman(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
 			new /obj/item/device/binoculars/tactical/scout(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/m41a/scoped(src)
+			new /obj/item/weapon/gun/rifle/m4ra(src)
 			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
 			new /obj/item/explosive/plastique(src)
 			new /obj/item/explosive/plastique(src)

@@ -208,14 +208,12 @@ WEAPONS
 /datum/supply_packs/gun/heavyweapons
 	contains = list(
 					/obj/item/weapon/gun/rifle/lmg,
-					/obj/item/weapon/gun/rifle/lmg,
 					/obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg
 					)
-	name = "LMG crate"
-	cost = 75
+	name = "M41AE2 HPR Crate (HPR x1, HPR ammo box x1)"
+	cost = 60
 	containertype = /obj/structure/closet/crate
-	containername = "\improper LMG crate"
+	containername = "\improper M41AE2 HPR crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/merc
@@ -944,18 +942,17 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_scout_regular
-	name = "M4RA Scout Ammo crate (Regular x6)"
+	name = "M4RA Scout Ammo crate (Regular x3, Incendiary x1, Impact x1)"
 	contains = list(
-					/obj/item/ammo_magazine/rifle/marksman,
-					/obj/item/ammo_magazine/rifle/marksman,
-					/obj/item/ammo_magazine/rifle/marksman,
-					/obj/item/ammo_magazine/rifle/marksman,
-					/obj/item/ammo_magazine/rifle/marksman,
-					/obj/item/ammo_magazine/rifle/marksman
+					/obj/item/ammo_magazine/rifle/m4ra,
+					/obj/item/ammo_magazine/rifle/m4ra,
+					/obj/item/ammo_magazine/rifle/m4ra,
+					/obj/item/ammo_magazine/rifle/m4ra/incendiary,
+					/obj/item/ammo_magazine/rifle/m4ra/impact,
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "regular scout ammo crate"
+	containername = "scout ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sniper_regular
@@ -1116,7 +1113,7 @@ AMMO
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/incendiary,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/ammo_magazine/rifle/m4ra,
 					/obj/item/ammo_magazine/rifle/lmg,
 					/obj/item/ammo_magazine/pistol,
 					/obj/item/ammo_magazine/pistol,
