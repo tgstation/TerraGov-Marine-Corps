@@ -134,11 +134,11 @@
 /obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
 	anchored = 1
-	name = "Pilot's Chair"
+	name = "pilot's chair"
 	desc = "A specially designed chair for pilots to sit in."
 
 /obj/structure/bed/chair/dropship/passenger
-	name = "Passenger Seat"
+	name = "passenger seat"
 	desc = "Holds you in place during high altitude drops."
 	icon_state = "shuttle_chair"
 	var/image/chairbar = null

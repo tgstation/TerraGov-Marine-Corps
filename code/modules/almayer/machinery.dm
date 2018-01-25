@@ -271,6 +271,12 @@
 
 /obj/machinery/power/apc/almayer
 	cell_type = /obj/item/cell/high
+
+/obj/machinery/power/apc/almayer/hardened
+	name = "hardened area power controller"
+	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
+	crash_break_probability = 0
+
 //------ Air Alarms -----//
 
 /obj/machinery/alarm/almayer
