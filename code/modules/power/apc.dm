@@ -55,6 +55,7 @@
 
 /obj/machinery/power/apc
 	name = "area power controller"
+	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/almayer.dmi'
 	icon_state = "apc0"
 	anchored = 1
@@ -105,6 +106,7 @@
 	var/update_overlay = -1
 	var/global/status_overlays = 0
 	var/updating_icon = 0
+	var/crash_break_probability = 85 //probability of APC being broken by a shuttle crash on the same z-level
 	var/global/list/status_overlays_lock
 	var/global/list/status_overlays_charging
 	var/global/list/status_overlays_equipment
@@ -156,7 +158,7 @@
 		area.apc |= src
 		opened = 1
 		operating = 0
-		name = "[area.name] APC"
+		name = "\improper [area.name] APC"
 		stat |= MAINT
 		src.update_icon()
 		spawn(5)
@@ -199,7 +201,7 @@
 		src.update()
 
 /obj/machinery/power/apc/examine(mob/user)
-	user << "A control terminal for the area electrical systems."
+	user << desc
 	if(stat & BROKEN)
 		user << "Looks broken."
 		return
