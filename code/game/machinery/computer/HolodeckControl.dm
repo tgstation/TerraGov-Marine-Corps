@@ -409,6 +409,8 @@ var/global/list/holodeck_programs = list(
 	anchored = 1
 	density = 1
 	throwpass = 1
+	var/side = ""
+	var/id = ""
 
 /obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/grab) && get_dist(src,user)<=1)
@@ -420,10 +422,18 @@ var/global/list/holodeck_programs = list(
 				return
 			M.forceMove(loc)
 			M.KnockDown(5)
+			for(var/obj/machinery/scoreboard/X in machines)
+				if(X.id == id)
+					X.score(side, 3)// 3 points for dunking a mob
+					// no break, to update multiple scoreboards
 			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
 		user.drop_inv_item_to_loc(W, loc)
+		for(var/obj/machinery/scoreboard/X in machines)
+			if(X.id == id)
+				X.score(side)
+				// no break, to update multiple scoreboards
 		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>")
 		return
 
@@ -434,6 +444,10 @@ var/global/list/holodeck_programs = list(
 			return
 		if(prob(50))
 			I.loc = src.loc
+			for(var/obj/machinery/scoreboard/X in machines)
+				if(X.id == id)
+					X.score(side)
+					// no break, to update multiple scoreboards
 			visible_message("\blue Swish! \the [I] lands in \the [src].", 3)
 		else
 			visible_message("\red \the [I] bounces off of \the [src]'s rim!", 3)
