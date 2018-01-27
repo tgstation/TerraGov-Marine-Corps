@@ -71,48 +71,68 @@
 	storage_capacity = (mob_size * 2) - 1
 	anchored = 0
 	drag_delay = 2 //slightly easier than to drag the body directly.
+	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
 
-	attackby(W as obj, mob/user as mob)
-		if (istype(W, /obj/item/tool/pen))
-			var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
-			if (user.get_active_hand() != W)
-				return
-			if (!in_range(src, user) && src.loc != user)
-				return
-			if (t)
-				src.name = "body bag - "
-				src.name += t
-				src.overlays += image(src.icon, "bodybag_label")
-			else
-				src.name = "body bag"
-		//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
+
+/obj/structure/closet/bodybag/attackby(obj/item/W, mob/user)
+	if (istype(W, /obj/item/tool/pen))
+		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
+		if (user.get_active_hand() != W)
 			return
-		else if(istype(W, /obj/item/tool/wirecutters))
-			user << "<span class='notice'>You cut the tag off the bodybag.</span>"
+		if (!in_range(src, user) && src.loc != user)
+			return
+		if (t)
+			src.name = "body bag - "
+			src.name += t
+			src.overlays += image(src.icon, "bodybag_label")
+		else
 			src.name = "body bag"
-			src.overlays.Cut()
-			return
-		else if(istype(W, /obj/item/weapon/zombie_claws))
-			open()
+	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
+		return
+	else if(istype(W, /obj/item/tool/wirecutters))
+		user << "<span class='notice'>You cut the tag off the bodybag.</span>"
+		src.name = "body bag"
+		src.overlays.Cut()
+		return
+	else if(istype(W, /obj/item/weapon/zombie_claws))
+		open()
 
 
-	close()
-		if(..())
-			density = 0
-			return 1
-		return 0
+/obj/structure/closet/bodybag/close()
+	if(..())
+		density = 0
+		return 1
+	return 0
 
 
-	MouseDrop(over_object, src_location, over_location)
-		..()
-		if(over_object == usr && Adjacent(usr))
-			if(!ishuman(usr))	return
-			if(opened)	return 0
-			if(contents.len)	return 0
-			visible_message("<span class='notice'>[usr] folds up [name].</span>")
-			var/obj/item/I = new item_path(get_turf(src), src)
-			usr.put_in_hands(I)
-			cdel(src)
+/obj/structure/closet/bodybag/MouseDrop(over_object, src_location, over_location)
+	..()
+	if(over_object == usr && Adjacent(usr) && !roller_buckled)
+		if(!ishuman(usr))	return
+		if(opened)	return 0
+		if(contents.len)	return 0
+		visible_message("<span class='notice'>[usr] folds up [name].</span>")
+		var/obj/item/I = new item_path(get_turf(src), src)
+		usr.put_in_hands(I)
+		cdel(src)
+
+
+
+/obj/structure/closet/bodybag/Move(NewLoc, direct)
+	if (roller_buckled && roller_buckled.loc != NewLoc) //not updating position
+		if (!roller_buckled.anchored)
+			return roller_buckled.Move(NewLoc, direct)
+		else
+			return 0
+	else
+		. = ..()
+
+
+/obj/structure/closet/bodybag/forceMove(atom/destination)
+	if(roller_buckled)
+		roller_buckled.unbuckle()
+	. = ..()
+
 
 
 /obj/structure/closet/bodybag/update_icon()

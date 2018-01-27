@@ -58,7 +58,7 @@
 
 	var/shuttle_status_message
 	if(shuttle.transit_gun_mission && (onboard || shuttle.moving_status != SHUTTLE_IDLE))
-		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FIRE MISSION. </span>"
+		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FLYBY. </span>"
 	else //console not onboard stays on TRANSPORT and only shows FIRE MISSION when shuttle has already launched
 		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #44ff44'>TRANSPORT. </span>"
 
@@ -186,7 +186,7 @@
 				usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
 				return
 			else
-				usr << "<span class='notice'>You upload a flight plan for a fire mission above the planet.</span>"
+				usr << "<span class='notice'>You upload a flight plan for a low altitude flyby above the planet.</span>"
 		else
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 
