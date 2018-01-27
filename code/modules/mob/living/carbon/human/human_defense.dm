@@ -273,7 +273,7 @@ OBSOLETE BITCH
 	if (I.damtype == BRUTE && !I.is_robot_module() && I.canremove)
 		var/damage = I.force
 		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
-		if (!armor && weapon_sharp && prob(3))
+		if (!armor && weapon_sharp && prob(3) && !isYautja(user)) // make yautja less likely to get their weapon stuck
 			affecting.embed(I)
 
 	return 1
