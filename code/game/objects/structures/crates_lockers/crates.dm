@@ -220,11 +220,6 @@
 		new /obj/item/reagent_container/spray/plantbgone(src)
 		new /obj/item/reagent_container/spray/plantbgone(src)
 		new /obj/item/tool/minihoe(src)
-//		new /obj/item/weedspray(src)
-//		new /obj/item/weedspray(src)
-//		new /obj/item/pestspray(src)
-//		new /obj/item/pestspray(src)
-//		new /obj/item/pestspray(src)
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"
@@ -384,3 +379,4 @@
 	density = 1
 	icon_opened = "miningcaropen"
 	icon_closed = "miningcar"
+
