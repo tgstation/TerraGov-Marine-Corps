@@ -420,15 +420,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		germ_level = 0
 		return
 
-	if(owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
+	if(owner.bodytemperature >= 170 && !owner.in_stasis)	//cryo stops germs from moving and doing their bad stuffs
 		//** Syncing germ levels with external wounds
 		handle_germ_sync()
 
-		//** Handle antibiotics and curing infections
-		handle_antibiotics()
-
 		//** Handle the effects of infections
 		handle_germ_effects()
+
+	//** Handle antibiotics and curing infections
+	handle_antibiotics()
 
 /datum/limb/proc/handle_germ_sync()
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
