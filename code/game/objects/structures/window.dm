@@ -444,6 +444,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = 1
+	flags_atom = FPRINT
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,
@@ -491,7 +492,6 @@
 	health = 100 //Was 600
 	reinf = 1
 	dir = 5
-	flags_atom = FPRINT
 	window_frame = /obj/structure/window_frame/almayer
 
 /obj/structure/window/framed/almayer/hull
