@@ -1401,6 +1401,7 @@
 #include "code\TriDimension\Structures.dm"
 #include "code\TriDimension\Structures_presets.dm"
 #include "code\TriDimension\Turfs.dm"
+#include "code\WorkInProgress\buildmode.dm"
 #include "code\WorkInProgress\periodic_news.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Jungle\falsewall.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Jungle\jungle.dm"

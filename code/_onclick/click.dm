@@ -38,6 +38,9 @@
 	if (user.next_move > world.time)
 		return
 
+	if(client.buildmode)
+		build_click(src, client.buildmode, params, A)
+		return
 
 	// Click handled elsewhere.
 	click_handled = user.click(A, mods)
