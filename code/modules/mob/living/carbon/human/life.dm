@@ -40,6 +40,11 @@
 					var/obj/location_as_object = loc
 					location_as_object.handle_internal_lifeform(src, 0)
 
+			// Moved this from /mob/living/carbon/Life()
+			// Increase germ_level regularly
+			if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
+				germ_level++
+
 			//Mutations and radiation
 			handle_mutations_and_radiation()
 

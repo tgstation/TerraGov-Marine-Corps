@@ -13,7 +13,6 @@
 
 
 /mob/living/carbon/Xenomorph/click(var/atom/A, var/list/mods)
-	..()
 
 	if (mods["middle"])
 		if (selected_ability && middle_mouse_toggle)
@@ -25,11 +24,14 @@
 			selected_ability.use_ability(A)
 			return 1
 
+	return ..()
 
-/mob/living/carbon/Xenomorph/Boiler/click(var/atom/A)
+
+/mob/living/carbon/Xenomorph/Boiler/click(var/atom/A, var/list/mods)
 	if(!istype(A,/obj/screen))
 		if(is_zoomed && !is_bombarding)
 			zoom_out()
+			return 1
 
 		if(is_bombarding)
 			if(isturf(A))
@@ -40,22 +42,41 @@
 				client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 			return 1
 
-	..()
-
-
-/mob/living/carbon/Xenomorph/Crusher/click(var/atom/A)
-	if(!istype(A,/obj/screen))
-		if(is_charging)
-			stop_momentum(charge_dir)
+	if (mods["middle"])
+		if (selected_ability && middle_mouse_toggle)
+			selected_ability.use_ability(A)
 			return 1
 
-	..()
+	if (mods["shift"])
+		if (selected_ability && !middle_mouse_toggle)
+			selected_ability.use_ability(A)
+			return 1
+
+	return ..()
+
+
+/mob/living/carbon/Xenomorph/Crusher/click(var/atom/A, var/list/mods)
+	if (!istype(A, /obj/screen))
+		if(is_charging)
+			stop_momentum(charge_dir)
+
+	if (mods["middle"])
+		if (selected_ability && middle_mouse_toggle)
+			selected_ability.use_ability(A)
+			return 1
+
+	if (mods["shift"])
+		if (selected_ability && !middle_mouse_toggle)
+			selected_ability.use_ability(A)
+			return 1
+
+	return ..()
 
 
 
 
 
-/mob/living/carbon/Xenomorph/Larva/UnarmedAttack(var/atom/A)
+/mob/living/carbon/Xenomorph/Larva/UnarmedAttack(var/atom/A, var/list/mods)
 	A.attack_larva(src)
 	next_move = world.time + (10 + attack_delay) //Adds some lag to the 'attack'
 
@@ -66,11 +87,19 @@
 
 
 /mob/living/carbon/Xenomorph/Queen/click(var/atom/A, var/list/mods)
-	if (..())
-		return 1
 
 	if (mods["ctrl"] && mods["middle"])
 		if(ovipositor)
 			if(isXeno(A) && A != src)
 				set_queen_overwatch(A)
 				return 1
+
+	if (mods["middle"])
+		if (selected_ability && middle_mouse_toggle)
+			selected_ability.use_ability(A)
+			return 1
+
+	if (mods["shift"])
+		if (selected_ability && !middle_mouse_toggle)
+			selected_ability.use_ability(A)
+			return 1

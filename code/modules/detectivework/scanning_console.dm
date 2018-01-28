@@ -9,7 +9,7 @@
 	var/obj/item/scanning
 	var/datum/data/record/forensic/current
 
-	var/list/filters = list()
+	var/list/filter_list = list()
 	var/list/current_list = list()
 
 	var/list/files = list()
@@ -90,50 +90,50 @@
 	for(var/id in files)
 		var/datum/data/record/forensic/cur = files[id]
 		var/add = 1
-		if(filters["name"])
+		if(filter_list["name"])
 			add = 0
-			for(var/filter in filters["name"])
+			for(var/filter in filter_list["name"])
 				if(findtext(cur.fields["name"], filter))
 					add = 1
 					break
 
-		if(filters["area"])
+		if(filter_list["area"])
 			add = 0
-			for(var/filter in filters["area"])
+			for(var/filter in filter_list["area"])
 				if(findtext(cur.fields["area"], filter))
 					add = 1
 					break
 
-		if(filters["fprints"])
+		if(filter_list["fprints"])
 			add = 0
 			var/list/prints = cur.fields["fprints"]
 			for(var/pid in prints)
 				var/print = prints[pid]
 				if (is_complete_print(print))
-					for(var/filter in filters["fprints"])
+					for(var/filter in filter_list["fprints"])
 						if(findtext(print, filter))
 							add = 1
 							break
 
-		if(filters["fibers"])
+		if(filter_list["fibers"])
 			add = 0
 			for(var/fiber in cur.fields["fibers"])
-				for(var/filter in filters["fibers"])
+				for(var/filter in filter_list["fibers"])
 					if(findtext(fiber, filter))
 						add = 1
 						break
 
-		if(filters["blood"])
+		if(filter_list["blood"])
 			add = 0
 			for(var/DNA in cur.fields["blood"])
-				for(var/filter in filters["blood"])
+				for(var/filter in filter_list["blood"])
 					if(findtext(DNA, filter))
 						add = 1
 						break
 
-		if(filters["label"])
+		if(filter_list["label"])
 			add = 0
-			for(var/filter in filters["label"])
+			for(var/filter in filter_list["label"])
 				if(cur.fields["label"] && findtext(cur.fields["label"], filter))
 					add = 1
 					break
@@ -163,7 +163,7 @@
 				var/list/filternames = list("Object"="name", "Area"="area", "Fingerprints"="fprints", "Fibers"="fibers", "DNA"="blood", "Label"="label")
 				for(var/filter in filternames)
 					var/fname = filternames[filter]
-					dat += "<br>[filter]: <a href='?src=\ref[src];operation=filter;filter=[fname]'>[filters[fname] ? list2text(filters[fname], ",") : "All"]</a>"
+					dat += "<br>[filter]: <a href='?src=\ref[src];operation=filter;filter=[fname]'>[filter_list[fname] ? list2text(filter_list[fname], ",") : "All"]</a>"
 
 				current_list = get_filtered_set()
 				dat+= "<br><hr><br>"
@@ -217,9 +217,9 @@
 		if("filter")
 			var/filterstr = stripped_input(usr,"Input the search criteria. Multiple values can be input, separated by a comma.", "Filter setting") as text|null
 			if(filterstr)
-				filters[href_list["filter"]] = text2list(filterstr,",")
+				filter_list[href_list["filter"]] = text2list(filterstr,",")
 			else
-				filters[href_list["filter"]] = null
+				filter_list[href_list["filter"]] = null
 		if("screen")
 			screen = href_list["screen"]
 		if("details")

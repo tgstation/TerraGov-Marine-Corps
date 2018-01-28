@@ -104,57 +104,50 @@
 	if(!blinded && hud_used)
 		flick("flash", hud_used.flash_icon)
 
-	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
-	switch (severity)
-		if (1.0)
-			b_loss += 500
-			if (!prob(getarmor(null, "bomb")))
+	switch(severity)
+		if(1)
+			b_loss += rand(400, 600)
+			if(!prob(getarmor(null, "bomb")))
 				gib()
 				return
 			else
 				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(target, 200, 4)
-			//return
-//				var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
-				//user.throw_at(target, 200, 4)
+		if(2)
+			b_loss += rand(50, 70)
+			f_loss += rand(50, 70)
 
-		if (2.0)
-			if (!shielded)
-				b_loss += 60
-
-			f_loss += 60
-
-			if (prob(getarmor(null, "bomb")))
+			if(prob(getarmor(null, "bomb")))
 				b_loss = b_loss/1.5
 				f_loss = f_loss/1.5
 
-			if (!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
 				ear_deaf += 120
-			if (prob(70) && !shielded)
+			if(prob(70))
 				KnockOut(10)
 
-		if(3.0)
-			b_loss += 30
-			if (prob(getarmor(null, "bomb")))
+		if(3)
+			b_loss += rand(50, 70)
+			if(prob(getarmor(null, "bomb")))
 				b_loss = b_loss/2
-			if (!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
-			if (prob(50) && !shielded)
+			if(prob(50))
 				KnockOut(10)
 
 	var/update = 0
 
-	// focus most of the blast on one organ
+	//Focus half the blast on one organ
 	var/datum/limb/take_blast = pick(limbs)
-	update |= take_blast.take_damage(b_loss * 0.9, f_loss * 0.9, used_weapon = "Explosive blast")
+	update |= take_blast.take_damage(b_loss * 0.5, f_loss * 0.5, used_weapon = "Explosive blast")
 
-	// distribute the remaining 10% on all limbs equally
-	b_loss *= 0.1
-	f_loss *= 0.1
+	//Distribute the remaining half all limbs equally
+	b_loss *= 0.5
+	f_loss *= 0.5
 
 	var/weapon_message = "Explosive Blast"
 

@@ -1,7 +1,6 @@
 
 // 1 decisecond click delay (above and beyond mob/next_move)
 /mob/var/next_click = 0
-/client/var/next_click	= 0 // Not really used anymore, needs to be removed.
 /*
 	client/Click is called every time a client clicks anywhere, it should never be overridden.
 
@@ -17,33 +16,38 @@
 */
 
 /client/Click(atom/A, location, control, params)
-	if (world.time <= next_click)
-		return
-
-	next_click = world.time + 2
-	do_click(A, location, control, params)
+	if (control)
+		return usr.do_click(A, location, params)
 
 
-/client/proc/do_click(atom/A, location, control, params)
+/mob/proc/do_click(atom/A, location, params)
 	// No .click macros allowed, no clicking on atoms with the NOINTERACT flag.
-	if (!control || (A.flags_atom & NOINTERACT))
+	if ((A.flags_atom & NOINTERACT))
 		return
 
-	var/mob/user = usr
+	if (world.time <= next_click)
+		//DEBUG: world << "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]"
+		return
+
+	next_click = world.time + 3
+	//DEBUG: world << "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]"
+	var/mob/user = src
 	var/list/mods = params2list(params)
 	var/click_handled = 0
 
-	// Time between clicks.
 	if (user.next_move > world.time)
 		return
 
+	if(client.buildmode)
+		build_click(src, client.buildmode, params, A)
+		return
 
 	// Click handled elsewhere.
 	click_handled = user.click(A, mods)
 	click_handled |= A.clicked(user, mods)
 
 	if (click_handled)
-		return
+		return 100
 
 	// Default click functions from here on.
 
@@ -52,15 +56,18 @@
 
 	user.face_atom(A)
 
+	if (next_move > world.time)
+		return
+
 	// Special type of click.
 	if (user.is_mob_restrained())
 		user.RestrainedClickOn(A)
-		return
+		return 100
 
 	// Throwing stuff.
 	if (user.in_throw_mode)
 		user.throw_item(A)
-		return
+		return 100
 
 	// Last thing clicked is tracked for something somewhere.
 	if(!istype(A,/obj/item/weapon/gun) && !isturf(A) && !istype(A,/obj/screen))
@@ -71,7 +78,7 @@
 	// Special gun mode stuff.
 	if(W == A)
 		user.mode()
-		return
+		return 100
 
 	// Don't allow doing anything else if inside a container of some sort, like a locker.
 	if (!isturf(user.loc))
@@ -89,14 +96,15 @@
 		else
 			user.UnarmedAttack(A, 1)
 
-		return
+		return 100
 
 	// If not standing next to the atom clicked.
 	if (W)
 		W.afterattack(A, user, 0, mods)
-		return
+		return 100
 
 	user.RangedAttack(A, mods)
+	return 100
 
 
 /*

@@ -74,7 +74,7 @@
 		O = H.get_limb(check_zone(zone_selected))
 		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-			O.droplimb(1, 0, 0)
+			O.droplimb(1)
 			return 1
 
 	return 0

@@ -142,24 +142,25 @@
 		for(var/obj/item/reagent_container/glass/G in beakers)
 			G.reagents.trans_to(src, G.reagents.total_volume)
 
-		if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
-			var/datum/effect_system/steam_spread/steam = new /datum/effect_system/steam_spread()
-			steam.set_up(10, 0, get_turf(src))
-			steam.attach(src)
-			steam.start()
+		if(!disposed) //the possible reactions didn't cdel src
+			if(reagents.total_volume) //The possible reactions didnt use up all reagents.
+				var/datum/effect_system/steam_spread/steam = new /datum/effect_system/steam_spread()
+				steam.set_up(10, 0, get_turf(src))
+				steam.attach(src)
+				steam.start()
 
-			for(var/atom/A in view(affected_area, src.loc))
-				if( A == src ) continue
-				src.reagents.reaction(A, 1, 10)
+				for(var/atom/A in view(affected_area, src.loc))
+					if( A == src ) continue
+					src.reagents.reaction(A, 1, 10)
 
-		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
-			var/mob/living/carbon/C = loc
-			C.drop_inv_item_on_ground(src)
-			C.throw_mode_off()
+			if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
+				var/mob/living/carbon/C = loc
+				C.drop_inv_item_on_ground(src)
+				C.throw_mode_off()
 
-		invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?
-		spawn(50)		   //To make sure all reagents can work
-			cdel(src)	   //correctly before deleting the grenade.
+			invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?
+			spawn(50)		   //To make sure all reagents can work
+				cdel(src)	   //correctly before deleting the grenade.
 
 
 /obj/item/explosive/grenade/chem_grenade/large

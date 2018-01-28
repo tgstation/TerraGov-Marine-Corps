@@ -288,6 +288,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
 	icon_state = "xarmor"
 	armor = list(melee = 95, bullet = 110, laser = 80, energy = 80, bomb = 75, bio = 20, rad = 20)
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	var/injections = 2
 	unacidable = 1

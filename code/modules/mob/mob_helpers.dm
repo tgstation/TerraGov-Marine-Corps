@@ -180,11 +180,13 @@ proc/isXenoSpitter(A)
 	return 0
 
 proc/isYautja(A)
-	if(istype(A,/mob/living/carbon/hellhound)) return 1 //They are always considered Yautja.
-	if(!ishuman(A) || !ismob(A)) return 0
-	if(!A:species) return 0
-	if(A:species.name != "Yautja") return 0
-	return 1
+	if(isHellhound(A))
+		return 1 //They are always considered Yautja.
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(H.species.name == "Yautja")
+			return 1
+	return 0
 
 proc/isHellhound(A)
 	if(istype(A, /mob/living/carbon/hellhound))

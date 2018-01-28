@@ -89,8 +89,12 @@
 	if( fexists(path) )
 		src << run( file(path) )
 	else
-		src << "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>"
-		return
+		var/pathyesteday = "data/logs/[time2text(world.realtime-400000,"YYYY/MM-Month/DD-Day")].log" // roughly 12 hours before this, should cover for most issues
+		if( fexists(pathyesteday) )
+			src << run( file(pathyesteday) )
+		else
+			src << "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]) or path([pathyesteday]).</font>"
+			return
 	feedback_add_details("admin_verb","VTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 

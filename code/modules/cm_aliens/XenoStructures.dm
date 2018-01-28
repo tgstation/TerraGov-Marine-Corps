@@ -147,12 +147,82 @@
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "Resin1"
-
-	density = 1
-	opacity = 1
 	anchored = 1
 	health = 200
 	unacidable = 1
+
+
+/obj/effect/alien/resin/proc/healthcheck()
+	if(health <= 0)
+		density = 0
+		cdel(src)
+
+/obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
+	health -= Proj.damage
+	..()
+	healthcheck()
+	return 1
+
+/obj/effect/alien/resin/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			health -= 500
+		if(2.0)
+			health -= (rand(140, 300))
+		if(3.0)
+			health -= (rand(50, 100))
+	healthcheck()
+	return
+
+/obj/effect/alien/resin/hitby(AM as mob|obj)
+	..()
+	if(istype(AM,/mob/living/carbon/Xenomorph))
+		return
+	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
+	"<span class='danger'>You hit \the [src].</span>")
+	var/tforce = 0
+	if(ismob(AM))
+		tforce = 10
+	else
+		tforce = AM:throwforce
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	health = max(0, health - tforce)
+	healthcheck()
+
+/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(isXenoLarva(M)) //Larvae can't do shit
+		return 0
+	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
+	"<span class='xenonotice'>You claw \the [src].</span>")
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	health -= (M.melee_damage_upper + 50) //Beef up the damage a bit
+	healthcheck()
+
+/obj/effect/alien/resin/attack_animal(mob/living/M as mob)
+	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
+	"<span class='danger'>You tear \the [name].</span>")
+	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	health -= 40
+	healthcheck()
+
+/obj/effect/alien/resin/attack_hand()
+	usr << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
+
+/obj/effect/alien/resin/attack_paw()
+	return attack_hand()
+
+/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
+	if(!(W.flags_atom & NOBLUDGEON))
+		var/damage = W.force
+		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+			damage /= 4
+		health -= damage
+		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		healthcheck()
+	return ..(W, user)
+
+
+
 
 /obj/effect/alien/resin/sticky
 	name = "sticky resin"
@@ -162,22 +232,21 @@
 	opacity = 0
 	health = 36
 	layer = RESIN_STRUCTURE_LAYER
+	var/slow_amt = 8
 
 	Crossed(atom/movable/AM)
+		. = ..()
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			H.next_move_slowdown += 8
+			H.next_move_slowdown += slow_amt
 
 // Praetorian Sticky Resin spit uses this.
 /obj/effect/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
 	health = 7
+	slow_amt = 4
 
-	Crossed(atom/movable/AM)
-		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			H.next_move_slowdown += 4
 
 //Carrier trap
 /obj/effect/alien/resin/trap
@@ -294,81 +363,6 @@
 	. = ..()
 
 
-/obj/effect/alien/resin/proc/healthcheck()
-	if(health <= 0)
-		density = 0
-		cdel(src)
-
-/obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
-	..()
-	healthcheck()
-	return 1
-
-/obj/effect/alien/resin/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			health -= 500
-		if(2.0)
-			health -= (rand(140, 300))
-		if(3.0)
-			health -= (rand(50, 100))
-	healthcheck()
-	return
-
-/obj/effect/alien/resin/hitby(AM as mob|obj)
-	..()
-	if(istype(AM,/mob/living/carbon/Xenomorph))
-		return
-	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
-	"<span class='danger'>You hit \the [src].</span>")
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 10
-	else
-		tforce = AM:throwforce
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	health = max(0, health - tforce)
-	healthcheck()
-
-/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
-		return 0
-	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
-	"<span class='xenonotice'>You claw \the [src].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	health -= (M.melee_damage_upper + 50) //Beef up the damage a bit
-	healthcheck()
-
-/obj/effect/alien/resin/attack_animal(mob/living/M as mob)
-	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
-	"<span class='danger'>You tear \the [name].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	health -= 40
-	healthcheck()
-
-/obj/effect/alien/resin/attack_hand()
-	usr << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
-
-/obj/effect/alien/resin/attack_paw()
-	return attack_hand()
-
-/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
-	if(!(W.flags_atom & NOBLUDGEON))
-		var/damage = W.force
-		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
-			damage /= 4
-		health -= damage
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-		healthcheck()
-	return ..(W, user)
-
-/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group)
-		return 0
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return !opacity
-	return !density
 
 //Resin Doors
 /obj/structure/mineral_door/resin

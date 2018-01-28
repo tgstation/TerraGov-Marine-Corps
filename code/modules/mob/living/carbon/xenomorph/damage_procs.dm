@@ -9,17 +9,17 @@
 		if(1)
 			switch(xeno_explosion_resistance)
 				if(3)
-					apply_damage(rand(200, 299), BRUTE)
+					apply_damage(rand(200, 300), BRUTE)
 					updatehealth()
 				if(2)
 					KnockDown(6)
-					apply_damage(rand(200, 299), BRUTE)
+					apply_damage(rand(200, 300), BRUTE)
 					updatehealth()
 				if(1)
 					if(prob(80))
 						KnockOut(2)
 					KnockDown(8)
-					apply_damage(rand(200, 299), BRUTE)
+					apply_damage(rand(200, 300), BRUTE)
 					updatehealth()
 				else
 					gib()
@@ -37,8 +37,8 @@
 						KnockOut(4)
 					KnockDown(12)
 
-			b_loss += rand(45, 55)
-			f_loss += rand(45, 65)
+			b_loss += rand(60, 75)
+			f_loss += rand(60, 75)
 
 		if(3)
 			switch(xeno_explosion_resistance)
@@ -55,8 +55,8 @@
 					if(!knocked_down)
 						KnockDown(rand(4, 6))
 
-			b_loss += rand(20, 40)
-			f_loss += rand(25, 50)
+			b_loss += rand(30, 45)
+			f_loss += rand(30, 45)
 
 	apply_damage(b_loss, BRUTE)
 	apply_damage(f_loss, BURN)

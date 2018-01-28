@@ -55,6 +55,7 @@
 
 /obj/machinery/power/apc
 	name = "area power controller"
+	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/almayer.dmi'
 	icon_state = "apc0"
 	anchored = 1
@@ -105,6 +106,7 @@
 	var/update_overlay = -1
 	var/global/status_overlays = 0
 	var/updating_icon = 0
+	var/crash_break_probability = 85 //probability of APC being broken by a shuttle crash on the same z-level
 	var/global/list/status_overlays_lock
 	var/global/list/status_overlays_charging
 	var/global/list/status_overlays_equipment
@@ -156,7 +158,7 @@
 		area.apc |= src
 		opened = 1
 		operating = 0
-		name = "[area.name] APC"
+		name = "\improper [area.name] APC"
 		stat |= MAINT
 		src.update_icon()
 		spawn(5)
@@ -199,7 +201,7 @@
 		src.update()
 
 /obj/machinery/power/apc/examine(mob/user)
-	user << "A control terminal for the area electrical systems."
+	user << desc
 	if(stat & BROKEN)
 		user << "Looks broken."
 		return
@@ -397,6 +399,7 @@
 	src.add_fingerprint(user)
 	if (istype(W, /obj/item/tool/crowbar) && opened)
 		if (has_electronics==1)
+			if(user.action_busy) return
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no idea how to deconstruct [src]...</span>"
 				return
@@ -405,7 +408,7 @@
 				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user << "You are trying to remove the power control board..." //lpeters - fixed grammar issues
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK) && has_electronics == 1)
 				has_electronics = 0
 				if((stat & BROKEN))
 					user.visible_message("\red [user.name] has broken the power control board inside [src.name]!",

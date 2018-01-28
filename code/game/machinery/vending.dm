@@ -173,7 +173,7 @@
 		if(src.panel_open)
 			attack_hand(user)
 		return
-	else if(istype(W, /obj/item/coin) && premium.len > 0)
+	else if(istype(W, /obj/item/coin))
 		if(user.drop_inv_item_to_loc(W, src))
 			coin = W
 			user << "\blue You insert the [W] into the [src]"

@@ -118,11 +118,11 @@ DEFINES in setup.dm, referenced here.
 
 /obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
 	if (mods["alt"])
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & GUN_UNUSUAL_DESIGN) return 1
+		if(flags_gun_features & (GUN_BURST_ON|GUN_BURST_FIRING)) return 1
 
 		if(!ishuman(user)) return 1
 
-		if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(user.loc))
+		if(user.is_mob_incapacitated() || !user.loc || !isturf(user.loc))
 			user << "Not right now."
 			return 1
 

@@ -136,16 +136,12 @@
 	"<span class='notice'>You start attaching \the [tool] where [target]'s [affected.display_name] used to be.</span>")
 
 /datum/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	var/obj/item/robot_parts/L = tool
 	user.visible_message("<span class='notice'>[user] has attached \the [tool] where [target]'s [affected.display_name] used to be.</span>",	\
 	"<span class='notice'>You have attached \the [tool] where [target]'s [affected.display_name] used to be.</span>")
 
 	//Update our dear victim to have a limb again
 	affected.robotize()
-	if(L.sabotaged)
-		affected.sabotaged = 1
-	else
-		affected.sabotaged = 0
+
 	target.update_body()
 	target.updatehealth()
 	target.UpdateDamageIcon()

@@ -1044,7 +1044,7 @@ client
 		if(EO.status & LIMB_DESTROYED)
 			usr << "Mob doesn't have that limb."
 			return
-		EO.droplimb(1,1,1)
+		EO.droplimb(1,1)
 
 
 	else if(href_list["fix_nano"])

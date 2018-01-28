@@ -18,8 +18,10 @@
 					/obj/item/storage/backpack/marine = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
 					/obj/item/storage/belt/marine = 10,
-					/obj/item/clothing/shoes/marine = 10,
-					/obj/item/clothing/under/marine = 10
+					/obj/item/clothing/shoes/marine = 20,
+					/obj/item/clothing/under/marine = 20,
+					/obj/item/clothing/suit/storage/marine = 20,
+					/obj/item/clothing/head/helmet/marine = 20
 					)
 
 	prices = list()
@@ -271,6 +273,12 @@
 
 /obj/machinery/power/apc/almayer
 	cell_type = /obj/item/cell/high
+
+/obj/machinery/power/apc/almayer/hardened
+	name = "hardened area power controller"
+	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
+	crash_break_probability = 0
+
 //------ Air Alarms -----//
 
 /obj/machinery/alarm/almayer
