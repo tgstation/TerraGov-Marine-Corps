@@ -239,7 +239,7 @@ obj/structure/bed/Dispose()
 			deploy_roller(user, target)
 
 /obj/item/roller/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/roller_holder))
+	if(istype(W,/obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
 		var/obj/item/roller_holder/RH = W
 		if(!RH.held)
 			user << "<span class='notice'>You collect the roller bed.</span>"

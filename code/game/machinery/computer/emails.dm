@@ -7,6 +7,7 @@
 	icon = 'icons/obj/almayer.dmi'
 	icon_state = "terminal1"
 	var/screen = 0
+	var/email_type = /datum/fluff_email/almayer //the type of emails this computer will show. e.g. USCM emails for the personal computers on the Almayer
 	var/list/email_list
 	var/selected_mail
 
@@ -14,7 +15,7 @@
 /obj/machinery/computer/emails/New()
 	..()
 	email_list = list()
-	var/list/L = typesof(/datum/fluff_email/almayer) - /datum/fluff_email/almayer
+	var/list/L = typesof(email_type) - email_type
 	var/email_amt = rand(2,4)
 	for(var/i=1 to email_amt)
 		var/path = pick_n_take(L)
