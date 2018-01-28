@@ -177,6 +177,7 @@
 	name = "Pilot Officer"
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_DABBLING
+	leadership = SKILL_LEAD_TRAINED
 
 
 /datum/skills/MP

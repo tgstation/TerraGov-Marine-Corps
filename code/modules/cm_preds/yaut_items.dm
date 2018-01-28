@@ -1060,7 +1060,7 @@
 	desc = "A huge, incredibly sharp double blade used for hunting dangerous prey. This weapon is commonly carried by Yautja who wish to disable and slice apart their foes.."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "predscythe"
-	item_state = "scythe0"
+	item_state = "scythe"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	sharp = IS_SHARP_ITEM_BIG
