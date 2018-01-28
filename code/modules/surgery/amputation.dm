@@ -32,7 +32,7 @@
 /datum/surgery_step/cut_limb/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] cuts off [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You cut off [target]'s [affected.display_name] with \the [tool].</span>")
-	affected.droplimb(1, 1, 1)
+	affected.droplimb(1, 1)
 	target.updatehealth()
 
 /datum/surgery_step/generic/cut_limb/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

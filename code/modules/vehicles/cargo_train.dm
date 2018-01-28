@@ -77,10 +77,6 @@
 	update_stats()
 
 
-/obj/vehicle/train/cargo/trolley/Bump(atom/Obstacle)
-	if(!lead)
-		return //so people can't knock others over by pushing a trolley around
-	..()
 
 //-------------------------------------------
 // Train procs

@@ -40,6 +40,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "candle[i][heat_source ? "_lit" : ""]"
 
 /obj/item/tool/candle/Dispose()
+	if(heat_source)
+		processing_objects.Remove(src)
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-CANDLE_LUM)
 	else
@@ -50,32 +52,34 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a blowtorch
-			light("\red [user] casually lights the [name] with [W].")
+			light("<span class ='notice'>[user] casually lights [src] with [W].</span>")
 	else if(W.heat_source > 400)
 		light()
 	else
 		return ..()
 
-/obj/item/tool/candle/proc/light(var/flavor_text = "\red [usr] lights the [name].")
+/obj/item/tool/candle/proc/light(flavor_text)
 	if(!heat_source)
 		heat_source = 1000
-		//src.damtype = "fire"
+		if(!flavor_text)
+			flavor_text = "<span class ='notice'>[usr] lights [src].</span>"
 		for(var/mob/O in viewers(usr, null))
 			O.show_message(flavor_text, 1)
 		SetLuminosity(CANDLE_LUM)
+		update_icon()
 		processing_objects.Add(src)
 
 /obj/item/tool/candle/process()
 	if(!heat_source)
+		processing_objects.Remove(src)
 		return
 	wax--
 	if(!wax)
 		new/obj/item/trash/candle(src.loc)
-		if(istype(src.loc, /mob))
-			src.dropped()
 		cdel(src)
+		return
 	update_icon()
-	if(istype(loc, /turf)) //start a fire if possible
+	if(isturf(loc)) //start a fire if possible
 		var/turf/T = loc
 		T.hotspot_expose(700, 5)
 
@@ -83,10 +87,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/tool/candle/attack_self(mob/user as mob)
 	if(heat_source)
 		heat_source = 0
-		heat_source = 0
 		update_icon()
 		SetLuminosity(0)
 		user.SetLuminosity(-CANDLE_LUM)
+		processing_objects.Remove(src)
 
 
 /obj/item/tool/candle/pickup(mob/user)
@@ -127,6 +131,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		location.hotspot_expose(700, 5)
 		return
 
+
+/obj/item/tool/match/Dispose()
+	if(heat_source)
+		processing_objects.Remove(src)
+	. = ..()
+
 /obj/item/tool/match/dropped(mob/user)
 	if(heat_source)
 		burn_out(user)
@@ -156,6 +166,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
 	processing_objects.Remove(src)
+
 /obj/item/tool/lighter/dropped(mob/user)
 	if(heat_source && src.loc != user)
 		user.SetLuminosity(-2)

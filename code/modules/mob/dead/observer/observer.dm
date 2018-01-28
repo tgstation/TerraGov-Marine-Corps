@@ -155,7 +155,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(response != "Ghost")	return	//didn't want to ghost after-all
 		resting = 1
 		var/turf/location = get_turf(src)
-		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		if(location) //to avoid runtime when a mob ends up in nullspace
+			message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(usr)] has ghosted.")
 		var/mob/dead/observer/ghost = ghostize(0)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost) //Could be null if no key
@@ -712,7 +713,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			L = X
 			break
 
-	if(!L || isnull( L ))
+	if(!L || L.disposed)
 		usr << "Not a valid mob!"
 		return
 

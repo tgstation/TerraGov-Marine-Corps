@@ -35,16 +35,6 @@
 			unattach()
 		return 0
 
-/obj/vehicle/train/Bump(atom/Obstacle)
-	if(!istype(Obstacle, /atom/movable))
-		return
-	var/atom/movable/A = Obstacle
-
-	if(!A.anchored)
-		var/turf/T = get_step(A, dir)
-		if(isturf(T))
-			A.Move(T)	//bump things away when hit
-
 //-------------------------------------------
 // Vehicle procs
 //-------------------------------------------

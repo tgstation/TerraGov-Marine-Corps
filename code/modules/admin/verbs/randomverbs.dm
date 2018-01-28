@@ -717,6 +717,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		src << "Only administrators may use this command."
 		return
 
+	if(O.disposed) return //mob was garbage collected
+
 	new_ckey = input("Enter new ckey:","CKey") as null|text
 
 	if(!new_ckey || new_ckey == null)

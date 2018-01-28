@@ -5,8 +5,8 @@
 			continue
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
-			// Override the current limb status and don't cause an explosion
-			E.droplimb(1,1)
+			// Override the current limb status
+			E.droplimb(1)
 
 	if(species)
 		hgibs(loc, viruses, dna, species.flesh_color, species.blood_color)
