@@ -399,6 +399,7 @@
 	src.add_fingerprint(user)
 	if (istype(W, /obj/item/tool/crowbar) && opened)
 		if (has_electronics==1)
+			if(user.action_busy) return
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You have no idea how to deconstruct [src]...</span>"
 				return
@@ -407,7 +408,7 @@
 				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user << "You are trying to remove the power control board..." //lpeters - fixed grammar issues
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK) && has_electronics == 1)
 				has_electronics = 0
 				if((stat & BROKEN))
 					user.visible_message("\red [user.name] has broken the power control board inside [src.name]!",

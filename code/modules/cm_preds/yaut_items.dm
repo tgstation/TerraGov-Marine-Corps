@@ -1090,7 +1090,7 @@
 				if(affecting)
 					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
 						user.visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-						affecting.droplimb(1,0,1) //the 0,1 is explode, and amputation. This amputates.
+						affecting.droplimb(1,1) //the second 1 is  amputation. This amputates.
 		else //Probably an alien
 			if(prob(14))
 				..() //Do it again! CRIT!

@@ -43,7 +43,6 @@
 	var/in_surgery_op = FALSE //whether someone is currently doing a surgery step to this limb
 	var/surgery_organ //name of the organ currently being surgically worked on (detach/remove/etc)
 
-	var/sabotaged = 0 // If a prosthetic limb is emagged, it will detonate when it fails.
 	var/encased       // Needs to be opened with a saw to access the organs.
 
 	var/obj/item/hidden = null
@@ -656,7 +655,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		O.setAmputatedTree()
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(override = 0,no_explode = 0,amputation=0)
+/datum/limb/proc/droplimb(override = 0, amputation = 0)
 	if(has_dropped_limb) return
 	if(override) status |= LIMB_DESTROYED
 	if(status & LIMB_DESTROYED)
@@ -676,7 +675,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			hidden = null
 
 		// If any organs are attached to this, destroy them
-		for(var/datum/limb/O in children) O.droplimb(1, no_explode, amputation)
+		for(var/datum/limb/O in children) O.droplimb(1, amputation)
 
 		//Replace all wounds on that arm with one wound on parent organ.
 		wounds.Cut()
@@ -731,19 +730,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.drop_inv_item_on_ground(owner.shoes)
 
 		has_dropped_limb = 1
-		//Robotic limbs explode if sabotaged.
-		if(status & LIMB_ROBOT && !no_explode && sabotaged)
-			owner.visible_message("<span class='danger'>[owner]'s [display_name] violently explodes!</span>",
-			"<span class='danger'>Your [display_name] explodes!</span>",
-			"<span class='warning'>You hear an explosion!</span>")
-			explosion(get_turf(owner),-1,-1,2,3)
-			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
-			spark_system.set_up(5, 0, owner)
-			spark_system.attach(owner)
-			spark_system.start()
-			spawn(10)
-				cdel(spark_system)
-				spark_system = null
 
 		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",

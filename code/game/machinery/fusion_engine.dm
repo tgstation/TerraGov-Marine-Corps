@@ -234,21 +234,22 @@
 			user << "The power gauge reads: [power_gen_percent]%"
 		if(fusion_cell)
 			user << "You can see a fuel cell in the receptacle."
+			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT)
+				switch(fusion_cell.fuel_amount)
+					if(0 to 10)
+						user << "<red>The Fuel cell is critically low.</red>"
+					if(11 to 25)
+						user << "<red>The fuel cell is running low.</red>"
+					if(26 to 50)
+						user << "The fuel cell is a little under halfway."
+					if(51 to 75)
+						user << "The fuel cell is a little above halfway."
+					if(76 to INFINITY)
+						user << "The fuel cell is nearly full."
 		else
 			user << "There is no fuel cell in the receptacle."
 
-		if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT)
-			switch(fusion_cell.fuel_amount)
-				if(0 to 10)
-					user << "<red>The Fuel cell is critically low.</red>"
-				if(11 to 25)
-					user << "<red>The fuel cell is running low.</red>"
-				if(26 to 50)
-					user << "The fuel cell is a little under halfway."
-				if(51 to 75)
-					user << "The fuel cell is a little above halfway."
-				if(76 to INFINITY)
-					user << "The fuel cell is nearly full."
+
 
 
 

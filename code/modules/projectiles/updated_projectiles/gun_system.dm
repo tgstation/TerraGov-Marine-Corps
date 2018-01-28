@@ -86,7 +86,7 @@
 		base_gun_icon = initial(icon_state)
 		attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 		if(current_mag)
-			if(spawn_empty && !ispath(current_mag, /obj/item/ammo_magazine/internal)) //Internal mags will still spawn, but they won't be filled.
+			if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 				current_mag = null
 				update_icon()
 			else
@@ -142,26 +142,25 @@
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()
-	if( !(flags_gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
+	var/dat = ""
+	if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
 
-		var/dat = ""
-		if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
-
-		if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-		if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-		if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
-		if(under)
-			dat += "It has \icon[under] [under.name]"
-			if(under.flags_attach_features & ATTACH_WEAPON)
-				dat += " ([under.current_rounds]/[under.max_rounds])"
-			dat += " mounted underneath.<br>"
+	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(under)
+		dat += "It has \icon[under] [under.name]"
+		if(under.flags_attach_features & ATTACH_WEAPON)
+			dat += " ([under.current_rounds]/[under.max_rounds])"
+		dat += " mounted underneath.<br>"
 
 
-		if(!istype(current_mag)) //Internal mags and the like have their own stuff set.
-			if(current_mag && current_mag.current_rounds > 0)
-				if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
-				else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
-			else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
+		if(current_mag && current_mag.current_rounds > 0)
+			if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
+			else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
+		else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+	if(dat)
 		user << dat
 
 /obj/item/weapon/gun/wield(var/mob/user)
