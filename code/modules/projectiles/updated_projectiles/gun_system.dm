@@ -247,7 +247,7 @@ This sets all the initial datum's stuff. The bullet does the rest.
 User can be passed as null, (a gun reloading itself for instance), so we need to watch for that constantly.
 */
 /obj/item/weapon/gun/proc/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features  || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG) ) return
+	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) return
 
 	if(!magazine || !istype(magazine))
 		user << "<span class='warning'>That's not a magazine!</span>"
@@ -303,7 +303,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && ((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))) return
+	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))) return
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
 		cock(user)
@@ -325,7 +325,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG
 /obj/item/weapon/gun/proc/cock(mob/user)
 
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) return
+	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) return
 	if(cock_cooldown > world.time) return
 
 	cock_cooldown = world.time + cock_delay
@@ -380,7 +380,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, flag, params)
 	if(flag)	return ..() //It's adjacent, is the user, or is on the user's person
 	if(!istype(A)) return
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	if(flags_gun_features & GUN_BURST_FIRING) return
 
 	if(user && user.client && user.gun_mode && !(A in target)) PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 	else															  Fire(A,user,params) //Otherwise, fire normally.
@@ -504,7 +504,7 @@ and you're good to go.
 
 	//Number of bullets based on burst. If an active attachable is shooting, bursting is always zero.
 	var/bullets_fired = 1
-	if(!check_for_attachment_fire && flags_gun_features & GUN_BURST_ON && burst_amount > 1)
+	if(!check_for_attachment_fire && (flags_gun_features & GUN_BURST_ON) && burst_amount > 1)
 		bullets_fired = burst_amount
 		flags_gun_features |= GUN_BURST_FIRING
 
@@ -658,7 +658,7 @@ and you're good to go.
 	Removed ishuman() check. There is no reason for it, as it just eats up more processing, and adding fingerprints during the fire cycle is silly.
 	Consequently, predators are able to fire while cloaked.
 	*/
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	if(flags_gun_features & GUN_BURST_FIRING) return
 	if(world.time < wield_time) return //We just put the gun up. Can't do it that fast
 	if(ismob(user)) //Could be an object firing the gun.
 		if(!user.IsAdvancedToolUser())

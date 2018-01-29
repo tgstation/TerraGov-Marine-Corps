@@ -118,7 +118,7 @@ DEFINES in setup.dm, referenced here.
 
 /obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
 	if (mods["alt"])
-		if(flags_gun_features & (GUN_BURST_ON|GUN_BURST_FIRING)) return 1
+		if(flags_gun_features & GUN_BURST_FIRING) return 1
 
 		if(!ishuman(user)) return 1
 
@@ -226,7 +226,7 @@ should be alright.
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	if(flags_gun_features & GUN_BURST_FIRING) return
 
 	if(istype(I,/obj/item/attachable))
 		if(check_inactive_hand(user)) attach_to_gun(user,I)
@@ -405,7 +405,7 @@ should be alright.
 		user << "<span class='warning'>You need a gun in your active hand to do that!</span>"
 		return
 
-	if((G.flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == G.flags_gun_features) return
+	if(G.flags_gun_features & GUN_BURST_FIRING) return
 
 	return G
 
