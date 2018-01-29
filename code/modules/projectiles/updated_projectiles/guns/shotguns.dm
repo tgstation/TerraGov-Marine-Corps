@@ -139,7 +139,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
 			user << "<span class='warning'>You can't use that to reload!</span>"
@@ -157,7 +157,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
 
 	unload(mob/user)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 		empty_chamber(user)
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()

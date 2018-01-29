@@ -113,7 +113,7 @@
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/burstfire_assembly)
 
-	flags_gun_features = GUN_SPECIALIST
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
 	gun_skill_category = GUN_SKILL_SPEC
 
 	New()
@@ -670,7 +670,7 @@
 		return 1
 
 	reload(mob/user, obj/item/ammo_magazine/rocket)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
 			user << "<span class='warning'>That's not going to fit!</span>"
