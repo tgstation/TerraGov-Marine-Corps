@@ -5,6 +5,7 @@
 	icon_state = "blank"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
+	matter = list("metal" = 500, "glass" = 0)
 	var/construction_time = 100
 	var/list/construction_cost = list("metal"=20000,"glass"=5000)
 	var/list/part = null

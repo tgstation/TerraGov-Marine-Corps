@@ -404,6 +404,6 @@
 	new /obj/item/clothing/shoes/combat(src)
 	new /obj/item/clothing/shoes/combat(src)
 	new /obj/item/clothing/suit/armor/vest(src)
-	new /obj/item/clothing/suit/armor/riot(src)
+	new /obj/item/clothing/suit/armor/vest(src)
 	new /obj/item/clothing/suit/armor/bulletproof(src)
 	new /obj/item/weapon/shield/riot(src)
