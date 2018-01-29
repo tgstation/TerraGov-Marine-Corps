@@ -376,6 +376,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	name = "self destruct control rod"
 	desc = "It is part of a complicated self-destruct sequence, but relatively simple to operate. Twist to arm or disarm."
 	icon_state = "rod"
+	layer = BELOW_OBJ_LAYER
 	var/activate_time
 
 	Dispose()
@@ -385,8 +386,13 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	lock_or_unlock(lock)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 25, 1)
 		..()
-		density = !density
-		if(lock) activate_time = null
+		if(lock)
+			activate_time = null
+			density = FALSE
+			layer = initial(layer)
+		else
+			density = TRUE
+			layer = ABOVE_OBJ_LAYER
 
 	attack_hand(mob/user)
 		if(..())
