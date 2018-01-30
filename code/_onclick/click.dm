@@ -16,98 +16,94 @@
 */
 
 /client/Click(atom/A, location, control, params)
-	if (control)
+	if (control)	// No .click macros allowed
 		return usr.do_click(A, location, params)
 
 
 /mob/proc/do_click(atom/A, location, params)
-	// No .click macros allowed, no clicking on atoms with the NOINTERACT flag.
+	// No clicking on atoms with the NOINTERACT flag
 	if ((A.flags_atom & NOINTERACT))
 		return
 
-	if (world.time <= next_click)
-		//DEBUG: world << "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]"
+	if (world.time <= next_click || world.time <= next_move)
+		//DEBUG: world << "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]"
 		return
 
 	next_click = world.time + 3
-	//DEBUG: world << "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]"
-	var/mob/user = src
+	//DEBUG: world << "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]     NEXT_MOVE: [next_move]"
+
 	var/list/mods = params2list(params)
 	var/click_handled = 0
 
-	if (user.next_move > world.time)
-		return
 
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
 
 	// Click handled elsewhere.
-	click_handled = user.click(A, mods)
-	click_handled |= A.clicked(user, mods)
+	click_handled = click(A, mods)
+	click_handled |= A.clicked(src, mods)
 
 	if (click_handled)
-		return 100
+		return
 
 	// Default click functions from here on.
 
-	if (user.is_mob_incapacitated(TRUE))
+	if (is_mob_incapacitated(TRUE))
 		return
 
-	user.face_atom(A)
-
-	if (next_move > world.time)
-		return
+	face_atom(A)
 
 	// Special type of click.
-	if (user.is_mob_restrained())
-		user.RestrainedClickOn(A)
-		return 100
+	if (is_mob_restrained())
+		RestrainedClickOn(A)
+		return
 
 	// Throwing stuff.
-	if (user.in_throw_mode)
-		user.throw_item(A)
-		return 100
+	if (in_throw_mode)
+		throw_item(A)
+		return
 
 	// Last thing clicked is tracked for something somewhere.
 	if(!istype(A,/obj/item/weapon/gun) && !isturf(A) && !istype(A,/obj/screen))
-		user.last_target_click = world.time
+		last_target_click = world.time
 
-	var/obj/item/W = user.get_active_hand()
+	var/obj/item/W = get_active_hand()
 
 	// Special gun mode stuff.
 	if(W == A)
-		user.mode()
-		return 100
-
-	// Don't allow doing anything else if inside a container of some sort, like a locker.
-	if (!isturf(user.loc))
+		mode()
 		return
 
+	// Don't allow doing anything else if inside a container of some sort, like a locker.
+	if (!isturf(loc))
+		return
+
+	next_move = world.time
 	// If standing next to the atom clicked.
-	if (A.Adjacent(user))
-		user.next_move += 6
+	if (A.Adjacent(src))
+		next_move += 6
 		if (W)
 			if (W.attack_speed)
-				user.next_move += W.attack_speed
+				next_move += W.attack_speed
 
-			if (!A.attackby(W, user) && A)
-				W.afterattack(A, user, 1, mods)
+			if (!A.attackby(W, src) && A)
+				W.afterattack(A, src, 1, mods)
 		else
-			user.UnarmedAttack(A, 1)
+			UnarmedAttack(A, 1)
 
-		return 100
+		return
 
 	// If not standing next to the atom clicked.
 	if (W)
-		W.afterattack(A, user, 0, mods)
-		return 100
+		W.afterattack(A, src, 0, mods)
+		return
 
-	user.RangedAttack(A, mods)
-	return 100
+	RangedAttack(A, mods)
+	return
 
 
-/*
+/*	OLD DESCRIPTION
 	Standard mob ClickOn()
 	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
 
