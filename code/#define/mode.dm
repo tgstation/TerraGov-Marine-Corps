@@ -2,6 +2,7 @@
 //Self destruct, nuke, and evacuation.
 #define EVACUATION_TIME_LOCK 36000
 #define DISTRESS_TIME_LOCK 3600
+#define SHUTTLE_TIME_LOCK 15000
 #define EVACUATION_AUTOMATIC_DEPARTURE 1800 //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
 #define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
 #define EVACUATION_STATUS_STANDING_BY 0
