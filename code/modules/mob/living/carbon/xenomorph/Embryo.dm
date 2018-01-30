@@ -98,7 +98,7 @@
 			else if(prob(1))
 				affected_mob << "<span class='warning'>Your muscles ache.</span>"
 				if(prob(20))
-					affected_mob.take_organ_damage(1)
+					affected_mob.take_limb_damage(1)
 			else if(prob(2))
 				affected_mob.emote("[pick("sneeze", "cough")]")
 		if(4)
@@ -108,7 +108,7 @@
 												 "<span class='danger'>You start shaking uncontrollably!</span>")
 					affected_mob.KnockOut(10)
 					affected_mob.make_jittery(105)
-					affected_mob.take_organ_damage(1)
+					affected_mob.take_limb_damage(1)
 			if(prob(2))
 				affected_mob << "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>"
 		if(5)
@@ -161,10 +161,17 @@
 								 "<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.make_jittery(300)
 	sleep(30)
-	if(!victim || !victim.loc || loc != victim) return//host could've been deleted, or we could've been removed from host.
+	if(!victim || !victim.loc) return//host could've been deleted, or we could've been removed from host.
+	if(loc != victim)
+		victim.chestburst = 0
+		return
 	victim.update_burst()
 	sleep(6) //Sprite delay
-	if(!victim || !victim.loc || loc != victim) return
+	if(!victim || !victim.loc) return
+	if(loc != victim)
+		victim.chestburst = 0 //if a doc removes the larva during the sleep(6), we must remove the 'bursting' overlay on the human
+		victim.update_burst()
+		return
 
 	if(isYautja(victim)) victim.emote("roar")
 	else victim.emote("scream")

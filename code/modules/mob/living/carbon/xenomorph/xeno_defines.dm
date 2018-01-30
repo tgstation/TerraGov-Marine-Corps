@@ -1,4 +1,3 @@
-
 /mob/living/carbon/Xenomorph
 	var/dead_icon = "Drone Dead"
 	var/language = "Xenomorph"
@@ -89,3 +88,19 @@
 	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
 	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
+
+	//Old crusher specific vars, moved here so the Queen can use charge, and potential future Xenos
+	var/charge_dir = 0 //Stores initial charge dir to immediately cut out any direction change shenanigans
+	var/charge_timer = 0 //Has a small charge window. has to keep moving to build speed.
+	var/turf/lastturf = null
+	var/noise_timer = 0 // Makes a mech footstep, but only every 3 turfs.
+	var/has_moved = 0
+	var/is_charging = 0 //Will the mob charge when moving ? You need the charge verb to change this
+	var/last_charge_move = 0 //Time of the last time the Crusher moved while charging. If it's too far apart, the charge is broken
+
+	//New variables for how charges work, max speed, speed buildup, all that jazz
+	var/charge_speed = 0 //Modifier on base move delay as charge builds up
+	var/charge_speed_max = 2.1 //Can only gain this much speed before capping
+	var/charge_speed_buildup = 0.15 //POSITIVE amount of speed built up during a charge each step
+	var/charge_turfs_to_charge = 5 //Amount of turfs to build up before a charge begins
+	var/charge_roar = 0 //Did we roar in our charge yet ?

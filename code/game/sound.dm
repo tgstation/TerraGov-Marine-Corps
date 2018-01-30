@@ -126,7 +126,7 @@
 #define SOUND_PLAY_HISS pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
 #define SOUND_PLAY_PAGE pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 #define SOUND_PLAY_QUEEN pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
-#define SOUND_PLAY_SCREAM_MALE pick('sound/voice/human_scream_male_1.ogg','sound/voice/human_scream_male_2.ogg','sound/voice/human_scream_male_3.ogg','sound/voice/human_scream_male_4.ogg','sound/voice/human_scream_male_5.ogg')
+#define SOUND_PLAY_SCREAM_MALE pick('sound/voice/human_scream_male_1.ogg','sound/voice/human_scream_male_2.ogg','sound/voice/human_scream_male_3.ogg','sound/voice/human_scream_male_4.ogg',5;'sound/voice/human_scream_male_5.ogg')
 #define SOUND_PLAY_SCREAM_FEMALE pick('sound/voice/human_scream_female_1.ogg','sound/voice/human_scream_female_2.ogg','sound/voice/human_scream_female_3.ogg','sound/voice/human_scream_female_4.ogg','sound/voice/human_scream_female_5.ogg')
 #define SOUND_PLAY_BALLISTIC_HIT pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact1.ogg')
 #define SOUND_PLAY_BALLISTIC_ARMOR pick('sound/bullets/bullet_armor1.ogg','sound/bullets/bullet_armor2.ogg','sound/bullets/bullet_armor3.ogg','sound/bullets/bullet_armor4.ogg')

@@ -149,7 +149,6 @@
 				log_game("[key_name(usr)] has called for an emergency evacuation.")
 				message_admins("[key_name_admin(usr)] has called for an emergency evacuation.", 1)
 				post_status("shuttle")
-				set_security_level(SEC_LEVEL_DELTA)
 				r_TRU
 
 			state = STATE_EVACUATION
@@ -165,7 +164,6 @@
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
 				message_admins("[key_name_admin(usr)] has canceled the emergency evacuation.", 1)
-				set_security_level(SEC_LEVEL_RED)
 				r_TRU
 
 			state = STATE_EVACUATION_CANCEL

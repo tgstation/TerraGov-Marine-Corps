@@ -32,7 +32,7 @@
 	var/type_of_casings = null					//Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
 
 	//Basic stats.
-	var/accuracy 		= 0						//Miltiplier. Increased and decreased through attachments. Multiplies the damage by this number.
+	var/accuracy 		= 0						//Miltiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage 			= 0						//Same as above.
 	var/recoil 			= 0						//Screen shake when the weapon is fired.
 	var/scatter			= 0						//How much the bullet scatters when fired.
@@ -69,7 +69,7 @@
 	flags_atom 			 = FPRINT|CONDUCT
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	var/gun_skill_category = GUN_SKILL_FIREARMS //used to know which job knowledge this gun is linked to
+	var/gun_skill_category //used to know which job knowledge this gun is linked to
 
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
@@ -86,7 +86,7 @@
 		base_gun_icon = initial(icon_state)
 		attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 		if(current_mag)
-			if(spawn_empty && !ispath(current_mag, /obj/item/ammo_magazine/internal)) //Internal mags will still spawn, but they won't be filled.
+			if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 				current_mag = null
 				update_icon()
 			else
@@ -142,26 +142,25 @@
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()
-	if( !(flags_gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
+	var/dat = ""
+	if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
 
-		var/dat = ""
-		if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
-
-		if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-		if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-		if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
-		if(under)
-			dat += "It has \icon[under] [under.name]"
-			if(under.flags_attach_features & ATTACH_WEAPON)
-				dat += " ([under.current_rounds]/[under.max_rounds])"
-			dat += " mounted underneath.<br>"
+	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(under)
+		dat += "It has \icon[under] [under.name]"
+		if(under.flags_attach_features & ATTACH_WEAPON)
+			dat += " ([under.current_rounds]/[under.max_rounds])"
+		dat += " mounted underneath.<br>"
 
 
-		if(!istype(current_mag)) //Internal mags and the like have their own stuff set.
-			if(current_mag && current_mag.current_rounds > 0)
-				if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
-				else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
-			else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
+		if(current_mag && current_mag.current_rounds > 0)
+			if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
+			else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
+		else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+	if(dat)
 		user << dat
 
 /obj/item/weapon/gun/wield(var/mob/user)
@@ -188,8 +187,26 @@
 	place_offhand(user, initial(name))
 	wield_time = world.time + wield_delay
 	//slower or faster wield delay depending on skill.
-	if(user.mind && user.mind.skills_list && user.mind.skills_list[gun_skill_category])
-		wield_time -= 2*user.mind.skills_list[gun_skill_category]
+	if(user.mind && user.mind.cm_skills)
+		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+			wield_time += 3
+		else
+			var/skill_value = 0
+			switch(gun_skill_category)
+				if(GUN_SKILL_PISTOLS)
+					skill_value = user.mind.cm_skills.pistols
+				if(GUN_SKILL_SMGS)
+					skill_value = user.mind.cm_skills.smgs
+				if(GUN_SKILL_RIFLES)
+					skill_value = user.mind.cm_skills.rifles
+				if(GUN_SKILL_SHOTGUNS)
+					skill_value = user.mind.cm_skills.shotguns
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					skill_value = user.mind.cm_skills.heavy_weapons
+				if(GUN_SKILL_SMARTGUN)
+					skill_value = user.mind.cm_skills.smartgun
+			if(skill_value)
+				wield_time -= 2*skill_value
 	return 1
 
 /obj/item/weapon/gun/unwield(var/mob/user)
@@ -230,7 +247,7 @@ This sets all the initial datum's stuff. The bullet does the rest.
 User can be passed as null, (a gun reloading itself for instance), so we need to watch for that constantly.
 */
 /obj/item/weapon/gun/proc/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features  || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG) ) return
+	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) return
 
 	if(!magazine || !istype(magazine))
 		user << "<span class='warning'>That's not a magazine!</span>"
@@ -286,7 +303,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && ((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))) return
+	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))) return
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
 		cock(user)
@@ -308,7 +325,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG
 /obj/item/weapon/gun/proc/cock(mob/user)
 
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) return
+	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) return
 	if(cock_cooldown > world.time) return
 
 	cock_cooldown = world.time + cock_delay
@@ -363,7 +380,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, flag, params)
 	if(flag)	return ..() //It's adjacent, is the user, or is on the user's person
 	if(!istype(A)) return
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	if(flags_gun_features & GUN_BURST_FIRING) return
 
 	if(user && user.client && user.gun_mode && !(A in target)) PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 	else															  Fire(A,user,params) //Otherwise, fire normally.
@@ -487,7 +504,7 @@ and you're good to go.
 
 	//Number of bullets based on burst. If an active attachable is shooting, bursting is always zero.
 	var/bullets_fired = 1
-	if(!check_for_attachment_fire && flags_gun_features & GUN_BURST_ON && burst_amount > 1)
+	if(!check_for_attachment_fire && (flags_gun_features & GUN_BURST_ON) && burst_amount > 1)
 		bullets_fired = burst_amount
 		flags_gun_features |= GUN_BURST_FIRING
 
@@ -641,7 +658,7 @@ and you're good to go.
 	Removed ishuman() check. There is no reason for it, as it just eats up more processing, and adding fingerprints during the fire cycle is silly.
 	Consequently, predators are able to fire while cloaked.
 	*/
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	if(flags_gun_features & GUN_BURST_FIRING) return
 	if(world.time < wield_time) return //We just put the gun up. Can't do it that fast
 	if(ismob(user)) //Could be an object firing the gun.
 		if(!user.IsAdvancedToolUser())
@@ -672,11 +689,23 @@ and you're good to go.
 		//Can also set last_fired through New(), but honestly there's not much point to it.
 
 		var/added_delay = fire_delay
-		if(active_attachable && active_attachable.attachment_firing_delay)
-			added_delay = active_attachable.attachment_firing_delay
-		if(user && user.mind && user.mind.skills_list && user.mind.skills_list[gun_skill_category] < 0) //no training for such weapon
-			added_delay += config.low_fire_delay //untrained humans fire more slowly.
-		if(world.time >= last_fired + max(0, added_delay) + extra_delay) //check the last time it was fired.
+		if(active_attachable)
+			if(active_attachable.attachment_firing_delay)
+				added_delay = active_attachable.attachment_firing_delay
+		else
+			if(user && user.mind && user.mind.cm_skills)
+				if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+					added_delay += config.low_fire_delay //untrained humans fire more slowly.
+				else
+					switch(gun_skill_category)
+						if(GUN_SKILL_HEAVY_WEAPONS)
+							if(fire_delay > 10) //long delay to fire
+								added_delay = max(fire_delay - 3*user.mind.cm_skills.heavy_weapons, 6)
+						if(GUN_SKILL_SMARTGUN)
+							if(user.mind.cm_skills.smartgun < 0)
+								added_delay += 2*user.mind.cm_skills.smartgun
+
+		if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
 			extra_delay = 0
 			last_fired = world.time
 		else
@@ -698,13 +727,30 @@ and you're good to go.
 
 	var/gun_accuracy = accuracy
 
-	if(user && user.mind && user.mind.skills_list)
-		var/acc_tweak = user.mind.skills_list[gun_skill_category]
-		if(acc_tweak)
-			gun_accuracy = accuracy + acc_tweak*config.low_hit_accuracy_mult //accuracy increase/decrease per level is equal to attaching/removing a red dot sight.
+	// Apply any skill-based bonuses to accuracy
+	if(user && user.mind && user.mind.cm_skills)
+		var/skill_accuracy = 0
+		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+			skill_accuracy = -1
+		else
+			switch(gun_skill_category)
+				if(GUN_SKILL_PISTOLS)
+					skill_accuracy = user.mind.cm_skills.pistols
+				if(GUN_SKILL_SMGS)
+					skill_accuracy = user.mind.cm_skills.smgs
+				if(GUN_SKILL_RIFLES)
+					skill_accuracy = user.mind.cm_skills.rifles
+				if(GUN_SKILL_SHOTGUNS)
+					skill_accuracy = user.mind.cm_skills.shotguns
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					skill_accuracy = user.mind.cm_skills.heavy_weapons
+				if(GUN_SKILL_SMARTGUN)
+					skill_accuracy = user.mind.cm_skills.smartgun
+		if(skill_accuracy)
+			gun_accuracy = accuracy + skill_accuracy * config.low_hit_accuracy_mult // Accuracy increase/decrease per level is equal to attaching/removing a red dot sight
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy) //We're going to throw in the gun's accuracy.
-	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.
+	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 		// Apply gun damage multiplier to projectile damage
 	projectile_to_fire.shot_from = src
 
 	if(user) //The gun only messages when fired by a user.
@@ -741,10 +787,27 @@ and you're good to go.
 	if(total_scatter_chance > 0 && ( prob(5) || (flags_gun_features & GUN_BURST_ON && burst_amount > 1) ) ) //Only 5% chance to scatter, and then still unlikely on single fire.
 		total_scatter_chance += (burst_amount * 3) //Much higher chance on a burst.
 
-		if(user && user.mind && user.mind.skills_list)
-			var/scatter_tweak = user.mind.skills_list[gun_skill_category]
-			if(scatter_tweak)
-				total_scatter_chance -= scatter_tweak*config.low_scatter_value
+		if(user && user.mind && user.mind.cm_skills)
+
+			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+				total_scatter_chance += config.low_scatter_value
+			else
+				var/scatter_tweak = 0
+				switch(gun_skill_category)
+					if(GUN_SKILL_PISTOLS)
+						scatter_tweak = user.mind.cm_skills.pistols
+					if(GUN_SKILL_SMGS)
+						scatter_tweak = user.mind.cm_skills.smgs
+					if(GUN_SKILL_RIFLES)
+						scatter_tweak = user.mind.cm_skills.rifles
+					if(GUN_SKILL_SHOTGUNS)
+						scatter_tweak = user.mind.cm_skills.shotguns
+					if(GUN_SKILL_HEAVY_WEAPONS)
+						scatter_tweak = user.mind.cm_skills.heavy_weapons
+					if(GUN_SKILL_SMARTGUN)
+						scatter_tweak = user.mind.cm_skills.smartgun
+				if(scatter_tweak)
+					total_scatter_chance -= scatter_tweak*config.low_scatter_value
 
 		if(prob(total_scatter_chance)) //Scattered!
 			var/scatter_x = rand(-1,1)
@@ -756,10 +819,28 @@ and you're good to go.
 	return target
 
 /obj/item/weapon/gun/proc/simulate_recoil(total_recoil = 0, mob/user, atom/target)
-	if(user && user.mind && user.mind.skills_list)
-		var/recoil_tweak = user.mind.skills_list[gun_skill_category]
-		if(recoil_tweak)
-			total_recoil -= recoil_tweak*config.min_recoil_value
+	if(user && user.mind && user.mind.cm_skills)
+
+		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+			total_recoil += config.min_recoil_value
+		else
+			var/recoil_tweak
+			switch(gun_skill_category)
+				if(GUN_SKILL_PISTOLS)
+					recoil_tweak = user.mind.cm_skills.pistols
+				if(GUN_SKILL_SMGS)
+					recoil_tweak = user.mind.cm_skills.smgs
+				if(GUN_SKILL_RIFLES)
+					recoil_tweak = user.mind.cm_skills.rifles
+				if(GUN_SKILL_SHOTGUNS)
+					recoil_tweak = user.mind.cm_skills.shotguns
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					recoil_tweak = user.mind.cm_skills.heavy_weapons
+				if(GUN_SKILL_SMARTGUN)
+					recoil_tweak = user.mind.cm_skills.smartgun
+
+			if(recoil_tweak)
+				total_recoil -= recoil_tweak*config.min_recoil_value
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return 1

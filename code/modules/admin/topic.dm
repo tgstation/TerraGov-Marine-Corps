@@ -1197,7 +1197,9 @@
 			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
 			if(H.mind)
 				H.mind.transfer_to(M)
-				H.mind.skills_list = null //no skill restriction
+				if(M.mind.cm_skills)
+					cdel(M.mind.cm_skills)
+				M.mind.cm_skills = null //no skill restriction
 			else
 				M.key = H.key
 				if(M.client) M.client.view = world.view
@@ -1857,6 +1859,24 @@
 				log_admin("[key_name(usr)] powered all SMESs", 1)
 				message_admins("\blue [key_name_admin(usr)] powered all SMESs", 1)
 				power_restore_quick()
+			if("gethumans")
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","GH")
+				log_admin("[key_name(usr)] mass-teleported all humans.", 1)
+				message_admins("\blue [key_name_admin(usr)] mass-teleported all humans.", 1)
+				get_all_humans()
+			if("getxenos")
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","GX")
+				log_admin("[key_name(usr)] mass-teleported all Xenos.", 1)
+				message_admins("\blue [key_name_admin(usr)] mass-teleported all Xenos.", 1)
+				get_all_xenos()
+			if("getall")
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","GA")
+				log_admin("[key_name(usr)] mass-teleported everyone.", 1)
+				message_admins("\blue [key_name_admin(usr)] mass-teleported everyone.", 1)
+				get_all()
 		if(usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsfun"]]")
 

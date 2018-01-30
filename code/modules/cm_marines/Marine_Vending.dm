@@ -135,7 +135,6 @@
 					/obj/item/weapon/gun/smg/m39/elite = 0,
 					/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 					/obj/item/weapon/gun/rifle/m41a = 10,
-					/obj/item/weapon/gun/rifle/m41a/scoped = 0,
 					/obj/item/weapon/gun/rifle/m41a/elite = 0,
 					/obj/item/weapon/gun/rifle/lmg = 0,
 					/obj/item/weapon/gun/shotgun/pump = 5,
@@ -204,7 +203,7 @@
 					/obj/item/ammo_magazine/rifle/extended = 1,
 					/obj/item/ammo_magazine/rifle/incendiary = 1,
 					/obj/item/ammo_magazine/rifle/ap = 10,
-					/obj/item/ammo_magazine/rifle/marksman = 1,
+					/obj/item/ammo_magazine/rifle/m4ra = 1,
 					/obj/item/ammo_magazine/rifle/m41aMK1 = 0,
 					/obj/item/ammo_magazine/rifle/lmg = 0,
 					/obj/item/ammo_magazine/shotgun = 5,
@@ -432,7 +431,7 @@
 						/obj/item/explosive/grenade/incendiary = 2,
 //						/obj/item/weapon/gun/flamer = 1,
 //						/obj/item/tank/phoron/m240 = 3,
-						/obj/item/weapon/shield/riot = 1,
+						///obj/item/weapon/shield/riot = 1,
 						/obj/item/storage/pouch/magazine/large = 1,
 						/obj/item/storage/pouch/general/medium = 1
 			)
@@ -463,7 +462,7 @@
 						/obj/item/storage/pouch/general/medium = 1
 			)
 	contraband = list()
-	premium = list(/obj/item/weapon/shield/riot = 1)	//NOTE: This needs to be re-worked so we don't have to have a riot shield in here at all. ~Bmc777
+	//premium = list(/obj/item/weapon/shield/riot = 1)	//NOTE: This needs to be re-worked so we don't have to have a riot shield in here at all. ~Bmc777
 	shared = list(
 					/obj/item/storage/box/demolitionist = 1,
 					/obj/item/storage/box/heavy_grenadier = 1,

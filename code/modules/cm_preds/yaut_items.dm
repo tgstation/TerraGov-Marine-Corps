@@ -508,7 +508,7 @@
 	proc/explodey(var/mob/living/carbon/victim)
 		set waitfor = 0
 		exploding = 1
-		playsound(src.loc,'sound/effects/pred_countdown.ogg', 40, 0)
+		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0, 15, 10)
 		sleep(rand(65,85))
 		var/turf/T = get_turf(victim)
 		if(istype(T) && exploding)
@@ -1060,7 +1060,7 @@
 	desc = "A huge, incredibly sharp double blade used for hunting dangerous prey. This weapon is commonly carried by Yautja who wish to disable and slice apart their foes.."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "predscythe"
-	item_state = "scythe0"
+	item_state = "scythe"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	sharp = IS_SHARP_ITEM_BIG
@@ -1090,7 +1090,7 @@
 				if(affecting)
 					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
 						user.visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-						affecting.droplimb(1,0,1) //the 0,1 is explode, and amputation. This amputates.
+						affecting.droplimb(1,1) //the second 1 is  amputation. This amputates.
 		else //Probably an alien
 			if(prob(14))
 				..() //Do it again! CRIT!

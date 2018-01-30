@@ -295,11 +295,27 @@
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
 	var/turf/sploded
-	for(var/j=0; j<5; j++)
-		sploded = locate(T_trg.x + rand(-5, 10), T_trg.y + rand(-5, 10), T_trg.z)
+	for(var/j=0; j<10; j++)
+		sploded = locate(T_trg.x + rand(-25, 30), T_trg.y + rand(-25, 30), T_trg.z)
 		//Fucking. Kaboom.
-		explosion(sploded, 0, 0, 6, 0)
+		explosion(sploded, 0, 0, 10, 0)
 		sleep(3)
+
+	for(var/mob/living/carbon/M in mob_list) //knock down mobs
+		if(M.z != T_trg.z) continue
+		if(M.buckled)
+			M << "\red You are jolted against [M.buckled]!"
+			shake_camera(M, 3, 1)
+		else
+			M << "\red The floor jolts under your feet!"
+			shake_camera(M, 10, 1)
+			M.KnockDown(3)
+
+	for(var/obj/machinery/power/apc/A in machines) //break APCs
+		if(A.z != T_trg.z) continue
+		if(prob(A.crash_break_probability))
+			A.overload_lighting()
+			A.set_broken()
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 

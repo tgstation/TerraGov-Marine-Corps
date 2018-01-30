@@ -1,13 +1,13 @@
 /mob/living/carbon/Life()
 	..()
 
-	// Increase germ_level regularly
-	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
-		germ_level++
-
 	handle_fire() //Check if we're on fire
 
 
+/mob/living/carbon/Dispose()
+	for(var/datum/disease/virus in viruses)
+		virus.cure()
+	. = ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -41,7 +41,7 @@
 						H.UpdateDamageIcon()
 				H.updatehealth()
 			else
-				src.take_organ_damage(d)
+				src.take_limb_damage(d)
 			for(var/mob/M in viewers(user, null))
 				if(M.client)
 					M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)

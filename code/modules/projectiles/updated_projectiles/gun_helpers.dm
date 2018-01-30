@@ -116,21 +116,23 @@ DEFINES in setup.dm, referenced here.
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/AltClick(mob/user)
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & GUN_UNUSUAL_DESIGN) return
+/obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
+	if (mods["alt"])
+		if(flags_gun_features & GUN_BURST_FIRING) return 1
 
-	if(!ishuman(user)) return
+		if(!ishuman(user)) return 1
 
-	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(user.loc))
-		user << "Not right now."
-		return
+		if(user.is_mob_incapacitated() || !user.loc || !isturf(user.loc))
+			user << "Not right now."
+			return 1
 
-	if(!(src in user)) return //No telekinetic toggling.
+		if(!(src in user)) return 1 //No telekinetic toggling.
 
-	user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
-	playsound(user, 'sound/machines/click.ogg', 15, 1)
-	flags_gun_features ^= GUN_TRIGGER_SAFETY
-	return
+		user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
+		playsound(user, 'sound/machines/click.ogg', 15, 1)
+		flags_gun_features ^= GUN_TRIGGER_SAFETY
+		return 1
+	return (..())
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
@@ -224,7 +226,7 @@ should be alright.
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
-	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+	if(flags_gun_features & GUN_BURST_FIRING) return
 
 	if(istype(I,/obj/item/attachable))
 		if(check_inactive_hand(user)) attach_to_gun(user,I)
@@ -250,7 +252,7 @@ should be alright.
 			user << "<span class='warning'>Can't do tactical reloads with [src].</span>"
 			return
 		//no tactical reload for the untrained.
-		if(user.mind && user.mind.skills_list && user.mind.skills_list[gun_skill_category] < 0)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.firearms == 0)
 			user << "<span class='warning'>You don't know how to do tactical reloads.</span>"
 			return
 		if(istype(src, AM.gun_type))
@@ -258,7 +260,10 @@ should be alright.
 				unload(user,0,1)
 				user << "<span class='notice'>You start a tactical reload.</span>"
 			var/old_mag_loc = AM.loc
-			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK) && AM.loc == old_mag_loc && !current_mag)
+			var/tac_reload_time = 15
+			if(user.mind && user.mind.cm_skills)
+				tac_reload_time = max(15 - 5*user.mind.cm_skills.firearms, 5)
+			if(do_after(user,tac_reload_time, TRUE, 5, BUSY_ICON_CLOCK) && AM.loc == old_mag_loc && !current_mag)
 				if(istype(AM.loc, /obj/item/storage))
 					var/obj/item/storage/S = AM.loc
 					S.remove_from_storage(AM)
@@ -400,7 +405,7 @@ should be alright.
 		user << "<span class='warning'>You need a gun in your active hand to do that!</span>"
 		return
 
-	if((G.flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == G.flags_gun_features) return
+	if(G.flags_gun_features & GUN_BURST_FIRING) return
 
 	return G
 
@@ -418,33 +423,72 @@ should be alright.
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G) return
+
+	if(!G)
+		return
+
 	src = G
 
-	if(!rail && !muzzle && !under && !stock)
-		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
+	if(usr.action_busy)
 		return
 
 	if(zoom)
 		usr << "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>"
 		return
 
-	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
-	if(!do_after(usr,40, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!rail && !muzzle && !under && !stock)
+		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
 		return
 
-	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove [src]'s [rail].</span>"
-		rail.Detach(src)
-	if(muzzle && (muzzle.flags_attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove [src]'s [muzzle].</span>"
-		muzzle.Detach(src)
-	if(under && (under.flags_attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove [src]'s [under].</span>"
-		under.Detach(src)
+	var/list/possible_attachments = list()
+
+	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE))
+		possible_attachments += rail
+	if(muzzle && (muzzle.flags_attach_features & ATTACH_REMOVABLE))
+		possible_attachments += muzzle
+	if(under && (under.flags_attach_features & ATTACH_REMOVABLE))
+		possible_attachments += under
 	if(stock && (stock.flags_attach_features & ATTACH_REMOVABLE))
-		usr << "<span class='notice'>You remove [src]'s [stock].</span>"
-		stock.Detach(src)
+		possible_attachments += stock
+
+	if(!possible_attachments.len)
+		usr << "<span class='warning'>[src] has no removable attachments.</span>"
+		return
+
+	var/obj/item/attachable/A = input("Which attachment to remove?") as null|anything in possible_attachments
+
+	if(!A)
+		return
+
+	if(get_active_firearm(usr) != src)//dropped the gun
+		return
+
+	if(usr.action_busy)
+		return
+
+	if(zoom)
+		return
+
+	if(A != rail && A != muzzle && A != under && A != stock)
+		return
+	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
+		return
+
+	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
+
+	if(!do_after(usr,35, TRUE, 5, BUSY_ICON_CLOCK))
+		return
+
+	if(A != rail && A != muzzle && A != under && A != stock)
+		return
+	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
+		return
+
+	if(zoom)
+		return
+
+	usr << "<span class='notice'>You remove [src]'s [stock].</span>"
+	A.Detach(src)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1)
 	update_attachables()

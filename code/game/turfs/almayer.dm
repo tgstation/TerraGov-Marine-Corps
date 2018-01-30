@@ -48,7 +48,7 @@
 
 /turf/simulated/wall/almayer/white/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
-
+	junctiontype = junction
 
 /turf/simulated/shuttle/wall/dropship1
 	name = "\improper Alamo"

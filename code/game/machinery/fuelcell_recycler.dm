@@ -11,6 +11,7 @@
 	bound_width = 32
 	var/obj/item/fuelCell/cell_left = null
 	var/obj/item/fuelCell/cell_right = null
+	unacidable = 1
 
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/fuelCell))
@@ -46,7 +47,7 @@
 		cell_right = null
 		update_icon()
 	else
-		if(cell_left.percent() > cell_right.percent())
+		if(cell_left.get_fuel_percent() > cell_right.get_fuel_percent())
 			cell_left.update_icon()
 			M.put_in_hands(cell_left)
 			cell_left = null

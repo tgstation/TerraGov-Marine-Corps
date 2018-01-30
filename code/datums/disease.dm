@@ -77,19 +77,18 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 			for(var/C_id in cure_id)
 				if(!affected_mob.reagents.has_reagent(C_id))
 					result = 0
+					break
 		else if(!affected_mob.reagents.has_reagent(cure_id))
 			result = 0
 	else
 		for(var/C_list in cure_list)
 			if(istype(C_list, /list))
 				for(var/C_id in cure_id)
-					if(affected_mob.reagents != null)
+					if(!affected_mob.reagents.has_reagent(C_id))
 						result = 0
-					else if(!affected_mob.reagents.has_reagent(C_id))
-						result = 0
-			else if(affected_mob.reagents != null)
-				if(!affected_mob.reagents.has_reagent(C_list))
-					result = 0
+						break
+			else if(!affected_mob.reagents.has_reagent(C_list))
+				result = 0
 
 	return result
 

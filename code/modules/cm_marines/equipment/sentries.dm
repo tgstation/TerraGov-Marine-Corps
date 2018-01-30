@@ -70,14 +70,15 @@
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] rotates [src].</span>",
 				"<span class='notice'>You rotate [src].</span>")
-				if(dir == NORTH)
-					dir = EAST
-				else if(dir == EAST)
-					dir = SOUTH
-				else if(dir == SOUTH)
-					dir = WEST
-				else if(dir == WEST)
-					dir = NORTH
+				switch(dir)
+					if(SOUTH)
+						dir = WEST
+					if(NORTH)
+						dir = EAST
+					if(EAST)
+						dir = SOUTH
+					if(WEST)
+						dir = NORTH
 			else
 				if(locate(/obj/machinery/marine_turret) in loc)
 					user << "<span class='warning'>There already is a turret in this position.</span>"
@@ -375,7 +376,7 @@
 				usr.visible_message("<span class='notice'>[usr] activates [src]'s direction lock.</span>",
 				"<span class='notice'>You activate [src]'s direction lock.</span>")
 				visible_message("\icon[src] <span class='notice'>The [name]'s turret stops rotating.</span>")
-
+			update_icon()
 
 		if("burst")
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
@@ -579,18 +580,26 @@
 				cell = O
 		return
 	if(istype(O, /obj/item/ammo_magazine/sentry))
-		if(rounds)
-			user << "<span class='warning'>You can only swap the box magazine when it's empty.</span>"
-			return
-		user.visible_message("<span class='notice'>[user] begins fitting a new box magazine into [src].</span>",
-		"<span class='notice'>You begin fitting a new box magazine into [src].</span>")
-		if(do_after(user, 70, TRUE, 5, BUSY_ICON_CLOCK))
-			playsound(src.loc, 'sound/weapons/unload.ogg', 25, 1)
-			user.visible_message("<span class='notice'>[user] fits a new box magazine into [src].</span>",
+		var/obj/item/ammo_magazine/sentry/M = O
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+			if(rounds)
+				user << "<span class='warning'>You only know how to swap the box magazine when it's empty.</span>"
+				return
+			user.visible_message("<span class='notice'>[user] begins fitting a new box magazine into [src].</span>",
+					"<span class='notice'>You begin fitting a new box magazine into [src].</span>")
+			if(user.action_busy) return
+			if(!do_after(user, 70, TRUE, 5, BUSY_ICON_CLOCK))
+				return
+
+		playsound(src.loc, 'sound/weapons/unload.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] fits a new box magazine into [src].</span>",
 			"<span class='notice'>You fit a new box magazine into [src].</span>")
-			user.drop_held_item()
-			rounds = rounds_max
-			cdel(O)
+		user.drop_held_item()
+		if(rounds)
+			var/obj/item/ammo_magazine/sentry/S = new(user.loc)
+			S.current_rounds = rounds
+		rounds = min(rounds + M.current_rounds, rounds_max)
+		cdel(O)
 		return
 
 	if(O.force)
@@ -602,7 +611,10 @@
 		icon_state = "turret-fallen"
 	else
 		if(on)
-			icon_state = "turret-1"
+			if(!dir_locked)
+				icon_state = "turret-360"
+			else
+				icon_state = "turret-1"
 		else
 			icon_state = "turret-0"
 
@@ -855,16 +867,10 @@
 
 		if(dir_locked) //We're dir locked and facing the right way.
 			var/angle = get_dir(src,M)
-			if(dir == NORTH && (angle == NORTHEAST || angle == NORTHWEST)) //There's probably an easier way to do this. MEH
-				angle = NORTH
-			if(dir == SOUTH && (angle == SOUTHEAST || angle == SOUTHWEST))
-				angle = SOUTH
-			if(dir == EAST && (angle == NORTHEAST || angle == SOUTHEAST))
-				angle = EAST
-			if(dir == WEST && (angle == NORTHWEST || angle == SOUTHWEST))
-				angle = WEST
-
-			if(angle == dir) path = getline2(src,M)
+			if(angle & dir)
+				path = getline2(src,M)
+			else
+				continue
 
 		else path = getline2(src,M) //Otherwise grab everyone around us.
 

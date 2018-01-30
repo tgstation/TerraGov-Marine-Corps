@@ -197,33 +197,56 @@
 				return
 
 /obj/item/projectile/proc/scan_a_turf(turf/T)
-	if(!istype(T)) return //Not a turf. Back out.
-	if(T.density) //Hit a wall, back out.
+	// Not a turf, keep moving
+	if(!istype(T))
+		return 0
+
+	if(T.density) // Handle wall hit
 		ammo.on_hit_turf(T,src)
-		if(T && T.loc) T.bullet_act(src)
+
+		if(T && T.loc)
+			T.bullet_act(src)
+
 		return 1
-	if(firer && T == firer.loc) return //Is it our turf? Continue on if it is.
-	if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf) //Explosive ammo always explodes on the turf of the clicked target.
+
+	// Firer's turf, keep moving
+	if(firer && T == firer.loc)
+		return 0
+
+	// Explosive ammo always explodes on the turf of the clicked target
+	if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
 		ammo.on_hit_turf(T,src)
-		if(T && T.loc) T.bullet_act(src)
+
+		if(T && T.loc)
+			T.bullet_act(src)
+
 		return 1
-	if(!T.contents.len) return //Nothing here.
+
+	// Empty turf, keep moving
+	if(!T.contents.len)
+		return 0
+
 	for(var/atom/movable/A in T)
-		if(A in permutated) continue
-		permutated += A //Don't want to hit them again, no matter what the outcome.
-		var/hit_chance = A.get_projectile_hit_chance(src)
+		// If we've already handled this atom, don't do it again
+		if(A in permutated)
+			continue
+
+		permutated += A // Don't want to hit them again, no matter what the outcome
+
+		var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
+
 		if(hit_chance)
 			if(isliving(A))
 				var/mob_is_hit = FALSE
 				var/mob/living/L = A
 
 				var/hit_roll
-				var/critical_miss = rand(config.critical_chance_low,config.critical_chance_high)
+				var/critical_miss = rand(config.critical_chance_low, config.critical_chance_high)
 				var/i = 0
-				while(++i <= 2 && hit_chance > 0) //This runs twice if necessary.
-					hit_roll 					= rand(0,100) //Our randomly generated roll.
-					if(hit_roll < 25) def_zone 	= pick(base_miss_chance)
-					hit_chance 				   -= base_miss_chance[def_zone] //Reduce accuracy based on spot.
+				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
+					hit_roll 					= rand(0, 99) //Our randomly generated roll
+					if(hit_roll < 25) def_zone 	= pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+					hit_chance 				   -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
 
 					switch(i)
 						if(1)
@@ -274,7 +297,7 @@
 	if(!density)
 		return FALSE
 
-	if(layer >= OBJ_LAYER)
+	if(layer >= OBJ_LAYER || src == P.original)
 		return TRUE
 
 /obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
@@ -328,7 +351,6 @@
 /obj/item/clothing/mask/facehugger/get_projectile_hit_chance(obj/item/projectile/P)
 	return src == P.original
 
-
 /mob/living/get_projectile_hit_chance(obj/item/projectile/P)
 
 	if(lying && src != P.original)
@@ -340,12 +362,16 @@
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
-	world << "<span class='debuginfo'>Base accuracy is <b>[acc]</b></span>"
+	world << "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]</b></span>"
 	#endif
-	if(P.distance_travelled <= (P.ammo.accurate_range + rand(0,2)) ) //Less to or equal.
-		if(P.ammo.flags_ammo_behavior & AMMO_SNIPER) 	. -= (P.ammo.max_range - P.distance_travelled) * 4.8
-		else if(P.distance_travelled <= 2)		. += 25
-	else . -= (P.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (P.distance_travelled * 1.3) : (P.distance_travelled * 5)
+	if (P.distance_travelled <= P.ammo.accurate_range + rand(0, 2))														// If bullet stays within max accurate range + random variance
+		if (P.distance_travelled <= P.ammo.point_blank_range)															// If bullet within point blank range, big accuracy buff
+			. += 25
+		else if ((P.ammo.flags_ammo_behavior & AMMO_SNIPER) && P.distance_travelled <= P.ammo.accurate_range_min)		// Snipers have accuracy falloff at closer range before point blank
+			. -= (P.ammo.accurate_range_min - P.distance_travelled) * 5
+	else
+		. -= (P.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (P.distance_travelled * 3) : (P.distance_travelled * 5)		// Snipers have a smaller falloff constant due to longer max range
+
 	#if DEBUG_HIT_CHANCE
 	world << "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>"
 	#endif
@@ -552,16 +578,16 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
 	#endif
 
-	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
+	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
 		var/armor = armor_deflection
-		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances. Crushers get a lot of armor, with a base of 95 at ancient status.
-			var/mob/living/carbon/Xenomorph/Crusher/current_crusher = src
-			armor += round(current_crusher.momentum / 3) //Some armor deflection when charging.
-			if(P.dir == current_crusher.dir) armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_low) ) //Both facing same way -- ie. shooting from behind.
-			else if(P.dir == reverse_direction(current_crusher.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+		if(isXenoQueen(src) || isXenoCrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
+			var/mob/living/carbon/Xenomorph/charger = src
+			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
+			if(P.dir == charger.dir) armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind.
+			else if(P.dir == reverse_direction(charger.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
-			world << "<span class='debuginfo'>Adjusted crusher armor is: <b>[armor]</b></span>"
+			world << "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>"
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0

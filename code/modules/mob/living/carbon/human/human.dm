@@ -104,57 +104,50 @@
 	if(!blinded && hud_used)
 		flick("flash", hud_used.flash_icon)
 
-	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
-	switch (severity)
-		if (1.0)
-			b_loss += 500
-			if (!prob(getarmor(null, "bomb")))
+	switch(severity)
+		if(1)
+			b_loss += rand(400, 600)
+			if(!prob(getarmor(null, "bomb")))
 				gib()
 				return
 			else
 				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(target, 200, 4)
-			//return
-//				var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
-				//user.throw_at(target, 200, 4)
+		if(2)
+			b_loss += rand(50, 70)
+			f_loss += rand(50, 70)
 
-		if (2.0)
-			if (!shielded)
-				b_loss += 60
-
-			f_loss += 60
-
-			if (prob(getarmor(null, "bomb")))
+			if(prob(getarmor(null, "bomb")))
 				b_loss = b_loss/1.5
 				f_loss = f_loss/1.5
 
-			if (!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
 				ear_deaf += 120
-			if (prob(70) && !shielded)
+			if(prob(70))
 				KnockOut(10)
 
-		if(3.0)
-			b_loss += 30
-			if (prob(getarmor(null, "bomb")))
+		if(3)
+			b_loss += rand(50, 70)
+			if(prob(getarmor(null, "bomb")))
 				b_loss = b_loss/2
-			if (!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
-			if (prob(50) && !shielded)
+			if(prob(50))
 				KnockOut(10)
 
 	var/update = 0
 
-	// focus most of the blast on one organ
+	//Focus half the blast on one organ
 	var/datum/limb/take_blast = pick(limbs)
-	update |= take_blast.take_damage(b_loss * 0.9, f_loss * 0.9, used_weapon = "Explosive blast")
+	update |= take_blast.take_damage(b_loss * 0.5, f_loss * 0.5, used_weapon = "Explosive blast")
 
-	// distribute the remaining 10% on all limbs equally
-	b_loss *= 0.1
-	f_loss *= 0.1
+	//Distribute the remaining half all limbs equally
+	b_loss *= 0.5
+	f_loss *= 0.5
 
 	var/weapon_message = "Explosive Blast"
 
@@ -661,7 +654,7 @@
 									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 
 	if (href_list["medholocard"])
-		if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
 			usr << "<span class='warning'>You're not trained to use this.</span>"
 			return
 		if(!has_species(src, "Human"))
@@ -682,23 +675,22 @@
 		update_targeted()
 
 	if (href_list["scanreport"])
-		if(usr.mind && usr.mind.skills_list && usr.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
-			usr << "<span class='warning'>You're not trained to use this.</span>"
-			return
-		if(!has_species(src, "Human"))
-			usr << "<span class='warning'>This only works on humans.</span>"
-			return
-		if(get_dist(usr, src) > 7)
-			usr << "<span class='warning'>[src] is too far away.</span>"
-			return
+		if(hasHUD(usr,"medical"))
+			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+				usr << "<span class='warning'>You're not trained to use this.</span>"
+				return
+			if(!has_species(src, "Human"))
+				usr << "<span class='warning'>This only works on humans.</span>"
+				return
+			if(get_dist(usr, src) > 7)
+				usr << "<span class='warning'>[src] is too far away.</span>"
+				return
 
-		var/datum/data/record/N = null
-		for(var/datum/data/record/R in data_core.medical)
-			if (R.fields["name"] == real_name)
-				N = R
-		if(!isnull(N))
-			if(N.fields["last_scan_time"] && N.fields["last_scan_result"])
-				usr << browse(N.fields["last_scan_result"], "window=scanresults;size=430x600")
+			for(var/datum/data/record/R in data_core.medical)
+				if (R.fields["name"] == real_name)
+					if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
+						usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+					break
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
@@ -1010,8 +1002,6 @@
 	if(!keep_viruses)
 		for (var/datum/disease/virus in viruses)
 			virus.cure()
-	for (var/datum/disease/virus in viruses)
-		virus.cure()
 
 	undefibbable = FALSE
 	..()

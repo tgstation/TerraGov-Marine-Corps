@@ -41,8 +41,8 @@ datum/mind
 	var/assigned_role
 	var/special_role
 
-	var/list/skills_list //the knowledge you have about certain abilities and actions (e.g. do you how to do surgery?)
-								//see skills.dm in #define folder for more info
+	var/datum/skills/cm_skills //the knowledge you have about certain abilities and actions (e.g. do you how to do surgery?)
+								//see skills.dm in #define folder and code/datums/skills.dm for more info
 
 	var/role_alt_title
 	var/role_comm_title
@@ -184,7 +184,7 @@ datum/mind
 				if(H.mind)
 					for(var/datum/job/J in get_all_jobs())
 						if(J.title == new_role)
-							H.mind.skills_list = J.skills_list.Copy() //give new role's job_knowledge to us.
+							H.mind.set_cm_skills(J.skills_type) //give new role's job_knowledge to us.
 							H.mind.special_role = J.special_role
 							H.mind.role_alt_title = J.get_alternative_title(src)
 							H.mind.role_comm_title = J.comm_title
@@ -421,6 +421,15 @@ datum/mind
 
 		return (duration <= world.time - brigged_since)
 
+
+
+/datum/mind/proc/set_cm_skills(skills_path)
+	if(cm_skills)
+		cdel(cm_skills)
+	cm_skills = new skills_path()
+
+
+
 //Initialisation procs
 /mob/proc/mind_initialize()
 	if(mind) mind.key = key
@@ -443,7 +452,7 @@ datum/mind
 				for(var/datum/job/J in get_all_jobs())
 					if(J.title == I.rank)
 						mind.assigned_role = J.title
-						mind.skills_list = J.skills_list.Copy()
+						mind.set_cm_skills(J.skills_type)
 						mind.special_role = J.special_role
 						mind.role_alt_title = J.get_alternative_title(src)
 						mind.role_comm_title = J.comm_title
@@ -451,7 +460,9 @@ datum/mind
 	//if not, we give the mind default job_knowledge and assigned_role
 	if(!mind.assigned_role)
 		mind.assigned_role = "Squad Marine"	//default
-		mind.skills_list = null //no restriction on what we can do.
+		if(mind.cm_skills)
+			cdel(mind.cm_skills)
+		mind.cm_skills = null //no restriction on what we can do.
 
 //MONKEY
 /mob/living/carbon/monkey/mind_initialize()

@@ -51,8 +51,8 @@
 	if(HULK in user.mutations)
 		power *= 2
 
-	if(user.mind && user.mind.skills_list)
-		power = round(power * (1 + 0.3*user.mind.skills_list["melee_weapons"])) //30% bonus per melee level
+	if(user.mind && user.mind.cm_skills)
+		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
 
 	if(!ishuman(M))
 		var/showname = "."

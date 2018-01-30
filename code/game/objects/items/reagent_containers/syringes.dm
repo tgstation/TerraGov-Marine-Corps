@@ -67,12 +67,12 @@
 			return
 
 		var/injection_time = 30
-		if(user.mind && user.mind.skills_list)
-			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+		if(user.mind && user.mind.cm_skills)
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
 				user << "<span class='warning'>You aren't trained to use syringes...</span>"
 				return
 			else
-				injection_time = max(5, 50 - 10*user.mind.skills_list["medical"])
+				injection_time = max(5, 50 - 10*user.mind.cm_skills.medical)
 
 
 		switch(mode)
@@ -267,7 +267,7 @@
 		else
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("\red <B>[user] stabs [target] with [src.name]!</B>"), 1)
-			target.take_organ_damage(3)// 7 is the same as crowbar punch
+			target.take_limb_damage(3)// 7 is the same as crowbar punch
 
 		src.reagents.reaction(target, INGEST)
 		var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand

@@ -120,6 +120,11 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
+	/client/proc/forceNextMap,
+	/client/proc/cancelMapVote,
+	/client/proc/killMapDaemon,
+	/client/proc/editVotableMaps,
+	/client/proc/showVotableMaps
 	)
 var/list/admin_verbs_debug = list(
         /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
@@ -398,12 +403,13 @@ var/list/admin_verbs_mentor = list(
 			mob.invisibility = initial(mob.invisibility)
 			mob << "\red <b>Invisimin off. Invisibility reset.</b>"
 			mob.alpha = max(mob.alpha + 100, 255)
-			mob.remove_from_all_mob_huds()
+			mob.add_to_all_mob_huds()
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
 			mob << "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>"
 			mob.alpha = max(mob.alpha - 100, 0)
-			mob.add_to_all_mob_huds()
+			mob.remove_from_all_mob_huds()
+
 
 /*
 /client/proc/player_panel()
@@ -610,7 +616,6 @@ var/list/admin_verbs_mentor = list(
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
 		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
 		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"

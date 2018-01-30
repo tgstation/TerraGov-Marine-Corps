@@ -43,7 +43,6 @@
 	var/in_surgery_op = FALSE //whether someone is currently doing a surgery step to this limb
 	var/surgery_organ //name of the organ currently being surgically worked on (detach/remove/etc)
 
-	var/sabotaged = 0 // If a prosthetic limb is emagged, it will detonate when it fails.
 	var/encased       // Needs to be opened with a saw to access the organs.
 
 	var/obj/item/hidden = null
@@ -420,15 +419,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		germ_level = 0
 		return
 
-	if(owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
+	if(owner.bodytemperature >= 170 && !owner.in_stasis)	//cryo stops germs from moving and doing their bad stuffs
 		//** Syncing germ levels with external wounds
 		handle_germ_sync()
 
-		//** Handle antibiotics and curing infections
-		handle_antibiotics()
-
 		//** Handle the effects of infections
 		handle_germ_effects()
+
+	//** Handle antibiotics and curing infections
+	handle_antibiotics()
 
 /datum/limb/proc/handle_germ_sync()
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
@@ -534,12 +533,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.internal && owner.bodytemperature >= 170 && !(owner.in_stasis == STASIS_IN_BAG))
 			var/bicardose = owner.reagents.get_reagent_amount("bicaridine")
 			var/inaprovaline = owner.reagents.get_reagent_amount("inaprovaline")
-			if(!(W.can_autoheal() || (bicardose && inaprovaline)))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
+			if(!(W.can_autoheal() || (bicardose && inaprovaline) || owner.reagents.get_reagent_amount("quickclot")))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 				W.open_wound(0.1 * wound_update_accuracy)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
 
-			if(!owner.reagents.get_reagent_amount("quickclot") >= 0.05) //Quickclot stops bleeding, magic!
+			if(!owner.reagents.get_reagent_amount("quickclot")) //Quickclot stops bleeding, magic!
 				owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 				if(prob(1 * wound_update_accuracy))
 					owner.custom_pain("You feel a stabbing pain in your [display_name]!", 1)
@@ -656,7 +655,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		O.setAmputatedTree()
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(override = 0,no_explode = 0,amputation=0)
+/datum/limb/proc/droplimb(override = 0, amputation = 0)
 	if(has_dropped_limb) return
 	if(override) status |= LIMB_DESTROYED
 	if(status & LIMB_DESTROYED)
@@ -676,7 +675,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			hidden = null
 
 		// If any organs are attached to this, destroy them
-		for(var/datum/limb/O in children) O.droplimb(1, no_explode, amputation)
+		for(var/datum/limb/O in children) O.droplimb(1, amputation)
 
 		//Replace all wounds on that arm with one wound on parent organ.
 		wounds.Cut()
@@ -731,19 +730,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.drop_inv_item_on_ground(owner.shoes)
 
 		has_dropped_limb = 1
-		//Robotic limbs explode if sabotaged.
-		if(status & LIMB_ROBOT && !no_explode && sabotaged)
-			owner.visible_message("<span class='danger'>[owner]'s [display_name] violently explodes!</span>",
-			"<span class='danger'>Your [display_name] explodes!</span>",
-			"<span class='warning'>You hear an explosion!</span>")
-			explosion(get_turf(owner),-1,-1,2,3)
-			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
-			spark_system.set_up(5, 0, owner)
-			spark_system.attach(owner)
-			spark_system.start()
-			spawn(10)
-				cdel(spark_system)
-				spark_system = null
 
 		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",

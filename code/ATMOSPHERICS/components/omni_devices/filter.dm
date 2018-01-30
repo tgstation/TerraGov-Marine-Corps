@@ -5,7 +5,7 @@
 	name = "omni gas filter"
 	icon_state = "map_filter"
 
-	var/list/filters = new()
+	var/list/filter_list = new()
 	var/datum/omni_port/input
 	var/datum/omni_port/output
 
@@ -27,7 +27,7 @@
 /obj/machinery/atmospherics/omni/filter/Dispose()
 	input = null
 	output = null
-	filters.Cut()
+	filter_list.Cut()
 	. = ..()
 
 /obj/machinery/atmospherics/omni/filter/sort_ports()
@@ -37,8 +37,8 @@
 				output = null
 			if(input == P)
 				input = null
-			if(filters.Find(P))
-				filters -= P
+			if(filter_list.Find(P))
+				filter_list -= P
 
 			P.air.volume = 200
 			switch(P.mode)
@@ -47,12 +47,12 @@
 				if(ATM_OUTPUT)
 					output = P
 				if(ATM_O2 to ATM_N2O)
-					filters += P
+					filter_list += P
 
 /obj/machinery/atmospherics/omni/filter/error_check()
-	if(!input || !output || !filters)
+	if(!input || !output || !filter_list)
 		return 1
-	if(filters.len < 1) //requires at least 1 filter ~otherwise why are you using a filter?
+	if(filter_list.len < 1) //requires at least 1 filter ~otherwise why are you using a filter?
 		return 1
 
 	return 0
@@ -82,7 +82,7 @@
 			input.network.update = 1
 		if(output.network)
 			output.network.update = 1
-		for(var/datum/omni_port/P in filters)
+		for(var/datum/omni_port/P in filter_list)
 			if(P.network)
 				P.network.update = 1
 

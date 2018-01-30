@@ -90,7 +90,7 @@
 
 
 /obj/effect/attach_point/crew_weapon
-	name = "crew served weapon attach point"
+	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
@@ -245,7 +245,7 @@
 /obj/structure/dropship_equipment/proc/on_launch()
 	return
 
-//things to do when the shuttle this equipment is attached to lands.
+//things to do when the shuttle this equipment is attached to land.
 /obj/structure/dropship_equipment/proc/on_arrival()
 	return
 
@@ -760,3 +760,232 @@
 			if(ship_base) icon_state = "launch_bay"
 			else icon_state = "launch_bay"
 */
+
+
+
+//////////////// OTHER EQUIPMENT /////////////////
+
+
+
+/obj/structure/dropship_equipment/medevac_system
+	name = "medevac system"
+	desc = "A winch system to lift injured marines on medical stretchers onto the dropship. Acquire lift target through the dropship equipment console."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "medevac_system"
+	point_cost = 500
+	is_interactable = TRUE
+	var/obj/structure/bed/medevac_stretcher/linked_stretcher
+	var/medevac_cooldown
+	var/busy_winch
+
+/obj/structure/dropship_equipment/medevac_system/Dispose()
+	if(linked_stretcher)
+		linked_stretcher.linked_medevac = null
+		linked_stretcher = null
+	. = ..()
+
+/obj/structure/dropship_equipment/medevac_system/update_equipment()
+	if(ship_base)
+		icon_state = "medevac_system_deployed"
+	else
+		if(linked_stretcher)
+			linked_stretcher.linked_medevac = null
+			linked_stretcher = null
+		icon_state = "medevac_system"
+
+
+/obj/structure/dropship_equipment/medevac_system/equipment_interact(mob/user)
+	if(!linked_shuttle)
+		return
+
+	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+		user << "<span class='warning'>[src] can only be used while in flight.</span>"
+		return
+
+	if(!linked_shuttle.transit_gun_mission)
+		user << "<span class='warning'>[src] requires a flyby flight to be used.</span>"
+		return
+
+	if(busy_winch)
+		user << "<span class='warning'> The winch is already in motion.</span>"
+		return
+
+	if(world.time < medevac_cooldown)
+		user << "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>"
+		return
+
+	var/list/possible_stretchers = list()
+	for(var/obj/structure/bed/medevac_stretcher/MS in activated_medevac_stretchers)
+		var/area/AR = get_area(MS)
+		var/evaccee
+		if(MS.buckled_mob)
+			evaccee = MS.buckled_mob.real_name
+		else if(MS.buckled_bodybag)
+			for(var/atom/movable/AM in MS.buckled_bodybag)
+				if(isliving(AM))
+					var/mob/living/L = AM
+					evaccee = "[MS.buckled_bodybag.name]: [L.real_name]"
+					break
+			if(!evaccee)
+				evaccee = "Empty [MS.buckled_bodybag.name]"
+		else
+			evaccee = "Empty"
+		possible_stretchers["[evaccee] ([AR.name])"] = MS
+
+	if(!possible_stretchers.len)
+		user << "<span class='warning'>No active medevac stretcher detected.</span>"
+		return
+
+	var/stretcher_choice = input("Which emitting stretcher would you like to link with?", "Available stretchers") as null|anything in possible_stretchers
+	if(!stretcher_choice)
+		return
+
+	var/obj/structure/bed/medevac_stretcher/selected_stretcher = possible_stretchers[stretcher_choice]
+	if(!selected_stretcher)
+		return
+
+	if(!ship_base) //system was uninstalled midway
+		return
+
+	if(!selected_stretcher.stretcher_activated)//stretcher beacon was deactivated midway
+		return
+
+	if(selected_stretcher.z != 1) //in case the stretcher was on a groundside dropship that flew away during our input()
+		return
+
+	if(!selected_stretcher.buckled_mob && !selected_stretcher.buckled_bodybag)
+		user << "<span class='warning'>This medevac stretcher is empty.</span>"
+		return
+
+	if(!linked_shuttle)
+		return
+
+	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+		user << "<span class='warning'>[src] can only be used while in flight.</span>"
+		return
+
+	if(!linked_shuttle.transit_gun_mission)
+		user << "<span class='warning'>[src] requires a flyby flight to be used.</span>"
+		return
+
+	if(busy_winch)
+		user << "<span class='warning'> The winch is already in motion.</span>"
+		return
+
+	if(world.time < medevac_cooldown)
+		user << "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>"
+		return
+
+	if(selected_stretcher == linked_stretcher) //already linked to us, unlink it
+		user << "<span class='notice'> You move your dropship away from that stretcher's beacon.</span>"
+		linked_stretcher.visible_message("<span class='notice'>[linked_stretcher] detects a dropship is no longer overhead.</span>")
+		linked_stretcher.linked_medevac = null
+		linked_stretcher = null
+		return
+
+	user << "<span class='notice'> You move your dropship above the selected stretcher's beacon.</span>"
+
+	linked_stretcher = selected_stretcher
+	if(linked_stretcher.linked_medevac) //the stretcher is already linked to a medevac system, let's steal it
+		linked_stretcher.linked_medevac.linked_stretcher = null
+	linked_stretcher.linked_medevac = src
+
+	linked_stretcher.visible_message("<span class='notice'>[linked_stretcher] detects a dropship overhead.</span>")
+
+
+
+
+//on arrival we break any link
+/obj/structure/dropship_equipment/medevac_system/on_arrival()
+	if(linked_stretcher)
+		linked_stretcher.linked_medevac = null
+		linked_stretcher = null
+
+
+/obj/structure/dropship_equipment/medevac_system/attack_hand(mob/user)
+	if(!ishuman(user))
+		return
+	if(!ship_base) //not installed
+		return
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.pilot < SKILL_PILOT_TRAINED)
+		user << "<span class='warning'> You don't know how to use [src].</span>"
+		return
+
+	if(!linked_shuttle)
+		return
+
+	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+		user << "<span class='warning'>[src] can only be used while in flight.</span>"
+		return
+
+	if(!linked_shuttle.transit_gun_mission)
+		user << "<span class='warning'>[src] requires a flyby flight to be used.</span>"
+		return
+
+	if(busy_winch)
+		user << "<span class='warning'> The winch is already in motion.</span>"
+		return
+
+	if(!linked_stretcher)
+		user << "<span class='warning'>There seems to be no medevac stretcher connected to [src].</span>"
+		return
+
+	if(linked_stretcher.z != 1)
+		linked_stretcher.linked_medevac = null
+		linked_stretcher = null
+		user << "<span class='warning'> There seems to be no medevac stretcher connected to [src].</span>"
+		return
+
+	if(world.time < medevac_cooldown)
+		user << "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>"
+		return
+
+	activate_winch(user)
+
+
+/obj/structure/dropship_equipment/medevac_system/proc/activate_winch(mob/user)
+	set waitfor = 0
+	var/old_stretcher = linked_stretcher
+	busy_winch = TRUE
+	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	flick("medevac_system_active", src)
+	user.visible_message("<span class='notice'>[user] activates [src]'s winch.</span>", \
+						"<span class='notice'>You activate [src]'s winch.</span>")
+	flick("winched_stretcher", linked_stretcher)
+	linked_stretcher.visible_message("<span class='notice'>A winch hook falls from the sky and starts lifting [linked_stretcher] up.</span>")
+	sleep(30)
+	busy_winch = FALSE
+	var/fail
+	if(!linked_stretcher || linked_stretcher != old_stretcher || linked_stretcher.z != 1)
+		fail = TRUE
+
+	else if(!ship_base) //uninstalled midway
+		fail = TRUE
+
+	else if(!linked_shuttle || linked_shuttle.moving_status != SHUTTLE_INTRANSIT || !linked_shuttle.transit_gun_mission)
+		fail = TRUE
+
+	if(fail)
+		if(linked_stretcher)
+			linked_stretcher.linked_medevac = null
+			linked_stretcher = null
+		user << "<span class='warning'>The winch finishes lifting but there seems to be no medevac stretchers connected to [src].</span>"
+		return
+
+	var/atom/movable/lifted_object
+	if(linked_stretcher.buckled_mob)
+		lifted_object = linked_stretcher.buckled_mob
+	else if(linked_stretcher.buckled_bodybag)
+		lifted_object = linked_stretcher.buckled_bodybag
+
+	if(lifted_object)
+		lifted_object.forceMove(loc)
+	else
+		user << "<span class='warning'>The winch finishes lifting the medevac stretcher but it's empty!</span>"
+		linked_stretcher.linked_medevac = null
+		linked_stretcher = null
+		return
+
+	medevac_cooldown = world.time + 600
+	linked_stretcher.linked_medevac = null
+	linked_stretcher = null

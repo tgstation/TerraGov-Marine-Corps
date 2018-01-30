@@ -14,11 +14,13 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 /mob/living
 	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0"
 
-/mob/living/AltClickOn(var/atom/A)
-	if(is_type_in_list(A, ventcrawl_machinery) && can_ventcrawl())
-		handle_ventcrawl(A)
+/mob/living/click(var/atom/A, var/list/mods)
+	if (..())
 		return 1
-	return ..()
+	if (mods["alt"])
+		if(is_type_in_list(A, ventcrawl_machinery) && can_ventcrawl())
+			handle_ventcrawl(A)
+		return 1
 
 
 /mob/proc/start_ventcrawl()

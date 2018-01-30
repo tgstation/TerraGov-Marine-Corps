@@ -15,12 +15,16 @@
 		user << "\red \The [src] cannot be applied to [M]!"
 		return 1
 
-	if(!ishuman(user))
+	if(!ishuman(user) && !isrobot(user))
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return 1
 
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/affecting = H.get_limb(user.zone_selected)
+
+	if(!affecting)
+		user << "<span class='warning'>[H] has no [parse_zone(user.zone_selected)]!</span>"
+		return 1
 
 	if(affecting.display_name == "head")
 		if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -51,8 +55,8 @@
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 
-		if(user.mind && user.mind.skills_list)
-			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+		if(user.mind && user.mind.cm_skills)
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
 				if(!do_mob(user, M, 10, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 					return 1
 
@@ -99,8 +103,8 @@
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 
-		if(user.mind && user.mind.skills_list)
-			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC)
+		if(user.mind && user.mind.cm_skills)
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
 				if(!do_mob(user, M, 10, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 					return 1
 
@@ -154,8 +158,8 @@
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_brute
-		if(user.mind && user.mind.skills_list)
-			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
+		if(user.mind && user.mind.cm_skills)
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
 				user << "<span class='warning'>You start fumbling with [src]...</span>"
 				if(!do_mob(user, M, 30, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 					return
@@ -209,8 +213,8 @@
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_burn
-		if(user.mind && user.mind.skills_list)
-			if(user.mind.skills_list["medical"] < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
+		if(user.mind && user.mind.cm_skills)
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
 				user << "<span class='warning'>You start fumbling with [src]...</span>"
 				if(!do_mob(user, M, 30, BUSY_ICON_CLOCK, BUSY_ICON_MED))
 					return

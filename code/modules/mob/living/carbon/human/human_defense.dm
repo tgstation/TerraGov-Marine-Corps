@@ -189,20 +189,7 @@ OBSOLETE BITCH
 	if((user != src) && check_shields(I.force, "the [I.name]"))
 		return 0
 
-	if(istype(I,/obj/item/card/emag))
-		if(!(affecting.status & LIMB_ROBOT))
-			user << "\red That limb isn't robotic."
-			return
-		if(affecting.sabotaged)
-			user << "\red [src]'s [affecting.display_name] is already sabotaged!"
-		else
-			user << "\red You sneakily slide [I] into the dataport on [src]'s [affecting.display_name] and short out the safeties."
-			var/obj/item/card/emag/emag = I
-			emag.uses--
-			affecting.sabotaged = 1
-		return 1
-
-	if(I.attack_verb.len)
+	if(I.attack_verb && I.attack_verb.len)
 		visible_message("\red <B>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</B>")
 	else
 		visible_message("\red <B>[src] has been attacked in the [hit_area] with [I.name] by [user]!</B>")
@@ -273,7 +260,7 @@ OBSOLETE BITCH
 	if (I.damtype == BRUTE && !I.is_robot_module() && I.canremove)
 		var/damage = I.force
 		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
-		if (!armor && weapon_sharp && prob(3))
+		if (!armor && weapon_sharp && prob(3) && !isYautja(user)) // make yautja less likely to get their weapon stuck
 			affecting.embed(I)
 
 	return 1

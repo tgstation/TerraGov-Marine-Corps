@@ -26,35 +26,37 @@
 	var/sound_miss //When it misses someone.
 	var/sound_bounce //When it bounces off something.
 
-	var/iff_signal			= 0 //PLACEHOLDER. Bullets that can skip friendlies will call for this.
-	var/accuracy 			= 0 //This is added to the bullet's base accuracy.
-	var/accuracy_var_low	= 0 //How much the accuracy varies when fired.
-	var/accuracy_var_high	= 0
-	var/accurate_range 		= 0 //For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
-	var/max_range 			= 0 //This will de-increment a counter on the bullet.
-	var/scatter  			= 0 //How much the ammo scatters when burst fired, added to gun scatter, along with other mods.
-	var/damage 				= 0 //This is the base damage of the bullet as it is fired.
-	var/damage_var_low		= 0 //Same as with accuracy variance.
-	var/damage_var_high		= 0
-	var/damage_bleed 		= 0 //How much damage the bullet loses per turf traveled.
-	var/damage_type 		= BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
-	var/penetration			= 0 //How much armor it ignores before calculations take place.
-	var/shrapnel_chance 	= 0 //The % chance it will imbed in a human.
-	var/shell_speed 		= 0 //How fast the projectile moves.
-	var/bonus_projectiles_type //the type path of the extra projectiles
-	var/bonus_projectiles_amount 	= 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
-	var/debilitate[]		= null //stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
+	var/iff_signal					= 0 		// PLACEHOLDER. Bullets that can skip friendlies will call for this
+	var/accuracy 					= 0 		// This is added to the bullet's base accuracy
+	var/accuracy_var_low			= 0 		// How much the accuracy varies when fired
+	var/accuracy_var_high			= 0
+	var/accurate_range 				= 0 		// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though
+	var/accurate_range_min 			= 0			// Snipers use this to simulate poor accuracy at close ranges
+	var/point_blank_range			= 0			// Weapons will get a large accuracy buff at this short range
+	var/max_range 					= 0 		// This will de-increment a counter on the bullet
+	var/scatter  					= 0 		// How much the ammo scatters when burst fired, added to gun scatter, along with other mods
+	var/damage 						= 0 		// This is the base damage of the bullet as it is fired
+	var/damage_var_low				= 0 		// Same as with accuracy variance
+	var/damage_var_high				= 0
+	var/damage_bleed 				= 0 		// How much damage the bullet loses per turf traveled
+	var/damage_type 				= BRUTE 	// BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
+	var/penetration					= 0 		// How much armor it ignores before calculations take place
+	var/shrapnel_chance 			= 0 		// The % chance it will imbed in a human
+	var/shell_speed 				= 0 		// How fast the projectile moves
+	var/bonus_projectiles_type 					// Type path of the extra projectiles
+	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
+	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 
 	New()
-		accuracy 			= config.min_hit_accuracy //This is added to the bullet's base accuracy.
-		accuracy_var_low	= config.min_proj_variance //How much the accuracy varies when fired.
+		accuracy 			= config.min_hit_accuracy 	// This is added to the bullet's base accuracy.
+		accuracy_var_low	= config.min_proj_variance 	// How much the accuracy varies when fired.
 		accuracy_var_high	= config.min_proj_variance
-		accurate_range 		= config.close_shell_range //For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
-		max_range 			= config.norm_shell_range //This will de-increment a counter on the bullet.
-		damage_var_low		= config.min_proj_variance //Same as with accuracy variance.
+		accurate_range 		= config.close_shell_range 	// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
+		max_range 			= config.norm_shell_range 	// This will de-increment a counter on the bullet.
+		damage_var_low		= config.min_proj_variance 	// Same as with accuracy variance.
 		damage_var_high		= config.min_proj_variance
-		damage_bleed 		= config.reg_damage_bleed //How much damage the bullet loses per turf traveled.
-		shell_speed 		= config.slow_shell_speed //How fast the projectile moves.
+		damage_bleed 		= config.reg_damage_bleed 	// How much damage the bullet loses per turf traveled.
+		shell_speed 		= config.slow_shell_speed 	// How fast the projectile moves.
 
 	var/flags_ammo_behavior = AMMO_REGULAR //Nothing special about it.
 
@@ -76,9 +78,9 @@
 	proc/on_hit_obj(obj/O, obj/item/projectile/P) //Special effects when hitting objects.
 		return
 
-	proc/knockback(mob/M, obj/item/projectile/P)
+	proc/knockback(mob/M, obj/item/projectile/P, var/max_range = 2)
 		if(!M || M == P.firer) return
-		if(P.distance_travelled > 2 || M.lying) shake_camera(M, 2, 1) //Two tiles away or more, basically.
+		if(P.distance_travelled > max_range || M.lying) shake_camera(M, 2, 1) //Two tiles away or more, basically.
 
 		else //One tile away or less.
 			shake_camera(M, 3, 4)
@@ -153,6 +155,8 @@
 	sound_armor  = "ballistic_armor"
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
+	point_blank_range = 2
+	accurate_range_min = 0
 
 	New()
 		..()
@@ -349,10 +353,24 @@
 		..()
 		accuracy = -config.low_hit_accuracy
 
-/datum/ammo/bullet/rifle/marksman
+/datum/ammo/bullet/rifle/m4ra
 	name = "A19 high velocity bullet"
 	shrapnel_chance = 0
 	damage_bleed = 0
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range_min = 6
+
+	New()
+		..()
+		damage = config.hmed_hit_damage
+		accuracy = config.hmed_hit_accuracy
+		scatter = -config.low_scatter_value
+		penetration= config.med_armor_penetration
+		shell_speed = config.fast_shell_speed
+
+/datum/ammo/bullet/rifle/m4ra/incendiary
+	name = "A19 high velocity incendiary bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	New()
 		..()
 		damage = config.hmed_hit_damage
@@ -360,6 +378,20 @@
 		scatter = -config.low_scatter_value
 		penetration= config.low_armor_penetration
 		shell_speed = config.fast_shell_speed
+
+/datum/ammo/bullet/rifle/m4ra/impact
+	name = "A19 high velocity impact bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	New()
+		..()
+		damage = config.hmed_hit_damage
+		accuracy = config.low_hit_accuracy
+		scatter = -config.low_scatter_value
+		penetration= config.low_armor_penetration
+		shell_speed = config.fast_shell_speed
+
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		knockback(M, P, config.max_shell_range)	// Can knockback basically at max range
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
@@ -498,6 +530,7 @@
 	name = "sniper bullet"
 	damage_bleed = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
+	accurate_range_min = 10
 	New()
 		..()
 		accuracy = config.med_hit_accuracy

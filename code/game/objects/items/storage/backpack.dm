@@ -510,6 +510,17 @@
 			user << "<span class='notice'>Welder refilled!</span>"
 			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			return
+	else if(istype(W, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/FT = W
+		if(!FT.current_rounds && reagents.total_volume)
+			var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
+			reagents.remove_reagent("fuel", fuel_available)
+			FT.current_rounds = fuel_available
+			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+			FT.caliber = "Fuel"
+			user << "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>"
+			FT.update_icon()
+			return
 	. = ..()
 
 /obj/item/storage/backpack/marine/engineerpack/afterattack(obj/O as obj, mob/user as mob, proximity)

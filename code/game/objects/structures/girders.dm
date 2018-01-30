@@ -139,12 +139,16 @@
 				add_hiddenprint(usr)
 
 			else if(istype(W, /obj/item/tool/weldingtool) && buildctr %2 != 0)
-				if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
-					if (buildctr == 5)
-						build_wall()
-						return
-					buildctr++
-					user << "\blue You weld the metal to the girder!"
+				var/obj/item/tool/weldingtool/WT = W
+				if (WT.remove_fuel(0,user))
+					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+					if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+						if(!WT.isOn()) return
+						if (buildctr == 5)
+							build_wall()
+							return
+						buildctr++
+						user << "\blue You weld the metal to the girder!"
 				return
 			else if(istype(W, /obj/item/tool/wirecutters) && dismantlectr %2 != 0)
 				if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))

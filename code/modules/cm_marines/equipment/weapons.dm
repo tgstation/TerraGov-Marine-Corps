@@ -64,7 +64,10 @@
 
 		reloading = 1
 		user.visible_message("[user.name] begin feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
-		if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+		var/reload_duration = 50
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
+			reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
+		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_CLOCK))
 			pcell.charge -= 50
 			if(!mygun.current_mag) //This shouldn't happen, since the mag can't be ejected. Good safety, I guess.
 				var/obj/item/ammo_magazine/internal/smartgun/A = new(mygun)
@@ -200,7 +203,7 @@
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 
-	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
+	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
@@ -209,6 +212,9 @@
 					else
 						new /obj/item/clothing/head/helmet/durag(src)
 						new /obj/item/facepaint/sniper(src)
+		if(user.mind && user.mind.assigned_role == "Squad Specialist") //an unspecialised spec opens the box and become specialised.
+			if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
+				user.mind.cm_skills.spec_weapons = SKILL_SPEC_SNIPER
 		..()
 
 /obj/item/storage/box/scout
@@ -217,7 +223,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 14
+	storage_slots = 15
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -228,17 +234,30 @@
 			new /obj/item/clothing/suit/storage/marine/M3S(src)
 			new /obj/item/clothing/head/helmet/marine/scout(src)
 			new /obj/item/clothing/glasses/night/M4RA(src)
-			new /obj/item/ammo_magazine/rifle/marksman(src)
-			new /obj/item/ammo_magazine/rifle/marksman(src)
-			new /obj/item/ammo_magazine/rifle/marksman(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
 			new /obj/item/device/binoculars/tactical/scout(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/m41a/scoped(src)
+			new /obj/item/weapon/gun/rifle/m4ra(src)
 			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
 			new /obj/item/explosive/plastique(src)
 			new /obj/item/explosive/plastique(src)
+
+/obj/item/storage/box/scout/open(mob/user)
+	if(user.mind && user.mind.assigned_role == "Squad Specialist")
+		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
+			user.mind.cm_skills.spec_weapons = SKILL_SPEC_SCOUT
+	..()
+
+
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
@@ -315,6 +334,12 @@
 			new /obj/item/clothing/suit/storage/marine/specialist(src)
 			new /obj/item/clothing/head/helmet/marine/specialist(src)
 
+/obj/item/storage/box/heavy_grenadier/open(mob/user)
+	if(user.mind && user.mind.assigned_role == "Squad Specialist")
+		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
+			user.mind.cm_skills.spec_weapons = SKILL_SPEC_GRENADIER
+	..()
+
 /obj/item/storage/box/rocket_system
 	name = "\improper M5 RPG crate"
 	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
@@ -361,3 +386,11 @@
 			new /obj/item/explosive/mine(src)
 			new /obj/item/explosive/plastique(src)
 			new /obj/item/explosive/plastique(src)
+
+
+/obj/item/storage/box/demolitionist/open(mob/user)
+	if(user.mind && user.mind.assigned_role == "Squad Specialist")
+		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
+			user.mind.cm_skills.spec_weapons = SKILL_SPEC_ROCKET
+	..()
+

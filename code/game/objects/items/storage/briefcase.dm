@@ -19,7 +19,7 @@
 
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red The [src] slips out of your hand and hits your head."
-		user.take_organ_damage(10)
+		user.take_limb_damage(10)
 		user.KnockOut(2)
 		return
 

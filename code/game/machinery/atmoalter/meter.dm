@@ -89,13 +89,12 @@
 
 	user << t
 
-/obj/machinery/meter/Click()
+/obj/machinery/meter/clicked(var/mob/user)
+	..()
 
-	if(istype(usr, /mob/living/silicon/ai)) // ghosts can call ..() for examine
-		examine(usr)
+	if(istype(user, /mob/living/silicon/ai)) // ghosts can call ..() for examine
+		examine(user)
 		return 1
-
-	return ..()
 
 /obj/machinery/meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!istype(W, /obj/item/tool/wrench))

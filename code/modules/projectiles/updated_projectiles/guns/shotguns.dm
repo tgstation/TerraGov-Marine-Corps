@@ -71,6 +71,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
 	wield_delay = WIELD_DELAY_VERY_FAST //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
+	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	New()
 		..()
@@ -138,7 +139,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
 			user << "<span class='warning'>You can't use that to reload!</span>"
@@ -156,7 +157,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
 
 	unload(mob/user)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 		empty_chamber(user)
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
@@ -168,23 +169,32 @@ can cause issues with ammo types getting mixed up during the burst.
 		current_mag.chamber_position--
 		return in_chamber
 
-/obj/item/weapon/gun/shotgun
-	ready_in_chamber()
-		return ready_shotgun_tube()
 
-	reload_into_chamber(mob/user)
-		if(active_attachable) make_casing(active_attachable.type_of_casings)
-		else
-			make_casing(type_of_casings)
-			in_chamber = null
+/obj/item/weapon/gun/shotgun/ready_in_chamber()
+	return ready_shotgun_tube()
 
-		if(!active_attachable) //Time to move the tube position.
-			ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
-			if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
-				update_icon()
-		else
-			if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
-		return 1
+/obj/item/weapon/gun/shotgun/reload_into_chamber(mob/user)
+	if(active_attachable) make_casing(active_attachable.type_of_casings)
+	else
+		make_casing(type_of_casings)
+		in_chamber = null
+
+	if(!active_attachable) //Time to move the tube position.
+		ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
+		if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
+			update_icon()
+	else
+		if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
+	return 1
+
+
+/obj/item/weapon/gun/shotgun/able_to_fire(mob/living/user)
+	. = ..()
+	if (. && istype(user)) //Let's check all that other stuff first.
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_SCOUT)
+			user << "<span class='warning'>Scout specialists can't use shotguns...</span>"
+			return 0
+
 
 //-------------------------------------------------------
 //GENERIC MERC SHOTGUN //Not really based on anything.

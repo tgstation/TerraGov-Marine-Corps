@@ -160,7 +160,7 @@
 			user << "<span class='warning'>[src] must be anchored! Use a screwdriver!</span>"
 			return
 		user << "You begin mounting [MG].."
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && !gun_mounted)
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && !gun_mounted && anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("\blue [user] installs [MG] into place.","\blue You install [MG] into place.")
 			gun_mounted = 1
@@ -323,16 +323,24 @@
 				return
 
 	if(istype(O, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
+		var/obj/item/ammo_magazine/m56d/M = O
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+			if(rounds)
+				user << "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>"
+				return
+			if(user.action_busy) return
+			if(!do_after(user, 25, TRUE, 5, BUSY_ICON_CLOCK))
+				return
+		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
+		playsound(loc, 'sound/weapons/gun_minigun_cocked.ogg', 25, 1)
 		if(rounds)
-			usr << "There is already a ammo drum in the weapon!"
-			return
-		if(do_after(user,5, TRUE, 5, BUSY_ICON_CLOCK))
-			user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
-			rounds = 700
-			update_icon()
-			user.temp_drop_inv_item(O)
-			cdel(O)
-			return
+			var/obj/item/ammo_magazine/m56d/D = new(user.loc)
+			D.current_rounds = rounds
+		rounds = min(rounds + M.current_rounds, rounds_max)
+		update_icon()
+		user.temp_drop_inv_item(O)
+		cdel(O)
+		return
 	return ..()
 
 /obj/machinery/m56d_hmg/proc/update_health(var/damage) //Negative damage restores health.
@@ -553,17 +561,19 @@
 	if(user.lying || get_dist(user,src) > 1 || user.is_mob_incapacitated() || !user.client)
 		user.unset_interaction()
 
-/obj/machinery/m56d_hmg/CtrlClick(var/mob/user) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
-	if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
-		visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		burst_fire = 1
-		return
-	else
+/obj/machinery/m56d_hmg/clicked(var/mob/user, var/list/mods) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
+	if (mods["ctrl"])
+		if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
+			visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			burst_fire = 1
+			return 1
+
 		visible_message("\icon[src] <span class='notice'> emits a audiable soft click </span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		burst_fire = 0
-		return
+		return 1
+	..()
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
 	name = "M56D Smartgun Nest"

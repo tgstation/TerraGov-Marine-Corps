@@ -123,7 +123,7 @@
 	icon_state = "riot"
 	item_state = "swat_suit"
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
-	armor = list(melee = 70, bullet = 45, laser = 35, energy = 20, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 70, bullet = 70, laser = 35, energy = 20, bomb = 35, bio = 10, rad = 10)
 
 
 /obj/item/clothing/suit/armor/swat

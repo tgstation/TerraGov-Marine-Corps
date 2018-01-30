@@ -110,8 +110,8 @@
 			M.flick_attack_overlay(src, "punch")
 
 			var/max_dmg = 5
-			if(M.mind. && M.mind.skills_list)
-				max_dmg += M.mind.skills_list["cqc"]
+			if(M.mind. && M.mind.cm_skills)
+				max_dmg += M.mind.cm_skills.cqc
 			var/damage = rand(0, max_dmg)
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1)
@@ -151,7 +151,7 @@
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 
 			//Accidental gun discharge
-			if(!M.mind || !M.mind.skills_list || M.mind.skills_list["cqc"] < SKILL_CQC_MP)
+			if(!M.mind || !M.mind.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -173,11 +173,11 @@
 						return W.afterattack(target,src)
 
 			var/randn = rand(1, 100)
-			if(M.mind && M.mind.skills_list)
-				randn -= 5 * M.mind.skills_list["cqc"] //attacker's martial arts training
+			if(M.mind && M.mind.cm_skills)
+				randn -= 5 * M.mind.cm_skills.cqc //attacker's martial arts training
 
-			if(mind && mind.skills_list)
-				randn += 5 * mind.skills_list["cqc"] //defender's martial arts training
+			if(mind && mind.cm_skills)
+				randn += 5 * mind.cm_skills.cqc //defender's martial arts training
 
 
 			if (randn <= 25)

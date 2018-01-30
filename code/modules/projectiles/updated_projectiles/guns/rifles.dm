@@ -10,6 +10,7 @@
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
+	gun_skill_category = GUN_SKILL_RIFLES
 
 	New()
 		..()
@@ -30,7 +31,7 @@
 	icon_state = "m41a"
 	w_class = 3
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 32
+	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/m41a
 
 /obj/item/ammo_magazine/rifle/extended
@@ -266,7 +267,7 @@
 	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "m41ae2"
-	max_rounds = 100 //Should be a 300 box.
+	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 /obj/item/weapon/gun/rifle/lmg
@@ -292,6 +293,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ON_MERCS
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
 	New()
 		..()

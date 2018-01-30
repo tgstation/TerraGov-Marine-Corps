@@ -9,6 +9,7 @@
 	flags_atom = OPENCONTAINER
 	volume = 100
 	throwpass = 1
+	layer = BELOW_OBJ_LAYER
 
 	var/draw_warnings = 1 //Set to 0 to stop it from drawing the alert lights.
 
@@ -141,6 +142,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0)) return 1
+	if(!density) return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	else

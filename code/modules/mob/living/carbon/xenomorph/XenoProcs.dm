@@ -158,6 +158,17 @@
 	if(frenzy_aura)
 		. -= (frenzy_aura * 0.1)
 
+	if(is_charging)
+		. -= charge_speed
+		charge_timer = 2
+		if(charge_speed == 0)
+			charge_dir = dir
+			handle_momentum()
+		else
+			if(charge_dir != dir) //Have we changed direction?
+				stop_momentum() //This should disallow rapid turn bumps
+			else
+				handle_momentum()
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
@@ -223,7 +234,9 @@
 					canmove = FALSE
 					frozen = TRUE
 					if(!is_robotic) playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					spawn(charge_type == 1 ? 1 : 15) frozen = FALSE
+					spawn(charge_type == 1 ? 5 : 15)
+						frozen = FALSE
+						update_canmove()
 
 				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
 					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) / (4 - upgrade)) //About 12.5 to 80 extra damage depending on upgrade level.
@@ -395,3 +408,85 @@
 		var/mob/living/L = AM
 		if(L.buckled) return //to stop xeno from pulling marines on roller beds.
 	..()
+
+//This is depricated. Use handle_collision() for all future speed changes. ~Bmc777
+/mob/living/carbon/Xenomorph/proc/stop_momentum(direction, stunned)
+	if(!lastturf) r_FAL //Not charging.
+	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Message now happens without a stun condition
+		visible_message("<span class='danger'>[src] skids to a halt!</span>",
+		"<span class='xenowarning'>You skid to a halt.</span>")
+	last_charge_move = 0 //Always reset last charge tally
+	charge_speed = 0
+	charge_roar = 0
+	lastturf = null
+	flags_pass = 0
+	update_icons()
+
+//Why the elerloving fuck was this a Crusher only proc ? AND WHY IS IT NOT CAST ON THE RECEIVING ATOM ? AAAAAAA
+/mob/living/carbon/Xenomorph/proc/diagonal_step(atom/movable/A, direction)
+	if(!A) r_FAL
+	switch(direction)
+		if(EAST, WEST) step(A, pick(NORTH,SOUTH))
+		if(NORTH,SOUTH) step(A, pick(EAST,WEST))
+
+/mob/living/carbon/Xenomorph/proc/handle_momentum()
+	if(throwing)
+		r_FAL
+
+	if(last_charge_move && last_charge_move < world.time - 5) //If we haven't moved in the last 500 ms, break charge on next move
+		stop_momentum(charge_dir)
+
+	if(stat || pulledby || !loc || !isturf(loc))
+		stop_momentum(charge_dir)
+		r_FAL
+
+	if(!is_charging)
+		stop_momentum(charge_dir)
+		r_FAL
+
+	if(lastturf && (loc == lastturf || loc.z != lastturf.z)) //Check if the Crusher didn't move from his last turf, aka stopped
+		stop_momentum(charge_dir)
+		r_FAL
+
+	if(dir != charge_dir || m_intent == "walk" || istype(loc, /turf/unsimulated/floor/gm/river))
+		stop_momentum(charge_dir)
+		r_FAL
+
+	if(pulling && charge_speed > charge_speed_buildup) stop_pulling()
+
+	if(storedplasma > 5) storedplasma -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
+	else
+		stop_momentum(charge_dir)
+		r_FAL
+
+	last_charge_move = world.time //Index the world time to the last charge move
+
+	if(charge_speed < charge_speed_max)
+		charge_speed += charge_speed_buildup //Speed increases each step taken. Caps out at 14 tiles
+		if(charge_speed == charge_speed_max) //Should only fire once due to above instruction
+			if(!charge_roar)
+				emote("roar")
+				charge_roar = 1
+
+	noise_timer = noise_timer ? --noise_timer : 3
+
+	if(noise_timer == 3 && charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+		playsound(loc, 'sound/mecha/mechstep.ogg', min(15 + (charge_speed * 20), 50), 0)
+
+	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+
+		for(var/mob/living/carbon/M in loc)
+			if(M.lying && !isXeno(M) && M.stat != DEAD)
+				visible_message("<span class='danger'>[src] runs [M] over!</span>",
+				"<span class='danger'>You run [M] over!</span>")
+				M.take_overall_damage(charge_speed * 40) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
+				animation_flash_color(M)
+
+		var/shake_dist = min(round(charge_speed * 5), 8)
+		for(var/mob/living/carbon/M in range(shake_dist))
+			if(M.client && !isXeno(M))
+				shake_camera(M, 1, 1)
+
+	lastturf = isturf(loc) && !istype(loc, /turf/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
+
+	update_icons()

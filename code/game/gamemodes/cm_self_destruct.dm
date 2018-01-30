@@ -164,6 +164,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	if(dest_status == NUKE_EXPLOSION_INACTIVE && !(flags_scuttle & FLAGS_SELF_DESTRUCT_DENY))
 		dest_status = NUKE_EXPLOSION_ACTIVE
 		dest_master.lock_or_unlock()
+		set_security_level(SEC_LEVEL_DELTA) //also activate Delta alert, to open the SD shutters.
 		r_TRU
 
 //Override is for admins bypassing normal player restrictions.
@@ -185,6 +186,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		dest_master.lock_or_unlock(1)
 		dest_index = 1
 		ai_system.Announce("The emergency destruct system has been deactivated.", 'sound/AI/selfdestruct_deactivated.ogg')
+		if(evac_status == EVACUATION_STATUS_STANDING_BY) //the evac has also been cancelled or was never started.
+			set_security_level(SEC_LEVEL_RED)
 		r_TRU
 
 /datum/authority/branch/evacuation/proc/initiate_self_destruct(override)
@@ -373,6 +376,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	name = "self destruct control rod"
 	desc = "It is part of a complicated self-destruct sequence, but relatively simple to operate. Twist to arm or disarm."
 	icon_state = "rod"
+	layer = BELOW_OBJ_LAYER
 	var/activate_time
 
 	Dispose()
@@ -382,8 +386,13 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	lock_or_unlock(lock)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 25, 1)
 		..()
-		density = !density
-		if(lock) activate_time = null
+		if(lock)
+			activate_time = null
+			density = FALSE
+			layer = initial(layer)
+		else
+			density = TRUE
+			layer = ABOVE_OBJ_LAYER
 
 	attack_hand(mob/user)
 		if(..())

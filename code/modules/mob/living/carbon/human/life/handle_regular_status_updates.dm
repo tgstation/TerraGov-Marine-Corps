@@ -69,7 +69,7 @@
 		else
 			stat = CONSCIOUS
 
-		if(in_stasis) blinded = TRUE //Always blinded while in stasis.
+		if(in_stasis == STASIS_IN_CRYO_CELL) blinded = TRUE //Always blinded while in stasisTUBES
 
 		//Periodically double-check embedded_flag
 		if(embedded_flag && !(life_tick % 10))
@@ -143,7 +143,7 @@
 			if(command_aura_tick < 1)
 				command_aura = null
 		if(command_aura && !stat)
-			command_aura_strength = mind.skills_list["leadership"] - 1 //2 is SL, so base of 1. Goes up to 3 (CO, XO)
+			command_aura_strength = mind.cm_skills.leadership - 1 //2 is SL, so base of 1. Goes up to 3 (CO, XO)
 			var/command_aura_range = round(4 + command_aura_strength * 1)
 			for(var/mob/living/carbon/human/H in range(command_aura_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
 				if(command_aura == "move" && command_aura_strength > H.mobility_new)

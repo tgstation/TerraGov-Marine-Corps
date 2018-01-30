@@ -10,6 +10,7 @@
 	var/recycle_dir = NORTH
 	var/list/stored_matter =  list("metal" = 0, "glass" = 0)
 	var/last_recycle_sound //for sound cooldown
+	var/ignored_items = list(/obj/item/limb)
 
 /obj/machinery/recycler/New()
 	..()
@@ -29,16 +30,21 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	var/move_dir = get_dir(loc, AM.loc)
-	if(move_dir == recycle_dir)
+	if(!AM.anchored && move_dir == recycle_dir)
 		if(istype(AM, /obj/item))
 			recycle(AM)
 		else
-			if(!AM.anchored)
-				AM.loc = loc
+			AM.loc = loc
 
 
 /obj/machinery/recycler/proc/recycle(obj/item/I)
 	var/turf/T = get_turf(I)
+
+	for(var/forbidden_path in ignored_items)
+		if(istype(I, forbidden_path))
+			I.loc = loc
+			return
+
 	if(istype(I, /obj/item/storage))
 		var/obj/item/storage/S = I
 		for(var/obj/item/X in S.contents)

@@ -383,7 +383,9 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = Clamp(isgoodnumber(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num),1,max_pill_count)
+				count = Clamp(isgoodnumber(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num|null),0,max_pill_count)
+				if(!count)
+					return
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
@@ -391,7 +393,9 @@
 			var/amount_per_pill = reagents.total_volume/count
 			if (amount_per_pill > 60) amount_per_pill = 60
 
-			var/name = reject_bad_text(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"))
+			var/name = reject_bad_text(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as text|null)
+			if(!name)
+				return
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
@@ -410,7 +414,9 @@
 
 		else if (href_list["createbottle"])
 			if(!condi)
-				var/name = reject_bad_text(input(usr,"Name:","Name your bottle!",reagents.get_master_reagent_name()))
+				var/name = reject_bad_text(input(usr,"Name:","Name your bottle!",reagents.get_master_reagent_name()) as text|null)
+				if(!name)
+					return
 				var/obj/item/reagent_container/glass/bottle/P = new/obj/item/reagent_container/glass/bottle(src.loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] bottle"

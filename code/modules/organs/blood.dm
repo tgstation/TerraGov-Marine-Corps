@@ -167,7 +167,7 @@
 	if(in_stasis) // stasis now stops bloodloss
 		return
 
-	if(reagents.get_reagent_amount("quickclot") >= 0.05) //Quickclot stops bleeding, magic!
+	if(reagents.get_reagent_amount("quickclot")) //Quickclot stops bleeding, magic!
 		return
 
 	vessel.remove_reagent("blood", amt)

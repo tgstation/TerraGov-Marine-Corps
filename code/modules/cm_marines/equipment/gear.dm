@@ -65,96 +65,6 @@
 	icon = 'icons/Marine/apc.dmi'
 	icon_state = "apc"
 
-//Possibly the most generically named procs in history. congrats
-/obj/structure/largecrate/random
-	name = "supply crate"
-	var/num_things = 0
-	var/list/stuff = list(/obj/item/cell/high,
-						/obj/item/storage/belt/utility/full,
-						/obj/item/device/multitool,
-						/obj/item/tool/crowbar,
-						/obj/item/device/flashlight,
-						/obj/item/reagent_container/food/snacks/donkpocket,
-						/obj/item/explosive/grenade/smokebomb,
-						/obj/item/circuitboard/airlock,
-						/obj/item/device/assembly/igniter,
-						/obj/item/tool/weldingtool,
-						/obj/item/tool/wirecutters,
-						/obj/item/device/analyzer,
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine)
-
-	New()
-		spawn(1)
-			if(!num_things) num_things = rand(0,3)
-
-			while(num_things)
-				if(!num_things)
-					break
-				num_things--
-				var/obj/item/thing = pick(stuff)
-				new thing(src)
-
-/obj/structure/largecrate/guns
-	name = "\improper USCM firearms crate (x3)"
-	var/num_guns = 3
-	var/num_mags = 0
-	var/list/stuff = list(
-					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,
-					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,
-					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
-					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
-					/obj/item/weapon/gun/rifle/m41a/scoped = /obj/item/ammo_magazine/rifle/marksman,
-					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg
-				)
-	New()
-		spawn(1)
-			var/gun_type
-			var/i = 0
-			while(++i <= num_guns)
-				gun_type = pick(stuff)
-				new gun_type(src)
-				var/obj/item/ammo_magazine/new_mag = stuff[gun_type]
-				var/m = 0
-				while(++m <= num_mags)
-					new new_mag(src)
-
-/obj/structure/largecrate/guns/russian
-	num_guns = 1
-	num_mags = 1
-	name = "\improper Nagant-Yamasaki firearm crate"
-	stuff = list(	/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
-					/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
-					/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
-					/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
-					/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40/extended,
-					/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/rifle/sniper/svd,
-					/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh
-				)
-
-/obj/structure/largecrate/guns/merc
-	num_guns = 1
-	num_mags = 1
-	name = "\improper Black market firearm crate"
-	stuff = list(	/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
-					/obj/item/weapon/gun/pistol/highpower = /obj/item/ammo_magazine/pistol/highpower,
-					/obj/item/weapon/gun/pistol/m1911 = /obj/item/ammo_magazine/pistol/m1911,
-					/obj/item/weapon/gun/pistol/vp70 = /obj/item/ammo_magazine/pistol/vp70,
-					/obj/item/weapon/gun/pistol/heavy = /obj/item/ammo_magazine/pistol/heavy,
-					/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
-					/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
-					/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun,
-					/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
-					/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
-					/obj/item/weapon/gun/smg/mp7 = /obj/item/ammo_magazine/smg/mp7,
-					/obj/item/weapon/gun/smg/skorpion = /obj/item/ammo_magazine/smg/skorpion,
-					/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi,
-					/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90
-				)
 
 /obj/item/storage/box/uscm_mre
 	name = "\improper USCM meal ready to eat"
@@ -165,22 +75,23 @@
 		..()
 		pixel_y = rand(-3,3)
 		pixel_x = rand(-3,3)
-		for(var/i = 0,i < 5,i++)
+		for(var/i = 0,i < 6,i++)
 			var/rand_type = rand(0,8)
-			if(rand_type <= 2)
-				new /obj/item/reagent_container/food/snacks/protein_pack(src)
-			else if(rand_type == 3)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal1(src)
-			else if(rand_type == 4)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal2(src)
-			else if(rand_type == 5)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal3(src)
-			else if(rand_type == 6)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal4(src)
-			else if(rand_type == 7)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal5(src)
-			else if(rand_type == 8)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal6(src)
+			switch(rand_type)
+				if(0 to 2)
+					new /obj/item/reagent_container/food/snacks/protein_pack(src)
+				if(3)
+					new /obj/item/reagent_container/food/snacks/mre_pack/meal1(src)
+				if(4)
+					new /obj/item/reagent_container/food/snacks/mre_pack/meal2(src)
+				if(5)
+					new /obj/item/reagent_container/food/snacks/mre_pack/meal3(src)
+				if(6)
+					new /obj/item/reagent_container/food/snacks/mre_pack/meal4(src)
+				if(7)
+					new /obj/item/reagent_container/food/snacks/mre_pack/meal5(src)
+				if(8)
+					new /obj/item/reagent_container/food/snacks/mre_pack/meal6(src)
 
 
 /obj/item/reagent_container/food/snacks/protein_pack

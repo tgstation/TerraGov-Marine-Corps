@@ -444,7 +444,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_survivor.loc = pick(surv_spawn)
 
 	//Damage them for realism purposes
-	new_survivor.take_organ_damage(rand(0,15), rand(0,15))
+	new_survivor.take_limb_damage(rand(0,15), rand(0,15))
 
 	var/id_assignment = ""
 
@@ -456,14 +456,13 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
-
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 		if(1) //civilian in pajamas
 			id_assignment = "Civilian"
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(new_survivor), WEAR_BODY)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 
 		if(2) //Scientist
 			id_assignment = "Scientist"
@@ -471,7 +470,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(new_survivor), WEAR_BACK)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_MEDIC,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/scientist)
 
 		if(3) //Doctor
 			id_assignment = "Doctor"
@@ -481,8 +480,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/belt/medical(new_survivor), WEAR_L_HAND)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(new_survivor), WEAR_BACK)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_survivor.back), WEAR_IN_BACK)
-
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_SURGERY,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/doctor)
 
 		if(4) //Chef!
 			id_assignment = "Chef"
@@ -491,7 +489,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
 			new_survivor.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(new_survivor), WEAR_L_HAND)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/chef)
 
 		if(5) //Botanist
 			id_assignment = "Botanist"
@@ -499,7 +497,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(new_survivor), WEAR_JACKET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/tool/hatchet(new_survivor), WEAR_L_HAND)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 
 		if(6)//Atmos
 			id_assignment = "Atmos Tech"
@@ -507,7 +505,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(new_survivor), WEAR_L_HAND)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(new_survivor), WEAR_BACK)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_MT,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/atmos)
 
 		if(7) //Chaplain
 			id_assignment = "Chaplain"
@@ -517,7 +515,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/bible/booze(new_survivor.back), WEAR_IN_BACK)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(new_survivor), WEAR_WAIST)
 			new_survivor.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(new_survivor), WEAR_L_HAND)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 
 		if(8) //Miner
 			id_assignment = "Miner"
@@ -526,8 +524,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
 			new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(new_survivor.back), WEAR_IN_BACK)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_TRAINED,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_TRAINED)
-
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/miner)
 		if(9) //Corporate guy
 			id_assignment = "Salesman"
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(new_survivor), WEAR_BODY)
@@ -535,7 +532,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/briefcase(new_survivor), WEAR_L_HAND)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(new_survivor), WEAR_WAIST)
-			ghost.skills_list = list("cqc"=SKILL_CQC_WEAK,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_UNTRAINED,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_WEAK,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_UNTRAINED,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 
 		if(10) //Colonial Marshal
 			id_assignment = "Colonial Marshall"
@@ -544,8 +541,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(new_survivor), WEAR_FEET)
 			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(new_survivor), WEAR_L_HAND)
 			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(new_survivor), WEAR_BACK)
-			ghost.skills_list = list("cqc"=SKILL_CQC_MP,"endurance"=0,"engineer"=SKILL_ENGINEER_ENGI,"firearms"=SKILL_FIREARMS_DEFAULT,"smartgun"=SKILL_SMART_DEFAULT,"heavy_weapons"=SKILL_HEAVY_DEFAULT,"leadership"=SKILL_LEAD_NOVICE,"medical"=SKILL_MEDICAL_CHEM,"melee_weapons"=SKILL_MELEE_DEFAULT,"pilot"=SKILL_PILOT_NONE,"pistols"=SKILL_PISTOLS_DEFAULT,"police"=SKILL_POLICE_DEFAULT,"powerloader"=SKILL_POWERLOADER_DEFAULT)
-
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
 
 	var/obj/item/card/id/W = new(new_survivor)
 	W.name = "[new_survivor.real_name]'s ID Card ([id_assignment])"
@@ -753,7 +749,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/ammo_magazine/rifle/extended = round(scale * 1),
 						/obj/item/ammo_magazine/rifle/incendiary = round(scale * 1),
 						/obj/item/ammo_magazine/rifle/ap = round(scale * 10),
-						/obj/item/ammo_magazine/rifle/marksman = round(scale * 1),
+						/obj/item/ammo_magazine/rifle/m4ra = round(scale * 1),
 						/obj/item/ammo_magazine/rifle/m41aMK1 = 0,
 						/obj/item/ammo_magazine/rifle/lmg = 0,
 						/obj/item/ammo_magazine/shotgun = round(scale * 8),
@@ -802,7 +798,6 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/weapon/gun/smg/m39/elite = 0,
 						/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 10),
-						/obj/item/weapon/gun/rifle/m41a/scoped = 0,
 						/obj/item/weapon/gun/rifle/m41a/elite = 0,
 						/obj/item/weapon/gun/rifle/lmg = 0,
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 5),

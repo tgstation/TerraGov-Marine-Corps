@@ -133,7 +133,9 @@
 	else
 		user << "<span class='warning'>You cut \the [src] away with \the [W].</span>"
 
-	var/damage = W.force / 4.0
+	var/damage = W.force
+	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+		damage /= 4
 
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W

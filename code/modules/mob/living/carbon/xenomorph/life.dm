@@ -56,6 +56,53 @@
 			else
 				adjustBruteLoss(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
 
+	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
+	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
+	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
+	//Now moved out of healthy only state, because crit xenos can def still be affected by pheros
+
+	if(stat != DEAD) //Dead Xenos don't emit or receive pheromones, ever
+		if(current_aura && !stat && storedplasma > 5)
+			if(caste == "Queen" && anchored) //stationary queen's pheromone apply around the observed xeno.
+				var/mob/living/carbon/Xenomorph/Queen/Q = src
+				var/atom/phero_center = Q
+				if(Q.observed_xeno)
+					phero_center = Q.observed_xeno
+				var/pheromone_range = round(6 + aura_strength * 2)
+				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+						Z.frenzy_new = aura_strength
+					if(current_aura == "warding" && aura_strength > Z.warding_new)
+						Z.warding_new = aura_strength
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+						Z.recovery_new = aura_strength
+			else
+				var/pheromone_range = round(6 + aura_strength * 2)
+				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+						Z.frenzy_new = aura_strength
+					if(current_aura == "warding" && aura_strength > Z.warding_new)
+						Z.warding_new = aura_strength
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+						Z.recovery_new = aura_strength
+
+		if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
+			frenzy_aura = frenzy_new
+			warding_aura = warding_new
+			recovery_aura = recovery_new
+			hud_set_pheromone()
+
+		frenzy_new = 0
+		warding_new = 0
+		recovery_new = 0
+
+		armor_bonus = 0
+
+		if(warding_aura > 0)
+			armor_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
+
+		update_icons()
+
 	updatehealth()
 
 	if(health <= crit_health) //dead
@@ -107,61 +154,6 @@
 					adjustHalLoss(-1)
 
 		handle_statuses()//natural decrease of stunned, knocked_down, etc...
-
-		if(isXenoCrusher(src) && !stat) //Handle crusher stuff.
-			var/mob/living/carbon/Xenomorph/Crusher/X = src
-			if(X.momentum > 2 && X.charge_dir != dir)
-				X.charge_timer = 0
-				X.stop_momentum()
-			if(X.charge_timer)
-				X.charge_timer--
-				if(X.charge_timer == 0 && X.momentum > 2)
-					X.stop_momentum()
-
-		//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
-		//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
-		//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
-
-		if(current_aura && !stat && storedplasma > 5)
-			if(caste == "Queen" && anchored) //stationary queen's pheromone apply around the observed xeno.
-				var/mob/living/carbon/Xenomorph/Queen/Q = src
-				var/atom/phero_center = Q
-				if(Q.observed_xeno)
-					phero_center = Q.observed_xeno
-				var/pheromone_range = round(6 + aura_strength * 2)
-				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
-						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new)
-						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
-						Z.recovery_new = aura_strength
-			else
-				var/pheromone_range = round(6 + aura_strength * 2)
-				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
-						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new)
-						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
-						Z.recovery_new = aura_strength
-
-		if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
-			frenzy_aura = frenzy_new
-			warding_aura = warding_new
-			recovery_aura = recovery_new
-			hud_set_pheromone()
-
-		frenzy_new = 0
-		warding_new = 0
-		recovery_new = 0
-
-		armor_bonus = 0
-
-		if(warding_aura > 0)
-			armor_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
-
-		update_icons()
 
 		//Deal with dissolving/damaging stuff in stomach.
 		if(stomach_contents.len)

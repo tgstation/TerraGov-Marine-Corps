@@ -24,7 +24,7 @@
 	if (!( istype(M, /mob) ))
 		return
 	if (reagents.total_volume)
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["medical"] < SKILL_MEDICAL_CHEM)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
 			for(var/A in reagents.reagent_list)
 				var/datum/reagent/R = A
 				if(R.id != "tricordrazine" && R.id != "tramadol" )

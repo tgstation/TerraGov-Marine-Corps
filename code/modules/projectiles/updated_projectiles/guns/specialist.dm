@@ -27,11 +27,12 @@
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	able_to_fire(mob/living/user)
 		. = ..()
 		if(. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SNIPER)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -72,21 +73,38 @@
 	icon_state = "m_m42a" //NO BACK STATE
 	item_state = "m_m42a"
 
-/obj/item/ammo_magazine/rifle/marksman
+/obj/item/ammo_magazine/rifle/m4ra
 	name = "\improper A19 high velocity magazine (10x24mm)"
 	desc = "A magazine of A19 high velocity rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
-	default_ammo = /datum/ammo/bullet/rifle/marksman
+	icon_state = "m4ra"
+	default_ammo = /datum/ammo/bullet/rifle/m4ra
 	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
+	gun_type = /obj/item/weapon/gun/rifle/m4ra
 
-/obj/item/weapon/gun/rifle/m41a/scoped
+/obj/item/ammo_magazine/rifle/m4ra/incendiary
+	name = "\improper A19 high velocity incendiary magazine (10x24mm)"
+	desc = "A magazine of A19 high velocity incendiary rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
+	icon_state = "m4ra_incendiary"
+	default_ammo = /datum/ammo/bullet/rifle/m4ra/incendiary
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/m4ra
+
+/obj/item/ammo_magazine/rifle/m4ra/impact
+	name = "\improper A19 high velocity impact magazine (10x24mm)"
+	desc = "A magazine of A19 high velocity impact rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
+	icon_state = "m4ra_impact"
+	default_ammo = /datum/ammo/bullet/rifle/m4ra/impact
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/m4ra
+
+/obj/item/weapon/gun/rifle/m4ra
 	name = "\improper M4RA battle rifle"
-	desc = "The M4RA battle rifle is a designated rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and can take the 10x24mm marksman magazine in addition to regular MK2 magazines."
+	desc = "The M4RA battle rifle is a designated marksman rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
 	icon_state = "m41b"
 	item_state = "m4ra" //PLACEHOLDER
 	origin_tech = "combat=5;materials=4"
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
-	current_mag = /obj/item/ammo_magazine/rifle/marksman
+	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -95,7 +113,8 @@
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/burstfire_assembly)
 
-	flags_gun_features = GUN_SPECIALIST
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	New()
 		..()
@@ -108,15 +127,12 @@
 		S.Attach(src)
 		var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.
 		Q.Attach(src)
-		var/obj/item/attachable/G = under //We'll need this in a sec.
-		G.Detach(src) //This will null the attachment slot.
-		cdel(G) //So without a temp variable, this wouldn't work.
 		update_attachables()
 
 	able_to_fire(mob/living/user)
 		. = ..()
 		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SCOUT)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -268,7 +284,7 @@
 		if(.)
 			if(!ishuman(user)) return 0
 			var/mob/living/carbon/human/H = user
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["smartgun"] < SKILL_SMART_USE)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun < SKILL_SMART_USE)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 			if ( !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
@@ -350,6 +366,7 @@
 
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	New()
 		set waitfor = 0
@@ -412,7 +429,7 @@
 	able_to_fire(mob/living/user)
 		. = ..()
 		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -455,6 +472,7 @@
 
 	flags_atom = FPRINT|CONDUCT
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 
 	New()
 		set waitfor = 0
@@ -512,7 +530,7 @@
 	able_to_fire(mob/living/user)
 		. = ..()
 		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -608,6 +626,7 @@
 
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
+	gun_skill_category = GUN_SKILL_SPEC
 	var/datum/effect_system/smoke_spread/smoke
 
 	New()
@@ -633,7 +652,7 @@
 				click_empty(user)
 				user << "<span class='warning'>You can't fire that here!</span>"
 				return 0
-			if(user.mind && user.mind.skills_list && user.mind.skills_list["heavy_weapons"] < SKILL_HEAVY_TRAINED)
+			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_ROCKET)
 				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 				return 0
 
@@ -651,7 +670,7 @@
 		return 1
 
 	reload(mob/user, obj/item/ammo_magazine/rocket)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
 			user << "<span class='warning'>That's not going to fit!</span>"

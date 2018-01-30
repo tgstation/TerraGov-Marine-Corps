@@ -10,33 +10,35 @@
 	else
 		src << "\blue You will no longer examine things you click on."
 
-/mob/dead/observer/DblClickOn(var/atom/A, var/params)
-	if(client.buildmode)
-		build_click(src, client.buildmode, params, A)
-		return
-	if(can_reenter_corpse && mind && mind.current)
-		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
-			reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
-			return									// seems legit.
+/mob/dead/observer/click(var/atom/A, var/list/mods)
+	if (..())
+		return 1
 
-	// Things you might plausibly want to follow
-	if((ismob(A) && A != src) || istype(A,/obj/machinery/bot) || istype(A,/obj/machinery/singularity))
-		ManualFollow(A)
+	if (mods["ctrl"] && mods["middle"])
+		if(can_reenter_corpse && mind && mind.current)
+			if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
+				reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
+				return 1								// seems legit.
 
-	// Otherwise jump
-	else
-		following = null
-		loc = get_turf(A)
+		// Things you might plausibly want to follow
+		if((ismob(A) && A != src) || istype(A,/obj/machinery/bot) || istype(A,/obj/machinery/singularity))
+			ManualFollow(A)
 
-/mob/dead/observer/ClickOn(var/atom/A, var/params)
-	if(client.buildmode)
-		build_click(src, client.buildmode, params, A)
-		return
-	if(world.time <= next_move) return
+		// Otherwise jump
+		else
+			following = null
+			loc = get_turf(A)
+
+		return 1
+
+	if(world.time <= next_move)
+		return 1
+
 	next_move = world.time + 8
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
 	A.attack_ghost(src)
+	return 1
 
 // Oh by the way this didn't work with old click code which is why clicking shit didn't spam you
 /atom/proc/attack_ghost(mob/dead/observer/user)

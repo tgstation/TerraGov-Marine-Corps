@@ -41,6 +41,17 @@
 		if(2) user << "<span class='warning'>It's quite beat up, but it's holding together.</span>"
 		if(3) user << "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>"
 
+/obj/structure/barricade/hitby(atom/movable/AM)
+	if(AM.throwing && is_wired)
+		if(iscarbon(AM))
+			var/mob/living/carbon/C = AM
+			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
+			"<span class='danger'>The barbed wire slices into you!</span>")
+			C.apply_damage(10)
+			C.KnockDown(2) //Leaping into barbed wire is VERY bad
+	..()
+
+
 
 /obj/structure/barricade/Bumped(atom/A)
 	..()
@@ -49,7 +60,7 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.momentum < 20)
+		if(C.charge_speed < C.charge_speed_max/2)
 			return
 
 		if(crusher_resistant)
@@ -57,24 +68,20 @@
 			update_health()
 
 		else if(!C.stat)
-			visible_message("<span class='danger'>[C] steamrolls through [src]!</span>")
+			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
 			destroy()
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	if(closed)
 		return 1
 
-	if(O && O.throwing)
+	if(O.throwing)
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
-			var/mob/living/carbon/C = O
-			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
-			"<span class='danger'>The barbed wire slices into you!</span>")
-			C.apply_damage(10)
-			C.KnockDown(2) //Leaping into barbed wire is VERY bad
-			return 0
+			if(get_dir(loc, target) == dir)
+				return 0
 		return 1
 
-	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir)) //Barbed wires blocks movement
+	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir))
 		return 0
 	else
 		return 1
@@ -86,12 +93,8 @@
 
 	if(mover && mover.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			var/mob/living/carbon/C = mover
-			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
-			"<span class='danger'>The barbed wire slices into you!</span>")
-			C.apply_damage(10)
-			C.KnockDown(2) //Leaping into barbed wire is VERY bad
-			return 0
+			if(get_dir(loc, target) == dir)
+				return 0
 		return 1
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -423,7 +426,7 @@
 	if(iswelder(W))
 		if(user.action_busy)
 			return
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user << "<span class='warning'>You're not trained to repair [src]...</span>"
 			return
 		var/obj/item/tool/weldingtool/WT = W
@@ -452,7 +455,7 @@
 			if(isscrewdriver(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -465,7 +468,7 @@
 			if(isscrewdriver(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -477,7 +480,7 @@
 			if(iswrench(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -491,7 +494,7 @@
 			if(iswrench(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				for(var/obj/structure/barricade/B in loc)
@@ -508,7 +511,7 @@
 			if(iscrowbar(W))
 				if(user.action_busy)
 					return
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_METAL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
@@ -587,7 +590,7 @@
 		if(busy || tool_cooldown > world.time)
 			return
 		tool_cooldown = world.time + 10
-		if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 			user << "<span class='warning'>You're not trained to repair [src]...</span>"
 			return
 		var/obj/item/tool/weldingtool/WT = W
@@ -620,7 +623,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 
@@ -640,7 +643,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
@@ -652,7 +655,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
@@ -667,7 +670,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
@@ -680,7 +683,7 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind && user.mind.skills_list && user.mind.skills_list["engineer"] < SKILL_ENGINEER_PLASTEEL)
+				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",

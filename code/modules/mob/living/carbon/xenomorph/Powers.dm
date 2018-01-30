@@ -142,6 +142,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/build_resin(atom/A, resin_plasma_cost)
+	if(action_busy) return
 	if(!check_state())
 		return
 	if(!check_plasma(resin_plasma_cost))
@@ -187,6 +188,12 @@
 				current_turf = get_turf(A) //Hivelords can secrete resin on adjacent turfs.
 
 
+
+	var/mob/living/carbon/Xenomorph/blocker = locate() in current_turf
+	if(blocker && blocker != src && blocker.stat != DEAD)
+		src << "<span class='warning'>Can't do that with [blocker] in the way!</span>"
+		return
+
 	if(!istype(current_turf) || !current_turf.is_weedable())
 		src << "<span class='warning'>You can't do that here.</span>"
 		return
@@ -226,6 +233,11 @@
 
 	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
 		return
+
+	blocker = locate() in current_turf
+	if(blocker && blocker != src && blocker.stat != DEAD)
+		return
+
 	if(!check_state())
 		return
 	if(!check_plasma(resin_plasma_cost))

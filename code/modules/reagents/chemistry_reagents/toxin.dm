@@ -97,7 +97,7 @@
 		if(M.stat == DEAD)
 			return
 		if(prob(33))
-			M.take_organ_damage(1*REM, 0)
+			M.take_limb_damage(1*REM, 0)
 		M.adjustOxyLoss(3)
 		if(prob(20)) M.emote("gasp")
 
@@ -420,7 +420,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.take_organ_damage(0, 1*REM)
+		M.take_limb_damage(0, 1*REM)
 
 	reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//magic numbers everywhere
 		if(!istype(M, /mob/living))
@@ -478,10 +478,10 @@
 								H.emote("scream")
 							H.status_flags |= DISFIGURED
 				else
-					M.take_organ_damage(min(6*toxpwr, volume * toxpwr)) // uses min() and volume to make sure they aren't being sprayed in trace amounts (1 unit != insta rape) -- Doohl
+					M.take_limb_damage(min(6*toxpwr, volume * toxpwr)) // uses min() and volume to make sure they aren't being sprayed in trace amounts (1 unit != insta rape) -- Doohl
 		else
 			if(!M.unacidable)
-				M.take_organ_damage(min(6*toxpwr, volume * toxpwr))
+				M.take_limb_damage(min(6*toxpwr, volume * toxpwr))
 
 	reaction_obj(var/obj/O, var/volume)
 		if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(meltprob * 3))

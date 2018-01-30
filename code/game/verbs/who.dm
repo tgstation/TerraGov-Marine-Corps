@@ -17,7 +17,7 @@
 			count_observers++
 			if(!C.holder)
 				count_nonadmin_observers++
-		if(C.mob.stat != DEAD)
+		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob) && !iszombie(C.mob))
 				count_humans++
 				if(C.mob.job in (ROLES_MARINES))

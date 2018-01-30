@@ -717,6 +717,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		src << "Only administrators may use this command."
 		return
 
+	if(O.disposed) return //mob was garbage collected
+
 	new_ckey = input("Enter new ckey:","CKey") as null|text
 
 	if(!new_ckey || new_ckey == null)
@@ -1039,3 +1041,29 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))	return
 
 	give_medal_award()
+
+/proc/get_all_humans()
+	if(!check_rights(R_ADMIN))	return
+
+	for(var/client/C in clients)
+		if(isobserver(C.mob) || C.mob.stat == DEAD)
+			continue
+		if(ishuman(C.mob))
+			C.mob.loc = get_turf(usr)
+
+/proc/get_all_xenos()
+	if(!check_rights(R_ADMIN))	return
+
+	for(var/client/C in clients)
+		if(isobserver(C.mob) || C.mob.stat == DEAD)
+			continue
+		if(isXeno(C.mob))
+			C.mob.loc = get_turf(usr)
+
+/proc/get_all()
+	if(!check_rights(R_ADMIN))	return
+
+	for(var/client/C in clients)
+		if(isobserver(C.mob) || C.mob.stat == DEAD)
+			continue
+		C.mob.loc = get_turf(usr)

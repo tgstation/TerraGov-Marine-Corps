@@ -628,7 +628,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()
 	else
-		M.take_organ_damage(7)
+		M.take_limb_damage(7)
 	M.eye_blurry += rand(3,4)
 	return*/
 
@@ -731,7 +731,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] peers through [zoom_device].</span>",
 		"<span class='notice'>You peer through [zoom_device].</span>")
 		zoom = !zoom
-		if(user.interactee) user.unset_interaction()
+		if(user.interactee)
+			user.unset_interaction()
+		else
+			user.set_interaction(src)
+
 		return
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.

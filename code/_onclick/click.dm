@@ -1,25 +1,111 @@
-/*
-	Click code cleanup
-	~Sayu
-*/
 
 // 1 decisecond click delay (above and beyond mob/next_move)
-/mob/var/next_click	= 0
-
+/mob/var/next_click = 0
 /*
-	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
-	remove istype() spaghetti code, but requires the addition of other handler procs to simplify it.
+	client/Click is called every time a client clicks anywhere, it should never be overridden.
 
-	Alternately, you could hardcode every mob's variation in a flat ClickOn() proc; however,
-	that's a lot of code duplication and is hard to maintain.
+	For all mobs that should have a specific click function and/or a modified click function
+	(modified means click+shift, click+ctrl, etc.) add a custom mob/click() proc.
 
-	Note that this proc can be overridden, and is in the case of screen objects.
+	For anything being clicked by a mob that should have a specific or modified click function,
+	add a custom atom/clicked() proc.
+
+	For both click() and clicked(), make sure they return 1 if the click is resolved,
+	if not, return 0 to perform regular click functions like picking up items off the ground.
+	~ BMC777
 */
-/atom/Click(location,control,params)
-	if(src && control) usr.ClickOn(src, params) //We want control, in case they are using a .click macro. We don't want that.
 
-/atom/DblClick(location,control,params)
-	if(src && control) usr.DblClickOn(src,params)
+/client/Click(atom/A, location, control, params)
+	if (control)
+		return usr.do_click(A, location, params)
+
+
+/mob/proc/do_click(atom/A, location, params)
+	// No .click macros allowed, no clicking on atoms with the NOINTERACT flag.
+	if ((A.flags_atom & NOINTERACT))
+		return
+
+	if (world.time <= next_click)
+		//DEBUG: world << "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]"
+		return
+
+	next_click = world.time + 3
+	//DEBUG: world << "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]"
+	var/mob/user = src
+	var/list/mods = params2list(params)
+	var/click_handled = 0
+
+	if (user.next_move > world.time)
+		return
+
+	if(client.buildmode)
+		build_click(src, client.buildmode, params, A)
+		return
+
+	// Click handled elsewhere.
+	click_handled = user.click(A, mods)
+	click_handled |= A.clicked(user, mods)
+
+	if (click_handled)
+		return 100
+
+	// Default click functions from here on.
+
+	if (user.is_mob_incapacitated(TRUE))
+		return
+
+	user.face_atom(A)
+
+	if (next_move > world.time)
+		return
+
+	// Special type of click.
+	if (user.is_mob_restrained())
+		user.RestrainedClickOn(A)
+		return 100
+
+	// Throwing stuff.
+	if (user.in_throw_mode)
+		user.throw_item(A)
+		return 100
+
+	// Last thing clicked is tracked for something somewhere.
+	if(!istype(A,/obj/item/weapon/gun) && !isturf(A) && !istype(A,/obj/screen))
+		user.last_target_click = world.time
+
+	var/obj/item/W = user.get_active_hand()
+
+	// Special gun mode stuff.
+	if(W == A)
+		user.mode()
+		return 100
+
+	// Don't allow doing anything else if inside a container of some sort, like a locker.
+	if (!isturf(user.loc))
+		return
+
+	// If standing next to the atom clicked.
+	if (A.Adjacent(user))
+		user.next_move += 6
+		if (W)
+			if (W.attack_speed)
+				user.next_move += W.attack_speed
+
+			if (!A.attackby(W, user) && A)
+				W.afterattack(A, user, 1, mods)
+		else
+			user.UnarmedAttack(A, 1)
+
+		return 100
+
+	// If not standing next to the atom clicked.
+	if (W)
+		W.afterattack(A, user, 0, mods)
+		return 100
+
+	user.RangedAttack(A, mods)
+	return 100
+
 
 /*
 	Standard mob ClickOn()
@@ -35,117 +121,37 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 
-/mob/proc/ClickOn( var/atom/A, var/params )
-	if(world.time <= next_click || istype(interactee, /obj/structure/ladder))
-		return
-	next_click = world.time + 1
+/mob/proc/click(var/atom/A, var/list/mods)
+	return 0
 
-	if(client.buildmode)
-		build_click(src, client.buildmode, params, A)
-		return
+/atom/proc/clicked(var/mob/user, var/list/mods)
 
-	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["middle"])
-		ShiftMiddleClickOn(A)
-		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
-		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
-		return
-	if(buckled && lying && istype(buckled,/obj/structure/bed/nest)) //Stops nesting stuff, mostly.
-		RestrainedClickOn(A)
-		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
-		return
-	if(modifiers["ctrl"])
-		CtrlClickOn(A)
-		return
+	if (mods["shift"])
+		if(user.client && user.client.eye == user)
+			examine(user)
+			user.face_atom(src)
+		return 1
 
-	if(is_mob_incapacitated(TRUE))
-		return
-
-	face_atom(A)
-
-	if(next_move > world.time) // in the year 2000...
-		return
-
-	if(istype(loc,/obj/mecha))
-		if(!locate(/turf) in list(A,A.loc)) // Prevents inventory from being drilled
-			return
-		var/obj/mecha/M = loc
-		return M.click_action(A,src)
-
-	if(is_mob_restrained())
-		RestrainedClickOn(A)
-		return
-
-	if(in_throw_mode)
-		throw_item(A)
-		return
-
-	if(!istype(A,/obj/item/weapon/gun) && !isturf(A) && !istype(A,/obj/screen))
-		last_target_click = world.time
-
-	var/obj/item/W = get_active_hand()
-
-	if(W == A)
-		mode()
-		return
-
-	// operate two STORAGE levels deep here (item in backpack in src; NOT item in box in backpack in src)
-	var/sdepth = A.storage_depth(src)
-	if(A == loc || (A in loc) || (sdepth != -1 && sdepth <= 1))
-
-		// faster access to objects already on you
-		if(A in contents)
-			next_move = world.time + 6 // on your person
-		else
-			next_move = world.time + 8 // in a box/bag or in your square
-
-		// No adjacency needed
-		if(W)
-			var/resolved = A.attackby(W,src)
-			if(!resolved && A && W)
-				W.afterattack(A,src,1,params) // 1 indicates adjacency
-		else
-			UnarmedAttack(A, 1)
-		return
-
-	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
-		return
-
-	// Allows you to click on a box's contents, if that box is on the ground, but no deeper than that
-	sdepth = A.storage_depth_turf()
-	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		next_move = world.time + 3
-
-		if(A.Adjacent(src)) // see adjacent.dm
-			if(W)
-				if(W.attack_speed)
-					next_move += W.attack_speed
-
-				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = A.attackby(W,src)
-				if(!resolved && A && W)
-					W.afterattack(A,src,1,params) // 1: clicking something Adjacent
+	if (mods["alt"])
+		var/turf/T = get_turf(src)
+		if(T && user.TurfAdjacent(T))
+			if(user.listed_turf == T)
+				user.listed_turf = null
 			else
-				UnarmedAttack(A, 1)
-			return
-		else // non-adjacent click
-			if(W)
-				W.afterattack(A,src,0,params) // 0: not Adjacent
-			else
-				RangedAttack(A, params)
+				user.listed_turf = T
+				user.client.statpanel = T.name
+		return 1
+	return 0
 
-	return
+/atom/movable/clicked(var/mob/user, var/list/mods)
+	if (..())
+		return 1
 
-// Default behavior: ignore double clicks, consider them normal clicks instead
-/mob/proc/DblClickOn(var/atom/A, var/params)
-	ClickOn(A,params)
-
+	if (mods["ctrl"])
+		if (Adjacent(user))
+			user.start_pulling(src)
+		return 1
+	return 0
 
 /*
 	Translates into attack_hand, etc.
@@ -193,75 +199,6 @@
 */
 /mob/proc/RestrainedClickOn(var/atom/A)
 	return
-
-/*
-	Middle click
-*/
-/mob/proc/MiddleClickOn(var/atom/A)
-	return
-
-/*
-	Shift click
-	For most mobs, examine.
-	This is overridden in ai.dm
-*/
-/mob/proc/ShiftClickOn(var/atom/A)
-	A.ShiftClick(src)
-	return
-
-/atom/proc/ShiftClick(mob/user)
-	if(user.client && user.client.eye == user)
-		examine(user)
-		user.face_atom(src)
-
-/*
-	Ctrl click
-	For most objects, pull
-*/
-/mob/proc/CtrlClickOn(var/atom/A)
-	A.CtrlClick(src)
-	return
-
-/atom/proc/CtrlClick(var/mob/user)
-	return
-
-/atom/movable/CtrlClick(var/mob/user)
-	if(Adjacent(user))
-		user.start_pulling(src)
-
-/*
-	Alt click
-*/
-/mob/proc/AltClickOn(var/atom/A)
-	A.AltClick(src)
-	return
-
-/atom/proc/AltClick(var/mob/user)
-	var/turf/T = get_turf(src)
-	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = T.name
-	return
-
-/*
-	Control+Shift click
-*/
-/mob/proc/CtrlShiftClickOn(var/atom/A)
-	A.CtrlShiftClick(src)
-	return
-
-/atom/proc/CtrlShiftClick(var/mob/user)
-	return
-
-/*
-	Shift+Middle click
-*/
-/mob/proc/ShiftMiddleClickOn(atom/A)
-	return
-
 
 /*
 	Misc helpers

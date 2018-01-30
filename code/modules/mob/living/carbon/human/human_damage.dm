@@ -236,7 +236,7 @@
 //Heals ONE external organ, organ gets randomly selected from damaged ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/heal_organ_damage(var/brute, var/burn)
+/mob/living/carbon/human/heal_limb_damage(var/brute, var/burn)
 	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
 	if(!parts.len)	return
 	var/datum/limb/picked = pick(parts)
@@ -251,7 +251,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 //Damages ONE external organ, organ gets randomly selected from damagable ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/take_organ_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0)
+/mob/living/carbon/human/take_limb_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0)
 	var/list/datum/limb/parts = get_damageable_limbs()
 	if(!parts.len)	return
 	var/datum/limb/picked = pick(parts)

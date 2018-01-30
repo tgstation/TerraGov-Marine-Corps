@@ -138,51 +138,7 @@
 		new /obj/item/dnainjector/m2h(src)
 		new /obj/item/dnainjector/m2h(src)
 		new /obj/item/dnainjector/m2h(src)
-/*
 
-/obj/item/storage/box/blanks
-	name = "box of blank shells"
-	desc = "It has a picture of a gun and several warning symbols on the front."
-
-	New()
-		..()
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-
-/obj/item/storage/box/beanbags
-	name = "box of beanbag shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	can_hold = list("/obj/item/ammo_casing/shotgun/beanbag")
-	w_class = 2
-	New()
-		..()
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-
-/obj/item/storage/box/shotgunammo
-	name = "box of shotgun shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "shells"
-	New()
-		..()
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-*/
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
@@ -601,6 +557,7 @@
 	icon_state = "nade_placeholder"
 	w_class = 4
 	storage_slots = 25
+	max_storage_space = 50
 	can_hold = list("/obj/item/explosive/grenade/frag")
 	var/nade_box_icon
 	var/grenade_type = /obj/item/explosive/grenade/frag
@@ -609,8 +566,7 @@
 		..()
 		select_gamemode_skin(/obj/item/storage/box/nade_box)
 		nade_box_icon = icon_state
-		var/i = 0
-		while(++i < storage_slots)
+		for(var/i = 1 to storage_slots)
 			new grenade_type(src)
 
 	update_icon()

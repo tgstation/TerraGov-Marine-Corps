@@ -40,7 +40,7 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) Used the [src.name] to flash [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_FLASH)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_FLASH)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 
@@ -115,7 +115,7 @@
 /obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user)) 	return
 
-	if(user.mind && user.mind.skills_list && user.mind.skills_list["police"] < SKILL_POLICE_FLASH)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_FLASH)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 

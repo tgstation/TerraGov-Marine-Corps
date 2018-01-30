@@ -78,7 +78,7 @@
 
 /obj/item/weapon/gun/revolver
 	reload(mob/user, obj/item/ammo_magazine/magazine)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(!magazine || !istype(magazine))
 			user << "<span class='warning'>That's not gonna work!</span>"
@@ -122,7 +122,7 @@
 				user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
 
 	unload(mob/user)
-		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
+		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(current_mag.chamber_closed) //If it's actually closed.
 			user << "<span class='notice'>You clear the cylinder of [src].</span>"

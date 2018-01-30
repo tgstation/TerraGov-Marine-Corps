@@ -83,7 +83,7 @@
 	return 1
 
 /datum/game_mode/proc/transform_player2(mob/living/carbon/human/H)
-	H.take_organ_damage(rand(1,25), rand(1,25))
+	H.take_limb_damage(rand(1,25), rand(1,25))
 	H.client << "<h2>You are a survivor!</h2>"
 	H.client << "\blue You were a crew member on the Nostromo. Your crew was wiped out by an alien infestation. You should try to locate and help other survivors (If there are any other than you.)"
 	return 1

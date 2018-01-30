@@ -58,7 +58,7 @@
 
 	var/shuttle_status_message
 	if(shuttle.transit_gun_mission && (onboard || shuttle.moving_status != SHUTTLE_IDLE))
-		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FIRE MISSION. </span>"
+		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #ff4444'>FLYBY. </span>"
 	else //console not onboard stays on TRANSPORT and only shows FIRE MISSION when shuttle has already launched
 		shuttle_status_message = "<b>Flight type:</b> <span style='font-weight: bold;color: #44ff44'>TRANSPORT. </span>"
 
@@ -169,7 +169,7 @@
 	if(href_list["optimize"])
 		if(shuttle.transit_optimized) return
 		var/mob/M = usr
-		if(M.mind && M.mind.skills_list && !M.mind.skills_list["pilot"])
+		if(M.mind && M.mind.cm_skills && !M.mind.cm_skills.pilot)
 			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
 		else
 			usr << "<span class='notice'>You load in and review a custom flight plan you took time to prepare earlier. This should cut half of the transport flight time on its own!</span>"
@@ -182,11 +182,11 @@
 		shuttle.transit_gun_mission = !shuttle.transit_gun_mission
 		if(shuttle.transit_gun_mission)
 			var/mob/M = usr
-			if(M.mind && M.mind.skills_list && !M.mind.skills_list["pilot"]) //only pilots can activate the fire mission mode, but everyone can reset it back to transport..
+			if(M.mind && M.mind.cm_skills && !M.mind.cm_skills.pilot) //only pilots can activate the fire mission mode, but everyone can reset it back to transport..
 				usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
 				return
 			else
-				usr << "<span class='notice'>You upload a flight plan for a fire mission above the planet.</span>"
+				usr << "<span class='notice'>You upload a flight plan for a low altitude flyby above the planet.</span>"
 		else
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 

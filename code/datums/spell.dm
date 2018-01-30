@@ -117,10 +117,14 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 
 	charge_counter = charge_max
 
-/obj/effect/proc_holder/spell/Click()
+/obj/effect/proc_holder/spell/clicked()
+    ..()
+
     if(cast_check())
         choose_targets()
     return 1
+
+
 
 /obj/effect/proc_holder/spell/proc/choose_targets(mob/user = usr) //depends on subtype - /targeted or /aoe_turf
 	return

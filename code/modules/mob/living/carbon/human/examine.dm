@@ -479,6 +479,7 @@
 		for(var/datum/data/record/R in data_core.medical)
 			if (R.fields["name"] == real_name)
 				N = R
+				break
 		if(!isnull(N))
 			if(!(N.fields["last_scan_time"]))
 				msg += "<span class = 'deptradio'>No scan report on record</span>\n"
@@ -510,7 +511,7 @@
 		switch(hudtype)
 			if("security")
 				//only MPs can use the security HUD glasses's functionalities
-				if(H.mind && (!H.mind.skills_list || H.mind.skills_list["police"] >= SKILL_POLICE_MP))
+				if(H.mind && (!H.mind.cm_skills || H.mind.cm_skills.police >= SKILL_POLICE_MP))
 					return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
