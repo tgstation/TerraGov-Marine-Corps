@@ -134,6 +134,10 @@
 		if(shuttle.queen_locked && !isXenoQueen(usr))
 			usr << "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>"
 			return
+		//Comment to test
+		if(world.time < SHUTTLE_TIME_LOCK)
+			usr << "<span class='warning'>The shuttle is still undergoing pre-flight fuelling and cannot depart yet. Please wait another [round((SHUTTLE_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
+			return
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 
