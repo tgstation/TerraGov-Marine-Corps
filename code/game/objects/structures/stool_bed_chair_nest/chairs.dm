@@ -1,16 +1,15 @@
-/obj/structure/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
+/obj/structure/bed/chair //YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
 	name = "chair"
-	desc = "You sit in this. Either by will or force."
+	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
 	buckle_lying = FALSE
-	var/propelled = 0 // Check for fire-extinguisher-driven chairs
-
+	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
 /obj/structure/bed/chair/New()
 	if(anchored)
 		src.verbs -= /atom/movable/verb/pull
 	..()
-	spawn(3)	//sorry. i don't think there's a better way to do this.
+	spawn(3) //Sorry. i don't think there's a better way to do this.
 		handle_rotation()
 	return
 
@@ -21,7 +20,7 @@
 		rotate()
 	return
 
-/obj/structure/bed/chair/handle_rotation()	//making this into a seperate proc so office chairs can call it on Move()
+/obj/structure/bed/chair/handle_rotation() //Making this into a seperate proc so office chairs can call it on Move()
 	if(src.dir == NORTH)
 		src.layer = FLY_LAYER
 	else
@@ -39,19 +38,18 @@
 		handle_rotation()
 		return
 	else
-		if(istype(usr,/mob/living/simple_animal/mouse))
+		if(istype(usr, /mob/living/simple_animal/mouse))
 			return
 		if(!usr || !isturf(usr.loc))
 			return
 		if(usr.stat || usr.is_mob_restrained())
 			return
 
-		src.dir = turn(src.dir, 90)
+		dir = turn(src.dir, 90)
 		handle_rotation()
 		return
 
-
-// Chair types
+//Chair types
 /obj/structure/bed/chair/wood
 	buildstacktype = /obj/item/stack/sheet/wood
 
@@ -65,14 +63,11 @@
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 
-
-
 /obj/structure/bed/chair/comfy
 	name = "comfy chair"
 	desc = "It looks comfy."
 	icon_state = "comfychair"
 	color = rgb(255,255,255)
-	buildstackamount = 2
 
 /obj/structure/bed/chair/comfy/brown
 	color = rgb(255,113,0)
@@ -89,16 +84,13 @@
 /obj/structure/bed/chair/comfy/lime
 	color = rgb(255,251,0)
 
-
-
 /obj/structure/bed/chair/office
 	anchored = 0
-	drag_delay = 1 //pulling something on wheels is easy
-	buildstackamount = 3
+	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	..()
-	if(!buckled_mob)	return
+	if(!buckled_mob) return
 
 	if(propelled)
 		var/mob/living/occupant = buckled_mob
@@ -130,7 +122,6 @@
 	icon_state = "officechair_dark"
 	anchored = 0
 
-
 /obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
 	anchored = 1
@@ -156,4 +147,3 @@
 	else
 		icon_state = "shuttle_chair"
 		overlays -= chairbar
-
