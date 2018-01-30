@@ -29,7 +29,7 @@
 		//DEBUG: world << "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]"
 		return
 
-	next_click = world.time + 3
+	next_click = world.time + 1
 	//DEBUG: world << "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]     NEXT_MOVE: [next_move]"
 
 	var/list/mods = params2list(params)
@@ -82,7 +82,7 @@
 	next_move = world.time
 	// If standing next to the atom clicked.
 	if (A.Adjacent(src))
-		next_move += 6
+		next_move += 5
 		if (W)
 			if (W.attack_speed)
 				next_move += W.attack_speed
