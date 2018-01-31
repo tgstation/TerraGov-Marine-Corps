@@ -8,8 +8,8 @@
 	icon_state = "ua571c"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
-	max_rounds = 300
-	default_ammo = /datum/ammo/bullet/smartgun
+	max_rounds = 500
+	default_ammo = /datum/ammo/bullet/turret
 	gun_type = null
 
 /obj/item/storage/box/sentry
@@ -222,7 +222,7 @@
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 300-round drum magazine."
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/turret.dmi'
 	icon_state = "turret-0"
 	anchored = 1
@@ -235,8 +235,8 @@
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/dir_locked = 1
 	var/safety_off = 0
-	var/rounds = 300
-	var/rounds_max = 300
+	var/rounds = 500
+	var/rounds_max = 500
 	var/locked = 0
 	var/atom/target = null
 	var/manual_override = 0
@@ -248,7 +248,7 @@
 	var/obj/item/cell/cell = null
 	var/burst_fire = 0
 	var/obj/machinery/camera/camera = null
-	var/fire_delay = 5
+	var/fire_delay = 3
 	var/last_fired = 0
 	var/is_bursting = 0
 	var/obj/item/turret_laptop/laptop = null
@@ -761,11 +761,11 @@
 	if(!ammo) return
 
 	if(burst_fire && target && !last_fired)
-		if(rounds > 3)
-			for(var/i = 1 to 3)
+		if(rounds > 10)
+			for(var/i = 1 to 10)
 				is_bursting = 1
 				fire_shot()
-				sleep(2)
+				sleep(1)
 			spawn(0)
 				last_fired = 1
 			spawn(fire_delay)
@@ -817,7 +817,7 @@
 			in_chamber.dir = dir
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 			playsound(loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
-			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
+			in_chamber.fire_at(U, src, null, ammo.max_range, ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
 				muzzle_flash(angle)
