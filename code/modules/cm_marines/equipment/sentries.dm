@@ -233,10 +233,10 @@
 	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
-	var/dir_locked = 1
 	var/safety_off = 0
 	var/rounds = 500
 	var/rounds_max = 500
+	var/burst_size = 10
 	var/locked = 0
 	var/atom/target = null
 	var/manual_override = 0
@@ -251,6 +251,7 @@
 	var/fire_delay = 3
 	var/last_fired = 0
 	var/is_bursting = 0
+	var/range = 7
 	var/obj/item/turret_laptop/laptop = null
 	var/immobile = 0 //Used for prebuilt ones.
 	var/datum/ammo/bullet/turret/ammo = /datum/ammo/bullet/turret
@@ -336,7 +337,6 @@
 		"has_cell" = (cell ? 1 : 0),
 		"cell_charge" = cell ? cell.charge : 0,
 		"cell_maxcharge" = cell ? cell.maxcharge : 0,
-		"dir_locked" = dir_locked,
 		"dir" = dir,
 		"burst_fire" = burst_fire,
 		"safety_toggle" = !safety_off,
@@ -363,20 +363,6 @@
 
 	usr.set_interaction(src)
 	switch(href_list["op"])
-		if("direction")
-			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
-				return
-
-			if(dir_locked)
-				dir_locked = 0
-				visible_message("\icon[src] The [src]'s turret begins turning side to side.")
-				usr << "\blue You deactivate the direction lock."
-			else
-				dir_locked = 1
-				usr.visible_message("<span class='notice'>[usr] activates [src]'s direction lock.</span>",
-				"<span class='notice'>You activate [src]'s direction lock.</span>")
-				visible_message("\icon[src] <span class='notice'>The [name]'s turret stops rotating.</span>")
-			update_icon()
 
 		if("burst")
 			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
@@ -410,10 +396,6 @@
 
 
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
-			if(!dir_locked) //Direction lock check
-				usr << "<span class='warning'>[src] can only be fired manually in direction-locked mode.</span>"
-				manual_override = 0 //Make sure we jump back to AI mode, was a small bug when testing new handle_click()
-				return
 			if(user.interactee != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
 				usr << "<span class='warning'>You can't multitask like this!</span>"
 				return
@@ -443,7 +425,6 @@
 				user << "You turn on the [src]."
 				visible_message("\blue [src] hums to life and emits several beeps.")
 				visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
-				dir_locked = 1
 				target = null
 				on = 1
 				SetLuminosity(7)
@@ -611,10 +592,7 @@
 		icon_state = "turret-fallen"
 	else
 		if(on)
-			if(!dir_locked)
-				icon_state = "turret-360"
-			else
-				icon_state = "turret-1"
+			icon_state = "turret-1"
 		else
 			icon_state = "turret-0"
 
@@ -761,11 +739,13 @@
 	if(!ammo) return
 
 	if(burst_fire && target && !last_fired)
-		if(rounds > 10)
-			for(var/i = 1 to 10)
+		if(rounds >= burst_size)
+			for(var/i = 1 to burst_size)
 				is_bursting = 1
-				fire_shot()
-				sleep(1)
+				if(fire_shot())
+					sleep(1)
+				else
+					break
 			spawn(0)
 				last_fired = 1
 			spawn(fire_delay)
@@ -800,16 +780,8 @@
 		return
 
 	if(!check_power(2)) return
-	if(!dir_locked)
-		var/dx = U.x - x
-		var/dy = U.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
 
-		if(abs(dx) < abs(dy))
-			if(dy > 0)	dir = NORTH
-			else		dir = SOUTH
-		else
-			if(dx > 0)	dir = EAST
-			else		dir = WEST
+	if(get_dir(src, U) & turn(dir, 180)) return
 
 	if(load_into_chamber() == 1)
 		if(istype(in_chamber,/obj/item/projectile))
@@ -826,7 +798,7 @@
 			if(rounds == 0)
 				visible_message("\icon[src] <span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
 				playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
-	return
+	return 1
 
 //Mostly taken from gun code.
 /obj/machinery/marine_turret/proc/muzzle_flash(var/angle)
@@ -845,16 +817,12 @@
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
-	var/range = 7
-
-	if(!dir_locked)
-		range = 3
 
 	var/list/turf/path = list()
 	var/turf/T
 	var/mob/M
 
-	for(M in oview(range,src))
+	for(M in oview(range, src))
 		if(!isliving(M) || M.stat || isrobot(M)) continue //No unconscious/deads, or non living.
 
 		/*
@@ -865,14 +833,11 @@
 		var/mob/living/carbon/human/H = M
 		if(istype(H) && H.get_target_lock(iff_signal)) continue
 
-		if(dir_locked) //We're dir locked and facing the right way.
-			var/angle = get_dir(src,M)
-			if(angle & dir)
-				path = getline2(src,M)
-			else
-				continue
-
-		else path = getline2(src,M) //Otherwise grab everyone around us.
+		var/angle = get_dir(src, M)
+		if(angle & dir)
+			path = getline2(src, M)
+		else
+			continue
 
 		if(path.len)
 			for(T in path)
@@ -911,10 +876,6 @@
 
 	var/list/modifiers = params2list(params) //Only single clicks.
 	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])	return 0
-
-	if(!dir_locked)
-		user << "<span class='warning'>[src] can only be fired manually in direction-locked mode.</span>"
-		return 0
 
 	var/dx = target.x - x
 	var/dy = target.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
@@ -961,8 +922,8 @@
 	immobile = 1
 	on = 1
 	burst_fire = 1
-	rounds = 900
-	rounds_max = 900
+	rounds = 500
+	rounds_max = 500
 	icon_state = "turret-1"
 
 	New()
@@ -1003,7 +964,6 @@
 			user << "You turn on the [src]."
 			visible_message("\blue [src] hums to life and emits several beeps.")
 			visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
-			dir_locked = 1
 			target = null
 			on = 1
 			SetLuminosity(7)
