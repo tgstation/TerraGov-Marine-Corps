@@ -216,7 +216,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	//if(flags_round_type & MODE_INFESTATION)
 		//var/living_player_list[] = count_humans_and_xenos()
 		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	if(round_stats) round_stats << "[round_finished][dat]\nRound time: [duration2text()]\nRound population: [clients.len][log_end]" // Logging to data/logs/round_stats.log
+	if(round_stats) round_stats << "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]" // Logging to data/logs/round_stats.log
 
 	world << dat
 
