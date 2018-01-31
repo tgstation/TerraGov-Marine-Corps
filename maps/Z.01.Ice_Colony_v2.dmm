@@ -2637,7 +2637,7 @@
 "aYK" = (/obj/machinery/atmospherics/pipe/simple/hidden/green{dir = 4; layer = 2.4},/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating/icefloor,/area/ice_colony/exterior/surface/landing_pad)
 "aYL" = (/obj/machinery/atmospherics/pipe/simple/hidden/green{dir = 9},/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor/plating/icefloor,/area/ice_colony/exterior/surface/landing_pad)
 "aYM" = (/obj/structure/barricade/metal{dir = 1},/turf/simulated/floor/plating/icefloor{tag = "icon-warnplate (NORTH)"; icon_state = "warnplate"; dir = 1},/area/ice_colony/exterior/surface/landing_pad)
-"aYN" = (/obj/structure/table/reinforced,/obj/machinery/computer/shuttle_control/dropship1,/turf/simulated/floor/plating/icefloor{tag = "icon-warnplate (NORTH)"; icon_state = "warnplate"; dir = 1},/area/lv624/lazarus/console)
+"aYN" = (/obj/structure/table/reinforced,/obj/machinery/computer/shuttle_control/dropship1{onboard = 1},/turf/simulated/floor/plating/icefloor{tag = "icon-warnplate (NORTH)"; icon_state = "warnplate"; dir = 1},/area/lv624/lazarus/console)
 "aYO" = (/obj/machinery/floodlight/landing,/turf/simulated/floor/plating/icefloor{tag = "icon-warnplate (NORTH)"; icon_state = "warnplate"; dir = 1},/area/ice_colony/exterior/surface/landing_pad)
 "aYP" = (/turf/unsimulated/floor/ice,/turf/unsimulated/wall/ice/thin/straight,/area/ice_colony/exterior/surface/landing_pad_external)
 "aYQ" = (/turf/simulated/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/exterior/surface/valley/southwest)
