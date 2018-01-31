@@ -626,10 +626,12 @@
 	New()
 		..()
 		accurate_range = config.short_shell_range
+		accuracy_var_low = config.low_proj_variance
+		accuracy_var_high = config.low_proj_variance
 		max_range = config.short_shell_range
-		damage = config.med_hit_damage
+		damage = config.low_hit_damage
 		penetration= config.mlow_armor_penetration
-		accuracy = config.high_hit_accuracy
+		accuracy = config.med_hit_accuracy
 
 /datum/ammo/bullet/turret/dumb
 	icon_state 	= "bullet"
@@ -642,7 +644,7 @@
 		..()
 		accurate_range = config.short_shell_range
 		max_range = config.norm_shell_range //Bump the range since view distance got bumped too.
-		damage = config.low_hit_damage
+		damage = config.med_hit_damage
 		penetration= config.mhigh_armor_penetration //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
 		accuracy = config.high_hit_accuracy
 
