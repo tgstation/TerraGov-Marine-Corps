@@ -23,8 +23,12 @@
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(!isXeno(user) && onboard && shuttle.queen_locked && !shuttle.iselevator)
-		user << "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>"
-		shuttle.queen_locked = 0
+		if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
+			user << "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
+		else
+			user << "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>"
+			shuttle.last_locked = world.time
+			shuttle.queen_locked = 0
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)

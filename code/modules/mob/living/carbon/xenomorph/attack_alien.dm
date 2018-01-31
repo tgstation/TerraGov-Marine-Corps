@@ -564,8 +564,15 @@
 	if(M.is_intelligent)
 		attack_hand(M)
 		if(!shuttle.queen_locked && !shuttle.iselevator && onboard) //This is the shuttle's onboard console and we have not hijacked it yet
-			M << "<span class='xenonotice'>You interact with the pilot's console and disable remote control.</span>"
-			shuttle.queen_locked = 1
+			if(world.time < SHUTTLE_LOCK_TIME_LOCK)
+				M << "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
+				return
+			if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
+				M << "<span class='warning'>You can't seem to disable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
+			else
+				M << "<span class='xenonotice'>You interact with the pilot's console and disable remote control.</span>"
+				shuttle.last_locked = world.time
+				shuttle.queen_locked = 1
 	else
 		..()
 

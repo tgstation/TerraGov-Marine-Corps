@@ -1644,7 +1644,7 @@
 "FF" = (/turf/simulated/wall,/area/lv624/lazarus/main_hall)
 "FG" = (/obj/item/device/radio/intercom{anyai = 1; freerange = 1; frequency = 1469; name = "General Listening Channel"; pixel_x = -30; pixel_y = 0},/turf/simulated/floor{dir = 8; icon_state = "warning"},/area/lv624/ground/compound)
 "FH" = (/obj/item/tool/crowbar/red,/turf/simulated/floor{tag = "icon-warningcorner (WEST)"; icon_state = "warningcorner"; dir = 8},/area/lv624/ground/compound)
-"FI" = (/obj/machinery/computer/shuttle_control/dropship1,/turf/simulated/floor{dir = 1; icon_state = "warning"},/area/lv624/lazarus/console)
+"FI" = (/obj/machinery/computer/shuttle_control/dropship1{onboard = 1},/obj/structure/table/reinforced{dir = 1; flipped = 1},/turf/simulated/floor{dir = 1; icon_state = "warning"},/area/lv624/lazarus/console)
 "FJ" = (/turf/simulated/floor{icon_state = "warningcorner"; dir = 4},/area/lv624/ground/compound)
 "FK" = (/obj/item/bananapeel,/turf/unsimulated/floor/gm/grass,/area/lv624/ground/jungle4)
 "FL" = (/obj/structure/flora/ausbushes/sunnybush,/turf/unsimulated/floor/gm/coast{dir = 1},/area/lv624/ground/jungle4)
