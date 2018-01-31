@@ -258,7 +258,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			text += "<font color='#00CC00'>"
 
 			var/log_text = ""
-			log_text += "Winner: [next_map] ("
+			log_text += "[time2text(world.realtime, "Day Month YYYY")]Winner: [next_map] ("
 
 			text += "The voting results were:<br>"
 			for(var/name in L)
@@ -269,9 +269,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 			if(forced) text += "<b>An admin has forced the next map.</b><br>"
 			else
-				var/file_text = file2text("data/map_votes.txt")
-				file_text += log_text
-				text2file(file_text, "data/map_votes.txt")
+				text2file(log_text, "data/map_votes.txt")
 
 			text += "<b>The next map will be on [forced ? force_result : next_map].</b>"
 
