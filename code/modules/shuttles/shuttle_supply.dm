@@ -126,7 +126,7 @@
 			spawn()
 				M.close()
 	if(effective)
-		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/hydraulics_2.ogg', 50, 0)
+		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 
 /datum/shuttle/ferry/supply/proc/lower_railings()
@@ -137,7 +137,7 @@
 			spawn()
 				M.open()
 	if(effective)
-		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/hydraulics_1.ogg', 50, 0)
+		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 /datum/shuttle/ferry/supply/proc/lower_elevator_effect()
 	SW.loc = locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z)
