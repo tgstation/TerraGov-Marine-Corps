@@ -125,4 +125,4 @@
 /obj/machinery/computer/attack_hand()
 	. = ..()
 	if(!.) //not broken or unpowered
-		pick(playsound(src, 'sound/machines/console_open.ogg', 15, 1), playsound(src, 'sound/machines/console_open2.ogg', 15, 1), playsound(src, 'sound/machines/console_open3.ogg', 15, 1))
+		pick(playsound(src, 'sound/machines/computer_typing1.ogg', 15, 1), playsound(src, 'sound/machines/computer_typing2.ogg', 15, 1), playsound(src, 'sound/machines/computer_typing3.ogg', 15, 1))

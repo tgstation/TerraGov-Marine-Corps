@@ -89,6 +89,7 @@
 		if(M == loc) continue //device user isn't detected
 		if(!isturf(M.loc)) continue
 		if(world.time > M.l_move_time + 20) continue //hasn't moved recently
+		if(isrobot(M)) continue
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer))
