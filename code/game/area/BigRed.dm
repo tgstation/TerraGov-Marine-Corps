@@ -288,11 +288,11 @@
 
 /area/bigredv2/outside/weyland_lab/inside
 	name = "\improper Weyland Yutani Research Lab"
-	icon_state = "vault"
+	icon_state = "engine"
 
 /area/bigredv2/outside/cargo
 	name = "\improper Cargo"
-	icon_state = "dark"
+	icon_state = "storage"
 
 /area/bigredv2/outside/general_store
 	name = "\improper General Store"
