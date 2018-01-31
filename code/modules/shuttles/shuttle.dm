@@ -103,14 +103,22 @@
 			spawn(0)
 				P.close()
 
-	for(var/obj/machinery/door/airlock/D in area)//For elevators
-		if (iselevator)
+	if (iselevator)	// Super snowflake code
+		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
+			C.animate_on()
+
+		for (var/turf/simulated/shuttle/wall/elevator/gears/G in area)
+			G.start()
+
+		for (var/obj/machinery/door/airlock/D in area)//For elevators
 			spawn(0)
-				if(!D.density)
+				if (!D.density)
 					D.close()
 					D.lock()
 				else
 					D.lock()
+
+
 
 /datum/shuttle/proc/open_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
@@ -126,12 +134,18 @@
 			spawn(0)
 				P.open()
 
-	for(var/obj/machinery/door/airlock/D in area)//For elevators
-		if (iselevator)
-			if(D.locked)
+	if (iselevator)	// Super snowflake code
+		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
+			C.animate_off()
+
+		for (var/turf/simulated/shuttle/wall/elevator/gears/G in area)
+			G.stop()
+
+		for (var/obj/machinery/door/airlock/D in area)//For elevators
+			if (D.locked)
 				spawn(0)
 					D.unlock()
-			if(D.density)
+			if (D.density)
 				spawn(0)
 					D.open()
 

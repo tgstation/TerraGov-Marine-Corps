@@ -89,7 +89,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Elevator I
 	shuttle = new()
 	shuttle.location = 0
-	shuttle.warmup_time = 20
+	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
 	shuttle.area_offsite = locate(/area/shuttle/elevator1/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator1/ground)
@@ -102,7 +102,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Elevator II
 	shuttle = new()
 	shuttle.location = 0
-	shuttle.warmup_time = 20
+	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
 	shuttle.area_offsite = locate(/area/shuttle/elevator2/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator2/ground)
@@ -116,7 +116,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Elevator III
 	shuttle = new()
 	shuttle.location = 0
-	shuttle.warmup_time = 20
+	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
 	shuttle.area_offsite = locate(/area/shuttle/elevator3/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator3/ground)
@@ -130,7 +130,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Elevator IV
 	shuttle = new()
 	shuttle.location = 0
-	shuttle.warmup_time = 20
+	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
 	shuttle.area_offsite = locate(/area/shuttle/elevator4/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator4/ground)

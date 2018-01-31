@@ -710,46 +710,32 @@
 	s_color = "red"
 
 
-
-/obj/machinery/computer/shuttle_control/elevator1
+/obj/machinery/computer/shuttle_control/ice_colony
 	name = "Elevator Console"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+	icon_state = "elevator_screen"
+	unacidable = 1
+	exproof = 1
+	density = 0
+	req_access = null
+
+/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_on()
+	icon_state = "elevator_screen_animated"
+
+/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_off()
+	icon_state = "elevator_screen"
+
+/obj/machinery/computer/shuttle_control/ice_colony/elevator1
 	shuttle_tag = "Elevator 1"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
-/obj/machinery/computer/shuttle_control/elevator2
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+/obj/machinery/computer/shuttle_control/ice_colony/elevator2
 	shuttle_tag = "Elevator 2"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
-/obj/machinery/computer/shuttle_control/elevator3
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+/obj/machinery/computer/shuttle_control/ice_colony/elevator3
 	shuttle_tag = "Elevator 3"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
-/obj/machinery/computer/shuttle_control/elevator4
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+/obj/machinery/computer/shuttle_control/ice_colony/elevator4
 	shuttle_tag = "Elevator 4"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
 //RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn
