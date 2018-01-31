@@ -240,7 +240,6 @@
 	density = 1
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
 	var/fire_delay = 4 //Gotta have rounds down quick.
@@ -451,7 +450,7 @@
 	return
 
 // New proc for MGs and stuff replaced handle_manual_fire(). Same arguements though, so alls good.
-/obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, params)
+/obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, var/list/mods)
 	if(!operator) return 0
 	if(operator != user) return 0
 	if(istype(A,/obj/screen)) return 0
@@ -473,8 +472,7 @@
 	if(get_dist(target,src.loc) > 15)
 		return 0
 
-	var/list/modifiers = params2list(params) //Only single clicks.
-	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])	return 0
+	if(mods["middle"] || mods["shift"] || mods["alt"] || mods["ctrl"])	return 0
 
 		// Ok this is the issue here. We need it to be capable of firing rounds at say maybe 160*
 		// So we gotta change this. We're going rely on inequalities since those are sorta better (no idea coding wise).
@@ -483,7 +481,6 @@
 /*		var/dx = target.x - x
 		var/dy = target.y - y */
 	var/direct
-
 		//There might be a better way to do this, but god knows.
 		//It's also 12 AM.
 	var/angle = get_dir(src,target)
@@ -545,13 +542,13 @@
 
 
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
-	..()
+	flags_atom |= RELAY_CLICK
 	if(zoom)
 		user.client.view = 12
 	operator = user
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
-	..()
+	flags_atom &= ~RELAY_CLICK
 	if(zoom && user.client)
 		user.client.view = world.view
 	if(operator == user)

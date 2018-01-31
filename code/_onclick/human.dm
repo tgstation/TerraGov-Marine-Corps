@@ -10,7 +10,7 @@
 	var/last_chew = 0
 
 /mob/living/carbon/human/click(var/atom/A, var/list/mods)
-	if (interactee && istype(interactee, /obj/item/device/binoculars/tactical))
+	if (interactee && (istype(interactee, /obj/item/device/binoculars/tactical) || istype(interactee, /obj/machinery/m56d_hmg)))
 		return interactee.handle_click(src, A, mods)
 
 	return ..()
