@@ -58,6 +58,7 @@
 //				CHEST INTERNAL ORGAN SURGERY					//
 //////////////////////////////////////////////////////////////////
 
+
 /datum/surgery_step/internal/fix_organ
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack= 100, \
@@ -65,8 +66,8 @@
 	/obj/item/stack/medical/bruise_pack/tajaran = 70,  \
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = FIX_ORGAN_MIN_DURATION
+	max_duration = FIX_ORGAN_MAX_DURATION
 
 /datum/surgery_step/internal/fix_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())

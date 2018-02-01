@@ -40,12 +40,12 @@
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
 		var/blood_volume = round(vessel.get_reagent_amount("blood"))
 
-		if(blood_volume >= 560 && s_tone != pale_max-HUMAN_MAX_PALENESS)//Reset
+		if(blood_volume >= BLOOD_VOLUME_NORMAL && s_tone != pale_max-HUMAN_MAX_PALENESS)//Reset
 			s_tone = pale_max-HUMAN_MAX_PALENESS
 			update_body()
 
 		//Blood regeneration if there is some space
-		if(blood_volume < 560 && blood_volume)
+		if(blood_volume < BLOOD_VOLUME_NORMAL && blood_volume)
 			var/datum/reagent/blood/B = locate() in vessel.reagent_list //Grab some blood
 			if(B) // Make sure there's some blood at all
 				if(B.data["donor"] != src) //If it's not theirs, then we look for theirs
