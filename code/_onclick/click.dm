@@ -25,7 +25,7 @@
 	if ((A.flags_atom & NOINTERACT))
 		return
 
-	if (world.time <= next_click || world.time <= next_move)
+	if (world.time <= next_click)
 		//DEBUG: world << "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]"
 		return
 
@@ -40,7 +40,7 @@
 		build_click(src, client.buildmode, params, A)
 		return
 
-	// Click handled elsewhere.
+	// Click handled elsewhere. (These clicks are not affected by the next_move cooldown)
 	click_handled = click(A, mods)
 	click_handled |= A.clicked(src, mods)
 
@@ -77,6 +77,10 @@
 
 	// Don't allow doing anything else if inside a container of some sort, like a locker.
 	if (!isturf(loc))
+		return
+
+	if (world.time <= next_move)	// Attack click cooldown check
+		//DEBUG: world << "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]"
 		return
 
 	next_move = world.time
