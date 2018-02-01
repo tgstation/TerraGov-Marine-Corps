@@ -55,6 +55,7 @@
 	var/is_ventcrawling = 0
 
 	var/next_move_slowdown = 0 //amount added during the next movement_delay(), then is reset.
+	var/pull_speed = 0 //How much slower or faster this mob drags as a base
 
 	var/image/attack_icon = null //the image used as overlay on the things we attack.
 

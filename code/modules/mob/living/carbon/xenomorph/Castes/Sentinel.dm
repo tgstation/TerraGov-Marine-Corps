@@ -22,6 +22,7 @@
 	tier = 1
 	upgrade = 0
 	speed = -0.8
+	pull_speed = -1
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

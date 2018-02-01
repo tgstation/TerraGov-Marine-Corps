@@ -209,7 +209,7 @@
 			var/mob/M = pulling
 			if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
 				pull_delay = M.buckled.drag_delay
-		. += pull_delay + 3*grab_level //harder grab makes you slower
+		. += max(pull_speed + pull_delay + 3*grab_level, 0) //harder grab makes you slower
 
 	if(next_move_slowdown)
 		. += next_move_slowdown
