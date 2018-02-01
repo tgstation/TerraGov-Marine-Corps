@@ -14,6 +14,7 @@
 	return 1
 
 
+
 /datum/surgery_step/brain/bone_chips
 	priority = 3
 	allowed_tools = list(
@@ -22,9 +23,9 @@
 	/obj/item/tool/kitchen/utensil/fork = 20
 	)
 
-	min_duration = 40
-	max_duration = 60
-	dmg_max = 20 //need to use the FixOVein past this point
+	min_duration = BONECHIPS_REMOVAL_MIN_DURATION
+	max_duration = BONECHIPS_REMOVAL_MAX_DURATION
+	dmg_max = BONECHIPS_MAX_DAMAGE //need to use the FixOVein past this point
 
 /datum/surgery_step/brain/bone_chips/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] starts taking bone chips out of [target]'s brain with \the [tool].</span>", \
@@ -52,9 +53,9 @@
 	/obj/item/stack/cable_coil = 75
 	)
 
-	min_duration = 60
-	max_duration = 80
-	dmg_min = 20 //below that, you use the hemostat
+	min_duration = HEMOTOMA_MIN_DURATION
+	max_duration = HEMOTOMA_MAX_DURATION
+	dmg_min = BONECHIPS_MAX_DAMAGE //below that, you use the hemostat
 
 
 /datum/surgery_step/brain/hematoma/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -67,7 +68,7 @@
 	"<span class='notice'>You mend hematoma in [target]'s brain with \the [tool].</span>")
 	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	if(sponge)
-		sponge.damage = 20
+		sponge.damage = BONECHIPS_MAX_DAMAGE
 
 /datum/surgery_step/brain/hematoma/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, bruising [target]'s brain with \the [tool]!</span>", \

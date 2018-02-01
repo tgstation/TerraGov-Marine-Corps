@@ -55,5 +55,6 @@
 	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 	M.fields["last_scan_time"]		= null
 	M.fields["last_scan_result"]		= "No scan data on record"
+	M.fields["autodoc_data"] = list()
 	data_core.medical += M
 	return M

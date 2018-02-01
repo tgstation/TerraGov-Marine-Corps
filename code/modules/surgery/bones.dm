@@ -10,7 +10,6 @@
 	return affected.surgery_open_stage >= 2 && !(affected.status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step
 
 
-
 /datum/surgery_step/bone/glue_bone
 	allowed_tools = list(
 	/obj/item/tool/surgery/bonegel = 100,	  \
@@ -19,8 +18,8 @@
 	can_infect = 1
 	blood_level = 1
 
-	min_duration = 40
-	max_duration = 60
+	min_duration = BONEGEL_REPAIR_MIN_DURATION
+	max_duration = BONEGEL_REPAIR_MAX_DURATION
 	bone_step = 0
 
 /datum/surgery_step/bone/glue_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -38,14 +37,15 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>" , \
 	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
 
+
 /datum/surgery_step/bone/set_bone
 	allowed_tools = list(
 	/obj/item/tool/surgery/bonesetter = 100, \
 	/obj/item/tool/wrench = 75	   \
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = BONESETTER_MIN_DURATION
+	max_duration = BONESETTER_MAX_DURATION
 	bone_step = 1
 
 
