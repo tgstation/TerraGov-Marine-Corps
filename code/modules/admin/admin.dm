@@ -856,6 +856,11 @@ var/global/floorIsLava = 0
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+		for(var/client/C in admins)
+			C << "<hr>"
+			C << "<span class='centerbold'><EM>[key_name(src)]</EM> [ticker.delay_end ? "delayed the round end" : "has made the round end normally"]"
+			C << "<hr>"
+
 		return //alert("Round end delayed", null, null, null, null, null)
 	going = !( going )
 	if (!( going ))
