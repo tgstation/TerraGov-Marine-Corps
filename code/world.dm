@@ -215,7 +215,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			message_admins("World/Topic() call (likely MapDaemon.exe) has resumed the round end.", 1)
 
 			//So admins have a chance to make EORG bans and do whatever
-			message_admins("NOTICE: Delay round within 30 seconds in order to prevent auto-restart!", 1)
+			message_staff("NOTICE: Delay round within 30 seconds in order to prevent auto-restart!", 1)
 
 			MapDaemonHandleRestart() //Doesn't hold
 
@@ -258,7 +258,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			text += "<font color='#00CC00'>"
 
 			var/log_text = ""
-			log_text += "[time2text(world.realtime, "Day Month YYYY")]Winner: [next_map] ("
+			log_text += "\[[time2text(world.realtime, "DD Month YYYY")]\] Winner: [next_map] ("
 
 			text += "The voting results were:<br>"
 			for(var/name in L)
