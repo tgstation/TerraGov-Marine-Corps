@@ -858,7 +858,7 @@ var/global/floorIsLava = 0
 		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 		for(var/client/C in admins)
 			C << "<hr>"
-			C << "<span class='centerbold'><EM>[key_name(src)]</EM> [ticker.delay_end ? "delayed the round end" : "has made the round end normally"]"
+			C << "<span class='centerbold'>Staff-Only Alert: <EM>[usr.key]</EM> [ticker.delay_end ? "delayed the round end" : "has made the round end normally"]"
 			C << "<hr>"
 
 		return //alert("Round end delayed", null, null, null, null, null)
