@@ -39,6 +39,8 @@
 			src << "<span class='userdanger'>Your camera isn't functional.</span>"
 		return 1
 
+	face_atom(A)
+
 	var/obj/item/W = get_active_hand()
 
 	// Cyborgs have no range-checking unless there is item use

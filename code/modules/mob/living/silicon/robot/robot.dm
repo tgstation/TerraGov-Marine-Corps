@@ -51,7 +51,7 @@ var/list/robot_verbs_default = list(
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
-	var/list/req_access = list(ACCESS_MARINE_ENGINEERING)
+	var/list/req_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
@@ -59,7 +59,7 @@ var/list/robot_verbs_default = list(
 	var/lower_mod = 0
 	var/jetpack = 0
 	var/datum/effect_system/ion_trail_follow/ion_trail = null
-	var/datum/effect_system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/borgwires = 31 // 0b11111
 	var/killswitch = 0
@@ -164,9 +164,6 @@ var/list/robot_verbs_default = list(
 	if(module)
 		return
 	var/list/modules = list("Standard", "Engineering", "Surgeon", "Medic", "Janitor", "Service", "Security")
-	if((crisis && security_level == SEC_LEVEL_RED) || crisis_override) //Leaving this in until it's balanced appropriately.
-		src << "\red Crisis mode active. Combat module available."
-		modules+="Combat"
 	modtype = input("Please, select a module!", "Robot", null, null) in modules
 
 	var/module_sprites[0] //Used to store the associations between sprite names and sprite index.
@@ -177,36 +174,31 @@ var/list/robot_verbs_default = list(
 	switch(modtype)
 		if("Standard")
 			module = new /obj/item/circuitboard/robot_module/standard(src)
-			module_sprites["Basic"] = "robot_old"
-			module_sprites["Android"] = "droid"
 			module_sprites["Default"] = "robot"
+			module_sprites["Droid"] = "droid"
 			module_sprites["Drone"] = "drone-standard"
 
 		if("Service")
 			module = new /obj/item/circuitboard/robot_module/butler(src)
-			module_sprites["Waitress"] = "Service"
-			module_sprites["Kent"] = "toiletbot"
-			module_sprites["Bro"] = "Brobot"
-			module_sprites["Rich"] = "maximillion"
 			module_sprites["Default"] = "Service2"
-			module_sprites["Drone"] = "drone-service" // How does this even work...? Oh well.
+			module_sprites["Rich"] = "maximillion"
+			module_sprites["Drone"] = "drone-service"
 
 		if("Medic")
 			module = new /obj/item/circuitboard/robot_module/medic(src)
 			module.channels = list("MedSci" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
-			module_sprites["Basic"] = "Medbot"
 			module_sprites["Standard"] = "surgeon"
 			module_sprites["Advanced Droid"] = "droid-medical"
 			module_sprites["Needles"] = "medicalrobot"
+			module_sprites["Drone"] = "drone-medical"
 
 		if("Surgeon")
 			module = new /obj/item/circuitboard/robot_module/surgeon(src)
 			module.channels = list("MedSci" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
-			module_sprites["Basic"] = "Medbot"
 			module_sprites["Standard"] = "surgeon"
 			module_sprites["Advanced Droid"] = "droid-medical"
 			module_sprites["Needles"] = "medicalrobot"
@@ -215,9 +207,6 @@ var/list/robot_verbs_default = list(
 		if("Security")
 			module = new /obj/item/circuitboard/robot_module/security(src)
 			module.channels = list("MP" = 1)
-			module_sprites["Basic"] = "secborg"
-			module_sprites["Red Knight"] = "Security"
-			module_sprites["Black Knight"] = "securityrobot"
 			module_sprites["Bloodhound"] = "bloodhound"
 			module_sprites["Bloodhound - Treaded"] = "secborg+tread"
 			module_sprites["Drone"] = "drone-sec"
@@ -227,23 +216,14 @@ var/list/robot_verbs_default = list(
 			module.channels = list("Engi" = 1)
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Engineering")
-			module_sprites["Basic"] = "Engineering"
-			module_sprites["Antique"] = "engineerrobot"
 			module_sprites["Landmate"] = "landmate"
 			module_sprites["Landmate - Treaded"] = "engiborg+tread"
 			module_sprites["Drone"] = "drone-engineer"
 
 		if("Janitor")
 			module = new /obj/item/circuitboard/robot_module/janitor(src)
-			module_sprites["Basic"] = "JanBot2"
-			module_sprites["Mopbot"]  = "janitorrobot"
 			module_sprites["Mop Gear Rex"] = "mopgearrex"
 			module_sprites["Drone"] = "drone-janitor"
-
-		if("Combat")
-			module = new /obj/item/circuitboard/robot_module/combat(src)
-			module_sprites["Combat Android"] = "droid-combat"
-			module.channels = list("Security" = 1)
 
 	//languages
 	module.add_languages(src)
@@ -252,7 +232,7 @@ var/list/robot_verbs_default = list(
 	feedback_inc("cyborg_[lowertext(modtype)]",1)
 	updatename()
 
-	if(modtype == "Medical" || modtype == "Security" || modtype == "Combat")
+	if(modtype == "Medic" || modtype == "Security" || modtype == "Surgeon")
 		status_flags &= ~CANPUSH
 
 	choose_icon(6,module_sprites)
@@ -433,41 +413,11 @@ var/list/robot_verbs_default = list(
 	return 2
 
 /mob/living/silicon/robot/Bump(atom/movable/AM as mob|obj, yes)
-	spawn( 0 )
-		if ((!( yes ) || now_pushing))
-			return
-		now_pushing = 1
-		if(ismob(AM))
-			var/mob/tmob = AM
-			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
-				if(prob(20))
-					usr << "\red <B>You fail to push [tmob]'s fat ass out of the way.</B>"
-					now_pushing = 0
-					return
-			if(!(tmob.status_flags & CANPUSH))
-				now_pushing = 0
-				return
-		now_pushing = 0
-		..()
-		if (istype(AM, /obj/machinery/recharge_station))
-			var/obj/machinery/recharge_station/F = AM
-			F.move_inside()
-		if (!istype(AM, /atom/movable))
-			return
-		if (!now_pushing)
-			now_pushing = 1
-			if (!AM.anchored)
-				var/t = get_dir(src, AM)
-				if (istype(AM, /obj/structure/window))
-					var/obj/structure/window/W = AM
-					if(W.is_full_window())
-						for(var/obj/structure/window/win in get_step(AM,t))
-							now_pushing = 0
-							return
-				step(AM, t)
-			now_pushing = null
+	..()
+	if (istype(AM, /obj/machinery/recharge_station))
+		var/obj/machinery/recharge_station/F = AM
+		F.move_inside()
 		return
-	return
 
 
 /mob/living/silicon/robot/triggerAlarm(var/class, area/A, list/cameralist, var/source)
@@ -828,18 +778,6 @@ var/list/robot_verbs_default = list(
 			overlays += "ov-openpanel +c"
 		else
 			overlays += "ov-openpanel -c"
-
-	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		overlays += "[icon_state]-shield"
-
-	if(modtype == "Combat")
-		var/base_icon = ""
-		base_icon = icon_state
-		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
-			icon_state = "[icon_state]-roll"
-		else
-			icon_state = base_icon
-		return
 
 //Call when target overlay should be added/removed
 /mob/living/silicon/robot/update_targeted()

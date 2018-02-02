@@ -73,6 +73,7 @@
 		src.modules += new /obj/item/tool/wrench(src)
 		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/device/healthanalyzer(src)
+		src.modules += new /obj/item/borg/stun(src)
 		src.emag = new /obj/item/weapon/energy/sword(src)
 		return
 
@@ -101,6 +102,7 @@
 		src.modules += new /obj/item/stack/medical/advanced/bruise_pack(src)
 		src.modules += new /obj/item/stack/nanopaste(src)
 		src.modules += new /obj/item/tool/weldingtool/largetank(src)
+		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/borg/stun(src)
 
 		src.emag = new /obj/item/reagent_container/spray(src)
@@ -140,6 +142,7 @@
 		src.modules += new /obj/item/tool/extinguisher/mini(src)
 		src.modules += new /obj/item/reagent_container/spray/cleaner(src)
 		src.modules += new /obj/item/tool/weldingtool/largetank(src)
+		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/borg/stun(src)
 
 		src.emag = new /obj/item/reagent_container/spray(src)
@@ -218,7 +221,8 @@
 		src.modules += new /obj/item/device/flash(src)
 		src.modules += new /obj/item/borg/sight/hud/sec(src)
 		src.modules += new /obj/item/handcuffs/cyborg(src)
-		src.modules += new /obj/item/weapon/baton/robot(src)
+		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/tool/crowbar(src)
 //		src.modules += new /obj/item/weapon/gun/energy/taser/cyborg(src)
 		src.modules += new /obj/item/tool/taperoll/police(src)
 //		src.emag = new /obj/item/weapon/gun/energy/laser/cyborg(src)
@@ -249,6 +253,8 @@
 		src.modules += new /obj/item/storage/bag/trash(src)
 		src.modules += new /obj/item/tool/mop(src)
 		src.modules += new /obj/item/device/lightreplacer(src)
+		src.modules += new /obj/item/tool/crowbar(src)
+		src.modules += new /obj/item/borg/stun(src)
 		src.emag = new /obj/item/reagent_container/spray(src)
 
 		src.emag.reagents.add_reagent("lube", 250)
@@ -270,6 +276,8 @@
 		src.modules += new /obj/item/device/flash(src)
 		src.modules += new /obj/item/reagent_container/food/drinks/cans/beer(src)
 		src.modules += new /obj/item/reagent_container/food/condiment/enzyme(src)
+		src.modules += new /obj/item/tool/crowbar(src)
+		src.modules += new /obj/item/borg/stun(src)
 
 		var/obj/item/device/rsf/M = new /obj/item/device/rsf(src)
 		M.stored_matter = 30
@@ -320,22 +328,6 @@
 //		src.modules += new /obj/item/weapon/gun/energy/pulse_rifle/destroyer(src)
 		src.modules += new /obj/item/card/emag(src)
 		return
-
-/obj/item/circuitboard/robot_module/combat
-	name = "combat robot module"
-
-	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/borg/sight/thermal(src)
-		//src.modules += new /obj/item/weapon/gun/energy/laser/cyborg(src)
-		src.modules += new /obj/item/tool/pickaxe/plasmacutter(src)
-		src.modules += new /obj/item/borg/combat/shield(src)
-		src.modules += new /obj/item/borg/combat/mobility(src)
-		src.modules += new /obj/item/tool/wrench(src) //Is a combat android really going to be stopped by a chair?
-//		src.emag = new /obj/item/weapon/gun/energy/lasercannon/cyborg(src)
-		return
-
 
 /obj/item/circuitboard/robot_module/drone
 	name = "drone module"

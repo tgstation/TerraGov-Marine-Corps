@@ -210,14 +210,12 @@
 					r_FAL
 
 			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
-				var/datum/effect_system/spark_spread/spark_system
-				spark_system = new /datum/effect_system/spark_spread()
-				spark_system.set_up(5, 0, src)
-				spark_system.attach(src)
-				spark_system.start()
+				var/mob/living/silicon/robot/R = src
+				R.spark_system.start()
+				playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
 			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
-			M.visible_message("<span class='danger'>\The [M] bites [src]!</span>", \
-			"<span class='danger'>You bite [src]!</span>")
+			M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
+			"<span class='danger'>You slash [src]!</span>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slashed by [M.name] ([M.ckey])</font>")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>slashed [src.name] ([src.ckey])</font>")
 			log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")

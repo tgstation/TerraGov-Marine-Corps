@@ -1,6 +1,6 @@
 
 /obj/item/reagent_container/borghypo
-	name = "Cyborg Hypospray"
+	name = "Robot Hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
@@ -14,7 +14,7 @@
 	var/charge_tick = 0
 	var/recharge_time = 2 //Time it takes for shots to recharge (in seconds)
 
-	var/list/reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalin", "anti_toxin", "inaprovaline", "tramadol", "spaceacillin", "quickclot")
+	var/list/reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalinp", "anti_toxin", "inaprovaline", "tramadol", "imidazoline", "spaceacillin", "quickclot")
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
@@ -61,7 +61,6 @@
 
 	if(M.reagents)
 		var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
-		if(reagent_ids[mode] == "quickclot") t = 1
 		M.reagents.add_reagent(reagent_ids[mode], t)
 		reagent_volumes[reagent_ids[mode]] -= t
 		// user << "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>"
