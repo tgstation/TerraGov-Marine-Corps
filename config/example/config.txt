@@ -184,7 +184,7 @@ GUEST_BAN
 FORUMURL http://www.colonial-marines.com/
 
 ## Wiki address
-WIKIURL http://www.colonial-marines.com/wiki/Main_Page
+WIKIURL http://www.colonial-marines.com/wiki/
 
 ## Rules address
 RULESURL http://colonial-marines.com/viewtopic.php?f=57&t=5094

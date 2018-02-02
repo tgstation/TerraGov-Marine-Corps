@@ -536,13 +536,13 @@
 	var/products2[]
 	switch(gamemode)
 		if(/datum/game_mode/ice_colony)
-			products2 = list( /obj/item/book/manual/ice_colony_map = 3)
+			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(/datum/game_mode/bigred)
-			products2 = list(/obj/item/book/manual/big_red_map = 3)
+			products2 = list(/obj/item/map/big_red_map = 3)
 		if(/datum/game_mode/whiskey_outpost)
-			products2 = list(/obj/item/book/manual/whiskey_outpost_map = 3)
+			products2 = list(/obj/item/map/whiskey_outpost_map = 3)
 		else
-			products2 = list(/obj/item/book/manual/lazarus_landing_map = 3)
+			products2 = list(/obj/item/map/lazarus_landing_map = 3)
 	build_inventory(products2)
 
 
