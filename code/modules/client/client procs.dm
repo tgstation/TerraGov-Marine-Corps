@@ -288,9 +288,5 @@
 		'icons/pda_icons/pda_scanner.png',
 		'icons/pda_icons/pda_signaler.png',
 		'icons/pda_icons/pda_status.png',
-		'html/images/whiskeyoutpost.png',
-		'html/images/LV624.png',
-		'html/images/IceColony.png',
-		'html/images/BigRed.png',
 		'html/images/wylogo.png'
 		)

@@ -45,6 +45,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	round_fog = new
 	var/xeno_tunnels[] = new
 	var/monkey_spawns[] = new
+	var/map_items[] = new
 	var/obj/effect/blocker/fog/F
 	for(var/obj/effect/landmark/L in landmarks_list)
 		switch(L.name)
@@ -68,6 +69,20 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			if("monkey_spawn")
 				monkey_spawns += L.loc
 				cdel(L)
+			if("map item")
+				map_items += L.loc
+				cdel(L)
+
+	// Spawn gamemode-specific map items
+	for(var/obj/effect/landmark/map_item/MI)
+		var/turf/T = pick(map_items)
+		map_items -= T
+		if(ticker.mode.name == "LV-624") new /obj/item/map/lazarus_landing_map(T)
+		else if(ticker.mode.name == "Ice Colony") new /obj/item/map/ice_colony_map(T)
+		else if(ticker.mode.name == "Solaris Ridge") new /obj/item/map/big_red_map(T)
+		else if(ticker.mode.name == "Prison Station") new /obj/item/map/FOP_map(T)
+		else
+			return
 
 	if(monkey_amount && monkey_types.len)
 		//var/debug_tally = 0

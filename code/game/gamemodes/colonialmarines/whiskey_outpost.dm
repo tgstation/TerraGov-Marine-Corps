@@ -177,7 +177,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), WEAR_FEET)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), WEAR_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), WEAR_HANDS)
-			H.equip_to_slot_or_del(new /obj/item/book/manual/whiskey_outpost_map(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/map/whiskey_outpost_map(H), WEAR_R_HAND)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
 
 
@@ -320,7 +320,7 @@
 			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/book/manual/whiskey_outpost_map(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/map/whiskey_outpost_map(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/laz_designator(H), WEAR_IN_BACK)
 
 			//Belt and grenades

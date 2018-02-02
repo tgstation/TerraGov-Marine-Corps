@@ -1,86 +1,85 @@
-/obj/item/weapon/map
+/obj/item/map
 	name = "map"
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "map"
 	item_state = "map"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3
+	w_class = 1
 	// color = ... (Colors can be names - "red, green, grey, cyan" or a HEX color code "#FF0000")
 	var/dat        // Page content
-	var/author = "<TT><I>Authenticated by Weyland-Yutani.</I></TT> <BR>"
-	var/size = "800x800" // The size of the window. This should be at most 25 pixels more than the map image in both width and height in order for it to fit nicely in the window without scrollbars.
+	var/html_link = ""
+	var/window_size = "1280x720"
 
-/obj/item/weapon/map/attack_self(var/mob/usr as mob) //Open the map
-	if(src.dat)
-		usr << browse("[author]" + "[dat]", "window=map;size=[size]")
-		usr.visible_message("[usr] opens the [src.name].")
-		onclose(usr, "map")
-	else
-		usr << "This map is completely blank!"
+/obj/item/map/attack_self(var/mob/usr as mob) //Open the map
+	usr.visible_message("<span class='notice'>[usr] opens the [src.name]. </span>")
+	initialize_map()
 
-/obj/item/weapon/map/attack(mob/living/carbon/human/M as mob, mob/living/carbon/human/usr as mob) //Show someone the map by hitting them with it
-	usr.visible_message("<span class='notice'>You open up the [name] and show it to [M]. </span>", \
-		"<span class='notice'>[usr] opens up the [name] and shows it to \the [M]. </span>")
-	M << browse("[author]" + "[dat]", "window=map;size=[size]")
+// /obj/item/map/attack(mob/living/carbon/human/M as mob, mob/living/carbon/human/usr as mob) //Show someone the map by hitting them with it
+//     usr.visible_message("<span class='notice'>You open up the [name] and show it to [M]. </span>", \
+//         "<span class='notice'>[usr] opens up the [name] and shows it to \the [M]. </span>")
+//     M << initialize_map()
+/obj/item/map/attack()
+	return
 
+/obj/item/map/proc/initialize_map()
+	var/wikiurl = config.wikiurl
+	if(wikiurl)
+		dat = {"
 
-/*
-Map images should be placed in html\images. The image name must then be added to the send_resources() proc in \code\modules\client\client procs.dm.
-*/
-
-
-/obj/item/weapon/map/lazarus_landing
-	name = "\improper Lazarus Landing Map"
-	desc = "A satellite printout of the Lazarus Landing colony."
-	size = "800x475"
-	dat = {"
-		<html><head>
+			<html><head>
+			<style>
+				iframe {
+					display: none;
+				}
+			</style>
 			</head>
-				<body>
-					<img src="LV624.png">
-				</body>
-			</html>
-		"}
+			<body>
+			<script type="text/javascript">
+				function pageloaded(myframe) {
+					document.getElementById("loading").style.display = "none";
+					myframe.style.display = "inline";
+    			}
+			</script>
+			<p id='loading'>You start unfolding the map...</p>
+			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[wikiurl]/[html_link]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+			</body>
 
-/obj/item/weapon/map/ice_colony
+			</html>
+
+			"}
+	usr << browse("[dat]", "window=map;size=[window_size]")
+
+/obj/item/map/lazarus_landing_map
+	name = "\improper Lazarus Landing Map"
+	desc = "A satellite printout of the Lazarus Landing colony on LV-624."
+	html_link = "images/6/6f/LV624.png"
+
+/obj/item/map/ice_colony_map
 	name = "\improper Ice Colony map"
 	desc = "A satellite printout of the Ice Colony."
-	size = "725x475"
+	html_link = "images/1/18/Map_icecolony.png"
 	color = "cyan"
-	dat = {"
-		<html><head>
-			</head>
-				<body>
-					<img src="IceColony.png">
-				</body>
-			</html>
-		"}
 
-/obj/item/weapon/map/whiskey_outpost
-	name = "\improper Whiskey Outpost Map"
+/obj/item/map/whiskey_outpost_map
+	name = "\improper Whiskey Outpost map"
 	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
-	size = "775x725"
+	html_link = "images/7/78/Whiskey_outpost.png"
 	color = "grey"
-	dat = {"
-		<html><head>
-			</head>
-				<body>
-					<img src="whiskeyoutpost.png">
-				</body>
-			</html>
-		"}
 
-/obj/item/weapon/map/big_red
+/obj/item/map/big_red_map
 	name = "\improper Solaris Ridge Map"
-	desc = "A censored blueprint of the Solaris Ridge facility."
-	size = "775x725"
+	desc = "A censored blueprint of the Solaris Ridge facility"
+	html_link = "images/c/c5/Big_Red.png"
 	color = "#e88a10"
-	dat = {"
-		<html><head>
-			</head>
-				<body>
-					<img src="BigRed.png">
-				</body>
-			</html>
-		"}
+
+/obj/item/map/FOP_map
+	name = "\improper Fiorina Orbital Penitentiary Map"
+	desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
+	html_link = "images/4/4c/Map_Prison.png"
+	color = "#e88a10"
+
+
+// Landmark - Used for mapping. Will spawn the appropriate map for each gamemode (LV map items will spawn when LV is the gamemode, etc)
+/obj/effect/landmark/map_item
+	name = "map item"
