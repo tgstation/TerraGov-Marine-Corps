@@ -337,6 +337,7 @@
 		ticker.mode.latejoin_tally++
 		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
 			ticker.mode.spawn_latejoin_larva()
+			ticker.mode.latejoin_tally = 0
 
 		cdel(src)
 
