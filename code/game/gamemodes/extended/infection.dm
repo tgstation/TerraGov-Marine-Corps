@@ -3,6 +3,7 @@
 	name = "Infection"
 	config_tag = "Infection"
 	required_players = 0 //otherwise... no zambies
+	latejoin_larva_drop = 0
 	flags_round_type = MODE_INFESTATION //Apparently without this, the game mode checker ignores this as a potential legit game mode.
 
 	uplink_welcome = "IF YOU SEE THIS, SHIT A BRICK AND AHELP"
