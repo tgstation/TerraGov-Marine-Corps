@@ -37,16 +37,36 @@
 		if(slashing_allowed == 1)
 			stat(null,"Slashing of hosts is currently: PERMITTED.")
 		else if(slashing_allowed == 2)
-			stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
+			stat(null,"Slashing of hosts is currently: LIMITED.")
 		else
-			stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
+			stat(null,"Slashing of hosts is currently: FORBIDDEN.")
 
+		//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
+		var/msg_holder = ""
 		if(frenzy_aura)
-			stat(null,"You are affected by a pheromone of FRENZY.")
+			switch(frenzy_aura)
+				if(-INFINITY to 1.0) msg_holder = "very weak "
+				if(1.1 to 2.0) msg_holder = "weak "
+				if(2.1 to 2.9) msg_holder = ""
+				if(3.0 to 3.9) msg_holder = "strong "
+				if(4.0 to INFINITY) msg_holder = "very strong "
+			stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
 		if(warding_aura)
-			stat(null,"You are affected by a pheromone of WARDING.")
+			switch(warding_aura)
+				if(-INFINITY to 1.0) msg_holder = "very weak "
+				if(1.1 to 2.0) msg_holder = "weak "
+				if(2.1 to 2.9) msg_holder = ""
+				if(3.0 to 3.9) msg_holder = "strong "
+				if(4.0 to INFINITY) msg_holder = "very strong "
+			stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
 		if(recovery_aura)
-			stat(null,"You are affected by a pheromone of RECOVERY.")
+			switch(recovery_aura)
+				if(-INFINITY to 1.0) msg_holder = "very weak "
+				if(1.1 to 2.0) msg_holder = "weak "
+				if(2.1 to 2.9) msg_holder = ""
+				if(3.0 to 3.9) msg_holder = "strong "
+				if(4.0 to INFINITY) msg_holder = "very strong "
+			stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
 
 		if(hive_orders && hive_orders != "")
 			stat(null,"Hive Orders: [hive_orders]")

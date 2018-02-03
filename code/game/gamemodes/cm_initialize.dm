@@ -379,6 +379,9 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(new_xeno.client) new_xeno.client.view = world.view
 	message_admins("[new_xeno.key] has joined as [new_xeno].")
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
+	if(isXeno(new_xeno)) //Dear lord
+		var/mob/living/carbon/Xenomorph/X = new_xeno
+		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map
 	if(xeno_candidate) xeno_candidate.loc = null
 
 /datum/game_mode/proc/transform_xeno(datum/mind/ghost_mind)
