@@ -378,7 +378,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 //Spawns a larva in an appropriate location
 /datum/game_mode/proc/spawn_latejoin_larva()
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
-	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.name] suddenly burrows out of the ground!</span>",
+	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
