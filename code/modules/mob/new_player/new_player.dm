@@ -334,6 +334,9 @@
 		ticker.mode.latespawn(character)
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+		ticker.mode.latejoin_tally++
+		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
+			ticker.mode.spawn_latejoin_larva()
 
 		cdel(src)
 
