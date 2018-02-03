@@ -601,6 +601,9 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 				//world << "AUTODOC DEBUG: non null autodoc data"
 				for(var/datum/autodoc_surgery/A in N.fields["autodoc_data"])
 					//world << "AUTODOC DEBUG: found a surgery"
+					if(A.automatic)
+						dat += "Automatic Mode Ready, Clear the Queue for Manual Mode<br>"
+						break
 					switch(A.type_of_surgery)
 						if(EXTERNAL_SURGERY)
 							switch(A.surgery_procedure)
@@ -650,11 +653,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 								if("open")
 									surgeryqueue["open"] = 1
 									dat += "Close Open Incision"
-					if(A.automatic)
-						surgeryqueue["automatic"] = 1
-						dat += " in Automatic Mode<br>"
-					else
-						dat += " in Manual Mode<br>"
+					dat += " in Manual Mode<br>"
 
 			dat += "<hr> Med-Pod Status: [operating] "
 			dat += "<hr><a href='?src=\ref[src];clear=1'>Clear Surgery Queue</a>"
@@ -705,118 +704,119 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		return
 	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))))
 		usr.set_interaction(src)
-		// manual surgery handling
-		var/datum/data/record/N = null
-		for(var/datum/data/record/R in data_core.medical)
-			if (R.fields["name"] == connected.occupant.real_name)
-				N = R
-		if(isnull(N))
-			N = create_medical_record(connected.occupant)
 
-		var/needed = 0 // this is to stop someone just choosing everything
-		if(href_list["brute"])
-			N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"brute",0)
-			updateUsrDialog()
-		if(href_list["burn"])
-			N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"burn",0)
-			updateUsrDialog()
-		if(href_list["toxin"])
-			N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"toxin",0)
-			updateUsrDialog()
-		if(href_list["dialysis"])
-			N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"dialysis",0)
-			updateUsrDialog()
-		if(href_list["blood"])
-			N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"blood",0)
-			updateUsrDialog()
-		if(href_list["organgerms"])
-			N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"germs",0)
-			updateUsrDialog()
-		if(href_list["organdamage"])
-			for(var/datum/internal_organ/I in connected.occupant.internal_organs)
-				if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
-					// we can't deal with these
-					continue
-				if(I.damage > 0)
-					N.fields["autodoc_data"] += create_autodoc_surgery(I,ORGAN_SURGERY,"damage",0)
-					needed++
-			if(!needed)
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"damage",0,1)
-			updateUsrDialog()
+		if(connected.occupant)
+			// manual surgery handling
+			var/datum/data/record/N = null
+			for(var/datum/data/record/R in data_core.medical)
+				if (R.fields["name"] == connected.occupant.real_name)
+					N = R
+			if(isnull(N))
+				N = create_medical_record(connected.occupant)
 
-		if(href_list["internal"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					for(var/datum/wound/W in L.wounds)
-						if(W.internal)
-							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"internal",0)
-							needed++
-							break
-			if(!needed)
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"internal",0,1)
-			updateUsrDialog()
-
-		if(href_list["broken"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.status & LIMB_BROKEN)
-						N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"broken",0)
+			var/needed = 0 // this is to stop someone just choosing everything
+			if(href_list["brute"])
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"brute",0)
+				updateUsrDialog()
+			if(href_list["burn"])
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"burn",0)
+				updateUsrDialog()
+			if(href_list["toxin"])
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"toxin",0)
+				updateUsrDialog()
+			if(href_list["dialysis"])
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"dialysis",0)
+				updateUsrDialog()
+			if(href_list["blood"])
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"blood",0)
+				updateUsrDialog()
+			if(href_list["organgerms"])
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"germs",0)
+				updateUsrDialog()
+			if(href_list["organdamage"])
+				for(var/datum/internal_organ/I in connected.occupant.internal_organs)
+					if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
+						// we can't deal with these
+						continue
+					if(I.damage > 0)
+						N.fields["autodoc_data"] += create_autodoc_surgery(I,ORGAN_SURGERY,"damage",0)
 						needed++
-			if(!needed)
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"broken",0,1)
-			updateUsrDialog()
+				if(!needed)
+					N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"damage",0,1)
+				updateUsrDialog()
 
-		if(href_list["missing"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.status & LIMB_DESTROYED)
-						if(!(L.parent.status & LIMB_DESTROYED) && L.name != "head")
-							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"missing",0)
-							needed++
-			if(!needed)
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"missing",0,1)
-			updateUsrDialog()
-
-		if(href_list["necro"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.status & LIMB_NECROTIZED)
-						N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"necro",0)
-						needed++
-			if(!needed)
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"necro",0,1)
-			updateUsrDialog()
-
-		if(href_list["shrapnel"])
-			var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.implants.len)
-						for(var/I in L.implants)
-							if(!is_type_in_list(I,known_implants))
-								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"shrapnel",0)
+			if(href_list["internal"])
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						for(var/datum/wound/W in L.wounds)
+							if(W.internal)
+								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"internal",0)
 								needed++
-			if(!needed)
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"shrapnel",0,1)
-			updateUsrDialog()
+								break
+				if(!needed)
+					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"internal",0,1)
+				updateUsrDialog()
 
-		if(href_list["limbgerm"])
-			N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"germs",0)
-			updateUsrDialog()
-		if(href_list["open"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.surgery_open_stage)
-						N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"open",0)
-						needed++
+			if(href_list["broken"])
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						if(L.status & LIMB_BROKEN)
+							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"broken",0)
+							needed++
+				if(!needed)
+					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"broken",0,1)
+				updateUsrDialog()
+
+			if(href_list["missing"])
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						if(L.status & LIMB_DESTROYED)
+							if(!(L.parent.status & LIMB_DESTROYED) && L.name != "head")
+								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"missing",0)
+								needed++
+				if(!needed)
+					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"missing",0,1)
+				updateUsrDialog()
+
+			if(href_list["necro"])
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						if(L.status & LIMB_NECROTIZED)
+							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"necro",0)
+							needed++
+				if(!needed)
+					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"necro",0,1)
+				updateUsrDialog()
+
+			if(href_list["shrapnel"])
+				var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						if(L.implants.len)
+							for(var/I in L.implants)
+								if(!is_type_in_list(I,known_implants))
+									N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"shrapnel",0)
+									needed++
+				if(!needed)
+					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"shrapnel",0,1)
+				updateUsrDialog()
 			if(href_list["limbgerm"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"open",0,1)
-			updateUsrDialog()
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"germs",0)
+				updateUsrDialog()
+			if(href_list["open"])
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						if(L.surgery_open_stage)
+							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"open",0)
+							needed++
+				if(href_list["limbgerm"])
+					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"open",0,1)
+				updateUsrDialog()
 
-		// The rest
-		if(href_list["clear"])
-			N.fields["autodoc_data"] = list()
-			updateUsrDialog()
+			// The rest
+			if(href_list["clear"])
+				N.fields["autodoc_data"] = list()
+				updateUsrDialog()
 		if(href_list["refresh"])
 			updateUsrDialog()
 		if(href_list["surgery"])
