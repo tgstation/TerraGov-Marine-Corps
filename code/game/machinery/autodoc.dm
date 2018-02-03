@@ -1,6 +1,6 @@
 //Autodoc
 /obj/machinery/autodoc
-	name = "\improper autodoc medical system"
+	name = "\improper Autodoc Medical System"
 	desc = "A fancy machine developed to be capable of operating on people with minimal human intervention. The interface is rather complex and would only be useful to trained Doctors however."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
@@ -31,8 +31,13 @@
 	set background=1
 	updateUsrDialog()
 	if(occupant)
+		if(stat & (NOPOWER|BROKEN))
+			visible_message("\The [src] engages the safety override, ejecting the occupant.")
+			surgery = 0
+			go_out()
+			return
 		if(occupant.stat == DEAD)
-			visible_message("[src] speaks: Patient has expired.")
+			visible_message("\The [src] speaks: Patient has expired.")
 			surgery = 0
 			go_out()
 			return
@@ -49,34 +54,49 @@
 					filtered += 3
 				if(!filtered)
 					filtering = 0
-					visible_message("[src] speaks: Blood filtering complete.")
+					visible_message("\The [src] speaks: Blood filtering complete.")
+				else if(prob(10))
+					visible_message("\The [src] whirrs and gurgles as the dialysis module operates.")
+					occupant << "<span class='info'>You feel slightly better.</span>"
 			if(blood_transfer)
 				if(occupant.vessel.get_reagent_amount("blood") < BLOOD_VOLUME_NORMAL)
 					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
 						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
-						visible_message("[src] speaks: Blood reserves depleted, switching to fresh bag.")
+						visible_message("\The [src] speaks: Blood reserves depleted, switching to fresh bag.")
 					blood_pack.reagents.trans_to(occupant, 4) // give them some blood, same as iv stand
+					if(prob(10))
+						visible_message("\The [src] whirrs and gurgles as it tranfuses blood.")
+						occupant << "<span class='info'>You feel slightly less faint.</span>"
 				else
 					blood_transfer = 0
-					visible_message("[src] speaks: Blood transfer complete.")
+					visible_message("\The [src] speaks: Blood transfer complete.")
 			if(heal_brute)
 				if(occupant.getBruteLoss() > 0)
 					occupant.heal_limb_damage(3,0)
+					if(prob(10))
+						visible_message("\The [src] whirrs and clicks as it stitches flesh together.")
+						occupant << "<span class='info'>You feel your wounds being stitched and sealed shut.</span>"
 				else
 					heal_brute = 0
-					visible_message("[src] speaks: Surgical trauma repairs complete.")
+					visible_message("\The [src] speaks: Trauma repair surgery complete.")
 			if(heal_burn)
 				if(occupant.getFireLoss() > 0)
 					occupant.heal_limb_damage(0,3)
+					if(prob(10))
+						visible_message("\The [src] whirrs and clicks as it grafts synthetic skin.")
+						occupant << "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>"
 				else
 					heal_burn = 0
-					visible_message("[src] speaks: Skin grafts complete.")
+					visible_message("\The [src] speaks: Skin grafts complete.")
 			if(heal_toxin)
 				if(occupant.getToxLoss() > 0)
 					occupant.adjustToxLoss(-3)
+					if(prob(10))
+						visible_message("\The [src] whirrs and gurgles as it kelates the occupant.")
+						occupant << "<span class='info'>You feel slighly less ill.</span>"
 				else
 					heal_toxin = 0
-					visible_message("[src] speaks: Kelation complete.")
+					visible_message("\The [src] speaks: Kelation complete.")
 
 
 #define LIMB_SURGERY 1
@@ -93,17 +113,14 @@
 	var/automatic = 0
 	var/unneeded = 0
 
-proc/create_autodoc_surgery(surg_ref, type_of_surgery, surgery_procedure, automatic=1, unneeded=0)
+proc/create_autodoc_surgery(limb_ref, type_of_surgery, surgery_procedure, automatic=1, unneeded=0, organ_ref=null)
 	var/datum/autodoc_surgery/A = new()
 	A.type_of_surgery = type_of_surgery
 	A.surgery_procedure = surgery_procedure
 	A.automatic = automatic
 	A.unneeded = unneeded
-	switch(type_of_surgery)
-		if(LIMB_SURGERY)
-			A.limb_ref = surg_ref
-		if(ORGAN_SURGERY)
-			A.organ_ref = surg_ref
+	A.limb_ref = limb_ref
+	A.organ_ref = organ_ref
 	return A
 
 /obj/machinery/autodoc/allow_drop()
@@ -111,18 +128,9 @@ proc/create_autodoc_surgery(surg_ref, type_of_surgery, surgery_procedure, automa
 
 proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	if(!ishuman(M))
-		return null
+		return list()
 	var/surgery_list = list()
 	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
-
-	for(var/datum/internal_organ/I in M.internal_organs)
-		if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
-			// we can't deal with these
-			continue
-		if(I.germ_level > 1)
-			surgery_list += create_autodoc_surgery(I,ORGAN_SURGERY,"germs")
-		if(I.damage > 0)
-			surgery_list += create_autodoc_surgery(I,ORGAN_SURGERY,"damage")
 
 	for(var/datum/limb/L in M.limbs)
 		if(L)
@@ -130,6 +138,25 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 				if(W.internal)
 					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"internal")
 					break
+
+			var/organdamagesurgery = 0
+			for(var/datum/internal_organ/I in L.internal_organs)
+				if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
+					// we can't deal with these
+					continue
+				if(I.germ_level > 1)
+					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,"germs",1,0,I)
+				if(I.damage > 0)
+					if(I.name == "eyeballs") // treat eye surgery differently
+						continue
+					if(organdamagesurgery > 0) continue // avoid duplicates
+					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,"damage",1,0,I)
+					organdamagesurgery++
+
+			if(istype(L,/datum/limb/head))
+				var/datum/limb/head/H = L
+				if(H.disfigured || H.face_surgery_stage > 0)
+					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"facial")
 
 			if(L.status & LIMB_BROKEN)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"broken")
@@ -146,6 +173,9 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"germs")
 			if(L.surgery_open_stage)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"open")
+	var/datum/internal_organ/I = M.internal_organs_by_name["eyes"]
+	if(M.disabilities & NEARSIGHTED || M.sdisabilities & BLIND || I.damage > 0)
+		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",1,0,I)
 	if(M.getBruteLoss() > 0)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"brute")
 	if(M.getFireLoss() > 0)
@@ -166,7 +196,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 
 /obj/machinery/autodoc/proc/surgery_op(mob/living/carbon/M)
 	if(M.stat == DEAD||!ishuman(M))
-		visible_message("[src] buzzes.")
+		visible_message("\The [src] buzzes.")
 		src.go_out() //kick them out too.
 		return
 
@@ -186,6 +216,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 
 	visible_message("\The [src] begins to operate, loud audiable clicks lock the pod.")
 	surgery = 1
+	icon_state = "sleeper_2"
 
 	var/list/surgery_todo_list = N.fields["autodoc_data"]
 	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
@@ -224,6 +255,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
 						var/amount = R.overdose - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
+						occupant << "<span class='info'>You feel a soft prick from a needle.</span>"
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
@@ -241,12 +273,10 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 							visible_message("\The [src] speaks, Procedure has been deemed unnecessary.");
 							surgery_todo_list -= S
 							continue
+						open_incision(H,S.limb_ref)
 
-						sleep(INCISION_MANAGER_MAX_DURATION*surgery_mod)
-
-						if(!(S.organ_ref.parent_limb == "groin"))
-							sleep(SAW_OPEN_ENCASED_MAX_DURATION*surgery_mod)
-							sleep(RETRACT_OPEN_ENCASED_MAX_DURATION*surgery_mod)
+						if(S.limb_ref.name != "groin")
+							open_encased(H,S.limb_ref)
 
 						if(!istype(S.organ_ref,/datum/internal_organ/brain))
 							sleep(FIX_ORGAN_MAX_DURATION*surgery_mod)
@@ -257,10 +287,44 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						if(!surgery) break
 						S.organ_ref.rejuvenate()
 						// close them
-						if(!(S.organ_ref.parent_limb == "groin")) // TODO: fix brute damage before closing
-							sleep(RETRACT_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
-							sleep(BONEGEL_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
-						sleep(CAUTERY_MAX_DURATION*surgery_mod)
+						if(S.limb_ref.name != "groin") // TODO: fix brute damage before closing
+							close_encased(H,S.limb_ref)
+						close_incision(H,S.limb_ref)
+
+					if("eyes")
+						if(prob(30)) visible_message("\The [src] speaks, Beginning corrective eye surgery.");
+						if(S.unneeded)
+							sleep(UNNEEDED_DELAY)
+							visible_message("\The [src] speaks, Procedure has been deemed unnecessary.");
+							surgery_todo_list -= S
+							continue
+						if(istype(S.organ_ref,/datum/internal_organ/eyes))
+							var/datum/internal_organ/eyes/E = S.organ_ref
+
+							if(E.eye_surgery_stage == 0)
+								sleep(EYE_CUT_MAX_DURATION)
+								if(!surgery) break
+								E.eye_surgery_stage = 1
+								H.disabilities |= NEARSIGHTED // code\#define\mobs.dm
+
+							if(E.eye_surgery_stage == 1)
+								sleep(EYE_LIFT_MAX_DURATION)
+								if(!surgery) break
+								E.eye_surgery_stage = 2
+
+							if(E.eye_surgery_stage == 2)
+								sleep(EYE_MEND_MAX_DURATION)
+								if(!surgery) break
+								E.eye_surgery_stage = 3
+
+							if(E.eye_surgery_stage == 3)
+								sleep(EYE_CAUTERISE_MAX_DURATION)
+								if(!surgery) break
+								H.disabilities &= ~NEARSIGHTED
+								H.sdisabilities &= ~BLIND
+								E.damage = 0
+								E.eye_surgery_stage = 0
+
 
 			if(LIMB_SURGERY)
 				switch(S.surgery_procedure)
@@ -351,17 +415,11 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 							continue
 
 						open_incision(H,S.limb_ref)
-						if(istype(S.limb_ref.name,/datum/limb/chest)||istype(S.limb_ref.name,/obj/item/limb/head))
-							sleep(SAW_OPEN_ENCASED_MAX_DURATION*surgery_mod)
-							sleep(RETRACT_OPEN_ENCASED_MAX_DURATION*surgery_mod)
 						sleep(NECRO_REMOVE_MAX_DURATION*surgery_mod)
 						sleep(NECRO_TREAT_MAX_DURATION*surgery_mod)
 						S.limb_ref.status &= ~LIMB_NECROTIZED
 						H.update_body()
 
-						if(istype(S.limb_ref.name,/datum/limb/chest)||istype(S.limb_ref.name,/obj/item/limb/head))
-							sleep(RETRACT_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
-							sleep(BONEGEL_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
 						close_incision(H,S.limb_ref)
 
 					if("shrapnel")
@@ -373,9 +431,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 							continue
 
 						open_incision(H,S.limb_ref)
-						if(istype(S.limb_ref.name,/datum/limb/chest)||istype(S.limb_ref.name,/obj/item/limb/head))
-							sleep(SAW_OPEN_ENCASED_MAX_DURATION*surgery_mod)
-							sleep(RETRACT_OPEN_ENCASED_MAX_DURATION*surgery_mod)
+						if(S.limb_ref.name == "chest" || S.limb_ref.name == "head")
+							open_encased(H,S.limb_ref)
 						if(S.limb_ref.implants.len)
 							for(var/obj/item/I in S.limb_ref.implants)
 								if(!surgery) break
@@ -383,9 +440,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
 									S.limb_ref.implants -= I
 									cdel(I)
-						if(istype(S.limb_ref.name,/datum/limb/chest)||istype(S.limb_ref.name,/obj/item/limb/head))
-							sleep(RETRACT_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
-							sleep(BONEGEL_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
+						if(S.limb_ref.name == "chest" || S.limb_ref.name == "head")
+							close_encased(H,S.limb_ref)
 						if(!surgery) break
 						close_incision(H,S.limb_ref)
 
@@ -395,6 +451,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
 						var/amount = (R.overdose/2) - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
+						occupant << "<span class='info'>You feel a soft prick from a needle.</span>"
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
@@ -405,8 +462,37 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 								amount -= inject_per_second
 								sleep(10)
 
+					if("facial") // dumb but covers for incomplete facial surgery
+						if(prob(30)) visible_message("\The [src] speaks, Beginning Facial Reconstruction Surgery.");
+						if(S.unneeded)
+							sleep(UNNEEDED_DELAY)
+							visible_message("\The [src] speaks, Procedure has been deemed unnecessary.");
+							surgery_todo_list -= S
+							continue
+						if(istype(S.limb_ref,/datum/limb/head))
+							var/datum/limb/head/F = S.limb_ref
+							if(F.face_surgery_stage == 0)
+								sleep(FACIAL_CUT_MAX_DURATION)
+								if(!surgery) break
+								F.face_surgery_stage = 1
+							if(F.face_surgery_stage == 1)
+								sleep(FACIAL_MEND_MAX_DURATION)
+								if(!surgery) break
+								F.face_surgery_stage = 2
+							if(F.face_surgery_stage == 2)
+								sleep(FACIAL_FIX_MAX_DURATION)
+								if(!surgery) break
+								F.face_surgery_stage = 3
+							if(F.face_surgery_stage == 3)
+								sleep(FACIAL_CAUTERISE_MAX_DURATION)
+								if(!surgery) break
+								F.status &= ~LIMB_BLEEDING
+								F.disfigured = 0
+								F.face_surgery_stage = 0
+
 					if("open")
 						if(prob(30)) visible_message("\The [src] croaks, Closing surgical incision.");
+						close_encased(H,S.limb_ref)
 						close_incision(H,S.limb_ref)
 
 		if(prob(30)) visible_message("\The [src] speaks, Procedure complete.");
@@ -414,42 +500,78 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		continue
 
 	while(heal_brute||heal_burn||heal_toxin||filtering||blood_transfer)
+		if(!surgery) break
 		sleep(20)
 		if(prob(5)) visible_message("\The [src] beeps as it continues working.");
 
 	visible_message("\The [src] clicks and opens up having finished the requested operations.")
-	go_out()
-	icon_state = "sleeper_0"
 	surgery = 0
+	go_out()
+
 
 /obj/machinery/autodoc/proc/open_incision(mob/living/carbon/human/target, var/datum/limb/L)
-	if(target && L)
+	if(target && L && L.surgery_open_stage < 2)
 		sleep(INCISION_MANAGER_MAX_DURATION*surgery_mod)
+		if(!surgery) return
 		L.createwound(CUT, 1)
 		L.clamp() //Hemostat function, clamp bleeders
 		L.surgery_open_stage = 2 //Can immediately proceed to other surgery steps
 		target.updatehealth()
 
 /obj/machinery/autodoc/proc/close_incision(mob/living/carbon/human/target, var/datum/limb/L)
-	if(target && L)
+	if(target && L && 0 < L.surgery_open_stage <= 2)
 		sleep(CAUTERY_MAX_DURATION*surgery_mod)
+		if(!surgery) return
 		L.surgery_open_stage = 0
 		L.germ_level = 0
 		L.status &= ~LIMB_BLEEDING
 		target.updatehealth()
 
+/obj/machinery/autodoc/proc/open_encased(mob/living/carbon/human/target, var/datum/limb/L)
+	if(target && L && L.surgery_open_stage >= 2)
+		if(L.surgery_open_stage == 2) // this will cover for half completed surgeries
+			sleep(SAW_OPEN_ENCASED_MAX_DURATION*surgery_mod)
+			if(!surgery) return
+			L.surgery_open_stage = 2.5
+		if(L.surgery_open_stage == 2.5)
+			sleep(RETRACT_OPEN_ENCASED_MAX_DURATION*surgery_mod)
+			if(!surgery) return
+			L.surgery_open_stage = 3
+
+/obj/machinery/autodoc/proc/close_encased(mob/living/carbon/human/target, var/datum/limb/L)
+	if(target && L && L.surgery_open_stage > 2)
+		if(L.surgery_open_stage == 3) // this will cover for half completed surgeries
+			sleep(RETRACT_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
+			if(!surgery) return
+			L.surgery_open_stage = 2.5
+		if(L.surgery_open_stage == 2.5)
+			sleep(BONEGEL_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
+			if(!surgery) return
+			L.surgery_open_stage = 2
+
 /obj/machinery/autodoc/verb/eject()
 	set name = "Eject Med-Pod"
 	set category = "Object"
 	set src in oview(1)
-
-	if(surgery && occupant)
-		visible_message("\The [src] malfunctions as you abort the surgery.")
-		occupant.take_limb_damage(rand(30,50),rand(30,50))
-		surgery = 0
-	if(usr.stat != 0) return
-	go_out()
-	add_fingerprint(usr)
+	if(occupant)
+		if(usr == occupant)
+			if(surgery)
+				usr << "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>"
+			else
+				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
+			return
+		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
+			usr << "<span class='warning'>You don't have the training to use this.</span>"
+			return
+		if(surgery)
+			visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
+			occupant.take_limb_damage(rand(30,50),rand(30,50))
+			surgery = 0
+			// message_staff for now, may change to message_admins later
+			message_staff("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
+			log_admin("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
+		go_out()
+		add_fingerprint(usr)
 
 /obj/machinery/autodoc/verb/move_inside()
 	set name = "Enter Med-Pod"
@@ -459,18 +581,22 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr))) return
 
 	if(occupant)
-		usr << "<span class='notice'>[src] is already occupied!</span>"
+		usr << "<span class='notice'>\The [src] is already occupied!</span>"
 		return
 
 	if(stat & (NOPOWER|BROKEN))
-		usr << "<span class='notice'>[src] is non-functional!</span>"
+		usr << "<span class='notice'>\The [src] is non-functional!</span>"
 		return
 
-	usr.visible_message("<span class='notice'>[usr] starts climbing into [src].</span>",
-	"<span class='notice'>You start climbing into [src].</span>")
+	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
+		usr << "<span class='warning'>You're going to need someone trained in the use of \the [src] to help you get into it.</span>"
+		return
+
+	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
+	"<span class='notice'>You start climbing into \the [src].</span>")
 	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
 		if(occupant)
-			usr << "<span class='notice'>[src] is already occupied!</span>"
+			usr << "<span class='notice'>\The [src] is already occupied!</span>"
 			return
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
@@ -488,6 +614,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	if(!occupant) return
 	occupant.forceMove(loc)
 	occupant = null
+	surgery_todo_list = list()
 	update_use_power(1)
 	icon_state = "sleeper_0"
 
@@ -505,18 +632,22 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			return
 		var/mob/M = G.grabbed_thing
 		if(src.occupant)
-			user << "<span class='notice'>[src] is already occupied!</span>"
+			user << "<span class='notice'>\The [src] is already occupied!</span>"
 			return
 
 		if(stat & (NOPOWER|BROKEN))
-			user << "<span class='notice'>[src] is non-functional!</span>"
+			user << "<span class='notice'>\The [src] is non-functional!</span>"
+			return
+
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
+			user << "<span class='warning'>You have no idea how to put someone into \the [src]!</span>"
 			return
 
 		visible_message("[user] starts putting [M] into [src].", 3)
 
 		if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
 			if(src.occupant)
-				user << "<span class='notice'>[src] is already occupied!</span>"
+				user << "<span class='notice'>\The [src] is already occupied!</span>"
 				return
 			if(!G || !G.grabbed_thing) return
 			M.forceMove(src)
@@ -530,7 +661,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 
 //Auto Doc console that links up to it.
 /obj/machinery/autodoc_console
-	name = "\improper autodoc medical system control console"
+	name = "\improper Autodoc Medical System Control Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/autodoc/connected = null
@@ -630,6 +761,9 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 								if("damage")
 									surgeryqueue["organdamage"] = 1
 									dat += "Surgical Organ Damage Treatment"
+								if("eyes")
+									surgeryqueue["eyes"] = 1
+									dat += "Corrective Eye Surgery"
 						if(LIMB_SURGERY)
 							switch(A.surgery_procedure)
 								if("internal")
@@ -650,6 +784,9 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 								if("germ")
 									surgeryqueue["limbgerm"] = 1
 									dat += "Limb Disinfection Procedure"
+								if("facial")
+									surgeryqueue["facial"] = 1
+									dat += "Facial Reconstruction Surgery"
 								if("open")
 									surgeryqueue["open"] = 1
 									dat += "Close Open Incision"
@@ -679,6 +816,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						dat += "<a href='?src=\ref[src];organgerms=1'>Organ Infection Treatment</a><br>"
 					if(isnull(surgeryqueue["organdamage"]))
 						dat += "<a href='?src=\ref[src];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
+					if(isnull(surgeryqueue["eyes"]))
+						dat += "<a href='?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
 					if(isnull(surgeryqueue["internal"]))
 						dat += "<a href='?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
 					if(isnull(surgeryqueue["broken"]))
@@ -691,6 +830,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						dat += "<a href='?src=\ref[src];shrapnel=1'>Shrapnel Removal Surgery</a><br>"
 					if(isnull(surgeryqueue["limbgerm"]))
 						dat += "<a href='?src=\ref[src];limbgerm=1'>Limb Disinfection Procedure</a><br>"
+					if(isnull(surgeryqueue["facial"]))
+						dat += "<a href='?src=\ref[src];facial=1'>Facial Reconstruction Surgery</a><br>"
 					if(isnull(surgeryqueue["open"]))
 						dat += "<a href='?src=\ref[src];open=1'>Close Open Incision</a><br>"
 		else
@@ -732,6 +873,9 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 				updateUsrDialog()
 			if(href_list["organgerms"])
 				N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"germs",0)
+				updateUsrDialog()
+			if(href_list["eyes"])
+				N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",0,0,connected.occupant.internal_organs_by_name["eyes"])
 				updateUsrDialog()
 			if(href_list["organdamage"])
 				for(var/datum/internal_organ/I in connected.occupant.internal_organs)
@@ -803,6 +947,19 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			if(href_list["limbgerm"])
 				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"germs",0)
 				updateUsrDialog()
+
+			if(href_list["facial"])
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						if(istype(L,/datum/limb/head))
+							var/datum/limb/head/J = L
+							if(J.disfigured || J.face_surgery_stage)
+								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial",0)
+							else
+								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial",0,1)
+							updateUsrDialog()
+							break
+
 			if(href_list["open"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
