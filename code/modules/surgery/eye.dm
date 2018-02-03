@@ -28,8 +28,8 @@
 	/obj/item/shard = 50, 		\
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = EYE_CUT_MIN_DURATION
+	max_duration = EYE_CUT_MAX_DURATION
 	eye_step = 0
 
 /datum/surgery_step/eye/cut_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -42,7 +42,7 @@
 	"<span class='notice'>You have separated the cornea on [target]'s eyes with \the [tool].</span>",)
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	E.eye_surgery_stage = 1
-	target.sdisabilities |= NEARSIGHTED
+	target.disabilities |= NEARSIGHTED // code\#define\mobs.dm
 
 /datum/surgery_step/eye/cut_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
@@ -60,8 +60,8 @@
 	/obj/item/tool/kitchen/utensil/fork = 50
 	)
 
-	min_duration = 30
-	max_duration = 40
+	min_duration = EYE_LIFT_MIN_DURATION
+	max_duration = EYE_LIFT_MAX_DURATION
 	eye_step = 1
 
 /datum/surgery_step/eye/lift_eyes/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -90,8 +90,8 @@
 	/obj/item/device/assembly/mousetrap = 10 //I don't know. Don't ask me. But I'm leaving it because hilarity.
 	)
 
-	min_duration = 40
-	max_duration = 60
+	min_duration = EYE_MEND_MIN_DURATION
+	max_duration = EYE_MEND_MAX_DURATION
 	eye_step = 2
 
 /datum/surgery_step/eye/mend_eyes/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -121,9 +121,9 @@
 	/obj/item/tool/lighter = 50,    \
 	/obj/item/tool/weldingtool = 25
 	)
-
-	min_duration = 60
-	max_duration = 80
+	
+	min_duration = EYE_CAUTERISE_MIN_DURATION
+	max_duration = EYE_CAUTERISE_MAX_DURATION
 	eye_step = 3
 
 /datum/surgery_step/eye/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
