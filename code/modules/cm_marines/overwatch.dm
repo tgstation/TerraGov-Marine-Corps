@@ -536,19 +536,23 @@
 	if(!usr || usr != operator)
 		return
 	if(!current_squad)
-		usr << "\icon[src] No squad selected!"
+		usr << "\icon[src] <span class='warning'>No squad selected!</span>"
 		return
-	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in current_squad.marines_list
+	var/sl_candidates = list()
+	for(var/mob/living/carbon/human/H in current_squad.marines_list)
+		if(istype(H) && H.stat != DEAD && H.mind && !jobban_isbanned(H, "Squad Leader"))
+			sl_candidates += H
+	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in sl_candidates
 	if(!new_lead || new_lead == "Cancel") return
 	var/mob/living/carbon/human/H = new_lead
 	if(!istype(H) || !H.mind || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
-		usr << "\icon[src] [H] is KIA!"
+		usr << "\icon[src] <span class='warning'>[H] is KIA!</span>"
 		return
 	if(H == current_squad.squad_leader)
-		usr << "\icon[src] [H] is already the Squad Leader!"
+		usr << "\icon[src] <span class='warning'>[H] is already the Squad Leader!</span>"
 		return
-	if(jobban_isbanned(H,"Squad Leader"))
-		usr << "\icon[src] [H] is unfit to lead!"
+	if(jobban_isbanned(H, "Squad Leader"))
+		usr << "\icon[src] <span class='warning'>[H] is unfit to lead!</span>"
 		return
 	if(current_squad.squad_leader && current_squad.squad_leader.stat != DEAD)
 		send_to_squad("Attention: [current_squad.squad_leader] is demoted. A new squad leader has been set: [H.real_name].")
