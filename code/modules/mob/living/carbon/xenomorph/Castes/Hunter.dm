@@ -9,9 +9,9 @@
 	melee_damage_upper = 30
 	health = 150
 	maxHealth = 150
-	storedplasma = 50
+	plasma_stored = 50
 	plasma_gain = 8
-	maxplasma = 100
+	plasma_max = 100
 	evolution_threshold = 500
 	upgrade_threshold = 500
 	caste_desc = "A fast, powerful front line combatant."

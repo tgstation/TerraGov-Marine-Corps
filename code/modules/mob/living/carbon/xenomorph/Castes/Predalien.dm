@@ -8,8 +8,8 @@
 	melee_damage_upper = 80
 	health = 800 //A lot of health, but it doesn't regenerate.
 	maxHealth = 800
-	storedplasma = 300
-	maxplasma = 300
+	plasma_stored = 300
+	plasma_max = 300
 	amount_grown = 0
 	max_grown = 200
 	plasma_gain = 25
@@ -32,6 +32,7 @@
 	evo_points = 0
 
 	pixel_x = -16
+	old_x = -16
 
 	mob_size = MOB_SIZE_BIG
 	attack_delay = -2

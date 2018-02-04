@@ -13,8 +13,8 @@
 	tackle_chance = 60
 	health = 175
 	maxHealth = 175
-	storedplasma = 50
-	maxplasma = 250
+	plasma_stored = 50
+	plasma_max = 250
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	plasma_gain = 8
@@ -33,6 +33,7 @@
 	tier = 3
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
+	old_x = -16
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

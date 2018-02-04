@@ -9,9 +9,9 @@
 	melee_damage_upper = 22
 	health = 160
 	maxHealth = 160
-	storedplasma = 150
+	plasma_stored = 150
 	plasma_gain = 20
-	maxplasma = 600
+	plasma_max = 600
 	evolution_threshold = 250
 	upgrade_threshold = 250
 	spit_delay = 25

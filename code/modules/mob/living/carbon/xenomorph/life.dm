@@ -62,7 +62,7 @@
 	//Now moved out of healthy only state, because crit xenos can def still be affected by pheros
 
 	if(stat != DEAD) //Dead Xenos don't emit or receive pheromones, ever
-		if(current_aura && !stat && storedplasma > 5)
+		if(current_aura && !stat && plasma_stored > 5)
 			if(caste == "Queen" && anchored) //stationary queen's pheromone apply around the observed xeno.
 				var/mob/living/carbon/Xenomorph/Queen/Q = src
 				var/atom/phero_center = Q
@@ -213,8 +213,8 @@
 
 	if(hud_used && hud_used.alien_plasma_display)
 		if(stat != DEAD)
-			if(maxplasma) //No divide by zeros please
-				switch(round(storedplasma * 100 / maxplasma))
+			if(plasma_max) //No divide by zeros please
+				switch(round(plasma_stored * 100 / plasma_max))
 					if(100 to INFINITY)
 						hud_used.alien_plasma_display.icon_state = "power_display_full"
 					if(94 to 99)
@@ -319,9 +319,9 @@ updatehealth()
 
 	if(!is_robotic && !hardcore) //Robot no heal
 		if(innate_healing || (locate(/obj/effect/alien/weeds) in T))
-			storedplasma += plasma_gain
+			plasma_stored += plasma_gain
 			if(recovery_aura)
-				storedplasma += round(plasma_gain * recovery_aura/4) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
+				plasma_stored += round(plasma_gain * recovery_aura/4) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
 			if(health < maxHealth)
 				if(lying || resting)
 					if(health > -100 && health < 0) //Unconscious
@@ -338,26 +338,26 @@ updatehealth()
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
 			if(prob(50) && !is_runner_hiding && !current_aura)
-				storedplasma++
+				plasma_stored++
 
 		if(isXenoHivelord(src))
 			var/mob/living/carbon/Xenomorph/Hivelord/H = src
 			if(H.speed_activated)
-				storedplasma -= 30
-				if(storedplasma < 0)
+				plasma_stored -= 30
+				if(plasma_stored < 0)
 					H.speed_activated = 0
 					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
 
 		if(current_aura)
-			storedplasma -= 5
+			plasma_stored -= 5
 
 	//START HARDCORE //This needs to be removed.
 	else if(!is_robotic && hardcore)//Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health > 0)
-				storedplasma += plasma_gain
+				plasma_stored += plasma_gain
 				if(recovery_aura)
-					storedplasma += (recovery_aura * 2)
+					plasma_stored += (recovery_aura * 2)
 			if(health < 35) //Barely enough to stay near critical if saved
 				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 				if(recovery_aura)
@@ -369,28 +369,28 @@ updatehealth()
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
 			if(prob(50) && !is_runner_hiding && !current_aura)
-				storedplasma++
+				plasma_stored++
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
-				storedplasma += round(recovery_aura + 1)
+				plasma_stored += round(recovery_aura + 1)
 				updatehealth()
 
 		if(isXenoHivelord(src))
 			var/mob/living/carbon/Xenomorph/Hivelord/H = src
 			if(H.speed_activated)
-				storedplasma -= 30
-				if(storedplasma < 0)
+				plasma_stored -= 30
+				if(plasma_stored < 0)
 					H.speed_activated = 0
 					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
 
 		if(current_aura)
-			storedplasma -= 5
+			plasma_stored -= 5
 		//END HARDCORE
 
-	if(storedplasma > maxplasma)
-		storedplasma = maxplasma
-	if(storedplasma < 0)
-		storedplasma = 0
+	if(plasma_stored > plasma_max)
+		plasma_stored = plasma_max
+	if(plasma_stored < 0)
+		plasma_stored = 0
 		if(current_aura)
 			current_aura = null
 			src << "<span class='warning'>You have run out of pheromones and stopped emitting pheromones.</span>"
