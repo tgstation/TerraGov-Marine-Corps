@@ -7,7 +7,7 @@
 	density = 1
 	anchored = 1
 	var/mob/living/carbon/human/occupant = null
-	var/surgery_todo_list = list() //a list of surgeries to do.
+	var/list/surgery_todo_list = list() //a list of surgeries to do.
 //	var/surgery_t = 0 //Surgery timer in seconds.
 	var/surgery = 0 //Are we operating or no? 0 for no, 1 for yes
 	var/surgery_mod = 1 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
@@ -285,7 +285,11 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 								sleep(HEMOTOMA_MAX_DURATION*surgery_mod)
 							sleep(BONECHIPS_REMOVAL_MAX_DURATION*surgery_mod)
 						if(!surgery) break
-						S.organ_ref.rejuvenate()
+						if(istype(S.organ_ref,/datum/internal_organ))
+							S.organ_ref.rejuvenate()
+						else
+							visible_message("\The [src] speaks, Organ is missing.");
+
 						// close them
 						if(S.limb_ref.name != "groin") // TODO: fix brute damage before closing
 							close_encased(H,S.limb_ref)
@@ -846,7 +850,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))))
 		usr.set_interaction(src)
 
-		if(connected.occupant)
+		if(connected.occupant && ishuman(connected.occupant))
 			// manual surgery handling
 			var/datum/data/record/N = null
 			for(var/datum/data/record/R in data_core.medical)
@@ -878,13 +882,15 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 				N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",0,0,connected.occupant.internal_organs_by_name["eyes"])
 				updateUsrDialog()
 			if(href_list["organdamage"])
-				for(var/datum/internal_organ/I in connected.occupant.internal_organs)
-					if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
-						// we can't deal with these
-						continue
-					if(I.damage > 0)
-						N.fields["autodoc_data"] += create_autodoc_surgery(I,ORGAN_SURGERY,"damage",0)
-						needed++
+				for(var/datum/limb/L in connected.occupant.limbs)
+					if(L)
+						for(var/datum/internal_organ/I in L.internal_organs)
+							if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
+								// we can't deal with these
+								continue
+							if(I.damage > 0)
+								N.fields["autodoc_data"] += create_autodoc_surgery(L,ORGAN_SURGERY,"damage",0,0,I)
+								needed++
 				if(!needed)
 					N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"damage",0,1)
 				updateUsrDialog()
@@ -977,7 +983,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		if(href_list["refresh"])
 			updateUsrDialog()
 		if(href_list["surgery"])
-			connected.surgery_op(src.connected.occupant)
+			if(connected.occupant)
+				connected.surgery_op(src.connected.occupant)
 			updateUsrDialog()
 		if(href_list["ejectify"])
 			connected.eject()
