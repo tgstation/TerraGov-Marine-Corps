@@ -132,10 +132,6 @@
 /turf/unsimulated/floor/mars/is_weedable()
 	return FALSE
 
-/turf/simulated/floor/is_weedable()
-	var/area/A = get_area(src)
-	return A.is_weedable
-
 /turf/simulated/floor/gm/grass/is_weedable()
 	return FALSE
 
@@ -144,6 +140,18 @@
 
 /turf/simulated/floor/gm/river/is_weedable()
 	return FALSE
+
+/turf/simulated/floor/almayer/plating/catwalk/is_weedable() //covered catwalks are unweedable
+	if(covered)
+		return FALSE
+	else
+		return TRUE
+
+/turf/simulated/floor/prison/plating/prison_catwalk/is_weedable()
+	if(covered)
+		return FALSE
+	else
+		return TRUE
 
 /turf/simulated/wall/is_weedable()
 	return TRUE //so we can spawn weeds on the walls

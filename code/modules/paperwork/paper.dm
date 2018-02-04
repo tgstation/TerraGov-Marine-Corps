@@ -476,7 +476,7 @@
 
 /obj/item/paper/prison_station/warden_note
 	name = "paper- 'Final note'"
-	info = "<p>Not much time left. Note to whoever may respond to the distress signal</p><p>Initially, there was a collision into the south high-security cellblock. We thought it was a pirate attack</p><p>It was, but something happened in the civilian residences. We were too tied up with the pirates to respond</p><p>Half the guards are dead. Most of the remainder not accounted for</p><p>Many likely trapped in yard when central lockdown activated. Timed lockdown of civilian residences also activated</p><p>Lockdown of civilian residences will automatically lift at 12:45</p><p>Central lockdown at 13:00</p><p>something comes</p>"
+	info = "<p>Not much time left. Note to whoever may respond to the distress signal</p><p>Initially, there was a collision into the south high-security cellblock. We thought it was a pirate attack</p><p>It was, but something happened in the civilian residences. We were too tied up with the pirates to respond</p><p>Half the guards are dead. Most of the remainder not accounted for</p><p>Many likely trapped in yard when central lockdown activated. Timed lockdown of civilian residences also activated</p><p>Lockdown of civilian residences will automatically lift at 12:35</p><p>Central lockdown at 12:50</p><p>something comes</p>"
 
 /obj/item/paper/prison_station/chapel_program
 	name = "paper= 'Chapel service program'"
