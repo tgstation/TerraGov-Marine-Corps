@@ -294,7 +294,7 @@
 		var/effect_amt = 8 + amount*2
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			H.temporary_slowdown = max(temporary_slowdown, effect_amt*2) //One tick every two second
+			H.temporary_slowdown = max(H.temporary_slowdown, effect_amt*2) //One tick every two second
 		if(!M.eye_blind)
 			M << "<span class='danger'>Your eyes sting. You can't see!</span>"
 		M.eye_blurry = max(M.eye_blurry, effect_amt*2)
