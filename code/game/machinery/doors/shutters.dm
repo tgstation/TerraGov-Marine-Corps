@@ -12,7 +12,7 @@
 	add_fingerprint(user)
 	if(!C.pry_capable)
 		return
-	if(density && (stat & NOPOWER) && !operating)
+	if(density && (stat & NOPOWER) && !operating && !unacidable)
 		operating = 1
 		spawn(-1)
 			flick("shutterc0", src)
