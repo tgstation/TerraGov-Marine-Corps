@@ -288,12 +288,13 @@
 		if(M.coughedtime != 1)
 			M.coughedtime = 1
 			M.emote("gasp")
-			M.adjustOxyLoss(1)
+			M.adjustOxyLoss(5)
 			spawn(15)
 				M.coughedtime = 0
 		var/effect_amt = 8 + amount*2
-		//M.KnockDown(effect_amt)
-		//M.Stun(effect_amt+2)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.temporary_slowdown += 3 //One tick every two second
 		if(!M.eye_blind)
 			M << "<span class='danger'>Your eyes sting. You can't see!</span>"
 		M.eye_blurry = max(M.eye_blurry, effect_amt*2)
