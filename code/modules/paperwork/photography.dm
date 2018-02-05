@@ -50,7 +50,8 @@
 	else
 		user << "<span class='notice'>It is too far away.</span>"
 
-/obj/item/photo/proc/show(mob/user as mob)
+/obj/item/photo/proc/show(mob/living/user)
+	if(!isicon(img)) return // this should stop a runtime error
 	user << browse_rsc(img, "tmp_photo.png")
 	user << browse("<html><head><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
