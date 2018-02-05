@@ -5,8 +5,8 @@
 	var/obj/item/clothing/head/head = null
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
-	var/storedplasma = 0
-	var/maxplasma = 10
+	var/plasma_stored = 0
+	var/plasma_max = 10
 	var/amount_grown = 0
 	var/max_grown = 200
 	var/time_of_birth

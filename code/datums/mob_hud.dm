@@ -313,7 +313,7 @@ var/datum/mob_hud/huds = list(
 	if(stat == DEAD)
 		holder.icon_state = "plasma0"
 	else
-		var/amount = round(storedplasma * 100 / maxplasma, 10)
+		var/amount = round(plasma_stored * 100 / plasma_max, 10)
 		holder.icon_state = "plasma[amount]"
 
 

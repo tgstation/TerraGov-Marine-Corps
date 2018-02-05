@@ -571,7 +571,7 @@
 				if("Queen","Drone","Hivelord")
 					M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
 					"<span class='xenonotice'>You clear the hatched egg.</span>")
-					M.storedplasma++
+					M.plasma_stored++
 					cdel(src)
 		if(GROWING)
 			M << "<span class='xenowarning'>The child is not developed yet.</span>"

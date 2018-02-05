@@ -11,9 +11,9 @@
 	tackle_chance = 60
 	health = 250
 	maxHealth = 250
-	storedplasma = 200
+	plasma_stored = 200
 	plasma_gain = 10
-	maxplasma = 200
+	plasma_max = 200
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	caste_desc = "A huge tanky xenomorph."
@@ -30,6 +30,8 @@
 
 	pixel_x = -16
 	pixel_y = -3
+	old_x = -16
+	old_y = -3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

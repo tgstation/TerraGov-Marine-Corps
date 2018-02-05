@@ -84,12 +84,12 @@
 		src << "<span class='warning'>You need to be closer to [target].</span>"
 		return
 
-	if(storedplasma < amount)
-		amount = storedplasma //Just use all of it
+	if(plasma_stored < amount)
+		amount = plasma_stored //Just use all of it
 	use_plasma(amount)
 	target.gain_plasma(amount)
-	target << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.storedplasma].</span>"
-	src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [storedplasma].</span>"
+	target << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.plasma_stored].</span>"
+	src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [plasma_stored].</span>"
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/xeno_spit(atom/T)

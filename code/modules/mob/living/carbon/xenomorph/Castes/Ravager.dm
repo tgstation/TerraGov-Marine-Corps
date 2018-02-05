@@ -13,9 +13,9 @@
 	tackle_chance = 80
 	health = 200
 	maxHealth = 200
-	storedplasma = 50
+	plasma_stored = 50
 	plasma_gain = 8
-	maxplasma = 100
+	plasma_max = 100
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	caste_desc = "A brutal, devastating front-line attacker."
@@ -35,6 +35,7 @@
 	tier = 3
 	upgrade = 0
 	pixel_x = -16
+	old_x = -16
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -92,9 +93,9 @@
 	tackle_chance = 85
 	health = 600
 	maxHealth = 600
-	storedplasma = 200
+	plasma_stored = 200
 	plasma_gain = 15
-	maxplasma = 200
+	plasma_max = 200
 	upgrade = 3
 	var/used_fire_breath = 0
 	actions = list(

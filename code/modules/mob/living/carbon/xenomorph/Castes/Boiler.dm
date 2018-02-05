@@ -13,14 +13,15 @@
 	tackle_chance = 60
 	health = 180
 	maxHealth = 180
-	storedplasma = 450
+	plasma_stored = 450
 	plasma_gain = 30
-	maxplasma = 800
+	plasma_max = 800
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	spit_delay = 40
 	speed = 0.5
 	pixel_x = -16
+	old_x = -16
 	caste_desc = "Gross!"
 	mob_size = MOB_SIZE_BIG
 	tier = 3
@@ -242,7 +243,7 @@
 
 		if(!check_plasma(10))
 			break
-		storedplasma -= 10
+		plasma_stored -= 10
 		prev_turf = T
 		splat_turf(T)
 		sleep(2)

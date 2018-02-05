@@ -10,9 +10,9 @@
 	melee_damage_upper = 20
 	health = 100
 	maxHealth = 100
-	storedplasma = 50
+	plasma_stored = 50
 	plasma_gain = 1
-	maxplasma = 100
+	plasma_max = 100
 	evolution_threshold = 200
 	upgrade_threshold = 200
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
@@ -24,6 +24,7 @@
 	tier = 1
 	upgrade = 0
 	pixel_x = -16  //Needed for 2x2
+	old_x = -16
 	pull_speed = -1
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

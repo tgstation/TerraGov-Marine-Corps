@@ -28,11 +28,11 @@
 		else
 			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 
-		if(maxplasma > 0)
+		if(plasma_max > 0)
 			if(is_robotic)
-				stat(null, "Charge: [storedplasma]/[maxplasma]")
+				stat(null, "Charge: [plasma_stored]/[plasma_max]")
 			else
-				stat(null, "Plasma: [storedplasma]/[maxplasma]")
+				stat(null, "Plasma: [plasma_stored]/[plasma_max]")
 
 		if(slashing_allowed == 1)
 			stat(null,"Slashing of hosts is currently: PERMITTED.")
@@ -85,22 +85,22 @@
 		return 0
 
 	if(value)
-		if(storedplasma < value)
+		if(plasma_stored < value)
 			if(is_robotic)
-				src << "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
+				src << "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>"
 			else
-				src << "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
+				src << "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>"
 			return 0
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/use_plasma(value)
-	storedplasma = max(storedplasma - value, 0)
+	plasma_stored = max(plasma_stored - value, 0)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
 
 /mob/living/carbon/Xenomorph/proc/gain_plasma(value)
-	storedplasma = min(storedplasma + value, maxplasma)
+	plasma_stored = min(plasma_stored + value, plasma_max)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
@@ -482,7 +482,7 @@
 
 	if(pulling && charge_speed > charge_speed_buildup) stop_pulling()
 
-	if(storedplasma > 5) storedplasma -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
+	if(plasma_stored > 5) plasma_stored -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
 	else
 		stop_momentum(charge_dir)
 		r_FAL
@@ -518,3 +518,18 @@
 	lastturf = isturf(loc) && !istype(loc, /turf/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 
 	update_icons()
+
+//Welp
+/mob/living/carbon/Xenomorph/proc/xeno_jitter(var/jitter_time = 25)
+
+	set waitfor = 0
+
+	while(jitter_time) //In ticks, so 10 ticks = 1 sec of jitter!
+		set waitfor = 0
+		pixel_x = old_x + rand(-3, 3)
+		pixel_y = old_y + rand(-1, 1)
+		sleep(1)
+		jitter_time--
+	//endwhile - reset the pixel offsets to zero
+	pixel_x = old_x
+	pixel_y = old_y

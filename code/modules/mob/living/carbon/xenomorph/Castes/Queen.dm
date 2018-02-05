@@ -20,14 +20,15 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	maxHealth = 300
 	amount_grown = 0
 	max_grown = 10
-	storedplasma = 300
-	maxplasma = 700
+	plasma_stored = 300
+	plasma_max = 700
 	plasma_gain = 30
 	is_intelligent = 1
 	speed = 0.3
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	pixel_x = -16
+	old_x = -16
 	fire_immune = 1
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
@@ -140,7 +141,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		return
 	if(last_special > world.time)
 		return
-	storedplasma -= 50
+	plasma_stored -= 50
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
 
 	if(txt)
@@ -157,7 +158,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	set desc = "Send a message to all aliens in the hive that is big and visible"
 	if(!check_plasma(50))
 		return
-	storedplasma -= 50
+	plasma_stored -= 50
 	if(health <= 0)
 		src << "<span class='warning'>You can't do that while unconcious.</span>"
 		return 0

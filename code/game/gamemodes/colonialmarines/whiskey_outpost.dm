@@ -933,7 +933,7 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
-				X.storedplasma = X.maxplasma
+				X.plasma_stored = X.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
@@ -950,7 +950,7 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
-				X.storedplasma = X.maxplasma
+				X.plasma_stored = X.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems

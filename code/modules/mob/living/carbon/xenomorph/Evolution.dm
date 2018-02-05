@@ -51,7 +51,7 @@
 		src << "<span class='warning'>You must be at full health to evolve.</span>"
 		return
 
-	if(storedplasma < maxplasma)
+	if(plasma_stored < plasma_max)
 		src << "<span class='warning'>You must be at full plasma to evolve.</span>"
 		return
 
@@ -82,12 +82,12 @@
 
 	if(castepick == "Queen") //Special case for dealing with queenae
 		if(!hardcore)
-			if(storedplasma >= 500)
+			if(plasma_stored >= 500)
 				if(living_xeno_queen)
 					src << "<span class='warning'>There already is a living Queen.</span>"
 					return
 			else
-				src << "<span class='warning'>You require more plasma! Currently at: [storedplasma] / 500.</span>"
+				src << "<span class='warning'>You require more plasma! Currently at: [plasma_stored] / 500.</span>"
 				return
 
 			if(ticker && ticker.mode && ticker.mode.xeno_queen_timer)
@@ -173,6 +173,7 @@
 
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
+	xeno_jitter(25)
 	if(do_after(src, 25, FALSE))
 		if(!isturf(loc)) //cdel'd or moved into something
 			return
@@ -232,5 +233,6 @@
 		if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
 			living_xeno_queen.set_queen_overwatch(new_xeno)
 		cdel(src)
+		new_xeno.xeno_jitter(25)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"
