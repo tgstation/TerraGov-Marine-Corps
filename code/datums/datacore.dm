@@ -266,6 +266,7 @@ var/global/list/PDA_Manifest = list()
 		M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 		M.fields["last_scan_time"]		= null
 		M.fields["last_scan_result"]		= "No scan data on record" // body scanner results
+		M.fields["autodoc_data"] = list()
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
 		else

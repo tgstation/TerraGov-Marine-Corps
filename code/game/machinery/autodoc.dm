@@ -210,7 +210,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		src.go_out() //kick them out too.
 		return
 
-	if(isnull(N.fields["autodoc_data"]))
+	if(!N.fields["autodoc_data"].len)
 		visible_message("\The [src] buzzes, no surgical procedures were queued.")
 		return
 
