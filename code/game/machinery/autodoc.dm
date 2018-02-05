@@ -210,7 +210,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		src.go_out() //kick them out too.
 		return
 
-	if(!N.fields["autodoc_data"].len)
+	var/list/surgery_todo_list = N.fields["autodoc_data"]
+	if(!surgery_todo_list.len)
 		visible_message("\The [src] buzzes, no surgical procedures were queued.")
 		return
 
@@ -218,7 +219,6 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	surgery = 1
 	icon_state = "sleeper_2"
 
-	var/list/surgery_todo_list = N.fields["autodoc_data"]
 	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
 
 	for(var/datum/autodoc_surgery/A in surgery_todo_list)
