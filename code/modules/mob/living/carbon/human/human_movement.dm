@@ -41,10 +41,14 @@
 	if(shock_stage >= 10 && !isYautja(src))
 		reducible_tally += 3
 
-	if (bodytemperature < 283.222 && !isYautja(src))
+	if(bodytemperature < 283.222 && !isYautja(src))
 		reducible_tally += (283.222 - bodytemperature) / 10 * 1.75
 
-	//Comile reducible tally and send it to total tally
+	if(temporary_slowdown)
+		temporary_slowdown = max(temporary_slowdown - 1, 0)
+		reducible_tally += 2 //Temporary slowdown slows hard
+
+	//Compile reducible tally and send it to total tally
 	. += reducible_tally
 
 	if(istype(get_active_hand(), /obj/item/weapon/gun))
