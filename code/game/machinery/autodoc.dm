@@ -18,7 +18,9 @@
 	var/heal_burn = 0
 	var/heal_toxin = 0
 
-	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) // limit to doc IDs
+	var/event = 0
+
+	//req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) // limit to doc IDs
 
 	//It uses power
 	use_power = 1
@@ -564,7 +566,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			else
 				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
 			return
-		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
+		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
 			usr << "<span class='warning'>You don't have the training to use this.</span>"
 			return
 		if(surgery)
@@ -592,7 +594,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		usr << "<span class='notice'>\The [src] is non-functional!</span>"
 		return
 
-	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
+	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
 		usr << "<span class='warning'>You're going to need someone trained in the use of \the [src] to help you get into it.</span>"
 		return
 
@@ -643,7 +645,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			user << "<span class='notice'>\The [src] is non-functional!</span>"
 			return
 
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
 			user << "<span class='warning'>You have no idea how to put someone into \the [src]!</span>"
 			return
 
@@ -697,7 +699,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		dat += "This console is not connected to a Med-Pod or the Med-Pod is non-functional."
 		user << "This console seems to be powered down."
 	else
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !connected.event)
 			user << "<span class='warning'>You have no idea how to use this.</span>"
 			return
 		var/mob/living/occupant = connected.occupant
@@ -990,3 +992,6 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			connected.eject()
 			updateUsrDialog()
 		add_fingerprint(usr)
+
+/obj/machinery/autodoc/event
+	event = 1
