@@ -38,6 +38,9 @@
 
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
+
+		if (istype(A, /obj/effect/bmode))
+			A.clicked(src, mods)
 		return
 
 	// Click handled elsewhere. (These clicks are not affected by the next_move cooldown)
