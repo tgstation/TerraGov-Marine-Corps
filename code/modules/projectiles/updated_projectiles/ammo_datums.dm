@@ -631,7 +631,7 @@
 		max_range = config.short_shell_range
 		damage = config.low_hit_damage
 		penetration= config.mlow_armor_penetration
-		accuracy = config.med_hit_accuracy
+		accuracy = -config.low_hit_accuracy
 
 /datum/ammo/bullet/turret/dumb
 	icon_state 	= "bullet"

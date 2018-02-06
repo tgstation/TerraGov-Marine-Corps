@@ -845,14 +845,14 @@ and you're good to go.
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return 1
 
-/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user)
+/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, var/x_offset = 0, var/y_offset = 5)
 	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle)) return //We have to check for null angle here, as 0 can also be an angle.
 	if(!istype(user) || !istype(user.loc,/turf)) return
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
 		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
-		rotate.Translate(0,5)
+		rotate.Translate(x,y)
 		rotate.Turn(angle)
 		I.transform = rotate
 
