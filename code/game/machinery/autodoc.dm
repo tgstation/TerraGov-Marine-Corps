@@ -98,7 +98,7 @@
 						occupant << "<span class='info'>You feel slighly less ill.</span>"
 				else
 					heal_toxin = 0
-					visible_message("\The [src] speaks: Kelation complete.")
+					visible_message("\The [src] speaks: Chelation complete.")
 
 
 #define LIMB_SURGERY 1
@@ -367,6 +367,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						if(!surgery) break
 						S.limb_ref.status &= ~LIMB_BROKEN
 						S.limb_ref.status &= ~LIMB_SPLINTED
+						S.limb_ref.status |= LIMB_REPAIRED
 						S.limb_ref.perma_injury = 0
 						close_incision(H,S.limb_ref)
 
@@ -752,7 +753,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 									dat += "Surgical Burn Damage Treatment"
 								if("toxin")
 									surgeryqueue["toxin"] = 1
-									dat += "Toxin Damage Kelation"
+									dat += "Toxin Damage Chelation"
 								if("dialysis")
 									surgeryqueue["dialysis"] = 1
 									dat += "Dialysis"
@@ -813,7 +814,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 					if(isnull(surgeryqueue["burn"]))
 						dat += "<a href='?src=\ref[src];burn=1'>Surgical Burn Damage Treatment</a><br>"
 					if(isnull(surgeryqueue["toxin"]))
-						dat += "<a href='?src=\ref[src];toxin=1'>Toxin Damage Kelation</a><br>"
+						dat += "<a href='?src=\ref[src];toxin=1'>Toxin Damage Chelation</a><br>"
 					if(isnull(surgeryqueue["dialysis"]))
 						dat += "<a href='?src=\ref[src];dialysis=1'>Dialysis</a><br>"
 					if(isnull(surgeryqueue["blood"]))

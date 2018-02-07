@@ -194,7 +194,7 @@
 
 	New()
 		..()
-		new /obj/item/storage/belt/medical(src)
+		new /obj/item/storage/belt/combatLifesaver(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 
 	select_gamemode_equipment(gamemode)

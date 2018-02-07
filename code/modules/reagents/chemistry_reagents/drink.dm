@@ -211,8 +211,8 @@
 	id = "coffee"
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
 	color = "#482000" // rgb: 72, 32, 0
-	overdose = REAGENTS_OVERDOSE*2
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL*2
+	overdose = REAGENTS_OVERDOSE*6
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL*6
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
@@ -232,11 +232,11 @@
 		M.apply_damage(1, TOX) //Overdose starts getting bad
 		M.make_jittery(5)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
-			if(E)
-				E.damage += 0.5
-			if(prob(10))
+			if(prob(5))
+				var/mob/living/carbon/human/H = M
+				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+				if(E)
+					E.damage += 0.1
 				M.emote(pick("twitch", "blink_r", "shiver"))
 
 	on_overdose_critical(mob/living/M, alien)
@@ -245,11 +245,11 @@
 		M.make_jittery(10)
 		M.knocked_out = max(M.knocked_out, 20)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
-			if(E)
-				E.damage += 2
-			if(prob(25))
+			if(prob(10))
+				var/mob/living/carbon/human/H = M
+				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+				if(E)
+					E.damage += 0.5
 				M.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/drink/coffee/icecoffee

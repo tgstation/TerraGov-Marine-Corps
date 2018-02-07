@@ -492,3 +492,26 @@ var/global/list/randomized_pillbottle_icons
 		new /obj/item/reagent_container/pill/russianRed(src)
 		new /obj/item/reagent_container/pill/russianRed(src)
 		new /obj/item/reagent_container/pill/russianRed(src)
+
+
+/obj/item/storage/pill_bottle/quickclot
+	name = "\improper Quickclot pill bottle"
+	pillbottle_label = "QUICKCLOT"
+
+	New()
+		..()
+		icon_state = randomized_pillbottle_icons[11]
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)

@@ -187,6 +187,14 @@
 	required_catalysts = list("phoron" = 5)
 	result_amount = 2
 
+/datum/chemical_reaction/quickclot
+	name = "Quickclot"
+	id = "quickclot"
+	result = "quickclot"
+	required_reagents = list("kelotane" = 2, "clonexadone" = 2)
+	required_catalysts = list("phoron" = 5)
+	result_amount = 1
+
 
 /datum/chemical_reaction/methylphenidate
 	name = "Methylphenidate"

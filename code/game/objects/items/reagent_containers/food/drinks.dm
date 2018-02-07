@@ -206,7 +206,8 @@
 	center_of_mass = list("x"=15, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("coffee", 30)
+		reagents.add_reagent("coffee", 10)
+		reagents.add_reagent("milk", 20)
 
 /obj/item/reagent_container/food/drinks/tea
 	name = "\improper Duke Purple Tea"
