@@ -232,6 +232,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define LIMB_NECROTIZED 32 //necrotizing limb, nerves are dead.
 #define LIMB_MUTATED 64 //limb is deformed by mutations
 #define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_REPAIRED 256 //we just repaired the bone, stops the gelling after setting
 
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 

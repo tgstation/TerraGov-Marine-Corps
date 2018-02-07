@@ -162,28 +162,25 @@
 		"/obj/item/reagent_container/syringe",
 		"/obj/item/storage/pill_bottle",
 		"/obj/item/clothing/gloves/latex",
-		"/obj/item/storage/syringe_case",
 		"/obj/item/reagent_container/hypospray/autoinjector",
 		"/obj/item/stack/medical"
 	)
 
 /obj/item/storage/belt/combatLifesaver/New()  //The belt, with all it's magic inside!
 	..()
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Bicard(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Bicard(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Kelo(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Kelo(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricord(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricord(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)

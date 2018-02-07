@@ -253,6 +253,7 @@
 
 	if(internal)
 		status &= ~LIMB_BROKEN
+		status |= LIMB_REPAIRED
 		perma_injury = 0
 
 	//Sync the organ's damage with its wounds
@@ -841,6 +842,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.emote("scream")
 
 	status |= LIMB_BROKEN
+	status &= ~LIMB_REPAIRED
 	broken_description = pick("broken","fracture","hairline fracture")
 	perma_injury = brute_dam
 
@@ -875,6 +877,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	status &= ~LIMB_DESTROYED
 	status &= ~LIMB_NECROTIZED
 	status &= ~LIMB_MUTATED
+	status &= ~LIMB_REPAIRED
 	status |= LIMB_ROBOT
 
 	reset_limb_surgeries()
