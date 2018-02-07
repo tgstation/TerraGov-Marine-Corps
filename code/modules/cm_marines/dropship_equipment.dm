@@ -951,9 +951,8 @@
 	flick("medevac_system_active", src)
 	user.visible_message("<span class='notice'>[user] activates [src]'s winch.</span>", \
 						"<span class='notice'>You activate [src]'s winch.</span>")
-	flick("winched_stretcher", linked_stretcher)
-	linked_stretcher.visible_message("<span class='notice'>A winch hook falls from the sky and starts lifting [linked_stretcher] up.</span>")
 	sleep(30)
+
 	busy_winch = FALSE
 	var/fail
 	if(!linked_stretcher || linked_stretcher != old_stretcher || linked_stretcher.z != 1)
@@ -985,6 +984,9 @@
 		linked_stretcher.linked_medevac = null
 		linked_stretcher = null
 		return
+
+	flick("winched_stretcher", linked_stretcher)
+	linked_stretcher.visible_message("<span class='notice'>A winch hook falls from the sky and starts lifting [linked_stretcher] up.</span>")
 
 	medevac_cooldown = world.time + 600
 	linked_stretcher.linked_medevac = null
