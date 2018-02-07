@@ -235,6 +235,8 @@ var/global/list/frozen_items = list()
 						if("Squad Leader") S.num_leaders--
 					S.count--
 
+			ticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
+
 			//Handle job slot/tater cleanup.
 			if(occupant.mind)
 				RoleAuthority.free_role(RoleAuthority.roles_for_mode[occupant.mind.assigned_role])
