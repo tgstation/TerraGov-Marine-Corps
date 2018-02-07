@@ -48,8 +48,8 @@
 		temporary_slowdown = max(temporary_slowdown - 1, 0)
 		reducible_tally += 2 //Temporary slowdown slows hard
 
-	//Compile reducible tally and send it to total tally
-	. += reducible_tally
+	//Compile reducible tally and send it to total tally. Cannot go faster from the reducible tally!
+	. += max(0, reducible_tally)
 
 	if(istype(get_active_hand(), /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
