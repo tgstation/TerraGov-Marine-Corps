@@ -947,7 +947,7 @@
 	set waitfor = 0
 	var/old_stretcher = linked_stretcher
 	busy_winch = TRUE
-	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	playsound(loc, 'sound/machines/medevac_extend.ogg', 40, 1)
 	flick("medevac_system_active", src)
 	user.visible_message("<span class='notice'>[user] activates [src]'s winch.</span>", \
 						"<span class='notice'>You activate [src]'s winch.</span>")
