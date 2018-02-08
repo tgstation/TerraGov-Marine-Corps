@@ -294,6 +294,11 @@
 	name = "\improper Almayer Requisitions"
 	icon_state = "req"
 
+/area/almayer/powered //for objects not intended to lose power
+	name = "\improper Powered"
+	icon_state = "selfdestruct"
+	requires_power = 0
+
 /area/almayer/evacuation
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "shuttle2"
