@@ -213,14 +213,4 @@
 		planter_ckey = X.ckey
 		planter_name = X.real_name
 
-/obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/Xenomorph/M)
-	M.animation_attack_on(src)
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
-	M.visible_message("<span class='xenonotice'>\The [M] clears [src].</span>", \
-		"<span class='xenonotice'>You clear [src].</span>")
-	cdel(src)
-
-
-
-
 #undef NODERANGE
