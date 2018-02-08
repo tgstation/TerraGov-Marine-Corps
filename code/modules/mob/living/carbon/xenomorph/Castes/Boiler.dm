@@ -266,5 +266,5 @@
 				M << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
 				if(!isYautja(M))
 					M.emote("scream")
-					M.KnockDown(rand(4, 8))
+					M.KnockDown(rand(4, 6))
 
