@@ -18,3 +18,5 @@ sound/AI/selfdestruct.ogg
 sound/AI/selfdestruct_deactivated.ogg
 sound/AI/shuttlecalled.ogg
 sound/AI/shuttlerecalled.ogg
+sound/AI/ARES_Self_Destruct_10m_FULL.ogg
+sound/AI/ARES_Self_Destruct_5m_CANCELED.ogg
