@@ -857,6 +857,10 @@
 		user << "<span class='warning'>This medevac stretcher is empty.</span>"
 		return
 
+	if(selected_stretcher.linked_medevac && selected_stretcher.linked_medevac != src)
+		user << "<span class='warning'>There's another dropship hovering over that medevac stretcher.</span>"
+		return
+
 	if(!linked_shuttle)
 		return
 
@@ -885,11 +889,12 @@
 
 	user << "<span class='notice'> You move your dropship above the selected stretcher's beacon.</span>"
 
-	linked_stretcher = selected_stretcher
-	if(linked_stretcher.linked_medevac) //the stretcher is already linked to a medevac system, let's steal it
-		linked_stretcher.linked_medevac.linked_stretcher = null
-	linked_stretcher.linked_medevac = src
+	if(linked_stretcher)
+		linked_stretcher.linked_medevac = null
+		linked_stretcher.visible_message("<span class='notice'>[linked_stretcher] detects a dropship is no longer overhead.</span>")
 
+	linked_stretcher = selected_stretcher
+	linked_stretcher.linked_medevac = src
 	linked_stretcher.visible_message("<span class='notice'>[linked_stretcher] detects a dropship overhead.</span>")
 
 
