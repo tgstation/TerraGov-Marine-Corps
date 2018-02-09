@@ -225,7 +225,7 @@
 		return
 	switch(severity)
 		if(1)
-			dismantle_wall(0,1)
+			dismantle_wall(0, 1)
 		if(2)
 			if(prob(75))
 				take_damage(rand(150, 250))
@@ -233,8 +233,6 @@
 				dismantle_wall(1, 1)
 		if(3)
 			take_damage(rand(0, 250))
-		else
-	return
 
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(mineral == "diamond" || hull)

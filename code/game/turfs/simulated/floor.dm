@@ -51,7 +51,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 			else
 				break_tile()
 			hotspot_expose(1000, CELL_VOLUME)
-			if(prob(33)) new /obj/item/stack/sheet/metal(src)
 		if(3)
 			if(prob(50))
 				break_tile()
