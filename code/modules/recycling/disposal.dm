@@ -165,7 +165,11 @@
 	if(user.client)
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
-	user.loc = src.loc
+	user.forceMove(loc)
+	user.stunned += 1 //Action delay when going out of a bin
+	user.update_canmove() //Force the delay to go in action immediately
+	user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
+	"<span class='warning'>You climb out of [src] and get your bearings!")
 	update()
 	return
 
@@ -268,6 +272,12 @@
 	for(var/atom/movable/AM in src)
 		AM.loc = loc
 		AM.pipe_eject(0)
+		if(ismob(AM))
+			var/mob/M = AM
+			M.stunned += 1 //Action delay when going out of a bin
+			M.update_canmove() //Force the delay to go in action immediately
+			M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
+			"<span class='warning'>You get pushed out of [src] and get your bearings!")
 	update()
 
 //Pipe affected by explosion
