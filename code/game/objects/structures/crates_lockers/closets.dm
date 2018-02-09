@@ -62,15 +62,19 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
+		M.stunned += 1 //Action delay when going out of a closet
+		M.update_canmove() //Force the delay to go in action immediately
+		M.visible_message("<span class='warning'>[M] suddenly gets out of [src]!",
+		"<span class='warning'>You get out of [src] and get your bearings!")
 
 /obj/structure/closet/proc/open()
-	if(src.opened)
+	if(opened)
 		return 0
 
-	if(!src.can_open())
+	if(!can_open())
 		return 0
 
-	src.dump_contents()
+	dump_contents()
 
 	opened = 1
 	update_icon()
