@@ -66,23 +66,50 @@
 	heat_capacity = 325000
 	intact = 0
 
-/turf/simulated/floor/engine/nitrogen
-	oxygen = 0
-
 /turf/simulated/floor/engine/attackby(obj/item/C as obj, mob/user as mob)
 	if(!C)
 		return
 	if(!user)
 		return
 	if(istype(C, /obj/item/tool/wrench))
-		user << "\blue Removing rods..."
+		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
+		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/simulated/floor)
 			var/turf/simulated/floor/F = src
 			F.make_plating()
-			return
+
+/turf/simulated/floor/engine/attack_paw(var/mob/user as mob)
+	return attack_hand(user)
+
+/turf/simulated/floor/engine/attack_hand(var/mob/user as mob)
+	if((!(user.canmove) || user.is_mob_restrained() || !(user.pulling)))
+		return
+	if(user.pulling.anchored)
+		return
+	if((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+		return
+	if(ismob(user.pulling))
+		var/mob/M = user.pulling
+		var/atom/movable/t = M.pulling
+		M.stop_pulling()
+		step(user.pulling, get_dir(user.pulling.loc, src))
+		M.start_pulling(t)
+	else
+		step(user.pulling, get_dir(user.pulling.loc, src))
+
+/turf/simulated/floor/engine/ex_act(severity)
+	switch(severity)
+		if(1)
+			break_tile_to_plating()
+		if(2)
+			if(prob(25))
+				break_tile_to_plating()
+
+/turf/simulated/floor/engine/nitrogen
+	oxygen = 0
 
 /turf/simulated/floor/engine/cult
 	name = "engraved floor"

@@ -43,13 +43,9 @@
 	//Not yet
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
-				src.ChangeTurf(/turf/simulated/floor/gm/grass)
-				return
-			if(2.0)
-				return
-			if(3.0)
-				return
+			if(1)
+				ChangeTurf(/turf/simulated/floor/gm/grass)
+
 	fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		return
 

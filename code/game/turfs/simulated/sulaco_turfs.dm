@@ -17,14 +17,14 @@
 
 /turf/simulated/wall/sulaco/ex_act(severity)
 	switch(severity)
-		if(1.0)
-			src.ChangeTurf(/turf/simulated/floor/plating)
-		if(2.0)
+		if(1)
+			ChangeTurf(/turf/simulated/floor/plating)
+		if(2)
 			if(prob(75))
 				take_damage(rand(100, 250))
 			else
-				dismantle_wall(1,1)
-		if(3.0)
+				dismantle_wall(1, 1)
+		if(3)
 			take_damage(rand(0, 250))
 	return
 

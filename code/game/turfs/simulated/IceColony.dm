@@ -351,19 +351,18 @@
 	//Explosion act
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
-				if(src.slayer)
-					src.slayer = 0
-					src.update_icon(1,0)
-			if(2.0)
-				if(prob(60) && src.slayer)
-					src.slayer -= 1
-					src.update_icon(1,0)
-			if(3.0)
-				if(prob(20) && src.slayer)
-					src.slayer -= 1
-					src.update_icon(1,0)
-		return
+			if(1)
+				if(slayer)
+					slayer = 0
+					update_icon(1, 0)
+			if(2)
+				if(prob(60) && slayer)
+					slayer = max(slayer - 2, 0)
+					update_icon(1, 0)
+			if(3)
+				if(prob(20) && slayer)
+					slayer -= 1
+					update_icon(1, 0)
 
 //SNOW LAYERS-----------------------------------//
 /turf/unsimulated/floor/snow/layer0
