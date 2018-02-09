@@ -372,6 +372,21 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("\blue [key_name_admin(usr)] has granted [M.key] full access.", 1)
 
+/client/proc/cmd_admin_grantallskills(var/mob/M in mob_list)
+	set category = "Admin"
+	set name = "Grant All Skills"
+
+	if (!ticker)
+		alert("Wait until the game starts")
+		return
+	if(M.mind)
+		M.mind.cm_skills = null // No restrictions
+	else
+		alert("Invalid mob")
+	feedback_add_details("admin_verb","GAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(src)] has granted [M.key] all skills.")
+	message_admins("\blue [key_name_admin(usr)] has granted [M.key] all skills.", 1)
+
 /client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
