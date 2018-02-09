@@ -1,9 +1,9 @@
 //Autodoc
 /obj/machinery/autodoc
-	name = "\improper Autodoc Medical System"
+	name = "\improper autodoc medical system"
 	desc = "A fancy machine developed to be capable of operating on people with minimal human intervention. The interface is rather complex and would only be useful to trained Doctors however."
 	icon = 'icons/obj/machines/cryogenics.dmi'
-	icon_state = "sleeper_0"
+	icon_state = "autodoc_open"
 	density = 1
 	anchored = 1
 	var/mob/living/carbon/human/occupant = null
@@ -17,7 +17,7 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 	var/heal_toxin = 0
-
+	var/automaticmode = 0
 	var/event = 0
 
 	//req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) // limit to doc IDs
@@ -65,7 +65,7 @@
 					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
 						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
 						visible_message("\The [src] speaks: Blood reserves depleted, switching to fresh bag.")
-					blood_pack.reagents.trans_to(occupant, 4) // give them some blood, same as iv stand
+					blood_pack.reagents.trans_to(occupant, 8) // double iv stand rate
 					if(prob(10))
 						visible_message("\The [src] whirrs and gurgles as it tranfuses blood.")
 						occupant << "<span class='info'>You feel slightly less faint.</span>"
@@ -112,14 +112,12 @@
 	var/datum/internal_organ/organ_ref = null
 	var/type_of_surgery = 0 // the above constants
 	var/surgery_procedure = "" // text of surgery
-	var/automatic = 0
 	var/unneeded = 0
 
-proc/create_autodoc_surgery(limb_ref, type_of_surgery, surgery_procedure, automatic=1, unneeded=0, organ_ref=null)
+proc/create_autodoc_surgery(limb_ref, type_of_surgery, surgery_procedure, unneeded=0, organ_ref=null)
 	var/datum/autodoc_surgery/A = new()
 	A.type_of_surgery = type_of_surgery
 	A.surgery_procedure = surgery_procedure
-	A.automatic = automatic
 	A.unneeded = unneeded
 	A.limb_ref = limb_ref
 	A.organ_ref = organ_ref
@@ -147,12 +145,12 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 					// we can't deal with these
 					continue
 				if(I.germ_level > 1)
-					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,"germs",1,0,I)
+					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,"germs",0,I)
 				if(I.damage > 0)
 					if(I.name == "eyeballs") // treat eye surgery differently
 						continue
 					if(organdamagesurgery > 0) continue // avoid duplicates
-					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,"damage",1,0,I)
+					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,"damage",0,I)
 					organdamagesurgery++
 
 			if(istype(L,/datum/limb/head))
@@ -177,7 +175,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"open")
 	var/datum/internal_organ/I = M.internal_organs_by_name["eyes"]
 	if(M.disabilities & NEARSIGHTED || M.sdisabilities & BLIND || I.damage > 0)
-		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",1,0,I)
+		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",0,I)
 	if(M.getBruteLoss() > 0)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"brute")
 	if(M.getFireLoss() > 0)
@@ -212,14 +210,19 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		src.go_out() //kick them out too.
 		return
 
-	var/list/surgery_todo_list = N.fields["autodoc_data"]
+	var/list/surgery_todo_list
+	if(automaticmode)
+		surgery_todo_list = N.fields["autodoc_data"]
+	else
+		surgery_todo_list = N.fields["autodoc_manual"]
+
 	if(!surgery_todo_list.len)
 		visible_message("\The [src] buzzes, no surgical procedures were queued.")
 		return
 
 	visible_message("\The [src] begins to operate, loud audiable clicks lock the pod.")
 	surgery = 1
-	icon_state = "sleeper_2"
+	icon_state = "autodoc_operate"
 
 	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
 
@@ -244,7 +247,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			break;
 		sleep(-1)
 		var/datum/autodoc_surgery/S = surgery_todo_list[currentsurgery]
-		if(S.automatic)
+		if(automaticmode)
 			surgery_mod = 1.5 // automatic mode takes longer
 		else
 			surgery_mod = 1 // might need tweaking
@@ -585,7 +588,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr))) return
+	if(usr.stat != 0 || !ishuman(usr)) return
 
 	if(occupant)
 		usr << "<span class='notice'>\The [src] is already occupied!</span>"
@@ -611,7 +614,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		usr.loc = src
 		update_use_power(2)
 		occupant = usr
-		icon_state = "sleeper_1"
+		icon_state = "autodoc_closed"
 
 		for(var/obj/O in src)
 			cdel(O)
@@ -623,7 +626,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	occupant = null
 	surgery_todo_list = list()
 	update_use_power(1)
-	icon_state = "sleeper_0"
+	icon_state = "autodoc_open"
 
 /obj/machinery/autodoc/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/stack/sheet/metal))
@@ -635,7 +638,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		return
 	if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
-		if(!ismob(G.grabbed_thing))
+		if(!ishuman(G.grabbed_thing)) // stop fucking monkeys and xenos being put in.
 			return
 		var/mob/M = G.grabbed_thing
 		if(src.occupant)
@@ -660,7 +663,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			M.forceMove(src)
 			update_use_power(2)
 			occupant = M
-			icon_state = "sleeper_1"
+			icon_state = "autodoc_closed"
 
 			add_fingerprint(user)
 
@@ -668,7 +671,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 
 //Auto Doc console that links up to it.
 /obj/machinery/autodoc_console
-	name = "\improper Autodoc Medical System Control Console"
+	name = "\improper autodoc medical system control console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/autodoc/connected = null
@@ -724,7 +727,11 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getToxLoss())
 			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getFireLoss())
 			//dat += text("<HR> Surgery Estimate: [] seconds<BR>", (connected.surgery_t * 0.1))
-			dat += text("<hr> Surgery Queue:<br>")
+			if(connected.automaticmode)
+				dat += "<hr><span class='notice'>Automatic Mode</span> | <a href='?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
+			else
+				dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | <span class='notice'>Manual Mode</span>"
+			dat += "<hr> Surgery Queue:<br>"
 
 			var/list/surgeryqueue = list()
 
@@ -734,70 +741,73 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 					N = R
 			if(isnull(N))
 				N = create_medical_record(connected.occupant)
-
-			if(!isnull(N.fields["autodoc_data"]))
-				//world << "AUTODOC DEBUG: non null autodoc data"
-				for(var/datum/autodoc_surgery/A in N.fields["autodoc_data"])
-					//world << "AUTODOC DEBUG: found a surgery"
-					if(A.automatic)
-						dat += "Automatic Mode Ready, Clear the Queue for Manual Mode<br>"
-						break
-					switch(A.type_of_surgery)
-						if(EXTERNAL_SURGERY)
-							switch(A.surgery_procedure)
-								if("brute")
-									surgeryqueue["brute"] = 1
-									dat += "Surgical Brute Damage Treatment"
-								if("burn")
-									surgeryqueue["burn"] = 1
-									dat += "Surgical Burn Damage Treatment"
-								if("toxin")
-									surgeryqueue["toxin"] = 1
-									dat += "Toxin Damage Chelation"
-								if("dialysis")
-									surgeryqueue["dialysis"] = 1
-									dat += "Dialysis"
-								if("blood")
-									surgeryqueue["blood"] = 1
-									dat += "Blood Transfer"
-						if(ORGAN_SURGERY)
-							switch(A.surgery_procedure)
-								if("germs")
-									surgeryqueue["organgerms"] = 1
-									dat += "Organ Infection Treatment"
-								if("damage")
-									surgeryqueue["organdamage"] = 1
-									dat += "Surgical Organ Damage Treatment"
-								if("eyes")
-									surgeryqueue["eyes"] = 1
-									dat += "Corrective Eye Surgery"
-						if(LIMB_SURGERY)
-							switch(A.surgery_procedure)
-								if("internal")
-									surgeryqueue["internal"] = 1
-									dat += "Internal Bleeding Surgery"
-								if("broken")
-									surgeryqueue["broken"] = 1
-									dat += "Broken Bone Surgery"
-								if("missing")
-									surgeryqueue["missing"] = 1
-									dat += "Limb Replacement Surgery"
-								if("necro")
-									surgeryqueue["necro"] = 1
-									dat += "Necrosis Removal Surgery"
-								if("shrapnel")
-									surgeryqueue["shrapnel"] = 1
-									dat += "Shrapnel Removal Surgery"
-								if("germ")
-									surgeryqueue["limbgerm"] = 1
-									dat += "Limb Disinfection Procedure"
-								if("facial")
-									surgeryqueue["facial"] = 1
-									dat += "Facial Reconstruction Surgery"
-								if("open")
-									surgeryqueue["open"] = 1
-									dat += "Close Open Incision"
-					dat += " in Manual Mode<br>"
+			var/list/autosurgeries = N.fields["autodoc_data"]
+			if(connected.automaticmode)
+				if(autosurgeries.len)
+					dat += "<span class='danger'>Automatic Mode Ready.</span><br>"
+				else
+					dat += "<span class='danger'>Automatic Mode Unavaliable, Scan Patient First.</span><br>"
+			else
+				if(!isnull(N.fields["autodoc_manual"]))
+					//world << "AUTODOC DEBUG: non null autodoc data"
+					for(var/datum/autodoc_surgery/A in N.fields["autodoc_manual"])
+						//world << "AUTODOC DEBUG: found a surgery"
+						switch(A.type_of_surgery)
+							if(EXTERNAL_SURGERY)
+								switch(A.surgery_procedure)
+									if("brute")
+										surgeryqueue["brute"] = 1
+										dat += "Surgical Brute Damage Treatment"
+									if("burn")
+										surgeryqueue["burn"] = 1
+										dat += "Surgical Burn Damage Treatment"
+									if("toxin")
+										surgeryqueue["toxin"] = 1
+										dat += "Toxin Damage Chelation"
+									if("dialysis")
+										surgeryqueue["dialysis"] = 1
+										dat += "Dialysis"
+									if("blood")
+										surgeryqueue["blood"] = 1
+										dat += "Blood Transfer"
+							if(ORGAN_SURGERY)
+								switch(A.surgery_procedure)
+									if("germs")
+										surgeryqueue["organgerms"] = 1
+										dat += "Organ Infection Treatment"
+									if("damage")
+										surgeryqueue["organdamage"] = 1
+										dat += "Surgical Organ Damage Treatment"
+									if("eyes")
+										surgeryqueue["eyes"] = 1
+										dat += "Corrective Eye Surgery"
+							if(LIMB_SURGERY)
+								switch(A.surgery_procedure)
+									if("internal")
+										surgeryqueue["internal"] = 1
+										dat += "Internal Bleeding Surgery"
+									if("broken")
+										surgeryqueue["broken"] = 1
+										dat += "Broken Bone Surgery"
+									if("missing")
+										surgeryqueue["missing"] = 1
+										dat += "Limb Replacement Surgery"
+									if("necro")
+										surgeryqueue["necro"] = 1
+										dat += "Necrosis Removal Surgery"
+									if("shrapnel")
+										surgeryqueue["shrapnel"] = 1
+										dat += "Shrapnel Removal Surgery"
+									if("germ")
+										surgeryqueue["limbgerm"] = 1
+										dat += "Limb Disinfection Procedure"
+									if("facial")
+										surgeryqueue["facial"] = 1
+										dat += "Facial Reconstruction Surgery"
+									if("open")
+										surgeryqueue["open"] = 1
+										dat += "Close Open Incision"
+						dat += "<br>"
 
 			dat += "<hr> Med-Pod Status: [operating] "
 			dat += "<hr><a href='?src=\ref[src];clear=1'>Clear Surgery Queue</a>"
@@ -805,8 +815,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			dat += "<hr><a href='?src=\ref[src];surgery=1'>Begin Surgery Queue</a>"
 			dat += "<hr><a href='?src=\ref[src];ejectify=1'>Eject Patient</a>"
 			if(!connected.surgery)
-				if(surgeryqueue["automatic"])
-					dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Surgeries Queued"
+				if(connected.automaticmode)
+					dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Mode Engaged."
 				else
 					dat += "<hr>Manual Surgery Interface<hr>"
 					if(isnull(surgeryqueue["brute"]))
@@ -864,25 +874,25 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 
 			var/needed = 0 // this is to stop someone just choosing everything
 			if(href_list["brute"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"brute",0)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"brute")
 				updateUsrDialog()
 			if(href_list["burn"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"burn",0)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"burn")
 				updateUsrDialog()
 			if(href_list["toxin"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"toxin",0)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"toxin")
 				updateUsrDialog()
 			if(href_list["dialysis"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"dialysis",0)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"dialysis")
 				updateUsrDialog()
 			if(href_list["blood"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"blood",0)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,"blood")
 				updateUsrDialog()
 			if(href_list["organgerms"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"germs",0)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,"germs")
 				updateUsrDialog()
 			if(href_list["eyes"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",0,0,connected.occupant.internal_organs_by_name["eyes"])
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",0,connected.occupant.internal_organs_by_name["eyes"])
 				updateUsrDialog()
 			if(href_list["organdamage"])
 				for(var/datum/limb/L in connected.occupant.limbs)
@@ -892,10 +902,10 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 								// we can't deal with these
 								continue
 							if(I.damage > 0)
-								N.fields["autodoc_data"] += create_autodoc_surgery(L,ORGAN_SURGERY,"damage",0,0,I)
+								N.fields["autodoc_manual"] += create_autodoc_surgery(L,ORGAN_SURGERY,"damage",0,I)
 								needed++
 				if(!needed)
-					N.fields["autodoc_data"] += create_autodoc_surgery(null,ORGAN_SURGERY,"damage",0,1)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,"damage",1)
 				updateUsrDialog()
 
 			if(href_list["internal"])
@@ -903,21 +913,21 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 					if(L)
 						for(var/datum/wound/W in L.wounds)
 							if(W.internal)
-								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"internal",0)
+								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"internal")
 								needed++
 								break
 				if(!needed)
-					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"internal",0,1)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"internal",1)
 				updateUsrDialog()
 
 			if(href_list["broken"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						if(L.status & LIMB_BROKEN)
-							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"broken",0)
+							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"broken")
 							needed++
 				if(!needed)
-					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"broken",0,1)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"broken",1)
 				updateUsrDialog()
 
 			if(href_list["missing"])
@@ -925,20 +935,20 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 					if(L)
 						if(L.status & LIMB_DESTROYED)
 							if(!(L.parent.status & LIMB_DESTROYED) && L.name != "head")
-								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"missing",0)
+								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"missing")
 								needed++
 				if(!needed)
-					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"missing",0,1)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"missing",1)
 				updateUsrDialog()
 
 			if(href_list["necro"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						if(L.status & LIMB_NECROTIZED)
-							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"necro",0)
+							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"necro")
 							needed++
 				if(!needed)
-					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"necro",0,1)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"necro",1)
 				updateUsrDialog()
 
 			if(href_list["shrapnel"])
@@ -948,13 +958,13 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						if(L.implants.len)
 							for(var/I in L.implants)
 								if(!is_type_in_list(I,known_implants))
-									N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"shrapnel",0)
+									N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"shrapnel")
 									needed++
 				if(!needed)
-					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"shrapnel",0,1)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"shrapnel",1)
 				updateUsrDialog()
 			if(href_list["limbgerm"])
-				N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"germs",0)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"germ")
 				updateUsrDialog()
 
 			if(href_list["facial"])
@@ -963,9 +973,9 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 						if(istype(L,/datum/limb/head))
 							var/datum/limb/head/J = L
 							if(J.disfigured || J.face_surgery_stage)
-								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial",0)
+								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial")
 							else
-								N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial",0,1)
+								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"facial",1)
 							updateUsrDialog()
 							break
 
@@ -973,16 +983,19 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						if(L.surgery_open_stage)
-							N.fields["autodoc_data"] += create_autodoc_surgery(L,LIMB_SURGERY,"open",0)
+							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,"open")
 							needed++
-				if(href_list["limbgerm"])
-					N.fields["autodoc_data"] += create_autodoc_surgery(null,LIMB_SURGERY,"open",0,1)
+				if(href_list["open"])
+					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,"open",1)
 				updateUsrDialog()
 
 			// The rest
 			if(href_list["clear"])
-				N.fields["autodoc_data"] = list()
+				N.fields["autodoc_manual"] = list()
 				updateUsrDialog()
+		if(href_list["automatictoggle"])
+			connected.automaticmode = !connected.automaticmode
+			updateUsrDialog()
 		if(href_list["refresh"])
 			updateUsrDialog()
 		if(href_list["surgery"])
