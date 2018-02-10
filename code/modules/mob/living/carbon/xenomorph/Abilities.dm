@@ -33,7 +33,7 @@
 		X.visible_message("<span class='xenonotice'>\The [X] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>")
 		new /obj/effect/alien/weeds/node(X.loc, src, X)
-		playsound(X.loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+		playsound(X.loc, "alien_resin_build", 25)
 
 
 
@@ -272,6 +272,7 @@
 		X.current_aura = choice
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
 		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
+		playsound(X.loc, "alien_drool", 25)
 
 
 
@@ -465,7 +466,7 @@
 		return
 
 	X.use_plasma(plasma_cost)
-	playsound(X.loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+	playsound(X.loc, "alien_resin_build", 25)
 	round_statistics.carrier_traps++
 	new /obj/effect/alien/resin/trap(X.loc, X)
 	X << "<span class='xenonotice'>You place a hugger trap on the weeds, it still needs a facehugger.</span>"

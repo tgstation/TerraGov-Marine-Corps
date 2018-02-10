@@ -9,6 +9,7 @@
 	throw_range = 7
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
+	hitsound = 'sound/weapons/smash.ogg'
 	var/active = 0
 	var/det_time = 50
 	var/dangerous = 0		//Make an danger overlay for humans?

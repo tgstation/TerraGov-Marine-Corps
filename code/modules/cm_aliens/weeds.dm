@@ -145,7 +145,7 @@
 			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 
 	else
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		playsound(loc, "alien_resin_break", 25)
 	user.animation_attack_on(src)
 
 	health -= damage

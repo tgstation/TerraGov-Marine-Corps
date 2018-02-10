@@ -324,7 +324,7 @@
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
 	flick_attack_overlay(M, "slash") //TODO: Special bite attack overlay ?
-	playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
+	playsound(loc, "alien_bite", 25)
 	visible_message("<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>", \
 	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
@@ -352,7 +352,7 @@
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
 	flick_attack_overlay(M, "tail")
-	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
+	playsound(M.loc, 'sound/weapons/alien_tail_attack.ogg', 25, 1) //Stolen from Yautja! Owned!
 	visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
 	"<span class='danger'>You violently impale \the [M] with your tail!</span>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
@@ -499,7 +499,7 @@
 	noise_timer = noise_timer ? --noise_timer : 3
 
 	if(noise_timer == 3 && charge_speed > charge_speed_buildup * charge_turfs_to_charge)
-		playsound(loc, 'sound/mecha/mechstep.ogg', min(15 + (charge_speed * 20), 50), 0)
+		playsound(loc, "alien_charge", 60)
 
 	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 

@@ -63,7 +63,7 @@
 		else if(caste == "Predalien")
 			playsound(loc, 'sound/voice/predalien_click.ogg', 25, 1)
 		else
-			playsound(loc, "hiss", 25, 1)
+			playsound(loc, "alien_talk", 25, 1)
 		..(message, speaking, verb, null, null, message_range, null)
 	else
 		hivemind_talk(message)

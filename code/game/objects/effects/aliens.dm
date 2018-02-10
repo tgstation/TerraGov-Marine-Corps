@@ -128,6 +128,7 @@
 		return
 	if(++ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
+		playsound(src, "acid_hit", 25)
 
 		if(istype(acid_t, /turf))
 			if(istype(acid_t, /turf/simulated/wall))

@@ -80,7 +80,6 @@
 	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
-	hitsound = 'sound/effects/metalhit.ogg'
 	underslug_launchable = FALSE
 
 	prime()
@@ -96,7 +95,6 @@
 	item_state = "grenade_upp"
 	throw_speed = 2
 	throw_range = 6
-	hitsound = 'sound/effects/metalhit.ogg'
 	underslug_launchable = FALSE
 
 	prime()

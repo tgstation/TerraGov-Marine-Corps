@@ -68,7 +68,6 @@
 	New()
 		src.modules += new /obj/item/device/flashlight(src)
 		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/weapon/baton/loaded(src)
 		src.modules += new /obj/item/tool/extinguisher(src)
 		src.modules += new /obj/item/tool/wrench(src)
 		src.modules += new /obj/item/tool/crowbar(src)

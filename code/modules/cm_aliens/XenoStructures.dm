@@ -82,7 +82,7 @@
 		tforce = 10
 	else
 		tforce = AM:throwforce
-	playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(src, "alien_resin_break", 25)
 	take_damage(max(0, damage_cap - tforce))
 
 /turf/simulated/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -91,13 +91,13 @@
 	M.animation_attack_on(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>You claw \the [src].</span>")
-	playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(src, "alien_resin_break", 25)
 	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 
 /turf/simulated/wall/resin/attack_animal(mob/living/M)
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
-	playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(src, "alien_resin_break", 25)
 	M.animation_attack_on(src)
 	take_damage(40)
 
@@ -111,7 +111,7 @@
 	if(!(W.flags_atom & NOBLUDGEON))
 		user.animation_attack_on(src)
 		take_damage(W.force)
-		playsound(src, 'sound/effects/attackblob.ogg', 25, 1)
+		playsound(src, "alien_resin_break", 25)
 	return ..()
 
 /turf/simulated/wall/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
@@ -185,7 +185,10 @@
 		tforce = 10
 	else
 		tforce = AM:throwforce
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	if(istype(src, /obj/effect/alien/resin/sticky))
+		playsound(loc, "alien_resin_move", 25)
+	else
+		playsound(loc, "alien_resin_break", 25)
 	health = max(0, health - tforce)
 	healthcheck()
 
@@ -194,14 +197,20 @@
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>You claw \the [src].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	if(istype(src, /obj/effect/alien/resin/sticky))
+		playsound(loc, "alien_resin_move", 25)
+	else
+		playsound(loc, "alien_resin_break", 25)
 	health -= (M.melee_damage_upper + 50) //Beef up the damage a bit
 	healthcheck()
 
 /obj/effect/alien/resin/attack_animal(mob/living/M as mob)
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	if(istype(src, /obj/effect/alien/resin/sticky))
+		playsound(loc, "alien_resin_move", 25)
+	else
+		playsound(loc, "alien_resin_break", 25)
 	health -= 40
 	healthcheck()
 
@@ -217,7 +226,10 @@
 		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 			damage /= 4
 		health -= damage
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		if(istype(src, /obj/effect/alien/resin/sticky))
+			playsound(loc, "alien_resin_move", 25)
+		else
+			playsound(loc, "alien_resin_break", 25)
 		healthcheck()
 	return ..(W, user)
 
@@ -387,7 +399,7 @@
 	if(user.a_intent == "hurt")
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1, 9)
+		playsound(loc, "alien_resin_break", 25)
 		health -= rand(40, 60)
 		if(health <= 0)
 			user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
@@ -410,7 +422,7 @@
 /obj/structure/mineral_door/resin/Open()
 	if(state || !loc) return //already open
 	isSwitchingStates = 1
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
 	sleep(10)
 	density = 0
@@ -432,7 +444,7 @@
 				Close()
 			return
 	isSwitchingStates = 1
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]closing",src)
 	sleep(10)
 	density = 1
@@ -449,7 +461,7 @@
 	cdel(src)
 
 /obj/structure/mineral_door/resin/CheckHardness()
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(loc, "alien_resin_move", 25)
 	..()
 
 /obj/structure/mineral_door/resin/Dispose()
@@ -464,56 +476,6 @@
 	name = "thick resin door"
 	health = 160
 	hardness = 2.0
-
-/* //It turns out this is cloned in xenoprocs.dm. Wonderful.
- * Acid
- */
-/obj/effect/alien/acid
-	name = "acid"
-	desc = "Bubling corrosive stuff. I wouldn't want to touch it."
-	icon_state = "acid"
-
-	density = 0
-	opacity = 0
-	anchored = 1
-	var/ticks = 0
-	health = 1
-
-/obj/effect/alien/acid/New(loc, acid_t)
-	..(loc)
-	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
-	tick(acid_t,strength_t)
-
-/obj/effect/alien/acid/proc/tick(atom/acid_t,strength_t)
-	set waitfor = 0
-	if(!acid_t || !acid_t.loc)
-		cdel(src)
-		return
-
-	if(++ticks >= strength_t)
-		visible_message("<span class='xenodanger'>\The [acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
-
-		if(istype(acid_t, /turf/simulated/wall)) // I hate turf code.
-			var/turf/simulated/wall/W = acid_t
-			W.dismantle_wall(1)
-		else
-			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/mob/M in acid_t.contents)
-					if(acid_t.loc) M.loc = acid_t.loc
-			cdel(acid_t)
-		cdel(src)
-		return
-
-	switch(strength_t - ticks)
-		if(6) visible_message("<span class='xenowarning'>\The [acid_t] is barely holding up against the acid!</span>")
-		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
-		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
-		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
-	sleep(rand(150, 200))
-	.()
-
-/obj/effect/alien/acid/flamer_fire_act()
-	return //this prevents any acid trickery.
 
 
 /*
@@ -571,6 +533,7 @@
 				if("Queen","Drone","Hivelord")
 					M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
 					"<span class='xenonotice'>You clear the hatched egg.</span>")
+					playsound(src.loc, "alien_resin_break", 25)
 					M.plasma_stored++
 					cdel(src)
 		if(GROWING)
@@ -619,12 +582,14 @@
 			status = DESTROYED
 			icon_state = "Egg Exploded"
 			flick("Egg Exploding", src)
+			playsound(src.loc, "sound/effects/alien_egg_burst.ogg", 25)
 	else
 		if(status == GROWN || status == GROWING)
 			status = BURSTING
 			delete_egg_triggers()
 			icon_state = "Egg Opened"
 			flick("Egg Opening", src)
+			playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 			sleep(10)
 			if(loc && status != DESTROYED)
 				status = BURST
@@ -651,7 +616,7 @@
 		spawn(rand(125, 200))
 			cdel(src)
 
-/obj/effect/alien/egg/attackby(obj/item/W, mob/user)
+/obj/effect/alien/egg/attackby(obj/item/W, mob/living/user)
 	if(health <= 0)
 		return
 
@@ -672,7 +637,7 @@
 				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
 		else user << "<span class='xenowarning'>This child is dead.</span>"
 		return
-
+	user.animation_attack_on(src)
 	if(W.attack_verb.len)
 		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
 	else
@@ -680,13 +645,14 @@
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage /= 4
-
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
 			playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
+	else
+		playsound(src.loc, "alien_resin_break", 25)
 
 	health -= damage
 	healthcheck()

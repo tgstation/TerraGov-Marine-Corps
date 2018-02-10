@@ -33,52 +33,145 @@
 
 		if("custom")
 			return custom_emote(m_type, message, player_caused)
-		if("roar")
-			if(!muzzled)
-				m_type = 2
-				message = "<B>The [src.name]</B> roars!"
-				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 75, 1)
-				else
-					if(mob_size != MOB_SIZE_BIG)
-						playsound(loc, 'sound/voice/alien_roar_small.ogg', 25, 1)
-					else
-						playsound(loc, 'sound/voice/alien_roar_large.ogg', 50, 1)
 		if("growl")
 			if(!muzzled)
 				m_type = 2
-				message = "<B>The [src.name]</B> growls."
+				message = "<B>The [name]</B> growls."
 				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_growl.ogg', 25, 1)
 				else
-					if(mob_size != MOB_SIZE_BIG)
-						playsound(loc, 'sound/voice/alien_growl_small.ogg', 15, 1)
-					else
-						playsound(loc, 'sound/voice/alien_growl_large.ogg', 25, 1)
+					playsound(loc, "alien_growl", 15)
+		if("growl1")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> growls."
+				playsound(loc, "sound/voice/alien_growl1.ogg", 15)
+		if("growl2")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> growls."
+				playsound(loc, "sound/voice/alien_growl2.ogg", 15)
+		if("growl3")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> growls."
+				playsound(loc, "sound/voice/alien_growl3.ogg", 15)
 		if("hiss")
 			if (!muzzled)
 				m_type = 2
-				message = "<B>The [src.name]</B> hisses."
+				message = "<B>The [name]</B> hisses."
 				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
-					if(mob_size != MOB_SIZE_BIG)
-						playsound(loc, 'sound/voice/alien_hiss_small.ogg', 25, 1)
-					else
-						playsound(loc, 'sound/voice/alien_hiss_large.ogg', 25, 1)
-		if("plasma")
+					playsound(loc, "alien_hiss", 25)
+		if("hiss1")
 			if (!muzzled)
 				m_type = 2
-				message = "<B>The [src.name]</B> needs plasma!"
-				playsound(loc, 'sound/voice/alien_needplasma.ogg', 25, 1)
+				message = "<B>The [name]</B> hisses."
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
+				else
+					playsound(loc, "sound/voice/alien_hiss1.ogg", 25)
+		if("hiss2")
+			if (!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> hisses."
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
+				else
+					playsound(loc, "sound/voice/alien_hiss2.ogg", 25)
+		if("hiss3")
+			if (!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> hisses."
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
+				else
+					playsound(loc, "sound/voice/alien_hiss3.ogg", 25)
+		if("needhelp")
+			if (!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> needs help!"
+				playsound(loc, "alien_help", 25)
+		if("roar")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> roars!"
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+				else
+					playsound(loc, "alien_roar", 50)
+		if("roar1")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> roars!"
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+				else
+					playsound(loc, "sound/voice/alien_roar1.ogg", 50)
+		if("roar2")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> roars!"
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+				else
+					playsound(loc, "sound/voice/alien_roar2.ogg", 50)
+		if("roar3")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> roars!"
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+				else
+					playsound(loc, "sound/voice/alien_roar3.ogg", 50)
+		if("roar4")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> roars!"
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+				else
+					playsound(loc, "sound/voice/alien_roar4.ogg", 50)
+		if("roar5")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> roars!"
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+				else
+					playsound(loc, "sound/voice/alien_roar5.ogg", 50)
+		if("roar6")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> roars!"
+				if(caste == "Predalien")
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+				else
+					playsound(loc, "sound/voice/alien_roar6.ogg", 50)
 		if("tail")
 			if(!muzzled)
 				m_type = 2
-				message = "<B>The [src.name]</B> lashes its tail."
-				playsound(src.loc, 'sound/voice/alien_tail.ogg', 25, 1)
+				message = "<B>The [name]</B> swipes its tail."
+				playsound(loc, "alien_tail_swipe", 40)
+		if("tail1")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> swipes its tail."
+				playsound(loc, "sound/effects/alien_tail_swipe1.ogg", 40)
+		if("tail2")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> swipes its tail."
+				playsound(loc, "sound/effects/alien_tail_swipe2.ogg", 40)
+		if("tail3")
+			if(!muzzled)
+				m_type = 2
+				message = "<B>The [name]</B> swipes its tail."
+				playsound(loc, "sound/effects/alien_tail_swipe3.ogg", 40)
 		if("dance")
 			if(!src.is_mob_restrained())
-			//	message = "<B>The [src.name]</B> dances around!"
+			//	message = "<B>The [name]</B> dances around!"
 				m_type = 1
 				spawn(0)
 					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2))
@@ -91,11 +184,26 @@
 			src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
 			dance, \
 			<span style='color: green;'>growl</span>, \
+			<span style='color: green;'>growl1</span>, \
+			<span style='color: green;'>growl2</span>, \
+			<span style='color: green;'>growl3</span>, \
 			<span style='color: green;'>hiss</span>, \
+			<span style='color: green;'>hiss1</span>, \
+			<span style='color: green;'>hiss2</span>, \
+			<span style='color: green;'>hiss3</span>, \
 			me, \
-			<span style='color: green;'>plasma</span>, \
+			<span style='color: green;'>needhelp</span>, \
 			<span style='color: green;'>roar</span>, \
-			<span style='color: green;'>tail</span></b><br>"
+			<span style='color: green;'>roar1</span>, \
+			<span style='color: green;'>roar2</span>, \
+			<span style='color: green;'>roar3</span>, \
+			<span style='color: green;'>roar4</span>, \
+			<span style='color: green;'>roar5</span>, \
+			<span style='color: green;'>roar6</span>, \
+			<span style='color: green;'>tail</span>, \
+			<span style='color: green;'>tail1</span>, \
+			<span style='color: green;'>tail2</span>, \
+			<span style='color: green;'>tail3</span></b><br>"
 		else
 			src << text("Invalid Emote: []", act)
 	if(message)
