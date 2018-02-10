@@ -749,7 +749,7 @@
 	"<span class='danger'>You slash [src]!</span>")
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
-	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
+	playsound(loc, "alien_claw_metal", 25)
 	if(prob(10))
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
 			new /obj/effect/decal/cleanable/blood/oil(loc)
