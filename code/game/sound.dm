@@ -151,6 +151,7 @@
 #define SOUND_PLAY_ALIEN_HELP pick('sound/voice/alien_help1.ogg','sound/voice/alien_help2.ogg')
 #define SOUND_PLAY_ALIEN_DROOL pick('sound/voice/alien_drool1.ogg','sound/voice/alien_drool2.ogg')
 #define SOUND_PLAY_ALIEN_ROAR pick('sound/voice/alien_roar1.ogg','sound/voice/alien_roar2.ogg','sound/voice/alien_roar3.ogg','sound/voice/alien_roar4.ogg','sound/voice/alien_roar5.ogg','sound/voice/alien_roar6.ogg')
+#define SOUND_PLAY_ALIEN_ROAR_LARVA pick('sound/voice/alien_roar_larva1.ogg','sound/voice/alien_roar_larva2.ogg')
 #define SOUND_PLAY_QUEEN pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 #define SOUND_PLAY_ALLOY_HIT pick('sound/bullets/spear_impact1.ogg')
 #define SOUND_PLAY_ALLOY_ARMOR pick('sound/bullets/spear_armor1.ogg')
@@ -201,6 +202,7 @@
 			if("alien_help") . = SOUND_PLAY_ALIEN_HELP
 			if("alien_drool") . = SOUND_PLAY_ALIEN_DROOL
 			if("alien_roar") . = SOUND_PLAY_ALIEN_ROAR
+			if("alien_roar_larva") . = SOUND_PLAY_ALIEN_ROAR_LARVA
 			if("queen") . = SOUND_PLAY_QUEEN
 			if("alloy_hit") . = SOUND_PLAY_ALLOY_HIT
 			if("alloy_armor") . = SOUND_PLAY_ALLOY_ARMOR

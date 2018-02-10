@@ -14,6 +14,11 @@
 	if(emotedown)
 		src << "STOP SPAMMING"
 		return
+
+	if(istype(src, /mob/living/carbon/Xenomorph/Larva))
+		playsound(loc, "alien_roar_larva", 15)
+		return
+
 	switch(act)
 		if("me")
 			if(silent)
