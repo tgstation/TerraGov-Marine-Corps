@@ -290,6 +290,10 @@
 
 	sleep(85)
 
+	for(var/obj/machinery/door/poddoor/shutters/almayer/D in machines)
+		if(D.id == "sd_lockdown")
+			D.open()
+
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
