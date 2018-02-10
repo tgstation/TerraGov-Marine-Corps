@@ -47,6 +47,7 @@
 			var/old_buckled_mob = buckled_mob
 			if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK) && dir == olddir && loc == oldloc && buckled_mob == old_buckled_mob)
 				manual_unbuckle(user)
+				playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 
 
 	attackby(obj/item/W, mob/user)
@@ -54,12 +55,14 @@
 			var/obj/item/powerloader_clamp/PC = W
 			if(PC.linked_powerloader == src)
 				unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
+				playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 				return 1
 		. = ..()
 
 	afterbuckle(mob/M)
 		. = ..()
 		overlays.Cut()
+		playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 		if(.)
 			icon_state = "powerloader"
 			overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
@@ -105,6 +108,7 @@
 
 	explode()
 		new /obj/structure/powerloader_wreckage(loc)
+		playsound(loc, 'sound/effects/metal_crash.ogg', 75)
 		..()
 
 

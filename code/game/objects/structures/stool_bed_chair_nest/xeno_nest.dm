@@ -30,7 +30,7 @@
 		if(W.flags_atom & NOBLUDGEON) return
 		var/aforce = W.force
 		health = max(0, health - aforce)
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		playsound(loc, "alien_resin_break", 25)
 		user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [W]!</span>", \
 		"<span class='warning'>You hit \the [src] with \the [W]!</span>")
 		healthcheck()
@@ -48,6 +48,7 @@
 				buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",\
 				"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
 				"<span class='notice'>You hear squelching.</span>")
+				playsound(loc, "alien_resin_move", 50)
 				if(ishuman(buckled_mob))
 					var/mob/living/carbon/human/H = buckled_mob
 					H.start_nesting_cooldown()
@@ -132,6 +133,7 @@
 	M.visible_message("<span class='xenonotice'>[user] secretes a thick, vile resin, securing [M] into [src]!</span>", \
 	"<span class='xenonotice'>[user] drenches you in a foul-smelling resin, trapping you in [src]!</span>", \
 	"<span class='notice'>You hear squelching.</span>")
+	playsound(loc, "alien_resin_move", 50)
 
 /obj/structure/bed/nest/afterbuckle(mob/M)
 	. = ..()
@@ -173,7 +175,7 @@
 	if(M.a_intent == "hurt")
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
 		"<span class='danger'>You claw at \the [src].</span>")
-		playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+		playsound(loc, "alien_resin_break", 25)
 		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
 	else
@@ -182,7 +184,7 @@
 /obj/structure/bed/nest/attack_animal(mob/living/M as mob)
 	M.visible_message("<span class='danger'>\The [M] tears at \the [src]!", \
 	"<span class='danger'>You tear at \the [src].")
-	playsound(loc, 'sound/effects/attackblob.ogg', 25, 1)
+	playsound(loc, "alien_resin_break", 25)
 	health -= 40
 	healthcheck()
 

@@ -24,7 +24,7 @@
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
 				M.visible_message("<span class='danger'>\The [M]'s grab is blocked by [src]'s shield!</span>", \
 				"<span class='danger'>Your grab was blocked by [src]'s shield!</span>")
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1) //Feedback
+				playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, 1) //Feedback
 				return 0
 
 			if(Adjacent(M)) //Logic!
@@ -80,7 +80,7 @@
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
-				playsound(M.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+				playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 				M.animation_attack_on(src)
 				M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
 				"<span class='danger'>You lunge at [src]!</span>")
@@ -105,7 +105,7 @@
 						knock_chance += 2
 					knock_chance += min(round(damage * 0.25), 10) //Maximum of 15% chance.
 					if(prob(knock_chance))
-						playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+						playsound(loc, "alien_claw_metal", 25, 1)
 						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
 						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>")
 						drop_inv_item_on_ground(wear_mask)
@@ -113,7 +113,7 @@
 						return 1
 
 			//The normal attack proceeds
-			playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
+			playsound(loc, "alien_claw_flesh", 25, 1)
 			M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 			"<span class='danger'>You slash [src]!</span>")
 
@@ -148,12 +148,12 @@
 			M.flick_attack_overlay(src, "disarm")
 			if(knocked_down)
 				if(prob(20))
-					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
+					playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 					KnockDown(rand(M.tacklemin, M.tacklemax)) //Min and max tackle strenght. They are located in individual caste files.
 					M.visible_message("<span class='danger'>\The [M] tackles down [src]!</span>", \
 					"<span class='danger'>You tackle down [src]!</span>")
 				else
-					playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
+					playsound(loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 					M.visible_message("<span class='danger'>\The [M] tries to tackle [src], but they are already down!</span>", \
 					"<span class='danger'>You try to tackle [src], but they are already down!</span>")
 
@@ -162,12 +162,12 @@
 				if(M.frenzy_aura > 0)
 					tackle_bonus = M.frenzy_aura * 3
 				if(prob(M.tackle_chance + tackle_bonus)) //Tackle_chance is now a special var for each caste.
-					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
+					playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 					KnockDown(rand(M.tacklemin, M.tacklemax))
 					M.visible_message("<span class='danger'>\The [M] tackles down [src]!</span>", \
 					"<span class='danger'>You tackle down [src]!</span>")
 				else
-					playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
+					playsound(loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 					M.visible_message("<span class='danger'>\The [M] tries to tackle [src]</span>", \
 					"<span class='danger'>You try to tackle [src]</span>")
 	return 1
@@ -215,7 +215,7 @@
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start(src)
-				playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
+				playsound(loc, "alien_claw_metal", 25, 1)
 			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
 			M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 			"<span class='danger'>You slash [src]!</span>")
@@ -225,7 +225,7 @@
 			apply_damage(damage, BRUTE)
 
 		if("disarm")
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
+			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 			M.visible_message("<span class='warning'>\The [M] shoves [src]!</span>", \
 			"<span class='warning'>You shove [src]!</span>")
 			if(ismonkey(src))
@@ -248,10 +248,10 @@
 /obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == "hurt")
 		M.animation_attack_on(src)
-		playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
+		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
 		health -= 15
-		playsound(src.loc, "smash.ogg", 25, 1)
+		playsound(src.loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>")
 		healthcheck()
 	else
@@ -348,7 +348,7 @@
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
 		"<span class='danger'>You slash [src]!</span>")
-	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
+	playsound(loc, "alien_claw_metal", 25, 1)
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	healthcheck()
@@ -358,7 +358,7 @@
 	if(status)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>")
-		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
+		playsound(loc, "alien_claw_metal", 25, 1)
 		wires = 0 //wires all cut
 		light_disabled = 0
 		toggle_cam_status(M, TRUE)
@@ -381,12 +381,12 @@
 	if(!prob(deflect_chance))
 		take_damage((rand(M.melee_damage_lower, M.melee_damage_upper)/2))
 		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
-		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
+		playsound(loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src]'s armor!</span>", \
 		"<span class='danger'>You slash [src]'s armor!</span>")
 	else
 		src.log_append_to_last("Armor saved.")
-		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
+		playsound(loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='warning'>[M] slashes [src]'s armor to no effect!</span>", \
 		"<span class='danger'>You slash [src]'s armor to no effect!</span>")
 
@@ -546,6 +546,7 @@
 
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>")
+	playsound(src, "alien_resin_break", 25)
 	if(do_after(M, 80, FALSE))
 		if(!loc)
 			return 0 //Someone already destroyed it, do_after should check this but best to be safe
@@ -582,7 +583,7 @@
 	M.animation_attack_on(src)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>")
-	playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
+	playsound(loc, "alien_claw_metal", 25, 1)
 	var/allcut = 1
 	for(var/wire in apcwirelist)
 		if(!isWireCut(apcwirelist[wire]))
@@ -643,7 +644,7 @@
 
 		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
 		"<span class='notice'>You start clearing out \the [src].</span>")
-		playsound(M.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 		if(!do_after(M, 25, FALSE))
 			return 0
 
