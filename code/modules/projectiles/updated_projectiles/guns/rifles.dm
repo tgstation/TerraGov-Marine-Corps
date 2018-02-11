@@ -282,7 +282,6 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/foregrip,
-						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/heavy_barrel,

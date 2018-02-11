@@ -37,12 +37,15 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	upgrade = 0
 	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
-	xeno_explosion_resistance = 1 //some resistance against explosion stuns.
+	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
 	is_charging = 1 //Queens start with charging enabled
+	spit_delay = 25
+	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 
 	var/breathing_counter = 0
 	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor
 	var/ovipositor_cooldown = 0
+	var/queen_ability_cooldown = 0
 	var/mob/living/carbon/Xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	var/egg_amount = 0 //amount of eggs inside the queen
 	actions = list(
@@ -58,6 +61,8 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		/datum/action/xeno_action/activable/gut,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/ready_charge,
+		/datum/action/xeno_action/shift_spits,
+		/datum/action/xeno_action/activable/xeno_spit,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -129,6 +134,17 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //Prevents resetting queen death timer.
+
+//Chance of insta limb amputation after a melee attack.
+/mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
+	if (prob(20))
+		O = H.get_limb(check_zone(zone_selected))
+		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
+			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
+			O.droplimb(1)
+			return 1
+
+	return 0
 
 /mob/living/carbon/Xenomorph/Queen/proc/set_orders()
 	set category = "Alien"
@@ -248,6 +264,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
+	stop_momentum(charge_dir) //Screech kills a charge
 
 	for(var/mob/M in view())
 		if(M && M.client)
@@ -394,6 +411,8 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
 			/datum/action/xeno_action/ready_charge,
+			/datum/action/xeno_action/shift_spits,
+			/datum/action/xeno_action/activable/xeno_spit,
 			)
 
 		for(var/path in mobile_abilities)
