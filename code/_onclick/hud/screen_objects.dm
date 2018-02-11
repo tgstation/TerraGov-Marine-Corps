@@ -499,7 +499,7 @@
 		return 1
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		if(C.legcuffed)
+		if(C.legcuffed && ishuman(C))
 			C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
 			C.m_intent = "walk"	//Just incase
 			icon_state = "walking"

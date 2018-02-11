@@ -48,6 +48,10 @@
 		src << "<span class='xenowarning'>You are not ready to stomp again.</span>"
 		r_FAL
 
+	if(legcuffed)
+		src << "<span class='xenodanger'>You can't rear up to stomp with that thing on your leg!</span>"
+		return
+
 	if(!check_plasma(50)) return
 	has_screeched = world.time
 	use_plasma(50)

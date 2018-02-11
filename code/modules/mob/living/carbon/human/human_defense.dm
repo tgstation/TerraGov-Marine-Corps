@@ -139,13 +139,21 @@ OBSOLETE BITCH
 				return 1
 	return 0
 
-/mob/living/carbon/human/proc/check_shields(var/damage = 0, var/attack_text = "the attack")
+/mob/living/carbon/human/proc/check_shields(var/damage = 0, var/attack_text = "the attack", var/combistick=0)
 	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
+		if(combistick && istype(l_hand,/obj/item/weapon/combistick))
+			var/obj/item/weapon/combistick/C = l_hand
+			if(C.on)
+				return 1
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
 			visible_message("\red <B>[src] blocks [attack_text] with the [l_hand.name]!</B>")
 			return 1
 	if(r_hand && istype(r_hand, /obj/item/weapon))
+		if(combistick && istype(r_hand,/obj/item/weapon/combistick))
+			var/obj/item/weapon/combistick/C = r_hand
+			if(C.on)
+				return 1
 		var/obj/item/weapon/I = r_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
 			visible_message("\red <B>[src] blocks [attack_text] with the [r_hand.name]!</B>")

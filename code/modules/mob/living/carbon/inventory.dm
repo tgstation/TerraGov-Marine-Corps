@@ -7,7 +7,7 @@
 	update_inv_handcuffed()
 
 /mob/living/carbon/proc/legcuff_update()
-	if(legcuffed)
+	if(legcuffed && !isXeno(src))
 		if(m_intent != "walk")
 			m_intent = "walk"
 			if(hud_used && hud_used.move_intent)

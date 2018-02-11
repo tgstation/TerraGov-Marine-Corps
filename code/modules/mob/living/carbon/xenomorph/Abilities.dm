@@ -435,8 +435,12 @@
 /datum/action/xeno_action/ready_charge/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state()) r_FAL
-	X.is_charging = !X.is_charging
-	X << "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>"
+	if(X.legcuffed)
+		src << "<span class='xenodanger'>You can't charge with that thing on your leg!</span>"
+		X.is_charging = 0
+	else
+		X.is_charging = !X.is_charging
+		X << "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>"
 
 //Hivelord Abilities
 
