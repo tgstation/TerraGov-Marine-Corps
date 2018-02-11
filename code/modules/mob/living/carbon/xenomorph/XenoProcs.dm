@@ -499,7 +499,7 @@
 	noise_timer = noise_timer ? --noise_timer : 3
 
 	if(noise_timer == 3 && charge_speed > charge_speed_buildup * charge_turfs_to_charge)
-		playsound(loc, "alien_charge", 60)
+		playsound(loc, "alien_charge", 50)
 
 	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 

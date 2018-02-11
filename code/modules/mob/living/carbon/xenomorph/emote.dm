@@ -103,57 +103,57 @@
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
-					playsound(loc, "alien_roar", 50)
+					playsound(loc, "alien_roar", 40)
 		if("roar1")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
-					playsound(loc, "sound/voice/alien_roar1.ogg", 50)
+					playsound(loc, "sound/voice/alien_roar1.ogg", 40)
 		if("roar2")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
-					playsound(loc, "sound/voice/alien_roar2.ogg", 50)
+					playsound(loc, "sound/voice/alien_roar2.ogg", 40)
 		if("roar3")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
-					playsound(loc, "sound/voice/alien_roar3.ogg", 50)
+					playsound(loc, "sound/voice/alien_roar3.ogg", 40)
 		if("roar4")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
-					playsound(loc, "sound/voice/alien_roar4.ogg", 50)
+					playsound(loc, "sound/voice/alien_roar4.ogg", 40)
 		if("roar5")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
-					playsound(loc, "sound/voice/alien_roar5.ogg", 50)
+					playsound(loc, "sound/voice/alien_roar5.ogg", 40)
 		if("roar6")
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
 				if(caste == "Predalien")
-					playsound(loc, 'sound/voice/predalien_roar.ogg', 50, 1)
+					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
-					playsound(loc, "sound/voice/alien_roar6.ogg", 50)
+					playsound(loc, "sound/voice/alien_roar6.ogg", 40)
 		if("tail")
 			if(!muzzled)
 				m_type = 2
