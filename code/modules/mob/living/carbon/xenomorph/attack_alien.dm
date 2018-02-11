@@ -425,6 +425,18 @@
 	health -= damage_dealt
 	healthcheck()
 
+//Slashing fences
+/obj/structure/fence/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
+	var/damage_dealt = 5
+	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
+	"<span class='danger'>You mangle [src]!</span>", \
+	"<span class='danger'>You hear twisting metal!</span>")
+
+	health -= damage_dealt
+	healthcheck()
+
 //Slashin mirrors
 /obj/structure/mirror/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
