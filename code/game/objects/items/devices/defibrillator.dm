@@ -100,6 +100,18 @@
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
+	if(!head || !heart || heart.is_broken() || !H.has_brain() || H.chestburst || (HUSK in H.mutations))
+		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
+		return
+
+	if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
+		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
+		return
+
+	if((!check_tod(H) && !(H.species.flags & IS_SYNTHETIC)) || H.suiciding) //synthetic species have no expiration date
+		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient is braindead.</span>")
+		return
+
 	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
 	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
@@ -117,7 +129,7 @@
 		defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
 		if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Please remove suit or armor.</span>")
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 			return
 
 		var/datum/limb/head = H.get_limb("head")
@@ -131,7 +143,11 @@
 			return
 
 		if((!check_tod(H) && !(H.species.flags & IS_SYNTHETIC)) || H.suiciding) //synthetic species have no expiration date
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient is braindead.</span>")
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient's brain has decayed too much.</span>")
+			return
+
+		if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: No soul detected.</span>")
 			return
 
 		if(H.mind && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
@@ -142,14 +158,14 @@
 						ghost << 'sound/effects/adminhelp_new.ogg'
 						ghost << "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
 							(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[ghost];reentercorpse=1'>click here!</a>)</font></span>"
-						user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, please try again.</span>")
+						user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again.</span>")
 						return
 			//We couldn't find a suitable ghost, this means the person is not returning
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient is braindead.</span>")
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient has a DNR.</span>")
 			return
 
 		if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient is braindead.</span>")
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. No soul detected.</span>")
 			return
 
 		//At this point, the defibrillator is ready to work
@@ -177,8 +193,7 @@
 			H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 			H << "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>"
 		else
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, please try again.</span>") //Freak case
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again.</span>") //Freak case
 	else
 		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest</span>", \
 		"<span class='warning'>You stop setting up the paddles on [H]'s chest</span>")
-
