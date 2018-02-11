@@ -1412,20 +1412,10 @@ MEDICAL
 	group = "Medical"
 
 /datum/supply_packs/surgery
-	name = "Surgery crate"
+	name = "Surgery crate (x2 surgical trays)"
 	contains = list(
-					/obj/item/tool/surgery/cautery,
-					/obj/item/tool/surgery/surgicaldrill,
-					/obj/item/clothing/mask/breath/medical,
-					/obj/item/tank/anesthetic,
-					/obj/item/tool/surgery/FixOVein,
-					/obj/item/tool/surgery/hemostat,
-					/obj/item/tool/surgery/scalpel,
-					/obj/item/tool/surgery/bonegel,
-					/obj/item/tool/surgery/retractor,
-					/obj/item/tool/surgery/bonesetter,
-					/obj/item/tool/surgery/circular_saw,
-					/obj/item/tool/surgery/scalpel/manager
+					/obj/item/storage/surgical_tray,
+					/obj/item/storage/surgical_tray
 					)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/surgery
