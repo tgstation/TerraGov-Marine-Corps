@@ -187,16 +187,21 @@
 		. -= (frenzy_aura * 0.1)
 
 	if(is_charging)
-		. -= charge_speed
-		charge_timer = 2
-		if(charge_speed == 0)
-			charge_dir = dir
-			handle_momentum()
+		if(legcuffed)
+			is_charging = 0
+			stop_momentum()
+			src << "<span class='xenodanger'>You can't charge with that thing on your leg!</span>"
 		else
-			if(charge_dir != dir) //Have we changed direction?
-				stop_momentum() //This should disallow rapid turn bumps
-			else
+			. -= charge_speed
+			charge_timer = 2
+			if(charge_speed == 0)
+				charge_dir = dir
 				handle_momentum()
+			else
+				if(charge_dir != dir) //Have we changed direction?
+					stop_momentum() //This should disallow rapid turn bumps
+				else
+					handle_momentum()
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
@@ -248,12 +253,19 @@
 							throwing = FALSE //Reset throwing manually.
 							r_FAL
 
-						if(isYautja(H) && prob(40)) //Another chance for the predator to block the pounce.
-							visible_message("<span class='danger'>[H] body slams [src]!</span>",
-											"<span class='xenodanger'>[H] body slams you!</span>")
-							KnockDown(4)
-							throwing = FALSE
-							r_FAL
+						if(isYautja(H))
+							if(H.check_shields(0, "the pounce", 1))
+								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
+												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>")
+								KnockDown(5)
+								throwing = FALSE
+								r_FAL
+							else if(prob(75)) //Body slam the fuck out of xenos jumping at your front.
+								visible_message("<span class='danger'>[H] body slams [src]!</span>",
+												"<span class='xenodanger'>[H] body slams you!</span>")
+								KnockDown(4)
+								throwing = FALSE
+								r_FAL
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>You pounce on [M]!</span>")

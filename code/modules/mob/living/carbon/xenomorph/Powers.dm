@@ -5,17 +5,21 @@
 	if(!T) return
 
 	if(!isturf(loc))
-		src << "<span class='warning'>You can't pounce from here!</span>"
+		src << "<span class='xenowarning'>You can't pounce from here!</span>"
 		return
 
 	if(!check_state())
 		return
 
 	if(usedPounce)
-		src << "<span class='warning'>You must wait before pouncing.</span>"
+		src << "<span class='xenowarning'>You must wait before pouncing.</span>"
 		return
 
 	if(!check_plasma(10))
+		return
+
+	if(legcuffed)
+		src << "<span class='xenodanger'>You can't pounce with that thing on your leg!</span>"
 		return
 
 	visible_message("<span class='xenowarning'>\The [src] pounces at \the [T]!</span>", \
