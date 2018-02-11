@@ -65,9 +65,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		. = list(
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/doc,
 				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
-				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_FEET = /obj/item/clothing/shoes/white,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
-				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
+				//WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
@@ -200,7 +200,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 		. = list(
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/rank/synthetic,
-				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_FEET = /obj/item/clothing/shoes/white,
 				WEAR_WAIST = /obj/item/storage/belt/utility/full,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
