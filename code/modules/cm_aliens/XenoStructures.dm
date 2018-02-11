@@ -56,7 +56,7 @@
 	alpha = 210
 
 /turf/simulated/wall/resin/bullet_act(var/obj/item/projectile/Proj)
-	take_damage(Proj.damage)
+	take_damage(Proj.damage/2)
 	..()
 
 	return 1
@@ -158,7 +158,7 @@
 		cdel(src)
 
 /obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	health -= Proj.damage/2
 	..()
 	healthcheck()
 	return 1
@@ -410,7 +410,7 @@
 		return TryToSwitchState(user)
 
 /obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	health -= Proj.damage/2
 	..()
 	healthcheck()
 	return 1

@@ -120,7 +120,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.9
-
 				if("Spitter")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
@@ -136,7 +135,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.6
-
 				if("Boiler")
 					melee_damage_lower = 20
 					melee_damage_upper = 25
@@ -225,6 +223,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 800
 					plasma_gain = 40
 					upgrade_threshold = 1600
+					spit_delay = 20
 					caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 					armor_deflection = 50
 					tacklemin = 5
@@ -310,7 +309,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 60
 					speed = -1.0
-
 				if("Spitter")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
@@ -326,7 +324,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 70
 					speed = -0.7
-
 				if("Boiler")
 					melee_damage_lower = 30
 					melee_damage_upper = 35
@@ -357,7 +354,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 9
 					tackle_chance = 80
 					speed = -0.1
-
 					aura_strength = 3.5
 				if("Drone")
 					melee_damage_lower = 12
@@ -416,6 +412,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 900
 					plasma_gain = 50
 					upgrade_threshold = 3200
+					spit_delay = 15
 					caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
 					armor_deflection = 55
 					tacklemin = 6
@@ -500,7 +497,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 60
 					speed = -1.1
-
 				if("Spitter")
 					src << "<span class='xenoannounce'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>"
 					melee_damage_lower = 35
@@ -516,7 +512,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 7
 					tackle_chance = 75
 					speed = -0.8
-
 				if("Boiler")
 					src << "<span class='xenoannounce'>You are the master of ranged artillery. Bring death from above.</span>"
 					melee_damage_lower = 35
@@ -604,6 +599,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					maxHealth = 400
 					plasma_max = 1000
 					plasma_gain = 50
+					spit_delay = 10
 					caste_desc = "The most perfect Xeno form imaginable."
 					armor_deflection = 55
 					tacklemin = 7

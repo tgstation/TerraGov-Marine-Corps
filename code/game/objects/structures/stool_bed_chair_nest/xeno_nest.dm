@@ -96,11 +96,11 @@
 		return
 
 	if(buckled_mob)
-		user << "<span class='warning'>There's already someone in that nest.</span>"
+		user << "<span class='warning'>There's already someone in [src].</span>"
 		return
 
 	if(M.mob_size > MOB_SIZE_HUMAN)
-		user << "<span class='warning'>\The [M] is too big to shove in the nest.</span>"
+		user << "<span class='warning'>\The [M] is too big to fit in [src].</span>"
 		return
 
 	if(!isXeno(user))
@@ -123,11 +123,21 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.lying) //Don't ask me why is has to be
-			user << "<span class='warning'>[M] is resisting, tackle them first.</span>"
+			user << "<span class='warning'>[M] is resisting, ground them.</span>"
 			return
 
-	do_buckle(M, user)
-
+	user.visible_message("<span class='warning'>[src] pins [M] into the nest, preparing the securing resin.</span>",
+	"<span class='warning'>[src] pins [M] into the nest, preparing the securing resin.</span>")
+	if(do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
+		if(buckled_mob) //Just in case
+			user << "<span class='warning'>There's already someone in [src].</span>"
+			return
+		if(ishuman(M)) //Improperly stunned Marines won't be nested
+			var/mob/living/carbon/human/H = M
+			if(!H.lying) //Don't ask me why is has to be
+				user << "<span class='warning'>[M] is resisting, ground them.</span>"
+				return
+		do_buckle(M, user)
 
 /obj/structure/bed/nest/send_buckling_message(mob/M, mob/user)
 	M.visible_message("<span class='xenonotice'>[user] secretes a thick, vile resin, securing [M] into [src]!</span>", \

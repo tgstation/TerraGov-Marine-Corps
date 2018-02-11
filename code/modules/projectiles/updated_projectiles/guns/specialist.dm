@@ -110,8 +110,7 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/foregrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly)
+						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
 	gun_skill_category = GUN_SKILL_SPEC
