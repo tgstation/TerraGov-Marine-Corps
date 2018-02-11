@@ -100,6 +100,9 @@
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
+	var/datum/limb/head = H.get_limb("head")
+	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
+
 	if(!head || !heart || heart.is_broken() || !H.has_brain() || H.chestburst || (HUSK in H.mutations))
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
@@ -131,9 +134,6 @@
 		if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 			return
-
-		var/datum/limb/head = H.get_limb("head")
-		var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
 
 		if(heart && prob(25))
 			heart.damage += 5 //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
