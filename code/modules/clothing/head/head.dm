@@ -33,7 +33,7 @@
 	item_state = "band2"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band2"
-	
+
 /obj/item/clothing/head/beanie
 	name = "\improper USCM beanie"
 	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
@@ -162,6 +162,13 @@
 	icon_state = "cargocap"
 	item_state = "cargocap"
 	item_color = "cargocap"
+
+/obj/item/clothing/head/cmo
+	name = "\improper Chief Medical hat"
+	desc = "A somewhat fancy hat, typically worn by those who wish to command medical respect."
+	icon_state = "cmohat"
+	item_state = "cmohat"
+	item_color = "cmohat"
 
 
 //============================//BERETS\\=================================\\
