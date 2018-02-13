@@ -141,7 +141,7 @@
 
 		if("disarm")
 			if(M.legcuffed && isYautja(src))
-				src << "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>"
+				M << "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>"
 				return 0
 			M.animation_attack_on(src)
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
@@ -171,11 +171,16 @@
 				if(M.frenzy_aura > 0)
 					tackle_bonus = M.frenzy_aura * 3
 				if(isYautja(src))
-					if(prob((M.tackle_chance + tackle_bonus)*0.7))
+					if(prob((M.tackle_chance + tackle_bonus)*0.2))
 						playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 						KnockDown(rand(M.tacklemin, M.tacklemax))
 						M.visible_message("<span class='danger'>\The [M] tackles down [src]!</span>", \
 						"<span class='danger'>You tackle down [src]!</span>")
+						return 1
+					else
+						playsound(loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+						M.visible_message("<span class='danger'>\The [M] tries to tackle [src]</span>", \
+						"<span class='danger'>You try to tackle [src]</span>")
 						return 1
 				else if(prob(M.tackle_chance + tackle_bonus)) //Tackle_chance is now a special var for each caste.
 					playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)

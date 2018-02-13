@@ -147,8 +147,7 @@
 			return
 
 		if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: No soul detected.</span>")
-			return
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: No soul detected, Attempting to revive...</span>")
 
 		if(H.mind && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
 			for(var/mob/dead/observer/G in player_list)
