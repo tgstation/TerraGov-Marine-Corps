@@ -1010,7 +1010,7 @@ AMMO
 					/obj/item/ammo_magazine/rocket,
 					/obj/item/ammo_magazine/rocket
 					)
-	cost = 20
+	cost = 40
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "regular M5 RPG ammo crate"
 	group = "Ammo"
@@ -1025,7 +1025,7 @@ AMMO
 					/obj/item/ammo_magazine/rocket/ap,
 					/obj/item/ammo_magazine/rocket/ap
 					)
-	cost = 30
+	cost = 35
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "armor piercing M5 RPG ammo crate"
 	group = "Ammo"
