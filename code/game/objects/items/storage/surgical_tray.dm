@@ -4,9 +4,9 @@
 	icon_state = "surgical_tray"
 	flags_atom = FPRINT|CONDUCT
 	w_class = 4 //Should not fit in backpacks
-	storage_slots = 10
-	max_storage_space = 20
-	can_hold = list("/obj/item/tool/surgery")
+	storage_slots = 11
+	max_storage_space = 22
+	can_hold = list("/obj/item/tool/surgery", "/obj/item/stack/medical/advanced/bruise_pack")
 
 	New()
 		..()
@@ -14,6 +14,7 @@
 		new /obj/item/tool/surgery/scalpel(src)
 		new /obj/item/tool/surgery/hemostat(src)
 		new /obj/item/tool/surgery/retractor(src)
+		new /obj/item/stack/medical/advanced/bruise_pack(src)
 		new /obj/item/tool/surgery/cautery(src)
 		new /obj/item/tool/surgery/circular_saw(src)
 		new /obj/item/tool/surgery/surgicaldrill(src)
