@@ -248,6 +248,11 @@
 			stored_comms["wood"]++
 			stored_comms["wood"]++
 			stored_comms["wood"]++
+		else if(istype(W,/obj/item/ammo_magazine))
+			var/obj/item/ammo_magazine/AM = W
+			if(AM.current_rounds)
+				continue
+			stored_comms["metal"]++
 		else
 			continue
 

@@ -188,6 +188,11 @@ proc/isYautja(A)
 			return 1
 	return 0
 
+proc/ismaintdrone(A)
+	if(istype(A,/mob/living/silicon/robot/drone))
+		return 1
+	return 0
+
 proc/isHellhound(A)
 	if(istype(A, /mob/living/carbon/hellhound))
 		return 1

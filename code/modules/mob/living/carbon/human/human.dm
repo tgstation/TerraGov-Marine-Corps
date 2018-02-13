@@ -216,7 +216,9 @@
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
 
 
-/mob/living/carbon/human/show_inv(mob/user as mob)
+/mob/living/carbon/human/show_inv(mob/living/user)
+	if(ismaintdrone(user))
+		return
 	var/obj/item/clothing/under/suit = null
 	if (istype(w_uniform, /obj/item/clothing/under))
 		suit = w_uniform
@@ -369,8 +371,8 @@
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_interaction()
 		src << browse(null, t1)
-
-	if ((href_list["item"] && !usr.is_mob_incapacitated() && in_range(src, usr) && ticker)) //if game hasn't started, can't make an equip_e
+	// stop maintenance drones trying to strip people
+	if ((href_list["item"] && !usr.is_mob_incapacitated() && in_range(src, usr) && ticker && !ismaintdrone(usr))) //if game hasn't started, can't make an equip_e
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 		O.source = usr
 		O.target = src
