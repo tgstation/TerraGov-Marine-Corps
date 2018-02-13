@@ -206,6 +206,7 @@ var/global/list/randomized_pillbottle_icons
 	storage_slots = null
 	use_sound = null
 	var/pillbottle_label = ""
+	var/skilllock = 1
 
 	New()
 		..()
@@ -224,6 +225,14 @@ var/global/list/randomized_pillbottle_icons
 				user << "Label reads: [pillbottle_label]."
 			else
 				user << "You don't understand what the label says."
+
+
+	open(mob/user)
+		var/mob/living/carbon/human/H = user
+		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+			H << "<span class='notice'>It's got some sort of Child Lock you can't seem to figure out...</span>"
+			return
+		..()
 
 /obj/item/storage/pill_bottle/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/hand_labeler) || istype(W, /obj/item/tool/pen))
