@@ -708,7 +708,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
+		user.zoom_cooldown = world.time + 20
 	else //Otherwise we want to zoom in.
+		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
+			return
+		user.zoom_cooldown = world.time + 20
 		user.client.view = viewsize
 
 		var/tilesize = 32
@@ -735,18 +739,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user.unset_interaction()
 		else
 			user.set_interaction(src)
-
 		return
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
 	user.client.view = world.view
 	user.client.pixel_x = 0
 	user.client.pixel_y = 0
-
-
-/*
-/obj/item/Bump(mob/M as mob)
-	spawn(0)
-		..()
-	return
-*/
