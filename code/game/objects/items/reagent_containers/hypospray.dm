@@ -13,39 +13,43 @@
 	possible_transfer_amounts = null
 	flags_atom = FPRINT|OPENCONTAINER
 	flags_equip_slot = SLOT_WAIST
+	var/skilllock = 1
 
 /obj/item/reagent_container/hypospray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/item/reagent_container/hypospray/attack(mob/M, mob/user)
+/obj/item/reagent_container/hypospray/attack(mob/M, mob/living/user)
 	if(!reagents.total_volume)
 		user << "\red [src] is empty."
 		return
 	if (!( istype(M, /mob) ))
 		return
 	if (reagents.total_volume)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-			for(var/A in reagents.reagent_list)
-				var/datum/reagent/R = A
-				if(R.id != "tricordrazine" && R.id != "tramadol" )
-					user << "<span class='warning'>[src] contains chemicals you don't recognize, better not use it...</span>"
-					return 0
-		user << "\blue You inject [M] with [src]."
-		M << "\red You feel a tiny prick!"
+		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+			user << "<span class='warning'>You can't figure out to use \the [src], guess you shouldn't have dropped out of kindergarten.</span>"
+			return 0
+		var/mob/target = null
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM && prob(50))
+			user << "<span class='warning'>You fumble the injector and end up jabbing yourself with it!</span>"
+			target = user
+		else
+			target = M
+			user << "\blue You inject [M] with [src]."
+		target << "\red You feel a tiny prick!"
 		playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
-		src.reagents.reaction(M, INGEST)
-		if(M.reagents)
+		src.reagents.reaction(target, INGEST)
+		if(target.reagents)
 
 			var/list/injected = list()
 			for(var/datum/reagent/R in src.reagents.reagent_list)
 				injected += R.name
 			var/contained = english_list(injected)
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [M.name] ([M.key]). Reagents: [contained]</font>")
-			msg_admin_attack("[user.name] ([user.ckey]) injected [M.name] ([M.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [target.name] ([target.key]). Reagents: [contained]</font>")
+			msg_admin_attack("[user.name] ([user.ckey]) injected [target.name] ([target.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
+			var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in [src]."
 
 	return 1
