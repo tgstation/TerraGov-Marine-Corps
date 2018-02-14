@@ -67,6 +67,6 @@ var/global/list/religion_choices = list(
     "Shintoism",
     "Wiccanism",
     "Paganism (Wicca)",
-    "Minor Religion"
+    "Minor Religion",
     "Atheism"
 	)
