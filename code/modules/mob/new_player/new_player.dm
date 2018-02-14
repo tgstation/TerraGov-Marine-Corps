@@ -419,7 +419,6 @@
 
 		new_character.name = real_name
 		new_character.dna.ready_dna(new_character)
-		new_character.dna.b_type = client.prefs.b_type
 
 		if(client.prefs.disabilities)
 			// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X

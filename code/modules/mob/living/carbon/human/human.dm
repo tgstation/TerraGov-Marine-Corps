@@ -9,9 +9,10 @@
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
 	if(!dna)
-		dna = new /datum/dna(null)
+		dna = new /datum/dna(b_type)
 		// Species name is handled by set_species()
 
 	if(!species)
