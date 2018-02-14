@@ -26,7 +26,7 @@
 		return
 	if (reagents.total_volume)
 		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-			user << "<span class='warning'>You can't figure out to use \the [src], guess you shouldn't have dropped out of kindergarten.</span>"
+			user << "<span class='warning'>You can't figure out to use \the [src], guess it must have some sort of ID lock.</span>"
 			return 0
 		var/mob/target = null
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM && prob(50))
