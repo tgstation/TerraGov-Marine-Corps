@@ -269,11 +269,11 @@
 
 	var/roletext
 	switch(role)
-		if(BE_RESPONDER)	roletext = "responder"
-		if(BE_ALIEN)		roletext = "alien"
-		if(BE_QUEEN)		roletext = "alien queen"
-		if(BE_SURVIVOR)		roletext = "survivor"
-		if(BE_PREDATOR)		roletext = "predator"
+		if(BE_RESPONDER)	roletext = "Responder"
+		if(BE_ALIEN)		roletext = "Xenomorph"
+		if(BE_QUEEN)		roletext = "Xenomorph Queen"
+		if(BE_SURVIVOR)		roletext = "Survivor"
+		if(BE_PREDATOR)		roletext = "Predator"
 		if(BE_WO_COM)		roletext = "WO Commander"
 
 	//Assemble a list of active players without jobbans.

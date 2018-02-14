@@ -1,3 +1,9 @@
+proc/random_ethnicity()
+	return pick(ethnicities_list)
+
+proc/random_body_type()
+	return pick(body_types_list)
+
 proc/random_hair_style(gender, species = "Human")
 	var/h_style = "Crewcut"
 
@@ -16,6 +22,7 @@ proc/random_hair_style(gender, species = "Human")
 		h_style = pick(valid_hairstyles)
 
 	return h_style
+
 
 proc/random_facial_hair_style(gender, species = "Human")
 	var/f_style = "Shaved"

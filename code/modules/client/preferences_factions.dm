@@ -12,12 +12,22 @@ var/global/list/seen_religions = list()
 		seen_religions    |= M.client.prefs.religion*/
 	return
 
+/*
 var/global/list/citizenship_choices = list(
 	"Earth",
 	"Mars",
 	"Moghes",
 	"Ahdomai",
 	"Qerrbalak"
+	)
+*/
+
+var/global/list/citizenship_choices = list(
+	"United Americas (United States)",
+	"United Americas (Luna)",
+	"United Americas (Other)",
+	"Limited Service (Colony)",
+	"Green Card (Foreign)"
 	)
 
 var/global/list/home_system_choices = list(

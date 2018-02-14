@@ -383,7 +383,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //defines for the busy icons when the mob does something that takes time using do_after proc
 #define BUSY_ICON_CLOCK 1
-#define BUSY_ICON_MED 2
+#define BUSY_ICON_MED 	2
 
 
 //defins for datum/hud

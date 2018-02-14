@@ -60,6 +60,10 @@ var/global/list/whitelisted_species = list("Human")
 var/global/list/datum/poster/poster_designs = typesof(/datum/poster) - /datum/poster
 
 //Preferences stuff
+	// Ethnicities
+var/global/list/ethnicities_list = list()			// Stores /datum/ethnicity indexed by name
+	// Body Types
+var/global/list/body_types_list = list()			// Stores /datum/body_type indexed by name
 	//Hairstyles
 var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
 var/global/list/hair_styles_male_list = list()
@@ -69,10 +73,10 @@ var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
 	//Underwear
-var/global/list/underwear_m = list("White", "Grey", "Green", "Blue", "Black", "Mankini", "None") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list("Red", "White", "Yellow", "Blue", "Black", "Thong", "None")
+var/global/list/underwear_m = list("Briefs") //Curse whoever made male/female underwear diffrent colours
+var/global/list/underwear_f = list("Briefs", "Panties")
 	//undershirt
-var/global/list/undershirt_t = list("Black Tank top", "White Tank top", "Black shirt", "White shirt", "None")
+var/global/list/undershirt_t = list("None","Undershirt(Sleeveless)", "Undershirt(Sleeved)", "Rolled Undershirt(Sleeveless)", "Rolled Undershirt(Sleeved)")
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 // var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
@@ -84,7 +88,19 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 /proc/makeDatumRefLists()
 	var/list/paths
 
-	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
+	// Ethnicity - Initialise all /datum/ethnicity into a list indexed by ethnicity name
+	paths = typesof(/datum/ethnicity) - /datum/ethnicity
+	for (var/path in paths)
+		var/datum/ethnicity/E = new path()
+		ethnicities_list[E.name] = E
+
+	// Body Type - Initialise all /datum/body_type into a list indexed by body_type name
+	paths = typesof(/datum/body_type) - /datum/body_type
+	for (var/path in paths)
+		var/datum/body_type/B = new path()
+		body_types_list[B.name] = B
+
+	// Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair/H = new path()
@@ -96,7 +112,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 				hair_styles_male_list += H.name
 				hair_styles_female_list += H.name
 
-	//Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
+	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	paths = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
@@ -108,27 +124,27 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
 
-	//Surgery Steps - Initialize all /datum/surgery_step into a list
+	// Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = typesof(/datum/surgery_step)-/datum/surgery_step
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T
 		surgery_steps += S
 	sort_surgeries()
 
-	//Medical side effects. List all effects by their names
+	// Medical side effects. List all effects by their names
 	paths = typesof(/datum/medical_effect)-/datum/medical_effect
 	for(var/T in paths)
 		var/datum/medical_effect/M = new T
 		side_effects[M.name] = T
 
-	//List of job. I can't believe this was calculated multiple times per tick!
+	// List of job. I can't believe this was calculated multiple times per tick!
 	paths = typesof(/datum/job)-/datum/job
 	// paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
-	//Languages and species.
+	// Languages and species.
 	paths = typesof(/datum/language)-/datum/language
 	for(var/T in paths)
 		var/datum/language/L = new T
@@ -151,7 +167,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 		if(S.flags & IS_WHITELISTED)
 			whitelisted_species += S.name
 
-	//Our ammo stuff is initialized here.
+	// Our ammo stuff is initialized here.
 	var/blacklist[] = list(/datum/ammo,/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
 	paths = typesof(/datum/ammo) - blacklist
 	for(var/T in paths)

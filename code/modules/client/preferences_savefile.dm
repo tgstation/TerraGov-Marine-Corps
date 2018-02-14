@@ -136,6 +136,8 @@
 	S["name_is_always_random"] >> be_random_name
 	S["gender"]				>> gender
 	S["age"]				>> age
+	S["ethnicity"]			>> ethnicity
+	S["body_type"]			>> body_type
 	S["language"]			>> language
 	S["spawnpoint"]			>> spawnpoint
 
@@ -146,7 +148,7 @@
 	S["facial_red"]			>> r_facial
 	S["facial_green"]		>> g_facial
 	S["facial_blue"]		>> b_facial
-	S["skin_tone"]			>> s_tone
+	//S["skin_tone"]			>> s_tone
 	S["skin_red"]			>> r_skin
 	S["skin_green"]			>> g_skin
 	S["skin_blue"]			>> b_skin
@@ -158,7 +160,7 @@
 	S["underwear"]			>> underwear
 	S["undershirt"]			>> undershirt
 	S["backbag"]			>> backbag
-	S["b_type"]				>> b_type
+	//S["b_type"]				>> b_type
 
 	//Jobs
 	S["alternate_option"]	>> alternate_option
@@ -230,7 +232,7 @@
 	r_facial		= sanitize_integer(r_facial, 0, 255, initial(r_facial))
 	g_facial		= sanitize_integer(g_facial, 0, 255, initial(g_facial))
 	b_facial		= sanitize_integer(b_facial, 0, 255, initial(b_facial))
-	s_tone			= sanitize_integer(s_tone, -185, 34, initial(s_tone))
+	//s_tone			= sanitize_integer(s_tone, -185, 34, initial(s_tone))
 	r_skin			= sanitize_integer(r_skin, 0, 255, initial(r_skin))
 	g_skin			= sanitize_integer(g_skin, 0, 255, initial(g_skin))
 	b_skin			= sanitize_integer(b_skin, 0, 255, initial(b_skin))
@@ -242,7 +244,7 @@
 	underwear		= sanitize_integer(underwear, 1, underwear_m.len, initial(underwear))
 	undershirt		= sanitize_integer(undershirt, 1, undershirt_t.len, initial(undershirt))
 	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
-	b_type			= sanitize_text(b_type, initial(b_type))
+	//b_type			= sanitize_text(b_type, initial(b_type))
 
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_command_high = sanitize_integer(job_command_high, 0, 65535, initial(job_command_high))
@@ -286,6 +288,8 @@
 	S["name_is_always_random"] << be_random_name
 	S["gender"]				<< gender
 	S["age"]				<< age
+	S["ethnicity"]			<< ethnicity
+	S["body_type"]			<< body_type
 	S["language"]			<< language
 	S["hair_red"]			<< r_hair
 	S["hair_green"]			<< g_hair
@@ -293,7 +297,7 @@
 	S["facial_red"]			<< r_facial
 	S["facial_green"]		<< g_facial
 	S["facial_blue"]		<< b_facial
-	S["skin_tone"]			<< s_tone
+	//S["skin_tone"]			<< s_tone
 	S["skin_red"]			<< r_skin
 	S["skin_green"]			<< g_skin
 	S["skin_blue"]			<< b_skin
@@ -305,7 +309,7 @@
 	S["underwear"]			<< underwear
 	S["undershirt"]			<< undershirt
 	S["backbag"]			<< backbag
-	S["b_type"]				<< b_type
+	//S["b_type"]				<< b_type
 	S["spawnpoint"]			<< spawnpoint
 
 	//Jobs
