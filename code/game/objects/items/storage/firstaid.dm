@@ -13,7 +13,9 @@
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
-	cant_hold = list("/obj/item/ammo_magazine") //to prevent powergaming.
+	cant_hold = list("/obj/item/ammo_magazine",
+							"/obj/item/explosive/grenade",
+							"/obj/item/tool/surgery") //to prevent powergaming.
 	var/empty = 0 //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full
@@ -230,7 +232,7 @@ var/global/list/randomized_pillbottle_icons
 	open(mob/user)
 		var/mob/living/carbon/human/H = user
 		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-			H << "<span class='notice'>It's got some sort of Child Lock you can't seem to figure out...</span>"
+			H << "<span class='notice'>It must have some kind of ID lock...</span>"
 			return
 		..()
 
