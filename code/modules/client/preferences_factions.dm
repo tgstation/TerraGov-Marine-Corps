@@ -53,11 +53,19 @@ var/global/list/faction_choices = list(
 	)
 
 var/global/list/religion_choices = list(
-	"Unitarianism",
-	"Hinduism",
-	"Buddhist",
-	"Islamic",
-	"Christian",
-	"Agnostic",
-	"Deist"
+    "Christianity (Protestant)",
+    "Christianity (Catholic)",
+    "Christianity (Orthodox)",
+    "Christianity (Other)",
+    "Judaism",
+    "Islam (Shia)",
+    "Islam (Sunni)",
+    "Buddhism",
+    "Hinduism",
+    "Sikhism",
+    "Shintoism",
+    "Wiccanism",
+    "Paganism (Wicca)",
+    "Minor Religion"
+    "Atheism"
 	)
