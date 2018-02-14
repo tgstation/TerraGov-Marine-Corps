@@ -623,11 +623,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_create_AI_report()
 	set category = "Special Verbs"
-	set name = "Create AI Paper Report"
+	set name = "Create AI Report"
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
-	var/input = input(usr, "A message from the ship's AI that gets printed out to all communication consoles. Check with online staff before you send this. Do not use html.", "What?", "") as message|null
+	var/input = input(usr, "This should be a message from the ship's AI.  Check with online staff before you send this. Do not use html.", "What?", "") as message|null
 	if(!input) r_FAL
 	if(ai_system.Announce(input))
 
