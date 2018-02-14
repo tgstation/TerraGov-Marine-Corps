@@ -56,7 +56,7 @@ var/global/list/religion_choices = list(
     "Christianity (Protestant)",
     "Christianity (Catholic)",
     "Christianity (Orthodox)",
-    "Christianity (Mormonism)"
+    "Christianity (Mormonism)",
     "Christianity (Other)",
     "Judaism",
     "Islam (Shia)",
