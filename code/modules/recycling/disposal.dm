@@ -44,6 +44,9 @@
 	if(stat & BROKEN || !I || !user)
 		return
 
+	if(isXeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
+		return
+
 	add_fingerprint(user)
 	if(mode <= 0) //It's off
 		if(istype(I, /obj/item/tool/screwdriver))
