@@ -22,8 +22,17 @@
 		src << "<span class='xenodanger'>You can't pounce with that thing on your leg!</span>"
 		return
 
-	visible_message("<span class='xenowarning'>\The [src] pounces at \the [T]!</span>", \
-	"<span class='xenowarning'>You pounce at \the [T]!</span>")
+	if(layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
+		layer = MOB_LAYER
+
+	if(m_intent == "walk" && isXenoHunter(src)) //Hunter that is currently using its stealth ability, need to unstealth him
+		m_intent = "run"
+		if(hud_used && hud_used.move_intent)
+			hud_used.move_intent.icon_state = "running"
+		update_icons()
+
+	visible_message("<span class='xenowarning'>\The [src] pounces at [T]!</span>", \
+	"<span class='xenowarning'>You pounce at [T]!</span>")
 	usedPounce = 30 //About 12 seconds
 	flags_pass = PASSTABLE
 	use_plasma(10)
