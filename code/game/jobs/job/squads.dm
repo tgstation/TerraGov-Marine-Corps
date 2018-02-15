@@ -83,8 +83,12 @@
 	if(!istype(C)) return 0//Abort, no ID found
 
 	switch(M.mind.assigned_role)
-		if("Squad Engineer") num_engineers++
-		if("Squad Medic") num_medics++
+		if("Squad Engineer")
+			num_engineers++
+			C.claimedgear = 0
+		if("Squad Medic")
+			num_medics++
+			C.claimedgear = 0
 		if("Squad Specialist") num_specialists++
 		if("Squad Smartgunner") num_smartgun++
 		if("Squad Leader")

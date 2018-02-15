@@ -335,6 +335,12 @@
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 		ticker.mode.latejoin_tally++
+
+		for(var/datum/squad/sq in RoleAuthority.squads)
+			if(sq)
+				sq.max_engineers = Clamp((clients.len/60)+1, 2, 3) // 3rd engi at 120
+				sq.max_medics = Clamp((clients.len/50)+1, 2, 4) // 3rd medic at 100, 4th at 150
+
 		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
 			ticker.mode.spawn_latejoin_larva()
 			ticker.mode.latejoin_tally = 0

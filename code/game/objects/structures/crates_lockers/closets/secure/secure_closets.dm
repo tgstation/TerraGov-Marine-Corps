@@ -13,6 +13,8 @@
 	var/icon_broken = "securebroken"
 	var/icon_off = "secureoff"
 	health = 100
+	var/slotlocked = 0
+	var/slotlocktype = null
 
 /obj/structure/closet/secure_closet/can_open()
 	if(src.locked)
@@ -42,7 +44,7 @@
 				src.req_access += pick(get_all_accesses())
 	..()
 
-/obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
+/obj/structure/closet/secure_closet/proc/togglelock(mob/living/user)
 	if(src.opened)
 		user << "<span class='notice'>Close the locker first.</span>"
 		return
@@ -53,6 +55,21 @@
 		user << "<span class='notice'>You can't reach the lock from inside.</span>"
 		return
 	if(src.allowed(user))
+		if(slotlocked && ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.wear_id)
+				var/obj/item/card/id/I = H.wear_id
+				if(I.claimedgear)
+					return
+				switch(slotlocktype)
+					if("engi")
+						if(H.mind.assigned_role != "Squad Engineer")
+							return // stop people giving medics engineer prep access or IDs somehow
+					if("medic")
+						if(H.mind.assigned_role != "Squad Medic")
+							return // same here
+				I.claimedgear = 1 // you only get one locker, all other roles have this set 1 by default
+				slotlocked = 0 // now permanently unlockable
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
