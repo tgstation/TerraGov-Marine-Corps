@@ -12,7 +12,7 @@
 	var/ready = 0
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
-	var/charge_cost = 100 //How much energy is used.
+	var/charge_cost = 66 //How much energy is used.
 	var/obj/item/cell/dcell = null
 	var/datum/effect_system/spark_spread/sparks = new
 	var/defib_cooldown = 0 //Cooldown for toggling the defib
@@ -115,6 +115,22 @@
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
+	var/hasghost = 0
+	if(H.mind && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
+		for(var/mob/dead/observer/G in player_list)
+			if(G.mind == H.mind)
+				var/mob/dead/observer/ghost = G
+				if(ghost && ghost.client && ghost.can_reenter_corpse)
+					ghost << 'sound/effects/adminhelp_new.ogg'
+					ghost << "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
+						(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[ghost];reentercorpse=1'>click here!</a>)</font></span>"
+					hasghost = 1
+					break
+	if(!hasghost && !H.client)
+		//We couldn't find a suitable ghost, this means the person is not returning
+		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient has a DNR.</span>")
+		return
+
 	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
 	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
@@ -154,14 +170,15 @@
 				if(G.mind == H.mind)
 					var/mob/dead/observer/ghost = G
 					if(ghost && ghost.client && ghost.can_reenter_corpse)
-						ghost << 'sound/effects/adminhelp_new.ogg'
+						/*ghost << 'sound/effects/adminhelp_new.ogg'
 						ghost << "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
-							(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[ghost];reentercorpse=1'>click here!</a>)</font></span>"
+							(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[ghost];reentercorpse=1'>click here!</a>)</font></span>"*/
 						user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again.</span>")
 						return
 			//We couldn't find a suitable ghost, this means the person is not returning
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient has a DNR.</span>")
+			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient has a DNR.</span>")
 			return
+
 
 		if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. No soul detected.</span>")

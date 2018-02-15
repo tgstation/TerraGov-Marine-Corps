@@ -53,7 +53,7 @@ Additional game mode variables.
 	var/surv_starting_num 	= 0 //To clamp starting survivors.
 	var/merc_starting_num 	= 0 //PMC clamp.
 	var/pred_current_num 	= 0 //How many are there now?
-	var/pred_maximum_num 	= 3 //How many are possible per round? Does not count elders.
+	var/pred_maximum_num 	= 4 //How many are possible per round? Does not count elders.
 	var/pred_round_chance 	= 20 //%
 
 	//Some gameplay variables.
@@ -89,6 +89,11 @@ datum/game_mode/proc/initialize_special_clamps()
 	xeno_starting_num = Clamp((ready_players/5), xeno_required_num, INFINITY) //(n, minimum, maximum)
 	surv_starting_num = Clamp((ready_players/25), 0, 8)
 	merc_starting_num = Clamp((ready_players/3), 1, INFINITY)
+	for(var/datum/squad/sq in RoleAuthority.squads)
+		if(sq)
+			sq.max_engineers = Clamp((ready_players/60)+1, 2, 3) // 3rd engi at 120
+			sq.max_medics = Clamp((ready_players/50)+1, 2, 4) // 3rd medic at 100, 4th at 150
+
 
 //===================================================\\
 
@@ -108,7 +113,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		src << "<span class='warning'>The game hasn't started yet!</span?"
 		return
 
-	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",3) as num|null
+	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
 	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
 #endif
 

@@ -136,10 +136,15 @@
 // MARINE ENGINEER
 
 /obj/structure/closet/secure_closet/marine/engi
+	slotlocked = 1
+	slotlocktype = "engi"
+	health = 100000 // just no
+
 	New()
 		..()
 		new /obj/item/storage/belt/utility/full(src)
 		new /obj/item/clothing/glasses/welding(src)
+		new /obj/item/clothing/tie/storage/webbing(src)
 
 	select_gamemode_equipment(gamemode)
 		..()
@@ -191,11 +196,17 @@
 
 // MARINE MEDIC
 /obj/structure/closet/secure_closet/marine/medic
+	slotlocked = 1
+	slotlocktype = "medic"
+	health = 100000 // just no
 
 	New()
 		..()
 		new /obj/item/storage/belt/combatLifesaver(src)
 		new /obj/item/clothing/glasses/hud/health(src)
+		new /obj/item/clothing/tie/storage/webbing(src)
+		new /obj/item/roller/medevac(src)
+		new /obj/item/device/defibrillator(src)
 
 	select_gamemode_equipment(gamemode)
 		..()

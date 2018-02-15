@@ -349,31 +349,30 @@
 	products = list(
 						/obj/item/coin/marine/engineer = 1,
 						/obj/item/clothing/under/marine/engineer = 3,
-						/obj/item/clothing/head/helmet/marine/tech = 2,
-						/obj/item/storage/backpack/marine/tech = 4,
-						/obj/item/storage/backpack/marine/satchel/tech = 2,
-						/obj/item/storage/backpack/marine/engineerpack = 2,
-						/obj/item/clothing/tie/storage/webbing = 3,
+						/obj/item/clothing/head/helmet/marine/tech = 3,
+						/obj/item/storage/backpack/marine/tech = 3,
+						/obj/item/storage/backpack/marine/satchel/tech = 3,
+						/obj/item/storage/backpack/marine/engineerpack = 3,
 						/obj/item/device/encryptionkey/engi = 3,
 						/obj/item/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
-						/obj/item/device/multitool = 4,
+						/obj/item/device/multitool = 3,
 						/obj/item/explosive/grenade/incendiary = 2,
 						/obj/item/storage/box/explosive_mines = 1,
 						/obj/item/clothing/glasses/welding = 3,
 						/obj/item/explosive/plastique = 4,
-						/obj/item/device/lightreplacer = 2,
+						/obj/item/device/lightreplacer = 3,
 						/obj/item/circuitboard/airlock = 10,
 						/obj/item/circuitboard/apc = 10,
 						/obj/item/circuitboard/airalarm = 10,
 						/obj/item/cell/high = 10,
 						/obj/item/tool/etool = 3,
-						/obj/item/storage/pouch/explosive = 2,
-						/obj/item/storage/pouch/construction = 2,
-						/obj/item/storage/pouch/tools = 2,
-						/obj/item/storage/pouch/electronics = 2,
-						/obj/item/storage/pouch/magazine = 2
+						/obj/item/storage/pouch/explosive = 3,
+						/obj/item/storage/pouch/construction = 3,
+						/obj/item/storage/pouch/tools = 3,
+						/obj/item/storage/pouch/electronics = 3,
+						/obj/item/storage/pouch/magazine = 3
 					)
 	contraband = list(/obj/item/cell/super = 1)
 
@@ -394,21 +393,19 @@
 	products = list(
 						/obj/item/clothing/under/marine/medic = 4,
 						/obj/item/clothing/head/helmet/marine/medic = 4,
-						/obj/item/storage/backpack/marine/medic = 2,
-						/obj/item/storage/backpack/marine/satchel/medic = 2,
-						/obj/item/device/encryptionkey/med = 2,
-						/obj/item/storage/belt/medical = 2,
-						/obj/item/clothing/tie/storage/webbing = 2,
-						/obj/item/device/defibrillator = 4,
+						/obj/item/storage/backpack/marine/medic = 4,
+						/obj/item/storage/backpack/marine/satchel/medic = 4,
+						/obj/item/device/encryptionkey/med = 4,
+						/obj/item/storage/belt/medical = 4,
 						/obj/item/bodybag/cryobag = 4,
 						/obj/item/device/healthanalyzer = 4,
-						/obj/item/clothing/glasses/hud/health = 3,
+						/obj/item/clothing/glasses/hud/health = 4,
 						/obj/item/storage/firstaid/regular = 4,
 						/obj/item/storage/firstaid/adv = 4,
-						/obj/item/storage/pouch/medical = 2,
-						/obj/item/storage/pouch/medkit = 2,
-						/obj/item/storage/pouch/magazine = 2,
-						/obj/item/storage/pouch/pistol = 2
+						/obj/item/storage/pouch/medical = 4,
+						/obj/item/storage/pouch/medkit = 4,
+						/obj/item/storage/pouch/magazine = 4,
+						/obj/item/storage/pouch/pistol = 4
 					)
 	contraband = list(/obj/item/reagent_container/blood/OMinus = 1)
 
