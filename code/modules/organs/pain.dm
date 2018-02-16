@@ -18,14 +18,13 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 	var/msg
 	if(amount > 10 && ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.knocked_out) H.knocked_out = max(0, H.knocked_out-round(amount * 0.1))
 
 		var/datum/limb/right_hand = H.get_limb("r_hand")
 		var/datum/limb/left_hand = H.get_limb("l_hand")
 		if(!H.stat && amount > 50 && prob(amount * 0.1))
 			msg = "You [pick("wince","shiver","grimace")] in pain"
 			var/i
-			for(var/datum/limb/O in list(right_hand,left_hand))
+			for(var/datum/limb/O in list(right_hand, left_hand))
 				if(!O || !O.is_usable()) continue //Not if the organ can't possibly function.
 				if(O.name == "l_hand") 	drop_l_hand()
 				else 					drop_r_hand()

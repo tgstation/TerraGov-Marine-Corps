@@ -10,9 +10,9 @@
 	traumatic_shock = 			\
 	1	* getOxyLoss() + 		\
 	0.7	* getToxLoss() + 		\
-	2.5	* getFireLoss() + 		\
+	1.5	* getFireLoss() + 		\
 	1.5	* getBruteLoss() + 		\
-	1.8	* getCloneLoss() + 		\
+	1.5	* getCloneLoss() + 		\
 	1.5	* halloss
 
 	if(reagents.has_reagent("alkysine")) 		traumatic_shock -= 10
