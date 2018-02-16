@@ -91,8 +91,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	merc_starting_num = Clamp((ready_players/3), 1, INFINITY)
 	for(var/datum/squad/sq in RoleAuthority.squads)
 		if(sq)
-			sq.max_engineers = Clamp((ready_players/60)+1, 2, 3) // 3rd engi at 120
-			sq.max_medics = Clamp((ready_players/50)+1, 2, 4) // 3rd medic at 100, 4th at 150
+			sq.max_engineers = engi_slot_formula(ready_players)
+			sq.max_medics = medic_slot_formula(ready_players)
 
 
 //===================================================\\

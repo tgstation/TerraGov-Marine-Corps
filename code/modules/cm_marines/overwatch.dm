@@ -664,10 +664,10 @@
 			if(new_squad.num_specialists == new_squad.max_specialists)
 				no_place = TRUE
 		if("Squad Engineer")
-			if(new_squad.num_engineers == new_squad.max_engineers)
+			if(new_squad.num_engineers >= new_squad.max_engineers)
 				no_place = TRUE
 		if("Squad Medic")
-			if(new_squad.num_medics == new_squad.max_medics)
+			if(new_squad.num_medics >= new_squad.max_medics)
 				no_place = TRUE
 		if("Squad Smartgunner")
 			if(new_squad.num_smartgun == new_squad.max_smartgun)

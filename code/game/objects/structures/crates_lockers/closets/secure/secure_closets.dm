@@ -70,6 +70,8 @@
 							return // same here
 				I.claimedgear = 1 // you only get one locker, all other roles have this set 1 by default
 				slotlocked = 0 // now permanently unlockable
+			else
+				return // they have no ID on, fuck them.
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
@@ -78,7 +80,7 @@
 	else
 		user << "<span class='notice'>Access Denied</span>"
 
-/obj/structure/closet/secure_closet/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/secure_closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
