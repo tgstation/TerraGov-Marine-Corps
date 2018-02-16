@@ -710,13 +710,11 @@
 	density = !density
 
 	if(closed)
-		user.visible_message("<span class='notice'>[user] flips the [src] closed.</span>",
-		"<span class='notice'>You flip the [src] closed.</span>")
+		user.visible_message("<span class='notice'>[user] flips [src] open.</span>",
+		"<span class='notice'>You flip [src] open.</span>")
 	else
-		user.visible_message("<span class='notice'>[user] flips the [src] open.</span>",
-		"<span class='notice'>You flip the [src] open.</span>")
-
-
+		user.visible_message("<span class='notice'>[user] flips [src] closed.</span>",
+		"<span class='notice'>You flip [src] closed.</span>")
 
 	update_icon()
 	update_overlay()
