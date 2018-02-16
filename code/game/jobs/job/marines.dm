@@ -1,6 +1,12 @@
 
 //Marine jobs. All marines are genericized when they first log in, then it auto assigns them to squads.
 
+proc/medic_slot_formula(var/playercount)
+	return Clamp((playercount/45)+1, 2, 4) // 3rd medic at 90, 4th at 135
+
+proc/engi_slot_formula(var/playercount)
+	return Clamp((playercount/60)+1, 2, 3) // 3rd engi at 120
+
 /datum/job/marine
 	department_flag = ROLEGROUP_MARINE_SQUAD_MARINES
 	supervisors = "the acting squad leader"
@@ -50,6 +56,8 @@ You are also in charge of communicating with command and letting them know about
 	title = "Squad Engineer"
 	comm_title = "Eng"
 	paygrade = "E4"
+	total_positions = 12
+	spawn_positions = 12
 	flag = ROLE_MARINE_ENGINEER
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
@@ -65,6 +73,9 @@ You are also in charge of communicating with command and letting them know about
 		. = ..() + {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
 Your squaddies will look to you when it comes to construction in the field of battle."}
 
+	get_total_positions()
+		return (engi_slot_formula(clients.len)*4)
+
 /datum/job/marine/engineer/equipped
 	flags_startup_parameters = ROLE_ADD_TO_SQUAD
 
@@ -72,6 +83,8 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	title = "Squad Medic"
 	comm_title = "Med"
 	paygrade = "E4"
+	total_positions = 16
+	spawn_positions = 16
 	flag = ROLE_MARINE_MEDIC
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
@@ -86,6 +99,9 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	generate_entry_message()
 		. = ..() + {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."}
+
+	get_total_positions()
+		return (medic_slot_formula(clients.len)*4)
 
 /datum/job/marine/medic/equipped
 	flags_startup_parameters = ROLE_ADD_TO_SQUAD

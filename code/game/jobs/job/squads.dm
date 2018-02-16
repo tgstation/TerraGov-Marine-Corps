@@ -13,8 +13,8 @@
 	var/list/access = list() //Which special access do we grant them
 	var/usable = 0	 //Is it a valid squad?
 	var/no_random_spawn = 0 //Stop players from spawning into the squad
-	var/max_engineers = 2 //maximum # of engineers allowed in squad
-	var/max_medics = 2 //Ditto, squad medics
+	var/max_engineers = 3 //maximum # of engineers allowed in squad
+	var/max_medics = 4 //Ditto, squad medics
 	var/max_specialists = 1
 	var/num_specialists = 0
 	var/max_smartgun = 1

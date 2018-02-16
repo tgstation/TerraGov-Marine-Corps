@@ -164,5 +164,5 @@
 
 //This lets you scale max jobs at runtime
 //All you have to do is rewrite the inheritance
-/datum/job/proc/get_total_positions() . = latejoin ? spawn_positions : total_positions
-
+/datum/job/proc/get_total_positions(var/latejoin)
+	return latejoin ? spawn_positions : total_positions

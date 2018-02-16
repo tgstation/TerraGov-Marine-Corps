@@ -338,8 +338,8 @@
 
 		for(var/datum/squad/sq in RoleAuthority.squads)
 			if(sq)
-				sq.max_engineers = Clamp((clients.len/60)+1, 2, 3) // 3rd engi at 120
-				sq.max_medics = Clamp((clients.len/50)+1, 2, 4) // 3rd medic at 100, 4th at 150
+				sq.max_engineers = engi_slot_formula(clients.len)
+				sq.max_medics = medic_slot_formula(clients.len)
 
 		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
 			ticker.mode.spawn_latejoin_larva()
