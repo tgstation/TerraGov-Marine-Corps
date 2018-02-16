@@ -2,10 +2,10 @@
 //Marine jobs. All marines are genericized when they first log in, then it auto assigns them to squads.
 
 proc/medic_slot_formula(var/playercount)
-	return Clamp((playercount/45)+1, 2, 4) // 3rd medic at 90, 4th at 135
+	return round(Clamp((playercount/45)+1, 2, 4)) // 3rd medic at 90, 4th at 135
 
 proc/engi_slot_formula(var/playercount)
-	return Clamp((playercount/60)+1, 2, 3) // 3rd engi at 120
+	return round(Clamp((playercount/60)+1, 2, 3)) // 3rd engi at 120
 
 /datum/job/marine
 	department_flag = ROLEGROUP_MARINE_SQUAD_MARINES
