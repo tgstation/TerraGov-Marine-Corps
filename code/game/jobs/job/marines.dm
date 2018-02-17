@@ -74,6 +74,9 @@ You are also in charge of communicating with command and letting them know about
 Your squaddies will look to you when it comes to construction in the field of battle."}
 
 	get_total_positions()
+		for(var/datum/squad/sq in RoleAuthority.squads)
+			if(sq)
+				sq.max_engineers = engi_slot_formula(clients.len)
 		return (engi_slot_formula(clients.len)*4)
 
 /datum/job/marine/engineer/equipped
@@ -101,6 +104,9 @@ Your squaddies will look to you when it comes to construction in the field of ba
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."}
 
 	get_total_positions()
+		for(var/datum/squad/sq in RoleAuthority.squads)
+			if(sq)
+				sq.max_medics = medic_slot_formula(clients.len)
 		return (medic_slot_formula(clients.len)*4)
 
 /datum/job/marine/medic/equipped
