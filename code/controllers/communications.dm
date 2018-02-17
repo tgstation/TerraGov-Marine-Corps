@@ -111,22 +111,22 @@ var/const/DTH_FREQ 		= 1344
 var/const/AI_FREQ 		= 1447
 
 //Ship department channels
-var/const/PUB_FREQ 		= 1461
-
 var/const/COMM_FREQ 	= 1353
 var/const/MED_FREQ 		= 1355
 var/const/ENG_FREQ 		= 1357
 var/const/SEC_FREQ 		= 1359
 var/const/SUP_FREQ 		= 1354
 
-//Marine channels
-var/const/ALPHA_FREQ 	= 1361
-var/const/BRAVO_FREQ 	= 1363
-var/const/CHARLIE_FREQ 	= 1365
-var/const/DELTA_FREQ 	= 1367
+var/const/DS1_FREQ		= 1443
+var/const/DS2_FREQ		= 1445
 
-var/const/DS1_FREQ		= 1441
-var/const/DS2_FREQ		= 1443
+//Marine channels
+var/const/ALPHA_FREQ 	= 1449
+var/const/BRAVO_FREQ 	= 1451
+var/const/CHARLIE_FREQ 	= 1453
+var/const/DELTA_FREQ 	= 1455
+
+var/const/PUB_FREQ 		= 1461
 
 //Civilian channels
 var/const/CIV_GEN_FREQ 	= 1469
