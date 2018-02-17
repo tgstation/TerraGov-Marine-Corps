@@ -207,7 +207,7 @@
 	New()
 		..()
 		reagents.add_reagent("coffee", 10)
-		reagents.add_reagent("milk", 20)
+		reagents.add_reagent("water", 20)
 
 /obj/item/reagent_container/food/drinks/tea
 	name = "\improper Duke Purple Tea"
