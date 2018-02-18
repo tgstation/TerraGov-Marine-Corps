@@ -5,6 +5,8 @@
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	flags_inventory = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	w_class = 3.0
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
