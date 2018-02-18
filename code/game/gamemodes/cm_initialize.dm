@@ -86,7 +86,7 @@ Additional game mode variables.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
-	xeno_starting_num = Clamp((ready_players/5), xeno_required_num, INFINITY) //(n, minimum, maximum)
+	xeno_starting_num = Clamp((ready_players/8), xeno_required_num, INFINITY) //(n, minimum, maximum)
 	surv_starting_num = Clamp((ready_players/25), 0, 8)
 	merc_starting_num = Clamp((ready_players/3), 1, INFINITY)
 	for(var/datum/squad/sq in RoleAuthority.squads)
