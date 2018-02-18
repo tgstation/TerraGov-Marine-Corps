@@ -144,6 +144,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 900
 					upgrade_threshold = 1600
 					spit_delay = 30
+					bomb_strength = 1.5
 					caste_desc = "Some sort of abomination. It looks a little more dangerous."
 					armor_deflection = 30
 					tacklemin = 3
@@ -333,6 +334,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 1000
 					upgrade_threshold = 3200
 					spit_delay = 20
+					bomb_strength = 2
 					caste_desc = "Some sort of abomination. It looks pretty strong."
 					armor_deflection = 35
 					tacklemin = 3
@@ -521,6 +523,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_gain = 50
 					plasma_max = 1000
 					spit_delay = 10
+					bomb_strength = 2.5
 					caste_desc = "A devestating piece of alien artillery."
 					armor_deflection = 35
 					tacklemin = 4
