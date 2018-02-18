@@ -33,7 +33,6 @@
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/storage/backpack/marine = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
-					/obj/item/device/radio/headset/almayer = 5,
 					/obj/item/storage/belt/marine = 5,
 					/obj/item/storage/belt/shotgun = 3,
 					/obj/item/storage/belt/knifepouch = 5,
@@ -168,17 +167,20 @@
 	premium = list()
 
 
-	select_gamemode_equipment(gamemode)
-		return
+/obj/machinery/vending/marine/cargo_guns/select_gamemode_equipment(gamemode)
+	return
 
-	New()
-		..()
-		cargo_guns_vendors.Add(src)
-		marine_vendors.Remove(src)
+/obj/machinery/vending/marine/cargo_guns/New()
+	..()
+	cargo_guns_vendors.Add(src)
+	marine_vendors.Remove(src)
 
-	Dispose()
-		. = ..()
-		cargo_guns_vendors.Remove(src)
+/obj/machinery/vending/marine/cargo_guns/Dispose()
+	. = ..()
+	cargo_guns_vendors.Remove(src)
+
+
+
 
 /obj/machinery/vending/marine/cargo_ammo
 	name = "\improper ColMarTech automated munition vendor"
@@ -230,17 +232,18 @@
 	premium = list()
 
 
-	select_gamemode_equipment(gamemode)
-		return
+/obj/machinery/vending/marine/cargo_ammo/select_gamemode_equipment(gamemode)
+	return
 
-	New()
-		..()
-		cargo_ammo_vendors.Add(src)
-		marine_vendors.Remove(src)
+/obj/machinery/vending/marine/cargo_ammo/New()
+	..()
+	cargo_ammo_vendors.Add(src)
+	marine_vendors.Remove(src)
 
-	Dispose()
-		. = ..()
-		cargo_ammo_vendors.Remove(src)
+/obj/machinery/vending/marine/cargo_ammo/Dispose()
+	. = ..()
+	cargo_ammo_vendors.Remove(src)
+
 
 
 
@@ -324,19 +327,21 @@
 					/obj/item/reagent_container/blood/empty = 10)
 	contraband = list()
 
-	build_inventory(productlist[])
-		. = ..()
-		var/temp_list[] = productlist
-		var/obj/item/reagent_container/blood/temp_path
-		var/datum/data/vending_product/R
-		var/blood_type
-		for(R in (product_records + hidden_records + coin_records))
-			if(R.product_path in temp_list)
-				temp_path = R.product_path
-				blood_type = initial(temp_path.blood_type)
-				R.product_name += blood_type? " [blood_type]" : ""
-				temp_list -= R.product_path
-				if(!temp_list.len) break
+/obj/machinery/vending/MarineMed/Blood/build_inventory(productlist[])
+	. = ..()
+	var/temp_list[] = productlist
+	var/obj/item/reagent_container/blood/temp_path
+	var/datum/data/vending_product/R
+	var/blood_type
+	for(R in (product_records + hidden_records + coin_records))
+		if(R.product_path in temp_list)
+			temp_path = R.product_path
+			blood_type = initial(temp_path.blood_type)
+			R.product_name += blood_type? " [blood_type]" : ""
+			temp_list -= R.product_path
+			if(!temp_list.len) break
+
+
 
 /obj/machinery/vending/marine_engi
 	name = "\improper ColMarTech Engineer Vendor"
@@ -380,6 +385,7 @@
 					/obj/item/storage/box/sentry = 1,
 					/obj/item/storage/box/m56d_hmg = 1
 					)
+
 
 /obj/machinery/vending/marine_medic
 	name = "\improper ColMarTech Medic Vendor"
@@ -441,6 +447,7 @@
 					/obj/item/storage/box/heavy_armor = 1
 			)
 	prices = list()
+
 
 /obj/machinery/vending/shared_vending/marine_special
 	name = "\improper ColMarTech Specialist Vendor"
@@ -581,12 +588,65 @@
 						/obj/item/attachable/flamer = 3
 					)
 
-	New()
+/obj/machinery/vending/attachments/New()
+	..()
+	attachment_vendors.Add(src)
 
-		..()
+/obj/machinery/vending/attachments/Dispose()
+	. = ..()
+	attachment_vendors.Remove(src)
 
-		attachment_vendors.Add(src)
 
-	Dispose()
-		. = ..()
-		attachment_vendors.Remove(src)
+
+/obj/machinery/vending/uniform_supply
+	name = "\improper ColMarTech surplus uniform vendor"
+	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
+	icon_state = "uniform_marine"
+	icon_vend = "uniform_marine_vend"
+	icon_deny = "uniform_marine"
+	req_access = null
+	req_access_txt = "0"
+	req_one_access = null
+	req_one_access_txt = "9;2;21"
+	var/squad_tag = ""
+
+	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	products = list(
+					/obj/item/storage/backpack/marine = 10,
+					/obj/item/storage/backpack/marine/satchel = 10,
+					/obj/item/storage/belt/marine = 10,
+					/obj/item/clothing/shoes/marine = 20,
+					/obj/item/clothing/under/marine = 20,
+					/obj/item/clothing/suit/storage/marine = 20,
+					/obj/item/clothing/head/helmet/marine = 20
+					)
+
+	prices = list()
+
+/obj/machinery/vending/uniform_supply/New()
+	..()
+	var/products2[]
+	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
+		switch(squad_tag)
+			if("Alpha")
+				products2 = list(/obj/item/device/radio/headset/almayer/marine/alpha = 20,
+								/obj/item/clothing/gloves/marine/alpha = 10)
+			if("Bravo")
+				products2 = list(/obj/item/device/radio/headset/almayer/marine/bravo = 20,
+								/obj/item/clothing/gloves/marine/bravo = 10)
+			if("Charlie")
+				products2 = list(/obj/item/device/radio/headset/almayer/marine/charlie = 20,
+								/obj/item/clothing/gloves/marine/charlie = 10)
+			if("Delta")
+				products2 = list(/obj/item/device/radio/headset/almayer/marine/delta = 20,
+								/obj/item/clothing/gloves/marine/delta = 10)
+	else
+		products2 = list(/obj/item/device/radio/headset/almayer = 10,
+						/obj/item/clothing/gloves/marine = 10)
+	build_inventory(products2)
+	marine_vendors.Add(src)
+
+
+/obj/machinery/vending/uniform_supply/Dispose()
+	. = ..()
+	marine_vendors.Remove(src)
