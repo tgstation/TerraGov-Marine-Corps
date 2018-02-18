@@ -104,3 +104,6 @@
 	var/charge_speed_buildup = 0.15 //POSITIVE amount of speed built up during a charge each step
 	var/charge_turfs_to_charge = 5 //Amount of turfs to build up before a charge begins
 	var/charge_roar = 0 //Did we roar in our charge yet ?
+
+	//Boiler vars
+	var/bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade

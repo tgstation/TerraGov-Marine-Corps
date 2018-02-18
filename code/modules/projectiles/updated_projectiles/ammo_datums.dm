@@ -1057,31 +1057,40 @@
 		smoke_system = null
 		. = ..()
 
-	on_hit_mob(mob/M,obj/item/projectile/P)
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		drop_nade(get_turf(P))
 
-	on_hit_obj(obj/O,obj/item/projectile/P)
+	on_hit_obj(obj/O, obj/item/projectile/P)
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		drop_nade(get_turf(P))
 
-	on_hit_turf(turf/T,obj/item/projectile/P)
+	on_hit_turf(turf/T, obj/item/projectile/P)
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		if(T.density && isturf(P.loc))
 			drop_nade(P.loc) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 		else
 			drop_nade(T)
 
-
-
 	do_at_max_range(obj/item/projectile/P)
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		drop_nade(get_turf(P))
 
-	proc/set_xeno_smoke()
+	proc/set_xeno_smoke(obj/item/projectile/P)
 		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
 
 	proc/drop_nade(turf/T)
-		smoke_system.set_up(3, 0, T)
+		smoke_system.set_up(4, 0, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>")
-
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
@@ -1089,7 +1098,7 @@
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
-	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR|AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
 
 	New()
 		..()
@@ -1100,15 +1109,13 @@
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
 
-	set_xeno_smoke()
+	set_xeno_smoke(obj/item/projectile/P)
 		smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
 
-
 	drop_nade(turf/T)
-		smoke_system.set_up(2, 0, T)
+		smoke_system.set_up(3, 0, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
-
 
 /*
 //================================================

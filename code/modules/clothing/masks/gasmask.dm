@@ -11,6 +11,7 @@
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
+	var/vision_impair = 1 //Oh lord, the pre-alpha curse
 	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
@@ -36,6 +37,7 @@
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
+	vision_impair = 0
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 	flags_inventory = HIDEEARS|HIDEFACE|COVERMOUTH|ALLOWINTERNALS|HIDEALLHAIR|BLOCKGASEFFECT|ALLOWREBREATH
 
