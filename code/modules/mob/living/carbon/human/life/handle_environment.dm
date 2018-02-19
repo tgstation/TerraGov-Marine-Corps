@@ -109,12 +109,3 @@
 			pressure_alert = -2
 		else
 			pressure_alert = -1
-
-	//Smoke/boiler glob processing!
-	if(isturf(loc) && !stat)
-		var/obj/effect/particle_effect/smoke/xeno_weak/X = locate() in loc
-		if(X)
-			X.affect(src)
-		var/obj/effect/particle_effect/smoke/xeno_burn/Z = locate() in loc
-		if(Z)
-			Z.affect(src)
