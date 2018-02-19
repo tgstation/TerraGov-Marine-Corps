@@ -19,14 +19,19 @@
 	. = ..()
 
 	if (.) //Only update when looking at the Status panel.
-		if(!living_xeno_queen)
+		if(!evolution_allowed)
+			stat(null, "Evolve Progress (FINISHED)")
+		else if(!living_xeno_queen)
 			stat(null, "Evolve Progress (HALTED - NO QUEEN)")
 		else if(!living_xeno_queen.ovipositor)
 			stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
-		else if(!evolution_allowed)
-			stat(null, "Evolve Progress (FINISHED)")
 		else
 			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
+
+		if(upgrade != -1 && upgrade != 3) //upgrade possible
+			stat(null, "Upgrade Progress: [upgrade_stored]/[upgrade_threshold]")
+		else //Upgrade process finished or impossible
+			stat(null, "Upgrade Progress (FINISHED)")
 
 		if(plasma_max > 0)
 			if(is_robotic)
