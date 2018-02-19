@@ -28,7 +28,6 @@
 	..()
 	if(oldamount)
 		amount = oldamount - 1
-	apply_smoke_effect(loc)
 	time_to_live += rand(-1,1)
 	processing_objects.Add(src)
 
@@ -263,7 +262,7 @@
 	M << "<span class='danger'>Your skin feels like it is melting away!</span>"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.adjustFireLoss(amount*rand(20, 25)) //Burn damage, randomizes between various parts //Amount corresponds to upgrade level, 1 to 2.5
+		H.adjustFireLoss(amount*rand(15, 20)) //Burn damage, randomizes between various parts //Amount corresponds to upgrade level, 1 to 2.5
 	else
 		M.burn_skin(5) //Failsafe for non-humans
 	M.updatehealth()
