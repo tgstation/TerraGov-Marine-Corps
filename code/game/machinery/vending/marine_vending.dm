@@ -65,7 +65,6 @@
 
 	prices = list()
 
-
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
 	switch(gamemode)
@@ -73,22 +72,15 @@
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
 							)
-		if(/datum/game_mode/bigred)
-			products2 = list(
-						/obj/item/clothing/mask/gas/ = 20,
-							)
 	build_inventory(products2)
-
 
 /obj/machinery/vending/marine/New()
 	..()
 	marine_vendors.Add(src)
 
-
 /obj/machinery/vending/marine/Dispose()
 	. = ..()
 	marine_vendors.Remove(src)
-
 
 /obj/machinery/vending/marine/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/gun))
@@ -99,6 +91,9 @@
 		return TRUE
 	. = ..()
 
+//What do grenade do against candy machine?
+/obj/machinery/vending/marine/ex_act(severity)
+	return
 
 /obj/machinery/vending/marine/cargo_guns
 	name = "\improper ColMarTech automated armaments vendor"
@@ -146,7 +141,8 @@
 					/obj/item/explosive/grenade/smokebomb = 1,
 					/obj/item/explosive/grenade/phosphorus = 0,
 					/obj/item/storage/box/m94 = 8,
-					/obj/item/device/flashlight/combat = 5
+					/obj/item/device/flashlight/combat = 5,
+					/obj/item/clothing/mask/gas = 10
 					)
 
 	contraband = list(
@@ -377,7 +373,8 @@
 						/obj/item/storage/pouch/construction = 3,
 						/obj/item/storage/pouch/tools = 3,
 						/obj/item/storage/pouch/electronics = 3,
-						/obj/item/storage/pouch/magazine = 3
+						/obj/item/storage/pouch/magazine = 3,
+						/obj/item/clothing/mask/gas = 3
 					)
 	contraband = list(/obj/item/cell/super = 1)
 
@@ -411,7 +408,8 @@
 						/obj/item/storage/pouch/medical = 4,
 						/obj/item/storage/pouch/medkit = 4,
 						/obj/item/storage/pouch/magazine = 4,
-						/obj/item/storage/pouch/pistol = 4
+						/obj/item/storage/pouch/pistol = 4,
+						/obj/item/clothing/mask/gas = 4
 					)
 	contraband = list(/obj/item/reagent_container/blood/OMinus = 1)
 
@@ -436,7 +434,8 @@
 //						/obj/item/tank/phoron/m240 = 3,
 						///obj/item/weapon/shield/riot = 1,
 						/obj/item/storage/pouch/magazine/large = 1,
-						/obj/item/storage/pouch/general/medium = 1
+						/obj/item/storage/pouch/general/medium = 1,
+						/obj/item/clothing/mask/gas = 1
 			)
 	contraband = list()
 	premium = list(
@@ -463,7 +462,8 @@
 						/obj/item/coin/marine = 1,
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/storage/pouch/magazine/large = 1,
-						/obj/item/storage/pouch/general/medium = 1
+						/obj/item/storage/pouch/general/medium = 1,
+						/obj/item/clothing/mask/gas = 1
 			)
 	contraband = list()
 	//premium = list(/obj/item/weapon/shield/riot = 1)	//NOTE: This needs to be re-worked so we don't have to have a riot shield in here at all. ~Bmc777
@@ -500,7 +500,8 @@
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/storage/box/m56_system = 1,
 						/obj/item/smartgun_powerpack = 1,
-						/obj/item/storage/pouch/magazine = 1
+						/obj/item/storage/pouch/magazine = 1,
+						/obj/item/clothing/mask/gas = 1
 			)
 	contraband = list()
 	premium = list()
@@ -533,7 +534,8 @@
 						/obj/item/ammo_magazine/flamer_tank = 8,
 						/obj/item/storage/pouch/magazine/large = 1,
 						/obj/item/storage/pouch/general/large = 1,
-						/obj/item/storage/pouch/pistol = 1
+						/obj/item/storage/pouch/pistol = 1,
+						/obj/item/clothing/mask/gas = 1
 					)
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)

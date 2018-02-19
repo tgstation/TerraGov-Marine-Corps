@@ -89,21 +89,15 @@
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			cdel(src)
-			return
-		if(2.0)
-			if (prob(50))
+		if(2)
+			if(prob(50))
 				cdel(src)
-				return
-		if(3.0)
-			if (prob(25))
+		if(3)
+			if(prob(25))
 				spawn(0)
-					src.malfunction()
-					return
-				return
-		else
-	return
+					malfunction()
 
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return
