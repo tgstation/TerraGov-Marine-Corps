@@ -4,9 +4,9 @@
 	icon_state = "surgical_tray"
 	flags_atom = FPRINT|CONDUCT
 	w_class = 4 //Should not fit in backpacks
-	storage_slots = 11
-	max_storage_space = 22
-	can_hold = list("/obj/item/tool/surgery", "/obj/item/stack/medical/advanced/bruise_pack")
+	storage_slots = 12
+	max_storage_space = 24
+	can_hold = list("/obj/item/tool/surgery", "/obj/item/stack/medical/advanced/bruise_pack", "/obj/item/stack/nanopaste")
 
 	New()
 		..()
@@ -21,6 +21,7 @@
 		new /obj/item/tool/surgery/bonegel(src)
 		new /obj/item/tool/surgery/bonesetter(src)
 		new /obj/item/tool/surgery/FixOVein(src)
+		new /obj/item/stack/nanopaste(src)
 
 /obj/item/storage/surgical_tray/update_icon()
 	if(!contents.len)
