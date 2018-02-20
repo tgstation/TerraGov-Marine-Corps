@@ -476,7 +476,7 @@ should be alright.
 	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
 		return
 
-	usr.visible_message("<span class='notice'>[user] begins stripping [A] from [src].</span>",
+	usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
 	"<span class='notice'>You begin stripping [A] from [src].</span>")
 
 	if(!do_after(usr,35, TRUE, 5, BUSY_ICON_CLOCK))
@@ -490,7 +490,7 @@ should be alright.
 	if(zoom)
 		return
 
-	usr.visible_message("<span class='notice'>[user] strips [A] from [src].</span>",
+	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",
 	"<span class='notice'>You strip [A] from [src].</span>")
 	A.Detach(src)
 
