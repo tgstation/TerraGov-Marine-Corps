@@ -418,7 +418,7 @@
 		penetration= config.low_armor_penetration
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		knockback(M,P)
+		knockback(M, P, 5)
 
 
 
