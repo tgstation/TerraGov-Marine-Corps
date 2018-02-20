@@ -4,8 +4,8 @@
 	layer = ABOVE_MOB_LAYER //so it sits above objects including mobs
 	density = 1
 	anchored = 1
-	animate_movement=1
-	luminosity = 3
+	animate_movement = 1
+	luminosity = 2
 	can_buckle = TRUE
 
 	var/attack_log = null
@@ -135,13 +135,13 @@
 	if(powered && cell.charge < charge_use)
 		return 0
 	on = 1
-	luminosity = initial(luminosity)
+	SetLuminosity(initial(luminosity))
 	update_icon()
 	return 1
 
 /obj/vehicle/proc/turn_off()
 	on = 0
-	luminosity = 0
+	SetLuminosity(0)
 	update_icon()
 
 /obj/vehicle/proc/Emag(mob/user as mob)
@@ -228,6 +228,9 @@
 		M.pixel_y = initial(buckled_mob.pixel_y)
 		M.old_y = initial(buckled_mob.pixel_y)
 
+/obj/vehicle/Dispose()
+	SetLuminosity(0)
+	. = ..()
 
 //-------------------------------------------------------
 // Stat update procs

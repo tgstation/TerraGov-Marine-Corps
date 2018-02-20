@@ -384,7 +384,6 @@ var/global/list/uneatable = list(
 		M.apply_effect(rand(radiationmin,radiation), IRRADIATE)
 		toxdamage = (toxdamage - (toxdamage*M.getarmor(null, "rad")))
 		M.apply_effect(toxdamage, TOX)
-	return
 
 /obj/machinery/singularity/proc/mezzer()
 	for(var/mob/living/carbon/M in oviewers(8, src))
@@ -397,14 +396,15 @@ var/global/list/uneatable = list(
 		M << "\red You look directly into [src] and feel weak."
 		M.apply_effect(3, STUN)
 		visible_message("<span class='danger'>[M] stares blankly at [src]!</span>")
-	return
 
 /obj/machinery/singularity/proc/emp_area()
 	empulse(src, 8, 10)
-	return
 
 /obj/machinery/singularity/proc/pulse()
 	for(var/obj/machinery/power/rad_collector/R in rad_collectors)
 		if(get_dist(R, src) <= 15) // Better than using orange() every process
 			R.receive_pulse(energy)
-	return
+
+/obj/machinery/singularity/Dispose()
+	SetLuminosity(0)
+	. = ..()
