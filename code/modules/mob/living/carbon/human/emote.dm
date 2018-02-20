@@ -419,10 +419,14 @@
 				src << "<br><b>As a Predator, you have the following additional emotes. Tip: The *medic emote has neither a cooldown nor a visibile origin...<br><br>\
 				<span style='color: green;'>anytime</span>, \
 				<span style='color: green;'>click</span>, \
+				<span style='color: green;'>helpme</span>, \
 				<span style='color: green;'>iseeyou</span>, \
+				<span style='color: green;'>itsatrap</span>, \
 				<span style='color: green;'>laugh1</span>, \
 				<span style='color: green;'>laugh2</span>, \
 				<span style='color: green;'>laugh3</span>, \
+				<span style='color: green;'>malescream</span>, \
+				<span style='color: green;'>femalescream</span>, \
 				me, \
 				<span style='color: green;'>overhere</span>, \
 				<span style='color: green;'>turnaround</span>, \
@@ -442,10 +446,26 @@
 						playsound(src.loc, 'sound/voice/pred_click1.ogg', 25, 1)
 					else
 						playsound(src.loc, 'sound/voice/pred_click2.ogg', 25, 1)
+		if ("helpme")
+			if(has_species(src,"Yautja") && src.loc)
+				m_type = 1
+				playsound(src.loc, 'sound/voice/pred_helpme.ogg', 25, 0)
+		if("malescream")
+			if(has_species(src,"Yautja") && src.loc)
+				m_type = 1
+				playsound(loc, "scream_male", 50)
+		if("femalescream")
+			if(has_species(src,"Yautja") && src.loc)
+				m_type = 1
+				playsound(loc, "scream_female", 50)
 		if ("iseeyou")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1
 				playsound(src.loc, 'sound/hallucinations/i_see_you2.ogg', 25, 0)
+		if ("itsatrap")
+			if(has_species(src,"Yautja") && src.loc)
+				m_type = 1
+				playsound(src.loc, 'sound/voice/pred_itsatrap.ogg', 25, 0)
 		if ("laugh1")
 			if(has_species(src,"Yautja") && src.loc)
 				m_type = 1

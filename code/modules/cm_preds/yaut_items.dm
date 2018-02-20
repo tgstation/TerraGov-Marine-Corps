@@ -423,7 +423,7 @@
 			M << "<span class='notice'>You are now invisible to normal detection.</span>"
 			for(var/mob/O in oviewers(M))
 				O.show_message("[M] vanishes into thin air!",1)
-			playsound(M.loc,'sound/effects/cloakon.ogg', 15, 1)
+			playsound(M.loc,'sound/effects/pred_cloakon.ogg', 15, 1)
 			M.alpha = 10
 
 			var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
@@ -441,7 +441,7 @@
 		cloaked = 0
 		for(var/mob/O in oviewers(user))
 			O.show_message("[user.name] shimmers into existence!",1)
-		playsound(user.loc,'sound/effects/cloakoff.ogg', 15, 1)
+		playsound(user.loc,'sound/effects/pred_cloakoff.ogg', 15, 1)
 		user.alpha = initial(user.alpha)
 		cloak_timer = 10
 
