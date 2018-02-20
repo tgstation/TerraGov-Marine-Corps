@@ -521,7 +521,7 @@
 	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 
 		for(var/mob/living/carbon/M in loc)
-			if(M.lying && !isXeno(M) && M.stat != DEAD)
+			if(M.lying && !isXeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>")
 				M.take_overall_damage(charge_speed * 40) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed

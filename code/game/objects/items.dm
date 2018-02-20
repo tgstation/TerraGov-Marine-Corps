@@ -697,13 +697,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
-			user << "<span class='warning'>You are already looking through [zoom_device].</span>"
+			user << "<span class='warning'>You are already looking through \the [zoom_device].</span>"
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
 	if(user.eye_blind) 												user << "<span class='warning'>You are too blind to see anything.</span>"
-	else if(user.stat || !ishuman(user)) 							user << "<span class='warning'>You are unable to focus through [zoom_device].</span>"
-	else if(!zoom && global_hud.darkMask[1] in user.client.screen) 	user << "<span class='warning'>Your welding equipment gets in the way of you looking through [zoom_device].</span>"
-	else if(!zoom && user.get_active_hand() != src)					user << "<span class='warning'>You need to hold [zoom_device] to look through it.</span>"
+	else if(user.stat || !ishuman(user)) 							user << "<span class='warning'>You are unable to focus through \the [zoom_device].</span>"
+	else if(!zoom && global_hud.darkMask[1] in user.client.screen) 	user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>"
+	else if(!zoom && user.get_active_hand() != src)					user << "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>"
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
@@ -732,8 +732,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				user.client.pixel_x = -viewoffset
 				user.client.pixel_y = 0
 
-		user.visible_message("<span class='notice'>[user] peers through [zoom_device].</span>",
-		"<span class='notice'>You peer through [zoom_device].</span>")
+		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
+		"<span class='notice'>You peer through \the [zoom_device].</span>")
 		zoom = !zoom
 		if(user.interactee)
 			user.unset_interaction()
