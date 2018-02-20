@@ -436,7 +436,7 @@
 
 	Dispose()
 		. = ..()
-		luminosity = 0
+		SetLuminosity(0)
 		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
 			world << "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>"

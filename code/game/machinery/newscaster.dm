@@ -111,6 +111,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 	Dispose()
 		allCasters -= src
+		SetLuminosity(0)
 		. = ..()
 
 /obj/machinery/newscaster/update_icon()

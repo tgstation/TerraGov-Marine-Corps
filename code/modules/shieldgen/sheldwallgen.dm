@@ -257,6 +257,7 @@
 
 /obj/machinery/shieldwall/Dispose()
 	update_nearby_tiles()
+	SetLuminosity(0)
 	. = ..()
 
 /obj/machinery/shieldwall/attack_hand(mob/user as mob)

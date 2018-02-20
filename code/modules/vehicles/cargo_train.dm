@@ -4,6 +4,7 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
 	on = 0
+	luminosity = 5 //Pretty strong because why not
 	powered = 1
 	locked = 0
 	charge_use = 15
@@ -23,6 +24,7 @@
 	name = "cargo train trolley"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
+	luminosity = 0
 	anchored = 0
 	locked = 0
 	can_buckle = FALSE
