@@ -126,8 +126,8 @@
 			user << "<span class='warning'>[M] is resisting, ground them.</span>"
 			return
 
-	user.visible_message("<span class='warning'>[src] pins [M] into the nest, preparing the securing resin.</span>",
-	"<span class='warning'>[src] pins [M] into the nest, preparing the securing resin.</span>")
+	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
+	"<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>")
 	if(do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
 		if(buckled_mob) //Just in case
 			user << "<span class='warning'>There's already someone in [src].</span>"

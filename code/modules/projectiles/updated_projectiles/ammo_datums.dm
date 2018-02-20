@@ -1021,6 +1021,13 @@
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
 
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+				return
+		..()
+
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
 	New()
@@ -1058,6 +1065,10 @@
 		. = ..()
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+				return
 		if(isXenoBoiler(P.firer))
 			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 			smoke_system.amount = B.upgrade

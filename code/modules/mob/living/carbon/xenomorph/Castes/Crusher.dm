@@ -66,7 +66,8 @@
 		if(!i) break
 		if(!isXeno(M))
 			if(M.loc == loc)
-				M.take_overall_damage(40) //The same as a full charge, but no more than that.
+				if(!(M.status_flags & XENO_HOST) && !istype(M.buckled, /obj/structure/bed/nest))
+					M.take_overall_damage(40) //The same as a full charge, but no more than that.
 				M.KnockDown(rand(2, 3))
 				M << "<span class='highdanger'>You are stomped on by [src]!</span>"
 			shake_camera(M, 2, 2)
@@ -239,7 +240,8 @@
 	. = ..()
 	if(. && X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
-		apply_damage(X.charge_speed * 40, BRUTE)
+		if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
+			apply_damage(X.charge_speed * 40, BRUTE)
 		KnockDown(X.charge_speed * 4)
 		animation_flash_color(src)
 		X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.

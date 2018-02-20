@@ -226,8 +226,6 @@
 
 /obj/effect/particle_effect/smoke/xeno_burn/apply_smoke_effect(turf/T)
 	for(var/mob/living/L in T)
-		if(istype(L.buckled, /obj/structure/bed/nest) && L.status_flags & XENO_HOST)
-			continue //nested infected hosts are not hurt by acid smoke
 		affect(L)
 	for(var/obj/structure/barricade/B in T)
 		B.acid_smoke_damage(src)
@@ -243,6 +241,8 @@
 	if(isYautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
+		return
+	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
 		return
 
 	//Gas masks protect from inhalation and face contact effects, even without internals. Breath masks don't for balance reasons
@@ -285,6 +285,8 @@
 	if(isYautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
+		return
+	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
 		return
 
 	var/effect_amt = round(6 + amount*6)
