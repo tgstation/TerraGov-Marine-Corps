@@ -316,22 +316,24 @@ should be alright.
 	var/can_attach = 1
 	switch(attachment.slot)
 		if("rail")
-			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
 		if("muzzle")
-			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
 		if("under")
-			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
 		if("stock")
-			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
 
 	if(!can_attach)
 		user << "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>"
 		return
 
-	user << "<span class='notice'>You begin field modifying [src]...</span>"
+	user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
+	"<span class='notice'>You begin attaching [attachment] to [src].</span>")
 	if(do_after(user,60, TRUE, 5, BUSY_ICON_CLOCK))
 		if(attachment && attachment.loc)
-			user << "<span class='notice'>You attach [attachment] to [src].</span>"
+			user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
+			"<span class='notice'>You attach [attachment] to [src].</span>")
 			user.temp_drop_inv_item(attachment)
 			attachment.Attach(src)
 			update_attachable(attachment.slot)
@@ -474,7 +476,8 @@ should be alright.
 	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
 		return
 
-	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
+	usr.visible_message("<span class='notice'>[user] begins stripping [A] from [src].</span>",
+	"<span class='notice'>You begin stripping [A] from [src].</span>")
 
 	if(!do_after(usr,35, TRUE, 5, BUSY_ICON_CLOCK))
 		return
@@ -487,7 +490,8 @@ should be alright.
 	if(zoom)
 		return
 
-	usr << "<span class='notice'>You remove [src]'s [stock].</span>"
+	usr.visible_message("<span class='notice'>[user] strips [A] from [src].</span>",
+	"<span class='notice'>You strip [A] from [src].</span>")
 	A.Detach(src)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1)

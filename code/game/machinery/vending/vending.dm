@@ -556,6 +556,11 @@
 				if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
 					user << "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>"
 					return
+				for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
+					if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
+						user << "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>"
+						return
+
 			if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/A = item_to_stock
 				if(A.current_rounds < A.max_rounds)
@@ -566,7 +571,7 @@
 					item_to_stock.unwield(user)
 				user.temp_drop_inv_item(item_to_stock)
 
-			if (istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc
 				S.remove_from_storage(item_to_stock, user.loc)
 
