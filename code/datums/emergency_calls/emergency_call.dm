@@ -75,7 +75,7 @@
 //	var/list/datum/mind/possible_joiners = ticker.mode.get_players_for_role(role_needed) //Default role_needed is BE_RESPONDER
 	for(var/mob/dead/observer/M in player_list)
 		if(M.client)
-			M << "<font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Join Response Team</b> verb, <B>IC tab</b>, to join!</span>"
+			M << "<font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Join Response Team</b> verb, <B>Ghost tab</b>, to join!</span>"
 			M << "<span class='attack'>You cannot join if you have been ghosted for less than a few minutes.</span>"
 
 /datum/game_mode/proc/activate_distress()
@@ -89,7 +89,7 @@
 
 /client/verb/JoinResponseTeam()
 	set name = "Join Response Team"
-	set category = "IC"
+	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
 	if(istype(usr,/mob/dead) || istype(usr,/mob/new_player))
