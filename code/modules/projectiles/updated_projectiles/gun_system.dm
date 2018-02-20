@@ -65,6 +65,7 @@
 	var/obj/item/attachable/under 	= null
 	var/obj/item/attachable/stock 	= null
 	var/obj/item/attachable/active_attachable = null //This will link to one of the above four, or remain null.
+	var/list/starting_attachment_types = list() //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
 	flags_atom 			 = FPRINT|CONDUCT
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
@@ -98,6 +99,11 @@
 		scatter = config.med_scatter_value
 		fire_delay = config.mhigh_fire_delay
 		burst_amount = config.min_burst_value
+		if(starting_attachment_types.len)
+			for(var/path in starting_attachment_types)
+				var/obj/item/attachable/A = new path(src)
+				A.Attach(src)
+				update_attachable(A.slot)
 		update_force_list() //This gives the gun some unique verbs for attacking.
 
 /obj/item/weapon/gun/Dispose()

@@ -514,6 +514,9 @@
 		if(AM != src && AM.density && !AM.CanPass(M, M.loc))
 			M << "<span class='warning'>\The [AM] prevents you from squeezing under \the [src]!</span>"
 			return
+	if(locked || welded) //Can't pass through airlocks that have been bolted down or welded
+		M << "<span class='warning'>\The [src] is locked down tight. You can't squeeze underneath!</span>"
+		return
 	M.visible_message("<span class='warning'>\The [M] scuttles underneath \the [src]!</span>", \
 	"<span class='warning'>You squeeze and scuttle underneath \the [src].</span>")
 	M.forceMove(loc)
