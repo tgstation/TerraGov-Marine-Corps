@@ -31,8 +31,8 @@
 	var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine-items.dmi',src,"etool_dirt"))
 	switch(dirt_type) // We can actually shape the color for what enviroment we dig up our dirt in.
 		if(DIRT_TYPE_GROUND) I.color = "#512A09"
-		if(DIRT_TYPE_MARS) I.color = "#EBEBEB"
-		if(DIRT_TYPE_SNOW) I.color = "#FF5500"
+		if(DIRT_TYPE_MARS) I.color = "#FF5500"
+		if(DIRT_TYPE_SNOW) I.color = "#EBEBEB"
 	if(has_dirt)	overlays += I
 	else
 		overlays -= I
