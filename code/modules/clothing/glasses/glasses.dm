@@ -221,6 +221,13 @@
 	eye_protection = 1
 	var/hud_type = MOB_HUD_SECURITY_ADVANCED
 
+/obj/item/clothing/glasses/sunglasses/sechud/eyepiece
+	name = "Security HUD Sight"
+	desc = "A standard eyepiece, but modified to display security information to the user visually. This makes it commonplace among military police, though other models exist."
+	icon_state = "securityhud"
+	item_state = "securityhud"
+	eye_protection = 1
+
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)

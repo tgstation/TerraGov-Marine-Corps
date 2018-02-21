@@ -108,7 +108,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/researcher,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
-				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
+				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/researcher,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
 				WEAR_R_STORE = /obj/item/storage/pouch/medical,
