@@ -115,13 +115,13 @@
 	if(W.flags_atom & NOBLUDGEON) return
 
 	if(istype(W, /obj/item/tool/wirecutters))
-		user.visible_message("[user] starts cutting through [src] with [W]",
-		"You start cutting through [src] with [W]")
+		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [W].</span>",
+		"<span class='notice'>You start cutting through [src] with [W]")
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			user.visible_message("[user] cuts through [src] with [W]",
-			"You cut through [src] with [W]")
+			user.visible_message("<span class='notice'>[user] cuts through [src] with [W].</span>",
+			"<span class='notice'>You cut through [src] with [W]")
 			cut_grille()
 	else
 		switch(W.damtype)
