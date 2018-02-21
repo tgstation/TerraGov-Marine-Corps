@@ -306,6 +306,18 @@
 		select_gamemode_skin(type)
 		..()
 
+/obj/item/clothing/head/helmet/marine/pyro
+	name = "\improper M35 helmet"
+	icon_state = "pyro_helmet"
+	desc = "A helmet designed for USCM Pyrotechnicians."
+	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Rasputin dropship manually and in safety."

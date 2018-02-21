@@ -257,7 +257,34 @@
 			user.mind.cm_skills.spec_weapons = SKILL_SPEC_SCOUT
 	..()
 
+/obj/item/storage/box/pyro
+	name = "\improper Pyrotechnician equipment"
+	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "armor_case"
+	w_class = 5
+	storage_slots = 8
+	slowdown = 1
+	can_hold = list()
+	foldable = null
 
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/M35(src)
+			new /obj/item/clothing/head/helmet/marine/pyro(src)
+			new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
+			new /obj/item/weapon/gun/flamer/M240T(src)
+			new /obj/item/ammo_magazine/flamer_tank/large(src)
+			new /obj/item/ammo_magazine/flamer_tank/large(src)
+			new /obj/item/ammo_magazine/flamer_tank/large/B(src)
+			new /obj/item/ammo_magazine/flamer_tank/large/X(src)
+
+/obj/item/storage/box/pyro/open(mob/user)
+	if(user.mind && user.mind.assigned_role == "Squad Specialist")
+		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
+			user.mind.cm_skills.spec_weapons = SKILL_SPEC_PYRO
+	..()
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
