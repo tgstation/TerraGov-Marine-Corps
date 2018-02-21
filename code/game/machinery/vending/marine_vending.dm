@@ -443,7 +443,7 @@
 					/obj/item/storage/box/heavy_grenadier = 1,
 					/obj/item/storage/box/m42c_system = 1,
 					/obj/item/storage/box/m42c_system_Jungle = 1,
-					/obj/item/storage/box/heavy_armor = 1
+					/obj/item/storage/box/pyro = 1
 			)
 	prices = list()
 
@@ -471,7 +471,8 @@
 					/obj/item/storage/box/demolitionist = 1,
 					/obj/item/storage/box/heavy_grenadier = 1,
 					/obj/item/storage/box/sniper = 1,
-					/obj/item/storage/box/scout = 1
+					/obj/item/storage/box/scout = 1,
+					/obj/item/storage/box/pyro = 1
 			)
 	prices = list()
 

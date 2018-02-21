@@ -134,6 +134,19 @@
 
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
+		if (isXeno(L))
+			var/mob/living/carbon/Xenomorph/X = L
+			if (X.on_fire && X.canmove && !knocked_down)
+				X.fire_stacks = max(X.fire_stacks - rand(3, 6), 0)
+				X.KnockDown(4, TRUE)
+				X.visible_message("<span class='danger'>[X] rolls on the floor, trying to put themselves out!</span>", \
+					"<span class='notice'>You stop, drop, and roll!</span>")
+				if (fire_stacks <= 0)
+					X.visible_message("<span class='danger'>[X] has successfully extinguished themselves!</span>", \
+					"<span class='notice'>You extinguish yourself.</span>")
+					ExtinguishMob()
+				return
+
 		var/mob/living/carbon/human/CM = L
 		if(CM.on_fire && CM.canmove && !knocked_down)
 			CM.fire_stacks = max(CM.fire_stacks - rand(3,6), 0)

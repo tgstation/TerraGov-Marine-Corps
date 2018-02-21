@@ -540,9 +540,27 @@
 	..()
 	user << "[reagents.total_volume] units of fuel left!"
 
+// Pyrotechnician Spec backpack fuel tank
+/obj/item/storage/backpack/marine/engineerpack/flamethrower
+	name = "\improper USCM technician welderpack"
+	desc = "A specialized fueltank worn by USCM Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
+	icon_state = "flamethrower_tank"
+	item_state = "flamethrower_tank"
+	max_fuel = 500
 
-
-
+/obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
+	if (istype(W, /obj/item/ammo_magazine/flamer_tank/large))
+		var/obj/item/ammo_magazine/flamer_tank/large/FTL = W
+		if(!FTL.current_rounds && reagents.total_volume)
+			var/fuel_available = reagents.total_volume < FTL.max_rounds ? reagents.total_volume : FTL.max_rounds
+			reagents.remove_reagent("fuel", fuel_available)
+			FTL.current_rounds = fuel_available
+			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+			FTL.caliber = "Fuel"
+			user << "<span class='notice'>You refill [FTL] with [lowertext(FTL.caliber)].</span>"
+			FTL.update_icon()
+			return
+	. = ..()
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"

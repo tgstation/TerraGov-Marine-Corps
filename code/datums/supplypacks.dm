@@ -125,18 +125,29 @@ WEAPONS
 
 
 /datum/supply_packs/flamethrower
-	name = "M240 Flamethrower crate (x3)"
+	name = "M240 Flamethrower crate"
 	contains = list(
-					/obj/item/weapon/gun/flamer,
-					/obj/item/weapon/gun/flamer,
 					/obj/item/weapon/gun/flamer,
 					/obj/item/ammo_magazine/flamer_tank,
 					/obj/item/ammo_magazine/flamer_tank,
 					/obj/item/ammo_magazine/flamer_tank
 					)
-	cost = 150
+	cost = 120
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M240 Incinerator crate"
+	group = "Weapons"
+
+/datum/supply_packs/pyro
+	name = "M240-T fuel crate"
+	contains = list(
+					/obj/item/ammo_magazine/flamer_tank/large,
+					/obj/item/ammo_magazine/flamer_tank/large,
+					/obj/item/ammo_magazine/flamer_tank/large/B,
+					/obj/item/ammo_magazine/flamer_tank/large/X
+					)
+	cost = 50
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper M240-T fuel crate"
 	group = "Weapons"
 
 /datum/supply_packs/weapons_sentry
