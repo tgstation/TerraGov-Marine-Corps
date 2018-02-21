@@ -227,13 +227,13 @@
 	if(!fuel || !on)
 		turn_off()
 		if(!fuel)
-			src.icon_state = "[initial(icon_state)]-empty"
+			icon_state = "[initial(icon_state)]-empty"
 		processing_objects -= src
 
 /obj/item/device/flashlight/flare/proc/turn_off()
 	on = 0
-	src.force = initial(src.force)
-	src.damtype = initial(src.damtype)
+	force = initial(force)
+	damtype = initial(damtype)
 	if(ismob(loc))
 		var/mob/U = loc
 		update_brightness(U)
@@ -253,8 +253,19 @@
 	// All good, turn it on.
 	if(.)
 		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
-		src.force = on_damage
-		src.damtype = "fire"
+		force = on_damage
+		damtype = "fire"
+		processing_objects += src
+
+/obj/item/device/flashlight/flare/on
+
+	New()
+
+		..()
+		on = 1
+		update_brightness()
+		force = on_damage
+		damtype = "fire"
 		processing_objects += src
 
 /obj/item/device/flashlight/slime
@@ -277,11 +288,6 @@
 
 /obj/item/device/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.
-
-
-
-
-
 
 /******************************Lantern*******************************/
 

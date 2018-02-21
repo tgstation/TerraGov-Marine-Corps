@@ -334,6 +334,25 @@ WEAPONS
 	group = "Weapons"
 
 
+/datum/supply_packs/mortar
+	name = "M402 mortar crate (x1)"
+	contains = list(
+					/obj/item/mortar_kit
+					)
+	cost = 150
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper M402 mortar crate"
+	group = "Weapons"
+
+
+/datum/supply_packs/mortar_ammo
+	name = "M402 mortar ammo crate (x4 HE, x4 INC, x4 FLR, x2 SMK, x2 FSH)"
+	cost = 60
+	containertype = /obj/structure/closet/crate/mortar_ammo
+	containername = "\improper M402 mortar ammo crate"
+	group = "Weapons"
+
+
 /*******************************************************************************
 ATTACHMENTS
 *******************************************************************************/
