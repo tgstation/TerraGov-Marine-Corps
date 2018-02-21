@@ -63,6 +63,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 2
 					tacklemax = 4
 					tackle_chance = 50
+					pounce_delay = 35
 				if("Hunter")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
@@ -78,6 +79,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
+					pounce_delay = 50
 				if("Ravager")
 					melee_damage_lower = 50
 					melee_damage_upper = 70
@@ -253,6 +255,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
+					pounce_delay = 30
 				if("Hunter")
 					melee_damage_lower = 35
 					melee_damage_upper = 50
@@ -268,6 +271,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 65
+					pounce_delay = 45
 				if("Ravager")
 					melee_damage_lower = 60
 					melee_damage_upper = 80
@@ -442,6 +446,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 70
+					pounce_delay = 25
 				if("Hunter")
 					src << "<span class='xenoannounce'>You are the epitome of the hunter. Few can stand against you in open combat.</span>"
 					melee_damage_lower = 50
@@ -457,6 +462,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 65
+					pounce_delay = 40
 				if("Ravager")
 					src << "<span class='xenoannounce'>You are death incarnate. All will tremble before you.</span>"
 					melee_damage_lower = 80

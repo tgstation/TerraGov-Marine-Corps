@@ -33,7 +33,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] pounces at [T]!</span>", \
 	"<span class='xenowarning'>You pounce at [T]!</span>")
-	usedPounce = 30 //About 12 seconds
+	usedPounce = 1
 	flags_pass = PASSTABLE
 	use_plasma(10)
 	throw_at(T, 6, 2, src) //Victim, distance, speed
@@ -43,7 +43,7 @@
 		else
 			flags_pass = 0 //Reset the passtable.
 
-	spawn(usedPounce)
+	spawn(pounce_delay)
 		usedPounce = 0
 		src << "<span class='notice'>You get ready to pounce again.</span>"
 		for(var/X in actions)

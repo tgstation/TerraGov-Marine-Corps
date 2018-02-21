@@ -26,7 +26,6 @@
 	var/tackle_chance = 50
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
 	var/caste_desc = null
-	var/usedPounce = 0
 	var/has_spat = 0
 	var/spit_delay = 60 //Delay timer for spitting
 	var/has_screeched = 0
@@ -107,3 +106,7 @@
 
 	//Boiler vars
 	var/bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
+
+	//Pounce vars
+	var/usedPounce = 0
+	var/pounce_delay = 40
