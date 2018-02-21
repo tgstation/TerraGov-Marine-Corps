@@ -301,7 +301,7 @@
 				current_squad.overwatch_officer = null //Reset the squad's officer.
 			var/mob/living/carbon/human/H = operator
 			var/obj/item/card/id/ID = H.get_idcard()
-			send_to_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "operator.name":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
+			send_to_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
 			visible_message("\icon[src] <span class='boldnotice'>Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
