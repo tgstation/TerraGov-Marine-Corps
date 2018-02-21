@@ -20,6 +20,7 @@
 	charge_type = 2 //Pounce - Hunter
 	armor_deflection = 15
 	attack_delay = -2
+	pounce_delay = 55
 	tier = 2
 	upgrade = 0
 	actions = list(
