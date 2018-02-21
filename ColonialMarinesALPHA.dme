@@ -926,6 +926,7 @@
 #include "code\modules\cm_marines\super_secret.dm"
 #include "code\modules\cm_marines\equipment\gear.dm"
 #include "code\modules\cm_marines\equipment\maps.dm"
+#include "code\modules\cm_marines\equipment\mortars.dm"
 #include "code\modules\cm_marines\equipment\sentries.dm"
 #include "code\modules\cm_marines\equipment\weapons.dm"
 #include "code\modules\cm_marines\Marine_Research\BioPrinter.dm"
