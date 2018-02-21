@@ -19,7 +19,7 @@
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	spit_delay = 40
-	speed = 0.5
+	speed = 0.7
 	pixel_x = -16
 	old_x = -16
 	caste_desc = "Gross!"
@@ -233,7 +233,15 @@
 			if(W.is_full_window())
 				break
 			if(prev_turf)
-				if(get_dir(prev_turf,W) == W.dir)
+				if(get_dir(W, prev_turf) == W.dir)
+					break
+
+		var/obj/structure/barricade/B = locate() in T
+		if(B)
+			B.health -= rand(20, 30)
+			B.update_health(TRUE)
+			if(prev_turf)
+				if(get_dir(B, prev_turf) == B.dir)
 					break
 
 		if(!prev_turf && length(turflist) > 1)
@@ -266,5 +274,5 @@
 				M << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
 				if(!isYautja(M))
 					M.emote("scream")
-					M.KnockDown(rand(4, 6))
+					M.KnockDown(rand(3, 4))
 

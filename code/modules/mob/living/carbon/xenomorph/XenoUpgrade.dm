@@ -34,7 +34,7 @@ Ravager		-1.0	-0.9	-0.8	-0.7
 Crusher		 0.1	 0.1	 0.1	 0.1	*-2.0 when charging
 Sentinel	-1.1	-1.0	-0.9	-0.8
 Spitter		-0.8	-0.7	-0.6	-0.5
-Boiler		 0.2	 0.3	 0.4	 0.5
+Boiler		 0.4	 0.5	 0.6	 0.7
 Preatorian	-0.2	-0.1	 0.0	 0.1
 Drone		-1.1	-1.0	-0.9	-0.8
 Hivelord	 0.1	 0.2	 0.3	 0.4
@@ -152,7 +152,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 65
-					speed = 0.4
+					speed = 0.6
 				if("Praetorian")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
@@ -344,7 +344,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 70
-					speed = 0.3
+					speed = 0.5
 				if("Praetorian")
 					melee_damage_lower = 30
 					melee_damage_upper = 35
@@ -535,7 +535,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 80
-					speed = 0.7
+					speed = 0.4
 				if("Praetorian")
 					src << "<span class='xenoannounce'>You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream.</span>"
 					melee_damage_lower = 40
