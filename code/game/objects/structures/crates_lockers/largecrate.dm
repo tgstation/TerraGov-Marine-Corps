@@ -110,6 +110,78 @@
 		var/obj/item/thing = pick(stuff)
 		new thing(src)
 
+/obj/structure/largecrate/random/case
+	name = "storage case"
+	desc = "A black storage case."
+	icon_state = "case"
+
+/obj/structure/largecrate/random/case/double
+	name = "cases"
+	desc = "A stack of black storage cases."
+	icon_state = "case_double"
+
+/obj/structure/largecrate/random/case/double/Del()
+	new /obj/structure/largecrate/random/case(loc)
+	..()
+
+/obj/structure/largecrate/random/case/small
+	name = "small cases"
+	desc = "Two small black storage cases."
+	icon_state = "case_small"
+
+/obj/structure/largecrate/random/barrel
+	name = "blue barrel"
+	desc = "A blue storage barrel"
+	icon_state = "barrel_blue"
+
+/obj/structure/largecrate/random/barrel/blue
+	name = "blue barrel"
+	desc = "A blue storage barrel"
+	icon_state = "barrel_blue"
+
+/obj/structure/largecrate/random/barrel/red
+	name = "red barrel"
+	desc = "A red storage barrel"
+	icon_state = "barrel_red"
+
+/obj/structure/largecrate/random/barrel/green
+	name = "green barrel"
+	desc = "A green storage barrel"
+	icon_state = "barrel_green"
+
+/obj/structure/largecrate/random/barrel/yellow
+	name = "yellow barrel"
+	desc = "A yellow storage barrel"
+	icon_state = "barrel_yellow"
+
+/obj/structure/largecrate/random/barrel/white
+	name = "white barrel"
+	desc = "A white storage barrel"
+	icon_state = "barrel_white"
+
+/obj/structure/largecrate/random/secure
+	name = "secure supply crate"
+	desc = "A secure crate."
+	icon_state = "secure_crate_strapped"
+	var/strapped = 1
+
+/obj/structure/largecrate/random/secure/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if (!strapped)
+		..()
+		return
+
+	if (!W.sharp)
+		user << "<span class='notice'>You need something sharp to cut off the straps.</span>"
+		return
+
+	user << "<span class='notice'>You begin to cut the straps off \the [src]...</span>"
+
+	if (do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
+		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		user << "<span class='notice'>You cut the straps away.</span>"
+		icon_state = "secure_crate"
+		strapped = 0
+
 
 /obj/structure/largecrate/guns
 	name = "\improper USCM firearms crate (x3)"
