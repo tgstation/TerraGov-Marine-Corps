@@ -46,7 +46,8 @@
 				else
 					playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 				var/area/A = get_area(src)
-				xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
+				if(living_xeno_queen)
+					xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
 
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 
