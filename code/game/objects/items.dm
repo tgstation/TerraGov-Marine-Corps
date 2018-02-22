@@ -472,7 +472,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 			if(WEAR_IN_BACK)
 				if (H.back && istype(H.back, /obj/item/storage/backpack))
 					var/obj/item/storage/backpack/B = H.back
-					if(B.contents.len < B.storage_slots && w_class <= B.max_w_class)
+					if(B.can_be_inserted(src))
 						return 1
 				return 0
 		return 0 //Unsupported slot
