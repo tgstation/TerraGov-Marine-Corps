@@ -358,6 +358,21 @@ cdel(src)
 
 #undef SHUTTLE_LINK_LOCATIONS
 
+/proc/get_landing_lights(var/turf/ref)
+
+	var/list/lights = list()
+
+	var/searchx
+	var/searchy
+	var/turf/searchspot
+	for(searchx=-5, searchx<15, searchx++)
+		for(searchy=-5, searchy<30, searchy++)
+			searchspot = locate(ref.x+searchx, ref.y+searchy, ref.z)
+			for(var/obj/machinery/landinglight/L in searchspot)
+				lights += L
+
+	return lights
+
 /proc/get_shuttle_turfs(var/turf/ref, var/list/L)
 
 	var/list/source = list()
