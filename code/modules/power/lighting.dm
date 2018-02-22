@@ -693,3 +693,25 @@
 		sharp = IS_SHARP_ITEM_SIMPLE
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		update()
+
+/obj/machinery/landinglight
+	name = "landing light"
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "landingoff"
+	desc = "A landing light, if it's flashing stay clear."
+	var/id = "" // ID for landing zone
+	density = 0
+	layer = FLY_LAYER
+	use_power = 2
+	idle_power_usage = 2
+	active_power_usage = 20
+	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	unacidable = 1
+
+/obj/machinery/landinglight/proc/turn_on()
+	icon_state = "landing"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/proc/turn_off()
+	icon_state = "landingoff"
+	SetLuminosity(0)
