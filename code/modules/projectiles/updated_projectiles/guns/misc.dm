@@ -339,7 +339,7 @@
 	update_icon()
 	return 1
 
-/obj/item/weapon/gun/flamer/able_to_fire(mob/user)
+/obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
 	. = ..()
 	if(.)
 		if(!current_mag || !current_mag.current_rounds)

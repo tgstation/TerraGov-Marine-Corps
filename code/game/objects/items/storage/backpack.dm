@@ -542,7 +542,7 @@
 
 // Pyrotechnician Spec backpack fuel tank
 /obj/item/storage/backpack/marine/engineerpack/flamethrower
-	name = "\improper USCM technician welderpack"
+	name = "\improper USCM Pyrotechnician fueltank"
 	desc = "A specialized fueltank worn by USCM Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
 	item_state = "flamethrower_tank"
