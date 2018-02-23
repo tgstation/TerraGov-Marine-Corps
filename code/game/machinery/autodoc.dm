@@ -563,7 +563,17 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	set name = "Eject Med-Pod"
 	set category = "Object"
 	set src in oview(1)
+	if(usr.stat == DEAD)
+		return // nooooooooooo
 	if(occupant)
+		if(isXeno(usr)) // let xenos eject people hiding inside.
+			message_staff("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
+			log_admin("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
+			go_out()
+			add_fingerprint(usr)
+			return
+		if(!ishuman(usr))
+			return
 		if(usr == occupant)
 			if(surgery)
 				usr << "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>"
@@ -629,6 +639,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	icon_state = "autodoc_open"
 
 /obj/machinery/autodoc/attackby(obj/item/W, mob/living/user)
+	if(!ishuman(user))
+		return // no
 	if(istype(W, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = W
 		user << "<span class='notice'>\The [src] processes \the [W].</span>"

@@ -696,22 +696,55 @@
 
 /obj/machinery/landinglight
 	name = "landing light"
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "landingoff"
-	desc = "A landing light, if it's flashing stay clear."
+	icon = 'icons/obj/landinglights.dmi'
+	icon_state = "landingstripetop"
+	desc = "A landing light, if it's flashing stay clear!"
 	var/id = "" // ID for landing zone
 	density = 0
-	layer = FLY_LAYER
+	layer = BELOW_TABLE_LAYER
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	unacidable = 1
 
-/obj/machinery/landinglight/proc/turn_on()
-	icon_state = "landing"
-	SetLuminosity(2)
+/obj/machinery/landinglight/New()
+	turn_off()
 
 /obj/machinery/landinglight/proc/turn_off()
-	icon_state = "landingoff"
+	icon_state = "landingstripe"
 	SetLuminosity(0)
+
+/obj/machinery/landinglight/ds1
+	id = "USS Almayer Dropship 1" // ID for landing zone
+
+/obj/machinery/landinglight/ds2
+	id = "USS Almayer Dropship 2" // ID for landing zone
+
+/obj/machinery/landinglight/proc/turn_on()
+	icon_state = "landingstripe0"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds1/delayone/turn_on()
+	icon_state = "landingstripe1"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds1/delaytwo/turn_on()
+	icon_state = "landingstripe2"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds1/delaythree/turn_on()
+	icon_state = "landingstripe3"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds2/delayone/turn_on()
+	icon_state = "landingstripe1"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds2/delaytwo/turn_on()
+	icon_state = "landingstripe2"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds2/delaythree/turn_on()
+	icon_state = "landingstripe3"
+	SetLuminosity(2)
