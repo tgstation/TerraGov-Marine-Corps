@@ -9,6 +9,7 @@
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|FPRINT
 	var/health = 50
+	var/health_max = 50
 	var/cut = 0 //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
@@ -18,13 +19,15 @@
 //Please only fire this after a hit
 /obj/structure/fence/proc/healthcheck(make_hit_sound = 1, create_debris = 1, mob/user, atom/movable/AM)
 
+	if(cut) //It's broken/cut, just a frame!
+		return
 	if(health <= 0)
 		if(user)
-			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? "with [AM]":""]!</span>")
+			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? " with [AM]":""]!</span>")
+		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 		cut_grille()
-	else
-		if(make_hit_sound)
-			playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
+	if(make_hit_sound)
+		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
 /obj/structure/fence/bullet_act(var/obj/item/projectile/Proj)
 	//Tasers and the like should not damage windows.
@@ -87,6 +90,39 @@
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/fence/attackby(obj/item/W, mob/user)
+
+	if(istype(W, /obj/item/stack/rods) && health < health_max)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
+			user << "<span class='warning'>You don't have the skill needed to fix [src]'s wiring."
+			return
+		var/obj/item/stack/rods/R = W
+		var/amount_needed = 2
+		if(health)
+			amount_needed = 1
+		if(R.amount >= amount_needed)
+			user.visible_message("<span class='notice'>[user] starts repairing [src] with [R].</span>",
+			"<span class='notice'>You start repairing [src] with [R]")
+			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+			if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
+				if(R.amount < amount_needed)
+					user << "<span class='warning'>You need more metal rods to repair [src]."
+					return
+				R.use(amount_needed)
+				health = health_max
+				cut = 0
+				density = 1
+				update_icon()
+				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] repairs [src] with [R].</span>",
+				"<span class='notice'>You repair [src] with [R]")
+				return
+		else
+			user << "<span class='warning'>You need more metal rods to repair [src]."
+			return
+
+	if(cut) //Cut/brokn grilles can't be messed with further than this
+		return
+
 	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
 		var/obj/item/grab/G = W
 		if(istype(G.grabbed_thing, /mob/living))
@@ -123,6 +159,7 @@
 			user.visible_message("<span class='notice'>[user] cuts through [src] with [W].</span>",
 			"<span class='notice'>You cut through [src] with [W]")
 			cut_grille()
+		return
 	else
 		switch(W.damtype)
 			if("fire")
