@@ -8,17 +8,18 @@
 
 //Used for logging people entering cryosleep and important items they are carrying.
 var/global/list/frozen_crew = list()
-var/global/list/frozen_items = list()
+var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list(),"Delta"=list(),"MP"=list(),"REQ"=list(),"Eng"=list(),"Med"=list())
 
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
 	name = "hypersleep bay console"
 	desc = "A large console controlling the ship's hypersleep bay. Most of the options are disabled and locked, although it allows recovery of items from long-term hypersleeping crew."
-	icon = 'icons/obj/machines/cryogenics.dmi'
+	icon = 'icons/obj/almayer.dmi'
 	icon_state = "cellconsole"
 	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
 	exproof = TRUE
+	var/cryotype = "REQ"
 	var/mode = null
 
 /obj/machinery/computer/cryopod/attack_paw()
@@ -39,7 +40,7 @@ var/global/list/frozen_items = list()
 	if(!(ticker))
 		return
 
-	dat += "<hr/><br/><b>Cryogenic Oversight Control</b><br/>"
+	dat += "<hr/><br/><b>Cryogenic Oversight Control for [cryotype]</b><br/>"
 	dat += "<i>Welcome, [user.real_name].</i><br/><br/><hr/>"
 	dat += "<a href='?src=\ref[src];log=1'>View storage log</a>.<br>"
 	dat += "<a href='?src=\ref[src];view=1'>View objects</a>.<br>"
@@ -51,10 +52,11 @@ var/global/list/frozen_items = list()
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 
-	if(..())
-		return
+	//if(..())
+	//	return
 
 	var/mob/user = usr
+	var/list/frozen_items_for_type = frozen_items[cryotype]
 
 	src.add_fingerprint(user)
 
@@ -70,7 +72,7 @@ var/global/list/frozen_items = list()
 	if(href_list["view"])
 
 		var/dat = "<b>Recently stored objects</b><br/><hr/><br/>"
-		for(var/obj/item/I in frozen_items)
+		for(var/obj/item/I in frozen_items_for_type)
 			dat += "[I.name]<br/>"
 		dat += "<hr/>"
 
@@ -78,34 +80,34 @@ var/global/list/frozen_items = list()
 
 	else if(href_list["item"])
 
-		if(frozen_items.len == 0)
+		if(frozen_items_for_type.len == 0)
 			user << "<span class='warning'>There is nothing to recover from storage.</span>"
 			return
 
-		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery",null) as null|anything in frozen_items
+		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery",null) as null|anything in frozen_items_for_type
 		if(!I)
 			return
 
-		if(!(I in frozen_items))
+		if(!(I in frozen_items_for_type))
 			user << "<span class='warning'>[I] is no longer in storage.</span>"
 			return
 
 		visible_message("<span class='notice'>[src] beeps happily as it disgorges [I].</span>")
 
 		I.loc = get_turf(src)
-		frozen_items -= I
+		frozen_items_for_type -= I
 
 	else if(href_list["allitems"])
 
-		if(frozen_items.len == 0)
+		if(frozen_items_for_type.len == 0)
 			user << "<span class='warning'>There is nothing to recover from storage.</span>"
 			return
 
 		visible_message("<span class='notice'>[src] beeps happily as it disgorges the desired objects.</span>")
 
-		for(var/obj/item/I in frozen_items)
+		for(var/obj/item/I in frozen_items_for_type)
 			I.loc = get_turf(src)
-			frozen_items -= I
+			frozen_items_for_type -= I
 
 	src.updateUsrDialog()
 	return
@@ -145,7 +147,7 @@ var/global/list/frozen_items = list()
 
 	var/mob/living/occupant = null //Person waiting to be despawned.
 	var/orient_right = null // Flips the sprite.
-	var/time_till_despawn = 9000 //15 minutes-ish safe period before being despawned.
+	var/time_till_despawn = 6000 //10 minutes-ish safe period before being despawned.
 	var/time_entered = 0 //Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //Intercom for cryo announcements
 
@@ -182,27 +184,102 @@ var/global/list/frozen_items = list()
 			items -= occupant //Don't delete the occupant
 			items -= announce //or the autosay radio.
 
-			for(var/obj/item/W in items)
-				if(istype(W, /obj/item/card/id))
-					cdel(W)
-					continue //Don't keep id, to avoid abuse
-				if(W.flags_inventory & CANTSTRIP) //We don't keep donor items
-					if(istype(W, /obj/item/clothing/suit/storage))
-						var/obj/item/clothing/suit/storage/SS = W
-						for(var/obj/item/I in SS.pockets) //But we keep stuff inside them
-							SS.pockets.remove_from_storage(I, loc)
-							frozen_items += I
-							I.loc = null
-					if(istype(W, /obj/item/storage))
-						var/obj/item/storage/S = W
-						for(var/obj/item/I in S)
-							S.remove_from_storage(I, loc)
-							frozen_items += I
-							I.loc = null
-					cdel(W)
-					continue
-				frozen_items += W
-				W.loc = null
+			var/list/dept_console = frozen_items["REQ"]
+			if(ishuman(occupant))
+				var/mob/living/carbon/human/H = occupant
+				if(H.assigned_squad)
+					switch(H.assigned_squad.name)
+						if("Alpha")
+							dept_console = frozen_items["Alpha"]
+						if("Bravo")
+							dept_console = frozen_items["Bravo"]
+						if("Charlie")
+							dept_console = frozen_items["Charlie"]
+						if("Delta")
+							dept_console = frozen_items["Delta"]
+				else
+					switch(H.job)
+						if("Military Police","Chief MP")
+							dept_console = frozen_items["MP"]
+						if("Doctor","Researcher","Chief Medical Officer")
+							dept_console = frozen_items["Med"]
+						if("Maintenance Tech","Chief Engineer")
+							dept_console = frozen_items["Eng"]
+
+			var/list/stripcontents = list(/obj/item/clothing/suit/storage, \
+			/obj/item/clothing/under, \
+			/obj/item/clothing/shoes/marine)
+
+			var/list/deleteempty = list(/obj/item/storage/backpack/marine/satchel)
+
+			var/list/deleteall = list(/obj/item/clothing/mask/cigarette, \
+			/obj/item/clothing/glasses/sunglasses, \
+			/obj/item/device/pda, \
+			/obj/item/clothing/glasses/mgoggles, \
+			/obj/item/clothing/head/cmberet/red, \
+			/obj/item/clothing/gloves/black, \
+			/obj/item/weapon/baton, \
+			/obj/item/weapon/gun/energy/taser, \
+			/obj/item/clothing/glasses/sunglasses/sechud, \
+			/obj/item/device/radio/headset/almayer, \
+			/obj/item/card/id, \
+			/obj/item/clothing/under/marine, \
+			/obj/item/clothing/shoes/marine, \
+			/obj/item/clothing/head/cmcap)
+
+			var/list/strippeditems = list()
+
+			item_loop:
+				for(var/obj/item/W in items)
+					if(W.flags_inventory & CANTSTRIP) //We don't keep donor items
+						if(istype(W, /obj/item/clothing/suit/storage))
+							var/obj/item/clothing/suit/storage/SS = W
+							for(var/obj/item/I in SS.pockets) //But we keep stuff inside them
+								SS.pockets.remove_from_storage(I, loc)
+								strippeditems += I
+								I.loc = null
+						if(istype(W, /obj/item/storage))
+							var/obj/item/storage/S = W
+							for(var/obj/item/I in S)
+								S.remove_from_storage(I, loc)
+								strippeditems += I
+								I.loc = null
+						cdel(W)
+						continue
+
+					for(var/SC in stripcontents)
+						if(istype(W, SC))
+							for(var/obj/item/Z in W.contents)
+								strippeditems += Z
+								Z.loc = null
+
+					for(var/TT in deleteempty)
+						if(istype(W, TT))
+							if(length(W.contents) == 0)
+								cdel(W) // delete all the empty satchels
+								continue
+							break // not empty, don't delete
+
+					for(var/DA in deleteall)
+						if(istype(W, DA))
+							cdel(W)
+							continue item_loop
+
+
+
+					dept_console += W
+					W.loc = null
+
+			stripped_items:
+				for(var/obj/item/A in strippeditems)
+					for(var/DAA in deleteall)
+						if(istype(A, DAA))
+							cdel(A)
+							continue stripped_items
+
+					dept_console += A
+					A.loc = null
+
 
 			//Update any existing objectives involving this mob.
 			for(var/datum/objective/O in all_objectives)
@@ -347,6 +424,10 @@ var/global/list/frozen_items = list()
 	set category = "Object"
 	set src in oview(1)
 	if(usr.stat != 0)
+		return
+
+	if(occupant != usr)
+		usr << "<span class='warning'>You can't drag people out of hypersleep!</span>"
 		return
 
 	if(orient_right)
