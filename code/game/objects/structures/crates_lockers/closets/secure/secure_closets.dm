@@ -109,11 +109,13 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure_closet/attack_hand(mob/user as mob)
+/obj/structure/closet/secure_closet/attack_hand(mob/living/user)
 	src.add_fingerprint(user)
 	if(src.locked)
 		src.togglelock(user)
 	else
+		if(opened && isXeno(user))
+			return // stop xeno closing them
 		src.toggle(user)
 
 /obj/structure/closet/secure_closet/attack_paw(mob/user as mob)
