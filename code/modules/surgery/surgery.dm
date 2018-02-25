@@ -81,7 +81,9 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 
 	//Masks
 	if(user.wear_mask)
-		if(user.wear_mask.germ_level && !istype(user.wear_mask, /obj/item/clothing/mask/surgical) && prob(30))
+		if(user.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
+			E.germ_level += user.germ_level * 2 // fuck you smoking doctors
+		else if(user.wear_mask.germ_level && !istype(user.wear_mask, /obj/item/clothing/mask/surgical) && prob(30))
 			E.germ_level += user.wear_mask.germ_level / 2
 	else if(user.germ_level && prob(60))
 		E.germ_level += user.germ_level / 2
@@ -189,4 +191,3 @@ proc/sort_surgeries()
 	var/in_progress = 0
 	var/is_same_target = "" //Safety check to prevent surgery juggling
 	var/necro = 0
-
