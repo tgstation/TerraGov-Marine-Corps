@@ -253,7 +253,9 @@
 /obj/structure/closet/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/structure/closet/attack_hand(mob/user as mob)
+/obj/structure/closet/attack_hand(mob/living/user)
+	if(opened && isXeno(user))
+		return // stop xeno closing things
 	src.add_fingerprint(user)
 	src.toggle(user)
 
