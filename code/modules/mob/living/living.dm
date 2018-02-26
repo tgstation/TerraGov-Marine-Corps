@@ -258,8 +258,6 @@
 			if(has_species(L, "Human") || X.mob_size == MOB_SIZE_BIG)
 				if(L.client)
 					L.client.move_delay = max(L.client.move_delay, world.time + 10) //1 sec delay when bumped by a Xeno before you can move again
-				now_pushing = 0
-				return
 
 		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
 			if(!(world.time % 5))
