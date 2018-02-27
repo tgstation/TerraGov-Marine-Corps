@@ -22,30 +22,33 @@
 //If you are using these you will probably want to override attackby() as well.
 //See /obj/item/clothing/suit/storage for an example.
 
-//items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
-//returns 1 if the master item's parent's MouseDrop() should be called, 0 otherwise. It's strange, but no other way of
-//doing it without the ability to call another proc's parent, really.
+//Items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
+//Returns 1 if the master item's parent's MouseDrop() should be called, 0 otherwise. It's strange, but no other way of
+//Doing it without the ability to call another proc's parent, really.
 /obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
-	if (ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
 
-		if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+		if(user.lying) //Can't use your inventory when lying
+			return
+
+		if(istype(user.loc, /obj/mecha)) //Stops inventory actions in a mech
 			return 0
 
-		if(over_object == user && Adjacent(user)) // this must come before the screen objects only block
-			src.open(user)
+		if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
+			open(user)
 			return 0
 
 		if(!master_item.canremove) return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if(!istype(over_object, /obj/screen))
 			return 1
 
-		//makes sure master_item is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
-		//there's got to be a better way of doing this...
-		if (!(master_item.loc == user) || (master_item.loc && master_item.loc.loc == user))
+		//Makes sure master_item is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
+		//There's got to be a better way of doing this...
+		if(master_item.loc != user || (master_item.loc && master_item.loc.loc == user))
 			return 0
 
-		if (!( user.is_mob_restrained() ) && !( user.stat ))
+		if(!user.is_mob_restrained() && !user.stat)
 			switch(over_object.name)
 				if("r_hand")
 					user.drop_inv_item_on_ground(master_item)
@@ -57,10 +60,13 @@
 			return 0
 	return 0
 
-//items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
-//returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
+//Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
+//Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
 /obj/item/storage/internal/proc/handle_attack_hand(mob/user as mob)
+
+	if(user.lying)
+		return 0
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -74,12 +80,12 @@
 			return 0
 
 	src.add_fingerprint(user)
-	if (master_item.loc == user)
+	if(master_item.loc == user)
 		src.open(user)
 		return 0
 
 	for(var/mob/M in range(1, master_item.loc))
-		if (M.s_active == src)
+		if(M.s_active == src)
 			src.close(M)
 	return 1
 

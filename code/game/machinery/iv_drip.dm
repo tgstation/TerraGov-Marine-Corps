@@ -144,10 +144,9 @@
 	set src in view(1)
 
 	if(!istype(usr, /mob/living))
-		usr << "\red You can't do that."
 		return
 
-	if(usr.stat)
+	if(usr.stat || usr.lying)
 		return
 
 	mode = !mode

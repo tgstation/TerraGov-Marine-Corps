@@ -169,7 +169,7 @@
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
-	user.stunned += 2 //Action delay when going out of a bin
+	user.stunned = max(user.stunned, 2)  //Action delay when going out of a bin
 	user.update_canmove() //Force the delay to go in action immediately
 	if(!user.lying)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
@@ -277,7 +277,7 @@
 		AM.pipe_eject(0)
 		if(ismob(AM))
 			var/mob/M = AM
-			M.stunned += 2 //Action delay when going out of a bin
+			M.stunned = max(M.stunned, 2)  //Action delay when going out of a bin
 			M.update_canmove() //Force the delay to go in action immediately
 			if(!M.lying)
 				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",

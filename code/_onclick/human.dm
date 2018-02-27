@@ -10,7 +10,7 @@
 	var/last_chew = 0
 
 /mob/living/carbon/human/click(var/atom/A, var/list/mods)
-	if (interactee && (istype(interactee, /obj/item/device/binoculars/tactical) || istype(interactee, /obj/machinery/m56d_hmg)))
+	if(interactee && (istype(interactee, /obj/item/device/binoculars/tactical) || istype(interactee, /obj/machinery/m56d_hmg)))
 		return interactee.handle_click(src, A, mods)
 
 	return ..()
@@ -44,12 +44,16 @@
 	last_chew = world.time
 
 /mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
+
+	if(lying) //No attacks while laying down
+		return 0
+
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 
 	// Special glove functions:
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.
-	if(proximity && istype(G) && G.Touch(A,1))
+	if(proximity && istype(G) && G.Touch(A, 1))
 		return
 
 	var/datum/limb/temp = get_limb(hand ? "l_hand" : "r_hand")
@@ -60,6 +64,7 @@
 	A.attack_hand(src)
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
+
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == "hurt")
@@ -79,8 +84,6 @@
 			if(16 to 128)
 				return
 		A.attack_tk(src)
-
-
 
 /atom/movable/proc/handle_click(mob/living/carbon/human/user, atom/A, params) //Heres our handle click relay proc thing.
 	return

@@ -180,6 +180,10 @@
 			new /obj/item/mortar_kit(loc)
 			cdel(src)
 
+//Don't allow blowing those up, so Marine nades don't fuck them
+/obj/structure/mortar/ex_act(severity)
+	return
+
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
 	fixed = 1
@@ -192,6 +196,10 @@
 	icon_state = "mortar_m402_carry"
 	unacidable = 1
 	w_class = 5 //No dumping this in a backpack. Carry it, fatso
+
+//Don't allow blowing those up, so Marine nades don't fuck them
+/obj/item/mortar_kit/ex_act(severity)
+	return
 
 /obj/item/mortar_kit/attack_self(mob/user)
 
@@ -212,8 +220,8 @@
 		cdel(src)
 
 /obj/item/mortal_shell
-	name = "\improper 80mm mortal shell"
-	desc = "An unlabeled 80mm mortal shell, probably a casing."
+	name = "\improper 80mm mortar shell"
+	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
 	w_class = 5
@@ -224,7 +232,7 @@
 	forceMove(T)
 
 /obj/item/mortal_shell/he
-	name = "\improper 80mm high explosive mortal shell"
+	name = "\improper 80mm high explosive mortar shell"
 	desc = "An 80mm mortar shell, loaded with a high explosive charge."
 	icon_state = "mortar_ammo_he"
 
@@ -233,7 +241,7 @@
 	explosion(T, 0, 3, 5, 7)
 
 /obj/item/mortal_shell/incendiary
-	name = "\improper 80mm incendiary mortal shell"
+	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a napalm charge."
 	icon_state = "mortar_ammo_inc"
 
@@ -244,7 +252,7 @@
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortal_shell/smoke
-	name = "\improper 80mm smoke mortal shell"
+	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents."
 	icon_state = "mortar_ammo_smk"
 	var/datum/effect_system/smoke_spread/bad/smoke
@@ -265,7 +273,7 @@
 	cdel(src)
 
 /obj/item/mortal_shell/flash
-	name = "\improper 80mm flash mortal shell"
+	name = "\improper 80mm flash mortar shell"
 	desc = "An 80mm mortar shell, loaded with a flash powder charge."
 	icon_state = "mortar_ammo_fsh"
 
@@ -277,7 +285,7 @@
 	flash.prime()
 
 /obj/item/mortal_shell/flare
-	name = "\improper 80mm flare mortal shell"
+	name = "\improper 80mm flare mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare."
 	icon_state = "mortar_ammo_flr"
 

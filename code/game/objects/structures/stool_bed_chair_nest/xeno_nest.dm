@@ -35,15 +35,11 @@
 		"<span class='warning'>You hit \the [src] with \the [W]!</span>")
 		healthcheck()
 
-
-
-
 /obj/structure/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
-				if(user.stat || user.is_mob_restrained())
-					user << "<span class='warning'>Nice try.</span>"
+				if(user.stat || user.lying || user.is_mob_restrained())
 					return
 				buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",\
 				"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
@@ -52,7 +48,6 @@
 				if(ishuman(buckled_mob))
 					var/mob/living/carbon/human/H = buckled_mob
 					H.start_nesting_cooldown()
-
 				unbuckle()
 			else
 				if(buckled_mob.stat)
@@ -82,7 +77,7 @@
 								buckled_mob << "<span class='danger'>You are ready to break free of the nest, but your limbs are still secured. Resist once more to pop up, then resist again to break your limbs free!</span>"
 							else
 								buckled_mob << "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>"
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 
 /mob/living/carbon/human/proc/start_nesting_cooldown()
 	set waitfor = 0
@@ -92,7 +87,7 @@
 
 /obj/structure/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
 
-	if(!ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.is_mob_restrained() || usr.stat || M.buckled || !iscarbon(user))
+	if(!ismob(M) || (get_dist(src, user) > 1) || (M.loc != loc) || user.is_mob_restrained() || user.stat || user.lying || M.buckled || !iscarbon(user))
 		return
 
 	if(buckled_mob)

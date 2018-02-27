@@ -39,24 +39,27 @@
 
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if (ishuman(usr) || ismonkey(usr) || isrobot(usr)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(usr) || ismonkey(usr) || isrobot(usr)) //so monkeys can take off their backpacks -- Urist
 
-		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
+		if(usr.lying)
+			return
+
+		if(istype(usr.loc, /obj/mecha)) // stops inventory actions in a mech
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
-			src.open(usr)
+			open(usr)
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if(!istype(over_object, /obj/screen))
 			return ..()
 
-		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
-		//there's got to be a better way of doing this.
-		if (loc != usr || (loc && loc.loc == usr))
+		//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
+		//There's got to be a better way of doing this.
+		if(loc != usr || (loc && loc.loc == usr))
 			return
 
-		if (!( usr.is_mob_restrained() ) && !( usr.stat ))
+		if(!usr.is_mob_restrained() && !usr.stat)
 			switch(over_object.name)
 				if("r_hand")
 					usr.drop_inv_item_on_ground(src)
@@ -65,8 +68,6 @@
 					usr.drop_inv_item_on_ground(src)
 					usr.put_in_l_hand(src)
 			add_fingerprint(usr)
-
-
 
 /obj/item/storage/proc/return_inv()
 

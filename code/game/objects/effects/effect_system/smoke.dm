@@ -1,12 +1,8 @@
-
-
-
 /////////////////////////////////////////////
 //// SMOKE SYSTEMS
 // direct can be optinally added when set_up, to make the smoke always travel in one direction
 // in case you wanted a vent to always smoke north for example
 /////////////////////////////////////////////
-
 
 /obj/effect/particle_effect/smoke
 	name = "smoke"
@@ -17,7 +13,6 @@
 	var/amount = 2
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/time_to_live = 4
-
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -30,7 +25,6 @@
 		amount = oldamount - 1
 	time_to_live += rand(-1,1)
 	processing_objects.Add(src)
-
 
 /obj/effect/particle_effect/smoke/Dispose()
 	. =..()
@@ -48,7 +42,6 @@
 		alpha = 180
 		amount = 0
 		opacity = 0
-
 
 /obj/effect/particle_effect/smoke/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0)) return 1
@@ -109,15 +102,15 @@
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
 	else
-		if (prob(20))
+		if(prob(20))
 			M.drop_held_item()
 		M.adjustOxyLoss(1)
-		if (M.coughedtime != 1)
+		if(M.coughedtime != 1)
 			M.coughedtime = 1
-			M.emote("cough")
-			spawn ( 20 )
+			if(ishuman(M)) //Humans only to avoid issues
+				M.emote("cough")
+			spawn(20)
 				M.coughedtime = 0
-
 
 /////////////////////////////////////////////
 // Sleep smoke
@@ -136,15 +129,16 @@
 
 	M.drop_held_item()
 	M:sleeping += 1
-	if (M.coughedtime != 1)
+	if(M.coughedtime != 1)
 		M.coughedtime = 1
-		M.emote("cough")
-		spawn ( 20 )
+		if(ishuman(M)) //Humans only to avoid issues
+			M.emote("cough")
+		spawn(20)
 			M.coughedtime = 0
+
 /////////////////////////////////////////////
 // Mustard Gas
 /////////////////////////////////////////////
-
 
 /obj/effect/particle_effect/smoke/mustard
 	name = "mustard gas"
@@ -158,10 +152,11 @@
 /obj/effect/particle_effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
 	..()
 	R.burn_skin(0.75)
-	if (R.coughedtime != 1)
+	if(R.coughedtime != 1)
 		R.coughedtime = 1
-		R.emote("gasp")
-		spawn (20)
+		if(ishuman(R)) //Humans only to avoid issues
+			R.emote("gasp")
+		spawn(20)
 			R.coughedtime = 0
 	R.updatehealth()
 	return
@@ -183,21 +178,20 @@
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
 	else
-		if (prob(20))
+		if(prob(20))
 			M.drop_held_item()
 		M.adjustOxyLoss(1)
 		M.updatehealth()
-		if (M.coughedtime != 1)
+		if(M.coughedtime != 1)
 			M.coughedtime = 1
-			M.emote("cough")
+			if(ishuman(M)) //Humans only to avoid issues
+				M.emote("cough")
 			spawn (20)
 				M.coughedtime = 0
 	//if (M.wear_suit != null && !istype(M.wear_suit, /obj/item/clothing/suit/storage/labcoat) && !istype(M.wear_suit, /obj/item/clothing/suit/straight_jacket) && !istype(M.wear_suit, /obj/item/clothing/suit/straight_jacket && !istype(M.wear_suit, /obj/item/clothing/suit/armor)))
 		//return
 	M.burn_skin(0.75)
 	M.updatehealth()
-
-
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -209,12 +203,9 @@
 	opacity = 0
 	icon_state = "sparks"
 
-
-
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
-
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno_burn
@@ -347,13 +338,11 @@
 	if(S.amount)
 		S.spread_smoke(direction)
 
-
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
 
 /datum/effect_system/smoke_spread/sleepy
 	smoke_type = /obj/effect/particle_effect/smoke/sleepy
-
 
 /datum/effect_system/smoke_spread/mustard
 	smoke_type = /obj/effect/particle_effect/smoke/mustard
