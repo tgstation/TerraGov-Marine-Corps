@@ -306,18 +306,20 @@ proc/isInSight(var/atom/A, var/atom/B)
 	return candidates
 
 // Same as above but for alien candidates.
-//Rewritten by Abby, little more simplified.
 /proc/get_alien_candidates()
-	var/list/ckeys = list() //List of candidate ckeys
-	var/list/candidates = list() //Holds the things to return
-	for(var/mob/dead/observer/G in player_list)
-		ckeys.Add(G.ckey)
-	//ckeys = jobban_isbanned_list(ckeys, "Alien") //This clearly doesn't work, and I'm not good at regex, so we'll do it the old way
-	for(var/mob/dead/observer/G in player_list) //We eliminated all of the banned people, but then we have to make sure they want to be an alium
-		if(!(G.ckey in ckeys)) continue //He got booted in the jobban check
-		if(G.client && G.client.prefs && G.client.prefs.be_special & BE_ALIEN && !jobban_isbanned(G, "Alien")) //TODO: Remove once and if jobban_isbanned_list works, this is the more expensive method
-			if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + 5 || istype(G.client.holder, /datum/admins)) //Admins and AFK players cannot be drafted
-				candidates += G.key
+	var/list/candidates = list()
+
+	for (var/mob/dead/observer/O in player_list)
+		// Jobban check
+		if (!O.client || !O.client.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
+			continue
+
+		// Admins and AFK players cannot be drafted
+		if (O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5 || istype(O.client.holder, /datum/admins))
+			continue
+
+		candidates += O.key
+
 	return candidates
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)

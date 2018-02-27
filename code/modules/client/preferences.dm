@@ -311,12 +311,30 @@ datum/preferences
 	dat += "<br>"
 
 	var/n = 0
+
 	for (var/i in special_roles)
-		if(special_roles[i]) //if mode is available on the server
-			if(jobban_isbanned(user, i))
-				dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
-			else
-				dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
+		var/ban_check_name
+
+		switch (special_roles[i])
+			if ("Xenomorph")
+				ban_check_name = "Alien"
+
+			if ("Xenomorph Queen")
+				ban_check_name = "Queen"
+
+			if ("Survivor")
+				ban_check_name = "Survivor"
+
+			if ("Predator")
+				ban_check_name = "Predator"
+
+			if ("WO Commander")
+				ban_check_name = "WO Commander"
+
+		if(jobban_isbanned(user, ban_check_name))
+			dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
+		else
+			dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
 		n++
 
 	dat += "\t<a href='?_src_=prefs;preference=job;task=menu'><b>Set Marine Role Preferences</b></a><br>"
