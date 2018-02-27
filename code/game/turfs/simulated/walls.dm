@@ -289,10 +289,6 @@
 				take_damage(rand(25, 75))
 				return
 
-	M.visible_message("<span class='notice'>[M] pushes against [src].</span>",
-	"<span class='notice'>You push against [src] but nothing happens.</span>")
-	return
-
 /turf/simulated/wall/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)
 		if((prob(40) || rotting) && !hull)
@@ -327,10 +323,7 @@
 				Hole.busy = FALSE
 				return
 
-	user << "<span class='notice'>You push [src] but nothing happens!</span>"
-	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	add_fingerprint(user)
-	return
 
 /turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
 

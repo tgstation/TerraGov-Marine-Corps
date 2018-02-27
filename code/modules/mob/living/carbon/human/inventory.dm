@@ -345,18 +345,13 @@
 
 /obj/effect/equip_e/human/process()
 	if(iszombie(target))
-		source << "\red You don't want to touch that..."
 		return
 	if(iszombie(source))
-		source << "\green You're too stupid to do that..."
+		return
+	if(source.lying) //The mob trying to do it is lying down, fuck no
 		return
 
-/*	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(H.species.name == "Zombie")
-			source << "\red You don't want to touch that..."
-			return*/
-	if (item)
+	if(item)
 		item.add_fingerprint(source)
 	else
 		switch(place)
@@ -605,6 +600,7 @@ It can still be worn/put on as normal.
 	if(isanimal(source)) return //animals cannot strip people
 	if(!source || !target) return		//Target or source no longer exist
 	if(source.loc != s_loc) return		//source has moved
+	if(source.lying) return				//Source is now resting
 	if(target.loc != t_loc) return		//target has moved
 	if(LinkBlocked(s_loc,t_loc)) return	//Use a proxi!
 	if(item && source.get_active_hand() != item) return	//Swapped hands / removed item from the active one

@@ -45,9 +45,6 @@
 
 
 
-
-
-
 //REBREATHER
 
 /obj/item/clothing/mask/rebreather

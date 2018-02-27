@@ -4,7 +4,7 @@
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
-	flags_inventory = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
+	flags_inventory = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT | ALLOWREBREATH
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	w_class = 3.0
@@ -28,8 +28,6 @@
 	filtered.update_values()
 
 	return filtered
-
-
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"

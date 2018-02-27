@@ -245,17 +245,17 @@
 			now_pushing = 0
 			return
 
-		if(isXeno(L) && !isXenoLarva(L) && ishuman(src)) // Prevents humans from pushing any Xenos, but big Xenos and Preds can still push small Xenos
+		if(isXeno(L) && !isXenoLarva(L)) //Handling pushing Xenos in general, but big Xenos and Preds can still push small Xenos
 			var/mob/living/carbon/Xenomorph/X = L
-			if(has_species(src, "Human") || X.mob_size == MOB_SIZE_BIG)
-				if(client)
+			if((has_species(src, "Human") && X.mob_size == MOB_SIZE_BIG) || (isXeno(src) && X.mob_size == MOB_SIZE_BIG))
+				if(!isXeno(src) && client)
 					client.move_delay = max(client.move_delay, world.time + 10) //1 sec delay when bumping into a Xeno before you can move again
 				now_pushing = 0
 				return
 
 		if(isXeno(src) && !isXenoLarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
 			var/mob/living/carbon/Xenomorph/X = src
-			if(has_species(L, "Human") || X.mob_size == MOB_SIZE_BIG)
+			if(has_species(L, "Human") && X.mob_size == MOB_SIZE_BIG)
 				if(L.client)
 					L.client.move_delay = max(L.client.move_delay, world.time + 10) //1 sec delay when bumped by a Xeno before you can move again
 

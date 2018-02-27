@@ -338,6 +338,7 @@
 			return
 		if(O.density)
 			wait_time = 40 //dense objects are big, so takes longer to melt.
+
 	//TURF CHECK
 	else if(isturf(O))
 		var/turf/T = O
@@ -378,6 +379,10 @@
 
 	if(!check_plasma(plasma_cost))
 		return
+
+	if(!O.Adjacent(src))
+		return
+
 	use_plasma(plasma_cost)
 
 	var/obj/effect/xenomorph/acid/A = new acid_type(get_turf(O), O)

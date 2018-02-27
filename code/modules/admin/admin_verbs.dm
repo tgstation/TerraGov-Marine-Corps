@@ -796,9 +796,9 @@ var/list/admin_verbs_mentor = list(
 
 	prefs.toggles_chat ^= CHAT_ATTACKLOGS
 	if (prefs.toggles_chat & CHAT_ATTACKLOGS)
-		usr << "You now will get attack log messages"
+		usr << "<span class='boldnotice'>You will now get attack log messages.</span>"
 	else
-		usr << "You now won't get attack log messages"
+		usr << "<span class='boldnotice'>You will no longer get attack log messages.</span>"
 
 /client/proc/toggleffattacklogs()
 	set name = "Toggle FF Attack Log Messages"
@@ -806,9 +806,9 @@ var/list/admin_verbs_mentor = list(
 
 	prefs.toggles_chat ^= CHAT_FFATTACKLOGS
 	if (prefs.toggles_chat & CHAT_FFATTACKLOGS)
-		usr << "You now will get friendly fire attack log messages"
+		usr << "<span class='boldnotice'>You will now get friendly fire attack log messages.</span>"
 	else
-		usr << "You now won't get friendly fire attack log messages"
+		usr << "<span class='boldnotice'>You will no longer get friendly fire attack log messages.</span>"
 
 
 /client/proc/toggleghostwriters()
@@ -844,10 +844,10 @@ var/list/admin_verbs_mentor = list(
 	set category = "Preferences"
 
 	prefs.toggles_chat ^= CHAT_DEBUGLOGS
-	if (prefs.toggles_chat & CHAT_DEBUGLOGS)
-		usr << "You now will get debug log messages"
+	if(prefs.toggles_chat & CHAT_DEBUGLOGS)
+		usr << "<span class='boldnotice'>You will now get debug log messages.</span>"
 	else
-		usr << "You now won't get debug log messages"
+		usr << "<span class='boldnotice'>You will no longer get debug log messages.</span>"
 
 /* Commenting this stupid shit out
 /client/proc/man_up(mob/T as mob in mob_list)

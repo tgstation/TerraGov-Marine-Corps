@@ -700,6 +700,7 @@
 	icon_state = "landingstripetop"
 	desc = "A landing light, if it's flashing stay clear!"
 	var/id = "" // ID for landing zone
+	anchored = 1
 	density = 0
 	layer = BELOW_TABLE_LAYER
 	use_power = 2
@@ -707,6 +708,10 @@
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	unacidable = 1
+
+//Don't allow blowing those up, so Marine nades don't fuck them
+/obj/machinery/landinglight/ex_act(severity)
+	return
 
 /obj/machinery/landinglight/New()
 	turn_off()

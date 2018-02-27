@@ -62,7 +62,7 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		M.stunned += 2 //Action delay when going out of a closet
+		M.stunned = max(M.stunned, 2) //Action delay when going out of a closet
 		M.update_canmove() //Force the delay to go in action immediately
 		if(!M.lying)
 			M.visible_message("<span class='warning'>[M] suddenly gets out of [src]!",
