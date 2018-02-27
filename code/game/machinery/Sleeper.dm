@@ -395,11 +395,19 @@
 		return
 
 	visible_message("[usr] starts climbing into the sleeper.", 3)
+	if(usr.pulledby)
+		if(ismob(usr.pulledby))
+			var/mob/grabmob = usr.pulledby
+			grabmob.stop_pulling()
 	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
 		if(src.occupant)
 			usr << "\blue <B>The sleeper is already occupied!</B>"
 			return
 		usr.stop_pulling()
+		if(usr.pulledby)
+			if(ismob(usr.pulledby))
+				var/mob/grabmob = usr.pulledby
+				grabmob.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.loc = src
