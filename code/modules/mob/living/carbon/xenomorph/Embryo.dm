@@ -129,7 +129,7 @@
 	if(!affected_mob || affected_mob.z == 2) return //We do not allow chest bursts on the Centcomm Z-level, to prevent stranded players from admin experiments and other issues
 
 	//If the bursted person themselves has xeno enabled, they get the honor of first dibs on the new larva
-	if(affected_mob.client && !jobban_isbanned(affected_mob, "Alien"))
+	if(affected_mob.client && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
 		picked = affected_mob.key //Put them into the alien. Doesn't matter if they have alien selected.
 	else
 		if(candidates.len)
