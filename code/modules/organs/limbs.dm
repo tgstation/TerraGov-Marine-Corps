@@ -742,7 +742,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/lol = pick(cardinal)
 			step(organ,lol)
 
-		owner.update_body(1)
+		owner.update_body(1, 1)
 
 		// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
 		release_restraints()

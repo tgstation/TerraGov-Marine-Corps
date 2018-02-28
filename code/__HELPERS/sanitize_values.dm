@@ -30,6 +30,18 @@
 			else		return default
 	return default
 
+/proc/sanitize_ethnicity(ethnicity, default = "Western")
+	if (ethnicity in ethnicities_list)
+		return ethnicity
+
+	return default
+
+/proc/sanitize_body_type(body_type, default = "Mesomorphic (Average)")
+	if (body_type in body_types_list)
+		return body_type
+
+	return default
+
 /proc/sanitize_hexcolor(color, default="#000000")
 	if(!istext(color)) return default
 	var/len = length(color)
