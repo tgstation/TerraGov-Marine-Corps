@@ -5,10 +5,9 @@
 	density = 0
 	drag_delay = 1
 
-
-/obj/machinery/iv_drip/var/mob/living/carbon/human/attached = null
-/obj/machinery/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
-/obj/machinery/iv_drip/var/obj/item/reagent_container/beaker = null
+	var/mob/living/carbon/human/attached = null
+	var/mode = 1 // 1 is injecting, 0 is taking blood.
+	var/obj/item/reagent_container/beaker = null
 
 /obj/machinery/iv_drip/update_icon()
 	if(src.attached)
@@ -58,14 +57,26 @@
 			update_icon()
 
 
-/obj/machinery/iv_drip/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/iv_drip/attackby(obj/item/W, mob/living/user)
 	if (istype(W, /obj/item/reagent_container))
-		if(!isnull(src.beaker))
-			user << "There is already a reagent container loaded!"
+		if(beaker)
+			user << "<span class='warning'>There is already a reagent container loaded!</span>"
+			return
+
+		if((!istype(W, /obj/item/reagent_container/blood) && !istype(W, /obj/item/reagent_container/glass)) || istype(W, /obj/item/reagent_container/glass/bucket))
+			user << "<span class='warning'>That won't fit!</span>"
 			return
 
 		if(user.drop_inv_item_to_loc(W, src))
 			beaker = W
+
+			var/reagentnames = ""
+			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+				reagentnames += ";[R.name]"
+
+			message_staff("[key_name(user)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.loc.x];Y=[src.loc.y];Z=[src.loc.z]'>JMP</a>).", 1)
+			log_admin("[key_name(user)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]).")
+
 			user << "You attach \the [W] to \the [src]."
 			update_icon()
 		return

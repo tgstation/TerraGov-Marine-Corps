@@ -166,13 +166,25 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/reagent_container/glass))
 		if(beaker)
-			user << "\red A beaker is already loaded into the machine."
+			user << "<span class='warning'>A beaker is already loaded into the machine.</span>"
+			return
+
+		if(istype(W, /obj/item/reagent_container/glass/bucket))
+			user << "<span class='warning'>That's too big to fit!</span>"
 			return
 
 		beaker =  W
+
+		var/reagentnames = ""
+		for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			reagentnames += ";[R.name]"
+
+		message_staff("[key_name(user)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.loc.x];Y=[src.loc.y];Z=[src.loc.z]'>JMP</a>).", 1)
+		log_admin("[key_name(user)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]).")
+
 		if(user.drop_inv_item_to_loc(W, src))
 			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
 	else if(istype(W, /obj/item/grab))
