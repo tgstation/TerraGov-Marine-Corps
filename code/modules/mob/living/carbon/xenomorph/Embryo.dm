@@ -123,26 +123,41 @@
 //We look for a candidate. If found, we spawn the candidate as a larva
 //Order of priority is bursted individual (if xeno is enabled), then random candidate, and then it's up for grabs and spawns braindead
 /obj/item/alien_embryo/proc/become_larva()
-	var/list/candidates = get_alien_candidates()
+	// We do not allow chest bursts on the Centcomm Z-level, to prevent
+	// stranded players from admin experiments and other issues
+	if (!affected_mob || affected_mob.z == 2)
+		return
+
 	var/picked
 
-	if(!affected_mob || affected_mob.z == 2) return //We do not allow chest bursts on the Centcomm Z-level, to prevent stranded players from admin experiments and other issues
-
-	//If the bursted person themselves has xeno enabled, they get the honor of first dibs on the new larva
-	if(affected_mob.client && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
-		picked = affected_mob.key //Put them into the alien. Doesn't matter if they have alien selected.
+	// If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva
+	if (affected_mob.client && affected_mob.client.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
+		picked = affected_mob.key
 	else
-		if(candidates.len)
+		// Get a candidate from observers
+		var/list/candidates = get_alien_candidates()
+
+		if (candidates.len)
 			picked = pick(candidates)
 
+	// Spawn the larva
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno
-	if(isYautja(affected_mob)) new_xeno = new /mob/living/carbon/Xenomorph/Larva/predalien(affected_mob)
-	else new_xeno = new(affected_mob)
-	if(picked) //found a candidate
+
+	if(isYautja(affected_mob))
+		new_xeno = new /mob/living/carbon/Xenomorph/Larva/predalien(affected_mob)
+	else
+		new_xeno = new(affected_mob)
+
+	// If we have a candidate, transfer it over
+	if(picked)
 		new_xeno.key = picked
-		if(new_xeno.client) new_xeno.client.view = world.view
+
+		if(new_xeno.client)
+			new_xeno.client.view = world.view
+
 		new_xeno << "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>"
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+
 	stage = 6
 
 /mob/living/carbon/Xenomorph/Larva/proc/chest_burst(mob/living/carbon/victim)
