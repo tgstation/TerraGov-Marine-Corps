@@ -93,6 +93,8 @@ var/global/hive_orders = "" //What orders should the hive have
 
 	regenerate_icons()
 
+	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
+
 //Off-load this proc so it can be called freely
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name

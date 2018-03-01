@@ -109,15 +109,6 @@ OPERATIONS
 	contraband = 1
 	group = "Operations"
 
-/datum/supply_packs/sandbags
-	name = "Empty sandbags crate (x50)"
-	contains = list(/obj/item/stack/sandbags_empty)
-	amount = 50
-	cost = 15
-	containertype = "/obj/structure/closet/crate/supply"
-	containername = "empty sandbags crate"
-	group = "Supplies"
-
 
 /*******************************************************************************
 WEAPONS
@@ -1501,28 +1492,13 @@ ENGINEERING
 *******************************************************************************/
 
 
-/datum/supply_packs/inflatable
-	name = "Inflatable barriers (x9 doors, x12 walls)"
-	contains = list(
-					/obj/item/storage/briefcase/inflatable,
-					/obj/item/storage/briefcase/inflatable,
-					/obj/item/storage/briefcase/inflatable
-					)
-	cost = 20
-	containertype = /obj/structure/closet/crate/construction
-	containername = "inflatable barriers crate"
-	group = "Engineering"
-
-/datum/supply_packs/lightbulbs
-	name = "Replacement lights (x42 tube, x21 bulb)"
-	contains = list(
-					/obj/item/storage/box/lights/mixed,
-					/obj/item/storage/box/lights/mixed,
-					/obj/item/storage/box/lights/mixed
-					)
-	cost = 10
-	containertype = /obj/structure/closet/crate/supply
-	containername = "replacement lights crate"
+/datum/supply_packs/sandbags
+	name = "Empty sandbags crate (x50)"
+	contains = list(/obj/item/stack/sandbags_empty)
+	amount = 50
+	cost = 15
+	containertype = "/obj/structure/closet/crate/supply"
+	containername = "empty sandbags crate"
 	group = "Engineering"
 
 /datum/supply_packs/metal50
@@ -1610,6 +1586,30 @@ ENGINEERING
 	cost = 10
 	containertype = /obj/structure/largecrate
 	containername = "fuel tank crate"
+	group = "Engineering"
+
+/datum/supply_packs/inflatable
+	name = "Inflatable barriers (x9 doors, x12 walls)"
+	contains = list(
+					/obj/item/storage/briefcase/inflatable,
+					/obj/item/storage/briefcase/inflatable,
+					/obj/item/storage/briefcase/inflatable
+					)
+	cost = 20
+	containertype = /obj/structure/closet/crate/construction
+	containername = "inflatable barriers crate"
+	group = "Engineering"
+
+/datum/supply_packs/lightbulbs
+	name = "Replacement lights (x42 tube, x21 bulb)"
+	contains = list(
+					/obj/item/storage/box/lights/mixed,
+					/obj/item/storage/box/lights/mixed,
+					/obj/item/storage/box/lights/mixed
+					)
+	cost = 10
+	containertype = /obj/structure/closet/crate/supply
+	containername = "replacement lights crate"
 	group = "Engineering"
 
 /datum/supply_packs/pacman_parts
