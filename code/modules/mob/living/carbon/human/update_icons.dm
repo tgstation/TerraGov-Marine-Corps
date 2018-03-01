@@ -2,7 +2,7 @@
 	Global associative list for caching humanoid icons.
 	Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.
 	TODO: Proper documentation
-	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
+	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][ethnicity]
 */
 var/global/list/human_icon_cache = list()
 
@@ -254,7 +254,7 @@ var/global/list/damage_icon_parts = list()
 
 	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
 
-	var/icon_key = "[species.race_key][g][s_tone]"
+	var/icon_key = "[species.race_key][g][ethnicity]"
 	for(var/datum/limb/part in limbs)
 
 		if(istype(part,/datum/limb/head) && !(part.status & LIMB_DESTROYED))
@@ -269,7 +269,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			icon_key = "[icon_key]1"
 
-	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0][s_tone]"
+	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0][ethnicity]"
 
 	var/icon/base_icon
 	if(!force_cache_update && human_icon_cache[icon_key])
