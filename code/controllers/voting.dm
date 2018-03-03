@@ -328,6 +328,8 @@ datum/controller/vote
 
 
 
+var/MapDaemon_UID = -1 //-1 by default so we know when to set it
+
 //Basically, this completely ignores the voting datum etc in favor of editing a simple a simple list, player_votes
 //Upon request by MapDaemon, world/Topic() will it into JSON and send it away, so we do 0 handling in DM
 /client/verb/mapVote()
