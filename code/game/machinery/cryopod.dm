@@ -252,6 +252,10 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 							for(var/obj/item/Z in W.contents)
 								strippeditems += Z
 								Z.loc = null
+								if(istype(Z, /obj/item/clothing/tie))
+									var/obj/item/clothing/tie/T = Z
+									T.has_suit.overlays -= T.inv_overlay
+									T.has_suit = null
 
 					for(var/TT in deleteempty)
 						if(istype(W, TT))
