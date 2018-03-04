@@ -100,6 +100,9 @@
 
 	src.count++ //Add up the tally. This is important in even squad distribution.
 
+	if(M.mind.assigned_role != "Squad Marine")
+		log_admin("[key_name(M)] has been assigned as [name] [M.mind.assigned_role]") // we don't want to spam squad marines but the others are useful
+
 	marines_list += M
 	M.assigned_squad = src //Add them to the squad
 

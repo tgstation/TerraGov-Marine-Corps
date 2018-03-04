@@ -2351,6 +2351,8 @@
 		if(ref_person && ref_person.adminhelp_marked)
 			usr << "<b>This Adminhelp is already being handled, but continue if you wish.</b>"
 			usr << sound('sound/effects/adminhelp-error.ogg')
+			if(alert(usr, "Are you sure you want to autoreply to this marked ahelp?", "Confirmation", "Yes", "No") != "Yes")
+				return
 
 		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "IC Issue", "Being Handled", "Fixed", "Thanks", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen", "A: Devour as Xeno", "J: Job bans", "E: Event in progress", "R: Radios", "D: Joining disabled", "M: Macros")
 
