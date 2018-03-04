@@ -179,15 +179,28 @@ var/world_topic_spam_protect_time = world.timeofday
 	//START: MAPDAEMON PROCESSING
 	if(addr == "127.0.0.1") //Verify that instructions are coming from the local machine
 
-		if(T == "mapdaemon_get_round_status")
+		var/list/md_args = splittext(T,"&")
+		var/command = md_args[1]
+		var/MD_UID = md_args[2]
+
+		if(command == "mapdaemon_get_round_status")
 
 			if(!ticker) return "ERROR" //Yeah yeah wrong data type, but MapDaemon.java can handle it
-			if(kill_map_daemon) return 2 //The super secret killing code that kills it until it's been killed.
+
+			if(MapDaemon_UID == -1) MapDaemon_UID = MD_UID //If we haven't seen an instance of MD yet, this is ours now
+
+			if(kill_map_daemon || MD_UID != MapDaemon_UID) return 2 //The super secret killing code that kills it until it's been killed.
+
 			else if(!ticker.mode) return 0 //Before round start
+
 			else if(ticker.mode.round_finished) return 1
+
 			else return 0 //IDK what would cause this but why not, don't really want runtimes
 
-		else if(T == "mapdaemon_delay_round")
+		else if(MD_UID != MapDaemon_UID)
+			return "ERROR" //kill the imposter, kill it with fire
+
+		else if(command == "mapdaemon_delay_round")
 
 			if(!ticker) return "ERROR"
 			spawn(200) //20 seconds
@@ -207,7 +220,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			message_admins("World/Topic() call (likely MapDaemon.exe) has delayed the round end.", 1)
 			return "SUCCESS"
 
-		else if(T == "mapdaemon_restart_round")
+		else if(command == "mapdaemon_restart_round")
 
 			if(!ticker) return "ERROR"
 
@@ -221,7 +234,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 			return "WILL DO" //Yessir!
 
-		else if(T == "mapdaemon_receive_votes")
+		else if(command == "mapdaemon_receive_votes")
 
 			var/list/L = list()
 
