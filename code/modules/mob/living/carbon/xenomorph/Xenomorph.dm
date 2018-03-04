@@ -101,7 +101,17 @@ var/global/hive_orders = "" //What orders should the hive have
 /mob/living/carbon/Xenomorph/proc/generate_name()
 
 	//We don't have a nicknumber yet, assign one to stick with us
-	if(!nicknumber) nicknumber = rand(1, 999)
+	if(!nicknumber)
+		var/tempnumber = rand(1, 999)
+		var/list/numberlist = list()
+		for(var/mob/living/carbon/Xenomorph/X in mob_list)
+			numberlist += X.nicknumber
+
+		while(tempnumber in numberlist)
+			tempnumber = rand(1, 999)
+
+		nicknumber = tempnumber
+
 
 	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
 	if(caste == "Larva")
