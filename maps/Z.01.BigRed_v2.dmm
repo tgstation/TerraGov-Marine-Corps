@@ -68,7 +68,7 @@
 "abp" = (/obj/structure/cargo_container{tag = "icon-blue 1,0"; icon_state = "blue 1,0"},/turf/simulated/floor/plating,/area/bigredv2/outside/space_port)
 "abq" = (/obj/structure/cargo_container{tag = "icon-blue 2,0"; icon_state = "blue 2,0"},/turf/simulated/floor/plating,/area/bigredv2/outside/space_port)
 "abr" = (/obj/structure/window/framed/colony,/obj/machinery/door/poddoor/shutters/almayer{dir = 4; id = "Spaceport"; name = "\improper Spaceport Shutters"},/turf/simulated/floor/plating,/area/bigredv2/outside/space_port)
-"abs" = (/obj/machinery/computer/shuttle_control/dropship1{onboard = 1},/obj/structure/table,/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/lv624/lazarus/console)
+"abs" = (/obj/machinery/computer/shuttle_control/dropship1{onboard = 0},/obj/structure/table,/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/lv624/lazarus/console)
 "abt" = (/obj/structure/table,/obj/effect/spawner/random/powercell,/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
 "abu" = (/obj/machinery/landinglight/ds1/delaythree{tag = "icon-landingstripe (EAST)"; icon_state = "landingstripe"; dir = 4},/turf/simulated/floor{tag = "icon-asteroidwarning (EAST)"; icon_state = "asteroidwarning"; dir = 4},/area/bigredv2/outside/space_port)
 "abv" = (/obj/effect/landmark{name = "crap_item"},/turf/simulated/floor/plating,/area/shuttle/drop1/BigRed)

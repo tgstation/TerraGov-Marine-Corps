@@ -601,7 +601,7 @@
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(M.is_intelligent)
 		attack_hand(M)
-		if(!shuttle.queen_locked && !shuttle.iselevator && onboard) //This is the shuttle's onboard console and we have not hijacked it yet
+		if(!shuttle.queen_locked && !shuttle.iselevator && (onboard || src.z == 1)) //This is the shuttle's onboard console and we have not hijacked it yet
 			if(world.time < SHUTTLE_LOCK_TIME_LOCK)
 				M << "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 				return
