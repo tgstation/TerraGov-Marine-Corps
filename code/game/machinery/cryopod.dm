@@ -398,7 +398,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
 			"<span class='notice'>You start putting [M] into [src].</span>")
 
-			if(!do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK)) return
+			if(!do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC)) return
 			if(!M || !G || !G.grabbed_thing) return
 			if(occupant)
 				user << "<span class='warning'>[src] is occupied.</span>"
@@ -470,7 +470,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	usr.visible_message("<span class='notice'>[usr] starts climbing into [src].</span>",
 	"<span class='notice'>You start climbing into [src].</span>")
 
-	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
+	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_GENERIC))
 
 		if(!usr || !usr.client)
 			return

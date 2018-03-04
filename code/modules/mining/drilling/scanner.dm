@@ -11,7 +11,7 @@
 
 	user << "You begin sweeping \the [src] about, scanning for metal deposits."
 
-	if(!do_after(user,50)) return
+	if(!do_after(user,50, TRUE, 5, BUSY_ICON_GENERIC)) return
 
 	if(!user || !src) return
 

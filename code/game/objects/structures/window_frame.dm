@@ -61,7 +61,7 @@
 		user.visible_message("<span class='notice'>[user] starts installing a new glass window on the frame.</span>", \
 		"<span class='notice'>You start installing a new window on the frame.</span>")
 		playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] installs a new glass window on the frame.</span>", \
 			"<span class='notice'>You install a new window on the frame.</span>")
 			sheet.use(2)
@@ -78,10 +78,10 @@
 				else
 					if(user.action_busy)
 						return
-					user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src]...</span>",
+					user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src].</span>",
 					"<span class='notice'>You start pulling [M] onto [src]!</span>")
 					var/oldloc = loc
-					if(!do_mob(user, M, 20, BUSY_ICON_CLOCK) || loc != oldloc) return
+					if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc) return
 					M.KnockDown(2)
 					user.visible_message("<span class='warning'>[user] pulls [M] onto [src].</span>",
 					"<span class='notice'>You pull [M] onto [src].</span>")

@@ -75,7 +75,7 @@
 		Hole.userLooking.reset_view(null)
 		Hole.userLooking = null
 
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
+	if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
 		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.blinded && !user.lying && !user.buckled)
 			I.loc = Target
 			if(I.pulling && get_dist(src, user.pulling) <= 2)
@@ -114,7 +114,7 @@
 			else if (_dir == WEST || _dir == SOUTHWEST || _dir == NORTHWEST)
 				Target = get_step(src, WEST)
 
-		if(do_after(usr, 10, FALSE, 5, BUSY_ICON_CLOCK))
+		if(do_after(usr, 10, FALSE, 5, BUSY_ICON_GENERIC))
 			usr.visible_message("<span class='notice'>[usr] looks through [src]!</span>", \
 			"<span class='notice'>You look through [src]!</span>")
 			usr.set_interaction(src)
@@ -142,7 +142,7 @@
 		var/obj/item/explosive/grenade/G = W
 
 		user << "You take the position to throw the [G]."
-		if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='warning'>[user] throws [G] through [src]!</span>", \
 								 "<span class='warning'>You throw [G] through [src]</span>")
 			user.drop_held_item()
@@ -157,7 +157,7 @@
 		var/obj/item/device/flashlight/F = W
 
 		user << "You take the position to throw the [F]."
-		if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='warning'>[user] throws [F] through [src]!</span>", \
 								 "<span class='warning'>You throw [F] through [src]</span>")
 			user.drop_held_item()

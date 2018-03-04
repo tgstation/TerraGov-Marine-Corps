@@ -265,12 +265,16 @@
 	if(!WT.isOn())
 		return 0
 
-	// Do after stuff here
-	user << "<span class='notice'>You start to weld the [src]..</span>"
-	playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
+	//Do after stuff here
+	user.visible_message("<span class='notice'>[user] starts to weld [src].</span>",
+	"<span class='notice'>You start to weld [src].</span>")
+	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	WT.eyecheck(user)
-	if(do_after(user, 100, TRUE, 5, BUSY_ICON_CLOCK))
+	if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 		if(!WT.isOn())
 			return 0
+		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] welds [src].</span>",
+		"<span class='notice'>You weld [src].</span>")
 		return 1
 	return 0

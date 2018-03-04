@@ -455,7 +455,7 @@
 		usr << "<font color='red'>It's too cluttered inside for you to fit in!</font>"
 		return
 	visible_message("[usr] starts squeezing into the suit storage unit!", 3)
-	if(do_after(usr, 10, FALSE))
+	if(do_after(usr, 10, FALSE, 5, BUSY_ICON_GENERIC))
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
@@ -499,7 +499,7 @@
 			user << "<font color='red'>The unit's storage area is too cluttered.</font>"
 			return
 		visible_message("[user] starts putting [G.grabbed_thing] into the Suit Storage Unit.", 3)
-		if(do_after(user, 20))
+		if(do_after(user, 20, 5, BUSY_ICON_GENERIC))
 			if(!G || !G.grabbed_thing) return //derpcheck
 			var/mob/M = G.grabbed_thing
 			M.forceMove(src)
@@ -686,7 +686,7 @@
 
 		visible_message("[user] starts putting [G.grabbed_thing] into the suit cycler.", 3)
 
-		if(do_after(user, 20))
+		if(do_after(user, 20, 5, BUSY_ICON_GENERIC))
 			if(!G || !G.grabbed_thing) return
 			var/mob/M = G.grabbed_thing
 			M.forceMove(src)

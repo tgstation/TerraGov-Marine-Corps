@@ -83,7 +83,7 @@
 		return
 
 	src << "<span class='notice'>You start focusing your plasma towards [target].</span>"
-	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
 
 	if(!check_state())
@@ -245,7 +245,7 @@
 	if(caste == "Drone")
 		wait_time = 10
 
-	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_BUILD))
 		return
 
 	blocker = locate() in current_turf
@@ -368,7 +368,7 @@
 		src << "<span class='warning'>You cannot dissolve \the [O].</span>"
 		return
 
-	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_HOSTILE))
 		return
 
 	if(!check_state())

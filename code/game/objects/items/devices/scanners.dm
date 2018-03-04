@@ -99,7 +99,7 @@ REAGENT SCANNER
 		var/fduration = 60
 		if(user.mind.cm_skills.medical > 0)
 			fduration = 30
-		if(!do_after(user, fduration, TRUE, 5, BUSY_ICON_CLOCK) || !user.Adjacent(M))
+		if(!do_after(user, fduration, TRUE, 5, BUSY_ICON_FRIENDLY) || !user.Adjacent(M))
 			return
 	if(isXeno(M))
 		user << "<span class='warning'>[src] can't make sense of this creature.</span>"

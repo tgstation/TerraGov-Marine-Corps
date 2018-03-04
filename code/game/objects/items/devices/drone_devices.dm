@@ -181,7 +181,7 @@
 
 			D << "\red You begin decompiling the other drone."
 
-			if(!do_after(D,50, FALSE))
+			if(!do_after(D, 50, FALSE, 5, BUSY_ICON_GENERIC))
 				D << "\red You need to remain still while decompiling such a large object."
 				return
 

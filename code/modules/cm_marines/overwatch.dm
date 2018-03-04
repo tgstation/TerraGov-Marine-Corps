@@ -885,7 +885,7 @@
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(user, delay, TRUE, 5, BUSY_ICON_CLOCK))
+	if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 
 		squad.sbeacon = src
 		user.drop_inv_item_to_loc(src, user.loc)
@@ -940,7 +940,7 @@
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(user, delay, TRUE, 5, BUSY_ICON_CLOCK))
+	if(do_after(user, delay, TRUE, 5, BUSY_ICON_HOSTILE))
 
 		message_admins("[user] ([user.key]) set up an orbital strike beacon.")
 		squad.bbeacon = src //Set us up the bomb~

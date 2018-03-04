@@ -167,7 +167,7 @@
 					else
 						user.visible_message("\red <B>[user] begins hunting for an injection port on [target]'s suit!</B>")
 
-					if(!do_mob(user, target, injection_time, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
+					if(!do_mob(user, target, injection_time, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL)) return
 
 					user.visible_message("\red [user] injects [target] with the syringe!")
 
@@ -361,7 +361,7 @@
 
 				if(ismob(target) && target != user)
 					user.visible_message("\red <B>[user] is trying to inject [target] with a giant syringe!</B>")
-					if(!do_mob(user, target, 300, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
+					if(!do_mob(user, target, 300, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL)) return
 					user.visible_message("\red [user] injects [target] with a giant syringe!")
 					src.reagents.reaction(target, INGEST)
 				if(ismob(target) && target == user)

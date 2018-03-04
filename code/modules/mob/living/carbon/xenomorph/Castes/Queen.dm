@@ -330,7 +330,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_mob(src, victim, 80, BUSY_ICON_CLOCK))
+	if(do_mob(src, victim, 80, BUSY_ICON_HOSTILE))
 		if(!victim)
 			return
 		if(victim.loc != cur_loc)

@@ -17,7 +17,7 @@
 				return
 
 			user << "Now planting \the [L]."
-			if(!do_after(user,20))
+			if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")

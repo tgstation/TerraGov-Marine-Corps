@@ -185,7 +185,7 @@
 	else if(istype(W, /obj/item/tool/wrench))
 		if(!wrenchable) return
 
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			if(!src) return
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			switch (anchored)
@@ -297,7 +297,7 @@
 	if(tipped_level == 2)
 		tipped_level = 1
 		user.visible_message("\blue [user] begins to heave the vending machine back into place!","\blue You start heaving the vending machine back into place..")
-		if(do_after(user,80, FALSE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,80, FALSE, 5, BUSY_ICON_FRIENDLY))
 			user.visible_message("\blue [user] rights the [src]!","\blue You right the [src]!")
 			flip_back()
 			return

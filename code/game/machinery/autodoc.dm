@@ -614,7 +614,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 
 	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_CLOCK))
+	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_GENERIC))
 		if(occupant)
 			usr << "<span class='notice'>\The [src] is already occupied!</span>"
 			return
@@ -667,7 +667,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 
 		visible_message("[user] starts putting [M] into [src].", 3)
 
-		if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
 			if(src.occupant)
 				user << "<span class='notice'>\The [src] is already occupied!</span>"
 				return

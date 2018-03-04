@@ -176,7 +176,7 @@
 
 	user << "<span class='notice'>You begin to cut the straps off \the [src]...</span>"
 
-	if (do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
+	if (do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		user << "<span class='notice'>You cut the straps away.</span>"
 		icon_state = "secure_crate"

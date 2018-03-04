@@ -145,7 +145,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					step_duration = max(5, step_duration - 10*user.mind.cm_skills.surgery)
 
 				//Multiply tool success rate with multipler
-				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_CLOCK, BUSY_ICON_MED, TRUE))
+				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL, TRUE))
 					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
 						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
 

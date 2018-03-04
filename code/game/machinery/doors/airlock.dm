@@ -942,7 +942,7 @@ About the new airlock wires panel:
 		user.visible_message("<span class='notice'>[user] starts tearing into the door on the [src]!</span>", \
 			"<span class='notice'>You start prying your hand into the gaps of the door with your fingers... This will take about 30 seconds.</span>", \
 			"<span class='notice'>You hear tearing noises!</span>")
-		if(do_after(user, 300, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 300, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='notice'>[user] slams the door open [src]!</span>", \
 			"<span class='notice'>You slam the door open!</span>", \
 			"<span class='notice'>You hear metal screeching!</span>")
@@ -960,7 +960,7 @@ About the new airlock wires panel:
 			"<span class='notice'>You start working on \the [src] with [W].</span>", \
 			"<span class='notice'>You hear welding.</span>")
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK) && density)
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD) && density)
 				if(!src.welded)
 					src.welded = 1
 				else
@@ -983,8 +983,8 @@ About the new airlock wires panel:
 				user << "<span class='warning'>You don't seem to know how to deconstruct machines.</span>"
 				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+			user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
+			if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 				user << "\blue You removed the airlock electronics!"
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)

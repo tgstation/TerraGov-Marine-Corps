@@ -143,7 +143,7 @@
 										 "<span class='notice'>You try to pin [src] on [H]'s chest.</span>")
 					if(user.action_busy)
 						return
-					if(!do_mob(user, H, 20, BUSY_ICON_CLOCK))
+					if(!do_mob(user, H, 20, BUSY_ICON_GENERIC))
 						return
 				user.drop_held_item()
 				U.hastie = src
