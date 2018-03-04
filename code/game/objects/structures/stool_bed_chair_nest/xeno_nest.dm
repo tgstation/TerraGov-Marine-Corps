@@ -123,7 +123,7 @@
 
 	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>")
-	if(do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
+	if(do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
 		if(buckled_mob) //Just in case
 			user << "<span class='warning'>There's already someone in [src].</span>"
 			return

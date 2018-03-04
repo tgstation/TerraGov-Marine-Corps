@@ -42,7 +42,7 @@
 		var/oldloc = loc
 		var/olddir = dir
 		var/old_buckled_mob = buckled_mob
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK) && dir == olddir && loc == oldloc && buckled_mob == old_buckled_mob)
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE) && dir == olddir && loc == oldloc && buckled_mob == old_buckled_mob)
 			manual_unbuckle(user)
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 

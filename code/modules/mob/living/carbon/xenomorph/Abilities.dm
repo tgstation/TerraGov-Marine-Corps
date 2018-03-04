@@ -511,7 +511,7 @@
 
 	X.visible_message("<span class='xenonotice'>[X] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>")
-	if(!do_after(X, 100, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(X, 100, TRUE, 5, BUSY_ICON_BUILD))
 		X << "<span class='warning'>Your tunnel caves in as you stop digging it.</span>"
 		return
 	if(!X.check_plasma(200))
@@ -594,7 +594,7 @@
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_CLOCK) && X.check_plasma(plasma_cost))
+		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(plasma_cost))
 			return
 		if(!X.check_state()) return
 		if(!locate(/obj/effect/alien/weeds) in current_turf)
@@ -625,7 +625,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
 		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
-	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_CLOCK)) return
+	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_HOSTILE)) return
 	if(!X.check_state())
 		return
 	if(!X.ovipositor)

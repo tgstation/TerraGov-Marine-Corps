@@ -1105,17 +1105,17 @@ table tr:first-child th:first-child { border: none;}
 
 	switch(buildstage)
 		if(2)
-			if(istype(W, /obj/item/tool/screwdriver))  // Opening that Air Alarm up.
+			if(isscrewdriver(W))  // Opening that Air Alarm up.
 				//user << "You pop the Air Alarm's maintence panel open."
 				wiresexposed = !wiresexposed
 				user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
 				update_icon()
 				return
 
-			if (wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/tool/wirecutters))))
+			if(wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/tool/wirecutters))))
 				return attack_hand(user)
 
-			if (istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
+			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
 					user << "It does nothing"
 					return
@@ -1129,9 +1129,9 @@ table tr:first-child th:first-child { border: none;}
 			return
 
 		if(1)
-			if(istype(W, /obj/item/stack/cable_coil))
+			if(iscoil(W))
 				var/obj/item/stack/cable_coil/C = W
-				if (C.use(5))
+				if(C.use(5))
 					user << "<span class='notice'>You wire \the [src].</span>"
 					buildstage = 2
 					update_icon()
@@ -1141,11 +1141,13 @@ table tr:first-child th:first-child { border: none;}
 					user << "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>"
 					return
 
-			else if(istype(W, /obj/item/tool/crowbar))
-				user << "You start prying out the circuit."
+			else if(iscrowbar(W))
+				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
+				"<span class='notice'>You start prying out [src]'s circuits.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
-					user << "You pry out the circuit!"
+				if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+					user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
+					"<span class='notice'>You pry out [src]'s circuits.</span>")
 					var/obj/item/circuitboard/airalarm/circuit = new()
 					circuit.loc = user.loc
 					buildstage = 0
@@ -1159,7 +1161,7 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			else if(istype(W, /obj/item/tool/wrench))
+			else if(iswrench(W))
 				user << "You remove the fire alarm assembly from the wall!"
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.loc = user.loc

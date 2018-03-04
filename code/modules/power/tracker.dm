@@ -59,7 +59,7 @@
 
 	if(iscrowbar(W))
 		playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			var/obj/item/frame/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc

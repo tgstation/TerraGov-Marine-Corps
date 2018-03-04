@@ -75,7 +75,7 @@
 		user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
 		"<span class='notice'>You start assembling a sandbag barricade.</span>")
 		in_use = 1
-		if(!do_after(usr, 20, TRUE, 5, BUSY_ICON_CLOCK))
+		if(!do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
 			in_use = 0
 			return
 		for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere

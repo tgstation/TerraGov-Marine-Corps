@@ -112,35 +112,35 @@
 	attack_verb = list("slashed", "bite", "tore", "scraped", "nibbled")
 	pry_capable = IS_PRY_CAPABLE_FORCE
 
-	attack(mob/living/M, mob/living/carbon/human/user, def_zone)
-		if(user.species == "human")
-			user <<"NOPE.  But don't worry, eventually it won't be possible to hold these things once I figure out how to stop you from putting it into lockers"
-			return 0
-		. = ..()
-		playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.species.name == "Human")
-				for(var/datum/disease/black_goo/BG in H.viruses)
-					user.show_message(text("\green <B> You sense your target is infected</B>"))
-					return
-				if(prob(75))
-					M.contract_disease(new /datum/disease/black_goo)
-					user.show_message(text("\green <B> You sense your target is now infected</B>"))
-
-
-	afterattack(obj/O as obj, mob/user as mob, proximity)
-		if (istype(O, /obj/machinery/door/airlock) && get_dist(src,O) <= 1)
-			var/obj/machinery/door/airlock/D = O
-			if(D.density == 0)
+/obj/item/weapon/zombie_claws/attack(mob/living/M, mob/living/carbon/human/user, def_zone)
+	if(user.species == "Human")
+		return 0
+	. = ..()
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.species.name == "Human")
+			for(var/datum/disease/black_goo/BG in H.viruses)
+				user.show_message(text("\green <B>You sense your target is infected</B>"))
 				return
-
-			user << "\blue You jam \the [src] into [O] and strain to rip it open."
-			playsound(user,'sound/weapons/wristblades_hit.ogg', 15, 1)
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
-				D.open(1)
+			if(prob(75))
+				M.contract_disease(new /datum/disease/black_goo)
+				user.show_message(text("\green <B>You sense your target is now infected</B>"))
 
 
+/obj/item/weapon/zombie_claws/afterattack(obj/O as obj, mob/user as mob, proximity)
+	if (istype(O, /obj/machinery/door/airlock) && get_dist(src, O) <= 1)
+		var/obj/machinery/door/airlock/D = O
+		if(!D.density)
+			return
+
+		user.visible_message("<span class='danger'>[user] jams \his [name] into [O] and strains to rip it open.</span>",
+		"<span class='danger'>You jam your [name] into [O] and strain to rip it open.</span>")
+		playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, 1)
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
+			user.visible_message("<span class='danger'>[user] forces [O] open with \his [name].</span>",
+			"<span class='danger'>You force [O] open with your [name].</span>")
+			D.open(1)
 
 /obj/item/reagent_container/food/drinks/bottle/black_goo
 	name = "strange bottle"

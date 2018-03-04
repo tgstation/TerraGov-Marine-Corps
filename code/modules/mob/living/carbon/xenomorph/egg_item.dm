@@ -42,7 +42,7 @@
 			return
 	user.visible_message("<span class='notice'>[user] starts planting [src].</span>", \
 					"<span class='notice'>You start planting [src].</span>")
-	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 		return
 	for (var/obj/O in T)
 		if (!istype(O,/obj/machinery/light/small))
@@ -64,7 +64,7 @@
 	var/plant_time = 35
 	if(user.caste != "Drone")
 		plant_time = 25
-	if(!do_after(user, plant_time, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(user, plant_time, TRUE, 5, BUSY_ICON_BUILD))
 		return
 	if(!user.check_alien_construction(T))
 		return

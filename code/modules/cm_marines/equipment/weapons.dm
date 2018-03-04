@@ -67,7 +67,7 @@
 		var/reload_duration = 50
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
 			reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
-		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_FRIENDLY))
 			pcell.charge -= 50
 			if(!mygun.current_mag) //This shouldn't happen, since the mag can't be ejected. Good safety, I guess.
 				var/obj/item/ammo_magazine/internal/smartgun/A = new(mygun)

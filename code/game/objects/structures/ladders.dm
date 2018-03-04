@@ -85,7 +85,7 @@
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
 	busy = 1
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
+	if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
 		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.blinded && !user.lying && !user.buckled)
 			//TODO: Using forceMove is desirable here, but this breaks the pull. If you know how to preserve the pull, this would be nice!
 			user.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually //Make sure we move before we broadcast the message
@@ -210,7 +210,7 @@
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [G] [ladder_dir_name] [src].</span>",
 		"<span class='warning'>You take position to throw [G] [ladder_dir_name] [src].</span>")
-		if(do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='warning'>[user] throws [G] [ladder_dir_name] [src]!</span>",
 			"<span class='warning'>You throw [G] [ladder_dir_name] [src]</span>")
 			user.drop_held_item()
@@ -242,7 +242,7 @@
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [F] [ladder_dir_name] [src].</span>",
 		"<span class='warning'>You take position to throw [F] [ladder_dir_name] [src].</span>")
-		if(do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='warning'>[user] throws [F] [ladder_dir_name] [src]!</span>",
 			"<span class='warning'>You throw [F] [ladder_dir_name] [src]</span>")
 			user.drop_held_item()

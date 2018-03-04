@@ -61,7 +61,7 @@
 		"<span class='notice'>You start adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
 		busy = 1
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'>[user] finishes adjusting [src]'s firing angle and distance.</span>",
 			"<span class='notice'>You finish adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
 			busy = 0
@@ -98,7 +98,7 @@
 		"<span class='notice'>You start dialing [src]'s firing angle and distance to match the new coordinates.</span>")
 		busy = 1
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 15, TRUE, 5, BUSY_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'>[user] finishes dialing [src]'s firing angle and distance.</span>",
 			"<span class='notice'>You finish dialing [src]'s firing angle and distance to match the new coordinates.</span>")
 			busy = 0
@@ -136,7 +136,7 @@
 		"<span class='notice'>You start loading \a [mortar_shell.name] into [src].</span>")
 		playsound(loc, 'sound/weapons/gun_mortar_reload.ogg', 50, 1)
 		busy = 1
-		if(do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 			"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
 			visible_message("\icon[src] <span class='danger'>The [name] fires!</span>")
@@ -173,7 +173,7 @@
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] starts undeploying [src].",
 		"<span class='notice'>You start undeploying [src].")
-		if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] undeploys [src].",
 			"<span class='notice'>You undeploy [src].")
 			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -212,7 +212,7 @@
 	user.visible_message("<span class='notice'>[user] starts deploying [src].",
 	"<span class='notice'>You start deploying [src].")
 	playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-	if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
+	if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 		user.visible_message("<span class='notice'>[user] deploys [src].",
 		"<span class='notice'>You deploy [src].")
 		playsound(loc, 'sound/weapons/gun_mortar_unpack.ogg', 25, 1)

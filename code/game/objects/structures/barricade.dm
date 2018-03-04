@@ -125,7 +125,7 @@
 		if(can_wire)
 			user.visible_message("<span class='notice'>[user] starts setting up [W.name] on [src].</span>",
 			"<span class='notice'>You start setting up [W.name] on [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && can_wire)
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && can_wire)
 				playsound(src.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] sets up [W.name] on [src].</span>",
 				"<span class='notice'>You set up [W.name] on [src].</span>")
@@ -147,7 +147,7 @@
 		if(is_wired)
 			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
 				"<span class='notice'>You remove the barbed wire on [src].</span>")
@@ -301,7 +301,7 @@
 				user  << "\red You are already shoveling!"
 				return
 			user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
-			if(!do_after(user, 100, TRUE, 5, BUSY_ICON_CLOCK))
+			if(!do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("\red \The [user] decides not to remove \the [src] anymore.")
 				return
 			user.visible_message("\blue \The [user] removes \the [src].")
@@ -365,7 +365,7 @@
 				user << "<span class='warning'>You need one plank of wood to repair [src].</span>"
 				return
 			visible_message("<span class='notice'>[user] begins to repair [src].</span>")
-			if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK) && health < maxhealth)
+			if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY) && health < maxhealth)
 				if (D.use(1))
 					health = maxhealth
 					visible_message("<span class='notice'>[user] repairs [src].</span>")
@@ -442,7 +442,7 @@
 			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
 				health += 150
@@ -459,7 +459,7 @@
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
 				build_state = 1
@@ -472,7 +472,7 @@
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
 				build_state = 2
@@ -484,7 +484,7 @@
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				anchored = FALSE
@@ -502,7 +502,7 @@
 						user << "<span class='warning'>There's already a barricade here.</span>"
 						return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_CLOCK)) return
+				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				build_state = 1
@@ -517,7 +517,7 @@
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -607,7 +607,7 @@
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			busy = 1
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
 				busy = 0
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
@@ -690,7 +690,7 @@
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				busy = 1
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 					busy = 0
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
@@ -777,7 +777,7 @@
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 			"<span class='notice'>You start disassembling [src].</span>")
-			if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
 				destroy(TRUE)

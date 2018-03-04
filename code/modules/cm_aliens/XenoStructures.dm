@@ -816,7 +816,7 @@ TUNNEL
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
 		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src] to <b>[A.name]</b>.</span>")
 
-	if(do_after(M, tunnel_time, FALSE, 5, BUSY_ICON_CLOCK))
+	if(do_after(M, tunnel_time, FALSE, 5, BUSY_ICON_GENERIC))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.forceMove(other.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \

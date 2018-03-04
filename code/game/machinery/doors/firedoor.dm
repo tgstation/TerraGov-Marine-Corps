@@ -210,7 +210,7 @@
 				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
 				"You hear metal strain.")
 		var/old_density = density
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE))
 			if(blocked || density != old_density) return
 			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
 				"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [C]!</span>",\
@@ -231,7 +231,7 @@
 		user.visible_message("<span class='danger'>\The zombie starts to force \the [src] [density ? "open" : "closed"] with it's claws!!!</span>",\
 				"You start forcing \the [src] [density ? "open" : "closed"] with your claws!",\
 				"You hear metal strain.")
-		if(do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,150, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='danger'>\The [user] forces \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \a [C]!</span>",\
 			"You force \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \the [C]!",\
 			"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")

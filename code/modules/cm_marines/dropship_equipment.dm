@@ -40,7 +40,7 @@
 					return TRUE
 				if(installed_equipment) return TRUE
 				playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				if(!do_after(user, 70, FALSE, 5, BUSY_ICON_CLOCK)) return TRUE
+				if(!do_after(user, 70, FALSE, 5, BUSY_ICON_BUILD)) return TRUE
 				if(installed_equipment || PC.loaded != SE) return TRUE
 				user << "<span class='notice'>You install [SE] on [src].</span>"
 				SE.forceMove(loc)
@@ -60,7 +60,7 @@
 			else if(!PC.loaded && openable_base)
 				var/old_open = base_open
 				playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				if(!do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK) && old_open == base_open) return TRUE
+				if(!do_after(user, 20, FALSE, 5, BUSY_ICON_BUILD) && old_open == base_open) return TRUE
 				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 				base_open = !base_open
 				if(base_open)
@@ -183,7 +183,7 @@
 					var/obj/structure/ship_ammo/SA = PC.loaded
 					if(SA.equipment_type == type)
 						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-						if(do_after(user, 30, FALSE, 5, BUSY_ICON_CLOCK))
+						if(do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
 							if(!ammo_equipped && PC.loaded == SA && PC.linked_powerloader && PC.linked_powerloader.buckled_mob == user)
 								SA.forceMove(src)
 								PC.loaded = null
@@ -197,7 +197,7 @@
 
 			else if(uses_ammo && ammo_equipped)
 				playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				if(do_after(user, 30, FALSE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
 					if(ammo_equipped && PC.linked_powerloader && PC.linked_powerloader.buckled_mob == user)
 						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 						if(!ammo_equipped.ammo_count)
@@ -215,7 +215,7 @@
 				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 				var/duration_time = 10
 				if(ship_base) duration_time = 70 //uninstalling equipment takes more time
-				if(do_after(user, duration_time, FALSE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, duration_time, FALSE, 5, BUSY_ICON_BUILD))
 					if(PC.linked_powerloader && !PC.loaded && PC.linked_powerloader.buckled_mob == user)
 						forceMove(PC.linked_powerloader)
 						PC.loaded = src

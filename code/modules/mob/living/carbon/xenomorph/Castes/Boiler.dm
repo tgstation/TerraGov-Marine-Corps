@@ -123,7 +123,7 @@
 	is_bombarding = 0
 	use_plasma(200)
 
-	if(do_after(src, 50, FALSE))
+	if(do_after(src, 50, FALSE, 5, BUSY_ICON_HOSTILE))
 		if(!check_state())
 			bomb_cooldown = 0
 			return

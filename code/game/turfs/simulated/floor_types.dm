@@ -75,7 +75,7 @@
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/simulated/floor)
 			var/turf/simulated/floor/F = src

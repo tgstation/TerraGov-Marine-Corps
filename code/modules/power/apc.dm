@@ -396,7 +396,7 @@
 			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts removing [src]'s power control board.</span>",
 			"<span class='notice'>You start removing [src]'s power control board.</span>") //lpeters - fixed grammar issues
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK) && has_electronics == 1)
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD) && has_electronics == 1)
 				has_electronics = 0
 				if((stat & BROKEN))
 					user.visible_message("<span class='notice'>[user] breaks [src]'s charred power control board and removes the remains.</span>",
@@ -494,7 +494,7 @@
 			user << "<span class='warning'>Nothing happens.</span>"
 		else
 			flick("apc-spark", src)
-			if(do_after(user, 6))
+			if(do_after(user, 6, TRUE, 5, BUSY_ICON_HOSTILE))
 				if(prob(50))
 					emagged = 1
 					locked = 0
@@ -516,7 +516,7 @@
 		user.visible_message("<span class='notice'>[user] starts wiring [src]'s frame.</span>",
 		"<span class='notice'>You start wiring [src]'s frame.</span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && !terminal && opened && has_electronics != 2)
+		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && !terminal && opened && has_electronics != 2)
 			var/turf/T = get_turf(src)
 			var/obj/structure/cable/N = T.get_cable_node()
 			if(prob(50) && electrocute_mob(usr, N, N))
@@ -539,7 +539,7 @@
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s wiring and terminal.</span>",
 		"<span class='notice'>You start removing [src]'s wiring and terminal.</span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			if (prob(50) && electrocute_mob(user, terminal.powernet, terminal))
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(5, 1, src)
@@ -557,7 +557,7 @@
 		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
 		"<span class='notice'>You start inserting the power control board into [src].</span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 15, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 15, TRUE, 5, BUSY_ICON_BUILD))
 			has_electronics = 1
 			user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
 			"<span class='notice'>You insert the power control board into [src].</span>")
@@ -579,7 +579,7 @@
 		user.visible_message("<span class='notice'>[user] starts welding [src]'s frame.</span>",
 		"<span class='notice'>You start welding [src]'s frame.</span>")
 		playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			if(!src || !WT.remove_fuel(3, user)) return
 			if(emagged || (stat & BROKEN) || opened == 2)
 				new /obj/item/stack/sheet/metal(loc)
@@ -611,7 +611,7 @@
 			return
 		user.visible_message("<span class='notice'>[user] begins replacing [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You begin replacing [src]'s damaged frontal panel with a new one.</span>")
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 			"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
 			cdel(W)

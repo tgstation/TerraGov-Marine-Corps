@@ -97,7 +97,7 @@
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	user << "<span class='notice'>INITIATING LASER TARGETING ON: '[A]'. Stand still.</span>"
 	var/old_A_loc = A.loc
-	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_CLOCK) || world.time < laser_cooldown || laser || !A || A.loc != old_A_loc)
+	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser || !A || A.loc != old_A_loc)
 		busy = FALSE
 		return
 	busy = FALSE
@@ -107,7 +107,7 @@
 	user << "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [laser.x]. LATITUDE [laser.y].</span>"
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	while(laser)
-		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
 			if(laser)
 				cdel(laser)
 				laser = null

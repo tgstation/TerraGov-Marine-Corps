@@ -779,7 +779,7 @@
 		playsound(src,'sound/ambience/signal.ogg', 25, 1)
 		timer = 1
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
-		if(do_after(user,100, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,100, TRUE, 5, BUSY_ICON_GENERIC))
 			// Teleport self.
 			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
 			var/tele_time = animation_teleport_quick_out(user)
@@ -927,7 +927,7 @@
 			if(D.operating || !D.density) return
 			user << "<span class='notice'>You jam [src] into [D] and strain to rip it open.</span>"
 			playsound(user,'sound/weapons/wristblades_hit.ogg', 15, 1)
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && D.density)
+			if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE) && D.density)
 				D.open(1)
 
 /obj/item/weapon/wristblades/scimitar
@@ -994,7 +994,7 @@
 
 		user << "<span class='notice'>You begin using your knife to rip shrapnel out. Hold still. This will probably hurt...</span>"
 
-		if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,50, TRUE, 5, BUSY_ICON_FRIENDLY))
 			var/obj/item/shard/shrapnel/S
 			for(var/datum/limb/O in user.limbs)
 				for(S in O.implants)

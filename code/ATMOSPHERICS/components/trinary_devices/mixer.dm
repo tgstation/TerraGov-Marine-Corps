@@ -107,22 +107,22 @@
 	return 1
 
 /obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/tool/wrench))
+	if(!iswrench(W))
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
+	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
+		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-	user << "\blue You begin to unfasten \the [src]..."
-	if (do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			"\blue You have unfastened \the [src].", \
-			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
+	"<span class='notice'>You begin unfastening [src].</span>")
+	if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
+		"<span class='notice'>You unfasten [src].</span>")
+		new /obj/item/pipe(loc, make_from = src)
 		cdel(src)
 
 /obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
