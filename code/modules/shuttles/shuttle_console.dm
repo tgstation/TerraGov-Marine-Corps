@@ -22,7 +22,7 @@
 	user.set_interaction(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if(!isXeno(user) && (onboard || src.z == 1) && shuttle.queen_locked && !shuttle.iselevator)
+	if(!isXeno(user) && (onboard || z == 1) && shuttle.queen_locked && !shuttle.iselevator)
 		if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
 			user << "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
 		else
@@ -169,7 +169,7 @@
 				usr << "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>"
 				return
 			else
-				if(!(src.z==1)) shuttle.transit_gun_mission = 0 //remote launch always do transport flight.
+				if(z == 1) shuttle.transit_gun_mission = 0 //remote launch always do transport flight.
 				shuttle.launch(src)
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
