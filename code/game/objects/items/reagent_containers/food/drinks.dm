@@ -49,7 +49,7 @@
 
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("\red [user] attempts to feed [M] [src].", 1)
-			if(!do_mob(user, M)) return
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY)) return
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("\red [user] feeds [M] [src].", 1)
 

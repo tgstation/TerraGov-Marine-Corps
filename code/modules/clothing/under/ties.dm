@@ -132,28 +132,29 @@
 		if(H.w_uniform)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(U.hastie)
-				user << "<span class='warning'>There's already something attached to [H.w_uniform].</span>"
+				user << "<span class='warning'>There's already something attached to [H]'s [U.name].</span>"
 				return
 			else
 				if(recipient_name != H.real_name)
 					user << "<span class='warning'>[src] isn't awarded to [H].</span>"
 					return
 				if(user != H)
-					user.visible_message("[user] is trying to pin [src] on [H]'s chest.", \
-										 "<span class='notice'>You try to pin [src] on [H]'s chest.</span>")
+					user.visible_message("[user] starts pinning [src] on [H]'s [U.name].", \
+					"<span class='notice'>You start pinning [src] on [H]'s [U.name].</span>")
 					if(user.action_busy)
 						return
-					if(!do_mob(user, H, 20, BUSY_ICON_GENERIC))
+					if(!do_mob(user, H, 20, BUSY_ICON_FRIENDLY))
 						return
 				user.drop_held_item()
 				U.hastie = src
 				on_attached(U, user)
 				H.update_inv_w_uniform()
 				if(user == H)
-					user << "<span class='notice'>You attach [src] to [U].</span>"
+					user.visible_message("<span class='notice'>[user] pins [src] to \his [U.name].</span>",
+					"<span class='notice'>You pin [src] to your [U.name].</span>")
 				else
-					user.visible_message("[user] pins [src] on [H]'s chest.", \
-						"<span class='notice'>You pin [src] on [H]'s chest.</span>")
+					user.visible_message("[user] pins [src] on [H]'s [U.name].", \
+					"<span class='notice'>You pin [src] on [H]'s [U.name].</span>")
 		else
 			user << "<span class='warning'>[src] needs a uniform to be pinned to.</span>"
 	else

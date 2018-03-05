@@ -80,7 +80,7 @@
 					O.show_message("\red [user] cannot force anymore of [src] down [M]'s throat.", 1)
 					return 0
 
-			if(!do_mob(user, M)) return
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY)) return
 
 			var/rgt_list_text = get_reagent_list_text()
 

@@ -33,7 +33,7 @@
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message(text("\red <B>[] is trying to squirt something into []'s eyes!</B>", user, target), 1)
 
-				if(!do_mob(user, target, time)) return
+				if(!do_mob(user, target, time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
 
 				if(istype(target , /mob/living/carbon/human))
 					var/mob/living/carbon/human/victim = target
