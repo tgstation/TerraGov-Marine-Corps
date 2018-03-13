@@ -292,6 +292,27 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
+/client/proc/cmd_admin_corrupt_xeno(mob/living/carbon/Xenomorph/M in mob_list)
+	set category = "Debug"
+	set name = "Corrupt Xenomorph"
+
+	if(!ticker)
+		alert("Wait until the game starts")
+		return
+	if(isXeno(M))
+		log_admin("[key_name(src)] toggled corruption on [M] to [M.corrupted].")
+		M.corrupted = !M.corrupted
+		if(istype(M, /mob/living/carbon/Xenomorph/Larva))
+			var/mob/living/carbon/Xenomorph/Larva/L = M
+			L.update_icons() // larva renaming done differently
+		else
+			M.generate_name()
+		usr << "Corruption toggled to [M.corrupted]"
+		feedback_add_details("admin_verb","MKCT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		message_admins("\blue [key_name(src)] toggled corruption on [M] to [M.corrupted].", 1)
+	else
+		alert("Invalid mob")
+
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"

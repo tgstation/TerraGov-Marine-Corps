@@ -241,6 +241,9 @@
 	if(. && X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
 		if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
+			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
+			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")
 			apply_damage(X.charge_speed * 40, BRUTE)
 		KnockDown(X.charge_speed * 4)
 		animation_flash_color(src)
@@ -255,6 +258,11 @@
 /mob/living/carbon/Xenomorph/charge_act(mob/living/carbon/Xenomorph/X)
 	if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
+		if(corrupted != X.corrupted)
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
+			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
+			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")
+			apply_damage(X.charge_speed * 20, BRUTE) // half damage to avoid sillyness
 		if(anchored) //Ovipositor queen can't be pushed
 			X.stop_momentum(X.charge_dir, TRUE)
 			r_TRU

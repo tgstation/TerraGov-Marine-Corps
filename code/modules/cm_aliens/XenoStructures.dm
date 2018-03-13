@@ -312,7 +312,7 @@
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
 	if(hugger)
-		if(CanHug(AM) && !isYautja(AM))
+		if(CanHug(AM) && !isYautja(AM) && !isSynth(AM))
 			var/mob/living/L = AM
 			L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
 							"<span class='danger'>You trip on [src]!</span>")
@@ -502,6 +502,7 @@
 	var/list/egg_triggers = list()
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
+	var/corrupted = 0
 
 	New()
 		..()
@@ -594,6 +595,7 @@
 			if(loc && status != DESTROYED)
 				status = BURST
 				var/obj/item/clothing/mask/facehugger/child = new(loc)
+				child.corrupted = corrupted
 				child.leap_at_nearest_target()
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
@@ -663,7 +665,7 @@
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)
-		if(!CanHug(AM) || isYautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
+		if(!CanHug(AM) || isYautja(AM) || isSynth(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
 		Burst(0)
 

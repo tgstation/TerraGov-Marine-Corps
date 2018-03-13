@@ -117,12 +117,20 @@
 					"<span class='warning'>You grab \the [src]!</span>")
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 
-			if("hurt")//Can't slash other xenos for now. SORRY
+			if("hurt")//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
 				M.animation_attack_on(src)
-				M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
-				"<span class='warning'>You nibble \the [src].</span>")
-				return 1
-
+				if(corrupted == M.corrupted)
+					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
+					"<span class='warning'>You nibble \the [src].</span>")
+					return 1
+				else
+					var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper)) // no plus 3 because its too much damage
+					M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
+					"<span class='danger'>You slash [src]!</span>")
+					src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slashed by [M.name] ([M.ckey])</font>")
+					M.attack_log += text("\[[time_stamp()]\] <font color='red'>slashed [src.name] ([src.ckey])</font>")
+					log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
+					apply_damage(damage, BRUTE)
 
 			if("disarm")
 				M.animation_attack_on(src)

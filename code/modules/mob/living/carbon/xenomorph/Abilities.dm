@@ -691,7 +691,7 @@
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen")
+		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen" && X.corrupted == T.corrupted)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
@@ -738,7 +738,7 @@
 	else
 		var/list/possible_xenos = list()
 		for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-			if(T.z == X.z && T.queen_chosen_lead && T.caste != "Queen")
+			if(T.z == X.z && T.queen_chosen_lead && T.caste != "Queen" && X.corrupted == T.corrupted)
 				possible_xenos += T
 
 		if(possible_xenos.len > 1)
@@ -974,7 +974,7 @@
 		X.use_plasma(600)
 
 	else
-		X << "<span class='warning'>You must overwatch the xeno you want to give plasma.</span>"
+		X << "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>"
 
 //Ravager Abilities
 

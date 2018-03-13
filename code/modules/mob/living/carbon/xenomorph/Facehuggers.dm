@@ -27,6 +27,7 @@
 	var/attached = 0
 	var/lifecycle = 300 //How long the hugger will survive outside of the egg, or carrier.
 	var/leaping = 0 //Is actually attacking someone?
+	var/corrupted = 0
 
 	New()
 		..()
@@ -314,7 +315,10 @@
 		if(H.species && (H.species.flags & IS_SYNTHETIC)) return //can't impregnate synthetics
 
 	if(!sterile)
-		new /obj/item/alien_embryo(target)
+		if(corrupted)
+			new /obj/item/alien_embryo/corrupted(target)
+		else
+			new /obj/item/alien_embryo(target)
 		target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
 		icon_state = "[initial(icon_state)]_impregnated"
 		Die()
@@ -394,7 +398,7 @@
 
 /proc/CanHug(mob/living/carbon/M)
 
-	if(!istype(M) || isXeno(M) || isHellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
+	if(!istype(M) || isXeno(M) || isSynth(M) || isHellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,

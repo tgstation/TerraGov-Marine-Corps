@@ -283,6 +283,8 @@ client
 				body += "<option value='?_src_=vars;makerobot=\ref[D]'>Make cyborg</option>"
 				body += "<option value='?_src_=vars;makemonkey=\ref[D]'>Make monkey</option>"
 				body += "<option value='?_src_=vars;makealien=\ref[D]'>Make alien</option>"
+			if(isXeno(D))
+				body += "<option value='?_src_=vars;makecorrupted=\ref[D]'>Make Corrupted Xeno</option>"
 			body += "<option value>---</option>"
 			body += "<option value='?_src_=vars;gib=\ref[D]'>Gib</option>"
 		if(isobj(D))
@@ -690,6 +692,28 @@ client
 			usr << "Mob doesn't exist anymore"
 			return
 		holder.Topic(href, list("makealien"=href_list["makealien"]))
+
+	else if(href_list["makecorrupted"])
+		if(!check_rights(R_DEBUG|R_ADMIN))	return
+
+		var/mob/living/carbon/Xenomorph/X = locate(href_list["makecorrupted"])
+		if(!istype(X))
+			usr << "This can only be done to instances of type /mob/living/carbon/Xenomorph"
+			return
+		var/corrupted_status = X.corrupted
+		if(X.corrupted)
+			if(alert("This xeno is already corrupted, change them back?",,"Uncorrupt","Cancel") != "Uncorrupt") return
+		else
+			if(alert("Corrupt this xeno?",,"Corrupt","Cancel") != "Corrupt") return
+
+		if(!X)
+			usr << "This xeno no longer exists"
+			return
+		if(X.corrupted != corrupted_status)
+			usr << "Someone else toggled corruption on this xeno while you were deciding"
+			return
+
+		holder.Topic(href, list("makecorrupted"=href_list["makecorrupted"]))
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return

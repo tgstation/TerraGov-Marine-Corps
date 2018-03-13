@@ -75,7 +75,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
 		if(!living_xeno_queen)
 			living_xeno_queen = src
-		xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
+		xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,corrupted)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
 /mob/living/carbon/Xenomorph/Queen/Dispose()
@@ -104,7 +104,8 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 					var/turf/T = loc
 					if(T.contents.len <= 25) //so we don't end up with a million object on that turf.
 						egg_amount--
-						new /obj/item/xeno_egg(loc)
+						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
+						newegg.corrupted = corrupted
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
@@ -151,6 +152,10 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	set name = "Set Hive Orders (50)"
 	set desc = "Give some specific orders to the hive. They can see this on the status pane."
 
+	if(corrupted)
+		src << "<span class='warning'>Only your masters can decide this!</span>"
+		return
+
 	if(!check_state())
 		return
 	if(!check_plasma(50))
@@ -161,7 +166,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</B>")
+		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</B>",3,corrupted)
 		hive_orders = txt
 	else
 		hive_orders = ""
@@ -188,7 +193,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(ticker && ticker.mode)
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
-			if(X && X.client && istype(X) && !X.stat)
+			if(X && X.client && istype(X) && !X.stat && corrupted == X.corrupted)
 				X << sound(get_sfx("queen"),wait = 0,volume = 50)
 				X << "[queensWord]"
 
@@ -201,6 +206,10 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	set name = "Permit/Disallow Slashing"
 	set desc = "Allows you to permit the hive to harm."
 	set category = "Alien"
+
+	if(corrupted)
+		src << "<span class='warning'>Only your masters can decide this!</span>"
+		return
 
 	if(stat)
 		src << "<span class='warning'>You can't do that now.</span>"
@@ -220,15 +229,15 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 	if(choice == "Allowed")
 		src << "<span class='xenonotice'>You allow slashing.</span>"
-		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!", 3)
+		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!")
 		slashing_allowed = 1
 	else if(choice == "Restricted - Less Damage")
 		src << "<span class='xenonotice'>You restrict slashing.</span>"
-		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will only slash when hurt.", 3)
+		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will only slash when hurt.")
 		slashing_allowed = 2
 	else if(choice == "Forbidden")
 		src << "<span class='xenonotice'>You forbid slashing entirely.</span>"
-		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.", 3)
+		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
 		slashing_allowed = 0
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
@@ -305,14 +314,15 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
 		var/mob/living/carbon/human/H = victim
-		if(victim.stat != DEAD) //Not dead yet.
-			src << "<span class='xenowarning'>The host and child are still alive!</span>"
-			return
-		else if(istype(H) && ( world.time <= H.timeofdeath + H.revive_grace_period )) //Dead, but the host can still hatch, possibly.
-			src << "<span class='xenowarning'>The child may still hatch! Not yet!</span>"
-			return
+		if( ((!corrupted) == (H.status_flags & XENO_HOST)) || (corrupted == (H.status_flags & XENO_CORRUPTED_HOST)) )
+			if(victim.stat != DEAD) //Not dead yet.
+				src << "<span class='xenowarning'>The host and child are still alive!</span>"
+				return
+			else if(istype(H) && ( world.time <= H.timeofdeath + H.revive_grace_period )) //Dead, but the host can still hatch, possibly.
+				src << "<span class='xenowarning'>The child may still hatch! Not yet!</span>"
+				return
 
-	if(isXeno(victim))
+	if(isXeno(victim) && corrupted == isCorruptedXeno(victim)) // this will be amazing
 		src << "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>"
 		return
 
@@ -373,7 +383,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	update_canmove()
 	update_icons()
 
-	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution progress resumed.</span>", 3)
+	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution progress resumed.</span>", 3, corrupted)
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
 	set waitfor = 0
@@ -425,7 +435,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		anchored = FALSE
 		update_canmove()
 		if(!instant_dismount)
-			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3)
+			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3, corrupted)
 
 /mob/living/carbon/Xenomorph/Queen/update_canmove()
 	. = ..()

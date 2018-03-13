@@ -107,8 +107,8 @@
 					else
 						ghostrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
 					S.show_message(ghostrend, 2)
-			else if(S != src && S == living_xeno_queen && living_xeno_queen.ovipositor)
+			else if(S != src && S == living_xeno_queen && living_xeno_queen.ovipositor && corrupted == isCorruptedXeno(S))
 				var/queenrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> (<a href='byond://?src=\ref[S];queentrack=\ref[src]'>watch</a>)<span class='message'> hisses, '[message]'</span></span></i>"
 				S.show_message(queenrend, 2)
-			else
+			else if(corrupted == isCorruptedXeno(S))
 				S.show_message(rendered, 2)
