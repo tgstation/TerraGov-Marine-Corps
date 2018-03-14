@@ -32,7 +32,7 @@
 				M.update_icons() //To immediately show the grab
 
 		if("hurt")
-			if(!slashing_allowed && !M.is_intelligent)
+			if(!M.corrupted && !slashing_allowed && !M.is_intelligent) // corrupted xenos ignore slashing orders
 				M << "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>"
 				r_FAL
 
@@ -41,8 +41,8 @@
 				r_FAL
 
 			if(!M.is_intelligent)
-				if(slashing_allowed == 2)
-					if(status_flags & XENO_HOST)
+				if(!M.corrupted && slashing_allowed == 2) // corrupted xenos ignore slashing orders
+					if( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ) // this spagetti lets corrupted xenos slash the hosts of non-corrupts and the other way too
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
 						r_FAL
 
@@ -50,7 +50,7 @@
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
 						r_FAL
 
-				else if(istype(buckled, /obj/structure/bed/nest) && status_flags & XENO_HOST)
+				else if(istype(buckled, /obj/structure/bed/nest) && ( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ))
 					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
 					r_FAL
 
@@ -212,14 +212,14 @@
 				M.update_icons() //To immediately show the grab
 
 		if("hurt")
-			if(isXeno(src)) //Can't slash other xenos for now
+			if(isXeno(src) && isCorruptedXeno(src) == M.corrupted) //Can't slash other xenos if they have the same corrupted status
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>")
 				return 1
 
 			if(!M.is_intelligent)
-				if(slashing_allowed == 2)
-					if(status_flags & XENO_HOST)
+				if(!M.corrupted && slashing_allowed == 2) // corrupted ignore slashing restriction
+					if( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ) // this spagetti lets corrupted xenos slash the hosts of non-corrupts and the other way too
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
 						r_FAL
 
@@ -227,7 +227,7 @@
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
 						r_FAL
 
-				else if(istype(buckled, /obj/structure/bed/nest) && status_flags & XENO_HOST)
+				else if(istype(buckled, /obj/structure/bed/nest) && ( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ))
 					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
 					r_FAL
 

@@ -70,20 +70,20 @@
 					phero_center = Q.observed_xeno
 				var/pheromone_range = round(6 + aura_strength * 2)
 				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && corrupted == Z.corrupted)
 						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new)
+					if(current_aura == "warding" && aura_strength > Z.warding_new && corrupted == Z.corrupted)
 						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new && corrupted == Z.corrupted)
 						Z.recovery_new = aura_strength
 			else
 				var/pheromone_range = round(6 + aura_strength * 2)
 				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new)
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && corrupted == Z.corrupted)
 						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new)
+					if(current_aura == "warding" && aura_strength > Z.warding_new && corrupted == Z.corrupted)
 						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new)
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new && corrupted == Z.corrupted)
 						Z.recovery_new = aura_strength
 
 		if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)

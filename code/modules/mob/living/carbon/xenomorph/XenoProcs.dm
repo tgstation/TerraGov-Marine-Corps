@@ -3,14 +3,14 @@
 
 
 //Send a message to all xenos. Mostly used in the deathgasp display
-/proc/xeno_message(var/message = null, var/size = 3)
+/proc/xeno_message(var/message = null, var/size = 3, var/corrupted = 0)
 	if(!message)
 		return
 
-	if(ticker && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+	if(ticker && ticker.mode && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
-			if(M && istype(M) && !M.stat && M.client) //Only living and connected xenos
+			if(M && istype(M) && !M.stat && M.client && corrupted == M.corrupted) //Only living and connected xenos
 				M << "<span class='xenodanger'><font size=[size]> [message]</font></span>"
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
@@ -19,12 +19,15 @@
 	. = ..()
 
 	if (.) //Only update when looking at the Status panel.
-		if(!evolution_allowed)
-			stat(null, "Evolve Progress (FINISHED)")
-		else if(!living_xeno_queen)
-			stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-		else if(!living_xeno_queen.ovipositor)
-			stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
+		if(!corrupted)
+			if(!evolution_allowed)
+				stat(null, "Evolve Progress (FINISHED)")
+			else if(!living_xeno_queen)
+				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+			else if(!living_xeno_queen.ovipositor)
+				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
+			else
+				stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 		else
 			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 
@@ -39,12 +42,15 @@
 			else
 				stat(null, "Plasma: [plasma_stored]/[plasma_max]")
 
-		if(slashing_allowed == 1)
-			stat(null,"Slashing of hosts is currently: PERMITTED.")
-		else if(slashing_allowed == 2)
-			stat(null,"Slashing of hosts is currently: LIMITED.")
+		if(!corrupted)
+			if(slashing_allowed == 1)
+				stat(null,"Slashing of hosts is currently: PERMITTED.")
+			else if(slashing_allowed == 2)
+				stat(null,"Slashing of hosts is currently: LIMITED.")
+			else
+				stat(null,"Slashing of hosts is currently: FORBIDDEN.")
 		else
-			stat(null,"Slashing of hosts is currently: FORBIDDEN.")
+			stat(null,"Slashing of hosts is decided by your masters.")
 
 		//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 		var/msg_holder = ""
@@ -74,7 +80,10 @@
 			stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
 
 		if(hive_orders && hive_orders != "")
-			stat(null,"Hive Orders: [hive_orders]")
+			if(!corrupted)
+				stat(null,"Hive Orders: [hive_orders]")
+			else
+				stat(null,"Hive Orders: Follow the instructions of your masters")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
