@@ -41,7 +41,7 @@
 				if(0)
 					if(prob(80))
 						KnockOut(4)
-					KnockDown(12)
+					KnockDown(8)
 
 			b_loss += rand(60, 75)
 			f_loss += rand(60, 75)
@@ -60,12 +60,12 @@
 						KnockDown(2)
 				if(1)
 					if(!knocked_down)
-						KnockDown(4)
+						KnockDown(3)
 				if(0)
 					if(prob(40))
 						KnockOut(2)
 					if(!knocked_down)
-						KnockDown(rand(4, 6))
+						KnockDown(4)
 
 			b_loss += rand(30, 45)
 			f_loss += rand(30, 45)
