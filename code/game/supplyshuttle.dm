@@ -3,6 +3,7 @@
 #define SUPPLY_STATIONZ 1       //Z-level of the Station.
 #define SUPPLY_STATION_AREATYPE "/area/supply/station" //Type of the supply shuttle area for station
 #define SUPPLY_DOCK_AREATYPE "/area/supply/dock"	//Type of the supply shuttle area for dock
+#define SUPPLY_COST_MULTIPLIER 1.08
 
 var/datum/controller/supply/supply_controller = new()
 
@@ -633,6 +634,7 @@ var/list/mechtoys = list(
 					supply_controller.requestlist.Cut(i,i+1)
 					supply_controller.points -= P.cost
 					supply_controller.shoppinglist += O
+					P.cost = round(P.cost * SUPPLY_COST_MULTIPLIER)
 					temp = "Thank you for your order.<BR>"
 					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 				else
