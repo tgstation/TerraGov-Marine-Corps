@@ -13,7 +13,7 @@
 	plasma_max = 750
 	evolution_threshold = 500
 	upgrade_threshold = 500
-	plasma_gain = 12
+	plasma_gain = 18
 	tier = 1
 	upgrade = 0
 	speed = -0.8
