@@ -1067,7 +1067,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_rifle
-	name = "Large Ammo Box crate (M41A x800 rounds)"
+	name = "Large Ammo Box crate (M41A x400 rounds)"
 	contains = list(/obj/item/ammo_magazine/big_box)
 	cost = 20
 	containertype = /obj/structure/closet/crate/ammo
@@ -1075,15 +1075,15 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_rifle_ap
-	name = "Large AP Ammo Box crate (M41A x800 rounds)"
+	name = "Large AP Ammo Box crate (M41A x400 rounds)"
 	contains = list(/obj/item/ammo_magazine/big_box/ap)
-	cost = 30
+	cost = 40
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_smg
-	name = "Large Ammo Box crate (M39 x800 rounds)"
+	name = "Large Ammo Box crate (M39 x400 rounds)"
 	contains = list(/obj/item/ammo_magazine/big_box/smg)
 	cost = 20
 	containertype = /obj/structure/closet/crate/ammo

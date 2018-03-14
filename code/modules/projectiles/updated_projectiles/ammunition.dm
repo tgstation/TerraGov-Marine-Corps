@@ -269,7 +269,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 800
+	max_rounds = 400
 	caliber = "10x24mm"
 	gun_type = null
 	var/base_icon_state = "big_ammo_box"
