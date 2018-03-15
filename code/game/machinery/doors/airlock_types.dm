@@ -531,11 +531,25 @@
 	icon = 'icons/obj/doors/almayer/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
+	unacidable = 1
+	no_panel = 1
+	not_weldable = 1
 
 /obj/machinery/door/airlock/dropship_hatch/two
 	icon = 'icons/obj/doors/almayer/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship2"
 
+/obj/machinery/door/airlock/hatch/cockpit
+	icon = 'icons/obj/doors/almayer/dropship1_pilot.dmi'
+	name = "\improper Cockpit"
+	req_access_txt = "22"
+	req_one_access_txt = "0"
+	unacidable = 1
+	no_panel = 1
+	not_weldable = 1
+
+/obj/machinery/door/airlock/hatch/cockpit/two
+	icon = 'icons/obj/doors/almayer/dropship2_pilot.dmi'
 
 //PRISON AIRLOCKS
 /obj/machinery/door/airlock/prison/medical/glass

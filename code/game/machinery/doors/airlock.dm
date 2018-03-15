@@ -107,6 +107,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/list/airlockWireColorToFlag
 	var/list/airlockIndexToWireColor
 	var/list/airlockWireColorToIndex
+	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
+	var/not_weldable = 0 // stops people welding the door if true
 
 	tiles_with = list(
 		/turf/simulated/wall)
@@ -955,6 +957,11 @@ About the new airlock wires panel:
 		return
 	if((istype(C, /obj/item/tool/weldingtool) && !operating && density))
 		var/obj/item/tool/weldingtool/W = C
+
+		if(not_weldable)
+			user << "<span class='warning'>\The [src] would require something a lot stronger than [W] to weld!</span>"
+			return
+
 		if(W.remove_fuel(0,user))
 			user.visible_message("<span class='notice'>[user] starts working on \the [src] with [W].</span>", \
 			"<span class='notice'>You start working on \the [src] with [W].</span>", \
@@ -968,6 +975,10 @@ About the new airlock wires panel:
 				src.update_icon()
 		return
 	else if(istype(C, /obj/item/tool/screwdriver))
+		if(no_panel)
+			user << "<span class='warning'>\The [src] has no panel to open!</span>"
+			return
+
 		p_open = !p_open
 		user << "<span class='notice'>You [p_open ? "open" : "close"] [src]'s panel.</span>"
 		update_icon()

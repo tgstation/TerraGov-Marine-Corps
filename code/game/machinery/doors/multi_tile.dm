@@ -151,9 +151,15 @@
 	opacity = 1
 	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
 	width = 3
+	unacidable = 1
+	no_panel = 1
+	not_weldable = 1
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropship2
 	name = "\improper Normandy cargo door"
 	opacity = 1
 	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
 	width = 3
+	unacidable = 1
+	no_panel = 1
+	not_weldable = 1

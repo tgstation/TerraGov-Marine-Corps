@@ -611,6 +611,25 @@
 				M << "<span class='xenonotice'>You interact with the pilot's console and disable remote control.</span>"
 				shuttle.last_locked = world.time
 				shuttle.queen_locked = 1
+
+				var/ship_id = "sh_dropship1"
+				if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+					ship_id = "sh_dropship2"
+
+				for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+					if(D.id == ship_id)
+						D.unlock()
+
+				var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+				switch(ship_id)
+					if("sh_dropship1")
+						for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+							reardoor = D
+					if("sh_dropship2")
+						for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+							reardoor = D
+
+				reardoor.unlock()
 	else
 		..()
 
