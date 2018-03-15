@@ -1,6 +1,7 @@
 #define CONTROL_POD_DOORS 0
 #define CONTROL_NORMAL_DOORS 1
 #define CONTROL_EMITTERS 2
+#define CONTROL_DROPSHIP 3
 
 /obj/machinery/door_control
 	name = "remote door-control"
@@ -69,6 +70,54 @@
 		req_one_access = list()
 		playsound(src.loc, "sparks", 25, 1)
 	return src.attack_hand(user)
+
+/obj/machinery/door_control/proc/handle_dropship(var/ship_id)
+	var/shuttle_tag
+	switch(ship_id)
+		if("sh_dropship1")
+			shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+		if("sh_dropship2")
+			shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+	if(!shuttle_tag)
+		return
+	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	if (!istype(shuttle))
+		return
+	if(shuttle.queen_locked)
+		return // its been locked down by the queen
+	for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+		if(M.id == ship_id)
+			if(M.locked && M.density)
+				continue // jobs done
+			else if(!M.locked && M.density)
+				M.lock() // closed but not locked yet
+				continue
+			else
+				M.do_command("secure_close")
+
+	var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+	switch(ship_id)
+		if("sh_dropship1")
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+				reardoor = D
+		if("sh_dropship2")
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+				reardoor = D
+
+	if(!reardoor.locked && reardoor.density)
+		reardoor.lock() // closed but not locked yet
+	else if(reardoor.locked && !reardoor.density)
+		spawn()
+			reardoor.unlock()
+			sleep(1)
+			reardoor.close()
+			sleep(reardoor.openspeed + 1) // let it close
+			reardoor.lock() // THEN lock it
+	else
+		spawn()
+			reardoor.close()
+			sleep(reardoor.openspeed + 1)
+			reardoor.lock()
 
 /obj/machinery/door_control/proc/handle_door()
 	for(var/obj/machinery/door/airlock/D in range(range))
@@ -149,6 +198,8 @@
 			handle_pod()
 		if(CONTROL_EMITTERS)
 			handle_emitters(user)
+		if(CONTROL_DROPSHIP)
+			handle_dropship(id)
 
 	desiredstate = !desiredstate
 	spawn(15)
@@ -235,6 +286,8 @@
 				handle_pod()
 			if(CONTROL_EMITTERS)
 				handle_emitters()
+			if(CONTROL_DROPSHIP)
+				handle_dropship(id)
 
 		desiredstate = !desiredstate
 		triggered = 1
@@ -242,4 +295,3 @@
 		spawn(15)
 			if(!(stat & NOPOWER))
 				icon_state = "doorctrl0"
-

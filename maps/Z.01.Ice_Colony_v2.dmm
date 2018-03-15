@@ -944,7 +944,7 @@
 "ash" = (/obj/structure/ladder{height = 2; icon_state = "ladderdown"; id = "janitor_ladder"; pixel_y = 16},/turf/simulated/floor/plating,/area/ice_colony/surface/dorms)
 "asi" = (/obj/effect/decal/cleanable/blood/drip{tag = "icon-3"; icon_state = "3"},/turf/unsimulated/floor/snow/layer0,/area/ice_colony/exterior/surface/clearing/north)
 "asj" = (/obj/machinery/door/airlock/multi_tile/almayer/medidoor{dir = 4; name = "\improper Aurora Medical Clinic Treatment"; req_access_txt = "100"},/turf/simulated/floor{tag = "icon-whitered (WEST)"; icon_state = "whitered"; dir = 8},/area/ice_colony/surface/clinic/treatment)
-"ask" = (/obj/machinery/door/airlock/medical,/obj/structure/disposalpipe/segment,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor{tag = "icon-whitered (EAST)"; icon_state = "whitered"; dir = 4},/area/ice_colony/surface/clinic/treatment)
+"ask" = (/obj/structure/disposalpipe/segment,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor{tag = "icon-whitered (EAST)"; icon_state = "whitered"; dir = 4},/area/ice_colony/surface/clinic/treatment)
 "asl" = (/obj/machinery/door/airlock/almayer/medical/glass{dir = 1; name = "\improper Aurora Medical Clinic Storage"; req_access_txt = "100"; req_one_access_txt = "0"},/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/ice_colony/surface/clinic/storage)
 "asm" = (/obj/structure/window/framed/colony/reinforced,/turf/simulated/floor/plating,/area/ice_colony/exterior/surface/valley/west)
 "asn" = (/turf/simulated/wall/r_wall,/area/ice_colony/surface/hydroponics/lobby)
