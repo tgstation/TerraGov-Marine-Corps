@@ -236,6 +236,12 @@
 		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
 		playsound(X.loc, "alien_drool", 25)
 
+
+	if(isXenoQueen(X) && xeno_leader_list.len && X.anchored)
+		var/mob/living/carbon/Xenomorph/Queen/Q = X
+		for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
+			L.handle_xeno_leader_pheromones(Q)
+
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
@@ -728,18 +734,26 @@
 		if(X.queen_ability_cooldown > world.time)
 			X << "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>"
 			return
+		if(X.queen_leader_limit <= xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
+			X << "<span class='xenowarning'>You currently have [xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>"
+			return
 		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 		T.queen_chosen_lead = !T.queen_chosen_lead
 		T.hud_set_queen_overwatch()
+		X.queen_ability_cooldown = world.time + 150 //15 seconds
 		if(T.queen_chosen_lead)
-			X.queen_ability_cooldown = world.time + 150 //15 seconds
-			X << "<span class='xenonotice'>You've selected [T] as a Lead.</span>"
-			T << "<span class='xenoannounce'>[X] has selected you as a Lead. The other xenomorphs must listen to you.</span>"
+			X << "<span class='xenonotice'>You've selected [T] as a Hive Leader.</span>"
+			T << "<span class='xenoannounce'>[X] has selected you as a Hive Leader. The other Xenomorphs must listen to you. You will also act as a beacon for the Queen's pheromones.</span>"
+			xeno_leader_list += T
+		else
+			X << "<span class='xenonotice'>You've demoted [T] from Lead.</span>"
+			T << "<span class='xenoannounce'>[X] has demoted you from Hive Leader. Your leadership rights and abilities have waned.</span>"
+			xeno_leader_list -= T
+		T.handle_xeno_leader_pheromones(X)
 	else
 		var/list/possible_xenos = list()
-		for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-			if(T.z == X.z && T.queen_chosen_lead && T.caste != "Queen" && X.corrupted == T.corrupted)
-				possible_xenos += T
+		for(var/mob/living/carbon/Xenomorph/T in xeno_leader_list)
+			possible_xenos += T
 
 		if(possible_xenos.len > 1)
 			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in possible_xenos
@@ -749,7 +763,7 @@
 		else if(possible_xenos.len)
 			X.set_queen_overwatch(possible_xenos[1])
 		else
-			X << "<span class='xenowarning'>There are no Xenomorph leaders. Overwatch a xenomorph to be able to make it a leader.</span>"
+			X << "<span class='xenowarning'>There are no Xenomorph leaders. Overwatch a Xenomorph to make it a leader.</span>"
 
 /datum/action/xeno_action/queen_heal
 	name = "Heal Xenomorph (600)"

@@ -110,3 +110,10 @@
 	//Pounce vars
 	var/usedPounce = 0
 	var/pounce_delay = 40
+
+	//Queen vars
+	var/queen_leader_limit = 1 //Amount of leaders allowed
+
+	//Leader vars
+	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
+	var/leader_current_aura = "" //Pheromone type inherited from Queen

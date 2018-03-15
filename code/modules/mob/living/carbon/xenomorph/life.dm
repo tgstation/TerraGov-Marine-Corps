@@ -86,6 +86,16 @@
 					if(current_aura == "recovery" && aura_strength > Z.recovery_new && corrupted == Z.corrupted)
 						Z.recovery_new = aura_strength
 
+		if(leader_current_aura && !stat)
+			var/pheromone_range = round(6 + leader_aura_strength * 2)
+			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
+				if(leader_current_aura == "frenzy" && leader_aura_strength > Z.frenzy_new && corrupted == Z.corrupted)
+					Z.frenzy_new = leader_aura_strength
+				if(leader_current_aura == "warding" && leader_aura_strength > Z.warding_new && corrupted == Z.corrupted)
+					Z.warding_new = leader_aura_strength
+				if(leader_current_aura == "recovery" && leader_aura_strength > Z.recovery_new && corrupted == Z.corrupted)
+					Z.recovery_new = leader_aura_strength
+
 		if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
 			frenzy_aura = frenzy_new
 			warding_aura = warding_new

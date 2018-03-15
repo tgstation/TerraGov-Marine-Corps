@@ -234,6 +234,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 85
 					speed = 0.2
 					aura_strength = 3
+					queen_leader_limit = 2
 
 		//SECOND UPGRADE
 		if(2)
@@ -426,6 +427,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 90
 					speed = 0.1
 					aura_strength = 4
+					queen_leader_limit = 3
 
 		//Final UPGRADE
 		if(3)
@@ -616,6 +618,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 95
 					speed = 0.0
 					aura_strength = 5
+					queen_leader_limit = 4
 
 	generate_name() //Give them a new name now
 
