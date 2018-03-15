@@ -535,6 +535,9 @@
 	no_panel = 1
 	not_weldable = 1
 
+/obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
+	return
+
 /obj/machinery/door/airlock/dropship_hatch/two
 	icon = 'icons/obj/doors/almayer/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship2"

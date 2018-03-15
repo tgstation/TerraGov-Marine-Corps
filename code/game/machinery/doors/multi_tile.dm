@@ -155,6 +155,9 @@
 	no_panel = 1
 	not_weldable = 1
 
+/obj/machinery/door/airlock/multi_tile/almayer/dropship1/ex_act(severity)
+	return
+
 /obj/machinery/door/airlock/multi_tile/almayer/dropship2
 	name = "\improper Normandy cargo door"
 	opacity = 1
@@ -163,3 +166,6 @@
 	unacidable = 1
 	no_panel = 1
 	not_weldable = 1
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropship2/ex_act(severity)
+	return

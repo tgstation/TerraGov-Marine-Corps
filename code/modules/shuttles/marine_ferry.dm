@@ -307,7 +307,8 @@
 
 	for(var/obj/machinery/door/poddoor/shutters/almayer/D in machines)
 		if(D.id == "sd_lockdown")
-			D.open()
+			spawn(0)
+				D.open()
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
@@ -467,6 +468,26 @@
 					P.open()
 					P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
+
+		// lift lockdowns to stop people getting trapped
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 1" || shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			var/ship_id = "sh_dropship1"
+			if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+				ship_id = "sh_dropship2"
+
+			for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+				if(M.id == ship_id)
+					M.unlock()
+
+			var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+			switch(ship_id)
+				if("sh_dropship1")
+					for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+						reardoor = D
+				if("sh_dropship2")
+					for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+						reardoor = D
+			reardoor.unlock()
 
 		for(var/obj/machinery/door/airlock/A in T)
 			if(!istype(A)) continue
