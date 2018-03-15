@@ -142,6 +142,10 @@
 	var/image/chairbar = null
 	var/chair_state = DROPSHIP_CHAIR_UNFOLDED
 	buildstacktype = 0
+	unacidable = 1
+
+/obj/structure/bed/chair/dropship/passenger/ex_act(severity)
+	return
 
 /obj/structure/bed/chair/dropship/passenger/New()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")

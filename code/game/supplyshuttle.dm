@@ -354,7 +354,7 @@ var/list/mechtoys = list(
 			for(var/supply_name in supply_controller.supply_packs )
 				var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
 				if(N.hidden || N.contraband || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
-				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"		//the obj because it would get caught by the garbage
+				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
@@ -549,7 +549,7 @@ var/list/mechtoys = list(
 			for(var/supply_name in supply_controller.supply_packs )
 				var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
 				if((N.hidden && !hacked) || (N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
-				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"		//the obj because it would get caught by the garbage
+				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
 
 		/*temp = "Supply points: [supply_controller.points]<BR><HR><BR>Request what?<BR><BR>"
 
@@ -630,11 +630,11 @@ var/list/mechtoys = list(
 			if(SO.ordernum == ordernum)
 				O = SO
 				P = O.object
-				if(supply_controller.points >= P.cost)
+				if(supply_controller.points >= round(P.cost))
 					supply_controller.requestlist.Cut(i,i+1)
-					supply_controller.points -= P.cost
+					supply_controller.points -= round(P.cost)
 					supply_controller.shoppinglist += O
-					P.cost = round(P.cost * SUPPLY_COST_MULTIPLIER)
+					P.cost = P.cost * SUPPLY_COST_MULTIPLIER
 					temp = "Thank you for your order.<BR>"
 					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 				else
