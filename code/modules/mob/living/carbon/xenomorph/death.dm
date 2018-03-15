@@ -34,6 +34,8 @@
 						if(!isnull(Q) && Q != src && Q.stat != DEAD && !Q.corrupted)
 							living_xeno_queen = Q
 							break
+					for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
+						L.handle_xeno_leader_pheromones(XQ)
 					if(ticker && ticker.mode)
 						ticker.mode.check_queen_status(queen_time)
 			else
@@ -50,6 +52,9 @@
 					xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3, corrupted)
 				else if(corrupted)
 					xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3, corrupted)
+
+	if(src in xeno_leader_list)	//Strip them from the Xeno leader list, if they are indexed in here
+		xeno_leader_list -= src
 
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 

@@ -50,6 +50,9 @@ var/global/list/events = list()
 //used by binoculars for dropship bombardment
 var/list/global/active_laser_targets = list()
 
+//Used by Queen overwatch
+var/global/list/xeno_leader_list = list()
+
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]

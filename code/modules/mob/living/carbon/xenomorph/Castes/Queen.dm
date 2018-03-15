@@ -383,6 +383,9 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	update_canmove()
 	update_icons()
 
+	for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
+		L.handle_xeno_leader_pheromones(src)
+
 	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution progress resumed.</span>", 3, corrupted)
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
@@ -434,6 +437,10 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		ovipositor_cooldown = world.time + 3000 //5 minutes
 		anchored = FALSE
 		update_canmove()
+
+		for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
+			L.handle_xeno_leader_pheromones(src)
+
 		if(!instant_dismount)
 			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3, corrupted)
 
