@@ -172,6 +172,8 @@ var/global/hive_orders = "" //What orders should the hive have
 	if(is_zoomed) zoom_out()
 	if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
 		living_xeno_queen.set_queen_overwatch(src, TRUE)
+	if(src in xeno_leader_list)
+		xeno_leader_list -= src
 	. = ..()
 
 
