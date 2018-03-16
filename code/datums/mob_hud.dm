@@ -319,6 +319,7 @@ var/datum/mob_hud/huds = list(
 
 /mob/living/carbon/Xenomorph/proc/hud_set_pheromone()
 	var/image/holder = hud_list[PHEROMONE_HUD]
+	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
 		var/tempname = ""
@@ -330,6 +331,23 @@ var/datum/mob_hud/huds = list(
 			tempname += "recovery"
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
+
+		switch(current_aura)
+			if("frenzy")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudaurafrenzy")
+			if("recovery")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudaurarecovery")
+			if("warding")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudaurawarding")
+
+		switch(leader_current_aura)
+			if("frenzy")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudaurafrenzy")
+			if("recovery")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudaurarecovery")
+			if("warding")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudaurawarding")
+
 	hud_list[PHEROMONE_HUD] = holder
 
 
