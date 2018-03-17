@@ -266,7 +266,7 @@ var/global/list/randomized_pill_icons
 
 
 /obj/item/reagent_container/pill/bicaridine
-	pill_desc = "A Bicaridine (10u) pill, heals Brute damage."
+	pill_desc = "A Bicaridine (15u) pill, heals Brute damage."
 	New()
 		..()
 		icon_state = randomized_pill_icons[19]

@@ -58,6 +58,8 @@
 		L.chest_burst(src)
 
 /mob/living/carbon/gib(anim, do_gibs, f_icon)
+	if(legcuffed)
+		drop_inv_item_on_ground(legcuffed)
 	for(var/mob/M in src)
 		if(M in stomach_contents)
 			M.acid_damage = 0 //Reset the acid damage
@@ -395,5 +397,3 @@
 			sleep(2)
 			if(!lying)
 				break
-
-
