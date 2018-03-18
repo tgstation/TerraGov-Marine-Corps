@@ -56,6 +56,7 @@
 
 /mob/living/carbon/human/proc/ChangeToHusk()
 	if(HUSK in mutations)	return
+	if(isSynth(src)) return // dont husk synths
 
 	if(f_style)
 		f_style = "Shaved"		//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE

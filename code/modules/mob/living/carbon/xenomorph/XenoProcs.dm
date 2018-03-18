@@ -434,9 +434,19 @@
 		if(istype(O, /obj/effect/alien/egg))
 			src << "<span class='warning'>There's already an egg.</span>"
 			return
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
 			break
+		if(istype(O, /obj/structure/bed))
+			if(istype(O, /obj/structure/bed/chair/dropship/passenger))
+				var/obj/structure/bed/chair/dropship/passenger/P = O
+				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
+					has_obstacle = TRUE
+					break
+			else
+				has_obstacle = TRUE
+				break
+
 		if(O.density && !(O.flags_atom & ON_BORDER))
 			has_obstacle = TRUE
 			break

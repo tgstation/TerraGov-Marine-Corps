@@ -161,9 +161,15 @@
 		icon_state = "shuttle_chair"
 		overlays -= chairbar
 
+/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/M, mob/user)
+	if(chair_state != DROPSHIP_CHAIR_UNFOLDED)
+		return
+	..()
+
 /obj/structure/bed/chair/dropship/passenger/proc/fold_down(var/break_it = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
 		flick("shuttle_chair_new_folding", src)
+		unbuckle()
 		if(break_it)
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
@@ -188,7 +194,7 @@
 	..()
 
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/user)
-	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
+	if(chair_state != DROPSHIP_CHAIR_BROKEN)
 		user.visible_message("<span class='warning'>[user] smashes \the [src], shearing the bolts!</span>",
 		"<span class='warning'>You smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
