@@ -27,8 +27,8 @@
 	/obj/item/shard = 50, 		\
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = ROBOLIMB_CUT_MIN_DURATION
+	max_duration = ROBOLIMB_CUT_MAX_DURATION
 	limb_step = 0
 
 /datum/surgery_step/limb/cut/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -58,8 +58,8 @@
 	/obj/item/tool/kitchen/utensil/fork = 50
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = ROBOLIMB_MEND_MIN_DURATION
+	max_duration = ROBOLIMB_MEND_MAX_DURATION
 	limb_step = 1
 
 /datum/surgery_step/limb/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -90,8 +90,8 @@
 	/obj/item/tool/weldingtool = 25
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = ROBOLIMB_PREPARE_MIN_DURATION
+	max_duration = ROBOLIMB_PREPARE_MAX_DURATION
 	limb_step = 2
 
 /datum/surgery_step/limb/prepare/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -119,8 +119,8 @@
 /datum/surgery_step/limb/attach
 	allowed_tools = list(/obj/item/robot_parts = 100)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = ROBOLIMB_ATTACH_MIN_DURATION
+	max_duration = ROBOLIMB_ATTACH_MAX_DURATION
 	limb_step = 0
 
 /datum/surgery_step/limb/attach/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

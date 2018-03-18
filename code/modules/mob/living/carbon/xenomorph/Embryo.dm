@@ -9,12 +9,19 @@
 	var/stage = 0
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst
 	var/larva_autoburst_countdown = 20 //to kick the larva out
+	var/corrupted = 0
+
+/obj/item/alien_embryo/corrupted
+	corrupted = 1
 
 /obj/item/alien_embryo/New()
 	..()
 	if(istype(loc, /mob/living))
 		affected_mob = loc
-		affected_mob.status_flags |= XENO_HOST
+		if(corrupted)
+			affected_mob.status_flags |= XENO_CORRUPTED_HOST
+		else
+			affected_mob.status_flags |= XENO_HOST
 		processing_objects.Add(src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
@@ -24,7 +31,10 @@
 
 /obj/item/alien_embryo/Dispose()
 	if(affected_mob)
-		affected_mob.status_flags &= ~(XENO_HOST)
+		if(corrupted)
+			affected_mob.status_flags &= ~(XENO_CORRUPTED_HOST)
+		else
+			affected_mob.status_flags &= ~(XENO_HOST)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -39,7 +49,10 @@
 		r_FAL
 
 	if(loc != affected_mob) //Our location is not the host
-		affected_mob.status_flags &= ~(XENO_HOST)
+		if(corrupted)
+			affected_mob.status_flags &= ~(XENO_CORRUPTED_HOST)
+		else
+			affected_mob.status_flags &= ~(XENO_HOST)
 		processing_objects.Remove(src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
@@ -123,32 +136,45 @@
 //We look for a candidate. If found, we spawn the candidate as a larva
 //Order of priority is bursted individual (if xeno is enabled), then random candidate, and then it's up for grabs and spawns braindead
 /obj/item/alien_embryo/proc/become_larva()
-	var/list/candidates = get_alien_candidates()
+	// We do not allow chest bursts on the Centcomm Z-level, to prevent
+	// stranded players from admin experiments and other issues
+	if (!affected_mob || affected_mob.z == 2)
+		return
+
 	var/picked
 
-	if(!affected_mob || affected_mob.z == 2) return //We do not allow chest bursts on the Centcomm Z-level, to prevent stranded players from admin experiments and other issues
-
-	//If the bursted person themselves has xeno enabled, they get the honor of first dibs on the new larva
-	if(isYautja(affected_mob))
-		if(affected_mob.client && !jobban_isbanned(affected_mob, "Alien")) picked = affected_mob.key//If they are in a predator body, put them into the alien. Doesn't matter if they have alien selected.
-		else if(candidates.len) picked = pick(candidates)
+	// If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva
+	if (affected_mob.client && affected_mob.client.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
+		picked = affected_mob.key
 	else
-		if(affected_mob.client && affected_mob.client.holder && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
-			picked = affected_mob.key
-		//Host doesn't want to be it, so we try and pull observers into the role
-		else if(candidates.len) picked = pick(candidates)
+		// Get a candidate from observers
+		var/list/candidates = get_alien_candidates()
 
+		if (candidates.len)
+			picked = pick(candidates)
+
+	// Spawn the larva
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno
-	if(isYautja(affected_mob)) new_xeno = new /mob/living/carbon/Xenomorph/Larva/predalien(affected_mob)
-	else new_xeno = new(affected_mob)
-	if(picked) //found a candidate
+
+	if(isYautja(affected_mob))
+		new_xeno = new /mob/living/carbon/Xenomorph/Larva/predalien(affected_mob)
+	else
+		new_xeno = new(affected_mob)
+
+	new_xeno.corrupted = corrupted
+	new_xeno.update_icons()
+
+	// If we have a candidate, transfer it over
+	if(picked)
 		new_xeno.key = picked
-		if(new_xeno.client) new_xeno.client.view = world.view
+
+		if(new_xeno.client)
+			new_xeno.client.view = world.view
+
 		new_xeno << "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>"
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+
 	stage = 6
-
-
 
 /mob/living/carbon/Xenomorph/Larva/proc/chest_burst(mob/living/carbon/victim)
 	set waitfor = 0

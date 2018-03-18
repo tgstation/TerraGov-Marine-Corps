@@ -26,10 +26,10 @@
 		"synthetic kidneys (30 - Metal)" = list(/obj/item/organ/kidneys/prosthetic,0, 30, 450),
 		"synthetic eyes (30 - Metal)" =    list(/obj/item/organ/eyes/prosthetic,   0, 30, 450),
 		"synthetic liver (50 - Metal)" =   list(/obj/item/organ/liver/prosthetic,  0, 50, 450),
-		"synthetic left arm (125 - Metal)" =  list(/obj/item/robot_parts/l_arm,  0, 125, 550),
-		"synthetic right arm (125 - Metal)" = list(/obj/item/robot_parts/r_arm,  0, 125, 550),
-		"synthetic left leg (125 - Metal)" =  list(/obj/item/robot_parts/l_leg,  0, 125, 550),
-		"synthetic right leg (125 - Metal)" = list(/obj/item/robot_parts/r_leg,  0, 125, 550)
+		"synthetic left arm (125 - Metal)" =  list(/obj/item/robot_parts/l_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
+		"synthetic right arm (125 - Metal)" = list(/obj/item/robot_parts/r_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
+		"synthetic left leg (125 - Metal)" =  list(/obj/item/robot_parts/l_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
+		"synthetic right leg (125 - Metal)" = list(/obj/item/robot_parts/r_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME)
 		)
 
 /obj/machinery/bioprinter/attack_hand(mob/user)

@@ -81,7 +81,7 @@
 		if(0)
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					user << "\blue You wrench the frame into place."
 					src.anchored = 1
 					src.state = 1
@@ -91,7 +91,7 @@
 					user << "[WT] must be on to complete this task."
 					return
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !WT.isOn()) return
 					user << "\blue You deconstruct the frame."
 					new /obj/item/stack/sheet/metal( src.loc, 5 )
@@ -99,7 +99,7 @@
 		if(1)
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					user << "\blue You unfasten the frame."
 					src.anchored = 0
 					src.state = 0
@@ -132,7 +132,7 @@
 			if(istype(P, /obj/item/tool/crowbar))
 				if(battery)
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-					if(do_after(10))
+					if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
 						battery.loc = loc
 						user << "\blue You remove [battery]."
 						battery = null
@@ -142,7 +142,7 @@
 			if(istype(P, /obj/item/cell))
 				if(!battery)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					if(do_after(5))
+					if(do_after(user, 5, TRUE, 5, BUSY_ICON_BUILD))
 						battery = P
 						P.loc = src
 						user << "\blue You insert [battery]."
@@ -153,7 +153,7 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				if(P:amount >= 5)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					if(do_after(user, 20))
+					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 						if(P)
 							P:amount -= 5
 							if(!P:amount) cdel(P)
@@ -178,7 +178,7 @@
 			if(istype(P, /obj/item/stack/sheet/glass))
 				if(P:amount >= 2)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					if(do_after(user, 20))
+					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 						if(P)
 							P:use(2)
 							user << "\blue You put in the glass panel."
@@ -223,7 +223,7 @@
 
 	if(I)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-		if(do_after(usr,25))
+		if(do_after(usr, 25, TRUE, 5, BUSY_ICON_BUILD))
 			if(I==hdd)
 				components -= hdd
 				hdd.loc = loc

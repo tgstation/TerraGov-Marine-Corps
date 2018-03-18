@@ -59,29 +59,23 @@
 	..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		var/chance = 100
-		if(H.shoes)
-			chance = 40
-		if(prob(chance))
-			if(!H.lying)
-				H << "<span class='danger'>Your feet scald and burn! Argh!</span>"
-				if(prob(chance))
-					H.emote("scream")
-				if(prob(chance / 2))
-					H.KnockDown(2)
-				var/datum/limb/affecting = H.get_limb("l_foot")
-				if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
-					H.UpdateDamageIcon()
-				affecting = H.get_limb("r_foot")
-				if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
-					H.UpdateDamageIcon()
-				H.updatehealth()
-			else
-				H.adjustFireLoss(rand(3,10))
-				H << "<span class='danger'>You are scalded by the burning acid!</span>"
+		if(!H.lying)
+			H << "<span class='danger'>Your feet scald and burn! Argh!</span>"
+			H.emote("scream")
+			H.KnockDown(4)
+			var/datum/limb/affecting = H.get_limb("l_foot")
+			if(istype(affecting) && affecting.take_damage(0, rand(5, 10)))
+				H.UpdateDamageIcon()
+			affecting = H.get_limb("r_foot")
+			if(istype(affecting) && affecting.take_damage(0, rand(5, 10)))
+				H.UpdateDamageIcon()
+			H.updatehealth()
+		else
+			H.adjustFireLoss(rand(5, 10)) //This is ticking damage!
+			H << "<span class='danger'>You are scalded by the burning acid!</span>"
 
 /obj/effect/xenomorph/spray/process()
-	var/turf/simulated/T = src.loc
+	var/turf/simulated/T = loc
 	if(!istype(T))
 		processing_objects.Remove(src)
 		cdel(src)
@@ -134,6 +128,7 @@
 		return
 	if(++ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
+		playsound(src, "acid_hit", 25)
 
 		if(istype(acid_t, /turf))
 			if(istype(acid_t, /turf/simulated/wall))

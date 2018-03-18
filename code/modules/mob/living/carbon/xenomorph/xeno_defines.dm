@@ -5,8 +5,8 @@
 	var/obj/item/clothing/head/head = null
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
-	var/storedplasma = 0
-	var/maxplasma = 10
+	var/plasma_stored = 0
+	var/plasma_max = 10
 	var/amount_grown = 0
 	var/max_grown = 200
 	var/time_of_birth
@@ -26,7 +26,6 @@
 	var/tackle_chance = 50
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
 	var/caste_desc = null
-	var/usedPounce = 0
 	var/has_spat = 0
 	var/spit_delay = 60 //Delay timer for spitting
 	var/has_screeched = 0
@@ -104,3 +103,17 @@
 	var/charge_speed_buildup = 0.15 //POSITIVE amount of speed built up during a charge each step
 	var/charge_turfs_to_charge = 5 //Amount of turfs to build up before a charge begins
 	var/charge_roar = 0 //Did we roar in our charge yet ?
+
+	//Boiler vars
+	var/bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
+
+	//Pounce vars
+	var/usedPounce = 0
+	var/pounce_delay = 40
+
+	//Queen vars
+	var/queen_leader_limit = 1 //Amount of leaders allowed
+
+	//Leader vars
+	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
+	var/leader_current_aura = "" //Pheromone type inherited from Queen

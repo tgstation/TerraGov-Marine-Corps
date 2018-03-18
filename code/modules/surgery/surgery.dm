@@ -81,7 +81,9 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 
 	//Masks
 	if(user.wear_mask)
-		if(user.wear_mask.germ_level && !istype(user.wear_mask, /obj/item/clothing/mask/surgical) && prob(30))
+		if(user.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
+			E.germ_level += user.germ_level * 2 // fuck you smoking doctors
+		else if(user.wear_mask.germ_level && !istype(user.wear_mask, /obj/item/clothing/mask/surgical) && prob(30))
 			E.germ_level += user.wear_mask.germ_level / 2
 	else if(user.germ_level && prob(60))
 		E.germ_level += user.germ_level / 2
@@ -132,6 +134,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 						multipler += 0.40
 					if(M.shock_stage > 100) //Being near to unconsious is good in this case
 						multipler += 0.25
+				if(istype(M.loc, /turf/simulated/shuttle/floor/dropship))
+					multipler -= 0.65
 				Clamp(multipler, 0, 1)
 
 				//calculate step duration
@@ -141,7 +145,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					step_duration = max(5, step_duration - 10*user.mind.cm_skills.surgery)
 
 				//Multiply tool success rate with multipler
-				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_CLOCK, BUSY_ICON_MED, TRUE))
+				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, TRUE))
 					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
 						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
 
@@ -187,4 +191,3 @@ proc/sort_surgeries()
 	var/in_progress = 0
 	var/is_same_target = "" //Safety check to prevent surgery juggling
 	var/necro = 0
-

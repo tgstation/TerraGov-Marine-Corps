@@ -27,6 +27,7 @@
 	gas_filter_strength = 3
 	eye_protection = 2
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
+	vision_impair = 0
 	unacidable = 1
 	anti_hug = 100
 
@@ -422,7 +423,7 @@
 			M << "<span class='notice'>You are now invisible to normal detection.</span>"
 			for(var/mob/O in oviewers(M))
 				O.show_message("[M] vanishes into thin air!",1)
-			playsound(M.loc,'sound/effects/cloakon.ogg', 15, 1)
+			playsound(M.loc,'sound/effects/pred_cloakon.ogg', 15, 1)
 			M.alpha = 10
 
 			var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
@@ -440,7 +441,7 @@
 		cloaked = 0
 		for(var/mob/O in oviewers(user))
 			O.show_message("[user.name] shimmers into existence!",1)
-		playsound(user.loc,'sound/effects/cloakoff.ogg', 15, 1)
+		playsound(user.loc,'sound/effects/pred_cloakoff.ogg', 15, 1)
 		user.alpha = initial(user.alpha)
 		cloak_timer = 10
 
@@ -778,7 +779,7 @@
 		playsound(src,'sound/ambience/signal.ogg', 25, 1)
 		timer = 1
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
-		if(do_after(user,100, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,100, TRUE, 5, BUSY_ICON_GENERIC))
 			// Teleport self.
 			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
 			var/tele_time = animation_teleport_quick_out(user)
@@ -926,7 +927,7 @@
 			if(D.operating || !D.density) return
 			user << "<span class='notice'>You jam [src] into [D] and strain to rip it open.</span>"
 			playsound(user,'sound/weapons/wristblades_hit.ogg', 15, 1)
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && D.density)
+			if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE) && D.density)
 				D.open(1)
 
 /obj/item/weapon/wristblades/scimitar
@@ -993,7 +994,7 @@
 
 		user << "<span class='notice'>You begin using your knife to rip shrapnel out. Hold still. This will probably hurt...</span>"
 
-		if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,50, TRUE, 5, BUSY_ICON_FRIENDLY))
 			var/obj/item/shard/shrapnel/S
 			for(var/datum/limb/O in user.limbs)
 				for(S in O.implants)

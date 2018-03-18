@@ -46,6 +46,7 @@
 	name = "Nightmare on LV-624"
 	config_tag = "Nightmare on LV-624"
 	required_players 		= 2 //Need at least one player, but really we need 2.
+	latejoin_larva_drop		= 0
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
 	role_instruction		= 1
 	roles_for_mode = list(/datum/job/marine/standard/equipped,
@@ -435,7 +436,7 @@
 
 	Dispose()
 		. = ..()
-		luminosity = 0
+		SetLuminosity(0)
 		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
 			world << "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>"

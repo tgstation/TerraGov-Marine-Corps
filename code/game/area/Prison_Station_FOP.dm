@@ -216,10 +216,6 @@
 /area/prison/yard
 	name = "\improper Yard"
 	icon_state = "thunder"
-	is_weedable = 0
-
-/area/prison/hallway
-	is_weedable = 0
 
 /area/prison/hallway/entrance
 	name = "\improper Entrance Hallway"

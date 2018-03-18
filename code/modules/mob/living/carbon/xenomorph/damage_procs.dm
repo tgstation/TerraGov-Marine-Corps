@@ -27,7 +27,13 @@
 
 		if(2)
 			switch(xeno_explosion_resistance)
-				if(3) return
+				if(3)
+					b_loss += rand(21, 26)
+					f_loss += rand(21, 26)
+					apply_damage(b_loss, BRUTE)
+					apply_damage(f_loss, BURN)
+					updatehealth()
+					return
 				if(2)
 					KnockDown(4)
 				if(1)
@@ -35,25 +41,31 @@
 				if(0)
 					if(prob(80))
 						KnockOut(4)
-					KnockDown(12)
+					KnockDown(8)
 
 			b_loss += rand(60, 75)
 			f_loss += rand(60, 75)
 
 		if(3)
 			switch(xeno_explosion_resistance)
-				if(3) return
+				if(3)
+					b_loss += rand(10, 15)
+					f_loss += rand(10, 15)
+					apply_damage(b_loss, BRUTE)
+					apply_damage(f_loss, BURN)
+					updatehealth()
+					return
 				if(2)
 					if(!knocked_down) //so marines can't chainstun with grenades
 						KnockDown(2)
 				if(1)
 					if(!knocked_down)
-						KnockDown(4)
+						KnockDown(3)
 				if(0)
 					if(prob(40))
 						KnockOut(2)
 					if(!knocked_down)
-						KnockDown(rand(4, 6))
+						KnockDown(4)
 
 			b_loss += rand(30, 45)
 			f_loss += rand(30, 45)

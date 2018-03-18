@@ -40,20 +40,9 @@
         <br>
         {{:data.rounds}} out of {{:data.rounds_max}}
     </div>
-    
+
     <br><br>
-        
-    <div class="itemLabel">
-        Direction Lock:
-    </div>
-    <div class="itemContent">
-        Direction lock set to: {{:data.dir_locked ? (data.dir == 1 ? 'NORTH (conical)' : (data.dir == 2 ? 'SOUTH (conical)' : (data.dir == 4 ? 'EAST (conical)' : (data.dir == 8 ? 'WEST (conical)' : 'null')))) : '360 degree rotation'}}
-        <br>
-        {{:helper.link(data.dir_locked ? 'Turn off direction lock' : 'Turn on direction lock', data.dir_locked ? 'unlocked' : 'locked', { '?src' : data.self_ref, 'op' : 'direction' }, data.is_on ? null : 'disabled')}}
-    </div>
-    
-    <br><br>
-        
+
     <div class="itemLabel">
         Burst Fire:
     </div>

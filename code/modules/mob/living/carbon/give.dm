@@ -1,21 +1,19 @@
 /mob/living/carbon/verb/give()
 	set category = "IC"
 	set name = "Give"
-	set src in view(1)
-	if(src.stat == 2 || usr.stat == 2 || src.client == null)
+	set src in oview(1)
+	if(stat == DEAD || usr.stat == DEAD || client == null)
 		return
 	if(src == usr)
-		usr << "\red I feel stupider, suddenly."
 		return
 	var/obj/item/I
 	if(!usr.hand && usr.r_hand == null)
-		usr << "\red You don't have anything in your right hand to give to [src.name]"
+		usr << "<span class='warning'>You don't have anything in your right hand to give to [name].</span>"
 		return
 	if(usr.hand && usr.l_hand == null)
-		usr << "\red You don't have anything in your left hand to give to [src.name]"
+		usr << "<span class='warning'>You don't have anything in your left hand to give to [name].</span>"
 		return
-	if(!istype(src,/mob/living/carbon/human) || !istype(usr,/mob/living/carbon/human))
-		usr << "Nope."
+	if(!ishuman(src) || !ishuman(usr))
 		return
 	if(usr.hand)
 		I = usr.l_hand
@@ -23,28 +21,29 @@
 		I = usr.r_hand
 	if(!I || !istype(I) || !I.canremove || (I.flags_atom & DELONDROP))
 		return
-	if(src.r_hand == null || src.l_hand == null)
+	if(r_hand == null || l_hand == null)
 		switch(alert(src,"[usr] wants to give you \a [I]?",,"Yes","No"))
 			if("Yes")
 				if(!I || !usr || !istype(I))
 					return
 				if(!Adjacent(usr))
-					usr << "\red You need to stay in reaching distance while giving an object."
-					src << "\red [usr.name] moved too far away."
+					usr << "<span class='warning'>You need to stay in reaching distance while giving an object.</span>"
+					src << "<span class='warning'>[usr] moved too far away.</span>"
 					return
 				if((usr.hand && usr.l_hand != I) || (!usr.hand && usr.r_hand != I))
-					usr << "\red You need to keep the item in your active hand."
-					src << "\red [usr.name] seem to have given up on giving \the [I.name] to you."
+					usr << "<span class='warning'>You need to keep the item in your active hand.</span>"
+					src << "<span class='warning'>[usr] seem to have given up on giving [I] to you.</span>"
 					return
-				if(src.r_hand != null && src.l_hand != null)
-					src << "\red Your hands are full."
-					usr << "\red Their hands are full."
+				if(r_hand != null && l_hand != null)
+					src << "<span class='warning'>Your hands are full.</span>"
+					usr << "<span class='warning'>[src]'s hands are full.</span>"
 					return
 				else
 					if(usr.drop_held_item())
 						if(put_in_hands(I))
-							src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
+							usr.visible_message("<span class='notice'>[usr] hands [I] to [src].</span>",
+							"<span class='notice'>You hand [I] to [src].</span>")
 			if("No")
 				return
 	else
-		usr << "\red [src.name]'s hands are full."
+		usr << "<span class='warning'>[src]'s hands are full.</span>"

@@ -97,7 +97,7 @@
 			user << "<span class='warning'>You don't know how to deconstruct [src]...</span>"
 			return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 			var/obj/item/circuitboard/computer/M = new circuit( A )
 			A.circuit = M
@@ -125,4 +125,5 @@
 /obj/machinery/computer/attack_hand()
 	. = ..()
 	if(!.) //not broken or unpowered
-		pick(playsound(src, 'sound/machines/console_open.ogg', 15, 1), playsound(src, 'sound/machines/console_open2.ogg', 15, 1), playsound(src, 'sound/machines/console_open3.ogg', 15, 1))
+		if(ishuman(usr))
+			pick(playsound(src, 'sound/machines/computer_typing1.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing2.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing3.ogg', 5, 1))

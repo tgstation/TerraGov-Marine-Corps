@@ -66,7 +66,7 @@
 	name = "Toxin"
 	id = "sdtoxin"
 	result = "sdtoxin"
-	required_reagents = list("synaptizine" = 1, "dylovene" = 1)
+	required_reagents = list("synaptizine" = 1, "anti_toxin" = 1)
 	result_amount = 2
 
 

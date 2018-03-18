@@ -5,7 +5,7 @@
 	anchored = 0
 	drag_delay = 1 //pulling something on wheels is easy
 	var/bloodiness = 0
-	var/move_delay = 4
+	var/move_delay = 6
 
 
 /obj/structure/bed/chair/wheelchair/handle_rotation()
@@ -43,6 +43,23 @@
 			move_delay += 2
 		if(!working_hands)
 			return // No hands to drive your chair? Tough luck!
+		if(driver.pulling && driver.pulling.drag_delay && !driver.ignore_pull_delay())	//Dragging stuff can slow you down a bit.
+			var/pull_delay = driver.pulling.drag_delay
+			if(ismob(driver.pulling))
+				var/mob/M = driver.pulling
+				if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
+					pull_delay = M.buckled.drag_delay
+			move_delay += max(driver.pull_speed + pull_delay + 3*driver.grab_level, 0) //harder grab makes you slower
+
+		if(istype(driver.get_active_hand(), /obj/item/weapon/gun)) //Wheelchair user has a gun out, so obviously can't move
+			return
+
+		if(driver.next_move_slowdown)
+			move_delay += driver.next_move_slowdown
+			driver.next_move_slowdown = 0
+
+		if(driver.temporary_slowdown)
+			move_delay += 2 //Temporary slowdown slows hard
 
 	step(src, direction)
 

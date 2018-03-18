@@ -55,6 +55,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
+	var/corrupted = 0
 
 
 /mob/living/carbon/Xenomorph/New()
@@ -93,27 +94,47 @@ var/global/hive_orders = "" //What orders should the hive have
 
 	regenerate_icons()
 
+	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
+
 //Off-load this proc so it can be called freely
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/Xenomorph/proc/generate_name()
 
 	//We don't have a nicknumber yet, assign one to stick with us
-	if(!nicknumber) nicknumber = rand(1, 999)
+	if(!nicknumber)
+		var/tempnumber = rand(1, 999)
+		var/list/numberlist = list()
+		for(var/mob/living/carbon/Xenomorph/X in mob_list)
+			numberlist += X.nicknumber
+
+		while(tempnumber in numberlist)
+			tempnumber = rand(1, 999)
+
+		nicknumber = tempnumber
+
 
 	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
 	if(caste == "Larva")
 		return
 
+	var/corrupted_prefix = ""
+
+	if(corrupted)
+		corrupted_prefix = "Corrupted "
+		add_language("English")
+	else
+		remove_language("English") // its hacky doing it here sort of
+
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
 	if(caste == "Queen")
 		switch(upgrade)
-			if(0) name = "\improper Queen"			 //Young
-			if(1) name = "\improper Elite Queen"	 //Mature
-			if(2) name = "\improper Elite Empress"	 //Elite
-			if(3) name = "\improper Ancient Empress" //Ancient
-	else if(caste == "Predalien") name = "\improper [name] ([nicknumber])"
-	else name = "\improper [upgrade_name] [caste] ([nicknumber])"
+			if(0) name = "\improper [corrupted_prefix]Queen"			 //Young
+			if(1) name = "\improper [corrupted_prefix]Elite Queen"	 //Mature
+			if(2) name = "\improper [corrupted_prefix]Elite Empress"	 //Elite
+			if(3) name = "\improper [corrupted_prefix]Ancient Empress" //Ancient
+	else if(caste == "Predalien") name = "\improper [corrupted_prefix][name] ([nicknumber])"
+	else name = "\improper [corrupted_prefix][upgrade_name] [caste] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -141,6 +162,9 @@ var/global/hive_orders = "" //What orders should the hive have
 				user << "It bleeds with sizzling wounds."
 			if(1 to 24)
 				user << "It is heavily injured and limping badly."
+
+	if(corrupted)
+		user << "It appears to have been corrupted, but for what purpose?"
 	return
 
 /mob/living/carbon/Xenomorph/Dispose()

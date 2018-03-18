@@ -65,6 +65,7 @@
 	var/obj/item/attachable/under 	= null
 	var/obj/item/attachable/stock 	= null
 	var/obj/item/attachable/active_attachable = null //This will link to one of the above four, or remain null.
+	var/list/starting_attachment_types = list() //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
 	flags_atom 			 = FPRINT|CONDUCT
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
@@ -99,6 +100,21 @@
 		fire_delay = config.mhigh_fire_delay
 		burst_amount = config.min_burst_value
 		update_force_list() //This gives the gun some unique verbs for attacking.
+
+		handle_starting_attachment()
+
+//Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
+/obj/item/weapon/gun/proc/handle_starting_attachment()
+
+	set waitfor = 0
+
+	sleep(1) //Give a moment to the rest of the proc to work out
+	if(starting_attachment_types.len)
+		for(var/path in starting_attachment_types)
+			var/obj/item/attachable/A = new path(src)
+			A.Attach(src)
+			update_attachable(A.slot)
+
 
 /obj/item/weapon/gun/Dispose()
 	in_chamber 		= null
@@ -274,7 +290,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(user)
 		if(magazine.reload_delay > 1)
 			user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
-			if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_CLOCK)) replace_magazine(user, magazine)
+			if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
 			else
 				user << "<span class='warning'>Your reload was interrupted!</span>"
 				return
@@ -585,7 +601,7 @@ and you're good to go.
 			if(able_to_fire(user))
 				flags_gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
 					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
 						active_attachable = null //We're not firing off a nade into our mouth.
 					var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
@@ -845,14 +861,14 @@ and you're good to go.
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return 1
 
-/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user)
+/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, var/x_offset = 0, var/y_offset = 5)
 	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle)) return //We have to check for null angle here, as 0 can also be an angle.
 	if(!istype(user) || !istype(user.loc,/turf)) return
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
 		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
-		rotate.Translate(0,5)
+		rotate.Translate(x,y)
 		rotate.Turn(angle)
 		I.transform = rotate
 

@@ -104,48 +104,51 @@
 	if(istype(WT))
 		if(!damaged) return
 		if(WT.remove_fuel(0, user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			user.visible_message("[user.name] starts to weld the damage to [src.name].","You start to weld the damage to [src.name].")
-			if (do_after(user,200, TRUE, 5, BUSY_ICON_CLOCK))
+			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
+			user.visible_message("[user] starts welding [src]'s damage.</span>",
+			"You start welding [src]'s damage.</span>")
+			if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
+				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
 				if(!src || !WT.isOn()) return
 				damaged = 0
-				user << "You finish welding."
+				user.visible_message("[user] finishes welding [src]'s damage.</span>",
+				"You finish welding [src]'s damage.</span>")
 				if(is_lit)
 					SetLuminosity(lum_value)
 				update_icon()
 				return 1
 		else
-			user << "\red You need more welding fuel to complete this task."
+			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 			return 0
 	..()
 	return 0
 
 /obj/machinery/hydro_floodlight/attack_hand(mob/user as mob)
 	if(ishuman(user))
-		user << "Nothing happens. Looks like it's powered elsewhere."
+		user << "<span class='warning'>Nothing happens. Looks like it's powered elsewhere.</span>"
 		return 0
 	else if(!is_lit)
-		user << "Why bother? It's just some weird metal thing."
+		user << "<span class='warning'>Why bother? It's just some weird metal thing.</span>"
 		return 0
 	else
 		if(damaged)
-			user << "It's already damaged."
+			user << "<span class='warning'>It's already damaged.</span>"
 			return 0
 		else
 			if(isXenoLarva(user))
-				user.visible_message("[user.name] starts biting the [src.name]!","In a rage, you start biting the bright light, but with no effect!")
 				return //Larvae can't do shit
 			if(user.get_active_hand())
-				user << "<span class='xenowarning'>You need your claws empty for this!</span>"
+				user << "<span class='warning'>You need your claws empty for this!</span>"
 				r_FAL
-			user.visible_message("[user.name] starts to slash away at [src.name]!","In a rage, you start to slash and claw at the bright light! <b>You only need to claw once and then stand still!</b>")
-			if(do_after(user, 50) && !damaged) //Not when it's already damaged.
+			user.visible_message("<span class='danger'>[user] starts to slash and claw away at [src]!</span>",
+			"<span class='danger'>You start slashing and clawing at [src]!</span>")
+			if(do_after(user, 50, TRUE, 5, BUSY_ICON_HOSTILE) && !damaged) //Not when it's already damaged.
 				if(!src) return 0
 				damaged = 1
 				SetLuminosity(0)
-				user << "You slash up the light! Raar!"
+				user.visible_message("<span class='danger'>[user] slashes up [src]!</span>",
+				"<span class='danger'>You slash up [src]!</span>")
 				playsound(src, 'sound/weapons/blade1.ogg', 25, 1)
 				update_icon()
 				return 0
 	..()
-	return

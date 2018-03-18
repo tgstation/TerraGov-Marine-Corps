@@ -17,6 +17,7 @@
 					)
 
 	flags_round_type	= MODE_NO_LATEJOIN
+	latejoin_larva_drop = 0 //You never know
 
 	//var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 	//No longer relevant to the game mode, since supply drops are getting changed.
@@ -177,7 +178,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), WEAR_FEET)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), WEAR_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), WEAR_HANDS)
-			H.equip_to_slot_or_del(new /obj/item/book/manual/whiskey_outpost_map(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/map/whiskey_outpost_map(H), WEAR_R_HAND)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
 
 
@@ -320,7 +321,7 @@
 			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/book/manual/whiskey_outpost_map(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/map/whiskey_outpost_map(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/laz_designator(H), WEAR_IN_BACK)
 
 			//Belt and grenades
@@ -932,7 +933,7 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
-				X.storedplasma = X.maxplasma
+				X.plasma_stored = X.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
@@ -949,7 +950,7 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
-				X.storedplasma = X.maxplasma
+				X.plasma_stored = X.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems

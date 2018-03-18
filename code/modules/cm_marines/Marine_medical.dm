@@ -13,6 +13,19 @@
 		reagents.add_reagent("tricordrazine", 15)
 		update_icon()
 
+/obj/item/reagent_container/hypospray/autoinjector/tricord/skillless
+	name = "\improper First-aid autoinjector"
+	desc = "An autoinjector loaded with a small dose of medicine for marines to treat themselves with."
+	amount_per_transfer_from_this = 5
+	volume = 5
+	icon_state = "tricord"
+	skilllock = 0
+
+	New()
+		..()
+		reagents.add_reagent("tricordrazine", 5)
+		update_icon()
+
 /obj/item/reagent_container/hypospray/autoinjector/quickclot
 	name = "\improper Quick Clot autoinjector"
 	desc = "An autoinjector loaded with 10 units of Quick Clot, a chemical designed to pause all bleeding. Renew doses as needed."
@@ -72,6 +85,19 @@
 	New()
 		..()
 		reagents.add_reagent("tramadol", 10)
+		update_icon()
+
+/obj/item/reagent_container/hypospray/autoinjector/Tramadol/skillless
+	name = "\improper Pain-stop autoinjector"
+	desc = "An auto-injector loaded with a small amount of painkiller for marines to self-administer."
+	amount_per_transfer_from_this = 5
+	volume = 5
+	icon_state = "tramadol"
+	skilllock = 0
+
+	New()
+		..()
+		reagents.add_reagent("tramadol", 5)
 		update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Oxycodone

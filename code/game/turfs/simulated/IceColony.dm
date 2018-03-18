@@ -30,7 +30,7 @@
 				return
 
 			user << "Now planting \the [L]."
-			if(!do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
+			if(!do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")
@@ -58,7 +58,7 @@
 
 					user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
 					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-					if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+					if(!do_after(user,50, TRUE, 5, BUSY_ICON_FRIENDLY))
 						user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 						return
 
@@ -88,7 +88,7 @@
 
 						user.visible_message("[user.name] starts throwing out the snow to the ground.","You start throwing out the snow to the ground.")
 						playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-						if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+						if(!do_after(user,50, TRUE, 5, BUSY_ICON_GENERIC))
 							user.visible_message("\red \The [user] decides not to add any more snow to [S].")
 							return
 
@@ -110,7 +110,7 @@
 
 						user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
 						playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-						if(!do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+						if(!do_after(user,50, TRUE, 5, BUSY_ICON_FRIENDLY))
 							user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 							return
 
@@ -137,7 +137,7 @@
 
 					user.visible_message("[user.name] starts shaping the barricade.","You start shaping the barricade")
 					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
-					if(!do_after(user,150, TRUE, 5, BUSY_ICON_CLOCK))
+					if(!do_after(user,150, TRUE, 5, BUSY_ICON_BUILD))
 						user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
 						return
 
@@ -351,19 +351,18 @@
 	//Explosion act
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
-				if(src.slayer)
-					src.slayer = 0
-					src.update_icon(1,0)
-			if(2.0)
-				if(prob(60) && src.slayer)
-					src.slayer -= 1
-					src.update_icon(1,0)
-			if(3.0)
-				if(prob(20) && src.slayer)
-					src.slayer -= 1
-					src.update_icon(1,0)
-		return
+			if(1)
+				if(slayer)
+					slayer = 0
+					update_icon(1, 0)
+			if(2)
+				if(prob(60) && slayer)
+					slayer = max(slayer - 2, 0)
+					update_icon(1, 0)
+			if(3)
+				if(prob(20) && slayer)
+					slayer -= 1
+					update_icon(1, 0)
 
 //SNOW LAYERS-----------------------------------//
 /turf/unsimulated/floor/snow/layer0
@@ -686,7 +685,7 @@
 			return
 
 		user << "You start pulling out \the [src]."
-		if(!do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK))
+		if(!do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
 		anchored = 0
@@ -710,46 +709,32 @@
 	s_color = "red"
 
 
-
-/obj/machinery/computer/shuttle_control/elevator1
+/obj/machinery/computer/shuttle_control/ice_colony
 	name = "Elevator Console"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+	icon_state = "elevator_screen"
+	unacidable = 1
+	exproof = 1
+	density = 0
+	req_access = null
+
+/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_on()
+	icon_state = "elevator_screen_animated"
+
+/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_off()
+	icon_state = "elevator_screen"
+
+/obj/machinery/computer/shuttle_control/ice_colony/elevator1
 	shuttle_tag = "Elevator 1"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
-/obj/machinery/computer/shuttle_control/elevator2
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+/obj/machinery/computer/shuttle_control/ice_colony/elevator2
 	shuttle_tag = "Elevator 2"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
-/obj/machinery/computer/shuttle_control/elevator3
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+/obj/machinery/computer/shuttle_control/ice_colony/elevator3
 	shuttle_tag = "Elevator 3"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
-/obj/machinery/computer/shuttle_control/elevator4
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator"
+/obj/machinery/computer/shuttle_control/ice_colony/elevator4
 	shuttle_tag = "Elevator 4"
-	unacidable = 1
-	exproof = 1
-	density = 0
-	req_access = null
 
 //RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn

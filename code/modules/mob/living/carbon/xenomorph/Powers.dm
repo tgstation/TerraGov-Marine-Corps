@@ -5,22 +5,35 @@
 	if(!T) return
 
 	if(!isturf(loc))
-		src << "<span class='warning'>You can't pounce from here!</span>"
+		src << "<span class='xenowarning'>You can't pounce from here!</span>"
 		return
 
 	if(!check_state())
 		return
 
 	if(usedPounce)
-		src << "<span class='warning'>You must wait before pouncing.</span>"
+		src << "<span class='xenowarning'>You must wait before pouncing.</span>"
 		return
 
 	if(!check_plasma(10))
 		return
 
-	visible_message("<span class='xenowarning'>\The [src] pounces at \the [T]!</span>", \
-	"<span class='xenowarning'>You pounce at \the [T]!</span>")
-	usedPounce = 30 //About 12 seconds
+	if(legcuffed)
+		src << "<span class='xenodanger'>You can't pounce with that thing on your leg!</span>"
+		return
+
+	if(layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
+		layer = MOB_LAYER
+
+	if(m_intent == "walk" && isXenoHunter(src)) //Hunter that is currently using its stealth ability, need to unstealth him
+		m_intent = "run"
+		if(hud_used && hud_used.move_intent)
+			hud_used.move_intent.icon_state = "running"
+		update_icons()
+
+	visible_message("<span class='xenowarning'>\The [src] pounces at [T]!</span>", \
+	"<span class='xenowarning'>You pounce at [T]!</span>")
+	usedPounce = 1
 	flags_pass = PASSTABLE
 	use_plasma(10)
 	throw_at(T, 6, 2, src) //Victim, distance, speed
@@ -30,7 +43,7 @@
 		else
 			flags_pass = 0 //Reset the passtable.
 
-	spawn(usedPounce)
+	spawn(pounce_delay)
 		usedPounce = 0
 		src << "<span class='notice'>You get ready to pounce again.</span>"
 		for(var/X in actions)
@@ -70,7 +83,7 @@
 		return
 
 	src << "<span class='notice'>You start focusing your plasma towards [target].</span>"
-	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
 
 	if(!check_state())
@@ -84,12 +97,13 @@
 		src << "<span class='warning'>You need to be closer to [target].</span>"
 		return
 
-	if(storedplasma < amount)
-		amount = storedplasma //Just use all of it
+	if(plasma_stored < amount)
+		amount = plasma_stored //Just use all of it
 	use_plasma(amount)
 	target.gain_plasma(amount)
-	target << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.storedplasma].</span>"
-	src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [storedplasma].</span>"
+	target << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.plasma_stored].</span>"
+	src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [plasma_stored].</span>"
+	playsound(src, "alien_drool", 25)
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/xeno_spit(atom/T)
@@ -159,13 +173,13 @@
 					WR.ChangeTurf(/turf/simulated/wall/resin/thick)
 					WR.oldTurf = prev_oldturf
 					use_plasma(resin_plasma_cost)
-					playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+					playsound(loc, "alien_resin_build", 25)
 				else if(WR.walltype == "membrane")
 					var/prev_oldturf = WR.oldTurf
 					WR.ChangeTurf(/turf/simulated/wall/resin/membrane/thick)
 					WR.oldTurf = prev_oldturf
 					use_plasma(resin_plasma_cost)
-					playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+					playsound(loc, "alien_resin_build", 25)
 				else
 					src << "<span class='xenowarning'>[WR] can't be made thicker.</span>"
 				return
@@ -178,7 +192,7 @@
 						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>")
 					cdel(DR)
 					new /obj/structure/mineral_door/resin/thick (oldloc)
-					playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+					playsound(loc, "alien_resin_build", 25)
 					use_plasma(resin_plasma_cost)
 				else
 					src << "<span class='xenowarning'>[DR] can't be made thicker.</span>"
@@ -231,7 +245,7 @@
 	if(caste == "Drone")
 		wait_time = 10
 
-	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_BUILD))
 		return
 
 	blocker = locate() in current_turf
@@ -275,7 +289,7 @@
 	use_plasma(resin_plasma_cost)
 	visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and shapes it into \a [selected_resin]!</span>", \
 	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [selected_resin].</span>")
-	playsound(loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+	playsound(loc, "alien_resin_build", 25)
 
 	switch(selected_resin)
 		if("resin door")
@@ -324,6 +338,7 @@
 			return
 		if(O.density)
 			wait_time = 40 //dense objects are big, so takes longer to melt.
+
 	//TURF CHECK
 	else if(isturf(O))
 		var/turf/T = O
@@ -353,7 +368,7 @@
 		src << "<span class='warning'>You cannot dissolve \the [O].</span>"
 		return
 
-	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_HOSTILE))
 		return
 
 	if(!check_state())
@@ -364,6 +379,10 @@
 
 	if(!check_plasma(plasma_cost))
 		return
+
+	if(!O.Adjacent(src))
+		return
+
 	use_plasma(plasma_cost)
 
 	var/obj/effect/xenomorph/acid/A = new acid_type(get_turf(O), O)
@@ -380,7 +399,7 @@
 		attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
 	visible_message("<span class='xenowarning'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
 	"<span class='xenowarning'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
-
+	playsound(loc, "sound/bullets/acid_impact1.ogg", 25)
 
 
 

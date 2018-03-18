@@ -8,8 +8,8 @@
 	melee_damage_upper = 80
 	health = 800 //A lot of health, but it doesn't regenerate.
 	maxHealth = 800
-	storedplasma = 300
-	maxplasma = 300
+	plasma_stored = 300
+	plasma_max = 300
 	amount_grown = 0
 	max_grown = 200
 	plasma_gain = 25
@@ -32,6 +32,7 @@
 	evo_points = 0
 
 	pixel_x = -16
+	old_x = -16
 
 	mob_size = MOB_SIZE_BIG
 	attack_delay = -2
@@ -119,7 +120,7 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 
 	visible_message("<span class='danger'>[src] reaches down, angling its body toward [H], claws outstretched.</span>",
 	"<span class='xenonotice'>You stoop near the host's body, savoring the moment before you claim a trophy for your kill. You must stand still...</span>")
-	if(do_after(src, PREDALIEN_BUTCHER_WAIT_TIME, FALSE) && Adjacent(H))
+	if(do_after(src, PREDALIEN_BUTCHER_WAIT_TIME, FALSE, 5, BUSY_ICON_HOSTILE) && Adjacent(H))
 		var/datum/limb/head/O = H.get_limb("head")
 		if(!(O.status & LIMB_DESTROYED))
 			H.apply_damage(150, BRUTE, "head", FALSE, TRUE, TRUE)

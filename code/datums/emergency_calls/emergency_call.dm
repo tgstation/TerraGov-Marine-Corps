@@ -75,7 +75,7 @@
 //	var/list/datum/mind/possible_joiners = ticker.mode.get_players_for_role(role_needed) //Default role_needed is BE_RESPONDER
 	for(var/mob/dead/observer/M in player_list)
 		if(M.client)
-			M << "<font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Join Response Team</b> verb, <B>IC tab</b>, to join!</span>"
+			M << "<font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Join Response Team</b> verb, <B>Ghost tab</b>, to join!</span>"
 			M << "<span class='attack'>You cannot join if you have been ghosted for less than a few minutes.</span>"
 
 /datum/game_mode/proc/activate_distress()
@@ -87,52 +87,47 @@
 	picked_call.activate()
 	return
 
-/client/verb/JoinResponseTeam()
+/mob/dead/observer/verb/JoinResponseTeam()
 	set name = "Join Response Team"
-	set category = "IC"
+	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
-	if(istype(usr,/mob/dead) || istype(usr,/mob/new_player))
-		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
-			usr << "<span class='danger'>You are jobbanned from the emergency reponse team!</span>"
-			return
-		if(!ticker || !ticker.mode || isnull(ticker.mode.picked_call))
-			usr << "<span class='warning'>No distress beacons are active. You will be notified if this changes.</span>"
-			return
-
-		var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
-		if(!istype(distress) || !distress.mob_max)
-			usr << "<span class='warning'>The emergency response team is already full!</span>"
-			return
-		var/deathtime = world.time - usr.timeofdeath
-
-		if(deathtime < 600) //Nice try, ghosting right after the announcement
-			usr << "<span class='warning'>You ghosted too recently.</span>"
-			return
-
-		if(!ticker.mode.waiting_for_candidates)
-			usr << "<span class='warning'>The emergency response team has already been selected.</span>"
-			return
-
-		if(!usr.mind) //How? Give them a new one anyway.
-			usr.mind = new /datum/mind(usr.key)
-			usr.mind.active = 1
-			usr.mind.current = usr
-		if(usr.mind.key != usr.key) usr.mind.key = usr.key //Sigh. This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
-
-		if(!usr.client || !usr.mind) return //Somehow
-		if(usr.mind in distress.candidates)
-			usr << "<span class='warning'>You are already a candidate for this emergency response team.</span>"
-			return
-
-		if(distress.add_candidate(usr))
-			usr << "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>"
-		else
-			usr << "<span class='warning'>You did not get enlisted in the response team. Better luck next time!</span>"
+	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
+		usr << "<span class='danger'>You are jobbanned from the emergency reponse team!</span>"
 		return
+	if(!ticker || !ticker.mode || isnull(ticker.mode.picked_call))
+		usr << "<span class='warning'>No distress beacons are active. You will be notified if this changes.</span>"
+		return
+
+	var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
+	if(!istype(distress) || !distress.mob_max)
+		usr << "<span class='warning'>The emergency response team is already full!</span>"
+		return
+	var/deathtime = world.time - usr.timeofdeath
+
+	if(deathtime < 600) //Nice try, ghosting right after the announcement
+		usr << "<span class='warning'>You ghosted too recently.</span>"
+		return
+
+	if(!ticker.mode.waiting_for_candidates)
+		usr << "<span class='warning'>The emergency response team has already been selected.</span>"
+		return
+
+	if(!usr.mind) //How? Give them a new one anyway.
+		usr.mind = new /datum/mind(usr.key)
+		usr.mind.active = 1
+		usr.mind.current = usr
+	if(usr.mind.key != usr.key) usr.mind.key = usr.key //Sigh. This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
+
+	if(!usr.client || !usr.mind) return //Somehow
+	if(usr.mind in distress.candidates)
+		usr << "<span class='warning'>You are already a candidate for this emergency response team.</span>"
+		return
+
+	if(distress.add_candidate(usr))
+		usr << "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>"
 	else
-		usr << "<span class='warning'>You need to be an observer or new player to use this.</span>"
-	return
+		usr << "<span class='warning'>You did not get enlisted in the response team. Better luck next time!</span>"
 
 /datum/emergency_call/proc/activate(announce = 1, no_shuttle_launch)
 	if(!ticker || !ticker.mode) //Something horribly wrong with the gamemode ticker

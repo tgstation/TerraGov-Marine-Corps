@@ -123,9 +123,7 @@
 #define SOUND_PLAY_PUNCH pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 #define SOUND_PLAY_CLOWN pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
 #define SOUND_PLAY_SWING pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
-#define SOUND_PLAY_HISS pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
 #define SOUND_PLAY_PAGE pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
-#define SOUND_PLAY_QUEEN pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 #define SOUND_PLAY_SCREAM_MALE pick('sound/voice/human_scream_male_1.ogg','sound/voice/human_scream_male_2.ogg','sound/voice/human_scream_male_3.ogg','sound/voice/human_scream_male_4.ogg',5;'sound/voice/human_scream_male_5.ogg')
 #define SOUND_PLAY_SCREAM_FEMALE pick('sound/voice/human_scream_female_1.ogg','sound/voice/human_scream_female_2.ogg','sound/voice/human_scream_female_3.ogg','sound/voice/human_scream_female_4.ogg','sound/voice/human_scream_female_5.ogg')
 #define SOUND_PLAY_BALLISTIC_HIT pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact1.ogg')
@@ -138,6 +136,23 @@
 #define SOUND_PLAY_ENERGY_BOUNCE pick('sound/bullets/energy_ricochet1.ogg')
 #define SOUND_PLAY_ACID_HIT pick('sound/bullets/acid_impact1.ogg')
 #define SOUND_PLAY_ACID_BOUNCE pick('sound/bullets/acid_impact1.ogg')
+#define SOUND_PLAY_ALIEN_CLAW_FLESH pick('sound/weapons/alien_claw_flesh1.ogg','sound/weapons/alien_claw_flesh2.ogg','sound/weapons/alien_claw_flesh3.ogg')
+#define SOUND_PLAY_ALIEN_CLAW_METAL pick('sound/weapons/alien_claw_metal1.ogg','sound/weapons/alien_claw_metal2.ogg','sound/weapons/alien_claw_metal3.ogg')
+#define SOUND_PLAY_ALIEN_BITE pick('sound/weapons/alien_bite1.ogg','sound/weapons/alien_bite2.ogg')
+#define SOUND_PLAY_ALIEN_FOOTSTEP_LARGE pick('sound/effects/alien_footstep_large1.ogg','sound/effects/alien_footstep_large2.ogg','sound/effects/alien_footstep_large3.ogg')
+#define SOUND_PLAY_ALIEN_CHARGE pick('sound/effects/alien_footstep_charge1.ogg','sound/effects/alien_footstep_charge2.ogg','sound/effects/alien_footstep_charge3.ogg')
+#define SOUND_PLAY_ALIEN_RESIN_BUILD pick('sound/effects/alien_resin_build1.ogg','sound/effects/alien_resin_build2.ogg','sound/effects/alien_resin_build3.ogg')
+#define SOUND_PLAY_ALIEN_RESIN_BREAK pick('sound/effects/alien_resin_break1.ogg','sound/effects/alien_resin_break2.ogg','sound/effects/alien_resin_break3.ogg')
+#define SOUND_PLAY_ALIEN_RESIN_MOVE pick('sound/effects/alien_resin_move1.ogg','sound/effects/alien_resin_move2.ogg')
+#define SOUND_PLAY_ALIEN_TALK pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
+#define SOUND_PLAY_ALIEN_GROWL pick('sound/voice/alien_growl1.ogg','sound/voice/alien_growl2.ogg','sound/voice/alien_growl3.ogg')
+#define SOUND_PLAY_ALIEN_HISS pick('sound/voice/alien_hiss1.ogg','sound/voice/alien_hiss2.ogg','sound/voice/alien_hiss3.ogg')
+#define SOUND_PLAY_ALIEN_TAIL_SWIPE pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg')
+#define SOUND_PLAY_ALIEN_HELP pick('sound/voice/alien_help1.ogg','sound/voice/alien_help2.ogg')
+#define SOUND_PLAY_ALIEN_DROOL pick('sound/voice/alien_drool1.ogg','sound/voice/alien_drool2.ogg')
+#define SOUND_PLAY_ALIEN_ROAR pick('sound/voice/alien_roar1.ogg','sound/voice/alien_roar2.ogg','sound/voice/alien_roar3.ogg','sound/voice/alien_roar4.ogg','sound/voice/alien_roar5.ogg','sound/voice/alien_roar6.ogg')
+#define SOUND_PLAY_ALIEN_ROAR_LARVA pick('sound/voice/alien_roar_larva1.ogg','sound/voice/alien_roar_larva2.ogg')
+#define SOUND_PLAY_QUEEN pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 #define SOUND_PLAY_ALLOY_HIT pick('sound/bullets/spear_impact1.ogg')
 #define SOUND_PLAY_ALLOY_ARMOR pick('sound/bullets/spear_armor1.ogg')
 #define SOUND_PLAY_ALLOY_BOUNCE pick('sound/bullets/spear_ricochet1.ogg','sound/bullets/spear_ricochet2.ogg')
@@ -159,9 +174,7 @@
 			if("punch") . = SOUND_PLAY_PUNCH
 			if("clownstep") . = SOUND_PLAY_CLOWN
 			if("swing_hit") . = SOUND_PLAY_SWING
-			if("hiss") . = SOUND_PLAY_HISS
 			if("pageturn") . = SOUND_PLAY_PAGE
-			if("queen") . = SOUND_PLAY_QUEEN
 			if("scream_male") . = SOUND_PLAY_SCREAM_MALE
 			if("scream_female") . = SOUND_PLAY_SCREAM_FEMALE
 			if("ballistic_hit") . = SOUND_PLAY_BALLISTIC_HIT
@@ -174,6 +187,23 @@
 			if("energy_bounce") . = SOUND_PLAY_ENERGY_BOUNCE
 			if("acid_hit") . = SOUND_PLAY_ACID_HIT
 			if("acid_bounce") . = SOUND_PLAY_ACID_BOUNCE
+			if("alien_claw_flesh") . = SOUND_PLAY_ALIEN_CLAW_FLESH
+			if("alien_claw_metal") . = SOUND_PLAY_ALIEN_CLAW_METAL
+			if("alien_bite") . = SOUND_PLAY_ALIEN_BITE
+			if("alien_footstep_large") . = SOUND_PLAY_ALIEN_FOOTSTEP_LARGE
+			if("alien_charge") . = SOUND_PLAY_ALIEN_CHARGE
+			if("alien_resin_build") . = SOUND_PLAY_ALIEN_RESIN_BUILD
+			if("alien_resin_break") . = SOUND_PLAY_ALIEN_RESIN_BREAK
+			if("alien_resin_move") . = SOUND_PLAY_ALIEN_RESIN_MOVE
+			if("alien_talk") . = SOUND_PLAY_ALIEN_TALK
+			if("alien_growl") . = SOUND_PLAY_ALIEN_GROWL
+			if("alien_hiss") . = SOUND_PLAY_ALIEN_HISS
+			if("alien_tail_swipe") . = SOUND_PLAY_ALIEN_TAIL_SWIPE
+			if("alien_help") . = SOUND_PLAY_ALIEN_HELP
+			if("alien_drool") . = SOUND_PLAY_ALIEN_DROOL
+			if("alien_roar") . = SOUND_PLAY_ALIEN_ROAR
+			if("alien_roar_larva") . = SOUND_PLAY_ALIEN_ROAR_LARVA
+			if("queen") . = SOUND_PLAY_QUEEN
 			if("alloy_hit") . = SOUND_PLAY_ALLOY_HIT
 			if("alloy_armor") . = SOUND_PLAY_ALLOY_ARMOR
 			if("alloy_bounce") . = SOUND_PLAY_ALLOY_BOUNCE

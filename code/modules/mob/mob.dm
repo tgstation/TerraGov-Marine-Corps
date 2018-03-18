@@ -293,7 +293,9 @@ var/list/slot_equipment_priority = list( \
 	if(istype(M,/mob/living/silicon/ai)) return
 	//Xenos cannot check inventories by drag-dropping at all.
 	//Comment this out to re-add xeno inventory functionality.
-	if((istype(M,/mob/living/carbon/Xenomorph) || istype(src,/mob/living/carbon/Xenomorph)) && src != M) return
+	if((isXeno(M) || isXeno(src)) && src != M) return
+	if(usr.lying)
+		return
 	show_inv(usr)
 
 
@@ -636,7 +638,7 @@ mob/proc/yank_out_object()
 			r_FAL
 		U << "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>"
 
-	if(!do_after(U, 80, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(U, 80, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
 	if(!selection || !S || !U || !istype(selection))
 		return

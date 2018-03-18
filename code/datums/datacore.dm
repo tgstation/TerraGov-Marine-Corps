@@ -266,6 +266,8 @@ var/global/list/PDA_Manifest = list()
 		M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 		M.fields["last_scan_time"]		= null
 		M.fields["last_scan_result"]		= "No scan data on record" // body scanner results
+		M.fields["autodoc_data"] = list()
+		M.fields["autodoc_manual"] = list()
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
 		else
@@ -317,22 +319,38 @@ var/global/list/PDA_Manifest = list()
 proc/get_id_photo(var/mob/living/carbon/human/H)
 	var/icon/preview_icon = null
 
-	var/g = "m"
-	if (H.gender == FEMALE)
-		g = "f"
+	//var/g = "m"
+	//if (H.gender == FEMALE)
+	//	g = "f"
 
 	var/icon/icobase = H.species.icobase
-
-	preview_icon = new /icon(icobase, "torso_[g]")
 	var/icon/temp
-	temp = new /icon(icobase, "groin_[g]")
+
+	var/datum/ethnicity/ET = ethnicities_list[H.ethnicity]
+	var/datum/body_type/B = body_types_list[H.body_type]
+
+	var/e_icon
+	var/b_icon
+
+	if (!ET)
+		e_icon = "western"
+	else
+		e_icon = ET.icon_name
+
+	if (!B)
+		b_icon = "mesomorphic"
+	else
+		b_icon = B.icon_name
+
+	preview_icon = new /icon(icobase, get_limb_icon_name(H.species, b_icon, H.gender, "torso", e_icon))
+	temp = new /icon(icobase, get_limb_icon_name(H.species, b_icon, H.gender, "groin", e_icon))
 	preview_icon.Blend(temp, ICON_OVERLAY)
-	temp = new /icon(icobase, "head_[g]")
+	temp = new /icon(icobase, get_limb_icon_name(H.species, b_icon, H.gender, "head", e_icon))
 	preview_icon.Blend(temp, ICON_OVERLAY)
 
 	for(var/datum/limb/E in H.limbs)
 		if(E.status & LIMB_DESTROYED) continue
-		temp = new /icon(icobase, "[E.name]")
+		temp = new /icon(icobase, get_limb_icon_name(H.species, b_icon, H.gender, E.name, e_icon))
 		if(E.status & LIMB_ROBOT)
 			temp.MapColors(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 		preview_icon.Blend(temp, ICON_OVERLAY)
@@ -342,6 +360,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 		temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[H.species.tail]_s")
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
+	/*
 	// Skin tone
 	if(H.species.flags & HAS_SKIN_TONE)
 		if (H.s_tone >= 0)
@@ -354,6 +373,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
 			preview_icon.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
 
+	*/
 	var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = H.species ? H.species.eyes : "eyes_s")
 
 	eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)

@@ -63,7 +63,7 @@
 		else if(caste == "Predalien")
 			playsound(loc, 'sound/voice/predalien_click.ogg', 25, 1)
 		else
-			playsound(loc, "hiss", 25, 1)
+			playsound(loc, "alien_talk", 25, 1)
 		..(message, speaking, verb, null, null, message_range, null)
 	else
 		hivemind_talk(message)
@@ -78,6 +78,10 @@
 //General proc for hivemind. Lame, but effective.
 /mob/living/carbon/Xenomorph/proc/hivemind_talk(var/message)
 	if(!message || src.stat)
+		return
+
+	if(!living_xeno_queen)
+		src << "<span class='warning'>There is no Queen. You are alone.</span>"
 		return
 
 	var/rendered
@@ -103,8 +107,8 @@
 					else
 						ghostrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
 					S.show_message(ghostrend, 2)
-			else if(S != src && S == living_xeno_queen && living_xeno_queen.ovipositor)
+			else if(S != src && S == living_xeno_queen && living_xeno_queen.ovipositor && corrupted == isCorruptedXeno(S))
 				var/queenrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> (<a href='byond://?src=\ref[S];queentrack=\ref[src]'>watch</a>)<span class='message'> hisses, '[message]'</span></span></i>"
 				S.show_message(queenrend, 2)
-			else
+			else if(corrupted == isCorruptedXeno(S))
 				S.show_message(rendered, 2)

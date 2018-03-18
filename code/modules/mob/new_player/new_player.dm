@@ -334,6 +334,16 @@
 		ticker.mode.latespawn(character)
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+		ticker.mode.latejoin_tally++
+
+		for(var/datum/squad/sq in RoleAuthority.squads)
+			if(sq)
+				sq.max_engineers = engi_slot_formula(clients.len)
+				sq.max_medics = medic_slot_formula(clients.len)
+
+		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
+			ticker.mode.spawn_latejoin_larva()
+			ticker.mode.latejoin_tally = 0
 
 		cdel(src)
 
@@ -415,7 +425,6 @@
 
 		new_character.name = real_name
 		new_character.dna.ready_dna(new_character)
-		new_character.dna.b_type = client.prefs.b_type
 
 		if(client.prefs.disabilities)
 			// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X

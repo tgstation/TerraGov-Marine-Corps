@@ -160,7 +160,7 @@
 			user << "<span class='warning'>[src] must be anchored! Use a screwdriver!</span>"
 			return
 		user << "You begin mounting [MG].."
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && !gun_mounted && anchored)
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD) && !gun_mounted && anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("\blue [user] installs [MG] into place.","\blue You install [MG] into place.")
 			gun_mounted = 1
@@ -178,7 +178,7 @@
 			user << "<span class='warning'>There is no gun mounted.</span>"
 			return
 		user << "You begin dismounting [src]'s gun.."
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK) && gun_mounted)
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD) && gun_mounted)
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("\blue [user] removes [src]'s gun.","\blue You remove [src]'s gun.")
 			new /obj/item/device/m56d_gun(loc)
@@ -190,7 +190,7 @@
 	if(istype(O,/obj/item/tool/screwdriver))
 		if(gun_mounted)
 			user << "You're securing the M56D into place"
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("\blue [user] screws the M56D into the mount.","\blue You finalize the M56D mounted smartgun system.")
 				var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
@@ -218,7 +218,7 @@
 			else
 				user << "You begin screwing [src] into place.."
 			var/old_anchored = anchored
-			if(do_after(user,20, TRUE, 5, BUSY_ICON_CLOCK) && anchored == old_anchored)
+			if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD) && anchored == old_anchored)
 				anchored = !anchored
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(anchored)
@@ -240,7 +240,6 @@
 	density = 1
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
 	var/fire_delay = 4 //Gotta have rounds down quick.
@@ -313,7 +312,7 @@
 			user << "This one cannot be disassembled."
 		else
 			user << "You begin disassembling the M56D mounted smartgun"
-			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				var/obj/item/device/m56d_gun/HMG = new(src.loc) //Here we generate our disassembled mg.
@@ -329,7 +328,7 @@
 				user << "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>"
 				return
 			if(user.action_busy) return
-			if(!do_after(user, 25, TRUE, 5, BUSY_ICON_CLOCK))
+			if(!do_after(user, 25, TRUE, 5, BUSY_ICON_FRIENDLY))
 				return
 		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
 		playsound(loc, 'sound/weapons/gun_minigun_cocked.ogg', 25, 1)
@@ -451,7 +450,7 @@
 	return
 
 // New proc for MGs and stuff replaced handle_manual_fire(). Same arguements though, so alls good.
-/obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, params)
+/obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, var/list/mods)
 	if(!operator) return 0
 	if(operator != user) return 0
 	if(istype(A,/obj/screen)) return 0
@@ -473,8 +472,7 @@
 	if(get_dist(target,src.loc) > 15)
 		return 0
 
-	var/list/modifiers = params2list(params) //Only single clicks.
-	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])	return 0
+	if(mods["middle"] || mods["shift"] || mods["alt"] || mods["ctrl"])	return 0
 
 		// Ok this is the issue here. We need it to be capable of firing rounds at say maybe 160*
 		// So we gotta change this. We're going rely on inequalities since those are sorta better (no idea coding wise).
@@ -483,7 +481,6 @@
 /*		var/dx = target.x - x
 		var/dy = target.y - y */
 	var/direct
-
 		//There might be a better way to do this, but god knows.
 		//It's also 12 AM.
 	var/angle = get_dir(src,target)
@@ -545,13 +542,13 @@
 
 
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
-	..()
+	flags_atom |= RELAY_CLICK
 	if(zoom)
 		user.client.view = 12
 	operator = user
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
-	..()
+	flags_atom &= ~RELAY_CLICK
 	if(zoom && user.client)
 		user.client.view = world.view
 	if(operator == user)

@@ -225,7 +225,7 @@
 		return
 	switch(severity)
 		if(1)
-			dismantle_wall(0,1)
+			dismantle_wall(0, 1)
 		if(2)
 			if(prob(75))
 				take_damage(rand(150, 250))
@@ -233,8 +233,6 @@
 				dismantle_wall(1, 1)
 		if(3)
 			take_damage(rand(0, 250))
-		else
-	return
 
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(mineral == "diamond" || hull)
@@ -291,10 +289,6 @@
 				take_damage(rand(25, 75))
 				return
 
-	M.visible_message("<span class='notice'>[M] pushes against [src].</span>",
-	"<span class='notice'>You push against [src] but nothing happens.</span>")
-	return
-
 /turf/simulated/wall/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)
 		if((prob(40) || rotting) && !hull)
@@ -320,7 +314,7 @@
 		if (isXeno(user) && user.mob_size == MOB_SIZE_BIG && !Hole.busy)
 			Hole.busy = TRUE
 			playsound(Hole.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-			if(do_after(user,60, FALSE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,60, FALSE, 5, BUSY_ICON_GENERIC))
 				Hole.busy = FALSE
 				take_damage(rand(2000,3500))
 				user.emote("roar")
@@ -329,10 +323,7 @@
 				Hole.busy = FALSE
 				return
 
-	user << "<span class='notice'>You push [src] but nothing happens!</span>"
-	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	add_fingerprint(user)
-	return
 
 /turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
 
@@ -411,7 +402,7 @@
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 			"<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, damage / 5, TRUE, 5, BUSY_ICON_CLOCK)) && WT && WT.isOn())
+			if(do_after(user, max(5, damage / 5, TRUE, 5, BUSY_ICON_FRIENDLY)) && WT && WT.isOn())
 				user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 				"<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
@@ -432,7 +423,7 @@
 				user.visible_message("<span class='notice'>[user] begins slicing through the outer plating.</span>",
 				"<span class='notice'>You begin slicing through the outer plating.</span>")
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T)	return
 
 					if(!d_state && user.loc == T && user.get_active_hand() == WT)
@@ -448,7 +439,7 @@
 				"<span class='notice'>You begin removing the support lines.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !W || !T) return
 
 					if(d_state == 1 && user.loc == T && user.get_active_hand() == W)
@@ -465,7 +456,7 @@
 				"<span class='notice'>You begin slicing through the metal cover.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T)	return
 
 					if(d_state == 2 && user.loc == T && user.get_active_hand() == WT)
@@ -481,7 +472,7 @@
 				"<span class='notice'>You struggle to pry off the cover.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !W || !T) return
 
 					if(d_state == 3 && user.loc == T && user.get_active_hand() == W)
@@ -497,7 +488,7 @@
 				"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !W || !T) return
 
 					if(d_state == 4 && user.loc == T && user.get_active_hand() == W)
@@ -513,7 +504,7 @@
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !W || !T) return
 
 					if(d_state == 5 && user.loc == T && user.get_active_hand() == W)
@@ -529,7 +520,7 @@
 				"<span class='notice'>You struggle to pry off the inner sheath.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !W || !T) return
 
 					if(d_state == 6 && user.loc == T && user.get_active_hand() == W)
@@ -546,7 +537,7 @@
 				"<span class='notice'>You begin slicing through the final layer.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
 					if(!istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T)	return
 
 					if(d_state == 7 && user.loc == T && user.get_active_hand() == WT)
@@ -578,7 +569,7 @@
 				var/obj/item/explosive/grenade/G = W
 
 				user << "You take the position to throw the [G]."
-				if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
 					user.visible_message("<span class='warning'>[user] throws [G] through the [src]!</span>", \
 										 "<span class='warning'>You throw [G] through the [src]</span>")
 					user.drop_held_item()
@@ -593,7 +584,7 @@
 				var/obj/item/device/flashlight/F = W
 
 				user << "You take the position to throw the [F]."
-				if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
 					user.visible_message("<span class='warning'>[user] throws [F] through the [src]!</span>", \
 										 "<span class='warning'>You throw [F] through the [src]</span>")
 					user.drop_held_item()
@@ -607,7 +598,7 @@
 				return attack_hand(user)
 			return
 		else if (isXeno(user) && user.mob_size == MOB_SIZE_BIG)
-			if(do_after(user,40, FALSE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,20, FALSE, 5, BUSY_ICON_HOSTILE))
 				damage += 250
 				user.emote("roar")
 

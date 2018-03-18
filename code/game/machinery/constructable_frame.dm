@@ -34,20 +34,22 @@
 			return
 		switch(state)
 			if(1)
-				if(istype(P, /obj/item/stack/cable_coil))
+				if(iscoil(P))
 					var/obj/item/stack/cable_coil/C = P
-					if (C.get_amount() < 5)
+					if(C.get_amount() < 5)
 						user << "<span class='warning'>You need five lengths of cable to add them to the frame.</span>"
 						return
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					user << "<span class='notice'>You start to add cables to the frame.</span>"
-					if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK) && state == 1)
+					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+					user.visible_message("<span class='notice'>[user] starts adding cables to [src].</span>",
+					"<span class='notice'>You start adding cables to [src].</span>")
+					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && state == 1)
 						if(C && istype(C) && C.use(5))
-							user << "<span class='notice'>You add cables to the frame.</span>"
+							user.visible_message("<span class='notice'>[user] adds cables to [src].</span>",
+							"<span class='notice'>You add cables to [src].</span>")
 							state = 2
 							icon_state = "box_1"
 				else
-					if(istype(P, /obj/item/tool/wrench))
+					if(iswrench(P))
 						playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 						user << "\blue You dismantle the frame"
 						new /obj/item/stack/sheet/metal(src.loc, 5)

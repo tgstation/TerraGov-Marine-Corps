@@ -200,6 +200,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 				WEAR_WAIST = /obj/item/storage/belt/security/MP/full,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
+				//WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud/eyepiece, //still working on this garbagio - josh 2/20/2018
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/red,
 				WEAR_BACK = /obj/item/storage/backpack/security,
 				WEAR_R_STORE = /obj/item/storage/pouch/general/medium

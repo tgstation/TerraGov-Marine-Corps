@@ -91,6 +91,12 @@
 			if("labgreen")
 				src.icon_state = "labgreen_open"
 				usr << "You unbutton the labcoat."
+			if("sciencecoat_open")
+				src.icon_state = "sciencecoat"
+				usr << "You button up the labcoat."
+			if("sciencecoat")
+				src.icon_state = "sciencecoat_open"
+				usr << "You unbutton the labcoat."
 			else
 				usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."
 				return
@@ -163,6 +169,13 @@
 	//name = "Medical officer's labcoat"
 	icon_state = "labcoatg"
 	item_state = "labcoatg"
+
+/obj/item/clothing/suit/storage/labcoat/researcher
+	name = "researcher's labcoat"
+	desc = "A high quality labcoat, seemingly worn by scholars and researchers alike. It has a distinct leathery feel to it, and goads you towards adventure."
+	icon_state = "sciencecoat_open"
+	item_state = "sciencecoat_open"
+
 
 
 

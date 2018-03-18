@@ -795,19 +795,38 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 
 
 var/global/image/busy_indicator_clock
-var/global/image/busy_indicator_med
+var/global/image/busy_indicator_medical
+var/global/image/busy_indicator_build
+var/global/image/busy_indicator_friendly
+var/global/image/busy_indicator_hostile
 
 /proc/get_busy_icon(busy_type)
-	if(busy_type == BUSY_ICON_CLOCK)
+	if(busy_type == BUSY_ICON_GENERIC)
 		if(!busy_indicator_clock)
-			busy_indicator_clock = image('icons/mob/mob.dmi',null,"busy_clock", "pixel_y" = 22)
+			busy_indicator_clock = image('icons/mob/mob.dmi', null, "busy_generic", "pixel_y" = 22)
 			busy_indicator_clock.layer = FLY_LAYER
 		return busy_indicator_clock
-	else if(busy_type == BUSY_ICON_MED)
-		if(!busy_indicator_med)
-			busy_indicator_med = image('icons/mob/mob.dmi',null,"busy_med", "pixel_y" = 22)
-			busy_indicator_med.layer = FLY_LAYER
-		return busy_indicator_med
+	else if(busy_type == BUSY_ICON_MEDICAL)
+		if(!busy_indicator_medical)
+			busy_indicator_medical = image('icons/mob/mob.dmi', null, "busy_medical", "pixel_y" = 0) //This shows directly on top of the mob, no offset!
+			busy_indicator_medical.layer = FLY_LAYER
+		return busy_indicator_medical
+	else if(busy_type == BUSY_ICON_BUILD)
+		if(!busy_indicator_build)
+			busy_indicator_build = image('icons/mob/mob.dmi', null, "busy_build", "pixel_y" = 22)
+			busy_indicator_build.layer = FLY_LAYER
+		return busy_indicator_build
+	else if(busy_type == BUSY_ICON_FRIENDLY)
+		if(!busy_indicator_friendly)
+			busy_indicator_friendly = image('icons/mob/mob.dmi', null, "busy_friendly", "pixel_y" = 22)
+			busy_indicator_friendly.layer = FLY_LAYER
+		return busy_indicator_friendly
+	else if(busy_type == BUSY_ICON_HOSTILE)
+		if(!busy_indicator_hostile)
+			busy_indicator_hostile = image('icons/mob/mob.dmi', null, "busy_hostile", "pixel_y" = 22)
+			busy_indicator_hostile.layer = FLY_LAYER
+		return busy_indicator_hostile
+
 
 
 /proc/do_mob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon, selected_zone_check)

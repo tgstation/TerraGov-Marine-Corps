@@ -462,9 +462,9 @@
 				if(NUKE_EXPLOSION_FINISHED) dat += 		"FINISHED"
 			dat += "<br>"
 
-			dat += "<a href='?src=\ref[src];evac_authority=init_dest'>Unlock Self Destruct</a><br>"
-			dat += "<a href='?src=\ref[src];evac_authority=cancel_dest'>Cancel Self Destruct</a><br>"
-			dat += "<a href='?src=\ref[src];evac_authority=use_dest'>Self Destruct the [MAIN_SHIP_NAME]</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
+			dat += "<a href='?src=\ref[src];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
 			dat += "<a href='?src=\ref[src];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
 
 		dat += "<br><a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"

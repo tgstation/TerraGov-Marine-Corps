@@ -472,7 +472,7 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 			if(WEAR_IN_BACK)
 				if (H.back && istype(H.back, /obj/item/storage/backpack))
 					var/obj/item/storage/backpack/B = H.back
-					if(B.contents.len < B.storage_slots && w_class <= B.max_w_class)
+					if(B.can_be_inserted(src))
 						return 1
 				return 0
 		return 0 //Unsupported slot
@@ -697,18 +697,22 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
-			user << "<span class='warning'>You are already looking through [zoom_device].</span>"
+			user << "<span class='warning'>You are already looking through \the [zoom_device].</span>"
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
 	if(user.eye_blind) 												user << "<span class='warning'>You are too blind to see anything.</span>"
-	else if(user.stat || !ishuman(user)) 							user << "<span class='warning'>You are unable to focus through [zoom_device].</span>"
-	else if(!zoom && global_hud.darkMask[1] in user.client.screen) 	user << "<span class='warning'>Your welding equipment gets in the way of you looking through [zoom_device].</span>"
-	else if(!zoom && user.get_active_hand() != src)					user << "<span class='warning'>You need to hold [zoom_device] to look through it.</span>"
+	else if(user.stat || !ishuman(user)) 							user << "<span class='warning'>You are unable to focus through \the [zoom_device].</span>"
+	else if(!zoom && global_hud.darkMask[1] in user.client.screen) 	user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>"
+	else if(!zoom && user.get_active_hand() != src)					user << "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>"
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
+		user.zoom_cooldown = world.time + 20
 	else //Otherwise we want to zoom in.
+		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
+			return
+		user.zoom_cooldown = world.time + 20
 		user.client.view = viewsize
 
 		var/tilesize = 32
@@ -728,25 +732,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				user.client.pixel_x = -viewoffset
 				user.client.pixel_y = 0
 
-		user.visible_message("<span class='notice'>[user] peers through [zoom_device].</span>",
-		"<span class='notice'>You peer through [zoom_device].</span>")
+		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
+		"<span class='notice'>You peer through \the [zoom_device].</span>")
 		zoom = !zoom
 		if(user.interactee)
 			user.unset_interaction()
 		else
 			user.set_interaction(src)
-
 		return
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
 	user.client.view = world.view
 	user.client.pixel_x = 0
 	user.client.pixel_y = 0
-
-
-/*
-/obj/item/Bump(mob/M as mob)
-	spawn(0)
-		..()
-	return
-*/

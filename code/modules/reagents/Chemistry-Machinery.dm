@@ -11,6 +11,7 @@
 	use_power = 0
 	idle_power_usage = 40
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
+	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 	var/ui_title = "Chem Dispenser 5000"
 	var/energy = 100
 	var/max_energy = 100
@@ -240,6 +241,7 @@
 	icon_state = "mixer0"
 	use_power = 1
 	idle_power_usage = 20
+	layer = BELOW_OBJ_LAYER //So bottles/pills reliably appear above it
 	var/beaker = null
 	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0

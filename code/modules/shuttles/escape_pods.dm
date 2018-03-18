@@ -305,7 +305,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 			visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
 
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC))
 				if(!M || !G || !G.grabbed_thing || !G.grabbed_thing.loc || G.grabbed_thing != M) r_FAL
 				move_mob_inside(M)
 
@@ -352,7 +352,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 		visible_message("<span class='warning'>[user] starts climbing into the cryo pod.</span>", 3)
 
-		if(do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
 			user.stop_pulling()
 			move_mob_inside(user)
 
@@ -368,7 +368,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 		being_forced = !being_forced
 		visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
 		playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-		if(do_after(user, 20, FALSE)) go_out() //Force the occupant out.
+		if(do_after(user, 20, FALSE, 5, BUSY_ICON_HOSTILE)) go_out() //Force the occupant out.
 		being_forced = !being_forced
 
 /obj/machinery/cryopod/evacuation/proc/move_mob_inside(mob/M)

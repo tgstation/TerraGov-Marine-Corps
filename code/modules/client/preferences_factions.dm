@@ -12,12 +12,22 @@ var/global/list/seen_religions = list()
 		seen_religions    |= M.client.prefs.religion*/
 	return
 
+/*
 var/global/list/citizenship_choices = list(
 	"Earth",
 	"Mars",
 	"Moghes",
 	"Ahdomai",
 	"Qerrbalak"
+	)
+*/
+
+var/global/list/citizenship_choices = list(
+	"United Americas (United States)",
+	"United Americas (Luna)",
+	"United Americas (Other)",
+	"Limited Service (Colony)",
+	"Green Card (Foreign)"
 	)
 
 var/global/list/home_system_choices = list(
@@ -43,11 +53,20 @@ var/global/list/faction_choices = list(
 	)
 
 var/global/list/religion_choices = list(
-	"Unitarianism",
-	"Hinduism",
-	"Buddhist",
-	"Islamic",
-	"Christian",
-	"Agnostic",
-	"Deist"
+    "Christianity (Protestant)",
+    "Christianity (Catholic)",
+    "Christianity (Orthodox)",
+    "Christianity (Mormonism)",
+    "Christianity (Other)",
+    "Judaism",
+    "Islam (Shia)",
+    "Islam (Sunni)",
+    "Buddhism",
+    "Hinduism",
+    "Sikhism",
+    "Shintoism",
+    "Wiccanism",
+    "Paganism (Wicca)",
+    "Minor Religion",
+    "Atheism"
 	)

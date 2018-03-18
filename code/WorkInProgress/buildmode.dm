@@ -126,7 +126,7 @@
 
 /obj/effect/bmode/buildmode/clicked(var/mob/M, var/list/mods)
 
-	if(mods.Find("left"))
+	if(mods["left"])
 		switch(master.cl.buildmode)
 			if(1)
 				master.cl.buildmode = 2
@@ -141,7 +141,7 @@
 				master.cl.buildmode = 1
 				src.icon_state = "buildmode1"
 
-	else if(mods.Find("right"))
+	else if(mods["right"])
 		switch(master.cl.buildmode)
 			if(1)
 				return 1
@@ -174,18 +174,17 @@
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in turfs
     return 1
 
-/proc/build_click(var/mob/user, buildmode, params, var/obj/object)
+/proc/build_click(var/mob/user, buildmode, var/list/mods, var/obj/object)
 	var/obj/effect/bmode/buildholder/holder = null
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user.client)
 			holder = H
 			break
 	if(!holder) return
-	var/list/pa = params2list(params)
 
 	switch(buildmode)
 		if(1)
-			if(istype(object,/turf) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
+			if(istype(object,/turf) && mods["left"] && !mods["alt"] && !mods["ctrl"] )
 				if(istype(object,/turf/space))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
@@ -198,7 +197,7 @@
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall/r_wall)
 					return
-			else if(pa.Find("right"))
+			else if(mods["right"])
 				if(istype(object,/turf/simulated/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
@@ -214,9 +213,9 @@
 				else if(istype(object,/obj))
 					cdel(object)
 					return
-			else if(istype(object,/turf) && pa.Find("alt") && pa.Find("left"))
+			else if(istype(object,/turf) && mods["alt"] && mods["left"])
 				new/obj/machinery/door/airlock(get_turf(object))
-			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("left"))
+			else if(istype(object,/turf) && mods["ctrl"] && mods["left"])
 				switch(holder.builddir.dir)
 					if(NORTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
@@ -234,24 +233,24 @@
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.dir = NORTHWEST
 		if(2)
-			if(pa.Find("left"))
+			if(mods["left"])
 				if(ispath(holder.buildmode.objholder,/turf))
 					var/turf/T = get_turf(object)
 					T.ChangeTurf(holder.buildmode.objholder)
 				else
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.dir = holder.builddir.dir
-			else if(pa.Find("right"))
+			else if(mods["right"])
 				if(isobj(object)) cdel(object)
 
 		if(3)
-			if(pa.Find("left")) //I cant believe this shit actually compiles.
+			if(mods["left"]) //I cant believe this shit actually compiles.
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
 				else
 					usr << "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"
-			if(pa.Find("right"))
+			if(mods["right"])
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
@@ -259,10 +258,9 @@
 					usr << "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"
 
 		if(4)
-			if(pa.Find("left"))
+			if(mods["left"])
 				if(istype(object, /atom/movable))
 					holder.throw_atom = object
-			if(pa.Find("right"))
+			if(mods["right"])
 				if(holder.throw_atom)
 					holder.throw_atom.throw_at(object, 10, 1)
-

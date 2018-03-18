@@ -269,7 +269,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 800
+	max_rounds = 400
 	caliber = "10x24mm"
 	gun_type = null
 	var/base_icon_state = "big_ammo_box"
@@ -299,7 +299,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(!current_rounds)
 				user << "<span class='warning'>[src] is empty.</span>"
 				return
-			if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,15, TRUE, 5, BUSY_ICON_FRIENDLY))
 				var/transfered_ammo = AM.transfer_ammo(src, user, min(current_rounds,AM.max_rounds))
 				if(transfered_ammo)
 					playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)

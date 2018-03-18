@@ -107,6 +107,12 @@
 	if (!silent)
 		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
 
+/datum/internal_organ/proc/heal_damage(amount)
+	if(damage < amount)
+		damage = 0
+	else
+		damage -= amount
+
 /datum/internal_organ/proc/emp_act(severity)
 	switch(robotic)
 		if(0)

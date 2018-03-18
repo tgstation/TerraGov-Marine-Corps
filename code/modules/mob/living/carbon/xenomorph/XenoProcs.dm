@@ -3,14 +3,14 @@
 
 
 //Send a message to all xenos. Mostly used in the deathgasp display
-/proc/xeno_message(var/message = null, var/size = 3)
+/proc/xeno_message(var/message = null, var/size = 3, var/corrupted = 0)
 	if(!message)
 		return
 
-	if(ticker && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+	if(ticker && ticker.mode && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
-			if(M && istype(M) && !M.stat && M.client) //Only living and connected xenos
+			if(M && istype(M) && !M.stat && M.client && corrupted == M.corrupted) //Only living and connected xenos
 				M << "<span class='xenodanger'><font size=[size]> [message]</font></span>"
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
@@ -19,37 +19,71 @@
 	. = ..()
 
 	if (.) //Only update when looking at the Status panel.
-		if(!living_xeno_queen)
-			stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-		else if(!living_xeno_queen.ovipositor)
-			stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
-		else if(!evolution_allowed)
-			stat(null, "Evolve Progress (FINISHED)")
+		if(!corrupted)
+			if(!evolution_allowed)
+				stat(null, "Evolve Progress (FINISHED)")
+			else if(!living_xeno_queen)
+				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+			else if(!living_xeno_queen.ovipositor)
+				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
+			else
+				stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 		else
 			stat(null, "Evolve Progress: [evolution_stored]/[evolution_threshold]")
 
-		if(maxplasma > 0)
+		if(upgrade != -1 && upgrade != 3) //upgrade possible
+			stat(null, "Upgrade Progress: [upgrade_stored]/[upgrade_threshold]")
+		else //Upgrade process finished or impossible
+			stat(null, "Upgrade Progress (FINISHED)")
+
+		if(plasma_max > 0)
 			if(is_robotic)
-				stat(null, "Charge: [storedplasma]/[maxplasma]")
+				stat(null, "Charge: [plasma_stored]/[plasma_max]")
 			else
-				stat(null, "Plasma: [storedplasma]/[maxplasma]")
+				stat(null, "Plasma: [plasma_stored]/[plasma_max]")
 
-		if(slashing_allowed == 1)
-			stat(null,"Slashing of hosts is currently: PERMITTED.")
-		else if(slashing_allowed == 2)
-			stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
+		if(!corrupted)
+			if(slashing_allowed == 1)
+				stat(null,"Slashing of hosts is currently: PERMITTED.")
+			else if(slashing_allowed == 2)
+				stat(null,"Slashing of hosts is currently: LIMITED.")
+			else
+				stat(null,"Slashing of hosts is currently: FORBIDDEN.")
 		else
-			stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
+			stat(null,"Slashing of hosts is decided by your masters.")
 
+		//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
+		var/msg_holder = ""
 		if(frenzy_aura)
-			stat(null,"You are affected by a pheromone of FRENZY.")
+			switch(frenzy_aura)
+				if(-INFINITY to 1.0) msg_holder = "very weak "
+				if(1.1 to 2.0) msg_holder = "weak "
+				if(2.1 to 2.9) msg_holder = ""
+				if(3.0 to 3.9) msg_holder = "strong "
+				if(4.0 to INFINITY) msg_holder = "very strong "
+			stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
 		if(warding_aura)
-			stat(null,"You are affected by a pheromone of WARDING.")
+			switch(warding_aura)
+				if(-INFINITY to 1.0) msg_holder = "very weak "
+				if(1.1 to 2.0) msg_holder = "weak "
+				if(2.1 to 2.9) msg_holder = ""
+				if(3.0 to 3.9) msg_holder = "strong "
+				if(4.0 to INFINITY) msg_holder = "very strong "
+			stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
 		if(recovery_aura)
-			stat(null,"You are affected by a pheromone of RECOVERY.")
+			switch(recovery_aura)
+				if(-INFINITY to 1.0) msg_holder = "very weak "
+				if(1.1 to 2.0) msg_holder = "weak "
+				if(2.1 to 2.9) msg_holder = ""
+				if(3.0 to 3.9) msg_holder = "strong "
+				if(4.0 to INFINITY) msg_holder = "very strong "
+			stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
 
 		if(hive_orders && hive_orders != "")
-			stat(null,"Hive Orders: [hive_orders]")
+			if(!corrupted)
+				stat(null,"Hive Orders: [hive_orders]")
+			else
+				stat(null,"Hive Orders: Follow the instructions of your masters")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
@@ -65,22 +99,22 @@
 		return 0
 
 	if(value)
-		if(storedplasma < value)
+		if(plasma_stored < value)
 			if(is_robotic)
-				src << "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
+				src << "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>"
 			else
-				src << "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [storedplasma] stored.</span>"
+				src << "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>"
 			return 0
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/use_plasma(value)
-	storedplasma = max(storedplasma - value, 0)
+	plasma_stored = max(plasma_stored - value, 0)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
 
 /mob/living/carbon/Xenomorph/proc/gain_plasma(value)
-	storedplasma = min(storedplasma + value, maxplasma)
+	plasma_stored = min(plasma_stored + value, plasma_max)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
@@ -112,10 +146,6 @@
 /turf/unsimulated/floor/mars/is_weedable()
 	return FALSE
 
-/turf/simulated/floor/is_weedable()
-	var/area/A = get_area(src)
-	return A.is_weedable
-
 /turf/simulated/floor/gm/grass/is_weedable()
 	return FALSE
 
@@ -124,6 +154,18 @@
 
 /turf/simulated/floor/gm/river/is_weedable()
 	return FALSE
+
+/turf/simulated/floor/almayer/plating/catwalk/is_weedable() //covered catwalks are unweedable
+	if(covered)
+		return FALSE
+	else
+		return TRUE
+
+/turf/simulated/floor/prison/plating/prison_catwalk/is_weedable()
+	if(covered)
+		return FALSE
+	else
+		return TRUE
 
 /turf/simulated/wall/is_weedable()
 	return TRUE //so we can spawn weeds on the walls
@@ -159,16 +201,21 @@
 		. -= (frenzy_aura * 0.1)
 
 	if(is_charging)
-		. -= charge_speed
-		charge_timer = 2
-		if(charge_speed == 0)
-			charge_dir = dir
-			handle_momentum()
+		if(legcuffed)
+			is_charging = 0
+			stop_momentum()
+			src << "<span class='xenodanger'>You can't charge with that thing on your leg!</span>"
 		else
-			if(charge_dir != dir) //Have we changed direction?
-				stop_momentum() //This should disallow rapid turn bumps
-			else
+			. -= charge_speed
+			charge_timer = 2
+			if(charge_speed == 0)
+				charge_dir = dir
 				handle_momentum()
+			else
+				if(charge_dir != dir) //Have we changed direction?
+					stop_momentum() //This should disallow rapid turn bumps
+				else
+					handle_momentum()
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
@@ -220,12 +267,19 @@
 							throwing = FALSE //Reset throwing manually.
 							r_FAL
 
-						if(isYautja(H) && prob(40)) //Another chance for the predator to block the pounce.
-							visible_message("<span class='danger'>[H] body slams [src]!</span>",
-											"<span class='xenodanger'>[H] body slams you!</span>")
-							KnockDown(4)
-							throwing = FALSE
-							r_FAL
+						if(isYautja(H))
+							if(H.check_shields(0, "the pounce", 1))
+								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
+												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>")
+								KnockDown(5)
+								throwing = FALSE
+								r_FAL
+							else if(prob(75)) //Body slam the fuck out of xenos jumping at your front.
+								visible_message("<span class='danger'>[H] body slams [src]!</span>",
+												"<span class='xenodanger'>[H] body slams you!</span>")
+								KnockDown(4)
+								throwing = FALSE
+								r_FAL
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>You pounce on [M]!</span>")
@@ -296,7 +350,7 @@
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
 	flick_attack_overlay(M, "slash") //TODO: Special bite attack overlay ?
-	playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
+	playsound(loc, "alien_bite", 25)
 	visible_message("<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>", \
 	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
@@ -324,7 +378,7 @@
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
 	flick_attack_overlay(M, "tail")
-	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 25, 1) //Stolen from Yautja! Owned!
+	playsound(M.loc, 'sound/weapons/alien_tail_attack.ogg', 25, 1) //Stolen from Yautja! Owned!
 	visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
 	"<span class='danger'>You violently impale \the [M] with your tail!</span>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
@@ -454,7 +508,7 @@
 
 	if(pulling && charge_speed > charge_speed_buildup) stop_pulling()
 
-	if(storedplasma > 5) storedplasma -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
+	if(plasma_stored > 5) plasma_stored -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
 	else
 		stop_momentum(charge_dir)
 		r_FAL
@@ -471,12 +525,12 @@
 	noise_timer = noise_timer ? --noise_timer : 3
 
 	if(noise_timer == 3 && charge_speed > charge_speed_buildup * charge_turfs_to_charge)
-		playsound(loc, 'sound/mecha/mechstep.ogg', min(15 + (charge_speed * 20), 50), 0)
+		playsound(loc, "alien_charge", 50)
 
 	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 
 		for(var/mob/living/carbon/M in loc)
-			if(M.lying && !isXeno(M) && M.stat != DEAD)
+			if(M.lying && !isXeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>")
 				M.take_overall_damage(charge_speed * 40) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
@@ -490,3 +544,30 @@
 	lastturf = isturf(loc) && !istype(loc, /turf/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 
 	update_icons()
+
+//Welp
+/mob/living/carbon/Xenomorph/proc/xeno_jitter(var/jitter_time = 25)
+
+	set waitfor = 0
+
+	while(jitter_time) //In ticks, so 10 ticks = 1 sec of jitter!
+		set waitfor = 0
+		pixel_x = old_x + rand(-3, 3)
+		pixel_y = old_y + rand(-1, 1)
+		sleep(1)
+		jitter_time--
+	//endwhile - reset the pixel offsets to zero
+	pixel_x = old_x
+	pixel_y = old_y
+
+//When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
+/mob/living/carbon/Xenomorph/proc/handle_xeno_leader_pheromones(var/mob/living/carbon/Xenomorph/Queen/Q)
+
+	if(!Q || !Q.anchored || !queen_chosen_lead || !Q.current_aura) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
+		leader_aura_strength = 0
+		leader_current_aura = ""
+		src << "<span class='xenowarning'>Your pheromones wane. The Queen is no longer granting you her pheromones.</span>"
+	else
+		leader_aura_strength = Q.aura_strength
+		leader_current_aura = Q.current_aura
+		src << "<span class='xenowarning'>Your pheromones have changed. The Queen has new plans for the Hive.</span>"

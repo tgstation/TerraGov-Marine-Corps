@@ -249,8 +249,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/tank/emergency_oxygen,
@@ -285,14 +285,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/specialist
 	name = "\improper B18 defensive armor"
-	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
+	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with two tricord injectors in each arm guard."
 	icon_state = "xarmor"
 	armor = list(melee = 95, bullet = 110, laser = 80, energy = 80, bomb = 75, bio = 20, rad = 20)
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	var/injections = 2
+	var/injections = 4
 	unacidable = 1
 
 	New(loc,expected_type 	= type,
@@ -323,7 +323,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		return 0
 
 	usr << "You feel a faint hiss and an injector drops into your hand."
-	var/obj/item/reagent_container/hypospray/autoinjector/tricord/O = new(usr)
+	var/obj/item/reagent_container/hypospray/autoinjector/tricord/skillless/O = new(usr)
 	usr.put_in_active_hand(O)
 	injections--
 	playsound(src,'sound/machines/click.ogg', 15, 1)
@@ -347,7 +347,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A custom set of M3 armor designed for USCM Scouts."
 	icon_state = "scout_armor"
 	item_state = "scout_armor"
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 45, laser = 40, energy = 25, bomb = 55, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 	New()
@@ -358,6 +358,28 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	. = ..()
 	if(.)
 		if(M.mind && M.mind.cm_skills && M.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && M.mind.cm_skills.spec_weapons != SKILL_SPEC_SCOUT)
+			M << "<span class='warning'>You are not trained to use [src]!</span>"
+			return 0
+
+/obj/item/clothing/suit/storage/marine/M35
+	name = "\improper M35 armor"
+	desc = "A custom set of M35 armor designed for use by USCM Pyrotechnicians."
+	icon_state = "pyro_armor"
+	item_state = "pyro_armor"
+	armor = list(melee = 85, bullet = 90, laser = 60, energy = 60, bomb = 30, bio = 0, rad = 0)
+	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
+/obj/item/clothing/suit/storage/marine/M35/mob_can_equip(mob/M, slot, disable_warning = 0)
+	. = ..()
+	if(.)
+		if(M.mind && M.mind.cm_skills && M.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && M.mind.cm_skills.spec_weapons != SKILL_SPEC_PYRO)
 			M << "<span class='warning'>You are not trained to use [src]!</span>"
 			return 0
 

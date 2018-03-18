@@ -52,7 +52,7 @@
 				C.last_special = world.time + 100
 				C.visible_message("\red <B>[C] attempts to unbuckle themself!</B>",\
 				"\red You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
-				if(do_after(C, 1200, FALSE))
+				if(do_after(C, 1200, FALSE, 5, BUSY_ICON_HOSTILE))
 					if(!C.buckled)
 						return
 					C.visible_message("\red <B>[C] manages to unbuckle themself!</B>",\
@@ -134,6 +134,19 @@
 
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
+		if (isXeno(L))
+			var/mob/living/carbon/Xenomorph/X = L
+			if (X.on_fire && X.canmove && !knocked_down)
+				X.fire_stacks = max(X.fire_stacks - rand(3, 6), 0)
+				X.KnockDown(4, TRUE)
+				X.visible_message("<span class='danger'>[X] rolls on the floor, trying to put themselves out!</span>", \
+					"<span class='notice'>You stop, drop, and roll!</span>")
+				if (fire_stacks <= 0)
+					X.visible_message("<span class='danger'>[X] has successfully extinguished themselves!</span>", \
+					"<span class='notice'>You extinguish yourself.</span>")
+					ExtinguishMob()
+				return
+
 		var/mob/living/carbon/human/CM = L
 		if(CM.on_fire && CM.canmove && !knocked_down)
 			CM.fire_stacks = max(CM.fire_stacks - rand(3,6), 0)
@@ -156,7 +169,7 @@
 				CM.visible_message("<span class='danger'>[CM] is attempting to break out of the cuffs...</span>", \
 				"<span class='notice'>You use your superior zombie strength to start breaking the cuffs...</span>")
 				spawn(0)
-					if(do_after(CM, 100, FALSE))
+					if(do_after(CM, 100, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.handcuffed || CM.buckled)
 							return
 						CM.visible_message("<span class='danger'>[CM] tears the cuffs in half!</span>", \
@@ -176,7 +189,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("\red <B>[] is trying to break the handcuffs!</B>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50, FALSE))
+					if(do_after(CM, 50, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.handcuffed || CM.buckled)
 							return
 						for(var/mob/O in viewers(CM))
@@ -208,7 +221,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "\red <B>[usr] attempts to remove \the [HC]!</B>", 1)
 				spawn(0)
-					if(do_after(CM, breakouttime, FALSE))
+					if(do_after(CM, breakouttime, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.handcuffed || CM.buckled)
 							return // time leniency for lag which also might make this whole thing pointless but the server
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
@@ -232,7 +245,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("\red <B>[] is trying to break the legcuffs!</B>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50, FALSE))
+					if(do_after(CM, 50, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.legcuffed || CM.buckled)
 							return
 						for(var/mob/O in viewers(CM))
@@ -253,7 +266,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "\red <B>[usr] attempts to remove \the [HC]!</B>", 1)
 				spawn(0)
-					if(do_after(CM, breakouttime, FALSE))
+					if(do_after(CM, breakouttime, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.legcuffed || CM.buckled)
 							return // time leniency for lag which also might make this whole thing pointless but the server
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink

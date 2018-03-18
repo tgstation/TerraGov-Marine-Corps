@@ -28,6 +28,12 @@
 /turf/simulated/shuttle/wall/elevator/dorm
 	icon_state = "wall_dorm"
 
+/turf/simulated/shuttle/wall/elevator/freight
+	icon_state = "wall_freight"
+
+/turf/simulated/shuttle/wall/elevator/arrivals
+	icon_state = "wall_arrivals"
+
 // Elevator Buttons
 /turf/simulated/shuttle/wall/elevator/button
 	name = "elevator buttons"
@@ -38,21 +44,45 @@
 /turf/simulated/shuttle/wall/elevator/button/dorm
 	icon_state = "wall_button_dorm"
 
+/turf/simulated/shuttle/wall/elevator/button/freight
+	icon_state = "wall_button_freight"
+
+/turf/simulated/shuttle/wall/elevator/button/arrivals
+	icon_state = "wall_button_arrivals"
+
 // Elevator door
 /obj/machinery/door/airlock/multi_tile/elevator
-	icon = 'icons/obj/doors/elevator4x1.dmi'
+	icon = 'icons/obj/doors/4x1_elevator.dmi'
 	icon_state = "door_closed"
 	width = 4
-	openspeed = 31
+	openspeed = 22
 
 /obj/machinery/door/airlock/multi_tile/elevator/research
-	name = "\improper Research Elevator"
+	name = "\improper Research Elevator Hatch"
 
 /obj/machinery/door/airlock/multi_tile/elevator/arrivals
-	name = "\improper Arrivals Elevator"
+	name = "\improper Arrivals Elevator Hatch"
 
 /obj/machinery/door/airlock/multi_tile/elevator/dormatory
-	name = "\improper Dormatory Elevator"
+	name = "\improper Dormatory Elevator Hatch"
 
 /obj/machinery/door/airlock/multi_tile/elevator/freight
-	name = "\improper Freight Elevator"
+	name = "\improper Freight Elevator Hatch"
+
+
+/obj/machinery/door/airlock/multi_tile/elevator/access
+	icon = 'icons/obj/doors/4x1_elevator_access.dmi'
+	opacity = 0
+	glass = 1
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/research
+	name = "\improper Research Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/arrivals
+	name = "\improper Arrivals Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/dormatory
+	name = "\improper Dormatory Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/freight
+	name = "\improper Freight Elevator Hatch"

@@ -179,8 +179,8 @@
 		helmet_overlays = list("damage","band","item") //To make things simple.
 		pockets = new/obj/item/storage/internal(src)
 		pockets.storage_slots = 2
-		pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses.
-		pockets.bypass_w_limit = list("/obj/item/clothing/glasses")
+		pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses & metal flask.
+		pockets.bypass_w_limit = list("/obj/item/clothing/glasses", "/obj/item/reagent_container/food/drinks/flask")
 		pockets.max_storage_space = 3
 
 		camera = new /obj/machinery/camera(src)
@@ -301,6 +301,18 @@
 	desc = "A custom helmet designed for USCM Scouts."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
+/obj/item/clothing/head/helmet/marine/pyro
+	name = "\improper M35 helmet"
+	icon_state = "pyro_helmet"
+	desc = "A helmet designed for USCM Pyrotechnicians."
+	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
 
 	New()
 		select_gamemode_skin(type)

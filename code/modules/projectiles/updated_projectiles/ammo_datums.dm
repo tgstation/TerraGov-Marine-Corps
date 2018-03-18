@@ -418,7 +418,7 @@
 		penetration= config.low_armor_penetration
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		knockback(M,P)
+		knockback(M, P, 5)
 
 
 
@@ -626,10 +626,12 @@
 	New()
 		..()
 		accurate_range = config.short_shell_range
+		accuracy_var_low = config.low_proj_variance
+		accuracy_var_high = config.low_proj_variance
 		max_range = config.short_shell_range
-		damage = config.med_hit_damage
+		damage = config.low_hit_damage
 		penetration= config.mlow_armor_penetration
-		accuracy = config.high_hit_accuracy
+		accuracy = -config.low_hit_accuracy
 
 /datum/ammo/bullet/turret/dumb
 	icon_state 	= "bullet"
@@ -642,7 +644,7 @@
 		..()
 		accurate_range = config.short_shell_range
 		max_range = config.norm_shell_range //Bump the range since view distance got bumped too.
-		damage = config.low_hit_damage
+		damage = config.med_hit_damage
 		penetration= config.mhigh_armor_penetration //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
 		accuracy = config.high_hit_accuracy
 
@@ -1019,6 +1021,13 @@
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
 
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+				return
+		..()
+
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
 	New()
@@ -1055,31 +1064,44 @@
 		smoke_system = null
 		. = ..()
 
-	on_hit_mob(mob/M,obj/item/projectile/P)
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+				return
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		drop_nade(get_turf(P))
 
-	on_hit_obj(obj/O,obj/item/projectile/P)
+	on_hit_obj(obj/O, obj/item/projectile/P)
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		drop_nade(get_turf(P))
 
-	on_hit_turf(turf/T,obj/item/projectile/P)
+	on_hit_turf(turf/T, obj/item/projectile/P)
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		if(T.density && isturf(P.loc))
 			drop_nade(P.loc) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 		else
 			drop_nade(T)
 
-
-
 	do_at_max_range(obj/item/projectile/P)
+		if(isXenoBoiler(P.firer))
+			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
+			smoke_system.amount = B.upgrade
 		drop_nade(get_turf(P))
 
-	proc/set_xeno_smoke()
+	proc/set_xeno_smoke(obj/item/projectile/P)
 		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
 
 	proc/drop_nade(turf/T)
-		smoke_system.set_up(3, 0, T)
+		smoke_system.set_up(4, 0, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>")
-
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
@@ -1087,7 +1109,7 @@
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
-	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR|AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
 
 	New()
 		..()
@@ -1098,15 +1120,13 @@
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
 
-	set_xeno_smoke()
+	set_xeno_smoke(obj/item/projectile/P)
 		smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
 
-
 	drop_nade(turf/T)
-		smoke_system.set_up(2, 0, T)
+		smoke_system.set_up(3, 0, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
-
 
 /*
 //================================================

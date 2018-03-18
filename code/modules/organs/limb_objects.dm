@@ -20,6 +20,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	else
 		base = icon('icons/mob/human_races/r_human.dmi')
 
+	/*
 	if(base)
 		//Changing limb's skin tone to match owner
 		if(!H.species || H.species.flags & HAS_SKIN_TONE)
@@ -32,10 +33,28 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		//Changing limb's skin color to match owner
 		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
 			base.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
+	*/
 
 	icon = base
+	var/datum/ethnicity/E = ethnicities_list[H.ethnicity]
+	var/datum/body_type/B = body_types_list[H.body_type]
+
+	var/e_icon
+	var/b_icon
+
+	if (!E)
+		e_icon = "western"
+	else
+		e_icon = E.icon_name
+
+	if (!B)
+		b_icon = "mesomorphic"
+	else
+		b_icon = B.icon_name
+
+	icon_state = "[get_limb_icon_name(H.species, b_icon, H.gender, name, e_icon)]"
 	dir = SOUTH
-	src.transform = turn(src.transform, rand(70,130))
+	transform = turn(transform, rand(70,130))
 
 
 
@@ -174,4 +193,3 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	name = "synthetic head"
 	brain_item_type = /obj/item/organ/brain/prosthetic
 	braindeath_on_decap = 0
-

@@ -232,3 +232,7 @@
 			continue
 
 	console.updateUsrDialog()
+
+/obj/machinery/mineral/processing_unit/Dispose()
+	SetLuminosity(0)
+	. = ..()

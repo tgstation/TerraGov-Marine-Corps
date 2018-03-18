@@ -66,7 +66,7 @@ var/const/tk_maxrange = 15
 	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
 	abstract = TRUE
-	flags_atom = NOBLUDGEON
+	flags_atom = NOBLUDGEON|DELONDROP
 	//item_state = null
 	w_class = 10.0
 	layer = ABOVE_HUD_LAYER
@@ -76,20 +76,20 @@ var/const/tk_maxrange = 15
 	var/mob/living/host = null
 
 
-	dropped(mob/user as mob)
+	dropped(mob/user)
 		if(focus && user && loc != user && loc != user.loc) // drop_held_item() gets called when you tk-attack a table/closet with an item
 			if(focus.Adjacent(loc))
 				focus.loc = loc
+		..()
 
-		cdel(src)
-		return
 
 
 	//stops TK grabs being equipped anywhere but into hands
 	equipped(var/mob/user, var/slot)
 		if( (slot == WEAR_L_HAND) || (slot== WEAR_R_HAND) )	return
-		cdel(src)
-		return
+		if(!disposed)
+			cdel(src)
+
 
 
 	attack_self(mob/user as mob)

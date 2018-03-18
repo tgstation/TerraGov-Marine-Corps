@@ -10,13 +10,14 @@
 	melee_damage_upper = 20
 	health = 220
 	maxHealth = 220
-	storedplasma = 200
-	maxplasma = 800
+	plasma_stored = 200
+	plasma_max = 800
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	plasma_gain = 35
 	caste_desc = "A builder of REALLY BIG hives."
 	pixel_x = -16
+	old_x = -16
 	speed = 0.4
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard

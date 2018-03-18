@@ -1,14 +1,13 @@
 /obj/structure/closet/secure_closet/medical1
-	name = "Medicine Closet"
-	desc = "Filled with medical junk."
+	name = "medicine closet"
+	desc = "Filled with medical items."
 	icon_state = "secure_locked_medical_white"
-	icon_closed = "secure_closed_medical_white"
+	icon_closed = "secure_unlocked_medical_white"
 	icon_locked = "secure_locked_medical_white"
 	icon_opened = "secure_open_medical_white"
-	icon_broken = "secure_locked_medical_white"
+	icon_broken = "secure_closed_medical_white"
 	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_MEDBAY)
-
 
 	New()
 		..()
@@ -28,19 +27,16 @@
 		new /obj/item/storage/box/pillbottles(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/medical2
-	name = "Anesthetic"
+	name = "anesthetic closet"
 	desc = "Used to knock people out."
 	icon_state = "secure_locked_medical_white"
-	icon_closed = "secure_closed_medical_white"
+	icon_closed = "secure_unlocked_medical_white"
 	icon_locked = "secure_locked_medical_white"
 	icon_opened = "secure_open_medical_white"
-	icon_broken = "secure_locked_medical_white"
+	icon_broken = "secure_closed_medical_white"
 	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_MEDBAY)
-
 
 	New()
 		..()
@@ -53,52 +49,23 @@
 		new /obj/item/clothing/mask/breath/medical(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/medical3
-	name = "Medical Doctor's Locker"
+	name = "medical doctor's locker"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	icon_state = "secure_locked_medical_white"
-	icon_closed = "secure_closed_medical_white"
+	icon_closed = "secure_unlocked_medical_white"
 	icon_locked = "secure_locked_medical_white"
 	icon_opened = "secure_open_medical_white"
-	icon_broken = "secure_locked_medical_white"
+	icon_broken = "secure_closed_medical_white"
 	icon_off = "secure_closed_medical_white"
 
 	New()
 		..()
 		sleep(2)
-		if(prob(50))
-			new /obj/item/storage/backpack/medic(src)
-		else
-			new /obj/item/storage/backpack/satchel/med(src)
-		new /obj/item/clothing/under/rank/nursesuit (src)
-		new /obj/item/clothing/head/nursehat (src)
-		switch(pick("blue", "green", "purple"))
-			if ("blue")
-				new /obj/item/clothing/under/rank/medical/blue(src)
-				new /obj/item/clothing/head/surgery/blue(src)
-			if ("green")
-				new /obj/item/clothing/under/rank/medical/green(src)
-				new /obj/item/clothing/head/surgery/green(src)
-			if ("purple")
-				new /obj/item/clothing/under/rank/medical/purple(src)
-				new /obj/item/clothing/head/surgery/purple(src)
-		switch(pick("blue", "green", "purple"))
-			if ("blue")
-				new /obj/item/clothing/under/rank/medical/blue(src)
-				new /obj/item/clothing/head/surgery/blue(src)
-			if ("green")
-				new /obj/item/clothing/under/rank/medical/green(src)
-				new /obj/item/clothing/head/surgery/green(src)
-			if ("purple")
-				new /obj/item/clothing/under/rank/medical/purple(src)
-				new /obj/item/clothing/head/surgery/purple(src)
-		new /obj/item/clothing/under/rank/medical(src)
-		new /obj/item/clothing/under/rank/nurse(src)
-		new /obj/item/clothing/under/rank/orderly(src)
-		new /obj/item/clothing/suit/storage/labcoat(src)
-		new /obj/item/clothing/suit/storage/fr_jacket(src)
+		new /obj/item/clothing/glasses/hud/health(src)
+		new /obj/item/storage/belt/medical(src)
+		new /obj/item/storage/backpack/marine/satchel(src)
+		new /obj/item/clothing/under/rank/medical/green(src)
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/storage/pouch/medical(src)
 		new /obj/item/storage/pouch/medical(src)
@@ -106,15 +73,12 @@
 		new /obj/item/storage/pouch/syringe(src)
 		new /obj/item/storage/pouch/medkit(src)
 		new /obj/item/storage/pouch/medkit(src)
-//		new /obj/item/cartridge/medical(src)
-		if(z && (z == 3 || z == 4))
+		if(z == MAIN_SHIP_Z_LEVEL)
 			new /obj/item/device/radio/headset/almayer/doc(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/CMO
-	name = "Chief Medical Officer's Locker"
+	name = "chief medical officer's locker"
 	req_access = list(ACCESS_MARINE_CMO)
 	icon_state = "cmosecure1"
 	icon_closed = "cmosecure"
@@ -126,31 +90,19 @@
 	New()
 		..()
 		sleep(2)
-		if(prob(50))
-			new /obj/item/storage/backpack/medic(src)
-		else
-			new /obj/item/storage/backpack/satchel/med(src)
-		new /obj/item/clothing/suit/bio_suit/cmo(src)
-		new /obj/item/clothing/head/bio_hood/cmo(src)
+		new /obj/item/clothing/suit/radiation(src)
+		new /obj/item/clothing/head/radiation(src)
 		new /obj/item/clothing/shoes/white(src)
-		switch(pick("blue", "green", "purple"))
-			if ("blue")
-				new /obj/item/clothing/under/rank/medical/blue(src)
-				new /obj/item/clothing/head/surgery/blue(src)
-			if ("green")
-				new /obj/item/clothing/under/rank/medical/green(src)
-				new /obj/item/clothing/head/surgery/green(src)
-			if ("purple")
-				new /obj/item/clothing/under/rank/medical/purple(src)
-				new /obj/item/clothing/head/surgery/purple(src)
-		new /obj/item/clothing/under/rank/chief_medical_officer(src)
-		new /obj/item/clothing/suit/storage/labcoat/cmo(src)
-		new /obj/item/cartridge/cmo(src)
 		new /obj/item/clothing/gloves/latex(src)
-		new /obj/item/clothing/shoes/brown	(src)
+		new /obj/item/clothing/under/rank/medical/green(src)
+		new /obj/item/clothing/head/surgery/green(src)
+		new /obj/item/clothing/suit/storage/labcoat(src)
+		new /obj/item/clothing/mask/surgical(src)
+		new /obj/item/clothing/mask/breath(src)
 		new /obj/item/device/radio/headset/almayer/cmo(src)
-		new /obj/item/device/flash(src)
 		new /obj/item/reagent_container/hypospray/tricordrazine(src)
+		new /obj/item/device/flash(src)
+		new /obj/item/cartridge/cmo(src)
 		new /obj/item/storage/pouch/medical(src)
 		new /obj/item/storage/pouch/syringe(src)
 		new /obj/item/storage/pouch/medkit(src)
@@ -158,9 +110,8 @@
 
 
 /obj/structure/closet/secure_closet/animal
-	name = "Animal Control"
+	name = "animal control closet"
 	req_access = list(ACCESS_MARINE_MEDBAY)
-
 
 	New()
 		..()
@@ -174,16 +125,15 @@
 
 
 /obj/structure/closet/secure_closet/chemical
-	name = "Chemical Closet"
+	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
 	icon_state = "secure_locked_medical_white"
-	icon_closed = "secure_closed_medical_white"
+	icon_closed = "secure_unlocked_medical_white"
 	icon_locked = "secure_locked_medical_white"
 	icon_opened = "secure_open_medical_white"
-	icon_broken = "secure_locked_medical_white"
+	icon_broken = "secure_closed_medical_white"
 	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_CHEMISTRY)
-
 
 	New()
 		..()
@@ -193,7 +143,7 @@
 		return
 
 /obj/structure/closet/secure_closet/medical_wall
-	name = "First Aid Closet"
+	name = "first aid closet"
 	desc = "It's a secure wall-mounted storage unit for first aid supplies."
 	icon_state = "medical_wall_locked"
 	icon_closed = "medical_wall_unlocked"

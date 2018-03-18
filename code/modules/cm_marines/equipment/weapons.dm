@@ -67,7 +67,7 @@
 		var/reload_duration = 50
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
 			reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
-		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_FRIENDLY))
 			pcell.charge -= 50
 			if(!mygun.current_mag) //This shouldn't happen, since the mag can't be ejected. Good safety, I guess.
 				var/obj/item/ammo_magazine/internal/smartgun/A = new(mygun)
@@ -257,7 +257,34 @@
 			user.mind.cm_skills.spec_weapons = SKILL_SPEC_SCOUT
 	..()
 
+/obj/item/storage/box/pyro
+	name = "\improper Pyrotechnician equipment"
+	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "armor_case"
+	w_class = 5
+	storage_slots = 8
+	slowdown = 1
+	can_hold = list()
+	foldable = null
 
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/M35(src)
+			new /obj/item/clothing/head/helmet/marine/pyro(src)
+			new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
+			new /obj/item/weapon/gun/flamer/M240T(src)
+			new /obj/item/ammo_magazine/flamer_tank/large(src)
+			new /obj/item/ammo_magazine/flamer_tank/large(src)
+			new /obj/item/ammo_magazine/flamer_tank/large/B(src)
+			new /obj/item/ammo_magazine/flamer_tank/large/X(src)
+
+/obj/item/storage/box/pyro/open(mob/user)
+	if(user.mind && user.mind.assigned_role == "Squad Specialist")
+		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
+			user.mind.cm_skills.spec_weapons = SKILL_SPEC_PYRO
+	..()
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"

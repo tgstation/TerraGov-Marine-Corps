@@ -7,8 +7,7 @@
 	var/bone_step
 
 /datum/surgery_step/bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	return affected.surgery_open_stage >= 2 && !(affected.status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step
-
+	return affected.surgery_open_stage >= 2 && !(affected.status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step && !(affected.status & LIMB_REPAIRED)
 
 
 /datum/surgery_step/bone/glue_bone
@@ -19,8 +18,8 @@
 	can_infect = 1
 	blood_level = 1
 
-	min_duration = 40
-	max_duration = 60
+	min_duration = BONEGEL_REPAIR_MIN_DURATION
+	max_duration = BONEGEL_REPAIR_MAX_DURATION
 	bone_step = 0
 
 /datum/surgery_step/bone/glue_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -38,14 +37,15 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>" , \
 	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
 
+
 /datum/surgery_step/bone/set_bone
 	allowed_tools = list(
 	/obj/item/tool/surgery/bonesetter = 100, \
 	/obj/item/tool/wrench = 75	   \
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = BONESETTER_MIN_DURATION
+	max_duration = BONESETTER_MAX_DURATION
 	bone_step = 1
 
 
@@ -66,9 +66,9 @@
 	else
 		user.visible_message("<span class='notice'>[user] sets the bone in [target]'s [affected.display_name] in place with \the [tool].</span>", \
 		"<span class='notice'>You set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
-	affected.bone_repair_stage = 0
 	affected.status &= ~LIMB_BROKEN
 	affected.status &= ~LIMB_SPLINTED
+	affected.status |= LIMB_REPAIRED
 	affected.bone_repair_stage = 0
 	affected.perma_injury = 0
 

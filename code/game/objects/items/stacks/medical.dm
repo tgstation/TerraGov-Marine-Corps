@@ -57,7 +57,7 @@
 
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
-				if(!do_mob(user, M, 10, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+				if(!do_mob(user, M, 10, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return 1
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
@@ -105,7 +105,7 @@
 
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
-				if(!do_mob(user, M, 10, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+				if(!do_mob(user, M, 10, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return 1
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
@@ -160,8 +160,8 @@
 		var/heal_amt = heal_brute
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
-				user << "<span class='warning'>You start fumbling with [src]...</span>"
-				if(!do_mob(user, M, 30, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+				user << "<span class='warning'>You start fumbling with [src].</span>"
+				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
 				heal_amt = 3 //non optimal application means less healing
 
@@ -215,8 +215,8 @@
 		var/heal_amt = heal_burn
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
-				user << "<span class='warning'>You start fumbling with [src]...</span>"
-				if(!do_mob(user, M, 30, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+				user << "<span class='warning'>You start fumbling with [src].</span>"
+				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
 				heal_amt = 3 //non optimal application means less healing
 

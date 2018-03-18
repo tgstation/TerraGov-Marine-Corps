@@ -136,10 +136,15 @@
 // MARINE ENGINEER
 
 /obj/structure/closet/secure_closet/marine/engi
+	slotlocked = 1
+	slotlocktype = "engi"
+	health = 100000 // just no
+
 	New()
 		..()
 		new /obj/item/storage/belt/utility/full(src)
 		new /obj/item/clothing/glasses/welding(src)
+		new /obj/item/clothing/tie/storage/webbing(src)
 
 	select_gamemode_equipment(gamemode)
 		..()
@@ -191,11 +196,17 @@
 
 // MARINE MEDIC
 /obj/structure/closet/secure_closet/marine/medic
+	slotlocked = 1
+	slotlocktype = "medic"
+	health = 100000 // just no
 
 	New()
 		..()
-		new /obj/item/storage/belt/medical(src)
+		new /obj/item/storage/belt/combatLifesaver(src)
 		new /obj/item/clothing/glasses/hud/health(src)
+		new /obj/item/clothing/tie/storage/webbing(src)
+		new /obj/item/roller/medevac(src)
+		new /obj/item/device/defibrillator(src)
 
 	select_gamemode_equipment(gamemode)
 		..()
@@ -432,26 +443,15 @@
 
 	New()
 		..()
-		if(prob(50)) new /obj/item/storage/backpack/medic(src)
-		else new /obj/item/storage/backpack/satchel/med(src)
-		new /obj/item/clothing/under/rank/nursesuit (src)
-		new /obj/item/clothing/head/nursehat (src)
-		var/i = 0
-		var/new_item_path
-		while(++i <= 2)
-			var/rand_color = pick("blue", "green", "purple")
-			new_item_path = text2path("/obj/item/clothing/under/rank/medical/[rand_color]")
-			new new_item_path(src)
-			new_item_path = text2path("/obj/item/clothing/head/surgery/[rand_color]")
-			new new_item_path(src)
-		new /obj/item/clothing/under/rank/medical(src)
-		new /obj/item/clothing/under/rank/nurse(src)
-		new /obj/item/clothing/under/rank/orderly(src)
-		new /obj/item/clothing/suit/storage/labcoat(src)
-		new /obj/item/clothing/suit/storage/fr_jacket(src)
-		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/storage/backpack/marine/satchel(src)
 		if(z != 1) new /obj/item/device/radio/headset/almayer/doc(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/storage/belt/medical(src)
+		new /obj/item/clothing/under/rank/medical/green(src)
+		new /obj/item/clothing/under/rank/medical/green(src)
+		new /obj/item/clothing/mask/surgical(src)
+		new /obj/item/clothing/head/surgery/green(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 
 	select_gamemode_equipment(gamemode)

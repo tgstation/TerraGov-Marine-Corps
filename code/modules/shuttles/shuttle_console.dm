@@ -22,9 +22,13 @@
 	user.set_interaction(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if(!isXeno(user) && onboard && shuttle.queen_locked && !shuttle.iselevator)
-		user << "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>"
-		shuttle.queen_locked = 0
+	if(!isXeno(user) && (onboard || z == 1) && shuttle.queen_locked && !shuttle.iselevator)
+		if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
+			user << "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
+		else
+			user << "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>"
+			shuttle.last_locked = world.time
+			shuttle.queen_locked = 0
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
@@ -134,6 +138,10 @@
 		if(shuttle.queen_locked && !isXenoQueen(usr))
 			usr << "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>"
 			return
+		//Comment to test
+		if(world.time < SHUTTLE_TIME_LOCK)
+			usr << "<span class='warning'>The shuttle is still undergoing pre-flight fuelling and cannot depart yet. Please wait another [round((SHUTTLE_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
+			return
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 
@@ -161,7 +169,7 @@
 				usr << "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>"
 				return
 			else
-				if(!onboard) shuttle.transit_gun_mission = 0 //remote launch always do transport flight.
+				if(z == 1) shuttle.transit_gun_mission = 0 //remote launch always do transport flight.
 				shuttle.launch(src)
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
@@ -190,25 +198,76 @@
 		else
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 
-	if(href_list["shutter"])
+	if(href_list["lockdown"])
+		if(shuttle.queen_locked)
+			return // its been locked down by the queen
+
 		var/ship_id = "sh_dropship1"
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
-		//mostly copypasted from obj/machinery/door_control code.
-		for(var/obj/machinery/door/poddoor/M in machines)
+
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
 			if(M.id == ship_id)
-				if(shuttle.moving_status == SHUTTLE_INTRANSIT) r_FAL
-				if(M.density)
-					spawn()
-						M.open()
+				if(M.locked && M.density)
+					continue // jobs done
+				else if(!M.locked && M.density)
+					M.lock() // closed but not locked yet
+					continue
 				else
-					spawn()
-						M.close()
+					M.do_command("secure_close")
+
+		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+		switch(ship_id)
+			if("sh_dropship1")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+					reardoor = D
+			if("sh_dropship2")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+					reardoor = D
+
+		if(!reardoor.locked && reardoor.density)
+			reardoor.lock() // closed but not locked yet
+		else if(reardoor.locked && !reardoor.density)
+			spawn()
+				reardoor.unlock()
+				sleep(1)
+				reardoor.close()
+				sleep(reardoor.openspeed + 1) // let it close
+				reardoor.lock() // THEN lock it
+		else
+			spawn()
+				reardoor.close()
+				sleep(reardoor.openspeed + 1)
+				reardoor.lock()
+
+	if(href_list["release"])
+		var/ship_id = "sh_dropship1"
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			ship_id = "sh_dropship2"
+
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+			if(M.id == ship_id)
+				M.unlock()
+
+		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+		switch(ship_id)
+			if("sh_dropship1")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+					reardoor = D
+			if("sh_dropship2")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+					reardoor = D
+
+		reardoor.unlock()
 
 	if(href_list["side door"])
+		if(shuttle.queen_locked)
+			return // its been locked down by the queen
+
 		var/ship_id = "sh_dropship1"
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
+
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
 			if(M.id == ship_id)
 				var/is_right_side = text2num(href_list["right side"])
@@ -218,10 +277,38 @@
 				else
 					if(M.dir != EAST)
 						continue
+				var/sidename = is_right_side ? "right" : "left"
 				if(M.locked)
 					M.unlock()
+					usr << "<span class='warning'>You hear a [sidename] door unlock.</span>" // yes this will give two messages but is important for when the two doors are out of sync
 				else
 					M.lock()
+					usr << "<span class='warning'>You hear a [sidename] door lock.</span>"
+
+	if(href_list["rear door"])
+		if(shuttle.queen_locked)
+			return // its been locked down by the queen
+
+		var/ship_id = "sh_dropship1"
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			ship_id = "sh_dropship2"
+		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+		switch(ship_id)
+			if("sh_dropship1")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+					reardoor = D
+			if("sh_dropship2")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+					reardoor = D
+		if(reardoor)
+			if(reardoor.locked)
+				reardoor.unlock()
+				usr << "<span class='warning'>You hear the rear door unlock.</span>"
+			else
+				reardoor.lock()
+				usr << "<span class='warning'>You hear the rear door lock.</span>"
+		else
+			usr << "<span class='warning'>The console flashes a warning about the rear door not being present.</span>"
 
 	ui_interact(usr)
 

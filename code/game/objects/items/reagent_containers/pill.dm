@@ -70,7 +70,7 @@ var/global/list/randomized_pill_icons
 			if(user.mind && user.mind.cm_skills)
 				ingestion_time = max(10, 30 - 10*user.mind.cm_skills.medical)
 
-			if(!do_mob(user, M, ingestion_time, BUSY_ICON_CLOCK, BUSY_ICON_MED)) return
+			if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
 
 			user.drop_inv_item_on_ground(src) //icon update
 			for(var/mob/O in viewers(world.view, user))
@@ -270,4 +270,11 @@ var/global/list/randomized_pill_icons
 	New()
 		..()
 		icon_state = randomized_pill_icons[19]
-		reagents.add_reagent("bicaridine", 10)
+		reagents.add_reagent("bicaridine", 15)
+
+/obj/item/reagent_container/pill/quickclot
+	pill_desc = "A Quickclot (10u) pill, stabilizes internal bleeding temporarily."
+	New()
+		..()
+		icon_state = randomized_pill_icons[20]
+		reagents.add_reagent("quickclot", 10)

@@ -65,36 +65,36 @@
 	. = ..()
 
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
+	if(istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
-	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
+	if(istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
-	if(istype(W,/obj/item/device/pipe_painter))
+	if(istype(W, /obj/item/device/pipe_painter))
 		return 0
 
-	if (!istype(W, /obj/item/tool/wrench))
+	if(!istype(W, /obj/item/tool/wrench))
 		return ..()
 	var/turf/T = src.loc
-	if (level==1 && isturf(T) && T.intact)
-		user << "\red You must remove the plating first."
+	if(level == 1 && isturf(T) && T.intact)
+		user << "<span class='warning'>You must remove the plating first.</span>"
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		user << "<span class='warning'>You cannot unwrench [src], it is too exerted due to internal pressure.</span>"
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-	user << "\blue You begin to unfasten \the [src]..."
-	if (do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			"\blue You have unfastened \the [src].", \
-			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		for (var/obj/machinery/meter/meter in T)
-			if (meter.target == src)
+	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
+	"<span class='notice'>You begin unfastening [src].</span>")
+	if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
+		"<span class='notice'>You unfasten [src].</span>")
+		new /obj/item/pipe(loc, make_from = src)
+		for(var/obj/machinery/meter/meter in T)
+			if(meter.target == src)
 				new /obj/item/pipe_meter(T)
 				cdel(meter)
 		cdel(src)

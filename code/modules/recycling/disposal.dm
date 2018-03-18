@@ -44,6 +44,9 @@
 	if(stat & BROKEN || !I || !user)
 		return
 
+	if(isXeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
+		return
+
 	add_fingerprint(user)
 	if(mode <= 0) //It's off
 		if(istype(I, /obj/item/tool/screwdriver))
@@ -68,7 +71,7 @@
 			if(W.remove_fuel(0, user))
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 				user << "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>"
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !W.isOn()) return
 					user << "<span class='notice'>You sliced the floorweld off the disposal unit.</span>"
 					var/obj/structure/disposalconstruct/C = new(loc)
@@ -96,13 +99,14 @@
 			var/mob/GM = G.grabbed_thing
 			user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
 			"<span class='warning'>You start putting [GM] into [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
 				GM.forceMove(src)
 				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
 				"<span class='warning'>[user] puts [GM] into [src].</span>")
 				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [GM] ([GM.ckey]) in disposals.</font>")
 				GM.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user] ([user.ckey])</font>")
 				msg_admin_attack("[user] ([user.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+				flush()
 		return
 
 	if(isrobot(user))
@@ -128,7 +132,7 @@
 	else
 		if(user.is_mob_restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
-	if(!do_after(user, 20, FALSE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(user, 40, FALSE, 5, BUSY_ICON_HOSTILE))
 		return
 	if(target_loc != target.loc)
 		return
@@ -146,6 +150,7 @@
 		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 	target.forceMove(src)
+	flush()
 	update()
 
 //Can breath normally in the disposal
@@ -165,9 +170,13 @@
 	if(user.client)
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
-	user.loc = src.loc
-	update()
-	return
+	user.forceMove(loc)
+	user.stunned = max(user.stunned, 2)  //Action delay when going out of a bin
+	user.update_canmove() //Force the delay to go in action immediately
+	if(!user.lying)
+		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
+		"<span class='warning'>You climb out of [src] and get your bearings!")
+		update()
 
 //Monkeys can only pull the flush lever
 /obj/machinery/disposal/attack_paw(mob/user as mob)
@@ -268,6 +277,13 @@
 	for(var/atom/movable/AM in src)
 		AM.loc = loc
 		AM.pipe_eject(0)
+		if(ismob(AM))
+			var/mob/M = AM
+			M.stunned = max(M.stunned, 2)  //Action delay when going out of a bin
+			M.update_canmove() //Force the delay to go in action immediately
+			if(!M.lying)
+				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
+				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 	update()
 
 //Pipe affected by explosion
@@ -1316,7 +1332,7 @@
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 			user << "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>"
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				if(!src || !W.isOn()) return
 				user << "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>"
 				var/obj/structure/disposalconstruct/C = new(loc)

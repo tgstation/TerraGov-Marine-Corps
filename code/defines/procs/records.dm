@@ -10,6 +10,7 @@
 	G.fields["real_rank"] = "Unassigned"
 	G.fields["sex"] = "Male"
 	G.fields["age"] = "Unknown"
+	G.fields["ethnicity"] = "Unknown"
 	G.fields["fingerprint"] = "Unknown"
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
@@ -55,5 +56,7 @@
 	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 	M.fields["last_scan_time"]		= null
 	M.fields["last_scan_result"]		= "No scan data on record"
+	M.fields["autodoc_data"] = list()
+	M.fields["autodoc_manual"] = list()
 	data_core.medical += M
 	return M

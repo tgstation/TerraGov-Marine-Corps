@@ -114,6 +114,12 @@ proc/isXeno(A) //Xenomorph Hud Test APOPHIS 22MAY2015
 		return 1
 	return 0
 
+proc/isCorruptedXeno(A)
+	if(isXeno(A))
+		var/mob/living/carbon/Xenomorph/X = A
+		return X.corrupted
+	return 0
+
 proc/isXenoBoiler(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Boiler))
 		return 1
@@ -186,6 +192,18 @@ proc/isYautja(A)
 		var/mob/living/carbon/human/H = A
 		if(H.species.name == "Yautja")
 			return 1
+	return 0
+
+proc/isSynth(A)
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(H.species.name == "Synthetic")
+			return 1
+	return 0
+
+proc/ismaintdrone(A)
+	if(istype(A,/mob/living/silicon/robot/drone))
+		return 1
 	return 0
 
 proc/isHellhound(A)

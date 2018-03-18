@@ -19,8 +19,8 @@
 	/obj/item/tool/hatchet = 75
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = SAW_OPEN_ENCASED_MIN_DURATION
+	max_duration = SAW_OPEN_ENCASED_MAX_DURATION
 	open_case_step = 2
 
 /datum/surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -49,8 +49,8 @@
 	/obj/item/tool/crowbar = 75
 	)
 
-	min_duration = 30
-	max_duration = 40
+	min_duration = RETRACT_OPEN_ENCASED_MIN_DURATION
+	max_duration = RETRACT_OPEN_ENCASED_MAX_DURATION
 	open_case_step = 2.5
 
 /datum/surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -83,8 +83,8 @@
 	/obj/item/tool/crowbar = 75
 	)
 
-	min_duration = 30
-	max_duration = 40
+	min_duration = RETRACT_CLOSE_ENCASED_MIN_DURATION
+	max_duration = RETRACT_CLOSE_ENCASED_MAX_DURATION
 	open_case_step = 3
 
 /datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -113,8 +113,8 @@
 	/obj/item/tool/screwdriver = 75
 	)
 
-	min_duration = 40
-	max_duration = 60
+	min_duration = BONEGEL_CLOSE_ENCASED_MIN_DURATION
+	max_duration = BONEGEL_CLOSE_ENCASED_MAX_DURATION
 	open_case_step = 2.5
 
 /datum/surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

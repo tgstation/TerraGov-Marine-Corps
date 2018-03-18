@@ -49,7 +49,7 @@
 
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("\red [user] attempts to feed [M] [src].", 1)
-			if(!do_mob(user, M)) return
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY)) return
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("\red [user] feeds [M] [src].", 1)
 
@@ -206,7 +206,8 @@
 	center_of_mass = list("x"=15, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("coffee", 30)
+		reagents.add_reagent("coffee", 10)
+		reagents.add_reagent("water", 20)
 
 /obj/item/reagent_container/food/drinks/tea
 	name = "\improper Duke Purple Tea"

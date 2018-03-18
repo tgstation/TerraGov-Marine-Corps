@@ -69,9 +69,10 @@
 
 
 
+/*
 /datum/limb/proc/get_icon(var/icon/race_icon, var/icon/deform_icon)
 	return icon('icons/mob/human.dmi',"blank")
-
+*/
 
 /datum/limb/proc/process()
 		return 0
@@ -253,6 +254,7 @@
 
 	if(internal)
 		status &= ~LIMB_BROKEN
+		status |= LIMB_REPAIRED
 		perma_injury = 0
 
 	//Sync the organ's damage with its wounds
@@ -740,7 +742,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/lol = pick(cardinal)
 			step(organ,lol)
 
-		owner.update_body(1)
+		owner.update_body(1, 1)
 
 		// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
 		release_restraints()
@@ -841,6 +843,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.emote("scream")
 
 	status |= LIMB_BROKEN
+	status &= ~LIMB_REPAIRED
 	broken_description = pick("broken","fracture","hairline fracture")
 	perma_injury = brute_dam
 
@@ -875,6 +878,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	status &= ~LIMB_DESTROYED
 	status &= ~LIMB_NECROTIZED
 	status &= ~LIMB_MUTATED
+	status &= ~LIMB_REPAIRED
 	status |= LIMB_ROBOT
 
 	reset_limb_surgeries()
@@ -903,14 +907,33 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return 1
 	return 0
 
-/datum/limb/get_icon(var/icon/race_icon, var/icon/deform_icon,gender="")
+/datum/limb/proc/get_icon(var/icon/race_icon, var/icon/deform_icon,gender="")
+
 	if (status & LIMB_ROBOT && !(owner.species && owner.species.flags & IS_SYNTHETIC))
 		return new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
 	if (status & LIMB_MUTATED)
 		return new /icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
-	return new /icon(race_icon, "[icon_name][gender ? "_[gender]" : ""]")
+	var/datum/ethnicity/E = ethnicities_list[owner.ethnicity]
+	var/datum/body_type/B = body_types_list[owner.body_type]
+
+	var/e_icon
+	var/b_icon
+
+	if (!E)
+		e_icon = "western"
+	else
+		e_icon = E.icon_name
+
+	if (!B)
+		b_icon = "mesomorphic"
+	else
+		b_icon = B.icon_name
+
+	return new /icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
+
+	//return new /icon(race_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 
 /datum/limb/proc/is_usable()
@@ -960,7 +983,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.forceMove(owner)
 
 /datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
-	if(do_mob(user, target, 50, BUSY_ICON_CLOCK, BUSY_ICON_MED))
+	if(do_mob(user, target, 50, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		if(!(status & LIMB_DESTROYED) && !(status & LIMB_SPLINTED))
 			if(target != user)
 				user.visible_message(
@@ -1113,6 +1136,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0
 
+/*
 /datum/limb/head/get_icon(var/icon/race_icon, var/icon/deform_icon)
 	if (!owner)
 	 return ..()
@@ -1122,6 +1146,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		. = new /icon(deform_icon, "[icon_name]_[g]")
 	else
 		. = new /icon(race_icon, "[icon_name]_[g]")
+*/
 
 /datum/limb/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
 	. = ..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)

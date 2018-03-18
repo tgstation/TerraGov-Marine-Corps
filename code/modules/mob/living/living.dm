@@ -209,7 +209,7 @@
 			var/mob/M = pulling
 			if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
 				pull_delay = M.buckled.drag_delay
-		. += pull_delay + 3*grab_level //harder grab makes you slower
+		. += max(pull_speed + pull_delay + 3*grab_level, 0) //harder grab makes you slower
 
 	if(next_move_slowdown)
 		. += next_move_slowdown
@@ -245,15 +245,23 @@
 			now_pushing = 0
 			return
 
-		if(isXeno(L) && !isXenoLarva(L)) // Prevents humans from pushing any Xenos, but big Xenos and Preds can still push small Xenos
+		if(isXeno(L) && !isXenoLarva(L)) //Handling pushing Xenos in general, but big Xenos and Preds can still push small Xenos
 			var/mob/living/carbon/Xenomorph/X = L
-			if(has_species(src,"Human") || X.mob_size == MOB_SIZE_BIG)
+			if((has_species(src, "Human") && X.mob_size == MOB_SIZE_BIG) || (isXeno(src) && X.mob_size == MOB_SIZE_BIG))
+				if(!isXeno(src) && client)
+					client.move_delay = max(client.move_delay, world.time + 10) //1 sec delay when bumping into a Xeno before you can move again
 				now_pushing = 0
 				return
 
+		if(isXeno(src) && !isXenoLarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
+			var/mob/living/carbon/Xenomorph/X = src
+			if(has_species(L, "Human") && X.mob_size == MOB_SIZE_BIG)
+				if(L.client)
+					L.client.move_delay = max(L.client.move_delay, world.time + 10) //1 sec delay when bumped by a Xeno before you can move again
+
 		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
 			if(!(world.time % 5))
-				src << "\red [L] is restrained, you cannot push past"
+				src << "<span class='warning'>[L] is restrained, you cannot push past.</span>"
 			now_pushing = 0
 			return
 

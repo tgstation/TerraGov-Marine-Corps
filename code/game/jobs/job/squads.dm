@@ -13,8 +13,8 @@
 	var/list/access = list() //Which special access do we grant them
 	var/usable = 0	 //Is it a valid squad?
 	var/no_random_spawn = 0 //Stop players from spawning into the squad
-	var/max_engineers = 2 //maximum # of engineers allowed in squad
-	var/max_medics = 2 //Ditto, squad medics
+	var/max_engineers = 3 //maximum # of engineers allowed in squad
+	var/max_medics = 4 //Ditto, squad medics
 	var/max_specialists = 1
 	var/num_specialists = 0
 	var/max_smartgun = 1
@@ -83,8 +83,12 @@
 	if(!istype(C)) return 0//Abort, no ID found
 
 	switch(M.mind.assigned_role)
-		if("Squad Engineer") num_engineers++
-		if("Squad Medic") num_medics++
+		if("Squad Engineer")
+			num_engineers++
+			C.claimedgear = 0
+		if("Squad Medic")
+			num_medics++
+			C.claimedgear = 0
 		if("Squad Specialist") num_specialists++
 		if("Squad Smartgunner") num_smartgun++
 		if("Squad Leader")
@@ -95,6 +99,9 @@
 				num_leaders++
 
 	src.count++ //Add up the tally. This is important in even squad distribution.
+
+	if(M.mind.assigned_role != "Squad Marine")
+		log_admin("[key_name(M)] has been assigned as [name] [M.mind.assigned_role]") // we don't want to spam squad marines but the others are useful
 
 	marines_list += M
 	M.assigned_squad = src //Add them to the squad

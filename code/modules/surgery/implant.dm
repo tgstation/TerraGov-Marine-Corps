@@ -138,6 +138,7 @@
 //					IMPLANT/ITEM REMOVAL SURGERY				//
 //////////////////////////////////////////////////////////////////
 
+
 /datum/surgery_step/cavity/implant_removal
 	priority = 1
 	allowed_tools = list(
@@ -146,8 +147,8 @@
 	/obj/item/tool/kitchen/utensil/fork = 20
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = HEMOSTAT_REMOVE_MIN_DURATION
+	max_duration = HEMOSTAT_REMOVE_MAX_DURATION
 
 /datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
@@ -209,4 +210,3 @@
 					imp.activate()
 	target.updatehealth()
 	affected.update_wounds()
-

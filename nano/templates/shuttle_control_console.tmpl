@@ -111,8 +111,13 @@
 {{if data.human_user && data.is_dropship && data.onboard}}
 	<div style="padding-top: 10px">
 		<h3>Door Control</h3>
-		{{:helper.link('Toggle Shutters', 'locked', {'shutter' : '1'}, null , null)}}
 		{{:helper.link('Toggle Left Hatches', 'locked', {'side door' : '1', 'right side' : '0'}, null , null)}}
 		{{:helper.link('Toggle Right Hatches', 'locked', {'side door' : '1', 'right side' : '1'}, null , null)}}
+		{{:helper.link('Toggle Rear Hatch', 'locked', {'rear door' : '1'}, null, null)}}
+	</div>
+	<div style="padding-top: 10px">
+		<h3>Lockdown</h3>
+		{{:helper.link('Lockdown', 'locked', {'lockdown' : '1'}, null , null)}}
+		{{:helper.link('Release', 'locked', {'release' : '1'}, null , null)}}
 	</div>
 {{/if}}

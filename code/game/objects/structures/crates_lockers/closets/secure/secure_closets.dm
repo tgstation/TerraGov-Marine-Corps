@@ -13,6 +13,8 @@
 	var/icon_broken = "securebroken"
 	var/icon_off = "secureoff"
 	health = 100
+	var/slotlocked = 0
+	var/slotlocktype = null
 
 /obj/structure/closet/secure_closet/can_open()
 	if(src.locked)
@@ -42,7 +44,7 @@
 				src.req_access += pick(get_all_accesses())
 	..()
 
-/obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
+/obj/structure/closet/secure_closet/proc/togglelock(mob/living/user)
 	if(src.opened)
 		user << "<span class='notice'>Close the locker first.</span>"
 		return
@@ -53,6 +55,23 @@
 		user << "<span class='notice'>You can't reach the lock from inside.</span>"
 		return
 	if(src.allowed(user))
+		if(slotlocked && ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.wear_id)
+				var/obj/item/card/id/I = H.wear_id
+				if(I.claimedgear)
+					return
+				switch(slotlocktype)
+					if("engi")
+						if(H.mind.assigned_role != "Squad Engineer")
+							return // stop people giving medics engineer prep access or IDs somehow
+					if("medic")
+						if(H.mind.assigned_role != "Squad Medic")
+							return // same here
+				I.claimedgear = 1 // you only get one locker, all other roles have this set 1 by default
+				slotlocked = 0 // now permanently unlockable
+			else
+				return // they have no ID on, fuck them.
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
@@ -61,7 +80,7 @@
 	else
 		user << "<span class='notice'>Access Denied</span>"
 
-/obj/structure/closet/secure_closet/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/secure_closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
@@ -90,11 +109,13 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure_closet/attack_hand(mob/user as mob)
+/obj/structure/closet/secure_closet/attack_hand(mob/living/user)
 	src.add_fingerprint(user)
 	if(src.locked)
 		src.togglelock(user)
 	else
+		if(opened && isXeno(user))
+			return // stop xeno closing them
 		src.toggle(user)
 
 /obj/structure/closet/secure_closet/attack_paw(mob/user as mob)

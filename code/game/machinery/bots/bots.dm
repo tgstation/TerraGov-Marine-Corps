@@ -17,7 +17,8 @@
 
 
 /obj/machinery/bot/proc/turn_on()
-	if(stat)	return 0
+	if(stat)
+		return 0
 	on = 1
 	SetLuminosity(initial(luminosity))
 	return 1
@@ -30,8 +31,12 @@
 	cdel(src)
 
 /obj/machinery/bot/proc/healthcheck()
-	if (src.health <= 0)
-		src.explode()
+	if(health <= 0)
+		explode()
+
+/obj/machinery/bot/Dispose()
+	SetLuminosity(0)
+	. = ..()
 
 /obj/machinery/bot/proc/Emag(mob/user as mob)
 	if(locked)
@@ -45,23 +50,20 @@
 
 /obj/machinery/bot/examine(mob/user)
 	..()
-	if (health < maxhealth)
-		if (health > maxhealth/3)
+	if(health < maxhealth)
+		if(health > maxhealth/3)
 			user << "<span class='warning'>[src]'s parts look loose.</span>"
 		else
 			user << "<span class='danger'>[src]'s parts look very loose!</span>"
 
 /obj/machinery/bot/attack_animal(var/mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)	return
-	src.health -= M.melee_damage_upper
-	src.visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
+	health -= M.melee_damage_upper
+	visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	healthcheck()
-
-
-
 
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/screwdriver))
@@ -99,36 +101,31 @@
 
 /obj/machinery/bot/ex_act(severity)
 	switch(severity)
-		if(1.0)
-			src.explode()
-			return
-		if(2.0)
-			src.health -= rand(5,10)*fire_dam_coeff
-			src.health -= rand(10,20)*brute_dam_coeff
+		if(1)
+			explode()
+		if(2)
+			health -= rand(5, 10)*fire_dam_coeff
+			health -= rand(10, 20)*brute_dam_coeff
 			healthcheck()
-			return
-		if(3.0)
-			if (prob(50))
-				src.health -= rand(1,5)*fire_dam_coeff
-				src.health -= rand(1,5)*brute_dam_coeff
+		if(3)
+			if(prob(50))
+				health -= rand(1, 5)*fire_dam_coeff
+				health -= rand(1, 5)*brute_dam_coeff
 				healthcheck()
-				return
-	return
 
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
 	new /obj/effect/overlay/temp/emp_sparks (loc)
-	if (on)
+	if(on)
 		turn_off()
 	spawn(severity*300)
 		stat &= ~EMPED
-		if (was_on)
+		if(was_on)
 			turn_on()
 
-
 /obj/machinery/bot/attack_ai(mob/user as mob)
-	src.attack_hand(user)
+	attack_hand(user)
 
 /obj/machinery/bot/attack_hand(var/mob/living/carbon/human/user)
 
@@ -153,15 +150,12 @@
 /turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
-	//	for(var/turf/simulated/t in oview(src,1))
-
 	for(var/d in cardinal)
 		var/turf/simulated/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				L.Add(T)
 	return L
-
 
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access
@@ -170,7 +164,7 @@
 	if(A == null || B == null) return 1
 	var/adir = get_dir(A,B)
 	var/rdir = get_dir(B,A)
-	if((adir & (NORTH|SOUTH)) && (adir & (EAST|WEST)))	//	diagonal
+	if((adir & (NORTH|SOUTH)) && (adir & (EAST|WEST)))	//diagonal
 		var/iStep = get_step(A,adir&(NORTH|SOUTH))
 		if(!LinkBlockedWithAccess(A,iStep, ID) && !LinkBlockedWithAccess(iStep,B,ID))
 			return 0

@@ -1,59 +1,7 @@
 //-----USS Almayer Machinery file -----//
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
-/obj/machinery/vending/uniform_supply
-	name = "\improper ColMarTech surplus uniform vendor"
-	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
-	icon_state = "uniform_marine"
-	icon_vend = "uniform_marine_vend"
-	icon_deny = "uniform_marine"
-	req_access = null
-	req_access_txt = "0"
-	req_one_access = null
-	req_one_access_txt = "9;2;21"
-	var/squad_tag = ""
 
-	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	products = list(
-					/obj/item/storage/backpack/marine = 10,
-					/obj/item/storage/backpack/marine/satchel = 10,
-					/obj/item/storage/belt/marine = 10,
-					/obj/item/clothing/shoes/marine = 20,
-					/obj/item/clothing/under/marine = 20,
-					/obj/item/clothing/suit/storage/marine = 20,
-					/obj/item/clothing/head/helmet/marine = 20
-					)
-
-	prices = list()
-
-	New()
-
-		..()
-		var/products2[]
-		if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
-			switch(squad_tag)
-				if("Alpha")
-					products2 = list(/obj/item/device/radio/headset/almayer/marine/alpha = 20,
-									/obj/item/clothing/gloves/marine/alpha = 10)
-				if("Bravo")
-					products2 = list(/obj/item/device/radio/headset/almayer/marine/bravo = 20,
-									/obj/item/clothing/gloves/marine/bravo = 10)
-				if("Charlie")
-					products2 = list(/obj/item/device/radio/headset/almayer/marine/charlie = 20,
-									/obj/item/clothing/gloves/marine/charlie = 10)
-				if("Delta")
-					products2 = list(/obj/item/device/radio/headset/almayer/marine/delta = 20,
-									/obj/item/clothing/gloves/marine/delta = 10)
-		else
-			products2 = list(/obj/item/device/radio/headset/almayer = 10,
-							/obj/item/clothing/gloves/marine = 10)
-		build_inventory(products2)
-		marine_vendors.Add(src)
-
-
-	Dispose()
-		. = ..()
-		marine_vendors.Remove(src)
 
 //-----USS Almayer Props -----//
 //Put any props that don't function properly, they could function in the future but for now are for looks. This system could be expanded for other maps too. ~Art

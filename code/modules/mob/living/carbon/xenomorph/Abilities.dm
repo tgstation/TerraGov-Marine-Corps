@@ -1,6 +1,3 @@
-
-
-
 /datum/action/xeno_action/plant_weeds
 	name = "Plant Weeds (75)"
 	action_icon_state = "plant_weeds"
@@ -33,9 +30,7 @@
 		X.visible_message("<span class='xenonotice'>\The [X] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>")
 		new /obj/effect/alien/weeds/node(X.loc, src, X)
-		playsound(X.loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
-
-
+		playsound(X.loc, "alien_resin_build", 25)
 
 /datum/action/xeno_action/xeno_resting
 	name = "Rest"
@@ -60,7 +55,6 @@
 	action_icon_state = "shift_spit_neurotoxin"
 	plasma_cost = 0
 
-
 /datum/action/xeno_action/shift_spits/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
@@ -75,10 +69,6 @@
 	X << "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>"
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
-
-
-
-
 
 /datum/action/xeno_action/regurgitate
 	name = "Regurgitate"
@@ -104,10 +94,6 @@
 		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>")
 	else
 		X<< "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>"
-
-
-
-
 
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
@@ -135,11 +121,6 @@
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, X.selected_resin)
 
-
-
-
-
-
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin (75)"
 	action_icon_state = "secrete_resin"
@@ -153,8 +134,6 @@
 /datum/action/xeno_action/activable/secrete_resin/hivelord
 	name = "Secrete Resin (100)"
 	resin_plasma_cost = 100
-
-
 
 /datum/action/xeno_action/activable/corrosive_acid
 	name = "Corrosive Acid (100)"
@@ -177,8 +156,6 @@
 	acid_plasma_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
 
-
-
 /datum/action/xeno_action/activable/pounce
 	name = "Pounce"
 	action_icon_state = "pounce"
@@ -192,7 +169,6 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	return !X.usedPounce
 
-
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "xeno_spit"
@@ -205,12 +181,6 @@
 /datum/action/xeno_action/activable/xeno_spit/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(X.has_spat < world.time) return TRUE
-
-
-
-
-
-
 
 /datum/action/xeno_action/xenohide
 	name = "Hide"
@@ -228,13 +198,6 @@
 		X.layer = MOB_LAYER
 		X << "<span class='notice'>You have stopped hiding.</span>"
 
-
-
-
-
-
-
-
 /datum/action/xeno_action/emit_pheromones
 	name = "Emit Pheromones (30)"
 	action_icon_state = "emit_pheromones"
@@ -242,9 +205,8 @@
 
 /datum/action/xeno_action/emit_pheromones/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.storedplasma >= plasma_cost))
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost))
 		return TRUE
-
 
 /datum/action/xeno_action/emit_pheromones/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -272,11 +234,13 @@
 		X.current_aura = choice
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
 		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
+		playsound(X.loc, "alien_drool", 25)
 
 
-
-
-
+	if(isXenoQueen(X) && xeno_leader_list.len && X.anchored)
+		var/mob/living/carbon/Xenomorph/Queen/Q = X
+		for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
+			L.handle_xeno_leader_pheromones(Q)
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
@@ -295,16 +259,6 @@
 	transfer_delay = 5
 	max_range = 7
 
-
-
-
-
-
-
-
-
-
-
 //Boiler abilities
 
 /datum/action/xeno_action/toggle_long_range
@@ -314,7 +268,7 @@
 
 /datum/action/xeno_action/toggle_long_range/can_use_action()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.storedplasma >= plasma_cost))
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost))
 		return TRUE
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
@@ -331,7 +285,6 @@
 		X.zoom_in()
 		..()
 
-
 /datum/action/xeno_action/toggle_bomb
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
@@ -347,7 +300,6 @@
 	else
 		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
-
 
 /datum/action/xeno_action/bombard
 	name = "Bombard"
@@ -391,7 +343,6 @@
 		if(X.client)
 			X.client.mouse_pointer_icon = initial(X.client.mouse_pointer_icon)
 
-
 /datum/action/xeno_action/activable/spray_acid
 	name = "Spray Acid (10+)"
 	action_icon_state = "spray_acid"
@@ -404,8 +355,6 @@
 /datum/action/xeno_action/activable/spray_acid/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
 	return !X.acid_cooldown
-
-
 
 //Carrier Abilities
 
@@ -422,7 +371,6 @@
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	return !X.threw_a_hugger
 
-
 /datum/action/xeno_action/activable/retrieve_egg
 	name = "Retrieve Egg"
 	action_icon_state = "retrieve_egg"
@@ -431,7 +379,6 @@
 /datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	X.retrieve_egg(A)
-
 
 /datum/action/xeno_action/place_trap
 	name = "Place hugger trap (200)"
@@ -465,14 +412,10 @@
 		return
 
 	X.use_plasma(plasma_cost)
-	playsound(X.loc, 'sound/effects/splat.ogg', 15, 1) //Splat!
+	playsound(X.loc, "alien_resin_build", 25)
 	round_statistics.carrier_traps++
 	new /obj/effect/alien/resin/trap(X.loc, X)
 	X << "<span class='xenonotice'>You place a hugger trap on the weeds, it still needs a facehugger.</span>"
-
-
-
-
 
 //Crusher abilities
 
@@ -490,7 +433,6 @@
 	var/mob/living/carbon/Xenomorph/Crusher/X = owner
 	X.stomp()
 
-
 /datum/action/xeno_action/ready_charge
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
@@ -499,21 +441,12 @@
 /datum/action/xeno_action/ready_charge/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state()) r_FAL
-	X.is_charging = !X.is_charging
-	X << "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>"
-
-
-
-
-
-
-
-
-
-
-
-
-
+	if(X.legcuffed)
+		src << "<span class='xenodanger'>You can't charge with that thing on your leg!</span>"
+		X.is_charging = 0
+	else
+		X.is_charging = !X.is_charging
+		X << "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>"
 
 //Hivelord Abilities
 
@@ -524,7 +457,7 @@
 
 /datum/action/xeno_action/toggle_speed/can_use_action()
 	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.speed_activated || X.storedplasma >= plasma_cost))
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.speed_activated || X.plasma_stored >= plasma_cost))
 		return TRUE
 
 /datum/action/xeno_action/toggle_speed/action_activate()
@@ -542,8 +475,6 @@
 	X.speed_activated = 1
 	X.use_plasma(50)
 	X << "<span class='notice'>You become one with the resin. You feel the urge to run!</span>"
-
-
 
 /datum/action/xeno_action/build_tunnel
 	name = "Dig Tunnel (200)"
@@ -586,7 +517,7 @@
 
 	X.visible_message("<span class='xenonotice'>[X] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>")
-	if(!do_after(X, 100, TRUE, 5, BUSY_ICON_CLOCK))
+	if(!do_after(X, 100, TRUE, 5, BUSY_ICON_BUILD))
 		X << "<span class='warning'>Your tunnel caves in as you stop digging it.</span>"
 		return
 	if(!X.check_plasma(200))
@@ -634,8 +565,6 @@
 /turf/simulated/floor/prison/can_dig_xeno_tunnel()
 	return TRUE
 
-
-
 //Queen Abilities
 
 /datum/action/xeno_action/grow_ovipositor
@@ -671,7 +600,7 @@
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_CLOCK) && X.check_plasma(plasma_cost))
+		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(plasma_cost))
 			return
 		if(!X.check_state()) return
 		if(!locate(/obj/effect/alien/weeds) in current_turf)
@@ -681,7 +610,6 @@
 		X.visible_message("<span class='xenowarning'>\The [X] has grown an ovipositor!</span>", \
 		"<span class='xenowarning'>You have grown an ovipositor!</span>")
 		X.mount_ovipositor()
-
 
 /datum/action/xeno_action/remove_eggsac
 	name = "Remove Eggsac"
@@ -703,13 +631,12 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
 		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
-	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_CLOCK)) return
+	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_HOSTILE)) return
 	if(!X.check_state())
 		return
 	if(!X.ovipositor)
 		return
 	X.dismount_ovipositor()
-
 
 /datum/action/xeno_action/activable/screech
 	name = "Screech (250)"
@@ -724,7 +651,6 @@
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	X.queen_screech()
 
-
 /datum/action/xeno_action/activable/gut
 	name = "Gut (200)"
 	action_icon_state = "gut"
@@ -733,8 +659,6 @@
 /datum/action/xeno_action/activable/gut/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	X.queen_gut(A)
-
-
 
 /datum/action/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
@@ -762,9 +686,8 @@
 		M << "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>"
 		X << "<span class='xenonotice'>You said: \"[msg]\" to [M]</span>"
 
-
 /datum/action/xeno_action/watch_xeno
-	name = "Watch Xeno"
+	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
 	plasma_cost = 0
 
@@ -774,7 +697,7 @@
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen")
+		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen" && X.corrupted == T.corrupted)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
@@ -783,7 +706,6 @@
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
 		X.set_queen_overwatch(selected_xeno)
-
 
 /datum/action/xeno_action/toggle_queen_zoom
 	name = "Toggle Queen Zoom"
@@ -797,11 +719,10 @@
 	if(X.is_zoomed)
 		X.zoom_out()
 	else
-		X.zoom_in(0,12)
-
+		X.zoom_in(0, 12)
 
 /datum/action/xeno_action/set_xeno_lead
-	name = "Choose/Follow xeno leaders"
+	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
 	plasma_cost = 0
 
@@ -810,17 +731,29 @@
 	if(!X.check_state())
 		return
 	if(X.observed_xeno)
+		if(X.queen_ability_cooldown > world.time)
+			X << "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>"
+			return
+		if(X.queen_leader_limit <= xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
+			X << "<span class='xenowarning'>You currently have [xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>"
+			return
 		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 		T.queen_chosen_lead = !T.queen_chosen_lead
 		T.hud_set_queen_overwatch()
+		X.queen_ability_cooldown = world.time + 150 //15 seconds
 		if(T.queen_chosen_lead)
-			X << "<span class='xenonotice'>You've selected [T] as a Lead.</span>"
-			T << "<span class='xenoannounce'>[X] has selected you as a Lead. The other xenomorphs must listen to you.</span>"
+			X << "<span class='xenonotice'>You've selected [T] as a Hive Leader.</span>"
+			T << "<span class='xenoannounce'>[X] has selected you as a Hive Leader. The other Xenomorphs must listen to you. You will also act as a beacon for the Queen's pheromones.</span>"
+			xeno_leader_list += T
+		else
+			X << "<span class='xenonotice'>You've demoted [T] from Lead.</span>"
+			T << "<span class='xenoannounce'>[X] has demoted you from Hive Leader. Your leadership rights and abilities have waned.</span>"
+			xeno_leader_list -= T
+		T.handle_xeno_leader_pheromones(X)
 	else
 		var/list/possible_xenos = list()
-		for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-			if(T.z == X.z && T.queen_chosen_lead && T.caste != "Queen")
-				possible_xenos += T
+		for(var/mob/living/carbon/Xenomorph/T in xeno_leader_list)
+			possible_xenos += T
 
 		if(possible_xenos.len > 1)
 			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in possible_xenos
@@ -830,18 +763,19 @@
 		else if(possible_xenos.len)
 			X.set_queen_overwatch(possible_xenos[1])
 		else
-			X << "<span class='xenowarning'>There are no xenomorph leaders. Overwatch a xenomorph to be able to make it a leader.</span>"
-
-
+			X << "<span class='xenowarning'>There are no Xenomorph leaders. Overwatch a Xenomorph to make it a leader.</span>"
 
 /datum/action/xeno_action/queen_heal
-	name = "Heal Xeno (600)"
+	name = "Heal Xenomorph (600)"
 	action_icon_state = "heal_xeno"
 	plasma_cost = 600
 
 /datum/action/xeno_action/queen_heal/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	if(!X.check_state())
+		return
+	if(X.queen_ability_cooldown > world.time)
+		X << "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>"
 		return
 	if(X.observed_xeno)
 		var/mob/living/carbon/Xenomorph/target = X.observed_xeno
@@ -850,13 +784,13 @@
 				if(X.check_plasma(600))
 					X.use_plasma(600)
 					target.adjustBruteLoss(-50)
+					X.queen_ability_cooldown = world.time + 150 //15 seconds
 					X << "<span class='xenonotice'>You channel your plasma to heal [target]'s wounds.</span>"
 			else
 
 				X << "<span class='warning'>[target] is at full health.</span>"
 	else
-		X << "<span class='warning'>You must overwatch the xeno you want to heal.</span>"
-
+		X << "<span class='warning'>You must overwatch the xeno you want to give healing to.</span>"
 
 /datum/action/xeno_action/queen_give_plasma
 	name = "Give Plasma (600)"
@@ -867,21 +801,24 @@
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	if(!X.check_state())
 		return
+	if(X.queen_ability_cooldown > world.time)
+		X << "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>"
+		return
 	if(X.observed_xeno)
 		var/mob/living/carbon/Xenomorph/target = X.observed_xeno
 		if(target.stat != DEAD)
-			if(target.storedplasma < target.maxplasma)
+			if(target.plasma_stored < target.plasma_max)
 				if(X.check_plasma(600))
 					X.use_plasma(600)
 					target.gain_plasma(100)
+					X.queen_ability_cooldown = world.time + 150 //15 seconds
 					X << "<span class='xenonotice'>You transfer some plasma to [target].</span>"
 
 			else
 
 				X << "<span class='warning'>[target] is at full plasma.</span>"
 	else
-		X << "<span class='warning'>You must overwatch the xeno you want to give plasma.</span>"
-
+		X << "<span class='warning'>You must overwatch the xeno you want to give plasma to.</span>"
 
 /datum/action/xeno_action/queen_order
 	name = "Give Order (100)"
@@ -906,15 +843,13 @@
 					X.use_plasma(100)
 					target << "[queen_order]"
 					log_admin("[queen_order]")
-					message_admins("[key_name_admin(X)] has given a queen order to [target].", 1)
+					message_admins("[key_name_admin(X)] has given the following Queen order to [target]: \"[input]\"", 1)
 
 	else
-		X << "<span class='warning'>You must overwatch the xeno you want to give plasma.</span>"
-
-
+		X << "<span class='warning'>You must overwatch the Xenomorph you want to give orders to.</span>"
 
 /datum/action/xeno_action/deevolve
-	name = "De-evolve a xeno"
+	name = "De-Evolve a Xenomorph"
 	action_icon_state = "xeno_deevolve"
 	plasma_cost = 600
 
@@ -925,10 +860,6 @@
 	if(X.observed_xeno)
 		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 		if(!X.check_plasma(600)) return
-		T.hud_set_queen_overwatch()
-		if(T.queen_chosen_lead)
-			X << "<span class='xenonotice'>You've selected [T] as a Lead.</span>"
-			T << "<span class='xenoannounce'>[X] has selected you as a Lead. The other xenomorphs must listen to you.</span>"
 
 		if(T.is_ventcrawling)
 			X << "<span class='warning'>[T] can't be deevolved here.</span>"
@@ -1057,16 +988,7 @@
 		X.use_plasma(600)
 
 	else
-		X << "<span class='warning'>You must overwatch the xeno you want to give plasma.</span>"
-
-
-
-
-
-
-
-
-
+		X << "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>"
 
 //Ravager Abilities
 
@@ -1083,9 +1005,7 @@
 	var/mob/living/carbon/Xenomorph/Ravager/X = owner
 	return !X.usedPounce
 
-
-
-//ravenger
+//Ravenger
 
 /datum/action/xeno_action/activable/breathe_fire
 	name = "Breathe Fire"
@@ -1100,8 +1020,6 @@
 	var/mob/living/carbon/Xenomorph/Ravager/ravenger/X = owner
 	if(world.time > X.used_fire_breath + 75) return TRUE
 
-
-
 //Xenoborg abilities
 
 /datum/action/xeno_action/activable/fire_cannon
@@ -1113,18 +1031,7 @@
 	var/mob/living/carbon/Xenomorph/Xenoborg/X = owner
 	X.fire_cannon(A)
 
-
-
-
-
-
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////
-
 
 /mob/living/carbon/Xenomorph/proc/add_abilities()
 	if(actions && actions.len)

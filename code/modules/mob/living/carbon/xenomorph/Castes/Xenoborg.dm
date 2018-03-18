@@ -8,9 +8,9 @@
 	melee_damage_upper = 24
 	health = 300
 	maxHealth = 300
-	storedplasma = 1500
+	plasma_stored = 1500
 	plasma_gain = 0
-	maxplasma = 1500
+	plasma_max = 1500
 	caste_desc = "Oh dear god!"
 	speed = -2.1
 	evolution_allowed = FALSE
@@ -28,8 +28,8 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/activable/fire_cannon,
+		/datum/action/xeno_action/activable/pounce //,
+//		/datum/action/xeno_action/activable/fire_cannon,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
@@ -38,8 +38,8 @@
 	New()
 		..()
 		add_language("English")
-		add_language("Sol Common")
-		add_language("Tradeband")
+		add_language("Xenomorph") //xenocommon
+		add_language("Hivemind") //hivemind
 
 
 /mob/living/carbon/Xenomorph/Xenoborg/proc/fire_cannon(atom/T)
@@ -102,13 +102,13 @@
 				return
 		if(istype(O, /obj/item/cell))
 			var/obj/item/cell/C = O
-			if(storedplasma >= maxplasma)
+			if(plasma_stored >= plasma_max)
 				user << "<span class='warning'>\The [src] does not need a new cell right now.</span>"
 				return
 			src.visible_message("<span class='notice'>\The [user] carefully inserts \the [C] into \the [src]'s power supply port.")
-			storedplasma += C.charge
-			if(storedplasma > maxplasma) storedplasma = maxplasma
-			src << "<span class='notice'>Your power supply suddenly updates. New charge: [storedplasma]/[maxplasma]"
+			plasma_stored += C.charge
+			if(plasma_stored > plasma_max) plasma_stored = plasma_max
+			src << "<span class='notice'>Your power supply suddenly updates. New charge: [plasma_stored]/[plasma_max]"
 			cdel(O)
 			user.update_inv_l_hand(0) //Update the user sprites after the del, just to be safe.
 			user.update_inv_r_hand()

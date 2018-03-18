@@ -23,15 +23,14 @@
 	return 1
 
 
-
 /datum/surgery_step/generic/incision_manager
 	priority = 0.1 //Attempt before generic scalpel step
 	allowed_tools = list(
 	/obj/item/tool/surgery/scalpel/manager = 100
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = INCISION_MANAGER_MIN_DURATION
+	max_duration = INCISION_MANAGER_MAX_DURATION
 	open_step = 0
 
 /datum/surgery_step/generic/incision_manager/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -224,7 +223,6 @@
 	affected.update_wounds()
 
 
-
 /datum/surgery_step/generic/cauterize
 	allowed_tools = list(
 	/obj/item/tool/surgery/cautery = 100,         \
@@ -233,8 +231,8 @@
 	/obj/item/tool/weldingtool = 25
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = CAUTERY_MIN_DURATION
+	max_duration = CAUTERY_MAX_DURATION
 
 /datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
@@ -258,6 +256,3 @@
 	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>")
 	target.apply_damage(3, BURN, affected)
 	target.updatehealth()
-
-
-

@@ -355,7 +355,7 @@
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+		if(do_after(user,50, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
 			destroy(1)
@@ -543,7 +543,7 @@
 				user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
 				"<span class='notice'>You start weakening [src]</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if (do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+				if (do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !WT.isOn()) return
 					user.visible_message("<span class='notice'>[user] weakens [src].</span>",
 					"<span class='notice'>You weaken [src]</span>")
@@ -552,7 +552,7 @@
 				user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
 				"<span class='notice'>You start welding [src] back together.</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !WT.isOn()) return
 					user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
 					"<span class='notice'>You weld [src] back together.</span>")
@@ -579,6 +579,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
 	density = 1
+	layer = TABLE_LAYER
 	flags_atom = FPRINT
 	anchored = 1.0
 	throwpass = 1	//You can throw objects over this, despite it's density.

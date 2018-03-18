@@ -1,12 +1,8 @@
-
-
-
 /////////////////////////////////////////////
 //// SMOKE SYSTEMS
 // direct can be optinally added when set_up, to make the smoke always travel in one direction
 // in case you wanted a vent to always smoke north for example
 /////////////////////////////////////////////
-
 
 /obj/effect/particle_effect/smoke
 	name = "smoke"
@@ -18,7 +14,6 @@
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/time_to_live = 4
 
-
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
@@ -28,10 +23,8 @@
 	..()
 	if(oldamount)
 		amount = oldamount - 1
-	apply_smoke_effect(loc)
 	time_to_live += rand(-1,1)
 	processing_objects.Add(src)
-
 
 /obj/effect/particle_effect/smoke/Dispose()
 	. =..()
@@ -49,7 +42,6 @@
 		alpha = 180
 		amount = 0
 		opacity = 0
-
 
 /obj/effect/particle_effect/smoke/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0)) return 1
@@ -110,15 +102,15 @@
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
 	else
-		if (prob(20))
+		if(prob(20))
 			M.drop_held_item()
 		M.adjustOxyLoss(1)
-		if (M.coughedtime != 1)
+		if(M.coughedtime != 1)
 			M.coughedtime = 1
-			M.emote("cough")
-			spawn ( 20 )
+			if(ishuman(M)) //Humans only to avoid issues
+				M.emote("cough")
+			spawn(20)
 				M.coughedtime = 0
-
 
 /////////////////////////////////////////////
 // Sleep smoke
@@ -137,15 +129,16 @@
 
 	M.drop_held_item()
 	M:sleeping += 1
-	if (M.coughedtime != 1)
+	if(M.coughedtime != 1)
 		M.coughedtime = 1
-		M.emote("cough")
-		spawn ( 20 )
+		if(ishuman(M)) //Humans only to avoid issues
+			M.emote("cough")
+		spawn(20)
 			M.coughedtime = 0
+
 /////////////////////////////////////////////
 // Mustard Gas
 /////////////////////////////////////////////
-
 
 /obj/effect/particle_effect/smoke/mustard
 	name = "mustard gas"
@@ -159,10 +152,11 @@
 /obj/effect/particle_effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
 	..()
 	R.burn_skin(0.75)
-	if (R.coughedtime != 1)
+	if(R.coughedtime != 1)
 		R.coughedtime = 1
-		R.emote("gasp")
-		spawn (20)
+		if(ishuman(R)) //Humans only to avoid issues
+			R.emote("gasp")
+		spawn(20)
 			R.coughedtime = 0
 	R.updatehealth()
 	return
@@ -184,21 +178,20 @@
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
 	else
-		if (prob(20))
+		if(prob(20))
 			M.drop_held_item()
 		M.adjustOxyLoss(1)
 		M.updatehealth()
-		if (M.coughedtime != 1)
+		if(M.coughedtime != 1)
 			M.coughedtime = 1
-			M.emote("cough")
+			if(ishuman(M)) //Humans only to avoid issues
+				M.emote("cough")
 			spawn (20)
 				M.coughedtime = 0
 	//if (M.wear_suit != null && !istype(M.wear_suit, /obj/item/clothing/suit/storage/labcoat) && !istype(M.wear_suit, /obj/item/clothing/suit/straight_jacket) && !istype(M.wear_suit, /obj/item/clothing/suit/straight_jacket && !istype(M.wear_suit, /obj/item/clothing/suit/armor)))
 		//return
 	M.burn_skin(0.75)
 	M.updatehealth()
-
-
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -210,27 +203,27 @@
 	opacity = 0
 	icon_state = "sparks"
 
-
-
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
-
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno_burn
 	time_to_live = 6
 	color = "#86B028" //Mostly green?
 	anchored = 1
-	spread_speed = 10
+	spread_speed = 7
+	amount = 1 //Amount depends on Boiler upgrade!
 
 /obj/effect/particle_effect/smoke/xeno_burn/apply_smoke_effect(turf/T)
 	for(var/mob/living/L in T)
-		if(istype(L.buckled, /obj/structure/bed/nest) && L.status_flags & XENO_HOST)
-			continue //nested infected hosts are not hurt by acid smoke
 		affect(L)
 	for(var/obj/structure/barricade/B in T)
 		B.acid_smoke_damage(src)
+
+//No effect when merely entering the smoke turf, for balance reasons
+/obj/effect/particle_effect/smoke/xeno_burn/Crossed(mob/living/carbon/M as mob)
+	return
 
 /obj/effect/particle_effect/smoke/xeno_burn/affect(var/mob/living/carbon/M)
 	..()
@@ -238,16 +231,16 @@
 		return
 	if(isYautja(M) && prob(75))
 		return
+	if(M.stat == DEAD)
+		return
+	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
+		return
 
-	if(M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(40))
-		M << "<span class='danger'>Your gas mask protects you!</span>"
-	else
-		if(prob(20))
-			M.drop_held_item()
-		M.adjustOxyLoss(5)
-		M.adjustFireLoss(rand(5,15))
-		M.updatehealth()
-		if(M.coughedtime != 1 && !M.stat)
+	//Gas masks protect from inhalation and face contact effects, even without internals. Breath masks don't for balance reasons
+	if(!istype(M.wear_mask, /obj/item/clothing/mask/gas))
+		M.adjustOxyLoss(5) //Basic oxyloss from "can't breathe"
+		M.adjustFireLoss(amount*rand(10, 15)) //Inhalation damage
+		if(M.coughedtime != 1 && !M.stat) //Coughing/gasping
 			M.coughedtime = 1
 			if(prob(50))
 				M.emote("cough")
@@ -255,21 +248,26 @@
 				M.emote("gasp")
 			spawn(15)
 				M.coughedtime = 0
+
+	//Topical damage (acid on exposed skin)
 	M << "<span class='danger'>Your skin feels like it is melting away!</span>"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.take_overall_damage(0, (amount+1)*rand(10, 15)) //Burn damage, randomizes between various parts //Magic number
+		H.adjustFireLoss(amount*rand(15, 20)) //Burn damage, randomizes between various parts //Amount corresponds to upgrade level, 1 to 2.5
 	else
-		M.burn_skin(5)
+		M.burn_skin(5) //Failsafe for non-humans
 	M.updatehealth()
-	return
-
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno_weak
 	time_to_live = 6
 	color = "#ffbf58" //Mustard orange?
-	spread_speed = 10
+	spread_speed = 7
+	amount = 1 //Amount depends on Boiler upgrade!
+
+//No effect when merely entering the smoke turf, for balance reasons
+/obj/effect/particle_effect/smoke/xeno_weak/Crossed(mob/living/carbon/M as mob)
+	return
 
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
 	..()
@@ -277,40 +275,37 @@
 		return
 	if(isYautja(M) && prob(75))
 		return
-
-	if(M.stat)
+	if(M.stat == DEAD)
+		return
+	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
 		return
 
-	if(M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(75))
-		M << "<span class='danger'>Your gas mask protects you!</span>"
-		return
-	else
-		if(M.coughedtime != 1)
-			M.coughedtime = 1
-			M.emote("gasp")
-			M.adjustOxyLoss(1)
-			spawn(15)
-				M.coughedtime = 0
-		var/effect_amt = 8 + amount*2
-		//M.KnockDown(effect_amt)
-		//M.Stun(effect_amt+2)
-		if(!M.eye_blind)
+	var/effect_amt = round(6 + amount*6)
+
+	//Gas masks protect from inhalation and face contact effects, even without internals. Breath masks don't for balance reasons
+	if(!istype(M.wear_mask, /obj/item/clothing/mask/gas))
+		M.adjustOxyLoss(15) //Causes even more oxyloss damage due to neurotoxin locking up respiratory system
+		M.ear_deaf = max(M.ear_deaf, round(effect_amt*1.5)) //Paralysis of hearing system, aka deafness
+		if(!M.eye_blind) //Eye exposure damage
 			M << "<span class='danger'>Your eyes sting. You can't see!</span>"
 		M.eye_blurry = max(M.eye_blurry, effect_amt*2)
 		M.eye_blind = max(M.eye_blind, round(effect_amt))
+		if(M.coughedtime != 1 && !M.stat) //Coughing/gasping
+			M.coughedtime = 1
+			if(prob(50))
+				M.emote("cough")
+			else
+				M.emote("gasp")
+			spawn(15)
+				M.coughedtime = 0
 
-
-
-
-
-
-
-
-
-
-
-
-
+	//Topical damage (neurotoxin on exposed skin)
+	M << "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>"
+	if(prob(40 + round(amount*15))) //Highly likely to drop items due to arms/hands seizing up
+		M.drop_held_item()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.temporary_slowdown = max(H.temporary_slowdown, round(effect_amt*1.5)) //One tick every two second
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -343,13 +338,11 @@
 	if(S.amount)
 		S.spread_smoke(direction)
 
-
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
 
 /datum/effect_system/smoke_spread/sleepy
 	smoke_type = /obj/effect/particle_effect/smoke/sleepy
-
 
 /datum/effect_system/smoke_spread/mustard
 	smoke_type = /obj/effect/particle_effect/smoke/mustard

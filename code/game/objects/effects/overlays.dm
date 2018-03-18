@@ -87,24 +87,25 @@
 		active_laser_targets += src
 		linked_cam = new(loc, name)
 
-	Dispose()
-		active_laser_targets -= src
-		if(source_binoc)
-			source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
-			source_binoc.laser = null
-			source_binoc = null
-		if(linked_cam)
-			cdel(linked_cam)
-			linked_cam = null
-		..()
+/obj/effect/overlay/temp/laser_target/Dispose()
+	active_laser_targets -= src
+	if(source_binoc)
+		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
+		source_binoc.laser = null
+		source_binoc = null
+	if(linked_cam)
+		cdel(linked_cam)
+		linked_cam = null
+	SetLuminosity(0)
+	. = ..()
 
-	ex_act(severity) //immune to explosions
+/obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
 		return
 
-	examine()
-		..()
-		if(ishuman(usr))
-			usr << "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>"
+/obj/effect/overlay/temp/laser_target/examine()
+	..()
+	if(ishuman(usr))
+		usr << "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>"
 
 
 //used to show where dropship ordnance will impact.
@@ -117,6 +118,9 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
+/obj/effect/overlay/temp/blinking_laser/Dispose()
+	SetLuminosity(0)
+	. = ..()
 
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'

@@ -44,12 +44,12 @@
 						return
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 					user << "\blue Now securing the girder"
-					if(do_after(user, 40))
+					if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 						user << "\blue You secured the girder!"
 						new/obj/structure/girder( src.loc )
 						cdel(src)
 				else if (dismantlectr %2 == 0)
-					if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+					if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
 						dismantlectr++
 						health -= 15
 						user << "\blue You unfasten a bolt from the girder!"
@@ -58,7 +58,7 @@
 
 			else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 				user << "\blue Now slicing apart the girder"
-				if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE))
 					if(!src) return
 					user << "\blue You slice apart the girder!"
 					health = 0
@@ -70,7 +70,7 @@
 			else if(istype(W, /obj/item/tool/screwdriver) && state == 2 && istype(src,/obj/structure/girder/reinforced))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				user << "\blue Now unsecuring support struts"
-				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src) return
 					user << "\blue You unsecured the support struts!"
 					state = 1
@@ -78,7 +78,7 @@
 			else if(istype(W, /obj/item/tool/wirecutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user << "\blue Now removing support struts"
-				if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src) return
 					user << "\blue You removed the support struts!"
 					new/obj/structure/girder( src.loc )
@@ -87,7 +87,7 @@
 			else if(istype(W, /obj/item/tool/crowbar) && state == 0 && anchored )
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				user << "\blue Now dislodging the girder..."
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src) return
 					user << "\blue You dislodged the girder!"
 					new/obj/structure/girder/displaced( src.loc )
@@ -104,7 +104,7 @@
 						if (anchored)
 							if(S.get_amount() < 1) return ..()
 							user << "<span class='notice'>Now adding plating...</span>"
-							if (do_after(user,60, TRUE, 5, BUSY_ICON_CLOCK))
+							if (do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
 								if(!S) return
 								if (S.use(1))
 									user << "<span class='notice'>You added the plating!</span>"
@@ -125,7 +125,7 @@
 						if(S.amount < 2)
 							return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+						if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 							if(!src || !S || S.amount < 2) return
 							S.use(2)
 							user << "<span class='notice'>You added the plating!</span>"
@@ -142,7 +142,7 @@
 				var/obj/item/tool/weldingtool/WT = W
 				if (WT.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-					if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+					if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
 						if(!WT.isOn()) return
 						if (buildctr == 5)
 							build_wall()
@@ -151,7 +151,7 @@
 						user << "\blue You weld the metal to the girder!"
 				return
 			else if(istype(W, /obj/item/tool/wirecutters) && dismantlectr %2 != 0)
-				if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+				if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
 					if (dismantlectr == 5)
 						dismantle()
 						dismantlectr = 0
@@ -176,7 +176,7 @@
 					if(M.amount < 2)
 						return ..()
 					user << "<span class='notice'>Now adding plating...</span>"
-					if (do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+					if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 						if(!src || !M || M.amount < 2) return
 						M.use(2)
 						user << "<span class='notice'>You added the metal to the girder!</span>"
@@ -184,7 +184,7 @@
 					return
 			if (repair_state == 1)
 				if(istype(W, /obj/item/tool/weldingtool))
-					if(do_after(user,30, TRUE, 5, BUSY_ICON_CLOCK))
+					if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
 						if(!src) return
 						user << "\blue You weld the girder together!"
 						repair()

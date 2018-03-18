@@ -6,7 +6,10 @@ datum/preferences
 				gender = MALE
 			else
 				gender = FEMALE
-		s_tone = random_skin_tone()
+
+		ethnicity = random_ethnicity()
+		body_type = random_body_type()
+		//s_tone = random_skin_tone()
 		h_style = random_hair_style(gender, species)
 		f_style = random_facial_hair_style(gender, species)
 		randomize_hair_color("hair")
@@ -197,14 +200,30 @@ datum/preferences
 		else
 			icobase = 'icons/mob/human_races/r_human.dmi'
 
-		preview_icon = new /icon(icobase, "torso_[g]")
-		preview_icon.Blend(new /icon(icobase, "groin_[g]"), ICON_OVERLAY)
-		preview_icon.Blend(new /icon(icobase, "head_[g]"), ICON_OVERLAY)
+		var/datum/ethnicity/E = ethnicities_list[ethnicity]
+		var/datum/body_type/B = body_types_list[body_type]
+
+		var/e_icon
+		var/b_icon
+
+		if (!E)
+			e_icon = "western"
+		else
+			e_icon = E.icon_name
+
+		if (!B)
+			b_icon = "mesomorphic"
+		else
+			b_icon = B.icon_name
+
+		preview_icon = new /icon(icobase, get_limb_icon_name(current_species, b_icon, gender, "torso", e_icon))
+		preview_icon.Blend(new /icon(icobase, get_limb_icon_name(current_species, b_icon, gender, "groin", e_icon)), ICON_OVERLAY)
+		preview_icon.Blend(new /icon(icobase, get_limb_icon_name(current_species, b_icon, gender, "head", e_icon)), ICON_OVERLAY)
 
 		for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
 //			if(organ_data[name] == "amputated") continue
 
-			var/icon/temp = new /icon(icobase, "[name]")
+			var/icon/temp = new /icon(icobase, get_limb_icon_name(current_species, b_icon, gender, "[name]", e_icon))
 			if(organ_data[name] == "cyborg")
 				temp.MapColors(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 
@@ -215,6 +234,7 @@ datum/preferences
 			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
 			preview_icon.Blend(temp, ICON_OVERLAY)
 
+		/*
 		// Skin color
 		if(current_species && (current_species.flags & HAS_SKIN_COLOR))
 			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
@@ -225,6 +245,7 @@ datum/preferences
 				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 			else
 				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+		*/
 
 		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
 		eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
@@ -242,12 +263,12 @@ datum/preferences
 			eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 		var/icon/underwear_s = null
-		if(underwear > 0 && underwear < 7 && current_species.flags & HAS_UNDERWEAR)
-			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = "underwear[underwear]_[g]_s")
+		if(underwear > 0 && underwear < 5 && current_species.flags & HAS_UNDERWEAR)
+			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = "cryo[underwear]_[g]_s")
 
 		var/icon/undershirt_s = null
 		if(undershirt > 0 && undershirt < 5 && current_species.flags & HAS_UNDERWEAR)
-			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = "undershirt[undershirt]_s")
+			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = "cryoshirt[undershirt]_s")
 
 		var/icon/clothes_s = null
 		if(job_marines_low & ROLE_MARINE_STANDARD)

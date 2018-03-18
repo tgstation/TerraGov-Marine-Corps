@@ -292,6 +292,27 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
+/client/proc/cmd_admin_corrupt_xeno(mob/living/carbon/Xenomorph/M in mob_list)
+	set category = "Debug"
+	set name = "Corrupt Xenomorph"
+
+	if(!ticker)
+		alert("Wait until the game starts")
+		return
+	if(isXeno(M))
+		log_admin("[key_name(src)] toggled corruption on [M] to [M.corrupted].")
+		M.corrupted = !M.corrupted
+		if(istype(M, /mob/living/carbon/Xenomorph/Larva))
+			var/mob/living/carbon/Xenomorph/Larva/L = M
+			L.update_icons() // larva renaming done differently
+		else
+			M.generate_name()
+		usr << "Corruption toggled to [M.corrupted]"
+		feedback_add_details("admin_verb","MKCT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		message_admins("\blue [key_name(src)] toggled corruption on [M] to [M.corrupted].", 1)
+	else
+		alert("Invalid mob")
+
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
@@ -371,6 +392,21 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb","GFA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("\blue [key_name_admin(usr)] has granted [M.key] full access.", 1)
+
+/client/proc/cmd_admin_grantallskills(var/mob/M in mob_list)
+	set category = "Admin"
+	set name = "Grant All Skills"
+
+	if (!ticker)
+		alert("Wait until the game starts")
+		return
+	if(M.mind)
+		M.mind.cm_skills = null // No restrictions
+	else
+		alert("Invalid mob")
+	feedback_add_details("admin_verb","GAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(src)] has granted [M.key] all skills.")
+	message_admins("\blue [key_name_admin(usr)] has granted [M.key] all skills.", 1)
 
 /client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
 	set category = "Admin"

@@ -12,8 +12,8 @@
 	can_infect = 1
 	blood_level = 1
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = FIXVEIN_MIN_DURATION
+	max_duration = FIXVEIN_MAX_DURATION
 
 /datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(affected.surgery_open_stage >= 2)
@@ -43,7 +43,3 @@
 	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
 	affected.take_damage(5, 0)
 	target.updatehealth()
-
-
-
-

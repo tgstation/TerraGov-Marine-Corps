@@ -194,6 +194,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define FAKEDEATH	8192	//Replaces stuff like changeling.changeling_fakedeath
 #define DISFIGURED	16384	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST	32768	//Tracks whether we're gonna be a baby alien's mummy.
+#define XENO_CORRUPTED_HOST 65536 // if they are a host to a corrupted xeno
+
 //=================================================
 
 //Damage things
@@ -232,6 +234,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define LIMB_NECROTIZED 32 //necrotizing limb, nerves are dead.
 #define LIMB_MUTATED 64 //limb is deformed by mutations
 #define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_REPAIRED 256 //we just repaired the bone, stops the gelling after setting
 
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 
@@ -242,7 +245,90 @@ var/list/global_mutations = list() // list of hidden mutation things
 ///////////////SURGERY DEFINES///////////////
 #define SPECIAL_SURGERY_INVALID	"special_surgery_invalid"
 
+#define NECRO_TREAT_MIN_DURATION 40
+#define NECRO_TREAT_MAX_DURATION 60
 
+#define NECRO_REMOVE_MIN_DURATION 60
+#define NECRO_REMOVE_MAX_DURATION 80
+
+#define HEMOSTAT_REMOVE_MIN_DURATION 40
+#define HEMOSTAT_REMOVE_MAX_DURATION 60
+
+#define BONESETTER_MIN_DURATION 60
+#define BONESETTER_MAX_DURATION 80
+
+#define BONEGEL_REPAIR_MIN_DURATION 40
+#define BONEGEL_REPAIR_MAX_DURATION 60
+
+#define FIXVEIN_MIN_DURATION 60
+#define FIXVEIN_MAX_DURATION 80
+
+#define FIX_ORGAN_MIN_DURATION 60
+#define FIX_ORGAN_MAX_DURATION 80
+
+#define BONEGEL_CLOSE_ENCASED_MIN_DURATION 40
+#define BONEGEL_CLOSE_ENCASED_MAX_DURATION 60
+
+#define RETRACT_CLOSE_ENCASED_MIN_DURATION 30
+#define RETRACT_CLOSE_ENCASED_MAX_DURATION 40
+
+#define RETRACT_OPEN_ENCASED_MIN_DURATION 30
+#define RETRACT_OPEN_ENCASED_MAX_DURATION 40
+
+#define SAW_OPEN_ENCASED_MIN_DURATION 60
+#define SAW_OPEN_ENCASED_MAX_DURATION 80
+
+#define INCISION_MANAGER_MIN_DURATION 60
+#define INCISION_MANAGER_MAX_DURATION 80
+
+#define CAUTERY_MIN_DURATION 60
+#define CAUTERY_MAX_DURATION 80
+
+#define BONECHIPS_REMOVAL_MIN_DURATION 40
+#define BONECHIPS_REMOVAL_MAX_DURATION 60
+#define BONECHIPS_MAX_DAMAGE 20
+
+#define HEMOTOMA_MIN_DURATION 60
+#define HEMOTOMA_MAX_DURATION 80
+
+#define ROBOLIMB_CUT_MIN_DURATION 60
+#define ROBOLIMB_CUT_MAX_DURATION 80
+
+#define ROBOLIMB_MEND_MIN_DURATION 60
+#define ROBOLIMB_MEND_MAX_DURATION 80
+
+#define ROBOLIMB_PREPARE_MIN_DURATION 60
+#define ROBOLIMB_PREPARE_MAX_DURATION 80
+
+#define ROBOLIMB_ATTACH_MIN_DURATION 60
+#define ROBOLIMB_ATTACH_MAX_DURATION 80
+
+#define EYE_CUT_MIN_DURATION 60
+#define EYE_CUT_MAX_DURATION 80
+
+#define EYE_LIFT_MIN_DURATION 30
+#define EYE_LIFT_MAX_DURATION 40
+
+#define EYE_MEND_MIN_DURATION 40
+#define EYE_MEND_MAX_DURATION 60
+
+#define EYE_CAUTERISE_MIN_DURATION 60
+#define EYE_CAUTERISE_MAX_DURATION 80
+
+#define FACIAL_CUT_MIN_DURATION 60
+#define FACIAL_CUT_MAX_DURATION 80
+
+#define FACIAL_MEND_MIN_DURATION 40
+#define FACIAL_MEND_MAX_DURATION 60
+
+#define FACIAL_FIX_MIN_DURATION 30
+#define FACIAL_FIX_MAX_DURATION 40
+
+#define FACIAL_CAUTERISE_MIN_DURATION 60
+#define FACIAL_CAUTERISE_MAX_DURATION 80
+
+#define LIMB_PRINTING_TIME 550
+#define LIMB_METAL_AMOUNT 125
 
 //=================================================
 
@@ -298,8 +384,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 
 //defines for the busy icons when the mob does something that takes time using do_after proc
-#define BUSY_ICON_CLOCK 1
-#define BUSY_ICON_MED 2
+#define BUSY_ICON_GENERIC	1
+#define BUSY_ICON_MEDICAL	2
+#define BUSY_ICON_BUILD		3
+#define BUSY_ICON_FRIENDLY	4
+#define BUSY_ICON_HOSTILE	5
 
 
 //defins for datum/hud

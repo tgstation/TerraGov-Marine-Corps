@@ -5,18 +5,22 @@
 	desc = "A stand with the empty body of a cyborg bolted to it."
 	density = 1
 	anchored = 1
-	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
 
+/obj/structure/showcase/ex_act(severity)
+	switch(severity)
+		if(1)
+			cdel(src)
+		if(2)
+			if(prob(50))
+				cdel(src)
 
 /obj/structure/monorail
 	name = "monorail track"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "monorail"
 	density = 0
-	anchored = 1.0
+	anchored = 1
 	layer = ATMOS_PIPE_LAYER + 0.01
-
-
 
 /obj/structure/mopbucket
 	name = "mop bucket"
@@ -27,23 +31,20 @@
 	anchored = 0
 	pressure_resistance = 5
 	flags_atom = FPRINT|OPENCONTAINER
-	var/amount_per_transfer_from_this = 5	//shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-
+	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 /obj/structure/mopbucket/New()
 	..()
 	create_reagents(100)
 
-
 /obj/structure/mopbucket/examine(mob/user)
 	..()
 	user << "It contains [reagents.total_volume] unit\s of water!"
 
-
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
-			user << "[src] is out of water!</span>"
+			user << "<span class='warning'>[src] is out of water!</span>"
 		else
 			reagents.trans_to(I, 5)
 			user << "<span class='notice'>You wet [I] in [src].</span>"

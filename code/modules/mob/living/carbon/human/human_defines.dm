@@ -19,6 +19,8 @@
 	var/b_eyes = 0
 
 	var/s_tone = 0	//Skin tone
+	var/ethnicity = "Western"	// Ethnicity
+	var/body_type = "Mesomorphic (Average)" // Body Type
 
 	//Skin colour
 	var/r_skin = 0
@@ -115,5 +117,7 @@
 	var/mobility_new = 0
 	var/protection_new = 0
 	var/marskman_new = 0
+
+	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 
 	var/datum/squad/assigned_squad //the squad this human is assigned to

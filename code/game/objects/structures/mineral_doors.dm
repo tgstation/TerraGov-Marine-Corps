@@ -105,7 +105,7 @@
 		if(istype(W,/obj/item/tool/pickaxe))
 			var/obj/item/tool/pickaxe/digTool = W
 			user << "You start digging the [name]."
-			if(do_after(user,digTool.digspeed*hardness) && src)
+			if(do_after(user,digTool.digspeed*hardness, TRUE, 5, BUSY_ICON_GENERIC) && src)
 				user << "You finished digging."
 				Dismantle()
 		else if(!(W.flags_atom & NOBLUDGEON) && W.force)
@@ -172,6 +172,10 @@
 	mineralType = "uranium"
 	hardness = 3
 	luminosity = 2
+
+/obj/structure/mineral_door/uranium/Dispose()
+	SetLuminosity(0)
+	. = ..()
 
 /obj/structure/mineral_door/sandstone
 	mineralType = "sandstone"

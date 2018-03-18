@@ -16,6 +16,7 @@
 	integrated_light_power = 2
 	local_transmit = 1
 	layer = ABOVE_LYING_MOB_LAYER
+	var/nicknumber = 0
 
 	// We need to keep track of a few module items so we don't need to do list operations
 	// every time we need them. These get set in New() after the module is chosen.
@@ -32,19 +33,22 @@
 
 /mob/living/silicon/robot/drone/New()
 
+	nicknumber = rand(100,999)
+
 	..()
 
+
 	verbs += /mob/living/proc/hide
-	remove_language("Robot Talk")
-	add_language("Robot Talk", 0)
+	//remove_language("Robot Talk")
+	//add_language("Robot Talk", 1) // let them use this since we arent like regular ss13
 	add_language("Drone Talk", 1)
 
 	if(camera && "Robots" in camera.network)
 		camera.network.Add("Engineering")
 
 	//They are unable to be upgraded, so let's give them a bit of a better battery.
-	cell.maxcharge = 10000
-	cell.charge = 10000
+	cell.maxcharge = 50000
+	cell.charge = 50000
 
 	// NO BRAIN.
 	mmi = null
@@ -55,6 +59,11 @@
 		C.max_damage = 10
 
 	verbs -= /mob/living/silicon/robot/verb/Namepick
+	verbs += /mob/living/silicon/robot/drone/verb/Drone_name_pick
+	verbs += /mob/living/silicon/robot/drone/verb/Power_up
+	verbs -= /mob/living/verb/lay_down // this should fix that issue
+	verbs -= /mob/living/silicon/robot/drone/verb/set_mail_tag // we dont have mail tubes
+
 	module = new /obj/item/circuitboard/robot_module/drone(src)
 
 	//Grab stacks.
@@ -67,7 +76,7 @@
 	decompiler = locate(/obj/item/device/matter_decompiler) in src.module
 
 	//Some tidying-up.
-	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT logo and the subscript: 'Weyland Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
+	flavor_text = "This is an XP-45 Engineering Drone, one of the many fancy things that come out of the Weyland-Yutani Research Department. It's designed to assist both ship repairs as well as ground missions. Shiny!"
 	updateicon()
 
 /mob/living/silicon/robot/drone/init()
@@ -79,7 +88,7 @@
 
 //Redefining some robot procs...
 /mob/living/silicon/robot/drone/updatename()
-	real_name = "maintenance drone ([rand(100,999)])"
+	real_name = "XP-45 Engineering Drone ([nicknumber])"
 	name = real_name
 
 /mob/living/silicon/robot/drone/updateicon()
@@ -97,7 +106,7 @@
 	return
 
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
-/mob/living/silicon/robot/drone/attackby(obj/item/W as obj, mob/user as mob)
+/mob/living/silicon/robot/drone/attackby(obj/item/W, mob/living/user)
 
 	if(istype(W, /obj/item/borg/upgrade/))
 		user << "\red The maintenance drone chassis not compatible with \the [W]."
@@ -105,75 +114,6 @@
 
 	else if (istype(W, /obj/item/tool/crowbar))
 		user << "The machine is hermetically sealed. You can't open the case."
-		return
-
-	else if (istype(W, /obj/item/card/emag))
-
-		if(!client || stat == 2)
-			user << "\red There's not much point subverting this heap of junk."
-			return
-
-		if(emagged)
-			src << "\red [user] attempts to load subversive software into you, but your hacked subroutined ignore the attempt."
-			user << "\red You attempt to subvert [src], but the sequencer has no effect."
-			return
-
-		user << "\red You swipe the sequencer across [src]'s interface and watch its eyes flicker."
-		src << "\red You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."
-
-		var/obj/item/card/emag/emag = W
-		emag.uses--
-
-		message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
-		log_game("[key_name(user)] emagged drone [key_name(src)].  Laws overridden.")
-		var/time = time2text(world.realtime,"hh:mm:ss")
-		lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-
-		emagged = 1
-		lawupdate = 0
-		connected_ai = null
-		clear_supplied_laws()
-		clear_inherent_laws()
-		laws = new /datum/ai_laws/syndicate_override
-		set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
-
-		src << "<b>Obey these laws:</b>"
-		laws.show_laws(src)
-		src << "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands."
-		return
-
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
-
-		if(stat == 2)
-
-			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
-				user << "\red The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."
-				return
-
-			if(!allowed(usr))
-				user << "\red Access denied."
-				return
-
-			user.visible_message("\red \the [user] swipes \his ID card through \the [src], attempting to reboot it.", "\red You swipe your ID card through \the [src], attempting to reboot it.")
-			var/drones = 0
-			for(var/mob/living/silicon/robot/drone/D in player_list)
-				if(D.key && D.client)
-					drones++
-			if(drones < config.max_maint_drones)
-				request_player()
-			return
-
-		else
-			user.visible_message("\red \the [user] swipes \his ID card through \the [src], attempting to shut it down.", "\red You swipe your ID card through \the [src], attempting to shut it down.")
-
-			if(emagged)
-				return
-
-			if(allowed(usr))
-				shut_down()
-			else
-				user << "\red Access denied."
-
 		return
 
 	..()
@@ -209,20 +149,14 @@
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != 2)
-		if(emagged)
-			src << "\red You feel something attempting to modify your programming, but your hacked subroutines are unaffected."
-		else
-			src << "\red A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it."
-			full_law_reset()
-			show_laws()
+		src << "\red A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it."
+		full_law_reset()
+		show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != 2)
-		if(emagged)
-			src << "\red You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you."
-		else
-			src << "\red You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself."
-			death()
+		src << "\red You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself."
+		death()
 
 /mob/living/silicon/robot/drone/proc/full_law_reset()
 	clear_supplied_laws()
@@ -297,3 +231,32 @@
 /mob/living/silicon/robot/drone/add_robot_verbs()
 
 /mob/living/silicon/robot/drone/remove_robot_verbs()
+
+/mob/living/silicon/robot/drone/verb/Drone_name_pick()
+	set category = "Robot Commands"
+	if(custom_name)
+		return 0
+
+	spawn(0)
+		var/list/namelist = list("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
+		var/newname
+		newname = input(src,"You are drone. Pick a name, no duplicates allowed.", null, null) in namelist
+		if(custom_name)
+			return 0
+
+		for (var/mob/living/silicon/robot/drone/A in mob_list)
+			if(newname == A.nicknumber)
+				src << "<span class='warning'>That identifier is taken, pick again.</span>"
+				return 0
+
+		custom_name = newname
+		nicknumber = newname
+
+		updatename()
+		updateicon()
+
+/mob/living/silicon/robot/drone/verb/Power_up()
+	set category = "Robot Commands"
+	if(resting)
+		resting = 0
+		src << "<span class='notice'>You begin powering up.</span>"

@@ -224,6 +224,12 @@
 			var/obj/item/clothing/glasses/welding/O = glasses
 			if(!O.up && tinted_weldhelh)
 				client.screen += global_hud.darkMask
+				masked = 1
+
+		if(!masked && istype(wear_mask, /obj/item/clothing/mask/gas))
+			var/obj/item/clothing/mask/gas/G = wear_mask
+			if(G.vision_impair && tinted_weldhelh)
+				client.screen += global_hud.darkMask
 
 		if(interactee)
 			interactee.check_eye(src)

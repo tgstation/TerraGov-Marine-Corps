@@ -45,7 +45,7 @@
 		if (src.stage == 1)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			usr << "You begin deconstructing [src]."
-			if (!do_after(usr, 30, TRUE, 5, BUSY_ICON_CLOCK))
+			if (!do_after(usr, 30, TRUE, 5, BUSY_ICON_BUILD))
 				return
 			new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
@@ -693,3 +693,63 @@
 		sharp = IS_SHARP_ITEM_SIMPLE
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		update()
+
+/obj/machinery/landinglight
+	name = "landing light"
+	icon = 'icons/obj/landinglights.dmi'
+	icon_state = "landingstripetop"
+	desc = "A landing light, if it's flashing stay clear!"
+	var/id = "" // ID for landing zone
+	anchored = 1
+	density = 0
+	layer = BELOW_TABLE_LAYER
+	use_power = 2
+	idle_power_usage = 2
+	active_power_usage = 20
+	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	unacidable = 1
+
+//Don't allow blowing those up, so Marine nades don't fuck them
+/obj/machinery/landinglight/ex_act(severity)
+	return
+
+/obj/machinery/landinglight/New()
+	turn_off()
+
+/obj/machinery/landinglight/proc/turn_off()
+	icon_state = "landingstripe"
+	SetLuminosity(0)
+
+/obj/machinery/landinglight/ds1
+	id = "USS Almayer Dropship 1" // ID for landing zone
+
+/obj/machinery/landinglight/ds2
+	id = "USS Almayer Dropship 2" // ID for landing zone
+
+/obj/machinery/landinglight/proc/turn_on()
+	icon_state = "landingstripe0"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds1/delayone/turn_on()
+	icon_state = "landingstripe1"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds1/delaytwo/turn_on()
+	icon_state = "landingstripe2"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds1/delaythree/turn_on()
+	icon_state = "landingstripe3"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds2/delayone/turn_on()
+	icon_state = "landingstripe1"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds2/delaytwo/turn_on()
+	icon_state = "landingstripe2"
+	SetLuminosity(2)
+
+/obj/machinery/landinglight/ds2/delaythree/turn_on()
+	icon_state = "landingstripe3"
+	SetLuminosity(2)

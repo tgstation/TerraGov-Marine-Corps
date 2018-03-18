@@ -27,9 +27,6 @@
 	attackby()
 		return
 
-	ex_act(severity)
-		return
-
 /obj/machinery/telecomms/relay/preset/telecomms
 	id = "Telecomms Relay"
 	autolinkers = list("relay")

@@ -21,14 +21,16 @@
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/cmo,
-				WEAR_BODY = /obj/item/clothing/under/rank/chief_medical_officer,
-				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
+				WEAR_FEET = /obj/item/clothing/shoes/white,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
-				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/officer,
+				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
 				WEAR_R_STORE = /obj/item/storage/pouch/medical,
-				WEAR_L_STORE = /obj/item/storage/pouch/syringe
+				WEAR_L_STORE = /obj/item/storage/pouch/syringe,
+				WEAR_HEAD = /obj/item/clothing/head/surgery/green
+				//WEAR_HEAD = /obj/item/clothing/head/cmo //2.10.2018 Will want to work on this a bit more, it doesn't quite fit. - Joshuu
 				)
 
 	generate_stored_equipment()
@@ -63,9 +65,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		. = list(
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/doc,
 				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
-				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_FEET = /obj/item/clothing/shoes/white,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
-				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
+				//WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
@@ -106,7 +108,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/researcher,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
-				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
+				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/researcher,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
 				WEAR_R_STORE = /obj/item/storage/pouch/medical,
@@ -198,7 +200,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 		. = list(
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
 				WEAR_BODY = /obj/item/clothing/under/rank/synthetic,
-				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_FEET = /obj/item/clothing/shoes/white,
 				WEAR_WAIST = /obj/item/storage/belt/utility/full,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,

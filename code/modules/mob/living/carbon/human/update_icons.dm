@@ -2,7 +2,7 @@
 	Global associative list for caching humanoid icons.
 	Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.
 	TODO: Proper documentation
-	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
+	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][ethnicity]
 */
 var/global/list/human_icon_cache = list()
 
@@ -230,7 +230,7 @@ var/global/list/damage_icon_parts = list()
 	apply_overlay(DAMAGE_LAYER)
 
 //BASE MOB SPRITE
-/mob/living/carbon/human/proc/update_body(var/update_icons=1)
+/mob/living/carbon/human/proc/update_body(var/update_icons = 1, var/force_cache_update = 0)
 
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
@@ -241,8 +241,9 @@ var/global/list/damage_icon_parts = list()
 	var/hulk = (HULK in src.mutations)
 	var/skeleton = (SKELETON in src.mutations)
 
-	var/g = (gender == FEMALE ? "f" : "m")
+	var/g = get_gender_name(gender)
 	var/has_head = 0
+
 
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
@@ -253,7 +254,7 @@ var/global/list/damage_icon_parts = list()
 
 	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
 
-	var/icon_key = "[species.race_key][g][s_tone]"
+	var/icon_key = "[species.race_key][g][ethnicity]"
 	for(var/datum/limb/part in limbs)
 
 		if(istype(part,/datum/limb/head) && !(part.status & LIMB_DESTROYED))
@@ -268,10 +269,10 @@ var/global/list/damage_icon_parts = list()
 		else
 			icon_key = "[icon_key]1"
 
-	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0][s_tone]"
+	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0][ethnicity]"
 
 	var/icon/base_icon
-	if(human_icon_cache[icon_key])
+	if(!force_cache_update && human_icon_cache[icon_key])
 		//Icon is cached, use existing icon.
 		base_icon = human_icon_cache[icon_key]
 
@@ -357,7 +358,7 @@ var/global/list/damage_icon_parts = list()
 			husk_over.Blend(mask, ICON_ADD)
 			base_icon.Blend(husk_over, ICON_OVERLAY)
 
-
+		/*
 		//Skin tone.
 		if(!husk && !hulk)
 			if(species.flags & HAS_SKIN_TONE)
@@ -365,6 +366,7 @@ var/global/list/damage_icon_parts = list()
 					base_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 				else
 					base_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+		*/
 
 		human_icon_cache[icon_key] = base_icon
 
@@ -374,9 +376,11 @@ var/global/list/damage_icon_parts = list()
 
 	stand_icon.Blend(base_icon,ICON_OVERLAY)
 
+	/*
 	//Skin colour. Not in cache because highly variable (and relatively benign).
 	if (species.flags & HAS_SKIN_COLOR)
 		stand_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+	*/
 
 	if(has_head)
 		//Eyes
@@ -393,14 +397,15 @@ var/global/list/damage_icon_parts = list()
 	if(species.flags & HAS_UNDERWEAR)
 
 		//Underwear
-		if(underwear >0 && underwear < 12)
+		if(underwear >0 && underwear < 3)
 			if(!fat && !skeleton)
-				stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear[underwear]_[g]_s"), ICON_OVERLAY)
+				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
-		if(job in ROLES_MARINES) //we override the undershirt pref and replace it with marine undershirt.
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirtmarine_s"), ICON_OVERLAY)
+		if(job in ROLES_MARINES) //undoing override
+			if(undershirt>0 && undershirt < 5)
+				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 		else if(undershirt>0 && undershirt < 5)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt[undershirt]_s"), ICON_OVERLAY)
+			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 
 	if(update_icons)
 		update_icons()

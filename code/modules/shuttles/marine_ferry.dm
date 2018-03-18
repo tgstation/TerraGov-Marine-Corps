@@ -171,12 +171,22 @@
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
+	var/list/lightssource = get_landing_lights(T_src)
+	for(var/obj/machinery/landinglight/F in lightssource)
+		if(F.id == shuttle_tag)
+			F.turn_off()
+
 	sleep(travel_time) //Wait while we fly
 
 	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
 
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 	playsound(turfs_trg[sound_target], sound_landing, 60, 0)
+
+	var/list/lightsdest = get_landing_lights(T_trg)
+	for(var/obj/machinery/landinglight/F in lightsdest)
+		if(F.id == shuttle_tag)
+			F.turn_on()
 
 	sleep(100) //Wait for it to finish.
 
@@ -278,6 +288,11 @@
 	move_shuttle_to(T_int, null, turfs_src, , , src)
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 
+	var/list/lights = get_landing_lights(T_src)
+	for(var/obj/machinery/landinglight/F in lights)
+		if(F.id == shuttle_tag)
+			F.turn_off()
+
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
 	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
@@ -289,6 +304,11 @@
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 
 	sleep(85)
+
+	for(var/obj/machinery/door/poddoor/shutters/almayer/D in machines)
+		if(D.id == "sd_lockdown")
+			spawn(0)
+				D.open()
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
@@ -448,6 +468,16 @@
 					P.open()
 					P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
+
+		// lift lockdowns to stop people getting trapped
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
+			M.unlock()
+
+		for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in T)
+			D.unlock()
+
+		for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in T)
+			D.unlock()
 
 		for(var/obj/machinery/door/airlock/A in T)
 			if(!istype(A)) continue

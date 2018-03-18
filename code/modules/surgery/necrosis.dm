@@ -14,6 +14,7 @@
 /datum/surgery_step/necro/fix_dead_tissue //Debridement
 
 	allowed_tools = list(
+		/obj/item/tool/surgery/scalpel/manager = 0,			\
 		/obj/item/tool/surgery/scalpel = 100,		\
 		/obj/item/tool/kitchen/knife = 75,	\
 		/obj/item/shard = 50, 		\
@@ -22,8 +23,8 @@
 	can_infect = 1
 	blood_level = 1
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = NECRO_REMOVE_MIN_DURATION
+	max_duration = NECRO_REMOVE_MAX_DURATION
 	necro_step = 0
 
 /datum/surgery_step/necro/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -43,8 +44,6 @@
 	affected.createwound(CUT, 20, 1)
 	affected.update_wounds()
 
-
-
 /datum/surgery_step/necro/treat_necrosis
 
 	allowed_tools = list(
@@ -55,8 +54,8 @@
 	can_infect = 0
 	blood_level = 0
 
-	min_duration = 40
-	max_duration = 60
+	min_duration = NECRO_TREAT_MIN_DURATION
+	max_duration = NECRO_TREAT_MAX_DURATION
 	necro_step = 1
 
 /datum/surgery_step/necro/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

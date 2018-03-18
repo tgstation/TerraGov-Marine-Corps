@@ -110,8 +110,7 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/foregrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly)
+						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
 	gun_skill_category = GUN_SKILL_SPEC
@@ -573,7 +572,7 @@
 	attack_self(mob/user)
 		if(current_rounds <= 0)
 			user << "<span class='notice'>You begin taking apart the empty tube frame...</span>"
-			if(do_after(user,10, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,10, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2
@@ -686,7 +685,7 @@
 
 		if(user)
 			user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
-			if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_CLOCK))
+			if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 				user.drop_inv_item_on_ground(rocket)
 				replace_ammo(user,rocket)
 				current_mag.current_rounds = current_mag.max_rounds

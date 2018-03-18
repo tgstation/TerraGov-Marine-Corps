@@ -45,6 +45,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	round_fog = new
 	var/xeno_tunnels[] = new
 	var/monkey_spawns[] = new
+	var/map_items[] = new
 	var/obj/effect/blocker/fog/F
 	for(var/obj/effect/landmark/L in landmarks_list)
 		switch(L.name)
@@ -68,6 +69,20 @@ of predators), but can be added to include variant game modes (like humans vs. h
 			if("monkey_spawn")
 				monkey_spawns += L.loc
 				cdel(L)
+			if("map item")
+				map_items += L.loc
+				cdel(L)
+
+	// Spawn gamemode-specific map items
+	for(var/obj/effect/landmark/map_item/MI)
+		var/turf/T = pick(map_items)
+		map_items -= T
+		if(ticker.mode.name == "LV-624") new /obj/item/map/lazarus_landing_map(T)
+		else if(ticker.mode.name == "Ice Colony") new /obj/item/map/ice_colony_map(T)
+		else if(ticker.mode.name == "Solaris Ridge") new /obj/item/map/big_red_map(T)
+		else if(ticker.mode.name == "Prison Station") new /obj/item/map/FOP_map(T)
+		else
+			return
 
 	if(monkey_amount && monkey_types.len)
 		//var/debug_tally = 0
@@ -216,7 +231,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	//if(flags_round_type & MODE_INFESTATION)
 		//var/living_player_list[] = count_humans_and_xenos()
 		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	if(round_stats) round_stats << "[round_finished][dat]\nRound time: [duration2text()]\nRound population: [clients.len][log_end]" // Logging to data/logs/round_stats.log
+	if(round_stats) round_stats << "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]" // Logging to data/logs/round_stats.log
 
 	world << dat
 
@@ -359,6 +374,13 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 					//HELPER PROCS\\
 
 //===================================================\\
+
+//Spawns a larva in an appropriate location
+/datum/game_mode/proc/spawn_latejoin_larva()
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
+	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
 //Disperses fog, doing so gradually.
 /datum/game_mode/proc/disperse_fog()

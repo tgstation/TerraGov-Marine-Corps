@@ -95,78 +95,77 @@ var/bomb_set
 				add_fingerprint(user)
 			return
 
-	if (anchored)
+	if(anchored)
 		switch(removal_stage)
 			if(0)
-				if(istype(O,/obj/item/tool/weldingtool))
-
+				if(iswelder(O))
 					var/obj/item/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
-					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << "\red You need more fuel to complete this task."
+					if(WT.get_fuel() < 5) // uses up 5 fuel.
+						user << "<span class='warning'>You need more fuel to complete this task.</span>"
 						return
-
-					user.visible_message("[user] starts cutting loose the anchoring bolt covers on [src].", "You start cutting loose the anchoring bolt covers with [O]...")
-
-					if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+					user.visible_message("<span class='notice'>[user] starts cutting loose the anchoring bolt covers on [src].</span>",
+					"<span class='notice'>You start cutting loose the anchoring bolt covers with [O].</span>")
+					if(do_after(user,40, TRUE, 5, BUSY_ICON_GENERIC))
 						if(!src || !user || !WT.remove_fuel(5, user)) return
-						user.visible_message("[user] cuts through the bolt covers on [src].", "You cut through the bolt cover.")
+						user.visible_message("<span class='notice'>[user] cuts through the bolt covers on [src].</span>",
+						"<span class='notice'>You cut through the bolt cover.</span>")
 						removal_stage = 1
 				return
 
 			if(1)
-				if(istype(O,/obj/item/tool/crowbar))
-					user.visible_message("[user] starts forcing open the bolt covers on [src].", "You start forcing open the anchoring bolt covers with [O]...")
-
-					if(do_after(user,15, TRUE, 5, BUSY_ICON_CLOCK))
+				if(iscrowbar(O))
+					user.visible_message("<span class='notice'>[user] starts forcing open the bolt covers on [src].</span>",
+					"<span class='notice'>You start forcing open the anchoring bolt covers with [O].</span>")
+					if(do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 						if(!src || !user) return
-						user.visible_message("[user] forces open the bolt covers on [src].", "You force open the bolt covers.")
+						user.visible_message("<span class='notice'>[user] forces open the bolt covers on [src].</span>",
+						"<span class='notice'>You force open the bolt covers.</span>")
 						removal_stage = 2
 				return
 
 			if(2)
-				if(istype(O,/obj/item/tool/weldingtool))
-
+				if(iswelder(O))
 					var/obj/item/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
-					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << "\red You need more fuel to complete this task."
+					if(WT.get_fuel() < 5) //Uses up 5 fuel.
+						user << "<span class='warning'>You need more fuel to complete this task.</span>"
 						return
-
-					user.visible_message("[user] starts cutting apart the anchoring system sealant on [src].", "You start cutting apart the anchoring system's sealant with [O]...")
-
-					if(do_after(user,40, TRUE, 5, BUSY_ICON_CLOCK))
+					user.visible_message("<span class='notice'>[user] starts cutting apart the anchoring system sealant on [src].</span>",
+					"<span class='notice'>You start cutting apart the anchoring system's sealant with [O].</span>")
+					if(do_after(user, 40, TRUE, 5, BUSY_ICON_GENERIC))
 						if(!src || !user || !WT.remove_fuel(5, user)) return
-						user.visible_message("[user] cuts apart the anchoring system sealant on [src].", "You cut apart the anchoring system's sealant.")
+						user.visible_message("<span class='notice'>[user] cuts apart the anchoring system sealant on [src].</span>",
+						"<span class='notice'>You cut apart the anchoring system's sealant.</span>")
 						removal_stage = 3
 				return
 
 			if(3)
-				if(istype(O,/obj/item/tool/wrench))
-
-					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
-
-					if(do_after(user,50, TRUE, 5, BUSY_ICON_CLOCK))
+				if(iswrench(O))
+					user.visible_message("<span class='notice'>[user] begins unwrenching the anchoring bolts on [src].</span>",
+					"<span class='notice'>You begin unwrenching the anchoring bolts.</span>")
+					if(do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
 						if(!src || !user) return
-						user.visible_message("[user] unwrenches the anchoring bolts on [src].", "You unwrench the anchoring bolts.")
+						user.visible_message("<span class='notice'>[user] unwrenches the anchoring bolts on [src].</span>",
+						"<span class='notice'>You unwrench the anchoring bolts.</span>")
 						removal_stage = 4
 				return
 
 			if(4)
-				if(istype(O,/obj/item/tool/crowbar))
-
-					user.visible_message("[user] begins lifting [src] off of the anchors.", "You begin lifting the device off the anchors...")
-
-					if(do_after(user,80, TRUE, 5, BUSY_ICON_CLOCK))
+				if(iscrowbar(O))
+					user.visible_message("<span class='notice'>[user] begins lifting [src] off of the anchors.",
+					"<span class='notice'>You begin lifting the device off the anchors...")
+					if(do_after(user, 80, TRUE, 5, BUSY_ICON_GENERIC))
 						if(!src || !user) return
-						user.visible_message("[user] crowbars [src] off of the anchors. It can now be moved.", "You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
+						user.visible_message("<span class='notice'>[user] crowbars [src] off of the anchors. It can now be moved.",
+						"<span class='notice'>You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 						anchored = 0
 						removal_stage = 5
 				return
 	..()
 
 /obj/machinery/nuclearbomb/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
 	if (src.extended)

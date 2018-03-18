@@ -11,9 +11,9 @@
 	tackle_chance = 60
 	health = 250
 	maxHealth = 250
-	storedplasma = 200
+	plasma_stored = 200
 	plasma_gain = 10
-	maxplasma = 200
+	plasma_max = 200
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	caste_desc = "A huge tanky xenomorph."
@@ -30,6 +30,8 @@
 
 	pixel_x = -16
 	pixel_y = -3
+	old_x = -16
+	old_y = -3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -46,6 +48,10 @@
 		src << "<span class='xenowarning'>You are not ready to stomp again.</span>"
 		r_FAL
 
+	if(legcuffed)
+		src << "<span class='xenodanger'>You can't rear up to stomp with that thing on your leg!</span>"
+		return
+
 	if(!check_plasma(50)) return
 	has_screeched = world.time
 	use_plasma(50)
@@ -60,7 +66,8 @@
 		if(!i) break
 		if(!isXeno(M))
 			if(M.loc == loc)
-				M.take_overall_damage(40) //The same as a full charge, but no more than that.
+				if(!(M.status_flags & XENO_HOST) && !istype(M.buckled, /obj/structure/bed/nest))
+					M.take_overall_damage(40) //The same as a full charge, but no more than that.
 				M.KnockDown(rand(2, 3))
 				M << "<span class='highdanger'>You are stomped on by [src]!</span>"
 			shake_camera(M, 2, 2)
@@ -233,7 +240,11 @@
 	. = ..()
 	if(. && X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
-		apply_damage(X.charge_speed * 40, BRUTE)
+		if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
+			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
+			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")
+			apply_damage(X.charge_speed * 40, BRUTE)
 		KnockDown(X.charge_speed * 4)
 		animation_flash_color(src)
 		X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.
@@ -247,6 +258,11 @@
 /mob/living/carbon/Xenomorph/charge_act(mob/living/carbon/Xenomorph/X)
 	if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
+		if(corrupted != X.corrupted)
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
+			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
+			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")
+			apply_damage(X.charge_speed * 20, BRUTE) // half damage to avoid sillyness
 		if(anchored) //Ovipositor queen can't be pushed
 			X.stop_momentum(X.charge_dir, TRUE)
 			r_TRU

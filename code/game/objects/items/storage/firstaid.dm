@@ -13,7 +13,9 @@
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
-	cant_hold = list("/obj/item/ammo_magazine") //to prevent powergaming.
+	cant_hold = list("/obj/item/ammo_magazine",
+							"/obj/item/explosive/grenade",
+							"/obj/item/tool/surgery") //to prevent powergaming.
 	var/empty = 0 //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full
@@ -206,6 +208,7 @@ var/global/list/randomized_pillbottle_icons
 	storage_slots = null
 	use_sound = null
 	var/pillbottle_label = ""
+	var/skilllock = 1
 
 	New()
 		..()
@@ -224,6 +227,14 @@ var/global/list/randomized_pillbottle_icons
 				user << "Label reads: [pillbottle_label]."
 			else
 				user << "You don't understand what the label says."
+
+
+	open(mob/user)
+		var/mob/living/carbon/human/H = user
+		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+			H << "<span class='notice'>It must have some kind of ID lock...</span>"
+			return
+		..()
 
 /obj/item/storage/pill_bottle/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/hand_labeler) || istype(W, /obj/item/tool/pen))
@@ -492,3 +503,26 @@ var/global/list/randomized_pillbottle_icons
 		new /obj/item/reagent_container/pill/russianRed(src)
 		new /obj/item/reagent_container/pill/russianRed(src)
 		new /obj/item/reagent_container/pill/russianRed(src)
+
+
+/obj/item/storage/pill_bottle/quickclot
+	name = "\improper Quickclot pill bottle"
+	pillbottle_label = "QUICKCLOT"
+
+	New()
+		..()
+		icon_state = randomized_pillbottle_icons[11]
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)
+		new /obj/item/reagent_container/pill/quickclot(src)

@@ -2,6 +2,10 @@
 /mob/living/carbon/Xenomorph/proc/upgrade_xeno(newlevel)
 	upgrade = newlevel
 	upgrade_stored = 0
+	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
+	"<span class='xenonotice'>You begin to twist and contort.</span>")
+	xeno_jitter(25)
+	sleep(25)
 
 /*
 *1 is indicative of the base speed/armor
@@ -30,7 +34,7 @@ Ravager		-1.0	-0.9	-0.8	-0.7
 Crusher		 0.1	 0.1	 0.1	 0.1	*-2.0 when charging
 Sentinel	-1.1	-1.0	-0.9	-0.8
 Spitter		-0.8	-0.7	-0.6	-0.5
-Boiler		 0.2	 0.3	 0.4	 0.5
+Boiler		 0.4	 0.5	 0.6	 0.7
 Preatorian	-0.2	-0.1	 0.0	 0.1
 Drone		-1.1	-1.0	-0.9	-0.8
 Hivelord	 0.1	 0.2	 0.3	 0.4
@@ -42,7 +46,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 		//FIRST UPGRADE
 		if(1)
 			upgrade_name = "Mature"
-			src << "<span class='xenonotice'>You feel a bit stronger.</span>"
+			src << "<span class='xenodanger'>You feel a bit stronger.</span>"
 			switch(caste)
 				if("Runner")
 					melee_damage_lower = 15
@@ -50,7 +54,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 120
 					maxHealth = 120
 					plasma_gain = 2
-					maxplasma = 150
+					plasma_max = 150
 					upgrade_threshold = 400
 					caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
 					speed = -1.9
@@ -59,13 +63,14 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 2
 					tacklemax = 4
 					tackle_chance = 50
+					pounce_delay = 35
 				if("Hunter")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
 					health = 170
 					maxHealth = 170
 					plasma_gain = 10
-					maxplasma = 150
+					plasma_max = 150
 					upgrade_threshold = 800
 					caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
 					speed = -1.6
@@ -74,13 +79,14 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
+					pounce_delay = 50
 				if("Ravager")
 					melee_damage_lower = 50
 					melee_damage_upper = 70
 					health = 220
 					maxHealth = 220
 					plasma_gain = 10
-					maxplasma = 150
+					plasma_max = 150
 					upgrade_threshold = 1600
 					caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
 					speed = -0.8
@@ -97,7 +103,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 250
 					maxHealth = 250
 					plasma_gain = 15
-					maxplasma = 300
+					plasma_max = 300
 					upgrade_threshold = 1600
 					caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
 					armor_deflection = 65
@@ -107,7 +113,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 150
 					maxHealth = 150
 					plasma_gain = 12
-					maxplasma = 400
+					plasma_max = 400
 					upgrade_threshold = 400
 					spit_delay = 25
 					caste_desc = "A ranged combat alien. It looks a little more dangerous."
@@ -116,14 +122,13 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.9
-
 				if("Spitter")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
 					health = 180
 					maxHealth = 180
 					plasma_gain = 25
-					maxplasma = 700
+					plasma_max = 700
 					upgrade_threshold = 800
 					spit_delay = 20
 					caste_desc = "A ranged damage dealer. It looks a little more dangerous."
@@ -132,29 +137,29 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 60
 					speed = -0.6
-
 				if("Boiler")
 					melee_damage_lower = 20
 					melee_damage_upper = 25
 					health = 200
 					maxHealth = 200
 					plasma_gain = 35
-					maxplasma = 900
+					plasma_max = 900
 					upgrade_threshold = 1600
 					spit_delay = 30
+					bomb_strength = 1.5
 					caste_desc = "Some sort of abomination. It looks a little more dangerous."
 					armor_deflection = 30
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 65
-					speed = 0.4
+					speed = 0.6
 				if("Praetorian")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
 					health = 220
 					maxHealth = 220
 					plasma_gain = 30
-					maxplasma = 900
+					plasma_max = 900
 					upgrade_threshold = 1600
 					spit_delay = 15
 					caste_desc = "A giant ranged monster. It looks a little more dangerous."
@@ -169,7 +174,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 16
 					health = 120
 					maxHealth = 120
-					maxplasma = 800
+					plasma_max = 800
 					plasma_gain = 20
 					upgrade_threshold = 1000
 					caste_desc = "The workhorse of the hive. It looks a little more dangerous."
@@ -184,7 +189,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 20
 					health = 220
 					maxHealth = 220
-					maxplasma = 900
+					plasma_max = 900
 					plasma_gain = 40
 					upgrade_threshold = 1600
 					caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
@@ -199,7 +204,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 35
 					health = 200
 					maxHealth = 200
-					maxplasma = 300
+					plasma_max = 300
 					plasma_gain = 10
 					upgrade_threshold = 1600
 					caste_desc = "A portable Love transport. It looks a little more dangerous."
@@ -218,9 +223,10 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 55
 					health = 320
 					maxHealth = 320
-					maxplasma = 800
+					plasma_max = 800
 					plasma_gain = 40
 					upgrade_threshold = 1600
+					spit_delay = 20
 					caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 					armor_deflection = 50
 					tacklemin = 5
@@ -228,11 +234,12 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 85
 					speed = 0.2
 					aura_strength = 3
+					queen_leader_limit = 2
 
 		//SECOND UPGRADE
 		if(2)
 			upgrade_name = "Elite"
-			src << "<span class='xenowarning'>You feel a whole lot stronger.</span>"
+			src << "<span class='xenodanger'>You feel a whole lot stronger.</span>"
 			switch(caste)
 				if("Runner")
 					melee_damage_lower = 20
@@ -240,7 +247,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 150
 					maxHealth = 150
 					plasma_gain = 2
-					maxplasma = 200
+					plasma_max = 200
 					upgrade_threshold = 800
 					caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
 					speed = -2.0
@@ -249,13 +256,14 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 60
+					pounce_delay = 30
 				if("Hunter")
 					melee_damage_lower = 35
 					melee_damage_upper = 50
 					health = 200
 					maxHealth = 200
 					plasma_gain = 10
-					maxplasma = 200
+					plasma_max = 200
 					upgrade_threshold = 1600
 					caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
 					speed = -1.7
@@ -264,13 +272,14 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 65
+					pounce_delay = 45
 				if("Ravager")
 					melee_damage_lower = 60
 					melee_damage_upper = 80
 					health = 250
 					maxHealth = 250
 					plasma_gain = 15
-					maxplasma = 200
+					plasma_max = 200
 					upgrade_threshold = 3200
 					caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
 					speed = -0.9
@@ -287,7 +296,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 300
 					maxHealth = 300
 					plasma_gain = 30
-					maxplasma = 400
+					plasma_max = 400
 					upgrade_threshold = 3200
 					caste_desc = "A huge tanky xenomorph. It looks pretty strong."
 					armor_deflection = 70
@@ -297,7 +306,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 175
 					maxHealth = 175
 					plasma_gain = 15
-					maxplasma = 500
+					plasma_max = 500
 					upgrade_threshold = 800
 					spit_delay = 20
 					caste_desc = "A ranged combat alien. It looks pretty strong."
@@ -306,14 +315,13 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 60
 					speed = -1.0
-
 				if("Spitter")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
 					health = 200
 					maxHealth = 200
 					plasma_gain = 30
-					maxplasma = 800
+					plasma_max = 800
 					upgrade_threshold = 1600
 					spit_delay = 15
 					caste_desc = "A ranged damage dealer. It looks pretty strong."
@@ -322,29 +330,29 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 70
 					speed = -0.7
-
 				if("Boiler")
 					melee_damage_lower = 30
 					melee_damage_upper = 35
 					health = 220
 					maxHealth = 220
 					plasma_gain = 40
-					maxplasma = 1000
+					plasma_max = 1000
 					upgrade_threshold = 3200
 					spit_delay = 20
+					bomb_strength = 2
 					caste_desc = "Some sort of abomination. It looks pretty strong."
 					armor_deflection = 35
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 70
-					speed = 0.3
+					speed = 0.5
 				if("Praetorian")
 					melee_damage_lower = 30
 					melee_damage_upper = 35
 					health = 250
 					maxHealth = 250
 					plasma_gain = 40
-					maxplasma = 1000
+					plasma_max = 1000
 					upgrade_threshold = 3200
 					spit_delay = 10
 					caste_desc = "A giant ranged monster. It looks pretty strong."
@@ -353,14 +361,13 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 9
 					tackle_chance = 80
 					speed = -0.1
-
 					aura_strength = 3.5
 				if("Drone")
 					melee_damage_lower = 12
 					melee_damage_upper = 16
 					health = 150
 					maxHealth = 150
-					maxplasma = 900
+					plasma_max = 900
 					plasma_gain = 30
 					upgrade_threshold = 1500
 					caste_desc = "The workhorse of the hive. It looks a little more dangerous."
@@ -375,7 +382,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 20
 					health = 250
 					maxHealth = 250
-					maxplasma = 1000
+					plasma_max = 1000
 					plasma_gain = 50
 					upgrade_threshold = 3200
 					caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
@@ -390,7 +397,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 40
 					health = 220
 					maxHealth = 220
-					maxplasma = 350
+					plasma_max = 350
 					plasma_gain = 12
 					upgrade_threshold = 3200
 					caste_desc = "A portable Love transport. It looks pretty strong."
@@ -409,9 +416,10 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 60
 					health = 350
 					maxHealth = 350
-					maxplasma = 900
+					plasma_max = 900
 					plasma_gain = 50
 					upgrade_threshold = 3200
+					spit_delay = 15
 					caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
 					armor_deflection = 55
 					tacklemin = 6
@@ -419,6 +427,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 90
 					speed = 0.1
 					aura_strength = 4
+					queen_leader_limit = 3
 
 		//Final UPGRADE
 		if(3)
@@ -431,7 +440,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 140
 					maxHealth = 140
 					plasma_gain = 2
-					maxplasma = 200
+					plasma_max = 200
 					caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
 					speed = -2.1
 					armor_deflection = 10
@@ -439,6 +448,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 3
 					tacklemax = 5
 					tackle_chance = 70
+					pounce_delay = 25
 				if("Hunter")
 					src << "<span class='xenoannounce'>You are the epitome of the hunter. Few can stand against you in open combat.</span>"
 					melee_damage_lower = 50
@@ -446,7 +456,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 250
 					maxHealth = 250
 					plasma_gain = 20
-					maxplasma = 300
+					plasma_max = 300
 					caste_desc = "A completly unmatched hunter. No, not even the Yautja can match you."
 					speed = -1.8
 					armor_deflection = 25
@@ -454,6 +464,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 65
+					pounce_delay = 40
 				if("Ravager")
 					src << "<span class='xenoannounce'>You are death incarnate. All will tremble before you.</span>"
 					melee_damage_lower = 80
@@ -461,7 +472,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 350
 					maxHealth = 350
 					plasma_gain = 15
-					maxplasma = 200
+					plasma_max = 200
 					caste_desc = "As I walk through the valley of the shadow of death."
 					speed = -1.0
 					armor_deflection = 50
@@ -478,7 +489,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 350
 					maxHealth = 350
 					plasma_gain = 30
-					maxplasma = 400
+					plasma_max = 400
 					caste_desc = "It always has the right of way."
 					armor_deflection = 75
 				if("Sentinel")
@@ -488,7 +499,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 200
 					maxHealth = 200
 					plasma_gain = 20
-					maxplasma = 600
+					plasma_max = 600
 					spit_delay = 10
 					caste_desc = "Neurotoxin Factory, don't let it get you."
 					armor_deflection = 20
@@ -496,7 +507,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 6
 					tackle_chance = 60
 					speed = -1.1
-
 				if("Spitter")
 					src << "<span class='xenoannounce'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>"
 					melee_damage_lower = 35
@@ -504,7 +514,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 250
 					maxHealth = 250
 					plasma_gain = 50
-					maxplasma = 900
+					plasma_max = 900
 					spit_delay = 5
 					caste_desc = "A ranged destruction machine."
 					armor_deflection = 30
@@ -512,7 +522,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 7
 					tackle_chance = 75
 					speed = -0.8
-
 				if("Boiler")
 					src << "<span class='xenoannounce'>You are the master of ranged artillery. Bring death from above.</span>"
 					melee_damage_lower = 35
@@ -520,14 +529,15 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 250
 					maxHealth = 250
 					plasma_gain = 50
-					maxplasma = 1000
+					plasma_max = 1000
 					spit_delay = 10
+					bomb_strength = 2.5
 					caste_desc = "A devestating piece of alien artillery."
 					armor_deflection = 35
 					tacklemin = 4
 					tacklemax = 6
 					tackle_chance = 80
-					speed = 0.7
+					speed = 0.4
 				if("Praetorian")
 					src << "<span class='xenoannounce'>You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream.</span>"
 					melee_damage_lower = 40
@@ -535,7 +545,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					health = 270
 					maxHealth = 270
 					plasma_gain = 50
-					maxplasma = 1000
+					plasma_max = 1000
 					spit_delay = 0
 					caste_desc = "Its mouth looks like a minigun."
 					armor_deflection = 45
@@ -545,11 +555,12 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -0.2
 					aura_strength = 4.5
 				if("Drone")
+					src <<"<span class='xenoannounce'>You are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out.</span>"
 					melee_damage_lower = 20
 					melee_damage_upper = 30
 					health = 200
 					maxHealth = 200
-					maxplasma = 1000
+					plasma_max = 1000
 					plasma_gain = 50
 					caste_desc = "A very mean architect."
 					armor_deflection = 15
@@ -564,7 +575,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 30
 					health = 300
 					maxHealth = 300
-					maxplasma = 1200
+					plasma_max = 1200
 					plasma_gain = 70
 					caste_desc = "An extreme construction machine. It seems to be building walls..."
 					armor_deflection = 20
@@ -578,7 +589,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 45
 					health = 250
 					maxHealth = 250
-					maxplasma = 400
+					plasma_max = 400
 					plasma_gain = 15
 					caste_desc = "It's literally crawling with 10 huggers."
 					armor_deflection = 15
@@ -597,8 +608,9 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 90
 					health = 400
 					maxHealth = 400
-					maxplasma = 1000
+					plasma_max = 1000
 					plasma_gain = 50
+					spit_delay = 10
 					caste_desc = "The most perfect Xeno form imaginable."
 					armor_deflection = 55
 					tacklemin = 7
@@ -606,10 +618,14 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 95
 					speed = 0.0
 					aura_strength = 5
+					queen_leader_limit = 4
 
 	generate_name() //Give them a new name now
 
 	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
+
+	//One last shake for the sake of it
+	xeno_jitter(25)
 
 
 //Tiered spawns.
