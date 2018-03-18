@@ -241,7 +241,10 @@
 
 		if(queen_chosen_lead)
 			new_xeno.queen_chosen_lead = TRUE
+			xeno_leader_list += new_xeno
 			new_xeno.hud_set_queen_overwatch()
+			if(living_xeno_queen)
+				new_xeno.handle_xeno_leader_pheromones(living_xeno_queen)
 
 		if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
 			living_xeno_queen.set_queen_overwatch(new_xeno)
