@@ -24,11 +24,14 @@
 
 		update_progression()
 
-		if(evolution_allowed && evolution_stored < evolution_threshold && living_xeno_queen && living_xeno_queen.ovipositor)
-			evolution_stored = min(evolution_stored + 1, evolution_threshold)
-			if(evolution_stored == evolution_threshold - 1)
-				src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
-				src << sound('sound/effects/xeno_evolveready.ogg')
+		if(hivenumber && hivenumber <= hive_datum.len)
+			var/datum/hive_status/hive = hive_datum[hivenumber]
+
+			if(evolution_allowed && evolution_stored < evolution_threshold && hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
+				evolution_stored = min(evolution_stored + 1, evolution_threshold)
+				if(evolution_stored == evolution_threshold - 1)
+					src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
+					src << sound('sound/effects/xeno_evolveready.ogg')
 
 		//Status updates, death etc.
 		handle_regular_status_updates()
@@ -70,30 +73,30 @@
 					phero_center = Q.observed_xeno
 				var/pheromone_range = round(6 + aura_strength * 2)
 				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && corrupted == Z.corrupted)
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && hivenumber == Z.hivenumber)
 						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new && corrupted == Z.corrupted)
+					if(current_aura == "warding" && aura_strength > Z.warding_new && hivenumber == Z.hivenumber)
 						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new && corrupted == Z.corrupted)
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new && hivenumber == Z.hivenumber)
 						Z.recovery_new = aura_strength
 			else
 				var/pheromone_range = round(6 + aura_strength * 2)
 				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && corrupted == Z.corrupted)
+					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && hivenumber == Z.hivenumber)
 						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new && corrupted == Z.corrupted)
+					if(current_aura == "warding" && aura_strength > Z.warding_new && hivenumber == Z.hivenumber)
 						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new && corrupted == Z.corrupted)
+					if(current_aura == "recovery" && aura_strength > Z.recovery_new && hivenumber == Z.hivenumber)
 						Z.recovery_new = aura_strength
 
 		if(leader_current_aura && !stat)
 			var/pheromone_range = round(6 + leader_aura_strength * 2)
 			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-				if(leader_current_aura == "frenzy" && leader_aura_strength > Z.frenzy_new && corrupted == Z.corrupted)
+				if(leader_current_aura == "frenzy" && leader_aura_strength > Z.frenzy_new && hivenumber == Z.hivenumber)
 					Z.frenzy_new = leader_aura_strength
-				if(leader_current_aura == "warding" && leader_aura_strength > Z.warding_new && corrupted == Z.corrupted)
+				if(leader_current_aura == "warding" && leader_aura_strength > Z.warding_new && hivenumber == Z.hivenumber)
 					Z.warding_new = leader_aura_strength
-				if(leader_current_aura == "recovery" && leader_aura_strength > Z.recovery_new && corrupted == Z.corrupted)
+				if(leader_current_aura == "recovery" && leader_aura_strength > Z.recovery_new && hivenumber == Z.hivenumber)
 					Z.recovery_new = leader_aura_strength
 
 		if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
@@ -440,14 +443,20 @@ updatehealth()
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	if(!hud_used || !hud_used.locate_leader) return
 
-	if(!living_xeno_queen || is_intelligent)
+	var/datum/hive_status/hive
+	if(hivenumber && hivenumber <= hive_datum.len)
+		hive = hive_datum[hivenumber]
+	else
+		return
+
+	if(!hive.living_xeno_queen || is_intelligent)
 		hud_used.locate_leader.icon_state = "trackoff"
 		return
 
-	if(living_xeno_queen.z != src.z || get_dist(src,living_xeno_queen) < 1 || src == living_xeno_queen)
+	if(hive.living_xeno_queen.z != src.z || get_dist(src,hive.living_xeno_queen) < 1 || src == hive.living_xeno_queen)
 		hud_used.locate_leader.icon_state = "trackondirect"
 	else
-		hud_used.locate_leader.dir = get_dir(src,living_xeno_queen)
+		hud_used.locate_leader.dir = get_dir(src,hive.living_xeno_queen)
 		hud_used.locate_leader.icon_state = "trackon"
 
 /mob/living/carbon/Xenomorph/updatehealth()

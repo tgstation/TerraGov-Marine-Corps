@@ -27,7 +27,7 @@
 	var/attached = 0
 	var/lifecycle = 300 //How long the hugger will survive outside of the egg, or carrier.
 	var/leaping = 0 //Is actually attacking someone?
-	var/corrupted = 0
+	var/hivenumber = 0
 
 	New()
 		..()
@@ -73,6 +73,12 @@
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user)
+
+	if(user.hivenumber != hivenumber)
+		user.animation_attack_on(src)
+		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
+		Die()
+		return
 
 	switch(user.caste)
 		if("Queen","Drone","Hivelord","Carrier")
@@ -315,10 +321,11 @@
 		if(H.species && (H.species.flags & IS_SYNTHETIC)) return //can't impregnate synthetics
 
 	if(!sterile)
-		if(corrupted)
-			new /obj/item/alien_embryo/corrupted(target)
-		else
-			new /obj/item/alien_embryo(target)
+		for(var/obj/item/alien_embryo/embryo in target)
+			return // already got one, stops doubling up
+
+		var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(target)
+		embryo.hivenumber = hivenumber
 		target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
 		icon_state = "[initial(icon_state)]_impregnated"
 		Die()

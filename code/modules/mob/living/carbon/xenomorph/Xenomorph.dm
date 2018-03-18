@@ -26,10 +26,43 @@
 
 #undef DEBUG_XENO
 
+/datum/hive_status
+	var/hivenumber = XENO_HIVE_NORMAL
+	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
+	var/slashing_allowed = 1 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
+	var/queen_time = 300 //5 minutes between queen deaths
+	var/xeno_queen_timer
+	var/hive_orders = "" //What orders should the hive have
+	var/color = null
+	var/prefix = ""
+	var/list/xeno_leader_list = list()
+
+/datum/hive_status/corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+	prefix = "Corrupted "
+	color = "#00ff80"
+
+/datum/hive_status/alpha
+	hivenumber = XENO_HIVE_ALPHA
+	prefix = "Alpha "
+	color = "#cccc00"
+
+/datum/hive_status/beta
+	hivenumber = XENO_HIVE_BETA
+	prefix = "Beta "
+	color = "#9999ff"
+
+/datum/hive_status/zeta
+	hivenumber = XENO_HIVE_ZETA
+	prefix = "Zeta "
+	color = "#606060"
+
+var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_status/corrupted(), new /datum/hive_status/alpha(), new /datum/hive_status/beta(), new /datum/hive_status/zeta())
+
 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-var/global/slashing_allowed = 1
-var/global/queen_time = 300 //5 minutes between queen deaths
-var/global/hive_orders = "" //What orders should the hive have
+//var/global/slashing_allowed = 1
+//var/global/queen_time = 300 //5 minutes between queen deaths
+//var/global/hive_orders = "" //What orders should the hive have
 
 /mob/living/carbon/Xenomorph
 	name = "Drone"
@@ -55,7 +88,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
-	var/corrupted = 0
+	var/hivenumber = 1
 
 
 /mob/living/carbon/Xenomorph/New()
@@ -118,23 +151,26 @@ var/global/hive_orders = "" //What orders should the hive have
 	if(caste == "Larva")
 		return
 
-	var/corrupted_prefix = ""
+	var/name_prefix = ""
 
-	if(corrupted)
-		corrupted_prefix = "Corrupted "
-		add_language("English")
-	else
-		remove_language("English") // its hacky doing it here sort of
+	if(hivenumber && hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		name_prefix = hive.prefix
+		color = hive.color
+		if(name_prefix == "Corrupted ")
+			add_language("English")
+		else
+			remove_language("English") // its hacky doing it here sort of
 
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
 	if(caste == "Queen")
 		switch(upgrade)
-			if(0) name = "\improper [corrupted_prefix]Queen"			 //Young
-			if(1) name = "\improper [corrupted_prefix]Elite Queen"	 //Mature
-			if(2) name = "\improper [corrupted_prefix]Elite Empress"	 //Elite
-			if(3) name = "\improper [corrupted_prefix]Ancient Empress" //Ancient
-	else if(caste == "Predalien") name = "\improper [corrupted_prefix][name] ([nicknumber])"
-	else name = "\improper [corrupted_prefix][upgrade_name] [caste] ([nicknumber])"
+			if(0) name = "\improper [name_prefix]Queen"			 //Young
+			if(1) name = "\improper [name_prefix]Elite Queen"	 //Mature
+			if(2) name = "\improper [name_prefix]Elite Empress"	 //Elite
+			if(3) name = "\improper [name_prefix]Ancient Empress" //Ancient
+	else if(caste == "Predalien") name = "\improper [name_prefix][name] ([nicknumber])"
+	else name = "\improper [name_prefix][upgrade_name] [caste] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -163,17 +199,22 @@ var/global/hive_orders = "" //What orders should the hive have
 			if(1 to 24)
 				user << "It is heavily injured and limping badly."
 
-	if(corrupted)
-		user << "It appears to have been corrupted, but for what purpose?"
+	if(hivenumber != XENO_HIVE_NORMAL)
+		if(hivenumber && hivenumber <= hive_datum.len)
+			var/datum/hive_status/hive = hive_datum[hivenumber]
+			user << "It appears to belong to the [hive.prefix]hive"
 	return
 
 /mob/living/carbon/Xenomorph/Dispose()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
-	if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
-		living_xeno_queen.set_queen_overwatch(src, TRUE)
-	if(src in xeno_leader_list)
-		xeno_leader_list -= src
+
+	if(hivenumber && hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
+			hive.living_xeno_queen.set_queen_overwatch(src, TRUE)
+		if(src in hive.xeno_leader_list)
+			hive.xeno_leader_list -= src
 	. = ..()
 
 

@@ -114,10 +114,10 @@ proc/isXeno(A) //Xenomorph Hud Test APOPHIS 22MAY2015
 		return 1
 	return 0
 
-proc/isCorruptedXeno(A)
+proc/xeno_hivenumber(A)
 	if(isXeno(A))
 		var/mob/living/carbon/Xenomorph/X = A
-		return X.corrupted
+		return X.hivenumber
 	return 0
 
 proc/isXenoBoiler(A)

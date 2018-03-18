@@ -51,7 +51,7 @@ var/global/list/events = list()
 var/list/global/active_laser_targets = list()
 
 //Used by Queen overwatch
-var/global/list/xeno_leader_list = list()
+//var/global/list/xeno_leader_list = list() - moved to hive_datum
 
 //Languages/species/whitelist.
 var/global/list/all_species[0]

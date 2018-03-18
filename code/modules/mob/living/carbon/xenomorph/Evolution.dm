@@ -72,7 +72,13 @@
 		src << "<span class='warning'>You can't evolve in your current state.</span>"
 		return
 
-	if((!corrupted && !living_xeno_queen) && castepick != "Queen" && !isXenoLarva(src)) // let corrupted xenos evolve whenever
+	var/datum/hive_status/hive
+	if(hivenumber && hivenumber <= hive_datum.len)
+		hive = hive_datum[hivenumber]
+	else
+		return
+
+	if((!hive.living_xeno_queen) && castepick != "Queen" && !isXenoLarva(src))
 		src << "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>"
 		return
 
@@ -83,20 +89,15 @@
 	if(castepick == "Queen") //Special case for dealing with queenae
 		if(!hardcore)
 			if(plasma_stored >= 500)
-				if(corrupted)
-					for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
-						if(istype(M, /mob/living/carbon/Xenomorph/Queen) && M.corrupted)
-							src << "<span class='warning'>There already is a living Corrupted Queen.</span>"
-							return
-				else if(living_xeno_queen)
+				if(hive.living_xeno_queen)
 					src << "<span class='warning'>There already is a living Queen.</span>"
 					return
 			else
 				src << "<span class='warning'>You require more plasma! Currently at: [plasma_stored] / 500.</span>"
 				return
 
-			if(!corrupted && ticker && ticker.mode && ticker.mode.xeno_queen_timer)
-				src << "<span class='warning'>You must wait about [round(ticker.mode.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>"
+			if(hivenumber == 1 && ticker && ticker.mode && hive.xeno_queen_timer)
+				src << "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>"
 				return
 		else
 			src << "<span class='warning'>Nuh-uhh.</span>"
@@ -105,27 +106,23 @@
 	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 	//Should count mindless as well so people don't cheat
 	for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
-		switch(M.tier)
-			if(0)
-				if(caste == "Bloody Larva")
-					if(corrupted == M.corrupted)
+		if(hivenumber == M.hivenumber)
+			switch(M.tier)
+				if(0)
+					if(caste == "Bloody Larva")
 						potential_queens++
-				continue
-			if(1)
-				if(caste == "Drone")
-					if(corrupted == M.corrupted)
+					continue
+				if(1)
+					if(caste == "Drone")
 						potential_queens++
-			if(2)
-				if(corrupted == M.corrupted)
+				if(2)
 					tierB++
-			if(3)
-				if(corrupted == M.corrupted)
+				if(3)
 					tierC++
-			else
-				src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
+				else
+					src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
 
-				continue
-		if(corrupted == M.corrupted)
+					continue
 			totalXenos++
 
 	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5 && castepick != "Queen")
@@ -135,7 +132,7 @@
 		src << "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>"
 
 		return
-	else if(!living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && castepick != "Drone")
+	else if(!hive.living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && castepick != "Drone")
 		src << "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>"
 		return
 	else
@@ -166,7 +163,17 @@
 		if("Hunter")
 			M = /mob/living/carbon/Xenomorph/Hunter
 		if("Queen")
-			M = /mob/living/carbon/Xenomorph/Queen
+			switch(hivenumber) // because it causes issues otherwise
+				if(XENO_HIVE_NORMAL)
+					M = /mob/living/carbon/Xenomorph/Queen
+				if(XENO_HIVE_CORRUPTED)
+					M = /mob/living/carbon/Xenomorph/Queen/Corrupted
+				if(XENO_HIVE_ALPHA)
+					M = /mob/living/carbon/Xenomorph/Queen/Alpha
+				if(XENO_HIVE_BETA)
+					M = /mob/living/carbon/Xenomorph/Queen/Beta
+				if(XENO_HIVE_ZETA)
+					M = /mob/living/carbon/Xenomorph/Queen/Zeta
 		if("Crusher")
 			M = /mob/living/carbon/Xenomorph/Crusher
 		if("Boiler")
@@ -193,7 +200,7 @@
 			if(jobban_isbanned(src, "Queen"))
 				src << "<span class='warning'>You are jobbanned from the Queen role.</span>"
 				return
-			if(living_xeno_queen)
+			if(hive.living_xeno_queen)
 				src << "<span class='warning'>There already is a Queen.</span>"
 				return
 
@@ -215,7 +222,7 @@
 
 		//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 		new_xeno.nicknumber = nicknumber
-		new_xeno.corrupted = corrupted
+		new_xeno.hivenumber = hivenumber
 		generate_name()
 
 		if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
@@ -241,13 +248,13 @@
 
 		if(queen_chosen_lead)
 			new_xeno.queen_chosen_lead = TRUE
-			xeno_leader_list += new_xeno
+			hive.xeno_leader_list += new_xeno
 			new_xeno.hud_set_queen_overwatch()
-			if(living_xeno_queen)
-				new_xeno.handle_xeno_leader_pheromones(living_xeno_queen)
+			if(hive.living_xeno_queen)
+				new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 
-		if(living_xeno_queen && living_xeno_queen.observed_xeno == src)
-			living_xeno_queen.set_queen_overwatch(new_xeno)
+		if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
+			hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 		cdel(src)
 		new_xeno.xeno_jitter(25)
 	else

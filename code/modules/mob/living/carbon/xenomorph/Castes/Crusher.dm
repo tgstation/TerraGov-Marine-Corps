@@ -258,7 +258,7 @@
 /mob/living/carbon/Xenomorph/charge_act(mob/living/carbon/Xenomorph/X)
 	if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
-		if(corrupted != X.corrupted)
+		if(hivenumber != X.hivenumber)
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
 			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
 			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")

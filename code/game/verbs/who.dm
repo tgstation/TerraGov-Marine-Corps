@@ -83,10 +83,11 @@
 		msg += "[line]\n"
 
 	if(holder)
+		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b style='color:#777'>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
 		msg += "<br><b style='color:#2C7EFF'>Humans: [count_humans]</b> <b style='color:#688944'>(Marines: ~[count_marine_humans])</b> <b style='color:#F00'>(Infected: [count_infectedhumans])</b><br><b style='color:#2C7EFF'>Zeds: [count_zed]</b>"
-		msg += "<br><b style='color:#8200FF'>Aliens: [count_aliens]</b> <b style='color:#4D0096'>(Queen: [living_xeno_queen ? "Alive" : "Dead"])</b>"
+		msg += "<br><b style='color:#8200FF'>Aliens: [count_aliens]</b> <b style='color:#4D0096'>(Queen: [hive.living_xeno_queen ? "Alive" : "Dead"])</b>"
 		msg += "<br><b style='color:#7ABA19'>Predators: [count_preds]</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"

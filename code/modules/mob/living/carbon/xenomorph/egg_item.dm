@@ -8,9 +8,7 @@
 	flags_atom = NOBLUDGEON
 	throw_range = 1
 	layer = MOB_LAYER
-	var/corrupted = 0
-
-
+	var/hivenumber = 0
 
 /obj/item/xeno_egg/New()
 	pixel_x = rand(-3,3)
@@ -22,7 +20,7 @@
 	..()
 	if(isXeno(user))
 		user << "A queen egg, it needs to be planted on weeds to start growing."
-		if(corrupted)
+		if(hivenumber == XENO_HIVE_CORRUPTED)
 			user << "This one appears to have been laid by a corrupted Queen."
 
 /obj/item/xeno_egg/afterattack(atom/target, mob/user, proximity)
@@ -51,7 +49,7 @@
 		if (!istype(O,/obj/machinery/light/small))
 			return
 	var/obj/effect/alien/egg/newegg = new /obj/effect/alien/egg(T)
-	newegg.corrupted = corrupted
+	newegg.hivenumber = hivenumber
 	playsound(T, 'sound/effects/splat.ogg', 15, 1)
 	cdel(src)
 
@@ -77,7 +75,7 @@
 	if(locate(/obj/effect/alien/weeds) in T)
 		user.use_plasma(30)
 		var/obj/effect/alien/egg/newegg = new /obj/effect/alien/egg(T)
-		newegg.corrupted = corrupted
+		newegg.hivenumber = hivenumber
 		playsound(T, 'sound/effects/splat.ogg', 15, 1)
 		cdel(src)
 

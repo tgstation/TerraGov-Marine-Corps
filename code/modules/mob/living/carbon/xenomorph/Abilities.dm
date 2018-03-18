@@ -236,11 +236,13 @@
 		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
 		playsound(X.loc, "alien_drool", 25)
 
+	if(X.hivenumber && X.hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[X.hivenumber]
 
-	if(isXenoQueen(X) && xeno_leader_list.len && X.anchored)
-		var/mob/living/carbon/Xenomorph/Queen/Q = X
-		for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
-			L.handle_xeno_leader_pheromones(Q)
+		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+			var/mob/living/carbon/Xenomorph/Queen/Q = X
+			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+				L.handle_xeno_leader_pheromones(Q)
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
@@ -697,7 +699,7 @@
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen" && X.corrupted == T.corrupted)
+		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen" && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
@@ -730,12 +732,17 @@
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	if(!X.check_state())
 		return
+	var/datum/hive_status/hive
+	if(X.hivenumber && X.hivenumber <= hive_datum.len)
+		hive = hive_datum[X.hivenumber]
+	else
+		return
 	if(X.observed_xeno)
 		if(X.queen_ability_cooldown > world.time)
 			X << "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>"
 			return
-		if(X.queen_leader_limit <= xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
-			X << "<span class='xenowarning'>You currently have [xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>"
+		if(X.queen_leader_limit <= hive.xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
+			X << "<span class='xenowarning'>You currently have [hive.xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>"
 			return
 		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 		T.queen_chosen_lead = !T.queen_chosen_lead
@@ -744,15 +751,15 @@
 		if(T.queen_chosen_lead)
 			X << "<span class='xenonotice'>You've selected [T] as a Hive Leader.</span>"
 			T << "<span class='xenoannounce'>[X] has selected you as a Hive Leader. The other Xenomorphs must listen to you. You will also act as a beacon for the Queen's pheromones.</span>"
-			xeno_leader_list += T
+			hive.xeno_leader_list += T
 		else
 			X << "<span class='xenonotice'>You've demoted [T] from Lead.</span>"
 			T << "<span class='xenoannounce'>[X] has demoted you from Hive Leader. Your leadership rights and abilities have waned.</span>"
-			xeno_leader_list -= T
+			hive.xeno_leader_list -= T
 		T.handle_xeno_leader_pheromones(X)
 	else
 		var/list/possible_xenos = list()
-		for(var/mob/living/carbon/Xenomorph/T in xeno_leader_list)
+		for(var/mob/living/carbon/Xenomorph/T in hive.xeno_leader_list)
 			possible_xenos += T
 
 		if(possible_xenos.len > 1)
@@ -975,8 +982,10 @@
 			new_xeno.queen_chosen_lead = TRUE
 			new_xeno.hud_set_queen_overwatch()
 
-		if(living_xeno_queen && living_xeno_queen.observed_xeno == T)
-			living_xeno_queen.set_queen_overwatch(new_xeno)
+		var/datum/hive_status/hive = hive_datum[X.hivenumber]
+
+		if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == T)
+			hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 
 		new_xeno.upgrade_xeno(TRUE, min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
 

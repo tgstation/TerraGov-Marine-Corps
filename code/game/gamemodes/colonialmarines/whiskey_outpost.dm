@@ -716,8 +716,9 @@
 	//var/xenos_spawned = 0 //Debug
 	var/list/tempspawnxeno = list() //Temporarly replaces the main list
 	var/list/xeno_spawn_loc = list()
-	if(slashing_allowed != 1)
-		slashing_allowed = 1 //Allows harm intent for aliens
+	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	if(hive.slashing_allowed != 1)
+		hive.slashing_allowed = 1 //Allows harm intent for aliens
 
 	var/humans_alive = count_humans()
 

@@ -185,7 +185,8 @@
 /datum/game_mode/colonialmarines_halloween_2016/post_setup()
 	set waitfor = 0
 
-	slashing_allowed = 1
+	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	hive.slashing_allowed = 1
 	lobby_time = world.time
 	//initialize_post_predator_list()
 

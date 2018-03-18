@@ -9,19 +9,13 @@
 	var/stage = 0
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst
 	var/larva_autoburst_countdown = 20 //to kick the larva out
-	var/corrupted = 0
-
-/obj/item/alien_embryo/corrupted
-	corrupted = 1
+	var/hivenumber = 0
 
 /obj/item/alien_embryo/New()
 	..()
 	if(istype(loc, /mob/living))
 		affected_mob = loc
-		if(corrupted)
-			affected_mob.status_flags |= XENO_CORRUPTED_HOST
-		else
-			affected_mob.status_flags |= XENO_HOST
+		affected_mob.status_flags |= XENO_HOST
 		processing_objects.Add(src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
@@ -31,10 +25,7 @@
 
 /obj/item/alien_embryo/Dispose()
 	if(affected_mob)
-		if(corrupted)
-			affected_mob.status_flags &= ~(XENO_CORRUPTED_HOST)
-		else
-			affected_mob.status_flags &= ~(XENO_HOST)
+		affected_mob.status_flags &= ~(XENO_HOST)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -49,10 +40,7 @@
 		r_FAL
 
 	if(loc != affected_mob) //Our location is not the host
-		if(corrupted)
-			affected_mob.status_flags &= ~(XENO_CORRUPTED_HOST)
-		else
-			affected_mob.status_flags &= ~(XENO_HOST)
+		affected_mob.status_flags &= ~(XENO_HOST)
 		processing_objects.Remove(src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
@@ -161,7 +149,7 @@
 	else
 		new_xeno = new(affected_mob)
 
-	new_xeno.corrupted = corrupted
+	new_xeno.hivenumber = hivenumber
 	new_xeno.update_icons()
 
 	// If we have a candidate, transfer it over

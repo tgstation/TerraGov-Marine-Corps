@@ -411,12 +411,12 @@
 	set category = "Alien"
 
 	if(caste == "Queen" && anchored)
-		check_hive_status(src)
+		check_hive_status(src, anchored)
 	else
-		check_hive_status()
+		check_hive_status(src)
 
 
-/proc/check_hive_status(mob/living/carbon/Xenomorph/Queen/user)
+/proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = 0)
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
 	var/count = 0
@@ -449,9 +449,12 @@
 	var/larva_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
 		if(X.z == ADMIN_Z_LEVEL) continue //don't show xenos in the thunderdome when admins test stuff.
+		if(istype(user)) // cover calling it without parameters
+			if(X.hivenumber != user.hivenumber)
+				continue // not our hive
 		var/area/A = get_area(X)
 		var/xenoinfo
-		if(user && X != user)
+		if(user && anchored && X != user)
 			xenoinfo = "<tr><td><a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
 		else
 			xenoinfo = "<tr><td>[X.name] "
@@ -535,4 +538,3 @@
 		src << "<span class='notice'>The selected xeno ability will now be activated with shift clicking.</span>"
 	else
 		src << "<span class='notice'>The selected xeno ability will now be activated with middle mouse clicking.</span>"
-

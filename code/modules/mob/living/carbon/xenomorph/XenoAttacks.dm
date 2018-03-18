@@ -119,17 +119,34 @@
 
 			if("hurt")//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
 				M.animation_attack_on(src)
-				if(corrupted == M.corrupted)
+				if(hivenumber == M.hivenumber)
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
 					"<span class='warning'>You nibble \the [src].</span>")
 					return 1
 				else
-					var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper)) // no plus 3 because its too much damage
+					// copypasted from attack_alien.dm
+					//From this point, we are certain a full attack will go out. Calculate damage and modifiers
+					var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+
+					//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
+					if(M.frenzy_aura > 0)
+						damage += (M.frenzy_aura * 2)
+
+					//Somehow we will deal no damage on this attack
+					if(!damage)
+						playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+						M.animation_attack_on(src)
+						M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
+						"<span class='danger'>You lunge at [src]!</span>")
+						return 0
+
 					M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 					"<span class='danger'>You slash [src]!</span>")
 					src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slashed by [M.name] ([M.ckey])</font>")
 					M.attack_log += text("\[[time_stamp()]\] <font color='red'>slashed [src.name] ([src.ckey])</font>")
 					log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
+
+					playsound(loc, "alien_claw_flesh", 25, 1)
 					apply_damage(damage, BRUTE)
 
 			if("disarm")
