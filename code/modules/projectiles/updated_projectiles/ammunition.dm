@@ -262,30 +262,36 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //Big ammo boxes
 
-/obj/item/ammo_magazine/big_box
+/obj/item/big_ammo_box
 	name = "big ammo box (10x24mm)"
-	desc = "A large ammo box capable of containing hundreds of rounds."
+	desc = "A large ammo box."
 	w_class = 5
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
-	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 400
-	caliber = "10x24mm"
-	gun_type = null
+	item_state = "table_parts" //sprite looks roughly similar
 	var/base_icon_state = "big_ammo_box"
+	var/default_ammo = /datum/ammo/bullet/rifle
+	var/bullet_amount = 400
+	var/max_bullet_amount = 400
+	var/caliber = "10x24mm"
 
-
-/obj/item/ammo_magazine/big_box/update_icon()
-	if(current_rounds) icon_state = base_icon_state
+/obj/item/big_ammo_box/update_icon()
+	if(bullet_amount) icon_state = base_icon_state
 	else icon_state = "[base_icon_state]_e"
 
+/obj/item/big_ammo_box/examine(mob/user)
+	..()
+	if(bullet_amount)
+		user << "It contains [bullet_amount] round\s."
+	else
+		user << "It's empty."
 
-/obj/item/ammo_magazine/big_box/attackby(obj/item/I, mob/living/user)
+/obj/item/big_ammo_box/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/ammo_magazine))
-		if(!isturf(loc))
-			user << "<span class='warning'>You won't be able to reload this unless the box is on the ground.</span>"
-			return
 		var/obj/item/ammo_magazine/AM = I
+		if(!isturf(loc))
+			user << "<span class='warning'>[src] must be on the ground to be used.</span>"
+			return
 		if(AM.flags_magazine & AMMUNITION_REFILLABLE)
 			if(default_ammo != AM.default_ammo)
 				user << "<span class='warning'>Those aren't the same rounds. Better not mix them up.</span>"
@@ -296,33 +302,52 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(AM.current_rounds == AM.max_rounds)
 				user << "<span class='warning'>[AM] is already full.</span>"
 				return
-			if(!current_rounds)
-				user << "<span class='warning'>[src] is empty.</span>"
+			if(!do_after(user,15, TRUE, 5, BUSY_ICON_FRIENDLY))
 				return
-			if(do_after(user,15, TRUE, 5, BUSY_ICON_FRIENDLY))
-				var/transfered_ammo = AM.transfer_ammo(src, user, min(current_rounds,AM.max_rounds))
-				if(transfered_ammo)
-					playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
-					if(AM.current_rounds == AM.max_rounds)
-						user << "<span class='notice'>You refill [AM].</span>"
-					else
-						user << "<span class='notice'>You put [transfered_ammo] rounds in [AM].</span>"
-
+			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)
+			AM.current_rounds += S
+			bullet_amount -= S
+			AM.update_icon(S)
+			update_icon()
+			if(AM.current_rounds == AM.max_rounds)
+				user << "<span class='notice'>You refill [AM].</span>"
+			else
+				user << "<span class='notice'>You put [S] rounds in [AM].</span>"
 		else if(AM.flags_magazine & AMMUNITION_HANDFUL)
-			var/transfered_ammo = transfer_ammo(AM, user, AM.current_rounds)
-			if(transfered_ammo)
-				playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
-				user << "<span class='notice'>You put [transfered_ammo] rounds in [src].</span>"
+			if(caliber != AM.caliber)
+				user << "<span class='warning'>The rounds don't match up. Better not mix them up.</span>"
+				return
+			if(bullet_amount == max_bullet_amount)
+				user << "<span class='warning'>[src] is full!</span>"
+				return
+			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+			var/S = min(AM.current_rounds, max_bullet_amount - bullet_amount)
+			AM.current_rounds -= S
+			bullet_amount += S
+			AM.update_icon()
+			user << "<span class='notice'>You put [S] rounds in [src].</span>"
+			if(AM.current_rounds <= 0)
+				user.temp_drop_inv_item(AM)
+				cdel(AM)
+
+//explosion when using flamer procs.
+/obj/item/big_ammo_box/flamer_fire_act()
+	switch(bullet_amount)
+		if(0) return
+		if(1 to 100) explosion(loc,  0, 0, 1, 2) //blow it up.
+		else explosion(loc,  0, 0, 2, 3) //blow it up HARDER
+	cdel(src)
 
 
 
-/obj/item/ammo_magazine/big_box/ap
+/obj/item/big_ammo_box/ap
 	name = "big ammo box (10x24mm AP)"
 	icon_state = "big_ammo_box_ap"
 	base_icon_state = "big_ammo_box_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 
-/obj/item/ammo_magazine/big_box/smg
+/obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
 	caliber = "10x20mm"
 	icon_state = "big_ammo_box_m39"

@@ -1037,7 +1037,7 @@ AMMO
 
 /datum/supply_packs/ammo_box_rifle
 	name = "large M41A ammo box crate (x400 rounds)"
-	contains = list(/obj/item/ammo_magazine/big_box)
+	contains = list(/obj/item/big_ammo_box)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
@@ -1045,7 +1045,7 @@ AMMO
 
 /datum/supply_packs/ammo_box_rifle_ap
 	name = "large armor piercing M41A ammo box crate (x400 AP rounds)"
-	contains = list(/obj/item/ammo_magazine/big_box/ap)
+	contains = list(/obj/item/big_ammo_box/ap)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
@@ -1053,7 +1053,7 @@ AMMO
 
 /datum/supply_packs/ammo_box_smg
 	name = "large M39 ammo box crate (x400 rounds)"
-	contains = list(/obj/item/ammo_magazine/big_box/smg)
+	contains = list(/obj/item/big_ammo_box/smg)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
