@@ -292,24 +292,26 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_corrupt_xeno(mob/living/carbon/Xenomorph/M in mob_list)
+/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/M in mob_list, var/hivenumber = XENO_HIVE_NORMAL)
 	set category = "Debug"
-	set name = "Corrupt Xenomorph"
+	set name = "Change Hivenumber"
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
 	if(isXeno(M))
-		log_admin("[key_name(src)] toggled corruption on [M] to [M.corrupted].")
-		M.corrupted = !M.corrupted
+		log_admin("[key_name(src)] changed hivenumber of [M] to [M.hivenumber].")
+		M.hivenumber = hivenumber
 		if(istype(M, /mob/living/carbon/Xenomorph/Larva))
 			var/mob/living/carbon/Xenomorph/Larva/L = M
 			L.update_icons() // larva renaming done differently
 		else
 			M.generate_name()
-		usr << "Corruption toggled to [M.corrupted]"
-		feedback_add_details("admin_verb","MKCT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		message_admins("\blue [key_name(src)] toggled corruption on [M] to [M.corrupted].", 1)
+		if(istype(M, /mob/living/carbon/Xenomorph/Queen))
+			update_living_queens()
+		usr << "Hivenumber set to [M.hivenumber]"
+		feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		message_admins("\blue [key_name(src)] changed hivenumber of [M] to [M.hivenumber].", 1)
 	else
 		alert("Invalid mob")
 

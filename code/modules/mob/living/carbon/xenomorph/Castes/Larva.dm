@@ -61,12 +61,16 @@
 	var/progress = "" //Naming convention, three different names
 	var/state = "" //Icon convention, two different sprite sets
 
-	var/corrupted_prefix = ""
-	if(corrupted)
-		corrupted_prefix = "Corrupted "
-		add_language("English")
-	else
-		remove_language("English") // its hacky doing it here sort of
+	var/name_prefix = ""
+
+	if(hivenumber && hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		name_prefix = hive.prefix
+		color = hive.color
+		if(name_prefix == "Corrupted ")
+			add_language("English")
+		else
+			remove_language("English") // its hacky doing it here sort of
 
 	switch(amount_grown)
 		if(0 to 49) //We're still bloody
@@ -78,7 +82,7 @@
 		if(100 to INFINITY)
 			progress = "Mature "
 
-	name = "\improper [corrupted_prefix][progress]Larva ([nicknumber])"
+	name = "\improper [name_prefix][progress]Larva ([nicknumber])"
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Larva/predalien)) state = "Predalien " //Sort of a hack.
 

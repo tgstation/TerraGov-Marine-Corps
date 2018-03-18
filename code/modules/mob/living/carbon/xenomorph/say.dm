@@ -80,7 +80,12 @@
 	if(!message || src.stat)
 		return
 
-	if(!living_xeno_queen)
+	var/datum/hive_status/hive
+	if(hivenumber && hivenumber <= hive_datum.len)
+		hive = hive_datum[hivenumber]
+	else return
+
+	if(!hive.living_xeno_queen)
 		src << "<span class='warning'>There is no Queen. You are alone.</span>"
 		return
 
@@ -107,8 +112,8 @@
 					else
 						ghostrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
 					S.show_message(ghostrend, 2)
-			else if(S != src && S == living_xeno_queen && living_xeno_queen.ovipositor && corrupted == isCorruptedXeno(S))
+			else if(S != src && S == hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
 				var/queenrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> (<a href='byond://?src=\ref[S];queentrack=\ref[src]'>watch</a>)<span class='message'> hisses, '[message]'</span></span></i>"
 				S.show_message(queenrend, 2)
-			else if(corrupted == isCorruptedXeno(S))
+			else if(hivenumber == xeno_hivenumber(S))
 				S.show_message(rendered, 2)

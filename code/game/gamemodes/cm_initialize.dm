@@ -48,7 +48,7 @@ Additional game mode variables.
 	var/xeno_required_num 	= 0 //We need at least one. You can turn this off in case we don't care if we spawn or don't spawn xenos.
 	var/xeno_starting_num 	= 0 //To clamp starting xenos.
 	var/xeno_bypass_timer 	= 0 //Bypass the five minute timer before respawning.
-	var/xeno_queen_timer  	= 0 //How long ago did the queen die?
+	//var/xeno_queen_timer  	= list(0, 0, 0, 0, 0) //How long ago did the queen die?
 	var/xeno_queen_deaths 	= 0 //How many times the alien queen died.
 	var/surv_starting_num 	= 0 //To clamp starting survivors.
 	var/merc_starting_num 	= 0 //PMC clamp.
@@ -393,7 +393,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/mob/original = ghost_mind.current
 	var/mob/living/carbon/Xenomorph/new_xeno
 	var/is_queen = FALSE
-	if(!living_xeno_queen && original && original.client && original.client.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
+	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	if(!hive.living_xeno_queen && original && original.client && original.client.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
 		new_xeno = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
 		is_queen = TRUE
 	else

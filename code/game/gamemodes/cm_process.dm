@@ -121,7 +121,8 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	if(--round_started > 0) r_FAL //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 
 	if(!round_finished)
-		if(xeno_queen_timer && --xeno_queen_timer <= 1) xeno_message("The Hive is ready for a new Queen to evolve.")
+		for(var/datum/hive_status/hive in hive_datum)
+			if(hive.xeno_queen_timer && --hive.xeno_queen_timer <= 1) xeno_message("The Hive is ready for a new Queen to evolve.", 3, hive.hivenumber)
 
 		// Automated bioscan / Queen Mother message
 		if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
@@ -159,13 +160,15 @@ of predators), but can be added to include variant game modes (like humans vs. h
 //If the queen is dead after a period of time, this will end the game.
 /datum/game_mode/proc/check_queen_status(queen_time)
 	set waitfor = 0
-	ticker.mode.xeno_queen_timer = queen_time
+	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	hive.xeno_queen_timer = queen_time
 	if(!(flags_round_type & MODE_INFESTATION)) return
 	xeno_queen_deaths += 1
 	var/num_last_deaths = xeno_queen_deaths
 	sleep(QUEEN_DEATH_COUNTDOWN)
 	//We want to make sure that another queen didn't die in the interim.
-	if(xeno_queen_deaths == num_last_deaths && !round_finished && !living_xeno_queen ) round_finished = MODE_INFESTATION_M_MINOR
+
+	if(xeno_queen_deaths == num_last_deaths && !round_finished && !hive.living_xeno_queen ) round_finished = MODE_INFESTATION_M_MINOR
 
 
 /datum/game_mode/proc/check_win_infection()

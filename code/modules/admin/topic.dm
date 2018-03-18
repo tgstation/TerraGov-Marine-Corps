@@ -1161,15 +1161,15 @@
 
 		usr.client.cmd_admin_alienize(H)
 
-	else if(href_list["makecorrupted"])
+	else if(href_list["changehivenumber"])
 		if(!check_rights(R_DEBUG|R_ADMIN))	return
 
-		var/mob/living/carbon/Xenomorph/X = locate(href_list["makecorrupted"])
+		var/mob/living/carbon/Xenomorph/X = locate(href_list["changehivenumber"])
 		if(!istype(X))
 			usr << "This can only be done to instances of type /mob/living/carbon/Xenomorph"
 			return
 
-		usr.client.cmd_admin_corrupt_xeno(X)
+		usr.client.cmd_admin_change_hivenumber(X,href_list["newhivenumber"])
 
 	else if(href_list["makeyautja"])
 		if(!check_rights(R_SPAWN))	return

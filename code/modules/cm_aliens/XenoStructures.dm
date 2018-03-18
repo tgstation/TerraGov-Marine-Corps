@@ -502,7 +502,7 @@
 	var/list/egg_triggers = list()
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
-	var/corrupted = 0
+	var/hivenumber = 0
 
 	New()
 		..()
@@ -524,6 +524,12 @@
 	healthcheck()
 
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
+
+	if(M.hivenumber != hivenumber)
+		M.animation_attack_on(src)
+		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
+		Burst(1)
+		return
 
 	if(!istype(M))
 		return attack_hand(M)
@@ -548,10 +554,12 @@
 
 /obj/effect/alien/egg/proc/Grow()
 	set waitfor = 0
+	update_icon()
 	sleep(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
 	if(status == GROWING)
 		icon_state = "Egg"
 		status = GROWN
+		update_icon()
 		deploy_egg_triggers()
 
 /obj/effect/alien/egg/proc/create_egg_triggers()
@@ -595,7 +603,7 @@
 			if(loc && status != DESTROYED)
 				status = BURST
 				var/obj/item/clothing/mask/facehugger/child = new(loc)
-				child.corrupted = corrupted
+				child.hivenumber = hivenumber
 				child.leap_at_nearest_target()
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
@@ -608,6 +616,10 @@
 
 /obj/effect/alien/egg/update_icon()
 	overlays.Cut()
+	if(hivenumber && hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		if(hive.color)
+			color = hive.color
 	if(on_fire)
 		overlays += "alienegg_fire"
 
@@ -789,7 +801,8 @@ TUNNEL
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!living_xeno_queen)
+		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+		if(!hive.living_xeno_queen)
 			M << "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>"
 			r_FAL
 		else if(isXenoQueen(M))

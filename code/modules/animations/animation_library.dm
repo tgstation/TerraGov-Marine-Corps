@@ -43,8 +43,9 @@ Instead of being uniform, it starts out a littler slower, goes fast in the middl
 
 //Flashes a color, then goes back to regular.
 /proc/animation_flash_color(atom/A, flash_color = "#FF0000", speed = 3) //Flashes red on default.
+	var/oldcolor = A.color
 	animate(A, color = flash_color, time = speed)
-	animate(color = "#FFFFFF", time = speed)
+	animate(color = oldcolor, time = speed)
 
 //Gives it a spooky overlay and animation. Same as above, mostly, only adds a cool overlay effect.
 /proc/animation_horror_flick(atom/A, flash_color = "#000000", speed = 4)

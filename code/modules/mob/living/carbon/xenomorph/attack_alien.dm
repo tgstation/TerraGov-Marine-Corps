@@ -32,7 +32,12 @@
 				M.update_icons() //To immediately show the grab
 
 		if("hurt")
-			if(!M.corrupted && !slashing_allowed && !M.is_intelligent) // corrupted xenos ignore slashing orders
+			var/datum/hive_status/hive
+			if(M.hivenumber && M.hivenumber <= hive_datum.len)
+				hive = hive_datum[M.hivenumber]
+			else return
+
+			if(!hive.slashing_allowed && !M.is_intelligent)
 				M << "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>"
 				r_FAL
 
@@ -41,18 +46,22 @@
 				r_FAL
 
 			if(!M.is_intelligent)
-				if(!M.corrupted && slashing_allowed == 2) // corrupted xenos ignore slashing orders
-					if( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ) // this spagetti lets corrupted xenos slash the hosts of non-corrupts and the other way too
-						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
-						r_FAL
+				if(hive.slashing_allowed == 2)
+					if(status_flags & XENO_HOST)
+						for(var/obj/item/alien_embryo/embryo in src)
+							if(embryo.hivenumber == M.hivenumber)
+								M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
+								r_FAL
 
 					if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
 						r_FAL
 
-				else if(istype(buckled, /obj/structure/bed/nest) && ( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ))
-					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
-					r_FAL
+				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
+					for(var/obj/item/alien_embryo/embryo in src)
+						if(embryo.hivenumber == M.hivenumber)
+							M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
+							r_FAL
 
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
 				M.visible_message("<span class='danger'>\The [M]'s slash is blocked by [src]'s shield!</span>", \
@@ -212,24 +221,33 @@
 				M.update_icons() //To immediately show the grab
 
 		if("hurt")
-			if(isXeno(src) && isCorruptedXeno(src) == M.corrupted) //Can't slash other xenos if they have the same corrupted status
+			if(isXeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>")
 				return 1
 
+			var/datum/hive_status/hive
+			if(M.hivenumber && M.hivenumber <= hive_datum.len)
+				hive = hive_datum[M.hivenumber]
+			else return
+
 			if(!M.is_intelligent)
-				if(!M.corrupted && slashing_allowed == 2) // corrupted ignore slashing restriction
-					if( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ) // this spagetti lets corrupted xenos slash the hosts of non-corrupts and the other way too
-						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
-						r_FAL
+				if(hive.slashing_allowed == 2)
+					if(status_flags & XENO_HOST)
+						for(var/obj/item/alien_embryo/embryo in src)
+							if(embryo.hivenumber == M.hivenumber)
+								M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
+								r_FAL
 
 					if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
 						r_FAL
 
-				else if(istype(buckled, /obj/structure/bed/nest) && ( ((!M.corrupted) == (status_flags & XENO_HOST)) || (M.corrupted == (status_flags & XENO_CORRUPTED_HOST)) ))
-					M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
-					r_FAL
+				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
+					for(var/obj/item/alien_embryo/embryo in src)
+						if(embryo.hivenumber == M.hivenumber)
+							M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
+							r_FAL
 
 			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 				var/datum/effect_system/spark_spread/spark_system
@@ -238,12 +256,30 @@
 				spark_system.attach(src)
 				spark_system.start(src)
 				playsound(loc, "alien_claw_metal", 25, 1)
-			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
+
+			// copypasted from attack_alien.dm
+			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
+			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+
+			//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
+			if(M.frenzy_aura > 0)
+				damage += (M.frenzy_aura * 2)
+
+			//Somehow we will deal no damage on this attack
+			if(!damage)
+				playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+				M.animation_attack_on(src)
+				M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
+				"<span class='danger'>You lunge at [src]!</span>")
+				return 0
+
 			M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 			"<span class='danger'>You slash [src]!</span>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slashed by [M.name] ([M.ckey])</font>")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>slashed [src.name] ([src.ckey])</font>")
 			log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
+
+			playsound(loc, "alien_claw_flesh", 25, 1)
 			apply_damage(damage, BRUTE)
 
 		if("disarm")

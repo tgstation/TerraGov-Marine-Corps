@@ -194,7 +194,15 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define FAKEDEATH	8192	//Replaces stuff like changeling.changeling_fakedeath
 #define DISFIGURED	16384	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST	32768	//Tracks whether we're gonna be a baby alien's mummy.
-#define XENO_CORRUPTED_HOST 65536 // if they are a host to a corrupted xeno
+
+// =============================
+// hive types
+
+#define XENO_HIVE_NORMAL 1
+#define XENO_HIVE_CORRUPTED 2
+#define XENO_HIVE_ALPHA 3
+#define XENO_HIVE_BETA 4
+#define XENO_HIVE_ZETA 5
 
 //=================================================
 

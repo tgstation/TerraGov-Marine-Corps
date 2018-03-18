@@ -1,5 +1,19 @@
 
-var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to the Xeno Queen if there's one alive.
+//var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to the Xeno Queen if there's one alive.
+
+/proc/update_living_queens() // needed to update when you change a queen to a different hive
+	outer_loop:
+		for(var/datum/hive_status/hive in hive_datum)
+			if(hive.living_xeno_queen)
+				if(hive.living_xeno_queen.hivenumber == hive.hivenumber)
+					continue
+			for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
+				if(Q.hivenumber == hive.hivenumber)
+					hive.living_xeno_queen = Q
+					xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hive.hivenumber)
+					continue outer_loop
+			hive.living_xeno_queen = null
+
 
 /mob/living/carbon/Xenomorph/Queen
 	caste = "Queen"
@@ -70,20 +84,36 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
 
+/mob/living/carbon/Xenomorph/Queen/Corrupted
+	hivenumber = 2
+
+/mob/living/carbon/Xenomorph/Queen/Alpha
+	hivenumber = 3
+
+/mob/living/carbon/Xenomorph/Queen/Beta
+	hivenumber = 4
+
+/mob/living/carbon/Xenomorph/Queen/Zeta
+	hivenumber = 5
+
 /mob/living/carbon/Xenomorph/Queen/New()
 	..()
 	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
-		if(!living_xeno_queen)
-			living_xeno_queen = src
-		xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,corrupted)
+		if(hivenumber && hivenumber <= hive_datum.len)
+			var/datum/hive_status/hive = hive_datum[hivenumber]
+			if(!hive.living_xeno_queen)
+				hive.living_xeno_queen = src
+			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
 /mob/living/carbon/Xenomorph/Queen/Dispose()
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)
-	if(living_xeno_queen == src)
-		living_xeno_queen = null
+	if(hivenumber && hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		if(hive.living_xeno_queen == src)
+			hive.living_xeno_queen = null
 
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
@@ -105,7 +135,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 					if(T.contents.len <= 25) //so we don't end up with a million object on that turf.
 						egg_amount--
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
-						newegg.corrupted = corrupted
+						newegg.hivenumber = hivenumber
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
@@ -152,7 +182,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	set name = "Set Hive Orders (50)"
 	set desc = "Give some specific orders to the hive. They can see this on the status pane."
 
-	if(corrupted)
+	if(hivenumber == XENO_HIVE_CORRUPTED)
 		src << "<span class='warning'>Only your masters can decide this!</span>"
 		return
 
@@ -165,11 +195,16 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	plasma_stored -= 50
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
 
+	var/datum/hive_status/hive
+	if(hivenumber && hivenumber <= hive_datum.len)
+		hive = hive_datum[hivenumber]
+	else return
+
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</B>",3,corrupted)
-		hive_orders = txt
+		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</B>",3,hivenumber)
+		hive.hive_orders = txt
 	else
-		hive_orders = ""
+		hive.hive_orders = ""
 
 	last_special = world.time + 150
 
@@ -193,7 +228,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	if(ticker && ticker.mode)
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
-			if(X && X.client && istype(X) && !X.stat && corrupted == X.corrupted)
+			if(X && X.client && istype(X) && !X.stat && hivenumber == X.hivenumber)
 				X << sound(get_sfx("queen"),wait = 0,volume = 50)
 				X << "[queensWord]"
 
@@ -207,7 +242,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	set desc = "Allows you to permit the hive to harm."
 	set category = "Alien"
 
-	if(corrupted)
+	if(hivenumber == XENO_HIVE_CORRUPTED)
 		src << "<span class='warning'>Only your masters can decide this!</span>"
 		return
 
@@ -224,21 +259,25 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 	pslash_delay = 1
 
+	var/datum/hive_status/hive
+	if(hivenumber && hivenumber <= hive_datum.len)
+		hive = hive_datum[hivenumber]
+	else return
 
 	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
 
 	if(choice == "Allowed")
 		src << "<span class='xenonotice'>You allow slashing.</span>"
 		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!")
-		slashing_allowed = 1
+		hive.slashing_allowed = 1
 	else if(choice == "Restricted - Less Damage")
 		src << "<span class='xenonotice'>You restrict slashing.</span>"
 		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will only slash when hurt.")
-		slashing_allowed = 2
+		hive.slashing_allowed = 2
 	else if(choice == "Forbidden")
 		src << "<span class='xenonotice'>You forbid slashing entirely.</span>"
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
-		slashing_allowed = 0
+		hive.slashing_allowed = 0
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
 	if(!check_state())
@@ -314,7 +353,7 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 
 	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
 		var/mob/living/carbon/human/H = victim
-		if( ((!corrupted) == (H.status_flags & XENO_HOST)) || (corrupted == (H.status_flags & XENO_CORRUPTED_HOST)) )
+		if(H.status_flags & XENO_HOST)
 			if(victim.stat != DEAD) //Not dead yet.
 				src << "<span class='xenowarning'>The host and child are still alive!</span>"
 				return
@@ -322,9 +361,11 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 				src << "<span class='xenowarning'>The child may still hatch! Not yet!</span>"
 				return
 
-	if(isXeno(victim) && corrupted == isCorruptedXeno(victim)) // this will be amazing
-		src << "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>"
-		return
+	if(isXeno(victim))
+		var/mob/living/carbon/Xenomorph/xeno = victim
+		if(hivenumber == xeno.hivenumber)
+			src << "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>"
+			return
 
 	var/turf/cur_loc = victim.loc
 	if(!istype(cur_loc))
@@ -383,10 +424,13 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 	update_canmove()
 	update_icons()
 
-	for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
-		L.handle_xeno_leader_pheromones(src)
+	if(hivenumber && hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[hivenumber]
 
-	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution progress resumed.</span>", 3, corrupted)
+		for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+			L.handle_xeno_leader_pheromones(src)
+
+	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution progress resumed.</span>", 3, hivenumber)
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
 	set waitfor = 0
@@ -438,11 +482,14 @@ var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to th
 		anchored = FALSE
 		update_canmove()
 
-		for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
-			L.handle_xeno_leader_pheromones(src)
+		if(hivenumber && hivenumber <= hive_datum.len)
+			var/datum/hive_status/hive = hive_datum[hivenumber]
+
+			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+				L.handle_xeno_leader_pheromones(src)
 
 		if(!instant_dismount)
-			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3, corrupted)
+			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3, hivenumber)
 
 /mob/living/carbon/Xenomorph/Queen/update_canmove()
 	. = ..()
