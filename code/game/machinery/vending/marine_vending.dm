@@ -536,7 +536,8 @@
 						/obj/item/storage/pouch/magazine/large = 1,
 						/obj/item/storage/pouch/general/large = 1,
 						/obj/item/storage/pouch/pistol = 1,
-						/obj/item/clothing/mask/gas = 1
+						/obj/item/clothing/mask/gas = 1,
+						/obj/item/device/whistle = 1
 					)
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
