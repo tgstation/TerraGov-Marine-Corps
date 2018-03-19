@@ -9,7 +9,7 @@
 	var/stage = 0
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst
 	var/larva_autoburst_countdown = 20 //to kick the larva out
-	var/hivenumber = 0
+	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/item/alien_embryo/New()
 	..()
@@ -207,3 +207,9 @@
 	victim.updatehealth()
 	victim.chestburst = 2
 	victim.update_burst()
+
+	if((!key || !client) && loc.z == 1 && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL)
+		visible_message("<span class='xenodanger'>[src] quickly burries into the ground.</span>")
+		round_statistics.total_xenos_created-- // keep stats sane
+		ticker.mode.stored_larva++
+		cdel(src)

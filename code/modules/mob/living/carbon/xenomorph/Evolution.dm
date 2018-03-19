@@ -76,7 +76,8 @@
 	if(hivenumber && hivenumber <= hive_datum.len)
 		hive = hive_datum[hivenumber]
 	else
-		return
+		hivenumber = XENO_HIVE_NORMAL
+		hive = hive_datum[hivenumber]
 
 	if((!hive.living_xeno_queen) && castepick != "Queen" && !isXenoLarva(src))
 		src << "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>"
@@ -246,7 +247,7 @@
 
 		round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
-		if(queen_chosen_lead)
+		if(queen_chosen_lead && castepick != "Queen") // xeno leader is removed by Dispose()
 			new_xeno.queen_chosen_lead = TRUE
 			hive.xeno_leader_list += new_xeno
 			new_xeno.hud_set_queen_overwatch()

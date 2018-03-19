@@ -63,14 +63,19 @@
 
 	var/name_prefix = ""
 
+	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[hivenumber]
-		name_prefix = hive.prefix
-		color = hive.color
-		if(name_prefix == "Corrupted ")
-			add_language("English")
-		else
-			remove_language("English") // its hacky doing it here sort of
+		hive = hive_datum[hivenumber]
+	else
+		hivenumber = XENO_HIVE_NORMAL
+		hive = hive_datum[hivenumber]
+		
+	name_prefix = hive.prefix
+	color = hive.color
+	if(name_prefix == "Corrupted ")
+		add_language("English")
+	else
+		remove_language("English") // its hacky doing it here sort of
 
 	switch(amount_grown)
 		if(0 to 49) //We're still bloody

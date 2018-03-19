@@ -8,7 +8,7 @@
 	flags_atom = NOBLUDGEON
 	throw_range = 1
 	layer = MOB_LAYER
-	var/hivenumber = 0
+	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/item/xeno_egg/New()
 	pixel_x = rand(-3,3)
