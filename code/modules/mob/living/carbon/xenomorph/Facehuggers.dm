@@ -27,7 +27,7 @@
 	var/attached = 0
 	var/lifecycle = 300 //How long the hugger will survive outside of the egg, or carrier.
 	var/leaping = 0 //Is actually attacking someone?
-	var/hivenumber = 0
+	var/hivenumber = XENO_HIVE_NORMAL
 
 	New()
 		..()

@@ -68,6 +68,8 @@ Additional game mode variables.
 	var/latejoin_tally		= 0 //How many people latejoined Marines
 	var/latejoin_larva_drop = 8 //A larva will spawn in once the tally reaches this level. If set to 0, no latejoin larva drop
 
+	var/stored_larva = 0
+
 	//Role Authority set up.
 	var/role_instruction 	= 0 // 1 is to replace, 2 is to add, 3 is to remove.
 	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
@@ -337,7 +339,8 @@ datum/game_mode/proc/initialize_special_clamps()
 			available_xenos += A
 
 	if(!available_xenos.len || (instant_join && !available_xenos_non_ssd.len))
-		xeno_candidate << "<span class='warning'>There aren't any available xenomorphs. Check back later!</span>"
+		xeno_candidate << "<span class='warning'>There aren't any available xenomorphs. However your xenomorph preference has been toggled on and you might be spawned as a larva, turn this off in Prefernces->Toggle SpecialRole Candidacy.</span>"
+		xeno_candidate.client.prefs.be_special |= BE_ALIEN
 		return
 
 	var/mob/living/carbon/Xenomorph/new_xeno

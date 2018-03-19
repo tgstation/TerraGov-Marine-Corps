@@ -342,8 +342,8 @@
 				sq.max_medics = medic_slot_formula(clients.len)
 
 		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
-			ticker.mode.spawn_latejoin_larva()
-			ticker.mode.latejoin_tally = 0
+			ticker.mode.latejoin_tally -= ticker.mode.latejoin_larva_drop
+			ticker.mode.stored_larva++
 
 		cdel(src)
 

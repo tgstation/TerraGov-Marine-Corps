@@ -88,7 +88,7 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
-	var/hivenumber = 1
+	var/hivenumber = XENO_HIVE_NORMAL
 
 
 /mob/living/carbon/Xenomorph/New()
@@ -153,14 +153,19 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 
 	var/name_prefix = ""
 
+	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[hivenumber]
-		name_prefix = hive.prefix
-		color = hive.color
-		if(name_prefix == "Corrupted ")
-			add_language("English")
-		else
-			remove_language("English") // its hacky doing it here sort of
+		hive = hive_datum[hivenumber]
+	else
+		hivenumber = XENO_HIVE_NORMAL
+		hive = hive_datum[hivenumber]
+
+	name_prefix = hive.prefix
+	color = hive.color
+	if(name_prefix == "Corrupted ")
+		add_language("English")
+	else
+		remove_language("English") // its hacky doing it here sort of
 
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
 	if(caste == "Queen")

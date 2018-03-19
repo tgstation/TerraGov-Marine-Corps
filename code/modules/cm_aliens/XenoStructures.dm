@@ -502,7 +502,7 @@
 	var/list/egg_triggers = list()
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
-	var/hivenumber = 0
+	var/hivenumber = XENO_HIVE_NORMAL
 
 	New()
 		..()

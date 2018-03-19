@@ -85,16 +85,16 @@
 		)
 
 /mob/living/carbon/Xenomorph/Queen/Corrupted
-	hivenumber = 2
+	hivenumber = XENO_HIVE_CORRUPTED
 
 /mob/living/carbon/Xenomorph/Queen/Alpha
-	hivenumber = 3
+	hivenumber = XENO_HIVE_ALPHA
 
 /mob/living/carbon/Xenomorph/Queen/Beta
-	hivenumber = 4
+	hivenumber = XENO_HIVE_BETA
 
 /mob/living/carbon/Xenomorph/Queen/Zeta
-	hivenumber = 5
+	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/Xenomorph/Queen/New()
 	..()
@@ -136,6 +136,23 @@
 						egg_amount--
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
 						newegg.hivenumber = hivenumber
+
+			if(hivenumber == XENO_HIVE_NORMAL && ticker.mode.stored_larva)
+				var/list/players_with_xeno_pref = get_alien_candidates()
+				if(players_with_xeno_pref.len)
+					var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
+					new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+					"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+					new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+					new_xeno.key = pick(players_with_xeno_pref)
+
+					if(new_xeno.client)
+						new_xeno.client.view = world.view
+
+					new_xeno << "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>"
+					new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+
+					ticker.mode.stored_larva--
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
