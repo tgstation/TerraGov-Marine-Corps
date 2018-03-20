@@ -19,19 +19,15 @@
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "sword"
+	icon_state = "mercsword"
+	item_state = "machete"
 	force = 39
 
 /obj/item/weapon/claymore/mercsword/machete
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the USCM Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
-	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "machete"
-	item_state = "machete"
-	item_color = "machete"
 	force = 35
-	//flags_equip_slot = SLOT_BACK
 	w_class = 4.0
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -42,9 +38,7 @@
 	name = "katana"
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
-	item_state = "katana"
 	flags_atom = FPRINT|CONDUCT
-	//flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	force = 50
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG

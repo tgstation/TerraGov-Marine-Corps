@@ -22,9 +22,8 @@
 /obj/item/smartgun_powerpack
 	name = "\improper M56 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "powerpack_worn"
-	item_state = "powerpack"
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "powerpack"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
 	w_class = 5.0
@@ -35,7 +34,6 @@
 
 	New()
 		select_gamemode_skin(/obj/item/smartgun_powerpack)
-		item_state = "powerpack"
 		..()
 		pcell = new /obj/item/cell(src)
 
@@ -108,18 +106,12 @@
 				user << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 250."
 
 /obj/item/smartgun_powerpack/snow
-	icon = 'icons/mob/back.dmi'
-	item_state = "s_powerpack"
 	icon_state = "s_powerpack"
 
 /obj/item/smartgun_powerpack/fancy
-	icon = 'icons/mob/back.dmi'
-	item_state = "powerpackw"
 	icon_state = "powerpackw"
 
 /obj/item/smartgun_powerpack/merc
-	icon = 'icons/mob/back.dmi'
-	item_state = "powerpackp"
 	icon_state = "powerpackp"
 
 /obj/item/storage/box/heavy_armor

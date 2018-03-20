@@ -86,7 +86,6 @@
 	desc = "A pair of heavily armored gloves."
 	icon_state = "black"
 	item_state = "bgloves"
-	item_color = "black"
 	armor = list(melee = 90, bullet = 95, laser = 75, energy = 60, bomb = 45, bio = 15, rad = 15)
 	unacidable = 1
 
@@ -95,7 +94,6 @@
 	desc = "Armored gloves used in special operations. They are also insulated against electrical shock."
 	icon_state = "black"
 	item_state = "bgloves"
-	item_color="brown"
 	siemens_coefficient = 0
 	armor = list(melee = 60, bullet = 60, laser = 35, energy = 20, bomb = 10, bio = 10, rad = 0)
 
@@ -104,6 +102,5 @@
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "brown"
 	item_state = "browngloves"
-	item_color = "brown"
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 50, bio = 30, rad = 30)
 	unacidable = 1
