@@ -921,10 +921,10 @@ var/global/list/damage_icon_parts = list()
 			t_state = "[t_state]_l"
 			overlays_standing[L_HAND_LAYER] = image("icon" = l_hand.icon_override, "icon_state" = "[t_state]", "layer" =-L_HAND_LAYER)
 		else
-			var/spritesheet_used = "icons/mob/items_lefthand_[l_hand.sprite_sheet_id]"
-			overlays_standing[L_HAND_LAYER]	= image("icon" = spritesheet_used, "icon_state" = t_state, "layer" =-L_HAND_LAYER)
+			overlays_standing[L_HAND_LAYER] = image("icon" = r_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = "[t_state]", "layer" =-L_HAND_LAYER)
 
 		apply_overlay(L_HAND_LAYER)
+
 
 /mob/living/carbon/human/proc/update_tail_showing()
 	remove_overlay(TAIL_LAYER)

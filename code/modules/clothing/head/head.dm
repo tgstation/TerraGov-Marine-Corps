@@ -92,18 +92,21 @@
 	desc = "It flutters in the face of the wind, defiant and unrestrained, like the man who wears it."
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "headband_rambo"
+	sprite_sheet_id = 0
 
 /obj/item/clothing/head/headset
 	name = "\improper USCM headset"
 	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
 	icon_state = "headset"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 
 /obj/item/clothing/head/cmcap
 	name = "\improper USCM cap"
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 	var/flipped_cap = FALSE
 	var/base_cap_icon
 

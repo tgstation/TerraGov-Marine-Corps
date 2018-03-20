@@ -30,6 +30,7 @@
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "pilot"
+	sprite_sheet_id = 1
 	blood_overlay_type = "armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
