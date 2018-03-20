@@ -362,13 +362,22 @@
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
+	var/display_head = 0
 	var/display_chest = 0
-	var/display_shoes = 0
-	var/display_gloves = 0
+	var/display_groin = 0
+	var/display_arm_left = 0
+	var/display_arm_right = 0
+	var/display_leg_left = 0
+	var/display_leg_right = 0
+	var/display_foot_left = 0
+	var/display_foot_right = 0
+	var/display_hand_left = 0
+	var/display_hand_right = 0
+
 	if(wound_flavor_text["head"] && (is_destroyed["head"] || (!skipmask && !(wear_mask && istype(wear_mask, /obj/item/clothing/mask/gas)))))
 		msg += wound_flavor_text["head"]
 	else if(is_bleeding["head"])
-		msg += "<span class='warning'>[src] has blood running down [t_his] face!</span>\n"
+		display_head = 1
 	if(wound_flavor_text["chest"] && !w_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
 		msg += wound_flavor_text["chest"]
 	else if(is_bleeding["chest"])
@@ -376,45 +385,91 @@
 	if(wound_flavor_text["left arm"] && (is_destroyed["left arm"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["left arm"]
 	else if(is_bleeding["left arm"])
-		display_chest = 1
+		display_arm_left = 1
 	if(wound_flavor_text["left hand"] && (is_destroyed["left hand"] || (!gloves && !skipgloves)))
 		msg += wound_flavor_text["left hand"]
 	else if(is_bleeding["left hand"])
-		display_gloves = 1
+		display_hand_left = 1
 	if(wound_flavor_text["right arm"] && (is_destroyed["right arm"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["right arm"]
 	else if(is_bleeding["right arm"])
-		display_chest = 1
+		display_arm_right = 1
 	if(wound_flavor_text["right hand"] && (is_destroyed["right hand"] || (!gloves && !skipgloves)))
 		msg += wound_flavor_text["right hand"]
 	else if(is_bleeding["right hand"])
-		display_gloves = 1
+		display_hand_right = 1
 	if(wound_flavor_text["groin"] && (is_destroyed["groin"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["groin"]
 	else if(is_bleeding["groin"])
-		display_chest = 1
+		display_groin = 1
 	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["left leg"]
 	else if(is_bleeding["left leg"])
-		display_chest = 1
+		display_leg_left = 1
 	if(wound_flavor_text["left foot"]&& (is_destroyed["left foot"] || (!shoes && !skipshoes)))
 		msg += wound_flavor_text["left foot"]
 	else if(is_bleeding["left foot"])
-		display_shoes = 1
+		display_foot_left = 1
 	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["right leg"]
 	else if(is_bleeding["right leg"])
-		display_chest = 1
+		display_leg_right = 1
 	if(wound_flavor_text["right foot"]&& (is_destroyed["right foot"] || (!shoes  && !skipshoes)))
 		msg += wound_flavor_text["right foot"]
 	else if(is_bleeding["right foot"])
-		display_shoes = 1
-	if(display_chest)
-		msg += "<span class='warning'><b>[t_He] has blood soaking through from under [t_his] clothing!</b></span>\n"
-	if(display_shoes)
-		msg += "<span class='warning'><b>[t_He] has blood running from [t_his] shoes!</b></span>\n"
-	if(display_gloves)
-		msg += "<span class='warning'><b>[t_He] has blood running from under [t_his] gloves!</b></span>\n"
+		display_foot_right = 1
+
+	if (display_head)
+		msg += "<span class='warning'>[t_He] has blood dripping from [t_his] <b>face</b>!</span>\n"
+
+	if (display_chest && display_groin && display_arm_left && display_arm_right && display_hand_left && display_hand_right && display_leg_left && display_leg_right && display_foot_left && display_foot_right)
+		msg += "<span class='warning'>[t_He] has blood soaking through [t_his] clothes from [t_his] <b>entire body</b>!</span>\n"
+	else
+		if (display_chest && display_arm_left && display_arm_right && display_hand_left && display_hand_right)
+			msg += "<span class='warning'>[t_He] has blood soaking through [t_his] clothes from [t_his] <b>upper body</b>!</span>\n"
+		else
+			if (display_chest)
+				msg += "<span class='warning'>[t_He] has blood soaking through [t_his] <b>shirt</b>!</span>\n"
+			if (display_arm_left && display_arm_right && display_hand_left && display_hand_left)
+				msg += "<span class='warning'>[t_He] has blood soaking through [t_his] <b>gloves</b> and <b>sleeves</b>!</span>\n"
+			else
+				if (display_arm_left && display_arm_right)
+					msg += "<span class='warning'>[t_He] has blood soaking through [t_his] <b>sleeves</b>!</span>\n"
+				else
+					if (display_arm_left)
+						msg += "<span class='warning'>[t_He] has soaking through [t_his] <b>left sleeve</b>!</span>\n"
+					if (display_arm_right)
+						msg += "<span class='warning'>[t_He] has soaking through [t_his] <b>right sleeve</b>!</span>\n"
+				if (display_hand_left && display_hand_right)
+					msg += "<span class='warning'>[t_He] has blood running out from under [t_his] <b>gloves</b>!</span>\n"
+				else
+					if (display_hand_left)
+						msg += "<span class='warning'>[t_He] has blood running out from under [t_his] <b>left glove</b>!</span>\n"
+					if (display_hand_right)
+						msg += "<span class='warning'>[t_He] has blood running out from under [t_his] <b>right glove</b>!</span>\n"
+
+		if (display_groin && display_leg_left && display_leg_right && display_foot_left && display_foot_right)
+			msg += "<span class='warning'>[t_He] has blood soaking through [t_his] clothes from [t_his] <b>lower body!</b></span>\n"
+		else
+			if (display_groin)
+				msg += "<span class='warning'>[t_He] has blood dripping from [t_his] <b>groin</b>!</span>\n"
+			if (display_leg_left && display_leg_right && display_foot_left && display_foot_right)
+				msg += "<span class='warning'>[t_He] has blood soaking through [t_his] <b>pant legs</b> and <b>boots</b>!</span>\n"
+			else
+				if (display_leg_left && display_leg_right)
+					msg += "<span class='warning'>[t_He] has blood soaking through [t_his] <b>pant legs</b>!</span>\n"
+				else
+					if (display_leg_left)
+						msg += "<span class='warning'>[t_He] has blood soaking through [t_his] <b>left pant leg</b>!</span>\n"
+					if (display_leg_right)
+						msg += "<span class='warning'>[t_He] has blood soaking through [t_his] <b>right pant leg</b>!</span>\n"
+				if (display_foot_left && display_foot_right)
+					msg += "<span class='warning'>[t_He] has blood pooling around[t_his] <b>boots</b>!</span>\n"
+				else
+					if (display_foot_left)
+						msg += "<span class='warning'>[t_He] has blood pooling around [t_his] <b>left boot</b>!</span>\n"
+					if (display_foot_right)
+						msg += "<span class='warning'>[t_He] has blood pooling around [t_his] <b>right boot</b>!</span>\n"
 
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
