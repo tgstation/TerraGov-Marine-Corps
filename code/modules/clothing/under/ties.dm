@@ -3,8 +3,6 @@
 	desc = "A neosilk clip-on tie."
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bluetie"
-	item_state = ""	//no inhands
-	item_color = "bluetie"
 	flags_equip_slot = NOFLAGS
 	w_class = 2.0
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
@@ -12,7 +10,7 @@
 
 /obj/item/clothing/tie/New()
 	..()
-	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_color? "[item_color]" : "[icon_state]"]")
+	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_state? "[item_state]" : "[icon_state]"]")
 
 //when user attached an accessory to S
 /obj/item/clothing/tie/proc/on_attached(obj/item/clothing/under/S, mob/user as mob)
@@ -51,24 +49,20 @@
 /obj/item/clothing/tie/blue
 	name = "blue tie"
 	icon_state = "bluetie"
-	item_color = "bluetie"
 
 /obj/item/clothing/tie/red
 	name = "red tie"
 	icon_state = "redtie"
-	item_color = "redtie"
 
 /obj/item/clothing/tie/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
-	item_color = "horribletie"
 
 /obj/item/clothing/tie/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
-	item_color = "stethoscope"
 
 /obj/item/clothing/tie/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
@@ -109,7 +103,6 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
-	item_color = "bronze"
 	var/recipient_name //name of the person this is awarded to.
 	var/recipient_rank
 	var/medal_citation
@@ -182,7 +175,6 @@
 	name = "silver medal"
 	desc = "A silver medal."
 	icon_state = "silver"
-	item_color = "silver"
 
 /obj/item/clothing/tie/medal/silver/valor
 	name = "medal of valor"
@@ -196,7 +188,6 @@
 	name = "gold medal"
 	desc = "A prestigious golden medal."
 	icon_state = "gold"
-	item_color = "gold"
 
 /obj/item/clothing/tie/medal/gold/captain
 	name = "medal of captaincy"
@@ -211,50 +202,42 @@
 	name = "red armband"
 	desc = "A fancy red armband!"
 	icon_state = "red"
-	item_color = "red"
 
 /obj/item/clothing/tie/armband/cargo
 	name = "cargo armband"
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is brown."
 	icon_state = "cargo"
-	item_color = "cargo"
 
 /obj/item/clothing/tie/armband/engine
 	name = "engineering armband"
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engie"
-	item_color = "engie"
 
 /obj/item/clothing/tie/armband/science
 	name = "science armband"
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is purple."
 	icon_state = "rnd"
-	item_color = "rnd"
 
 /obj/item/clothing/tie/armband/hydro
 	name = "hydroponics armband"
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is green and blue."
 	icon_state = "hydro"
-	item_color = "hydro"
 
 /obj/item/clothing/tie/armband/med
 	name = "medical armband"
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white."
 	icon_state = "med"
-	item_color = "med"
 
 /obj/item/clothing/tie/armband/medgreen
 	name = "EMT armband"
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
 	icon_state = "medgreen"
-	item_color = "medgreen"
 
 //holsters
 /obj/item/clothing/tie/holster
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
-	item_color = "holster"
 	var/obj/item/weapon/gun/holstered = null
 
 //subtypes can override this to specify what can be holstered
@@ -361,19 +344,17 @@
 	name = "shoulder holster"
 	desc = "A worn-out handgun holster. Perfect for concealed carry"
 	icon_state = "holster"
-	item_color = "holster"
 
 /obj/item/clothing/tie/holster/waist
 	name = "shoulder holster"
 	desc = "A handgun holster. Made of expensive leather."
 	icon_state = "holster"
-	item_color = "holster_low"
+	item_state = "holster_low"
 
 /obj/item/clothing/tie/storage
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
-	item_color = "webbing"
 	w_class = 3
 	var/slots = 3
 	var/obj/item/storage/internal/hold
@@ -421,7 +402,6 @@
 	name = "webbing"
 	desc = "A sturdy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
-	item_color = "webbing"
 	slots = 3
 
 /obj/item/clothing/tie/storage/webbing/New()
@@ -436,14 +416,12 @@
 	name = "black webbing vest"
 	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
 	icon_state = "vest_black"
-	item_color = "vest_black"
 	slots = 5
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
-	item_color = "vest_brown"
 	slots = 5
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
@@ -456,7 +434,6 @@
 	name = "holobadge"
 	desc = "This glowing blue badge marks the holder as THE LAW."
 	icon_state = "holobadge"
-	item_color = "holobadge"
 	flags_equip_slot = SLOT_WAIST
 
 	var/emagged = 0 //Emagging removes Sec check.
@@ -464,7 +441,6 @@
 
 /obj/item/clothing/tie/holobadge/cord
 	icon_state = "holobadge-cord"
-	item_color = "holobadge-cord"
 	flags_equip_slot = SLOT_FACE
 
 /obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
@@ -526,7 +502,6 @@
 	name = "decorated harness"
 	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
 	icon_state = "unathiharness2"
-	item_color = "unathiharness2"
 	slots = 2
 
 /obj/item/clothing/tie/storage/knifeharness/New()

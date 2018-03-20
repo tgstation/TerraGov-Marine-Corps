@@ -475,64 +475,65 @@
 	desc = "An egg!"
 	icon_state = "egg"
 	filling_color = "#FDFFD1"
+	var/egg_color
 
-	New()
+/obj/item/reagent_container/food/snacks/egg/New()
+	..()
+	reagents.add_reagent("nutriment", 1)
+
+/obj/item/reagent_container/food/snacks/egg/throw_impact(atom/hit_atom)
+	..()
+	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
+	src.reagents.reaction(hit_atom, TOUCH)
+	src.visible_message("\red [src.name] has been squashed.","\red You hear a smack.")
+	cdel(src)
+
+/obj/item/reagent_container/food/snacks/egg/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype( W, /obj/item/toy/crayon ))
+		var/obj/item/toy/crayon/C = W
+		var/clr = C.colourName
+
+		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
+			usr << "\blue The egg refuses to take on this color!"
+			return
+
+		usr << "\blue You color \the [src] [clr]"
+		icon_state = "egg-[clr]"
+		egg_color = clr
+	else
 		..()
-		reagents.add_reagent("nutriment", 1)
-
-	throw_impact(atom/hit_atom)
-		..()
-		new/obj/effect/decal/cleanable/egg_smudge(src.loc)
-		src.reagents.reaction(hit_atom, TOUCH)
-		src.visible_message("\red [src.name] has been squashed.","\red You hear a smack.")
-		cdel(src)
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype( W, /obj/item/toy/crayon ))
-			var/obj/item/toy/crayon/C = W
-			var/clr = C.colourName
-
-			if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-				usr << "\blue The egg refuses to take on this color!"
-				return
-
-			usr << "\blue You color \the [src] [clr]"
-			icon_state = "egg-[clr]"
-			item_color = clr
-		else
-			..()
 
 /obj/item/reagent_container/food/snacks/egg/blue
 	icon_state = "egg-blue"
-	item_color = "blue"
+	egg_color = "blue"
 
 /obj/item/reagent_container/food/snacks/egg/green
 	icon_state = "egg-green"
-	item_color = "green"
+	egg_color = "green"
 
 /obj/item/reagent_container/food/snacks/egg/mime
 	icon_state = "egg-mime"
-	item_color = "mime"
+	egg_color = "mime"
 
 /obj/item/reagent_container/food/snacks/egg/orange
 	icon_state = "egg-orange"
-	item_color = "orange"
+	egg_color = "orange"
 
 /obj/item/reagent_container/food/snacks/egg/purple
 	icon_state = "egg-purple"
-	item_color = "purple"
+	egg_color = "purple"
 
 /obj/item/reagent_container/food/snacks/egg/rainbow
 	icon_state = "egg-rainbow"
-	item_color = "rainbow"
+	egg_color = "rainbow"
 
 /obj/item/reagent_container/food/snacks/egg/red
 	icon_state = "egg-red"
-	item_color = "red"
+	egg_color = "red"
 
 /obj/item/reagent_container/food/snacks/egg/yellow
 	icon_state = "egg-yellow"
-	item_color = "yellow"
+	egg_color = "yellow"
 
 /obj/item/reagent_container/food/snacks/friedegg
 	name = "Fried egg"
@@ -540,12 +541,12 @@
 	icon_state = "friedegg"
 	filling_color = "#FFDF78"
 
-	New()
-		..()
-		reagents.add_reagent("nutriment", 2)
-		reagents.add_reagent("sodiumchloride", 1)
-		reagents.add_reagent("blackpepper", 1)
-		bitesize = 1
+/obj/item/reagent_container/food/snacks/friedegg/New()
+	..()
+	reagents.add_reagent("nutriment", 2)
+	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent("blackpepper", 1)
+	bitesize = 1
 
 /obj/item/reagent_container/food/snacks/boiledegg
 	name = "Boiled egg"
@@ -553,9 +554,9 @@
 	icon_state = "egg"
 	filling_color = "#FFFFFF"
 
-	New()
-		..()
-		reagents.add_reagent("nutriment", 2)
+/obj/item/reagent_container/food/snacks/boiledegg/New()
+	..()
+	reagents.add_reagent("nutriment", 2)
 
 /obj/item/reagent_container/food/snacks/flour
 	name = "flour"

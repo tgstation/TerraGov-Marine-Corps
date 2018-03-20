@@ -14,14 +14,7 @@
 	w_class = 2.0
 	flags_atom = FPRINT|NOBLUDGEON|NOSHIELD
 	var/active = 0
-
-/obj/item/weapon/holo/esword/green
-	New()
-		item_color = "green"
-
-/obj/item/weapon/holo/esword/red
-	New()
-		item_color = "red"
+	var/sword_color
 
 /obj/item/weapon/holo/esword/IsShield()
 	if(active)
@@ -32,13 +25,15 @@
 	..()
 
 /obj/item/weapon/holo/esword/New()
-	item_color = pick("red","blue","green","purple")
+	if(!sword_color)
+		sword_color = pick("red","blue","green","purple")
+	..()
 
 /obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
 	if (active)
 		force = 30
-		icon_state = "sword[item_color]"
+		icon_state = "sword[sword_color]"
 		w_class = 4
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		user << "\blue [src] is now active."
@@ -56,3 +51,10 @@
 
 	add_fingerprint(user)
 	return
+
+
+/obj/item/weapon/holo/esword/green
+	sword_color = "green"
+
+/obj/item/weapon/holo/esword/red
+	sword_color = "red"

@@ -571,9 +571,10 @@ var/global/list/damage_icon_parts = list()
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 			U.screen_loc = ui_iclothing
 			client.screen += U
-		var/t_color = U.item_color
-		if(!t_color)		t_color = icon_state
-		var/image/standing	= image("icon_state" = "[t_color]_s", "layer" =-UNIFORM_LAYER)
+		var/used_state = U.icon_state
+		if(U.rolled_sleeves)
+			used_state += "_d"
+		var/image/standing	= image("icon_state" = "[used_state]", "layer" =-UNIFORM_LAYER)
 
 		if(U.icon_override)
 			standing.icon = U.icon_override
@@ -587,10 +588,10 @@ var/global/list/damage_icon_parts = list()
 			bloodsies.color		= U.blood_color
 			standing.overlays	+= bloodsies
 
-		if(U.hastie)	//WE CHECKED THE TYPE ABOVE. THIS REALLY SHOULD BE FINE.
-			var/tie_color = U.hastie.item_color
-			if(!tie_color) tie_color = U.hastie.icon_state
-			standing.overlays	+= image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_color]")
+		if(U.hastie)
+			var/tie_state = U.hastie.item_state
+			if(!tie_state) tie_state = U.hastie.icon_state
+			standing.overlays	+= image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_state]")
 
 		overlays_standing[UNIFORM_LAYER]	= standing
 
@@ -805,7 +806,7 @@ var/global/list/damage_icon_parts = list()
 					switch(S.color)
 						if(1 to 4) standing.overlays += leader? armormarkings_sql[S.color] : armormarkings[S.color]
 
-			if(marine_armor.overlays.len)
+			if(marine_armor.armor_overlays.len)
 				var/image/I
 				for(var/i in marine_armor.armor_overlays)
 					I = marine_armor.armor_overlays[i]
@@ -869,6 +870,7 @@ var/global/list/damage_icon_parts = list()
 		if(client && hud_used && hud_used.hud_shown)
 			back.screen_loc = ui_back
 			client.screen += back
+
 		var/t_state = back.item_state ? back.item_state : back.icon_state
 
 		if(back.icon_override)
@@ -925,7 +927,8 @@ var/global/list/damage_icon_parts = list()
 			t_state = "[t_state]_l"
 			overlays_standing[L_HAND_LAYER] = image("icon" = l_hand.icon_override, "icon_state" = "[t_state]", "layer" =-L_HAND_LAYER)
 		else
-			overlays_standing[L_HAND_LAYER] = image("icon" = l_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = "[t_state]", "layer" =-L_HAND_LAYER)
+			var/spritesheet_used = "icons/mob/items_lefthand_[l_hand.sprite_sheet_id]"
+			overlays_standing[L_HAND_LAYER]	= image("icon" = spritesheet_used, "icon_state" = t_state, "layer" =-L_HAND_LAYER)
 
 		apply_overlay(L_HAND_LAYER)
 

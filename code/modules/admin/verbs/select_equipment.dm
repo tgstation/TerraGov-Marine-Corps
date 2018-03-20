@@ -209,7 +209,6 @@
 		if("USCM Combat Synth (Smartgunner)")
 			var/obj/item/clothing/under/marine/J = new(M)
 			J.icon_state = ""
-			J.item_color = ""
 			M.equip_to_slot_or_del(J, WEAR_BODY)
 			var/obj/item/clothing/head/helmet/specrag/L = new(M)
 			L.icon_state = ""

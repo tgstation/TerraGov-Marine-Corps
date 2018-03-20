@@ -21,7 +21,6 @@
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	item_state = "helmet"
 	armor = list(melee = 82, bullet = 15, laser = 5, energy = 5, bomb = 5, bio = 2, rad = 0)
 	flags_inventory = HIDEEARS|HIDEEYES|COVEREYES|HIDETOPHAIR|BLOCKSHARPOBJ
 
@@ -32,6 +31,22 @@
 	item_state = "v62"
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.5
+
+/obj/item/clothing/head/helmet/HoS
+	name = "Head of Security Hat"
+	desc = "The hat of the Head of Security. For showing the officers who's in charge."
+	icon_state = "hoscap"
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
+	flags_inventory = HIDEEARS|COVEREYES
+	flags_armor_protection = 0
+	siemens_coefficient = 0.8
+
+/obj/item/clothing/head/helmet/HoS/dermal
+	name = "Dermal Armour Patch"
+	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
+	icon_state = "dermal"
+	item_state = "dermal"
+	siemens_coefficient = 0.6
 
 /obj/item/clothing/head/helmet/warden
 	name = "warden's hat"
@@ -140,10 +155,9 @@
 /obj/item/clothing/head/helmet/marine
 	name = "\improper M10 pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'. Contains a small built-in camera."
-	icon = 'icons/Marine/marine_armor.dmi'
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 	icon_state = "helmet"
-	item_state = "helmet"
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	var/obj/machinery/camera/camera
@@ -170,79 +184,79 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 
-	New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
-		new_name[] 			= list(/datum/game_mode/ice_colony =  "\improper M10 pattern marine snow helmet"),
-		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
-		var/icon_override[] = type == /obj/item/clothing/head/helmet/marine ? list(/datum/game_mode/ice_colony = "s_helmet[pick(200;1,2)]") : null
-		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
+/obj/item/clothing/head/helmet/marine/New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
+	new_name[] 			= list(/datum/game_mode/ice_colony =  "\improper M10 pattern marine snow helmet"),
+	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	select_gamemode_skin(expected_type,null,new_name,new_protection)
+	..()
+	helmet_overlays = list("damage","band","item") //To make things simple.
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 2
+	pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses & metal flask.
+	pockets.bypass_w_limit = list("/obj/item/clothing/glasses", "/obj/item/reagent_container/food/drinks/flask")
+	pockets.max_storage_space = 3
+
+	camera = new /obj/machinery/camera(src)
+	camera.network = list("LEADER")
+
+/obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
+	if (pockets.handle_attack_hand(user))
 		..()
-		helmet_overlays = list("damage","band","item") //To make things simple.
-		pockets = new/obj/item/storage/internal(src)
-		pockets.storage_slots = 2
-		pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses & metal flask.
-		pockets.bypass_w_limit = list("/obj/item/clothing/glasses", "/obj/item/reagent_container/food/drinks/flask")
-		pockets.max_storage_space = 3
 
-		camera = new /obj/machinery/camera(src)
-		camera.network = list("LEADER")
-
-	attack_hand(mob/user)
-		if (pockets.handle_attack_hand(user))
-			..()
-
-	MouseDrop(over_object, src_location, over_location)
-		if(pockets.handle_mousedrop(usr, over_object))
-			..()
-
-	attackby(obj/item/W, mob/user)
+/obj/item/clothing/head/helmet/marine/MouseDrop(over_object, src_location, over_location)
+	if(pockets.handle_mousedrop(usr, over_object))
 		..()
-		return pockets.attackby(W, user)
 
-	on_pocket_insertion()
-		update_icon()
+/obj/item/clothing/head/helmet/marine/attackby(obj/item/W, mob/user)
+	..()
+	return pockets.attackby(W, user)
 
-	on_pocket_removal()
-		update_icon()
-
+/obj/item/clothing/head/helmet/marine/on_pocket_insertion()
 	update_icon()
-		if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
-			if(!helmet_overlays["band"])
-				var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine_armor.dmi', src, "helmet_band"))
-				helmet_overlays["band"] = I
 
-			if(!helmet_overlays["item"])
-				var/obj/O = pockets.contents[1]
-				if(O.type in allowed_helmet_items)
-					var/image/reusable/I = rnew(/image/reusable, list('icons/Marine/marine_armor.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]"))
-					helmet_overlays["item"] = I
+/obj/item/clothing/head/helmet/marine/on_pocket_removal()
+	update_icon()
 
-		else
-			if(helmet_overlays["item"])
-				var/image/reusable/RI = helmet_overlays["item"]
-				helmet_overlays["item"] = null
-				cdel(RI)
-			if(helmet_overlays["band"])
-				var/image/reusable/J = helmet_overlays["band"]
-				helmet_overlays["band"] = null
-				cdel(J)
+/obj/item/clothing/head/helmet/marine/update_icon()
+	if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
+		if(!helmet_overlays["band"])
+			var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "helmet_band"))
+			helmet_overlays["band"] = I
 
-		if(ismob(loc))
-			var/mob/M = loc
-			M.update_inv_head()
+		if(!helmet_overlays["item"])
+			var/obj/O = pockets.contents[1]
+			if(O.type in allowed_helmet_items)
+				var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]"))
+				helmet_overlays["item"] = I
 
-	equipped(var/mob/living/carbon/human/mob, slot)
-		if(camera)
-			camera.c_tag = mob.name
-		..()
+	else
+		if(helmet_overlays["item"])
+			var/image/reusable/RI = helmet_overlays["item"]
+			helmet_overlays["item"] = null
+			cdel(RI)
+		if(helmet_overlays["band"])
+			var/image/reusable/J = helmet_overlays["band"]
+			helmet_overlays["band"] = null
+			cdel(J)
 
-	dropped(var/mob/living/carbon/human/mob)
-		if(camera)
-			camera.c_tag = "Unknown"
-		..()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.update_inv_head()
+
+/obj/item/clothing/head/helmet/marine/equipped(var/mob/living/carbon/human/mob, slot)
+	if(camera)
+		camera.c_tag = mob.name
+	..()
+
+/obj/item/clothing/head/helmet/marine/dropped(var/mob/living/carbon/human/mob)
+	if(camera)
+		camera.c_tag = "Unknown"
+	..()
+
 
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
 	if(flags_marine_helmet & HELMET_DAMAGE_OVERLAY && !(flags_marine_helmet & HELMET_IS_DAMAGED))
-		helmet_overlays["damage"] = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
+		helmet_overlays["damage"] = image('icons/obj/clothing/cm_hats.dmi',icon_state = "hugger_damage")
 		flags_marine_helmet |= HELMET_IS_DAMAGED
 		update_icon()
 		desc += "\n<b>This helmet seems to be scratched up and damaged, particularly around the face area...</b>"
@@ -251,49 +265,42 @@
 
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
-	icon_state = "helmett"
-	item_color = "helmett"
 
-	New(loc,expected_type 		= type,
-		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 technician snow helmet"),
-		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
-		..(loc,expected_type,new_name,new_protection)
+/obj/item/clothing/head/helmet/marine/tech/New(loc,expected_type 		= type,
+	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 technician snow helmet"),
+	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/medic
 	name = "\improper M10 medic helmet"
-	icon_state = "helmetm"
-	item_color = "helmetm"
 
-	New(loc,expected_type 		= type,
-		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 medic snow helmet"),
-		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
-		..(loc,expected_type,new_name,new_protection)
+/obj/item/clothing/head/helmet/marine/medic/New(loc,expected_type 		= type,
+	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 medic snow helmet"),
+	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	..(loc,expected_type,new_name,new_protection)
 
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
-	icon_state = "helml"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
-	New(loc,expected_type 		= type,
-		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M11 pattern leader snow helmet"),
-		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
-		..(loc,expected_type,new_name,new_protection)
+/obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
+	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M11 pattern leader snow helmet"),
+	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
-	icon_state = "helml"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 105, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
 	unacidable = 1
 	anti_hug = 6
 
-	New(loc,expected_type 		= type,
-		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper B18 snow helmet"),
-		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
-		..(loc,expected_type,new_name,new_protection)
+/obj/item/clothing/head/helmet/marine/specialist/New(loc,expected_type 		= type,
+	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper B18 snow helmet"),
+	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
@@ -333,12 +340,11 @@
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 
+/obj/item/clothing/head/helmet/marine/veteran
+
 /obj/item/clothing/head/helmet/marine/veteran/PMC
 	name = "\improper PMC tactical cap"
 	desc = "A protective cap made from flexable kevlar. Standard issue for most security forms in the place of a helmet."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "helmet"
 	icon_state = "pmc_hat"
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -348,14 +354,11 @@
 /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
 	name = "\improper PMC beret"
 	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
-	icon = 'icons/PMC/PMC.dmi'
-	item_state = "officer_hat"
 	icon_state = "officer_hat"
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
-	item_state = "pmc_sniper_hat"
 	icon_state = "pmc_sniper_hat"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
@@ -365,7 +368,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
 	name = "\improper PMC gunner helmet"
 	desc = "A modification of the standard Armat Systems M3 armor."
-	item_state = "heavy_helmet"
 	icon_state = "heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
@@ -375,10 +377,7 @@
 /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	name = "\improper PMC commando helmet"
 	desc = "A fully enclosed, armored helmet made for Weyland Yutani elite commandos."
-	item_state = "commando_helmet"
-	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_helmet"
-	icon_override = 'icons/PMC/PMC.dmi'
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ|BLOCKGASEFFECT
@@ -391,9 +390,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/dutch
 	name = "\improper Dutch's Dozen helmet"
 	desc = "A protective helmet worn by some seriously experienced mercs."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
 	armor = list(melee = 70, bullet = 70, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
@@ -401,7 +397,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/dutch/cap
 	name = "\improper Dutch's Dozen cap"
 	desc = "A protective cap worn by some seriously experienced mercs."
-	item_state = "dutch_cap"
 	icon_state = "dutch_cap"
 	flags_inventory = BLOCKSHARPOBJ
 	flags_marine_helmet = NOFLAGS
@@ -409,7 +404,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/dutch/band
 	name = "\improper Dutch's Dozen band"
 	desc = "A protective band worn by some seriously experienced mercs."
-	item_state = "dutch_band"
 	icon_state = "dutch_band"
 	flags_inventory = BLOCKSHARPOBJ
 	flags_marine_helmet = NOFLAGS
@@ -417,9 +411,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/bear
 	name = "\improper Iron Bear helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
 	armor = list(melee = 90, bullet = 65, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -428,16 +419,16 @@
 /obj/item/clothing/head/helmet/UPP
 	name = "\improper UM4 helmet"
 	desc = "A skirted helmet designed for use with the UM/UH system."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "upp_helmet1"
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 	icon_state = "upp_helmet1"
 	armor = list(melee = 70, bullet = 55, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 
 /obj/item/clothing/head/helmet/UPP/heavy
 	name = "\improper UH7 helmet"
-	item_state = "upp_helmet_heavy"
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 	icon_state = "upp_helmet_heavy"
 	armor = list(melee = 90, bullet = 85, laser = 60, energy = 65, bomb = 85, bio = 5, rad = 5)
 	unacidable = 1
@@ -450,23 +441,21 @@
 /obj/item/clothing/head/helmet/specrag
 	name = "specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_override = 'icons/Marine/marine_armor.dmi'
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 	icon_state = "spec"
-	item_state = "spec"
-	item_color = "spec"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 
-	New()
-		select_gamemode_skin(type)
-		..()
+/obj/item/clothing/head/helmet/specrag/New()
+	select_gamemode_skin(type)
+	..()
 
 /obj/item/clothing/head/helmet/durag
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
-	icon = 'icons/Marine/marine_armor.dmi'
-	item_state = "durag"
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 	icon_state = "durag"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
@@ -474,19 +463,17 @@
 /obj/item/clothing/head/helmet/durag/jungle
 	name = "\improper M8 marksman cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
-	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "duragm"
-	item_state = "duragm"
 
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M6 marksman hood"),
-		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
-		select_gamemode_skin(expected_type,,new_name,new_protection)
-		..()
-		switch(icon_state)
-			if("s_duragm")
-				desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
-				flags_inventory = HIDEEARS|HIDEALLHAIR|BLOCKSHARPOBJ
+/obj/item/clothing/head/helmet/durag/jungle/New(loc,expected_type 	= type,
+	new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M6 marksman hood"),
+	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	select_gamemode_skin(expected_type,,new_name,new_protection)
+	..()
+	switch(icon_state)
+		if("s_duragm")
+			desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
+			flags_inventory = HIDEEARS|HIDEALLHAIR|BLOCKSHARPOBJ
 
 //===========================//HELGHAST - MERCENARY\\================================\\
 //=====================================================================\\
@@ -494,9 +481,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/mercenary
 	name = "\improper K12 ceramic helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "mercenary_heavy_helmet"
 	icon_state = "mercenary_heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
@@ -506,7 +490,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner
 	name = "\improper Y8 miner helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
-	item_state = "mercenary_miner_helmet"
 	icon_state = "mercenary_miner_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 55, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
@@ -516,7 +499,6 @@
 /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer
 	name = "\improper Z7 engineer helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
-	item_state = "mercenary_engineer_helmet"
 	icon_state = "mercenary_engineer_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 60, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)

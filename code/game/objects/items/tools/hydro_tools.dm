@@ -126,7 +126,6 @@
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "scythe"
-	item_state = "scythe"
 	force = 13.0
 	throwforce = 5.0
 	throw_speed = 1

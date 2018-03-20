@@ -12,10 +12,10 @@
 	var/obj/item/implant/imp = null
 
 /obj/item/implantcase/proc/update()
-	if (src.imp)
-		src.icon_state = text("implantcase-[]", src.imp.item_color)
+	if (imp)
+		icon_state = "implantcase-[imp.implant_color]"
 	else
-		src.icon_state = "implantcase-0"
+		icon_state = "implantcase-0"
 	return
 
 /obj/item/implantcase/attackby(obj/item/I as obj, mob/user as mob)
