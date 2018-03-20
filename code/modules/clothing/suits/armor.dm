@@ -28,8 +28,10 @@
 /obj/item/clothing/suit/armor/vest/pilot
 	name = "\improper M70 flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
+	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "pilot"
+	item_state = "pilot"
+	icon_override = 'icons/Marine/marine_armor.dmi'
 	blood_overlay_type = "armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
@@ -58,8 +60,8 @@
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"
 	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "dutch_armor"
+	item_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
 
@@ -322,27 +324,3 @@
 	name = "emergency response team medical armor"
 	desc = "A set of armor worn by medical members of the NanoTrasen Emergency Response Team. Has red and white highlights."
 	icon_state = "ertarmor_med"
-
-
-
-
-
-
-/obj/item/clothing/suit/armor/hos
-	name = "armored coat"
-	desc = "A greatcoat enhanced with a special alloy for some protection and style."
-	icon_state = "hos"
-	item_state = "hos"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-	flags_inventory = HIDEJUMPSUIT
-	siemens_coefficient = 0.6
-
-/obj/item/clothing/suit/armor/hos/jensen
-	name = "armored trenchcoat"
-	desc = "A trenchcoat augmented with a special alloy for some protection and style."
-	icon_state = "jensencoat"
-	item_state = "jensencoat"
-	flags_inventory = 0
-	siemens_coefficient = 0.6
-	flags_armor_protection = UPPER_TORSO|ARMS

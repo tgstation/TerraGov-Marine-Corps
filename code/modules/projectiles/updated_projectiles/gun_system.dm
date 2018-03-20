@@ -13,7 +13,6 @@
 	throw_range = 5
 	force 		= 5
 	attack_verb = null
-	sprite_sheet_id = 1
 
 	var/fire_sound 		= 'sound/weapons/Gunshot.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'

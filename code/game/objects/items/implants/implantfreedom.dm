@@ -3,7 +3,7 @@
 /obj/item/implant/freedom
 	name = "freedom implant"
 	desc = "Use this to escape from those evil Red Shirts."
-	implant_color= "r"
+	item_color = "r"
 	var/activation_emote = "chuckle"
 	var/uses = 1.0
 

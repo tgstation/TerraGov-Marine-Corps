@@ -111,6 +111,7 @@
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
 	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
 	item_state = "hardhat0_pumpkin"
+	item_color = "pumpkin"
 	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|HIDEALLHAIR
 	flags_armor_protection = HEAD|EYES
 	var/brightness_on = 2 //luminosity when on
@@ -123,7 +124,8 @@
 			user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
 			return
 		on = !on
-		icon_state = "hardhat[on]_pumpkin"
+		icon_state = "hardhat[on]_[item_color]"
+		item_state = "hardhat[on]_[item_color]"
 
 		if(on)	user.SetLuminosity(brightness_on)
 		else	user.SetLuminosity(-brightness_on)

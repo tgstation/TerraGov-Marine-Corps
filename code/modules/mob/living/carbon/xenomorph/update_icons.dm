@@ -83,8 +83,7 @@
 		var/t_state = l_hand.item_state
 		if(!t_state)
 			t_state = l_hand.icon_state
-		var/spritesheet_used = "icons/mob/items_lefthand_[l_hand.sprite_sheet_id]"
-		overlays_standing[X_L_HAND_LAYER]	= image("icon" = spritesheet_used, "icon_state" = t_state, "layer" =-X_L_HAND_LAYER)
+		overlays_standing[X_L_HAND_LAYER]	= image("icon" = l_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = t_state, "layer" =-X_L_HAND_LAYER)
 		apply_overlay(X_L_HAND_LAYER)
 
 //Call when target overlay should be added/removed

@@ -4,9 +4,7 @@
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = FALSE
-	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
-						//e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
-						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
+	var/item_state = null
 	var/r_speed = 1.0
 	var/force = 0
 	var/damtype = "brute"
@@ -42,6 +40,8 @@
 	var/list/actions = list() //list of /datum/action's that this item has.
 	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
+	var/item_color = null
+
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
@@ -64,8 +64,8 @@
 	If index term exists and icon_override is not set, this sprite sheet will be used.
 	*/
 	var/list/sprite_sheets = null
-	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
-	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is default, 1 is the new one.
+	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
+	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is defualt, 1 is the new one.
 
 	/* Species-specific sprite sheets for inventory sprites
 	Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
@@ -136,26 +136,35 @@
 item, and will change the skin to whatever you specify here. You can also
 manually override the icon with a unique skin if wanted, for the outlier
 cases. Override_icon_state should be a list.*/
-/obj/item/proc/select_gamemode_skin(expected_type, list/override_icon_state, override_name, list/override_protection)
+/obj/item/proc/select_gamemode_skin(expected_type, override_icon_state, override_name, override_protection)
 	if(type == expected_type && ticker && ticker.mode)
 		var/game_mode = ticker.mode.type
 		var/new_icon_state
 		var/new_name
 		var/new_protection
-		if(override_icon_state && override_icon_state.len) new_icon_state = override_icon_state[game_mode]
+		if(override_icon_state) new_icon_state = override_icon_state[game_mode]
 		if(override_name) new_name = override_name[game_mode]
-		if(override_protection && override_protection.len) new_protection = override_protection[game_mode]
+		if(override_protection) new_protection = override_protection[game_mode]
 		switch(ticker.mode.type)
 			if(/datum/game_mode/ice_colony) //Can easily add other states if needed.
-				icon_state = new_icon_state ? new_icon_state : "s_" + icon_state
-				if(new_name) name = new_name
-				if(new_protection) min_cold_protection_temperature = new_protection
+				if(icon == 'icons/Marine/marine_armor.dmi')
+					icon = 'icons/Marine/marine_armor_snow.dmi'
+					icon_override = 'icons/Marine/marine_armor_snow.dmi'
+				else
+					icon_state = new_icon_state ? new_icon_state : "s_" + icon_state
+					if(new_name) name = new_name
+					if(new_protection) min_cold_protection_temperature = new_protection
 			if(/datum/game_mode/whiskey_outpost) //Can easily add other states if needed.
-				icon_state = new_icon_state ? new_icon_state : "d_" + icon_state
-				if(new_name) name = new_name
-				if(new_protection) min_cold_protection_temperature = new_protection
+				if(icon == 'icons/Marine/marine_armor.dmi')
+					icon = 'icons/Marine/marine_armor_dust.dmi'
+					icon_override = 'icons/Marine/marine_armor_dust.dmi'
+				else
+					icon_state = new_icon_state ? new_icon_state : "d_" + icon_state
+					if(new_name) name = new_name
+					if(new_protection) min_cold_protection_temperature = new_protection
 
 		item_state = icon_state
+		item_color = icon_state
 
 
 /obj/item/examine(mob/user)

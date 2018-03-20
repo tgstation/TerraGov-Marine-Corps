@@ -20,10 +20,13 @@
 		*/
 	var/obj/item/clothing/tie/hastie = null
 	var/displays_id = 1
-	var/rollable_sleeves = FALSE //can we roll the sleeves on this uniform?
-	var/rolled_sleeves = FALSE //are the sleeves currently rolled?
+	var/base_color
 	var/list/suit_restricted //for uniforms that only accept to be combined with certain suits
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
+
+	New()
+		..()
+		base_color = item_color
 
 
 
@@ -166,19 +169,20 @@
 	if(!isliving(usr)) return
 	if(usr.stat) return
 
-	if(rollable_sleeves)
-		rolled_sleeves = !rolled_sleeves
+	if(base_color + "_d_s" in icon_states('icons/mob/uniform_0.dmi'))
 		var/full_coverage = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-		if(rolled_sleeves)
+		if(item_color == base_color)
 			var/partial_coverage = UPPER_TORSO|LOWER_TORSO|LEGS
 			var/final_coverage
 			//Marine uniforms can only roll up the sleeves, not wear it at the waist.
 			if(istype(src,/obj/item/clothing/under/marine))
-				final_coverage = copytext(icon_state,1,3) == "s_" ? full_coverage : partial_coverage
+				final_coverage = copytext(item_color,1,3) == "s_" ? full_coverage : partial_coverage
 			else final_coverage = partial_coverage & ~UPPER_TORSO
 			flags_armor_protection = final_coverage
+			item_color = "[base_color]_d"
 		else
 			flags_armor_protection = full_coverage
+			item_color = base_color
 
 		flags_cold_protection = flags_armor_protection
 		flags_heat_protection = flags_armor_protection
