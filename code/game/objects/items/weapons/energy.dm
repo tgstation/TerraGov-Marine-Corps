@@ -61,6 +61,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	var/base_sword_icon = "sword"
+	var/sword_color
 
 /obj/item/weapon/energy/sword/IsShield()
 	if(active)
@@ -68,7 +69,8 @@
 	return 0
 
 /obj/item/weapon/energy/sword/New()
-	item_color = pick("red","blue","green","purple")
+	if(!sword_color)
+		sword_color = pick("red","blue","green","purple")
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -81,7 +83,7 @@
 		if(base_sword_icon != "sword")
 			icon_state = "[base_sword_icon]1"
 		else
-			icon_state = "sword[item_color]"
+			icon_state = "sword[sword_color]"
 		w_class = 4
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		user << "\blue [src] is now active."
@@ -110,17 +112,15 @@
 	base_sword_icon = "cutlass"
 
 /obj/item/weapon/energy/sword/green
-	New()
-		item_color = "green"
-		..()
+	sword_color = "green"
+
 
 /obj/item/weapon/energy/sword/green/attack_self()
 	..()
 	force = active ? 80 : 3
 
 /obj/item/weapon/energy/sword/red
-	New()
-		item_color = "red"
+	sword_color = "red"
 
 
 

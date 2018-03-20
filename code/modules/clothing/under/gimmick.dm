@@ -9,14 +9,11 @@
 	name = "dirty work attire"
 	desc = "Perfect thing to wear when digging graves."
 	icon_state = "jason_suit"
-	item_state = "jason_suit"
-	item_color = "jason_suit"
 
 /obj/item/clothing/mask/gimmick/jason
 	name = "hockey mask"
 	desc = "It smells like teenage spirit."
 	icon_state = "jason_mask"
-	item_state = "jason_mask"
 	anti_hug = 100
 
 /obj/item/clothing/suit/gimmick/jason
@@ -31,8 +28,6 @@
 	name = "combat pants"
 	desc = "The only thing a man needs when he's up agains the world."
 	icon_state = "rambo_suit"
-	item_state = "rambo_suit"
-	item_color = "rambo_suit"
 	flags_armor_protection = LEGS|LOWER_TORSO
 	flags_cold_protection = LEGS|LOWER_TORSO
 	flags_heat_protection = LEGS|LOWER_TORSO
@@ -44,15 +39,12 @@
 	flags_cold_protection = UPPER_TORSO
 	flags_heat_protection = UPPER_TORSO
 	icon_state = "rambo_pendant"
-	item_state = "rambo_pendant"
 
 //MCCLANE
 /obj/item/clothing/under/gimmick/mcclane
 	name = "holiday attire"
 	desc = "The perfect outfit for a Christmas holiday with family. Shoes not included."
 	icon_state = "mcclane_suit"
-	item_state = "mcclane_suit"
-	item_color = "mcclane_suit"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
@@ -62,8 +54,6 @@
 	name = "combat fatigues"
 	desc = "Just another pair of military fatigues for a grueling tour in a jungle."
 	icon_state = "dutch_suit"
-	item_state = "dutch_suit"
-	item_color = "dutch_suit"
 	flags_armor_protection = LEGS|LOWER_TORSO
 	flags_cold_protection = LEGS|LOWER_TORSO
 	flags_heat_protection = LEGS|LOWER_TORSO
@@ -72,7 +62,6 @@
 	name = "armored jacket"
 	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
 	icon_state = "dutch_armor"
-	item_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO
 	flags_cold_protection = UPPER_TORSO
 	flags_heat_protection = UPPER_TORSO
@@ -94,15 +83,12 @@
 	name = "metal body"
 	desc = "It may be metallic, but it contains the heart and soul of Alex J. Murphy."
 	icon_state = "robocop_suit"
-	item_state = "robocop_suit"
-	item_color = "robocop_suit"
 	flags_atom = FPRINT|CONDUCT
 
 /obj/item/clothing/shoes/gimmick/robocop
 	name = "polished metal boots"
 	desc = "The perfect size to stomp on the scum of Detroit."
 	icon_state = "robocop_shoes"
-	item_state = "robocop_shoes"
 	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
 	flags_inventory = FPRINT|CONDUCT|NOSLIPPING
 
@@ -110,7 +96,6 @@
 	name = "metal hands"
 	desc = "The cold, unfeeling hands of the law."
 	icon_state = "robocop_gloves"
-	item_state = "robocop_gloves"
 	flags_atom = FPRINT|CONDUCT
 	armor = list(melee = 87, bullet = 87, laser = 87,energy = 87, bomb = 87, bio = 50, rad = 50)
 
@@ -142,21 +127,17 @@
 	name = "black jumpsuit"
 	desc = "A simple, utilitarian jumpsuit worn by one who has mastered the force."
 	icon_state = "skywalker_suit"
-	item_state = "skywalker_suit"
-	item_color = "skywalker_suit"
 
 /obj/item/clothing/shoes/gimmick/skywalker
 	name = "black boots"
 	desc = "Perfectly functional, this pair of boots has stomped on many planets and starships."
 	icon_state = "skywalker_shoes"
-	item_state = "skywalker_shoes"
 	flags_inventory = FPRINT|NOSLIPPING
 
 /obj/item/clothing/gloves/gimmick/skywalker
 	name = "black glove"
 	desc = "Something to cover up that artificial hand... Who says heroes can't be self-conscious?"
 	icon_state = "skywalker_gloves"
-	item_state = "skywalker_gloves"
 
 
 
@@ -165,11 +146,9 @@
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
 	item_state = "dg_suit"
-	item_color = "green_suit"
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit"
 	item_state = "g_suit"
-	item_color = "teal_suit"

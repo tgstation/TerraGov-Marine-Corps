@@ -9,7 +9,6 @@
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_RED
-	//item_color = COLOR_RED Use regular "color" var instead. No need to have it duplicate in two vars. Causes confusion.
 	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = 2

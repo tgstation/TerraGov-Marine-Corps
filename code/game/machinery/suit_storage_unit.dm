@@ -805,7 +805,6 @@
 
 		dat += "<h2>Customisation</h2>"
 		dat += "<b>Target product: <A href='?src=\ref[src];select_department=1'>[target_department]</a>, <A href='?src=\ref[src];select_species=1'>[target_species]</a>."
-		dat += "<A href='?src=\ref[src];apply_paintjob=1'><br>\[apply customisation routine\]</a><br><hr>"
 
 	if(panel_open)
 		var/list/vendwires = list(
@@ -859,14 +858,6 @@
 		active = 1
 		spawn(100)
 			repair_suit()
-			finished_job()
-
-	else if(href_list["apply_paintjob"])
-
-		if(!suit && !helmet) return
-		active = 1
-		spawn(100)
-			apply_paintjob()
 			finished_job()
 
 	else if(href_list["toggle_safties"])
@@ -1045,77 +1036,3 @@
 		if (WIRE_SCANID)
 			locked = !locked
 
-//There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
-/obj/machinery/suit_cycler/proc/apply_paintjob()
-
-	if(!target_species || !target_department)
-		return
-
-	if(target_species)
-		if(helmet) helmet.refit_for_species(target_species)
-		if(suit) suit.refit_for_species(target_species)
-
-	switch(target_department)
-		if("Engineering")
-			if(helmet)
-				helmet.name = "engineering hardsuit helmet"
-				helmet.icon_state = "rig0-engineering"
-				helmet.item_state = "eng_helm"
-				helmet.item_color = "engineering"
-			if(suit)
-				suit.name = "engineering hardsuit"
-				suit.icon_state = "rig-engineering"
-				suit.item_state = "eng_hardsuit"
-		if("Mining")
-			if(helmet)
-				helmet.name = "mining hardsuit helmet"
-				helmet.icon_state = "rig0-mining"
-				helmet.item_state = "mining_helm"
-				helmet.item_color = "mining"
-			if(suit)
-				suit.name = "mining hardsuit"
-				suit.icon_state = "rig-mining"
-				suit.item_state = "mining_hardsuit"
-		if("Medical")
-			if(helmet)
-				helmet.name = "medical hardsuit helmet"
-				helmet.icon_state = "rig0-medical"
-				helmet.item_state = "medical_helm"
-				helmet.item_color = "medical"
-			if(suit)
-				suit.name = "medical hardsuit"
-				suit.icon_state = "rig-medical"
-				suit.item_state = "medical_hardsuit"
-		if("Security")
-			if(helmet)
-				helmet.name = "security hardsuit helmet"
-				helmet.icon_state = "rig0-sec"
-				helmet.item_state = "sec_helm"
-				helmet.item_color = "sec"
-			if(suit)
-				suit.name = "security hardsuit"
-				suit.icon_state = "rig-sec"
-				suit.item_state = "sec_hardsuit"
-		if("Atmos")
-			if(helmet)
-				helmet.name = "atmospherics hardsuit helmet"
-				helmet.icon_state = "rig0-atmos"
-				helmet.item_state = "atmos_helm"
-				helmet.item_color = "atmos"
-			if(suit)
-				suit.name = "atmospherics hardsuit"
-				suit.icon_state = "rig-atmos"
-				suit.item_state = "atmos_hardsuit"
-		if("^%###^%$" || "Mercenary")
-			if(helmet)
-				helmet.name = "blood-red hardsuit helmet"
-				helmet.icon_state = "rig0-syndie"
-				helmet.item_state = "syndie_helm"
-				helmet.item_color = "syndie"
-			if(suit)
-				suit.name = "blood-red hardsuit"
-				suit.item_state = "syndie_hardsuit"
-				suit.icon_state = "rig-syndie"
-
-	if(helmet) helmet.name = "refitted [helmet.name]"
-	if(suit) suit.name = "refitted [suit.name]"

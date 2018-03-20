@@ -3,7 +3,6 @@
 		..()
 		switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "smoothoperator" = 1)))
 			if("bloodyspai")
-				new /obj/item/clothing/under/chameleon(src)
 				new /obj/item/clothing/mask/gas/voice(src)
 				new /obj/item/card/id/syndicate(src)
 				new /obj/item/clothing/shoes/syndigaloshes(src)
@@ -114,16 +113,3 @@
 	name = "Chameleon Kit"
 	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold seperately."
 	storage_slots = 10
-
-/obj/item/storage/box/syndie_kit/chameleon/New()
-	..()
-	new /obj/item/clothing/under/chameleon(src)
-	new /obj/item/clothing/head/chameleon(src)
-	new /obj/item/clothing/suit/chameleon(src)
-	new /obj/item/clothing/shoes/chameleon(src)
-	new /obj/item/storage/backpack/chameleon(src)
-	new /obj/item/clothing/gloves/chameleon(src)
-	new /obj/item/clothing/mask/chameleon(src)
-	new /obj/item/clothing/glasses/chameleon(src)
-//	new /obj/item/weapon/gun/projectile/chameleon(src)
-//	new /obj/item/ammo_magazine/chameleon(src)

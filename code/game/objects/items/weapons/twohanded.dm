@@ -129,7 +129,6 @@
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	icon_state = "fireaxe"
-	item_state = "fireaxe"
 	force = 20
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -206,7 +205,6 @@
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	icon_state = "spearglass"
-	item_state = "spearglass"
 	force = 14
 	w_class = 4.0
 	flags_equip_slot = SLOT_BACK
