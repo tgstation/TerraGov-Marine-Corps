@@ -358,18 +358,14 @@
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
-	world << "t"
 	if(I.abstract)
 		return
-	world << "k"
 	if((I.flags_atom & NODROP) || !I.canremove)
 		src << "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>"
 		return
-	world << "j"
 	if(I.flags_inventory & CANTSTRIP)
 		src << "<span class='warning'>You're having difficulty removing that item.</span>"
 		return
-	world << "jj"
 	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their [I.name] ([slot_to_process]) removed by [name] ([ckey])</font>"
 	attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [M.name]'s ([M.ckey]) [I.name] ([slot_to_process])</font>"
 
@@ -386,13 +382,10 @@
 
 
 /mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
-	world << "e"
 	if(I && !I.abstract)
-		world << "d"
 		if((I.flags_atom & NODROP) || !I.canremove)
 			src << "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>"
 			return
-		world << "f"
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
 			src << "<span class='warning'>You can't put \the [I.name] on [M]!</span>"
 			return
