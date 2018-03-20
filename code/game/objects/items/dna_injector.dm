@@ -5,14 +5,12 @@
 	icon_state = "dnainjector"
 	var/block=0
 	var/datum/dna2/record/buf=null
-	var/s_time = 10.0
 	throw_speed = 1
 	throw_range = 5
 	w_class = 1.0
 	var/uses = 1
 	var/nofail
 	var/is_bullet = 0
-	var/inuse = 0
 
 	// USE ONLY IN PREMADE SYRINGES.  WILL NOT WORK OTHERWISE.
 	var/datatype=0
@@ -110,18 +108,8 @@
 	log_attack("[user.name] ([user.ckey]) used the [name] to inject [M.name] ([M.ckey])")
 
 	if (user)
-		if (istype(M, /mob/living/carbon/human))
-			if(!inuse)
-				var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
-				O.source = user
-				O.target = M
-				O.item = src
-				O.s_loc = user.loc
-				O.t_loc = M.loc
-				O.place = "dnainjector"
-				src.inuse = 1
-				spawn(50) // Not the best fix. There should be an failure proc, for /effect/equip_e/, which is called when the first initital checks fail
-					inuse = 0
+		if (ishuman(M))
+			if(!user.action_busy)
 				if (buf && buf.types & DNA2_BUF_SE)
 					if(block)// Isolated injector
 						testing("Isolated block [block] injector with contents: [GetValue()]")
@@ -144,54 +132,58 @@
 	//				message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name]")
 					log_attack("[key_name(user)] injected [key_name(M)] with the [name]")
 
-				spawn( 0 )
-					O.process()
-					return
+
+				user.visible_message("\red <B>[user] is trying to inject [M] with [src]!</B>")
+				if(do_mob(user, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+					if(src == user.get_active_hand())
+						add_fingerprint(user)
+						inject(M, user)
+						user.visible_message("\red [user] injects [M] with the DNA Injector!")
+
+
 		else
-			if(!inuse)
 
-				for(var/mob/O in viewers(M, null))
-					O.show_message(text("\red [] has been injected with [] by [].", M, src, user), 1)
-					//Foreach goto(192)
-				if (!(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey)))
-					user << "\red Apparently it didn't work."
-					return
+			for(var/mob/O in viewers(M, null))
+				O.show_message(text("\red [] has been injected with [] by [].", M, src, user), 1)
+				//Foreach goto(192)
+			if (!(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey)))
+				user << "\red Apparently it didn't work."
+				return
 
-				if (buf && buf.types & DNA2_BUF_SE)
-					if(block)// Isolated injector
-						testing("Isolated block [block] injector with contents: [GetValue()]")
-						if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/human)  )
-							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
-							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name] (MONKEY)")
-							log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
-						else
-							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name]")
+			if (buf && buf.types & DNA2_BUF_SE)
+				if(block)// Isolated injector
+					testing("Isolated block [block] injector with contents: [GetValue()]")
+					if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/human)  )
+						message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
+						log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name] (MONKEY)")
+						log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
 					else
-						testing("DNA injector with contents: [english_list(buf.dna.SE)]")
-						if (GetState(MONKEYBLOCK) && istype(M, /mob/living/carbon/human))
-							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] \red(MONKEY)")
-							log_game("[key_name(user)] injected [key_name(M)] with the [name] (MONKEY)")
-						else
-	//						message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name]")
-							log_game("[key_name(user)] injected [key_name(M)] with the [name]")
+						log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name]")
 				else
-//					message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name]")
-					log_game("[key_name(user)] injected [key_name(M)] with the [name]")
-				inuse = 1
-				inject(M, user)//Now we actually do the heavy lifting.
-				spawn(50)
-					inuse = 0
-				/*
-				A user injecting themselves could mean their own transformation and deletion of mob.
-				I don't have the time to figure out how this code works so this will do for now.
-				I did rearrange things a bit.
-				*/
-				if(user)//If the user still exists. Their mob may not.
-					if(M)//Runtime fix: If the mob doesn't exist, mob.name doesnt work. - Nodrak
-						user.show_message(text("\red You inject [M.name]"))
+					testing("DNA injector with contents: [english_list(buf.dna.SE)]")
+					if (GetState(MONKEYBLOCK) && istype(M, /mob/living/carbon/human))
+						message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] \red(MONKEY)")
+						log_game("[key_name(user)] injected [key_name(M)] with the [name] (MONKEY)")
 					else
-						user.show_message(text("\red You finish the injection."))
-	return
+//						message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name]")
+						log_game("[key_name(user)] injected [key_name(M)] with the [name]")
+			else
+//					message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name]")
+				log_game("[key_name(user)] injected [key_name(M)] with the [name]")
+
+			inject(M, user)//Now we actually do the heavy lifting.
+
+			/*
+			A user injecting themselves could mean their own transformation and deletion of mob.
+			I don't have the time to figure out how this code works so this will do for now.
+			I did rearrange things a bit.
+			*/
+			if(user)//If the user still exists. Their mob may not.
+				if(M)//Runtime fix: If the mob doesn't exist, mob.name doesnt work. - Nodrak
+					user.show_message(text("\red You inject [M.name]"))
+				else
+					user.show_message(text("\red You finish the injection."))
+
 
 
 

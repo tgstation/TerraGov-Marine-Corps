@@ -7,6 +7,9 @@
 /mob/proc/update_icons()
 	return
 
+/mob/proc/update_transform() //handles transforms (humans going from standing to lying)
+	return
+
 /mob/proc/update_inv_handcuffed()
 	return
 

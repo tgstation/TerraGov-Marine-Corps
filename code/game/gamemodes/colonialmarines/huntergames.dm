@@ -274,8 +274,6 @@ var/waiting_for_drop_votes = 0
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), WEAR_R_STORE)
 
-	H.update_icons()
-
 	//Give them some information
 	spawn(4)
 		H << "<h2>There can be only one!!</h2>"

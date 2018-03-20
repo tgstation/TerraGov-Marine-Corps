@@ -76,14 +76,22 @@
 				M << "\blue <B>Remove his mask!</B>"
 				return 0
 
-			var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
-			O.source = M
-			O.target = src
-			O.s_loc = M.loc
-			O.t_loc = loc
-			O.place = "CPR"
-			spawn(0)
-				O.process()
+			//CPR
+			if(M.action_busy)
+				return 1
+			M.visible_message("\red <B>[M] is trying perform CPR on [src]!</B>")
+
+			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
+				if(health > config.health_threshold_dead && health < config.health_threshold_crit)
+					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
+					adjustOxyLoss(-suff)
+					updatehealth()
+					for(var/mob/O in viewers(M, null))
+						O.show_message("\red [M] performs CPR on [src]!", 1)
+					src << "\blue <b>You feel a breath of fresh air enter your lungs. It feels good.</b>"
+					M << "\red Repeat at least every 7 seconds."
+
+
 			return 1
 
 		if("grab")

@@ -26,7 +26,6 @@
 		overlays_standing[cache_index] = null
 
 /mob/living/carbon/Xenomorph/update_icons()
-	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	if(stat == DEAD)
 		icon_state = "[caste] Dead"
 	else if(lying)

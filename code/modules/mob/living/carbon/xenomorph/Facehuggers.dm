@@ -395,7 +395,6 @@
 	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/M = loc
 		M.drop_inv_item_on_ground(src)
-		M.update_icons()
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 

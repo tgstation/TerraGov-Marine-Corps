@@ -511,7 +511,8 @@
 		if("walk")
 			user.m_intent = "run"
 			icon_state = "running"
-	user.update_icons()
+	if(isXeno(user))
+		user.update_icons()
 	return 1
 
 

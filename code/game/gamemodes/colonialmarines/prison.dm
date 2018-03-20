@@ -136,9 +136,6 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), WEAR_L_STORE)
 
 
-
-	H.update_icons()
-
 	//Give them some information
 	spawn(4)
 		H << "<h2>You are a survivor!</h2>"

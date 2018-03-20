@@ -91,6 +91,4 @@
 /obj/item/device/cloaking_device/emp_act(severity)
 	active = 0
 	icon_state = "shield0"
-	if(ismob(loc))
-		loc:update_icons()
 	..()

@@ -42,7 +42,6 @@
 			"Why is Christmas just like life on ss13?\n\n<i>You do all the work and the fat guy gets all the credit.</i>",
 			"Why doesn’t Santa have any children?\n\n<i>Because he only comes down the chimney.</i>")
 		new /obj/item/clothing/head/festive(target.loc)
-		user.update_icons()
 		cracked = 1
 		icon_state = "cracker1"
 		var/obj/item/toy/xmas_cracker/other_half = new /obj/item/toy/xmas_cracker(target)

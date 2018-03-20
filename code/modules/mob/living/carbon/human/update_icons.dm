@@ -153,26 +153,21 @@ Please contact me on #coderbus IRC. ~Carn x
 //UPDATES OVERLAYS FROM OVERLAYS_LYING/OVERLAYS_STANDING
 //this proc is messy as I was forced to include some old laggy cloaking code to it so that I don't break cloakers
 //I'll work on removing that stuff by rewriting some of the cloaking stuff at a later date.
-/mob/living/carbon/human/update_icons()
-	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	overlays.Cut()
+/mob/living/carbon/human/update_transform()
+	if(lying != lying_prev )
+		lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 
-	if (icon_update)
-		icon = stand_icon
-		for(var/image/I in overlays_standing)
-			overlays += I
-
-	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
-		var/matrix/M = matrix()
-		M.Turn(90)
-		M.Scale(size_multiplier)
-		M.Translate(1,-6)
-		src.transform = M
-	else
-		var/matrix/M = matrix()
-		M.Scale(size_multiplier)
-		M.Translate(0, 16*(size_multiplier-1))
-		src.transform = M
+		if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
+			var/matrix/M = matrix()
+			M.Turn(90)
+			M.Scale(size_multiplier)
+			M.Translate(1,-6)
+			src.transform = M
+		else
+			var/matrix/M = matrix()
+			M.Scale(size_multiplier)
+			M.Translate(0, 16*(size_multiplier-1))
+			src.transform = M
 
 var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/get_damage_icon_part(damage_state, body_part)
@@ -407,8 +402,7 @@ var/global/list/damage_icon_parts = list()
 		else if(undershirt>0 && undershirt < 5)
 			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 
-	if(update_icons)
-		update_icons()
+	icon = stand_icon
 
 	//tail
 	update_tail_showing(0)
@@ -540,25 +534,25 @@ var/global/list/damage_icon_parts = list()
 	if(monkeyizing)		return
 	update_mutations(0)
 	update_mutantrace(0)
-	update_inv_w_uniform(0)
-	update_inv_wear_id(0)
-	update_inv_gloves(0)
-	update_inv_glasses(0)
-	update_inv_ears(0)
-	update_inv_shoes(0)
-	update_inv_s_store(0)
-	update_inv_wear_mask(0)
-	update_inv_head(0)
-	update_inv_belt(0)
-	update_inv_back(0)
-	update_inv_wear_suit(0)
-	update_inv_r_hand(0)
-	update_inv_l_hand(0)
-	update_inv_handcuffed(0)
-	update_inv_legcuffed(0)
-	update_inv_pockets(0)
+	update_inv_w_uniform()
+	update_inv_wear_id()
+	update_inv_gloves()
+	update_inv_glasses()
+	update_inv_ears()
+	update_inv_shoes()
+	update_inv_s_store()
+	update_inv_wear_mask()
+	update_inv_head()
+	update_inv_belt()
+	update_inv_back()
+	update_inv_wear_suit()
+	update_inv_r_hand()
+	update_inv_l_hand()
+	update_inv_handcuffed()
+	update_inv_legcuffed()
+	update_inv_pockets()
 	UpdateDamageIcon()
-	update_icons()
+	update_transform()
 
 
 /* --------------------------------------- */

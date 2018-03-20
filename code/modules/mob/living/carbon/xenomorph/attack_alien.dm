@@ -29,7 +29,6 @@
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
-				M.update_icons() //To immediately show the grab
 
 		if("hurt")
 			var/datum/hive_status/hive
@@ -218,7 +217,6 @@
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
-				M.update_icons() //To immediately show the grab
 
 		if("hurt")
 			if(isXeno(src) && xeno_hivenumber(src) == M.hivenumber)

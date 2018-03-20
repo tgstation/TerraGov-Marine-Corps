@@ -111,7 +111,6 @@
 
 				if(Adjacent(M)) //Logic!
 					M.start_pulling(src)
-					M.update_icons() //To immediately show the grab
 
 					M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
 					"<span class='warning'>You grab \the [src]!</span>")

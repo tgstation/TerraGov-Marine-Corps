@@ -33,11 +33,10 @@
 				gene.activate(M,connected,flags)
 				if(M)
 					M.active_genes |= gene.type
-					M.update_icon = 1
 			// If Gene is NOT active:
 			else
 //				testing("[gene.name] deactivated!")
 				gene.deactivate(M,connected,flags)
 				if(M)
 					M.active_genes -= gene.type
-					M.update_icon = 1
+
