@@ -107,7 +107,6 @@
 	else
 		if (M.ear_damage >= 5)
 			M << "\red Your ears start to ring!"
-	M.update_icons()
 
 
 /obj/item/explosive/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve

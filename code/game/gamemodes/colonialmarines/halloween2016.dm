@@ -471,7 +471,6 @@
 			if(H.wear_id) ID.access = get_antagonist_pmc_access()//They should have one of these.
 			H.mind.special_role = "PMC"
 			H.loc = pick(pmc_spawns)
-			H.update_icons()
 			spawn(40)
 				if(H)
 					H << "________________________"
@@ -484,7 +483,6 @@
 			return
 		if("Commander")
 			H.loc = pick(marine_spawns)
-			H.update_icons()
 			spawn(40)
 				if(H)
 					H << "________________________"
@@ -912,8 +910,7 @@
 				H << "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!"
 				H << "You've got an hour. And watch out... That colony ain't right, it ain't right at all. <b>DISMISSED!</b>"
 				H << "________________________"
-	//Finally, update all icons
-	H.update_icons()
+
 	H.loc = picked
 
 	return H

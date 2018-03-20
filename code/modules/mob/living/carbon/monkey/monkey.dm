@@ -6,7 +6,6 @@
 	icon = 'icons/mob/monkey.dmi'
 	gender = NEUTER
 	flags_pass = PASSTABLE
-	update_icon = 0		///no need to call regenerate_icon
 	hud_possible = list(STATUS_HUD_XENO_INFECTION)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
@@ -88,8 +87,7 @@
 		update_muts=1
 
 	..()
-	update_icons()
-	return
+
 
 /mob/living/carbon/monkey/unathi/New()
 	..()
@@ -123,24 +121,50 @@
 
 
 /mob/living/carbon/monkey/Topic(href, href_list)
-	..()
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_interaction()
 		src << browse(null, t1)
-	if ((href_list["item"] && !( usr.stat ) && !( usr.is_mob_restrained() ) && in_range(src, usr) ))
-		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
-		O.source = usr
-		O.target = src
-		O.item = usr.get_active_hand()
-		O.s_loc = usr.loc
-		O.t_loc = loc
-		O.place = href_list["item"]
-		spawn( 0 )
-			O.process()
-			return
+	if (href_list["item"])
+		if(!usr.is_mob_incapacitated() && in_range(src, usr))
+			if(!usr.action_busy)
+				var/slot = text2num(href_list["item"])
+				var/obj/item/what = get_item_by_slot(slot)
+				if(what)
+					usr.stripPanelUnequip(what,src,slot)
+				else
+					what = usr.get_active_hand()
+					usr.stripPanelEquip(what,src,slot)
+
+	if(href_list["internal"])
+
+		if(!usr.action_busy)
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their internals toggled by [usr.name] ([usr.ckey])</font>")
+			usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) internals</font>")
+			if(internal)
+				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>")
+			else
+				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>")
+
+			if(do_mob(usr, src, 30, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+				if (internal)
+					internal.add_fingerprint(usr)
+					internal = null
+					if (hud_used && hud_used.internals)
+						hud_used.internals.icon_state = "internal0"
+				else
+					if(istype(wear_mask, /obj/item/clothing/mask))
+						if (istype(back, /obj/item/tank))
+							internal = back
+							for(var/mob/M in viewers(src, 1))
+								M.show_message("[src] is now running on internals.", 1)
+							internal.add_fingerprint(usr)
+							if (hud_used. && hud_used.internals)
+								hud_used.internals.icon_state = "internal1"
+
+
 	..()
-	return
+
 
 /mob/living/carbon/monkey/attack_paw(mob/M as mob)
 	..()

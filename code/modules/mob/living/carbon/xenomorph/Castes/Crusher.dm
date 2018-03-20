@@ -320,7 +320,6 @@
 		updatehealth()
 
 /mob/living/carbon/Xenomorph/Crusher/update_icons()
-	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	if(stat == DEAD)
 		icon_state = "Crusher Dead"
 	else if(lying)

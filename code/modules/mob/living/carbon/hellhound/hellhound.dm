@@ -6,7 +6,6 @@
 	icon = 'icons/Predator/hellhound.dmi'
 	icon_state = "hellhound"
 	gender = NEUTER
-	update_icon = 0		///no need to call regenerate_icon
 	health = 120 //Kinda tough. They heal quickly.
 	maxHealth = 120
 

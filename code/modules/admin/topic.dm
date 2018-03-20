@@ -1202,7 +1202,7 @@
 		spawn(0)
 			M.real_name = y_name
 			M.gender = y_gend
-			M.update_icons()
+			M.regenerate_icons()
 			log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.real_name].")
 			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
 			if(H.mind)

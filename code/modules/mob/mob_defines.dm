@@ -69,7 +69,6 @@
 	var/luminosity_total = 0 //For max luminosity stuff.
 
 	var/timeofdeath = 0.0//Living
-	var/cpr_time = 1.0//Carbon
 
 	var/bodytemperature = 310.055	//98.7 F
 	var/old_x = 0
@@ -143,7 +142,7 @@
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call
+//	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call
 
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 

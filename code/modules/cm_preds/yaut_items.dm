@@ -383,14 +383,16 @@
 		blades_active = 1
 		user << "<span class='notice'>You activate your wrist blades.</span>"
 		playsound(user,'sound/weapons/wristblades_on.ogg', 15, 1)
-		user.update_icons()
+
 
 	return 1
+
 
 /obj/item/clothing/gloves/yautja/verb/cloaker()
 	set name = "Toggle Cloaking Device"
 	set desc = "Activate your suit's cloaking device. It will malfunction if the suit takes damage or gets excessively wet."
 	set category = "Yautja"
+
 
 	if(!usr || usr.stat) return
 	var/mob/living/carbon/human/M = usr
@@ -490,8 +492,7 @@
 		caster_active = 1
 		usr << "<span class='notice'>You activate your plasma caster.</span>"
 		playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
-		usr.update_icons()
-	return 1
+
 
 /obj/item/clothing/gloves/yautja/proc/explodey(var/mob/living/carbon/victim)
 	set waitfor = 0

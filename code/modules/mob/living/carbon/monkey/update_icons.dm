@@ -25,28 +25,26 @@
 
 /mob/living/carbon/monkey/regenerate_icons()
 	..()
-	update_inv_wear_mask(0)
-	update_inv_back(0)
-	update_inv_r_hand(0)
-	update_inv_l_hand(0)
-	update_inv_handcuffed(0)
-	update_icons()
+	update_inv_wear_mask()
+	update_inv_back()
+	update_inv_r_hand()
+	update_inv_l_hand()
+	update_inv_handcuffed()
+	update_transform()
 
 
-/mob/living/carbon/monkey/update_icons()
-	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	overlays.Cut()
-	for(var/image/I in overlays_standing)
-		overlays += I
+/mob/living/carbon/monkey/update_transform()
+	if(lying != lying_prev )
+		lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 
-	if(lying)
-		var/matrix/M = matrix()
-		M.Turn(90)
-		M.Translate(1,-6)
-		src.transform = M
-	else
-		var/matrix/M = matrix()
-		src.transform = M
+		if(lying)
+			var/matrix/M = matrix()
+			M.Turn(90)
+			M.Translate(1,-6)
+			src.transform = M
+		else
+			var/matrix/M = matrix()
+			src.transform = M
 
 
 ////////

@@ -539,17 +539,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	else
 		density = 1
 
-	//Temporarily moved here from the various life() procs
-	//I'm fixing stuff incrementally so this will likely find a better home.
-	//It just makes sense for now. ~Carn
-	if( update_icon )	//forces a full overlay update
-		update_icon = 0
-		regenerate_icons()
-	else if( lying != lying_prev )
-		update_icons()
-		if(istype(src, /mob/living))
-			var/mob/living/L = src
-			L.update_fire() //Maybe fixes fire overlay problems
+	if(lying_prev != lying)
+		update_transform()
 
 	if(lying)
 		if(layer == initial(layer)) //to avoid things like hiding larvas.

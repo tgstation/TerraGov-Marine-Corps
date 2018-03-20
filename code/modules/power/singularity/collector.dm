@@ -65,7 +65,7 @@ var/global/list/rad_collectors = list()
 			return 1
 		if(user.drop_inv_item_to_loc(W, src))
 			P = W
-			update_icons()
+			update_icon()
 		return 1
 	else if(istype(W, /obj/item/tool/crowbar))
 		if(P && !src.locked)
@@ -121,7 +121,7 @@ var/global/list/rad_collectors = list()
 	if(active)
 		toggle_power()
 	else
-		update_icons()
+		update_icon()
 
 /obj/machinery/power/rad_collector/proc/receive_pulse(var/pulse_strength)
 	if(P && active)
@@ -133,7 +133,7 @@ var/global/list/rad_collectors = list()
 	return
 
 
-/obj/machinery/power/rad_collector/proc/update_icons()
+/obj/machinery/power/rad_collector/update_icon()
 	overlays.Cut()
 	if(P)
 		overlays += image('icons/obj/singularity.dmi', "ptank")
@@ -151,6 +151,6 @@ var/global/list/rad_collectors = list()
 	else
 		icon_state = "ca"
 		flick("ca_deactive", src)
-	update_icons()
+	update_icon()
 	return
 

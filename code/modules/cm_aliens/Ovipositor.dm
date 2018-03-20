@@ -72,7 +72,6 @@
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
-				M.update_icons() //To immediately show the grab
 
 		if("hurt")
 			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)

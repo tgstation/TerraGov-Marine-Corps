@@ -688,11 +688,9 @@ var/list/robot_verbs_default = list(
 		return //won't work if dead
 	if(!opened)
 		opened = 1
-		update_icons()
 		usr << "You open your cover."
 	else
 		opened = 0
-		update_icons()
 		usr << "You close your cover."
 
 /mob/living/silicon/robot/attack_animal(mob/living/M as mob)

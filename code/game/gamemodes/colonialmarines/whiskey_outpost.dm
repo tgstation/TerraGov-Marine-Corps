@@ -614,8 +614,6 @@
 		H << "Hold the outpost for one hour until the signal can be established!"
 		H << "Ensure the Dust Raiders don't lose their foothold on LV-624 so you can alert the main forces."
 		H << "________________________"
-	//Finally, update all icons
-	H.update_icons()
 
 	return 1
 

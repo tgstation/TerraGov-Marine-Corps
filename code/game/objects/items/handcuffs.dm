@@ -32,6 +32,9 @@
 /obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 25, 1, 4)
 
+	if(user.action_busy)
+		return
+
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 
@@ -43,30 +46,21 @@
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [H.name] ([H.ckey])</font>")
 		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
 
-		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
-		O.source = user
-		O.target = H
-		O.item = user.get_active_hand()
-		O.s_loc = user.loc
-		O.t_loc = H.loc
-		O.place = "handcuff"
-		spawn( 0 )
-			feedback_add_details("handcuffs","H")
-			O.process()
-		return
+		feedback_add_details("handcuffs","H")
 
-	if (ismonkey(target))
-		var/mob/living/carbon/monkey/M = target
-		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
-		O.source = user
-		O.target = M
-		O.item = user.get_active_hand()
-		O.s_loc = user.loc
-		O.t_loc = M.loc
-		O.place = "handcuff"
-		spawn( 0 )
-			O.process()
-		return
+		user.visible_message("<span class='notice'>[user] tries to put [name] on [H].</span>")
+		if(do_mob(user, H, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
+			if(src == user.get_active_hand() && !H.handcuffed && Adjacent(user))
+				if(H.has_limb_for_slot(WEAR_HANDCUFFS))
+					user.drop_inv_item_on_ground(src)
+					H.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 0, 1, 1)
+
+	else if (ismonkey(target))
+		user.visible_message("<span class='notice'>[user] tries to put [name] on [target].</span>")
+		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
+			if(src == user.get_active_hand() && !target.handcuffed && Adjacent(user))
+				user.drop_inv_item_on_ground(src)
+				target.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 0, 1, 1)
 
 
 /obj/item/handcuffs/cable

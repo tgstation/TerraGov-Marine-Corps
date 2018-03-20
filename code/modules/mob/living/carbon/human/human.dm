@@ -228,30 +228,30 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=face'>[(wear_mask ? wear_mask : "Nothing")]</A>
 	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
 	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='?src=\ref[src];item=gloves'>[(gloves ? gloves : "Nothing")]</A>
+	<BR><B>Gloves:</B> <A href='?src=\ref[src];item=hands'>[(gloves ? gloves : "Nothing")]</A>
 	<BR><B>Eyes:</B> <A href='?src=\ref[src];item=eyes'>[(glasses ? glasses : "Nothing")]</A>
 	<BR><B>Left Ear:</B> <A href='?src=\ref[src];item=wear_ear'>[(wear_ear ? wear_ear : "Nothing")]</A>
 	<BR><B>Head:</B> <A href='?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=shoes'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=uniform'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? text(" <A href='?src=\ref[];item=sensor'>Sensors</A>", src) : "") :]
-	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=suit'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=feet'>[(shoes ? shoes : "Nothing")]</A>
+	<BR><B>Belt:</B> <A href='?src=\ref[src];item=waist'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=body'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") :]
+	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=jacket'>[(wear_suit ? wear_suit : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
 	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(wear_id ? wear_id : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=s_store'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR>[(handcuffed ? text("<A href='?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
-	<BR>[(legcuffed ? text("<A href='?src=\ref[src];item=legcuff'>Legcuffed</A>") : text(""))]
-	<BR>[(suit) ? ((suit.hastie) ? text(" <A href='?src=\ref[];item=tie'>Remove Accessory</A>", src) : "") :]
-	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
-	<BR><A href='?src=\ref[src];item=splints'>Remove Splints</A>
-	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
+	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=j_store'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR>[(handcuffed ? text("<A href='?src=\ref[src];item=handcuffs'>Handcuffed</A>") : "<A href='?src=\ref[src];item=handcuffs'>Not Handcuffed</A>")]
+	<BR>[(legcuffed ? text("<A href='?src=\ref[src];item=legcuffs'>Legcuffed</A>") : "")]
+	<BR>[(suit) ? ((suit.hastie) ? " <A href='?src=\ref[src];tie=1'>Remove Accessory</A>" : "") :]
+	<BR>[(internal ? "<A href='?src=\ref[src];internal=1'>Remove Internal</A>" : "")]
+	<BR><A href='?src=\ref[src];splints=1'>Remove Splints</A>
+	<BR><A href='?src=\ref[src];pockets=1'>Empty Pockets</A>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, text("window=mob[name];size=340x540"))
+	user << browse(dat, "window=mob[name];size=340x540")
 	onclose(user, "mob[name]")
 	return
 
@@ -372,18 +372,159 @@
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_interaction()
 		src << browse(null, t1)
-	// stop maintenance drones trying to strip people
-	if ((href_list["item"] && !usr.is_mob_incapacitated() && in_range(src, usr) && ticker && !ismaintdrone(usr))) //if game hasn't started, can't make an equip_e
-		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
-		O.source = usr
-		O.target = src
-		O.item = usr.get_active_hand()
-		O.s_loc = usr.loc
-		O.t_loc = loc
-		O.place = href_list["item"]
-		spawn( 0 )
-			O.process()
-			return
+
+
+	if (href_list["item"])
+		if(!usr.is_mob_incapacitated() && in_range(src, usr))
+			if(!usr.action_busy)
+				var/slot = href_list["item"]
+				var/obj/item/what = get_item_by_slot(slot)
+				if(what)
+					usr.stripPanelUnequip(what,src,slot)
+				else
+					what = usr.get_active_hand()
+					usr.stripPanelEquip(what,src,slot)
+
+
+	if(href_list["pockets"])
+
+		if(!usr.action_busy)
+			var/obj/item/place_item = usr.get_active_hand() // Item to place in the pocket, if it's empty
+
+			var/placing = FALSE
+
+			if(place_item && !place_item.abstract && (place_item.mob_can_equip(src, WEAR_L_STORE, TRUE) || place_item.mob_can_equip(src, WEAR_R_STORE, TRUE)))
+				usr << "<span class='notice'>You try to place [place_item] into [src]'s pocket.</span>"
+				placing = TRUE
+			else
+				usr << "<span class='notice'>You try to empty [src]'s pockets.</span>"
+
+			if(do_mob(usr, src, POCKET_STRIP_DELAY))
+				if(placing)
+					if(place_item && place_item == usr.get_active_hand())
+						if(place_item.mob_can_equip(src, WEAR_R_STORE, TRUE))
+							drop_inv_item_on_ground(place_item)
+							equip_to_slot_if_possible(place_item, WEAR_R_STORE, 0, 1)
+						if(place_item.mob_can_equip(src, WEAR_L_STORE, TRUE))
+							drop_inv_item_on_ground(place_item)
+							equip_to_slot_if_possible(place_item, WEAR_L_STORE, 0, 1)
+
+				else
+					if(r_store || l_store)
+						if(r_store && !(r_store.flags_atom & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
+							drop_inv_item_on_ground(r_store)
+						if(l_store && !(l_store.flags_atom & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
+							drop_inv_item_on_ground(l_store)
+					else
+						usr << "<span class='notice'>[src]'s pockets are empty.</span>"
+
+
+				// Update strip window
+				if(usr.interactee == src && Adjacent(usr))
+					show_inv(usr)
+
+
+	if(href_list["internal"])
+
+		if(!usr.action_busy)
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their internals toggled by [usr.name] ([usr.ckey])</font>")
+			usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) internals</font>")
+			if(internal)
+				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>")
+			else
+				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>")
+
+			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+				if (internal)
+					internal.add_fingerprint(usr)
+					internal = null
+					if (hud_used && hud_used.internals)
+						hud_used.internals.icon_state = "internal0"
+					for(var/mob/M in viewers(src, 1))
+						M.show_message("[src] is no longer running on internals.", 1)
+				else
+					if(istype(wear_mask, /obj/item/clothing/mask))
+						if (istype(back, /obj/item/tank))
+							internal = back
+						else if (istype(s_store, /obj/item/tank))
+							internal = s_store
+						else if (istype(belt, /obj/item/tank))
+							internal = belt
+						if (internal)
+							for(var/mob/M in viewers(src, 1))
+								M.show_message("[src] is now running on internals.", 1)
+							internal.add_fingerprint(usr)
+							if (hud_used. && hud_used.internals)
+								hud_used.internals.icon_state = "internal1"
+
+
+	if(href_list["splints"])
+
+		if(!usr.action_busy)
+			var/count = 0
+			for(var/X in limbs)
+				var/datum/limb/E = X
+				if(E.status & LIMB_SPLINTED)
+					count = 1
+					break
+			if(count)
+				attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their internals toggled by [usr.name] ([usr.ckey])</font>")
+				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) internals</font>")
+
+				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+					var/can_reach_splints = 1
+					if(wear_suit && istype(wear_suit,/obj/item/clothing/suit/space))
+						var/obj/item/clothing/suit/space/suit = wear_suit
+						if(suit.supporting_limbs && suit.supporting_limbs.len)
+							usr << "You cannot remove the splints, [src]'s [suit] is supporting some of the breaks."
+							can_reach_splints = 0
+
+					if(can_reach_splints)
+						var/limbcount = 0
+						for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
+							var/datum/limb/o = get_limb(organ)
+							if (o && o.status & LIMB_SPLINTED)
+								o.status &= ~LIMB_SPLINTED
+								limbcount++
+						if(limbcount)
+							var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
+							W.add_fingerprint(usr)
+
+	if(href_list["tie"])
+		if(!usr.action_busy)
+			if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
+				var/obj/item/clothing/under/U = w_uniform
+				if(U.hastie)
+					attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their accessory ([U.hastie.name]) removed by [usr.name] ([usr.ckey])</font>")
+					usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [name]'s ([ckey]) accessory ([U.hastie])</font>")
+					if(istype(U.hastie, /obj/item/clothing/tie/holobadge) || istype(U.hastie, /obj/item/clothing/tie/medal))
+						visible_message("\red <B>[usr] tears off \the [U.hastie] from [src]'s [U]!</B>")
+					else
+						visible_message("\red <B>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</B>")
+						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+							if(U == w_uniform && U.hastie)
+								U.hastie.on_removed(usr)
+								U.hastie = null
+								update_inv_w_uniform()
+
+	if(href_list["sensor"])
+		if(!usr.action_busy)
+
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their sensors toggled by [usr.name] ([usr.ckey])</font>")
+			usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) sensors</font>")
+			var/obj/item/clothing/under/U = w_uniform
+			if(U.has_sensor >= 2)
+				usr << "The controls are locked."
+			else
+				var/oldsens = U.has_sensor
+				visible_message("\red <B>[usr] is trying to modify [src]'s sensors!</B>")
+				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+					if(U == w_uniform)
+						if(U.has_sensor >= 2)
+							usr << "The controls are locked."
+						else if(U.has_sensor == oldsens)
+							U.set_sensors(usr)
+
 
 	if (href_list["squadfireteam"])
 		if(!usr.is_mob_incapacitated() && get_dist(usr, src) <= 7 && hasHUD(usr,"squadleader"))
@@ -1035,14 +1176,25 @@
 	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
-/mob/living/carbon/human/clean_blood(var/clean_feet)
+/mob/living/carbon/human/clean_blood(clean_feet)
 	.=..()
+	if(gloves)
+		if(gloves.clean_blood())
+			update_inv_gloves()
+		gloves.germ_level = 0
+	else
+		if(bloody_hands)
+			bloody_hands = 0
+			update_inv_gloves()
+		germ_level = 0
+
 	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
 		cdel(feet_blood_DNA)
 		feet_blood_DNA = null
-		update_inv_shoes(1)
+		update_inv_shoes()
 		return 1
+
 
 /mob/living/carbon/human/get_visible_implants(var/class = 0)
 

@@ -534,7 +534,6 @@
 					client.eye = loc
 
 /mob/living/carbon/Xenomorph/Queen/update_icons()
-	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	icon = initial(icon)
 	if(stat == DEAD)
 		icon_state = "Queen Dead"
