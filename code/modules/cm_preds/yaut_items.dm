@@ -14,10 +14,9 @@
 /obj/item/clothing/mask/gas/yautja
 	name = "clan mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	icon = 'icons/obj/items/predator.dmi'
+	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "pred_mask1"
 	item_state = "helmet"
-	icon_override = 'icons/obj/items/predator.dmi'
 	armor = list(melee = 80, bullet = 95, laser = 70, energy = 70, bomb = 65, bio = 100, rad = 100)
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	flags_armor_protection = HEAD|FACE|EYES
@@ -31,95 +30,95 @@
 	unacidable = 1
 	anti_hug = 100
 
-	New(location, mask_number = rand(1,7), elder_restricted = 0)
-		..()
-		loc = location
+/obj/item/clothing/mask/gas/yautja/New(location, mask_number = rand(1,7), elder_restricted = 0)
+	..()
+	loc = location
 
-		var/mask_input[] = list(1,2,3,4,5,6,7,231,334,732,928)
-		if(mask_number in mask_input) icon_state = "pred_mask[mask_number]"
-		if(elder_restricted) //Not possible for non-elders.
-			switch(mask_number)
-				if(1341)
-					name = "\improper 'Mask of the Dragon'"
-					icon_state = "pred_mask_elder_tr"
-				if(7128)
-					name = "\improper 'Mask of the Swamp Horror'"
-					icon_state = "pred_mask_elder_joshuu"
-				if(9867)
-					name = "\improper 'Mask of the Enforcer'"
-					icon_state = "pred_mask_elder_feweh"
-				if(4879)
-					name = "\improper 'Mask of the Ambivalent Collector'"
-					icon_state = "pred_mask_elder_n"
+	var/mask_input[] = list(1,2,3,4,5,6,7,231,334,732,928)
+	if(mask_number in mask_input) icon_state = "pred_mask[mask_number]"
+	if(elder_restricted) //Not possible for non-elders.
+		switch(mask_number)
+			if(1341)
+				name = "\improper 'Mask of the Dragon'"
+				icon_state = "pred_mask_elder_tr"
+			if(7128)
+				name = "\improper 'Mask of the Swamp Horror'"
+				icon_state = "pred_mask_elder_joshuu"
+			if(9867)
+				name = "\improper 'Mask of the Enforcer'"
+				icon_state = "pred_mask_elder_feweh"
+			if(4879)
+				name = "\improper 'Mask of the Ambivalent Collector'"
+				icon_state = "pred_mask_elder_n"
 
-	verb/togglesight()
-		set name = "Toggle Mask Visors"
-		set desc = "Toggle your mask visor sights. You must only be wearing a type of Yautja visor for this to work."
-		set category = "Yautja"
+/obj/item/clothing/mask/gas/yautja/verb/togglesight()
+	set name = "Toggle Mask Visors"
+	set desc = "Toggle your mask visor sights. You must only be wearing a type of Yautja visor for this to work."
+	set category = "Yautja"
 
-		if(!usr || usr.stat) return
-		var/mob/living/carbon/human/M = usr
-		if(!istype(M)) return
-		if(M.species && M.species.name != "Yautja")
-			M << "<span class='warning'>You have no idea how to work these things!</span>"
+	if(!usr || usr.stat) return
+	var/mob/living/carbon/human/M = usr
+	if(!istype(M)) return
+	if(M.species && M.species.name != "Yautja")
+		M << "<span class='warning'>You have no idea how to work these things!</span>"
+		return
+	var/obj/item/clothing/gloves/yautja/Y = M.gloves //Doesn't actually reduce power, but needs the bracers anyway.
+	if(!Y || !istype(Y))
+		M << "<span class='warning'>You must be wearing your bracers, as they have the power source.</span>"
+		return
+	var/obj/item/G = M.glasses
+	if(G)
+		if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
+			M << "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>"
 			return
-		var/obj/item/clothing/gloves/yautja/Y = M.gloves //Doesn't actually reduce power, but needs the bracers anyway.
-		if(!Y || !istype(Y))
-			M << "<span class='warning'>You must be wearing your bracers, as they have the power source.</span>"
-			return
-		var/obj/item/G = M.glasses
+		M.temp_drop_inv_item(G) //Get rid of ye existinge gogglors
+		cdel(G)
+	switch(current_goggles)
+		if(0)
+			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), WEAR_EYES)
+			M << "<span class='notice'>Low-light vision module: activated.</span>"
+			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
+		if(1)
+			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), WEAR_EYES)
+			M << "<span class='notice'>Thermal sight module: activated.</span>"
+			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
+		if(2)
+			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), WEAR_EYES)
+			M << "<span class='notice'>Material vision module: activated.</span>"
+			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
+		if(3)
+			M << "<span class='notice'>You deactivate your visor.</span>"
+			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
+	M.update_inv_glasses()
+	current_goggles++
+	if(current_goggles > 3) current_goggles = 0
+
+
+/obj/item/clothing/mask/gas/yautja/equipped(mob/living/carbon/human/user, slot)
+	if(slot == WEAR_FACE)
+		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
+		H.add_hud_to(user)
+	..()
+
+/obj/item/clothing/mask/gas/yautja/dropped(mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed. This should work even though they're !canremove.
+	if(istype(mob) && mob.wear_mask == src) //inventory reference is only cleared after dropped().
+		var/obj/item/G = mob.glasses
 		if(G)
-			if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
-				M << "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>"
-				return
-			M.temp_drop_inv_item(G) //Get rid of ye existinge gogglors
-			cdel(G)
-		switch(current_goggles)
-			if(0)
-				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), WEAR_EYES)
-				M << "<span class='notice'>Low-light vision module: activated.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
-			if(1)
-				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), WEAR_EYES)
-				M << "<span class='notice'>Thermal sight module: activated.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
-			if(2)
-				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), WEAR_EYES)
-				M << "<span class='notice'>Material vision module: activated.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
-			if(3)
-				M << "<span class='notice'>You deactivate your visor.</span>"
-				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
-		M.update_inv_glasses()
-		current_goggles++
-		if(current_goggles > 3) current_goggles = 0
-
-
-	equipped(mob/living/carbon/human/user, slot)
-		if(slot == WEAR_FACE)
-			var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
-			H.add_hud_to(user)
-		..()
-
-	dropped(mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed. This should work even though they're !canremove.
-		if(istype(mob) && mob.wear_mask == src) //inventory reference is only cleared after dropped().
-			var/obj/item/G = mob.glasses
-			if(G)
-				if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
-					mob.temp_drop_inv_item(G)
-					cdel(G)
-					mob.update_inv_glasses()
-			var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
-			H.remove_hud_from(mob)
-		..()
+			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
+				mob.temp_drop_inv_item(G)
+				cdel(G)
+				mob.update_inv_glasses()
+		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
+		H.remove_hud_from(mob)
+	..()
 
 /obj/item/clothing/suit/armor/yautja
 	name = "clan armor"
 	desc = "A suit of armor with light padding. It looks old, yet functional."
-	icon = 'icons/obj/items/predator.dmi'
+	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "halfarmor1"
 	item_state = "armor"
-	icon_override = 'icons/obj/items/predator.dmi'
+	sprite_sheet_id = 1
 	flags_armor_protection = UPPER_TORSO|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
@@ -136,105 +135,101 @@
 			/obj/item/weapon/twohanded/glaive)
 	unacidable = 1
 
-	New(location, armor_number = rand(1,5), elder_restricted = 0)
-		..()
-		loc = location
+/obj/item/clothing/suit/armor/yautja/New(location, armor_number = rand(1,5), elder_restricted = 0)
+	..()
+	loc = location
 
-		if(elder_restricted)
-			switch(armor_number)
-				if(1341)
-					name = "\improper 'Armor of the Dragon'"
-					icon_state = "halfarmor_elder_tr"
-					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 70, bio = 25, rad = 25)
-				if(7128)
-					name = "\improper 'Armor of the Swamp Horror'"
-					icon_state = "halfarmor_elder_joshuu"
-					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-					armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
-				if(9867)
-					name = "\improper 'Armor of the Enforcer'"
-					icon_state = "halfarmor_elder_feweh"
-					flags_armor_protection = UPPER_TORSO|ARMS
-					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
-				if(4879)
-					name = "\improper 'Armor of the Ambivalent Collector'"
-					icon_state = "halfarmor_elder_n"
-					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
-				else
-					name = "clan elder's armor"
-					icon_state = "halfarmor_elder"
-					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-					armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
-		else
-			switch(armor_number)
-				if(2)
-					icon_state = "halfarmor[armor_number]"
-					flags_armor_protection = UPPER_TORSO|ARMS
-					armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
-				if(3)
-					icon_state = "halfarmor[armor_number]"
-					flags_armor_protection = UPPER_TORSO|LOWER_TORSO
-					armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
-				if(4)
-					icon_state = "halfarmor[armor_number]"
-					flags_armor_protection = UPPER_TORSO
-					armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
-				if(5,441)
-					icon_state = "halfarmor[armor_number]"
-					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-					armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
-		flags_cold_protection = flags_armor_protection
-		flags_heat_protection = flags_armor_protection
+	if(elder_restricted)
+		switch(armor_number)
+			if(1341)
+				name = "\improper 'Armor of the Dragon'"
+				icon_state = "halfarmor_elder_tr"
+				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 70, bio = 25, rad = 25)
+			if(7128)
+				name = "\improper 'Armor of the Swamp Horror'"
+				icon_state = "halfarmor_elder_joshuu"
+				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
+			if(9867)
+				name = "\improper 'Armor of the Enforcer'"
+				icon_state = "halfarmor_elder_feweh"
+				flags_armor_protection = UPPER_TORSO|ARMS
+				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
+			if(4879)
+				name = "\improper 'Armor of the Ambivalent Collector'"
+				icon_state = "halfarmor_elder_n"
+				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
+			else
+				name = "clan elder's armor"
+				icon_state = "halfarmor_elder"
+				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
+	else
+		switch(armor_number)
+			if(2)
+				icon_state = "halfarmor[armor_number]"
+				flags_armor_protection = UPPER_TORSO|ARMS
+				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
+			if(3)
+				icon_state = "halfarmor[armor_number]"
+				flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
+			if(4)
+				icon_state = "halfarmor[armor_number]"
+				flags_armor_protection = UPPER_TORSO
+				armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
+			if(5,441)
+				icon_state = "halfarmor[armor_number]"
+				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
+	flags_cold_protection = flags_armor_protection
+	flags_heat_protection = flags_armor_protection
 
 /obj/item/clothing/suit/armor/yautja/full
 	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
-	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "fullarmor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(melee = 90, bullet = 95, laser = 75, energy = 75, bomb = 75, bio = 25, rad = 25)
 	slowdown = 1
 
-	New(location)
-		. = ..(location, 0)
+/obj/item/clothing/suit/armor/yautja/full/New(location)
+	. = ..(location, 0)
+
+
+
+/obj/item/clothing/cape
 
 /obj/item/clothing/cape/eldercape
 	name = "clan elder cape"
 	desc = "A dusty, yet powerful cape worn and passed down by elder Yautja."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "cape_elder"
-	item_state = "cape_elder"
 	flags_equip_slot = SLOT_BACK
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
 
-	New(location, cape_number)
-		..()
-		switch(cape_number)
-			if(1341)
-				name = "\improper 'Mantle of the Dragon'"
-				icon_state = "cape_elder_tr"
-				item_state = "cape_elder_tr"
-			if(7128)
-				name = "\improper 'Mantle of the Swamp Horror'"
-				icon_state = "cape_elder_joshuu"
-				item_state = "cape_elder_joshuu"
-			if(9867)
-				name = "\improper 'Mantle of the Enforcer'"
-				icon_state = "cape_elder_feweh"
-				item_state = "cape_elder_feweh"
-			if(4879)
-				name = "\improper 'Mantle of the Ambivalent Collector'"
-				icon_state = "cape_elder_n"
-				item_state = "cape_elder_n"
+/obj/item/clothing/cape/eldercape/New(location, cape_number)
+	..()
+	switch(cape_number)
+		if(1341)
+			name = "\improper 'Mantle of the Dragon'"
+			icon_state = "cape_elder_tr"
+		if(7128)
+			name = "\improper 'Mantle of the Swamp Horror'"
+			icon_state = "cape_elder_joshuu"
+		if(9867)
+			name = "\improper 'Mantle of the Enforcer'"
+			icon_state = "cape_elder_feweh"
+		if(4879)
+			name = "\improper 'Mantle of the Ambivalent Collector'"
+			icon_state = "cape_elder_n"
 
 /obj/item/clothing/shoes/yautja
 	name = "clan greaves"
-	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "y-boots1"
-	icon_override = 'icons/obj/items/predator.dmi'
 	desc = "A pair of armored, perfectly balanced boots. Perfect for running through the jungle."
 	unacidable = 1
 	permeability_coefficient = 0.01
@@ -246,23 +241,20 @@
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 	species_restricted = null
 
-	New(location, boot_number = rand(1,3))
-		..()
-		icon_state = "y-boots[boot_number]"
-		if(boot_number != 1) //More overall protection, less defensive value.
-			flags_armor_protection = FEET|LEGS|LOWER_TORSO
-			armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
-		flags_cold_protection = flags_armor_protection
-		flags_heat_protection = flags_armor_protection
+/obj/item/clothing/shoes/yautja/New(location, boot_number = rand(1,3))
+	..()
+	icon_state = "y-boots[boot_number]"
+	if(boot_number != 1) //More overall protection, less defensive value.
+		flags_armor_protection = FEET|LEGS|LOWER_TORSO
+		armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
+	flags_cold_protection = flags_armor_protection
+	flags_heat_protection = flags_armor_protection
 
 /obj/item/clothing/under/chainshirt
 	name = "body mesh"
-	icon = 'icons/obj/items/predator.dmi'
+	icon = 'icons/obj/clothing/uniforms.dmi'
 	desc = "A set of very fine chainlink in a meshwork for comfort and utility."
 	icon_state = "mesh_shirt"
-	icon_override = 'icons/obj/items/predator.dmi'
-	item_color = "mesh_shirt"
-	item_state = "mesh_shirt"
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS
 	has_sensor = 0
@@ -276,12 +268,7 @@
 	desc = "An extremely complex, yet simple-to-operate set of armored bracers worn by the Yautja. It has many functions, activate them to use some."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "bracer"
-	icon_override = 'icons/obj/items/predator.dmi'
-	item_color = "bracer"
-	item_state = "bracera"
 	origin_tech = "combat=8;materials=8;magnets=8;programming=8"
-	//icon_state = "bracer"//placeholder
-	//item_state = "bracer"
 	species_restricted = null
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
@@ -304,335 +291,335 @@
 	var/cloak_timer = 0
 	var/upgrades = 0
 
-	emp_act(severity)
-		charge -= (severity * 500)
-		if(charge < 0) charge = 0
-		if(usr)
-			usr.visible_message("<span class='danger'>You hear a hiss and crackle!</span>","<span class='danger'>Your bracers hiss and spark!</span>")
-			if(cloaked)
-				decloak(usr)
-
-	equipped(mob/user, slot)
-		..()
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
-				processing_objects.Add(src)
-
-	dropped(mob/user)
-		processing_objects.Remove(src)
-		..()
-
-	process()
-		if(!ishuman(loc))
-			processing_objects.Remove(src)
-			return
-		var/mob/living/carbon/human/H = loc
-		if(cloak_timer)
-			cloak_timer--
+/obj/item/clothing/gloves/yautja/emp_act(severity)
+	charge -= (severity * 500)
+	if(charge < 0) charge = 0
+	if(usr)
+		usr.visible_message("<span class='danger'>You hear a hiss and crackle!</span>","<span class='danger'>Your bracers hiss and spark!</span>")
 		if(cloaked)
-			H.alpha = 10
-			charge = max(charge - 10, 0)
-			if(charge <= 0)
-				decloak(loc)
-		else
-			charge = min(charge + 30, charge_max)
-		var/perc_charge = (charge / charge_max * 100)
-		H.update_power_display(perc_charge)
-
-
-	//This is the main proc for checking AND draining the bracer energy. It must have M passed as an argument.
-	//It can take a negative value in amount to restore energy.
-	//Also instantly updates the yautja power HUD display.
-	proc/drain_power(var/mob/living/carbon/human/M, var/amount)
-		if(!M) return 0
-		if(charge < amount)
-			M << "<span class='warning'>Your bracers lack the energy. They have only <b>[charge]/[charge_max]</b> remaining and need <B>[amount]</b>.</span>"
-			return 0
-		charge -= amount
-		var/perc = (charge / charge_max * 100)
-		M.update_power_display(perc)
-		return 1
-
-	examine(mob/user)
-		..()
-		user << "They currently have [charge] out of [charge_max] charge."
-
-	//Should put a cool menu here, like ninjas.
-	verb/wristblades()
-		set name = "Use Wrist Blades"
-		set desc = "Extend your wrist blades. They cannot be dropped, but can be retracted."
-		set category = "Yautja"
-
-		if(!usr.loc || !usr.canmove || usr.stat) return
-		var/mob/living/carbon/human/user = usr
-		if(!istype(user)) return
-		if(!isYautja(user))
-			user << "<span class='warning'>You have no idea how to work these things!</span>"
-			return
-		var/obj/item/weapon/wristblades/R = user.get_active_hand()
-		if(R && istype(R)) //Turn it off.
-			user << "<span class='notice'>You retract your wrist blades.</span>"
-			playsound(user.loc,'sound/weapons/wristblades_off.ogg', 15, 1)
-			blades_active = 0
-			user.drop_inv_item_to_loc(R, R.loc)
-			return
-		else
-			if(!drain_power(user,50)) return
-
-			if(R)
-				user << "<span class='warning'>Your hand must be free to activate your wrist blade!</span>"
-				return
-
-			var/datum/limb/hand = user.get_limb(user.hand ? "l_hand" : "r_hand")
-			if(!istype(hand) || !hand.is_usable())
-				user << "<span class='warning'>You can't hold that!</span>"
-				return
-
-			var/obj/item/weapon/wristblades/W
-			W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, user)
-
-			user.put_in_active_hand(W)
-			blades_active = 1
-			user << "<span class='notice'>You activate your wrist blades.</span>"
-			playsound(user,'sound/weapons/wristblades_on.ogg', 15, 1)
-			user.update_icons()
-
-		return 1
-
-	verb/cloaker()
-		set name = "Toggle Cloaking Device"
-		set desc = "Activate your suit's cloaking device. It will malfunction if the suit takes damage or gets excessively wet."
-		set category = "Yautja"
-
-		if(!usr || usr.stat) return
-		var/mob/living/carbon/human/M = usr
-		if(!istype(M)) return
-		if(!isYautja(usr))
-			usr << "<span class='warning'>You have no idea how to work these things!</span>"
-			return 0
-		if(cloaked) //Turn it off.
 			decloak(usr)
-		else //Turn it on!
-			if(cloak_timer)
-				if(prob(50))
-					M << "<span class='warning'>Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks.</span>"
-				return 0
-			if(!drain_power(M,50)) return
-			cloaked = 1
-			M << "<span class='notice'>You are now invisible to normal detection.</span>"
-			for(var/mob/O in oviewers(M))
-				O.show_message("[M] vanishes into thin air!",1)
-			playsound(M.loc,'sound/effects/pred_cloakon.ogg', 15, 1)
-			M.alpha = 10
 
-			var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
-			SA.remove_from_hud(M)
-			var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
-			XI.remove_from_hud(M)
-			spawn(1)
-				anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
+/obj/item/clothing/gloves/yautja/equipped(mob/user, slot)
+	..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
+			processing_objects.Add(src)
 
-		return 1
+/obj/item/clothing/gloves/yautja/dropped(mob/user)
+	processing_objects.Remove(src)
+	..()
 
-	proc/decloak(var/mob/user)
-		if(!user) return
-		user << "Your cloaking device deactivates."
-		cloaked = 0
-		for(var/mob/O in oviewers(user))
-			O.show_message("[user.name] shimmers into existence!",1)
-		playsound(user.loc,'sound/effects/pred_cloakoff.ogg', 15, 1)
-		user.alpha = initial(user.alpha)
-		cloak_timer = 10
+/obj/item/clothing/gloves/yautja/process()
+	if(!ishuman(loc))
+		processing_objects.Remove(src)
+		return
+	var/mob/living/carbon/human/H = loc
+	if(cloak_timer)
+		cloak_timer--
+	if(cloaked)
+		H.alpha = 10
+		charge = max(charge - 10, 0)
+		if(charge <= 0)
+			decloak(loc)
+	else
+		charge = min(charge + 30, charge_max)
+	var/perc_charge = (charge / charge_max * 100)
+	H.update_power_display(perc_charge)
+
+
+//This is the main proc for checking AND draining the bracer energy. It must have M passed as an argument.
+//It can take a negative value in amount to restore energy.
+//Also instantly updates the yautja power HUD display.
+/obj/item/clothing/gloves/yautja/proc/drain_power(var/mob/living/carbon/human/M, var/amount)
+	if(!M) return 0
+	if(charge < amount)
+		M << "<span class='warning'>Your bracers lack the energy. They have only <b>[charge]/[charge_max]</b> remaining and need <B>[amount]</b>.</span>"
+		return 0
+	charge -= amount
+	var/perc = (charge / charge_max * 100)
+	M.update_power_display(perc)
+	return 1
+
+/obj/item/clothing/gloves/yautja/examine(mob/user)
+	..()
+	user << "They currently have [charge] out of [charge_max] charge."
+
+//Should put a cool menu here, like ninjas.
+/obj/item/clothing/gloves/yautja/verb/wristblades()
+	set name = "Use Wrist Blades"
+	set desc = "Extend your wrist blades. They cannot be dropped, but can be retracted."
+	set category = "Yautja"
+
+	if(!usr.loc || !usr.canmove || usr.stat) return
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user)) return
+	if(!isYautja(user))
+		user << "<span class='warning'>You have no idea how to work these things!</span>"
+		return
+	var/obj/item/weapon/wristblades/R = user.get_active_hand()
+	if(R && istype(R)) //Turn it off.
+		user << "<span class='notice'>You retract your wrist blades.</span>"
+		playsound(user.loc,'sound/weapons/wristblades_off.ogg', 15, 1)
+		blades_active = 0
+		user.drop_inv_item_to_loc(R, R.loc)
+		return
+	else
+		if(!drain_power(user,50)) return
+
+		if(R)
+			user << "<span class='warning'>Your hand must be free to activate your wrist blade!</span>"
+			return
+
+		var/datum/limb/hand = user.get_limb(user.hand ? "l_hand" : "r_hand")
+		if(!istype(hand) || !hand.is_usable())
+			user << "<span class='warning'>You can't hold that!</span>"
+			return
+
+		var/obj/item/weapon/wristblades/W
+		W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, user)
+
+		user.put_in_active_hand(W)
+		blades_active = 1
+		user << "<span class='notice'>You activate your wrist blades.</span>"
+		playsound(user,'sound/weapons/wristblades_on.ogg', 15, 1)
+		user.update_icons()
+
+	return 1
+
+/obj/item/clothing/gloves/yautja/verb/cloaker()
+	set name = "Toggle Cloaking Device"
+	set desc = "Activate your suit's cloaking device. It will malfunction if the suit takes damage or gets excessively wet."
+	set category = "Yautja"
+
+	if(!usr || usr.stat) return
+	var/mob/living/carbon/human/M = usr
+	if(!istype(M)) return
+	if(!isYautja(usr))
+		usr << "<span class='warning'>You have no idea how to work these things!</span>"
+		return 0
+	if(cloaked) //Turn it off.
+		decloak(usr)
+	else //Turn it on!
+		if(cloak_timer)
+			if(prob(50))
+				M << "<span class='warning'>Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks.</span>"
+			return 0
+		if(!drain_power(M,50)) return
+		cloaked = 1
+		M << "<span class='notice'>You are now invisible to normal detection.</span>"
+		for(var/mob/O in oviewers(M))
+			O.show_message("[M] vanishes into thin air!",1)
+		playsound(M.loc,'sound/effects/pred_cloakon.ogg', 15, 1)
+		M.alpha = 10
 
 		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
-		SA.add_to_hud(user)
+		SA.remove_from_hud(M)
 		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
-		XI.add_to_hud(user)
-
+		XI.remove_from_hud(M)
 		spawn(1)
-			if(user)
-				anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
+			anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
+
+	return 1
+
+/obj/item/clothing/gloves/yautja/proc/decloak(var/mob/user)
+	if(!user) return
+	user << "Your cloaking device deactivates."
+	cloaked = 0
+	for(var/mob/O in oviewers(user))
+		O.show_message("[user.name] shimmers into existence!",1)
+	playsound(user.loc,'sound/effects/pred_cloakoff.ogg', 15, 1)
+	user.alpha = initial(user.alpha)
+	cloak_timer = 10
+
+	var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+	SA.add_to_hud(user)
+	var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+	XI.add_to_hud(user)
+
+	spawn(1)
+		if(user)
+			anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
 
 
-	verb/caster()
-		set name = "Use Plasma Caster"
-		set desc = "Activate your plasma caster. If it is dropped it will retract back into your armor."
-		set category = "Yautja"
+/obj/item/clothing/gloves/yautja/verb/caster()
+	set name = "Use Plasma Caster"
+	set desc = "Activate your plasma caster. If it is dropped it will retract back into your armor."
+	set category = "Yautja"
 
-		if(!usr.loc || !usr.canmove || usr.stat) return
-		var/mob/living/carbon/human/M = usr
-		if(!istype(M)) return
-		if(!isYautja(usr))
-			usr << "<span class='warning'>You have no idea how to work these things!</span>"
-			return
-		var/obj/item/weapon/gun/energy/plasma_caster/R = usr.r_hand
-		var/obj/item/weapon/gun/energy/plasma_caster/L = usr.l_hand
-		if(!istype(R) && !istype(L))
+	if(!usr.loc || !usr.canmove || usr.stat) return
+	var/mob/living/carbon/human/M = usr
+	if(!istype(M)) return
+	if(!isYautja(usr))
+		usr << "<span class='warning'>You have no idea how to work these things!</span>"
+		return
+	var/obj/item/weapon/gun/energy/plasma_caster/R = usr.r_hand
+	var/obj/item/weapon/gun/energy/plasma_caster/L = usr.l_hand
+	if(!istype(R) && !istype(L))
+		caster_active = 0
+	if(caster_active) //Turn it off.
+		var/found = 0
+		if(R && istype(R))
+			found = 1
+			usr.r_hand = null
+			if(R)
+				M.temp_drop_inv_item(R)
+				cdel(R)
+			M.update_inv_r_hand()
+		if(L && istype(L))
+			found = 1
+			usr.l_hand = null
+			if(L)
+				M.temp_drop_inv_item(L)
+				cdel(L)
+			M.update_inv_l_hand()
+		if(found)
+			usr << "<span class='notice'>You deactivate your plasma caster.</span>"
+			playsound(src,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
 			caster_active = 0
-		if(caster_active) //Turn it off.
-			var/found = 0
-			if(R && istype(R))
-				found = 1
-				usr.r_hand = null
-				if(R)
-					M.temp_drop_inv_item(R)
-					cdel(R)
-				M.update_inv_r_hand()
-			if(L && istype(L))
-				found = 1
-				usr.l_hand = null
-				if(L)
-					M.temp_drop_inv_item(L)
-					cdel(L)
-				M.update_inv_l_hand()
-			if(found)
-				usr << "<span class='notice'>You deactivate your plasma caster.</span>"
-				playsound(src,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
-				caster_active = 0
+		return
+	else //Turn it on!
+		if(usr.get_active_hand())
+			usr << "<span class='warning'>Your hand must be free to activate your caster!</span>"
 			return
-		else //Turn it on!
-			if(usr.get_active_hand())
-				usr << "<span class='warning'>Your hand must be free to activate your caster!</span>"
-				return
-			if(!drain_power(usr,50)) return
+		if(!drain_power(usr,50)) return
 
-			var/obj/item/weapon/gun/energy/plasma_caster/W = new(usr)
-			usr.put_in_active_hand(W)
-			W.source = src
-			caster_active = 1
-			usr << "<span class='notice'>You activate your plasma caster.</span>"
-			playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
-			usr.update_icons()
-		return 1
+		var/obj/item/weapon/gun/energy/plasma_caster/W = new(usr)
+		usr.put_in_active_hand(W)
+		W.source = src
+		caster_active = 1
+		usr << "<span class='notice'>You activate your plasma caster.</span>"
+		playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
+		usr.update_icons()
+	return 1
 
-	proc/explodey(var/mob/living/carbon/victim)
-		set waitfor = 0
-		exploding = 1
-		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0, 15, 10)
-		sleep(rand(65,85))
-		var/turf/T = get_turf(victim)
-		if(istype(T) && exploding)
-			victim.apply_damage(50,BRUTE,"chest")
-			explosion(T, 2, 10, 15, 20) //Dramatically BIG explosion.
-			if(victim) victim.gib() //Adding one more safety.
+/obj/item/clothing/gloves/yautja/proc/explodey(var/mob/living/carbon/victim)
+	set waitfor = 0
+	exploding = 1
+	playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0, 15, 10)
+	sleep(rand(65,85))
+	var/turf/T = get_turf(victim)
+	if(istype(T) && exploding)
+		victim.apply_damage(50,BRUTE,"chest")
+		explosion(T, 2, 10, 15, 20) //Dramatically BIG explosion.
+		if(victim) victim.gib() //Adding one more safety.
 
-	verb/activate_suicide()
-		set name = "Final Countdown (!)"
-		set desc = "Activate the explosive device implanted into your bracers. You have failed! Show some honor!"
-		set category = "Yautja"
-		if(!usr) return
-		var/mob/living/carbon/human/M = usr
-		if(!istype(M)) return
-		if(!M.stat == CONSCIOUS)
-			M << "<span class='warning'>Not while you're unconcious...</span>"
-			return
-		if(M.stat == DEAD)
-			M << "<span class='warning'>Little too late for that now!</span>"
-			return
-		if(!isYautja(M))
-			M << "<span class='warning'>You have no idea how to work these things!</span>"
-			return
-		var/obj/item/grab/G = M.get_active_hand()
-		if(istype(G))
-			var/mob/living/carbon/human/comrade = G.grabbed_thing
-			if(isYautja(comrade) && comrade.stat == DEAD)
-				var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
-				if(istype(bracer))
-					if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
-						bracer.explodey(comrade)
-						M.visible_message("<span class='warning'>[M] presses a few buttons on [comrade]'s wrist bracer.</span>","<span class='danger'>You activate the timer. May [comrade]'s final hunt be swift.</span>")
-				else
-					M << "<span class='warning'>Your fallen comrade does not have a bracer. <b>Report this to your elder so that it's fixed.</b></span>"
+/obj/item/clothing/gloves/yautja/verb/activate_suicide()
+	set name = "Final Countdown (!)"
+	set desc = "Activate the explosive device implanted into your bracers. You have failed! Show some honor!"
+	set category = "Yautja"
+	if(!usr) return
+	var/mob/living/carbon/human/M = usr
+	if(!istype(M)) return
+	if(!M.stat == CONSCIOUS)
+		M << "<span class='warning'>Not while you're unconcious...</span>"
+		return
+	if(M.stat == DEAD)
+		M << "<span class='warning'>Little too late for that now!</span>"
+		return
+	if(!isYautja(M))
+		M << "<span class='warning'>You have no idea how to work these things!</span>"
+		return
+	var/obj/item/grab/G = M.get_active_hand()
+	if(istype(G))
+		var/mob/living/carbon/human/comrade = G.grabbed_thing
+		if(isYautja(comrade) && comrade.stat == DEAD)
+			var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
+			if(istype(bracer))
+				if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
+					bracer.explodey(comrade)
+					M.visible_message("<span class='warning'>[M] presses a few buttons on [comrade]'s wrist bracer.</span>","<span class='danger'>You activate the timer. May [comrade]'s final hunt be swift.</span>")
 			else
-				M << "<span class='info'>You can only activate the bracer of another Yautja, and they must have fallen in the Hunt.</span>"
-			return
-		if(exploding)
-			if(alert("Are you sure you want to stop the countdown?","Bracers", "Yes", "No") == "Yes")
-				if(M.stat == DEAD)
-					M << "<span class='warning'>Little too late for that now!</span>"
-					return
-				if(!M.stat == CONSCIOUS)
-					M << "<span class='warning'>Not while you're unconcious...</span>"
-					return
-				exploding = 0
-				M << "<span class='notice'>Your bracers stop beeping.</span>"
-			return
-		if((M.wear_mask && istype(M.wear_mask,/obj/item/clothing/mask/facehugger)) || M.status_flags & XENO_HOST)
-			M << "<span class='warning'>Strange...something seems to be interfering with your bracer functions...</span>"
-			return
-		if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
+				M << "<span class='warning'>Your fallen comrade does not have a bracer. <b>Report this to your elder so that it's fixed.</b></span>"
+		else
+			M << "<span class='info'>You can only activate the bracer of another Yautja, and they must have fallen in the Hunt.</span>"
+		return
+	if(exploding)
+		if(alert("Are you sure you want to stop the countdown?","Bracers", "Yes", "No") == "Yes")
 			if(M.stat == DEAD)
 				M << "<span class='warning'>Little too late for that now!</span>"
 				return
 			if(!M.stat == CONSCIOUS)
 				M << "<span class='warning'>Not while you're unconcious...</span>"
 				return
-			M << "<span class='userdanger'>You set the timer. May your journey to the great hunting grounds be swift.</span>"
-			explodey(M)
-
-	verb/injectors()
-		set name = "Create Self-Heal Crystal"
-		set category = "Yautja"
-		set desc = "Create a focus crystal to energize your natural healing processes."
-
-		if(!usr.canmove || usr.stat || usr.is_mob_restrained())
-			return 0
-
-		if(!isYautja(usr))
-			usr << "<span class='warning'>You have no idea how to work these things!/span>"
+			exploding = 0
+			M << "<span class='notice'>Your bracers stop beeping.</span>"
+		return
+	if((M.wear_mask && istype(M.wear_mask,/obj/item/clothing/mask/facehugger)) || M.status_flags & XENO_HOST)
+		M << "<span class='warning'>Strange...something seems to be interfering with your bracer functions...</span>"
+		return
+	if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
+		if(M.stat == DEAD)
+			M << "<span class='warning'>Little too late for that now!</span>"
 			return
-
-		if(usr.get_active_hand())
-			usr << "<span class='warning'>Your active hand must be empty!</span>"
-			return 0
-
-		if(inject_timer)
-			usr << "<span class='warning'>You recently activated the healing crystal. Be patient.</span>"
+		if(!M.stat == CONSCIOUS)
+			M << "<span class='warning'>Not while you're unconcious...</span>"
 			return
+		M << "<span class='userdanger'>You set the timer. May your journey to the great hunting grounds be swift.</span>"
+		explodey(M)
 
-		if(!drain_power(usr,1000)) return
+/obj/item/clothing/gloves/yautja/verb/injectors()
+	set name = "Create Self-Heal Crystal"
+	set category = "Yautja"
+	set desc = "Create a focus crystal to energize your natural healing processes."
 
-		inject_timer = 1
-		spawn(1200)
-			if(usr && src.loc == usr)
-				usr << "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created."
-				inject_timer = 0
+	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+		return 0
 
-		usr << "\blue You feel a faint hiss and a crystalline injector drops into your hand."
-		var/obj/item/reagent_container/hypospray/autoinjector/yautja/O = new(usr)
-		usr.put_in_active_hand(O)
-		playsound(src,'sound/machines/click.ogg', 15, 1)
+	if(!isYautja(usr))
+		usr << "<span class='warning'>You have no idea how to work these things!/span>"
 		return
 
-	verb/call_disk()
-		set name = "Call Smart-Disc"
-		set category = "Yautja"
-		set desc = "Call back your smart-disc, if it's in range. If not you'll have to go retrieve it."
+	if(usr.get_active_hand())
+		usr << "<span class='warning'>Your active hand must be empty!</span>"
+		return 0
 
-		if(usr.is_mob_incapacitated())
-			return 0
+	if(inject_timer)
+		usr << "<span class='warning'>You recently activated the healing crystal. Be patient.</span>"
+		return
 
-		if(!isYautja(usr))
-			usr << "<span class='warning'>You have no idea how to work these things!</span>"
-			return
+	if(!drain_power(usr,1000)) return
 
-		if(inject_timer)
-			usr << "<span class='warning'>Your bracers need some time to recuperate first.</span>"
-			return 0
-
-		if(!drain_power(usr,70)) return
-		inject_timer = 1
-		spawn(100)
+	inject_timer = 1
+	spawn(1200)
+		if(usr && src.loc == usr)
+			usr << "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created."
 			inject_timer = 0
 
-		for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
-			usr << "<span class='warning'>The [S] skips back towards you!</span>"
-			new /obj/item/explosive/grenade/spawnergrenade/smartdisc(S.loc)
-			cdel(S)
+	usr << "\blue You feel a faint hiss and a crystalline injector drops into your hand."
+	var/obj/item/reagent_container/hypospray/autoinjector/yautja/O = new(usr)
+	usr.put_in_active_hand(O)
+	playsound(src,'sound/machines/click.ogg', 15, 1)
+	return
 
-		for(var/obj/item/explosive/grenade/spawnergrenade/smartdisc/D in range(10))
-			D.throw_at(usr,10,1,usr)
+/obj/item/clothing/gloves/yautja/verb/call_disk()
+	set name = "Call Smart-Disc"
+	set category = "Yautja"
+	set desc = "Call back your smart-disc, if it's in range. If not you'll have to go retrieve it."
+
+	if(usr.is_mob_incapacitated())
+		return 0
+
+	if(!isYautja(usr))
+		usr << "<span class='warning'>You have no idea how to work these things!</span>"
+		return
+
+	if(inject_timer)
+		usr << "<span class='warning'>Your bracers need some time to recuperate first.</span>"
+		return 0
+
+	if(!drain_power(usr,70)) return
+	inject_timer = 1
+	spawn(100)
+		inject_timer = 0
+
+	for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
+		usr << "<span class='warning'>The [S] skips back towards you!</span>"
+		new /obj/item/explosive/grenade/spawnergrenade/smartdisc(S.loc)
+		cdel(S)
+
+	for(var/obj/item/explosive/grenade/spawnergrenade/smartdisc/D in range(10))
+		D.throw_at(usr,10,1,usr)
 
 /obj/item/clothing/gloves/yautja/proc/translate()
 	set name = "Translator"
@@ -720,7 +707,6 @@
 	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "beltbag"
-	item_state = "beltbag"
 	flags_equip_slot = SLOT_WAIST
 	max_w_class = 3
 	storage_slots = 10
@@ -732,8 +718,6 @@
 	desc = "A strange glowing crystal with a spike at one end."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "crystal"
-	item_state = "crystal"
-	icon_override = 'icons/obj/items/predator.dmi'
 	amount_per_transfer_from_this = 35
 	volume = 35
 
@@ -741,7 +725,7 @@
 		..()
 		spawn(1)
 			reagents.add_reagent("thwei", 30)
-		return
+
 
 /obj/item/device/yautja_teleporter
 	name = "relay beacon"
@@ -842,7 +826,6 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "spike"
 	item_state = "spike1"
-	icon_override = 'icons/obj/items/predator.dmi'
 	force = 15
 	throwforce = 38
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
@@ -853,7 +836,6 @@
 	name = "war glaive"
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "glaive"
-	item_state = "glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
 	w_class = 4.0
@@ -935,7 +917,6 @@
 	desc = "An enormous serrated blade that extends from the gauntlet."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "scim"
-	item_state = "scim"
 	force = 50
 	attack_speed = 18 //Will have the same speed as the glaive if there are two.
 	hitsound = 'sound/weapons/pierce.ogg'
@@ -945,7 +926,6 @@
 	name = "chainwhip"
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
 	icon_state = "whip"
-	item_state = "chain"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	force = 35
@@ -1023,7 +1003,6 @@
 	desc = "An expertly crafted Yautja blade carried by hunters who wish to fight up close. Razor sharp, and capable of cutting flesh into ribbons. Commonly carried by aggresive and lethal hunters."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "clansword"
-	item_state = "clansword"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
 	sharp = IS_SHARP_ITEM_BIG
@@ -1104,7 +1083,6 @@
 	desc = "A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool. A common sight in Yautja packs due to its versatility."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "combistick"
-	item_state = "combistick"
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
 	w_class = 4
@@ -1127,7 +1105,6 @@
 		"<span class='notice'>You extend [src].</span>",\
 		"You hear an ominous click.")
 		icon_state = initial(icon_state)
-		item_state = initial(item_state)
 		flags_equip_slot = initial(flags_equip_slot)
 		w_class = 4
 		force = 28
@@ -1149,7 +1126,6 @@
 	else
 		user << "<span class='notice'>You collapse [src] for storage.</span>"
 		icon_state = initial(item_state) + "_f"
-		item_state = icon_state
 		flags_equip_slot = SLOT_STORE
 		w_class = 1
 		force = 0
@@ -1273,7 +1249,6 @@
 	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "spikelauncher"
-	item_state = "spikelauncher"
 	muzzle_flash = null // TO DO, add a decent one.
 	origin_tech = "combat=7;materials=7"
 	unacidable = 1
@@ -1345,7 +1320,6 @@
 	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "plasmarifle"
-	item_state = "plasmarifle"
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
 	fire_sound = 'sound/weapons/pred_plasma_shot.ogg'

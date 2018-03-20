@@ -32,8 +32,6 @@
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
@@ -48,17 +46,12 @@
 /obj/item/clothing/mask/gas/PMC/leader
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
-	icon = 'icons/PMC/PMC.dmi'
-	item_state = "officer_mask"
 	icon_state = "officer_mask"
 
 /obj/item/clothing/mask/gas/bear
 	name = "tactical balaclava"
 	desc = "A superior balaclava worn by the Iron Bears."
-	icon = 'icons/PMC/PMC.dmi'
-	item_state = "bear_mask"
 	icon_state = "bear_mask"
-	icon_override = 'icons/PMC/PMC.dmi'
 	anti_hug = 2
 
 

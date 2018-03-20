@@ -8,13 +8,9 @@
 
 /obj/item/clothing/head/helmet/space/skrell/white
 	icon_state = "skrell_helmet_white"
-	item_state = "skrell_helmet_white"
-	item_color = "skrell_helmet_white"
 
 /obj/item/clothing/head/helmet/space/skrell/black
 	icon_state = "skrell_helmet_black"
-	item_state = "skrell_helmet_black"
-	item_color = "skrell_helmet_black"
 
 /obj/item/clothing/suit/space/skrell
 	name = "Skrellian hardsuit"
@@ -27,13 +23,9 @@
 
 /obj/item/clothing/suit/space/skrell/white
 	icon_state = "skrell_suit_white"
-	item_state = "skrell_suit_white"
-	item_color = "skrell_suit_white"
 
 /obj/item/clothing/suit/space/skrell/black
 	icon_state = "skrell_suit_black"
-	item_state = "skrell_suit_black"
-	item_color = "skrell_suit_black"
 
 //Unathi space gear. Huge and restrictive.
 /obj/item/clothing/head/helmet/space/unathi
@@ -47,8 +39,6 @@
 	name = "NT breacher helmet"
 	desc = "Hey! Watch it with that thing! It's a knock-off of a Unathi battle-helm, and that spike could put someone's eye out."
 	icon_state = "unathi_helm_cheap"
-	item_state = "unathi_helm_cheap"
-	item_color = "unathi_helm_cheap"
 
 /obj/item/clothing/suit/space/unathi
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
@@ -68,15 +58,11 @@
 	name = "breacher helm"
 	desc = "Weathered, ancient and battle-scarred. The helmet is too."
 	icon_state = "unathi_breacher"
-	item_state = "unathi_breacher"
-	item_color = "unathi_breacher"
 
 /obj/item/clothing/suit/space/unathi/breacher
 	name = "breacher chassis"
 	desc = "Huge, bulky and absurdly heavy. It must be like wearing a tank."
 	icon_state = "unathi_breacher"
-	item_state = "unathi_breacher"
-	item_color = "unathi_breacher"
 	slowdown = 1
 
 // Vox space gear (vaccuum suit, low pressure armour)
@@ -108,50 +94,42 @@
 /obj/item/clothing/head/helmet/space/vox/pressure
 	name = "alien helmet"
 	icon_state = "vox-pressure"
-	item_state = "vox-pressure"
 	desc = "Hey, wasn't this a prop in \'The Abyss\'?"
 
 /obj/item/clothing/suit/space/vox/pressure
 	name = "alien pressure suit"
 	icon_state = "vox-pressure"
-	item_state = "vox-pressure"
 	desc = "A huge, armoured, pressurized suit, designed for distinctly nonhuman proportions."
 
 /obj/item/clothing/head/helmet/space/vox/carapace
 	name = "alien visor"
 	icon_state = "vox-carapace"
-	item_state = "vox-carapace"
 	desc = "A glowing visor, perhaps stolen from a depressed Cylon."
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
 /obj/item/clothing/suit/space/vox/carapace
 	name = "alien carapace armour"
 	icon_state = "vox-carapace"
-	item_state = "vox-carapace"
 	desc = "An armoured, segmented carapace with glowing purple lights. It looks pretty run-down."
 
 /obj/item/clothing/head/helmet/space/vox/stealth
 	name = "alien stealth helmet"
 	icon_state = "vox-stealth"
-	item_state = "vox-stealth"
 	desc = "A smoothly contoured, matte-black alien helmet."
 
 /obj/item/clothing/suit/space/vox/stealth
 	name = "alien stealth suit"
 	icon_state = "vox-stealth"
-	item_state = "vox-stealth"
 	desc = "A sleek black suit. It seems to have a tail, and is very heavy."
 
 /obj/item/clothing/head/helmet/space/vox/medic
 	name = "alien goggled helmet"
 	icon_state = "vox-medic"
-	item_state = "vox-medic"
 	desc = "An alien helmet with enormous goggled lenses."
 
 /obj/item/clothing/suit/space/vox/medic
 	name = "alien armour"
 	icon_state = "vox-medic"
-	item_state = "vox-medic"
 	desc = "An almost organic looking nonhuman pressure suit."
 
 /obj/item/clothing/under/vox
@@ -162,25 +140,19 @@
 	name = "alien clothing"
 	desc = "This doesn't look very comfortable."
 	icon_state = "vox-casual-1"
-	item_color = "vox-casual-1"
-	item_state = "vox-casual-1"
 	flags_armor_protection = LEGS
 
 /obj/item/clothing/under/vox/vox_robes
 	name = "alien robes"
 	desc = "Weird and flowing!"
 	icon_state = "vox-casual-2"
-	item_color = "vox-casual-2"
-	item_state = "vox-casual-2"
 
 /obj/item/clothing/gloves/yellow/vox
 	desc = "These bizarre gauntlets seem to be fitted for... bird claws?"
 	name = "insulated gauntlets"
 	icon_state = "gloves-vox"
-	item_state = "gloves-vox"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	item_color = "gloves-vox"
 	species_restricted = list("Vox","Vox Armalis")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/gloves.dmi',

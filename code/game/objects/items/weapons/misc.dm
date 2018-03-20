@@ -25,7 +25,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	item_state = "beer"
+	item_state = "broken_beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
