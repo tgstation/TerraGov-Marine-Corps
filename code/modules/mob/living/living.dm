@@ -188,7 +188,8 @@
 /mob/living/resist_grab(moving_resist)
 	if(pulledby.grab_level)
 		if(prob(30/pulledby.grab_level))
-			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
+			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 			pulledby.stop_pulling()
 			return 1
 		if(moving_resist && client) //we resisted by trying to move

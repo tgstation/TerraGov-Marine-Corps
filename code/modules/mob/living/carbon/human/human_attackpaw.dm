@@ -8,7 +8,7 @@
 
 		M.animation_attack_on(src)
 		M.flick_attack_overlay(src, "punch")
-		visible_message("<span class='danger'>[M] has bit [src]!</span>")
+		visible_message("<span class='danger'>[M] has bit [src]!</span>", null, null, 5)
 		var/damage = rand(1, 3)
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))

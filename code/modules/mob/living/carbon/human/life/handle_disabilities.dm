@@ -5,7 +5,7 @@
 	if(disabilities & EPILEPSY)
 		if((prob(1) && knocked_out < 1))
 			visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
-			"<span class='danger'>You start having a seizure!</span>")
+			"<span class='danger'>You start having a seizure!</span>", null, 5)
 			KnockOut(10)
 			make_jittery(1000)
 			return

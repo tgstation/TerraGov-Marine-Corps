@@ -1,60 +1,7 @@
 /*
 Contains most of the procs that are called when a mob is attacked by something
-
-bullet_act
-ex_act
-meteor_act
-emp_act
-
-OBSOLETE BITCH
-
-/mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
-
-	var/datum/limb/organ = get_limb(check_zone(def_zone))
-
-	//Shields
-	if(check_shields(P.damage, "the [P.name]"))
-		P.on_hit(src, 2, def_zone)
-		return 2
-
-	//Laserproof armour
-/*
-	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/armor/laserproof))
-		if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
-			var/reflectchance = 40 - round(P.damage/3)
-			if(!(def_zone in list("chest", "groin")))
-				reflectchance /= 2
-			if(prob(reflectchance))
-				visible_message("\red <B>The [P.name] gets reflected by [src]'s [wear_suit.name]!</B>")
-
-				// Find a turf near or on the original location to bounce to
-				if(P.starting)
-					var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-					var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-					var/turf/curloc = get_turf(src)
-
-					// redirect the projectile
-					P.original = locate(new_x, new_y, P.z)
-					P.starting = curloc
-					P.current = curloc
-					P.firer = src
-					P.yo = new_y - curloc.y
-					P.xo = new_x - curloc.x
-
-				return -1 // complete projectile permutation
 */
-	//Shrapnel
-	if (P.damage_type == BRUTE)
-		var/armor = getarmor_organ(organ, "bullet")
-		if((P.embed && prob(20 + max(P.damage - armor, -10))))
-			var/obj/item/shard/shrapnel/SP = new()
-			(SP.name) = "[P.name] shrapnel"
-			(SP.desc) = "[SP.desc] It looks like it was fired from [P.shot_from]."
-			(SP.loc) = organ
-			organ.embed(SP)
 
-	return (..(P , def_zone))
-*/
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/datum/limb/affected = get_limb(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
@@ -147,7 +94,7 @@ OBSOLETE BITCH
 				return 1
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("\red <B>[src] blocks [attack_text] with the [l_hand.name]!</B>")
+			visible_message("\red <B>[src] blocks [attack_text] with the [l_hand.name]!</B>", null, null, 5)
 			return 1
 	if(r_hand && istype(r_hand, /obj/item/weapon))
 		if(combistick && istype(r_hand,/obj/item/weapon/combistick))
@@ -156,7 +103,7 @@ OBSOLETE BITCH
 				return 1
 		var/obj/item/weapon/I = r_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("\red <B>[src] blocks [attack_text] with the [r_hand.name]!</B>")
+			visible_message("\red <B>[src] blocks [attack_text] with the [r_hand.name]!</B>", null, null, 5)
 			return 1
 	return 0
 
@@ -183,7 +130,7 @@ OBSOLETE BITCH
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
 	if(!target_zone)
-		visible_message("\red <B>[user] misses [src] with \the [I]!")
+		visible_message("\red <B>[user] misses [src] with \the [I]!", null, null, 5)
 		return 0
 
 	var/datum/limb/affecting = get_limb(target_zone)
@@ -198,9 +145,9 @@ OBSOLETE BITCH
 		return 0
 
 	if(I.attack_verb && I.attack_verb.len)
-		visible_message("\red <B>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</B>")
+		visible_message("\red <B>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</B>", null, null, 5)
 	else
-		visible_message("\red <B>[src] has been attacked in the [hit_area] with [I.name] by [user]!</B>")
+		visible_message("\red <B>[src] has been attacked in the [hit_area] with [I.name] by [user]!</B>", null, null, 5)
 
 	var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].")
 	var/weapon_sharp = is_sharp(I)
@@ -240,7 +187,7 @@ OBSOLETE BITCH
 				if(prob(I.force))
 					apply_effect(20, PARALYZE, armor)
 					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
-					"<span class='danger'>You have been knocked unconscious!</span>")
+					"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
 
 				if(bloody)//Apply blood
 					if(wear_mask)
@@ -256,7 +203,7 @@ OBSOLETE BITCH
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((I.force + 10)))
 					apply_effect(6, WEAKEN, armor)
-					visible_message("\red <B>[src] has been knocked down!</B>")
+					visible_message("\red <B>[src] has been knocked down!</B>", null, null, 5)
 
 				if(bloody)
 					bloody_body(src)
@@ -282,7 +229,7 @@ OBSOLETE BITCH
 			if(canmove && !is_mob_restrained())
 				if(isturf(O.loc))
 					put_in_active_hand(O)
-					visible_message("<span class='warning'>[src] catches [O]!</span>")
+					visible_message("<span class='warning'>[src] catches [O]!</span>", null, null, 5)
 					throw_mode_off()
 					return
 
@@ -307,7 +254,7 @@ OBSOLETE BITCH
 			zone = get_zone_with_miss_chance(zone, src, 15)
 
 		if(!zone)
-			visible_message("\blue \The [O] misses [src] narrowly!")
+			visible_message("\blue \The [O] misses [src] narrowly!", null, null, 5)
 			return
 
 		O.throwing = 0		//it hit, so stop moving
@@ -318,7 +265,7 @@ OBSOLETE BITCH
 		var/datum/limb/affecting = get_limb(zone)
 		var/hit_area = affecting.display_name
 
-		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
+		src.visible_message("\red [src] has been hit in the [hit_area] by [O].", null, null, 5)
 		var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
 		if(armor < 2)
@@ -356,7 +303,7 @@ OBSOLETE BITCH
 			var/momentum = speed/2
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!", null, null, 5)
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 

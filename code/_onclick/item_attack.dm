@@ -9,7 +9,7 @@
 /atom/movable/attackby(obj/item/W, mob/living/user)
 	if(W)
 		if(!(W.flags_atom & NOBLUDGEON))
-			visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
+			visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>", null, 5)
 			user.animation_attack_on(src)
 			user.flick_attack_overlay(src, "punch")
 
@@ -65,7 +65,7 @@
 		if(attack_verb && attack_verb.len)
 			used_verb = pick(attack_verb)
 		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",\
-						"<span class='danger'>You attack [M] with [src].</span>")
+						"<span class='danger'>You attack [M] with [src].</span>", null, 5)
 
 		user.animation_attack_on(M)
 		user.flick_attack_overlay(M, "punch")

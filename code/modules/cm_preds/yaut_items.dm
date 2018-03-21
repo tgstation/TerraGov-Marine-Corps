@@ -826,7 +826,7 @@
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "spike"
-	item_state = "spike1"
+	item_state = "harpoon"
 	force = 15
 	throwforce = 38
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
@@ -1126,7 +1126,7 @@
 			overlays += blood_overlay
 	else
 		user << "<span class='notice'>You collapse [src] for storage.</span>"
-		icon_state = initial(item_state) + "_f"
+		icon_state = initial(icon_state) + "_f"
 		flags_equip_slot = SLOT_STORE
 		w_class = 1
 		force = 0
@@ -1525,100 +1525,3 @@
 	..()
 	current = null
 	user.reset_view(null)
-
-/*
-/obj/item/weapon/gun/launcher/netgun
-	name = "Yautja Net Gun"
-	desc = "A short, wide-barreled weapon that fires weighted, difficult-to-remove nets or a grappling rope to snap back unwary enemies."
-	var/max_nets = 1
-	var/nets = 1
-	var/fire_mode = 1 //1 is net. 0 is retrieve.
-	release_force = 5
-	icon = 'icons/obj/items/predator.dmi'
-	icon_state = "netgun-empty"
-	item_state = "predspeargun"
-	fire_sound_text = "a strange noise"
-	fire_sound = 'sound/weapons/Laser2.ogg' //Vyoooo!
-
-
-/obj/item/weapon/gun/launcher/netgun/examine(mob/user)
-	..()
-	user << "It has [nets] [nets == 1 ? "net" : "nets"] remaining."
-
-/obj/item/weapon/gun/launcher/netgun/update_icon()
-	if(!nets)
-		icon_state = "netgun-empty"
-	else
-		if(fire_mode)
-			icon_state = "netgun-ready"
-		else
-			icon_state = "netgun-retrieve"
-
-/obj/item/weapon/gun/launcher/netgun/emp_act(severity)
-	return
-
-/obj/item/weapon/gun/launcher/spikethrower/special_check(user)
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		if(!isYautja(H))
-			user << "\red \The [src] does not respond to you!"
-			return 0
-	return 1
-
-/obj/item/weapon/gun/launcher/netgun/update_release_force()
-	return
-
-/obj/item/weapon/gun/launcher/netgun/load_into_chamber()
-	if(in_chamber) return 1
-	if(nets < 1) return 0
-
-	in_chamber = new /obj/item/net(src)
-	nets--
-	return 1
-
-/obj/item/weapon/gun/launcher/netgun/afterattack(atom/target, mob/user , flag)
-	if(isYautja(user))
-		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-			var/obj/item/clothing/gloves/yautja/G = user.hands
-			if(G.cloaked)
-				G.decloak(user)
-	return ..()
-
-//The "projectile".
-/obj/item/net
-	name = "flying net"
-	anchored = 0
-	density = 0
-	unacidable = 1
-	w_class = 1
-	layer = MOB_LAYER + 1.1
-	desc = "A strange, self-winding net. It constricts automatically around its prey, immobilizing them."
-	icon = 'icons/obj/items/predator.dmi'
-	icon_state = "net1"
-	flags = TABLEPASS
-	flags_pass = PASSTABLE
-	var/state = 1 //"bunched up" state
-	var/fire_mode = 1//1: net. 0: grab
-
-	attack_hand(user as mob)
-		return
-
-	update_icon()
-		icon_state = "net[state]"
-
-	proc/wrap_person(var/mob/living/carbon/victim)
-		if(isnull(victim) || !istype(victim)) return 0
-
-	throw_at(atom/target, range, speed)
-		..()
-		spawn(3)
-			icon_state = "net2"
-			state = 2
-			spawn(3)
-				icon_state = "net3"
-				state = 3
-
-	throw_impact(atom/hit_atom)
-		..()
-		if(!istype(hit_atom,/mob/living/carbon)) return 0
-*/

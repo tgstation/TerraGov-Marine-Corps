@@ -243,7 +243,7 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 
 /mob/living/carbon/Xenomorph/resist_grab(moving_resist)
 	if(pulledby.grab_level)
-		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
+		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 	pulledby.stop_pulling()
 	. = 1
 

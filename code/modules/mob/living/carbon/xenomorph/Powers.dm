@@ -168,7 +168,7 @@
 				var/turf/simulated/wall/resin/WR = A
 				if(WR.walltype == "resin")
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [WR].</span>", \
-					"<span class='xenonotice'>You regurgitate some resin and thicken [WR].</span>")
+					"<span class='xenonotice'>You regurgitate some resin and thicken [WR].</span>", null, 5)
 					var/prev_oldturf = WR.oldTurf
 					WR.ChangeTurf(/turf/simulated/wall/resin/thick)
 					WR.oldTurf = prev_oldturf
@@ -189,7 +189,7 @@
 				if(DR.hardness == 1.5) //non thickened
 					var/oldloc = DR.loc
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [DR].</span>", \
-						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>")
+						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>", null, 5)
 					cdel(DR)
 					new /obj/structure/mineral_door/resin/thick (oldloc)
 					playsound(loc, "alien_resin_build", 25)
@@ -288,7 +288,7 @@
 
 	use_plasma(resin_plasma_cost)
 	visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and shapes it into \a [selected_resin]!</span>", \
-	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [selected_resin].</span>")
+	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [selected_resin].</span>", null, 5)
 	playsound(loc, "alien_resin_build", 25)
 
 	switch(selected_resin)
@@ -398,7 +398,7 @@
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
 		attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
 	visible_message("<span class='xenowarning'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
-	"<span class='xenowarning'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
+	"<span class='xenowarning'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", null, 5)
 	playsound(loc, "sound/bullets/acid_impact1.ogg", 25)
 
 

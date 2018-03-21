@@ -151,7 +151,7 @@
 			t_him = "her"
 
 	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>", null, 4)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)

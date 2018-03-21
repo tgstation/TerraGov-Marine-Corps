@@ -140,10 +140,10 @@
 				X.fire_stacks = max(X.fire_stacks - rand(3, 6), 0)
 				X.KnockDown(4, TRUE)
 				X.visible_message("<span class='danger'>[X] rolls on the floor, trying to put themselves out!</span>", \
-					"<span class='notice'>You stop, drop, and roll!</span>")
+					"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
 				if (fire_stacks <= 0)
 					X.visible_message("<span class='danger'>[X] has successfully extinguished themselves!</span>", \
-					"<span class='notice'>You extinguish yourself.</span>")
+					"<span class='notice'>You extinguish yourself.</span>", null, 5)
 					ExtinguishMob()
 				return
 
@@ -152,10 +152,10 @@
 			CM.fire_stacks = max(CM.fire_stacks - rand(3,6), 0)
 			CM.KnockDown(4, TRUE)
 			CM.visible_message("<span class='danger'>[CM] rolls on the floor, trying to put themselves out!</span>", \
-				"<span class='notice'>You stop, drop, and roll!</span>")
+				"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
 			if(fire_stacks <= 0)
 				CM.visible_message("<span class='danger'>[CM] has successfully extinguished themselves!</span>", \
-					"<span class='notice'>You extinguish yourself.</span>")
+					"<span class='notice'>You extinguish yourself.</span>", null, 5)
 				ExtinguishMob()
 			return
 		if(CM.handcuffed && CM.canmove && (CM.last_special <= world.time))

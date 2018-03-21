@@ -25,7 +25,7 @@
 		return 2
 	if(absorb == 1)
 		if(absorb_text)
-			show_message("[soften_text]",4)
+			show_message("[soften_text]")
 		else
 			show_message("\red Your armor softens the blow!")
 		return 1
@@ -76,10 +76,10 @@
 			miss_chance = min(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("\blue \The [O] misses [src] narrowly!")
+			visible_message("\blue \The [O] misses [src] narrowly!", null, null, 5)
 			return
 
-		src.visible_message("\red [src] has been hit by [O].")
+		src.visible_message("\red [src] has been hit by [O].", null, null, 5)
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 2)
@@ -102,7 +102,7 @@
 			var/momentum = speed/2
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!", null, 5)
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!W || !src) return

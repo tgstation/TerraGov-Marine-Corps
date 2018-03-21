@@ -430,9 +430,9 @@
 			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their internals toggled by [usr.name] ([usr.ckey])</font>")
 			usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) internals</font>")
 			if(internal)
-				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>")
+				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>", null, null, 3)
 			else
-				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>")
+				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>", null, null, 3)
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 				if (internal)
@@ -440,8 +440,7 @@
 					internal = null
 					if (hud_used && hud_used.internals)
 						hud_used.internals.icon_state = "internal0"
-					for(var/mob/M in viewers(src, 1))
-						M.show_message("[src] is no longer running on internals.", 1)
+					visible_message("[src] is no longer running on internals.", null, null, 1)
 				else
 					if(istype(wear_mask, /obj/item/clothing/mask))
 						if (istype(back, /obj/item/tank))
@@ -451,8 +450,7 @@
 						else if (istype(belt, /obj/item/tank))
 							internal = belt
 						if (internal)
-							for(var/mob/M in viewers(src, 1))
-								M.show_message("[src] is now running on internals.", 1)
+							visible_message("[src] is now running on internals.", null, null, 1)
 							internal.add_fingerprint(usr)
 							if (hud_used. && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
@@ -498,9 +496,9 @@
 					attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their accessory ([U.hastie.name]) removed by [usr.name] ([usr.ckey])</font>")
 					usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [name]'s ([ckey]) accessory ([U.hastie])</font>")
 					if(istype(U.hastie, /obj/item/clothing/tie/holobadge) || istype(U.hastie, /obj/item/clothing/tie/medal))
-						visible_message("\red <B>[usr] tears off \the [U.hastie] from [src]'s [U]!</B>")
+						visible_message("\red <B>[usr] tears off \the [U.hastie] from [src]'s [U]!</B>", null, null, 5)
 					else
-						visible_message("\red <B>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</B>")
+						visible_message("\red <B>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</B>", null, null, 5)
 						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 							if(U == w_uniform && U.hastie)
 								U.hastie.on_removed(usr)
@@ -517,7 +515,7 @@
 				usr << "The controls are locked."
 			else
 				var/oldsens = U.has_sensor
-				visible_message("\red <B>[usr] is trying to modify [src]'s sensors!</B>")
+				visible_message("\red <B>[usr] is trying to modify [src]'s sensors!</B>", null, null, 4)
 				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 					if(U == w_uniform)
 						if(U.has_sensor >= 2)
@@ -942,8 +940,8 @@
 				Stun(5)
 				if(stat == 2) //One last corpse check
 					return
-				src.visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!")
-				playsound(loc, 'sound/effects/splat.ogg', 25, 1)
+				src.visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
+				playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
 				var/turf/location = loc
 				if (istype(location, /turf/simulated))
@@ -1242,10 +1240,10 @@
 		self = 1
 	if(!self)
 		usr.visible_message("\blue [usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.",\
-		"You begin counting [src]'s pulse")
+		"You begin counting [src]'s pulse", null, 3)
 	else
 		usr.visible_message("\blue [usr] begins counting their pulse.",\
-		"You begin counting your pulse.")
+		"You begin counting your pulse.", null, 3)
 
 	if(src.pulse)
 		usr << "\blue [self ? "You have a" : "[src] has a"] pulse! Counting..."
@@ -1440,10 +1438,10 @@
 
 /mob/living/carbon/human/proc/vomit_on_floor()
 	var/turf/T = get_turf(src)
-	visible_message("<span class = 'danger'>[src] vomits on the floor!</span>")
+	visible_message("<span class = 'danger'>[src] vomits on the floor!</span>", null, null, 5)
 	nutrition -= 20
 	adjustToxLoss(-3)
-	playsound(T, 'sound/effects/splat.ogg', 25, 1)
+	playsound(T, 'sound/effects/splat.ogg', 25, 1, 7)
 	T.add_vomit_floor(src)
 
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
