@@ -156,7 +156,8 @@ var/list/admin_verbs_debug = list(
 	/datum/proc/ta_purge,
 	/datum/proc/ra_purge,
 	/client/proc/global_fix_atmos,
-	/client/proc/scheduler
+	/client/proc/scheduler,
+	/client/proc/cmd_admin_change_hivenumber
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
