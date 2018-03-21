@@ -129,7 +129,7 @@
 			return
 		bomb_turf = null
 		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
-		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>")
+		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>", null, 5)
 
 		var/obj/item/projectile/P = rnew(/obj/item/projectile, loc)
 		P.generate_bullet(ammo)
@@ -189,7 +189,7 @@
 		use_plasma(10)
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1)
 		visible_message("<span class='xenowarning'>\The [src] spews forth a virulent spray of acid!</span>", \
-		"<span class='xenowarning'>You spew forth a spray of acid!</span>")
+		"<span class='xenowarning'>You spew forth a spray of acid!</span>", null, 5)
 		var/turflist = getline(src, target)
 		spray_turfs(turflist)
 		spawn(acid_delay) //12 second cooldown.

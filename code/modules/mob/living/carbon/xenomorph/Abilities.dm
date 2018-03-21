@@ -28,7 +28,7 @@
 	if(X.check_plasma(75))
 		X.use_plasma(75)
 		X.visible_message("<span class='xenonotice'>\The [X] regurgitates a pulsating node and plants it on the ground!</span>", \
-		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>")
+		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
 		new /obj/effect/alien/weeds/node(X.loc, src, X)
 		playsound(X.loc, "alien_resin_build", 25)
 
@@ -91,7 +91,7 @@
 				M.forceMove(X.loc)
 				M.acid_damage = 0 //Reset the acid damage
 		X.visible_message("<span class='xenowarning'>\The [X] hurls out the contents of their stomach!</span>", \
-		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>")
+		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
 	else
 		X<< "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>"
 
@@ -216,7 +216,7 @@
 	if(X.current_aura)
 		X.current_aura = null
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting pheromones.</span>")
+		"<span class='xenowarning'>You stop emitting pheromones.</span>", null, 5)
 	else
 		if(!X.check_plasma(30))
 			return
@@ -233,7 +233,7 @@
 		X.use_plasma(30)
 		X.current_aura = choice
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
+		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>", null, 5)
 		playsound(X.loc, "alien_drool", 25)
 
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
@@ -278,10 +278,10 @@
 	if(X.is_zoomed)
 		X.zoom_out()
 		X.visible_message("<span class='notice'>[X] stops looking off into the distance.</span>", \
-		"<span class='notice'>You stop looking off into the distance.</span>")
+		"<span class='notice'>You stop looking off into the distance.</span>", null, 5)
 	else
 		X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
-			"<span class='notice'>You start focusing your sight to look off into the distance.</span>")
+			"<span class='notice'>You start focusing your sight to look off into the distance.</span>", null, 5)
 		if(!do_after(X, 20, FALSE)) return
 		if(X.is_zoomed) return
 		X.zoom_in()
@@ -331,12 +331,12 @@
 		return
 
 	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
-	"<span class='notice'>You begin digging yourself into place.</span>")
-	if(do_after(X, 30, FALSE))
+	"<span class='notice'>You begin digging yourself into place.</span>", null, 5)
+	if(do_after(X, 30, FALSE, 5, BUSY_ICON_GENERIC))
 		if(X.is_bombarding) return
 		X.is_bombarding = 1
 		X.visible_message("<span class='notice'>\The [X] digs itself into the ground!</span>", \
-		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>")
+		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>", null, 5)
 		X.bomb_turf = get_turf(X)
 		if(X.client)
 			X.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
@@ -518,7 +518,7 @@
 		return
 
 	X.visible_message("<span class='xenonotice'>[X] begins digging out a tunnel entrance.</span>", \
-	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>")
+	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
 	if(!do_after(X, 100, TRUE, 5, BUSY_ICON_BUILD))
 		X << "<span class='warning'>Your tunnel caves in as you stop digging it.</span>"
 		return
@@ -526,7 +526,7 @@
 		return
 	if(!X.start_dig) //Let's start a new one.
 		X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
-		"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>")
+		"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", null, 5)
 		X.start_dig = new /obj/structure/tunnel(T)
 	else
 		X << "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances!</span>"

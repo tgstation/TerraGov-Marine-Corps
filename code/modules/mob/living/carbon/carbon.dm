@@ -200,20 +200,20 @@
 					resting = 0
 					update_canmove()
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
-									"<span class='notice'>You shake [src] trying to wake [t_him] up!")
+									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
 			else
 				var/mob/living/carbon/human/H = M
 				if(istype(H))
 					H.species.hug(H,src)
 				else
 					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
-								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
+								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>", null, 4)
 
 			AdjustKnockedout(-3)
 			AdjustStunned(-3)
 			AdjustKnockeddown(-3)
 
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
+			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 5)
 
 
 
@@ -292,7 +292,7 @@
 
 	//actually throw it!
 	if (thrown_thing)
-		visible_message("<span class='warning'>[src] has thrown [thrown_thing].</span>")
+		visible_message("<span class='warning'>[src] has thrown [thrown_thing].</span>", null, null, 5)
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)

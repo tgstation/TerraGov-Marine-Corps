@@ -5,6 +5,7 @@
 	desc = "A strange piece of alien technology. It has many jagged, whirring blades and bizarre writing."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "disk"
+	item_state = "pred_disk"
 	force = 15
 	throwforce = 35
 	w_class = 1.0

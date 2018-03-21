@@ -253,7 +253,7 @@
 			if(3 to 4)
 				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
 					var/obj/structure/S = O
-					visible_message("<span class='danger'>[src] plows straight through [S]!</span>")
+					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
 					S.destroy() //We want to continue moving, so we do not reset throwing.
 				else O.hitby(src, speed) //This resets throwing.
 		r_TRU
@@ -273,19 +273,19 @@
 						if(isYautja(H))
 							if(H.check_shields(0, "the pounce", 1))
 								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
-												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>")
+												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>", null, 5)
 								KnockDown(5)
 								throwing = FALSE
 								r_FAL
 							else if(prob(75)) //Body slam the fuck out of xenos jumping at your front.
 								visible_message("<span class='danger'>[H] body slams [src]!</span>",
-												"<span class='xenodanger'>[H] body slams you!</span>")
+												"<span class='xenodanger'>[H] body slams you!</span>", null, 5)
 								KnockDown(4)
 								throwing = FALSE
 								r_FAL
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
-									"<span class='xenodanger'>You pounce on [M]!</span>")
+									"<span class='xenodanger'>You pounce on [M]!</span>", null, 5)
 					M.KnockDown(charge_type == 1 ? 1 : 3)
 					step_to(src, M)
 					canmove = FALSE
@@ -355,7 +355,7 @@
 	flick_attack_overlay(M, "slash") //TODO: Special bite attack overlay ?
 	playsound(loc, "alien_bite", 25)
 	visible_message("<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>", \
-	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>")
+	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>", null, 5)
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was bitten by [M.name] ([M.ckey])</font>")
 
@@ -383,7 +383,7 @@
 	flick_attack_overlay(M, "tail")
 	playsound(M.loc, 'sound/weapons/alien_tail_attack.ogg', 25, 1) //Stolen from Yautja! Owned!
 	visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
-	"<span class='danger'>You violently impale \the [M] with your tail!</span>")
+	"<span class='danger'>You violently impale \the [M] with your tail!</span>", null, 5)
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
 
@@ -481,7 +481,7 @@
 	if(!lastturf) r_FAL //Not charging.
 	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Message now happens without a stun condition
 		visible_message("<span class='danger'>[src] skids to a halt!</span>",
-		"<span class='xenowarning'>You skid to a halt.</span>")
+		"<span class='xenowarning'>You skid to a halt.</span>", null, 5)
 	last_charge_move = 0 //Always reset last charge tally
 	charge_speed = 0
 	charge_roar = 0
@@ -545,7 +545,7 @@
 		for(var/mob/living/carbon/M in loc)
 			if(M.lying && !isXeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
-				"<span class='danger'>You run [M] over!</span>")
+				"<span class='danger'>You run [M] over!</span>", null, 5)
 				M.take_overall_damage(charge_speed * 40) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
 				animation_flash_color(M)
 

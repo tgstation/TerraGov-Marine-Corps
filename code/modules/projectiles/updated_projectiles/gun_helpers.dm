@@ -329,15 +329,15 @@ should be alright.
 		return
 
 	user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
-	"<span class='notice'>You begin attaching [attachment] to [src].</span>")
+	"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
 	if(do_after(user,60, TRUE, 5, BUSY_ICON_FRIENDLY))
 		if(attachment && attachment.loc)
 			user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
-			"<span class='notice'>You attach [attachment] to [src].</span>")
+			"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
 			user.temp_drop_inv_item(attachment)
 			attachment.Attach(src)
 			update_attachable(attachment.slot)
-			playsound(user, 'sound/machines/click.ogg', 15, 1)
+			playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
 
 /obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
 	//overlays.Cut()
@@ -477,7 +477,7 @@ should be alright.
 		return
 
 	usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
-	"<span class='notice'>You begin stripping [A] from [src].</span>")
+	"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
 
 	if(!do_after(usr,35, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
@@ -491,10 +491,10 @@ should be alright.
 		return
 
 	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",
-	"<span class='notice'>You strip [A] from [src].</span>")
+	"<span class='notice'>You strip [A] from [src].</span>", null, 4)
 	A.Detach(src)
 
-	playsound(src, 'sound/machines/click.ogg', 15, 1)
+	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
 	update_attachables()
 
 /obj/item/weapon/gun/verb/toggle_burst()

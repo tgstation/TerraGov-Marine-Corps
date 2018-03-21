@@ -313,8 +313,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		ready_in_chamber()
 		cock_gun(user)
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
-	"<span class='notice'>You load [magazine] into [src]!</span>")
-	if(reload_sound) playsound(user, reload_sound, 25, 1)
+	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
+	if(reload_sound) playsound(user, reload_sound, 25, 1, 5)
 
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
@@ -330,9 +330,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		current_mag.loc = get_turf(src) //Drop it on the ground.
 	else user.put_in_hands(current_mag)
 
-	playsound(user, unload_sound, 25, 1)
+	playsound(user, unload_sound, 25, 1, 5)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
-	"<span class='notice'>You unload [current_mag] from [src].</span>")
+	"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
 	current_mag.update_icon()
 	current_mag = null
 
@@ -349,7 +349,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	cock_gun(user)
 	if(in_chamber)
 		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
-		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>")
+		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
 		if(current_mag)
 			var/found_handful
 			for(var/obj/item/ammo_magazine/handful/H in user.loc)
@@ -367,7 +367,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		in_chamber = null
 	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
-		"<span class='notice'>You cock [src].</span>")
+		"<span class='notice'>You cock [src].</span>", null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
 
 //Since reloading and casings are closely related, placing this here ~N
@@ -381,11 +381,11 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(!casing) //No casing on the ground?
 			casing = new new_casing(current_turf)
 			num_of_casings--
-			playsound(current_turf, sound_to_play, 25, 1) //Played again if necessary.
+			playsound(current_turf, sound_to_play, 25, 1, 5) //Played again if necessary.
 		if(num_of_casings) //Still have some.
 			casing.current_casings += num_of_casings
 			casing.update_icon()
-			playsound(current_turf, sound_to_play, 25, 1)
+			playsound(current_turf, sound_to_play, 25, 1, 5)
 
 //----------------------------------------------------------
 			//							    \\
@@ -732,11 +732,10 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
-		user.visible_message("*click click*", "<span class='warning'><b>*click*</b></span>")
-		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1)
+		user << "<span class='warning'><b>*click*</b></span>"
+		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1, 5) //5 tile range
 	else
-		visible_message("*click click*")
-		playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1)
+		playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0)

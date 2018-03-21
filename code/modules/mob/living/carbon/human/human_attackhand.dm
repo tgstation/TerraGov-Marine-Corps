@@ -2,7 +2,7 @@
 	..()
 
 	if((M != src) && check_shields(0, M.name))
-		visible_message("\red <B>[M] attempted to touch [src]!</B>")
+		visible_message("\red <B>[M] attempted to touch [src]!</B>", null, null, 5)
 		return 0
 
 
@@ -55,12 +55,12 @@
 
 			if(on_fire && M != src)
 				fire_stacks = max(fire_stacks - 1, 0)
-
+				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
-					"<span class='warning'>You try to put out the fire on [src]!</span>")
+					"<span class='warning'>You try to put out the fire on [src]!</span>", null, 5)
 				if(fire_stacks <= 0)
 					M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
-						"<span class='notice'>You extinguished the fire on [src].</span>")
+						"<span class='notice'>You extinguished the fire on [src].</span>", null, 5)
 					ExtinguishMob()
 				return 1
 
@@ -79,15 +79,14 @@
 			//CPR
 			if(M.action_busy)
 				return 1
-			M.visible_message("\red <B>[M] is trying perform CPR on [src]!</B>")
+			M.visible_message("\red <B>[M] is trying perform CPR on [src]!</B>", null, null, 4)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
 				if(health > config.health_threshold_dead && health < config.health_threshold_crit)
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
-					for(var/mob/O in viewers(M, null))
-						O.show_message("\red [M] performs CPR on [src]!", 1)
+					visible_message("\red [M] performs CPR on [src]!", null, null, 3)
 					src << "\blue <b>You feel a breath of fresh air enter your lungs. It feels good.</b>"
 					M << "\red Repeat at least every 7 seconds."
 
@@ -123,7 +122,7 @@
 			var/damage = rand(0, max_dmg)
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1)
-				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
+				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
 				return
 
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
@@ -136,9 +135,9 @@
 				var/mob/living/carbon/human/H = src
 				H.forcesay()
 
-			visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
+			visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 			if(damage >= 5 && prob(50))
-				visible_message("<span class='danger'>[M] has weakened [src]!</span>")
+				visible_message("<span class='danger'>[M] has weakened [src]!</span>", null, null, 5)
 				apply_effect(3, WEAKEN, armor_block)
 
 			damage += attack.damage
@@ -173,7 +172,7 @@
 						chance = !hand ? 40 : 20
 
 					if (prob(chance))
-						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!")
+						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
 						var/list/turfs = list()
 						for(var/turf/T in view())
 							turfs += T
@@ -190,24 +189,24 @@
 
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-				visible_message("\red <B>[M] has pushed [src]!</B>")
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				visible_message("\red <B>[M] has pushed [src]!</B>", null, null, 5)
 				return
 
 			if(randn <= 60)
 				//BubbleWrap: Disarming breaks a pull
 				if(pulling)
-					visible_message("\red <b>[M] has broken [src]'s grip on [pulling]!</B>")
+					visible_message("\red <b>[M] has broken [src]'s grip on [pulling]!</B>", null, null, 5)
 					stop_pulling()
 				else
 					drop_held_item()
-					visible_message("\red <B>[M] has disarmed [src]!</B>")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
+					visible_message("\red <B>[M] has disarmed [src]!</B>", null, null, 5)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				return
 
 
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-			visible_message("\red <B>[M] attempted to disarm [src]!</B>")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
+			visible_message("\red <B>[M] attempted to disarm [src]!</B>", null, null, 5)
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
@@ -223,10 +222,10 @@
 				holo_card_color = null
 				update_targeted()
 				visible_message("<span class='notice'>[src] removes the holo card on [gender==MALE?"himself":"herself"].</span>", \
-					"<span class='notice'>You remove the holo card on yourself.</span>")
+					"<span class='notice'>You remove the holo card on yourself.</span>", null, 3)
 				return
 			visible_message("<span class='notice'>[src] examines [gender==MALE?"himself":"herself"].</span>", \
-				"<span class='notice'>You check yourself for injuries.</span>")
+				"<span class='notice'>You check yourself for injuries.</span>", null, 3)
 
 			for(var/datum/limb/org in limbs)
 				var/status = ""
@@ -279,17 +278,17 @@
 					resting = 0
 					update_canmove()
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
-									"<span class='notice'>You shake [src] trying to wake [t_him] up!")
+									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
 			else
 				var/mob/living/carbon/human/H = M
 				if(istype(H))
 					H.species.hug(H,src)
 				else
 					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
-								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
+								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>", null, 4)
 
 			AdjustKnockedout(-3)
 			AdjustStunned(-3)
 			AdjustKnockeddown(-3)
 
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)

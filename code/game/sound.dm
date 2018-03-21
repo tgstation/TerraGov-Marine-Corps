@@ -12,7 +12,7 @@
 
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global)
 
-	if(!sound_range) sound_range = vol //if no specific range, the max range is equal to the volume.
+	if(!sound_range) sound_range = round(0.5*vol) //if no specific range, the max range is equal to half the volume.
 
 	soundin = get_sfx(soundin) // same sound for everyone
 
@@ -88,8 +88,6 @@
 		S.y = 1
 		if(falloff) S.falloff = falloff
 		else S.falloff = FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1) //louder sounds take a longer distance to fade.
-
-		if(S.volume <= distance) r_FAL //no volume or too far away to hear such a volume level.
 
 		S.echo = list(
 			0, 0, \

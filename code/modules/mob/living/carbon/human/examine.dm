@@ -238,7 +238,7 @@
 		if((stat == 2 || src.health < config.health_threshold_crit) && distance <= 3)
 			msg += "<span class='warning'>[t_He] does not appear to be breathing.</span>\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
-			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
+			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
 		spawn(15)
 			if(user && src && distance <= 1 && user.stat != 1)
 				if(pulse == PULSE_NONE)

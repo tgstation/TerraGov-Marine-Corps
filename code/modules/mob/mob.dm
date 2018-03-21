@@ -26,26 +26,26 @@
 	if(!client)	return
 
 	if (type)
-		if(type & 1 && (sdisabilities & BLIND || blinded || knocked_out) )//Vision related
-			if (!( alt ))
+		if(type & 1 && (sdisabilities & BLIND || blinded) )//Vision related
+			if (!alt)
 				return
 			else
 				msg = alt
 				type = alt_type
 		if (type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
-			if (!( alt ))
+			if (!alt)
 				return
 			else
 				msg = alt
 				type = alt_type
-				if ((type & 1 && sdisabilities & BLIND))
+				if (type & 1 && (sdisabilities & BLIND))
 					return
-	// Added voice muffling for Issue 41.
-	if(stat == UNCONSCIOUS || sleeping > 0)
+
+	if(stat == UNCONSCIOUS)
 		src << "<I>... You can almost hear someone talking ...</I>"
 	else
 		src << msg
-	return
+
 
 // Show a message to all mobs in sight of this one
 // This would be for visible actions by the src mob
@@ -54,13 +54,12 @@
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
 /mob/visible_message(message, self_message, blind_message, max_distance)
-	for(var/mob/M in viewers(src))
+	var/view_dist = 7
+	if(max_distance) view_dist = max_distance
+	for(var/mob/M in viewers(view_dist, src))
 		var/msg = message
 		if(self_message && M==src)
 			msg = self_message
-		else if(max_distance)
-			if(get_dist(M, src) > max_distance)//too far away
-				continue
 		M.show_message( msg, 1, blind_message, 2)
 
 // Show a message to all mobs in sight of this atom
@@ -68,10 +67,9 @@
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 /atom/proc/visible_message(message, blind_message, max_distance)
-	for(var/mob/M in viewers(src))
-		if(max_distance)
-			if(get_dist(M, src) > max_distance)//too far away
-				continue
+	var/view_dist = 7
+	if(max_distance) view_dist = max_distance
+	for(var/mob/M in viewers(view_dist, src))
 		M.show_message( message, 1, blind_message, 2)
 
 
@@ -209,7 +207,7 @@ var/list/slot_equipment_priority = list( \
 	else
 		recently_pointed_to = world.time + 10
 		new /obj/effect/overlay/temp/point/big(T)
-	visible_message("<b>[src]</b> points to [A]")
+	visible_message("<b>[src]</b> points to [A]", null, null, 5)
 	return 1
 
 
@@ -324,7 +322,7 @@ var/list/slot_equipment_priority = list( \
 
 	if(AM.pulledby)
 		if(M)
-			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>")
+			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>", null, null, 5)
 		AM.pulledby.stop_pulling()
 
 	pulling = AM
@@ -336,8 +334,8 @@ var/list/slot_equipment_priority = list( \
 		return
 
 	if(M)
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-		visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+		visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
 
@@ -635,9 +633,9 @@ mob/proc/yank_out_object()
 		return
 
 	if(self)
-		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>")
+		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>", null, 5)
 	else
-		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
+		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>", null, 5)
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object

@@ -142,9 +142,9 @@
 			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their internals toggled by [usr.name] ([usr.ckey])</font>")
 			usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) internals</font>")
 			if(internal)
-				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>")
+				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>", null, 4)
 			else
-				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>")
+				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>", null, 4)
 
 			if(do_mob(usr, src, 30, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 				if (internal)
@@ -156,8 +156,7 @@
 					if(istype(wear_mask, /obj/item/clothing/mask))
 						if (istype(back, /obj/item/tank))
 							internal = back
-							for(var/mob/M in viewers(src, 1))
-								M.show_message("[src] is now running on internals.", 1)
+							visible_message("[src] is now running on internals.", null, 3)
 							internal.add_fingerprint(usr)
 							if (hud_used. && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
