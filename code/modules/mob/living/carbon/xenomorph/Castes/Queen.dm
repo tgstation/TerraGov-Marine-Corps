@@ -137,22 +137,36 @@
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
 						newegg.hivenumber = hivenumber
 
-			if(hivenumber == XENO_HIVE_NORMAL && ticker.mode.stored_larva)
-				var/list/players_with_xeno_pref = get_alien_candidates()
-				if(players_with_xeno_pref.len)
-					var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
-					new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-					"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
-					new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-					new_xeno.key = pick(players_with_xeno_pref)
+			if(hivenumber == XENO_HIVE_NORMAL && loc.z == 1)
+				if(ticker.mode.stored_larva)
+					var/list/players_with_xeno_pref = get_alien_candidates()
+					if(players_with_xeno_pref.len)
+						var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
+						new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+						"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+						new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+						new_xeno.key = pick(players_with_xeno_pref)
 
-					if(new_xeno.client)
-						new_xeno.client.view = world.view
+						if(new_xeno.client)
+							new_xeno.client.view = world.view
 
-					new_xeno << "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>"
-					new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+						new_xeno << "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>"
+						new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
-					ticker.mode.stored_larva--
+						ticker.mode.stored_larva--
+
+				var/searchx
+				var/searchy
+				var/turf/searchspot
+				for(searchx=-1, searchx<1, searchx++)
+					for(searchy=-1, searchy<1, searchy++)
+						searchspot = locate(loc.x+searchx, loc.y+searchy, loc.z)
+						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
+							if(!L.ckey || !L.client) // no one home
+								visible_message("<span class='xenodanger'>[L] quickly burries into the ground.</span>")
+								ticker.mode.stored_larva++
+								round_statistics.total_xenos_created-- // keep stats sane
+								cdel(L)
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
