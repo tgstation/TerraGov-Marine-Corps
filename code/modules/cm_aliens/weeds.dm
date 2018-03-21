@@ -11,7 +11,6 @@
 	layer = TURF_LAYER
 	unacidable = 1
 	health = 1
-	var/on_fire = 0
 
 /obj/effect/alien/weeds/New(pos, obj/effect/alien/weeds/node/node)
 	..()
@@ -106,9 +105,10 @@
 		else if (locate(/obj/effect/alien/weeds) in check)
 			my_dir |= check_dir
 
-	if (my_dir == 15 || my_dir == 0) //weeds in all four directions or in none
+	if (my_dir == 15) //weeds in all four directions
 		icon_state = "weed[rand(0,15)]"
-		return
+	else if(my_dir == 0) //no weeds in any direction
+		icon_state = "base"
 	else
 		icon_state = "weed_dir[my_dir]"
 
@@ -156,14 +156,10 @@
 		cdel(src)
 
 /obj/effect/alien/weeds/update_icon()
-	overlays.Cut()
-	if(on_fire)
-		overlays += "alien_fire"
+	return
 
 /obj/effect/alien/weeds/fire_act()
-	on_fire = 1
-	if(on_fire)
-		update_icon()
+	if(!disposed)
 		spawn(rand(100,175))
 			cdel(src)
 
@@ -204,10 +200,18 @@
 	var/planter_name //nameof the mob who planted it.
 	health = 15
 
-/obj/effect/alien/weeds/node/update_sprite()
-	return
+
+/obj/effect/alien/weeds/node/update_icon()
+	overlays.Cut()
+	overlays += "weednode"
 
 /obj/effect/alien/weeds/node/New(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/Xenomorph/X)
+	for(var/obj/effect/alien/weeds/W in loc)
+		if(W != src)
+			cdel(W) //replaces the previous weed
+			break
+
+	overlays += "weednode"
 	..(loc, src)
 	if(X)
 		planter_ckey = X.ckey
