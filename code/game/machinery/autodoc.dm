@@ -220,7 +220,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		visible_message("\The [src] buzzes, no surgical procedures were queued.")
 		return
 
-	visible_message("\The [src] begins to operate, loud audiable clicks lock the pod.")
+	visible_message("\The [src] begins to operate, loud audible clicks lock the pod.")
 	surgery = 1
 	icon_state = "autodoc_operate"
 
