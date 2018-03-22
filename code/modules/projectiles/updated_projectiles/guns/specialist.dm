@@ -120,8 +120,9 @@
 		accuracy += config.med_hit_accuracy_mult
 		recoil = config.min_recoil_value
 		fire_delay = config.high_fire_delay
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 23, "under_x" = 26, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 		var/obj/item/attachable/scope/S = new(src)
-		S.icon_state = null //Rifle already has a nice looking scope sprite.
+		S.icon_state = null // the gun's sprite already shows a scope
 		S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
 		S.Attach(src)
 		var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.

@@ -360,7 +360,8 @@ var/global/list/holodeck_programs = list(
 /obj/structure/table/holotable/wood
 	name = "table"
 	desc = "A square piece of wood standing on four wooden legs. It can not move."
-	icon_state = "wood_table"
+	icon_state = "woodtable"
+	table_prefix = "wood"
 
 /obj/structure/holostool
 	name = "stool"
