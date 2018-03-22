@@ -376,7 +376,8 @@
 
 	if (href_list["item"])
 		if(!usr.is_mob_incapacitated() && in_range(src, usr))
-			if(!usr.action_busy)
+			//police skill lets you strip multiple items from someone at once.
+			if(!usr.action_busy || (!usr.mind || !usr.mind.cm_skills || usr.mind.cm_skills.police >= SKILL_POLICE_MP))
 				var/slot = href_list["item"]
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
