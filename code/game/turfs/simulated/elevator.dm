@@ -64,7 +64,7 @@
 	name = "\improper Arrivals Elevator Hatch"
 
 /obj/machinery/door/airlock/multi_tile/elevator/dormatory
-	name = "\improper Dormatory Elevator Hatch"
+	name = "\improper Dormitory Elevator Hatch"
 
 /obj/machinery/door/airlock/multi_tile/elevator/freight
 	name = "\improper Freight Elevator Hatch"
@@ -82,7 +82,7 @@
 	name = "\improper Arrivals Elevator Hatch"
 
 /obj/machinery/door/airlock/multi_tile/elevator/access/dormatory
-	name = "\improper Dormatory Elevator Hatch"
+	name = "\improper Dormitory Elevator Hatch"
 
 /obj/machinery/door/airlock/multi_tile/elevator/access/freight
 	name = "\improper Freight Elevator Hatch"

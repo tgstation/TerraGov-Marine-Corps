@@ -560,7 +560,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
 			IgniteMob()
-			if(!stat)
+			if(!stat && !(species.flags & NO_PAIN))
 				emote("scream")
 				src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
 		return 1
