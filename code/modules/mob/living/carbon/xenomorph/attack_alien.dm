@@ -325,7 +325,10 @@
 /obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(breakable)
 		M.animation_attack_on(src)
-		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
+		if(sheet_type == /obj/item/stack/sheet/wood)
+			playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
+		else
+			playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 		health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 		if(health <= 0)
 			M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \

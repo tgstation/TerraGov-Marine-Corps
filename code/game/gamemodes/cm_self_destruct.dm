@@ -207,7 +207,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		trigger_self_destruct(,,override)
 		r_TRU
 
-/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = MAIN_SHIP_Z_LEVEL, origin = dest_master, override)
+/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(MAIN_SHIP_Z_LEVEL), origin = dest_master, override)
 	set waitfor = 0
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS) //One more check for good measure, in case it's triggered through a bomb instead of the destruct mechanism/admin panel.
 		enter_allowed = 0 //Do not want baldies spawning in as everything is exploding.
@@ -216,11 +216,10 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		world << pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
 		var/ship_status = 1
-		for(var/i in MAIN_SHIP_Z_LEVEL)
-			if(i in z_levels)
-				z_levels |= MAIN_SHIP_Z_LEVEL //Add them in, just in case.
+		for(var/i in z_levels)
+			if(i == MAIN_SHIP_Z_LEVEL)
 				ship_status = 0 //Destroyed.
-				break
+			break
 
 		var/L1[] = new //Everyone who will be destroyed on the zlevel(s).
 		var/L2[] = new //Everyone who only needs to see the cinematic.

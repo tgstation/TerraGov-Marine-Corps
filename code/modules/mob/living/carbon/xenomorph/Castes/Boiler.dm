@@ -202,7 +202,7 @@
 		src << "<span class='warning'>You see nothing to spit at!</span>"
 
 
-/mob/living/carbon/Xenomorph/Boiler/proc/spray_turfs(turflist)
+/mob/living/carbon/Xenomorph/Boiler/proc/spray_turfs(list/turflist)
 	if(isnull(turflist))
 		return
 	var/turf/prev_turf
@@ -210,31 +210,26 @@
 
 	for(var/turf/T in turflist)
 		distance++
+
+		if(!prev_turf && turflist.len > 1)
+			prev_turf = get_turf(src)
+			continue //So we don't burn the tile we be standin on
+
 		if(T.density || istype(T, /turf/space))
 			break
 		if(distance > 7)
 			break
-		if(DirBlocked(T, dir))
-			break
-		else if(DirBlocked(T, turn(dir, 180)))
-			break
+
 		if(locate(/obj/structure/girder, T))
 			break //Nope.avi
-		var/obj/structure/mineral_door/resin/D = locate() in T
-		if(D)
-			if(D.density)
-				break
+
 		var/obj/machinery/M = locate() in T
 		if(M)
 			if(M.density)
 				break
-		var/obj/structure/window/W = locate() in T
-		if(W)
-			if(W.is_full_window())
-				break
-			if(prev_turf)
-				if(get_dir(W, prev_turf) == W.dir)
-					break
+
+		if(prev_turf && LinkBlocked(prev_turf, T))
+			break
 
 		var/obj/structure/barricade/B = locate() in T
 		if(B)
@@ -243,13 +238,6 @@
 			if(prev_turf)
 				if(get_dir(B, prev_turf) == B.dir)
 					break
-
-		if(!prev_turf && length(turflist) > 1)
-			prev_turf = get_turf(src)
-			continue //So we don't burn the tile we be standin on
-
-		if(prev_turf && LinkBlocked(prev_turf, T))
-			break
 
 		if(!check_plasma(10))
 			break
