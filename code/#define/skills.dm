@@ -98,7 +98,7 @@
 //police skill, hidden
 #define SKILL_POLICE_DEFAULT 	0
 #define SKILL_POLICE_FLASH 		1 //flash use (CE, CMO, any officer starting with a flash)
-#define SKILL_POLICE_MP 		2 //all police gear use (MP)
+#define SKILL_POLICE_MP 		2 //all police gear use, can strip someone's clothes simultaneously (MP)
 
 
 //cqc skill
