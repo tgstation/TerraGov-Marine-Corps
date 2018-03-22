@@ -644,7 +644,10 @@
 			else
 				M << "<span class='xenonotice'>You interact with the pilot's console and disable remote control.</span>"
 				shuttle.last_locked = world.time
-				shuttle.queen_locked = 1
+				if(shuttle.location != 1)
+					shuttle.queen_locked = 1
+				else
+					shuttle.queen_locked = 2
 
 				var/ship_id = "sh_dropship1"
 				if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
