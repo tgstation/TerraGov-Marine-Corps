@@ -185,36 +185,36 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return destination
 
 
-
+//among other things, used by flamethrower and boiler spray to calculate if flame/spray can pass through.
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null) return 1
 	var/adir = get_dir(A,B)
 	var/rdir = get_dir(B,A)
-	if((adir & (NORTH|SOUTH)) && (adir & (EAST|WEST)))	//	diagonal
-		var/iStep = get_step(A,adir&(NORTH|SOUTH))
-		if(!LinkBlocked(A,iStep) && !LinkBlocked(iStep,B)) return 0
+	if(adir & (adir-1))//is diagonal direction
+		var/turf/iStep = get_step(A,adir&(NORTH|SOUTH))
+		if(!iStep.density && !LinkBlocked(A,iStep) && !LinkBlocked(iStep,B)) return 0
 
-		var/pStep = get_step(A,adir&(EAST|WEST))
-		if(!LinkBlocked(A,pStep) && !LinkBlocked(pStep,B)) return 0
+		var/turf/pStep = get_step(A,adir&(EAST|WEST))
+		if(!pStep.density && !LinkBlocked(A,pStep) && !LinkBlocked(pStep,B)) return 0
 		return 1
 
 	if(DirBlocked(A,adir)) return 1
 	if(DirBlocked(B,rdir)) return 1
 	return 0
 
-
-/proc/DirBlocked(turf/loc,var/dir)
+/proc/DirBlocked(turf/loc,var/direction)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
-		if(D.dir == SOUTHWEST)	return 1
-		if(D.dir == dir)		return 1
+		if(D.is_full_window())	return 1
+		if(D.dir == direction) return 1
 
 	for(var/obj/machinery/door/D in loc)
 		if(!D.density)			continue
 		if(istype(D, /obj/machinery/door/window))
-			if((dir & SOUTH) && (D.dir & (EAST|WEST)))		return 1
-			if((dir & EAST ) && (D.dir & (NORTH|SOUTH)))	return 1
+			if(D.dir == direction)		return 1
 		else return 1	// it's a real, air blocking door
+	for(var/obj/structure/mineral_door/D in loc)
+		if(D.density) return 1
 	return 0
 
 /proc/TurfBlockedNonWindow(turf/loc)
@@ -222,6 +222,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(O.density && !istype(O, /obj/structure/window))
 			return 1
 	return 0
+
+
 
 /proc/sign(x)
 	return x!=0?x/abs(x):0

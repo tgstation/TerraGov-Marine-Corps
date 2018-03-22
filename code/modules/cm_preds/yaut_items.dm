@@ -833,30 +833,6 @@
 	unacidable = 1
 	sharp = IS_SHARP_ITEM_BIG
 
-/obj/item/weapon/twohanded/glaive
-	name = "war glaive"
-	icon = 'icons/obj/items/predator.dmi'
-	icon_state = "glaive"
-	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
-	force = 28
-	w_class = 4.0
-	flags_equip_slot = SLOT_BACK
-	force_wielded = 60
-	throwforce = 50
-	throw_speed = 3
-	edge = 1
-	sharp = IS_SHARP_ITEM_BIG
-	flags_atom = FPRINT|CONDUCT|NOSHIELD|TWOHANDED
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
-	unacidable = 1
-	attack_speed = 12 //Default is 7.
-
-/obj/item/weapon/twohanded/glaive/damaged
-	name = "war glaive"
-	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
-	force = 18
-	force_wielded = 28
 
 /obj/item/weapon/wristblades
 	name = "wrist blades"

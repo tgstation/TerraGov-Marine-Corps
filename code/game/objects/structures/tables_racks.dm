@@ -23,6 +23,9 @@
 	breakable = 1
 	parts = /obj/item/frame/table
 
+	var/sheet_type = /obj/item/stack/sheet/metal
+	var/table_prefix = "" //used in update_icon()
+	var/reinforced = FALSE
 	var/flipped = 0
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	var/health = 100
@@ -32,21 +35,17 @@
 		if(parts)
 			new parts(loc)
 	else
-		if(istype(src,/obj/structure/table/reinforced))
+		if(reinforced)
 			if(prob(50))
 				new /obj/item/stack/rods(loc)
-			new /obj/item/stack/sheet/metal(loc)
-		else if(istype(src, /obj/structure/table/woodentable) || istype(src, /obj/structure/table/gamblingtable))
-			new /obj/item/stack/sheet/wood(loc)
-		else
-			new /obj/item/stack/sheet/metal(loc)
-	density = 0
+		new sheet_type(src)
 	cdel(src)
 
-/obj/structure/table/proc/update_adjacent()
-	for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-		if(locate(/obj/structure/table,get_step(src, direction)))
-			var/obj/structure/table/T = locate(/obj/structure/table, get_step(src,direction))
+/obj/structure/table/proc/update_adjacent(location)
+	if(!location) location = src //location arg is used to correctly update neighbour tables when deleting a table.
+	for(var/direction in CARDINAL_ALL_DIRS)
+		var/obj/structure/table/T = locate(/obj/structure/table, get_step(location,direction))
+		if(T)
 			T.update_icon()
 
 /obj/structure/table/New()
@@ -66,218 +65,148 @@
 			destroy()
 
 /obj/structure/table/Dispose()
-	update_adjacent()
+	var/tableloc = loc
 	. = ..()
+	update_adjacent(tableloc) //so neighbouring tables get updated correctly
 
 /obj/structure/table/update_icon()
-	spawn(2) //So it properly updates when deleting
+	if(flipped)
+		var/ttype = 0
+		var/tabledirs = 0
+		for(var/direction in list(turn(dir, 90), turn(dir, -90)) )
+			var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
+			if (T && T.flipped && T.dir == dir)
+				ttype++
+				tabledirs |= direction
 
-		if(flipped)
-			var/type = 0
-			var/tabledirs = 0
-			for(var/direction in list(turn(dir, 90), turn(dir, -90)) )
-				var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
-				if (T && T.flipped && T.dir == dir)
-					type++
-					tabledirs |= direction
-			var/base = "table"
-			if(istype(src, /obj/structure/table/woodentable))
-				base = "wood"
-			if(istype(src, /obj/structure/table/reinforced))
-				base = "rtable"
+		icon_state = "[table_prefix]flip[type]"
+		if(ttype == 1)
+			if(tabledirs & turn(dir,90))
+				icon_state = icon_state+"-"
+			if(tabledirs & turn(dir,-90))
+				icon_state = icon_state+"+"
+		return 1
 
-			icon_state = "[base]flip[type]"
-			if(type == 1)
-				if(tabledirs & turn(dir,90))
-					icon_state = icon_state+"-"
-				if(tabledirs & turn(dir,-90))
-					icon_state = icon_state+"+"
-			return 1
+	var/dir_sum = 0
+	for(var/direction in CARDINAL_ALL_DIRS)
+		var/skip_sum = 0
+		for(var/obj/structure/window/W in src.loc)
+			if(W.dir == direction) //So smooth tables don't go smooth through windows
+				skip_sum = 1
+				continue
+		var/inv_direction = turn(dir, 180) //inverse direction
+		for(var/obj/structure/window/W in get_step(src, direction))
+			if(W.dir == inv_direction) //So smooth tables don't go smooth through windows when the window is on the other table's tile
+				skip_sum = 1
+				continue
+		if(!skip_sum) //there is no window between the two tiles in this direction
+			var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
+			if(T && !T.flipped)
+				if(direction < 5)
+					dir_sum += direction
+				else
+					if(direction == 5)	//This permits the use of all table directions. (Set up so clockwise around the central table is a higher value, from north)
+						dir_sum += 16
+					if(direction == 6)
+						dir_sum += 32
+					if(direction == 8)	//Aherp and Aderp.  Jezes I am stupid.  -- SkyMarshal
+						dir_sum += 8
+					if(direction == 10)
+						dir_sum += 64
+					if(direction == 9)
+						dir_sum += 128
 
-		var/dir_sum = 0
-		for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-			var/skip_sum = 0
-			for(var/obj/structure/window/W in src.loc)
-				if(W.dir == direction) //So smooth tables don't go smooth through windows
-					skip_sum = 1
-					continue
-			var/inv_direction //inverse direction
-			switch(direction)
-				if(1)
-					inv_direction = 2
-				if(2)
-					inv_direction = 1
-				if(4)
-					inv_direction = 8
-				if(8)
-					inv_direction = 4
-				if(5)
-					inv_direction = 10
-				if(6)
-					inv_direction = 9
-				if(9)
-					inv_direction = 6
-				if(10)
-					inv_direction = 5
-			for(var/obj/structure/window/W in get_step(src, direction))
-				if(W.dir == inv_direction) //So smooth tables don't go smooth through windows when the window is on the other table's tile
-					skip_sum = 1
-					continue
-			if(!skip_sum) //means there is a window between the two tiles in this direction
-				var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
-				if(T && !T.flipped)
-					if(direction < 5)
-						dir_sum += direction
-					else
-						if(direction == 5)	//This permits the use of all table directions. (Set up so clockwise around the central table is a higher value, from north)
-							dir_sum += 16
-						if(direction == 6)
-							dir_sum += 32
-						if(direction == 8)	//Aherp and Aderp.  Jezes I am stupid.  -- SkyMarshal
-							dir_sum += 8
-						if(direction == 10)
-							dir_sum += 64
-						if(direction == 9)
-							dir_sum += 128
-
-		var/table_type = 0 //stand_alone table
-		if(dir_sum%16 in cardinal)
-			table_type = 1 //endtable
-			dir_sum %= 16
-		if(dir_sum%16 in list(3, 12))
-			table_type = 2 //1 tile thick, streight table
-			if(dir_sum%16 == 3) //3 doesn't exist as a dir
-				dir_sum = 2
-			if(dir_sum%16 == 12) //12 doesn't exist as a dir.
-				dir_sum = 4
-		if(dir_sum%16 in list(5, 6, 9, 10))
-			if(locate(/obj/structure/table, get_step(src.loc, dir_sum%16)))
-				table_type = 3 //full table (not the 1 tile thick one, but one of the 'tabledir' tables)
-			else
-				table_type = 2 //1 tile thick, corner table (treated the same as streight tables in code later on)
-			dir_sum %= 16
-		if(dir_sum%16 in list(13, 14, 7, 11)) //Three-way intersection
-			table_type = 5 //full table as three-way intersections are not sprited, would require 64 sprites to handle all combinations.  TOO BAD -- SkyMarshal
-			switch(dir_sum%16)	//Begin computation of the special type tables.  --SkyMarshal
-				if(7)
-					if(dir_sum == 23)
-						table_type = 6
-						dir_sum = 8
-					else if(dir_sum == 39)
-						dir_sum = 4
-						table_type = 6
-					else if(dir_sum == 55 || dir_sum == 119 || dir_sum == 247 || dir_sum == 183)
-						dir_sum = 4
-						table_type = 3
-					else
-						dir_sum = 4
-				if(11)
-					if(dir_sum == 75)
-						dir_sum = 5
-						table_type = 6
-					else if(dir_sum == 139)
-						dir_sum = 9
-						table_type = 6
-					else if(dir_sum == 203 || dir_sum == 219 || dir_sum == 251 || dir_sum == 235)
-						dir_sum = 8
-						table_type = 3
-					else
-						dir_sum = 8
-				if(13)
-					if(dir_sum == 29)
-						dir_sum = 10
-						table_type = 6
-					else if(dir_sum == 141)
-						dir_sum = 6
-						table_type = 6
-					else if(dir_sum == 189 || dir_sum == 221 || dir_sum == 253 || dir_sum == 157)
-						dir_sum = 1
-						table_type = 3
-					else
-						dir_sum = 1
-				if(14)
-					if(dir_sum == 46)
-						dir_sum = 1
-						table_type = 6
-					else if(dir_sum == 78)
-						dir_sum = 2
-						table_type = 6
-					else if(dir_sum == 110 || dir_sum == 254 || dir_sum == 238 || dir_sum == 126)
-						dir_sum = 2
-						table_type = 3
-					else
-						dir_sum = 2 //These translate the dir_sum to the correct dirs from the 'tabledir' icon_state.
-		if(dir_sum%16 == 15)
-			table_type = 4 //4-way intersection, the 'middle' table sprites will be used.
-
-		if(istype(src, /obj/structure/table/reinforced))
-			switch(table_type)
-				if(0)
-					icon_state = "reinf_table"
-				if(1)
-					icon_state = "reinf_1tileendtable"
-				if(2)
-					icon_state = "reinf_1tilethick"
-				if(3)
-					icon_state = "reinf_tabledir"
-				if(4)
-					icon_state = "reinf_middle"
-				if(5)
-					icon_state = "reinf_tabledir2"
-				if(6)
-					icon_state = "reinf_tabledir3"
-		else if(istype(src, /obj/structure/table/woodentable))
-			switch(table_type)
-				if(0)
-					icon_state = "wood_table"
-				if(1)
-					icon_state = "wood_1tileendtable"
-				if(2)
-					icon_state = "wood_1tilethick"
-				if(3)
-					icon_state = "wood_tabledir"
-				if(4)
-					icon_state = "wood_middle"
-				if(5)
-					icon_state = "wood_tabledir2"
-				if(6)
-					icon_state = "wood_tabledir3"
-		else if(istype(src, /obj/structure/table/gamblingtable))
-			switch(table_type)
-				if(0)
-					icon_state = "gamble_table"
-				if(1)
-					icon_state = "gamble_1tileendtable"
-				if(2)
-					icon_state = "gamble_1tilethick"
-				if(3)
-					icon_state = "gamble_tabledir"
-				if(4)
-					icon_state = "gamble_middle"
-				if(5)
-					icon_state = "gamble_tabledir2"
-				if(6)
-					icon_state = "gamble_tabledir3"
+	var/table_type = 0 //stand_alone table
+	if(dir_sum%16 in cardinal)
+		table_type = 1 //endtable
+		dir_sum %= 16
+	if(dir_sum%16 in list(3, 12))
+		table_type = 2 //1 tile thick, streight table
+		if(dir_sum%16 == 3) //3 doesn't exist as a dir
+			dir_sum = 2
+		if(dir_sum%16 == 12) //12 doesn't exist as a dir.
+			dir_sum = 4
+	if(dir_sum%16 in list(5, 6, 9, 10))
+		if(locate(/obj/structure/table, get_step(src.loc, dir_sum%16)))
+			table_type = 3 //full table (not the 1 tile thick one, but one of the 'tabledir' tables)
 		else
-			switch(table_type)
-				if(0)
-					icon_state = "table"
-				if(1)
-					icon_state = "table_1tileendtable"
-				if(2)
-					icon_state = "table_1tilethick"
-				if(3)
-					icon_state = "tabledir"
-				if(4)
-					icon_state = "table_middle"
-				if(5)
-					icon_state = "tabledir2"
-				if(6)
-					icon_state = "tabledir3"
-		if(dir_sum in list(1, 2, 4, 8, 5, 6, 9, 10))
-			dir = dir_sum
-		else
-			dir = 2
+			table_type = 2 //1 tile thick, corner table (treated the same as streight tables in code later on)
+		dir_sum %= 16
+	if(dir_sum%16 in list(13, 14, 7, 11)) //Three-way intersection
+		table_type = 5 //full table as three-way intersections are not sprited, would require 64 sprites to handle all combinations.  TOO BAD -- SkyMarshal
+		switch(dir_sum%16)	//Begin computation of the special type tables.  --SkyMarshal
+			if(7)
+				if(dir_sum == 23)
+					table_type = 6
+					dir_sum = 8
+				else if(dir_sum == 39)
+					dir_sum = 4
+					table_type = 6
+				else if(dir_sum == 55 || dir_sum == 119 || dir_sum == 247 || dir_sum == 183)
+					dir_sum = 4
+					table_type = 3
+				else
+					dir_sum = 4
+			if(11)
+				if(dir_sum == 75)
+					dir_sum = 5
+					table_type = 6
+				else if(dir_sum == 139)
+					dir_sum = 9
+					table_type = 6
+				else if(dir_sum == 203 || dir_sum == 219 || dir_sum == 251 || dir_sum == 235)
+					dir_sum = 8
+					table_type = 3
+				else
+					dir_sum = 8
+			if(13)
+				if(dir_sum == 29)
+					dir_sum = 10
+					table_type = 6
+				else if(dir_sum == 141)
+					dir_sum = 6
+					table_type = 6
+				else if(dir_sum == 189 || dir_sum == 221 || dir_sum == 253 || dir_sum == 157)
+					dir_sum = 1
+					table_type = 3
+				else
+					dir_sum = 1
+			if(14)
+				if(dir_sum == 46)
+					dir_sum = 1
+					table_type = 6
+				else if(dir_sum == 78)
+					dir_sum = 2
+					table_type = 6
+				else if(dir_sum == 110 || dir_sum == 254 || dir_sum == 238 || dir_sum == 126)
+					dir_sum = 2
+					table_type = 3
+				else
+					dir_sum = 2 //These translate the dir_sum to the correct dirs from the 'tabledir' icon_state.
+	if(dir_sum%16 == 15)
+		table_type = 4 //4-way intersection, the 'middle' table sprites will be used.
+
+	switch(table_type)
+		if(0)
+			icon_state = "[table_prefix]table"
+		if(1)
+			icon_state = "[table_prefix]1tileendtable"
+		if(2)
+			icon_state = "[table_prefix]1tilethick"
+		if(3)
+			icon_state = "[table_prefix]tabledir"
+		if(4)
+			icon_state = "[table_prefix]middle"
+		if(5)
+			icon_state = "[table_prefix]tabledir2"
+		if(6)
+			icon_state = "[table_prefix]tabledir3"
+
+	if(dir_sum in CARDINAL_ALL_DIRS)
+		dir = dir_sum
+	else
+		dir = SOUTH
+
 
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return
@@ -509,8 +438,10 @@
 /obj/structure/table/woodentable
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
-	icon_state = "wood_table"
+	icon_state = "woodtable"
+	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/wood
+	table_prefix = "wood"
 	health = 50
 /*
  * Gambling tables
@@ -518,8 +449,10 @@
 /obj/structure/table/gamblingtable
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
-	icon_state = "gamble_table"
+	icon_state = "gambletable"
+	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/gambling
+	table_prefix = "gamble"
 	health = 50
 /*
  * Reinforced tables
@@ -527,9 +460,11 @@
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
-	icon_state = "reinf_table"
+	icon_state = "reinftable"
 	health = 200
 	var/status = 2
+	reinforced = TRUE
+	table_prefix = "reinf"
 	parts = /obj/item/frame/table/reinforced
 
 /obj/structure/table/reinforced/flip(var/direction)
@@ -568,7 +503,7 @@
 /obj/structure/table/reinforced/prison
 	icon = 'icons/obj/structures/prison.dmi'
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
-	icon_state = "reinf_table"
+
 
 /*
  * Racks

@@ -410,12 +410,18 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			if(isXeno(M))
 				switch(M.z)
 					if(3) numXenosShip++ //On the ship.
+					if(0) //nullspace
+						if(M.loc && M.loc.z == 3) numXenosShip++ //maybe they're in a closet or vent, check that obj's z level.
+						else numXenosPlanet++
 					else numXenosPlanet++ //Elsewhere.
 				activeXenos += M
 
 			if(ishuman(M) && !isYautja(M))
 				switch(M.z)
 					if(3) numHostsShip++ //On the ship.
+					if(0) //nullspace
+						if(M.loc && M.loc.z == 3) numHostsShip++ //maybe they're in a closet or vent, check that obj's z level.
+						else numHostsPlanet++
 					else numHostsPlanet++ //Elsewhere.
 
 	//Adjust the randomness there so everyone gets the same thing

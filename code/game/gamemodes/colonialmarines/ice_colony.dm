@@ -100,7 +100,7 @@
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 		if(3) //Security
 			id_assignment = "Security"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), WEAR_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), WEAR_L_HAND)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)

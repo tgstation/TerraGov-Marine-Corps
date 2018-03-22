@@ -52,7 +52,7 @@
 		user << "<span class='warning'>You can't plant a mine here.</span>"
 		return
 
-	if(user.z == 3 || user.z == 4) // On the Sulaco.
+	if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Almayer or dropship transit level
 		user << "<span class='warning'>You can't plant a mine on a spaceship!</span>"
 		return
 

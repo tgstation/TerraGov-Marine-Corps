@@ -24,7 +24,7 @@
 				ai_system.Announce("Attention: Security level lowered to GREEN - all clear.", 'sound/AI/code_green.ogg')
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in MAIN_SHIP_Z_LEVEL)
+					if(FA.z == MAIN_SHIP_Z_LEVEL)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 			if(SEC_LEVEL_BLUE)
@@ -34,7 +34,7 @@
 					ai_system.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in MAIN_SHIP_Z_LEVEL)
+					if(FA.z == MAIN_SHIP_Z_LEVEL)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
 			if(SEC_LEVEL_RED)
@@ -45,7 +45,7 @@
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)
-						if(O.z in MAIN_SHIP_Z_LEVEL)
+						if(O.z == MAIN_SHIP_Z_LEVEL)
 							A = O.loc.loc
 							A.toggle_evacuation()
 					*/
@@ -53,7 +53,7 @@
 				security_level = SEC_LEVEL_RED
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in MAIN_SHIP_Z_LEVEL)
+					if(FA.z == MAIN_SHIP_Z_LEVEL)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_red")
 
@@ -64,7 +64,7 @@
 					if(D.id == "sd_lockdown")
 						D.open()
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in MAIN_SHIP_Z_LEVEL)
+					if(FA.z == MAIN_SHIP_Z_LEVEL)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_delta")
 	else

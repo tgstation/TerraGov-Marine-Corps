@@ -712,24 +712,22 @@ Defined in conflicts.dm of the #defines folder.
 	set waitfor = 0
 	var/list/turf/turfs = getline2(user,target)
 	var/distance = 0
-	var/obj/structure/window/W
-	var/turf/T
+	var/turf/prev_T
 	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
-	for(T in turfs)
-		if(T == user.loc) 			continue
+	for(var/turf/T in turfs)
+		if(T == user.loc)
+			prev_T = T
+			continue
 		if(!current_rounds) 		break
 		if(distance >= max_range) 	break
-		if(DirBlocked(T,user.dir))  break
-		else if(DirBlocked(T,turn(user.dir,180))) break
-		if(locate(/turf/simulated/wall/resin,T) || locate(/obj/structure/mineral_door/resin,T)) break
-		W = locate() in T
-		if(W)
-			if(W.is_full_window()) 	break
-			if(W.dir == user.dir) 	break
+		if(prev_T && LinkBlocked(prev_T, T))
+			break
 		current_rounds--
 		flame_turf(T,user)
 		distance++
+		prev_T = T
 		sleep(1)
+
 
 /obj/item/attachable/flamer/proc/flame_turf(turf/T, mob/living/user)
 	if(!istype(T)) return
