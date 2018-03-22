@@ -55,13 +55,14 @@
 	return parent.return_network(reference)
 
 /obj/machinery/atmospherics/pipe/Dispose()
-	if(contents.len)
-		for(var/atom/movable/A in contents)
-			A.forceMove(loc)
-	if(parent)
-		del(parent)
-	if(air_temporary)
-		loc.assume_air(air_temporary)
+	if(!disposed) //not already cdel'd
+		if(contents.len)
+			for(var/atom/movable/A in contents)
+				A.forceMove(loc)
+		if(parent)
+			del(parent)
+		if(air_temporary)
+			loc.assume_air(air_temporary)
 	. = ..()
 
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
