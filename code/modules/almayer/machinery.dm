@@ -240,11 +240,6 @@
 			if(4) pixel_x = 25
 			if(8) pixel_x = -25
 
-//------USS Almayer Tables ------//
-/obj/structure/table/almayer
-	icon = 'icons/obj/almayer.dmi'
-	icon_state = "table"
-
 
 
 //------- Cryobag Recycler -------//

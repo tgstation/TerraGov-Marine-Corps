@@ -501,8 +501,17 @@
 	..()
 
 /obj/structure/table/reinforced/prison
-	icon = 'icons/obj/structures/prison.dmi'
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
+	icon_state = "prisontable"
+	table_prefix = "prison"
+
+/obj/structure/table/almayer
+	icon_state = "almtable"
+	table_prefix = "alm"
+
+
+
+
 
 
 /*
