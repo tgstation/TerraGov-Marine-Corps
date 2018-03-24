@@ -135,7 +135,7 @@
 			else
 				usr << "<span class='warning'>The shuttle's engines are still recharging and cooling down.</span>"
 			return
-		if(shuttle.queen_locked == 2 && !isXenoQueen(usr))
+		if(shuttle.queen_locked && !isXenoQueen(usr))
 			usr << "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>"
 			return
 		//Comment to test

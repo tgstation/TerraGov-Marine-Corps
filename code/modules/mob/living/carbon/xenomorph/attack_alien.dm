@@ -630,46 +630,63 @@
 		cdel(src)
 
 //Xenomorphs can't use machinery, not even the "intelligent" ones
-//Exception is Queen and shuttle computers, because plot power
+//Exception is Queen and shuttles, because plot power
 /obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M)
 	M << "<span class='warning'>You stare at \the [src] cluelessly.</span>"
 
+/datum/shuttle/ferry/marine/proc/hijack(mob/living/carbon/Xenomorph/M)
+	if(!queen_locked) //we have not hijacked it yet
+		if(world.time < SHUTTLE_LOCK_TIME_LOCK)
+			M << "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
+			return
+		if(world.time < last_locked + SHUTTLE_LOCK_COOLDOWN)
+			M << "<span class='warning'>You can't seem to disable remote control, some sort of safety cooldown is in place. Please wait another [round((last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
+		else
+			M << "<span class='xenonotice'>You interact with the machine and disable remote control.</span>"
+			last_locked = world.time
+			queen_locked = 1
+
+			var/ship_id = "sh_dropship1"
+			if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+				ship_id = "sh_dropship2"
+
+			for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+				if(D.id == ship_id)
+					D.unlock()
+
+			var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+			switch(ship_id)
+				if("sh_dropship1")
+					for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+						reardoor = D
+				if("sh_dropship2")
+					for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+						reardoor = D
+
+			reardoor.unlock()
+
 /obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
-	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(M.is_intelligent)
 		attack_hand(M)
-		if(!shuttle.queen_locked && !shuttle.iselevator && (onboard || src.z == 1)) //This is the shuttle's onboard console and we have not hijacked it yet
-			if(world.time < SHUTTLE_LOCK_TIME_LOCK)
-				M << "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
-				return
-			if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
-				M << "<span class='warning'>You can't seem to disable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
+		if(!shuttle.iselevator && onboard) //This is the shuttle's onboard console
+			shuttle.hijack(M)
+	else
+		..()
+
+/obj/machinery/door_control/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.is_intelligent && normaldoorcontrol == CONTROL_DROPSHIP)
+		var/shuttle_tag
+		switch(id)
+			if("sh_dropship1")
+				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+			if("sh_dropship2")
+				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
 			else
-				M << "<span class='xenonotice'>You interact with the pilot's console and disable remote control.</span>"
-				shuttle.last_locked = world.time
-				if(shuttle.location != 1)
-					shuttle.queen_locked = 1
-				else
-					shuttle.queen_locked = 2
+				return
 
-				var/ship_id = "sh_dropship1"
-				if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
-					ship_id = "sh_dropship2"
-
-				for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
-					if(D.id == ship_id)
-						D.unlock()
-
-				var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
-				switch(ship_id)
-					if("sh_dropship1")
-						for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
-							reardoor = D
-					if("sh_dropship2")
-						for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
-							reardoor = D
-
-				reardoor.unlock()
+		var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
+		shuttle.hijack(M)
 	else
 		..()
 
