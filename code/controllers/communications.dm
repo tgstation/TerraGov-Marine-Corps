@@ -117,8 +117,8 @@ var/const/ENG_FREQ 		= 1357
 var/const/SEC_FREQ 		= 1359
 var/const/SUP_FREQ 		= 1354
 
-var/const/DS1_FREQ		= 1443
-var/const/DS2_FREQ		= 1445
+var/const/DS1_FREQ		= 1441
+var/const/DS2_FREQ		= 1443
 
 //Marine channels
 var/const/ALPHA_FREQ 	= 1449

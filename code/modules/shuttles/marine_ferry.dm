@@ -316,9 +316,9 @@
 
 	var/turf/sploded
 	for(var/j=0; j<10; j++)
-		sploded = locate(T_trg.x + rand(-25, 30), T_trg.y + rand(-25, 30), T_trg.z)
+		sploded = locate(T_trg.x + rand(-5, 15), T_trg.y + rand(-5, 25), T_trg.z)
 		//Fucking. Kaboom.
-		explosion(sploded, 0, 0, 10, 0)
+		explosion(sploded, 0, 5, 10, 0)
 		sleep(3)
 
 	for(var/mob/living/carbon/M in mob_list) //knock down mobs
