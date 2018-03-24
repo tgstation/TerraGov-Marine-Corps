@@ -79,7 +79,7 @@
 				ttype++
 				tabledirs |= direction
 
-		icon_state = "[table_prefix]flip[type]"
+		icon_state = "[table_prefix]flip[ttype]"
 		if(ttype == 1)
 			if(tabledirs & turn(dir,90))
 				icon_state = icon_state+"-"
