@@ -62,9 +62,6 @@
 			//Random events (vomiting etc)
 			handle_random_events()
 
-			//stuff in the stomach
-			handle_stomach()
-
 			//effects of being grabbed aggressively by another mob
 			if(pulledby && pulledby.grab_level)
 				handle_grabbed()

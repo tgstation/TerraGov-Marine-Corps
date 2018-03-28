@@ -190,7 +190,7 @@
 				if(M.acid_damage > 300)
 					src << "<span class='xenodanger'>\The [M] is dissolved in your gut with a gurgle.</span>"
 					stomach_contents.Remove(M)
-					M.loc = locate(138, 136, 2)
+					cdel(M)
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
