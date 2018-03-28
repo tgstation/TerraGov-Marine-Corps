@@ -196,8 +196,6 @@
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
 	var/node_range = NODERANGE
-	var/planter_ckey //ckey of the mob who planted it.
-	var/planter_name //nameof the mob who planted it.
 	health = 15
 
 
@@ -214,7 +212,7 @@
 	overlays += "weednode"
 	..(loc, src)
 	if(X)
-		planter_ckey = X.ckey
-		planter_name = X.real_name
+		add_hiddenprint(X)
+
 
 #undef NODERANGE

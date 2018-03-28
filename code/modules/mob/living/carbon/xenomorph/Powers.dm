@@ -291,23 +291,26 @@
 	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [selected_resin].</span>", null, 5)
 	playsound(loc, "alien_resin_build", 25)
 
+	var/atom/new_resin
+
 	switch(selected_resin)
 		if("resin door")
 			if (caste == "Hivelord")
-				new /obj/structure/mineral_door/resin/thick(current_turf)
+				new_resin = new /obj/structure/mineral_door/resin/thick(current_turf)
 			else
-				new /obj/structure/mineral_door/resin(current_turf)
+				new_resin = new /obj/structure/mineral_door/resin(current_turf)
 		if("resin wall")
 			if (caste == "Hivelord")
 				current_turf.ChangeTurf(/turf/simulated/wall/resin/thick)
 			else
 				current_turf.ChangeTurf(/turf/simulated/wall/resin)
+			new_resin = current_turf
 		if("resin nest")
-			new /obj/structure/bed/nest(current_turf)
+			new_resin = new /obj/structure/bed/nest(current_turf)
 		if("sticky resin")
-			new /obj/effect/alien/resin/sticky(current_turf)
+			new_resin = new /obj/effect/alien/resin/sticky(current_turf)
 
-
+	new_resin.add_hiddenprint(src) //so admins know who placed it
 
 
 //Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
@@ -393,6 +396,8 @@
 		A.layer = O.layer + 0.1
 	else //If not, appear on the floor (turf layer is 2, vents are 2.4)
 		A.layer = XENO_FLOOR_ACID_LAYER
+
+	A.add_hiddenprint(src)
 
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")

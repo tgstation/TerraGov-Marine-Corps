@@ -261,7 +261,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 						if(istype(W, TT))
 							if(length(W.contents) == 0)
 								cdel(W) // delete all the empty satchels
-								continue
+								continue item_loop
 							break // not empty, don't delete
 
 					for(var/DA in deleteall)
