@@ -222,11 +222,12 @@
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
-		if(upgrade_stored >= upgrade_threshold)
-			if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
-				upgrade_xeno(upgrade+1)
-		else
-			upgrade_stored = min(upgrade_stored + 1, upgrade_threshold)
+		if(client && ckey) // pause for ssd/ghosted
+			if(upgrade_stored >= upgrade_threshold)
+				if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
+					upgrade_xeno(upgrade+1)
+			else
+				upgrade_stored = min(upgrade_stored + 1, upgrade_threshold)
 
 /mob/living/carbon/Xenomorph/show_inv(mob/user)
 	return

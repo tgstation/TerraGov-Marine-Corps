@@ -263,6 +263,11 @@
 				X << sound(get_sfx("queen"),wait = 0,volume = 50)
 				X << "[queensWord]"
 
+	spawn(0)
+		for(var/mob/dead/observer/G in player_list)
+			G << sound(get_sfx("queen"),wait = 0,volume = 50)
+			G << "[queensWord]"
+
 	log_admin("[key_name(src)] has created a Word of the Queen report:")
 	log_admin("[queensWord]")
 	message_admins("[key_name_admin(src)] has created a Word of the Queen report.", 1)

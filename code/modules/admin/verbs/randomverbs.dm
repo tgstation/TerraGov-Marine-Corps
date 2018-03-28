@@ -672,7 +672,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/data = "<h1>[customname]</h1><br><br><br>\red[input]<br><br>"
 
 	for(var/mob/M in player_list)
-		if(isXeno(M))
+		if(isXeno(M) || isobserver(M))
 			M << data
 
 	log_admin("[key_name(src)] has created a Queen Mother report: [input]")
