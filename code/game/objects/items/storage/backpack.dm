@@ -285,9 +285,11 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
+	var/has_gamemode_skin = TRUE
 
 	New()
-		select_gamemode_skin(type)
+		if(has_gamemode_skin)
+			select_gamemode_skin(type)
 		..()
 
 /obj/item/storage/backpack/marine/medic
@@ -333,6 +335,7 @@
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard USCM ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
 	icon_state = "scout_cloak"
 	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S, /obj/item/clothing/head/helmet/marine/scout) //Need to wear Scout armor and helmet to equip this.
+	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = 0
 	var/camo_active_timer = 0
 	var/camo_cooldown_timer = 0
@@ -438,6 +441,7 @@
 	var/max_fuel = 260
 	max_storage_space = 15
 	storage_slots = null
+	has_gamemode_skin = FALSE //same sprites for all gamemodes
 
 /obj/item/storage/backpack/marine/engineerpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills

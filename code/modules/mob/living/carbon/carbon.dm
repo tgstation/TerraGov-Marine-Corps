@@ -8,6 +8,7 @@
 	for(var/datum/disease/virus in viruses)
 		virus.cure()
 	. = ..()
+	stomach_contents.Cut() //movable atom's Dispose() deletes all content, we clear stomach_contents to be safe.
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -48,10 +49,6 @@
 			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
 			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health
-				for(var/atom/movable/A in stomach_contents)
-					A.loc = loc
-					A.acid_damage = 0 //Reset the acid damage
-					stomach_contents.Remove(A)
 				gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
@@ -60,13 +57,13 @@
 /mob/living/carbon/gib(anim, do_gibs, f_icon)
 	if(legcuffed)
 		drop_inv_item_on_ground(legcuffed)
-	for(var/mob/M in src)
-		if(M in stomach_contents)
-			M.acid_damage = 0 //Reset the acid damage
-			stomach_contents -= M
-		M.loc = loc
-		for(var/mob/N in viewers(src, null))
-			if(N.client) N.show_message(text("<span class='danger'>[M] bursts out of [src]!</span>"), 2)
+
+	for(var/atom/movable/A in stomach_contents)
+		stomach_contents.Remove(A)
+		A.forceMove(loc)
+		A.acid_damage = 0 //Reset the acid damage
+		if(ismob(A))
+			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
 	. = ..(anim, do_gibs, f_icon)
 

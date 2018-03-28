@@ -62,8 +62,8 @@
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 
 	for(var/atom/movable/A in stomach_contents)
-		stomach_contents -= A
+		stomach_contents.Remove(A)
 		A.acid_damage = 0 //Reset the acid damage
-		A.loc = loc
+		A.forceMove(loc)
 
 	round_statistics.total_xeno_deaths++
