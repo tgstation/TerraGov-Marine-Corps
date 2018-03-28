@@ -111,11 +111,13 @@
 			switch(M.tier)
 				if(0)
 					if(caste == "Bloody Larva")
-						potential_queens++
+						if(M.client && M.ckey)
+							potential_queens++
 					continue
 				if(1)
 					if(caste == "Drone")
-						potential_queens++
+						if(M.client && M.ckey)
+							potential_queens++
 				if(2)
 					tierB++
 				if(3)
@@ -124,7 +126,8 @@
 					src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
 
 					continue
-			totalXenos++
+			if(M.client && M.ckey)
+				totalXenos++
 
 	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5 && castepick != "Queen")
 		src << "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>"

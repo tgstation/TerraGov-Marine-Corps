@@ -55,6 +55,7 @@
 				if(prob(chance))
 					huggers_cur--
 					F = new(loc)
+					F.hivenumber = hivenumber
 					step_away(F,src,1)
 				i--
 				chance -= 30
@@ -89,6 +90,10 @@
 	if(istype(T, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = T
 		if(isturf(F.loc) && Adjacent(F))
+			if(F.hivenumber != hivenumber)
+				src << "<span class='warning'>That facehugger is tainted!</span>"
+				drop_inv_item_on_ground(F)
+				return
 			store_hugger(F)
 			return
 
@@ -99,6 +104,7 @@
 			src << "<span class='warning'>You don't have any facehuggers to use!</span>"
 			return
 		F = new()
+		F.hivenumber = hivenumber
 		huggers_cur--
 		put_in_active_hand(F)
 		src << "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers_cur] / [huggers_max].</span>"
@@ -126,6 +132,9 @@
 
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
+	if(E.hivenumber != hivenumber)
+		src << "<span class='warning'>That egg is tainted!</span>"
+		return
 	if(eggs_cur < eggs_max)
 		if(stat == CONSCIOUS)
 			eggs_cur++
@@ -157,6 +166,7 @@
 			src << "<span class='warning'>You don't have any egg to use!</span>"
 			return
 		E = new()
+		E.hivenumber = hivenumber
 		eggs_cur--
 		put_in_active_hand(E)
 		src << "<span class='xenonotice'>You grab one of the eggs in your storage. Now sheltering: [eggs_cur] / [eggs_max].</span>"
@@ -165,4 +175,3 @@
 	if(!istype(E)) //something else in our hand
 		src << "<span class='warning'>You need an empty hand to grab one of your stored eggs!</span>"
 		return
-

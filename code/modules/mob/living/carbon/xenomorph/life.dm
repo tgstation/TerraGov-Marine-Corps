@@ -24,14 +24,15 @@
 
 		update_progression()
 
-		if(hivenumber && hivenumber <= hive_datum.len)
-			var/datum/hive_status/hive = hive_datum[hivenumber]
+		if(client && ckey) // stop evolve progress for ssd/ghosted xenos
+			if(hivenumber && hivenumber <= hive_datum.len)
+				var/datum/hive_status/hive = hive_datum[hivenumber]
 
-			if(evolution_allowed && evolution_stored < evolution_threshold && hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
-				evolution_stored = min(evolution_stored + 1, evolution_threshold)
-				if(evolution_stored == evolution_threshold - 1)
-					src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
-					src << sound('sound/effects/xeno_evolveready.ogg')
+				if(evolution_allowed && evolution_stored < evolution_threshold && hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
+					evolution_stored = min(evolution_stored + 1, evolution_threshold)
+					if(evolution_stored == evolution_threshold - 1)
+						src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
+						src << sound('sound/effects/xeno_evolveready.ogg')
 
 		//Status updates, death etc.
 		handle_regular_status_updates()
@@ -48,8 +49,22 @@
 		return 0
 
 	if(on_fire)
+		SetLuminosity(min(fire_stacks,5)) // light up xenos
+		var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+		var/obj/item/clothing/mask/facehugger/G = get_inactive_hand()
+		if(istype(F))
+			F.Die()
+			drop_inv_item_on_ground(F)
+		if(istype(G))
+			G.Die()
+			drop_inv_item_on_ground(G)
 		if(!fire_immune)
 			adjustFireLoss(fire_stacks + 3)
+	else
+		if(isXenoBoiler(src))
+			SetLuminosity(3) // needs a less hacky way of doing this, like a default luminosity var
+		else
+			SetLuminosity(0)
 
 	if(health <= 0) //Sleeping Xenos are also unconscious, but all crit Xenos are under 0 HP. Go figure
 		var/turf/T = loc

@@ -447,22 +447,40 @@
 	var/sentinel_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
+	var/stored_larva_count = ticker.mode.stored_larva
+	var/leader_list = ""
+
 	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
 		if(X.z == ADMIN_Z_LEVEL) continue //don't show xenos in the thunderdome when admins test stuff.
 		if(istype(user)) // cover calling it without parameters
 			if(X.hivenumber != user.hivenumber)
 				continue // not our hive
 		var/area/A = get_area(X)
+
+		var/datum/hive_status/hive
+		if(X.hivenumber && X.hivenumber <= hive_datum.len)
+			hive = hive_datum[X.hivenumber]
+		else
+			X.hivenumber = XENO_HIVE_NORMAL
+			hive = hive_datum[X.hivenumber]
+
+		var/leader = ""
+
+		if(X in hive.xeno_leader_list)
+			leader = "<b>(-L-)</b>"
+
 		var/xenoinfo
 		if(user && anchored && X != user)
-			xenoinfo = "<tr><td><a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
+			xenoinfo = "<tr><td>[leader]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
 		else
-			xenoinfo = "<tr><td>[X.name] "
+			xenoinfo = "<tr><td>[leader][X.name] "
 		if(!X.client) xenoinfo += " <i>(SSD)</i>"
 
 		count++ //Dead players shouldn't be on this list
 		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
 
+		if(leader != "")
+			leader_list += xenoinfo
 		if(isXenoQueen(X))
 			queen_list += xenoinfo
 		if(isXenoBoiler(X))
@@ -509,8 +527,11 @@
 	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
 	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count]<BR>"
 	dat += "<b>Larvas: [larva_count] Sisters<BR>"
+	if(istype(user)) // cover calling it without parameters
+		if(user.hivenumber == XENO_HIVE_NORMAL)
+			dat += "<b>Burrowed Larva: [stored_larva_count] Sisters<BR>"
 	dat += "<table cellspacing=4>"
-	dat += queen_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + larva_list
+	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + larva_list
 	dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=500x500")
 
