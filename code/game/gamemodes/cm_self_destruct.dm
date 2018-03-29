@@ -187,7 +187,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		dest_index = 1
 		ai_system.Announce("The emergency destruct system has been deactivated.", 'sound/AI/selfdestruct_deactivated.ogg')
 		if(evac_status == EVACUATION_STATUS_STANDING_BY) //the evac has also been cancelled or was never started.
-			set_security_level(SEC_LEVEL_RED)
+			set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 		r_TRU
 
 /datum/authority/branch/evacuation/proc/initiate_self_destruct(override)

@@ -58,8 +58,13 @@
 
 /datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in player_list)
-		if((istype(M,/mob/living/carbon/Xenomorph) || has_species(M, "Zombie")) && !to_xenos) //we reuse to_xenos arg for zombies
-			continue
+		if(!to_xenos)
+			if(isXeno(M) || has_species(M, "Zombie")) //we reuse to_xenos arg for zombies
+				continue
+			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
+				var/mob/living/carbon/human/H = M
+				if(H.mind && H.mind.special_role == "Survivor" && H.z != MAIN_SHIP_Z_LEVEL)
+					continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << "<h2 class='alert'>[title]</h2>"
 			M << "<span class='alert'>[message]</span>"

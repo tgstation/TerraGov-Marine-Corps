@@ -67,7 +67,8 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
+	if(!(flags_atom & ON_BORDER))
+		return TRUE
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
@@ -412,7 +413,8 @@
 	basestate = "window"
 	health = 40
 	reinf = 1
-	dir = 5
+	dir = NORTHEAST
+	flags_atom = FPRINT
 
 	update_icon() //icon_state has to be set manually
 		return
@@ -421,7 +423,8 @@
 	name = "pressure window"
 	desc = "A toughened window linked to pressure shutters."
 	health = 80
-	dir = 5
+	dir = NORTHEAST
+	flags_atom = FPRINT
 	not_deconstructable = 1
 
 /obj/structure/window/reinforced/pressure/divider
@@ -491,7 +494,6 @@
 	basestate = "alm_rwindow"
 	health = 100 //Was 600
 	reinf = 1
-	dir = 5
 	window_frame = /obj/structure/window_frame/almayer
 
 /obj/structure/window/framed/almayer/hull

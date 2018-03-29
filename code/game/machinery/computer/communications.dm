@@ -154,13 +154,17 @@
 			state = STATE_EVACUATION
 
 		if("evacuation_cancel")
-			if(state == STATE_EVACUATION)
-
+			if(state == STATE_EVACUATION_CANCEL)
 				if(!EvacuationAuthority.cancel_evacuation())
 					usr << "<span class='warning'>You are unable to cancel the evacuation right now!</span>"
 					r_FAL
 
-				EvacuationAuthority.cancel_self_destruct(1) //Override, just in case, since this triggers with the evac order.
+				spawn(35)//some time between AI announcements for evac cancel and SD cancel.
+					if(EvacuationAuthority.evac_status == EVACUATION_STATUS_STANDING_BY)//nothing changed during the wait
+						 //if the self_destruct is active we try to cancel it (which includes lowering alert level to red)
+						if(!EvacuationAuthority.cancel_self_destruct(1))
+							//if SD wasn't active (likely canceled manually in the SD room), then we lower the alert level manually.
+							set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
 				message_admins("[key_name_admin(usr)] has canceled the emergency evacuation.", 1)
@@ -390,7 +394,15 @@
 		if(STATE_ALERT_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"
 			if(security_level == SEC_LEVEL_DELTA)
-				dat += "<font color='red'><b>The self-destruct mechanism is now active, evacuation in progress. Evacuate or rescind evacuation orders.</b></font>"
+				if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_ACTIVE)
+					dat += "<font color='red'><b>The self-destruct mechanism is active. [EvacuationAuthority.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
+				switch(EvacuationAuthority.evac_status)
+					if(EVACUATION_STATUS_INITIATING)
+						dat += "<font color='red'><b>Evacuation initiated. Evacuate or rescind evacuation orders.</b></font>"
+					if(EVACUATION_STATUS_IN_PROGRESS)
+						dat += "<font color='red'><b>Evacuation in progress.</b></font>"
+					if(EVACUATION_STATUS_COMPLETE)
+						dat += "<font color='red'><b>Evacuation complete.</b></font>"
 			else
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
