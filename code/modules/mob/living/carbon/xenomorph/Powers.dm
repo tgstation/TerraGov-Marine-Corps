@@ -486,44 +486,46 @@
 
 		if(leader != "")
 			leader_list += xenoinfo
-		if(isXenoQueen(X))
-			queen_list += xenoinfo
-		if(isXenoBoiler(X))
-			boiler_list += xenoinfo
-			boiler_count++
-		if(isXenoCrusher(X))
-			crusher_list += xenoinfo
-			crusher_count++
-		if(isXenoPraetorian(X))
-			praetorian_list += xenoinfo
-			praetorian_count++
-		if(isXenoRavager(X))
-			ravager_list += xenoinfo
-			ravager_count++
-		if(isXenoCarrier(X))
-			carrier_list += xenoinfo
-			carrier_count++
-		if(isXenoHivelord(X))
-			hivelord_list += xenoinfo
-			hivelord_count++
-		if(isXenoHunter(X))
-			hunter_list += xenoinfo
-			hunter_count++
-		if(isXenoSpitter(X))
-			spitter_list += xenoinfo
-			spitter_count++
-		if(isXenoDrone(X))
-			drone_list += xenoinfo
-			drone_count++
-		if(isXenoRunner(X))
-			runner_list += xenoinfo
-			runner_count++
-		if(isXenoSentinel(X))
-			sentinel_list += xenoinfo
-			sentinel_count++
-		if(isXenoLarva(X))
-			larva_list += xenoinfo
-			larva_count++
+
+		switch(X.caste)
+			if("Queen")
+				queen_list += xenoinfo
+			if("Boiler")
+				if(leader == "") boiler_list += xenoinfo
+				boiler_count++
+			if("Crusher")
+				if(leader == "") crusher_list += xenoinfo
+				crusher_count++
+			if("Praetorian")
+				if(leader == "") praetorian_list += xenoinfo
+				praetorian_count++
+			if("Ravager")
+				if(leader == "") ravager_list += xenoinfo
+				ravager_count++
+			if("Carrier")
+				if(leader == "") carrier_list += xenoinfo
+				carrier_count++
+			if("Hivelord")
+				if(leader == "") hivelord_list += xenoinfo
+				hivelord_count++
+			if("Hunter")
+				if(leader == "") hunter_list += xenoinfo
+				hunter_count++
+			if("Spitter")
+				if(leader == "") spitter_list += xenoinfo
+				spitter_count++
+			if("Drone")
+				if(leader == "") drone_list += xenoinfo
+				drone_count++
+			if("Runner")
+				if(leader == "") runner_list += xenoinfo
+				runner_count++
+			if("Sentinel")
+				if(leader == "") sentinel_list += xenoinfo
+				sentinel_count++
+			if("Bloody Larva") // all larva are caste = blood larva
+				if(leader == "") larva_list += xenoinfo
+				larva_count++
 
 	dat += "<b>Total Living Sisters: [count]</b><BR>"
 	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
