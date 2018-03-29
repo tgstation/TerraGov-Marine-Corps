@@ -212,6 +212,7 @@
 	if(!check_rights(0))	return
 
 	for(var/mob/living/simple_animal/hostile/H in view(14)) // Two screens away
-		walk_to(H, usr, 1, 4)
-		spawn(50) // Follow for 5 seconds
-			walk(H, 0) // Stop following and move normally
+		if(!H.stat)
+			walk_to(H, usr, 1, 4)
+			spawn(50) // Follow for 5 seconds
+				walk(H, 0) // Stop following and move normally
