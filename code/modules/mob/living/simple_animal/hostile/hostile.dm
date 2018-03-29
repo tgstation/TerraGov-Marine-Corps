@@ -34,6 +34,8 @@
 				continue
 			else if(L in friends)
 				continue
+			else if (istype(src, /mob/living/simple_animal/hostile/alien) && (isXeno(L) || (isrobot(L))))
+				continue
 			else
 				if(!L.stat)
 					stance = HOSTILE_STANCE_ATTACK
@@ -200,3 +202,16 @@
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))
 			if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 				obstacle.attack_animal(src)
+
+
+/datum/admins/proc/HostileLure()
+	set category = "Fun"
+	set name = "Hostile Mob Lure"
+	set desc = "Make hostile mobs follow you for 5 seconds."
+
+	if(!check_rights(0))	return
+
+	for(var/mob/living/simple_animal/hostile/H in view(14)) // Two screens away
+		walk_to(H, usr, 1, 4)
+		spawn(50) // Follow for 5 seconds
+			walk(H, 0) // Stop following and move normally

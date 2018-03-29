@@ -1,14 +1,13 @@
 /mob/living/simple_animal/hostile/alien
 	name = "alien hunter"
-	desc = "Hiss!"
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "alienh_running"
-	icon_living = "alienh_running"
-	icon_dead = "alien_l"
+	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon_state = "Hunter Running"
+	icon_living = "Hunter Running"
+	icon_dead = "Hunter Dead"
 	icon_gib = "syndicate_gib"
-	response_help = "pokes the"
-	response_disarm = "shoves the"
-	response_harm = "hits the"
+	response_help = "pokes"
+	response_disarm = "shoves"
+	response_harm = "hits"
 	speed = -1
 	meat_type = /obj/item/reagent_container/food/snacks/xenomeat
 	maxHealth = 100
@@ -18,7 +17,7 @@
 	melee_damage_upper = 25
 	attacktext = "slashes"
 	a_intent = "harm"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/alien_claw_flesh1.ogg'
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -33,55 +32,38 @@
 	status_flags = CANPUSH
 	minbodytemp = 0
 	heat_damage_per_tick = 20
-
+	stop_automated_movement_when_pulled = 1
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
-	icon_state = "aliend_running"
-	icon_living = "aliend_running"
-	icon_dead = "aliend_l"
+	icon_state = "Drone Running"
+	icon_living = "Drone Running"
+	icon_dead = "Drone Dead"
 	health = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 
-/mob/living/simple_animal/hostile/alien/sentinel
-	name = "alien sentinel"
-	icon_state = "aliens_running"
-	icon_living = "aliens_running"
-	icon_dead = "aliens_l"
-	health = 120
-	melee_damage_lower = 15
-	melee_damage_upper = 15
-	ranged = 1
-	projectiletype = /obj/item/projectile/neurotox
-	projectilesound = 'sound/weapons/pierce.ogg'
+// Still using old projectile code - commenting this out for now
+// /mob/living/simple_animal/hostile/alien/sentinel
+// 	name = "alien sentinel"
+// 	icon_state = "Sentinel Running"
+// 	icon_living = "Sentinel Running"
+// 	icon_dead = "Sentinel Dead"
+// 	health = 120
+// 	melee_damage_lower = 15
+// 	melee_damage_upper = 15
+// 	ranged = 1
+// 	projectiletype = /obj/item/projectile/neurotox
+// 	projectilesound = 'sound/weapons/pierce.ogg'
 
-
-/mob/living/simple_animal/hostile/alien/queen
-	name = "alien queen"
-	icon_state = "alienq_running"
-	icon_living = "alienq_running"
-	icon_dead = "alienq_l"
-	health = 250
-	maxHealth = 250
-	melee_damage_lower = 15
-	melee_damage_upper = 15
-	ranged = 1
-	move_to_delay = 3
-	projectiletype = /obj/item/projectile/neurotox
-	projectilesound = 'sound/weapons/pierce.ogg'
-	rapid = 1
-	status_flags = 0
-
-/mob/living/simple_animal/hostile/alien/queen/large
-	name = "alien empress"
-	icon = 'icons/mob/alienqueen.dmi'
-	icon_state = "queen_s"
-	icon_living = "queen_s"
-	icon_dead = "queen_dead"
-	move_to_delay = 4
-	maxHealth = 400
-	health = 400
+/mob/living/simple_animal/hostile/alien/ravager
+	name = "alien ravager"
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Ravager Running"
+	icon_living = "Ravager Running"
+	icon_dead = "Ravager Dead"
+	maxHealth = 200
+	health = 200
 
 /obj/item/projectile/neurotox
 	damage = 30
