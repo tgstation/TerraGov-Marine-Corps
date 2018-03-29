@@ -6,7 +6,8 @@
 
 //config.alert_desc_blue_downto
 
-/proc/set_security_level(var/level)
+
+/proc/set_security_level(var/level, no_sound)
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN
@@ -17,11 +18,12 @@
 		if("delta")
 			level = SEC_LEVEL_DELTA
 
+
 	//Will not be announced if you try to set to the same level as it already is
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
-				ai_system.Announce("Attention: Security level lowered to GREEN - all clear.", 'sound/AI/code_green.ogg')
+				ai_system.Announce("Attention: Security level lowered to GREEN - all clear.", no_sound ? null : 'sound/AI/code_green.ogg')
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z == MAIN_SHIP_Z_LEVEL)
@@ -29,9 +31,9 @@
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
-					ai_system.Announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", 'sound/AI/code_blue_elevated.ogg')
+					ai_system.Announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", no_sound ? null : 'sound/AI/code_blue_elevated.ogg')
 				else
-					ai_system.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", 'sound/AI/code_blue_lowered.ogg')
+					ai_system.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", no_sound ? null : 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z == MAIN_SHIP_Z_LEVEL)
@@ -39,9 +41,9 @@
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
-					ai_system.Announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", 'sound/AI/code_red_elevated.ogg')
+					ai_system.Announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", no_sound ? null : 'sound/AI/code_red_elevated.ogg')
 				else
-					ai_system.Announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", 'sound/AI/code_red_lowered.ogg')
+					ai_system.Announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", no_sound ? null : 'sound/AI/code_red_lowered.ogg')
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)
@@ -60,9 +62,10 @@
 			if(SEC_LEVEL_DELTA)
 				ai_system.Announce("Attention! Delta security level reached! " + config.alert_desc_delta)
 				security_level = SEC_LEVEL_DELTA
-				for(var/obj/machinery/door/poddoor/shutters/almayer/D in machines)
-					if(D.id == "sd_lockdown")
-						D.open()
+				spawn(0)
+					for(var/obj/machinery/door/poddoor/shutters/almayer/D in machines)
+						if(D.id == "sd_lockdown")
+							D.open()
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z == MAIN_SHIP_Z_LEVEL)
 						FA.overlays = list()
