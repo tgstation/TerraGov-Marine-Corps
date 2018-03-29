@@ -25,6 +25,8 @@ Pipelines + Other Objects -> Pipe network
 	var/initialize_directions = 0
 	var/pipe_color
 
+	var/image/pipe_vision_img = null
+
 	var/global/datum/pipe_icon_manager/icon_manager
 
 	var/ventcrawl_message_busy = 0 //Prevent spamming
@@ -39,12 +41,17 @@ Pipelines + Other Objects -> Pipe network
 
 	if(!pipe_color_check(pipe_color))
 		pipe_color = null
+
+	if(pipe_vision_img)
+		cdel(pipe_vision_img)
+		pipe_vision_img = null
+
 	..()
 
 /obj/machinery/atmospherics/Dispose()
 	for(var/mob/living/M in src) //ventcrawling is serious business
 		M.remove_ventcrawl()
-		M.loc = src.loc
+		M.forceMove(loc)
 	. = ..()
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)

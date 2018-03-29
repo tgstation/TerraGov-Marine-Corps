@@ -36,7 +36,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 		pipe = pipes[1]
 	else
 		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
-	if(canmove && pipe)
+	if(!is_mob_incapacitated() && pipe)
 		return pipe
 
 /mob/living/carbon/monkey/can_ventcrawl()
@@ -125,12 +125,16 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	if(!network)
 		return
 	for(var/datum/pipeline/pipeline in network.line_members)
-		for(var/atom/A in (pipeline.members || pipeline.edges))
-			var/image/new_image = image(A, A.loc, dir = A.dir)
-			new_image.layer = BELOW_MOB_LAYER
-			new_image.alpha = 180
-			pipes_shown += new_image
-			client.images += new_image
+		for(var/atom/X in (pipeline.members || pipeline.edges))
+			var/obj/machinery/atmospherics/A = X
+			if(!A.pipe_vision_img)
+				A.pipe_vision_img = image(A, A.loc, layer = BELOW_MOB_LAYER, dir = A.dir)
+				A.pipe_vision_img.alpha = 180
+			pipes_shown += A.pipe_vision_img
+			if(client)
+				client.images += A.pipe_vision_img
+
+
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = 0
