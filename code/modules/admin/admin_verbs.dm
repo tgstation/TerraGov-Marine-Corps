@@ -101,6 +101,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/make_sound,
 	/client/proc/set_ooc,
 	/datum/admins/proc/HostileLure,
+	/client/proc/set_away_timer,
 	/client/proc/editappear
 	)
 var/list/admin_verbs_spawn = list(
@@ -935,3 +936,16 @@ var/list/admin_verbs_mentor = list(
 			config.proj_base_damage_mult = dam * 0.01
 			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
 			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
+
+/client/proc/set_away_timer()
+	set name = "Set Away Timer in View"
+	set desc = "Set the away_timer of all clientless Xenos in view to 300 to allow players to become them."
+	set category = "Fun"
+	if(!holder)	return
+
+	for(var/mob/living/carbon/Xenomorph/X in view())
+		if(X.client) continue
+		X.away_timer = 300
+
+	log_admin("Admin [key_name_admin(usr)] set the away_timer of nearby clientless Xenos to 300.", 1)
+	message_admins("<b>[key_name(src)]</b> set the away_timer of nearby clientless Xenos to 300.", 1)
