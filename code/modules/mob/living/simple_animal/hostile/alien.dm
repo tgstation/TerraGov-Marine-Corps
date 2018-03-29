@@ -62,6 +62,8 @@
 	icon_state = "Ravager Running"
 	icon_living = "Ravager Running"
 	icon_dead = "Ravager Dead"
+	melee_damage_lower = 25
+	melee_damage_upper = 35
 	maxHealth = 200
 	health = 200
 
