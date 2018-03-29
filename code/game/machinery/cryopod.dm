@@ -22,6 +22,27 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	var/cryotype = "REQ"
 	var/mode = null
 
+/obj/machinery/computer/cryopod/medical
+	cryotype = "Med"
+
+/obj/machinery/computer/cryopod/brig
+	cryotype = "MP"
+
+/obj/machinery/computer/cryopod/eng
+	cryotype = "Eng"
+
+/obj/machinery/computer/cryopod/alpha
+	cryotype = "Alpha"
+
+/obj/machinery/computer/cryopod/bravo
+	cryotype = "Bravo"
+
+/obj/machinery/computer/cryopod/charlie
+	cryotype = "Charlie"
+
+/obj/machinery/computer/cryopod/delta
+	cryotype = "Delta"
+
 /obj/machinery/computer/cryopod/attack_paw()
 	src.attack_hand()
 
