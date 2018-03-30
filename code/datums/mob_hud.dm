@@ -243,7 +243,10 @@ var/datum/mob_hud/huds = list(
 	var/image/holder = hud_list[STATUS_HUD_XENO_INFECTION]
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-		holder.icon_state = "infected[E.stage]"
+		if(E)
+			holder.icon_state = "infected[E.stage]"
+		else if(locate(/mob/living/carbon/Xenomorph/Larva) in src)
+			holder.icon_state = "infected5"
 	else if(stat == DEAD)
 		holder.icon_state = "huddead"
 	else
@@ -273,7 +276,10 @@ var/datum/mob_hud/huds = list(
 			holder2.icon_state = "hudxeno"//Observer and admin HUD only
 			holder2_set = 1
 			var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-			holder3.icon_state = "infected[E.stage]"
+			if(E)
+				holder3.icon_state = "infected[E.stage]"
+			else if(locate(/mob/living/carbon/Xenomorph/Larva) in src)
+				holder.icon_state = "infected5"
 
 		if(stat == DEAD)
 			if(revive_enabled)
