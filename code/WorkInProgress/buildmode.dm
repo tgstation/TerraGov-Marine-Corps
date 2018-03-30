@@ -80,6 +80,7 @@
 		if(2)
 			usr << "\blue ***********************************************************"
 			usr << "\blue Right Mouse Button on buildmode button = Set object type"
+			usr << "\blue Middle Mouse Button on turf/obj        = Set object type"
 			usr << "\blue Left Mouse Button on turf/obj          = Place objects"
 			usr << "\blue Right Mouse Button                     = Delete objects"
 			usr << ""
@@ -240,6 +241,9 @@
 				else
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.dir = holder.builddir.dir
+			else if(mods["middle"])
+				holder.buildmode.objholder = text2path("[object.type]")
+				usr << "Selected: [object.type]"
 			else if(mods["right"])
 				if(isobj(object)) cdel(object)
 
