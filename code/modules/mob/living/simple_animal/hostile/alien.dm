@@ -33,6 +33,7 @@
 	minbodytemp = 0
 	heat_damage_per_tick = 20
 	stop_automated_movement_when_pulled = 1
+	break_stuff_probability = 90
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
