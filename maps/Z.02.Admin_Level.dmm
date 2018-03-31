@@ -177,7 +177,7 @@
 "du" = (/obj/structure/table/reinforced,/obj/item/stack/medical/splint{name = "splints"},/obj/item/stack/medical/splint{name = "splints"},/obj/item/stack/medical/splint{name = "splints"},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dv" = (/obj/structure/table/reinforced,/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dw" = (/obj/structure/table/reinforced{layer = 2.69},/obj/machinery/door/window/southleft,/obj/structure/window/reinforced{dir = 4; health = 80},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
-"dx" = (/obj/item/pipe{name = "cryopipe"; pipename = "pipe"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dx" = (/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dy" = (/obj/machinery/door/airlock/secure,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dz" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/obj/structure/table/reinforced,/obj/item/stack/medical/ointment/tajaran{name = "soothing herbs"},/obj/item/stack/medical/ointment/tajaran{name = "soothing herbs"},/obj/item/stack/medical/ointment/tajaran{name = "soothing herbs"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dA" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
