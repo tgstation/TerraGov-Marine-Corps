@@ -530,7 +530,6 @@ var/global/list/damage_icon_parts = list()
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
-	..()
 	if(monkeyizing)		return
 	update_mutations(0)
 	update_mutantrace(0)
@@ -551,6 +550,8 @@ var/global/list/damage_icon_parts = list()
 	update_inv_handcuffed()
 	update_inv_legcuffed()
 	update_inv_pockets()
+	update_fire()
+	update_burst()
 	UpdateDamageIcon()
 	update_transform()
 

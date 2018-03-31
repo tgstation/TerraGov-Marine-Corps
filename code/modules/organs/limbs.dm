@@ -280,7 +280,7 @@ This function completely restores a damaged organ to perfect condition.
 	wounds.Cut()
 	number_wounds = 0
 
-	// handle internal organs
+	// heal internal organs
 	for(var/datum/internal_organ/current_organ in internal_organs)
 		current_organ.rejuvenate()
 

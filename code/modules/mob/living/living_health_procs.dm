@@ -148,9 +148,11 @@
 
 	// restore all of a human's blood
 	if(ishuman(src))
-		var/mob/living/carbon/human/human_mob = src
-		human_mob.restore_blood()
-		reagents.clear_reagents() //and clear all reagents in them
+		var/mob/living/carbon/human/H = src
+		H.restore_blood()
+		H.reagents.clear_reagents() //and clear all reagents in them
+		H.undefibbable = FALSE
+		H.chestburst = 0
 
 	// fix all of our organs
 	restore_all_organs()
