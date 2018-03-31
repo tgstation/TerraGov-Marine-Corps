@@ -320,6 +320,15 @@ This function restores all limbs.
 	for(var/datum/limb/E in limbs)
 		E.rejuvenate()
 
+	//replace missing internal organs
+	for(var/organ_slot in species.has_organ)
+		var/internal_organ_type = species.has_organ[organ_slot]
+		if(!internal_organs_by_name[organ_slot])
+			var/datum/internal_organ/IO = new internal_organ_type(src)
+			internal_organs_by_name[organ_slot] = IO
+
+
+
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)
 	var/datum/limb/E = get_limb(zone)
 	if(E.heal_damage(brute, burn))

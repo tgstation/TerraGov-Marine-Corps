@@ -245,9 +245,11 @@
 		"/obj/item/explosive/mine",
 		"/obj/item/reagent_container/food/snacks"
 		)
+	var/has_gamemode_skin = TRUE //whether it has a sprite for each gamemode.
 
 	New()
-		select_gamemode_skin(type)
+		if(has_gamemode_skin)
+			select_gamemode_skin(type)
 		..()
 
 /obj/item/storage/belt/marine/upp
@@ -255,9 +257,7 @@
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
 	icon_state = "upp_belt"
 	item_state = "upp_belt"
-	New()
-		..()
-
+	has_gamemode_skin = FALSE
 
 
 /obj/item/storage/belt/shotgun

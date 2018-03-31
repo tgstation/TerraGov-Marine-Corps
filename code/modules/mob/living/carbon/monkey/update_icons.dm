@@ -24,12 +24,13 @@
 		overlays_standing[cache_index] = null
 
 /mob/living/carbon/monkey/regenerate_icons()
-	..()
 	update_inv_wear_mask()
 	update_inv_back()
 	update_inv_r_hand()
 	update_inv_l_hand()
 	update_inv_handcuffed()
+	update_fire()
+	update_burst()
 	update_transform()
 
 

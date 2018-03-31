@@ -212,10 +212,10 @@
 			H.updatehealth()
 	return
 
-/obj/structure/proc/can_touch(var/mob/user)
+/obj/structure/proc/can_touch(mob/user)
 	if(!user)
 		return 0
-	if(!Adjacent(user))
+	if(!Adjacent(user) || !isturf(user.loc))
 		return 0
 	if(user.is_mob_restrained() || user.buckled)
 		user << "<span class='notice'>You need your hands and legs free for this.</span>"
