@@ -1,3 +1,22 @@
+/proc/isscrubberpipe(atom/A)
+	if(istype(A, /obj/machinery/atmospherics/pipe/simple/visible/scrubbers)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold4w/visible/scrubbers)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers)) return 1
+	return 0
+
+/proc/issupplypipe(atom/A)
+	if(istype(A, /obj/machinery/atmospherics/pipe/simple/visible/supply)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/simple/hidden/supply)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold/visible/supply)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold/hidden/supply)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold4w/visible/supply)) return 1
+	if(istype(A, /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply)) return 1
+	return 0
+
+
 /client/proc/atmosscan()
 	set category = "Mapping"
 	set name = "Check Piping"
@@ -31,10 +50,17 @@
 		for(var/turf/T in turfs)
 			for(var/dir in cardinal)
 				var/check = 0
+				var/scrubber = 0
+				var/supply = 0
 				for(var/obj/machinery/atmospherics/pipe in T)
 					if(dir & pipe.initialize_directions)
-						check++
-						if(check > 1)
+						if(isscrubberpipe(pipe))
+							scrubber++
+						else if(issupplypipe(pipe))
+							supply++
+						else
+							check++
+						if(check > 1 || supply > 1 || scrubber > 1)
 							usr << "Overlapping pipe ([pipe.name]) located at [T.x],[T.y],[T.z] ([get_area(T)])"
 							continue next_turf
 	usr << "Done"
