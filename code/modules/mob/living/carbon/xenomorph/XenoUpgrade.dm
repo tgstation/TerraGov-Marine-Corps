@@ -100,8 +100,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 4
 					tacklemax = 7
 					tackle_chance = 65
-					health = 250
-					maxHealth = 250
+					health = 325
+					maxHealth = 325
 					plasma_gain = 15
 					plasma_max = 300
 					upgrade_threshold = 1600
@@ -293,8 +293,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 5
 					tacklemax = 9
 					tackle_chance = 70
-					health = 300
-					maxHealth = 300
+					health = 375
+					maxHealth = 375
 					plasma_gain = 30
 					plasma_max = 400
 					upgrade_threshold = 3200
@@ -486,8 +486,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 5
 					tacklemax = 9
 					tackle_chance = 75
-					health = 350
-					maxHealth = 350
+					health = 450
+					maxHealth = 450
 					plasma_gain = 30
 					plasma_max = 400
 					caste_desc = "It always has the right of way."
