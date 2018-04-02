@@ -107,7 +107,8 @@
 		src << break_sound	//breaks the client's sound output on channel 777
 		if(src.mob.client.midi_silenced)	return
 		if(midi_playing)
-			message_admins("A player has silenced the currently playing midi.", 1)
+			total_silenced++
+			message_admins("A player has silenced the currently playing midi. Total: [total_silenced] player(s).", 1)
 			src.mob.client.midi_silenced = 1
 			spawn(300) // Prevents message_admins() spam. Should match with the midi_playing_timer spawn() in playsound.dm
 				src.mob.client.midi_silenced = 0
