@@ -140,7 +140,7 @@
 					return
 		screen_loc = null
 
-/obj/screen/gun/clicked(var/mob/user)
+/obj/screen/gun/move/clicked(var/mob/user)
 	if (..())
 		return 1
 

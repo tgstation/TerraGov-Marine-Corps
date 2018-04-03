@@ -98,6 +98,7 @@
 		for(var/turf/T in range(impact, bullet_spread_range))
 			turf_list += T
 		var/soundplaycooldown = 0
+		var/debriscooldown = 0
 		for(var/i=1, i<=ammo_used_per_firing, i++)
 			var/turf/U = pick(turf_list)
 			turf_list -= U
@@ -106,9 +107,13 @@
 			for(var/atom/movable/AM in U)
 				AM.ex_act(3)
 			if(!soundplaycooldown) //so we don't play the same sound 20 times very fast.
-				playsound(impact, get_sfx("explosion"), 40, 1, 20, falloff = 3)
+				playsound(U, get_sfx("explosion"), 40, 1, 20, falloff = 3)
 				soundplaycooldown = 3
 			soundplaycooldown--
+			if(!debriscooldown)
+				U.ceiling_debris_check(1)
+				debriscooldown = 6
+			debriscooldown--
 			new /obj/effect/particle_effect/expl_particles(U)
 
 
@@ -212,8 +217,10 @@
 	point_cost = 300
 
 	detonate_on(turf/impact)
-		explosion(impact,1,3,5)
-		cdel(src)
+		impact.ceiling_debris_check(3)
+		spawn(5)
+			explosion(impact,1,3,5)
+			cdel(src)
 
 /obj/structure/ship_ammo/rocket/banshee
 	name = "\improper AGM-227 'Banshee'"
@@ -223,8 +230,10 @@
 	point_cost = 300
 
 	detonate_on(turf/impact)
-		explosion(impact,1,3,6,6,1,0,7) //more spread out, with flames
-		cdel(src)
+		impact.ceiling_debris_check(3)
+		spawn(5)
+			explosion(impact,1,3,6,6,1,0,7) //more spread out, with flames
+			cdel(src)
 
 /obj/structure/ship_ammo/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
@@ -234,8 +243,10 @@
 	point_cost = 300
 
 	detonate_on(turf/impact)
-		explosion(impact,3,4,4,6) //tighter blast radius, but more devastating near center
-		cdel(src)
+		impact.ceiling_debris_check(3)
+		spawn(5)
+			explosion(impact,3,4,4,6) //tighter blast radius, but more devastating near center
+			cdel(src)
 
 
 /obj/structure/ship_ammo/rocket/fatty
@@ -249,7 +260,9 @@
 
 	detonate_on(turf/impact)
 		set waitfor = 0
-		explosion(impact,1,2,3) //first explosion is small to trick xenos into thinking its a minirocket.
+		impact.ceiling_debris_check(2)
+		spawn(5)
+			explosion(impact,1,2,3) //first explosion is small to trick xenos into thinking its a minirocket.
 		sleep(20)
 		var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
 		var/turf/T
@@ -257,7 +270,9 @@
 		for(var/i=1 to 8)
 			coords = impact_coords[i]
 			T = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
-			explosion(T,1,2,3)
+			T.ceiling_debris_check(2)
+			spawn(5)
+				explosion(T,1,2,3)
 		cdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
@@ -268,11 +283,13 @@
 	point_cost = 500
 
 	detonate_on(turf/impact)
-		explosion(impact,1,2,3,6,1,0) //relatively weak
-		for(var/turf/T in range(4,impact))
-			if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
-		cdel(src)
+		impact.ceiling_debris_check(3)
+		spawn(5)
+			explosion(impact,1,2,3,6,1,0) //relatively weak
+			for(var/turf/T in range(4,impact))
+				if(!locate(/obj/flamer_fire) in T) // No stacking flames!
+					new/obj/flamer_fire(T, 60, 30) //cooking for a long time
+			cdel(src)
 
 
 
@@ -292,16 +309,18 @@
 	point_cost = 300
 
 	detonate_on(turf/impact)
-		explosion(impact,-1,1,3, 5, 0)//no messaging admin, that'd spam them.
-		var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
-		P.set_up(4, 0, impact)
-		P.start()
+		impact.ceiling_debris_check(2)
 		spawn(5)
-			var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
-			S.set_up(1,0,impact,null)
-			S.start()
-		if(!ammo_count && loc)
-			cdel(src) //deleted after last minirocket is fired and impact the ground.
+			explosion(impact,-1,1,3, 5, 0)//no messaging admin, that'd spam them.
+			var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+			P.set_up(4, 0, impact)
+			P.start()
+			spawn(5)
+				var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
+				S.set_up(1,0,impact,null)
+				S.start()
+			if(!ammo_count && loc)
+				cdel(src) //deleted after last minirocket is fired and impact the ground.
 
 	show_loaded_desc(mob/user)
 		if(ammo_count)
@@ -319,7 +338,8 @@
 	point_cost = 500
 
 	detonate_on(turf/impact)
-		for(var/turf/T in range(2, impact))
-			if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-				new/obj/flamer_fire(T)
 		..()
+		spawn(5)
+			for(var/turf/T in range(2, impact))
+				if(!locate(/obj/flamer_fire) in T) // No stacking flames!
+					new/obj/flamer_fire(T)

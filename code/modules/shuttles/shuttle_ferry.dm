@@ -20,6 +20,8 @@
 	var/locked = 0
 	var/queen_locked = 0 //If the Queen locked the ship by interacting with its onboard console. If this happens, Marines lose control of the ship permanently
 	var/last_locked = 0 //world.time value to determine if it can be contested
+	var/door_override = 0 //similar to queen_locked, but only affects doors
+	var/last_door_override = 0 //world.time value to determine if it can be contested
 
 /datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
 	if(isnull(location))

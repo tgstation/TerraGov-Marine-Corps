@@ -982,6 +982,9 @@
 	else if(linked_stretcher.buckled_bodybag)
 		lifted_object = linked_stretcher.buckled_bodybag
 
+	var/turf/T = get_turf(lifted_object)
+	T.ceiling_debris_check(2)
+
 	if(lifted_object)
 		lifted_object.forceMove(loc)
 	else

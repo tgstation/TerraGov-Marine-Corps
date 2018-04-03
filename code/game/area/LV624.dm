@@ -118,7 +118,7 @@
 	name ="\improper Caves"
 	icon_state = "cave"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
-	is_underground = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 //Caves
 /area/lv624/ground/caves/west1
@@ -153,10 +153,12 @@
 /area/lv624/lazarus
 	name = "\improper Lazarus"
 	icon_state = "green"
+	ceiling = CEILING_METAL
 
 /area/lv624/lazarus/atmos
 	name = "\improper Atmospherics"
 	icon_state = "atmos"
+	ceiling = CEILING_GLASS
 
 /area/lv624/lazarus/hallway_one
 	name = "\improper Hallway"
@@ -278,6 +280,7 @@
 /area/lv624/lazarus/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
+	ceiling = CEILING_GLASS
 
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"

@@ -5,6 +5,7 @@
 	icon = 'icons/turf/area_almayer.dmi'
 	ambience = list('sound/ambience/shipambience.ogg')
 	icon_state = "almayer"
+	ceiling = CEILING_METAL
 
 /area/almayer/command/cic
 	name = "\improper Almayer Combat Information Center"
