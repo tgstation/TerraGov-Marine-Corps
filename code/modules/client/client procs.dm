@@ -167,7 +167,7 @@
 	for(var/line in lines)
 		if(src.ckey == line)
 			src.donator = 1
-			verbs += /client/proc/colorooc
+			verbs += /client/proc/set_ooc_color_self
 
 	//////////////
 	//DISCONNECT//

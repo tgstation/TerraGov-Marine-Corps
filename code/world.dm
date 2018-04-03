@@ -173,7 +173,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			world_topic_spam_protect_ip = addr
 			return "Bad Key"
 
-		return show_player_info_irc(input["notes"])
+		return player_notes_show_irc(input["notes"])
 
 
 	//START: MAPDAEMON PROCESSING

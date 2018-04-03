@@ -540,7 +540,8 @@
 	set desc = "Force a dropship to launch"
 	set category = "Admin"
 
-	var/tag = input("Which dropship should be forced?", "Select a dropship:") in list("Dropship 1", "Dropship 2", "Almayer Dropship 1", "Almayer Dropship 2")
+	var/tag = input("Which dropship should be forced?", "Select a dropship:") in list("CANCEL","Dropship 1", "Dropship 2", "Almayer Dropship 1", "Almayer Dropship 2")
+	if(tag == "CANCEL") return
 	var/crash = 0
 	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
 		if("Yes") crash = 1

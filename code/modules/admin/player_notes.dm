@@ -83,7 +83,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 #undef NOTESFILE
 */
 
-//Hijacking this file for BS12 playernotes functions. I like this ^ one systemm alright, but converting sounds too bothersome~ Chinsky.
+//Hijacking this file for BS12 player_notes_list functions. I like this ^ one systemm alright, but converting sounds too bothersome~ Chinsky.
 
 /proc/notes_add(var/key, var/note, var/mob/usr)
 	if (!key || !note)
@@ -153,7 +153,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 	cdel(info)
 
-/proc/show_player_info_irc(var/key as text)
+/proc/player_notes_show_irc(var/key as text)
 	var/dat = "          Info on [key]%0D%0A"
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos

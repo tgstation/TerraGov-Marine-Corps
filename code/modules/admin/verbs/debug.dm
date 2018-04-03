@@ -691,30 +691,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/spawn_predators()
-	set category = "Debug"
-	set name = "Force Spawn Predators"
-	set desc = "This allows you to spawn predators outside of predator rounds. They can join the hunt manually during a predator round instead."
-
-	if(!ticker || !ticker.mode)
-		alert("Wait until the game starts.")
-		return
-
-	var/sure = alert("Are you sure you want to force-spawn predators into the game?","Sure?","Yes","No")
-	if(sure == "No") return
-
-	var/datum/game_mode/predator_round = ticker.mode //For the round itself.
-	predator_round.force_predator_spawn()
-
-	message_admins("[key_name_admin(src)] used <b>spawn predators!</b>")
-	return
-
 /client/proc/global_fix_atmos()
 	set name = "Global Fix Air"
 	set category = "Debug"
 	set desc = "Atmos panic button"
 
-	var/a = alert("WARNING: THIS WILL RESET ALL AIR GROUPS OVER 1000 kPa TO STANDARD TEMPERATURE AND AIR MAKEUP. THERE IS A MEDIUM CHANCE LAG THE FUCK OUT OF THE GAME. DO YOU WISH TO PROCEED?",, "Yes", "No")
+	var/a = alert("WARNING: THIS WILL RESET ALL AIR GROUPS OVER 1000 kPa TO STANDARD TEMPERATURE AND AIR MAKEUP. THERE IS A MEDIUM CHANCE THIS WILL LAG THE FUCK OUT OF THE GAME. DO YOU WISH TO PROCEED?",, "Yes", "No")
 
 	if(a != "Yes") return
 
@@ -751,4 +733,4 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	S.ExportText("/", file("atmos_logging.txt"))
 
-	src << "<font size=15 color=red>TELL MADSNAILDISEASE YOU USED THIS!</font>"
+	src << "<font size=10 color=red>TELL MADSNAILDISEASE YOU USED THIS!</font>"

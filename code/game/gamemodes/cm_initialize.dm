@@ -145,18 +145,6 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(!istype(new_pred)) continue
 		attempt_to_join_as_predator(new_pred.current)
 
-/datum/game_mode/proc/force_predator_spawn() //Forces the spawn.
-	var/possible_predators[] = get_whitelisted_predators(0) //0 = not care about ready state
-	var/i = pred_maximum_num
-	var/datum/mind/new_pred
-	while(i > 0)
-		if(!possible_predators.len) break
-		new_pred = pick(possible_predators)
-		if(!istype(new_pred)) continue
-		attempt_to_join_as_predator(new_pred.current) //It may fail, if it does we just keep going.
-		possible_predators -= new_pred //Remove from list.
-		i--
-
 /datum/game_mode/proc/get_whitelisted_predators(readied = 1)
 	// Assemble a list of active players who are whitelisted.
 	var/players[] = new

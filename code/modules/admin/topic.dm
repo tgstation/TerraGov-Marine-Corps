@@ -2262,14 +2262,14 @@
 		if(!add) return
 
 		notes_add(key,add,usr)
-		show_player_info(key)
+		player_notes_show(key)
 
 	if(href_list["remove_player_info"])
 		var/key = href_list["remove_player_info"]
 		var/index = text2num(href_list["remove_index"])
 
 		notes_del(key, index)
-		show_player_info(key)
+		player_notes_show(key)
 
 	if(href_list["notes"])
 		var/ckey = href_list["ckey"]
@@ -2280,7 +2280,7 @@
 
 		switch(href_list["notes"])
 			if("show")
-				show_player_info(ckey)
+				player_notes_show(ckey)
 			if("list")
 				PlayerNotesPage(text2num(href_list["index"]))
 		return
