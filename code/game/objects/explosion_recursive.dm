@@ -1,20 +1,20 @@
-/client/proc/kaboom()
-	var/power = input(src, "power?", "power?") as num
+/client/proc/drop_custom_bomb()
+	set category = "Fun"
+	set name = "Drop Custom Bomb"
+
+	if(alert("Are you sure? This drops a recursive explosion with a given distance. The power of the explosion increases with distance, with tiles nearest the center usually taking the most damage.\n0 = Cancel\n1 = Small bomb on your current tile\n2 = Small bomb over adjacent tiles\n5 = Small bomb with a wider radius\n10 = Lethal bomb with a very large radius",, "Yes", "No") == "No") return
+	var/power = input(src, "Distance?", "Distance?") as num
 	var/turf/T = get_turf(src.mob)
 	explosion_rec(T, power)
 
 /obj
 	var/explosion_resistance
 
-
-
 var/list/explosion_turfs = list()
 
 var/explosion_in_progress = 0
 
-
 proc/explosion_rec(turf/epicenter, power)
-
 	var/loopbreak = 0
 	while(explosion_in_progress)
 		if(loopbreak >= 15) return

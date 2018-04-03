@@ -204,7 +204,7 @@
 				obstacle.attack_animal(src)
 
 
-/datum/admins/proc/HostileLure()
+/datum/admins/proc/hostile_lure()
 	set category = "Fun"
 	set name = "Hostile Mob Lure"
 	set desc = "Make hostile mobs follow you for 5 seconds."
