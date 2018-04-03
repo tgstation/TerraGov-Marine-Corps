@@ -7,7 +7,7 @@
 	var/global/global_uid = 0
 	var/uid
 	var/can_hellhound_enter = 1
-	var/is_underground //whether the area count as above or under ground. Used by orbital beacons.
+	var/ceiling = CEILING_NONE //the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 
 /area/New()
 	..()
@@ -360,4 +360,5 @@
 		mob:AdjustKnockeddown(2)
 
 	mob << "Gravity!"
+
 

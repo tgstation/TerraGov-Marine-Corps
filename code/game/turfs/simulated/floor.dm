@@ -34,6 +34,10 @@ var/list/wood_icons = list("wood", "wood-broken")
 	var/mineral = "metal"
 	var/obj/item/stack/tile/floor_tile = new/obj/item/stack/tile/plasteel
 
+/turf/simulated/floor/examine(mob/user)
+	..()
+	ceiling_desc(user)
+
 /turf/simulated/floor/New()
 	..()
 	if(icon_state in icons_to_ignore_at_floor_init) //So damaged/burned tiles or plating icons aren't saved as the default
@@ -65,6 +69,9 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 /turf/simulated/floor/proc/take_damage()
 	break_tile()
+
+/turf/simulated/floor/ceiling_debris_check(var/size = 1)
+	ceiling_debris(size)
 
 /turf/simulated/floor/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	var/dir_to = get_dir(src, adj_turf)

@@ -500,8 +500,8 @@
 		return
 
 	var/area/A = get_area(current_squad.bbeacon)
-	if(istype(A) && A.is_underground)
-		usr << "\icon[src] <span class='warning'>The [current_squad.bbeacon.name]'s signal is too weak. It is probably inside a cave.</span>"
+	if(istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		usr << "\icon[src] <span class='warning'>The [current_squad.bbeacon.name]'s signal is too weak. It is probably underground.</span>"
 		return
 
 	var/turf/T = get_turf(current_squad.bbeacon)
@@ -553,10 +553,12 @@
 		y_offset += rand(-2,2)
 		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 		if(target && istype(target))
-			explosion(target,4,5,6,6,1,0) //massive boom
-			for(var/turf/TU in range(6,target))
-				if(!locate(/obj/flamer_fire) in TU)
-					new/obj/flamer_fire(TU, 10, 40) //super hot flames
+			target.ceiling_debris_check(5)
+			spawn(2)
+				explosion(target,4,5,6,6,1,0) //massive boom
+				for(var/turf/TU in range(6,target))
+					if(!locate(/obj/flamer_fire) in TU)
+						new/obj/flamer_fire(TU, 10, 40) //super hot flames
 
 /obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
@@ -738,8 +740,8 @@
 		return
 
 	var/area/A = get_area(current_squad.bbeacon)
-	if(A && istype(A,/area/lv624/ground/caves) || istype(A, /area/ice_colony/underground))
-		usr << "\icon[src] <span class='warning'>The [current_squad.sbeacon.name]'s signal is too weak. It is probably inside a cave.</span>"
+	if(A && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		usr << "\icon[src] <span class='warning'>The [current_squad.sbeacon.name]'s signal is too weak. It is probably deep underground.</span>"
 		return
 
 	var/turf/T = get_turf(current_squad.sbeacon)
@@ -780,6 +782,8 @@
 		C.z = T.z
 		C.x = T.x + x_offset
 		C.y = T.y + x_offset
+		var/turf/TC = get_turf(C)
+		TC.ceiling_debris_check(3)
 		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
 		C.visible_message("\icon[C] <span class='boldnotice'>The [C.name] falls from the sky!</span>")
 		visible_message("\icon[src] <span class='boldnotice'>'[C.name]' supply drop launched! Another launch will be available in five minutes.</span>")
@@ -869,14 +873,8 @@
 		user << "<span class='warning'>Your squad already has a beacon activated.</span>"
 		return
 	var/area/A = get_area(user)
-	var/turf/TU = get_turf(user)
-	var/turf/unsimulated/floor/F = TU
-	if(!istype(A, /area/prison) && (!istype(F) || !F.is_groundmap_turf))
-		user << "<span class='warning'>You have to be outside to activate this.</span>"
-		return
-
-	if(A && istype(A) && A.is_underground)
-		user << "<span class='warning'>This won't work if you're standing underground.</span>"
+	if(A && istype(A) && A.ceiling >= CEILING_METAL)
+		user << "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>"
 		return
 
 	var/delay = activation_time
@@ -930,8 +928,8 @@
 		return
 
 	var/area/A = get_area(user)
-	if(A && istype(A) && A.is_underground)
-		user << "<span class='warning'>This won't work if you're standing underground.</span>"
+	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		user << "<span class='warning'>This won't work if you're standing deep underground.</span>"
 		return
 
 	var/delay = activation_time

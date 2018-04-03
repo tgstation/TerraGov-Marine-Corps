@@ -407,3 +407,67 @@
 /turf/proc/can_be_dissolved()
 	return 0
 
+/turf/proc/ceiling_debris_check(var/size = 1)
+	return
+
+/turf/proc/ceiling_debris(var/size = 1) //debris falling in response to airstrikes, etc
+	var/area/A = get_area(src)
+	if(!A.ceiling) return
+
+	var/amount = size
+	var/spread = round(sqrt(size)*1.5)
+
+	var/list/turfs = list()
+	for(var/turf/simulated/floor/F in range(src,spread))
+		turfs += F
+	for(var/turf/unsimulated/floor/F in range(src,spread))
+		turfs += F
+
+	switch(A.ceiling)
+		if(CEILING_GLASS)
+			playsound(src, "sound/effects/Glassbr1.ogg", 60, 1)
+			spawn(8)
+				if(amount >1)
+					visible_message("<span class='boldnotice'>Shards of glass rain down from above!</span>")
+				for(var/i=1, i<=amount, i++)
+					new /obj/item/shard(pick(turfs))
+					new /obj/item/shard(pick(turfs))
+		if(CEILING_METAL)
+			playsound(src, "sound/effects/metal_crash.ogg", 60, 1)
+			spawn(8)
+				if(amount >1)
+					visible_message("<span class='boldnotice'>Pieces of metal crash down from above!</span>")
+				for(var/i=1, i<=amount, i++)
+					new /obj/item/stack/sheet/metal(pick(turfs))
+		if(CEILING_UNDERGROUND, CEILING_DEEP_UNDERGROUND)
+			playsound(src, "sound/effects/meteorimpact.ogg", 60, 1)
+			spawn(8)
+				if(amount >1)
+					visible_message("<span class='boldnotice'>Chunks of rock crash down from above!</span>")
+				for(var/i=1, i<=amount, i++)
+					new /obj/item/ore(pick(turfs))
+					new /obj/item/ore(pick(turfs))
+		if(CEILING_UNDERGROUND_METAL, CEILING_DEEP_UNDERGROUND_METAL)
+			playsound(src, "sound/effects/metal_crash.ogg", 60, 1)
+			spawn(8)
+				for(var/i=1, i<=amount, i++)
+					new /obj/item/stack/sheet/metal(pick(turfs))
+					new /obj/item/ore(pick(turfs))
+
+/turf/proc/ceiling_desc(mob/user)
+	var/area/A = get_area(src)
+	switch(A.ceiling)
+		if(CEILING_NONE)
+			user << "It is in the open."
+		if(CEILING_GLASS)
+			user << "The ceiling above is glass."
+		if(CEILING_METAL)
+			user << "The ceiling above is metal."
+		if(CEILING_UNDERGROUND)
+			user << "It is underground. The cavern roof lies above."
+		if(CEILING_UNDERGROUND_METAL)
+			user << "It is underground. The ceiling above is metal."
+		if(CEILING_DEEP_UNDERGROUND)
+			user << "It is deep underground. The cavern roof lies above."
+		if(CEILING_DEEP_UNDERGROUND_METAL)
+			user << "It is deep underground. The ceiling above is metal."

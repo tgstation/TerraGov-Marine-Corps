@@ -415,6 +415,14 @@
 	set desc = "Check the status of your current hive."
 	set category = "Alien"
 
+	var/datum/hive_status/hive
+	if(hivenumber && hivenumber <= hive_datum.len)
+		hive = hive_datum[hivenumber]
+	else return
+	if(!hive.living_xeno_queen)
+		src << "<span class='warning'>There is no Queen. You are alone.</span>"
+		return
+
 	if(caste == "Queen" && anchored)
 		check_hive_status(src, anchored)
 	else

@@ -83,15 +83,13 @@
 	if(!istype(TU)) return
 	var/is_outside = FALSE
 	if(TU.z == 1)
-		if(istype(TU, /turf/unsimulated/floor))
-			var/turf/unsimulated/floor/F = TU
-			if(F.is_groundmap_turf)
-				if(istype(targ_area) && !targ_area.is_underground)
-					is_outside = TRUE
-		else if (istype(targ_area,/area/prison))
-			is_outside = TRUE
+		switch(targ_area.ceiling)
+			if(CEILING_NONE)
+				is_outside = TRUE
+			if(CEILING_GLASS)
+				is_outside = TRUE
 	if(!is_outside)
-		user << "<span class='warning'>INVALID TARGET: target must be outside on open ground.</span>"
+		user << "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>"
 		return
 	busy = TRUE
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
