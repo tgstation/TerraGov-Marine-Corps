@@ -1,7 +1,7 @@
 
 
 /client/proc/cmd_admin_select_mob_rank(var/mob/living/carbon/human/H in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Select Rank"
 	if(!istype(H))
 		alert("Invalid mob")
@@ -73,7 +73,7 @@
 
 
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Select Equipment"
 	if(!ishuman(M))
 		alert("Invalid mob")

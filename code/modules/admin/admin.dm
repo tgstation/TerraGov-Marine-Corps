@@ -40,7 +40,7 @@ var/global/floorIsLava = 0
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
-	set category = "Special Verbs"
+	set category = null
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 

@@ -709,7 +709,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/editappear(mob/living/carbon/human/M as mob in mob_list)
 	set name = "Edit Appearance"
-	set category = "Fun"
+	set category = null
 
 	if(!check_rights(R_FUN))	return
 
@@ -880,7 +880,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/change_security_level()
 	set name = "Set Security Level"
 	set desc = "Sets the station security level"
-	set category = "Admin"
+	set category = "Fun"
 
 	if(!check_rights(R_ADMIN))	return
 	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())

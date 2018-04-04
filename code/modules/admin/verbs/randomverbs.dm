@@ -45,7 +45,7 @@
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = null
 	set name = "Subtle Message"
 
 	if(!ismob(M))	return
@@ -120,7 +120,7 @@
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
-	set category = "Special Verbs"
+	set category = null
 	set name = "Narrate - Direct"
 
 	if(!holder)
@@ -570,7 +570,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = null
 	set name = "Rejuvenate"
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -879,7 +879,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = null
 	set name = "Check Contents"
 
 	var/list/L = M.get_contents()
