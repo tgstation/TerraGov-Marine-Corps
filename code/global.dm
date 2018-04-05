@@ -289,3 +289,4 @@ var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J
 
 //Used for autocall procs on ERT
 //var/global/list/unanswered_distress = list()
+var/distress_cancel = 0
