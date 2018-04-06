@@ -578,7 +578,9 @@
 						/obj/item/attachable/magnetic_harness = 8,
 						/obj/item/attachable/quickfire = 2,
 
-						/obj/item/attachable/foregrip = 10,
+						/obj/item/attachable/verticalgrip = 10,
+						/obj/item/attachable/angledgrip = 10,
+						/obj/item/attachable/lasersight = 10,
 						/obj/item/attachable/gyro = 4,
 						/obj/item/attachable/bipod = 4,
 						/obj/item/attachable/burstfire_assembly = 2,
@@ -586,6 +588,7 @@
 						/obj/item/attachable/stock/shotgun = 3,
 						/obj/item/attachable/stock/rifle = 3 ,
 						/obj/item/attachable/stock/revolver = 3,
+						/obj/item/attachable/stock/smg = 3,
 
 						/obj/item/attachable/grenade = 5,
 						/obj/item/attachable/shotgun = 3,

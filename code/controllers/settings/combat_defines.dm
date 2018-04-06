@@ -48,9 +48,9 @@
 	var/high_hit_damage_mult = 0.25
 	var/max_hit_damage_mult = 0.35
 
-	var/reg_damage_bleed = 1
-	var/buckshot_damage_bleed = 5
-	var/extra_damage_bleed = 10
+	var/reg_damage_falloff = 1
+	var/buckshot_damage_falloff = 5
+	var/extra_damage_falloff = 10
 
 	var/min_burst_value = 1
 	var/low_burst_value = 2
@@ -163,9 +163,9 @@
 		if("hmed_hit_damage_mult") hmed_hit_damage_mult = value
 		if("high_hit_damage_mult") high_hit_damage_mult = value
 		if("max_hit_damage_mult") max_hit_damage_mult = value
-		if("reg_damage_bleed") reg_damage_bleed = value
-		if("buckshot_damage_bleed") buckshot_damage_bleed = value
-		if("extra_damage_bleed") extra_damage_bleed = value
+		if("reg_damage_falloff") reg_damage_falloff = value
+		if("buckshot_damage_falloff") buckshot_damage_falloff = value
+		if("extra_damage_falloff") extra_damage_falloff = value
 		if("min_burst_value") min_burst_value = value
 		if("low_burst_value") low_burst_value = value
 		if("med_burst_value") med_burst_value = value

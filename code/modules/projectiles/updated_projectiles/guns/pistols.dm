@@ -10,6 +10,7 @@
 	flags_equip_slot = SLOT_WAIST
 	w_class = 3
 	force = 6
+	movement_acc_penalty_mult = 3
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
 	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
 	type_of_casings = "bullet"
@@ -18,6 +19,8 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
@@ -35,35 +38,6 @@
 //-------------------------------------------------------
 //M4A3 PISTOL
 
-/obj/item/ammo_magazine/pistol
-	name = "\improper M4A3 magazine (9mm)"
-	caliber = "9mm"
-	icon_state = "m4a3"
-	max_rounds = 12
-	w_class = 2
-	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/m4a3
-
-/obj/item/ammo_magazine/pistol/hp
-	name = "\improper M4A3 hollowpoint magazine (9mm)"
-	default_ammo = /datum/ammo/bullet/pistol/hollow
-
-/obj/item/ammo_magazine/pistol/ap
-	name = "\improper M4A3 AP magazine (9mm)"
-	icon_state = "m4a3_AP"
-	default_ammo = /datum/ammo/bullet/pistol/ap
-
-/obj/item/ammo_magazine/pistol/incendiary
-	name = "\improper M4A3 incendiary magazine (9mm)"
-	icon_state = "m4a3_incendiary"
-	default_ammo = /datum/ammo/bullet/pistol/incendiary
-
-/obj/item/ammo_magazine/pistol/extended
-	name = "\improper M4A3 extended magazine (9mm)"
-	max_rounds = 22
-	icon_state = "m4a3" //PLACEHOLDER
-	bonus_overlay = "m4a3_ex"
-
 /obj/item/weapon/gun/pistol/m4a3
 	name = "\improper M4A3 service pistol"
 	desc = "An M4A3 Colt Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds."
@@ -76,6 +50,15 @@
 		..()
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
+/obj/item/weapon/gun/pistol/m4a3/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.low_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
+
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
@@ -84,20 +67,19 @@
 
 	New()
 		..()
-		damage += config.low_hit_damage_mult
-		fire_delay = config.high_fire_delay
 		select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3/custom)
+
+/obj/item/weapon/gun/pistol/m4a3/custom/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
+
 
 //-------------------------------------------------------
 //M4A3 45 //Inspired by the 1911
-
-/obj/item/ammo_magazine/pistol/m1911
-	name = "\improper M4A3 magazine (.45)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45"
-	icon_state = "m4a345"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/weapon/gun/pistol/m1911
 	name = "\improper M4A3 service pistol (.45)"
@@ -107,7 +89,7 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_glock.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	New()
 		..()
@@ -115,14 +97,6 @@
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
-
-/obj/item/ammo_magazine/pistol/b92fs
-	name = "\improper Beretta 92FS magazine (9mm)"
-	caliber = "9mm"
-	icon_state = "m4a3"
-	max_rounds = 15
-	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/b92fs
 
 /obj/item/weapon/gun/pistol/b92fs
 	name = "\improper Beretta 92FS pistol"
@@ -134,19 +108,19 @@
 
 	New()
 		..()
-		fire_delay = config.high_fire_delay
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+
+/obj/item/weapon/gun/pistol/b92fs/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
 
 //-------------------------------------------------------
 //DEAGLE //This one is obvious.
-
-/obj/item/ammo_magazine/pistol/heavy
-	name = "\improper Desert Eagle magazine (.50)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".50"
-	icon_state = "m4a345" //PLACEHOLDER
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/heavy
 
 //Captain's vintage pistol.
 /obj/item/weapon/gun/pistol/heavy
@@ -164,40 +138,34 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	New()
 		..() //Pick some variant sprites.
-		damage += config.med_hit_damage_mult
-		recoil = config.low_recoil_value
-		fire_delay = config.low_fire_delay*3
 		var/skin = pick("","g_","c_")
 		icon_state = skin + icon_state
 		item_state = skin + item_state
 		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17, "stock_x" = 20, "stock_y" = 17)
 
+
+/obj/item/weapon/gun/pistol/heavy/set_gun_config_values()
+	fire_delay = config.max_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.high_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.med_hit_damage_mult
+	recoil = config.low_recoil_value
+	recoil_unwielded = config.high_recoil_value
+
+
+
+
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
-
-/obj/item/ammo_magazine/pistol/c99t
-	name = "\improper PK-9 magazine (.22 tranq)"
-	default_ammo = /datum/ammo/bullet/pistol/tranq
-	caliber = ".22"
-	icon_state = "pk-9_tranq"
-	max_rounds = 8
-	gun_type = /obj/item/weapon/gun/pistol/c99
-
-/obj/item/ammo_magazine/pistol/c99
-	name = "\improper PK-9 magazine (.22 hollowpoint)"
-	default_ammo = /datum/ammo/bullet/pistol/hollow
-	caliber = ".22"
-	icon_state = "pk-9"
-	max_rounds = 12
-	gun_type = /obj/item/weapon/gun/pistol/c99
-
-
 
 /obj/item/weapon/gun/pistol/c99
 	name = "\improper Korovin PK-9 pistol"
@@ -211,14 +179,13 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/quickfire,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/burstfire_assembly)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	New()//Making the gun have an invisible silencer since it's supposed to have one.
 		..()
-		fire_delay = config.high_fire_delay
-		accuracy += config.high_hit_accuracy_mult
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 		var/obj/item/attachable/suppressor/S = new(src)
 		S.icon_state = ""
@@ -226,10 +193,20 @@
 		S.Attach(src)
 		update_attachable(S.slot)
 
+/obj/item/weapon/gun/pistol/c99/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.high_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
+
+
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
 	item_state = "pk9r"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 /obj/item/weapon/gun/pistol/c99/upp
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Commonly found among mercenary companies due to its reliability, but also issued to UPP armed forces. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with the more common .22 hollowpoint rounds and appears to be a UPP model."
@@ -245,14 +222,6 @@
 //-------------------------------------------------------
 //KT-42 //Inspired by the .44 Auto Mag pistol
 
-/obj/item/ammo_magazine/pistol/automatic
-	name = "\improper KT-42 magazine (.44)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".32"
-	icon_state = "kt42"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/kt42
-
 /obj/item/weapon/gun/pistol/kt42
 	name = "\improper KT-42 automag"
 	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. You can't go wrong with this handcannon."
@@ -261,25 +230,25 @@
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/automatic
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	New()
 		..()
-		recoil = config.min_recoil_value
-		fire_delay = config.high_fire_delay*2
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
+
+/obj/item/weapon/gun/pistol/kt42/set_gun_config_values()
+	fire_delay = config.high_fire_delay*2
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.min_recoil_value
+	recoil_unwielded = config.med_recoil_value
+
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
-
-/obj/item/ammo_magazine/pistol/holdout
-	name = "tiny pistol magazine (.22)"
-	desc = "A surprisingly small magazine, holding .22 bullets. No Kolibri, but it's getting there."
-	default_ammo = /datum/ammo/bullet/pistol/tiny
-	caliber = ".22"
-	icon_state = "m4a3" //PLACEHOLDER
-	max_rounds = 5
-	gun_type = /obj/item/weapon/gun/pistol/holdout
 
 /obj/item/weapon/gun/pistol/holdout
 	name = "holdout pistol"
@@ -296,25 +265,25 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/burstfire_assembly)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	New()
 		..()
-		fire_delay = config.mlow_fire_delay
 		attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+
+/obj/item/weapon/gun/pistol/holdout/set_gun_config_values()
+	fire_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
 
 //-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
-
-/obj/item/ammo_magazine/pistol/highpower
-	name = "\improper Highpower magazine (9mm)"
-	default_ammo = /datum/ammo/bullet/pistol/ap
-	caliber = "9mm"
-	icon_state = "m4a3" //PLACEHOLDER
-	max_rounds = 13
-	gun_type = /obj/item/weapon/gun/pistol/highpower
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper Highpower automag"
@@ -325,24 +294,26 @@
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	New()
 		..()
-		damage += config.low_hit_damage_mult
-		recoil = config.min_recoil_value
 		attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 16, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
+
+/obj/item/weapon/gun/pistol/highpower/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
+	recoil = config.min_recoil_value
+	recoil_unwielded = config.med_recoil_value
+
+
 
 //-------------------------------------------------------
 //VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
-
-/obj/item/ammo_magazine/pistol/vp70
-	name = "\improper 88M4 AP magazine (9mm)"
-	default_ammo = /datum/ammo/bullet/pistol/ap
-	caliber = "9mm"
-	icon_state = "88m4"
-	max_rounds = 18
-	gun_type = /obj/item/weapon/gun/pistol/vp70
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper 88 Mod 4 combat pistol"
@@ -356,21 +327,20 @@
 
 	New()
 		..()
-		damage += config.high_hit_damage_mult
-		burst_amount = config.med_burst_value
-		burst_delay = config.low_fire_delay
 		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
+
+/obj/item/weapon/gun/pistol/vp70/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.low_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.high_hit_damage_mult
 
 //-------------------------------------------------------
 //VP78
-
-/obj/item/ammo_magazine/pistol/vp78
-	name = "\improper VP78 magazine (9mm)"
-	default_ammo = /datum/ammo/bullet/pistol/squash
-	caliber = "9mm"
-	icon_state = "88m4" //PLACEHOLDER
-	max_rounds = 18
-	gun_type = /obj/item/weapon/gun/pistol/vp78
 
 /obj/item/weapon/gun/pistol/vp78
 	name = "\improper VP78 pistol"
@@ -384,25 +354,26 @@
 
 	New()
 		..()
-		fire_delay = config.low_fire_delay*3
-		burst_amount = config.med_burst_value
-		burst_delay = config.low_fire_delay
-		recoil = config.min_recoil_value
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+
+/obj/item/weapon/gun/pistol/vp78/set_gun_config_values()
+	fire_delay = config.max_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.low_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.min_recoil_value
+	recoil_unwielded = config.med_recoil_value
+
 
 //-------------------------------------------------------
 /*
 Auto 9 The gun RoboCop uses. A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
 It is a modified Beretta 93R, and can fire three round burst or single fire. Whether or not anyone else aside RoboCop can use it is not established.
 */
-
-/obj/item/ammo_magazine/pistol/auto9
-	name = "\improper Auto-9 magazine (9mm)"
-	default_ammo = /datum/ammo/bullet/pistol/squash
-	caliber = "9mm"
-	icon_state = "88m4" //PLACEHOLDER
-	max_rounds = 50
-	gun_type = /obj/item/weapon/gun/pistol/auto9
 
 /obj/item/weapon/gun/pistol/auto9
 	name = "\improper Auto-9 pistol"
@@ -415,9 +386,44 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	force = 15
 	attachable_allowed = list()
 
-	New()
-		..()
-		fire_delay = config.med_fire_delay
-		burst_amount = config.med_burst_value
-		burst_delay = config.min_fire_delay
-		recoil = config.min_recoil_value
+/obj/item/weapon/gun/pistol/auto9/set_gun_config_values()
+	fire_delay = config.med_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.min_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.min_recoil_value
+	recoil_unwielded = config.med_recoil_value
+
+
+
+//-------------------------------------------------------
+//The first rule of monkey pistol is we don't talk about monkey pistol.
+
+/obj/item/weapon/gun/pistol/chimp
+	name = "\improper CHIMP70 pistol"
+	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
+	icon_state = "c70"
+	item_state = "c70"
+	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
+	current_mag = /obj/item/ammo_magazine/pistol/chimp
+	fire_sound = 'sound/weapons/gun_chimp70.ogg'
+	w_class = 3
+	force = 8
+	type_of_casings = null
+	gun_skill_category = GUN_SKILL_PISTOLS
+	attachable_allowed = list()
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED
+
+/obj/item/weapon/gun/pistol/holdout/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	burst_delay = config.mlow_fire_delay
+	burst_amount = config.low_burst_value
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult

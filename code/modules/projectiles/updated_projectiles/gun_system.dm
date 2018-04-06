@@ -4,7 +4,6 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
-	var/muzzle_flash 	= "muzzle_flash"
 	matter = list("metal" = 5000)
 	origin_tech = "combat=1"					//Guns generally have their own unique levels.
 	w_class 	= 3
@@ -14,6 +13,9 @@
 	force 		= 5
 	attack_verb = null
 	sprite_sheet_id = 1
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+
+	var/muzzle_flash 	= "muzzle_flash"
 
 	var/fire_sound 		= 'sound/weapons/Gunshot.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
@@ -33,20 +35,29 @@
 	var/type_of_casings = null					//Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
 
 	//Basic stats.
-	var/accuracy 		= 0						//Miltiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
-	var/damage 			= 0						//Same as above.
-	var/recoil 			= 0						//Screen shake when the weapon is fired.
-	var/scatter			= 0						//How much the bullet scatters when fired.
-	var/jamming			= 0						//How often the gun jams.
-	var/fire_delay 		= 0						//For regular shots, how long to wait before firing again.
-	var/last_fired 		= 0						//When it was last fired, related to world.time.
+	var/accuracy_mult 			= 0				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
+	var/damage_mult 			= 1				//Same as above, for damage.
+	var/damage_falloff_mult 		= 1				//Same as above, for damage bleed (falloff)
+	var/recoil 					= 0				//Screen shake when the weapon is fired.
+	var/scatter					= 0				//How much the bullet scatters when fired.
+	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
+
+	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
+	var/recoil_unwielded 				= 0
+	var/scatter_unwielded 				= 0
+
+	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
+
+	var/fire_delay = 0							//For regular shots, how long to wait before firing again.
+	var/last_fired = 0							//When it was last fired, related to world.time.
+
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
 	var/wield_delay		= WIELD_DELAY_FAST		//How long between wielding and firing in tenths of seconds
 	var/wield_time		= 0						//Storing value for above
 
 	//Burst fire.
-	var/burst_amount 	= 0						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
-	var/burst_delay 	= 0						//The delay in between shots. Lower = less delay = faster.
+	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
+	var/burst_delay 	= 1						//The delay in between shots. Lower = less delay = faster.
 	var/extra_delay 	= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 
 	//Targeting.
@@ -60,15 +71,14 @@
 	//Attachments.
 	var/attachable_overlays[] 		= null		//List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/attachable_offset[] 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
-	var/attachable_allowed[]		= list()	//Must be the exact path to the attachment present in the list. Empty list for a default.
+	var/attachable_allowed[]		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 	var/obj/item/attachable/muzzle 	= null		//Attachable slots. Only one item per slot.
 	var/obj/item/attachable/rail 	= null
 	var/obj/item/attachable/under 	= null
 	var/obj/item/attachable/stock 	= null
 	var/obj/item/attachable/active_attachable = null //This will link to one of the above four, or remain null.
-	var/list/starting_attachment_types = list() //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
+	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
-	flags_atom 			 = FPRINT|CONDUCT
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	var/gun_skill_category //used to know which job knowledge this gun is linked to
@@ -95,14 +105,27 @@
 				current_mag = new current_mag(src, spawn_empty? 1:0)
 				ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
 		else ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
-		accuracy = config.base_hit_accuracy_mult
-		damage = config.base_hit_damage_mult
-		scatter = config.med_scatter_value
-		fire_delay = config.mhigh_fire_delay
-		burst_amount = config.min_burst_value
+		set_gun_config_values()
 		update_force_list() //This gives the gun some unique verbs for attacking.
 
 		handle_starting_attachment()
+
+
+//Called by the gun's New(), set the gun variables' values.
+//Each gun gets its own version of the proc instead of adding/substracting
+//amounts to get specific values in each gun subtype's New().
+//This makes reading each gun's values MUCH easier.
+/obj/item/weapon/gun/proc/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
+
+
+
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -110,7 +133,7 @@
 	set waitfor = 0
 
 	sleep(1) //Give a moment to the rest of the proc to work out
-	if(starting_attachment_types.len)
+	if(starting_attachment_types && starting_attachment_types.len)
 		for(var/path in starting_attachment_types)
 			var/obj/item/attachable/A = new path(src)
 			A.Attach(src)
@@ -230,6 +253,8 @@
 
 	if((flags_atom|TWOHANDED|WIELDED) != flags_atom)
 		return //Have to be actually a twohander and wielded.
+	if(zoom)
+		zoom(user)
 	flags_atom ^= WIELDED
 	name 	    = copytext(name, 1, -10)
 	item_state  = copytext(item_state, 1, -2)
@@ -485,7 +510,7 @@ and you're good to go.
 		//						   			   \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0)
+/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	set waitfor = 0
 
 	if(!able_to_fire(user)) return
@@ -535,24 +560,39 @@ and you're good to go.
 			click_empty(user)
 			break
 
-		apply_bullet_effects(projectile_to_fire, user, i, reflex) //User can be passed as null.
+		var/recoil_comp = 0 //used by bipod and akimbo firing
+
+		//checking for a gun in other hand to fire akimbo
+		if(i == 1 && !reflex && !dual_wield)
+			if(user)
+				var/obj/item/IH = user.get_inactive_hand()
+				if(istype(IH, /obj/item/weapon/gun))
+					var/obj/item/weapon/gun/OG = IH
+					if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
+						OG.Fire(target,user,params, 0, TRUE)
+						dual_wield = TRUE
+						recoil_comp++
+
+		apply_bullet_effects(projectile_to_fire, user, i, reflex, dual_wield) //User can be passed as null.
+
 
 		//BIPODS BEGINS HERE
-		var/recoil_comp = 0 //If we're using a bipod properly, this will change.
 		var/scatter_chance_mod = 0
+		var/burst_scatter_chance_mod = 0
 		//They decrease scatter chance and increase accuracy a tad. Can also increase damage.
 		if(user && under && under.firing_support) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
 			if(under.check_position(src, user))
 				//Passive accuracy and recoil buff, but only when firing in position.
 				projectile_to_fire.accuracy *= config.base_hit_accuracy_mult + config.hmed_hit_accuracy_mult //More accuracy.
 				recoil_comp-- //Less recoil.
-				if(prob(65)) scatter_chance_mod -= config.med_scatter_value
+				scatter_chance_mod -= config.med_scatter_value
+				burst_scatter_chance_mod = -2
 				if(prob(30)) projectile_to_fire.damage *= config.base_hit_damage_mult + config.low_hit_damage_mult//Lower chance of a damage buff.
 				if(i == 1) user << "<span class='notice'>Your bipod keeps [src] steady!</span>"
 		//End of bipods.
 
 		target = original_target ? original_target : targloc
-		target = simulate_scatter(projectile_to_fire, target, targloc, scatter_chance_mod, user)
+		target = simulate_scatter(projectile_to_fire, target, targloc, scatter_chance_mod, user, burst_scatter_chance_mod)
 
 		if(params)
 			var/list/mouse_control = params2list(params)
@@ -569,7 +609,7 @@ and you're good to go.
 			return
 
 		if(get_turf(target) != get_turf(user))
-			simulate_recoil(recoil+recoil_comp, user, target)
+			simulate_recoil(recoil_comp, user, target)
 
 			//This is where the projectile leaves the barrel and deals with projectile code only.
 			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -611,7 +651,7 @@ and you're good to go.
 						var/actual_sound = (active_attachable && active_attachable.fire_sound) ? active_attachable.fire_sound : fire_sound
 						var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 25 : 60
 						playsound(user, actual_sound, sound_volume, 1)
-						simulate_recoil(recoil + 2, user)
+						simulate_recoil(2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
 						var/t = "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> committed suicide with <b>[src]</b>" //Log it.
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
@@ -651,7 +691,7 @@ and you're good to go.
 					projectile_to_fire.damage *= (config.base_hit_damage_mult+config.low_hit_damage_mult) //Multiply the damage for point blank.
 					user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
 					apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
-					simulate_recoil(recoil+1, user)
+					simulate_recoil(1, user)
 
 					projectile_to_fire.ammo.on_hit_mob(M,projectile_to_fire)
 					M.bullet_act(projectile_to_fire)
@@ -693,12 +733,9 @@ and you're good to go.
 			user << "<span class='warning'>The safety is on!</span>"
 			return
 
-		if(flags_atom & TWOHANDED) //If we're not holding the weapon with both hands when we should.
-			var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand() //We have to check for this though, since the offhand can drop due to arm malfs, etc.
-			if(!istype(O))
-				unwield(user)
-				user << "<span class='warning'>You need a more secure grip to fire this weapon!"
-				return
+		if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_atom & WIELDED)) //If we're not holding the weapon with both hands when we should.
+			user << "<span class='warning'>You need a more secure grip to fire this weapon!"
+			return
 
 		if( (flags_gun_features & GUN_WY_RESTRICTED) && !wy_allowed_check(user) ) return
 
@@ -738,10 +775,25 @@ and you're good to go.
 		playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
-/obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0)
+/obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0, dual_wield = 0)
 	var/actual_sound = fire_sound
 
-	var/gun_accuracy = accuracy
+	var/gun_accuracy_mult = accuracy_mult_unwielded
+	var/gun_scatter = scatter_unwielded
+
+	if(flags_atom & WIELDED)
+		gun_accuracy_mult = accuracy_mult
+		gun_scatter = scatter
+
+	else if(user && world.time - user.l_move_time < 5) //moved during the last half second
+		//accuracy and scatter penalty if the user fires unwielded right after moving
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * config.low_hit_accuracy_mult))
+		gun_scatter += max(0, movement_acc_penalty_mult * config.min_scatter_value)
+
+
+	if(dual_wield) //akimbo firing gives terrible accuracy
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.4)
+		gun_scatter += 50
 
 	// Apply any skill-based bonuses to accuracy
 	if(user && user.mind && user.mind.cm_skills)
@@ -763,11 +815,14 @@ and you're good to go.
 				if(GUN_SKILL_SMARTGUN)
 					skill_accuracy = user.mind.cm_skills.smartgun
 		if(skill_accuracy)
-			gun_accuracy = accuracy + skill_accuracy * config.low_hit_accuracy_mult // Accuracy increase/decrease per level is equal to attaching/removing a red dot sight
+			gun_accuracy_mult += skill_accuracy * config.low_hit_accuracy_mult // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy) // Apply gun accuracy multiplier to projectile accuracy
-	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 		// Apply gun damage multiplier to projectile damage
+	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
+	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
+
 	projectile_to_fire.shot_from = src
+	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
 	if(user) //The gun only messages when fired by a user.
 		projectile_to_fire.firer = user
@@ -797,11 +852,22 @@ and you're good to go.
 					user << "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>"
 	return 1
 
-/obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0, mob/user)
-	total_scatter_chance += (scatter + projectile_to_fire.ammo.scatter)
+/obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0, mob/user, burst_scatter_bonus = 0)
+	total_scatter_chance += projectile_to_fire.scatter
+
 	//Not if the gun doesn't scatter at all, or negative scatter.
-	if(total_scatter_chance > 0 && ( prob(5) || (flags_gun_features & GUN_BURST_ON && burst_amount > 1) ) ) //Only 5% chance to scatter, and then still unlikely on single fire.
-		total_scatter_chance += (burst_amount * 3) //Much higher chance on a burst.
+	if(total_scatter_chance > 0)
+		var/targdist = get_dist(target, user)
+		if(flags_gun_features & GUN_BURST_ON && burst_amount > 1)//Much higher chance on a burst.
+			total_scatter_chance += (flags_atom & WIELDED) ? burst_amount * (burst_scatter_mult + burst_scatter_bonus) : burst_amount * (5+burst_scatter_bonus)
+
+			//long range burst shots have more chance to scatter
+			if(targdist > 7)
+				total_scatter_chance += min(targdist*2, 15)
+
+		else if(user && targdist <= (4 + rand(-1,1))) //no scatter on single fire for close targets
+			return target
+
 
 		if(user && user.mind && user.mind.cm_skills)
 
@@ -834,7 +900,15 @@ and you're good to go.
 	projectile_to_fire.original = target
 	return target
 
-/obj/item/weapon/gun/proc/simulate_recoil(total_recoil = 0, mob/user, atom/target)
+/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user, atom/target)
+	var/total_recoil = recoil_bonus
+	if(flags_atom & WIELDED)
+		total_recoil += recoil
+	else
+		total_recoil += recoil_unwielded
+		if(flags_gun_features & GUN_BURST_FIRING)
+			total_recoil += 1
+
 	if(user && user.mind && user.mind.cm_skills)
 
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms

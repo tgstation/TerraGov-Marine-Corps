@@ -708,7 +708,9 @@ datum/game_mode/proc/initialize_special_clamps()
 					/obj/item/attachable/magnetic_harness = round(scale * 15),
 					/obj/item/attachable/quickfire = round(scale * 5),
 
-					/obj/item/attachable/foregrip = round(scale * 20),
+					/obj/item/attachable/verticalgrip = round(scale * 20),
+					/obj/item/attachable/angledgrip = round(scale * 20),
+					/obj/item/attachable/lasersight = round(scale * 20),
 					/obj/item/attachable/gyro = round(scale * 5),
 					/obj/item/attachable/bipod = round(scale * 10),
 					/obj/item/attachable/burstfire_assembly = round(scale * 5),
@@ -716,6 +718,7 @@ datum/game_mode/proc/initialize_special_clamps()
 					/obj/item/attachable/stock/shotgun = round(scale * 5),
 					/obj/item/attachable/stock/rifle = round(scale * 5) ,
 					/obj/item/attachable/stock/revolver = round(scale * 5),
+					/obj/item/attachable/stock/smg = round(scale * 5) ,
 
 					/obj/item/attachable/grenade = round(scale * 15),
 					/obj/item/attachable/shotgun = round(scale * 5),
