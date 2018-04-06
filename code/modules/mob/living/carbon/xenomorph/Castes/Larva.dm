@@ -69,7 +69,7 @@
 	else
 		hivenumber = XENO_HIVE_NORMAL
 		hive = hive_datum[hivenumber]
-		
+
 	name_prefix = hive.prefix
 	color = hive.color
 	if(name_prefix == "Corrupted ")
@@ -100,10 +100,12 @@
 		icon_state = "[state]Larva Dead"
 	else if(handcuffed || legcuffed)
 		icon_state = "[state]Larva Cuff"
-	else if(stunned)
-		icon_state = "[state]Larva Stunned"
-	else if(lying || resting)
-		icon_state = "[state]Larva Sleeping"
+
+	else if(lying)
+		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+			icon_state = "[state]Larva Sleeping"
+		else
+			icon_state = "[state]Larva Stunned"
 	else
 		icon_state = "[state]Larva"
 

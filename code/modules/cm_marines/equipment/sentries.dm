@@ -600,7 +600,7 @@
 
 	if(istype(O, /obj/item/cell))
 		if(cell)
-			user << "<span class='warning'>There is already \a [cell.name] installed in [src]! Remove it with a screwdriver first!</span>"
+			user << "<span class='warning'>There is already \a [cell.name] installed in [src]! Remove it with a crowbar first!</span>"
 			return
 
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
