@@ -73,7 +73,7 @@
 				return "[ethnicity]_left_foot"
 
 			else
-				world << "DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]"
+				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 	else
 		switch(limb_name)
@@ -92,29 +92,52 @@
 			if ("r_arm")
 				return "[limb_name]"
 
+			if ("right_arm")
+				return "[limb_name]"
+
 			if ("l_arm")
+				return "[limb_name]"
+
+			if ("left_arm")
 				return "[limb_name]"
 
 			if ("r_leg")
 				return "[limb_name]"
 
+			if ("right_leg")
+				return "[limb_name]"
+
 			if ("l_leg")
+				return "[limb_name]"
+
+			if ("left_leg")
 				return "[limb_name]"
 
 			if ("r_hand")
 				return "[limb_name]"
 
+			if ("right_hand")
+				return "[limb_name]"
+
 			if ("l_hand")
+				return "[limb_name]"
+
+			if ("left_hand")
 				return "[limb_name]"
 
 			if ("r_foot")
 				return "[limb_name]"
 
+			if ("right_foot")
+				return "[limb_name]"
+
 			if ("l_foot")
 				return "[limb_name]"
 
+			if ("left_foot")
+				return "[limb_name]"
 			else
-				world << "DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]"
+				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 
 /mob/living/carbon/human/proc/set_limb_icons()
