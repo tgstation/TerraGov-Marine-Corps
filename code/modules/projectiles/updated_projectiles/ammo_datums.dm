@@ -1,6 +1,5 @@
 //Bitflag defines are in setup.dm. Referenced here.
 /*
-#define AMMO_REGULAR 		0
 #define AMMO_EXPLOSIVE 		1
 #define AMMO_XENO_ACID 		2
 #define AMMO_XENO_TOX		4
@@ -38,7 +37,7 @@
 	var/damage 						= 0 		// This is the base damage of the bullet as it is fired
 	var/damage_var_low				= 0 		// Same as with accuracy variance
 	var/damage_var_high				= 0
-	var/damage_bleed 				= 0 		// How much damage the bullet loses per turf traveled
+	var/damage_falloff 				= 0 		// How much damage the bullet loses per turf traveled
 	var/damage_type 				= BRUTE 	// BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/penetration					= 0 		// How much armor it ignores before calculations take place
 	var/shrapnel_chance 			= 0 		// The % chance it will imbed in a human
@@ -55,10 +54,10 @@
 		max_range 			= config.norm_shell_range 	// This will de-increment a counter on the bullet.
 		damage_var_low		= config.min_proj_variance 	// Same as with accuracy variance.
 		damage_var_high		= config.min_proj_variance
-		damage_bleed 		= config.reg_damage_bleed 	// How much damage the bullet loses per turf traveled.
+		damage_falloff 		= config.reg_damage_falloff 	// How much damage the bullet loses per turf traveled.
 		shell_speed 		= config.slow_shell_speed 	// How fast the projectile moves.
 
-	var/flags_ammo_behavior = AMMO_REGULAR //Nothing special about it.
+	var/flags_ammo_behavior = NOFLAGS
 
 	proc/do_at_half_range(obj/item/projectile/P)
 		return
@@ -271,7 +270,7 @@
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
 	shrapnel_chance = 0
-	damage_bleed = 0
+	damage_falloff = 0
 	New()
 		..()
 		accuracy = config.med_hit_accuracy
@@ -341,7 +340,6 @@
 	name = "armor-piercing rifle bullet"
 	New()
 		..()
-		accuracy = config.hmed_hit_accuracy
 		penetration = config.med_armor_penetration
 
 /datum/ammo/bullet/rifle/incendiary
@@ -356,14 +354,13 @@
 /datum/ammo/bullet/rifle/m4ra
 	name = "A19 high velocity bullet"
 	shrapnel_chance = 0
-	damage_bleed = 0
+	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 6
 
 	New()
 		..()
 		damage = config.hmed_hit_damage
-		accuracy = config.hmed_hit_accuracy
 		scatter = -config.low_scatter_value
 		penetration= config.med_armor_penetration
 		shell_speed = config.fast_shell_speed
@@ -385,7 +382,7 @@
 	New()
 		..()
 		damage = config.hmed_hit_damage
-		accuracy = config.low_hit_accuracy
+		accuracy = -config.low_hit_accuracy
 		scatter = -config.low_scatter_value
 		penetration= config.low_armor_penetration
 		shell_speed = config.fast_shell_speed
@@ -480,7 +477,7 @@
 		damage = config.max_hit_damage
 		damage_var_low = -config.med_proj_variance
 		damage_var_high = config.med_proj_variance
-		damage_bleed = config.buckshot_damage_bleed
+		damage_falloff = config.buckshot_damage_falloff
 		penetration	= -config.mlow_armor_penetration
 		bonus_projectiles_amount = config.low_proj_extra
 		shell_speed = config.reg_shell_speed
@@ -511,7 +508,7 @@
 		damage = config.med_hit_damage
 		damage_var_low = -config.med_proj_variance
 		damage_var_high = config.med_proj_variance
-		damage_bleed = config.extra_damage_bleed
+		damage_falloff = config.extra_damage_falloff
 		shell_speed = config.reg_shell_speed
 
 /datum/ammo/bullet/shotgun/spread/masterkey
@@ -528,12 +525,11 @@
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
-	damage_bleed = 0
+	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
 	accurate_range_min = 10
 	New()
 		..()
-		accuracy = config.med_hit_accuracy
 		accurate_range = config.min_shell_range
 		max_range = config.max_shell_range
 		scatter = -config.med_scatter_value
@@ -589,7 +585,6 @@
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	New()
 		..()
-		accuracy = config.max_hit_accuracy
 		accurate_range = config.short_shell_range
 		damage = config.low_hit_damage
 		penetration= config.mlow_armor_penetration
@@ -643,10 +638,9 @@
 	New()
 		..()
 		accurate_range = config.short_shell_range
-		max_range = config.norm_shell_range //Bump the range since view distance got bumped too.
 		damage = config.med_hit_damage
 		penetration= config.mhigh_armor_penetration //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
-		accuracy = config.high_hit_accuracy
+		accuracy = config.med_hit_accuracy
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
@@ -671,7 +665,7 @@
 	icon_state = "missile"
 	ping = null //no bounce off.
 	sound_bounce	= "rocket_bounce"
-	damage_bleed = 0
+	damage_falloff = 0
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 	var/datum/effect_system/smoke_spread/smoke
 
@@ -711,7 +705,7 @@
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
-	damage_bleed = 0
+	damage_falloff = 0
 	New()
 		..()
 		accuracy = -config.min_hit_accuracy
@@ -934,7 +928,7 @@
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	damage_bleed = 0
+	damage_falloff = 0
 	debilitate = list(1,2,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
@@ -1203,3 +1197,21 @@
 		G.icon_state = "flare-on"
 		G.damtype = "fire"
 		G.SetLuminosity(G.brightness_on)
+
+
+
+/datum/ammo/rocket/nobugs
+	name = "\improper NO BUGS rocket"
+	damage = 1
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		M << "<font size=6 color=red>NO BUGS</font>"
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		return
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		return
+
+	do_at_max_range(obj/item/projectile/P)
+		return

@@ -531,8 +531,12 @@ ATTACHMENTS
 /datum/supply_packs/underbarrel_attachables
 	name = "underbarrel attachments crate (x2 each)"
 	contains = list(
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
+					/obj/item/attachable/verticalgrip,
+					/obj/item/attachable/verticalgrip,
+					/obj/item/attachable/angledgrip,
+					/obj/item/attachable/angledgrip,
+					/obj/item/attachable/lasersight,
+					/obj/item/attachable/lasersight,
 					/obj/item/attachable/gyro,
 					/obj/item/attachable/gyro,
 					/obj/item/attachable/bipod,
@@ -552,14 +556,14 @@ ATTACHMENTS
 /datum/supply_packs/underbarrel_foregrip
 	name = "foregrip attachment crate (x8)"
 	contains = list(
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip
+					/obj/item/attachable/verticalgrip,
+					/obj/item/attachable/verticalgrip,
+					/obj/item/attachable/verticalgrip,
+					/obj/item/attachable/verticalgrip,
+					/obj/item/attachable/angledgrip,
+					/obj/item/attachable/angledgrip,
+					/obj/item/attachable/angledgrip,
+					/obj/item/attachable/angledgrip,
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -640,7 +644,10 @@ ATTACHMENTS
 					/obj/item/attachable/stock/rifle,
 					/obj/item/attachable/stock/shotgun,
 					/obj/item/attachable/stock/shotgun,
-					/obj/item/attachable/stock/shotgun
+					/obj/item/attachable/stock/shotgun,
+					/obj/item/attachable/stock/smg,
+					/obj/item/attachable/stock/smg,
+					/obj/item/attachable/stock/smg,
 					)
 	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate
@@ -684,6 +691,19 @@ ATTACHMENTS
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "stock shotgun attachment crate"
+	group = "Attachments"
+
+/datum/supply_packs/stock_smg
+	name = "submachinegun stock attachment crate (x4)"
+	contains = list(
+			/obj/item/attachable/stock/smg,
+			/obj/item/attachable/stock/smg,
+			/obj/item/attachable/stock/smg,
+			/obj/item/attachable/stock/smg
+			)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate
+	containername = "stock smg attachment crate"
 	group = "Attachments"
 
 
@@ -1080,7 +1100,7 @@ AMMO
 					/obj/item/ammo_magazine/smg/ppsh/extended,
 					/obj/item/ammo_magazine/smg/uzi,
 					/obj/item/ammo_magazine/smg/p90,
-					/obj/item/ammo_magazine/rifle/sniper/svd,
+					/obj/item/ammo_magazine/sniper/svd,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
 					/obj/item/ammo_magazine/rifle/mar40,
 					/obj/item/ammo_magazine/rifle/mar40/extended,

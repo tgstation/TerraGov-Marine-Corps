@@ -1,8 +1,4 @@
 //---------------------------------------------------
-/obj/item/ammo_magazine/internal/revolver
-	name = "revolver cylinder"
-	default_ammo = /datum/ammo/bullet/revolver
-	max_rounds = 6
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
@@ -24,19 +20,29 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
+	movement_acc_penalty_mult = 3
 
-	New()
-		..() //Do all that other stuff.
-		fire_delay = config.med_fire_delay*2
-		recoil = config.min_recoil_value
-		replace_cylinder(current_mag.current_rounds)
+/obj/item/weapon/gun/revolver/New()
+	..() //Do all that other stuff.
+	replace_cylinder(current_mag.current_rounds)
 
-	examine(mob/user)
-		..()
-		user << "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]"
+/obj/item/weapon/gun/revolver/set_gun_config_values()
+	fire_delay = config.max_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.high_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.min_recoil_value
+	recoil_unwielded = config.med_recoil_value
 
-	update_icon() //Special snowflake update icon.
-		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
+
+/obj/item/weapon/gun/revolver/examine(mob/user)
+	..()
+	user << "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]"
+
+/obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
+	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
 	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1
@@ -259,33 +265,6 @@
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
 
-/obj/item/ammo_magazine/revolver
-	name = "\improper M44 magnum speed loader (.44)"
-	default_ammo = /datum/ammo/bullet/revolver
-	flags_equip_slot = NOFLAGS
-	caliber = ".44"
-	icon_state = "m44"
-	w_class = 2
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/revolver/m44
-
-/obj/item/ammo_magazine/revolver/marksman
-	name = "\improper M44 marksman speed loader (.44)"
-	default_ammo = /datum/ammo/bullet/revolver/marksman
-	caliber = ".44"
-	icon_state = "m_m44"
-
-/obj/item/ammo_magazine/revolver/heavy
-	name = "\improper M44 PW-MX speed loader (.44)"
-	default_ammo = /datum/ammo/bullet/revolver/heavy
-	caliber = ".44"
-	icon_state = "h_m44"
-
-/obj/item/ammo_magazine/internal/revolver/m44
-	caliber = ".44"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/revolver/m44
-
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M44 combat revolver"
 	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Colonial Marines, as well civilian law enforcement. Uses .44 Magnum rounds."
@@ -301,7 +280,8 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/stock/revolver,
-						/obj/item/attachable/scope)
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
 	New()
 		..()
@@ -309,19 +289,6 @@
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
-
-/obj/item/ammo_magazine/revolver/upp
-	name = "\improper N-Y speed loader (7.62x38mmR)"
-	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = "7.62x38mmR"
-	icon_state = "ny762"
-	gun_type = /obj/item/weapon/gun/revolver/upp
-
-/obj/item/ammo_magazine/internal/revolver/upp
-	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = "7.62x38mmR"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/weapon/gun/revolver/upp
 	name = "\improper N-Y 7.62mm revolver"
@@ -334,30 +301,25 @@
 	force = 8
 	attachable_allowed = list(/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS|GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
 	New()
 		..()
-		damage += config.min_hit_damage_mult
-		fire_delay = config.low_fire_delay
-		recoil = 0
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
+
+/obj/item/weapon/gun/revolver/upp/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.high_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
+	recoil = 0
+	recoil_unwielded = 0
+
 
 //-------------------------------------------------------
 //357 REVOLVER //Based on the generic S&W 357.
-
-/obj/item/ammo_magazine/revolver/small
-	name = "\improper S&W speed loader (.357)"
-	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = ".357"
-	icon_state = "sw357"
-	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/small
-
-/obj/item/ammo_magazine/internal/revolver/small
-	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = ".357"
-	gun_type = /obj/item/weapon/gun/revolver/small
 
 /obj/item/weapon/gun/revolver/small
 	name = "\improper S&W .357 revolver"
@@ -367,32 +329,27 @@
 	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
-	New()
-		..()
-		fire_delay = config.low_fire_delay
-		recoil = 0
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
+/obj/item/weapon/gun/revolver/small/New()
+	..()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
-	unique_action(mob/user)
-		revolver_trick(user)
+/obj/item/weapon/gun/revolver/small/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = 0
+	recoil_unwielded = 0
+
+/obj/item/weapon/gun/revolver/small/unique_action(mob/user)
+	revolver_trick(user)
 
 //-------------------------------------------------------
 //BURST REVOLVER //Mateba is pretty well known. The cylinder folds up instead of to the side.
-
-/obj/item/ammo_magazine/revolver/mateba
-	name = "\improper Mateba speed loader (.454)"
-	default_ammo = /datum/ammo/bullet/revolver/highimpact
-	caliber = ".454"
-	icon_state = "mateba"
-	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/mateba
-
-/obj/item/ammo_magazine/internal/revolver/mateba
-	default_ammo = /datum/ammo/bullet/revolver/highimpact
-	caliber = ".454"
-	gun_type = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/weapon/gun/revolver/mateba
 	name = "\improper Mateba autorevolver"
@@ -410,14 +367,25 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
-	New()
-		..()
-		damage += config.min_hit_damage_mult
-		burst_amount = config.low_burst_value
-		burst_delay = config.med_fire_delay
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+/obj/item/weapon/gun/revolver/mateba/New()
+	..()
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+
+/obj/item/weapon/gun/revolver/mateba/set_gun_config_values()
+	fire_delay = config.max_fire_delay
+	burst_amount = config.low_burst_value
+	burst_delay = config.med_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
+	recoil = config.min_recoil_value
+	recoil_unwielded = config.med_recoil_value
+
+
 
 /obj/item/weapon/gun/revolver/mateba/admiral
 	name = "\improper Mateba autorevolver custom++"
@@ -436,19 +404,6 @@
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 
-/obj/item/ammo_magazine/revolver/cmb
-	name = "\improper Spearhead speed loader (.357)"
-	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = ".357"
-	icon_state = "spearhead"
-	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/cmb
-
-/obj/item/ammo_magazine/internal/revolver/cmb
-	default_ammo = /datum/ammo/bullet/revolver/small
-	caliber = ".357"
-	gun_type = /obj/item/weapon/gun/revolver/cmb
-
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB Spearhead autorevolver"
 	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
@@ -465,10 +420,18 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 
-	New()
-		..()
-		damage += config.min_hit_damage_mult
-		fire_delay = config.mhigh_fire_delay*2
-		burst_amount = config.med_burst_value
-		burst_delay = config.high_fire_delay
-		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
+/obj/item/weapon/gun/revolver/cmb/New()
+	..()
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
+
+/obj/item/weapon/gun/revolver/cmb/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay*2
+	burst_amount = config.med_burst_value
+	burst_delay = config.high_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
+	recoil = config.min_recoil_value
+	recoil_unwielded = config.med_recoil_value

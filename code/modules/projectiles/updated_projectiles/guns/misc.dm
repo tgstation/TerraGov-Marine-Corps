@@ -1,91 +1,5 @@
-//-------------------------------------------------------
-//ENERGY GUNS/ETC
-/obj/item/weapon/gun/energy/taser
-	name = "taser gun"
-	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns."
-	icon_state = "taser"
-	item_state = "taser"
-	muzzle_flash = null //TO DO.
-	fire_sound = 'sound/weapons/Taser.ogg'
-	origin_tech = "combat=1;materials=1"
-	matter = list("metal" = 2000)
-	ammo = /datum/ammo/energy/taser
-	var/obj/item/cell/high/cell //10000 power.
-	var/charge_cost = 100 //100 shots.
-	flags_gun_features = GUN_UNUSUAL_DESIGN
-	gun_skill_category = GUN_SKILL_PISTOLS
 
-	New()
-		..()
-		fire_delay = config.high_fire_delay * 2
-		cell = new /obj/item/cell/high(src)
 
-	update_icon()
-		if(!cell || cell.charge - charge_cost < 0)
-			icon_state = base_gun_icon + "_e"
-		else
-			icon_state = base_gun_icon
-
-	emp_act(severity)
-		cell.use(round(cell.maxcharge / severity))
-		update_icon()
-		..()
-
-	able_to_fire(mob/living/user)
-		. = ..()
-		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
-				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-				return 0
-
-	load_into_chamber()
-		if(!cell || cell.charge - charge_cost < 0) return
-
-		cell.charge -= charge_cost
-		in_chamber = create_bullet(ammo)
-		return in_chamber
-
-	reload_into_chamber()
-		update_icon()
-		return 1
-
-	delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
-		cdel(projectile_to_fire)
-		if(refund) cell.charge += charge_cost
-		return 1
-
-//-------------------------------------------------------
-//The first rule of monkey pistol is we don't talk about monkey pistol.
-/obj/item/ammo_magazine/pistol/chimp
-	name = "\improper CHIMP70 magazine (.70M)"
-	default_ammo = /datum/ammo/bullet/pistol/mankey
-	caliber = ".70M"
-	icon_state = "c70" //PLACEHOLDER
-	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
-	matter = list("metal" = 3000)
-	max_rounds = 300
-	gun_type = /obj/item/weapon/gun/pistol/chimp
-
-/obj/item/weapon/gun/pistol/chimp
-	name = "\improper CHIMP70 pistol"
-	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
-	icon_state = "c70"
-	item_state = "c70"
-	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
-	current_mag = /obj/item/ammo_magazine/pistol/chimp
-	fire_sound = 'sound/weapons/gun_chimp70.ogg'
-	w_class = 3
-	force = 8
-	type_of_casings = null
-	gun_skill_category = GUN_SKILL_PISTOLS
-	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED
-
-	New()
-		..()
-		fire_delay = config.low_fire_delay
-		burst_delay = config.mlow_fire_delay
-		burst_amount = config.low_burst_value
 
 //-------------------------------------------------------
 
@@ -164,18 +78,6 @@
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
 
-/obj/item/ammo_magazine/minigun
-	name = "rotating ammo drum (7.62x51mm)"
-	desc = "A huge ammo drum for a huge gun."
-	caliber = "7.62x51mm"
-	icon_state = "painless" //PLACEHOLDER
-	origin_tech = "combat=3;materials=3"
-	matter = list("metal" = 10000)
-	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 300
-	reload_delay = 24 //Hard to reload.
-	gun_type = /obj/item/weapon/gun/minigun
-
 /obj/item/weapon/gun/minigun
 	name = "\improper Ol' Painless"
 	desc = "An enormous multi-barreled rotating gatling gun. This thing will no doubt pack a punch."
@@ -188,20 +90,25 @@
 	type_of_casings = "cartridge"
 	w_class = 5
 	force = 20
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
 
-	New(loc, spawn_empty)
-		..()
-		recoil = config.med_recoil_value
-		accuracy -= config.med_hit_accuracy_mult
-		burst_amount = config.max_burst_value
-		fire_delay = config.low_fire_delay
-		burst_delay = config.min_fire_delay
-		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+/obj/item/weapon/gun/minigun/New(loc, spawn_empty)
+	..()
+	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
-	toggle_burst()
-		usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
+/obj/item/weapon/gun/minigun/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	burst_amount = config.max_burst_value
+	burst_delay = config.min_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.med_recoil_value
+
+/obj/item/weapon/gun/minigun/toggle_burst()
+	usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -212,549 +119,91 @@
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/nobugs
 	gun_skill_category = GUN_SKILL_FIREARMS
 
-/obj/item/ammo_magazine/rocket/nobugs
-	name = "\improper BUG ROCKER rocket tube"
-	desc = "Where did this come from? <b>NO BUGS</b>"
-	default_ammo = /datum/ammo/rocket/nobugs
-	caliber = "toy rocket"
-
-/obj/item/ammo_magazine/internal/launcher/rocket/nobugs
-	default_ammo = /datum/ammo/rocket/nobugs
-	gun_type = /obj/item/weapon/gun/launcher/rocket/nobugs
-
-/datum/ammo/rocket/nobugs
-	name = "\improper NO BUGS rocket"
-	damage = 1
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		M << "<font size=6 color=red>NO BUGS</font>"
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		return
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		return
-
-	do_at_max_range(obj/item/projectile/P)
-		return
-
-//TODO Convert to config values. Make sure ammo takes care of all the effects. Make sure that attached flamers work on the same principle.
-//-------------------------------------------------------
-//Flame thrower.
-
-/obj/item/ammo_magazine/flamer_tank
-	name = "incinerator tank"
-	desc = "A fuel tank of usually Ultra Thick Napthal Fuel,a sticky combustable liquid chemical, for use in the M240 incinerator unit. Handle with care."
-	icon_state = "flametank"
-	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
-	max_rounds = 60 //Per turf.
-	current_rounds = 60
-	w_class = 3.0 //making sure you can't sneak this onto your belt.
-	gun_type = /obj/item/weapon/gun/flamer
-	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
-	flags_magazine = NOFLAGS
-
-	//TODO Change this.
-	afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
-		if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-			var/obj/structure/reagent_dispensers/fueltank/FT = target
-			if(current_rounds)
-				user << "<span class='warning'>You can't mix fuel mixtures!</span>"
-				return
-			var/fuel_available = FT.reagents.get_reagent_amount("fuel") < max_rounds ? FT.reagents.get_reagent_amount("fuel") : max_rounds
-			if(!fuel_available)
-				user << "<span class='warning'>[FT] is empty!</span>"
-				return
-
-			FT.reagents.remove_reagent("fuel", fuel_available)
-			current_rounds = fuel_available
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			caliber = "Fuel"
-			user << "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>"
-			update_icon()
-
-		else
-			..()
-
-	update_icon() //keep this simple.
-		icon_state = "flametank"
-
-/obj/item/ammo_magazine/flamer_tank/large	// Extra thicc tank
-	name = "large incinerator tank"
-	desc = "A large fuel tank of Ultra Thick Napthal Fuel,a sticky combustable liquid chemical, for use in the M240-T incinerator unit. Handle with care."
-	icon_state = "flametank_large"
-	max_rounds = 100
-	current_rounds = 100
-	gun_type = /obj/item/weapon/gun/flamer/M240T
-
-/obj/item/ammo_magazine/flamer_tank/large/B
-	name = "large incinerator tank (B)"
-	desc = "A large fuel tank of Ultra Thick Napthal Fuel type B,a wide-spreading sticky combustable liquid chemical, for use in the M240-T incinerator unit. Handle with care."
-	icon_state = "flametank_large_green"
-	caliber = "Napalm B"
-
-/obj/item/ammo_magazine/flamer_tank/large/X
-	name = "large incinerator tank (X)"
-	desc = "A large fuel tank of Ultra Thick Napthal Fuel type X,a sticky combustable liquid chemical that burns extremely hot, for use in the M240-T incinerator unit. Handle with care."
-	icon_state = "flametank_large_blue"
-	caliber = "Napalm X"
 
 
-/obj/item/weapon/gun/flamer/M240T
-	name = "\improper M240-T incinerator unit"
-	desc = "An improved version of the M240A1 incenerator unit, the M240-T model is capable of dispersing a larger variety of fuel types."
-	current_mag = /obj/item/ammo_magazine/flamer_tank/large
+//Spike launcher
 
-/obj/item/weapon/gun/flamer/M240T/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(!magazine || !istype(magazine))
-		user << "<span class='warning'>That's not a magazine!</span>"
-		return
-
-	if(magazine.current_rounds <= 0)
-		user << "<span class='warning'>That [magazine.name] is empty!</span>"
-		return
-
-	if(!istype(src, magazine.gun_type))
-		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
-		return
-
-	if(!isnull(current_mag) && current_mag.loc == src)
-		user << "<span class='warning'>It's still got something loaded!</span>"
-		return
-
-	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
-				else
-					user << "<span class='warning'>Your reload was interrupted!</span>"
-					return
-			else replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-
-	update_icon()
-	return 1
-
-/obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
-	. = ..()
-	if(.)
-		if(!current_mag || !current_mag.current_rounds)
-			return
-
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_PYRO)
-			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-			return 0
-
-/*
-Just a minor area to layout my plan for this. It'll be more deadly with the ability to catch mobs on fire. It'll also have a function with two
-levels of heat generated by the fuel.
-*/
-
-/obj/item/weapon/gun/flamer
-	name = "\improper M240A1 incinerator unit"
-	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
-	origin_tech = "combat=4;materials=3"
-	icon_state = "m240"
-	item_state = "flamer"
-	flags_equip_slot = SLOT_BACK
-	w_class = 4
-	force = 15
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
-	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
-	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
-	current_mag = /obj/item/ammo_magazine/flamer_tank
-	var/max_range = 5
-	var/lit = 0 //Turn the flamer on/off
-
-	attachable_allowed = list( //give it some flexibility.
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness)
+/obj/item/weapon/gun/launcher/spike
+	name = "spike launcher"
+	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
+	icon = 'icons/obj/items/predator.dmi'
+	icon_state = "spikelauncher"
+	muzzle_flash = null // TO DO, add a decent one.
+	origin_tech = "combat=7;materials=7"
+	unacidable = 1
+	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
+	ammo = /datum/ammo/alloy_spike
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	w_class = 3 //Fits in yautja bags.
+	var/spikes = 12
+	var/max_spikes = 12
+	var/last_regen
 	flags_gun_features = GUN_UNUSUAL_DESIGN
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
-	New()
-		..()
-		fire_delay = config.max_fire_delay * 5
-		attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-
-	unique_action(mob/user)
-		toggle_flame(user)
-
-	examine(mob/user)
-		..()
-		user << "It's turned [lit? "on" : "off"]."
-
-/obj/item/weapon/gun/flamer/able_to_fire(mob/user)
+/obj/item/weapon/gun/launcher/spike/Dispose()
 	. = ..()
-	if(.)
-		if(!current_mag || !current_mag.current_rounds)
-			return
+	processing_objects.Remove(src)
 
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user,'sound/weapons/flipblade.ogg', 25, 1)
-	lit = !lit
+/obj/item/weapon/gun/launcher/spike/process()
+	if(spikes < max_spikes && world.time > last_regen + 100 && prob(70))
+		spikes++
+		last_regen = world.time
+		update_icon()
 
-	var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/gun.dmi', src, "+lit"))
-	I.pixel_x += 3
+/obj/item/weapon/gun/launcher/spike/New()
+	..()
+	processing_objects.Add(src)
+	last_regen = world.time
+	update_icon()
+	verbs -= /obj/item/weapon/gun/verb/field_strip //We don't want these to show since they're useless.
+	verbs -= /obj/item/weapon/gun/verb/toggle_burst
+	verbs -= /obj/item/weapon/gun/verb/empty_mag
+	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
-	if (lit)
-		overlays += I
-	else
-		overlays -= I
-		cdel(I)
+/obj/item/weapon/gun/launcher/spike/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
 
-/obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
-	set waitfor = 0
-	if(!able_to_fire(user)) return
-	var/turf/curloc = get_turf(user) //In case the target or we are expired.
-	var/turf/targloc = get_turf(target)
-	if (!targloc || !curloc) return //Something has gone wrong...
 
-	if(!lit)
-		user << "<span class='alert'>The weapon isn't lit</span>"
+/obj/item/weapon/gun/launcher/spike/examine(mob/user)
+	if(isYautja(user))
+		..()
+		user << "It currently has [spikes] / [max_spikes] spikes."
+	else user << "Looks like some kind of...mechanical donut."
+
+/obj/item/weapon/gun/launcher/spike/update_icon()
+	var/new_icon_state = spikes <=1 ? null : icon_state + "[round(spikes/4, 1)]"
+	update_special_overlay(new_icon_state)
+
+/obj/item/weapon/gun/launcher/spike/able_to_fire(mob/user)
+	if(!isYautja(user))
+		user << "<span class='warning'>You have no idea how this thing works!</span>"
 		return
 
-	if(!current_mag) return
-	if(current_mag.current_rounds <= 0)
-		click_empty(user)
-	else
-		unleash_flame(target, user)
+	return ..()
 
-/obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(!magazine || !istype(magazine))
-		user << "<span class='warning'>That's not a magazine!</span>"
-		return
+/obj/item/weapon/gun/launcher/spike/load_into_chamber()
+	if(spikes > 0)
+		in_chamber = create_bullet(ammo)
+		spikes--
+		return in_chamber
 
-	if(magazine.current_rounds <= 0)
-		user << "<span class='warning'>That [magazine.name] is empty!</span>"
-		return
-
-	if(!istype(src, magazine.gun_type))
-		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
-		return
-
-	if (istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
-		user << "<span class='warning'>That tank is too large for this model!</span>"
-		return
-
-	if(!isnull(current_mag) && current_mag.loc == src)
-		user << "<span class='warning'>It's still got something loaded!</span>"
-		return
-
-	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
-				else
-					user << "<span class='warning'>Your reload was interrupted!</span>"
-					return
-			else replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-
+/obj/item/weapon/gun/launcher/spike/reload_into_chamber()
 	update_icon()
 	return 1
 
-/obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
-	if(!current_mag) return //no magazine to unload
-	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
-		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
-	else user.put_in_hands(current_mag)
-
-	playsound(user, unload_sound, 25, 1)
-	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
-	"<span class='notice'>You unload [current_mag] from [src].</span>")
-	current_mag.update_icon()
-	current_mag = null
-
-	update_icon()
-
-/obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
-	set waitfor = 0
-	var/burnlevel
-	var/burntime
-	var/fire_color = "red"
-	switch(current_mag.caliber)
-		if("UT-Napthal Fuel") //This isn't actually Napalm actually
-			burnlevel = 24
-			burntime = 17
-			max_range = 5
-
-		// Area denial, light damage, large AOE, long burntime
-		if("Napalm B")
-			burnlevel = 10
-			burntime = 50
-			max_range = 4
-			playsound(user, fire_sound, 50, 1)
-			triangular_flame(target, user, burntime, burnlevel)
-			return
-
-		if("Napalm X") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 50
-			burntime = 40
-			max_range = 7
-			fire_color = "blue"
-		if("Fuel") //This is welding fuel and thus pretty weak. Not ment to be exactly used for flamers either.
-			burnlevel = 10
-			burntime = 10
-			max_range = 4
-		else return
-
-	var/list/turf/turfs = getline2(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/turf/T in turfs)
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if(T.density)
-			break
-		if(loc != user)
-			break
-		if(!current_mag || !current_mag.current_rounds)
-			break
-		if(distance > max_range)
-			break
-		if(prev_T && LinkBlocked(prev_T, T))
-			break
-		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, fire_color)
-		distance++
-		prev_T = T
-		sleep(1)
-
-/obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
-	if(!istype(T))
-		return
-
-	// No stacking flames
-	if (locate(/obj/flamer_fire) in T)
-		return
-
-	new /obj/flamer_fire(T, heat, burn, f_color)
-
-	// Melt a single layer of snow
-	if (istype(T, /turf/unsimulated/floor/snow))
-		var/turf/unsimulated/floor/snow/S = T
-
-		if (S.slayer > 0)
-			S.slayer -= 1
-			S.update_icon(1, 0)
-
-	for(var/mob/living/M in T) //Deal bonus damage if someone's caught directly in initial stream
-		if(M.stat == DEAD)		continue
-
-		if(isXeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune) 	continue
-		else if(ishuman(M))
-			var/mob/living/carbon/human/H = M //fixed :s
-
-			if(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
-					H.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with \a <b>[name]</b> in [get_area(user)]."
-					user.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with \a <b>[name]</b> in [get_area(user)]."
-					msg_admin_ff("[user] ([user.ckey]) shot [H] ([H.ckey]) with \a [name] in [get_area(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>) (<a href='?priv_msg=\ref[user.client]'>PM</a>)")
-				else
-					H.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with \a <b>[name]</b> in [get_area(user)]."
-					user.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[H]/[H.ckey]</b> with \a <b>[name]</b> in [get_area(user)]."
-					msg_admin_attack("[user] ([user.ckey]) shot [H] ([H.ckey]) with \a [name] in [get_area(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire)) continue
-
-		M.adjust_fire_stacks(rand(5,burn*2))
-		M.IgniteMob()
-		M.adjustFireLoss(rand(burn,(burn*2))) // Make it so its the amount of heat or twice it for the initial blast.
-		M << "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!"
-
-/obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
-	set waitfor = 0
-
-	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline2(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/turf/T in turfs)
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if(T.density)
-			break
-		if(loc != user)
-			break
-		if(!current_mag || !current_mag.current_rounds)
-			break
-		if(distance > max_range)
-			break
-		if(prev_T && LinkBlocked(prev_T, T))
-			break
-		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, "green")
-		prev_T = T
-		sleep(1)
-
-		var/list/turf/right = list()
-		var/list/turf/left = list()
-		var/turf/right_turf = T
-		var/turf/left_turf = T
-		var/right_dir = turn(unleash_dir, 90)
-		var/left_dir = turn(unleash_dir, -90)
-		for (var/i = 0, i < distance - 1, i++)
-			right_turf = get_step(right_turf, right_dir)
-			right += right_turf
-			left_turf = get_step(left_turf, left_dir)
-			left += left_turf
-
-		var/turf/prev_R = T
-		for (var/turf/R in right)
-
-			if (R.density)
-				break
-			if(prev_R && LinkBlocked(prev_R, R))
-				break
-
-			flame_turf(R, user, burntime, burnlevel, "green")
-			prev_R = R
-			sleep(1)
-
-		var/turf/prev_L = T
-		for (var/turf/L in left)
-			if (L.density)
-				break
-			if(prev_L && LinkBlocked(prev_L, L))  break
-
-			flame_turf(L, user, burntime, burnlevel, "green")
-			prev_L = L
-			sleep(1)
-
-		distance++
+/obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+	cdel(projectile_to_fire)
+	if(refund) spikes++
+	return 1
 
 
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//Time to redo part of abby's code.
-//Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
-/obj/flamer_fire
-	name = "fire"
-	desc = "Ouch!"
-	anchored = 1
-	mouse_opacity = 0
-	icon = 'icons/effects/fire.dmi'
-	icon_state = "red_2"
-	layer = BELOW_OBJ_LAYER
-	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
-	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
-	var/flame_color = "red"
-
-/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color)
-	..()
-	if (f_color)
-		flame_color = f_color
-
-	icon_state = "[flame_color]_2"
-	if(fire_lvl) firelevel = fire_lvl
-	if(burn_lvl) burnlevel = burn_lvl
-	processing_objects.Add(src)
-
-/obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
-	if(istype(M))
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire))
-				H.show_message(text("Your suit protects you from the flames."),1)
-				H.adjustFireLoss(burnlevel*0.25) //Does small burn damage to a person wearing one of the suits.
-				return
-		if(isXeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune) 	return
-		M.adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-		if (prob(firelevel))
-			M.IgniteMob()
-
-		//M.adjustFireLoss(rand(10,burnlevel)) //This makes fire stronk.
-		M << "<span class='danger'>You are burned!</span>"
-		if(isXeno(M)) M.updatehealth()
-
-/obj/flamer_fire/process()
-	var/turf/T = loc
-	firelevel = max(0, firelevel)
-	if(!istype(T)) //Is it a valid turf? Has to be on a floor
-		processing_objects -= src
-		cdel(src)
-		return
-	if(burnlevel < 15)
-		color = "#c1c1c1" //make it darker to make show its weaker.
-	switch(firelevel)
-		if(1 to 9)
-			icon_state = "[flame_color]_1"
-			SetLuminosity(2)
-		if(10 to 25)
-			icon_state = "[flame_color]_2"
-			SetLuminosity(4)
-		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
-			icon_state = "[flame_color]_3"
-			SetLuminosity(6)
-		else
-			SetLuminosity(0)
-			processing_objects.Remove(src)
-			cdel(src)
-			return
-	var/j = 0
-	for(var/i in loc)
-		if(++j >= 11) break
-		if(isliving(i))
-			var/mob/living/I = i
-			if(istype(I,/mob/living/carbon/human))
-				var/mob/living/carbon/human/M = I
-				if(istype(M.wear_suit, /obj/item/clothing/suit/fire) || istype(M.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
-					M.show_message(text("Your suit protects you from the flames."),1)
-					M.adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
-					continue
-			if(istype(I,/mob/living/carbon/Xenomorph/Queen))
-				var/mob/living/carbon/Xenomorph/Queen/X = I
-				X.show_message(text("Your extra-thick exoskeleton protects you from the flames."),1)
-				continue
-			if(istype(I,/mob/living/carbon/Xenomorph/Ravager))
-				if(!I.stat)
-					var/mob/living/carbon/Xenomorph/Ravager/X = I
-					X.plasma_stored = X.plasma_max
-					X.usedcharge = 0 //Reset charge cooldown
-					X.show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
-					if(rand(1,100) < 70) X.emote("roar")
-				continue
-			I.adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-			if(prob(firelevel)) I.IgniteMob()
-			//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
-			I.show_message(text("<span class='warning'>You are burned!</span>"),1)
-			if(isXeno(I)) //Have no fucken idea why the Xeno thing was there twice.
-				var/mob/living/carbon/Xenomorph/X = I
-				X.updatehealth()
-		if(istype(i, /obj/))
-			var/obj/O = i
-			O.flamer_fire_act()
-
-	//This has been made a simple loop, for the most part flamer_fire_act() just does return, but for specific items it'll cause other effects.
-	firelevel -= 2 //reduce the intensity by 2 per tick
-	return
-
-///obj/flamer_fire/napalm_b
-
-
-///obj/flamer_fire/napalm_x
 
 
 //Syringe Gun

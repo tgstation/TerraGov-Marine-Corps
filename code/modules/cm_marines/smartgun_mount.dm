@@ -268,12 +268,12 @@
 		processing_objects.Remove(src)
 		. = ..()
 
-/obj/machinery/m56d_hmg/examine(mob/user as mob) //Let us see how much ammo we got in this thing.
+/obj/machinery/m56d_hmg/examine(mob/user) //Let us see how much ammo we got in this thing.
 	..()
 	if(rounds)
-		usr << "It has [rounds] out of 700."
+		user << "It has [rounds] round\s out of [rounds_max]."
 	else
-		usr << "It seems be lacking ammo"
+		user << "It seems to be lacking ammo"
 
 /obj/machinery/m56d_hmg/update_icon() //Lets generate the icon based on how much ammo it has.
 	if(!rounds)
@@ -425,7 +425,7 @@
 	var/scatter_chance = 5
 	if(burst_fire) scatter_chance = 10 //Make this sucker more accurate than the actual Sentry, gives it a better role.
 
-	if(prob(scatter_chance))
+	if(prob(scatter_chance) && get_dist(T,U) > 2) //scatter at point blank could make us fire sideways.
 		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
 
 	if (!istype(T) || !istype(U))
@@ -474,27 +474,15 @@
 
 	if(mods["middle"] || mods["shift"] || mods["alt"] || mods["ctrl"])	return 0
 
-		// Ok this is the issue here. We need it to be capable of firing rounds at say maybe 160*
-		// So we gotta change this. We're going rely on inequalities since those are sorta better (no idea coding wise).
-		// The way I'm going to do it won't allow 180* fire since shooting sideways is dumb.
-		// But with this system we should be able to shoot anywhere in almost a 180* area, but not actually sideways.
-/*		var/dx = target.x - x
-		var/dy = target.y - y */
-	var/direct
-		//There might be a better way to do this, but god knows.
-		//It's also 12 AM.
 	var/angle = get_dir(src,target)
-	if(dir == NORTH && (angle == NORTHEAST || angle == NORTHWEST || angle == NORTH))
-		direct = NORTH
-	if(dir == SOUTH && (angle == SOUTHEAST || angle == SOUTHWEST || angle == SOUTH))
-		direct = SOUTH
-	if(dir == EAST && (angle == NORTHEAST || angle == SOUTHEAST || angle == EAST))
-		direct = EAST
-	if(dir == WEST && (angle == NORTHWEST || angle == SOUTHWEST || angle == WEST))
-		direct = WEST
+	//we can only fire in a 90 degree cone
+	if((dir & angle) && target.loc != src.loc && target.loc != operator.loc)
 
-	if(direct == dir && target.loc != src.loc && target.loc != operator.loc)
-		process_shot()
+		if(!rounds)
+			user << "<span class='warning'><b>*click*</b></span>"
+			playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
+		else
+			process_shot()
 		return 1
 
 	return 0
@@ -570,7 +558,7 @@
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		burst_fire = 0
 		return 1
-	..()
+	return ..()
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
 	name = "M56D Smartgun Nest"

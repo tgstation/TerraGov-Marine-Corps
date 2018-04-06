@@ -154,7 +154,7 @@
 
 	if(L)
 		if(mob.client)
-			if(mob.client.view != world.view) // If mob moves while zoomed in with device, unzoom them.
+			if(mob.client.view != world.view || mob.client.pixel_x || mob.client.pixel_y) // If mob moves while zoomed in with device, unzoom them.
 				for(var/obj/item/item in mob.contents)
 					if(item.zoom)
 						item.zoom(mob)

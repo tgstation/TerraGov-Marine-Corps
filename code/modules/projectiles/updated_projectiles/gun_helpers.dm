@@ -19,10 +19,8 @@ DEFINES in setup.dm, referenced here.
 #define GUN_BURST_ON			256
 #define GUN_BURST_FIRING		512
 #define GUN_FLASHLIGHT_ON		1024
-#define GUN_ON_MERCS			2048
-#define GUN_ON_RUSSIANS			4096
-#define GUN_WY_RESTRICTED		8192
-#define GUN_SPECIALIST			16384
+#define GUN_WY_RESTRICTED		2048
+#define GUN_SPECIALIST			4096
 
 	NOTES
 
@@ -105,8 +103,6 @@ DEFINES in setup.dm, referenced here.
 	Add ping for energy guns like the taser and plasma caster.
 	Move pred check for damage effects into the actual predator files instead of the usual.
 	Move the mind checks for damage and stun to actual files, or rework it somehow.
-	Make the following flags do something: GUN_ON_RUSSIANS GUN_ON_MERCS.
-	These two are for the distress weapon randomizier that was never implemented as far as I know,
 */
 
 //----------------------------------------------------------
@@ -308,7 +304,7 @@ should be alright.
 	if(istype(stock,A)) return 1
 
 /obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
-	if( !(attachment.type in attachable_allowed) )
+	if(attachable_allowed && !(attachment.type in attachable_allowed) )
 		user << "<span class='warning'>[attachment] doesn't fit on [src]!</span>"
 		return
 
