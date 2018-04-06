@@ -72,7 +72,16 @@
 				M << "<span class='alert'> -[html_encode(announcer)]</span>"
 
 /datum/announcement/minor/Message(message as text, message_title as text, var/to_xenos = 0)
-	world << "<b>[message]</b>"
+	for(var/mob/M in player_list)
+		if(!to_xenos)
+			if(isXeno(M) || has_species(M, "Zombie")) //we reuse to_xenos arg for zombies
+				continue
+			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
+				var/mob/living/carbon/human/H = M
+				if(H.mind && H.mind.special_role == "Survivor" && H.z != MAIN_SHIP_Z_LEVEL)
+					continue
+		if(!istype(M,/mob/new_player) && !isdeaf(M))
+			M << "<b>[message]</b>"
 
 /datum/announcement/priority/Message(message as text, message_title as text, var/to_xenos = 0)
 	world << "<h1 class='alert'>[message_title]</h1>"

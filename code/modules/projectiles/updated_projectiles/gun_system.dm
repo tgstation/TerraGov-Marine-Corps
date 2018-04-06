@@ -85,7 +85,7 @@
 
 	New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 		..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
-		base_gun_icon = initial(icon_state)
+		base_gun_icon = icon_state
 		attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 		if(current_mag)
 			if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.

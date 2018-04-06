@@ -77,6 +77,9 @@
 		if(isXeno(pulled))
 			X << "<span class='warning'>That wouldn't taste very good.</span>"
 			return 0
+		if(pulled.buckled)
+			X << "<span class='warning'>[pulled] is buckled to something.</span>"
+			return 0
 		if(pulled.stat == DEAD)
 			X << "<span class='warning'>Ew, [pulled] is already starting to rot.</span>"
 			return 0
@@ -93,7 +96,7 @@
 		X.visible_message("<span class='danger'>[X] starts to devour [pulled]!</span>", \
 		"<span class='danger'>You start to devour [pulled]!</span>", null, 5)
 		if(do_after(X, 50, FALSE, 5, BUSY_ICON_HOSTILE))
-			if(X.pulling == pulled && pulled.stat != DEAD && !X.stomach_contents.len) //make sure you've still got them in your claws, and alive
+			if(X.pulling == pulled && !pulled.buckled && pulled.stat != DEAD && !X.stomach_contents.len) //make sure you've still got them in your claws, and alive
 				X.visible_message("<span class='warning'>[X] devours [pulled]!</span>", \
 				"<span class='warning'>You devour [pulled]!</span>", null, 5)
 
