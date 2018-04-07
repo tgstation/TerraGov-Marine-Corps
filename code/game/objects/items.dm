@@ -232,34 +232,33 @@ cases. Override_icon_state should be a list.*/
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/storage))
 		var/obj/item/storage/S = W
-		if(S.use_to_pickup)
+		if(S.use_to_pickup && isturf(loc))
 			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
-				if(isturf(src.loc))
-					var/list/rejections = list()
-					var/success = 0
-					var/failure = 0
+				var/list/rejections = list()
+				var/success = 0
+				var/failure = 0
 
-					for(var/obj/item/I in src.loc)
-						if(I.type in rejections) // To limit bag spamming: any given type only complains once
-							continue
-						if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
-							rejections += I.type	// therefore full bags are still a little spammy
-							failure = 1
-							continue
-						success = 1
-						S.handle_item_insertion(I, 1)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
-					if(success && !failure)
-						user << "<span class='notice'>You put everything in [S].</span>"
-					else if(success)
-						user << "<span class='notice'>You put some things in [S].</span>"
-					else
-						user << "<span class='notice'>You fail to pick anything up with [S].</span>"
+				for(var/obj/item/I in src.loc)
+					if(I.type in rejections) // To limit bag spamming: any given type only complains once
+						continue
+					if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
+						rejections += I.type	// therefore full bags are still a little spammy
+						failure = 1
+						continue
+					success = 1
+					S.handle_item_insertion(I, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+				if(success && !failure)
+					user << "<span class='notice'>You put everything in [S].</span>"
+				else if(success)
+					user << "<span class='notice'>You put some things in [S].</span>"
+				else
+					user << "<span class='notice'>You fail to pick anything up with [S].</span>"
 
 			else if(S.can_be_inserted(src))
-				S.handle_item_insertion(src)
+				S.handle_item_insertion(src, FALSE, user)
 
 	return
 
