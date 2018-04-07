@@ -703,6 +703,7 @@ datum/game_mode/proc/initialize_special_clamps()
 					/obj/item/attachable/heavy_barrel = round(scale * 5),
 
 					/obj/item/attachable/scope = round(scale * 5),
+					/obj/item/attachable/scope/mini = round(scale * 5),
 					/obj/item/attachable/flashlight = round(scale * 25),
 					/obj/item/attachable/reddot = round(scale * 20),
 					/obj/item/attachable/magnetic_harness = round(scale * 15),

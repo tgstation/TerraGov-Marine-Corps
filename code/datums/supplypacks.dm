@@ -370,6 +370,8 @@ ATTACHMENTS
 					/obj/item/attachable/reddot,
 					/obj/item/attachable/scope,
 					/obj/item/attachable/scope,
+					/obj/item/attachable/scope/mini,
+					/obj/item/attachable/scope/mini,
 					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/quickfire,
@@ -406,6 +408,17 @@ ATTACHMENTS
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "scope attachment crate"
+	group = "Attachments"
+
+/datum/supply_packs/rail_miniscope
+	name = "mini railscope attachment crate (x2)"
+	contains = list(
+					/obj/item/attachable/scope/mini,
+					/obj/item/attachable/scope/mini,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate
+	containername = "mini scope attachment crate"
 	group = "Attachments"
 
 /datum/supply_packs/rail_magneticharness

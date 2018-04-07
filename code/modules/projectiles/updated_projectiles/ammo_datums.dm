@@ -115,6 +115,7 @@
 			var/obj/item/projectile/P = rnew(/obj/item/projectile, original_P.shot_from)
 			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			P.original = new_target
+			P.accuracy = round(P.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
 			P.fire_at(new_target,original_P.firer,original_P.shot_from,P.ammo.max_range,P.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
