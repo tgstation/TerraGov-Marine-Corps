@@ -792,8 +792,12 @@ and you're good to go.
 
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.4)
-		gun_scatter += 50
+		if(gun_skill_category == GUN_SKILL_PISTOLS)
+			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.3)
+			gun_scatter += 30
+		else
+			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.4)
+			gun_scatter += 50
 
 	// Apply any skill-based bonuses to accuracy
 	if(user && user.mind && user.mind.cm_skills)

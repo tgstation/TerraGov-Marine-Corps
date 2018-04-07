@@ -323,6 +323,7 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	silence_mod = 1
 	pixel_shift_y = 16
+	attach_icon = "suppressor"
 
 	New()
 		..()
@@ -330,7 +331,7 @@ Defined in conflicts.dm of the #defines folder.
 		damage_mod = -config.min_hit_damage_mult
 		recoil_mod = -config.min_recoil_value
 		scatter_mod = -config.min_scatter_value
-		icon_state = pick("suppressor","suppressor2")
+		attach_icon = pick("suppressor","suppressor2")
 
 		recoil_unwielded_mod = -config.min_recoil_value
 		scatter_unwielded_mod = -config.min_scatter_value
@@ -340,6 +341,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "bayonet"
 	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent."
 	icon_state = "bayonet"
+	attach_icon = "bayonet_a"
 	force = 20
 	throwforce = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -375,6 +377,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A lengthened barrel allows for greater accuracy, particularly at long range.\nHowever, natural resistance also slows the bullet, leading to slightly reduced damage."
 	slot = "muzzle"
 	icon_state = "ebarrel"
+	attach_icon = "ebarrel_a"
 
 	New()
 		..()
@@ -389,6 +392,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
 	slot = "muzzle"
 	icon_state = "hbarrel"
+	attach_icon = "hbarrel"
 
 	New()
 		..()
@@ -404,6 +408,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. \nIncreases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
 	slot = "muzzle"
 	icon_state = "comp"
+	attach_icon = "comp_a"
 	pixel_shift_x = 17
 
 	New()
@@ -462,6 +467,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "red-dot sight"
 	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
+	attach_icon = "reddot_a"
 	slot = "rail"
 
 	New()
@@ -475,6 +481,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "rail flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
+	attach_icon = "flashlight_a"
 	light_mod = 7
 	slot = "rail"
 	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE
@@ -509,6 +516,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. \nHowever, it also reduces accuracy and the number of bullets fired on burst."
 	slot = "rail"
 	icon_state = "autoloader"
+	attach_icon = "autoloader_a"
 
 	New()
 		..()
@@ -524,6 +532,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "magnetic harness"
 	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a USCM armor."
 	icon_state = "magnetic"
+	attach_icon = "magnetic_a"
 	slot = "rail"
 	pixel_shift_x = 13
 
@@ -537,6 +546,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope
 	name = "rail scope"
 	icon_state = "sniperscope"
+	attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
 	aim_speed_mod = SLOWDOWN_ADS_SCOPE //Extra slowdown when aiming
@@ -564,6 +574,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
 	icon_state = "miniscope"
+	attach_icon = "miniscope_a"
 	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
 	zoom_offset = 5
@@ -649,6 +660,7 @@ Defined in conflicts.dm of the #defines folder.
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "riflestock"
+	attach_icon = "riflestock_a"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
 
@@ -667,6 +679,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper M41A marksman stock"
 	icon_state = "m4markstock"
+	attach_icon = "m4markstock"
 	flags_attach_features = ATTACH_PASSIVE
 
 
@@ -677,6 +690,7 @@ Defined in conflicts.dm of the #defines folder.
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "smgstock"
+	attach_icon = "smgstock_a"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
 
@@ -727,6 +741,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
 	icon_state = "grenade"
+	attach_icon = "grenade_a"
 	w_class = 4
 	current_rounds = 0
 	max_rounds = 2
@@ -795,6 +810,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/flamer
 	name = "mini flamethrower"
 	icon_state = "flamethrower"
+	attach_icon = "flamethrower_a"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
 	w_class = 4
 	current_rounds = 20
@@ -894,6 +910,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/shotgun
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
+	attach_icon = "masterkey_a"
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness."
 	w_class = 4
 	max_rounds = 3
@@ -940,6 +957,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "vertical grip"
 	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter, especially during burst fire. \nHowever, it also increases weapon size."
 	icon_state = "verticalgrip"
+	attach_icon = "verticalgrip_a"
 	wield_delay_mod = WIELD_DELAY_FAST
 	w_class_mod = 1
 	slot = "under"
@@ -960,6 +978,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "angled grip"
 	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size."
 	icon_state = "angledgrip"
+	attach_icon = "angledgrip_a"
 	wield_delay_mod = -WIELD_DELAY_FAST
 	w_class_mod = 1
 	slot = "under"
@@ -977,6 +996,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "gyroscopic stabilizer"
 	desc = "A set of weights and balances to stabilize the weapon when fired with one hand. Slightly decrease firing speed."
 	icon_state = "gyro"
+	attach_icon = "gyro_a"
 	slot = "under"
 
 	New()
@@ -992,6 +1012,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "laser sight"
 	desc = "A laser sight placed under the barrel. Increases accuracy, and decrease scatter when firing one-handed."
 	icon_state = "lasersight"
+	attach_icon = "lasersight_a"
 	slot = "under"
 	pixel_shift_x = 17
 	pixel_shift_y = 17
@@ -1010,6 +1031,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "bipod"
 	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
 	icon_state = "bipod"
+	attach_icon = "bipod_a"
 	slot = "under"
 	w_class_mod = 2
 	melee_mod = -10
@@ -1031,6 +1053,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "burst fire assembly"
 	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nJust don't mind the increased scatter."
 	icon_state = "rapidfire"
+	attach_icon = "rapidfire_a"
 	slot = "under"
 
 	New()
