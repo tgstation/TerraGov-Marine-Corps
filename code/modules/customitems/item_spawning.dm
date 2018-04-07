@@ -48,19 +48,17 @@
 				else if(istype(Item,/obj/item/storage/belt))
 					var/obj/item/storage/belt/I = Item
 					if(istype(M.belt,/obj/item/storage/belt))
-						for(var/obj/item/storage/belt/B in M)
-							cdel(B)
-							M.belt=null
+						cdel(M.belt)
+						M.belt=null
 						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
 						break
 					if(istype(M.belt,/obj/item/device/pda))
-						for(var/obj/item/device/pda/Pda in M)
-							M.belt=null
-							M.equip_if_possible(Pda, WEAR_L_STORE, 0)
+						M.equip_if_possible(M.belt, WEAR_L_STORE, 0)
+						M.belt=null
 						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
 				else
 					for(var/obj/item/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
-						if (S.handle_item_insertion(Item))
+						if (S.handle_item_insertion(Item, TRUE))
 							ok = 1
 							break
 

@@ -344,7 +344,7 @@
 				for(var/obj/item/I in M)
 					if(contents.len < storage_slots)
 						M.remove_from_storage(I)
-						handle_item_insertion(I, 1) //quiet insertion
+						handle_item_insertion(I, 1, user) //quiet insertion
 					else
 						break
 				playsound(user.loc, "rustle", 15, 1, 6)
