@@ -322,7 +322,7 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	silence_mod = 1
 	pixel_shift_y = 16
-	attach_icon = "suppressor"
+	attach_icon = "suppressor_a"
 
 	New()
 		..()
@@ -330,7 +330,7 @@ Defined in conflicts.dm of the #defines folder.
 		damage_mod = -config.min_hit_damage_mult
 		recoil_mod = -config.min_recoil_value
 		scatter_mod = -config.min_scatter_value
-		attach_icon = pick("suppressor","suppressor2")
+		attach_icon = pick("suppressor_a","suppressor2_a")
 
 		recoil_unwielded_mod = -config.min_recoil_value
 		scatter_unwielded_mod = -config.min_scatter_value
