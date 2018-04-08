@@ -197,7 +197,7 @@
 
 	New()
 		..()
-		accuracy_unwielded_mult += config.max_hit_accuracy_mult
+		accuracy_mult_unwielded += config.max_hit_accuracy_mult
 		fire_delay = config.high_fire_delay
 		verbs -= /obj/item/weapon/gun/verb/field_strip
 		verbs -= /obj/item/weapon/gun/verb/toggle_burst
