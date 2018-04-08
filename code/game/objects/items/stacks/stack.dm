@@ -191,7 +191,7 @@
 		return 0
 	amount -= used
 	if(amount <= 0)
-		if(usr)
+		if(usr && loc == usr)
 			usr.temp_drop_inv_item(src)
 		cdel(src)
 	return 1
@@ -206,18 +206,18 @@
 /obj/item/stack/proc/get_amount()
 	return amount
 
-/obj/item/stack/proc/add_to_stacks(mob/usr as mob)
+/obj/item/stack/proc/add_to_stacks(mob/user)
 	var/obj/item/stack/oldsrc = src
 	src = null
-	for (var/obj/item/stack/item in usr.loc)
+	for (var/obj/item/stack/item in user.loc)
 		if (item==oldsrc)
 			continue
 		if (!istype(item, oldsrc.type))
 			continue
 		if (item.amount>=item.max_amount)
 			continue
-		oldsrc.attackby(item, usr)
-		usr << "You add new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s."
+		oldsrc.attackby(item, user)
+		user << "You add new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s."
 		if(!oldsrc)
 			break
 
