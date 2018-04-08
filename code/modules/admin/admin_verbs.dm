@@ -74,7 +74,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/admin_force_ERT_shuttle,
 	/client/proc/cmd_admin_changekey,
 	// /client/proc/response_team, // Response Teams admin verb
-	// /client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
+	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes,
 	/datum/admins/proc/force_predator_round, //Force spawns a predator round.

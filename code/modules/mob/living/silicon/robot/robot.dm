@@ -174,19 +174,21 @@ var/list/robot_verbs_default = list(
 	switch(modtype)
 		if("Standard")
 			module = new /obj/item/circuitboard/robot_module/standard(src)
+			module.channels = list("Command" = 1, "MP" = 0, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 0, "MedSci" = 0, "Req" = 0 )
 			module_sprites["Default"] = "robot"
 			module_sprites["Droid"] = "droid"
 			module_sprites["Drone"] = "drone-standard"
 
 		if("Service")
 			module = new /obj/item/circuitboard/robot_module/butler(src)
+			module.channels = list("Command" = 1, "MP" = 0, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 0, "MedSci" = 0, "Req" = 0 )
 			module_sprites["Default"] = "Service2"
 			module_sprites["Rich"] = "maximillion"
 			module_sprites["Drone"] = "drone-service"
 
 		if("Medic")
 			module = new /obj/item/circuitboard/robot_module/medic(src)
-			module.channels = list("MedSci" = 1)
+			module.channels = list("Command" = 1, "MP" = 0, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 0, "MedSci" = 1, "Req" = 0 )
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
 			module_sprites["Standard"] = "surgeon"
@@ -196,7 +198,7 @@ var/list/robot_verbs_default = list(
 
 		if("Surgeon")
 			module = new /obj/item/circuitboard/robot_module/surgeon(src)
-			module.channels = list("MedSci" = 1)
+			module.channels = list("Command" = 1, "MP" = 0, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 0, "MedSci" = 1, "Req" = 0 )
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Medical")
 			module_sprites["Standard"] = "surgeon"
@@ -206,14 +208,14 @@ var/list/robot_verbs_default = list(
 
 		if("Security")
 			module = new /obj/item/circuitboard/robot_module/security(src)
-			module.channels = list("MP" = 1)
+			module.channels = list("Command" = 1, "MP" = 1, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 0, "MedSci" = 0, "Req" = 0 )
 			module_sprites["Bloodhound"] = "bloodhound"
 			module_sprites["Bloodhound - Treaded"] = "secborg+tread"
 			module_sprites["Drone"] = "drone-sec"
 
 		if("Engineering")
 			module = new /obj/item/circuitboard/robot_module/engineering(src)
-			module.channels = list("Engi" = 1)
+			module.channels = list("Command" = 1, "MP" = 0, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 1, "MedSci" = 0, "Req" = 0 )
 			if(camera && "Robots" in camera.network)
 				camera.network.Add("Engineering")
 			module_sprites["Landmate"] = "landmate"
@@ -222,6 +224,7 @@ var/list/robot_verbs_default = list(
 
 		if("Janitor")
 			module = new /obj/item/circuitboard/robot_module/janitor(src)
+			module.channels = list("Command" = 1, "MP" = 0, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 0, "MedSci" = 0, "Req" = 0 )
 			module_sprites["Mop Gear Rex"] = "mopgearrex"
 			module_sprites["Drone"] = "drone-janitor"
 

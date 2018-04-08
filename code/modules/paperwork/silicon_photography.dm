@@ -102,7 +102,7 @@
 
 /obj/item/device/camera/siliconcam/ai_camera/verb/take_image()
 	set category = "AI Commands"
-	set name = "Take Image"
+	set name = "Images - Snap"
 	set desc = "Takes an image"
 	set src in usr
 
@@ -110,7 +110,7 @@
 
 /obj/item/device/camera/siliconcam/ai_camera/verb/view_images()
 	set category = "AI Commands"
-	set name = "View Images"
+	set name = "Images - View"
 	set desc = "View images"
 	set src in usr
 
@@ -118,7 +118,7 @@
 
 /obj/item/device/camera/siliconcam/ai_camera/verb/delete_images()
 	set category = "AI Commands"
-	set name = "Delete Image"
+	set name = "Images - Delete"
 	set desc = "Delete image"
 	set src in usr
 
@@ -126,7 +126,7 @@
 
 /obj/item/device/camera/siliconcam/robot_camera/verb/take_image()
 	set category ="Robot Commands"
-	set name = "Take Image"
+	set name = "Images - Snap"
 	set desc = "Takes an image"
 	set src in usr
 
@@ -134,7 +134,7 @@
 
 /obj/item/device/camera/siliconcam/robot_camera/verb/view_images()
 	set category ="Robot Commands"
-	set name = "View Images"
+	set name = "Images - View"
 	set desc = "View images"
 	set src in usr
 
@@ -142,7 +142,7 @@
 
 /obj/item/device/camera/siliconcam/robot_camera/verb/delete_images()
 	set category = "Robot Commands"
-	set name = "Delete Image"
+	set name = "Images - Delete"
 	set desc = "Delete a local image"
 	set src in usr
 
