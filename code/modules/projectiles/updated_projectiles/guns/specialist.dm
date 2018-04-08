@@ -37,7 +37,8 @@
 		..()
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		var/obj/item/attachable/scope/S = new(src)
-		S.icon_state = "" //Let's make it invisible. The sprite already has one.
+		S.icon_state = ""
+		S.attach_icon = "" //Let's make it invisible. The sprite already has one.
 		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
@@ -77,6 +78,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	var/obj/item/attachable/scope/S = new(src)
 	S.icon_state = "pmcscope"
+	S.attach_icon = "pmcscope"
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)
 	var/obj/item/attachable/sniperbarrel/Q = new(src)
@@ -170,6 +172,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	var/obj/item/attachable/scope/S = new(src)
 	S.icon_state = null // the gun's sprite already shows a scope
+	S.attach_icon = null
 	S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
 	S.Attach(src)
 	var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.
