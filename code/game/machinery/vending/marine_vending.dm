@@ -368,7 +368,7 @@
 						/obj/item/circuitboard/apc = 10,
 						/obj/item/circuitboard/airalarm = 10,
 						/obj/item/cell/high = 10,
-						/obj/item/tool/etool = 3,
+						/obj/item/tool/shovel/etool = 3,
 						/obj/item/storage/pouch/explosive = 3,
 						/obj/item/storage/pouch/construction = 3,
 						/obj/item/storage/pouch/tools = 3,

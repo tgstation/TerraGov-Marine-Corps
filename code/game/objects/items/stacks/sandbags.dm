@@ -17,19 +17,27 @@
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/tool/etool))
-		var/obj/item/tool/etool/ET = W
-		if(ET.has_dirt)
+	if (istype(W, /obj/item/tool/shovel))
+		var/obj/item/tool/shovel/ET = W
+		if(ET.dirt_amt)
+			ET.dirt_amt -= 1
+			ET.update_icon()
 			var/obj/item/stack/sandbags/new_bags = new(user.loc)
 			new_bags.add_to_stacks(user)
 			var/obj/item/stack/sandbags_empty/E = src
 			src = null
 			var/replace = (user.get_inactive_hand() == E)
+			playsound(user.loc, "rustle", 30, 1, 6)
 			E.use(1)
-			ET.has_dirt = 0
-			ET.update_icon()
 			if(!E && replace)
 				user.put_in_hands(new_bags)
+
+	else if (istype(W, /obj/item/stack/snow))
+		var/obj/item/stack/S = W
+		var/obj/item/stack/sandbags/new_bags = new(user.loc)
+		new_bags.add_to_stacks(user)
+		S.use(1)
+		use(1)
 	else
 		return ..()
 
@@ -58,38 +66,34 @@
 		user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
-
 	//Using same safeties as other constructions
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-		if(O.density && !istype(O, /obj/structure/barricade/sandbags) && !(O.flags_atom & ON_BORDER))
-			usr << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
-			return
-		if((O.flags_atom & ON_BORDER) && O.dir == user.dir)
-			usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
-			return
+		if(O.density)
+			if(O.flags_atom & ON_BORDER)
+				if(O.dir == user.dir)
+					user << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
+					return
+			else
+				user << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
+				return
 
-	if(!in_use)
-		if(amount < 5)
-			user << "<span class='warning'>You need at least five [name] to do this.</span>"
-			return
-		user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
-		"<span class='notice'>You start assembling a sandbag barricade.</span>")
-		in_use = 1
-		if(!do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
-			in_use = 0
-			return
-		for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-			if(O.density && !istype(O, /obj/structure/barricade/sandbags) && !(O.flags_atom & ON_BORDER))
-				usr << "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>"
+	if(user.action_busy)
+		return
+	if(amount < 5)
+		user << "<span class='warning'>You need at least five [name] to do this.</span>"
+		return
+	user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
+	"<span class='notice'>You start assembling a sandbag barricade.</span>")
+
+	if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		return
+	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
+		if(O.density)
+			if(!(O.flags_atom & ON_BORDER) || O.dir == user.dir)
 				return
-			if((O.flags_atom & ON_BORDER) && O.dir == user.dir)
-				usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
-				return
-		var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
-		user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
-		"<span class='notice'>You assemble a sandbag barricade.</span>")
-		SB.dir = usr.dir
-		in_use = 0
-		SB.add_fingerprint(usr)
-		use(5)
-	return
+	var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
+	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
+	"<span class='notice'>You assemble a sandbag barricade.</span>")
+	SB.dir = user.dir
+	SB.add_fingerprint(usr)
+	use(5)

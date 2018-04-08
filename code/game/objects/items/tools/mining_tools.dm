@@ -101,28 +101,3 @@
 
 
 
-/*****************************Shovel********************************/
-
-/obj/item/tool/shovel
-	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "shovel"
-	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_WAIST
-	force = 8.0
-	throwforce = 4.0
-	item_state = "shovel"
-	w_class = 3.0
-	matter = list("metal" = 50)
-	origin_tech = "materials=1;engineering=1"
-	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
-
-/obj/item/tool/shovel/spade
-	name = "spade"
-	desc = "A small tool for digging and moving dirt."
-	icon_state = "spade"
-	item_state = "spade"
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0

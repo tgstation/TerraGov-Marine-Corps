@@ -7,6 +7,7 @@
 	density = 1
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	layer = BELOW_OBJ_LAYER
+	flags_atom = ON_BORDER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
@@ -81,7 +82,7 @@
 				return 0
 		return 1
 
-	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir))
+	if(get_dir(loc, target) == dir)
 		return 0
 	else
 		return 1
@@ -101,7 +102,7 @@
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return 1
 
-	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir)
+	if(get_dir(loc, target) == dir)
 		return 0
 	else
 		return 1
@@ -199,18 +200,16 @@
 			icon_state = "[barricade_type]_[damage_state]"
 		else
 			icon_state = "[barricade_type]"
-		if(flags_atom & ON_BORDER)
-			switch(dir)
-				if(SOUTH) layer = ABOVE_MOB_LAYER
-				if(NORTH) layer = initial(layer) - 0.01
-				else layer = initial(layer)
+		switch(dir)
+			if(SOUTH) layer = ABOVE_MOB_LAYER
+			if(NORTH) layer = initial(layer) - 0.01
+			else layer = initial(layer)
 	else
 		if(can_change_dmg_state)
 			icon_state = "[barricade_type]_closed_[damage_state]"
 		else
 			icon_state = "[barricade_type]_closed"
-		if(flags_atom & ON_BORDER)
-			layer = OBJ_LAYER
+		layer = OBJ_LAYER
 
 /obj/structure/barricade/proc/update_overlay()
 	if(!is_wired)
@@ -292,30 +291,37 @@
 	barricade_type = "snow"
 	health = 75 //Actual health depends on snow layer
 	maxhealth = 75
+	stack_type = /obj/item/stack/snow
+	stack_amount = 3
+	destroyed_stack_amount = 0
 	can_wire = 0
 
-//Item Attack
-/obj/structure/barricade/snow/attackby(obj/item/W as obj, mob/user as mob)
-	//Removing the barricades
-	if(istype(W, /obj/item/tool/snow_shovel))
-		var/obj/item/tool/snow_shovel/S = W
-		if(S.mode == 2)
-			if(user.action_busy)
-				user  << "\red You are already shoveling!"
-				return
-			user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
-			if(!do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("\red \The [user] decides not to remove \the [src] anymore.")
-				return
-			user.visible_message("\blue \The [user] removes \the [src].")
-			if(istype(loc, /turf/unsimulated/floor/snow)) //put the snow back on the turf
-				var/turf/unsimulated/floor/snow/T = loc
-				T.slayer = min(T.slayer + round(health/25), 3)
-				T.update_icon(1,0)
-			cdel(src)
-		return
+/obj/structure/barricade/snow/New(loc, direction)
+	if(direction)
+		dir = direction
+	..()
 
-	. = ..()
+
+
+//Item Attack
+/obj/structure/barricade/snow/attackby(obj/item/W, mob/user)
+	//Removing the barricades
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+		var/obj/item/tool/shovel/ET = W
+		if(ET.folded)
+			return
+		if(user.action_busy)
+			user  << "\red You are already shoveling!"
+			return
+		user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
+		if(!do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+			return
+		if(!ET.folded)
+			user.visible_message("\blue \The [user] removes \the [src].")
+			destroy(TRUE)
+		return
+	else
+		. = ..()
 
 /obj/structure/barricade/snow/hit_barricade(obj/item/I)
 	switch(I.damtype)
@@ -346,7 +352,6 @@
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
 	icon_state = "wooden"
-	flags_atom = ON_BORDER
 	health = 100
 	maxhealth = 100
 	layer = OBJ_LAYER
@@ -401,7 +406,6 @@
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
-	flags_atom = ON_BORDER
 	health = 200
 	maxhealth = 200
 	crusher_resistant = TRUE
@@ -501,7 +505,7 @@
 					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
 					return
 				for(var/obj/structure/barricade/B in loc)
-					if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
+					if(B != src && B.dir == dir)
 						user << "<span class='warning'>There's already a barricade here.</span>"
 						return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -558,7 +562,6 @@
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
-	flags_atom = ON_BORDER
 	health = 600
 	maxhealth = 600
 	crusher_resistant = TRUE
@@ -631,7 +634,7 @@
 					return
 
 				for(var/obj/structure/barricade/B in loc)
-					if(B != src && (B.dir == dir || !(B.flags_atom & ON_BORDER)))
+					if(B != src && B.dir == dir)
 						user << "<span class='warning'>There's already a barricade here.</span>"
 						return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
@@ -751,7 +754,6 @@
 	name = "sandbag barricade"
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
-	flags_atom = ON_BORDER
 	barricade_resistance = 15
 	health = 400
 	maxhealth = 400
@@ -760,27 +762,24 @@
 	barricade_type = "sandbag"
 	can_wire = 1
 
-	New(loc, dir)
-		..()
+/obj/structure/barricade/sandbags/New(loc, direction)
+	if(direction)
+		dir = direction
 
-		if(loc)
-			src.loc = loc
+	if(dir == SOUTH)
+		pixel_y = -7
+	else if(dir == NORTH)
+		pixel_y = 7
+	..()
 
-		if(dir)
-			src.dir = dir
-
-		if(src.dir == SOUTH)
-			pixel_y = -7
-		if(src.dir == NORTH)
-			pixel_y = 7
 
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/etool) && user.a_intent != "harm")
-		var/obj/item/tool/etool/ET = W
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+		var/obj/item/tool/shovel/ET = W
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 			"<span class='notice'>You start disassembling [src].</span>")
-			if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
 				destroy(TRUE)

@@ -398,7 +398,7 @@
 					"/obj/item/stack/sheet",
 					"/obj/item/stack/rods",
 					"/obj/item/stack/cable_coil",
-					"/obj/item/tool/etool",
+					"/obj/item/tool/shovel/etool",
 					"/obj/item/stack/sandbags_empty"
 					)
 
@@ -410,7 +410,7 @@
 	icon_state = "tools"
 	can_hold = list(
 					"/obj/item/tool/wirecutters",
-					"/obj/item/tool/etool",
+					"/obj/item/tool/shovel/etool",
 					"/obj/item/tool/screwdriver",
 					"/obj/item/tool/crowbar",
 					"/obj/item/tool/weldingtool",
