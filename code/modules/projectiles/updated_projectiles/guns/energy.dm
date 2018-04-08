@@ -72,6 +72,7 @@
 	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "plasmarifle"
+	item_state = "plasmarifle"
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
 	fire_sound = 'sound/weapons/pred_plasma_shot.ogg'
@@ -82,7 +83,7 @@
 	w_class = 5
 	var/charge_time = 0
 	var/last_regen = 0
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 /obj/item/weapon/gun/energy/plasmarifle/Dispose()
 	. = ..()
@@ -192,11 +193,11 @@
 	var/mode = 0
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_atom = FPRINT|CONDUCT|NOBLUDGEON|DELONDROP //Can't bludgeon with this.
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
 		..()
-		accuracy_mult += config.max_hit_accuracy_mult
+		accuracy_unwielded_mult += config.max_hit_accuracy_mult
 		fire_delay = config.high_fire_delay
 		verbs -= /obj/item/weapon/gun/verb/field_strip
 		verbs -= /obj/item/weapon/gun/verb/toggle_burst
