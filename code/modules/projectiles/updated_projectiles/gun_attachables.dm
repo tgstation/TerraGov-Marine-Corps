@@ -52,7 +52,6 @@ Defined in conflicts.dm of the #defines folder.
 	var/damage_mod 		= 0 //Modifer to the damage mult, works off a multiplier.
 	var/damage_falloff_mod = 0 //Modifier to damage falloff, works off a multiplier.
 	var/melee_mod 		= 0 //Changing to a flat number so this actually doesn't screw up the calculations.
-	var/w_class_mod 	= 0 //Modifier to weapon's weight class.
 	var/scatter_mod 	= 0 //Increases or decreases scatter chance.
 	var/scatter_unwielded_mod = 0 //same as above but for onehanded firing.
 	var/recoil_mod 		= 0 //If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
@@ -149,7 +148,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.accuracy_mult_unwielded += accuracy_unwielded_mod
 	G.damage_mult		+= damage_mod
 	G.damage_falloff_mult += damage_falloff_mod
-	G.w_class 			+= w_class_mod
+	G.w_class 			+= size_mod
 	G.scatter			+= scatter_mod
 	G.scatter_unwielded += scatter_unwielded_mod
 	G.fire_delay 		+= delay_mod
@@ -191,7 +190,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.accuracy_mult_unwielded -= accuracy_unwielded_mod
 	G.damage_mult		-= damage_mod
 	G.damage_falloff_mult -= damage_falloff_mod
-	G.w_class 			-= w_class_mod
+	G.w_class 			-= size_mod
 	G.scatter			-= scatter_mod
 	G.scatter_unwielded -= scatter_unwielded_mod
 	G.fire_delay 		-= delay_mod
@@ -392,7 +391,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
 	slot = "muzzle"
 	icon_state = "hbarrel"
-	attach_icon = "hbarrel"
+	attach_icon = "hbarrel_a"
 
 	New()
 		..()
@@ -561,7 +560,7 @@ Defined in conflicts.dm of the #defines folder.
 		accuracy_mod = config.high_hit_accuracy_mult
 		burst_mod = -config.min_burst_value
 		movement_acc_penalty_mod = 2
-		accuracy_unwielded_mod = config.min_hit_accuracy_mult
+		accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
@@ -713,7 +712,7 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "stock"
 	melee_mod = -5
 	size_mod = 1
-	w_class_mod = 2
+	size_mod = 2
 	icon_state = "44stock"
 	pixel_shift_x = 35
 	pixel_shift_y = 19
@@ -959,7 +958,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
 	wield_delay_mod = WIELD_DELAY_FAST
-	w_class_mod = 1
+	size_mod = 1
 	slot = "under"
 	pixel_shift_x = 20
 
@@ -980,7 +979,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "angledgrip"
 	attach_icon = "angledgrip_a"
 	wield_delay_mod = -WIELD_DELAY_FAST
-	w_class_mod = 1
+	size_mod = 1
 	slot = "under"
 	pixel_shift_x = 20
 
@@ -1033,7 +1032,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
 	slot = "under"
-	w_class_mod = 2
+	size_mod = 2
 	melee_mod = -10
 
 	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE|ATTACH_ACTIVATION

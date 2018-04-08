@@ -217,6 +217,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/obj/item/attachable/grenade/G = new(src)
 	G.flags_attach_features &= ~ATTACH_REMOVABLE
 	G.icon_state = "" //Gun already has a better one
+	G.attach_icon = ""
 	G.Attach(src)
 	update_attachable(G.slot)
 	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()

@@ -308,15 +308,14 @@
 		return TRUE
 
 /obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
-	if(flags_atom & ON_BORDER)
-		if(src == P.original)
-			return TRUE
-		if(!density) //barricade is open
-			return FALSE
-		if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
-			return FALSE
-		if(P.dir & reverse_direction(dir))
-			return prob(95)
+	if(src == P.original)
+		return TRUE
+	if(!density) //barricade is open
+		return FALSE
+	if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
+		return FALSE
+	if(P.dir & reverse_direction(dir))
+		return prob(95)
 
 /obj/structure/bed/get_projectile_hit_chance(obj/item/projectile/P)
 	if(density && src == P.original)

@@ -13,10 +13,6 @@
 		X << "<span class='warning'>You can't do that here.</span>"
 		return
 
-	if(T.slayer > 0)
-		X << "<span class='warning'>It requires a solid ground. Dig it up!</span>"
-		return
-
 	if(!T.is_weedable())
 		X << "<span class='warning'>Bad place for a garden!</span>"
 		return

@@ -374,12 +374,14 @@
 	//supressor
 	var/obj/item/attachable/suppressor/S = new(src)
 	S.icon_state = ""
+	S.attach_icon = ""
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)
 	update_attachable(S.slot)
 	//scope
 	var/obj/item/attachable/scope/F = new(src)
 	F.icon_state = ""
+	F.attach_icon = ""
 	F.flags_attach_features &= ~ATTACH_REMOVABLE
 	F.Attach(src)
 	update_attachable(F.slot)
