@@ -32,6 +32,7 @@
 	var/heavies = 0
 	var/max_medics = 1
 	var/max_heavies = 1
+	var/shuttle_id = "Distress"
 
 
 /datum/game_mode/proc/initialize_emergency_calls()
@@ -129,7 +130,7 @@
 	else
 		usr << "<span class='warning'>You did not get enlisted in the response team. Better luck next time!</span>"
 
-/datum/emergency_call/proc/activate(announce = 1, no_shuttle_launch)
+/datum/emergency_call/proc/activate(announce = TRUE)
 	if(!ticker || !ticker.mode) //Something horribly wrong with the gamemode ticker
 		return
 
@@ -187,13 +188,12 @@
 				command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
 			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
-			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
+			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
 			if(!shuttle || !istype(shuttle))
 				message_admins("Warning: Distress shuttle not found. Aborting.")
 				return
 			spawn_items()
-			if(!no_shuttle_launch) //modified spawn means they're not using the ERT shuttle
-				shuttle.launch()
+
 			if(picked_candidates.len)
 				var/i = 0
 				for(var/datum/mind/M in picked_candidates)
@@ -204,10 +204,6 @@
 						create_member(M)
 			candidates = null //Blank out the candidates list for next time.
 			candidates = list()
-
-			if(!no_shuttle_launch)
-				spawn(5200)
-					shuttle.launch() //Get that fucker back. TODO: Check for occupants.
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
 	if(!M.client) return 0//Not connected

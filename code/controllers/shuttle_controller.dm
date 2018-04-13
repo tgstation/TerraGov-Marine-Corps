@@ -25,8 +25,16 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.location = 1
 	shuttle.warmup_time = 3
 	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
-	shuttle.area_offsite = locate(/area/supply/dock)
-	shuttle.area_station = locate(/area/supply/station)
+	for(var/area/A in all_areas)
+		if(A.type == /area/supply/dock)
+			shuttle.area_offsite = A
+		break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/supply/station)
+			shuttle.area_station = A
+		break
+
 	shuttles["Supply"] = shuttle
 	process_shuttles += shuttle
 
@@ -73,17 +81,106 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	//END: ALMAYER SHUTTLES AND EVAC PODS
 
-	// Distress Shuttle - ERT
-	shuttle = new()
-	shuttle.location = 1
-	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/distress_start)
-	shuttle.area_station = pick(locate(/area/shuttle/distress_arrive_1),locate(/area/shuttle/distress_arrive_2),locate(/area/shuttle/distress_arrive_3))
-	shuttle.area_transition = locate(/area/shuttle/distress_transit)
-	shuttle.transit_direction = NORTH
-	shuttle.move_time = DROPSHIP_TRANSIT_DURATION
-	shuttles["Distress"] = shuttle
-	process_shuttles += shuttle
+	// Distress Shuttles - ERT
+	var/datum/shuttle/ferry/ert/ES
+	ES = new ()
+	ES.location = 1
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/start)
+			ES.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/arrive_1)
+			ES.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/transit)
+			ES.area_transition = A
+			break
+
+	shuttles["Distress"] = ES
+	process_shuttles += ES
+
+
+	//PMC ert shuttle
+
+	ES = new ()
+	ES.location = 1
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/start_pmc)
+			ES.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/arrive_2)
+			ES.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/transit_pmc)
+			ES.area_transition = A
+			break
+
+	shuttles["Distress_PMC"] = ES
+	process_shuttles += ES
+
+
+	//UPP ert shuttle
+
+	ES = new()
+	ES.location = 1
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/start_upp)
+			ES.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/arrive_3)
+			ES.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/transit_upp)
+			ES.area_transition = A
+			break
+
+	shuttles["Distress_UPP"] = ES
+	process_shuttles += ES
+
+
+	//Big ert Shuttle
+
+	ES = new()
+	ES.location = 1
+	ES.use_umbilical = TRUE
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/start_big)
+			ES.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/arrive_n_hangar)
+			ES.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/distress/transit_big)
+			ES.area_transition = A
+			break
+
+	shuttles["Distress_Big"] = ES
+	process_shuttles += ES
+
+
+
+
+
 
 //---ELEVATOR---//
 	// Elevator I
@@ -91,9 +188,22 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
-	shuttle.area_offsite = locate(/area/shuttle/elevator1/underground)
-	shuttle.area_station = locate(/area/shuttle/elevator1/ground)
-	shuttle.area_transition = locate(/area/shuttle/elevator1/transit)
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator1/underground)
+			shuttle.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator1/ground)
+			shuttle.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator1/transit)
+			shuttle.area_transition = A
+			break
+
 	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
 	shuttle.iselevator = 1
 	shuttles["Elevator 1"] = shuttle
@@ -104,9 +214,22 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
-	shuttle.area_offsite = locate(/area/shuttle/elevator2/underground)
-	shuttle.area_station = locate(/area/shuttle/elevator2/ground)
-	shuttle.area_transition = locate(/area/shuttle/elevator2/transit)
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator2/underground)
+			shuttle.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator2/ground)
+			shuttle.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator2/transit)
+			shuttle.area_transition = A
+			break
+
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
 	shuttle.iselevator = 1
@@ -118,9 +241,20 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
-	shuttle.area_offsite = locate(/area/shuttle/elevator3/underground)
-	shuttle.area_station = locate(/area/shuttle/elevator3/ground)
-	shuttle.area_transition = locate(/area/shuttle/elevator3/transit)
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator3/underground)
+			shuttle.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator3/ground)
+			shuttle.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator3/transit)
+			shuttle.area_transition = A
+			break
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
 	shuttle.iselevator = 1
@@ -132,9 +266,20 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
-	shuttle.area_offsite = locate(/area/shuttle/elevator4/underground)
-	shuttle.area_station = locate(/area/shuttle/elevator4/ground)
-	shuttle.area_transition = locate(/area/shuttle/elevator4/transit)
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator4/underground)
+			shuttle.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator4/ground)
+			shuttle.area_station = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/elevator4/transit)
+			shuttle.area_transition = A
+			break
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
 	shuttle.iselevator = 1

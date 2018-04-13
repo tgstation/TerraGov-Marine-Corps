@@ -187,9 +187,13 @@
 	blocks_air = 1
 
 /turf/simulated/shuttle/wall/dropship
-	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rasputin1"
+
+/turf/simulated/shuttle/wall/ert
+	icon = 'icons/turf/ert_shuttle.dmi'
+	icon_state = "stan4"
+
 
 /turf/simulated/shuttle/floor
 	name = "floor"

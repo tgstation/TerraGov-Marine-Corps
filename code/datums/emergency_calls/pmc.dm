@@ -5,6 +5,8 @@
 	name = "Weyland-Yutani PMC (Squad)"
 	mob_max = 6
 	probability = 25
+	shuttle_id = "Distress_PMC"
+	name_of_spawn = "Distress_PMC"
 
 	New()
 		..()
