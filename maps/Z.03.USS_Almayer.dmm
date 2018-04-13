@@ -4332,7 +4332,7 @@
 "bFp" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/almayer,/area/almayer/engineering/lower_engineering)
 "bFq" = (/obj/structure/closet/emcloset,/turf/simulated/floor/almayer{tag = "icon-orangecorner (WEST)"; icon_state = "orangecorner"; dir = 8},/area/almayer/engineering/lower_engineering)
 "bFr" = (/obj/structure/table/almayer,/obj/machinery/cell_charger,/turf/simulated/floor/almayer{tag = "icon-orangecorner (WEST)"; icon_state = "orangecorner"; dir = 8},/area/almayer/engineering/lower_engineering)
-"bFs" = (/obj/structure/table/almayer,/obj/structure/table/almayer,/obj/structure/table/almayer,/obj/item/folder/black_random,/obj/machinery/light,/turf/simulated/floor/almayer{tag = "icon-orangecorner (WEST)"; icon_state = "orangecorner"; dir = 8},/area/almayer/engineering/lower_engineering)
+"bFs" = (/obj/structure/table/almayer,/obj/item/folder/black_random,/obj/machinery/light,/turf/simulated/floor/almayer{tag = "icon-orangecorner (WEST)"; icon_state = "orangecorner"; dir = 8},/area/almayer/engineering/lower_engineering)
 "bFt" = (/obj/structure/table/almayer,/obj/machinery/cell_charger,/obj/item/clothing/glasses/welding,/turf/simulated/floor/almayer{tag = "icon-orangecorner (WEST)"; icon_state = "orangecorner"; dir = 8},/area/almayer/engineering/lower_engineering)
 "bFu" = (/obj/machinery/light/small,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"; layer = 2.1},/turf/simulated/floor/almayer/plating/catwalk,/area/almayer/hull/lower_hull)
 "bFv" = (/obj/structure/bed,/turf/simulated/floor/almayer{tag = "icon-red (NORTHEAST)"; icon_state = "red"; dir = 5},/area/almayer/shipboard/brig)

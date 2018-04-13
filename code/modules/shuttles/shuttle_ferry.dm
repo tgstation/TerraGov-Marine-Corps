@@ -146,7 +146,7 @@
 	return
 
 /datum/shuttle/ferry/proc/can_launch()
-	if(moving_status != SHUTTLE_IDLE || locked || in_use || !area_station || !area_offsite) r_FAL
+	if(moving_status != SHUTTLE_IDLE || locked || in_use) r_FAL
 	r_TRU
 
 /datum/shuttle/ferry/proc/can_force()
