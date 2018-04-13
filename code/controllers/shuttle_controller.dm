@@ -28,12 +28,12 @@ var/global/datum/shuttle_controller/shuttle_controller
 	for(var/area/A in all_areas)
 		if(A.type == /area/supply/dock)
 			shuttle.area_offsite = A
-		break
+			break
 
 	for(var/area/A in all_areas)
 		if(A.type == /area/supply/station)
 			shuttle.area_station = A
-		break
+			break
 
 	shuttles["Supply"] = shuttle
 	process_shuttles += shuttle
