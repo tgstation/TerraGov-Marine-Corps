@@ -46,11 +46,11 @@
 /obj/machinery/computer/shuttle_control/multi
 	icon_state = "syndishuttle"
 
-/obj/machinery/computer/shuttle_control/multi/attack_hand(user as mob)
+/obj/machinery/computer/shuttle_control/multi/attack_hand(mob/user)
 
-	if(..(user))
+	if(..())
 		return
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	var/datum/shuttle/multi_shuttle/MS = shuttle_controller.shuttles[shuttle_tag]
 	if(!istype(MS)) return

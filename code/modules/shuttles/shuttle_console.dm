@@ -147,7 +147,7 @@
 			usr << "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>"
 			return
 		//Comment to test
-		if(world.time < SHUTTLE_TIME_LOCK)
+		if(world.time < SHUTTLE_TIME_LOCK && istype(shuttle, /datum/shuttle/ferry/marine))
 			usr << "<span class='warning'>The shuttle is still undergoing pre-flight fuelling and cannot depart yet. Please wait another [round((SHUTTLE_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 			return
 		spawn(0)
@@ -335,7 +335,9 @@
 	visible_message("[Proj] ricochets off [src]!")
 	return 0
 
-
+/obj/machinery/computer/shuttle_control/ex_act(severity)
+	if(unacidable) return //unacidable shuttle consoles are also immune to explosions.
+	..()
 
 
 
@@ -352,9 +354,9 @@
 	exproof = 1
 	req_one_access_txt = "22;200"
 
-	New()
-		..()
-		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+/obj/machinery/computer/shuttle_control/dropship1/New()
+	..()
+	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
 
 /obj/machinery/computer/shuttle_control/dropship1/onboard
 	name = "\improper 'Alamo' flight controls"
@@ -372,9 +374,9 @@
 	exproof = 1
 	req_one_access_txt = "12;22;200"
 
-	New()
-		..()
-		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+/obj/machinery/computer/shuttle_control/dropship2/New()
+	..()
+	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
 
 /obj/machinery/computer/shuttle_control/dropship2/onboard
 	name = "\improper 'Normandy' flight controls"

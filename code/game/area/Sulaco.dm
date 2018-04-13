@@ -288,7 +288,7 @@
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/transit
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Almayer Dropship Alamo Transit"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop1/lz1
@@ -320,30 +320,72 @@
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/transit
-	name = "\improper Almayer Dropship Normandy"
+	name = "\improper Almayer Dropship Normandy Transit"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop2/lz2
 	name = "\improper Normandy Landing Zone"
 	icon_state = "away2"
 
-//Distress
-/area/shuttle/distress_start
+
+
+//DISTRESS SHUTTLES
+
+/area/shuttle/distress/start
 	name = "\improper Distress Shuttle"
 	icon_state = "away1"
 
-/area/shuttle/distress_transit
-	name = "\improper Distress Shuttle"
+/area/shuttle/distress/transit
+	name = "\improper Distress Shuttle Transit"
 	icon_state = "away2"
 
-/area/shuttle/distress_arrive_1
+
+/area/shuttle/distress/start_pmc
+	name = "\improper Distress Shuttle PMC"
+	icon_state = "away1"
+
+/area/shuttle/distress/transit_pmc
+	name = "\improper Distress Shuttle PMC Transit"
+	icon_state = "away2"
+
+
+/area/shuttle/distress/start_upp
+	name = "\improper Distress Shuttle UPP"
+	icon_state = "away1"
+
+
+/area/shuttle/distress/transit_upp
+	name = "\improper Distress Shuttle UPP Transit"
+	icon_state = "away2"
+
+
+/area/shuttle/distress/start_big
+	name = "\improper Distress Shuttle Big"
+	icon_state = "away1"
+
+
+/area/shuttle/distress/transit_big
+	name = "\improper Distress Shuttle Big Transit"
+	icon_state = "away2"
+
+
+/area/shuttle/distress/arrive_1
 	name = "\improper Distress Shuttle"
 	icon_state = "away3"
 
-/area/shuttle/distress_arrive_2
+/area/shuttle/distress/arrive_2
 	name = "\improper Distress Shuttle"
 	icon_state = "away4"
 
-/area/shuttle/distress_arrive_3
+/area/shuttle/distress/arrive_3
 	name = "\improper Distress Shuttle"
 	icon_state = "away"
+
+
+/area/shuttle/distress/arrive_n_hangar
+	name = "\improper Distress Shuttle"
+	icon_state = "away"
+
+/area/shuttle/distress/arrive_s_hangar
+	name = "\improper Distress Shuttle"
+	icon_state = "away3"
