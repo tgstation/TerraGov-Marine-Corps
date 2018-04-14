@@ -146,6 +146,10 @@
 			firing = 1
 			flick(icon_state + "_fire", src)
 			mortar_shell.forceMove(src)
+
+			var/turf/G = get_turf(src)
+			G.ceiling_debris_check(2)
+
 			for(var/mob/M in range(7))
 				shake_camera(M, 3, 1)
 			spawn(travel_time) //What goes up
@@ -211,7 +215,7 @@
 		user << "<span class='warning'>You cannot deploy [src] here.</span>"
 		return
 	var/area/A = get_area(src)
-	if(A.ceiling)
+	if(A.ceiling >= CEILING_METAL)
 		user << "<span class='warning'>You probably shouldn't deploy [src] indoors.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] starts deploying [src].",

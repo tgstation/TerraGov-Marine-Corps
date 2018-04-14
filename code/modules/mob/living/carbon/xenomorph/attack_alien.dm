@@ -639,12 +639,9 @@
 		if(world.time < SHUTTLE_LOCK_TIME_LOCK)
 			M << "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 			return
-		if(world.time < last_locked + SHUTTLE_LOCK_COOLDOWN)
-			M << "<span class='warning'>You can't seem to disable remote control, some sort of safety cooldown is in place. Please wait another [round((last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
-		else
-			M << "<span class='xenonotice'>You interact with the machine and disable remote control.</span>"
-			last_locked = world.time
-			queen_locked = 1
+		M << "<span class='xenonotice'>You interact with the machine and disable remote control.</span>"
+		last_locked = world.time
+		queen_locked = 1
 
 /datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/Xenomorph/M)
 	if(!door_override)

@@ -728,6 +728,7 @@
 /area/ice_colony/underground/hangar
 	name = "\improper Underground Hangar"
 	icon_state = "hangar"
+	ceiling = CEILING_NONE
 
 /*
  * Underground - Storage
