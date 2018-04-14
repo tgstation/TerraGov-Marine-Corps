@@ -138,10 +138,18 @@
 	name = "\improper Custodial Supplies"
 	icon_state = "janitor"
 
-/area/prison/command
+/area/prison/command/office
 	name = "\improper Warden's Office"
 	icon_state = "Warden"
 	ceiling = CEILING_GLASS
+
+/area/prison/command/secretary_office
+	name = "\improper Warden's Secretary's Office"
+	icon_state = "blue"
+
+/area/prison/command/quarters
+	name = "\improper Warden's Quarters"
+	icon_state = "party"
 
 /area/prison/toilet
 	icon_state = "restrooms"

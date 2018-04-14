@@ -432,7 +432,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define PANDEMIC 2
 
 
-
+//forcesay types
+#define SUDDEN 0
+#define GRADUAL 1
+#define PAINFUL 2
+#define EXTREMELY_PAINFUL 3
 
 // xeno abilities cooldown
 

@@ -358,6 +358,12 @@ This function restores all limbs.
 			if ((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
 				emote("scream")
 
+			switch(damage)
+				if(5 to 15)
+					forcesay(PAINFUL)
+				if(15 to INFINITY)
+					forcesay(EXTREMELY_PAINFUL)
+
 
 		..(damage, damagetype, def_zone, blocked)
 		return 1
@@ -391,6 +397,12 @@ This function restores all limbs.
 				damage = damage*species.burn_mod
 			if(organ.take_damage(0, damage, sharp, edge, used_weapon))
 				UpdateDamageIcon()
+
+	switch(damage)
+		if(5 to 15)
+			forcesay(PAINFUL)
+		if(15 to INFINITY)
+			forcesay(EXTREMELY_PAINFUL)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()

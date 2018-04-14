@@ -113,7 +113,7 @@
 		spawn(0)
 			R.talk_into(src,message, message_mode, verb, speaking)
 
-/mob/living/carbon/human/proc/forcesay()
+/mob/living/carbon/human/proc/forcesay(var/forcesay_type = SUDDEN)
 	if(stat == CONSCIOUS)
 		if(client)
 			var/virgin = 1	//has the text been modified yet?
@@ -135,11 +135,19 @@
 
 				if(findtext(temp, "*", 1, 2))	//emotes
 					return
-				temp = copytext(trim_left(temp), 1, rand(5,8))
 
 				var/trimmed = trim_left(temp)
 				if(length(trimmed))
-					temp += "-" //"Hey guys, I'm looking at the scene right n-". Abstraced as a em dash, which DM doesn't support...
+
+					switch(forcesay_type)
+						if(SUDDEN)
+							temp += "-" //"Hey guys, I'm looking at the scene right n-". Abstraced as a em dash, which DM doesn't support...
+						if(GRADUAL)
+							temp += "..."
+						if(PAINFUL)
+							temp += pick("-OW!","-UGH!","-ACK!")
+						if(EXTREMELY_PAINFUL)
+							temp += pick("-AAAGH!","-AAARGH!","-AAAHH!")
 
 					say(temp)
 				winset(client, "input", "text=[null]")

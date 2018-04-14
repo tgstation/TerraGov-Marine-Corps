@@ -32,6 +32,12 @@
 	update_neighbours(oldloc)
 
 
+/obj/effect/alien/weeds/examine(mob/user)
+	..()
+	var/turf/T = get_turf(src)
+	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
+		T.ceiling_desc(user)
+
 
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	if(ishuman(AM))
