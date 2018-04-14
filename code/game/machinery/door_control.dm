@@ -83,7 +83,7 @@
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		return
-	if(shuttle.queen_locked)
+	if(shuttle.door_override)
 		return // its been locked down by the queen
 	for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
 		if(M.id == ship_id)

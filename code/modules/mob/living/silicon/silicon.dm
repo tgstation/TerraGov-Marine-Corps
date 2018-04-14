@@ -16,7 +16,7 @@
 
 	var/med_hud = MOB_HUD_MEDICAL_ADVANCED //Determines the med hud to use
 	var/sec_hud = MOB_HUD_SECURITY_ADVANCED //Determines the sec hud to use
-
+	var/list/HUD_toggled = list(0,0,0)
 
 /mob/living/silicon/New()
 	..()
@@ -160,20 +160,34 @@
 
 
 /mob/living/silicon/proc/toggle_sensor_mode()
-	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical","Disable")
-	var/datum/mob_hud/H = huds[sec_hud]
-	var/datum/mob_hud/M = huds[med_hud]
-	H.remove_hud_from(src)
-	M.remove_hud_from(src)
-	switch(sensor_type)
-		if ("Security")
-			H.add_hud_to(src)
-			src << "<span class='notice'>Security records overlay enabled.</span>"
-		if ("Medical")
-			M.add_hud_to(src)
-			src << "<span class='notice'>Life signs monitor overlay enabled.</span>"
-		if ("Disable")
-			src << "Sensor augmentations disabled."
+	if(!client)
+		return
+	var/list/listed_huds = list("Medical HUD", "Security HUD", "Squad HUD")
+	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD", null) as null|anything in listed_huds
+	if(!client)
+		return
+	var/datum/mob_hud/H
+	var/HUD_nbr = 1
+	switch(hud_choice)
+		if("Medical HUD")
+			H = huds[MOB_HUD_MEDICAL_OBSERVER]
+		if("Security HUD")
+			H = huds[MOB_HUD_SECURITY_ADVANCED]
+			HUD_nbr = 2
+		if("Squad HUD")
+			H = huds[MOB_HUD_SQUAD]
+			HUD_nbr = 3
+		else
+			return
+
+	if(HUD_toggled[HUD_nbr])
+		HUD_toggled[HUD_nbr] = 0
+		H.remove_hud_from(src)
+		src << "\blue <B>[hud_choice] Disabled</B>"
+	else
+		HUD_toggled[HUD_nbr] = 1
+		H.add_hud_to(src)
+		src << "\blue <B>[hud_choice] Enabled</B>"
 
 /mob/living/silicon/verb/pose()
 	set name = "Set Pose"

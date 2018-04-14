@@ -1319,13 +1319,14 @@
 		/obj/item/attachable/bayonet = 4,
 		/obj/item/attachable/extended_barrel = 2,
 		/obj/item/attachable/heavy_barrel = 1,
-		/obj/item/attachable/foregrip = 3,
+		/obj/item/attachable/verticalgrip = 3,
 		/obj/item/attachable/gyro = 2,
 		/obj/item/attachable/bipod = 1,
 		/obj/item/attachable/shotgun = 3,
 		/obj/item/attachable/flamer = 3,
 		/obj/item/attachable/burstfire_assembly = 1,
-		/obj/item/attachable/stock/rifle = 3
+		/obj/item/attachable/stock/rifle = 3,
+		/obj/item/attachable/stock/smg = 3
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (rifle)", "A crate containing assorted attachments for rifles. Unga dunga!")
 
@@ -1335,7 +1336,7 @@
 		/obj/item/attachable/quickfire = 1,
 		/obj/item/attachable/suppressor = 4,
 		/obj/item/attachable/extended_barrel = 2,
-		/obj/item/attachable/foregrip = 3,
+		/obj/item/attachable/verticalgrip = 3,
 		/obj/item/attachable/burstfire_assembly = 1
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (smg)", "A crate containing assorted attachments for SMGs. Unga dunga!")
@@ -1346,7 +1347,7 @@
 		/obj/item/attachable/bayonet = 4,
 		/obj/item/attachable/heavy_barrel = 2,
 		/obj/item/attachable/compensator = 3,
-		/obj/item/attachable/foregrip = 3,
+		/obj/item/attachable/verticalgrip = 3,
 		/obj/item/attachable/gyro = 3,
 		/obj/item/attachable/stock/shotgun = 2
 		)

@@ -142,6 +142,8 @@
 
 /obj/structure/bed/nest/afterbuckle(mob/M)
 	. = ..()
+	if(. && M.pulledby)
+		pulledby.stop_pulling()
 	update_icon()
 
 /obj/structure/bed/nest/unbuckle(mob/user as mob)

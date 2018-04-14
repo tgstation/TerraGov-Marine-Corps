@@ -41,6 +41,10 @@
 	var/damage = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
+	var/damage_falloff = 0 //how many damage point the projectile loses per tiles travelled
+
+	var/scatter = 0
+
 	var/distance_travelled = 0
 	var/in_flight = 0
 
@@ -81,9 +85,11 @@
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
+	scatter		= ammo.scatter
 	accuracy   += ammo.accuracy
-	accuracy   *= rand(config.proj_variance_low-ammo.accuracy_var_low,config.proj_variance_high+ammo.accuracy_var_high)*config.proj_base_accuracy_mult//Rand only works with integers.
-	damage     *= rand(config.proj_variance_low-ammo.damage_var_low,config.proj_variance_high+ammo.damage_var_high)*config.proj_base_damage_mult
+	accuracy   *= rand(config.proj_variance_low-ammo.accuracy_var_low, config.proj_variance_high+ammo.accuracy_var_high) * config.proj_base_accuracy_mult//Rand only works with integers.
+	damage     *= rand(config.proj_variance_low-ammo.damage_var_low, config.proj_variance_high+ammo.damage_var_high) * config.proj_base_damage_mult
+	damage_falloff = ammo.damage_falloff
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -188,6 +194,7 @@
 			if(current_turf && next_turf)
 				path = getline2(current_turf,next_turf) //Build a new flight path.
 				if(path.len && src) //TODO look into this. This should always be true, but it can fail, apparently, against DCed people who fall down. Better yet, redo this.
+					distance_travelled-- //because the new follow_flightpath() repeats the last step.
 					follow_flightpath(speed, change_x, change_y, range) //Onwards!
 				else
 					cdel(src)
@@ -301,15 +308,14 @@
 		return TRUE
 
 /obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
-	if(flags_atom & ON_BORDER)
-		if(src == P.original)
-			return TRUE
-		if(!density) //barricade is open
-			return FALSE
-		if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
-			return FALSE
-		if(P.dir & reverse_direction(dir))
-			return prob(95)
+	if(src == P.original)
+		return TRUE
+	if(!density) //barricade is open
+		return FALSE
+	if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
+		return FALSE
+	if(P.dir & reverse_direction(dir))
+		return prob(95)
 
 /obj/structure/bed/get_projectile_hit_chance(obj/item/projectile/P)
 	if(density && src == P.original)
@@ -362,15 +368,21 @@
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
-	world << "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]</b></span>"
+	world << "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>"
 	#endif
-	if (P.distance_travelled <= P.ammo.accurate_range + rand(0, 2))														// If bullet stays within max accurate range + random variance
-		if (P.distance_travelled <= P.ammo.point_blank_range)															// If bullet within point blank range, big accuracy buff
+
+	if (P.distance_travelled <= P.ammo.accurate_range + rand(0, 2))
+	// If bullet stays within max accurate range + random variance
+		if (P.distance_travelled <= P.ammo.point_blank_range)
+			//If bullet within point blank range, big accuracy buff
 			. += 25
-		else if ((P.ammo.flags_ammo_behavior & AMMO_SNIPER) && P.distance_travelled <= P.ammo.accurate_range_min)		// Snipers have accuracy falloff at closer range before point blank
+		else if ((P.ammo.flags_ammo_behavior & AMMO_SNIPER) && P.distance_travelled <= P.ammo.accurate_range_min)
+			// Snipers have accuracy falloff at closer range before point blank
 			. -= (P.ammo.accurate_range_min - P.distance_travelled) * 5
 	else
-		. -= (P.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (P.distance_travelled * 3) : (P.distance_travelled * 5)		// Snipers have a smaller falloff constant due to longer max range
+		. -= (P.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (P.distance_travelled * 3) : (P.distance_travelled * 5)
+		// Snipers have a smaller falloff constant due to longer max range
+
 
 	#if DEBUG_HIT_CHANCE
 	world << "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>"
@@ -381,7 +393,7 @@
 
 	if(isliving(P.firer))
 		var/mob/living/shooter_living = P.firer
-		if( !can_see(shooter_living,src) ) . -= 15 //Can't see the target
+		if( !can_see(shooter_living,src) ) . -= 15 //Can't see the target (Opaque thing between shooter and target)
 		. -= round((shooter_living.maxHealth - shooter_living.health) / 4) //Less chance to hit when injured.
 
 	if(ishuman(P.firer))
@@ -436,7 +448,7 @@
 /mob/living/bullet_act(obj/item/projectile/P)
 	if(!P) return
 
-	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) )
+	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
@@ -467,7 +479,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		round_statistics.total_bullet_hits_on_humans++
 
-	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) )
+	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff))
 	#if DEBUG_HUMAN_DEFENSE
 	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
 	#endif
@@ -577,7 +589,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	flash_weak_pain()
 
-	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) ) //Has to be at least zero, no negatives.
+	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff)) //Has to be at least zero, no negatives.
 	#if DEBUG_XENO_DEFENSE
 	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
 	#endif

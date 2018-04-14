@@ -5,6 +5,8 @@
 	name = "UPP Naval Infantry (Squad)"
 	mob_max = 7
 	probability = 10
+	shuttle_id = "Distress_UPP"
+	name_of_spawn = "Distress_UPP"
 
 	New()
 		..()

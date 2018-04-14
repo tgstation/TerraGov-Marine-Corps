@@ -646,31 +646,39 @@
 			last_locked = world.time
 			queen_locked = 1
 
-			var/ship_id = "sh_dropship1"
-			if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
-				ship_id = "sh_dropship2"
+/datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/Xenomorph/M)
+	if(!door_override)
+		M << "<span class='xenonotice'>You override the doors.</span>"
+		last_door_override = world.time
+		door_override = 1
 
-			for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
-				if(D.id == ship_id)
-					D.unlock()
+		var/ship_id = "sh_dropship1"
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			ship_id = "sh_dropship2"
 
-			var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
-			switch(ship_id)
-				if("sh_dropship1")
-					for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
-						reardoor = D
-				if("sh_dropship2")
-					for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
-						reardoor = D
+		for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+			if(D.id == ship_id)
+				D.unlock()
 
-			reardoor.unlock()
+		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+		switch(ship_id)
+			if("sh_dropship1")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+					reardoor = D
+			if("sh_dropship2")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+					reardoor = D
+
+		reardoor.unlock()
 
 /obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
 	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(M.is_intelligent)
 		attack_hand(M)
-		if(!shuttle.iselevator && onboard) //This is the shuttle's onboard console
-			shuttle.hijack(M)
+		if(!shuttle.iselevator)
+			shuttle.door_override(M)
+			if(onboard) //This is the shuttle's onboard console
+				shuttle.hijack(M)
 	else
 		..()
 
@@ -687,6 +695,7 @@
 
 		var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 		shuttle.hijack(M)
+		shuttle.door_override(M)
 	else
 		..()
 

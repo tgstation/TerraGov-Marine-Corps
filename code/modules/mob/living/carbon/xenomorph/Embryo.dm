@@ -209,7 +209,7 @@
 	victim.update_burst()
 
 	if((!key || !client) && loc.z == 1 && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL)
-		visible_message("<span class='xenodanger'>[src] quickly burries into the ground.</span>")
+		visible_message("<span class='xenodanger'>[src] quickly buries into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
 		ticker.mode.stored_larva++
 		cdel(src)

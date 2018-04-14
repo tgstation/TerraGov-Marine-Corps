@@ -66,7 +66,7 @@ Additional game mode variables.
 	var/monkey_amount		= 0 //How many monkeys do we spawn on this map ?
 	var/list/monkey_types	= list() //What type of monkeys do we spawn
 	var/latejoin_tally		= 0 //How many people latejoined Marines
-	var/latejoin_larva_drop = 8 //A larva will spawn in once the tally reaches this level. If set to 0, no latejoin larva drop
+	var/latejoin_larva_drop = 7 //A larva will spawn in once the tally reaches this level. If set to 0, no latejoin larva drop
 
 	var/stored_larva = 0
 
@@ -88,7 +88,7 @@ Additional game mode variables.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
-	xeno_starting_num = Clamp((ready_players/8), xeno_required_num, INFINITY) //(n, minimum, maximum)
+	xeno_starting_num = Clamp((ready_players/7), xeno_required_num, INFINITY) //(n, minimum, maximum)
 	surv_starting_num = Clamp((ready_players/25), 0, 8)
 	merc_starting_num = Clamp((ready_players/3), 1, INFINITY)
 	for(var/datum/squad/sq in RoleAuthority.squads)
@@ -144,18 +144,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	for(var/datum/mind/new_pred in temp_pred_list)
 		if(!istype(new_pred)) continue
 		attempt_to_join_as_predator(new_pred.current)
-
-/datum/game_mode/proc/force_predator_spawn() //Forces the spawn.
-	var/possible_predators[] = get_whitelisted_predators(0) //0 = not care about ready state
-	var/i = pred_maximum_num
-	var/datum/mind/new_pred
-	while(i > 0)
-		if(!possible_predators.len) break
-		new_pred = pick(possible_predators)
-		if(!istype(new_pred)) continue
-		attempt_to_join_as_predator(new_pred.current) //It may fail, if it does we just keep going.
-		possible_predators -= new_pred //Remove from list.
-		i--
 
 /datum/game_mode/proc/get_whitelisted_predators(readied = 1)
 	// Assemble a list of active players who are whitelisted.
@@ -715,12 +703,15 @@ datum/game_mode/proc/initialize_special_clamps()
 					/obj/item/attachable/heavy_barrel = round(scale * 5),
 
 					/obj/item/attachable/scope = round(scale * 5),
+					/obj/item/attachable/scope/mini = round(scale * 5),
 					/obj/item/attachable/flashlight = round(scale * 25),
 					/obj/item/attachable/reddot = round(scale * 20),
 					/obj/item/attachable/magnetic_harness = round(scale * 15),
 					/obj/item/attachable/quickfire = round(scale * 5),
 
-					/obj/item/attachable/foregrip = round(scale * 20),
+					/obj/item/attachable/verticalgrip = round(scale * 20),
+					/obj/item/attachable/angledgrip = round(scale * 20),
+					/obj/item/attachable/lasersight = round(scale * 20),
 					/obj/item/attachable/gyro = round(scale * 5),
 					/obj/item/attachable/bipod = round(scale * 10),
 					/obj/item/attachable/burstfire_assembly = round(scale * 5),
@@ -728,6 +719,7 @@ datum/game_mode/proc/initialize_special_clamps()
 					/obj/item/attachable/stock/shotgun = round(scale * 5),
 					/obj/item/attachable/stock/rifle = round(scale * 5) ,
 					/obj/item/attachable/stock/revolver = round(scale * 5),
+					/obj/item/attachable/stock/smg = round(scale * 5) ,
 
 					/obj/item/attachable/grenade = round(scale * 15),
 					/obj/item/attachable/shotgun = round(scale * 5),

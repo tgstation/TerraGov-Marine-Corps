@@ -318,8 +318,8 @@ var/global/list/activated_medevac_stretchers = list()
 			return
 
 		var/area/AR = get_area(src)
-		if(AR.is_underground)
-			user << "<span class='warning'>Dropships can't detect [src]'s beacon underground.</span>"
+		if(AR.ceiling >= CEILING_METAL)
+			user << "<span class='warning'>[src] must be in the open or under a glass roof.</span>"
 			return
 
 		if(buckled_mob || buckled_bodybag)

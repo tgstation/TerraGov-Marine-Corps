@@ -413,33 +413,10 @@
 	basestate = "window"
 	health = 40
 	reinf = 1
-	dir = NORTHEAST
-	flags_atom = FPRINT
+	dir = 5
 
 	update_icon() //icon_state has to be set manually
 		return
-
-/obj/structure/window/reinforced/pressure
-	name = "pressure window"
-	desc = "A toughened window linked to pressure shutters."
-	health = 80
-	dir = NORTHEAST
-	flags_atom = FPRINT
-	not_deconstructable = 1
-
-/obj/structure/window/reinforced/pressure/divider
-	icon_state = "twindow0"
-	update_icon()
-		return
-
-/obj/structure/window/reinforced/pressure/Dispose()
-	for(var/obj/machinery/door/poddoor/shutters/pressure/P in src.loc )
-		P.close(0)
-	playsound(src, "shatter", 70, 1)
-	. = ..()
-
-
-
 
 //Framed windows
 
@@ -494,6 +471,7 @@
 	basestate = "alm_rwindow"
 	health = 100 //Was 600
 	reinf = 1
+	dir = 5
 	window_frame = /obj/structure/window_frame/almayer
 
 /obj/structure/window/framed/almayer/hull
@@ -591,12 +569,32 @@
 
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"
-	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
+	health = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	not_damageable = 1
-	not_deconstructable = 1
-	unacidable = 1
-	health = 1000000 //Failsafe, shouldn't matter
+	var/triggered = 0 //indicates if the shutters have already been triggered
+
+/obj/structure/window/framed/prison/reinforced/hull/Dispose()
+	spawn_shutters()
+	.=..()
+
+/obj/structure/window/framed/prison/reinforced/hull/proc/spawn_shutters(var/from_dir = 0)
+	if(triggered)
+		return
+	else
+		triggered = 1
+	for(var/direction in cardinal)
+		if(direction == from_dir) continue //doesn't check backwards
+		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )
+			W.spawn_shutters(turn(direction,180))
+	var/obj/machinery/door/poddoor/shutters/almayer/pressure/P = new(get_turf(src))
+	switch(junction)
+		if(4,5,8,9,12)
+			P.dir = 2
+		else
+			P.dir = 4
+	spawn(0)
+		P.close()
 
 /obj/structure/window/framed/prison/cell
 	name = "cell window"

@@ -388,30 +388,27 @@
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
-/obj/item/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+//user can be null, it refers to the potential mob doing the insertion.
+/obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 	if(!istype(W)) return 0
-	if(usr)
-		if(!usr.drop_inv_item_to_loc(W, src))
-			return
+	if(user && W.loc == user)
+		if(!user.drop_inv_item_to_loc(W, src))
+			return 0
 	else
 		W.forceMove(src)
 	W.on_enter_storage(src)
-	if(usr)
-		if (usr.client && usr.s_active != src)
-			usr.client.screen -= W
-		add_fingerprint(usr)
+	if(user)
+		if (user.client && user.s_active != src)
+			user.client.screen -= W
+		add_fingerprint(user)
 		if(!prevent_warning)
-			for(var/mob/M in viewers(usr, null))
-				if (M == usr)
-					usr << "<span class='notice'>You put \the [W] into [src].</span>"
-				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
-					M.show_message("<span class='notice'>[usr] puts [W] into [src].</span>")
-				else if (W && W.w_class >= 3.0) //Otherwise they can only see large or normal items from a distance...
-					M.show_message("<span class='notice'>[usr] puts [W] into [src].</span>")
-
-		orient2hud()
-		for(var/mob/M in can_see_content())
-			show_to(M)
+			var/visidist = W.w_class >= 3 ? 3 : 1
+			user.visible_message("<span class='notice'>[usr] puts [W] into [src].</span>",\
+								"<span class='notice'>You put \the [W] into [src].</span>",\
+								null, visidist)
+	orient2hud()
+	for(var/mob/M in can_see_content())
+		show_to(M)
 	if (storage_slots)
 		W.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
@@ -470,7 +467,7 @@
 				user << "\red God damnit!"
 
 	W.add_fingerprint(user)
-	return handle_item_insertion(W)
+	return handle_item_insertion(W, FALSE, user)
 
 /obj/item/storage/dropped(mob/user)
 	return

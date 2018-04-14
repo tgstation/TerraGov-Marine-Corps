@@ -22,13 +22,21 @@
 	user.set_interaction(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if(!isXeno(user) && (onboard || z == 1) && shuttle.queen_locked && !shuttle.iselevator)
-		if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
-			user << "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
-		else
-			user << "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>"
-			shuttle.last_locked = world.time
-			shuttle.queen_locked = 0
+	if(!isXeno(user) && (onboard || z == 1) && !shuttle.iselevator)
+		if(shuttle.queen_locked)
+			if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
+				user << "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
+			else
+				user << "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>"
+				shuttle.last_locked = world.time
+				shuttle.queen_locked = 0
+		if(shuttle.door_override)
+			if(world.time < shuttle.last_door_override + SHUTTLE_LOCK_COOLDOWN)
+				user << "<span class='warning'>You can't seem to reverse the door override. Please wait another [round((shuttle.last_door_override + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>"
+			else
+				user << "<span class='notice'>You reverse the door override.</span>"
+				shuttle.last_door_override = world.time
+				shuttle.door_override = 0
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
@@ -139,7 +147,7 @@
 			usr << "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>"
 			return
 		//Comment to test
-		if(world.time < SHUTTLE_TIME_LOCK)
+		if(world.time < SHUTTLE_TIME_LOCK && istype(shuttle, /datum/shuttle/ferry/marine))
 			usr << "<span class='warning'>The shuttle is still undergoing pre-flight fuelling and cannot depart yet. Please wait another [round((SHUTTLE_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 			return
 		spawn(0)
@@ -199,7 +207,7 @@
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 
 	if(href_list["lockdown"])
-		if(shuttle.queen_locked)
+		if(shuttle.door_override)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -261,7 +269,7 @@
 		reardoor.unlock()
 
 	if(href_list["side door"])
-		if(shuttle.queen_locked)
+		if(shuttle.door_override)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -286,7 +294,7 @@
 					usr << "<span class='warning'>You hear a [sidename] door lock.</span>"
 
 	if(href_list["rear door"])
-		if(shuttle.queen_locked)
+		if(shuttle.door_override)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -327,7 +335,9 @@
 	visible_message("[Proj] ricochets off [src]!")
 	return 0
 
-
+/obj/machinery/computer/shuttle_control/ex_act(severity)
+	if(unacidable) return //unacidable shuttle consoles are also immune to explosions.
+	..()
 
 
 
@@ -344,9 +354,9 @@
 	exproof = 1
 	req_one_access_txt = "22;200"
 
-	New()
-		..()
-		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+/obj/machinery/computer/shuttle_control/dropship1/New()
+	..()
+	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
 
 /obj/machinery/computer/shuttle_control/dropship1/onboard
 	name = "\improper 'Alamo' flight controls"
@@ -364,9 +374,9 @@
 	exproof = 1
 	req_one_access_txt = "12;22;200"
 
-	New()
-		..()
-		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+/obj/machinery/computer/shuttle_control/dropship2/New()
+	..()
+	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
 
 /obj/machinery/computer/shuttle_control/dropship2/onboard
 	name = "\improper 'Normandy' flight controls"

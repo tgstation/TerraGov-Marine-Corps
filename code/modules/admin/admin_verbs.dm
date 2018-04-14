@@ -14,7 +14,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/togglejoin,		/*toggles whether people can join the current game*/
 	/datum/admins/proc/toggleguests,	/*toggles whether guests can join the current game*/
 	/datum/admins/proc/announce,		/*priority announce something to all clients.*/
-	/client/proc/colorooc,				/*allows us to set a custom colour for everythign we say in ooc*/
+	/client/proc/set_ooc_color_self,	/*allows us to set a custom colour for everythign we say in ooc*/
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/toggle_view_range,		/*changes how far we can see*/
 	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
@@ -39,13 +39,13 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_create_AI_report,  //Allows creation of IC reports by the ships AI
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/client/proc/show_hive_status,
-	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
+	// /client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			/*admin memo system. show/delete/write. +SERVER needed to delete admin memos of others*/
 	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
 	/client/proc/toggleprayers,			/*toggles prayers on/off*/
 	/client/proc/toggle_hear_radio,		/*toggles whether we hear the radio*/
-	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
+	// /client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/togglelooc,		/*toggles ooc on/off for everyone*/
@@ -54,15 +54,15 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/toggledsay,		/*toggles dsay on/off for everyone*/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
-	/datum/admins/proc/PlayerNotes,
+	/datum/admins/proc/player_notes_list,
+	/datum/admins/proc/player_notes_show,
 	/client/proc/cmd_mod_say,
-	/datum/admins/proc/show_player_info,
 	/client/proc/free_slot,			/*frees slot for chosen job*/
 	/client/proc/cmd_admin_change_custom_event,
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/toggleattacklogs,
 	/client/proc/toggledebuglogs,
-	/client/proc/toggleghostwriters,
+	// /client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
 	/client/proc/change_security_level, /* Changes alert levels*/
 	/client/proc/toggle_gun_restrictions,
@@ -73,7 +73,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/admin_force_distress,
 	/datum/admins/proc/admin_force_ERT_shuttle,
 	/client/proc/cmd_admin_changekey,
-	/client/proc/response_team, // Response Teams admin verb
+	// /client/proc/response_team, // Response Teams admin verb
 	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes,
@@ -91,16 +91,17 @@ var/list/admin_verbs_sounds = list(
 	/client/proc/play_imported_sound
 	)
 var/list/admin_verbs_fun = list(
-	/client/proc/object_talk,
+	// /client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
-	/client/proc/make_sound,
-	/client/proc/set_ooc,
-	/datum/admins/proc/HostileLure,
+    /client/proc/drop_custom_bomb,
+	// /client/proc/cmd_admin_add_freeform_ai_law,
+	// /client/proc/cmd_admin_add_random_ai_law,
+	// /client/proc/make_sound,
+	/client/proc/set_ooc_color_global,
+	/datum/admins/proc/hostile_lure,
 	/client/proc/set_away_timer,
 	/client/proc/editappear
 	)
@@ -129,7 +130,7 @@ var/list/admin_verbs_server = list(
 	/client/proc/showVotableMaps
 	)
 var/list/admin_verbs_debug = list(
-        /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
+    /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/Debug2,
 	///client/proc/kill_air,
@@ -147,18 +148,18 @@ var/list/admin_verbs_debug = list(
 	/client/proc/restart_controller,
 	///client/proc/remake_distribution_map,
 	///client/proc/show_distribution_map,
-	/client/proc/show_plant_genes,
+	// /client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
-	/client/proc/spawn_predators,
 	/datum/proc/ta_diagnose,
 	/datum/proc/ra_diagnose,
 	/datum/proc/ta_purge,
 	/datum/proc/ra_purge,
 	/client/proc/global_fix_atmos,
 	/client/proc/scheduler,
+	/client/proc/editzoneair,
 	/client/proc/cmd_admin_change_hivenumber
 	)
 
@@ -181,7 +182,7 @@ var/list/admin_verbs_rejuv = list(
 
 //verbs which can be hidden - needs work
 var/list/admin_verbs_hideable = list(
-	/client/proc/set_ooc,
+	/client/proc/set_ooc_color_global,
 	/client/proc/deadmin_self,
 	/client/proc/toggleprayers,
 	/client/proc/toggle_hear_radio,
@@ -189,7 +190,7 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/togglejoin,
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
-	/client/proc/colorooc,
+	/client/proc/set_ooc_color_self,
 	/client/proc/admin_ghost,
 	/client/proc/toggle_view_range,
 	/datum/admins/proc/view_txt_log,
@@ -199,7 +200,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_world_narrate,
 	/client/proc/play_sound_from_list,
 	/client/proc/play_imported_sound,
-	/client/proc/object_talk,
+	// /client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
@@ -207,7 +208,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/make_sound,
+	// /client/proc/make_sound,
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
@@ -247,10 +248,10 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game.*/
 	/client/proc/toggledebuglogs,
-	/datum/admins/proc/PlayerNotes,
+	/datum/admins/proc/player_notes_list,
+	/datum/admins/proc/player_notes_show,
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/cmd_mod_say,
-	/datum/admins/proc/show_player_info,
 	/client/proc/player_panel_new,
 	/client/proc/dsay,
 	/datum/admins/proc/togglesleep,
@@ -259,14 +260,13 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
 	// /client/proc/jobbans // Disabled temporarily due to 15-30 second lag spikes. Don't forget the comma in the line above when uncommenting this!
-	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
+	// /client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
 	/client/proc/toggleffattacklogs,
 	/datum/admins/proc/view_txt_log,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
 	/datum/admins/proc/toggleloocdead,	/*toggles looc on/off for everyone who is dead*/
-	/client/proc/editzoneair,
 	/client/proc/cmd_admin_changekey,
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
@@ -281,10 +281,10 @@ var/list/admin_verbs_mod = list(
 var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
-	/datum/admins/proc/PlayerNotes,
+	/datum/admins/proc/player_notes_list,
+	/datum/admins/proc/player_notes_show,
 	/client/proc/admin_ghost,
 	/client/proc/cmd_mod_say,
-	/datum/admins/proc/show_player_info,
 	/client/proc/dsay,
 	/datum/admins/proc/togglesleep,
 	/client/proc/cmd_admin_subtle_message,
@@ -425,7 +425,7 @@ var/list/admin_verbs_mentor = list(
 */
 
 /client/proc/player_panel_new()
-	set name = "Player Panel New"
+	set name = "Player Panel"
 	set category = "Admin"
 	if(holder)
 		holder.player_panel_new()
@@ -479,8 +479,8 @@ var/list/admin_verbs_mentor = list(
 	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/colorooc()
-	set category = "Fun"
+/client/proc/set_ooc_color_self()
+	set category = "OOC"
 	set name = "OOC Text Color - Self"
 	if(!holder && !donator)	return
 	var/new_ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color|null
@@ -549,15 +549,15 @@ var/list/admin_verbs_mentor = list(
 #undef AUTOBANTIME
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Special Verbs"
+	set category = "Fun"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
 	var/turf/epicenter = mob.loc
-	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
+	var/list/choices = list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	var/choice = input("What size explosion would you like to produce?") in choices
 	switch(choice)
-		if(null)
+		if("CANCEL")
 			return 0
 		if("Small Bomb")
 			explosion(epicenter, 1, 2, 3, 3)
@@ -622,7 +622,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
-	set category = "Special Verbs"
+	set category = "Fun"
 	if(src.mob)
 		togglebuildmode(src.mob)
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -655,7 +655,7 @@ var/list/admin_verbs_mentor = list(
 */
 
 /client/proc/deadmin_self()
-	set name = "De-admin Self"
+	set name = "De-Admin Self"
 	set category = "Admin"
 
 	if(holder)
@@ -709,7 +709,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/editappear(mob/living/carbon/human/M as mob in mob_list)
 	set name = "Edit Appearance"
-	set category = "Fun"
+	set category = null
 
 	if(!check_rights(R_FUN))	return
 
@@ -770,15 +770,15 @@ var/list/admin_verbs_mentor = list(
 	M.update_body()
 	M.check_dna(M)
 
-/client/proc/playernotes()
-	set name = "Show Player Info"
+/client/proc/player_notes_list()
+	set name = "Player Notes List"
 	set category = "Admin"
 	if(holder)
-		holder.PlayerNotes()
+		holder.player_notes_list()
 	return
 
 /client/proc/free_slot()
-	set name = "Free Job Slot"
+	set name = "Job Slots - Free"
 	set category = "Admin"
 	if(holder)
 		var/roles[] = new
@@ -880,7 +880,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/change_security_level()
 	set name = "Set Security Level"
 	set desc = "Sets the station security level"
-	set category = "Admin"
+	set category = "Fun"
 
 	if(!check_rights(R_ADMIN))	return
 	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
@@ -891,7 +891,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/toggle_gun_restrictions()
 	set name = "Toggle Gun Restrictions"
 	set desc = "Toggling to on will allow anyone to use restricted WY superguns. Leave this alone unless you know what you're doing."
-	set category = "Special Verbs"
+	set category = "Server"
 
 	if(!holder)	return
 	if(config)
@@ -908,7 +908,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/toggle_synthetic_restrictions()
 	set name = "Toggle Synthetic Gun Use"
 	set desc = "Toggling to on will allow synthetics to fire guns. Leave this alone unless you know what you're doing."
-	set category = "Special Verbs"
+	set category = "Server"
 
 	if(!holder)	return
 	if(config)
@@ -923,14 +923,14 @@ var/list/admin_verbs_mentor = list(
 		config.allow_synthetic_gun_use = !config.allow_synthetic_gun_use
 
 /client/proc/adjust_weapon_mult()
-	set name = "Adjust Weapon Multiplier"
+	set name = "Adjust Weapon Multipliers"
 	set desc = "Using this allow to change how much accuracy and damage are changed. 1 is the normal number, anything higher will increase damage and/or accuracy."
-	set category = "Server"
+	set category = "Fun"
 
 	if(!holder)	return
 	if(config)
-		var/acc = input("Select the new accuracy and damage multipliers.","ACCURACY MULTIPLIER", 1) as num
-		var/dam = input("Select the new accuracy and damage multipliers.","DAMAGE MULTIPLIER", 1) as num
+		var/acc = input("Select the new accuracy multiplier.","ACCURACY MULTIPLIER", 1) as num
+		var/dam = input("Select the new damage multiplier.","DAMAGE MULTIPLIER", 1) as num
 		if(acc && dam)
 			config.proj_base_accuracy_mult = acc * 0.01
 			config.proj_base_damage_mult = dam * 0.01
@@ -938,10 +938,12 @@ var/list/admin_verbs_mentor = list(
 			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
 
 /client/proc/set_away_timer()
-	set name = "Set Away Timer in View"
+	set name = "Set Xeno Away Timer in View"
 	set desc = "Set the away_timer of all clientless Xenos in view to 300 to allow players to become them."
 	set category = "Fun"
 	if(!holder)	return
+
+	if(alert("Are you sure you want to set the away_timer of all visible Xenos to 300? Make sure there aren't any visible AFK Xenos with players that might return!",, "Confirm", "Cancel") == "Cancel") return
 
 	for(var/mob/living/carbon/Xenomorph/X in view())
 		if(X.client) continue

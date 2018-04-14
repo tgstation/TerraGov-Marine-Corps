@@ -82,11 +82,16 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	//Masks
 	if(user.wear_mask)
 		if(user.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
-			E.germ_level += user.germ_level * 2 // fuck you smoking doctors
+			E.germ_level += user.germ_level + 200  // fuck you smoking doctors
 		else if(user.wear_mask.germ_level && !istype(user.wear_mask, /obj/item/clothing/mask/surgical) && prob(30))
 			E.germ_level += user.wear_mask.germ_level / 2
 	else if(user.germ_level && prob(60))
 		E.germ_level += user.germ_level / 2
+
+	if(locate(/obj/structure/bed/roller, E.owner.loc))
+		E.germ_level += 100
+	else if(locate(/obj/structure/table/, E.owner.loc))
+		E.germ_level += 200
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))

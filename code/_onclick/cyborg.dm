@@ -40,7 +40,7 @@
 		return 1
 
 	face_atom(A)
-
+	if (world.time <= next_move) return
 	var/obj/item/W = get_active_hand()
 
 	// Cyborgs have no range-checking unless there is item use

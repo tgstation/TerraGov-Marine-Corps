@@ -140,6 +140,7 @@
 /area/ice_colony/exterior/underground
 	name = "\improper Ice Colony - Exterior Underground"
 	icon_state = "cave"
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 //
 // Caves
@@ -168,6 +169,7 @@
 /area/ice_colony/surface
 	name = "\improper Ice Colony - Built Surface"
 	icon_state = "clear"
+	ceiling = CEILING_METAL
 
 /*
  * Surface - Bar
@@ -350,6 +352,7 @@
 /area/ice_colony/surface/hydroponics
 	name = "\improper Ice Colony Hydroponics"
 	icon_state = "hydro"
+	ceiling = CEILING_GLASS
 
 /area/ice_colony/surface/hydroponics/lobby
 	name = "\improper Hydroponics Relaxation Module"
@@ -449,7 +452,7 @@
 /area/ice_colony/underground
 	name = "\improper Ice Colony - Built Underground"
 	icon_state = "explored"
-	is_underground = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /*
  * Underground - Crew Areas

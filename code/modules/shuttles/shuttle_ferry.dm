@@ -9,8 +9,8 @@
 	var/move_time = 0		//the time spent in the transition area
 	var/transit_direction = null	//needed for area/move_contents_to() to properly handle shuttle corners - not exactly sure how it works.
 
-	var/area_station
-	var/area_offsite
+	var/area/area_station
+	var/area/area_offsite
 	//TODO: change location to a string and use a mapping for area and dock targets.
 	var/dock_target_station
 	var/dock_target_offsite
@@ -20,6 +20,8 @@
 	var/locked = 0
 	var/queen_locked = 0 //If the Queen locked the ship by interacting with its onboard console. If this happens, Marines lose control of the ship permanently
 	var/last_locked = 0 //world.time value to determine if it can be contested
+	var/door_override = 0 //similar to queen_locked, but only affects doors
+	var/last_door_override = 0 //world.time value to determine if it can be contested
 
 /datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
 	if(isnull(location))

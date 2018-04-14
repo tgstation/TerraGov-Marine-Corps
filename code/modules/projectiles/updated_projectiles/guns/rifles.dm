@@ -7,50 +7,29 @@
 	flags_equip_slot = SLOT_BACK
 	w_class = 4
 	force = 15
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
+	aim_slowdown = SLOWDOWN_ADS_RIFLE
+	wield_delay = WIELD_DELAY_NORMAL
 	gun_skill_category = GUN_SKILL_RIFLES
 
-	New()
-		..()
-		burst_amount = config.med_burst_value
-		burst_delay = config.mlow_fire_delay
-		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+/obj/item/weapon/gun/rifle/New()
+	..()
+	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
-	unique_action(mob/user)
-		cock(user)
+/obj/item/weapon/gun/rifle/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
 
-//-------------------------------------------------------
-//M41A PULSE RIFLE AMMUNITION
+/obj/item/weapon/gun/rifle/unique_action(mob/user)
+	cock(user)
 
-/obj/item/ammo_magazine/rifle
-	name = "\improper M41A magazine (10x24mm)"
-	desc = "A 10mm assault rifle magazine."
-	caliber = "10x24mm"
-	icon_state = "m41a"
-	w_class = 3
-	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/m41a
-
-/obj/item/ammo_magazine/rifle/extended
-	name = "\improper M41A extended magazine (10x24mm)"
-	desc = "A 10mm assault extended rifle magazine."
-	max_rounds = 60
-	bonus_overlay = "m41a_ex"
-
-/obj/item/ammo_magazine/rifle/incendiary
-	name = "\improper M41A incendiary magazine (10x24mm)"
-	desc = "A 10mm assault rifle magazine."
-	icon_state = "m41a_incendiary"
-	default_ammo = /datum/ammo/bullet/rifle/incendiary
-
-/obj/item/ammo_magazine/rifle/ap
-	name = "\improper M41A AP magazine (10x24mm)"
-	desc = "A 10mm armor piercing magazine."
-	icon_state = "m41a_AP"
-	default_ammo = /datum/ammo/bullet/rifle/ap
 
 //-------------------------------------------------------
 //M41A PULSE RIFLE
@@ -66,29 +45,42 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/foregrip,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/stock/rifle,
 						/obj/item/attachable/grenade,
 						/obj/item/attachable/flamer,
 						/obj/item/attachable/shotgun,
-						/obj/item/attachable/scope)
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/grenade)
 
-	New()
-		select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
-		..()
-		fire_delay = config.med_fire_delay
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+/obj/item/weapon/gun/rifle/m41a/New()
+	select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+
+/obj/item/weapon/gun/rifle/m41a/set_gun_config_values()
+	fire_delay = config.med_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
+
 
 //variant without ugl attachment
 /obj/item/weapon/gun/rifle/m41a/stripped
@@ -106,19 +98,21 @@
 	current_mag = /obj/item/ammo_magazine/rifle/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WY_RESTRICTED
 
-	New()
-		..()
-		accuracy += config.max_hit_accuracy_mult
-		damage += config.max_hit_damage_mult
+
+/obj/item/weapon/gun/rifle/m41a/elite/set_gun_config_values()
+	fire_delay = config.med_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.max_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
+
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
-
-/obj/item/ammo_magazine/rifle/m41aMK1
-	name = "\improper M41AMK1 magazine (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
-	max_rounds = 95
-	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
 
 /obj/item/weapon/gun/rifle/m41aMK1
 	name = "\improper M41A pulse rifle"
@@ -136,30 +130,26 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
-	New()
-		..()
-		accuracy -= config.min_hit_accuracy_mult
-		damage += config.min_hit_damage_mult
-		burst_amount = config.high_burst_value
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+/obj/item/weapon/gun/rifle/m41aMK1/New()
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+
+/obj/item/weapon/gun/rifle/m41aMK1/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	burst_amount = config.high_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult - config.min_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
+
+
 
 //-------------------------------------------------------
 //MAR-40 AK CLONE //AK47 and FN FAL together as one.
 
-/obj/item/ammo_magazine/rifle/mar40
-	name = "\improper MAR magazine (7.62x39mm)"
-	desc = "A 7.62x39mm magazine for the MAR series of firearms."
-	caliber = "7.62x39mm"
-	icon_state = "mar40"
-	default_ammo = /datum/ammo/bullet/rifle/mar40
-	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/mar40
-
-/obj/item/ammo_magazine/rifle/mar40/extended
-	name = "\improper MAR extended magazine (7.62x39mm)"
-	desc = "A 7.62x39mm MAR magazine, this one carries more rounds than the average magazine."
-	max_rounds = 60
-	bonus_overlay = "mar40_ex"
 
 /obj/item/weapon/gun/rifle/mar40
 	name = "\improper MAR-40 battle rifle"
@@ -187,13 +177,23 @@
 						/obj/item/attachable/shotgun,
 						/obj/item/attachable/scope/slavic)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		accuracy -= config.low_hit_accuracy_mult
-		burst_amount = config.high_burst_value
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+/obj/item/weapon/gun/rifle/mar40/New()
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+
+/obj/item/weapon/gun/rifle/mar40/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	burst_amount = config.high_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
+
 
 /obj/item/weapon/gun/rifle/mar40/carbine
 	name = "\improper MAR-30 battle carbine"
@@ -202,22 +202,20 @@
 	item_state = "mar30"
 	fire_sound = 'sound/weapons/gun_ak47.ogg' //Change
 
-	New()
-		..()
-		accuracy += config.min_hit_accuracy_mult
-		fire_delay = config.high_fire_delay
+/obj/item/weapon/gun/rifle/mar40/carbine/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	burst_amount = config.high_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult + config.min_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult + config.min_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
+
 
 //-------------------------------------------------------
 //M16 RIFLE
-
-/obj/item/ammo_magazine/rifle/m16
-	name = "\improper M16 magazine (5.56x45mm)"
-	desc = "A 5.56x45mm magazine for the M16 assault rifle."
-	caliber = "5.56x45mm"
-	icon_state = "mar40" //PLACEHOLDER
-	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 20 //Also comes in 30 and 100 round Beta-C mag.
-	gun_type = /obj/item/weapon/gun/rifle/m16
 
 /obj/item/weapon/gun/rifle/m16
 	name = "\improper M16 rifle"
@@ -232,7 +230,8 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/foregrip,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
@@ -244,23 +243,26 @@
 						/obj/item/attachable/shotgun
 						)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		accuracy += config.min_hit_accuracy_mult
-		damage += config.min_hit_damage_mult
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
+/obj/item/weapon/gun/rifle/m16/New()
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
+
+
+/obj/item/weapon/gun/rifle/m16/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
-
-/obj/item/ammo_magazine/rifle/lmg
-	name = "\improper M41AE2 ammo box (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
-	icon_state = "m41ae2"
-	max_rounds = 300
-	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 /obj/item/weapon/gun/rifle/lmg
 	name = "\improper M41AE2 heavy pulse rifle"
@@ -273,7 +275,8 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/foregrip,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/heavy_barrel,
@@ -283,30 +286,31 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
 	New()
 		..()
-		accuracy -= config.low_hit_accuracy_mult
-		fire_delay = config.high_fire_delay
-		burst_amount = config.high_burst_value
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
+
+/obj/item/weapon/gun/rifle/lmg/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	burst_amount = config.high_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil_unwielded = config.max_recoil_value
+
+
 
 //-------------------------------------------------------
 
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE
-
-/obj/item/ammo_magazine/rifle/type71
-	name = "\improper Type 71 magazine (7.62x39mm)"
-	desc = "A 7.62x39mm magazine that fits in the Type 71 rifle."
-	caliber = "7.62x39mm"
-	icon_state = "type_71"
-	default_ammo = /datum/ammo/bullet/rifle/mar40
-	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/type71
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
@@ -318,38 +322,24 @@
 	current_mag = /obj/item/ammo_magazine/rifle/type71
 	wield_delay = 4
 	//type_of_casings = "cartridge"
-	/*
-	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/grenade,
-						/obj/item/attachable/flamer,
-						/obj/item/attachable/shotgun)
-	*/
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_RUSSIANS|GUN_BURST_ON
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON
 
-	New()
-		..()
-		burst_amount = config.low_burst_value
-		burst_delay = config.mlow_fire_delay
-		accuracy += config.max_hit_accuracy_mult
-		fire_delay = config.high_fire_delay
-		/*
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	*/
-	toggle_burst()
-		usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
+/obj/item/weapon/gun/rifle/type71/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	burst_amount = config.low_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
+
+
+/obj/item/weapon/gun/rifle/type71/toggle_burst()
+	usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
+
 
 /obj/item/weapon/gun/rifle/type71/flamer
 	name = "\improper Type 71 pulse rifle"
@@ -361,7 +351,7 @@
 		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		update_attachable(S.slot)
-		accuracy += config.max_hit_accuracy_mult + 1
+
 
 
 /obj/item/weapon/gun/rifle/type71/carbine
@@ -378,25 +368,34 @@
 	item_state = "type73"
 	wield_delay = 0 //Ends up being .5 seconds due to scope
 
-	New()//Making the gun have an invisible silencer since it's supposed to have one.
-		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
-		//supressor
-		var/obj/item/attachable/suppressor/S = new(src)
-		S.icon_state = ""
-		S.flags_attach_features &= ~ATTACH_REMOVABLE
-		S.Attach(src)
-		update_attachable(S.slot)
-		//scope
-		var/obj/item/attachable/scope/F = new(src)
-		F.icon_state = ""
-		F.flags_attach_features &= ~ATTACH_REMOVABLE
-		F.Attach(src)
-		update_attachable(F.slot)
+/obj/item/weapon/gun/rifle/type71/carbine/commando/New()//Making the gun have an invisible silencer since it's supposed to have one.
+	..()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
+	//supressor
+	var/obj/item/attachable/suppressor/S = new(src)
+	S.icon_state = ""
+	S.attach_icon = ""
+	S.flags_attach_features &= ~ATTACH_REMOVABLE
+	S.Attach(src)
+	update_attachable(S.slot)
+	//scope
+	var/obj/item/attachable/scope/F = new(src)
+	F.icon_state = ""
+	F.attach_icon = ""
+	F.flags_attach_features &= ~ATTACH_REMOVABLE
+	F.Attach(src)
+	update_attachable(F.slot)
 
-		accuracy += config.max_hit_accuracy_mult + 3
-		burst_amount = config.low_burst_value
-		burst_delay = config.mlow_fire_delay
-		fire_delay = config.high_fire_delay
+
+/obj/item/weapon/gun/rifle/type71/carbine/commando/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	burst_amount = config.low_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult + config.max_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil_unwielded = config.high_recoil_value
 
 //-------------------------------------------------------

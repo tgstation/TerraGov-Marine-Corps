@@ -9,6 +9,8 @@
 	arrival_message = "Intercepted Transmission: '!`2*%slau#*jer t*h$em a!l%. le&*ve n(o^ w&*nes%6es.*v$e %#d ou^'"
 	objectives = "Wipe out everything. Ensure there are no traces of the infestation or any witnesses."
 	probability = 0
+	shuttle_id = "Distress_PMC"
+	name_of_spawn = "Distress_PMC"
 
 
 

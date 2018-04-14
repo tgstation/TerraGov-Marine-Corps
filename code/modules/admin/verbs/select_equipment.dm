@@ -1,7 +1,7 @@
 
 
 /client/proc/cmd_admin_select_mob_rank(var/mob/living/carbon/human/H in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Select Rank"
 	if(!istype(H))
 		alert("Invalid mob")
@@ -73,7 +73,7 @@
 
 
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Select Equipment"
 	if(!ishuman(M))
 		alert("Invalid mob")
@@ -1488,7 +1488,7 @@
 		/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40/extended,
 		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
 		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh/extended,
-		/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/rifle/sniper/svd)
+		/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd)
 
 	var/gunpath = sidearm? pick(rus_sidearms) : pick(rus_firearms)
 	var/ammopath = sidearm? rus_sidearms[gunpath] : rus_firearms[gunpath]

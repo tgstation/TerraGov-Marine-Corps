@@ -5,7 +5,6 @@
 #define GRAB_KILL		3
 
 //Ammo defines for gun/projectile related things.
-#define AMMO_REGULAR 			0 //Just as a reminder.
 #define AMMO_EXPLOSIVE 			1
 #define AMMO_XENO_ACID 			2
 #define AMMO_XENO_TOX			4
@@ -32,10 +31,9 @@
 #define GUN_BURST_ON			256
 #define GUN_BURST_FIRING		512
 #define GUN_FLASHLIGHT_ON		1024
-#define GUN_ON_MERCS			2048 //Unused right now.
-#define GUN_ON_RUSSIANS			4096 //Unused right now.
-#define GUN_WY_RESTRICTED		8192
-#define GUN_SPECIALIST			16384
+#define GUN_WY_RESTRICTED		2048
+#define GUN_SPECIALIST			4096
+#define GUN_WIELDED_FIRING_ONLY	8192
 
 //Gun attachable related flags.
 #define ATTACH_PASSIVE		1
@@ -60,17 +58,17 @@
 #define SLOWDOWN_ARMOR_VERY_HEAVY	1.15
 
 #define SLOWDOWN_ADS_SHOTGUN		0.75
-#define SLOWDOWN_ADS_RIFLE			0.75
-#define SLOWDOWN_ADS_SCOPE			0.5
-#define SLOWDOWN_ADS_INCINERATOR	1.1
-#define SLOWDOWN_ADS_SPECIALIST		1.5
-#define SLOWDOWN_ADS_SUPERWEAPON	2
+#define SLOWDOWN_ADS_RIFLE			0.75 //anything below that doesn't change anything.
+#define SLOWDOWN_ADS_SCOPE			1
+#define SLOWDOWN_ADS_INCINERATOR	1.75
+#define SLOWDOWN_ADS_SPECIALIST		1.75
+#define SLOWDOWN_ADS_SUPERWEAPON	2.75
 
 //Wield delays, in milliseconds. 10 is 1 second
 #define WIELD_DELAY_VERY_FAST		2
 #define WIELD_DELAY_FAST			4
-#define WIELD_DELAY_NORMAL			8
-#define WIELD_DELAY_SLOW			12
+#define WIELD_DELAY_NORMAL			6
+#define WIELD_DELAY_SLOW			10
 #define WIELD_DELAY_VERY_SLOW		16
 #define WIELD_DELAY_HORRIBLE		20
 //=================================================

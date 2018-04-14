@@ -208,9 +208,9 @@
 
 				for(var/client/C in admins)
 					if((R_ADMIN|R_MOD) & C.holder.rights)
-						C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Distress Beacon\"</span> <span class='name'>(<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>Distress Beacon</A>) (<A HREF='?_src_=holder;ccdeny=\ref[usr]'>DENY</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
 						C << 'sound/effects/sos-morse-code.ogg'
-						usr << "<span class='notice'>A distress beacon request has been sent to USCM Central Command.</span>"
+				message_staff("[key_name(usr)] has requested a Distress Beacon! (<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>SEND</A>) (<A HREF='?_src_=holder;ccdeny=\ref[usr]'>DENY</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)")
+				usr << "<span class='notice'>A distress beacon request has been sent to USCM Central Command.</span>"
 						//unanswered_distress += usr
 
 				//spawn(600) //1 minute in deciseconds

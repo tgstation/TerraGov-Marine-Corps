@@ -2,32 +2,12 @@
 //SNIPER RIFLES
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
-/obj/item/ammo_magazine/sniper
-	name = "\improper M42A marksman magazine (10x28mm Caseless)"
-	desc = "A magazine of sniper rifle ammo."
-	caliber = "10x28mm"
-	icon_state = "m42c" //PLACEHOLDER
-	max_rounds = 15
-	default_ammo = /datum/ammo/bullet/sniper
-	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
-
-	New()
-		..()
-		reload_delay = config.low_fire_delay
-
-/obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper M42A incendiary magazine (10x28mm)"
-	default_ammo = /datum/ammo/bullet/sniper/incendiary
-
-/obj/item/ammo_magazine/sniper/flak
-	name = "\improper M42A flak magazine (10x28mm)"
-	default_ammo = /datum/ammo/bullet/sniper/flak
-
 //Because this parent type did not exist
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	gun_skill_category = GUN_SKILL_SPEC
+	wield_delay = WIELD_DELAY_SLOW
 
 	able_to_fire(mob/living/user)
 		. = ..()
@@ -50,99 +30,35 @@
 	zoomdevicename = "scope"
 	attachable_allowed = list(/obj/item/attachable/bipod)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
 	New()
 		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_m42a") )
 		..()
-		accuracy += config.low_hit_accuracy_mult
-		recoil = config.min_recoil_value
-		fire_delay = config.high_fire_delay*4
-		burst_amount = config.min_burst_value
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		var/obj/item/attachable/scope/S = new(src)
-		S.icon_state = "" //Let's make it invisible. The sprite already has one.
+		S.icon_state = ""
+		S.attach_icon = "" //Let's make it invisible. The sprite already has one.
 		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
 		update_attachables()
 
+
+/obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
+	fire_delay = config.high_fire_delay*4
+	burst_amount = config.min_burst_value
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.min_recoil_value
+
+
 /obj/item/weapon/gun/rifle/sniper/M42A/jungle //These really should just be skins.
 	name = "\improper M42A marksman rifle"
 	icon_state = "m_m42a" //NO BACK STATE
 	item_state = "m_m42a"
-
-/obj/item/ammo_magazine/rifle/m4ra
-	name = "\improper A19 high velocity magazine (10x24mm)"
-	desc = "A magazine of A19 high velocity rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
-	icon_state = "m4ra"
-	default_ammo = /datum/ammo/bullet/rifle/m4ra
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/m4ra
-
-/obj/item/ammo_magazine/rifle/m4ra/incendiary
-	name = "\improper A19 high velocity incendiary magazine (10x24mm)"
-	desc = "A magazine of A19 high velocity incendiary rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
-	icon_state = "m4ra_incendiary"
-	default_ammo = /datum/ammo/bullet/rifle/m4ra/incendiary
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/m4ra
-
-/obj/item/ammo_magazine/rifle/m4ra/impact
-	name = "\improper A19 high velocity impact magazine (10x24mm)"
-	desc = "A magazine of A19 high velocity impact rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
-	icon_state = "m4ra_impact"
-	default_ammo = /datum/ammo/bullet/rifle/m4ra/impact
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/m4ra
-
-/obj/item/weapon/gun/rifle/m4ra
-	name = "\improper M4RA battle rifle"
-	desc = "The M4RA battle rifle is a designated marksman rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
-	icon_state = "m41b"
-	item_state = "m4ra" //PLACEHOLDER
-	origin_tech = "combat=5;materials=4"
-	fire_sound = list('sound/weapons/gun_m4ra.ogg')
-	current_mag = /obj/item/ammo_magazine/rifle/m4ra
-	force = 16
-	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/foregrip,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator)
-
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
-	gun_skill_category = GUN_SKILL_SPEC
-
-	New()
-		..()
-		accuracy += config.med_hit_accuracy_mult
-		recoil = config.min_recoil_value
-		fire_delay = config.high_fire_delay
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 23, "under_x" = 26, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-		var/obj/item/attachable/scope/S = new(src)
-		S.icon_state = null // the gun's sprite already shows a scope
-		S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
-		S.Attach(src)
-		var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.
-		Q.Attach(src)
-		update_attachables()
-
-	able_to_fire(mob/living/user)
-		. = ..()
-		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SCOUT)
-				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-				return 0
-
-/obj/item/ammo_magazine/sniper/elite
-	name = "\improper M42C marksman magazine (10x99mm)"
-	default_ammo = /datum/ammo/bullet/sniper/elite
-	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
-	caliber = "10x99mm"
-	icon_state = "m42c"
-	max_rounds = 6
 
 /obj/item/weapon/gun/rifle/sniper/elite
 	name = "\improper M42C anti-tank sniper rifle"
@@ -155,41 +71,38 @@
 	force = 17
 	zoomdevicename = "scope"
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED|GUN_SPECIALIST
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
-	New()
-		..()
-		accuracy += config.max_hit_accuracy_mult
-		recoil = config.max_recoil_value
-		fire_delay = config.high_fire_delay*5
-		burst_amount = config.min_burst_value
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
-		var/obj/item/attachable/scope/S = new(src)
-		S.icon_state = "pmcscope"
-		S.flags_attach_features &= ~ATTACH_REMOVABLE
-		S.Attach(src)
-		var/obj/item/attachable/sniperbarrel/Q = new(src)
-		Q.Attach(src)
-		update_attachables()
+/obj/item/weapon/gun/rifle/sniper/elite/New()
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
+	var/obj/item/attachable/scope/S = new(src)
+	S.icon_state = "pmcscope"
+	S.attach_icon = "pmcscope"
+	S.flags_attach_features &= ~ATTACH_REMOVABLE
+	S.Attach(src)
+	var/obj/item/attachable/sniperbarrel/Q = new(src)
+	Q.Attach(src)
+	update_attachables()
 
-	simulate_recoil(total_recoil = 0, mob/user, atom/target)
-		. = ..()
-		if(.)
-			var/mob/living/carbon/human/PMC_sniper = user
-			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
-				PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
-				step(PMC_sniper,turn(PMC_sniper.dir,180))
-				PMC_sniper.KnockDown(5)
+/obj/item/weapon/gun/rifle/sniper/elite/set_gun_config_values()
+	fire_delay = config.high_fire_delay*5
+	burst_amount = config.min_burst_value
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.max_recoil_value
+
+/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user, atom/target)
+	. = ..()
+	if(.)
+		var/mob/living/carbon/human/PMC_sniper = user
+		if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
+			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
+			step(PMC_sniper,turn(PMC_sniper.dir,180))
+			PMC_sniper.KnockDown(5)
 
 //SVD //Based on the actual Dragunov sniper rifle.
-/obj/item/ammo_magazine/rifle/sniper/svd
-	name = "\improper SVD magazine (7.62x54mmR)"
-	desc = "A large caliber magazine for the SVD sniper rifle."
-	caliber = "7.62x54mmR"
-	icon_state = "svd003"
-	default_ammo = /datum/ammo/bullet/sniper
-	max_rounds = 10
-	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
 
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
@@ -198,42 +111,95 @@
 	item_state = "svd003" //NEEDS A ONE HANDED STATE
 	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/sniper/svd
+	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/foregrip,
+						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/slavic)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_ON_MERCS|GUN_ON_RUSSIANS|GUN_SPECIALIST
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
-	New()
-		..()
-		accuracy -= config.low_hit_accuracy_mult
-		recoil = config.min_recoil_value
-		fire_delay = config.mhigh_fire_delay*2
-		burst_amount = config.low_burst_value
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-		var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
-		S.Attach(src)
-		S = new /obj/item/attachable/slavicbarrel(src)
-		S.Attach(src)
-		S = new /obj/item/attachable/stock/slavic(src)
-		S.flags_attach_features &= ~ATTACH_REMOVABLE
-		S.Attach(src)
-		update_attachables()
+/obj/item/weapon/gun/rifle/sniper/svd/New()
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
+	S.Attach(src)
+	S = new /obj/item/attachable/slavicbarrel(src)
+	S.Attach(src)
+	S = new /obj/item/attachable/stock/slavic(src)
+	S.flags_attach_features &= ~ATTACH_REMOVABLE
+	S.Attach(src)
+	update_attachables()
+
+/obj/item/weapon/gun/rifle/sniper/svd/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay*2
+	burst_amount = config.low_burst_value
+	accuracy_mult = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.min_recoil_value
+
+
+
+//M4RA marksman rifle
+
+/obj/item/weapon/gun/rifle/m4ra
+	name = "\improper M4RA battle rifle"
+	desc = "The M4RA battle rifle is a designated marksman rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
+	icon_state = "m41b"
+	item_state = "m4ra" //PLACEHOLDER
+	origin_tech = "combat=5;materials=4"
+	fire_sound = list('sound/weapons/gun_m4ra.ogg')
+	current_mag = /obj/item/ammo_magazine/rifle/m4ra
+	force = 16
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/compensator)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
+	gun_skill_category = GUN_SKILL_SPEC
+
+/obj/item/weapon/gun/rifle/m4ra/New()
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	var/obj/item/attachable/scope/S = new(src)
+	S.icon_state = null // the gun's sprite already shows a scope
+	S.attach_icon = null
+	S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
+	S.Attach(src)
+	var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.
+	Q.Attach(src)
+	update_attachables()
+
+
+/obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.min_recoil_value
+
+/obj/item/weapon/gun/rifle/m4ra/able_to_fire(mob/living/user)
+	. = ..()
+	if (. && istype(user)) //Let's check all that other stuff first.
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SCOUT)
+			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+			return 0
+
+
 
 //-------------------------------------------------------
 //SMARTGUN
-/obj/item/ammo_magazine/internal/smartgun
-	name = "integrated smartgun belt"
-	caliber = "10x28mm"
-	max_rounds = 50 //Should be 500 in total.
-	default_ammo = /datum/ammo/bullet/smartgun
 
 //Come get some.
 /obj/item/weapon/gun/smartgun
@@ -253,63 +219,67 @@
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety on.
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/burstfire_assembly)
 
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
 
-	New()
-		..()
-		ammo_secondary = ammo_list[ammo_secondary]
-		accuracy += config.min_hit_accuracy_mult
-		fire_delay = config.low_fire_delay
-		burst_amount = config.med_burst_value
-		burst_delay = config.min_fire_delay
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 19, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
-
-	examine(mob/user)
-		..()
-		user << "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]"
-		user << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
-
-	unique_action(mob/user)
-		toggle_restriction(user)
-
-	able_to_fire(mob/living/user)
-		. = ..()
-		if(.)
-			if(!ishuman(user)) return 0
-			var/mob/living/carbon/human/H = user
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun < SKILL_SMART_USE)
-				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-				return 0
-			if ( !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
-				click_empty(H)
-				return 0
+/obj/item/weapon/gun/smartgun/New()
+	..()
+	ammo_secondary = ammo_list[ammo_secondary]
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 19, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 
-	load_into_chamber(mob/user)
-		if(active_attachable) active_attachable = null
-		return ready_in_chamber()
+/obj/item/weapon/gun/smartgun/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.min_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
 
-	reload_into_chamber(mob/user)
-		var/mob/living/carbon/human/smart_gunner = user
-		var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
-		if(istype(power_pack)) //I don't know how it would break, but it is possible.
-			if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
-				auto_reload(smart_gunner, power_pack)
-			else shells_fired_now++
+/obj/item/weapon/gun/smartgun/examine(mob/user)
+	..()
+	user << "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]"
+	user << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
 
-		return current_mag.current_rounds
+/obj/item/weapon/gun/smartgun/unique_action(mob/user)
+	toggle_restriction(user)
 
-	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-		cdel(projectile_to_fire)
-		if(refund) current_mag.current_rounds++
-		return 1
+/obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
+	. = ..()
+	if(.)
+		if(!ishuman(user)) return 0
+		var/mob/living/carbon/human/H = user
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun < SKILL_SMART_USE)
+			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+			return 0
+		if ( !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
+			click_empty(H)
+			return 0
+
+
+/obj/item/weapon/gun/smartgun/load_into_chamber(mob/user)
+	if(active_attachable) active_attachable = null
+	return ready_in_chamber()
+
+/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
+	var/mob/living/carbon/human/smart_gunner = user
+	var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
+	if(istype(power_pack)) //I don't know how it would break, but it is possible.
+		if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
+			auto_reload(smart_gunner, power_pack)
+		else shells_fired_now++
+
+	return current_mag.current_rounds
+
+/obj/item/weapon/gun/smartgun/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+	cdel(projectile_to_fire)
+	if(refund) current_mag.current_rounds++
+	return 1
 
 /obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
 	user << "\icon[src] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"]."
@@ -325,10 +295,6 @@
 	if(power_pack && power_pack.loc)
 		power_pack.attack_self(smart_gunner)
 
-/obj/item/ammo_magazine/internal/smartgun/dirty
-	default_ammo = /datum/ammo/bullet/smartgun/dirty
-	gun_type = /obj/item/weapon/gun/smartgun/dirty
-
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M56D 'dirty' smartgun"
 	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action."
@@ -336,11 +302,16 @@
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
 	ammo_secondary = /datum/ammo/bullet/smartgun/lethal
 	attachable_allowed = list() //Cannot be upgraded.
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
-	New()
-		..()
-		accuracy += config.min_hit_accuracy_mult
+/obj/item/weapon/gun/smartgun/dirty/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.min_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult + config.min_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
 
 //-------------------------------------------------------
 //GRENADE LAUNCHER
@@ -364,74 +335,81 @@
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
 
-	New()
-		set waitfor = 0
-		..()
-		fire_delay = config.max_fire_delay*3
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-		sleep(1)
-		grenades += new /obj/item/explosive/grenade/frag(src)
-		grenades += new /obj/item/explosive/grenade/frag(src)
-		grenades += new /obj/item/explosive/grenade/incendiary(src)
-		grenades += new /obj/item/explosive/grenade/frag(src)
-		grenades += new /obj/item/explosive/grenade/frag(src)
+/obj/item/weapon/gun/launcher/m92/New()
+	set waitfor = 0
+	..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	sleep(1)
+	grenades += new /obj/item/explosive/grenade/frag(src)
+	grenades += new /obj/item/explosive/grenade/frag(src)
+	grenades += new /obj/item/explosive/grenade/incendiary(src)
+	grenades += new /obj/item/explosive/grenade/frag(src)
+	grenades += new /obj/item/explosive/grenade/frag(src)
 
-	examine(mob/user)
-		..()
+/obj/item/weapon/gun/launcher/m92/set_gun_config_values()
+	fire_delay = config.max_fire_delay*3
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
+
+/obj/item/weapon/gun/launcher/m92/examine(mob/user)
+	..()
+	if(grenades.len)
+		if (get_dist(user, src) > 2 && user != loc) return
+		user << "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades."
+
+/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
+	if((istype(I, /obj/item/explosive/grenade)))
+		if(grenades.len < max_grenades)
+			if(user.drop_inv_item_to_loc(I, src))
+				grenades += I
+				user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
+				user << "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>"
+		else
+			user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
+
+	else if(istype(I,/obj/item/attachable))
+		if(check_inactive_hand(user)) attach_to_gun(user,I)
+
+/obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
+	if(able_to_fire(user))
+		if(get_dist(target,user) <= 2)
+			user << "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>"
+			return
 		if(grenades.len)
-			if (get_dist(user, src) > 2 && user != loc) return
-			user << "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades."
+			fire_grenade(target,user)
+			playsound(user.loc, cocked_sound, 25, 1)
+		else user << "<span class='warning'>The grenade launcher is empty.</span>"
 
-	attackby(obj/item/I, mob/user)
-		if((istype(I, /obj/item/explosive/grenade)))
-			if(grenades.len < max_grenades)
-				if(user.drop_inv_item_to_loc(I, src))
-					grenades += I
-					user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
-					user << "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>"
-			else
-				user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
+//Doesn't use most of any of these. Listed for reference.
+/obj/item/weapon/gun/launcher/m92/load_into_chamber()
+	return
 
-		else if(istype(I,/obj/item/attachable))
-			if(check_inactive_hand(user)) attach_to_gun(user,I)
+/obj/item/weapon/gun/launcher/m92/reload_into_chamber()
+	return
 
-	afterattack(atom/target, mob/user, flag)
-		if(able_to_fire(user))
-			if(get_dist(target,user) <= 2)
-				user << "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>"
-				return
-			if(grenades.len)
-				fire_grenade(target,user)
-				playsound(user.loc, cocked_sound, 25, 1)
-			else user << "<span class='warning'>The grenade launcher is empty.</span>"
+/obj/item/weapon/gun/launcher/m92/unload(mob/user)
+	if(grenades.len)
+		var/obj/item/explosive/grenade/nade = grenades[grenades.len] //Grab the last one.
+		if(user)
+			user.put_in_hands(nade)
+			playsound(user, unload_sound, 25, 1)
+		else nade.loc = get_turf(src)
+		grenades -= nade
+	else user << "<span class='warning'>It's empty!</span>"
 
-	//Doesn't use most of any of these. Listed for reference.
-	load_into_chamber()
-		return
-
-	reload_into_chamber()
-		return
-
-	unload(mob/user)
-		if(grenades.len)
-			var/obj/item/explosive/grenade/nade = grenades[grenades.len] //Grab the last one.
-			if(user)
-				user.put_in_hands(nade)
-				playsound(user, unload_sound, 25, 1)
-			else nade.loc = get_turf(src)
-			grenades -= nade
-		else user << "<span class='warning'>It's empty!</span>"
-
-	able_to_fire(mob/living/user)
-		. = ..()
-		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
-				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-				return 0
+/obj/item/weapon/gun/launcher/m92/able_to_fire(mob/living/user)
+	. = ..()
+	if (. && istype(user)) //Let's check all that other stuff first.
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
+			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+			return 0
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
@@ -470,69 +448,74 @@
 	var/grenade
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 
-	flags_atom = FPRINT|CONDUCT
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
 
-	New()
-		set waitfor = 0
-		..()
-		fire_delay = config.max_fire_delay * 1.5
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-		sleep(1)
-		grenade = new /obj/item/explosive/grenade/frag(src)
+/obj/item/weapon/gun/launcher/m81/New()
+	set waitfor = 0
+	..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	sleep(1)
+	grenade = new /obj/item/explosive/grenade/frag(src)
 
-	examine(mob/user)
-		..()
+/obj/item/weapon/gun/launcher/m81/set_gun_config_values()
+	fire_delay = config.max_fire_delay * 1.5
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
+
+/obj/item/weapon/gun/launcher/m81/examine(mob/user)
+	..()
+	if(grenade)
+		if (get_dist(user, src) > 2 && user != loc) return
+		user << "\blue It is loaded with a grenade."
+
+/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
+	if((istype(I, /obj/item/explosive/grenade)))
+		if(!grenade)
+			if(user.drop_inv_item_to_loc(I, src))
+				grenade = I
+				user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
+		else
+			user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
+
+	else if(istype(I,/obj/item/attachable))
+		if(check_inactive_hand(user)) attach_to_gun(user,I)
+
+/obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
+	if(able_to_fire(user))
+		if(get_dist(target,user) <= 2)
+			user << "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>"
+			return
 		if(grenade)
-			if (get_dist(user, src) > 2 && user != loc) return
-			user << "\blue It is loaded with a grenade."
+			fire_grenade(target,user)
+			playsound(user.loc, cocked_sound, 25, 1)
+		else user << "<span class='warning'>The grenade launcher is empty.</span>"
 
-	attackby(obj/item/I, mob/user)
-		if((istype(I, /obj/item/explosive/grenade)))
-			if(!grenade)
-				if(user.drop_inv_item_to_loc(I, src))
-					grenade = I
-					user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
-			else
-				user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
+//Doesn't use most of any of these. Listed for reference.
+/obj/item/weapon/gun/launcher/m81/load_into_chamber()
+	return
 
-		else if(istype(I,/obj/item/attachable))
-			if(check_inactive_hand(user)) attach_to_gun(user,I)
+/obj/item/weapon/gun/launcher/m81/reload_into_chamber()
+	return
 
-	afterattack(atom/target, mob/user, flag)
-		if(able_to_fire(user))
-			if(get_dist(target,user) <= 2)
-				user << "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>"
-				return
-			if(grenade)
-				fire_grenade(target,user)
-				playsound(user.loc, cocked_sound, 25, 1)
-			else user << "<span class='warning'>The grenade launcher is empty.</span>"
+/obj/item/weapon/gun/launcher/m81/unload(mob/user)
+	if(grenade)
+		var/obj/item/explosive/grenade/nade = grenade
+		if(user)
+			user.put_in_hands(nade)
+			playsound(user, unload_sound, 25, 1)
+		else nade.loc = get_turf(src)
+		grenade = null
+	else user << "<span class='warning'>It's empty!</span>"
 
-	//Doesn't use most of any of these. Listed for reference.
-	load_into_chamber()
-		return
-
-	reload_into_chamber()
-		return
-
-	unload(mob/user)
-		if(grenade)
-			var/obj/item/explosive/grenade/nade = grenade
-			if(user)
-				user.put_in_hands(nade)
-				playsound(user, unload_sound, 25, 1)
-			else nade.loc = get_turf(src)
-			grenade = null
-		else user << "<span class='warning'>It's empty!</span>"
-
-	able_to_fire(mob/living/user)
-		. = ..()
-		if (. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
-				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-				return 0
+/obj/item/weapon/gun/launcher/m81/able_to_fire(mob/living/user)
+	. = ..()
+	if (. && istype(user)) //Let's check all that other stuff first.
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
+			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+			return 0
 
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
@@ -557,57 +540,6 @@
 //-------------------------------------------------------
 //M5 RPG
 
-/obj/item/ammo_magazine/rocket
-	name = "\improper 84mm high-explosive rocket"
-	desc = "A rocket tube for an M5 RPG rocket."
-	caliber = "rocket"
-	icon_state = "rocket"
-	origin_tech = "combat=3;materials=3"
-	matter = list("metal" = 10000)
-	w_class = 3.0
-	max_rounds = 1
-	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket
-	flags_magazine = NOFLAGS
-
-	attack_self(mob/user)
-		if(current_rounds <= 0)
-			user << "<span class='notice'>You begin taking apart the empty tube frame...</span>"
-			if(do_after(user,10, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
-				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
-				M.amount = 2
-				user.drop_held_item()
-				cdel(src)
-		else user << "Not with a missile inside!"
-
-	update_icon()
-		overlays.Cut()
-		if(current_rounds <= 0)
-			name = "empty rocket frame"
-			desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
-			icon_state = type == /obj/item/ammo_magazine/rocket/m57a4? "quad_rocket_e" : "rocket_e"
-
-/obj/item/ammo_magazine/rocket/ap
-	name = "\improper 84mm anti-armor rocket"
-	icon_state = "ap_rocket"
-	default_ammo = /datum/ammo/rocket/ap
-	desc = "A tube for an AP rocket, the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
-
-/obj/item/ammo_magazine/rocket/wp
-	name = "\improper 84mm white-phosphorus rocket"
-	icon_state = "wp_rocket"
-	default_ammo = /datum/ammo/rocket/wp
-	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
-
-/obj/item/ammo_magazine/internal/launcher/rocket
-	name = "\improper 84mm internal tube"
-	desc = "The internal tube of a M5 RPG."
-	caliber = "rocket"
-	default_ammo = /datum/ammo/rocket
-	max_rounds = 1
-	reload_delay = 60
-
 /obj/item/weapon/gun/launcher/rocket
 	name = "\improper M5 RPG"
 	desc = "The M5 RPG is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
@@ -624,91 +556,95 @@
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
 	var/datum/effect_system/smoke_spread/smoke
 
-	New()
+/obj/item/weapon/gun/launcher/rocket/New()
 		..()
-		recoil = config.med_recoil_value
-		fire_delay = config.high_fire_delay*2
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		smoke = new()
 		smoke.attach(src)
 
-	examine(mob/user)
-		..()
+/obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
+	fire_delay = config.high_fire_delay*2
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.med_recoil_value
 
-		if(current_mag.current_rounds)  user << "It's ready to rocket."
-		else 							user << "It's empty."
+
+/obj/item/weapon/gun/launcher/rocket/examine(mob/user)
+	..()
+	if(current_mag.current_rounds)  user << "It's ready to rocket."
+	else 							user << "It's empty."
 
 
-	able_to_fire(mob/living/user)
-		. = ..()
-		if (. && istype(user)) //Let's check all that other stuff first.
-			var/turf/current_turf = get_turf(user)
-			if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
-				click_empty(user)
-				user << "<span class='warning'>You can't fire that here!</span>"
-				return 0
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_ROCKET)
-				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-				return 0
+/obj/item/weapon/gun/launcher/rocket/able_to_fire(mob/living/user)
+	. = ..()
+	if (. && istype(user)) //Let's check all that other stuff first.
+		var/turf/current_turf = get_turf(user)
+		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
+			click_empty(user)
+			user << "<span class='warning'>You can't fire that here!</span>"
+			return 0
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_ROCKET)
+			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+			return 0
 
-	load_into_chamber(mob/user)
-		if(active_attachable) active_attachable = null
-		return ready_in_chamber()
+/obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
+	if(active_attachable) active_attachable = null
+	return ready_in_chamber()
 
-	//No such thing
-	reload_into_chamber(mob/user)
-		return 1
+//No such thing
+/obj/item/weapon/gun/launcher/rocket/reload_into_chamber(mob/user)
+	return 1
 
-	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-		cdel(projectile_to_fire)
-		if(refund) current_mag.current_rounds++
-		return 1
+/obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+	cdel(projectile_to_fire)
+	if(refund) current_mag.current_rounds++
+	return 1
 
-	reload(mob/user, obj/item/ammo_magazine/rocket)
-		if(flags_gun_features & GUN_BURST_FIRING) return
+/obj/item/weapon/gun/launcher/rocket/reload(mob/user, obj/item/ammo_magazine/rocket)
+	if(flags_gun_features & GUN_BURST_FIRING) return
 
-		if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
-			user << "<span class='warning'>That's not going to fit!</span>"
-			return
+	if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
+		user << "<span class='warning'>That's not going to fit!</span>"
+		return
 
-		if(current_mag.current_rounds > 0)
-			user << "<span class='warning'>[src] is already loaded!</span>"
-			return
+	if(current_mag.current_rounds > 0)
+		user << "<span class='warning'>[src] is already loaded!</span>"
+		return
 
-		if(rocket.current_rounds <= 0)
-			user << "<span class='warning'>That frame is empty!</span>"
-			return
+	if(rocket.current_rounds <= 0)
+		user << "<span class='warning'>That frame is empty!</span>"
+		return
 
-		if(user)
-			user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
-			if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-				user.drop_inv_item_on_ground(rocket)
-				replace_ammo(user,rocket)
-				current_mag.current_rounds = current_mag.max_rounds
-				rocket.current_rounds = 0
-				user << "<span class='notice'>You load [rocket] into [src].</span>"
-				if(reload_sound) playsound(user, reload_sound, 25, 1)
-				else playsound(user,'sound/machines/click.ogg', 25, 1)
-			else
-				user << "<span class='warning'>Your reload was interrupted!</span>"
-				return
-		else
-			rocket.loc = get_turf(src)
-			replace_ammo(,rocket)
+	if(user)
+		user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
+		if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+			user.drop_inv_item_on_ground(rocket)
+			replace_ammo(user,rocket)
 			current_mag.current_rounds = current_mag.max_rounds
 			rocket.current_rounds = 0
-		rocket.update_icon()
-		return 1
+			user << "<span class='notice'>You load [rocket] into [src].</span>"
+			if(reload_sound) playsound(user, reload_sound, 25, 1)
+			else playsound(user,'sound/machines/click.ogg', 25, 1)
+		else
+			user << "<span class='warning'>Your reload was interrupted!</span>"
+			return
+	else
+		rocket.loc = get_turf(src)
+		replace_ammo(,rocket)
+		current_mag.current_rounds = current_mag.max_rounds
+		rocket.current_rounds = 0
+	rocket.update_icon()
+	return 1
 
-	unload(mob/user)
-		if(user)
-			if(!current_mag.current_rounds) user << "<span class='warning'>[src] is already empty!</span>"
-			else 							user << "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>"
+/obj/item/weapon/gun/launcher/rocket/unload(mob/user)
+	if(user)
+		if(!current_mag.current_rounds) user << "<span class='warning'>[src] is already empty!</span>"
+		else 							user << "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>"
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
@@ -727,23 +663,6 @@
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
-/obj/item/ammo_magazine/rocket/m57a4
-	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
-	caliber = "rocket array"
-	icon_state = "quad_rocket"
-	origin_tech = "combat=4;materials=4"
-	max_rounds = 4
-	default_ammo = /datum/ammo/rocket/wp/quad
-	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
-	reload_delay = 200
-
-/obj/item/ammo_magazine/internal/launcher/rocket/m57a4
-	desc = "The internal tube of an M83AM Thermobaric Launcher."
-	caliber = "rocket array"
-	default_ammo = /datum/ammo/rocket/wp/quad
-	max_rounds = 4
-
 /obj/item/weapon/gun/launcher/rocket/m57a4
 	name = "\improper M57-A4 'Lightning Bolt' quad thermobaric launcher"
 	desc = "The M57-A4 'Lightning Bolt' is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
@@ -753,12 +672,13 @@
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON
 	attachable_allowed = list()
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
-	New()
-		..()
-		accuracy -= config.med_hit_accuracy_mult
-		fire_delay = config.mhigh_fire_delay
-		burst_delay = config.med_fire_delay
-		burst_amount = config.high_burst_value
-
+/obj/item/weapon/gun/launcher/rocket/m57a4/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay
+	burst_delay = config.med_fire_delay
+	burst_amount = config.high_burst_value
+	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.med_recoil_value

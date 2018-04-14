@@ -2262,14 +2262,14 @@
 		if(!add) return
 
 		notes_add(key,add,usr)
-		show_player_info(key)
+		player_notes_show(key)
 
 	if(href_list["remove_player_info"])
 		var/key = href_list["remove_player_info"]
 		var/index = text2num(href_list["remove_index"])
 
 		notes_del(key, index)
-		show_player_info(key)
+		player_notes_show(key)
 
 	if(href_list["notes"])
 		var/ckey = href_list["ckey"]
@@ -2280,7 +2280,7 @@
 
 		switch(href_list["notes"])
 			if("show")
-				show_player_info(ckey)
+				player_notes_show(ckey)
 			if("list")
 				PlayerNotesPage(text2num(href_list["index"]))
 		return
@@ -2440,17 +2440,31 @@
 
 	if(href_list["ccdeny"]) // CentComm-deny. The distress call is denied, without any further conditions
 		var/mob/ref_person = locate(href_list["ccdeny"])
+		command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 		log_game("[key_name_admin(usr)] has denied a distress beacon, requested by [key_name_admin(ref_person)]")
 		message_admins("[key_name_admin(usr)] has denied a distress beacon, requested by [key_name_admin(ref_person)]", 1)
 
-		command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
-
 		//unanswered_distress -= ref_person
 
-	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
-		var/mob/ref_person = locate(href_list["distress"])
-		ticker.mode.activate_distress()
-		log_game("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]")
-		message_admins("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]", 1)
+	if(href_list["distresscancel"])
+		if(distress_cancel)
+			usr << "The distress beacon was already canceled."
+			return
+		if(ticker.mode.waiting_for_candidates)
+			usr << "Too late! The distress beacon was launched."
+			return
+		log_game("[key_name_admin(usr)] has canceled the distress beacon.")
+		message_staff("[key_name_admin(usr)] has canceled the distress beacon.")
+		distress_cancel = 1
+		return
 
+	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
+		distress_cancel = 0
+		message_staff("[key_name_admin(usr)] has opted to SEND the distress beacon! Launching in 10 seconds... (<A HREF='?_src_=holder;distresscancel=\ref[usr]'>CANCEL</A>)")
+		spawn(100)
+			if(distress_cancel) return
+			var/mob/ref_person = locate(href_list["distress"])
+			ticker.mode.activate_distress()
+			log_game("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]")
+			message_admins("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]", 1)
 		//unanswered_distress -= ref_person

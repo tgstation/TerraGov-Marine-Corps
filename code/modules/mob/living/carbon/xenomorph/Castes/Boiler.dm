@@ -208,43 +208,43 @@
 	var/turf/prev_turf
 	var/distance = 0
 
-	for(var/turf/T in turflist)
-		distance++
+	turf_loop:
+		for(var/turf/T in turflist)
+			distance++
 
-		if(!prev_turf && turflist.len > 1)
-			prev_turf = get_turf(src)
-			continue //So we don't burn the tile we be standin on
+			if(!prev_turf && turflist.len > 1)
+				prev_turf = get_turf(src)
+				continue //So we don't burn the tile we be standin on
 
-		if(T.density || istype(T, /turf/space))
-			break
-		if(distance > 7)
-			break
-
-		if(locate(/obj/structure/girder, T))
-			break //Nope.avi
-
-		var/obj/machinery/M = locate() in T
-		if(M)
-			if(M.density)
+			if(T.density || istype(T, /turf/space))
+				break
+			if(distance > 7)
 				break
 
-		if(prev_turf && LinkBlocked(prev_turf, T))
-			break
+			if(locate(/obj/structure/girder, T))
+				break //Nope.avi
 
-		var/obj/structure/barricade/B = locate() in T
-		if(B)
-			B.health -= rand(20, 30)
-			B.update_health(TRUE)
-			if(prev_turf)
-				if(get_dir(B, prev_turf) == B.dir)
+			var/obj/machinery/M = locate() in T
+			if(M)
+				if(M.density)
 					break
 
-		if(!check_plasma(10))
-			break
-		plasma_stored -= 10
-		prev_turf = T
-		splat_turf(T)
-		sleep(2)
+			if(prev_turf && LinkBlocked(prev_turf, T))
+				break
+
+			for(var/obj/structure/barricade/B in T)
+				B.health -= rand(20, 30)
+				B.update_health(TRUE)
+				if(prev_turf)
+					if(get_dir(B, prev_turf) == B.dir)
+						break turf_loop
+
+			if(!check_plasma(10))
+				break
+			plasma_stored -= 10
+			prev_turf = T
+			splat_turf(T)
+			sleep(2)
 
 
 /mob/living/carbon/Xenomorph/Boiler/proc/splat_turf(var/turf/target)

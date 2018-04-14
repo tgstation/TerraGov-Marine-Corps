@@ -128,8 +128,8 @@
 			user << "<span class='warning'>You cannot fire [src] to this target.</span>"
 			return
 		var/area/A = get_area(T)
-		if(istype(A) && A.is_underground)
-			user << "<span class='warning'>You cannot hit the target. It is probably underground or in a cave.</span>"
+		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
+			user << "<span class='warning'>You cannot hit the target. It is probably underground.</span>"
 			return
 
 		user.visible_message("<span class='notice'>[user] starts loading \a [mortar_shell.name] into [src].</span>",
@@ -151,6 +151,7 @@
 			spawn(travel_time) //What goes up
 				playsound(T, 'sound/weapons/gun_mortar_travel.ogg', 50, 1)
 				spawn(45) //Must go down //This should always be 45 ticks!
+					T.ceiling_debris_check(2)
 					mortar_shell.detonate(T)
 					cdel(mortar_shell)
 					firing = 0
@@ -208,6 +209,10 @@
 		return
 	if(user.z != 1)
 		user << "<span class='warning'>You cannot deploy [src] here.</span>"
+		return
+	var/area/A = get_area(src)
+	if(A.ceiling)
+		user << "<span class='warning'>You probably shouldn't deploy [src] indoors.</span>"
 		return
 	user.visible_message("<span class='notice'>[user] starts deploying [src].",
 	"<span class='notice'>You start deploying [src].")

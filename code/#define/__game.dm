@@ -186,3 +186,12 @@ var/static/list/scarySounds = list('sound/weapons/thudswoosh.ogg','sound/weapons
 #define ZONE_ACTIVE 1
 #define ZONE_SLEEPING 0
 #define GET_RANDOM_FREQ rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
+
+//ceiling types
+#define CEILING_NONE 0
+#define CEILING_GLASS 1
+#define CEILING_METAL 2
+#define CEILING_UNDERGROUND 3
+#define CEILING_UNDERGROUND_METAL 4
+#define CEILING_DEEP_UNDERGROUND 5
+#define CEILING_DEEP_UNDERGROUND_METAL 5

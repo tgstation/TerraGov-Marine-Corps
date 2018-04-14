@@ -277,99 +277,124 @@
 /area/bigredv2/outside
 	name = "\improper Colony Grounds"
 	icon_state = "red"
+	ceiling = CEILING_NONE
 
 /area/bigredv2/caves
 	name = "\improper Unknown Area"
 	icon_state = "bluenew"
+	ceiling = CEILING_UNDERGROUND
 
 /area/bigredv2/outside/weyland_lab/outside
 	name = "\improper Weyland Yutani Compound"
 	icon_state = "yellow"
+	ceiling = CEILING_NONE
 
 /area/bigredv2/outside/weyland_lab/inside
 	name = "\improper Weyland Yutani Research Lab"
 	icon_state = "engine"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/cargo
 	name = "\improper Cargo"
 	icon_state = "storage"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/general_store
 	name = "\improper General Store"
 	icon_state = "blueold"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/marshall_office
 	name = "\improper Marshall Offices"
 	icon_state = "brig"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/medical
 	name = "\improper Hospital"
 	icon_state = "CMO"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/admin_building
 	name = "\improper Administration"
 	icon_state = "bridge"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/filtration_plant
 	name = "\improper Filtration Plant"
 	icon_state = "atmos"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/virology
 	name = "\improper Virology Lab"
 	icon_state = "LP"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/dorms
 	name = "\improper Dormitories"
 	icon_state = "fitness"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/bar
 	name = "\improper Bar"
 	icon_state = "bar"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/chapel
 	name = "\improper Chapel"
 	icon_state = "courtroom"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "garden"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/library
 	name = "\improper Library"
 	icon_state = "library"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/office_complex
 	name = "\improper Office Complex"
 	icon_state = "explored"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/space_port
 	name = "\improper Space Port"
 	icon_state = "green"
+	ceiling = CEILING_NONE
 
 /area/bigredv2/outside/telecomm
 	name = "\improper Telecommunications"
 	icon_state = "ass_line"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/engineering
 	name = "\improper Engineering Complex"
 	icon_state = "engine"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/storage
 	name = "\improper Storage"
 	icon_state = "storage"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/solar_plant
 	name = "\improper Solar Power Plant"
 	icon_state = "substation"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/atmos
 	name = "\improper Atmospheric Stabilizer"
 	icon_state = "party"
+	ceiling = CEILING_METAL
 
 /area/bigredv2/caves/lambda_lab
 	name = "\improper Lambda Lab"
 	icon_state = "party"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/general_offices
 	name = "\improper General Offices"
 	icon_state = "storage"
+	ceiling = CEILING_METAL

@@ -411,7 +411,7 @@
 				reagents.trans_to(P,amount_per_pill)
 				if(src.loaded_pill_bottle)
 					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
-						P.loc = loaded_pill_bottle
+						loaded_pill_bottle.handle_item_insertion(P, TRUE)
 						src.updateUsrDialog()
 
 		else if (href_list["createbottle"])

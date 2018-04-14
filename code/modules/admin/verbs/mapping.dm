@@ -136,9 +136,7 @@ var/list/debug_verbs = list(
         /client/proc/ticklag,
         /client/proc/cmd_admin_grantfullaccess,
         /client/proc/cmd_admin_grantallskills,
-        /client/proc/kaboom,
         /client/proc/cmd_admin_areatest,
-        /client/proc/cmd_admin_rejuvenate,
         /datum/admins/proc/show_traitor_panel,
         /client/proc/forceEvent,
         /client/proc/break_all_air_groups,
@@ -165,7 +163,7 @@ var/list/debug_verbs = list(
 
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
-	set name = "Debug Verbs - Show"
+	set name = "*Debug Verbs - Show*"
 
 	if(!check_rights(R_DEBUG)) return
 
@@ -176,7 +174,7 @@ var/list/debug_verbs = list(
 
 /client/proc/hide_debug_verbs()
 	set category = "Debug"
-	set name = "Debug Verbs - Hide"
+	set name = "*Debug Verbs - Hide*"
 
 	if(!check_rights(R_DEBUG)) return
 

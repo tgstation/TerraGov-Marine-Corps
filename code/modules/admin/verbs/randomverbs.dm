@@ -45,7 +45,7 @@
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = null
 	set name = "Subtle Message"
 
 	if(!ismob(M))	return
@@ -104,7 +104,7 @@
 
 /client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
 	set category = "Special Verbs"
-	set name = "Global Narrate"
+	set name = "Narrate - Global"
 
 	if (!holder)
 		src << "Only administrators may use this command."
@@ -120,8 +120,8 @@
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
-	set category = "Special Verbs"
-	set name = "Direct Narrate"
+	set category = null
+	set name = "Narrate - Direct"
 
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -519,9 +519,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 //Added for testing purposes. Blast from the past seeing Respawn Character. ~N
 /datum/admins/proc/force_predator_round()
-	set category = "Special Verbs"
+	set category = "Server"
 	set name = "Force Predator Round"
-	set desc = "Force a predator round for the round type. Only works on Colonial Marines."
+	set desc = "Force a predator round for the round type. Only works on maps that support Predator spawns."
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
 		usr << "\red The game hasn't started yet!"
@@ -570,7 +570,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = null
 	set name = "Rejuvenate"
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -680,7 +680,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","QMR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_delete(atom/O as obj|mob|turf in world)
-	set category = "Admin"
+	set category = "Debug"
 	set name = "Delete"
 
 	if (!holder)
@@ -695,7 +695,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
-	set name = "List free slots"
+	set name = "Job Slots - List"
 
 	if (!holder)
 		src << "Only administrators may use this command."
@@ -879,7 +879,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = null
 	set name = "Check Contents"
 
 	var/list/L = M.get_contents()
@@ -996,7 +996,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/editzoneair(var/turf/simulated/T in turfs)
 	set name = "Edit Zone Air"
-	set category = "Admin"
+	set category = "Debug"
 	if(!src.holder)
 		src << "Only administrators may use this command."
 		return
@@ -1036,7 +1036,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/award_medal()
-	set category = "Special Verbs"
+	set category = "Fun"
 	set name = "Award a Medal"
 	if(!check_rights(R_ADMIN))	return
 

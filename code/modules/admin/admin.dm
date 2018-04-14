@@ -40,7 +40,7 @@ var/global/floorIsLava = 0
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = null
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
@@ -206,9 +206,9 @@ var/global/floorIsLava = 0
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
 #define PLAYER_NOTES_ENTRIES_PER_PAGE 50
-/datum/admins/proc/PlayerNotes()
+/datum/admins/proc/player_notes_list()
 	set category = "Admin"
-	set name = "Player Notes"
+	set name = "Player Notes List"
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
 	if (!istype(src,/datum/admins))
@@ -264,9 +264,9 @@ var/global/floorIsLava = 0
 	else return 1
 
 
-/datum/admins/proc/show_player_info(var/key as text)
+/datum/admins/proc/player_notes_show(var/key as text)
 	set category = "Admin"
-	set name = "Show Player Info"
+	set name = "Player Notes Show"
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
 	if (!istype(src,/datum/admins))
@@ -1183,11 +1183,7 @@ var/global/floorIsLava = 0
 	if(announce == "No")
 		is_announcing = FALSE
 
-	var/no_shuttle_launch = FALSE //whether the ERT shuttle launches automatically
-	if(alert(src, "Would you like the ERT shuttle to not auto launch (manual launch via admin verb)?", "ERT manual launch?", "Yes", "No") == "Yes")
-		no_shuttle_launch = TRUE
-
-	ticker.mode.picked_call.activate(is_announcing, no_shuttle_launch)
+	ticker.mode.picked_call.activate(is_announcing)
 
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
@@ -1201,17 +1197,50 @@ var/global/floorIsLava = 0
 	if (!ticker  || !ticker.mode) return
 	if(!check_rights(R_ADMIN))	return
 
-	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
+	var/tag = input("Which ERT shuttle should be force launched?", "Select an ERT Shuttle:") as null|anything in list("Distress", "Distress_PMC", "Distress_UPP", "Distress_Big")
+	if(!tag) return
+
+	var/datum/shuttle/ferry/ert/shuttle = shuttle_controller.shuttles[tag]
 	if(!shuttle || !istype(shuttle))
 		message_admins("Warning: Distress shuttle not found. Aborting.")
 		return
-	var/confirm = alert(src, "Are you sure you want to move the Distress Shuttle?", "ERT manual launch?", "Yes", "No")
-	if(confirm == "Yes")
-		shuttle.launch()
 
-		feedback_add_details("admin_verb","LNCHERTSHTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_admin("[key_name(usr)] force launched the distress shuttle")
-		message_admins("\blue [key_name_admin(usr)] force launched the distress shuttle", 1)
+	if(shuttle.location) //in start zone in admin z level
+		var/dock_id
+		var/dock_list = list("Port", "Starboard", "Aft")
+		if(shuttle.use_umbilical)
+			dock_list = list("Port Hangar", "Starboard Hangar")
+		var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
+		switch(dock_name)
+			if("Port") dock_id = /area/shuttle/distress/arrive_2
+			if("Starboard") dock_id = /area/shuttle/distress/arrive_1
+			if("Aft") dock_id = /area/shuttle/distress/arrive_3
+			if("Port Hangar") dock_id = /area/shuttle/distress/arrive_s_hangar
+			if("Starboard Hangar") dock_id = /area/shuttle/distress/arrive_n_hangar
+			else return
+		for(var/datum/shuttle/ferry/ert/F in shuttle_controller.process_shuttles)
+			if(F != shuttle)
+				//other ERT shuttles already docked on almayer or about to be
+				if(!F.location || F.moving_status != SHUTTLE_IDLE)
+					if(F.area_station.type == dock_id)
+						message_admins("Warning: That docking zone is already taken by another shuttle. Aborting.")
+						return
+
+		for(var/area/A in all_areas)
+			if(A.type == dock_id)
+				shuttle.area_station = A
+				break
+
+
+	if(!shuttle.can_launch())
+		message_admins("Warning: Unable to launch this Distress shuttle at this moment. Aborting.")
+		return
+
+	shuttle.launch()
+
+	feedback_add_details("admin_verb","LNCHERTSHTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] force launched a distress shuttle ([tag])")
+	message_admins("\blue [key_name_admin(usr)] force launched a distress shuttle ([tag])", 1)
 
 
 
