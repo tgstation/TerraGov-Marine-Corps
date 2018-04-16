@@ -183,7 +183,10 @@
 /obj/item/weapon/gun/examine(mob/user)
 	..()
 	var/dat = ""
-	if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
+	if(flags_gun_features & GUN_TRIGGER_SAFETY)
+		dat += "The safety's on!<br>"
+	else
+		dat += "The safety's off!<br>"
 
 	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
 	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
