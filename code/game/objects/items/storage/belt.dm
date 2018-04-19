@@ -9,6 +9,7 @@
 	flags_equip_slot = SLOT_WAIST
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = 4
+	allow_drawing_method = TRUE
 
 
 

@@ -30,6 +30,8 @@
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
 	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
 	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/allow_drawing_method //whether this object can change its drawing method (pouches)
+	var/draw_mode = 0
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
@@ -139,7 +141,7 @@
 		orient2hud()
 		opened = 1
 	if (use_sound)
-		playsound(src.loc, src.use_sound, 25, 1, 6)
+		playsound(src.loc, src.use_sound, 25, 1, 3)
 
 	if (user.s_active)
 		user.s_active.close(user)
@@ -469,17 +471,18 @@
 	W.add_fingerprint(user)
 	return handle_item_insertion(W, FALSE, user)
 
-/obj/item/storage/dropped(mob/user)
-	return
 
 /obj/item/storage/attack_hand(mob/user)
-	if (src.loc == user)
-		src.open(user)
+	if (loc == user)
+		if(draw_mode && ishuman(user) && contents.len)
+			var/obj/item/I = contents[contents.len]
+			I.attack_hand(user)
+		else
+			open(user)
 	else
 		..()
-		for(var/mob/M in range(1))
-			if (M.s_active == src)
-				src.close(M)
+		for(var/mob/M in content_watchers)
+			close(M)
 	add_fingerprint(user)
 
 
@@ -495,11 +498,21 @@
 			usr << "[src] now picks up one item at a time."
 
 
-/obj/item/storage/verb/quick_empty()
-	set name = "Empty Contents"
-	set category = "Object"
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.is_mob_restrained())
+/obj/item/storage/verb/toggle_draw_mode()
+	set name = "Switch Storage Drawing Method"
+	set category = "Object"
+	draw_mode = !draw_mode
+	if(draw_mode)
+		usr << "Clicking [src] with an empty hand now puts the last stored item in your hand."
+	else
+		usr << "Clicking [src] with an empty hand now opens the pouch storage menu."
+
+
+
+/obj/item/storage/proc/quick_empty()
+
+	if((!ishuman(usr) && loc != usr) || usr.is_mob_restrained())
 		return
 
 	var/turf/T = get_turf(src)
@@ -508,16 +521,12 @@
 		remove_from_storage(I, T)
 
 /obj/item/storage/New()
-
-	if(allow_quick_empty)
-		verbs += /obj/item/storage/verb/quick_empty
-	else
-		verbs -= /obj/item/storage/verb/quick_empty
-
-	if(allow_quick_gather)
-		verbs += /obj/item/storage/verb/toggle_gathering_mode
-	else
+	..()
+	if(!allow_quick_gather)
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
+
+	if(!allow_drawing_method)
+		verbs -= /obj/item/storage/verb/toggle_draw_mode
 
 	boxes = new
 	boxes.name = "storage"
@@ -599,29 +608,25 @@
 /obj/item/storage/attack_self(mob/user)
 
 	//Clicking on itself will empty it, if it has the verb to do that.
-	if(user.get_active_hand() == src)
-		if(src.verbs.Find(/obj/item/storage/verb/quick_empty))
-			src.quick_empty()
-			return
+
+	if(allow_quick_empty)
+		quick_empty()
+		return
 
 	//Otherwise we'll try to fold it.
 	if ( contents.len )
 		return
 
-	if ( !ispath(src.foldable) )
+	if ( !ispath(foldable) )
 		return
-	var/found = 0
+
 	// Close any open UI windows first
-	for(var/mob/M in range(1))
-		if (M.s_active == src)
-			src.close(M)
-		if ( M == user )
-			found = 1
-	if ( !found )	// User is too far away
-		return
+	for(var/mob/M in content_watchers)
+		close(M)
+
 	// Now make the cardboard
 	user << "<span class='notice'>You fold [src] flat.</span>"
-	new src.foldable(get_turf(src))
+	new foldable(get_turf(src))
 	cdel(src)
 //BubbleWrap END
 

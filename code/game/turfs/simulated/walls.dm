@@ -189,15 +189,10 @@
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
 	G.icon_state = "girder[junctiontype]"
 	G.original = src.type
-	/*
-	var/obj/item/stack/sheet/metal/M_spawned = new /obj/item/stack/sheet/metal(src)
-	// I'm sorry but the step_rand function sucked.
-	var dirs[] = list(NORTH, NORTHEAST, NORTHWEST, SOUTH, SOUTHEAST, SOUTHWEST, WEST, EAST)
-	var dir = dirs[rand(0,dirs.len)]
-	step(M_spawned, dir)
-	*/
+
 	if (destroyed_girder)
 		G.dismantle()
+
 
 // Devastated and Explode causes the wall to spawn a damaged girder
 // Walls no longer spawn a metal sheet when destroyed to reduce clutter and
