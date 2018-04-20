@@ -62,6 +62,7 @@
 	var/queen_ability_cooldown = 0
 	var/mob/living/carbon/Xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	var/egg_amount = 0 //amount of eggs inside the queen
+	var/last_larva_time = 0
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -139,21 +140,23 @@
 
 			if(hivenumber == XENO_HIVE_NORMAL && loc.z == 1)
 				if(ticker.mode.stored_larva)
-					var/list/players_with_xeno_pref = get_alien_candidates()
-					if(players_with_xeno_pref.len)
-						var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
-						new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-						"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
-						new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-						new_xeno.key = pick(players_with_xeno_pref)
+					if((last_larva_time + 600) < world.time) // every minute
+						last_larva_time = world.time
+						var/list/players_with_xeno_pref = get_alien_candidates()
+						if(players_with_xeno_pref.len)
+							var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
+							new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+							"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+							new_xeno.key = pick(players_with_xeno_pref)
 
-						if(new_xeno.client)
-							new_xeno.client.view = world.view
+							if(new_xeno.client)
+								new_xeno.client.view = world.view
 
-						new_xeno << "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>"
-						new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+							new_xeno << "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>"
+							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
-						ticker.mode.stored_larva--
+							ticker.mode.stored_larva--
 
 				var/searchx
 				var/searchy
