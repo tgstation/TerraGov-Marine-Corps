@@ -114,19 +114,7 @@ DEFINES in setup.dm, referenced here.
 
 /obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
 	if (mods["alt"])
-		if(flags_gun_features & GUN_BURST_FIRING) return 1
-
-		if(!ishuman(user)) return 1
-
-		if(user.is_mob_incapacitated() || !user.loc || !isturf(user.loc))
-			user << "Not right now."
-			return 1
-
-		if(!(src in user)) return 1 //No telekinetic toggling.
-
-		user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
-		playsound(user, 'sound/machines/click.ogg', 15, 1)
-		flags_gun_features ^= GUN_TRIGGER_SAFETY
+		toggle_gun_safety()
 		return 1
 	return (..())
 
@@ -536,6 +524,36 @@ should be alright.
 	src = G
 
 	unique_action(usr)
+
+
+/obj/item/weapon/gun/verb/toggle_gun_safety()
+	set category = "Weapons"
+	set name = "Toggle Gun Safety"
+	set desc = "Toggle the safety of the held gun."
+	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
+
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+
+	if(!G)
+		return
+
+	src = G
+
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return
+
+	if(!ishuman(usr))
+		return
+
+	if(usr.is_mob_incapacitated() || !usr.loc || !isturf(usr.loc))
+		usr << "Not right now."
+		return
+
+	usr << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
+	playsound(usr, 'sound/machines/click.ogg', 15, 1)
+	flags_gun_features ^= GUN_TRIGGER_SAFETY
+
+
 
 /obj/item/weapon/gun/verb/activate_attachment()
 	set category = "Weapons"
