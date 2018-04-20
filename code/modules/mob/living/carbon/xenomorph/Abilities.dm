@@ -782,6 +782,9 @@
 		return
 	if(X.observed_xeno)
 		var/mob/living/carbon/Xenomorph/target = X.observed_xeno
+		if(X.z != target.z)
+			X << "<span class='xenowarning'>They are too far away to do this.</span>"
+			return
 		if(target.stat != DEAD)
 			if(target.health < target.maxHealth)
 				if(X.check_plasma(600))
