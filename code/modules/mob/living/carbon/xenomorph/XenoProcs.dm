@@ -223,11 +223,13 @@
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
-			if(upgrade_stored >= upgrade_threshold)
-				if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
-					upgrade_xeno(upgrade+1)
-			else
-				upgrade_stored = min(upgrade_stored + 1, upgrade_threshold)
+			var/datum/hive_status/hive = hive_datum[hivenumber]
+			if(!hive.living_xeno_queen || hive.living_xeno_queen.z == z)
+				if(upgrade_stored >= upgrade_threshold)
+					if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
+						upgrade_xeno(upgrade+1)
+				else
+					upgrade_stored = min(upgrade_stored + 1, upgrade_threshold)
 
 /mob/living/carbon/Xenomorph/show_inv(mob/user)
 	return
@@ -577,7 +579,7 @@
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/Xenomorph/proc/handle_xeno_leader_pheromones(var/mob/living/carbon/Xenomorph/Queen/Q)
 
-	if(!Q || !Q.anchored || !queen_chosen_lead || !Q.current_aura) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
+	if(!Q || !Q.anchored || !queen_chosen_lead || !Q.current_aura || Q.z != z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
 		src << "<span class='xenowarning'>Your pheromones wane. The Queen is no longer granting you her pheromones.</span>"
