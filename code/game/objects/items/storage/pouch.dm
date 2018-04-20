@@ -6,24 +6,10 @@
 	max_w_class = 2
 	flags_equip_slot = SLOT_STORE
 	storage_slots = 1
-	var/draw_mode = 0
-
-/obj/item/storage/pouch/verb/toggle_draw_mode()
-	set name = "Switch Pouch Drawing Method"
-	set category = "Object"
-	draw_mode = !draw_mode
-	if(draw_mode)
-		usr << "Clicking [src] with an empty hand now puts the last stored item in your hand."
-	else
-		usr << "Clicking [src] with an empty hand now opens the pouch storage menu."
+	draw_mode = 0
+	allow_drawing_method = TRUE
 
 
-/obj/item/storage/pouch/attack_hand(mob/user)
-	if(draw_mode && ishuman(user) && contents.len && loc == user)
-		var/obj/item/I = contents[contents.len]
-		I.attack_hand(user)
-	else
-		..()
 
 /obj/item/storage/pouch/examine(mob/user)
 	..()

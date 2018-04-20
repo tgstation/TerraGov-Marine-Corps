@@ -9,6 +9,7 @@
 	max_w_class = 4
 	storage_slots = 1
 	max_storage_space = 4
+	draw_mode = 1
 	var/base_icon = "m37_holster"
 	var/drawSound = 'sound/weapons/gun_rifle_draw.ogg'
 
@@ -30,13 +31,6 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-/obj/item/storage/large_holster/attack_hand(mob/user)
-	if(ishuman(user) && contents.len && loc == user)
-		var/obj/item/I = contents[1]
-		I.attack_hand(user)
-	else
-		..()
-
 /obj/item/storage/large_holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	. = ..()
 	if(. && drawSound)
@@ -48,7 +42,7 @@
 	. = ..()
 	if(. && drawSound)
 		playsound(src,drawSound, 15, 1)
-	return 1
+
 
 
 
@@ -116,11 +110,13 @@
 	if(contents.len)
 		var/obj/I = contents[1]
 		icon_state = "[base_icon]_full_[I.icon_state]"
+		item_state = "[base_icon]_full"
 	else
 		icon_state = base_icon
+		item_state = base_icon
 	if(istype(user)) user.update_inv_belt()
 
 /obj/item/storage/large_holster/m39/full/New()
 	..()
-	icon_state = "m39_holster_full_m39"
 	new /obj/item/weapon/gun/smg/m39(src)
+	update_icon()
