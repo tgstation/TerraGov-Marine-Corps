@@ -33,6 +33,7 @@
 	var/max_medics = 1
 	var/max_heavies = 1
 	var/shuttle_id = "Distress"
+	var/auto_shuttle_launch = FALSE
 
 
 /datum/game_mode/proc/initialize_emergency_calls()
@@ -193,6 +194,9 @@
 				message_admins("Warning: Distress shuttle not found. Aborting.")
 				return
 			spawn_items()
+
+			if(auto_shuttle_launch)
+				shuttle.launch()
 
 			if(picked_candidates.len)
 				var/i = 0

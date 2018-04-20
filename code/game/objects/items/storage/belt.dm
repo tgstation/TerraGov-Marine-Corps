@@ -259,6 +259,16 @@
 	item_state = "upp_belt"
 	has_gamemode_skin = FALSE
 
+//version full of type 71 mags
+/obj/item/storage/belt/marine/upp/full/New()
+	..()
+	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71(src)
+
+
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"

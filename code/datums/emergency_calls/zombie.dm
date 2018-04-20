@@ -4,6 +4,7 @@
 	mob_max = 8
 	mob_min = 1
 	probability = 0
+	auto_shuttle_launch = TRUE //can't use the shuttle console with zombie claws, so has to autolaunch.
 
 
 /datum/emergency_call/zombie/create_member(datum/mind/M)

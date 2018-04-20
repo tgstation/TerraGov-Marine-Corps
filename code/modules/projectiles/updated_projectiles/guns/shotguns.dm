@@ -29,7 +29,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult
@@ -178,8 +178,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_delay = config.high_fire_delay*2
 	burst_amount = config.low_burst_value
 	burst_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult - config.high_hit_accuracy_mult
+	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult
@@ -226,7 +226,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/combat/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay*2
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult
@@ -266,7 +266,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/double/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult
@@ -358,8 +358,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double/sawn/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult + config.high_hit_damage_mult
@@ -404,7 +404,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/set_gun_config_values()
 	fire_delay = config.med_fire_delay*5
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult
@@ -490,7 +490,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
 	fire_delay = config.med_fire_delay*4
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.high_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult

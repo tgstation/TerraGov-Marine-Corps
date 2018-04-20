@@ -50,7 +50,7 @@
 	fire_delay = config.high_fire_delay*4
 	burst_amount = config.min_burst_value
 	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
+	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
 
@@ -89,7 +89,7 @@
 	fire_delay = config.high_fire_delay*5
 	burst_amount = config.min_burst_value
 	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	scatter = config.med_scatter_value
+	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.max_recoil_value
 
@@ -140,7 +140,7 @@
 	fire_delay = config.mhigh_fire_delay*2
 	burst_amount = config.low_burst_value
 	accuracy_mult = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.med_scatter_value
+	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
 
@@ -185,7 +185,7 @@
 	burst_amount = config.med_burst_value
 	burst_delay = config.mlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
+	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
 

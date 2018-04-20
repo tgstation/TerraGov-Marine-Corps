@@ -245,8 +245,29 @@ proc/tg_list2text(list/list, glue=",")
 			return "northwest"
 		if(10.0)
 			return "southwest"
-		else
-	return
+
+
+//Turns a direction into text
+/proc/dir2text_short(direction)
+	switch(direction)
+		if(1)
+			return "N"
+		if(2)
+			return "S"
+		if(4)
+			return "E"
+		if(8)
+			return "W"
+		if(5)
+			return "NE"
+		if(6)
+			return "SE"
+		if(9)
+			return "NW"
+		if(10)
+			return "SW"
+
+
 
 //Turns text into proper directions
 /proc/text2dir(direction)

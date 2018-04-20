@@ -29,7 +29,7 @@
 /obj/item/weapon/gun/revolver/set_gun_config_values()
 	fire_delay = config.max_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.high_scatter_value
 	damage_mult = config.base_hit_damage_mult

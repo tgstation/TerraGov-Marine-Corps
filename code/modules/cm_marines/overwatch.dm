@@ -6,7 +6,6 @@
 
 	var/datum/squad/current_squad = null
 	var/state = 0
-	var/mob/living/carbon/human/info_from = null
 	var/obj/machinery/camera/cam = null
 	var/list/network = list("LEADER")
 	var/x_offset_s = 0
@@ -59,8 +58,7 @@
 					dat += "<A href='?src=\ref[src];operation=message'>\[Message Squad\]</a><br><br>"
 					dat += "----------------------<BR><BR>"
 					if(current_squad.squad_leader)
-						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=get_info;info_from=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
-						dat += "<A href='?src=\ref[src];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>\[CAM\]</a> "
+						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
 						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
@@ -138,23 +136,22 @@
 									if(H.mind && H.mind.assigned_role != "Squad Leader")
 										act_sl = " (acting SL)"
 								else if(H.z == current_squad.squad_leader.z && H.z != 0)
-									dist = "[get_dist(H, current_squad.squad_leader)]"
-
+									dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
 
 							switch(H.stat)
 								if(CONSCIOUS)
 									mob_state = "Conscious"
 									living_count++
-									conscious_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+									conscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 								if(UNCONSCIOUS)
 									mob_state = "<b>Unconscious</b>"
 									living_count++
-									unconscious_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+									unconscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 								if(DEAD)
 									mob_state = "<font color='red'>DEAD</font>"
-									dead_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+									dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 
 						else //listed marine was deleted or gibbed, all we have is their name
@@ -164,10 +161,10 @@
 									break
 							mob_state = "<font color='red'>DEAD</font>"
 							mob_name = X
-							dead_text += "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+							dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 
-						var/marine_infos = "<tr><td>[mob_name]</td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>\[CAM\]</a></td></tr>"
+						var/marine_infos = "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 						switch(role)
 							if("Squad Leader")
 								leader_text += marine_infos
@@ -198,7 +195,7 @@
 					dat += "<b>Total: [current_squad.marines_list.len] Deployed</b><BR>"
 					dat += "<b>Marines alive: [living_count]</b><BR><BR>"
 					dat += "<table border='1' style='width:100%' align='center'><tr>"
-					dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th><th>SL Distance</th><th>Camera</th></tr>"
+					dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th><th>SL Distance</th></tr>"
 					if(!living_marines_sorting)
 						dat += leader_text + spec_text + medic_text + engi_text + smart_text + marine_text + misc_text
 					else

@@ -647,6 +647,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "rebel_armor"
+	sprite_sheet_id = 1
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 40, bullet = 40, laser = 40, energy = 30, bomb = 60, bio = 30, rad = 30)

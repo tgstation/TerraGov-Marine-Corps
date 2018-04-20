@@ -5,11 +5,18 @@
 	mob_max = 7
 	probability = 10
 	role_needed = BE_ALIEN
+	auto_shuttle_launch = TRUE //because xenos can't use the shuttle console.
 
-	New()
-		..()
-		arrival_message = "[MAIN_SHIP_NAME], this is USS Vriess respond-- #&...*#&^#.. signal.. oh god, they're in the vent---... Priority Warning: Signal lost."
-		objectives = "For the Empress!"
+/datum/emergency_call/xenos/New()
+	..()
+	arrival_message = "[MAIN_SHIP_NAME], this is USS Vriess respond-- #&...*#&^#.. signal.. oh god, they're in the vent---... Priority Warning: Signal lost."
+	objectives = "For the Empress!"
+
+
+/datum/emergency_call/xenos/spawn_items()
+	var/turf/drop_spawn	= get_spawn_point(TRUE)
+	if(istype(drop_spawn))
+		new /obj/effect/alien/weeds/node(drop_spawn) //drop some weeds for xeno plasma regen.
 
 /datum/emergency_call/xenos/create_member(datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
