@@ -222,7 +222,9 @@
 
 	//Simple, cheap ticker
 	if(recharge_time)
-		while(--recharging) sleep(1)
+		while(recharging)
+			recharging--
+			sleep(1)
 
 //Starts out exactly the same as long_jump()
 //Differs in the target selection and later things enough to merit it's own proc
