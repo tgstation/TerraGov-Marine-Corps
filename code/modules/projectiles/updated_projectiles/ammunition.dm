@@ -28,50 +28,50 @@ They're all essentially identical when it comes to getting the job done.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
 
-	New(loc, spawn_empty)
-		..()
-		base_mag_icon = icon_state
-		if(spawn_empty) current_rounds = 0
-		switch(current_rounds)
-			if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
-			if(0) icon_state += "_e" //In case it spawns empty instead.
+/obj/item/ammo_magazine/New(loc, spawn_empty)
+	..()
+	base_mag_icon = icon_state
+	if(spawn_empty) current_rounds = 0
+	switch(current_rounds)
+		if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
+		if(0) icon_state += "_e" //In case it spawns empty instead.
 
-	update_icon(var/round_diff = 0)
-		if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
-		else if(current_rounds - round_diff <= 0) 	icon_state = base_mag_icon
+/obj/item/ammo_magazine/update_icon(var/round_diff = 0)
+	if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
+	else if(current_rounds - round_diff <= 0) 	icon_state = base_mag_icon
 
-	examine(mob/user)
-		..()
-		// It should never have negative ammo after spawn. If it does, we need to know about it.
-		if(current_rounds < 0)
-			user<< "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
-			log_debug("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
-		else
-			user << "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
+/obj/item/ammo_magazine/examine(mob/user)
+	..()
+	// It should never have negative ammo after spawn. If it does, we need to know about it.
+	if(current_rounds < 0)
+		user<< "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
+		log_debug("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
+	else
+		user << "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 
-	attack_hand(mob/user)
-		if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
-			if(src == user.get_inactive_hand()) //Have to be holding it in the hand.
-				if (current_rounds > 0)
-					if(create_handful(user))
-						return
-				else user << "[src] is empty. Nothing to grab."
-				return
-		return ..() //Do normal stuff.
+/obj/item/ammo_magazine/attack_hand(mob/user)
+	if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
+		if(src == user.get_inactive_hand()) //Have to be holding it in the hand.
+			if (current_rounds > 0)
+				if(create_handful(user))
+					return
+			else user << "[src] is empty. Nothing to grab."
+			return
+	return ..() //Do normal stuff.
 
-	//We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-	attackby(obj/item/I, mob/user)
-		if(istype(I, /obj/item/ammo_magazine))
-			var/obj/item/ammo_magazine/MG = I
-			if(MG.flags_magazine & AMMUNITION_HANDFUL) //got a handful of bullets
-				if(flags_magazine & AMMUNITION_REFILLABLE) //and a refillable magazine
-					var/obj/item/ammo_magazine/handful/transfer_from = I
-					if(src == user.get_inactive_hand() ) //It has to be held.
-						if(default_ammo == transfer_from.default_ammo)
-							transfer_ammo(transfer_from,user,transfer_from.current_rounds) // This takes care of the rest.
-						else user << "Those aren't the same rounds. Better not mix them up."
-					else user << "Try holding [src] before you attempt to restock it."
+//We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
+/obj/item/ammo_magazine/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/MG = I
+		if(MG.flags_magazine & AMMUNITION_HANDFUL) //got a handful of bullets
+			if(flags_magazine & AMMUNITION_REFILLABLE) //and a refillable magazine
+				var/obj/item/ammo_magazine/handful/transfer_from = I
+				if(src == user.get_inactive_hand() ) //It has to be held.
+					if(default_ammo == transfer_from.default_ammo)
+						transfer_ammo(transfer_from,user,transfer_from.current_rounds) // This takes care of the rest.
+					else user << "Those aren't the same rounds. Better not mix them up."
+				else user << "Try holding [src] before you attempt to restock it."
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
@@ -158,31 +158,31 @@ bullets/shells. ~N
 	flags_atom = FPRINT|CONDUCT|DIRLOCK
 	flags_magazine = AMMUNITION_HANDFUL
 
-	Dispose()
-		..()
-		return TA_REVIVE_ME
+/obj/item/ammo_magazine/handful/Dispose()
+	..()
+	return TA_REVIVE_ME
 
-	Recycle()
-		var/blacklist[] = list("name","desc","icon_state","caliber","max_rounds","current_rounds","default_ammo","icon_type","gun_type")
-		. = ..() + blacklist
+/obj/item/ammo_magazine/handful/Recycle()
+	var/blacklist[] = list("name","desc","icon_state","caliber","max_rounds","current_rounds","default_ammo","icon_type","gun_type")
+	. = ..() + blacklist
 
-	update_icon() //Handles the icon itself as well as some bonus things.
-		if(max_rounds >= current_rounds)
-			var/I = current_rounds*50 // For the metal.
-			matter = list("metal" = I)
-			dir = current_rounds + round(current_rounds/3)
+/obj/item/ammo_magazine/handful/update_icon() //Handles the icon itself as well as some bonus things.
+	if(max_rounds >= current_rounds)
+		var/I = current_rounds*50 // For the metal.
+		matter = list("metal" = I)
+		dir = current_rounds + round(current_rounds/3)
 
 
-	/*
-	There aren't many ways to interact here.
-	If the default ammo isn't the same, then you can't do much with it.
-	If it is the same and the other stack isn't full, transfer an amount (default 1) to the other stack.
-	*/
-	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user as mob)
-		if(istype(transfer_from)) // We have a handful. They don't need to hold it.
-			if(default_ammo == transfer_from.default_ammo) //Has to match.
-				transfer_ammo(transfer_from,user) // Transfer it from currently held to src
-			else user << "Those aren't the same rounds. Better not mix them up."
+/*
+There aren't many ways to interact here.
+If the default ammo isn't the same, then you can't do much with it.
+If it is the same and the other stack isn't full, transfer an amount (default 1) to the other stack.
+*/
+/obj/item/ammo_magazine/handful/attackby(obj/item/ammo_magazine/handful/transfer_from, mob/user)
+	if(istype(transfer_from)) // We have a handful. They don't need to hold it.
+		if(default_ammo == transfer_from.default_ammo) //Has to match.
+			transfer_ammo(transfer_from,user, transfer_from.current_rounds) // Transfer it from currently held to src
+		else user << "Those aren't the same rounds. Better not mix them up."
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
 	var/datum/ammo/A = ammo_list[new_ammo]
@@ -226,25 +226,25 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/current_icon = 0
 	var/number_of_states = 10 //How many variations of this item there are.
 
-	New()
-		..()
-		pixel_x = rand(-2.0, 2) //Want to move them just a tad.
-		pixel_y = rand(-2.0, 2)
-		icon_state += "[rand(1,number_of_states)]" //Set the icon to it.
+/obj/item/ammo_casing/New()
+	..()
+	pixel_x = rand(-2.0, 2) //Want to move them just a tad.
+	pixel_y = rand(-2.0, 2)
+	icon_state += "[rand(1,number_of_states)]" //Set the icon to it.
 
-	//This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
-	update_icon()
-		if(max_casings >= current_casings)
-			if(current_casings == 2) name += "s" //In case there is more than one.
-			if(round((current_casings-1)/8) > current_icon)
-				current_icon++
-				icon_state += "_[current_icon]"
+//This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
+/obj/item/ammo_casing/update_icon()
+	if(max_casings >= current_casings)
+		if(current_casings == 2) name += "s" //In case there is more than one.
+		if(round((current_casings-1)/8) > current_icon)
+			current_icon++
+			icon_state += "_[current_icon]"
 
-			var/base_direction = current_casings - (current_icon * 8)
-			dir = base_direction + round(base_direction)/3
-			switch(current_casings)
-				if(3 to 5) w_class = 2 //Slightly heavier.
-				if(9 to 10) w_class = 3 //Can't put it in your pockets and stuff.
+		var/base_direction = current_casings - (current_icon * 8)
+		dir = base_direction + round(base_direction)/3
+		switch(current_casings)
+			if(3 to 5) w_class = 2 //Slightly heavier.
+			if(9 to 10) w_class = 3 //Can't put it in your pockets and stuff.
 
 //Making child objects so that locate() and istype() doesn't screw up.
 /obj/item/ammo_casing/bullet

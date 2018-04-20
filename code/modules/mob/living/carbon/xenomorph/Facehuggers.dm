@@ -352,7 +352,7 @@
 				cdel(src)
 				return
 		Die()
-	else
+	else if(!attached || !ishuman(loc)) //doesn't age while attached
 		lifecycle -= 50
 		return 1
 

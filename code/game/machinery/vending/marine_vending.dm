@@ -37,6 +37,7 @@
 					/obj/item/storage/belt/shotgun = 3,
 					/obj/item/storage/belt/knifepouch = 5,
 					/obj/item/storage/belt/gun/m4a3 = 5,
+					/obj/item/storage/belt/gun/m44 = 5,
 					/obj/item/storage/large_holster/m37 = 5,
 					/obj/item/clothing/shoes/marine = 5,
 					/obj/item/clothing/under/marine = 10,

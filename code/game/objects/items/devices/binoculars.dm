@@ -30,7 +30,7 @@
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/target_acquisition_delay = 100 //10 seconds
-	var/busy = FALSE
+
 
 /obj/item/device/binoculars/tactical/New()
 	..()
@@ -58,7 +58,7 @@
 /obj/item/device/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
-	if(busy || laser)
+	if(laser)
 		user << "<span class='warning'>You're already targeting something.</span>"
 		return
 
@@ -91,16 +91,14 @@
 	if(!is_outside)
 		user << "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>"
 		return
-	busy = TRUE
-	playsound(src, 'sound/effects/nightvision.ogg', 35)
-	user << "<span class='notice'>INITIATING LASER TARGETING ON: '[A]'. Stand still.</span>"
-	var/old_A_loc = A.loc
-	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser || !A || A.loc != old_A_loc)
-		busy = FALSE
+	if(user.action_busy)
 		return
-	busy = FALSE
-	user << "<span class='notice'>TARGET ACQUIRED. LASER TARGETING ON '[A]' IS ONLINE. DON'T MOVE.</span>"
-	var/obj/effect/overlay/temp/laser_target/LT = new (get_turf(A), laz_name)
+	playsound(src, 'sound/effects/nightvision.ogg', 35)
+	user << "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>"
+	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+		return
+	user << "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>"
+	var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name)
 	laser = LT
 	user << "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [laser.x]. LATITUDE [laser.y].</span>"
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
