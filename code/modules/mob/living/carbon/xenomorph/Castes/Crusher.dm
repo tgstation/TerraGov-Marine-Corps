@@ -66,10 +66,15 @@
 		if(!i) break
 		if(!isXeno(M))
 			if(M.loc == loc)
+				if(M.stat == DEAD)
+					continue
 				if(!(M.status_flags & XENO_HOST) && !istype(M.buckled, /obj/structure/bed/nest))
 					M.take_overall_damage(40) //The same as a full charge, but no more than that.
+					M.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno stomped by [src] ([ckey])</font>")
+					attack_log += text("\[[time_stamp()]\] <font color='red'>xeno stomped [M.name] ([M.ckey])</font>")
+					log_attack("[src] ([ckey]) xeno stomped [M.name] ([M.ckey])")
 				M.KnockDown(rand(2, 3))
-				M << "<span class='highdanger'>You are stomped on by [src]!</span>"
+				M << "<span class='highdanger'>You are stomped on by [M]!</span>"
 			shake_camera(M, 2, 2)
 		i--
 
@@ -240,17 +245,23 @@
 	. = ..()
 	if(. && X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
-		if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
+		if(stat == DEAD)
+			var/count = 0
+			for(var/mob/living/carbon/C in locate(/mob/living/carbon))
+				if(C.stat == DEAD)
+					count++
+			X.charge_speed -= X.charge_speed_buildup / (count * 2) // half normal slowdown regardless of number of corpses.
+		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
 			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
 			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")
 			apply_damage(X.charge_speed * 40, BRUTE)
+			X.visible_message("<span class='danger'>[X] rams [src]!</span>",
+			"<span class='xenodanger'>You ram [src]!</span>")
 		KnockDown(X.charge_speed * 4)
 		animation_flash_color(src)
 		X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 		step_away(src, X, round(X.charge_speed))
-		X.visible_message("<span class='danger'>[X] rams [src]!</span>",
-		"<span class='xenodanger'>You ram [src]!</span>")
 		X.charge_speed -= X.charge_speed_buildup //Lose one turf worth of speed
 		r_TRU
 

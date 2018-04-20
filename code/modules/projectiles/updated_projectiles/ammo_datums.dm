@@ -1019,7 +1019,7 @@
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
-			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 				return
 		..()
 
@@ -1062,7 +1062,7 @@
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
-			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+			if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 				return
 		if(isXenoBoiler(P.firer))
 			var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
