@@ -71,7 +71,7 @@
 
 		//Simple, cheap ticker
 		if(recharge_time)
-			while(recharging)
+			while(recharging > 0)
 				recharging--
 				sleep(1)
 

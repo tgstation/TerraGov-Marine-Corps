@@ -370,6 +370,11 @@
 	if(istype(M))
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
+			if(isXeno(H.pulledby))
+				var/mob/living/carbon/Xenomorph/Z = H.pulledby
+				if(!Z.fire_immune)
+					Z.adjust_fire_stacks(burnlevel)
+					Z.IgniteMob()
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire))
 				H.show_message(text("Your suit protects you from the flames."),1)
 				H.adjustFireLoss(burnlevel*0.25) //Does small burn damage to a person wearing one of the suits.
@@ -446,4 +451,3 @@
 	//This has been made a simple loop, for the most part flamer_fire_act() just does return, but for specific items it'll cause other effects.
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return
-
