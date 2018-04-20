@@ -307,6 +307,10 @@
 	if(layer >= OBJ_LAYER || src == P.original)
 		return TRUE
 
+/obj/structure/janitorialcart/get_projectile_hit_chance(obj/item/projectile/P)
+	if(src == P.original)
+		return TRUE
+
 /obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
 	if(src == P.original)
 		return TRUE
