@@ -4,11 +4,18 @@ var/global/floorIsLava = 0
 
 
 ////////////////////////////////
-/proc/message_admins(var/msg)
+/proc/message_admins(var/msg) // +ADMIN and above
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
+			C << msg
+
+/proc/message_mods(var/msg) // +MOD and above (not Mentors)
+	msg = "<span class=\"admin\"><span class=\"prefix\">MOD LOG:</span> <span class=\"message\">[msg]</span></span>"
+	log_adminwarn(msg)
+	for(var/client/C in admins)
+		if(R_MOD & C.holder.rights)
 			C << msg
 
 /proc/message_staff(var/msg) // ALL staff - including Mentors

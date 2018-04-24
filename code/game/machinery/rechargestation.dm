@@ -127,7 +127,7 @@
 					if(!R.cell)
 						return
 					if(!R.cell.fully_charged())
-						var/diff = min(R.cell.maxcharge - R.cell.charge, 250) 	// Capped at 250 charge / tick
+						var/diff = min(R.cell.maxcharge - R.cell.charge, 500) 	// 500 charge / tick is about 2% every 3 seconds
 						diff = min(diff, current_internal_charge) 				// No over-discharging
 						R.cell.give(diff)
 						current_internal_charge -= diff
