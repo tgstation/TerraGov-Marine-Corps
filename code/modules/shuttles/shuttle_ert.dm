@@ -39,7 +39,7 @@
 			if(!PD.density && PD.id == umbili_id)
 				spawn(0)
 					PD.close()
-					PD.update_nearby_tiles(1)
+					//PD.update_nearby_tiles(1)
 
 
 
@@ -70,7 +70,7 @@
 			if(PD.density && PD.id == umbili_id)
 				spawn(0)
 					PD.open()
-					PD.update_nearby_tiles(1)
+					//PD.update_nearby_tiles(1)
 
 	else
 		for(var/obj/machinery/door/poddoor/shutters/P in A)

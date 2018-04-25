@@ -136,6 +136,17 @@
 			var/turf/T = locate(x + i, y, z)
 			if(T) T.SetOpacity(opacity)
 
+/obj/machinery/door/airlock/multi_tile/almayer/proc/get_filler_turfs()
+	var/list/filler_turfs = list()
+	for(var/i = 1, i < width, i++)
+		if(dir in list(NORTH, SOUTH))
+			var/turf/T = locate(x, y + i, z)
+			if(T) filler_turfs += T
+		else if(dir in list(EAST, WEST))
+			var/turf/T = locate(x + i, y, z)
+			if(T) filler_turfs += T
+	return filler_turfs
+
 /obj/machinery/door/airlock/multi_tile/almayer/open()
 	. = ..()
 	update_filler_turfs()
@@ -146,26 +157,36 @@
 
 //------Dropship Cargo Doors -----//
 
-/obj/machinery/door/airlock/multi_tile/almayer/dropship1
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear
+	opacity = 1
+	width = 3
+	unacidable = 1
+	no_panel = 1
+	not_weldable = 1
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
+	return
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/close(var/forced=0)
+	if(forced)
+		for(var/turf/T in get_filler_turfs())
+			for(var/mob/living/L in T)
+				step(L, pick(NORTH,SOUTH)) // bump them off the tile
+		safe = 0 // in case anyone tries to run into the closing door~
+		..()
+		safe = 1 // without having to rewrite closing proc~spookydonut
+	else
+		..()
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/unlock()
+	if(z == 4)
+		return // in orbit
+	..()
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
 	name = "\improper Alamo cargo door"
-	opacity = 1
 	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
-	width = 3
-	unacidable = 1
-	no_panel = 1
-	not_weldable = 1
 
-/obj/machinery/door/airlock/multi_tile/almayer/dropship1/ex_act(severity)
-	return
-
-/obj/machinery/door/airlock/multi_tile/almayer/dropship2
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2
 	name = "\improper Normandy cargo door"
-	opacity = 1
 	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
-	width = 3
-	unacidable = 1
-	no_panel = 1
-	not_weldable = 1
-
-/obj/machinery/door/airlock/multi_tile/almayer/dropship2/ex_act(severity)
-	return

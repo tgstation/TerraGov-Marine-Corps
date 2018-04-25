@@ -98,10 +98,10 @@
 	var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 	switch(ship_id)
 		if("sh_dropship1")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in machines)
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
 				reardoor = D
 		if("sh_dropship2")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in machines)
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
 				reardoor = D
 
 	if(!reardoor.locked && reardoor.density)

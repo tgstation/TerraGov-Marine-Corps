@@ -426,7 +426,7 @@
 		if(!istype(T)) continue
 
 		//I know an iterator is faster, but this broke for some reason when I used it so I won't argue
-		for(var/obj/machinery/door/poddoor/shutters/transit/ST in T)
+		/*for(var/obj/machinery/door/poddoor/shutters/transit/ST in T)
 			if(!istype(ST)) continue
 			if(!ST.density)
 				//"But MadSnailDisease!", you say, "Don't use spawn! Use sleep() and waitfor instead!
@@ -437,22 +437,32 @@
 				//Because when you open doors by Bumped() it would have you fly through before the animation is complete
 				spawn(0)
 					ST.close()
-					ST.update_nearby_tiles(1)
-				break
+					//ST.update_nearby_tiles(1)
+				break*/
 
 		//Elevators
-		for(var/obj/machinery/door/airlock/A in T)
-			if(!istype(A)) continue
-			if (iselevator)
+		if (iselevator)
+			for(var/obj/machinery/door/airlock/A in T)
+				if(!istype(A)) continue
 				if(!A.density)
 					spawn(0)
 						A.close()
 						A.lock()
-						A.update_nearby_tiles(1)
+						//A.update_nearby_tiles(1)
 				else
 					A.lock() //We need this here since it's important to lock and update AFTER its closed
-					A.update_nearby_tiles(1)
+					//A.update_nearby_tiles(1)
 				break
+		else
+			for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
+				spawn(0)
+					M.close(1)
+					M.lock()
+
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in T)
+				spawn(0)
+					D.close(1)
+					D.lock()
 
 /datum/shuttle/ferry/marine/open_doors(var/list/L)
 	var/i //iterator
@@ -463,34 +473,33 @@
 		if(!istype(T)) continue
 
 		//Just so marines can't land with shutters down and turtle the rasputin
-		for(var/obj/machinery/door/poddoor/shutters/P in T)
+		/*for(var/obj/machinery/door/poddoor/shutters/P in T)
 			if(!istype(P)) continue
 			if(P.density)
 				spawn(0)
 					P.open()
-					P.update_nearby_tiles(1)
+					//P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
+				*/
 
-		// lift lockdowns to stop people getting trapped
-		for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
-			M.unlock()
-
-		for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship1/D in T)
-			D.unlock()
-
-		for(var/obj/machinery/door/airlock/multi_tile/almayer/dropship2/D in T)
-			D.unlock()
-
-		for(var/obj/machinery/door/airlock/A in T)
-			if(!istype(A)) continue
-			if (iselevator)
+		if (iselevator)
+			for(var/obj/machinery/door/airlock/A in T)
+				if(!istype(A)) continue
 				if(A.locked)
 					A.unlock()
 				if(A.density)
 					spawn(0)
 						A.open()
-						A.update_nearby_tiles(1)
+						//A.update_nearby_tiles(1)
 				break
+		else
+			for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
+				M.unlock()
+
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in T)
+				D.unlock()
+
+
 
 /datum/shuttle/ferry/marine/proc/open_doors_crashed(var/list/L)
 
@@ -513,13 +522,23 @@
 			if(P.density)
 				spawn(0)
 					P.open()
-					P.update_nearby_tiles(1)
+					//P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
 
 		for(var/obj/structure/mineral_door/resin/R in T)
 			if(istype(R))
 				cdel(R) //This is all that it's dismantle() does so this is okay
 				break
+
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
+			spawn(0)
+				M.unlock()
+				M.open()
+
+		for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in T)
+			spawn(0)
+				D.unlock()
+				D.open()
 
 /datum/shuttle/ferry/marine/proc/shake_cameras(var/list/L)
 
