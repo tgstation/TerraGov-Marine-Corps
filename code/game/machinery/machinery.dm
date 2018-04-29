@@ -113,13 +113,17 @@ Class Procs:
 	var/global/gl_uid = 1
 	layer = OBJ_LAYER
 
-	New()
-		..()
-		machines += src
+/obj/machinery/New()
+	..()
+	machines += src
+	var/area/A = get_area(src)
+	A.master.area_machines += src
 
-	Dispose()
-		machines -= src
-		. = ..()
+/obj/machinery/Dispose()
+	machines -= src
+	var/area/A = get_area(src)
+	A.master.area_machines -= src
+	. = ..()
 
 /obj/machinery/process()//If you dont use process or power why are you here
 	return PROCESS_KILL
