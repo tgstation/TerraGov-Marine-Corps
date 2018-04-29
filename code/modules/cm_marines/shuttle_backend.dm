@@ -415,7 +415,6 @@ cdel(src)
 	return toReturn
 
 /proc/move_shuttle_to(turf/trg, turftoleave = null, list/source, iselevator = 0, deg = 0, datum/shuttle/ferry/marine/shuttle)
-
 	//var/list/turfsToUpdate = list()
 	var/i //iterator
 
@@ -443,7 +442,6 @@ cdel(src)
 			S = i
 			if(!istype(S)) continue
 			S.gib()
-
 
 		var/old_dir = T_src.dir
 		var/old_icon_state = T_src.icon_state
@@ -495,6 +493,7 @@ cdel(src)
 		else
 			T_src.ChangeTurf(/turf/simulated/floor/plating)
 
+		shuttle.move_scheduled = 0
 	/*
 	Commented out since it doesn't do anything with shuttle walls and the like yet.
 	It will pending smoothwall.dm rewrite

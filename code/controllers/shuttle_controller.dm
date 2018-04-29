@@ -9,6 +9,11 @@ var/global/datum/shuttle_controller/shuttle_controller
 /datum/shuttle_controller/proc/process()
 	//process ferry shuttles
 	for (var/datum/shuttle/ferry/shuttle in process_shuttles)
+
+		// Hacky bullshit that should only apply for shuttle/marine's for now.
+		if (shuttle.move_scheduled)
+			move_shuttle_to(shuttle.target_turf, 0, shuttle.shuttle_turfs, 0, shuttle.target_rotation, shuttle)
+
 		if (shuttle.process_state)
 			shuttle.process()
 
@@ -319,4 +324,3 @@ var/global/datum/shuttle_controller/shuttle_controller
 	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
 		shuttle.dock()
-

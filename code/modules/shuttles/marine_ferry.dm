@@ -132,9 +132,9 @@
 
 	//END: Heavy lifting backend
 
-	if (moving_status == SHUTTLE_IDLE)
+	if (moving_status != SHUTTLE_WARMUP)
 		recharging = 0
-		return	//someone canceled the launch
+		return	//someone cancelled the launch
 
 	var/travel_time = 0
 	if(transit_gun_mission)
@@ -167,7 +167,17 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src, 0 , int_rot, src) //Rotate by the angle at the destination, not the source
+	target_turf = T_int
+	target_rotation = int_rot
+	shuttle_turfs = turfs_src
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
+
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
@@ -192,7 +202,16 @@
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, trg_rot, src)
+	target_turf = T_trg
+	target_rotation = trg_rot
+	shuttle_turfs = turfs_int
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
 
 	//Now that we've landed, assuming some rotation including 0, we need to make sure it doesn't fuck up when we go back
 	locs_move[T_int] = -1*trg_rot
@@ -287,7 +306,17 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src, , , src)
+	target_turf = T_int
+	target_rotation = 0
+	shuttle_turfs = turfs_src
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
+
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 
 	var/list/lights = get_landing_lights(T_src)
@@ -341,7 +370,16 @@
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, src_rot, src)
+	target_turf = T_trg
+	target_rotation = src_rot
+	shuttle_turfs = turfs_int
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since the hadn't moved yet
