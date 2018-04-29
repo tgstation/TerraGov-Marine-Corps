@@ -287,9 +287,16 @@
 			master.used_environ += amount
 
 
-/area/Entered(A)
+/area/Entered(A,atom/OldLoc)
 	var/musVolume = 20
 	var/sound = 'sound/ambience/ambigen1.ogg'
+
+	if(istype(A, /obj/machinery))
+		var/area/newarea = get_area(A)
+		var/area/oldarea = get_area(OldLoc)
+		oldarea.master.area_machines -= A
+		newarea.master.area_machines += A
+		return
 
 	if(!istype(A,/mob/living))	return
 
@@ -360,5 +367,3 @@
 		mob:AdjustKnockeddown(2)
 
 	mob << "Gravity!"
-
-
