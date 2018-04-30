@@ -12,7 +12,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 		// Hacky bullshit that should only apply for shuttle/marine's for now.
 		if (shuttle.move_scheduled)
-			move_shuttle_to(shuttle.target_turf, 0, shuttle.shuttle_turfs, 0, shuttle.target_rotation, shuttle)
+			spawn(-1)
+				move_shuttle_to(shuttle.target_turf, 0, shuttle.shuttle_turfs, 0, shuttle.target_rotation, shuttle)
 
 		if (shuttle.process_state)
 			shuttle.process()

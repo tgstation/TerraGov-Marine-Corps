@@ -414,84 +414,77 @@ cdel(src)
 
 	return toReturn
 
-/proc/move_shuttle_to(turf/trg, turftoleave = null, list/source, iselevator = 0, deg = 0, datum/shuttle/ferry/marine/shuttle)
+/proc/move_shuttle_to(turf/reference, turftoleave = null, list/source, iselevator = 0, deg = 0, datum/shuttle/ferry/marine/shuttle)
 	//var/list/turfsToUpdate = list()
-	var/i //iterator
 
 	if(shuttle.sound_misc) playsound(source[shuttle.sound_target], shuttle.sound_misc, 75, 1)
 
-	source = rotate_shuttle_turfs(source, deg)
+	if (deg)
+		source = rotate_shuttle_turfs(source, deg)
 
-	for(var/turf/T_src in source)
-		var/datum/coords/C = source[T_src]
-		if(!istype(C)) continue
-		var/turf/T_trg = locate(trg.x + C.x_pos, trg.y + C.y_pos, trg.z)
+	var/datum/coords/C = null
+	for (var/turf/T in source)
+		C = source[T]
+		var/turf/target = locate(reference.x + C.x_pos, reference.y + C.y_pos, reference.z)
 
-		for(var/obj/O in T_trg)
-			if(O.loc == T_trg)
-				cdel(O)
+		// Delete objects and gib living things in the destination
+		for (var/atom/A in target)
+			if (isobj(A) && A.loc == target)
+				cdel(A)
+				continue
 
-		var/mob/living/carbon/MLC
-		for(i in T_trg)
-			MLC = i
-			if(!istype(MLC)) continue
-			MLC.gib()
+			if (isliving(A))
+				var/mob/living/L = A
+				L.gib()
 
-		var/mob/living/simple_animal/S
-		for(i in T_trg)
-			S = i
-			if(!istype(S)) continue
-			S.gib()
+		// Moving the turfs over
+		var/old_dir = T.dir
+		var/old_icon_state = T.icon_state
+		var/old_icon = T.icon
 
-		var/old_dir = T_src.dir
-		var/old_icon_state = T_src.icon_state
-		var/old_icon = T_src.icon
+		target.ChangeTurf(T.type)
+		target.dir = old_dir
+		target.icon_state = old_icon_state
+		target.icon = old_icon
 
-		T_trg.ChangeTurf(T_src.type)
-		T_trg.dir = old_dir
-		T_trg.icon_state = old_icon_state
-		T_trg.icon = old_icon
+		// Moving air over
+		var/turf/simulated/S = T
+		var/turf/simulated/target_simulated = target
 
-		//This is weird and oddly neccessary.
-		var/turf/simulated/S_src = T_src
-		var/turf/simulated/S_trg = T_trg
-		if(istype(S_src) && S_src.zone && istype(S_trg) && S_trg.zone)
-			if(!S_trg.air)
-				S_trg.make_air()
-			S_trg.air.copy_from(S_src.air) //TODO: FIX THE BUG INVOLVING THIS PROC
-			S_src.zone.remove(S_src)
+		if (S.zone && target_simulated.zone)
+			if (!target_simulated.air)
+				target_simulated.make_air()
+			target_simulated.air.copy_from(S.air)
+			S.zone.remove(S)
 
-		var/list/shaken_mobs = list()
+		for (var/atom/A in T)
+			if (isobj(A))
+				var/obj/O = A
+				O.loc = target
+				continue
 
-		for(var/obj/O in T_src)
-			if(!istype(O)) continue
-			O.loc = T_trg
-			if(istype(O, /obj/structure/closet))
-				for(var/mob/M in O)
-					shaken_mobs += M
+			if (iscarbon(A))
+				var/mob/living/M = A
+				M.loc = target
 
-		for(var/mob/M in T_src)
-			if(!istype(M)) continue
-			M.loc = T_trg
-			shaken_mobs += M
+				if(M.client)
+					if(M.buckled && !iselevator)
+						M << "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>"
+						shake_camera(M, 3, 1)
+					else if (!M.buckled)
+						M << "<span class='warning'>The floor lurches beneath you!</span>"
+						shake_camera(M, iselevator ? 2 : 10, 1)
 
-		for(var/X in shaken_mobs)
-			var/mob/M = X
-			if(M.client)
-				if(M.buckled && !iselevator)
-					M << "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>"
-					shake_camera(M, 3, 1)
-				else if (!M.buckled)
-					M << "<span class='warning'>The floor lurches beneath you!</span>"
-					shake_camera(M, iselevator? 2 : 10, 1)
-			if(iscarbon(M) && !iselevator)
-				if(!M.buckled)
-					M.KnockDown(3)
+				if(!iselevator)
+					if(!M.buckled)
+						M.KnockDown(3)
 
 		if(turftoleave && ispath(turftoleave))
-			T_src.ChangeTurf(turftoleave)
+			T.ChangeTurf(turftoleave)
 		else
-			T_src.ChangeTurf(/turf/simulated/floor/plating)
+			T.ChangeTurf(/turf/simulated/floor/plating)
+
+		shuttle.move_scheduled = 0
 
 		shuttle.move_scheduled = 0
 	/*
