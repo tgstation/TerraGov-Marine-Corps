@@ -422,6 +422,7 @@ cdel(src)
 	if (deg)
 		source = rotate_shuttle_turfs(source, deg)
 
+	var/list/mob/living/knocked_down_mobs = list()
 	var/datum/coords/C = null
 	for (var/turf/T in source)
 		C = source[T]
@@ -477,16 +478,20 @@ cdel(src)
 
 				if(!iselevator)
 					if(!M.buckled)
-						M.KnockDown(3)
+						knocked_down_mobs += M
+
 
 		if(turftoleave && ispath(turftoleave))
 			T.ChangeTurf(turftoleave)
 		else
 			T.ChangeTurf(/turf/simulated/floor/plating)
 
-		shuttle.move_scheduled = 0
+	shuttle.move_scheduled = 0
 
-		shuttle.move_scheduled = 0
+	// Do this after because it's expensive.
+	for (var/mob/living/L in knocked_down_mobs)
+		L.KnockDown(3)
+
 	/*
 	Commented out since it doesn't do anything with shuttle walls and the like yet.
 	It will pending smoothwall.dm rewrite
