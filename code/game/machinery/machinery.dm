@@ -117,12 +117,14 @@ Class Procs:
 	..()
 	machines += src
 	var/area/A = get_area(src)
-	A.master.area_machines += src
+	if(A)
+		A.master.area_machines += src
 
 /obj/machinery/Dispose()
 	machines -= src
 	var/area/A = get_area(src)
-	A.master.area_machines -= src
+	if(A)
+		A.master.area_machines -= src
 	. = ..()
 
 /obj/machinery/process()//If you dont use process or power why are you here
