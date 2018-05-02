@@ -493,14 +493,34 @@
 				break
 		else
 			for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
-				spawn(0)
-					M.close(1)
-					M.lock()
+				if(M.locked && M.density)
+					continue // jobs done
+				else if(!M.locked && M.density)
+					M.lock() // closed but not locked yet
+					continue
+				else
+					spawn(0)
+						M.unlock()
+						sleep(1)
+						M.close(1)
+						sleep(M.openspeed + 1)
+						M.lock()
 
 			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in T)
-				spawn(0)
-					D.close(1)
-					D.lock()
+				if(!D.locked && D.density)
+					D.lock() // closed but not locked yet
+				else if(D.locked && !D.density)
+					spawn(0)
+						D.unlock()
+						sleep(1)
+						D.close()
+						sleep(D.openspeed + 1) // let it close
+						D.lock() // THEN lock it
+				else
+					spawn(0)
+						D.close()
+						sleep(D.openspeed + 1)
+						D.lock()
 
 /datum/shuttle/ferry/marine/open_doors(var/list/L)
 	var/i //iterator
