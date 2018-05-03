@@ -302,7 +302,5 @@
 				continue
 			statpanel(mob.listed_turf.name, null, A)
 
-	if (!statpanel("Stats"))
-		return
-
-	..()
+	if (statpanel("Stats"))	// Don't call other stat panels unless we absolutely have to.
+		..()
