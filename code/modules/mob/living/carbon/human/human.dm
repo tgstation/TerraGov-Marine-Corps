@@ -64,42 +64,39 @@
 
 
 /mob/living/carbon/human/Stat()
-	. = ..()
+	if (!..())
+		return 0
 
-	if (.)
-		stat(null, "Operation Time: [worldtime2text()]")
+	stat(null, "Operation Time: [worldtime2text()]")
 
-/*
-	stat(null, "Intent: [a_intent]")
-	stat(null, "Move Mode: [m_intent]")
-*/
+	if(EvacuationAuthority)
+		var/eta_status = EvacuationAuthority.get_status_panel_eta()
+		if(eta_status)
+			stat(null, eta_status)
 
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+	if(internal)
+		if (!internal.air_contents)
+			cdel(internal)
+			internal = null
+		else
+			stat("Internal Atmosphere Info", internal.name)
+			stat("Tank Pressure", internal.air_contents.return_pressure())
+			stat("Distribution Pressure", internal.distribute_pressure)
 
-		if(internal)
-			if (!internal.air_contents)
-				cdel(internal)
-				internal = null
-			else
-				stat("Internal Atmosphere Info", internal.name)
-				stat("Tank Pressure", internal.air_contents.return_pressure())
-				stat("Distribution Pressure", internal.distribute_pressure)
+	if(assigned_squad)
+		if(assigned_squad.primary_objective)
+			stat("Primary Objective: ", assigned_squad.primary_objective)
+		if(assigned_squad.secondary_objective)
+			stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
-		if(assigned_squad)
-			if(assigned_squad.primary_objective)
-				stat("Primary Objective: ", assigned_squad.primary_objective)
-			if(assigned_squad.secondary_objective)
-				stat("Secondary Objective: ", assigned_squad.secondary_objective)
+	if(mobility_aura)
+		stat(null, "You are affected by a MOVE order.")
+	if(protection_aura)
+		stat(null, "You are affected by a HOLD order.")
+	if(marskman_aura)
+		stat(null, "You are affected by a FOCUS order.")
 
-		if(mobility_aura)
-			stat(null, "You are affected by a MOVE order.")
-		if(protection_aura)
-			stat(null, "You are affected by a HOLD order.")
-		if(marskman_aura)
-			stat(null, "You are affected by a FOCUS order.")
+	return 1
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded && hud_used)

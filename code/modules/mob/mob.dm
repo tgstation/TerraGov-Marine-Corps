@@ -465,19 +465,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	is_floating = 0
 
 
-
 /mob/Stat()
-	..()
-
-	if(!client && !statpanel("Status"))
-		r_FAL
-
-
-	if(client.holder)
-		stat(null,"Location:\t([x], [y], [z])")
-		stat(null,"CPU:\t[world.cpu]")
-		stat(null,"Instances:\t[world.contents.len]")
-
 	//This displays items on on turf via ALT+Click
 	if(listed_turf && client)
 		if(!TurfAdjacent(listed_turf))
@@ -489,17 +477,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 					continue
 				statpanel(listed_turf.name, null, A)
 
-	r_TRU
+	if (!statpanel("Stats"))
+		return 0
 
-	/*if(spell_list && spell_list.len)
-		for(var/obj/effect/proc_holder/spell/S in spell_list)
-			switch(S.charge_type)
-				if("recharge")
-					statpanel("Spells","[S.charge_counter/10.0]/[S.charge_max/10]",S)
-				if("charges")
-					statpanel("Spells","[S.charge_counter]/[S.charge_max]",S)
-				if("holdervar")
-					statpanel("Spells","[S.holder_var_type] [S.holder_var_amount]",S)*/
+	return 1
 
 
 
@@ -507,8 +488,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/canface()
 	if(!canmove)						return 0
 	if(client.moving)					return 0
-	if(world.time < client.move_delay)	return 0
-	if(stat==2)							return 0
+	if(client.next_move > world.time)			return 0
+	if(stat==2)						return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
 	if(is_mob_restrained())					return 0

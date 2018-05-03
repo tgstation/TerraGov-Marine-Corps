@@ -62,8 +62,6 @@
 		return
 
 	Stat()
-		..()
-
 		if(statpanel("Lobby") && ticker)
 			if(ticker.hide_mode)
 				stat("Game Mode:", "Secret")
@@ -80,6 +78,10 @@
 					stat("[player.key]", (player.ready)?("(Playing)"):(null))
 					totalPlayers++
 					if(player.ready)totalPlayersReady++
+
+		if (!..())
+			return 0
+		return 1
 
 	Topic(href, href_list[])
 		if(!client)	return
