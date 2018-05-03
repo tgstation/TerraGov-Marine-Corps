@@ -488,7 +488,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/canface()
 	if(!canmove)						return 0
 	if(client.moving)					return 0
-	if(client.next_move > world.time)			return 0
+	if(world.time < client.move_delay)			return 0
 	if(stat==2)						return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
@@ -706,4 +706,3 @@ mob/proc/yank_out_object()
 
 /mob/on_stored_item_del(obj/item/I)
 	temp_drop_inv_item(I, TRUE) //unequip before deletion to clear possible item references on the mob.
-
