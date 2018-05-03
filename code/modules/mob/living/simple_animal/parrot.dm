@@ -104,9 +104,11 @@
 	..()
 
 /mob/living/simple_animal/parrot/Stat()
-	..()
-	stat("Held Item", held_item)
+	if (!..())
+		return 0
 
+	stat("Held Item", held_item)
+	return 1
 /*
  * Inventory
  */

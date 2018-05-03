@@ -26,7 +26,7 @@
 	if(user.is_mob_incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
 		if(user.client)
-			user.client.move_delay = world.time + 20
+			user.client.move_delay = 20
 		for(var/mob/M in hearers(4, src))
 			if(M.client)
 				M.show_message(text("\red You hear something rumbling inside [src]'s stomach..."), 2)

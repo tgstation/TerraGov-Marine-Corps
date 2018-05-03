@@ -34,7 +34,6 @@
 	return
 
 /atom/movable/Move(NewLoc, direct)
-
 	if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
 		moving_diagonally = FIRST_DIAG_STEP
 		if (direct & 1)
