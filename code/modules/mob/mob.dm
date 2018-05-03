@@ -468,7 +468,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/canface()
 	if(!canmove)						return 0
 	if(client.moving)					return 0
-	if(world.time < client.move_delay)			return 0
+	if(world.time > client.next_movement)			return 0
 	if(stat==2)						return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0

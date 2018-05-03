@@ -193,7 +193,7 @@
 			pulledby.stop_pulling()
 			return 1
 		if(moving_resist && client) //we resisted by trying to move
-			client.move_delay = world.time + 20
+			client.move_delay += 20
 	else
 		pulledby.stop_pulling()
 		return 1
@@ -250,7 +250,7 @@
 			var/mob/living/carbon/Xenomorph/X = L
 			if((has_species(src, "Human") && X.mob_size == MOB_SIZE_BIG) || (isXeno(src) && X.mob_size == MOB_SIZE_BIG))
 				if(!isXeno(src) && client)
-					client.move_delay = max(client.move_delay, world.time + 10) //1 sec delay when bumping into a Xeno before you can move again
+					client.move_delay += 10 //1 sec delay when bumping into a Xeno before you can move again
 				now_pushing = 0
 				return
 
@@ -258,7 +258,7 @@
 			var/mob/living/carbon/Xenomorph/X = src
 			if(has_species(L, "Human") && X.mob_size == MOB_SIZE_BIG)
 				if(L.client)
-					L.client.move_delay = max(L.client.move_delay, world.time + 10) //1 sec delay when bumped by a Xeno before you can move again
+					L.client.move_delay += 10 //1 sec delay when bumped by a Xeno before you can move again
 
 		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
 			if(!(world.time % 5))
@@ -364,4 +364,3 @@
 		attack_icon.icon_state = old_icon //necessary b/c the attack_icon can change sprite during the sleep.
 		target.overlays -= attack_icon
 		attack_icon.icon_state = new_icon
-
