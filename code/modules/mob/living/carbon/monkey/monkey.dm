@@ -281,8 +281,6 @@
 
 
 /mob/living/carbon/monkey/Stat()
-	..()
-	statpanel("Status")
 	stat(null, text("Intent: []", a_intent))
 	stat(null, text("Move Mode: []", m_intent))
 

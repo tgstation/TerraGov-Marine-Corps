@@ -204,7 +204,8 @@
 
 		//We are now going to move
 		moving = 1
-
+		if (mob.listed_turf)
+			mob.listed_turf = null
 		if(mob.confused)
 			step(mob, pick(cardinal))
 		else

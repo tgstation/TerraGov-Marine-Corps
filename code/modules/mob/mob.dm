@@ -464,26 +464,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-
-/mob/Stat()
-	//This displays items on on turf via ALT+Click
-	if(listed_turf && client)
-		if(!TurfAdjacent(listed_turf))
-			listed_turf = null
-		else
-			statpanel(listed_turf.name, null, listed_turf)
-			for(var/atom/A in listed_turf)
-				if(A.invisibility > see_invisible)
-					continue
-				statpanel(listed_turf.name, null, A)
-
-	if (!statpanel("Stats"))
-		return 0
-
-	return 1
-
-
-
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)						return 0

@@ -42,11 +42,9 @@
 	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
-	if (!..())
-		return 0
-
+	..()
 	stat(null, "Progress: [amount_grown]/[max_grown]")
-	return 1
+
 
 //Larva Progression.. Most of this stuff is obsolete.
 /mob/living/carbon/Xenomorph/Larva/update_progression()

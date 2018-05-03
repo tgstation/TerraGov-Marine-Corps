@@ -64,9 +64,6 @@
 
 
 /mob/living/carbon/human/Stat()
-	if (!..())
-		return 0
-
 	stat(null, "Operation Time: [worldtime2text()]")
 
 	if(EvacuationAuthority)
@@ -96,7 +93,6 @@
 	if(marskman_aura)
 		stat(null, "You are affected by a FOCUS order.")
 
-	return 1
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded && hud_used)
