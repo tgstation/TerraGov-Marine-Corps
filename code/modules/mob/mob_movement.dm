@@ -170,7 +170,7 @@
 		if(mob.is_mob_incapacitated(TRUE))
 			return
 		else if(mob.is_mob_restrained())
-			move_delay += 10
+			move_delay = 10
 			src << "<span class='warning'>You're restrained! You can't move!</span>"
 			return
 		else if(!mob.resist_grab(TRUE))
@@ -194,8 +194,7 @@
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-
-		move_delay = 0//set move delay
+		move_delay = 0 //set move delay
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if("run")

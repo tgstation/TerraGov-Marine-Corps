@@ -452,8 +452,7 @@
 /mob/living/bullet_act(obj/item/projectile/P)
 	if(!P) return
 
-	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
-
+	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff))
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
 

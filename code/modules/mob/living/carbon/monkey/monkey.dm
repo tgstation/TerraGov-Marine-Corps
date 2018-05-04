@@ -22,7 +22,6 @@
 	add_to_all_mob_huds()
 
 
-
 /mob/living/carbon/monkey/tajara
 	name = "farwa"
 	voice_name = "farwa"
