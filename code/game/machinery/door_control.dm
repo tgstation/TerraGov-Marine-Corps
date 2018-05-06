@@ -85,6 +85,8 @@
 		return
 	if(shuttle.door_override)
 		return // its been locked down by the queen
+	if(z == 3) // on the almayer
+		return
 	for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
 		if(M.id == ship_id)
 			if(M.locked && M.density)

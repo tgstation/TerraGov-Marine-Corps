@@ -208,7 +208,7 @@
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 
 	if(href_list["lockdown"])
-		if(shuttle.door_override)
+		if(shuttle.door_override || z == 3)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -256,7 +256,8 @@
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
 			if(M.id == ship_id)
-				M.unlock()
+				if(M.z != 4)
+					M.unlock()
 
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
@@ -266,11 +267,11 @@
 			if("sh_dropship2")
 				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
 					reardoor = D
-
-		reardoor.unlock()
+		if(reardoor.z != 4)
+			reardoor.unlock()
 
 	if(href_list["side door"])
-		if(shuttle.door_override)
+		if(shuttle.door_override || z == 3)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -295,7 +296,7 @@
 					usr << "<span class='warning'>You hear a [sidename] door lock.</span>"
 
 	if(href_list["rear door"])
-		if(shuttle.door_override)
+		if(shuttle.door_override || z == 3)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"

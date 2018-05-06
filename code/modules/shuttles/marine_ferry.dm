@@ -181,6 +181,8 @@
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
+	close_doors(turfs_int) // adding this for safety.
+
 	var/list/lightssource = get_landing_lights(T_src)
 	for(var/obj/machinery/landinglight/F in lightssource)
 		if(F.id == shuttle_tag)
@@ -318,6 +320,8 @@
 		sleep(10)
 
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
+
+	close_doors(turfs_int) // adding this for safety.
 
 	var/list/lights = get_landing_lights(T_src)
 	for(var/obj/machinery/landinglight/F in lights)
