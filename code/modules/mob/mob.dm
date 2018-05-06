@@ -316,9 +316,20 @@ var/list/slot_equipment_priority = list( \
 		if(pulling_old == AM)
 			return
 
+	if(istype(AM, /obj/item/tool/soap))
+		var/obj/item/tool/soap/S = AM
+		S.pulled_last = src
+
+	if(istype(AM, /obj/item/bananapeel/))
+		var/obj/item/bananapeel/B = AM
+		B.pulled_last = src
+
 	var/mob/M
 	if(ismob(AM))
 		M = AM
+		attack_log += "\[[time_stamp()]\]<font color='green'> Grabbed [M.name] ([M.ckey]) </font>"
+		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Grabbed by [name] ([ckey]) </font>"
+		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 	if(AM.pulledby)
 		if(M)

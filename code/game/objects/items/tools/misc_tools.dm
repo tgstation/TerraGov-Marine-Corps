@@ -12,7 +12,7 @@
 	icon_state = "labeler0"
 	item_state = "flight"
 	var/label = null
-	var/labels_left = 30
+	var/labels_left = 50
 	var/mode = 0	//off or on.
 
 /obj/item/tool/hand_labeler/afterattack(atom/A, mob/user as mob, proximity)
@@ -40,10 +40,14 @@
 	if(istype(A, /obj/item/tool/surgery))
 		user << "<span class='notice'>That wouldn't be sanitary.</span>"
 		return
+	if(isturf(A))
+		user << "<span class='notice'>The label won't stick to that.</span>"
+		return
 
 	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
 						 "<span class='notice'>You label [A] as \"[label]\".</span>")
 	A.name = "[A.name] ([label])"
+	labels_left--
 
 /obj/item/tool/hand_labeler/attack_self(mob/user as mob)
 	mode = !mode
@@ -225,4 +229,3 @@
 
 /obj/item/tool/stamp/attack_paw(mob/user as mob)
 	return attack_hand(user)
-
