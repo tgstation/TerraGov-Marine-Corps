@@ -2115,7 +2115,7 @@
 "aOI" = (/obj/machinery/light,/turf/simulated/floor{tag = "icon-darkred2 (SOUTHEAST)"; icon_state = "darkred2"; dir = 6},/area/space)
 "aOJ" = (/obj/structure/filingcabinet,/obj/machinery/firealarm{dir = 8; pixel_x = -24; pixel_y = 0},/turf/simulated/floor{tag = "icon-whitered (SOUTHWEST)"; icon_state = "whitered"; dir = 10},/area/space)
 "aOK" = (/obj/machinery/power/apc{pixel_y = -24; start_charge = 0},/obj/structure/cable,/turf/simulated/floor{tag = "icon-whitered"; icon_state = "whitered"; dir = 2},/area/space)
-"aOL" = (/obj/structure/table,/obj/machinery/light,/obj/item/fluff/farwadoll,/turf/simulated/floor{tag = "icon-whitered"; icon_state = "whitered"; dir = 2},/area/space)
+"aOL" = (/obj/structure/table,/obj/machinery/light,/turf/simulated/floor{tag = "icon-whitered"; icon_state = "whitered"; dir = 2},/area/space)
 "aOM" = (/obj/structure/table,/obj/item/handcuffs,/turf/simulated/floor{tag = "icon-whitered"; icon_state = "whitered"; dir = 2},/area/space)
 "aON" = (/obj/structure/table,/obj/item/weapon/baseballbat/metal,/obj/item/tool/extinguisher,/turf/simulated/floor{tag = "icon-whitered (SOUTHEAST)"; icon_state = "whitered"; dir = 6},/area/space)
 "aOO" = (/obj/structure/closet/secure_closet,/obj/machinery/firealarm{dir = 8; pixel_x = -24; pixel_y = 0},/turf/simulated/floor{tag = "icon-whitered (SOUTHWEST)"; icon_state = "whitered"; dir = 10},/area/space)
