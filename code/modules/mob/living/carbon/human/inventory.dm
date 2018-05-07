@@ -366,7 +366,7 @@
 	if(I.flags_inventory & CANTSTRIP)
 		src << "<span class='warning'>You're having difficulty removing that item.</span>"
 		return
-	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their [I.name] ([slot_to_process]) removed by [name] ([ckey])</font>"
+	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their [I.name] ([slot_to_process]) attempted to be removed by [name] ([ckey])</font>"
 	attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [M.name]'s ([M.ckey]) [I.name] ([slot_to_process])</font>"
 
 	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \

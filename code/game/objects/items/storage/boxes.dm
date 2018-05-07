@@ -297,7 +297,6 @@
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "monkeycubebox"
-	can_hold = list("/obj/item/reagent_container/food/snacks/monkeycube")
 	New()
 		..()
 		if(src.type == /obj/item/storage/box/monkeycubes)
@@ -332,7 +331,6 @@
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
 	icon_state = "id"
-	can_hold = list("/obj/item/card/id")
 
 	New()
 		..()
@@ -362,10 +360,9 @@
 
 
 /obj/item/storage/box/handcuffs
-	name = "box of spare handcuffs"
+	name = "box of handcuffs"
 	desc = "A box full of handcuffs."
 	icon_state = "handcuff"
-	can_hold = list("/obj/item/handcuffs")
 
 	New()
 		..()
@@ -376,6 +373,29 @@
 		new /obj/item/handcuffs(src)
 		new /obj/item/handcuffs(src)
 		new /obj/item/handcuffs(src)
+
+
+/obj/item/storage/box/zipcuffs
+	name = "box of zip cuffs"
+	desc = "A box full of zip cuffs."
+	icon_state = "handcuff"
+
+	New()
+		..()
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
+		new /obj/item/handcuffs/zip(src)
 
 
 /obj/item/storage/box/mousetraps
@@ -395,7 +415,6 @@
 /obj/item/storage/box/pillbottles
 	name = "box of pill bottles"
 	desc = "It has pictures of pill bottles on its front."
-	can_hold = list("/obj/item/storage/pill_bottle")
 
 	New()
 		..()
@@ -414,7 +433,6 @@
 	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "spbox"
 	max_storage_space = 8
-	can_hold = list("/obj/item/toy/snappop")
 	New()
 		..()
 		for(var/i=1; i <= 8; i++)
@@ -443,7 +461,6 @@
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
 	icon_state = "syringe"
-	can_hold = list("/obj/item/reagent_container/hypospray/autoinjector")
 	New()
 		..()
 		for (var/i; i < 7; i++)
@@ -453,7 +470,6 @@
 	name = "box of quickclot injectors"
 	desc = "Contains quickclot autoinjectors."
 	icon_state = "syringe"
-	can_hold = list("/obj/item/reagent_container/hypospray/autoinjector")
 	New()
 		..()
 		for (var/i; i < 7; i++)
