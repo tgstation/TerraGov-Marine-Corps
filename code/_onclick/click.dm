@@ -155,6 +155,9 @@
 		if (Adjacent(user))
 			user.start_pulling(src)
 		return 1
+
+	if (mods["middle"])
+		return 1
 	return 0
 
 /*
