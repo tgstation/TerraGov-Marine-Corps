@@ -91,3 +91,17 @@
 		status = 0
 		update_icon()
 
+
+/obj/item/weapon/stunprod/improved
+	charges = 30
+	name = "improved electrified prodder"
+	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with. This one seems to be much more effective than its predecessor."
+	color = "#FF6666"
+
+	attack(mob/M, mob/user)
+		..()
+		M.KnockDown(14)
+
+	examine(mob/user)
+		..()
+		user << "<span class='notice'>It has [charges] charges left.</span>"

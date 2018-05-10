@@ -108,7 +108,7 @@
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
 /mob/living/silicon/robot/drone/attackby(obj/item/W, mob/living/user)
 
-	if(istype(W, /obj/item/borg/upgrade/))
+	if(istype(W, /obj/item/robot/upgrade/))
 		user << "\red The maintenance drone chassis not compatible with \the [W]."
 		return
 
