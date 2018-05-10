@@ -136,6 +136,10 @@
 	if(active)
 		return
 
+	if(!allowed(user))
+		user << "<span class='warning'>Access Denied.</span>"
+		return
+
 	use_power(5)
 
 	active = 1
