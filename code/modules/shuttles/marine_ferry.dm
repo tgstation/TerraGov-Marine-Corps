@@ -468,7 +468,7 @@
 		if(!istype(T)) continue
 
 		//I know an iterator is faster, but this broke for some reason when I used it so I won't argue
-		/*for(var/obj/machinery/door/poddoor/shutters/transit/ST in T)
+		for(var/obj/machinery/door/poddoor/shutters/transit/ST in T)
 			if(!istype(ST)) continue
 			if(!ST.density)
 				//"But MadSnailDisease!", you say, "Don't use spawn! Use sleep() and waitfor instead!
@@ -480,7 +480,7 @@
 				spawn(0)
 					ST.close()
 					//ST.update_nearby_tiles(1)
-				break*/
+				break
 
 		//Elevators
 		if (iselevator)
@@ -535,14 +535,13 @@
 		if(!istype(T)) continue
 
 		//Just so marines can't land with shutters down and turtle the rasputin
-		/*for(var/obj/machinery/door/poddoor/shutters/P in T)
+		for(var/obj/machinery/door/poddoor/shutters/P in T)
 			if(!istype(P)) continue
 			if(P.density)
 				spawn(0)
 					P.open()
 					//P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
-				*/
 
 		if (iselevator)
 			for(var/obj/machinery/door/airlock/A in T)
