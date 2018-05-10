@@ -214,6 +214,9 @@
 /turf/simulated/floor/almayer/research/containment/corner3
 	icon_state = "containment_corner_3"
 
+/turf/simulated/floor/almayer/research/containment/corner4
+	icon_state = "containment_corner_4"
+
 /turf/simulated/floor/almayer/research/containment/corner_var1
 	icon_state = "containment_corner_variant_1"
 
