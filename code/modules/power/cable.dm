@@ -39,6 +39,7 @@
 	var/obj/machinery/power/breakerbox/breaker_box
 	explosion_resistance = 150 //Fixes ground map stuff. Can't have them blow up all the time.
 	unacidable = 1
+	var/id
 
 /obj/structure/cable/yellow
 	color = "#ffe28a"
@@ -135,14 +136,14 @@
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
 
 ///// Z-Level Stuff
-		if(src.d1 == 11 || src.d2 == 11)
+		/*if(src.d1 == 11 || src.d2 == 11)
 			var/turf/controllerlocation = locate(1, 1, z)
 			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 				if(controller.down)
 					var/turf/below = locate(src.x, src.y, controller.down_target)
 					for(var/obj/structure/cable/c in below)
 						if(c.d1 == 12 || c.d2 == 12)
-							cdel(c)
+							cdel(c)*/
 ///// Z-Level Stuff
 
 		cdel(src)

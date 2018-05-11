@@ -978,6 +978,72 @@
 		return null
 	return P
 
+// *** special cased almayer stuff because its all one z level ***
+
+/obj/structure/disposalpipe/up/almayer
+	var/id
+
+/obj/structure/disposalpipe/down/almayer
+	var/id
+
+/obj/structure/disposalpipe/up/almayer/transfer(var/obj/structure/disposalholder/H)
+	var/nextdir = nextdir(H.dir)
+	H.dir = nextdir
+
+	var/turf/T
+	var/obj/structure/disposalpipe/P
+
+	if(nextdir == 12)
+		for(var/obj/structure/disposalpipe/down/almayer/F in structure_list)
+			if(id == F.id)
+				P = F
+				break // stop at first found match
+	else
+		T = get_step(loc, H.dir)
+		P = H.findpipe(T)
+
+	if(P)
+		//Find other holder in next loc, if inactive merge it with current
+		var/obj/structure/disposalholder/H2 = locate() in P
+		if(H2 && !H2.active)
+			H.merge(H2)
+
+		H.loc = P
+	else //If wasn't a pipe, then set loc to turf
+		H.loc = loc
+		return null
+	return P
+
+/obj/structure/disposalpipe/down/almayer/transfer(var/obj/structure/disposalholder/H)
+	var/nextdir = nextdir(H.dir)
+	H.dir = nextdir
+
+	var/turf/T
+	var/obj/structure/disposalpipe/P
+
+	if(nextdir == 11)
+		for(var/obj/structure/disposalpipe/up/almayer/F in structure_list)
+			if(id == F.id)
+				P = F
+				break // stop at first found match
+	else
+		T = get_step(loc, H.dir)
+		P = H.findpipe(T)
+
+	if(P)
+		//Find other holder in next loc, if inactive merge it with current
+		var/obj/structure/disposalholder/H2 = locate() in P
+		if(H2 && !H2.active)
+			H.merge(H2)
+
+		H.loc = P
+	else //If wasn't a pipe, then set loc to turf
+		H.loc = loc
+		return null
+	return P
+
+// *** end special cased almayer stuff ***
+
 //Z-Level stuff
 //A three-way junction with dir being the dominant direction
 /obj/structure/disposalpipe/junction
