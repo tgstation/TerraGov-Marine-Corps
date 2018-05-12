@@ -173,34 +173,34 @@
 	if (hud_used && hud_used.healths)
 		if (src.stat != DEAD)
 			if(istype(src,/mob/living/silicon/robot/drone))
-				switch(health)
-					if(35 to INFINITY)
+				switch(round(health * 100 / maxHealth))
+					if(100 to INFINITY)
 						hud_used.healths.icon_state = "health0"
-					if(25 to 34)
+					if(75 to 99)
 						hud_used.healths.icon_state = "health1"
-					if(15 to 24)
+					if(50 to 74)
 						hud_used.healths.icon_state = "health2"
-					if(5 to 14)
+					if(25 to 49)
 						hud_used.healths.icon_state = "health3"
-					if(0 to 4)
+					if(10 to 24)
 						hud_used.healths.icon_state = "health4"
-					if(-35 to 0)
+					if(0 to 9)
 						hud_used.healths.icon_state = "health5"
 					else
 						hud_used.healths.icon_state = "health6"
 			else
-				switch(health)
-					if(500 to INFINITY)
+				switch(round(health * 100 / maxHealth))
+					if(100 to INFINITY)
 						hud_used.healths.icon_state = "health0"
-					if(450 to 499)
+					if(75 to 99)
 						hud_used.healths.icon_state = "health1"
-					if(300 to 450)
+					if(50 to 74)
 						hud_used.healths.icon_state = "health2"
-					if(150 to 300)
+					if(25 to 49)
 						hud_used.healths.icon_state = "health3"
-					if(0 to 150)
+					if(10 to 24)
 						hud_used.healths.icon_state = "health4"
-					if(config.health_threshold_dead to 0)
+					if(0 to 9)
 						hud_used.healths.icon_state = "health5"
 					else
 						hud_used.healths.icon_state = "health6"
