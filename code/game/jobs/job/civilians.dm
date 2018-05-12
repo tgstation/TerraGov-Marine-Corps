@@ -35,7 +35,7 @@
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_WAIST = /obj/item/device/pda/heads/cmo,
+				WEAR_WAIST = /obj/item/device/healthanalyzer,
 				WEAR_J_STORE = /obj/item/device/flashlight/pen,
 				WEAR_L_HAND = /obj/item/storage/firstaid/adv
 				)
@@ -77,7 +77,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_WAIST = /obj/item/device/pda/medical,
+				WEAR_WAIST = /obj/item/device/healthanalyzer,
 				WEAR_L_HAND = /obj/item/storage/firstaid/adv
 				)
 
@@ -117,7 +117,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_WAIST = /obj/item/device/pda/medical,
+				WEAR_WAIST = /obj/item/device/healthanalyzer,
 				WEAR_J_STORE = /obj/item/device/flashlight/pen
 				)
 
@@ -233,5 +233,3 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 Your primary job is to support and assist all USCM Departments and Personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
 As a Synthetic you answer to the acting commander. Special circumstances may change this!"}
-
-
