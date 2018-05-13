@@ -279,6 +279,42 @@
 	icon_state = "red"
 	ceiling = CEILING_NONE
 
+/area/bigredv2/outside/ne
+	name = "\improper Northeast Colony Grounds"
+	icon_state = "northeast"
+
+/area/bigredv2/outside/nw
+	name = "\improper Northwest Colony Grounds"
+	icon_state = "northwest"
+
+/area/bigredv2/outside/c
+	name = "\improper Central Colony Grounds"
+	icon_state = "purple"
+
+/area/bigredv2/outside/n
+	name = "\improper Northern Colony Grounds"
+	icon_state = "north"
+
+/area/bigredv2/outside/w
+	name = "\improper Western Colony Grounds"
+	icon_state = "west"
+
+/area/bigredv2/outside/e
+	name = "\improper Eastern Colony Grounds"
+	icon_state = "east"
+
+/area/bigredv2/outside/se
+	name = "\improper Southeast Colony Grounds"
+	icon_state = "southeast"
+
+/area/bigredv2/outside/s
+	name = "\improper Southern Colony Grounds"
+	icon_state = "south"
+
+/area/bigredv2/outside/sw
+	name = "\improper Southwest Colony Grounds"
+	icon_state = "southwest"
+
 /area/bigredv2/caves
 	name = "\improper Unknown Area"
 	icon_state = "bluenew"
