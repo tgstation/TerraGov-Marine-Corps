@@ -30,9 +30,7 @@
 				)
 
 	generate_stored_equipment()
-		. = list(
-				WEAR_L_STORE = /obj/item/device/pda/heads/ce
-				)
+		. = list()
 
 	generate_entry_message(mob/living/carbon/human/H)
 		. = {"Your job is to maintain the ship's engine and keep everything running.
@@ -104,7 +102,6 @@ A happy ship is a well-functioning ship."}
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_STORE = /obj/item/device/pda/engineering,
 				WEAR_L_HAND = /obj/item/device/t_scanner
 				)
 
