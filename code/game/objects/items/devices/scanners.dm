@@ -78,7 +78,7 @@ REAGENT SCANNER
 	matter = list("metal" = 200)
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1
-	var/hud_mode = 0
+	var/hud_mode = 1
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
 	var/dat = ""
@@ -154,12 +154,12 @@ REAGENT SCANNER
 				continue
 
 			if(org.burn_dam > 0 || org.brute_dam > 0 || (org.status & (LIMB_BLEEDING | LIMB_NECROTIZED | LIMB_SPLINTED)) || open_incision)
-				var/org_nam = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
-				var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'>[org.burn_dam]</span>" : "<span class='scannerburn'>0</span>"
-				var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [org.brute_dam]</span>" : "<span class='scanner'>0</span>"
+				var/org_name = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
+				var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [round(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
+				var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [round(org.brute_dam)]</span>" : "<span class='scanner'>0</span>"
 				var/org_bleed = (org.status & LIMB_BLEEDING) ? "<span class='scannerb'>(Bleeding)</span>" : ""
 				var/org_necro = (org.status & LIMB_NECROTIZED) ? "<span class='scannerb'>(Necrotizing)</span>" : ""
-				dat += "\t\t [org_nam]: [burn_info][((burn_treated)?"":"*")] - [brute_info][(brute_treated?"":"*")] [org_bleed][org_necro][(open_incision?" <span class='scanner'>Open surgical incision</span>":"")]"
+				dat += "\t\t [org_name]: \t [burn_info][((burn_treated)?"":"*")] - [brute_info][(brute_treated?"":"*")] [org_bleed][org_necro][(open_incision?" <span class='scanner'>Open surgical incision</span>":"")]"
 				if(org.status & LIMB_SPLINTED)
 					dat += "(Splinted)"
 				dat += "\n"
@@ -179,7 +179,7 @@ REAGENT SCANNER
 
 	if(M.has_brain() && M.stat != DEAD && ishuman(M))
 		if(!M.key)
-			dat += "<span class='deadsay'>\tNo soul detected.</span>\n" // they ghosted
+			dat += "<span class='warning'>\tNo soul detected.</span>\n" // they ghosted
 		else if(!M.client)
 			dat += "<span class='warning'>\tSSD detected.</span>\n" // SSD
 
@@ -220,7 +220,7 @@ REAGENT SCANNER
 			for(var/A in M.reagents.reagent_list)
 				var/datum/reagent/R = A
 				if(R.scannable)
-					reagentdata["[R.id]"] = "[R.overdose != 0 && M.reagents.get_reagent_amount(R.id) >= R.overdose ? "\red <b>OD: </b>" : ""] <font color='#9773C4'><b>[round(M.reagents.get_reagent_amount(R.id), 1)]u [R.name]</b></font>"
+					reagentdata["[R.id]"] = "[R.overdose != 0 && M.reagents.get_reagent_amount(R.id) >= R.overdose ? "<span class='warning'><b>OD: </b></span>" : ""] <font color='#9773C4'><b>[round(M.reagents.get_reagent_amount(R.id), 1)]u [R.name]</b></font>"
 				else
 					unknown++
 			if(reagentdata.len)
@@ -242,9 +242,9 @@ REAGENT SCANNER
 			var/blood_type = H.dna.b_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
-				dat += "\t<span class='scanner'> <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span>\blue Type: [blood_type]\n"
+				dat += "\t<span class='scanner'> <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span><font color='blue;'> Type: [blood_type]</font>\n"
 			else if(blood_volume <= 336)
-				dat += "\t<span class='scanner'> <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</span>\blue Type: [blood_type]\n"
+				dat += "\t<span class='scanner'> <b>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</span><font color='blue;'> Type: [blood_type]</font>\n"
 			else
 				dat += "\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]\n"
 		// Show pulse
@@ -252,7 +252,13 @@ REAGENT SCANNER
 
 	if(hud_mode)
 		dat = replacetext(dat, "\n", "<br>")
-		user << browse(dat, "window=handscanner;size=430x400")
+		dat = replacetext(dat, "\t", "&emsp;")
+		dat = replacetext(dat, "class='warning'", "style='color:red;'")
+		dat = replacetext(dat, "class='scanner'", "style='color:red;'")
+		dat = replacetext(dat, "class='scannerb'", "style='color:red; font-weight: bold;'")
+		dat = replacetext(dat, "class='scannerburn'", "style='color:#FFA500;'")
+		dat = replacetext(dat, "class='scannerburnb'", "style='color:#FFA500; font-weight: bold;'")
+		user << browse(dat, "window=handscanner;size=500x400")
 	else
 		user.show_message(dat, 1)
 	src.add_fingerprint(user)
