@@ -48,6 +48,11 @@
 	icon_state = "northeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
+/area/lv624/ground/jungle9
+	name ="\improper Central Jungle"
+	icon_state = "central"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
 //Sand
 /area/lv624/ground/sand1
 	name = "\improper Western Barrens"
@@ -112,6 +117,27 @@
 /area/lv624/ground/compound
 	name = "\improper Weyland Yutani Compound"
 	icon_state = "green"
+
+/area/lv624/ground/compound/ne
+	name = "\improper Northeast W-Y Compound"
+	icon_state = "northeast"
+
+/area/lv624/ground/compound/n
+	name = "\improper Northern W-Y Compound"
+	icon_state = "north"
+
+/area/lv624/ground/compound/c
+	name = "\improper Central W-Y Compound"
+	icon_state = "purple"
+
+/area/lv624/ground/compound/se
+	name = "\improper Southeast W-Y Compound"
+	icon_state = "southeast"
+
+/area/lv624/ground/compound/sw
+	name = "\improper Southwest W-Y Compound"
+	icon_state = "southwest"
+
 //	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/caves //Does not actually exist
@@ -159,6 +185,11 @@
 	name = "\improper Atmospherics"
 	icon_state = "atmos"
 	ceiling = CEILING_GLASS
+
+/area/lv624/lazarus/atmos/outside
+	name = "\improper Atmospherics Area"
+	icon_state = "purple"
+	ceiling = CEILING_NONE
 
 /area/lv624/lazarus/hallway_one
 	name = "\improper Hallway"
@@ -248,6 +279,11 @@
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
 	can_hellhound_enter = 0
+
+/area/lv624/lazarus/quartstorage/outdoors
+	name = "\improper Cargo Bay Area"
+	icon_state = "purple"
+	ceiling = CEILING_NONE
 
 /area/lv624/lazarus/engineering
 	name = "\improper Engineering"
