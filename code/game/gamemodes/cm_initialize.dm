@@ -327,8 +327,8 @@ datum/game_mode/proc/initialize_special_clamps()
 			available_xenos += A
 
 	if(!available_xenos.len || (instant_join && !available_xenos_non_ssd.len))
-		xeno_candidate << "<span class='warning'>There aren't any available xenomorphs. However your xenomorph preference has been toggled on and you might be spawned as a larva, turn this off in Prefernces->Toggle SpecialRole Candidacy.</span>"
-		xeno_candidate.client.prefs.be_special |= BE_ALIEN
+		xeno_candidate << "<span class='warning'>There aren't any available xenomorphs. You can try getting spawned as a chestburster larva by toggling your Xenomorph candidacy in Preferences -> Toggle SpecialRole Candidacy.</span>"
+		// xeno_candidate.client.prefs.be_special |= BE_ALIEN
 		return
 
 	var/mob/living/carbon/Xenomorph/new_xeno
