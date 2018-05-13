@@ -48,7 +48,7 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = input(src,"Message:", "Private message to [key_name(C, 0, holder ? 1 : 0)]") as text|null
+		msg = input(src,"Message:", "Private message to [key_name(C, 0, holder ? 1 : 0)]") as message|null
 
 		if(!msg)	return
 		if(!C)
