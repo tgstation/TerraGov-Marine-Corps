@@ -251,6 +251,7 @@
 	icon_deny = "sec-deny"
 	req_access_txt = "3"
 	products = list(/obj/item/handcuffs = 8,
+					/obj/item/handcuffs/zip = 10,
 					/obj/item/explosive/grenade/flashbang = 4,
 					/obj/item/device/flash = 5,
 					/obj/item/reagent_container/food/snacks/donut/normal = 12,

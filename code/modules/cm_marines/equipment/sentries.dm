@@ -272,6 +272,7 @@
 	var/last_fired = 0
 	var/is_bursting = 0
 	var/range = 7
+	var/muzzle_flash_lum = 3 //muzzle flash brightness
 	var/obj/item/turret_laptop/laptop = null
 	var/immobile = 0 //Used for prebuilt ones.
 	var/datum/ammo/bullet/turret/ammo = /datum/ammo/bullet/turret
@@ -884,6 +885,10 @@
 //Mostly taken from gun code.
 /obj/machinery/marine_turret/proc/muzzle_flash(var/angle)
 	if(isnull(angle)) return
+
+	SetLuminosity(muzzle_flash_lum)
+	spawn(10)
+		SetLuminosity(-muzzle_flash_lum)
 
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
