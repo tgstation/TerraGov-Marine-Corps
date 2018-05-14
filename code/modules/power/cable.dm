@@ -136,7 +136,12 @@
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
 
 ///// Z-Level Stuff
-		/*if(src.d1 == 11 || src.d2 == 11)
+		if(src.d1 == 11 || src.d2 == 11)
+			return
+
+		if(src.d1 == 12 || src.d2 == 12)
+			return
+		/*
 			var/turf/controllerlocation = locate(1, 1, z)
 			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 				if(controller.down)
@@ -188,6 +193,12 @@
 
 /obj/structure/cable/ex_act(severity)
 	if(src.z == 1 && layer < 2) //ground map - no blowie. They are buried underground.
+		return
+
+	if(src.d1 == 11 || src.d2 == 11)
+		return
+
+	if(src.d1 == 12 || src.d2 == 12)
 		return
 
 	switch(severity)
