@@ -180,8 +180,8 @@
 								. += power_list(T, src, 11, 1)
 						if(d1 == 11)
 							if(T)
-								. += power_list(T, src, 12, 1)
 						break // done
+								. += power_list(T, src, 11, 1)
 			else
 				var/turf/controllerlocation = locate(1, 1, z)
 				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
@@ -192,7 +192,7 @@
 					if(controller.down && d1 == 11)
 						T = locate(src.x, src.y, controller.down_target)
 						if(T)
-							. += power_list(T, src, 12, 1)
+							. += power_list(T, src, 11, 1)
 	else if(!d1)
 		if(T)
 			. += power_list(T, src, d1, 1)
@@ -209,8 +209,8 @@
 							. += power_list(T, src, 11, 1)
 					if(d2 == 11)
 						if(T)
-							. += power_list(T, src, 12, 1)
 					break // done
+							. += power_list(T, src, 11, 1)
 		else
 			var/turf/controllerlocation = locate(1, 1, z)
 			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
