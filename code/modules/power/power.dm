@@ -180,8 +180,8 @@
 								. += power_list(T, src, 11, 1)
 						if(d1 == 11)
 							if(T)
-						break // done
 								. += power_list(T, src, 11, 1)
+						break // done
 			else
 				var/turf/controllerlocation = locate(1, 1, z)
 				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
@@ -209,8 +209,8 @@
 							. += power_list(T, src, 11, 1)
 					if(d2 == 11)
 						if(T)
-					break // done
 							. += power_list(T, src, 11, 1)
+					break // done
 		else
 			var/turf/controllerlocation = locate(1, 1, z)
 			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
