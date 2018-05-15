@@ -211,7 +211,7 @@
 		M.make_jittery(5) //Turn super salty
 		M.knocked_out = max(M.knocked_out, 20)
 		if(prob(10))
-			M.emote(pick("cry","moan","scream"))
+			M.emote(pick("cry","moan","pain"))
 
 /datum/reagent/blackpepper
 	name = "Black Pepper"

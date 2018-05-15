@@ -1097,7 +1097,7 @@ About the new airlock wires panel:
 				if (iscarbon(M))
 					var/mob/living/carbon/C = M
 					if (!(C.species && (C.species.flags & NO_PAIN)))
-						M.emote("scream")
+						M.emote("pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))
 				location.add_blood(M)
