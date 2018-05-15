@@ -282,6 +282,9 @@ var/const/INGEST = 2
 					if(!has_reagent(B, C.required_catalysts[B]))	break
 					total_matching_catalysts++
 
+				if (isliving(my_atom) && !C.mob_react) //Makes it so some chemical reactions don't occur in mobs
+					return
+
 				if(!C.required_container)
 					matching_container = 1
 
@@ -291,10 +294,6 @@ var/const/INGEST = 2
 
 				if(!C.required_other)
 					matching_other = 1
-
-
-
-
 
 				if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other)
 					var/multiplier = min(multipliers)
