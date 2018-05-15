@@ -5,6 +5,7 @@
 	result = "tricordrazine"
 	required_reagents = list("inaprovaline" = 1, "anti_toxin" = 1)
 	result_amount = 2
+	mob_react = FALSE
 
 /datum/chemical_reaction/alkysine
 	name = "Alkysine"
@@ -216,4 +217,3 @@
 	result = "paroxetine"
 	required_reagents = list("mindbreaker" = 1, "oxygen" = 1, "inaprovaline" = 1)
 	result_amount = 3
-
