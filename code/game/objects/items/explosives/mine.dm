@@ -52,9 +52,9 @@
 		user << "<span class='warning'>You can't plant a mine here.</span>"
 		return
 
-	if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Almayer or dropship transit level
+	/*if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Almayer or dropship transit level
 		user << "<span class='warning'>You can't plant a mine on a spaceship!</span>"
-		return
+		return*/
 
 	if(!armed)
 		user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \

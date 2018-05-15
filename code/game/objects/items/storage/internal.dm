@@ -51,11 +51,29 @@
 		if(!user.is_mob_restrained() && !user.stat)
 			switch(over_object.name)
 				if("r_hand")
-					user.drop_inv_item_on_ground(master_item)
-					user.put_in_r_hand(master_item)
+					if(master_item.time_to_unequip)
+						spawn(0)
+							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
+								user << "You stop taking off \the [master_item]"
+							else
+								user.drop_inv_item_on_ground(master_item)
+								user.put_in_r_hand(master_item)
+							return 0
+					else
+						user.drop_inv_item_on_ground(master_item)
+						user.put_in_r_hand(master_item)
 				if("l_hand")
-					user.drop_inv_item_on_ground(master_item)
-					user.put_in_l_hand(master_item)
+					if(master_item.time_to_unequip)
+						spawn(0)
+							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
+								user << "You stop taking off \the [master_item]"
+							else
+								user.drop_inv_item_on_ground(master_item)
+								user.put_in_l_hand(master_item)
+							return 0
+					else
+						user.drop_inv_item_on_ground(master_item)
+						user.put_in_l_hand(master_item)
 			master_item.add_fingerprint(user)
 			return 0
 	return 0
