@@ -114,7 +114,7 @@
 							H << "\icon[src] \red <B>You step on \the [src]!</B>"
 							H.KnockDown(4)
 							if(ishuman(H))
-								H.emote("scream")
+								H.emote("pain")
 							feedback_add_details("handcuffs","B")
 							for(var/mob/O in viewers(H, null))
 								if(O == H)

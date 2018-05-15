@@ -161,7 +161,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 						if(ishuman(M))
 							var/mob/living/carbon/human/H = M
 							if(!(H.species.flags & NO_PAIN))
-								M.emote("scream")
+								M.emote("pain")
 						user << "<span class='danger'>[M] moved during the surgery! Use anesthetics!</span>"
 					S.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
 				else //This failing silently was a pain.

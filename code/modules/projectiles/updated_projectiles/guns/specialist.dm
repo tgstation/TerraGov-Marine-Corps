@@ -656,7 +656,7 @@
 		if(!C.lying) //Have to be standing up to get the fun stuff
 			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
 			C.Stun(4) //For good measure
-			C.emote("scream")
+			C.emote("pain")
 
 		..()
 

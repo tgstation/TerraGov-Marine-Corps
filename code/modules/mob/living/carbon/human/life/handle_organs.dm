@@ -51,6 +51,6 @@
 	// standing is poor
 	if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
 		if(!(species && (species.flags & NO_PAIN)))
-			emote("scream")
+			emote("pain")
 		emote("collapse")
 		knocked_out = 10
