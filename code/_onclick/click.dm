@@ -130,7 +130,7 @@
 
 /atom/proc/clicked(var/mob/user, var/list/mods)
 
-	if (mods["shift"])
+	if (mods["shift"] && !mods["middle"])
 		if(user.client && user.client.eye == user)
 			examine(user)
 			user.face_atom(src)

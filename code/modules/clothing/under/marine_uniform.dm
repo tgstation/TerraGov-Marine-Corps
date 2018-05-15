@@ -20,6 +20,10 @@
 	select_gamemode_skin(expected_type,override_icon_state,new_name,new_protection)
 	..()
 
+/obj/item/clothing/under/marine/set_sensors(mob/user)
+	user << "<span class='warning'>The sensors in your uniform can't be modified.</span>"
+	return
+
 /obj/item/clothing/under/marine/medic
 	name = "\improper USCM medic fatigues"
 	desc = "A standard-issue Marine Medic fatigues It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
