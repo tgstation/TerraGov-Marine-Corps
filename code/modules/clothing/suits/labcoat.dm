@@ -192,6 +192,7 @@
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
+	allowed = list (/obj/item/device/flashlight, /obj/item/tank/emergency_oxygen)
 
 /obj/item/clothing/suit/storage/snow_suit/doctor
 	name = "doctor's snow suit"

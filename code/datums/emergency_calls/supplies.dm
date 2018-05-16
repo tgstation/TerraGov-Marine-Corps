@@ -7,6 +7,7 @@
 	mob_min = 0
 	arrival_message = "Weyland Yutani Automated Supply Drop 334-Q signal received. Docking procedures have commenced."
 	probability = 5
+	auto_shuttle_launch = TRUE
 
 /datum/emergency_call/supplies/spawn_items()
 	var/turf/drop_spawn

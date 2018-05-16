@@ -216,7 +216,7 @@
 		M.Scale((storage_width-storage_cap_width*2+3)/32,1)
 		storage_continue.transform = M
 		storage_start.screen_loc = "4:16,2:16"
-		storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
+		storage_continue.screen_loc = "4:[round(storage_cap_width+(storage_width-storage_cap_width*2)/2+2)],2:16"
 		storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
 
 	var/startpoint = 0

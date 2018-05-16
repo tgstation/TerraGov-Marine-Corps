@@ -458,27 +458,26 @@ cdel(src)
 			target_simulated.air.copy_from(S.air)
 			S.zone.remove(S)
 
-		for (var/atom/A in T)
+		for (var/atom/movable/A in T)
 			if (isobj(A))
-				var/obj/O = A
-				O.loc = target
-				continue
+				A.loc = target
 
-			if (iscarbon(A))
-				var/mob/living/M = A
-				M.loc = target
 
-				if(M.client)
-					if(M.buckled && !iselevator)
-						M << "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>"
-						shake_camera(M, 3, 1)
-					else if (!M.buckled)
-						M << "<span class='warning'>The floor lurches beneath you!</span>"
-						shake_camera(M, iselevator ? 2 : 10, 1)
+			if (ismob(A))
+				A.loc = target
+				if(iscarbon(A))
+					var/mob/living/carbon/M = A
+					if(M.client)
+						if(M.buckled && !iselevator)
+							M << "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>"
+							shake_camera(M, 3, 1)
+						else if (!M.buckled)
+							M << "<span class='warning'>The floor lurches beneath you!</span>"
+							shake_camera(M, iselevator ? 2 : 10, 1)
 
-				if(!iselevator)
-					if(!M.buckled)
-						knocked_down_mobs += M
+					if(!iselevator)
+						if(!M.buckled)
+							knocked_down_mobs += M
 
 
 		if(turftoleave && ispath(turftoleave))
