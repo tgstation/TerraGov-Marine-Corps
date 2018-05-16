@@ -263,6 +263,11 @@
 /area/shuttle/drop1
 	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg')
 
+/area/shuttle/drop1/Enter(atom/movable/O, atom/oldloc)
+	if(istype(O, /obj/structure/barricade))
+		return 0
+	return 1
+
 /area/shuttle/drop1/sulaco
 	name = "\improper Almayer Dropship Alamo"
 	icon_state = "shuttlered"
@@ -294,6 +299,11 @@
 /area/shuttle/drop1/lz1
 	name = "\improper Alamo Landing Zone"
 	icon_state = "away1"
+
+/area/shuttle/drop2/Enter(atom/movable/O, atom/oldloc)
+	if(istype(O, /obj/structure/barricade))
+		return 0
+	return 1
 
 /area/shuttle/drop2/sulaco
 	name = "\improper Almayer Dropship Normandy"

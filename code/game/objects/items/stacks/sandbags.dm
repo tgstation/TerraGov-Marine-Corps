@@ -57,13 +57,17 @@
 	max_amount = 25
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
-/obj/item/stack/sandbags/attack_self(mob/user)
+/obj/item/stack/sandbags/attack_self(mob/living/user)
 	add_fingerprint(user)
 
 	if(!istype(user.loc,/turf)) return 0
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGAR BUILDING
+	if(istype(get_area(user.loc),/area/sulaco/hangar))  //HANGAR BUILDING
 		user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+		return
+
+	if(!(istype(user.loc, /turf/simulated/floor) || istype(user.loc, /turf/unsimulated/floor) || istype(user.loc, /turf/unsimulated/jungle)))
+		user << "<span class='warning'>The sandbag barricade must be constructed on a proper surface!</span>"
 		return
 
 	//Using same safeties as other constructions
@@ -95,5 +99,5 @@
 	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
 	"<span class='notice'>You assemble a sandbag barricade.</span>")
 	SB.dir = user.dir
-	SB.add_fingerprint(usr)
+	SB.add_fingerprint(user)
 	use(5)
