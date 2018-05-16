@@ -219,6 +219,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		/obj/item/device/hailer,
 		/obj/item/storage/belt/gun)
 	uniform_restricted = list(/obj/item/clothing/under/marine/mp)
+	time_to_equip = 0
 
 /obj/item/clothing/suit/storage/marine/MP/WO
 	icon_state = "warrant_officer"
