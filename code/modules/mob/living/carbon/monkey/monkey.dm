@@ -22,7 +22,6 @@
 	add_to_all_mob_huds()
 
 
-
 /mob/living/carbon/monkey/tajara
 	name = "farwa"
 	voice_name = "farwa"
@@ -281,8 +280,6 @@
 
 
 /mob/living/carbon/monkey/Stat()
-	..()
-	statpanel("Status")
 	stat(null, text("Intent: []", a_intent))
 	stat(null, text("Move Mode: []", m_intent))
 

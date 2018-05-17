@@ -7,14 +7,14 @@
 	msg += "<span class='warning'>"
 	if (src.getBruteLoss())
 		if (src.getBruteLoss() < maxHealth*0.5)
-			msg += "It looks slightly dented.\n"
+			msg += "It looks slightly dented. A welding tool would buff that out in no time.\n"
 		else
-			msg += "<B>It looks severely dented!</B>\n"
+			msg += "<B>It looks severely dented! A welding tool would buff that out in no time.</B>\n"
 	if (src.getFireLoss())
 		if (src.getFireLoss() < maxHealth*0.5)
-			msg += "It looks slightly charred.\n"
+			msg += "It looks slightly charred. Its internal wiring will need to be repaired with a cable coil.\n"
 		else
-			msg += "<B>It looks severely burnt and heat-warped!</B>\n"
+			msg += "<B>It looks severely burnt and heat-warped! Its internal wiring will need to be repaired with a cable coil.</B>\n"
 	msg += "</span>"
 
 	if(opened)

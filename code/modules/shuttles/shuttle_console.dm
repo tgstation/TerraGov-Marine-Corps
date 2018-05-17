@@ -8,6 +8,7 @@
 	var/hacked = 0   // Has been emagged, no access restrictions.
 	var/shuttle_optimized = 0 //Have the shuttle's flight subroutines been generated ?
 	var/onboard = 0 //Wether or not the computer is on the physical ship. A bit hacky but that'll do.
+	var/skip_time_lock = 0	// Allows admins to var edit the time lock away.
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
 
@@ -147,7 +148,7 @@
 			usr << "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>"
 			return
 		//Comment to test
-		if(world.time < SHUTTLE_TIME_LOCK && istype(shuttle, /datum/shuttle/ferry/marine))
+		if(!skip_time_lock && world.time < SHUTTLE_TIME_LOCK && istype(shuttle, /datum/shuttle/ferry/marine))
 			usr << "<span class='warning'>The shuttle is still undergoing pre-flight fuelling and cannot depart yet. Please wait another [round((SHUTTLE_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 			return
 		spawn(0)
@@ -207,7 +208,7 @@
 			usr << "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>"
 
 	if(href_list["lockdown"])
-		if(shuttle.door_override)
+		if(shuttle.door_override || z == 3)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -255,7 +256,8 @@
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
 			if(M.id == ship_id)
-				M.unlock()
+				if(M.z != 4)
+					M.unlock()
 
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
@@ -265,11 +267,11 @@
 			if("sh_dropship2")
 				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
 					reardoor = D
-
-		reardoor.unlock()
+		if(reardoor.z != 4)
+			reardoor.unlock()
 
 	if(href_list["side door"])
-		if(shuttle.door_override)
+		if(shuttle.door_override || z == 3)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -294,7 +296,7 @@
 					usr << "<span class='warning'>You hear a [sidename] door lock.</span>"
 
 	if(href_list["rear door"])
-		if(shuttle.door_override)
+		if(shuttle.door_override || z == 3)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"

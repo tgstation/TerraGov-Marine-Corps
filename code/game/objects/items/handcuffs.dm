@@ -7,13 +7,14 @@
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
-	w_class = 1
+	w_class = 2
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 500)
 	origin_tech = "materials=1"
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
+	var/single_use = 0 //determines if handcuffs will be deleted on removal
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 
 /obj/item/handcuffs/attack(mob/living/carbon/C, mob/user)
@@ -48,7 +49,7 @@
 
 		feedback_add_details("handcuffs","H")
 
-		user.visible_message("<span class='notice'>[user] tries to put [name] on [H].</span>")
+		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
 		if(do_mob(user, H, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !H.handcuffed && Adjacent(user))
 				if(H.has_limb_for_slot(WEAR_HANDCUFFS))
@@ -56,11 +57,31 @@
 					H.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 0, 1, 1)
 
 	else if (ismonkey(target))
-		user.visible_message("<span class='notice'>[user] tries to put [name] on [target].</span>")
+		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
 		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !target.handcuffed && Adjacent(user))
 				user.drop_inv_item_on_ground(src)
 				target.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 0, 1, 1)
+
+
+/obj/item/handcuffs/zip
+	name = "zip cuffs"
+	desc = "Single-use plastic zip tie handcuffs."
+	w_class = 1
+	icon_state = "cuff_zip"
+	breakouttime = 600 //Deciseconds = 60s
+	cuff_sound = 'sound/weapons/cablecuff.ogg'
+	var/used = 0
+
+	place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+		..()
+		used = 1
+
+	dropped()
+		..()
+		if(used)
+			visible_message("<span class='notice'>[src] break apart.</span>")
+			cdel(src)
 
 
 /obj/item/handcuffs/cable

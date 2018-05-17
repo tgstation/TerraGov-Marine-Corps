@@ -16,6 +16,7 @@
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 
 	var/muzzle_flash 	= "muzzle_flash"
+	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/Gunshot.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
@@ -945,6 +946,12 @@ and you're good to go.
 /obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, var/x_offset = 0, var/y_offset = 5)
 	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle)) return //We have to check for null angle here, as 0 can also be an angle.
 	if(!istype(user) || !istype(user.loc,/turf)) return
+
+	if(user.luminosity <= muzzle_flash_lum)
+		user.SetLuminosity(muzzle_flash_lum)
+		spawn(10)
+			user.SetLuminosity(-muzzle_flash_lum)
+
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
 		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer))

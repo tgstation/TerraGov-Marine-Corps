@@ -32,6 +32,7 @@ var/global/list/randomized_pill_icons
 		if(pill_desc)
 			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM)
 				user << pill_desc
+				user << "This pill contains: [get_reagent_list_text()]"
 			else
 				user << "You don't know what's in it."
 
@@ -121,21 +122,21 @@ var/global/list/randomized_pill_icons
 
 //Pills
 /obj/item/reagent_container/pill/antitox
-	pill_desc = "An anti-toxins pill (25u), it neutralizes many common toxins."
+	pill_desc = "An anti-toxins pill. It neutralizes many common toxins."
 	New()
 		..()
 		icon_state = randomized_pill_icons[1]
 		reagents.add_reagent("anti_toxin", 25)
 
 /obj/item/reagent_container/pill/tox
-	pill_desc = "A toxins pill, it's highly toxic."
+	pill_desc = "A toxins pill. It's highly toxic."
 	New()
 		..()
 		icon_state = randomized_pill_icons[2]
 		reagents.add_reagent("toxin", 50)
 
 /obj/item/reagent_container/pill/cyanide
-	desc = "A cyanide pill, don't swallow this!"
+	desc = "A cyanide pill. Don't swallow this!"
 	pill_desc = null//so even non medics can see what this pill is.
 	New()
 		..()
@@ -143,35 +144,35 @@ var/global/list/randomized_pill_icons
 		reagents.add_reagent("cyanide", 50)
 
 /obj/item/reagent_container/pill/adminordrazine
-	pill_desc = "An Adminordrazine pill, it's magic. We don't have to explain it."
+	pill_desc = "An Adminordrazine pill. It's magic. We don't have to explain it."
 	New()
 		..()
 		icon_state = randomized_pill_icons[3]
 		reagents.add_reagent("adminordrazine", 50)
 
 /obj/item/reagent_container/pill/stox
-	pill_desc = "A sleeping pill, commonly used to treat insomnia."
+	pill_desc = "A sleeping pill commonly used to treat insomnia."
 	New()
 		..()
 		icon_state = randomized_pill_icons[4]
 		reagents.add_reagent("stoxin", 15)
 
 /obj/item/reagent_container/pill/kelotane
-	pill_desc = "A Kelotane pill (15u), Used to treat burns."
+	pill_desc = "A Kelotane pill. Used to treat burns."
 	New()
 		..()
 		icon_state = randomized_pill_icons[5]
 		reagents.add_reagent("kelotane", 15)
 
 /obj/item/reagent_container/pill/paracetamol
-	pill_desc = "A Paracetamol pill, painkiller for the ages."
+	pill_desc = "A Paracetamol pill. Painkiller for the ages."
 	New()
 		..()
 		icon_state = randomized_pill_icons[6]
 		reagents.add_reagent("paracetamol", 15)
 
 /obj/item/reagent_container/pill/tramadol
-	pill_desc = "A Tramadol pill (15u), simple painkiller."
+	pill_desc = "A Tramadol pill. A simple painkiller."
 	New()
 		..()
 		icon_state = randomized_pill_icons[7]
@@ -179,14 +180,14 @@ var/global/list/randomized_pill_icons
 
 
 /obj/item/reagent_container/pill/methylphenidate
-	pill_desc = "A Methylphenidate pill, improves the ability to concentrate."
+	pill_desc = "A Methylphenidate pill. This improves the ability to concentrate."
 	New()
 		..()
 		icon_state = randomized_pill_icons[8]
 		reagents.add_reagent("methylphenidate", 15)
 
 /obj/item/reagent_container/pill/citalopram
-	pill_desc = "A Citalopram pill, mild anti-depressant."
+	pill_desc = "A Citalopram pill. A mild anti-depressant."
 	New()
 		..()
 		icon_state = randomized_pill_icons[9]
@@ -194,21 +195,21 @@ var/global/list/randomized_pill_icons
 
 
 /obj/item/reagent_container/pill/inaprovaline
-	pill_desc = "A Inaprovaline pill (30u), used to stabilize patients."
+	pill_desc = "An Inaprovaline pill. Used to stabilize patients."
 	New()
 		..()
 		icon_state = randomized_pill_icons[10]
 		reagents.add_reagent("inaprovaline", 30)
 
 /obj/item/reagent_container/pill/dexalin
-	pill_desc = "A Dexalin pill (15u), used to treat oxygen deprivation."
+	pill_desc = "A Dexalin pill. Used to treat oxygen deprivation."
 	New()
 		..()
 		icon_state = randomized_pill_icons[11]
 		reagents.add_reagent("dexalin", 15)
 
 /obj/item/reagent_container/pill/spaceacillin
-	pill_desc = "A Spaceacillin pill (10u), used to treat infected wounds and slow down viral infections."
+	pill_desc = "A Spaceacillin pill. Used to treat infected wounds and slow down viral infections."
 	New()
 		..()
 		icon_state = randomized_pill_icons[12]
@@ -223,7 +224,7 @@ var/global/list/randomized_pill_icons
 		reagents.add_reagent("sugar", 15)
 
 /obj/item/reagent_container/pill/zoom
-	pill_desc = "A Zoom Pill! Zoooom!"
+	pill_desc = "A Zoom pill! Gotta go fast!"
 	New()
 		..()
 		icon_state = randomized_pill_icons[14]
@@ -231,10 +232,8 @@ var/global/list/randomized_pill_icons
 		reagents.add_reagent("synaptizine", 5)
 		reagents.add_reagent("hyperzine", 5)
 
-
-
 /obj/item/reagent_container/pill/russianRed
-	pill_desc = "A Russian Red (10u) pill, an EXTREME radiation countering pill. VERY dangerous"
+	pill_desc = "A Russian Red pill. A very dangerous radiation-countering substance."
 	New()
 		..()
 		icon_state = randomized_pill_icons[15]
@@ -242,7 +241,7 @@ var/global/list/randomized_pill_icons
 
 
 /obj/item/reagent_container/pill/peridaxon
-	pill_desc = "A Peridaxon (10u) pill, heals internal organ damage"
+	pill_desc = "A Peridaxon pill. Heals internal organ damage."
 	New()
 		..()
 		icon_state = randomized_pill_icons[16]
@@ -250,7 +249,7 @@ var/global/list/randomized_pill_icons
 
 
 /obj/item/reagent_container/pill/imidazoline
-	pill_desc = "A Imidazoline (10u) pill, heals eye damage"
+	pill_desc = "An Imidazoline pill. Heals eye damage."
 	New()
 		..()
 		icon_state = randomized_pill_icons[17]
@@ -258,7 +257,7 @@ var/global/list/randomized_pill_icons
 
 
 /obj/item/reagent_container/pill/alkysine
-	pill_desc = "A Alkysine (10u) pill, heals brain damage"
+	pill_desc = "An Alkysine pill. Heals brain damage."
 	New()
 		..()
 		icon_state = randomized_pill_icons[18]
@@ -266,14 +265,14 @@ var/global/list/randomized_pill_icons
 
 
 /obj/item/reagent_container/pill/bicaridine
-	pill_desc = "A Bicaridine (15u) pill, heals Brute damage."
+	pill_desc = "A Bicaridine pill. Heals brute damage."
 	New()
 		..()
 		icon_state = randomized_pill_icons[19]
 		reagents.add_reagent("bicaridine", 15)
 
 /obj/item/reagent_container/pill/quickclot
-	pill_desc = "A Quickclot (10u) pill, stabilizes internal bleeding temporarily."
+	pill_desc = "A Quickclot pill. Stabilizes internal bleeding temporarily."
 	New()
 		..()
 		icon_state = randomized_pill_icons[20]

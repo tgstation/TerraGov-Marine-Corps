@@ -290,3 +290,17 @@
 		'icons/pda_icons/pda_status.png',
 		'html/images/wylogo.png'
 		)
+
+/client/Stat()
+	if (!usr)
+		return
+
+	if (mob && mob.listed_turf)
+		statpanel(mob.listed_turf.name, null, mob.listed_turf)
+		for(var/atom/A in mob.listed_turf)
+			if(A.invisibility > mob.see_invisible)
+				continue
+			statpanel(mob.listed_turf.name, null, A)
+
+	if (statpanel("Stats"))	// Don't call other stat panels unless we absolutely have to.
+		..()

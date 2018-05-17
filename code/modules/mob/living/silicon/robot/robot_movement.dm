@@ -20,7 +20,7 @@
 
 	. += speed
 
-	if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
+	if(module_active && istype(module_active, /obj/item/robot/combat/mobility))
 		. -= 3
 
 	. += config.robot_delay

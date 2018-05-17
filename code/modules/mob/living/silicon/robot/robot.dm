@@ -401,11 +401,10 @@ var/list/robot_verbs_default = list(
 // update the status screen display
 /mob/living/silicon/robot/Stat()
 	..()
-	statpanel("Status")
-	if (client.statpanel == "Status")
-		show_cell_power()
-		show_jetpack_pressure()
-		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
+	show_cell_power()
+	show_jetpack_pressure()
+	stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
+	return 1
 
 /mob/living/silicon/robot/is_mob_restrained()
 	return 0
@@ -661,8 +660,8 @@ var/list/robot_verbs_default = list(
 					src << "Hack attempt detected."
 			return
 
-	else if(istype(W, /obj/item/borg/upgrade/))
-		var/obj/item/borg/upgrade/U = W
+	else if(istype(W, /obj/item/robot/upgrade/))
+		var/obj/item/robot/upgrade/U = W
 		if(!opened)
 			usr << "You must access the borgs internals!"
 		else if(!src.module && U.require_module)
@@ -859,19 +858,19 @@ var/list/robot_verbs_default = list(
 			module_state_1 = O
 			O.layer = ABOVE_HUD_LAYER
 			contents += O
-			if(istype(module_state_1,/obj/item/borg/sight))
+			if(istype(module_state_1,/obj/item/robot/sight))
 				sight_mode |= module_state_1:sight_mode
 		else if(!module_state_2)
 			module_state_2 = O
 			O.layer = ABOVE_HUD_LAYER
 			contents += O
-			if(istype(module_state_2,/obj/item/borg/sight))
+			if(istype(module_state_2,/obj/item/robot/sight))
 				sight_mode |= module_state_2:sight_mode
 		else if(!module_state_3)
 			module_state_3 = O
 			O.layer = ABOVE_HUD_LAYER
 			contents += O
-			if(istype(module_state_3,/obj/item/borg/sight))
+			if(istype(module_state_3,/obj/item/robot/sight))
 				sight_mode |= module_state_3:sight_mode
 		else
 			src << "You need to disable a module first!"

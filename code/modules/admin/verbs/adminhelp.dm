@@ -23,7 +23,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	var/list/type = list ("Suggestion / Bug Report", "Gameplay / Roleplay Issue")
 	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
 	if(selected_type == "Gameplay / Roleplay Issue")
-		msg = input("Please enter your message:", "Admin Help", null, null) as text
+		msg = input("Please enter your message:", "Admin Help", null, null) as message
 
 	if(selected_type == "Suggestion / Bug Report")
 		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our Gitlab.",,"Go to Gitlab","Cancel"))

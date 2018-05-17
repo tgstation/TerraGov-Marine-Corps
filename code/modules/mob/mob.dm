@@ -106,7 +106,7 @@
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, permanent = 0)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, permanent = 0)
 	if(!istype(W)) return
 
 	if(!W.mob_can_equip(src, slot, disable_warning))
@@ -115,15 +115,30 @@
 			if(!disable_warning) src << "<span class='warning'>You are unable to equip that.</span>" //Only print if del_on_fail is false
 		return
 	var/start_loc = W.loc
-	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
-	if(permanent)
-		W.canremove = 0
-		W.flags_inventory |= CANTSTRIP
-	if(W.loc == start_loc && get_active_hand() != W)
-		//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom) W.zoom(src)
-		if(W.flags_atom & TWOHANDED) W.unwield(src)
-	return 1
+	if(W.time_to_equip)
+		spawn(0)
+			if(!do_after(src, W.time_to_equip, TRUE, 5, BUSY_ICON_GENERIC))
+				src << "You stop putting on \the [W]"
+			else
+				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+				if(permanent)
+					W.canremove = 0
+					W.flags_inventory |= CANTSTRIP
+				if(W.loc == start_loc && get_active_hand() != W)
+					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
+					if(W.zoom) W.zoom(src)
+					if(W.flags_atom & TWOHANDED) W.unwield(src)
+		return 1
+	else
+		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+		if(permanent)
+			W.canremove = 0
+			W.flags_inventory |= CANTSTRIP
+		if(W.loc == start_loc && get_active_hand() != W)
+			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
+			if(W.zoom) W.zoom(src)
+			if(W.flags_atom & TWOHANDED) W.unwield(src)
+		return 1
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
@@ -316,9 +331,20 @@ var/list/slot_equipment_priority = list( \
 		if(pulling_old == AM)
 			return
 
+	if(istype(AM, /obj/item/tool/soap))
+		var/obj/item/tool/soap/S = AM
+		S.pulled_last = src
+
+	if(istype(AM, /obj/item/bananapeel/))
+		var/obj/item/bananapeel/B = AM
+		B.pulled_last = src
+
 	var/mob/M
 	if(ismob(AM))
 		M = AM
+		attack_log += "\[[time_stamp()]\]<font color='green'> Grabbed [M.name] ([M.ckey]) </font>"
+		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Grabbed by [name] ([ckey]) </font>"
+		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 	if(AM.pulledby)
 		if(M)
@@ -464,51 +490,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-
-
-/mob/Stat()
-	..()
-
-	if(!client && !statpanel("Status"))
-		r_FAL
-
-
-	if(client.holder)
-		stat(null,"Location:\t([x], [y], [z])")
-		stat(null,"CPU:\t[world.cpu]")
-		stat(null,"Instances:\t[world.contents.len]")
-
-	//This displays items on on turf via ALT+Click
-	if(listed_turf && client)
-		if(!TurfAdjacent(listed_turf))
-			listed_turf = null
-		else
-			statpanel(listed_turf.name, null, listed_turf)
-			for(var/atom/A in listed_turf)
-				if(A.invisibility > see_invisible)
-					continue
-				statpanel(listed_turf.name, null, A)
-
-	r_TRU
-
-	/*if(spell_list && spell_list.len)
-		for(var/obj/effect/proc_holder/spell/S in spell_list)
-			switch(S.charge_type)
-				if("recharge")
-					statpanel("Spells","[S.charge_counter/10.0]/[S.charge_max/10]",S)
-				if("charges")
-					statpanel("Spells","[S.charge_counter]/[S.charge_max]",S)
-				if("holdervar")
-					statpanel("Spells","[S.holder_var_type] [S.holder_var_amount]",S)*/
-
-
-
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)						return 0
 	if(client.moving)					return 0
-	if(world.time < client.move_delay)	return 0
-	if(stat==2)							return 0
+	if(stat==2)						return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
 	if(is_mob_restrained())					return 0
@@ -725,4 +711,3 @@ mob/proc/yank_out_object()
 
 /mob/on_stored_item_del(obj/item/I)
 	temp_drop_inv_item(I, TRUE) //unequip before deletion to clear possible item references on the mob.
-

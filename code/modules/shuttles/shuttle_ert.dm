@@ -78,10 +78,18 @@
 				spawn(0)
 					P.open()
 
-
-
-
-
+		var/shutter_id
+		if(istype(area_station, /area/shuttle/distress/arrive_2))
+			shutter_id = "portert"
+		else if(istype(area_station, /area/shuttle/distress/arrive_1))
+			shutter_id = "starboardert"
+		else if(istype(area_station, /area/shuttle/distress/arrive_3))
+			shutter_id = "aftert"
+		if(shutter_id)
+			for(var/obj/machinery/door/poddoor/shutters/T in machines)
+				if(T.density && shutter_id == T.id)
+					spawn(0)
+						T.open()
 
 
 

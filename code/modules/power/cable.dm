@@ -39,6 +39,7 @@
 	var/obj/machinery/power/breakerbox/breaker_box
 	explosion_resistance = 150 //Fixes ground map stuff. Can't have them blow up all the time.
 	unacidable = 1
+	var/id
 
 /obj/structure/cable/yellow
 	color = "#ffe28a"
@@ -136,13 +137,18 @@
 
 ///// Z-Level Stuff
 		if(src.d1 == 11 || src.d2 == 11)
+			return
+
+		if(src.d1 == 12 || src.d2 == 12)
+			return
+		/*
 			var/turf/controllerlocation = locate(1, 1, z)
 			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 				if(controller.down)
 					var/turf/below = locate(src.x, src.y, controller.down_target)
 					for(var/obj/structure/cable/c in below)
 						if(c.d1 == 12 || c.d2 == 12)
-							cdel(c)
+							cdel(c)*/
 ///// Z-Level Stuff
 
 		cdel(src)
@@ -187,6 +193,12 @@
 
 /obj/structure/cable/ex_act(severity)
 	if(src.z == 1 && layer < 2) //ground map - no blowie. They are buried underground.
+		return
+
+	if(src.d1 == 11 || src.d2 == 11)
+		return
+
+	if(src.d1 == 12 || src.d2 == 12)
 		return
 
 	switch(severity)

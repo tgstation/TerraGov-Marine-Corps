@@ -120,18 +120,22 @@
 
 
 /client/Move(n, direct)
-
+	var/start_move_time = world.time
 	if(mob.control_object) return Move_object(direct) //admins possessing object
 
 	if(isobserver(mob))	return mob.Move(n,direct)
 
-	if(moving)	return 0
+	if(moving)
+		return 0
 
-	if(world.time < move_delay)	return
+	if(next_movement > world.time)
+		return
 
-	if(!mob)	return
+	if(!mob)
+		return
 
-	if(mob.stat == DEAD) return
+	if(mob.stat == DEAD)
+		return
 
 	// handle possible AI movement
 	if(isAI(mob))
@@ -166,7 +170,7 @@
 		if(mob.is_mob_incapacitated(TRUE))
 			return
 		else if(mob.is_mob_restrained())
-			move_delay = world.time + 10
+			move_delay = 10
 			src << "<span class='warning'>You're restrained! You can't move!</span>"
 			return
 		else if(!mob.resist_grab(TRUE))
@@ -190,27 +194,32 @@
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-
-		move_delay = world.time//set move delay
+		move_delay = 0 //set move delay
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 2.5+config.run_speed
+				move_delay += 2 + config.run_speed
 			if("walk")
 				move_delay += 7+config.walk_speed
 		move_delay += mob.movement_delay()
 
+		if (move_delay % 2)
+			move_delay += 1
+
 		//We are now going to move
 		moving = 1
-
+		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
+		if (mob.listed_turf)
+			mob.listed_turf = null
 		if(mob.confused)
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
 
 		moving = 0
+		next_movement = start_move_time + move_delay
 
 		return .
 

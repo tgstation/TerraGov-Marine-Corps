@@ -114,7 +114,7 @@ obj/item/check_airflow_movable(n)
 			break
 		step_towards(src, src.airflow_dest)
 		if(ismob(src) && src:client)
-			src:client:move_delay = world.time + vsc.airflow_mob_slowdown
+			src:client:move_delay += vsc.airflow_mob_slowdown
 	airflow_dest = null
 	airflow_speed = 0
 	airflow_time = 0
@@ -173,7 +173,7 @@ obj/item/check_airflow_movable(n)
 			return
 		step_towards(src, src.airflow_dest)
 		if(ismob(src) && src:client)
-			src:client:move_delay = world.time + vsc.airflow_mob_slowdown
+			src:client:move_delay += vsc.airflow_mob_slowdown
 	airflow_dest = null
 	airflow_speed = 0
 	airflow_time = 0

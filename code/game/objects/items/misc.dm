@@ -21,12 +21,18 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+	var/mob/living/pulled_last
 
 /obj/item/bananapeel/Crossed(AM as mob|obj)
 	if (iscarbon(AM))
 		var/mob/living/carbon/C = AM
+		if(ismob(pulled_last))
+			C << "You were slipped with \the [src] by [pulled_last]"
 		C.slip(name, 4, 2)
 
+/obj/item/bananapeel/attack_hand(mob/living/user)
+	pulled_last = user
+	..()
 
 /obj/item/cane
 	name = "cane"

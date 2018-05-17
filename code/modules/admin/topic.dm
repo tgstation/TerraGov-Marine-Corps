@@ -326,30 +326,22 @@
 
 		var/duration
 
-		switch(alert("Temporary Ban?",,"Yes","No"))
-			if("Yes")
-				temp = 1
-				var/mins = 0
-				if(minutes > CMinutes)
-					mins = minutes - CMinutes
-				mins = input(usr,"How long (in minutes)? (Default: 1440)","Ban time",mins ? mins : 1440) as num|null
-				if(!mins)	return
-				mins = min(525599,mins)
-				minutes = CMinutes + mins
-				duration = GetExp(minutes)
-				reason = input(usr,"Reason?","reason",reason2) as text|null
-				if(!reason)	return
-			if("No")
-				temp = 0
-				duration = "Perma"
-				reason = input(usr,"Reason?","reason",reason2) as text|null
-				if(!reason)	return
+		var/mins = 0
+		if(minutes > CMinutes)
+			mins = minutes - CMinutes
+		mins = input(usr,"How long (in minutes)? \n 720 = 12 hours \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days","Ban time",1440) as num|null
+		if(!mins)	return
+		mins = min(525599,mins)
+		minutes = CMinutes + mins
+		duration = GetExp(minutes)
+		reason = input(usr,"Reason?","reason",reason2) as message|null
+		if(!reason)	return
 
-		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
-		ban_unban_log_save("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
-		message_admins("\blue [key_name_admin(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]", 1)
+		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [sanitize(reason)] Duration: [duration]")
+		ban_unban_log_save("[key_name(usr)] edited [banned_key]'s ban. Reason: [sanitize(reason)] Duration: [duration]")
+		message_admins("\blue [key_name_admin(usr)] edited [banned_key]'s ban. Reason: [sanitize(reason)] Duration: [duration]", 1)
 		Banlist.cd = "/base/[banfolder]"
-		Banlist["reason"] << reason
+		Banlist["reason"] << sanitize(reason)
 		Banlist["temp"] << temp
 		Banlist["minutes"] << minutes
 		Banlist["bannedby"] << usr.ckey
@@ -791,12 +783,12 @@
 		if(!mins)
 			return
 		if(mins >= 525600) mins = 525599
-		var/reason = input(usr,"Reason? \n\nPress 'OK' to finalize the ban.","reason","Griefer") as text|null
+		var/reason = input(usr,"Reason? \n\nPress 'OK' to finalize the ban.","reason","Griefer") as message|null
 		if(!reason)
 			return
 		AddBan(mob_key, mob_id, reason, usr.ckey, 1, mins, mob_ip)
-		ban_unban_log_save("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [reason]")
-		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
+		ban_unban_log_save("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [sanitize(reason)]")
+		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [sanitize(reason)].</B></BIG>"
 		M << "\red This is a temporary ban, it will be removed in [mins] minutes."
 		feedback_inc("ban_tmp",1)
 		DB_ban_record(BANTYPE_TEMP, M, mins, reason)
@@ -805,9 +797,9 @@
 			M << "\red To try to resolve this matter head to [config.banappeals]"
 		else
 			M << "\red No ban appeals URL has been set."
-		log_admin("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [reason]")
-		message_admins("\blue[usr.client.ckey] has banned [mob_key].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
+		log_admin("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [sanitize(reason)]")
+		message_admins("\blue[usr.client.ckey] has banned [mob_key].\nReason: [sanitize(reason)]\nThis will be removed in [mins] minutes.")
+		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [sanitize(reason)]", usr)
 
 		cdel(mob_client)
 
@@ -2265,7 +2257,7 @@
 
 	if(href_list["add_player_info"])
 		var/key = href_list["add_player_info"]
-		var/add = input("Add Player Info") as null|text
+		var/add = input("Add Player Info") as null|message
 		if(!add) return
 
 		notes_add(key,add,usr)

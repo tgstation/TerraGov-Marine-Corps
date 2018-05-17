@@ -7,6 +7,8 @@
 	var/list/required_reagents = new/list()
 	var/list/required_catalysts = new/list()
 
+	var/mob_react = TRUE //Determines if a chemical reaction can occur inside a mob
+
 	// both vars below are currently unused
 	var/atom/required_container = null // the container required for the reaction to happen
 	var/required_other = 0 // an integer required for the reaction to happen
@@ -18,4 +20,3 @@
 
 /datum/chemical_reaction/proc/on_reaction(var/datum/reagents/holder, var/created_volume)
 	return
-

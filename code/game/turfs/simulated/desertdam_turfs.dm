@@ -229,6 +229,7 @@
 /obj/structure/desertdam/decals/road_stop
 	name = "road"
 	icon_state = "stop_decal1"
+<<<<<<< HEAD
 
 //TODO:
 //Relocate me somewhere that makes more sense!
@@ -240,3 +241,5 @@
 	bound_width = 64
 	bound_height = 64
 	density = 1
+=======
+>>>>>>> 7917b9f6115020ea0ebb1ceab85fdc7740187561

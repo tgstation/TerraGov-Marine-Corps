@@ -159,6 +159,8 @@
 				ExtinguishMob()
 			return
 		if(CM.handcuffed && CM.canmove && (CM.last_special <= world.time))
+			var/obj/item/handcuffs/HC = CM.handcuffed
+
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
 
@@ -166,14 +168,14 @@
 			if(HULK in usr.mutations)
 				can_break_cuffs = 1
 			else if(iszombie(CM))
-				CM.visible_message("<span class='danger'>[CM] is attempting to break out of the cuffs...</span>", \
-				"<span class='notice'>You use your superior zombie strength to start breaking the cuffs...</span>")
+				CM.visible_message("<span class='danger'>[CM] is attempting to break out of [HC]...</span>", \
+				"<span class='notice'>You use your superior zombie strength to start breaking [HC]...</span>")
 				spawn(0)
 					if(do_after(CM, 100, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.handcuffed || CM.buckled)
 							return
-						CM.visible_message("<span class='danger'>[CM] tears the cuffs in half!</span>", \
-							"<span class='notice'>You tear the cuffs in half!</span>")
+						CM.visible_message("<span class='danger'>[CM] tears [HC] in half!</span>", \
+							"<span class='notice'>You tear [HC] in half!</span>")
 						cdel(CM.handcuffed)
 						CM.handcuffed = null
 						CM.handcuff_update()
@@ -185,23 +187,21 @@
 
 
 			if(can_break_cuffs) //Don't want to do a lot of logic gating here.
-				usr << "\red You attempt to break your handcuffs. (This will take around 5 seconds and you need to stand still)"
+				usr << "\red You attempt to break [HC]. (This will take around 5 seconds and you need to stand still)"
 				for(var/mob/O in viewers(CM))
-					O.show_message(text("\red <B>[] is trying to break the handcuffs!</B>", CM), 1)
+					O.show_message(text("\red <B>[] is trying to break [HC]!</B>", CM), 1)
 				spawn(0)
 					if(do_after(CM, 50, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.handcuffed || CM.buckled)
 							return
 						for(var/mob/O in viewers(CM))
-							O.show_message(text("\red <B>[] manages to break the handcuffs!</B>", CM), 1)
-						CM << "\red You successfully break your handcuffs."
+							O.show_message(text("\red <B>[] manages to break [HC]!</B>", CM), 1)
+						CM << "\red You successfully break [HC]."
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						cdel(CM.handcuffed)
 						CM.handcuffed = null
 						CM.handcuff_update()
 			else
-				var/obj/item/handcuffs/HC = CM.handcuffed
-				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/handcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 				/*if(istype(HC, /obj/item/handcuffs/xeno))
 					breakouttime = 300
@@ -216,19 +216,21 @@
 
 
 				if(istype(HC))
-					displaytime = breakouttime / 600 //Minutes
-				CM << "\red You attempt to remove \the [HC]. (This will take around [displaytime] minute(s) and you need to stand still)"
+					displaytime = max(1, round(HC.breakouttime / 600)) //Minutes
+				CM << "\red You attempt to remove [HC]. (This will take around [displaytime] minute(s) and you need to stand still)"
 				for(var/mob/O in viewers(CM))
-					O.show_message( "\red <B>[usr] attempts to remove \the [HC]!</B>", 1)
+					O.show_message( "\red <B>[usr] attempts to remove [HC]!</B>", 1)
 				spawn(0)
-					if(do_after(CM, breakouttime, FALSE, 5, BUSY_ICON_HOSTILE))
+					if(do_after(CM, HC.breakouttime, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.handcuffed || CM.buckled)
 							return // time leniency for lag which also might make this whole thing pointless but the server
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
-							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
-						CM << "\blue You successfully remove \the [CM.handcuffed]."
+							O.show_message("\red <B>[CM] manages to remove [HC]!</B>", 1)
+						CM << "\blue You successfully remove [HC]."
 						CM.drop_inv_item_on_ground(CM.handcuffed)
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
+			var/obj/item/legcuffs/LC = CM.legcuffed
+
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
 
@@ -243,28 +245,27 @@
 			if(can_break_cuffs) //Don't want to do a lot of logic gating here.
 				usr << "\red You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)"
 				for(var/mob/O in viewers(CM))
-					O.show_message(text("\red <B>[] is trying to break the legcuffs!</B>", CM), 1)
+					O.show_message(text("\red <B>[] is trying to break [LC]!</B>", CM), 1)
 				spawn(0)
 					if(do_after(CM, 50, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.legcuffed || CM.buckled)
 							return
 						for(var/mob/O in viewers(CM))
-							O.show_message(text("\red <B>[] manages to break the legcuffs!</B>", CM), 1)
+							O.show_message(text("\red <B>[] manages to break [LC]!</B>", CM), 1)
 						CM << "\red You successfully break your legcuffs."
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						CM.temp_drop_inv_item(CM.legcuffed)
 						cdel(CM.legcuffed)
 						CM.legcuffed = null
 			else
-				var/obj/item/legcuffs/HC = CM.legcuffed
 				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/legcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
-				if(istype(HC)) //If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
-					breakouttime = HC.breakouttime
+				if(istype(LC)) //If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
+					breakouttime = LC.breakouttime
 					displaytime = breakouttime / 600 //Minutes
-				CM << "\red You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)"
+				CM << "\red You attempt to remove [LC]. (This will take around [displaytime] minutes and you need to stand still)"
 				for(var/mob/O in viewers(CM))
-					O.show_message( "\red <B>[usr] attempts to remove \the [HC]!</B>", 1)
+					O.show_message( "\red <B>[usr] attempts to remove [LC]!</B>", 1)
 				spawn(0)
 					if(do_after(CM, breakouttime, FALSE, 5, BUSY_ICON_HOSTILE))
 						if(!CM.legcuffed || CM.buckled)

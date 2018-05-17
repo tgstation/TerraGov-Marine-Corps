@@ -8,6 +8,7 @@
 	var/uid
 	var/can_hellhound_enter = 1
 	var/ceiling = CEILING_NONE //the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
+	var/fake_zlevel // for multilevel maps in the same z level
 
 /area/New()
 	..()
@@ -287,9 +288,16 @@
 			master.used_environ += amount
 
 
-/area/Entered(A)
+/area/Entered(A,atom/OldLoc)
 	var/musVolume = 20
 	var/sound = 'sound/ambience/ambigen1.ogg'
+
+	if(istype(A, /obj/machinery))
+		var/area/newarea = get_area(A)
+		var/area/oldarea = get_area(OldLoc)
+		oldarea.master.area_machines -= A
+		newarea.master.area_machines += A
+		return
 
 	if(!istype(A,/mob/living))	return
 
@@ -360,5 +368,3 @@
 		mob:AdjustKnockeddown(2)
 
 	mob << "Gravity!"
-
-

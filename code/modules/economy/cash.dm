@@ -68,10 +68,12 @@
 		overlays += banknote
 	desc = "They are worth [worth] dollars."
 
-/obj/item/spacecash/bundle/attack_self()
-	var/amount = input(usr, "How many dollars do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+/obj/item/spacecash/bundle/attack_self(mob/user)
+	var/oldloc = loc
+	var/amount = input(user, "How many dollars do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(Clamp(amount, 0, src.worth))
 	if(amount==0) return 0
+	if(disposed || loc != oldloc) return
 
 	src.worth -= amount
 	src.update_icon()
@@ -80,12 +82,12 @@
 	if(amount in list(1000,500,200,100,50,20,1))
 		var/cashtype = text2path("/obj/item/spacecash/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)
-		usr.put_in_hands(cash)
+		user.put_in_hands(cash)
 	else
 		var/obj/item/spacecash/bundle/bundle = new (usr.loc)
 		bundle.worth = amount
 		bundle.update_icon()
-		usr.put_in_hands(bundle)
+		user.put_in_hands(bundle)
 	if(!worth)
 		cdel(src)
 

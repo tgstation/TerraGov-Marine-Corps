@@ -4,7 +4,7 @@
 						Cyborg Spec Items
 ***********************************************************************/
 //Might want to move this into several files later but for now it works here
-/obj/item/borg/stun
+/obj/item/robot/stun
 	name = "electrified arm"
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
@@ -26,7 +26,7 @@
 			if (O.client)
 				O.show_message("\red <B>[user] has prodded [M] with an electrically-charged arm!</B>", 1, "\red You hear someone fall", 2)
 
-/obj/item/borg/overdrive
+/obj/item/robot/overdrive
 	name = "overdrive"
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
@@ -34,36 +34,36 @@
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
-/obj/item/borg/sight
+/obj/item/robot/sight
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "securearea"
 	var/sight_mode = null
 
 
-/obj/item/borg/sight/xray
+/obj/item/robot/sight/xray
 	name = "\proper x-ray Vision"
 	sight_mode = BORGXRAY
 
 
-/obj/item/borg/sight/thermal
+/obj/item/robot/sight/thermal
 	name = "\proper thermal vision"
 	sight_mode = BORGTHERM
 	icon_state = "thermal"
 	icon = 'icons/obj/clothing/glasses.dmi'
 
 
-/obj/item/borg/sight/meson
+/obj/item/robot/sight/meson
 	name = "\proper meson vision"
 	sight_mode = BORGMESON
 	icon_state = "meson"
 	icon = 'icons/obj/clothing/glasses.dmi'
 
-/obj/item/borg/sight/hud
+/obj/item/robot/sight/hud
 	name = "hud"
 	var/obj/item/clothing/glasses/hud/hud = null
 
 
-/obj/item/borg/sight/hud/med
+/obj/item/robot/sight/hud/med
 	name = "medical hud"
 	icon_state = "healthhud"
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -74,7 +74,7 @@
 		return
 
 
-/obj/item/borg/sight/hud/sec
+/obj/item/robot/sight/hud/sec
 	name = "security hud"
 	icon_state = "securityhud"
 	icon = 'icons/obj/clothing/glasses.dmi'

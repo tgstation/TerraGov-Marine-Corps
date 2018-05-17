@@ -56,6 +56,9 @@
 
 	var/list/uniform_restricted //Need to wear this uniform to equip this
 
+	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
+	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
+
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(

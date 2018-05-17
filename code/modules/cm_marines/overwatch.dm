@@ -108,6 +108,12 @@
 					var/unconscious_text = ""
 					var/dead_text = ""
 
+					var/SL_z //z level of the Squad Leader
+					if(current_squad.squad_leader)
+						var/turf/SL_turf = get_turf(current_squad.squad_leader)
+						SL_z = SL_turf.z
+
+
 					for(var/X in current_squad.marines_list)
 						if(!X) continue //just to be safe
 						var/mob_name = "unknown"
@@ -135,7 +141,7 @@
 									dist = "<b>N/A</b>"
 									if(H.mind && H.mind.assigned_role != "Squad Leader")
 										act_sl = " (acting SL)"
-								else if(H.z == current_squad.squad_leader.z && H.z != 0)
+								else if(H.z == SL_z && H.z != 0)
 									dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
 
 							switch(H.stat)
@@ -842,9 +848,9 @@
 
 /obj/item/device/squad_beacon/Dispose()
 	if(squad)
-		if(squad.sbeacon)
+		if(squad.sbeacon == src)
 			squad.sbeacon = null
-		if(squad.bbeacon)
+		if(squad.bbeacon == src)
 			squad.bbeacon = null
 		squad = null
 	. = ..()

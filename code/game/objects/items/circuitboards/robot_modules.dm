@@ -5,7 +5,7 @@
 	var/channels = list()
 	var/list/modules = list()
 	var/obj/item/emag = null
-	var/obj/item/borg/upgrade/jetpack = null
+	var/obj/item/robot/upgrade/jetpack = null
 	var/list/stacktypes
 
 	emp_act(severity)
@@ -55,6 +55,7 @@
 /obj/item/circuitboard/robot_module/proc/add_languages(var/mob/living/silicon/robot/R)
 	//full set of languages
 	R.add_language("Sol Common", 1)
+	R.add_language("Russian", 1)
 	R.add_language("Tradeband", 1)
 	R.add_language("Sinta'unathi", 0)
 	R.add_language("Siik'tajr", 0)
@@ -72,7 +73,7 @@
 		src.modules += new /obj/item/tool/wrench(src)
 		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/device/healthanalyzer(src)
-		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/robot/stun(src)
 		src.emag = new /obj/item/weapon/energy/sword(src)
 		return
 
@@ -102,7 +103,7 @@
 		src.modules += new /obj/item/stack/nanopaste(src)
 		src.modules += new /obj/item/tool/weldingtool/largetank(src)
 		src.modules += new /obj/item/tool/crowbar(src)
-		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/robot/stun(src)
 
 		src.emag = new /obj/item/reagent_container/spray(src)
 
@@ -127,7 +128,7 @@
 	New()
 		src.modules += new /obj/item/device/flashlight(src)
 		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/borg/sight/hud/med(src)
+		src.modules += new /obj/item/robot/sight/hud/med(src)
 		src.modules += new /obj/item/device/healthanalyzer(src)
 		src.modules += new /obj/item/device/reagent_scanner/adv(src)
 		src.modules += new /obj/item/roller_holder(src)
@@ -142,7 +143,7 @@
 		src.modules += new /obj/item/reagent_container/spray/cleaner(src)
 		src.modules += new /obj/item/tool/weldingtool/largetank(src)
 		src.modules += new /obj/item/tool/crowbar(src)
-		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/robot/stun(src)
 
 		src.emag = new /obj/item/reagent_container/spray(src)
 
@@ -182,7 +183,7 @@
 	New()
 		src.modules += new /obj/item/device/flashlight(src)
 		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/borg/sight/meson(src)
+		src.modules += new /obj/item/robot/sight/meson(src)
 		src.modules += new /obj/item/tool/extinguisher(src)
 		src.modules += new /obj/item/device/rcd/borg(src)
 		src.modules += new /obj/item/tool/weldingtool/largetank(src)
@@ -197,7 +198,7 @@
 		src.modules += new /obj/item/device/gripper(src)
 		src.modules += new /obj/item/device/matter_decompiler(src)
 		src.modules += new /obj/item/device/lightreplacer(src)
-		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/robot/stun(src)
 
 		for(var/T in stacktypes)
 			var/obj/item/stack/sheet/W = new T(src)
@@ -218,9 +219,9 @@
 	New()
 		src.modules += new /obj/item/device/flashlight(src)
 		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/borg/sight/hud/sec(src)
+		src.modules += new /obj/item/robot/sight/hud/sec(src)
 		src.modules += new /obj/item/handcuffs/cyborg(src)
-		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/robot/stun(src)
 		src.modules += new /obj/item/tool/crowbar(src)
 //		src.modules += new /obj/item/weapon/gun/energy/taser/cyborg(src)
 		src.modules += new /obj/item/tool/taperoll/police(src)
@@ -253,7 +254,7 @@
 		src.modules += new /obj/item/tool/mop(src)
 		src.modules += new /obj/item/device/lightreplacer(src)
 		src.modules += new /obj/item/tool/crowbar(src)
-		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/robot/stun(src)
 		src.emag = new /obj/item/reagent_container/spray(src)
 
 		src.emag.reagents.add_reagent("lube", 250)
@@ -276,7 +277,7 @@
 		src.modules += new /obj/item/reagent_container/food/drinks/cans/beer(src)
 		src.modules += new /obj/item/reagent_container/food/condiment/enzyme(src)
 		src.modules += new /obj/item/tool/crowbar(src)
-		src.modules += new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/robot/stun(src)
 
 		var/obj/item/device/rsf/M = new /obj/item/device/rsf(src)
 		M.stored_matter = 30

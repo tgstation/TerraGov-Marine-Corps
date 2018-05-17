@@ -583,11 +583,11 @@
 /obj/item/weapon/gun/launcher/rocket/able_to_fire(mob/living/user)
 	. = ..()
 	if (. && istype(user)) //Let's check all that other stuff first.
-		var/turf/current_turf = get_turf(user)
+		/*var/turf/current_turf = get_turf(user)
 		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
 			click_empty(user)
 			user << "<span class='warning'>You can't fire that here!</span>"
-			return 0
+			return 0*/
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_ROCKET)
 			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 			return 0
@@ -656,7 +656,7 @@
 		if(!C.lying) //Have to be standing up to get the fun stuff
 			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
 			C.Stun(4) //For good measure
-			C.emote("scream")
+			C.emote("pain")
 
 		..()
 

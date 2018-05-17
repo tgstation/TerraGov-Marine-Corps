@@ -320,6 +320,7 @@
 #include "code\game\machinery\igniter.dm"
 #include "code\game\machinery\iv_drip.dm"
 #include "code\game\machinery\lightswitch.dm"
+#include "code\game\machinery\line_nexter.dm"
 #include "code\game\machinery\machinery.dm"
 #include "code\game\machinery\magnet.dm"
 #include "code\game\machinery\mass_driver.dm"

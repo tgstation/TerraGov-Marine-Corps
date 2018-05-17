@@ -61,7 +61,7 @@
 		var/mob/living/carbon/human/H = AM
 		if(!H.lying)
 			H << "<span class='danger'>Your feet scald and burn! Argh!</span>"
-			H.emote("scream")
+			H.emote("pain")
 			H.KnockDown(4)
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			if(istype(affecting) && affecting.take_damage(0, rand(5, 10)))

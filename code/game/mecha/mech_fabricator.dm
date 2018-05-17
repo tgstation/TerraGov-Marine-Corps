@@ -116,12 +116,12 @@
 						),
 
 	"Robotic Upgrade Modules" = list(
-						/obj/item/borg/upgrade/reset,
-						/obj/item/borg/upgrade/rename,
-						/obj/item/borg/upgrade/restart,
-						/obj/item/borg/upgrade/vtec,
-						/obj/item/borg/upgrade/tasercooler,
-						/obj/item/borg/upgrade/jetpack
+						/obj/item/robot/upgrade/reset,
+						/obj/item/robot/upgrade/rename,
+						/obj/item/robot/upgrade/restart,
+						/obj/item/robot/upgrade/vtec,
+						/obj/item/robot/upgrade/tasercooler,
+						/obj/item/robot/upgrade/jetpack
 						),
 
 
@@ -331,7 +331,7 @@
 		return
 
 /obj/machinery/mecha_part_fabricator/proc/check_resources(var/obj/item/part)
-//		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_parts) || istype(part,/obj/item/borg/upgrade))
+//		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_parts) || istype(part,/obj/item/robot/upgrade))
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		for(var/resource in part:construction_cost)

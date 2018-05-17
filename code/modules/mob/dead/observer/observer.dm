@@ -193,14 +193,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 0
 
 /mob/dead/observer/Stat()
-	. = ..()
+	stat(null, "Operation Time: [worldtime2text()]")
 
-	if(.)
-		stat(null, "Operation Time: [worldtime2text()]")
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+	if(EvacuationAuthority)
+		var/eta_status = EvacuationAuthority.get_status_panel_eta()
+		if(eta_status)
+			stat(null, eta_status)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -490,7 +488,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 */
 /mob/dead/observer/verb/view_manfiest()
 	set name = "View Crew Manifest"
-	set category = "IC"
+	set category = "Ghost"
 
 	var/dat
 	dat += "<h4>Crew Manifest</h4>"

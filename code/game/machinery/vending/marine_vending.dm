@@ -142,6 +142,7 @@
 					/obj/item/explosive/grenade/smokebomb = 1,
 					/obj/item/explosive/grenade/phosphorus = 0,
 					/obj/item/storage/box/m94 = 8,
+					/obj/item/storage/box/zipcuffs = 4,
 					/obj/item/device/flashlight/combat = 5,
 					/obj/item/clothing/mask/gas = 10
 					)
@@ -538,7 +539,8 @@
 						/obj/item/storage/pouch/general/large = 1,
 						/obj/item/storage/pouch/pistol = 1,
 						/obj/item/clothing/mask/gas = 1,
-						/obj/item/device/whistle = 1
+						/obj/item/device/whistle = 1,
+						/obj/item/storage/box/zipcuffs = 2
 					)
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)

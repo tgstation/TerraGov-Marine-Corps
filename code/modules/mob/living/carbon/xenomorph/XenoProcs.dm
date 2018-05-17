@@ -16,13 +16,9 @@
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
-	. = ..()
-
-	if (.) //Only update when looking at the Status panel.
-		var/datum/hive_status/hive
-		if(hivenumber && hivenumber <= hive_datum.len)
-			hive = hive_datum[hivenumber]
-		else return
+	var/datum/hive_status/hive
+	if(hivenumber && hivenumber <= hive_datum.len)
+		hive = hive_datum[hivenumber]
 
 		if(!evolution_allowed)
 			stat(null, "Evolve Progress (FINISHED)")

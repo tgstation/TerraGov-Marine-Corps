@@ -114,43 +114,28 @@
 			R.talk_into(src,message, message_mode, verb, speaking)
 
 /mob/living/carbon/human/proc/forcesay(var/forcesay_type = SUDDEN)
-	if(stat == CONSCIOUS)
-		if(client)
-			var/virgin = 1	//has the text been modified yet?
-			var/temp = winget(client, "input", "text")
-			if(findtextEx(temp, "Say \"", 1, 7) && length(temp) > 5)	//case sensitive means
+	if (!client || stat != CONSCIOUS)
+		return
 
-				temp = oldreplacetext(temp, ";", "")	//general radio
+	var/say_text = winget(client, "input", "text")
+	if (length(say_text) < 8)
+		return
 
-				if(findtext(trim_left(temp), ":", 6, 7))	//dept radio
-					temp = copytext(trim_left(temp), 8)
-					virgin = 0
+	var/regex/say_regex = regex("say \"(;|:)*", "i")
+	say_text = say_regex.Replace(say_text, "")
 
-				if(virgin)
-					temp = copytext(trim_left(temp), 6)	//normal speech
-					virgin = 0
+	switch (forcesay_type)
+		if (SUDDEN)
+			say_text += "-"
+		if (GRADUAL)
+			say_text += "..."
+		if (PAINFUL)
+			say_text += pick("-OW!", "-UGH!", "-ACK!")
+		if (EXTREMELY_PAINFUL)
+			say_text += pick("-AAAGH!", "-AAARGH!", "-AAAHH!")
 
-				while(findtext(trim_left(temp), ":", 1, 2))	//dept radio again (necessary)
-					temp = copytext(trim_left(temp), 3)
-
-				if(findtext(temp, "*", 1, 2))	//emotes
-					return
-
-				var/trimmed = trim_left(temp)
-				if(length(trimmed))
-
-					switch(forcesay_type)
-						if(SUDDEN)
-							temp += "-" //"Hey guys, I'm looking at the scene right n-". Abstraced as a em dash, which DM doesn't support...
-						if(GRADUAL)
-							temp += "..."
-						if(PAINFUL)
-							temp += pick("-OW!","-UGH!","-ACK!")
-						if(EXTREMELY_PAINFUL)
-							temp += pick("-AAAGH!","-AAARGH!","-AAAHH!")
-
-					say(temp)
-				winset(client, "input", "text=[null]")
+	say(say_text)
+	winset(client, "input", "text=[null]")
 
 /mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
 

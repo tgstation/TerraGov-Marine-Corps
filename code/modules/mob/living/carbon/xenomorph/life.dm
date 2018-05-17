@@ -470,11 +470,16 @@ updatehealth()
 		hud_used.locate_leader.icon_state = "trackoff"
 		return
 
-	if(hive.living_xeno_queen.z != src.z || get_dist(src,hive.living_xeno_queen) < 1 || src == hive.living_xeno_queen)
+	if(hive.living_xeno_queen.loc.z != loc.z || get_dist(src,hive.living_xeno_queen) < 1 || src == hive.living_xeno_queen)
 		hud_used.locate_leader.icon_state = "trackondirect"
 	else
-		hud_used.locate_leader.dir = get_dir(src,hive.living_xeno_queen)
-		hud_used.locate_leader.icon_state = "trackon"
+		var/area/A = get_area(loc)
+		var/area/QA = get_area(hive.living_xeno_queen.loc)
+		if(A.fake_zlevel == QA.fake_zlevel)
+			hud_used.locate_leader.dir = get_dir(src,hive.living_xeno_queen)
+			hud_used.locate_leader.icon_state = "trackon"
+		else
+			hud_used.locate_leader.icon_state = "trackondirect"
 
 /mob/living/carbon/Xenomorph/updatehealth()
 	if(status_flags & GODMODE)

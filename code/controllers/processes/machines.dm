@@ -22,12 +22,11 @@ datum/controller/process/machines/proc/process_machines_power()
 	var/i=1
 	while(i<=active_areas.len)
 		var/area/A = active_areas[i]
-		if(A.powerupdate && A.master == A)
-			A.powerupdate -= 1
-			A.clear_usage()
-			for(var/j = 1; j <= A.related.len; j++)
-				var/area/SubArea = A.related[j]
-				for(var/obj/machinery/M in SubArea)
+		if(A.master == A)
+			if(A.powerupdate)
+				A.powerupdate -= 1
+				A.clear_usage()
+				for(var/obj/machinery/M in A.area_machines) // should take it to O(n^2) and hopefully less expensive.
 					if(M)
 						//check if the area has power for M's channel
 						//this will keep stat updated in case the machine is moved from one area to another.
@@ -36,9 +35,9 @@ datum/controller/process/machines/proc/process_machines_power()
 						if(!(M.stat & NOPOWER) && M.use_power)
 							M.auto_use_power()
 
-		if(A.apc.len && A.master == A)
-			i++
-			continue
+			if(A.apc.len)
+				i++
+				continue
 
 		A.powerupdate = 0
 		active_areas.Cut(i,i+1)

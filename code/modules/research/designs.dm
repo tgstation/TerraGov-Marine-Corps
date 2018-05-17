@@ -1753,7 +1753,7 @@ datum/design/borg_syndicate_module
 	id = "borg_syndicate_module"
 	build_type = MECHFAB
 	req_tech = list("combat" = 4, "syndicate" = 3)
-	build_path = "/obj/item/borg/upgrade/syndicate"
+	build_path = "/obj/item/robot/upgrade/syndicate"
 	category = "Cyborg Upgrade Modules"
 
 /////////////////////////////////////////

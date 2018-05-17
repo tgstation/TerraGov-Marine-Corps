@@ -132,9 +132,9 @@
 
 	//END: Heavy lifting backend
 
-	if (moving_status == SHUTTLE_IDLE)
+	if (moving_status != SHUTTLE_WARMUP)
 		recharging = 0
-		return	//someone canceled the launch
+		return	//someone cancelled the launch
 
 	var/travel_time = 0
 	if(transit_gun_mission)
@@ -167,9 +167,21 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src, 0 , int_rot, src) //Rotate by the angle at the destination, not the source
+	target_turf = T_int
+	target_rotation = int_rot
+	shuttle_turfs = turfs_src
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
+
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
+
+	close_doors(turfs_int) // adding this for safety.
 
 	var/list/lightssource = get_landing_lights(T_src)
 	for(var/obj/machinery/landinglight/F in lightssource)
@@ -192,7 +204,16 @@
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, trg_rot, src)
+	target_turf = T_trg
+	target_rotation = trg_rot
+	shuttle_turfs = turfs_int
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
 
 	//Now that we've landed, assuming some rotation including 0, we need to make sure it doesn't fuck up when we go back
 	locs_move[T_int] = -1*trg_rot
@@ -287,8 +308,20 @@
 
 	close_doors(turfs_src) //Close the doors
 
-	move_shuttle_to(T_int, null, turfs_src, , , src)
+	target_turf = T_int
+	target_rotation = 0
+	shuttle_turfs = turfs_src
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
+
 	var/list/turfs_int = get_shuttle_turfs(T_int, info_datums) //Interim turfs
+
+	close_doors(turfs_int) // adding this for safety.
 
 	var/list/lights = get_landing_lights(T_src)
 	for(var/obj/machinery/landinglight/F in lights)
@@ -341,7 +374,16 @@
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
-	move_shuttle_to(T_trg, null, turfs_int, 0, src_rot, src)
+	target_turf = T_trg
+	target_rotation = src_rot
+	shuttle_turfs = turfs_int
+
+	// Hand the move off to the shuttle_controller
+	move_scheduled = 1
+
+	// Wait for move to be completed
+	while (move_scheduled)
+		sleep(10)
 
 	//We have to get these again so we can close the doors
 	//We didn't need to do it before since the hadn't moved yet
@@ -426,7 +468,7 @@
 		if(!istype(T)) continue
 
 		//I know an iterator is faster, but this broke for some reason when I used it so I won't argue
-		/*for(var/obj/machinery/door/poddoor/shutters/transit/ST in T)
+		for(var/obj/machinery/door/poddoor/shutters/transit/ST in T)
 			if(!istype(ST)) continue
 			if(!ST.density)
 				//"But MadSnailDisease!", you say, "Don't use spawn! Use sleep() and waitfor instead!
@@ -438,7 +480,7 @@
 				spawn(0)
 					ST.close()
 					//ST.update_nearby_tiles(1)
-				break*/
+				break
 
 		//Elevators
 		if (iselevator)
@@ -455,14 +497,34 @@
 				break
 		else
 			for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
-				spawn(0)
-					M.close(1)
-					M.lock()
+				if(M.locked && M.density)
+					continue // jobs done
+				else if(!M.locked && M.density)
+					M.lock() // closed but not locked yet
+					continue
+				else
+					spawn(0)
+						M.unlock()
+						sleep(1)
+						M.close(1)
+						sleep(M.openspeed + 1)
+						M.lock()
 
 			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in T)
-				spawn(0)
-					D.close(1)
-					D.lock()
+				if(!D.locked && D.density)
+					D.lock() // closed but not locked yet
+				else if(D.locked && !D.density)
+					spawn(0)
+						D.unlock()
+						sleep(1)
+						D.close()
+						sleep(D.openspeed + 1) // let it close
+						D.lock() // THEN lock it
+				else
+					spawn(0)
+						D.close()
+						sleep(D.openspeed + 1)
+						D.lock()
 
 /datum/shuttle/ferry/marine/open_doors(var/list/L)
 	var/i //iterator
@@ -473,14 +535,13 @@
 		if(!istype(T)) continue
 
 		//Just so marines can't land with shutters down and turtle the rasputin
-		/*for(var/obj/machinery/door/poddoor/shutters/P in T)
+		for(var/obj/machinery/door/poddoor/shutters/P in T)
 			if(!istype(P)) continue
 			if(P.density)
 				spawn(0)
 					P.open()
 					//P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
-				*/
 
 		if (iselevator)
 			for(var/obj/machinery/door/airlock/A in T)
