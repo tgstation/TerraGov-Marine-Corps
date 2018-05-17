@@ -134,6 +134,8 @@
 
 		for(var/mob/O in viewers(src, null))
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
+		log_admin("[key_name(user)] cut a wire at ([x],[y],[z])")
+		message_admins("[key_name(user)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) cut a wire at ([x],[y],[z]) - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>")
 
 ///// Z-Level Stuff
 		if(src.d1 == 11 || src.d2 == 11)

@@ -307,7 +307,11 @@
 	GoIdle()
 
 	sleep(rand(MIN_IMPREGNATION_TIME,MAX_IMPREGNATION_TIME))
-	if(stat != DEAD) Impregnate(M)
+	if(stat != DEAD)
+		Impregnate(M)
+	else
+		M.drop_inv_item_on_ground(src)
+		GoActive(30) // leap quicker
 
 	return 1
 
@@ -321,13 +325,14 @@
 		if(H.species && (H.species.flags & IS_SYNTHETIC)) return //can't impregnate synthetics
 
 	if(!sterile)
-		for(var/obj/item/alien_embryo/embryo in target)
-			return // already got one, stops doubling up
-
-		var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(target)
-		embryo.hivenumber = hivenumber
+		var/embryos = 0
+		for(var/obj/item/alien_embryo/embryo in target) // already got one, stops doubling up
+			embryos++
+		if(!embryos)
+			var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(target)
+			embryo.hivenumber = hivenumber
+			icon_state = "[initial(icon_state)]_impregnated"
 		target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
-		icon_state = "[initial(icon_state)]_impregnated"
 		Die()
 
 	else
@@ -356,7 +361,7 @@
 		lifecycle -= 50
 		return 1
 
-/obj/item/clothing/mask/facehugger/proc/GoActive()
+/obj/item/clothing/mask/facehugger/proc/GoActive(var/delay = 50)
 	set waitfor = 0
 
 	if(stat == DEAD) return
@@ -364,7 +369,7 @@
 	if(stat != CONSCIOUS) icon_state = "[initial(icon_state)]"
 	stat = CONSCIOUS
 
-	sleep(50) //Every 5 seconds.
+	sleep(delay) //Every 5 seconds.
 	if(stat == CONSCIOUS && loc) //Make sure we're conscious and not idle or dead.
 		if(check_lifecycle())
 			leap_at_nearest_target()

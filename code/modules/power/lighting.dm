@@ -208,6 +208,11 @@
 	SetLuminosity(0)
 	. = ..()
 
+/obj/machinery/light/proc/is_broken()
+	if(status == LIGHT_BROKEN)
+		return 1
+	return 0
+
 /obj/machinery/light/update_icon()
 
 	switch(status)		// set icon_states
