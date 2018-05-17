@@ -307,16 +307,12 @@
 	GoIdle()
 
 	sleep(rand(MIN_IMPREGNATION_TIME,MAX_IMPREGNATION_TIME))
-	if(stat != DEAD)
-		Impregnate(M)
-	else
-		M.drop_inv_item_on_ground(src)
-		GoActive(30) // leap quicker
+	Impregnate(M)
 
 	return 1
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
-	if(!target || target.wear_mask != src || target.stat == DEAD || isXeno(target)) //Was taken off or something
+	if(!target || target.wear_mask != src || isXeno(target)) //Was taken off or something
 		return
 
 	var/mob/living/carbon/human/H
