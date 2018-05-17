@@ -405,7 +405,7 @@
 
 /proc/CanHug(mob/living/carbon/M)
 
-	if(!istype(M) || isXeno(M) || isSynth(M) || isHellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
+	if(!istype(M) || isXeno(M) || isSynth(M) || iszombie(M) || isHellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,
