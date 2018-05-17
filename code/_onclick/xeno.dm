@@ -90,8 +90,10 @@
 	if(mods["ctrl"] && mods["middle"])
 		if(ovipositor)
 			if(isXeno(A) && A != src)
-				set_queen_overwatch(A)
-				return 1
+				var/mob/living/carbon/Xenomorph/X = A
+				if(X.stat != DEAD)
+					set_queen_overwatch(A)
+					return 1
 
 	if(mods["middle"])
 		if (selected_ability && middle_mouse_toggle)

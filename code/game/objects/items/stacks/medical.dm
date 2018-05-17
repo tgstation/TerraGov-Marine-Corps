@@ -135,7 +135,7 @@
 
 /obj/item/stack/medical/ointment/tajaran
 	name = "\improper Messa's Tear petals"
-	singular_name = "Messa's Tear petals"
+	singular_name = "Messa's Tear petal"
 	desc = "A poultice made of cold, blue petals that is rubbed on burns."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "mtearp"

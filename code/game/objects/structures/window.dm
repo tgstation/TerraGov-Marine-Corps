@@ -413,10 +413,10 @@
 	basestate = "window"
 	health = 40
 	reinf = 1
-	dir = 5
+	flags_atom = FPRINT
 
-	update_icon() //icon_state has to be set manually
-		return
+/obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
+	return
 
 //Framed windows
 

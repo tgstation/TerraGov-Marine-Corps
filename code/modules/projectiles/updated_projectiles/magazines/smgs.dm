@@ -1,5 +1,6 @@
 /obj/item/ammo_magazine/smg
 	name = "\improper default SMG magazine"
+	desc = "A submachinegun magazine."
 	default_ammo = /datum/ammo/bullet/smg
 	max_rounds = 30
 

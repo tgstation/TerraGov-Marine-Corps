@@ -122,8 +122,8 @@ They're all essentially identical when it comes to getting the job done.
 /obj/item/ammo_magazine/flamer_fire_act()
 	switch(current_rounds)
 		if(0) return
-		if(1 to 100) explosion(loc,  0, 0, 1, 2) //blow it up.
-		else explosion(loc,  0, 0, 2, 3) //blow it up HARDER
+		if(1 to 100) explosion(loc,  -1, -1, 0, 2) //blow it up.
+		else explosion(loc,  -1, -1, 1, 2) //blow it up HARDER
 	cdel(src)
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.

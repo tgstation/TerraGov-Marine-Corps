@@ -3,6 +3,7 @@
 
 /obj/item/ammo_magazine/revolver
 	name = "\improper M44 magnum speed loader (.44)"
+	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
 	flags_equip_slot = NOFLAGS
 	caliber = ".44"

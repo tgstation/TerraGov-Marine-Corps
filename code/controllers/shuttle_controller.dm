@@ -46,7 +46,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	supply_controller.shuttle = shuttle
 
-	var/datum/shuttle/ferry/marine/shuttle1 = new //Because I am using shuttle_tag, which is only defined under /datum/shuttle/ferry/marine
+	var/datum/shuttle/ferry/marine/shuttle1 //Because I am using shuttle_tag, which is only defined under /datum/shuttle/ferry/marine
 	//ALMAYER DROPSHIP 1
 	shuttle1 = new
 	shuttle1.location = 0

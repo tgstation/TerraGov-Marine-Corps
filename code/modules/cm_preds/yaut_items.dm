@@ -841,7 +841,7 @@
 	icon_state = "wrist"
 	item_state = "wristblade"
 	force = 30
-	w_class = 5.0
+	w_class = 5
 	edge = 1
 	sharp = 0
 	flags_atom = NOSHIELD|DELONDROP
@@ -851,49 +851,51 @@
 	attack_speed = 6
 	pry_capable = IS_PRY_CAPABLE_FORCE
 
-	New()
-		..()
-		if(usr)
-			var/obj/item/weapon/wristblades/get_other_hand = usr.get_inactive_hand()
-			if(get_other_hand && istype(get_other_hand))
-				attack_speed = attack_speed - attack_speed/3
-		attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
+/obj/item/weapon/wristblades/New()
+	..()
+	if(usr)
+		var/obj/item/weapon/wristblades/W = usr.get_inactive_hand()
+		if(istype(W)) //wristblade in usr's other hand.
+			attack_speed = attack_speed - attack_speed/3
+	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 
-	Dispose()
-		..()
-		return TA_REVIVE_ME
 
-	Recycle()
-		var/blacklist[] = list("attack_verb")
-		. = ..() + blacklist
+/obj/item/weapon/wristblades/Dispose()
+	. = ..()
+	return TA_REVIVE_ME
 
-	dropped(mob/living/carbon/human/M)
-		playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)
-		if(M)
-			var/obj/item/weapon/wristblades/get_other_hand = M.get_inactive_hand()
-			if(get_other_hand && istype(get_other_hand))
-				get_other_hand.attack_speed = initial(attack_speed)
-		..()
+/obj/item/weapon/wristblades/Recycle()
+	var/blacklist[] = list("attack_verb")
+	. = ..() + blacklist
 
-	afterattack(atom/A, mob/user, proximity)
-		if(!proximity || !user) return
-		if(user)
-			var/obj/item/weapon/wristblades/get_other_hand = user.get_inactive_hand()
-			attack_speed = (get_other_hand && istype(get_other_hand)) ? attack_speed - attack_speed/3 : initial(attack_speed)
+/obj/item/weapon/wristblades/dropped(mob/living/carbon/human/M)
+	playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)
+	if(M)
+		var/obj/item/weapon/wristblades/W = M.get_inactive_hand()
+		if(istype(W))
+			W.attack_speed = initial(attack_speed)
+	..()
 
-		if (istype(A, /obj/machinery/door/airlock))
-			var/obj/machinery/door/airlock/D = A
-			if(D.operating || !D.density) return
-			user << "<span class='notice'>You jam [src] into [D] and strain to rip it open.</span>"
-			playsound(user,'sound/weapons/wristblades_hit.ogg', 15, 1)
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE) && D.density)
-				D.open(1)
+/obj/item/weapon/wristblades/afterattack(atom/A, mob/user, proximity)
+	if(!proximity || !user) return
+	if(user)
+		var/obj/item/weapon/wristblades/W = user.get_inactive_hand()
+		attack_speed = (istype(W)) ? attack_speed - attack_speed/3 : initial(attack_speed)
+
+	if (istype(A, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/D = A
+		if(D.operating || !D.density) return
+		user << "<span class='notice'>You jam [src] into [D] and strain to rip it open.</span>"
+		playsound(user,'sound/weapons/wristblades_hit.ogg', 15, 1)
+		if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE) && D.density)
+			D.open(1)
 
 /obj/item/weapon/wristblades/scimitar
 	name = "wrist scimitar"
 	desc = "An enormous serrated blade that extends from the gauntlet."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "scim"
+	item_state = "scim"
 	force = 50
 	attack_speed = 18 //Will have the same speed as the glaive if there are two.
 	hitsound = 'sound/weapons/pierce.ogg'

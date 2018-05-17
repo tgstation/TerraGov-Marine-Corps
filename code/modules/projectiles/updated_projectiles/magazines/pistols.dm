@@ -4,6 +4,7 @@
 
 /obj/item/ammo_magazine/pistol
 	name = "\improper M4A3 magazine (9mm)"
+	desc = "A pistol magazine."
 	caliber = "9mm"
 	icon_state = "m4a3"
 	max_rounds = 12
@@ -111,6 +112,7 @@
 	caliber = ".22"
 	icon_state = "m4a3" //PLACEHOLDER
 	max_rounds = 5
+	w_class = 1
 	gun_type = /obj/item/weapon/gun/pistol/holdout
 
 
