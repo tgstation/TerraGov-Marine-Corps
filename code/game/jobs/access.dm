@@ -220,6 +220,7 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 				"Executive Officer",
 				"Staff Officer",
 				"Pilot Officer",
+				"Tank Crewman",
 				"Corporate Liaison",
 				"Chief Engineer",
 				"Maintenance Tech",

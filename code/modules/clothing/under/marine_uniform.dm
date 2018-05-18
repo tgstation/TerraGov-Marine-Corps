@@ -55,6 +55,20 @@
 	)
 	..(loc,expected_type, override_icon_state, new_name, new_protection)
 
+/obj/item/clothing/under/marine/tanker
+	name = "\improper USCM tanker uniform"
+	icon_state = "marine_tanker"
+	rollable_sleeves = FALSE
+
+/*
+/obj/item/clothing/under/marine/tanker/New(loc,expected_type 		= type,
+	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM tanker snow uniform"),
+	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature),
+	override_icon_state[]		= list(/datum/game_mode/ice_colony = "s_marine_tanker")
+	)
+	..(loc,expected_type, override_icon_state, new_name, new_protection)
+*/
+
 
 /obj/item/clothing/under/marine/mp
 	name = "military police jumpsuit"
@@ -98,6 +112,12 @@
 /obj/item/clothing/under/marine/officer/pilot/New()
 	select_gamemode_skin(/obj/item/clothing/under/marine/officer/pilot)
 	..()
+
+/obj/item/clothing/under/marine/officer/tanker
+	name = "tank crewman officer uniform"
+	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	icon_state = "marine_tanker"
+	suit_restricted = list(/obj/item/clothing/suit/storage/marine/tanker)
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"

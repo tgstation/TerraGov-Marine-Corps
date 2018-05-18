@@ -1,4 +1,3 @@
-
 #define DEBUG_ARMOR_PROTECTION 0
 
 #if DEBUG_ARMOR_PROTECTION
@@ -280,6 +279,18 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper B12 pattern leader snow armor"))
 		..(loc,expected_type,new_name)
 
+/obj/item/clothing/suit/storage/marine/tanker
+	name = "\improper M3 pattern tanker armor"
+	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a USCM vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
+	icon_state = "tanker"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	allowed = list()
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer/tanker)
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
 //===========================//SPECIALIST\\================================\\
 //=======================================================================\\
 
@@ -403,8 +414,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern marksman snow armor"))
 		..(loc,expected_type,,new_name)
-
-
 
 
 //=============================//PMCS\\==================================\\

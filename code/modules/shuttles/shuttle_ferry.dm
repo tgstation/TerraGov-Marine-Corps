@@ -68,6 +68,12 @@
 		return area_station
 	return area_offsite
 
+/datum/shuttle/ferry/proc/preflight_checks()
+	return 1
+
+/datum/shuttle/ferry/proc/announce_preflight_failure()
+	return
+
 /*
 	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
 	Doing so will ensure that multiple jumps cannot be initiated in parallel.
@@ -76,6 +82,10 @@
 
 	switch(process_state)
 		if (WAIT_LAUNCH)
+			if(!preflight_checks())
+				announce_preflight_failure()
+				process_state = SHUTTLE_IDLE
+				return .
 			if (skip_docking_checks() || docking_controller.can_launch())
 
 				//world << "shuttle/ferry/process: area_transition=[area_transition], travel_time=[travel_time]"

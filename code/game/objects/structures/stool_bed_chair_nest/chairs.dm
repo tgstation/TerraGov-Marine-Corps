@@ -143,6 +143,15 @@
 	var/chair_state = DROPSHIP_CHAIR_UNFOLDED
 	buildstacktype = 0
 	unacidable = 1
+	var/is_animating = 0
+
+/obj/structure/bed/chair/dropship/passenger/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
+	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
+		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
+		spawn(0)
+			fold_down(1)
+		return 0
+	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/ex_act(severity)
 	return
@@ -168,7 +177,9 @@
 
 /obj/structure/bed/chair/dropship/passenger/proc/fold_down(var/break_it = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
+		is_animating = 1
 		flick("shuttle_chair_new_folding", src)
+		is_animating = 0
 		unbuckle()
 		if(break_it)
 			chair_state = DROPSHIP_CHAIR_BROKEN
@@ -180,7 +191,9 @@
 /obj/structure/bed/chair/dropship/passenger/proc/unfold_up()
 	if(chair_state == DROPSHIP_CHAIR_BROKEN)
 		return
+	is_animating = 1
 	flick("shuttle_chair_new_unfolding", src)
+	is_animating = 0
 	chair_state = DROPSHIP_CHAIR_UNFOLDED
 	sleep(5)
 	icon_state = "shuttle_chair"

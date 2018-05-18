@@ -24,6 +24,7 @@
 	var/pilot = SKILL_PILOT_DEFAULT
 	var/police = SKILL_POLICE_DEFAULT
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
+	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
 
 
 
@@ -397,3 +398,9 @@
 	leadership = SKILL_LEAD_BEGINNER
 	medical = SKILL_MEDICAL_CHEM
 	melee_weapons = SKILL_MELEE_SUPER
+
+/datum/skills/tank_crew
+	name = "Tank Crew"
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+	powerloader = SKILL_POWERLOADER_DABBLING
+	leadership = SKILL_LEAD_TRAINED

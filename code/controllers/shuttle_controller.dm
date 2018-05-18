@@ -190,7 +190,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 //---ELEVATOR---//
 	// Elevator I
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry/elevator()
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
@@ -216,7 +216,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 	// Elevator II
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry/elevator()
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
@@ -243,7 +243,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 	// Elevator III
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry/elevator()
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
@@ -268,7 +268,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 	// Elevator IV
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry/elevator()
 	shuttle.location = 0
 	shuttle.warmup_time = 10
 	shuttle.recharge_time = ELEVATOR_RECHARGE
