@@ -14,7 +14,6 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/togglejoin,		/*toggles whether people can join the current game*/
 	/datum/admins/proc/toggleguests,	/*toggles whether guests can join the current game*/
 	/datum/admins/proc/announce,		/*priority announce something to all clients.*/
-	/client/proc/set_ooc_color_self,	/*allows us to set a custom colour for everythign we say in ooc*/
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/toggle_view_range,		/*changes how far we can see*/
 	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
@@ -179,10 +178,14 @@ var/list/admin_verbs_permissions = list(
 var/list/admin_verbs_rejuv = list(
 	/client/proc/respawn_character
 	)
+var/list/admin_verbs_color = list(
+	/client/proc/set_ooc_color_self
+	)
 
 //verbs which can be hidden - needs work
 var/list/admin_verbs_hideable = list(
 	/client/proc/set_ooc_color_global,
+	/client/proc/set_ooc_color_self,
 	/client/proc/deadmin_self,
 	/client/proc/toggleprayers,
 	/client/proc/toggle_hear_radio,
@@ -190,7 +193,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/togglejoin,
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
-	/client/proc/set_ooc_color_self,
 	/client/proc/admin_ghost,
 	/client/proc/toggle_view_range,
 	/datum/admins/proc/view_txt_log,
@@ -309,6 +311,7 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
 		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
 		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
+		if(holder.rights & R_COLOR)			verbs += admin_verbs_color
 		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
@@ -327,6 +330,7 @@ var/list/admin_verbs_mentor = list(
 		admin_verbs_permissions,
 		/client/proc/stealth,
 		admin_verbs_rejuv,
+		admin_verbs_color,
 		admin_verbs_sounds,
 		admin_verbs_spawn,
 		debug_verbs
