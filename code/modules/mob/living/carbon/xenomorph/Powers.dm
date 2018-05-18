@@ -389,6 +389,17 @@
 	use_plasma(plasma_cost)
 
 	var/obj/effect/xenomorph/acid/A = new acid_type(get_turf(O), O)
+
+	if(istype(O, /obj/vehicle/multitile/root/cm_armored))
+		var/obj/vehicle/multitile/root/cm_armored/R = O
+		R.take_damage_type( (1 / A.acid_strength) * 20, "acid", src)
+		visible_message("<span class='xenowarning'>\The [src] vomits globs of vile stuff at \the [O]. It sizzles under the bubbling mess of acid!</span>", \
+			"<span class='xenowarning'>You vomit globs of vile stuff at \the [O]. It sizzles under the bubbling mess of acid!</span>", null, 5)
+		playsound(loc, "sound/bullets/acid_impact1.ogg", 25)
+		sleep(20)
+		cdel(A)
+		return
+
 	if(isturf(O))
 		A.icon_state += "_wall"
 

@@ -220,6 +220,10 @@
 		affect(L)
 	for(var/obj/structure/barricade/B in T)
 		B.acid_smoke_damage(src)
+	for(var/obj/vehicle/multitile/hitbox/cm_armored/H in T)
+		var/obj/vehicle/multitile/root/cm_armored/R = H.root
+		if(!R) continue
+		R.take_damage_type(30, "acid")
 
 //No effect when merely entering the smoke turf, for balance reasons
 /obj/effect/particle_effect/smoke/xeno_burn/Crossed(mob/living/carbon/M as mob)

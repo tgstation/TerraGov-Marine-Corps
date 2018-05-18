@@ -736,6 +736,44 @@
 		smoke.set_up(1, get_turf(P))
 		smoke.start()
 
+/datum/ammo/rocket/ltb
+	name = "cannon round"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+
+	New()
+		..()
+		smoke = new()
+		accuracy = config.med_hit_accuracy
+		accurate_range = config.long_shell_range
+		max_range = config.max_shell_range
+		damage = config.min_hit_damage
+		shell_speed = config.fast_shell_speed
+
+	Dispose()
+		cdel(smoke)
+		smoke = null
+		. = ..()
+
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		explosion(get_turf(M), -1, 2, 5, 6)
+		smoke.set_up(1, get_turf(M))
+		smoke.start()
+
+	on_hit_obj(obj/O, obj/item/projectile/P)
+		explosion(get_turf(P), -1, 2, 5, 6)
+		smoke.set_up(1, get_turf(O))
+		smoke.start()
+
+	on_hit_turf(turf/T, obj/item/projectile/P)
+		explosion(T, -1, 2, 5, 6)
+		smoke.set_up(1, T)
+		smoke.start()
+
+	do_at_max_range(obj/item/projectile/P)
+		explosion(get_turf(P), -1, 2, 5, 6)
+		smoke.set_up(1, get_turf(P))
+		smoke.start()
+
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE
@@ -1216,3 +1254,37 @@
 
 	do_at_max_range(obj/item/projectile/P)
 		return
+
+/datum/ammo/grenade_container
+	name = "grenade shell"
+	ping = null
+	damage_type = BRUTE
+	var/nade_type = /obj/item/explosive/grenade/frag
+
+	New()
+		..()
+		damage = config.min_hit_damage
+		accuracy = config.med_hit_accuracy
+		max_range = config.near_shell_range
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_nade(T)
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	proc/drop_nade(var/turf/T)
+		var/obj/item/explosive/grenade/G = new nade_type(T)
+		G.visible_message("<span class='warning'>\A [G] lands on [T]!</span>")
+		G.det_time = 10
+		G.activate()
+
+/datum/ammo/grenade_container/smoke
+	name = "smoke grenade shell"
+	nade_type = /obj/item/explosive/grenade/smokebomb
