@@ -28,12 +28,13 @@
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_container/proc/get_reagent_list_text()
-    if(reagents.reagent_list && reagents.reagent_list.len)
-        var/datum/reagent/R = reagents.reagent_list[1]
-        . = "[R.id]([R.volume]u)"
-        for (var/i = 2, i <= reagents.reagent_list, i++)
-            R = reagents.reagent_list[i]
-            if(!R) continue
-            . += "; [R.id]([R.volume]u)"
-    else
-        . = "No reagents"
+	if(reagents.reagent_list && reagents.reagent_list.len)
+		var/datum/reagent/R = reagents.reagent_list[1]
+		. = "[R.id]([R.volume]u)"
+		if(reagents.reagent_list.len < 2) return
+		for (var/i = 2, i <= reagents.reagent_list.len, i++)
+			R = reagents.reagent_list[i]
+			if(!R) continue
+			. += "; [R.id]([R.volume]u)"
+	else
+		. = "No reagents"
