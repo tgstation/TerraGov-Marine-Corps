@@ -138,6 +138,7 @@
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
+		src << "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>"
 //		src.AddLuminosity(3)
 		update_fire()
 
@@ -172,4 +173,3 @@
 	IgniteMob()
 
 //Mobs on Fire end
-
