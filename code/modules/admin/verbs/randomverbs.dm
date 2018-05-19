@@ -1067,3 +1067,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		C.mob.loc = get_turf(usr)
+
+/proc/rejuv_all()
+	if(!check_rights(R_ADMIN))	return
+
+	for(var/mob/living/M in living_mob_list)
+		if(isobserver(M) || M.stat == DEAD || !M.client)
+			continue
+		M.rejuvenate()

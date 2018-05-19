@@ -1898,6 +1898,12 @@
 				log_admin("[key_name(usr)] mass-teleported everyone.", 1)
 				message_admins("\blue [key_name_admin(usr)] mass-teleported everyone.", 1)
 				get_all()
+			if("rejuvall")
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","RA")
+				log_admin("[key_name(usr)] mass-rejuvenated everyone.", 1)
+				message_admins("\blue [key_name_admin(usr)] mass-rejuvenated everyone.", 1)
+				rejuv_all()
 		if(usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsfun"]]")
 

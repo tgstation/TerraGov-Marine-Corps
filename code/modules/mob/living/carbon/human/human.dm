@@ -1253,7 +1253,7 @@
 	else
 		usr << "\blue [self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)]."
 
-/mob/living/carbon/human/verb/view_manfiest()
+/mob/living/carbon/human/verb/view_manifest()
 	set name = "View Crew Manifest"
 	set category = "IC"
 
