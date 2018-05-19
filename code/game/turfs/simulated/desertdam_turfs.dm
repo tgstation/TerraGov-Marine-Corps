@@ -18,7 +18,7 @@
 		//CLEAN
 			//_______________________________________
 			//shallow water
-			//shallow water transition to deep
+			//shallow water transition to deeSp
 			//deep water
 			//shallow water coast
 			//desert floor waterway
@@ -229,3 +229,14 @@
 /obj/structure/desertdam/decals/road_stop
 	name = "road"
 	icon_state = "stop_decal1"
+
+//TODO:
+//Relocate me somewhere that makes more sense
+/obj/structure/chigusa_sign
+	name = "Chigusa Sign"
+	desc = "A large sign reading 'lazarus landing por-' the rest of it is smeared in blood."
+	icon = 'icons/obj/landing_signs.dmi'
+	icon_state = "laz_sign"
+	bound_width = 64
+	bound_height = 64
+	density = 1
