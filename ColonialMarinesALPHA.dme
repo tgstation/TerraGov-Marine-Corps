@@ -13,6 +13,7 @@
 #include "code\global.dm"
 #include "code\names.dm"
 #include "code\stylesheet.dm"
+#include "code\type_pooling.dm"
 #include "code\world.dm"
 #include "code\#define\__game.dm"
 #include "code\#define\_math.dm"
