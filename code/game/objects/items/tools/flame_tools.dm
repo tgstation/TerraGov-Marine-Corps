@@ -227,13 +227,41 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(W, /obj/item/device/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name].</span>")
 
+	else if(istype(W, /obj/item/attachable/flamer))
+		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
+
+	else if(istype(W, /obj/item/weapon/gun/flamer))
+		var/obj/item/weapon/gun/flamer/F = W
+		if(F.lit)
+			light("<span class='notice'>[user] lights their [src] with the pilot light of the [F].</span>")
+		else
+			user << "<span class='warning'>Turn on the pilot light first!</span>"
+
+	else if(istype(W, /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = W
+		if(istype(G.under, /obj/item/attachable/flamer))
+			light("<span class='notice'>[user] lights their [src] with the underbarrel [G.under].</span>")
+
+	else if(istype(W, /obj/item/tool/surgery/cautery))
+		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
+
+	else if(istype(W, /obj/item/clothing/mask/cigarette))
+		var/obj/item/clothing/mask/cigarette/C = W
+		if(C.item_state == icon_on)
+			light("<span class='notice'>[user] lights their [src] with the [C] after a few attempts.</span>")
+
+	else if(istype(W, /obj/item/tool/candle))
+		if(W.heat_source > 200)
+			light("<span class='notice'>[user] lights their [src] with the [W] after a few attempts.</span>")
+
 	return
 
 
-/obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_container/glass/glass, mob/user as mob, proximity)
+/obj/item/clothing/mask/cigarette/afterattack(atom/target, mob/living/user, proximity)
 	..()
 	if(!proximity) return
-	if(istype(glass))	//you can dip cigarettes into beakers
+	if(istype(target, /obj/item/reagent_container/glass))	//you can dip cigarettes into beakers
+		var/obj/item/reagent_container/glass/glass = target
 		var/transfered = glass.reagents.trans_to(src, chem_volume)
 		if(transfered)	//if reagents were transfered, show the message
 			user << "<span class='notice'>You dip \the [src] into \the [glass].</span>"
@@ -243,6 +271,23 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				user << "<span class='notice'>[src] is full.</span>"
 
+	else if(isturf(target))
+		var/turf/T = target
+		if(locate(/obj/flamer_fire) in T.contents)
+			light("<span class='notice'>[user] lights their [src] with the burning ground.</span>")
+
+	else if(isliving(target))
+		var/mob/living/M = target
+		if(M.on_fire)
+			if(user == M)
+				light("<span class='notice'>[user] lights their [src] from their own burning body, that's crazy!</span>")
+			else
+				light("<span class='notice'>[user] lights their [src] from the burning body of [M], that's stone cold.</span>")
+
+	else if(istype(target, /obj/machinery/light))
+		var/obj/machinery/light/fixture = target
+		if(fixture.is_broken())
+			light("<span class='notice'>[user] lights their [src] from the broken light.</span>")
 
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text)
 	if(!heat_source)
@@ -379,6 +424,33 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/device/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name] with the power of science.</span>")
+
+	else if(istype(W, /obj/item/attachable/flamer))
+		light("<span class='notice'>[user] lights their [src] with the [W], bet that would have looked cooler if it was attached to something first!</span>")
+
+	else if(istype(W, /obj/item/weapon/gun/flamer))
+		var/obj/item/weapon/gun/flamer/F = W
+		if(F.lit)
+			light("<span class='notice'>[user] lights their [src] with the pilot light of the [F], the glint of pyromania in their eye.</span>")
+		else
+			user << "<span class='warning'>Turn on the pilot light first!</span>"
+
+	else if(istype(W, /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = W
+		if(istype(G.under, /obj/item/attachable/flamer))
+			light("<span class='notice'>[user] lights their [src] with the underbarrel [G.under] like a complete badass.</span>")
+
+	else if(istype(W, /obj/item/tool/surgery/cautery))
+		light("<span class='notice'>[user] lights their [src] with the [W], that can't be sterile!.</span>")
+
+	else if(istype(W, /obj/item/clothing/mask/cigarette))
+		var/obj/item/clothing/mask/cigarette/C = W
+		if(C.item_state == icon_on)
+			light("<span class='notice'>[user] lights their [src] with the [C] after a few attempts.</span>")
+
+	else if(istype(W, /obj/item/tool/candle))
+		if(W.heat_source > 200)
+			light("<span class='notice'>[user] lights their [src] with the [W] after a few attempts.</span>")
 
 /////////////////
 //SMOKING PIPES//

@@ -935,6 +935,11 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user)
 	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
+	if(istype(C, /obj/item/clothing/mask/cigarette))
+		if(isElectrified())
+			var/obj/item/clothing/mask/cigarette/L = C
+			L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
+			return
 	if(!istype(user, /mob/living/silicon))
 		if(isElectrified())
 			if(shock(user, 75))

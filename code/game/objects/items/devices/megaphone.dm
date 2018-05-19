@@ -11,7 +11,7 @@
 	var/insults = 0
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!", "FOR THE SYNDICATE!")
 
-/obj/item/device/megaphone/attack_self(mob/living/user as mob)
+/obj/item/device/megaphone/attack_self(mob/living/user)
 	if (user.client)
 		if(user.client.prefs.muted & MUTE_IC)
 			src << "\red You cannot speak in IC (muted)."
@@ -35,6 +35,7 @@
 	if(!message)
 		return
 	message = capitalize(message)
+	log_admin("[key_name(user)] used a megaphone to say: >[message]<")
 	if ((src.loc == user && usr.stat == 0))
 		if(emagged)
 			if(insults)
