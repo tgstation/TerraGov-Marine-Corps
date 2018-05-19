@@ -655,6 +655,10 @@ var/global/floorIsLava = 0
 			<A href='?src=\ref[src];secretsfun=gethumans'>Get ALL humans</A><BR>
 			<A href='?src=\ref[src];secretsfun=getxenos'>Get ALL Xenos</A><BR>
 			<A href='?src=\ref[src];secretsfun=getall'>Get ALL living, cliented mobs</A><BR>
+			<BR>
+			<B>Mass-Rejuvenate</B><BR>
+			<BR>
+			<A href='?src=\ref[src];secretsfun=rejuvall'>Rejuv ALL living, cliented mobs</A><BR>
 			"}
 
 	if(check_rights(R_DEBUG,0))
