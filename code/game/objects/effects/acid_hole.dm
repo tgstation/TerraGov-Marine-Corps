@@ -67,6 +67,16 @@
 			Entry = get_step(src, EAST)
 			Target = get_step(src, WEST)
 
+	var/turf/T = Target
+
+	if (!T)
+		user << "You peaked through the hole and saw a realm of unicorns and rainbows and decided against crawling through."
+		return
+
+	if (T.density == 1)
+		user << "This hole leads nowhere!"
+		return
+
 	step(I, get_dir(I, Entry))
 	Hole.busy = TRUE
 
