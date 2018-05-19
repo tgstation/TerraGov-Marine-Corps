@@ -24,7 +24,7 @@
 "aax" = (/obj/structure/filingcabinet,/obj/structure/sign/safety/vent{pixel_x = -32},/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
 "aay" = (/obj/machinery/vending/cigarette/colony,/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
 "aaz" = (/obj/machinery/status_display{pixel_y = 32},/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
-"aaA" = (/obj/structure/extinguisher_cabinet{pixel_y = 32},/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
+"aaA" = (/obj/structure/extinguisher_cabinet{pixel_y = 32},/obj/machinery/recharge_station,/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
 "aaB" = (/obj/structure/closet/firecloset,/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
 "aaC" = (/obj/structure/table,/obj/effect/spawner/random/tool,/turf/simulated/floor{tag = "icon-dark"; icon_state = "dark"; dir = 2},/area/bigredv2/outside/space_port)
 "aaD" = (/obj/machinery/telecomms/relay/preset/ice_colony,/turf/simulated/floor{tag = "icon-asteroidplating"; icon_state = "asteroidplating"; dir = 2},/area/bigredv2/outside/telecomm)
