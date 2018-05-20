@@ -17,12 +17,14 @@
 	var/mob/gunner
 	var/mob/driver
 
-	var/active_hp
 	var/occupant_exiting = 0
+	var/next_sound_play = 0
+
+	luminosity = 7
 
 /obj/effect/multitile_spawner/cm_armored/tank
 
-	width = 4
+	width = 3
 	height = 3
 	spawn_dir = EAST
 
@@ -38,6 +40,7 @@
 	root_pos.x_pos = 1
 	root_pos.y_pos = 1
 
+	//Entrance relative to the root object. The tank spawns with the root centered on the marker
 	var/datum/coords/entr_mark = new
 	entr_mark.x_pos = -2
 	entr_mark.y_pos = 0
@@ -141,35 +144,8 @@
 		gunner = driver
 		driver = null
 
-//Used by the gunner to swap which module they are using
-//e.g. from the minigun to the smoke launcher
-//Only the active hardpoint module can be used
-/obj/vehicle/multitile/root/cm_armored/tank/verb/switch_active_hp()
-	set name = "Change Active Weapon"
-	set category = "Object"
-	set src in view(0)
-
-	if(usr != gunner) return
-
-	var/list/slots = list()
-	for(var/slot in hardpoints)
-		var/obj/item/hardpoint/HP = hardpoints[slot]
-		if(!HP) continue
-		if(HP.health <= 0) continue
-		if(!HP.is_activatable) continue
-		slots += slot
-
-	if(!slots.len)
-		usr << "<span class='warning'>All of the modules can't be activated or are broken.</span>"
-		return
-
-	var/slot = input("Select a slot.") in slots
-
-	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!HP)
-		usr << "<span class='warning'>There's nothing installed on that hardpoint.</span>"
-
-	active_hp = slot
+/obj/vehicle/multitile/root/cm_armored/tank/can_use_hp(var/mob/M)
+	return (M == gunner)
 
 //Two seats, gunner and driver
 //Must have the skills to do so
@@ -268,41 +244,16 @@
 
 	. = ..(user, direction)
 
+	if(next_sound_play < world.time)
+		playsound(src, 'sound/ambience/tank_driving.ogg', 10, sound_range = 30)
+		next_sound_play = world.time + 21
+
 //No one but the driver can turn
 /obj/vehicle/multitile/root/cm_armored/tank/try_rotate(var/deg, var/mob/user)
 
 	if(user != driver) return
 
 	. = ..(deg, user)
-
-//No one but the gunner can gun
-//And other checks to make sure you aren't breaking the law
-/obj/vehicle/multitile/root/cm_armored/tank/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
-
-	if(user != gunner)
-		return
-
-	if(!hardpoints.Find(active_hp))
-		user << "<span class='warning'>Please select an active hardpoint first.</span>"
-		return
-
-	var/obj/item/hardpoint/HP = hardpoints[active_hp]
-
-	if(!HP)
-		return
-
-	if(!HP.is_ready())
-		user << "<span class='warning'>That module is not ready to fire.</span>"
-		return
-
-	if(A.z == 3)
-		user << "<span class='warning'>Don't fire while on the ship!</span>"
-		return
-
-	if(dir != get_cardinal_dir2(src, A))
-		return
-
-	HP.active_effect(get_turf(A))
 
 
 /obj/vehicle/multitile/hitbox/cm_armored/tank/Bump(var/atom/A)

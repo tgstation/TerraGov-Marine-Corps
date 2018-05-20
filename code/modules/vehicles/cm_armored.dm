@@ -40,6 +40,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	move_delay = 30 //default 3 seconds per tile
 
+	var/active_hp
+
 	//Changes cooldowns and accuracies
 	var/list/misc_ratios = list(
 		"move" = 1.0,
@@ -103,6 +105,110 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(world.time < next_move) return
 	next_move = world.time + move_delay * misc_ratios["move"] * 3 //3 for a 3 point turn, idk
 	. = ..()
+
+/obj/vehicle/multitile/root/cm_armored/proc/can_use_hp(var/mob/M)
+	return 1
+
+//No one but the gunner can gun
+//And other checks to make sure you aren't breaking the law
+/obj/vehicle/multitile/root/cm_armored/tank/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
+
+	if(can_use_hp(user))
+		return
+
+	if(!hardpoints.Find(active_hp))
+		user << "<span class='warning'>Please select an active hardpoint first.</span>"
+		return
+
+	var/obj/item/hardpoint/HP = hardpoints[active_hp]
+
+	if(!HP)
+		return
+
+	if(!HP.is_ready())
+		user << "<span class='warning'>That module is not ready to fire.</span>"
+		return
+
+	if(A.z == 2 || A.z == 3)
+		user << "<span class='warning'>Don't fire here, you'll blow a hole in the ship!</span>"
+		return
+
+	if(dir != get_cardinal_dir2(src, A))
+		return
+
+	HP.active_effect(get_turf(A))
+
+//Used by the gunner to swap which module they are using
+//e.g. from the minigun to the smoke launcher
+//Only the active hardpoint module can be used
+/obj/vehicle/multitile/root/cm_armored/verb/switch_active_hp()
+	set name = "Change Active Weapon"
+	set category = "Object"
+	set src in view(0)
+
+	if(!can_use_hp(usr)) return
+
+	var/list/slots = get_activatable_hardpoints()
+
+	if(!slots.len)
+		usr << "<span class='warning'>All of the modules can't be activated or are broken.</span>"
+		return
+
+	var/slot = input("Select a slot.") in slots
+
+	var/obj/item/hardpoint/HP = hardpoints[slot]
+	if(!HP)
+		usr << "<span class='warning'>There's nothing installed on that hardpoint.</span>"
+
+	active_hp = slot
+
+/obj/vehicle/multitile/root/cm_armored/verb/reload_hp()
+	set name = "Reload Active Weapon"
+	set category = "Object"
+	set src in view(0)
+
+	if(!can_use_hp(usr)) return
+
+	//TODO: make this a proc so I don't keep repeating this code
+	var/list/slots = get_activatable_hardpoints()
+
+	if(!slots.len)
+		usr << "<span class='warning'>All of the modules can't be reloaded or are broken.</span>"
+		return
+
+	var/slot = input("Select a slot.") in slots
+
+	var/obj/item/hardpoint/HP = hardpoints[slot]
+	if(!HP.backup_clips.len)
+		usr << "<span class='warning'>That module has no remaining backup clips.</span>"
+		return
+
+	var/obj/item/ammo_magazine/A = HP.backup_clips[1] //LISTS START AT 1 REEEEEEEEEEEE
+	if(!A)
+		usr << "<span class='danger'>Something went wrong! PM a staff member! Code: T_RHPN</span>"
+		return
+
+	usr << "<span class='notice'>You begin reloading the [slot] module.</span>"
+
+	sleep(20)
+
+	HP.ammo.loc = entrance.loc
+	HP.ammo = A
+	HP.backup_clips.Remove(A)
+
+	usr << "<span class='notice'>You reload the [slot] module.</span>"
+
+
+/obj/vehicle/multitile/root/cm_armored/proc/get_activatable_hardpoints()
+	var/list/slots = list()
+	for(var/slot in hardpoints)
+		var/obj/item/hardpoint/HP = hardpoints[slot]
+		if(!HP) continue
+		if(HP.health <= 0) continue
+		if(!HP.is_activatable) continue
+		slots += slot
+
+	return slots
 
 //Specialness for armored vics
 /obj/vehicle/multitile/root/cm_armored/load_hitboxes(var/datum/coords/dimensions, var/datum/coords/root_pos)
@@ -177,43 +283,34 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	overlays.Cut()
 
-	//If you know a neater way to do the next 20 lines please do so
+	//Assuming 3x3 with half block overlaps in the tank's direction
 	if(dir in list(NORTH, SOUTH))
+		pixel_x = -32
+		pixel_y = -48
 		icon = 'icons/obj/tank_NS.dmi'
 
 	else if(dir in list(EAST, WEST))
+		pixel_x = -48
+		pixel_y = -32
 		icon = 'icons/obj/tank_EW.dmi'
-
-	switch(dir)
-		if(NORTH)
-			pixel_x = -32
-			pixel_y = -32
-			icon = 'icons/obj/tank_NS.dmi'
-		if(SOUTH)
-			pixel_x = -32
-			pixel_y = -64
-			icon = 'icons/obj/tank_NS.dmi'
-		if(EAST)
-			pixel_x = -32
-			pixel_y = -32
-			icon = 'icons/obj/tank_EW.dmi'
-		if(WEST)
-			pixel_x = -64
-			pixel_y = -32
-			icon = 'icons/obj/tank_EW.dmi'
 
 	//Basic iteration that snags the overlay from the hardpoint module object
 	var/i
 	for(i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
-		if(!H) continue
-		var/image/I = H.get_icon_image(0, 0, dir)
-		overlays += I
 
-		if(i == HDPT_TREADS) continue
+		if(i == HDPT_TREADS && (!H || H.health <= 0)) //Treads not installed or broken
+			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
+			overlays += I
+			continue
+
+		if(H)
+			var/image/I = H.get_icon_image(0, 0, dir)
+			overlays += I
+
 		if(damaged_hps.Find(i))
-			var/image/J = image(icon, icon_state = "damaged_hardpt_[i]")
-			overlays += J
+			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
+			overlays += I
 
 //Hitboxes but with new names
 /obj/vehicle/multitile/hitbox/cm_armored
@@ -406,6 +503,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user << "<span class='warning'>You don't know what to do with [O] on [src].</span>"
 		return
 
+	if(!damaged_hps.len)
+		user << "<span class='notice'>All of the hardpoints are in working order.</span>"
+		return
+
 	//Pick what to repair
 	var/slot = input("Select a slot to try and repair") in damaged_hps
 
@@ -482,11 +583,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user << "<span class='warning'>There is nothing installed on that slot.</span>"
 		return
 
-	if(!HP.ammo)
-		user << "<span class='warning'>That module does not require any ammo.</span>"
-		return
-
-	HP.ammo.transfer_ammo(AM, user, AM.current_rounds)
+	HP.try_add_clip(AM, user)
 
 //Putting on hardpoints
 //Similar to repairing stuff, down to the time delay
