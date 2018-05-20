@@ -53,6 +53,9 @@
 
 	var/_dir = get_dir(I, src)
 	if(Hole.icon_state == "hole_0")
+		if (_dir == EAST || _dir == WEST)
+			user << "You need to get closer to the entrance to crawl through."
+			return
 		if (_dir == NORTH || _dir == NORTHEAST || _dir == NORTHWEST)
 			Entry = get_step(src, SOUTH)
 			Target = get_step(src, NORTH)
@@ -60,12 +63,25 @@
 			Entry = get_step(src, NORTH)
 			Target = get_step(src, SOUTH)
 	else if (Hole.icon_state == "hole_1")
+		if (_dir == SOUTH || _dir == NORTH)
+			user << "You need to get closer to the entrance to crawl through."
+			return
 		if (_dir == EAST || _dir == SOUTHEAST || _dir == NORTHEAST )
 			Entry = get_step(src, WEST)
 			Target = get_step(src, EAST)
 		else if (_dir == WEST || _dir == SOUTHWEST || _dir == NORTHWEST)
 			Entry = get_step(src, EAST)
 			Target = get_step(src, WEST)
+
+	var/turf/T = Target
+
+	if (!T)
+		user << "You peaked through the hole and saw a realm of unicorns and rainbows and decided against crawling through."
+		return
+
+	if (T.density == 1)
+		user << "This hole leads nowhere!"
+		return
 
 	step(I, get_dir(I, Entry))
 	Hole.busy = TRUE
