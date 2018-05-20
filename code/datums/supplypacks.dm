@@ -476,16 +476,27 @@ HARDPOINT MODULES (and their ammo)
 /datum/supply_packs/ltb_cannon_ammo
 	name = "LTB Cannon Magazines (x10)"
 	contains = list(
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon,
-					/obj/item/ammo_magazine/ltb_cannon)
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon,
+					/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "tank ammo crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/ltb_cannon_ammo
+	name = "LTAA AP Mingun Magazines (x3)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/ltaaap_minigun,
+					/obj/item/ammo_magazine/tank/ltaaap_minigun,
+					/obj/item/ammo_magazine/tank/ltaaap_minigun)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "tank ammo crate"
@@ -494,16 +505,16 @@ HARDPOINT MODULES (and their ammo)
 /datum/supply_packs/tank_glauncher_ammo
 	name = "Grenade Launcher Magazines (x10)"
 	contains = list(
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher,
-					/obj/item/ammo_magazine/tank_glauncher)
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "tank ammo crate"
@@ -512,16 +523,16 @@ HARDPOINT MODULES (and their ammo)
 /datum/supply_packs/tank_slauncher_ammo
 	name = "Smoke Launcher Magazines (x10)"
 	contains = list(
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher,
-					/obj/item/ammo_magazine/tank_slauncher)
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "tank ammo crate"

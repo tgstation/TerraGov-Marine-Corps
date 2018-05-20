@@ -13,6 +13,7 @@ Currently only has the tank hardpoints
 	icon_state = "tires" //Placeholder
 
 	health = 100
+	w_class = 15
 
 	//If we use ammo, put it here
 	var/obj/item/ammo_magazine/ammo = null
@@ -23,6 +24,9 @@ Currently only has the tank hardpoints
 
 	var/next_use = 0
 	var/is_activatable = 0
+
+	var/list/backup_clips = list()
+	var/max_clips = 0
 
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()
@@ -39,6 +43,30 @@ Currently only has the tank hardpoints
 
 //If our cooldown has elapsed
 /obj/item/hardpoint/proc/is_ready()
+	return 1
+
+/obj/item/hardpoint/proc/try_add_clip(var/obj/item/ammo_magazine/A, var/mob/user)
+
+	if(max_clips == 0)
+		user << "<span class='warning'>This module does not have room for additional ammo.</span>"
+		return 0
+	else if(backup_clips.len >= max_clips)
+		user << "<span class='warning'>The reloader is full.</span>"
+		return 0
+	else if(!istype(A, ammo.type))
+		user << "<span class='warning'>That is the wrong ammo type.</span>"
+		return 0
+
+	user << "<span class='notice'>Installing \the [src] in \the [owner].</span>"
+
+	if(!do_after(user, 10))
+		user << "<span class='warning'>Something interrupted you while reloading [owner].</span>"
+		return 0
+
+	user << "<span class='notice'>You install \the [src] in \the [owner].</span>"
+
+	if(!user.u_equip(A, owner, force = 1)) return 0
+	backup_clips += A
 	return 1
 
 //Returns the image object to overlay onto the root object
@@ -90,7 +118,8 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "ltb_cannon"
 
-	ammo = new /obj/item/ammo_magazine/ltb_cannon
+	ammo = new /obj/item/ammo_magazine/tank/ltb_cannon
+	max_clips = 3
 
 	apply_buff()
 		owner.cooldowns["primary"] = 200
@@ -125,7 +154,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "ltaaap_minigun"
 
-	ammo = new /obj/item/ammo_magazine/ltaaap_minigun
+	ammo = new /obj/item/ammo_magazine/tank/ltaaap_minigun
 
 	//Miniguns don't use a conventional cooldown
 	//If you fire quickly enough, the cooldown decreases according to chain_delays
@@ -191,7 +220,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "flamer"
 
-	ammo = new /obj/item/ammo_magazine/flamer
+	ammo = new /obj/item/ammo_magazine/tank/flamer
 
 	is_ready()
 		if(world.time < next_use) return 0
@@ -226,7 +255,8 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "towlauncher"
 
-	ammo = new /obj/item/ammo_magazine/towlauncher
+	ammo = new /obj/item/ammo_magazine/tank/towlauncher
+	max_clips = 1
 
 	is_ready()
 		if(world.time < next_use) return 0
@@ -260,7 +290,8 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "m56cupola"
 
-	ammo = new /obj/item/ammo_magazine/m56_cupola
+	ammo = new /obj/item/ammo_magazine/tank/m56_cupola
+	max_clips = 1
 
 	is_ready()
 		if(world.time < next_use) return 0
@@ -295,7 +326,8 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "glauncher"
 
-	ammo = new /obj/item/ammo_magazine/tank_glauncher
+	ammo = new /obj/item/ammo_magazine/tank/tank_glauncher
+	max_clips = 3
 
 	is_ready()
 		if(world.time < next_use) return 0
@@ -337,7 +369,8 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "slauncher"
 
-	ammo = new /obj/item/ammo_magazine/tank_slauncher
+	ammo = new /obj/item/ammo_magazine/tank/tank_slauncher
+	max_clips = 4
 	is_activatable = 1
 
 	is_ready()
@@ -346,7 +379,7 @@ Currently only has the tank hardpoints
 		return 1
 
 	apply_buff()
-		owner.cooldowns["support"] = 50
+		owner.cooldowns["support"] = 30
 		owner.accuracies["support"] = 0.8
 
 	active_effect(var/turf/T)
@@ -521,9 +554,7 @@ Currently only has the tank hardpoints
 	disp_icon_state = "treads"
 
 	get_icon_image(var/x_offset, var/y_offset, var/new_dir)
-		if(!(health <= 0)) return //Don't overlay if healthy
-
-		return ..()
+		return null //Handled in update_icon()
 
 	apply_buff()
 		owner.move_delay = 10
@@ -542,7 +573,7 @@ Currently only has the tank hardpoints
 
 //Special ammo magazines for hardpoint modules. Some aren't here since you can use normal magazines on them
 
-/obj/item/ammo_magazine/ltb_cannon
+/obj/item/ammo_magazine/tank/ltb_cannon
 	name = "LTB Cannon Magazine"
 	desc = "A primary armament cannon magazine"
 	caliber = "86mm" //Making this unique on purpose
@@ -556,7 +587,7 @@ Currently only has the tank hardpoints
 		icon_state = "ltbcannon_[current_rounds]"
 
 
-/obj/item/ammo_magazine/ltaaap_minigun
+/obj/item/ammo_magazine/tank/ltaaap_minigun
 	name = "LTAA-AP Minigun Magazine"
 	desc = "A primary armament minigun magazine"
 	caliber = "7.62x51mm" //Correlates to miniguns
@@ -566,7 +597,7 @@ Currently only has the tank hardpoints
 	gun_type = /obj/item/hardpoint/primary/minigun
 
 
-/obj/item/ammo_magazine/flamer
+/obj/item/ammo_magazine/tank/flamer
 	name = "Flamer Magazine"
 	desc = "A secondary armament flamethrower magazine"
 	caliber = "UT-Napthal Fuel" //correlates to flamer mags
@@ -577,7 +608,7 @@ Currently only has the tank hardpoints
 	gun_type = /obj/item/hardpoint/secondary/flamer
 
 
-/obj/item/ammo_magazine/towlauncher
+/obj/item/ammo_magazine/tank/towlauncher
 	name = "TOW Launcher Magazine"
 	desc = "A secondary armament rocket magazine"
 	caliber = "rocket" //correlates to any rocket mags
@@ -588,7 +619,7 @@ Currently only has the tank hardpoints
 	gun_type = /obj/item/hardpoint/secondary/towlauncher
 
 
-/obj/item/ammo_magazine/m56_cupola
+/obj/item/ammo_magazine/tank/m56_cupola
 	name = "M56 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
 	caliber = "10x28mm" //Correlates to smartguns
@@ -599,7 +630,7 @@ Currently only has the tank hardpoints
 	gun_type = /obj/item/hardpoint/secondary/m56cupola
 
 
-/obj/item/ammo_magazine/tank_glauncher
+/obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
 	desc = "A secondary armament grenade magazine"
 	caliber = "grenade"
@@ -618,7 +649,7 @@ Currently only has the tank hardpoints
 			icon_state = "glauncher_1"
 
 
-/obj/item/ammo_magazine/tank_slauncher
+/obj/item/ammo_magazine/tank/tank_slauncher
 	name = "Smoke Launcher Magazine"
 	desc = "A support armament grenade magazine"
 	caliber = "grenade"
