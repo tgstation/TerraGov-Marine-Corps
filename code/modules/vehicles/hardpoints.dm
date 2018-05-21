@@ -26,7 +26,7 @@ Currently only has the tank hardpoints
 	var/is_activatable = 0
 
 	var/list/backup_clips = list()
-	var/max_clips = 0
+	var/max_clips = 1 //1 so they can reload their backups and actually reload once
 
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()

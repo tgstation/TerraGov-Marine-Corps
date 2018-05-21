@@ -538,6 +538,18 @@ HARDPOINT MODULES (and their ammo)
 	containername = "tank ammo crate"
 	group = "Hardpoint Modules"
 
+/datum/supply_packs/tank_towlauncher_ammo
+	name = "TOW Launcher Magazines (x4)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/towlauncher,
+					/obj/item/ammo_magazine/tank/towlauncher,
+					/obj/item/ammo_magazine/tank/towlauncher,
+					/obj/item/ammo_magazine/tank/towlauncher)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "tank ammo crate"
+	group = "Hardpoint Modules"
+
 
 /*******************************************************************************
 ATTACHMENTS
