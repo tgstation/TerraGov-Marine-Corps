@@ -113,7 +113,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //And other checks to make sure you aren't breaking the law
 /obj/vehicle/multitile/root/cm_armored/tank/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
 
-	if(can_use_hp(user))
+	if(!can_use_hp(user))
 		return
 
 	if(!hardpoints.Find(active_hp))
@@ -336,7 +336,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			var/mob/living/carbon/Xenomorph/X = A
 			if (X.fortify)
 				return
-				
+
 		var/mob/living/M = A
 		M.KnockDown(7, 1)
 		M.apply_damage(25 + rand(-5, 10), BRUTE) //why would I not just do rand(20, 35)
