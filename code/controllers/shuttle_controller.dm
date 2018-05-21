@@ -26,6 +26,29 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	var/datum/shuttle/ferry/shuttle
 
+	// Hangar Elevator
+	shuttle = new/datum/shuttle/ferry/hangar()
+	shuttle.location = 1
+	shuttle.warmup_time = 3
+	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/almayer/elevatorhangar/lowerdeck)
+			shuttle.area_offsite = A
+			break
+
+	for(var/area/A in all_areas)
+		if(A.type == /area/shuttle/almayer/elevatorhangar/underdeck)
+			shuttle.area_station = A
+			break
+
+	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle
+	hangarelevator.lower_railings() // to deal with railings being up
+
+	shuttles["Hangar"] = shuttle
+	process_shuttles += shuttle
+
+	supply_controller.shuttle = shuttle
+
 	// Supply shuttle
 	shuttle = new/datum/shuttle/ferry/supply()
 	shuttle.location = 1

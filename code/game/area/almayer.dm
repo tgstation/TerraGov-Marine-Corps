@@ -7,6 +7,26 @@
 	icon_state = "almayer"
 	ceiling = CEILING_METAL
 
+/area/shuttle/almayer/elevatorhangar/lowerdeck
+	name = "\improper Hangar Elevator"
+	icon_state = "shuttle"
+	fake_zlevel = 2 // lowerdeck
+
+/area/shuttle/almayer/elevatorhangar/underdeck
+	name = "\improper Hangar Elevator"
+	icon_state = "shuttle"
+	fake_zlevel = 3
+
+/obj/machinery/computer/shuttle_control/almayer/hangar
+	name = "Elevator Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "supply"
+	unacidable = 1
+	exproof = 1
+	density = 1
+	req_access = null
+	shuttle_tag = "Hangar"
+
 /area/almayer/command/cic
 	name = "\improper Almayer Combat Information Center"
 	icon_state = "cic"
@@ -136,6 +156,21 @@
 	icon_state = "hangar"
 	fake_zlevel = 2 // lowerdeck
 
+/area/almayer/hallways/vehiclehangar
+	name = "\improper Almayer Vehicle Storage"
+	icon_state = "exoarmor"
+	fake_zlevel = 3
+
+/area/almayer/living/tankerbunks
+	name = "\improper Almayer Vehicle Crew Bunks"
+	icon_state = "livingspace"
+	fake_zlevel = 3
+
+/area/almayer/squads/tankdeliveries
+	name = "\improper Almayer Vehicle ASRS"
+	icon_state = "req"
+	fake_zlevel = 3 // lowerdeck
+
 /area/almayer/hallways/exoarmor
 	name = "\improper Almayer Armor Storage"
 	icon_state = "exoarmor"
@@ -181,13 +216,18 @@
 	icon_state = "starboard"
 	fake_zlevel = 2 // lowerdeck
 
+/area/almayer/hull/under_hull
+	name = "\improper Almayer Under Hull"
+	icon_state = "lowerhull"
+	fake_zlevel = 3
+
 /area/almayer/hull/lower_hull
-	name = "\improper Almayer Hull"
+	name = "\improper Almayer Lower Hull"
 	icon_state = "lowerhull"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hull/upper_hull
-	name = "\improper Almayer Hull"
+	name = "\improper Almayer Upper Hull"
 	icon_state = "upperhull"
 	fake_zlevel = 1 // upperdeck
 

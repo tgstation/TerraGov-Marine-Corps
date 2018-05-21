@@ -26,6 +26,7 @@
 	var/transit_gun_mission = 0 //is the flight a gun mission? (launch and then land back where you started)
 
 	var/iselevator = 0 //Used to remove some shuttle related procs and texts to make it compatible with elevators
+	var/almayerelevator = 0 //elevators on the almayer without limitations
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE) return
