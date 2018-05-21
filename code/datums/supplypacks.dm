@@ -491,8 +491,8 @@ HARDPOINT MODULES (and their ammo)
 	containername = "tank ammo crate"
 	group = "Hardpoint Modules"
 
-/datum/supply_packs/ltb_cannon_ammo
-	name = "LTAA AP Mingun Magazines (x3)"
+/datum/supply_packs/ltaaap_minigun_ammo
+	name = "LTAA AP Minigun Magazines (x3)"
 	contains = list(
 					/obj/item/ammo_magazine/tank/ltaaap_minigun,
 					/obj/item/ammo_magazine/tank/ltaaap_minigun,
