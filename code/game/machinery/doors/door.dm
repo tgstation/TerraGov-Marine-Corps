@@ -41,15 +41,12 @@
 
 		handle_multidoor()
 
-		update_nearby_tiles(need_rebuild=1)
-
 	Dispose()
 		. = ..()
 		if(filler && width > 1)
 			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
 			filler = null
 		density = 0
-		update_nearby_tiles()
 
 /obj/machinery/door/proc/handle_multidoor()
 	if(width > 1)
@@ -98,16 +95,13 @@
 				flick("door_deny", src)
 
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group) return 0
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
-	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
-		return
 	src.add_fingerprint(user)
 	if(!src.requiresID())
 		user = null
@@ -233,7 +227,6 @@
 	SetOpacity(0)
 	if (filler)
 		filler.SetOpacity(0)
-	update_nearby_tiles()
 
 	if(operating)	operating = 0
 
@@ -263,33 +256,14 @@
 		if (filler)
 			filler.SetOpacity(0)
 	operating = 0
-	update_nearby_tiles()
-
-	//I shall not add a check every x ticks if a door has closed over some fire.
-	var/obj/fire/fire = locate() in loc
-	if(fire)
-		cdel(fire)
 	return
 
 /obj/machinery/door/proc/requiresID()
 	return 1
 
-/obj/machinery/door/update_nearby_tiles(need_rebuild)
-	if(!air_master)
-		return 0
 
-	for(var/turf/simulated/turf in locs)
-		update_flags_heat_protection(turf)
-		air_master.mark_for_update(turf)
+/obj/machinery/door/proc/update_flags_heat_protection(var/turf/source)
 
-	return 1
-
-/obj/machinery/door/proc/update_flags_heat_protection(var/turf/simulated/source)
-	if(istype(source))
-		if(src.density && (src.opacity || src.heat_proof))
-			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT
-		else
-			source.thermal_conductivity = initial(source.thermal_conductivity)
 
 /obj/machinery/door/proc/autoclose()
 	var/obj/machinery/door/airlock/A = src
@@ -298,7 +272,6 @@
 	return
 
 /obj/machinery/door/Move(new_loc, new_dir)
-	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))
@@ -312,7 +285,6 @@
 			filler.SetOpacity(0)
 			filler = (get_step(src,NORTH)) //Find new turf
 
-	update_nearby_tiles()
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'

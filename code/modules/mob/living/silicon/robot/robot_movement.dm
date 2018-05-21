@@ -13,7 +13,7 @@
 
  //No longer needed, but I'll leave it here incase we plan to re-use it.
 /mob/living/silicon/robot/movement_delay()
-	if(istype(loc, /turf/space))
+	if(istype(loc, /turf/open/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
 	. = ..()

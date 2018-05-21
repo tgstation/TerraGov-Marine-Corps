@@ -40,9 +40,7 @@
 	else
 		return 1
 
-/obj/structure/platform/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1 //Barricades are never air-proof
-
+/obj/structure/platform/CanPass(atom/movable/mover, turf/target)
 	if(mover && mover.throwing)
 		return 1
 

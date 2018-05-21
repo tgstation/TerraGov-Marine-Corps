@@ -38,7 +38,7 @@ REAGENT SCANNER
 
 	for(var/turf/T in range(1, src.loc) )
 
-		if(!T.intact)
+		if(!T.intact_tile)
 			continue
 
 		for(var/obj/O in T.contents)
@@ -52,7 +52,7 @@ REAGENT SCANNER
 				spawn(10)
 					if(O)
 						var/turf/U = O.loc
-						if(U.intact)
+						if(U.intact_tile)
 							O.invisibility = 101
 							O.alpha = 255
 
@@ -312,21 +312,18 @@ REAGENT SCANNER
 	if (!( istype(location, /turf) ))
 		return
 
-	var/datum/gas_mixture/environment = location.return_air()
-
-	var/pressure = environment.return_pressure()
-	var/total_moles = environment.total_moles
+	var/env_pressure = location.return_pressure()
+	var/env_gas = location.return_gas()
+	var/env_temp = location.return_temperature()
 
 	user.show_message("\blue <B>Results:</B>", 1)
-	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		user.show_message("\blue Pressure: [round(pressure,0.1)] kPa", 1)
+	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
+		user.show_message("\blue Pressure: [round(env_pressure,0.1)] kPa", 1)
 	else
-		user.show_message("\red Pressure: [round(pressure,0.1)] kPa", 1)
-	if(total_moles)
-		for(var/g in environment.gas)
-			user.show_message("\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles)*100)]%", 1)
-
-		user.show_message("\blue Temperature: [round(environment.temperature-T0C)]&deg;C", 1)
+		user.show_message("\red Pressure: [round(env_pressure,0.1)] kPa", 1)
+	if(env_pressure > 0)
+		user.show_message("\blue Gas Type: [env_gas]", 1)
+		user.show_message("\blue Temperature: [round(env_temp-T0C)]&deg;C", 1)
 
 	src.add_fingerprint(user)
 	return

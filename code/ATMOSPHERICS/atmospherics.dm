@@ -61,7 +61,7 @@ Pipelines + Other Objects -> Pipe network
 
 /obj/machinery/atmospherics/proc/add_underlay(var/turf/T, var/obj/machinery/atmospherics/node, var/direction, var/icon_connect_type)
 	if(node)
-		if(T.intact && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
+		if(T.intact_tile && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 			//underlays += icon_manager.get_atmos_icon("underlay_down", direction, color_cache_name(node))
 			underlays += icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "down" + icon_connect_type)
 		else
@@ -143,9 +143,7 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 	// Used when two pipe_networks are combining
 
 /obj/machinery/atmospherics/proc/return_network_air(datum/network/reference)
-	// Return a list of gas_mixture(s) in the object
-	//		associated with reference pipe_network for use in rebuilding the networks gases list
-	// Is permitted to return null
+	return
 
 /obj/machinery/atmospherics/proc/disconnect(obj/machinery/atmospherics/reference)
 

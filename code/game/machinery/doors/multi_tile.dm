@@ -79,7 +79,7 @@
 	icon = 'icons/obj/doors/almayer/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
-		/turf/simulated/wall,
+		/turf/closed/wall,
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
@@ -196,3 +196,43 @@
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2
 	name = "\improper Normandy cargo door"
 	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
+
+
+
+
+// Elevator door
+/obj/machinery/door/airlock/multi_tile/elevator
+	icon = 'icons/obj/doors/4x1_elevator.dmi'
+	icon_state = "door_closed"
+	width = 4
+	openspeed = 22
+
+/obj/machinery/door/airlock/multi_tile/elevator/research
+	name = "\improper Research Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/arrivals
+	name = "\improper Arrivals Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/dormatory
+	name = "\improper Dormitory Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/freight
+	name = "\improper Freight Elevator Hatch"
+
+
+/obj/machinery/door/airlock/multi_tile/elevator/access
+	icon = 'icons/obj/doors/4x1_elevator_access.dmi'
+	opacity = 0
+	glass = 1
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/research
+	name = "\improper Research Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/arrivals
+	name = "\improper Arrivals Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/dormatory
+	name = "\improper Dormitory Elevator Hatch"
+
+/obj/machinery/door/airlock/multi_tile/elevator/access/freight
+	name = "\improper Freight Elevator Hatch"

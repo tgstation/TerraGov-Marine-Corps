@@ -14,6 +14,7 @@
 	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
 	var/list/uni_append = list(0x12C,0x4E2)    // Same as above for DNA2.
 	var/update_muts = 1                        // Monkey gene must be set at start.
+	var/env_low_temp_resistance = T0C + 10 //lowest temperature the monkey can handle without taking dmg (used by yiren)
 
 
 /mob/living/carbon/monkey/prepare_huds()
@@ -102,7 +103,7 @@
 
 /mob/living/carbon/monkey/movement_delay()
 
-	if(istype(loc, /turf/space))
+	if(istype(loc, /turf/open/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
 	. = ..()
@@ -289,8 +290,6 @@
 	internal = null
 	return
 
-/mob/living/carbon/monkey/var/co2overloadtime = null
-/mob/living/carbon/monkey/var/temperature_resistance = T0C+75
 
 /mob/living/carbon/monkey/emp_act(severity)
 	if(wear_id) wear_id.emp_act(severity)

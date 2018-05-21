@@ -19,8 +19,8 @@
 	for(var/i = lowBoundX,i<=hiBoundX,i++)
 		for(var/j = lowBoundY,j<=hiBoundY,j++)
 			if(i == lowBoundX || i == hiBoundX || j == lowBoundY || j == hiBoundY)
-				new /turf/simulated/wall/vault(locate(i,j,z),type)
+				new /turf/closed/wall/vault(locate(i,j,z),type)
 			else
-				new /turf/simulated/floor/vault(locate(i,j,z),type)
+				new /turf/open/floor/vault(locate(i,j,z),type)
 
 	cdel(src)

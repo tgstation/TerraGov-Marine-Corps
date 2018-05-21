@@ -50,31 +50,28 @@
 			else
 				var/sense = 1
 				switch("[T.type]")
-					if("/turf/space")
+					if("/turf/open/space")
 						colour = rgb(10,10,10)
 						sense = 0
 
-					if("/turf/simulated/floor")
+					if("/turf/open/floor")
 						colour = rgb(150,150,150)
-						var/turf/simulated/floor/TF = T
+						var/turf/open/floor/TF = T
 						if(TF.burnt == 1)
 							sense = 0
 							colour = rgb(130,130,130)
 
-					if("/turf/simulated/floor/engine")
+					if("/turf/open/floor/engine")
 						colour = rgb(128,128,128)
 
-					if("/turf/simulated/wall")
+					if("/turf/closed/wall")
 						colour = rgb(96,96,96)
 
-					if("/turf/simulated/wall/r_wall")
+					if("/turf/closed/wall/r_wall")
 						colour = rgb(128,96,96)
 
-					if("/turf/unsimulated/floor")
+					if("/turf/open")
 						colour  = rgb(240,240,240)
-
-					if("/turf/unsimulated/wall", "/turf/unsimulated/wall/other")
-						colour  = rgb(140,140,140)
 
 					else
 						colour = rgb(0,40,0)
@@ -121,21 +118,6 @@
 					blue = min(255, blue+40)
 
 					colour = rgb(red, green, blue)
-
-			if(!colour2 && !T.density)
-				var/datum/gas_mixture/environment = T.return_air()
-				var/turf_total = environment.total_moles()
-				//var/turf_total = T.co2 + T.oxygen + T.poison + T.sl_gas + T.n2
-
-
-				var/t1 = turf_total / MOLES_CELLSTANDARD * 150
-
-
-				if(t1<=100)
-					colour2 = rgb(t1*2.55,0,0)
-				else
-					t1 = min(100, t1-100)
-					colour2 = rgb(255, t1*2.55, t1*2.55)
 
 			if(!colour2)
 				colour2 = colour
@@ -204,32 +186,21 @@
 			else
 				var/sense = 1
 				switch("[T.type]")
-					if("/turf/space")
+					if("/turf/open/space")
 						colour = rgb(10,10,10)
 						sense = 0
 
-					if("/turf/simulated/floor", "/turf/simulated/floor/engine")
-						var/datum/gas_mixture/environment = T.return_air()
-						var/turf_total = environment.total_moles
-						var/t1 = turf_total / MOLES_CELLSTANDARD * 175
+					if("/turf/open/floor", "/turf/open/floor/engine")
+						colour = rgb(2.55, 2.55, 255)
 
-						if(t1<=100)
-							colour = rgb(0,0,t1*2.55)
-						else
-							t1 = min(100, t1-100)
-							colour = rgb( t1*2.55, t1*2.55, 255)
-
-					if("/turf/simulated/wall")
+					if("/turf/closed/wall")
 						colour = rgb(96,96,96)
 
-					if("/turf/simulated/wall/r_wall")
+					if("/turf/closed/wall/r_wall")
 						colour = rgb(128,96,96)
 
-					if("/turf/unsimulated/floor")
+					if("/turf/open")
 						colour  = rgb(240,240,240)
-
-					if("/turf/unsimulated/wall", "/turf/unsimulated/wall/other")
-						colour  = rgb(140,140,140)
 
 					else
 						colour = rgb(0,40,0)

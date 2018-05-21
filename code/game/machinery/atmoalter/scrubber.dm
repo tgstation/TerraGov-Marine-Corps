@@ -20,8 +20,8 @@
 	cell = new/obj/item/cell(src)
 
 
-/obj/machinery/portable_atmospherics/powered/scrubber/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
+/obj/machinery/portable_atmospherics/powered/scrubber/CanPass(atom/movable/mover, turf/target)
+
 	if(density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -48,49 +48,13 @@
 	else
 		icon_state = "pscrubber:0"
 
-	if(holding)
-		overlays += "scrubber-open"
-
 	if(connected_port)
 		overlays += "scrubber-connector"
 
 	return
 
 /obj/machinery/portable_atmospherics/powered/scrubber/process()
-	..()
-
-	var/power_draw = -1
-
-	if(on && cell && cell.charge)
-		var/datum/gas_mixture/environment
-		if(holding)
-			environment = holding.air_contents
-		else
-			environment = loc.return_air()
-
-		var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles
-
-		power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, power_rating)
-
-	if (power_draw < 0)
-		last_flow_rate = 0
-		last_power_draw = 0
-	else
-		power_draw = max(power_draw, power_losses)
-		cell.use(power_draw * CELLRATE)
-		last_power_draw = power_draw
-
-		update_connected_network()
-
-		//ran out of charge
-		if (!cell.charge)
-			update_icon()
-
-	//src.update_icon()
-	src.updateDialog()
-
-/obj/machinery/portable_atmospherics/powered/scrubber/return_air()
-	return air_contents
+	return
 
 /obj/machinery/portable_atmospherics/powered/scrubber/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
@@ -101,17 +65,11 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(var/mob/user as mob)
 
 	user.set_interaction(src)
-	var/holding_text
 
-	if(holding)
-		holding_text = {"<BR><B>Tank Pressure</B>: [round(holding.air_contents.return_pressure(), 0.01)] kPa<BR>
-<A href='?src=\ref[src];remove_tank=1'>Remove Tank</A>
-"}
 	var/output_text = {"<TT><B>[name]</B><BR>
-Pressure: [round(air_contents.return_pressure(), 0.01)] kPa<BR>
+Pressure: [round(pressure, 0.01)] kPa<BR>
 Flow Rate: [round(last_flow_rate, 0.1)] L/s<BR>
-Port Status: [(connected_port)?("Connected"):("Disconnected")]
-[holding_text]<BR>
+Port Status: [(connected_port)?("Connected"):("Disconnected")]<BR>
 <BR>
 Cell Charge: [cell? "[round(cell.percent())]%" : "N/A"]|Load: [round(last_power_draw)] W<BR>
 Power Switch: <A href='?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
@@ -135,11 +93,6 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 
 		if(href_list["power"])
 			on = !on
-
-		if (href_list["remove_tank"])
-			if(holding)
-				holding.loc = loc
-				holding = null
 
 		if (href_list["volume_adj"])
 			var/diff = text2num(href_list["volume_adj"])
@@ -202,21 +155,8 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 		last_flow_rate = 0
 		last_power_draw = 0
 		return 0
-
-	var/power_draw = -1
-
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles
-
-	power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, active_power_usage)
-
-	if (power_draw < 0)
-		last_flow_rate = 0
-		last_power_draw = 0
-	else
-		last_power_draw = handle_power_draw(power_draw)
-		update_connected_network()
+	last_flow_rate = 0
+	last_power_draw = 0
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/tool/wrench))

@@ -66,11 +66,11 @@
 		//sound volume falloff with pressure
 		var/pressure_factor = 1.0
 
-		var/datum/gas_mixture/hearer_env = T.return_air()
-		var/datum/gas_mixture/source_env = turf_source.return_air()
+		var/hearer_pressure = T.return_pressure()
+		var/source_pressure = turf_source.return_pressure()
 
-		if(hearer_env && source_env)
-			var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
+		if(hearer_pressure && source_pressure)
+			var/pressure = min(hearer_pressure, source_pressure)
 
 			if(pressure < ONE_ATMOSPHERE)
 				pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)

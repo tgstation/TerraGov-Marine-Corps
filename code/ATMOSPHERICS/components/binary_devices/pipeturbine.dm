@@ -10,8 +10,7 @@
 
 	var/efficiency = 0.4
 	var/kin_energy = 0
-	var/datum/gas_mixture/air_in = new
-	var/datum/gas_mixture/air_out = new
+
 	var/volume_ratio = 0.2
 	var/kin_loss = 0.001
 
@@ -25,9 +24,6 @@
 
 	New()
 		..()
-		air_in.volume = 200
-		air_out.volume = 800
-		volume_ratio = air_in.volume / (air_in.volume + air_out.volume)
 		switch(dir)
 			if(NORTH)
 				initialize_directions = EAST|WEST
@@ -52,26 +48,7 @@
 	process()
 		..()
 		if(anchored && !(stat&BROKEN))
-			kin_energy *= 1 - kin_loss
-			dP = max(air_in.return_pressure() - air_out.return_pressure(), 0)
-			if(dP > 10)
-				kin_energy += 1/ADIABATIC_EXPONENT * dP * air_in.volume * (1 - volume_ratio**ADIABATIC_EXPONENT) * efficiency
-				air_in.temperature *= volume_ratio**ADIABATIC_EXPONENT
-
-				var/datum/gas_mixture/air_all = new
-				air_all.volume = air_in.volume + air_out.volume
-				air_all.merge(air_in.remove_ratio(1))
-				air_all.merge(air_out.remove_ratio(1))
-
-				air_in.merge(air_all.remove(volume_ratio))
-				air_out.merge(air_all)
-
 			update_icon()
-
-		if (network1)
-			network1.update = 1
-		if (network2)
-			network2.update = 1
 
 	update_icon()
 		overlays.Cut()
@@ -202,12 +179,6 @@
 
 	return_network_air(datum/pipe_network/reference)
 		var/list/results = list()
-
-		if(network1 == reference)
-			results += air_in
-		if(network2 == reference)
-			results += air_out
-
 		return results
 
 	disconnect(obj/machinery/atmospherics/reference)

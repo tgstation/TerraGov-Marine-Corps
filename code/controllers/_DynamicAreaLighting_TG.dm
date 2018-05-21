@@ -261,7 +261,7 @@ turf
 	var/lumcount_b = 0
 	var/light_col_sources = 0
 
-turf/space
+turf/open/space
 	lighting_lumcount = 4		//starlight
 
 turf/proc/update_lumcount(amount, col_r, col_g, col_b, removing = 0)
@@ -351,10 +351,10 @@ turf/proc/shift_to_subarea()
 // Dedicated lighting sublevel for space turfs
 // helps us depower things in space, remove space fire alarms,
 // and evens out space lighting
-turf/space/lighting_tag(var/level)
+turf/open/space/lighting_tag(var/level)
 	var/area/A = loc
 	return A.tagbase + "sd_L_space"
-turf/space/build_lighting_area(var/tag,var/level)
+turf/open/space/build_lighting_area(var/tag,var/level)
 	var/area/A = ..(tag,4)
 	A.lighting_space = 1
 	A.SetLightLevel(4)

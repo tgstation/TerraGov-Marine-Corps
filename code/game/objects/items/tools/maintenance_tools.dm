@@ -186,16 +186,6 @@
 		toggle(TRUE)
 
 
-	//I'm not sure what this does. I assume it has to do with starting fires...
-	//...but it doesnt check to see if the welder is on or not.
-	var/turf/location = src.loc
-	if(istype(location, /mob/))
-		var/mob/M = location
-		if(M.l_hand == src || M.r_hand == src)
-			location = get_turf(M)
-	if (istype(location, /turf))
-		location.hotspot_expose(700, 5)
-
 /obj/item/tool/weldingtool/attack(mob/M, mob/user)
 
 	if(hasorgans(M))
@@ -242,9 +232,6 @@
 		return
 	if (welding)
 		remove_fuel(1)
-		var/turf/location = get_turf(user)
-		if (istype(location, /turf))
-			location.hotspot_expose(700, 50, 1)
 
 		if(isliving(O))
 			var/mob/living/L = O

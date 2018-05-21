@@ -1,23 +1,18 @@
 /obj/machinery/portable_atmospherics
 	name = "atmoalter"
 	use_power = 0
-	var/datum/gas_mixture/air_contents = new
+
+	var/gas_type = GAS_TYPE_AIR
+	var/pressure = ONE_ATMOSPHERE
+	var/temperature = T20C
 
 	var/obj/machinery/atmospherics/portables_connector/connected_port
-	var/obj/item/tank/holding
 
 	var/volume = 0
 	var/destroyed = 0
 
 	var/maximum_pressure = 90*ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/New()
-	..()
-
-	air_contents.volume = volume
-	air_contents.temperature = T20C
-
-	return 1
 
 /obj/machinery/portable_atmospherics/initialize()
 	. = ..()
@@ -28,16 +23,8 @@
 			update_icon()
 
 /obj/machinery/portable_atmospherics/process()
-	if(!connected_port) //only react when pipe_network will ont it do it for you
-		//Allow for reactions
-		air_contents.react()
-	else
+	if(connected_port)
 		update_icon()
-
-/obj/machinery/portable_atmospherics/Dispose()
-	cdel(air_contents)
-	air_contents = null
-	. = ..()
 
 /obj/machinery/portable_atmospherics/update_icon()
 	return null
@@ -57,21 +44,11 @@
 
 	anchored = 1 //Prevent movement
 
-	//Actually enforce the air sharing
-	var/datum/pipe_network/network = connected_port.return_network(src)
-	if(network && !network.gases.Find(air_contents))
-		network.gases += air_contents
-		network.update = 1
-
 	return 1
 
 /obj/machinery/portable_atmospherics/proc/disconnect()
 	if(!connected_port)
 		return 0
-
-	var/datum/pipe_network/network = connected_port.return_network(src)
-	if(network)
-		network.gases -= air_contents
 
 	anchored = 0
 
@@ -84,22 +61,10 @@
 	if(!connected_port)
 		return
 
-	var/datum/pipe_network/network = connected_port.return_network(src)
-	if (network)
-		network.update = 1
 
-/obj/machinery/portable_atmospherics/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user)
 	var/obj/icon = src
-	if ((istype(W, /obj/item/tank) && !( src.destroyed )))
-		if (src.holding)
-			return
-		var/obj/item/tank/T = W
-		if(user.drop_inv_item_to_loc(T, src))
-			holding = T
-			update_icon()
-		return
-
-	else if (istype(W, /obj/item/tool/wrench))
+	if (istype(W, /obj/item/tool/wrench))
 		if(connected_port)
 			disconnect()
 			user << "\blue You disconnect [name] from the port."
@@ -121,23 +86,14 @@
 
 	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
 		visible_message("\red [user] has used [W] on \icon[icon]")
-		if(air_contents)
-			var/pressure = air_contents.return_pressure()
-			var/total_moles = air_contents.total_moles
-
-			user << "\blue Results of analysis of \icon[icon]"
-			if (total_moles>0)
-				user << "\blue Pressure: [round(pressure,0.1)] kPa"
-				for(var/g in air_contents.gas)
-					user << "\blue [gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"
-				user << "\blue Temperature: [round(air_contents.temperature-T0C)]&deg;C"
-			else
-				user << "\blue Tank is empty!"
+		user << "\blue Results of analysis of \icon[icon]"
+		if (pressure>0)
+			user << "\blue Pressure: [round(pressure,0.1)] kPa"
+			user << "\blue [gas_type]: [100]%"
+			user << "\blue Temperature: [round(temperature-T0C)]&deg;C"
 		else
 			user << "\blue Tank is empty!"
-		return
 
-	return
 
 
 
@@ -174,15 +130,3 @@
 
 	..()
 
-/obj/machinery/portable_atmospherics/proc/log_open()
-	if(air_contents.gas.len == 0)
-		return
-
-	var/gases = ""
-	for(var/gas in air_contents.gas)
-		if(gases)
-			gases += ", [gas]"
-		else
-			gases = gas
-	log_admin("[usr] ([usr.ckey]) opened '[src.name]' containing [gases].")
-	message_admins("[usr] ([usr.ckey]) opened '[src.name]' containing [gases].")

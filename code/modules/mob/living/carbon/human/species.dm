@@ -186,10 +186,6 @@
 /datum/species/proc/handle_unique_behavior(var/mob/living/carbon/human/H)
 	return
 
-// Only used for alien plasma weeds.
-/datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
-	return
-
 // Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
 	return

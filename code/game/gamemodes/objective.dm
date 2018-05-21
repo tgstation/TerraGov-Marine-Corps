@@ -320,7 +320,13 @@ datum/objective/steal
 
 				for(var/obj/item/I in all_items) //Check for phoron tanks
 					if(istype(I, steal_target))
-						found_amount += (target_name=="28 moles of phoron (full tank)" ? (I:air_contents:gas["phoron"]) : (I:amount))
+						if(target_name == "28 moles of phoron (full tank)")
+							if(istype(I, /obj/item/tank))
+								var/obj/item/tank/TAK = I
+								if(TAK.gas_type == GAS_TYPE_PHORON)
+									found_amount += TAK.pressure
+						else
+							found_amount += I:amount
 				return found_amount>=target_amount
 
 			if("50 coins (in bag)")

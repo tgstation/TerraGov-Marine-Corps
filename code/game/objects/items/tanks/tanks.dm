@@ -8,40 +8,27 @@
 	flags_equip_slot = SLOT_BACK
 	w_class = 3
 
-	pressure_resistance = ONE_ATMOSPHERE*5
+	var/pressure_full = ONE_ATMOSPHERE*4
+
+	var/pressure = ONE_ATMOSPHERE*4
+	var/gas_type = GAS_TYPE_AIR
+	var/temperature = T20C
 
 	force = 5.0
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 4
 
-	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/integrity = 3
 	var/volume = 70
 	var/manipulated_by = null		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
 						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
-/obj/item/tank/New()
-	..()
-
-	src.air_contents = new /datum/gas_mixture()
-	src.air_contents.volume = volume //liters
-	src.air_contents.temperature = T20C
-
-	processing_objects.Add(src)
-	return
-
-/obj/item/tank/Dispose()
-	if(air_contents)
-		cdel(air_contents)
-		air_contents = null
-	processing_objects.Remove(src)
-	. = ..()
 
 /obj/item/tank/examine(mob/user)
 	..()
 	if (in_range(src, user))
-		var/celsius_temperature = src.air_contents.temperature-T0C
+		var/celsius_temperature = temperature-T0C
 		var/descriptive
 		switch(celsius_temperature)
 			if (-280 to 20)
@@ -67,29 +54,21 @@
 		for (var/mob/O in viewers(user, null))
 			O << "\red [user] has used [W] on \icon[src] [src]"
 
-		var/pressure = air_contents.return_pressure()
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
-		var/total_moles = air_contents.total_moles
 
 		user << "\blue Results of analysis of \icon[src]"
-		if (total_moles>0)
+		if (pressure>0)
 			user << "\blue Pressure: [round(pressure,0.1)] kPa"
-			for(var/g in air_contents.gas)
-				user << "\blue [gas_data.name[g]]: [(round(air_contents.gas[g] / total_moles) * 100)]%"
-			user << "\blue Temperature: [round(air_contents.temperature-T0C)]&deg;C"
+
+			user << "\blue [gas_type]: 100%"
+			user << "\blue Temperature: [round(temperature-T0C)]&deg;C"
 		else
 			user << "\blue Tank is empty!"
 		src.add_fingerprint(user)
-//	else if (istype(W,/obj/item/toy/latexballon))
-//		var/obj/item/toy/latexballon/LB = W
-//		LB.blow(src)
-//		src.add_fingerprint(user)
 
-	if(istype(W, /obj/item/device/assembly_holder))
-		bomb_assemble(W,user)
 
 /obj/item/tank/attack_self(mob/user as mob)
-	if (!(src.air_contents))
+	if (pressure == 0)
 		return
 
 	ui_interact(user)
@@ -104,7 +83,7 @@
 
 	// this is the data which will be sent to the ui
 	var/data[0]
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
+	data["tankPressure"] = round(pressure)
 	data["releasePressure"] = round(distribute_pressure ? distribute_pressure : 0)
 	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
 	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
@@ -166,84 +145,14 @@
 	return 1
 
 
-/obj/item/tank/remove_air(amount)
-	return air_contents.remove(amount)
-
 /obj/item/tank/return_air()
-	return air_contents
+	return list(gas_type, temperature, pressure)
 
-/obj/item/tank/assume_air(datum/gas_mixture/giver)
-	air_contents.merge(giver)
+/obj/item/tank/return_pressure()
+	return pressure
 
-	check_status()
-	return 1
+/obj/item/tank/return_temperature()
+	return temperature
 
-/obj/item/tank/proc/remove_air_volume(volume_to_return)
-	if(!air_contents)
-		return null
-
-	var/tank_pressure = air_contents.return_pressure()
-	if(tank_pressure < distribute_pressure)
-		distribute_pressure = tank_pressure
-
-	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-
-	return remove_air(moles_needed)
-
-/obj/item/tank/process()
-	//Allow for reactions
-	air_contents.react()
-	check_status()
-
-
-/obj/item/tank/proc/check_status()
-	//Handle exploding, leaking, and rupturing of the tank
-
-	if(!air_contents)
-		return 0
-
-	var/pressure = air_contents.return_pressure()
-	if(pressure > TANK_FRAGMENT_PRESSURE)
-		if(!istype(src.loc,/obj/item/device/transfer_valve))
-			message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
-			log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
-		//world << "\blue[x],[y] tank is exploding: [pressure] kPa"
-		//Give the gas a chance to build up more pressure through reacting
-		air_contents.react()
-		air_contents.react()
-		air_contents.react()
-		pressure = air_contents.return_pressure()
-		var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
-		range = min(range, MAX_EXPLOSION_RANGE)		// was 8 - - - Changed to a configurable define -- TLE
-		var/turf/epicenter = get_turf(loc)
-
-		//world << "\blue Exploding Pressure: [pressure] kPa, intensity: [range]"
-
-		explosion(epicenter, round(range*0.25), round(range*0.5), round(range), round(range*1.5))
-		cdel(src)
-
-	else if(pressure > TANK_RUPTURE_PRESSURE)
-		//world << "\blue[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"
-		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
-			if(!T)
-				return
-			T.assume_air(air_contents)
-			playsound(src.loc, 'sound/effects/spray.ogg', 25, 1, 6)
-			cdel(src)
-		else
-			integrity--
-
-	else if(pressure > TANK_LEAK_PRESSURE)
-		//world << "\blue[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"
-		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
-			if(!T)
-				return
-			var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)
-			T.assume_air(leaked_gas)
-		else
-			integrity--
-
-	else if(integrity < 3)
-		integrity++
+/obj/item/tank/return_gas()
+	return gas_type

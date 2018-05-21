@@ -599,3 +599,40 @@
 	can_hold = list(
 		"/obj/item/explosive/grenade/frag/training"
 		)
+
+
+
+
+
+
+
+//ITEMS-----------------------------------//
+/obj/item/storage/box/lightstick
+	name = "box of lightsticks"
+	desc = "Contains blue lightsticks."
+	icon_state = "lightstick"
+	can_hold = list(/obj/item/lightstick)
+
+	New()
+		..()
+		new /obj/item/lightstick(src)
+		new /obj/item/lightstick(src)
+		new /obj/item/lightstick(src)
+		new /obj/item/lightstick(src)
+		new /obj/item/lightstick(src)
+		new /obj/item/lightstick(src)
+		new /obj/item/lightstick(src)
+
+/obj/item/storage/box/lightstick/red
+	desc = "Contains red lightsticks."
+	icon_state = "lightstick2"
+
+	New()
+		..()
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)

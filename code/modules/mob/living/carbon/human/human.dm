@@ -72,13 +72,9 @@
 			stat(null, eta_status)
 
 	if(internal)
-		if (!internal.air_contents)
-			cdel(internal)
-			internal = null
-		else
-			stat("Internal Atmosphere Info", internal.name)
-			stat("Tank Pressure", internal.air_contents.return_pressure())
-			stat("Distribution Pressure", internal.distribute_pressure)
+		stat("Internal Atmosphere Info", internal.name)
+		stat("Tank Pressure", internal.pressure)
+		stat("Distribution Pressure", internal.distribute_pressure)
 
 	if(assigned_squad)
 		if(assigned_squad.primary_objective)
@@ -205,9 +201,6 @@
 					return 1
 	return 0
 
-
-/mob/living/carbon/human/var/co2overloadtime = null
-/mob/living/carbon/human/var/temperature_resistance = T0C+75
 
 
 /mob/living/carbon/human/show_inv(mob/living/user)
@@ -938,7 +931,7 @@
 				playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
 				var/turf/location = loc
-				if (istype(location, /turf/simulated))
+				if (istype(location, /turf))
 					location.add_vomit_floor(src, 1)
 
 				nutrition -= 40
@@ -1343,7 +1336,7 @@
 		src << "<span class='warning'>Your [src.gloves] are getting in the way.</span>"
 		return
 
-	var/turf/simulated/T = src.loc
+	var/turf/T = src.loc
 	if (!istype(T)) //to prevent doodling out of mechs and lockers
 		src << "<span class='warning'>You cannot reach the floor.</span>"
 		return

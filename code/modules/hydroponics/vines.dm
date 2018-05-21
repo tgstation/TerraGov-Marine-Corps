@@ -199,8 +199,8 @@
 /obj/effect/plantsegment/proc/spread()
 	var/direction = pick(cardinal)
 	var/step = get_step(src,direction)
-	if(istype(step,/turf/simulated/floor))
-		var/turf/simulated/floor/F = step
+	if(istype(step,/turf/open/floor))
+		var/turf/open/floor/F = step
 		if(!locate(/obj/effect/plantsegment,F))
 			if(F.Enter(src))
 				if(master)
@@ -240,18 +240,17 @@
 		age++
 
 	var/turf/T = loc
-	var/datum/gas_mixture/environment
-	if(T) environment = T.return_air()
-
-	if(!environment)
+	if(!loc)
 		return
 
-	var/pressure = environment.return_pressure()
+	var/pressure = T.return_pressure()
+	var/temperature = T.return_temperature()
+
 	if(pressure < seed.lowkpa_tolerance || pressure > seed.highkpa_tolerance)
 		die()
 		return
 
-	if(abs(environment.temperature - seed.ideal_heat) > seed.heat_tolerance)
+	if(abs(temperature - seed.ideal_heat) > seed.heat_tolerance)
 		die()
 		return
 
@@ -291,7 +290,7 @@
 	limited_growth = 1
 
 /obj/effect/plant_controller/New()
-	if(!istype(src.loc,/turf/simulated/floor))
+	if(!istype(src.loc,/turf/open/floor))
 		cdel(src)
 
 	spawn(0)

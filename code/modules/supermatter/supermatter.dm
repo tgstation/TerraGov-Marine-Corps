@@ -152,7 +152,7 @@
 				alert_msg = safe_alert
 				lastwarning = world.timeofday
 
-			if(!istype(L, /turf/space) && alert_msg)
+			if(!istype(L, /turf/open/space) && alert_msg)
 				radio.autosay(alert_msg, "Supermatter Monitor")
 				log_admin("[src] [alert_msg]")
 				message_admins("[src] [alert_msg]")
@@ -173,9 +173,6 @@
 	if(grav_pulling)
 		supermatter_pull()
 
-	//Ok, get the air from the turf
-	var/datum/gas_mixture/removed = null
-	var/datum/gas_mixture/env = null
 
 	//ensure that damage doesn't increase too quickly due to super high temperatures resulting from no coolant, for example. We dont want the SM exploding before anyone can react.
 	//We want the cap to scale linearly with power (and explosion_point). Let's aim for a cap of 5 at power = 300 (based on testing, equals roughly 5% per SM alert announcement).
@@ -185,21 +182,24 @@
 	else
 		damage_inc_limit = (1/300)*(explosion_point/1000)*DAMAGE_RATE_LIMIT
 
-	if(!istype(L, /turf/space))
-		env = L.return_air()
-		removed = env.remove(gasefficency * env.total_moles)	//Remove gas from surrounding area
+	var/env_pressure = L.return_pressure()
+	var/env_temperature = L.return_temperature()
+	var/env_gas = L.return_gas()
 
-	if(!env || !removed || !removed.total_moles)
+	if(env_pressure < 50)
 		damage += max((power - 15*POWER_FACTOR)/10, 0)
-	else if (grav_pulling) //If supermatter is detonating, remove all air from the zone
-		env.remove(env.total_moles)
 	else
 		damage_archived = damage
 
-		damage = max( damage + min( ( (removed.temperature - CRITICAL_TEMPERATURE) / 150 ), damage_inc_limit ) , 0 )
-		//Ok, 100% oxygen atmosphere = best reaction
-		//Maxes out at 100% oxygen pressure
-		oxygen = max(min((removed.gas["oxygen"] - (removed.gas["nitrogen"] * NITROGEN_RETARDATION_FACTOR)) / removed.total_moles, 1), 0)
+		damage = max( damage + min( ( (env_temperature - CRITICAL_TEMPERATURE) / 150 ), damage_inc_limit ) , 0 )
+
+		var/oxygen = 0 //oxygen ratio in the air
+
+		switch(env_gas)
+			if(GAS_TYPE_AIR)
+				oxygen = 0.2
+			if(GAS_TYPE_OXYGEN)
+				oxygen = 1
 
 		//calculate power gain for oxygen reaction
 		var/temp_factor
@@ -214,28 +214,16 @@
 			icon_state = base_icon_state
 
 		temp_factor = ( (equilibrium_power/DECAY_FACTOR)**3 )/800
-		power = max( (removed.temperature * temp_factor) * oxygen + power, 0)
+		power = max( (env_temperature * temp_factor) * oxygen + power, 0)
 
 		//We've generated power, now let's transfer it to the collectors for storing/usage
 		transfer_energy()
 
 		var/device_energy = power * REACTION_POWER_MODIFIER
 
-		//Release reaction gasses
-		var/heat_capacity = removed.heat_capacity()
-		removed.adjust_multi("phoron", max(device_energy / PHORON_RELEASE_MODIFIER, 0), \
-		                     "oxygen", max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
-
 		var/thermal_power = THERMAL_RELEASE_MODIFIER * device_energy
 		if (debug)
-			var/heat_capacity_new = removed.heat_capacity()
 			visible_message("[src]: Releasing [round(thermal_power)] W.")
-			visible_message("[src]: Releasing additional [round((heat_capacity_new - heat_capacity)*removed.temperature)] W with exhaust gasses.")
-
-		removed.add_thermal_energy(thermal_power)
-		removed.temperature = between(0, removed.temperature, 10000)
-
-		env.merge(removed)
 
 	if(power)
 		for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
@@ -368,11 +356,4 @@
 
 	if(defer_powernet_rebuild != 2)
 		defer_powernet_rebuild = 0
-	return
-
-
-/obj/machinery/power/supermatter/GotoAirflowDest(n) //Supermatter not pushed around by airflow
-	return
-
-/obj/machinery/power/supermatter/RepelAirflowDest(n)
 	return

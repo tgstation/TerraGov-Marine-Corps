@@ -59,3 +59,18 @@
 	var/list/parts = list(  )
 
 
+
+
+//Exhaust effect
+/obj/effect/engine_exhaust
+	name = "engine exhaust"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "exhaust"
+	anchored = 1
+
+	New(var/turf/nloc, var/ndir, var/temp)
+		dir = ndir
+		..(nloc)
+
+		spawn(20)
+			loc = null

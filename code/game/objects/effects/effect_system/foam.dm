@@ -80,7 +80,7 @@
 
 // foam disolves when heated
 // except metal foams
-/obj/effect/particle_effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
@@ -162,13 +162,8 @@
 	desc = "A lightweight foamed metal wall."
 	var/metal = 1		// 1=aluminum, 2=iron
 
-	New()
-		..()
-		update_nearby_tiles(1)
-
 	Dispose()
 		density = 0
-		update_nearby_tiles(1)
 		. = ..()
 
 	proc/updateicon()

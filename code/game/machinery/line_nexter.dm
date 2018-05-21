@@ -24,9 +24,7 @@
 				return 0
 	return 1
 
-/obj/machinery/line_nexter/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1 //Barricades are never air-proof
-
+/obj/machinery/line_nexter/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(loc, target) == dir)
 		return 0
 	else

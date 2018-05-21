@@ -26,10 +26,6 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/binary/passive_gate/New()
-	..()
-	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
-	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
 
 /obj/machinery/atmospherics/binary/passive_gate/update_icon()
 	icon_state = (on && flowing)? "on" : "off"
@@ -52,52 +48,8 @@
 		last_flow_rate = 0
 		return 0
 
-	var/output_starting_pressure = air2.return_pressure()
-	var/input_starting_pressure = air1.return_pressure()
-
-	var/pressure_delta
-	switch (regulate_mode)
-		if (REGULATE_INPUT)
-			pressure_delta = input_starting_pressure - target_pressure
-		if (REGULATE_OUTPUT)
-			pressure_delta = target_pressure - output_starting_pressure
-
-	//-1 if pump_gas() did not move any gas, >= 0 otherwise
-	var/returnval = -1
-	if((regulate_mode == REGULATE_NONE || pressure_delta > 0.01) && (air1.temperature > 0 || air2.temperature > 0))	//since it's basically a valve, it makes sense to check both temperatures
-		flowing = 1
-
-		//flow rate limit
-		var/transfer_moles = (set_flow_rate/air1.volume)*air1.total_moles
-
-		//Figure out how much gas to transfer to meet the target pressure.
-		switch (regulate_mode)
-			if (REGULATE_INPUT)
-				var/air_temperature = (air1.temperature > 0)? air1.temperature : air2.temperature
-				var/input_volume = air1.volume + (network1? network1.volume : 0)
-				transfer_moles = min(transfer_moles, pressure_delta*input_volume/(air_temperature * R_IDEAL_GAS_EQUATION))
-			if (REGULATE_OUTPUT)
-				var/air_temperature = (air2.temperature > 0)? air2.temperature : air1.temperature
-				var/output_volume = air2.volume + (network2? network2.volume : 0)
-
-				transfer_moles = min(transfer_moles, pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION))
-
-		//pump_gas() will return a negative number if no flow occurred
-		returnval = pump_gas(src, air1, air2, transfer_moles, available_power=0)	//available_power=0 means we only move gas if it would flow naturally
-
-	if (returnval < 0)
-		flowing = 0
-		last_flow_rate = 0
-	else
-		if(network1)
-			network1.update = 1
-
-		if(network2)
-			network2.update = 1
-
-		if (!last_flow_rate)
-			flowing = 0
-
+	flowing = 0
+	last_flow_rate = 0
 	update_icon()
 
 
@@ -191,8 +143,8 @@
 		"on" = on,
 		"pressure_set" = round(target_pressure*100),	//Nano UI can't handle rounded non-integers, apparently.
 		"max_pressure" = max_pressure_setting,
-		"input_pressure" = round(air1.return_pressure()*100),
-		"output_pressure" = round(air2.return_pressure()*100),
+		"input_pressure" = round(0),
+		"output_pressure" = round(0),
 		"regulate_mode" = regulate_mode,
 		"set_flow_rate" = round(set_flow_rate*10),
 		"last_flow_rate" = round(last_flow_rate*10),
@@ -234,10 +186,10 @@
 		if ("min")
 			set_flow_rate = 0
 		if ("max")
-			set_flow_rate = air1.volume
+			set_flow_rate = 5000
 		if ("set")
-			var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[air1.volume]kPa)","Flow Rate Control",src.set_flow_rate) as num
-			src.set_flow_rate = between(0, new_flow_rate, air1.volume)
+			var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[5000]kPa)","Flow Rate Control",src.set_flow_rate) as num
+			src.set_flow_rate = between(0, new_flow_rate, 5000)
 
 	usr.set_interaction(src)	//Is this even needed with NanoUI?
 	src.update_icon()
@@ -250,12 +202,7 @@
 	if(on)
 		user << "<span class='warning'>You cannot unwrench [src], turn it off first.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")

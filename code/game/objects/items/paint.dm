@@ -16,7 +16,7 @@ var/global/list/cached_icons = list()
 	flags_atom = FPRINT|OPENCONTAINER
 	var/paint_type = ""
 
-	afterattack(turf/simulated/target, mob/user, proximity)
+	afterattack(turf/target, mob/user, proximity)
 		if(!proximity) return
 		if(istype(target) && reagents.total_volume > 5)
 			for(var/mob/O in viewers(user))
@@ -148,7 +148,7 @@ var/global/list/cached_icons = list()
 
 /obj/item/paint/afterattack(turf/target, mob/user as mob, proximity)
 	if(!proximity) return
-	if(!istype(target) || istype(target, /turf/space))
+	if(!istype(target) || istype(target, /turf/open/space))
 		return
 	var/ind = "[initial(target.icon)][color]"
 	if(!cached_icons[ind])
@@ -180,7 +180,7 @@ datum/reagent/paint
 	description = "This paint will only adhere to floor tiles."
 
 	reaction_turf(var/turf/T, var/volume)
-		if(!istype(T) || istype(T, /turf/space))
+		if(!istype(T) || istype(T, /turf/open/space))
 			return
 		T.color = color
 

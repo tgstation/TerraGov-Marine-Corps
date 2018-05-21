@@ -56,7 +56,6 @@
 	sleep(10)
 	layer = PODDOOR_OPEN_LAYER
 	density = 0
-	update_nearby_tiles()
 
 	if(operating == 1) //emag again
 		operating = 0
@@ -74,7 +73,6 @@
 	icon_state = "pdoor1"
 	density = 1
 	SetOpacity(initial(opacity))
-	update_nearby_tiles()
 
 	sleep(10)
 	operating = 0
@@ -99,8 +97,6 @@
 	f1.density = 0
 	f2.density = 0
 
-	update_nearby_tiles()
-
 	if(operating == 1) //emag again
 		operating = 0
 	if(autoclose)
@@ -123,8 +119,6 @@
 	SetOpacity(initial(opacity))
 	f1.SetOpacity(initial(opacity))
 	f2.SetOpacity(initial(opacity))
-
-	update_nearby_tiles()
 
 	operating = 0
 	return
@@ -150,8 +144,6 @@
 	f3.SetOpacity(0)
 	f4.density = 0
 	f4.SetOpacity(0)
-
-	update_nearby_tiles()
 
 	if(operating == 1) //emag again
 		operating = 0
@@ -179,7 +171,6 @@
 
 	if(visible)
 		SetOpacity(1)
-	update_nearby_tiles()
 
 	sleep(10)
 	operating = 0
@@ -203,8 +194,6 @@
 	f2.density = 0
 	f2.SetOpacity(0)
 
-	update_nearby_tiles()
-
 	if(operating == 1) //emag again
 		operating = 0
 	if(autoclose)
@@ -227,7 +216,6 @@
 
 	if(visible)
 		SetOpacity(1)
-	update_nearby_tiles()
 
 	sleep(10)
 	operating = 0
@@ -255,8 +243,6 @@
 	f4.density = 0
 	f4.SetOpacity(0)
 
-	update_nearby_tiles()
-
 	if(operating == 1) //emag again
 		operating = 0
 	if(autoclose)
@@ -283,7 +269,6 @@
 
 	if(visible)
 		SetOpacity(1)
-	update_nearby_tiles()
 
 	sleep(10)
 	operating = 0
@@ -432,7 +417,7 @@
 	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
-		/turf/simulated/wall,
+		/turf/closed/wall,
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 

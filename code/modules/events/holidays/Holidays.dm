@@ -158,11 +158,11 @@ var/global/Holiday = null
 			return
 
 		if("Easter")		//I'll make this into some helper procs at some point
-/*			var/list/turf/simulated/floor/Floorlist = list()
-			for(var/turf/simulated/floor/T)
+/*			var/list/turf/open/floor/Floorlist = list()
+			for(var/turf/open/floor/T)
 				if(T.contents)
 					Floorlist += T
-			var/turf/simulated/floor/F = Floorlist[rand(1,Floorlist.len)]
+			var/turf/open/floor/F = Floorlist[rand(1,Floorlist.len)]
 			Floorlist = null
 			var/obj/structure/closet/C = locate(/obj/structure/closet) in F
 			var/obj/item/reagent_container/food/snacks/chocolateegg/wrapped/Egg

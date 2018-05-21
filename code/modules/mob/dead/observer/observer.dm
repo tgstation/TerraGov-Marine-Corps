@@ -87,7 +87,7 @@
 		if(target)
 			ManualFollow(target)
 
-/mob/dead/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/mob/dead/CanPass(atom/movable/mover, turf/target)
 	return 1
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
@@ -403,24 +403,23 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!istype(usr, /mob/dead/observer)) return
 
 	// Shamelessly copied from the Gas Analyzers
-	if (!( istype(usr.loc, /turf) ))
+	if (!( istype(loc, /turf) ))
 		return
 
-	var/datum/gas_mixture/environment = usr.loc.return_air()
+	var/turf/T = loc
 
-	var/pressure = environment.return_pressure()
-	var/total_moles = environment.total_moles
+	var/pressure = T.return_pressure()
+	var/env_temperature = T.return_temperature()
+	var/env_gas = T.return_gas()
 
 	src << "\blue <B>Results:</B>"
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		src << "\blue Pressure: [round(pressure,0.1)] kPa"
 	else
 		src << "\red Pressure: [round(pressure,0.1)] kPa"
-	if(total_moles)
-		for(var/g in environment.gas)
-			src << "\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"
-		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C"
-		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
+
+	src << "\blue Gas type: [env_gas]"
+	src << "\blue Temperature: [round(env_temperature-T0C,0.1)]&deg;C"
 
 
 /mob/dead/observer/verb/toggle_zoom()
@@ -535,7 +534,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	var/turf/simulated/T = src.loc
+	var/turf/T = src.loc
 	if (direction != "Here")
 		T = get_step(T,text2dir(direction))
 

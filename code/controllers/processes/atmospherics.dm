@@ -4,11 +4,6 @@ datum/controller/process/atmospherics/setup()
 	name = "Atmospherics"
 	schedule_interval = 25 // 2.5 seconds
 
-
-	if(!air_master)
-		air_master = new /datum/controller/air_system()
-		air_master.Setup()
-
 	world << "\red \b Initializing pipe networks"
 	sleep(-1)
 	for (var/obj/machinery/atmospherics/machine in machines)
@@ -26,13 +21,4 @@ datum/controller/process/atmospherics/setup()
 			T.broadcast_status()
 
 datum/controller/process/atmospherics/doWork()
-	air_master.Tick()
-
-	var/i = 1
-	while(i<=pipe_networks.len)
-		var/datum/pipe_network/Network = pipe_networks[i]
-		if(Network)
-			Network.process()
-			i++
-			continue
-		pipe_networks.Cut(i,i+1)
+	return

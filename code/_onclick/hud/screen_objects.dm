@@ -567,7 +567,6 @@
 					var/list/nicename = null
 					var/list/tankcheck = null
 					var/breathes = "oxygen"    //default, we'll check later
-					var/list/contents = list()
 
 					if(ishuman(C))
 						var/mob/living/carbon/human/H = C
@@ -580,50 +579,33 @@
 						nicename = list("Right Hand", "Left Hand", "Back")
 						tankcheck = list(C.r_hand, C.l_hand, C.back)
 
+					var/best = 0
+					var/bestpressure = 0
+
 					for(var/i=1, i<tankcheck.len+1, ++i)
 						if(istype(tankcheck[i], /obj/item/tank))
 							var/obj/item/tank/t = tankcheck[i]
-							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
-								contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
-								continue					//in it, so we're going to believe the tank is what it says it is
-							switch(breathes)
-																//These tanks we're sure of their contents
-								if("nitrogen") 							//So we're a bit more picky about them.
+							var/goodtank
+							if(t.gas_type == GAS_TYPE_N2O) //anesthetic
+								goodtank = TRUE
+							else
+								switch(breathes)
 
-									if(t.air_contents.gas["nitrogen"] && !t.air_contents.gas["oxygen"])
-										contents.Add(t.air_contents.gas["nitrogen"])
-									else
-										contents.Add(0)
+									if("nitrogen")
+										if(t.gas_type == GAS_TYPE_NITROGEN)
+											goodtank = TRUE
 
-								if ("oxygen")
-									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["phoron"])
-										contents.Add(t.air_contents.gas["oxygen"])
-									else
-										contents.Add(0)
+									if ("oxygen")
+										if(t.gas_type == GAS_TYPE_OXYGEN || t.gas_type == GAS_TYPE_AIR)
+											goodtank = TRUE
 
-								// No races breath this, but never know about downstream servers.
-								if ("carbon dioxide")
-									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["phoron"])
-										contents.Add(t.air_contents.gas["carbon_dioxide"])
-									else
-										contents.Add(0)
-
-
-						else
-							//no tank so we set contents to 0
-							contents.Add(0)
-
-					//Alright now we know the contents of the tanks so we have to pick the best one.
-
-					var/best = 0
-					var/bestcontents = 0
-					for(var/i=1, i <  contents.len + 1 , ++i)
-						if(!contents[i])
-							continue
-						if(contents[i] > bestcontents)
-							best = i
-							bestcontents = contents[i]
-
+									if ("carbon dioxide")
+										if(t.gas_type == GAS_TYPE_CO2)
+											goodtank = TRUE
+							if(goodtank)
+								if(t.pressure >= 20 && t.pressure > bestpressure)
+									best = i
+									bestpressure = t.pressure
 
 					//We've determined the best container now we set it as our internals
 

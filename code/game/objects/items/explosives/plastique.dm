@@ -28,13 +28,13 @@
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
-	if(istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/simulated/floor))
+	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/open))
 		r_FAL
 	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
 		if(O.unacidable) r_FAL
-	if(istype(target, /turf/simulated/wall))
-		var/turf/simulated/wall/W = target
+	if(istype(target, /turf/closed/wall))
+		var/turf/closed/wall/W = target
 		if(W.hull)
 			r_FAL
 	if(istype(target, /obj/structure/window))

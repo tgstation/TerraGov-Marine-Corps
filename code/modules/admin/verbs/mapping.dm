@@ -131,7 +131,6 @@ var/list/debug_verbs = list(
         /client/proc/count_objects_on_z_level,
         /client/proc/count_objects_all,
         /client/proc/cmd_assume_direct_control,
-        /client/proc/jump_to_dead_group,
         /client/proc/startSinglo,
         /client/proc/ticklag,
         /client/proc/cmd_admin_grantfullaccess,
@@ -145,13 +144,7 @@ var/list/debug_verbs = list(
         /client/proc/kill_air_processing,
         /client/proc/disable_communication,
         /client/proc/disable_movement,
-        /client/proc/Zone_Info,
-        /client/proc/Test_ZAS_Connection,
-        /client/proc/ZoneTick,
-        /client/proc/rebootAirMaster,
         /client/proc/hide_debug_verbs,
-        /client/proc/testZAScolors,
-        /client/proc/testZAScolors_remove,
         /client/proc/setup_supermatter_engine,
         /client/proc/view_power_update_stats_area,
         /client/proc/view_power_update_stats_machines,
@@ -184,100 +177,7 @@ var/list/debug_verbs = list(
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/var/list/testZAScolors_turfs = list()
-/client/var/list/testZAScolors_zones = list()
-/client/var/usedZAScolors = 0
-/client/var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
-	testZAScolors_zones += Z
-	if(recurse_level > 10)
-		return
-	var/icon/yellow = new('icons/misc/debug_group.dmi', "yellow")
-
-	for(var/turf/T in Z.contents)
-		images += image(yellow, T, "zasdebug", TURF_LAYER)
-		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in Z.edges)
-		var/zone/connected = edge.get_connected_zone(Z)
-		if(connected in testZAScolors_zones)
-			continue
-		recurse_zone(connected,recurse_level+1)
-
-
-/client/proc/testZAScolors()
-	set category = "ZAS"
-	set name = "Check ZAS connections"
-
-	if(!check_rights(R_DEBUG)) return
-	testZAScolors_remove()
-
-	var/turf/simulated/location = get_turf(usr)
-
-	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
-		usr << "\red this debug tool cannot be used from space"
-		return
-
-	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to make thousands of these.
-	var/icon/green = new('icons/misc/debug_group.dmi', "green")
-	var/icon/blue = new('icons/misc/debug_group.dmi', "blue")
-
-	if(!usedZAScolors)
-		usr << "ZAS Test Colors"
-		usr << "Green = Zone you are standing in"
-		usr << "Blue = Connected zone to the zone you are standing in"
-		usr << "Yellow = A zone that is connected but not one adjacent to your connected zone"
-		usr << "Red = Not connected"
-		usedZAScolors = 1
-
-	testZAScolors_zones += location.zone
-	for(var/turf/T in location.zone.contents)
-		images += image(green, T,"zasdebug", TURF_LAYER)
-		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in location.zone.edges)
-		var/zone/Z = edge.get_connected_zone(location.zone)
-		testZAScolors_zones += Z
-		for(var/turf/T in Z.contents)
-			images += image(blue, T,"zasdebug",TURF_LAYER)
-			testZAScolors_turfs += T
-		for(var/connection_edge/zone/z_edge in Z.edges)
-			var/zone/connected = z_edge.get_connected_zone(Z)
-			if(connected in testZAScolors_zones)
-				continue
-			recurse_zone(connected,1)
-
-	for(var/turf/T in range(25,location))
-		if(!istype(T))
-			continue
-		if(T in testZAScolors_turfs)
-			continue
-		images += image(red, T, "zasdebug", TURF_LAYER)
-		testZAScolors_turfs += T
-
-/client/proc/testZAScolors_remove()
-	set category = "ZAS"
-	set name = "Remove ZAS connection colors"
-
-	testZAScolors_turfs.Cut()
-	testZAScolors_zones.Cut()
-
-	if(images.len)
-		for(var/image/i in images)
-			if(i.icon_state == "zasdebug")
-				images.Remove(i)
-
-/client/proc/rebootAirMaster()
-	set category = "ZAS"
-	set name = "Reboot ZAS"
-
-	if(alert("This will destroy and remake all zone geometry on the whole map.","Reboot ZAS","Reboot ZAS","Nevermind") == "Reboot ZAS")
-		var/datum/controller/air_system/old_air = air_master
-		for(var/zone/zone in old_air.zones)
-			zone.c_invalidate()
-		cdel(old_air)
-		air_master = new
-		air_master.Setup()
-		spawn air_master.Start()
 
 
 /client/proc/count_objects_on_z_level()

@@ -229,13 +229,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if (!( istype(T, /turf) ))
 		return
 
-	var/datum/gas_mixture/env = T.return_air()
+	var/list/air_info = T.return_air()
 
 	var/t = "\blue Coordinates: [T.x],[T.y],[T.z]\n"
-	t += "\red Temperature: [env.temperature]\n"
-	t += "\red Pressure: [env.return_pressure()]kPa\n"
-	for(var/g in env.gas)
-		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n"
+	t += "\red Temperature: [air_info[2]]\n"
+	t += "\red Pressure: [air_info[3]]kPa\n"
+	t += "\blue Gas Type: [air_info[1]]\n"
 
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -561,7 +560,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(Rad.anchored)
 			if(!Rad.P)
 				var/obj/item/tank/phoron/Phoron = new/obj/item/tank/phoron(Rad)
-				Phoron.air_contents.gas["phoron"] = 70
+				Phoron.gas_type = GAS_TYPE_PHORON
+				Phoron.pressure = ONE_ATMOSPHERE * 3
 				Rad.drainratio = 0
 				Rad.P = Phoron
 				Phoron.loc = Rad
@@ -604,7 +604,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 				var/obj/item/tank/phoron/Phoron = new/obj/item/tank/phoron(Rad)
 
-				Phoron.air_contents.gas["phoron"] = 29.1154	//This is a full tank if you filled it from a canister
+				Phoron.pressure = ONE_ATMOSPHERE * 4
 				Rad.P = Phoron
 
 				Phoron.loc = Rad
@@ -612,17 +612,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				if(!Rad.active)
 					Rad.toggle_power()
 				Rad.update_icon()
-
-			else if(istype(M,/obj/machinery/atmospherics/binary/pump))	//Turning on every pump.
-				var/obj/machinery/atmospherics/binary/pump/Pump = M
-				if(Pump.name == "Engine Feed" && response == "Setup Completely")
-					found_the_pump = 1
-					Pump.air2.gas["nitrogen"] = 3750	//The contents of 2 canisters.
-					Pump.air2.temperature = 50
-					Pump.air2.update_values()
-				Pump.on=1
-				Pump.target_pressure = 4500
-				Pump.update_icon()
 
 			else if(istype(M,/obj/machinery/power/supermatter))
 				SM = M
@@ -644,10 +633,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	if(!found_the_pump && response == "Setup Completely")
 		src << "\red Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter"
-		var/turf/simulated/T = SM.loc
-		T.zone.air.gas["nitrogen"] += 450
-		T.zone.air.temperature = 50
-		T.zone.air.update_values()
+
 
 
 	log_admin("[key_name(usr)] setup the supermatter engine [response == "Setup except coolant" ? "without coolant" : ""]")
@@ -690,47 +676,3 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
 		alert("Invalid mob")
-
-/client/proc/global_fix_atmos()
-	set name = "Global Fix Air"
-	set category = "Debug"
-	set desc = "Atmos panic button"
-
-	var/a = alert("WARNING: THIS WILL RESET ALL AIR GROUPS OVER 1000 kPa TO STANDARD TEMPERATURE AND AIR MAKEUP. THERE IS A MEDIUM CHANCE THIS WILL LAG THE FUCK OUT OF THE GAME. DO YOU WISH TO PROCEED?",, "Yes", "No")
-
-	if(a != "Yes") return
-
-	log_admin("[src] has hit the atmos panic button. Good luck, as God save us all")
-
-	var/i
-	var/zone/Z
-	var/datum/gas_mixture/G
-	var/savefile/S = new("atmos_logging.sav")
-
-	S["logging [time2text(world.realtime)]"] << "[time2text(world.realtime)] :: verb used by [src]"
-
-	for(i in air_master.zones)
-		Z = i
-		if(!istype(Z)) continue
-		G = Z.air
-		if(!istype(G)) continue
-		if(G.return_pressure() > 1000)
-			for(var/g in G.gas)
-				S["logging \ref[G] g"] << "[gas_data.name[g]]: [round((G.gas[g] / G.total_moles) * 100)]% ([round(G.gas[g], 0.01)])"
-			G.gas["sleeping_agent_archived"] = null
-			G.gas["sleeping_agent"] = 0
-			G.gas["phoron_archived"] = null
-			G.gas["phoron"] = 0
-			G.gas["carbon_dioxide"] = 0
-			G.gas["carbon_dioxide_archived"] = null
-			G.gas["oxygen"] = 21.8366
-			G.gas["oxygen_archived"] = null
-			G.gas["nitrogen"] = 82.1472
-			G.gas["nitrogen_archived"] = null
-			G.gas["temperature_archived"] = null
-			G.temperature = 293.15
-			G.update_values()
-
-	S.ExportText("/", file("atmos_logging.txt"))
-
-	src << "<font size=10 color=red>TELL MADSNAILDISEASE YOU USED THIS!</font>"

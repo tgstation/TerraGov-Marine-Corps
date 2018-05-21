@@ -8,7 +8,7 @@
 
 		var/turf/T = user.loc
 
-		if(T.intact || !istype(T, /turf/simulated/floor))
+		if(T.intact_tile || !istype(T, /turf/open/floor))
 			return
 
 		if(get_dist(src, user) > 1)
@@ -76,7 +76,7 @@
 
 	var/turf/T = src.loc			// hide if turf is not intact
 
-	if(level==1) hide(T.intact)
+	if(level==1) hide(T.intact_tile)
 	cable_list += src
 	update_icon()
 
@@ -109,7 +109,7 @@
 /obj/structure/cable/attackby(obj/item/W, mob/user)
 
 	var/turf/T = src.loc
-	if(T.intact)
+	if(T.intact_tile)
 		return
 
 	if(istype(W, /obj/item/tool/wirecutters))
@@ -136,6 +136,7 @@
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
 		log_admin("[key_name(user)] cut a wire at ([x],[y],[z])")
 		message_admins("[key_name(user)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) cut a wire at ([x],[y],[z]) - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>")
+
 
 ///// Z-Level Stuff
 		if(src.d1 == 11 || src.d2 == 11)

@@ -430,18 +430,16 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(mode==3)
 		var/turf/T = get_turf(user.loc)
-		if(!isnull(T))
-			var/datum/gas_mixture/environment = T.return_air()
+		if(istype(T))
 
-			var/pressure = environment.return_pressure()
-			var/total_moles = environment.total_moles
+			var/pressure = T.return_pressure()
 
-			if (total_moles)
-				var/o2_level = environment.gas["oxygen"]/total_moles
-				var/n2_level = environment.gas["nitrogen"]/total_moles
-				var/co2_level = environment.gas["carbon_dioxide"]/total_moles
-				var/phoron_level = environment.gas["phoron"]/total_moles
-				var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+			if (pressure > 0)
+				var/o2_level = 0
+				var/n2_level = 0
+				var/co2_level = 0
+				var/phoron_level = 0
+				var/unknown_level =  0
 				data["aircontents"] = list(\
 					"pressure" = "[round(pressure,0.1)]",\
 					"nitrogen" = "[round(n2_level*100,0.1)]",\
@@ -449,7 +447,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					"carbon_dioxide" = "[round(co2_level*100,0.1)]",\
 					"phoron" = "[round(phoron_level*100,0.01)]",\
 					"other" = "[round(unknown_level, 0.01)]",\
-					"temp" = "[round(environment.temperature-T0C,0.1)]",\
+					"temp" = "[round(T.return_temperature()-T0C,0.1)]",\
 					"reading" = 1\
 					)
 		if(isnull(data["aircontents"]))
@@ -1096,40 +1094,23 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				user << "\blue No significant chemical agents found in [A]."
 
 		if(5)
-			if((istype(A, /obj/item/tank)) || (istype(A, /obj/machinery/portable_atmospherics)))
+
+			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
 				var/obj/icon = A
 				for (var/mob/O in viewers(user, null))
 					O << "\red [user] has used [src] on \icon[icon] [A]"
-				var/pressure = A:air_contents.return_pressure()
-
-				var/total_moles = A:air_contents.total_moles
+				var/pressure = A.return_pressure()
+				var/temperature = A.return_temperature()
+				var/gas = A.return_gas()
 
 				user << "\blue Results of analysis of \icon[icon]"
-				if (total_moles>0)
+				if (pressure>0)
 					user << "\blue Pressure: [round(pressure,0.1)] kPa"
-					for(var/g in A:air_contents.gas)
-						user << "\blue [gas_data.name[g]]: [round((A:air_contents.gas[g] / total_moles) * 100)]%"
-					user << "\blue Temperature: [round(A:air_contents.temperature-T0C)]&deg;C"
+					user << "\blue Gas Type: [gas]"
+					user << "\blue Temperature: [round(temperature-T0C)]&deg;C"
 				else
 					user << "\blue Tank is empty!"
 
-			if (istype(A, /obj/machinery/atmospherics/pipe/tank))
-				var/obj/icon = A
-				for (var/mob/O in viewers(user, null))
-					O << "\red [user] has used [src] on \icon[icon] [A]"
-
-				var/obj/machinery/atmospherics/pipe/tank/T = A
-				var/pressure = T.parent.air.return_pressure()
-				var/total_moles = T.parent.air.total_moles
-
-				user << "\blue Results of analysis of \icon[icon]"
-				if (total_moles>0)
-					user << "\blue Pressure: [round(pressure,0.1)] kPa"
-					for(var/g in T.parent.air.gas)
-						user << "\blue [gas_data.name[g]]: [round((T.parent.air.gas[g] / total_moles) * 100)]%"
-					user << "\blue Temperature: [round(T.parent.air.temperature-T0C)]&deg;C"
-				else
-					user << "\blue Tank is empty!"
 
 	if (!scanmode && istype(A, /obj/item/paper) && owner)
 		// JMO 20140705: Makes scanned document show up properly in the notes. Not pretty for formatted documents,
@@ -1186,7 +1167,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(!src.detonate) return
 	var/turf/T = get_turf(src.loc)
 	if(T)
-		T.hotspot_expose(700,125)
 		explosion(T, 0, 0, 1, rand(1,2))
 	return
 

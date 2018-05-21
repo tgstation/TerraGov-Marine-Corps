@@ -86,9 +86,9 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/simulated/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
+/turf/closed/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
 
-	if(!istype(src,/turf/simulated/wall))
+	if(!istype(src,/turf/closed/wall))
 		user << "\red You can't place this here!"
 		return
 
@@ -116,7 +116,7 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	sleep(17)
 	if(!D)	return
 
-	if(istype(src,/turf/simulated/wall) && user && user.loc == temp_loc)//Let's check if everything is still there
+	if(istype(src,/turf/closed/wall) && user && user.loc == temp_loc)//Let's check if everything is still there
 		user << "<span class='notice'>You place the poster!</span>"
 	else
 		D.roll_and_drop(temp_loc)

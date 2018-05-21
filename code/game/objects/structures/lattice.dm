@@ -10,9 +10,7 @@
 
 /obj/structure/lattice/New()
 	..()
-///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/floor/open)))
-///// Z-Level Stuff
+	if(!istype(src.loc, /turf/open/space))
 		cdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
@@ -63,7 +61,7 @@
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
-	//if(!(istype(src.loc, /turf/space)))
+	//if(!(istype(src.loc, /turf/open/space)))
 	//	cdel(src)
 	spawn(1)
 		overlays = list()
@@ -74,7 +72,7 @@
 			if(locate(/obj/structure/lattice, get_step(src, direction)))
 				dir_sum += direction
 			else
-				if(!(istype(get_step(src, direction), /turf/space)))
+				if(!(istype(get_step(src, direction), /turf/open/space)))
 					dir_sum += direction
 
 		icon_state = "lattice[dir_sum]"

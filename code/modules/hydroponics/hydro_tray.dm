@@ -140,8 +140,7 @@
 
 	..()
 
-/obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
+/obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target)
 	if(!density) return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
@@ -212,44 +211,13 @@
 	// First, handle an open system or an unconnected closed system.
 
 	var/turf/T = loc
-	var/datum/gas_mixture/environment
-
-	// If we're closed, take from our internal sources.
-	if(closed_system && (connected_port || holding))
-		environment = air_contents
-
-	// If atmos input is not there, grab from turf.
-	if(!environment)
-		if(istype(T))
-			environment = T.return_air()
-
-	if(!environment) return
-
-	// Handle gas consumption.
-	if(seed.consume_gasses && seed.consume_gasses.len)
-		var/missing_gas = 0
-		for(var/gas in seed.consume_gasses)
-			if(environment && environment.gas && environment.gas[gas] && \
-			 environment.gas[gas] >= seed.consume_gasses[gas])
-				environment.adjust_gas(gas,-seed.consume_gasses[gas],1)
-			else
-				missing_gas++
-
-		if(missing_gas > 0)
-			health -= missing_gas * HYDRO_SPEED_MULTIPLIER
 
 	// Process it.
-	var/pressure = environment.return_pressure()
 	if(pressure < seed.lowkpa_tolerance || pressure > seed.highkpa_tolerance)
 		health -= healthmod
 
-	if(abs(environment.temperature - seed.ideal_heat) > seed.heat_tolerance)
+	if(abs(temperature - seed.ideal_heat) > seed.heat_tolerance)
 		health -= healthmod
-
-	// Handle gas production.
-	if(seed.exude_gasses && seed.exude_gasses.len)
-		for(var/gas in seed.exude_gasses)
-			environment.adjust_gas(gas, max(1,round((seed.exude_gasses[gas]*seed.potency)/seed.exude_gasses.len)))
 
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
 	if (closed_system && connected_port)
@@ -737,18 +705,6 @@
 		if(!istype(src,/obj/machinery/portable_atmospherics/hydroponics/soil))
 
 			var/turf/T = loc
-			var/datum/gas_mixture/environment
-
-			if(closed_system && (connected_port || holding))
-				environment = air_contents
-
-			if(!environment)
-				if(istype(T))
-					environment = T.return_air()
-
-			if(!environment) //We're in a crate or nullspace, bail out.
-				return
-
 			var/area/A = T.loc
 			var/light_available
 			if(A)
@@ -757,7 +713,7 @@
 				else
 					light_available =  5
 
-			usr << "The tray's sensor suite is reporting a light level of [light_available] lumens and a temperature of [environment.temperature]K."
+			usr << "The tray's sensor suite is reporting a light level of [light_available] lumens and a temperature of [temperature]K."
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"

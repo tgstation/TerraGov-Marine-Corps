@@ -186,30 +186,30 @@
 	switch(buildmode)
 		if(1)
 			if(istype(object,/turf) && mods["left"] && !mods["alt"] && !mods["ctrl"] )
-				if(istype(object,/turf/space))
+				if(istype(object,/turf/open/space))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/floor)
+					T.ChangeTurf(/turf/open/floor)
 					return
-				else if(istype(object,/turf/simulated/floor))
+				else if(istype(object,/turf/open/floor))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/wall)
+					T.ChangeTurf(/turf/closed/wall)
 					return
-				else if(istype(object,/turf/simulated/wall))
+				else if(istype(object,/turf/closed/wall))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/wall/r_wall)
+					T.ChangeTurf(/turf/closed/wall/r_wall)
 					return
 			else if(mods["right"])
-				if(istype(object,/turf/simulated/wall))
+				if(istype(object,/turf/closed/wall))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/floor)
+					T.ChangeTurf(/turf/open/floor)
 					return
-				else if(istype(object,/turf/simulated/floor))
+				else if(istype(object,/turf/open/floor))
 					var/turf/T = object
-					T.ChangeTurf(/turf/space)
+					T.ChangeTurf(/turf/open/space)
 					return
-				else if(istype(object,/turf/simulated/wall/r_wall))
+				else if(istype(object,/turf/closed/wall/r_wall))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/wall)
+					T.ChangeTurf(/turf/closed/wall)
 					return
 				else if(istype(object,/obj))
 					cdel(object)

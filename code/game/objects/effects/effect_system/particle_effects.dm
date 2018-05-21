@@ -7,7 +7,7 @@
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
 	unacidable = 1//So effect are not targeted by alien acid.
-	flags_pass = PASSTABLE|PASSGRILLE
+	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
 
 	//Fire
 /obj/effect/particle_effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
@@ -36,7 +36,7 @@
 
 /obj/effect/particle_effect/fire/proc/extinguish()
 	spawn(life * 10)
-		if (istype(loc, /turf/simulated))
+		if (istype(loc, /turf))
 			SetLuminosity(0)
 		cdel(src)
 

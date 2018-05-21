@@ -1044,14 +1044,6 @@ var/global/image/busy_indicator_hostile
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
-					var/turf/simulated/ST = T
-					if(istype(ST) && ST.zone)
-						var/turf/simulated/SX = X
-						if(!SX.air)
-							SX.make_air()
-						SX.air.copy_from(ST.zone.air)
-						ST.zone.remove(ST)
-
 					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
 					if(direction && findtext(X.icon_state, "swall_s"))
 
@@ -1067,7 +1059,7 @@ var/global/image/busy_indicator_hostile
 
 						// Find a new turf to take on the property of
 						var/turf/nextturf = get_step(corner, direction)
-						if(!nextturf || !istype(nextturf, /turf/space))
+						if(!nextturf || !istype(nextturf, /turf/open/space))
 							nextturf = get_step(corner, turn(direction, 180))
 
 
@@ -1101,7 +1093,7 @@ var/global/image/busy_indicator_hostile
 					if(turftoleave)
 						fromupdate += T.ChangeTurf(turftoleave)
 					else
-						T.ChangeTurf(/turf/space)
+						T.ChangeTurf(/turf/open/space)
 
 					refined_src -= T
 					refined_trg -= B
@@ -1110,7 +1102,7 @@ var/global/image/busy_indicator_hostile
 	var/list/doors = new/list()
 
 	if(toupdate.len)
-		for(var/turf/simulated/T1 in toupdate)
+		for(var/turf/T1 in toupdate)
 			for(var/obj/machinery/door/D2 in T1)
 				doors += D2
 			/*if(T1.parent)
@@ -1119,18 +1111,13 @@ var/global/image/busy_indicator_hostile
 				air_master.tiles_to_update += T1*/
 
 	if(fromupdate.len)
-		for(var/turf/simulated/T2 in fromupdate)
+		for(var/turf/T2 in fromupdate)
 			for(var/obj/machinery/door/D2 in T2)
 				doors += D2
 			/*if(T2.parent)
 				air_master.groups_to_rebuild += T2.parent
 			else
 				air_master.tiles_to_update += T2*/
-
-	for(var/obj/O in doors)
-		O:update_nearby_tiles(1)
-
-
 
 proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 	if(!original)
@@ -1208,7 +1195,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					var/old_icon1 = T.icon
 
 					if(platingRequired)
-						if(istype(B, /turf/space))
+						if(istype(B, /turf/open/space))
 							continue moving
 
 					var/turf/X = new T.type(B)
@@ -1268,25 +1255,6 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					refined_src -= T
 					refined_trg -= B
 					continue moving
-
-
-
-
-	var/list/doors = new/list()
-
-	if(toupdate.len)
-		for(var/turf/simulated/T1 in toupdate)
-			for(var/obj/machinery/door/D2 in T1)
-				doors += D2
-			/*if(T1.parent)
-				air_master.groups_to_rebuild += T1.parent
-			else
-				air_master.tiles_to_update += T1*/
-
-	for(var/obj/O in doors)
-		O:update_nearby_tiles(1)
-
-
 
 
 	return copiedobjs
@@ -1666,3 +1634,4 @@ var/list/WALLITEMS = list(
 			y += ystep
 			error -= deltax
 	return line
+

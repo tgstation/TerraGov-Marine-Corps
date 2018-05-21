@@ -12,7 +12,6 @@
 	var/canister_color = "yellow"
 	var/can_label = 1
 	var/filled = 0.5
-	pressure_resistance = 7*ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
 	volume = 1000
 	use_power = 0
@@ -24,37 +23,48 @@
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "Canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
+	gas_type = GAS_TYPE_NITROGEN
+
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
+	gas_type = GAS_TYPE_OXYGEN
+
 /obj/machinery/portable_atmospherics/canister/phoron
 	name = "Canister \[Phoron\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
 	name = "Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/air
 	name = "Canister \[Air\]"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
+	gas_type = GAS_TYPE_AIR
+
 /obj/machinery/portable_atmospherics/canister/air/airlock
 	filled = 0.05
+
 /obj/machinery/portable_atmospherics/canister/empty/oxygen
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
+
 /obj/machinery/portable_atmospherics/canister/empty/phoron
 	name = "Canister \[Phoron\]"
 	icon_state = "orange"
@@ -63,17 +73,15 @@
 /obj/machinery/portable_atmospherics/canister/proc/check_change()
 	var/old_flag = update_flag
 	update_flag = 0
-	if(holding)
-		update_flag |= 1
+
 	if(connected_port)
 		update_flag |= 2
 
-	var/tank_pressure = air_contents.return_pressure()
-	if(tank_pressure < 10)
+	if(pressure < 10)
 		update_flag |= 4
-	else if(tank_pressure < ONE_ATMOSPHERE)
+	else if(pressure < ONE_ATMOSPHERE)
 		update_flag |= 8
-	else if(tank_pressure < 15*ONE_ATMOSPHERE)
+	else if(pressure < 15*ONE_ATMOSPHERE)
 		update_flag |= 16
 	else
 		update_flag |= 32
@@ -86,7 +94,6 @@
 /obj/machinery/portable_atmospherics/canister/update_icon()
 /*
 update_flag
-1 = holding
 2 = connected_port
 4 = tank_pressure < 10
 8 = tank_pressure < ONE_ATMOS
@@ -121,7 +128,7 @@ update_flag
 		overlays += "can-o3"
 	return
 
-/obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/machinery/portable_atmospherics/canister/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
 		health -= 5
 		healthcheck()
@@ -131,17 +138,10 @@ update_flag
 		return 1
 
 	if (src.health <= 10)
-		var/atom/location = src.loc
-		location.assume_air(air_contents)
-
 		src.destroyed = 1
 		playsound(src.loc, 'sound/effects/spray.ogg', 25, 1, 5)
 		src.density = 0
 		update_icon()
-
-		if (src.holding)
-			src.holding.loc = src.loc
-			src.holding = null
 
 		return 1
 	else
@@ -153,53 +153,23 @@ update_flag
 
 	..()
 
-	if(valve_open)
-		var/datum/gas_mixture/environment
-		if(holding)
-			environment = holding.air_contents
-		else
-			environment = loc.return_air()
-
-		var/env_pressure = environment.return_pressure()
-		var/pressure_delta = min(release_pressure - env_pressure, (air_contents.return_pressure() - env_pressure)/2)
-		//Can not have a pressure delta that would cause environment pressure > tank pressure
-
-		var/transfer_moles = 0
-		if((air_contents.temperature > 0) && (pressure_delta > 0))
-			transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
-
-			//Actually transfer the gas
-			var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
-
-			if(holding)
-				environment.merge(removed)
-			else
-				loc.assume_air(removed)
-			src.update_icon()
-
-	if(air_contents.return_pressure() < 1)
+	if(pressure < 1)
 		can_label = 1
 	else
 		can_label = 0
 
-	if(air_contents.temperature > PHORON_FLASHPOINT)
-		air_contents.zburn()
-	return
 
 /obj/machinery/portable_atmospherics/canister/return_air()
-	return air_contents
+	return list(gas_type, temperature, pressure)
 
-/obj/machinery/portable_atmospherics/canister/proc/return_temperature()
-	var/datum/gas_mixture/GM = src.return_air()
-	if(GM && GM.volume>0)
-		return GM.temperature
-	return 0
+/obj/machinery/portable_atmospherics/canister/return_temperature()
+	return temperature
 
-/obj/machinery/portable_atmospherics/canister/proc/return_pressure()
-	var/datum/gas_mixture/GM = src.return_air()
-	if(GM && GM.volume>0)
-		return GM.return_pressure()
-	return 0
+/obj/machinery/portable_atmospherics/canister/return_pressure()
+	return pressure
+
+/obj/machinery/portable_atmospherics/canister/return_gas()
+	return gas_type
 
 /obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.ammo.damage)
@@ -215,17 +185,22 @@ update_flag
 		src.add_fingerprint(user)
 		healthcheck()
 
-	if(istype(user, /mob/living/silicon/robot) && istype(W, /obj/item/tank/jetpack))
-		var/datum/gas_mixture/thejetpack = W:air_contents
-		var/env_pressure = thejetpack.return_pressure()
-		var/pressure_delta = min(10*ONE_ATMOSPHERE - env_pressure, (air_contents.return_pressure() - env_pressure)/2)
-		//Can not have a pressure delta that would cause environment pressure > tank pressure
-		var/transfer_moles = 0
-		if((air_contents.temperature > 0) && (pressure_delta > 0))
-			transfer_moles = pressure_delta*thejetpack.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)//Actually transfer the gas
-			var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
-			thejetpack.merge(removed)
-			user << "You pulse-pressurize your jetpack from the tank."
+	else if(istype(user, /mob/living/silicon/robot) && istype(W, /obj/item/tank/jetpack))
+		var/obj/item/tank/jetpack/JT = W
+		if(pressure > JT.pressure_full)
+			JT.gas_type = gas_type
+			JT.pressure = JT.pressure_full
+			pressure -= 10
+			user << "You pulse-pressurize your jetpack from [src]."
+		return
+
+	else if(istype(W, /obj/item/tank))
+		var/obj/item/tank/TAK = W
+		if(pressure > TAK.pressure_full)
+			TAK.gas_type = gas_type
+			TAK.pressure = TAK.pressure_full
+			pressure -= 10
+			user << "You pulse-pressurize [TAK] from [src]."
 		return
 
 	..()
@@ -250,15 +225,13 @@ update_flag
 	data["name"] = name
 	data["canLabel"] = can_label ? 1 : 0
 	data["portConnected"] = connected_port ? 1 : 0
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
+	data["tankPressure"] = round(pressure)
 	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
 	data["minReleasePressure"] = round(ONE_ATMOSPHERE/10)
 	data["maxReleasePressure"] = round(10*ONE_ATMOSPHERE)
 	data["valveOpen"] = valve_open ? 1 : 0
 
-	data["hasHoldingTank"] = holding ? 1 : 0
-	if (holding)
-		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
+	data["hasHoldingTank"] = 0
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -286,27 +259,10 @@ update_flag
 
 	if(href_list["toggle"])
 		if (valve_open)
-			if (holding)
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
-			else
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
+			release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
 		else
-			if (holding)
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
-			else
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
-				log_open()
+			release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
 		valve_open = !valve_open
-
-	if (href_list["remove_tank"])
-		if(holding)
-			if (valve_open)
-				valve_open = 0
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
-			if(istype(holding, /obj/item/tank))
-				holding.manipulated_by = usr.real_name
-			holding.loc = loc
-			holding = null
 
 	if (href_list["pressure_adj"])
 		var/diff = text2num(href_list["pressure_adj"])
@@ -338,64 +294,32 @@ update_flag
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/phoron/New()
-
 	..()
-
-	src.air_contents.adjust_gas("phoron", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
-
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/oxygen/New()
-
 	..()
-
-	src.air_contents.adjust_gas("oxygen", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
-
 	..()
-
-	air_contents.adjust_gas("sleeping_agent", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
-
 	src.update_icon()
 	return 1
 
-//Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
-	..()
-	air_contents.gas["sleeping_agent"] = 9*4000
-	spawn(10)
-		var/turf/simulated/location = src.loc
-		if (istype(src.loc))
-			while (!location.air)
-				sleep(10)
-			location.assume_air(air_contents)
-			air_contents = new
-	return 1
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
-
 	..()
-
-	src.air_contents.adjust_gas("nitrogen", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
-
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
-
 	..()
-	src.air_contents.adjust_gas("carbon_dioxide", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 	return 1
 
 
 /obj/machinery/portable_atmospherics/canister/air/New()
-
 	..()
-	src.air_contents.adjust_multi("oxygen", (O2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature), "nitrogen", (N2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
-
 	src.update_icon()
 	return 1

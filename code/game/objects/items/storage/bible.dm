@@ -89,7 +89,7 @@
 */
 /obj/item/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
-/*	if (istype(A, /turf/simulated/floor))
+/*	if (istype(A, /turf/open/floor))
 		user << "\blue You hit the floor with the bible."
 		if(user.mind && (user.mind.assigned_role == "Chaplain"))
 			call(/obj/effect/rune/proc/revealrunes)(src)*/

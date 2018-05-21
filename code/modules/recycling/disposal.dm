@@ -13,7 +13,6 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
-	var/datum/gas_mixture/air_contents	//Internal reservoir
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -23,6 +22,7 @@
 	var/last_sound = 0
 	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
+	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/New()
@@ -35,8 +35,6 @@
 		else
 			trunk.linked = src	//Link the pipe trunk to self
 
-		air_contents = new/datum/gas_mixture()
-		air_contents.volume = PRESSURE_TANK_VOLUME
 		update()
 
 //Attack by item places it in to disposal
@@ -223,9 +221,7 @@
 	else
 		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
 
-	var/per = 100*air_contents.return_pressure()/(SEND_PRESSURE)
-
-	dat += "Pressure: [round(per, 1)]%<BR></body>"
+	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR></body>"
 
 	user.set_interaction(src)
 	user << browse(dat, "window=disposal;size=360x170")
@@ -334,7 +330,7 @@
 
 //Timed process, charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/process()
-	if(!air_contents || (stat & BROKEN)) //Nothing can happen if broken
+	if(stat & BROKEN) //Nothing can happen if broken
 		update_use_power(0)
 		return
 
@@ -349,34 +345,21 @@
 
 	updateDialog()
 
-	if(flush && air_contents.return_pressure() >= SEND_PRESSURE) //Flush can happen even without power
+	if(flush && disposal_pressure >= SEND_PRESSURE) //Flush can happen even without power
 		flush()
 
 	if(mode != 1) //If off or ready, no need to charge
 		update_use_power(1)
-	else if(air_contents.return_pressure() >= SEND_PRESSURE)
+	else if(disposal_pressure >= SEND_PRESSURE)
 		mode = 2 //If full enough, switch to ready mode
 		update()
 	else
 		pressurize() //Otherwise charge
 
 /obj/machinery/disposal/proc/pressurize()
-	if(stat & NOPOWER) //Won't charge if no power
-		update_use_power(0)
-		return
-
-	var/atom/L = loc //Recharging from loc turf
-	var/datum/gas_mixture/env = L.return_air()
-
-	var/power_draw = -1
-	if(env && env.temperature > 0)
-		var/transfer_moles = (PUMP_MAX_FLOW_RATE/env.volume)*env.total_moles //Group_multiplier is divided out here
-		power_draw = pump_gas(src, env, air_contents, transfer_moles, active_power_usage)
-
-	if(power_draw < 0)
-		use_power = 1 //Don't force update - easier on CPU
-	else
-		handle_power_draw(power_draw)
+	if(disposal_pressure < SEND_PRESSURE)
+		disposal_pressure += 5
+	return
 
 //Perform a flush
 /obj/machinery/disposal/proc/flush()
@@ -397,13 +380,13 @@
 	if(wrapcheck == 1)
 		H.tomail = 1
 
-	air_contents = new() //New empty gas resv.
-
 	sleep(10)
 	if(last_sound < world.time + 1)
 		playsound(src, 'sound/machines/disposalflush.ogg', 15, 0)
 		last_sound = world.time
 	sleep(5) //Wait for animation to finish
+
+	disposal_pressure = 0
 
 	if(H)
 		H.init(src)	//Copy the contents of disposer to holder
@@ -436,11 +419,9 @@
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 5, 1)
-
-		H.vent_gas(loc)
 		cdel(H)
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
@@ -452,13 +433,12 @@
 			visible_message("<span class='warning'>[I] bounces off of [src]'s rim!</span>")
 		return 0
 	else
-		return ..(mover, target, height, air_group)
+		return ..()
 
 //Virtual disposal object, travels through pipes in lieu of actual items
 //Contents will be items flushed by the disposal, this allows the gas flushed to be tracked
 /obj/structure/disposalholder
 	invisibility = 101
-	var/datum/gas_mixture/gas = null //Gas used to flush, will appear at exit point
 	var/active = 0	//True if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 2048 //Can travel 2048 steps before going inactive (in case of loops)
@@ -475,7 +455,6 @@
 
 //initialize a holder from the contents of a disposal unit
 /obj/structure/disposalholder/proc/init(var/obj/machinery/disposal/D)
-	gas = D.air_contents// transfer gas resv. into holder object
 
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
@@ -608,10 +587,6 @@
 
 	playsound(src.loc, 'sound/effects/clang.ogg', 25, 0)
 
-//Called to vent all gas in holder to a location
-/obj/structure/disposalholder/proc/vent_gas(var/atom/location)
-	location.assume_air(gas) //Vent all gas to turf
-	return
 
 //Disposal pipes
 /obj/structure/disposalpipe
@@ -684,7 +659,7 @@
 //Update the icon_state to reflect hidden status
 /obj/structure/disposalpipe/proc/update()
 	var/turf/T = loc
-	hide(T.intact && !istype(T, /turf/space)) //Space never hides pipes
+	hide(T.intact_tile && !istype(T, /turf/open/space)) //Space never hides pipes
 
 //Hide called by levelupdate if turf intact status changes, change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
@@ -706,16 +681,15 @@
 		H.active = 0
 		H.loc = src
 		return
-	if(T.intact && istype(T, /turf/simulated/floor)) //intact floor, pop the tile
-		var/turf/simulated/floor/F = T
-		F.burnt	= 1
-		F.intact = 0
-		F.levelupdate()
-		new /obj/item/stack/tile(H)	//Add to holder so it will be thrown with other stuff
-		F.icon_state = "Floor[F.burnt ? "1" : ""]"
+	if(istype(T, /turf/open/floor)) //intact floor, pop the tile
+		var/turf/open/floor/F = T
+		if(!F.is_plating())
+			if(!F.broken && !F.burnt)
+				new F.floor_tile.type(H)//Add to holder so it will be thrown with other stuff
+			F.make_plating()
 
 	if(direction) //Direction is specified
-		if(istype(T, /turf/space)) //If ended in space, then range is unlimited
+		if(istype(T, /turf/open/space)) //If ended in space, then range is unlimited
 			target = get_edge_target_turf(T, direction)
 		else //Otherwise limit to 10 tiles
 			target = get_ranged_target_turf(T, direction, 10)
@@ -728,7 +702,6 @@
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 100, 1)
-			H.vent_gas(T)
 			cdel(H)
 
 	else //No specified direction, so throw in random direction
@@ -744,7 +717,6 @@
 					if(AM)
 						AM.throw_at(target, 5, 1)
 
-			H.vent_gas(T) //All gas vent to turf
 			cdel(H)
 
 //Call to break the pipe, will expel any holder inside at the time then delete the pipe
@@ -805,7 +777,7 @@
 /obj/structure/disposalpipe/attackby(var/obj/item/I, var/mob/user)
 
 	var/turf/T = loc
-	if(T.intact)
+	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
 	add_fingerprint(user)
 	if(istype(I, /obj/item/tool/weldingtool))
@@ -902,16 +874,9 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		var/turf/controllerlocation = locate(1, 1, z)
-		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-			if(controller.up)
-				T = locate(x, y, controller.up_target)
-		if(!T)
-			H.loc = loc
-			return
-		else
-			for(var/obj/structure/disposalpipe/down/F in T)
-				P = F
+		H.loc = loc
+		return
+
 	else
 		T = get_step(loc, H.dir)
 		P = H.findpipe(T)
@@ -952,16 +917,9 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		var/turf/controllerlocation = locate(1, 1, z)
-		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-			if(controller.down)
-				T = locate(x, y, controller.down_target)
-		if(!T)
-			H.loc = loc
-			return
-		else
-			for(var/obj/structure/disposalpipe/up/F in T)
-				P = F
+		H.loc = loc
+		return
+
 	else
 		T = get_step(loc, H.dir)
 		P = H.findpipe(T)
@@ -1281,7 +1239,7 @@
 	if(C && C.anchored)
 		return
 	var/turf/T = loc
-	if(T.intact)
+	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
 	add_fingerprint(user)
 	if(istype(I, /obj/item/tool/weldingtool))
@@ -1377,7 +1335,6 @@
 			if(!istype(AM, /mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)
 					AM.throw_at(target, 3, 1)
-		H.vent_gas(loc)
 		cdel(H)
 
 /obj/structure/disposaloutlet/attackby(var/obj/item/I, var/mob/user)

@@ -18,19 +18,14 @@
 		domutcheck(src,null,MUTCHK_FORCED)
 	..()
 
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
-	if(loc)
-		environment = loc.return_air()
+	life_tick++
 
 	if (stat != DEAD)
 		//First, resolve location and get a breath
-		if(air_master.current_cycle%4==2)
+
+		if(life_tick%2==0)
 			//Only try to take a breath every 4 seconds, unless suffocating
 			breathe()
-		else //Still give containing object the chance to interact
-			if(istype(loc, /obj/))
-				var/obj/location_as_object = loc
-				location_as_object.handle_internal_lifeform(src, 0)
 
 		//Mutations and radiation
 		handle_mutations_and_radiation()
@@ -52,8 +47,7 @@
 	blinded = null
 
 	//Handle temperature/pressure differences between body and environment
-	if(environment)	// More error checking -- TLE
-		handle_environment(environment)
+	handle_environment()
 
 
 	//Check if we're on fire
@@ -158,8 +152,8 @@
 
 		if(!loc) return //probably ought to make a proper fix for this, but :effort: --NeoFite
 
-		var/datum/gas_mixture/environment = loc.return_air()
-		var/datum/gas_mixture/breath
+		var/list/air_info
+
 		if(health < 0)
 			losebreath++
 		if(losebreath>0) //Suffocating so do not take a breath
@@ -168,24 +162,23 @@
 				spawn emote("gasp")
 			if(istype(loc, /obj/))
 				var/obj/location_as_object = loc
-				location_as_object.handle_internal_lifeform(src, 0)
+				location_as_object.handle_internal_lifeform(src)
 		else
 			//First, check for air from internal atmosphere (using an air tank and mask generally)
-			breath = get_breath_from_internal(BREATH_VOLUME)
+			air_info = get_breath_from_internal()
 
 			//No breath from internal atmosphere so get breath from location
-			if(!breath)
+			if(!air_info)
 				if(istype(loc, /obj/))
 					var/obj/location_as_object = loc
-					breath = location_as_object.handle_internal_lifeform(src, BREATH_VOLUME)
-				else if(istype(loc, /turf/))
-					var/breath_moles = environment.total_moles*BREATH_PERCENTAGE
-					breath = loc.remove_air(breath_moles)
+					air_info = location_as_object.handle_internal_lifeform(src)
+				else if(isturf(loc))
+					var/turf/T
+					air_info = T.return_air()
 
-					if(istype(wear_mask, /obj/item/clothing/mask) && breath)
+					if(istype(wear_mask, /obj/item/clothing/mask) && air_info)
 						var/obj/item/clothing/mask/M = wear_mask
-						var/datum/gas_mixture/filtered = M.filter_air(breath)
-						loc.assume_air(filtered)
+						air_info = M.filter_air(air_info)
 
 					// Handle chem smoke effect  -- Doohl
 					var/block = 0
@@ -206,15 +199,12 @@
 			else //Still give containing object the chance to interact
 				if(istype(loc, /obj/))
 					var/obj/location_as_object = loc
-					location_as_object.handle_internal_lifeform(src, 0)
+					location_as_object.handle_internal_lifeform(src)
 
-		handle_breath(breath)
-
-		if(breath)
-			loc.assume_air(breath)
+		handle_breath(air_info)
 
 
-	proc/get_breath_from_internal(volume_needed)
+	proc/get_breath_from_internal()
 		if(internal)
 			if (!contents.Find(internal))
 				internal = null
@@ -223,116 +213,87 @@
 			if(internal)
 				if (hud_used && hud_used.internals)
 					hud_used.internals.icon_state = "internal1"
-				return internal.remove_air_volume(volume_needed)
+				return internal.return_air()
 			else
 				if (hud_used && hud_used.internals)
 					hud_used.internals.icon_state = "internal0"
 		return null
 
-	proc/handle_breath(datum/gas_mixture/breath)
+	proc/handle_breath(list/air_info)
 		if(status_flags & GODMODE)
 			return
 
-		if(!breath || (breath.total_moles == 0))
+		if(!air_info)
 			adjustOxyLoss(7)
-
 			oxygen_alert = max(oxygen_alert, 1)
-
 			return 0
 
 		var/safe_oxygen_min = 16 // Minimum safe partial pressure of O2, in kPa
-		//var/safe_oxygen_max = 140 // Maximum safe partial pressure of O2, in kPa (Not used for now)
-		var/safe_co2_max = 10 // Yes it's an arbitrary value who cares?
-		var/safe_phoron_max = 0.5
-		var/SA_para_min = 0.5
-		var/SA_sleep_min = 5
-		var/oxygen_used = 0
-		var/breath_pressure = (breath.total_moles * R_IDEAL_GAS_EQUATION * breath.temperature) / BREATH_VOLUME
 
-		//Partial pressure of the O2 in our breath
-		var/O2_pp = (breath.gas["oxygen"] / breath.total_moles) * breath_pressure
-		// Same, but for the phoron
-		var/Toxins_pp = (breath.gas["phoron"] / breath.total_moles) * breath_pressure
-		// And CO2, lets say a PP of more than 10 will be bad (It's a little less really, but eh, being passed out all round aint no fun)
-		var/CO2_pp = (breath.gas["carbon_dioxide"] / breath.total_moles) * breath_pressure
+		switch(air_info[1])
+			if(GAS_TYPE_AIR)
+				var/O2_pp = air_info[3]*0.2 //20% oxygen in air
+				if(O2_pp < safe_oxygen_min)// Too little oxygen
+					if(prob(20))
+						spawn(0) emote("gasp")
+					if (O2_pp == 0)
+						O2_pp = 0.01
+					var/ratio = safe_oxygen_min/O2_pp
+					adjustOxyLoss(min(5*ratio, 7)) // Don't fuck them up too fast (space only does 7 after all!)
+					oxygen_alert = max(oxygen_alert, 1)
 
-		if(O2_pp < safe_oxygen_min) 			// Too little oxygen
-			if(prob(20))
-				spawn(0) emote("gasp")
-			if (O2_pp == 0)
-				O2_pp = 0.01
-			var/ratio = safe_oxygen_min/O2_pp
-			adjustOxyLoss(min(5*ratio, 7)) // Don't fuck them up too fast (space only does 7 after all!)
-			oxygen_used = breath.gas["oxygen"] * ratio / 6
-			oxygen_alert = max(oxygen_alert, 1)
-		/*else if (O2_pp > safe_oxygen_max) 		// Too much oxygen (commented this out for now, I'll deal with pressure damage elsewhere I suppose)
-			spawn(0) emote("cough")
-			var/ratio = O2_pp/safe_oxygen_max
-			oxyloss += 5*ratio
-			oxygen_used = breath.oxygen*ratio/6
-			oxygen_alert = max(oxygen_alert, 1)*/
-		else 									// We're in safe limits
-			adjustOxyLoss(-5)
-			oxygen_used = breath.gas["oxygen"] / 6
-			oxygen_alert = 0
+				else 									// We're in safe limits
+					adjustOxyLoss(-5)
+					oxygen_alert = 0
 
-		breath.adjust_gas("oxygen", -oxygen_used)
-		breath.adjust_gas("carbon_dioxide", oxygen_used)
+			if(GAS_TYPE_OXYGEN)
+				var/O2_pp = air_info[3]
+				if(O2_pp < safe_oxygen_min)// Too little oxygen
+					if(prob(20))
+						spawn(0) emote("gasp")
+					if (O2_pp == 0)
+						O2_pp = 0.01
+					var/ratio = safe_oxygen_min/O2_pp
+					adjustOxyLoss(min(5*ratio, 7)) // Don't fuck them up too fast (space only does 7 after all!)
+					oxygen_alert = max(oxygen_alert, 1)
 
-		if(CO2_pp > safe_co2_max)
-			if(!co2overloadtime) // If it's the first breath with too much CO2 in it, lets start a counter, then have them pass out after 12s or so.
-				co2overloadtime = world.time
-			else if(world.time - co2overloadtime > 120)
-				KnockOut(3)
-				adjustOxyLoss(3) // Lets hurt em a little, let them know we mean business
-				if(world.time - co2overloadtime > 300) // They've been in here 30s now, lets start to kill them for their own good!
-					adjustOxyLoss(8)
-			if(prob(20)) // Lets give them some chance to know somethings not right though I guess.
-				spawn(0) emote("cough")
+				else 									// We're in safe limits
+					adjustOxyLoss(-5)
+					oxygen_alert = 0
 
-		else
-			co2overloadtime = 0
-
-		if(Toxins_pp > safe_phoron_max) // Too much phoron
-			var/ratio = (breath.gas["phoron"] / safe_phoron_max) * 10
-			//adjustToxLoss(Clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))	//Limit amount of damage toxin exposure can do per second
-			if(reagents)
-				reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
-			phoron_alert = max(phoron_alert, 1)
-		else
-			phoron_alert = 0
-
-		if(breath.gas["sleeping_agent"])
-			var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
-			if(SA_pp > SA_para_min) // Enough to make us paralysed for a bit
-				KnockOut(3) // 3 gives them one second to wake up and run away a bit!
-				if(SA_pp > SA_sleep_min) // Enough to make us sleep as well
-					sleeping = max(sleeping+2, 10)
-			else if(SA_pp > 0.01)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
-				if(prob(20))
-					spawn(0) emote(pick("giggle", "laugh"))
+			if(GAS_TYPE_N2O) //Anesthetic
+				var/SA_pp = air_info[3]
+				if(SA_pp > 20) // Enough to make us paralysed for a bit
+					KnockOut(3) // 3 gives them one second to wake up and run away a bit!
+					//Enough to make us sleep as well
+					if(SA_pp > 30)
+						sleeping = min(sleeping+2, 10)
+				else if(SA_pp > 1)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
+					if(prob(20))
+						spawn(0) emote(pick("giggle", "laugh"))
 
 
-		if(breath.temperature > (T0C+66)) // Hot air hurts :(
+			else
+				adjustOxyLoss(7)
+				oxygen_alert = max(oxygen_alert, 1)
+
+
+		if(air_info[2] > (T0C+66)) // Hot air hurts :(
 			if(prob(20))
 				src << "\red You feel a searing heat in your lungs!"
 			fire_alert = max(fire_alert, 2)
 		else
 			fire_alert = 0
 
-
 		//Temporary fixes to the alerts.
 
 		return 1
 
-	proc/handle_environment(datum/gas_mixture/environment)
-		if(!environment)
-			return
+	proc/handle_environment()
+		var/env_pressure = return_pressure()
+		var/env_temperature = return_temperature()
 
-		//Moved these vars here for use in the fuck-it-skip-processing check.
-		var/pressure = environment.return_pressure()
-		if(pressure < WARNING_HIGH_PRESSURE && pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas["phoron"] < MOLES_PHORON_VISIBLE)
-
+		if(env_pressure < WARNING_HIGH_PRESSURE && env_pressure > WARNING_LOW_PRESSURE && abs(env_temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5)
 
 			//Hopefully should fix the walk-inside-still-pressure-warning issue.
 			if(pressure_alert)
@@ -340,23 +301,13 @@
 
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
-		var/environment_heat_capacity = environment.heat_capacity()
-		if(istype(get_turf(src), /turf/space))
-			var/turf/heat_turf = get_turf(src)
-			environment_heat_capacity = heat_turf.heat_capacity
-
-		if((environment.temperature > (T0C + 50)) || (environment.temperature < (T0C + 10)))
-			var/transfer_coefficient = 1
-
-			handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)
-
-		if(stat==2)
-			bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
+		if(env_temperature > (T0C + 50) || env_temperature < env_low_temp_resistance)
+			handle_temperature_damage(HEAD, env_temperature)
 
 		//Account for massive pressure differences
-		switch(pressure)
+		switch(env_pressure)
 			if(HAZARD_HIGH_PRESSURE to INFINITY)
-				adjustBruteLoss( min( ( (pressure / HAZARD_HIGH_PRESSURE) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE) )
+				adjustBruteLoss( min( ( (env_pressure / HAZARD_HIGH_PRESSURE) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE) )
 				pressure_alert = 2
 			if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
 				pressure_alert = 1
@@ -373,9 +324,9 @@
 
 		return
 
-	proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
+	proc/handle_temperature_damage(body_part, exposed_temperature)
 		if(status_flags & GODMODE) return
-		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
+		var/discomfort = min( abs(exposed_temperature - bodytemperature)/100, 1)
 		//adjustFireLoss(2.5*discomfort)
 
 		if(exposed_temperature > bodytemperature)

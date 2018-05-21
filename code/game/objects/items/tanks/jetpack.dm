@@ -18,11 +18,6 @@
 	src.ion_trail = new /datum/effect_system/ion_trail_follow()
 	src.ion_trail.set_up(src)
 
-/obj/item/tank/jetpack/examine(mob/user)
-	..()
-	if(air_contents.gas["oxygen"] < 10)
-		user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
-		playsound(user, 'sound/effects/alert.ogg', 25, 1)
 
 /obj/item/tank/jetpack/verb/toggle_rockets()
 	set name = "Toggle Jetpack Stabilization"
@@ -50,21 +45,16 @@
 		var/datum/action/A = X
 		A.update_button_icon()
 
-/obj/item/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob)
+/obj/item/tank/jetpack/proc/allow_thrust(num, mob/living/user)
 	if(!(src.on))
 		return 0
-	if((num < 0.005 || src.air_contents.total_moles < num))
-		src.ion_trail.stop()
+
+	if(pressure > 5)
+		return 1
+	else
+		ion_trail.stop()
 		return 0
 
-	var/datum/gas_mixture/G = src.air_contents.remove(num)
-
-	var/allgases = G.gas["carbon_dioxide"] + G.gas["nitrogen"] + G.gas["oxygen"] + G.gas["phoron"]
-	if(allgases >= 0.005)
-		return 1
-
-	cdel(G)
-	return
 
 /obj/item/tank/jetpack/ui_action_click()
 	toggle()
@@ -76,21 +66,11 @@
 	icon_state = "jetpack-void"
 	item_state =  "jetpack-void"
 
-/obj/item/tank/jetpack/void/New()
-	..()
-	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
-
 /obj/item/tank/jetpack/oxygen
 	name = "Jetpack (Oxygen)"
 	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
 	item_state = "jetpack"
-
-/obj/item/tank/jetpack/oxygen/New()
-	..()
-	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
 /obj/item/tank/jetpack/carbondioxide
 	name = "Jetpack (Carbon Dioxide)"
@@ -103,11 +83,4 @@
 	..()
 	src.ion_trail = new /datum/effect_system/ion_trail_follow()
 	src.ion_trail.set_up(src)
-	//src.air_contents.carbon_dioxide = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
-	air_contents.adjust_gas("carbon_dioxide", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
-/obj/item/tank/jetpack/carbondioxide/examine(mob/user)
-	..()
-	if(air_contents.gas["carbon_dioxide"] < 10)
-		user << "<span class = 'danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
-		playsound(user, 'sound/effects/alert.ogg', 25, 1)

@@ -6,7 +6,6 @@
 	density = 1
 	anchored = 1
 	flags_atom = FPRINT|CONDUCT
-	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = OBJ_LAYER
 	explosion_resistance = 5
 	var/health = 10
@@ -104,8 +103,7 @@
 	return
 
 
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
+/obj/structure/grille/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGRILLE))
 		return 1
 	else
@@ -130,7 +128,7 @@
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			new /obj/item/stack/rods(loc, 2)
 			cdel(src)
-	else if(isscrewdriver(W) && (istype(loc, /turf/simulated) || istype(loc, /turf/unsimulated/floor))) //|| anchored Does this fix it?
+	else if(isscrewdriver(W) && istype(loc, /turf/open))
 		if(!shock(user, 90))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			anchored = !anchored
@@ -230,7 +228,7 @@
 			return 0
 	return 0
 
-/obj/structure/grille/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
 	if(!destroyed)
 		if(exposed_temperature > T0C + 1500)
 			health -= 1
@@ -245,7 +243,7 @@
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "grille0"
 	tiles_with = list(
-		/turf/simulated/wall,
+		/turf/closed/wall,
 		/obj/machinery/door/airlock,
 		/obj/structure/grille/almayer)
 

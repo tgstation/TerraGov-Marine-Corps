@@ -62,40 +62,6 @@
 
 	updateDialog()
 
-	var/datum/gas_mixture/air1 = circ1.return_transfer_air()
-	var/datum/gas_mixture/air2 = circ2.return_transfer_air()
-	lastgen = 0
-
-	if(air1 && air2)
-		var/air1_heat_capacity = air1.heat_capacity()
-		var/air2_heat_capacity = air2.heat_capacity()
-		var/delta_temperature = abs(air2.temperature - air1.temperature)
-
-		if(delta_temperature > 0 && air1_heat_capacity > 0 && air2_heat_capacity > 0)
-			var/efficiency = 0.65
-			var/energy_transfer = delta_temperature*air2_heat_capacity*air1_heat_capacity/(air2_heat_capacity+air1_heat_capacity)
-			var/heat = energy_transfer*(1-efficiency)
-			lastgen = energy_transfer*efficiency*0.05
-
-			if(air2.temperature > air1.temperature)
-				air2.temperature = air2.temperature - energy_transfer/air2_heat_capacity
-				air1.temperature = air1.temperature + heat/air1_heat_capacity
-			else
-				air2.temperature = air2.temperature + heat/air2_heat_capacity
-				air1.temperature = air1.temperature - energy_transfer/air1_heat_capacity
-
-	//Transfer the air
-	if (air1)
-		circ1.air2.merge(air1)
-	if (air2)
-		circ2.air2.merge(air2)
-
-	//Update the gas networks
-	if(circ1.network2)
-		circ1.network2.update = 1
-	if(circ2.network2)
-		circ2.network2.update = 1
-
 	// update icon overlays and power usage only if displayed level has changed
 	if(lastgen > 250000 && prob(10))
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -143,16 +109,16 @@
 		t += "Output : [round(lastgen)] W<BR><BR>"
 
 		t += "<B>Primary Circulator (top or right)</B><BR>"
-		t += "Inlet Pressure: [round(circ1.air1.return_pressure(), 0.1)] kPa<BR>"
-		t += "Inlet Temperature: [round(circ1.air1.temperature, 0.1)] K<BR>"
-		t += "Outlet Pressure: [round(circ1.air2.return_pressure(), 0.1)] kPa<BR>"
-		t += "Outlet Temperature: [round(circ1.air2.temperature, 0.1)] K<BR>"
+		t += "Inlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
+		t += "Inlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
+		t += "Outlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
+		t += "Outlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
 
 		t += "<B>Secondary Circulator (bottom or left)</B><BR>"
-		t += "Inlet Pressure: [round(circ2.air1.return_pressure(), 0.1)] kPa<BR>"
-		t += "Inlet Temperature: [round(circ2.air1.temperature, 0.1)] K<BR>"
-		t += "Outlet Pressure: [round(circ2.air2.return_pressure(), 0.1)] kPa<BR>"
-		t += "Outlet Temperature: [round(circ2.air2.temperature, 0.1)] K<BR>"
+		t += "Inlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
+		t += "Inlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
+		t += "Outlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
+		t += "Outlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
 
 	else
 		t += "Unable to connect to circulators.<br>"

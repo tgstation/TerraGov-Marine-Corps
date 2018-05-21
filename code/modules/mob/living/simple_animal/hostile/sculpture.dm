@@ -149,7 +149,7 @@
 	if(prob(25)) //1 in 4 chance of checking out something new
 		var/list/turfs = new/list()
 		for(var/turf/T in view(7, src))
-			if(!istype(T, /turf/simulated/floor))
+			if(!istype(T, /turf/open/floor))
 				continue
 			turfs += T
 		var/turf/target_turf = safepick(turfs)

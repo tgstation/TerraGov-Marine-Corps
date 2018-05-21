@@ -131,8 +131,8 @@
 						S.use(2)
 						user << "<span class='notice'>You added the plating!</span>"
 						var/turf/Tsrc = get_turf(src)
-						Tsrc.ChangeTurf(text2path("/turf/simulated/wall/mineral/[M]"))
-						for(var/turf/simulated/wall/mineral/X in Tsrc.loc)
+						Tsrc.ChangeTurf(text2path("/turf/closed/wall/mineral/[M]"))
+						for(var/turf/closed/wall/mineral/X in Tsrc.loc)
 							if(X)	X.add_hiddenprint(usr)
 						cdel(src)
 					return
@@ -198,8 +198,8 @@
 		if (original)
 			Tsrc.ChangeTurf(text2path("[original]"))
 		else
-			Tsrc.ChangeTurf(/turf/simulated/wall)
-		for(var/turf/simulated/wall/X in Tsrc.loc)
+			Tsrc.ChangeTurf(/turf/closed/wall)
+		for(var/turf/closed/wall/X in Tsrc.loc)
 			if(X)	X.add_hiddenprint(usr)
 		cdel(src)
 

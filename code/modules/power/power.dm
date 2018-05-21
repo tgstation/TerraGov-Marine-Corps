@@ -162,7 +162,6 @@
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T = loc
 
-///// Z-Level Stuff
 	if(d1)
 		if(d1 <= 10)
 			T = get_step(src, d1)
@@ -182,21 +181,13 @@
 							if(T)
 								. += power_list(T, src, 11, 1)
 						break // done
-			else
-				var/turf/controllerlocation = locate(1, 1, z)
-				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-					if(controller.up && d1 == 12)
-						T = locate(src.x, src.y, controller.up_target)
-						if(T)
-							. += power_list(T, src, 11, 1)
-					if(controller.down && d1 == 11)
-						T = locate(src.x, src.y, controller.down_target)
-						if(T)
-							. += power_list(T, src, 11, 1)
+
 	else if(!d1)
 		if(T)
 			. += power_list(T, src, d1, 1)
 
+
+///// Z-Level Stuff
 	if(d2 == 11 || d2 == 12)
 		if(id)
 			for(var/obj/structure/cable/C in structure_list)
@@ -211,21 +202,12 @@
 						if(T)
 							. += power_list(T, src, 11, 1)
 					break // done
-		else
-			var/turf/controllerlocation = locate(1, 1, z)
-			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-				if(controller.up && d2 == 12)
-					T = locate(src.x, src.y, controller.up_target)
-					if(T)
-						. += power_list(T, src, 11, 1)
-				if(controller.down && d2 == 11)
-					T = locate(src.x, src.y, controller.down_target)
-					if(T)
-						. += power_list(T, src, 12, 1)
+
 	else
 		T = get_step(src, d2)
 		if(T)
 			. += power_list(T, src, d2, 1)
+
 ///// Z-Level Stuff
 
 	return .
@@ -282,8 +264,9 @@
 	return 1
 
 /turf/proc/get_cable_node()
-	if(!istype(src, /turf/simulated/floor))
-		return null
+	return null
+
+/turf/open/floor/get_cable_node()
 	for(var/obj/structure/cable/C in src)
 		if(C.d1 == 0)
 			return C

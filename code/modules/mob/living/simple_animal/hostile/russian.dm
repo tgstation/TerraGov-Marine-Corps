@@ -19,7 +19,7 @@
 	melee_damage_upper = 15
 	attacktext = "punches"
 	a_intent = "harm"
-	var/corpse = /obj/effect/landmark/mobcorpse/russian
+	var/corpse = /obj/effect/landmark/corpsespawner/russian
 	var/weapon1 = /obj/item/tool/kitchen/knife
 	min_oxy = 5
 	max_oxy = 0
@@ -37,7 +37,7 @@
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
-	corpse = /obj/effect/landmark/mobcorpse/russian/ranged
+	corpse = /obj/effect/landmark/corpsespawner/russian/ranged
 	weapon1 = /obj/item/weapon/gun/pistol
 	ranged = 1
 	projectiletype = /obj/item/projectile
@@ -66,7 +66,7 @@
 	melee_damage_upper = 15
 	attacktext = "punches"
 	a_intent = "harm"
-	//var/corpse = /obj/effect/landmark/mobcorpse/russian
+	//var/corpse = /obj/effect/landmark/corpsespawner/russian
 	//var/weapon1 = /obj/item/tool/kitchen/knife
 	min_oxy = 5
 	max_oxy = 0

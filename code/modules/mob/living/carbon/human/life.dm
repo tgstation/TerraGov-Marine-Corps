@@ -23,7 +23,6 @@
 	//TODO: seperate this out
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
-	var/datum/gas_mixture/environment = loc.return_air()
 
 	voice = GetVoice()
 	if(stat == DEAD && species.name == "Zombie" && regenZ)
@@ -32,13 +31,13 @@
 	//No need to update all of these procs if the guy is dead.
 	if(!in_stasis)
 		if(stat != DEAD)
-			if(air_master.current_cycle % 4 == 2 || failed_last_breath || (health < config.health_threshold_crit)) //First, resolve location and get a breath
+			if(life_tick % 2 == 0 || failed_last_breath || (health < config.health_threshold_crit)) //First, resolve location and get a breath
 				breathe() //Only try to take a breath every 4 ticks, unless suffocating
 
 			else //Still give containing object the chance to interact
 				if(istype(loc, /obj/))
 					var/obj/location_as_object = loc
-					location_as_object.handle_internal_lifeform(src, 0)
+					location_as_object.handle_internal_lifeform(src)
 
 			// Moved this from /mob/living/carbon/Life()
 			// Increase germ_level regularly
@@ -86,7 +85,7 @@
 
 
 	//Handle temperature/pressure differences between body and environment
-	handle_environment(environment) //Optimized a good bit.
+	handle_environment() //Optimized a good bit.
 
 	//Status updates, death etc.
 	handle_regular_status_updates() //Optimized a bit

@@ -24,7 +24,7 @@
 	if (!(ndir in cardinal))
 		return
 	var/turf/loc = get_turf(usr)
-	if (!istype(loc, /turf/simulated/floor))
+	if (!istype(loc, /turf/open/floor))
 		usr << "\red [src.name] cannot be placed on this spot."
 		return
 	usr << "Attaching [src] to the wall."

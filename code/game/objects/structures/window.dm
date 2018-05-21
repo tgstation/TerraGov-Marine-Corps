@@ -4,7 +4,6 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "window"
 	density = 1
-	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|FPRINT
@@ -70,7 +69,7 @@
 	if(!(flags_atom & ON_BORDER))
 		return TRUE
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
 	if(is_full_window())
@@ -253,10 +252,8 @@
 		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
 		return 0
 
-	update_nearby_tiles(need_rebuild = 1) //Compel updates before
 	dir = turn(dir, 90)
-	update_nearby_tiles(need_rebuild = 1)
-	return
+
 
 
 /obj/structure/window/verb/revrotate()
@@ -272,10 +269,8 @@
 		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
 		return 0
 
-	update_nearby_tiles(need_rebuild = 1) //Compel updates before
 	dir = turn(dir, 270)
-	update_nearby_tiles(need_rebuild = 1)
-	return
+
 
 /obj/structure/window/New(Loc, start_dir = null, constructed = 0)
 	..()
@@ -287,23 +282,19 @@
 	if(start_dir)
 		dir = start_dir
 
-	update_nearby_tiles(need_rebuild = 1)
 	update_nearby_icons()
 
 /obj/structure/window/Dispose()
 	density = 0
-	update_nearby_tiles()
 	update_nearby_icons()
 	. = ..()
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
-	update_nearby_tiles(need_rebuild = 1)
 	..()
 	dir = ini_dir
-	update_nearby_tiles(need_rebuild = 1)
 
-//This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
+//This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
 	for(var/direction in cardinal)
@@ -335,7 +326,7 @@
 
 		return
 
-/obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
 		if(!not_damageable)
 			health -= round(exposed_volume / 100)
@@ -350,7 +341,7 @@
 	shardtype = /obj/item/shard/phoron
 	health = 120
 
-/obj/structure/window/phoronbasic/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
 		health -= round(exposed_volume / 1000)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
@@ -365,7 +356,7 @@
 	reinf = 1
 	health = 160
 
-/obj/structure/window/phoronreinforced/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/window/phoronreinforced/fire_act(exposed_temperature, exposed_volume)
 	return
 
 /obj/structure/window/reinforced
@@ -431,7 +422,7 @@
 		/obj/structure/girder,
 		/obj/structure/window_frame)
 	tiles_with = list(
-		/turf/simulated/wall)
+		/turf/closed/wall)
 
 /obj/structure/window/framed/New()
 	spawn(10)

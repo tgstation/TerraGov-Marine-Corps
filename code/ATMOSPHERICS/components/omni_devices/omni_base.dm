@@ -82,14 +82,6 @@
 	if(!iswrench(W))
 		return ..()
 
-	var/int_pressure = 0
-	for(var/datum/omni_port/P in ports)
-		int_pressure += P.air.return_pressure()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_pressure - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it is too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -189,7 +181,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(T.intact && istype(P.node, /obj/machinery/atmospherics/pipe) && P.node.level == 1 )
+		if(T.intact_tile && istype(P.node, /obj/machinery/atmospherics/pipe) && P.node.level == 1 )
 			//pipe_state = icon_manager.get_atmos_icon("underlay_down", P.dir, color_cache_name(P.node))
 			pipe_state = icon_manager.get_atmos_icon("underlay", P.dir, color_cache_name(P.node), "down")
 		else
@@ -283,11 +275,6 @@
 
 /obj/machinery/atmospherics/omni/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()
-
-	for(var/datum/omni_port/P in ports)
-		if(P.network == reference)
-			results += P.air
-
 	return results
 
 /obj/machinery/atmospherics/omni/disconnect(obj/machinery/atmospherics/reference)

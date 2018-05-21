@@ -89,7 +89,7 @@
 		var/C = target.loc	//why are these backwards? we may never know -Pete
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/simulated/wall/r_wall) || istype(target, /turf/simulated/floor) || istype(target, /turf/unsimulated))
+				if(istype(target, /turf/closed/wall/r_wall) || istype(target, /turf/open/floor))
 					occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
 				else if(target.loc == C)
 					log_message("Drilled through [target].")
@@ -118,7 +118,7 @@
 		var/C = target.loc	//why are these backwards? we may never know -Pete
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/simulated/wall/r_wall))
+				if(istype(target, /turf/closed/wall/r_wall))
 					if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
 						log_message("Drilled through [target]")
 						target.ex_act(3)
@@ -215,7 +215,7 @@
 	var/disabled = 0 //malf
 
 	action(atom/target)
-		if(istype(target,/area/shuttle)||istype(target, /turf/space/transit))//>implying these are ever made -Sieve
+		if(istype(target,/area/shuttle)||istype(target, /turf/open/space/transit))//>implying these are ever made -Sieve
 			disabled = 1
 		else
 			disabled = 0
@@ -226,22 +226,22 @@
 		//meh
 		switch(mode)
 			if(0)
-				if (istype(target, /turf/simulated/wall))
+				if (istype(target, /turf/closed/wall))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
 						if(disabled) return
 						chassis.spark_system.start()
-						target:ChangeTurf(/turf/simulated/floor/plating)
+						target:ChangeTurf(/turf/open/floor/plating)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.use_power(energy_drain)
-				else if (istype(target, /turf/simulated/floor))
+				else if (istype(target, /turf/open/floor))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
 						if(disabled) return
 						chassis.spark_system.start()
-						target:ChangeTurf(/turf/space)
+						target:ChangeTurf(/turf/open/space)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.use_power(energy_drain)
 				else if (istype(target, /obj/machinery/door/airlock))
@@ -254,26 +254,26 @@
 						cdel(target)
 						chassis.use_power(energy_drain)
 			if(1)
-				if(istype(target, /turf/space))
+				if(istype(target, /turf/open/space))
 					occupant_message("Building Floor...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
 						if(disabled) return
-						target:ChangeTurf(/turf/simulated/floor/plating)
+						target:ChangeTurf(/turf/open/floor/plating)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.spark_system.start()
 						chassis.use_power(energy_drain*2)
-				else if(istype(target, /turf/simulated/floor))
+				else if(istype(target, /turf/open/floor))
 					occupant_message("Building Wall...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
 						if(disabled) return
-						target:ChangeTurf(/turf/simulated/wall)
+						target:ChangeTurf(/turf/closed/wall)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.spark_system.start()
 						chassis.use_power(energy_drain*2)
 			if(2)
-				if(istype(target, /turf/simulated/floor))
+				if(istype(target, /turf/open/floor))
 					occupant_message("Building Airlock...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -495,7 +495,7 @@
 			chassis.occupant_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>")
 			user.visible_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
 			chassis.take_damage(round(W.force*damage_coeff),W.damtype)
-			chassis.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+			chassis.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
@@ -545,7 +545,7 @@
 			chassis.log_append_to_last("Armor saved.")
 		else
 			chassis.take_damage(round(Proj.damage*src.damage_coeff))
-			chassis.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+			chassis.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
@@ -565,7 +565,7 @@
 			var/obj/O = A
 			if(O.throwforce)
 				chassis.take_damage(round(O.throwforce*damage_coeff))
-				chassis.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+				chassis.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
@@ -584,7 +584,7 @@
 	var/health_boost = 2
 	var/datum/global_iterator/pr_repair_droid
 	var/icon/droid_overlay
-	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
+	var/list/repairable_damage = list()
 
 	New()
 		..()
@@ -866,19 +866,7 @@
 
 	critfail()
 		..()
-		var/turf/simulated/T = get_turf(src)
-		if(!T)
-			return
-		var/datum/gas_mixture/GM = new
-		if(prob(10))
-			T.assume_gas("phoron", 100, 1500+T0C)
-			T.visible_message("The [src] suddenly disgorges a cloud of heated phoron.")
-			destroy()
-		else
-			T.assume_gas("phoron", 5, istype(T) ? T.air.temperature : T20C)
-			T.visible_message("The [src] suddenly disgorges a cloud of phoron.")
-		T.assume_air(GM)
-		return
+
 
 /datum/global_iterator/mecha_generator
 

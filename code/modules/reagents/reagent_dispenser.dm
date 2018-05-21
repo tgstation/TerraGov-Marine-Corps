@@ -8,7 +8,6 @@
 	density = 1
 	anchored = 0
 	flags_atom = FPRINT
-	pressure_resistance = 2*ONE_ATMOSPHERE
 
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
@@ -60,10 +59,7 @@
 			else
 		return
 
-/obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
-	if(density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
-		return 1
+/obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	else
@@ -173,7 +169,7 @@
 	if(src)
 		cdel(src)
 
-/obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)
+/obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
 	if(temperature > T0C+500)
 		explode()
 	return ..()

@@ -124,7 +124,7 @@
 						cdel(src)
 						return
 					src.icon_state = "bees[B.strength]"
-					var/turf/simulated/floor/T = get_turf(get_step(src, pick(1,2,4,8)))
+					var/turf/open/floor/T = get_turf(get_step(src, pick(1,2,4,8)))
 					density = 1
 					if(T.Enter(src, get_turf(src)))
 						src.loc = T

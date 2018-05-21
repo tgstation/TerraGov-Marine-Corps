@@ -23,10 +23,7 @@ Buildable meters
 #define PIPE_MTVALVE			18
 #define PIPE_MANIFOLD4W			19
 #define PIPE_CAP				20
-///// Z-Level stuff
-#define PIPE_UP					21
-#define PIPE_DOWN				22
-///// Z-Level stuff
+
 #define PIPE_GAS_FILTER_M		23
 #define PIPE_GAS_MIXER_T		24
 #define PIPE_GAS_MIXER_M		25
@@ -42,10 +39,7 @@ Buildable meters
 #define PIPE_SCRUBBERS_MANIFOLD		34
 #define PIPE_SUPPLY_MANIFOLD4W		35
 #define PIPE_SCRUBBERS_MANIFOLD4W	36
-#define PIPE_SUPPLY_UP				37
-#define PIPE_SCRUBBERS_UP			38
-#define PIPE_SUPPLY_DOWN			39
-#define PIPE_SCRUBBERS_DOWN			40
+
 #define PIPE_SUPPLY_CAP				41
 #define PIPE_SCRUBBERS_CAP			42
 
@@ -158,28 +152,6 @@ Buildable meters
 			src.pipe_type = PIPE_OMNI_MIXER
 		else if(istype(make_from, /obj/machinery/atmospherics/omni/filter))
 			src.pipe_type = PIPE_OMNI_FILTER
-///// Z-Level stuff
-		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/up/supply))
-			src.pipe_type = PIPE_SUPPLY_UP
-			connect_types = list(2)
-			src.color = PIPE_COLOR_BLUE
-		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers))
-			src.pipe_type = PIPE_SCRUBBERS_UP
-			connect_types = list(3)
-			src.color = PIPE_COLOR_RED
-		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/up))
-			src.pipe_type = PIPE_UP
-		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/down/supply))
-			src.pipe_type = PIPE_SUPPLY_DOWN
-			connect_types = list(2)
-			src.color = PIPE_COLOR_BLUE
-		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/down/scrubbers))
-			src.pipe_type = PIPE_SCRUBBERS_DOWN
-			connect_types = list(3)
-			src.color = PIPE_COLOR_RED
-		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/down))
-			src.pipe_type = PIPE_DOWN
-///// Z-Level stuff
 	else
 		src.pipe_type = pipe_type
 		src.dir = dir
@@ -299,7 +271,7 @@ Buildable meters
 	icon_state = islist[pipe_type + 1]
 
 //called when a turf is attacked with a pipe item
-/obj/item/pipe/afterattack(turf/simulated/floor/target, mob/user, proximity)
+/obj/item/pipe/afterattack(turf/open/floor/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target))
 		user.drop_inv_item_to_loc(src, target)
@@ -379,10 +351,7 @@ Buildable meters
 			return dir|cw|acw
 		if(PIPE_CAP, PIPE_SUPPLY_CAP, PIPE_SCRUBBERS_CAP)
 			return dir
-///// Z-Level stuff
-		if(PIPE_UP,PIPE_DOWN,PIPE_SUPPLY_UP,PIPE_SUPPLY_DOWN,PIPE_SCRUBBERS_UP,PIPE_SCRUBBERS_DOWN)
-			return dir
-///// Z-Level stuff
+
 	return 0
 
 /obj/item/pipe/proc/get_pdir() //endpoints for regular pipes
@@ -420,13 +389,16 @@ Buildable meters
 /obj/item/pipe/attack_self(mob/user as mob)
 	return rotate()
 
-/obj/item/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe/attackby(obj/item/W, mob/user)
 	..()
 	//*
 	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
-	if (!isturf(src.loc))
+	if (!isturf(loc))
 		return 1
+	var/turf/T = loc
+	var/pipelevel = T.intact_tile ? 2 : 1
+
 	if (pipe_type in list (PIPE_SIMPLE_STRAIGHT, PIPE_SUPPLY_STRAIGHT, PIPE_SCRUBBERS_STRAIGHT, PIPE_HE_STRAIGHT, PIPE_INSULATED_STRAIGHT, PIPE_MVALVE))
 		if(dir==2)
 			dir = 1
@@ -451,8 +423,7 @@ Buildable meters
 			P.pipe_color = color
 			P.dir = src.dir
 			P.initialize_directions = pipe_dir
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+			P.level = pipelevel
 			P.initialize()
 			if (!P)
 				usr << pipefailtext
@@ -470,8 +441,7 @@ Buildable meters
 			P.color = color
 			P.dir = src.dir
 			P.initialize_directions = pipe_dir
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+			P.level = pipelevel
 			P.initialize()
 			if (!P)
 				usr << pipefailtext
@@ -489,8 +459,7 @@ Buildable meters
 			P.color = color
 			P.dir = src.dir
 			P.initialize_directions = pipe_dir
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+			P.level = pipelevel
 			P.initialize()
 			if (!P)
 				usr << pipefailtext
@@ -508,8 +477,7 @@ Buildable meters
 			P.color = color
 			P.dir = src.dir
 			P.initialize_directions = pipe_dir
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+			P.level = pipelevel
 			P.initialize()
 			if (!P)
 				usr << pipefailtext
@@ -527,8 +495,6 @@ Buildable meters
 			P.dir = src.dir
 			P.initialize_directions = pipe_dir //this var it's used to know if the pipe is bent or not
 			P.initialize_directions_he = pipe_dir
-			//var/turf/T = P.loc
-			//P.level = T.intact ? 2 : 1
 			P.initialize()
 			if (!P)
 				usr << pipefailtext
@@ -547,8 +513,7 @@ Buildable meters
 			C.initialize_directions = pipe_dir
 			if (pipename)
 				C.name = pipename
-			var/turf/T = C.loc
-			C.level = T.intact ? 2 : 1
+			C.level = pipelevel
 			C.initialize()
 			C.build_network()
 			if (C.node)
@@ -561,9 +526,8 @@ Buildable meters
 			M.pipe_color = color
 			M.dir = dir
 			M.initialize_directions = pipe_dir
-			//M.New()
-			var/turf/T = M.loc
-			M.level = T.intact ? 2 : 1
+
+			M.level = pipelevel
 			M.initialize()
 			if (!M)
 				usr << pipefailtext
@@ -584,9 +548,8 @@ Buildable meters
 			M.color = color
 			M.dir = dir
 			M.initialize_directions = pipe_dir
-			//M.New()
-			var/turf/T = M.loc
-			M.level = T.intact ? 2 : 1
+
+			M.level = pipelevel
 			M.initialize()
 			if (!M)
 				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
@@ -607,9 +570,8 @@ Buildable meters
 			M.color = color
 			M.dir = dir
 			M.initialize_directions = pipe_dir
-			//M.New()
-			var/turf/T = M.loc
-			M.level = T.intact ? 2 : 1
+
+			M.level = pipelevel
 			M.initialize()
 			if (!M)
 				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
@@ -630,9 +592,8 @@ Buildable meters
 			M.pipe_color = color
 			M.dir = dir
 			M.initialize_directions = pipe_dir
-			//M.New()
-			var/turf/T = M.loc
-			M.level = T.intact ? 2 : 1
+
+			M.level = pipelevel
 			M.initialize()
 			if (!M)
 				usr << pipefailtext
@@ -657,9 +618,8 @@ Buildable meters
 			M.dir = dir
 			M.initialize_directions = pipe_dir
 			M.connect_types = src.connect_types
-			//M.New()
-			var/turf/T = M.loc
-			M.level = T.intact ? 2 : 1
+
+			M.level = pipelevel
 			M.initialize()
 			if (!M)
 				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
@@ -684,9 +644,8 @@ Buildable meters
 			M.dir = dir
 			M.initialize_directions = pipe_dir
 			M.connect_types = src.connect_types
-			//M.New()
-			var/turf/T = M.loc
-			M.level = T.intact ? 2 : 1
+
+			M.level = pipelevel
 			M.initialize()
 			if (!M)
 				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
@@ -710,8 +669,7 @@ Buildable meters
 			P.dir = src.dir
 			P.initialize_directions = src.get_pdir()
 			P.initialize_directions_he = src.get_hdir()
-			//var/turf/T = P.loc
-			//P.level = T.intact ? 2 : 1
+
 			P.initialize()
 			if (!P)
 				usr << pipefailtext //"There's nothing to connect this pipe to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
@@ -730,8 +688,8 @@ Buildable meters
 			V.initialize_directions = pipe_dir
 			if (pipename)
 				V.name = pipename
-			var/turf/T = V.loc
-			V.level = T.intact ? 2 : 1
+
+			V.level = pipelevel
 			V.initialize()
 			V.build_network()
 			if (V.node)
@@ -745,8 +703,8 @@ Buildable meters
 			V.initialize_directions = pipe_dir
 			if (pipename)
 				V.name = pipename
-			var/turf/T = V.loc
-			V.level = T.intact ? 2 : 1
+
+			V.level = pipelevel
 			V.initialize()
 			V.build_network()
 			if (V.node1)
@@ -764,8 +722,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -781,8 +739,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -801,8 +759,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -821,8 +779,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -841,8 +799,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -861,8 +819,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -881,8 +839,8 @@ Buildable meters
 			S.initialize_directions = pipe_dir
 			if (pipename)
 				S.name = pipename
-			var/turf/T = S.loc
-			S.level = T.intact ? 2 : 1
+
+			S.level = pipelevel
 			S.initialize()
 			S.build_network()
 			if (S.node)
@@ -893,8 +851,8 @@ Buildable meters
 			var/obj/machinery/atmospherics/pipe/simple/insulated/P = new( src.loc )
 			P.dir = src.dir
 			P.initialize_directions = pipe_dir
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			if (!P)
 				usr << pipefailtext
@@ -913,8 +871,8 @@ Buildable meters
 			V.initialize_directions = pipe_dir
 			if (pipename)
 				V.name = pipename
-			var/turf/T = V.loc
-			V.level = T.intact ? 2 : 1
+
+			V.level = pipelevel
 			V.initialize()
 			V.build_network()
 			if (V.node1)
@@ -963,8 +921,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -980,8 +938,8 @@ Buildable meters
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 			if (P.node1)
@@ -997,121 +955,24 @@ Buildable meters
 			C.initialize_directions = pipe_dir
 			if (pipename)
 				C.name = pipename
-			var/turf/T = C.loc
-			C.level = T.intact ? 2 : 1
+
+			C.level = pipelevel
 			C.initialize()
 			C.build_network()
 			if (C.node)
 				C.node.initialize()
 				C.node.build_network()
-///// Z-Level stuff
-		if(PIPE_UP)
-			var/obj/machinery/atmospherics/pipe/zpipe/up/P = new(src.loc)
-			P.dir = dir
-			P.initialize_directions = pipe_dir
-			if (pipename)
-				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
-			P.initialize()
-			P.build_network()
-			if (P.node1)
-				P.node1.initialize()
-				P.node1.build_network()
-			if (P.node2)
-				P.node2.initialize()
-				P.node2.build_network()
-		if(PIPE_DOWN)
-			var/obj/machinery/atmospherics/pipe/zpipe/down/P = new(src.loc)
-			P.dir = dir
-			P.initialize_directions = pipe_dir
-			if (pipename)
-				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
-			P.initialize()
-			P.build_network()
-			if (P.node1)
-				P.node1.initialize()
-				P.node1.build_network()
-			if (P.node2)
-				P.node2.initialize()
-				P.node2.build_network()
-		if(PIPE_SUPPLY_UP)
-			var/obj/machinery/atmospherics/pipe/zpipe/up/supply/P = new(src.loc)
-			P.dir = dir
-			P.initialize_directions = pipe_dir
-			if (pipename)
-				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
-			P.initialize()
-			P.build_network()
-			if (P.node1)
-				P.node1.initialize()
-				P.node1.build_network()
-			if (P.node2)
-				P.node2.initialize()
-				P.node2.build_network()
-		if(PIPE_SUPPLY_DOWN)
-			var/obj/machinery/atmospherics/pipe/zpipe/down/supply/P = new(src.loc)
-			P.dir = dir
-			P.initialize_directions = pipe_dir
-			if (pipename)
-				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
-			P.initialize()
-			P.build_network()
-			if (P.node1)
-				P.node1.initialize()
-				P.node1.build_network()
-			if (P.node2)
-				P.node2.initialize()
-				P.node2.build_network()
-		if(PIPE_SCRUBBERS_UP)
-			var/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers/P = new(src.loc)
-			P.dir = dir
-			P.initialize_directions = pipe_dir
-			if (pipename)
-				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
-			P.initialize()
-			P.build_network()
-			if (P.node1)
-				P.node1.initialize()
-				P.node1.build_network()
-			if (P.node2)
-				P.node2.initialize()
-				P.node2.build_network()
-		if(PIPE_SCRUBBERS_DOWN)
-			var/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers/P = new(src.loc)
-			P.dir = dir
-			P.initialize_directions = pipe_dir
-			if (pipename)
-				P.name = pipename
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
-			P.initialize()
-			P.build_network()
-			if (P.node1)
-				P.node1.initialize()
-				P.node1.build_network()
-			if (P.node2)
-				P.node2.initialize()
-				P.node2.build_network()
-///// Z-Level stuff
+
 		if(PIPE_OMNI_MIXER)
 			var/obj/machinery/atmospherics/omni/mixer/P = new(loc)
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 		if(PIPE_OMNI_FILTER)
 			var/obj/machinery/atmospherics/omni/filter/P = new(loc)
-			var/turf/T = P.loc
-			P.level = T.intact ? 2 : 1
+
+			P.level = pipelevel
 			P.initialize()
 			P.build_network()
 

@@ -19,7 +19,7 @@
 	cam.layer = 0
 
 /obj/effects/acid_hole/proc/update_hole_icon()
-	var/turf/simulated/wall/W =  loc
+	var/turf/closed/wall/W =  loc
 	var/jt = W.junctiontype
 
 	if(jt == 12 || jt == 4 || jt == 8)
@@ -29,14 +29,14 @@
 		icon_state = "hole_1"
 		W.overlays += image("icon"='icons/effects/new_acid.dmi',"icon_state"="hole_1","layer"=MOB_LAYER-0.1)
 
-/turf/simulated/wall/proc/GetHole()
+/turf/closed/wall/proc/GetHole()
 	var/obj/effects/acid_hole/toReturn
 	for (var/obj/effects/acid_hole/x in contents)
 		toReturn = x
 	return toReturn
 
 
-/turf/simulated/wall/MouseDrop_T(mob/I, mob/user)
+/turf/closed/wall/MouseDrop_T(mob/I, mob/user)
 	var/obj/effects/acid_hole/Hole = GetHole()
 	if (!Hole)
 		return
@@ -108,7 +108,7 @@
 						O.buckled_mob.loc = Target
 		Hole.busy = FALSE
 
-/turf/simulated/wall/MouseDrop(over_object, src_location, over_location)
+/turf/closed/wall/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
 		var/Target
 		var/obj/effects/acid_hole/Hole = GetHole()

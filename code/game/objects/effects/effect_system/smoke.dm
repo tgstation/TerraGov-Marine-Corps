@@ -43,16 +43,12 @@
 		amount = 0
 		opacity = 0
 
-/obj/effect/particle_effect/smoke/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
-		B.damage = (B.damage/2)
-	return 1
-
-/obj/effect/particle_effect/smoke/Crossed(mob/living/carbon/M as mob )
+/obj/effect/particle_effect/smoke/Crossed(atom/movable/M)
 	..()
-	if(istype(M))
+	if(istype(M, /obj/item/projectile/beam))
+		var/obj/item/projectile/beam/B = M
+		B.damage = (B.damage/2)
+	if(iscarbon(M))
 		affect(M)
 
 /obj/effect/particle_effect/smoke/proc/apply_smoke_effect(turf/T)
@@ -69,7 +65,7 @@
 		if(direction && i != direction)
 			continue
 		var/turf/T = get_step(U, i)
-		if(T.c_airblock(U)) //smoke can't spread that way
+		if(check_airblock(U,T)) //smoke can't spread that way
 			continue
 		var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 		if(foundsmoke)
@@ -79,6 +75,16 @@
 		S.time_to_live = time_to_live
 		if(S.amount>0)
 			S.spread_smoke()
+
+
+//proc to check if smoke can expand to another turf
+/obj/effect/particle_effect/smoke/proc/check_airblock(turf/U, turf/T)
+	if(T.density)
+		return TRUE
+	for(var/atom/movable/M in T)
+		if(!M.CanPass(src, T))
+			return TRUE
+
 
 /obj/effect/particle_effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (istype(M))
@@ -360,3 +366,12 @@
 
 /datum/effect_system/smoke_spread/xeno_weaken
 	smoke_type = /obj/effect/particle_effect/smoke/xeno_weak
+
+
+
+
+
+
+
+
+

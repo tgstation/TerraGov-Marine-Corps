@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 var/global/list/uneatable = list(
-	/turf/space,
+	/turf/open/space,
 	/obj/effect/overlay,
 	/obj/effect/landmark
 	)
@@ -253,13 +253,13 @@ var/global/list/uneatable = list(
 		gain = 2
 	else if(isturf(A))
 		var/turf/T = A
-		if(T.intact)
+		if(T.intact_tile)
 			for(var/obj/O in T.contents)
 				if(O.level != 1)
 					continue
 				if(O.invisibility == 101)
 					src.consume(O)
-		T.ChangeTurf(/turf/space)
+		T.ChangeTurf(/turf/open/space)
 		gain = 2
 	src.energy += gain
 	return

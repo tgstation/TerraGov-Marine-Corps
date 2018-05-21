@@ -8,19 +8,7 @@ obj/machinery/atmospherics/pipe/mains_component
 		parent_pipe = loc
 
 	check_pressure(pressure)
-		var/datum/gas_mixture/environment = loc.loc.return_air()
-
-		var/pressure_difference = pressure - environment.return_pressure()
-
-		if(pressure_difference > parent_pipe.maximum_pressure)
-			mains_burst()
-
-		else if(pressure_difference > parent_pipe.fatigue_pressure)
-			//TODO: leak to turf, doing pfshhhhh
-			if(prob(5))
-				mains_burst()
-
-		else return 1
+		return 1
 
 	pipeline_expansion()
 		return nodes
@@ -48,7 +36,6 @@ obj/machinery/atmospherics/mains_pipe
 	var/obj/machinery/atmospherics/pipe/mains_component/aux
 
 	var/minimum_temperature_difference = 300
-	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
 	var/maximum_pressure = 70*ONE_ATMOSPHERE
 	var/fatigue_pressure = 55*ONE_ATMOSPHERE
@@ -78,19 +65,7 @@ obj/machinery/atmospherics/mains_pipe
 			burst()
 
 	proc/check_pressure(pressure)
-		var/datum/gas_mixture/environment = loc.return_air()
-
-		var/pressure_difference = pressure - environment.return_pressure()
-
-		if(pressure_difference > maximum_pressure)
-			burst()
-
-		else if(pressure_difference > fatigue_pressure)
-			//TODO: leak to turf, doing pfshhhhh
-			if(prob(5))
-				burst()
-
-		else return 1
+		return 1
 
 	disconnect()
 		..()
@@ -179,7 +154,7 @@ obj/machinery/atmospherics/mains_pipe/simple
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		hide(T.intact)
+		hide(T.intact_tile)
 		update_icon()
 
 	hidden
@@ -241,7 +216,7 @@ obj/machinery/atmospherics/mains_pipe/manifold
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		hide(T.intact)
+		hide(T.intact_tile)
 		update_icon()
 
 	update_icon()
@@ -291,7 +266,7 @@ obj/machinery/atmospherics/mains_pipe/manifold4w
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		hide(T.intact)
+		hide(T.intact_tile)
 		update_icon()
 
 	update_icon()
@@ -352,7 +327,7 @@ obj/machinery/atmospherics/mains_pipe/split
 					N1.merge(N2)
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		hide(T.intact)
+		hide(T.intact_tile)
 		update_icon()
 
 	update_icon()
@@ -473,7 +448,7 @@ obj/machinery/atmospherics/mains_pipe/split3
 					N1.merge(N2)
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		hide(T.intact)
+		hide(T.intact_tile)
 		update_icon()
 
 	update_icon()
@@ -523,7 +498,7 @@ obj/machinery/atmospherics/mains_pipe/cap
 		..()
 
 		var/turf/T = src.loc	// hide if turf is not intact
-		hide(T.intact)
+		hide(T.intact_tile)
 		update_icon()
 
 	hidden
@@ -553,8 +528,8 @@ obj/machinery/atmospherics/mains_pipe/valve
 		initialize_mains_directions = dir|turn(dir, 180)
 
 	update_icon(animation)
-		var/turf/simulated/floor = loc
-		var/hide = istype(floor) ? floor.intact : 0
+		var/turf/open/floor = loc
+		var/hide = istype(floor) ? floor.intact_tile : 0
 		level = 1
 		for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)
 			if(node.level == 2)
@@ -670,8 +645,8 @@ obj/machinery/atmospherics/mains_pipe/valve
 				set_frequency(frequency)
 
 		update_icon(animation)
-			var/turf/simulated/floor = loc
-			var/hide = istype(floor) ? floor.intact : 0
+			var/turf/open/floor = loc
+			var/hide = istype(floor) ? floor.intact_tile : 0
 			level = 1
 			for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)
 				if(node.level == 2)

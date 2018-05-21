@@ -84,7 +84,7 @@
 	throw_range = 15
 	matter = list("metal" = 10)
 	var/colour = "black"	//what colour the ink is!
-	pressure_resistance = 2
+
 
 
 /obj/item/tool/pen/blue
@@ -183,7 +183,6 @@
 	throw_speed = 7
 	throw_range = 15
 	matter = list("metal" = 60)
-	pressure_resistance = 2
 	attack_verb = list("stamped")
 
 /obj/item/tool/stamp/captain

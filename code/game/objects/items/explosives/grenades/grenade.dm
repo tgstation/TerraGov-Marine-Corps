@@ -72,9 +72,7 @@
 
 /obj/item/explosive/grenade/proc/prime()
 //	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-	var/turf/T = get_turf(src)
-	if(T)
-		T.hotspot_expose(700,125)
+
 
 
 /obj/item/explosive/grenade/attackby(obj/item/W as obj, mob/user as mob)

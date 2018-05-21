@@ -1,3 +1,4 @@
+
 // Pressure limits.
 #define HAZARD_HIGH_PRESSURE 550	//This determins at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)
 #define WARNING_HIGH_PRESSURE 325 	//This determins when the orange pressure icon is displayed (it is 0.7 * HAZARD_HIGH_PRESSURE)
@@ -78,15 +79,7 @@
 	//Must be between 0 and 1. Values closer to 1 equalize temperature faster
 	//Should not exceed 0.4 else strange heat flow occur
 
-/*
-#define FIRE_MINIMUM_TEMPERATURE_TO_SPREAD	150+T0C
-#define FIRE_MINIMUM_TEMPERATURE_TO_EXIST	100+T0C
-#define FIRE_SPREAD_RADIOSITY_SCALE		0.85
-#define FIRE_CARBON_ENERGY_RELEASED	  500000 //Amount of heat released per mole of burnt carbon into the tile
-#define FIRE_PHORON_ENERGY_RELEASED	 3000000 //Amount of heat released per mole of burnt phoron into the tile
-#define FIRE_GROWTH_RATE			40000 //For small fires
 
-#define WATER_BOIL_TEMP 393 */
 
 // Fire Damage
 #define CARBON_LIFEFORM_FIRE_RESISTANCE 200+T0C
@@ -103,14 +96,19 @@
 #define T0C 273.15					// 0degC
 #define T20C 293.15					// 20degC
 #define TCMB 2.7					// -270.3degC
+#define ICE_COLONY_TEMPERATURE	223	//-50degC
 
-//XGM gas flags
-#define XGM_GAS_FUEL 1
-#define XGM_GAS_OXIDIZER 2
-#define XGM_GAS_CONTAMINANT 4
+#define GAS_TYPE_AIR		"air"
+#define GAS_TYPE_OXYGEN		"oxygen"
+#define GAS_TYPE_NITROGEN	"nitrogen"
+#define GAS_TYPE_N2O		"anesthetic"
+#define GAS_TYPE_PHORON		"phoron"
+#define GAS_TYPE_CO2		"carbon dioxyde"
+
+
 
 //Used to be used by FEA
-//var/turf/space/Space_Tile = locate(/turf/space) // A space tile to reference when atmos wants to remove excess heat.
+//var/turf/open/space/Space_Tile = locate(/turf/open/space) // A space tile to reference when atmos wants to remove excess heat.
 
 #define TANK_LEAK_PRESSURE		(30.*ONE_ATMOSPHERE)	// Tank starts leaking
 #define TANK_RUPTURE_PRESSURE	(40.*ONE_ATMOSPHERE) // Tank spills all contents into atmosphere
@@ -122,36 +120,7 @@
 //This was a define, but I changed it to a variable so it can be changed in-game.(kept the all-caps definition because... code...) -Errorage
 var/MAX_EXPLOSION_RANGE = 14
 //#define MAX_EXPLOSION_RANGE		14					// Defaults to 12 (was 8) -- TLE
-/*
-//===============================================================================\\
-//Mineral defines, so that material sheets are converted properly across the board.
-#define DEFAULT_CONVERSION_PER_UNIT 		3750
-#define DEFAULT_CONVERSION_PER_CENTIUNIT 	round(DEFAULT_CONVERSION_PER_UNIT * 0.1)
-#define DEFAULT_CONVERSION_PER_DECIUNIT 	round(DEFAULT_CONVERSION_PER_UNIT * 0.01)
 
-
-#define VALUABLE_CONVERSION_PER_UNIT 		2000
-#define VALUABLE_CONVERSION_PER_CENTIUNIT 	VALUABLE_CONVERSION_PER_UNIT * 0.1
-#define EXOTIC_CONVERSION_PER_UNIT 			1000
-#define EXOTIC_CONVERSION_PER_CENTIUNIT 	EXOTIC_CONVERSION_PER_UNIT * 0.1
-
-//These are specific defines for the three main sources of material.
-#define METAL_CONVERSION_PER_UNIT 			DEFAULT_CONVERSION_PER_UNIT
-#define METAL_CONVERSION_PER_CENTIUNIT 		DEFAULT_CONVERSION_PER_CENTIUNIT
-#define METAL_CONVERSION_PER_DECIUNIT 		DEFAULT_CONVERSION_PER_DECIUNIT
-#define METAL_CONVERSION_FOR_TINY_ITEM		round(METAL_CONVERSION_PER_DECIUNIT * 3)
-#define METAL_CONVERSION_FOR_SMALL_ITEM		round(METAL_CONVERSION_PER_DECIUNIT * 7)
-#define METAL_CONVERSION_FOR_MEDIUM_ITEM	METAL_CONVERSION_PER_DECIUNIT
-#define METAL_CONVERSION_FOR_LARGE_ITEM
-#define METAL_CONVERSION_FOR_MED_ITEM
-
-#define GLASS_CONVERSION_PER_UNIT 			DEFAULT_CONVERSION_PER_UNIT
-#define GLASS_CONVERSION_PER_CENTIUNIT 		GLASS_CONVERSION_PER_UNIT * 0.1
-#define STEEL_CONVERSION_PER_UNIT 			METAL_CONVERSION_PER_UNIT  * 2
-#define STEEL_CONVERSION_PER_CENTIUNIT 		STEEL_CONVERSION_PER_UNIT * 0.1
-//===============================================================================\\
-
-*/
 
 #define NORMPIPERATE 30					//pipe-insulation rate divisor
 #define HEATPIPERATE 8					//heat-exch pipe insulation

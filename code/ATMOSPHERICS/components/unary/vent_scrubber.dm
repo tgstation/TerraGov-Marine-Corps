@@ -34,7 +34,6 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/New()
 	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
 	icon = null
 	initial_loc = get_area(loc)
@@ -78,7 +77,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(T.intact && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
+		if(T.intact_tile && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 			return
 		else
 			if(node)
@@ -142,31 +141,6 @@
 
 	if(welded)
 		return 0
-
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/power_draw = -1
-	if(scrubbing)
-		//limit flow rate from turfs
-		var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SCRUBBER_FLOWRATE/environment.volume)	//group_multiplier gets divided out here
-
-		power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, active_power_usage)
-	else //Just siphon all air
-		//limit flow rate from turfs
-		var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SIPHON_FLOWRATE/environment.volume)	//group_multiplier gets divided out here
-
-		power_draw = pump_gas(src, environment, air_contents, transfer_moles, active_power_usage)
-
-	if (power_draw < 0)
-		//update_use_power(0)
-		use_power = 0	//don't force update. Sure, we will continue to use power even though we're not pumping anything, but it is easier on the CPU
-		last_power_draw = 0
-		last_flow_rate = 0
-	else
-		last_power_draw = handle_power_draw(power_draw)
-
-	if(network)
-		network.update = 1
 
 	return 1
 
@@ -277,15 +251,10 @@
 		user << "<span class='warning'>You cannot unwrench [src], turn it off first.</span>"
 		return 1
 	var/turf/T = loc
-	if(node && node.level == 1 && isturf(T) && T.intact)
+	if(node && node.level == 1 && isturf(T) && T.intact_tile)
 		user << "<span class='warning'>You must remove the plating first.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")

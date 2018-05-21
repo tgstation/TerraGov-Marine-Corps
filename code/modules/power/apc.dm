@@ -506,7 +506,7 @@
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [src].</span>"
 			return
-		if(loc:intact)
+		if(loc:intact_tile)
 			user << "<span class='warning'>You must remove the floor plating in front of the APC first.</span>"
 			return
 		var/obj/item/stack/cable_coil/C = W
@@ -533,7 +533,7 @@
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user << "<span class='warning'>You have no idea what to do with [W].</span>"
 			return
-		if(loc:intact)
+		if(loc:intact_tile)
 			user << "<span class='warning'>You must remove the floor plating in front of the APC first.</span>"
 			return
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s wiring and terminal.</span>",

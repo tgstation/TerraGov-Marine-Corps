@@ -1,5 +1,4 @@
-/mob/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
+/mob/CanPass(atom/movable/mover, turf/target)
 	if(mover.checkpass(PASSMOB)) return 1
 	if(ismob(mover))
 		if(checkpass(PASSMOB))
@@ -185,7 +184,7 @@
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
 
-	if((istype(mob.loc, /turf/space))|| (mob.lastarea.has_gravity == 0))
+	if((istype(mob.loc, /turf/open/space))|| (mob.lastarea.has_gravity == 0))
 		if(!mob.Process_Spacemove(0))	return 0
 
 
@@ -322,23 +321,23 @@
 
 	var/dense_object = 0
 	for(var/turf/turf in oview(1,src))
-		if(istype(turf,/turf/space))
+		if(istype(turf,/turf/open/space))
 			continue
 
 		if(istype(src,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
 			var/mob/living/carbon/human/H = src
-			if((istype(turf,/turf/simulated/floor)) && (src.lastarea.has_gravity == 0) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
+			if((istype(turf,/turf/open/floor)) && (src.lastarea.has_gravity == 0) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
 				continue
 
 
 		else
-			if((istype(turf,/turf/simulated/floor)) && (src.lastarea && src.lastarea.has_gravity == 0)) // No one else gets a chance.
+			if((istype(turf,/turf/open/floor)) && (src.lastarea && src.lastarea.has_gravity == 0)) // No one else gets a chance.
 				continue
 
 
 
 		/*
-		if(istype(turf,/turf/simulated/floor) && (src.flags & NOGRAV))
+		if(istype(turf,/turf/open/floor) && (src.flags & NOGRAV))
 			continue
 		*/
 

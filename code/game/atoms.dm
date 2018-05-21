@@ -38,23 +38,48 @@ directive is properly returned.
 
 //===========================================================================
 
-/atom/proc/assume_air(datum/gas_mixture/giver)
-	return null
 
-/atom/proc/remove_air(amount)
-	return null
 
+//atmos procs
+
+//returns the atmos info relevant to the object (gas type, temperature, and pressure)
 /atom/proc/return_air()
 	if(loc)
 		return loc.return_air()
 	else
 		return null
 
+
+/atom/proc/return_pressure()
+	if(loc)
+		return loc.return_pressure()
+
+/atom/proc/return_temperature()
+	if(loc)
+		return loc.return_temperature()
+
+//returns the gas mix type
+/atom/proc/return_gas()
+	if(loc)
+		return loc.return_gas()
+
+
+
+
 /atom/proc/on_reagent_change()
 	return
 
 /atom/proc/Bumped(AM as mob|obj)
 	return
+
+/atom/proc/CanPass(atom/movable/mover, turf/target)
+	//Purpose: Determines if the object can pass this atom.
+	//Called by: Movement.
+	//Inputs: The moving atom (optional), target turf
+	//Outputs: Boolean if can pass.
+	return !density
+
+
 
 // Convenience proc to see if a container is open for chemistry handling
 // returns true if open

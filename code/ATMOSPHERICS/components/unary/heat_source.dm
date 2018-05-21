@@ -26,7 +26,6 @@
 
 /obj/machinery/atmospherics/unary/heater/New()
 	..()
-	air_contents.volume = internal_volume
 	initialize_directions = dir
 
 	component_parts = list()
@@ -70,15 +69,8 @@
 		update_icon()
 		return
 
-	if (network && air_contents.total_moles && air_contents.temperature < set_temperature)
-		update_use_power(2)
-		air_contents.add_thermal_energy(active_power_usage)
-
-		heating = 1
-		network.update = 1
-	else
-		heating = 0
-		update_use_power(1)
+	heating = 0
+	update_use_power(1)
 
 	update_icon()
 
@@ -95,15 +87,15 @@
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["on"] = on ? 1 : 0
-	data["gasPressure"] = round(air_contents.return_pressure())
-	data["gasTemperature"] = round(air_contents.temperature)
+	data["gasPressure"] = round(pressure)
+	data["gasTemperature"] = round(temperature)
 	data["minGasTemperature"] = 0
 	data["maxGasTemperature"] = round(max_temperature)
 	data["targetGasTemperature"] = round(set_temperature)
 	data["powerSetting"] = power_setting
 
 	var/temp_class = "normal"
-	if (air_contents.temperature > (T20C+40))
+	if (temperature > (T20C+40))
 		temp_class = "bad"
 	data["gasTemperatureClass"] = temp_class
 
@@ -158,7 +150,6 @@
 
 	max_power_usage = initial(max_power_usage)*cap_rating
 	max_temperature = max(initial(max_temperature) - T20C, 0)*((bin_rating*2 + cap_rating)/3) + T20C
-	air_contents.volume = max(initial(internal_volume) - 200, 0) + 200*bin_rating
 	set_power_level(power_setting)
 
 /obj/machinery/atmospherics/unary/heater/proc/set_power_level(var/new_power_setting)

@@ -226,8 +226,8 @@
 
 	// Clear off wallrot fungi
 	reaction_turf(var/turf/T, var/volume)
-		if(istype(T, /turf/simulated/wall))
-			var/turf/simulated/wall/W = T
+		if(istype(T, /turf/closed/wall))
+			var/turf/closed/wall/W = T
 			if(W.rotting)
 				W.rotting = 0
 				for(var/obj/effect/E in W) if(E.name == "Wallrot") cdel(E)

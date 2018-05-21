@@ -386,3 +386,36 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
+
+
+
+
+
+//Elevator control console
+
+/obj/machinery/computer/shuttle_control/ice_colony
+	name = "Elevator Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "elevator_screen"
+	unacidable = 1
+	exproof = 1
+	density = 0
+	req_access = null
+
+/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_on()
+	icon_state = "elevator_screen_animated"
+
+/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_off()
+	icon_state = "elevator_screen"
+
+/obj/machinery/computer/shuttle_control/ice_colony/elevator1
+	shuttle_tag = "Elevator 1"
+
+/obj/machinery/computer/shuttle_control/ice_colony/elevator2
+	shuttle_tag = "Elevator 2"
+
+/obj/machinery/computer/shuttle_control/ice_colony/elevator3
+	shuttle_tag = "Elevator 3"
+
+/obj/machinery/computer/shuttle_control/ice_colony/elevator4
+	shuttle_tag = "Elevator 4"

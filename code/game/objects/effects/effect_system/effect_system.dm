@@ -93,24 +93,12 @@ steam.start() -- spawns the effect
 /obj/effect/particle_effect/sparks/New()
 	..()
 	playsound(src.loc, "sparks", 25, 1)
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
+//	var/turf/T = src.loc
+//	if (istype(T, /turf))
+//		T.hotspot_expose(1000,100)
 	spawn (100)
 		cdel(src)
 
-/obj/effect/particle_effect/sparks/Dispose()
-	var/turf/T = loc
-	if (isturf(T))
-		T.hotspot_expose(1000,100)
-	. = ..()
-
-/obj/effect/particle_effect/sparks/Move()
-	..()
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
-	return
 
 /datum/effect_system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
@@ -180,7 +168,7 @@ steam.start() -- spawns the effect
 			spawn(0)
 				var/turf/T = get_turf(src.holder)
 				if(T != src.oldposition)
-					if(istype(T, /turf/space))
+					if(istype(T, /turf/open/space))
 						var/obj/effect/particle_effect/ion_trails/I = new /obj/effect/particle_effect/ion_trails(src.oldposition)
 						src.oldposition = T
 						I.dir = src.holder.dir

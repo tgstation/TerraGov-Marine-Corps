@@ -14,15 +14,14 @@
 	var/junction = 0
 
 	tiles_with = list(
-		/turf/simulated/wall)
+		/turf/closed/wall)
 
 	var/tiles_special[] = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,
 		/obj/structure/girder,
 		/obj/structure/window_frame)
 
-/obj/structure/window_frame/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1 //Air can pass through a window-sized hole
+/obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -48,7 +47,6 @@
 
 /obj/structure/window_frame/Dispose()
 	density = 0
-	update_nearby_tiles()
 	update_nearby_icons()
 	. = ..()
 

@@ -131,9 +131,9 @@
 		update_wclass()
 		return 1
 
-// called when cable_coil is clicked on a turf/simulated/floor
+// called when cable_coil is clicked on a turf/open/floor
 
-/obj/item/stack/cable_coil/proc/turf_place(turf/simulated/floor/F, mob/user)
+/obj/item/stack/cable_coil/proc/turf_place(turf/open/floor/F, mob/user)
 
 	if(!isturf(user.loc))
 		return
@@ -142,7 +142,7 @@
 		user << "<span class='warning'>You can't lay cable at a place that far away.</span>"
 		return
 
-	if(F.intact)		// if floor is intact, complain
+	if(F.intact_tile)		// if floor is intact, complain
 		user << "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>"
 		return
 
@@ -158,75 +158,34 @@
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
 				user << "<span class='warning'>There's already a cable at that position.</span>"
 				return
-///// Z-Level Stuff
-		// check if the target is open space
-		if(istype(F, /turf/simulated/floor/open))
-			for(var/obj/structure/cable/LC in F)
-				if((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
-					user << "<span class='warning'>There's already a cable at that position.</span>"
-					return
 
-			var/turf/simulated/floor/open/temp = F
-			var/obj/structure/cable/C = new(F)
-			var/obj/structure/cable/D = new(temp.floorbelow)
+		for(var/obj/structure/cable/LC in F)
+			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
+				user << "There's already a cable at that position."
+				return
 
-			C.cableColor(color)
+		var/obj/structure/cable/C = new(F)
 
-			C.d1 = 11
-			C.d2 = dirn
-			C.add_fingerprint(user)
-			C.updateicon()
+		C.cableColor(color)
 
-			C.powernet = new()
-			powernets += C.powernet
-			C.powernet.cables += C
+		C.d1 = 0
+		C.d2 = dirn
+		C.add_fingerprint(user)
+		C.updateicon()
 
-			C.mergeConnectedNetworks(C.d2)
-			C.mergeConnectedNetworksOnTurf()
+		C.powernet = new()
+		powernets += C.powernet
+		C.powernet.cables += C
 
-			D.cableColor(color)
-
-			D.d1 = 12
-			D.d2 = 0
-			D.add_fingerprint(user)
-			D.updateicon()
-
-			D.powernet = C.powernet
-			D.powernet.cables += D
-
-			D.mergeConnectedNetworksOnTurf()
-
-		// do the normal stuff
-		else
-///// Z-Level Stuff
-
-			for(var/obj/structure/cable/LC in F)
-				if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-					user << "There's already a cable at that position."
-					return
-
-			var/obj/structure/cable/C = new(F)
-
-			C.cableColor(color)
-
-			C.d1 = 0
-			C.d2 = dirn
-			C.add_fingerprint(user)
-			C.updateicon()
-
-			C.powernet = new()
-			powernets += C.powernet
-			C.powernet.cables += C
-
-			C.mergeConnectedNetworks(C.d2)
-			C.mergeConnectedNetworksOnTurf()
+		C.mergeConnectedNetworks(C.d2)
+		C.mergeConnectedNetworksOnTurf()
 
 
-			use(1)
-			if (C.shock(user, 50))
-				if (prob(50)) //fail
-					new/obj/item/stack/cable_coil(C.loc, 1, C.color)
-					cdel(C)
+		use(1)
+		if (C.shock(user, 50))
+			if (prob(50)) //fail
+				new/obj/item/stack/cable_coil(C.loc, 1, C.color)
+				cdel(C)
 		//src.laying = 1
 		//last = C
 
@@ -241,7 +200,7 @@
 
 	var/turf/T = C.loc
 
-	if(!isturf(T) || T.intact)		// sanity checks, also stop use interacting with T-scanner revealed cable
+	if(!isturf(T) || T.intact_tile)		// sanity checks, also stop use interacting with T-scanner revealed cable
 		return
 
 	if(get_dist(C, user) > 1)		// make sure it's close enough
@@ -255,7 +214,7 @@
 	var/dirn = get_dir(C, user)
 
 	if(C.d1 == dirn || C.d2 == dirn)		// one end of the clicked cable is pointing towards us
-		if(U.intact)						// can't place a cable if the floor is complete
+		if(U.intact_tile)						// can't place a cable if the floor is complete
 			user << "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>"
 			return
 		else

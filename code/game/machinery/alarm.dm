@@ -176,17 +176,12 @@
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
 		return
 
-	var/turf/simulated/location = loc
+	var/turf/location = loc
 	if(!istype(location))	return//returns if loc is not simulated
-
-	var/datum/gas_mixture/environment = location.return_air()
-
-	//Handle temperature adjustment here.
-	handle_heating_cooling(environment)
 
 	var/old_level = danger_level
 	var/old_pressurelevel = pressure_dangerlevel
-	danger_level = overall_danger_level(environment)
+	danger_level = overall_danger_level(location)
 
 	if (old_level != danger_level)
 		apply_danger_level(danger_level)
@@ -196,7 +191,7 @@
 		//	mode = AALARM_MODE_OFF
 			apply_mode()
 
-	if (mode==AALARM_MODE_CYCLE && environment.return_pressure()<ONE_ATMOSPHERE*0.05)
+	if (mode==AALARM_MODE_CYCLE && location.return_pressure()<ONE_ATMOSPHERE*0.05)
 		mode=AALARM_MODE_FILL
 		apply_mode()
 
@@ -215,80 +210,21 @@
 	updateDialog()
 	return
 
-/obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
-	if (!regulating_temperature)
-		//check for when we should start adjusting temperature
-		if(!get_danger_level(target_temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) > 2.0)
-			update_use_power(2)
-			regulating_temperature = 1
-			visible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click and a faint electronic hum.")
-	else
-		//check for when we should stop adjusting temperature
-		if (get_danger_level(target_temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) <= 0.5)
-			update_use_power(1)
-			regulating_temperature = 0
-			visible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click as a faint electronic humming stops.")
+/obj/machinery/alarm/proc/handle_heating_cooling()
+	return
 
-	if (regulating_temperature)
-		if(target_temperature > T0C + MAX_TEMPERATURE)
-			target_temperature = T0C + MAX_TEMPERATURE
-
-		if(target_temperature < T0C + MIN_TEMPERATURE)
-			target_temperature = T0C + MIN_TEMPERATURE
-
-		var/datum/gas_mixture/gas
-		gas = environment.remove(0.25*environment.total_moles)
-		if(gas)
-
-			if (gas.temperature <= target_temperature)	//gas heating
-				var/energy_used = min( gas.get_thermal_energy_change(target_temperature) , active_power_usage)
-
-				gas.add_thermal_energy(energy_used)
-				//use_power(energy_used, ENVIRON) //handle by update_use_power instead
-			else	//gas cooling
-				var/heat_transfer = min(abs(gas.get_thermal_energy_change(target_temperature)), active_power_usage)
-
-				//Assume the heat is being pumped into the hull which is fixed at 20 C
-				//none of this is really proper thermodynamics but whatever
-
-				var/cop = gas.temperature/T20C	//coefficient of performance -> power used = heat_transfer/cop
-
-				heat_transfer = min(heat_transfer, cop * active_power_usage)	//this ensures that we don't use more than active_power_usage amount of power
-
-				heat_transfer = -gas.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
-
-				//use_power(heat_transfer / cop, ENVIRON)	//handle by update_use_power instead
-
-			environment.merge(gas)
-
-/obj/machinery/alarm/proc/overall_danger_level(var/datum/gas_mixture/environment)
-	var/partial_pressure = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume
-	var/environment_pressure = environment.return_pressure()
-	//var/other_moles = 0.0
-	////for(var/datum/gas/G in environment.trace_gases)
-	//	other_moles+=G.moles
-
-	pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, TLV["oxygen"])
-	co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, TLV["carbon dioxide"])
-	phoron_dangerlevel = get_danger_level(environment.gas["phoron"]*partial_pressure, TLV["phoron"])
-	temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
-	//other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
+/obj/machinery/alarm/proc/overall_danger_level(turf/T)
+	pressure_dangerlevel = get_danger_level(T.return_pressure(), TLV["pressure"])
+	temperature_dangerlevel = get_danger_level(T.return_temperature(), TLV["temperature"])
 
 	return max(
 		pressure_dangerlevel,
-		oxygen_dangerlevel,
-		co2_dangerlevel,
-		phoron_dangerlevel,
-		//other_dangerlevel,
 		temperature_dangerlevel
 		)
 
 // Returns whether this air alarm thinks there is a breach, given the sensors that are available to it.
 /obj/machinery/alarm/proc/breach_detected()
-	var/turf/simulated/location = loc
+	var/turf/location = loc
 
 	if(!istype(location))
 		return 0
@@ -296,11 +232,9 @@
 	if(breach_detection	== 0)
 		return 0
 
-	var/datum/gas_mixture/environment = location.return_air()
-	var/environment_pressure = environment.return_pressure()
 	var/pressure_levels = TLV["pressure"]
 
-	if (environment_pressure <= pressure_levels[1])		//low pressures
+	if (location.return_pressure() <= pressure_levels[1])		//low pressures
 		if (!(mode == AALARM_MODE_PANIC || mode == AALARM_MODE_CYCLE))
 			return 1
 
@@ -673,13 +607,9 @@
 
 /obj/machinery/alarm/proc/return_status()
 	var/turf/location = get_turf(src)
-	var/datum/gas_mixture/environment = location.return_air()
-	var/total = environment.total_moles
+
 	var/output = "<b>Air Status:</b><br>"
 
-	if(total == 0)
-		output += "<font color='red'><b>Warning: Cannot obtain air sample for analysis.</b></font>"
-		return output
 
 	output += {"
 <style>
@@ -689,45 +619,20 @@
 </style>
 "}
 
-	var/partial_pressure = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume
 
 	var/list/current_settings = TLV["pressure"]
-	var/environment_pressure = environment.return_pressure()
+	var/environment_pressure = location.return_pressure()
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, current_settings)
 
-	current_settings = TLV["oxygen"]
-	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, current_settings)
-	var/oxygen_percent = round(environment.gas["oxygen"] / total * 100, 2)
-
-	current_settings = TLV["carbon dioxide"]
-	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, current_settings)
-	var/co2_percent = round(environment.gas["carbon_dioxide"] / total * 100, 2)
-
-	current_settings = TLV["phoron"]
-	var/phoron_dangerlevel = get_danger_level(environment.gas["phoron"]*partial_pressure, current_settings)
-	var/phoron_percent = round(environment.gas["phoron"] / total * 100, 2)
-
-	//current_settings = TLV["other"]
-	//var/other_moles = 0.0
-	//for(var/datum/gas/G in environment.trace_gases)
-	//	other_moles+=G.moles
-	//var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, current_settings)
-
 	current_settings = TLV["temperature"]
-	var/temperature_dangerlevel = get_danger_level(environment.temperature, current_settings)
+	var/enviroment_temperature = location.return_temperature()
+	var/temperature_dangerlevel = get_danger_level(enviroment_temperature, current_settings)
 
 	output += {"
 Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kPa<br>
-Oxygen: <span class='dl[oxygen_dangerlevel]'>[oxygen_percent]</span>%<br>
-Carbon dioxide: <span class='dl[co2_dangerlevel]'>[co2_percent]</span>%<br>
-Toxins: <span class='dl[phoron_dangerlevel]'>[phoron_percent]</span>%<br>
 "}
-	//if (other_dangerlevel==2)
-	//	output += "Notice: <span class='dl2'>High Concentration of Unknown Particles Detected</span><br>"
-	//else if (other_dangerlevel==1)
-	//	output += "Notice: <span class='dl1'>Low Concentration of Unknown Particles Detected</span><br>"
 
-	output += "Temperature: <span class='dl[temperature_dangerlevel]'>[environment.temperature]</span>K ([round(environment.temperature - T0C, 0.1)]C)<br>"
+	output += "Temperature: <span class='dl[temperature_dangerlevel]'>[enviroment_temperature]</span>K ([round(enviroment_temperature - T0C, 0.1)]C)<br>"
 
 	//'Local Status' should report the LOCAL status, damnit.
 	output += "Local Status: "
@@ -1227,7 +1132,7 @@ FIRE ALARM
 	else
 		icon_state = "fire0"
 
-/obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
+/obj/machinery/firealarm/fire_act(temperature, volume)
 	if(src.detecting)
 		if(temperature > T0C+200)
 			src.alarm()			// added check of detector status here
@@ -1318,10 +1223,10 @@ FIRE ALARM
 			processing_objects.Remove(src)
 		src.updateDialog()
 	last_process = world.timeofday
-
+/*
 	if(locate(/obj/fire) in loc)
 		alarm()
-
+*/
 	return
 
 /obj/machinery/firealarm/power_change()

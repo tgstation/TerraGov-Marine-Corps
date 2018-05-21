@@ -50,10 +50,10 @@
 
 /obj/item/stack/snow/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
-	if(isturf(target))
+	if(istype(target, /turf/open))
 		if(user.action_busy)
 			return
-		var/turf/T = target
+		var/turf/open/T = target
 		if(T.get_dirt_type() == DIRT_TYPE_SNOW)
 			if(T.slayer >= 3)
 				user << "This ground is already full of snow."

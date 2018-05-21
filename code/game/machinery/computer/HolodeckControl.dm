@@ -166,7 +166,7 @@ var/global/list/holodeck_programs = list(
 					s.set_up(2, 1, T)
 					s.start()
 				T.ex_act(3)
-				T.hotspot_expose(1000,500,1)
+//				T.hotspot_expose(1000,500,1)
 
 /obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj , var/silent = 1)
 	holographic_items.Remove(obj)
@@ -186,7 +186,7 @@ var/global/list/holodeck_programs = list(
 
 /obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
 	for(var/turf/T in A)
-		if(istype(T, /turf/space))
+		if(istype(T, /turf/open/space))
 			return 0
 
 	return 1
@@ -205,9 +205,9 @@ var/global/list/holodeck_programs = list(
 						var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 						s.set_up(2, 1, T)
 						s.start()
-						if(T)
-							T.temperature = 5000
-							T.hotspot_expose(50000,50000,1)
+//						if(T)
+//							T.temperature = 5000
+//							T.hotspot_expose(50000,50000,1)
 
 		active = 1
 	else
@@ -256,9 +256,9 @@ var/global/list/holodeck_programs = list(
 					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 					s.set_up(2, 1, T)
 					s.start()
-					if(T)
-						T.temperature = 5000
-						T.hotspot_expose(50000,50000,1)
+//					if(T)
+//						T.temperature = 5000
+//						T.hotspot_expose(50000,50000,1)
 			if(L.name=="Holocarp Spawn")
 				new /mob/living/simple_animal/hostile/carp(L.loc)
 
@@ -284,10 +284,10 @@ var/global/list/holodeck_programs = list(
 
 // Holographic Items!
 
-/turf/simulated/floor/holofloor/
-	thermal_conductivity = 0
+/turf/open/floor/holofloor
 
-/turf/simulated/floor/holofloor/grass
+
+/turf/open/floor/holofloor/grass
 	name = "Lush Grass"
 	icon_state = "grass1"
 	floor_tile = new/obj/item/stack/tile/grass
@@ -299,11 +299,11 @@ var/global/list/holodeck_programs = list(
 		spawn(4)
 			update_icon()
 			for(var/direction in cardinal)
-				if(istype(get_step(src,direction),/turf/simulated/floor))
-					var/turf/simulated/floor/FF = get_step(src,direction)
+				if(istype(get_step(src,direction),/turf/open/floor))
+					var/turf/open/floor/FF = get_step(src,direction)
 					FF.update_icon() //so siding get updated properly
 
-/turf/simulated/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
+/turf/open/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
@@ -370,7 +370,6 @@ var/global/list/holodeck_programs = list(
 	icon_state = "stool"
 	anchored = 1.0
 	flags_atom = FPRINT
-	pressure_resistance = 15
 
 
 /obj/item/clothing/gloves/boxing/hologlove
@@ -386,7 +385,6 @@ var/global/list/holodeck_programs = list(
 	desc = "A window."
 	density = 1
 	layer = WINDOW_LAYER
-	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1.0
 	flags_atom = ON_BORDER
 
@@ -438,7 +436,7 @@ var/global/list/holodeck_programs = list(
 		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>")
 		return
 
-/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
@@ -454,7 +452,7 @@ var/global/list/holodeck_programs = list(
 			visible_message("\red \the [I] bounces off of \the [src]'s rim!", 3)
 		return 0
 	else
-		return ..(mover, target, height, air_group)
+		return ..()
 
 
 /obj/machinery/readybutton

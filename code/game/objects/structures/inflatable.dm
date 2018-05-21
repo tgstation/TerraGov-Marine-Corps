@@ -42,15 +42,6 @@
 	var/health = 50.0
 
 
-	New(location)
-		..()
-		update_nearby_tiles(need_rebuild=1)
-
-	Dispose()
-		update_nearby_tiles()
-		. = ..()
-
-
 
 	CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 		return 0
@@ -232,7 +223,7 @@
 			Close()
 		else
 			Open()
-		update_nearby_tiles()
+
 
 	proc/Open()
 		isSwitchingStates = 1

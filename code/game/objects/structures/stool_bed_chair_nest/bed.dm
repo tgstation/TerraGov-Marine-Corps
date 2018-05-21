@@ -101,7 +101,7 @@ obj/structure/bed/Dispose()
 			return 0
 	return 1
 
-/obj/structure/bed/roller/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/bed/roller/CanPass(atom/movable/mover, turf/target)
 	if(mover == buckled_bodybag)
 		return TRUE
 	. = ..()
@@ -152,7 +152,7 @@ obj/structure/bed/Dispose()
 	else
 		. = ..()
 
-/obj/structure/bed/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/bed/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
 	. = ..()

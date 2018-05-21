@@ -33,9 +33,9 @@
 		if("Lighting")
 			debug_variables(lighting_controller)
 			feedback_add_details("admin_verb","DLighting")
-		if("Air")
-			debug_variables(air_master)
-			feedback_add_details("admin_verb","DAir")
+//		if("Air")
+//			debug_variables(air_master)
+//			feedback_add_details("admin_verb","DAir")
 		if("Jobs")
 			debug_variables(RoleAuthority)
 			feedback_add_details("admin_verb","DJobs")
@@ -57,8 +57,6 @@
 		if("Cameras")
 			debug_variables(cameranet)
 			feedback_add_details("admin_verb","DCameras")
-		if("Gas Data")
-			debug_variables(gas_data)
-			feedback_add_details("admin_verv","DGasdata")
+
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return
