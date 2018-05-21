@@ -166,6 +166,10 @@
 			M = /mob/living/carbon/Xenomorph/Spitter
 		if("Lurker")
 			M = /mob/living/carbon/Xenomorph/Hunter
+		if ("Warrior")
+			M = /mob/living/carbon/Xenomorph/Warrior
+		if ("Defender")
+			M = /mob/living/carbon/Xenomorph/Defender
 		if("Queen")
 			switch(hivenumber) // because it causes issues otherwise
 				if(XENO_HIVE_NORMAL)
