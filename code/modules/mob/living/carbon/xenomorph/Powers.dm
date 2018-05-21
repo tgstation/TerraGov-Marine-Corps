@@ -207,7 +207,7 @@
 	shake_camera(H, 2, 1)
 
 	var/facing = get_dir(src, H)
-	var/fling_distance = 3
+	var/fling_distance = 4
 	var/turf/T = loc
 	var/turf/temp = loc
 
