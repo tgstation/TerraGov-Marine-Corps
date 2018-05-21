@@ -315,32 +315,11 @@
 		if(!.) return
 		M.nutrition += nutriment_factor
 
-	reaction_turf(var/turf/simulated/T, var/volume)
+	reaction_turf(var/turf/T, var/volume)
 		if(!istype(T)) return
 		src = null
 		if(volume >= 3)
-			if(T.wet >= 1) return
-			T.wet = 1
-			if(T.wet_overlay)
-				T.overlays -= T.wet_overlay
-				T.wet_overlay = null
-			T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-			T.overlays += T.wet_overlay
-
-			spawn(800)
-				if(!istype(T)) return
-				if(T.wet >= 2) return
-				T.wet = 0
-				if(T.wet_overlay)
-					T.overlays -= T.wet_overlay
-					T.wet_overlay = null
-		var/hotspot = (locate(/obj/fire) in T)
-		if(hotspot)
-			var/datum/gas_mixture/lowertemp = T.remove_air( T:air:total_moles )
-			lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
-			lowertemp.react()
-			T.assume_air(lowertemp)
-			cdel(hotspot)
+			T.wet_floor(FLOOR_WET_WATER)
 
 /datum/reagent/enzyme
 	name = "Universal Enzyme"

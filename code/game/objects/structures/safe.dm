@@ -204,7 +204,7 @@ obj/structure/safe/ex_act(severity)
 /obj/structure/safe/floor/initialize()
 	..()
 	var/turf/T = loc
-	hide(T.intact)
+	hide(T.intact_tile)
 
 
 /obj/structure/safe/floor/hide(var/intact)

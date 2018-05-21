@@ -12,7 +12,7 @@
 /obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
 
 	var/turf/T = src.loc
-	if(T.intact)
+	if(T.intact_tile)
 		return
 
 	if(istype(W, /obj/item/tool/wirecutters))

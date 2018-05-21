@@ -243,7 +243,6 @@
 
 /obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
 	..()
-	update_nearby_tiles()
 	src.gen_primary = A
 	src.gen_secondary = B
 	if(A && B && A.active && B.active)
@@ -256,7 +255,6 @@
 		cdel(src) //need at least two generator posts
 
 /obj/machinery/shieldwall/Dispose()
-	update_nearby_tiles()
 	SetLuminosity(0)
 	. = ..()
 
@@ -319,9 +317,7 @@
 	return
 
 
-/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
-
+/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return prob(20)
 	else

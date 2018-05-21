@@ -39,7 +39,7 @@
 		update_canmove()
 		update_icons()
 		if(loc)
-			handle_environment(loc.return_air())
+			handle_environment()
 		if(client)
 			handle_regular_hud_updates()
 
@@ -324,11 +324,13 @@ adjustToxLoss(-(maxHealth / 5 + 0.5 + (maxHealth / 5) * recovery_aura/2)*(m)); \
 updatehealth()
 
 
-/mob/living/carbon/Xenomorph/proc/handle_environment(var/datum/gas_mixture/environment)
+/mob/living/carbon/Xenomorph/proc/handle_environment()
 	var/turf/T = loc
-	if(environment && !fire_immune)
-		if(environment.temperature > (T0C + 66))
-			adjustFireLoss((environment.temperature - (T0C + 66)) / 5) //Might be too high, check in testing.
+
+	var/env_temperature = loc.return_temperature()
+	if(!fire_immune)
+		if(env_temperature > (T0C + 66))
+			adjustFireLoss((env_temperature - (T0C + 66)) / 5) //Might be too high, check in testing.
 			updatehealth() //Make sure their actual health updates immediately
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"

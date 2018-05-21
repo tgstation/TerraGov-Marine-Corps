@@ -60,21 +60,10 @@
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
 	if (ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		if(istype(H.loc, /obj/mecha))
-			var/obj/mecha/M = loc
-			return M.return_temperature()
-		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			return H.loc:air_contents.temperature
+		return H.return_temperature()
 
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/space))
-		return 0	//space has no temperature, this just makes sure the cooling unit works in space
-
-	var/datum/gas_mixture/environment = T.return_air()
-	if (!environment)
-		return 0
-
-	return environment.temperature
+	return T.return_temperature()
 
 /obj/item/device/suit_cooling_unit/proc/attached_to_suit(mob/M)
 	if (!ishuman(M))

@@ -18,8 +18,8 @@
 	if(!proximity)
 		return
 
-	if(istype(A, /turf/simulated/floor))
-		var/turf/simulated/floor/F = A
+	if(istype(A, /turf/open/floor))
+		var/turf/open/floor/F = A
 
 		if(F.is_plasteel_floor()) // only tiled floors
 			if(tile_dir_mode)

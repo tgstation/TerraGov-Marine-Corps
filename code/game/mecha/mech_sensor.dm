@@ -15,9 +15,8 @@
 	var/frequency = 1379
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/mech_sensor/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/machinery/mech_sensor/CanPass(atom/movable/mover, turf/target)
 	if(!enabled()) return 1
-	if(air_group || (height == 0)) return 1
 
 	if((get_dir(loc, target) & dir) && is_blocked(mover))
 		give_feedback(mover)

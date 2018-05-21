@@ -38,7 +38,6 @@
 	density = 0
 	layer = open_layer
 	SetOpacity(0)
-	update_nearby_tiles()
 
 	if(operating == 1) //emag again
 		operating = 0
@@ -57,7 +56,6 @@
 	density = 1
 	if(visible)
 		SetOpacity(1)
-	update_nearby_tiles()
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 
 	sleep(10)
@@ -68,7 +66,7 @@
 	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
-		/turf/simulated/wall,
+		/turf/closed/wall,
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 

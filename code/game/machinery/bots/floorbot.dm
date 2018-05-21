@@ -159,7 +159,7 @@
 			if(src.maketiles)
 				if(src.target == null || !src.target)
 					for(var/obj/item/stack/sheet/metal/M in view(7, src))
-						if(!(M in floorbottargets) && M != src.oldtarget && M.amount == 1 && !(istype(M.loc, /turf/simulated/wall)))
+						if(!(M in floorbottargets) && M != src.oldtarget && M.amount == 1 && !(istype(M.loc, /turf/closed/wall)))
 							src.oldtarget = M
 							src.target = M
 							break
@@ -171,7 +171,7 @@
 	if((!src.target || src.target == null) && emagged < 2)
 		if(targetdirection != null)
 			/*
-			for (var/turf/space/D in view(7,src))
+			for (var/turf/open/space/D in view(7,src))
 				if(!(D in floorbottargets) && D != src.oldtarget)			// Added for bridging mode -- TLE
 					if(get_dir(src, D) == targetdirection)
 						src.oldtarget = D
@@ -179,18 +179,18 @@
 						break
 			*/
 			var/turf/T = get_step(src, targetdirection)
-			if(istype(T, /turf/space))
+			if(istype(T, /turf/open/space))
 				src.oldtarget = T
 				src.target = T
 		if(!src.target || src.target == null)
-			for (var/turf/space/D in view(7,src))
+			for (var/turf/open/space/D in view(7,src))
 				if(!(D in floorbottargets) && D != src.oldtarget && (D.loc.name != "Space"))
 					src.oldtarget = D
 					src.target = D
 					break
 		if((!src.target || src.target == null ) && src.improvefloors)
-			for (var/turf/simulated/floor/F in view(7,src))
-				if(!(F in floorbottargets) && F != src.oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/simulated/floor/plating)))
+			for (var/turf/open/floor/F in view(7,src))
+				if(!(F in floorbottargets) && F != src.oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/open/floor/plating)))
 					src.oldtarget = F
 					src.target = F
 					break
@@ -203,7 +203,7 @@
 
 	if((!src.target || src.target == null) && emagged == 2)
 		if(!src.target || src.target == null)
-			for (var/turf/simulated/floor/D in view(7,src))
+			for (var/turf/open/floor/D in view(7,src))
 				if(!(D in floorbottargets) && D != src.oldtarget && D.floor_tile)
 					src.oldtarget = D
 					src.target = D
@@ -239,8 +239,8 @@
 			src.maketile(src.target)
 		else if(istype(src.target, /turf/) && emagged < 2)
 			repair(src.target)
-		else if(emagged == 2 && istype(src.target,/turf/simulated/floor))
-			var/turf/simulated/floor/F = src.target
+		else if(emagged == 2 && istype(src.target,/turf/open/floor))
+			var/turf/open/floor/F = src.target
 			src.anchored = 1
 			src.repairing = 1
 			if(prob(90))
@@ -260,16 +260,16 @@
 
 
 /obj/machinery/bot/floorbot/proc/repair(var/turf/target)
-	if(istype(target, /turf/space/))
+	if(istype(target, /turf/open/space/))
 		if(target.loc.name == "Space")
 			return
-	else if(!istype(target, /turf/simulated/floor))
+	else if(!istype(target, /turf/open/floor))
 		return
 	if(src.amount <= 0)
 		return
 	src.anchored = 1
 	src.icon_state = "floorbot-c"
-	if(istype(target, /turf/space/))
+	if(istype(target, /turf/open/space/))
 		visible_message("\red [src] begins to repair the hole")
 		var/obj/item/stack/tile/plasteel/T = new /obj/item/stack/tile/plasteel
 		src.repairing = 1

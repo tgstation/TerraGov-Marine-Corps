@@ -11,11 +11,11 @@
 	if(ticker)
 		cameranet.updateVisibility(src)
 
-/turf/simulated/Dispose()
+/turf/Dispose()
 	visibilityChanged()
 	. = ..()
 
-/turf/simulated/New()
+/turf/New()
 	..()
 	visibilityChanged()
 
@@ -45,16 +45,6 @@
 	if(ticker)
 		cameranet.updateVisibility(src)
 
-
-// DOORS
-
-// Simply updates the visibility of the area when it opens/closes/destroyed.
-/obj/machinery/door/update_nearby_tiles(need_rebuild)
-	. = ..(need_rebuild)
-	// Glass door glass = 1
-	// don't check then?
-	if(!glass && cameranet)
-		cameranet.updateVisibility(src, 0)
 
 
 // ROBOT MOVEMENT

@@ -4,7 +4,6 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "folder"
 	w_class = 2
-	pressure_resistance = 2
 	var/updateicon = 0//If they spawn with premade papers, update icon
 
 /obj/item/folder/blue

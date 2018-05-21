@@ -12,15 +12,11 @@
 	unacidable = 1
 	layer = WINDOW_LAYER
 
-	CanPass(atom/movable/mover, turf/target, height, air_group)
-		if(!height || air_group) return 0
-		else return ..()
+/obj/structure/shuttle/window/ex_act(severity)
+	return
 
-	ex_act(severity)
-		return
-
-	fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-		return
+/obj/structure/shuttle/window/fire_act(exposed_temperature, exposed_volume)
+	return
 
 /obj/structure/shuttle/engine
 	name = "engine"

@@ -31,50 +31,16 @@
 	..()
 	if(!partner)
 		return 0
-
-	if(!air_master || air_master.current_cycle <= update_cycle)
-		return 0
-
-	update_cycle = air_master.current_cycle
-	partner.update_cycle = air_master.current_cycle
-
-	var/air_heat_capacity = air_contents.heat_capacity()
-	var/other_air_heat_capacity = partner.air_contents.heat_capacity()
-	var/combined_heat_capacity = other_air_heat_capacity + air_heat_capacity
-
-	var/old_temperature = air_contents.temperature
-	var/other_old_temperature = partner.air_contents.temperature
-
-	if(combined_heat_capacity > 0)
-		var/combined_energy = partner.air_contents.temperature * other_air_heat_capacity + air_heat_capacity * air_contents.temperature
-
-		var/new_temperature = combined_energy/combined_heat_capacity
-		air_contents.temperature = new_temperature
-		partner.air_contents.temperature = new_temperature
-
-	if(network)
-		if(abs(old_temperature-air_contents.temperature) > 1)
-			network.update = 1
-
-	if(partner.network)
-		if(abs(other_old_temperature-partner.air_contents.temperature) > 1)
-			partner.network.update = 1
-
-	return 1
+	return 0
 
 /obj/machinery/atmospherics/unary/heat_exchanger/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(!iswrench(W))
 		return ..()
 	var/turf/T = loc
-	if(level == 1 && isturf(T) && T.intact)
+	if(level == 1 && isturf(T) && T.intact_tile)
 		user << "<span class='warning'>You must remove the plating first.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")

@@ -171,11 +171,11 @@
 		if (NORTHWEST, SOUTHWEST)
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
-	if (istype(tempLoc, /turf/space))
+	if (istype(tempLoc, /turf/open/space))
 		user << "<span class='warning'>You can't build a terminal on space.</span>"
 		return 1
 	else if (istype(tempLoc))
-		if(tempLoc.intact)
+		if(tempLoc.intact_tile)
 			user << "<span class='warning'>You must remove the floor plating first.</span>"
 			return 1
 	user << "<span class='notice'>You start adding cable to the [src].</span>"
@@ -241,7 +241,7 @@
 		building_terminal = 1
 		var/turf/tempTDir = terminal.loc
 		if (istype(tempTDir))
-			if(tempTDir.intact)
+			if(tempTDir.intact_tile)
 				user << "<span class='warning'>You must remove the floor plating first.</span>"
 			else
 				user << "<span class='notice'>You begin to cut the cables...</span>"

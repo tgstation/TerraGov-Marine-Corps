@@ -133,11 +133,6 @@
 		network_node1.merge(network_node2)
 		network_node2 = network_node1
 
-	if(network_node1)
-		network_node1.update = 1
-	else if(network_node2)
-		network_node2.update = 1
-
 	return 1
 
 /obj/machinery/atmospherics/tvalve/proc/go_straight()
@@ -157,11 +152,6 @@
 	if(network_node1&&network_node3)
 		network_node1.merge(network_node3)
 		network_node3 = network_node1
-
-	if(network_node1)
-		network_node1.update = 1
-	else if(network_node3)
-		network_node3.update = 1
 
 	return 1
 
@@ -360,12 +350,7 @@
 	if(istype(src, /obj/machinery/atmospherics/tvalve/digital))
 		user << "<span class='warning'>You cannot unwrench [src], it's too complicated.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")

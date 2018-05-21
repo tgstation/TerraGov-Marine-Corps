@@ -26,7 +26,7 @@
 		set_codes()
 
 		var/turf/T = loc
-		hide(T.intact)
+		hide(T.intact_tile)
 
 		spawn(5)	// must wait for map loading to finish
 			if(radio_controller)
@@ -101,7 +101,7 @@
 
 	attackby(var/obj/item/I, var/mob/user)
 		var/turf/T = loc
-		if(T.intact)
+		if(T.intact_tile)
 			return		// prevent intraction when T-scanner revealed
 
 		if(istype(I, /obj/item/tool/screwdriver))
@@ -134,7 +134,7 @@
 
 	interact(var/mob/user, var/ai = 0)
 		var/turf/T = loc
-		if(T.intact)
+		if(T.intact_tile)
 			return		// prevent intraction when T-scanner revealed
 
 		if(!open && !ai)	// can't alter controls if not open, unless you're an AI

@@ -79,9 +79,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		cdel(src)
 		return
 	update_icon()
-	if(isturf(loc)) //start a fire if possible
-		var/turf/T = loc
-		T.hotspot_expose(700, 5)
+
 
 
 /obj/item/tool/candle/attack_self(mob/user as mob)
@@ -122,14 +120,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb = list("burnt", "singed")
 
 /obj/item/tool/match/process()
-	var/turf/location = get_turf(src)
 	smoketime--
 	if(smoketime < 1)
 		burn_out()
 		return
-	if(location)
-		location.hotspot_expose(700, 5)
-		return
+
 
 
 /obj/item/tool/match/Dispose()
@@ -325,7 +320,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		processing_objects.Add(src)
 
 /obj/item/clothing/mask/cigarette/process()
-	var/turf/location = get_turf(src)
 	var/mob/living/M = loc
 	if(isliving(loc))
 		M.IgniteMob()
@@ -333,8 +327,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime < 1)
 		die()
 		return
-	if(location)
-		location.hotspot_expose(700, 5)
+
 	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
 			if(istype(loc, /mob/living/carbon/human))
@@ -478,9 +471,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			M.update_inv_wear_mask(0)
 		processing_objects.Remove(src)
 		return
-	if(location)
-		location.hotspot_expose(700, 5)
-	return
 
 /obj/item/clothing/mask/cigarette/pipe/attack_self(mob/user as mob) //Refills the pipe. Can be changed to an attackby later, if loose tobacco is added to vendors or something.
 	if(heat_source)
@@ -627,10 +617,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		..()
 
 /obj/item/tool/lighter/process()
-	var/turf/location = get_turf(src)
-	if(location)
-		location.hotspot_expose(700, 5)
-	return
 
 
 /obj/item/tool/lighter/pickup(mob/user)

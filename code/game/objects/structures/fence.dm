@@ -4,7 +4,6 @@
 	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence0"
 	density = 1
-	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|FPRINT
@@ -182,23 +181,19 @@
 	if(start_dir)
 		dir = start_dir
 
-	update_nearby_tiles(need_rebuild = 1)
 	update_nearby_icons()
 
 /obj/structure/fence/Dispose()
 	density = 0
-	update_nearby_tiles()
 	update_nearby_icons()
 	. = ..()
 
 /obj/structure/fence/Move()
 	var/ini_dir = dir
-	update_nearby_tiles(need_rebuild = 1)
 	..()
 	dir = ini_dir
-	update_nearby_tiles(need_rebuild = 1)
 
-//This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
+//This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()
 	update_icon()
 	for(var/direction in cardinal)
@@ -220,7 +215,7 @@
 		else
 			icon_state = "[basestate][junction]"
 
-/obj/structure/fence/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
 		health -= round(exposed_volume / 100)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat

@@ -155,7 +155,7 @@
 	plantname = "mtear"
 
 /obj/item/reagent_container/food/snacks/grown/mtear/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc,/turf/open/space))
 		return
 	var/obj/item/stack/medical/ointment/tajaran/poultice = new /obj/item/stack/medical/ointment/tajaran(user.loc)
 
@@ -165,7 +165,7 @@
 	user << "<span class='notice'>You mash the petals into a poultice.</span>"
 
 /obj/item/reagent_container/food/snacks/grown/shand/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc,/turf/open/space))
 		return
 	var/obj/item/stack/medical/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/bruise_pack/tajaran(user.loc)
 
@@ -385,7 +385,7 @@
 	plantname = "killertomato"
 
 /obj/item/reagent_container/food/snacks/grown/killertomato/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc,/turf/open/space))
 		return
 	new /mob/living/simple_animal/tomato(user.loc)
 	cdel(src)
@@ -520,7 +520,7 @@
 	plantname = "walkingmushroom"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc,/turf/open/space))
 		return
 	new /mob/living/simple_animal/mushroom(user.loc)
 	cdel(src)
@@ -543,7 +543,7 @@
 	plantname = "glowshroom"
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc,/turf/open/space))
 		return
 	var/obj/effect/glowshroom/planted = new /obj/effect/glowshroom(user.loc)
 
@@ -596,7 +596,7 @@
 		return
 	for(var/turf/T in orange(M,outer_teleport_radius))
 		if(T in orange(M,inner_teleport_radius)) continue
-		if(istype(T,/turf/space)) continue
+		if(istype(T,/turf/open/space)) continue
 		if(T.density) continue
 		if(T.x>world.maxx-outer_teleport_radius || T.x<outer_teleport_radius)	continue
 		if(T.y>world.maxy-outer_teleport_radius || T.y<outer_teleport_radius)	continue

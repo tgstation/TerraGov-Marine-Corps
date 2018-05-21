@@ -191,8 +191,8 @@ obj/machinery/airlock_sensor/attack_hand(mob/user)
 
 obj/machinery/airlock_sensor/process()
 	if(on)
-		var/datum/gas_mixture/air_sample = return_air()
-		var/pressure = round(air_sample.return_pressure(),0.1)
+		var/air_pressure = return_air()
+		var/pressure = round(air_pressure,0.1)
 
 		if(abs(pressure - previousPressure) > 0.001 || previousPressure == null)
 			var/datum/signal/signal = new

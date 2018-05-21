@@ -252,44 +252,7 @@
 
 	if(density && next_process_time <= world.time)
 		next_process_time = world.time + 100		// 10 second delays between process updates
-		var/changed = 0
-		lockdown=0
-		// Pressure alerts
-		pdiff = getOPressureDifferential(src.loc)
-		if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
-			lockdown = 1
-			if(!pdiff_alert)
-				pdiff_alert = 1
-				changed = 1 // update_icon()
-		else
-			if(pdiff_alert)
-				pdiff_alert = 0
-				changed = 1 // update_icon()
 
-		tile_info = getCardinalAirInfo(src.loc,list("temperature","pressure"))
-		var/old_alerts = dir_alerts
-		for(var/index = 1; index <= 4; index++)
-			var/list/tileinfo=tile_info[index]
-			if(tileinfo==null)
-				continue // Bad data.
-			var/celsius = convert_k2c(tileinfo[1])
-
-			var/alerts=0
-
-			// Temperatures
-			if(celsius >= FIREDOOR_MAX_TEMP)
-				alerts |= FIREDOOR_ALERT_HOT
-				lockdown = 1
-			else if(celsius <= FIREDOOR_MIN_TEMP)
-				alerts |= FIREDOOR_ALERT_COLD
-				lockdown = 1
-
-			dir_alerts[index]=alerts
-
-		if(dir_alerts != old_alerts)
-			changed = 1
-		if(changed)
-			update_icon()
 
 /obj/machinery/door/firedoor/proc/latetoggle()
 	if(operating || !nextstate)
@@ -351,44 +314,6 @@
 
 
 /obj/machinery/door/firedoor/border_only
-//These are playing merry hell on ZAS.  Sorry fellas :(
-/*
-	icon = 'icons/obj/doors/edge_Doorfire.dmi'
-	glass = 1 //There is a glass window so you can see through the door
-			  //This is needed due to BYOND limitations in controlling visibility
-	heat_proof = 1
-	air_properties_vary_with_direction = 1
-
-	CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-		if(istype(mover) && mover.checkpass(PASSGLASS))
-			return 1
-		if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-			if(air_group) return 0
-			return !density
-		else
-			return 1
-
-	CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-		if(istype(mover) && mover.checkpass(PASSGLASS))
-			return 1
-		if(get_dir(loc, target) == dir)
-			return !density
-		else
-			return 1
-
-
-	update_nearby_tiles(need_rebuild)
-		if(!air_master) return 0
-
-		var/turf/simulated/source = loc
-		var/turf/simulated/destination = get_step(source,dir)
-
-		update_flags_heat_protection(loc)
-
-		if(istype(source)) air_master.tiles_to_update += source
-		if(istype(destination)) air_master.tiles_to_update += destination
-		return 1
-*/
 
 
 //ALMAYER FIRE DOOR

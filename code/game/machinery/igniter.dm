@@ -27,10 +27,10 @@
 	return
 
 /obj/machinery/igniter/process()	//ugh why is this even in process()?
-	if (src.on && !(stat & NOPOWER) )
-		var/turf/location = src.loc
-		if (isturf(location))
-			location.hotspot_expose(1000,500,1)
+//	if (src.on && !(stat & NOPOWER) )
+//		var/turf/location = src.loc
+//		if (isturf(location))
+//			location.hotspot_expose(1000,500,1)
 	return 1
 
 /obj/machinery/igniter/New()
@@ -106,9 +106,9 @@
 	s.start()
 	src.last_spark = world.time
 	use_power(1000)
-	var/turf/location = src.loc
-	if (isturf(location))
-		location.hotspot_expose(1000,500,1)
+//	var/turf/location = src.loc
+//	if (isturf(location))
+//		location.hotspot_expose(1000,500,1)
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)

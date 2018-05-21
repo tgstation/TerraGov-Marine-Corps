@@ -220,9 +220,6 @@
 	..()
 
 /obj/item/device/flashlight/flare/process()
-	var/turf/pos = get_turf(src)
-	if(pos)
-		pos.hotspot_expose(produce_heat, 5)
 	fuel = max(fuel - 1, 0)
 	if(!fuel || !on)
 		turn_off()

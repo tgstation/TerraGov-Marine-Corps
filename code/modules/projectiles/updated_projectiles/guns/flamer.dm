@@ -191,8 +191,8 @@
 	new /obj/flamer_fire(T, heat, burn, f_color)
 
 	// Melt a single layer of snow
-	if (istype(T, /turf/unsimulated/floor/snow))
-		var/turf/unsimulated/floor/snow/S = T
+	if (istype(T, /turf/open/snow))
+		var/turf/open/snow/S = T
 
 		if (S.slayer > 0)
 			S.slayer -= 1

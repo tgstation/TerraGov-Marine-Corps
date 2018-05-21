@@ -76,19 +76,22 @@
 			var/turf/T = target
 			var/turfdirt = T.get_dirt_type()
 			if(turfdirt)
-				if(turfdirt == DIRT_TYPE_SNOW && !T.slayer)
-					return
+				if(turfdirt == DIRT_TYPE_SNOW)
+					var/turf/open/snow/ST = T
+					if(!ST.slayer)
+						return
 				user << "<span class='notice'>You start digging.</span>"
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 				if(!do_after(user, shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 					return
 				var/transf_amt = dirt_amt_per_dig
 				if(turfdirt == DIRT_TYPE_SNOW)
-					if(!T.slayer)
+					var/turf/open/snow/ST = T
+					if(!ST.slayer)
 						return
-					transf_amt = min(T.slayer, dirt_amt_per_dig)
-					T.slayer -= transf_amt
-					T.update_icon(1,0)
+					transf_amt = min(ST.slayer, dirt_amt_per_dig)
+					ST.slayer -= transf_amt
+					ST.update_icon(1,0)
 					user << "<span class='notice'>You dig up some snow.</span>"
 				else
 					user << "<span class='notice'>You dig up some dirt.</span>"
@@ -170,17 +173,4 @@
 
 
 
-
-//what dirt type you can dig from this turf if any.
-/turf/proc/get_dirt_type()
-	return NO_DIRT
-
-/turf/unsimulated/floor/gm/get_dirt_type()
-	return DIRT_TYPE_GROUND
-
-/turf/unsimulated/floor/mars/get_dirt_type()
-	return DIRT_TYPE_MARS
-
-/turf/unsimulated/floor/snow/get_dirt_type()
-	return DIRT_TYPE_SNOW
 

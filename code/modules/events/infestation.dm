@@ -20,7 +20,7 @@
 /datum/event/infestation/start()
 
 	location = rand(0,5)
-	var/list/turf/simulated/floor/turfs = list()
+	var/list/turf/open/floor/turfs = list()
 	var/spawn_area_type
 	switch(location)
 		if(LOC_CAFETERIA)
@@ -49,7 +49,7 @@
 		//world << "	A: [A], contents.len: [A.contents.len]"
 		for(var/area/B in A.related)
 			//world << "	B: [B], contents.len: [B.contents.len]"
-			for(var/turf/simulated/floor/F in B.contents)
+			for(var/turf/open/floor/F in B.contents)
 				if(!F.contents.len)
 					turfs += F
 
@@ -73,7 +73,7 @@
 	spawn(0)
 		var/num = rand(2,max_number)
 		while(turfs.len > 0 && num > 0)
-			var/turf/simulated/floor/T = pick(turfs)
+			var/turf/open/floor/T = pick(turfs)
 			turfs.Remove(T)
 			num--
 

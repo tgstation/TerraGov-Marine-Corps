@@ -32,7 +32,7 @@
 	New()
 		..()
 		var/turf/T = loc
-		hide(T.intact)
+		hide(T.intact_tile)
 		center = T
 
 		spawn(10)	// must wait for map loading to finish

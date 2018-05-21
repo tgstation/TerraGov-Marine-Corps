@@ -25,9 +25,9 @@
 			icon_off = "squad_[closet_squad]_off"
 
 	select_gamemode_equipment(gamemode)
-		var/turf/T = locate(15,15,1)
-		if(istype(T, /turf/unsimulated/wall))
-			new /obj/item/clothing/mask/rebreather/scarf(src)
+		switch(gamemode)
+			if(/datum/game_mode/ice_colony)
+				new /obj/item/clothing/mask/rebreather/scarf(src)
 
 
 // STANDARD MARINE
@@ -455,12 +455,11 @@
 		new /obj/item/clothing/glasses/hud/health(src)
 
 	select_gamemode_equipment(gamemode)
-		var/turf/T = locate(15,15,1) //Disgusting spaghetto fix until we can switch maps better
-		if(istype(T, /turf/unsimulated/wall))
-			new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
-		if(istype(T, /turf/unsimulated/beach))
-			new /obj/item/clothing/mask/gas/(src)
+		switch(gamemode)
+			if(/datum/game_mode/ice_colony)
+				new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
+				new /obj/item/clothing/mask/rebreather/scarf(src)
+
 
 
 //ALAMAYER CARGO CLOSET

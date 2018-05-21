@@ -163,7 +163,7 @@
 	if(acid_cooldown)
 		return
 
-	if(!isturf(loc) || istype(loc, /turf/space))
+	if(!isturf(loc) || istype(loc, /turf/open/space))
 		src << "<span class='warning'>You can't do that from there.</span>"
 		return
 
@@ -216,7 +216,7 @@
 				prev_turf = get_turf(src)
 				continue //So we don't burn the tile we be standin on
 
-			if(T.density || istype(T, /turf/space))
+			if(T.density || istype(T, /turf/open/space))
 				break
 			if(distance > 7)
 				break
@@ -248,7 +248,7 @@
 
 
 /mob/living/carbon/Xenomorph/Boiler/proc/splat_turf(var/turf/target)
-	if(!istype(target) || istype(target,/turf/space))
+	if(!istype(target) || istype(target,/turf/open/space))
 		return
 
 	if(!locate(/obj/effect/xenomorph/spray) in target) //No stacking flames!

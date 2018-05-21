@@ -82,34 +82,34 @@ RCD
 		if(!proximity) return
 		if(disabled && !isrobot(user))
 			return 0
-		if(istype(A,/area/shuttle) || istype(A,/turf/space/transit) || istype(A, /turf/unsimulated))
+		if(istype(A,/area/shuttle) || istype(A,/turf/open/space/transit))
 			return 0
 		if(!(istype(A, /turf) || istype(A, /obj/machinery/door/airlock)))
 			return 0
 
 		switch(mode)
 			if(1)
-				if(istype(A, /turf/space))
+				if(istype(A, /turf/open/space))
 					if(useResource(1, user))
 						user << "Building Floor..."
 						activate()
-						A:ChangeTurf(/turf/simulated/floor/plating/airless)
+						A:ChangeTurf(/turf/open/floor/plating/airless)
 						return 1
 					return 0
 
-				if(istype(A, /turf/simulated/floor))
+				if(istype(A, /turf/open/floor))
 					if(checkResource(3, user))
 						user << "Building Wall ..."
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(3, user)) return 0
 							activate()
-							A:ChangeTurf(/turf/simulated/wall)
+							A:ChangeTurf(/turf/closed/wall)
 							return 1
 					return 0
 
 			if(2)
-				if(istype(A, /turf/simulated/floor))
+				if(istype(A, /turf/open/floor))
 					if(checkResource(10, user))
 						user << "Building Airlock..."
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
@@ -123,8 +123,11 @@ RCD
 					return 0
 
 			if(3)
-				if(istype(A, /turf/simulated/wall))
-					if(istype(A, /turf/simulated/wall/r_wall) && !canRwall)
+				if(istype(A, /turf/closed/wall))
+					var/turf/closed/wall/WL = A
+					if(WL.hull)
+						return 0
+					if(istype(A, /turf/closed/wall/r_wall) && !canRwall)
 						return 0
 					if(checkResource(5, user))
 						user << "Deconstructing Wall..."
@@ -132,18 +135,18 @@ RCD
 						if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(5, user)) return 0
 							activate()
-							A:ChangeTurf(/turf/simulated/floor/plating/airless)
+							A:ChangeTurf(/turf/open/floor/plating/airless)
 							return 1
 					return 0
 
-				if(istype(A, /turf/simulated/floor) && !istype(A, /turf/simulated/floor/plating))
+				if(istype(A, /turf/open/floor) && !istype(A, /turf/open/floor/plating))
 					if(checkResource(5, user))
 						user << "Deconstructing Floor..."
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(5, user)) return 0
 							activate()
-							A:ChangeTurf(/turf/simulated/floor/plating/airless)
+							A:ChangeTurf(/turf/open/floor/plating/airless)
 							return 1
 					return 0
 

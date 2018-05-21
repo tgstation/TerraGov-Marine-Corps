@@ -218,27 +218,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	..()
 
 /obj/machinery/telecomms/proc/checkheat()
-	// Checks heat from the environment and applies any integrity damage
-	var/datum/gas_mixture/environment = loc.return_air()
-	var/damage_chance = 0                           // Percent based chance of applying 1 integrity damage this tick
-	switch(environment.temperature)
-		if((T0C + 40) to (T0C + 70))                // 40C-70C, minor overheat, 10% chance of taking damage
-			damage_chance = 10
-		if((T0C + 70) to (T0C + 130))				// 70C-130C, major overheat, 25% chance of taking damage
-			damage_chance = 25
-		if((T0C + 130) to (T0C + 200))              // 130C-200C, dangerous overheat, 50% chance of taking damage
-			damage_chance = 50
-		if((T0C + 200) to INFINITY)					// More than 200C, INFERNO. Takes damage every tick.
-			damage_chance = 100
-	if (damage_chance && prob(damage_chance))
-		integrity = between(0, integrity - 1, 100)
 
-
-	if(delay > 0)
-		delay--
-	else if(on)
-		produce_heat()
-		delay = initial(delay)
 
 
 
@@ -249,24 +229,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	if (!use_power)
 		return
 
-	if(!(stat & (NOPOWER|BROKEN)))
-		var/turf/simulated/L = loc
-		if(istype(L))
-			var/datum/gas_mixture/env = L.return_air()
-
-			var/transfer_moles = 0.25 * env.total_moles
-
-			var/datum/gas_mixture/removed = env.remove(transfer_moles)
-
-			if(removed)
-
-				var/heat_produced = idle_power_usage	//obviously can't produce more heat than the machine draws from it's power source
-				if (traffic <= 0)
-					heat_produced *= 0.30	//if idle, produce less heat.
-
-				removed.add_thermal_energy(heat_produced)
-
-			env.merge(removed)
 /*
 	The receiver idles and receives messages from subspace-compatible radio equipment;
 	primarily headsets. They then just relay this information to all linked devices,

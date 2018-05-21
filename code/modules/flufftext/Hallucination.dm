@@ -85,10 +85,10 @@ mob/living/carbon/proc/handle_hallucinations()
 				//src << "Danger Flash"
 				if(!halimage)
 					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src,world.view))
+					for(var/turf/open/floor/F in view(src,world.view))
 						possible_points += F
 					if(possible_points.len)
-						var/turf/simulated/floor/target = pick(possible_points)
+						var/turf/open/floor/target = pick(possible_points)
 
 						switch(rand(1,3))
 							if(1)
@@ -147,10 +147,10 @@ mob/living/carbon/proc/handle_hallucinations()
 				//src << "Danger Flash"
 				if(!halbody)
 					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src,world.view))
+					for(var/turf/open/floor/F in view(src,world.view))
 						possible_points += F
 					if(possible_points.len)
-						var/turf/simulated/floor/target = pick(possible_points)
+						var/turf/open/floor/target = pick(possible_points)
 						switch(rand(1,4))
 							if(1)
 								halbody = image('icons/mob/human.dmi',target,"husk_l",TURF_LAYER)

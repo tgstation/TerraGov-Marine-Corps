@@ -11,7 +11,6 @@
 	active_power_usage = 3700	//This also doubles as a measure of how powerful the mixer is, in Watts. 3700 W ~ 5 HP
 
 	var/set_flow_rate = ATMOS_DEFAULT_VOLUME_MIXER
-	var/list/mixing_inputs
 
 	//for mapping
 	var/node1_concentration = 0.5
@@ -63,58 +62,21 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/trinary/mixer/New()
-	..()
-	air1.volume = ATMOS_DEFAULT_VOLUME_MIXER
-	air2.volume = ATMOS_DEFAULT_VOLUME_MIXER
-	air3.volume = ATMOS_DEFAULT_VOLUME_MIXER * 1.5
 
 /obj/machinery/atmospherics/trinary/mixer/process()
 	..()
-
-	//For some reason this doesn't work even in initialize(), so it goes here.
-	if (!mixing_inputs)
-		mixing_inputs = list(src.air1 = node1_concentration, src.air2 = node2_concentration)
 
 	if((stat & (NOPOWER|BROKEN)) || !on)
 		update_use_power(0)	//usually we get here because a player turned a pump off - definitely want to update.
 		last_flow_rate = 0
 		return
 
-	//Figure out the amount of moles to transfer
-	var/transfer_moles = (set_flow_rate*mixing_inputs[air1]/air1.volume)*air1.total_moles + (set_flow_rate*mixing_inputs[air1]/air2.volume)*air2.total_moles
-
-	var/power_draw = -1
-	if (transfer_moles > MINUMUM_MOLES_TO_FILTER)
-		power_draw = mix_gas(src, mixing_inputs, air3, transfer_moles, active_power_usage)
-
-		if(network1 && mixing_inputs[air1])
-			network1.update = 1
-
-		if(network2 && mixing_inputs[air2])
-			network2.update = 1
-
-		if(network3)
-			network3.update = 1
-
-	if (power_draw < 0)
-		//update_use_power(0)
-		use_power = 0	//don't force update - easier on CPU
-		last_flow_rate = 0
-	else
-		handle_power_draw(power_draw)
-
 	return 1
 
 /obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(!iswrench(W))
 		return ..()
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")
@@ -142,14 +104,14 @@
 				<b>Node 1 Concentration:</b>
 				<a href='?src=\ref[src];node1_c=-0.1'><b>-</b></a>
 				<a href='?src=\ref[src];node1_c=-0.01'>-</a>
-				[mixing_inputs[air1]]([mixing_inputs[air1]*100]%)
+				100%)
 				<a href='?src=\ref[src];node1_c=0.01'><b>+</b></a>
 				<a href='?src=\ref[src];node1_c=0.1'>+</a>
 				<br>
 				<b>Node 2 Concentration:</b>
 				<a href='?src=\ref[src];node2_c=-0.1'><b>-</b></a>
 				<a href='?src=\ref[src];node2_c=-0.01'>-</a>
-				[mixing_inputs[air2]]([mixing_inputs[air2]*100]%)
+				100%)
 				<a href='?src=\ref[src];node2_c=0.01'><b>+</b></a>
 				<a href='?src=\ref[src];node2_c=0.1'>+</a>
 				"}
@@ -163,20 +125,16 @@
 	if(href_list["power"])
 		on = !on
 	if(href_list["set_press"])
-		var/max_flow_rate = min(air1.volume, air2.volume)
+		var/max_flow_rate = 5000
 		var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",src.set_flow_rate) as num
 		src.set_flow_rate = max(0, min(max_flow_rate, new_flow_rate))
 	if(href_list["node1_c"])
-		var/value = text2num(href_list["node1_c"])
-		src.mixing_inputs[air1] = max(0, min(1, src.mixing_inputs[air1] + value))
-		src.mixing_inputs[air2] = 1.0 - mixing_inputs[air1]
+		return
 	if(href_list["node2_c"])
-		var/value = text2num(href_list["node2_c"])
-		src.mixing_inputs[air2] = max(0, min(1, src.mixing_inputs[air2] + value))
-		src.mixing_inputs[air1] = 1.0 - mixing_inputs[air2]
+		return
 	src.update_icon()
 	src.updateUsrDialog()
-	return
+
 
 obj/machinery/atmospherics/trinary/mixer/t_mixer
 	icon_state = "tmap"

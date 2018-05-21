@@ -112,7 +112,7 @@
 		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
 			C.animate_on()
 
-		for (var/turf/simulated/shuttle/wall/elevator/gears/G in area)
+		for (var/turf/closed/shuttle/elevator/gears/G in area)
 			G.start()
 
 		for (var/obj/machinery/door/airlock/D in area)//For elevators
@@ -143,7 +143,7 @@
 		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
 			C.animate_off()
 
-		for (var/turf/simulated/shuttle/wall/elevator/gears/G in area)
+		for (var/turf/closed/shuttle/elevator/gears/G in area)
 			G.stop()
 
 		for (var/obj/machinery/door/airlock/D in area)//For elevators
@@ -197,8 +197,7 @@
 	for(var/turf/T in destination)
 		for(var/obj/O in T)
 			cdel(O)
-		if(istype(T, /turf/simulated))
-			cdel(T)
+		cdel(T)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()
@@ -223,13 +222,13 @@
 
 	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
 		if(iselevator)
-			if(istype(T,/turf/space))
+			if(istype(T,/turf/open/space))
 				if(T.z == 3)
-					new /turf/simulated/floor/almayer/empty(T)
+					new /turf/open/floor/almayer/empty(T)
 				else
-					new /turf/simulated/floor/gm/empty(T)
-		else if(istype(T,/turf/space))
-			new /turf/simulated/floor/plating(T)
+					new /turf/open/gm/empty(T)
+		else if(istype(T,/turf/open/space))
+			new /turf/open/floor/plating(T)
 
 	return
 

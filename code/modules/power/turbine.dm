@@ -6,8 +6,7 @@
 	anchored = 1
 	density = 1
 	var/obj/machinery/power/turbine/turbine
-	var/datum/gas_mixture/gas_contained
-	var/turf/simulated/inturf
+	var/turf/inturf
 	var/starter = 0
 	var/rpm = 0
 	var/rpmtarget = 0
@@ -23,7 +22,7 @@
 	density = 1
 	var/obj/machinery/compressor/compressor
 	directwired = 1
-	var/turf/simulated/outturf
+	var/turf/outturf
 	var/lastgen
 
 /obj/machinery/computer/turbine_computer
@@ -44,7 +43,6 @@
 /obj/machinery/compressor/New()
 	..()
 
-	gas_contained = new
 	inturf = get_step(src, dir)
 
 	spawn(5)
@@ -73,11 +71,6 @@
 		stat |= BROKEN
 		return
 	rpm = 0.9* rpm + 0.1 * rpmtarget
-	var/datum/gas_mixture/environment = inturf.return_air()
-	var/transfer_moles = environment.total_moles / 10
-	//var/transfer_moles = rpm/10000*capacity
-	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
-	gas_contained.merge(removed)
 
 	rpm = max(0, rpm - (rpm*rpm)/COMPFRICTION)
 
@@ -136,16 +129,6 @@
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) *TURBGENQ
 
 	add_avail(lastgen)
-	var/newrpm = ((compressor.gas_contained.temperature) * compressor.gas_contained.total_moles)/4
-	newrpm = max(0, newrpm)
-
-	if(!compressor.starter || newrpm > 1000)
-		compressor.rpmtarget = newrpm
-
-	if(compressor.gas_contained.total_moles>0)
-		var/oamount = min(compressor.gas_contained.total_moles, (compressor.rpm+100)/35000*compressor.capacity)
-		var/datum/gas_mixture/removed = compressor.gas_contained.remove(oamount)
-		outturf.assume_air(removed)
 
 	if(lastgen > 100)
 		overlays += image('icons/obj/pipes.dmi', "turb-o", FLY_LAYER)
@@ -289,8 +272,7 @@
 
 			if(C.turbine)
 				turbineav += C.turbine.lastgen
-			if(C.gas_contained)
-				gastempav += C.gas_contained.temperature
+
 			rpmav += C.rpm
 			i++
 			started = C.starter

@@ -72,9 +72,9 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 			if(vent_found)
 				if(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len))
 
-					if(vent_found.air_contents && !issilicon(src))
+					if(!issilicon(src))
 
-						switch(vent_found.air_contents.temperature)
+						switch(vent_found.temperature)
 							if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
 								src << "<span class='danger'>You feel a painful freeze coming from the vent!</span>"
 							if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)

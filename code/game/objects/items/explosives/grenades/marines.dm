@@ -127,7 +127,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 
 	for(var/turf/T in range(radius,turf))
 		if(T.density) continue
-		if(istype(T,/turf/space)) continue
+		if(istype(T,/turf/open/space)) continue
 		if(locate(/obj/flamer_fire) in T) continue //No stacking
 		new /obj/flamer_fire(T, 5 + rand(0,11), 15)
 

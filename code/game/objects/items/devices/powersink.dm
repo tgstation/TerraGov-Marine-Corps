@@ -26,7 +26,7 @@
 		if(istype(I, /obj/item/tool/screwdriver))
 			if(mode == 0)
 				var/turf/T = loc
-				if(isturf(T) && !T.intact)
+				if(isturf(T) && !T.intact_tile)
 					attached = locate() in T
 					if(!attached)
 						user << "No exposed cable here to attach to."

@@ -15,7 +15,6 @@
 
 	New()
 		..()
-		update_nearby_tiles()
 		if (src.req_access && src.req_access.len)
 			src.icon_state = "[src.icon_state]"
 			src.base_state = src.icon_state
@@ -23,7 +22,6 @@
 	Dispose()
 		density = 0
 		playsound(src, "shatter", 50, 1)
-		update_nearby_tiles()
 		. = ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
@@ -56,16 +54,15 @@
 		close()
 	return
 
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		if(air_group) return 0
 		return !density
 	else
 		return 1
 
-/obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(loc, target) == dir)
@@ -87,8 +84,6 @@
 
 	explosion_resistance = 0
 	src.density = 0
-//	src.sd_SetOpacity(0)	//TODO: why is this here? Opaque windoors? ~Carn
-	update_nearby_tiles()
 
 	if(operating == 1) //emag again
 		src.operating = 0
@@ -104,9 +99,6 @@
 
 	src.density = 1
 	explosion_resistance = initial(explosion_resistance)
-//	if(src.visible)
-//		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn
-	update_nearby_tiles()
 
 	sleep(10)
 

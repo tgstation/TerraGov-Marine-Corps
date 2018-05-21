@@ -44,8 +44,6 @@
 	if(!connected_device)
 		on = 0
 		return
-	if(network)
-		network.update = 1
 	return 1
 
 // Housekeeping and pipe network stuff below
@@ -112,10 +110,6 @@
 
 /obj/machinery/atmospherics/portables_connector/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()
-
-	if(connected_device)
-		results += connected_device.air_contents
-
 	return results
 
 /obj/machinery/atmospherics/portables_connector/disconnect(obj/machinery/atmospherics/reference)
@@ -136,12 +130,7 @@
 		return 1
 	if(locate(/obj/machinery/portable_atmospherics, loc))
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")

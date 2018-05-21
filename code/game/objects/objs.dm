@@ -29,33 +29,9 @@
 	processing_objects.Remove(src)
 	return 0
 
-/obj/assume_air(datum/gas_mixture/giver)
-	if(loc)
-		return loc.assume_air(giver)
-	else
-		return null
 
-/obj/remove_air(amount)
-	if(loc)
-		return loc.remove_air(amount)
-	else
-		return null
-
-/obj/return_air()
-	if(loc)
-		return loc.return_air()
-	else
-		return null
-
-/obj/proc/handle_internal_lifeform(mob/lifeform_inside_me, breath_request)
-	//Return: (NONSTANDARD)
-	//		null if object handles breathing logic for lifeform
-	//		datum/air_group to tell lifeform to process using that breath return
-	//DEFAULT: Take air from turf to give to have mob process
-	if(breath_request>0)
-		return remove_air(breath_request)
-	else
-		return null
+/obj/proc/handle_internal_lifeform(mob/lifeform_inside_me)
+	. = return_air()
 
 /obj/proc/updateUsrDialog()
 	if(in_use)
@@ -246,8 +222,7 @@
 			return 0
 	return 1
 
-/obj/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(mover == buckled_mob)
+/obj/CanPass(atom/movable/mover, turf/target)
+	if(mover == buckled_mob) //can't collide with the thing you're buckled to
 		return TRUE
-	if(air_group || (height == 0)) return TRUE //This shouldn't be needed, but some items with no preset CanPass don't let air pass for some stupid reasin
 	. = ..()

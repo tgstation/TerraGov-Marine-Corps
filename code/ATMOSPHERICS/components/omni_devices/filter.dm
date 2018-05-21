@@ -21,8 +21,6 @@
 /obj/machinery/atmospherics/omni/filter/New()
 	..()
 	rebuild_filtering_list()
-	for(var/datum/omni_port/P in ports)
-		P.air.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
 /obj/machinery/atmospherics/omni/filter/Dispose()
 	input = null
@@ -40,7 +38,6 @@
 			if(filter_list.Find(P))
 				filter_list -= P
 
-			P.air.volume = 200
 			switch(P.mode)
 				if(ATM_INPUT)
 					input = P
@@ -60,32 +57,6 @@
 /obj/machinery/atmospherics/omni/filter/process()
 	if(!..())
 		return 0
-
-	var/datum/gas_mixture/output_air = output.air	//BYOND doesn't like referencing "output.air.return_pressure()" so we need to make a direct reference
-	var/datum/gas_mixture/input_air = input.air		// it's completely happy with them if they're in a loop though i.e. "P.air.return_pressure()"... *shrug*
-
-	//Figure out the amount of moles to transfer
-	var/transfer_moles = (set_flow_rate/input_air.volume)*input_air.total_moles
-
-	var/power_draw = -1
-	if (transfer_moles > MINUMUM_MOLES_TO_FILTER)
-		power_draw = filter_gas_multi(src, filtering_outputs, input_air, output_air, transfer_moles, active_power_usage)
-
-	if (power_draw < 0)
-		//update_use_power(0)
-		use_power = 0	//don't force update - easier on CPU
-		last_flow_rate = 0
-	else
-		handle_power_draw(power_draw)
-
-		if(input.network)
-			input.network.update = 1
-		if(output.network)
-			output.network.update = 1
-		for(var/datum/omni_port/P in filter_list)
-			if(P.network)
-				P.network.update = 1
-
 	return 1
 
 /obj/machinery/atmospherics/omni/filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -251,10 +222,7 @@
 
 /obj/machinery/atmospherics/omni/filter/proc/rebuild_filtering_list()
 	filtering_outputs.Cut()
-	for(var/datum/omni_port/P in ports)
-		var/gasid = mode_to_gasid(P.mode)
-		if(gasid)
-			filtering_outputs[gasid] = P.air
+	return
 
 /obj/machinery/atmospherics/omni/filter/proc/handle_port_change(var/datum/omni_port/P)
 	switch(P.mode)

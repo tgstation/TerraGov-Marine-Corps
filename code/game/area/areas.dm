@@ -9,6 +9,10 @@
 	var/can_hellhound_enter = 1
 	var/ceiling = CEILING_NONE //the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/fake_zlevel // for multilevel maps in the same z level
+	var/gas_type = GAS_TYPE_AIR
+	var/temperature = T20C
+	var/pressure = ONE_ATMOSPHERE
+
 
 /area/New()
 	..()
@@ -356,7 +360,7 @@
 		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags_inventory & NOSLIPPING)))
 			return
 
-	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
+	if(istype(get_turf(mob), /turf/open/space)) // Can't fall onto nothing.
 		return
 
 	if((istype(mob,/mob/living/carbon/human/)) && (mob:m_intent == "run")) // Only clumbsy humans can fall on their asses.
@@ -368,3 +372,23 @@
 		mob:AdjustKnockeddown(2)
 
 	mob << "Gravity!"
+
+
+
+
+
+//atmos related procs
+
+/area/return_air()
+	return list(gas_type, temperature, pressure)
+
+/area/return_pressure()
+	return pressure
+
+/area/return_temperature()
+	return temperature
+
+/area/return_gas()
+	return gas_type
+
+

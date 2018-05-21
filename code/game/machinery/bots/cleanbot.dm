@@ -159,21 +159,9 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		visible_message("[src] makes an excited beeping booping sound!")
 
 	if(src.screwloose && prob(5))
-		if(istype(loc,/turf/simulated))
-			var/turf/simulated/T = src.loc
-			if(T.wet < 1)
-				T.wet = 1
-				if(T.wet_overlay)
-					T.overlays -= T.wet_overlay
-					T.wet_overlay = null
-				T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-				T.overlays += T.wet_overlay
-				spawn(800)
-					if (istype(T) && T.wet < 2)
-						T.wet = 0
-						if(T.wet_overlay)
-							T.overlays -= T.wet_overlay
-							T.wet_overlay = null
+		if(isturf(loc))
+			var/turf/T = loc
+			T.wet_floor(FLOOR_WET_WATER)
 	if(src.oddbutton && prob(5))
 		visible_message("Something flies out of [src]. He seems to be acting oddly.")
 		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(src.loc)
@@ -302,9 +290,6 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	if(istype(target,/obj/effect/decal/cleanable/dirt))		// Clean Dirt much faster
 		cleantime = 10
 	spawn(cleantime)
-		if(istype(loc,/turf/simulated))
-			var/turf/simulated/f = loc
-			f.dirt = 0
 		cleaning = 0
 		cdel(target)
 		icon_state = "cleanbot[on]"

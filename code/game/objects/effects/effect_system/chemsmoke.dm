@@ -229,7 +229,7 @@
 			for(var/D in cardinal)
 				var/turf/target = get_step(current, D)
 				if(wallList)
-					if(istype(target, /turf/simulated/wall))
+					if(istype(target, /turf/closed/wall))
 						if(!(target in wallList))
 							wallList += target
 						continue
@@ -240,10 +240,14 @@
 					continue
 				if(!(target in targetTurfs))
 					continue
-				if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
+				if(target.density) //this is needed to stop chemsmoke from passing through thin window walls
 					continue
-				if(target.c_airblock(current))
-					continue
+				for(var/atom/movable/M in target)
+					if(M.flags_atom & ON_BORDER)
+						if(M.dir == get_dir(target, current))
+							continue
+					else if(M.density)
+						continue
 				pending += target
 
 			pending -= current

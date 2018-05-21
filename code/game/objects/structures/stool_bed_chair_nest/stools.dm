@@ -5,7 +5,6 @@
 	anchored = 1
 	can_buckle = FALSE
 	flags_atom = FPRINT
-	pressure_resistance = 15
 	foldabletype = /obj/item/stool
 
 

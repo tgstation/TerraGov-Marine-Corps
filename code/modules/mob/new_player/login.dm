@@ -17,15 +17,6 @@
 	sight |= SEE_TURFS
 	player_list |= src
 
-/*
-	var/list/watch_locations = list()
-	for(var/obj/effect/landmark/landmark in landmarks_list)
-		if(landmark.tag == "landmark*new_player")
-			watch_locations += landmark.loc
-
-	if(watch_locations.len>0)
-		loc = pick(watch_locations)
-*/
 	new_player_panel()
 	spawn(40)
 		if(client)

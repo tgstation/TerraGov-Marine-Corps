@@ -134,7 +134,7 @@
 			break
 		else if(DirBlocked(T, turn(dir, 180)))
 			break
-		if(locate(/turf/simulated/wall/resin, T) || locate(/obj/structure/mineral_door/resin, T))
+		if(locate(/turf/closed/wall/resin, T) || locate(/obj/structure/mineral_door/resin, T))
 			break
 		W = locate() in T
 		if(W)

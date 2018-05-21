@@ -444,7 +444,7 @@
 
 	if(!prob(deflect_chance))
 		take_damage((rand(M.melee_damage_lower, M.melee_damage_upper)/2))
-		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
+		check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src]'s armor!</span>", \
 		"<span class='danger'>You slash [src]'s armor!</span>", null, 5)
@@ -758,7 +758,7 @@
 
 
 //Digging up snow
-/turf/unsimulated/floor/snow/attack_alien(mob/living/carbon/Xenomorph/M)
+/turf/open/snow/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == "grab")
 
 		if(!slayer)
@@ -780,7 +780,7 @@
 		slayer -= 1
 		update_icon(1, 0)
 
-/turf/unsimulated/floor/snow/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/turf/open/snow/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	return //Larvae can't do shit
 
 

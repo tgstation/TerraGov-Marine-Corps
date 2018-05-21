@@ -8,7 +8,6 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	var/surface = 2	//surface area in m^2
 
 	minimum_temperature_difference = 20
-	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 
 	// BubbleWrap
 	New()
@@ -47,19 +46,6 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	process()
 		if(!parent)
 			..()
-		else
-			var/environment_temperature = 0
-			if(istype(loc, /turf/simulated/))
-				if(loc:blocks_air)
-					environment_temperature = loc:temperature
-				else
-					var/datum/gas_mixture/environment = loc.return_air()
-					environment_temperature = environment.temperature
-				var/datum/gas_mixture/pipe_air = return_air()
-				if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
-					parent.temperature_interact(loc, volume, thermal_conductivity)
-			else if(istype(loc, /turf/space/))
-				parent.radiate_heat_to_space(surface, 1)
 
 
 obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
@@ -68,7 +54,6 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 	pipe_icon = "hejunction"
 	level = 2
 	minimum_temperature_difference = 300
-	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
 	// BubbleWrap
 	New()

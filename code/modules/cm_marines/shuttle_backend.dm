@@ -448,15 +448,6 @@ cdel(src)
 		target.icon_state = old_icon_state
 		target.icon = old_icon
 
-		// Moving air over
-		var/turf/simulated/S = T
-		var/turf/simulated/target_simulated = target
-
-		if (S.zone && target_simulated.zone)
-			if (!target_simulated.air)
-				target_simulated.make_air()
-			target_simulated.air.copy_from(S.air)
-			S.zone.remove(S)
 
 		for (var/atom/movable/A in T)
 			if (isobj(A))
@@ -483,7 +474,7 @@ cdel(src)
 		if(turftoleave && ispath(turftoleave))
 			T.ChangeTurf(turftoleave)
 		else
-			T.ChangeTurf(/turf/simulated/floor/plating)
+			T.ChangeTurf(/turf/open/floor/plating)
 
 	shuttle.move_scheduled = 0
 

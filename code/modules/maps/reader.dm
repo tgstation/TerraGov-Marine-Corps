@@ -9,7 +9,7 @@
  * WORKING :
  *
  * 1) Makes an associative mapping of model_keys with model
- *		e.g aa = /turf/unsimulated/wall{icon_state = "rock"}
+ *		e.g aa = /turf/closed/wall{icon_state = "rock"}
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
  */
@@ -92,7 +92,7 @@
 
 /**
  * Fill a given tile with its area/turf/objects/mobs
- * Variable model is one full map line (e.g /turf/unsimulated/wall{icon_state = "rock"},/area/mine/explored)
+ * Variable model is one full map line (e.g /turf/closed/wall{icon_state = "rock"},/area/mine/explored)
  *
  * WORKING :
  *
@@ -113,7 +113,7 @@
 		same construction as those contained in a .dmm file, and instantiates them.
 	*/
 
-	var/list/members = list()//will contain all members (paths) in model (in our example : /turf/unsimulated/wall and /area/mine/explored)
+	var/list/members = list()//will contain all members (paths) in model (in our example : /turf/closed/wall and /area/mine/explored)
 	var/list/members_attributes = list()//will contain lists filled with corresponding variables, if any (in our example : list(icon_state = "rock") and list())
 
 
@@ -126,7 +126,7 @@
 	var/dpos
 
 	do
-		//finding next member (e.g /turf/unsimulated/wall{icon_state = "rock"} or /area/mine/explored)
+		//finding next member (e.g /turf/closed/wall{icon_state = "rock"} or /area/mine/explored)
 		dpos= find_next_delimiter_position(model,old_position,",","{","}")//find next delimiter (comma here) that's not within {...}
 
 		var/full_def = copytext(model,old_position,dpos)//full definition, e.g : /obj/foo/bar{variables=derp}

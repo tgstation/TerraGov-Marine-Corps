@@ -46,9 +46,6 @@
 						P.concentration = tag_west_con
 						con += max(0, tag_west_con)
 
-	for(var/datum/omni_port/P in ports)
-		P.air.volume = ATMOS_DEFAULT_VOLUME_MIXER
-
 	rebuild_mixing_inputs()
 
 /obj/machinery/atmospherics/omni/mixer/Dispose()
@@ -74,9 +71,6 @@
 		for(var/datum/omni_port/P in inputs)
 			P.concentration = 1 / max(1, inputs.len)
 
-	if(output)
-		output.air.volume = ATMOS_DEFAULT_VOLUME_MIXER * 0.75 * inputs.len
-		output.concentration = 1
 
 /obj/machinery/atmospherics/omni/mixer/proc/mapper_set()
 	return (tag_north_con || tag_south_con || tag_east_con || tag_west_con)
@@ -100,30 +94,6 @@
 /obj/machinery/atmospherics/omni/mixer/process()
 	if(!..())
 		return 0
-
-	//Figure out the amount of moles to transfer
-	var/transfer_moles = 0
-	for (var/datum/omni_port/P in inputs)
-		transfer_moles += (set_flow_rate*P.concentration/P.air.volume)*P.air.total_moles
-
-	var/power_draw = -1
-	if (transfer_moles > MINUMUM_MOLES_TO_FILTER)
-		power_draw = mix_gas(src, mixing_inputs, output, transfer_moles, active_power_usage)
-
-	if (power_draw < 0)
-		//update_use_power(0)
-		use_power = 0	//don't force update - easier on CPU
-		last_flow_rate = 0
-	else
-		handle_power_draw(power_draw)
-
-		for(var/datum/omni_port/P in inputs)
-			if(P.concentration && P.network)
-				P.network.update = 1
-
-		if(output.network)
-			output.network.update = 1
-
 	return 1
 
 /obj/machinery/atmospherics/omni/mixer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -290,8 +260,7 @@
 
 /obj/machinery/atmospherics/omni/mixer/proc/rebuild_mixing_inputs()
 	mixing_inputs.Cut()
-	for(var/datum/omni_port/P in inputs)
-		mixing_inputs[P.air] = P.concentration
+	return
 
 /obj/machinery/atmospherics/omni/mixer/proc/con_lock(var/port = NORTH)
 	for(var/datum/omni_port/P in inputs)

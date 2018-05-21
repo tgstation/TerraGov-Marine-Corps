@@ -1,10 +1,13 @@
 /obj/machinery/atmospherics/pipe
 	layer = ATMOS_PIPE_LAYER
 
-	var/datum/gas_mixture/air_temporary //used when reconstructing a pipeline that broke
 	var/datum/pipeline/parent
 
 	var/volume = 0
+
+	var/gas_type = GAS_TYPE_AIR
+	var/temperature = T20C
+	var/pressure = 101.3
 
 	use_power = 0
 
@@ -14,7 +17,7 @@
 /obj/machinery/atmospherics/pipe/New()
 	..()
 	//so pipes under walls are hidden
-	if(istype(get_turf(src), /turf/simulated/wall) || istype(get_turf(src), /turf/simulated/shuttle/wall) || istype(get_turf(src), /turf/unsimulated/wall))
+	if(istype(loc, /turf/closed))
 		level = 1
 
 /obj/machinery/atmospherics/pipe/proc/pipeline_expansion()
@@ -27,11 +30,17 @@
 	return 1
 
 /obj/machinery/atmospherics/pipe/return_air()
-	if(!parent)
-		parent = new /datum/pipeline()
-		parent.build_pipeline(src)
+	return list(gas_type, temperature, pressure)
 
-	return parent.air
+/obj/machinery/atmospherics/pipe/return_pressure()
+	return pressure
+
+/obj/machinery/atmospherics/pipe/return_temperature()
+	return temperature
+
+/obj/machinery/atmospherics/pipe/return_gas()
+	return gas_type
+
 
 /obj/machinery/atmospherics/pipe/build_network()
 	if(!parent)
@@ -61,8 +70,6 @@
 				A.forceMove(loc)
 		if(parent)
 			del(parent)
-		if(air_temporary)
-			loc.assume_air(air_temporary)
 	. = ..()
 
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
@@ -77,15 +84,10 @@
 	if(!istype(W, /obj/item/tool/wrench))
 		return ..()
 	var/turf/T = src.loc
-	if(level == 1 && isturf(T) && T.intact)
+	if(level == 1 && isturf(T) && T.intact_tile)
 		user << "<span class='warning'>You must remove the plating first.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it is too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")
@@ -153,7 +155,6 @@
 	var/obj/machinery/atmospherics/node2
 
 	var/minimum_temperature_difference = 300
-	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
 	var/maximum_pressure = 70*ONE_ATMOSPHERE
 	var/fatigue_pressure = 55*ONE_ATMOSPHERE
@@ -195,19 +196,7 @@
 		. = PROCESS_KILL
 
 /obj/machinery/atmospherics/pipe/simple/check_pressure(pressure)
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/pressure_difference = pressure - environment.return_pressure()
-
-	if(pressure_difference > maximum_pressure)
-		burst()
-
-	else if(pressure_difference > fatigue_pressure)
-		//TODO: leak to turf, doing pfshhhhh
-		if(prob(5))
-			burst()
-
-	else return 1
+	return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
 	src.visible_message("\red \bold [src] bursts!");
@@ -300,7 +289,7 @@
 
 	var/turf/T = get_turf(src)
 	if(istype(T))
-		hide(T.intact)
+		hide(T.intact_tile)
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
@@ -392,7 +381,7 @@
 	icon_state = "intact"
 
 	minimum_temperature_difference = 10000
-	thermal_conductivity = 0
+
 	maximum_pressure = 1000*ONE_ATMOSPHERE
 	fatigue_pressure = 900*ONE_ATMOSPHERE
 	alert_pressure = 900*ONE_ATMOSPHERE
@@ -578,7 +567,7 @@
 
 	var/turf/T = get_turf(src)
 	if(istype(T))
-		hide(T.intact)
+		hide(T.intact_tile)
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold/visible
@@ -834,7 +823,7 @@
 
 	var/turf/T = get_turf(src)
 	if(istype(T))
-		hide(T.intact)
+		hide(T.intact_tile)
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible
@@ -978,7 +967,7 @@
 				break
 
 	var/turf/T = src.loc			// hide if turf is not intact
-	hide(T.intact)
+	hide(T.intact_tile)
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/cap/visible
@@ -1106,15 +1095,11 @@
 		for (var/mob/O in viewers(user, null))
 			O << "\red [user] has used the analyzer on \icon[icon]"
 
-		var/pressure = parent.air.return_pressure()
-		var/total_moles = parent.air.total_moles
-
 		user << "\blue Results of analysis of \icon[icon]"
-		if (total_moles>0)
+		if (pressure>0)
 			user << "\blue Pressure: [round(pressure,0.1)] kPa"
-			for(var/g in parent.air.gas)
-				user << "\blue [gas_data.name[g]]: [round((parent.air.gas[g] / total_moles) * 100)]%"
-			user << "\blue Temperature: [round(parent.air.temperature-T0C)]&deg;C"
+			user << "\blue [gas_type]: [100]%"
+			user << "\blue Temperature: [round(temperature-T0C)]&deg;C"
 		else
 			user << "\blue Tank is empty!"
 
@@ -1123,14 +1108,6 @@
 	icon_state = "air_map"
 
 /obj/machinery/atmospherics/pipe/tank/air/New()
-	air_temporary = new
-	air_temporary.volume = volume
-	air_temporary.temperature = T20C
-
-	air_temporary.adjust_multi("oxygen",  (start_pressure*O2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature), \
-	                           "nitrogen",(start_pressure*N2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
-
 	..()
 	icon_state = "air"
 
@@ -1139,12 +1116,6 @@
 	icon_state = "o2_map"
 
 /obj/machinery/atmospherics/pipe/tank/oxygen/New()
-	air_temporary = new
-	air_temporary.volume = volume
-	air_temporary.temperature = T20C
-
-	air_temporary.adjust_gas("oxygen", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
 	..()
 	icon_state = "o2"
 
@@ -1153,12 +1124,6 @@
 	icon_state = "n2_map"
 
 /obj/machinery/atmospherics/pipe/tank/nitrogen/New()
-	air_temporary = new
-	air_temporary.volume = volume
-	air_temporary.temperature = T20C
-
-	air_temporary.adjust_gas("nitrogen", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
 	..()
 	icon_state = "n2"
 
@@ -1167,12 +1132,6 @@
 	icon_state = "co2_map"
 
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide/New()
-	air_temporary = new
-	air_temporary.volume = volume
-	air_temporary.temperature = T20C
-
-	air_temporary.adjust_gas("carbon_dioxide", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
 	..()
 	icon_state = "co2"
 
@@ -1181,12 +1140,6 @@
 	icon_state = "phoron_map"
 
 /obj/machinery/atmospherics/pipe/tank/phoron/New()
-	air_temporary = new
-	air_temporary.volume = volume
-	air_temporary.temperature = T20C
-
-	air_temporary.adjust_gas("phoron", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
 	..()
 	icon_state = "phoron"
 
@@ -1195,12 +1148,6 @@
 	icon_state = "n2o_map"
 
 /obj/machinery/atmospherics/pipe/tank/nitrous_oxide/New()
-	air_temporary = new
-	air_temporary.volume = volume
-	air_temporary.temperature = T0C
-
-	air_temporary.adjust_gas("sleeping_agent", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-
 	..()
 	icon_state = "n2o"
 
@@ -1383,7 +1330,7 @@
 
 /obj/machinery/atmospherics/proc/add_underlay_adapter(var/turf/T, var/obj/machinery/atmospherics/node, var/direction, var/icon_connect_type) //modified from add_underlay, does not make exposed underlays
 	if(node)
-		if(T.intact && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
+		if(T.intact_tile && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 			underlays += icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "down" + icon_connect_type)
 		else
 			underlays += icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "intact" + icon_connect_type)

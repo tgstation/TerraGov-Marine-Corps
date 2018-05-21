@@ -36,21 +36,18 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 		else //If the user is facing northeast. northwest, southeast, southwest or north, default to north
 			dir = NORTH
 
-	update_nearby_tiles(need_rebuild=1)
 
 obj/structure/windoor_assembly/Dispose()
 	density = 0
-	update_nearby_tiles()
 	. = ..()
 
 /obj/structure/windoor_assembly/update_icon()
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
 
-/obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		if(air_group) return 0
 		return !density
 	else
 		return 1
@@ -269,14 +266,7 @@ obj/structure/windoor_assembly/Dispose()
 	if (src.anchored)
 		usr << "It is fastened to the floor; therefore, you can't rotate it!"
 		return 0
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1) //Compel updates before
-
 	src.dir = turn(src.dir, 270)
-
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1)
-
 	update_icon()
 	return
 

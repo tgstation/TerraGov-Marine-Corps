@@ -75,7 +75,7 @@
 			H << "<span class='danger'>You are scalded by the burning acid!</span>"
 
 /obj/effect/xenomorph/spray/process()
-	var/turf/simulated/T = loc
+	var/turf/T = loc
 	if(!istype(T))
 		processing_objects.Remove(src)
 		cdel(src)
@@ -131,12 +131,12 @@
 		playsound(src, "acid_hit", 25)
 
 		if(istype(acid_t, /turf))
-			if(istype(acid_t, /turf/simulated/wall))
-				var/turf/simulated/wall/W = acid_t
+			if(istype(acid_t, /turf/closed/wall))
+				var/turf/closed/wall/W = acid_t
 				new /obj/effects/acid_hole (W)
 			else
 				var/turf/T = acid_t
-				T.ChangeTurf(/turf/simulated/floor/plating)
+				T.ChangeTurf(/turf/open/floor/plating)
 		else if (istype(acid_t, /obj/structure/girder))
 			var/obj/structure/girder/G = acid_t
 			G.dismantle()

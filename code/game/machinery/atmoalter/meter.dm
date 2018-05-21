@@ -33,12 +33,8 @@
 		icon_state = "meter0"
 		return 0
 
-	var/datum/gas_mixture/environment = target.return_air()
-	if(!environment)
-		icon_state = "meterX"
-		return 0
 
-	var/env_pressure = environment.return_pressure()
+	var/env_pressure = target.return_pressure()
 	if(env_pressure <= 0.15*ONE_ATMOSPHERE)
 		icon_state = "meter0"
 	else if(env_pressure <= 1.8*ONE_ATMOSPHERE)
@@ -79,9 +75,8 @@
 		t += "\red <B>The display is off.</B>"
 
 	else if(target)
-		var/datum/gas_mixture/environment = target.return_air()
-		if(environment)
-			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
+		if(target.return_pressure())
+			t += "The pressure gauge reads [round(target.return_pressure(), 0.01)] kPa; [round(target.return_temperature(),0.01)]K ([round(target.return_temperature()-T0C,0.01)]&deg;C)"
 		else
 			t += "The sensor error light is blinking."
 	else

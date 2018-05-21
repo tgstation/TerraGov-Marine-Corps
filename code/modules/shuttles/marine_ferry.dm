@@ -520,7 +520,6 @@
 				//Because when you open doors by Bumped() it would have you fly through before the animation is complete
 				spawn(0)
 					ST.close()
-					//ST.update_nearby_tiles(1)
 				break
 
 		//Elevators
@@ -531,10 +530,8 @@
 					spawn(0)
 						A.close()
 						A.lock()
-						//A.update_nearby_tiles(1)
 				else
 					A.lock() //We need this here since it's important to lock and update AFTER its closed
-					//A.update_nearby_tiles(1)
 				break
 		else
 			for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
@@ -581,7 +578,6 @@
 			if(P.density)
 				spawn(0)
 					P.open()
-					//P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
 
 		if (iselevator)
@@ -592,7 +588,6 @@
 				if(A.density)
 					spawn(0)
 						A.open()
-						//A.update_nearby_tiles(1)
 				break
 		else
 			for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
@@ -612,8 +607,8 @@
 		T = i
 		if(!istype(T)) continue
 
-		if(istype(T, /turf/simulated/wall))
-			var/turf/simulated/wall/W = T
+		if(istype(T, /turf/closed/wall))
+			var/turf/closed/wall/W = T
 			if(prob(20)) W.thermitemelt()
 			else if(prob(25)) W.take_damage(W.damage_cap) //It should leave a girder
 			continue
@@ -624,7 +619,6 @@
 			if(P.density)
 				spawn(0)
 					P.open()
-					//P.update_nearby_tiles(1)
 				//No break since transit shutters are the same parent type
 
 		for(var/obj/structure/mineral_door/resin/R in T)

@@ -10,10 +10,6 @@
 		//Chemicals in the body
 		handle_chemicals_in_body()
 
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
-	if(loc)
-		environment = loc.return_air()
-
 	//Apparently, the person who wrote this code designed it so that
 	//blinded get reset each cycle and then get activated later in the
 	//code. Very ugly. I dont care. Moving this stuff here so its easy
@@ -21,8 +17,7 @@
 	blinded = null
 
 	//Handle temperature/pressure differences between body and environment
-	if(environment)	// More error checking -- TLE
-		handle_environment(environment)
+	handle_environment()
 
 	//Status updates, death etc.
 	handle_regular_status_updates()
@@ -67,38 +62,26 @@
 				updatehealth()
 
 
-/mob/living/brain/proc/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
+/mob/living/brain/proc/handle_environment()
+	if(!loc)
 		return
-	var/environment_heat_capacity = environment.heat_capacity()
-	if(istype(get_turf(src), /turf/space))
-		var/turf/heat_turf = get_turf(src)
-		environment_heat_capacity = heat_turf.heat_capacity
 
-	if((environment.temperature > (T0C + 50)) || (environment.temperature < (T0C + 10)))
-		var/transfer_coefficient = 1
+	var/env_temperature = loc.return_temperature()
 
-		handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)
+	if((env_temperature > (T0C + 50)) || (env_temperature < (T0C + 10)))
+		handle_temperature_damage(HEAD, env_temperature)
 
-	if(stat==2)
-		bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
 
-	//Account for massive pressure differences
 
-	return //TODO: DEFERRED
-
-/mob/living/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
+/mob/living/brain/proc/handle_temperature_damage(body_part, exposed_temperature)
 	if(status_flags & GODMODE) return
 
 	if(exposed_temperature > bodytemperature)
-		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
-		//adjustFireLoss(2.5*discomfort)
-		//adjustFireLoss(5.0*discomfort)
+		var/discomfort = min( abs(exposed_temperature - bodytemperature)/100, 1.0)
 		adjustFireLoss(20.0*discomfort)
 
 	else
-		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
-		//adjustFireLoss(2.5*discomfort)
+		var/discomfort = min( abs(exposed_temperature - bodytemperature)/100, 1.0)
 		adjustFireLoss(5.0*discomfort)
 
 

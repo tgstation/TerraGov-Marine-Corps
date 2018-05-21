@@ -26,7 +26,7 @@
 	if (!( istype(T, /turf) ))
 		user << "\red You must be on the ground!"
 		return
-	if (!( istype(T, /turf/space) ))
+	if (!( istype(T, /turf/open/space) ))
 		user << "\red You cannot build on or repair this turf!"
 		return
 	src.build(T)
@@ -36,10 +36,10 @@
 */
 
 /obj/item/stack/tile/plasteel/proc/build(turf/S as turf)
-	if (istype(S,/turf/space))
-		S.ChangeTurf(/turf/simulated/floor/plating/airless)
+	if (istype(S,/turf/open/space))
+		S.ChangeTurf(/turf/open/floor/plating/airless)
 	else
-		S.ChangeTurf(/turf/simulated/floor/plating)
-//	var/turf/simulated/floor/W = S.ReplaceWithFloor()
+		S.ChangeTurf(/turf/open/floor/plating)
+//	var/turf/open/floor/W = S.ReplaceWithFloor()
 //	W.make_plating()
 	return

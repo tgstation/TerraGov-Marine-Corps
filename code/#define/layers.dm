@@ -27,7 +27,7 @@
 
 #define UNDERFLOOR_OBJ_LAYER 2.5 //bluespace beacon, navigation beacon, etc
 
-#define CATWALK_LAYER 2.51 //catwalk overlay of /turf/simulated/floor/almayer/plating/catwalk
+#define CATWALK_LAYER 2.51 //catwalk overlay of /turf/open/floor/plating/plating_catwalk
 
 #define ATMOS_DEVICE_LAYER 2.53 //vents, connector ports, atmos devices that should be above pipe layer.
 

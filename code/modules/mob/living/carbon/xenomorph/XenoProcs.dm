@@ -119,57 +119,6 @@
 		A.update_button_icon()
 
 
-//Check if you can plant weeds on that turf.
-//Does NOT return a message, just a 0 or 1.
-/turf/proc/is_weedable()
-	return !density
-
-/turf/space/is_weedable()
-	return FALSE
-
-/turf/unsimulated/floor/gm/grass/is_weedable()
-	return FALSE
-
-/turf/unsimulated/floor/gm/dirtgrassborder/is_weedable()
-	return FALSE
-
-/turf/unsimulated/floor/gm/river/is_weedable()
-	return FALSE
-
-/turf/unsimulated/floor/gm/coast/is_weedable()
-	return FALSE
-
-/turf/unsimulated/floor/snow/is_weedable()
-	return !slayer
-
-/turf/unsimulated/floor/mars/is_weedable()
-	return FALSE
-
-/turf/simulated/floor/gm/grass/is_weedable()
-	return FALSE
-
-/turf/simulated/floor/gm/dirtgrassborder/is_weedable()
-	return FALSE
-
-/turf/simulated/floor/gm/river/is_weedable()
-	return FALSE
-
-/turf/simulated/floor/almayer/plating/catwalk/is_weedable() //covered catwalks are unweedable
-	if(covered)
-		return FALSE
-	else
-		return TRUE
-
-/turf/simulated/floor/prison/plating/prison_catwalk/is_weedable()
-	if(covered)
-		return FALSE
-	else
-		return TRUE
-
-/turf/simulated/wall/is_weedable()
-	return TRUE //so we can spawn weeds on the walls
-
-
 
 
 //Strip all inherent xeno verbs from your caste. Used in evolution.
@@ -189,7 +138,7 @@
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
 
-	if(istype(loc, /turf/space))
+	if(istype(loc, /turf/open/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
 	. = ..()
@@ -462,7 +411,7 @@
 /mob/living/carbon/Xenomorph/drop_held_item()
 	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
 	if(istype(F))
-		if(locate(/turf/simulated/wall/resin) in loc)
+		if(locate(/turf/closed/wall/resin) in loc)
 			src << "<span class='warning'>You decide not to drop [F] after all.</span>"
 			return
 
@@ -514,7 +463,7 @@
 		stop_momentum(charge_dir)
 		r_FAL
 
-	if(dir != charge_dir || m_intent == "walk" || istype(loc, /turf/unsimulated/floor/gm/river))
+	if(dir != charge_dir || m_intent == "walk" || istype(loc, /turf/open/gm/river))
 		stop_momentum(charge_dir)
 		r_FAL
 
@@ -553,7 +502,7 @@
 			if(M.client && !isXeno(M))
 				shake_camera(M, 1, 1)
 
-	lastturf = isturf(loc) && !istype(loc, /turf/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
+	lastturf = isturf(loc) && !istype(loc, /turf/open/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 
 	update_icons()
 

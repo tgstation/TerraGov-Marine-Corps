@@ -26,9 +26,8 @@
 	if(open)
 		overlays  += "sheater-open"
 
-/obj/machinery/space_heater/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0)) return 1
-	if(density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
+/obj/machinery/space_heater/CanPass(atom/movable/mover, turf/target)
+	if(!density) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
@@ -160,31 +159,13 @@
 /obj/machinery/space_heater/process()
 	if(on)
 		if(isturf(loc) && cell && cell.charge)
-			var/datum/gas_mixture/env = loc.return_air()
-			if(env && abs(env.temperature - set_temperature) > 0.1)
-				var/transfer_moles = 0.25 * env.total_moles
-				var/datum/gas_mixture/removed = env.remove(transfer_moles)
+			for(var/mob/living/carbon/human/H in range(2, src))
+				if(H.bodytemperature < T20C)
+					H.bodytemperature += min(round(T20C - H.bodytemperature)*0.7, 25)
 
-				if(removed)
-					var/heat_transfer = removed.get_thermal_energy_change(set_temperature)
-					if(heat_transfer > 0)	//heating air
-						heat_transfer = min( heat_transfer , heating_power ) //limit by the power rating of the heater
 
-						removed.add_thermal_energy(heat_transfer)
-						cell.use(heat_transfer*CELLRATE)
-					else	//cooling air
-						heat_transfer = abs(heat_transfer)
+			cell.use(50*CELLRATE)
 
-						//Assume the heat is being pumped into the hull which is fixed at 20 C
-						var/cop = removed.temperature/T20C	//coefficient of performance from thermodynamics -> power used = heat_transfer/cop
-						heat_transfer = min(heat_transfer, cop * heating_power)	//limit heat transfer by available power
-
-						heat_transfer = removed.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
-
-						var/power_used = abs(heat_transfer)/cop
-						cell.use(power_used*CELLRATE)
-
-				env.merge(removed)
 		else
 			on = 0
 			update_icon()

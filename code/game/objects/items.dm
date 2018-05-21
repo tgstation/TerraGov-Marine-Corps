@@ -28,7 +28,6 @@
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	var/flags_inventory = NOFLAGS//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	flags_pass = PASSTABLE
-	pressure_resistance = 5
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 

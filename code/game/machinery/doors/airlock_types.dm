@@ -180,28 +180,7 @@
 	icon = 'icons/obj/doors/Doorphoron.dmi'
 	mineral = "phoron"
 
-///obj/machinery/door/airlock/phoron/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-//	if(exposed_temperature > 300)
-//		PhoronBurn(exposed_temperature)
 
-///obj/machinery/door/airlock/phoron/proc/ignite(exposed_temperature)
-//	if(exposed_temperature > 300)
-//		PhoronBurn(exposed_temperature)
-
-///obj/machinery/door/airlock/phoron/proc/PhoronBurn(temperature)
-//	for(var/turf/simulated/floor/target_tile in range(2,loc))
-//		target_tile.assume_gas("phoron", 35, 400+T0C)
-//		spawn (0) target_tile.hotspot_expose(temperature, 400)
-//	for(var/obj/structure/falsewall/phoron/F in range(3,src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
-//		var/turf/T = get_turf(F)
-//		T.ChangeTurf(/turf/simulated/wall/mineral/phoron/)
-//		cdel(F)
-//	for(var/turf/simulated/wall/mineral/phoron/W in range(3,src))
-//		W.ignite((temperature/4))//Added so that you can't set off a massive chain reaction with a small flame
-//	for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
-//		D.ignite(temperature/4)
-//	new/obj/structure/door_assembly( src.loc )
-//	cdel(src)
 
 /obj/machinery/door/airlock/sandstone
 	name = "\improper Sandstone Airlock"
@@ -236,7 +215,7 @@
 	icon = 'icons/obj/doors/almayer/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
-		/turf/simulated/wall,
+		/turf/closed/wall,
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 

@@ -383,14 +383,6 @@
 	attack_alien(M)
 		return attack_hand(M)
 
-/turf/unsimulated/floor/gm/river/poison
-	New()
-		..()
-		overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=MOB_LAYER+0.1)
-
-	Entered(mob/living/M)
-		..()
-		if(istype(M)) M.apply_damage(55,TOX)
 
 /obj/effect/step_trigger/jason/Trigger(mob/living/M)
 	if(istype(M) && M.stat != DEAD && (!M.mind || !M.mind.special_role || M.mind.special_role == "PMC"))

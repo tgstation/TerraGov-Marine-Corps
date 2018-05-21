@@ -34,7 +34,7 @@
 		plant_egg_in_containment(user, T)
 
 /obj/item/xeno_egg/proc/plant_egg_in_containment(mob/living/carbon/human/user, turf/T)
-	if(!istype(T, /turf/simulated/floor/almayer/research/containment))
+	if(!istype(T, /turf/open/floor/almayer/research/containment))
 		user << "<span class='warning'>Best not to plant this thing outside of a containment cell.</span>"
 		return
 	for (var/obj/O in T)
@@ -103,7 +103,7 @@
 			else
 				attack_hand(user)
 
-/obj/item/xeno_egg/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/item/xeno_egg/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
 		cdel(src)
 

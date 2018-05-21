@@ -26,10 +26,6 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/unary/outlet_injector/New()
-	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than vent pumps, to differentiate injectors a bit more.
-
 /obj/machinery/atmospherics/unary/outlet_injector/update_icon()
 	if(!powered())
 		icon_state = "off"
@@ -59,42 +55,12 @@
 		last_flow_rate = 0
 		return
 
-	var/power_draw = -1
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	if(environment && air_contents.temperature > 0)
-		var/transfer_moles = (volume_rate/air_contents.volume)*air_contents.total_moles //apply flow rate limit
-		power_draw = pump_gas(src, air_contents, environment, transfer_moles, active_power_usage)
-
-	if (power_draw < 0)
-		//update_use_power(0)
-		use_power = 0	//don't force update - easier on CPU
-		last_flow_rate = 0
-	else
-		handle_power_draw(power_draw)
-
-		if(network)
-			network.update = 1
-
 	return 1
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/inject()
 	if(on || injecting || (stat & NOPOWER))
 		return 0
-
-	var/datum/gas_mixture/environment = loc.return_air()
-	if (!environment)
-		return 0
-
 	injecting = 1
-
-	if(air_contents.temperature > 0)
-		var/power_used = pump_gas(src, air_contents, environment, air_contents.total_moles, active_power_usage)
-		use_power(power_used)
-
-		if(network)
-			network.update = 1
-
 	flick("inject", src)
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/set_frequency(new_frequency)
@@ -146,7 +112,7 @@
 
 	if(signal.data["set_volume_rate"])
 		var/number = text2num(signal.data["set_volume_rate"])
-		volume_rate = between(0, number, air_contents.volume)
+		volume_rate = between(0, number, 500)
 
 	if(signal.data["status"])
 		spawn(2)

@@ -15,17 +15,11 @@
 /obj/machinery/shield/New()
 	src.dir = pick(1,2,3,4)
 	..()
-	update_nearby_tiles(need_rebuild=1)
 
 /obj/machinery/shield/Dispose()
 	opacity = 0
 	density = 0
-	update_nearby_tiles()
 	. = ..()
-
-/obj/machinery/shield/CanPass(atom/movable/mover, turf/target, height, air_group)
-	if(!height || air_group) return 0
-	else return ..()
 
 /obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return
@@ -120,7 +114,6 @@
 	density = 1
 	opacity = 0
 	anchored = 0
-	pressure_resistance = 2*ONE_ATMOSPHERE
 	req_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_CE)
 	var/const/max_health = 100
 	var/health = max_health
@@ -164,7 +157,7 @@
 
 /obj/machinery/shieldgen/proc/create_shields()
 	for(var/turf/target_tile in range(2, src))
-		if (istype(target_tile,/turf/space) && !(locate(/obj/machinery/shield) in target_tile))
+		if (istype(target_tile,/turf/open/space) && !(locate(/obj/machinery/shield) in target_tile))
 			if (malfunction && prob(33) || !malfunction)
 				var/obj/machinery/shield/S = new/obj/machinery/shield(target_tile)
 				deployed_shields += S
@@ -304,7 +297,7 @@
 				src.shields_down()
 			anchored = 0
 		else
-			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
+			if(istype(get_turf(src), /turf/open/space)) return //No wrenching these in space!
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user << "\blue You secure the [src] to the floor!"
 			anchored = 1

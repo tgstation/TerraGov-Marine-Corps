@@ -16,19 +16,6 @@
 	var/vision_impair = 1 //Oh lord, the pre-alpha curse
 	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 
-/obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
-	var/datum/gas_mixture/filtered = new
-
-	for(var/g in filtered_gases)
-		if(air.gas[g])
-			filtered.gas[g] = air.gas[g] * gas_filter_strength
-			air.gas[g] -= filtered.gas[g]
-
-	air.update_values()
-	filtered.update_values()
-
-	return filtered
-
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."

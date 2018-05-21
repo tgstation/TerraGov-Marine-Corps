@@ -132,16 +132,12 @@ var/list/admin_verbs_debug = list(
     /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/Debug2,
-	///client/proc/kill_air,
-	/client/proc/ZASSettings,
 	/client/proc/cmd_debug_make_powernets,
-	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
-	/client/proc/air_report,
 	/client/proc/reload_admins,
 	/client/proc/reload_whitelist,
 	/client/proc/restart_controller,
@@ -156,9 +152,7 @@ var/list/admin_verbs_debug = list(
 	/datum/proc/ra_diagnose,
 	/datum/proc/ta_purge,
 	/datum/proc/ra_purge,
-	/client/proc/global_fix_atmos,
 	/client/proc/scheduler,
-	/client/proc/editzoneair,
 	/client/proc/cmd_admin_change_hivenumber
 	)
 
@@ -231,17 +225,13 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/reload_whitelist,
-	///client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
-	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
 	/client/proc/startSinglo,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
-	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
-	/datum/admins/proc/fix_breach,
 	/proc/possess,
 	/proc/release
 	)
@@ -273,8 +263,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/proc/release,
-	/datum/admins/proc/fix_breach,
-	/datum/admins/proc/fix_air,
 	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  �\_("/)_/�
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes

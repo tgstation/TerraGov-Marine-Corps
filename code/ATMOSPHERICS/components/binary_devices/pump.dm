@@ -1,15 +1,8 @@
 /*
-Every cycle, the pump uses the air in air_in to try and make air_out the perfect pressure.
 
-node1, air1, network1 correspond to input
-node2, air2, network2 correspond to output
+node1, network1 correspond to input
+node2, network2 correspond to output
 
-Thus, the two variables affect pump operation are set in New():
-	air1.volume
-		This is the volume of gas available to the pump that may be transfered to the output
-	air2.volume
-		Higher quantities of this cause more air to be perfected later
-			but overall network volume is also increased as this increases...
 */
 
 /obj/machinery/atmospherics/binary/pump
@@ -25,7 +18,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	//var/max_volume_transfer = 10000
 
-	use_power = 1
+	use_power = 0
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	active_power_usage = 7500	//This also doubles as a measure of how powerful the pump is, in Watts. 7500 W ~ 10 HP
 
@@ -35,11 +28,6 @@ Thus, the two variables affect pump operation are set in New():
 	var/frequency = 0
 	var/id = null
 	var/datum/radio_frequency/radio_connection
-
-/obj/machinery/atmospherics/binary/pump/New()
-	..()
-	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
-	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
 /obj/machinery/atmospherics/binary/pump/on
 	icon_state = "map_on"
@@ -70,33 +58,6 @@ Thus, the two variables affect pump operation are set in New():
 		last_power_draw = 0
 		last_flow_rate = 0
 		return
-
-	var/power_draw = -1
-	var/pressure_delta = target_pressure - air2.return_pressure()
-
-	if(pressure_delta > 0.01 && air1.temperature > 0)
-		//Figure out how much gas to transfer to meet the target pressure.
-		var/air_temperature = (air2.temperature > 0)? air2.temperature : air1.temperature
-		var/output_volume = air2.volume + (network2? network2.volume : 0)
-
-		//get the number of moles that would have to be transfered to bring sink to the target pressure
-		var/transfer_moles = pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION)
-
-		power_draw = pump_gas(src, air1, air2, transfer_moles, active_power_usage)
-
-	if (power_draw < 0)
-		//update_use_power(0)
-		use_power = 0	//don't force update - easier on CPU
-		last_power_draw = 0
-		last_flow_rate = 0
-	else
-		last_power_draw = handle_power_draw(power_draw)
-
-		if(network1)
-			network1.update = 1
-
-		if(network2)
-			network2.update = 1
 
 	return 1
 
@@ -232,12 +193,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(!(stat & NOPOWER) && on)
 		user << "<span class='warning'>You cannot unwrench [src], turn it off first.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")

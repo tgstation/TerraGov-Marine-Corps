@@ -1,32 +1,16 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_environment(datum/gas_mixture/environment)
+/mob/living/carbon/human/proc/handle_environment()
 
-	if(!environment)
+	if(!loc)
 		return
 
-	//Stuff like the xenomorph's plasma regen happens here.
-	species.handle_environment_special(src)
-
 	//Moved pressure calculations here for use in skip-processing check.
-	var/pressure = environment.return_pressure()
+	var/pressure = loc.return_pressure()
 	var/adjusted_pressure = calculate_affecting_pressure(pressure)
+	var/loc_temp = loc.return_temperature()
 
-	//Check for contaminants before anything else because we don't want to skip it.
-	for(var/g in environment.gas)
-		if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
-			pl_effects()
-			break
-
-	if(!istype(get_turf(src), /turf/space)) //Space is not meant to change your body temperature.
-		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
-			loc_temp =  M.return_temperature()
-		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
-		else
-			loc_temp = environment.temperature
+	if(!istype(get_turf(src), /turf/open/space)) //Space is not meant to change your body temperature.
 
 		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			pressure_alert = 0
@@ -38,20 +22,13 @@
 			var/thermal_protection = get_flags_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
 				temp_adj = (1 - thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR) //This will be negative
+
 		else if (loc_temp > bodytemperature) //Place is hotter than we are
 			var/thermal_protection = get_flags_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
 				temp_adj = (1 - thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
-		//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
-		var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
-		temp_adj *= relative_density
-
-		if(temp_adj > BODYTEMP_HEATING_MAX)
-			temp_adj = BODYTEMP_HEATING_MAX
-		if(temp_adj < BODYTEMP_COOLING_MAX)
-			temp_adj = BODYTEMP_COOLING_MAX
-		bodytemperature += temp_adj
+		bodytemperature += Clamp(temp_adj, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
 
 	//+/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature > species.heat_level_1)
@@ -59,32 +36,30 @@
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)
 			return 1 //Godmode
-		switch(bodytemperature)
-			if(species.heat_level_1 to species.heat_level_2)
-				take_overall_damage(burn = HEAT_DAMAGE_LEVEL_1, used_weapon = "High Body Temperature")
-				fire_alert = max(fire_alert, 2)
-			if(species.heat_level_2 to species.heat_level_3)
-				take_overall_damage(burn = HEAT_DAMAGE_LEVEL_2, used_weapon = "High Body Temperature")
-				fire_alert = max(fire_alert, 2)
-			if(species.heat_level_3 to INFINITY)
-				take_overall_damage(burn = HEAT_DAMAGE_LEVEL_3, used_weapon = "High Body Temperature")
-				fire_alert = max(fire_alert, 2)
+
+		if(bodytemperature > species.heat_level_3)
+			take_overall_damage(burn = HEAT_DAMAGE_LEVEL_3, used_weapon = "High Body Temperature")
+		else if(bodytemperature > species.heat_level_2)
+			take_overall_damage(burn = HEAT_DAMAGE_LEVEL_2, used_weapon = "High Body Temperature")
+		else if(bodytemperature > species.heat_level_1)
+			take_overall_damage(burn = HEAT_DAMAGE_LEVEL_1, used_weapon = "High Body Temperature")
 
 	else if(bodytemperature < species.cold_level_1)
 		fire_alert = max(fire_alert, 1)
+
 		if(status_flags & GODMODE)
 			return 1 //Godmode
+
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			switch(bodytemperature)
-				if(-INFINITY to species.cold_level_3)
-					take_overall_damage(burn = COLD_DAMAGE_LEVEL_3, used_weapon = "Low Body Temperature")
-					fire_alert = max(fire_alert, 1)
-				if(species.cold_level_3 to species.cold_level_2)
-					take_overall_damage(burn = COLD_DAMAGE_LEVEL_2, used_weapon = "Low Body Temperature")
-					fire_alert = max(fire_alert, 1)
-				if(species.cold_level_2 to species.cold_level_1)
-					take_overall_damage(burn = COLD_DAMAGE_LEVEL_1, used_weapon = "Low Body Temperature")
-					fire_alert = max(fire_alert, 1)
+
+			if(bodytemperature < species.cold_level_3)
+				take_overall_damage(burn = COLD_DAMAGE_LEVEL_3, used_weapon = "Low Body Temperature")
+			else if(bodytemperature < species.cold_level_2)
+				take_overall_damage(burn = COLD_DAMAGE_LEVEL_2, used_weapon = "Low Body Temperature")
+			else if(bodytemperature < species.cold_level_1)
+				take_overall_damage(burn = COLD_DAMAGE_LEVEL_1, used_weapon = "Low Body Temperature")
+
+
 
 	//Account for massive pressure differences.  Done by Polymorph
 	//Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!

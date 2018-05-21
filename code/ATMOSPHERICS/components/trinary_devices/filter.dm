@@ -50,10 +50,6 @@
 		if(4)//removing N2O
 			filtered_out = list("sleeping_agent")
 
-	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
-	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
-	air3.volume = ATMOS_DEFAULT_VOLUME_FILTER
-
 	if(radio_controller)
 		initialize()
 
@@ -103,29 +99,6 @@
 		last_flow_rate = 0
 		return
 
-	//Figure out the amount of moles to transfer
-	var/transfer_moles = (set_flow_rate/air1.volume)*air1.total_moles
-
-	var/power_draw = -1
-	if (transfer_moles > MINUMUM_MOLES_TO_FILTER)
-		power_draw = filter_gas(src, filtered_out, air1, air2, air3, transfer_moles, active_power_usage)
-
-		if(network2)
-			network2.update = 1
-
-		if(network3)
-			network3.update = 1
-
-		if(network1)
-			network1.update = 1
-
-	if (power_draw < 0)
-		//update_use_power(0)
-		use_power = 0	//don't force update - easier on CPU
-		last_flow_rate = 0
-	else
-		handle_power_draw(power_draw)
-
 	return 1
 
 /obj/machinery/atmospherics/trinary/filter/initialize()
@@ -135,12 +108,7 @@
 /obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")
@@ -231,8 +199,8 @@
 	if (href_list["temp"])
 		src.temp = null
 	if(href_list["set_flow_rate"])
-		var/new_flow_rate = input(usr,"Enter new flow rate (0-[air1.volume]L/s)","Flow Rate Control",src.set_flow_rate) as num
-		src.set_flow_rate = max(0, min(air1.volume, new_flow_rate))
+		var/new_flow_rate = input(usr,"Enter new flow rate (0-5000L/s)","Flow Rate Control",src.set_flow_rate) as num
+		src.set_flow_rate = max(0, min(5000, new_flow_rate))
 	if(href_list["power"])
 		on=!on
 	src.update_icon()

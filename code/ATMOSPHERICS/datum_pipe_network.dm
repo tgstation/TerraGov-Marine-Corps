@@ -1,30 +1,12 @@
 var/global/list/datum/pipe_network/pipe_networks = list()
 
 datum/pipe_network
-	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
 	var/volume = 0	//caches the total volume for atmos machines to use in gas calculations
 
 	var/list/obj/machinery/atmospherics/normal_members = list()
 	var/list/datum/pipeline/line_members = list()
 		//membership roster to go through for updates and what not
 
-	var/update = 1
-	//var/datum/gas_mixture/air_transient = null
-
-	New()
-		//air_transient = new()
-
-		..()
-
-	proc/process()
-		//Equalize gases amongst pipe if called for
-		if(update)
-			update = 0
-			reconcile_air() //equalize_gases(gases)
-
-		//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
-		//for(var/datum/pipeline/line_member in line_members)
-		//	line_member.process()
 
 	proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
 		//Purpose: Generate membership roster
@@ -59,20 +41,7 @@ datum/pipe_network
 		return 1
 
 	proc/update_network_gases()
-		//Go through membership roster and make sure gases is up to date
 
-		gases = list()
-		volume = 0
 
-		for(var/obj/machinery/atmospherics/normal_member in normal_members)
-			var/result = normal_member.return_network_air(src)
-			if(result) gases += result
 
-		for(var/datum/pipeline/line_member in line_members)
-			gases += line_member.air
 
-		for(var/datum/gas_mixture/air in gases)
-			volume += air.volume
-
-	proc/reconcile_air()
-		equalize_gases(gases)

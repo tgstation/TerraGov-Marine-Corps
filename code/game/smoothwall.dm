@@ -115,7 +115,7 @@
 					break
 
 	handle_icon_junction(jun_1, jun_2)
-	
+
 // Special case for smoothing walls around multi-tile doors.
 /obj/machinery/door/airlock/multi_tile/relativewall_neighbours()
 	var/turf/T //The turf we are checking
@@ -185,7 +185,7 @@
 	else
 		junction = jun_1
 
-/turf/simulated/wall/handle_icon_junction(junction)
+/turf/closed/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
 
@@ -193,58 +193,35 @@
 	icon_state = "grille[junction]"
 
 
-/turf/simulated/floor/vault/relativewall()
+/turf/open/floor/vault/relativewall()
 	return
 
-/turf/simulated/wall/vault/relativewall()
+/turf/closed/wall/vault/relativewall()
 	return
 
-/turf/simulated/shuttle/wall/relativewall()
+/turf/closed/shuttle/relativewall()
 	//TODO: Make something for this and make it work with shuttle rotations
 	return
 
-/*
-
-/atom/proc/relativewall() //atom because it should be useable both for walls and false walls
-	if(istype(src,/turf/simulated/floor/vault)||istype(src,/turf/simulated/wall/vault)) //HACK!!!
-		return
-
-	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
-
-	if(!istype(src,/turf/simulated/shuttle/wall)) //or else we'd have wacky shuttle merging with walls action
-		for(var/turf/simulated/wall/W in orange(src,1))
-			if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-				junction |= get_dir(src,W)
-		for(var/obj/structure/falsewall/W in orange(src,1))
-			if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-				junction |= get_dir(src,W)
-		for(var/obj/structure/falserwall/W in orange(src,1))
-			if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-				junction |= get_dir(src,W)
-
-	if(istype(src,/turf/simulated/wall))
-		var/turf/simulated/wall/wall = src
-		wall.icon_state = "[wall.walltype][junction]"
-	else if (istype(src,/obj/structure/falserwall))
-		src.icon_state = "rwall[junction]"
-	else if (istype(src,/obj/structure/falsewall))
-		var/obj/structure/falsewall/fwall = src
-		fwall.icon_state = "[fwall.mineral][junction]"
-
+/turf/open/shuttle/relativewall()
 	return
 
-*/
+/turf/closed/wall/indestructible/relativewall()
+	return
 
-/turf/simulated/wall/New()
+
+
+
+/turf/closed/wall/New()
 	relativewall()
 	relativewall_neighbours()
 	..()
 
 
 //turfs call del() when they're replaced by another turf, so we can't use Dispose() unfortunately.
-/turf/simulated/wall/Del()
+/turf/closed/wall/Del()
 	spawn(10)
-		for(var/turf/simulated/wall/W in range(src,1))
+		for(var/turf/closed/wall/W in range(src,1))
 			W.relativewall()
 
 	for(var/direction in cardinal)

@@ -1,57 +1,3 @@
-/turf/simulated/floor/mech_bay_recharge_floor
-	name = "Mech Bay Recharge Station"
-	icon = 'icons/mecha/mech_bay.dmi'
-	icon_state = "recharge_floor"
-	var/obj/machinery/mech_bay_recharge_port/recharge_port
-	var/obj/machinery/computer/mech_bay_power_console/recharge_console
-	var/obj/mecha/recharging_mecha = null
-
-/turf/simulated/floor/mech_bay_recharge_floor/Entered(var/obj/mecha/mecha)
-	. = ..()
-	if(istype(mecha))
-		mecha.occupant_message("<b>Initializing power control devices.</b>")
-		init_devices()
-		if(recharge_console && recharge_port)
-			recharging_mecha = mecha
-			recharge_console.mecha_in(mecha)
-			return
-		else if(!recharge_console)
-			mecha.occupant_message("<font color='red'>Control console not found. Terminating.</font>")
-		else if(!recharge_port)
-			mecha.occupant_message("<font color='red'>Power port not found. Terminating.</font>")
-	return
-
-/turf/simulated/floor/mech_bay_recharge_floor/Exited(atom)
-	. = ..()
-	if(atom == recharging_mecha)
-		recharging_mecha = null
-		if(recharge_console)
-			recharge_console.mecha_out()
-	return
-
-/turf/simulated/floor/mech_bay_recharge_floor/proc/init_devices()
-	if(!recharge_console)
-		recharge_console = locate() in range(1,src)
-	if(!recharge_port)
-		recharge_port = locate() in get_step(src, WEST)
-
-	if(recharge_console)
-		recharge_console.recharge_floor = src
-		if(recharge_port)
-			recharge_console.recharge_port = recharge_port
-	if(recharge_port)
-		recharge_port.recharge_floor = src
-		if(recharge_console)
-			recharge_port.recharge_console = recharge_console
-	return
-
-// temporary fix for broken icon until somebody gets around to make these player-buildable
-/turf/simulated/floor/mech_bay_recharge_floor/attackby(obj/item/C as obj, mob/user as mob)
-	..()
-	if(floor_tile)
-		icon_state = "recharge_floor"
-	else
-		icon_state = "support_lattice"
 
 
 /obj/machinery/mech_bay_recharge_port
@@ -60,7 +6,7 @@
 	anchored = 1
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_port"
-	var/turf/simulated/floor/mech_bay_recharge_floor/recharge_floor
+	var/turf/open/floor/mech_bay_recharge_floor/recharge_floor
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
 	var/datum/global_iterator/mech_bay_recharger/pr_recharger
 
@@ -142,7 +88,7 @@
 	circuit = "/obj/item/circuitboard/computer/mech_bay_power_console"
 	var/autostart = 1
 	var/voltage = 45
-	var/turf/simulated/floor/mech_bay_recharge_floor/recharge_floor
+	var/turf/open/floor/mech_bay_recharge_floor/recharge_floor
 	var/obj/machinery/mech_bay_recharge_port/recharge_port
 
 /obj/machinery/computer/mech_bay_power_console/proc/mecha_in(var/obj/mecha/mecha)
@@ -187,7 +133,7 @@
 	if(..())
 		return
 	if(!recharge_floor || !recharge_port)
-		var/turf/simulated/floor/mech_bay_recharge_floor/F = locate() in range(1,src)
+		var/turf/open/floor/mech_bay_recharge_floor/F = locate() in range(1,src)
 		if(F)
 			F.init_devices()
 

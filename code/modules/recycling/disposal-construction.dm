@@ -9,7 +9,6 @@
 	icon_state = "conpipe-s"
 	anchored = 0
 	density = 0
-	pressure_resistance = 5*ONE_ATMOSPHERE
 	matter = list("metal" = 1850)
 	level = 2
 	var/ptype = 0
@@ -200,7 +199,7 @@
 				ispipe = 1
 
 		var/turf/T = src.loc
-		if(T.intact)
+		if(T.intact_tile)
 			user << "You can only attach the [nicetype] if the floor plating is removed."
 			return
 

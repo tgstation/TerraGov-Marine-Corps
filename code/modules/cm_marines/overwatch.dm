@@ -509,7 +509,7 @@
 
 	var/turf/T = get_turf(current_squad.bbeacon)
 
-	if(istype(T, /turf/space))
+	if(istype(T, /turf/open/space))
 		usr << "\icon[src] <span class='warning'>The [current_squad.bbeacon.name]'s landing zone appears to be out of bounds.</span>"
 		return
 
@@ -749,7 +749,7 @@
 
 	var/turf/T = get_turf(current_squad.sbeacon)
 
-	if(istype(T, /turf/space) || T.density)
+	if(istype(T, /turf/open/space) || T.density)
 		usr << "\icon[src] <span class='warning'>The [current_squad.sbeacon.name]'s landing zone appears to be obstructed or out of bounds.</span>"
 		return
 

@@ -66,9 +66,11 @@
 		user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
-	if(!(istype(user.loc, /turf/simulated/floor) || istype(user.loc, /turf/unsimulated/floor) || istype(user.loc, /turf/unsimulated/jungle)))
-		user << "<span class='warning'>The sandbag barricade must be constructed on a proper surface!</span>"
-		return
+	if(!istype(user.loc, /turf/open))
+		var/turf/open/OT = user.loc
+		if(!OT.allow_construction)
+			user << "<span class='warning'>The sandbag barricade must be constructed on a proper surface!</span>"
+			return
 
 	//Using same safeties as other constructions
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere

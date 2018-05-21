@@ -116,7 +116,7 @@
 	P.ammo.on_hit_obj(src,P)
 	return 1
 
-/obj/item/clothing/mask/facehugger/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/item/clothing/mask/facehugger/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
 		Die()
 

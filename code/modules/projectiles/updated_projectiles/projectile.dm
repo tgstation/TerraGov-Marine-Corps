@@ -680,8 +680,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			return 1
 	return 1
 
-//Simulated walls can get shot and damaged, but bullets (vs energy guns) do much less.
-/turf/simulated/wall/bullet_act(obj/item/projectile/P)
+// walls can get shot and damaged, but bullets (vs energy guns) do much less.
+/turf/closed/wall/bullet_act(obj/item/projectile/P)
 	..()
 	var/damage = P.damage
 	if(damage < 1) return
@@ -698,7 +698,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 //Hitting an object. These are too numerous so they're staying in their files.
 //Why are there special cases listed here? Oh well, whatever. ~N
 /obj/bullet_act(obj/item/projectile/P)
-	if(!CanPass(P, get_turf(src), layer) && density)
+	if(!CanPass(P, get_turf(src)) && density)
 		bullet_ping(P)
 		return 1
 

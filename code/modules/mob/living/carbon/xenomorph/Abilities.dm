@@ -689,26 +689,6 @@
 	X.use_plasma(200)
 	playsound(X.loc, 'sound/weapons/pierce.ogg', 25, 1)
 
-/turf/proc/can_dig_xeno_tunnel()
-	return FALSE
-
-/turf/unsimulated/floor/gm/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/unsimulated/floor/gm/river/can_dig_xeno_tunnel()
-	return FALSE
-
-/turf/unsimulated/floor/snow/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/unsimulated/floor/mars/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/unsimulated/floor/mars_cave/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/simulated/floor/prison/can_dig_xeno_tunnel()
-	return TRUE
 
 //Queen Abilities
 

@@ -165,8 +165,6 @@
 		return 1
 	if(fire_stacks > 0)
 		adjust_fire_stacks(-1) //the fire is consumed slowly
-	var/turf/location = get_turf(src)
-	location.hotspot_expose(700, 50, 1)
 
 /mob/living/fire_act()
 	adjust_fire_stacks(rand(1,2))

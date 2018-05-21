@@ -32,7 +32,7 @@
 			color = data["blood_colour"]
 		return ..()
 
-	reaction_turf(var/turf/simulated/T, var/volume)//splash the blood all over the place
+	reaction_turf(var/turf/T, var/volume)//splash the blood all over the place
 		if(!istype(T)) return
 		var/datum/reagent/blood/self = src
 		src = null
@@ -82,47 +82,14 @@
 	color = "#0064C8" // rgb: 0, 100, 200
 	custom_metabolism = 0.01
 
-	reaction_turf(var/turf/simulated/T, var/volume)
+	reaction_turf(var/turf/T, var/volume)
 		if(!istype(T)) return
 		src = null
 		if(volume >= 3)
-			if(T.wet >= 1) return
-			T.wet = 1
-			if(T.wet_overlay)
-				T.overlays -= T.wet_overlay
-				T.wet_overlay = null
-//					T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-//					T.overlays += T.wet_overlay
+			T.wet_floor(FLOOR_WET_WATER)
 
-			spawn(800)
-				if(!istype(T)) return
-				if(T.wet >= 2) return
-				T.wet = 0
-				if(T.wet_overlay)
-					T.overlays -= T.wet_overlay
-					T.wet_overlay = null
-
-		var/hotspot = (locate(/obj/fire) in T)
-		if(hotspot && !istype(T, /turf/space))
-			var/datum/gas_mixture/lowertemp = T.remove_air( T:air:total_moles )
-			lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
-			lowertemp.react()
-			T.assume_air(lowertemp)
-			cdel(hotspot)
-		var/hotspot2 = (locate(/obj/effect/particle_effect/fire) in T)//Delete fire effect
-		if(hotspot && !istype(T, /turf/space))
-			cdel(hotspot2)
-		return
 	reaction_obj(var/obj/O, var/volume)
 		src = null
-		var/turf/T = get_turf(O)
-		var/hotspot = (locate(/obj/fire) in T)
-		if(hotspot && !istype(T, /turf/space))
-			var/datum/gas_mixture/lowertemp = T.remove_air( T:air:total_moles )
-			lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
-			lowertemp.react()
-			T.assume_air(lowertemp)
-			cdel(hotspot)
 		if(istype(O,/obj/item/reagent_container/food/snacks/monkeycube))
 			var/obj/item/reagent_container/food/snacks/monkeycube/cube = O
 			if(!cube.package)
@@ -154,19 +121,11 @@
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
-	reaction_turf(var/turf/simulated/T, var/volume)
+	reaction_turf(var/turf/T, var/volume)
 		if(!istype(T)) return
 		src = null
 		if(volume >= 1)
-			if(T.wet >= 2) return
-			T.wet = 2
-			spawn(800)
-				if(!istype(T)) return
-				T.wet = 0
-				if(T.wet_overlay)
-					T.overlays -= T.wet_overlay
-					T.wet_overlay = null
-				return
+			T.wet_floor(FLOOR_WET_LUBE)
 
 	on_overdose(mob/living/M)
 		M.apply_damage(2, TOX)
@@ -201,7 +160,7 @@
 		. = ..()
 		if(!.) return
 		M.druggy = max(M.druggy, 15)
-		if(isturf(M.loc) && !istype(M.loc, /turf/space))
+		if(isturf(M.loc) && !istype(M.loc, /turf/open/space))
 			if(M.canmove && !M.is_mob_restrained())
 				if(prob(10)) step(M, pick(cardinal))
 		if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
@@ -312,7 +271,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/space))
+		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/open/space))
 			step(M, pick(cardinal))
 		if(prob(5)) M.emote(pick("twitch","drool","moan"))
 		M.adjustBrainLoss(2)
@@ -337,7 +296,7 @@
 
 	reaction_turf(var/turf/T, var/volume)
 		src = null
-		if(!istype(T, /turf/space))
+		if(!istype(T, /turf/open/space))
 			var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 			if(!dirtoverlay)
 				dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
@@ -415,7 +374,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/space))
+		if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/open/space))
 			step(M, pick(cardinal))
 		if(prob(5)) M.emote(pick("twitch","drool","moan"))
 
@@ -471,7 +430,7 @@
 	reaction_turf(var/turf/T, var/volume)
 		src = null
 		if(volume >= 3)
-			if(!istype(T, /turf/space))
+			if(!istype(T, /turf/open/space))
 				var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 				if(!glow)
 					new /obj/effect/decal/cleanable/greenglow(T)
@@ -487,9 +446,9 @@
 	reaction_turf(var/turf/T, var/volume)
 		src = null
 		if(volume >= 5)
-			if(istype(T, /turf/simulated/wall))
-				var/turf/simulated/wall/W = T
-				W.thermite = 1
+			if(istype(T, /turf/closed/wall))
+				var/turf/closed/wall/W = T
+				W.thermite = TRUE
 				W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 		return
 
@@ -555,7 +514,7 @@
 	reaction_turf(var/turf/T, var/volume)
 		src = null
 		if(volume >= 3)
-			if(!istype(T, /turf/space))
+			if(!istype(T, /turf/open/space))
 				var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 				if(!glow)
 					new /obj/effect/decal/cleanable/greenglow(T)
@@ -627,9 +586,6 @@
 
 	reaction_turf(var/turf/T, var/volume)
 		if(volume >= 1)
-			if(istype(T, /turf/simulated))
-				var/turf/simulated/S = T
-				S.dirt = 0
 			T.clean_blood()
 			for(var/obj/effect/decal/cleanable/C in T.contents)
 				src.reaction_obj(C, volume)
@@ -807,7 +763,7 @@
 			if(H.species.name == "Human")
 				H.contract_disease(new /datum/disease/black_goo)
 
-	reaction_turf(var/turf/simulated/T, var/volume)
+	reaction_turf(var/turf/T, var/volume)
 		if(!istype(T)) return
 		if(volume < 3) return
 		if(!(locate(/obj/effect/decal/cleanable/blackgoo) in T))

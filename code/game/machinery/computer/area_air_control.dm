@@ -76,7 +76,7 @@
 					<tr>
 						<td>
 							[scrubber.name]<br>
-							Pressure: [round(scrubber.air_contents.return_pressure(), 0.01)] kPa<br>
+							Pressure: [round(scrubber.pressure, 0.01)] kPa<br>
 							Flow Rate: [round(scrubber.last_flow_rate,0.1)] L/s<br>
 						</td>
 						<td width="150">

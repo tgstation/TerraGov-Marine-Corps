@@ -22,7 +22,7 @@
 
 		var/junction = 0 //will be used to determine from which side the wall is connected to other walls
 
-		for(var/turf/unsimulated/wall/W in orange(src,1))
+		for(var/turf/closed/wall/W in orange(src,1))
 			if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
 				junction |= get_dir(src,W)
 

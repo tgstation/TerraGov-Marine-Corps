@@ -64,28 +64,22 @@ proc/explosion_rec(turf/epicenter, power)
 /turf
 	var/explosion_resistance
 
-/turf/space
+/turf/open/space
 	explosion_resistance = 10
 
-/turf/simulated/floor
+/turf/open/floor
 	explosion_resistance = 1
 
-/turf/simulated/shuttle/floor
+/turf/open/shuttle
 	explosion_resistance = 1
 
-/turf/simulated/shuttle/floor4
-	explosion_resistance = 1
-
-/turf/simulated/shuttle/plating
-	explosion_resistance = 1
-
-/turf/simulated/shuttle/wall
+/turf/closed/shuttle
 	explosion_resistance = 5
 
-/turf/simulated/wall
+/turf/closed/wall
 	explosion_resistance = 5
 
-/turf/simulated/wall/r_wall
+/turf/closed/wall/r_wall
 	explosion_resistance = 25
 
 //Code-wise, a safe value for power is something up to ~25 or ~30.. This does quite a bit of damage to the station.
@@ -123,5 +117,5 @@ proc/explosion_rec(turf/epicenter, power)
 		T.explosion_spread(spread_power)
 	*/
 
-/turf/unsimulated/explosion_spread(power)
-	return //So it doesn't get to the parent proc, which simulates explosions
+/turf/closed/wall/indestructible/explosion_spread(power, direction)
+	return

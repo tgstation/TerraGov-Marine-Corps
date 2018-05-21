@@ -8,10 +8,9 @@
 	icon_state = "freezer_0"
 	density = 1
 
-	anchored = 1.0
+	anchored = TRUE
 
 	var/heatsink_temperature = T20C	//the constant temperature resevoir into which the freezer pumps heat. Probably the hull of the station or something.
-	var/internal_volume = 600	//L
 
 	var/on = 0
 	use_power = 0
@@ -27,7 +26,6 @@
 
 /obj/machinery/atmospherics/unary/freezer/New()
 	..()
-	air_contents.volume = internal_volume
 	initialize_directions = dir
 
 	component_parts = list()
@@ -38,6 +36,7 @@
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 
 	active_power_usage = max_power_usage * (power_setting/100)
+
 
 /obj/machinery/atmospherics/unary/freezer/initialize()
 	if(node) return
@@ -75,17 +74,17 @@
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["on"] = on ? 1 : 0
-	data["gasPressure"] = round(air_contents.return_pressure())
-	data["gasTemperature"] = round(air_contents.temperature)
+	data["gasPressure"] = round(pressure)
+	data["gasTemperature"] = round(temperature)
 	data["minGasTemperature"] = 1
 	data["maxGasTemperature"] = round(T20C+500)
 	data["targetGasTemperature"] = round(set_temperature)
 	data["powerSetting"] = power_setting
 
 	var/temp_class = "good"
-	if (air_contents.temperature > (T0C - 20))
+	if (temperature > (T0C - 20))
 		temp_class = "bad"
-	else if (air_contents.temperature < (T0C - 20) && air_contents.temperature > (T0C - 100))
+	else if (temperature < (T0C - 20) && temperature > (T0C - 100))
 		temp_class = "average"
 	data["gasTemperatureClass"] = temp_class
 
@@ -128,25 +127,8 @@
 		update_icon()
 		return
 
-	if (network && air_contents.temperature > set_temperature)
-		cooling = 1
-		update_use_power(2)
-
-		var/heat_transfer = max( -air_contents.get_thermal_energy_change(set_temperature - 5), 0 )
-
-		//Assume the heat is being pumped into the hull which is fixed at heatsink_temperature
-		//not /really/ proper thermodynamics but whatever
-		var/cop = FREEZER_PERF_MULT * air_contents.temperature/heatsink_temperature	//heatpump coefficient of performance from thermodynamics -> power used = heat_transfer/cop
-		heat_transfer = min(heat_transfer, cop * active_power_usage)	//limit heat transfer by available power
-
-		var/removed = -air_contents.add_thermal_energy(-heat_transfer)		//remove the heat
-		if (debug)
-			visible_message("[src]: Removing [removed] W.")
-
-		network.update = 1
-	else
-		cooling = 0
-		update_use_power(1)
+	cooling = 0
+	update_use_power(1)
 
 	update_icon()
 
@@ -176,7 +158,6 @@
 
 	active_power_usage = initial(active_power_usage)*cap_rating			//more powerful
 	heatsink_temperature = initial(heatsink_temperature)/((manip_rating+bin_rating)/2)	//more efficient
-	air_contents.volume = max(initial(internal_volume) - 200, 0) + 200*bin_rating
 	set_power_level(power_setting)
 
 /obj/machinery/atmospherics/unary/freezer/proc/set_power_level(var/new_power_setting)

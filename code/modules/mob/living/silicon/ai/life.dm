@@ -100,7 +100,7 @@
 			src.see_in_dark = 0
 			src.see_invisible = SEE_INVISIBLE_LIVING
 
-			if (((!loc.master.power_equip) || istype(T, /turf/space)) && !istype(src.loc,/obj/item))
+			if (((!loc.master.power_equip) || istype(T, /turf/open/space)) && !istype(src.loc,/obj/item))
 				if (src:aiRestorePowerRoutine==0)
 					src:aiRestorePowerRoutine = 1
 
@@ -115,7 +115,7 @@
 						src << "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection."
 						sleep(50)
 						if (loc.master.power_equip)
-							if (!istype(T, /turf/space))
+							if (!istype(T, /turf/open/space))
 								src << "Alert cancelled. Power has been restored without our assistance."
 								src:aiRestorePowerRoutine = 0
 								if(hud_used)
@@ -125,7 +125,7 @@
 						sleep(20)
 						src << "Emergency control system online. Verifying connection to power network."
 						sleep(50)
-						if (istype(T, /turf/space))
+						if (istype(T, /turf/open/space))
 							src << "Unable to verify! No power connection detected!"
 							src:aiRestorePowerRoutine = 2
 							return
@@ -154,7 +154,7 @@
 								src:aiRestorePowerRoutine = 2
 								return
 							if (loc.master.power_equip)
-								if (!istype(T, /turf/space))
+								if (!istype(T, /turf/open/space))
 									src << "Alert cancelled. Power has been restored without our assistance."
 									src:aiRestorePowerRoutine = 0
 									if(hud_used)

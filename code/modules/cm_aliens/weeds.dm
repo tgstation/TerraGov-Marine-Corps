@@ -14,9 +14,6 @@
 
 /obj/effect/alien/weeds/New(pos, obj/effect/alien/weeds/node/node)
 	..()
-	if(istype(loc, /turf/space))
-		cdel(src)
-		return
 
 	update_sprite()
 	update_neighbours()
@@ -35,7 +32,7 @@
 /obj/effect/alien/weeds/examine(mob/user)
 	..()
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
+	if(istype(T, /turf/open/floor))
 		T.ceiling_desc(user)
 
 
@@ -66,7 +63,7 @@
 			if (W)
 				continue
 
-			if(istype(T, /turf/simulated/wall))
+			if(istype(T, /turf/closed/wall))
 				new /obj/effect/alien/weeds/weedwall(T)
 				continue
 
@@ -105,7 +102,7 @@
 
 		if (!istype(check))
 			continue
-		if(istype(check, /turf/simulated/wall/resin))
+		if(istype(check, /turf/closed/wall/resin))
 			my_dir |= check_dir
 
 		else if (locate(/obj/effect/alien/weeds) in check)
@@ -175,8 +172,8 @@
 	icon_state = "weedwall"
 
 /obj/effect/alien/weeds/weedwall/update_sprite()
-	if(istype(loc, /turf/simulated/wall))
-		var/turf/simulated/wall/W = loc
+	if(istype(loc, /turf/closed/wall))
+		var/turf/closed/wall/W = loc
 		if(W.junctiontype)
 			icon_state = "weedwall[W.junctiontype]"
 

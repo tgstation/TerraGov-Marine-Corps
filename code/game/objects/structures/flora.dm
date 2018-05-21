@@ -194,3 +194,78 @@
 /obj/structure/flora/ausbushes/fullgrass/New()
 	..()
 	icon_state = "fullgrass_[rand(1, 3)]"
+
+
+
+
+
+//Jungle (Whiskey Outpost)
+
+//*********************//
+// Generic undergrowth //
+//*********************//
+
+/obj/structure/jungle
+	name = "jungle foliage"
+	icon = 'icons/turf/ground_map.dmi'
+	density = 0
+	anchored = 1
+	unacidable = 1 // can toggle it off anyway
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/jungle/shrub
+	name = "jungle foliage"
+	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
+	icon_state = "grass4"
+
+/obj/structure/jungle/plantbot1
+	name = "strange tree"
+	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
+	icon_state = "plantbot1"
+
+/obj/structure/jungle/planttop1
+	name = "strange tree"
+	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
+	icon_state = "planttop1"
+
+/obj/structure/jungle/tree
+	icon = 'icons/obj/flora/ground_map64.dmi'
+	desc = "What an enormous tree!"
+	layer = ABOVE_FLY_LAYER
+
+/obj/structure/jungle/tree/bigtreeTR
+	name = "huge tree"
+	icon_state = "bigtreeTR"
+
+/obj/structure/jungle/tree/bigtreeTL
+	name = "huge tree"
+	icon_state = "bigtreeTL"
+
+/obj/structure/jungle/tree/bigtreeBOT
+	name = "huge tree"
+	icon_state = "bigtreeBOT"
+
+/obj/structure/jungle/treeblocker
+	name = "huge tree"
+	icon_state = ""	//will this break it?? - Nope
+	density = 1
+
+/obj/structure/jungle/vines_lite
+	name = "vines"
+	desc = "A mass of twisted vines."
+	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "Light1"
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/jungle/vines_heavy
+	name = "vines"
+	desc = "A thick, coiled mass of twisted vines."
+	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "Hvy1"
+	opacity = 1
+
+/obj/structure/jungle/tree/grasscarpet
+	name = "thick grass"
+	desc = "A thick mat of dense grass."
+	icon_state = "grasscarpet"
+	layer = BELOW_MOB_LAYER

@@ -65,7 +65,6 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
 	icon = null
 	initial_loc = get_area(loc)
@@ -84,18 +83,11 @@
 	power_channel = EQUIP
 	active_power_usage = 15000	//15 kW ~ 20 HP
 
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
-	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
 /obj/machinery/atmospherics/unary/vent_pump/engine
 	name = "Engine Core Vent"
 	power_channel = ENVIRON
 	active_power_usage = 15000	//15 kW ~ 20 HP
-
-/obj/machinery/atmospherics/unary/vent_pump/engine/New()
-	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500 //meant to match air injector
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon(var/safety = 0)
 	if(!check_icon_cache())
@@ -111,7 +103,7 @@
 	if(!istype(T))
 		return
 
-	if(T.intact && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
+	if(T.intact_tile && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 		vent_icon += "h"
 
 	if(welded)
@@ -129,7 +121,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(T.intact && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
+		if(T.intact_tile && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 			return
 		else
 			if(node)
@@ -161,60 +153,7 @@
 		last_flow_rate = 0
 		return 0
 
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/power_draw = -1
-
-	//Figure out the target pressure difference
-	var/pressure_delta = get_pressure_delta(environment)
-	//src.visible_message("DEBUG >>> [src]: pressure_delta = [pressure_delta]")
-
-	if((environment.temperature || air_contents.temperature) && pressure_delta > 0.5)
-		if(pump_direction) //internal -> external
-			var/output_volume = environment.volume * environment.group_multiplier
-			var/air_temperature = environment.temperature? environment.temperature : air_contents.temperature
-			var/transfer_moles = pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION)
-			//src.visible_message("DEBUG >>> [src]: output_volume = [output_volume]L; air_temperature = [air_temperature]K; transfer_moles = [transfer_moles] mol")
-
-			power_draw = pump_gas(src, air_contents, environment, transfer_moles, active_power_usage)
-		else //external -> internal
-			var/output_volume = air_contents.volume + (network? network.volume : 0)
-			var/air_temperature = air_contents.temperature? air_contents.temperature : environment.temperature
-			var/transfer_moles = pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION)
-
-			//limit flow rate from turfs
-			transfer_moles = min(transfer_moles, environment.total_moles*air_contents.volume/environment.volume)	//group_multiplier gets divided out here
-
-			power_draw = pump_gas(src, environment, air_contents, transfer_moles, active_power_usage)
-
-	if (power_draw < 0)
-		last_power_draw = 0
-		last_flow_rate = 0
-		//update_use_power(0)
-		use_power = 0	//don't force update - easier on CPU
-	else
-		last_power_draw = handle_power_draw(power_draw)
-		if(network)
-			network.update = 1
-
 	return 1
-
-/obj/machinery/atmospherics/unary/vent_pump/proc/get_pressure_delta(datum/gas_mixture/environment)
-	var/pressure_delta = DEFAULT_PRESSURE_DELTA
-	var/environment_pressure = environment.return_pressure()
-
-	if(pump_direction) //internal -> external
-		if(pressure_checks & PRESSURE_CHECK_EXTERNAL)
-			pressure_delta = min(pressure_delta, external_pressure_bound - environment_pressure) //increasing the pressure here
-		if(pressure_checks & PRESSURE_CHECK_INTERNAL)
-			pressure_delta = min(pressure_delta, air_contents.return_pressure() - internal_pressure_bound) //decreasing the pressure here
-	else //external -> internal
-		if(pressure_checks & PRESSURE_CHECK_EXTERNAL)
-			pressure_delta = min(pressure_delta, environment_pressure - external_pressure_bound) //decreasing the pressure here
-		if(pressure_checks & PRESSURE_CHECK_INTERNAL)
-			pressure_delta = min(pressure_delta, internal_pressure_bound - air_contents.return_pressure()) //increasing the pressure here
-
-	return pressure_delta
 
 //Radio remote control
 
@@ -383,15 +322,10 @@
 		user << "<span class='warning'>You cannot unwrench [src], turn it off first.</span>"
 		return 1
 	var/turf/T = src.loc
-	if(node && node.level == 1 && isturf(T) && T.intact)
+	if(node && node.level == 1 && isturf(T) && T.intact_tile)
 		user << "<span class='warning'>You must remove the plating first.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it too exerted due to internal pressure.</span>"
-		add_fingerprint(user)
-		return 1
+
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins unfastening [src].</span>",
 	"<span class='notice'>You begin unfastening [src].</span>")
@@ -423,21 +357,6 @@
 		initial_loc.air_vent_names -= id_tag
 	. = ..()
 
-
-/*
-	Alt-click to vent crawl - Monkeys, aliens, and mice.
-	This is a little buggy but somehow that just seems to plague ventcrawl.
-	I am sorry, I don't know why.
-*/
-// Commenting this out for now, it's not critical, stated to be buggy, and seems like
-// a really clumsy way of doing this. ~Z
-/*/obj/machinery/atmospherics/unary/vent_pump/AltClick(var/mob/living/ML)
-	if(istype(ML))
-		var/list/ventcrawl_verbs = list(/mob/living/carbon/monkey/verb/ventcrawl, /mob/living/carbon/alien/verb/ventcrawl,/mob/living/simple_animal/mouse/verb/ventcrawl)
-		if(length(ML.verbs & ventcrawl_verbs)) // alien queens have this removed, an istype would be complicated
-			ML.handle_ventcrawl(src)
-			return
-	..()*/
 
 /obj/machinery/atmospherics/unary/vent_pump/can_crawl_through()
 	return !welded

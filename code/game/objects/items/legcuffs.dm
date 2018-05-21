@@ -78,9 +78,9 @@
 	dropped(var/mob/living/carbon/human/mob) //Changes to "camouflaged" icons based on where it was dropped.
 		if(armed)
 			if(isturf(mob.loc))
-				if(istype(mob.loc,/turf/unsimulated/floor/gm/dirt))
+				if(istype(mob.loc,/turf/open/gm/dirt))
 					icon_state = "yauttrapdirt"
-				else if (istype(mob.loc,/turf/unsimulated/floor/gm/grass))
+				else if (istype(mob.loc,/turf/open/gm/grass))
 					icon_state = "yauttrapgrass"
 				else
 					icon_state = "yauttrap1"

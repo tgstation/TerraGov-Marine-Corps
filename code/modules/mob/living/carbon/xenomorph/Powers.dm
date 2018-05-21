@@ -809,19 +809,19 @@
 	var/turf/current_turf = loc
 	if (caste == "Hivelord") //hivelords can thicken existing resin structures.
 		if(get_dist(src,A) <= 1)
-			if(istype(A, /turf/simulated/wall/resin))
-				var/turf/simulated/wall/resin/WR = A
+			if(istype(A, /turf/closed/wall/resin))
+				var/turf/closed/wall/resin/WR = A
 				if(WR.walltype == "resin")
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [WR].</span>", \
 					"<span class='xenonotice'>You regurgitate some resin and thicken [WR].</span>", null, 5)
 					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/simulated/wall/resin/thick)
+					WR.ChangeTurf(/turf/closed/wall/resin/thick)
 					WR.oldTurf = prev_oldturf
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
 				else if(WR.walltype == "membrane")
 					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/simulated/wall/resin/membrane/thick)
+					WR.ChangeTurf(/turf/closed/wall/resin/membrane/thick)
 					WR.oldTurf = prev_oldturf
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
@@ -946,9 +946,9 @@
 				new_resin = new /obj/structure/mineral_door/resin(current_turf)
 		if("resin wall")
 			if (caste == "Hivelord")
-				current_turf.ChangeTurf(/turf/simulated/wall/resin/thick)
+				current_turf.ChangeTurf(/turf/closed/wall/resin/thick)
 			else
-				current_turf.ChangeTurf(/turf/simulated/wall/resin)
+				current_turf.ChangeTurf(/turf/closed/wall/resin)
 			new_resin = current_turf
 		if("resin nest")
 			new_resin = new /obj/structure/bed/nest(current_turf)
@@ -991,8 +991,8 @@
 	else if(isturf(O))
 		var/turf/T = O
 
-		if(istype(O, /turf/simulated/wall))
-			var/turf/simulated/wall/wall_target = O
+		if(istype(O, /turf/closed/wall))
+			var/turf/closed/wall/wall_target = O
 			if (wall_target.GetHole())
 				src << "<span class='warning'>[O] is already weakened.</span>"
 				return

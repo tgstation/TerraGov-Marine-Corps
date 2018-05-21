@@ -43,7 +43,6 @@
 		var/mob/M = loc
 		M << "<span class='danger'>[src] explodes!</span>"
 	if(T)
-		T.hotspot_expose(700,125)
 		explosion(T, -1, -1, 0, 4)
 	cdel(src)
 	return

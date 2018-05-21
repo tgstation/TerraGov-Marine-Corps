@@ -140,37 +140,36 @@
 	if(istype(A,/turf))
 		var/turf/T = A
 
-		var/datum/gas_mixture/Environment = T.return_air()
+		var/env_temp = T.return_temperature()
+		var/env_gas = T.return_gas()
 
-		if(Environment)
+		if( abs(env_temp - bodytemperature) > 40 )
+			bodytemperature += ((env_temp - bodytemperature) / 5)
 
-			if( abs(Environment.temperature - bodytemperature) > 40 )
-				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
-
-			if(min_oxy)
-				if(Environment.gas["oxygen"] < min_oxy)
-					atmos_suitable = 0
-			if(max_oxy)
-				if(Environment.gas["oxygen"] > max_oxy)
-					atmos_suitable = 0
-			if(min_tox)
-				if(Environment.gas["phoron"] < min_tox)
-					atmos_suitable = 0
-			if(max_tox)
-				if(Environment.gas["phoron"] > max_tox)
-					atmos_suitable = 0
-			if(min_n2)
-				if(Environment.gas["nitrogen"] < min_n2)
-					atmos_suitable = 0
-			if(max_n2)
-				if(Environment.gas["nitrogen"] > max_n2)
-					atmos_suitable = 0
-			if(min_co2)
-				if(Environment.gas["carbon_dioxide"] < min_co2)
-					atmos_suitable = 0
-			if(max_co2)
-				if(Environment.gas["carbon_dioxide"] > max_co2)
-					atmos_suitable = 0
+		if(min_oxy)
+			if(env_gas != GAS_TYPE_AIR && env_gas != GAS_TYPE_OXYGEN)
+				atmos_suitable = 0
+		if(max_oxy)
+			if(env_gas == GAS_TYPE_OXYGEN)
+				atmos_suitable = 0
+		if(min_tox)
+			if(env_gas != GAS_TYPE_PHORON)
+				atmos_suitable = 0
+		if(max_tox)
+			if(env_gas == GAS_TYPE_PHORON)
+				atmos_suitable = 0
+		if(min_n2)
+			if(env_gas != GAS_TYPE_NITROGEN)
+				atmos_suitable = 0
+		if(max_n2)
+			if(env_gas == GAS_TYPE_NITROGEN)
+				atmos_suitable = 0
+		if(min_co2)
+			if(env_gas != GAS_TYPE_CO2)
+				atmos_suitable = 0
+		if(max_co2)
+			if(env_gas == GAS_TYPE_CO2)
+				atmos_suitable = 0
 
 	//Atmos effect
 	if(bodytemperature < minbodytemp)
@@ -294,7 +293,7 @@
 
 /mob/living/simple_animal/movement_delay()
 
-	if(istype(loc, /turf/space))
+	if(istype(loc, /turf/open/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
 	. = ..()

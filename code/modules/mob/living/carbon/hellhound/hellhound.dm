@@ -287,7 +287,7 @@
 
 /mob/living/carbon/hellhound/movement_delay()
 
-	if(istype(loc, /turf/space))
+	if(istype(loc, /turf/open/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
 	. = ..()
