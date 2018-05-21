@@ -37,6 +37,43 @@
 	var/sound/sound_misc //Anything else, like escape pods.
 	var/obj/structure/dropship_equipment/list/equipments = list()
 
+	//Copy of about 650-700 lines down for elevators
+	var/list/controls = list() //Used to announce failure
+	var/list/main_doors = list() //Used to check failure
+	var/fail_flavortext = "<span class='warning'>Could not launch the dropship due to blockage in the rear door.</span>"
+
+//Full documentation 650-700 lines down by the copy for elevators
+/datum/shuttle/ferry/marine/preflight_checks()
+
+	if(!main_doors.len && !controls.len)
+		var/turf/T_src = pick(locs_dock)
+		var/list/turfs = get_shuttle_turfs(T_src, info_datums)
+		for(var/turf/T in turfs)
+			for(var/obj/machinery/M in T)
+				if(istype(M, /obj/machinery/computer/shuttle_control))
+					controls += M
+				else if(istype(M, /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear))
+					main_doors += M
+
+	for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in main_doors)
+		for(var/obj/vehicle/multitile/M in D.loc)
+			if(M) return 0
+
+		for(var/turf/T in D.get_filler_turfs())
+			for(var/obj/vehicle/multitile/M in T)
+				if(M) return 0
+
+		//No return 1 here in case future elevators have multiple multi_tile doors
+
+	return 1
+
+
+/datum/shuttle/ferry/marine/announce_preflight_failure()
+	for(var/obj/machinery/computer/shuttle_control/control in controls)
+		playsound(control, 'sound/effects/adminhelp-error.ogg', 20) //Arbitrary notification sound
+		control.visible_message(fail_flavortext)
+		return //Kill it so as not to repeat
+
 /datum/shuttle/ferry/marine/proc/load_datums()
 	if(!(info_tag in s_info))
 		message_admins("<span class=warning>Error with shuttles: Shuttle tag does not exist. Code: MSD10.\n WARNING: DROPSHIP LAUNCH WILL PROBABLY FAIL</span>")
@@ -59,6 +96,10 @@
 
 	switch(process_state)
 		if (WAIT_LAUNCH)
+			if(!preflight_checks())
+				announce_preflight_failure()
+				process_state = IDLE_STATE
+				return .
 			if (skip_docking_checks() || docking_controller.can_launch())
 
 				//world << "shuttle/ferry/process: area_transition=[area_transition], travel_time=[travel_time]"
@@ -648,3 +689,51 @@
 		dropship.process_state = FORCE_CRASH
 	else
 		dropship.process_state = WAIT_LAUNCH
+
+
+/* QUICK INHERITANCE THING FOR ELEVATORS
+	NOTE: Elevators do NOT use the above system, they inherit from /datum/shuttle/ferry not /datum/shuttle/ferry/marine */
+
+/datum/shuttle/ferry/elevator
+	var/list/controls = list() //Used to announce failure
+	var/list/main_doors = list() //Used to check failure
+	var/fail_flavortext = "<span class='warning'>Could not move the elevator due to blockage in the main door.</span>"
+
+/datum/shuttle/ferry/elevator/New()
+	..()
+	for(var/obj/machinery/M in get_location_area(location))
+		if(istype(M, /obj/machinery/computer/shuttle_control))
+			controls += M
+		else if(istype(M, /obj/machinery/door/airlock/multi_tile/elevator))
+			main_doors += M
+
+//Kinda messy proc, but the best solution to prevent shearing of multitile vehicles
+//Alternatives include:
+//1. A ticker that verifies that all multi_tile vics aren't out of wack
+//		-Two problems here, intersection of movement and verication would cause issues and this idea is dumb and expensive
+//2. Somewhere in the shuttle_backend, every time you move a multi_tile vic hitbox or root, tell the vic to update when the move completes
+//		-Issues here are that this is not atomic at all and vics get left behind unless the entirety of them is on the shuttle/elevator,
+//			plus then part of the vic would be in space since elevators leave that behind
+/datum/shuttle/ferry/elevator/preflight_checks()
+	for(var/obj/machinery/door/airlock/multi_tile/elevator/E in main_doors)
+		//If there is part of a multitile vic in any of the turfs the door occupies, cancel
+		//An argument can be made for tanks being allowed to block the door, but
+		//	that would make this already relatively expensive and inefficent even more so
+		//	--MadSnailDisease
+		for(var/obj/vehicle/multitile/M in E.loc)
+			if(M) return 0
+
+		for(var/turf/T in E.locs) //For some reason elevators use different multidoor code, this should work though
+			for(var/obj/vehicle/multitile/M in T)
+				if(M) return 0
+
+		//No return 1 here in case future elevators have multiple multi_tile doors
+
+	return 1
+
+
+/datum/shuttle/ferry/elevator/announce_preflight_failure()
+	for(var/obj/machinery/computer/shuttle_control/control in controls)
+		playsound(control, 'sound/effects/adminhelp-error.ogg', 20) //Arbitrary notification sound
+		control.visible_message(fail_flavortext)
+		return //Kill it so as not to repeat

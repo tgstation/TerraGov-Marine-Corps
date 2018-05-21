@@ -153,6 +153,7 @@
 		H.reagents.clear_reagents() //and clear all reagents in them
 		H.undefibbable = FALSE
 		H.chestburst = 0
+		H.mutations.Remove(HUSK)
 
 	// fix all of our organs
 	restore_all_organs()

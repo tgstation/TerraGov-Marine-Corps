@@ -473,37 +473,43 @@
 			dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/L in ticker.mode.xenomorphs)
 				var/mob/M = L.current
+				var/location = get_area(M.loc)
 				if(M)
-					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
+					dat += "<tr><td><A href='?src=\ref[usr];priv_msg=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td>[location]</td>"
+					dat += "<td><a href='?src=\ref[usr];track=\ref[M]'>F</a></td>"
+					dat += "<td><A href='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 			dat += "</table>"
 
 		if(ticker.liaison)
 			dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaison</B></td><td></td><td></td></tr>"
 			var/mob/M = ticker.liaison.current
+			var/location = get_area(M.loc)
 			if(M)
-				dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-				dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-				dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>TP</A></td>"
-				dat += "<td><A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
+				dat += "<tr><td><A href='?src=\ref[usr];priv_msg=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+				dat += "<td>[location]</td>"
+				dat += "<td><a href='?src=\ref[usr];track=\ref[M]'>F</a></td>"
+				dat += "<td><A href='?src=\ref[src];traitor=\ref[M]'>TP</A></td>"
+				dat += "<td><A href='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 			dat += "</table>"
 
 		if(ticker.mode.survivors.len)
 			dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/L in ticker.mode.survivors)
 				var/mob/M = L.current
+				var/location = get_area(M.loc)
 				if(M)
-					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
+					dat += "<tr><td><A href='?src=\ref[usr];priv_msg=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td>[location]</td>"
+					dat += "<td><a href='?src=\ref[usr];track=\ref[M]'>F</a></td>"
+					dat += "<td><A href='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 			dat += "</table>"
 
 		if(ticker.mode.traitors.len)
 			dat += check_role_table("Traitors", ticker.mode.traitors, src)
 
 		dat += "</body></html>"
-		usr << browse(dat, "window=roundstatus;size=400x500")
+		usr << browse(dat, "window=roundstatus;size=600x500")
 	else
 		alert("The game hasn't started yet!")
 

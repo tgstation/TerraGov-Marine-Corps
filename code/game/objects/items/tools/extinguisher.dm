@@ -130,6 +130,9 @@
 						if(isliving(atm)) //For extinguishing mobs on fire
 							var/mob/living/M = atm
 							M.ExtinguishMob()
+							for(var/obj/item/clothing/mask/cigarette/C in M.contents)
+								if(C.item_state == C.icon_on)
+									C.die()
 					if(W.loc == my_target) break
 					sleep(2)
 				cdel(W)

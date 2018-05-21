@@ -1,5 +1,4 @@
 
-
 /obj/item/clothing/head/helmet
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
@@ -335,6 +334,18 @@
 	flags_marine_helmet = NOFLAGS
 	New()
 		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/pilot)
+		..()
+
+/obj/item/clothing/head/helmet/marine/tanker
+	name = "\improper M50 tanker helmet"
+	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the USCM. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
+	icon_state = "tanker_helmet"
+	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_marine_helmet = NOFLAGS
+	New()
+		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/tanker)
 		..()
 
 //=============================//PMCS\\==================================\\

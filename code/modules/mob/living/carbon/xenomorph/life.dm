@@ -60,6 +60,7 @@
 			drop_inv_item_on_ground(G)
 		if(!fire_immune)
 			adjustFireLoss(fire_stacks + 3)
+
 	else
 		if(isXenoBoiler(src))
 			SetLuminosity(3) // needs a less hacky way of doing this, like a default luminosity var

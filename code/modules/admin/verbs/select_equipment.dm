@@ -85,6 +85,7 @@
 		"USCM Private",
 		"USCM Specialist (Smartgunner)",
 		"USCM Specialist (Armor)",
+		"USCM Tank Crewman",
 		"USCM Second-Lieutenant (SO)",
 		"USCM First-Lieutenant (XO)",
 		"USCM Captain (CO)",
@@ -205,6 +206,29 @@
 				M.mind.role_comm_title = "LCpl"
 				M.mind.assigned_role = "Squad Smartgunner"
 				M.mind.set_cm_skills(/datum/skills/smartgunner)
+
+		if("USCM Tank Crewman")
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom, WEAR_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/tanker, WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow, WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70, WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/tanker, WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel, WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large, WEAR_R_STORE)
+
+			var/obj/item/card/id/W = new(M)
+			W.name = "[M.real_name]'s ID Card"
+			W.access = list()
+			W.assignment = "Tank Crewman"
+			W.rank = "Tank Crewman"
+			W.registered_name = M.real_name
+			W.paygrade = "O1"
+			M.equip_to_slot_or_del(W, WEAR_ID)
+			if(M.mind)
+				M.mind.role_comm_title = "TC"
+				M.mind.assigned_role = "Tank Crewman"
+				M.mind.set_cm_skills(/datum/skills/tank_crew)
 
 		if("USCM Combat Synth (Smartgunner)")
 			var/obj/item/clothing/under/marine/J = new(M)

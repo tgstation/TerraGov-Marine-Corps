@@ -307,12 +307,12 @@
 	GoIdle()
 
 	sleep(rand(MIN_IMPREGNATION_TIME,MAX_IMPREGNATION_TIME))
-	if(stat != DEAD) Impregnate(M)
+	Impregnate(M)
 
 	return 1
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
-	if(!target || target.wear_mask != src || target.stat == DEAD || isXeno(target)) //Was taken off or something
+	if(!target || target.wear_mask != src || isXeno(target)) //Was taken off or something
 		return
 
 	var/mob/living/carbon/human/H
@@ -321,13 +321,14 @@
 		if(H.species && (H.species.flags & IS_SYNTHETIC)) return //can't impregnate synthetics
 
 	if(!sterile)
-		for(var/obj/item/alien_embryo/embryo in target)
-			return // already got one, stops doubling up
-
-		var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(target)
-		embryo.hivenumber = hivenumber
+		var/embryos = 0
+		for(var/obj/item/alien_embryo/embryo in target) // already got one, stops doubling up
+			embryos++
+		if(!embryos)
+			var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(target)
+			embryo.hivenumber = hivenumber
+			icon_state = "[initial(icon_state)]_impregnated"
 		target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
-		icon_state = "[initial(icon_state)]_impregnated"
 		Die()
 
 	else
@@ -356,7 +357,7 @@
 		lifecycle -= 50
 		return 1
 
-/obj/item/clothing/mask/facehugger/proc/GoActive()
+/obj/item/clothing/mask/facehugger/proc/GoActive(var/delay = 50)
 	set waitfor = 0
 
 	if(stat == DEAD) return
@@ -364,7 +365,7 @@
 	if(stat != CONSCIOUS) icon_state = "[initial(icon_state)]"
 	stat = CONSCIOUS
 
-	sleep(50) //Every 5 seconds.
+	sleep(delay) //Every 5 seconds.
 	if(stat == CONSCIOUS && loc) //Make sure we're conscious and not idle or dead.
 		if(check_lifecycle())
 			leap_at_nearest_target()
@@ -404,7 +405,7 @@
 
 /proc/CanHug(mob/living/carbon/M)
 
-	if(!istype(M) || isXeno(M) || isSynth(M) || isHellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
+	if(!istype(M) || isXeno(M) || isSynth(M) || iszombie(M) || isHellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,

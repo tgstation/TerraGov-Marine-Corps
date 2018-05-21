@@ -66,7 +66,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			display_colour = "#184880"	//dark blue
 		if(holder.rights & R_DEBUG && !(holder.rights & R_ADMIN))
 			display_colour = "#1b521f"	//dark green
-		else if(holder.rights & R_ADMIN)
+		else if(holder.rights & R_COLOR)
 			if(config.allow_admin_ooccolor)
 				display_colour = src.prefs.ooccolor
 			else

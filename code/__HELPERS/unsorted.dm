@@ -1298,6 +1298,21 @@ proc/get_cardinal_dir(atom/A, atom/B)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
+//I dont understand the above proc so I'm writing my own shittier one
+proc/get_cardinal_dir2(var/atom/A, var/atom/B)
+	var/dx = B.x - A.x
+	var/dy = B.y - A.y
+	if(abs(dx) > abs(dy))
+		return (dx > 0) ? EAST : WEST
+	return (dy > 0) ? NORTH : SOUTH
+
+//Returns the 2 dirs perpendicular to the arg
+proc/get_perpen_dir(var/dir)
+	if(dir & (dir-1)) return 0 //diagonals
+	if(dir in list(EAST, WEST))
+		return list(SOUTH, NORTH)
+	else return list(EAST, WEST)
+
 //chances are 1:value. anyprob(1) will always return true
 proc/anyprob(value)
 	return (rand(1,value)==value)

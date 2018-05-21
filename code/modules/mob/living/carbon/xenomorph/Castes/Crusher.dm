@@ -100,6 +100,20 @@
 			stop_momentum(charge_dir)
 			r_FAL
 
+	if(istype(target, /obj/vehicle/multitile/hitbox))
+		var/obj/vehicle/multitile/hitbox/H = target
+		if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+			visible_message("<span class='danger'>[src] rams into [H.root] and skids to a halt!</span>",
+			"<span class='xenowarning'>You ram into [H.root] and skid to a halt!</span>")
+			flags_pass = 0
+			update_icons()
+			H.root.Bumped(src)
+			stop_momentum(charge_dir)
+			r_TRU
+		else
+			stop_momentum(charge_dir)
+			r_FAL
+
 /atom/proc/charge_act(mob/living/carbon/Xenomorph/X)
 	r_TRU
 

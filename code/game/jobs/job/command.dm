@@ -169,6 +169,47 @@ You are in charge of logistics and the overwatch system. You are also in line to
 While you are an officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
 If you are not piloting, there is an autopilot fallback for command, but don't leave the dropship without reason."}
 
+//Tank Crewmen //For now, straight up copied from the pilot officers until their role is more solidified
+/datum/job/command/tank_crew
+	title = "Tank Crewman"
+	comm_title = "TC"
+	paygrade = "O1"
+	flag = ROLE_TANK_OFFICER
+	total_positions = 2
+	spawn_positions = 2
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
+	skills_type = /datum/skills/tank_crew
+
+	generate_wearable_equipment()
+		. = list(
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
+				WEAR_BODY = /obj/item/clothing/under/marine/officer/tanker,
+				WEAR_FEET = /obj/item/clothing/shoes/marine,
+				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
+				WEAR_WAIST = /obj/item/storage/belt/gun/m4a3/vp70,
+				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/tanker,
+				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
+				WEAR_R_STORE = /obj/item/storage/pouch/general/large
+				)
+
+	generate_stored_equipment()
+		. = list(
+				WEAR_R_HAND = /obj/item/clothing/head/helmet/marine/tanker
+				)
+
+	get_wearable_equipment()
+		var/L[] = list(
+						WEAR_EYES = /obj/item/clothing/head/helmet/marine/tanker
+						)
+
+		return generate_wearable_equipment() + L
+
+	generate_entry_message(mob/living/carbon/human/H)
+		. = {"Your job is to operate and maintain thee ship's armored vehicles.
+While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
+
 //Military Police
 /datum/job/command/police
 	title = "Military Police"
