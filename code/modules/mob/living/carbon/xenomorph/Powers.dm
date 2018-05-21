@@ -1213,8 +1213,8 @@
 	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
 		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
 	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count]<BR>"
-	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Lurkers: [hunter_count] | Spitters: [spitter_count]<BR>"
-	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
+	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count + warrior_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Lurkers: [hunter_count] | Spitters: [spitter_count]<BR>"
+	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count + defender_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
 	dat += "<b>Larvas: [larva_count] Sisters<BR>"
 	if(istype(user)) // cover calling it without parameters
 		if(user.hivenumber == XENO_HIVE_NORMAL)
