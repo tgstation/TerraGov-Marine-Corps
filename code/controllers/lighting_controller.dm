@@ -66,20 +66,24 @@ datum/controller/lighting/proc/process()
 datum/controller/lighting/proc/process()
 	while(processing)
 		iteration++
-		for(var/thing in changed_lights)
-			var/datum/light_source/L = thing
+		var/i
+		var/datum/light_source/L
+		for(i in changed_lights)
+			L = thing
 			if(L)
 				L.check()
 
-		changed_lights.Cut()
+		//Operating under the assumpting that Cut() is O(n) because DM is dumb
+		changed_lights = list()
 
-		for(var/thing in changed_turfs)
-			var/turf/T = thing
+		var/turf/T
+		for(i in changed_turfs)
+			T = thing
 			if(T)
 				if(T.lighting_changed)
 					T.shift_to_subarea()
 
-		changed_turfs.Cut()
+		changed_turfs = list()
 
 		sleep(processing_interval)
 
