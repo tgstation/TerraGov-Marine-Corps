@@ -8,7 +8,7 @@
 		if(!I)
 			H << "<span class='notice'>You are not holding anything to equip.</span>"
 			return
-		if(H.equip_to_appropriate_slot(I))
+		if(H.equip_to_appropriate_slot(I, 0))
 			if(hand)
 				update_inv_l_hand(0)
 			else
@@ -18,7 +18,7 @@
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot], del_on_fail = 0))
+		if (equip_to_slot_if_possible(W, slots[slot], 1, del_on_fail = 0))
 			return slot
 	if (del_on_fail)
 		cdel(W)
@@ -395,9 +395,8 @@
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
 					drop_inv_item_on_ground(I)
 					if(I && !I.disposed) //Might be self-deleted?
-						M.equip_to_slot_if_possible(I, slot_to_process, 0, 1, 1)
+						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
 
 	if(M)
 		if(interactee == M && Adjacent(M))
 			M.show_inv(src)
-

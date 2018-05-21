@@ -507,7 +507,7 @@
 			reagents.remove_reagent("fuel", fuel_available)
 			FTL.current_rounds = fuel_available
 			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			FTL.caliber = "Fuel"
+			FTL.caliber = "UT-Napthal Fuel"
 			user << "<span class='notice'>You refill [FTL] with [lowertext(FTL.caliber)].</span>"
 			FTL.update_icon()
 			return
