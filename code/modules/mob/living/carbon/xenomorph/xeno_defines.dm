@@ -111,6 +111,40 @@
 	var/usedPounce = 0
 	var/pounce_delay = 40
 
+	// Warrior vars
+	var/agility = 0		// 0 - upright, 1 - all fours
+	var/ripping_limb = 0
+
+	var/used_lunge = 0
+	var/used_fling = 0
+	var/used_punch = 0
+	var/used_toggle_agility = 0
+
+	var/lunge_cooldown = 40
+	var/fling_cooldown = 40
+	var/punch_cooldown = 40
+	var/toggle_agility_cooldown = 5
+
+	// Defender vars
+	var/fortify = 0
+	var/crest_defense = 0
+
+	var/used_headbutt = 0
+	var/used_tail_sweep = 0
+	var/used_crest_defense = 0
+	var/used_fortify = 0
+
+	var/headbutt_cooldown = 40
+	var/tail_sweep_cooldown = 40
+	var/crest_defense_cooldown = 60
+	var/fortify_cooldown = 40
+	var/fortify_timer = 60
+
+	//Praetorian vars
+	var/acid_spray_range = 3
+	var/acid_spray_cooldown = 60
+	var/used_acid_spray = 0
+
 	//Queen vars
 	var/queen_leader_limit = 1 //Amount of leaders allowed
 

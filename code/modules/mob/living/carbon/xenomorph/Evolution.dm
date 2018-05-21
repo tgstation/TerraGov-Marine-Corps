@@ -164,7 +164,7 @@
 			M = /mob/living/carbon/Xenomorph/Sentinel
 		if("Spitter")
 			M = /mob/living/carbon/Xenomorph/Spitter
-		if("Hunter")
+		if("Lurker")
 			M = /mob/living/carbon/Xenomorph/Hunter
 		if("Queen")
 			switch(hivenumber) // because it causes issues otherwise

@@ -150,6 +150,11 @@ proc/isXenoHunter(A)
 		return 1
 	return 0
 
+proc/isXenoDefender(A)
+	if (istype(A, /mob/living/carbon/Xenomorph/Defender))
+		return 1
+	return 0
+
 proc/isXenoLarva(A) //Xenomorph Larva Hud Test APOPHIS 22MAY2015
 	if(istype(A, /mob/living/carbon/Xenomorph/Larva))
 		return 1
@@ -182,6 +187,11 @@ proc/isXenoSentinel(A)
 
 proc/isXenoSpitter(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Spitter))
+		return 1
+	return 0
+
+proc/isXenoWarrior(A)
+	if (istype(A, /mob/living/carbon/Xenomorph/Warrior))
 		return 1
 	return 0
 

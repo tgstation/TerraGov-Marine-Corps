@@ -52,6 +52,660 @@
 
 	return 1
 
+
+// Praetorian acid spray
+/mob/living/carbon/Xenomorph/proc/acid_spray_cone(atom/A)
+
+	if (!A || !check_state())
+		return
+
+	if (used_acid_spray)
+		src << "<span class='xenowarning'>You must wait to produce enough acid to spray.</span>"
+		return
+
+	if (!check_plasma(50))
+		src << "<span class='xenowarning'>You must produce more plasma before doing this.</span>"
+		return
+
+	var/turf/target
+
+	if (isturf(A))
+		target = A
+	else
+		target = get_turf(A)
+
+	if (target == loc)
+		return
+
+	used_acid_spray = 1
+	use_plasma(50)
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1)
+	visible_message("<span class='xenowarning'>\The [src] spews forth a wide cone of acid!</span>", \
+	"<span class='xenowarning'>You spew forth a cone of acid!</span>", null, 5)
+
+	do_acid_spray_cone(target)
+
+	spawn(acid_spray_cooldown)
+		used_acid_spray = 0
+		src << "<span class='notice'>You have produced enough acid to spray again.</span>"
+
+/mob/living/carbon/Xenomorph/proc/do_acid_spray_cone(var/turf/T)
+	var/facing = get_cardinal_dir(src, T)
+	dir = facing
+
+	T = loc
+	for (var/i = 0, i < acid_spray_range, i++)
+		T = get_step(T, facing)
+
+		if (T.density)
+			return
+
+		for (var/obj/O in T)
+			if (O.density)
+				return
+
+		acid_splat_turf(T)
+		do_acid_spray_cone_normal(T, i, facing)
+		sleep(2)
+
+// Normal refers to the mathematical normal
+/mob/living/carbon/Xenomorph/proc/do_acid_spray_cone_normal(var/turf/T, var/distance, var/facing)
+	if (!distance)
+		return
+
+	var/normal_dir = turn(facing, 90)
+	var/inverse_normal_dir = turn(facing, -90)
+
+	var/turf/normal_turf = T
+	var/turf/inverse_normal_turf = T
+
+	var/normal_density_flag = 0
+	var/inverse_normal_density_flag = 0
+
+	for (var/i = 0, i < distance, i++)
+		if (normal_density_flag && inverse_normal_density_flag)
+			return
+
+		if (!normal_density_flag)
+			normal_turf = get_step(normal_turf, normal_dir)
+			normal_density_flag = normal_turf.density
+
+			for (var/obj/O in T)
+				if (O.density)
+					normal_density_flag = 1
+					break
+
+			if (!normal_density_flag)
+				acid_splat_turf(normal_turf)
+
+		if (!inverse_normal_density_flag)
+			inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
+			inverse_normal_density_flag = inverse_normal_turf.density
+
+			for (var/obj/O in T)
+				if (O.density)
+					inverse_normal_density_flag = 1
+					break
+
+			if (!inverse_normal_density_flag)
+				acid_splat_turf(inverse_normal_turf)
+
+
+
+/mob/living/carbon/Xenomorph/proc/acid_splat_turf(var/turf/T)
+	if (!locate(/obj/effect/xenomorph/spray) in T)
+		var/obj/effect/xenomorph/spray/S = new(T)
+		processing_objects.Add(S)
+
+		// This should probably be moved into obj/effect/xenomorph/spray or something
+		for (var/obj/structure/barricade/B in T)
+			B.health -= rand(20, 30)
+			B.update_health(1)
+
+		for (var/mob/living/carbon/C in T)
+			if (!ishuman(C) && !ismonkey(C))
+				continue
+
+			if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+				continue
+
+			C.adjustFireLoss(rand(20 + 5 * upgrade, 30 + 5 * upgrade))
+			C << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
+
+			if (!isYautja(C))
+				C.emote("scream")
+				C.KnockDown(rand(3, 4))
+
+
+// Warrior Fling
+/mob/living/carbon/Xenomorph/proc/fling(atom/A)
+
+	if (!A || !istype(A, /mob/living/carbon/human))
+		return
+
+	if (!check_state() || agility)
+		return
+
+	if (used_fling)
+		src << "<span class='xenowarning'>You must gather your strength before flinging something.</span>"
+		return
+
+	if (!check_plasma(10))
+		return
+
+	if (!Adjacent(A))
+		return
+
+	var/mob/living/carbon/human/H = A
+
+	visible_message("<span class='xenowarning'>\The [src] effortlessly flings [H] to the side!</span>", \
+	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
+
+	used_fling = 1
+	use_plasma(10)
+	H.apply_effects(1,2) 	// Stun
+	shake_camera(H, 2, 1)
+
+	var/facing = get_dir(src, H)
+	var/fling_distance = 3
+	var/turf/T = loc
+	var/turf/temp = loc
+
+	for (var/x = 0, x < fling_distance, x++)
+		temp = get_step(T, facing)
+		if (!temp)
+			break
+		T = temp
+
+	H.throw_at(T, fling_distance, 1, src, 1)
+
+	spawn(fling_cooldown)
+		used_fling = 0
+		src << "<span class='notice'>You gather enough strength to fling something again.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+/mob/living/carbon/Xenomorph/proc/punch(atom/A)
+
+	if (!A || !istype(A, /mob/living/carbon/human))
+		return
+
+	if (!check_state() || agility)
+		return
+
+	if (used_punch)
+		src << "<span class='xenowarning'>You must gather your strength before punching.</span>"
+		return
+
+	if (!check_plasma(10))
+		return
+
+	if (!Adjacent(A))
+		return
+
+	var/mob/living/carbon/human/H = A
+	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
+
+	if (!L || L.has_dropped_limb)
+		return
+
+	visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devistatingly powerful punch!</span>", \
+	"<span class='xenowarning'>You hit [H] in the [L.display_name] with a devistatingly powerful punch!</span>")
+
+	used_punch = 1
+	use_plasma(10)
+
+	L.take_damage(20, 0, 0)
+	L.fracture()
+	shake_camera(H, 2, 1)
+	step_away(H, src, 2)
+
+	spawn(punch_cooldown)
+		used_punch = 0
+		src << "<span class='notice'>You gather enough strength to punch again.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+/mob/living/carbon/Xenomorph/proc/lunge(atom/A)
+
+	if (!A || !istype(A, /mob/living/carbon/human))
+		return
+
+	if (!isturf(loc))
+		src << "<span class='xenowarning'>You can't lunge from here!</span>"
+		return
+
+	if (!check_state() || agility)
+		return
+
+	if (used_lunge)
+		src << "<span class='xenowarning'>You must gather your strength before lunging.</span>"
+		return
+
+	if (!check_plasma(10))
+		return
+
+	var/mob/living/carbon/human/H = A
+	visible_message("<span class='xenowarning'>\The [src] lunges towards [H]!</span>", \
+	"<span class='xenowarning'>You lunge at [H]!</span>")
+
+	used_lunge = 1
+	use_plasma(10)
+	throw_at(get_step_towards(A, src), 6, 2, src)
+
+	if (Adjacent(H))
+		start_pulling(H)
+
+	spawn(lunge_cooldown)
+		used_lunge = 0
+		src << "<span class='notice'>You get ready to lunge again.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+	return 1
+
+// Called when pulling something and attacking yourself with the pull
+/mob/living/carbon/Xenomorph/proc/pull_power(var/mob/M)
+	if (isXenoWarrior(src) && !ripping_limb)
+		grab_level = GRAB_NECK
+		visible_message("<span class='xenowarning'>\The [src] grabs [M] by the throat!</span>", \
+		"<span class='xenowarning'>You grab [M] by the throat!</span>")
+		M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [src] ([ckey])</font>"
+		attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed the neck of [M] ([M.ckey])</font>"
+		msg_admin_attack("[key_name(src)] grabbed the neck of [key_name(M)]")
+		ripping_limb = 1
+		rip_limb(M)
+		ripping_limb = 0
+		stop_pulling()
+
+
+// Warrior Rip Limb - called by pull_power()
+/mob/living/carbon/Xenomorph/proc/rip_limb(var/mob/M)
+	if (!istype(M, /mob/living/carbon/human))
+		return
+
+	var/mob/living/carbon/human/H = M
+	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
+
+	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || L.has_dropped_limb) //Only limbs and head.
+		return
+
+	var/limb_time = 50
+
+	if (L.body_part == HEAD)
+		limb_time = 100
+
+	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
+	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
+
+	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE, 1))
+		return
+
+	visible_message("<span class='xenowarning'>You hear the bones in [M]'s [L.display_name] snap with a sickening crunch!</span>", \
+	"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
+	L.take_damage(20, 0, 0)
+	L.fracture()
+
+	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE))
+		return
+
+	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
+	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
+
+	L.droplimb(1)
+
+	return
+
+
+// Warrior Agility
+/mob/living/carbon/Xenomorph/proc/toggle_agility()
+	if (!check_state())
+		return
+
+	if (used_toggle_agility)
+		return
+
+	agility = !agility
+
+	if (agility)
+		src << "<span class='xenowarning'>You lower yourself to all fours.</span>"
+		speed -= 1
+		update_icons()
+		do_agility_cooldown()
+		return
+
+	src << "<span class='xenowarning'>You raise yourself to stand on two feet.</span>"
+	speed += 1
+	update_icons()
+	do_agility_cooldown()
+
+/mob/living/carbon/Xenomorph/proc/do_agility_cooldown()
+	spawn(toggle_agility_cooldown)
+		used_toggle_agility = 0
+		src << "<span class='notice'>You can [agility ? "raise yourself back up" : "lower yourself back down"] again.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+
+// Defender Headbutt
+/mob/living/carbon/Xenomorph/proc/headbutt(var/mob/M)
+	if (!M || !istype(M, /mob/living/carbon/human))
+		return
+
+	if (fortify)
+		src << "<span class='xenowarning'>You cannot use abilities while fortified.</span>"
+		return
+
+	if (crest_defense)
+		src << "<span class='xenowarning'>You cannot use abilities with your crest lowered.</span>"
+		return
+
+	if (!check_state())
+		return
+
+	if (used_headbutt)
+		src << "<span class='xenowarning'>You must gather your strength before headbutting.</span>"
+		return
+
+	if (!check_plasma(10))
+		return
+
+	var/mob/living/carbon/human/H = M
+
+	var/distance = get_dist(src, H)
+
+	if (distance > 2)
+		return
+
+	if (distance > 1)
+		step_towards(src, H, 1)
+
+	if (!Adjacent(H))
+		return
+
+	visible_message("<span class='xenowarning'>\The [src] rams [H] with it's armored crest!</span>", \
+	"<span class='xenowarning'>You ram [H] with your armored crest!</span>")
+
+	used_headbutt = 1
+	use_plasma(10)
+
+	H.apply_damage(20)
+
+	shake_camera(H, 2, 1)
+
+	var/facing = get_dir(src, H)
+	var/headbutt_distance = 3
+	var/turf/T = loc
+	var/turf/temp = loc
+
+	for (var/x = 0, x < headbutt_distance, x++)
+		temp = get_step(T, facing)
+		if (!temp)
+			break
+		T = temp
+
+	H.throw_at(T, headbutt_distance, 1, src)
+
+	spawn(headbutt_cooldown)
+		used_headbutt = 0
+		src << "<span class='notice'>You gather enough strength to headbutt again.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+
+// Defender Tail Sweep
+/mob/living/carbon/Xenomorph/proc/tail_sweep()
+	if (fortify)
+		src << "<span class='xenowarning'>You cannot use abilities while fortified.</span>"
+		return
+
+	if (crest_defense)
+		src << "<span class='xenowarning'>You cannot use abilities with your crest lowered.</span>"
+		return
+
+	if (!check_state())
+		return
+
+	if (used_tail_sweep)
+		src << "<span class='xenowarning'>You must gather your strength before tail sweeping.</span>"
+		return
+
+	if (!check_plasma(10))
+		return
+
+	visible_message("<span class='xenowarning'>\The [src] sweeps it's tail in a wide circle!</span>", \
+	"<span class='xenowarning'>You sweep your tail in a wide circle!</span>")
+
+	spin_circle()
+
+	var/sweep_range = 1
+	var/list/L = orange(sweep_range)		// Not actually the fruit
+
+	for (var/mob/living/carbon/human/H in L)
+		step_away(H, src, sweep_range, 2)
+		H.apply_damage(10)
+
+		shake_camera(H, 2, 1)
+
+		if (prob(50))
+			H.KnockDown(2, 1)
+
+		H << "<span class='xenowarning'>You are struck by \the [src]'s tail sweep!</span>"
+
+	used_tail_sweep = 1
+	use_plasma(10)
+
+	spawn(tail_sweep_cooldown)
+		used_tail_sweep = 0
+		src << "<span class='notice'>You gather enough strength to tail sweep again.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+
+// Defender Crest Defense
+/mob/living/carbon/Xenomorph/proc/toggle_crest_defense()
+
+	if (fortify)
+		src << "<span class='xenowarning'>You cannot use abilities while fortified.</span>"
+		return
+
+	if (!check_state())
+		return
+
+	if (used_crest_defense)
+		return
+
+	crest_defense = !crest_defense
+	used_crest_defense = 1
+
+	if (crest_defense)
+		src << "<span class='xenowarning'>You lower your crest.</span>"
+		armor_deflection += 15
+		speed += 0.5	// This is actually a slowdown but speed is dumb
+		do_crest_defense_cooldown()
+		return
+
+	src << "<span class='xenowarning'>You raise your crest.</span>"
+	armor_deflection -= 15
+	speed -= 0.5
+
+	do_crest_defense_cooldown()
+
+/mob/living/carbon/Xenomorph/proc/do_crest_defense_cooldown()
+	spawn(crest_defense_cooldown)
+		used_crest_defense = 0
+		src << "<span class='notice'>You can [crest_defense ? "raise" : "lower"] your crest.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+
+// Defender Fortify
+/mob/living/carbon/Xenomorph/proc/fortify()
+	if (crest_defense)
+		src << "<span class='xenowarning'>You cannot use abilities with your crest lowered.</span>"
+		return
+
+	if (!check_state())
+		return
+
+	if (used_fortify)
+		return
+
+	fortify = !fortify
+	used_fortify = 1
+
+	if (fortify)
+		src << "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>"
+		armor_deflection += 30
+		xeno_explosion_resistance++
+		frozen = 1
+		update_canmove()
+		update_icons()
+		do_fortify_cooldown()
+		fortify_timer = world.timeofday + 90		// How long we can be fortified
+		process_fortify()
+		return
+
+	fortify_off()
+	do_fortify_cooldown()
+
+/mob/living/carbon/Xenomorph/proc/process_fortify()
+	set background = 1
+
+	spawn while (fortify)
+		if (world.timeofday > fortify_timer)
+			fortify = 0
+			fortify_off()
+		sleep(10)	// Process every second.
+
+/mob/living/carbon/Xenomorph/proc/fortify_off()
+	src << "<span class='xenowarning'>You resume your normal stance.</span>"
+	armor_deflection -= 30
+	xeno_explosion_resistance--
+	frozen = 0
+	update_canmove()
+	update_icons()
+
+/mob/living/carbon/Xenomorph/proc/do_fortify_cooldown()
+	spawn(fortify_cooldown)
+		used_fortify = 0
+		src << "<span class='notice'>You can [fortify ? "stand up" : "fortify"] again.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+
+/* WIP Burrower stuff
+/mob/living/carbon/Xenomorph/proc/burrow()
+	if (!check_state())
+		return
+
+	if (used_burrow)
+		return
+
+	burrow = !burrow
+	used_burrow = 1
+
+	if (burrow)
+		// TODO Make immune to all damage here.
+		src << "<span class='xenowarning'>You burrow yourself into the ground.</span>"
+		frozen = 1
+		invisibility = 101
+		anchored = 1
+		density = 0
+		update_canmove()
+		update_icons()
+		do_burrow_cooldown()
+		burrow_timer = world.timeofday + 90		// How long we can be burrowed
+		process_burrow()
+		return
+
+	burrow_off()
+	do_burrow_cooldown()
+
+/mob/living/carbon/Xenomorph/proc/process_burrow()
+	set background = 1
+
+	spawn while (burrow)
+		if (world.timeofday > burrow_timer && !tunnel)
+			burrow = 0
+			burrow_off()
+		sleep(10)	// Process every second.
+
+/mob/living/carbon/Xenomorph/proc/burrow_off()
+
+	src << "<span class='notice'>You resurface.</span>"
+	frozen = 0
+	invisibility = 0
+	anchored = 0
+	density = 1
+	update_canmove()
+	update_icons()
+
+/mob/living/carbon/Xenomorph/proc/do_burrow_cooldown()
+	spawn(burrow_cooldown)
+		used_burrow = 0
+		src << "<span class='notice'>You can now surface or tunnel.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+
+
+/mob/living/carbon/Xenomorph/proc/tunnel(var/turf/T)
+	if (!burrow)
+		src << "<span class='notice'>You must be burrowed to do this.</span>"
+		return
+
+	if (used_burrow || used_tunnel)
+		src << "<span class='notice'>You must wait some time to do this.</span>"
+		return
+
+	if (tunnel)
+		tunnel = 0
+		src << "<span class='notice'>You stop tunneling.</span>"
+		used_tunnel = 1
+		do_tunnel_cooldown()
+		return
+
+	if (!T || T.density)
+		src << "<span class='notice'>You cannot tunnel to there!</span>"
+
+	tunnel = 1
+	process_tunnel(T)
+
+
+/mob/living/carbon/Xenomorph/proc/process_tunnel(var/turf/T)
+	set background = 1
+
+	spawn while (tunnel && T)
+		if (world.timeofday > tunnel_timer)
+			tunnel = 0
+			do_tunnel()
+		sleep(10)	// Process every second.
+
+/mob/living/carbon/Xenomorph/proc/do_tunnel(var/turf/T)
+	src << "<span class='notice'>You tunnel to your destination.</span>"
+	M.forceMove(T)
+	burrow = 0
+	burrow_off()
+
+/mob/living/carbon/Xenomorph/proc/do_tunnel_cooldown()
+	spawn(tunnel_cooldown)
+		used_tunnel = 0
+		src << "<span class='notice'>You can now tunnel while burrowed.</span>"
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()
+*/
+
+// Vent Crawl
 /mob/living/carbon/Xenomorph/proc/vent_crawl()
 	set name = "Crawl through Vent"
 	set desc = "Enter an air vent and crawl through the pipe system."
@@ -61,9 +715,6 @@
 	var/pipe = start_ventcrawl()
 	if(pipe)
 		handle_ventcrawl(pipe)
-
-
-
 
 
 /mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
@@ -459,6 +1110,8 @@
 	var/carrier_count = 0
 	var/hivelord_list = ""
 	var/hivelord_count = 0
+	var/warrior_list = ""
+	var/warrior_count = 0
 	var/hunter_list = ""
 	var/hunter_count = 0
 	var/spitter_list = ""
@@ -469,6 +1122,8 @@
 	var/runner_count = 0
 	var/sentinel_list = ""
 	var/sentinel_count = 0
+	var/defender_list = ""
+	var/defender_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
 	var/stored_larva_count = ticker.mode.stored_larva
@@ -527,7 +1182,11 @@
 			if("Hivelord")
 				if(leader == "") hivelord_list += xenoinfo
 				hivelord_count++
-			if("Hunter")
+			if ("Warrior")
+				if (leader == "")
+					warrior_list += xenoinfo
+				warrior_count++
+			if("Lurker")
 				if(leader == "") hunter_list += xenoinfo
 				hunter_count++
 			if("Spitter")
@@ -542,6 +1201,10 @@
 			if("Sentinel")
 				if(leader == "") sentinel_list += xenoinfo
 				sentinel_count++
+			if ("Defender")
+				if (leader == "")
+					defender_list += xenoinfo
+				defender_count++
 			if("Bloody Larva") // all larva are caste = blood larva
 				if(leader == "") larva_list += xenoinfo
 				larva_count++
@@ -550,14 +1213,14 @@
 	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
 		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
 	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count]<BR>"
-	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
-	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count]<BR>"
+	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Lurkers: [hunter_count] | Spitters: [spitter_count]<BR>"
+	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
 	dat += "<b>Larvas: [larva_count] Sisters<BR>"
 	if(istype(user)) // cover calling it without parameters
 		if(user.hivenumber == XENO_HIVE_NORMAL)
 			dat += "<b>Burrowed Larva: [stored_larva_count] Sisters<BR>"
 	dat += "<table cellspacing=4>"
-	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + larva_list
+	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + warrior_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + defender_list + larva_list
 	dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=500x500")
 

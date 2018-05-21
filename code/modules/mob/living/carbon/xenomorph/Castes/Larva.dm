@@ -13,7 +13,7 @@
 	plasma_gain = 1
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	evolves_to = list("Drone", "Runner", "Sentinel") //Add sentinel etc here
+	evolves_to = list("Drone", "Runner", "Sentinel", "Defender") //Add sentinel etc here
 	see_in_dark = 8
 	caste_desc = "D'awwwww, so cute!"
 	flags_pass = PASSTABLE | PASSMOB

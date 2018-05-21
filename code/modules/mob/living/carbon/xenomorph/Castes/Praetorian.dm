@@ -4,15 +4,15 @@
 	caste = "Praetorian"
 	name = "Praetorian"
 	desc = "A huge, looming beast of an alien."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/xenomorph_64x64.dmi'
 	icon_state = "Praetorian Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 	tacklemin = 3
 	tacklemax = 8
 	tackle_chance = 75
-	health = 200
-	maxHealth = 200
+	health = 250
+	maxHealth = 250
 	plasma_stored = 200
 	plasma_gain = 25
 	plasma_max = 800
@@ -20,7 +20,7 @@
 	evolution_allowed = FALSE
 	spit_delay = 20
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
-	speed = 0.1
+	speed = -0.5
 	pixel_x = -16
 	old_x = -16
 	caste_desc = "Ptui!"
@@ -38,7 +38,5 @@
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/spray_acid
 		)
-
-
-
