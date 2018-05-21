@@ -332,6 +332,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/Bump(var/atom/A)
 	. = ..()
 	if(isliving(A))
+		if (isXenoDefender(A))
+			var/mob/living/carbon/Xenomorph/X = A
+			if (X.fortify)
+				return
+				
 		var/mob/living/M = A
 		M.KnockDown(7, 1)
 		M.apply_damage(25 + rand(-5, 10), BRUTE) //why would I not just do rand(20, 35)

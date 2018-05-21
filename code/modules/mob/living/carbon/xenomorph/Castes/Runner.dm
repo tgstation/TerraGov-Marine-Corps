@@ -4,7 +4,7 @@
 	caste = "Runner"
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
+	icon = 'icons/xeno/xenomorph_64x64.dmi' //They are now like, 2x1 or something
 	icon_state = "Runner Walking"
 	melee_damage_lower = 10
 	melee_damage_upper = 20
@@ -17,7 +17,7 @@
 	upgrade_threshold = 200
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -1.8
-	evolves_to = list("Hunter")
+	evolves_to = list("Lurker")
 	charge_type = 1 //Pounce - Runner
 	flags_pass = PASSTABLE
 	attack_delay = -4

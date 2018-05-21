@@ -4,7 +4,7 @@
 	caste = "Hivelord"
 	name = "Hivelord"
 	desc = "A huge ass xeno covered in weeds! Oh shit!"
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/xenomorph_64x64.dmi'
 	icon_state = "Hivelord Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -49,4 +49,3 @@
 	if(speed_activated)
 		if(locate(/obj/effect/alien/weeds) in loc)
 			. -= 1.5
-

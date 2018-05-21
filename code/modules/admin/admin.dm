@@ -171,8 +171,10 @@ var/global/floorIsLava = 0
 				<br>\[ Alien Tier 0: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A> \]
 				<br>\[ Alien Tier 1: <A href='?src=\ref[src];simplemake=runner;mob=\ref[M]'>Runner</A> |
 				<A href='?src=\ref[src];simplemake=drone;mob=\ref[M]'>Drone</A> |
-				<A href='?src=\ref[src];simplemake=sentinel;mob=\ref[M]'>Sentinel</A> \]
-				<br>\[ Alien Tier 2: <A href='?src=\ref[src];simplemake=hunter;mob=\ref[M]'>Hunter</A> |
+				<A href='?src=\ref[src];simplemake=sentinel;mob=\ref[M]'>Sentinel</A> |
+				<A href='?src=\ref[src];simplemake=defender;mob=\ref[M]'>Defender</A> \]
+				<br>\[ Alien Tier 2: <A href='?src=\ref[src];simplemake=lurker;mob=\ref[M]'>Lurker</A> |
+				<A href='?src=\ref[src];simplemake=warrior;mob=\ref[M]'>Warrior</A> |
 				<A href='?src=\ref[src];simplemake=spitter;mob=\ref[M]'>Spitter</A> |
 				<A href='?src=\ref[src];simplemake=hivelord;mob=\ref[M]'>Hivelord</A> |
 				<A href='?src=\ref[src];simplemake=carrier;mob=\ref[M]'>Carrier</A> \]

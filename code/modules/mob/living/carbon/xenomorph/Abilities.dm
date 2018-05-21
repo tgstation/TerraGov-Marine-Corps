@@ -28,6 +28,8 @@
 		new /obj/effect/alien/weeds/node(X.loc, src, X)
 		playsound(X.loc, "alien_resin_build", 25)
 
+
+// Resting
 /datum/action/xeno_action/xeno_resting
 	name = "Rest"
 	action_icon_state = "resting"
@@ -35,8 +37,11 @@
 //resting action can be done even when lying down
 /datum/action/xeno_action/xeno_resting/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated(TRUE) && !X.buckled)
-		return TRUE
+
+	if (!X || X.is_mob_incapacitated(1) || X.buckled || X.fortify || X.crest_defense || X.agility)
+		return
+
+	return 1
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -46,6 +51,8 @@
 	X.resting = !X.resting
 	X << "\blue You are now [X.resting ? "resting" : "getting up"]"
 
+
+// Shift Spits
 /datum/action/xeno_action/shift_spits
 	name = "Toggle Spit Type"
 	action_icon_state = "shift_spit_neurotoxin"
@@ -66,6 +73,7 @@
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
 
+// Regurgitate
 /datum/action/xeno_action/regurgitate
 	name = "Regurgitate"
 	action_icon_state = "regurgitate"
@@ -73,7 +81,7 @@
 
 /datum/action/xeno_action/regurgitate/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
+	if(!X.check_state() || X.fortify || X.crest_defense || X.agility)
 		return
 
 	if(!isturf(X.loc))
@@ -91,6 +99,8 @@
 	else
 		X<< "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>"
 
+
+// Choose Resin
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
 	action_icon_state = "resin wall"
@@ -117,6 +127,8 @@
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, X.selected_resin)
 
+
+// Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin (75)"
 	action_icon_state = "secrete_resin"
@@ -131,6 +143,8 @@
 	name = "Secrete Resin (100)"
 	resin_plasma_cost = 100
 
+
+// Corrosive Acid
 /datum/action/xeno_action/activable/corrosive_acid
 	name = "Corrosive Acid (100)"
 	action_icon_state = "corrosive_acid"
@@ -152,6 +166,152 @@
 	acid_plasma_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
 
+/datum/action/xeno_action/activable/spray_acid
+	name = "Spray Acid"
+	action_icon_state = "spray_acid"
+	ability_name = "spray acid"
+
+
+/datum/action/xeno_action/activable/spray_acid/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+
+	if (isXenoPraetorian(owner))
+		X.acid_spray_cone(A)
+		return
+
+	var/mob/living/carbon/Xenomorph/Boiler/B = X
+	B.acid_spray(A)
+
+/datum/action/xeno_action/activable/spray_acid/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+
+	if (isXenoPraetorian(owner))
+		return !X.used_acid_spray
+
+	var/mob/living/carbon/Xenomorph/Boiler/B = X
+	return !B.acid_cooldown
+
+// Warrior Agility
+/datum/action/xeno_action/activable/toggle_agility
+	name = "Toggle Agility"
+	action_icon_state = "agility_on"
+	ability_name = "toggle agility"
+
+/datum/action/xeno_action/activable/toggle_agility/use_ability()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.toggle_agility()
+
+/datum/action/xeno_action/activable/toggle_agility/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_toggle_agility
+
+
+// Warrior Lunge
+/datum/action/xeno_action/activable/lunge
+	name = "Lunge"
+	action_icon_state = "lunge"
+	ability_name = "lunge"
+
+/datum/action/xeno_action/activable/lunge/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.lunge(A)
+
+/datum/action/xeno_action/activable/lunge/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_lunge
+
+
+// Warrior Fling
+/datum/action/xeno_action/activable/fling
+	name = "Fling"
+	action_icon_state = "fling"
+	ability_name = "fling"
+
+/datum/action/xeno_action/activable/fling/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.fling(A)
+
+/datum/action/xeno_action/activable/fling/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_fling
+
+
+// Warrior Punch
+/datum/action/xeno_action/activable/punch
+	name = "Punch"
+	action_icon_state = "punch"
+	ability_name = "punch"
+
+/datum/action/xeno_action/activable/punch/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.punch(A)
+
+/datum/action/xeno_action/activable/punch/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_punch
+
+
+// Defender Headbutt
+/datum/action/xeno_action/activable/headbutt
+	name = "Headbutt"
+	action_icon_state = "headbutt"
+	ability_name = "headbutt"
+
+/datum/action/xeno_action/activable/headbutt/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.headbutt(A)
+
+/datum/action/xeno_action/activable/headbutt/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_headbutt
+
+
+// Defender Tail Sweep
+/datum/action/xeno_action/activable/tail_sweep
+	name = "Tail Sweep"
+	action_icon_state = "tail_sweep"
+	ability_name = "tail sweep"
+
+/datum/action/xeno_action/activable/tail_sweep/use_ability()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.tail_sweep()
+
+/datum/action/xeno_action/activable/tail_sweep/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_tail_sweep
+
+
+// Defender Toggle Crest Defense
+/datum/action/xeno_action/activable/toggle_crest_defense
+	name = "Toggle Crest Defense"
+	action_icon_state = "crest_defense"
+	ability_name = "toggle crest defense"
+
+/datum/action/xeno_action/activable/toggle_crest_defense/use_ability()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.toggle_crest_defense()
+
+/datum/action/xeno_action/activable/toggle_crest_defense/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_crest_defense
+
+
+// Defender Fortify
+/datum/action/xeno_action/activable/fortify
+	name = "Fortify"
+	action_icon_state = "fortify"	// TODO
+	ability_name = "fortify"
+
+/datum/action/xeno_action/activable/fortify/use_ability()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.fortify()
+
+/datum/action/xeno_action/activable/fortify/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return !X.used_fortify
+
+
+// Pounce
 /datum/action/xeno_action/activable/pounce
 	name = "Pounce"
 	action_icon_state = "pounce"
@@ -341,19 +501,6 @@
 		if(X.client)
 			X.client.mouse_pointer_icon = initial(X.client.mouse_pointer_icon)
 
-/datum/action/xeno_action/activable/spray_acid
-	name = "Spray Acid (10+)"
-	action_icon_state = "spray_acid"
-	ability_name = "spray acid"
-
-/datum/action/xeno_action/activable/spray_acid/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	X.acid_spray(A)
-
-/datum/action/xeno_action/activable/spray_acid/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	return !X.acid_cooldown
-
 //Carrier Abilities
 
 /datum/action/xeno_action/activable/throw_hugger
@@ -415,8 +562,8 @@
 	new /obj/effect/alien/resin/trap(X.loc, X)
 	X << "<span class='xenonotice'>You place a hugger trap on the weeds, it still needs a facehugger.</span>"
 
-//Crusher abilities
 
+//Crusher abilities
 /datum/action/xeno_action/activable/stomp
 	name = "Stomp (50)"
 	action_icon_state = "stomp"
@@ -887,16 +1034,16 @@
 			if("Carrier")
 				newcaste = "Drone"
 			if("Crusher")
-				newcaste = "Hunter"
+				newcaste = "Lurker"
 			if("Ravager")
-				newcaste = "Hunter"
+				newcaste = "Lurker"
 			if("Praetorian")
 				newcaste = "Spitter"
 			if("Boiler")
 				newcaste = "Spitter"
 			if("Spitter")
 				newcaste = "Sentinel"
-			if("Hunter")
+			if("Lurker")
 				newcaste = "Runner"
 
 		if(!newcaste)
@@ -937,7 +1084,7 @@
 				xeno_type = /mob/living/carbon/Xenomorph/Sentinel
 			if("Spitter")
 				xeno_type = /mob/living/carbon/Xenomorph/Spitter
-			if("Hunter")
+			if("Lurker")
 				xeno_type = /mob/living/carbon/Xenomorph/Hunter
 
 		//From there, the new xeno exists, hopefully

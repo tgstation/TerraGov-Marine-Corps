@@ -4,6 +4,7 @@
 	caste = "Spitter"
 	name = "Spitter"
 	desc = "A gross, oozing alien of some kind."
+	icon = 'icons/Xeno/xenomorph_48x48.dmi'
 	icon_state = "Spitter Walking"
 	melee_damage_lower = 12
 	melee_damage_upper = 22
@@ -18,7 +19,9 @@
 	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 	speed = -0.5
 	caste_desc = "Ptui!"
-	evolves_to = list("Praetorian", "Boiler")
+	pixel_x = -12
+	old_x = -12
+	evolves_to = list("Boiler")
 	armor_deflection = 15
 	tier = 2
 	upgrade = 0
@@ -32,4 +35,3 @@
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		)
-

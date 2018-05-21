@@ -990,6 +990,11 @@
 	name = "neurotoxic splash"
 	debilitate = list(3,4,0,0,3,5,0,0)
 
+/datum/ammo/xeno/toxin/heavy/New()
+	..()
+	max_range = config.min_shell_range
+	shell_speed = config.reg_shell_speed
+
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
 	icon_state = "sticky"
@@ -1072,11 +1077,15 @@
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
+	added_spit_delay = 20
+
 	New()
 		..()
+		max_range = config.min_shell_range
 		damage = config.med_hit_damage
 		damage_var_low = config.med_proj_variance
 		damage_var_high = config.high_proj_variance
+		shell_speed = config.reg_shell_speed
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"

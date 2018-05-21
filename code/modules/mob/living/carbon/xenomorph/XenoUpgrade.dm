@@ -15,11 +15,13 @@ UPGRADE		*1	2	3	4
 Runner		0	5	10	10
 Hunter		15	20	25	25
 Ravager		40	45	50	50
+Defender	50	55	60	70
+Warrior		30	35	40	45
 Crusher		60	65	70	75
 Sentinel	15	15	20	20
 Spitter		15	20	25	30
 Boiler		20	30	35	35
-Praetorian	35	40	45	45
+Praetorian	35	40	45	50
 Drone		0	5	10	15
 Hivelord	0	10	15	20
 Carrier		0	10	10	15
@@ -31,11 +33,13 @@ UPGRADE		 4		 3		 2		 *1
 Runner		-2.1	-2.0	-1.9	-1.8
 Hunter		-1.8	-1.7	-1.6	-1.5
 Ravager		-1.0	-0.9	-0.8	-0.7
+Defender	-0.5	-0.4	-0.3	-0.2
+Warrior		-0.5	-0.6	-0.7	-0.8
 Crusher		 0.1	 0.1	 0.1	 0.1	*-2.0 when charging
 Sentinel	-1.1	-1.0	-0.9	-0.8
 Spitter		-0.8	-0.7	-0.6	-0.5
 Boiler		 0.4	 0.5	 0.6	 0.7
-Preatorian	-0.2	-0.1	 0.0	 0.1
+Praetorian	-0.8	-0.7	-0.6	-0.5
 Drone		-1.1	-1.0	-0.9	-0.8
 Hivelord	 0.1	 0.2	 0.3	 0.4
 Carrier		-0.3	-0.2	-0.1	 0.0
@@ -64,7 +68,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 4
 					tackle_chance = 50
 					pounce_delay = 35
-				if("Hunter")
+				if("Lurker")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
 					health = 170
@@ -94,6 +98,28 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 4
 					tacklemax = 8
 					tackle_chance = 85
+				if ("Defender")
+					melee_damage_lower = 20
+					melee_damage_upper = 30
+					health = 275
+					maxHealth = 275
+					plasma_gain = 8
+					plasma_max = 100
+					upgrade_threshold = 400
+					caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
+					speed = -0.3
+					armor_deflection = 55
+				if ("Warrior")
+					melee_damage_lower = 35
+					melee_damage_upper = 40
+					health = 225
+					maxHealth = 225
+					plasma_gain = 8
+					plasma_max = 100
+					upgrade_threshold = 800
+					caste_desc = "An alien with an armored carapace. It looks a little more dangerous."
+					speed = -0.9
+					armor_deflection = 35
 				if("Crusher")
 					melee_damage_lower = 20
 					melee_damage_upper = 35
@@ -106,7 +132,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 300
 					upgrade_threshold = 1600
 					caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
-					armor_deflection = 65
+					armor_deflection = 80
 				if("Sentinel")
 					melee_damage_lower = 15
 					melee_damage_upper = 25
@@ -257,7 +283,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 60
 					pounce_delay = 30
-				if("Hunter")
+				if("Lurker")
 					melee_damage_lower = 35
 					melee_damage_upper = 50
 					health = 200
@@ -287,6 +313,28 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 5
 					tacklemax = 9
 					tackle_chance = 90
+				if ("Defender")
+					melee_damage_lower = 25
+					melee_damage_upper = 35
+					health = 300
+					maxHealth = 300
+					plasma_gain = 8
+					plasma_max = 100
+					upgrade_threshold = 800
+					caste_desc = "An alien with an armored head crest. It looks pretty strong."
+					speed = -0.4
+					armor_deflection = 60
+				if ("Warrior")
+					melee_damage_lower = 40
+					melee_damage_upper = 45
+					health = 250
+					maxHealth = 250
+					plasma_gain = 8
+					plasma_max = 100
+					upgrade_threshold = 1600
+					caste_desc = "An alien with an armored carapace. It looks pretty strong."
+					speed = -1.0
+					armor_deflection = 40
 				if("Crusher")
 					melee_damage_lower = 35
 					melee_damage_upper = 45
@@ -299,7 +347,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 400
 					upgrade_threshold = 3200
 					caste_desc = "A huge tanky xenomorph. It looks pretty strong."
-					armor_deflection = 70
+					armor_deflection = 85
 				if("Sentinel")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
@@ -449,7 +497,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 5
 					tackle_chance = 70
 					pounce_delay = 25
-				if("Hunter")
+				if("Lurker")
 					src << "<span class='xenoannounce'>You are the epitome of the hunter. Few can stand against you in open combat.</span>"
 					melee_damage_lower = 50
 					melee_damage_upper = 60
@@ -479,6 +527,30 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 6
 					tacklemax = 10
 					tackle_chance = 95
+				if ("Defender")
+					src << "<span class='xenoannounce'>You are a incredibly resiliant, you can control the battle through shear force.</span>"
+					melee_damage_lower = 30
+					melee_damage_upper = 40
+					health = 325
+					maxHealth = 325
+					plasma_gain = 8
+					plasma_max = 100
+					upgrade_threshold = 800
+					caste_desc = "An unstoppable force that remains when others would fall."
+					speed = -0.4
+					armor_deflection = 65
+				if ("Warrior")
+					src << "<span class='xenoannounce'>None can stand before you. You will annihilate all weaklings who try.</span>"
+					melee_damage_lower = 45
+					melee_damage_upper = 50
+					health = 275
+					maxHealth = 275
+					plasma_gain = 8
+					plasma_max = 100
+					upgrade_threshold = 1600
+					caste_desc = "An hulking beast capable of effortlessly breaking and tearing through its enemies."
+					speed = -1.1
+					armor_deflection = 45
 				if("Crusher")
 					src << "<span class='xenoannounce'>You are the physical manifestation of a Tank. Almost nothing can harm you.</span>"
 					melee_damage_lower = 35
