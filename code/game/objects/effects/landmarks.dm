@@ -49,6 +49,14 @@
 			SupplyElevator = loc
 			cdel(src)
 
+		if("HangarUpperElevator")
+			HangarUpperElevator = loc
+			cdel(src)
+
+		if("HangarLowerElevator")
+			HangarLowerElevator = loc
+			cdel(src)
+
 		//prisoners
 		if("prisonwarp")
 			prisonwarp += loc
