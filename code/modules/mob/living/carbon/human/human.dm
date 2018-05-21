@@ -398,10 +398,10 @@
 					if(place_item && place_item == usr.get_active_hand())
 						if(place_item.mob_can_equip(src, WEAR_R_STORE, TRUE))
 							drop_inv_item_on_ground(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_R_STORE, 0, 1)
+							equip_to_slot_if_possible(place_item, WEAR_R_STORE, 1, 0, 1)
 						if(place_item.mob_can_equip(src, WEAR_L_STORE, TRUE))
 							drop_inv_item_on_ground(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_L_STORE, 0, 1)
+							equip_to_slot_if_possible(place_item, WEAR_L_STORE, 1, 0, 1)
 
 				else
 					if(r_store || l_store)
