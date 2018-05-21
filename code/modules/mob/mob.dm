@@ -361,7 +361,14 @@ var/list/slot_equipment_priority = list( \
 
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-		visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
+
+		if (isXenoWarrior(src))
+			grab_level = GRAB_NECK
+			visible_message("<span class='xenowarning'>\The [src] grabs [M] by the throat!</span>", \
+			"<span class='xenowarning'>You grab [M] by the throat!</span>")
+		else
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
+
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
 

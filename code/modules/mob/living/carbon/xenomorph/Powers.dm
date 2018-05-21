@@ -310,12 +310,6 @@
 // Called when pulling something and attacking yourself with the pull
 /mob/living/carbon/Xenomorph/proc/pull_power(var/mob/M)
 	if (isXenoWarrior(src) && !ripping_limb)
-		grab_level = GRAB_NECK
-		visible_message("<span class='xenowarning'>\The [src] grabs [M] by the throat!</span>", \
-		"<span class='xenowarning'>You grab [M] by the throat!</span>")
-		M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [src] ([ckey])</font>"
-		attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed the neck of [M] ([M.ckey])</font>"
-		msg_admin_attack("[key_name(src)] grabbed the neck of [key_name(M)]")
 		ripping_limb = 1
 		rip_limb(M)
 		ripping_limb = 0
