@@ -309,7 +309,7 @@
 
 // Called when pulling something and attacking yourself with the pull
 /mob/living/carbon/Xenomorph/proc/pull_power(var/mob/M)
-	if (isXenoWarrior(src) && !ripping_limb)
+	if (isXenoWarrior(src) && !ripping_limb && M.stat != DEAD)
 		ripping_limb = 1
 		rip_limb(M)
 		ripping_limb = 0
