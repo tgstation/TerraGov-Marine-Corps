@@ -982,10 +982,9 @@
 	else if(linked_stretcher.buckled_bodybag)
 		lifted_object = linked_stretcher.buckled_bodybag
 
-	var/turf/T = get_turf(lifted_object)
-	T.ceiling_debris_check(2)
-
 	if(lifted_object)
+		var/turf/T = get_turf(lifted_object)
+		T.ceiling_debris_check(2)
 		lifted_object.forceMove(loc)
 	else
 		user << "<span class='warning'>The winch finishes lifting the medevac stretcher but it's empty!</span>"
