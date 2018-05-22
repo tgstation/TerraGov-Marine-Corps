@@ -173,7 +173,7 @@
 					var/obj/location_as_object = loc
 					air_info = location_as_object.handle_internal_lifeform(src)
 				else if(isturf(loc))
-					var/turf/T
+					var/turf/T = loc
 					air_info = T.return_air()
 
 					if(istype(wear_mask, /obj/item/clothing/mask) && air_info)
