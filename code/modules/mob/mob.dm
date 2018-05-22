@@ -362,7 +362,7 @@ var/list/slot_equipment_priority = list( \
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-		if (isXenoWarrior(src))
+		if (isXenoWarrior(src) && !isXeno(M) && !isYautja(M))
 			grab_level = GRAB_NECK
 			visible_message("<span class='xenowarning'>\The [src] grabs [M] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [M] by the throat!</span>")

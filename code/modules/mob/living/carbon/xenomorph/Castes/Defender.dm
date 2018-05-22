@@ -28,7 +28,7 @@
 		/datum/action/xeno_action/activable/headbutt,
 		/datum/action/xeno_action/activable/tail_sweep,
 		/datum/action/xeno_action/activable/toggle_crest_defense,
-                /datum/action/xeno_action/activable/fortify
+		/datum/action/xeno_action/activable/fortify
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
