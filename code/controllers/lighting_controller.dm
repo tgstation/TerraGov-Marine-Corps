@@ -66,9 +66,9 @@ datum/controller/lighting/proc/process()
 datum/controller/lighting/proc/process()
 	while(processing)
 		iteration++
-		var/i
+		var/thing
 		var/datum/light_source/L
-		for(i in changed_lights)
+		for(thing in changed_lights)
 			L = thing
 			if(L)
 				L.check()
@@ -77,7 +77,7 @@ datum/controller/lighting/proc/process()
 		changed_lights = list()
 
 		var/turf/T
-		for(i in changed_turfs)
+		for(thing in changed_turfs)
 			T = thing
 			if(T)
 				if(T.lighting_changed)
