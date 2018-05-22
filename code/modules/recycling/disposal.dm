@@ -81,6 +81,7 @@
 					cdel(src)
 			else
 				user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+			return
 
 	if(istype(I, /obj/item/storage/bag/trash))
 		var/obj/item/storage/bag/trash/T = I
