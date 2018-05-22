@@ -831,7 +831,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/fracture()
 
-	if(status & LIMB_BROKEN)
+	if(status & LIMB_BROKEN )
 		return
 
 	owner.visible_message(\

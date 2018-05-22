@@ -256,8 +256,17 @@
 	used_punch = 1
 	use_plasma(10)
 
-	L.take_damage(20, 0, 0)
-	L.fracture()
+	if(L.status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
+		L.status &= ~LIMB_SPLINTED
+		H << "<span class='danger'>The splint on your [L.display_name] comes apart!</span>"
+
+	if(isYautja(H))
+		L.take_damage(10)
+	else if(L.status & LIMB_ROBOT)
+		L.take_damage(40, 0, 0) // just do more damage
+	else
+		L.take_damage(20, 0, 0)
+		L.fracture()
 	shake_camera(H, 2, 1)
 	step_away(H, src, 2)
 
@@ -560,6 +569,7 @@
 		armor_deflection += 30
 		xeno_explosion_resistance++
 		frozen = 1
+		anchored = 1
 		update_canmove()
 		update_icons()
 		do_fortify_cooldown()
@@ -584,6 +594,7 @@
 	armor_deflection -= 30
 	xeno_explosion_resistance--
 	frozen = 0
+	anchored = 0
 	update_canmove()
 	update_icons()
 

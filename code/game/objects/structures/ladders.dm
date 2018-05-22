@@ -60,7 +60,7 @@
 		icon_state = "ladder00"
 
 /obj/structure/ladder/attack_hand(mob/user)
-	if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying || user.buckled) return
+	if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying || user.buckled || user.anchored) return
 	if(busy)
 		user << "<span class='warning'>Someone else is currently using [src].</span>"
 		return
