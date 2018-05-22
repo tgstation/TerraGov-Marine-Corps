@@ -174,7 +174,7 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			if(L.surgery_open_stage)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,"open")
 	var/datum/internal_organ/I = M.internal_organs_by_name["eyes"]
-	if(M.disabilities & NEARSIGHTED || M.sdisabilities & BLIND || I.damage > 0)
+	if(I && (M.disabilities & NEARSIGHTED || M.sdisabilities & BLIND || I.damage > 0))
 		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,"eyes",0,I)
 	if(M.getBruteLoss() > 0)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"brute")

@@ -71,17 +71,11 @@
 	icon_state = "cuff_zip"
 	breakouttime = 600 //Deciseconds = 60s
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
-	var/used = 0
 
-	place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+	place_handcuffs(mob/living/carbon/target, mob/user)
 		..()
-		used = 1
+		flags_atom |= DELONDROP
 
-	dropped()
-		..()
-		if(used)
-			visible_message("<span class='notice'>[src] break apart.</span>")
-			cdel(src)
 
 
 /obj/item/handcuffs/cable

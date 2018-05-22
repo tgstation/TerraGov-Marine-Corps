@@ -261,10 +261,12 @@
 		playsound(loc, "punch", 25, 1)
 		if(stat == DEAD)
 			var/count = 0
-			for(var/mob/living/carbon/C in locate(/mob/living/carbon))
+			var/turf/TU = get_turf(src)
+			for(var/mob/living/carbon/C in TU)
 				if(C.stat == DEAD)
 					count++
-			X.charge_speed -= X.charge_speed_buildup / (count * 2) // half normal slowdown regardless of number of corpses.
+			if(count)
+				X.charge_speed -= X.charge_speed_buildup / (count * 2) // half normal slowdown regardless of number of corpses.
 		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
 			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
