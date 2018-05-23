@@ -34,10 +34,19 @@
 		return 1
 	return 1
 
-/obj/structure/window_frame/New()
-	spawn(10)
+/obj/structure/window_frame/New(loc, from_window_shatter)
+	..()
+	var/weed_found
+	if(from_window_shatter)
+		for(var/obj/effect/alien/weeds/weedwall/window/W in loc)
+			weed_found = TRUE
+			break
+	spawn(0)
 		relativewall()
 		relativewall_neighbours()
+		if(weed_found)
+			new /obj/effect/alien/weeds/weedwall/frame(loc) //after smoothing to get the correct junction value
+
 
 /obj/structure/window_frame/proc/update_nearby_icons()
 	relativewall_neighbours()
@@ -48,6 +57,8 @@
 /obj/structure/window_frame/Dispose()
 	density = 0
 	update_nearby_icons()
+	for(var/obj/effect/alien/weeds/weedwall/frame/WF in loc)
+		cdel(WF)
 	. = ..()
 
 /obj/structure/window_frame/attackby(obj/item/W, mob/user)

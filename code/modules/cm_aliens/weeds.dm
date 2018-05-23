@@ -71,8 +71,11 @@
 				continue
 
 			for (var/obj/O in T)
-				if(istype(O, /obj/structure/window/framed) || istype(O, /obj/structure/window_frame))
+				if(istype(O, /obj/structure/window/framed))
 					new /obj/effect/alien/weeds/weedwall/window(T)
+					continue direction_loop
+				else if(istype(O, /obj/structure/window_frame))
+					new /obj/effect/alien/weeds/weedwall/frame(T)
 					continue direction_loop
 				else if(istype(O, /obj/machinery/door) && O.density && (!(O.flags_atom & ON_BORDER) || O.dir != dirn))
 					continue direction_loop
@@ -184,13 +187,16 @@
 
 /obj/effect/alien/weeds/weedwall/window/update_sprite()
 	var/obj/structure/window/framed/F = locate() in loc
+	if(F && F.junction)
+		icon_state = "weedwall[F.junction]"
+
+/obj/effect/alien/weeds/weedwall/frame
+	layer = ABOVE_TABLE_LAYER
+
+/obj/effect/alien/weeds/weedwall/frame/update_sprite()
 	var/obj/structure/window_frame/WF = locate() in loc
-	if(F)
-		if(F.junction)
-			icon_state = "weedwall[F.junction]"
-	else if(WF)
-		if(WF.junction)
-			icon_state = "weedwall[WF.junction]"
+	if(WF && WF.junction)
+		icon_state = "weedframe[WF.junction]"
 
 
 

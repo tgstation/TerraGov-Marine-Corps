@@ -138,8 +138,6 @@
 	name = "outer hull"
 	desc = "A reinforced outer hull, probably to prevent breaches"
 	hull = 1
-
-	damage_cap = 20000 // Tougher than a reinforced wall
 	max_temperature = 50000 // Nearly impossible to melt
 	walltype = "sulaco"
 

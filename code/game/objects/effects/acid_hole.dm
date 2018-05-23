@@ -2,186 +2,162 @@
 	name = "hole"
 	desc = "What could have done this?"
 	icon = 'icons/effects/new_acid.dmi'
-	icon_state = "hole_1"
-	unacidable = 1
-	invisibility = 101
+	icon_state = "hole_0"
+	unacidable = TRUE
+	layer = LOWER_ITEM_LAYER
+	var/turf/closed/wall/holed_wall
 
-	var/size = 1
-	var/mob/userLooking
-	var/busy = FALSE
-	var/obj/machinery/camera/cam
-
-/obj/effects/acid_hole/New()
-	update_hole_icon()
-	cam = new /obj/machinery/camera(src)
-	cam.network = list("LADDER")
-	cam.c_tag = name
-	cam.layer = 0
-
-/obj/effects/acid_hole/proc/update_hole_icon()
-	var/turf/closed/wall/W =  loc
-	var/jt = W.junctiontype
-
-	if(jt == 12 || jt == 4 || jt == 8)
-		icon_state = "hole_0"
-		W.overlays += image("icon"='icons/effects/new_acid.dmi',"icon_state"="hole_0","layer"=MOB_LAYER-0.1)
-	else if (jt == 1 || jt == 2 || jt == 3)
-		icon_state = "hole_1"
-		W.overlays += image("icon"='icons/effects/new_acid.dmi',"icon_state"="hole_1","layer"=MOB_LAYER-0.1)
-
-/turf/closed/wall/proc/GetHole()
-	var/obj/effects/acid_hole/toReturn
-	for (var/obj/effects/acid_hole/x in contents)
-		toReturn = x
-	return toReturn
+/obj/effects/acid_hole/New(loc)
+	..()
+	if(istype(loc, /turf/closed/wall))
+		var/turf/closed/wall/W = loc
+		W.acided_hole = src
+		holed_wall = W
+		holed_wall.opacity = 0
+		if(W.junctiontype & (NORTH|SOUTH))
+			dir = EAST
+		if(W.junctiontype & (EAST|WEST))
+			dir = SOUTH
 
 
-/turf/closed/wall/MouseDrop_T(mob/I, mob/user)
-	var/obj/effects/acid_hole/Hole = GetHole()
-	if (!Hole)
+/obj/effects/acid_hole/Dispose()
+	if(holed_wall)
+		holed_wall.opacity = initial(holed_wall.opacity)
+		holed_wall.acided_hole = null
+		holed_wall = null
+	. = ..()
+
+/obj/effects/acid_hole/ex_act(severity)
+	return
+
+/obj/effects/acid_hole/fire_act()
+	return
+
+
+/obj/effects/acid_hole/MouseDrop_T(mob/M, mob/user)
+	if (!holed_wall)
 		return
 
-	var/Target
-	var/Entry
+	if(M == user && isXeno(user))
+		use_wall_hole(user)
 
-	if (!istype(I, /mob) || !isXeno(user))
+
+/obj/effects/acid_hole/attack_alien(mob/living/carbon/Xenomorph/user)
+	if(holed_wall)
+		if(user.mob_size == MOB_SIZE_BIG)
+			expand_hole(user)
+
+/obj/effects/acid_hole/proc/expand_hole(mob/living/carbon/Xenomorph/user)
+	if(user.action_busy || user.lying)
 		return
 
-	if (Hole.size == 1)
-		if (I.mob_size == MOB_SIZE_BIG)
-			return
+	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
+	if(do_after(user,60, FALSE, 5, BUSY_ICON_GENERIC) && !disposed && holed_wall && !user.lying)
+		holed_wall.take_damage(rand(2000,3500))
+		user.emote("roar")
 
-	var/_dir = get_dir(I, src)
-	if(Hole.icon_state == "hole_0")
-		if (_dir == EAST || _dir == WEST)
-			user << "You need to get closer to the entrance to crawl through."
-			return
-		if (_dir == NORTH || _dir == NORTHEAST || _dir == NORTHWEST)
-			Entry = get_step(src, SOUTH)
-			Target = get_step(src, NORTH)
-		else if (_dir == SOUTH || _dir == SOUTHWEST || _dir == SOUTHEAST)
-			Entry = get_step(src, NORTH)
-			Target = get_step(src, SOUTH)
-	else if (Hole.icon_state == "hole_1")
-		if (_dir == SOUTH || _dir == NORTH)
-			user << "You need to get closer to the entrance to crawl through."
-			return
-		if (_dir == EAST || _dir == SOUTHEAST || _dir == NORTHEAST )
-			Entry = get_step(src, WEST)
-			Target = get_step(src, EAST)
-		else if (_dir == WEST || _dir == SOUTHWEST || _dir == NORTHWEST)
-			Entry = get_step(src, EAST)
-			Target = get_step(src, WEST)
+/obj/effects/acid_hole/proc/use_wall_hole(mob/user)
 
-	var/turf/T = Target
-
-	if (!T)
-		user << "You peaked through the hole and saw a realm of unicorns and rainbows and decided against crawling through."
+	if(user.mob_size == MOB_SIZE_BIG || user.is_mob_incapacitated() || user.lying || user.buckled)
 		return
 
-	if (T.density == 1)
+	var/mob_dir = get_dir(user, src)
+	var/crawl_dir = dir & mob_dir
+	if(!crawl_dir)
+		crawl_dir = turn(dir,180) & mob_dir
+	if(!crawl_dir)
+		return
+
+	var/entrance_dir = crawl_dir ^ mob_dir
+
+	var/turf/T = get_step(src, crawl_dir)
+
+	if (!T || T.density)
 		user << "This hole leads nowhere!"
 		return
 
-	step(I, get_dir(I, Entry))
-	Hole.busy = TRUE
-
-	if (Hole.userLooking)
-		Hole.userLooking << "Something is coming through the tunnel!"
-		Hole.userLooking.reset_view(null)
-		Hole.userLooking = null
-
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
-		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.blinded && !user.lying && !user.buckled)
-			I.loc = Target
-			if(I.pulling && get_dist(src, user.pulling) <= 2)
-				if(ismob(I.pulling))
-					var/mob/pulled_mob = I.pulling
-					if (pulled_mob && pulled_mob.mob_size == MOB_SIZE_BIG)
-						user << "The thing you were pulling was too big for the tunnel!"
-						Hole.busy = FALSE
-						return
-				user.pulling.loc = Target
-				if(isobj(I.pulling))
-					var/obj/O = I.pulling
-					if(O.buckled_mob)
-						O.buckled_mob.loc = Target
-		Hole.busy = FALSE
-
-/turf/closed/wall/MouseDrop(over_object, src_location, over_location)
-	if((over_object == usr && (in_range(src, usr))))
-		var/Target
-		var/obj/effects/acid_hole/Hole = GetHole()
-		if (isXeno(usr))
-			return
-		if (!Hole)
+	if(entrance_dir)
+		if(!step(user, entrance_dir))
+			user << "<span class='warning'>You can't reach the hole's entrance.</span>"
 			return
 
-		var/_dir = get_dir(usr, src)
+	for(var/obj/O in T)
+		if(!O.CanPass(user, user.loc))
+			user << "<span class='warning'>The hole's exit is blocked by something!</span>"
+			return
 
-		if(Hole.icon_state == "hole_0")
-			if (_dir == NORTH || _dir == NORTHEAST || _dir == NORTHWEST)
-				Target = get_step(src, NORTH)
-			else if (_dir == SOUTH || _dir == SOUTHWEST || _dir == SOUTHEAST)
-				Target = get_step(src, SOUTH)
-		else if (Hole.icon_state == "hole_1")
-			if (_dir == EAST || _dir == SOUTHEAST || _dir == NORTHEAST )
-				Target = get_step(src, EAST)
-			else if (_dir == WEST || _dir == SOUTHWEST || _dir == NORTHWEST)
-				Target = get_step(src, WEST)
+	if(user.action_busy)
+		return
 
-		if(do_after(usr, 10, FALSE, 5, BUSY_ICON_GENERIC))
-			usr.visible_message("<span class='notice'>[usr] looks through [src]!</span>", \
-			"<span class='notice'>You look through [src]!</span>")
-			usr.set_interaction(src)
-			Hole.cam.loc = Target
-			usr.reset_view(Hole.cam)
-			Hole.userLooking = usr
+	user << "<span class='notice'>You start crawling through the hole.</span>"
+
+	if(do_after(user, 15, FALSE, 5, BUSY_ICON_GENERIC))
+		if(!user.is_mob_incapacitated() && !user.lying && !user.buckled)
+			if (T.density)
+				return
+			for(var/obj/O in T)
+				if(!O.CanPass(user, user.loc))
+					return
+			if(user.pulling)
+				user.stop_pulling()
+				user << "<span class='warning'>You release what you're pulling to fit into the tunnel!</span>"
+			user.forceMove(T)
+
+
+
 
 //Throwing Shiet
 /obj/effects/acid_hole/attackby(obj/item/W, mob/user)
-	var/Target
-	//Throwing Grenades
-	var/_dir = get_dir(user, src)
-	if(icon_state == "hole_0")
-		if (_dir == NORTH || _dir == NORTHEAST || _dir == NORTHWEST)
-			Target = get_step(src, NORTH)
-		else if (_dir == SOUTH || _dir == SOUTHWEST || _dir == SOUTHEAST)
-			Target = get_step(src, SOUTH)
-	else if (icon_state == "hole_1")
-		if (_dir == EAST || _dir == SOUTHEAST || _dir == NORTHEAST )
-			Target = get_step(src, EAST)
-		else if (_dir == WEST || _dir == SOUTHWEST || _dir == NORTHWEST)
-			Target = get_step(src, WEST)
 
+	var/mob_dir = get_dir(user, src)
+	var/crawl_dir = dir & mob_dir
+	if(!crawl_dir)
+		crawl_dir = turn(dir,180) & mob_dir
+	if(!crawl_dir)
+		return
+	var/turf/Target = get_step(src, crawl_dir)
+
+	//Throwing Grenades
 	if(istype(W,/obj/item/explosive/grenade))
 		var/obj/item/explosive/grenade/G = W
 
-		user << "You take the position to throw the [G]."
+		if(!Target ||Target.density)
+			user << "<span class='warning'>This hole leads nowhere!</span>"
+			return
+
+		user << "<span class='notice'>You take the position to throw [G].</span>"
 		if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
+			if(Target.density)
+				return
 			user.visible_message("<span class='warning'>[user] throws [G] through [src]!</span>", \
 								 "<span class='warning'>You throw [G] through [src]</span>")
 			user.drop_held_item()
-			G.loc = get_turf(Target)
+			G.forceMove(Target)
 			G.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-			step_away(G,src,rand(1,5))
+			step_away(G,src,rand(2,5))
 			if(!G.active)
 				G.activate(user)
+		return
 
 	//Throwing Flares and flashlights
 	else if(istype(W,/obj/item/device/flashlight))
 		var/obj/item/device/flashlight/F = W
 
-		user << "You take the position to throw the [F]."
+		if(!Target ||Target.density)
+			user << "<span class='warning'>This hole leads nowhere!</span>"
+			return
+
+		user << "<span class='notice'>You take the position to throw [F].</span>"
 		if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
+			if(Target.density)
+				return
 			user.visible_message("<span class='warning'>[user] throws [F] through [src]!</span>", \
 								 "<span class='warning'>You throw [F] through [src]</span>")
 			user.drop_held_item()
-			F.loc = get_turf(Target)
+			F.forceMove(Target)
 			F.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 			step_away(F,src,rand(1,5))
 			F.SetLuminosity(0)
 			if(F.on && loc != user)
 				F.SetLuminosity(F.brightness_on)
-	else
-		return attack_hand(user)
+		return

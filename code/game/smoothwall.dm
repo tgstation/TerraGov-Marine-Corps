@@ -220,7 +220,7 @@
 
 //turfs call del() when they're replaced by another turf, so we can't use Dispose() unfortunately.
 /turf/closed/wall/Del()
-	spawn(10)
+	spawn(0)
 		for(var/turf/closed/wall/W in range(src,1))
 			W.relativewall()
 

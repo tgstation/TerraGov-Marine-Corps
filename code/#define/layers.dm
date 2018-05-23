@@ -31,8 +31,6 @@
 
 #define ATMOS_DEVICE_LAYER 2.53 //vents, connector ports, atmos devices that should be above pipe layer.
 
-#define XENO_FLOOR_ACID_LAYER 2.54 //corrosive acid melting a turf.
-
 #define FIREDOOR_OPEN_LAYER 2.549		//Right under poddoors
 #define PODDOOR_OPEN_LAYER 2.55		//Under doors and virtually everything that's "above the floor"
 
