@@ -374,14 +374,18 @@
 /obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
 	return 0
 
-//Chairs.
-/obj/structure/bed/stool/attack_alien(mob/living/carbon/Xenomorph/M)
-	..()
-	M.animation_attack_on(src)
-	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
-	"<span class='danger'>You slice [src] apart!</span>", null, 5)
-	destroy()
+
+//Beds, nests and chairs - unbuckling
+/obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.a_intent == "hurt")
+		M.animation_attack_on(src)
+		playsound(src, hit_bed_sound, 25, 1)
+		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
+		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		unbuckle()
+		destroy()
+	else attack_hand(M)
+
 
 //Smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -595,16 +599,6 @@
 				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
 				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
-//Beds, nests and chairs - unbuckling
-/obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt")
-		M.animation_attack_on(src)
-		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-		unbuckle()
-		destroy()
-	else attack_hand(M)
 
 //Nerfing the damn Cargo Tug Train
 /obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -816,7 +810,7 @@
 		return attack_paw(M)
 
 /obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.mob_size == MOB_SIZE_BIG || unacidable)
+	if(M.mob_size != MOB_SIZE_BIG || unacidable)
 		M << "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>"
 		return 0
 	else
