@@ -12,7 +12,7 @@
 	min_cold_protection_temperature = HELMET_min_cold_protection_temperature
 	max_heat_protection_temperature = HELMET_max_heat_protection_temperature
 	siemens_coefficient = 0.7
-	w_class = 5
+	w_class = 4
 
 
 
@@ -355,7 +355,7 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC
 	name = "\improper PMC tactical cap"
-	desc = "A protective cap made from flexable kevlar. Standard issue for most security forms in the place of a helmet."
+	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
 	icon_state = "pmc_hat"
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature

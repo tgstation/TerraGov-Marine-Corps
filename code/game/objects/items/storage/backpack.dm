@@ -346,11 +346,14 @@
 	set desc = "Activate your cloak's camouflage."
 	set category = "Scout"
 
-	if (!usr || usr.stat)
+	if (!usr || usr.is_mob_incapacitated(TRUE))
 		return
 
 	var/mob/living/carbon/human/M = usr
 	if (!istype(M))
+		return
+
+	if(M.species.name == "Zombie")
 		return
 
 	if (M.back != src)

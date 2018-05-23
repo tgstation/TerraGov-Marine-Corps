@@ -387,14 +387,7 @@
 		delete_egg_triggers()
 
 /obj/effect/alien/egg/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			health -= rand(50, 100)
-		if(2.0)
-			health -= rand(40, 95)
-		if(3.0)
-			health -= rand(20, 81)
-	healthcheck()
+	Burst(1)//any explosion destroys the egg.
 
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
 

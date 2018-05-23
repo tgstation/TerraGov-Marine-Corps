@@ -235,7 +235,7 @@
 	else return
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</B>",3,hivenumber)
+		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>",3,hivenumber)
 		hive.hive_orders = txt
 	else
 		hive.hive_orders = ""

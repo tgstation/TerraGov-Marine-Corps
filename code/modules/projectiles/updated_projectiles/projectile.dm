@@ -327,6 +327,12 @@
 	else
 		return FALSE
 
+/obj/structure/reagent_dispensers/get_projectile_hit_chance(obj/item/projectile/P)
+	if(density && src == P.original)
+		return TRUE
+	else
+		return FALSE
+
 /obj/structure/table/get_projectile_hit_chance(obj/item/projectile/P)
 	if(flags_atom & ON_BORDER) //flipped table
 		if(src == P.original)

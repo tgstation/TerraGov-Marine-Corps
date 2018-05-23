@@ -3,7 +3,7 @@
 	desc = "Dance my monkeys! DANCE!!!"
 	icon_state = "electropack0"
 	item_state = "electropack"
-	frequency = 1449
+	frequency = 1457
 	flags_atom = FPRINT|CONDUCT
 	flags_equip_slot = SLOT_BACK
 	w_class = 5.0
@@ -90,11 +90,7 @@
 	var/dat = {"<TT>
 <A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
-Frequency:
-<A href='byond://?src=\ref[src];freq=-10'>-</A>
-<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-<A href='byond://?src=\ref[src];freq=2'>+</A>
-<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+Frequency: [format_frequency(frequency)]<BR>
 
 Code:
 <A href='byond://?src=\ref[src];code=-5'>-</A>
