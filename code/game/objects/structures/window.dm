@@ -425,10 +425,16 @@
 		/turf/closed/wall)
 
 /obj/structure/window/framed/New()
-	spawn(10)
+	spawn(0)
 		relativewall()
 		relativewall_neighbours()
 	..()
+
+/obj/structure/window/framed/Dispose()
+	for(var/obj/effect/alien/weeds/weedwall/window/WW in loc)
+		cdel(WW)
+	. = ..()
+
 
 /obj/structure/window/framed/is_full_window()
 	return TRUE
@@ -449,7 +455,7 @@
 
 /obj/structure/window/framed/shatter_window(create_debris)
 	if(window_frame)
-		var/obj/structure/window_frame/new_window_frame = new window_frame(loc)
+		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 		new_window_frame.dir = dir
 	..()

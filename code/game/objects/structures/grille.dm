@@ -248,7 +248,7 @@
 		/obj/structure/grille/almayer)
 
 /obj/structure/grille/almayer/New()
-	spawn(10)
+	spawn(0)
 		relativewall()
 		relativewall_neighbours()
 

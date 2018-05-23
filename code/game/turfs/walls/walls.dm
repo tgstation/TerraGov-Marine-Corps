@@ -36,9 +36,7 @@
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
 	var/d_sleep = 60 //The time in deciseconds it takes for each step of wall deconstruction
 
-	var/hole = FALSE
-
-
+	var/obj/effects/acid_hole/acided_hole //the acid hole inside the wall
 
 
 
@@ -50,19 +48,51 @@
 			cdel(M)
 
 /turf/closed/wall/Dispose()
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") cdel(E)
+	if(rotting)
+		for(var/obj/effect/E in src)
+			if(E.name == "Wallrot")
+				cdel(E)
+				break
+	if(acided_hole)
+		cdel(acided_hole)
+		acided_hole = null
 	. = ..()
 
 /turf/closed/wall/ChangeTurf(var/newtype)
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") cdel(E)
+	if(rotting)
+		for(var/obj/effect/E in src)
+			if(E.name == "Wallrot")
+				cdel(E)
+				break
+	if(acided_hole)
+		cdel(acided_hole)
+		acided_hole = null
 	..(newtype)
+
+
+/turf/closed/wall/MouseDrop_T(mob/M, mob/user)
+	if(acided_hole)
+		if(M == user && isXeno(user))
+			acided_hole.use_wall_hole(user)
+			return
+	..()
+
+
+/turf/closed/wall/attack_alien(mob/living/carbon/Xenomorph/user)
+	if(acided_hole && user.mob_size == MOB_SIZE_BIG)
+		acided_hole.expand_hole(user)
+	else
+		. = ..()
+
+
+
 
 //Appearance
 /turf/closed/wall/examine(mob/user)
 	. = ..()
 
-	if (GetHole())
-		user << "There's a hole running through the wall, looks like it could be caused by some type of acid."
+	if (acided_hole)
+		user << "<span class='warning'>There's a hole running through the wall, looks like it could be caused by some type of acid.</span>"
 
 	if(!damage)
 		user << "<span class='notice'>It looks fully intact.</span>"
@@ -170,7 +200,7 @@
 		cap = cap / 10
 	if(damage >= cap)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
-		if (GetHole())
+		if (acided_hole)
 			dismantle_wall(1)
 		else
 			dismantle_wall()
@@ -298,24 +328,11 @@
 		dismantle_wall()
 		return
 
-	var/obj/effects/acid_hole/Hole = GetHole()
-
-	if (Hole)
-		if (isXeno(user) && user.mob_size == MOB_SIZE_BIG && !Hole.busy)
-			Hole.busy = TRUE
-			playsound(Hole.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-			if(do_after(user,60, FALSE, 5, BUSY_ICON_GENERIC))
-				Hole.busy = FALSE
-				take_damage(rand(2000,3500))
-				user.emote("roar")
-				return
-			else
-				Hole.busy = FALSE
-				return
-
 	add_fingerprint(user)
 
-/turf/closed/wall/attackby(obj/item/W as obj, mob/user as mob)
+
+
+/turf/closed/wall/attackby(obj/item/W, mob/user)
 
 	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
@@ -392,7 +409,7 @@
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 			"<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, damage / 5, TRUE, 5, BUSY_ICON_FRIENDLY)) && WT && WT.isOn())
+			if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && WT && WT.isOn())
 				user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 				"<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
@@ -536,61 +553,6 @@
 						"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
 						dismantle_wall()
 				return
-
-	var/obj/effects/acid_hole/Hole = GetHole()
-
-	if (Hole)
-		if (!isXeno(user))
-			var/Target
-			//Throwing Grenades
-			var/_dir = get_dir(user, src)
-			if(Hole.icon_state == "hole_0")
-				if (_dir == NORTH || _dir == NORTHEAST || _dir == NORTHWEST)
-					Target = get_step(src, NORTH)
-				else if (_dir == SOUTH || _dir == SOUTHWEST || _dir == SOUTHEAST)
-					Target = get_step(src, SOUTH)
-			else if (Hole.icon_state == "hole_1")
-				if (_dir == EAST || _dir == SOUTHEAST || _dir == NORTHEAST )
-					Target = get_step(src, EAST)
-				else if (_dir == WEST || _dir == SOUTHWEST || _dir == NORTHWEST)
-					Target = get_step(src, WEST)
-
-			if(istype(W,/obj/item/explosive/grenade))
-				var/obj/item/explosive/grenade/G = W
-
-				user << "You take the position to throw the [G]."
-				if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
-					user.visible_message("<span class='warning'>[user] throws [G] through the [src]!</span>", \
-										 "<span class='warning'>You throw [G] through the [src]</span>")
-					user.drop_held_item()
-					G.loc = get_turf(Target)
-					G.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-					step_away(G,src,rand(1,5))
-					if(!G.active)
-						G.activate(user)
-
-			//Throwing Flares and flashlights
-			else if(istype(W,/obj/item/device/flashlight))
-				var/obj/item/device/flashlight/F = W
-
-				user << "You take the position to throw the [F]."
-				if(do_after(user,10, TRUE, 5, BUSY_ICON_HOSTILE))
-					user.visible_message("<span class='warning'>[user] throws [F] through the [src]!</span>", \
-										 "<span class='warning'>You throw [F] through the [src]</span>")
-					user.drop_held_item()
-					F.loc = get_turf(Target)
-					F.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-					step_away(F,src,rand(1,5))
-					F.SetLuminosity(0)
-					if(F.on && loc != user)
-						F.SetLuminosity(F.brightness_on)
-			else
-				return attack_hand(user)
-			return
-		else if (isXeno(user) && user.mob_size == MOB_SIZE_BIG)
-			if(do_after(user,20, FALSE, 5, BUSY_ICON_HOSTILE))
-				damage += 250
-				user.emote("roar")
 
 	return attack_hand(user)
 
