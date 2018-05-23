@@ -33,8 +33,10 @@
 	//DEBUG: world << "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]     NEXT_MOVE: [next_move]"
 
 	var/list/mods = params2list(params)
-	var/click_handled = 0
 
+	// Don't allow any other clicks while dragging something
+	if (mods["drag"])
+		return
 
 	if(client.buildmode)
 		if (istype(A, /obj/effect/bmode))
@@ -44,6 +46,7 @@
 		build_click(src, client.buildmode, mods, A)
 		return
 
+	var/click_handled = 0
 	// Click handled elsewhere. (These clicks are not affected by the next_move cooldown)
 	click_handled = click(A, mods)
 	click_handled |= A.clicked(src, mods)
@@ -154,9 +157,6 @@
 	if (mods["ctrl"])
 		if (Adjacent(user))
 			user.start_pulling(src)
-		return 1
-
-	if (mods["middle"])
 		return 1
 	return 0
 
