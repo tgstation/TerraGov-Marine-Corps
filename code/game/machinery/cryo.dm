@@ -8,7 +8,7 @@
 	anchored = 1.0
 	layer = BELOW_OBJ_LAYER
 
-	temperature = TCMB
+	temperature = 100
 	gas_type = GAS_TYPE_OXYGEN
 
 	var/on = 0
@@ -208,8 +208,8 @@
 		occupant.bodytemperature = max(occupant.bodytemperature, temperature) // this is so ugly i'm sorry for doing it i'll fix it later i promise
 		occupant.stat = 1
 		if(occupant.bodytemperature < T0C)
-			occupant.sleeping = max(5, (1/occupant.bodytemperature)*2000)
-			occupant.KnockOut(max(5, (1/occupant.bodytemperature)*3000))
+			occupant.Sleeping(10)
+			occupant.KnockOut(10)
 
 			if(occupant.getOxyLoss())
 				occupant.adjustOxyLoss(-1)
