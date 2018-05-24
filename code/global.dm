@@ -20,8 +20,8 @@
 #define R_SPAWN			8192
 #define R_MOD			16384
 #define R_MENTOR		32768
-#define R_HOST			65536
-#define R_MAXPERMISSION 65536 //This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+#define R_HOST			65535 // R_HOST is always all above permissions added together, NOT the next iterating multiple
+#define R_MAXPERMISSION 65535 //This holds the maximum value for a permission. It is used in iteration, so keep it updated.
 //=================================================
 
 
