@@ -38,7 +38,7 @@
 			open(user)
 			return 0
 
-		if(!master_item.canremove) return
+		if(master_item.flags_item & NODROP) return
 
 		if(!istype(over_object, /obj/screen))
 			return 1

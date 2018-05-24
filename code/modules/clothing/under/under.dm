@@ -74,7 +74,7 @@
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
 	if (ishuman(usr) || ismonkey(usr))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-		if (!canremove || !(loc == usr))
+		if ((flags_item & NODROP) || loc != usr)
 			return
 
 		if (!usr.is_mob_incapacitated() && !(usr.buckled && usr.lying))

@@ -19,7 +19,7 @@
 		I = usr.l_hand
 	else if(!usr.hand)
 		I = usr.r_hand
-	if(!I || !istype(I) || !I.canremove || (I.flags_item & DELONDROP|NODROP))
+	if(!istype(I) || (I.flags_item & DELONDROP|NODROP))
 		return
 	if(r_hand == null || l_hand == null)
 		switch(alert(src,"[usr] wants to give you \a [I]?",,"Yes","No"))

@@ -40,10 +40,10 @@
 	voicechange = 1		//NEEEEIIGHH
 
 	dropped(mob/user as mob)
-		flags_inventory &= ~CANTSTRIP
+		flags_item &= ~NODROP
 		..()
 
 	equipped(var/mob/user, var/slot)
 		if (slot == WEAR_FACE)
-			flags_inventory |= CANTSTRIP		//curses!
+			flags_item |= NODROP		//curses!
 		..()

@@ -101,7 +101,7 @@
 		H.add_hud_to(user)
 	..()
 
-/obj/item/clothing/mask/gas/yautja/dropped(mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed. This should work even though they're !canremove.
+/obj/item/clothing/mask/gas/yautja/dropped(mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed.
 	if(istype(mob) && mob.wear_mask == src) //inventory reference is only cleared after dropped().
 		var/obj/item/G = mob.glasses
 		if(G)
@@ -273,7 +273,7 @@
 	species_restricted = null
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	flags_inventory = CANTSTRIP
+	flags_item = NODROP
 	flags_armor_protection = HANDS
 	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 10, rad = 10)
 	flags_cold_protection = HANDS

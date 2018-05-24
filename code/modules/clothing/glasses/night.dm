@@ -84,7 +84,8 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "visor_nvg"
 	darkness_view = 5 //Not quite as good as regular NVG.
-	flags_inventory = COVERSEYES|CANTSTRIP
+	flags_inventory = COVEREYES
+	flags_item = NODROP
 
 /obj/item/clothing/glasses/night/yautja/New()
 	..()

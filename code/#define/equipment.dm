@@ -33,10 +33,10 @@
 //bitflags that were previously under flags_atom, these only apply to items.
 //clothing specific stuff uses flags_inventory.
 
-#define NODROP					1	// Cannot be dropped at all, only deleted.
-#define DELONDROP				2	// Deletes on drop instead of falling on the floor.
-#define NOBLUDGEON  			4	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				8	// weapon not affected by shield (does nothing currently)
+#define NODROP					1	// Cannot be dropped/unequipped at all, only deleted.
+#define NOBLUDGEON  			2	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOSHIELD				4	// weapon not affected by shield (does nothing currently)
+#define DELONDROP				8	// Deletes on drop instead of falling on the floor.
 #define TWOHANDED				16	// The item is twohanded.
 #define WIELDED					32	// The item is wielded with both hands.
 
@@ -63,6 +63,7 @@
 //==========================================================================================
 
 //flags_inventory
+
 //Another flag for clothing items that determines a few other things now
 #define CANTSTRIP		1		// Can't be removed by others. Mostly for donor stuff.
 

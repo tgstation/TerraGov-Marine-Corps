@@ -98,8 +98,6 @@
 
 //drop the inventory item on a specific location
 /mob/proc/drop_inv_item_to_loc(obj/item/I, atom/newloc, nomoveupdate, force)
-	if(istype(I, /obj/item/weapon/zombie_claws))
-		return 0
 	return u_equip(I, newloc, nomoveupdate, force)
 
 //drop the inventory item on the ground
@@ -109,8 +107,6 @@
 //Never use this proc directly. nomoveupdate is used when we don't want the item to react to
 // its new loc (e.g.triggering mousetraps)
 /mob/proc/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
-	if(istype(I, /obj/item/weapon/zombie_claws))
-		return 0
 
 	if(!I) return TRUE
 

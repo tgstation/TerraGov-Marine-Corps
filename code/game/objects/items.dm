@@ -195,10 +195,7 @@ cases. Override_icon_state should be a list.*/
 	throwing = 0
 
 	if(loc == user)
-		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(!canremove)
-			return
-		else if(!user.drop_inv_item_on_ground(src))
+		if(!user.drop_inv_item_on_ground(src))
 			return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
@@ -221,12 +218,8 @@ cases. Override_icon_state should be a list.*/
 
 	src.throwing = 0
 	if (loc == user)
-		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(!canremove)
+		if(!user.drop_inv_item_on_ground(src))
 			return
-		else
-			if(!user.drop_inv_item_on_ground(src))
-				return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
 	if(!disposed) //item may have been cdel'd by the drop above.
@@ -283,7 +276,7 @@ cases. Override_icon_state should be a list.*/
 		var/datum/action/A = X
 		A.remove_action(user)
 
-	if(flags_atom & DELONDROP)
+	if(flags_item & DELONDROP)
 		cdel(src)
 
 // called just as an item is picked up (loc is not yet changed)
