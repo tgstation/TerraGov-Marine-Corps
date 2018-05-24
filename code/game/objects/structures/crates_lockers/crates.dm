@@ -83,7 +83,7 @@
 	return 1
 
 /obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.abstract) return
+	if(W.flags_item & ITEM_ABSTRACT) return
 	if(opened)
 		if(isrobot(user))
 			return

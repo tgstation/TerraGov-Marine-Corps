@@ -180,7 +180,7 @@
 			if(G.grabbed_thing)
 				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
 			return
-		if(W.abstract)
+		if(W.flags_item & ITEM_ABSTRACT)
 			return 0
 		if(istype(W, /obj/item/tool/weldingtool))
 			var/obj/item/tool/weldingtool/WT = W

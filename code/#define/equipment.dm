@@ -39,6 +39,7 @@
 #define DELONDROP				8	// Deletes on drop instead of falling on the floor.
 #define TWOHANDED				16	// The item is twohanded.
 #define WIELDED					32	// The item is wielded with both hands.
+#define	ITEM_ABSTRACT			64	//The item is abstract (grab, powerloader_clamp, etc)
 
 //==========================================================================================
 
@@ -65,7 +66,7 @@
 //flags_inventory
 
 //Another flag for clothing items that determines a few other things now
-#define CANTSTRIP		1		// Can't be removed by others. Mostly for donor stuff.
+#define CANTSTRIP		1		// Can't be removed by others. No longer used by donor items, now only for facehuggers
 
 //SHOES ONLY===========================================================================================
 #define NOSLIPPING		2	//prevents from slipping on wet floors, in space etc

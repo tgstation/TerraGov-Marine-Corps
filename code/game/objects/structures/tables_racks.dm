@@ -289,7 +289,7 @@
 			destroy(1)
 		return
 
-	if(W.abstract || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
 		return
 
 	if(istype(W, /obj/item/weapon/wristblades))
@@ -555,7 +555,7 @@
 		destroy(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if(W.abstract || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
 		return
 	user.drop_inv_item_to_loc(W, loc)
 

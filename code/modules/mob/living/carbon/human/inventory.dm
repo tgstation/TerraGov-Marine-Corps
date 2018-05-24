@@ -371,7 +371,7 @@
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
-	if(I.abstract)
+	if(I.flags_item & ITEM_ABSTRACT)
 		return
 	if(I.flags_item & NODROP)
 		src << "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>"
@@ -395,7 +395,7 @@
 
 
 /mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
-	if(I && !I.abstract)
+	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		if(I.flags_item & NODROP)
 			src << "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>"
 			return
