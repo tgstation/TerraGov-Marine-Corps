@@ -6,7 +6,6 @@
 	var/obj/wrapped = null
 	density = 1
 	var/sortTag = null
-	flags_atom = FPRINT|NOBLUDGEON
 	var/examtext = null
 	var/nameset = 0
 	var/label_y
@@ -115,7 +114,6 @@
 	icon_state = "deliverycrate3"
 	var/obj/item/wrapped = null
 	var/sortTag = null
-	flags_atom = FPRINT
 	var/examtext = null
 	var/nameset = 0
 	var/tag_x

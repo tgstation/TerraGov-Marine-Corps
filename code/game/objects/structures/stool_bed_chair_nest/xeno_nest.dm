@@ -27,7 +27,7 @@
 			M.forceMove(loc)
 		return TRUE
 	else
-		if(W.flags_atom & NOBLUDGEON) return
+		if(W.flags_item & NOBLUDGEON) return
 		var/aforce = W.force
 		health = max(0, health - aforce)
 		playsound(loc, "alien_resin_break", 25)

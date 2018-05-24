@@ -12,7 +12,7 @@
 	throw_range = 5
 	throwforce = 0
 	w_class = 2.0
-	flags_atom = FPRINT|NOBLUDGEON|NOSHIELD
+	flags_item = NOBLUDGEON|NOSHIELD
 	var/active = 0
 	var/sword_color
 

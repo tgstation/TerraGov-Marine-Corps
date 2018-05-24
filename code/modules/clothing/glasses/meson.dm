@@ -26,7 +26,7 @@
 	icon_state = "visor_meson"
 	item_state = "securityhud"
 	vision_flags = SEE_TURFS
-	canremove = 0
+	flags_inventory = COVERSEYES|CANTSTRIP
 
 	Dispose()
 		..()

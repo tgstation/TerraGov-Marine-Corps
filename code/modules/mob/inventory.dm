@@ -114,7 +114,7 @@
 
 	if(!I) return TRUE
 
-	if((I.flags_atom & NODROP) && !force)
+	if((I.flags_item & NODROP) && !force)
 		return FALSE //u_equip() only fails if item has NODROP
 
 	if (I == r_hand)

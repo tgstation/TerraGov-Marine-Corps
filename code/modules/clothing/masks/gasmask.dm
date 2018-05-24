@@ -4,7 +4,8 @@
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
-	flags_inventory = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT | ALLOWREBREATH
+	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	w_class = 3.0
@@ -24,7 +25,8 @@
 	anti_hug = 3
 	vision_impair = 0
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
-	flags_inventory = HIDEEARS|HIDEFACE|COVERMOUTH|ALLOWINTERNALS|HIDEALLHAIR|BLOCKGASEFFECT|ALLOWREBREATH
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/gas/PMC/upp
 	name = "\improper UPP armored commando balaclava"

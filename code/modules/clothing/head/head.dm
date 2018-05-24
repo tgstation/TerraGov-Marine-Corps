@@ -4,7 +4,6 @@
 	flags_armor_protection = HEAD
 	flags_equip_slot = SLOT_HEAD
 	flags_pass = PASSTABLE
-	flags_atom = FPRINT
 	w_class = 2.0
 	var/anti_hug = 0
 
@@ -21,7 +20,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "band"
-	flags_inventory = HIDETOPHAIR
+	flags_inv_hide = HIDETOPHAIR
 
 /obj/item/clothing/head/cmbandana/New()
 	select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_band") )
@@ -37,7 +36,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "beanie_cargo"
-	flags_inventory = HIDETOPHAIR
+	flags_inv_hide = HIDETOPHAIR
 
 
 /obj/item/clothing/head/cmberet
@@ -82,7 +81,8 @@
 			desc = "Worn during cold operations by idiots."
 			flags_cold_protection = HEAD
 			min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-			flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+			flags_inventory = BLOCKSHARPOBJ
+			flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/headband/red
 	icon_state = "headbandred"
@@ -194,7 +194,8 @@
 	armor = list(melee = 35, bullet = 35, laser = 20, energy = 10, bomb = 10, bio = 0, rad = 0)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	anti_hug = 1
 
 	attack_self(mob/user as mob)
@@ -218,7 +219,8 @@
 	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD|UPPER_TORSO|ARMS
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 
 /obj/item/clothing/head/uppcap
@@ -233,7 +235,8 @@
 	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/uppcap/beret
 	name = "\improper armored UPP beret"
@@ -250,7 +253,8 @@
 	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
@@ -267,7 +271,8 @@
 	armor = list(melee = 30, bullet = 30, laser = 45, energy = 35, bomb = 45, bio = 20, rad = 30)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/admiral
 	name = "\improper armored Admiral cap"
@@ -278,5 +283,6 @@
 	armor = list(melee = 60, bullet = 60, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 

@@ -185,7 +185,6 @@
 	fire_sound = 'sound/weapons/pred_plasmacaster_fire.ogg'
 	ammo = /datum/ammo/energy/yautja/caster/bolt
 	muzzle_flash = null // TO DO, add a decent one.
-	canremove = 0
 	w_class = 5
 	force = 0
 	fire_delay = 3
@@ -193,7 +192,8 @@
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/mode = 0
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_atom = FPRINT|CONDUCT|NOBLUDGEON|DELONDROP //Can't bludgeon with this.
+	flags_atom = FPRINT|CONDUCT
+	flags_item = NOBLUDGEON|DELONDROP //Can't bludgeon with this.
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	New()

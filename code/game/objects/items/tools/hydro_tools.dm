@@ -6,7 +6,7 @@
 /obj/item/tool/plantspray
 	icon = 'icons/obj/items/spray.dmi'
 	item_state = "spray"
-	flags_atom = FPRINT|NOBLUDGEON
+	flags_item = NOBLUDGEON
 	flags_equip_slot = SLOT_WAIST
 	throwforce = 4
 	w_class = 2.0
@@ -88,7 +88,8 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
-	flags_atom = FPRINT|CONDUCT|NOBLUDGEON
+	flags_atom = FPRINT|CONDUCT
+	flags_item = NOBLUDGEON
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -131,7 +132,8 @@
 	throw_speed = 1
 	throw_range = 3
 	w_class = 4.0
-	flags_atom = FPRINT|CONDUCT|NOSHIELD
+	flags_atom = FPRINT|CONDUCT
+	flags_item = NOSHIELD
 	flags_equip_slot = SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")

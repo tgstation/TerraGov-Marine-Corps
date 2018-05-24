@@ -213,7 +213,6 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_armor_protection = HEAD
 	flags_pass = PASSTABLE
-	flags_atom = FPRINT
 	flags_equip_slot = SLOT_FACE
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
@@ -227,6 +226,9 @@
 
 //some gas masks modify the air that you breathe in.
 /obj/item/clothing/mask/proc/filter_air(list/air_info)
+	if(flags_inventory & ALLOWREBREATH)
+		air_info[2] = T20C //heats/cools air to be breathable
+
 	return air_info
 
 

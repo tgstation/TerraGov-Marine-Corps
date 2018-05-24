@@ -219,7 +219,7 @@
 			cdel(src)
 			return
 
-	if(!(I.flags_atom & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
+	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
 		var/aforce = I.force
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		visible_message("\red <B>[src] was hit by [I].</B>")

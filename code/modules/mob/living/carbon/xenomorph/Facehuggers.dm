@@ -17,7 +17,8 @@
 	w_class = 1 //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH|CANTSTRIP
 	flags_armor_protection = FACE|EYES
-	flags_atom = NOBLUDGEON
+	flags_atom = NOFLAGS
+	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = MOB_LAYER
 
@@ -106,7 +107,7 @@
 		user << "<span class='danger'>It looks like the proboscis has been removed.</span>"
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_atom & NOBLUDGEON) return
+	if(W.flags_item & NOBLUDGEON) return
 	Die()
 
 /obj/item/clothing/mask/facehugger/bullet_act(obj/item/projectile/P)

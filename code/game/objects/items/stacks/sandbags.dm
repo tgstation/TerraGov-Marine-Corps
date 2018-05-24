@@ -7,7 +7,6 @@
 	singular_name = "sandbag"
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "sandbag_stack"
-	flags_atom = FPRINT
 	w_class = 3.0
 	force = 2
 	throwforce = 0
@@ -48,7 +47,6 @@
 	singular_name = "sandbag"
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "sandbag_pile"
-	flags_atom = FPRINT
 	w_class = 4.0
 	force = 9.0
 	throwforce = 15.0

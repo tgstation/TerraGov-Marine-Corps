@@ -21,7 +21,8 @@
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	flags_armor_protection = HEAD|FACE|EYES
 	flags_cold_protection = HEAD
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR|COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR
 	filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 	gas_filter_strength = 3
 	eye_protection = 2
@@ -272,7 +273,7 @@
 	species_restricted = null
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	canremove = 0
+	flags_inventory = CANTSTRIP
 	flags_armor_protection = HANDS
 	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 10, rad = 10)
 	flags_cold_protection = HANDS
@@ -844,10 +845,9 @@
 	w_class = 5
 	edge = 1
 	sharp = 0
-	flags_atom = NOSHIELD|DELONDROP
+	flags_item = NOSHIELD|DELONDROP
 	flags_equip_slot = NOFLAGS
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
-	canremove = 0
 	attack_speed = 6
 	pry_capable = IS_PRY_CAPABLE_FORCE
 

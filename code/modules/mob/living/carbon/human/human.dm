@@ -300,9 +300,9 @@
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
-	if( wear_mask && (wear_mask.flags_inventory&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
+	if( wear_mask && (wear_mask.flags_inv_hide & HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
-	if( head && (head.flags_inventory&HIDEFACE) )
+	if( head && (head.flags_inv_hide & HIDEFACE) )
 		return get_id_name("Unknown")		//Likewise for hats
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
@@ -398,9 +398,9 @@
 
 				else
 					if(r_store || l_store)
-						if(r_store && !(r_store.flags_atom & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
+						if(r_store && !(r_store.flags_item & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
 							drop_inv_item_on_ground(r_store)
-						if(l_store && !(l_store.flags_atom & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
+						if(l_store && !(l_store.flags_item & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
 							drop_inv_item_on_ground(l_store)
 					else
 						usr << "<span class='notice'>[src]'s pockets are empty.</span>"
@@ -1085,7 +1085,7 @@
 		reset_view(0)
 
 /mob/living/carbon/human/proc/get_visible_gender()
-	if(wear_suit && wear_suit.flags_inventory & HIDEJUMPSUIT && ((head && head.flags_inventory & HIDEMASK) || wear_mask))
+	if(wear_suit && wear_suit.flags_inv_hide & HIDEJUMPSUIT && ((head && head.flags_inv_hide & HIDEMASK) || wear_mask))
 		return NEUTER
 	return gender
 
@@ -1432,7 +1432,7 @@
 	T.add_vomit_floor(src)
 
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-	if(shoes && !override_noslip && (shoes.flags_inventory&NOSLIPPING))
+	if(shoes && !override_noslip && (shoes.flags_inventory & NOSLIPPING))
 		return FALSE
 	. = ..()
 

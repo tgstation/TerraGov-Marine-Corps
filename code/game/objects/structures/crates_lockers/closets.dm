@@ -4,7 +4,6 @@
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
 	density = 1
-	flags_atom = FPRINT
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0

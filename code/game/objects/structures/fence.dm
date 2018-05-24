@@ -147,7 +147,7 @@
 			healthcheck(1, 1, M) //The person thrown into the window literally shattered it
 		return
 
-	if(W.flags_atom & NOBLUDGEON) return
+	if(W.flags_item & NOBLUDGEON) return
 
 	if(istype(W, /obj/item/tool/wirecutters))
 		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [W].</span>",

@@ -8,7 +8,7 @@
 	return
 /atom/movable/attackby(obj/item/W, mob/living/user)
 	if(W)
-		if(!(W.flags_atom & NOBLUDGEON))
+		if(!(W.flags_item & NOBLUDGEON))
 			visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>", null, 5)
 			user.animation_attack_on(src)
 			user.flick_attack_overlay(src, "punch")
@@ -25,7 +25,7 @@
 
 
 /obj/item/proc/attack(mob/living/M, mob/living/user, def_zone)
-	if(flags_atom & NOBLUDGEON)
+	if(flags_item & NOBLUDGEON)
 		return
 
 	if (!istype(M)) // not sure if this is the right thing...

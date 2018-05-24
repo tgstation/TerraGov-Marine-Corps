@@ -1,10 +1,5 @@
 //FLAGS BITMASK
-/*
-Cleaned these up a lot. Everything that applies to equipment is in flags_inventory instead of
-flags. So I had to manually go through and reset all of the flags. Regular item flags
-should all be unique more or less. flags_inventory can double up.
-~N
-*/
+
 
 //turf-only flags
 #define NOJAUNT		1
@@ -20,68 +15,78 @@ should all be unique more or less. flags_inventory can double up.
 #define NOFLAGS					0		//Nothing.
 
 //==========================================================================================
-#define NODROP					1		// Cannot be dropped at all, only deleted.
-#define NOINTERACT				2		// You can't interact with it, at all. Useful when doing certain animations.
-#define NOBLOODY				4		// Don't want a blood overlay on this one.
-#define DELONDROP				8		// Deletes on drop instead of falling on the floor.
-#define FPRINT					16		// takes a fingerprint
-#define CONDUCT					32		// conducts electricity (metal etc.)
-#define ON_BORDER				64		// item has priority to check when entering or leaving
-#define DIRLOCK					128		// Item won't change direction when Moving()ing. Useful for items that have several dir states.
-//Reserved space for any general flags here.
+
+//flags_atom
+
+#define NOINTERACT				1		// You can't interact with it, at all. Useful when doing certain animations.
+#define FPRINT					2		// takes a fingerprint
+#define CONDUCT					4		// conducts electricity (metal etc.)
+#define ON_BORDER				8		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY				16		// Don't want a blood overlay on this one.
+#define DIRLOCK					32		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define	NOREACT					64		//Reagents dont' react inside this container.
+#define OPENCONTAINER			128		//is an open container for chemistry purposes
+#define RELAY_CLICK				256		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
 //==========================================================================================
-#define USEDELAY 				512		// 1 second extra delay on use (Can be used once every 2s)
-#define	NOREACT					1024	//Reagents dont' react inside this container.
-#define OPENCONTAINER			2048	//is an open container for chemistry purposes
+
+//flags_item
+//bitflags that were previously under flags_atom, these only apply to items.
+//clothing specific stuff uses flags_inventory.
+
+#define NODROP					1	// Cannot be dropped at all, only deleted.
+#define DELONDROP				2	// Deletes on drop instead of falling on the floor.
+#define NOBLUDGEON  			4	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOSHIELD				8	// weapon not affected by shield (does nothing currently)
+#define TWOHANDED				16	// The item is twohanded.
+#define WIELDED					32	// The item is wielded with both hands.
+
 //==========================================================================================
-#define NOBLUDGEON  			4096	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				8192	// weapon not affected by shield
-#define TWOHANDED				16384	// The item is twohanded.
-#define WIELDED					32768	// The item is wielded with both hands.
-//==========================================================================================
-#define RELAY_CLICK				65536	//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+
+
+//flags_inv_hide
+//Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
+
+#define HIDEGLOVES		1
+#define HIDESUITSTORAGE	2
+#define HIDEJUMPSUIT	4
+#define HIDESHOES		8
+#define HIDEMASK		16
+#define HIDEEARS		32		//(ears means headsets and such)
+#define HIDEEYES		64		//(eyes means glasses)
+#define HIDELOWHAIR		128		// temporarily removes the user's facial hair overlay.
+#define HIDETOPHAIR		256		// temporarily removes the user's hair overlay. Leaves facial hair.
+#define HIDEALLHAIR		512		// temporarily removes the user's hair, facial and otherwise.
+#define HIDETAIL 		1024
+#define HIDEFACE		2056	//Dictates whether we appear as unknown.
+
+
 //==========================================================================================
 
 //flags_inventory
-//Bit flags for the flags_inventory variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
-//It also determines a few other things now, and doesn't just apply to clothing. ~N
-#define CANTSTRIP		32768		// Can't be removed by others. Mostly for donor stuff.
-#define BLOCKPHORON 	65536		// Does not get contaminated by phoron.
+//Another flag for clothing items that determines a few other things now
+#define CANTSTRIP		1		// Can't be removed by others. Mostly for donor stuff.
 
-//SUIT ONLY============================================================================================
-#define HIDEGLOVES		1	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDESUITSTORAGE	2	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDEJUMPSUIT	4	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDESHOES		8	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-//HIDELOWHAIR			16  //Can do this now.
-#define HIDETAIL 		32	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-//COVERMOUTH			256 //Can potentially do this.
-//SUIT ONLY============================================================================================
+//SHOES ONLY===========================================================================================
+#define NOSLIPPING		2	//prevents from slipping on wet floors, in space etc
+//SHOES ONLY===========================================================================================
 
 //HELMET AND MASK======================================================================================
-#define HIDEMASK		1	//APPLIES ONLY TO HELMETS/MASKS!!
-#define HIDEEARS		2	//APPLIES ONLY TO HELMETS/MASKS!! (ears means headsets and such)
-#define HIDEEYES		4	//APPLIES ONLY TO HELMETS/MASKS!! (eyes means glasses)
-#define HIDEFACE		8	//APPLIES ONLY TO HELMETS/MASKS!! Dictates whether we appear as unknown.
-#define HIDELOWHAIR		16	// temporarily removes the user's facial hair overlay.
-#define HIDETOPHAIR		32	// temporarily removes the user's hair overlay. Leaves facial hair.
-#define HIDEALLHAIR		64	// temporarily removes the user's hair, facial and otherwise.
-#define COVEREYES		128 // Covers the eyes/protects them.
-#define COVERMOUTH		256 // Covers the mouth.
-#define ALLOWINTERNALS	512	//mask allows internals
-#define ALLOWREBREATH	1024 //Mask allows to breath in really hot or really cold air.
-#define BLOCKGASEFFECT	2048 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define COVEREYES		4 // Covers the eyes/protects them.
+#define COVERMOUTH		8 // Covers the mouth.
+#define ALLOWINTERNALS	16	//mask allows internals
+#define ALLOWREBREATH	32 //Mask allows to breath in really hot or really cold air.
+#define BLOCKGASEFFECT	64 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCKSHARPOBJ 	4096  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define NOPRESSUREDMAGE 8192 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
+#define BLOCKSHARPOBJ 	128  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define NOPRESSUREDMAGE 256 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
-//SHOES ONLY===========================================================================================
-#define NOSLIPPING		1	//prevents from slipping on wet floors, in space etc
-//SHOES ONLY===========================================================================================
+
+
+
 
 //===========================================================================================
 //Marine armor only, use for flags_marine_armor.

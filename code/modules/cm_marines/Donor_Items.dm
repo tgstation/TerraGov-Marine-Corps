@@ -434,7 +434,8 @@
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_override = 'icons/mob/head_0.dmi'
-	flags_inventory = HIDEEARS|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_marine_helmet = HELMET_STORE_GARB
 
@@ -467,7 +468,8 @@
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
-	flags_inventory = HIDEEARS|BLOCKSHARPOBJ|HIDEALLHAIR
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/sas
 	name = "Juggernaut Helmet"
@@ -478,7 +480,8 @@
 	name = "Fancy Helmet"
 	desc = "That's not red paint. That's real blood. DONOR ITEM"
 	icon_state = "syndicate"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/penguin
 	name = "Top Penguin Hat"
@@ -490,13 +493,15 @@
 	name = "Doom Helmet"
 	icon_state = "doom_helmet"
 	desc = "A Helmet, of a famous Earth warrior... Donor Item"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/sas2
 	name = "Juggernaut Helmet"
 	icon_state = "ncrhelmet"
 	desc = "A red helmet, for pairing with JuggerNaut Armor. DONOR ITEM"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/Sado
 	name = "Tanya's Beret"
@@ -547,7 +552,8 @@
 	name = "Anthony's helmet"
 	desc = "COG helmet owned by Anthony Carmine"
 	icon_state = "anthonycarmine"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/goldshieldberet
 	name = "beret"
@@ -579,7 +585,8 @@
 	desc = "It looks like a costume hardsuit helmet.  DONOR ITEM"
 	icon_state = "syndicate"
 	item_state = "syndicate"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/devil
 	name = "MICH Helmet"
@@ -592,14 +599,16 @@
 	desc = "I AM THE LAW.  UNIQUE DONOR ITEM"
 	icon_state = "judgehelm_u"
 	item_state = "judgehelm_u"
-	flags_inventory = HIDEEARS|HIDEEYES|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
 
 /obj/item/clothing/head/helmet/marine/fluff/BWO
 	name = "Fallout Helmet"
 	desc = "A helmet from an ancient wastelander...  UNIQUE DONOR ITEM"
 	icon_state = "riothelm_u"
 	item_state = "riothelm_u"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/mitii
 	name = "Mya's Beret"
@@ -641,7 +650,8 @@
 	desc = "An old mercenary helmet.  DONOR ITEM"
 	icon_state = "merc_helm"
 	item_state = "merc_helm"
-	flags_inventory = HIDELOWHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDELOWHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/oneonethreeeight
 	name = "Camoflage Helmet"
@@ -661,7 +671,8 @@
 	desc = "The helm of a once powerful order.  DONOR ITEM"
 	icon_state = "templar_helm"
 	item_state = "templar_helm"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/deejay
 	name = "Rooks's Beret"
@@ -682,14 +693,16 @@
 	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM"
 	icon_state = "boba_helmet"
 	item_state = "boba_helmet"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/coleMercer
 	name = "Black Ops Helmet"
 	desc = "Your not authorized to look at it.  DONOR ITEM"
 	icon_state = "syndicate-helm-black"
 	item_state = "syndicate-helm-black"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/leondark
 	name = "Hunter's USCM Cap"
@@ -703,28 +716,32 @@
 	desc = "Slightly worn and torn.  DONOR ITEM"
 	icon_state = "asset_protect"
 	item_state = "asset_protect"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/blackdragon
 	name = "Spartan Helmet"
 	desc = "SPARTANS, WHAT IS YOUR PROFESSION?  DONOR ITEM"
 	icon_state = "blackdragon_helmet_u" //UNIQUE
 	item_state = "blackdragon_helmet_u"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/steelpoint
 	name = "M4X Helmet"
 	desc = "Helmets to the M4X!!!  DONOR ITEM"
 	icon_state = "steelpoint_helmet"
 	item_state = "steelpoint_helmet"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/valentine
 	name = "Shocky's Helmet"
 	desc = "Shockingly good helmet.  DONOR ITEM"
 	icon_state = "syndicate-helm-black"
 	item_state = "syndicate-helm-black"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/Jdobbin49
 	name = "Phillip's Beret"
@@ -738,21 +755,24 @@
 	desc = "Just in case someone might recognize you...  DONOR ITEM"
 	icon_state = "star_mask"
 	item_state = "star_mask"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/Bibblesless
 	name = "Yellow ERT Helmet"
 	desc = "Standard Emergency Helmet, yellow variety....  DONOR ITEM"
 	icon_state = "rig0-ert_engineer"
 	item_state = "rig0-ert_engineer"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/FernKiller
 	name = "White ERT Helmet"
 	desc = "Standard Emergency Helmet, white variety....  DONOR ITEM"
 	icon_state = "rig0-ert_medical"
 	item_state = "rig0-ert_medical"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/Jack
 	name = "USCM Ball Cap"
@@ -766,28 +786,32 @@
 	desc = "Helmet worn by the Comissars of Omega Team.  UNIQUE DONOR ITEM"
 	icon_state = "commissar_helmet_u"
 	item_state = "commissar_helmet_u"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/medicae_helmet
 	name = "Omega Medicae Helmet"
 	desc = "Helmet worn by the Medical Corps of Omega Team.  UNIQUE DONOR ITEM"
 	icon_state = "medicae_helmet_u"
 	item_state = "medicae_helmett_u"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/standard_helmet
 	name = "Omega Team Helmet"
 	desc = "Helmet worn by Omega Team.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "standard_helmet"
 	item_state = "standard_helmet"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/Sanctum_helmet
 	name = "Sanctum Combat Helmet"
 	desc = " The Standard Issue helmet of Sanctum Team.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "Sanctum_Helm_u"
 	item_state = "Sanctum_Helm_u"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/DingleDangle
 	name = "Rusty's Cap"
@@ -801,7 +825,8 @@
 	desc = "An old helmet, with faded ODST lettering.  UNIQUE DONOR ITEM"
 	icon_state = "leviathan13_helm_u"
 	item_state = "leviathan13_helm_u"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/kaila
 	name = "Custom Engineering Snow Helmet"
@@ -820,7 +845,8 @@
 	desc = "Engraved in the back is the year 2033.  DONOR ITEM"
 	icon_state = "laser243"
 	item_state = "laser243"
-	flags_inventory = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEMASK|HIDEEYES|HIDEALLHAIR
 
 /obj/item/clothing/head/helmet/marine/fluff/killaninja12
 	name = "space cowboy hat"
@@ -1048,7 +1074,8 @@
 	icon_state = "state"
 	item_state = "state"
 	//DON'T GRAB STUFF BETWEEN THIS LINE
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|ALLOWREBREATH
+	flags_inventory = ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
 	//AND THIS LINE
 
 //END MASK TEMPLATE
@@ -1065,7 +1092,8 @@
 	desc = "A black Balaclava used for hiding your face.  DISCLAIMER: May not actually hide your face... DONOR ITEM"
 	item_state = "balaclava"
 	icon_state = "balaclava"
-	flags_inventory = COVERMOUTH|HIDEEARS|HIDEFACE|HIDEALLHAIR|ALLOWREBREATH
+	flags_inventory = COVERMOUTH|ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/fluff/SAS
 	name = "Legion Mask"
@@ -1073,7 +1101,8 @@
 	icon_override = 'icons/mob/mask.dmi'
 	item_state = "officer_mask"
 	icon_state = "officer_mask"
-	flags_inventory = COVERMOUTH|HIDEEARS|HIDEFACE|HIDEALLHAIR|ALLOWREBREATH
+	flags_inventory = COVERMOUTH|ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/fluff/LEO
 	name = "PMC Mask"
@@ -1081,7 +1110,8 @@
 	icon_override = 'icons/mob/mask.dmi'
 	item_state = "pmc_mask"
 	icon_state = "pmc_mask"
-	flags_inventory = COVERMOUTH|HIDEEARS|HIDEFACE|HIDEALLHAIR|ALLOWREBREATH
+	flags_inventory = COVERMOUTH|ALLOWREBREATH
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/fluff/sas3  //UNIQUE
 	name = "Compact Gas Mask"
@@ -1094,35 +1124,40 @@
 	desc = "Swat Gas Mask.  DONOR ITEM"
 	icon_state = "swat"
 	item_state = "swat"
-	flags_inventory = HIDEEYES|HIDEFACE|ALLOWREBREATH
+	flags_inventory = ALLOWREBREATH
+	flags_inv_hide = HIDEEYES|HIDEFACE
 
 /obj/item/clothing/mask/fluff/pink
 	name = "Pink's Gas Mask"
 	desc = "A standard issue gas mask.  DONOR ITEM"
 	icon_state = "swat"
 	item_state = "swat"
-	flags_inventory = HIDEEYES|HIDEFACE|ALLOWREBREATH
+	flags_inventory = ALLOWREBREATH
+	flags_inv_hide = HIDEEYES|HIDEFACE
 
 /obj/item/clothing/mask/fluff/fick2
 	name = "Corporal Hart's Mask"
 	desc = "A robotic looking Armored mask.  DONOR ITEM"
 	icon_state = "hartmask"
 	item_state = "hartmask"
-	flags_inventory = HIDEFACE|ALLOWREBREATH
+	flags_inventory = ALLOWREBREATH
+	flags_inv_hide = HIDEFACE
 
 /obj/item/clothing/mask/fluff/starscream
 	name = "Kardar Hussein's mask"
 	desc = "Slightly worn and torn.  DONOR ITEM"
 	icon_state = "merc_mask"
 	item_state = "merc_mask"
-	flags_inventory = HIDEFACE|ALLOWREBREATH
+	flags_inventory = ALLOWREBREATH
+	flags_inv_hide = HIDEFACE
 
 /obj/item/clothing/mask/fluff/lostmix
 	name = "Phantom Cigar"
 	desc = "It's a g-g-g-g-g-ghost cigar.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "cigaron"
 	item_state = "cigaron"
-	flags_inventory = HIDEFACE|ALLOWREBREATH
+	flags_inventory = ALLOWREBREATH
+	flags_inv_hide = HIDEFACE
 
 //	BOOTS/SHOES COSMETICS  ////////////////////////////////////////////////
 

@@ -147,9 +147,9 @@
 
 /mob/living/carbon/proc/swap_hand()
 	var/obj/item/wielded_item = get_active_hand()
-	if(wielded_item && (wielded_item.flags_atom & WIELDED)) //this segment checks if the item in your hand is twohanded.
+	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_hand()
-		if(offhand && (offhand.flags_atom & WIELDED))
+		if(offhand && (offhand.flags_item & WIELDED))
 			src << "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>" //So it's an offhand.
 			return
 		else wielded_item.unwield(src) //Get rid of it.
@@ -260,7 +260,7 @@
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_hand()
 
-	if(!I || (I.flags_atom & NODROP)) return
+	if(!I || (I.flags_item & NODROP)) return
 
 	var/spin_throw = TRUE
 

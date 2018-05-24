@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items/assemblies.dmi'
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
-	flags_atom = FPRINT|NOBLUDGEON
+	flags_item = NOBLUDGEON
 	w_class = 2.0
 	origin_tech = "syndicate=2"
 	var/timer = 10

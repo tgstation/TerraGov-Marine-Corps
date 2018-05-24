@@ -564,7 +564,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
-		if(!(target.flags_atom & WIELDED))
+		if(!(target.flags_item & WIELDED))
 			user << "<span class='warning'>You must hold [target] with two hands to use [src].</span>"
 		else
 			target.zoom(user, zoom_offset, zoom_viewsize)

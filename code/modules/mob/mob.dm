@@ -122,22 +122,20 @@
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 				if(permanent)
-					W.canremove = 0
 					W.flags_inventory |= CANTSTRIP
 				if(W.loc == start_loc && get_active_hand() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 					if(W.zoom) W.zoom(src)
-					if(W.flags_atom & TWOHANDED) W.unwield(src)
+					if(W.flags_item & TWOHANDED) W.unwield(src)
 		return 1
 	else
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
-			W.canremove = 0
 			W.flags_inventory |= CANTSTRIP
 		if(W.loc == start_loc && get_active_hand() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 			if(W.zoom) W.zoom(src)
-			if(W.flags_atom & TWOHANDED) W.unwield(src)
+			if(W.flags_item & TWOHANDED) W.unwield(src)
 		return 1
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.

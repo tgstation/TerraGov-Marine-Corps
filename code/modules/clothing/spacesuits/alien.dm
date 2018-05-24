@@ -84,7 +84,8 @@
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.6
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|NOPRESSUREDMAGE
+	flags_inventory = COVEREYES|NOPRESSUREDMAGE
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	species_restricted = list("Vox","Vox Armalis")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi',
@@ -173,7 +174,8 @@
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(src.magpulse)
-		flags_inventory &= ~NOSLIPPING
+		flags_inventory &= ~NOSLIPPINGG
+		flags_inventory &= ~CANTSTRIP
 		magpulse = 0
 		canremove = 1
 		user << "You relax your deathgrip on the flooring."
@@ -186,10 +188,8 @@
 			user << "You will have to put on the [src] before you can do that."
 			return
 
-
-		flags_inventory |= NOSLIPPING
+		flags_inventory |= NOSLIPPING|CANTSTRIP //kinda hard to take off magclaws when you are gripping them tightly.
 		magpulse = 1
-		canremove = 0	//kinda hard to take off magclaws when you are gripping them tightly.
 		user << "You dig your claws deeply into the flooring, bracing yourself."
 		user << "It would be hard to take off the [src] without relaxing your grip first."
 

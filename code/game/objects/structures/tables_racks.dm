@@ -523,7 +523,6 @@
 	icon_state = "rack"
 	density = 1
 	layer = TABLE_LAYER
-	flags_atom = FPRINT
 	anchored = 1.0
 	throwpass = 1	//You can throw objects over this, despite it's density.
 	breakable = 1

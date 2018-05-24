@@ -123,7 +123,7 @@
 			//TODO: Species check, skull damage for forcing an unfitting helmet on?
 			helmet.loc = H
 			H.equip_to_slot(helmet, WEAR_HEAD)
-			helmet.canremove = 0
+			helmet.flags_inventory |= CANTSTRIP
 
 	if(attached_boots && boots)
 		if(H.shoes)
@@ -132,7 +132,7 @@
 			M << "Your suit's boots deploy with a hiss."
 			boots.loc = H
 			H.equip_to_slot(boots, WEAR_FEET)
-			boots.canremove = 0
+			boots.flags_inventory |= CANTSTRIP
 
 /obj/item/clothing/suit/space/rig/dropped()
 	..()
@@ -143,14 +143,14 @@
 		H = helmet.loc
 		if(istype(H))
 			if(helmet && H.head == helmet)
-				helmet.canremove = 1
+				helmet.flags_inventory &= ~CANTSTRIP
 				H.drop_inv_item_to_loc(helmet, src)
 
 	if(boots)
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
-				boots.canremove = 1
+				boots.flags_inventory &= ~CANTSTRIP
 				H.drop_inv_item_to_loc(boots, src)
 
 /*
@@ -215,7 +215,7 @@
 	if(H.wear_suit != src) return
 
 	if(H.head == helmet)
-		helmet.canremove = 1
+		helmet.flags_inventory &= ~CANTSTRIP
 		H.drop_inv_item_to_loc(helmet, src)
 		H << "\blue You retract your hardsuit helmet."
 	else
@@ -226,7 +226,7 @@
 		helmet.loc = H
 		helmet.pickup(H)
 		H.equip_to_slot(helmet, WEAR_HEAD)
-		helmet.canremove = 0
+		helmet.flags_inventory |= CANTSTRIP
 		H << "\blue You deploy your hardsuit helmet, sealing you off from the world."
 
 /obj/item/clothing/suit/space/rig/attackby(obj/item/W as obj, mob/user as mob)

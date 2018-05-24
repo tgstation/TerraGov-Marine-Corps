@@ -7,7 +7,6 @@
 	singular_name = "layer"
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "snow_stack"
-	flags_atom = FPRINT
 	w_class = 5
 	force = 2
 	throwforce = 0

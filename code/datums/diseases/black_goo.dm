@@ -105,7 +105,7 @@
 	name = "claws"
 	icon = 'icons/mob/human_races/r_zombie.dmi'
 	icon_state = "claw_l"
-	flags_atom = NODROP|DELONDROP
+	flags_item = NODROP|DELONDROP
 	force = 15
 	w_class = 6
 	sharp = 1
@@ -175,7 +175,7 @@
 	w_class = 2.0
 	vision_flags = SEE_MOBS
 	darkness_view = 7
-	flags_atom = NODROP|DELONDROP
+	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/glasses/zombie_eyes/New()
 	..()
@@ -213,5 +213,5 @@
 	name = "zombie mouth"
 	icon_state = "BLANK"
 	item_state = "BLANK"
-	flags_atom = NODROP|DELONDROP
+	flags_item = NODROP|DELONDROP
 

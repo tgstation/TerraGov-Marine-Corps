@@ -30,7 +30,7 @@
 					user << "<span class = 'caution'> You disable the locking modules.</span>"
 					update_icon()
 				return
-			else if(!(O.flags_atom & NOBLUDGEON) && O.force)
+			else if(!(O.flags_item & NOBLUDGEON) && O.force)
 				var/obj/item/W = O
 				if(src.smashed || src.localopened)
 					if(localopened)
@@ -53,7 +53,7 @@
 			return
 		if (istype(O, /obj/item/weapon/twohanded/fireaxe) && src.localopened)
 			if(!fireaxe)
-				if(O.flags_atom & WIELDED)
+				if(O.flags_item & WIELDED)
 					user << "\red Unwield the axe first."
 					return
 				fireaxe = O

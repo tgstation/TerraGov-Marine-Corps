@@ -85,7 +85,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	flags_atom = FPRINT|NOSHIELD
+	flags_item = NOSHIELD
 	attack_verb = list("bludgeoned", "whacked", "disciplined")
 
 /obj/item/staff/broom
@@ -112,7 +112,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	flags_atom = FPRINT|NOSHIELD
+	flags_item = NOSHIELD
 
 
 /obj/item/ectoplasm

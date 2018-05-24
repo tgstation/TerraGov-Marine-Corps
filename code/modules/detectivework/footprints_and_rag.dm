@@ -23,7 +23,8 @@
 	possible_transfer_amounts = list(5)
 	volume = 5
 	can_be_placed_into = null
-	flags_atom = FPRINT|OPENCONTAINER|NOBLUDGEON
+	flags_atom = FPRINT|OPENCONTAINER
+	flags_item = NOBLUDGEON
 
 /obj/item/reagent_container/glass/rag/attack_self(mob/user as mob)
 	return

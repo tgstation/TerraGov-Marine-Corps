@@ -67,7 +67,7 @@
 	item_state = "securityhud"
 	vision_flags = SEE_MOBS
 	invisa_view = 2
-	canremove = 0
+	flags_inventory = COVERSEYES|CANTSTRIP
 
 	Dispose()
 		..()

@@ -24,11 +24,14 @@
 	var/w_class = 3.0
 	var/storage_cost = null
 	flags_atom = FPRINT
+	var/flags_item = NOFLAGS	//flags for item stuff that isn't clothing/equipping specific.
 	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.
+
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inventory = NOFLAGS//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_inventory = NOFLAGS //This flag is used for various clothing/equipment item stuff
+	var/flags_inv_hide = NOFLAGS //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	flags_pass = PASSTABLE
-//	causeerrorheresoifixthis
+
 	var/obj/item/master = null
 
 	var/flags_armor_protection = NOFLAGS //see setup.dm for appropriate bit flags
@@ -46,7 +49,6 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
 
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
@@ -84,8 +86,8 @@
 
 
 /obj/item/Dispose()
-	flags_atom &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
-	flags_atom &= ~NODROP //so the item is properly unequipped if on a mob.
+	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
+	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	if(istype(loc, /atom/movable))
 		var/atom/movable/AM = loc
 		AM.on_stored_item_del(src) //things that object need to do when an item inside it is deleted
@@ -200,7 +202,7 @@ cases. Override_icon_state should be a list.*/
 			return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
-	if(loc) //item may have been cdel'd by the drop above.
+	if(!disposed) //item may have been cdel'd by the drop above.
 		pickup(user)
 		add_fingerprint(user)
 		if(!user.put_in_active_hand(src))
@@ -223,11 +225,11 @@ cases. Override_icon_state should be a list.*/
 		if(!canremove)
 			return
 		else
-			if(user.drop_inv_item_on_ground(src))
+			if(!user.drop_inv_item_on_ground(src))
 				return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
-	if(loc) //item may have been cdel'd by the drop above.
+	if(!disposed) //item may have been cdel'd by the drop above.
 		pickup(user)
 		if(!user.put_in_active_hand(src))
 			dropped(user)
@@ -548,81 +550,6 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 		L = L.loc
 	return loc
 
-/*/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-
-	var/mob/living/carbon/human/H = M
-	if(istype(H) && ( \
-			(H.head && H.head.flags_inventory & COVEREYES) || \
-			(H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || \
-			(H.glasses && H.glasses.flags_inventory & COVEREYES) \
-		))
-		// you can't stab someone in the eyes wearing a mask!
-		user << "\red You're going to need to remove the eye covering first."
-		return
-
-	var/mob/living/carbon/monkey/Mo = M
-	if(istype(Mo) && ( \
-			(Mo.wear_mask && Mo.wear_mask.flags_inventory & COVEREYES) \
-		))
-		// you can't stab someone in the eyes wearing a mask!
-		user << "\red You're going to need to remove the eye covering first."
-		return
-
-	if(!M.has_eyes())
-		user << "\red You cannot locate any eyes on [M]!"
-		return
-
-	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
-
-	src.add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
-	//	M = user
-		/*
-		M << "\red You stab yourself in the eye."
-		M.sdisabilities |= BLIND
-		M.knocked_down += 4
-		M.adjustBruteLoss(10)
-		*/
-
-	if(istype(M, /mob/living/carbon/human))
-
-		var/datum/internal_organ/eyes/eyes = H.internal_organs_by_name["eyes"]
-
-		if(M != user)
-			for(var/mob/O in (viewers(M) - user - M))
-				O.show_message("\red [M] has been stabbed in the eye with [src] by [user].", 1)
-			M << "\red [user] stabs you in the eye with [src]!"
-			user << "\red You stab [M] in the eye with [src]!"
-		else
-			user.visible_message( \
-				"\red [user] has stabbed themself with [src]!", \
-				"\red You stab yourself in the eyes with [src]!" \
-			)
-
-		eyes.damage += rand(3,4)
-		if(eyes.damage >= eyes.min_bruised_damage)
-			if(M.stat != 2)
-				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
-					M << "\red Your eyes start to bleed profusely!"
-			if(prob(50))
-				if(M.stat != 2)
-					M << "\red You drop what you're holding and clutch at your eyes!"
-					M.drop_held_item()
-				M.eye_blurry += 10
-				M.KnockOut(1)
-				M.KnockDown(4)
-			if (eyes.damage >= eyes.min_broken_damage)
-				if(M.stat != 2)
-					M << "\red You go blind!"
-		var/datum/limb/affecting = M:get_limb("head")
-		if(affecting.take_damage(7))
-			M:UpdateDamageIcon()
-	else
-		M.take_limb_damage(7)
-	M.eye_blurry += rand(3,4)
-	return*/
 
 /obj/item/clean_blood()
 	. = ..()
