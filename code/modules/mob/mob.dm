@@ -364,6 +364,8 @@ var/list/slot_equipment_priority = list( \
 
 		if (isXenoWarrior(src) && !isXeno(M) && !isYautja(M))
 			grab_level = GRAB_NECK
+			M.drop_held_items()
+			M.Stun(5)
 			visible_message("<span class='xenowarning'>\The [src] grabs [M] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [M] by the throat!</span>")
 		else

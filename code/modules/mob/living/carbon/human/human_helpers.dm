@@ -195,7 +195,9 @@
 	return 0
 
 
-/mob/living/carbon/human/is_mob_restrained()
+/mob/living/carbon/human/is_mob_restrained(var/check_grab = 1)
+	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)
+		return 1
 	if (handcuffed)
 		return 1
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
