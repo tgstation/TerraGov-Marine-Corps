@@ -1139,7 +1139,7 @@ var/global/floorIsLava = 0
 		C = M.client
 	else
 		return 0
-	if(~0 & C.holder.rights)
+	if(R_HOST == C.holder.rights)
 		return 1
 	else
 		return 0
