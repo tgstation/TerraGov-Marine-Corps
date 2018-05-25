@@ -20,7 +20,7 @@
 #define R_SPAWN			8192
 #define R_MOD			16384
 #define R_MENTOR		32768
-#define R_HOST			65536
+#define R_HOST			65536	// This is the highest bit Byond is capable of. No more perms. Defined as ~0 in /ishost(whom)
 //=================================================
 
 
