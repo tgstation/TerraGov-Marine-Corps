@@ -135,9 +135,9 @@
 	var/used_fortify = 0
 
 	var/headbutt_cooldown = 40
-	var/tail_sweep_cooldown = 40
-	var/crest_defense_cooldown = 60
-	var/fortify_cooldown = 40
+	var/tail_sweep_cooldown = 120
+	var/crest_defense_cooldown = 150
+	var/fortify_cooldown = 200
 	var/fortify_timer = 60
 
 	//Praetorian vars

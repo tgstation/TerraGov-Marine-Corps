@@ -108,7 +108,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 400
 					caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
 					speed = -0.3
-					armor_deflection = 55
+					armor_deflection = 45
 				if ("Warrior")
 					melee_damage_lower = 35
 					melee_damage_upper = 40
@@ -323,7 +323,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 800
 					caste_desc = "An alien with an armored head crest. It looks pretty strong."
 					speed = -0.4
-					armor_deflection = 60
+					armor_deflection = 50
 				if ("Warrior")
 					melee_damage_lower = 40
 					melee_damage_upper = 45
@@ -529,8 +529,6 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 95
 				if ("Defender")
 					src << "<span class='xenoannounce'>You are a incredibly resiliant, you can control the battle through shear force.</span>"
-					melee_damage_lower = 30
-					melee_damage_upper = 40
 					health = 325
 					maxHealth = 325
 					plasma_gain = 8
@@ -538,7 +536,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 800
 					caste_desc = "An unstoppable force that remains when others would fall."
 					speed = -0.4
-					armor_deflection = 65
+					armor_deflection = 55
 				if ("Warrior")
 					src << "<span class='xenoannounce'>None can stand before you. You will annihilate all weaklings who try.</span>"
 					melee_damage_lower = 45

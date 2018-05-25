@@ -19,7 +19,7 @@
 	old_x = -16
 	evolves_to = list("Warrior")
 	charge_type = 2 //Pounce - Hunter
-	armor_deflection = 50
+	armor_deflection = 40
 	tier = 1
 	upgrade = 0
 	actions = list(
