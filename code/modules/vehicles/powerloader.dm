@@ -112,8 +112,8 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "loader_clamp"
 	force = 20
-	abstract = TRUE //to prevent placing the item on a table/closet.
-					//We're controlling the clamp but the item isn't really in our hand.
+	flags_item = ITEM_ABSTRACT //to prevent placing the item on a table/closet.
+								//We're controlling the clamp but the item isn't really in our hand.
 	var/obj/vehicle/powerloader/linked_powerloader
 	var/obj/loaded
 

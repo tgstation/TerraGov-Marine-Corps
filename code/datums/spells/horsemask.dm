@@ -37,14 +37,13 @@
 
 //item used by the horsehead spell
 /obj/item/clothing/mask/horsehead/magic
-	//flags_inventory = null	//so you can still see their face... no. How can you recognize someone when their face is completely different?
 	voicechange = 1		//NEEEEIIGHH
 
 	dropped(mob/user as mob)
-		canremove = 1
+		flags_item &= ~NODROP
 		..()
 
 	equipped(var/mob/user, var/slot)
 		if (slot == WEAR_FACE)
-			canremove = 0		//curses!
+			flags_item |= NODROP		//curses!
 		..()

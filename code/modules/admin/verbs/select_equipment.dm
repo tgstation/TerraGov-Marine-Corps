@@ -237,7 +237,7 @@
 			var/obj/item/clothing/head/helmet/specrag/L = new(M)
 			L.icon_state = ""
 			L.name = "synth faceplate"
-			L.canremove = 0
+			L.flags_inventory |= NODROP
 			L.anti_hug = 99
 
 			M.equip_to_slot_or_del(L, WEAR_HEAD)

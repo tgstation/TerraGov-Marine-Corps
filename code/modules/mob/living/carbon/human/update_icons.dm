@@ -417,13 +417,13 @@ var/global/list/damage_icon_parts = list()
 		return
 
 	//masks and helmets can obscure our hair.
-	if( (head && (head.flags_inventory & HIDEALLHAIR)) || (wear_mask && (wear_mask.flags_inventory & HIDEALLHAIR)))
+	if( (head && (head.flags_inv_hide & HIDEALLHAIR)) || (wear_mask && (wear_mask.flags_inv_hide & HIDEALLHAIR)))
 		return
 
 	//base icons
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
 
-	if(f_style && !(wear_suit && (wear_suit.flags_inventory & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inventory & HIDELOWHAIR)))
+	if(f_style && !(wear_suit && (wear_suit.flags_inv_hide & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inv_hide & HIDELOWHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && src.species.name in facial_hair_style.species_allowed)
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -432,7 +432,7 @@ var/global/list/damage_icon_parts = list()
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
-	if(h_style && !(head && (head.flags_inventory & HIDETOPHAIR)))
+	if(h_style && !(head && (head.flags_inv_hide & HIDETOPHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
 		if(hair_style && src.species.name in hair_style.species_allowed)
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
@@ -566,6 +566,10 @@ var/global/list/damage_icon_parts = list()
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 			U.screen_loc = ui_iclothing
 			client.screen += U
+
+		if(wear_suit && (wear_suit.flags_inv_hide & HIDEJUMPSUIT))
+			return
+
 		var/used_state = U.icon_state
 		if(U.rolled_sleeves)
 			used_state += "_d"
@@ -659,7 +663,7 @@ var/global/list/damage_icon_parts = list()
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 			wear_ear.screen_loc = ui_wear_ear
 			client.screen += wear_ear
-	if( (head && (head.flags_inventory & HIDEEARS)) || (wear_mask && (wear_mask.flags_inventory & HIDEEARS)))
+	if( (head && (head.flags_inv_hide & HIDEEARS)) || (wear_mask && (wear_mask.flags_inv_hide & HIDEEARS)))
 		return
 
 	if(wear_ear)
@@ -681,7 +685,7 @@ var/global/list/damage_icon_parts = list()
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 			shoes.screen_loc = ui_shoes
 			client.screen += shoes
-	if(wear_suit && (wear_suit.flags_inventory & HIDESHOES))
+	if(wear_suit && (wear_suit.flags_inv_hide & HIDESHOES))
 		return
 	if(shoes)
 		var/image/standing
@@ -839,7 +843,7 @@ var/global/list/damage_icon_parts = list()
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 			wear_mask.screen_loc = ui_mask
 			client.screen += wear_mask
-	if(head && (head.flags_inventory & HIDEMASK))
+	if(head && (head.flags_inv_hide & HIDEMASK))
 		return
 	if(wear_mask)
 		var/image/standing
@@ -931,7 +935,7 @@ var/global/list/damage_icon_parts = list()
 	remove_overlay(TAIL_LAYER)
 
 	if(species.tail)
-		if(!wear_suit || !(wear_suit.flags_inventory & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
+		if(!wear_suit || !(wear_suit.flags_inv_hide & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
 			var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
 			tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 

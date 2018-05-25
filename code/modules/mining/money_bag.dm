@@ -4,7 +4,6 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	name = "Money bag"
 	icon_state = "moneybag"
-	flags_atom = FPRINT
 	force = 10.0
 	throwforce = 2.0
 	w_class = 4.0

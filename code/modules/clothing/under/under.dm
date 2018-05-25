@@ -7,7 +7,6 @@
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
 	flags_pass = PASSTABLE
-	flags_atom = FPRINT
 	flags_equip_slot = SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
@@ -75,7 +74,7 @@
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
 	if (ishuman(usr) || ismonkey(usr))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-		if (!canremove || !(loc == usr))
+		if ((flags_item & NODROP) || loc != usr)
 			return
 
 		if (!usr.is_mob_incapacitated() && !(usr.buckled && usr.lying))

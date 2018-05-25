@@ -94,7 +94,7 @@
 	return attack_hand()
 
 /obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
-	if(!(W.flags_atom & NOBLUDGEON))
+	if(!(W.flags_item & NOBLUDGEON))
 		var/damage = W.force
 		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 			damage /= 4

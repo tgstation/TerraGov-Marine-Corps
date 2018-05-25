@@ -99,10 +99,12 @@
 		if(s_store)
 			drop_inv_item_on_ground(s_store)
 		wear_suit = null
-		if(I.flags_inventory & HIDESHOES)
+		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
-		if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
+		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 			update_hair()
+		if(I.flags_inv_hide & HIDEJUMPSUIT)
+			update_inv_w_uniform()
 		update_inv_wear_suit()
 	else if(I == w_uniform)
 		if(r_store)
@@ -120,12 +122,14 @@
 		update_inv_w_uniform()
 	else if(I == head)
 		head = null
-		if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 			update_hair()	//rebuild hair
-		if(I.flags_inventory & HIDEEARS)
+		if(I.flags_inv_hide & HIDEEARS)
 			update_inv_ears()
-		if(I.flags_inventory & HIDEMASK)
+		if(I.flags_inv_hide & HIDEMASK)
 			update_inv_wear_mask()
+		if(I.flags_inv_hide & HIDEEYES)
+			update_inv_glasses()
 		update_inv_head()
 	else if (I == gloves)
 		gloves = null
@@ -166,10 +170,12 @@
 		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
 			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
 			adjustBruteLossByPart(25,"head")
-	if(I.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+	if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 		update_hair()	//rebuild hair
-	if(I.flags_inventory & HIDEEARS)
+	if(I.flags_inv_hide & HIDEEARS)
 		update_inv_ears()
+	if(I.flags_inv_hide & HIDEEYES)
+		update_inv_glasses()
 	if(internal)
 		if(hud_used && hud_used.internals)
 			hud_used.internals.icon_state = "internal0"
@@ -202,9 +208,12 @@
 			update_inv_back()
 		if(WEAR_FACE)
 			wear_mask = W
-			if( wear_mask.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
+			if( wear_mask.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 				update_hair()	//rebuild hair
+			if(wear_mask.flags_inv_hide & HIDEEARS)
 				update_inv_ears()
+			if(wear_mask.flags_inv_hide & HIDEEYES)
+				update_inv_glasses()
 			W.equipped(src, slot)
 			sec_hud_set_ID()
 			update_inv_wear_mask()
@@ -247,12 +256,14 @@
 			update_inv_gloves()
 		if(WEAR_HEAD)
 			head = W
-			if(head.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
+			if(head.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 				update_hair()	//rebuild hair
-			if(head.flags_inventory & HIDEEARS)
+			if(head.flags_inv_hide & HIDEEARS)
 				update_inv_ears()
-			if(head.flags_inventory & HIDEMASK)
+			if(head.flags_inv_hide & HIDEMASK)
 				update_inv_wear_mask()
+			if(head.flags_inv_hide & HIDEEYES)
+				update_inv_glasses()
 			W.equipped(src, slot)
 			update_inv_head()
 		if(WEAR_FEET)
@@ -261,9 +272,11 @@
 			update_inv_shoes()
 		if(WEAR_JACKET)
 			wear_suit = W
-			if(wear_suit.flags_inventory & HIDESHOES)
+			if(wear_suit.flags_inv_hide & HIDESHOES)
 				update_inv_shoes()
-			if( wear_suit.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
+			if(wear_suit.flags_inv_hide & HIDEJUMPSUIT)
+				update_inv_w_uniform()
+			if( wear_suit.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 				update_hair()
 			W.equipped(src, slot)
 			update_inv_wear_suit()
@@ -358,13 +371,13 @@
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
-	if(I.abstract)
+	if(I.flags_item & ITEM_ABSTRACT)
 		return
-	if((I.flags_atom & NODROP) || !I.canremove)
+	if(I.flags_item & NODROP)
 		src << "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>"
 		return
 	if(I.flags_inventory & CANTSTRIP)
-		src << "<span class='warning'>You're having difficulty removing that item.</span>"
+		src << "<span class='warning'>You're having difficulty removing \the [I.name].</span>"
 		return
 	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their [I.name] ([slot_to_process]) attempted to be removed by [name] ([ckey])</font>"
 	attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [M.name]'s ([M.ckey]) [I.name] ([slot_to_process])</font>"
@@ -382,9 +395,12 @@
 
 
 /mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
-	if(I && !I.abstract)
-		if((I.flags_atom & NODROP) || !I.canremove)
+	if(I && !(I.flags_item & ITEM_ABSTRACT))
+		if(I.flags_item & NODROP)
 			src << "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>"
+			return
+		if(I.flags_inventory & CANTSTRIP)
+			src << "<span class='warning'>You're having difficulty putting \the [I.name] on [M].</span>"
 			return
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
 			src << "<span class='warning'>You can't put \the [I.name] on [M]!</span>"

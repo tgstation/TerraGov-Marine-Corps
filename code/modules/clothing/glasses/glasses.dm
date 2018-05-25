@@ -144,7 +144,8 @@
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_inventory = COVEREYES|HIDEEYES
+	flags_inventory = COVEREYES
+	flags_inv_hide = HIDEEYES
 	eye_protection = 2
 	var/up = 0
 
@@ -160,14 +161,16 @@
 	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 		if(src.up)
 			src.up = !src.up
-			flags_inventory |= (COVEREYES|HIDEEYES)
+			flags_inventory |= COVEREYES
+			flags_inv_hide |= HIDEEYES
 			flags_armor_protection |= EYES
 			icon_state = initial(icon_state)
 			eye_protection = initial(eye_protection)
 			usr << "You flip [src] down to protect your eyes."
 		else
 			src.up = !src.up
-			flags_inventory &= ~(COVEREYES|HIDEEYES)
+			flags_inventory &= ~COVEREYES
+			flags_inv_hide &= ~HIDEEYES
 			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0

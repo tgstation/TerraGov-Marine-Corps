@@ -186,7 +186,7 @@
 			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
 		return
 
-	if(W.flags_atom & NOBLUDGEON) return
+	if(W.flags_item & NOBLUDGEON) return
 
 	if(istype(W, /obj/item/tool/screwdriver) && !not_deconstructable)
 		if(reinf && state >= 1)

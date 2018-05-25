@@ -706,7 +706,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		for (var/mob/O in hearers(5, src.loc))
 			O.show_message("<EM>[user.name]</EM> further abuses the shattered [src.name].")
 	else
-		if(!(I.flags_atom & NOBLUDGEON) && I.force)
+		if(!(I.flags_item & NOBLUDGEON) && I.force)
 			if(I.force <15)
 				for (var/mob/O in hearers(5, src.loc))
 					O.show_message("[user.name] hits the [src.name] with the [I.name] with no visible effect." )

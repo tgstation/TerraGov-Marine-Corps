@@ -22,7 +22,8 @@
 	name = "captain's cap"
 	desc = "You fear to wear it for the negligence it brings."
 	icon_state = "capcap"
-	flags_inventory = 0
+	flags_inventory = NOFLAGS
+	flags_inv_hide = NOFLAGS
 	flags_armor_protection = 0
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
@@ -34,7 +35,8 @@
 	name = "chaplain's hood"
 	desc = "It's hood that covers the head. It keeps you warm during the space winters."
 	icon_state = "chaplain_hood"
-	flags_inventory = HIDEEARS|HIDEALLHAIR|COVEREYES
+	flags_inventory = COVEREYES
+	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	siemens_coefficient = 0.9
 	flags_armor_protection = HEAD|EYES
 
@@ -43,7 +45,8 @@
 	name = "nun hood"
 	desc = "Maximum piety in this star system."
 	icon_state = "nun_hood"
-	flags_inventory = HIDEEARS|HIDEALLHAIR|COVEREYES
+	flags_inventory = COVEREYES
+	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	siemens_coefficient = 0.9
 
 //Mime
@@ -86,7 +89,7 @@
 	name = "surgical cap"
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
 	icon_state = "surgcap_blue"
-	flags_inventory = HIDETOPHAIR
+	flags_inv_hide = HIDETOPHAIR
 
 /obj/item/clothing/head/surgery/purple
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is deep purple."

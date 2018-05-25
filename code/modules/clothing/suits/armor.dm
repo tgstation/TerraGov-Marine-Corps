@@ -1,6 +1,5 @@
 
 /obj/item/clothing/suit/armor
-	flags_atom = FPRINT
 	flags_inventory = BLOCKSHARPOBJ
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
@@ -115,7 +114,8 @@
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	flags_inventory = HIDEJUMPSUIT|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 	time_to_unequip = 20
 	time_to_equip = 20
@@ -142,7 +142,8 @@
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
-	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|BLOCKSHARPOBJ|NOPRESSUREDMAGE
+	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	siemens_coefficient = 0.6
@@ -154,7 +155,8 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	flags_inventory = 0
+	flags_inventory = NOFLAGS
+	flags_inv_hide = NOFLAGS
 	flags_armor_protection = UPPER_TORSO|ARMS
 
 
@@ -221,7 +223,8 @@
 	w_class = 4//bulky item
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
-	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inventory = NOFLAGS
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	siemens_coefficient = 0
@@ -235,12 +238,12 @@
 	gas_transfer_coefficient = 0.90
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	slowdown = 3
-	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/tdome
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/tdome/red
 	name = "Thunderdome suit (red)"
@@ -342,7 +345,8 @@
 	item_state = "hos"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-	flags_inventory = HIDEJUMPSUIT
+	flags_inventory = NOFLAGS
+	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/armor/hos/jensen
@@ -350,6 +354,6 @@
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
 	item_state = "jensencoat"
-	flags_inventory = 0
+	flags_inv_hide = NOFLAGS
 	siemens_coefficient = 0.6
 	flags_armor_protection = UPPER_TORSO|ARMS

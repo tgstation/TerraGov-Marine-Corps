@@ -153,7 +153,7 @@
 			open()
 			operating = -1
 		return 1
-	else if(!(I.flags_atom & NOBLUDGEON))
+	else if(!(I.flags_item & NOBLUDGEON))
 		try_to_activate_door(user)
 		return 1
 

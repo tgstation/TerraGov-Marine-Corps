@@ -33,14 +33,14 @@
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."
 	icon_state = "fake-moustache"
-	flags_inventory = HIDEFACE
+	flags_inv_hide = HIDEFACE
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/snorkel
 	name = "Snorkel"
 	desc = "For the Swimming Savant."
 	icon_state = "snorkel"
-	flags_inventory = HIDEFACE
+	flags_inv_hide = HIDEFACE
 	flags_armor_protection = 0
 
 //scarves (fit in in mask slot)
@@ -87,7 +87,8 @@
 	desc = "A rubber pig mask."
 	icon_state = "pig"
 	item_state = "pig"
-	flags_inventory = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS|COVERMOUTH|COVEREYES
+	flags_inventory = COVERMOUTH|COVEREYES
+	flags_inv_hide = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS
 	w_class = 2
 	siemens_coefficient = 0.9
 	flags_armor_protection = HEAD|FACE|EYES
@@ -97,7 +98,8 @@
 	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
 	icon_state = "horsehead"
 	item_state = "horsehead"
-	flags_inventory = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS|COVERMOUTH|COVEREYES
+	flags_inventory = COVERMOUTH|COVEREYES
+	flags_inv_hide = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS
 	flags_armor_protection = HEAD|FACE|EYES
 	w_class = 2
 	var/voicechange = 0
@@ -109,7 +111,7 @@
 	desc = "LOADSAMONEY"
 	icon_state = "balaclava"
 	item_state = "balaclava"
-	flags_inventory = HIDEFACE|HIDEALLHAIR
+	flags_inv_hide = HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = FACE
 	w_class = 2
 
@@ -125,7 +127,7 @@
 	desc = "Worn by robust fighters, flying high to defeat their foes!"
 	icon_state = "luchag"
 	item_state = "luchag"
-	flags_inventory = HIDEFACE|HIDEALLHAIR
+	flags_inv_hide = HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE
 	w_class = 2
 	siemens_coefficient = 3.0

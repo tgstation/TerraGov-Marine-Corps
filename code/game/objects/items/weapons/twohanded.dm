@@ -8,7 +8,7 @@
 	var/force_wielded 	= 0
 	var/wieldsound 		= null
 	var/unwieldsound 	= null
-	flags_atom = TWOHANDED
+	flags_item = TWOHANDED
 
 	update_icon()
 		return
@@ -25,7 +25,7 @@
 		unwield(user)
 
 /obj/item/proc/wield(var/mob/user)
-	if( !(flags_atom & TWOHANDED) || flags_atom & WIELDED ) return
+	if( !(flags_item & TWOHANDED) || flags_item & WIELDED ) return
 
 	if(user.get_inactive_hand())
 		user << "<span class='warning'>You need your other hand to be empty!</span>"
@@ -39,15 +39,15 @@
 			user << "<span class='warning'>Your other hand can't hold [src]!</span>"
 			return
 
-	flags_atom 	   ^= WIELDED
+	flags_item 	   ^= WIELDED
 	name 	   += " (Wielded)"
 	item_state += "_w"
 	place_offhand(user,initial(name))
 	return 1
 
 /obj/item/proc/unwield(mob/user)
-	if( (flags_atom|TWOHANDED|WIELDED) != flags_atom) return //Have to be actually a twohander and wielded.
-	flags_atom ^= WIELDED
+	if( (flags_item|TWOHANDED|WIELDED) != flags_item) return //Have to be actually a twohander and wielded.
+	flags_item ^= WIELDED
 	name 	    = copytext(name,1,-10)
 	item_state  = copytext(item_state,1,-2)
 	remove_offhand(user)
@@ -58,7 +58,7 @@
 	var/obj/item/weapon/twohanded/offhand/offhand = rnew(/obj/item/weapon/twohanded/offhand, user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
-	offhand.flags_atom |= WIELDED
+	offhand.flags_item |= WIELDED
 	user.put_in_inactive_hand(offhand)
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
@@ -88,7 +88,7 @@
 		user << "<span class='warning'>It's too heavy for you to wield fully!</span>"
 		return
 
-	if(flags_atom & WIELDED) unwield(user)
+	if(flags_item & WIELDED) unwield(user)
 	else 				wield(user)
 
 ///////////OFFHAND///////////////
@@ -96,11 +96,11 @@
 	w_class = 5.0
 	icon_state = "offhand"
 	name = "offhand"
-	flags_atom = DELONDROP|TWOHANDED|WIELDED
+	flags_item = DELONDROP|TWOHANDED|WIELDED
 
 	unwield(var/mob/user)
-		if(flags_atom & WIELDED)
-			flags_atom &= ~WIELDED
+		if(flags_item & WIELDED)
+			flags_item &= ~WIELDED
 			user.temp_drop_inv_item(src)
 			cdel(src)
 
@@ -135,7 +135,8 @@
 	edge = 1
 	w_class = 4.0
 	flags_equip_slot = SLOT_BACK
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_atom = FPRINT|CONDUCT
+	flags_item = TWOHANDED
 	force_wielded = 45
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
@@ -152,7 +153,7 @@
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
-	if(A && (flags_atom & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
+	if(A && (flags_item & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
 		cdel(A)
 
 /*
@@ -171,7 +172,8 @@
 	force_wielded = 70
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
-	flags_atom = FPRINT|NOSHIELD|NOBLOODY|TWOHANDED
+	flags_atom = FPRINT|NOBLOODY
+	flags_item = NOSHIELD|TWOHANDED
 	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
@@ -179,18 +181,18 @@
 
 /obj/item/weapon/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
 	..()
-	if((CLUMSY in user.mutations) && (flags_atom & WIELDED) &&prob(40))
+	if((CLUMSY in user.mutations) && (flags_item & WIELDED) &&prob(40))
 		user << "<span class='highdanger'>You twirl around a bit before losing your balance and impaling yourself on [src].</span>"
 		user.take_limb_damage(20,25)
 		return
-	if((flags_atom & WIELDED) && prob(50))
+	if((flags_item & WIELDED) && prob(50))
 		spawn(0)
 			for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2))
 				user.dir = i
 				sleep(1)
 
 /obj/item/weapon/twohanded/dualsaber/IsShield()
-	if(flags_atom & WIELDED) return 1
+	if(flags_item & WIELDED) return 1
 
 /obj/item/weapon/twohanded/dualsaber/wield(mob/user)
 	. = ..()
@@ -215,7 +217,7 @@
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
-	flags_atom = FPRINT|NOSHIELD|TWOHANDED
+	flags_item = NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
 
@@ -235,7 +237,8 @@
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
-	flags_atom = FPRINT|CONDUCT|NOSHIELD|TWOHANDED
+	flags_atom = FPRINT|CONDUCT
+	flags_item = NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1

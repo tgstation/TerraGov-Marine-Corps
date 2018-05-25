@@ -20,7 +20,8 @@
 	var/up = 0
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_atom = FPRINT|CONDUCT
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
 	flags_armor_protection = HEAD|FACE|EYES
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
@@ -40,13 +41,15 @@
 
 	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 		if(up)
-			flags_inventory |= HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+			flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
 			icon_state = initial(icon_state)
 			eye_protection = initial(eye_protection)
 			usr << "You flip the [src] down to protect your eyes."
 			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
-			flags_inventory &= ~(HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+			flags_inventory &= ~(COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+			flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
 			usr << "You push the [src] up out of your face."
@@ -102,7 +105,8 @@
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
 	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
 	item_state = "hardhat0_pumpkin"
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|HIDEALLHAIR
+	flags_inventory = COVEREYES|COVERMOUTH
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|EYES
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0

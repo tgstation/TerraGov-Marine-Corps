@@ -105,7 +105,8 @@
 	icon_state = "robocop_helmet"
 	item_state = "robocop_helmet"
 	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
-	flags_inventory = HIDEEARS|HIDEEYES|COVEREYES|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	anti_hug = 100
 
 /obj/item/clothing/suit/armor/gimmick/robocop

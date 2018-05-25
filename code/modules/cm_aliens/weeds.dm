@@ -131,7 +131,7 @@
 				cdel(src)
 
 /obj/effect/alien/weeds/attackby(obj/item/W, mob/living/user)
-	if(!W || !user || isnull(W) || (W.flags_atom & NOBLUDGEON))
+	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
 		return 0
 
 	if(istype(src, /obj/effect/alien/weeds/node)) //The pain is real

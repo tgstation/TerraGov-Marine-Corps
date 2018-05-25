@@ -74,7 +74,7 @@
 
 	place_handcuffs(mob/living/carbon/target, mob/user)
 		..()
-		flags_atom |= DELONDROP
+		flags_item |= DELONDROP
 
 
 

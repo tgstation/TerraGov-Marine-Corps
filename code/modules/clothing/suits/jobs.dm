@@ -19,7 +19,7 @@
 	icon_state = "captunic"
 	item_state = "bio_suit"
 	flags_armor_protection = UPPER_TORSO|ARMS
-	flags_inventory = HIDEJUMPSUIT
+	flags_inv_hide = HIDEJUMPSUIT
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/captunic/capjacket
@@ -28,7 +28,7 @@
 	icon_state = "capjacket"
 	item_state = "bio_suit"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inventory = HIDEJUMPSUIT
+	flags_inv_hide = HIDEJUMPSUIT
 
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
@@ -46,7 +46,7 @@
 	icon_state = "nun"
 	item_state = "nun"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inventory = HIDESHOES|HIDEJUMPSUIT
+	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 //Chef

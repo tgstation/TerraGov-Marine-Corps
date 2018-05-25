@@ -16,7 +16,7 @@
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
 	w_class = 1
-	flags_atom = FPRINT|NOBLUDGEON
+	flags_item = NOBLUDGEON
 	sharp = IS_SHARP_ITEM_SIMPLE
 	var/mode = SYRINGE_DRAW
 

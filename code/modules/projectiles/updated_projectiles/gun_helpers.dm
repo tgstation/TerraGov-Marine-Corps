@@ -126,7 +126,7 @@ DEFINES in setup.dm, referenced here.
 
 /obj/item/weapon/gun/attack_hand(mob/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
-	if( in_hand == src && (flags_atom & TWOHANDED) ) unload(user)//It has to be held if it's a two hander.
+	if( in_hand == src && (flags_item & TWOHANDED) ) unload(user)//It has to be held if it's a two hander.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
@@ -202,8 +202,8 @@ should be alright.
 		return
 
 	//There are only two ways to interact here.
-	if(flags_atom & TWOHANDED)
-		if(flags_atom & WIELDED) unwield(user)//Trying to unwield it
+	if(flags_item & TWOHANDED)
+		if(flags_item & WIELDED) unwield(user)//Trying to unwield it
 		else wield(user)//Trying to wield it
 	else unload(user)//We just unload it.
 

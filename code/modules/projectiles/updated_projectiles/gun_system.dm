@@ -13,7 +13,8 @@
 	force 		= 5
 	attack_verb = null
 	sprite_sheet_id = 1
-	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_atom = FPRINT|CONDUCT
+	flags_item = TWOHANDED
 
 	var/muzzle_flash 	= "muzzle_flash"
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
@@ -209,7 +210,7 @@
 
 /obj/item/weapon/gun/wield(var/mob/user)
 
-	if(!(flags_atom & TWOHANDED) || flags_atom & WIELDED)
+	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
 	if(user.get_inactive_hand())
@@ -224,7 +225,7 @@
 			user << "<span class='warning'>Your other hand can't hold \the [src]!</span>"
 			return
 
-	flags_atom 	   ^= WIELDED
+	flags_item 	   ^= WIELDED
 	name 	   += " (Wielded)"
 	item_state += "_w"
 	slowdown = initial(slowdown) + aim_slowdown
@@ -255,11 +256,11 @@
 
 /obj/item/weapon/gun/unwield(var/mob/user)
 
-	if((flags_atom|TWOHANDED|WIELDED) != flags_atom)
+	if((flags_item|TWOHANDED|WIELDED) != flags_item)
 		return //Have to be actually a twohander and wielded.
 	if(zoom)
 		zoom(user)
-	flags_atom ^= WIELDED
+	flags_item ^= WIELDED
 	name 	    = copytext(name, 1, -10)
 	item_state  = copytext(item_state, 1, -2)
 	slowdown = initial(slowdown)
@@ -737,7 +738,7 @@ and you're good to go.
 			user << "<span class='warning'>The safety is on!</span>"
 			return
 
-		if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_atom & WIELDED)) //If we're not holding the weapon with both hands when we should.
+		if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 			user << "<span class='warning'>You need a more secure grip to fire this weapon!"
 			return
 
@@ -785,7 +786,7 @@ and you're good to go.
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_scatter = scatter_unwielded
 
-	if(flags_atom & WIELDED)
+	if(flags_item & WIELDED)
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 
@@ -867,7 +868,7 @@ and you're good to go.
 	if(total_scatter_chance > 0)
 		var/targdist = get_dist(target, user)
 		if(flags_gun_features & GUN_BURST_ON && burst_amount > 1)//Much higher chance on a burst.
-			total_scatter_chance += (flags_atom & WIELDED) ? burst_amount * (burst_scatter_mult + burst_scatter_bonus) : burst_amount * (5+burst_scatter_bonus)
+			total_scatter_chance += (flags_item & WIELDED) ? burst_amount * (burst_scatter_mult + burst_scatter_bonus) : burst_amount * (5+burst_scatter_bonus)
 
 			//long range burst shots have more chance to scatter
 			if(targdist > 7)
@@ -910,7 +911,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user, atom/target)
 	var/total_recoil = recoil_bonus
-	if(flags_atom & WIELDED)
+	if(flags_item & WIELDED)
 		total_recoil += recoil
 	else
 		total_recoil += recoil_unwielded

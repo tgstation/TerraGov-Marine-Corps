@@ -53,7 +53,8 @@
 	name = "hastur's hood"
 	desc = "It's unspeakably stylish"
 	icon_state = "hasturhood"
-	flags_inventory = HIDEEARS|HIDEALLHAIR|COVEREYES
+	flags_inventory = COVEREYES
+	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/nursehat
@@ -68,7 +69,8 @@
 	icon_state = "syndicate"
 	item_state = "syndicate"
 	desc = "A plastic replica of a syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR|COVEREYES|COVERMOUTH
+	flags_inventory = COVEREYES|COVERMOUTH
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 1
@@ -77,7 +79,8 @@
 	name = "cueball helmet"
 	desc = "A large, featureless white orb mean to be worn on your head. How do you even see out of this thing?"
 	icon_state = "cueball"
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR|COVEREYES|COVERMOUTH
+	flags_inventory = COVEREYES|COVERMOUTH
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	item_state="cueball"
 	flags_inventory = 0
 	flags_armor_protection = HEAD|FACE|EYES
@@ -87,7 +90,8 @@
 	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
-	flags_inventory = 0
+	flags_inventory = NOFLAGS
+	flags_inv_hide = NOFLAGS
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/cardborg
@@ -95,7 +99,8 @@
 	desc = "A helmet made out of a box."
 	icon_state = "cardborg_h"
 	item_state = "cardborg_h"
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|COVERMOUTH |COVEREYES|HIDEALLHAIR
+	flags_inventory = COVERMOUTH|COVEREYES
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/justice
@@ -103,7 +108,8 @@
 	desc = "fight for what's righteous!"
 	icon_state = "justicered"
 	item_state = "justicered"
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|COVERMOUTH |COVEREYES|HIDEALLHAIR
+	flags_inventory = COVERMOUTH|COVEREYES
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/head/justice/blue
 	icon_state = "justiceblue"
@@ -208,7 +214,8 @@
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
 	item_state = "witch"
-	flags_inventory = HIDEALLHAIR
+	flags_inventory = NOFLAGS
+	flags_inv_hide = HIDEALLHAIR
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/head/chicken
@@ -216,7 +223,8 @@
 	desc = "Bkaw!"
 	icon_state = "chickenhead"
 	item_state = "chickensuit"
-	flags_inventory = HIDEALLHAIR
+	flags_inventory = NOFLAGS
+	flags_inv_hide = HIDEALLHAIR
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|FACE|EYES
 
@@ -225,7 +233,8 @@
 	icon_state = "xenos"
 	item_state = "xenos_helm"
 	desc = "A helmet made out of chitinous alien hide."
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR|COVERMOUTH|COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = COVERMOUTH|COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 10 //Lel

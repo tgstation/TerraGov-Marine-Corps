@@ -206,7 +206,7 @@
 	item_state = "sword0"
 	var/active = 0.0
 	w_class = 2.0
-	flags_atom = FPRINT|NOSHIELD
+	flags_item = NOSHIELD
 	attack_verb = list("attacked", "struck", "hit")
 
 	attack_self(mob/user as mob)
@@ -237,7 +237,8 @@
 	desc = "Woefully underpowered in D20."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "katana"
-	flags_atom = FPRINT|CONDUCT|NOSHIELD
+	flags_atom = FPRINT|CONDUCT
+	flags_item = NOSHIELD
 	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	force = 5
 	throwforce = 5

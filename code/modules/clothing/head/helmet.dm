@@ -6,7 +6,8 @@
 	item_state = "helmet"
 	armor = list(melee = 50, bullet = 15, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_atom = FPRINT|CONDUCT
-	flags_inventory = HIDEEARS|HIDEEYES|COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
 	flags_cold_protection = HEAD
 	flags_heat_protection = HEAD
 	min_cold_protection_temperature = HELMET_min_cold_protection_temperature
@@ -21,7 +22,8 @@
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	armor = list(melee = 82, bullet = 15, laser = 5, energy = 5, bomb = 5, bio = 2, rad = 0)
-	flags_inventory = HIDEEARS|HIDEEYES|COVEREYES|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
 
 /obj/item/clothing/head/helmet/augment
 	name = "augment array"
@@ -36,7 +38,8 @@
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
-	flags_inventory = HIDEEARS|COVEREYES
+	flags_inventory = COVEREYES
+	flags_inv_hide = HIDEEARS
 	flags_armor_protection = 0
 	siemens_coefficient = 0.8
 
@@ -51,21 +54,24 @@
 	name = "warden's hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force. Protects the head from impacts."
 	icon_state = "policehelm"
-	flags_inventory = 0
+	flags_inventory = NOFLAGS
+	flags_inv_hide = NOFLAGS
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/hop
 	name = "crew resource's hat"
 	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
-	flags_inventory = 0
+	flags_inventory = NOFLAGS
+	flags_inv_hide = NOFLAGS
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/formalcaptain
 	name = "parade hat"
 	desc = "No one in a commanding position should be without a perfect, white hat of ultimate authority."
 	icon_state = "officercap"
-	flags_inventory = 0
+	flags_inventory = NOFLAGS
+	flags_inv_hide = NOFLAGS
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/swat
@@ -74,7 +80,8 @@
 	icon_state = "swat"
 	item_state = "swat"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
-	flags_inventory = HIDEEARS|HIDEEYES|COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	siemens_coefficient = 0.5
@@ -84,7 +91,8 @@
 	name = "\improper Thunderdome helmet"
 	desc = "<i>'Let the battle commence!'</i>"
 	icon_state = "thunderdome"
-	flags_inventory = HIDEEARS|HIDEEYES|COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
 	item_state = "thunderdome"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
 	flags_cold_protection = HEAD
@@ -96,7 +104,8 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
-	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES |COVEREYES|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEALLHAIR
 	siemens_coefficient = 1
 
 /obj/item/clothing/head/helmet/tactical
@@ -104,11 +113,10 @@
 	desc = "An armored helmet capable of being fitted with a multitude of attachments."
 	icon_state = "swathelm"
 	item_state = "helmet"
-	flags_inventory = HIDEEARS|HIDEEYES|COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
 	anti_hug = 1
-
 	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
-	flags_inventory = HIDEEARS
 	siemens_coefficient = 0.7
 
 //Non-hardsuit ERT helmets.
@@ -161,7 +169,8 @@
 	health = 5
 	var/obj/machinery/camera/camera
 	var/helmet_overlays[]
-	flags_inventory = HIDEEARS|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS
 	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 	var/obj/item/storage/internal/pockets
 	var/list/allowed_helmet_items = list(
@@ -330,7 +339,8 @@
 	icon_state = "helmetp"
 	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
 	New()
 		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/pilot)
@@ -342,7 +352,8 @@
 	icon_state = "tanker_helmet"
 	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
 	New()
 		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/tanker)
@@ -360,6 +371,7 @@
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = NOFLAGS
 	flags_marine_helmet = NOFLAGS
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
@@ -373,7 +385,8 @@
 	icon_state = "pmc_sniper_hat"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
@@ -382,7 +395,8 @@
 	icon_state = "heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
@@ -391,7 +405,8 @@
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ|BLOCKGASEFFECT
+	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 	unacidable = 1
 
@@ -410,6 +425,7 @@
 	desc = "A protective cap worn by some seriously experienced mercs."
 	icon_state = "dutch_cap"
 	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = NOFLAGS
 	flags_marine_helmet = NOFLAGS
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/band
@@ -417,6 +433,7 @@
 	desc = "A protective band worn by some seriously experienced mercs."
 	icon_state = "dutch_band"
 	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = NOFLAGS
 	flags_marine_helmet = NOFLAGS
 
 /obj/item/clothing/head/helmet/marine/veteran/bear
@@ -456,7 +473,8 @@
 	sprite_sheet_id = 1
 	icon_state = "spec"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/helmet/specrag/New()
 	select_gamemode_skin(type)
@@ -469,7 +487,8 @@
 	sprite_sheet_id = 1
 	icon_state = "durag"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
-	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/helmet/durag/jungle
 	name = "\improper M8 marksman cowl"
@@ -484,7 +503,8 @@
 	switch(icon_state)
 		if("s_duragm")
 			desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
-			flags_inventory = HIDEEARS|HIDEALLHAIR|BLOCKSHARPOBJ
+			flags_inventory = BLOCKSHARPOBJ
+			flags_inv_hide = HIDEEARS|HIDEALLHAIR
 
 //===========================//HELGHAST - MERCENARY\\================================\\
 //=====================================================================\\
@@ -495,7 +515,8 @@
 	icon_state = "mercenary_heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner
@@ -504,8 +525,7 @@
 	icon_state = "mercenary_miner_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 55, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
-	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
+
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer
 	name = "\improper Z7 engineer helmet"
@@ -513,5 +533,3 @@
 	icon_state = "mercenary_engineer_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 60, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
-	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|COVEREYES|COVERMOUTH|HIDEALLHAIR|BLOCKSHARPOBJ
-	flags_marine_helmet = HELMET_DAMAGE_OVERLAY

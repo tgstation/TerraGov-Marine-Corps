@@ -37,9 +37,8 @@
 				var/turf/T = loc
 				air_info = T.return_air()
 
-				if(istype(wear_mask, /obj/item/clothing/mask) && air_info)
-					var/obj/item/clothing/mask/M = wear_mask
-					air_info = M.filter_air(air_info)//some gas masks can modify the gas we're breathing
+				if(istype(wear_mask) && air_info)
+					air_info = wear_mask.filter_air(air_info)//some gas masks can modify the gas we're breathing
 
 				if(!is_lung_ruptured())
 					if(!air_info || air_info[3] < 10 || air_info[3] > 3000)
@@ -191,10 +190,7 @@
 		adjustOxyLoss(-5)
 
 
-	//Hot air hurts :(
-	var/rebreather = wear_mask && (wear_mask.flags_inventory & ALLOWREBREATH) //If you have rebreather equipped, don't damage the lungs
-
-	if((air_info[2] < species.cold_level_1 || air_info[2] > species.heat_level_1) && !(COLD_RESISTANCE in mutations) && !rebreather)
+	if((air_info[2] < species.cold_level_1 || air_info[2] > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
 		if(air_info[2] < species.cold_level_1)
 			if(prob(20))
 				src << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"

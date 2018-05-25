@@ -454,7 +454,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 60, bullet = 70, laser = 50, energy = 60, bomb = 65, bio = 10, rad = 10)
-	flags_inventory = BLOCKSHARPOBJ|HIDELOWHAIR
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = HIDELOWHAIR
 
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC
 	name = "\improper PMC gunner armor"

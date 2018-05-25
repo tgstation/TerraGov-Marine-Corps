@@ -4,7 +4,6 @@
 	icon_state = "stool"
 	anchored = 1
 	can_buckle = FALSE
-	flags_atom = FPRINT
 	foldabletype = /obj/item/stool
 
 

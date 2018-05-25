@@ -17,7 +17,8 @@
 	w_class = 1 //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH|CANTSTRIP
 	flags_armor_protection = FACE|EYES
-	flags_atom = NOBLUDGEON
+	flags_atom = NOFLAGS
+	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = MOB_LAYER
 
@@ -106,7 +107,7 @@
 		user << "<span class='danger'>It looks like the proboscis has been removed.</span>"
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_atom & NOBLUDGEON) return
+	if(W.flags_item & NOBLUDGEON) return
 	Die()
 
 /obj/item/clothing/mask/facehugger/bullet_act(obj/item/projectile/P)
@@ -245,7 +246,7 @@
 				loc = H.loc
 				return
 
-		if(H.head && H.head.canremove)
+		if(H.head && !(H.head.flags_item & NODROP))
 			var/obj/item/clothing/head/D = H.head
 			if(istype(D))
 				if(D.anti_hug > 1)
@@ -271,7 +272,7 @@
 		if(target.wear_mask)
 			var/obj/item/clothing/mask/W = target.wear_mask
 			if(istype(W))
-				if(!W.canremove) return
+				if(W.flags_item & NODROP) return
 
 				if(istype(W, /obj/item/clothing/mask/facehugger))
 					var/obj/item/clothing/mask/facehugger/hugger = W
@@ -412,7 +413,7 @@
 	//or an unremovable mask.
 	if(M.wear_mask)
 		var/obj/item/W = M.wear_mask
-		if(!W.canremove) return
+		if(W.flags_item & NODROP) return
 		if(istype(W, /obj/item/clothing/mask/facehugger))
 			var/obj/item/clothing/mask/facehugger/hugger = W
 			if(hugger.stat != DEAD) return

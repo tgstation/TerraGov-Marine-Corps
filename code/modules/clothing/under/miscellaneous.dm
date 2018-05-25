@@ -278,31 +278,31 @@
 	name = "orange wedding dress"
 	desc = "A big and puffy orange dress."
 	icon_state = "bride_orange"
-	flags_inventory = HIDESHOES
+	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_purple
 	name = "purple wedding dress"
 	desc = "A big and puffy purple dress."
 	icon_state = "bride_purple"
-	flags_inventory = HIDESHOES
+	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_blue
 	name = "blue wedding dress"
 	desc = "A big and puffy blue dress."
 	icon_state = "bride_blue"
-	flags_inventory = HIDESHOES
+	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_red
 	name = "red wedding dress"
 	desc = "A big and puffy red dress."
 	icon_state = "bride_red"
-	flags_inventory = HIDESHOES
+	flags_inv_hide = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_white
 	name = "silky wedding dress"
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
-	flags_inventory = HIDESHOES
+	flags_inv_hide = HIDESHOES
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/sundress

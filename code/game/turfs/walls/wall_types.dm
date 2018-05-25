@@ -457,7 +457,7 @@
 	return attack_hand(user)
 
 /turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
-	if(!(W.flags_atom & NOBLUDGEON))
+	if(!(W.flags_item & NOBLUDGEON))
 		user.animation_attack_on(src)
 		take_damage(W.force)
 		playsound(src, "alien_resin_break", 25)
