@@ -168,7 +168,7 @@
 	if(mob.pulledby)
 		if(mob.is_mob_incapacitated(TRUE))
 			return
-		else if(mob.is_mob_restrained())
+		else if(mob.is_mob_restrained(0))
 			move_delay = 10
 			src << "<span class='warning'>You're restrained! You can't move!</span>"
 			return

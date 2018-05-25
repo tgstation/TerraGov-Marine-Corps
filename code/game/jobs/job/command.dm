@@ -267,7 +267,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_EAR = /obj/item/device/radio/headset/almayer/mcom,
+				WEAR_EAR = /obj/item/device/radio/headset/almayer/cmpcom,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/warrant,
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/black,

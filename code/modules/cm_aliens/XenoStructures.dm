@@ -675,6 +675,9 @@ TUNNEL
 			M << "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>"
 			r_FAL
 
+	if(M.anchored)
+		M << "<span class='xenowarning'>You can't climb through a tunnel while immobile.</span>"
+		r_FAL
 
 	var/tunnel_time = 40
 
