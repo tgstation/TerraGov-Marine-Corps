@@ -307,7 +307,7 @@
 	name = "marine chief MP radio headset"
 	desc = "This is used by the chief MP. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
 	icon_state = "med_headset"
-	keyslot1 = new /obj/item/device/encryptionkey/mcom
+	keyslot1 = new /obj/item/device/encryptionkey/cmpcom
 
 /obj/item/device/radio/headset/almayer/mcom
 	name = "marine command radio headset"
