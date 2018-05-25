@@ -102,6 +102,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 
 					visible_message("<span class='danger'>[src] scrambles into [vent_found]!</span>", \
 					"<span class='warning'>You climb into [vent_found].</span>")
+					pick(playsound(src, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(src, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 
 					forceMove(vent_found)
 					add_ventcrawl(vent_found)

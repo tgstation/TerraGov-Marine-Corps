@@ -169,12 +169,13 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				user.forceMove(target_move.loc) //handles entering and so on
 				user.visible_message("<span class='warning'>[user] climbs out of [target_move].</span>", \
 				"<span class='notice'>You climb out of [target_move].</span>")
+				pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 		else if(target_move.can_crawl_through())
 			user.loc = target_move
 			user.client.eye = target_move //if we don't do this, Byond only updates the eye every tick - required for smooth movement
 			if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
 				user.last_played_vent = world.time
-				pick(playsound(src, 'sound/effects/alien_ventcrawl1.ogg', 15, 1), playsound(src, 'sound/effects/alien_ventcrawl2.ogg', 15, 1))
+				pick(playsound(src, 'sound/effects/alien_ventcrawl1.ogg', 25, 1), playsound(src, 'sound/effects/alien_ventcrawl2.ogg', 25, 1))
 	else
 		if((direction & initialize_directions) || is_type_in_list(src, ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 			if(ventcrawl_message_busy > world.time)
@@ -187,6 +188,7 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				user.forceMove(src.loc)
 				user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
 				"<span class='notice'>You climb out of [src].</span>")
+				pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 	user.canmove = 0
 	spawn(1)
 		user.canmove = 1
