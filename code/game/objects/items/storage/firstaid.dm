@@ -191,10 +191,6 @@
  */
 
 
-//randomizing pill icons
-var/global/list/randomized_pillbottle_icons
-
-
 /obj/item/storage/pill_bottle
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
@@ -207,322 +203,92 @@ var/global/list/randomized_pillbottle_icons
 	use_to_pickup = 1
 	storage_slots = null
 	use_sound = null
-	var/pillbottle_label = ""
 	var/skilllock = 1
+	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 
-	New()
-		..()
-		name = "pill bottle"
-		if(!randomized_pillbottle_icons)
-			var/allowed_numbers = list(1,2,3,4,5,6,7,8,9,10)
-			randomized_pillbottle_icons = list()
-			for(var/i = 1 to 20)
-				randomized_pillbottle_icons += "pill_canister[pick_n_take(allowed_numbers)]"
+/obj/item/storage/pill_bottle/New()
+	..()
+	if(pill_type_to_fill)
+		for(var/i=1 to 14)
+			new pill_type_to_fill(src)
 
-
-	examine(mob/user)
-		..()
-		if(pillbottle_label)
-			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM)
-				user << "Label reads: [pillbottle_label]."
-			else
-				user << "You don't understand what the label says."
-
-
-	open(mob/user)
-		var/mob/living/carbon/human/H = user
-		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-			H << "<span class='notice'>It must have some kind of ID lock...</span>"
-			return
-		..()
-
-/obj/item/storage/pill_bottle/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/hand_labeler) || istype(W, /obj/item/tool/pen))
-		//pill bottle label can only be read by the medically trained, this is to prevent you from not understanding your own label.
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-			user << "<span class='warning'>Better not label what you don't understand.</span>"
-			return TRUE //no afterattack call
-		var/newlabel = copytext(reject_bad_text(input(user,"What should the label read?","Set label","")),1,MAX_NAME_LEN)
-		if(!newlabel || !length(newlabel))
-			user << "<span class='warning'>Invalid text.</span>"
-			return TRUE //no afterattack call
-		pillbottle_label = newlabel
-		user << "<span class='notice'>You label [src] as '[newlabel]'.</span>"
-		return TRUE //no afterattack call
-	else
-		return ..()
+/obj/item/storage/pill_bottle/open(mob/user)
+	var/mob/living/carbon/human/H = user
+	if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+		H << "<span class='notice'>It must have some kind of ID lock...</span>"
+		return
+	..()
 
 
 /obj/item/storage/pill_bottle/kelotane
 	name = "\improper Kelotane pill bottle"
-	pillbottle_label = "KELOTANE"
-
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[1]
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
+	icon_state = "pill_canister2"
+	pill_type_to_fill = /obj/item/reagent_container/pill/kelotane
 
 /obj/item/storage/pill_bottle/antitox
 	name = "\improper Dylovene pill bottle"
-	pillbottle_label = "DYLOVENE"
+	icon_state = "pill_canister6"
+	pill_type_to_fill = /obj/item/reagent_container/pill/antitox
 
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[2]
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "\improper Inaprovaline pill bottle"
-	pillbottle_label = "INAPROVALINE"
+	icon_state = "pill_canister3"
+	pill_type_to_fill = /obj/item/reagent_container/pill/inaprovaline
 
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[3]
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
-		new /obj/item/reagent_container/pill/inaprovaline( src )
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "\improper Tramadol pill bottle"
-	pillbottle_label = "TRAMADOL"
+	icon_state = "pill_canister5"
+	pill_type_to_fill = /obj/item/reagent_container/pill/tramadol
 
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[4]
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
-		new /obj/item/reagent_container/pill/tramadol( src )
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "\improper Spaceacillin pill bottle"
-	pillbottle_label = "ANTIBIOTIC"
-
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[5]
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-		new /obj/item/reagent_container/pill/spaceacillin( src )
-
+	icon_state = "pill_canister4"
+	pill_type_to_fill = /obj/item/reagent_container/pill/spaceacillin
 
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "\improper Bicaridine pill bottle"
-	pillbottle_label = "BICARIDINE"
-
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[6]
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
-		new /obj/item/reagent_container/pill/bicaridine(src)
+	icon_state = "pill_canister11"
+	pill_type_to_fill = /obj/item/reagent_container/pill/bicaridine
 
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "\improper Dexalin pill bottle"
-	pillbottle_label = "DEXALIN"
-
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[7]
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
-		new /obj/item/reagent_container/pill/dexalin(src)
+	icon_state = "pill_canister1"
+	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
 
 
 //Alkysine
 /obj/item/storage/pill_bottle/alkysine
 	name = "\improper Alkysine pill bottle"
-	pillbottle_label = "ALKYSINE"
+	icon_state = "pill_canister7"
+	pill_type_to_fill = /obj/item/reagent_container/pill/alkysine
 
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[8]
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
-		new /obj/item/reagent_container/pill/alkysine(src)
 
 //imidazoline
 /obj/item/storage/pill_bottle/imidazoline
 	name = "\improper Imidazoline pill bottle"
-	pillbottle_label = "IMIDAZOLINE"
-
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[9]
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
-		new /obj/item/reagent_container/pill/imidazoline(src)
+	icon_state = "pill_canister9"
+	pill_type_to_fill = /obj/item/reagent_container/pill/imidazoline
 
 //PERIDAXON
 /obj/item/storage/pill_bottle/peridaxon
 	name = "\improper Peridaxon pill bottle"
-	pillbottle_label = "PERIDAXON"
-
-	New()
-		..()
-
-		icon_state = randomized_pillbottle_icons[10]
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
-		new /obj/item/reagent_container/pill/peridaxon(src)
+	icon_state = "pill_canister10"
+	pill_type_to_fill = /obj/item/reagent_container/pill/peridaxon
 
 
 //RUSSIAN RED ANTI-RAD
 /obj/item/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
-	pillbottle_label = "RUSSIAN RED (VERY DANGEROUS)"
-
-	New()
-		..()
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
+	icon_state = "pill_canister"
+	pill_type_to_fill = /obj/item/reagent_container/pill/russianRed
 
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "\improper Quickclot pill bottle"
-	pillbottle_label = "QUICKCLOT"
-
-	New()
-		..()
-		icon_state = randomized_pillbottle_icons[11]
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
-		new /obj/item/reagent_container/pill/quickclot(src)
+	icon_state = "pill_canister8"
+	pill_type_to_fill = /obj/item/reagent_container/pill/quickclot
