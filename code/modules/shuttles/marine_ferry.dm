@@ -397,6 +397,10 @@
 		explosion(sploded, 0, 5, 10, 0)
 		sleep(3)
 
+	explosion(get_turf(HangarLowerElevator), 0, 3, 5, 0)
+	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
+	hangarelevator.process_state = FORCE_CRASH
+
 	for(var/mob/living/carbon/M in mob_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)
@@ -627,14 +631,10 @@
 				break
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
-			spawn(0)
-				M.unlock()
-				M.open()
+			cdel(M)
 
 		for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in T)
-			spawn(0)
-				D.unlock()
-				D.open()
+			cdel(D)
 
 /datum/shuttle/ferry/marine/proc/shake_cameras(var/list/L)
 

@@ -34,6 +34,66 @@
 	HangarElevatorLower_y = HangarLowerElevatorLoc.y
 	HangarElevatorLower_z = HangarLowerElevatorLoc.z
 
+/datum/shuttle/ferry/hangar/process()
+
+	switch(process_state)
+		if (WAIT_LAUNCH)
+			if(!preflight_checks())
+				announce_preflight_failure()
+				process_state = SHUTTLE_IDLE
+				return .
+			if (skip_docking_checks() || docking_controller.can_launch())
+
+				//world << "shuttle/ferry/process: area_transition=[area_transition], travel_time=[travel_time]"
+				if (move_time && area_transition)
+					long_jump(interim=area_transition, travel_time=move_time, direction=transit_direction)
+				else
+					short_jump()
+
+				process_state = WAIT_ARRIVE
+
+		if (FORCE_LAUNCH)
+			if (move_time && area_transition)
+				long_jump(interim=area_transition, travel_time=move_time, direction=transit_direction)
+			else
+				short_jump()
+
+			process_state = WAIT_ARRIVE
+
+		if (WAIT_ARRIVE)
+			if (moving_status == SHUTTLE_IDLE)
+				dock()
+				in_use = null	//release lock
+				process_state = WAIT_FINISH
+
+		if (WAIT_FINISH)
+			if (skip_docking_checks() || docking_controller.docked() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
+				process_state = IDLE_STATE
+				arrived()
+
+		if (FORCE_CRASH)
+			short_jump_crash()
+
+/datum/shuttle/ferry/hangar/proc/short_jump_crash(var/area/origin,var/area/destination)
+	if(isnull(location))
+		return
+
+	for(var/obj/machinery/computer/shuttle_control/almayer/hangar/H in machines)
+		cdel(H)
+	lower_railings(1)
+	if(!at_station())
+		moving_status = SHUTTLE_INTRANSIT
+		playsound(locate(HangarElevatorUpper_x,HangarElevatorUpper_y,HangarElevatorUpper_z), 'sound/effects/bang.ogg', 40, 0)
+		playsound(locate(HangarElevatorLower_x,HangarElevatorLower_y,HangarElevatorLower_z), 'sound/effects/bang.ogg', 20, 0)
+		lower_railings(1)
+
+		if(!destination)
+			destination = get_location_area(!location)
+		if(!origin)
+			origin = get_location_area(location)
+		move(origin, destination)
+	moving_status = SHUTTLE_CRASHED
+
 /datum/shuttle/ferry/hangar/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE)
 		return
@@ -107,19 +167,25 @@
 		playsound(locate(HangarElevatorLower_x,HangarElevatorLower_y,HangarElevatorLower_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 
-/datum/shuttle/ferry/hangar/proc/lower_railings()
+/datum/shuttle/ferry/hangar/proc/lower_railings(var/force=0)
 	var/effective = 0
 	var/railing_id
 	var/turf/soundturf
+	var/other_id
 	if(at_station())
 		railing_id = railing_lower_id
+		other_id = railing_upper_id
 		soundturf = locate(HangarElevatorLower_x,HangarElevatorLower_y,HangarElevatorLower_z)
 	else
 		railing_id = railing_upper_id
+		other_id = railing_lower_id
 		soundturf = locate(HangarElevatorUpper_x,HangarElevatorUpper_y,HangarElevatorUpper_z)
 	for(var/obj/machinery/door/poddoor/M in machines)
 		if(M.id == railing_id && M.density)
 			effective = 1
+			spawn()
+				M.open()
+		if(force && M.id == other_id && M.density)
 			spawn()
 				M.open()
 	if(effective)

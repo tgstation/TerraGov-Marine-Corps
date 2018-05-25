@@ -120,24 +120,38 @@
 	spawn(2)
 		if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
 			AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
+			if(get_area(src) == get_area(get_turf(HangarUpperElevator)))
+				var/list/droppoints = list()
+				for(var/turf/TL in get_area(get_turf(HangarLowerElevator)))
+					droppoints += TL
+				if(ishuman(AM))
+					var/mob/living/carbon/human/human = AM
+					human.take_overall_damage(100, 0, "Blunt Trauma")
+				AM.loc = pick(droppoints)
+				for(var/mob/living/carbon/human/landedon in AM.loc)
+					if(AM == landedon)
+						continue
+					landedon.KnockDown(3)
+					landedon.take_overall_damage(50, 0, "Blunt Trauma")
+				playsound(AM.loc, 'sound/effects/bang.ogg', 10, 0)
+			else
+				for(var/obj/structure/disposaloutlet/retrieval/R in structure_list)
+					if(R.z != src.z)	continue
+					var/obj/structure/disposalholder/H = new()
+					AM.loc = H
+					sleep(10)
+					H.loc = R
+					for(var/mob/living/M in H)
+						M.take_overall_damage(100, 0, "Blunt Trauma")
+					sleep(20)
+					for(var/mob/living/M in H)
+						M.take_overall_damage(20, 0, "Blunt Trauma")
+					for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
+						cdel(C)
+					R.expel(H)
+					return
 
-			for(var/obj/structure/disposaloutlet/retrieval/R in structure_list)
-				if(R.z != src.z)	continue
-				var/obj/structure/disposalholder/H = new()
-				AM.loc = H
-				sleep(10)
-				H.loc = R
-				for(var/mob/living/M in H)
-					M.take_overall_damage(100, 0, "Blunt Trauma")
-				sleep(20)
-				for(var/mob/living/M in H)
-					M.take_overall_damage(20, 0, "Blunt Trauma")
-				for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
-					cdel(C)
-				R.expel(H)
-				return
-
-			cdel(AM)
+				cdel(AM)
 
 		else
 			for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
@@ -436,5 +450,3 @@
 	if(broken) return
 	ChangeTurf(/turf/open/floor/plating)
 	broken = TRUE
-
-
