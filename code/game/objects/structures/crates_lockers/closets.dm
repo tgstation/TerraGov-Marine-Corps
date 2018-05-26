@@ -211,30 +211,34 @@
 		src.attack_hand(user)
 	return
 
-/obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if(istype(O, /obj/screen)) //Fix for HUD elements making their way into the world	-Pete
+/obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
+	if(!opened)
 		return
-	if(O.loc == user)
+	if(!isturf(O.loc))
 		return
 	if(user.is_mob_incapacitated())
 		return
-	if((!(istype(O, /atom/movable)) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
+	if(O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1)
 		return
-	if(user.loc == null) //Just in case someone manages to get a closet into the blue light dimension, as unlikely as that seems
+	if(!isturf(user.loc))
 		return
-	if(!istype(user.loc, /turf)) //Are you in a container/closet/pod/etc?
+	if(ismob(O))
+		var/mob/M = O
+		if(M.buckled)
+			return
+	else if(!istype(O, /obj/item))
 		return
-	if(climbable && user == O)
-		do_climb(user)
-	if(!opened)
-		return
-	if(istype(O, /obj/structure/closet))
-		return
-	step_towards(O, loc)
-	if(user != O)
-		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
+
 	add_fingerprint(user)
-	return
+	if(user == O)
+		if(climbable)
+			do_climb(user)
+		return
+	else
+		step_towards(O, loc)
+		user.visible_message("<span class='danger'>[user] stuffs [O] into [src]!</span>")
+
+
 
 /obj/structure/closet/relaymove(mob/user)
 	if(!isturf(src.loc)) return
