@@ -20,7 +20,7 @@
 
 	proc/version_check()
 		if((client.byond_version<world.byond_version) || ((client.byond_version == world.byond_version) && (client.byond_build < world.byond_build)))
-			client << "\red You must update your Byond to play here.  Please go to http://www.byond.com/download/ and download either [world.byond_version] build: [world.byond_build] or newer.  This is currently the BETA client."
+			client << "\red You must update your Byond to play here.  Please go to http://www.byond.com/download/ and download either [world.byond_version] build: [world.byond_build] or newer.  This is currently the BETA client.  You can use this address:  http://www.byond.com/download/build/512/512.1425_byond.exe  "
 			message_admins("\blue [src] has attempted to login using [client.byond_version].[client.byond_build]", 1)
 			return 0
 		else
