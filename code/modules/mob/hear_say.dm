@@ -4,24 +4,6 @@
 	if(!client)
 		return
 
-	if(speaker && !speaker.client && istype(src,/mob/dead/observer) && client.prefs.toggles_chat & CHAT_GHOSTEARS && !speaker in view(src))
-			//Does the speaker have a client?  It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
-			//Or someone snoring.  So we make it where they won't hear it.
-		return
-
-	//make sure the air can transmit speech - hearer's side
-//	var/turf/T = get_turf(src)
-	/*
-	if ((T) && (!(istype(src, /mob/dead/observer)))) //Ghosts can hear even in vacuum.
-		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = (environment)? environment.return_pressure() : 0
-		if(pressure < SOUND_MINIMUM_PRESSURE && get_dist(speaker, src) > 1)
-			return
-
-		if (pressure < ONE_ATMOSPHERE*0.4) //sound distortion pressure, to help clue people in that the air is thin, even if it isn't a vacuum yet
-			italics = 1
-			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-	*/
 	if(sleeping || stat == 1)
 		hear_sleep(message)
 		return
@@ -31,7 +13,7 @@
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
-		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker in view(src)))
+		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker.z == z && get_dist(speaker, src) <= world.view))
 			message = stars(message)
 
 	if(!say_understands(speaker,language))
@@ -53,23 +35,13 @@
 	if(italics)
 		message = "<i>[message]</i>"
 
-	var/track = null
-	if(istype(src, /mob/dead/observer))
-		if(italics && client.prefs.toggles_chat & CHAT_GHOSTRADIO)
-			return
-		if(speaker_name != speaker.real_name && speaker.real_name)
-			speaker_name = "[speaker.real_name] ([speaker_name])"
-		track = "(<a href='byond://?src=\ref[src];track=\ref[speaker]'>follow</a>) "
-		if(client.prefs.toggles_chat & CHAT_GHOSTEARS && speaker in view(src))
-			message = "<b>[message]</b>"
-
 	if(sdisabilities & DEAF || ear_deaf)
 		if(speaker == src)
 			src << "<span class='warning'>You cannot hear yourself speak!</span>"
 		else
 			src << "<span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
-		src << "<span class='game say'><span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
+		src << "<span class='game say'><span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] [verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 			src.playsound_local(source, speech_sound, sound_vol, 1)
