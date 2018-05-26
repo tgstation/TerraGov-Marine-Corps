@@ -63,7 +63,7 @@
 		src << "<span class='xenowarning'>You must wait to produce enough acid to spray.</span>"
 		return
 
-	if (!check_plasma(50))
+	if (!check_plasma(150))
 		src << "<span class='xenowarning'>You must produce more plasma before doing this.</span>"
 		return
 
@@ -78,12 +78,15 @@
 		return
 
 	used_acid_spray = 1
-	use_plasma(50)
+	use_plasma(150)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1)
 	visible_message("<span class='xenowarning'>\The [src] spews forth a wide cone of acid!</span>", \
 	"<span class='xenowarning'>You spew forth a cone of acid!</span>", null, 5)
 
+	speed += 2
 	do_acid_spray_cone(target)
+	spawn(rand(20,30))
+		speed -= 2
 
 	spawn(acid_spray_cooldown)
 		used_acid_spray = 0
