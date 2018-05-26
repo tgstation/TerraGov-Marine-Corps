@@ -71,7 +71,7 @@
 				H.UpdateDamageIcon()
 			H.updatehealth()
 		else
-			H.adjustFireLoss(rand(5, 10)) //This is ticking damage!
+			H.adjustFireLoss(rand(2, 5)) //This is ticking damage!
 			H << "<span class='danger'>You are scalded by the burning acid!</span>"
 
 /obj/effect/xenomorph/spray/process()
