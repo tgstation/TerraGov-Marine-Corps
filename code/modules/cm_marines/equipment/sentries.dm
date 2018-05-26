@@ -46,6 +46,29 @@
 	var/has_plates = 0
 	var/is_welded = 0
 	var/has_sensor = 0
+	var/frame_hp = 100
+
+
+/obj/machinery/marine_turret_frame/proc/update_health(damage)
+	frame_hp -= damage
+	if(frame_hp <= 0)
+		if(has_cable)
+			new /obj/item/stack/cable_coil(loc, 10)
+		if(has_top)
+			new /obj/item/device/turret_top(loc)
+		if(has_sensor)
+			new /obj/item/device/turret_sensor(loc)
+		cdel(src)
+
+
+/obj/machinery/marine_turret_frame/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
+	"<span class='danger'>You slash [src]!</span>")
+	M.animation_attack_on(src)
+	M.flick_attack_overlay(src, "slash")
+	playsound(loc, "alien_claw_metal", 25)
+	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 /obj/machinery/marine_turret_frame/examine(mob/user as mob)
 	..()
@@ -65,9 +88,6 @@
 /obj/machinery/marine_turret_frame/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(!ishuman(user))
 		return
-	if(isnull(O))
-		return
-
 	//Rotate/Secure Sentry
 	if(istype(O,/obj/item/tool/wrench))
 		if(anchored)
@@ -165,10 +185,7 @@
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] installs [src]'s reinforced plating.</span>",
 				"<span class='notice'>You install [src]'s reinforced plating.</span>")
-				M.amount -= 10
-				if(M.amount <= 0)
-					user.drop_held_item()
-					cdel(M)
+				M.use(10)
 				return
 			else
 				user << "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>"
@@ -675,7 +692,7 @@
 			if(src && loc)
 				explosion(loc, -1, -1, 2, 0)
 				new /obj/machinery/marine_turret_frame(loc)
-				if(src)
+				if(!disposed)
 					cdel(src)
 		return
 
@@ -738,14 +755,11 @@
 	switch(severity)
 		if(1)
 			update_health(rand(90, 150))
-			return
 		if(2)
 			update_health(rand(50, 150))
-			return
 		if(3)
 			update_health(rand(30, 100))
-			return
-	return
+
 
 /obj/machinery/marine_turret/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) return //Larvae can't do shit

@@ -50,7 +50,7 @@
 				src << "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
 				KnockOut(5)
 		if(150 to INFINITY)
-			if(shock_stage == 150) emote("me", 1, "can no longer stand, collapsing!")
+			if(shock_stage == 150 && !lying) emote("me", 1, "can no longer stand, collapsing!")
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 			if(prob(7)) src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"

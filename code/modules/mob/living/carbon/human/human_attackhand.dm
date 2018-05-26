@@ -5,49 +5,28 @@
 		visible_message("\red <B>[M] attempted to touch [src]!</B>", null, null, 5)
 		return 0
 
+	if(M.gloves && istype(M.gloves, /obj/item/clothing/gloves/boxing/hologlove))
 
-	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/G = M.gloves
-		if(G.cell)
-			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
-				if(G.cell.charge >= 2500)
-					G.cell.use(2500)
-					visible_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>")
-					M.attack_log += text("\[[time_stamp()]\] <font color='red'>Stungloved [src.name] ([src.ckey])</font>")
-					src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stungloved by [M.name] ([M.ckey])</font>")
+		var/damage = rand(0, 9)
+		if(!damage)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
+			visible_message("\red <B>[M] has attempted to punch [src]!</B>")
+			return 0
+		var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
+		var/armor_block = run_armor_check(affecting, "melee")
 
-					msg_admin_attack("[M.name] ([M.ckey]) stungloved [src.name] ([src.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>)")
+		if(HULK in M.mutations)			damage += 5
 
-					var/armorblock = run_armor_check(M.zone_selected, "energy")
-					apply_effects(5,5,0,0,5,0,0,armorblock)
-					return 1
-				else
-					M << "\red Not enough charge! "
-					visible_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>")
-				return
+		playsound(loc, "punch", 25, 1)
 
-		if(istype(M.gloves , /obj/item/clothing/gloves/boxing/hologlove))
+		visible_message("\red <B>[M] has punched [src]!</B>")
 
-			var/damage = rand(0, 9)
-			if(!damage)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-				visible_message("\red <B>[M] has attempted to punch [src]!</B>")
-				return 0
-			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
-			var/armor_block = run_armor_check(affecting, "melee")
+		apply_damage(damage, HALLOSS, affecting, armor_block)
+		if(damage >= 9)
+			visible_message("\red <B>[M] has weakened [src]!</B>")
+			apply_effect(4, WEAKEN, armor_block)
 
-			if(HULK in M.mutations)			damage += 5
-
-			playsound(loc, "punch", 25, 1)
-
-			visible_message("\red <B>[M] has punched [src]!</B>")
-
-			apply_damage(damage, HALLOSS, affecting, armor_block)
-			if(damage >= 9)
-				visible_message("\red <B>[M] has weakened [src]!</B>")
-				apply_effect(4, WEAKEN, armor_block)
-
-			return
+		return
 
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)

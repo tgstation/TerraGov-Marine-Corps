@@ -18,8 +18,6 @@
 	var/base_category //what kind of equipment this base accepts.
 	var/ship_tag//used to associate the base to a dropship.
 	var/obj/structure/dropship_equipment/installed_equipment
-	var/base_open = TRUE //whether the base is open and ready to accept equipment.
-	var/openable_base = FALSE //can this base be open and closed
 
 	Dispose()
 		if(installed_equipment)
@@ -34,9 +32,6 @@
 				var/obj/structure/dropship_equipment/SE = PC.loaded
 				if(SE.equip_category != base_category)
 					user << "<span class='warning'>[SE] doesn't fit on [src].</span>"
-					return TRUE
-				if(!base_open)
-					user << "<span class='warning'>You must open [src] first.</span>"
 					return TRUE
 				if(installed_equipment) return TRUE
 				playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
@@ -57,22 +52,6 @@
 						break
 
 				SE.update_equipment()
-			else if(!PC.loaded && openable_base)
-				var/old_open = base_open
-				playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				if(!do_after(user, 20, FALSE, 5, BUSY_ICON_BUILD) && old_open == base_open) return TRUE
-				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				base_open = !base_open
-				if(base_open)
-					icon_state = "[initial(icon_state)]_open"
-					user << "<span class='notice'>You open [src].</span>"
-					if(installed_equipment)
-						installed_equipment.loc = loc
-				else
-					icon_state = "[initial(icon_state)]"
-					user << "<span class='notice'>You close [src].</span>"
-					if(installed_equipment)
-						installed_equipment.loc = src
 			return TRUE
 		. = ..()
 
@@ -117,8 +96,6 @@
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "fuel_base"
 	base_category = DROPSHIP_FUEL_EQP
-	base_open = FALSE
-	openable_base = TRUE
 
 /obj/effect/attach_point/fuel/dropship1
 	ship_tag = "USS Almayer Dropship 1"
@@ -147,6 +124,7 @@
 	anchored = TRUE
 	icon = 'icons/Marine/almayer_props.dmi'
 	climbable = TRUE
+	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	var/equip_category //on what kind of base this can be installed.
 	var/obj/effect/attach_point/ship_base //the ship base the equipment is currently installed on.
 	var/uses_ammo = FALSE //whether it uses ammo
@@ -318,10 +296,10 @@
 					else
 						deployed_turret.camera.network.Add("dropship2")
 				switch(dir)
-					if(SOUTH) deployed_turret.pixel_y = 16
-					if(NORTH) deployed_turret.pixel_y = -16
-					if(EAST) deployed_turret.pixel_x = -16
-					if(WEST) deployed_turret.pixel_x = 16
+					if(SOUTH) deployed_turret.pixel_y = 8
+					if(NORTH) deployed_turret.pixel_y = -8
+					if(EAST) deployed_turret.pixel_x = -8
+					if(WEST) deployed_turret.pixel_x = 8
 		else
 			dir = initial(dir)
 			if(deployed_turret)
