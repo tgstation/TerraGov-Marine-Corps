@@ -79,7 +79,7 @@
 	max_ammo_count = 200
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 20
-	point_cost = 200
+	point_cost = 150
 	var/bullet_spread_range = 4 //how far from the real impact turf can bullets land
 
 	examine(mob/user)
@@ -126,7 +126,7 @@
 	max_ammo_count = 400
 	ammo_used_per_firing = 40
 	bullet_spread_range = 5
-	point_cost = 400
+	point_cost = 300
 
 
 
@@ -149,41 +149,47 @@
 	warning_sound = 'sound/effects/nightvision.ogg'
 	point_cost = 300
 
-	examine(mob/user)
-		..()
-		user << "It's at [round(100*ammo_count/max_ammo_count)]% charge."
 
-	show_loaded_desc(mob/user)
-		if(ammo_count)
-			user << "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge."
-		else
-			user << "It's loaded with an empty [name]."
+/obj/structure/ship_ammo/laser_battery/examine(mob/user)
+	..()
+	user << "It's at [round(100*ammo_count/max_ammo_count)]% charge."
 
-	detonate_on(turf/impact)
-		playsound(impact, 'sound/effects/phasein.ogg', 40, 1)
-		var/laser_dir = pick(CARDINAL_ALL_DIRS)
-		var/opposite_laser_dir = turn(laser_dir, 180)
-		laser_burn(impact)
-		var/turf/current = impact
-		for(var/i = 0 to 5)
-			var/turf/T = get_step(current, laser_dir)
-			laser_burn(T)
-			current = T
-		current = impact
-		for(var/i = 0 to 5)
-			var/turf/T = get_step(current, opposite_laser_dir)
-			laser_burn(T)
-			current = T
-		if(!ammo_count && loc)
-			cdel(src) //deleted after last laser beam is fired and impact the ground.
+
+/obj/structure/ship_ammo/laser_battery/show_loaded_desc(mob/user)
+	if(ammo_count)
+		user << "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge."
+	else
+		user << "It's loaded with an empty [name]."
+
+
+/obj/structure/ship_ammo/laser_battery/detonate_on(turf/impact)
+	set waitfor = 0
+	var/list/turf_list = list()
+	for(var/turf/T in range(impact, 3))
+		turf_list += T
+	var/soundplaycooldown = 0
+	for(var/i=1 to 20)
+		var/turf/U = pick(turf_list)
+		turf_list -= U
+		sleep(1)
+		laser_burn(U)
+		if(!soundplaycooldown) //so we don't play the same sound 20 times very fast.
+			playsound(U, 'sound/effects/pred_vision.ogg', 20, 1)
+			soundplaycooldown = 3
+		soundplaycooldown--
+
+	if(!ammo_count && !disposed)
+		cdel(src) //deleted after last laser beam is fired and impact the ground.
+
+
 
 /obj/structure/ship_ammo/laser_battery/proc/laser_burn(turf/T)
 	for(var/mob/living/L in T)
 		L.adjustFireLoss(120)
-		L.adjust_fire_stacks(50)
+		L.adjust_fire_stacks(20)
 		L.IgniteMob()
 	if(!locate(/obj/flamer_fire) in T)
-		new/obj/flamer_fire(T, 10, 30)
+		new/obj/flamer_fire(T, 5, 30) //short but intense
 
 
 //Rockets
