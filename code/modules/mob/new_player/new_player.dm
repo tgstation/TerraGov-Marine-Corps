@@ -19,8 +19,9 @@
 		mob_list += src
 
 	proc/version_check()
-		if((client.byond_version != world.byond_version) || ((client.byond_version == world.byond_version) && (client.byond_build != world.byond_build)))
-			client << "<span class='warning'>Your version of Byond differs from the server. You may experience graphical glitches, crashes, or other errors. It is highly recommended to go to http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe to download and install the same version the server is using (v[world.byond_version].[world.byond_build]).</span>"
+		if((client.byond_version < world.byond_version) || ((client.byond_version == world.byond_version) && (client.byond_build < world.byond_build)))
+			client << "<span class='warning'>Your version of Byond differs from the server. You may experience graphical glitches, crashes, or other errors. Go to http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe to download and install the same version the server is using or higher (v[world.byond_version].[world.byond_build]).</span>"
+			cdel(client)
 
 	verb/new_player_panel()
 		set src = usr
