@@ -17,7 +17,7 @@
 
 /mob/living/carbon/Xenomorph/click(var/atom/A, var/list/mods)
 
-	if(mods["middle"])
+	if(mods["middle"] && !mods["shift"])
 		if(selected_ability && middle_mouse_toggle)
 			selected_ability.use_ability(A)
 			return 1
@@ -44,7 +44,7 @@
 				client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 			return 1
 
-	if(mods["middle"])
+	if(mods["middle"] && !mods["shift"])
 		if (selected_ability && middle_mouse_toggle)
 			selected_ability.use_ability(A)
 			return 1
@@ -61,7 +61,7 @@
 		if(is_charging)
 			stop_momentum(charge_dir)
 
-	if(mods["middle"])
+	if(mods["middle"] && !mods["shift"])
 		if(selected_ability && middle_mouse_toggle)
 			selected_ability.use_ability(A)
 			return 1
@@ -95,7 +95,7 @@
 					set_queen_overwatch(A)
 					return 1
 
-	if(mods["middle"])
+	if(mods["middle"] && !mods["shift"])
 		if (selected_ability && middle_mouse_toggle)
 			selected_ability.use_ability(A)
 			return 1
