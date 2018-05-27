@@ -876,4 +876,6 @@
 	icon_state = initial(icon_state)
 	tipped_level = 0
 	density = 1
+	var/matrix/A = matrix()
+	transform = A
 	stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS

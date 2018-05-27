@@ -192,7 +192,7 @@ obj/structure/bed/Dispose()
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
-	w_class = 3 //Fits in a backpack
+	w_class = 2 //Fits in a backpack
 	drag_delay = 1 //Pulling something on wheels is easy
 	var/rollertype = /obj/structure/bed/roller
 

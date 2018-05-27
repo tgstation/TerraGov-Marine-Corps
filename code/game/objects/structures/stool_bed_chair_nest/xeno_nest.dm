@@ -58,7 +58,6 @@
 					"<span class='danger'>You pull yourself free from \the [src]!</span>",\
 					"<span class='notice'>You hear squelching.</span>")
 					unbuckle()
-					resisting_ready = 0
 				if(resisting)
 					buckled_mob << "<span class='warning'>You're already trying to free yourself. Give it some time.</span>"
 					return
@@ -67,8 +66,9 @@
 					"<span class='warning'>You struggle to break free from \the [src].</span>",\
 					"<span class='notice'>You hear squelching.</span>")
 				resisting = 1
+				var/mob/oldbuckled = buckled_mob
 				spawn(nest_resist_time)
-					if(resisting && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
+					if(resisting && buckled_mob == oldbuckled && buckled_mob.stat != DEAD) //Must be alive and conscious
 						resisting = 0
 						resisting_ready = 1
 						if(ishuman(usr))
@@ -146,12 +146,15 @@
 	. = ..()
 	if(. && M.pulledby)
 		M.pulledby.stop_pulling()
+		resisting = 0 //just in case
+		resisting_ready = 0
 	update_icon()
 
 /obj/structure/bed/nest/unbuckle(mob/user as mob)
 	if(!buckled_mob)
 		return
 	resisting = 0
+	resisting_ready = 0
 	buckled_mob.pixel_y = 0
 	buckled_mob.old_y = 0
 	..()

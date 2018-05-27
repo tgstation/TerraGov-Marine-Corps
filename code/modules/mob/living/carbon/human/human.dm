@@ -868,7 +868,7 @@
 	if(istype(head, /obj/item/clothing))
 		var/obj/item/clothing/C = head
 		number += C.eye_protection
-	if(wear_mask)
+	if(istype(wear_mask))
 		number += wear_mask.eye_protection
 	if(glasses)
 		number += glasses.eye_protection

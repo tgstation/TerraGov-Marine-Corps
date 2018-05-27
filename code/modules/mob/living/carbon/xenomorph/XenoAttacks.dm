@@ -102,8 +102,20 @@
 
 		switch(M.a_intent)
 			if("help")
-				M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
-				"<span class='notice'>You caress \the [src] with your scythe-like arm.</span>", null, 5)
+
+				if(on_fire)
+					fire_stacks = max(fire_stacks - 1, 0)
+					playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+					M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
+						"<span class='warning'>You try to put out the fire on [src]!</span>", null, 5)
+					if(fire_stacks <= 0)
+						M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
+							"<span class='notice'>You extinguished the fire on [src].</span>", null, 5)
+						ExtinguishMob()
+					return 1
+				else
+					M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
+					"<span class='notice'>You caress \the [src] with your scythe-like arm.</span>", null, 5)
 
 			if("grab")
 				if(M == src || anchored)
