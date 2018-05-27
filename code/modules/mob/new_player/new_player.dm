@@ -19,12 +19,8 @@
 		mob_list += src
 
 	proc/version_check()
-		if((client.byond_version<world.byond_version) || ((client.byond_version == world.byond_version) && (client.byond_build < world.byond_build)))
-			client << "\red You must update your Byond to play here.  Please go to http://www.byond.com/download/ and download either [world.byond_version] build: [world.byond_build] or newer.  This is currently the BETA client.  You can use this address:  http://www.byond.com/download/build/512/512.1425_byond.exe  "
-			message_admins("\blue [src] has attempted to login using [client.byond_version].[client.byond_build]", 1)
-			return 0
-		else
-			return 1
+		if((client.byond_version != world.byond_version) || ((client.byond_version == world.byond_version) && (client.byond_build != world.byond_build)))
+			client << "<span class='warning'>Your version of Byond differs from the server. You may experience graphical glitches, crashes, or other errors. It is highly recommended to go to http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe to download and install the same version the server is using (v[world.byond_version].[world.byond_build]).</span>"
 
 	verb/new_player_panel()
 		set src = usr
@@ -95,8 +91,6 @@
 				return 1
 
 			if("ready")
-				if(!version_check())
-					return
 				if(!ticker || ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 					ready = !ready
 				new_player_panel_proc()
@@ -106,8 +100,6 @@
 				new_player_panel_proc()
 
 			if("observe")
-				if(!version_check())
-					return
 
 				if(alert(src,"Are you sure you wish to observe? You will have to wait at least 5 minutes before being able to respawn!","Player Setup","Yes","No") == "Yes")
 					if(!client)	return 1
@@ -143,9 +135,6 @@
 
 			if("late_join")
 
-				if(!version_check())
-					return
-
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
 					src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
 					return
@@ -167,8 +156,6 @@
 				LateChoices()
 
 			if("late_join_xeno")
-				if(!version_check())
-					return
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
 					src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
 					return
@@ -181,8 +168,6 @@
 							ticker.mode.transfer_xeno(src, new_xeno)
 
 			if("late_join_pred")
-				if(!version_check())
-					return
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
 					src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
 					return
