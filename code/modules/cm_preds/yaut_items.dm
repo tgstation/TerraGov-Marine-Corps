@@ -128,6 +128,7 @@
 	allowed = list(/obj/item/weapon/harpoon,
 			/obj/item/weapon/gun/launcher/spike,
 			/obj/item/weapon/gun/energy/plasmarifle,
+			/obj/item/weapon/gun/energy/plasmapistol,
 			/obj/item/weapon/yautja_chain,
 			/obj/item/weapon/yautja_knife,
 			/obj/item/weapon/yautja_sword,

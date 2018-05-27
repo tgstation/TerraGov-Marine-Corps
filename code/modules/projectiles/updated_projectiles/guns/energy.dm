@@ -86,16 +86,6 @@
 	var/last_regen = 0
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
-/obj/item/weapon/gun/energy/plasmarifle/Dispose()
-	. = ..()
-	processing_objects.Remove(src)
-
-/obj/item/weapon/gun/energy/plasmarifle/process()
-	if(charge_time < 100)
-		charge_time++
-		if(charge_time == 99)
-			if(ismob(loc)) loc << "<span class='notice'>[src] hums as it achieves maximum charge.</span>"
-		update_icon()
 
 /obj/item/weapon/gun/energy/plasmarifle/New()
 	..()
@@ -106,6 +96,20 @@
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
 	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+
+
+/obj/item/weapon/gun/energy/plasmarifle/Dispose()
+	. = ..()
+	processing_objects.Remove(src)
+
+
+/obj/item/weapon/gun/energy/plasmarifle/process()
+	if(charge_time < 100)
+		charge_time++
+		if(charge_time == 99)
+			if(ismob(loc)) loc << "<span class='notice'>[src] hums as it achieves maximum charge.</span>"
+		update_icon()
+
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
@@ -176,6 +180,98 @@
 
 
 
+
+
+/obj/item/weapon/gun/energy/plasmapistol
+	name = "plasma pistol"
+	desc = "A plasma pistol capable of rapid fire. It has an integrated battery."
+	icon = 'icons/obj/items/predator.dmi'
+	icon_state = "plasmapistol"
+	item_state = "plasmapistol"
+	origin_tech = "combat=8;materials=7;bluespace=6"
+	unacidable = 1
+	fire_sound = 'sound/weapons/pulse3.ogg'
+	flags_equip_slot = SLOT_WAIST
+	ammo = /datum/ammo/energy/yautja/pistol
+	muzzle_flash = null // TO DO, add a decent one.
+	w_class = 3
+	var/charge_time = 40
+	flags_gun_features = GUN_UNUSUAL_DESIGN
+
+
+/obj/item/weapon/gun/energy/plasmapistol/New()
+	..()
+	processing_objects.Add(src)
+	verbs -= /obj/item/weapon/gun/verb/field_strip
+	verbs -= /obj/item/weapon/gun/verb/toggle_burst
+	verbs -= /obj/item/weapon/gun/verb/empty_mag
+	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+
+
+/obj/item/weapon/gun/energy/plasmapistol/Dispose()
+	. = ..()
+	processing_objects.Remove(src)
+
+
+/obj/item/weapon/gun/energy/plasmapistol/process()
+	if(charge_time < 40)
+		charge_time++
+		if(charge_time == 39)
+			if(ismob(loc)) loc << "<span class='notice'>[src] hums as it achieves maximum charge.</span>"
+
+
+
+/obj/item/weapon/gun/energy/plasmapistol/set_gun_config_values()
+	fire_delay = config.med_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.high_hit_accuracy_mult
+	scatter = config.low_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+
+
+
+/obj/item/weapon/gun/energy/plasmapistol/examine(mob/user)
+	if(isYautja(user))
+		..()
+		user << "It currently has [charge_time] / 40 charge."
+	else
+		user << "This thing looks like an alien rifle of some kind. Strange."
+
+
+/obj/item/weapon/gun/energy/plasmapistol/able_to_fire(mob/user)
+	if(!isYautja(user))
+		user << "<span class='warning'>You have no idea how this thing works!</span>"
+		return
+	else
+		return ..()
+
+/obj/item/weapon/gun/energy/plasmapistol/load_into_chamber()
+	if(charge_time < 1) return
+	var/obj/item/projectile/P = create_bullet(ammo)
+	P.SetLuminosity(1)
+	in_chamber = P
+	charge_time -= 1
+	return in_chamber
+
+/obj/item/weapon/gun/energy/plasmapistol/reload_into_chamber()
+	return 1
+
+/obj/item/weapon/gun/energy/plasmapistol/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+	cdel(projectile_to_fire)
+	if(refund) charge_time *= 2
+	return 1
+
+
+
+
+
+
+
+
+
+
+
 /obj/item/weapon/gun/energy/plasma_caster
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "plasma"
@@ -196,69 +292,76 @@
 	flags_item = NOBLUDGEON|DELONDROP //Can't bludgeon with this.
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
-	New()
-		..()
-		accuracy_mult_unwielded += config.max_hit_accuracy_mult
-		fire_delay = config.high_fire_delay
-		verbs -= /obj/item/weapon/gun/verb/field_strip
-		verbs -= /obj/item/weapon/gun/verb/toggle_burst
-		verbs -= /obj/item/weapon/gun/verb/empty_mag
-		verbs -= /obj/item/weapon/gun/verb/activate_attachment
-		verbs -= /obj/item/weapon/gun/verb/use_unique_action
+/obj/item/weapon/gun/energy/plasma_caster/New()
+	..()
+	verbs -= /obj/item/weapon/gun/verb/field_strip
+	verbs -= /obj/item/weapon/gun/verb/toggle_burst
+	verbs -= /obj/item/weapon/gun/verb/empty_mag
+	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
-	Dispose()
-		. = ..()
-		source = null
+/obj/item/weapon/gun/energy/plasma_caster/Dispose()
+	. = ..()
+	source = null
 
-	attack_self(mob/living/user)
-		switch(mode)
-			if(0)
-				mode = 1
-				charge_cost = 100
-				fire_delay = config.med_fire_delay * 4
-				fire_sound = 'sound/weapons/emitter2.ogg'
-				user << "<span class='notice'>[src] is now set to fire medium plasma blasts.</span>"
-				ammo = ammo_list[/datum/ammo/energy/yautja/caster/blast]
-			if(1)
-				mode = 2
-				charge_cost = 300
-				fire_delay = config.high_fire_delay * 20
-				fire_sound = 'sound/weapons/pulse.ogg'
-				user << "<span class='notice'>[src] is now set to fire heavy plasma spheres.</span>"
-				ammo = ammo_list[/datum/ammo/energy/yautja/caster/sphere]
-			if(2)
-				mode = 0
-				charge_cost = 30
-				fire_delay = config.high_fire_delay
-				fire_sound = 'sound/weapons/pred_lasercannon.ogg'
-				user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
-				ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
-	dropped(mob/living/carbon/human/M)
-		playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
-		..()
+/obj/item/weapon/gun/energy/plasma_caster/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.high_fire_delay
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
 
-	able_to_fire(mob/user)
-		if(!source)	return
-		if(!isYautja(user))
-			user << "<span class='warning'>You have no idea how this thing works!</span>"
-			return
+/obj/item/weapon/gun/energy/plasma_caster/attack_self(mob/living/user)
+	switch(mode)
+		if(0)
+			mode = 1
+			charge_cost = 100
+			fire_delay = config.med_fire_delay * 4
+			fire_sound = 'sound/weapons/emitter2.ogg'
+			user << "<span class='notice'>[src] is now set to fire medium plasma blasts.</span>"
+			ammo = ammo_list[/datum/ammo/energy/yautja/caster/blast]
+		if(1)
+			mode = 2
+			charge_cost = 300
+			fire_delay = config.high_fire_delay * 20
+			fire_sound = 'sound/weapons/pulse.ogg'
+			user << "<span class='notice'>[src] is now set to fire heavy plasma spheres.</span>"
+			ammo = ammo_list[/datum/ammo/energy/yautja/caster/sphere]
+		if(2)
+			mode = 0
+			charge_cost = 30
+			fire_delay = config.high_fire_delay
+			fire_sound = 'sound/weapons/pred_lasercannon.ogg'
+			user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
+			ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
-		return ..()
+/obj/item/weapon/gun/energy/plasma_caster/dropped(mob/living/carbon/human/M)
+	playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
+	..()
 
-	load_into_chamber()
-		if(source.drain_power(usr,charge_cost))
-			in_chamber = create_bullet(ammo)
-			return in_chamber
+/obj/item/weapon/gun/energy/plasma_caster/able_to_fire(mob/user)
+	if(!source)	return
+	if(!isYautja(user))
+		user << "<span class='warning'>You have no idea how this thing works!</span>"
+		return
 
-	reload_into_chamber()
-		return 1
+	return ..()
 
-	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-		cdel(projectile_to_fire)
-		if(refund)
-			source.charge += charge_cost
-			var/perc = source.charge / source.charge_max * 100
-			var/mob/living/carbon/human/user = usr //Hacky...
-			user.update_power_display(perc)
-		return 1
+/obj/item/weapon/gun/energy/plasma_caster/load_into_chamber()
+	if(source.drain_power(usr,charge_cost))
+		in_chamber = create_bullet(ammo)
+		return in_chamber
+
+/obj/item/weapon/gun/energy/plasma_caster/reload_into_chamber()
+	return 1
+
+/obj/item/weapon/gun/energy/plasma_caster/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+	cdel(projectile_to_fire)
+	if(refund)
+		source.charge += charge_cost
+		var/perc = source.charge / source.charge_max * 100
+		var/mob/living/carbon/human/user = usr //Hacky...
+		user.update_power_display(perc)
+	return 1
