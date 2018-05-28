@@ -343,7 +343,7 @@ var/MapDaemon_UID = -1 //-1 by default so we know when to set it
 	var/list/L = list()
 	L += "Don't care"
 	L += NEXT_MAP_CANDIDATES.Copy()
-	var/selection = input("Vote for the next map to play on", "Vote:", "Don't care") in L
+	var/selection = input("Vote for the next map to play on", "Vote:", "Don't care") as null|anything in L
 
 	if(!selection || !src) return
 
@@ -364,7 +364,7 @@ var/MapDaemon_UID = -1 //-1 by default so we know when to set it
 
 	if(alert("Are you sure you want to force the next map?",, "Yes", "No") == "No") return
 
-	var/selection = input("Vote for the next map to play on", "Vote:", "LV-624") in NEXT_MAP_CANDIDATES
+	var/selection = input("Vote for the next map to play on", "Vote:", "LV-624") as null|anything in NEXT_MAP_CANDIDATES
 
 	if(!selection || !src) return
 
@@ -413,7 +413,7 @@ var/enable_map_vote = 1
 			var/selection = ""
 			switch(alert("Do you want to add one of the default map possibilities?",, "Yes", "No"))
 				if("Yes")
-					selection = input("Pick a default map.") in DEFAULT_NEXT_MAP_CANDIDATES
+					selection = input("Pick a default map.") as null|anything in DEFAULT_NEXT_MAP_CANDIDATES
 				if("No")
 					if(alert("Warning! This is a very dangerous option. If there is a typo in the map name and your choice wins, MapDaemon will crash. Please make sure you enter the exact name of the map. Are you sure you want to continue?", "WARNING", "Yes", "No") == "No") return
 					selection = input("Enter a map at your own risk.")
@@ -426,7 +426,7 @@ var/enable_map_vote = 1
 			message_admins("[src] just added [selection] to the map pool.")
 			log_admin("[src] just added [selection] to the map pool.")
 		if("Remove")
-			var/selection = input("Pick a map to remove from the pool") in NEXT_MAP_CANDIDATES
+			var/selection = input("Pick a map to remove from the pool") as null|anything in NEXT_MAP_CANDIDATES
 			if(!selection || !src) return
 			NEXT_MAP_CANDIDATES.Remove(selection)
 			message_admins("[src] just removed [selection] from the map pool.")
