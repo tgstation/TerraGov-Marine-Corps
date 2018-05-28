@@ -438,7 +438,7 @@ datum/preferences
 	dat += "</div></body></html>"
 	user << browse(dat, "window=preferences;size=650x700")
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 21, list/splitJobs = list(), width = 450, height = 600)
+/datum/preferences/proc/SetChoices(mob/user, limit = 22, list/splitJobs = list(), width = 450, height = 650)
 	if(!RoleAuthority) return
 
 	//limit 	 - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
