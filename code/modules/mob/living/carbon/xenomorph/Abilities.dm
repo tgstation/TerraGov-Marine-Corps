@@ -1018,7 +1018,7 @@
 			if("Ravager")
 				newcaste = "Lurker"
 			if("Praetorian")
-				newcaste = "Spitter"
+				newcaste = "Warrior"
 			if("Boiler")
 				newcaste = "Spitter"
 			if("Spitter")
