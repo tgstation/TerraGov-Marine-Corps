@@ -257,7 +257,7 @@ datum/preferences
 
 	var/dat = "<html><head><style>"
 	dat += "#wrapper 		{position: relative; width: 625px; height: 200px; margin: 0 auto;}"
-	dat += "#preview		{position: absolute; text-align: center; width: 250px; top: 30px; left: 300px;}"
+	dat += "#preview		{position: absolute; top: 30px; left: 300px;}"
 	dat += "#right			{position: absolute; top: 201px; left: 300px;}"
 	dat += "</style></head>"
 	dat += "<body>"
@@ -377,25 +377,17 @@ datum/preferences
 	dat += "<big><b><u>UI Customization:</u></b></big><br>"
 	dat += "<b>Style:</b> <a href='?_src_=prefs;preference=ui'><b>[UI_style]</b></a><br>"
 	dat += "<b>Color</b>: <a href='?_src_=prefs;preference=UIcolor'><b>[UI_style_color]</b></a> <table style='display:inline;' bgcolor='[UI_style_color]'><tr><td>__</td></tr></table><br>"
-	dat += "<b>Alpha</b>: <a href='?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br><br>"
+	dat += "<b>Alpha</b>: <a href='?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a>"
 
-	//dat += "</td><td width='300px' height='300px'>"
-
-
-	// dat += "<b><a href=\"byond://?src=\ref[user];preference=antagoptions;active=0\">Set Antag Options</b></a><br>"
-
-	// dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)][used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
-
-	dat += "<br>"
-
+	
 	dat += "<div id='preview'>"
 	dat += "<img src=previewicon.png width=64 height=64><img src=previewicon2.png width=64 height=64 margin-left=auto margin-right=auto>"
 	//dat += "</div>"
 	dat += "<br>"
-	dat += "<b>Hair:</b>        Style: <a href='?_src_=prefs;preference=h_style;task=input'>[h_style]</a> | <a href='?_src_=prefs;preference=hair;task=input'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
+	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=h_style;task=input'>[h_style]</a> | <a href='?_src_=prefs;preference=hair;task=input'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
 
-	dat += "<b>Facial Hair:</b> Style: <a href='?_src_=prefs;preference=f_style;task=input'>[f_style]</a> | <a href='?_src_=prefs;preference=facial;task=input'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
+	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=f_style;task=input'>[f_style]</a> | <a href='?_src_=prefs;preference=facial;task=input'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
 
 	dat += "<b>Eye:</b> <a href='?_src_=prefs;preference=eyes;task=input'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
@@ -436,7 +428,7 @@ datum/preferences
 	dat += "<br>"
 
 	dat += "</div></body></html>"
-	user << browse(dat, "window=preferences;size=650x700")
+	user << browse(dat, "window=preferences;size=670x830")
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 22, list/splitJobs = list(), width = 450, height = 650)
 	if(!RoleAuthority) return
