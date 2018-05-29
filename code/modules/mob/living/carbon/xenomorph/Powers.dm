@@ -360,6 +360,9 @@
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
 	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [L.display_name] off of [M.name] ([M.ckey])</font>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [L.display_name] ripped off by [src.name] ([src.ckey])</font>")	
+	log_attack("[src.name] ([src.ckey]) ripped the [L.display_name] off of [M.name] ([M.ckey])")
 
 	L.droplimb(1)
 
