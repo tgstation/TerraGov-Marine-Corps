@@ -146,7 +146,7 @@ proc/isXenoHivelord(A)
 	return 0
 
 proc/isXenoHunter(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Hunter))
+	if(istype(A, /mob/living/carbon/Xenomorph/Lurker))
 		return 1
 	return 0
 

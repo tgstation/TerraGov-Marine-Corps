@@ -518,6 +518,10 @@
 				user << "Someone's already controlling it."
 				return
 		else
+
+			if(!config.allow_synthetic_gun_use && istype(user.species , /datum/species/synthetic))
+				user << "<span class='warning'>Your program does not allow you to use firearms.</span>"
+				return
 			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 				user << "You're already manning something!"
 				return

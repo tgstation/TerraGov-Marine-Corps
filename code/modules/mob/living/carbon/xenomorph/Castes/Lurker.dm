@@ -1,6 +1,6 @@
 //Hunter Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
-/mob/living/carbon/Xenomorph/Hunter
+/mob/living/carbon/Xenomorph/Lurker
 	caste = "Lurker"
 	name = "Lurker"
 	desc = "A beefy, fast alien with sharp claws."

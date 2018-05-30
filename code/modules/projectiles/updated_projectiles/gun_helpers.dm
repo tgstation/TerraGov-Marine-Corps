@@ -497,9 +497,27 @@ should be alright.
 		usr << "<span class='warning'>This weapon does not have a burst fire mode!</span>"
 		return
 
-	usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] [src]'s burst fire mode.</span>"
+	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
+		return
+
 	playsound(usr, 'sound/machines/click.ogg', 15, 1)
-	flags_gun_features ^= GUN_BURST_ON
+	if(flags_gun_features & GUN_HAS_FULL_AUTO)
+		if(flags_gun_features & GUN_BURST_ON)
+			if(flags_gun_features & GUN_FULL_AUTO_ON)
+				flags_gun_features &= ~GUN_FULL_AUTO_ON
+				flags_gun_features &= ~GUN_BURST_ON
+				usr << "<span class='notice'>\icon[src] You set [src] to single fire mode.</span>"
+			else
+				flags_gun_features|= GUN_FULL_AUTO_ON
+				usr << "<span class='notice'>\icon[src] You set [src] to full auto mode.</span>"
+		else
+			flags_gun_features |= GUN_BURST_ON
+			usr << "<span class='notice'>\icon[src] You set [src] to burst fire mode.</span>"
+	else
+		flags_gun_features ^= GUN_BURST_ON
+
+		usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>"
+
 
 /obj/item/weapon/gun/verb/empty_mag()
 	set category = "Weapons"

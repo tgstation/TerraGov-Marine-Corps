@@ -519,8 +519,8 @@ Defined in conflicts.dm of the #defines folder.
 
 	New()
 		..()
-		accuracy_mod = -config.med_hit_accuracy_mult
-		scatter_mod = config.med_scatter_value
+		accuracy_mod = -config.low_hit_accuracy_mult
+		scatter_mod = config.min_scatter_value
 		delay_mod = -config.mlow_fire_delay
 		burst_mod = -config.min_burst_value
 		accuracy_unwielded_mod = -config.med_hit_accuracy_mult
@@ -698,7 +698,7 @@ Defined in conflicts.dm of the #defines folder.
 		accuracy_mod = config.min_hit_accuracy_mult
 		recoil_mod = -config.min_recoil_value
 		scatter_mod = -config.min_scatter_value
-		delay_mod = config.low_fire_delay
+		delay_mod = config.mlow_fire_delay
 		movement_acc_penalty_mod = -1
 		accuracy_unwielded_mod = config.min_hit_accuracy_mult
 		recoil_unwielded_mod = -config.min_recoil_value
@@ -986,7 +986,9 @@ Defined in conflicts.dm of the #defines folder.
 	New()
 		..()
 		recoil_mod = -config.min_recoil_value
+		accuracy_mod = config.min_hit_accuracy_mult
 		accuracy_unwielded_mod = -config.min_hit_accuracy_mult
+		scatter_mod = -config.min_scatter_value
 		scatter_unwielded_mod = config.min_scatter_value
 
 
@@ -1005,6 +1007,7 @@ Defined in conflicts.dm of the #defines folder.
 		burst_scatter_mod = -2
 		movement_acc_penalty_mod = -3
 		scatter_unwielded_mod = -config.med_scatter_value
+		accuracy_unwielded_mod = config.low_hit_accuracy_mult
 
 
 /obj/item/attachable/lasersight
@@ -1021,7 +1024,7 @@ Defined in conflicts.dm of the #defines folder.
 		accuracy_mod = config.min_hit_accuracy_mult
 		movement_acc_penalty_mod = -1
 		scatter_unwielded_mod = -config.low_scatter_value
-		accuracy_unwielded_mod = config.low_hit_accuracy_mult
+		accuracy_unwielded_mod = config.med_hit_accuracy_mult
 
 
 

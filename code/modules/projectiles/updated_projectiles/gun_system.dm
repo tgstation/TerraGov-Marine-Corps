@@ -427,7 +427,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, flag, params)
 	if(flag)	return ..() //It's adjacent, is the user, or is on the user's person
 	if(!istype(A)) return
-	if(flags_gun_features & GUN_BURST_FIRING) return
+	if(flags_gun_features & GUN_BURST_FIRING)
+		if(flags_gun_features & GUN_FULL_AUTO_ON)
+			flags_gun_features &= ~GUN_BURST_FIRING
+		return
 
 	if(user && user.client && user.gun_mode && !(A in target)) PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 	else															  Fire(A,user,params) //Otherwise, fire normally.
@@ -553,11 +556,16 @@ and you're good to go.
 	var/bullets_fired = 1
 	if(!check_for_attachment_fire && (flags_gun_features & GUN_BURST_ON) && burst_amount > 1)
 		bullets_fired = burst_amount
+		if(flags_gun_features & GUN_FULL_AUTO_ON)
+			bullets_fired = 50
 		flags_gun_features |= GUN_BURST_FIRING
 
 	var/i
 	for(i = 1 to bullets_fired)
 		if(loc != user) break //If you drop it while bursting, for example.
+
+		if(i > 1 && !(flags_gun_features & GUN_BURST_FIRING))//no longer burst firing somehow
+			break
 
 		//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 		var/obj/item/projectile/projectile_to_fire = load_into_chamber(user) //Load a bullet in or check for existing one.
