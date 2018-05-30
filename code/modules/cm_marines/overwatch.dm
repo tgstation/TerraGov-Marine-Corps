@@ -587,7 +587,7 @@
 		return
 	if(current_squad.squad_leader && current_squad.squad_leader.stat != DEAD)
 		send_to_squad("Attention: [current_squad.squad_leader] is demoted. A new Squad Leader has been set: [H.real_name].")
-		visible_message("\icon[src] <span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been demoted and remplaced by [H.real_name]! Logging to enlistment files.</span>")
+		visible_message("\icon[src] <span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been demoted and replaced by [H.real_name]! Logging to enlistment files.</span>")
 		current_squad.demote_squad_leader()
 	else
 		send_to_squad("Attention: A new Squad Leader has been set: [H.real_name].")
