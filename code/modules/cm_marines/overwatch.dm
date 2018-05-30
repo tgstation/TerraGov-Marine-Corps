@@ -120,6 +120,7 @@
 						var/mob_state = ""
 						var/role = "unknown"
 						var/act_sl = ""
+						var/fteam = ""
 						var/dist = "<b>???</b>"
 						var/area_name = "<b>???</b>"
 						var/mob/living/carbon/human/H
@@ -160,6 +161,16 @@
 									dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 
+							if(!H.key || !H.client)
+								if(H.stat != DEAD)
+									mob_state += " (SSD)"
+
+
+							if(istype(H.wear_id, /obj/item/card/id))
+								var/obj/item/card/id/ID = H.wear_id
+								if(ID.assigned_fireteam)
+									fteam = " \[[ID.assigned_fireteam]\]"
+
 						else //listed marine was deleted or gibbed, all we have is their name
 							for(var/datum/data/record/t in data_core.general)
 								if(t.fields["name"] == X)
@@ -170,7 +181,7 @@
 							dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 
-						var/marine_infos = "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+						var/marine_infos = "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 						switch(role)
 							if("Squad Leader")
 								leader_text += marine_infos

@@ -879,6 +879,16 @@
 		accurate_range = config.short_shell_range
 		shell_speed = config.fast_shell_speed
 
+
+/datum/ammo/energy/yautja/pistol
+	name = "plasma pistol bolt"
+	icon_state = "ion"
+	flags_ammo_behavior = AMMO_ENERGY
+	New()
+		..()
+		damage = config.lmed_hit_damage
+		shell_speed = config.reg_shell_speed
+
 /datum/ammo/energy/yautja/caster/bolt
 	name = "plasma bolt"
 	icon_state = "ion"
