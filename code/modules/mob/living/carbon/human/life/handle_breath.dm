@@ -33,6 +33,9 @@
 			if(isobj(loc))
 				var/obj/location_as_object = loc
 				air_info = location_as_object.handle_internal_lifeform(src)
+				if(istype(wear_mask) && air_info)
+					air_info = wear_mask.filter_air(air_info)//some gas masks can modify the gas we're breathing
+
 			else if(isturf(loc))
 				var/turf/T = loc
 				air_info = T.return_air()

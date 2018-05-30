@@ -289,7 +289,8 @@
 	icon_state = "black"
 	density = 1
 
-
+/turf/open/gm/empty/is_weedable()
+	return FALSE
 
 
 
