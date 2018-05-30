@@ -1,6 +1,7 @@
 
 /obj/machinery/line_nexter
 	name = "Turnstile"
+	desc = "a one way barrier combined with a bar to pull people out of line."
 	icon = 'icons/Marine/barricades.dmi'
 	density = 1
 	icon_state = "turnstile"
