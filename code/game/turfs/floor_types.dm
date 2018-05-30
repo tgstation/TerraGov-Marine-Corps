@@ -17,6 +17,9 @@
 	floor_tile = null
 	intact_tile = 0
 
+/turf/open/floor/plating/almayer
+	icon = 'icons/turf/almayer.dmi'
+
 /turf/open/floor/plating/airless
 	icon_state = "plating"
 	name = "airless plating"
@@ -105,6 +108,9 @@
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "black"
+
+/turf/open/floor/almayer/empty/is_weedable()
+	return FALSE
 
 /turf/open/floor/almayer/empty/ex_act(severity) //Should make it indestructable
 	return

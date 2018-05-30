@@ -213,14 +213,6 @@
 	unacidable = 1 // can toggle it off anyway
 	layer = ABOVE_MOB_LAYER
 
-	attackby(var/obj/item/W, var/mob/living/M)
-		if(W.sharp == IS_SHARP_ITEM_BIG)
-			if(istype(src, /obj/structure/jungle/vines))
-				M << "<span class='warning'>You cut \the [src] away with \the [W].</span>"
-				M.animation_attack_on(src)
-				playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
-				cdel(src)
-
 /obj/structure/jungle/shrub
 	name = "jungle foliage"
 	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
@@ -262,15 +254,27 @@
 	name = "vines"
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
-	layer = ABOVE_MOB_LAYER
-	New()
-		icon_state = pick("Light1","Light2","Light3")
+
+/obj/structure/jungle/vines/attackby(obj/item/W, mob/living/user)
+	if(W.sharp == IS_SHARP_ITEM_BIG)
+		user << "<span class='warning'>You cut \the [src] away with \the [W].</span>"
+		user.animation_attack_on(src)
+		playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
+		cdel(src)
+	else
+		. = ..()
+
+/obj/structure/jungle/vines/New()
+	..()
+	icon_state = pick("Light1","Light2","Light3")
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = 1
-	New()
-		icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
+
+/obj/structure/jungle/vines/heavy/New()
+	..()
+	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 
 /obj/structure/jungle/tree/grasscarpet
 	name = "thick grass"
