@@ -518,10 +518,6 @@
 				user << "Someone's already controlling it."
 				return
 		else
-
-			if(!config.allow_synthetic_gun_use && istype(user.species , /datum/species/synthetic))
-				user << "<span class='warning'>Your program does not allow you to use firearms.</span>"
-				return
 			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 				user << "You're already manning something!"
 				return
@@ -551,6 +547,7 @@
 		user.unset_interaction()
 
 /obj/machinery/m56d_hmg/clicked(var/mob/user, var/list/mods) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
+	if (isobserver(user)) return
 	if (mods["ctrl"])
 		if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
 			visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
