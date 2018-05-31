@@ -356,7 +356,7 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color)
+/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount)
 	..()
 	if (f_color)
 		flame_color = f_color
@@ -365,6 +365,22 @@
 	if(fire_lvl) firelevel = fire_lvl
 	if(burn_lvl) burnlevel = burn_lvl
 	processing_objects.Add(src)
+
+	if(fire_spread_amount > 0)
+		var/turf/T
+		for(var/dirn in cardinal)
+			T = get_step(loc, dirn)
+			if(istype(T,/turf/open/space)) continue
+			if(locate(/obj/flamer_fire) in T) continue //No stacking
+			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
+			if(new_spread_amt)
+				for(var/obj/O in T)
+					if(!O.CanPass(src, loc))
+						new_spread_amt = 0
+						break
+			spawn(0) //delay so the newer flame don't block the spread of older flames
+				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt)
+
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))

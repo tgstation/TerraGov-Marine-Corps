@@ -795,15 +795,15 @@ Queen		 0.0	 0.1	 0.2	 0.3
 	..()
 	upgrade_xeno(3)
 
-/mob/living/carbon/Xenomorph/Hunter/mature/New()
+/mob/living/carbon/Xenomorph/Lurker/mature/New()
 	..()
 	upgrade_xeno(1)
 
-/mob/living/carbon/Xenomorph/Hunter/elite/New()
+/mob/living/carbon/Xenomorph/Lurker/elite/New()
 	..()
 	upgrade_xeno(2)
 
-/mob/living/carbon/Xenomorph/Hunter/ancient/New()
+/mob/living/carbon/Xenomorph/Lurker/ancient/New()
 	..()
 	upgrade_xeno(3)
 
@@ -840,5 +840,32 @@ Queen		 0.0	 0.1	 0.2	 0.3
 	upgrade_xeno(2)
 
 /mob/living/carbon/Xenomorph/Boiler/ancient/New()
+	..()
+	upgrade_xeno(3)
+
+
+
+/mob/living/carbon/Xenomorph/Defender/mature/New()
+	..()
+	upgrade_xeno(1)
+
+/mob/living/carbon/Xenomorph/Defender/elite/New()
+	..()
+	upgrade_xeno(2)
+
+/mob/living/carbon/Xenomorph/Defender/ancient/New()
+	..()
+	upgrade_xeno(3)
+
+
+/mob/living/carbon/Xenomorph/Warrior/mature/New()
+	..()
+	upgrade_xeno(1)
+
+/mob/living/carbon/Xenomorph/Warrior/elite/New()
+	..()
+	upgrade_xeno(2)
+
+/mob/living/carbon/Xenomorph/Warrior/ancient/New()
 	..()
 	upgrade_xeno(3)

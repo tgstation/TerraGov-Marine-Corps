@@ -144,12 +144,21 @@ obj/structure/bed/Dispose()
 				cdel(src)
 
 
-/obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wrench))
 		if(buildstacktype)
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			new buildstacktype(loc, buildstackamount)
 			cdel(src)
+
+	else if(istype(W, /obj/item/grab) && !buckled_mob)
+		var/obj/item/grab/G = W
+		if(ismob(G.grabbed_thing))
+			var/mob/M = G.grabbed_thing
+			user << "<span class='notice'>You place [M] on [src].</span>"
+			M.forceMove(loc)
+		return TRUE
+
 	else
 		. = ..()
 

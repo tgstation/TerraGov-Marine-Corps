@@ -34,6 +34,8 @@
 #define GUN_WY_RESTRICTED		2048
 #define GUN_SPECIALIST			4096
 #define GUN_WIELDED_FIRING_ONLY	8192
+#define GUN_HAS_FULL_AUTO		16384
+#define GUN_FULL_AUTO_ON		32768
 
 //Gun attachable related flags.
 #define ATTACH_PASSIVE		1

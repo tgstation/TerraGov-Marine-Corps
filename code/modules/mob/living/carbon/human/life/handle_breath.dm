@@ -11,7 +11,7 @@
 	if(species && (species.flags & NO_BREATHE || species.flags & IS_SYNTHETIC))
 		return
 
-	var/list/air_info = loc.return_air()
+	var/list/air_info
 
 	// HACK NEED CHANGING LATER
 	if(health < config.health_threshold_crit && !reagents.has_reagent("inaprovaline"))

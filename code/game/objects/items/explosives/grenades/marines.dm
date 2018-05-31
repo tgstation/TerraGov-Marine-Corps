@@ -124,12 +124,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	if(!turf || !isturf(turf)) return
 	if(radius < 0) radius = 0
 	if(radius > 5) radius = 5
-
-	for(var/turf/T in range(radius,turf))
-		if(T.density) continue
-		if(istype(T,/turf/open/space)) continue
-		if(locate(/obj/flamer_fire) in T) continue //No stacking
-		new /obj/flamer_fire(T, 5 + rand(0,11), 15)
+	new /obj/flamer_fire(turf, 5 + rand(0,11), 15, null, radius)
 
 
 /obj/item/explosive/grenade/incendiary/molotov
@@ -146,7 +141,7 @@ proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	prime()
 		spawn(0)
 			playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
-			flame_radius(1, get_turf(src))
+			flame_radius(2, get_turf(src))
 			playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 30, 1, 4)
 			cdel(src)
 		return

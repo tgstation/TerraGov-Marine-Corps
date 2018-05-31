@@ -165,7 +165,7 @@
 		if("Spitter")
 			M = /mob/living/carbon/Xenomorph/Spitter
 		if("Lurker")
-			M = /mob/living/carbon/Xenomorph/Hunter
+			M = /mob/living/carbon/Xenomorph/Lurker
 		if ("Warrior")
 			M = /mob/living/carbon/Xenomorph/Warrior
 		if ("Defender")

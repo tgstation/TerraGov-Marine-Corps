@@ -1065,7 +1065,7 @@
 			if("Spitter")
 				xeno_type = /mob/living/carbon/Xenomorph/Spitter
 			if("Lurker")
-				xeno_type = /mob/living/carbon/Xenomorph/Hunter
+				xeno_type = /mob/living/carbon/Xenomorph/Lurker
 
 		//From there, the new xeno exists, hopefully
 		var/mob/living/carbon/Xenomorph/new_xeno = new xeno_type(get_turf(T))

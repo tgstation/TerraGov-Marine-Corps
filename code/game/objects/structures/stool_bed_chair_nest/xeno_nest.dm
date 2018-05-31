@@ -35,7 +35,7 @@
 		"<span class='warning'>You hit \the [src] with \the [W]!</span>")
 		healthcheck()
 
-/obj/structure/bed/nest/manual_unbuckle(mob/user as mob)
+/obj/structure/bed/nest/manual_unbuckle(mob/user)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
@@ -53,11 +53,12 @@
 				if(buckled_mob.stat)
 					buckled_mob << "<span class='warning'>You're a little too unconscious to try that.</span>"
 					return
-				if(resisting_ready && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc)
+				if(resisting_ready && buckled_mob == user && buckled_mob.stat != DEAD)
 					buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
 					"<span class='danger'>You pull yourself free from \the [src]!</span>",\
 					"<span class='notice'>You hear squelching.</span>")
 					unbuckle()
+					return
 				if(resisting)
 					buckled_mob << "<span class='warning'>You're already trying to free yourself. Give it some time.</span>"
 					return
