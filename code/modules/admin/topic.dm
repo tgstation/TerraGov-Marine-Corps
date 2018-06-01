@@ -2283,6 +2283,11 @@
 				PlayerNotesPage(text2num(href_list["index"]))
 		return
 
+	if(href_list["player_notes_copy"])
+		var/key = href_list["player_notes_copy"]
+		player_notes_copy(key)
+		return
+
 	if(href_list["mark"])
 		var/mob/ref_person = locate(href_list["mark"])
 		if(!istype(ref_person))

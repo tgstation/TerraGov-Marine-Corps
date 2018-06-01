@@ -308,11 +308,38 @@ var/global/floorIsLava = 0
 
 	dat += "<br>"
 	dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
+	dat += "<A href='?src=\ref[src];player_notes_copy=[key]'>Copy Player Notes</A><br>"
 
 	dat += "</body></html>"
 	usr << browse(dat, "window=adminplayerinfo;size=480x480")
 
 
+/datum/admins/proc/player_notes_copy(var/key as text)
+	set category = null
+	set name = "Player Notes Copy"
+	if (!istype(src,/datum/admins))
+		src = usr.client.holder
+	if (!istype(src,/datum/admins))
+		usr << "Error: you are not an admin!"
+		return
+	var/dat = "<html><head><title>Copying notes for [key]</title></head>"
+	dat += "<body>"
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos)
+		dat += "No information found on the given key.<br>"
+	else
+		dat += "Some notes might need to be omitted for security/privacy reasons!<br><hr>"
+		var/i = 0
+		for(var/datum/player_info/I in infos)
+			i += 1
+			if(!I.timestamp)
+				I.timestamp = "Pre-4/3/2012"
+			dat += "<font color=#008800>[I.content]</font> | <i><font color=blue>[I.timestamp]</i></font>"
+			dat += "<br><br>"
+	dat += "</body></html>"
+	usr << browse(dat, "window=notescopy;size=480x480")
 
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"
