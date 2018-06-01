@@ -36,7 +36,9 @@
 
 
 /obj/effect/landmark/corpsespawner/initialize()
-	createCorpse()
+	if(loc && !disposed) //there's some issue with the code that calls this initialize twice,
+		createCorpse()	//once normally and once when the landmark is in null space, thus spawning a mob there
+						//this is a bandaid until it's properly fixed.
 
 /obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)

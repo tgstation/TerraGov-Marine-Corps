@@ -74,6 +74,7 @@
 			dead_mob_list -= src
 			living_mob_list += src
 			stat = CONSCIOUS
+			lying = 0
 			density = 1
 		return 0
 
@@ -305,11 +306,9 @@
 	stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 /mob/living/simple_animal/death()
+	. = ..()
+	if(!.)	return //was already dead
 	icon_state = icon_dead
-	stat = DEAD
-	density = 0
-	lying = 1
-	return ..()
 
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded && hud_used)
