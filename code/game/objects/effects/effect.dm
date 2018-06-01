@@ -6,6 +6,6 @@
 
 /obj/effect/Dispose()
 	. = ..()
-	effect_list += src
+	effect_list -= src
 
 
