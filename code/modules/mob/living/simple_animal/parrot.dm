@@ -101,7 +101,7 @@
 		held_item.loc = src.loc
 		held_item = null
 	walk(src,0)
-	..()
+	. = ..()
 
 /mob/living/simple_animal/parrot/Stat()
 	..()

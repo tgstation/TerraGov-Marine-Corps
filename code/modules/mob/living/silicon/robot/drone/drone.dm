@@ -77,7 +77,7 @@
 
 	//Some tidying-up.
 	flavor_text = "This is an XP-45 Engineering Drone, one of the many fancy things that come out of the Weyland-Yutani Research Department. It's designed to assist both ship repairs as well as ground missions. Shiny!"
-	updateicon()
+	update_icons()
 
 /mob/living/silicon/robot/drone/init()
 	laws = new /datum/ai_laws/drone()
@@ -91,7 +91,7 @@
 	real_name = "XP-45 Engineering Drone ([nicknumber])"
 	name = real_name
 
-/mob/living/silicon/robot/drone/updateicon()
+/mob/living/silicon/robot/drone/update_icons()
 
 	overlays.Cut()
 	if(stat == 0)
@@ -253,7 +253,7 @@
 		nicknumber = newname
 
 		updatename()
-		updateicon()
+		update_icons()
 
 /mob/living/silicon/robot/drone/verb/Power_up()
 	set category = "Robot Commands"

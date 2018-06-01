@@ -82,7 +82,7 @@
 	med_hud_set_health()
 	med_hud_set_status()
 
-	updateicon()
+	update_icons()
 
 //This is an expensive proc, let's not fire it on EVERY death. It already gets checked in gamemodes.
 //	if(ticker && ticker.mode)

@@ -10,29 +10,11 @@ var/global/list/human_icon_cache = list()
 	//UPDATE_ICONS SYSTEM//
 	///////////////////////
 /*
-Calling this  a system is perhaps a bit trumped up. It is essentially update_clothing dismantled into its
-core parts. The key difference is that when we generate overlays we do not generate either lying or standing
-versions. Instead, we generate both and store them in two fixed-length lists, both using the same list-index
-(The indexes are in update_icons.dm): Each list for humans is (at the time of writing) of length 19.
-This will hopefully be reduced as the system is refined.
-
-	var/overlays_standing[19]		//For the standing stance
-
-When we call update_icons, the 'lying' variable is checked and then the appropriate list is assigned to our overlays!
-That in itself uses a tiny bit more memory (no more than all the ridiculous lists the game has already mind you).
-
-On the other-hand, it should be very CPU cheap in comparison to the old system.
-In the old system, we updated all our overlays every life() call, even if we were standing still inside a crate!
-or dead!. 25ish overlays, all generated from scratch every second for every xeno/human/monkey and then applied.
-More often than not update_clothing was being called a few times in addition to that! CPU was not the only issue,
-all those icons had to be sent to every client. So really the cost was extremely cumulative. To the point where
-update_clothing would frequently appear in the top 10 most CPU intensive procs during profiling.
 
 Another feature of this new system is that our lists are indexed. This means we can update specific overlays!
 So we only regenerate icons when we need them to be updated! This is the main saving for this system.
 
 In practice this means that:
-	everytime you fall over, we just switch between precompiled lists. Which is fast and cheap.
 	Everytime you do something minor like take a pen out of your pocket, we only update the in-hand overlay
 	etc...
 
@@ -73,34 +55,9 @@ There are several things that need to be remembered:
 																			...eyes were merged into update_body)
 		update_targeted() // Updates the target overlay when someone points a gun at you
 
->	All of these procs update our overlays_standing, and then call update_icons() by default.
-	If you wish to update several overlays at once, you can set the argument to 0 to disable the update and call
-	it manually:
-		e.g.
-		update_inv_head(0)
-		update_inv_l_hand(0)
-		update_inv_r_hand()		//<---calls update_icons()
-
-	or equivillantly:
-		update_inv_head(0)
-		update_inv_l_hand(0)
-		update_inv_r_hand(0)
-		update_icons()
-
 >	If you need to update all overlays you can use regenerate_icons(). it works exactly like update_clothing used to.
 
->	I reimplimented an old unused variable which was in the code called (coincidentally) var/update_icon
-	It can be used as another method of triggering regenerate_icons(). It's basically a flag that when set to non-zero
-	will call regenerate_icons() at the next life() call and then reset itself to 0.
-	The idea behind it is icons are regenerated only once, even if multiple events requested it.
 
-This system is confusing and is still a WIP. It's primary goal is speeding up the controls of the game whilst
-reducing processing costs. So please bear with me while I iron out the kinks. It will be worth it, I promise.
-If I can eventually free var/lying stuff from the life() process altogether, stuns/death/status stuff
-will become less affected by lag-spikes and will be instantaneous! :3
-
-If you have any questions/constructive-comments/bugs-to-report/or have a massivly devestated butt...
-Please contact me on #coderbus IRC. ~Carn x
 */
 
 //Human Overlays Indexes/////////

@@ -36,7 +36,7 @@
 
 /mob/living/simple_animal/construct/death()
 	new /obj/item/ectoplasm (src.loc)
-	..(null,"collapses in a shattered heap.")
+	. = ..(null,"collapses in a shattered heap.")
 	ghostize()
 	cdel(src)
 
