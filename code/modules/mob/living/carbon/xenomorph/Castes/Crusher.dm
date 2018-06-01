@@ -74,7 +74,7 @@
 					attack_log += text("\[[time_stamp()]\] <font color='red'>xeno stomped [M.name] ([M.ckey])</font>")
 					log_attack("[src] ([ckey]) xeno stomped [M.name] ([M.ckey])")
 				M.KnockDown(rand(2, 3))
-				M << "<span class='highdanger'>You are stomped on by [M]!</span>"
+				M << "<span class='highdanger'>You are stomped on by [src]!</span>"
 			shake_camera(M, 2, 2)
 		i--
 

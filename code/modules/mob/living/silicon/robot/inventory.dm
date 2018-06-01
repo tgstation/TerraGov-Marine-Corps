@@ -36,7 +36,7 @@
 		module_active = null
 		module_state_3 = null
 		inv3.icon_state = "inv3"
-	updateicon()
+	update_icons()
 
 /mob/living/silicon/robot/proc/uneq_all()
 	module_active = null
@@ -65,7 +65,7 @@
 		contents -= module_state_3
 		module_state_3 = null
 		inv3.icon_state = "inv3"
-	updateicon()
+	update_icons()
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
 	if(module_state_1 == O)
@@ -76,7 +76,7 @@
 		return 1
 	else
 		return 0
-	updateicon()
+	update_icons()
 
 //Helper procs for cyborg modules on the UI.
 //These are hackish but they help clean up code elsewhere.

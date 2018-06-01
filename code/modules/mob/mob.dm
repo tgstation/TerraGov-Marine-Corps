@@ -718,8 +718,6 @@ mob/proc/yank_out_object()
 	return knocked_out
 
 
-/mob/proc/updateicon()
-	return
 
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE

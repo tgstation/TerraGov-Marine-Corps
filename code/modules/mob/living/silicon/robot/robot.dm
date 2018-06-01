@@ -83,7 +83,7 @@ var/list/robot_verbs_default = list(
 
 	ident = rand(1, 999)
 	updatename("Default")
-	updateicon()
+	update_icons()
 
 	if(syndie)
 		if(!cell)
@@ -279,7 +279,7 @@ var/list/robot_verbs_default = list(
 			custom_name = newname
 
 		updatename()
-		updateicon()
+		update_icons()
 
 /mob/living/silicon/robot/verb/cmd_robot_alerts()
 	set category = "Robot Commands"
@@ -499,7 +499,7 @@ var/list/robot_verbs_default = list(
 			if(cell)
 				user << "You close the cover."
 				opened = 0
-				updateicon()
+				update_icons()
 			else if(wiresexposed && isWireCut(1) && isWireCut(2) && isWireCut(3) && isWireCut(4) && isWireCut(5))
 				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				if(!mmi)
@@ -548,7 +548,7 @@ var/list/robot_verbs_default = list(
 			else
 				user << "You open the cover."
 				opened = 1
-				updateicon()
+				update_icons()
 
 	else if (istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
@@ -577,14 +577,14 @@ var/list/robot_verbs_default = list(
 	else if(istype(W, /obj/item/tool/screwdriver) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
-		updateicon()
+		update_icons()
 
 	else if(istype(W, /obj/item/tool/screwdriver) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
 			user << "Unable to locate a radio."
-		updateicon()
+		update_icons()
 
 	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
 		if(radio)//sanityyyyyy
@@ -601,7 +601,7 @@ var/list/robot_verbs_default = list(
 			if(allowed(usr))
 				locked = !locked
 				user << "You [ locked ? "lock" : "unlock"] [src]'s interface."
-				updateicon()
+				update_icons()
 			else
 				user << "\red Access denied."
 
@@ -656,7 +656,7 @@ var/list/robot_verbs_default = list(
 					src << "<b>Obey these laws:</b>"
 					laws.show_laws(src)
 					src << "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands."
-					updateicon()
+					update_icons()
 				else
 					user << "You fail to hack [src]'s interface."
 					src << "Hack attempt detected."
@@ -726,7 +726,7 @@ var/list/robot_verbs_default = list(
 			cell = null
 			cell_component.wrapped = null
 			cell_component.installed = 0
-			updateicon()
+			update_icons()
 		else if(cell_component.installed == -1)
 			cell_component.installed = 0
 			var/obj/item/broken_device = cell_component.wrapped
@@ -763,7 +763,7 @@ var/list/robot_verbs_default = list(
 			return 1
 	return 0
 
-/mob/living/silicon/robot/updateicon()
+/mob/living/silicon/robot/update_icons()
 
 	overlays.Cut()
 	if(stat == 0)
@@ -786,7 +786,7 @@ var/list/robot_verbs_default = list(
 	if(!targeted_by && target_locked)
 		cdel(target_locked)
 		target_locked = null
-	updateicon()
+	update_icons()
 	if (targeted_by && target_locked)
 		overlays += target_locked
 
@@ -1012,7 +1012,7 @@ var/list/robot_verbs_default = list(
 		return
 
 	overlays -= "eyes"
-	updateicon()
+	update_icons()
 
 	if (triesleft >= 1)
 		var/choice = input("Look at your icon - is this what you want?") in list("Yes","No")
