@@ -203,13 +203,14 @@
 	use_to_pickup = 1
 	storage_slots = null
 	use_sound = null
+	max_storage_space = 16
 	var/skilllock = 1
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 
 /obj/item/storage/pill_bottle/New()
 	..()
 	if(pill_type_to_fill)
-		for(var/i=1 to 14)
+		for(var/i=1 to max_storage_space)
 			new pill_type_to_fill(src)
 
 /obj/item/storage/pill_bottle/open(mob/user)
@@ -225,41 +226,56 @@
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_container/pill/kelotane
 
+/obj/item/storage/pill_bottle/kelotane/skillless
+	skilllock = 0
+
 /obj/item/storage/pill_bottle/antitox
 	name = "\improper Dylovene pill bottle"
 	icon_state = "pill_canister6"
 	pill_type_to_fill = /obj/item/reagent_container/pill/antitox
 
+/obj/item/storage/pill_bottle/antitox/skillless
+	skilllock = 0
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "\improper Inaprovaline pill bottle"
 	icon_state = "pill_canister3"
 	pill_type_to_fill = /obj/item/reagent_container/pill/inaprovaline
 
+/obj/item/storage/pill_bottle/inaprovaline/skillless
+	skilllock = 0
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "\improper Tramadol pill bottle"
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tramadol
 
+/obj/item/storage/pill_bottle/tramadol/skillless
+	skilllock = 0
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "\improper Spaceacillin pill bottle"
 	icon_state = "pill_canister4"
 	pill_type_to_fill = /obj/item/reagent_container/pill/spaceacillin
 
+/obj/item/storage/pill_bottle/spaceacillin/skillless
+	skilllock = 0
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "\improper Bicaridine pill bottle"
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_container/pill/bicaridine
 
+/obj/item/storage/pill_bottle/bicaridine/skillless
+	skilllock = 0
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "\improper Dexalin pill bottle"
 	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
 
+/obj/item/storage/pill_bottle/dexalin/skillless
+	skilllock = 0
 
 //Alkysine
 /obj/item/storage/pill_bottle/alkysine
@@ -280,6 +296,8 @@
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_container/pill/peridaxon
 
+/obj/item/storage/pill_bottle/peridaxon/skillless
+	skilllock = 0
 
 //RUSSIAN RED ANTI-RAD
 /obj/item/storage/pill_bottle/russianRed

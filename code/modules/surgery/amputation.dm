@@ -19,7 +19,7 @@
 		return 0
 	if(affected.surgery_open_stage) //avoids conflict with sawing skull open
 		return 0
-	if(target_zone == "chest" || target_zone == "groin") //can't amputate the chest
+	if(target_zone == "chest" || target_zone == "groin" || target_zone == "head") //can't amputate the chest
 		return 0
 	return 1
 

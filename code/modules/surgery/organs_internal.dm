@@ -177,11 +177,11 @@
 
 
 /datum/surgery_step/internal/detach_organ
-	allowed_tools = list(
+	allowed_tools = list()/*
 	/obj/item/tool/surgery/scalpel = 100,		\
 	/obj/item/tool/kitchen/knife = 75,	\
 	/obj/item/shard = 50, 		\
-	)
+	)*/
 
 	min_duration = 60
 	max_duration = 80
@@ -241,11 +241,11 @@
 
 
 /datum/surgery_step/internal/remove_organ
-	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100,           \
+	allowed_tools = list()
+	/*/obj/item/tool/surgery/hemostat = 100,           \
 	/obj/item/tool/wirecutters = 75,         \
 	/obj/item/tool/kitchen/utensil/fork = 20
-	)
+	)*/
 
 	min_duration = 60
 	max_duration = 80

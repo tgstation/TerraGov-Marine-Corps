@@ -192,6 +192,27 @@
 	icon_state = "medicalbag_u"
 	item_state = "medicbag_u"
 
+/obj/item/storage/belt/combatLifesaver/upp/New()  //The belt, with all it's magic inside!
+	..()
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/pill_bottle/bicaridine/skillless(src)
+	new /obj/item/storage/pill_bottle/dexalin/skillless(src)
+	new /obj/item/storage/pill_bottle/antitox/skillless(src)
+	new /obj/item/storage/pill_bottle/kelotane/skillless(src)
+	new /obj/item/storage/pill_bottle/spaceacillin/skillless(src)
+	new /obj/item/storage/pill_bottle/inaprovaline/skillless(src)
+	new /obj/item/storage/pill_bottle/tramadol/skillless(src)
+	new /obj/item/storage/pill_bottle/peridaxon/skillless(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/Oxycodone(src)
+
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This configuration is commonly seen among USCM Military Police and peacekeepers, though it can hold some light munitions."
