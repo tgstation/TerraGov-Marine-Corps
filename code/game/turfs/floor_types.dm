@@ -130,15 +130,21 @@
 				var/list/droppoints = list()
 				for(var/turf/TL in get_area(get_turf(HangarLowerElevator)))
 					droppoints += TL
+				AM.forceMove(pick(droppoints))
 				if(ishuman(AM))
 					var/mob/living/carbon/human/human = AM
-					human.take_overall_damage(100, 0, "Blunt Trauma")
-				AM.loc = pick(droppoints)
+					human.take_overall_damage(50, 0, "Blunt Trauma")
+					human.KnockDown(2)
 				for(var/mob/living/carbon/human/landedon in AM.loc)
 					if(AM == landedon)
 						continue
 					landedon.KnockDown(3)
 					landedon.take_overall_damage(50, 0, "Blunt Trauma")
+				if(isXeno(AM))
+					var/list/L = orange(rand(2,4))		// Not actually the fruit
+					for (var/mob/living/carbon/human/H in L)
+						H.KnockDown(3)
+						H.take_overall_damage(10, 0, "Blunt Trauma")
 				playsound(AM.loc, 'sound/effects/bang.ogg', 10, 0)
 			else
 				for(var/obj/structure/disposaloutlet/retrieval/R in structure_list)

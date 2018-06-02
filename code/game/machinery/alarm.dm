@@ -1206,7 +1206,8 @@ FIRE ALARM
 					cdel(src)
 		return
 
-	src.alarm()
+	//src.alarm() // why was this even a thing?
+	..()
 	return
 
 /obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
