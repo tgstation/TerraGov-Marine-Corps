@@ -210,7 +210,7 @@
 	src.updateUsrDialog()
 
 
-/obj/machinery/sleeper/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/sleeper/attackby(var/obj/item/W, var/mob/living/user)
 	if(istype(W, /obj/item/reagent_container/glass))
 		if(!beaker)
 			if(user.drop_inv_item_to_loc(W, src))
@@ -223,6 +223,7 @@
 			return
 
 	else if(istype(W, /obj/item/grab))
+		if(isXeno(user)) return
 		var/obj/item/grab/G = W
 		if(!ismob(G.grabbed_thing))
 			return

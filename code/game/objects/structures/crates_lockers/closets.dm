@@ -173,9 +173,10 @@
 			A.loc = src.loc
 		cdel(src)
 
-/obj/structure/closet/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
+			if(isXeno(user)) return
 			var/obj/item/grab/G = W
 			if(G.grabbed_thing)
 				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet

@@ -61,7 +61,7 @@
 		cdel(WF)
 	. = ..()
 
-/obj/structure/window_frame/attackby(obj/item/W, mob/user)
+/obj/structure/window_frame/attackby(obj/item/W, mob/living/user)
 	if(istype(W, sheet_type))
 		var/obj/item/stack/sheet/sheet = W
 		if(sheet.get_amount() < 2)
@@ -79,6 +79,7 @@
 
 	else if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
+		if(isXeno(user)) return
 		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			if(user.grab_level >= GRAB_AGGRESSIVE)

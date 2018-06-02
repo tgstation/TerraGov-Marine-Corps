@@ -38,7 +38,7 @@
 /datum/action/xeno_action/xeno_resting/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (!X || X.is_mob_incapacitated(1) || X.buckled || X.fortify || X.crest_defense || X.agility)
+	if (!X || X.is_mob_incapacitated(1) || X.buckled || X.fortify || X.crest_defense)
 		return
 
 	return 1

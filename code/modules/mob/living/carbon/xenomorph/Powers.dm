@@ -200,6 +200,7 @@
 		return
 
 	var/mob/living/carbon/human/H = A
+	if(H.stat == DEAD) return
 
 	visible_message("<span class='xenowarning'>\The [src] effortlessly flings [H] to the side!</span>", \
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
@@ -248,6 +249,7 @@
 		return
 
 	var/mob/living/carbon/human/H = A
+	if(H.stat == DEAD) return
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
 	if (!L || L.has_dropped_limb)
@@ -264,12 +266,22 @@
 		H << "<span class='danger'>The splint on your [L.display_name] comes apart!</span>"
 
 	if(isYautja(H))
-		L.take_damage(10)
+		L.take_damage(rand(8,12))
 	else if(L.status & LIMB_ROBOT)
-		L.take_damage(40, 0, 0) // just do more damage
+		L.take_damage(rand(30,40), 0, 0) // just do more damage
 	else
-		L.take_damage(20, 0, 0)
-		L.fracture()
+		var/fracture_chance = 100
+		switch(L.body_part)
+			if(HEAD)
+				fracture_chance = 20
+			if(UPPER_TORSO)
+				fracture_chance = 30
+			if(LOWER_TORSO)
+				fracture_chance = 40
+
+		L.take_damage(rand(15,25), 0, 0)
+		if(prob(fracture_chance))
+			L.fracture()
 	shake_camera(H, 2, 1)
 	step_away(H, src, 2)
 
@@ -300,15 +312,16 @@
 		return
 
 	var/mob/living/carbon/human/H = A
+	if(H.stat == DEAD) return
 	visible_message("<span class='xenowarning'>\The [src] lunges towards [H]!</span>", \
 	"<span class='xenowarning'>You lunge at [H]!</span>")
 
-	used_lunge = 1
+	used_lunge = 1 // triggered by start_pulling
 	use_plasma(10)
 	throw_at(get_step_towards(A, src), 6, 2, src)
 
 	if (Adjacent(H))
-		start_pulling(H)
+		start_pulling(H,1)
 
 	spawn(lunge_cooldown)
 		used_lunge = 0
@@ -323,50 +336,61 @@
 /mob/living/carbon/Xenomorph/proc/pull_power(var/mob/M)
 	if (isXenoWarrior(src) && !ripping_limb && M.stat != DEAD)
 		ripping_limb = 1
-		rip_limb(M)
+		if(rip_limb(M))
+			stop_pulling()
 		ripping_limb = 0
-		stop_pulling()
 
 
 // Warrior Rip Limb - called by pull_power()
 /mob/living/carbon/Xenomorph/proc/rip_limb(var/mob/M)
 	if (!istype(M, /mob/living/carbon/human))
-		return
+		return 0
 
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
 	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || L.has_dropped_limb) //Only limbs and head.
-		return
+		src << "<span class='xenowarning'>You can't rip off that limb.</span>"
+		return 0
 
-	var/limb_time = 50
+	var/limb_time = rand(40,60)
 
 	if (L.body_part == HEAD)
-		limb_time = 100
+		limb_time = rand(90,110)
 
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
 	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
 
-	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE, 1))
-		return
+	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE, 1) || M.stat == DEAD)
+		src << "<span class='notice'>You stop ripping off the limb.</span>"
+		return 0
 
-	visible_message("<span class='xenowarning'>You hear the bones in [M]'s [L.display_name] snap with a sickening crunch!</span>", \
-	"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
-	L.take_damage(20, 0, 0)
-	L.fracture()
+	if(L.status & LIMB_ROBOT)
+		L.take_damage(rand(30,40), 0, 0) // just do more damage
+		visible_message("<span class='xenowarning'>You hear [M]'s [L.display_name] being pulled beyond its load limits!</span>", \
+		"<span class='xenowarning'>\The [M]'s [L.display_name] begins to tear apart!</span>")
+	else
+		visible_message("<span class='xenowarning'>You hear the bones in [M]'s [L.display_name] snap with a sickening crunch!</span>", \
+		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
+		L.take_damage(rand(15,25), 0, 0)
+		L.fracture()
+	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [L.display_name] off of [M.name] ([M.ckey]) 1/2 progress</font>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [L.display_name] ripped off by [src.name] ([src.ckey]) 1/2 progress</font>")
+	log_attack("[src.name] ([src.ckey]) ripped the [L.display_name] off of [M.name] ([M.ckey]) 1/2 progress")
 
-	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE))
-		return
+	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE)  || M.stat == DEAD)
+		src << "<span class='notice'>You stop ripping off the limb.</span>"
+		return 0
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
 	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [L.display_name] off of [M.name] ([M.ckey])</font>")
-	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [L.display_name] ripped off by [src.name] ([src.ckey])</font>")	
-	log_attack("[src.name] ([src.ckey]) ripped the [L.display_name] off of [M.name] ([M.ckey])")
+	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [L.display_name] off of [M.name] ([M.ckey]) 2/2 progress</font>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [L.display_name] ripped off by [src.name] ([src.ckey]) 2/2 progress</font>")
+	log_attack("[src.name] ([src.ckey]) ripped the [L.display_name] off of [M.name] ([M.ckey]) 2/2 progress")
 
 	L.droplimb(1)
 
-	return
+	return 1
 
 
 // Warrior Agility

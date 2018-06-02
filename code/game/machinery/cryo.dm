@@ -180,6 +180,7 @@
 		if(user.drop_inv_item_to_loc(W, src))
 			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
 	else if(istype(W, /obj/item/grab))
+		if(isXeno(user)) return
 		var/obj/item/grab/G = W
 		if(!ismob(G.grabbed_thing))
 			return
