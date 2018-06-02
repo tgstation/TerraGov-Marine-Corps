@@ -43,7 +43,7 @@
 /obj/structure/toilet/update_icon()
 	icon_state = "toilet[open][cistern]"
 
-/obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
+/obj/structure/toilet/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/tool/crowbar))
 		user << "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>"
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
@@ -54,6 +54,7 @@
 			return
 
 	if(istype(I, /obj/item/grab))
+		if(isXeno(user)) return
 		var/obj/item/grab/G = I
 
 		if(isliving(G.grabbed_thing))
@@ -100,8 +101,9 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/urinal/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/grab))
+		if(isXeno(user)) return
 		var/obj/item/grab/G = I
 		if(isliving(G.grabbed_thing))
 			var/mob/living/GM = G.grabbed_thing

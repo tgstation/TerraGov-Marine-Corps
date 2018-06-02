@@ -385,9 +385,10 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			occupant = null
 
 
-/obj/machinery/cryopod/attackby(obj/item/W, mob/user)
+/obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
 
 	if(istype(W, /obj/item/grab))
+		if(isXeno(user)) return
 		var/obj/item/grab/G = W
 		if(occupant)
 			user << "<span class='warning'>[src] is occupied.</span>"

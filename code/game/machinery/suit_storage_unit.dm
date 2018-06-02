@@ -476,7 +476,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/living/user)
 	if(!src.ispowered)
 		return
 	if(istype(I, /obj/item/tool/screwdriver))
@@ -486,6 +486,7 @@
 		src.updateUsrDialog()
 		return
 	if ( istype(I, /obj/item/grab) )
+		if(isXeno(user)) return
 		var/obj/item/grab/G = I
 		if( !(ismob(G.grabbed_thing)) )
 			return
