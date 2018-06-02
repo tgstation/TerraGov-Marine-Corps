@@ -232,6 +232,10 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 /mob/living/carbon/Xenomorph/start_pulling(var/atom/movable/AM)
 	if(isobj(AM))
 		return
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(isSynth(L) && L.stat == DEAD) return
+		if(L.buckled) return //to stop xeno from pulling marines on roller beds.
 	..()
 
 /mob/living/carbon/Xenomorph/pull_response(mob/puller)

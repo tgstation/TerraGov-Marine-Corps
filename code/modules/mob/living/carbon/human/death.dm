@@ -1,7 +1,10 @@
 /mob/living/carbon/human/gib()
 
+	var/is_a_synth = isSynth(src)
 	for(var/datum/limb/E in limbs)
 		if(istype(E, /datum/limb/chest))
+			continue
+		if(istype(E, /datum/limb/groin) && is_a_synth)
 			continue
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
@@ -13,6 +16,8 @@
 	else
 		hgibs(loc, viruses, dna)
 
+	if(is_a_synth)
+		return 
 	..(species ? species.gibbed_anim : "gibbed-h")
 
 
