@@ -750,19 +750,15 @@
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		explosion(get_turf(M), 0, 2, 5, 6)
-		..()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
 		explosion(get_turf(P), 0, 2, 5, 6)
-		..()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
-		explosion(T, 0, 2, 5, 6)
-		..()
+		explosion(get_turf(P), 0, 2, 5, 6)
 
 	do_at_max_range(obj/item/projectile/P)
 		explosion(get_turf(P), 0, 2, 5, 6)
-		..()
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
