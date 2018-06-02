@@ -20,8 +20,9 @@
 	loc = has_suit
 	has_suit.overlays += inv_overlay
 
-	user << "<span class='notice'>You attach [src] to [has_suit].</span>"
-	src.add_fingerprint(user)
+	if(user)
+		user << "<span class='notice'>You attach [src] to [has_suit].</span>"
+		src.add_fingerprint(user)
 
 /obj/item/clothing/tie/proc/on_removed(mob/user as mob)
 	if(!has_suit)

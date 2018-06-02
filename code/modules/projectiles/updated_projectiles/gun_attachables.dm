@@ -683,7 +683,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/smg
-	name = "\improper submachinegun stock"
+	name = "submachinegun stock"
 	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
 	melee_mod = 5

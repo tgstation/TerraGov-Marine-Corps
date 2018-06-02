@@ -40,6 +40,13 @@
 	else
 		return ..()
 
+
+//half a max stack
+/obj/item/stack/sandbags_empty/half
+	amount = 25
+
+
+
 //Full sandbags
 /obj/item/stack/sandbags
 	name = "sandbags"

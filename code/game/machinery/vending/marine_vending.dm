@@ -5,7 +5,7 @@
 
 /obj/machinery/vending/marine
 	name = "ColMarTech Automated Weapons rack"
-	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons and armor."
+	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "armory"
 	icon_vend = "armory-vend"
 	icon_deny = "armory"
@@ -31,27 +31,8 @@
 					/obj/item/weapon/combat_knife = 20,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
-					/obj/item/storage/backpack/marine = 10,
-					/obj/item/storage/backpack/marine/satchel = 10,
-					/obj/item/storage/belt/marine = 5,
-					/obj/item/storage/belt/shotgun = 3,
-					/obj/item/storage/belt/knifepouch = 5,
-					/obj/item/storage/belt/gun/m4a3 = 5,
-					/obj/item/storage/belt/gun/m44 = 5,
-					/obj/item/storage/large_holster/m37 = 5,
-					/obj/item/clothing/shoes/marine = 5,
-					/obj/item/clothing/under/marine = 10,
-					/obj/item/clothing/suit/storage/marine = 10,
-					/obj/item/clothing/head/helmet/marine = 10,
-					/obj/item/clothing/mask/gas/ = 20,
 					/obj/item/attachable/flashlight = 10,
-					/obj/item/clothing/mask/rebreather/scarf = 10,
 					/obj/item/attachable/bayonet = 10,
-					/obj/item/storage/pouch/general = 10,
-					/obj/item/storage/pouch/bayonet = 10,
-					/obj/item/storage/pouch/firstaid/full = 10,
-					/obj/item/storage/pouch/flare/full = 10,
-					/obj/item/storage/pouch/magazine/pistol = 10
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
@@ -279,7 +260,7 @@
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access = list(ACCESS_MARINE_MEDBAY)
+	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	wrenchable = FALSE
 	products = list(/obj/item/reagent_container/hypospray/autoinjector/quickclot = 6,
 					/obj/item/reagent_container/hypospray/autoinjector/Bicard = 6,
@@ -342,41 +323,17 @@
 
 
 /obj/machinery/vending/marine_engi
-	name = "\improper ColMarTech Engineer Vendor"
-	desc = "A marine engineering equipment vendor"
+	name = "\improper ColMarTech Engineer System Vendor"
+	desc = "A marine engineering system vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 	wrenchable = FALSE
 	products = list(
-						/obj/item/coin/marine/engineer = 1,
-						/obj/item/clothing/under/marine/engineer = 3,
-						/obj/item/clothing/head/helmet/marine/tech = 3,
-						/obj/item/storage/backpack/marine/tech = 3,
-						/obj/item/storage/backpack/marine/satchel/tech = 3,
-						/obj/item/storage/backpack/marine/engineerpack = 3,
-						/obj/item/device/encryptionkey/engi = 3,
-						/obj/item/storage/belt/utility/full = 3,
-						/obj/item/clothing/gloves/yellow = 3,
-						/obj/item/clothing/glasses/meson = 3,
-						/obj/item/device/multitool = 3,
-						/obj/item/explosive/grenade/incendiary = 2,
-						/obj/item/storage/box/explosive_mines = 1,
-						/obj/item/clothing/glasses/welding = 3,
-						/obj/item/explosive/plastique = 4,
-						/obj/item/device/lightreplacer = 3,
-						/obj/item/circuitboard/airlock = 10,
-						/obj/item/circuitboard/apc = 10,
-						/obj/item/circuitboard/airalarm = 10,
-						/obj/item/cell/high = 10,
-						/obj/item/tool/shovel/etool = 3,
-						/obj/item/storage/pouch/explosive = 3,
-						/obj/item/storage/pouch/construction = 3,
-						/obj/item/storage/pouch/tools = 3,
-						/obj/item/storage/pouch/electronics = 3,
-						/obj/item/storage/pouch/magazine = 3,
-						/obj/item/clothing/mask/gas = 3
+					/obj/item/coin/marine/engineer = 1,
+					/obj/item/stack/sheet/metal/half = 1,
+					/obj/item/stack/sheet/plasteel/ten = 1,
 					)
 	contraband = list(/obj/item/cell/super = 1)
 
@@ -441,11 +398,11 @@
 			)
 	contraband = list()
 	premium = list(
-					/obj/item/storage/box/demolitionist = 1,
-					/obj/item/storage/box/heavy_grenadier = 1,
+					/obj/item/storage/box/spec/demolitionist = 1,
+					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/m42c_system = 1,
 					/obj/item/storage/box/m42c_system_Jungle = 1,
-					/obj/item/storage/box/pyro = 1
+					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()
 
@@ -462,19 +419,15 @@
 
 	products = list(
 						/obj/item/coin/marine = 1,
-						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/storage/pouch/magazine/large = 1,
-						/obj/item/storage/pouch/general/medium = 1,
-						/obj/item/clothing/mask/gas = 1
 			)
 	contraband = list()
 	//premium = list(/obj/item/weapon/shield/riot = 1)	//NOTE: This needs to be re-worked so we don't have to have a riot shield in here at all. ~Bmc777
 	shared = list(
-					/obj/item/storage/box/demolitionist = 1,
-					/obj/item/storage/box/heavy_grenadier = 1,
-					/obj/item/storage/box/sniper = 1,
-					/obj/item/storage/box/scout = 1,
-					/obj/item/storage/box/pyro = 1
+					/obj/item/storage/box/spec/demolitionist = 1,
+					/obj/item/storage/box/spec/heavy_grenadier = 1,
+					/obj/item/storage/box/spec/sniper = 1,
+					/obj/item/storage/box/spec/scout = 1,
+					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()
 
@@ -628,7 +581,8 @@
 					/obj/item/clothing/shoes/marine = 20,
 					/obj/item/clothing/under/marine = 20,
 					/obj/item/clothing/suit/storage/marine = 20,
-					/obj/item/clothing/head/helmet/marine = 20
+					/obj/item/clothing/head/helmet/marine = 20,
+					/obj/item/clothing/mask/rebreather/scarf = 10,
 					)
 
 	prices = list()
@@ -660,3 +614,5 @@
 /obj/machinery/vending/uniform_supply/Dispose()
 	. = ..()
 	marine_vendors.Remove(src)
+
+

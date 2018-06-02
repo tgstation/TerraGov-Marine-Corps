@@ -129,6 +129,7 @@
 		"/obj/item/storage/syringe_case",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/revolver",
+		"/obj/item/ammo_magazine/handful",
 		"/obj/item/device/flashlight/flare",
 	    "/obj/item/reagent_container/hypospray",
 	    "/obj/item/bodybag",
@@ -138,15 +139,18 @@
 
 /obj/item/storage/belt/medical/New()
 	..()
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Bicard(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Kelo(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricord(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/peridaxon(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
 
 
 /obj/item/storage/belt/combatLifesaver
@@ -182,7 +186,7 @@
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)

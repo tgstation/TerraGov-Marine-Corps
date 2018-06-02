@@ -75,6 +75,12 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	flags_atom = FPRINT|CONDUCT
 	origin_tech = "materials=1"
 
+/obj/item/stack/sheet/metal/ten
+	amount = 10
+
+obj/item/stack/sheet/metal/half
+	amount = 25
+
 /obj/item/stack/sheet/metal/cyborg
 
 /obj/item/stack/sheet/metal/New(var/loc, var/amount=null)
@@ -102,8 +108,12 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	origin_tech = "materials=2"
 
 /obj/item/stack/sheet/plasteel/New(var/loc, var/amount=null)
-		recipes = plasteel_recipes
-		return ..()
+	recipes = plasteel_recipes
+	return ..()
+
+
+/obj/item/stack/sheet/plasteel/ten
+	amount = 10
 
 /*
  * Wood

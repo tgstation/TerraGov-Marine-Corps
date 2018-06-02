@@ -845,27 +845,10 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/weapon/combat_knife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),
 						/obj/item/storage/box/m94 = round(scale * 10),
-						/obj/item/storage/backpack/marine = round(scale * 20),
-						/obj/item/storage/backpack/marine/satchel = round(scale * 20),
-						/obj/item/storage/belt/marine = round(scale * 20),
-						/obj/item/storage/belt/shotgun = round(scale * 5),
-						/obj/item/storage/belt/knifepouch = round(scale * 5),
-						/obj/item/storage/belt/gun/m4a3 = round(scale * 10),
-						/obj/item/storage/belt/gun/m44 = round(scale * 10),
-						/obj/item/storage/large_holster/m37 = round(scale * 10),
-						/obj/item/clothing/shoes/marine = round(scale * 30),
-						/obj/item/clothing/under/marine = round(scale * 30),
-						/obj/item/clothing/suit/storage/marine = round(scale * 20),
-						/obj/item/clothing/head/helmet/marine = round(scale * 15),
 
 						/obj/item/attachable/flashlight = round(scale * 25),
 						/obj/item/attachable/bayonet = round(scale * 25),
 
-						/obj/item/storage/pouch/general = round(scale * 15),
-						/obj/item/storage/pouch/bayonet = round(scale * 15),
-						/obj/item/storage/pouch/firstaid/full = round(scale * 15),
-						/obj/item/storage/pouch/flare/full = round(scale * 15),
-						/obj/item/storage/pouch/magazine/pistol = round(scale * 15)
 						)
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 0,

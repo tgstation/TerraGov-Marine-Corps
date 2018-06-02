@@ -169,114 +169,6 @@
 						new /obj/item/facepaint/sniper(src)
 		..()
 
-/obj/item/storage/box/sniper
-	name = "\improper Sniper equipment"
-	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "sniper_case"
-	w_class = 5
-	storage_slots = 11
-	slowdown = 1
-	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	foldable = null
-
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
-			new /obj/item/storage/backpack/marine/smock(src)
-			new /obj/item/weapon/gun/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-
-	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
-		if(!opened) //First time opening it, so add the round-specific items
-			if(ticker && ticker.mode)
-				switch(ticker.mode.name)
-					if("Ice Colony")
-						new /obj/item/clothing/head/helmet/marine(src)
-					else
-						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/facepaint/sniper(src)
-		if(user.mind && user.mind.assigned_role == "Squad Specialist") //an unspecialised spec opens the box and become specialised.
-			if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
-				user.mind.cm_skills.spec_weapons = SKILL_SPEC_SNIPER
-		..()
-
-/obj/item/storage/box/scout
-	name = "\improper Scout equipment"
-	desc = "A large case containing Scout equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "sniper_case"
-	w_class = 5
-	storage_slots = 15
-	slowdown = 1
-	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	foldable = null
-
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/M3S(src)
-			new /obj/item/clothing/head/helmet/marine/scout(src)
-			new /obj/item/clothing/glasses/night/M4RA(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-			new /obj/item/device/binoculars/tactical/scout(src)
-			new /obj/item/weapon/gun/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/m4ra(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
-			new /obj/item/explosive/plastique(src)
-			new /obj/item/explosive/plastique(src)
-
-/obj/item/storage/box/scout/open(mob/user)
-	if(user.mind && user.mind.assigned_role == "Squad Specialist")
-		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
-			user.mind.cm_skills.spec_weapons = SKILL_SPEC_SCOUT
-	..()
-
-/obj/item/storage/box/pyro
-	name = "\improper Pyrotechnician equipment"
-	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "armor_case"
-	w_class = 5
-	storage_slots = 8
-	slowdown = 1
-	can_hold = list()
-	foldable = null
-
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/M35(src)
-			new /obj/item/clothing/head/helmet/marine/pyro(src)
-			new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
-			new /obj/item/weapon/gun/flamer/M240T(src)
-			new /obj/item/ammo_magazine/flamer_tank/large(src)
-			new /obj/item/ammo_magazine/flamer_tank/large(src)
-			new /obj/item/ammo_magazine/flamer_tank/large/B(src)
-			new /obj/item/ammo_magazine/flamer_tank/large/X(src)
-
-/obj/item/storage/box/pyro/open(mob/user)
-	if(user.mind && user.mind.assigned_role == "Squad Specialist")
-		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
-			user.mind.cm_skills.spec_weapons = SKILL_SPEC_PYRO
-	..()
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
@@ -332,32 +224,6 @@
 			new /obj/item/storage/belt/grenade(src)
 			new /obj/item/storage/belt/grenade(src)
 
-/obj/item/storage/box/heavy_grenadier
-	name = "\improper Heavy Grenadier case"
-	desc = "A large case containing M50 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "grenade_case"
-	w_class = 5
-	storage_slots = 6
-	slowdown = 1
-	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	foldable = null
-
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/storage/belt/grenade(src)
-			new /obj/item/storage/belt/grenade(src)
-			new /obj/item/clothing/gloves/marine/specialist(src)
-			new /obj/item/clothing/suit/storage/marine/specialist(src)
-			new /obj/item/clothing/head/helmet/marine/specialist(src)
-
-/obj/item/storage/box/heavy_grenadier/open(mob/user)
-	if(user.mind && user.mind.assigned_role == "Squad Specialist")
-		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
-			user.mind.cm_skills.spec_weapons = SKILL_SPEC_GRENADIER
-	..()
 
 /obj/item/storage/box/rocket_system
 	name = "\improper M5 RPG crate"
@@ -380,13 +246,24 @@
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/wp(src)
 
-/obj/item/storage/box/demolitionist
+
+
+
+
+////////////////// new specialist systems ///////////////////////////:
+
+
+/obj/item/storage/box/spec
+	var/spec_set
+
+/obj/item/storage/box/spec/demolitionist
 	name = "\improper Demolitionist equipment crate"
 	desc = "A large case containing light armor, a heavy-caliber antitank missile launcher, missiles, C4, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
+	spec_set = "demolitionist"
 	w_class = 5
-	storage_slots = 11
+	storage_slots = 12
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -395,6 +272,7 @@
 		..()
 		spawn(1)
 			new	/obj/item/clothing/suit/storage/marine/M3T(src)
+			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/weapon/gun/launcher/rocket(src)
 			new /obj/item/ammo_magazine/rocket(src)
 			new /obj/item/ammo_magazine/rocket(src)
@@ -407,9 +285,127 @@
 			new /obj/item/explosive/plastique(src)
 
 
-/obj/item/storage/box/demolitionist/open(mob/user)
-	if(user.mind && user.mind.assigned_role == "Squad Specialist")
-		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_TRAINED)
-			user.mind.cm_skills.spec_weapons = SKILL_SPEC_ROCKET
-	..()
 
+/obj/item/storage/box/spec/sniper
+	name = "\improper Sniper equipment"
+	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 11
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+	spec_set = "sniper"
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/sniper(src)
+			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+			new /obj/item/ammo_magazine/sniper(src)
+			new /obj/item/ammo_magazine/sniper/incendiary(src)
+			new /obj/item/ammo_magazine/sniper/flak(src)
+			new /obj/item/device/binoculars(src)
+			new /obj/item/storage/backpack/marine/smock(src)
+			new /obj/item/weapon/gun/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+
+	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
+		if(!opened) //First time opening it, so add the round-specific items
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
+						new /obj/item/clothing/head/helmet/marine(src)
+					else
+						new /obj/item/clothing/head/helmet/durag(src)
+						new /obj/item/facepaint/sniper(src)
+		..()
+
+/obj/item/storage/box/spec/scout
+	name = "\improper Scout equipment"
+	desc = "A large case containing Scout equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 15
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+	spec_set = "scout"
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/M3S(src)
+			new /obj/item/clothing/head/helmet/marine/scout(src)
+			new /obj/item/clothing/glasses/night/M4RA(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+			new /obj/item/device/binoculars/tactical/scout(src)
+			new /obj/item/weapon/gun/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/weapon/gun/rifle/m4ra(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+			new /obj/item/explosive/plastique(src)
+			new /obj/item/explosive/plastique(src)
+
+
+
+/obj/item/storage/box/spec/pyro
+	name = "\improper Pyrotechnician equipment"
+	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "armor_case"
+	w_class = 5
+	storage_slots = 8
+	slowdown = 1
+	can_hold = list()
+	foldable = null
+	spec_set = "pyro"
+
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/M35(src)
+			new /obj/item/clothing/head/helmet/marine/pyro(src)
+			new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
+			new /obj/item/weapon/gun/flamer/M240T(src)
+			new /obj/item/ammo_magazine/flamer_tank/large(src)
+			new /obj/item/ammo_magazine/flamer_tank/large(src)
+			new /obj/item/ammo_magazine/flamer_tank/large/B(src)
+			new /obj/item/ammo_magazine/flamer_tank/large/X(src)
+
+
+
+/obj/item/storage/box/spec/heavy_grenadier
+	name = "\improper Heavy Grenadier case"
+	desc = "A large case containing M50 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "grenade_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+	spec_set = "heavy grenadier"
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/launcher/m92(src)
+			new /obj/item/storage/belt/grenade(src)
+			new /obj/item/storage/belt/grenade(src)
+			new /obj/item/clothing/gloves/marine/specialist(src)
+			new /obj/item/clothing/suit/storage/marine/specialist(src)
+			new /obj/item/clothing/head/helmet/marine/specialist(src)
