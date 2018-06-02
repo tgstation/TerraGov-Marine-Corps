@@ -1,8 +1,4 @@
 /mob/living/carbon/human/movement_delay()
-
-	if(istype(loc, /turf/open/space))
-		return -1 //It's hard to be slowed down in space by... anything
-
 	. = ..()
 
 	if(interactee)// moving stops any kind of interaction

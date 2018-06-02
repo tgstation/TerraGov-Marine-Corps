@@ -405,13 +405,13 @@
 
 	if (agility)
 		src << "<span class='xenowarning'>You lower yourself to all fours.</span>"
-		speed -= 1
+		speed -= 0.7
 		update_icons()
 		do_agility_cooldown()
 		return
 
 	src << "<span class='xenowarning'>You raise yourself to stand on two feet.</span>"
-	speed += 1
+	speed += 0.7
 	update_icons()
 	do_agility_cooldown()
 
@@ -560,13 +560,13 @@
 	if (crest_defense)
 		src << "<span class='xenowarning'>You lower your crest.</span>"
 		armor_deflection += 15
-		speed += 0.5	// This is actually a slowdown but speed is dumb
+		speed += 0.8	// This is actually a slowdown but speed is dumb
 		do_crest_defense_cooldown()
 		return
 
 	src << "<span class='xenowarning'>You raise your crest.</span>"
 	armor_deflection -= 15
-	speed -= 0.5
+	speed -= 0.8
 
 	do_crest_defense_cooldown()
 

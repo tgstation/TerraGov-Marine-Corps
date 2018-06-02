@@ -91,24 +91,24 @@
 // This will move the AIEye. It will also cause lights near the eye to light up, if toggled.
 // This is handled in the proc below this one.
 
-/client/proc/AIMove(n, direct, var/mob/living/silicon/ai/user)
+mob/living/silicon/ai/Move(n, direct)
 
-	var/initial = initial(user.sprint)
+	var/initial = initial(sprint)
 	var/max_sprint = 50
 
-	if(user.cooldown && user.cooldown < world.timeofday) // 3 seconds
-		user.sprint = initial
+	if(cooldown && cooldown < world.timeofday) // 3 seconds
+		sprint = initial
 
-	for(var/i = 0; i < max(user.sprint, initial); i += 20)
-		var/turf/step = get_turf(get_step(user.eyeobj, direct))
+	for(var/i = 0; i < max(sprint, initial); i += 20)
+		var/turf/step = get_turf(get_step(eyeobj, direct))
 		if(step)
-			user.eyeobj.setLoc(step)
+			eyeobj.setLoc(step)
 
-	user.cooldown = world.timeofday + 5
-	if(user.acceleration)
-		user.sprint = min(user.sprint + 0.5, max_sprint)
+	cooldown = world.timeofday + 5
+	if(acceleration)
+		sprint = min(sprint + 0.5, max_sprint)
 	else
-		user.sprint = initial
+		sprint = initial
 
 	//user.unset_interaction() //Uncomment this if it causes problems.
 	//user.lightNearbyCamera()

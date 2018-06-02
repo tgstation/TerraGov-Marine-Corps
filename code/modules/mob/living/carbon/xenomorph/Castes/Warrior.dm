@@ -44,7 +44,7 @@
 	else if (agility)
 		icon_state = "Warrior Agility"
 	else
-		if (m_intent == "run")
+		if (m_intent == MOVE_INTENT_RUN)
 			icon_state = "Warrior Running"
 		else
 			icon_state = "Warrior Walking"

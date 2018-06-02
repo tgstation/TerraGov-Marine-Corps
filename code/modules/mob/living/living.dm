@@ -194,17 +194,23 @@
 			return 1
 		if(moving_resist && client) //we resisted by trying to move
 			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
-			client.move_delay += 20
-			client.next_movement = world.time +(10*pulledby.grab_level)
+			next_move_slowdown += 20
+			client.next_movement = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
 		pulledby.stop_pulling()
 		return 1
 
 
 /mob/living/movement_delay()
-	. = 0
-	if(istype(loc, /turf/open/space))
-		return -1 //It's hard to be slowed down in space by... anything
+
+	. = ..()
+
+	if (do_bump_delay)
+		. += 10
+		do_bump_delay = 0
+
+	if (drowsyness > 0)
+		. += 6
 
 	if(pulling && pulling.drag_delay && !ignore_pull_delay())	//Dragging stuff can slow you down a bit.
 		var/pull_delay = pulling.drag_delay
@@ -213,10 +219,6 @@
 			if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
 				pull_delay = M.buckled.drag_delay
 		. += max(pull_speed + pull_delay + 3*grab_level, 0) //harder grab makes you slower
-
-	if(next_move_slowdown)
-		. += next_move_slowdown
-		next_move_slowdown = 0
 
 //whether we are slowed when dragging things
 /mob/living/proc/ignore_pull_delay()
@@ -252,15 +254,14 @@
 			var/mob/living/carbon/Xenomorph/X = L
 			if((has_species(src, "Human") && X.mob_size == MOB_SIZE_BIG) || (isXeno(src) && X.mob_size == MOB_SIZE_BIG))
 				if(!isXeno(src) && client)
-					client.move_delay += 10 //1 sec delay when bumping into a Xeno before you can move again
+					do_bump_delay = 1
 				now_pushing = 0
 				return
 
 		if(isXeno(src) && !isXenoLarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
 			var/mob/living/carbon/Xenomorph/X = src
 			if(has_species(L, "Human") && X.mob_size == MOB_SIZE_BIG)
-				if(L.client)
-					L.client.move_delay += 10 //1 sec delay when bumped by a Xeno before you can move again
+				L.do_bump_delay = 1
 
 		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
 			if(!(world.time % 5))

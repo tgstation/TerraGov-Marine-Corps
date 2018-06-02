@@ -102,10 +102,6 @@
 	dna.mutantrace = "tajaran"
 
 /mob/living/carbon/monkey/movement_delay()
-
-	if(istype(loc, /turf/open/space))
-		return -1 //It's hard to be slowed down in space by... anything
-
 	. = ..()
 
 	if(reagents)

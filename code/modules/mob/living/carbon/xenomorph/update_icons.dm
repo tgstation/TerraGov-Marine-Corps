@@ -34,7 +34,7 @@
 		else
 			icon_state = "[caste] Knocked Down"
 	else
-		if(m_intent == "run")
+		if(m_intent == MOVE_INTENT_RUN)
 			icon_state = "[caste] Running"
 		else
 			icon_state = "[caste] Walking"

@@ -571,7 +571,7 @@
 	if(istype(O, /mob/living/))
 		var/mob/living/M = O
 		//slip in the murky water if we try to run through it
-		if(prob(10 + (M.m_intent == "run" ? 40 : 0)))
+		if(prob(10 + (M.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
 			M << pick("\blue You slip on something slimy.","\blue You fall over into the murk.")
 			M.Stun(2)
 			M.KnockDown(1)

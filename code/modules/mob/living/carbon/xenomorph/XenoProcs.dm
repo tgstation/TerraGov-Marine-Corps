@@ -137,16 +137,12 @@
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
-
-	if(istype(loc, /turf/open/space))
-		return -1 //It's hard to be slowed down in space by... anything
-
 	. = ..()
 
 	. += speed
 
 	if(frenzy_aura)
-		. -= (frenzy_aura * 0.1)
+		. -= (frenzy_aura * 0.05)
 
 	if(is_charging)
 		if(legcuffed)
@@ -457,7 +453,7 @@
 		stop_momentum(charge_dir)
 		r_FAL
 
-	if(dir != charge_dir || m_intent == "walk" || istype(loc, /turf/open/gm/river))
+	if(dir != charge_dir || m_intent == MOVE_INTENT_WALK || istype(loc, /turf/open/gm/river))
 		stop_momentum(charge_dir)
 		r_FAL
 

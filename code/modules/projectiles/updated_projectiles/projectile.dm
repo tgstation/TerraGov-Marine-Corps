@@ -421,7 +421,7 @@
 			. -= mobility_aura * 5
 		var/mob/living/carbon/human/shooter_human = P.firer
 		if(istype(shooter_human))
-			if(shooter_human.faction == faction || m_intent == "walk")
+			if(shooter_human.faction == faction || m_intent == MOVE_INTENT_WALK)
 				. -= 15
 
 
