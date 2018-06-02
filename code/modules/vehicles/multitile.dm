@@ -153,9 +153,10 @@ Vehicles are placed on the map by a spawner or admin verb
 	if(!try_move(linked_objs, null, 1))
 		rotate_coords(-1*deg)
 		revert_locs()
-		return
+		return 0
 
 	update_icon()
+	return 1
 
 //Called when players try to move from inside the vehicle
 //Another wrapper for try_move()
@@ -174,9 +175,10 @@ Vehicles are placed on the map by a spawner or admin verb
 	if(!try_move(linked_objs, direction))
 		revert_locs()
 		dir = old_dir
-		return
+		return 0 //Failed movement
 
 	dir = old_dir //Preserve the direction you're facing when moving backwards
+	return 1
 
 /obj/vehicle/multitile/root/New()
 	var/datum/coords/C = new

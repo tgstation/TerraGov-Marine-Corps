@@ -93,11 +93,21 @@
 	if(driver)
 		driver << "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>"
 		driver.Move(entrance.loc)
+		driver.unset_interaction()
 		driver = null
 	else if(gunner)
 		gunner << "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>"
 		gunner.Move(entrance.loc)
+		gunner.unset_interaction()
 		gunner = null
+
+/obj/vehicle/multitile/root/cm_armored/tank/remove_all_players()
+	if(!entrance) //Something broke, uh oh
+		if(gunner) gunner.loc = src.loc
+		if(driver) driver.loc = src.loc
+	else
+		if(gunner) gunner.forceMove(entrance.loc)
+		if(driver) driver.forceMove(entrance.loc)
 
 //Let's you switch into the other seat, doesn't work if it's occupied
 /obj/vehicle/multitile/root/cm_armored/tank/verb/switch_seats()
@@ -122,6 +132,8 @@
 			return
 
 		usr << "<span class='notice'>You switch seats.</span>"
+
+		deactivate_all_hardpoints()
 
 		driver = gunner
 		gunner = null
@@ -233,7 +245,9 @@
 	if(!M.Move(entrance.loc))
 		M << "<span class='notice'>Something is blocking you from exiting.</span>"
 	else
-		if(M == gunner) gunner = null
+		if(M == gunner)
+			deactivate_all_hardpoints()
+			gunner = null
 		else if(M == driver) driver = null
 		M.unset_interaction()
 		M << "<span class='notice'>You climb out of [src].</span>"
@@ -244,8 +258,23 @@
 
 	. = ..(user, direction)
 
+	//Someone remind me to fix this fucking snow code --MadSnailDisease
+	//The check is made here since the snowplow won't fit on the APC
+	if(. && istype(hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) && direction == dir)
+		var/obj/item/hardpoint/armor/snowplow/SP = hardpoints[HDPT_ARMOR]
+		if(SP.health > 0)
+			for(var/datum/coords/C in linked_objs)
+				var/turf/T = locate(src.x + C.x_pos, src.y + C.y_pos, src.z + C.z_pos)
+				if(!istype(T, /turf/open/snow)) continue
+				var/turf/open/snow/ST = T
+				if(!ST || !ST.slayer)
+					continue
+				new /obj/item/stack/snow(ST, ST.slayer)
+				ST.slayer = 0
+				ST.update_icon(1, 0)
+
 	if(next_sound_play < world.time)
-		playsound(src, 'sound/ambience/tank_driving.ogg', 10, sound_range = 30)
+		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn
@@ -254,6 +283,13 @@
 	if(user != driver) return
 
 	. = ..(deg, user)
+
+	if(. && istype(hardpoints[HDPT_SUPPORT], /obj/item/hardpoint/support/artillery_module) && gunner && gunner.client)
+		var/client/C = gunner.client
+		var/old_x = C.pixel_x
+		var/old_y = C.pixel_y
+		C.pixel_x = old_x*cos(deg) - old_y*sin(deg)
+		C.pixel_y = old_x*sin(deg) + old_y*cos(deg)
 
 
 /obj/vehicle/multitile/hitbox/cm_armored/tank/Bump(var/atom/A)
