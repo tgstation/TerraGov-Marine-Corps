@@ -38,7 +38,7 @@
 				if(ishuman(AM))
 					if(isturf(src.loc))
 						var/mob/living/carbon/H = AM
-						if(H.m_intent == "run")
+						if(H.m_intent == MOVE_INTENT_RUN)
 							if(!H.legcuffed)
 								H.legcuffed = src
 								forceMove(H)
@@ -104,7 +104,7 @@
 						if(isYautja(H))
 							H << "<span class='notice'>You carefully avoid stepping on the trap.</span>"
 							return
-						if(H.m_intent == "run")
+						if(H.m_intent == MOVE_INTENT_RUN)
 							armed = 0
 							icon_state = "yauttrap0"
 							H.legcuffed = src

@@ -33,6 +33,7 @@
 	var/disabilities = 0	//Carbon
 	var/atom/movable/pulling = null
 	var/next_move = null
+	var/next_move_slowdown = 0	// Amount added during the next movement_delay(), then is reset.
 	var/monkeyizing = null	//Carbon
 	var/hand = null
 	var/eye_blind = null	//Carbon
@@ -91,7 +92,7 @@
 	var/losebreath = 0.0//Carbon
 	var/shakecamera = 0
 	var/a_intent = "help"//Living
-	var/m_intent = "run"//Living
+	var/m_intent = MOVE_INTENT_RUN//Living
 	var/lastKnownIP = null
 	var/obj/buckled = null//Living
 	var/obj/item/l_hand = null//Living
@@ -153,8 +154,6 @@
 
 
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
-
-	var/atom/movable/remote_control //the object that the mob controls via relaymove.
 
 	//Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
 	var/universal_speak = 0 // Set to 1 to enable the mob to speak to everyone -- TLE

@@ -11,7 +11,7 @@
 
 	using = new /obj/screen/mov_intent()
 	using.icon = ui_style
-	using.icon_state = (owner.m_intent == "run" ? "running" : "walking")
+	using.icon_state = (owner.m_intent == MOVE_INTENT_RUN ? "running" : "walking")
 	static_inventory += using
 	move_intent = using
 

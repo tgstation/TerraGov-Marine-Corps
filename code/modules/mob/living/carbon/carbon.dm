@@ -15,7 +15,7 @@
 	if(.)
 		if(nutrition && stat != DEAD)
 			nutrition -= HUNGER_FACTOR/10
-			if(m_intent == "run")
+			if(m_intent == MOVE_INTENT_RUN)
 				nutrition -= HUNGER_FACTOR/10
 
 		// Moving around increases germ_level faster
@@ -26,7 +26,7 @@
 	if(user.is_mob_incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
 		if(user.client)
-			user.client.move_delay = 20
+			user.next_move_slowdown +=  20
 		for(var/mob/M in hearers(4, src))
 			if(M.client)
 				M.show_message(text("\red You hear something rumbling inside [src]'s stomach..."), 2)
@@ -53,6 +53,7 @@
 	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
 		L.chest_burst(src)
+
 
 /mob/living/carbon/gib(anim, do_gibs, f_icon)
 	if(legcuffed)
@@ -363,7 +364,7 @@
 /mob/living/carbon/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	set waitfor = 0
 	if(buckled) return FALSE //can't slip while buckled
-	if(run_only && (m_intent != "run")) return FALSE
+	if(run_only && (m_intent != MOVE_INTENT_RUN)) return FALSE
 	if(lying) return FALSE //can't slip if already lying down.
 	stop_pulling()
 	src << "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>"

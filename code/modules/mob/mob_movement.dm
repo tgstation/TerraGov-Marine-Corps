@@ -119,171 +119,77 @@
 
 
 /client/Move(n, direct)
+	if(mob.control_object)
+		return Move_object(direct) //admins possessing object
+
+	if(isobserver(mob) || isAI(mob))
+		return mob.Move(n,direct)
+
 	var/start_move_time = world.time
-	if(mob.control_object) return Move_object(direct) //admins possessing object
-
-	if(isobserver(mob))	return mob.Move(n,direct)
-
-	if(moving)
-		return 0
-
 	if(next_movement > world.time)
-		return
-
-	if(!mob)
 		return
 
 	if(mob.stat == DEAD)
 		return
 
-	// handle possible AI movement
-	if(isAI(mob))
-		return AIMove(n,direct,mob)
-
-	if(mob.monkeyizing)	return//This is sota the goto stop mobs from moving var
-
+	// There should be a var/is_zoomed in mob code not this mess
 	if(isXeno(mob))
-		if(mob:is_zoomed) mob:zoom_out()
+		if(mob:is_zoomed)
+			mob:zoom_out()
 
-	var/mob/living/L
-	if(isliving(mob))
-		L = mob
-		if(L.incorporeal_move)//Move though walls
-			Process_Incorpmove(direct)
-			return
-
-	if(mob.remote_control)
-		return mob.remote_control.relaymove(mob,direct)
-
-	if(L)
-		if(mob.client)
-			if(mob.client.view != world.view || mob.client.pixel_x || mob.client.pixel_y) // If mob moves while zoomed in with device, unzoom them.
-				for(var/obj/item/item in mob.contents)
-					if(item.zoom)
-						item.zoom(mob)
-						break
-
+	// If mob moves while zoomed in with device, unzoom them.
+	if(view != world.view || pixel_x || pixel_y)
+		for(var/obj/item/item in mob.contents)
+			if(item.zoom)
+				item.zoom(mob)
+				break
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(mob.pulledby)
 		if(mob.is_mob_incapacitated(TRUE))
 			return
 		else if(mob.is_mob_restrained(0))
-			move_delay = 10
+			mob.next_move_slowdown += 10
 			src << "<span class='warning'>You're restrained! You can't move!</span>"
 			return
 		else if(!mob.resist_grab(TRUE))
 			return
 
-	if(mob.buckled) return mob.buckled.relaymove(mob,direct)
-
+	if(mob.buckled)
+		return mob.buckled.relaymove(mob, direct)
 
 	if(!mob.canmove)
 		return
-
-	if(!mob.lastarea)
-		mob.lastarea = get_area(mob.loc)
-
-	if((istype(mob.loc, /turf/open/space))|| (mob.lastarea.has_gravity == 0))
-		if(!mob.Process_Spacemove(0))	return 0
-
 
 	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
 		var/atom/O = mob.loc
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-		move_delay = 0 //set move delay
+		if (mob.listed_turf)
+			mob.listed_turf = null
+
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
-			if("run")
-				if(mob.drowsyness > 0)
-					move_delay += 6
-				move_delay += 2 + config.run_speed
-			if("walk")
-				move_delay += 7+config.walk_speed
+			if(MOVE_INTENT_RUN)
+				move_delay = 2 + config.run_speed
+			if(MOVE_INTENT_WALK)
+				move_delay = 7 + config.walk_speed
 		move_delay += mob.movement_delay()
-
-		if (move_delay % 2)
-			move_delay += 1
-
 		//We are now going to move
 		moving = 1
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
-		if (mob.listed_turf)
-			mob.listed_turf = null
+
 		if(mob.confused)
 			step(mob, pick(cardinal))
 		else
-			. = mob.SelfMove(n, direct)
+			. = ..()
 
 		moving = 0
 		next_movement = start_move_time + move_delay
-
 		return .
 
 	return
-
-/mob/proc/SelfMove(turf/n, direct)
-	return Move(n, direct)
-
-
-
-
-///Process_Incorpmove
-///Called by client/Move()
-///Allows mobs to run though walls
-/client/proc/Process_Incorpmove(direct)
-	var/turf/mobloc = get_turf(mob)
-	if(!isliving(mob))
-		return
-	var/mob/living/L = mob
-	switch(L.incorporeal_move)
-		if(1)
-			L.loc = get_step(L, direct)
-			L.dir = direct
-		if(2)
-			if(prob(50))
-				var/locx
-				var/locy
-				switch(direct)
-					if(NORTH)
-						locx = mobloc.x
-						locy = (mobloc.y+2)
-						if(locy>world.maxy)
-							return
-					if(SOUTH)
-						locx = mobloc.x
-						locy = (mobloc.y-2)
-						if(locy<1)
-							return
-					if(EAST)
-						locy = mobloc.y
-						locx = (mobloc.x+2)
-						if(locx>world.maxx)
-							return
-					if(WEST)
-						locy = mobloc.y
-						locx = (mobloc.x-2)
-						if(locx<1)
-							return
-					else
-						return
-				L.loc = locate(locx,locy,mobloc.z)
-				spawn(0)
-					var/limit = 2//For only two trailing shadows.
-					for(var/turf/T in getline2(mobloc, L.loc))
-						spawn(0)
-							anim(T,L,'icons/mob/mob.dmi',,"shadow",,L.dir)
-						limit--
-						if(limit<=0)	break
-			else
-				spawn(0)
-					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,L.dir)
-				L.loc = get_step(L, direct)
-			L.dir = direct
-	return 1
-
 
 ///Process_Spacemove
 ///Called by /client/Move()

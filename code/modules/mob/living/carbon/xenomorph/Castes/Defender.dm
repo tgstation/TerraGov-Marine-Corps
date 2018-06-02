@@ -47,7 +47,7 @@
 	else if (crest_defense)
 		icon_state = "Defender Crest"
 	else
-		if (m_intent == "run")
+		if (m_intent == MOVE_INTENT_RUN)
 			icon_state = "Defender Running"
 		else
 			icon_state = "Defender Walking"

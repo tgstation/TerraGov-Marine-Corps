@@ -574,7 +574,7 @@
 		else
 			icon_state = "Queen Knocked Down"
 	else
-		if(m_intent == "run")
+		if(m_intent == MOVE_INTENT_RUN)
 			if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Let it build up a bit so we're not changing icons every single turf
 				icon_state = "Queen Charging"
 			else

@@ -622,7 +622,7 @@
 	hud_type = /datum/hud_data/yautja
 	death_message = "clicks in agony and falls still, motionless and completely lifeless..."
 	darksight = 5
-	slowdown = -0.8
+	slowdown = -0.5
 
 	heat_level_1 = 500
 	heat_level_2 = 700

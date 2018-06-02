@@ -501,15 +501,15 @@
 		var/mob/living/carbon/C = user
 		if(C.legcuffed)
 			C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
-			C.m_intent = "walk"	//Just incase
+			C.m_intent = MOVE_INTENT_WALK	//Just incase
 			icon_state = "walking"
 			return
 	switch(user.m_intent)
-		if("run")
-			user.m_intent = "walk"
+		if(MOVE_INTENT_RUN)
+			user.m_intent = MOVE_INTENT_WALK
 			icon_state = "walking"
-		if("walk")
-			user.m_intent = "run"
+		if(MOVE_INTENT_WALK)
+			user.m_intent = MOVE_INTENT_RUN
 			icon_state = "running"
 	if(isXeno(user))
 		user.update_icons()

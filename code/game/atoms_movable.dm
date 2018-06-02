@@ -34,6 +34,7 @@
 	return
 
 /atom/movable/Move(NewLoc, direct)
+	/*
 	if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
 		moving_diagonally = FIRST_DIAG_STEP
 		if (direct & 1)
@@ -68,7 +69,7 @@
 					. = step(src, SOUTH)
 		moving_diagonally = 0
 		return
-
+	*/
 	var/atom/oldloc = loc
 	var/old_dir = dir
 
@@ -84,8 +85,8 @@
 
 
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
-	if(src.throwing)
-		src.throw_impact(A)
+	if(throwing)
+		throw_impact(A)
 
 	spawn( 0 )
 		if ((A && yes))

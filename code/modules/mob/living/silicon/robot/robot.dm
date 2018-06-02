@@ -921,6 +921,12 @@ var/list/robot_verbs_default = list(
 
 
 /mob/living/silicon/robot/Move(a, b, flag)
+	if (!is_component_functioning("actuator"))
+		return 0
+
+	var/datum/robot_component/actuator/AC = get_component("actuator")
+	if (!cell_use_power(AC.active_usage))
+		return 0
 
 	. = ..()
 

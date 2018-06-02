@@ -80,7 +80,8 @@
 	return 0
 
 /mob/proc/movement_delay()
-	return 0
+	. += next_move_slowdown
+	next_move_slowdown = 0
 
 /mob/proc/Life()
 	if(client == null)
@@ -560,7 +561,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 	if(buckled && !buckled.anchored)
 		buckled.dir = ndir
 		buckled.handle_rotation()
-	client.move_delay += movement_delay()
 	return 1
 
 

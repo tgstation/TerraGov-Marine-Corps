@@ -312,7 +312,7 @@
 		L.lastarea = get_area(L.loc)
 	var/area/newarea = get_area(L.loc)
 	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
+	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == MOVE_INTENT_RUN)) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
 		L.make_floating(0)
 
@@ -363,7 +363,7 @@
 	if(istype(get_turf(mob), /turf/open/space)) // Can't fall onto nothing.
 		return
 
-	if((istype(mob,/mob/living/carbon/human/)) && (mob:m_intent == "run")) // Only clumbsy humans can fall on their asses.
+	if((istype(mob,/mob/living/carbon/human/)) && (mob:m_intent == MOVE_INTENT_RUN)) // Only clumbsy humans can fall on their asses.
 		mob:AdjustStunned(5)
 		mob:AdjustKnockeddown(5)
 

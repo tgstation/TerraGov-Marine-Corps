@@ -8,8 +8,8 @@
 
 /mob/living/carbon/proc/legcuff_update()
 	if(legcuffed)
-		if(m_intent != "walk")
-			m_intent = "walk"
+		if(m_intent != MOVE_INTENT_WALK)
+			m_intent = MOVE_INTENT_WALK
 			if(hud_used && hud_used.move_intent)
 				hud_used.move_intent.icon_state = "walking"
 	update_inv_legcuffed()

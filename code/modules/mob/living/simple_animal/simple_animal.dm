@@ -293,10 +293,6 @@
 
 
 /mob/living/simple_animal/movement_delay()
-
-	if(istype(loc, /turf/open/space))
-		return -1 //It's hard to be slowed down in space by... anything
-
 	. = ..()
 	. += speed
 	. += config.animal_delay

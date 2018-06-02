@@ -19,9 +19,6 @@
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 
-	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
-	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
-
 	var/t_phoron = null
 	var/t_oxygen = null
 	var/t_sl_gas = null
@@ -54,7 +51,6 @@
 	var/last_played_vent
 	var/is_ventcrawling = 0
 
-	var/next_move_slowdown = 0 //amount added during the next movement_delay(), then is reset.
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
 
 	var/image/attack_icon = null //the image used as overlay on the things we attack.
@@ -62,3 +58,4 @@
 	var/list/datum/action/actions = list()
 
 	var/zoom_cooldown = 0 //Cooldown on using zooming items, to limit spam
+	var/do_bump_delay = 0	// Flag to tell us to delay movement because of being bumped

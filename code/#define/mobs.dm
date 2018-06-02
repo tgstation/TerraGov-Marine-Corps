@@ -245,6 +245,10 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 #define LIMB_REPAIRED 256 //we just repaired the bone, stops the gelling after setting
 
+
+/////////////////MOVE DEFINES//////////////////////
+#define MOVE_INTENT_WALK        1
+#define MOVE_INTENT_RUN         2
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 
 #define ORGAN_ASSISTED	1
