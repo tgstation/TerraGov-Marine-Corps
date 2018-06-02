@@ -240,13 +240,15 @@
 
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"
-	desc = "It can contain grenades, and other explosives."
+	desc = "It can contain grenades, plastiques, mine boxes, and other explosives."
 	icon_state = "large_explosive"
 	storage_slots = 3
+	max_w_class = 3
 	can_hold = list(
 					"/obj/item/explosive/plastique",
 					"/obj/item/explosive/mine",
-					"/obj/item/explosive/grenade"
+					"/obj/item/explosive/grenade",
+					"/obj/item/storage/box/explosive_mines"
 					)
 
 /obj/item/storage/pouch/explosive/full/New()
@@ -278,6 +280,16 @@
 		"/obj/item/stack/medical",
 		"/obj/item/device/flashlight/pen",
 	    "/obj/item/reagent_container/hypospray"
+	)
+
+
+/obj/item/storage/pouch/autoinjector
+	name = "auto-injector pouch"
+	desc = "A pouch specifically for auto-injectors."
+	icon_state = "autoinjector"
+	storage_slots = 4
+	can_hold = list(
+	    "/obj/item/reagent_container/hypospray/autoinjector"
 	)
 
 
@@ -367,9 +379,14 @@
 	storage_slots = 5
 	can_hold = list(
 					"/obj/item/circuitboard",
-					"/obj/item/circuitboard/apc",
 					"/obj/item/cell"
 					)
+
+/obj/item/storage/pouch/electronics/full/New()
+	..()
+	new /obj/item/circuitboard/airlock (src)
+	new /obj/item/circuitboard/apc (src)
+	new /obj/item/cell/high (src)
 
 
 /obj/item/storage/pouch/construction

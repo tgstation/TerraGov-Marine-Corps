@@ -80,6 +80,41 @@
 	color = "#e88a10"
 
 
+
+//used by marine equipment machines to spawn the correct map.
+/obj/item/map/current_map
+
+/obj/item/map/current_map/New()
+	..()
+	if(!ticker || !ticker.mode)
+		cdel(src)
+		return
+	switch(ticker.mode.name)
+		if("LV-624")
+			name = "\improper Lazarus Landing Map"
+			desc = "A satellite printout of the Lazarus Landing colony on LV-624."
+			html_link = "images/6/6f/LV624.png"
+		if("Ice Colony")
+			name = "\improper Ice Colony map"
+			desc = "A satellite printout of the Ice Colony."
+			html_link = "images/1/18/Map_icecolony.png"
+			color = "cyan"
+		if("Solaris Ridge")
+			name = "\improper Solaris Ridge Map"
+			desc = "A censored blueprint of the Solaris Ridge facility"
+			html_link = "images/c/c5/Big_Red.png"
+			color = "#e88a10"
+
+		if("Prison Station")
+			name = "\improper Fiorina Orbital Penitentiary Map"
+			desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
+			html_link = "images/4/4c/Map_Prison.png"
+			color = "#e88a10"
+		else
+			cdel(src)
+
+
+
 // Landmark - Used for mapping. Will spawn the appropriate map for each gamemode (LV map items will spawn when LV is the gamemode, etc)
 /obj/effect/landmark/map_item
 	name = "map item"

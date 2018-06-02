@@ -208,24 +208,13 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			var/list/dept_console = frozen_items["REQ"]
 			if(ishuman(occupant))
 				var/mob/living/carbon/human/H = occupant
-				if(H.assigned_squad)
-					switch(H.assigned_squad.name)
-						if("Alpha")
-							dept_console = frozen_items["Alpha"]
-						if("Bravo")
-							dept_console = frozen_items["Bravo"]
-						if("Charlie")
-							dept_console = frozen_items["Charlie"]
-						if("Delta")
-							dept_console = frozen_items["Delta"]
-				else
-					switch(H.job)
-						if("Military Police","Chief MP")
-							dept_console = frozen_items["MP"]
-						if("Doctor","Researcher","Chief Medical Officer")
-							dept_console = frozen_items["Med"]
-						if("Maintenance Tech","Chief Engineer")
-							dept_console = frozen_items["Eng"]
+				switch(H.job)
+					if("Military Police","Chief MP")
+						dept_console = frozen_items["MP"]
+					if("Doctor","Researcher","Chief Medical Officer")
+						dept_console = frozen_items["Med"]
+					if("Maintenance Tech","Chief Engineer")
+						dept_console = frozen_items["Eng"]
 
 			var/list/stripcontents = list(/obj/item/clothing/suit/storage, \
 			/obj/item/clothing/under, \
@@ -330,11 +319,33 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 				if(H.mind && H.assigned_squad)
 					var/datum/squad/S = H.assigned_squad
 					switch(H.mind.assigned_role)
-						if("Squad Engineer") S.num_engineers--
-						if("Squad Medic") S.num_medics--
-						if("Squad Specialist") S.num_specialists--
-						if("Squad Smartgunner") S.num_smartgun--
-						if("Squad Leader") S.num_leaders--
+						if("Squad Engineer")
+							S.num_engineers--
+						if("Squad Medic")
+							S.num_medics--
+						if("Squad Specialist")
+							S.num_specialists--
+							//we make the set this specialist took if any available again
+							if(H.mind.cm_skills)
+								var/set_name
+								switch(H.mind.cm_skills.spec_weapons)
+									if(SKILL_SPEC_ROCKET)
+										set_name = "Demolitionist Set"
+									if(SKILL_SPEC_GRENADIER)
+										set_name = "Heavy Grenadier Set"
+									if(SKILL_SPEC_PYRO)
+										set_name = "Pyro Set"
+									if(SKILL_SPEC_SCOUT)
+										set_name = "Scout Set"
+									if(SKILL_SPEC_SNIPER)
+										set_name = "Sniper Set"
+
+								if(set_name && !available_specialist_sets.Find(set_name))
+									available_specialist_sets += set_name
+						if("Squad Smartgunner")
+							S.num_smartgun--
+						if("Squad Leader")
+							S.num_leaders--
 					S.count--
 
 			ticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for

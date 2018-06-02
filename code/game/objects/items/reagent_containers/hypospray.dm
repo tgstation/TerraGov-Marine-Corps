@@ -22,67 +22,34 @@
 	if(!reagents.total_volume)
 		user << "\red [src] is empty."
 		return
-	if (!( istype(M, /mob) ))
+	if (!istype(M))
 		return
 	if (reagents.total_volume)
 		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
 			user << "<span class='warning'>You can't figure out to use \the [src], guess it must have some sort of ID lock.</span>"
 			return 0
-		var/mob/target = null
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM && prob(50))
-			user << "<span class='warning'>You fumble the injector and end up jabbing yourself with it!</span>"
-			target = user
-		else
-			target = M
-			user << "\blue You inject [M] with [src]."
-		target << "\red You feel a tiny prick!"
+
+		user << "\blue You inject [M] with [src]."
+		M << "\red You feel a tiny prick!"
 		playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
-		src.reagents.reaction(target, INGEST)
-		if(target.reagents)
+		src.reagents.reaction(M, INGEST)
+		if(M.reagents)
 
 			var/list/injected = list()
 			for(var/datum/reagent/R in src.reagents.reagent_list)
 				injected += R.name
 			var/contained = english_list(injected)
-			target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [target.name] ([target.key]). Reagents: [contained]</font>")
-			msg_admin_attack("[user.name] ([user.ckey]) injected [target.name] ([target.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [M.name] ([M.key]). Reagents: [contained]</font>")
+			msg_admin_attack("[user.name] ([user.ckey]) injected [M.name] ([M.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-			var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
+			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
 			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in [src]."
 
 	return 1
 
-/obj/item/reagent_container/hypospray/autoinjector
-	name = "\improper Inaprovaline autoinjector"
-	//desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
-	desc = "An autoinjector containing Inaprovaline.  Useful for saving lives."
-	icon_state = "autoinjector"
-	item_state = "hypo"
-	amount_per_transfer_from_this = 5
-	volume = 5
 
-/obj/item/reagent_container/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
-	. = ..()
-	if(.)
-		if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
-			flags_atom &= ~OPENCONTAINER
-			update_icon()
-
-/obj/item/reagent_container/hypospray/autoinjector/attackby() return
-
-/obj/item/reagent_container/hypospray/autoinjector/update_icon()
-	if(reagents.total_volume <= 0)
-		icon_state += "0"
-		name += " expended" //So people can see what have been expended since we have smexy new sprites people aren't used too...
-
-/obj/item/reagent_container/hypospray/autoinjector/examine(mob/user)
-	..()
-	if(reagents && reagents.reagent_list.len)
-		user << "\blue It is currently loaded."
-	else
-		user << "\blue It is spent."
 
 /obj/item/reagent_container/hypospray/tricordrazine
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients. Contains tricordrazine."

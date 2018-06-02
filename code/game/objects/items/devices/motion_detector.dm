@@ -81,6 +81,10 @@
 
 	playsound(loc, 'sound/items/detector.ogg', 60, 0, 7, 2)
 
+	var/mob/living/carbon/human/human_user
+	if(ishuman(loc))
+		human_user = loc
+
 	var/detected
 	for(var/mob/M in living_mob_list)
 		if(loc == null || M == null) continue
@@ -93,13 +97,11 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer))
-				continue //device detects marine armors and ignores the wearer.
+				continue //device detects marine headset and ignores the wearer.
 		detected = TRUE
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.get_active_hand() == src) //blips only appear when held in active hand by a human.
-				show_blip(H, M)
+		if(human_user)
+			show_blip(human_user, M)
 
 		if(detected)
 			playsound(loc, 'sound/items/tick.ogg', 50, 0, 7, 2)
