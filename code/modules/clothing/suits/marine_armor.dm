@@ -282,8 +282,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a USCM vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
-	slowdown = SLOWDOWN_ARMOR_HEAVY
-	allowed = list()
 	uniform_restricted = list(/obj/item/clothing/under/marine/officer/tanker)
 
 	New()

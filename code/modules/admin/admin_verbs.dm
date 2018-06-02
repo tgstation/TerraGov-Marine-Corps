@@ -79,7 +79,8 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/force_predator_round, //Force spawns a predator round.
 	/client/proc/check_round_statistics,
 	/client/proc/award_medal,
-	/client/proc/force_shuttle
+	/client/proc/force_shuttle,
+	/client/proc/remove_players_from_vic
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel
@@ -233,7 +234,8 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/enable_debug_verbs,
 	/proc/possess,
-	/proc/release
+	/proc/release,
+	/client/proc/remove_players_from_vic
 	)
 var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/

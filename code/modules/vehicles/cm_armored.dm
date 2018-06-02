@@ -9,10 +9,10 @@
 
 //Percentages of what hardpoints take what damage, e.g. armor takes 37.5% of the damage
 var/list/armorvic_dmg_distributions = list(
-	HDPT_PRIMARY = 0.275,
+	HDPT_PRIMARY = 0.15,
 	HDPT_SECDGUN = 0.125,
 	HDPT_SUPPORT = 0.075,
-	HDPT_ARMOR = 0.375,
+	HDPT_ARMOR = 0.5,
 	HDPT_TREADS = 0.15)
 
 //Currently unused, I thought I was gonna need to fuck with stuff but we good
@@ -23,6 +23,15 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	HDPT_SUPPORT = "0,0",
 	HDPT_ARMOR = "0,0",
 	HDPT_TREADS = "0,0")*/
+
+/client/proc/remove_players_from_vic()
+	set name = "Remove All From Tank"
+	set category = "Admin"
+
+	for(var/obj/vehicle/multitile/root/cm_armored/CA in view())
+		CA.remove_all_players()
+		log_admin("[src] forcibly removed all players from [CA]")
+		message_admins("[src] forcibly removed all players from [CA]")
 
 //The main object, should be an abstract class
 /obj/vehicle/multitile/root/cm_armored
@@ -41,6 +50,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	move_delay = 30 //default 3 seconds per tile
 
 	var/active_hp
+
+	var/list/dmg_distribs = list()
 
 	//Changes cooldowns and accuracies
 	var/list/misc_ratios = list(
@@ -93,18 +104,28 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/proc/handle_all_modules_broken()
 	return
 
+/obj/vehicle/multitile/root/cm_armored/proc/deactivate_all_hardpoints()
+	var/list/slots = get_activatable_hardpoints()
+	for(var/slot in slots)
+		var/obj/item/hardpoint/HP = hardpoints[slot]
+		if(!HP) continue
+		HP.deactivate()
+
+/obj/vehicle/multitile/root/cm_armored/proc/remove_all_players()
+	return
+
 //The basic vehicle code that moves the tank, with movement delay implemented
 /obj/vehicle/multitile/root/cm_armored/relaymove(var/mob/user, var/direction)
 	if(world.time < next_move) return
 	next_move = world.time + move_delay * misc_ratios["move"]
 
-	. = ..()
+	return ..()
 
 //Same thing but for rotations
 /obj/vehicle/multitile/root/cm_armored/try_rotate(var/deg, var/mob/user)
 	if(world.time < next_move) return
 	next_move = world.time + move_delay * misc_ratios["move"] * 3 //3 for a 3 point turn, idk
-	. = ..()
+	return ..()
 
 /obj/vehicle/multitile/root/cm_armored/proc/can_use_hp(var/mob/M)
 	return 1
@@ -113,8 +134,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //And other checks to make sure you aren't breaking the law
 /obj/vehicle/multitile/root/cm_armored/tank/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
 
-	if(!can_use_hp(user))
-		return
+	if(!can_use_hp(user)) return
 
 	if(!hardpoints.Find(active_hp))
 		user << "<span class='warning'>Please select an active hardpoint first.</span>"
@@ -146,7 +166,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	set category = "Object"
 	set src in view(0)
 
-	if(!can_use_hp(usr)) return
+	if(!can_use_hp(usr))
+		return
 
 	var/list/slots = get_activatable_hardpoints()
 
@@ -161,6 +182,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		usr << "<span class='warning'>There's nothing installed on that hardpoint.</span>"
 
 	active_hp = slot
+	usr << "<span class='notice'>You select the [slot] slot.</span>"
 
 /obj/vehicle/multitile/root/cm_armored/verb/reload_hp()
 	set name = "Reload Active Weapon"
@@ -341,6 +363,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		M.KnockDown(7, 1)
 		M.apply_damage(25 + rand(-5, 10), BRUTE) //why would I not just do rand(20, 35)
 		M.visible_message("<span class='danger'>[src] knocks down [M]!</span>", "<span class='danger'>[src] knocks you down! Get out of the way!</span>")
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		var/list/slots = CA.get_activatable_hardpoints()
+		for(var/slot in slots)
+			var/obj/item/hardpoint/H = CA.hardpoints[slot]
+			if(!H) continue
+			H.livingmob_interact(M)
 	else if(istype(A, /obj/structure/fence))
 		var/obj/structure/fence/F = A
 		F.visible_message("<span class='danger'>[root] smashes through [F]</span>")
@@ -382,17 +410,18 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Generic proc for taking damage
 //ALWAYS USE THIS WHEN INFLICTING DAMAGE TO THE VEHICLES
-/obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(var/damage, var/type, var/mob/attacker)
+/obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(var/damage, var/type, var/atom/attacker)
 	var/i
 	for(i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
 		if(!istype(HP)) continue
-		HP.health -= damage * armorvic_dmg_distributions[i] * get_dmg_multi(type)
+		HP.health -= damage * dmg_distribs[i] * get_dmg_multi(type)
 
-	if(attacker)
-		log_attack("[src] took [damage] [type] damage from [attacker] ([attacker.client ? attacker.client.ckey : "disconnected"]).")
+	if(istype(attacker, /mob))
+		var/mob/M = attacker
+		log_attack("[src] took [damage] [type] damage from [M] ([M.client ? M.client.ckey : "disconnected"]).")
 	else
-		log_attack("[src] took [damage] [type] damage from *null*.")
+		log_attack("[src] took [damage] [type] damage from [attacker].")
 
 /obj/vehicle/multitile/root/cm_armored/get_projectile_hit_chance(var/obj/item/projectile/P)
 	if(P.firer == src) //Don't hit our own hitboxes
@@ -406,7 +435,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	var/dam_type = "bullet"
 
-	if(istype(P.ammo, /datum/ammo/xeno)) dam_type = "acid"
+	if(P.ammo.flags_ammo_behavior & AMMO_XENO_ACID) dam_type = "acid"
 
 	take_damage_type(P.damage * (0.75 + P.ammo.penetration/100), dam_type, P.firer)
 
@@ -476,12 +505,27 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 		take_damage_type(100, "blunt", C)
 
+//Redistributes damage ratios based off of what things are attached (no armor means the armor doesn't mitigate any damage)
+/obj/vehicle/multitile/root/cm_armored/proc/update_damage_distribs()
+	dmg_distribs = armorvic_dmg_distributions.Copy() //Assume full installs
+	for(var/slot in hardpoints)
+		var/obj/item/hardpoint/HP = hardpoints[slot]
+		if(!HP) dmg_distribs[slot] = 0.0 //Remove empty slots' damage mitigation
+	var/acc = 0
+	for(var/slot in dmg_distribs)
+		var/ratio = dmg_distribs[slot]
+		acc += ratio //Get total current ratio applications
+	for(var/slot in dmg_distribs)
+		var/ratio = dmg_distribs[slot]
+		dmg_distribs[slot] = ratio/acc //Redistribute according to previous ratios for full damage taking, but ignoring empty slots
+
 //Special cases abound, handled below or in subclasses
 /obj/vehicle/multitile/root/cm_armored/attackby(var/obj/item/O, var/mob/user)
 
 	if(istype(O, /obj/item/hardpoint)) //Are we trying to install stuff?
 		var/obj/item/hardpoint/HP = O
 		install_hardpoint(HP, user)
+		update_damage_distribs()
 		return
 
 	if(istype(O, /obj/item/ammo_magazine)) //Are we trying to reload?
@@ -491,10 +535,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(iswelder(O) || iswrench(O)) //Are we trying to repair stuff?
 		handle_hardpoint_repair(O, user)
+		update_damage_distribs()
 		return
 
-	if(iscrowbar(O)) //Are we tryign to remove stuff?
+	if(iscrowbar(O)) //Are we trying to remove stuff?
 		uninstall_hardpoint(O, user)
+		update_damage_distribs()
 		return
 
 	take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage

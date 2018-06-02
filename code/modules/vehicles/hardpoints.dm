@@ -41,6 +41,12 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/proc/active_effect(var/turf/T)
 	return
 
+/obj/item/hardpoint/proc/deactivate()
+	return
+
+/obj/item/hardpoint/proc/livingmob_interact(var/mob/living/M)
+	return
+
 //If our cooldown has elapsed
 /obj/item/hardpoint/proc/is_ready()
 	return 1
@@ -57,13 +63,13 @@ Currently only has the tank hardpoints
 		user << "<span class='warning'>That is the wrong ammo type.</span>"
 		return 0
 
-	user << "<span class='notice'>Installing \the [src] in \the [owner].</span>"
+	user << "<span class='notice'>Installing \the [A] in \the [owner].</span>"
 
 	if(!do_after(user, 10))
 		user << "<span class='warning'>Something interrupted you while reloading [owner].</span>"
 		return 0
 
-	user << "<span class='notice'>You install \the [src] in \the [owner].</span>"
+	user << "<span class='notice'>You install \the [A] in \the [owner].</span>"
 
 	if(!user.u_equip(A, owner, force = 1)) return 0
 	backup_clips += A
@@ -147,7 +153,7 @@ Currently only has the tank hardpoints
 	name = "LTAA-AP Minigun"
 	desc = "A primary weapon for tanks that spews bullets"
 
-	health = 250
+	health = 350
 
 	icon_state = "ltaaap_minigun"
 
@@ -161,7 +167,7 @@ Currently only has the tank hardpoints
 	//If you fire too slowly, you slowly slow back down
 	//Also, different sounds play and it sounds sick, thanks Rahlzel
 	var/chained = 0 //how many quick succession shots we've fired
-	var/list/chain_delays = list(4, 3, 3, 2) //the different cooldowns in deciseconds
+	var/list/chain_delays = list(4, 4, 3, 3, 2, 2, 2) //the different cooldowns in deciseconds, sequentially
 
 	//MAIN PROBLEM WITH THIS IMPLEMENTATION OF DELAYS:
 	//If you spin all the way up and then stop firing, your chained shots will only decrease by 1
@@ -169,6 +175,8 @@ Currently only has the tank hardpoints
 	//You'd probably have to normalize it between the length of the list and the actual ROF
 	//But you don't want to map it below a certain point probably since seconds per shot would go to infinity
 
+	//So, I came back to this and changed it by adding a fixed reset at 1.5 seconds or later, which seems reasonable
+	//Now the cutoff is a little abrupt, but at least it exists. --MadSnailDisease
 	is_ready()
 		if(world.time < next_use) return 0
 		if(health <= 0) return 0
@@ -186,12 +194,14 @@ Currently only has the tank hardpoints
 		if(world.time - next_use <= 5)
 			chained++ //minigun spins up, minigun spins down
 			S = 'sound/weapons/tank_minigun_loop.ogg'
-		else
+		else if(world.time - next_use >= 15) //Too long of a delay, they restart the chain
+			chained = 1
+		else //In between 5 and 15 it slows down but doesn't stop
 			chained--
 			S = 'sound/weapons/tank_minigun_stop.ogg'
 		if(chained <= 0) chained = 1
 
-		next_use = world.time + (chained > chain_delays.len ? 2 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
+		next_use = world.time + (chained > chain_delays.len ? 1 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
 		if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 			T = get_step(T, pick(cardinal))
 		var/obj/item/projectile/P = new
@@ -213,7 +223,7 @@ Currently only has the tank hardpoints
 	name = "Secondary Flamer Unit"
 	desc = "A secondary weapon for tanks that shoots flames"
 
-	health = 250
+	health = 300
 
 	icon_state = "flamer"
 
@@ -283,7 +293,7 @@ Currently only has the tank hardpoints
 	name = "M56 Cupola"
 	desc = "A secondary weapon for tanks that shoots bullets"
 
-	health = 250
+	health = 350
 
 	icon_state = "m56_cupola"
 
@@ -362,7 +372,7 @@ Currently only has the tank hardpoints
 	name = "Smoke Launcher"
 	desc = "Launches smoke forward to obscure vision"
 
-	health = 250
+	health = 300
 
 	icon_state = "slauncher_0"
 
@@ -456,6 +466,50 @@ Currently only has the tank hardpoints
 	remove_buff()
 		owner.misc_ratios["move"] = 1.0
 
+/obj/item/hardpoint/support/artillery_module
+	name = "Artillery Module"
+	desc = "Allows the gunner to look far into the distance."
+
+	health = 250
+	is_activatable = 1
+
+	var/view_buff = 12 //This way you can VV for more or less fun
+	var/view_tile_offset = 5
+
+	icon_state = "artillery"
+
+	disp_icon = "tank"
+	disp_icon_state = "artillerymod"
+
+	active_effect(var/turf/T)
+		var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+		if(!C.gunner) return
+		var/mob/M = C.gunner
+		if(!M.client) return
+		M.client.view = view_buff
+		switch(C.dir)
+			if(NORTH)
+				M.client.pixel_x = 0
+				M.client.pixel_y = view_tile_offset * 32
+			if(SOUTH)
+				M.client.pixel_x = 0
+				M.client.pixel_y = -1 * view_tile_offset * 32
+			if(EAST)
+				M.client.pixel_x = view_tile_offset * 32
+				M.client.pixel_y = 0
+			if(WEST)
+				M.client.pixel_x = -1 * view_tile_offset * 32
+				M.client.pixel_y = 0
+
+	deactivate()
+		var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+		if(!C.gunner) return
+		var/mob/M = C.gunner
+		if(!M.client) return
+		M.client.view = 7
+		M.client.pixel_x = 0
+		M.client.pixel_y = 0
+
 ///////////////////
 // SUPPORT SLOTS // END
 ///////////////////
@@ -478,10 +532,12 @@ Currently only has the tank hardpoints
 	apply_buff()
 		owner.dmg_multipliers["bullet"] = 0.67
 		owner.dmg_multipliers["slash"] = 0.67
+		owner.dmg_multipliers["all"] = 0.9
 
 	remove_buff()
 		owner.dmg_multipliers["bullet"] = 1.0
 		owner.dmg_multipliers["slash"] = 1.0
+		owner.dmg_multipliers["all"] = 1.0
 
 /obj/item/hardpoint/armor/caustic
 	name = "Caustic Armor"
@@ -496,9 +552,11 @@ Currently only has the tank hardpoints
 
 	apply_buff()
 		owner.dmg_multipliers["acid"] = 0.67
+		owner.dmg_multipliers["all"] = 0.9
 
 	remove_buff()
 		owner.dmg_multipliers["acid"] = 1.0
+		owner.dmg_multipliers["all"] = 1.0
 
 /obj/item/hardpoint/armor/concussive
 	name = "Concussive Armor"
@@ -513,9 +571,11 @@ Currently only has the tank hardpoints
 
 	apply_buff()
 		owner.dmg_multipliers["blunt"] = 0.67
+		owner.dmg_multipliers["all"] = 0.9
 
 	remove_buff()
 		owner.dmg_multipliers["blunt"] = 1.0
+		owner.dmg_multipliers["all"] = 1.0
 
 /obj/item/hardpoint/armor/paladin
 	name = "Paladin Armor"
@@ -530,9 +590,30 @@ Currently only has the tank hardpoints
 
 	apply_buff()
 		owner.dmg_multipliers["explosive"] = 0.67
+		owner.dmg_multipliers["all"] = 0.9
 
 	remove_buff()
 		owner.dmg_multipliers["explosive"] = 1.0
+		owner.dmg_multipliers["all"] = 1.0
+
+/obj/item/hardpoint/armor/snowplow
+	name = "Snowplow"
+	desc = "Clears a path in the snow for friendlies"
+
+	health = 600
+	is_activatable = 1
+
+	icon_state = "snowplow"
+
+	disp_icon = "tank"
+	disp_icon_state = "snowplow"
+
+	livingmob_interact(var/mob/living/M)
+		var/turf/targ = get_step(M, owner.dir)
+		targ = get_step(M, owner.dir)
+		targ = get_step(M, owner.dir)
+		M.throw_at(targ, 4, 2, src, 1)
+		M.apply_damage(7 + rand(0, 3), BRUTE)
 
 /////////////////
 // ARMOR SLOTS // END

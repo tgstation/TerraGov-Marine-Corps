@@ -425,6 +425,14 @@ HARDPOINT MODULES (and their ammo)
 	containername = "hardpoint module assembly crate"
 	group = "Hardpoint Modules"
 
+/datum/supply_packs/artillery_module
+	name = "Artillery Module (x1)"
+	contains = list(/obj/item/hardpoint/support/artillery_module)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
 /datum/supply_packs/overdrive_enhancer
 	name = "Overdrive Enhancer (x1)"
 	contains = list(/obj/item/hardpoint/support/overdrive_enhancer)
@@ -461,6 +469,14 @@ HARDPOINT MODULES (and their ammo)
 	name = "Paladin Armor Module (x1)"
 	contains = list(/obj/item/hardpoint/armor/paladin)
 	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/snowplow_armor
+	name = "Snowplow Module (x1)"
+	contains = list(/obj/item/hardpoint/armor/snowplow)
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "hardpoint module assembly crate"
 	group = "Hardpoint Modules"

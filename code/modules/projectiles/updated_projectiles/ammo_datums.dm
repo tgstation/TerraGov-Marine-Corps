@@ -713,7 +713,7 @@
 		accuracy_var_low = config.med_proj_variance
 		accurate_range = config.short_shell_range
 		max_range = config.norm_shell_range
-		damage = config.ultra_hit_damage
+		damage = config.ultra_hit_damage //lmao tons of hit damage but it's never processed due to the below proc redefinitions
 		penetration= config.max_armor_penetration
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
@@ -742,37 +742,27 @@
 
 	New()
 		..()
-		smoke = new()
 		accuracy = config.med_hit_accuracy
 		accurate_range = config.long_shell_range
 		max_range = config.max_shell_range
-		damage = config.min_hit_damage
+		damage = config.hmed_hit_damage
 		shell_speed = config.fast_shell_speed
 
-	Dispose()
-		cdel(smoke)
-		smoke = null
-		. = ..()
-
 	on_hit_mob(mob/M, obj/item/projectile/P)
-		explosion(get_turf(M), -1, 2, 5, 6)
-		smoke.set_up(1, get_turf(M))
-		smoke.start()
+		explosion(get_turf(M), 0, 2, 5, 6)
+		..()
 
 	on_hit_obj(obj/O, obj/item/projectile/P)
-		explosion(get_turf(P), -1, 2, 5, 6)
-		smoke.set_up(1, get_turf(O))
-		smoke.start()
+		explosion(get_turf(P), 0, 2, 5, 6)
+		..()
 
 	on_hit_turf(turf/T, obj/item/projectile/P)
-		explosion(T, -1, 2, 5, 6)
-		smoke.set_up(1, T)
-		smoke.start()
+		explosion(T, 0, 2, 5, 6)
+		..()
 
 	do_at_max_range(obj/item/projectile/P)
-		explosion(get_turf(P), -1, 2, 5, 6)
-		smoke.set_up(1, get_turf(P))
-		smoke.start()
+		explosion(get_turf(P), 0, 2, 5, 6)
+		..()
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -1279,6 +1269,7 @@
 	ping = null
 	damage_type = BRUTE
 	var/nade_type = /obj/item/explosive/grenade/frag
+	icon_state = "grenade"
 
 	New()
 		..()
@@ -1293,7 +1284,7 @@
 		drop_nade(get_turf(P))
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_nade(T)
+		drop_nade(get_turf(P))
 
 	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -1307,3 +1298,4 @@
 /datum/ammo/grenade_container/smoke
 	name = "smoke grenade shell"
 	nade_type = /obj/item/explosive/grenade/smokebomb
+	icon_state = "smoke_shell"
