@@ -390,6 +390,11 @@
 	if(last_special > world.time)
 		return
 
+	if(isSynth(victim))
+		var/datum/limb/head/synthhead = victim.get_limb("head")
+		if(synthhead.status & LIMB_DESTROYED)
+			return
+
 	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
 		var/mob/living/carbon/human/H = victim
 		if(H.status_flags & XENO_HOST)
@@ -431,6 +436,7 @@
 		attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [victim.name] ([victim.ckey])</font>")
 		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>was gibbed by [name] ([ckey])</font>")
 		victim.gib() //Splut
+		stop_pulling()
 
 /mob/living/carbon/Xenomorph/Queen/proc/mount_ovipositor()
 	if(ovipositor) return //sanity check
