@@ -644,12 +644,14 @@
 			M << "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>"
 			return
 		M << "<span class='xenonotice'>You interact with the machine and disable remote control.</span>"
+		xeno_message("<span class='xenoannounce'>We have wrested away remote control of the metal bird! Rejoice!</span>",3,M.hivenumber)
 		last_locked = world.time
 		queen_locked = 1
 
 /datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/Xenomorph/M)
 	if(!door_override)
 		M << "<span class='xenonotice'>You override the doors.</span>"
+		xeno_message("<span class='xenoannounce'>The doors of the metal bird have been overridden! Rejoice!</span>",3,M.hivenumber)
 		last_door_override = world.time
 		door_override = 1
 
