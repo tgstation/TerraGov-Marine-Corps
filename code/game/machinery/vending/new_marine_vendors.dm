@@ -74,7 +74,7 @@
 		H << "<span class='warning'>Wrong ID card owner detected.</span>"
 		return
 
-	if(vendor_role && I.assignment != vendor_role)
+	if(vendor_role && I.rank != vendor_role)
 		H << "<span class='warning'>This machine isn't for you.</span>"
 		return
 
@@ -161,7 +161,7 @@
 				H << "<span class='warning'>Wrong ID card owner detected.</span>"
 				return
 
-			if(vendor_role && I.assignment != vendor_role)
+			if(vendor_role && I.rank != vendor_role)
 				H << "<span class='warning'>This machine isn't for you.</span>"
 				return
 
