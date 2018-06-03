@@ -355,7 +355,7 @@ updatehealth()
 				plasma_stored += round(plasma_gain * recovery_aura/4) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
 			if(health < maxHealth)
 				var/datum/hive_status/hive = hive_datum[hivenumber]
-				if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
+				if(innate_healing || !hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
 					if(lying || resting)
 						if(health > -100 && health < 0) //Unconscious
 							XENO_HEAL_WOUNDS(0.33) //Healing is much slower. Warding pheromones make up for the rest if you're curious
