@@ -20,10 +20,11 @@
 
 //===========================================================================
 /atom/movable/Dispose()
-	. = ..()
 	for(var/atom/movable/I in contents) cdel(I)
 	if(pulledby) pulledby.stop_pulling()
-	loc = null //so we move into null space.
+	if(throw_source) throw_source = null
+	. = ..()
+	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
 
 
 /atom/movable/Recycle()

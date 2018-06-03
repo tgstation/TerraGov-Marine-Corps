@@ -68,7 +68,7 @@
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 	flags_inventory = COVEREYES
-	flags_item = NODROP
+	flags_item = NODROP|DELONDROP
 
 	Dispose()
 		..()

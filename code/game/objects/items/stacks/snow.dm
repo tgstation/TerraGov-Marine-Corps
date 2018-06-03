@@ -13,6 +13,7 @@
 	throw_speed = 5
 	throw_range = 1
 	max_amount = 25
+	stack_id = "snow pile"
 
 
 /obj/item/stack/snow/attackby(obj/item/W, mob/user)

@@ -52,7 +52,6 @@
 
 
 /mob/living/carbon/human/Dispose()
-	. = ..()
 	if(assigned_squad)
 		var/n = assigned_squad.marines_list.Find(src)
 		if(n)
@@ -61,6 +60,7 @@
 			assigned_squad.squad_leader = null
 		assigned_squad = null
 	remove_from_all_mob_huds()
+	. = ..()
 
 
 /mob/living/carbon/human/Stat()

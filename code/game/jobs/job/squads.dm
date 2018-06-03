@@ -30,8 +30,8 @@
 	var/list/marines_list = list() // list of mobs (or name, not always a mob ref) in that squad.
 
 	var/mob/living/carbon/human/overwatch_officer = null //Who's overwatching this squad?
-	var/supply_timer = 0 //Timer for supply drops
-	var/bomb_timer = 0 //Timer for orbital bombardment
+	var/supply_cooldown = 0 //Cooldown for supply drops
+	var/bomb_cooldown = 0 //Cooldown for orbital bombardment
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
 	var/obj/item/device/squad_beacon/sbeacon = null
@@ -194,16 +194,3 @@
 
 	return null
 
-
-//These are to handle the tick timers on the supply drops, so they aren't reset if Overwatch changes squads.
-/datum/squad/proc/handle_stimer(var/ticks)
-	supply_timer = 1
-	spawn(ticks)
-		supply_timer = 0
-	return
-
-/datum/squad/proc/handle_btimer(var/ticks)
-	bomb_timer = 1
-	spawn(ticks)
-		bomb_timer = 0
-	return

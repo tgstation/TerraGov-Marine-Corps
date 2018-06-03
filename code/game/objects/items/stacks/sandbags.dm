@@ -14,6 +14,7 @@
 	throw_range = 20
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
+	stack_id = "empty sandbags"
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/tool/shovel))
@@ -61,6 +62,7 @@
 	throw_range = 20
 	max_amount = 25
 	attack_verb = list("hit", "bludgeoned", "whacked")
+	stack_id = "sandbags"
 
 /obj/item/stack/sandbags/attack_self(mob/living/user)
 	add_fingerprint(user)

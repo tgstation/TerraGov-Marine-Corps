@@ -252,7 +252,7 @@
 	if(H.stat == DEAD) return
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-	if (!L || L.has_dropped_limb)
+	if (!L || (L.status & LIMB_DESTROYED))
 		return
 
 	visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devistatingly powerful punch!</span>", \

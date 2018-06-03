@@ -221,9 +221,9 @@
 
 	overlays -= wired_overlay
 	if(!closed)
-		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire", dir = src.dir, pixel_y = src.pixel_y)
+		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
 	else
-		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire", dir = src.dir)
+		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 	overlays += wired_overlay
 
 /obj/structure/barricade/proc/hit_barricade(obj/item/I)
@@ -467,7 +467,7 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					user << "<span class='warning'>You are not trained to disassemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
@@ -492,7 +492,7 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					user << "<span class='warning'>You are not trained to disassemble [src]...</span>"
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
@@ -523,7 +523,7 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					user << "<span class='warning'>You are not trained to disassemble [src]...</span>"
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")

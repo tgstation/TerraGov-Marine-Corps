@@ -85,7 +85,7 @@
 	icon_state = "visor_nvg"
 	darkness_view = 5 //Not quite as good as regular NVG.
 	flags_inventory = COVEREYES
-	flags_item = NODROP
+	flags_item = NODROP|DELONDROP
 
 /obj/item/clothing/glasses/night/yautja/New()
 	..()

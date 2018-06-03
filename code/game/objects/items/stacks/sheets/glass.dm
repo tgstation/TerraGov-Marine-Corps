@@ -17,6 +17,7 @@
 	icon_state = "sheet-glass"
 	matter = list("glass" = 3750)
 	origin_tech = "materials=1"
+	stack_id = "glass sheet"
 	var/created_window = /obj/structure/window
 	var/is_reinforced = 0
 	var/list/construction_options = list("One Direction", "Full Window")

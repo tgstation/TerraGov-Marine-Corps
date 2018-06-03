@@ -14,6 +14,12 @@
 	var/obj/item/knife
 	var/armor_stage = 0
 
+/obj/item/clothing/shoes/marine/Dispose()
+	if(knife)
+		cdel(knife)
+		knife = null
+	. = ..()
+
 /obj/item/clothing/shoes/marine/attack_hand(var/mob/living/M)
 	if(knife && src.loc == M && !M.is_mob_incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 		if(M.put_in_active_hand(knife))

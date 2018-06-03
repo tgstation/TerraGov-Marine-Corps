@@ -442,11 +442,14 @@
 
 	//Stolen from events.dm. WARNING: This code is old as hell
 	for (var/obj/machinery/power/apc/APC in machines)
-		if(APC.z == 3 || APC.z == 4)
+		if(APC.z == MAIN_SHIP_Z_LEVEL || APC.z == LOW_ORBIT_Z_LEVEL)
 			APC.ion_act()
 	for (var/obj/machinery/power/smes/SMES in machines)
-		if(SMES.z == 3 || SMES.z == 4)
+		if(SMES.z == MAIN_SHIP_Z_LEVEL || SMES.z == LOW_ORBIT_Z_LEVEL)
 			SMES.ion_act()
+
+	if(security_level < SEC_LEVEL_RED) //automatically set security level to red.
+		set_security_level(SEC_LEVEL_RED, TRUE)
 
 	//END: Heavy lifting backend
 

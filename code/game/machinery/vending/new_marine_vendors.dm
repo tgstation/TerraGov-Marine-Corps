@@ -56,13 +56,28 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+
 	if(!allowed(user))
 		user << "<span class='warning'>Access denied.</span>"
 		return
 
-	if(vendor_role && user.mind && user.mind.assigned_role != vendor_role)
-		user << "<span class='warning'>Access denied. This machine is for: [vendor_role].</span>"
+	var/obj/item/card/id/I = H.wear_id
+	if(!istype(I)) //not wearing an ID
+		H << "<span class='warning'>Access denied. No ID card detected</span>"
 		return
+
+	if(I.registered_name != H.real_name)
+		H << "<span class='warning'>Wrong ID card owner detected.</span>"
+		return
+
+	if(vendor_role && I.assignment != vendor_role)
+		H << "<span class='warning'>This machine isn't for you.</span>"
+		return
+
 
 	user.set_interaction(src)
 	ui_interact(user)
@@ -146,14 +161,13 @@
 				H << "<span class='warning'>Wrong ID card owner detected.</span>"
 				return
 
-			if(use_points && I.marine_points < cost)
-				H << "<span class='warning'>Not enough points.</span>"
-				return
-
-			if(vendor_role && H.mind && H.mind.assigned_role != vendor_role)
+			if(vendor_role && I.assignment != vendor_role)
 				H << "<span class='warning'>This machine isn't for you.</span>"
 				return
 
+			if(use_points && I.marine_points < cost)
+				H << "<span class='warning'>Not enough points.</span>"
+				return
 
 			if(!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag))
 				H << "<span class='warning'>This machine isn't for you.</span>"
@@ -748,6 +762,8 @@
 							list("Essential Smartgunner Set", 0, /obj/item/storage/box/m56_system, MARINE_CAN_BUY_ESSENTIALS, "white"),
 
 							list("SPECIAL AMMUNITION", 0, null, null, null),
+
+							list("M56 powerpack", 45, /obj/item/smartgun_powerpack, null, "black"),
 							list("AP M4A3 magazine", 10, /obj/item/ammo_magazine/pistol/ap, null, "black"),
 							list("Extended M4A3 magazine", 10, /obj/item/ammo_magazine/pistol/extended, null, "black"),
 							list("AP M41A magazine", 15, /obj/item/ammo_magazine/rifle/ap, null, "black"),

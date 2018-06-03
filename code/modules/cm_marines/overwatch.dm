@@ -228,8 +228,9 @@
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Supply Drop Status:</B> "
-					if(current_squad.supply_timer)
-						dat += "Launch tubes resetting<br>"
+					var/cooldown_left = current_squad.supply_cooldown - (world.time + 5000)
+					if(cooldown_left > 0)
+						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Launch Pad Status:</b> "
@@ -258,8 +259,9 @@
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Cannon Status:</B> "
-					if(current_squad.bomb_timer)
-						dat += "Shells Reloading<br>"
+					var/cooldown_left = current_squad.bomb_cooldown - (world.time + 20000)
+					if(cooldown_left > 0)
+						dat += "Shells Reloading ([round(cooldown_left/10)] seconds)<br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Beacon Status:</b> "
@@ -428,13 +430,13 @@
 			transfer_squad()
 		if("dropsupply")
 			if(current_squad)
-				if(current_squad.supply_timer)
+				if(current_squad.supply_cooldown > (world.time + 5000))
 					usr << "\icon[src] <span class='warning'>Supply drop not yet available!</span>"
 				else
 					handle_supplydrop()
 		if("dropbomb")
 			if(current_squad)
-				if(current_squad.bomb_timer)
+				if(current_squad.bomb_cooldown > (world.time + 20000))
 					usr << "\icon[src] <span class='warning'>Orbital bombardment not yet available!</span>"
 				else
 					handle_bombard()
@@ -560,7 +562,7 @@
 			message_mods("ALERT: [usr] ([usr.key]) fired an orbital bombardment in [A.name] for squad '[current_squad]' (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 			log_attack("[usr.name] ([usr.ckey]) fired an orbital bombardment in [A.name] for squad '[current_squad]'")
 		busy = 0
-		current_squad.handle_btimer(20000)
+		current_squad.bomb_cooldown = world.time
 		if(current_squad.bbeacon)
 			cdel(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.bbeacon = null
@@ -787,7 +789,7 @@
 			if(C) C.anchored = FALSE
 			usr << "\icon[src] <span class='warning'>Launch aborted! No crate detected on the drop pad.</span>"
 			return
-		S.handle_stimer(5000)
+		S.supply_cooldown = world.time
 
 		if(S.sbeacon)
 			cdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
