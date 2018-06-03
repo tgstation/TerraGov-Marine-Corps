@@ -1051,7 +1051,6 @@ client
 			return
 
 		EO.status = NOFLAGS
-		EO.has_dropped_limb = 0
 		EO.perma_injury = 0
 		EO.germ_level = 0
 		EO.reset_limb_surgeries()
@@ -1079,7 +1078,7 @@ client
 		if(EO.status & LIMB_DESTROYED)
 			usr << "Mob doesn't have that limb."
 			return
-		EO.droplimb(1,1)
+		EO.droplimb(1)
 
 
 	else if(href_list["fix_nano"])

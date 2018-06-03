@@ -1102,7 +1102,6 @@
 			O.status = LIMB_ROBOT
 		else
 			O.status = NOFLAGS
-		O.has_dropped_limb = 0
 		O.perma_injury = 0
 		O.germ_level = 0
 		O.wounds.Cut()
