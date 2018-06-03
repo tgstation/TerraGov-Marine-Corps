@@ -29,8 +29,6 @@ directive is properly returned.
 /atom/Dispose()
 	if(reagents)
 		cdel(reagents)
-	if(istype(src, /obj/item/device/flashlight/lamp/green))
-		world << "loc: [loc], x: [x] , light: [light]"
 	if(light)
 		cdel(light)
 		light = null
