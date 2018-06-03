@@ -16,12 +16,13 @@
 	var/singular_name
 	var/amount = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
+	var/stack_id //used to determine if two stacks are of the same kind.
 
 /obj/item/stack/New(var/loc, var/amount = null)
 	..()
 	if(amount)
 		src.amount = amount
-	return
+
 
 /obj/item/stack/Dispose()
 	if (usr && usr.interactee == src)
@@ -126,16 +127,17 @@
 			usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 			return
 		//1 is absolute one per tile, 2 is directional one per tile. Hacky way to get around it without adding more vars
-		if(R.one_per_turf == 1 && (locate(R.result_type) in usr.loc))
-			usr << "<span class='warning'>There is already another [R.title] here!</span>"
-			return
-		for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-			if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2)) //Note: If no dense items, or if dense item, both it and result must be border tiles
-				usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
+		if(R.one_per_turf)
+			if(R.one_per_turf == 1 && (locate(R.result_type) in usr.loc))
+				usr << "<span class='warning'>There is already another [R.title] here!</span>"
 				return
-			if(R.one_per_turf == 2 && (O.flags_atom & ON_BORDER) && O.dir == usr.dir) //We check overlapping dir here. Doesn't have to be the same type
-				usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
-				return
+			for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
+				if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2)) //Note: If no dense items, or if dense item, both it and result must be border tiles
+					usr << "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>"
+					return
+				if(R.one_per_turf == 2 && (O.flags_atom & ON_BORDER) && O.dir == usr.dir) //We check overlapping dir here. Doesn't have to be the same type
+					usr << "<span class='warning'>There is already \a [O.name] in this direction!</span>"
+					return
 		if(R.on_floor && !istype(usr.loc, /turf/open))
 			var/turf/open/OT = usr.loc
 			if(!OT.allow_construction)
@@ -239,22 +241,25 @@
 
 /obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, src.type))
+	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
-		if (S.amount >= max_amount)
-			return 1
-		var/to_transfer as num
-		if (user.get_inactive_hand()==src)
-			to_transfer = 1
-		else
-			to_transfer = min(src.amount, S.max_amount-S.amount)
-		S.add(to_transfer)
-		if (S && usr.interactee==S)
-			spawn(0) S.interact(usr)
-		src.use(to_transfer)
-		if (src && usr.interactee==src)
-			spawn(0) src.interact(usr)
-	else return ..()
+		if(S.stack_id == stack_id) //same stack type
+			if (S.amount >= max_amount)
+				return 1
+			var/to_transfer as num
+			if (user.get_inactive_hand()==src)
+				to_transfer = 1
+			else
+				to_transfer = min(src.amount, S.max_amount-S.amount)
+			S.add(to_transfer)
+			if (S && usr.interactee==S)
+				spawn(0) S.interact(usr)
+			src.use(to_transfer)
+			if (src && usr.interactee==src)
+				spawn(0) src.interact(usr)
+			return TRUE
+
+	return ..()
 
 /obj/item/stack/proc/copy_evidences(obj/item/stack/from as obj)
 	src.blood_DNA = from.blood_DNA

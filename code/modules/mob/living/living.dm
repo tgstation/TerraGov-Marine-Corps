@@ -7,15 +7,16 @@
 		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
 
-/mob/living
-	New()
-		..()
-		attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 
-	Dispose()
-		. = ..()
+/mob/living/New()
+	..()
+	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
+
+/mob/living/Dispose()
+	if(attack_icon)
 		cdel(attack_icon)
 		attack_icon = null
+	. = ..()
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage

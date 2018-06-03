@@ -27,6 +27,14 @@
 
 
 
+/obj/item/clothing/under/Dispose()
+	if(hastie)
+		cdel(hastie)
+		hastie = null
+	. = ..()
+
+
+
 /obj/item/clothing/under/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -185,11 +193,15 @@
 
 	else usr << "<span class='warning'>You cannot roll down the uniform!</span>"
 
-/obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
+//proper proc to remove the uniform's tie (user optional)
+/obj/item/clothing/under/proc/remove_accessory(mob/user)
 	if(!hastie)
 		return
 
-	hastie.on_removed(user)
+	hastie.on_removed()
+	if(user)
+		user.put_in_hands(hastie)
+		hastie.add_fingerprint(user)
 	hastie = null
 	update_clothing_icon()
 

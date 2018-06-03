@@ -47,6 +47,7 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	origin_tech = "biotech=1"
+	stack_id = "bruise pack"
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -95,6 +96,7 @@
 	icon_state = "ointment"
 	heal_burn = 1
 	origin_tech = "biotech=1"
+	stack_id = "ointment"
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -132,6 +134,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "shandp"
 	heal_brute = 7
+	stack_id = "Hand leaf"
 
 /obj/item/stack/medical/ointment/tajaran
 	name = "\improper Messa's Tear petals"
@@ -140,6 +143,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "mtearp"
 	heal_burn = 7
+	stack_id = "Tear petals"
 
 
 /obj/item/stack/medical/advanced/bruise_pack
@@ -149,6 +153,7 @@
 	icon_state = "traumakit"
 	heal_brute = 12
 	origin_tech = "biotech=1"
+	stack_id = "advanced bruise pack"
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/user)
 	if(..())
@@ -204,6 +209,7 @@
 	icon_state = "burnkit"
 	heal_burn = 12
 	origin_tech = "biotech=1"
+	stack_id = "advanced burn kit"
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -244,6 +250,7 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	stack_id = "splint"
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
 	if(..()) return 1

@@ -12,8 +12,17 @@
 	..()
 	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_state? "[item_state]" : "[icon_state]"]")
 
+
+/obj/item/clothing/tie/Dispose()
+	if(has_suit)
+		has_suit.remove_accessory()
+	if(inv_overlay)
+		cdel(inv_overlay)
+		inv_overlay = null
+	. = ..()
+
 //when user attached an accessory to S
-/obj/item/clothing/tie/proc/on_attached(obj/item/clothing/under/S, mob/user as mob)
+/obj/item/clothing/tie/proc/on_attached(obj/item/clothing/under/S, mob/living/user)
 	if(!istype(S))
 		return
 	has_suit = S
@@ -24,28 +33,20 @@
 		user << "<span class='notice'>You attach [src] to [has_suit].</span>"
 		src.add_fingerprint(user)
 
-/obj/item/clothing/tie/proc/on_removed(mob/user as mob)
+/obj/item/clothing/tie/proc/on_removed()
 	if(!has_suit)
-		return
+		return FALSE
 	has_suit.overlays -= inv_overlay
 	has_suit = null
-	usr.put_in_hands(src)
-	src.add_fingerprint(user)
+	return TRUE
+
 
 //for special checks if we want some to allow pinning onto a uniform.
 /obj/item/clothing/tie/proc/tie_check(obj/item/clothing/under/U, mob/user)
 	return TRUE
 
-//default attackby behaviour
-/obj/item/clothing/tie/attackby(obj/item/I, mob/user)
-	..()
 
-//default attack_hand behaviour
-/obj/item/clothing/tie/attack_hand(mob/user as mob)
-	if(has_suit)
-		has_suit.remove_accessory(user)
-		return	//we aren't an object on the ground so don't call parent
-	..()
+
 
 /obj/item/clothing/tie/blue
 	name = "blue tie"
@@ -234,12 +235,21 @@
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
 	icon_state = "medgreen"
 
+
+
+
 //holsters
 /obj/item/clothing/tie/holster
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
 	var/obj/item/weapon/gun/holstered = null
+
+/obj/item/clothing/tie/holster/Dispose()
+	if(holstered)
+		cdel(holstered)
+		holstered = null
+	. = ..()
 
 //subtypes can override this to specify what can be holstered
 /obj/item/clothing/tie/holster/proc/can_holster(obj/item/weapon/gun/W)
@@ -309,7 +319,7 @@
 	..()
 	has_suit.verbs += /obj/item/clothing/tie/holster/verb/holster_verb
 
-/obj/item/clothing/tie/holster/on_removed(mob/user as mob)
+/obj/item/clothing/tie/holster/on_removed()
 	has_suit.verbs -= /obj/item/clothing/tie/holster/verb/holster_verb
 	..()
 
@@ -352,6 +362,12 @@
 	icon_state = "holster"
 	item_state = "holster_low"
 
+
+
+
+
+//Ties that can store stuff
+
 /obj/item/clothing/tie/storage
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
@@ -364,6 +380,12 @@
 	..()
 	hold = new/obj/item/storage/internal(src)
 	hold.storage_slots = slots
+
+/obj/item/clothing/tie/storage/Dispose()
+	if(hold)
+		cdel(hold)
+		hold = null
+	. = ..()
 
 /obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
 	if (has_suit)	//if we are part of a suit
@@ -424,6 +446,34 @@
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
 	slots = 5
+
+
+/obj/item/clothing/tie/storage/knifeharness
+	name = "decorated harness"
+	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
+	icon_state = "unathiharness2"
+	slots = 2
+
+/obj/item/clothing/tie/storage/knifeharness/New()
+	..()
+	hold.max_storage_space = 4
+	hold.can_hold = list("/obj/item/weapon/unathiknife",\
+	"/obj/item/tool/kitchen/utensil/knife",\
+	"/obj/item/tool/kitchen/utensil/pknife",\
+	"/obj/item/tool/kitchen/knife",\
+	"/obj/item/tool/kitchen/knife/ritual")
+
+	new /obj/item/weapon/unathiknife(hold)
+	new /obj/item/weapon/unathiknife(hold)
+
+
+
+
+
+
+
+
+
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
 	Security agent - the user details can be imprinted on the badge with a Security-access ID card,
@@ -498,21 +548,3 @@
 		new /obj/item/clothing/tie/holobadge/cord(src)
 		..()
 		return
-
-/obj/item/clothing/tie/storage/knifeharness
-	name = "decorated harness"
-	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
-	icon_state = "unathiharness2"
-	slots = 2
-
-/obj/item/clothing/tie/storage/knifeharness/New()
-	..()
-	hold.max_storage_space = 4
-	hold.can_hold = list("/obj/item/weapon/unathiknife",\
-	"/obj/item/tool/kitchen/utensil/knife",\
-	"/obj/item/tool/kitchen/utensil/pknife",\
-	"/obj/item/tool/kitchen/knife",\
-	"/obj/item/tool/kitchen/knife/ritual")
-
-	new /obj/item/weapon/unathiknife(hold)
-	new /obj/item/weapon/unathiknife(hold)

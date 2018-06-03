@@ -275,6 +275,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/extended_barrel,

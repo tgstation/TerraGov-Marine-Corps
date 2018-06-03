@@ -27,7 +27,7 @@
 	item_state = "securityhud"
 	vision_flags = SEE_TURFS
 	flags_inventory = COVEREYES
-	flags_item = NODROP
+	flags_item = NODROP|DELONDROP
 
 	Dispose()
 		..()

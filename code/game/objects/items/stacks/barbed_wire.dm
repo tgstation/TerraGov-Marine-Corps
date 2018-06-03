@@ -12,3 +12,4 @@
 	throw_range = 20
 	attack_verb = list("hit", "whacked", "sliced")
 	max_amount = 20
+	stack_id = "barbed wire"

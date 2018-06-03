@@ -216,10 +216,6 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					if("Maintenance Tech","Chief Engineer")
 						dept_console = frozen_items["Eng"]
 
-			var/list/stripcontents = list(/obj/item/clothing/suit/storage, \
-			/obj/item/clothing/under, \
-			/obj/item/clothing/shoes/marine)
-
 			var/list/deleteempty = list(/obj/item/storage/backpack/marine/satchel)
 
 			var/list/deleteall = list(/obj/item/clothing/mask/cigarette, \
@@ -257,15 +253,32 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 						cdel(W)
 						continue
 
-					for(var/SC in stripcontents)
-						if(istype(W, SC))
-							for(var/obj/item/Z in W.contents)
-								strippeditems += Z
-								Z.loc = null
-								if(istype(Z, /obj/item/clothing/tie))
-									var/obj/item/clothing/tie/T = Z
-									T.has_suit.overlays -= T.inv_overlay
-									T.has_suit = null
+
+					//special items that store stuff in a nonstandard way, we properly remove those items
+
+					if(istype(W, /obj/item/clothing/suit/storage))
+						var/obj/item/clothing/suit/storage/SS = W
+						for(var/obj/item/I in SS.pockets)
+							SS.pockets.remove_from_storage(I, loc)
+							strippeditems += I
+							I.loc = null
+
+					if(istype(W, /obj/item/clothing/under))
+						var/obj/item/clothing/under/UN = W
+						if(UN.hastie)
+							var/obj/item/TIE = UN.hastie
+							UN.remove_accessory()
+							strippeditems += TIE
+							TIE.loc = null
+
+					if(istype(W, /obj/item/clothing/shoes/marine))
+						var/obj/item/clothing/shoes/marine/MS = W
+						if(MS.knife)
+							strippeditems += MS.knife
+							MS.knife.loc = null
+							MS.knife = null
+
+
 
 					for(var/TT in deleteempty)
 						if(istype(W, TT))

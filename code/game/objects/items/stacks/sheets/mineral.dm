@@ -74,6 +74,7 @@ obj/item/stack/sheet/mineral/iron
 	sheettype = "iron"
 	color = "#333333"
 	perunit = 3750
+	stack_id = "iron"
 
 obj/item/stack/sheet/mineral/iron/New()
 	..()
@@ -88,6 +89,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	throw_range = 5
 	origin_tech = "materials=1"
 	sheettype = "sandstone"
+	stack_id = "sandstone"
 
 /obj/item/stack/sheet/mineral/sandstone/New()
 	..()
@@ -101,6 +103,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=6"
 	perunit = 3750
 	sheettype = "diamond"
+	stack_id = "diamond"
 
 
 /obj/item/stack/sheet/mineral/diamond/New()
@@ -115,6 +118,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=5"
 	perunit = 2000
 	sheettype = "uranium"
+	stack_id = "uranium"
 
 /obj/item/stack/sheet/mineral/uranium/New()
 	..()
@@ -128,6 +132,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "phorontech=2;materials=2"
 	perunit = 2000
 	sheettype = "phoron"
+	stack_id = "phoron"
 
 /obj/item/stack/sheet/mineral/phoron/New()
 	..()
@@ -140,6 +145,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	icon_state = "sheet-plastic"
 	origin_tech = "materials=3"
 	perunit = 2000
+	stack_id = "plastic"
 
 /obj/item/stack/sheet/mineral/plastic/New()
 	..()
@@ -160,6 +166,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=4"
 	perunit = 2000
 	sheettype = "gold"
+	stack_id = "gold"
 
 /obj/item/stack/sheet/mineral/gold/New()
 	..()
@@ -173,6 +180,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=3"
 	perunit = 2000
 	sheettype = "silver"
+	stack_id = "silver"
 
 /obj/item/stack/sheet/mineral/silver/New()
 	..()
@@ -185,6 +193,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	icon_state = "sheet-enruranium"
 	origin_tech = "materials=5"
 	perunit = 1000
+	stack_id = "uranium"
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/sheet/mineral/platinum
@@ -195,6 +204,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=2"
 	sheettype = "platinum"
 	perunit = 2000
+	stack_id = "platinum"
 
 //Extremely valuable to Research.
 /obj/item/stack/sheet/mineral/mhydrogen
@@ -205,6 +215,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=6;powerstorage=5;magnets=5"
 	sheettype = "mhydrogen"
 	perunit = 2000
+	stack_id = "mhydrogen"
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/sheet/mineral/tritium
@@ -216,6 +227,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=5"
 	color = "#777777"
 	perunit = 2000
+	stack_id = "tritium"
 
 /obj/item/stack/sheet/mineral/osmium
 	name = "osmium"
@@ -226,3 +238,4 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=5"
 	color = "#9999FF"
 	perunit = 2000
+	stack_id = "osmium"
