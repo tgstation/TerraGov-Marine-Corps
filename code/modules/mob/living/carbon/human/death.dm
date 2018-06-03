@@ -9,7 +9,7 @@
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
 			// Override the current limb status
-			E.droplimb(1)
+			E.droplimb()
 
 	if(species)
 		hgibs(loc, viruses, dna, species.flesh_color, species.blood_color)
@@ -17,7 +17,7 @@
 		hgibs(loc, viruses, dna)
 
 	if(is_a_synth)
-		return 
+		return
 	..(species ? species.gibbed_anim : "gibbed-h")
 
 

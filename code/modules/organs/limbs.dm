@@ -18,7 +18,7 @@
 	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
 
 	var/tmp/perma_injury = 0
-	var/tmp/has_dropped_limb = 0 //Has it spawned the broken limb?
+
 	var/min_broken_damage = 30
 
 	var/list/datum/autopsy_data/autopsy_data = list()
@@ -133,7 +133,7 @@
 		probability = 1
 		damage = 3
 	if(prob(probability))
-		droplimb(1)
+		droplimb()
 	else
 		take_damage(damage, 0, 1, 1, used_weapon = "EMP")
 
@@ -229,7 +229,7 @@
 		if(config.limbs_can_break && brute_dam >= max_damage * config.organ_health_multiplier)
 			var/cut_prob = brute/max_damage * 10
 			if(prob(cut_prob))
-				droplimb(1)
+				droplimb()
 				return
 
 	owner.updatehealth()
@@ -349,9 +349,9 @@ This function completely restores a damaged organ to perfect condition.
 //Determines if we even need to process this organ.
 
 /datum/limb/proc/need_process()
-	if(has_dropped_limb)	//Missing limb is missing
+	if(status & LIMB_DESTROYED)	//Missing limb is missing
 		return 0
-	if(status && status != LIMB_ROBOT) // If it's robotic, that's fine it will have a status.
+	if(!(status & LIMB_ROBOT)) // If it's robotic, that's fine it will have a status.
 		return 1
 	if(brute_dam || burn_dam)
 		return 1
@@ -365,16 +365,6 @@ This function completely restores a damaged organ to perfect condition.
 	return 0
 
 /datum/limb/process()
-	//Dismemberment
-	if(status & LIMB_DESTROYED)
-		if(!has_dropped_limb && config.limbs_can_break)
-			droplimb()
-		return
-	if(parent)
-		if(parent.status & LIMB_DESTROYED)
-			status |= LIMB_DESTROYED
-			owner.update_body(1)
-			return
 
 	// Process wounds, doing healing etc. Only do this every few ticks to save processing power
 	if(owner.life_tick % wound_update_accuracy == 0)
@@ -657,11 +647,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		O.setAmputatedTree()
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(override = 0, amputation = 0)
-	if(has_dropped_limb) return
-	if(override) status |= LIMB_DESTROYED
+/datum/limb/proc/droplimb(amputation)
 	if(status & LIMB_DESTROYED)
-		if(body_part == UPPER_TORSO) return
+		return
+	else
+		if(body_part == UPPER_TORSO)
+			return
 
 		if(status & LIMB_ROBOT)
 			status = LIMB_DESTROYED|LIMB_ROBOT
@@ -677,7 +668,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			hidden = null
 
 		// If any organs are attached to this, destroy them
-		for(var/datum/limb/O in children) O.droplimb(1, amputation)
+		for(var/datum/limb/O in children) O.droplimb(amputation)
 
 		//Replace all wounds on that arm with one wound on parent organ.
 		wounds.Cut()
@@ -730,8 +721,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(FOOT_LEFT)
 				if(!(status & LIMB_ROBOT)) organ = new /obj/item/limb/l_foot(owner.loc, owner)
 				owner.drop_inv_item_on_ground(owner.shoes)
-
-		has_dropped_limb = 1
 
 		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
@@ -831,7 +820,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/fracture()
 
-	if(status & LIMB_BROKEN )
+	if(status & (LIMB_BROKEN|LIMB_DESTROYED|LIMB_ROBOT) )
 		return
 
 	owner.visible_message(\
@@ -884,7 +873,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	reset_limb_surgeries()
 
 	germ_level = 0
-	has_dropped_limb = 0
 	perma_injury = 0
 	for (var/datum/limb/T in children)
 		if(T)

@@ -252,7 +252,7 @@
 	if(H.stat == DEAD) return
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-	if (!L || L.has_dropped_limb)
+	if (!L || (L.status & LIMB_DESTROYED))
 		return
 
 	visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devistatingly powerful punch!</span>", \
@@ -346,10 +346,13 @@
 	if (!istype(M, /mob/living/carbon/human))
 		return 0
 
+	if(action_busy) //can't stack the attempts
+		return 0
+
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || L.has_dropped_limb) //Only limbs and head.
+	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || (L.status & LIMB_DESTROYED)) //Only limbs and head.
 		src << "<span class='xenowarning'>You can't rip off that limb.</span>"
 		return 0
 
@@ -363,6 +366,9 @@
 
 	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE, 1) || M.stat == DEAD)
 		src << "<span class='notice'>You stop ripping off the limb.</span>"
+		return 0
+
+	if(L.status & LIMB_DESTROYED)
 		return 0
 
 	if(L.status & LIMB_ROBOT)
@@ -382,13 +388,16 @@
 		src << "<span class='notice'>You stop ripping off the limb.</span>"
 		return 0
 
+	if(L.status & LIMB_DESTROYED)
+		return 0
+
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
 	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [L.display_name] off of [M.name] ([M.ckey]) 2/2 progress</font>")
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [L.display_name] ripped off by [src.name] ([src.ckey]) 2/2 progress</font>")
 	log_attack("[src.name] ([src.ckey]) ripped the [L.display_name] off of [M.name] ([M.ckey]) 2/2 progress")
 
-	L.droplimb(1)
+	L.droplimb()
 
 	return 1
 
