@@ -132,13 +132,19 @@ Currently only has the tank hardpoints
 		owner.accuracies["primary"] = 0.97
 
 	is_ready()
-		if(world.time < next_use) return 0
-		if(health <= 0) return 0
+		if(world.time < next_use)
+			usr << "<span class='warning'>This module is not ready to be used yet.</span>"
+			return 0
+		if(health <= 0)
+			usr << "<span class='warning'>This module is too broken to be used.</span>"
+			return 0
 		return 1
 
 	active_effect(var/turf/T)
 
-		if(ammo.current_rounds <= 0) return
+		if(ammo.current_rounds <= 0)
+			usr << "<span class='warning'>This module does not have any ammo.</span>"
+			return
 
 		next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
 		if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
@@ -177,18 +183,25 @@ Currently only has the tank hardpoints
 
 	//So, I came back to this and changed it by adding a fixed reset at 1.5 seconds or later, which seems reasonable
 	//Now the cutoff is a little abrupt, but at least it exists. --MadSnailDisease
-	is_ready()
-		if(world.time < next_use) return 0
-		if(health <= 0) return 0
-		return 1
 
 	apply_buff()
 		owner.cooldowns["primary"] = 2 //will be overridden, please ignore
 		owner.accuracies["primary"] = 0.25
 
+	is_ready()
+		if(world.time < next_use)
+			usr << "<span class='warning'>This module is not ready to be used yet.</span>"
+			return 0
+		if(health <= 0)
+			usr << "<span class='warning'>This module is too broken to be used.</span>"
+			return 0
+		return 1
+
 	active_effect(var/turf/T)
 
-		if(ammo.current_rounds <= 0) return
+		if(ammo.current_rounds <= 0)
+			usr << "<span class='warning'>This module does not have any ammo.</span>"
+			return
 
 		var/S = 'sound/weapons/tank_minigun_start.ogg'
 		if(world.time - next_use <= 5)
@@ -232,18 +245,24 @@ Currently only has the tank hardpoints
 
 	ammo = new /obj/item/ammo_magazine/tank/flamer
 
-	is_ready()
-		if(world.time < next_use) return 0
-		if(health <= 0) return 0
-		return 1
-
 	apply_buff()
 		owner.cooldowns["secondary"] = 20
 		owner.accuracies["secondary"] = 0.5
 
+	is_ready()
+		if(world.time < next_use)
+			usr << "<span class='warning'>This module is not ready to be used yet.</span>"
+			return 0
+		if(health <= 0)
+			usr << "<span class='warning'>This module is too broken to be used.</span>"
+			return 0
+		return 1
+
 	active_effect(var/turf/T)
 
-		if(ammo.current_rounds <= 0) return
+		if(ammo.current_rounds <= 0)
+			usr << "<span class='warning'>This module does not have any ammo.</span>"
+			return
 
 		next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 		if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
@@ -268,18 +287,24 @@ Currently only has the tank hardpoints
 	ammo = new /obj/item/ammo_magazine/tank/towlauncher
 	max_clips = 1
 
-	is_ready()
-		if(world.time < next_use) return 0
-		if(health <= 0) return 0
-		return 1
-
 	apply_buff()
 		owner.cooldowns["secondary"] = 150
 		owner.accuracies["secondary"] = 0.8
 
+	is_ready()
+		if(world.time < next_use)
+			usr << "<span class='warning'>This module is not ready to be used yet.</span>"
+			return 0
+		if(health <= 0)
+			usr << "<span class='warning'>This module is too broken to be used.</span>"
+			return 0
+		return 1
+
 	active_effect(var/turf/T)
 
-		if(ammo.current_rounds <= 0) return
+		if(ammo.current_rounds <= 0)
+			usr << "<span class='warning'>This module does not have any ammo.</span>"
+			return
 
 		next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 		if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
@@ -303,18 +328,24 @@ Currently only has the tank hardpoints
 	ammo = new /obj/item/ammo_magazine/tank/m56_cupola
 	max_clips = 1
 
-	is_ready()
-		if(world.time < next_use) return 0
-		if(health <= 0) return 0
-		return 1
-
 	apply_buff()
 		owner.cooldowns["secondary"] = 5
 		owner.accuracies["secondary"] = 0.7
 
+	is_ready()
+		if(world.time < next_use)
+			usr << "<span class='warning'>This module is not ready to be used yet.</span>"
+			return 0
+		if(health <= 0)
+			usr << "<span class='warning'>This module is too broken to be used.</span>"
+			return 0
+		return 1
+
 	active_effect(var/turf/T)
 
-		if(ammo.current_rounds <= 0) return
+		if(ammo.current_rounds <= 0)
+			usr << "<span class='warning'>This module does not have any ammo.</span>"
+			return
 
 		next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 		if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
@@ -339,18 +370,24 @@ Currently only has the tank hardpoints
 	ammo = new /obj/item/ammo_magazine/tank/tank_glauncher
 	max_clips = 3
 
-	is_ready()
-		if(world.time < next_use) return 0
-		if(health <= 0) return 0
-		return 1
-
 	apply_buff()
 		owner.cooldowns["secondary"] = 30
 		owner.accuracies["secondary"] = 0.4
 
+	is_ready()
+		if(world.time < next_use)
+			usr << "<span class='warning'>This module is not ready to be used yet.</span>"
+			return 0
+		if(health <= 0)
+			usr << "<span class='warning'>This module is too broken to be used.</span>"
+			return 0
+		return 1
+
 	active_effect(var/turf/T)
 
-		if(ammo.current_rounds <= 0) return
+		if(ammo.current_rounds <= 0)
+			usr << "<span class='warning'>This module does not have any ammo.</span>"
+			return
 
 		next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 		if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
@@ -383,18 +420,24 @@ Currently only has the tank hardpoints
 	max_clips = 4
 	is_activatable = 1
 
-	is_ready()
-		if(world.time < next_use) return 0
-		if(health <= 0) return 0
-		return 1
-
 	apply_buff()
 		owner.cooldowns["support"] = 30
 		owner.accuracies["support"] = 0.8
 
+	is_ready()
+		if(world.time < next_use)
+			usr << "<span class='warning'>This module is not ready to be used yet.</span>"
+			return 0
+		if(health <= 0)
+			usr << "<span class='warning'>This module is too broken to be used.</span>"
+			return 0
+		return 1
+
 	active_effect(var/turf/T)
 
-		if(ammo.current_rounds <= 0) return
+		if(ammo.current_rounds <= 0)
+			usr << "<span class='warning'>This module does not have any ammo.</span>"
+			return
 
 		next_use = world.time + owner.cooldowns["support"] * owner.misc_ratios["supp_cool"]
 		if(!prob(owner.accuracies["support"] * 100 * owner.misc_ratios["supp_acc"]))
@@ -509,6 +552,9 @@ Currently only has the tank hardpoints
 		M.client.view = 7
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
+
+	remove_buff()
+		deactivate()
 
 ///////////////////
 // SUPPORT SLOTS // END
