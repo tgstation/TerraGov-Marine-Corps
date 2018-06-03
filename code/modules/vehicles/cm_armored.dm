@@ -146,7 +146,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return
 
 	if(!HP.is_ready())
-		user << "<span class='warning'>That module is not ready to fire.</span>"
 		return
 
 	if(A.z == 2 || A.z == 3)
@@ -154,6 +153,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return
 
 	if(dir != get_cardinal_dir2(src, A))
+		user << "<span class='warning'>The target is not within your firing arc.</span>"
 		return
 
 	HP.active_effect(get_turf(A))
@@ -361,8 +361,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 		var/mob/living/M = A
 		M.KnockDown(7, 1)
-		M.apply_damage(25 + rand(-5, 10), BRUTE) //why would I not just do rand(20, 35)
-		M.visible_message("<span class='danger'>[src] knocks down [M]!</span>", "<span class='danger'>[src] knocks you down! Get out of the way!</span>")
+		M.sleeping = 1e7 //Changed to 0 when the tank leaves the tile
+		M.apply_damage(7 + rand(0, 5), BRUTE)
+		M.visible_message("<span class='danger'>[src] runs over [M]!</span>", "<span class='danger'>[src] runs you over! Get out of the way!</span>")
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		var/list/slots = CA.get_activatable_hardpoints()
 		for(var/slot in slots)
@@ -374,6 +375,24 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		F.visible_message("<span class='danger'>[root] smashes through [F]</span>")
 		F.health = 0
 		F.healthcheck()
+	else if(istype(A, /turf/closed/wall))
+		var/turf/closed/wall/W = A
+		W.take_damage(30)
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		CA.take_damage_type(10, "blunt", W)
+		playsound(W, 'sound/effects/metal_crash.ogg', 35)
+
+/obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
+
+	for(var/mob/living/M in get_turf(src))
+		M.sleeping = 5 //Not 0, they just got driven over by a giant ass whatever and that hurts
+
+	. = ..()
+
+	if(.)
+		for(var/mob/living/M in get_turf(A))
+			//I don't call Bump() otherwise that would encourage trampling for infinite unpunishable damage
+			M.sleeping = 1e7 //Maintain their lying-down-ness
 
 //Can't hit yourself with your own bullet
 /obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(var/obj/item/projectile/P)
@@ -446,7 +465,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	switch(severity)
 		if(1.0)
-			take_damage_type(10000, "explosive")
+			take_damage_type(rand(100, 150), "explosive")
+			take_damage_type(rand(20, 40), "slash")
 
 		if(2.0)
 			take_damage_type(rand(60,80), "explosive")

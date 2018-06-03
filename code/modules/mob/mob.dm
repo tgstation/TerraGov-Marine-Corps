@@ -515,15 +515,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH))
 
-	//ICK but no standing up on tiles covered by the tank
-	//If you can think of a better way to do this, change it, by all means
-	//MadSnailDisease
-	var/under_multitile = 0
-	for(var/obj/vehicle/multitile/M in src.loc)
-		if(M)
-			under_multitile = 1
-			break
-	if(laid_down || under_multitile)
+	if(laid_down)
 		lying = 1
 	else
 		lying = 0

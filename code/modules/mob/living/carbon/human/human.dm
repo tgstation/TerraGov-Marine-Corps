@@ -98,7 +98,7 @@
 	var/f_loss = null
 	switch(severity)
 		if(1)
-			b_loss += rand(400, 600)
+			b_loss += rand(125, 175)
 			if(!prob(getarmor(null, "bomb")))
 				gib()
 				return

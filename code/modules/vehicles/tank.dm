@@ -89,6 +89,7 @@
 
 //For the tank, start forcing people out if everything is broken
 /obj/vehicle/multitile/root/cm_armored/tank/handle_all_modules_broken()
+	deactivate_all_hardpoints()
 
 	if(driver)
 		driver << "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>"
@@ -102,6 +103,7 @@
 		gunner = null
 
 /obj/vehicle/multitile/root/cm_armored/tank/remove_all_players()
+	deactivate_all_hardpoints()
 	if(!entrance) //Something broke, uh oh
 		if(gunner) gunner.loc = src.loc
 		if(driver) driver.loc = src.loc
