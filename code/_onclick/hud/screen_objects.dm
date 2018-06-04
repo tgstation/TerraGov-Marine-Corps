@@ -128,16 +128,14 @@
 
 	update_icon(mob/user)
 		if(user.gun_mode)
-			for(var/obj/item/weapon/gun/G in user)
-				if(G.target && G.target.len)
-					if(user.target_can_move)
-						icon_state = "no_walk1"
-						name = "Disallow Walking"
-					else
-						icon_state = "no_walk0"
-						name = "Allow Walking"
-					screen_loc = initial(screen_loc)
-					return
+			if(user.target_can_move)
+				icon_state = "no_walk1"
+				name = "Disallow Walking"
+			else
+				icon_state = "no_walk0"
+				name = "Allow Walking"
+			screen_loc = initial(screen_loc)
+			return
 		screen_loc = null
 
 /obj/screen/gun/move/clicked(var/mob/user)
@@ -161,17 +159,15 @@
 
 	update_icon(mob/user)
 		if(user.gun_mode)
-			for(var/obj/item/weapon/gun/G in user)
-				if(G.target && G.target.len)
-					if(user.target_can_move)
-						if(user.target_can_run)
-							icon_state = "no_run1"
-							name = "Disallow Running"
-						else
-							icon_state = "no_run0"
-							name = "Allow Running"
-						screen_loc = initial(screen_loc)
-						return
+			if(user.target_can_move)
+				if(user.target_can_run)
+					icon_state = "no_run1"
+					name = "Disallow Running"
+				else
+					icon_state = "no_run0"
+					name = "Allow Running"
+				screen_loc = initial(screen_loc)
+				return
 		screen_loc = null
 
 /obj/screen/gun/run/clicked(var/mob/user)
@@ -195,16 +191,14 @@
 
 	update_icon(mob/user)
 		if(user.gun_mode)
-			for(var/obj/item/weapon/gun/G in user)
-				if(G.target && G.target.len)
-					if(user.target_can_click)
-						icon_state = "no_item1"
-						name = "Allow Item Use"
-					else
-						icon_state = "no_item0"
-						name = "Disallow Item Use"
-					screen_loc = initial(screen_loc)
-					return
+			if(user.target_can_click)
+				icon_state = "no_item1"
+				name = "Allow Item Use"
+			else
+				icon_state = "no_item0"
+				name = "Disallow Item Use"
+			screen_loc = initial(screen_loc)
+			return
 		screen_loc = null
 
 /obj/screen/gun/item/clicked(var/mob/user)
