@@ -183,6 +183,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	active_hp = slot
 	usr << "<span class='notice'>You select the [slot] slot.</span>"
+	if(isliving(usr))
+		var/mob/living/M = usr
+		M.set_interaction(src)
 
 /obj/vehicle/multitile/root/cm_armored/verb/reload_hp()
 	set name = "Reload Active Weapon"
@@ -393,6 +396,13 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		for(var/mob/living/M in get_turf(A))
 			//I don't call Bump() otherwise that would encourage trampling for infinite unpunishable damage
 			M.sleeping = 1e7 //Maintain their lying-down-ness
+
+/obj/vehicle/multitile/hitbox/cm_armored/Uncrossed(var/atom/movable/A)
+	if(isliving(A))
+		var/mob/living/M = A
+		M.sleeping = 5
+
+	return ..()
 
 //Can't hit yourself with your own bullet
 /obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(var/obj/item/projectile/P)
