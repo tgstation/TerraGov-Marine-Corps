@@ -80,8 +80,9 @@
 	R.add_hardpoint(new /obj/item/hardpoint/support/smoke_launcher, R.hardpoints[HDPT_SUPPORT])
 	R.add_hardpoint(new /obj/item/hardpoint/armor/ballistic, R.hardpoints[HDPT_ARMOR])
 	R.add_hardpoint(new /obj/item/hardpoint/treads/standard, R.hardpoints[HDPT_TREADS])
+	R.update_damage_distribs()
 
-	R.take_damage_type(1000000, "abstract") //OOF.ogg
+	R.take_damage_type(1e8, "abstract") //OOF.ogg
 
 	R.healthcheck()
 

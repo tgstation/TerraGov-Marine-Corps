@@ -99,7 +99,7 @@
 	switch(severity)
 		if(1)
 			b_loss += rand(125, 175)
-			if(!prob(getarmor(null, "bomb")))
+			if(!prob(getarmor(null, "bomb") + 75)) //Much less likely to gib than before
 				gib()
 				return
 			else
