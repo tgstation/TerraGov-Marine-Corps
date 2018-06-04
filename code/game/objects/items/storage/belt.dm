@@ -46,14 +46,6 @@
 		"/obj/item/clothing/mask/luchador"
 		)
 
-/obj/item/storage/belt/security/tactical
-	name = "combat belt"
-	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
-	icon_state = "swatbelt"
-	item_state = "swatbelt"
-	storage_slots = 9
-	max_w_class = 3
-	max_storage_space = 21
 
 
 
@@ -227,6 +219,7 @@
 	max_storage_space = 21
 	can_hold = list(
 		"/obj/item/explosive/grenade/flashbang",
+		"/obj/item/explosive/grenade/chem_grenade/teargas",
 		"/obj/item/reagent_container/spray/pepper",
 		"/obj/item/handcuffs",
 		"/obj/item/device/flash",
@@ -246,6 +239,34 @@
 		"/obj/item/weapon",
 		"/obj/item/tool/taperoll/police"
 		)
+
+
+
+/obj/item/storage/belt/security/tactical
+	name = "combat belt"
+	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
+	icon_state = "swatbelt"
+	item_state = "swatbelt"
+	storage_slots = 9
+	max_w_class = 3
+	max_storage_space = 21
+
+
+/obj/item/storage/belt/security/MP
+	name = "\improper M276 pattern military police rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
+	storage_slots = 6
+	max_w_class = 3
+	max_storage_space = 30
+
+
+/obj/item/storage/belt/security/MP/full/New()
+	..()
+	new /obj/item/weapon/gun/energy/taser(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/weapon/baton(src)
+	new /obj/item/handcuffs(src)
+
 
 
 /obj/item/storage/belt/marine
@@ -311,41 +332,6 @@
 		..()
 
 
-
-/obj/item/storage/belt/security/MP
-	name = "\improper M276 pattern military police rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
-	icon_state = "securitybelt"
-	item_state = "security"
-	storage_slots = 6
-	max_w_class = 3
-	max_storage_space = 30
-	can_hold = list(
-		"/obj/item/explosive/grenade/flashbang",
-		"/obj/item/reagent_container/spray/pepper",
-		"/obj/item/handcuffs",
-		"/obj/item/device/flash",
-		"/obj/item/clothing/glasses",
-		"/obj/item/weapon/gun/energy/taser",
-		"/obj/item/ammo_magazine/pistol",
-		"/obj/item/weapon/baton",
-		"/obj/item/handcuffs",
-		"/obj/item/weapon/combat_knife",
-		"/obj/item/device/flashlight/flare",
-		"/obj/item/ammo_magazine/handful",
-		"/obj/item/reagent_container/food/snacks/donut/normal",
-		"/obj/item/reagent_container/food/snacks/donut/jelly",
-		"/obj/item/clothing/glasses/hud/security",
-		"/obj/item/tool/taperoll/police"
-		)
-
-/obj/item/storage/belt/security/MP/full/New()
-	..()
-	new /obj/item/weapon/gun/energy/taser(src)
-	new /obj/item/device/flash(src)
-	new /obj/item/weapon/baton(src)
-	new /obj/item/handcuffs(src)
-
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
@@ -377,20 +363,22 @@
 	storage_slots = 8
 	max_w_class = 3
 	max_storage_space = 24
+	can_hold = list("/obj/item/explosive/grenade")
 
-	can_hold=list("/obj/item/explosive/grenade/frag", "/obj/item/explosive/grenade/incendiary", "/obj/item/explosive/grenade/smokebomb","/obj/item/explosive/grenade/, /obj/item/explosive/grenade/phosphorus")
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/explosive/grenade/incendiary(src)
-			new /obj/item/explosive/grenade/incendiary(src)
-			new /obj/item/explosive/grenade/incendiary(src)
-			new /obj/item/explosive/grenade/incendiary(src)
-			new /obj/item/explosive/grenade/frag(src)
-			new /obj/item/explosive/grenade/frag(src)
-			new /obj/item/explosive/grenade/frag(src)
-			new /obj/item/explosive/grenade/frag(src)
+/obj/item/storage/belt/grenade/New()
+	..()
+	spawn(1)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+
+
 
 /obj/item/storage/sparepouch
 	name="\improper G8 general utility pouch"

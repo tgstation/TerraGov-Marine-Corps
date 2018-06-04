@@ -529,14 +529,14 @@
 		"/obj/item/explosive/mine"
 		)
 
-	New()
-		..()
-		contents = list()
-		sleep(1)
-		var/I = type == /obj/item/storage/box/explosive_mines/pmc ? /obj/item/explosive/mine/pmc : /obj/item/explosive/mine
-		var/i = 0
-		while(++i < 5)
-			new I(src)
+/obj/item/storage/box/explosive_mines/New()
+	..()
+	contents = list()
+	sleep(1)
+	var/I = type == /obj/item/storage/box/explosive_mines/pmc ? /obj/item/explosive/mine/pmc : /obj/item/explosive/mine
+	var/i = 0
+	while(++i < 5)
+		new I(src)
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
@@ -551,21 +551,22 @@
 		"/obj/item/device/flashlight/flare"
 		)
 
-	New()
-		..()
-		contents = list()
-		new /obj/item/device/flashlight/flare(src)
-		new /obj/item/device/flashlight/flare(src)
-		new /obj/item/device/flashlight/flare(src)
-		new /obj/item/device/flashlight/flare(src)
-		new /obj/item/device/flashlight/flare(src)
-		return
+/obj/item/storage/box/m94/New()
+	..()
+	contents = list()
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/device/flashlight/flare(src)
 
-	update_icon()
-		if(!contents.len)
-			icon_state = "m94_e"
-		else
-			icon_state = "m94"
+
+/obj/item/storage/box/m94/update_icon()
+	if(!contents.len)
+		icon_state = "m94_e"
+	else
+		icon_state = "m94"
+
 
 /obj/item/storage/box/nade_box
 	name = "\improper M40 HEDP grenade box"
@@ -578,18 +579,19 @@
 	var/nade_box_icon
 	var/grenade_type = /obj/item/explosive/grenade/frag
 
-	New()
-		..()
-		select_gamemode_skin(/obj/item/storage/box/nade_box)
-		nade_box_icon = icon_state
-		for(var/i = 1 to storage_slots)
-			new grenade_type(src)
+/obj/item/storage/box/nade_box/New()
+	..()
+	select_gamemode_skin(/obj/item/storage/box/nade_box)
+	nade_box_icon = icon_state
+	for(var/i = 1 to storage_slots)
+		new grenade_type(src)
 
-	update_icon()
-		if(!contents.len)
-			icon_state = "[nade_box_icon]_e"
-		else
-			icon_state = nade_box_icon
+/obj/item/storage/box/nade_box/update_icon()
+	if(!contents.len)
+		icon_state = "[nade_box_icon]_e"
+	else
+		icon_state = nade_box_icon
+
 
 /obj/item/storage/box/nade_box/training
 	name = "\improper M07 training grenade box"
@@ -601,6 +603,12 @@
 		)
 
 
+/obj/item/storage/box/nade_box/tear_gas
+	name = "\improper M66 tear gas grenade box"
+	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
+	icon_state = "teargas_nade_placeholder"
+	can_hold = list("/obj/item/explosive/grenade/chem_grenade/teargas")
+	grenade_type = /obj/item/explosive/grenade/chem_grenade/teargas
 
 
 

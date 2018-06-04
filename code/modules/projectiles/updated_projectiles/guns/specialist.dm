@@ -445,18 +445,22 @@
 	wield_delay = WIELD_DELAY_VERY_FAST
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
-	var/grenade
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
-
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	var/grenade
+	var/grenade_type_allowed = /obj/item/explosive/grenade
+	var/riot_version
 
-/obj/item/weapon/gun/launcher/m81/New()
+/obj/item/weapon/gun/launcher/m81/New(loc, spawn_empty)
 	set waitfor = 0
 	..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	sleep(1)
-	grenade = new /obj/item/explosive/grenade/frag(src)
+	if(!spawn_empty)
+		if(riot_version)
+			grenade = new /obj/item/explosive/grenade/chem_grenade/teargas(src)
+		else
+			grenade = new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/weapon/gun/launcher/m81/set_gun_config_values()
 	fire_delay = config.max_fire_delay * 1.5
@@ -473,12 +477,15 @@
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/explosive/grenade)))
-		if(!grenade)
-			if(user.drop_inv_item_to_loc(I, src))
-				grenade = I
-				user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
+		if((istype(I, grenade_type_allowed)))
+			if(!grenade)
+				if(user.drop_inv_item_to_loc(I, src))
+					grenade = I
+					user << "<span class='notice'>You put [I] in the grenade launcher.</span>"
+			else
+				user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
 		else
-			user << "<span class='warning'>The grenade launcher cannot hold more grenades!</span>"
+			user << "<span class='warning'>[src] can't use this type of grenade!</span>"
 
 	else if(istype(I,/obj/item/attachable))
 		if(check_inactive_hand(user)) attach_to_gun(user,I)
@@ -513,9 +520,15 @@
 /obj/item/weapon/gun/launcher/m81/able_to_fire(mob/living/user)
 	. = ..()
 	if (. && istype(user)) //Let's check all that other stuff first.
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
-			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
-			return 0
+		if(user.mind && user.mind.cm_skills)
+			if(riot_version)
+				if(user.mind.cm_skills.police < SKILL_POLICE_MP)
+					user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+					return 0
+			else if(user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
+				user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+				return 0
+
 
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
@@ -536,6 +549,16 @@
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
 		if(F && F.loc) F.prime()
+
+
+/obj/item/weapon/gun/launcher/m81/riot
+	name = "\improper M81 riot grenade launcher"
+	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by the Colonial Marines Military Police during riots."
+	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
+	riot_version = TRUE
+
+
+
 
 //-------------------------------------------------------
 //M5 RPG

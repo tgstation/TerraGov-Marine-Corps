@@ -1,6 +1,6 @@
 /obj/item/explosive/grenade/flashbang
 	name = "flashbang"
-	icon_state = "flashbang"
+	icon_state = "flashbang2"
 	item_state = "flashbang"
 	origin_tech = "materials=2;combat=1"
 	var/banglet = 0
@@ -52,8 +52,8 @@
 				ear_safety += 2
 			if(HULK in H.mutations)
 				ear_safety += 1
-			if(istype(H.head, /obj/item/clothing/head/helmet))
-				ear_safety += 1
+			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
+				ear_safety += 2
 
 //Flashing everyone
 	if(eye_safety < 1)

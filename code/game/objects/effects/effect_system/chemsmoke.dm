@@ -13,7 +13,9 @@
 	var/datum/reagents/R = new/datum/reagents(500)
 	reagents = R
 	R.my_atom = src
-	return
+
+
+
 
 /datum/effect_system/smoke_spread/chem
 	smoke_type = /obj/effect/particle_effect/smoke/chem
@@ -199,7 +201,9 @@
 	walk_to(smoke, T)
 	smoke.opacity = 1		//switching opacity on after the smoke has spawned, and then
 	sleep(150+rand(0,20))	// turning it off before it is deleted results in cleaner
-	smoke.opacity = 0		// lighting and view range updates
+	if(smoke.opacity)
+		smoke.opacity = 0		// lighting and view range updates
+		T.UpdateAffectingLights()
 	fadeOut(smoke)
 	cdel(smoke)
 

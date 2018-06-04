@@ -145,6 +145,7 @@
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 
 /datum/skills/commander
