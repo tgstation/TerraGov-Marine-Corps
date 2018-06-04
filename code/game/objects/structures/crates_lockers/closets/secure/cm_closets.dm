@@ -370,8 +370,6 @@
 		new /obj/item/clothing/tie/holster/armpit(src)
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/under/marine/mp(src)
-		new /obj/item/clothing/suit/armor/riot/marine(src)
-		new /obj/item/clothing/head/helmet/riot(src)
 		new /obj/item/storage/belt/security/MP(src)
 		new /obj/item/device/flashlight(src)
 		new /obj/item/clothing/glasses/sunglasses(src)

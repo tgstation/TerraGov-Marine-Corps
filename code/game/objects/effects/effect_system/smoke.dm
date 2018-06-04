@@ -27,16 +27,18 @@
 	processing_objects.Add(src)
 
 /obj/effect/particle_effect/smoke/Dispose()
-	. =..()
-	processing_objects.Remove(src)
-
-/obj/effect/particle_effect/smoke/process()
-	time_to_live--
-	if(time_to_live <= 0)
+	if(opacity)
 		opacity = 0
 		if(isturf(loc))
 			var/turf/T = loc
 			T.UpdateAffectingLights()
+	processing_objects.Remove(src)
+	. =..()
+
+
+/obj/effect/particle_effect/smoke/process()
+	time_to_live--
+	if(time_to_live <= 0)
 		cdel(src)
 	else if(time_to_live == 1)
 		alpha = 180
@@ -208,6 +210,7 @@
 	time_to_live = 2
 	opacity = 0
 	icon_state = "sparks"
+	icon = 'icons/effects/effects.dmi'
 
 /////////////////////////////////////////
 // BOILER SMOKES
@@ -316,6 +319,8 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.temporary_slowdown = max(H.temporary_slowdown, round(effect_amt*1.5)) //One tick every two second
+
+
 
 /////////////////////////////////////////////
 // Smoke spread

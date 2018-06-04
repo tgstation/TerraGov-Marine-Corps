@@ -125,7 +125,7 @@
 					if( !safe_thing )
 						safe_thing = victim.glasses
 				if( eyes_covered && mouth_covered )
-					victim << "\red Your [safe_thing] protects you from the pepperspray!"
+					victim << "\red Your [safe_thing.name] protects you from the pepperspray!"
 					return
 				else if( eyes_covered )	// Reduced effects if partially protected
 					victim << "\red Your [safe_thing] protect you from most of the pepperspray!"

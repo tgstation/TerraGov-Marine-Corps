@@ -439,7 +439,7 @@
 				if(H.mind && H.mind.special_role)
 					H.apply_effects(0,1) //ineffective against antags.
 				else
-					H.apply_effects(4,6)
+					H.apply_effects(6,8)
 			shake_camera(H, 2, 1)
 
 

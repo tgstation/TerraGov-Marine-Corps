@@ -19,7 +19,7 @@
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	desc = "It's a helmet specifically designed to protect against close range attacks. It covers your ears."
 	icon_state = "riot"
 	armor = list(melee = 82, bullet = 15, laser = 5, energy = 5, bomb = 5, bio = 2, rad = 0)
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
