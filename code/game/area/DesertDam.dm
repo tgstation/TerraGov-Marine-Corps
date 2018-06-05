@@ -93,7 +93,35 @@
 	name = "\improper "
 	icon_state = ""
 
+/area/desert_dam/interior/dam_interior/north_tunnel_entrance
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/dam_interior/east_tunnel_entrance
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/dam_interior/south_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
 
+/area/desert_dam/interior/caves/northern_caves
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/caves/east_caves
+	name = "\improper "
+	icon_state = "red"
+
+/area/desert_dam/interior/caves/central_caves
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/caves/central_caves/entrances/east_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/caves/central_caves/entrances/west_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
 
 //BUILDING
 //areas not under rock
@@ -394,10 +422,10 @@
 //NorthWest Lab Buildings
 /area/desert_dam/building/lab_northwest/robotics
 	name = "\improper"
-	icon_state = "dark128"
+	icon_state = "ass_line"
 /area/desert_dam/building/lab_northwest/robotics_mechbay
 	name = "\improper"
-	icon_state = "dark160"
+	icon_state = "mechbay"
 /area/desert_dam/building/lab_northwest/lobby
 	name = "\improper"
 	icon_state = "yellow"
@@ -418,7 +446,7 @@
 	icon_state = "blue"
 /area/desert_dam/building/lab_northwest/kitchen
 	name = ""
-	icon_state = "dark"
+	icon_state = "kitchen"
 /area/desert_dam/building/lab_northwest/dormitory
 	name = "\improper"
 	icon_state = "red"
@@ -428,6 +456,14 @@
 /area/desert_dam/building/lab_northwest/xenoflora
 	name = "\improper"
 	icon_state = "purple"
+
+/area/desert_dam/building/lab_northeast/checkpoint
+	name = "\improper"
+	icon_state = "red"
+/area/desert_dam/building/lab_northeast/garage
+	name = "\improper"
+	icon_state = "garage"
+
 
 //EXTERIOR
 //under open sky
