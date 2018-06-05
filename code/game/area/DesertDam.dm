@@ -4,11 +4,8 @@
 	icon_state = "cliff_blocked"
 
 
-/*
- *  ----------------
- * | Interior Areas |
- *  ----------------
- */
+
+//INTERIOR
 // areas under rock
 
 //NorthEastern Lab Section
@@ -79,7 +76,7 @@
 	icon_state = "blue"
 /area/desert_dam/interior/dam_interior/tech_storage
 	name = "\improper "
-	icon_state = "storage"
+	icon_state = "dark"
 /area/desert_dam/interior/dam_interior/break_room
 	name = "\improper "
 	icon_state = "yellow"
@@ -92,44 +89,13 @@
 /area/desert_dam/interior/dam_interior/office
 	name = "\improper "
 	icon_state = "red"
-/area/desert_dam/interior/dam_interior/north_tunnel_entrance
+/area/desert_dam/interior/dam_interior
 	name = "\improper "
-	icon_state = "north"
-/area/desert_dam/interior/dam_interior/east_tunnel_entrance
-	name = "\improper "
-	icon_state = "east"
-/area/desert_dam/interior/dam_interior/south_tunnel_entrance
-	name = "\improper "
-	icon_state = "south"
+	icon_state = ""
 
 
 
-
-//caves
-/area/desert_dam/interior/cave/north_caves
-	name = "\improper "
-	icon_state = "north"
-/area/desert_dam/interior/cave/central_caves
-	name = "\improper "
-	icon_state = "central"
-/area/desert_dam/interior/cave/central_caves_east_entrance
-	name = "\improper "
-	icon_state = "central"
-/area/desert_dam/interior/cave/central_caves_south_entrance
-	name = "\improper "
-	icon_state = "central"
-/area/desert_dam/interior/cave/central_caves_west_entrance
-	name = "\improper "
-	icon_state = "central"
-/area/desert_dam/interior/cave/northeast_caves
-	name = "\improper "
-	icon_state = "northeast"
-
-/*
- *  ----------------
- * | Building Areas |
- *  ----------------
- */
+//BUILDING
 //areas not under rock
 // ceiling = CEILING_METAL
 
@@ -173,7 +139,7 @@
 //Cafe
 /area/desert_dam/building/cafeteria/cafeteria
 	name = "\improper"
-	icon_state = "cafeteria"
+	icon_state = "yellow"
 /area/desert_dam/building/cafeteria/backroom
 	name = "\improper"
 	icon_state = "green"
@@ -420,18 +386,18 @@
 	icon_state = "yellow"
 /area/desert_dam/building/mining/maintenance_north
 	name = "\improper"
-	icon_state = "purple"
+	icon_state = "dark160"
 /area/desert_dam/building/mining/maintenance_east
 	name = "\improper"
-	icon_state = "blue"
+	icon_state = "dark128"
 
 //NorthWest Lab Buildings
 /area/desert_dam/building/lab_northwest/robotics
 	name = "\improper"
-	icon_state = "ass_line"
+	icon_state = "dark128"
 /area/desert_dam/building/lab_northwest/robotics_mechbay
 	name = "\improper"
-	icon_state = "mechbay"
+	icon_state = "dark160"
 /area/desert_dam/building/lab_northwest/lobby
 	name = "\improper"
 	icon_state = "yellow"
@@ -443,16 +409,16 @@
 	icon_state = "blue"
 /area/desert_dam/building/lab_northwest/maintenance
 	name = "\improper"
-	icon_state = "maintcentral"
+	icon_state = "dark"
 /area/desert_dam/building/lab_northwest/chemistry
 	name = "\improper"
 	icon_state = "yellow"
 /area/desert_dam/building/lab_northwest/cafeteria
 	name = "\improper"
-	icon_state = "cafeteria"
+	icon_state = "blue"
 /area/desert_dam/building/lab_northwest/kitchen
 	name = ""
-	icon_state = "kitchen"
+	icon_state = "dark"
 /area/desert_dam/building/lab_northwest/dormitory
 	name = "\improper"
 	icon_state = "red"
@@ -461,20 +427,9 @@
 	icon_state = "purple"
 /area/desert_dam/building/lab_northwest/xenoflora
 	name = "\improper"
-	icon_state = "hydro"
+	icon_state = "purple"
 
-/area/desert_dam/building/lab_northeast/checkpoint
-	name = "\improper"
-	icon_state = "security"
-/area/desert_dam/building/lab_northeast/garage
-	name = "\improper"
-	icon_state = "garage"
-
-/*
- *  ----------------
- * | Exterior Areas |
- *  ----------------
- */
+//EXTERIOR
 //under open sky
 /area/desert_dam/exterior
 
