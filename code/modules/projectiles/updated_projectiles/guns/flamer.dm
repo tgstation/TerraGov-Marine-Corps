@@ -126,6 +126,7 @@
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
+	last_fired = world.time
 	var/burnlevel
 	var/burntime
 	var/fire_color = "red"
