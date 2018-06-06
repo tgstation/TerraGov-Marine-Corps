@@ -139,14 +139,19 @@
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		src << "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>"
-//		src.AddLuminosity(3)
 		update_fire()
+		return 1
+
+/mob/living/carbon/human/IgniteMob()
+	. = ..()
+	if(.)
+		if(!stat && !(species.flags & NO_PAIN))
+			emote("scream")
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
-//		src.AddLuminosity(-3)
 		update_fire()
 
 /mob/living/proc/update_fire()

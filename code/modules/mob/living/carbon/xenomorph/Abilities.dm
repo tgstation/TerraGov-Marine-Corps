@@ -1014,7 +1014,7 @@
 			if("Carrier")
 				newcaste = "Drone"
 			if("Crusher")
-				newcaste = "Lurker"
+				newcaste = "Warrior"
 			if("Ravager")
 				newcaste = "Lurker"
 			if("Praetorian")
@@ -1025,6 +1025,8 @@
 				newcaste = "Sentinel"
 			if("Lurker")
 				newcaste = "Runner"
+			if("Warrior")
+				newcaste = "Defender"
 
 		if(!newcaste)
 			X << "<span class='xenowarning'>[T] can't be deevolved.</span>"
@@ -1066,6 +1068,10 @@
 				xeno_type = /mob/living/carbon/Xenomorph/Spitter
 			if("Lurker")
 				xeno_type = /mob/living/carbon/Xenomorph/Lurker
+			if("Warrior")
+				xeno_type = /mob/living/carbon/Xenomorph/Warrior
+			if("Defender")
+				xeno_type = /mob/living/carbon/Xenomorph/Defender
 
 		//From there, the new xeno exists, hopefully
 		var/mob/living/carbon/Xenomorph/new_xeno = new xeno_type(get_turf(T))

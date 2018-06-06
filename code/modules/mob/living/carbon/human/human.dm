@@ -488,9 +488,7 @@
 						visible_message("\red <B>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</B>", null, null, 5)
 						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 							if(U == w_uniform && U.hastie)
-								U.hastie.on_removed(usr)
-								U.hastie = null
-								update_inv_w_uniform()
+								U.remove_accessory(usr)
 
 	if(href_list["sensor"])
 		if(!usr.action_busy)

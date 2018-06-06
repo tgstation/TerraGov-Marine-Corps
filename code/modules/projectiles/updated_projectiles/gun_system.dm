@@ -543,6 +543,7 @@ and you're good to go.
 				active_attachable = null //disable the attachment
 			else
 				active_attachable.fire_attachment(target,src,user) //Fire it.
+				last_fired = world.time
 			return
 			//If there's more to the attachment, it will be processed farther down, through in_chamber and regular bullet act.
 
@@ -628,6 +629,7 @@ and you're good to go.
 			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 			projectile_to_fire.fire_at(target,user,src,projectile_to_fire.ammo.max_range,projectile_to_fire.ammo.shell_speed)
 			//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			last_fired = world.time
 
 		else // This happens in very rare circumstances when you're moving a lot while burst firing, so I'm going to toss it up to guns jamming.
 			clear_jam(projectile_to_fire,user)
@@ -683,6 +685,7 @@ and you're good to go.
 								user.apply_damage(100, OXY)
 								user.death()
 						user.attack_log += t //Apply the attack log.
+						last_fired = world.time
 
 						projectile_to_fire.play_damage_effect(user)
 						if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
@@ -708,6 +711,7 @@ and you're good to go.
 
 					projectile_to_fire.ammo.on_hit_mob(M,projectile_to_fire)
 					M.bullet_act(projectile_to_fire)
+					last_fired = world.time
 
 					if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire)
 					reload_into_chamber(user) //Reload into the chamber if the gun supports it.
@@ -774,7 +778,6 @@ and you're good to go.
 
 		if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
 			extra_delay = 0
-			last_fired = world.time
 		else
 			if (world.time % 3) user << "<span class='warning'>[src] is not ready to fire again!</span>" //to prevent spam
 			return

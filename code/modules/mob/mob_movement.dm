@@ -149,7 +149,7 @@
 		if(mob.is_mob_incapacitated(TRUE))
 			return
 		else if(mob.is_mob_restrained(0))
-			mob.next_move_slowdown += 10
+			next_movement = world.time + 20 //to reduce the spam
 			src << "<span class='warning'>You're restrained! You can't move!</span>"
 			return
 		else if(!mob.resist_grab(TRUE))

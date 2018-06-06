@@ -266,6 +266,12 @@
 	set category = "IC"
 
 	if(pulling)
+		if(ismob(pulling))
+			var/mob/M = pulling
+			if(M.client)
+				//resist_grab uses long movement cooldown durations to prevent message spam
+				//so we must undo it here so the victim can move right away
+				M.client.next_movement = world.time
 		pulling.pulledby = null
 		pulling = null
 		grab_level = 0

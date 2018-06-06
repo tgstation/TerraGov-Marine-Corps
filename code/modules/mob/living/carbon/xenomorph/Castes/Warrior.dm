@@ -53,34 +53,7 @@
 
 /mob/living/carbon/Xenomorph/Warrior/throw_item(atom/target)
 	return
-/*	var/obj/item/I = get_active_hand()
-	if (istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(ishuman(G.grabbed_thing))
-			if(grab_level >= GRAB_NECK)
-				if (!check_state() || agility)
-					return
 
-				if (used_fling)
-					src << "<span class='xenowarning'>You must gather your strength before flinging something.</span>"
-					return
-
-				if (!check_plasma(10))
-					return
-				used_fling = 1
-				use_plasma(10)
-
-				..()
-
-				spawn(fling_cooldown)
-					used_fling = 0
-					src << "<span class='notice'>You gather enough strength to fling something again.</span>"
-					for(var/X in actions)
-						var/datum/action/act = X
-						act.update_button_icon()
-						return
-				return
-	..()*/
 
 /mob/living/carbon/Xenomorph/Warrior/stop_pulling()
 	if(isliving(pulling))
@@ -88,30 +61,44 @@
 		L.SetStunned(0)
 	..()
 
-/mob/living/carbon/Xenomorph/Warrior/start_pulling(var/atom/movable/AM, var/lunge = 0)
+
+/mob/living/carbon/Xenomorph/Warrior/start_pulling(atom/movable/AM, lunge, no_msg)
 	if (!check_state() || agility)
-		return
+		return FALSE
+
+	if(!isliving(AM))
+		return FALSE
+	var/mob/living/L = AM
 
 	if (used_lunge && !lunge)
 		src << "<span class='xenowarning'>You must gather your strength before neckgrabbing again.</span>"
-		return
+		return FALSE
 
 	if (!check_plasma(10))
-		return
+		return FALSE
 
 	if(!lunge)
 		used_lunge = 1
-	use_plasma(10)
 
-	..()
+	. = ..(AM, lunge, TRUE) //no_msg = true because we don't want to show the defaul pull message
 
-	if(!lunge)
-		spawn(lunge_cooldown)
-			used_lunge = 0
-			src << "<span class='notice'>You get ready to lunge again.</span>"
-			for(var/X in actions)
-				var/datum/action/act = X
-				act.update_button_icon()
+	if(.) //successful pull
+		use_plasma(10)
+
+		if(!isXeno(L) && !isYautja(L))
+			grab_level = GRAB_NECK
+			L.drop_held_items()
+			L.Stun(5)
+			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
+			"<span class='xenowarning'>You grab [L] by the throat!</span>")
+
+		if(!lunge)
+			spawn(lunge_cooldown)
+				used_lunge = 0
+				src << "<span class='notice'>You get ready to lunge again.</span>"
+				for(var/X in actions)
+					var/datum/action/act = X
+					act.update_button_icon()
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))

@@ -91,18 +91,11 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
-	var/mob/living/pulled_last
 
-/obj/item/tool/soap/Crossed(AM as mob|obj) //EXACTLY the same as bananapeel for now, so it makes sense to put it in the same dm -- Urist
+/obj/item/tool/soap/Crossed(atom/movable/AM)
 	if (iscarbon(AM))
 		var/mob/living/carbon/C =AM
-		if(ismob(pulled_last))
-			C << "You were slipped with \the [src] by [pulled_last]"
 		C.slip("soap", 3, 2)
-
-/obj/item/tool/soap/attack_hand(mob/living/user)
-	pulled_last = user
-	..()
 
 /obj/item/tool/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return

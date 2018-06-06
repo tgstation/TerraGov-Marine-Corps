@@ -33,7 +33,7 @@
 	//+/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature > species.heat_level_1)
 		//Body temperature is too hot.
-		fire_alert = max(fire_alert, 1)
+		fire_alert = max(fire_alert, 2)
 		if(status_flags & GODMODE)
 			return 1 //Godmode
 
