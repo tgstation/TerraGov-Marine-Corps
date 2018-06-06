@@ -111,6 +111,17 @@
 	layer = ABOVE_MOB_LAYER
 	var/gun_mounted = 0 //Has the gun been mounted?
 	var/gun_rounds = 0 //Did the gun come with any ammo?
+	var/health = 100
+
+
+/obj/machinery/m56d_post/proc/update_health(damage)
+	health -= damage
+	if(health <= 0)
+		if(prob(30))
+			new /obj/item/device/m56d_post (src)
+		cdel(src)
+
+
 
 /obj/machinery/m56d_post/examine(mob/user)
 	..()
@@ -120,6 +131,15 @@
 		user << "The <b>M56D Mounted Smartgun</b> is not yet mounted."
 	else
 		user << "The M56D isn't screwed into the mount. Use a <b>screwdriver</b> to finish the job."
+
+/obj/machinery/m56d_post/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
+	"<span class='danger'>You slash [src]!</span>")
+	M.animation_attack_on(src)
+	M.flick_attack_overlay(src, "slash")
+	playsound(loc, "alien_claw_metal", 25)
+	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 
 /obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
@@ -342,8 +362,7 @@
 		return
 	return ..()
 
-/obj/machinery/m56d_hmg/proc/update_health(var/damage) //Negative damage restores health.
-	set waitfor = 0
+/obj/machinery/m56d_hmg/proc/update_health(damage) //Negative damage restores health.
 	health -= damage
 	if(health <= 0)
 		var/destroyed = rand(0,1) //Ammo cooks off or something. Who knows.
@@ -352,7 +371,6 @@
 		else
 			var/obj/item/device/m56d_gun/HMG = new(loc)
 			HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-		sleep(2)
 		cdel(src)
 		return
 
@@ -369,9 +387,12 @@
 	return 1
 
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/Xenomorph/M) // Those Ayy lmaos.
-	if(isXenoLarva(M)) return
-	src.visible_message("<span class='notice'> [M] has slashed [src]!</span>")
-	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
+	"<span class='danger'>You slash [src]!</span>")
+	M.animation_attack_on(src)
+	M.flick_attack_overlay(src, "slash")
+	playsound(loc, "alien_claw_metal", 25)
 	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
@@ -548,16 +569,12 @@
 
 /obj/machinery/m56d_hmg/clicked(var/mob/user, var/list/mods) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
 	if (isobserver(user)) return
-	if (mods["ctrl"])
-		if(!burst_fire) //Unfortunately had to remove the fact that only the gunner could change it, handle_click sorta screws it up.
-			visible_message("\icon[src] <span class='notice'> emits a audiable hard click </span>")
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			burst_fire = 1
-			return 1
 
-		visible_message("\icon[src] <span class='notice'> emits a audiable soft click </span>")
+	if (mods["ctrl"])
+		if(operator != user) return //only the operatore can toggle fire mode
+		burst_fire = !burst_fire
+		user << "<span class='notice'>You set [src] to [burst_fire ? "burst fire" : "single fire"] mode.</span>"
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		burst_fire = 0
 		return 1
 	return ..()
 

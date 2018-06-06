@@ -51,6 +51,7 @@
 /obj/structure/closet/secure_closet/guncabinet/riot_control
 	name = "riot control equipment closet"
 	req_access = list(ACCESS_MARINE_BRIG)
+	storage_capacity = 45
 
 /obj/structure/closet/secure_closet/guncabinet/riot_control/New()
 	..()

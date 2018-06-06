@@ -195,7 +195,6 @@
 			return 1
 		if(moving_resist && client) //we resisted by trying to move
 			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
-			next_move_slowdown += 20
 			client.next_movement = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
 		pulledby.stop_pulling()

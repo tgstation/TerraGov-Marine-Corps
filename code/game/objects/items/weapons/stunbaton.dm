@@ -79,7 +79,7 @@
 
 /obj/item/weapon/baton/pull_response(mob/puller)
 	if(has_user_lock)
-		check_user_auth(puller)
+		return check_user_auth(puller)
 
 /obj/item/weapon/baton/attackby(obj/item/W, mob/user)
 

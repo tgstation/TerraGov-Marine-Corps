@@ -21,18 +21,18 @@
 		losebreath--
 		if(prob(10)) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
-		if(istype(loc, /obj/))
-			var/obj/location_as_object = loc
-			location_as_object.handle_internal_lifeform(src)
+		if(istype(loc, /atom/movable))
+			var/atom/movable/container = loc
+			container.handle_internal_lifeform(src)
 	else
 		//First, check for air from internal atmosphere (using an air tank and mask generally)
 		air_info = get_breath_from_internal()
 
 		//No breath from internal atmosphere so get breath from location
 		if(!air_info)
-			if(isobj(loc))
-				var/obj/location_as_object = loc
-				air_info = location_as_object.handle_internal_lifeform(src)
+			if(istype(loc, /atom/movable))
+				var/atom/movable/container = loc
+				air_info = container.handle_internal_lifeform(src)
 				if(istype(wear_mask) && air_info)
 					air_info = wear_mask.filter_air(air_info)//some gas masks can modify the gas we're breathing
 
@@ -69,10 +69,10 @@
 									smoke.reagents.copy_to(src, 10) //I dunno, maybe the reagents enter the blood stream through the lungs?
 							break //If they breathe in the nasty stuff once, no need to continue checking
 
-		else //Still give containing object the chance to interact
-			if(istype(loc, /obj/))
-				var/obj/location_as_object = loc
-				location_as_object.handle_internal_lifeform(src)
+		else //Still give container the chance to interact
+			if(istype(loc, /atom/movable))
+				var/atom/movable/container = loc
+				container.handle_internal_lifeform(src)
 
 	handle_breath(air_info)
 

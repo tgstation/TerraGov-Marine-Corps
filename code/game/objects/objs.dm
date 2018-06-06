@@ -30,9 +30,6 @@
 	return 0
 
 
-/obj/proc/handle_internal_lifeform(mob/lifeform_inside_me)
-	. = return_air()
-
 /obj/proc/updateUsrDialog()
 	if(in_use)
 		var/is_in_use = 0

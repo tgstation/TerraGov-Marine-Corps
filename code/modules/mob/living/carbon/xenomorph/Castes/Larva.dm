@@ -113,4 +113,4 @@
 	return
 
 /mob/living/carbon/Xenomorph/Larva/pull_response(mob/puller)
-	return
+	return TRUE
