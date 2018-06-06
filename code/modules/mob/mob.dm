@@ -315,7 +315,9 @@ var/list/slot_equipment_priority = list( \
 
 //attempt to pull/grab something. Returns true upon success.
 /mob/proc/start_pulling(atom/movable/AM, lunge, no_msg)
+	return
 
+/mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
 	if ( !AM || !usr || src==AM || !isturf(loc) || !isturf(AM.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
@@ -353,6 +355,8 @@ var/list/slot_equipment_priority = list( \
 
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+
+		flick_attack_overlay(M, "grab")
 
 		attack_log += "\[[time_stamp()]\]<font color='green'> Grabbed [M.name] ([M.ckey]) </font>"
 		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Grabbed by [name] ([ckey]) </font>"

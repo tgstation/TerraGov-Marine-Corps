@@ -1532,12 +1532,13 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_medical
-	name = "medical pouches crate (1x firstaid, medical, syringe, medkit)"
+	name = "medical pouches crate (1x firstaid, medical, syringe, medkit, autoinjector)"
 	contains = list(
 					/obj/item/storage/pouch/firstaid,
 					/obj/item/storage/pouch/medical,
 					/obj/item/storage/pouch/syringe,
-					/obj/item/storage/pouch/medkit
+					/obj/item/storage/pouch/medkit,
+					/obj/item/storage/pouch/autoinjector,
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -1595,6 +1596,7 @@ MEDICAL
 					/obj/item/storage/pill_bottle/kelotane,
 					/obj/item/storage/pill_bottle/tramadol,
 					/obj/item/storage/pill_bottle/quickclot,
+					/obj/item/storage/pill_bottle/peridaxon,
 					/obj/item/storage/box/pillbottles
 					)
 	cost = RO_PRICE_VERY_CHEAP

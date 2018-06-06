@@ -204,6 +204,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(Z.heat_source)
 			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with [W].</span>")
 
+	else if(istype(W, /obj/item/device/flashlight/flare))
+		var/obj/item/device/flashlight/flare/FL = W
+		if(FL.heat_source)
+			light("<span class='notice'>[user] lights their [name] with [W].</span>")
+
 	else if(istype(W, /obj/item/tool/lighter))
 		var/obj/item/tool/lighter/L = W
 		if(L.heat_source)
@@ -400,6 +405,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(Z.heat_source)
 			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with their [W].</span>")
 
+	else if(istype(W, /obj/item/device/flashlight/flare))
+		var/obj/item/device/flashlight/flare/FL = W
+		if(FL.heat_source)
+			light("<span class='notice'>[user] lights their [name] with [W].</span>")
+
 	else if(istype(W, /obj/item/tool/lighter))
 		var/obj/item/tool/lighter/L = W
 		if(L.heat_source)
@@ -495,6 +505,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/obj/item/tool/lighter/zippo/Z = W
 		if(Z.heat_source)
 			light("<span class='rose'>With much care, [user] lights their [name] with their [W].</span>")
+
+	else if(istype(W, /obj/item/device/flashlight/flare))
+		var/obj/item/device/flashlight/flare/FL = W
+		if(FL.heat_source)
+			light("<span class='notice'>[user] lights their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/tool/lighter))
 		var/obj/item/tool/lighter/L = W

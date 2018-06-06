@@ -52,7 +52,7 @@
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 
 /mob/living/carbon/Xenomorph/Warrior/throw_item(atom/target)
-	return
+	throw_mode_off()
 
 
 /mob/living/carbon/Xenomorph/Warrior/stop_pulling()

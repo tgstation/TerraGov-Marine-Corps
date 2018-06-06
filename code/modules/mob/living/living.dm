@@ -359,11 +359,23 @@
 	set waitfor = 0
 
 	attack_icon.icon_state = attack_icon_state
+	attack_icon.pixel_x = -target.pixel_x
+	attack_icon.pixel_y = -target.pixel_y
 	target.overlays += attack_icon
 	var/old_icon = attack_icon.icon_state
+	var/old_pix_x = attack_icon.pixel_x
+	var/old_pix_y = attack_icon.pixel_y
 	sleep(4)
 	if(target)
 		var/new_icon = attack_icon.icon_state
+		var/new_pix_x = attack_icon.pixel_x
+		var/new_pix_y = attack_icon.pixel_x
 		attack_icon.icon_state = old_icon //necessary b/c the attack_icon can change sprite during the sleep.
+		attack_icon.pixel_x = old_pix_x
+		attack_icon.pixel_y = old_pix_y
+
 		target.overlays -= attack_icon
+
 		attack_icon.icon_state = new_icon
+		attack_icon.pixel_x = new_pix_x
+		attack_icon.pixel_y = new_pix_y
