@@ -151,8 +151,7 @@
 		fingerprint_hash = md5(loc:dna:uni_identity)
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	for(var/mob/O in viewers(user, null))
-		O.show_message(text("[] shows you: \icon[] []: assignment: []", user, src, src.name, src.assignment), 1)
+	user.visible_message("[user] shows you: \icon[src] [name]: assignment: [assignment]")
 
 	src.add_fingerprint(user)
 	return
@@ -298,3 +297,50 @@
 		H.update_inv_head() //Don't do a full update yet
 		H.update_inv_wear_suit()
 	..()
+
+
+
+/obj/item/card/id/dogtag
+	name = "dog tag"
+	desc = "A marine dog tag."
+	icon_state = "dogtag"
+	var/dogtag_taken = FALSE
+
+
+/obj/item/card/id/dogtag/examine(mob/user)
+	..()
+	if(ishuman(user))
+		user << "<span class='notice'>It reads \"[registered_name] - [assignment] - [blood_type]\"</span>"
+
+
+/obj/item/dogtag
+	name = "information dog tag"
+	desc = "A fallen marine's information dog tag."
+	icon_state = "dogtag_taken"
+	icon = 'icons/obj/items/card.dmi'
+	w_class = 1
+	var/list/fallen_names
+	var/fallen_blood_type = ""
+	var/fallen_assgn = ""
+
+/obj/item/dogtag/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/dogtag))
+		var/obj/item/dogtag/D = I
+		user << "<span class='notice'>You join the two tags together.</span>"
+		name = "information dog tags"
+		if(D.fallen_names)
+			if(!fallen_names)
+				fallen_names = list()
+			fallen_names += D.fallen_names
+		cdel(D)
+		return TRUE
+	else
+		. = ..()
+
+/obj/item/dogtag/examine(mob/user)
+	..()
+	if(ishuman(user) && fallen_names && fallen_names.len)
+		if(fallen_names.len == 1)
+			user << "<span class='notice'>It reads \"[fallen_names[1]] - [fallen_assgn] - [fallen_blood_type]\"</span>"
+		else
+			user << "There's multiple tags joined together."
