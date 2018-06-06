@@ -127,6 +127,14 @@
 						if(!W.reagents)
 							break
 						W.reagents.reaction(atm)
+						if(istype(atm, /obj/flamer_fire))
+							var/obj/flamer_fire/FF = atm
+							if(FF.firelevel > 7)
+								FF.firelevel -= 7
+								FF.updateicon()
+							else
+								cdel(atm)
+							continue
 						if(isliving(atm)) //For extinguishing mobs on fire
 							var/mob/living/M = atm
 							M.ExtinguishMob()

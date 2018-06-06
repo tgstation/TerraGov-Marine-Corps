@@ -75,6 +75,7 @@
 
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		user << "<span class='notice'>You splash the solution onto [target].</span>"
+		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 
 		var/mob/living/M = target
 		var/list/injected = list()
@@ -121,6 +122,7 @@
 
 	else if(reagents.total_volume)
 		user << "<span class='notice'>You splash the solution onto [target].</span>"
+		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 		reagents.reaction(target, TOUCH)
 		spawn(5) src.reagents.clear_reagents()
 		return
