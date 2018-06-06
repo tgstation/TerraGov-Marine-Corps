@@ -145,7 +145,7 @@
 		if("USCM Cryo")
 			M.equip_to_slot_or_del(new /obj/item/storage/backpack/marine(M), WEAR_BACK)
 
-			var/obj/item/card/id/W = new(M)
+			var/obj/item/card/id/dogtag/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Squad Marine"
@@ -169,7 +169,7 @@
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), WEAR_L_HAND)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), WEAR_HANDS)
 
-			var/obj/item/card/id/W = new(M)
+			var/obj/item/card/id/dogtag/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Squad Marine"
@@ -194,7 +194,7 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
 
-			var/obj/item/card/id/W = new(M)
+			var/obj/item/card/id/dogtag/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Squad Smartgunner"
@@ -217,7 +217,7 @@
 			M.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel, WEAR_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large, WEAR_R_STORE)
 
-			var/obj/item/card/id/W = new(M)
+			var/obj/item/card/id/dogtag/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Tank Crewman"
@@ -250,7 +250,7 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), WEAR_HANDS)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
 
-			var/obj/item/card/id/W = new(M)
+			var/obj/item/card/id/dogtag/W = new(M)
 			W.name = "[M.real_name]'s ID Card (Combat Synth)"
 			W.access = list()
 			W.assignment = "Squad Smartgunner"
@@ -281,7 +281,7 @@
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), WEAR_L_HAND)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(M), WEAR_HANDS)
 
-			var/obj/item/card/id/W = new(M)
+			var/obj/item/card/id/dogtag/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Squad Specialist"

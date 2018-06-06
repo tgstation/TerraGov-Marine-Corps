@@ -15,6 +15,7 @@ proc/engi_slot_formula(var/playercount)
 	spawn_positions = 8
 	minimal_player_age = 3
 	skills_type = /datum/skills/pfc
+	idtype = /obj/item/card/id/dogtag
 
 /datum/job/marine
 
