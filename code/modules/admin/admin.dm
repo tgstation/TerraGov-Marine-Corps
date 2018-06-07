@@ -339,6 +339,10 @@ var/global/floorIsLava = 0
 			dat += "<font color=#008800>[I.content]</font> | <i><font color=blue>[I.timestamp]</i></font>"
 			dat += "<br><br>"
 	dat += "</body></html>"
+	// Using regex to remove the note author for bans done in admin/topic.dm
+	var/regex/remove_author = regex("(?=Banned by).*?(?=\\|)")
+	dat = remove_author.Replace(dat, "Banned ")
+
 	usr << browse(dat, "window=notescopy;size=480x480")
 
 /datum/admins/proc/access_news_network() //MARKER
