@@ -559,8 +559,11 @@ var/global/list/damage_icon_parts = list()
 		if(client && hud_used && hud_used.hud_shown)
 			wear_id.screen_loc = ui_id
 			client.screen += wear_id
-		if(w_uniform && w_uniform:displays_id)
-			overlays_standing[ID_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "id", "layer" =-ID_LAYER)
+		if((w_uniform && w_uniform.displays_id) || istype(wear_id, /obj/item/card/id/dogtag))
+			var/id_state = wear_id.icon_state
+			if(wear_id.item_state)
+				id_state = wear_id.item_state
+			overlays_standing[ID_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "[id_state]", "layer" =-ID_LAYER)
 		else
 			overlays_standing[ID_LAYER]	= null
 		apply_overlay(ID_LAYER)

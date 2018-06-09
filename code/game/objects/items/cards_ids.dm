@@ -304,6 +304,7 @@
 	name = "dog tag"
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
+	item_state = "dogtag"
 	var/dogtag_taken = FALSE
 
 
