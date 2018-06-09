@@ -285,3 +285,10 @@
 	beakers += B2
 
 	icon_state = initial(icon_state) +"_locked"
+
+
+/obj/item/explosive/grenade/chem_grenade/teargas/attack_self(mob/user)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		return
+	..()

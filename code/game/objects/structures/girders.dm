@@ -103,22 +103,20 @@
 			var/old_buildctr = buildctr
 
 			var/obj/item/stack/sheet/S = W
-			switch(S.type)
-				if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
-					if (anchored)
-						if(S.get_amount() < 1) return ..()
-						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
-							if(disposed || buildctr != old_buildctr) return
-							if (S.use(1))
-								user << "<span class='notice'>You added the plating!</span>"
-								buildctr++
-						return
-
-				if(/obj/item/stack/sheet/plasteel)
-					if (anchored)
-						user << "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>"
-						return
+			if(S.stack_id == "metal")
+				if (anchored)
+					if(S.get_amount() < 1) return ..()
+					user << "<span class='notice'>Now adding plating...</span>"
+					if (do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
+						if(disposed || buildctr != old_buildctr) return
+						if (S.use(1))
+							user << "<span class='notice'>You added the plating!</span>"
+							buildctr++
+					return
+			else if(S.stack_id == "plasteel")
+				if (anchored)
+					user << "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>"
+					return
 
 			if(S.sheettype)
 				var/M = S.sheettype

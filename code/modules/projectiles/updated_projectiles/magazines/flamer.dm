@@ -14,30 +14,30 @@
 	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NOFLAGS
 
-	//TODO Change this.
-	afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
-		if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-			var/obj/structure/reagent_dispensers/fueltank/FT = target
-			if(current_rounds)
-				user << "<span class='warning'>You can't mix fuel mixtures!</span>"
-				return
-			var/fuel_available = FT.reagents.get_reagent_amount("fuel") < max_rounds ? FT.reagents.get_reagent_amount("fuel") : max_rounds
-			if(!fuel_available)
-				user << "<span class='warning'>[FT] is empty!</span>"
-				return
 
-			FT.reagents.remove_reagent("fuel", fuel_available)
-			current_rounds = fuel_available
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			caliber = "Fuel"
-			user << "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>"
-			update_icon()
+/obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
+	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
+		var/obj/structure/reagent_dispensers/fueltank/FT = target
+		if(current_rounds)
+			user << "<span class='warning'>You can't mix fuel mixtures!</span>"
+			return
+		var/fuel_available = FT.reagents.get_reagent_amount("fuel") < max_rounds ? FT.reagents.get_reagent_amount("fuel") : max_rounds
+		if(!fuel_available)
+			user << "<span class='warning'>[FT] is empty!</span>"
+			return
 
-		else
-			..()
+		FT.reagents.remove_reagent("fuel", fuel_available)
+		current_rounds = fuel_available
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		caliber = "Fuel"
+		user << "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>"
+		update_icon()
 
-	update_icon() //keep this simple.
-		icon_state = "flametank"
+	else
+		..()
+
+/obj/item/ammo_magazine/flamer_tank/update_icon()
+	return
 
 /obj/item/ammo_magazine/flamer_tank/large	// Extra thicc tank
 	name = "large incinerator tank"
