@@ -566,6 +566,29 @@ HARDPOINT MODULES (and their ammo)
 	containername = "tank ammo crate"
 	group = "Hardpoint Modules"
 
+/datum/supply_packs/tank_cupola_ammo
+	name = "M56 Cupola Magazines (x2)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/m56_cupola,
+					/obj/item/ammo_magazine/tank/m56_cupola)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "tank ammo crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_flamer_ammo
+	name = "Flamer Magazines (x5)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "tank ammo crate"
+	group = "Hardpoint Modules"
+
 
 /*******************************************************************************
 ATTACHMENTS

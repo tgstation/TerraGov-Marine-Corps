@@ -112,6 +112,9 @@
 		if(gunner) gunner.forceMove(entrance.loc)
 		if(driver) driver.forceMove(entrance.loc)
 
+	gunner = null
+	driver = null
+
 //Let's you switch into the other seat, doesn't work if it's occupied
 /obj/vehicle/multitile/root/cm_armored/tank/verb/switch_seats()
 	set name = "Swap Seats"
@@ -161,6 +164,38 @@
 
 /obj/vehicle/multitile/root/cm_armored/tank/can_use_hp(var/mob/M)
 	return (M == gunner)
+
+/obj/vehicle/multitile/root/cm_armored/tank/handle_harm_attack(var/mob/M)
+
+	if(!gunner && !driver)
+		M << "<span class='warning'>There is no one in the vehicle.</span>"
+		return
+
+	M << "<span class='notice'>You start pulling [driver ? driver : gunner] out of their seat.</span>"
+
+	if(!do_after(M, 200, show_busy_icon = BUSY_ICON_HOSTILE))
+		M << "<span class='warning'>You stop pulling [driver ? driver : gunner] out of their seat.</span>"
+		return
+
+	if(!gunner && !driver)
+		M << "<span class='warning'>There is no longer anyone in the vehicle.</span>"
+		return
+
+	M.visible_message("<span class='warning'>[M] pulls [driver ? driver : gunner] out of their seat in [src].</span>",
+		"<span class='notice'>You pull [driver ? driver : gunner] out of their seat.</span>")
+
+	var/mob/targ
+	if(driver)
+		targ = driver
+		driver = null
+	else
+		targ = gunner
+		gunner = null
+	targ << "<span class='danger'>[M] forcibly drags you out of your seat and dumps you on the ground!</span>"
+	targ.forceMove(entrance.loc)
+	targ.unset_interaction()
+	targ.KnockDown(7, 1)
+
 
 //Two seats, gunner and driver
 //Must have the skills to do so

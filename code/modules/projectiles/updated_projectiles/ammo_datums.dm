@@ -772,6 +772,7 @@
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
+	icon_state = "ltb"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 
 	New()
