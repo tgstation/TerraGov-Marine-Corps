@@ -73,6 +73,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	decryptkey = GenerateKey()
 	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
 	..()
+	start_processing()
 	return
 
 /obj/machinery/message_server/Dispose()

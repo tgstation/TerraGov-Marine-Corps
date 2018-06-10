@@ -36,6 +36,7 @@
 			trunk.linked = src	//Link the pipe trunk to self
 
 		update()
+		start_processing()
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)

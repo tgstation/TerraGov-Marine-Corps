@@ -100,6 +100,7 @@
 /obj/machinery/power/supermatter/New()
 	. = ..()
 	radio = new (src)
+	start_processing()
 
 
 /obj/machinery/power/supermatter/Dispose()

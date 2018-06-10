@@ -26,6 +26,7 @@
 				possible_gen.owned_capacitor = src
 				break
 	..()
+	start_processing()
 
 /obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
 

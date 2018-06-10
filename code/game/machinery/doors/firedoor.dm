@@ -64,6 +64,7 @@
 			if(istype(A) && !(A in areas_added))
 				A.all_doors.Add(src)
 				areas_added += A
+		start_processing()
 
 	Dispose()
 		for(var/area/A in areas_added)

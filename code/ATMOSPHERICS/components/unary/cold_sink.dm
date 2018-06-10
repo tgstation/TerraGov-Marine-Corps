@@ -36,7 +36,7 @@
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 
 	active_power_usage = max_power_usage * (power_setting/100)
-
+	start_processing()
 
 /obj/machinery/atmospherics/unary/freezer/initialize()
 	if(node) return

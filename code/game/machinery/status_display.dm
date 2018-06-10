@@ -17,7 +17,7 @@
 	density = 0
 	use_power = 1
 	idle_power_usage = 10
-	var/mode = 1	// 0 = Blank
+	var/mode = 0	// 0 = Blank
 					// 1 = Shuttle timer
 					// 2 = Arbitrary message(s)
 					// 3 = alert picture
@@ -46,13 +46,15 @@
 	var/const/STATUS_DISPLAY_CUSTOM = 99
 
 /obj/machinery/status_display/New()
+	..()
 	set_picture("default")
+	start_processing()
 
 // register for radio system
 /obj/machinery/status_display/initialize()
 	..()
-	if(radio_controller)
-		radio_controller.add_object(src, frequency)
+	/*if(radio_controller)
+		radio_controller.add_object(src, frequency)*/
 
 // timed process
 /obj/machinery/status_display/process()
@@ -138,6 +140,7 @@
 
 /obj/machinery/status_display/proc/set_picture(state)
 	picture_state = state
+	mode = 3
 	remove_display()
 	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
 
@@ -165,7 +168,7 @@
 		maptext = ""
 
 /obj/machinery/status_display/receive_signal(datum/signal/signal)
-	switch(signal.data["command"])
+	/*switch(signal.data["command"])
 		if("blank")
 			mode = STATUS_DISPLAY_BLANK
 
@@ -181,7 +184,7 @@
 			set_picture(signal.data["picture_state"])
 
 		if("time")
-			mode = STATUS_DISPLAY_TIME
+			mode = STATUS_DISPLAY_TIME*/
 
 /obj/machinery/ai_status_display
 	icon = 'icons/obj/status_display.dmi'

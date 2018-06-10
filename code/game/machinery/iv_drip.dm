@@ -48,6 +48,7 @@
 			"You detach \the [src] from \the [attached].")
 			attached = null
 			update_icon()
+			stop_processing()
 			return
 
 		if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
@@ -55,6 +56,7 @@
 			"You attach \the [src] to \the [over_object].")
 			attached = over_object
 			update_icon()
+			start_processing()
 
 
 /obj/machinery/iv_drip/attackby(obj/item/W, mob/living/user)
@@ -85,8 +87,6 @@
 
 
 /obj/machinery/iv_drip/process()
-	set background = 1
-
 	if(src.attached)
 
 		if(!(get_dist(src, src.attached) <= 1 && isturf(src.attached.loc)))
@@ -94,6 +94,7 @@
 			src.attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
 			src.attached = null
 			src.update_icon()
+			stop_processing()
 			return
 
 	if(src.attached && src.beaker)

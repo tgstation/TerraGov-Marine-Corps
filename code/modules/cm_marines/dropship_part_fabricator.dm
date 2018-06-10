@@ -13,6 +13,9 @@
 	var/dropship_points = 0 //gains roughly 18 points per minute
 	var/busy
 
+/obj/machinery/dropship_part_fabricator/New()
+	..()
+	start_processing()
 
 /obj/machinery/dropship_part_fabricator/power_change()
 	..()

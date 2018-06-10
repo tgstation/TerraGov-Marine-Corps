@@ -38,6 +38,7 @@
 				break
 	field = new/list()
 	..()
+	start_processing()
 
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id))

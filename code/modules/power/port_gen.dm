@@ -77,6 +77,7 @@ display round(lastgen) and phorontank amount
 
 	else
 		active = 0
+		stop_processing()
 		icon_state = initial(icon_state)
 		handleInactive()
 
@@ -305,11 +306,13 @@ display round(lastgen) and phorontank amount
 		if(href_list["action"] == "enable")
 			if(!active && HasFuel() && !crit_fail)
 				active = 1
+				start_processing()
 				icon_state = "portgen1"
 				src.updateUsrDialog()
 		if(href_list["action"] == "disable")
 			if (active)
 				active = 0
+				stop_processing()
 				icon_state = "portgen0"
 				src.updateUsrDialog()
 		if(href_list["action"] == "eject")

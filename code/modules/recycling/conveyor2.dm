@@ -52,6 +52,7 @@
 			backwards = NORTH
 	if(on)
 		operating = 1
+		start_processing()
 		setmove()
 
 /obj/machinery/conveyor/proc/setmove()
@@ -65,11 +66,14 @@
 	if(stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = 0
+		stop_processing()
 		return
 	if(!operable)
 		operating = 0
+		stop_processing()
 	if(stat & NOPOWER)
 		operating = 0
+		stop_processing()
 	icon_state = "conveyor[operating]"
 
 	// machine process
@@ -144,6 +148,7 @@
 	if(id != match_id)
 		return
 	operable = op
+	if(operable) start_processing()
 
 	update()
 	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
@@ -190,6 +195,7 @@
 		for(var/obj/machinery/conveyor/C in machines)
 			if(C.id == id)
 				conveyors += C
+	start_processing()
 
 // update the icon depending on the position
 

@@ -26,6 +26,10 @@
 		var/max_stored_power = 50000 //50 kW
 		use_power = 0	//Draws directly from power net. Does not use APC power.
 
+/obj/machinery/shieldwallgen/New()
+	..()
+	start_processing()
+
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
 		user << "\red The shield generator needs to be firmly secured to the floor first."
@@ -251,6 +255,7 @@
 			A.storedpower -= generate_power_usage
 		else
 			B.storedpower -= generate_power_usage
+		start_processing()
 	else
 		cdel(src) //need at least two generator posts
 

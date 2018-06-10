@@ -148,6 +148,7 @@
 		return
 
 	first_run()
+	start_processing()
 
 
 /obj/machinery/alarm/proc/first_run()
@@ -1221,7 +1222,7 @@ FIRE ALARM
 			src.alarm()
 			src.time = 0
 			src.timing = 0
-			processing_objects.Remove(src)
+			//processing_objects.Remove(src) // uh what
 		src.updateDialog()
 	last_process = world.timeofday
 /*
@@ -1296,7 +1297,7 @@ FIRE ALARM
 		else if (href_list["time"])
 			src.timing = text2num(href_list["time"])
 			last_process = world.timeofday
-			processing_objects.Add(src)
+			//processing_objects.Add(src)
 		else if (href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			src.time += tp
@@ -1355,3 +1356,4 @@ FIRE ALARM
 			src.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 
 	update_icon()
+	start_processing()

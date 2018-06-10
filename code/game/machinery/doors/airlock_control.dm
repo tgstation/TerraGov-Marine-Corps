@@ -149,6 +149,7 @@ obj/machinery/door/airlock/New()
 	if(radio_controller)
 		set_frequency(frequency)
 
+	start_processing()
 
 
 
@@ -221,6 +222,7 @@ obj/machinery/airlock_sensor/New()
 	..()
 	if(radio_controller)
 		set_frequency(frequency)
+	start_processing()
 
 
 obj/machinery/airlock_sensor/airlock_interior
