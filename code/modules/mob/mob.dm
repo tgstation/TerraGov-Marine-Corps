@@ -16,6 +16,39 @@
 	prepare_huds()
 	..()
 
+
+/mob/Stat()
+	// Looking at contents of a tile
+	if (listed_turf_change)
+		if (!listed_turf.contents.len)
+			listed_turf_change = 0
+			return 0
+
+		listed_turf_change = 0
+		statpanel("Tile Contents")
+		client.statpanel = "Tile Contents"
+		stat(listed_turf.contents)
+		client.stat_force_fast_update = 1
+		return 0
+
+	if (client.statpanel == "Tile Contents")
+		if (listed_turf && listed_turf.contents.len && statpanel("Tile Contents"))
+			stat(listed_turf.contents)
+			return 0
+		else
+			statpanel("Stats")
+			if (statpanel("Stats"))			// Was looking at Tile Contents, and switched to Stats. Otherwise looking at a verb panel
+				client.statpanel = "Stats"
+				stat("Operation Time: [worldtime2text()]")
+			client.stat_force_fast_update = 1
+			return 1
+
+	if (statpanel("Stats"))
+		stat("Operation Time: [worldtime2text()]")
+		return 1
+
+	return 0
+
 /mob/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible)

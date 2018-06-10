@@ -103,9 +103,13 @@
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
+	if (!..())
+		return 0
+
 	show_station_time()
 	show_emergency_shuttle_eta()
 	show_system_integrity()
+	return 1
 
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()

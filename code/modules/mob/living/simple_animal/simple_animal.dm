@@ -298,8 +298,11 @@
 	. += config.animal_delay
 
 /mob/living/simple_animal/Stat()
-	statpanel("Status")
+	if (!..())
+		return 0
+
 	stat(null, "Health: [round((health / maxHealth) * 100)]%")
+	return 1
 
 /mob/living/simple_animal/death()
 	. = ..()

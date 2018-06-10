@@ -62,9 +62,9 @@
 	remove_from_all_mob_huds()
 	. = ..()
 
-
 /mob/living/carbon/human/Stat()
-	stat(null, "Operation Time: [worldtime2text()]")
+	if (!..())
+		return 0
 
 	if(EvacuationAuthority)
 		var/eta_status = EvacuationAuthority.get_status_panel_eta()
@@ -88,7 +88,6 @@
 		stat(null, "You are affected by a HOLD order.")
 	if(marskman_aura)
 		stat(null, "You are affected by a FOCUS order.")
-
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded && hud_used)
@@ -164,7 +163,9 @@
 			if("l_arm")
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
-//z
+	return 1
+
+
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")

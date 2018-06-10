@@ -261,6 +261,8 @@
 	return
 
 /mob/living/carbon/monkey/attack_animal(mob/living/M as mob)
+	if (!..())
+		return 0
 
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
@@ -274,6 +276,8 @@
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
 		updatehealth()
+
+	return 1
 
 
 /mob/living/carbon/monkey/Stat()
