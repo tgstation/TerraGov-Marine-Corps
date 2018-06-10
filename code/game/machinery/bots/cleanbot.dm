@@ -45,6 +45,8 @@
 	if(radio_controller)
 		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 
+	start_processing()
+
 
 /obj/machinery/bot/cleanbot/turn_on()
 	. = ..()
@@ -313,4 +315,3 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	s.start()
 	cdel(src)
 	return
-

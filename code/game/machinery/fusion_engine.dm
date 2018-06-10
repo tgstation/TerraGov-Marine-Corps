@@ -38,15 +38,17 @@
 			is_on = FALSE
 			power_gen_percent = 0
 			update_icon()
+			stop_processing()
 		return 0
 	if (fusion_cell.fuel_amount <= 0)
 		visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 		fuel_rate = 0
-		buildstate = 1  //No fuel really fucks it.
+		buildstate = 2  //No fuel really fucks it.
 		is_on = 0
 		power_gen_percent = 0
 		fail_rate+=2 //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
 		update_icon()
+		stop_processing()
 		r_FAL
 
 	if(!check_failure())
@@ -101,6 +103,7 @@
 		power_gen_percent = 0
 		cur_tick = 0
 		update_icon()
+		stop_processing()
 		r_TRU
 
 	if(!fusion_cell)
@@ -119,6 +122,7 @@
 	is_on = 1
 	cur_tick = 0
 	update_icon()
+	start_processing()
 	r_TRU
 
 
@@ -303,6 +307,7 @@
 		is_on = 0
 		power_gen_percent = 0
 		update_icon()
+		stop_processing()
 		return 1
 	else
 		return 0

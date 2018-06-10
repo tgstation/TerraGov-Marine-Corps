@@ -80,8 +80,14 @@
 		has_power = powered(power_channel)
 
 	if(has_power)
+		if(machine_processing)
+			if(stat & NOPOWER) 
+				processing_machines += src // power interupted us, start processing again
 		stat &= ~NOPOWER
+
 	else
+		if(machine_processing)
+			processing_machines -= src // no power, can't process.
 		stat |= NOPOWER
 
 // the powernet datum

@@ -59,6 +59,7 @@ field_generator power level display
 	..()
 	fields = list()
 	connected_gens = list()
+	start_processing()
 	return
 
 

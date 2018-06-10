@@ -127,6 +127,10 @@
 	use_power = 0
 	idle_power_usage = 0
 
+/obj/machinery/shieldgen/New()
+	..()
+	start_processing()
+
 /obj/machinery/shieldgen/Dispose()
 	collapse_shields()
 	. = ..()

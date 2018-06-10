@@ -78,20 +78,21 @@
 			step(I, get_dir(I, src))
 
 /obj/machinery/optable/proc/check_victim()
-	if(locate(/mob/living/carbon/human, src.loc))
-		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
+	if(locate(/mob/living/carbon/human, loc))
+		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
 		if(M.lying)
-			src.victim = M
+			victim = M
 			icon_state = M.pulse ? "table2-active" : "table2-idle"
 			return 1
-	src.victim = null
+	victim = null
+	stop_processing()
 	icon_state = "table2-idle"
 	return 0
 
 /obj/machinery/optable/process()
 	check_victim()
 
-/obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user as mob)
+/obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
 	if (C == user)
 		user.visible_message("[user] climbs on the operating table.","You climb on the operating table.")
 	else
@@ -99,11 +100,12 @@
 	C.resting = 1
 	C.forceMove(loc)
 	for(var/obj/O in src)
-		O.loc = src.loc
-	src.add_fingerprint(user)
+		O.loc = loc
+	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		src.victim = H
+		victim = H
+		start_processing()
 		icon_state = H.pulse ? "table2-active" : "table2-idle"
 	else
 		icon_state = "table2-idle"
@@ -144,7 +146,7 @@
 		take_victim(M,user)
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
-	if(src.victim)
+	if(victim)
 		usr << "\blue <B>The table is already occupied!</B>"
 		return 0
 

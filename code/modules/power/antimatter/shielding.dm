@@ -30,6 +30,7 @@ proc/cardinalrange(var/center)
 	..(loc)
 	spawn(10)
 		controllerscan()
+		start_processing()
 	return
 
 

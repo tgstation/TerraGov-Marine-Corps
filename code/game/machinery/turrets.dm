@@ -101,6 +101,7 @@
 	spark_system.attach(src)
 //	targets = new
 	..()
+	start_processing()
 	return
 
 /obj/machinery/turret/proc/update_health()

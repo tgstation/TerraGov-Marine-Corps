@@ -28,6 +28,7 @@
 	New()
 		..()
 		ammo = ammo_list[ammo]
+		start_processing()
 
 	Dispose()
 		ammo = null

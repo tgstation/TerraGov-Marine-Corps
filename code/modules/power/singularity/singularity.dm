@@ -43,6 +43,7 @@ var/global/list/uneatable = list(
 		spawn(temp)
 			cdel(src)
 	..()
+	start_processing()
 
 /obj/machinery/singularity/attack_hand(mob/user as mob)
 	consume(user)

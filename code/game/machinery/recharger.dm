@@ -41,6 +41,7 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 				return
 		if(user.drop_inv_item_to_loc(G, src))
 			charging = G
+			start_processing()
 			update_icon()
 	else if(istype(G, /obj/item/tool/wrench))
 		if(charging)
@@ -60,6 +61,7 @@ obj/machinery/recharger/attack_hand(mob/user as mob)
 		charging.update_icon()
 		user.put_in_hands(charging)
 		charging = null
+		stop_processing()
 		percent_charge_complete = 0
 		update_icon()
 

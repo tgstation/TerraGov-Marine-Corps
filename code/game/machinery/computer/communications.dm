@@ -45,6 +45,7 @@
 /obj/machinery/computer/communications/New()
 	..()
 	crew_announcement.newscast = 1
+	start_processing()
 
 /obj/machinery/computer/communications/process()
 	if(..())
@@ -466,7 +467,7 @@
 
 /obj/machinery/computer/communications/proc/post_status(command, data1, data2)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	/*var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 
 	if(!frequency) r_FAL
 
@@ -484,7 +485,7 @@
 		if("alert")
 			status_signal.data["picture_state"] = data1
 
-	frequency.post_signal(src, status_signal)
+	frequency.post_signal(src, status_signal)*/
 
 #undef STATE_DEFAULT
 #undef STATE_CALLSHUTTLE

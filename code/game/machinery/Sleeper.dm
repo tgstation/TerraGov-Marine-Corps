@@ -14,11 +14,10 @@
 	use_power = 1
 	idle_power_usage = 40
 
-
 /obj/machinery/sleep_console/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
 
 /obj/machinery/sleep_console/ex_act(severity)
@@ -40,10 +39,11 @@
 	spawn( 5 )
 		if(orient == "RIGHT")
 			icon_state = "sleeperconsole-r"
-			src.connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
+			connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
+			connected.connected = src
 		else
-			src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
-
+			connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
+			connected.connected = src
 		return
 	return
 
@@ -170,6 +170,7 @@
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_container/glass/beaker = null
 	var/filtering = 0
+	var/obj/machinery/sleep_console/connected
 
 	use_power = 1
 	idle_power_usage = 15
@@ -243,6 +244,8 @@
 			M.forceMove(src)
 			update_use_power(2)
 			src.occupant = M
+			start_processing()
+			connected.start_processing()
 			src.icon_state = "sleeper_1"
 			if(orient == "RIGHT")
 				icon_state = "sleeper_1-r"
@@ -312,6 +315,8 @@
 		src.occupant.client.perspective = MOB_PERSPECTIVE
 	src.occupant.loc = src.loc
 	src.occupant = null
+	stop_processing()
+	connected.stop_processing()
 	update_use_power(1)
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
@@ -414,6 +419,8 @@
 		usr.loc = src
 		update_use_power(2)
 		src.occupant = usr
+		start_processing()
+		connected.start_processing()
 		src.icon_state = "sleeper_1"
 		if(orient == "RIGHT")
 			icon_state = "sleeper_1-r"

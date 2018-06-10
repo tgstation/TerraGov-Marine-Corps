@@ -112,6 +112,7 @@ Class Procs:
 	var/manual = 0
 	var/global/gl_uid = 1
 	layer = OBJ_LAYER
+	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
 /obj/machinery/New()
 	..()
@@ -122,10 +123,21 @@ Class Procs:
 
 /obj/machinery/Dispose()
 	machines -= src
+	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)
 		A.master.area_machines -= src
 	. = ..()
+
+/obj/machinery/proc/start_processing()
+	if(!machine_processing)
+		machine_processing = 1
+		processing_machines += src
+
+/obj/machinery/proc/stop_processing()
+	if(machine_processing)
+		machine_processing = 0
+		processing_machines -= src
 
 /obj/machinery/process()//If you dont use process or power why are you here
 	return PROCESS_KILL

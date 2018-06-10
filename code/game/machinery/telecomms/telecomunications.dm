@@ -152,6 +152,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		var/turf/position = get_turf(src)
 		listening_level = position.z
 
+	start_processing()
+
 /obj/machinery/telecomms/initialize()
 	if(autolinkers.len)
 		// Links nearby machines
@@ -604,10 +606,3 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/name = "data packet (#)"
 	var/garbage_collector = 1 // if set to 0, will not be garbage collected
 	var/input_type = "Speech File"
-
-
-
-
-
-
-

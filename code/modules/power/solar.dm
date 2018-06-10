@@ -39,6 +39,7 @@ var/list/solars_list = list()
 	..(loc)
 	Make(S)
 	connect_to_network(process)
+	start_processing()
 
 
 /obj/machinery/power/solar/disconnect_from_network()

@@ -54,6 +54,7 @@
 		if(!terminal.powernet)
 			terminal.connect_to_network()
 		updateicon()
+		start_processing()
 
 
 

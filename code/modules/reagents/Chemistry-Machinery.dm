@@ -48,6 +48,7 @@
 	..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
+	start_processing()
 
 
 /obj/machinery/chem_dispenser/ex_act(severity)

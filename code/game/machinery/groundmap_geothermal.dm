@@ -55,6 +55,7 @@
 		if(!connect_to_network())
 			powernet_connection_failed = 1 //God damn it, where'd our network go
 			is_on = 0
+			stop_processing()
 			spawn(150) // Error! Check again in 15 seconds. Someone could have blown/acided or snipped a cable
 				powernet_connection_failed = 0
 	else if(powernet) //All good! Let's fire it up!
@@ -87,6 +88,7 @@
 		power_gen_percent = 0
 		update_icon()
 		cur_tick = 0
+		stop_processing()
 		return 1
 	return 0 //Nope, all fine
 
@@ -118,11 +120,13 @@
 		power_gen_percent = 0
 		cur_tick = 0
 		icon_state = "off"
+		stop_processing()
 		return 1
 	visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
 	icon_state = "on10"
 	is_on = 1
 	cur_tick = 0
+	start_processing()
 	return 1
 
 /obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -203,6 +207,7 @@
 		floodlist += F
 		F.fswitch = src
 	..()
+	start_processing()
 
 /obj/machinery/colony_floodlight_switch/update_icon()
 	if(!ispowered)
@@ -211,6 +216,14 @@
 		icon_state = "panelon"
 	else
 		icon_state = "paneloff"
+
+/obj/machinery/colony_floodlight_switch/process()
+	var/lightpower = 0
+	for(var/obj/machinery/colony_floodlight/C in floodlist)
+		if(!C.is_lit)
+			continue
+		lightpower += C.power_tick
+	use_power(lightpower)
 
 /obj/machinery/colony_floodlight_switch/power_change()
 	..()
@@ -290,11 +303,6 @@
 		icon_state = "floodon"
 	else
 		icon_state = "floodoff"
-
-/obj/machinery/colony_floodlight/process()
-	if(isnull(fswitch) || damaged ||!is_lit) return 0 //The heck, where's the switch?!
-	if(!fswitch.ispowered || !fswitch.turned_on) return 0
-	fswitch.use_power(power_tick) //Make the switch use up the power, not the floodlight, since they don't have areas
 
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
 	if(damaged)
