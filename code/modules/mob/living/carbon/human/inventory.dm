@@ -156,6 +156,7 @@
 		sec_hud_set_ID()
 		hud_set_squad()
 		update_inv_wear_id()
+		name = get_visible_name()
 	else if (I == r_store)
 		r_store = null
 		update_inv_pockets()
@@ -250,6 +251,7 @@
 			sec_hud_set_ID()
 			hud_set_squad()
 			update_inv_wear_id()
+			name = get_visible_name()
 		if(WEAR_EAR)
 			wear_ear = W
 			W.equipped(src, slot)
