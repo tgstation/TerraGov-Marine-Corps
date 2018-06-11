@@ -188,6 +188,10 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	else
 		icon_state = "[initial(icon_state)]_off"
 
+/obj/machinery/telecomms/power_change(var/area/master_area = null)
+	..()
+	update_power()
+
 /obj/machinery/telecomms/proc/update_power()
 
 	if(toggled)
@@ -202,7 +206,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	update_power()
 
 	// Check heat and generate some
-	checkheat()
+	//checkheat()
 
 	// Update the icon
 	update_icon()
@@ -219,18 +223,18 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				stat &= ~EMPED
 	..()
 
-/obj/machinery/telecomms/proc/checkheat()
+///obj/machinery/telecomms/proc/checkheat()
 
 
 
 
-/obj/machinery/telecomms/proc/produce_heat()
+/*/obj/machinery/telecomms/proc/produce_heat()
 	if (!produces_heat)
 		return
 
 	if (!use_power)
 		return
-
+*/
 /*
 	The receiver idles and receives messages from subspace-compatible radio equipment;
 	primarily headsets. They then just relay this information to all linked devices,
@@ -448,20 +452,20 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuitboard = "/obj/item/circuitboard/machine/telecomms/processor"
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
-	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+/obj/machinery/telecomms/processor/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
-		if(is_freq_listening(signal))
+	if(is_freq_listening(signal))
 
-			if(process_mode)
-				signal.data["compression"] = 0 // uncompress subspace signal
-			else
-				signal.data["compression"] = 100 // even more compressed signal
+		if(process_mode)
+			signal.data["compression"] = 0 // uncompress subspace signal
+		else
+			signal.data["compression"] = 100 // even more compressed signal
 
-			if(istype(machine_from, /obj/machinery/telecomms/bus))
-				relay_direct_information(signal, machine_from) // send the signal back to the machine
-			else // no bus detected - send the signal to servers instead
-				signal.data["slow"] += rand(5, 10) // slow the signal down
-				relay_information(signal, "/obj/machinery/telecomms/server")
+		if(istype(machine_from, /obj/machinery/telecomms/bus))
+			relay_direct_information(signal, machine_from) // send the signal back to the machine
+		else // no bus detected - send the signal to servers instead
+			signal.data["slow"] += rand(5, 10) // slow the signal down
+			relay_information(signal, "/obj/machinery/telecomms/server")
 
 
 /*

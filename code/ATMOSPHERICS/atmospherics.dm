@@ -118,8 +118,8 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 
 	return node.pipe_color
 
-/obj/machinery/atmospherics/process()
-	build_network()
+/*/obj/machinery/atmospherics/process()
+	build_network()*/
 
 /obj/machinery/atmospherics/proc/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	// Check to see if should be added to network. Add self if so and adjust variables appropriately.
